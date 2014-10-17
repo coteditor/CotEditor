@@ -1,38 +1,35 @@
 /*
- =================================================
+ ==============================================================================
  CEColorPanelController
- (for CotEditor)
  
- Copyright (C) 2014 CotEditor Project
+ CotEditor
  http://coteditor.github.io
- =================================================
  
+ Created by 2014-04-22 by 1024jp
  encoding="UTF-8"
- Created:2014-04-22 by 1024jp
+ ------------------------------------------------------------------------------
  
- -------------------------------------------------
+ © 2014 CotEditor Project
  
- This program is free software; you can redistribute it and/or
- modify it under the terms of the GNU General Public License
- as published by the Free Software Foundation; either version 2
- of the License, or (at your option) any later version.
+ This program is free software; you can redistribute it and/or modify it under
+ the terms of the GNU General Public License as published by the Free Software
+ Foundation; either version 2 of the License, or (at your option) any later
+ version.
  
- This program is distributed in the hope that it will be useful,
- but WITHOUT ANY WARRANTY; without even the implied warranty of
- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- GNU General Public License for more details.
+ This program is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
  
- You should have received a copy of the GNU General Public License
- along with this program; if not, write to the Free Software
- Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ You should have received a copy of the GNU General Public License along with
+ this program; if not, write to the Free Software Foundation, Inc., 59 Temple
+ Place - Suite 330, Boston, MA  02111-1307, USA.
  
- 
- =================================================
+ ==============================================================================
  */
 
 #import "CEColorCodePanelController.h"
 #import "CEDocument.h"
-#import "NSColor+CEColorCode.h"
+#import "NSColor+WFColorCode.h"
 #import "constants.h"
 
 
@@ -114,11 +111,11 @@
         return;
     }
     
-    CEColorCodeType codeType;
+    WFColorCodeType codeType;
     NSColor *color = [NSColor colorWithColorCode:colorCode codeType:&codeType];
     
     if (color) {
-        [[NSUserDefaults standardUserDefaults] setInteger:codeType forKey:k_key_colorCodeType];
+        [[NSUserDefaults standardUserDefaults] setInteger:codeType forKey:CEDefaultColorCodeTypeKey];
         [(NSColorPanel *)[self window] setColor:color];
         return;
     }
@@ -184,7 +181,7 @@
 - (IBAction)insertCodeToDocument:(id)sender
 // ------------------------------------------------------
 {
-    [[[self documentWindowController] editorView] replaceTextViewSelectedStringTo:[self colorCode] scroll:YES];
+    [[[self documentWindowController] editor] replaceTextViewSelectedStringTo:[self colorCode] scroll:YES];
 }
 
 
@@ -212,11 +209,11 @@
 - (IBAction)updateCode:(id)sender
 // ------------------------------------------------------
 {
-    CEColorCodeType codeType = [[NSUserDefaults standardUserDefaults] integerForKey:k_key_colorCodeType];
-    NSString *code = [[[self color] colorUsingColorSpaceName:NSDeviceRGBColorSpace] colorCodeWithType:codeType];
+    WFColorCodeType codeType = [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultColorCodeTypeKey];
+    NSString *code = [[[self color] colorUsingColorSpaceName:NSCalibratedRGBColorSpace] colorCodeWithType:codeType];
     
     // 現在の Hex コードが大文字だったら大文字をキープ
-    if ((codeType == CEColorCodeHex || codeType == CEColorCodeShortHex) &&
+    if ((codeType == WFColorCodeHex || codeType == WFColorCodeShortHex) &&
         [[self colorCode] rangeOfString:@"^#[0-9A-F]{1,6}$" options:NSRegularExpressionSearch].location != NSNotFound) {
         code = [code uppercaseString];
     }

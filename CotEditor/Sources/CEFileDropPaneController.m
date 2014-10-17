@@ -1,48 +1,45 @@
 /*
- =================================================
+ ==============================================================================
  CEFileDropPaneController
- (for CotEditor)
  
- Copyright (C) 2004-2007 nakamuxu.
- Copyright (C) 2014 CotEditor Project
+ CotEditor
  http://coteditor.github.io
- =================================================
  
+ Created on 2014-04-18 by 1024jp
  encoding="UTF-8"
- Created:2014-04-18
+ ------------------------------------------------------------------------------
  
- -------------------------------------------------
+ © 2004-2007 nakamuxu
+ © 2014 CotEditor Project
  
- This program is free software; you can redistribute it and/or
- modify it under the terms of the GNU General Public License
- as published by the Free Software Foundation; either version 2
- of the License, or (at your option) any later version.
+ This program is free software; you can redistribute it and/or modify it under
+ the terms of the GNU General Public License as published by the Free Software
+ Foundation; either version 2 of the License, or (at your option) any later
+ version.
  
- This program is distributed in the hope that it will be useful,
- but WITHOUT ANY WARRANTY; without even the implied warranty of
- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- GNU General Public License for more details.
+ This program is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
  
- You should have received a copy of the GNU General Public License
- along with this program; if not, write to the Free Software
- Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ You should have received a copy of the GNU General Public License along with
+ this program; if not, write to the Free Software Foundation, Inc., 59 Temple
+ Place - Suite 330, Boston, MA  02111-1307, USA.
  
- 
- =================================================
+ ==============================================================================
  */
 
 #import "CEFileDropPaneController.h"
 #import "constants.h"
 
 
-@interface CEFileDropPaneController ()
+@interface CEFileDropPaneController () <NSTableViewDelegate, NSTextFieldDelegate, NSTextViewDelegate>
 
 @property (nonatomic) IBOutlet NSArrayController *fileDropController;
 @property (nonatomic, weak) IBOutlet NSTableView *fileDropTableView;
 @property (nonatomic, strong) IBOutlet NSTextView *fileDropTextView;  // on 10.8 NSTextView cannot be weak
-@property (nonatomic, strong) IBOutlet NSTextView *fileDropGlossaryTextView;  // on 10.8 NSTextView cannot be weak
+@property (nonatomic, strong) IBOutlet NSTextView *glossaryTextView;  // on 10.8 NSTextView cannot be weak
 
-@property (nonatomic) BOOL doDeleteFileDrop;
+@property (nonatomic, getter=isDeletingFileDrop) BOOL deletingFileDrop;
 
 @end
 
@@ -53,24 +50,42 @@
 
 @implementation CEFileDropPaneController
 
-#pragma mark Protocol
+#pragma mark Superclass Methods
 
 //=======================================================
-// NSNibAwaking Protocol
+// Superclass method
 //
 //=======================================================
 
 // ------------------------------------------------------
-/// Nibファイル読み込み直後
-- (void)awakeFromNib
+/// ビューの読み込み
+- (void)loadView
 // ------------------------------------------------------
 {
+    [super loadView];
+    
     // 各種セットアップ
     [self setContentFileDropController];
     
-    // （Nibファイルの用語説明部分は直接NSTextViewに記入していたが、AppleGlot3.4から読み取れなくなり、ローカライズ対象にできなくなってしまった。その回避処理として、Localizable.stringsファイルに書き込むこととしたために、文字列をセットする処理が必要になった。
-    // 2008.07.15.
-    [[self fileDropGlossaryTextView] setString:NSLocalizedString(@"<<<ABSOLUTE-PATH>>>\nThe dropped file's absolute path.\n\n<<<RELATIVE-PATH>>>\nThe relative path between the dropped file and the document.\n\n<<<FILENAME>>>\nThe dropped file's name with extension (if exists).\n\n<<<FILENAME-NOSUFFIX>>>\nThe dropped file's name without extension.\n\n<<<FILEEXTENSION>>>\nThe dropped file's extension.\n\n<<<FILEEXTENSION-LOWER>>>\nThe dropped file's extension (converted to lowercase).\n\n<<<FILEEXTENSION-UPPER>>>\nThe dropped file's extension (converted to uppercase).\n\n<<<DIRECTORY>>>\nThe parent directory name of the dropped file.\n\n<<<IMAGEWIDTH>>>\n(if the dropped file is Image) The image width.\n\n<<<IMAGEHEIGHT>>>\n(if the dropped file is Image) The image height.", nil)];
+    // 用語集をセット
+    NSURL *glossaryURL = [[NSBundle mainBundle] URLForResource:@"FileDropGlossary" withExtension:@"txt"];
+    NSString *glossary = [NSString stringWithContentsOfURL:glossaryURL encoding:NSUTF8StringEncoding error:nil];
+    [[self glossaryTextView] setString:glossary];
+    
+    // FileDrop 配列コントローラの値を確実に書き戻すためにウインドウクローズを監視
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(writeBackFileDropArray)
+                                                 name:NSWindowWillCloseNotification
+                                               object:[[self view] window]];
+}
+
+
+// ------------------------------------------------------
+/// 後片付け
+- (void)dealloc
+// ------------------------------------------------------
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 
@@ -87,38 +102,38 @@
 - (void)controlTextDidEndEditing:(NSNotification *)notification
 // ------------------------------------------------------
 {
-    if ([notification object] == [self fileDropTableView]) {
-        NSString *extension = [[[self fileDropController] selection] valueForKeyPath:k_key_fileDropExtensions];
-        NSString *format = [[[self fileDropController] selection] valueForKeyPath:k_key_fileDropFormatString];
+    if (![[notification object] isKindOfClass:[NSTextField class]]) { return; }
+    
+    NSString *extension = [[[self fileDropController] selection] valueForKeyPath:CEFileDropExtensionsKey];
+    NSString *format = [[[self fileDropController] selection] valueForKeyPath:CEFileDropFormatStringKey];
+    
+    // 入力されていなければ行ごと削除
+    if (!extension && !format) {
+        // 削除実行フラグを偽に（編集中に削除ボタンが押され、かつ自動削除対象であったときの整合性を取るためのフラグ）
+        [self setDeletingFileDrop:NO];
+        [[self fileDropController] remove:self];
         
-        // 入力されていなければ行ごと削除
-        if (!extension && !format) {
-            // 削除実行フラグを偽に（編集中に削除ボタンが押され、かつ自動削除対象であったときの整合性を取るためのフラグ）
-            [self setDoDeleteFileDrop:NO];
-            [[self fileDropController] remove:self];
-        } else {
-            // フォーマットを整える
-            NSCharacterSet *trimSet = [NSCharacterSet characterSetWithCharactersInString:@"./ \t\r\n"];
-            NSArray *components = [extension componentsSeparatedByString:@","];
-            NSMutableArray *newComponents = [NSMutableArray array];
-            NSString *newExtension;
-            
-            for (NSString *component in components) {
-                NSString *partStr = [component stringByTrimmingCharactersInSet:trimSet];
-                if ([partStr length] > 0) {
-                    [newComponents addObject:partStr];
-                }
-            }
-            newExtension = [newComponents componentsJoinedByString:@", "];
-            // 有効な文字列が生成できたら、UserDefaults に書き戻し、直ちに反映させる
-            if ([newExtension length] > 0) {
-                [[[self fileDropController] selection] setValue:newExtension forKey:k_key_fileDropExtensions];
-            } else if (!format) {
-                [[self fileDropController] remove:self];
+    } else {
+        // フォーマットを整える
+        NSCharacterSet *trimSet = [NSCharacterSet characterSetWithCharactersInString:@"./ \t\r\n"];
+        NSArray *components = [extension componentsSeparatedByString:@","];
+        NSMutableArray *newComponents = [NSMutableArray array];
+        
+        for (NSString *component in components) {
+            NSString *partStr = [component stringByTrimmingCharactersInSet:trimSet];
+            if ([partStr length] > 0) {
+                [newComponents addObject:partStr];
             }
         }
-        [self writeBackFileDropArray];
+        NSString *newExtension = [newComponents componentsJoinedByString:@", "];
+        // 有効な文字列が生成できたら、UserDefaults に書き戻し、直ちに反映させる
+        if ([newExtension length] > 0) {
+            [[[self fileDropController] selection] setValue:newExtension forKey:CEFileDropExtensionsKey];
+        } else if (!format) {
+            [[self fileDropController] remove:self];
+        }
     }
+    [self writeBackFileDropArray];
 }
 
 
@@ -173,7 +188,11 @@
     [[self fileDropController] add:self];
     
     // ディレイをかけて fileDropController からのバインディングによる行追加を先に実行させる
-    [self performSelector:@selector(editNewAddedRowOfFileDropTableView) withObject:nil afterDelay:0];
+    __unsafe_unretained typeof(self) weakSelf = self;  // cannot be weak on Lion
+    dispatch_async(dispatch_get_main_queue(), ^{
+        typeof(self) strongSelf = weakSelf;
+        [strongSelf editNewAddedRowOfFileDropTableView];
+    });
 }
 
 
@@ -183,11 +202,15 @@
 // ------------------------------------------------------
 {
     // (編集中に削除ボタンが押され、かつ自動削除対象であったときの整合性を取るための)削除実施フラグをたてる
-    [self setDoDeleteFileDrop:YES];
+    [self setDeletingFileDrop:YES];
     // フォーカスを移し、値入力を確定
     [[sender window] makeFirstResponder:sender];
     // ディレイをかけて controlTextDidEndEditing: の自動編集を実行させる
-    [self performSelector:@selector(doDeleteFileDropSetting) withObject:nil afterDelay:0];
+    __unsafe_unretained typeof(self) weakSelf = self;  // cannot be weak on Lion
+    dispatch_async(dispatch_get_main_queue(), ^{
+        typeof(self) strongSelf = weakSelf;
+        [strongSelf doDeleteFileDropSetting];
+    });
 }
 
 
@@ -204,7 +227,7 @@
 - (void)writeBackFileDropArray
 // ------------------------------------------------------
 {
-    [[NSUserDefaults standardUserDefaults] setObject:[[self fileDropController] content] forKey:k_key_fileDropArray];
+    [[NSUserDefaults standardUserDefaults] setObject:[[self fileDropController] content] forKey:CEDefaultFileDropArrayKey];
 }
 
 
@@ -217,7 +240,7 @@
     // 起動時に読み込み、変更完了／終了時に下記戻す処理を行う。
     // http://www.hmdt-web.net/bbs/bbs.cgi?bbsname=mkino&mode=res&no=203&oyano=203&line=0
     
-    NSArray *settings = [[NSUserDefaults standardUserDefaults] arrayForKey:k_key_fileDropArray];
+    NSArray *settings = [[NSUserDefaults standardUserDefaults] arrayForKey:CEDefaultFileDropArrayKey];
     
     NSMutableArray *content = [NSMutableArray array];
     for (NSDictionary *dict in settings) {
@@ -234,10 +257,10 @@
 // ------------------------------------------------------
 {
     // フラグがたっていなければ（既に controlTextDidEndEditing: で自動削除されていれば）何もしない
-    if (![self doDeleteFileDrop]) { return; }
+    if (![self isDeletingFileDrop]) { return; }
     
     NSArray *selected = [[self fileDropController] selectedObjects];
-    NSString *extension = selected[0][k_key_fileDropExtensions];
+    NSString *extension = selected[0][CEFileDropExtensionsKey];
     if ([selected count] == 0) {
         return;
     } else if (!extension) {
@@ -276,10 +299,10 @@
     
     if ([[self fileDropController] selectionIndex] == NSNotFound) { return; }
     
-    if ([self doDeleteFileDrop]) {
+    if ([self isDeletingFileDrop]) {
         [[self fileDropController] remove:self];
         [self writeBackFileDropArray];
-        [self setDoDeleteFileDrop:NO];
+        [self setDeletingFileDrop:NO];
     }
 }
 

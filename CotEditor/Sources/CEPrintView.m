@@ -1,39 +1,36 @@
 /*
-=================================================
-CEPrintView
-(for CotEditor)
-
- Copyright (C) 2004-2007 nakamuxu.
- Copyright (C) 2014 CotEditor Project
- http://coteditor.github.io
-=================================================
-
-encoding="UTF-8"
-Created:2005.10.01
+ ==============================================================================
+ CEPrintView
  
--------------------------------------------------
-
-This program is free software; you can redistribute it and/or
-modify it under the terms of the GNU General Public License
-as published by the Free Software Foundation; either version 2
-of the License, or (at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program; if not, write to the Free Software
-Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA. 
-
-
-=================================================
-*/
+ CotEditor
+ http://coteditor.github.io
+ 
+ Created on 2005-10-01 by nakamuxu
+ encoding="UTF-8"
+ ------------------------------------------------------------------------------
+ 
+ © 2004-2007 nakamuxu
+ © 2014 CotEditor Project
+ 
+ This program is free software; you can redistribute it and/or modify it under
+ the terms of the GNU General Public License as published by the Free Software
+ Foundation; either version 2 of the License, or (at your option) any later
+ version.
+ 
+ This program is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+ 
+ You should have received a copy of the GNU General Public License along with
+ this program; if not, write to the Free Software Foundation, Inc., 59 Temple
+ Place - Suite 330, Boston, MA  02111-1307, USA.
+ 
+ ==============================================================================
+ */
 
 #import "CEPrintView.h"
 #import "CELayoutManager.h"
-#import "CESyntax.h"
+#import "CESyntaxParser.h"
 #import "constants.h"
 
 
@@ -52,10 +49,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic) BOOL printsHeaderSeparator;
 @property (nonatomic) BOOL printsFooterSeparator;
 @property (nonatomic) BOOL printsLineNum;
-@property (nonatomic) BOOL readyToDrawPageNum;
+@property (nonatomic, getter=isReadyToDrawPageNum) BOOL readyToDrawPageNum;
 @property (nonatomic) CGFloat xOffset;
 @property (nonatomic, copy) NSDictionary *headerFooterAttrs;
-@property (nonatomic, copy) NSDictionary *lineNumAttrs;
+@property (nonatomic) CESyntaxParser *syntaxParser;
+@property (nonatomic) NSDateFormatter *dateFormatter;
 
 @end
 
@@ -81,34 +79,28 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     self = [super initWithFrame:frameRect];
     if (self) {
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        CGFloat fontSize;
-        
-        // 行番号の文字属性辞書生成、保持
-        fontSize = (CGFloat)[defaults doubleForKey:k_key_lineNumFontSize];
-        NSFont *lineNumFont = [NSFont fontWithName:[defaults stringForKey:k_key_lineNumFontName] size:fontSize];
-        if (!lineNumFont) {
-            lineNumFont = [NSFont userFixedPitchFontOfSize:fontSize];
-        }
-        [self setLineNumAttrs:@{NSFontAttributeName: lineNumFont,
-                                NSForegroundColorAttributeName: [NSUnarchiver unarchiveObjectWithData:
-                                                                 [defaults dataForKey:k_key_lineNumFontColor]]}];
         
         // ヘッダ／フッタの文字属性辞書生成、保持
-        fontSize = (CGFloat)[defaults doubleForKey:k_key_headerFooterFontSize];
-        NSFont *headerFooterFont = [NSFont fontWithName:[defaults stringForKey:k_key_headerFooterFontName] size:fontSize];
+        CGFloat fontSize = (CGFloat)[defaults doubleForKey:CEDefaultHeaderFooterFontSizeKey];
+        NSFont *headerFooterFont = [NSFont fontWithName:[defaults stringForKey:CEDefaultHeaderFooterFontNameKey] size:fontSize];
         if (!headerFooterFont) {
             headerFooterFont = [NSFont systemFontOfSize:fontSize];
         }
-        [self setHeaderFooterAttrs:@{NSFontAttributeName: headerFooterFont,
-                                     NSForegroundColorAttributeName: [NSColor textColor]}];
+        _headerFooterAttrs = @{NSFontAttributeName: headerFooterFont,
+                               NSForegroundColorAttributeName: [NSColor textColor]};
+        
+        // 日時のフォーマットを生成、保持
+        NSString *dateFormat = [[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultHeaderFooterDateFormatKey];
+        _dateFormatter = [[NSDateFormatter alloc] init];
+        [_dateFormatter setDateFormat:dateFormat];
         
         // プリントビューのテキストコンテナのパディングを固定する（印刷中に変動させるとラップの関連で末尾が印字されないことがある）
-        [[self textContainer] setLineFragmentPadding:k_printHFHorizontalMargin];
+        [[self textContainer] setLineFragmentPadding:kPrintHFHorizontalMargin];
         
         // layoutManager を入れ替え
         CELayoutManager *layoutManager = [[CELayoutManager alloc] init];
-        [layoutManager setFixLineHeight:NO];
-        [layoutManager setIsPrinting:YES];
+        [layoutManager setFixesLineHeight:NO];
+        [layoutManager setPrinting:YES];
         [[self textContainer] replaceLayoutManager:layoutManager];
     }
     return self;
@@ -137,14 +129,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     NSRect currentFrame = [self frame]; // 現在のフレームを退避
     NSAttributedString *pageString = nil;
-    NSPoint drawPoint = NSMakePoint(0.0, k_printHFVerticalMargin);
+    NSPoint drawPoint = NSMakePoint(0.0, kPrintHFVerticalMargin);
     CGFloat headerFooterLineFontSize = [[self headerFooterAttrs][NSFontAttributeName] pointSize];
 
     // プリントパネルでのカスタム設定を読み取り、保持
     [self setupPrintWithBorderWidth:borderSize.width];
     
     // ページ番号の印字があるなら、準備する
-    if ([self readyToDrawPageNum]) {
+    if ([self isReadyToDrawPageNum]) {
         NSInteger pageNum = [[NSPrintOperation currentOperation] currentPage];
 
         pageString = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%zd", pageNum]
@@ -166,7 +158,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             drawPoint.x = [self xValueToDrawAttributedString:[self headerOneString]
                                                  borderWidth:borderSize.width alignment:[self headerOneAlignment]];
             [[self headerOneString] drawAtPoint:drawPoint];
-            drawPoint.y += k_headerFooterLineHeight;
+            drawPoint.y += kHeaderFooterLineHeight;
         }
         
         if ([self headerTwoString]) {
@@ -180,26 +172,26 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             
         } else {
             if ([self headerOneString]) {
-                drawPoint.y += headerFooterLineFontSize - k_headerFooterLineHeight;
+                drawPoint.y += headerFooterLineFontSize - kHeaderFooterLineHeight;
             }
         }
     }
     if ([self printsHeaderSeparator]) {
-        drawPoint.y += k_separatorPadding / 2;
+        drawPoint.y += kSeparatorPadding / 2;
         [[NSColor controlShadowColor] set];
-        [NSBezierPath strokeLineFromPoint:NSMakePoint(k_printHFHorizontalMargin, drawPoint.y)
-                                  toPoint:NSMakePoint(borderSize.width - k_printHFHorizontalMargin, drawPoint.y)];
+        [NSBezierPath strokeLineFromPoint:NSMakePoint(kPrintHFHorizontalMargin, drawPoint.y)
+                                  toPoint:NSMakePoint(borderSize.width - kPrintHFHorizontalMargin, drawPoint.y)];
     }
 
-    // （drawPoint.y を borderSize.height - k_printHFVerticalMargin とすると1ページに満たない書類の印刷時に
+    // （drawPoint.y を borderSize.height - kPrintHFVerticalMargin とすると1ページに満たない書類の印刷時に
     // セパレータが印字されないので、フッタ全体を下げる。 2006.02.18）
-    drawPoint.y = borderSize.height - k_printHFVerticalMargin + k_separatorPadding;
+    drawPoint.y = borderSize.height - kPrintHFVerticalMargin + kSeparatorPadding;
     if ([self printsFooter]) {
         if ([self footerTwoString]) {
             if ([[[self footerTwoString] string] isEqualToString:@"PAGENUM"]) {
                 [self setFooterTwoString:pageString];
             }
-            drawPoint.y -= k_headerFooterLineHeight;
+            drawPoint.y -= kHeaderFooterLineHeight;
             drawPoint.x = [self xValueToDrawAttributedString:[self footerTwoString]
                                                  borderWidth:borderSize.width alignment:[self footerTwoAlignment]];
             [[self footerTwoString] drawAtPoint:drawPoint];
@@ -209,17 +201,17 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             if ([[[self footerOneString] string] isEqualToString:@"PAGENUM"]) {
                 [self setFooterOneString:pageString];
             }
-            drawPoint.y -= k_headerFooterLineHeight;
+            drawPoint.y -= kHeaderFooterLineHeight;
             drawPoint.x = [self xValueToDrawAttributedString:[self footerOneString]
                                                  borderWidth:borderSize.width alignment:[self footerOneAlignment]];
             [[self footerOneString] drawAtPoint:drawPoint];
         }
     }
     if ([self printsFooterSeparator]) {
-        drawPoint.y -= k_separatorPadding / 2;
+        drawPoint.y -= kSeparatorPadding / 2;
         [[NSColor controlShadowColor] set];
-        [NSBezierPath strokeLineFromPoint:NSMakePoint(k_printHFHorizontalMargin, drawPoint.y)
-                                  toPoint:NSMakePoint(borderSize.width - k_printHFHorizontalMargin, drawPoint.y)];
+        [NSBezierPath strokeLineFromPoint:NSMakePoint(kPrintHFHorizontalMargin, drawPoint.y)
+                                  toPoint:NSMakePoint(borderSize.width - kPrintHFHorizontalMargin, drawPoint.y)];
     }
     [self unlockFocus];
 
@@ -237,50 +229,46 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
     // 行番号を印字
     if ([self printsLineNum]) {
-        CGFloat lineNumFontSize = (CGFloat)[[NSUserDefaults standardUserDefaults] doubleForKey:k_key_lineNumFontSize];
-
+        // 行番号の文字属性辞書生成
+        CGFloat masterFontSize = [[self font] pointSize];
+        CGFloat fontSize = round(0.9 * masterFontSize);
+        NSFont *font = [NSFont fontWithName:[[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultLineNumFontNameKey] size:fontSize] ? :
+                       [NSFont userFixedPitchFontOfSize:fontSize];
+        NSDictionary *attrs = @{NSFontAttributeName: font,
+                                NSForegroundColorAttributeName: [NSColor textColor]};
+        
         //文字幅を計算しておく 等幅扱い
         //いずれにしても等幅じゃないと奇麗に揃わないので等幅だということにしておく(hetima)
-        CGFloat charWidth = [@"8" sizeWithAttributes:[self lineNumAttrs]].width;
+        CGFloat charWidth = [@"8" sizeWithAttributes:attrs].width;
         
         // setup the variables we need for the loop
-        NSRange range;       // a range for counting lines
-        NSString *str = [self string];
-        NSString *numStr;    // a temporary string for Line Number
-        NSUInteger glyphIndex, lastLineNum, glyphCount; // glyph counter
-        NSUInteger charIndex;
-        NSUInteger lineNum;   // line counter
-        CGFloat reqWidth;    // width calculator holder -- width needed to show string
-        CGFloat xAdj = 0.0;    // adjust horizontal value for line number drawing
-        CGFloat yAdj = 0.0;    // adjust vertical value for line number drawing
-        NSRect numRect;      // rectange holder
-        NSPoint numPoint;    // point holder
-        NSLayoutManager *layoutManager = [self layoutManager]; // get _owner's layout manager.
+        NSString *string = [self string];
+        NSLayoutManager *layoutManager = [self layoutManager]; // get owner's layout manager.
+        
         NSUInteger numberOfGlyphs = [layoutManager numberOfGlyphs];
+        
+        // adjust values for line number drawing
+        CGFloat xAdj = [self textContainerOrigin].x + kPrintHFHorizontalMargin - kLineNumPadding;
+        CGFloat yAdj = (fontSize - masterFontSize);
+        
+        // counters
+        NSUInteger lastLineNum = 0;
+        NSUInteger lineNum = 1;
+        NSUInteger glyphCount = 0;
 
-        lastLineNum = 0;
-        lineNum = 1;
-        glyphCount = 0;
-        xAdj = [self textContainerOrigin].x + k_printHFHorizontalMargin - k_lineNumPadding;
-        yAdj = ([[self font] pointSize] - lineNumFontSize) / 2;
-
-        for (glyphIndex = 0; glyphIndex < numberOfGlyphs; lineNum++) { // count "REAL" lines
-            charIndex = [layoutManager characterIndexForGlyphAtIndex:glyphIndex];
-            glyphIndex = NSMaxRange([layoutManager glyphRangeForCharacterRange:[str lineRangeForRange:NSMakeRange(charIndex, 0)]
+        for (NSUInteger glyphIndex = 0; glyphIndex < numberOfGlyphs; lineNum++) { // count "REAL" lines
+            NSUInteger charIndex = [layoutManager characterIndexForGlyphAtIndex:glyphIndex];
+            glyphIndex = NSMaxRange([layoutManager glyphRangeForCharacterRange:[string lineRangeForRange:NSMakeRange(charIndex, 0)]
                                                           actualCharacterRange:NULL]);
             while (glyphCount < glyphIndex) { // handle "DRAWN" (wrapped) lines
-                numRect = [layoutManager lineFragmentRectForGlyphAtIndex:glyphCount effectiveRange:&range];
+                NSRange range;
+                NSRect numRect = [layoutManager lineFragmentRectForGlyphAtIndex:glyphCount effectiveRange:&range];
                 if (NSPointInRect(numRect.origin, dirtyRect)) {
-                    if (lastLineNum != lineNum) {
-                        numStr = [NSString stringWithFormat:@"%tu:", lineNum];
-                        reqWidth = charWidth * [numStr length];
-                    } else {
-                        numStr = @"-:";
-                        reqWidth = 8.0; // @"-:"のときに必要なピクセル値。変更時、注意。*****
-                    }
-                    numPoint = NSMakePoint(dirtyRect.origin.x - reqWidth + xAdj,
+                    NSString *numStr = (lastLineNum != lineNum) ? [NSString stringWithFormat:@"%tu:", lineNum] : @"-:";
+                    CGFloat requiredWidth = charWidth * [numStr length];
+                    NSPoint point = NSMakePoint(dirtyRect.origin.x - requiredWidth + xAdj,
                                            numRect.origin.y + yAdj);
-                    [numStr drawAtPoint:numPoint withAttributes:[self lineNumAttrs]]; // draw the line number.
+                    [numStr drawAtPoint:point withAttributes:attrs]; // draw the line number.
                     lastLineNum = lineNum;
                 }
                 glyphCount = NSMaxRange(range);
@@ -315,6 +303,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     // layoutManagerにもフォントを設定する
     [(CELayoutManager *)[self layoutManager] setTextFont:font];
+    
     [super setFont:font];
 }
 
@@ -333,27 +322,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     // layoutManagerにも設定する
-    [(CELayoutManager *)[self layoutManager] setShowOtherInvisibles:showsInvisibles];
+    [(CELayoutManager *)[self layoutManager] setShowsOtherInvisibles:showsInvisibles];
     
     _documentShowsInvisibles = showsInvisibles;
-}
-
-
-
-#pragma mark Protocol
-
-//=======================================================
-// CETextViewProtocol
-//
-//=======================================================
-
-// ------------------------------------------------------
-/// 不可視文字の色を返す（CELayoutManager向け: テーマ機能を実装したら取り外せる予定）
-- (NSColor *)invisiblesColor
-// ------------------------------------------------------
-{
-    return [NSUnarchiver unarchiveObjectWithData:
-            [[NSUserDefaults standardUserDefaults] dataForKey:k_key_invisibleCharactersColor]];
 }
 
 
@@ -371,9 +342,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     CEPrintPanelAccessoryController *accessoryController = [self printPanelAccessoryController];
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSAttributedString *attrString = nil;
-    CGFloat printWidth = borderWidth - k_printHFHorizontalMargin * 2;
+    CGFloat printWidth = borderWidth - kPrintHFHorizontalMargin * 2;
 
     // 行番号印字の有無をチェック
     switch ([accessoryController lineNumberMode]) {
@@ -390,45 +360,44 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
     // 行番号表示の有無によってパディングを調整
     if ([self printsLineNum]) {
-        [self setXOffset:k_printTextHorizontalMargin];
+        [self setXOffset:kPrintTextHorizontalMargin];
     } else {
         [self setXOffset:0];
     }
     
-    // 制御文字印字を取得
-    BOOL showsControls;
+    // 不可視文字の扱いを取得
+    BOOL showsInvisibles;
     switch ([accessoryController invisibleCharsMode]) {
         case CENoInvisibleCharsPrint:
-            showsControls = NO;
+            showsInvisibles = NO;
             break;
         case CESameAsDocumentInvisibleCharsPrint:
-            showsControls = [self documentShowsInvisibles];
+            showsInvisibles = [self documentShowsInvisibles];
             break;
         case CEAllInvisibleCharsPrint:
-            showsControls = YES;
+            showsInvisibles = YES;
             break;
     }
-    [[[self textContainer] layoutManager] setShowsControlCharacters:showsControls];
+    [(CELayoutManager *)[self layoutManager] setShowsInvisibles:showsInvisibles];
     
     
     // カラーリングの設定
-    switch ([accessoryController colorMode]) {
-        case CEBlackColorPrint:
-            [self setTextColor:[NSColor blackColor]];
-            [self setBackgroundColor:[NSColor whiteColor]];
-            break;
-            
-        case CESameAsDocumentColorPrint:
-            [self setTextColor:[NSUnarchiver unarchiveObjectWithData:[defaults dataForKey:k_key_textColor]]];
-            [self setBackgroundColor:[NSUnarchiver unarchiveObjectWithData:[defaults dataForKey:k_key_backgroundColor]]];
-            
-            // カラーリング実行オブジェクトを用意して実行
-            CESyntax *syntax = [[CESyntax alloc] init];
-            [syntax setSyntaxStyleName:[self syntaxName]];
-            [syntax setLayoutManager:(CELayoutManager *)[[self textContainer] layoutManager]];
-            [syntax setIsPrinting:YES];
-            [syntax colorAllString:[self string]];
-            break;
+    if ([[accessoryController theme] isEqualToString:NSLocalizedStringFromTable(@"Black and White", CEPrintLocalizeTable,  nil)]) {
+        [self setTextColor:[NSColor blackColor]];
+        [self setBackgroundColor:[NSColor whiteColor]];
+        
+    } else {
+        [self setTheme:[CETheme themeWithName:[accessoryController theme]]];
+        [self setTextColor:[[self theme] textColor]];
+        [self setBackgroundColor:[[self theme] backgroundColor]];
+        
+        // カラーリング実行オブジェクトを用意して実行
+        if (![self syntaxParser]) {
+            [self setSyntaxParser:[[CESyntaxParser alloc] initWithStyleName:[self syntaxName]
+                                                              layoutManager:(CELayoutManager *)[[self textContainer] layoutManager]
+                                                                 isPrinting:YES]];
+        }
+        [[self syntaxParser] colorAllString:[self string]];
     }
     
     // ヘッダを設定
@@ -466,54 +435,47 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (NSAttributedString *)attributedStringFromPrintInfoType:(CEPrintInfoType)selectedTag maxWidth:(CGFloat)maxWidth
 // ------------------------------------------------------
 {
-    NSString *contentString;
-            
+    NSString *string = @"";
+    
     switch (selectedTag) {
         case CEDocumentNamePrintInfo:
             if ([self filePath]) {
-                contentString = [self documentName];
+                string = [self documentName];
             }
             break;
-
+            
         case CESyntaxNamePrintInfo:
-            contentString = [self syntaxName];
+            string = [self syntaxName];
             break;
             
         case CEFilePathPrintInfo:
             if ([self filePath]) {
-                contentString = [self filePath];
-                if ([[NSUserDefaults standardUserDefaults] boolForKey:k_key_headerFooterPathAbbreviatingWithTilde]) {
-                    contentString = [contentString stringByAbbreviatingWithTildeInPath];
+                string = [self filePath];
+                if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultHeaderFooterPathAbbreviatingWithTildeKey]) {
+                    string = [string stringByAbbreviatingWithTildeInPath];
                 }
             } else {
-                contentString = [self documentName];  // パスがない場合は書類名をプリント
+                string = [self documentName];  // パスがない場合は書類名をプリント
             }
             break;
-
-        case CEPrintDatePrintInfo: {
-            NSString *dateFormat = [[NSUserDefaults standardUserDefaults] stringForKey:k_key_headerFooterDateTimeFormat];
-            NSString *dateString = [[NSCalendarDate calendarDate] descriptionWithCalendarFormat:dateFormat];
-            if (dateString && ([dateString length] > 0)) {
-                contentString = [NSString stringWithFormat:NSLocalizedString(@"Printed: %@", nil), dateString];
-            }
+            
+        case CEPrintDatePrintInfo:
+            string = [NSString stringWithFormat:NSLocalizedString(@"Printed on %@", nil),
+                      [[self dateFormatter] stringFromDate:[NSDate date]]];
             break;
-        }
-
+            
         case CEPageNumberPrintInfo:
-            contentString = @"PAGENUM";
+            string = @"PAGENUM";
             [self setReadyToDrawPageNum:YES];
             break;
-
+            
         case CENoPrintInfo:
-            break;
+            return nil;
     }
     
-    NSAttributedString *attributedString = nil;
-    if (contentString) {
-        attributedString = [[NSAttributedString alloc] initWithString:contentString
-                                                           attributes:[self headerFooterAttrs]];
-    }
-
+    NSAttributedString *attributedString = [[NSAttributedString alloc] initWithString:string
+                                                                           attributes:[self headerFooterAttrs]];
+    
     // 印字があふれる場合、中ほどを省略する
     if (([attributedString size].width > maxWidth) && ([attributedString length] > 0)) {
         NSMutableAttributedString *attrStr = [attributedString mutableCopy];
@@ -541,13 +503,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     switch (alignmentType) {
         case CEAlignLeft:
-            return k_printHFHorizontalMargin;
+            return kPrintHFHorizontalMargin;
             break;
         case CEAlignCenter:
             return (borderWidth - [attrString size].width) / 2;
             break;
         case CEAlignRight:
-            return (borderWidth - [attrString size].width) - k_printHFHorizontalMargin;
+            return (borderWidth - [attrString size].width) - kPrintHFHorizontalMargin;
             break;
     }
 }

@@ -1,50 +1,49 @@
 /*
-=================================================
-CEDocument
-(for CotEditor)
-
- Copyright (C) 2004-2007 nakamuxu.
- Copyright (C) 2014 CotEditor Project
- http://coteditor.github.io
-=================================================
-
-encoding="UTF-8"
-Created:2004.12.08
+ ==============================================================================
+ CEDocument
  
--------------------------------------------------
+ CotEditor
+ http://coteditor.github.io
+ 
+ Created on 2004-12-08 by nakamuxu
+ encoding="UTF-8"
+ ------------------------------------------------------------------------------
+ 
+ © 2004-2007 nakamuxu
+ © 2014 CotEditor Project
+ 
+ This program is free software; you can redistribute it and/or modify it under
+ the terms of the GNU General Public License as published by the Free Software
+ Foundation; either version 2 of the License, or (at your option) any later
+ version.
+ 
+ This program is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+ 
+ You should have received a copy of the GNU General Public License along with
+ this program; if not, write to the Free Software Foundation, Inc., 59 Temple
+ Place - Suite 330, Boston, MA  02111-1307, USA.
+ 
+ ==============================================================================
+ */
 
-This program is free software; you can redistribute it and/or
-modify it under the terms of the GNU General Public License
-as published by the Free Software Foundation; either version 2
-of the License, or (at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program; if not, write to the Free Software
-Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA. 
-
-
-=================================================
-*/
-
-#import <Cocoa/Cocoa.h>
-#import <OgreKit/OgreKit.h>
-#import "CEApplication.h"
-#import "CEDocumentController.h"
-#import "CEEditorView.h"
+@import Cocoa;
 #import "CEWindowController.h"
 #import "CETextSelection.h"
-#import "CEPrintView.h"
+#import "CEEditorWrapper.h"
+#import "constants.h"
 
 
-@class CEEditorView;
+@class CEEditorWrapper;
 @class CEWindowController;
-@class UKXattrMetadataStore;
 
+
+// Incompatible chars listController key
+extern NSString *const CEIncompatibleLineNumberKey;
+extern NSString *const CEIncompatibleRangeKey;
+extern NSString *const CEIncompatibleCharKey;
+extern NSString *const CEIncompatibleConvertedCharKey;
 
 typedef NS_ENUM(NSUInteger, CEGoToType) {
     CEGoToLine,
@@ -54,55 +53,51 @@ typedef NS_ENUM(NSUInteger, CEGoToType) {
 
 @interface CEDocument : NSDocument
 
-@property (nonatomic) CEEditorView *editorView;
+@property (nonatomic) CEEditorWrapper *editor;
 
 // readonly properties
-@property (nonatomic, readonly) CEWindowController *windowController;
-@property (nonatomic, readonly) BOOL canActivateShowInvisibleCharsItem;// 不可視文字表示メニュー／ツールバーアイテムを有効化できるか
-@property (nonatomic, readonly) NSStringEncoding encodingCode;  // 表示しているファイルのエンコーディング
-@property (nonatomic, copy, readonly) NSDictionary *fileAttributes;  // ファイル属性情報辞書
-@property (nonatomic, readonly) CETextSelection *selection;
+@property (readonly, nonatomic) CEWindowController *windowController;
+@property (readonly, nonatomic) CETextSelection *selection;
+@property (readonly, nonatomic) NSStringEncoding encoding;
+@property (readonly, nonatomic) OgreNewlineCharacter lineEnding;
+@property (readonly, nonatomic, copy) NSDictionary *fileAttributes;
+@property (readonly, nonatomic, getter=isWritable) BOOL writable;
 
 
 // Public methods
-- (BOOL)stringFromData:(NSData *)data encoding:(NSStringEncoding)encoding xattr:(BOOL)boolXattr;
-- (NSString *)stringToWindowController;
-- (void)setStringToEditorView;
-- (void)setStringToTextView:(NSString *)string;
+
+/// Return whole string in the current text view which document's line endings are already applied to.  (Note: The internal string (e.g. in text storage) has always LF for its line ending.)
+- (NSString *)stringForSave;
+
+- (void)setStringToEditor;
+
+- (NSString *)currentIANACharSetName;
+- (NSArray *)findCharsIncompatibleWithEncoding:(NSStringEncoding)encoding;
+- (BOOL)readStringFromData:(NSData *)data encoding:(NSStringEncoding)encoding xattr:(BOOL)checksXattr;
 - (BOOL)doSetEncoding:(NSStringEncoding)encoding updateDocument:(BOOL)updateDocument
              askLossy:(BOOL)askLossy lossy:(BOOL)lossy asActionName:(NSString *)actionName;
-- (void)clearAllMarkupForIncompatibleChar;
-- (NSArray *)markupCharCanNotBeConvertedToCurrentEncoding;
-- (NSArray *)markupCharCanNotBeConvertedToEncoding:(NSStringEncoding)encoding;
-- (void)doSetNewLineEndingCharacterCode:(NSInteger)newLineEnding;
-- (void)setLineEndingCharToView:(NSInteger)newLineEnding;
-- (void)doSetSyntaxStyle:(NSString *)name;
-- (void)doSetSyntaxStyle:(NSString *)name delay:(BOOL)needsDelay;
-- (void)setColoringExtension:(NSString *)extension coloring:(BOOL)doColoring;
-- (NSRange)rangeInTextViewWithLocation:(NSInteger)location withLength:(NSInteger)length;
-- (void)setSelectedCharacterRangeInTextViewWithLocation:(NSInteger)location withLength:(NSInteger)length;
-- (void)setSelectedLineRangeInTextViewWithLocation:(NSInteger)location withLength:(NSInteger)length;
-- (void)scrollToCenteringSelection;
-- (void)gotoLocation:(NSInteger)location withLength:(NSInteger)length type:(CEGoToType)type;
-- (void)getFileAttributes;
-- (void)rebuildToolbarEncodingItem;
-- (void)setRecolorFlagToWindowControllerWithStyleName:(NSDictionary *)styleNameDict;
-- (void)setStyleToNoneAndRecolorFlagWithStyleName:(NSString *)styleName;
-- (NSString *)currentIANACharSetName;
-- (void)showUpdatedByExternalProcessAlert;
 
-// Action Message
-- (IBAction)setLineEndingCharToLF:(id)sender;
-- (IBAction)setLineEndingCharToCR:(id)sender;
-- (IBAction)setLineEndingCharToCRLF:(id)sender;
-- (IBAction)setLineEndingChar:(id)sender;
-- (IBAction)setEncoding:(id)sender;
+- (NSString *)lineEndingString;
+- (NSString *)lineEndingName;
+- (void)doSetLineEnding:(CELineEnding)lineEnding;
+
+- (void)doSetSyntaxStyle:(NSString *)name;
+
+- (NSRange)rangeInTextViewWithLocation:(NSInteger)location length:(NSInteger)length;
+- (void)setSelectedCharacterRangeInTextViewWithLocation:(NSInteger)location length:(NSInteger)length;
+- (void)setSelectedLineRangeInTextViewWithLocation:(NSInteger)location length:(NSInteger)length;
+- (void)gotoLocation:(NSInteger)location length:(NSInteger)length type:(CEGoToType)type;
+
+// Action Messages
+- (IBAction)changeLineEndingToLF:(id)sender;
+- (IBAction)changeLineEndingToCR:(id)sender;
+- (IBAction)changeLineEndingToCRLF:(id)sender;
+- (IBAction)changeLineEnding:(id)sender;
+- (IBAction)changeEncoding:(id)sender;
+- (IBAction)changeTheme:(id)sender;
 - (IBAction)changeSyntaxStyle:(id)sender;
-- (IBAction)recoloringAllStringOfDocument:(id)sender;
 - (IBAction)insertIANACharSetName:(id)sender;
 - (IBAction)insertIANACharSetNameWithCharset:(id)sender;
 - (IBAction)insertIANACharSetNameWithEncoding:(id)sender;
-- (IBAction)selectPrevItemOfOutlineMenu:(id)sender;
-- (IBAction)selectNextItemOfOutlineMenu:(id)sender;
 
 @end

@@ -1,20 +1,23 @@
 (*
-Å‘O–Ê‚ÌƒEƒBƒ“ƒhƒE‚Ì‘I‘ð”ÍˆÍ‚Ì’¼Œã‚ÉA‘I‘ð”ÍˆÍ‚ðƒRƒs[‚·‚éƒXƒNƒŠƒvƒgB
-Mac OS X 10.5+ ‚Å‘I‘ð”ÍˆÍ‚Ì’¼‘O^’¼Œã‚Ö‚Ìƒhƒ‰ƒbƒO&ƒhƒƒbƒv‚ª‚Å‚«‚È‚­‚È‚Á‚½‚±‚Æ‚Ö‚Ì‘Îô‚Æ‚µ‚Äì¬B
+æœ€å‰é¢ã®ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®é¸æŠžç¯„å›²ã®ç›´å¾Œã«ã€é¸æŠžç¯„å›²ã‚’ã‚³ãƒ”ãƒ¼ã™ã‚‹ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€‚
+Mac OS X 10.5+ ã§é¸æŠžç¯„å›²ã®ç›´å‰ï¼ç›´å¾Œã¸ã®ãƒ‰ãƒ©ãƒƒã‚°&ãƒ‰ãƒ­ãƒƒãƒ—ãŒã§ããªããªã£ãŸã“ã¨ã¸ã®å¯¾ç­–ã¨ã—ã¦ä½œæˆã€‚
 *)
 (* written by nakamuxu. 2008.01.05 *)
+(* modified by 1024jp. 2014-10-11 *)
 --
 --
 --
 tell application "CotEditor"
 	if exists front document then
-		set oldRange to range of selection as list
-		set len to item 2 of oldRange
-		if len > 0 then
-			set copyStr to contents of selection of front document
-			set loc to item 1 of oldRange
-			set range of selection of front document to {loc, 0}
-			set contents of selection of front document to copyStr
-		end if
+		tell front document
+			set oldRange to range of selection as list
+			set len to item 2 of oldRange
+			if len > 0 then
+				set copyStr to contents of selection
+				set loc to item 1 of oldRange
+				set range of selection to {loc, 0}
+				set contents of selection to copyStr
+			end if
+		end tell
 	end if
 end tell

@@ -1,34 +1,20 @@
 /*
- * CotEditor Help Standard Style Sheet for index page
+ * CotEditor Help Additional Style Sheet for Index Pages
  */
  
-div.terms {
-	margin: 3em 1.5em 0 1.5em;
+h1:before {
+	display: none;
 }
 
-div.terms p {
-	clear: both;
-}
-
-div.terms ul {
-	margin: 0;
+ul {
+	margin: 1em 0;
 	padding: 0;
 	background: none;
 	border: none;
 	list-style-type: none;
 }
 
-div.terms li {
-	border-bottom: 1px solid #ccc;
-}
-
-h1 {
-	margin: 0;
-	padding: 0 0 0.5em 15px;
-	width: 90%;
-	float: left;
-	clear: both;
-}
-h1:before {
-	display: none;
+li {
+	border-bottom: 1px solid hsl(0,0%,80%);
+	padding: 2px 0;
 }

@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5056" systemVersion="13C1021" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6249" systemVersion="13F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment defaultVersion="1070" identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5056"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6249"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="CEApplication">
+        <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
             <connections>
                 <outlet property="delegate" destination="290" id="291"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
-        <customObject id="-3" userLabel="Application"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <menu title="MainMenu" systemMenu="main" id="29" userLabel="Main Menu">
             <items>
                 <menuItem title="CotEditor" id="56">
@@ -34,7 +34,7 @@
                             </menuItem>
                             <menuItem title="Preferences…" keyEquivalent="," id="129">
                                 <connections>
-                                    <action selector="openPrefWindow:" target="290" id="6u3-7x-oXn"/>
+                                    <action selector="showPreferences:" target="290" id="pRe-na-Fij"/>
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="143">
@@ -86,7 +86,8 @@
                                     <action selector="openDocument:" target="-1" id="195"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Open Hidden…" tag="102" alternate="YES" keyEquivalent="O" id="688">
+                            <menuItem title="Open Hidden…" tag="102" alternate="YES" keyEquivalent="o" id="688">
+                                <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
                                 <connections>
                                     <action selector="openHiddenDocument:" target="-1" id="690"/>
                                 </connections>
@@ -196,6 +197,12 @@
                                     <action selector="selectAll:" target="-1" id="179"/>
                                 </connections>
                             </menuItem>
+                            <menuItem title="Select Line" keyEquivalent="A" id="Cwp-ys-LJc">
+                                <modifierMask key="keyEquivalentModifierMask" shift="YES" command="YES"/>
+                                <connections>
+                                    <action selector="selectLines:" target="-1" id="MP0-H8-6bm"/>
+                                </connections>
+                            </menuItem>
                             <menuItem isSeparatorItem="YES" id="630">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
@@ -212,7 +219,7 @@
                             <menuItem title="Input Char in Unicode Hex…" id="tWx-pj-3PL">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
-                                    <action selector="openUnicodeInputPanel:" target="290" id="S5h-bp-QnD"/>
+                                    <action selector="showUnicodeInputPanel:" target="290" id="tnB-r1-Tfo"/>
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="660">
@@ -245,7 +252,7 @@
                             <menuItem isSeparatorItem="YES" id="174">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
-                            <menuItem title="Inspect Glyph" keyEquivalent="i" id="ToR-yH-ahH">
+                            <menuItem title="Inspect Character" keyEquivalent="i" id="ToR-yH-ahH">
                                 <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
                                 <connections>
                                     <action selector="showSelectionInfo:" target="-1" id="W48-su-Cpd"/>
@@ -311,30 +318,30 @@
                             <menuItem isSeparatorItem="YES" id="93A-bv-3Qn"/>
                             <menuItem title="Show Navigation Bar" id="681">
                                 <connections>
-                                    <action selector="toggleShowNavigationBar:" target="-1" id="682"/>
+                                    <action selector="toggleNavigationBar:" target="-1" id="g8m-wE-T55"/>
                                 </connections>
                             </menuItem>
                             <menuItem title="Show Line Numbers" id="323">
                                 <connections>
-                                    <action selector="toggleShowLineNum:" target="-1" id="326"/>
+                                    <action selector="toggleLineNumber:" target="-1" id="ncA-40-bKd"/>
                                 </connections>
                             </menuItem>
                             <menuItem title="Show Status Bar" id="325">
                                 <connections>
-                                    <action selector="toggleShowStatusBar:" target="-1" id="356"/>
+                                    <action selector="toggleStatusBar:" target="-1" id="h4S-Yd-wby"/>
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="366">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
-                            <menuItem title="Show Invisible Characters" tag="304" id="788">
+                            <menuItem title="Show Invisible Characters" id="788">
                                 <connections>
-                                    <action selector="toggleShowInvisibleChars:" target="-1" id="791"/>
+                                    <action selector="toggleInvisibleChars:" target="-1" id="mXA-a0-o4w"/>
                                 </connections>
                             </menuItem>
                             <menuItem title="Show Page Guide" id="749">
                                 <connections>
-                                    <action selector="toggleShowPageGuide:" target="-1" id="750"/>
+                                    <action selector="togglePageGuide:" target="-1" id="obH-4S-DZg"/>
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="792">
@@ -357,6 +364,12 @@
                                     <action selector="focusPrevSplitTextView:" target="-1" id="800"/>
                                 </connections>
                             </menuItem>
+                            <menuItem title="Stack Views Vertically" id="u46-te-4c4">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="toggleSplitOrientation:" target="-1" id="wPh-lV-vs2"/>
+                                </connections>
+                            </menuItem>
                             <menuItem title="Close Split View" keyEquivalent="'" id="796">
                                 <connections>
                                     <action selector="closeSplitTextView:" target="-1" id="798"/>
@@ -367,7 +380,7 @@
                             </menuItem>
                             <menuItem title="Set View's Opacity…" keyEquivalent="T" id="367">
                                 <connections>
-                                    <action selector="openOpacityPanel:" target="290" id="fLb-68-BsZ"/>
+                                    <action selector="showOpacityPanel:" target="290" id="vZR-68-5AC"/>
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="611">
@@ -419,7 +432,7 @@
                                         </menuItem>
                                         <menuItem title="Anti-aliasing" id="745">
                                             <connections>
-                                                <action selector="toggleUseAntialias:" target="-1" id="747"/>
+                                                <action selector="toggleAntialias:" target="-1" id="50s-UC-1x5"/>
                                             </connections>
                                         </menuItem>
                                     </items>
@@ -430,7 +443,7 @@
                             </menuItem>
                             <menuItem title="Wrap Lines" id="286">
                                 <connections>
-                                    <action selector="toggleWrapLines:" target="-1" id="288"/>
+                                    <action selector="toggleLineWrap:" target="-1" id="hSl-Yk-C3H"/>
                                 </connections>
                             </menuItem>
                             <menuItem title="Use Vertical Orientation" id="bTd-nG-jjc">
@@ -482,47 +495,37 @@
                                     </items>
                                 </menu>
                             </menuItem>
-                            <menuItem title="Line Spacing" id="751">
-                                <menu key="submenu" title="Line Spacing" id="752">
+                            <menuItem title="Line Height" id="751">
+                                <menu key="submenu" title="Line Height" id="752">
                                     <items>
-                                        <menuItem title="0" id="753">
+                                        <menuItem title="1.0" id="753">
                                             <connections>
                                                 <action selector="setLineSpacingFromMenu:" target="-1" id="760"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="0.25" id="759">
+                                        <menuItem title="1.1" id="759">
                                             <connections>
                                                 <action selector="setLineSpacingFromMenu:" target="-1" id="761"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="0.5" id="755">
+                                        <menuItem title="1.2" id="755">
                                             <connections>
                                                 <action selector="setLineSpacingFromMenu:" target="-1" id="762"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="0.75" id="758">
+                                        <menuItem title="1.3" id="758">
                                             <connections>
                                                 <action selector="setLineSpacingFromMenu:" target="-1" id="766"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="1.0" id="754">
+                                        <menuItem title="1.4" id="754">
                                             <connections>
                                                 <action selector="setLineSpacingFromMenu:" target="-1" id="763"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="1.25" id="767">
+                                        <menuItem title="1.5" id="767">
                                             <connections>
                                                 <action selector="setLineSpacingFromMenu:" target="-1" id="768"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="1.5" id="756">
-                                            <connections>
-                                                <action selector="setLineSpacingFromMenu:" target="-1" id="764"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="1.75" id="769">
-                                            <connections>
-                                                <action selector="setLineSpacingFromMenu:" target="-1" id="770"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem title="2.0" id="757">
@@ -535,7 +538,7 @@
                                         </menuItem>
                                         <menuItem title="Custom…" id="772">
                                             <connections>
-                                                <action selector="openLineSpacingPanel:" target="290" id="QKf-LD-jaO"/>
+                                                <action selector="showLineHeightPanel:" target="290" id="gc4-61-vez"/>
                                             </connections>
                                         </menuItem>
                                     </items>
@@ -546,17 +549,17 @@
                                     <items>
                                         <menuItem title="Unix (LF)" id="295">
                                             <connections>
-                                                <action selector="setLineEndingCharToLF:" target="-1" id="608"/>
+                                                <action selector="changeLineEndingToLF:" target="-1" id="608"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem title="Macintosh (CR)" tag="1" id="297">
                                             <connections>
-                                                <action selector="setLineEndingCharToCR:" target="-1" id="683"/>
+                                                <action selector="changeLineEndingToCR:" target="-1" id="683"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem title="Windows (CR/LF)" tag="2" id="298">
                                             <connections>
-                                                <action selector="setLineEndingCharToCRLF:" target="-1" id="684"/>
+                                                <action selector="changeLineEndingToCRLF:" target="-1" id="684"/>
                                             </connections>
                                         </menuItem>
                                     </items>
@@ -576,8 +579,20 @@
                                     </items>
                                 </menu>
                             </menuItem>
+                            <menuItem title="Theme" tag="4003" id="8z7-Jc-agP">
+                                <menu key="submenu" title="Theme" id="165-HJ-Xty">
+                                    <items>
+                                        <menuItem title="Item" id="J2y-fx-OEm"/>
+                                    </items>
+                                </menu>
+                            </menuItem>
                             <menuItem isSeparatorItem="YES" id="453">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
+                            </menuItem>
+                            <menuItem title="Comment Selection" keyEquivalent="/" id="LLy-Yx-tXI">
+                                <connections>
+                                    <action selector="toggleComment:" target="-1" id="NSz-mr-8wt"/>
+                                </connections>
                             </menuItem>
                             <menuItem title="Shift Right" keyEquivalent="]" id="454">
                                 <connections>
@@ -743,22 +758,17 @@
                                     <items>
                                         <menuItem title="Window Opacity Panel" keyEquivalent="1" id="655">
                                             <connections>
-                                                <action selector="openOpacityPanel:" target="290" id="fZ3-6h-0om"/>
+                                                <action selector="showOpacityPanel:" target="290" id="G8h-8R-17R"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Go To Panel" keyEquivalent="2" id="656">
+                                        <menuItem title="Color Code Panel" tag="2" keyEquivalent="2" id="651">
                                             <connections>
-                                                <action selector="openGoToPanel:" target="290" id="kSu-Ge-YRz"/>
+                                                <action selector="showHexColorCodeEditor:" target="290" id="yVn-uY-7Wr"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Color Code Panel" keyEquivalent="3" id="651">
+                                        <menuItem title="Script Error Panel" keyEquivalent="3" id="653">
                                             <connections>
-                                                <action selector="openHexColorCodeEditor:" target="290" id="652"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Script Error Panel" keyEquivalent="4" id="653">
-                                            <connections>
-                                                <action selector="openScriptErrorWindow:" target="290" id="654"/>
+                                                <action selector="showScriptErrorPanel:" target="290" id="kzJ-oH-Hzd"/>
                                             </connections>
                                         </menuItem>
                                     </items>
@@ -767,8 +777,8 @@
                         </items>
                     </menu>
                 </menuItem>
-                <menuItem title="Scripts" tag="800" id="617">
-                    <menu key="submenu" title="Scripts" id="616">
+                <menuItem title="Script" image="ScriptMenuTemplate" tag="800" id="617" customClass="CEScriptMenuItem">
+                    <menu key="submenu" title="Script" id="616">
                         <items>
                             <menuItem title="Item" id="618"/>
                         </items>
@@ -846,10 +856,13 @@
                 </menuItem>
             </items>
         </menu>
-        <customObject id="289" userLabel="OgreTextFinder" customClass="OgreTextFinder"/>
-        <customObject id="290" userLabel="App Delegate" customClass="CEAppDelegate"/>
-        <customObject id="329" userLabel="Document Controller" customClass="CEDocumentController"/>
-        <customObject id="432" userLabel="Font Manager" customClass="NSFontManager"/>
+        <customObject id="289" customClass="OgreTextFinder"/>
+        <customObject id="290" customClass="CEAppDelegate"/>
+        <customObject id="329" customClass="CEDocumentController"/>
+        <customObject id="432" customClass="NSFontManager"/>
         <customObject id="831" customClass="SUUpdater"/>
     </objects>
+    <resources>
+        <image name="ScriptMenuTemplate" width="22" height="22"/>
+    </resources>
 </document>

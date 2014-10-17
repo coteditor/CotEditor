@@ -1,0 +1,25 @@
+extensions:
+- keyString: "json"
+- keyString: "cottheme"
+outlineMenu: []
+completions: []
+commands: []
+metadata:
+  author: "1024jp"
+  distributionURL: "http://coteditor.github.io"
+  version: "1.1"
+  license: "Same as CotEditor"
+  lastModified: "2014-09-24"
+characters: []
+comments: []
+values:
+- beginString: "false"
+- beginString: "null"
+- beginString: "true"
+numbers:
+- beginString: "-?[0-9.]+([eE][-+]?[0-9]+)?"
+  regularExpression: true
+strings:
+- beginString: "\""
+  endString: "\""
+keywords: []

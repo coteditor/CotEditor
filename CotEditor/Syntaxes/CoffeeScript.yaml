@@ -1,0 +1,88 @@
+extensions:
+- keyString: "coffee"
+outlineMenu:
+- beginString: "^([\\t ]*\\w+): (.*)->"
+  keyString: "$1"
+- beginString: "^([\\t ]*\\w+)[\\t ]= (.*)->"
+  keyString: "$1"
+- beginString: "^(\\w*::\\w*) (.*)->"
+  keyString: "$1"
+- beginString: "^class (.*)"
+  keyString: "$1"
+  bold: true
+completions: []
+commands: []
+metadata:
+  author: "1024jp"
+  distributionURL: "http://coteditor.github.io"
+  version: "1.1"
+  license: "Same as CotEditor"
+  lastModified: "2014-09-24"
+characters:
+- beginString: "'"
+  endString: "'"
+- beginString: "'''"
+  endString: "'''"
+comments: []
+values:
+- beginString: "false"
+- beginString: "Infinity"
+- beginString: "NaN"
+- beginString: "no"
+- beginString: "null"
+- beginString: "off"
+- beginString: "on"
+- beginString: "true"
+- beginString: "undefined"
+- beginString: "yes"
+types:
+- beginString: "@[a-zA-Z0-9$_]*"
+  regularExpression: true
+numbers:
+- beginString: "(?<![0-9a-z$])[0-9.][0-9.]*(e-?[0-9.]+)?\\b"
+  regularExpression: true
+- beginString: "0x[0-9a-fA-F]+"
+  regularExpression: true
+strings:
+- beginString: "\""
+  endString: "\""
+keywords:
+- beginString: "and"
+- beginString: "break"
+- beginString: "by"
+- beginString: "catch"
+- beginString: "class"
+- beginString: "continue"
+- beginString: "do"
+- beginString: "else"
+- beginString: "extends"
+- beginString: "finally"
+- beginString: "for"
+- beginString: "if"
+- beginString: "in"
+- beginString: "inst"
+- beginString: "instanceof"
+- beginString: "is"
+- beginString: "loop"
+- beginString: "new"
+- beginString: "not"
+- beginString: "of"
+- beginString: "or"
+- beginString: "return"
+- beginString: "super"
+- beginString: "switch"
+- beginString: "then"
+- beginString: "this"
+- beginString: "throw"
+- beginString: "try"
+- beginString: "typeof"
+- beginString: "unless"
+- beginString: "until"
+- beginString: "when"
+- beginString: "while"
+variables:
+- beginString: "this"
+commentDelimiters:
+  endDelimiter: "###"
+  beginDelimiter: "###"
+  inlineDelimiter: "#"

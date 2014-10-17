@@ -1,46 +1,44 @@
 /*
- =================================================
+ ==============================================================================
  CEFormatPaneController
- (for CotEditor)
  
- Copyright (C) 2004-2007 nakamuxu.
- Copyright (C) 2014 CotEditor Project
+ CotEditor
  http://coteditor.github.io
- =================================================
  
+ Created on 2014-04-18 by 1024jp
  encoding="UTF-8"
- Created:2014-04-18
+ ------------------------------------------------------------------------------
  
- -------------------------------------------------
+ © 2004-2007 nakamuxu
+ © 2014 CotEditor Project
  
- This program is free software; you can redistribute it and/or
- modify it under the terms of the GNU General Public License
- as published by the Free Software Foundation; either version 2
- of the License, or (at your option) any later version.
+ This program is free software; you can redistribute it and/or modify it under
+ the terms of the GNU General Public License as published by the Free Software
+ Foundation; either version 2 of the License, or (at your option) any later
+ version.
  
- This program is distributed in the hope that it will be useful,
- but WITHOUT ANY WARRANTY; without even the implied warranty of
- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- GNU General Public License for more details.
+ This program is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
  
- You should have received a copy of the GNU General Public License
- along with this program; if not, write to the Free Software
- Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ You should have received a copy of the GNU General Public License along with
+ this program; if not, write to the Free Software Foundation, Inc., 59 Temple
+ Place - Suite 330, Boston, MA  02111-1307, USA.
  
- 
- =================================================
+ ==============================================================================
  */
 
 #import "CEFormatPaneController.h"
+#import "CEEncodingManager.h"
 #import "CESyntaxManager.h"
-#import "CESyntaxExtensionConflictSheetController.h"
+#import "CESyntaxMappingConflictsSheetController.h"
 #import "CESyntaxEditSheetController.h"
 #import "CEEncodingListSheetController.h"
-#import "CEAppDelegate.h"
+#import "CEDocumentController.h"
 #import "constants.h"
 
 
-@interface CEFormatPaneController ()
+@interface CEFormatPaneController () <NSTableViewDelegate>
 
 @property (nonatomic, weak) IBOutlet NSPopUpButton *encodingMenuInOpen;
 @property (nonatomic, weak) IBOutlet NSPopUpButton *encodingMenuInNew;
@@ -76,11 +74,13 @@
 
 
 // ------------------------------------------------------
-/// Nibファイル読み込み直後
-- (void)awakeFromNib
+/// ビューの読み込み
+- (void)loadView
 // ------------------------------------------------------
 {
-    [self setupSyntaxStylesMenus];
+    [super loadView];
+    
+    [self setupSyntaxStyleMenus];
     
     // インストール済みシンタックス定義をダブルクリックしたら編集シートが出るようにセット
     [[self syntaxTableView] setDoubleAction:@selector(openSyntaxEditSheet:)];
@@ -93,7 +93,7 @@
     
     // シンタックススタイルリスト更新の通知依頼
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(setupSyntaxStylesMenus)
+                                             selector:@selector(setupSyntaxStyleMenus)
                                                  name:CESyntaxListDidUpdateNotification
                                                object:nil];
     
@@ -111,8 +111,8 @@
 // ------------------------------------------------------
 {
     // 拡張子重複エラー表示メニューの有効化を制御
-    if ([menuItem action] == @selector(openSyntaxExtensionConflictSheet:)) {
-        return [[CESyntaxManager sharedManager] existsExtensionConflict];
+    if ([menuItem action] == @selector(openSyntaxMappingConflictSheet:)) {
+        return [[CESyntaxManager sharedManager] existsMappingConflict];
         
     // 書き出し/複製メニュー項目に現在選択されているスタイル名を追加
     } if ([menuItem action] == @selector(exportSyntaxStyle:)) {
@@ -165,11 +165,6 @@
     // シートを表示してモーダルループに入る(閉じる命令は CEEncodingListSheetController内 で)
     [NSApp beginSheet:sheet modalForWindow:[[self view] window] modalDelegate:self didEndSelector:NULL contextInfo:NULL];
     [NSApp runModalForWindow:sheet];
-    
-    // シートを閉じる
-    [NSApp endSheet:sheet];
-    [[sheetController window] orderOut:self];
-    [[[self view] window] makeKeyAndOrderFront:self];
 }
 
 
@@ -185,30 +180,20 @@
         return;
     }
     
-    // シートウィンドウを表示してモーダルループに入る
-    // (閉じる命令は CESyntaxManagerのcloseSyntaxEditSheet: で)
+    // シートウィンドウを表示
+    // (閉じる命令は CESyntaxEditSheetController の endSheetWithReturnCode: で)
     NSWindow *sheet = [sheetController window];
     
-    [NSApp beginSheet:sheet
-       modalForWindow:[[self view] window]
-        modalDelegate:self didEndSelector:NULL contextInfo:NULL];
-    [NSApp runModalForWindow:sheet];
-    
-    
-    // === 以下、シートを閉じる処理
-    // OKボタンが押されていたとき（キャンセルでも、最初の状態に戻していいかもしれない (1/21)） ********
-    if ([sheetController savedNewStyleName]) {
-        // 当該スタイルを適用しているドキュメントに前面に出たときの再カラーリングフラグを立てる
-        NSString *newName = [sheetController savedNewStyleName];
-        NSDictionary *styleNameDict = @{k_key_oldStyleName: selectedName,
-                                        k_key_newStyleName: newName};
-        [[NSApp orderedDocuments] makeObjectsPerformSelector:@selector(setRecolorFlagToWindowControllerWithStyleName:)
-                                                  withObject:styleNameDict];
+    if (floor(NSAppKitVersionNumber) > NSAppKitVersionNumber10_8) { // on Mavericks or later
+        [[[self view] window] beginSheet:sheet completionHandler:^(NSModalResponse returnCode) {
+            [sheetController close];
+        }];
+        
+    } else {
+        // Mountain Lion 以下ではモーダルループに入る
+        [NSApp beginSheet:sheet modalForWindow:[[self view] window] modalDelegate:self didEndSelector:NULL contextInfo:NULL];
+        [NSApp runModalForWindow:sheet];
     }
-    // シートを閉じる
-    [NSApp endSheet:sheet];
-    [sheetController close];
-    [[[self view] window] makeKeyAndOrderFront:self];
 }
 
 
@@ -245,10 +230,12 @@
     [openPanel setResolvesAliases:YES];
     [openPanel setAllowsMultipleSelection:NO];
     [openPanel setCanChooseDirectories:NO];
-    [openPanel setAllowedFileTypes:@[@"plist"]];
+    [openPanel setAllowedFileTypes:@[@"yaml", @"plist"]];
     
-    __block typeof(self) blockSelf = self;
+    __unsafe_unretained typeof(self) weakSelf = self;  // cannot be weak on Lion
     [openPanel beginSheetModalForWindow:[[self view] window] completionHandler:^(NSInteger result) {
+        typeof(self) strongSelf = weakSelf;
+        
         if (result == NSFileHandlingPanelCancelButton) return;
         
         NSURL *URL = [openPanel URLs][0];
@@ -257,8 +244,8 @@
         // 同名styleが既にあるときは、置換してもいいか確認
         if ([[[CESyntaxManager sharedManager] styleNames] containsObject:styleName]) {
             // オープンパネルを閉じる
-            [openPanel orderOut:blockSelf];
-            [[[blockSelf view] window] makeKeyAndOrderFront:blockSelf];
+            [openPanel orderOut:strongSelf];
+            [[[strongSelf view] window] makeKeyAndOrderFront:strongSelf];
             
             NSAlert *alert = [[NSAlert alloc] init];
             [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"The “%@” style already exists.", nil), styleName]];
@@ -267,12 +254,12 @@
             [alert addButtonWithTitle:NSLocalizedString(@"Replace", nil)];
             // 現行シート値を設定し、確認のためにセカンダリシートを開く
             NSBeep();
-            [alert beginSheetModalForWindow:[[self view] window] modalDelegate:self
+            [alert beginSheetModalForWindow:[[strongSelf view] window] modalDelegate:strongSelf
                              didEndSelector:@selector(secondarySheedlDidEnd:returnCode:contextInfo:)
                                 contextInfo:(__bridge_retained void *)(URL)];
         } else {
             // 重複するファイル名がないとき、インポート実行
-            [self doImport:URL withCurrentSheetWindow:openPanel];
+            [strongSelf doImport:URL withCurrentSheetWindow:openPanel];
         }
     }];
 }
@@ -293,7 +280,7 @@
     [savePanel setCanSelectHiddenExtension:YES];
     [savePanel setNameFieldLabel:NSLocalizedString(@"Export As:", nil)];
     [savePanel setNameFieldStringValue:selectedStyle];
-    [savePanel setAllowedFileTypes:@[@"plist"]];
+    [savePanel setAllowedFileTypes:@[@"yaml"]];
     
     [savePanel beginSheetModalForWindow:[[self view] window] completionHandler:^(NSInteger result) {
         if (result == NSFileHandlingPanelOKButton) {
@@ -304,22 +291,17 @@
 
 
 // ------------------------------------------------------
-/// カラーシンタックス拡張子重複エラー表示シートを開き、閉じる
-- (IBAction)openSyntaxExtensionConflictSheet:(id)sender
+/// シンタックスマッピング重複エラー表示シートを開き、閉じる
+- (IBAction)openSyntaxMappingConflictSheet:(id)sender
 // ------------------------------------------------------
 {
-    CESyntaxExtensionConflictSheetController *sheetController = [[CESyntaxExtensionConflictSheetController alloc] init];
+    CESyntaxMappingConflictsSheetController *sheetController = [[CESyntaxMappingConflictsSheetController alloc] init];
     NSWindow *sheet = [sheetController window];
     
     // シートウィンドウを表示してモーダルループに入る
-    // (閉じる命令は CESyntaxExtensionsSheetControllerのcloseSheet: で)
+    // (閉じる命令は CESyntaxMappingConflictsSheetController の closeSheet: で)
     [NSApp beginSheet:sheet modalForWindow:[[self view] window] modalDelegate:self didEndSelector:NULL contextInfo:NULL];
     [NSApp runModalForWindow:sheet];
-    
-    // シートを閉じる
-    [NSApp endSheet:sheet];
-    [sheetController close];
-    [[[self view] window] makeKeyAndOrderFront:self];
 }
 
 
@@ -363,14 +345,14 @@
 - (void)setupEncodingMenus
 // ------------------------------------------------------
 {
-    NSArray *menuItems = [(CEAppDelegate *)[NSApp delegate] encodingMenuItems];
+    NSArray *menuItems = [[CEEncodingManager sharedManager] encodingMenuItems];
     
     [[self encodingMenuInOpen] removeAllItems];
     [[self encodingMenuInNew] removeAllItems];
     
     NSMenuItem *autoDetectItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Auto-Detect", nil)
                                                             action:nil keyEquivalent:@""];
-    [autoDetectItem setTag:k_autoDetectEncodingMenuTag];
+    [autoDetectItem setTag:CEAutoDetectEncodingMenuItemTag];
     [[[self encodingMenuInOpen] menu] addItem:autoDetectItem];
     [[[self encodingMenuInOpen] menu] addItem:[NSMenuItem separatorItem]];
     
@@ -381,14 +363,14 @@
     
     // (エンコーディング設定メニューはバインディングを使っているが、タグの選択がバインディングで行われた後に
     // メニューが追加／削除されるため、結果的に選択がうまく動かない。しかたないので、コードから選択している)
-    [[self encodingMenuInOpen] selectItemWithTag:[[NSUserDefaults standardUserDefaults] integerForKey:k_key_encodingInOpen]];
-    [[self encodingMenuInNew] selectItemWithTag:[[NSUserDefaults standardUserDefaults] integerForKey:k_key_encodingInNew]];
+    [[self encodingMenuInOpen] selectItemWithTag:[[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultEncodingInOpenKey]];
+    [[self encodingMenuInNew] selectItemWithTag:[[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultEncodingInNewKey]];
 }
 
 
 // ------------------------------------------------------
 /// シンタックスカラーリングスタイルメニューを生成
-- (void)setupSyntaxStylesMenus
+- (void)setupSyntaxStyleMenus
 // ------------------------------------------------------
 {
     NSArray *styleNames = [[CESyntaxManager sharedManager] styleNames];
@@ -407,7 +389,7 @@
     // (デフォルトシンタックスカラーリングスタイル指定ポップアップメニューはバインディングを使っているが、
     // タグの選択がバインディングで行われた後にメニューが追加／削除されるため、結果的に選択がうまく動かない。
     // しかたないので、コードから選択している)
-    NSString *selectedStyle = [[NSUserDefaults standardUserDefaults] stringForKey:k_key_defaultColoringStyleName];
+    NSString *selectedStyle = [[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultSyntaxStyleKey];
     selectedStyle = [styleNames containsObject:selectedStyle] ? selectedStyle : noneStyle;
     [[self syntaxStylesDefaultPopup] selectItemWithTitle:selectedStyle];
 }
@@ -432,8 +414,8 @@
 // ------------------------------------------------------
 {
     if (returnCode == NSAlertFirstButtonReturn) { // = revert to Auto-Detect
-        [[NSUserDefaults standardUserDefaults] setObject:@(k_autoDetectEncodingMenuTag)
-                                                  forKey:k_key_encodingInOpen];
+        [[NSUserDefaults standardUserDefaults] setObject:@(CEAutoDetectEncodingMenuItemTag)
+                                                  forKey:CEDefaultEncodingInOpenKey];
         // ファイルを開くエンコーディングをセット
         // （オープンダイアログのエンコーディングポップアップメニューが、デフォルトエンコーディング値の格納場所を兼ねている）
         [[CEDocumentController sharedDocumentController] setSelectAccessoryEncodingMenuToDefault:self];
@@ -471,13 +453,7 @@
     
     NSString *selectedStyleName = [[self stylesController] selectedObjects][0];
     
-    if ([[CESyntaxManager sharedManager] removeStyleFileWithStyleName:selectedStyleName]) {
-        // 当該スタイルを適用しているドキュメントを"None"スタイルにし、前面に出たときの再カラーリングフラグを立てる
-        NSDictionary *styleNameDict = @{k_key_oldStyleName: selectedStyleName,
-                                        k_key_newStyleName: NSLocalizedString(@"None", nil)};
-        [[NSApp orderedDocuments] makeObjectsPerformSelector:@selector(setRecolorFlagToWindowControllerWithStyleName:)
-                                                  withObject:styleNameDict];
-    } else {
+    if (![[CESyntaxManager sharedManager] removeStyleFileWithStyleName:selectedStyleName]) {
         // 削除できなければ、その旨をユーザに通知
         [[alert window] orderOut:self];
         [[[self view] window] makeKeyAndOrderFront:self];

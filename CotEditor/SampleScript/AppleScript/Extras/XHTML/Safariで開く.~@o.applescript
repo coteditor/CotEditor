@@ -1,12 +1,12 @@
-(* written by nakamuxu. 2005.03.15 *)
+(* written by 1024jp. 2014-10-11 *)
 --
 tell application "CotEditor"
 	if exists front document then
-		set thePath to path of front document as Unicode text
-		if (thePath is not "") then
+		set theFile to file of front document
+		if theFile exists then
 			tell application "Safari"
 				activate
-				open location "file://" & thePath
+				open theFile
 			end tell
 		end if
 	end if

@@ -1,52 +1,50 @@
 /*
- * CotEditor Help Style Sheet for CotEditor.html
+ * CotEditor Help Style Sheet for CotEditorHelp.html
  */
  
 body {
+	font: 10pt/1.5 'Helvetica Neue', sans-serif;
+	color: hsla(0,0%,0%,0.8);
 	margin: 0;
-	padding: 0;
-	font-family: 'Lucida Grande';
+	padding: 1.5em;
 }
 
-a { text-decoration: none; }
-a:hover { text-decoration: underline; }
+a {
+	text-decoration: none;
+}
+a:link {
+	color: hsl(206,50%,50%);
+}
+a:hover {
+	text-decoration: underline;
+}
 
-div {
+section {
 	float: left;
-	margin-top: 30px;
 }
-#leftbox {
+section#leftbox {
 	width: 190px;
 	text-align: center;
-	padding-left: 20px;
-	padding-right: 20px;
+	padding: 28px 0;
 }
-#rightbox {
-	width: 220px;
+section#rightbox {
+	width: 260px;
 	padding-left: 30px;
-	border-left: 1px solid #999;
+	margin-left: 20px;
+	border-left: 1px solid hsl(0,0%,85%);
 }
 
-img {
-	margin: 20px 0;
-}
-
-h1 {
-	font-size: 16pt;
-	font-weight: normal;
-}
-
-address {
-	font-size: 8pt;
-	font-style: normal;
+#leftbox h1 {
+	font-size: 180%;
+	font-weight: 200;
+	margin: 0.5em 0;
 }
 
 dt {
-	font-size: 11pt;
+	font-size: 120%;
 	font-weight: normal;
 	margin-top: 1em;
 }
 dd {
-	font-size: 9pt;
 	margin-left: 0;
 }

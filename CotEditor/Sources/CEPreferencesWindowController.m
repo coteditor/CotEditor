@@ -1,33 +1,30 @@
 /*
- =================================================
+ ==============================================================================
  CEPreferencesWindowController
- (for CotEditor)
  
- Copyright (C) 2014 CotEditor Project
+ CotEditor
  http://coteditor.github.io
- =================================================
  
+ Created by 2014-04-18 by 1024jp
  encoding="UTF-8"
- Created:2014-04-18 by 1024jp
+ ------------------------------------------------------------------------------
  
- -------------------------------------------------
+ © 2014 CotEditor Project
  
- This program is free software; you can redistribute it and/or
- modify it under the terms of the GNU General Public License
- as published by the Free Software Foundation; either version 2
- of the License, or (at your option) any later version.
+ This program is free software; you can redistribute it and/or modify it under
+ the terms of the GNU General Public License as published by the Free Software
+ Foundation; either version 2 of the License, or (at your option) any later
+ version.
  
- This program is distributed in the hope that it will be useful,
- but WITHOUT ANY WARRANTY; without even the implied warranty of
- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- GNU General Public License for more details.
+ This program is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
  
- You should have received a copy of the GNU General Public License
- along with this program; if not, write to the Free Software
- Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ You should have received a copy of the GNU General Public License along with
+ this program; if not, write to the Free Software Foundation, Inc., 59 Temple
+ Place - Suite 330, Boston, MA  02111-1307, USA.
  
- 
- =================================================
+ ==============================================================================
  */
 
 #import "CEPreferencesWindowController.h"
@@ -36,7 +33,7 @@
 #import "CEEditPaneController.h"
 #import "CEFormatPaneController.h"
 #import "CEFileDropPaneController.h"
-#import "CEKeyBindingsController.h"
+#import "CEKeyBindingsPaneController.h"
 #import "CEPrintPaneController.h"
 #import "constants.h"
 
@@ -61,7 +58,7 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
 @property (nonatomic) CEEditPaneController *editPaneController;
 @property (nonatomic) CEFormatPaneController *formatPaneController;
 @property (nonatomic) CEFileDropPaneController *fileDropPaneController;
-@property (nonatomic) CEKeyBindingsController *keyBindingsPaneController;
+@property (nonatomic) CEKeyBindingsPaneController *keyBindingsPaneController;
 @property (nonatomic) CEPrintPaneController *printPaneController;
 
 @end
@@ -89,7 +86,7 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
     static id shared = nil;
     
     dispatch_once(&predicate, ^{
-        shared = [[self alloc] init];
+        shared = [[self alloc] initWithWindowNibName:@"PreferencesWindow"];
     });
     
     return shared;
@@ -106,10 +103,10 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
 
 // ------------------------------------------------------
 /// 初期化
-- (instancetype)init
+- (instancetype)initWithWindowNibName:(NSString *)windowNibName
 // ------------------------------------------------------
 {
-    self = [super initWithWindowNibName:@"PreferencesWindow"];
+    self = [super initWithWindowNibName:windowNibName];
     if (self) {
         // 各ペインを読み込む
         [self setGeneralPaneController:[[NSViewController alloc] initWithNibName:@"GeneralPane" bundle:nil]];
@@ -118,7 +115,7 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
         [self setEditPaneController:[[CEEditPaneController alloc] initWithNibName:@"EditPane" bundle:nil]];
         [self setFormatPaneController:[[CEFormatPaneController alloc] initWithNibName:@"FormatPane" bundle:nil]];
         [self setFileDropPaneController:[[CEFileDropPaneController alloc] initWithNibName:@"FileDropPane" bundle:nil]];
-        [self setKeyBindingsPaneController:[[CEKeyBindingsController alloc] initWithNibName:@"KeyBindingsPane" bundle:nil]];
+        [self setKeyBindingsPaneController:[[CEKeyBindingsPaneController alloc] initWithNibName:@"KeyBindingsPane" bundle:nil]];
         [self setPrintPaneController:[[CEPrintPaneController alloc] initWithNibName:@"PrintPane" bundle:nil]];
     }
     return self;
@@ -126,10 +123,12 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
 
 
 // ------------------------------------------------------
-/// Nibファイル読み込み直後
-- (void)awakeFromNib
+/// ウインドウをロードした直後
+- (void)windowDidLoad
 // ------------------------------------------------------
 {
+    [super windowDidLoad];
+    
     // 最初のビューを選ぶ
     NSToolbarItem *leftmostItem = [[[self window] toolbar] items][0];
     [[[self window] toolbar] setSelectedItemIdentifier:[leftmostItem itemIdentifier]];
@@ -153,9 +152,6 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
 {
     // 編集中の設定値も保存
     [[self window] makeFirstResponder:[self window]];
-    
-    // FileDrop 配列コントローラの値を書き戻す
-    [[self fileDropPaneController] writeBackFileDropArray];
 }
 
 
@@ -212,7 +208,7 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
 {
     NSString *bookName = [[NSBundle mainBundle] objectForInfoDictionaryKey: @"CFBundleHelpBookName"];
     
-    [[NSHelpManager sharedHelpManager] openHelpAnchor:k_helpPrefAnchors[[sender tag]]
+    [[NSHelpManager sharedHelpManager] openHelpAnchor:kHelpPrefAnchors[[sender tag]]
                                                inBook:bookName];
 }
 

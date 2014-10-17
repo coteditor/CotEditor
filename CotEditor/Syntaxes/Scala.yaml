@@ -1,0 +1,115 @@
+extensions:
+- keyString: "scala"
+outlineMenu:
+- beginString: "^([\\t ]*)(?:(final|protected|private|override)\\s+)*(def)\\s+(\\w+(?:\\(.*\\))?)"
+  keyString: "$1$4"
+- beginString: "^([\\t ]*)(?:(final|protected|private|sealed|case)\\s+)*(class|object|trait)\\s+(\\w+)"
+  keyString: "$1$3 $4"
+  bold: true
+- beginString: "^([\\t ]*)(?:abstract\\s+)(?:(final|protected|private)\\s+)*(def)\\s+(\\w+(?:\\(.*\\))?)"
+  keyString: "$1$4"
+  italic: true
+- beginString: "^([\\t ]*)(?:abstract\\s+)(?:(final|protected|private|sealed|case)\\s+)*(class|object|trait)\\s+(\\w+)"
+  keyString: "$1$3 $4"
+  bold: true
+  italic: true
+completions: []
+metadata:
+  author: "1024jp"
+  distributionURL: "http://coteditor.github.io"
+  version: "1.1"
+  license: "Same as CotEditor"
+  lastModified: "2014-09-24"
+characters:
+- beginString: "'"
+  endString: "'"
+comments: []
+values:
+- beginString: "false"
+- beginString: "null"
+- beginString: "true"
+types:
+- beginString: "Array"
+- beginString: "Boolean"
+- beginString: "Byte"
+- beginString: "Char"
+- beginString: "Double"
+- beginString: "Float"
+- beginString: "Int"
+- beginString: "Long"
+- beginString: "Short"
+- beginString: "String"
+- beginString: "Unit"
+numbers:
+- beginString: "((?<!\\w)|[-+])(?:\\.\\d+|\\d+\\.|\\d+\\.\\d+|\\d+)(e[+-]?\\d+)?[fd]?"
+  ignoreCase: true
+  regularExpression: true
+- beginString: "\\b0x[0-9a-f]+l?\\b"
+  ignoreCase: true
+  regularExpression: true
+- beginString: "\\b\\d+l?\\b"
+  ignoreCase: true
+  regularExpression: true
+strings:
+- beginString: "\""
+  endString: "\""
+- beginString: "\"\"\""
+  endString: "\"\"\""
+keywords:
+- beginString: "#"
+- beginString: ":"
+- beginString: "<%"
+- beginString: "<-"
+- beginString: "<:"
+- beginString: "="
+- beginString: "=>"
+- beginString: ">:"
+- beginString: "@"
+- beginString: "_"
+- beginString: "abstract"
+- beginString: "case"
+- beginString: "catch"
+- beginString: "class"
+- beginString: "def"
+- beginString: "do"
+- beginString: "else"
+- beginString: "eq"
+- beginString: "extends"
+- beginString: "final"
+- beginString: "finally"
+- beginString: "for"
+- beginString: "forSome"
+- beginString: "if"
+- beginString: "implicit"
+- beginString: "import"
+- beginString: "lazy"
+- beginString: "match"
+- beginString: "ne"
+- beginString: "new"
+- beginString: "object"
+- beginString: "override"
+- beginString: "package"
+- beginString: "private"
+- beginString: "protected"
+- beginString: "return"
+- beginString: "sealed"
+- beginString: "super"
+- beginString: "this"
+- beginString: "throw"
+- beginString: "trait"
+- beginString: "try"
+- beginString: "type"
+- beginString: "val"
+- beginString: "var"
+- beginString: "while"
+- beginString: "with"
+- beginString: "yield"
+variables:
+- beginString: "super(?=\\.)"
+  regularExpression: true
+- beginString: "this(?=\\.)"
+  regularExpression: true
+commentDelimiters:
+  endDelimiter: "*/"
+  beginDelimiter: "/*"
+  inlineDelimiter: "//"

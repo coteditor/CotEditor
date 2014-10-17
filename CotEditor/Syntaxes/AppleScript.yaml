@@ -1,0 +1,348 @@
+extensions:
+- keyString: "applescript"
+filenames: []
+completions: []
+outlineMenu:
+- beginString: "^([\\t ]*)on[\\t ]+(\\S+\\(.*\\))"
+  keyString: "$1on $2"
+- beginString: "^([\\t ]*)script[\\t ]+(\\S+)"
+  keyString: "$1script $2"
+  bold: true
+commands:
+- beginString: "\\b(abort|begin|end) transaction\\b"
+  regularExpression: true
+- beginString: "\\b(closing|moving) folder window for\\b"
+  regularExpression: true
+- beginString: "\\badding folder items to\\b"
+  regularExpression: true
+- beginString: "\\bASCII (character|number)\\b"
+  regularExpression: true
+- beginString: "\\bchange (case|kana|roman width)\\b"
+  regularExpression: true
+- beginString: "\\bchoose (application|color|file|file name|folder|from list|remote
+    application|URL)\\b"
+  regularExpression: true
+- beginString: "\\bchoose file\\b"
+  regularExpression: true
+- beginString: "\\bclean up\\b"
+  regularExpression: true
+- beginString: "\\bclipboard info\\b"
+  regularExpression: true
+- beginString: "\\bclose access\\b"
+  regularExpression: true
+- beginString: "\\bcurrent date\\b"
+  regularExpression: true
+- beginString: "\\bdata size\\b"
+  regularExpression: true
+- beginString: "\\bdisplay (alert|dialog|notification|warning)\\b"
+  regularExpression: true
+- beginString: "\\bdisplay notification\\b"
+  regularExpression: true
+- beginString: "\\bdo shell script\\b"
+  regularExpression: true
+- beginString: "\\bget eof\\b"
+  regularExpression: true
+- beginString: "\\bget volume settings\\b"
+  regularExpression: true
+- beginString: "\\bhandle CGI request\\b"
+  regularExpression: true
+- beginString: "\\binfo for\\b"
+  regularExpression: true
+- beginString: "\\bkey code\\b"
+  regularExpression: true
+- beginString: "\\blist (disks|folder)\\b"
+  regularExpression: true
+- beginString: "\\bload script\\b"
+  regularExpression: true
+- beginString: "\\blocalized string\\b"
+  regularExpression: true
+- beginString: "\\blog out\\b"
+  regularExpression: true
+- beginString: "\\bmount volume\\b"
+  regularExpression: true
+- beginString: "\\bopen for access\\b"
+  regularExpression: true
+- beginString: "\\bopen location\\b"
+  regularExpression: true
+- beginString: "\\bopening folder\\b"
+  regularExpression: true
+- beginString: "\\bpath to( resource)?\\b"
+  regularExpression: true
+- beginString: "\\brandom number\\b"
+  regularExpression: true
+- beginString: "\\bremoving folder items from\\b"
+  regularExpression: true
+- beginString: "\\brun script\\b"
+  regularExpression: true
+- beginString: "\\bscripting components\\b"
+  regularExpression: true
+- beginString: "\\bscroll to caret\\b"
+  regularExpression: true
+- beginString: "\\bset eof\\b"
+  regularExpression: true
+- beginString: "\\bset the clipboard to\\b"
+  regularExpression: true
+- beginString: "\\bset volume\\b"
+  regularExpression: true
+- beginString: "\\bshift (left|right)\\b"
+  regularExpression: true
+- beginString: "\\bshut down\\b"
+  regularExpression: true
+- beginString: "\\bstore script\\b"
+  regularExpression: true
+- beginString: "\\bsystem (attribute|info)\\b"
+  regularExpression: true
+- beginString: "\\bthe clipboard\\b"
+  regularExpression: true
+- beginString: "\\btime to GMT\\b"
+  regularExpression: true
+- beginString: "\\bunicode normalization\\b"
+  regularExpression: true
+- beginString: "activate"
+- beginString: "beep"
+- beginString: "click"
+- beginString: "close"
+- beginString: "connect"
+- beginString: "convert"
+- beginString: "copy"
+- beginString: "count"
+- beginString: "crop"
+- beginString: "delay"
+- beginString: "delete"
+- beginString: "disconnect"
+- beginString: "duplicate"
+- beginString: "eject"
+- beginString: "embed"
+- beginString: "empty"
+- beginString: "erase"
+- beginString: "exists"
+- beginString: "find"
+- beginString: "flip"
+- beginString: "get"
+- beginString: "keystroke"
+- beginString: "make"
+- beginString: "match"
+- beginString: "move"
+- beginString: "offset"
+- beginString: "open"
+- beginString: "pad"
+- beginString: "perform"
+- beginString: "print"
+- beginString: "quit"
+- beginString: "read"
+- beginString: "reinterpret"
+- beginString: "replace"
+- beginString: "restart"
+- beginString: "reveal"
+- beginString: "rotate"
+- beginString: "round"
+- beginString: "run"
+- beginString: "save"
+- beginString: "say"
+- beginString: "scale"
+- beginString: "select"
+- beginString: "sleep"
+- beginString: "sort"
+- beginString: "start"
+- beginString: "stop"
+- beginString: "string"
+- beginString: "summarize"
+- beginString: "unembed"
+- beginString: "update"
+- beginString: "write"
+attributes: []
+metadata:
+  author: "1024jp"
+  distributionURL: "http://coteditor.github.io"
+  version: "1.0"
+  license: "Same as CotEditor"
+  lastModified: "2014-09-24"
+characters: []
+comments: []
+values:
+- beginString: "(?<=\\&)\\s+return"
+  regularExpression: true
+- beginString: "\\bcurrent application\\b"
+  regularExpression: true
+- beginString: "\\bmissing value\\b"
+  regularExpression: true
+- beginString: "\\bPOSIX (path|file)\\b"
+  regularExpression: true
+- beginString: "\\bquoted form\\b"
+  regularExpression: true
+- beginString: "\\bversion of AppleScript\\b"
+  regularExpression: true
+- beginString: "bounds"
+- beginString: "false"
+- beginString: "linefeed"
+- beginString: "pi"
+- beginString: "quote"
+- beginString: "result"
+- beginString: "return\\s+(?=\\&)"
+  regularExpression: true
+- beginString: "space"
+- beginString: "tab"
+- beginString: "true"
+- beginString: "version"
+- beginString: "warning"
+types:
+- beginString: "alias"
+- beginString: "application"
+- beginString: "applications"
+- beginString: "character"
+- beginString: "characters"
+- beginString: "class"
+- beginString: "color"
+- beginString: "document"
+- beginString: "documents"
+- beginString: "file"
+- beginString: "integer"
+- beginString: "item"
+- beginString: "items"
+- beginString: "list"
+- beginString: "paragraph"
+- beginString: "paragraphs"
+- beginString: "real"
+- beginString: "record"
+- beginString: "text"
+- beginString: "window"
+- beginString: "windows"
+- beginString: "word"
+- beginString: "words"
+numbers:
+- beginString: "\\b\\d+(\\.\\d*)?\\b"
+  regularExpression: true
+strings:
+- beginString: "\""
+  endString: "\""
+keywords:
+- beginString: "&"
+- beginString: "(?<=')s\\s"
+  regularExpression: true
+- beginString: "*"
+- beginString: "+"
+- beginString: "-"
+- beginString: "/"
+- beginString: "<"
+- beginString: "="
+- beginString: "≠"
+- beginString: ">"
+- beginString: "\\bcomes (before|after)\\b"
+  regularExpression: true
+- beginString: "a"
+- beginString: "about"
+- beginString: "above"
+- beginString: "against"
+- beginString: "an"
+- beginString: "and"
+- beginString: "apart"
+- beginString: "around"
+- beginString: "as"
+- beginString: "aside"
+- beginString: "back"
+- beginString: "begin"
+- beginString: "beginning"
+- beginString: "begins"
+- beginString: "behind"
+- beginString: "below"
+- beginString: "beneath"
+- beginString: "beside"
+- beginString: "between"
+- beginString: "but"
+- beginString: "by"
+- beginString: "considering"
+- beginString: "contain"
+- beginString: "contained"
+- beginString: "contains"
+- beginString: "continue"
+- beginString: "div"
+- beginString: "does"
+- beginString: "doesn't"
+- beginString: "eighth"
+- beginString: "else"
+- beginString: "end"
+- beginString: "ends"
+- beginString: "equal"
+- beginString: "equals"
+- beginString: "error"
+- beginString: "every"
+- beginString: "exit"
+- beginString: "fifth"
+- beginString: "first"
+- beginString: "for"
+- beginString: "fourth"
+- beginString: "front"
+- beginString: "given"
+- beginString: "global"
+- beginString: "greater"
+- beginString: "if"
+- beginString: "ignoring"
+- beginString: "in"
+- beginString: "instead"
+- beginString: "into"
+- beginString: "is"
+- beginString: "isn't"
+- beginString: "it"
+- beginString: "its"
+- beginString: "last"
+- beginString: "less"
+- beginString: "local"
+- beginString: "middle"
+- beginString: "mod"
+- beginString: "my"
+- beginString: "ninth"
+- beginString: "not"
+- beginString: "of"
+- beginString: "on"
+- beginString: "onto"
+- beginString: "or"
+- beginString: "out"
+- beginString: "over"
+- beginString: "prop"
+- beginString: "property"
+- beginString: "put"
+- beginString: "ref"
+- beginString: "reference"
+- beginString: "repeat"
+- beginString: "return"
+- beginString: "returning"
+- beginString: "script"
+- beginString: "second"
+- beginString: "set"
+- beginString: "seventh"
+- beginString: "since"
+- beginString: "sixth"
+- beginString: "some"
+- beginString: "start"
+- beginString: "starts"
+- beginString: "tell"
+- beginString: "tenth"
+- beginString: "than"
+- beginString: "that"
+- beginString: "the"
+- beginString: "then"
+- beginString: "third"
+- beginString: "through"
+- beginString: "thru"
+- beginString: "timeout"
+- beginString: "times"
+- beginString: "to"
+- beginString: "transaction"
+- beginString: "try"
+- beginString: "until"
+- beginString: "use"
+- beginString: "where"
+- beginString: "while"
+- beginString: "whose"
+- beginString: "with"
+- beginString: "without"
+- beginString: "÷"
+- beginString: "≤"
+- beginString: "≥"
+variables:
+- beginString: "it"
+- beginString: "me"
+commentDelimiters:
+  endDelimiter: "*)"
+  beginDelimiter: "(*"
+  inlineDelimiter: "--"

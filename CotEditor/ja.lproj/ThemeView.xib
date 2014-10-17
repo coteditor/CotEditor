@@ -1,0 +1,691 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6249" systemVersion="13F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6249"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="CEThemeViewController">
+            <connections>
+                <outlet property="popover" destination="9zn-2O-cFk" id="6NV-VZ-tAI"/>
+                <outlet property="view" destination="8Mv-NZ-wYH" id="BCv-jM-YWI"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <objectController id="h6Y-ET-p1K" userLabel="Theme Controller">
+            <connections>
+                <binding destination="-2" name="contentObject" keyPath="representedObject" id="oA8-jm-AsI"/>
+            </connections>
+        </objectController>
+        <customView id="8Mv-NZ-wYH" userLabel="Theme View">
+            <rect key="frame" x="0.0" y="0.0" width="332" height="310"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="X1h-s1-vOe">
+                    <rect key="frame" x="22" y="141" width="82" height="17"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="キーワード：" id="IU8-bd-gBv">
+                        <font key="font" size="13" name="AquaKana"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gnE-Sx-bRs">
+                    <rect key="frame" x="61" y="60" width="43" height="17"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="属性：" id="RQL-fz-3aq">
+                        <font key="font" size="13" name="AquaKana"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5M7-jw-5vd">
+                    <rect key="frame" x="61" y="33" width="43" height="17"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="変数：" id="ZIr-1E-qZJ">
+                        <font key="font" size="13" name="AquaKana"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="FHd-6m-dWf">
+                    <rect key="frame" x="35" y="114" width="69" height="17"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="コマンド：" id="81x-je-JUf">
+                        <font key="font" size="13" name="AquaKana"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Xjv-GT-ZUL">
+                    <rect key="frame" x="219" y="114" width="43" height="17"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="数値：" id="3wF-uc-Tfq">
+                        <font key="font" size="13" name="AquaKana"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8yb-9K-ShW">
+                    <rect key="frame" x="219" y="60" width="43" height="17"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="文字：" id="hbk-iX-4VK">
+                        <font key="font" size="13" name="AquaKana"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="IR6-vs-wd8">
+                    <rect key="frame" x="193" y="33" width="69" height="17"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="コメント：" id="AIG-rr-79V">
+                        <font key="font" size="13" name="AquaKana"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8JO-9v-VnC">
+                    <rect key="frame" x="35" y="235" width="69" height="17"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="カーソル：" id="Ljk-ky-fQH">
+                        <font key="font" size="13" name="AquaKana"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="lJB-fN-OKp">
+                    <rect key="frame" x="110" y="232" width="44" height="23"/>
+                    <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <connections>
+                        <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.insertionPoint.color" id="7iB-KX-zpp">
+                            <dictionary key="options">
+                                <string key="NSValueTransformerName">CEHexColorTransformer</string>
+                            </dictionary>
+                        </binding>
+                    </connections>
+                </colorWell>
+                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eBT-dC-9hy">
+                    <rect key="frame" x="14" y="285" width="108" height="17"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="基本カラーリング" id="Bb9-qh-gwK">
+                        <font key="font" size="13" name="AquaKana-Bold"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gao-00-mX9">
+                    <rect key="frame" x="22" y="208" width="82" height="17"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="不可視文字：" id="IGx-p1-FHi">
+                        <font key="font" size="13" name="AquaKana"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2SR-Gl-M0L">
+                    <rect key="frame" x="61" y="262" width="43" height="17"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="文字：" id="kvy-vf-yva">
+                        <font key="font" size="13" name="AquaKana"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="I5D-KF-7Az">
+                    <rect key="frame" x="110" y="259" width="44" height="23"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="44" id="0Pe-cc-8c0"/>
+                        <constraint firstAttribute="height" constant="23" id="G8l-4b-vkT"/>
+                    </constraints>
+                    <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <connections>
+                        <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.text.color" id="KhJ-N9-a6y">
+                            <dictionary key="options">
+                                <string key="NSValueTransformerName">CEHexColorTransformer</string>
+                            </dictionary>
+                        </binding>
+                    </connections>
+                </colorWell>
+                <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="gjr-XD-Cv5">
+                    <rect key="frame" x="110" y="205" width="44" height="23"/>
+                    <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <connections>
+                        <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.invisibles.color" id="k3m-di-Qgu">
+                            <dictionary key="options">
+                                <string key="NSValueTransformerName">CEHexColorTransformer</string>
+                            </dictionary>
+                        </binding>
+                    </connections>
+                </colorWell>
+                <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="Mh4-u1-6ML">
+                    <rect key="frame" x="268" y="259" width="44" height="23"/>
+                    <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <connections>
+                        <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.background.color" id="Evh-XZ-Ssq">
+                            <dictionary key="options">
+                                <string key="NSValueTransformerName">CEHexColorTransformer</string>
+                            </dictionary>
+                        </binding>
+                    </connections>
+                </colorWell>
+                <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="u73-Ob-J8v">
+                    <rect key="frame" x="268" y="232" width="44" height="23"/>
+                    <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <connections>
+                        <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.lineHighlight.color" id="8FG-tE-GXo">
+                            <dictionary key="options">
+                                <string key="NSValueTransformerName">CEHexColorTransformer</string>
+                            </dictionary>
+                        </binding>
+                    </connections>
+                </colorWell>
+                <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="Y4q-YH-jrD">
+                    <rect key="frame" x="268" y="205" width="44" height="23"/>
+                    <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <connections>
+                        <binding destination="h6Y-ET-p1K" name="enabled" keyPath="selection.selection.usesSystemSetting" id="e90-Jc-ha0">
+                            <dictionary key="options">
+                                <string key="NSValueTransformerName">NSNegateBoolean</string>
+                            </dictionary>
+                        </binding>
+                        <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.selection.color" id="TZa-Fv-OjU">
+                            <dictionary key="options">
+                                <string key="NSValueTransformerName">CEHexColorTransformer</string>
+                            </dictionary>
+                        </binding>
+                    </connections>
+                </colorWell>
+                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="BcY-Zf-mza">
+                    <rect key="frame" x="219" y="262" width="43" height="17"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="背景：" id="tvj-DS-DVt">
+                        <font key="font" size="13" name="AquaKana"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="arh-qx-kON">
+                    <rect key="frame" x="193" y="235" width="69" height="17"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="現在の行：" id="yMW-lO-ILw">
+                        <font key="font" size="13" name="AquaKana"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="f4v-zr-M1o">
+                    <rect key="frame" x="193" y="208" width="69" height="17"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="選択範囲：" id="PbY-c2-p4V">
+                        <font key="font" size="13" name="AquaKana"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="9VW-40-zzi">
+                    <rect key="frame" x="14" y="166" width="160" height="17"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="シンタックスカラーリング" id="F64-8o-JYC">
+                        <font key="font" size="13" name="AquaKana-Bold"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="rn5-5c-jI6">
+                    <rect key="frame" x="268" y="111" width="44" height="23"/>
+                    <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <connections>
+                        <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.numbers.color" id="yFB-nL-JKH">
+                            <dictionary key="options">
+                                <string key="NSValueTransformerName">CEHexColorTransformer</string>
+                            </dictionary>
+                        </binding>
+                    </connections>
+                </colorWell>
+                <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="i3Z-85-3qp">
+                    <rect key="frame" x="268" y="57" width="44" height="23"/>
+                    <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <connections>
+                        <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.characters.color" id="v6c-jS-kiB">
+                            <dictionary key="options">
+                                <string key="NSValueTransformerName">CEHexColorTransformer</string>
+                            </dictionary>
+                        </binding>
+                    </connections>
+                </colorWell>
+                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="snC-SX-rEl">
+                    <rect key="frame" x="206" y="87" width="56" height="17"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="文字列：" id="n04-r3-95l">
+                        <font key="font" size="13" name="AquaKana"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="joc-k5-xEa">
+                    <rect key="frame" x="268" y="84" width="44" height="23"/>
+                    <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <connections>
+                        <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.strings.color" id="bTH-FA-VI2">
+                            <dictionary key="options">
+                                <string key="NSValueTransformerName">CEHexColorTransformer</string>
+                            </dictionary>
+                        </binding>
+                    </connections>
+                </colorWell>
+                <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="QGS-SR-oFV">
+                    <rect key="frame" x="268" y="30" width="44" height="23"/>
+                    <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <connections>
+                        <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.comments.color" id="7PR-Kj-WW3">
+                            <dictionary key="options">
+                                <string key="NSValueTransformerName">CEHexColorTransformer</string>
+                            </dictionary>
+                        </binding>
+                    </connections>
+                </colorWell>
+                <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="w0B-KD-9pH">
+                    <rect key="frame" x="110" y="138" width="44" height="23"/>
+                    <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <connections>
+                        <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.keywordsColor" id="Umr-F4-IP8">
+                            <dictionary key="options">
+                                <string key="NSValueTransformerName">CEHexColorTransformer</string>
+                            </dictionary>
+                        </binding>
+                    </connections>
+                </colorWell>
+                <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="I0Y-Yr-Tq6">
+                    <rect key="frame" x="110" y="111" width="44" height="23"/>
+                    <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <connections>
+                        <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.commandsColor" id="fqm-1s-A1s">
+                            <dictionary key="options">
+                                <string key="NSValueTransformerName">CEHexColorTransformer</string>
+                            </dictionary>
+                        </binding>
+                    </connections>
+                </colorWell>
+                <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="O1G-QZ-X3X">
+                    <rect key="frame" x="110" y="57" width="44" height="23"/>
+                    <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <connections>
+                        <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.attributesColor" id="vPc-FO-JkI">
+                            <dictionary key="options">
+                                <string key="NSValueTransformerName">CEHexColorTransformer</string>
+                            </dictionary>
+                        </binding>
+                    </connections>
+                </colorWell>
+                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="44n-Y9-D7v">
+                    <rect key="frame" x="48" y="87" width="56" height="17"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="タイプ：" id="ILi-Jt-MUc">
+                        <font key="font" size="13" name="AquaKana"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="Op7-tR-smw">
+                    <rect key="frame" x="110" y="84" width="44" height="23"/>
+                    <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <connections>
+                        <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.typesColor" id="UED-8u-a3D">
+                            <dictionary key="options">
+                                <string key="NSValueTransformerName">CEHexColorTransformer</string>
+                            </dictionary>
+                        </binding>
+                    </connections>
+                </colorWell>
+                <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="TVR-mt-U7J">
+                    <rect key="frame" x="110" y="30" width="44" height="23"/>
+                    <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <connections>
+                        <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.variablesColor" id="bpB-TF-zyh">
+                            <dictionary key="options">
+                                <string key="NSValueTransformerName">CEHexColorTransformer</string>
+                            </dictionary>
+                        </binding>
+                    </connections>
+                </colorWell>
+                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="89v-hc-bub">
+                    <rect key="frame" x="232" y="141" width="30" height="17"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="値：" id="cVK-ET-QiD">
+                        <font key="font" size="13" name="AquaKana"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="vgC-hV-Bju">
+                    <rect key="frame" x="268" y="138" width="44" height="23"/>
+                    <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <connections>
+                        <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.values.color" id="50w-TM-qJp">
+                            <dictionary key="options">
+                                <string key="NSValueTransformerName">CEHexColorTransformer</string>
+                            </dictionary>
+                        </binding>
+                    </connections>
+                </colorWell>
+                <button horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="38b-e6-B7J">
+                    <rect key="frame" x="182" y="185" width="132" height="18"/>
+                    <buttonCell key="cell" type="check" title="システムカラーを使う" bezelStyle="regularSquare" imagePosition="left" controlSize="small" state="on" inset="2" id="0ZP-Zp-oBu">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" size="11" name="AquaKana"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="applySystemSelectionColor:" target="-2" id="cmk-jZ-Veo"/>
+                        <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.selection.usesSystemSetting" id="Eim-Om-iLX"/>
+                    </connections>
+                </button>
+                <button toolTip="テーマファイル情報を表示" translatesAutoresizingMaskIntoConstraints="NO" id="8zj-4c-Hg4">
+                    <rect key="frame" x="296" y="5" width="16" height="16"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="16" id="Mxz-Mu-red"/>
+                        <constraint firstAttribute="height" constant="16" id="Vat-Hb-Ids"/>
+                    </constraints>
+                    <buttonCell key="cell" type="bevel" title="Button" bezelStyle="rounded" image="InfoTemplate" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="gbm-no-dvT">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="showMedatada:" target="-2" id="l3Y-UD-WT7"/>
+                    </connections>
+                </button>
+            </subviews>
+            <constraints>
+                <constraint firstItem="I5D-KF-7Az" firstAttribute="width" secondItem="i3Z-85-3qp" secondAttribute="width" id="00K-dg-lCU"/>
+                <constraint firstItem="I5D-KF-7Az" firstAttribute="height" secondItem="gjr-XD-Cv5" secondAttribute="height" id="0gw-b5-6QM"/>
+                <constraint firstItem="gjr-XD-Cv5" firstAttribute="centerY" secondItem="gao-00-mX9" secondAttribute="centerY" id="0iV-Px-1vY"/>
+                <constraint firstItem="gnE-Sx-bRs" firstAttribute="centerY" secondItem="O1G-QZ-X3X" secondAttribute="centerY" id="0vh-vx-hpm"/>
+                <constraint firstItem="I0Y-Yr-Tq6" firstAttribute="leading" secondItem="FHd-6m-dWf" secondAttribute="trailing" constant="8" symbolic="YES" id="10r-Gj-wjm"/>
+                <constraint firstItem="BcY-Zf-mza" firstAttribute="centerY" secondItem="Mh4-u1-6ML" secondAttribute="centerY" id="1Om-Sj-lKU"/>
+                <constraint firstItem="2SR-Gl-M0L" firstAttribute="top" secondItem="eBT-dC-9hy" secondAttribute="bottom" constant="6" id="22F-B6-0fC"/>
+                <constraint firstItem="I5D-KF-7Az" firstAttribute="width" secondItem="Mh4-u1-6ML" secondAttribute="width" id="2wu-X7-0d1"/>
+                <constraint firstAttribute="bottom" secondItem="8zj-4c-Hg4" secondAttribute="bottom" constant="5" id="3In-Xx-L7C"/>
+                <constraint firstItem="I5D-KF-7Az" firstAttribute="height" secondItem="O1G-QZ-X3X" secondAttribute="height" id="3RU-yp-E2T"/>
+                <constraint firstItem="Y4q-YH-jrD" firstAttribute="width" secondItem="I5D-KF-7Az" secondAttribute="width" id="3cW-iW-jGG"/>
+                <constraint firstItem="vgC-hV-Bju" firstAttribute="leading" secondItem="89v-hc-bub" secondAttribute="trailing" constant="8" symbolic="YES" id="44j-qa-1z6"/>
+                <constraint firstItem="u73-Ob-J8v" firstAttribute="leading" secondItem="arh-qx-kON" secondAttribute="trailing" constant="8" symbolic="YES" id="4Mc-Yf-bvn"/>
+                <constraint firstItem="Op7-tR-smw" firstAttribute="centerY" secondItem="44n-Y9-D7v" secondAttribute="centerY" id="51i-0W-Ly0"/>
+                <constraint firstItem="joc-k5-xEa" firstAttribute="height" secondItem="I5D-KF-7Az" secondAttribute="height" id="5BS-aN-lvG"/>
+                <constraint firstItem="lJB-fN-OKp" firstAttribute="leading" secondItem="8JO-9v-VnC" secondAttribute="trailing" constant="8" symbolic="YES" id="5pJ-qJ-U3R"/>
+                <constraint firstItem="joc-k5-xEa" firstAttribute="top" secondItem="rn5-5c-jI6" secondAttribute="bottom" constant="4" id="6CS-vE-ptj"/>
+                <constraint firstItem="I5D-KF-7Az" firstAttribute="leading" secondItem="8Mv-NZ-wYH" secondAttribute="leading" constant="110" id="6QI-6w-UQc"/>
+                <constraint firstItem="I5D-KF-7Az" firstAttribute="width" secondItem="lJB-fN-OKp" secondAttribute="width" id="6pG-L5-b8G"/>
+                <constraint firstItem="i3Z-85-3qp" firstAttribute="leading" secondItem="8yb-9K-ShW" secondAttribute="trailing" constant="8" symbolic="YES" id="88z-XN-HTy"/>
+                <constraint firstItem="Y4q-YH-jrD" firstAttribute="height" secondItem="I5D-KF-7Az" secondAttribute="height" id="8Uw-Sp-MdJ"/>
+                <constraint firstItem="I0Y-Yr-Tq6" firstAttribute="centerY" secondItem="FHd-6m-dWf" secondAttribute="centerY" id="8fP-Pn-50a"/>
+                <constraint firstItem="O1G-QZ-X3X" firstAttribute="top" secondItem="Op7-tR-smw" secondAttribute="bottom" constant="4" id="8i2-2D-WqR"/>
+                <constraint firstItem="I5D-KF-7Az" firstAttribute="leading" secondItem="TVR-mt-U7J" secondAttribute="leading" id="97U-kg-xUc"/>
+                <constraint firstItem="I5D-KF-7Az" firstAttribute="width" secondItem="O1G-QZ-X3X" secondAttribute="width" id="Adc-sE-wfS"/>
+                <constraint firstItem="Mh4-u1-6ML" firstAttribute="leading" secondItem="BcY-Zf-mza" secondAttribute="trailing" constant="8" symbolic="YES" id="BQ6-NH-6sI"/>
+                <constraint firstItem="Y4q-YH-jrD" firstAttribute="top" secondItem="u73-Ob-J8v" secondAttribute="bottom" constant="4" id="Beb-el-eAR"/>
+                <constraint firstItem="I5D-KF-7Az" firstAttribute="width" secondItem="w0B-KD-9pH" secondAttribute="width" id="D2f-GP-wDL"/>
+                <constraint firstItem="I0Y-Yr-Tq6" firstAttribute="leading" secondItem="I5D-KF-7Az" secondAttribute="leading" id="DH7-5c-9HT"/>
+                <constraint firstItem="u73-Ob-J8v" firstAttribute="height" secondItem="I5D-KF-7Az" secondAttribute="height" id="Dg5-OV-B4i"/>
+                <constraint firstItem="I5D-KF-7Az" firstAttribute="height" secondItem="rn5-5c-jI6" secondAttribute="height" id="GFj-56-xOD"/>
+                <constraint firstItem="rn5-5c-jI6" firstAttribute="top" secondItem="vgC-hV-Bju" secondAttribute="bottom" constant="4" id="GeY-1x-p1Z"/>
+                <constraint firstItem="gjr-XD-Cv5" firstAttribute="leading" secondItem="gao-00-mX9" secondAttribute="trailing" constant="8" symbolic="YES" id="HAu-XQ-cNj"/>
+                <constraint firstItem="I0Y-Yr-Tq6" firstAttribute="top" secondItem="w0B-KD-9pH" secondAttribute="bottom" constant="4" id="HpI-ik-EnQ"/>
+                <constraint firstItem="Y4q-YH-jrD" firstAttribute="leading" secondItem="f4v-zr-M1o" secondAttribute="trailing" constant="8" symbolic="YES" id="IDM-rY-r68"/>
+                <constraint firstItem="I5D-KF-7Az" firstAttribute="width" secondItem="rn5-5c-jI6" secondAttribute="width" id="IcP-FM-CY9"/>
+                <constraint firstItem="X1h-s1-vOe" firstAttribute="top" secondItem="9VW-40-zzi" secondAttribute="bottom" constant="8" symbolic="YES" id="ItK-5S-rlj"/>
+                <constraint firstItem="I5D-KF-7Az" firstAttribute="leading" secondItem="gjr-XD-Cv5" secondAttribute="leading" id="Jsh-ir-7Q4"/>
+                <constraint firstItem="QGS-SR-oFV" firstAttribute="trailing" secondItem="Mh4-u1-6ML" secondAttribute="trailing" id="K5a-Xa-im7"/>
+                <constraint firstItem="I5D-KF-7Az" firstAttribute="centerY" secondItem="2SR-Gl-M0L" secondAttribute="centerY" id="Kaa-vL-kcd"/>
+                <constraint firstItem="I5D-KF-7Az" firstAttribute="top" secondItem="Mh4-u1-6ML" secondAttribute="top" id="Ky6-vg-h3z"/>
+                <constraint firstItem="gjr-XD-Cv5" firstAttribute="top" secondItem="lJB-fN-OKp" secondAttribute="bottom" constant="4" id="L9U-4S-WTM"/>
+                <constraint firstAttribute="trailing" secondItem="38b-e6-B7J" secondAttribute="trailing" constant="20" symbolic="YES" id="MHf-pl-h3u"/>
+                <constraint firstItem="I5D-KF-7Az" firstAttribute="leading" secondItem="2SR-Gl-M0L" secondAttribute="trailing" constant="8" symbolic="YES" id="MqL-bn-J57"/>
+                <constraint firstItem="I5D-KF-7Az" firstAttribute="height" secondItem="w0B-KD-9pH" secondAttribute="height" id="PXC-HZ-h3d"/>
+                <constraint firstItem="TVR-mt-U7J" firstAttribute="top" secondItem="O1G-QZ-X3X" secondAttribute="bottom" constant="4" id="PqK-LE-ex8"/>
+                <constraint firstItem="I5D-KF-7Az" firstAttribute="height" secondItem="lJB-fN-OKp" secondAttribute="height" id="ROT-kv-dQl"/>
+                <constraint firstItem="I0Y-Yr-Tq6" firstAttribute="width" secondItem="I5D-KF-7Az" secondAttribute="width" id="S6J-QX-kop"/>
+                <constraint firstItem="I5D-KF-7Az" firstAttribute="height" secondItem="Op7-tR-smw" secondAttribute="height" id="SA5-pv-6yq"/>
+                <constraint firstItem="joc-k5-xEa" firstAttribute="width" secondItem="I5D-KF-7Az" secondAttribute="width" id="SXG-wf-ol5"/>
+                <constraint firstItem="joc-k5-xEa" firstAttribute="leading" secondItem="snC-SX-rEl" secondAttribute="trailing" constant="8" symbolic="YES" id="Scv-3B-Ztn"/>
+                <constraint firstItem="QGS-SR-oFV" firstAttribute="top" secondItem="i3Z-85-3qp" secondAttribute="bottom" constant="4" id="Sh7-Aw-J3h"/>
+                <constraint firstItem="I5D-KF-7Az" firstAttribute="width" secondItem="Op7-tR-smw" secondAttribute="width" id="So3-fn-ZaH"/>
+                <constraint firstItem="vgC-hV-Bju" firstAttribute="trailing" secondItem="Mh4-u1-6ML" secondAttribute="trailing" id="W6R-hz-Cua"/>
+                <constraint firstItem="snC-SX-rEl" firstAttribute="centerY" secondItem="joc-k5-xEa" secondAttribute="centerY" id="XIG-Pq-C5b"/>
+                <constraint firstItem="w0B-KD-9pH" firstAttribute="leading" secondItem="X1h-s1-vOe" secondAttribute="trailing" constant="8" symbolic="YES" id="XxI-29-fPq"/>
+                <constraint firstAttribute="trailing" secondItem="Mh4-u1-6ML" secondAttribute="trailing" constant="20" symbolic="YES" id="Xy5-3O-0R1"/>
+                <constraint firstItem="8yb-9K-ShW" firstAttribute="centerY" secondItem="i3Z-85-3qp" secondAttribute="centerY" id="Y3z-zT-iDX"/>
+                <constraint firstItem="QGS-SR-oFV" firstAttribute="width" secondItem="I5D-KF-7Az" secondAttribute="width" id="Y4r-gT-wLJ"/>
+                <constraint firstItem="eBT-dC-9hy" firstAttribute="top" secondItem="8Mv-NZ-wYH" secondAttribute="top" constant="8" id="Zf3-Qr-i7o"/>
+                <constraint firstItem="I0Y-Yr-Tq6" firstAttribute="height" secondItem="I5D-KF-7Az" secondAttribute="height" id="aQw-nD-CfP"/>
+                <constraint firstItem="Y4q-YH-jrD" firstAttribute="trailing" secondItem="Mh4-u1-6ML" secondAttribute="trailing" id="ayt-JJ-yDY"/>
+                <constraint firstItem="Op7-tR-smw" firstAttribute="top" secondItem="I0Y-Yr-Tq6" secondAttribute="bottom" constant="4" id="bUf-Au-X0b"/>
+                <constraint firstItem="Op7-tR-smw" firstAttribute="leading" secondItem="44n-Y9-D7v" secondAttribute="trailing" constant="8" symbolic="YES" id="bjh-aH-Ajb"/>
+                <constraint firstItem="I5D-KF-7Az" firstAttribute="leading" secondItem="w0B-KD-9pH" secondAttribute="leading" id="cAZ-4z-Uky"/>
+                <constraint firstItem="rn5-5c-jI6" firstAttribute="leading" secondItem="Xjv-GT-ZUL" secondAttribute="trailing" constant="8" symbolic="YES" id="cvq-zf-wK0"/>
+                <constraint firstItem="vgC-hV-Bju" firstAttribute="top" secondItem="w0B-KD-9pH" secondAttribute="top" id="dKY-4c-ysF"/>
+                <constraint firstItem="I5D-KF-7Az" firstAttribute="leading" secondItem="O1G-QZ-X3X" secondAttribute="leading" id="dQy-rd-2CX"/>
+                <constraint firstItem="I5D-KF-7Az" firstAttribute="height" secondItem="Mh4-u1-6ML" secondAttribute="height" id="dc2-UQ-jnw"/>
+                <constraint firstItem="I5D-KF-7Az" firstAttribute="leading" secondItem="Op7-tR-smw" secondAttribute="leading" id="eYD-aa-VEG"/>
+                <constraint firstAttribute="trailing" secondItem="8zj-4c-Hg4" secondAttribute="trailing" constant="20" symbolic="YES" id="eZK-wJ-h9o"/>
+                <constraint firstItem="5M7-jw-5vd" firstAttribute="centerY" secondItem="TVR-mt-U7J" secondAttribute="centerY" id="g3N-pN-BHP"/>
+                <constraint firstItem="lJB-fN-OKp" firstAttribute="centerY" secondItem="8JO-9v-VnC" secondAttribute="centerY" id="g3q-NG-j9B"/>
+                <constraint firstItem="u73-Ob-J8v" firstAttribute="width" secondItem="I5D-KF-7Az" secondAttribute="width" id="gMg-5d-zqr"/>
+                <constraint firstItem="joc-k5-xEa" firstAttribute="trailing" secondItem="Mh4-u1-6ML" secondAttribute="trailing" id="gbG-bR-XnD"/>
+                <constraint firstItem="QGS-SR-oFV" firstAttribute="height" secondItem="I5D-KF-7Az" secondAttribute="height" id="heB-aL-3Da"/>
+                <constraint firstItem="I5D-KF-7Az" firstAttribute="height" secondItem="i3Z-85-3qp" secondAttribute="height" id="hvC-cF-I1K"/>
+                <constraint firstItem="I5D-KF-7Az" firstAttribute="leading" secondItem="lJB-fN-OKp" secondAttribute="leading" id="ieM-eO-Jlf"/>
+                <constraint firstItem="vgC-hV-Bju" firstAttribute="centerY" secondItem="89v-hc-bub" secondAttribute="centerY" id="lVG-cx-eRw"/>
+                <constraint firstItem="eBT-dC-9hy" firstAttribute="leading" secondItem="9VW-40-zzi" secondAttribute="leading" id="ldX-Z7-DuG"/>
+                <constraint firstItem="vgC-hV-Bju" firstAttribute="width" secondItem="I5D-KF-7Az" secondAttribute="width" id="ldl-st-vOn"/>
+                <constraint firstItem="38b-e6-B7J" firstAttribute="top" secondItem="f4v-zr-M1o" secondAttribute="bottom" constant="8" symbolic="YES" id="lv9-dx-VXD"/>
+                <constraint firstItem="u73-Ob-J8v" firstAttribute="top" secondItem="Mh4-u1-6ML" secondAttribute="bottom" constant="4" id="m4P-Yc-VjB"/>
+                <constraint firstItem="rn5-5c-jI6" firstAttribute="trailing" secondItem="Mh4-u1-6ML" secondAttribute="trailing" id="nNy-8Z-7tE"/>
+                <constraint firstItem="i3Z-85-3qp" firstAttribute="trailing" secondItem="Mh4-u1-6ML" secondAttribute="trailing" id="o92-kp-kP4"/>
+                <constraint firstItem="lJB-fN-OKp" firstAttribute="top" secondItem="I5D-KF-7Az" secondAttribute="bottom" constant="4" id="ogn-yR-z1C"/>
+                <constraint firstItem="I5D-KF-7Az" firstAttribute="width" secondItem="TVR-mt-U7J" secondAttribute="width" id="otD-GB-YJs"/>
+                <constraint firstItem="TVR-mt-U7J" firstAttribute="leading" secondItem="5M7-jw-5vd" secondAttribute="trailing" constant="8" symbolic="YES" id="pRh-W1-MHq"/>
+                <constraint firstItem="9VW-40-zzi" firstAttribute="top" secondItem="gjr-XD-Cv5" secondAttribute="bottom" constant="22" id="pTp-xY-cf2"/>
+                <constraint firstItem="i3Z-85-3qp" firstAttribute="top" secondItem="joc-k5-xEa" secondAttribute="bottom" constant="4" id="pVp-Hj-VN8"/>
+                <constraint firstItem="rn5-5c-jI6" firstAttribute="centerY" secondItem="Xjv-GT-ZUL" secondAttribute="centerY" id="q8n-fI-GRL"/>
+                <constraint firstItem="vgC-hV-Bju" firstAttribute="height" secondItem="I5D-KF-7Az" secondAttribute="height" id="rgx-C3-FPB"/>
+                <constraint firstItem="eBT-dC-9hy" firstAttribute="leading" secondItem="8Mv-NZ-wYH" secondAttribute="leading" constant="16" id="s2e-Se-DMq"/>
+                <constraint firstItem="w0B-KD-9pH" firstAttribute="centerY" secondItem="X1h-s1-vOe" secondAttribute="centerY" id="sBZ-0e-Hc2"/>
+                <constraint firstItem="arh-qx-kON" firstAttribute="centerY" secondItem="u73-Ob-J8v" secondAttribute="centerY" id="uoT-jw-Gxg"/>
+                <constraint firstItem="I5D-KF-7Az" firstAttribute="height" secondItem="TVR-mt-U7J" secondAttribute="height" id="ur1-p4-YwN"/>
+                <constraint firstItem="QGS-SR-oFV" firstAttribute="leading" secondItem="IR6-vs-wd8" secondAttribute="trailing" constant="8" symbolic="YES" id="uvN-CU-yKA"/>
+                <constraint firstItem="Y4q-YH-jrD" firstAttribute="centerY" secondItem="f4v-zr-M1o" secondAttribute="centerY" id="vzB-xu-qjK"/>
+                <constraint firstItem="Y4q-YH-jrD" firstAttribute="trailing" secondItem="u73-Ob-J8v" secondAttribute="trailing" id="yis-4z-1do"/>
+                <constraint firstItem="O1G-QZ-X3X" firstAttribute="leading" secondItem="gnE-Sx-bRs" secondAttribute="trailing" constant="8" symbolic="YES" id="z4t-sd-hKx"/>
+                <constraint firstItem="I5D-KF-7Az" firstAttribute="width" secondItem="gjr-XD-Cv5" secondAttribute="width" id="zL3-pz-O3G"/>
+                <constraint firstItem="QGS-SR-oFV" firstAttribute="centerY" secondItem="IR6-vs-wd8" secondAttribute="centerY" id="zS9-yk-cKW"/>
+            </constraints>
+            <point key="canvasLocation" x="147" y="488"/>
+        </customView>
+        <objectController automaticallyPreparesContent="YES" id="u6m-LI-pC6" userLabel="Metadata Controller">
+            <declaredKeys>
+                <string>author</string>
+                <string>distributionURL</string>
+                <string>lisence</string>
+                <string>description</string>
+            </declaredKeys>
+            <connections>
+                <binding destination="h6Y-ET-p1K" name="contentObject" keyPath="selection.metadata" id="NWz-4f-lPb">
+                    <dictionary key="options">
+                        <bool key="NSDeletesObjectsOnRemove" value="YES"/>
+                        <bool key="NSHandlesContentAsCompoundValue" value="YES"/>
+                        <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
+                    </dictionary>
+                </binding>
+            </connections>
+        </objectController>
+        <viewController id="5ql-Tm-Fra" userLabel="Popover View Controller">
+            <connections>
+                <outlet property="view" destination="ppO-VP-NLx" id="Zu5-vX-Vcd"/>
+            </connections>
+        </viewController>
+        <customView verticalHuggingPriority="750" placeholderIntrinsicWidth="294" placeholderIntrinsicHeight="81" id="ppO-VP-NLx" userLabel="Metadata View">
+            <rect key="frame" x="0.0" y="0.0" width="294" height="99"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="k4d-pG-qBs">
+                    <rect key="frame" x="41" y="75" width="37" height="14"/>
+                    <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="作者：" id="rwN-yN-R2d">
+                        <font key="font" size="11" name="AquaKana-Bold"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0Jp-Su-oLN">
+                    <rect key="frame" x="41" y="58" width="37" height="14"/>
+                    <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="URL：" id="yNX-Ny-4Pe">
+                        <font key="font" metaFont="smallSystemBold"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="WUy-8Y-3ep">
+                    <rect key="frame" x="8" y="41" width="70" height="14"/>
+                    <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="ライセンス：" id="1dw-ZR-kJT">
+                        <font key="font" size="11" name="AquaKana-Bold"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hGf-bl-psz">
+                    <rect key="frame" x="41" y="24" width="37" height="14"/>
+                    <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="説明：" id="Zc1-EC-Gu8">
+                        <font key="font" size="11" name="AquaKana-Bold"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="b4k-a5-0eY">
+                    <rect key="frame" x="82" y="76" width="204" height="14"/>
+                    <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="anonymous" placeholderString="" id="8qg-6N-HfV">
+                        <font key="font" metaFont="smallSystem"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                    <connections>
+                        <binding destination="-2" name="editable" keyPath="bundled" id="NUk-t0-s8X">
+                            <dictionary key="options">
+                                <string key="NSValueTransformerName">NSNegateBoolean</string>
+                            </dictionary>
+                        </binding>
+                        <binding destination="u6m-LI-pC6" name="value" keyPath="selection.author" id="j8z-Aw-gMH">
+                            <dictionary key="options">
+                                <string key="NSNullPlaceholder">未設定</string>
+                            </dictionary>
+                        </binding>
+                        <outlet property="delegate" destination="-2" id="MFU-IY-JEe"/>
+                    </connections>
+                </textField>
+                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fh5-NX-Gjh">
+                    <rect key="frame" x="82" y="58" width="182" height="14"/>
+                    <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="http://coteditor.github.io" placeholderString="" id="5fK-WM-jnH">
+                        <font key="font" metaFont="smallSystem"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                    <connections>
+                        <binding destination="-2" name="editable" keyPath="bundled" id="bPp-tb-wUU">
+                            <dictionary key="options">
+                                <string key="NSValueTransformerName">NSNegateBoolean</string>
+                            </dictionary>
+                        </binding>
+                        <binding destination="u6m-LI-pC6" name="value" keyPath="selection.distributionURL" id="OdB-IM-Ui1">
+                            <dictionary key="options">
+                                <string key="NSNullPlaceholder">未設定</string>
+                            </dictionary>
+                        </binding>
+                        <outlet property="delegate" destination="-2" id="9kt-jg-PPa"/>
+                    </connections>
+                </textField>
+                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eId-LY-LfO">
+                    <rect key="frame" x="82" y="42" width="204" height="14"/>
+                    <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="GPL2" placeholderString="" id="ABE-hR-FWl">
+                        <font key="font" metaFont="smallSystem"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                    <connections>
+                        <binding destination="-2" name="editable" keyPath="bundled" id="jQS-9R-Doi">
+                            <dictionary key="options">
+                                <string key="NSValueTransformerName">NSNegateBoolean</string>
+                            </dictionary>
+                        </binding>
+                        <binding destination="u6m-LI-pC6" name="value" keyPath="selection.lisence" id="kHB-lv-543">
+                            <dictionary key="options">
+                                <string key="NSNullPlaceholder">未設定</string>
+                            </dictionary>
+                        </binding>
+                        <outlet property="delegate" destination="-2" id="FHm-4g-ETc"/>
+                    </connections>
+                </textField>
+                <textField verticalHuggingPriority="751" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="14" translatesAutoresizingMaskIntoConstraints="NO" id="gzO-Tm-kvp">
+                    <rect key="frame" x="82" y="10" width="204" height="28"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="200" id="GGh-kK-AS9"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="28" id="Lv7-9b-A8C"/>
+                    </constraints>
+                    <textFieldCell key="cell" controlSize="small" truncatesLastVisibleLine="YES" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="This is an example line." placeholderString="" id="kVP-H3-qGg">
+                        <font key="font" metaFont="smallSystem"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                    <connections>
+                        <binding destination="-2" name="editable" keyPath="bundled" id="YMO-7q-xtd">
+                            <dictionary key="options">
+                                <string key="NSValueTransformerName">NSNegateBoolean</string>
+                            </dictionary>
+                        </binding>
+                        <binding destination="u6m-LI-pC6" name="value" keyPath="selection.description" id="9VA-mD-nA5">
+                            <dictionary key="options">
+                                <string key="NSNullPlaceholder">未設定</string>
+                            </dictionary>
+                        </binding>
+                        <outlet property="delegate" destination="-2" id="3PV-ei-Gre"/>
+                    </connections>
+                </textField>
+                <button toolTip="URL にジャンプ" translatesAutoresizingMaskIntoConstraints="NO" id="qEX-vE-8ZT">
+                    <rect key="frame" x="270" y="58" width="14" height="14"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="14" id="12P-5f-f0p"/>
+                        <constraint firstAttribute="width" secondItem="qEX-vE-8ZT" secondAttribute="height" multiplier="1:1" id="MzX-OF-OpU"/>
+                    </constraints>
+                    <buttonCell key="cell" type="bevel" title="Button" bezelStyle="rounded" image="NSFollowLinkFreestandingTemplate" imagePosition="only" alignment="center" controlSize="small" imageScaling="proportionallyDown" inset="2" id="TJk-TV-NLj">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="smallSystem"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="jumpToURL:" target="-2" id="9L1-73-aef"/>
+                        <binding destination="u6m-LI-pC6" name="hidden" keyPath="selection.distributionURL" id="elZ-UK-hAj">
+                            <dictionary key="options">
+                                <string key="NSValueTransformerName">NSIsNil</string>
+                            </dictionary>
+                        </binding>
+                    </connections>
+                </button>
+            </subviews>
+            <constraints>
+                <constraint firstItem="gzO-Tm-kvp" firstAttribute="leading" secondItem="hGf-bl-psz" secondAttribute="trailing" constant="8" symbolic="YES" id="2N8-aw-hah"/>
+                <constraint firstAttribute="trailing" secondItem="b4k-a5-0eY" secondAttribute="trailing" constant="10" id="2aU-9L-cx5"/>
+                <constraint firstAttribute="bottom" secondItem="gzO-Tm-kvp" secondAttribute="bottom" constant="10" id="Bo7-iK-Gv5"/>
+                <constraint firstItem="0Jp-Su-oLN" firstAttribute="top" secondItem="k4d-pG-qBs" secondAttribute="bottom" constant="3" id="Djs-Bz-12u"/>
+                <constraint firstItem="eId-LY-LfO" firstAttribute="baseline" secondItem="WUy-8Y-3ep" secondAttribute="baseline" id="Iou-bu-nSU"/>
+                <constraint firstItem="WUy-8Y-3ep" firstAttribute="top" secondItem="0Jp-Su-oLN" secondAttribute="bottom" constant="3" id="JfE-9l-N8M"/>
+                <constraint firstItem="0Jp-Su-oLN" firstAttribute="bottom" secondItem="qEX-vE-8ZT" secondAttribute="bottom" id="Kn9-t0-IvC"/>
+                <constraint firstAttribute="trailing" secondItem="eId-LY-LfO" secondAttribute="trailing" constant="10" id="Ndt-LJ-W3t"/>
+                <constraint firstItem="eId-LY-LfO" firstAttribute="leading" secondItem="WUy-8Y-3ep" secondAttribute="trailing" constant="8" symbolic="YES" id="Ntj-eT-IDN"/>
+                <constraint firstItem="0Jp-Su-oLN" firstAttribute="baseline" secondItem="fh5-NX-Gjh" secondAttribute="baseline" id="Qw2-14-A4m"/>
+                <constraint firstItem="hGf-bl-psz" firstAttribute="trailing" secondItem="k4d-pG-qBs" secondAttribute="trailing" id="Rzo-dy-MX1"/>
+                <constraint firstAttribute="trailing" secondItem="gzO-Tm-kvp" secondAttribute="trailing" constant="10" id="SnQ-xs-Y3j"/>
+                <constraint firstItem="b4k-a5-0eY" firstAttribute="leading" secondItem="k4d-pG-qBs" secondAttribute="trailing" constant="8" symbolic="YES" id="VkZ-A5-8Tl"/>
+                <constraint firstItem="hGf-bl-psz" firstAttribute="trailing" secondItem="WUy-8Y-3ep" secondAttribute="trailing" id="XVZ-bV-SoJ"/>
+                <constraint firstItem="b4k-a5-0eY" firstAttribute="baseline" secondItem="k4d-pG-qBs" secondAttribute="baseline" id="aep-zm-7Jk"/>
+                <constraint firstItem="k4d-pG-qBs" firstAttribute="top" secondItem="ppO-VP-NLx" secondAttribute="top" constant="10" id="bsa-Ro-T6A"/>
+                <constraint firstItem="hGf-bl-psz" firstAttribute="trailing" secondItem="0Jp-Su-oLN" secondAttribute="trailing" id="dfI-OO-SxJ"/>
+                <constraint firstItem="hGf-bl-psz" firstAttribute="top" secondItem="WUy-8Y-3ep" secondAttribute="bottom" constant="3" id="fhw-Tf-V57"/>
+                <constraint firstItem="hGf-bl-psz" firstAttribute="top" secondItem="gzO-Tm-kvp" secondAttribute="top" id="jA1-GQ-snK"/>
+                <constraint firstItem="WUy-8Y-3ep" firstAttribute="leading" secondItem="ppO-VP-NLx" secondAttribute="leading" constant="10" id="mz7-X4-COp"/>
+                <constraint firstItem="qEX-vE-8ZT" firstAttribute="leading" secondItem="fh5-NX-Gjh" secondAttribute="trailing" constant="8" symbolic="YES" id="nXW-yE-1V4"/>
+                <constraint firstItem="fh5-NX-Gjh" firstAttribute="leading" secondItem="0Jp-Su-oLN" secondAttribute="trailing" constant="8" symbolic="YES" id="t4Y-EP-25v"/>
+                <constraint firstAttribute="trailing" secondItem="qEX-vE-8ZT" secondAttribute="trailing" constant="10" id="vPi-3f-TB9"/>
+            </constraints>
+            <point key="canvasLocation" x="143" y="230.5"/>
+        </customView>
+        <popover behavior="t" id="9zn-2O-cFk">
+            <connections>
+                <outlet property="contentViewController" destination="5ql-Tm-Fra" id="W8L-fM-iFW"/>
+                <outlet property="delegate" destination="-2" id="heS-Xj-9t0"/>
+            </connections>
+        </popover>
+    </objects>
+    <resources>
+        <image name="InfoTemplate" width="16" height="16"/>
+        <image name="NSFollowLinkFreestandingTemplate" width="10" height="10"/>
+    </resources>
+</document>

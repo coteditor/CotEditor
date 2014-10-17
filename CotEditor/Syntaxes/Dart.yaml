@@ -1,0 +1,99 @@
+extensions:
+- keyString: "dart"
+outlineMenu:
+- beginString: "^([\\t ]*)([a-zA-Z]+) (\\w+[\\t ]*\\(.*\\))\\s\\{"
+  keyString: "$1$2 $3"
+- beginString: "^([\\t ]*)class (.+)\\s\\{"
+  keyString: "$1class $2"
+  bold: true
+completions: []
+commands: []
+attributes:
+- beginString: "@\\w+"
+  regularExpression: true
+metadata:
+  author: "1024jp"
+  distributionURL: "http://coteditor.github.io"
+  version: "1.1"
+  license: "Same as CotEditor"
+  lastModified: "2014-09-24"
+characters: []
+comments: []
+values:
+- beginString: "false"
+- beginString: "null"
+- beginString: "true"
+variables:
+- beginString: "super"
+- beginString: "this"
+numbers:
+- beginString: "((?<!\\w)|[-+])(?:\\.\\d+|\\d+\\.|\\d+\\.\\d+|\\d+)(e[+-]?\\d+)?[jl]?"
+  ignoreCase: true
+  regularExpression: true
+- beginString: "\\b-?(0x)[0-9a-f]+\\b"
+  ignoreCase: true
+  regularExpression: true
+strings:
+- beginString: "\""
+  endString: "\""
+- beginString: "'"
+  endString: "'"
+- beginString: "@\""
+  endString: "\""
+- beginString: "@'"
+  endString: "'"
+keywords:
+- beginString: "abstract"
+- beginString: "as"
+- beginString: "assert"
+- beginString: "bool"
+- beginString: "break"
+- beginString: "case"
+- beginString: "catch"
+- beginString: "class"
+- beginString: "const"
+- beginString: "continue"
+- beginString: "default"
+- beginString: "do"
+- beginString: "double"
+- beginString: "dynamic"
+- beginString: "else"
+- beginString: "enum"
+- beginString: "export"
+- beginString: "extends"
+- beginString: "external"
+- beginString: "factory"
+- beginString: "final"
+- beginString: "finally"
+- beginString: "for"
+- beginString: "get"
+- beginString: "if"
+- beginString: "implements"
+- beginString: "import"
+- beginString: "in"
+- beginString: "int"
+- beginString: "is"
+- beginString: "library"
+- beginString: "List"
+- beginString: "Map"
+- beginString: "new"
+- beginString: "num"
+- beginString: "operator"
+- beginString: "part"
+- beginString: "rethrow"
+- beginString: "return"
+- beginString: "set"
+- beginString: "static"
+- beginString: "String"
+- beginString: "switch"
+- beginString: "throw"
+- beginString: "try"
+- beginString: "typedef"
+- beginString: "var"
+- beginString: "void"
+- beginString: "while"
+- beginString: "with"
+commentDelimiters:
+  endDelimiter: "*/"
+  beginDelimiter: "/*"
+  inlineDelimiter: "//"

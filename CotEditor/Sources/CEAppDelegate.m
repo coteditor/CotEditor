@@ -1,42 +1,46 @@
 /*
-=================================================
-CEAppDelegate
-(for CotEditor)
-
- Copyright (C) 2004-2007 nakamuxu.
- Copyright (C) 2011, 2014 CotEditor Project
- http://coteditor.github.io
-=================================================
-
-encoding="UTF-8"
-Created:2004.12.13
+ ==============================================================================
+ CEAppDelegate
  
--------------------------------------------------
-
-This program is free software; you can redistribute it and/or
-modify it under the terms of the GNU General Public License
-as published by the Free Software Foundation; either version 2
-of the License, or (at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program; if not, write to the Free Software
-Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA. 
-
-
-=================================================
-*/
+ CotEditor
+ http://coteditor.github.io
+ 
+ Created on 2004-12-13 by nakamuxu
+ encoding="UTF-8"
+ ------------------------------------------------------------------------------
+ 
+ © 2004-2007 nakamuxu
+ © 2014 CotEditor Project
+ 
+ This program is free software; you can redistribute it and/or modify it under
+ the terms of the GNU General Public License as published by the Free Software
+ Foundation; either version 2 of the License, or (at your option) any later
+ version.
+ 
+ This program is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+ 
+ You should have received a copy of the GNU General Public License along with
+ this program; if not, write to the Free Software Foundation, Inc., 59 Temple
+ Place - Suite 330, Boston, MA  02111-1307, USA.
+ 
+ ==============================================================================
+ */
 
 #import "CEAppDelegate.h"
-#import "CEPreferencesWindowController.h"
+#import "CESyntaxManager.h"
+#import "CEEncodingManager.h"
+#import "CEKeyBindingManager.h"
+#import "CEScriptManager.h"
+#import "CEThemeManager.h"
+#import "CEHexColorTransformer.h"
 #import "CEByteCountTransformer.h"
+#import "CELineHeightTransformer.h"
+#import "CEPreferencesWindowController.h"
 #import "CEOpacityPanelController.h"
-#import "CELineSpacingPanelController.h"
-#import "CEGoToPanelController.h"
+#import "CELineHightPanelController.h"
+#import "CEGoToSheetController.h"
 #import "CEColorCodePanelController.h"
 #import "CEScriptErrorPanelController.h"
 #import "CEUnicodeInputPanelController.h"
@@ -45,8 +49,19 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @interface CEAppDelegate ()
 
+@property (nonatomic) BOOL hasSetting;  // for migration check
+
+
 // readonly
-@property (nonatomic, copy, readwrite) NSArray *encodingMenuItems;
+@property (readwrite, nonatomic) NSURL *supportDirectoryURL;
+
+@end
+
+
+
+@interface CEAppDelegate (Migration)
+
+- (void)migrateToVersion2;
 
 @end
 
@@ -70,167 +85,175 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     // Encoding list
-    NSUInteger size = k_size_of_CFStringEncodingList;
-    NSMutableArray *encodings = [[NSMutableArray alloc] initWithCapacity:size];
-    for (NSUInteger i = 0; i < size; i++) {
-        [encodings addObject:@(k_CFStringEncodingList[i])];
+    NSMutableArray *encodings = [[NSMutableArray alloc] initWithCapacity:kSizeOfCFStringEncodingList];
+    for (NSUInteger i = 0; i < kSizeOfCFStringEncodingList; i++) {
+        [encodings addObject:@(kCFStringEncodingList[i])];
     }
     
-    NSDictionary *defaults = @{k_key_showLineNumbers: @YES,
-                               k_key_showStatusBar: @YES,
-                               k_key_showStatusBarChars: @YES,
-                               k_key_showStatusBarLines: @YES,
-                               k_key_showStatusBarWords: @NO,
-                               k_key_showStatusBarLocation: @YES,
-                               k_key_showStatusBarLine: @YES,
-                               k_key_showStatusBarColumn: @NO,
-                               k_key_showStatusBarEncoding: @NO,
-                               k_key_showStatusBarLineEndings: @NO,
-                               k_key_showStatusBarFileSize: @YES,
-                               k_key_countLineEndingAsChar: @YES,
-                               k_key_syncFindPboard: @NO,
-                               k_key_inlineContextualScriptMenu: @NO,
-                               k_key_appendExtensionAtSaving: @YES,
-                               k_key_showNavigationBar: @YES,
-                               k_key_wrapLines: @YES,
-                               k_key_defaultLineEndCharCode: @0,
-                               k_key_encodingList: encodings,
-                               k_key_fontName: [[NSFont controlContentFontOfSize:[NSFont systemFontSize]] fontName],
-                               k_key_fontSize: @([NSFont systemFontSize]),
-                               k_key_encodingInOpen: @(k_autoDetectEncodingMenuTag),
-                               k_key_encodingInNew: @(CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingUTF8)),
-                               k_key_referToEncodingTag: @YES,
-                               k_key_createNewAtStartup: @YES,
-                               k_key_reopenBlankWindow: @YES,
-                               k_key_checkSpellingAsType: @NO,
-                               k_key_windowWidth: @600.0f,
-                               k_key_windowHeight: @450.0f,
-                               k_key_autoExpandTab: @NO,
-                               k_key_tabWidth: @4U,
-                               k_key_windowAlpha: @1.0f,
-                               k_key_autoIndent: @YES,
-                               k_key_invisibleCharactersColor: [NSArchiver archivedDataWithRootObject:[NSColor grayColor]],
-                               k_key_showInvisibleSpace: @NO,
-                               k_key_invisibleSpace: @0U,
-                               k_key_showInvisibleTab: @NO,
-                               k_key_invisibleTab: @0U,
-                               k_key_showInvisibleNewLine: @NO,
-                               k_key_invisibleNewLine: @0U,
-                               k_key_showInvisibleFullwidthSpace: @NO,
-                               k_key_invisibleFullwidthSpace: @0U,
-                               k_key_showOtherInvisibleChars: @NO,
-                               k_key_highlightCurrentLine: @NO,
-                               k_key_textColor: [NSArchiver archivedDataWithRootObject:[NSColor textColor]],
-                               k_key_backgroundColor: [NSArchiver archivedDataWithRootObject:[NSColor textBackgroundColor]],
-                               k_key_insertionPointColor: [NSArchiver archivedDataWithRootObject:[NSColor textColor]],
-                               k_key_selectionColor: [NSArchiver archivedDataWithRootObject:[NSColor selectedTextBackgroundColor]],
-                               k_key_highlightLineColor: [NSArchiver archivedDataWithRootObject:
-                                                          [NSColor colorWithCalibratedRed:0.843 green:0.953 blue:0.722 alpha:1.0]],
-                               k_key_keywordsColor: [NSArchiver archivedDataWithRootObject:
-                                                     [NSColor colorWithCalibratedRed:0.047 green:0.102 blue:0.494 alpha:1.0]],
-                               k_key_commandsColor: [NSArchiver archivedDataWithRootObject:
-                                                     [NSColor colorWithCalibratedRed:0.408 green:0.220 blue:0.129 alpha:1.0]],
-                               k_key_numbersColor: [NSArchiver archivedDataWithRootObject:[NSColor blueColor]],
-                               k_key_valuesColor: [NSArchiver archivedDataWithRootObject:
-                                                   [NSColor colorWithCalibratedRed:0.463 green:0.059 blue:0.313 alpha:1.0]],
-                               k_key_stringsColor: [NSArchiver archivedDataWithRootObject:
-                                                    [NSColor colorWithCalibratedRed:0.537 green:0.075 blue:0.08 alpha:1.0]],
-                               k_key_charactersColor: [NSArchiver archivedDataWithRootObject:[NSColor blueColor]],
-                               k_key_commentsColor: [NSArchiver archivedDataWithRootObject:
-                                                     [NSColor colorWithCalibratedRed:0.137 green:0.431 blue:0.145 alpha:1.0]],
-                               k_key_doColoring: @YES,
-                               k_key_defaultColoringStyleName: NSLocalizedString(@"None", nil),
-                               k_key_delayColoring: @NO,
-                               k_key_fileDropArray: @[@{k_key_fileDropExtensions: @"jpg, jpeg, gif, png",
-                                                        k_key_fileDropFormatString: @"<img src=\"<<<RELATIVE-PATH>>>\" alt=\"<<<FILENAME-NOSUFFIX>>>\" title=\"<<<FILENAME-NOSUFFIX>>>\" width=\"<<<IMAGEWIDTH>>>\" height=\"<<<IMAGEHEIGHT>>>\" />"}],
-                               k_key_NSDragAndDropTextDelay: @1,
-                               k_key_smartInsertAndDelete: @NO,
-                               k_key_enableSmartQuotes: @NO,
-                               k_key_enableSmartIndent: @YES,
-                               k_key_shouldAntialias: @YES,
-                               k_key_completeAddStandardWords: @0U,
-                               k_key_showPageGuide: @NO,
-                               k_key_pageGuideColumn: @80,
-                               k_key_lineSpacing: @0.0f,
-                               k_key_swapYenAndBackSlashKey: @NO,
-                               k_key_fixLineHeight: @YES,
-                               k_key_highlightBraces: @YES,
-                               k_key_highlightLtGt: @NO,
-                               k_key_saveUTF8BOM: @NO,
-                               k_key_setPrintFont: @0,
-                               k_key_printFontName: [[NSFont controlContentFontOfSize:[NSFont systemFontSize]] fontName],
-                               k_key_printFontSize: @([NSFont systemFontSize]),
-                               k_key_printHeader: @YES,
-                               k_key_headerOneStringIndex: @3,
-                               k_key_headerTwoStringIndex: @4,
-                               k_key_headerOneAlignIndex: @0,
-                               k_key_headerTwoAlignIndex: @2,
-                               k_key_printHeaderSeparator: @YES,
-                               k_key_printFooter: @YES,
-                               k_key_footerOneStringIndex: @0,
-                               k_key_footerTwoStringIndex: @5,
-                               k_key_footerOneAlignIndex: @0,
-                               k_key_footerTwoAlignIndex: @1,
-                               k_key_printFooterSeparator: @YES,
-                               k_key_printLineNumIndex: @0,
-                               k_key_printInvisibleCharIndex: @0,
-                               k_key_printColorIndex: @0,
+    NSDictionary *defaults = @{CEDefaultLayoutTextVerticalKey: @NO,
+                               CEDefaultSplitViewVerticalKey: @NO,
+                               CEDefaultShowLineNumbersKey: @YES,
+                               CEDefaultShowStatusBarKey: @YES,
+                               CEDefaultShowStatusBarLinesKey: @YES,
+                               CEDefaultShowStatusBarLengthKey: @NO,
+                               CEDefaultShowStatusBarCharsKey: @YES,
+                               CEDefaultShowStatusBarWordsKey: @NO,
+                               CEDefaultShowStatusBarLocationKey: @YES,
+                               CEDefaultShowStatusBarLineKey: @YES,
+                               CEDefaultShowStatusBarColumnKey: @NO,
+                               CEDefaultShowStatusBarEncodingKey: @NO,
+                               CEDefaultShowStatusBarLineEndingsKey: @NO,
+                               CEDefaultShowStatusBarFileSizeKey: @YES,
+                               CEDefaultShowNavigationBarKey: @YES,
+                               CEDefaultCountLineEndingAsCharKey: @YES,
+                               CEDefaultSyncFindPboardKey: @NO,
+                               CEDefaultInlineContextualScriptMenuKey: @NO,
+                               CEDefaultWrapLinesKey: @YES,
+                               CEDefaultLineEndCharCodeKey: @0,
+                               CEDefaultEncodingListKey: encodings,
+                               CEDefaultFontNameKey: [[NSFont controlContentFontOfSize:[NSFont systemFontSize]] fontName],
+                               CEDefaultFontSizeKey: @([NSFont systemFontSize]),
+                               CEDefaultEncodingInOpenKey: @(CEAutoDetectEncodingMenuItemTag),
+                               CEDefaultEncodingInNewKey: @(CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingUTF8)),
+                               CEDefaultReferToEncodingTagKey: @YES,
+                               CEDefaultCreateNewAtStartupKey: @YES,
+                               CEDefaultReopenBlankWindowKey: @YES,
+                               CEDefaultCheckSpellingAsTypeKey: @NO,
+                               CEDefaultWindowWidthKey: @600.0f,
+                               CEDefaultWindowHeightKey: @450.0f,
+                               CEDefaultWindowAlphaKey: @1.0f,
+                               CEDefaultAutoExpandTabKey: @NO,
+                               CEDefaultTabWidthKey: @4U,
+                               CEDefaultAutoIndentKey: @YES,
+                               CEDefaultShowInvisibleSpaceKey: @NO,
+                               CEDefaultInvisibleSpaceKey: @0U,
+                               CEDefaultShowInvisibleTabKey: @NO,
+                               CEDefaultInvisibleTabKey: @0U,
+                               CEDefaultShowInvisibleNewLineKey: @NO,
+                               CEDefaultInvisibleNewLineKey: @0U,
+                               CEDefaultShowInvisibleFullwidthSpaceKey: @NO,
+                               CEDefaultInvisibleFullwidthSpaceKey: @0U,
+                               CEDefaultShowOtherInvisibleCharsKey: @NO,
+                               CEDefaultHighlightCurrentLineKey: @NO,
+                               CEDefaultThemeKey: @"Dendrobates",
+                               CEDefaultEnableSyntaxHighlightKey: @YES,
+                               CEDefaultSyntaxStyleKey: NSLocalizedString(@"None", nil),
+                               CEDefaultDelayColoringKey: @NO,
+                               CEDefaultFileDropArrayKey: @[@{CEFileDropExtensionsKey: @"jpg, jpeg, gif, png",
+                                                              CEFileDropFormatStringKey: @"<img src=\"<<<RELATIVE-PATH>>>\" alt=\"<<<FILENAME-NOSUFFIX>>>\" title=\"<<<FILENAME-NOSUFFIX>>>\" width=\"<<<IMAGEWIDTH>>>\" height=\"<<<IMAGEHEIGHT>>>\" />"}],
+                               CEDefaultNSDragAndDropTextDelayKey: @1,
+                               CEDefaultSmartInsertAndDeleteKey: @NO,
+                               CEDefaultEnableSmartQuotesKey: @NO,
+                               CEDefaultEnableSmartIndentKey: @YES,
+                               CEDefaultAppendsCommentSpacerKey: @YES,
+                               CEDefaultCommentsAtLineHeadKey: @NO,
+                               CEDefaultShouldAntialiasKey: @YES,
+                               CEDefaultAutoCompleteKey: @NO,
+                               CEDefaultCompletionWordsKey: @2U,
+                               CEDefaultShowPageGuideKey: @NO,
+                               CEDefaultPageGuideColumnKey: @80,
+                               CEDefaultLineSpacingKey: @0.3f,
+                               CEDefaultSwapYenAndBackSlashKey: @NO,
+                               CEDefaultFixLineHeightKey: @YES,
+                               CEDefaultHighlightBracesKey: @YES,
+                               CEDefaultHighlightLtGtKey: @NO,
+                               CEDefaultSaveUTF8BOMKey: @NO,
+                               CEDefaultSetPrintFontKey: @0,
+                               CEDefaultPrintFontNameKey: [[NSFont controlContentFontOfSize:[NSFont systemFontSize]] fontName],
+                               CEDefaultPrintFontSizeKey: @([NSFont systemFontSize]),
+                               CEDefaultPrintHeaderKey: @YES,
+                               CEDefaultHeaderOneStringIndexKey: @3,
+                               CEDefaultHeaderTwoStringIndexKey: @4,
+                               CEDefaultHeaderOneAlignIndexKey: @0,
+                               CEDefaultHeaderTwoAlignIndexKey: @2,
+                               CEDefaultPrintHeaderSeparatorKey: @YES,
+                               CEDefaultPrintFooterKey: @YES,
+                               CEDefaultFooterOneStringIndexKey: @0,
+                               CEDefaultFooterTwoStringIndexKey: @5,
+                               CEDefaultFooterOneAlignIndexKey: @0,
+                               CEDefaultFooterTwoAlignIndexKey: @1,
+                               CEDefaultPrintFooterSeparatorKey: @YES,
+                               CEDefaultPrintLineNumIndexKey: @0,
+                               CEDefaultPrintInvisibleCharIndexKey: @0,
+                               CEDefaultPrintColorIndexKey: @0,
                                
                                /* -------- 以下、環境設定にない設定項目 -------- */
-                               k_key_insertCustomTextArray: @[@"<br />\n", @"", @"", @"", @"", @"", @"", @"", @"", @"", @"",
-                                                              @"", @"", @"", @"", @"", @"", @"", @"", @"", @"",
-                                                              @"", @"", @"", @"", @"", @"", @"", @"", @"", @""],
-                               k_key_colorCodeType:@1,
+                               CEDefaultInsertCustomTextArrayKey: @[@"<br />\n", @"", @"", @"", @"", @"", @"", @"", @"", @"", @"",
+                                                                    @"", @"", @"", @"", @"", @"", @"", @"", @"", @"",
+                                                                    @"", @"", @"", @"", @"", @"", @"", @"", @"", @""],
+                               CEDefaultColorCodeTypeKey:@1,
                                
                                /* -------- 以下、隠し設定 -------- */
-                               k_key_lineNumFontName: @"ArialNarrow",
-                               k_key_lineNumFontSize: @10.0f, 
-                               k_key_lineNumFontColor: [NSArchiver archivedDataWithRootObject:[NSColor darkGrayColor]], 
-                               k_key_basicColoringDelay: @0.001f, 
-                               k_key_firstColoringDelay: @0.3f, 
-                               k_key_secondColoringDelay: @0.7f, 
-                               k_key_lineNumUpdateInterval: @0.12f, 
-                               k_key_infoUpdateInterval: @0.2f, 
-                               k_key_incompatibleCharInterval: @0.42f, 
-                               k_key_outlineMenuInterval: @0.37f, 
-                               k_key_navigationBarFontName: @"Helvetica", 
-                               k_key_navigationBarFontSize: @11.0f, 
-                               k_key_outlineMenuMaxLength: @110U, 
-                               k_key_headerFooterFontName: [[NSFont systemFontOfSize:[NSFont systemFontSize]] fontName], 
-                               k_key_headerFooterFontSize: @10.0f, 
-                               k_key_headerFooterDateTimeFormat: @"%Y-%m-%d  %H:%M:%S", 
-                               k_key_headerFooterPathAbbreviatingWithTilde: @YES, 
-                               k_key_textContainerInsetWidth: @0.0f, 
-                               k_key_textContainerInsetHeightTop: @4.0f, 
-                               k_key_textContainerInsetHeightBottom: @16.0f, 
-                               k_key_showColoringIndicatorTextLength: @115000U, 
-                               k_key_runAppleScriptInLaunching: @YES, 
-                               k_key_showAlertForNotWritable: @YES, 
-                               k_key_notifyEditByAnother: @YES,
-                               k_key_coloringRangeBufferLength: @10000};
+                               CEDefaultUsesTextFontForInvisiblesKey: @NO,
+                               CEDefaultLineNumFontNameKey: @"ArialNarrow",
+                               CEDefaultLineNumFontColorKey: [NSArchiver archivedDataWithRootObject:[NSColor darkGrayColor]], 
+                               CEDefaultBasicColoringDelayKey: @0.001f, 
+                               CEDefaultFirstColoringDelayKey: @0.3f, 
+                               CEDefaultSecondColoringDelayKey: @0.7f,
+                               CEDefaultAutoCompletionDelayKey: @0.25,
+                               CEDefaultLineNumUpdateIntervalKey: @0.12f, 
+                               CEDefaultInfoUpdateIntervalKey: @0.2f, 
+                               CEDefaultIncompatibleCharIntervalKey: @0.42f, 
+                               CEDefaultOutlineMenuIntervalKey: @0.37f, 
+                               CEDefaultOutlineMenuMaxLengthKey: @110U, 
+                               CEDefaultHeaderFooterFontNameKey: [[NSFont systemFontOfSize:[NSFont systemFontSize]] fontName], 
+                               CEDefaultHeaderFooterFontSizeKey: @10.0f, 
+                               CEDefaultHeaderFooterDateFormatKey: @"YYYY-MM-dd HH:mm",
+                               CEDefaultHeaderFooterPathAbbreviatingWithTildeKey: @YES, 
+                               CEDefaultTextContainerInsetWidthKey: @0.0f, 
+                               CEDefaultTextContainerInsetHeightTopKey: @4.0f, 
+                               CEDefaultTextContainerInsetHeightBottomKey: @16.0f, 
+                               CEDefaultShowColoringIndicatorTextLengthKey: @115000U, 
+                               CEDefaultRunAppleScriptInLaunchingKey: @YES,
+                               CEDefaultShowAlertForNotWritableKey: @YES, 
+                               CEDefaultNotifyEditByAnotherKey: @YES,
+                               CEDefaultColoringRangeBufferLengthKey: @5000};
     [[NSUserDefaults standardUserDefaults] registerDefaults:defaults];
     
     // 出荷時へのリセットが必要な項目に付いては NSUserDefaultsController に初期値をセットする
-    NSArray *resettableKeys = @[k_key_encodingList,
-                                k_key_insertCustomTextArray,
-                                k_key_windowWidth,
-                                k_key_windowHeight];
-    NSDictionary *initialValuesDict = [defaults dictionaryWithValuesForKeys:resettableKeys];
-    [[NSUserDefaultsController sharedUserDefaultsController] setInitialValues:initialValuesDict];
-
+    NSDictionary *initialValues = [defaults dictionaryWithValuesForKeys:@[CEDefaultEncodingListKey,
+                                                                          CEDefaultInsertCustomTextArrayKey,
+                                                                          CEDefaultWindowWidthKey,
+                                                                          CEDefaultWindowHeightKey]];
+    [[NSUserDefaultsController sharedUserDefaultsController] setInitialValues:initialValues];
+    
     // transformer 登録
+    [NSValueTransformer setValueTransformer:[[CEHexColorTransformer alloc] init]
+                                    forName:@"CEHexColorTransformer"];
     [NSValueTransformer setValueTransformer:[[CEByteCountTransformer alloc] init]
                                     forName:@"CEByteCountTransformer"];
+    [NSValueTransformer setValueTransformer:[[CELineHeightTransformer alloc] init]
+                                    forName:@"CELineHeightTransformer"];
 }
 
 
 
-#pragma mark Public Methods
+#pragma mark Superclass Methods
 
 //=======================================================
-// Public method
+// Superclass method
 //
 //=======================================================
+
+// ------------------------------------------------------
+/// 初期化
+- (instancetype)init
+// ------------------------------------------------------
+{
+    self = [super init];
+    if (self) {
+        _supportDirectoryURL = [[[NSFileManager defaultManager] URLForDirectory:NSApplicationSupportDirectory
+                                                                       inDomain:NSUserDomainMask
+                                                              appropriateForURL:nil
+                                                                         create:NO
+                                                                          error:nil]
+                                URLByAppendingPathComponent:@"CotEditor"];
+        
+        [self setupSupportDirectory];
+    }
+    return self;
+}
+
 
 // ------------------------------------------------------
 /// あとかたづけ
@@ -238,16 +261,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
-
-// ------------------------------------------------------
-/// すべてのエンコーディングメニューを生成
-- (void)buildAllEncodingMenus
-// ------------------------------------------------------
-{
-    [self buildEncodingMenuItems];
-    [self buildFormatEncodingMenu];
 }
 
 
@@ -264,16 +277,26 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)awakeFromNib
 // ------------------------------------------------------
 {
-    [self setupSupportDirectory];
-    [self buildAllEncodingMenus];
+    // build menus
+    [self buildEncodingMenu];
     [self buildSyntaxMenu];
+    [self buildThemeMenu];
     [[CEScriptManager sharedManager] buildScriptMenu:nil];
-    [self cacheInvisibleGlyphs];
     
+    // エンコーディングリスト更新の通知依頼
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(buildEncodingMenu)
+                                                 name:CEEncodingListDidUpdateNotification
+                                               object:nil];
     // シンタックススタイルリスト更新の通知依頼
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(buildSyntaxMenu)
                                                  name:CESyntaxListDidUpdateNotification
+                                               object:nil];
+    // テーマリスト更新の通知依頼
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(buildThemeMenu)
+                                                 name:CEThemeListDidUpdateNotification
                                                object:nil];
 }
 
@@ -291,7 +314,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (BOOL)applicationShouldOpenUntitledFile:(NSApplication *)sender
 // ------------------------------------------------------
 {
-    return [[NSUserDefaults standardUserDefaults] boolForKey:k_key_createNewAtStartup];
+    return [[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultCreateNewAtStartupKey];
 }
 
 
@@ -300,10 +323,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (BOOL)applicationShouldHandleReopen:(NSApplication *)theApplication hasVisibleWindows:(BOOL)flag
 // ------------------------------------------------------
 {
-    BOOL shouldReopen = [[NSUserDefaults standardUserDefaults] boolForKey:k_key_reopenBlankWindow];
+    BOOL shouldReopen = [[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultReopenBlankWindowKey];
 
     if (shouldReopen) {
         return YES;
+        
     } else if (flag) {
         // Re-Open に応えない設定でウィンドウがあるときは、すべてのウィンドウをチェックしひとつでも通常通り表示されていれば
         // NO を返し何もしない。表示されているウィンドウがすべて Dock にしまわれているときは、そのうちひとつを通常表示させる
@@ -327,10 +351,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     // （CEKeyBindingManagerによって、キーボードショートカット設定は上書きされる。
-    // アプリに内包する DefaultMenuKeyBindings.plist に、ショートカット設定を記述する必要がある。2007.05.19）
+    // アプリに内包する MenuKeyBindings.plist に、ショートカット設定を記述する必要がある。2007.05.19）
 
     // 「Select Outline item」「Goto」メニューを生成／追加
-    NSMenu *findMenu = [[[NSApp mainMenu] itemAtIndex:k_findMenuIndex] submenu];
+    NSMenu *findMenu = [[[NSApp mainMenu] itemAtIndex:CEFindMenuIndex] submenu];
     NSMenuItem *menuItem;
 
     [findMenu addItem:[NSMenuItem separatorItem]];
@@ -350,29 +374,36 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
     [findMenu addItem:[NSMenuItem separatorItem]];
     menuItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Go To…", nil)
-                                          action:@selector(openGoToPanel:)
+                                          action:@selector(gotoLocation:)
                                    keyEquivalent:@"l"];
     [findMenu addItem:menuItem];
-
+    
     // AppleScript 起動のスピードアップのため一度動かしておく
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:k_key_runAppleScriptInLaunching]) {
-        NSURL *URL = [[NSBundle mainBundle] URLForResource:@"startup" withExtension:@"applescript"];
-        NSAppleScript *AppleScript = [[NSAppleScript alloc] initWithContentsOfURL:URL error:nil];
-        [AppleScript executeAndReturnError:nil];
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultRunAppleScriptInLaunchingKey]) {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            NSString *source = @"tell application \"CotEditor\" to number of documents";
+            NSAppleScript *AppleScript = [[NSAppleScript alloc] initWithSource:source];
+            [AppleScript executeAndReturnError:nil];
+        });
     }
     
     // KeyBindingManagerをセットアップ
     [[CEKeyBindingManager sharedManager] setupAtLaunching];
-}
-
-
-// ------------------------------------------------------
-/// アプリがアクティブになった
-- (void)applicationDidBecomeActive:(NSNotification *)notification
-// ------------------------------------------------------
-{
-    // 各ドキュメントに外部プロセスによって変更保存されていた場合の通知を行わせる
-    [[NSApp orderedDocuments] makeObjectsPerformSelector:@selector(showUpdatedByExternalProcessAlert)];
+    
+    
+    // CotEditor 1.x系からの移行
+    // 本来ならば semantic versioning で比較をするべきだが、2.0 への移行はひとまず lastVersion の有無のみで判断を行なう
+    NSString *lastVersion = [[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultLastVersionKey];
+    NSString *version = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
+    if (!lastVersion) {
+        if ([self hasSetting]) {
+            [self migrateToVersion2];
+        }
+    }
+    // store current version
+    if (!lastVersion || [lastVersion isEqualToString:@"2.0.0-alpha"]) {
+        [[NSUserDefaults standardUserDefaults] setObject:version forKey:CEDefaultLastVersionKey];
+    }
 }
 
 
@@ -382,8 +413,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     NSMenu *menu = [[NSMenu alloc] init];
-    NSMenuItem *newItem = [[[[[NSApp mainMenu] itemAtIndex:k_fileMenuIndex] submenu] itemWithTag:k_newMenuItemTag] copy];
-    NSMenuItem *openItem = [[[[[NSApp mainMenu] itemAtIndex:k_fileMenuIndex] submenu] itemWithTag:k_openMenuItemTag] copy];
+    NSMenuItem *newItem = [[[[[NSApp mainMenu] itemAtIndex:CEFileMenuIndex] submenu] itemWithTag:CENewMenuItemTag] copy];
+    NSMenuItem *openItem = [[[[[NSApp mainMenu] itemAtIndex:CEFileMenuIndex] submenu] itemWithTag:CEOpenMenuItemTag] copy];
 
     [newItem setAction:@selector(newInDockMenu:)];
     [openItem setAction:@selector(openInDockMenu:)];
@@ -395,15 +426,70 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 }
 
 
+// ------------------------------------------------------
+/// ファイルを開く
+- (BOOL)application:(NSApplication *)theApplication openFile:(NSString *)filename
+// ------------------------------------------------------
+{
+    // テーマファイルの場合はインストール処理をする
+    if ([[filename pathExtension] isEqualToString:CEThemeExtension]) {
+        NSURL *URL = [NSURL fileURLWithPath:filename];
+        NSString *themeName = [[URL lastPathComponent] stringByDeletingPathExtension];
+        NSAlert *alert;
+        NSInteger returnCode;
+        
+        // テーマファイルをテキストファイルとして開くかを訊く
+        alert = [[NSAlert alloc] init];
+        [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"“%@” is a CotEditor theme file.", nil), [URL lastPathComponent]]];
+        [alert setInformativeText:NSLocalizedString(@"Do you want to install this theme?", nil)];
+        [alert addButtonWithTitle:NSLocalizedString(@"Install", nil)];
+        [alert addButtonWithTitle:NSLocalizedString(@"Open as Text File", nil)];
+        
+        returnCode = [alert runModal];
+        if (returnCode == NSAlertSecondButtonReturn) {  // Edit as Text File
+            return NO;
+        }
+        
+        // テーマ読み込みを実行
+        NSError *error = nil;
+        [[CEThemeManager sharedManager] importTheme:URL replace:NO error:&error];
+        
+        // すでに同名のテーマが存在する場合は置き換えて良いかを訊く
+        if ([error code] == CEThemeFileDuplicationError) {
+            alert = [NSAlert alertWithError:error];
+            
+            returnCode = [alert runModal];
+            if (returnCode == NSAlertFirstButtonReturn) {  // Canceled
+                return YES;
+            } else {
+                error = nil;
+                [[CEThemeManager sharedManager] importTheme:URL replace:YES error:&error];
+            }
+        }
+        
+        if (error) {
+            alert = [NSAlert alertWithError:error];
+        } else {
+            [[NSSound soundNamed:@"Glass"] play];
+            alert = [[NSAlert alloc] init];
+            [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"A new theme named “%@” has been successfully installed.", nil), themeName]];
+        }
+        [alert runModal];
+        
+        return YES;
+    }
+    return NO;
+}
+
 
 // ------------------------------------------------------
 /// メニューの有効化／無効化を制御
 - (BOOL)validateMenuItem:(NSMenuItem *)menuItem
 // ------------------------------------------------------
 {
-    if (([menuItem action] == @selector(openLineSpacingPanel:)) ||
-        ([menuItem action] == @selector(openUnicodeInputPanel:))) {
-        return ([[CEDocumentController sharedDocumentController] currentDocument] != nil);
+    if (([menuItem action] == @selector(showLineHeightPanel:)) ||
+        ([menuItem action] == @selector(showUnicodeInputPanel:))) {
+        return ([[NSDocumentController sharedDocumentController] currentDocument] != nil);
     }
     
     return YES;
@@ -420,10 +506,55 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 // ------------------------------------------------------
 /// 環境設定ウィンドウを開く
-- (IBAction)openPrefWindow:(id)sender
+- (IBAction)showPreferences:(id)sender
 // ------------------------------------------------------
 {
     [[CEPreferencesWindowController sharedController] showWindow:self];
+}
+
+
+// ------------------------------------------------------
+/// Scriptエラーウィンドウを表示
+- (IBAction)showScriptErrorPanel:(id)sender
+// ------------------------------------------------------
+{
+    [[CEScriptErrorPanelController sharedController] showWindow:self];
+}
+
+
+// ------------------------------------------------------
+/// カラーコードウィンドウを表示
+- (IBAction)showHexColorCodeEditor:(id)sender
+// ------------------------------------------------------
+{
+    [[CEColorCodePanelController sharedController] showWindow:self];
+}
+
+
+// ------------------------------------------------------
+/// 不透明度パネルを開く
+- (IBAction)showOpacityPanel:(id)sender
+// ------------------------------------------------------
+{
+    [[CEOpacityPanelController sharedController] showWindow:self];
+}
+
+
+// ------------------------------------------------------
+/// 行高設定パネルを開く
+- (IBAction)showLineHeightPanel:(id)sender
+// ------------------------------------------------------
+{
+    [[CELineHightPanelController sharedController] showWindow:self];
+}
+
+
+// ------------------------------------------------------
+/// Unicode 入力パネルを開く
+- (IBAction)showUnicodeInputPanel:(id)sender
+// ------------------------------------------------------
+{
+    [[CEUnicodeInputPanelController sharedController] showWindow:self];
 }
 
 
@@ -439,56 +570,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-/// Scriptエラーウィンドウを表示
-- (IBAction)openScriptErrorWindow:(id)sender
-// ------------------------------------------------------
-{
-    [[CEScriptErrorPanelController sharedController] showWindow:self];
-}
-
-
-// ------------------------------------------------------
-/// カラーコードウィンドウを表示
-- (IBAction)openHexColorCodeEditor:(id)sender
-// ------------------------------------------------------
-{
-    [[CEColorCodePanelController sharedController] showWindow:self];
-}
-
-
-// ------------------------------------------------------
-/// 不透明度パネルを開く
-- (IBAction)openOpacityPanel:(id)sender
-// ------------------------------------------------------
-{
-    [[CEOpacityPanelController sharedController] showWindow:self];
-}
-
-
-// ------------------------------------------------------
-/// 行間設定パネルを開く
-- (IBAction)openLineSpacingPanel:(id)sender
-// ------------------------------------------------------
-{
-    [[CELineSpacingPanelController sharedController] showWindow:self];
-}
-
-
-// ------------------------------------------------------
 /// Go Toパネルを開く
-- (IBAction)openGoToPanel:(id)sender
+- (IBAction)gotoLocation:(id)sender
 // ------------------------------------------------------
 {
-    [[CEGoToPanelController sharedController] showWindow:self];
-}
-
-
-// ------------------------------------------------------
-/// Unicode 入力パネルを開く
-- (IBAction)openUnicodeInputPanel:(id)sender
-// ------------------------------------------------------
-{
-    [[CEUnicodeInputPanelController sharedController] showWindow:self];
+    CEGoToSheetController *sheetController = [[CEGoToSheetController alloc] init];
+    [sheetController beginSheetForDocument:[[NSDocumentController sharedDocumentController] currentDocument]];
 }
 
 
@@ -517,7 +604,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (IBAction)openBundledDocument:(id)sender
 // ------------------------------------------------------
 {
-    NSString *fileName = k_bundleDocumentTags[[sender tag]];
+    NSString *fileName = kBundledDocumentFileNames[[sender tag]];
     NSURL *URL = [[NSBundle mainBundle] URLForResource:fileName withExtension:@"rtf"];
     
     [[NSWorkspace sharedWorkspace] openURL:URL];
@@ -529,7 +616,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (IBAction)openWebSite:(id)sender
 // ------------------------------------------------------
 {
-    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:k_webSiteURL]];
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:kWebSiteURL]];
 }
 
 
@@ -538,7 +625,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (IBAction)reportBug:(id)sender
 // ------------------------------------------------------
 {
-    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:k_issueTrackerURL]];
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:kIssueTrackerURL]];
 }
 
 
@@ -555,71 +642,35 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)setupSupportDirectory
 //------------------------------------------------------
 {
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSURL *URL = [[fileManager URLForDirectory:NSApplicationSupportDirectory
-                                      inDomain:NSUserDomainMask
-                             appropriateForURL:nil
-                                        create:YES
-                                         error:nil]
-                  URLByAppendingPathComponent:@"CotEditor"];
-    BOOL isDirectory = NO, success = NO;
-
-    if (![fileManager fileExistsAtPath:[URL path] isDirectory:&isDirectory]) {
-        success = [fileManager createDirectoryAtURL:URL
-                        withIntermediateDirectories:YES
-                                         attributes:nil
-                                              error:nil];
+    NSURL *URL = [self supportDirectoryURL];
+    NSNumber *isDirectory;
+    if (![URL getResourceValue:&isDirectory forKey:NSURLIsDirectoryKey error:nil]) {
+        BOOL success = [[NSFileManager defaultManager] createDirectoryAtURL:URL
+                                                withIntermediateDirectories:YES
+                                                                 attributes:nil
+                                                                      error:nil];
         if (!success) {
             NSLog(@"Failed to create support directory for CotEditor...");
         }
-    } else if (!isDirectory) {
+    } else if (![isDirectory boolValue]) {
         NSLog(@"\"%@\" is not dir.", URL);
+    } else {
+        [self setHasSetting:YES];
     }
 }
 
 
 //------------------------------------------------------
-/// エンコーディングメニューアイテムを生成
-- (void)buildEncodingMenuItems
+/// メインメニューのエンコーディングメニューアイテムを再構築
+- (void)buildEncodingMenu
 //------------------------------------------------------
 {
-    NSArray *encodings = [[NSUserDefaults standardUserDefaults] arrayForKey:k_key_encodingList];
-    NSMutableArray *items = [[NSMutableArray alloc] initWithCapacity:[encodings count]];
-    NSMenuItem *item;
-    
-    for (NSNumber *encodingNumber in encodings) {
-        CFStringEncoding cfEncoding = [encodingNumber unsignedLongValue];
-        if (cfEncoding == kCFStringEncodingInvalidId) {
-            item = [NSMenuItem separatorItem];
-        } else {
-            NSStringEncoding encoding = CFStringConvertEncodingToNSStringEncoding(cfEncoding);
-            NSString *menuTitle = [NSString localizedNameOfStringEncoding:encoding];
-            item = [[NSMenuItem alloc] initWithTitle:menuTitle action:NULL keyEquivalent:@""];
-            [item setTag:encoding];
-        }
-        
-        [items addObject:item];
-    }
-    
-    [self setEncodingMenuItems:items];
-    
-    // リストのできあがりを通知
-    [[NSNotificationCenter defaultCenter] postNotificationName:CEEncodingListDidUpdateNotification object:self];
-}
-
-
-//------------------------------------------------------
-/// フォーマットのエンコーディングメニューアイテムを生成
-- (void)buildFormatEncodingMenu
-//------------------------------------------------------
-{
-    NSArray *items = [[NSArray alloc] initWithArray:[self encodingMenuItems] copyItems:YES];
-    
-    NSMenu *menu = [[[[[NSApp mainMenu] itemAtIndex:k_formatMenuIndex] submenu] itemWithTag:k_fileEncodingMenuItemTag] submenu];
-    
+    NSMenu *menu = [[[[[NSApp mainMenu] itemAtIndex:CEFormatMenuIndex] submenu] itemWithTag:CEFileEncodingMenuItemTag] submenu];
     [menu removeAllItems];
+    
+    NSArray *items = [[CEEncodingManager sharedManager] encodingMenuItems];
     for (NSMenuItem *item in items) {
-        [item setAction:@selector(setEncoding:)];
+        [item setAction:@selector(changeEncoding:)];
         [item setTarget:nil];
         [menu addItem:item];
     }
@@ -627,70 +678,77 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 //------------------------------------------------------
-/// シンタックスカラーリングメニューを生成
+/// メインメニューのシンタックスカラーリングメニューを再構築
 - (void)buildSyntaxMenu
 //------------------------------------------------------
 {
-    NSMenuItem *syntaxMenuItem = [[[[NSApp mainMenu] itemAtIndex:k_formatMenuIndex] submenu] itemWithTag:k_syntaxMenuItemTag];
-    [syntaxMenuItem setSubmenu:[[NSMenu alloc] initWithTitle:@"SYNTAX"]]; // まず開放しておかないと、同じキーボードショートカットキーが設定できない
-    NSMenu *menu = [syntaxMenuItem submenu];
-    NSMenuItem *item;
+    NSMenu *menu = [[[[[NSApp mainMenu] itemAtIndex:CEFormatMenuIndex] submenu] itemWithTag:CESyntaxMenuItemTag] submenu];
+    [menu removeAllItems];
     
     // None を追加
-    item = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"None", nil)
-                                      action:@selector(changeSyntaxStyle:)
-                               keyEquivalent:@""];
-    [menu addItem:item];
+    [menu addItemWithTitle:NSLocalizedString(@"None", nil)
+                    action:@selector(changeSyntaxStyle:)
+             keyEquivalent:@""];
+    
     [menu addItem:[NSMenuItem separatorItem]];
     
     // シンタックススタイルをラインナップ
     NSArray *styleNames = [[CESyntaxManager sharedManager] styleNames];
     for (NSString *styleName in styleNames) {
-        item = [[NSMenuItem alloc] initWithTitle:styleName
-                                          action:@selector(changeSyntaxStyle:)
-                                   keyEquivalent:@""];
-        [item setTarget:nil];
-        [menu addItem:item];
+        [menu addItemWithTitle:styleName
+                        action:@selector(changeSyntaxStyle:)
+                 keyEquivalent:@""];
     }
     
-    // 全文字列を再カラーリングするメニューを追加
-    item = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Re-Color All", nil)
-                                      action:@selector(recoloringAllStringOfDocument:)
-                               keyEquivalent:@"r"];
-    [item setKeyEquivalentModifierMask:(NSCommandKeyMask | NSAlternateKeyMask)]; // = Cmd + Opt + R
     [menu addItem:[NSMenuItem separatorItem]];
+    
+    // 全文字列を再カラーリングするメニューを追加
+    NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Re-Color All", nil)
+                                                  action:@selector(recolorAll:)
+                                           keyEquivalent:@"r"];
+    [item setKeyEquivalentModifierMask:(NSCommandKeyMask | NSAlternateKeyMask)]; // = Cmd + Opt + R
     [menu addItem:item];
 }
 
 
 //------------------------------------------------------
-/// 不可視文字列表示時のタイムラグを短縮するため、キャッシュしておく
-- (void)cacheInvisibleGlyphs
+/// メインメニューのテーマメニューを再構築
+- (void)buildThemeMenu
 //------------------------------------------------------
 {
-    NSMutableString *chars = [NSMutableString string];
+    NSMenu *menu = [[[[[NSApp mainMenu] itemAtIndex:CEFormatMenuIndex] submenu] itemWithTag:CEThemeMenuItemTag] submenu];
+    [menu removeAllItems];
+    
+    NSArray *themeNames = [[CEThemeManager sharedManager] themeNames];
+    for (NSString *themeName in themeNames) {
+        [menu addItemWithTitle:themeName
+                        action:@selector(changeTheme:)
+                 keyEquivalent:@""];
+    }
+}
 
-    for (NSUInteger i = 0; i < k_size_of_invisibleSpaceCharList; i++) {
-        [chars appendString:[NSString stringWithCharacters:&k_invisibleSpaceCharList[i] length:1]];
-    }
-    for (NSUInteger i = 0; i < k_size_of_invisibleTabCharList; i++) {
-        [chars appendString:[NSString stringWithCharacters:&k_invisibleTabCharList[i] length:1]];
-    }
-    for (NSUInteger i = 0; i < k_size_of_invisibleNewLineCharList; i++) {
-        [chars appendString:[NSString stringWithCharacters:&k_invisibleNewLineCharList[i] length:1]];
-    }
-    for (NSUInteger i = 0; i < k_size_of_invisibleFullwidthSpaceCharList; i++) {
-        [chars appendString:[NSString stringWithCharacters:&k_invisibleFullwidthSpaceCharList[i] length:1]];
-    }
-    if ([chars length] < 1) { return; }
+@end
 
-    NSTextStorage *storage = [[NSTextStorage alloc] initWithString:chars];
-    CELayoutManager *layoutManager = [[CELayoutManager alloc] init];
-    NSTextContainer *container = [[NSTextContainer alloc] init];
 
-    [layoutManager addTextContainer:container];
-    [storage addLayoutManager:layoutManager];
-    [layoutManager glyphRangeForTextContainer:container];
+
+
+#pragma mark -
+
+@implementation CEAppDelegate (Migration)
+
+//------------------------------------------------------
+/// perform migration from CotEditor 1.x to 2.0
+- (void)migrateToVersion2
+//------------------------------------------------------
+{
+    // migrate syntax styles to modern style
+    [[CESyntaxManager sharedManager] migrateStyles];
+    
+    // migrate coloring setting
+    [[CEThemeManager sharedManager] migrateTheme];
+    
+    // reset menu keybindings setting
+    [[CEKeyBindingManager sharedManager] resetMenuKeyBindings];
 }
 
 @end

@@ -1,0 +1,93 @@
+extensions:
+- keyString: "yaml"
+- keyString: "yml"
+outlineMenu:
+- beginString: "^  ([^ ].*?):"
+  keyString: "    $1:"
+- beginString: "^([^ ].*?):"
+  keyString: "$1:"
+- beginString: "^---"
+  keyString: "-"
+completions: []
+commands:
+- beginString: "%TAG"
+- beginString: "%YAML [0-9.]+"
+  regularExpression: true
+- beginString: "^---[ \\n]"
+  regularExpression: true
+- beginString: "^\\.\\.\\.$"
+  regularExpression: true
+attributes: []
+metadata:
+  author: "1024jp"
+  distributionURL: "http://coteditor.github.io"
+  version: "1.1"
+  license: "Same as CotEditor"
+  lastModified: "2014-09-24"
+characters:
+- beginString: "\\b\\d{4}-\\d{2}-\\d{2}( \\d{2}:\\d{2}:\\d{2}( [-+]\\d{2}:\\d{2})?)?\\b"
+  regularExpression: true
+comments: []
+values:
+- beginString: "(?<!!)null\\b"
+  ignoreCase: true
+  regularExpression: true
+- beginString: "false"
+  ignoreCase: true
+- beginString: "no"
+  ignoreCase: true
+- beginString: "off"
+  ignoreCase: true
+- beginString: "on"
+  ignoreCase: true
+- beginString: "true"
+  ignoreCase: true
+- beginString: "yes"
+  ignoreCase: true
+- beginString: "~"
+types:
+- beginString: "!"
+- beginString: "!!"
+- beginString: "!!binary"
+- beginString: "!!bool"
+- beginString: "!!float"
+- beginString: "!!int"
+- beginString: "!!map"
+- beginString: "!!merge"
+- beginString: "!!null"
+- beginString: "!!omap"
+- beginString: "!!pairs"
+- beginString: "!!seq"
+- beginString: "!!set"
+- beginString: "!!str"
+- beginString: "!!timestamp"
+- beginString: "!!value"
+- beginString: "!!yaml"
+- beginString: "!<"
+  endString: ">"
+- beginString: "(?<!!)!\\w+(!(\\w+)?)?"
+  regularExpression: true
+- beginString: "\\btag:\\S+"
+  regularExpression: true
+numbers:
+- beginString: "(?<=([-:]|!!float|!!int)) +[0-9,.]+(?=[ \\n\\}\\]])"
+  regularExpression: true
+- beginString: ".inf"
+- beginString: "0x[0-9a-fA-F]+"
+  regularExpression: true
+strings:
+- beginString: "\""
+  endString: "\""
+- beginString: "'[^\\n]*?'"
+  regularExpression: true
+keywords:
+- beginString: "(?<=[-\\n\\[\\{,]|\\A)[ \\t]*[^-:\\[\\]\\n ][^:\\[\\]\\n ]*(?=[\\t
+    ]*:[ \\t\\n])"
+  regularExpression: true
+variables:
+- beginString: "&[^ \\t\\n]+\\b"
+  regularExpression: true
+- beginString: "\\*[^ \\t\\n]+\\b"
+  regularExpression: true
+commentDelimiters:
+  inlineDelimiter: "#"

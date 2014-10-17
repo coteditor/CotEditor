@@ -1,34 +1,31 @@
 /*
- =================================================
+ ==============================================================================
  CESyntaxEditSheetController
- (for CotEditor)
  
- Copyright (C) 2004-2007 nakamuxu.
- Copyright (C) 2014 CotEditor Project
+ CotEditor
  http://coteditor.github.io
- =================================================
  
+ Created on 2014-04-03 by 1024jp
  encoding="UTF-8"
- Created:2014.04.03 by 1024jp
+ ------------------------------------------------------------------------------
  
- -------------------------------------------------
+ © 2004-2007 nakamuxu
+ © 2014 CotEditor Project
  
- This program is free software; you can redistribute it and/or
- modify it under the terms of the GNU General Public License
- as published by the Free Software Foundation; either version 2
- of the License, or (at your option) any later version.
+ This program is free software; you can redistribute it and/or modify it under
+ the terms of the GNU General Public License as published by the Free Software
+ Foundation; either version 2 of the License, or (at your option) any later
+ version.
  
- This program is distributed in the hope that it will be useful,
- but WITHOUT ANY WARRANTY; without even the implied warranty of
- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- GNU General Public License for more details.
+ This program is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
  
- You should have received a copy of the GNU General Public License
- along with this program; if not, write to the Free Software
- Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ You should have received a copy of the GNU General Public License along with
+ this program; if not, write to the Free Software Foundation, Inc., 59 Temple
+ Place - Suite 330, Boston, MA  02111-1307, USA.
  
- 
- =================================================
+ ==============================================================================
  */
 
 #import "CESyntaxEditSheetController.h"
@@ -37,12 +34,34 @@
 #import "constants.h"
 
 
-@interface CESyntaxEditSheetController ()
+typedef NS_ENUM(NSUInteger, CETabIndex) {
+    KeywordsTab,
+    CommandsTab,
+    TypesTab,
+    AttributesTab,
+    VariablesTab,
+    ValuesTab,
+    NumbersTab,
+    StringsTab,
+    CharactersTab,
+    CommentsTab,
+    
+    OutlineTab     = 11,
+    CompletionTab  = 12,
+    FileMappingTab = 13,
+    
+    StyleInfoTab   = 15,
+    ValidationTab  = 16,
+};
+
+
+@interface CESyntaxEditSheetController () <NSTextFieldDelegate, NSTableViewDelegate>
 
 @property (nonatomic) NSMutableDictionary *style;  // スタイル定義（NSArrayControllerを通じて操作）
 @property (nonatomic) CESyntaxEditSheetMode mode;
 @property (nonatomic, copy) NSString *originalStyleName;   // シートを生成した際に指定したスタイル名
 @property (nonatomic) BOOL isStyleNameValid;
+@property (nonatomic) BOOL isBundledStyle;
 
 @property (nonatomic, weak) IBOutlet NSTableView *menuTableView;
 @property (nonatomic, weak) IBOutlet NSTextField *styleNameField;
@@ -81,8 +100,7 @@
         switch (mode) {
             case CECopySyntaxEdit:
                 style = [[[CESyntaxManager sharedManager] styleWithStyleName:styleName] mutableCopy];
-                name = [[CESyntaxManager sharedManager] copiedStyleName:style[k_SCKey_styleName]];
-                style[k_SCKey_styleName] = name;
+                name = [[CESyntaxManager sharedManager] copiedStyleName:styleName];
                 break;
                 
             case CENewSyntaxEdit:
@@ -92,7 +110,7 @@
                 
             case CESyntaxEdit:
                 style = [[[CESyntaxManager sharedManager] styleWithStyleName:styleName] mutableCopy];
-                name = style[k_SCKey_styleName];
+                name = styleName;
                 break;
         }
         if (!name) { return nil; }
@@ -101,6 +119,7 @@
         [self setOriginalStyleName:name];
         [self setStyle:style];
         [self setIsStyleNameValid:YES];
+        [self setIsBundledStyle:[[CESyntaxManager sharedManager] isBundledStyle:name]];
     }
     
     return self;
@@ -179,9 +198,12 @@
     //（ここですぐに開始しないのは、選択行のセルが持つ文字列をこの段階では取得できないため）
     if ((row + 1) == [tableView numberOfRows]) {
         [tableView scrollRowToVisible:row];
-        [self performSelectorOnMainThread:@selector(editNewAddedRowOfTableView:)
-                               withObject:tableView
-                            waitUntilDone:NO];
+        
+        __unsafe_unretained typeof(self) weakSelf = self;  // cannot be weak on Lion
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.01 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            typeof(self) strongSelf = weakSelf;
+            [strongSelf editNewAddedRowOfTableView:tableView];
+        });
     }
 }
 
@@ -258,14 +280,13 @@
         // 「構文要素チェック」を選択
         // （selectItemAtIndex: だとバインディングが実行されないので、メニューを取得して選択している）
         NSBeep();
-        [[self menuTableView] selectRowIndexes:[NSIndexSet indexSetWithIndex:12] byExtendingSelection:NO];
+        [[self menuTableView] selectRowIndexes:[NSIndexSet indexSetWithIndex:ValidationTab] byExtendingSelection:NO];
         return;
     }
-    [self setSavedNewStyleName:styleName];
     
     [[CESyntaxManager sharedManager] saveStyle:[self style] name:styleName oldName:[self originalStyleName]];
     
-    [NSApp stopModal];
+    [self endSheetWithReturnCode:NSOKButton];
 }
 
 
@@ -274,7 +295,7 @@
 - (IBAction)cancelEdit:(id)sender
 // ------------------------------------------------------
 {
-    [NSApp stopModal];
+    [self endSheetWithReturnCode:NSCancelButton];
 }
 
 
@@ -302,6 +323,9 @@
 {
     return @[NSLocalizedString(@"Keywords", nil),
              NSLocalizedString(@"Commands", nil),
+             NSLocalizedString(@"Types", nil),
+             NSLocalizedString(@"Attributes", nil),
+             NSLocalizedString(@"Variables", nil),
              NSLocalizedString(@"Values", nil),
              NSLocalizedString(@"Numbers", nil),
              NSLocalizedString(@"Strings", nil),
@@ -310,9 +334,25 @@
              CESeparatorString,
              NSLocalizedString(@"Outline Menu", nil),
              NSLocalizedString(@"Completion List", nil),
-             NSLocalizedString(@"Extensions", nil),
+             NSLocalizedString(@"File Mapping", nil),
              CESeparatorString,
+             NSLocalizedString(@"Style Info", nil),
              NSLocalizedString(@"Syntax Validation", nil)];
+}
+
+
+// ------------------------------------------------------
+/// シートを終わる
+- (void)endSheetWithReturnCode:(NSInteger)returnCode
+// ------------------------------------------------------
+{
+    if (floor(NSAppKitVersionNumber) > NSAppKitVersionNumber10_8) { // on Mavericks or later
+        [[[self window] sheetParent] endSheet:[self window] returnCode:returnCode];
+    } else {
+        [NSApp stopModal];
+        [NSApp endSheet:[self window] returnCode:returnCode];
+    }
+    [self close];
 }
 
 
@@ -321,16 +361,11 @@
 - (void)editNewAddedRowOfTableView:(NSTableView *)tableView
 //------------------------------------------------------
 {
-    NSTableColumn *column = [tableView tableColumns][0];
     NSInteger row = [tableView selectedRow];
-    id cell = [column dataCellForRow:row];
-    if (cell == nil) { return; }
-    NSString *string = [cell stringValue];
+    NSTableCellView *cellView = [[tableView rowViewAtRow:row makeIfNecessary:NO] viewAtColumn:0];
     
-    if ([string isEqualToString:@""]) {
-        if ([[tableView window] makeFirstResponder:tableView]) {
-            [tableView editColumn:0 row:row withEvent:nil select:YES];
-        }
+    if ([[[cellView textField] stringValue] isEqualToString:@""]) {
+        [tableView editColumn:0 row:row withEvent:nil select:YES];
     }
 }
 
@@ -352,7 +387,7 @@
         // NSArray を case insensitive に検索するブロック
         __block NSString *duplicatedStyleName;
         BOOL (^caseInsensitiveContains)() = ^(id obj, NSUInteger idx, BOOL *stop){
-            BOOL found = (BOOL)([obj caseInsensitiveCompare:styleName] == NSOrderedSame);
+            BOOL found = ([obj caseInsensitiveCompare:styleName] == NSOrderedSame);
             if (found) { duplicatedStyleName = obj; }
             return found;
         };
@@ -377,31 +412,28 @@
 
 // ------------------------------------------------------
 /// 構文チェックを実行しその結果をテキストビューに挿入（戻り値はエラー数）
-- (NSInteger)validate
+- (NSUInteger)validate
 // ------------------------------------------------------
 {
     NSArray *errorMessages = [[CESyntaxManager sharedManager] validateSyntax:[self style]];
-    
+    NSUInteger numberOfErrors = [errorMessages count];
     NSMutableString *resultMessage = [NSMutableString string];
-    if ([errorMessages count] == 0) {
-        [resultMessage setString:NSLocalizedString(@"No error was found.", nil)];
-        
+    
+    if (numberOfErrors == 0) {
+        [resultMessage appendString:NSLocalizedString(@"No error was found.", nil)];
+    } else if (numberOfErrors == 1) {
+        [resultMessage appendString:NSLocalizedString(@"An error was found!", nil)];
     } else {
-        if ([errorMessages count] == 1) {
-            [resultMessage appendString:NSLocalizedString(@"One error was found!\n\n", nil)];
-        } else {
-            [resultMessage appendFormat:NSLocalizedString(@"%i errors were found!\n\n", nil), [errorMessages count]];
-        }
-        
-        NSUInteger lineCount = 1;
-        for (NSString *message in errorMessages) {
-            [resultMessage appendFormat:@"%tu.  %@\n\n", lineCount, message];
-            lineCount++;
-        }
+        [resultMessage appendFormat:NSLocalizedString(@"%i errors were found!", nil), numberOfErrors];
     }
+    
+    for (NSString *message in errorMessages) {
+        [resultMessage appendFormat:@"\n\n%@", message];
+    }
+    
     [[self validationTextView] setString:resultMessage];
     
-    return [errorMessages count];
+    return numberOfErrors;
 }
 
 @end

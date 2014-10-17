@@ -1,0 +1,105 @@
+extensions:
+- keyString: "rest"
+- keyString: "rst"
+outlineMenu:
+- beginString: "(?<![-=`:.'\"~^_*+#]{2}\\n)^(.+)(?=\\n([-=`:.'\"~^_*+#])\\2{2,}$)"
+  keyString: "$1"
+- beginString: "(?<=[-=`:.'\"~^_*+#]{3}\\n)(.+)(?=\\n([-=`:.'\"~^_*+#])\\2{2,}+$)"
+  keyString: "$1"
+  bold: true
+completions: []
+commands: []
+metadata:
+  author: "1024jp"
+  distributionURL: "http://coteditor.github.io"
+  version: "1.1"
+  license: "Same as CotEditor"
+  lastModified: "2014-09-24"
+characters:
+- beginString: "(?#code)(?<!\\\\)``(?![ \\t`])(?:(?!\\n\\n)(?:.|\\n))+?(?<![\\\\\\t
+    ])``"
+  regularExpression: true
+- beginString: "(?#codeblock)(?<!^[\\t ]{0,4}\\.\\. [a-z]{1,10} ?)::\\n[\\t ]*(?:\\n(?:[\\t
+    ]*\\n)?([\\t ]+)[^\\n]*)(?:\\n(?:[\\t ]*\\n)?\\1[^\\n]*)*"
+  ignoreCase: true
+  regularExpression: true
+- beginString: "(?#option lists)^(--?|/)[a-z]((?!  )[a-z0-9_= \\-])* {2,}"
+  ignoreCase: true
+  regularExpression: true
+comments:
+- beginString: "^(?:\\t| {1,4})?\\.\\.\\s(?![_\\[|]|[a-z]+?::)(?:(?!\\n\\n)(.|\\n))*"
+  ignoreCase: true
+  regularExpression: true
+values:
+- beginString: "(?#foot link)\\s\\[#[^\\]]*?\\]_\\b"
+  regularExpression: true
+- beginString: "(?#foot link)\\s\\[\\*\\]_\\b"
+  regularExpression: true
+- beginString: "(?#foot link)\\s\\[\\d+?\\]_\\b"
+  regularExpression: true
+- beginString: "(?#mail link)(mailto:)?[a-zA-Z0-9]+[a-zA-Z0-9\\._-]*@[a-zA-Z0-9_-]+([a-zA-Z0-9\\._-]+)+"
+  regularExpression: true
+- beginString: "(?#multi words link)\\s`[^`]+?`__?\\b"
+  regularExpression: true
+- beginString: "(?#single word link)\\b[^-=_ \\t\\n](?:\\w|\\d|[-=])*_(?!_)\\b"
+  regularExpression: true
+- beginString: "(?#url link with bracket)(?:https?|ftp):\\/\\/[-_.!~*\\'a-zA-Z0-9;\\/?:\\@&=+\\$,%#]+\\([-_.!~*\\'a-zA-Z0-9;\\/?:\\@&=+\\$,%#]+\\)"
+  regularExpression: true
+- beginString: "(?#url link)(?:https?|ftp):\\/\\/[-_.!~*\\'a-zA-Z0-9;\\/?:\\@&=+\\$,%#]+"
+  regularExpression: true
+types:
+- beginString: "^([-=`:.'\"~^_*+#]{3,})\\n.+\\n\\1$"
+  regularExpression: true
+- beginString: "^.+\\n([-=`:.'\"~^_*+#])\\1{2,}$"
+  regularExpression: true
+numbers:
+- beginString: "(?#image)^[\\t ]*\\.\\. (?:\\|[^|\\n]+?\\| )?image ?::\\s.*$"
+  regularExpression: true
+- beginString: "(?#role)(?<=\\w`):[a-z]+?:"
+  regularExpression: true
+- beginString: "(?#role):[a-z]+?:(?=`\\w)"
+  regularExpression: true
+- beginString: "(?#sub)\\s\\|\\S(?:(?!\\n\\n)[^\\|])*?\\|_{0,2}[\\W]"
+  regularExpression: true
+- beginString: "(?#table)^\\n(={4,} [= ]{4,}\\n)(?:.|\\n)+\\1(?=$\\n)"
+  regularExpression: true
+- beginString: "(?#table)^\\n\\+[-+]{3,}\\+\\n(?:(?!\\n\\n)(?:.|\\n))+\\+[-+]{3,}\\+(?=$\\n)"
+  regularExpression: true
+strings:
+- beginString: "(?#url) <\\S+>(?=`_)"
+  regularExpression: true
+- beginString: "(?#url)^[\\t ]*\\.\\. _\\S.*(?:\\n[\\t ]+\\S*)?$"
+  regularExpression: true
+- beginString: "(?#url)^[\\t ]*__ .\\S+$"
+  regularExpression: true
+keywords:
+- beginString: "(?#cite)\\[\\w[^\\]]*?\\]_"
+  regularExpression: true
+- beginString: "(?#directive)^[\\t ]*\\.\\. [a-z]+ ?::"
+  ignoreCase: true
+  regularExpression: true
+- beginString: "(?#dt)\\n\\n([\\t ]*)(?!(?:[#a-z]|[ivxlxcdm]+|\\d+)\\.)\\w[^\\n]*\\n\\1[\\t
+    ]+(?=\\w)"
+  ignoreCase: true
+  regularExpression: true
+- beginString: "(?#em)(?<![\\\\*)\\]'\"’‘”“`}>›»]|\\w)\\*[^* \\t\\n)\\]'\"’‘”“`}>›»](?:(?!\\n\\n)(?:[^*]|\\n))*?(?<![\\\\
+    \\t\\n])\\*(?!\\w|['\"’‘”“`<‹«(\\[{])"
+  regularExpression: true
+- beginString: "(?#field list)^[\\t ]*:[^\\n:]+?: "
+  regularExpression: true
+- beginString: "(?#footnotes)^[\\t ]*\\.\\. \\[[^\\]\\n]+\\] "
+  regularExpression: true
+- beginString: "(?#hr)\\n\\n[-=`:.'\"~^_*+#]{4,}\\n\\n"
+  regularExpression: true
+- beginString: "(?#interpreted text)(?<![\\\\`)\\]'\"’‘”“`}>›»]|\\w)`[^ \\n\\t`](?:(?!\\n\\n)(?:[^`]|\\n))*?[^\\\\
+    \\n\\t]`(?!\\w|['\"’‘”“`<‹«(\\[{_])"
+  ignoreCase: true
+  regularExpression: true
+- beginString: "(?#ol li)^[ \\t]*\\(?(?:[#a-z]|[ivxlxcdm]+|\\d+)[.)][ \\t]"
+  ignoreCase: true
+  regularExpression: true
+- beginString: "(?#strong)(?<![\\\\*)\\]'\"’‘”“`}>›»]|\\w)\\*\\*[^* \\t\\n)\\]'\"’‘”“`}>›»](?![
+    \\t])(?:(?!\\n\\n|\\*)(?:.|\\n))*?(?<![\\\\\\t ])\\*\\*(?!\\w|['\"’‘”“`<‹«(\\[{])"
+  regularExpression: true
+- beginString: "(?#ul li)^[ \\t]*[-*+•‣⁃][ \\t]"
+  regularExpression: true

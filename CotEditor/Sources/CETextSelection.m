@@ -1,35 +1,32 @@
 /*
-=================================================
-CETextSelection
-(for CotEditor)
-
- Copyright (C) 2004-2007 nakamuxu.
- Copyright (C) 2014 CotEditor Project
- http://coteditor.github.io
-=================================================
-
-encoding="UTF-8"
-Created:2005.03.01
+ ==============================================================================
+ CETextSelection
  
--------------------------------------------------
-
-This program is free software; you can redistribute it and/or
-modify it under the terms of the GNU General Public License
-as published by the Free Software Foundation; either version 2
-of the License, or (at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program; if not, write to the Free Software
-Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA. 
-
-
-=================================================
-*/
+ CotEditor
+ http://coteditor.github.io
+ 
+ Created on 2005-03-01 by nakamuxu
+ encoding="UTF-8"
+ ------------------------------------------------------------------------------
+ 
+ © 2004-2007 nakamuxu
+ © 2014 CotEditor Project
+ 
+ This program is free software; you can redistribute it and/or modify it under
+ the terms of the GNU General Public License as published by the Free Software
+ Foundation; either version 2 of the License, or (at your option) any later
+ version.
+ 
+ This program is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+ 
+ You should have received a copy of the GNU General Public License along with
+ this program; if not, write to the Free Software Foundation, Inc., 59 Temple
+ Place - Suite 330, Boston, MA  02111-1307, USA.
+ 
+ ==============================================================================
+ */
 
 #import "CETextSelection.h"
 #import "CEDocument+ScriptingSupport.h"
@@ -41,8 +38,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @end
 
-#pragma mark -
 
+
+
+
+#pragma mark -
 
 @implementation CETextSelection
 
@@ -87,20 +87,38 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)textStorageDidProcessEditing:(NSNotification *)aNotification
 // ------------------------------------------------------
 {
-    NSString *newString = [(NSTextStorage *)[aNotification object] string];
+    NSTextStorage *storage = (NSTextStorage *)[aNotification object];
 
-    [[[[self document] editorView] textView] replaceSelectedStringTo:newString scroll:NO];
-    [self cleanUpTextStorage:(NSTextStorage *)[aNotification object]];
+    [[[[self document] editor] textView] replaceSelectedStringTo:[storage string] scroll:NO];
+    [self cleanUpTextStorage:storage];
 }
 
-
 @end
+
 
 
 
 #pragma mark -
 
 @implementation CETextSelection (ScriptingSupport)
+
+#pragma mark Superclass Methods
+
+//=======================================================
+// Superclass methods
+//
+//=======================================================
+
+// ------------------------------------------------------
+/// sdef 内で定義されている名前を返す
+- (NSScriptObjectSpecifier *)objectSpecifier
+// ------------------------------------------------------
+{
+    return [[NSNameSpecifier alloc] initWithContainerSpecifier:[[self document] objectSpecifier]
+                                                           key:@"text selection"];
+}
+
+
 
 #pragma mark AppleScript Accessors
 
@@ -114,12 +132,16 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (NSTextStorage *)contents
 // ------------------------------------------------------
 {
-    NSString *string = [[[self document] editorView] substringWithSelectionForSave];
+    NSString *string = [[[self document] editor] substringWithSelectionForSave];
     NSTextStorage *storage = [[NSTextStorage alloc] initWithString:string];
 
     [storage setDelegate:self];
     // 0.5秒後にデリゲートをやめる（放置するとクラッシュの原因になる）
-    [self performSelector:@selector(cleanUpTextStorage:) withObject:storage afterDelay:0.5];
+    __weak typeof(self) weakSelf = self;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        typeof(self) strongSelf = weakSelf;
+        [strongSelf cleanUpTextStorage:storage];
+    });
 
     return storage;
 }
@@ -130,11 +152,17 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)setContents:(id)ContentsObject
 // ------------------------------------------------------
 {
+    NSString *string;
+    
     if ([ContentsObject isKindOfClass:[NSTextStorage class]]) {
-        [[[self document] editorView] replaceTextViewSelectedStringTo:[ContentsObject string] scroll:NO];
+        string = [ContentsObject string];
     } else if ([ContentsObject isKindOfClass:[NSString class]]) {
-        [[[self document] editorView] replaceTextViewSelectedStringTo:ContentsObject scroll:NO];
+        string = ContentsObject;
+    } else {
+        return;
     }
+    
+    [[[self document] editor] replaceTextViewSelectedStringTo:string scroll:NO];
 }
 
 
@@ -143,11 +171,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (NSArray *)range
 // ------------------------------------------------------
 {
-    NSRange selectedRange = [[[self document] editorView] selectedRange];
-    NSArray *rangeArray = @[@(selectedRange.location),
-                            @(selectedRange.length)];
+    NSRange range = [[[self document] editor] selectedRange];
 
-    return rangeArray;
+    return @[@(range.location),
+             @(range.length)];
 }
 
 
@@ -160,7 +187,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSInteger location = [rangeArray[0] integerValue];
     NSInteger length = [rangeArray[1] integerValue];
 
-    [[self document] setSelectedCharacterRangeInTextViewWithLocation:location withLength:length];
+    [[self document] setSelectedCharacterRangeInTextViewWithLocation:location length:length];
 }
 
 
@@ -169,13 +196,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (NSArray *)lineRange
 // ------------------------------------------------------
 {
-    NSRange selectedRange = [[[self document] editorView] selectedRange];
-    NSString *string = [[[self document] editorView] stringForSave];
-    NSUInteger lines = 0, currentLine = 0, index = 0, lastLine = 0, length = [string length];
-    NSArray *rangeArray;
+    NSRange selectedRange = [[[self document] editor] selectedRange];
+    NSString *string = [[self document] stringForSave];
+    NSUInteger currentLine = 0, lastLine = 0, length = [string length];
 
     if (length > 0) {
-        for (index = 0, lines = 0; index < length; lines++) {
+        for (NSUInteger index = 0, lines = 0; index < length; lines++) {
             if (index <= selectedRange.location) {
                 currentLine = lines + 1;
             }
@@ -185,10 +211,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             index = NSMaxRange([string lineRangeForRange:NSMakeRange(index, 0)]);
         }
     }
-    rangeArray = @[@(currentLine),
-                 @(lastLine - currentLine + 1)];
-
-    return rangeArray;
+    
+    return @[@(currentLine),
+             @(lastLine - currentLine + 1)];;
 }
 
 
@@ -210,7 +235,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         return;
     }
 
-    [[self document] setSelectedLineRangeInTextViewWithLocation:location withLength:length];
+    [[self document] setSelectedLineRangeInTextViewWithLocation:location length:length];
 }
 
 
@@ -224,100 +249,102 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 // ------------------------------------------------------
 /// 選択範囲を右にシフト
-- (void)handleShiftRight:(NSScriptCommand *)command
+- (void)handleShiftRightScriptCommand:(NSScriptCommand *)command
 // ------------------------------------------------------
 {
-    [[[[self document] editorView] textView] shiftRight:self];
+    [[[[self document] editor] textView] shiftRight:self];
 }
 
 
 // ------------------------------------------------------
 /// 選択範囲を左にシフト
-- (void)handleShiftLeft:(NSScriptCommand *)command
+- (void)handleShiftLeftScriptCommand:(NSScriptCommand *)command
 // ------------------------------------------------------
 {
-    [[[[self document] editorView] textView] shiftLeft:self];
+    [[[[self document] editor] textView] shiftLeft:self];
 }
 
 
 // ------------------------------------------------------
 /// 文字列を大文字／小文字／キャピタライズにコンバートし、結果を返す
-- (void)handleChangeCase:(NSScriptCommand *)command
+- (void)handleChangeCaseScriptCommand:(NSScriptCommand *)command
 // ------------------------------------------------------
 {
     NSDictionary *arguments = [command evaluatedArguments];
-    CECaseType caseType = [arguments[@"caseType"] unsignedLongValue];
+    CECaseType caseType = [arguments[@"caseType"] unsignedIntegerValue];
+    CETextView *textView = [[[self document] editor] textView];
 
     switch (caseType) {
-    case CELowerCase:
-        [[[[self document] editorView] textView] exchangeLowercase:self];
-        break;
-    case CEUpperCase:
-        [[[[self document] editorView] textView] exchangeUppercase:self];
-        break;
-    case CECapitalized:
-        [[[[self document] editorView] textView] exchangeCapitalized:self];
-        break;
-    default:
-        break;
+        case CELowerCase:
+            [textView exchangeLowercase:self];
+            break;
+        case CEUpperCase:
+            [textView exchangeUppercase:self];
+            break;
+        case CECapitalized:
+            [textView exchangeCapitalized:self];
+            break;
     }
 }
 
 
 // ------------------------------------------------------
 /// 半角／全角Romanを切り替える
-- (void)handleChangeWidthRoman:(NSScriptCommand *)command
+- (void)handleChangeWidthRomanScriptCommand:(NSScriptCommand *)command
 // ------------------------------------------------------
 {
     NSDictionary *arguments = [command evaluatedArguments];
-    CEWidthType widthType = [arguments[@"widthType"] unsignedLongValue];
+    CEWidthType widthType = [arguments[@"widthType"] unsignedIntegerValue];
+    CETextView *textView = [[[self document] editor] textView];
 
     switch (widthType) {
-    case CEFullwidth:
-        [[[[self document] editorView] textView] exchangeFullwidthRoman:self];
-        break;
-    case CEHalfwidth:
-        [[[[self document] editorView] textView] exchangeHalfwidthRoman:self];
-        break;
-    default:
-        break;
+        case CEFullwidth:
+            [textView exchangeFullwidthRoman:self];
+            break;
+        case CEHalfwidth:
+            [textView exchangeHalfwidthRoman:self];
+            break;
     }
 }
 
 
 // ------------------------------------------------------
 /// ひらがな／カタカナを切り替える
-- (void)handleChangeKana:(NSScriptCommand *)command
+- (void)handleChangeKanaScriptCommand:(NSScriptCommand *)command
 // ------------------------------------------------------
 {
     NSDictionary *arguments = [command evaluatedArguments];
-    CEChangeKanaType changeKanaType = [arguments[@"kanaType"] unsignedLongValue];
-
-    if (changeKanaType == CEHiragana) {
-        [[[[self document] editorView] textView] exchangeHiragana:self];
-    } else if (changeKanaType == CEKatakana) {
-        [[[[self document] editorView] textView] exchangeKatakana:self];
+    CEChangeKanaType changeKanaType = [arguments[@"kanaType"] unsignedIntegerValue];
+    CETextView *textView = [[[self document] editor] textView];
+    
+    switch (changeKanaType) {
+        case CEHiragana:
+            [textView exchangeHiragana:self];
+            break;
+        case CEKatakana:
+            [textView exchangeKatakana:self];
+            break;
     }
 }
 
 
 // ------------------------------------------------------
 /// Unicode 正規化
-- (void)handleUnicodeNomalization:(NSScriptCommand *)command
+- (void)handleNormalizeUnicodeScriptCommand:(NSScriptCommand *)command
 // ------------------------------------------------------
 {
     NSDictionary *arguments = [command evaluatedArguments];
-    CEUNFType UNFType = [arguments[@"unfType"] unsignedLongValue];
-    NSInteger typeCode = 0;
-
+    CEUNFType UNFType = [arguments[@"unfType"] unsignedIntegerValue];
+    CETextView *textView = [[[self document] editor] textView];
+    
+    NSInteger typeCode;
     switch (UNFType) {
-    case CENFD: typeCode = 1; break;
-    case CENFKC: typeCode = 2; break;
-    case CENFKD: typeCode = 3; break;
-    default:
-        break;
+        case CENFC:  typeCode = 0; break;
+        case CENFD:  typeCode = 1; break;
+        case CENFKC: typeCode = 2; break;
+        case CENFKD: typeCode = 3; break;
     }
-    [[[[self document] editorView] textView] unicodeNormalization:@(typeCode)];
+    [textView unicodeNormalization:@(typeCode)];
 }
 
 @end

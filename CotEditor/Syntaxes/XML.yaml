@@ -1,0 +1,70 @@
+extensions:
+- keyString: "xml"
+- keyString: "xsl"
+- keyString: "xslt"
+- keyString: "xsd"
+- keyString: "rlx"
+- keyString: "rng"
+- keyString: "trex"
+- keyString: "fo"
+- keyString: "fob"
+- keyString: "mml"
+- keyString: "gml"
+- keyString: "cml"
+- keyString: "opf"
+- keyString: "ncx"
+- keyString: "xul"
+- keyString: "zul"
+- keyString: "smil"
+- keyString: "smi"
+- keyString: "mxml"
+- keyString: "rss"
+- keyString: "rdf"
+- keyString: "atom"
+- keyString: "plist"
+- keyString: "xib"
+- keyString: "xmp"
+- keyString: "sdef"
+outlineMenu: []
+completions: []
+commands:
+- beginString: "(?<=<)\\?[[:alnum:]_\\-.:]+"
+  regularExpression: true
+- beginString: "\\?(?=>)"
+  regularExpression: true
+attributes:
+- beginString: "\\s[[:alnum:]_\\-.:]+\\s*(?==)"
+  regularExpression: true
+metadata:
+  author: "1024jp"
+  distributionURL: "http://coteditor.github.io"
+  version: "1.2"
+  license: "Same as CotEditor"
+  lastModified: "2014-09-24"
+characters:
+- beginString: "&\\S+?;"
+  regularExpression: true
+- beginString: "<![CDATA["
+  endString: "]]>"
+comments: []
+values: []
+types:
+- beginString: "(?<=<)![A-Z]*"
+  regularExpression: true
+numbers: []
+strings:
+- beginString: "\""
+  endString: "\""
+- beginString: "(?<!\\w)'[^']*?'(?=[^<>]*>)"
+  regularExpression: true
+keywords:
+- beginString: "(?<=</?)[[:alnum:]_\\-.:]+(?=[\\n\\t />])"
+  regularExpression: true
+variables:
+- beginString: "(?<=</?)[[:alnum:]_\\-.]+:(?=\\w)"
+  regularExpression: true
+- beginString: "(?<=\\s)[[:alnum:]_\\-.]+:(?=(\\w|[\\-.])+\\s*=)"
+  regularExpression: true
+commentDelimiters:
+  endDelimiter: "-->"
+  beginDelimiter: "<!--"

@@ -1,0 +1,57 @@
+{
+  "text" : {
+    "color" : "#839496"
+  },
+  "insertionPoint" : {
+    "color" : "#839496"
+  },
+  "invisibles" : {
+    "color" : "#073642"
+  },
+  "background" : {
+    "color" : "#002b36"
+  },
+  "lineHighlight" : {
+    "color" : "#073642"
+  },
+  "selection" : {
+    "color" : "#586e75",
+    "usesSystemSetting" : false
+  },
+  "keywords" : {
+    "color" : "#859900"
+  },
+  "commands" : {
+    "color" : "#cb4b16"
+  },
+  "types" : {
+    "color" : "#268bd2"
+  },
+  "attributes" : {
+    "color" : "#6c71c4"
+  },
+  "variables" : {
+    "color" : "#b58900"
+  },
+  "values" : {
+    "color" : "#d33682"
+  },
+  "numbers" : {
+    "color" : "#dc322f"
+  },
+  "strings" : {
+    "color" : "#2aa198"
+  },
+  "characters" : {
+    "color" : "#dc322f"
+  },
+  "comments" : {
+    "color" : "#586e75"
+  },
+  "metadata" : {
+    "author" : "1024jp",
+    "distributionURL" : "http://coteditor.github.io",
+    "lisence" : "Same as CotEditor (GPL2)",
+    "description" : "CotEditor bundled theme, which is based on Solarized <http://ethanschoonover.com/solarized> color scheme by Ethan Schoonover."
+  }
+}

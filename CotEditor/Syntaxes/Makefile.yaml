@@ -1,0 +1,74 @@
+extensions: []
+filenames:
+- keyString: "Makefile"
+- keyString: "makefile"
+completions: []
+outlineMenu: []
+commands:
+- beginString: "AR"
+- beginString: "AS"
+- beginString: "CC"
+- beginString: "CO"
+- beginString: "CPP"
+- beginString: "CTANGLE"
+- beginString: "CWEAVE"
+- beginString: "CXX"
+- beginString: "FC"
+- beginString: "GET"
+- beginString: "LEX"
+- beginString: "MAKEINFO"
+- beginString: "PC"
+- beginString: "RM"
+- beginString: "TANGLE"
+- beginString: "TEX"
+- beginString: "TEXI2VDI"
+- beginString: "WEAVE"
+- beginString: "YACC"
+- beginString: "YACCR"
+metadata:
+  author: "1024jp"
+  distributionURL: "http://coteditor.github.io"
+  version: "1.1"
+  license: "Same as CotEditor"
+  lastModified: "2014-09-24"
+characters: []
+comments: []
+values: []
+variables:
+- beginString: "$%"
+- beginString: "$("
+  endString: ")"
+- beginString: "$*"
+- beginString: "$+"
+- beginString: "$<"
+- beginString: "$?"
+- beginString: "$@"
+- beginString: "$^"
+- beginString: "${"
+  endString: "}"
+- beginString: "^[-\\w]+(?= +[?:+]?= )"
+  regularExpression: true
+numbers: []
+strings:
+- beginString: "\""
+  endString: "\""
+keywords:
+- beginString: "^[^ ]+(?= *:[^=])"
+  regularExpression: true
+- beginString: "do"
+- beginString: "done"
+- beginString: "else"
+- beginString: "endif"
+- beginString: "export"
+- beginString: "for"
+- beginString: "ifdef"
+- beginString: "ifeq"
+- beginString: "ifndef"
+- beginString: "ifneq"
+- beginString: "include"
+- beginString: "override"
+- beginString: "unexport"
+- beginString: "vpath"
+- beginString: "while"
+commentDelimiters:
+  inlineDelimiter: "#"

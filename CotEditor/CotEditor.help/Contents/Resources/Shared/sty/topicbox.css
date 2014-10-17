@@ -1,32 +1,36 @@
 /*
- * CotEditor Help Style Sheet for topic_box
+ * CotEditor Help Style Sheet for topic
  */
  
-div.topic_box {
+.topic {
 	padding: 0;
-	min-height: 180px;
-	border: dotted 1px #ccc;
+	min-height: 200px;
+	border: solid 1px hsl(0,0%,80%);
 	margin-bottom: 1.5em;
+	border-radius: 3px;
 }
 
-div.topic_box h2 {
+.topic h2 {
 	margin: 0;
-	padding: 3px;
-	background-color: #e6edff;
+	padding: 0.2em 0.5em;
+	background-color: hsl(206,25%,92%);
 }
-div.topic_box p {
+.topic p {
 	margin-top: 0.5em;
 	margin-left: 0.5em;
 	margin-right: 0.5em;
 }
 
-div.topic_box img {
-	width: 160px;
+.topic img.snapshot {
+	width: 200px;
+	border:1px solid hsla(0,0%,0%,.25);
+	border-radius: 3px;
 }
 
-div.topic_box ul, div.topic_box ol {
+.topic ul,
+.topic ol {
 	margin-top: 1em;
-	margin-left: 170px; /* img 160px + 10px */
+	margin-left: 210px;  /* img 250px + 10px */
 	padding-top: 0;
 	clear: none;
 	background: none;

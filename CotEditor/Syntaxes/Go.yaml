@@ -1,0 +1,116 @@
+extensions:
+- keyString: "go"
+filenames: []
+completions: []
+outlineMenu:
+- beginString: "([\\t ]*)type[\\t ]+(\\w+)[\\t ]+interface"
+  keyString: "$1interface $2"
+  italic: true
+- beginString: "([\\t ]*)type[\\t ]+(\\w+)[\\t ]+struct"
+  keyString: "$1struct $2"
+  bold: true
+- beginString: "[\\t ]*func +\\w+\\(.*?\\)"
+commands:
+- beginString: "append"
+- beginString: "cap"
+- beginString: "close"
+- beginString: "complex"
+- beginString: "copy"
+- beginString: "delete"
+- beginString: "imag"
+- beginString: "len"
+- beginString: "make"
+- beginString: "new"
+- beginString: "panic"
+- beginString: "print"
+- beginString: "println"
+- beginString: "real"
+- beginString: "recover"
+attributes: []
+metadata:
+  author: "1024jp"
+  distributionURL: "http://coteditor.github.io"
+  version: "1.0"
+  license: "Same as CotEditor"
+  lastModified: "2014-09-24"
+characters:
+- beginString: "'"
+  endString: "'"
+comments: []
+values:
+- beginString: "false"
+- beginString: "iota"
+- beginString: "nil"
+- beginString: "true"
+types:
+- beginString: "bool"
+- beginString: "byte"
+- beginString: "chan"
+- beginString: "complex128"
+- beginString: "complex64"
+- beginString: "error"
+- beginString: "float32"
+- beginString: "float64"
+- beginString: "int"
+- beginString: "int16"
+- beginString: "int32"
+- beginString: "int64"
+- beginString: "int8"
+- beginString: "interface"
+- beginString: "map"
+- beginString: "rune"
+- beginString: "string"
+- beginString: "struct"
+- beginString: "uint"
+- beginString: "uint16"
+- beginString: "uint32"
+- beginString: "uint64"
+- beginString: "uint8"
+- beginString: "uintptr"
+numbers:
+- beginString: "0[xX][0-9a-fA-F]+"
+  regularExpression: true
+- beginString: "\\.d+([eE][-+]?\\d+)?i?"
+  regularExpression: true
+- beginString: "\\b\\d+i?\\b"
+  regularExpression: true
+- beginString: "\\d+[eE][-+]?\\d+i?"
+  regularExpression: true
+- beginString: "\\d+\\.\\d*([eE][-+]?\\d+)?i?"
+  regularExpression: true
+strings:
+- beginString: "\""
+  endString: "\""
+- beginString: "`"
+  endString: "`"
+keywords:
+- beginString: "break"
+- beginString: "case"
+- beginString: "chan"
+- beginString: "const"
+- beginString: "continue"
+- beginString: "default"
+- beginString: "defer"
+- beginString: "else"
+- beginString: "fallthrough"
+- beginString: "for"
+- beginString: "func"
+- beginString: "go"
+- beginString: "goto"
+- beginString: "if"
+- beginString: "import"
+- beginString: "interface"
+- beginString: "map"
+- beginString: "package"
+- beginString: "range"
+- beginString: "return"
+- beginString: "select"
+- beginString: "struct"
+- beginString: "switch"
+- beginString: "type"
+- beginString: "var"
+variables: []
+commentDelimiters:
+  endDelimiter: "*/"
+  beginDelimiter: "/*"
+  inlineDelimiter: "//"

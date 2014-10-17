@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6185.11" systemVersion="13E28" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment defaultVersion="1070" identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6185.11"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="CEGoToSheetController">
+            <connections>
+                <outlet property="window" destination="3wP-4P-fon" id="h49-PQ-K1s"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <window title="Go To" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="goToPanel" animationBehavior="default" id="3wP-4P-fon" userLabel="Go To Sheet">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
+            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+            <rect key="contentRect" x="1120" y="400" width="250" height="91"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1028"/>
+            <view key="contentView" id="A4X-hG-gUE">
+                <rect key="frame" x="0.0" y="0.0" width="250" height="91"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Y3g-Mg-hoW">
+                        <rect key="frame" x="18" y="47" width="101" height="26"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="96" id="3zu-tW-wMH"/>
+                        </constraints>
+                        <popUpButtonCell key="cell" type="push" title="Line" bezelStyle="rounded" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="AJY-it-0zy" id="Jaf-xK-LUw">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="menu"/>
+                            <menu key="menu" title="OtherViews" id="c9a-BM-WZG">
+                                <items>
+                                    <menuItem title="Line" state="on" id="AJY-it-0zy"/>
+                                    <menuItem title="Character" tag="1" id="8lf-5Q-9KX"/>
+                                </items>
+                            </menu>
+                        </popUpButtonCell>
+                        <connections>
+                            <binding destination="-2" name="selectedTag" keyPath="gotoType" id="drq-Iq-n2C"/>
+                        </connections>
+                    </popUpButton>
+                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0pu-o7-QNV">
+                        <rect key="frame" x="124" y="49" width="106" height="22"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="jFO-Jw-hpY">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            <allowedInputSourceLocales>
+                                <string>NSAllRomanInputSourcesLocaleIdentifier</string>
+                            </allowedInputSourceLocales>
+                        </textFieldCell>
+                        <connections>
+                            <binding destination="-2" name="value" keyPath="location" id="w10-Vf-ZhK"/>
+                        </connections>
+                    </textField>
+                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Aef-Xm-gkb">
+                        <rect key="frame" x="136" y="13" width="100" height="32"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="88" id="gnX-vU-ORK"/>
+                        </constraints>
+                        <buttonCell key="cell" type="push" title="Go To" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="zet-GK-4z4">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                            <string key="keyEquivalent" base64-UTF8="YES">
+DQ
+</string>
+                        </buttonCell>
+                        <connections>
+                            <action selector="apply:" target="-2" id="t9z-tT-i6K"/>
+                        </connections>
+                    </button>
+                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1Pi-N7-0z1">
+                        <rect key="frame" x="36" y="13" width="100" height="32"/>
+                        <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="iQf-7n-OD6">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                            <string key="keyEquivalent" base64-UTF8="YES">
+Gw
+</string>
+                        </buttonCell>
+                        <connections>
+                            <action selector="close:" target="-2" id="DDN-yw-g6D"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Aef-Xm-gkb" firstAttribute="top" secondItem="0pu-o7-QNV" secondAttribute="bottom" constant="8" symbolic="YES" id="3Za-QE-avP"/>
+                    <constraint firstItem="Y3g-Mg-hoW" firstAttribute="leading" secondItem="A4X-hG-gUE" secondAttribute="leading" constant="20" symbolic="YES" id="588-tH-0Wb"/>
+                    <constraint firstItem="Y3g-Mg-hoW" firstAttribute="top" secondItem="A4X-hG-gUE" secondAttribute="top" constant="20" symbolic="YES" id="9RI-DE-edu"/>
+                    <constraint firstItem="0pu-o7-QNV" firstAttribute="leading" secondItem="Y3g-Mg-hoW" secondAttribute="trailing" constant="8" symbolic="YES" id="F83-9O-RO5"/>
+                    <constraint firstAttribute="bottom" secondItem="Aef-Xm-gkb" secondAttribute="bottom" constant="20" symbolic="YES" id="Nmz-Eq-AT9"/>
+                    <constraint firstItem="1Pi-N7-0z1" firstAttribute="width" secondItem="Aef-Xm-gkb" secondAttribute="width" id="asf-Md-eQQ"/>
+                    <constraint firstAttribute="trailing" secondItem="Aef-Xm-gkb" secondAttribute="trailing" constant="20" symbolic="YES" id="hqs-Ts-Cas"/>
+                    <constraint firstItem="0pu-o7-QNV" firstAttribute="top" secondItem="A4X-hG-gUE" secondAttribute="top" constant="20" symbolic="YES" id="uvC-o9-ReH"/>
+                    <constraint firstAttribute="trailing" secondItem="0pu-o7-QNV" secondAttribute="trailing" constant="20" symbolic="YES" id="w0I-hu-dji"/>
+                    <constraint firstItem="1Pi-N7-0z1" firstAttribute="baseline" secondItem="Aef-Xm-gkb" secondAttribute="baseline" id="ykc-Tu-gFM"/>
+                    <constraint firstItem="Aef-Xm-gkb" firstAttribute="leading" secondItem="1Pi-N7-0z1" secondAttribute="trailing" constant="12" symbolic="YES" id="zZs-Eu-tct"/>
+                </constraints>
+            </view>
+            <connections>
+                <outlet property="delegate" destination="-2" id="ag5-F5-24a"/>
+            </connections>
+        </window>
+    </objects>
+</document>

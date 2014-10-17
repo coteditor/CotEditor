@@ -1,73 +1,71 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+<html lang="en" xml:lang="en">
 
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-<meta name="keywords" content="Script Menu, script"/>
-<link rel="start" href="../CotEditorHelp.html"/>
-<link rel="index" href="../xpgs/xall.html"/>
-<link rel="stylesheet" href="../../Shared/sty/standard.css" type="text/css"/>
-<title>Working with UNIX scripts</title>
+	<meta charset="UTF-8"/>
+	<meta name="keywords" content="Script Menu, script"/>
+	<link rel="start" href="../CotEditorHelp.html"/>
+	<link rel="index" href="../xpgs/xall.html"/>
+	<link rel="stylesheet" href="../../Shared/sty/standard.css"/>
+	<title>Working with UNIX scripts</title>
 </head>
+
 <body>
-
-<div id="navbar">
-<div id="home"><a href="../CotEditorHelp.html" rel="start">CotEditor Help</a></div>
-<div id="index"><a href="../xpgs/xall.html" rel="index">Index</a></div>
-</div>
-
-<div id="contents">
 <h1>Working with UNIX scripts</h1>
+
 <p>This page explains how to pass your document's text to UNIX scripts that are executable via the Script menu, or how to receive the outputs from them.</p>
 
 <ul>
-<li>The file extensions of the scripts you can add to the Script menu are: .sh .pl .php .rb .py (regardless of their languages)</li>
-<li>In order to run a script, you need to set execute permission for the script file. To do so, use Terminal.app (located in Applications/Utilities) or chmod 755.app which is bundled in the SampleScript folder.</li>
-<li>Line endings in your script must be LF.</li>
+	<li>The file extensions of the scripts you can add to the Script menu are: .sh .pl .php .rb .py (regardless of their languages)</li>
+	<li>In order to run a script, you need to set execute permission for the script file. To do so, use Terminal.app (located in Applications/Utilities) or chmod 755.app which is bundled in the SampleScript folder.</li>
+	<li>Line endings in your script must be LF.</li>
 </ul>
 
 <h2>Passing text data to a script</h2>
 
-<p>To pass text data from CotEditor to your script, you need to put a comment at the beginning of the script and write &ldquo;<code>%%%{CotEditorXInput=xxxx}%%%</code>&rdquo; inside. Replace &ldquo;<code>xxxx</code>&rdquo; with one of the parameters below.</p>
+<p>To pass text data from CotEditor to your script, you need to put a comment at the beginning of the script and write “<code>%%%{CotEditorXInput=xxxx}%%%</code>” inside. Replace “<code>xxxx</code>” with one of the parameters below.</p>
 
 <table>
-  <tr><th><code>Selection</code></th><td>To pass the text you are currently selecting.</td></tr>
-  <tr><th><code>AllText</code></th><td>To pass the whole text of your document.</td></tr>
-  <tr><th><code>None</code></th><td>To pass nothing (default).</td></tr>
+	<tr><th><code>Selection</code></th><td>To pass the text you are currently selecting.</td></tr>
+	<tr><th><code>AllText</code></th><td>To pass the whole text of your document.</td></tr>
+	<tr><th><code>None</code></th><td>To pass nothing (default).</td></tr>
 </table>
 
 <ul style="margin-top: 1em;">
-<li>With no parameters, CotEditor passes nothing just like when you put &ldquo;None.&rdquo;</li>
-<li>A script should capture CotEditor's text data on STDIN (standard in).</li>
-<li>CotEditor passes text data with UTF-8 encoding.</li>
+	<li>With no parameters, CotEditor passes nothing just like when you put “None.”</li>
+	<li>A script should capture CotEditor's text data on STDIN (standard in).</li>
+	<li>CotEditor passes text data with UTF-8 encoding.</li>
 </ul>
 
 <h2>Receiving output data from a script</h2>
 
-<p>To make CotEditor receive output data from a script, you need to put a comment at the beginning of the script and write &ldquo;<code>%%%{CotEditorXOutput=xxxx}%%%</code>&rdquo; inside. Replace &ldquo;<code>xxxx</code>&rdquo; with one of the parameters below.</p>
+<p>To make CotEditor receive output data from a script, you need to put a comment at the beginning of the script and write “<code>%%%{CotEditorXOutput=xxxx}%%%</code>” inside. Replace “<code>xxxx</code>” with one of the parameters below.</p>
 
 <table>
-  <tr><th><code>ReplaceSelection</code></th><td>To replace the current selection with the contents of the output data.</td></tr>
-  <tr><th><code>ReplaceAllText</code></th><td>To replace the whole text of your document with the contents of the output data.</td></tr>
-  <tr><th><code>InsertAfterSelection</code></th><td>To insert the contents of the output data right after the current selection.</td></tr>
-  <tr><th><code>AppendToAllText</code></th><td>To insert the contents of the output data at the end of your document.</td></tr>
-  <tr><th><code>Pasteboardputs</code></th><td>To store the contents of the output data in clipboard.</td></tr>
-  <tr><th><code>Discard</code></th><td>To do nothing (default).</td></tr>
+	<tr><th><code>ReplaceSelection</code></th><td>To replace the current selection with the contents of the output data.</td></tr>
+	<tr><th><code>ReplaceAllText</code></th><td>To replace the whole text of your document with the contents of the output data.</td></tr>
+	<tr><th><code>InsertAfterSelection</code></th><td>To insert the contents of the output data right after the current selection.</td></tr>
+	<tr><th><code>AppendToAllText</code></th><td>To insert the contents of the output data at the end of your document.</td></tr>
+	<tr><th><code>Pasteboardputs</code></th><td>To store the contents of the output data in clipboard.</td></tr>
+	<tr><th><code>Discard</code></th><td>To do nothing (default).</td></tr>
 </table>
 
 <ul style="margin-top: 1em;">
-<li>With no parameters, CotEditor does nothing just like when you put &ldquo;Discard.&rdquo;</li>
-<li>A script should output the text data for CotEditor on STDOUT (standard out).</li>
-<li>The character encoding of the text that CotEditor receives must be UTF-8.</li>
+	<li>With no parameters, CotEditor does nothing just like when you put “Discard.”</li>
+	<li>A script should output the text data for CotEditor on STDOUT (standard out).</li>
+	<li>The character encoding of the text that CotEditor receives must be UTF-8.</li>
 </ul>
 
-<h2 id="P0">See also</h2>
-<ul class="rel_items">
-  <li><a href="../pgs/howto_customize_scriptmenu.html">Customizing the Script menu</a></li>
-  <li><a href="../pgs/about_applescript.html">Working with AppleScript scripts</a></li>
-  <li><a href="../pgs/about_script_name.html">File naming rules for CotEditor scripts</a></li>
+
+<section id="cf">
+<h2>See also</h2>
+<ul>
+	<li><a href="../pgs/howto_customize_scriptmenu.html">Customizing the Script menu</a></li>
+	<li><a href="../pgs/about_applescript.html">Working with AppleScript scripts</a></li>
+	<li><a href="../pgs/about_script_name.html">File naming rules for CotEditor scripts</a></li>
 </ul>
-</div>
+</section>
 
 </body>
 </html>

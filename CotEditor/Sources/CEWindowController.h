@@ -1,72 +1,63 @@
 /*
-=================================================
-CEWindowController
-(for CotEditor)
-
- Copyright (C) 2004-2007 nakamuxu.
- Copyright (C) 2014 CotEditor Project
- http://coteditor.github.io
-=================================================
-
-encoding="UTF-8"
-Created:2004.12.13
+ ==============================================================================
+ CEWindowController
  
--------------------------------------------------
+ CotEditor
+ http://coteditor.github.io
+ 
+ Created on 2004-12-13 by nakamuxu
+ encoding="UTF-8"
+ ------------------------------------------------------------------------------
+ 
+ © 2004-2007 nakamuxu
+ © 2014 CotEditor Project
+ 
+ This program is free software; you can redistribute it and/or modify it under
+ the terms of the GNU General Public License as published by the Free Software
+ Foundation; either version 2 of the License, or (at your option) any later
+ version.
+ 
+ This program is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+ 
+ You should have received a copy of the GNU General Public License along with
+ this program; if not, write to the Free Software Foundation, Inc., 59 Temple
+ Place - Suite 330, Boston, MA  02111-1307, USA.
+ 
+ ==============================================================================
+ */
 
-This program is free software; you can redistribute it and/or
-modify it under the terms of the GNU General Public License
-as published by the Free Software Foundation; either version 2
-of the License, or (at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program; if not, write to the Free Software
-Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA. 
-
-
-=================================================
-*/
-
-#import <Cocoa/Cocoa.h>
+@import Cocoa;
 #import <OgreKit/OgreKit.h>
 #import "CEDocument.h"
-#import "CEEditorView.h"
+#import "CEEditorWrapper.h"
 #import "CEToolbarController.h"
 
 
-@interface CEWindowController : NSWindowController <NSWindowDelegate, NSDrawerDelegate, NSTabViewDelegate, OgreTextFindDataSource>
+@interface CEWindowController : NSWindowController <NSWindowDelegate, OgreTextFindDataSource>
 
-@property (nonatomic, weak, readonly) CEEditorView *editorView;
-@property (nonatomic, weak, readonly) CEToolbarController *toolbarController;
 @property (nonatomic) CGFloat alpha;
-@property (nonatomic) BOOL recolorWithBecomeKey; // ウィンドウがキーになったとき再カラーリングをするかどうかのフラグ
 
-// document information (for binding in drawer)
-@property (nonatomic, copy) NSString *encodingInfo;// 文書のエンコーディング情報
-@property (nonatomic, copy) NSString *lineEndingsInfo;  // 文書の改行コード情報
-@property (nonatomic, copy) NSString *linesInfo;  // 行数
-@property (nonatomic, copy) NSString *charsInfo;  // 文字数
-@property (nonatomic, copy) NSString *wordsInfo;  // 単語数
-@property (nonatomic, copy) NSString *locationInfo;  // 文頭からのキャレット位置
-@property (nonatomic, copy) NSString *lineInfo;  // 現在行
-@property (nonatomic, copy) NSString *columnInfo;  // 文書の行頭からのキャレット位置
-@property (nonatomic, copy) NSString *singleCharInfo;  // 文書の選択文字
-@property (nonatomic, copy) NSString *byteLengthInfo;  //  現在のエンコーディングでのバイト数
+@property (readonly, nonatomic, weak) CEEditorWrapper *editor;
+@property (readonly, nonatomic, weak) CEToolbarController *toolbarController;
+@property (readonly, nonatomic) BOOL showsStatusBar;
 
 // Public method
+- (void)setWritable:(BOOL)isWritable;
 - (BOOL)needsInfoDrawerUpdate;
 - (BOOL)needsIncompatibleCharDrawerUpdate;
-- (void)updateFileAttrsInformation;
-- (void)updateIncompatibleCharList;
 - (void)showIncompatibleCharList;
+- (void)updateEditorStatusInfo:(BOOL)needsUpdateDrawer;
+- (void)updateEncodingAndLineEndingsInfo:(BOOL)needsUpdateDrawer;
+- (void)updateFileAttributesInfo;
+- (void)setupIncompatibleCharTimer;
+- (void)setupInfoUpdateTimer;
 
 // Action Message
 - (IBAction)getInfo:(id)sender;
 - (IBAction)toggleIncompatibleCharList:(id)sender;
 - (IBAction)selectIncompatibleRange:(id)sender;
+- (IBAction)toggleStatusBar:(id)sender;
 
 @end
