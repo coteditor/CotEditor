@@ -402,7 +402,7 @@
     }
     // store current version
     NSArray *releasedVersions = @[@"2.0.0-alpha", @"2.0.0-beta"];
-    If (!lastVersion || [releasedVersions containsObject:lastVersion]) {
+    if (!lastVersion || [releasedVersions containsObject:lastVersion]) {
         [[NSUserDefaults standardUserDefaults] setObject:version forKey:CEDefaultLastVersionKey];
     }
 }
