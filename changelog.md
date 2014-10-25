@@ -10,6 +10,8 @@ changelog
 - プリント設定のラベルを一部変更
 - “AppleScript” シンタックス定義の更新
     - CotEditor 2.0 で変更になった CotEditor コマンドを更新
+- 環境設定のツールバーアイコンを調整
+
 
 ### fix
 
