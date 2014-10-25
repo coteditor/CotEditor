@@ -640,6 +640,22 @@
 		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
+				<string>tcl</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>TclIcon</string>
+			<key>CFBundleTypeName</key>
+			<string>Tcl Source</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSTypeIsPackage</key>
+			<integer>0</integer>
+			<key>NSDocumentClass</key>
+			<string>CEDocument</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
 				<string>xml</string>
 				<string>xsl</string>
 				<string>dtd</string>

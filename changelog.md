@@ -7,7 +7,7 @@ changelog
 
 ### new
 
-- “Rust” シンタックス定義を追加
+- “Rust”, “Tcl” シンタックス定義を追加
 
 
 ### mod
