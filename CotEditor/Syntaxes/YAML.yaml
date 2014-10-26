@@ -2,9 +2,7 @@ extensions:
 - keyString: "yaml"
 - keyString: "yml"
 outlineMenu:
-- beginString: "^  ([^ ].*?):"
-  keyString: "    $1:"
-- beginString: "^([^ ].*?):"
+- beginString: "^([^ -].*?):"
   keyString: "$1:"
 - beginString: "^---"
   keyString: "-"
