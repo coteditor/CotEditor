@@ -33,7 +33,7 @@
 
 
 static const CGFloat kDefaultHeight = 20.0;
-static const NSTimeInterval kDuration = 0.1;
+static const NSTimeInterval kDuration = 0.25;
 
 
 @interface CEStatusBarController ()
