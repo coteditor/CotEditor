@@ -571,6 +571,23 @@
 		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
+				<string>rs</string>
+				<string>rc</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>docRust</string>
+			<key>CFBundleTypeName</key>
+			<string>Rust Source</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSTypeIsPackage</key>
+			<integer>0</integer>
+			<key>NSDocumentClass</key>
+			<string>CEDocument</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
 				<string>scala</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
