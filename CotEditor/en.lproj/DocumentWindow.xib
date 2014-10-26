@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6249" systemVersion="13F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6249"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6250"/>
     </dependencies>
     <objects>
         <customObject id="-2" customClass="CEWindowController">
@@ -25,7 +25,7 @@
             <windowCollectionBehavior key="collectionBehavior" fullScreenPrimary="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" topStrut="YES"/>
             <rect key="contentRect" x="10" y="280" width="500" height="420"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1028"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
             <value key="minSize" type="size" width="400" height="200"/>
             <view key="contentView" id="6">
                 <rect key="frame" x="0.0" y="0.0" width="500" height="420"/>
@@ -279,7 +279,7 @@
             <connections>
                 <outlet property="delegate" destination="-2" id="17"/>
             </connections>
-            <point key="canvasLocation" x="202" y="-459"/>
+            <point key="canvasLocation" x="307" y="-423"/>
         </window>
         <drawer trailingOffset="15" id="32">
             <size key="contentSize" width="220" height="380"/>
@@ -292,29 +292,29 @@
             </connections>
         </drawer>
         <customView id="34" userLabel="Drawer View">
-            <rect key="frame" x="0.0" y="0.0" width="220" height="580"/>
+            <rect key="frame" x="0.0" y="0.0" width="220" height="520"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tabView allowsTruncatedLabels="NO" type="noTabsBezelBorder" translatesAutoresizingMaskIntoConstraints="NO" id="115">
-                    <rect key="frame" x="0.0" y="41" width="220" height="521"/>
+                    <rect key="frame" x="0.0" y="39" width="220" height="463"/>
                     <font key="font" metaFont="message"/>
                     <tabViewItems>
                         <tabViewItem identifier="info" id="116">
                             <view key="view" id="118">
-                                <rect key="frame" x="10" y="7" width="200" height="501"/>
+                                <rect key="frame" x="10" y="7" width="200" height="443"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
-                                    <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="411">
-                                        <rect key="frame" x="0.0" y="0.0" width="200" height="501"/>
-                                        <clipView key="contentView" autoresizesSubviews="NO" drawsBackground="NO" copiesOnScroll="NO" id="xGI-c5-td8">
+                                    <scrollView verticalHuggingPriority="750" borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="411">
+                                        <rect key="frame" x="0.0" y="0.0" width="200" height="437"/>
+                                        <clipView key="contentView" verticalHuggingPriority="750" drawsBackground="NO" copiesOnScroll="NO" id="xGI-c5-td8" customClass="CEClipView">
                                             <rect key="frame" x="0.0" y="0.0" width="210" height="486"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
-                                                <customView translatesAutoresizingMaskIntoConstraints="NO" id="108">
-                                                    <rect key="frame" x="0.0" y="0.0" width="200" height="496"/>
+                                                <customView verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="108">
+                                                    <rect key="frame" x="0.0" y="16" width="200" height="438"/>
                                                     <subviews>
                                                         <textField horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="59">
-                                                            <rect key="frame" x="34" y="472" width="49" height="14"/>
+                                                            <rect key="frame" x="36" y="414" width="50" height="14"/>
                                                             <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="right" title="Created:" usesSingleLineMode="YES" id="680">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -322,7 +322,7 @@
                                                             </textFieldCell>
                                                         </textField>
                                                         <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="60">
-                                                            <rect key="frame" x="87" y="472" width="108" height="14"/>
+                                                            <rect key="frame" x="90" y="414" width="99" height="14"/>
                                                             <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="left" title="2005-03-19 00:00" usesSingleLineMode="YES" id="681">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -338,7 +338,7 @@
                                                             </connections>
                                                         </textField>
                                                         <textField horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="62">
-                                                            <rect key="frame" x="29" y="450" width="54" height="14"/>
+                                                            <rect key="frame" x="32" y="392" width="54" height="14"/>
                                                             <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="right" title="Modified:" usesSingleLineMode="YES" id="683">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -346,15 +346,15 @@
                                                             </textFieldCell>
                                                         </textField>
                                                         <textField horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="413">
-                                                            <rect key="frame" x="41" y="406" width="42" height="14"/>
+                                                            <rect key="frame" x="44" y="348" width="42" height="14"/>
                                                             <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="right" title="Owner:" usesSingleLineMode="YES" id="689">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
                                                         </textField>
-                                                        <textField horizontalHuggingPriority="750" placeholderIntrinsicWidth="56" placeholderIntrinsicHeight="14" translatesAutoresizingMaskIntoConstraints="NO" id="412">
-                                                            <rect key="frame" x="87" y="406" width="60" height="14"/>
+                                                        <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="412">
+                                                            <rect key="frame" x="90" y="348" width="59" height="14"/>
                                                             <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="left" title="nakamuxu" id="688">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -369,15 +369,15 @@
                                                             </connections>
                                                         </textField>
                                                         <textField horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="rnY-fh-C8a">
-                                                            <rect key="frame" x="32" y="428" width="51" height="14"/>
+                                                            <rect key="frame" x="34" y="370" width="52" height="14"/>
                                                             <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="right" title="File Size:" usesSingleLineMode="YES" id="U0l-4r-6ZD">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
                                                         </textField>
-                                                        <textField horizontalHuggingPriority="750" placeholderIntrinsicWidth="35" placeholderIntrinsicHeight="14" translatesAutoresizingMaskIntoConstraints="NO" id="yGj-rp-wdm">
-                                                            <rect key="frame" x="87" y="428" width="39" height="14"/>
+                                                        <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="yGj-rp-wdm">
+                                                            <rect key="frame" x="90" y="370" width="40" height="14"/>
                                                             <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="left" title="7.1 KB" id="7Jy-4m-8DH">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -393,15 +393,15 @@
                                                             </connections>
                                                         </textField>
                                                         <textField horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="102">
-                                                            <rect key="frame" x="18" y="384" width="65" height="14"/>
+                                                            <rect key="frame" x="20" y="326" width="66" height="14"/>
                                                             <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="right" title="Permission:" usesSingleLineMode="YES" id="685">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
                                                         </textField>
-                                                        <textField horizontalHuggingPriority="750" placeholderIntrinsicWidth="21" placeholderIntrinsicHeight="14" translatesAutoresizingMaskIntoConstraints="NO" id="101">
-                                                            <rect key="frame" x="87" y="384" width="25" height="14"/>
+                                                        <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="101">
+                                                            <rect key="frame" x="90" y="326" width="24" height="14"/>
                                                             <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="left" title="420" id="684">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -416,15 +416,15 @@
                                                             </connections>
                                                         </textField>
                                                         <textField horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="114">
-                                                            <rect key="frame" x="6" y="362" width="77" height="14"/>
+                                                            <rect key="frame" x="6" y="304" width="80" height="14"/>
                                                             <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="right" title="Finder's Lock:" usesSingleLineMode="YES" id="687">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
                                                         </textField>
-                                                        <textField horizontalHuggingPriority="750" placeholderIntrinsicWidth="14" placeholderIntrinsicHeight="14" translatesAutoresizingMaskIntoConstraints="NO" id="110">
-                                                            <rect key="frame" x="87" y="362" width="18" height="14"/>
+                                                        <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="110">
+                                                            <rect key="frame" x="90" y="304" width="16" height="14"/>
                                                             <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="left" title=" - " id="686">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -439,15 +439,15 @@
                                                             </connections>
                                                         </textField>
                                                         <textField horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="41">
-                                                            <rect key="frame" x="35" y="340" width="48" height="14"/>
+                                                            <rect key="frame" x="39" y="282" width="47" height="14"/>
                                                             <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="right" title="Creator:" usesSingleLineMode="YES" id="672">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
                                                         </textField>
-                                                        <textField horizontalHuggingPriority="750" placeholderIntrinsicWidth="31" placeholderIntrinsicHeight="14" translatesAutoresizingMaskIntoConstraints="NO" id="43">
-                                                            <rect key="frame" x="87" y="340" width="35" height="14"/>
+                                                        <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="43">
+                                                            <rect key="frame" x="90" y="282" width="38" height="14"/>
                                                             <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="left" title="'cEd1'" id="674">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -462,15 +462,15 @@
                                                             </connections>
                                                         </textField>
                                                         <textField horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="42">
-                                                            <rect key="frame" x="50" y="318" width="33" height="14"/>
+                                                            <rect key="frame" x="53" y="260" width="33" height="14"/>
                                                             <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="right" title="Type:" usesSingleLineMode="YES" id="673">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
                                                         </textField>
-                                                        <textField horizontalHuggingPriority="750" placeholderIntrinsicWidth="32" placeholderIntrinsicHeight="14" translatesAutoresizingMaskIntoConstraints="NO" id="47">
-                                                            <rect key="frame" x="87" y="318" width="36" height="14"/>
+                                                        <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="47">
+                                                            <rect key="frame" x="90" y="260" width="39" height="14"/>
                                                             <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="left" title="'TEXT'" id="675">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -485,21 +485,21 @@
                                                             </connections>
                                                         </textField>
                                                         <box verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="50">
-                                                            <rect key="frame" x="20" y="307" width="160" height="5"/>
+                                                            <rect key="frame" x="20" y="249" width="160" height="5"/>
                                                             <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                                                             <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                             <font key="titleFont" metaFont="system"/>
                                                         </box>
                                                         <textField horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="507">
-                                                            <rect key="frame" x="26" y="287" width="57" height="14"/>
+                                                            <rect key="frame" x="28" y="229" width="58" height="14"/>
                                                             <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="right" title="Encoding:" usesSingleLineMode="YES" id="692">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
                                                         </textField>
-                                                        <textField horizontalHuggingPriority="750" placeholderIntrinsicWidth="29" placeholderIntrinsicHeight="14" translatesAutoresizingMaskIntoConstraints="NO" id="510">
-                                                            <rect key="frame" x="87" y="287" width="33" height="14"/>
+                                                        <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="510">
+                                                            <rect key="frame" x="90" y="229" width="30" height="14"/>
                                                             <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="left" title="utf-8" id="695">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -510,15 +510,15 @@
                                                             </connections>
                                                         </textField>
                                                         <textField horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="509">
-                                                            <rect key="frame" x="8" y="265" width="75" height="14"/>
+                                                            <rect key="frame" x="10" y="207" width="76" height="14"/>
                                                             <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="right" title="Line Endings:" usesSingleLineMode="YES" id="694">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
                                                         </textField>
-                                                        <textField horizontalHuggingPriority="750" placeholderIntrinsicWidth="12" placeholderIntrinsicHeight="14" translatesAutoresizingMaskIntoConstraints="NO" id="508">
-                                                            <rect key="frame" x="87" y="265" width="16" height="14"/>
+                                                        <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="508">
+                                                            <rect key="frame" x="90" y="207" width="18" height="14"/>
                                                             <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="left" title="LF" id="693">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -529,21 +529,21 @@
                                                             </connections>
                                                         </textField>
                                                         <box verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="511">
-                                                            <rect key="frame" x="20" y="232" width="160" height="5"/>
+                                                            <rect key="frame" x="20" y="174" width="160" height="5"/>
                                                             <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                                                             <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                             <font key="titleFont" metaFont="system"/>
                                                         </box>
                                                         <textField horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="39">
-                                                            <rect key="frame" x="48" y="212" width="35" height="14"/>
+                                                            <rect key="frame" x="50" y="154" width="36" height="14"/>
                                                             <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="right" title="Lines:" usesSingleLineMode="YES" id="670">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
                                                         </textField>
-                                                        <textField horizontalHuggingPriority="750" placeholderIntrinsicWidth="14" placeholderIntrinsicHeight="14" translatesAutoresizingMaskIntoConstraints="NO" id="48">
-                                                            <rect key="frame" x="87" y="212" width="18" height="14"/>
+                                                        <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="48">
+                                                            <rect key="frame" x="90" y="154" width="18" height="14"/>
                                                             <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="left" title="57" id="676">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -554,15 +554,15 @@
                                                             </connections>
                                                         </textField>
                                                         <textField horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="40">
-                                                            <rect key="frame" x="18" y="190" width="65" height="14"/>
+                                                            <rect key="frame" x="20" y="132" width="66" height="14"/>
                                                             <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="right" title="Characters:" usesSingleLineMode="YES" id="671">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
                                                         </textField>
-                                                        <textField horizontalHuggingPriority="750" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="14" translatesAutoresizingMaskIntoConstraints="NO" id="49">
-                                                            <rect key="frame" x="87" y="190" width="64" height="14"/>
+                                                        <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="49">
+                                                            <rect key="frame" x="90" y="132" width="60" height="14"/>
                                                             <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="left" title="1024 (512)" id="677">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -573,15 +573,15 @@
                                                             </connections>
                                                         </textField>
                                                         <textField horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="661">
-                                                            <rect key="frame" x="42" y="146" width="41" height="14"/>
+                                                            <rect key="frame" x="45" y="88" width="41" height="14"/>
                                                             <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="right" title="Words:" usesSingleLineMode="YES" id="696">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
                                                         </textField>
-                                                        <textField horizontalHuggingPriority="750" placeholderIntrinsicWidth="39" placeholderIntrinsicHeight="14" translatesAutoresizingMaskIntoConstraints="NO" id="662">
-                                                            <rect key="frame" x="87" y="146" width="43" height="14"/>
+                                                        <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="662">
+                                                            <rect key="frame" x="90" y="88" width="40" height="14"/>
                                                             <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="left" title="64 (32)" id="697">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -592,15 +592,15 @@
                                                             </connections>
                                                         </textField>
                                                         <textField horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="ow1-GK-ghb">
-                                                            <rect key="frame" x="39" y="168" width="44" height="14"/>
+                                                            <rect key="frame" x="42" y="110" width="44" height="14"/>
                                                             <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="right" title="Length:" usesSingleLineMode="YES" id="g8t-es-vog">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
                                                         </textField>
-                                                        <textField horizontalHuggingPriority="750" placeholderIntrinsicWidth="53" placeholderIntrinsicHeight="14" translatesAutoresizingMaskIntoConstraints="NO" id="ebI-bs-8Yh">
-                                                            <rect key="frame" x="87" y="168" width="57" height="14"/>
+                                                        <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ebI-bs-8Yh">
+                                                            <rect key="frame" x="90" y="110" width="53" height="14"/>
                                                             <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="left" title="768 (256)" id="mfy-KP-V66">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -611,15 +611,15 @@
                                                             </connections>
                                                         </textField>
                                                         <textField horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="57">
-                                                            <rect key="frame" x="9" y="124" width="74" height="14"/>
+                                                            <rect key="frame" x="13" y="66" width="73" height="14"/>
                                                             <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="right" title="Current Line:" usesSingleLineMode="YES" id="679">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
                                                         </textField>
-                                                        <textField horizontalHuggingPriority="750" placeholderIntrinsicWidth="14" placeholderIntrinsicHeight="14" translatesAutoresizingMaskIntoConstraints="NO" id="56">
-                                                            <rect key="frame" x="87" y="124" width="18" height="14"/>
+                                                        <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="56">
+                                                            <rect key="frame" x="90" y="66" width="18" height="14"/>
                                                             <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="left" title="28" id="678">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -631,15 +631,15 @@
                                                             </connections>
                                                         </textField>
                                                         <textField horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="z2Y-UV-cNg">
-                                                            <rect key="frame" x="30" y="102" width="53" height="14"/>
+                                                            <rect key="frame" x="32" y="44" width="54" height="14"/>
                                                             <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="right" title="Location:" usesSingleLineMode="YES" id="7Eo-jA-QRt">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
                                                         </textField>
-                                                        <textField horizontalHuggingPriority="750" placeholderIntrinsicWidth="21" placeholderIntrinsicHeight="14" translatesAutoresizingMaskIntoConstraints="NO" id="0Kr-Eu-Nrg">
-                                                            <rect key="frame" x="87" y="102" width="25" height="14"/>
+                                                        <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0Kr-Eu-Nrg">
+                                                            <rect key="frame" x="90" y="44" width="24" height="14"/>
                                                             <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="left" title="512" id="mVC-rQ-i21">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -655,15 +655,15 @@
                                                             </connections>
                                                         </textField>
                                                         <textField horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="kud-ZS-Iyb">
-                                                            <rect key="frame" x="32" y="58" width="51" height="14"/>
+                                                            <rect key="frame" x="34" y="0.0" width="52" height="14"/>
                                                             <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="right" title="Unicode:" usesSingleLineMode="YES" id="j5R-qU-f98">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
                                                         </textField>
-                                                        <textField horizontalHuggingPriority="750" placeholderIntrinsicWidth="42" placeholderIntrinsicHeight="14" translatesAutoresizingMaskIntoConstraints="NO" id="x7g-Fl-5xS">
-                                                            <rect key="frame" x="87" y="58" width="46" height="14"/>
+                                                        <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="x7g-Fl-5xS">
+                                                            <rect key="frame" x="90" y="0.0" width="43" height="14"/>
                                                             <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="left" title="0x0058" id="tXh-H6-FHO">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -678,15 +678,15 @@
                                                             </connections>
                                                         </textField>
                                                         <textField horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="0c5-6r-R0b">
-                                                            <rect key="frame" x="13" y="243" width="70" height="14"/>
+                                                            <rect key="frame" x="14" y="185" width="72" height="14"/>
                                                             <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="right" title="Byte Length:" usesSingleLineMode="YES" id="oVh-Ta-PXw">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
                                                         </textField>
-                                                        <textField horizontalHuggingPriority="750" placeholderIntrinsicWidth="28" placeholderIntrinsicHeight="14" translatesAutoresizingMaskIntoConstraints="NO" id="tS4-iD-RkH">
-                                                            <rect key="frame" x="87" y="243" width="32" height="14"/>
+                                                        <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tS4-iD-RkH">
+                                                            <rect key="frame" x="90" y="185" width="31" height="14"/>
                                                             <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="left" title="1024" id="tNJ-wU-pMq">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -701,15 +701,15 @@
                                                             </connections>
                                                         </textField>
                                                         <textField horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="446">
-                                                            <rect key="frame" x="34" y="80" width="49" height="14"/>
+                                                            <rect key="frame" x="37" y="22" width="49" height="14"/>
                                                             <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="right" title="Column:" usesSingleLineMode="YES" id="691">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
                                                         </textField>
-                                                        <textField horizontalHuggingPriority="750" placeholderIntrinsicWidth="7" placeholderIntrinsicHeight="14" translatesAutoresizingMaskIntoConstraints="NO" id="445">
-                                                            <rect key="frame" x="87" y="80" width="11" height="14"/>
+                                                        <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="445">
+                                                            <rect key="frame" x="90" y="22" width="11" height="14"/>
                                                             <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="left" title="8" id="690">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -725,7 +725,7 @@
                                                             </connections>
                                                         </textField>
                                                         <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="61">
-                                                            <rect key="frame" x="87" y="450" width="108" height="14"/>
+                                                            <rect key="frame" x="90" y="392" width="99" height="14"/>
                                                             <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="left" title="2014-03-19 00:00" usesSingleLineMode="YES" id="682">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -756,6 +756,7 @@
                                                         <constraint firstItem="412" firstAttribute="leading" secondItem="413" secondAttribute="trailing" constant="8" symbolic="YES" id="7qg-n6-yYt"/>
                                                         <constraint firstItem="ow1-GK-ghb" firstAttribute="trailing" secondItem="0c5-6r-R0b" secondAttribute="trailing" id="AsW-9E-Vmu"/>
                                                         <constraint firstItem="39" firstAttribute="baseline" secondItem="48" secondAttribute="baseline" id="AtR-6N-R5l"/>
+                                                        <constraint firstAttribute="bottom" secondItem="kud-ZS-Iyb" secondAttribute="bottom" id="CAn-YJ-fev"/>
                                                         <constraint firstItem="57" firstAttribute="top" secondItem="661" secondAttribute="bottom" constant="8" symbolic="YES" id="D6K-Tg-1OS"/>
                                                         <constraint firstItem="48" firstAttribute="leading" secondItem="39" secondAttribute="trailing" constant="8" symbolic="YES" id="Dca-PZ-Ekz"/>
                                                         <constraint firstItem="z2Y-UV-cNg" firstAttribute="baseline" secondItem="0Kr-Eu-Nrg" secondAttribute="baseline" id="E48-zW-7X2"/>
@@ -832,7 +833,6 @@
                                                 </customView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="108" secondAttribute="bottom" id="8s1-nP-GAh"/>
                                                 <constraint firstAttribute="trailing" secondItem="108" secondAttribute="trailing" id="GfJ-LN-5jx"/>
                                                 <constraint firstItem="108" firstAttribute="top" secondItem="xGI-c5-td8" secondAttribute="top" constant="5" id="M8F-JR-EL5"/>
                                                 <constraint firstItem="108" firstAttribute="leading" secondItem="xGI-c5-td8" secondAttribute="leading" id="ngs-FK-Bd2"/>
@@ -842,7 +842,7 @@
                                             <rect key="frame" x="-100" y="-100" width="194" height="11"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
-                                        <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" controlSize="small" horizontal="NO" id="730">
+                                        <scroller key="verticalScroller" verticalHuggingPriority="750" controlSize="small" horizontal="NO" id="730">
                                             <rect key="frame" x="196" y="0.0" width="14" height="406"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
@@ -850,7 +850,7 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="411" secondAttribute="bottom" id="UHj-uv-wtG"/>
-                                    <constraint firstItem="411" firstAttribute="top" secondItem="118" secondAttribute="top" id="YcO-e5-rAy"/>
+                                    <constraint firstItem="411" firstAttribute="top" secondItem="118" secondAttribute="top" constant="6" id="YcO-e5-rAy"/>
                                     <constraint firstAttribute="trailing" secondItem="411" secondAttribute="trailing" id="mNz-xN-f2f"/>
                                     <constraint firstItem="411" firstAttribute="leading" secondItem="118" secondAttribute="leading" id="myt-SS-JmZ"/>
                                 </constraints>
@@ -858,13 +858,13 @@
                         </tabViewItem>
                         <tabViewItem identifier="incompatibleChar" id="117">
                             <view key="view" id="119">
-                                <rect key="frame" x="10" y="7" width="210" height="501"/>
+                                <rect key="frame" x="10" y="7" width="200" height="503"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <scrollView horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="121">
-                                        <rect key="frame" x="0.0" y="5" width="210" height="480"/>
-                                        <clipView key="contentView" id="P3B-bn-Nty">
-                                            <rect key="frame" x="1" y="17" width="197" height="448"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="200" height="487"/>
+                                        <clipView key="contentView" misplaced="YES" id="P3B-bn-Nty">
+                                            <rect key="frame" x="1" y="0.0" width="197" height="465"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="733" viewBased="YES" id="122">
@@ -957,7 +957,7 @@
                                                                 </tableCellView>
                                                             </prototypeCellViews>
                                                         </tableColumn>
-                                                        <tableColumn editable="NO" width="85" minWidth="10" maxWidth="1000" id="186">
+                                                        <tableColumn editable="NO" width="75" minWidth="10" maxWidth="1000" id="186">
                                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Converted">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -972,11 +972,11 @@
                                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                             <prototypeCellViews>
                                                                 <tableCellView id="8Ri-UW-Z99">
-                                                                    <rect key="frame" x="121" y="1" width="85" height="17"/>
+                                                                    <rect key="frame" x="121" y="1" width="75" height="17"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <subviews>
                                                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="HnR-aF-WDu">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="85" height="17"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="75" height="17"/>
                                                                             <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="bar" id="IUn-K9-sqf">
                                                                                 <font key="font" metaFont="system"/>
                                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -1014,7 +1014,7 @@
                                             <rect key="frame" x="1" y="465" width="197" height="14"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
-                                        <scroller key="verticalScroller" verticalHuggingPriority="750" controlSize="small" horizontal="NO" id="732">
+                                        <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" controlSize="small" horizontal="NO" id="732">
                                             <rect key="frame" x="198" y="17" width="11" height="448"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
@@ -1024,7 +1024,7 @@
                                         </tableHeaderView>
                                     </scrollView>
                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="150">
-                                        <rect key="frame" x="3" y="437" width="204" height="28"/>
+                                        <rect key="frame" x="3" y="439" width="194" height="28"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="28" id="kFj-ie-ciT"/>
                                         </constraints>
@@ -1036,7 +1036,7 @@
                                     </textField>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="121" secondAttribute="bottom" constant="5" id="5ot-KJ-M5j"/>
+                                    <constraint firstAttribute="bottom" secondItem="121" secondAttribute="bottom" id="5ot-KJ-M5j"/>
                                     <constraint firstItem="121" firstAttribute="top" secondItem="119" secondAttribute="top" constant="16" id="CvH-KV-4FW"/>
                                     <constraint firstAttribute="trailing" secondItem="121" secondAttribute="trailing" id="FZ6-Cg-PUo"/>
                                     <constraint firstItem="150" firstAttribute="leading" secondItem="119" secondAttribute="leading" constant="5" id="Uru-XI-74k"/>
@@ -1066,7 +1066,7 @@
                     </connections>
                 </button>
                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="142">
-                    <rect key="frame" x="18" y="546" width="185" height="26"/>
+                    <rect key="frame" x="18" y="486" width="185" height="26"/>
                     <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="700">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menu"/>
@@ -1090,9 +1090,10 @@
                 <constraint firstAttribute="trailing" secondItem="115" secondAttribute="trailing" constant="4" id="PVu-Mf-S6B"/>
                 <constraint firstItem="115" firstAttribute="top" secondItem="34" secondAttribute="top" constant="20" id="mvs-8W-ba8"/>
                 <constraint firstAttribute="trailing" secondItem="140" secondAttribute="trailing" constant="5" id="nEH-6K-o81"/>
-                <constraint firstItem="140" firstAttribute="top" secondItem="115" secondAttribute="bottom" constant="14" id="x4h-Jw-6T2"/>
+                <constraint firstItem="140" firstAttribute="top" secondItem="115" secondAttribute="bottom" constant="12" id="x4h-Jw-6T2"/>
                 <constraint firstItem="142" firstAttribute="leading" secondItem="34" secondAttribute="leading" constant="20" symbolic="YES" id="z1f-RB-gge"/>
             </constraints>
+            <point key="canvasLocation" x="267" y="289"/>
         </customView>
         <customObject id="71" customClass="CEToolbarController">
             <connections>

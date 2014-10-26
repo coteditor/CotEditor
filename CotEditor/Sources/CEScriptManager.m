@@ -228,12 +228,7 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 - (IBAction)openScriptFolder:(id)sender
 // ------------------------------------------------------
 {
-    NSURL *URL = [[NSBundle mainBundle] URLForResource:@"openScriptMenu" withExtension:@"applescript"];
-    
-    if (!URL) { return; }
-    
-    NSAppleScript *appleScript = [[NSAppleScript alloc] initWithContentsOfURL:URL error:nil];
-    [appleScript executeAndReturnError:nil];
+    [[NSWorkspace sharedWorkspace] activateFileViewerSelectingURLs:@[[CEScriptManager scriptDirectoryURL]]];
 }
 
 

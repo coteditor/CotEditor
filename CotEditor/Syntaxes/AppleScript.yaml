@@ -1,13 +1,22 @@
 extensions:
 - keyString: "applescript"
 filenames: []
-completions: []
 outlineMenu:
 - beginString: "^([\\t ]*)on[\\t ]+(\\S+\\(.*\\))"
   keyString: "$1on $2"
 - beginString: "^([\\t ]*)script[\\t ]+(\\S+)"
   keyString: "$1script $2"
   bold: true
+comments: []
+metadata:
+  distributionURL: "http://coteditor.github.io"
+  author: "1024jp"
+  license: "Same as CotEditor"
+  lastModified: "2014-10-22"
+  version: "1.0"
+numbers:
+- beginString: "\\b\\d+(\\.\\d*)?\\b"
+  regularExpression: true
 commands:
 - beginString: "\\b(abort|begin|end) transaction\\b"
   regularExpression: true
@@ -60,6 +69,8 @@ commands:
   regularExpression: true
 - beginString: "\\bmount volume\\b"
   regularExpression: true
+- beginString: "\\bnormalize unicode\\b"
+  regularExpression: true
 - beginString: "\\bopen for access\\b"
   regularExpression: true
 - beginString: "\\bopen location\\b"
@@ -96,8 +107,6 @@ commands:
   regularExpression: true
 - beginString: "\\btime to GMT\\b"
   regularExpression: true
-- beginString: "\\bunicode normalization\\b"
-  regularExpression: true
 - beginString: "activate"
 - beginString: "beep"
 - beginString: "click"
@@ -116,6 +125,7 @@ commands:
 - beginString: "empty"
 - beginString: "erase"
 - beginString: "exists"
+- beginString: "file"
 - beginString: "find"
 - beginString: "flip"
 - beginString: "get"
@@ -150,15 +160,6 @@ commands:
 - beginString: "unembed"
 - beginString: "update"
 - beginString: "write"
-attributes: []
-metadata:
-  author: "1024jp"
-  distributionURL: "http://coteditor.github.io"
-  version: "1.0"
-  license: "Same as CotEditor"
-  lastModified: "2014-09-24"
-characters: []
-comments: []
 values:
 - beginString: "(?<=\\&)\\s+return"
   regularExpression: true
@@ -185,36 +186,6 @@ values:
 - beginString: "true"
 - beginString: "version"
 - beginString: "warning"
-types:
-- beginString: "alias"
-- beginString: "application"
-- beginString: "applications"
-- beginString: "character"
-- beginString: "characters"
-- beginString: "class"
-- beginString: "color"
-- beginString: "document"
-- beginString: "documents"
-- beginString: "file"
-- beginString: "integer"
-- beginString: "item"
-- beginString: "items"
-- beginString: "list"
-- beginString: "paragraph"
-- beginString: "paragraphs"
-- beginString: "real"
-- beginString: "record"
-- beginString: "text"
-- beginString: "window"
-- beginString: "windows"
-- beginString: "word"
-- beginString: "words"
-numbers:
-- beginString: "\\b\\d+(\\.\\d*)?\\b"
-  regularExpression: true
-strings:
-- beginString: "\""
-  endString: "\""
 keywords:
 - beginString: "&"
 - beginString: "(?<=')s\\s"
@@ -339,6 +310,34 @@ keywords:
 - beginString: "÷"
 - beginString: "≤"
 - beginString: "≥"
+attributes: []
+strings:
+- beginString: "\""
+  endString: "\""
+types:
+- beginString: "alias"
+- beginString: "application"
+- beginString: "applications"
+- beginString: "character"
+- beginString: "characters"
+- beginString: "class"
+- beginString: "color"
+- beginString: "document"
+- beginString: "documents"
+- beginString: "file"
+- beginString: "integer"
+- beginString: "item"
+- beginString: "items"
+- beginString: "list"
+- beginString: "paragraph"
+- beginString: "paragraphs"
+- beginString: "real"
+- beginString: "record"
+- beginString: "text"
+- beginString: "window"
+- beginString: "windows"
+- beginString: "word"
+- beginString: "words"
 variables:
 - beginString: "it"
 - beginString: "me"
@@ -346,3 +345,5 @@ commentDelimiters:
   endDelimiter: "*)"
   beginDelimiter: "(*"
   inlineDelimiter: "--"
+characters: []
+completions: []

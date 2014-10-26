@@ -401,7 +401,8 @@
         }
     }
     // store current version
-    if (!lastVersion || [lastVersion isEqualToString:@"2.0.0-alpha"]) {
+    NSArray *releasedVersions = @[@"2.0.0-alpha", @"2.0.0-beta"];
+    if (!lastVersion || [releasedVersions containsObject:lastVersion]) {
         [[NSUserDefaults standardUserDefaults] setObject:version forKey:CEDefaultLastVersionKey];
     }
 }

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6206.8" systemVersion="13E28" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment defaultVersion="1070" identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6206.8"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6250"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="CEPreferencesWindowController">
@@ -15,14 +15,14 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="39" y="165" width="540" height="320"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1028"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
             <value key="minSize" type="size" width="218" height="107"/>
             <view key="contentView" id="5">
                 <rect key="frame" x="0.0" y="0.0" width="540" height="320"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="smZ-W1-fqS">
-                        <rect key="frame" x="201" y="152" width="138" height="17"/>
+                        <rect key="frame" x="200" y="152" width="140" height="17"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="No Pane is Selected." id="iXM-53-nYK">
                             <font key="font" metaFont="systemBold"/>
                             <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
@@ -37,7 +37,7 @@
             </view>
             <toolbar key="toolbar" implicitIdentifier="5EEA7197-971A-4C0B-ACF0-25FF246C03E2" autosavesConfiguration="NO" allowsUserCustomization="NO" displayMode="iconAndLabel" sizeMode="regular" id="e4w-yq-scj">
                 <allowedToolbarItems>
-                    <toolbarItem implicitItemIdentifier="5C93C654-AD65-4146-887B-9AA6629290C9" label="General" paletteLabel="General" image="Pref_General" selectable="YES" id="HlR-fr-Hwd">
+                    <toolbarItem implicitItemIdentifier="5C93C654-AD65-4146-887B-9AA6629290C9" label="General" paletteLabel="General" image="NSPreferencesGeneral" selectable="YES" id="HlR-fr-Hwd">
                         <connections>
                             <action selector="switchView:" target="-2" id="y23-ul-4nE"/>
                         </connections>
@@ -96,13 +96,13 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
     </objects>
     <resources>
-        <image name="Pref_Appearance" width="64" height="64"/>
-        <image name="Pref_Edit" width="64" height="64"/>
-        <image name="Pref_FileDrop" width="64" height="64"/>
-        <image name="Pref_Format" width="64" height="64"/>
-        <image name="Pref_General" width="64" height="64"/>
-        <image name="Pref_KeyBindings" width="64" height="64"/>
-        <image name="Pref_Print" width="64" height="64"/>
-        <image name="Pref_Window" width="64" height="64"/>
+        <image name="NSPreferencesGeneral" width="32" height="32"/>
+        <image name="Pref_Appearance" width="32" height="32"/>
+        <image name="Pref_Edit" width="32" height="32"/>
+        <image name="Pref_FileDrop" width="32" height="32"/>
+        <image name="Pref_Format" width="32" height="32"/>
+        <image name="Pref_KeyBindings" width="32" height="32"/>
+        <image name="Pref_Print" width="32" height="32"/>
+        <image name="Pref_Window" width="32" height="32"/>
     </resources>
 </document>

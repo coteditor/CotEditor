@@ -93,6 +93,7 @@
 		2A961C5618FC699E002076B6 /* Version History.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A961C4F18FC699E002076B6 /* Version History.rtf */; };
 		2A9871A919AEABDB0081BADB /* KeyBindings in Resources */ = {isa = PBXBuildFile; fileRef = 2A9871A819AEABDB0081BADB /* KeyBindings */; };
 		2AACC9591942A82900E3FF63 /* CEIndicatorSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AACC9581942A82900E3FF63 /* CEIndicatorSheetController.m */; };
+		2AAEF50819FC455C005F2AD3 /* CEClipView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AAEF50719FC455C005F2AD3 /* CEClipView.m */; };
 		2AB4326E1912ADAC00835004 /* GlyphPopover.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2AB4326C1912ADAC00835004 /* GlyphPopover.xib */; };
 		2AB432711912AF7200835004 /* CEGlyphPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AB432701912AF7200835004 /* CEGlyphPopoverController.m */; };
 		2AB432741915D6AA00835004 /* NSString+ComposedCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AB432731915D6AA00835004 /* NSString+ComposedCharacter.m */; };
@@ -114,7 +115,6 @@
 		6CA3B3E312E3B59B0019AB2E /* SampleScript in Resources */ = {isa = PBXBuildFile; fileRef = 6CA3B36012E3B59B0019AB2E /* SampleScript */; };
 		792E1BB17A7E4930ADAFB01E /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F3504B3BB02D4DBA8EA50C0E /* libPods.a */; };
 		8C081B4B07D0A85A0060191A /* GetInfo.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 8C081B4A07D0A85A0060191A /* GetInfo.tiff */; };
-		8C0F52610871861C00ABD124 /* openScriptMenu.applescript in Resources */ = {isa = PBXBuildFile; fileRef = 8C0F52600871861C00ABD124 /* openScriptMenu.applescript */; };
 		8C28CD2E081101A300733DA7 /* ScriptErrorPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C28CD2C081101A300733DA7 /* ScriptErrorPanel.xib */; };
 		8C3E2D500808E203009894D1 /* LineNumber_Hide.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 8C3E2D480808E203009894D1 /* LineNumber_Hide.tiff */; };
 		8C3E2D510808E203009894D1 /* LineNumber_Show.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 8C3E2D490808E203009894D1 /* LineNumber_Show.tiff */; };
@@ -318,6 +318,8 @@
 		2AA84DCF196381A1000BB9D3 /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/DocumentWindow.xib; sourceTree = "<group>"; };
 		2AACC9571942A82900E3FF63 /* CEIndicatorSheetController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEIndicatorSheetController.h; sourceTree = "<group>"; };
 		2AACC9581942A82900E3FF63 /* CEIndicatorSheetController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEIndicatorSheetController.m; sourceTree = "<group>"; };
+		2AAEF50619FC455C005F2AD3 /* CEClipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEClipView.h; sourceTree = "<group>"; };
+		2AAEF50719FC455C005F2AD3 /* CEClipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEClipView.m; sourceTree = "<group>"; };
 		2AB4326D1912ADAC00835004 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/GlyphPopover.xib; sourceTree = "<group>"; };
 		2AB4326F1912AF7200835004 /* CEGlyphPopoverController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEGlyphPopoverController.h; sourceTree = "<group>"; };
 		2AB432701912AF7200835004 /* CEGlyphPopoverController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEGlyphPopoverController.m; sourceTree = "<group>"; };
@@ -359,7 +361,6 @@
 		6CA3B36012E3B59B0019AB2E /* SampleScript */ = {isa = PBXFileReference; lastKnownFileType = folder; path = SampleScript; sourceTree = "<group>"; };
 		76D1C081C503B0E9585E1BD6 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "../Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		8C081B4A07D0A85A0060191A /* GetInfo.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = GetInfo.tiff; sourceTree = "<group>"; };
-		8C0F52600871861C00ABD124 /* openScriptMenu.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = openScriptMenu.applescript; sourceTree = "<group>"; };
 		8C28CD2D081101A300733DA7 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ScriptErrorPanel.xib; sourceTree = "<group>"; };
 		8C3E2D480808E203009894D1 /* LineNumber_Hide.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = LineNumber_Hide.tiff; sourceTree = "<group>"; };
 		8C3E2D490808E203009894D1 /* LineNumber_Show.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = LineNumber_Show.tiff; sourceTree = "<group>"; };
@@ -441,7 +442,6 @@
 			isa = PBXGroup;
 			children = (
 				2585914B080F503A0038F387 /* openDictionary.applescript */,
-				8C0F52600871861C00ABD124 /* openScriptMenu.applescript */,
 			);
 			name = "Internal Script";
 			path = InternalScript;
@@ -625,6 +625,8 @@
 				25B2C23507FA667400F4EFC7 /* CELineNumberView.m */,
 				25B2C24107FA68D100F4EFC7 /* CEStatusBarView.h */,
 				25B2C24207FA68D100F4EFC7 /* CEStatusBarView.m */,
+				2AAEF50619FC455C005F2AD3 /* CEClipView.h */,
+				2AAEF50719FC455C005F2AD3 /* CEClipView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -946,7 +948,6 @@
 				2A6E3F3D19B5218300A63E97 /* CotEditor.help in Resources */,
 				6C6DAE3E13833C0E007F2326 /* dsa_pub.pem in Resources */,
 				2585914D080F503A0038F387 /* openDictionary.applescript in Resources */,
-				8C0F52610871861C00ABD124 /* openScriptMenu.applescript in Resources */,
 				8D15AC2D0486D014006FF6A4 /* MainMenu.xib in Resources */,
 				8D15AC2E0486D014006FF6A4 /* DocumentWindow.xib in Resources */,
 				2A15832118E3814200601026 /* SizeSampleWindow.xib in Resources */,
@@ -1093,6 +1094,7 @@
 				2A3FB2AD18ECEFF200D9CB2C /* CESyntaxEditSheetController.m in Sources */,
 				25B2C23707FA667400F4EFC7 /* CELineNumberView.m in Sources */,
 				2AD5322A19779FD000A925CA /* CELineHeightTransformer.m in Sources */,
+				2AAEF50819FC455C005F2AD3 /* CEClipView.m in Sources */,
 				2A149DB91901788000A9D6EF /* CEPrintPaneController.m in Sources */,
 				2A149DB61901760300A9D6EF /* CEAppearancePaneController.m in Sources */,
 				25B2C24407FA68D100F4EFC7 /* CEStatusBarView.m in Sources */,
