@@ -842,7 +842,7 @@
                                             <rect key="frame" x="-100" y="-100" width="194" height="11"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
-                                        <scroller key="verticalScroller" verticalHuggingPriority="750" controlSize="small" horizontal="NO" id="730">
+                                        <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" controlSize="small" horizontal="NO" id="730">
                                             <rect key="frame" x="196" y="0.0" width="14" height="406"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
@@ -858,16 +858,16 @@
                         </tabViewItem>
                         <tabViewItem identifier="incompatibleChar" id="117">
                             <view key="view" id="119">
-                                <rect key="frame" x="10" y="7" width="200" height="503"/>
+                                <rect key="frame" x="10" y="7" width="200" height="443"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <scrollView horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="121">
-                                        <rect key="frame" x="0.0" y="0.0" width="200" height="487"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="200" height="427"/>
                                         <clipView key="contentView" misplaced="YES" id="P3B-bn-Nty">
                                             <rect key="frame" x="1" y="0.0" width="197" height="465"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
-                                                <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="733" viewBased="YES" id="122">
+                                                <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="733" viewBased="YES" id="122">
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <size key="intercellSpacing" width="3" height="2"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1024,7 +1024,7 @@
                                         </tableHeaderView>
                                     </scrollView>
                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="150">
-                                        <rect key="frame" x="3" y="439" width="194" height="28"/>
+                                        <rect key="frame" x="3" y="379" width="194" height="28"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="28" id="kFj-ie-ciT"/>
                                         </constraints>
@@ -1121,7 +1121,7 @@
                 <outlet property="view" destination="Ezm-P5-z5i" id="UCd-p0-0fe"/>
             </connections>
         </viewController>
-        <arrayController id="127" userLabel="Incompatibles Controller">
+        <arrayController automaticallyPreparesContent="YES" selectsInsertedObjects="NO" avoidsEmptySelection="NO" id="127" userLabel="Incompatibles Controller">
             <declaredKeys>
                 <string>lineNumber</string>
                 <string>incompatibleChar</string>
