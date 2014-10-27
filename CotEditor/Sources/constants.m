@@ -128,7 +128,6 @@ NSString *const CEDefaultSyntaxStyleKey = @"defaultColoringStyleName";
 NSString *const CEDefaultThemeKey = @"defaultTheme";
 NSString *const CEDefaultDelayColoringKey = @"delayColoring";
 NSString *const CEDefaultFileDropArrayKey = @"fileDropArray";
-NSString *const CEDefaultNSDragAndDropTextDelayKey = @"NSDragAndDropTextDelay";
 NSString *const CEDefaultSmartInsertAndDeleteKey = @"smartInsertAndDelete";
 NSString *const CEDefaultShouldAntialiasKey = @"shouldAntialias";
 NSString *const CEDefaultAutoCompleteKey = @"autoComplete";

@@ -133,7 +133,6 @@ extern NSString *const CEDefaultSyntaxStyleKey;
 extern NSString *const CEDefaultThemeKey;
 extern NSString *const CEDefaultDelayColoringKey;
 extern NSString *const CEDefaultFileDropArrayKey;
-extern NSString *const CEDefaultNSDragAndDropTextDelayKey;
 extern NSString *const CEDefaultSmartInsertAndDeleteKey;
 extern NSString *const CEDefaultShouldAntialiasKey;
 extern NSString *const CEDefaultAutoCompleteKey;

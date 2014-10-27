@@ -61,7 +61,7 @@
 
 @interface CEAppDelegate (Migration)
 
-- (void)migrateToVersion2;
+- (void)migrateIfNeeded;
 
 @end
 
@@ -141,7 +141,6 @@
                                CEDefaultDelayColoringKey: @NO,
                                CEDefaultFileDropArrayKey: @[@{CEFileDropExtensionsKey: @"jpg, jpeg, gif, png",
                                                               CEFileDropFormatStringKey: @"<img src=\"<<<RELATIVE-PATH>>>\" alt=\"<<<FILENAME-NOSUFFIX>>>\" title=\"<<<FILENAME-NOSUFFIX>>>\" width=\"<<<IMAGEWIDTH>>>\" height=\"<<<IMAGEHEIGHT>>>\" />"}],
-                               CEDefaultNSDragAndDropTextDelayKey: @1,
                                CEDefaultSmartInsertAndDeleteKey: @NO,
                                CEDefaultEnableSmartQuotesKey: @NO,
                                CEDefaultEnableSmartIndentKey: @YES,
@@ -390,21 +389,8 @@
     // KeyBindingManagerをセットアップ
     [[CEKeyBindingManager sharedManager] setupAtLaunching];
     
-    
-    // CotEditor 1.x系からの移行
-    // 本来ならば semantic versioning で比較をするべきだが、2.0 への移行はひとまず lastVersion の有無のみで判断を行なう
-    NSString *lastVersion = [[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultLastVersionKey];
-    NSString *version = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
-    if (!lastVersion) {
-        if ([self hasSetting]) {
-            [self migrateToVersion2];
-        }
-    }
-    // store current version
-    NSArray *releasedVersions = @[@"2.0.0-alpha", @"2.0.0-beta"];
-    if (!lastVersion || [releasedVersions containsObject:lastVersion]) {
-        [[NSUserDefaults standardUserDefaults] setObject:version forKey:CEDefaultLastVersionKey];
-    }
+    // 必要があれば移行処理を行う
+    [self migrateIfNeeded];
 }
 
 
@@ -738,6 +724,35 @@
 @implementation CEAppDelegate (Migration)
 
 //------------------------------------------------------
+/// 必要があれば移行処理を行う
+- (void)migrateIfNeeded
+//------------------------------------------------------
+{
+    NSString *lastVersion = [[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultLastVersionKey];
+    NSString *version = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
+    
+    // CotEditor 1.x系からの移行
+    // 本来ならば semantic versioning で比較をするべきだが、2.0 への移行はひとまず lastVersion の有無のみで判断を行なう
+    if (!lastVersion) {
+        if ([self hasSetting]) {
+            [self migrateToVersion2];
+        }
+    }
+    
+    // 2.0のベータ版で取りこぼした NSDragAndDropTextDelay のリセットを行う
+    if ([lastVersion hasPrefix:@"2.0.0-beta"]) {
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"NSDragAndDropTextDelay"];
+    }
+    
+    // store current version
+    NSArray *releasedVersions = @[@"2.0.0-alpha", @"2.0.0-beta"];
+    if (!lastVersion || [releasedVersions containsObject:lastVersion]) {
+        [[NSUserDefaults standardUserDefaults] setObject:version forKey:CEDefaultLastVersionKey];
+    }
+}
+
+
+//------------------------------------------------------
 /// perform migration from CotEditor 1.x to 2.0
 - (void)migrateToVersion2
 //------------------------------------------------------
@@ -750,6 +765,9 @@
     
     // reset menu keybindings setting
     [[CEKeyBindingManager sharedManager] resetMenuKeyBindings];
+    
+    // reset drag and drop text delay setting
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"NSDragAndDropTextDelay"];
 }
 
 @end

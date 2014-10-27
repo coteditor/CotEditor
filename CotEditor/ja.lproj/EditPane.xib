@@ -15,7 +15,7 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <userDefaultsController representsSharedInstance="YES" id="26" userLabel="Shared User Defaults Controller"/>
         <customView horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" id="s6I-DY-Ii0" userLabel="Edit Pane">
-            <rect key="frame" x="0.0" y="0.0" width="540" height="614"/>
+            <rect key="frame" x="0.0" y="0.0" width="540" height="590"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="870">
@@ -50,7 +50,7 @@
                     </connections>
                 </button>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="644">
-                    <rect key="frame" x="130" y="579" width="282" height="18"/>
+                    <rect key="frame" x="130" y="555" width="282" height="18"/>
                     <buttonCell key="cell" type="check" title="スマートインサート／デリートを有効にする" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3302">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" size="13" name="AquaKana"/>
@@ -59,18 +59,8 @@
                         <binding destination="26" name="value" keyPath="values.smartInsertAndDelete" id="646"/>
                     </connections>
                 </button>
-                <button translatesAutoresizingMaskIntoConstraints="NO" id="598">
-                    <rect key="frame" x="130" y="531" width="230" height="18"/>
-                    <buttonCell key="cell" type="check" title="選択テキストをすぐにドラッグ開始" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3301">
-                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" metaFont="system"/>
-                    </buttonCell>
-                    <connections>
-                        <binding destination="26" name="value" keyPath="values.NSDragAndDropTextDelay" id="601"/>
-                    </connections>
-                </button>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="mK4-4e-plf">
-                    <rect key="frame" x="130" y="555" width="256" height="18"/>
+                    <rect key="frame" x="130" y="531" width="256" height="18"/>
                     <buttonCell key="cell" type="check" title="スマート引用符／ダッシュを有効にする" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="nA4-HY-d71">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" size="13" name="AquaKana"/>
@@ -121,7 +111,7 @@
                     </connections>
                 </matrix>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="IXD-kJ-dvh">
-                    <rect key="frame" x="70" y="577" width="56" height="17"/>
+                    <rect key="frame" x="70" y="553" width="56" height="17"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="編集時：" id="SqI-BC-ar9">
                         <font key="font" size="13" name="AquaKana"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -407,7 +397,6 @@
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="z5v-7l-1C4" secondAttribute="bottom" constant="20" symbolic="YES" id="0Ke-Pr-SYk"/>
                 <constraint firstItem="E3D-ws-f4s" firstAttribute="top" secondItem="874" secondAttribute="bottom" constant="20" id="0dv-iN-FAr"/>
-                <constraint firstItem="644" firstAttribute="leading" secondItem="598" secondAttribute="leading" id="1WI-eR-rZQ"/>
                 <constraint firstItem="235" firstAttribute="baseline" secondItem="r9C-0B-mga" secondAttribute="baseline" id="2UF-ql-3mk"/>
                 <constraint firstItem="644" firstAttribute="leading" secondItem="160" secondAttribute="leading" id="2YC-uB-api"/>
                 <constraint firstItem="282" firstAttribute="baseline" secondItem="283" secondAttribute="baseline" id="2eo-GD-Kfb"/>
@@ -427,7 +416,6 @@
                 <constraint firstItem="644" firstAttribute="leading" secondItem="IXD-kJ-dvh" secondAttribute="trailing" constant="8" symbolic="YES" id="Kcl-7N-AbQ"/>
                 <constraint firstItem="NYb-54-Clb" firstAttribute="top" secondItem="dhF-Zu-Ysd" secondAttribute="bottom" constant="10" id="LQS-HT-5qw"/>
                 <constraint firstItem="z5v-7l-1C4" firstAttribute="top" secondItem="686" secondAttribute="bottom" constant="10" id="Lx4-jO-suz"/>
-                <constraint firstItem="598" firstAttribute="top" secondItem="mK4-4e-plf" secondAttribute="bottom" constant="10" id="NgJ-zt-QxU"/>
                 <constraint firstItem="dhF-Zu-Ysd" firstAttribute="top" secondItem="283" secondAttribute="bottom" constant="20" id="Oiw-gK-N1j"/>
                 <constraint firstItem="247" firstAttribute="leading" secondItem="249" secondAttribute="trailing" constant="8" symbolic="YES" id="QB9-YF-TQu"/>
                 <constraint firstItem="282" firstAttribute="centerY" secondItem="iub-4d-NyY" secondAttribute="centerY" id="QWl-29-mP4"/>
@@ -435,7 +423,6 @@
                 <constraint firstItem="644" firstAttribute="leading" secondItem="209" secondAttribute="leading" id="R0S-RG-I45"/>
                 <constraint firstItem="235" firstAttribute="leading" secondItem="r9C-0B-mga" secondAttribute="trailing" constant="8" symbolic="YES" id="R7c-hV-NqW"/>
                 <constraint firstItem="644" firstAttribute="leading" secondItem="mK4-4e-plf" secondAttribute="leading" id="SSF-Ji-WPP"/>
-                <constraint firstItem="844" firstAttribute="top" secondItem="598" secondAttribute="bottom" constant="10" id="Sv1-59-q9S"/>
                 <constraint firstItem="209" firstAttribute="leading" secondItem="4B0-Kj-mzX" secondAttribute="trailing" constant="8" symbolic="YES" id="UcK-lH-Or0"/>
                 <constraint firstItem="224" firstAttribute="leading" secondItem="247" secondAttribute="leading" id="Ucv-kh-TdC"/>
                 <constraint firstItem="160" firstAttribute="leading" secondItem="283" secondAttribute="leading" id="VwP-1c-FdO"/>
@@ -456,6 +443,7 @@
                 <constraint firstItem="244" firstAttribute="leading" secondItem="874" secondAttribute="leading" id="i2U-51-7J6"/>
                 <constraint firstItem="r9C-0B-mga" firstAttribute="leading" secondItem="s6I-DY-Ii0" secondAttribute="leading" constant="20" symbolic="YES" id="iGO-dq-4UX"/>
                 <constraint firstItem="282" firstAttribute="leading" secondItem="283" secondAttribute="trailing" constant="8" symbolic="YES" id="iOw-EV-67G"/>
+                <constraint firstItem="844" firstAttribute="top" secondItem="mK4-4e-plf" secondAttribute="bottom" constant="10" id="jZx-YO-1vL"/>
                 <constraint firstItem="mK4-4e-plf" firstAttribute="top" secondItem="644" secondAttribute="bottom" constant="10" id="jbL-02-1xF"/>
                 <constraint firstItem="209" firstAttribute="top" secondItem="870" secondAttribute="bottom" constant="20" id="kKQ-zf-Ke1"/>
                 <constraint firstItem="244" firstAttribute="leading" secondItem="69" secondAttribute="leading" id="kga-1X-UJZ"/>
