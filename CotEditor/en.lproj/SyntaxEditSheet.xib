@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6249" systemVersion="13F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6249"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6250"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="CESyntaxEditSheetController">
@@ -19,10 +19,10 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <window title="Syntax" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" visibleAtLaunch="NO" animationBehavior="default" id="6" userLabel="Edit Sheet">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
-            <rect key="contentRect" x="20" y="120" width="616" height="450"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1028"/>
+            <rect key="contentRect" x="20" y="120" width="620" height="450"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
             <view key="contentView" id="5">
-                <rect key="frame" x="0.0" y="0.0" width="616" height="450"/>
+                <rect key="frame" x="0.0" y="0.0" width="620" height="450"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <textField horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" placeholderIntrinsicWidth="74" placeholderIntrinsicHeight="17" translatesAutoresizingMaskIntoConstraints="NO" id="214">
@@ -48,7 +48,7 @@
                         </connections>
                     </textField>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" placeholderIntrinsicWidth="46" placeholderIntrinsicHeight="14" translatesAutoresizingMaskIntoConstraints="NO" id="265">
-                        <rect key="frame" x="166" y="392" width="432" height="14"/>
+                        <rect key="frame" x="166" y="392" width="436" height="14"/>
                         <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="left" title="message" id="989">
                             <font key="font" metaFont="smallSystem"/>
                             <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
@@ -123,7 +123,7 @@
                         </scroller>
                     </scrollView>
                     <tabView controlSize="mini" type="noTabsBezelBorder" translatesAutoresizingMaskIntoConstraints="NO" id="393" userLabel="Tab View">
-                        <rect key="frame" x="165" y="49" width="434" height="333"/>
+                        <rect key="frame" x="165" y="49" width="438" height="333"/>
                         <font key="font" metaFont="miniSystem"/>
                         <tabViewItems>
                             <tabViewItem label="0" identifier="Keywords" id="399" userLabel="Keywords Tab">
@@ -133,7 +133,7 @@
                                     <subviews>
                                         <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="426">
                                             <rect key="frame" x="8" y="28" width="402" height="273"/>
-                                            <clipView key="contentView" id="sXN-MI-36V">
+                                            <clipView key="contentView" misplaced="YES" id="sXN-MI-36V">
                                                 <rect key="frame" x="1" y="17" width="400" height="245"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
@@ -368,7 +368,7 @@
                                     <subviews>
                                         <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2LP-dH-Vmx">
                                             <rect key="frame" x="8" y="28" width="402" height="273"/>
-                                            <clipView key="contentView" id="6ax-cI-IpV">
+                                            <clipView key="contentView" misplaced="YES" id="6ax-cI-IpV">
                                                 <rect key="frame" x="1" y="17" width="400" height="245"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
@@ -603,7 +603,7 @@
                                     <subviews>
                                         <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H4x-jW-LJo">
                                             <rect key="frame" x="8" y="28" width="402" height="273"/>
-                                            <clipView key="contentView" id="dw8-Y9-zVa">
+                                            <clipView key="contentView" misplaced="YES" id="dw8-Y9-zVa">
                                                 <rect key="frame" x="1" y="17" width="400" height="245"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
@@ -838,7 +838,7 @@
                                     <subviews>
                                         <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vez-zi-YfS">
                                             <rect key="frame" x="8" y="28" width="402" height="273"/>
-                                            <clipView key="contentView" id="fLO-TG-ayk">
+                                            <clipView key="contentView" misplaced="YES" id="fLO-TG-ayk">
                                                 <rect key="frame" x="1" y="17" width="400" height="245"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
@@ -1073,7 +1073,7 @@
                                     <subviews>
                                         <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oAN-QX-626">
                                             <rect key="frame" x="8" y="28" width="402" height="273"/>
-                                            <clipView key="contentView" id="gZW-qT-SzC">
+                                            <clipView key="contentView" misplaced="YES" id="gZW-qT-SzC">
                                                 <rect key="frame" x="1" y="17" width="400" height="245"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
@@ -1308,7 +1308,7 @@
                                     <subviews>
                                         <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6eJ-pj-vYt">
                                             <rect key="frame" x="8" y="28" width="402" height="273"/>
-                                            <clipView key="contentView" id="MJ2-FA-fgL">
+                                            <clipView key="contentView" misplaced="YES" id="MJ2-FA-fgL">
                                                 <rect key="frame" x="1" y="17" width="400" height="245"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
@@ -1543,7 +1543,7 @@
                                     <subviews>
                                         <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="myi-of-D7u">
                                             <rect key="frame" x="8" y="28" width="402" height="273"/>
-                                            <clipView key="contentView" id="E9W-mN-ms6">
+                                            <clipView key="contentView" misplaced="YES" id="E9W-mN-ms6">
                                                 <rect key="frame" x="1" y="17" width="400" height="245"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
@@ -1778,7 +1778,7 @@
                                     <subviews>
                                         <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sfv-uq-QT9">
                                             <rect key="frame" x="8" y="28" width="402" height="273"/>
-                                            <clipView key="contentView" id="Yoq-mC-rwh">
+                                            <clipView key="contentView" misplaced="YES" id="Yoq-mC-rwh">
                                                 <rect key="frame" x="1" y="17" width="400" height="245"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
@@ -2013,7 +2013,7 @@
                                     <subviews>
                                         <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k1z-kR-cFh">
                                             <rect key="frame" x="8" y="28" width="402" height="273"/>
-                                            <clipView key="contentView" id="Xdr-o0-cGt">
+                                            <clipView key="contentView" misplaced="YES" id="Xdr-o0-cGt">
                                                 <rect key="frame" x="1" y="17" width="400" height="245"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
@@ -2248,7 +2248,7 @@
                                     <subviews>
                                         <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="395">
                                             <rect key="frame" x="8" y="28" width="402" height="166"/>
-                                            <clipView key="contentView" id="O5U-0X-IG1">
+                                            <clipView key="contentView" misplaced="YES" id="O5U-0X-IG1">
                                                 <rect key="frame" x="1" y="17" width="400" height="138"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
@@ -2590,7 +2590,7 @@
                                     <subviews>
                                         <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="718">
                                             <rect key="frame" x="8" y="48" width="364" height="235"/>
-                                            <clipView key="contentView" id="qOn-S9-pts">
+                                            <clipView key="contentView" misplaced="YES" id="qOn-S9-pts">
                                                 <rect key="frame" x="1" y="17" width="362" height="207"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
@@ -2694,7 +2694,7 @@
                                                 <rect key="frame" x="-100" y="-100" width="317" height="15"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
-                                            <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="1068">
+                                            <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="1068">
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
                                             <tableHeaderView key="headerView" id="1067">
@@ -2960,7 +2960,7 @@
                                     <subviews>
                                         <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="770">
                                             <rect key="frame" x="8" y="28" width="402" height="255"/>
-                                            <clipView key="contentView" id="FoM-MD-dYE">
+                                            <clipView key="contentView" misplaced="YES" id="FoM-MD-dYE">
                                                 <rect key="frame" x="1" y="17" width="400" height="227"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
@@ -3027,7 +3027,7 @@
                                                 <rect key="frame" x="-100" y="-100" width="317" height="15"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
-                                            <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="1077">
+                                            <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="1077">
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
                                             <tableHeaderView key="headerView" id="1076">
@@ -3089,12 +3089,12 @@
                             </tabViewItem>
                             <tabViewItem label="13" identifier="Mapping" id="418" userLabel="File Mapping Tab">
                                 <view key="view" id="431">
-                                    <rect key="frame" x="10" y="7" width="414" height="313"/>
+                                    <rect key="frame" x="10" y="7" width="418" height="313"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="441">
                                             <rect key="frame" x="8" y="28" width="160" height="255"/>
-                                            <clipView key="contentView" id="VBZ-tv-K8t">
+                                            <clipView key="contentView" misplaced="YES" id="VBZ-tv-K8t">
                                                 <rect key="frame" x="1" y="17" width="162" height="231"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
@@ -3164,7 +3164,7 @@
                                             <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" controlSize="small" horizontal="YES" id="1049">
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
-                                            <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" controlSize="small" horizontal="NO" id="1051">
+                                            <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" controlSize="small" horizontal="NO" id="1051">
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
                                             <tableHeaderView key="headerView" id="1050">
@@ -3174,7 +3174,7 @@
                                         </scrollView>
                                         <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HWp-47-IFV">
                                             <rect key="frame" x="176" y="28" width="230" height="135"/>
-                                            <clipView key="contentView" id="6Ia-4j-BJv">
+                                            <clipView key="contentView" misplaced="YES" id="6Ia-4j-BJv">
                                                 <rect key="frame" x="1" y="17" width="228" height="107"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
@@ -3244,7 +3244,7 @@
                                                 <rect key="frame" x="1" y="110" width="228" height="14"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
-                                            <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" controlSize="small" horizontal="NO" id="ECs-wP-w2Y">
+                                            <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" controlSize="small" horizontal="NO" id="ECs-wP-w2Y">
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
                                             <tableHeaderView key="headerView" id="1z5-Gk-zB8">
@@ -3643,7 +3643,7 @@
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="92">
-                        <rect key="frame" x="402" y="13" width="100" height="32"/>
+                        <rect key="frame" x="406" y="13" width="100" height="32"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="88" id="x0S-8Z-Pds"/>
                         </constraints>
@@ -3659,7 +3659,7 @@ Gw
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" tag="100" translatesAutoresizingMaskIntoConstraints="NO" id="91">
-                        <rect key="frame" x="502" y="13" width="100" height="32"/>
+                        <rect key="frame" x="506" y="13" width="100" height="32"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="88" id="G4m-eb-Ixf"/>
                         </constraints>
@@ -3932,8 +3932,8 @@ DQ
         </objectController>
     </objects>
     <resources>
-        <image name="NSAddTemplate" width="8" height="8"/>
-        <image name="NSInvalidDataFreestandingTemplate" width="18" height="18"/>
-        <image name="NSRemoveTemplate" width="8" height="8"/>
+        <image name="NSAddTemplate" width="11" height="11"/>
+        <image name="NSInvalidDataFreestandingTemplate" width="14" height="14"/>
+        <image name="NSRemoveTemplate" width="11" height="11"/>
     </resources>
 </document>
