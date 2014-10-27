@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6249" systemVersion="13F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6249"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6250"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="CEKeyBindingsPaneController">
@@ -14,7 +14,7 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <userDefaultsController representsSharedInstance="YES" id="26" userLabel="Shared User Defaults Controller"/>
         <customView horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" id="748" userLabel="Key Bindings Pane">
-            <rect key="frame" x="0.0" y="0.0" width="540" height="331"/>
+            <rect key="frame" x="0.0" y="0.0" width="540" height="333"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <button horizontalHuggingPriority="750" verticalHuggingPriority="750" tag="6" translatesAutoresizingMaskIntoConstraints="NO" id="2356">
@@ -28,7 +28,7 @@
                     </connections>
                 </button>
                 <box titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="718">
-                    <rect key="frame" x="17" y="47" width="506" height="126"/>
+                    <rect key="frame" x="17" y="49" width="506" height="126"/>
                     <view key="contentView">
                         <rect key="frame" x="2" y="2" width="502" height="122"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -63,7 +63,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="726">
-                                <rect key="frame" x="14" y="35" width="324" height="28"/>
+                                <rect key="frame" x="14" y="35" width="323" height="28"/>
                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="3366">
                                     <font key="font" metaFont="smallSystem"/>
                                     <string key="title">This setting is NOT for standard Cocoa key bindings but for 
@@ -89,7 +89,7 @@ CotEditor's original methods.</string>
                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </box>
                 <box titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="716">
-                    <rect key="frame" x="17" y="187" width="506" height="126"/>
+                    <rect key="frame" x="17" y="189" width="506" height="126"/>
                     <view key="contentView">
                         <rect key="frame" x="2" y="2" width="502" height="122"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -115,8 +115,8 @@ CotEditor's original methods.</string>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" placeholderIntrinsicWidth="119" placeholderIntrinsicHeight="17" translatesAutoresizingMaskIntoConstraints="NO" id="713">
-                                <rect key="frame" x="14" y="93" width="123" height="17"/>
+                            <textField horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" placeholderIntrinsicWidth="120" placeholderIntrinsicHeight="17" translatesAutoresizingMaskIntoConstraints="NO" id="713">
+                                <rect key="frame" x="14" y="93" width="124" height="17"/>
                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" title="Menu Key Bindings" usesSingleLineMode="YES" id="3359">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -124,7 +124,7 @@ CotEditor's original methods.</string>
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="835">
-                                <rect key="frame" x="14" y="49" width="260" height="14"/>
+                                <rect key="frame" x="14" y="49" width="258" height="14"/>
                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="This setting does not include script menu items." id="3362">
                                     <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
@@ -155,7 +155,7 @@ CotEditor's original methods.</string>
                 <constraint firstAttribute="bottom" secondItem="2356" secondAttribute="bottom" constant="20" symbolic="YES" id="GyS-OX-S6C"/>
                 <constraint firstAttribute="trailing" secondItem="2356" secondAttribute="trailing" constant="20" symbolic="YES" id="Mck-Fv-9Xz"/>
                 <constraint firstItem="716" firstAttribute="leading" secondItem="748" secondAttribute="leading" constant="20" symbolic="YES" id="cEL-PO-psC"/>
-                <constraint firstItem="2356" firstAttribute="top" secondItem="718" secondAttribute="bottom" constant="10" id="dzy-ni-y9U"/>
+                <constraint firstItem="2356" firstAttribute="top" secondItem="718" secondAttribute="bottom" constant="12" symbolic="YES" id="dzy-ni-y9U"/>
                 <constraint firstAttribute="trailing" secondItem="716" secondAttribute="trailing" constant="20" symbolic="YES" id="mKP-VT-4Cq"/>
                 <constraint firstItem="718" firstAttribute="leading" secondItem="748" secondAttribute="leading" constant="20" symbolic="YES" id="wEI-r5-3Rn"/>
             </constraints>

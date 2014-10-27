@@ -361,7 +361,7 @@
                 <constraint firstItem="313" firstAttribute="centerY" secondItem="ff5-dQ-geo" secondAttribute="centerY" id="M3y-5l-LG0"/>
                 <constraint firstItem="ErI-yf-OgH" firstAttribute="leading" secondItem="198" secondAttribute="trailing" constant="8" symbolic="YES" id="NCN-Zb-A0L"/>
                 <constraint firstItem="415" firstAttribute="trailing" secondItem="423" secondAttribute="trailing" id="OCa-Df-bFW"/>
-                <constraint firstItem="305" firstAttribute="top" secondItem="198" secondAttribute="bottom" constant="10" id="PRA-Wf-g9H"/>
+                <constraint firstItem="305" firstAttribute="top" secondItem="198" secondAttribute="bottom" constant="10" symbolic="YES" id="PRA-Wf-g9H"/>
                 <constraint firstItem="584" firstAttribute="centerY" secondItem="585" secondAttribute="centerY" id="QBc-rF-mcp"/>
                 <constraint firstItem="416" firstAttribute="leading" secondItem="415" secondAttribute="trailing" constant="8" symbolic="YES" id="QPO-c2-Ndp"/>
                 <constraint firstItem="256" firstAttribute="top" secondItem="303" secondAttribute="bottom" constant="10" id="Ss5-Pi-jim"/>
@@ -377,7 +377,7 @@
                 <constraint firstItem="321" firstAttribute="centerY" secondItem="296" secondAttribute="centerY" id="gR7-c1-6QC"/>
                 <constraint firstItem="ff5-dQ-geo" firstAttribute="leading" secondItem="313" secondAttribute="trailing" constant="8" symbolic="YES" id="iF7-9t-xwc"/>
                 <constraint firstItem="295" firstAttribute="top" secondItem="304" secondAttribute="bottom" constant="8" symbolic="YES" id="iH3-EQ-EN1"/>
-                <constraint firstItem="321" firstAttribute="top" secondItem="313" secondAttribute="bottom" constant="10" id="jPv-78-GLp"/>
+                <constraint firstItem="321" firstAttribute="top" secondItem="313" secondAttribute="bottom" constant="10" symbolic="YES" id="jPv-78-GLp"/>
                 <constraint firstItem="216" firstAttribute="top" secondItem="305" secondAttribute="bottom" constant="8" id="kiW-JN-2di"/>
                 <constraint firstItem="305" firstAttribute="width" secondItem="321" secondAttribute="width" id="lAU-Bw-y2p"/>
                 <constraint firstItem="416" firstAttribute="centerY" secondItem="415" secondAttribute="centerY" id="lib-zJ-PEP"/>

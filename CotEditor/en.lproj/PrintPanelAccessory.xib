@@ -69,12 +69,12 @@
                     <constraints>
                         <constraint firstAttribute="width" constant="210" id="e5i-sG-u4f"/>
                     </constraints>
-                    <popUpButtonCell key="cell" type="push" title="Don't Print" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="420" id="717">
+                    <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="717">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menu"/>
                         <menu key="menu" title="OtherViews" id="417">
                             <items>
-                                <menuItem title="Don't Print" state="on" id="420"/>
+                                <menuItem title="Don't Print" id="420"/>
                                 <menuItem title="Same as document's setting" id="419"/>
                                 <menuItem title="Print" id="418"/>
                             </items>
@@ -361,7 +361,7 @@
                 <constraint firstItem="415" firstAttribute="leading" secondItem="196" secondAttribute="leading" constant="20" symbolic="YES" id="MKj-9x-PWP"/>
                 <constraint firstItem="585" firstAttribute="baseline" secondItem="6jK-7i-UaO" secondAttribute="baseline" id="MLb-XP-yQc"/>
                 <constraint firstItem="ErI-yf-OgH" firstAttribute="leading" secondItem="198" secondAttribute="trailing" constant="8" symbolic="YES" id="NCN-Zb-A0L"/>
-                <constraint firstItem="305" firstAttribute="top" secondItem="198" secondAttribute="bottom" constant="10" id="PRA-Wf-g9H"/>
+                <constraint firstItem="305" firstAttribute="top" secondItem="198" secondAttribute="bottom" constant="10" symbolic="YES" id="PRA-Wf-g9H"/>
                 <constraint firstItem="416" firstAttribute="leading" secondItem="415" secondAttribute="trailing" constant="8" symbolic="YES" id="QPO-c2-Ndp"/>
                 <constraint firstItem="256" firstAttribute="top" secondItem="303" secondAttribute="bottom" constant="8" symbolic="YES" id="Ss5-Pi-jim"/>
                 <constraint firstItem="313" firstAttribute="centerY" secondItem="295" secondAttribute="centerY" id="THZ-8C-rvC"/>
@@ -377,7 +377,7 @@
                 <constraint firstItem="276" firstAttribute="leading" secondItem="196" secondAttribute="leading" constant="20" symbolic="YES" id="fD4-tE-804"/>
                 <constraint firstItem="321" firstAttribute="centerY" secondItem="296" secondAttribute="centerY" id="gR7-c1-6QC"/>
                 <constraint firstItem="ff5-dQ-geo" firstAttribute="leading" secondItem="313" secondAttribute="trailing" constant="8" symbolic="YES" id="iF7-9t-xwc"/>
-                <constraint firstItem="321" firstAttribute="top" secondItem="313" secondAttribute="bottom" constant="10" id="jPv-78-GLp"/>
+                <constraint firstItem="321" firstAttribute="top" secondItem="313" secondAttribute="bottom" constant="10" symbolic="YES" id="jPv-78-GLp"/>
                 <constraint firstItem="216" firstAttribute="top" secondItem="305" secondAttribute="bottom" constant="8" id="kiW-JN-2di"/>
                 <constraint firstItem="585" firstAttribute="leading" secondItem="6jK-7i-UaO" secondAttribute="trailing" constant="8" symbolic="YES" id="kvb-Xw-XM2"/>
                 <constraint firstItem="305" firstAttribute="width" secondItem="321" secondAttribute="width" id="lAU-Bw-y2p"/>
