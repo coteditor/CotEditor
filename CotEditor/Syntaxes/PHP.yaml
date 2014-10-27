@@ -6192,7 +6192,7 @@ keywords:
 - beginString: "xor"
 - beginString: "yield"
 variables:
-- beginString: "&?\\$[a-zA-Z_\xA5x7f-\xA5xff][a-zA-Z0-9_\xA5x7f-\xA5x"
+- beginString: "&?\\$[a-zA-Z_¥x7f-¥xff][a-zA-Z0-9_¥x7f-¥xff]*"
   regularExpression: true
 - beginString: "(?<=->)\\s*[a-zA-Z_\\x7f-\\xff][a-zA-Z0-9_\\x7f-\\xff]*+(?!\\s*\\()"
   regularExpression: true
