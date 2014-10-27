@@ -447,7 +447,6 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
     
     for (NSString *key in syntaxDictKeys) {
         NSArray *array = style[key];
-        NSString *arrayNameDeletingArray = [key substringToIndex:([key length] - 5)];
         
         for (NSDictionary *dict in array) {
             NSString *beginStr = dict[CESyntaxBeginStringKey];
@@ -457,25 +456,25 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
                 ((!tmpEndStr && !endStr) || [tmpEndStr isEqualToString:endStr])) {
                 [errorMessages addObject:[NSString stringWithFormat:
                                           @"%@ :(Begin string) > %@\n  >>> multiple registered.",
-                                          arrayNameDeletingArray, beginStr]];
+                                          key, beginStr]];
                 
             } else if ([dict[CESyntaxRegularExpressionKey] boolValue]) {
                 NSInteger capCount = [beginStr captureCountWithOptions:RKLNoOptions error:&error];
                 if (capCount == -1) { // エラーのとき
                     [errorMessages addObject:[NSString stringWithFormat:
                                               @"%@ :(Begin string) > %@\n  >>> Error \"%@\" in column %@: %@<<HERE>>%@",
-                                              arrayNameDeletingArray, beginStr,
+                                              key, beginStr,
                                               [error userInfo][RKLICURegexErrorNameErrorKey],
                                               [error userInfo][RKLICURegexOffsetErrorKey],
                                               [error userInfo][RKLICURegexPreContextErrorKey],
                                               [error userInfo][RKLICURegexPostContextErrorKey]]];
                 }
-                if (endStr != nil) {
+                if (endStr) {
                     NSInteger capCount = [endStr captureCountWithOptions:RKLNoOptions error:&error];
                     if (capCount == -1) { // エラーのとき
                         [errorMessages addObject:[NSString stringWithFormat:
                                                   @"%@ :(End string) > %@\n  >>> Error \"%@\" in column %@: %@<<HERE>>%@",
-                                                  arrayNameDeletingArray, endStr,
+                                                  key, endStr,
                                                   [error userInfo][RKLICURegexErrorNameErrorKey],
                                                   [error userInfo][RKLICURegexOffsetErrorKey],
                                                   [error userInfo][RKLICURegexPreContextErrorKey],
@@ -487,8 +486,8 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
                 error = nil;
                 [NSRegularExpression regularExpressionWithPattern:beginStr options:0 error:&error];
                 if (error) {
-                    [errorMessages addObject:[NSString stringWithFormat:@"%@ :((RE string) > %@\n  >>> Regex Error: \"%@\"",
-                                              arrayNameDeletingArray, beginStr, [error localizedFailureReason]]];
+                    [errorMessages addObject:[NSString stringWithFormat:@"%@ :(RE string) > %@\n  >>> Regex Error: \"%@\"",
+                                              key, beginStr, [error localizedFailureReason]]];
                 }
             }
             tmpBeginStr = beginStr;
