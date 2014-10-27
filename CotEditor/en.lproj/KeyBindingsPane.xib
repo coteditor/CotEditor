@@ -56,18 +56,18 @@
                             </button>
                             <textField horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" placeholderIntrinsicWidth="165" placeholderIntrinsicHeight="14" translatesAutoresizingMaskIntoConstraints="NO" id="721">
                                 <rect key="frame" x="14" y="67" width="169" height="14"/>
-                                <textFieldCell key="cell" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" title="Key bindings for text handling." usesSingleLineMode="YES" id="3364">
+                                <textFieldCell key="cell" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" title="Shortcuts to insert preset text." usesSingleLineMode="YES" id="3364">
                                     <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="726">
-                                <rect key="frame" x="14" y="35" width="323" height="28"/>
+                                <rect key="frame" x="14" y="35" width="294" height="28"/>
                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="3366">
                                     <font key="font" metaFont="smallSystem"/>
-                                    <string key="title">This setting is NOT for standard Cocoa key bindings but for 
-CotEditor's original methods.</string>
+                                    <string key="title">This setting is not for the standard Cocoa key bindings
+but for CotEditor's original function.</string>
                                     <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -109,7 +109,7 @@ CotEditor's original methods.</string>
                             </button>
                             <textField horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" placeholderIntrinsicWidth="157" placeholderIntrinsicHeight="14" translatesAutoresizingMaskIntoConstraints="NO" id="715">
                                 <rect key="frame" x="14" y="67" width="161" height="14"/>
-                                <textFieldCell key="cell" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" title="Key bindings for menu items." usesSingleLineMode="YES" id="3361">
+                                <textFieldCell key="cell" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" title="Shortcuts for menu items." usesSingleLineMode="YES" id="3361">
                                     <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>

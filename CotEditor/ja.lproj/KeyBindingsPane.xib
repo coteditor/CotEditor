@@ -54,17 +54,17 @@
                                     <action selector="openKeyBindingEditSheet:" target="-2" id="725"/>
                                 </connections>
                             </button>
-                            <textField horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" placeholderIntrinsicWidth="143" placeholderIntrinsicHeight="14" translatesAutoresizingMaskIntoConstraints="NO" id="721">
-                                <rect key="frame" x="14" y="67" width="147" height="14"/>
-                                <textFieldCell key="cell" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" title="テキスト操作のキーバインド" usesSingleLineMode="YES" id="3364">
-                                    <font key="font" metaFont="smallSystem"/>
+                            <textField horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="721">
+                                <rect key="frame" x="14" y="67" width="257" height="14"/>
+                                <textFieldCell key="cell" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" title="プリセットしたテキストを挿入するショートカット" usesSingleLineMode="YES" id="3364">
+                                    <font key="font" size="11" name="HiraKakuProN-W3"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="726">
                                 <rect key="frame" x="14" y="35" width="349" height="28"/>
-                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="CotEditor 独自メソッドであり、Cocoa 標準のテキストキーバインドを設定するものではありません。" id="3366">
+                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="CotEditor の独自機能であり、Cocoa 標準のキーバインドを設定するものではありません。" id="3366">
                                     <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -105,10 +105,10 @@
                                     <action selector="openKeyBindingEditSheet:" target="-2" id="723"/>
                                 </connections>
                             </button>
-                            <textField horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" placeholderIntrinsicWidth="176" placeholderIntrinsicHeight="14" translatesAutoresizingMaskIntoConstraints="NO" id="715">
-                                <rect key="frame" x="14" y="67" width="180" height="14"/>
-                                <textFieldCell key="cell" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" title="メニューアイテムへのキーバインド" usesSingleLineMode="YES" id="3361">
-                                    <font key="font" metaFont="smallSystem"/>
+                            <textField horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="715">
+                                <rect key="frame" x="14" y="67" width="169" height="14"/>
+                                <textFieldCell key="cell" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" title="メニュー項目へのショートカット" usesSingleLineMode="YES" id="3361">
+                                    <font key="font" size="11" name="HiraKakuProN-W3"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -122,8 +122,8 @@
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="835">
-                                <rect key="frame" x="14" y="49" width="268" height="14"/>
-                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="スクリプトメニューはこの設定に含まれていません。" id="3362">
+                                <rect key="frame" x="14" y="49" width="246" height="14"/>
+                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="スクリプトメニューはこの設定に含まれません。" id="3362">
                                     <font key="font" size="11" name="AquaKana"/>
                                     <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
