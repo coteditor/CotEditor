@@ -39,6 +39,12 @@
 NSString *const CESyntaxListDidUpdateNotification = @"CESyntaxListDidUpdateNotification";
 NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification";
 
+// keys for validation result
+NSString *const CESyntaxValidationTypeKey = @"SyntaxTypeKey";
+NSString *const CESyntaxValidationRoleKey = @"RoleKey";
+NSString *const CESyntaxValidationStringKey = @"StringKey";
+NSString *const CESyntaxValidationMessageKey = @"MessageKey";
+
 
 @interface CESyntaxManager ()
 
@@ -431,11 +437,11 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
 
 
 // ------------------------------------------------------
-/// 正規表現構文と重複のチェック実行をしてエラーメッセージのArrayを返す
+/// 正規表現構文と重複のチェック実行をしてエラーメッセージ(NSDictionary)のArrayを返す
 - (NSArray *)validateSyntax:(NSDictionary *)style
 // ------------------------------------------------------
 {
-    NSMutableArray *errorMessages = [NSMutableArray array];
+    NSMutableArray *results = [NSMutableArray array];
     NSString *tmpBeginStr = nil, *tmpEndStr = nil;
     NSError *error = nil;
     
@@ -446,39 +452,40 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
     [syntaxDictKeys addObject:CESyntaxOutlineMenuKey];
     
     for (NSString *key in syntaxDictKeys) {
-        NSArray *array = style[key];
-        
-        for (NSDictionary *dict in array) {
+        for (NSDictionary *dict in style[key]) {
             NSString *beginStr = dict[CESyntaxBeginStringKey];
             NSString *endStr = dict[CESyntaxEndStringKey];
             
             if ([tmpBeginStr isEqualToString:beginStr] &&
                 ((!tmpEndStr && !endStr) || [tmpEndStr isEqualToString:endStr])) {
-                [errorMessages addObject:[NSString stringWithFormat:
-                                          @"%@ :(Begin string) > %@\n  >>> multiple registered.",
-                                          key, beginStr]];
+                [results addObject:@{CESyntaxValidationTypeKey: NSLocalizedString(key, nil),
+                                     CESyntaxValidationRoleKey: NSLocalizedString(@"Begin string", nil),
+                                     CESyntaxValidationStringKey: beginStr,
+                                     CESyntaxValidationMessageKey: NSLocalizedString(@"multiple registered.", nil)}];
                 
             } else if ([dict[CESyntaxRegularExpressionKey] boolValue]) {
-                NSInteger capCount = [beginStr captureCountWithOptions:RKLNoOptions error:&error];
-                if (capCount == -1) { // エラーのとき
-                    [errorMessages addObject:[NSString stringWithFormat:
-                                              @"%@ :(Begin string) > %@\n  >>> Error \"%@\" in column %@: %@<<HERE>>%@",
-                                              key, beginStr,
-                                              [error userInfo][RKLICURegexErrorNameErrorKey],
-                                              [error userInfo][RKLICURegexOffsetErrorKey],
-                                              [error userInfo][RKLICURegexPreContextErrorKey],
-                                              [error userInfo][RKLICURegexPostContextErrorKey]]];
+                if ([beginStr captureCountWithOptions:RKLNoOptions error:&error] == -1) { // エラーのとき
+                    NSString *message = [NSString stringWithFormat:NSLocalizedString(@"Error “%@” in column %@: %@<<HERE>>%@", nil),
+                                         [error userInfo][RKLICURegexErrorNameErrorKey],
+                                         [error userInfo][RKLICURegexOffsetErrorKey],
+                                         [error userInfo][RKLICURegexPreContextErrorKey],
+                                         [error userInfo][RKLICURegexPostContextErrorKey]];
+                    [results addObject:@{CESyntaxValidationTypeKey: NSLocalizedString(key, nil),
+                                         CESyntaxValidationRoleKey: NSLocalizedString(@"Begin string", nil),
+                                         CESyntaxValidationStringKey: beginStr,
+                                         CESyntaxValidationMessageKey: message}];
                 }
                 if (endStr) {
-                    NSInteger capCount = [endStr captureCountWithOptions:RKLNoOptions error:&error];
-                    if (capCount == -1) { // エラーのとき
-                        [errorMessages addObject:[NSString stringWithFormat:
-                                                  @"%@ :(End string) > %@\n  >>> Error \"%@\" in column %@: %@<<HERE>>%@",
-                                                  key, endStr,
-                                                  [error userInfo][RKLICURegexErrorNameErrorKey],
-                                                  [error userInfo][RKLICURegexOffsetErrorKey],
-                                                  [error userInfo][RKLICURegexPreContextErrorKey],
-                                                  [error userInfo][RKLICURegexPostContextErrorKey]]];
+                    if ([endStr captureCountWithOptions:RKLNoOptions error:&error] == -1) { // エラーのとき
+                        NSString *message = [NSString stringWithFormat:NSLocalizedString(@"Error “%@” in column %@: %@<<HERE>>%@", nil),
+                                             [error userInfo][RKLICURegexErrorNameErrorKey],
+                                             [error userInfo][RKLICURegexOffsetErrorKey],
+                                             [error userInfo][RKLICURegexPreContextErrorKey],
+                                             [error userInfo][RKLICURegexPostContextErrorKey]];
+                        [results addObject:@{CESyntaxValidationTypeKey: NSLocalizedString(key, nil),
+                                             CESyntaxValidationRoleKey: NSLocalizedString(@"End string", nil),
+                                             CESyntaxValidationStringKey: endStr,
+                                             CESyntaxValidationMessageKey: message}];
                     }
                 }
                 
@@ -486,8 +493,11 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
                 error = nil;
                 [NSRegularExpression regularExpressionWithPattern:beginStr options:0 error:&error];
                 if (error) {
-                    [errorMessages addObject:[NSString stringWithFormat:@"%@ :(RE string) > %@\n  >>> Regex Error: \"%@\"",
-                                              key, beginStr, [error localizedFailureReason]]];
+                    [results addObject:@{CESyntaxValidationTypeKey: NSLocalizedString(key, nil),
+                                         CESyntaxValidationRoleKey: NSLocalizedString(@"RE string", nil),
+                                         CESyntaxValidationStringKey: beginStr,
+                                         CESyntaxValidationMessageKey: [NSString stringWithFormat:NSLocalizedString(@"Regex Error: %@", nil),
+                                                      [error localizedFailureReason]]}];
                 }
             }
             tmpBeginStr = beginStr;
@@ -501,10 +511,14 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
     if (([beginDelimiter length] >  0 && [endDelimiter length] == 0) ||
         ([beginDelimiter length] == 0 && [endDelimiter length] >  0))
     {
-        [errorMessages addObject:NSLocalizedString(@"Block comment needs both begin delimiter and end delimiter.", nil)];
+        NSString *role = ([beginDelimiter length] > 0) ? @"Begin string" : @"End string";
+        [results addObject:@{CESyntaxValidationTypeKey: NSLocalizedString(@"comment", nil),
+                             CESyntaxValidationRoleKey: NSLocalizedString(role, nil),
+                             CESyntaxValidationStringKey: ([beginDelimiter length] > 0) ? beginDelimiter : endDelimiter,
+                             CESyntaxValidationMessageKey: NSLocalizedString(@"Block comment needs both begin delimiter and end delimiter.", nil)}];
     }
     
-    return errorMessages;
+    return results;
 }
 
 

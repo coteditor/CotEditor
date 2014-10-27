@@ -38,6 +38,12 @@ extern NSString *const CESyntaxListDidUpdateNotification;
 /// Posted when a syntax style is updated.  Information about new/previous style name is in userInfo.
 extern NSString *const CESyntaxDidUpdateNotification;
 
+// keys for validation result
+extern NSString *const CESyntaxValidationTypeKey;
+extern NSString *const CESyntaxValidationRoleKey;
+extern NSString *const CESyntaxValidationStringKey;
+extern NSString *const CESyntaxValidationMessageKey;
+
 
 @interface CESyntaxManager : NSObject
 
