@@ -4,17 +4,102 @@ extensions:
 - keyString: "sty"
 - keyString: "cls"
 outlineMenu:
-- beginString: "[\\\\\xA5]chapter\\*?\\{(.*)\\"
+- beginString: "[\\\\¥]chapter\\*?\\{(.*)\\}"
   keyString: "$1"
-- beginString: "[\\\\\xA5]part\\*?\\{(.*)\\"
+- beginString: "[\\\\¥]part\\*?\\{(.*)\\}"
   keyString: "$1"
   bold: true
-- beginString: "[\\\\\xA5]section\\*?\\{(.*)\\"
+- beginString: "[\\\\¥]section\\*?\\{(.*)\\}"
   keyString: "    $1"
-- beginString: "[\\\\\xA5]subsection\\*?\\{(.*)\\"
+- beginString: "[\\\\¥]subsection\\*?\\{(.*)\\}"
   keyString: "        $1"
-- beginString: "[\\\\\xA5]subsubsection\\*?\\{(.*)\\"
+- beginString: "[\\\\¥]subsubsection\\*?\\{(.*)\\}"
   keyString: "            $1"
+comments: []
+metadata:
+  distributionURL: "http://coteditor.github.io"
+  author: "Yuhei Kuratomi"
+  license: "Same as CotEditor"
+  lastModified: "2014-10-27"
+  description: "Maintained by CotEditor Project."
+  version: "2.0"
+numbers:
+- beginString: "[\\\\¥]frac\\{[^}]+\\}\\{[^}]"
+  endString: "\\}"
+  regularExpression: true
+commands:
+- beginString: "[\\\\¥]caption\\{.+\\}"
+  regularExpression: true
+- beginString: "[\\\\¥]centering"
+  regularExpression: true
+- beginString: "[\\\\¥]cite\\{([^}])+\\}"
+  regularExpression: true
+- beginString: "[\\\\¥]file\\{.+\\}"
+  regularExpression: true
+- beginString: "[\\\\¥]hfill"
+  regularExpression: true
+- beginString: "[\\\\¥]includegraphics(\\[.+\\])?\\{.+\\}"
+  regularExpression: true
+- beginString: "[\\\\¥]label\\{.+\\}"
+  regularExpression: true
+- beginString: "[\\\\¥]LARGE"
+  regularExpression: true
+- beginString: "[\\\\¥]Large"
+  regularExpression: true
+- beginString: "[\\\\¥]large"
+  regularExpression: true
+- beginString: "[\\\\¥]maketitle"
+  regularExpression: true
+- beginString: "[\\\\¥]normalsize"
+  regularExpression: true
+- beginString: "[\\\\¥]ref\\{([^}])+\\}"
+  regularExpression: true
+- beginString: "[\\\\¥]renewcommand.*$"
+  regularExpression: true
+- beginString: "[\\\\¥]sf"
+  regularExpression: true
+- beginString: "[\\\\¥]text(tt|bf)\\{.+\\}"
+  regularExpression: true
+- beginString: "[\\\\¥]tt"
+  regularExpression: true
+- beginString: "^\\s*[\\\\¥]item"
+  regularExpression: true
+values:
+- beginString: "[\\\\¥](La)?TeXe?"
+  regularExpression: true
+- beginString: "\\$([^$\\n]+)\\$"
+  regularExpression: true
+keywords:
+- beginString: "[\\\\¥]author\\{.*\\}"
+  regularExpression: true
+- beginString: "[\\\\¥]begin\\{.*\\}"
+  regularExpression: true
+- beginString: "[\\\\¥]chapter\\*?\\{.+\\}"
+  regularExpression: true
+- beginString: "[\\\\¥]date\\{.*\\}"
+  regularExpression: true
+- beginString: "[\\\\¥]documentclass(\\[.+\\])?\\{.+\\}"
+  regularExpression: true
+- beginString: "[\\\\¥]end\\{.*\\}"
+  regularExpression: true
+- beginString: "[\\\\¥]pagestyle\\{.*\\}"
+  regularExpression: true
+- beginString: "[\\\\¥]part\\{.+\\}"
+  regularExpression: true
+- beginString: "[\\\\¥]section\\*?\\{.*\\}"
+  regularExpression: true
+- beginString: "[\\\\¥]subsection\\*?\\{.*\\}"
+  regularExpression: true
+- beginString: "[\\\\¥]subsubsection\\*?\\{.*\\}"
+  regularExpression: true
+- beginString: "[\\\\¥]title\\{.*\\}"
+  regularExpression: true
+- beginString: "[\\\\¥]usepackage(\\[.+\\])?\\{.+\\}"
+  regularExpression: true
+strings: []
+commentDelimiters:
+  inlineDelimiter: "%"
+characters: []
 completions:
 - keyString: "begin"
 - keyString: "chapter"
@@ -23,88 +108,3 @@ completions:
 - keyString: "section"
 - keyString: "subsection"
 - keyString: "subsubsection"
-commands:
-- beginString: "[\\\\\xA5]caption\\{.+\\"
-  regularExpression: true
-- beginString: "[\\\\\xA5]centerin"
-  regularExpression: true
-- beginString: "[\\\\\xA5]cite\\{([^}])+\\"
-  regularExpression: true
-- beginString: "[\\\\\xA5]file\\{.+\\"
-  regularExpression: true
-- beginString: "[\\\\\xA5]hfil"
-  regularExpression: true
-- beginString: "[\\\\\xA5]includegraphics(\\[.+\\])?\\{.+\\"
-  regularExpression: true
-- beginString: "[\\\\\xA5]label\\{.+\\"
-  regularExpression: true
-- beginString: "[\\\\\xA5]LARG"
-  regularExpression: true
-- beginString: "[\\\\\xA5]Larg"
-  regularExpression: true
-- beginString: "[\\\\\xA5]larg"
-  regularExpression: true
-- beginString: "[\\\\\xA5]maketitl"
-  regularExpression: true
-- beginString: "[\\\\\xA5]normalsiz"
-  regularExpression: true
-- beginString: "[\\\\\xA5]ref\\{([^}])+\\"
-  regularExpression: true
-- beginString: "[\\\\\xA5]renewcommand.*"
-  regularExpression: true
-- beginString: "[\\\\\xA5]s"
-  regularExpression: true
-- beginString: "[\\\\\xA5]text(tt|bf)\\{.+\\"
-  regularExpression: true
-- beginString: "[\\\\\xA5]t"
-  regularExpression: true
-- beginString: "^\\s*[\\\\\xA5]ite"
-  regularExpression: true
-metadata:
-  author: "Yuhei Kuratomi"
-  distributionURL: "http://coteditor.github.io"
-  version: "2.0"
-  description: "Maintained by CotEditor Project."
-  license: "Same as CotEditor"
-  lastModified: "2014-09-24"
-characters: []
-comments: []
-values:
-- beginString: "[\\\\\xA5](La)?TeXe"
-  regularExpression: true
-- beginString: "\\$([^$\\n]+)\\$"
-  regularExpression: true
-numbers:
-- beginString: "[\\\\\xA5]frac\\{[^}]+\\}\\{[^}]"
-  endString: "\\}"
-  regularExpression: true
-strings: []
-keywords:
-- beginString: "[\\\\\xA5]author\\{.*\\"
-  regularExpression: true
-- beginString: "[\\\\\xA5]begin\\{.*\\"
-  regularExpression: true
-- beginString: "[\\\\\xA5]chapter\\*?\\{.+\\"
-  regularExpression: true
-- beginString: "[\\\\\xA5]date\\{.*\\"
-  regularExpression: true
-- beginString: "[\\\\\xA5]documentclass(\\[.+\\])?\\{.+\\"
-  regularExpression: true
-- beginString: "[\\\\\xA5]end\\{.*\\"
-  regularExpression: true
-- beginString: "[\\\\\xA5]pagestyle\\{.*\\"
-  regularExpression: true
-- beginString: "[\\\\\xA5]part\\{.+\\"
-  regularExpression: true
-- beginString: "[\\\\\xA5]section\\*?\\{.*\\"
-  regularExpression: true
-- beginString: "[\\\\\xA5]subsection\\*?\\{.*\\"
-  regularExpression: true
-- beginString: "[\\\\\xA5]subsubsection\\*?\\{.*\\"
-  regularExpression: true
-- beginString: "[\\\\\xA5]title\\{.*\\"
-  regularExpression: true
-- beginString: "[\\\\\xA5]usepackage(\\[.+\\])?\\{.+\\"
-  regularExpression: true
-commentDelimiters:
-  inlineDelimiter: "%"
