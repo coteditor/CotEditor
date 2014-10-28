@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6249" systemVersion="13F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6249"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6250"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -777,7 +777,7 @@
                         </items>
                     </menu>
                 </menuItem>
-                <menuItem title="スクリプト" image="ScriptMenuTemplate" tag="800" id="617" customClass="CEScriptMenuItem">
+                <menuItem title="スクリプト" image="ScriptTemplate" tag="800" id="617" customClass="CEScriptMenuItem">
                     <menu key="submenu" title="スクリプト" id="616">
                         <items>
                             <menuItem title="項目" id="618"/>
@@ -863,6 +863,6 @@
         <customObject id="836" customClass="SUUpdater"/>
     </objects>
     <resources>
-        <image name="ScriptMenuTemplate" width="22" height="22"/>
+        <image name="ScriptTemplate" width="22" height="22"/>
     </resources>
 </document>

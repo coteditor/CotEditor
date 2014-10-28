@@ -45,7 +45,7 @@
     
     // draw popup arrow image
     NSImage *arrowImage = [NSImage imageNamed:@"PopUpButtonArrowTemplate"];
-    NSRect imageFrame = NSMakeRect(NSMaxX(cellFrame) - [arrowImage size].width - 4, NSMinY(cellFrame),
+    NSRect imageFrame = NSMakeRect(NSMaxX(cellFrame) - [arrowImage size].width - 5, NSMinY(cellFrame),
                                    [arrowImage size].width, NSHeight(cellFrame));
     [self drawImage:arrowImage withFrame:imageFrame inView:controlView];
     

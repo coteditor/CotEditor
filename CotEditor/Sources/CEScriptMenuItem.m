@@ -66,7 +66,7 @@
     NSDictionary *globalDefaults = [[NSUserDefaults standardUserDefaults] persistentDomainForName:NSGlobalDomain];
     NSString *theme = globalDefaults[@"AppleInterfaceStyle"];
     
-    NSString *imageName = [theme isEqualToString:@"Dark"] ? @"ScriptMenuWhite" : @"ScriptMenuTemplate";
+    NSString *imageName = [theme isEqualToString:@"Dark"] ? @"ScriptWhite" : @"ScriptTemplate";
     NSImage *scriptIcon = [NSImage imageNamed:imageName];
     
     [self setImage:scriptIcon];

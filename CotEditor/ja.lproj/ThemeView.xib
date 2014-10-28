@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6249" systemVersion="13F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6249"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6250"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
@@ -174,14 +174,14 @@
                     <rect key="frame" x="268" y="205" width="44" height="23"/>
                     <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
-                        <binding destination="h6Y-ET-p1K" name="enabled" keyPath="selection.selection.usesSystemSetting" id="e90-Jc-ha0">
-                            <dictionary key="options">
-                                <string key="NSValueTransformerName">NSNegateBoolean</string>
-                            </dictionary>
-                        </binding>
                         <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.selection.color" id="TZa-Fv-OjU">
                             <dictionary key="options">
                                 <string key="NSValueTransformerName">CEHexColorTransformer</string>
+                            </dictionary>
+                        </binding>
+                        <binding destination="h6Y-ET-p1K" name="enabled" keyPath="selection.selection.usesSystemSetting" id="e90-Jc-ha0">
+                            <dictionary key="options">
+                                <string key="NSValueTransformerName">NSNegateBoolean</string>
                             </dictionary>
                         </binding>
                     </connections>
@@ -519,7 +519,7 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0Jp-Su-oLN">
-                    <rect key="frame" x="41" y="58" width="37" height="14"/>
+                    <rect key="frame" x="39" y="58" width="39" height="14"/>
                     <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="URL：" id="yNX-Ny-4Pe">
                         <font key="font" metaFont="smallSystemBold"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -564,7 +564,7 @@
                     </connections>
                 </textField>
                 <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fh5-NX-Gjh">
-                    <rect key="frame" x="82" y="58" width="182" height="14"/>
+                    <rect key="frame" x="82" y="58" width="181" height="14"/>
                     <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="http://coteditor.github.io" placeholderString="" id="5fK-WM-jnH">
                         <font key="font" metaFont="smallSystem"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -631,9 +631,9 @@
                     </connections>
                 </textField>
                 <button toolTip="URL にジャンプ" translatesAutoresizingMaskIntoConstraints="NO" id="qEX-vE-8ZT">
-                    <rect key="frame" x="270" y="58" width="14" height="14"/>
+                    <rect key="frame" x="269" y="57" width="15" height="15"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="14" id="12P-5f-f0p"/>
+                        <constraint firstAttribute="height" constant="15" id="12P-5f-f0p"/>
                         <constraint firstAttribute="width" secondItem="qEX-vE-8ZT" secondAttribute="height" multiplier="1:1" id="MzX-OF-OpU"/>
                     </constraints>
                     <buttonCell key="cell" type="bevel" title="Button" bezelStyle="rounded" image="NSFollowLinkFreestandingTemplate" imagePosition="only" alignment="center" controlSize="small" imageScaling="proportionallyDown" inset="2" id="TJk-TV-NLj">
@@ -657,7 +657,6 @@
                 <constraint firstItem="0Jp-Su-oLN" firstAttribute="top" secondItem="k4d-pG-qBs" secondAttribute="bottom" constant="3" id="Djs-Bz-12u"/>
                 <constraint firstItem="eId-LY-LfO" firstAttribute="baseline" secondItem="WUy-8Y-3ep" secondAttribute="baseline" id="Iou-bu-nSU"/>
                 <constraint firstItem="WUy-8Y-3ep" firstAttribute="top" secondItem="0Jp-Su-oLN" secondAttribute="bottom" constant="3" id="JfE-9l-N8M"/>
-                <constraint firstItem="0Jp-Su-oLN" firstAttribute="bottom" secondItem="qEX-vE-8ZT" secondAttribute="bottom" id="Kn9-t0-IvC"/>
                 <constraint firstAttribute="trailing" secondItem="eId-LY-LfO" secondAttribute="trailing" constant="10" id="Ndt-LJ-W3t"/>
                 <constraint firstItem="eId-LY-LfO" firstAttribute="leading" secondItem="WUy-8Y-3ep" secondAttribute="trailing" constant="8" symbolic="YES" id="Ntj-eT-IDN"/>
                 <constraint firstItem="0Jp-Su-oLN" firstAttribute="baseline" secondItem="fh5-NX-Gjh" secondAttribute="baseline" id="Qw2-14-A4m"/>
@@ -672,6 +671,7 @@
                 <constraint firstItem="hGf-bl-psz" firstAttribute="top" secondItem="gzO-Tm-kvp" secondAttribute="top" id="jA1-GQ-snK"/>
                 <constraint firstItem="WUy-8Y-3ep" firstAttribute="leading" secondItem="ppO-VP-NLx" secondAttribute="leading" constant="10" id="mz7-X4-COp"/>
                 <constraint firstItem="qEX-vE-8ZT" firstAttribute="leading" secondItem="fh5-NX-Gjh" secondAttribute="trailing" constant="8" symbolic="YES" id="nXW-yE-1V4"/>
+                <constraint firstItem="qEX-vE-8ZT" firstAttribute="centerY" secondItem="fh5-NX-Gjh" secondAttribute="centerY" id="qto-Ud-tHx"/>
                 <constraint firstItem="fh5-NX-Gjh" firstAttribute="leading" secondItem="0Jp-Su-oLN" secondAttribute="trailing" constant="8" symbolic="YES" id="t4Y-EP-25v"/>
                 <constraint firstAttribute="trailing" secondItem="qEX-vE-8ZT" secondAttribute="trailing" constant="10" id="vPi-3f-TB9"/>
             </constraints>
@@ -686,6 +686,6 @@
     </objects>
     <resources>
         <image name="InfoTemplate" width="16" height="16"/>
-        <image name="NSFollowLinkFreestandingTemplate" width="10" height="10"/>
+        <image name="NSFollowLinkFreestandingTemplate" width="14" height="14"/>
     </resources>
 </document>
