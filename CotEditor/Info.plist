@@ -10,7 +10,7 @@
 			<key>CFBundleTypeExtensions</key>
 			<array/>
 			<key>CFBundleTypeIconFile</key>
-			<string>docGeneric</string>
+			<string>GenericDocumentIcon</string>
 			<key>CFBundleTypeMIMETypes</key>
 			<array/>
 			<key>CFBundleTypeName</key>
@@ -59,7 +59,7 @@
 				<string>conf</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string>docConfig</string>
+			<string>ConfigIcon</string>
 			<key>CFBundleTypeName</key>
 			<string>Configuration</string>
 			<key>CFBundleTypeRole</key>
@@ -75,7 +75,7 @@
 				<string>h</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string>docC</string>
+			<string>CIcon</string>
 			<key>CFBundleTypeMIMETypes</key>
 			<array/>
 			<key>CFBundleTypeName</key>
@@ -97,7 +97,7 @@
 				<string>c</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string>docC</string>
+			<string>CIcon</string>
 			<key>CFBundleTypeName</key>
 			<string>C Source</string>
 			<key>CFBundleTypeRole</key>
@@ -117,7 +117,7 @@
 				<string>m</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string>docObjC</string>
+			<string>ObjCIcon</string>
 			<key>CFBundleTypeName</key>
 			<string>Objective-C Source</string>
 			<key>CFBundleTypeRole</key>
@@ -141,7 +141,7 @@
 				<string>cxx</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string>docC++</string>
+			<string>C++Icon</string>
 			<key>CFBundleTypeName</key>
 			<string>C++ Source</string>
 			<key>CFBundleTypeRole</key>
@@ -161,7 +161,7 @@
 				<string>mm</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string>docObjC++</string>
+			<string>ObjC++Icon</string>
 			<key>CFBundleTypeName</key>
 			<string>Objective-C++ Source</string>
 			<key>CFBundleTypeRole</key>
@@ -183,7 +183,7 @@
 				<string>hxx</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string>docC++</string>
+			<string>C++Icon</string>
 			<key>CFBundleTypeName</key>
 			<string>C++ Header</string>
 			<key>CFBundleTypeRole</key>
@@ -203,7 +203,7 @@
 				<string>coffee</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string>docCoffeeScript</string>
+			<string>CoffeeScriptIcon</string>
 			<key>CFBundleTypeMIMETypes</key>
 			<array>
 				<string>text/coffeescript</string>
@@ -223,7 +223,7 @@
 				<string>css</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string>docCSS</string>
+			<string>CSSIcon</string>
 			<key>CFBundleTypeMIMETypes</key>
 			<array>
 				<string>text/css</string>
@@ -247,7 +247,7 @@
 				<string>dart</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string>docDart</string>
+			<string>DartIcon</string>
 			<key>CFBundleTypeName</key>
 			<string>Dart Source</string>
 			<key>CFBundleTypeRole</key>
@@ -264,7 +264,7 @@
 				<string>lhs</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string>docHaskell</string>
+			<string>HaskellIcon</string>
 			<key>CFBundleTypeName</key>
 			<string>Haskell Source</string>
 			<key>CFBundleTypeRole</key>
@@ -281,7 +281,7 @@
 				<string>htm</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string>docHTML</string>
+			<string>HTMLIcon</string>
 			<key>CFBundleTypeMIMETypes</key>
 			<array>
 				<string>text/html</string>
@@ -305,7 +305,7 @@
 				<string>ini</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string>docINI</string>
+			<string>INIIcon</string>
 			<key>CFBundleTypeName</key>
 			<string>INI</string>
 			<key>CFBundleTypeRole</key>
@@ -321,7 +321,7 @@
 				<string>java</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string>docJava</string>
+			<string>JavaIcon</string>
 			<key>CFBundleTypeName</key>
 			<string>Java Source</string>
 			<key>CFBundleTypeRole</key>
@@ -341,7 +341,7 @@
 				<string>js</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string>docJavaScript</string>
+			<string>JavaScriptIcon</string>
 			<key>CFBundleTypeMIMETypes</key>
 			<array>
 				<string>application/x-javascript</string>
@@ -365,7 +365,7 @@
 				<string>json</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string>docJSON</string>
+			<string>JSONIcon</string>
 			<key>CFBundleTypeMIMETypes</key>
 			<array>
 				<string>application/json</string>
@@ -391,7 +391,7 @@
 				<string>cls</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string>docTeX</string>
+			<string>TeXIcon</string>
 			<key>CFBundleTypeName</key>
 			<string>TeX</string>
 			<key>CFBundleTypeRole</key>
@@ -411,7 +411,7 @@
 				<string>mkdn</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string>docMarkdown</string>
+			<string>MarkdownIcon</string>
 			<key>CFBundleTypeName</key>
 			<string>Markdown Document</string>
 			<key>CFBundleTypeRole</key>
@@ -433,7 +433,7 @@
 				<string>pm</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string>docPerl</string>
+			<string>PerlIcon</string>
 			<key>CFBundleTypeMIMETypes</key>
 			<array>
 				<string>text/x-perl-script</string>
@@ -462,7 +462,7 @@
 				<string>phtml</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string>docPHP</string>
+			<string>PHPIcon</string>
 			<key>CFBundleTypeName</key>
 			<string>PHP Source</string>
 			<key>CFBundleTypeRole</key>
@@ -482,7 +482,7 @@
 				<string>txt</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string>docGeneric</string>
+			<string>GenericDocumentIcon</string>
 			<key>CFBundleTypeMIMETypes</key>
 			<array>
 				<string>text/plain</string>
@@ -507,7 +507,7 @@
 				<string>pyw</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string>docPython</string>
+			<string>PythonIcon</string>
 			<key>CFBundleTypeMIMETypes</key>
 			<array>
 				<string>text/x-python-script</string>
@@ -532,7 +532,7 @@
 				<string>rest</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string>docreST</string>
+			<string>reSTIcon</string>
 			<key>CFBundleTypeName</key>
 			<string>reStructured Text Document</string>
 			<key>CFBundleTypeRole</key>
@@ -550,7 +550,7 @@
 				<string>rhtml</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string>docRuby</string>
+			<string>RubyIcon</string>
 			<key>CFBundleTypeMIMETypes</key>
 			<array>
 				<string>text/ruby-script</string>
@@ -575,7 +575,7 @@
 				<string>rc</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string>docRust</string>
+			<string>RustIcon</string>
 			<key>CFBundleTypeName</key>
 			<string>Rust Source</string>
 			<key>CFBundleTypeRole</key>
@@ -591,7 +591,7 @@
 				<string>scala</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string>docScala</string>
+			<string>ScalaIcon</string>
 			<key>CFBundleTypeName</key>
 			<string>Scala Source</string>
 			<key>CFBundleTypeRole</key>
@@ -607,7 +607,7 @@
 				<string>sh</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string>docShell</string>
+			<string>ShellIcon</string>
 			<key>CFBundleTypeName</key>
 			<string>Shell Script</string>
 			<key>CFBundleTypeRole</key>
@@ -627,7 +627,7 @@
 				<string>textile</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string>docTextile</string>
+			<string>TextileIcon</string>
 			<key>CFBundleTypeName</key>
 			<string>Textile Document</string>
 			<key>CFBundleTypeRole</key>
@@ -669,7 +669,7 @@
 				<string>xmp</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string>docXML</string>
+			<string>XMLIcon</string>
 			<key>CFBundleTypeMIMETypes</key>
 			<array>
 				<string>text/xml</string>
@@ -694,7 +694,7 @@
 				<string>yml</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string>docYAML</string>
+			<string>YAMLIcon</string>
 			<key>CFBundleTypeName</key>
 			<string>YAML</string>
 			<key>CFBundleTypeRole</key>
@@ -712,7 +712,7 @@
 				<string>dif</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string>docDiff</string>
+			<string>DiffIcon</string>
 			<key>CFBundleTypeName</key>
 			<string>Diff</string>
 			<key>CFBundleTypeRole</key>
@@ -728,7 +728,7 @@
 				<string>swift</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string>docSwift</string>
+			<string>SwiftIcon</string>
 			<key>CFBundleTypeName</key>
 			<string>Swift Source</string>
 			<key>CFBundleTypeRole</key>
@@ -748,7 +748,7 @@
 				<string>lua</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string>docLua</string>
+			<string>LuaIcon</string>
 			<key>CFBundleTypeName</key>
 			<string>Lua Source</string>
 			<key>CFBundleTypeRole</key>
@@ -768,7 +768,7 @@
 				<string>go</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string>docGo</string>
+			<string>GoIcon</string>
 			<key>CFBundleTypeName</key>
 			<string>Go Source</string>
 			<key>CFBundleTypeRole</key>
@@ -786,7 +786,7 @@
 				<string>pgsql</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string>docSQL</string>
+			<string>SQLIcon</string>
 			<key>CFBundleTypeName</key>
 			<string>SQL Source</string>
 			<key>CFBundleTypeRole</key>
@@ -806,7 +806,7 @@
 				<string>dtd</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string>docXML</string>
+			<string>XMLIcon</string>
 			<key>CFBundleTypeMIMETypes</key>
 			<array/>
 			<key>CFBundleTypeName</key>
@@ -824,7 +824,7 @@
 				<string>svg</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string>docSVG</string>
+			<string>SVGIcon</string>
 			<key>CFBundleTypeMIMETypes</key>
 			<array>
 				<string>image/svg+xml</string>
@@ -849,7 +849,7 @@
 				<string>ss</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string>docScheme</string>
+			<string>SchemeIcon</string>
 			<key>CFBundleTypeName</key>
 			<string>Scheme Source</string>
 			<key>CFBundleTypeRole</key>
@@ -866,7 +866,7 @@
 				<string>lsp</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string>docLisp</string>
+			<string>LispIcon</string>
 			<key>CFBundleTypeName</key>
 			<string>Lisp Source</string>
 			<key>CFBundleTypeRole</key>
@@ -882,7 +882,7 @@
 				<string>cs</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string>docC#</string>
+			<string>C#Icon</string>
 			<key>CFBundleTypeName</key>
 			<string>C# Source</string>
 			<key>CFBundleTypeRole</key>
