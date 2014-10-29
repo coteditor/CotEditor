@@ -300,7 +300,7 @@ NSString *const kBundledDocumentFileNames[] = {
 };
 
 // Online URLs
-NSString *const kWebSiteURL = @"http://coteditor.github.io";
+NSString *const kWebSiteURL = @"http://coteditor.com";
 NSString *const kIssueTrackerURL = @"https://github.com/coteditor/CotEditor/issues";
 
 
