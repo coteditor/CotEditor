@@ -134,9 +134,9 @@
         CGFloat bgR, bgG, bgB, fgR, fgG, fgB;
         [[_textColor colorUsingColorSpaceName:NSCalibratedRGBColorSpace] getRed:&fgR green:&fgG blue:&fgB alpha:nil];
         [[_backgroundColor colorUsingColorSpaceName:NSCalibratedRGBColorSpace] getRed:&bgR green:&bgG blue:&bgB alpha:nil];
-        _markupColor = [NSColor colorWithCalibratedRed:(bgR + fgR) / 2
-                                                 green:(bgG + fgG) / 2
-                                                  blue:(bgB + fgB) / 2
+        _markupColor = [NSColor colorWithCalibratedRed:0.75 * (bgR + fgR)
+                                                 green:0.75 * (bgG + fgG)
+                                                  blue:0.75 * (bgB + fgB)
                                                  alpha:1.0];
         
     }
