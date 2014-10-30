@@ -1130,23 +1130,23 @@
         <dateFormatter formatterBehavior="custom10_4" dateStyle="medium" timeStyle="short" dateFormat="yyyy-MM-dd HH:mm" id="j41-as-DJo"/>
     </objects>
     <resources>
-        <image name="AutoTabExpand_On" width="24" height="24"/>
-        <image name="BiggerFont" width="24" height="24"/>
-        <image name="Comment" width="24" height="24"/>
-        <image name="EditColorCode" width="24" height="24"/>
-        <image name="GetInfo" width="24" height="24"/>
-        <image name="IncompatibleChars" width="24" height="24"/>
-        <image name="InvisibleChars_Show" width="24" height="24"/>
-        <image name="LineNumber_Show" width="24" height="24"/>
+        <image name="AutoTabExpand_On" width="32" height="32"/>
+        <image name="BiggerFont" width="32" height="32"/>
+        <image name="Comment" width="32" height="32"/>
+        <image name="EditColorCode" width="32" height="32"/>
+        <image name="GetInfo" width="32" height="32"/>
+        <image name="IncompatibleChars" width="32" height="32"/>
+        <image name="InvisibleChars_Show" width="32" height="32"/>
+        <image name="LineNumber_Show" width="32" height="32"/>
         <image name="LockedTemplate" width="16" height="16"/>
-        <image name="NaviBar_Show" width="24" height="24"/>
-        <image name="PageGuide_Show" width="24" height="24"/>
-        <image name="RecolorAll" width="24" height="24"/>
-        <image name="ShiftLeft" width="24" height="24"/>
-        <image name="ShiftRight" width="24" height="24"/>
-        <image name="SmallerFont" width="24" height="24"/>
-        <image name="StatusBar_Show" width="24" height="24"/>
-        <image name="VerticalOrientation_On" width="24" height="24"/>
-        <image name="WrapLines_On" width="24" height="24"/>
+        <image name="NaviBar_Show" width="32" height="32"/>
+        <image name="PageGuide_Show" width="32" height="32"/>
+        <image name="RecolorAll" width="32" height="32"/>
+        <image name="ShiftLeft" width="32" height="32"/>
+        <image name="ShiftRight" width="32" height="32"/>
+        <image name="SmallerFont" width="32" height="32"/>
+        <image name="StatusBar_Show" width="32" height="32"/>
+        <image name="VerticalOrientation_On" width="32" height="32"/>
+        <image name="WrapLines_On" width="32" height="32"/>
     </resources>
 </document>
