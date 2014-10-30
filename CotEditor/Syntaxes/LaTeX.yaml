@@ -17,7 +17,7 @@ outlineMenu:
   keyString: "            $1"
 comments: []
 metadata:
-  distributionURL: "http://coteditor.github.io"
+  distributionURL: "http://coteditor.com"
   author: "Yuhei Kuratomi"
   license: "Same as CotEditor"
   lastModified: "2014-10-27"

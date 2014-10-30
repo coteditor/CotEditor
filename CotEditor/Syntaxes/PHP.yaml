@@ -5641,7 +5641,7 @@ commands:
 - beginString: "zlib_get_coding_type"
 metadata:
   author: "kaz"
-  distributionURL: "http://coteditor.github.io"
+  distributionURL: "http://coteditor.com"
   version: "2.3"
   description: "Support PHP4 - PHP5.5.\n\nMaintained by 1024jp since 2013."
   license: "Same as CotEditor"

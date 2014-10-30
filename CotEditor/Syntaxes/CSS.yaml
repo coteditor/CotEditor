@@ -75,7 +75,7 @@ attributes:
   endString: "]"
 metadata:
   author: "CotEditor Projcect"
-  distributionURL: "http://coteditor.github.io"
+  distributionURL: "http://coteditor.com"
   version: "2.0"
   description: "Support partly CSS3."
   license: "Same as CotEditor"

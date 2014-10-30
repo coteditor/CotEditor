@@ -19,7 +19,7 @@ completions: []
 commands: []
 metadata:
   author: "1024jp"
-  distributionURL: "http://coteditor.github.io"
+  distributionURL: "http://coteditor.com"
   version: "1.1"
   license: "Same as CotEditor"
   lastModified: "2014-09-24"

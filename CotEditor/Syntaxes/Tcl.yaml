@@ -17,7 +17,7 @@ outlineMenu:
   underline: true
   keyString: "$1"
 metadata:
-  distributionURL: "http://coteditor.github.io"
+  distributionURL: "http://coteditor.com"
   lastModified: "2014-10-25"
   author: "1024jp"
   license: "Same as CotEditor"

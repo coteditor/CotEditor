@@ -22,7 +22,7 @@ outlineMenu:
   bold: true
 comments: []
 metadata:
-  distributionURL: "http://coteditor.github.io"
+  distributionURL: "http://coteditor.com"
   author: "konn"
   license: "Same as CotEditor"
   lastModified: "2014-10-27"
