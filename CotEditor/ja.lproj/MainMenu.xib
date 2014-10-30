@@ -826,7 +826,7 @@
                             <menuItem isSeparatorItem="YES" id="619">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
-                            <menuItem title="バージョン履歴" id="823">
+                            <menuItem title="リリースノート" id="823">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="openHelpAnchor:" target="290" id="tRC-ed-iOt"/>
@@ -839,7 +839,7 @@
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="tV2-Tm-LbD"/>
-                            <menuItem title="不具合を報告…" id="qHT-FN-VpY">
+                            <menuItem title="不具合を報告" id="qHT-FN-VpY">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="reportBug:" target="290" id="cdN-Ah-xEy"/>

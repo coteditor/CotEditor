@@ -826,7 +826,7 @@
                             <menuItem isSeparatorItem="YES" id="619">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
-                            <menuItem title="Version History" id="822">
+                            <menuItem title="Release Notes" id="822">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="openHelpAnchor:" target="290" id="ooo-Mu-EKH"/>
@@ -839,7 +839,7 @@
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="rfZ-hc-oJE"/>
-                            <menuItem title="Report Bug…" id="Bk3-xx-uft">
+                            <menuItem title="Report a Bug" id="Bk3-xx-uft">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="reportBug:" target="290" id="KOP-ne-blB"/>
