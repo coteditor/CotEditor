@@ -35,6 +35,7 @@
 #import "CEFileDropPaneController.h"
 #import "CEKeyBindingsPaneController.h"
 #import "CEPrintPaneController.h"
+#import "CEAppDelegate.h"
 #import "constants.h"
 
 
@@ -206,10 +207,7 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
 - (IBAction)openPreferencesHelp:(id)sender
 //------------------------------------------------------
 {
-    NSString *bookName = [[NSBundle mainBundle] objectForInfoDictionaryKey: @"CFBundleHelpBookName"];
-    
-    [[NSHelpManager sharedHelpManager] openHelpAnchor:kHelpPrefAnchors[[sender tag]]
-                                               inBook:bookName];
+    [(CEAppDelegate *)[NSApp delegate] openHelpAnchor:sender];
 }
 
 @end

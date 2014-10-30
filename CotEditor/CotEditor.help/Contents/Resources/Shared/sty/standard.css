@@ -27,12 +27,12 @@ code {
 	font-family: 'menlo', monospace;
 }
 
-h1 {
+body > h1 {
 	font-size: 140%;
 	font-weight: 500;
 	margin: 0 0 1.5em;
 }
-h1:before {
+body > h1:before {
 	content: url(../gfx/icon_32x32@2x.png);
 	-webkit-transform: scale(0.5);
 	display: inline-block;

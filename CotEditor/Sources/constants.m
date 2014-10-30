@@ -54,6 +54,18 @@ NSString *const CELisenceKey = @"lisence";
 NSString *const CEDescriptionKey = @"description";
 
 
+// Help anchors
+NSString *const kHelpAnchors[] = {
+    @"releasenotes",
+    @"pref_general",
+    @"pref_window",
+    @"pref_appearance",
+    @"pref_format",
+    @"pref_syntax",
+    @"pref_filedrop",
+    @"pref_keybinding",
+    @"pref_print"
+};
 
 #pragma mark Notifications
 
@@ -282,7 +294,6 @@ NSString *const CEEndDelimiterKey = @"endDelimiter";
 
 // Help document file names table
 NSString *const kBundledDocumentFileNames[] = {
-    @"Version History",
     @"Acknowledgements",
     @"ScriptMenu Folder",
     @"AppleScript",
@@ -340,26 +351,6 @@ CGFloat const kPrintHFVerticalMargin = 34.0;
 CGFloat const kHeaderFooterLineHeight = 15.0;
 CGFloat const kSeparatorPadding = 8.0;
 CGFloat const kNoSeparatorPadding = 18.0;
-
-
-
-#pragma mark Preferences
-
-// ------------------------------------------------------
-// Preferences
-// ------------------------------------------------------
-
-// Help anchors
-NSString *const kHelpPrefAnchors[] = {
-    @"pref_general",
-    @"pref_window",
-    @"pref_appearance",
-    @"pref_format",
-    @"pref_syntax",
-    @"pref_filedrop",
-    @"pref_keybinding",
-    @"pref_print"
-};
 
 
 

@@ -58,6 +58,8 @@ extern NSString *const CEDistributionURLKey;
 extern NSString *const CELisenceKey;
 extern NSString *const CEDescriptionKey;
 
+// Help anchors
+extern NSString *const kHelpAnchors[];
 
 
 #pragma mark Notifications
@@ -405,17 +407,6 @@ extern CGFloat const kPrintHFVerticalMargin;      // top/bottom margin for heade
 extern CGFloat const kHeaderFooterLineHeight;
 extern CGFloat const kSeparatorPadding;
 extern CGFloat const kNoSeparatorPadding;
-
-
-
-#pragma mark Preferences
-
-// ------------------------------------------------------
-// Preferences
-// ------------------------------------------------------
-
-// Help anchors
-extern NSString *const kHelpPrefAnchors[];
 
 
 

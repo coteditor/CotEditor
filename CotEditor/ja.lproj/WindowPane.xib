@@ -27,7 +27,7 @@
                         <binding destination="26" name="value" keyPath="values.showLineNumbers" id="630"/>
                     </connections>
                 </button>
-                <button horizontalHuggingPriority="750" verticalHuggingPriority="750" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="2151">
+                <button horizontalHuggingPriority="750" verticalHuggingPriority="750" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="2151">
                     <rect key="frame" x="497" y="17" width="25" height="25"/>
                     <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" state="on" borderStyle="border" inset="2" id="3358">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>

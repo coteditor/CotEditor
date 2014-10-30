@@ -26,7 +26,7 @@
                         <binding destination="26" name="value" keyPath="values.inlineContextualScriptMenu" id="2741"/>
                     </connections>
                 </button>
-                <button horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1832">
+                <button horizontalHuggingPriority="750" verticalHuggingPriority="750" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="1832">
                     <rect key="frame" x="497" y="17" width="25" height="25"/>
                     <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" inset="2" id="3308">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>

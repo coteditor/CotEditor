@@ -587,6 +587,19 @@
 
 
 // ------------------------------------------------------
+/// 任意のヘルプコンテンツを開く
+- (IBAction)openHelpAnchor:(id)sender
+// ------------------------------------------------------
+{
+    NSString *bookName = [[NSBundle mainBundle] objectForInfoDictionaryKey: @"CFBundleHelpBookName"];
+    
+    [[NSHelpManager sharedHelpManager] openHelpAnchor:kHelpAnchors[[sender tag]]
+                                               inBook:bookName];
+    
+}
+
+
+// ------------------------------------------------------
 /// 付属ドキュメントを開く
 - (IBAction)openBundledDocument:(id)sender
 // ------------------------------------------------------

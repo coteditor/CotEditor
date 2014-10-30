@@ -35,4 +35,8 @@
 
 @property (readonly, nonatomic) NSURL *supportDirectoryURL;
 
+
+// action messages
+- (IBAction)openHelpAnchor:(id)sender;
+
 @end
