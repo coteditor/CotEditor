@@ -310,7 +310,7 @@
                                                 <customView verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="108">
                                                     <rect key="frame" x="0.0" y="18" width="200" height="474"/>
                                                     <subviews>
-                                                        <textField horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" placeholderIntrinsicWidth="55" placeholderIntrinsicHeight="14" translatesAutoresizingMaskIntoConstraints="NO" id="59">
+                                                        <textField horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="59">
                                                             <rect key="frame" x="42" y="450" width="59" height="14"/>
                                                             <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="right" title="作成日時：" usesSingleLineMode="YES" id="680">
                                                                 <font key="font" metaFont="smallSystem"/>
@@ -334,7 +334,7 @@
                                                                 <outlet property="formatter" destination="j41-as-DJo" id="MoX-Xo-f67"/>
                                                             </connections>
                                                         </textField>
-                                                        <textField horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" placeholderIntrinsicWidth="55" placeholderIntrinsicHeight="14" translatesAutoresizingMaskIntoConstraints="NO" id="62">
+                                                        <textField horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="62">
                                                             <rect key="frame" x="42" y="410" width="59" height="14"/>
                                                             <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="right" title="変更日時：" usesSingleLineMode="YES" id="683">
                                                                 <font key="font" metaFont="smallSystem"/>
@@ -358,7 +358,7 @@
                                                                 <outlet property="formatter" destination="j41-as-DJo" id="B1I-4J-FNT"/>
                                                             </connections>
                                                         </textField>
-                                                        <textField horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" placeholderIntrinsicWidth="55" placeholderIntrinsicHeight="14" translatesAutoresizingMaskIntoConstraints="NO" id="413">
+                                                        <textField horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="413">
                                                             <rect key="frame" x="42" y="348" width="59" height="14"/>
                                                             <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="right" title="オーナー：" usesSingleLineMode="YES" id="689">
                                                                 <font key="font" metaFont="smallSystem"/>
@@ -381,7 +381,7 @@
                                                                 </binding>
                                                             </connections>
                                                         </textField>
-                                                        <textField horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" placeholderIntrinsicWidth="88" placeholderIntrinsicHeight="14" translatesAutoresizingMaskIntoConstraints="NO" id="rnY-fh-C8a">
+                                                        <textField horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="rnY-fh-C8a">
                                                             <rect key="frame" x="9" y="370" width="92" height="14"/>
                                                             <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="right" title="ファイルサイズ：" usesSingleLineMode="YES" id="U0l-4r-6ZD">
                                                                 <font key="font" metaFont="smallSystem"/>
@@ -405,7 +405,7 @@
                                                                 </binding>
                                                             </connections>
                                                         </textField>
-                                                        <textField horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" placeholderIntrinsicWidth="66" placeholderIntrinsicHeight="14" translatesAutoresizingMaskIntoConstraints="NO" id="102">
+                                                        <textField horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="102">
                                                             <rect key="frame" x="31" y="326" width="70" height="14"/>
                                                             <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="right" title="アクセス権：" usesSingleLineMode="YES" id="685">
                                                                 <font key="font" metaFont="smallSystem"/>
@@ -428,7 +428,7 @@
                                                                 </binding>
                                                             </connections>
                                                         </textField>
-                                                        <textField horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" placeholderIntrinsicWidth="81" placeholderIntrinsicHeight="14" translatesAutoresizingMaskIntoConstraints="NO" id="114">
+                                                        <textField horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="114">
                                                             <rect key="frame" x="16" y="304" width="85" height="14"/>
                                                             <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="right" title="Finder ロック：" usesSingleLineMode="YES" id="687">
                                                                 <font key="font" metaFont="smallSystem"/>
@@ -451,7 +451,7 @@
                                                                 </binding>
                                                             </connections>
                                                         </textField>
-                                                        <textField horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" placeholderIntrinsicWidth="66" placeholderIntrinsicHeight="14" translatesAutoresizingMaskIntoConstraints="NO" id="41">
+                                                        <textField horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="41">
                                                             <rect key="frame" x="31" y="282" width="70" height="14"/>
                                                             <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="right" title="クリエータ：" usesSingleLineMode="YES" id="672">
                                                                 <font key="font" metaFont="smallSystem"/>
@@ -474,7 +474,7 @@
                                                                 </binding>
                                                             </connections>
                                                         </textField>
-                                                        <textField horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" placeholderIntrinsicWidth="44" placeholderIntrinsicHeight="14" translatesAutoresizingMaskIntoConstraints="NO" id="42">
+                                                        <textField horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="42">
                                                             <rect key="frame" x="53" y="260" width="48" height="14"/>
                                                             <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="right" title="タイプ：" usesSingleLineMode="YES" id="673">
                                                                 <font key="font" metaFont="smallSystem"/>
@@ -503,7 +503,7 @@
                                                             <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                             <font key="titleFont" metaFont="system"/>
                                                         </box>
-                                                        <textField horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" placeholderIntrinsicWidth="99" placeholderIntrinsicHeight="14" translatesAutoresizingMaskIntoConstraints="NO" id="507">
+                                                        <textField horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="507">
                                                             <rect key="frame" x="-2" y="229" width="103" height="14"/>
                                                             <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="right" title="エンコーディング：" usesSingleLineMode="YES" id="692">
                                                                 <font key="font" metaFont="smallSystem"/>
@@ -522,7 +522,7 @@
                                                                 <binding destination="-2" name="value" keyPath="encodingInfo" id="2ek-BM-fOa"/>
                                                             </connections>
                                                         </textField>
-                                                        <textField horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" placeholderIntrinsicWidth="66" placeholderIntrinsicHeight="14" translatesAutoresizingMaskIntoConstraints="NO" id="509">
+                                                        <textField horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="509">
                                                             <rect key="frame" x="31" y="207" width="70" height="14"/>
                                                             <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="right" title="改行コード：" usesSingleLineMode="YES" id="694">
                                                                 <font key="font" metaFont="smallSystem"/>
@@ -547,7 +547,7 @@
                                                             <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                             <font key="titleFont" metaFont="system"/>
                                                         </box>
-                                                        <textField horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" placeholderIntrinsicWidth="22" placeholderIntrinsicHeight="14" translatesAutoresizingMaskIntoConstraints="NO" id="39">
+                                                        <textField horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="39">
                                                             <rect key="frame" x="75" y="154" width="26" height="14"/>
                                                             <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="right" title="行：" usesSingleLineMode="YES" id="670">
                                                                 <font key="font" metaFont="smallSystem"/>
@@ -566,7 +566,7 @@
                                                                 <binding destination="-2" name="value" keyPath="linesInfo" id="CFN-Kn-2f3"/>
                                                             </connections>
                                                         </textField>
-                                                        <textField horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" placeholderIntrinsicWidth="44" placeholderIntrinsicHeight="14" translatesAutoresizingMaskIntoConstraints="NO" id="40">
+                                                        <textField horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="40">
                                                             <rect key="frame" x="53" y="132" width="48" height="14"/>
                                                             <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="right" title="文字数：" usesSingleLineMode="YES" id="671">
                                                                 <font key="font" metaFont="smallSystem"/>
@@ -585,7 +585,7 @@
                                                                 <binding destination="-2" name="value" keyPath="charsInfo" id="LxO-nU-8EH"/>
                                                             </connections>
                                                         </textField>
-                                                        <textField horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" placeholderIntrinsicWidth="44" placeholderIntrinsicHeight="14" translatesAutoresizingMaskIntoConstraints="NO" id="661">
+                                                        <textField horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="661">
                                                             <rect key="frame" x="53" y="88" width="48" height="14"/>
                                                             <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="right" title="単語数：" usesSingleLineMode="YES" id="696">
                                                                 <font key="font" metaFont="smallSystem"/>
@@ -604,7 +604,7 @@
                                                                 <binding destination="-2" name="value" keyPath="wordsInfo" id="4yw-op-mjA"/>
                                                             </connections>
                                                         </textField>
-                                                        <textField horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" placeholderIntrinsicWidth="44" placeholderIntrinsicHeight="14" translatesAutoresizingMaskIntoConstraints="NO" id="ow1-GK-ghb">
+                                                        <textField horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="ow1-GK-ghb">
                                                             <rect key="frame" x="53" y="110" width="48" height="14"/>
                                                             <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="right" title="文字長：" usesSingleLineMode="YES" id="g8t-es-vog">
                                                                 <font key="font" metaFont="smallSystem"/>
@@ -623,7 +623,7 @@
                                                                 <binding destination="-2" name="value" keyPath="lengthInfo" id="q3z-hI-Zsi"/>
                                                             </connections>
                                                         </textField>
-                                                        <textField horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" placeholderIntrinsicWidth="22" placeholderIntrinsicHeight="14" translatesAutoresizingMaskIntoConstraints="NO" id="57">
+                                                        <textField horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="57">
                                                             <rect key="frame" x="75" y="66" width="26" height="14"/>
                                                             <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="right" title="行：" usesSingleLineMode="YES" id="679">
                                                                 <font key="font" metaFont="smallSystem"/>
@@ -643,7 +643,7 @@
                                                                 <outlet property="formatter" destination="ZXE-Ki-WDP" id="Mx5-qi-Ryd"/>
                                                             </connections>
                                                         </textField>
-                                                        <textField horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" placeholderIntrinsicWidth="33" placeholderIntrinsicHeight="14" translatesAutoresizingMaskIntoConstraints="NO" id="z2Y-UV-cNg">
+                                                        <textField horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="z2Y-UV-cNg">
                                                             <rect key="frame" x="64" y="44" width="37" height="14"/>
                                                             <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="right" title="位置：" usesSingleLineMode="YES" id="7Eo-jA-QRt">
                                                                 <font key="font" metaFont="smallSystem"/>
@@ -667,7 +667,7 @@
                                                                 <outlet property="formatter" destination="ZXE-Ki-WDP" id="L2T-8v-izc"/>
                                                             </connections>
                                                         </textField>
-                                                        <textField horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" placeholderIntrinsicWidth="55" placeholderIntrinsicHeight="14" translatesAutoresizingMaskIntoConstraints="NO" id="kud-ZS-Iyb">
+                                                        <textField horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="kud-ZS-Iyb">
                                                             <rect key="frame" x="42" y="0.0" width="59" height="14"/>
                                                             <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="right" title="Unicode：" usesSingleLineMode="YES" id="j5R-qU-f98">
                                                                 <font key="font" metaFont="smallSystem"/>
@@ -690,7 +690,7 @@
                                                                 </binding>
                                                             </connections>
                                                         </textField>
-                                                        <textField horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" placeholderIntrinsicWidth="55" placeholderIntrinsicHeight="14" translatesAutoresizingMaskIntoConstraints="NO" id="0c5-6r-R0b">
+                                                        <textField horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="0c5-6r-R0b">
                                                             <rect key="frame" x="42" y="185" width="59" height="14"/>
                                                             <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="right" title="バイト長：" usesSingleLineMode="YES" id="oVh-Ta-PXw">
                                                                 <font key="font" metaFont="smallSystem"/>
@@ -713,7 +713,7 @@
                                                                 </binding>
                                                             </connections>
                                                         </textField>
-                                                        <textField horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" placeholderIntrinsicWidth="22" placeholderIntrinsicHeight="14" translatesAutoresizingMaskIntoConstraints="NO" id="446">
+                                                        <textField horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="446">
                                                             <rect key="frame" x="75" y="22" width="26" height="14"/>
                                                             <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="right" title="列：" usesSingleLineMode="YES" id="691">
                                                                 <font key="font" metaFont="smallSystem"/>
