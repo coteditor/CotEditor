@@ -44,6 +44,7 @@
 #import "CEColorCodePanelController.h"
 #import "CEScriptErrorPanelController.h"
 #import "CEUnicodeInputPanelController.h"
+#import "SWFSemanticVersion.h"
 #import "constants.h"
 
 
@@ -742,10 +743,11 @@
 //------------------------------------------------------
 {
     NSString *lastVersion = [[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultLastVersionKey];
-    NSString *version = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
+    NSString *thisVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
+    SWFSemanticVersion *lastSemVer = [SWFSemanticVersion semanticVersionWithString:lastVersion];
+    SWFSemanticVersion *thisSemVer = [SWFSemanticVersion semanticVersionWithString:thisVersion];
     
     // CotEditor 1.x系からの移行
-    // 本来ならば semantic versioning で比較をするべきだが、2.0 への移行はひとまず lastVersion の有無のみで判断を行なう
     if (!lastVersion) {
         if ([self hasSetting]) {
             [self migrateToVersion2];
@@ -753,14 +755,13 @@
     }
     
     // 2.0のベータ版で取りこぼした NSDragAndDropTextDelay のリセットを行う
-    if ([lastVersion hasPrefix:@"2.0.0-beta"]) {
+    if ([lastSemVer compare:[SWFSemanticVersion semanticVersionWithString:@"2.0.0"]] == NSOrderedAscending) {  // lastVer < 2.0.0
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"NSDragAndDropTextDelay"];
     }
     
-    // store current version
-    NSArray *releasedVersions = @[@"2.0.0-alpha", @"2.0.0-beta"];
-    if (!lastVersion || [releasedVersions containsObject:lastVersion]) {
-        [[NSUserDefaults standardUserDefaults] setObject:version forKey:CEDefaultLastVersionKey];
+    // store latest version
+    if ([lastSemVer compare:thisSemVer] == NSOrderedAscending) {  // lastVer < thisVer
+        [[NSUserDefaults standardUserDefaults] setObject:thisVersion forKey:CEDefaultLastVersionKey];
     }
 }
 

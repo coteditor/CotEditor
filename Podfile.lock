@@ -3,6 +3,7 @@ PODS:
   - OgreKit (2.1.7.2)
   - RegexKitLite (4.0)
   - Sparkle (1.8.0)
+  - SWFSemanticVersion (0.2.0)
   - WFColorCode (1.1.1)
   - YAML-Framework (0.0.2):
     - LibYAML (~> 0.1.4)
@@ -11,6 +12,7 @@ DEPENDENCIES:
   - OgreKit (from `https://github.com/coteditor/OgreKit.git`, branch `coteditor-mod`)
   - RegexKitLite
   - Sparkle
+  - SWFSemanticVersion
   - WFColorCode
   - YAML-Framework (from `https://github.com/coteditor/YAML.framework.git`, branch `coteditor-mod`)
 
@@ -27,6 +29,7 @@ SPEC CHECKSUMS:
   OgreKit: 0b159067319f0e5d60878b15983da4f2227b6c41
   RegexKitLite: c0e4c12e6e7de0769f3a3ed679f0f61604170661
   Sparkle: 5eb20bb37ca21e471dab8417dee880198d905327
+  SWFSemanticVersion: b5bb8c03abb6081478fd9ad853adf74b96c2beea
   WFColorCode: bee0f69bcdd330ddfad65973a311762624b5abc1
   YAML-Framework: 8ac087fa5dad49246f5e7c0894759dacb3644dfe
 
