@@ -366,10 +366,10 @@
                     </connections>
                 </button>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="NYb-54-Clb">
-                    <rect key="frame" x="130" y="316" width="100" height="18"/>
-                    <buttonCell key="cell" type="check" title="常に行頭から" bezelStyle="regularSquare" imagePosition="left" inset="2" id="552-Rw-RWZ">
+                    <rect key="frame" x="130" y="316" width="191" height="18"/>
+                    <buttonCell key="cell" type="check" title="常に行頭からコメントアウト" bezelStyle="regularSquare" imagePosition="left" inset="2" id="552-Rw-RWZ">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" metaFont="system"/>
+                        <font key="font" size="13" name="HiraKakuProN-W3"/>
                     </buttonCell>
                     <connections>
                         <binding destination="26" name="value" keyPath="values.commentsAtLineHead" id="UP9-CR-8Lh"/>
