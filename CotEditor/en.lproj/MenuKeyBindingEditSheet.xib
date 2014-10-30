@@ -25,7 +25,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7">
-                        <rect key="frame" x="20" y="75" width="420" height="229"/>
+                        <rect key="frame" x="20" y="61" width="420" height="227"/>
                         <clipView key="contentView" misplaced="YES" id="rHm-fV-vMg">
                             <rect key="frame" x="1" y="17" width="428" height="216"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -142,7 +142,7 @@ You MUST include the Command key.</string>
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="25">
-                        <rect key="frame" x="18" y="53" width="424" height="14"/>
+                        <rect key="frame" x="18" y="296" width="424" height="14"/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="'Foo' doesn't include Command Key. Edit it again." id="145">
                             <font key="font" metaFont="smallSystem"/>
                             <color key="textColor" red="0.86335355043411255" green="0.0" blue="0.021221207454800606" alpha="1" colorSpace="calibratedRGB"/>
@@ -151,13 +151,13 @@ You MUST include the Command key.</string>
                     </textField>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="7" firstAttribute="top" secondItem="15" secondAttribute="bottom" constant="8" symbolic="YES" id="0Kb-N9-Pn2"/>
+                    <constraint firstItem="13" firstAttribute="top" secondItem="7" secondAttribute="bottom" constant="20" symbolic="YES" id="0ZW-Yr-dXM"/>
                     <constraint firstItem="13" firstAttribute="leading" secondItem="12" secondAttribute="trailing" constant="12" symbolic="YES" id="8z6-36-40N"/>
                     <constraint firstAttribute="trailing" secondItem="25" secondAttribute="trailing" constant="20" symbolic="YES" id="9gZ-gW-Dxn"/>
+                    <constraint firstItem="25" firstAttribute="top" secondItem="15" secondAttribute="bottom" constant="2" id="9oD-VT-OpR"/>
                     <constraint firstItem="7" firstAttribute="leading" secondItem="6" secondAttribute="leading" constant="20" symbolic="YES" id="C6v-lb-LBE"/>
                     <constraint firstAttribute="bottom" secondItem="13" secondAttribute="bottom" constant="20" symbolic="YES" id="HSg-fm-HNS"/>
                     <constraint firstItem="13" firstAttribute="top" secondItem="11" secondAttribute="top" id="HwU-f8-sZb"/>
-                    <constraint firstItem="13" firstAttribute="top" secondItem="25" secondAttribute="bottom" constant="12" id="JSS-iN-3GP"/>
                     <constraint firstAttribute="trailing" secondItem="13" secondAttribute="trailing" constant="20" symbolic="YES" id="M2z-w3-nvi"/>
                     <constraint firstItem="15" firstAttribute="top" secondItem="6" secondAttribute="top" constant="20" symbolic="YES" id="Ntl-bX-BTH"/>
                     <constraint firstAttribute="trailing" secondItem="15" secondAttribute="trailing" constant="20" symbolic="YES" id="SNC-ft-kwI"/>
@@ -165,7 +165,7 @@ You MUST include the Command key.</string>
                     <constraint firstAttribute="trailing" secondItem="7" secondAttribute="trailing" constant="20" symbolic="YES" id="XRg-OY-A5y"/>
                     <constraint firstItem="25" firstAttribute="leading" secondItem="6" secondAttribute="leading" constant="20" symbolic="YES" id="XXB-Gi-cSX"/>
                     <constraint firstAttribute="bottom" secondItem="12" secondAttribute="bottom" constant="20" symbolic="YES" id="Yqe-ls-2wl"/>
-                    <constraint firstItem="25" firstAttribute="top" secondItem="7" secondAttribute="bottom" constant="8" symbolic="YES" id="pDV-Fz-vBy"/>
+                    <constraint firstItem="7" firstAttribute="top" secondItem="25" secondAttribute="bottom" constant="8" symbolic="YES" id="gAM-wM-vP2"/>
                     <constraint firstItem="15" firstAttribute="leading" secondItem="6" secondAttribute="leading" constant="20" symbolic="YES" id="z4S-qY-zgV"/>
                 </constraints>
             </view>

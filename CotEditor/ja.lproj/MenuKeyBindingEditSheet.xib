@@ -25,8 +25,71 @@
                 <rect key="frame" x="0.0" y="0.0" width="460" height="360"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
+                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="11">
+                        <rect key="frame" x="14" y="13" width="142" height="32"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="130" id="wbL-0W-iPk"/>
+                        </constraints>
+                        <buttonCell key="cell" type="push" title="デフォルトに戻す" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" inset="2" id="140">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="setToFactoryDefaults:" target="-2" id="Tkf-jB-ciS"/>
+                        </connections>
+                    </button>
+                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="12">
+                        <rect key="frame" x="246" y="13" width="100" height="32"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="88" id="pYT-bW-xKj"/>
+                        </constraints>
+                        <buttonCell key="cell" type="push" title="キャンセル" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="141">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                            <string key="keyEquivalent" base64-UTF8="YES">
+Gw
+</string>
+                        </buttonCell>
+                        <connections>
+                            <action selector="closeSheet:" target="-2" id="gtm-Wh-EN4"/>
+                        </connections>
+                    </button>
+                    <button verticalHuggingPriority="750" tag="100" translatesAutoresizingMaskIntoConstraints="NO" id="13">
+                        <rect key="frame" x="346" y="13" width="100" height="32"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="88" id="mGU-Sm-Wts"/>
+                        </constraints>
+                        <buttonCell key="cell" type="push" title="OK" bezelStyle="rounded" alignment="center" borderStyle="border" tag="100" inset="2" id="142">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                            <string key="keyEquivalent" base64-UTF8="YES">
+DQ
+</string>
+                        </buttonCell>
+                        <connections>
+                            <action selector="closeSheet:" target="-2" id="K8E-Fc-c58"/>
+                        </connections>
+                    </button>
+                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="15">
+                        <rect key="frame" x="18" y="298" width="424" height="42"/>
+                        <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="left" id="144">
+                            <font key="font" size="11" name="HiraKakuProN-W3"/>
+                            <string key="title">アクションを選択し、キー列をクリックして編集状態にしてから、新しいキーを入力してください。
+かならずコマンドキーを含める必要があります</string>
+                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="25">
+                        <rect key="frame" x="18" y="282" width="424" height="14"/>
+                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="'Foo' はコマンドキーを含んでいません。再編集してください。" id="145">
+                            <font key="font" metaFont="smallSystem"/>
+                            <color key="textColor" red="0.86335355043411255" green="0.0" blue="0.021221207454800606" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
                     <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7">
-                        <rect key="frame" x="20" y="75" width="420" height="215"/>
+                        <rect key="frame" x="20" y="61" width="420" height="213"/>
                         <clipView key="contentView" misplaced="YES" id="rHm-fV-vMg">
                             <rect key="frame" x="1" y="17" width="428" height="216"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -87,92 +150,30 @@
                             <autoresizingMask key="autoresizingMask"/>
                         </tableHeaderView>
                     </scrollView>
-                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="11">
-                        <rect key="frame" x="14" y="13" width="142" height="32"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="130" id="wbL-0W-iPk"/>
-                        </constraints>
-                        <buttonCell key="cell" type="push" title="デフォルトに戻す" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" inset="2" id="140">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="setToFactoryDefaults:" target="-2" id="Tkf-jB-ciS"/>
-                        </connections>
-                    </button>
-                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="12">
-                        <rect key="frame" x="246" y="13" width="100" height="32"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="88" id="pYT-bW-xKj"/>
-                        </constraints>
-                        <buttonCell key="cell" type="push" title="キャンセル" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="141">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
-                            <string key="keyEquivalent" base64-UTF8="YES">
-Gw
-</string>
-                        </buttonCell>
-                        <connections>
-                            <action selector="closeSheet:" target="-2" id="gtm-Wh-EN4"/>
-                        </connections>
-                    </button>
-                    <button verticalHuggingPriority="750" tag="100" translatesAutoresizingMaskIntoConstraints="NO" id="13">
-                        <rect key="frame" x="346" y="13" width="100" height="32"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="88" id="mGU-Sm-Wts"/>
-                        </constraints>
-                        <buttonCell key="cell" type="push" title="OK" bezelStyle="rounded" alignment="center" borderStyle="border" tag="100" inset="2" id="142">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
-                            <string key="keyEquivalent" base64-UTF8="YES">
-DQ
-</string>
-                        </buttonCell>
-                        <connections>
-                            <action selector="closeSheet:" target="-2" id="K8E-Fc-c58"/>
-                        </connections>
-                    </button>
-                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="15">
-                        <rect key="frame" x="18" y="298" width="424" height="42"/>
-                        <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="left" id="144">
-                            <font key="font" size="11" name="HiraKakuProN-W3"/>
-                            <string key="title">アクションを選択し、キー列をクリックして編集状態にしてから、新しいキーを入力してください。
-かならずコマンドキーを含める必要があります</string>
-                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
-                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="25">
-                        <rect key="frame" x="18" y="53" width="424" height="14"/>
-                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="'Foo' はコマンドキーを含んでいません。再編集してください。" id="145">
-                            <font key="font" metaFont="smallSystem"/>
-                            <color key="textColor" red="0.86335355043411255" green="0.0" blue="0.021221207454800606" alpha="1" colorSpace="calibratedRGB"/>
-                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="7" firstAttribute="top" secondItem="15" secondAttribute="bottom" constant="8" symbolic="YES" id="0Kb-N9-Pn2"/>
                     <constraint firstItem="13" firstAttribute="leading" secondItem="12" secondAttribute="trailing" constant="12" symbolic="YES" id="8z6-36-40N"/>
                     <constraint firstAttribute="trailing" secondItem="25" secondAttribute="trailing" constant="20" symbolic="YES" id="9gZ-gW-Dxn"/>
                     <constraint firstItem="25" firstAttribute="leading" secondItem="6" secondAttribute="leading" constant="20" symbolic="YES" id="BZn-Ue-uWP"/>
                     <constraint firstItem="7" firstAttribute="leading" secondItem="6" secondAttribute="leading" constant="20" symbolic="YES" id="C6v-lb-LBE"/>
+                    <constraint firstItem="7" firstAttribute="top" secondItem="25" secondAttribute="bottom" constant="8" symbolic="YES" id="Fpa-cZ-cAs"/>
                     <constraint firstAttribute="bottom" secondItem="13" secondAttribute="bottom" constant="20" symbolic="YES" id="HSg-fm-HNS"/>
                     <constraint firstItem="13" firstAttribute="top" secondItem="11" secondAttribute="top" id="HwU-f8-sZb"/>
-                    <constraint firstItem="13" firstAttribute="top" secondItem="25" secondAttribute="bottom" constant="12" id="JSS-iN-3GP"/>
                     <constraint firstAttribute="trailing" secondItem="13" secondAttribute="trailing" constant="20" symbolic="YES" id="M2z-w3-nvi"/>
                     <constraint firstItem="15" firstAttribute="top" secondItem="6" secondAttribute="top" constant="20" symbolic="YES" id="Ntl-bX-BTH"/>
                     <constraint firstAttribute="trailing" secondItem="15" secondAttribute="trailing" constant="20" symbolic="YES" id="SNC-ft-kwI"/>
                     <constraint firstItem="11" firstAttribute="leading" secondItem="6" secondAttribute="leading" constant="20" symbolic="YES" id="WsA-e7-lva"/>
                     <constraint firstAttribute="trailing" secondItem="7" secondAttribute="trailing" constant="20" symbolic="YES" id="XRg-OY-A5y"/>
                     <constraint firstAttribute="bottom" secondItem="12" secondAttribute="bottom" constant="20" symbolic="YES" id="Yqe-ls-2wl"/>
-                    <constraint firstItem="25" firstAttribute="top" secondItem="7" secondAttribute="bottom" constant="8" symbolic="YES" id="pDV-Fz-vBy"/>
+                    <constraint firstItem="13" firstAttribute="top" secondItem="7" secondAttribute="bottom" constant="20" symbolic="YES" id="kLL-nk-UJQ"/>
+                    <constraint firstItem="25" firstAttribute="top" secondItem="15" secondAttribute="bottom" constant="2" id="nif-FP-FAp"/>
                     <constraint firstItem="15" firstAttribute="leading" secondItem="6" secondAttribute="leading" constant="20" symbolic="YES" id="z4S-qY-zgV"/>
                 </constraints>
             </view>
             <connections>
                 <outlet property="delegate" destination="-2" id="D5f-9s-11e"/>
             </connections>
+            <point key="canvasLocation" x="292" y="106"/>
         </window>
     </objects>
 </document>

@@ -63,7 +63,7 @@ NSString *const kHelpAnchors[] = {
     @"pref_format",
     @"pref_syntax",
     @"pref_filedrop",
-    @"pref_keybinding",
+    @"pref_keybindings",
     @"pref_print"
 };
 

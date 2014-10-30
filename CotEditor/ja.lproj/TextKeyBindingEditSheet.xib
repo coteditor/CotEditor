@@ -83,15 +83,23 @@ DQ
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="63">
-                        <rect key="frame" x="18" y="53" width="424" height="14"/>
+                        <rect key="frame" x="18" y="282" width="424" height="14"/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="'Foo' はコマンドキーを含んでいます。再編集してください。" id="149">
                             <font key="font" metaFont="smallSystem"/>
                             <color key="textColor" red="0.86335355039999995" green="0.0" blue="0.021221207450000001" alpha="1" colorSpace="calibratedRGB"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
+                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="66">
+                        <rect key="frame" x="18" y="125" width="70" height="14"/>
+                        <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="挿入文字列：" id="152">
+                            <font key="font" metaFont="smallSystem"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
                     <scrollView autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="56">
-                        <rect key="frame" x="20" y="75" width="420" height="60"/>
+                        <rect key="frame" x="20" y="61" width="420" height="60"/>
                         <clipView key="contentView" id="xtC-OC-ZcW">
                             <rect key="frame" x="1" y="1" width="428" height="58"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -123,16 +131,8 @@ DQ
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                     </scrollView>
-                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="66">
-                        <rect key="frame" x="18" y="139" width="70" height="14"/>
-                        <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="挿入文字列：" id="152">
-                            <font key="font" metaFont="smallSystem"/>
-                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
                     <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="85">
-                        <rect key="frame" x="20" y="161" width="420" height="129"/>
+                        <rect key="frame" x="20" y="147" width="420" height="127"/>
                         <clipView key="contentView" misplaced="YES" id="hSR-kT-PyY">
                             <rect key="frame" x="1" y="17" width="428" height="130"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -198,7 +198,7 @@ DQ
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="56" secondAttribute="trailing" constant="20" symbolic="YES" id="4s1-3n-2db"/>
-                    <constraint firstItem="85" firstAttribute="top" secondItem="64" secondAttribute="bottom" constant="8" symbolic="YES" id="9Hy-uW-gZf"/>
+                    <constraint firstItem="63" firstAttribute="top" secondItem="64" secondAttribute="bottom" constant="2" id="6yX-cB-Qrr"/>
                     <constraint firstAttribute="bottom" secondItem="68" secondAttribute="bottom" constant="20" symbolic="YES" id="FOi-17-hw0"/>
                     <constraint firstItem="85" firstAttribute="leading" secondItem="55" secondAttribute="leading" constant="20" symbolic="YES" id="FVx-Vn-ECY"/>
                     <constraint firstAttribute="trailing" secondItem="85" secondAttribute="trailing" constant="20" symbolic="YES" id="JOX-cO-xqn"/>
@@ -214,10 +214,10 @@ DQ
                     <constraint firstItem="68" firstAttribute="top" secondItem="67" secondAttribute="top" id="ZiO-Bf-0zL"/>
                     <constraint firstAttribute="trailing" secondItem="68" secondAttribute="trailing" constant="20" symbolic="YES" id="c27-ic-RgN"/>
                     <constraint firstAttribute="trailing" secondItem="63" secondAttribute="trailing" constant="20" symbolic="YES" id="fAW-1U-5bt"/>
-                    <constraint firstItem="63" firstAttribute="top" secondItem="56" secondAttribute="bottom" constant="8" symbolic="YES" id="fgG-vj-w2Q"/>
                     <constraint firstItem="56" firstAttribute="leading" secondItem="55" secondAttribute="leading" constant="20" symbolic="YES" id="kML-3A-h0u"/>
-                    <constraint firstItem="68" firstAttribute="top" secondItem="63" secondAttribute="bottom" constant="12" id="pvN-Pr-CC1"/>
                     <constraint firstItem="64" firstAttribute="top" secondItem="55" secondAttribute="top" constant="20" symbolic="YES" id="vxi-w3-XoZ"/>
+                    <constraint firstItem="85" firstAttribute="top" secondItem="63" secondAttribute="bottom" constant="8" symbolic="YES" id="w9V-8B-del"/>
+                    <constraint firstItem="68" firstAttribute="top" secondItem="56" secondAttribute="bottom" constant="20" symbolic="YES" id="xFg-qC-sA8"/>
                 </constraints>
             </view>
             <connections>
