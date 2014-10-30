@@ -57,7 +57,7 @@ NSString *const CEKeyBindingCharsKey = @"keyBindingChar";
         NSString *charsIgnoringModifiers = [anEvent charactersIgnoringModifiers];
         
         if ([charsIgnoringModifiers length] > 0) {
-            NSEventModifierFlags modifierFlags = [anEvent modifierFlags];
+            NSUInteger modifierFlags = [anEvent modifierFlags];
             NSCharacterSet *ignoringShiftSet = [NSCharacterSet characterSetWithCharactersInString:@"`~!@#$%^&()_{}|\":<>?=/*-+.'"];
             
             // Backspace または delete キーが押されていた時、是正する

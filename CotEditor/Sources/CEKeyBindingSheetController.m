@@ -408,7 +408,7 @@
 //------------------------------------------------------
 {
     NSDictionary *userInfo = [notification userInfo];
-    NSEventModifierFlags modifierFlags = [userInfo[CEKeyBindingModifierFlagsKey] unsignedIntegerValue];
+    NSUInteger modifierFlags = [userInfo[CEKeyBindingModifierFlagsKey] unsignedIntegerValue];
     NSString *charsIgnoringModifiers = userInfo[CEKeyBindingCharsKey];
     NSString *fieldString = [CEKeyBindingManager keySpecCharsFromKeyEquivalent:charsIgnoringModifiers
                                                                  modifierFrags:modifierFlags];
