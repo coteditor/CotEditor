@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014 CotEditor Project
+ © 2014-2015 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -30,12 +30,12 @@
 
 @import CoreText;
 #import "CELineNumberView.h"
+#import "CETextViewProtocol.h"
 #import "constants.h"
 
 
 @interface CELineNumberView ()
 
-@property (nonatomic) CGFloat thickness;
 @property (nonatomic) NSTimer *draggingTimer;
 
 @end
@@ -67,23 +67,42 @@ static const NSString *LineNumberFontName;
 
 
 // ------------------------------------------------------
-/// clean up
-- (void)dealloc
+/// initialize instance
+- (instancetype)initWithScrollView:(NSScrollView *)scrollView orientation:(NSRulerOrientation)orientation
 // ------------------------------------------------------
 {
-    _textView = nil;
+    self = [super initWithScrollView:scrollView orientation:orientation];
+    if (self) {
+        [self setRuleThickness:kDefaultLineNumWidth];
+        
+        // update line number on scroll view resize for text wrapping change
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(invalidateLineNumber)
+                                                     name:NSViewFrameDidChangeNotification
+                                                   object:scrollView];
+    }
+    return self;
 }
 
 
 // ------------------------------------------------------
-/// draw line numbers.
+/// clean up
+- (void)dealloc
+// ------------------------------------------------------
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+
+// ------------------------------------------------------
+/// draw background
 - (void)drawRect:(NSRect)dirtyRect
 // ------------------------------------------------------
 {
     NSColor *counterColor = [[[self textView] theme] isDarkTheme] ? [NSColor whiteColor] : [NSColor blackColor];
     NSColor *textColor = [[[self textView] theme] weakTextColor];
     
-    // fill in the background
+    // fill background
     [[counterColor colorWithAlphaComponent:0.08] set];
     [NSBezierPath fillRect:dirtyRect];
     
@@ -92,16 +111,26 @@ static const NSString *LineNumberFontName;
     [NSBezierPath strokeLineFromPoint:NSMakePoint(NSMaxX(dirtyRect) - 0.5, NSMaxY(dirtyRect))
                               toPoint:NSMakePoint(NSMaxX(dirtyRect) - 0.5, NSMinY(dirtyRect))];
     
-    // get document data
+    [self drawHashMarksAndLabelsInRect:dirtyRect];
+}
+
+
+// ------------------------------------------------------
+/// draw line numbers
+- (void)drawHashMarksAndLabelsInRect:(NSRect)rect
+// ------------------------------------------------------
+{
     NSString *string = [[self textView] string];
-    NSLayoutManager *layoutManager = [[self textView] layoutManager];
     
     if ([string length] == 0) { return; }
+    
+    NSLayoutManager *layoutManager = [[self textView] layoutManager];
+    NSColor *textColor = [[[self textView] theme] weakTextColor];
     
     // set graphics context
     CGContextRef context = (CGContextRef)[[NSGraphicsContext currentContext] graphicsPort];
     CGContextSaveGState(context);
-    
+
     // setup font
     CGFloat masterFontSize = [[[self textView] font] pointSize];
     CGFloat fontSize = round(0.9 * masterFontSize);
@@ -209,27 +238,18 @@ static const NSString *LineNumberFontName;
     
     // adjust thickness
     CGFloat requiredWidth = MAX(numberOfDigits(lineNum) * charWidth + 3 * kLineNumPadding, kDefaultLineNumWidth);
-    [self setThickness:ceil(requiredWidth)];
+    [self setRuleThickness:ceil(requiredWidth)];
     
     CGContextRestoreGState(context);
 }
 
 
 // ------------------------------------------------------
-/// flip vertical coordinate
-- (BOOL)isFlipped
+/// make background transparent
+- (BOOL)isOpaque
 // ------------------------------------------------------
 {
-    return YES;
-}
-
-
-// ------------------------------------------------------
-/// return self size
-- (NSSize)intrinsicContentSize
-// ------------------------------------------------------
-{
-    return NSMakeSize([self thickness], NSViewNoInstrinsicMetric);
+    return NO;
 }
 
 
@@ -265,42 +285,23 @@ static const NSString *LineNumberFontName;
 
 
 
-#pragma mark Public Methods
-
-// ------------------------------------------------------
-/// set line numbers visibility
-- (void)setShown:(BOOL)shown
-// ------------------------------------------------------
-{
-    if (shown == [self isShown]) { return; }
-    
-    _shown = shown;
-    
-    CGFloat width = shown ? kDefaultLineNumWidth : 0.0;
-    [self setThickness:width];
-}
-
-
-// ------------------------------------------------------
-/// redraw line numbers
-- (void)updateLineNumber
-// ------------------------------------------------------
-{
-    [self setNeedsDisplay:YES];
-}
-
-
-
 #pragma mark Private Methods
 
 // ------------------------------------------------------
-/// set view thickness
-- (void)setThickness:(CGFloat)thickness
+/// return client view casting to textView
+- (NSTextView<CETextViewProtocol> *)textView
 // ------------------------------------------------------
 {
-    _thickness = thickness;
-    
-    [self invalidateIntrinsicContentSize];
+    return (NSTextView<CETextViewProtocol> *)[self clientView];
+}
+
+
+// ------------------------------------------------------
+/// update line number
+- (void)invalidateLineNumber
+// ------------------------------------------------------
+{
+    [self setNeedsDisplay:YES];
 }
 
 
