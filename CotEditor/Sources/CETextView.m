@@ -1374,8 +1374,7 @@ const NSInteger kNoMenuItem = -1;
     [self setSelectedTextAttributes:@{NSBackgroundColorAttributeName: [theme selectionColor]}];
     
     // 背景色に合わせたスクローラのスタイルをセット
-    CGFloat brightness = [[backgroundColor colorUsingColorSpaceName:NSDeviceRGBColorSpace] brightnessComponent];
-    NSInteger knobStyle = (brightness < 0.5) ? NSScrollerKnobStyleLight : NSScrollerKnobStyleDefault;
+    NSInteger knobStyle = [theme isDarkTheme] ? NSScrollerKnobStyleLight : NSScrollerKnobStyleDefault;
     [[self enclosingScrollView] setScrollerKnobStyle:knobStyle];
     
     _theme = theme;

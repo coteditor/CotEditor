@@ -56,6 +56,9 @@
 @property (readonly, nonatomic) NSColor *charactersColor;
 @property (readonly, nonatomic) NSColor *commentsColor;
 
+/// Is background color dark?
+@property (readonly, nonatomic, getter=isDarkTheme) BOOL darkTheme;
+
 
 /// return CETheme instance initialized with theme name
 + (CETheme *)themeWithName:(NSString *)themeName;

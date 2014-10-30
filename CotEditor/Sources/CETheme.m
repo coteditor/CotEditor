@@ -32,6 +32,9 @@
 #import "NSColor+WFColorCode.h"
 
 
+static const CGFloat kDarkThemeThreshold = 0.5;
+
+
 @interface CETheme ()
 
 /// name of the theme
@@ -58,6 +61,9 @@
 @property (readwrite, nonatomic) NSColor *stringsColor;
 @property (readwrite, nonatomic) NSColor *charactersColor;
 @property (readwrite, nonatomic) NSColor *commentsColor;
+
+/// Is background color dark?
+@property (readwrite, nonatomic, getter=isDarkTheme) BOOL darkTheme;
 
 
 // other options
@@ -129,6 +135,10 @@
         _commentsColor = colorDict[CEThemeCommentsKey];
         
         _usesSystemSelectionColor = [themeDict[CEThemeSelectionKey][CEThemeUsesSystemSettingKey] boolValue];
+        
+        //  背景が暗いかを判定して属性として保持
+        CGFloat brightness = [[_backgroundColor colorUsingColorSpaceName:NSDeviceRGBColorSpace] brightnessComponent];
+        _darkTheme = (brightness < kDarkThemeThreshold);
         
         // 文字カラーと背景カラーの中間色であるマークアップカラーを生成
         CGFloat bgR, bgG, bgB, fgR, fgG, fgB;
