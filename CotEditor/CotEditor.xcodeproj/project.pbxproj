@@ -312,11 +312,11 @@
 		2A961C5C18FC69D9002076B6 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = ja; path = ja.lproj/ShellScript.rtf; sourceTree = "<group>"; };
 		2A9871A819AEABDB0081BADB /* KeyBindings */ = {isa = PBXFileReference; lastKnownFileType = folder; path = KeyBindings; sourceTree = "<group>"; };
 		2AA562A818E8F630009CD7A2 /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/PrintPanelAccessory.xib; sourceTree = "<group>"; };
-		2AA84DCF196381A1000BB9D3 /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/DocumentWindow.xib; sourceTree = "<group>"; };
 		2AACC9571942A82900E3FF63 /* CEIndicatorSheetController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEIndicatorSheetController.h; sourceTree = "<group>"; };
 		2AACC9581942A82900E3FF63 /* CEIndicatorSheetController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEIndicatorSheetController.m; sourceTree = "<group>"; };
 		2AAEF50619FC455C005F2AD3 /* CEClipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEClipView.h; sourceTree = "<group>"; };
 		2AAEF50719FC455C005F2AD3 /* CEClipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEClipView.m; sourceTree = "<group>"; };
+		2AAEF50A1A026B35005F2AD3 /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/DocumentWindow.xib; sourceTree = "<group>"; };
 		2AB4326D1912ADAC00835004 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/GlyphPopover.xib; sourceTree = "<group>"; };
 		2AB4326F1912AF7200835004 /* CEGlyphPopoverController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEGlyphPopoverController.h; sourceTree = "<group>"; };
 		2AB432701912AF7200835004 /* CEGlyphPopoverController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEGlyphPopoverController.m; sourceTree = "<group>"; };
@@ -1280,7 +1280,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				2A37F4B5FDCFA73011CA2CEA /* en */,
-				2AA84DCF196381A1000BB9D3 /* ja */,
+				2AAEF50A1A026B35005F2AD3 /* ja */,
 			);
 			name = DocumentWindow.xib;
 			sourceTree = "<group>";

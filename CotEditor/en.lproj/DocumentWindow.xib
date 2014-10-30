@@ -107,8 +107,7 @@
             </view>
             <toolbar key="toolbar" implicitIdentifier="CED05FB8-D6FA-4FDC-A1D9-8D33CCA40BE5" explicitIdentifier="docWindowToolbarID" displayMode="iconAndLabel" sizeMode="regular" id="olV-v9-4mJ">
                 <allowedToolbarItems>
-                    <toolbarItem implicitItemIdentifier="D0855551-09F0-4844-BEEB-01E31A159043" explicitItemIdentifier="lineEndingsItemID" label="Line Endings" paletteLabel="Line Endings" tag="1" id="fVR-to-zN3">
-                        <nil key="toolTip"/>
+                    <toolbarItem implicitItemIdentifier="D0855551-09F0-4844-BEEB-01E31A159043" explicitItemIdentifier="lineEndingsItemID" label="Line Endings" paletteLabel="Line Endings" toolTip="Change line endings" tag="1" id="fVR-to-zN3">
                         <size key="minSize" width="77" height="22"/>
                         <size key="maxSize" width="77" height="22"/>
                         <popUpButton key="view" verticalHuggingPriority="750" tag="1" id="77">
@@ -139,8 +138,7 @@
                             </popUpButtonCell>
                         </popUpButton>
                     </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="69A39582-7ACA-4B46-BD98-FA09B10CB92C" explicitItemIdentifier="fileEncodingsItemID" label="File Encoding" paletteLabel="File Encoding" tag="2" id="d2p-GT-YXm">
-                        <nil key="toolTip"/>
+                    <toolbarItem implicitItemIdentifier="69A39582-7ACA-4B46-BD98-FA09B10CB92C" explicitItemIdentifier="fileEncodingsItemID" label="File Encoding" paletteLabel="File Encoding" toolTip="Change file encoding" tag="2" id="d2p-GT-YXm">
                         <size key="minSize" width="140" height="22"/>
                         <size key="maxSize" width="140" height="22"/>
                         <popUpButton key="view" verticalHuggingPriority="750" tag="2" id="90">
@@ -157,8 +155,7 @@
                             </popUpButtonCell>
                         </popUpButton>
                     </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="B40F8010-88AA-4077-B6EF-D961FE4F873C" explicitItemIdentifier="syntaxColoringItemID" label="Syntax Style" paletteLabel="Syntax Style" tag="3" id="6gO-UF-7QW">
-                        <nil key="toolTip"/>
+                    <toolbarItem implicitItemIdentifier="B40F8010-88AA-4077-B6EF-D961FE4F873C" explicitItemIdentifier="syntaxColoringItemID" label="Syntax Style" paletteLabel="Syntax Style" toolTip="Change syntax style" tag="3" id="6gO-UF-7QW">
                         <size key="minSize" width="120" height="22"/>
                         <size key="maxSize" width="120" height="22"/>
                         <popUpButton key="view" verticalHuggingPriority="750" tag="3" id="96">
@@ -310,7 +307,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="210" height="486"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
-                                                <customView verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="108">
+                                                <customView verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="108">
                                                     <rect key="frame" x="0.0" y="16" width="200" height="438"/>
                                                     <subviews>
                                                         <textField horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="59">
@@ -842,7 +839,7 @@
                                             <rect key="frame" x="-100" y="-100" width="194" height="11"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
-                                        <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" controlSize="small" horizontal="NO" id="730">
+                                        <scroller key="verticalScroller" verticalHuggingPriority="750" controlSize="small" horizontal="NO" id="730">
                                             <rect key="frame" x="196" y="0.0" width="14" height="406"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
