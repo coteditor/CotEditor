@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6249" systemVersion="13F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6249"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6250"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="CEEncodingListSheetController">
@@ -17,14 +17,14 @@
             <windowStyleMask key="styleMask" titled="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="247" y="236" width="400" height="367"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1028"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
             <value key="minSize" type="size" width="350" height="320"/>
             <view key="contentView" id="37">
                 <rect key="frame" x="0.0" y="0.0" width="400" height="367"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="38">
-                        <rect key="frame" x="20" y="61" width="257" height="225"/>
+                        <rect key="frame" x="20" y="61" width="244" height="228"/>
                         <clipView key="contentView" id="aNc-UC-u91">
                             <rect key="frame" x="1" y="1" width="255" height="209"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -35,7 +35,7 @@
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                     <tableColumns>
-                                        <tableColumn editable="NO" width="252" minWidth="40" maxWidth="1000" id="40">
+                                        <tableColumn editable="NO" width="239" minWidth="40" maxWidth="1000" id="40">
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
                                                 <font key="font" metaFont="smallSystem"/>
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -49,11 +49,11 @@
                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                             <prototypeCellViews>
                                                 <tableCellView id="lCX-un-Xh0">
-                                                    <rect key="frame" x="1" y="1" width="252" height="17"/>
+                                                    <rect key="frame" x="1" y="1" width="239" height="17"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
                                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="oSS-Ui-C8S">
-                                                            <rect key="frame" x="4" y="0.0" width="244" height="17"/>
+                                                            <rect key="frame" x="4" y="0.0" width="231" height="17"/>
                                                             <textFieldCell key="cell" lineBreakMode="truncatingTail" truncatesLastVisibleLine="YES" sendsActionOnEndEditing="YES" title="Table View Cell" id="C2a-0L-t4F" customClass="CEMenuItemCell">
                                                                 <font key="font" metaFont="system"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -125,31 +125,31 @@ DQ
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="54">
-                        <rect key="frame" x="284" y="270" width="97" height="16"/>
+                        <rect key="frame" x="267" y="265" width="118" height="28"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="95" id="wRo-6f-aHc"/>
+                            <constraint firstAttribute="width" constant="108" id="wRo-6f-aHc"/>
                         </constraints>
-                        <buttonCell key="cell" type="push" title="Add Separator" bezelStyle="rounded" alignment="center" controlSize="mini" borderStyle="border" inset="2" id="3392">
+                        <buttonCell key="cell" type="push" title="Add Separator" bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" inset="2" id="3392">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="miniSystem"/>
+                            <font key="font" metaFont="smallSystem"/>
                         </buttonCell>
                         <connections>
                             <action selector="addSeparator:" target="47" id="63"/>
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="55">
-                        <rect key="frame" x="284" y="247" width="97" height="16"/>
-                        <buttonCell key="cell" type="push" title="Delete Separator" bezelStyle="rounded" alignment="center" controlSize="mini" enabled="NO" borderStyle="border" inset="2" id="3393">
+                        <rect key="frame" x="267" y="237" width="118" height="28"/>
+                        <buttonCell key="cell" type="push" title="Delete Separator" bezelStyle="rounded" alignment="center" controlSize="small" enabled="NO" borderStyle="border" inset="2" id="3393">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="miniSystem"/>
+                            <font key="font" metaFont="smallSystem"/>
                         </buttonCell>
                         <connections>
                             <action selector="deleteSeparator:" target="47" id="64"/>
                         </connections>
                     </button>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="56">
-                        <rect key="frame" x="18" y="294" width="364" height="28"/>
-                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" id="3394">
+                        <rect key="frame" x="18" y="297" width="364" height="28"/>
+                        <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="left" id="3394">
                             <font key="font" metaFont="smallSystem"/>
                             <string key="title">This list is for Auto-Detect and the file encoding menu.
 Auto-Detect tries these encodings from the top of the list.</string>
@@ -158,21 +158,21 @@ Auto-Detect tries these encodings from the top of the list.</string>
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="62">
-                        <rect key="frame" x="20" y="330" width="360" height="17"/>
-                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="Drag encodings to change the order." drawsBackground="YES" id="3395">
-                            <font key="font" metaFont="systemBold"/>
+                        <rect key="frame" x="18" y="333" width="364" height="14"/>
+                        <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="left" title="Drag encodings to change the order." id="3395">
+                            <font key="font" metaFont="smallSystem"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="secondarySelectedControlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="700">
-                        <rect key="frame" x="15" y="17" width="130" height="28"/>
+                        <rect key="frame" x="14" y="13" width="142" height="32"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="120" id="Rqp-J1-4Qc"/>
+                            <constraint firstAttribute="width" constant="130" id="Rqp-J1-4Qc"/>
                         </constraints>
-                        <buttonCell key="cell" type="push" title="Restore Defaults" bezelStyle="rounded" alignment="center" controlSize="small" enabled="NO" borderStyle="border" inset="2" id="3396">
+                        <buttonCell key="cell" type="push" title="Restore Defaults" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" inset="2" id="3396">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="smallSystem"/>
+                            <font key="font" metaFont="system"/>
                         </buttonCell>
                         <connections>
                             <action selector="revertDefaultEncodings:" target="47" id="701"/>
@@ -193,7 +193,7 @@ Auto-Detect tries these encodings from the top of the list.</string>
                     <constraint firstItem="54" firstAttribute="top" secondItem="56" secondAttribute="bottom" constant="8" symbolic="YES" id="LzJ-7I-MxY"/>
                     <constraint firstItem="62" firstAttribute="top" secondItem="37" secondAttribute="top" constant="20" symbolic="YES" id="N7H-D8-BSH"/>
                     <constraint firstItem="43" firstAttribute="leading" secondItem="42" secondAttribute="trailing" constant="12" symbolic="YES" id="Nt9-gb-shF"/>
-                    <constraint firstItem="55" firstAttribute="top" secondItem="54" secondAttribute="bottom" constant="8" symbolic="YES" id="QDo-Jt-bsV"/>
+                    <constraint firstItem="55" firstAttribute="top" secondItem="54" secondAttribute="bottom" constant="10" symbolic="YES" id="QDo-Jt-bsV"/>
                     <constraint firstAttribute="bottom" secondItem="42" secondAttribute="bottom" constant="20" symbolic="YES" id="RUg-QY-MXl"/>
                     <constraint firstItem="38" firstAttribute="top" secondItem="56" secondAttribute="bottom" constant="8" symbolic="YES" id="Syx-Wi-LNT"/>
                     <constraint firstItem="42" firstAttribute="top" secondItem="38" secondAttribute="bottom" constant="20" symbolic="YES" id="UsJ-hk-9IV"/>
@@ -208,6 +208,7 @@ Auto-Detect tries these encodings from the top of the list.</string>
             <connections>
                 <outlet property="delegate" destination="-2" id="ED6-5r-m10"/>
             </connections>
+            <point key="canvasLocation" x="163" y="321.5"/>
         </window>
         <customObject id="47" userLabel="Encoding Data Source" customClass="CEPrefEncodingDataSource">
             <connections>
