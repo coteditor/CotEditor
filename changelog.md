@@ -182,7 +182,7 @@ changelog
 - 隠し設定であるナビゲーションバーのフォント設定を廃止
 - ドキュメントの更新
 - Sparkle framework を 1.8.0 に更新
-- ビルド環境を OS X Yosemite + Xcode 6.1 に変更
+- ビルド環境を OS X Yosemite + Xcode 6.1 (SDK 10.10) に変更
 - ほか、内部コードの変更
 
 
