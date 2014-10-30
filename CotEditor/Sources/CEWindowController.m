@@ -141,7 +141,6 @@ static NSTimeInterval incompatibleCharInterval;
     
     // 背景をセットアップ
     [self setAlpha:(CGFloat)[defaults doubleForKey:CEDefaultWindowAlphaKey]];
-    [[self window] setBackgroundColor:[NSColor clearColor]]; // ウィンドウ背景色に透明色をセット
     
     // ドキュメントオブジェクトに CEEditorWrapper インスタンスをセット
     [[self document] setEditor:[self editor]];
@@ -593,7 +592,8 @@ static NSTimeInterval incompatibleCharInterval;
 // ------------------------------------------------------
 {
     // ウインドウ背景を戻す
-    [[self window] setBackgroundColor:[NSColor clearColor]];
+    NSColor *backgroundColor = [[[[[self editor] textView] theme] backgroundColor] colorWithAlphaComponent:[self alpha]];
+    [[self window] setBackgroundColor:backgroundColor];
 }
 
 

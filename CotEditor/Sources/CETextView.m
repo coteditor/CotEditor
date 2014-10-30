@@ -110,6 +110,7 @@ const NSInteger kNoMenuItem = -1;
         // テーマの設定
         _backgroundAlpha = 1.0;
         [self setTheme:[CETheme themeWithName:[defaults stringForKey:CEDefaultThemeKey]]];
+        [self setBackgroundColor:[NSColor clearColor]];  // 背景色はウインドウが持つので textView は透明固定
         
         // set the values
         [self setAutoTabExpandEnabled:[defaults boolForKey:CEDefaultAutoExpandTabKey]];
@@ -676,8 +677,9 @@ const NSInteger kNoMenuItem = -1;
                                   toPoint:NSMakePoint(x, length)];
     }
     
-    // テキストビューを透過させている時に影を更新描画する
-    if ([[self backgroundColor] alphaComponent] < 1.0) {
+    // テキストビューを透過させている時に影を更新描画する (on Lion)
+    // Lion 上では Layer-backed になっていないのでビュー越しにテキストのドロップシャドウが描画される。Lion サポート落としたら多分不要。(2014-10 1024jp)
+    if ((NSAppKitVersionNumber < NSAppKitVersionNumber10_8) && ([[self backgroundColor] alphaComponent] < 1.0)) {
         [[self window] invalidateShadow];
     }
 }
@@ -1195,13 +1197,11 @@ const NSInteger kNoMenuItem = -1;
 - (void)setBackgroundAlpha:(CGFloat)alpha
 // ------------------------------------------------------
 {
-    [self setBackgroundColor:[[self backgroundColor] colorWithAlphaComponent:alpha]];
+    [[self window] setBackgroundColor:[[[self theme] backgroundColor] colorWithAlphaComponent:alpha]];
     [self setHighlightLineColor:[[self highlightLineColor] colorWithAlphaComponent:alpha]];
     
-    if (floor(NSAppKitVersionNumber) > 1265) { // on Yosemite and later
+    if (NSAppKitVersionNumber >= NSAppKitVersionNumber10_8) { // on Mountain Lion and later
         [[self enclosingScrollView] setWantsLayer:YES];
-    } else if (NSAppKitVersionNumber >= NSAppKitVersionNumber10_8) { // on Mountain Lion or Mavericks
-        [[self enclosingScrollView] setWantsLayer:(alpha == 1.0)];
     }
     
     _backgroundAlpha = alpha;
@@ -1368,7 +1368,7 @@ const NSInteger kNoMenuItem = -1;
     NSColor *highlightLineColor = [theme lineHighLightColor];
     
     [self setTextColor:[theme textColor]];
-    [self setBackgroundColor:[backgroundColor colorWithAlphaComponent:[self backgroundAlpha]]];
+    [[self window] setBackgroundColor:[backgroundColor colorWithAlphaComponent:[self backgroundAlpha]]];
     [self setHighlightLineColor:[highlightLineColor colorWithAlphaComponent:[self backgroundAlpha]]];
     [self setInsertionPointColor:[theme insertionPointColor]];
     [self setSelectedTextAttributes:@{NSBackgroundColorAttributeName: [theme selectionColor]}];
