@@ -65,6 +65,5 @@
 - (void)stopUpdateLineNumberTimer;
 - (void)stopUpdateOutlineMenuTimer;
 - (NSCharacterSet *)firstCompletionCharacterSet;
-- (void)setBackgroundColorAlpha:(CGFloat)alpha;
 
 @end

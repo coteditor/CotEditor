@@ -148,10 +148,11 @@ static const CGFloat kDarkThemeThreshold = 0.5;
         
         // 背景の色を加味した、淡い文字色を生成
         CGFloat lightness = [sanitizedBackgroundColor lightnessComponent];
+        CGFloat weakness = _darkTheme ? 0.5 : 0.4;
         if (_darkTheme) {
-            lightness = ((1 - 0.6) * (1 - lightness)) + lightness;
+            lightness = ((1 - weakness) * (1 - lightness)) + lightness;
         } else {
-            lightness = 0.4 * lightness;
+            lightness = weakness * lightness;
         }
         _weakTextColor = [NSColor colorWithCalibratedHue:[sanitizedtextColor hueComponent]
                                               saturation:0.6 * [sanitizedtextColor saturationComponent]
@@ -165,7 +166,7 @@ static const CGFloat kDarkThemeThreshold = 0.5;
         _markupColor = [NSColor colorWithCalibratedRed:0.5 * (bgR + fgR)
                                                  green:0.5 * (bgG + fgG)
                                                   blue:0.5 * (bgB + fgB)
-                                                 alpha:1.0];
+                                                 alpha:0.5];
         
     }
     return self;

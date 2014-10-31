@@ -1,15 +1,14 @@
 /*
  ==============================================================================
- CESplitViewController
+ CEWindow
  
  CotEditor
  http://coteditor.github.io
  
- Created on 2006-03-26 by nakamuxu
+ Created on 2004-10-31 by 1024jp
  encoding="UTF-8"
  ------------------------------------------------------------------------------
  
- © 2004-2007 nakamuxu
  © 2014 CotEditor Project
  
  This program is free software; you can redistribute it and/or modify it under
@@ -28,35 +27,11 @@
  ==============================================================================
  */
 
-@import AppKit;
+@import Cocoa;
 
 
-@class CETheme;
+@interface CEWindow : NSWindow
 
-
-@interface CESplitViewController : NSViewController <NSSplitViewDelegate>
-
-- (NSSplitView *)splitView;
-- (NSArray *)layoutManagers;
-
-- (void)setShowsLineNum:(BOOL)showsLineNum;
-- (void)setShowsNavigationBar:(BOOL)showsNavigationBar;
-- (void)setWrapsLines:(BOOL)wrapsLines;
-- (void)setVerticalLayoutOrientation:(BOOL)isVerticalLayoutOrientation;
-- (void)setShowsInvisibles:(BOOL)showsInvisibles;
-- (void)setShowsPageGuide:(BOOL)showsPageGuide;
-- (void)setAutoTabExpandEnabled:(BOOL)isEnabled;
-- (void)setUsesAntialias:(BOOL)usesAntialias;
-- (void)updateCloseSplitViewButton;
-
-- (void)moveAllCaretToBeginning;
-- (void)setTheme:(CETheme *)theme;
-- (void)setSyntaxWithName:(NSString *)syntaxName;
-- (void)recolorAllTextView;
-- (void)updateAllOutlineMenu;
-
-- (IBAction)toggleSplitOrientation:(id)sender;
-- (IBAction)focusNextSplitTextView:(id)sender;
-- (IBAction)focusPrevSplitTextView:(id)sender;
+@property (nonatomic) CGFloat backgroundAlpha;
 
 @end

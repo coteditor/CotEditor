@@ -29,6 +29,7 @@
  */
 
 #import "CEWindowController.h"
+#import "CEWindow.h"
 #import "CEDocumentController.h"
 #import "CEStatusBarController.h"
 #import "CESyntaxManager.h"
@@ -140,7 +141,7 @@ static NSTimeInterval incompatibleCharInterval;
     [[self window] setContentSize:size];
     
     // 背景をセットアップ
-    [self setAlpha:(CGFloat)[defaults doubleForKey:CEDefaultWindowAlphaKey]];
+    [(CEWindow *)[self window] setBackgroundAlpha:[defaults doubleForKey:CEDefaultWindowAlphaKey]];
     
     // ドキュメントオブジェクトに CEEditorWrapper インスタンスをセット
     [[self document] setEditor:[self editor]];
@@ -189,7 +190,7 @@ static NSTimeInterval incompatibleCharInterval;
 // ------------------------------------------------------
 {
     if ([keyPath isEqualToString:CEDefaultWindowAlphaKey]) {
-        [self setAlpha:(CGFloat)[change[NSKeyValueChangeNewKey] doubleValue]];
+        [(CEWindow *)[self window] setBackgroundAlpha:(CGFloat)[change[NSKeyValueChangeNewKey] doubleValue]];
     }
 }
 
@@ -473,31 +474,6 @@ static NSTimeInterval incompatibleCharInterval;
 #pragma mark Accessors
 
 // ------------------------------------------------------
-/// テキストビューの不透明度を返す
-- (CGFloat)alpha
-// ------------------------------------------------------
-{
-    return [[[self editor] textView] backgroundAlpha];
-}
-
-// ------------------------------------------------------
-/// テキストビューの不透明度を変更する
-- (void)setAlpha:(CGFloat)alpha
-// ------------------------------------------------------
-{
-    CGFloat sanitizedAlpha = alpha;
-    
-    sanitizedAlpha = MAX(sanitizedAlpha, 0.2);
-    sanitizedAlpha = MIN(sanitizedAlpha, 1.0);
-    
-    [[self window] setOpaque:(sanitizedAlpha == 1.0)];
-    [[self editor] setBackgroundAlpha:sanitizedAlpha];
-    [[[self window] contentView] setNeedsDisplay:YES];
-    [[self window] invalidateShadow];
-}
-
-
-// ------------------------------------------------------
 /// ステータスバーを表示するかどうかを返す
 - (BOOL)showsStatusBar
 // ------------------------------------------------------
@@ -573,27 +549,6 @@ static NSTimeInterval incompatibleCharInterval;
             [[self document] doSetSyntaxStyle:[[self editor] syntaxStyleName]];
         }
     }
-}
-
-
-// ------------------------------------------------------
-/// フルスクリーンを開始
-- (void)windowWillEnterFullScreen:(NSNotification *)notification
-// ------------------------------------------------------
-{
-    // ウインドウ背景をデフォルトにする（ツールバーの背景に影響）
-    [[self window] setBackgroundColor:nil];
-}
-
-
-// ------------------------------------------------------
-/// フルスクリーンを終了
-- (void)windowDidExitFullScreen:(NSNotification *)notification
-// ------------------------------------------------------
-{
-    // ウインドウ背景を戻す
-    NSColor *backgroundColor = [[[[[self editor] textView] theme] backgroundColor] colorWithAlphaComponent:[self alpha]];
-    [[self window] setBackgroundColor:backgroundColor];
 }
 
 

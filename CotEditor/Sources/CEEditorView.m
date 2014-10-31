@@ -443,15 +443,6 @@
 }
 
 
-// ------------------------------------------------------
-/// テキストビューに背景色をセット
-- (void)setBackgroundColorAlpha:(CGFloat)alpha
-// ------------------------------------------------------
-{
-    [[self textView] setBackgroundAlpha:alpha];
-}
-
-
 
 #pragma mark Delegate and Notification
 

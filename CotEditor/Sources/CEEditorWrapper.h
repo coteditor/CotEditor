@@ -92,8 +92,6 @@
 - (void)updateColoringAndOutlineMenuWithDelay;
 - (void)setupColoringTimer;
 
-- (void)setBackgroundAlpha:(CGFloat)alpha;
-
 
 // Action Message
 - (IBAction)toggleLineNumber:(id)sender;

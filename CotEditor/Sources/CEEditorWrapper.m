@@ -582,15 +582,6 @@ static NSTimeInterval secondColoringDelay;
 }
 
 
-// ------------------------------------------------------
-/// 背景の不透明度をセット
-- (void)setBackgroundAlpha:(CGFloat)alpha
-// ------------------------------------------------------
-{
-    [[self splitViewController] setAllBackgroundColorWithAlpha:alpha];
-}
-
-
 
 #pragma mark Protocol
 
