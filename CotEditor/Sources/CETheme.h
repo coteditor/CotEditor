@@ -42,6 +42,9 @@
 @property (readonly, nonatomic) NSColor *selectionColor;
 @property (readonly, nonatomic) NSColor *insertionPointColor;
 @property (readonly, nonatomic) NSColor *lineHighLightColor;
+
+// auto genereted colors
+@property (readonly, nonatomic) NSColor *weakTextColor;
 @property (readonly, nonatomic) NSColor *markupColor;
 
 // syntax colors

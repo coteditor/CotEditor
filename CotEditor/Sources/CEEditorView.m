@@ -449,7 +449,6 @@
 // ------------------------------------------------------
 {
     [[self textView] setBackgroundAlpha:alpha];
-    [[self lineNumberView] setBackgroundAlpha:alpha];
 }
 
 

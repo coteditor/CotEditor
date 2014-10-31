@@ -29,13 +29,13 @@
  */
 
 @import Cocoa;
+#import "CETextViewProtocol.h"
 
 
 @interface CELineNumberView : NSView
 
 @property (nonatomic, getter=isShown) BOOL shown;
-@property (nonatomic) NSTextView *textView;  // should be weak, just because it is NSTextView.
-@property (nonatomic) CGFloat backgroundAlpha;
+@property (nonatomic) NSTextView<CETextViewProtocol> *textView;  // should be weak, just because it is NSTextView.
 
 
 // Public method

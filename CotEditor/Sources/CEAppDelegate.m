@@ -186,7 +186,6 @@
                                /* -------- 以下、隠し設定 -------- */
                                CEDefaultUsesTextFontForInvisiblesKey: @NO,
                                CEDefaultLineNumFontNameKey: @"ArialNarrow",
-                               CEDefaultLineNumFontColorKey: [NSArchiver archivedDataWithRootObject:[NSColor darkGrayColor]], 
                                CEDefaultBasicColoringDelayKey: @0.001f, 
                                CEDefaultFirstColoringDelayKey: @0.3f, 
                                CEDefaultSecondColoringDelayKey: @0.7f,
