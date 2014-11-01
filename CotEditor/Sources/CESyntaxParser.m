@@ -256,7 +256,7 @@ static CGFloat kPerCompoIncrement;
             }
             
             // queue
-            _coloringQueue = dispatch_queue_create("com.aynimac.CotEditor.ColoringQueue", DISPATCH_QUEUE_CONCURRENT);
+            _coloringQueue = dispatch_queue_create("com.coteditor.CotEditor.ColoringQueue", DISPATCH_QUEUE_CONCURRENT);
             
             // store as properties
             _styleName = styleName;

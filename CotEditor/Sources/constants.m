@@ -41,7 +41,7 @@
 NSString *const CESeparatorString = @"-";
 
 // Error domain
-NSString *const CEErrorDomain = @"com.aynimac.CotEditor.ErrorDomain";
+NSString *const CEErrorDomain = @"com.coteditor.CotEditor.ErrorDomain";
 
 // Localized strings table
 NSString *const CEPrintLocalizeTable =  @"Print";
