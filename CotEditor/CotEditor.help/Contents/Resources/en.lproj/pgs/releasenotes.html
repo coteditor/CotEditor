@@ -19,7 +19,231 @@
 
 <article>
 <header>
-	<h1>What's New on CotEditor 1.5.4</h1>
+	<h1>CotEditor 2.0.0</h1>
+	<p>release: <time>2014-11-01</time></p>
+</header>
+
+<section>
+<h2>New Features</h2>
+
+<ul>
+	<li>Coloring theme feature.</li>
+	<li>Comment toggling feature.</li>
+	<li>Add “types”, “attributes” and “variables” to syntax highlighting colors.</li>
+	<li>Now, syntax style can be determined not only from file extension but also from file name.
+		<ul>
+		<li>From this, rename “Extensions” in syntax edit sheet to “File Mapping”.</li>
+	</ul></li>
+	<li>Add metadata fields for syntax styles.</li>
+	<li>Append a correspondent extension to the file name on saving.
+		<ul>
+		<li>The top extension in the extension list in the syntax style definition will be used.</li>
+		<li>From this, setting for “Append “txt” on saving” was deprecated.
+			<ul>
+			<li>If you want to keep using “txt” as default extension, set “Plain Text” syntax style as default style in Preferences > Format.</li>
+		</ul></li>
+	</ul></li>
+	<li>Add “Toggle Text Orientation” icon to toolbar.</li>
+	<li>Add option to split views vertically.</li>
+	<li>Select lines via clicking/dragging line numbers.</li>
+	<li>Add “Select Line” command to “Edit” menu.</li>
+	<li>Add syntax styles for “AppleScript”, “C#”, “Go”, “Lisp”, “Lua”, “R”, “Rust”, “Scheme”, “SQL”, “SVG”, “Swift” and “Tcl”,.</li>
+	<li>Auto-complete feature (experimental implementation, turned off by default).</li>
+</ul>
+</section>
+
+<section>
+<h2>Additions/Changes</h2>
+
+<ul>
+	<li>Support OS X Yosemite.</li>
+	<li>Update application icon with Yosemite style.</li>
+	<li>Change the bundle identifier from <code>com.aynimac.CotEditor</code> to <code>com.coteditor.CotEditor</code>.</li>
+	<li>New default coloring scheme.</li>
+	<li>Improve performance drastically:
+		<ul>
+		<li>Extracting outline list on a background thread.
+			<ul>
+			<li>From this, non-response time till coloring indicator sheet has been shown reduced drastically.</li>
+			<li>Display message for outline extracting in the navigation bar until the first extracting ends.</li>
+		</ul></li>
+		<li>Perform extracting syntax highlights on a background thread.</li>
+		<li>Cache results of syntax highlighting, and use them as long as document is not modified.</li>
+		<li>Improve cursor moving and file opening performance when the current line is highlighted.</li>
+		<li>Improve invisible chars drawing performance (4x faster).</li>
+		<li>Improve line number drawing performance (6x faster).</li>
+		<li>Improve text view scrolling on Mountain Lion and later.</li>
+		<li>For performance, change range to scan encoding declaration up to 2,000 characters from the head of the document.</li>
+	</ul></li>
+	<li>Change syntax style file format from plist (XML) to YAML.
+		<ul>
+		<li>Legacy user styles will be migrated automatically on the first launch of CotEditor 2.0.</li>
+		<li>New user syntax style files are stored in <code>~/Library/Application Support/CotEditor/Syntaxes/</code>. The old styles are kept in <code>SyntaxColorings/</code>, since CotEditor 2.0 doesn’t use </li>
+	</ul></li>
+	<li>Now, IC (ignore case) can be set even RE (regular expression) is set in syntax style editing.</li>
+	<li>Change regular expression engine to extract outline from OniGmo (OgreKit) to ICU (NSRegularExpression).
+		<ul>
+		<li><strong>Attention!</strong>: You may need to update the outline extracting definitions in your custom syntax styles.</li>
+		<li>Remove <code>$&amp;</code> definition that represents whole matched string (Use <code>$0</code> instead).</li>
+	</ul></li>
+	<li>Change tab width to 4 characters in outline menu.</li>
+	<li>Improve coloring indicator:
+		<ul>
+		<li>Improve to perform cancel button correctly.</li>
+		<li>On Mavericks and later, you can work with other documents while coloring dialog is shown.</li>
+		<li>Display current task as message in sheet.</li>
+		<li>Change not to reset syntax style to “None” when user cancels coloring.</li>
+		<li>Change not to remove current coloring when user cancels coloring.</li>
+		<li>Cancel with ESC key.</li>
+	</ul></li>
+	<li>Apply theme color to the line number view.</li>
+	<li>On Mountain Lion and later, text view gets no drop-shadow by texts on semi-transparent.</li>
+	<li>Define document types for CotEditor in more details and also add document icons for each.</li>
+	<li>Scroll line by line with an arrow key.</li>
+	<li>Adjust indent automatically on return just after <code>{</code> and <code>}</code> if Auto-Indent is on. (thanks to Naotaka-san).</li>
+	<li>Update all of bundled syntax styles.</li>
+	<li>Update “CSS” syntax style:
+		<ul>
+		<li>Support CSS level 3.</li>
+	</ul></li>
+	<li>Update “Perl” syntax style:
+		<ul>
+		<li>Add some keywords.</li>
+		<li>Add <code>=pod</code> and <code>=cut</code> to comment coloring.</li>
+		<li>Add “pm” to extensions.</li>
+	</ul></li>
+	<li>Update “JSON” syntax style:
+		<ul>
+		<li>Add “cottheme” to extensions.</li>
+	</ul></li>
+	<li>Update “LaTeX” syntax style:
+		<ul>
+		<li>Add “cls” and “sty” to extensions.</li>
+		<li>Update outline menu style.</li>
+	</ul></li>
+	<li>Update “YAML” syntax style:
+		<ul>
+		<li>Support YAML 1.2.</li>
+		<li>Improve outline extracting rules.</li>
+		<li>Some fixes.</li>
+	</ul></li>
+	<li>Update “Ruby” syntax style:
+		<ul>
+		<li>Support % notation.</li>
+		<li>Add special variables.</li>
+		<li>Improve number literals.</li>
+		<li>Support here document.</li>
+		<li>and some more fixes.</li>
+	</ul></li>
+	<li>Update “Java” syntax style:
+		<ul>
+		<li>Improve number literals.</li>
+		<li>Support annotation.</li>
+		<li>and some more fixes.</li>
+	</ul></li>
+	<li>Update “JavaScript” syntax style:
+		<ul>
+		<li>Completely rewrite.</li>
+	</ul></li>
+	<li>Update “Haskell” syntax style:
+		<ul>
+		<li>Improve number literals.</li>
+		<li>Add escape chars.</li>
+	</ul></li>
+	<li>Separate “DTD” (Document Type Declaration) syntax style from “XML”.
+		<ul>
+		<li>From this, coloring performance with “XML” syntax style was improved.</li>
+	</ul></li>
+	<li>Updates about scripting support:
+		<ul>
+		<li>Migrate AppleScript API definition file to sdef format.</li>
+		<li>Rename <code>unicode normalization</code> command to <code>normalize unicode</code>.</li>
+		<li>Update internal code for <code>range</code> property of <code>text selection</code> objects.
+			<ul>
+			<li>From this, your <strong>compiled</strong> AppleScripts (.scpt) that contain <code>selection</code> handling need to be updated manually. See “Scripting with AppleScript” document in “Help” menu for details.</li>
+		</ul></li>
+		<li>Update documents about scripting with AppleScript.</li>
+	</ul></li>
+	<li>Count characters by composed character sequence in the status bar and the info drawer.
+		<ul>
+		<li>The previous count was actually the length of string in UTF-16 that is internal string expression on OS X (for example, a surrogate pair is counted previously as 2 and now as 1).</li>
+		<li>Rename previous “Char Count” to “Char Length” and add another “Char Count” with the new count method for status bar items.</li>
+	</ul></li>
+	<li>Change key to display hidden menu items in “File” menu to “Option”.</li>
+	<li>Add <code>.</code> and <code>:</code> to word separators that are used for selecting a word with a double click.</li>
+	<li>Improve messages on character info inspector with surrogate pairs and variation selectors. (thanks to doraTeX-san)</li>
+	<li>Disable alert asking for save when blank &amp; unsaved document will be closed. (thanks to Naotaka-san)</li>
+	<li>Brush up toolbar icons.</li>
+	<li>Now, font size of line numbers follows editor font size.</li>
+	<li>Draw page guide in text color.</li>
+	<li>Improve syntax editor sheet so as to edit documents even the sheet is shown. (on Mavericks and later)</li>
+	<li>Tweak result messages by syntax style validator and partially localized.</li>
+	<li>Improve application icon so as not to react with dropped folders.</li>
+	<li>Improve cancellation behavior of word completion.</li>
+	<li>Rename “Inspect Glyph” to “Inspect Character”.</li>
+	<li>Delay timing to store user’s menu key bindings.
+		<ul>
+		<li>The user setting for menu key bindings on CotEditor 1.x will be reset on the first launch of v2.0.</li>
+	</ul></li>
+	<li>Improve key bindings edit sheets.</li>
+	<li>Change line hight value to line height based, that includes the hight of the line itself.</li>
+	<li>Change default line hight value to 1.3.</li>
+	<li>Add thousands separators to values in document info.</li>
+	<li>Change date format in document info drawer.</li>
+	<li>Tweak status bar design.</li>
+	<li>Add back quotes to quotation marks which are accommodated when color comments.</li>
+	<li>Change Go To panel to sheet.</li>
+	<li>Add animation when toggling visibility of the navigation bar and the status bar.</li>
+	<li>Fix used font for invisible characters.</li>
+	<li>Update some of alternative characters for full-width space char.</li>
+	<li>Improve appearance of the encoding list edit sheet.</li>
+	<li>Improve window size setting fields in preferences to move fields with tab key.</li>
+	<li>Tweak some texts in UI.</li>
+	<li>Deprecate “Drag selected text immediately” setting.</li>
+	<li>Add hidden setting key <code>layoutTextVertical</code> (boolean) to set text orientation vertical as default.</li>
+	<li>Deprecate font settings for navigation bar and line number view which are hidden settings.</li>
+	<li>Move version history from rich text format to one of the Help contents.</li>
+	<li>Update documents.</li>
+	<li>Update Sparkle framework to 1.8.0.</li>
+	<li>Update build environment to OS X Yosemite + Xcode 6.1 (SDK 10.10).</li>
+	<li>And more internal changes.</li>
+</ul>
+</section>
+
+<section>
+<h2>Fixes</h2>
+
+<ul>
+	<li>Fix an issue that “Share find strings with other applications” option didn’t work.</li>
+	<li>Fix an issue that comments weren’t highlighted correctly if another comment delimiter is contained in string that is enclosed in quotes before the comment delimiter.</li>
+	<li>Fix an issue that variation selectors, kind of invisible characters, disappeared occasionally.</li>
+	<li>Fix help buttons on preferences panes.</li>
+	<li>Fix an issue that encoding selection in toolbar was reset after changing of encoding list order.</li>
+	<li>Fix over-wrapped text in the status bar to truncate with “…”.</li>
+	<li>Fix an issue that unfocused windows performed also re-coloring after “Replace All”.</li>
+	<li>Fix an issue that page guide was occasionally drawn at wrong place if fallback font is used.</li>
+	<li>Fix to highlight current line only in focused view of split views.</li>
+	<li>Fix an issue that text lines vibrated during moving caret if text orientation is vertical and line hight is fixed.</li>
+	<li>Fix an issue that line numbers in unfocused views were not updated.</li>
+	<li>Fix an issue that lately added toolbar icons didn’t represent the state at the moment.</li>
+	<li>Fix an issue that an error was output in console if blank area of incompatible chars table was clicked.</li>
+	<li>Fix an issue that editors didn’t change to transparent if the opacity setting in preferences window was changed from 100%.</li>
+	<li>Fix an issue that changes in custom line height panel wasn’t applied immediately.</li>
+	<li>Fix an issue that “Same as Document” selection for invisible chars in print panel didn’t work correctly.</li>
+	<li>Fix an issue that line count got one more extra if selection contains return at the end.</li>
+	<li>Fix an issue that <code>range</code> property of <code>text selection</code> objects was displayed as wrong <code>character range</code> on AppleScript Editor.</li>
+	<li>Fix some sample scripts which didn’t run correctly.</li>
+	<li>Fix an issue that some settings did not display in Preferences on OS X Lion.</li>
+	<li>Avoid horizontal scrollers on key bindings edit sheets.</li>
+</ul>
+</section>
+</article>
+
+
+
+<article>
+<header>
+	<h1>CotEditor 1.5.4</h1>
 	<p>release: <time>2014-06-29</time></p>
 </header>
 
@@ -40,7 +264,7 @@
 
 <article>
 <header>
-	<h1>What's New on CotEditor 1.5.3</h1>
+	<h1>CotEditor 1.5.3</h1>
 	<p>release: <time>2014-05-21</time></p>
 </header>
 
@@ -72,7 +296,7 @@
 
 <article>
 <header>
-	<h1>What's New on CotEditor 1.5.2</h1>
+	<h1>CotEditor 1.5.2</h1>
 	<p>release: <time>2014-05-10</time></p>
 </header>
 
@@ -102,7 +326,7 @@
 
 <article>
 <header>
-	<h1>What's New on CotEditor 1.5.1</h1>
+	<h1>CotEditor 1.5.1</h1>
 	<p>release: <time>2014-05-09</time></p>
 </header>
 
@@ -118,7 +342,7 @@
 
 <article>
 <header>
-	<h1>What's New on CotEditor 1.5.0</h1>
+	<h1>CotEditor 1.5.0</h1>
 	<p>release: <time>2014-05-08</time></p>
 </header>
 
@@ -296,7 +520,7 @@
 
 <article>
 <header>
-	<h1>What's New on CotEditor 1.4.1</h1>
+	<h1>CotEditor 1.4.1</h1>
 	<p>release: <time>2014-03-22</time></p>
 </header>
 
@@ -324,7 +548,7 @@
 
 <article>
 <header>
-	<h1>What's New on CotEditor 1.4.0</h1>
+	<h1>CotEditor 1.4.0</h1>
 	<p>release: <time>2014-03-19</time></p>
 </header>
 
@@ -399,7 +623,7 @@
 
 <article>
 <header>
-	<h1>What's New on CotEditor 1.3.1</h1>
+	<h1>CotEditor 1.3.1</h1>
 	<p>release: <time>2012-02-12</time></p>
 </header>
 
@@ -416,7 +640,7 @@
 
 <article>
 <header>
-	<h1>What's New on CotEditor 1.3.0</h1>
+	<h1>CotEditor 1.3.0</h1>
 	<p>release: <time>2012-02-10</time></p>
 </header>
 
@@ -442,7 +666,7 @@
 
 <article>
 <header>
-	<h1>What's New on CotEditor 1.2.0</h1>
+	<h1>CotEditor 1.2.0</h1>
 	<p>release: <time>2011-05-23</time></p>
 </header>
 
@@ -475,7 +699,7 @@
 
 <article>
 <header>
-	<h1>What's New on CotEditor 1.1.1</h1>
+	<h1>CotEditor 1.1.1</h1>
 	<p>release: <time>2014-04-06</time></p>
 </header>
 
@@ -492,7 +716,7 @@
 
 <article>
 <header>
-	<h1>What's New on CotEditor 1.1.1</h1>
+	<h1>CotEditor 1.1.1</h1>
 	<p>release: <time>2011-04-03</time></p>
 </header>
 
@@ -522,7 +746,7 @@
 
 <article>
 <header>
-	<h1>What's New on CotEditor 1.0.1</h1>
+	<h1>CotEditor 1.0.1</h1>
 	<p>release: <time>2009-05-01</time></p>
 </header>
 
@@ -550,7 +774,7 @@
 
 <article>
 <header>
-	<h1>What's New on CotEditor 1.0.0</h1>
+	<h1>CotEditor 1.0.0</h1>
 	<p>release: <time>2009-02-28</time></p>
 </header>
 
@@ -575,7 +799,7 @@
 
 <article>
 <header>
-	<h1>What's New on CotEditor 0.9.6</h1>
+	<h1>CotEditor 0.9.6</h1>
 	<p>release: <time>2008-12-27</time></p>
 </header>
 
@@ -615,7 +839,7 @@
 
 <article>
 <header>
-	<h1>What's New on CotEditor 0.9.5</h1>
+	<h1>CotEditor 0.9.5</h1>
 	<p>release: <time>2008-07-20</time></p>
 </header>
 
@@ -681,7 +905,7 @@
 
 <article>
 <header>
-	<h1>What's New on CotEditor 0.9.4</h1>
+	<h1>CotEditor 0.9.4</h1>
 	<p>release: <time>2008-02-01</time></p>
 </header>
 
@@ -733,7 +957,7 @@
 
 <article>
 <header>
-	<h1>What's New on CotEditor 0.9.3</h1>
+	<h1>CotEditor 0.9.3</h1>
 	<p>release: <time>2007-10-01</time></p>
 </header>
 
@@ -775,7 +999,7 @@
 
 <article>
 <header>
-	<h1>What's New on CotEditor 0.9.2</h1>
+	<h1>CotEditor 0.9.2</h1>
 	<p>release: <time>2006-10-14</time></p>
 </header>
 
@@ -827,7 +1051,7 @@
 
 <article>
 <header>
-	<h1>What's New on CotEditor 0.9.1</h1>
+	<h1>CotEditor 0.9.1</h1>
 	<p>release: <time>2006-05-14</time></p>
 </header>
 
@@ -875,7 +1099,7 @@
 
 <article>
 <header>
-	<h1>What's New on CotEditor 0.9.0</h1>
+	<h1>CotEditor 0.9.0</h1>
 	<p>release: <time>2006-02-22</time></p>
 </header>
 
@@ -933,7 +1157,7 @@
 
 <article>
 <header>
-	<h1>What's New on CotEditor 0.8.6</h1>
+	<h1>CotEditor 0.8.6</h1>
 	<p>release: <time>2005-12-26</time></p>
 </header>
 
@@ -982,7 +1206,7 @@
 
 <article>
 <header>
-	<h1>What's New on CotEditor 0.8.5</h1>
+	<h1>CotEditor 0.8.5</h1>
 	<p>release: <time>2005-12-06</time></p>
 </header>
 
@@ -1028,7 +1252,7 @@
 
 <article>
 <header>
-	<h1>What's New on CotEditor 0.8.4</h1>
+	<h1>CotEditor 0.8.4</h1>
 	<p>release: <time>2005-11-17</time></p>
 </header>
 
@@ -1070,7 +1294,7 @@
 
 <article>
 <header>
-	<h1>What's New on CotEditor 0.8.3</h1>
+	<h1>CotEditor 0.8.3</h1>
 	<p>release: <time>2005-10-28</time></p>
 </header>
 
@@ -1128,7 +1352,7 @@
 
 <article>
 <header>
-	<h1>What's New on CotEditor 0.8.2</h1>
+	<h1>CotEditor 0.8.2</h1>
 	<p>release: <time>2005-08-30</time></p>
 </header>
 
@@ -1147,7 +1371,7 @@
 
 <article>
 <header>
-	<h1>What's New on CotEditor 0.8.1</h1>
+	<h1>CotEditor 0.8.1</h1>
 	<p>release: <time>2005-08-29</time></p>
 </header>
 
@@ -1189,7 +1413,7 @@
 
 <article>
 <header>
-	<h1>What's New on CotEditor 0.8.0</h1>
+	<h1>CotEditor 0.8.0</h1>
 	<p>release: <time>2005-08-14</time></p>
 </header>
 
@@ -1257,7 +1481,7 @@
 
 <article>
 <header>
-	<h1>What's New on CotEditor 0.7.3</h1>
+	<h1>CotEditor 0.7.3</h1>
 	<p>release: <time>2005-08-06</time></p>
 </header>
 
@@ -1305,7 +1529,7 @@
 
 <article>
 <header>
-	<h1>What's New on CotEditor 0.7.2</h1>
+	<h1>CotEditor 0.7.2</h1>
 	<p>release: <time>2005-07-23</time></p>
 </header>
 
@@ -1341,7 +1565,7 @@
 
 <article>
 <header>
-	<h1>What's New on CotEditor 0.7.1</h1>
+	<h1>CotEditor 0.7.1</h1>
 	<p>release: <time>2005-07-18</time></p>
 </header>
 
@@ -1388,7 +1612,7 @@
 
 <article>
 <header>
-	<h1>What's New on CotEditor 0.7.0</h1>
+	<h1>CotEditor 0.7.0</h1>
 	<p>release: <time>2005-07-10</time></p>
 </header>
 
@@ -1456,7 +1680,7 @@
 
 <article>
 <header>
-	<h1>What's New on CotEditor 0.6.5</h1>
+	<h1>CotEditor 0.6.5</h1>
 	<p>release: <time>2005-05-21</time></p>
 </header>
 
@@ -1491,7 +1715,7 @@
 
 <article>
 <header>
-	<h1>What's New on CotEditor 0.6.4</h1>
+	<h1>CotEditor 0.6.4</h1>
 	<p>release: <time>2005-04-21</time></p>
 </header>
 
@@ -1538,7 +1762,7 @@
 
 <article>
 <header>
-	<h1>What's New on CotEditor 0.6.3</h1>
+	<h1>CotEditor 0.6.3</h1>
 	<p>release: <time>2005-07-18</time></p>
 </header>
 
@@ -1578,7 +1802,7 @@
 
 <article>
 <header>
-	<h1>What's New on CotEditor 0.6.2</h1>
+	<h1>CotEditor 0.6.2</h1>
 	<p>release: <time>2005-03-28</time></p>
 </header>
 
@@ -1614,7 +1838,7 @@
 
 <article>
 <header>
-	<h1>What's New on CotEditor 0.6.2</h1>
+	<h1>CotEditor 0.6.2</h1>
 	<p>release: <time>2005-07-18</time></p>
 </header>
 
@@ -1672,7 +1896,7 @@
 
 <article>
 <header>
-	<h1>What's New on CotEditor 0.6.0</h1>
+	<h1>CotEditor 0.6.0</h1>
 	<p>release: <time>2005-03-19</time></p>
 </header>
 
