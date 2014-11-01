@@ -48,7 +48,7 @@
 			<string>Owner</string>
 			<key>LSItemContentTypes</key>
 			<array>
-				<string>com.aynimac.CotEditor.theme</string>
+				<string>com.coteditor.CotEditor.theme</string>
 			</array>
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
@@ -914,11 +914,11 @@
 	<key>CFBundleHelpBookFolder</key>
 	<string>CotEditor.help</string>
 	<key>CFBundleHelpBookName</key>
-	<string>com.aynimac.CotEditor.help</string>
+	<string>com.coteditor.CotEditor.help</string>
 	<key>CFBundleIconFile</key>
 	<string>AppIcon</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.aynimac.CotEditor</string>
+	<string>com.coteditor.CotEditor</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -961,7 +961,7 @@
 			<key>UTTypeIconFile</key>
 			<string>ThemeIcon</string>
 			<key>UTTypeIdentifier</key>
-			<string>com.aynimac.CotEditor.theme</string>
+			<string>com.coteditor.CotEditor.theme</string>
 			<key>UTTypeTagSpecification</key>
 			<dict>
 				<key>public.filename-extension</key>

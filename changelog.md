@@ -13,6 +13,7 @@ changelog
 ### Additions/Changes
 
 - 行番号ビューの色がテーマカラーを反映したものになるように改良
+- アプリケーション識別子 (bundle identifier) を `com.aynimac.CotEditor` から `com.coteditor.CotEditor` へ変更
 - キーバインディングの編集方法と解説を変更
 - “YAML” シンタックス定義の更新
     - アウトラインの抽出ルールを変更
