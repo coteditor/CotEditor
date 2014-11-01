@@ -832,6 +832,12 @@
                                     <action selector="openHelpAnchor:" target="290" id="tRC-ed-iOt"/>
                                 </connections>
                             </menuItem>
+                            <menuItem title="CotEditor 2.0 の新機能" tag="9" id="cMc-G8-dgA">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="openHelpAnchor:" target="290" id="dIy-k1-z0p"/>
+                                </connections>
+                            </menuItem>
                             <menuItem title="謝辞" id="833">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>

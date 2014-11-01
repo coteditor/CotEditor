@@ -832,6 +832,12 @@
                                     <action selector="openHelpAnchor:" target="290" id="ooo-Mu-EKH"/>
                                 </connections>
                             </menuItem>
+                            <menuItem title="What's New in CotEditor 2.0" tag="9" id="DCW-Ij-540">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="openHelpAnchor:" target="290" id="jUU-Pz-dYo"/>
+                                </connections>
+                            </menuItem>
                             <menuItem title="Acknowledgements" id="824">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
