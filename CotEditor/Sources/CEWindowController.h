@@ -37,8 +37,6 @@
 
 @interface CEWindowController : NSWindowController <NSWindowDelegate, OgreTextFindDataSource>
 
-@property (nonatomic) CGFloat alpha;
-
 @property (readonly, nonatomic, weak) CEEditorWrapper *editor;
 @property (readonly, nonatomic, weak) CEToolbarController *toolbarController;
 @property (readonly, nonatomic) BOOL showsStatusBar;

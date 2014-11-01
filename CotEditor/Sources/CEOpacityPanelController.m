@@ -28,6 +28,7 @@
  */
 
 #import "CEOpacityPanelController.h"
+#import "CEWindow.h"
 #import "constants.h"
 
 
@@ -62,7 +63,7 @@
 - (void)keyDocumentDidChange
 // ------------------------------------------------------
 {
-    [self setOpacity:[[self documentWindowController] alpha]];
+    [self setOpacity:[(CEWindow *)[[self documentWindowController] window] backgroundAlpha]];
 }
 
 
@@ -76,7 +77,7 @@
 {
     // apply to all windows
     for (id document in [NSApp orderedDocuments]) {
-        [(CEWindowController *)[document windowController] setAlpha:[self opacity]];
+        [(CEWindow *)[[self documentWindowController] window] setBackgroundAlpha:[self opacity]];
     }
     
     // set as default
@@ -95,7 +96,7 @@
     _opacity = opacity;
     
     // apply to the frontmost document window
-    [[self documentWindowController] setAlpha:opacity];
+    [(CEWindow *)[[self documentWindowController] window] setBackgroundAlpha:opacity];
 }
 
 @end

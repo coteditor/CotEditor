@@ -273,17 +273,6 @@
 }
 
 
-// ------------------------------------------------------
-/// 全てのテキストビューの背景不透明度を設定
-- (void)setAllBackgroundColorWithAlpha:(CGFloat)alpha
-// ------------------------------------------------------
-{
-    for (CEEditorView *subview in [[self view] subviews]) {
-        [subview setBackgroundColorAlpha:alpha];
-    }
-}
-
-
 
 #pragma mark Delegate
 

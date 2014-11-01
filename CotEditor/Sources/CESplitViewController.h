@@ -54,7 +54,6 @@
 - (void)setSyntaxWithName:(NSString *)syntaxName;
 - (void)recolorAllTextView;
 - (void)updateAllOutlineMenu;
-- (void)setAllBackgroundColorWithAlpha:(CGFloat)alpha;
 
 - (IBAction)toggleSplitOrientation:(id)sender;
 - (IBAction)focusNextSplitTextView:(id)sender;

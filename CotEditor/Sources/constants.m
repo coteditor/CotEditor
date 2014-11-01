@@ -186,7 +186,6 @@ NSString *const CEDefaultColorCodeTypeKey = @"colorCodeType";
 // hidden settings
 NSString *const CEDefaultUsesTextFontForInvisiblesKey = @"usesTextFontForInvisibles";
 NSString *const CEDefaultLineNumFontNameKey = @"lineNumFontName";
-NSString *const CEDefaultLineNumFontColorKey = @"lineNumFontColor";
 NSString *const CEDefaultBasicColoringDelayKey = @"basicColoringDelay";
 NSString *const CEDefaultFirstColoringDelayKey = @"firstColoringDelay";
 NSString *const CEDefaultSecondColoringDelayKey = @"secondColoringDelay";

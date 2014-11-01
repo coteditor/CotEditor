@@ -32,6 +32,9 @@
 #import "NSColor+WFColorCode.h"
 
 
+static const CGFloat kDarkThemeThreshold = 0.5;
+
+
 @interface CETheme ()
 
 /// name of the theme
@@ -45,6 +48,9 @@
 @property (readwrite, nonatomic) NSColor *selectionColor;
 @property (readwrite, nonatomic) NSColor *insertionPointColor;
 @property (readwrite, nonatomic) NSColor *lineHighLightColor;
+
+// auto genereted colors
+@property (readwrite, nonatomic) NSColor *weakTextColor;
 @property (readwrite, nonatomic) NSColor *markupColor;
 
 // syntax colors
@@ -58,6 +64,9 @@
 @property (readwrite, nonatomic) NSColor *stringsColor;
 @property (readwrite, nonatomic) NSColor *charactersColor;
 @property (readwrite, nonatomic) NSColor *commentsColor;
+
+/// Is background color dark?
+@property (readwrite, nonatomic, getter=isDarkTheme) BOOL darkTheme;
 
 
 // other options
@@ -130,14 +139,34 @@
         
         _usesSystemSelectionColor = [themeDict[CEThemeSelectionKey][CEThemeUsesSystemSettingKey] boolValue];
         
+        // 安全に値が取り出せるようにカラースペースを統一する
+        NSColor *sanitizedtextColor = [_textColor colorUsingColorSpaceName:NSDeviceRGBColorSpace];
+        NSColor *sanitizedBackgroundColor = [_backgroundColor colorUsingColorSpaceName:NSDeviceRGBColorSpace];
+        
+        // 背景が暗いかを判定して属性として保持
+        _darkTheme = ([sanitizedBackgroundColor brightnessComponent] < kDarkThemeThreshold);
+        
+        // 背景の色を加味した、淡い文字色を生成
+        CGFloat lightness = [sanitizedBackgroundColor lightnessComponent];
+        CGFloat weakness = _darkTheme ? 0.5 : 0.4;
+        if (_darkTheme) {
+            lightness = ((1 - weakness) * (1 - lightness)) + lightness;
+        } else {
+            lightness = weakness * lightness;
+        }
+        _weakTextColor = [NSColor colorWithCalibratedHue:[sanitizedtextColor hueComponent]
+                                              saturation:0.6 * [sanitizedtextColor saturationComponent]
+                                               lightness:lightness
+                                                   alpha:1.0];
+        
         // 文字カラーと背景カラーの中間色であるマークアップカラーを生成
         CGFloat bgR, bgG, bgB, fgR, fgG, fgB;
-        [[_textColor colorUsingColorSpaceName:NSCalibratedRGBColorSpace] getRed:&fgR green:&fgG blue:&fgB alpha:nil];
-        [[_backgroundColor colorUsingColorSpaceName:NSCalibratedRGBColorSpace] getRed:&bgR green:&bgG blue:&bgB alpha:nil];
-        _markupColor = [NSColor colorWithCalibratedRed:0.75 * (bgR + fgR)
-                                                 green:0.75 * (bgG + fgG)
-                                                  blue:0.75 * (bgB + fgB)
-                                                 alpha:1.0];
+        [sanitizedtextColor getRed:&fgR green:&fgG blue:&fgB alpha:nil];
+        [sanitizedBackgroundColor getRed:&bgR green:&bgG blue:&bgB alpha:nil];
+        _markupColor = [NSColor colorWithCalibratedRed:0.5 * (bgR + fgR)
+                                                 green:0.5 * (bgG + fgG)
+                                                  blue:0.5 * (bgB + fgB)
+                                                 alpha:0.5];
         
     }
     return self;

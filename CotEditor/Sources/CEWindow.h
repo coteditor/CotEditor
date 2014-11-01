@@ -1,15 +1,14 @@
 /*
  ==============================================================================
- CELineNumberView
+ CEWindow
  
  CotEditor
  http://coteditor.github.io
  
- Created on 2005-03-30 by nakamuxu
+ Created on 2004-10-31 by 1024jp
  encoding="UTF-8"
  ------------------------------------------------------------------------------
  
- © 2004-2007 nakamuxu
  © 2014 CotEditor Project
  
  This program is free software; you can redistribute it and/or modify it under
@@ -29,17 +28,10 @@
  */
 
 @import Cocoa;
-#import "CETextViewProtocol.h"
 
 
-@interface CELineNumberView : NSView
+@interface CEWindow : NSWindow
 
-@property (nonatomic, getter=isShown) BOOL shown;
-@property (nonatomic) NSTextView<CETextViewProtocol> *textView;  // should be weak, just because it is NSTextView.
-
-
-// Public method
-
-- (void)updateLineNumber:(id)sender;
+@property (nonatomic) CGFloat backgroundAlpha;
 
 @end

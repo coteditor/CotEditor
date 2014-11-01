@@ -181,7 +181,6 @@ extern NSString *const CEDefaultColorCodeTypeKey;
 // hidden settings
 extern NSString *const CEDefaultUsesTextFontForInvisiblesKey;
 extern NSString *const CEDefaultLineNumFontNameKey;
-extern NSString *const CEDefaultLineNumFontColorKey;
 extern NSString *const CEDefaultBasicColoringDelayKey;
 extern NSString *const CEDefaultFirstColoringDelayKey;
 extern NSString *const CEDefaultSecondColoringDelayKey;
