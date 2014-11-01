@@ -3,7 +3,7 @@
  constants
  
  CotEditor
- http://coteditor.github.io
+ http://coteditor.com
  
  Created on 2004-12-13 by nakamuxu
  encoding="UTF-8"
@@ -300,7 +300,7 @@ NSString *const kBundledDocumentFileNames[] = {
 };
 
 // Online URLs
-NSString *const kWebSiteURL = @"http://coteditor.github.io";
+NSString *const kWebSiteURL = @"http://coteditor.com";
 NSString *const kIssueTrackerURL = @"https://github.com/coteditor/CotEditor/issues";
 
 

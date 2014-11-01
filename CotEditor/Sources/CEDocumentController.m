@@ -3,7 +3,7 @@
  CEDocumentController
  
  CotEditor
- http://coteditor.github.io
+ http://coteditor.com
  
  Created on 2004-12-14 by nakamuxu
  encoding="UTF-8"

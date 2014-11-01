@@ -17,7 +17,7 @@ attributes:
   regularExpression: true
 metadata:
   author: "1024jp"
-  distributionURL: "http://coteditor.github.io"
+  distributionURL: "http://coteditor.com"
   version: "1.0"
   description: "general Lisp syntax style for common Lisp and other Lisp dialects"
   license: "Same as CotEditor"

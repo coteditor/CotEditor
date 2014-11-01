@@ -3,7 +3,7 @@
  CESyntaxManager
  
  CotEditor
- http://coteditor.github.io
+ http://coteditor.com
  
  Created on 2004-12-24 by nakamuxu
  encoding="UTF-8"

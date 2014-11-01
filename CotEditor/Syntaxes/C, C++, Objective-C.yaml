@@ -80,7 +80,7 @@ attributes:
 - beginString: "@try"
 metadata:
   author: "Hiroto Sakai"
-  distributionURL: "http://coteditor.github.io"
+  distributionURL: "http://coteditor.com"
   version: "2.0"
   description: "Maintained by CotEditor Project."
   license: "Same as CotEditor"

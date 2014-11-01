@@ -3,7 +3,7 @@
  CEAppDelegate
  
  CotEditor
- http://coteditor.github.io
+ http://coteditor.com
  
  Created on 2004-12-13 by nakamuxu
  encoding="UTF-8"
@@ -612,7 +612,7 @@
 
 
 // ------------------------------------------------------
-/// Webサイト（coteditor.github.io）を開く
+/// Webサイト（coteditor.com）を開く
 - (IBAction)openWebSite:(id)sender
 // ------------------------------------------------------
 {

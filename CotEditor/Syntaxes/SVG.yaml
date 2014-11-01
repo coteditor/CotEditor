@@ -860,7 +860,7 @@ attributes:
   regularExpression: true
 metadata:
   author: "1024jp"
-  distributionURL: "http://coteditor.github.io"
+  distributionURL: "http://coteditor.com"
   version: "1.2"
   description: "Based on SVG 1.1 (Second Edition)"
   license: "Same as CotEditor"

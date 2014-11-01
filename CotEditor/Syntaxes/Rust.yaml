@@ -13,7 +13,7 @@ outlineMenu:
   keyString: "$1struct $2"
   italic: true
 metadata:
-  distributionURL: "http://coteditor.github.io"
+  distributionURL: "http://coteditor.com"
   lastModified: "2014-10-26"
   author: "1024jp"
   license: "Same as CotEditor"

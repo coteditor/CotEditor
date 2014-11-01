@@ -3,7 +3,7 @@
  CEScriptMenuItem
  
  CotEditor
- http://coteditor.github.io
+ http://coteditor.com
  
  Created on 2014-10-02 by 1024jp
  encoding="UTF-8"

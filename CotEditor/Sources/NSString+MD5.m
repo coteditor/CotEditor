@@ -3,7 +3,7 @@
  NSString+MD5
  
  CotEditor
- http://coteditor.github.io
+ http://coteditor.com
  
  Created on 2014-07-28 by 1024jp
  encoding="UTF-8"

@@ -79,7 +79,7 @@ attributes:
 - beginString: "volatile"
 metadata:
   author: "usami-k"
-  distributionURL: "http://coteditor.github.io"
+  distributionURL: "http://coteditor.com"
   version: "1.0"
   description: "C# 5.0\nkeywords: Statement,Namespace,Preprocessor\ncommands: Query(LINQ)\ntypes:
     Types\nattributes: Modifiers,MethodParameters,Operator,Conversion,Contextual\nvariables:
