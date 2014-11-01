@@ -59,9 +59,9 @@
                         <binding destination="26" name="enabled" keyPath="values.showPageGuide" id="807"/>
                     </connections>
                 </textField>
-                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="799">
+                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="799">
                     <rect key="frame" x="317" y="353" width="118" height="17"/>
-                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Display at column:" id="3353">
+                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Display at column:" usesSingleLineMode="YES" id="3353">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -97,12 +97,12 @@
                         <binding destination="26" name="value" keyPath="values.showStatusArea" id="632"/>
                     </connections>
                 </button>
-                <textField verticalHuggingPriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="614">
+                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="614">
                     <rect key="frame" x="345" y="70" width="40" height="14"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="36" id="r1N-NC-Pbl"/>
                     </constraints>
-                    <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" state="on" alignment="right" title="100%" id="3341">
+                    <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" selectable="YES" sendsActionOnEndEditing="YES" state="on" alignment="right" title="100%" usesSingleLineMode="YES" id="3341">
                         <numberFormatter key="formatter" formatterBehavior="default10_4" localizesFormat="NO" numberStyle="percent" minimumIntegerDigits="1" maximumIntegerDigits="309" id="615">
                             <integer key="multiplier" value="100"/>
                             <decimal key="minimum" value="0.2"/>
@@ -132,17 +132,17 @@
                     <rect key="frame" x="142" y="46" width="195" height="15"/>
                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="axesIndependently" image="OpacityGuide" id="3340"/>
                 </imageView>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6Rm-ix-3Ik">
+                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6Rm-ix-3Ik">
                     <rect key="frame" x="47" y="70" width="86" height="17"/>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="View opacity:" id="gSx-LA-TPc">
+                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="View opacity:" usesSingleLineMode="YES" id="gSx-LA-TPc">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Hya-cT-hxD">
+                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Hya-cT-hxD">
                     <rect key="frame" x="37" y="113" width="96" height="17"/>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Window width:" id="zIR-1y-lBC">
+                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Window width:" usesSingleLineMode="YES" id="zIR-1y-lBC">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -180,9 +180,9 @@
                         <outlet property="nextKeyView" destination="620" id="3FO-Kt-4x6"/>
                     </connections>
                 </textField>
-                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="619">
+                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="619">
                     <rect key="frame" x="199" y="113" width="46" height="17"/>
-                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="height:" id="3343">
+                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="height:" usesSingleLineMode="YES" id="3343">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -328,17 +328,17 @@
                         <binding destination="26" name="value" keyPath="values.showStatusBarColumn" id="xXZ-Jd-Wdi"/>
                     </connections>
                 </button>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="zUH-zh-jyO">
+                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="zUH-zh-jyO">
                     <rect key="frame" x="18" y="282" width="115" height="17"/>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Status bar shows:" id="kjP-FS-fyd">
+                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Status bar shows:" usesSingleLineMode="YES" id="kjP-FS-fyd">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="b4p-xQ-foZ">
+                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="b4p-xQ-foZ">
                     <rect key="frame" x="90" y="375" width="43" height="17"/>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Show:" id="iw9-Ba-eD2">
+                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Show:" usesSingleLineMode="YES" id="iw9-Ba-eD2">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -352,9 +352,9 @@
                         <binding destination="26" name="enabled" keyPath="values.showPageGuide" id="748-xu-TCs"/>
                     </connections>
                 </stepper>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="748-zI-Gft">
+                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="748-zI-Gft">
                     <rect key="frame" x="65" y="166" width="68" height="17"/>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Split view:" id="dug-hV-7hj">
+                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Split view:" usesSingleLineMode="YES" id="dug-hV-7hj">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>

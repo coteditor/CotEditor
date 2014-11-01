@@ -29,9 +29,9 @@
                         <action selector="openPreferencesHelp:" target="-1" id="Cll-Q2-P1O"/>
                     </connections>
                 </button>
-                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="1356">
+                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1356">
                     <rect key="frame" x="78" y="359" width="56" height="17"/>
-                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="カラー：" id="3388">
+                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="カラー：" usesSingleLineMode="YES" id="3388">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -77,9 +77,9 @@
                         <binding destination="26" name="selectedIndex" keyPath="values.printInvisibleCharIndex" id="995"/>
                     </connections>
                 </popUpButton>
-                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="949">
+                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="949">
                     <rect key="frame" x="52" y="297" width="82" height="17"/>
-                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="不可視文字：" id="3382">
+                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="不可視文字：" usesSingleLineMode="YES" id="3382">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -102,9 +102,9 @@
                         <binding destination="26" name="selectedIndex" keyPath="values.printLineNumIndex" id="993"/>
                     </connections>
                 </popUpButton>
-                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="943">
+                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="943">
                     <rect key="frame" x="78" y="328" width="56" height="17"/>
-                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="行番号：" id="3380">
+                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="行番号：" usesSingleLineMode="YES" id="3380">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -165,9 +165,9 @@
                         <binding destination="26" name="enabled" keyPath="values.setPrintFont" id="1021"/>
                     </connections>
                 </textField>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="u8V-Dc-6yR">
+                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="u8V-Dc-6yR">
                     <rect key="frame" x="65" y="430" width="69" height="17"/>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="フォント：" id="C9y-bs-mE1">
+                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="フォント：" usesSingleLineMode="YES" id="C9y-bs-mE1">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -210,17 +210,17 @@
                         <binding destination="26" name="value" keyPath="values.printHeaderSeparator" id="964"/>
                     </connections>
                 </button>
-                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="890">
+                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="890">
                     <rect key="frame" x="83" y="233" width="51" height="17"/>
-                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="1行目：" id="3369">
+                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="1行目：" usesSingleLineMode="YES" id="3369">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="912">
+                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="912">
                     <rect key="frame" x="83" y="202" width="51" height="17"/>
-                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="2行目：" id="3373">
+                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="2行目：" usesSingleLineMode="YES" id="3373">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -270,17 +270,17 @@
                         <binding destination="26" name="value" keyPath="values.printFooterSeparator" id="982"/>
                     </connections>
                 </button>
-                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="942">
+                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="942">
                     <rect key="frame" x="83" y="111" width="51" height="17"/>
-                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="1行目：" id="3379">
+                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="1行目：" usesSingleLineMode="YES" id="3379">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="933">
+                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="933">
                     <rect key="frame" x="83" y="80" width="51" height="17"/>
-                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="2行目：" id="3377">
+                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="2行目：" usesSingleLineMode="YES" id="3377">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>

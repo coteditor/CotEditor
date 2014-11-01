@@ -36,8 +36,8 @@
                         <action selector="openPreferencesHelp:" target="-1" id="3an-GZ-vXy"/>
                     </connections>
                 </button>
-                <textField horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" placeholderIntrinsicWidth="48" placeholderIntrinsicHeight="14" translatesAutoresizingMaskIntoConstraints="NO" id="589">
-                    <rect key="frame" x="268" y="341" width="52" height="14"/>
+                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="589">
+                    <rect key="frame" x="268" y="341" width="54" height="14"/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="left" title="Glossary:" usesSingleLineMode="YES" id="3337">
                         <font key="font" metaFont="smallSystem"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -212,7 +212,7 @@ The parent directory name of the dropped file. 
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
                 </scrollView>
-                <textField horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" placeholderIntrinsicWidth="149" placeholderIntrinsicHeight="14" translatesAutoresizingMaskIntoConstraints="NO" id="466">
+                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="466">
                     <rect key="frame" x="99" y="341" width="153" height="14"/>
                     <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="left" title="(comma separated, no dots)" usesSingleLineMode="YES" id="3335">
                         <font key="font" metaFont="smallSystem"/>
@@ -246,15 +246,15 @@ The parent directory name of the dropped file. 
                         <binding destination="451" name="enabled" keyPath="canAdd" id="463"/>
                     </connections>
                 </button>
-                <textField horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" placeholderIntrinsicWidth="108" placeholderIntrinsicHeight="17" translatesAutoresizingMaskIntoConstraints="NO" id="456">
-                    <rect key="frame" x="18" y="159" width="112" height="17"/>
+                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="456">
+                    <rect key="frame" x="18" y="159" width="109" height="17"/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="left" title="Insertion Format:" usesSingleLineMode="YES" id="3332">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <textField horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" placeholderIntrinsicWidth="72" placeholderIntrinsicHeight="17" translatesAutoresizingMaskIntoConstraints="NO" id="434">
+                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="434">
                     <rect key="frame" x="18" y="341" width="76" height="17"/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="left" title="Extensions:" usesSingleLineMode="YES" id="3331">
                         <font key="font" metaFont="system"/>

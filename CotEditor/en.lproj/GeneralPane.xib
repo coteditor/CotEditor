@@ -105,17 +105,17 @@
                         <binding destination="3430" name="selectedTag" keyPath="updateCheckInterval" id="3436"/>
                     </connections>
                 </popUpButton>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="m9P-m9-cpw">
+                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="m9P-m9-cpw">
                     <rect key="frame" x="25" y="211" width="71" height="17"/>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="On launch:" id="geU-63-sAC">
+                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="On launch:" usesSingleLineMode="YES" id="geU-63-sAC">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="jQj-mP-yhk">
+                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="jQj-mP-yhk">
                     <rect key="frame" x="18" y="148" width="78" height="17"/>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Application:" id="lzy-Ei-xlT">
+                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Application:" usesSingleLineMode="YES" id="lzy-Ei-xlT">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -159,6 +159,7 @@
                 <constraint firstItem="1832" firstAttribute="top" secondItem="594" secondAttribute="bottom" constant="12" symbolic="YES" id="vdC-qT-xfa"/>
                 <constraint firstItem="106" firstAttribute="top" secondItem="3422" secondAttribute="bottom" constant="10" id="xwZ-5j-IV1"/>
             </constraints>
+            <point key="canvasLocation" x="364" y="234"/>
         </customView>
         <userDefaultsController representsSharedInstance="YES" id="26" userLabel="Shared User Defaults Controller"/>
         <customObject id="3430" customClass="SUUpdater"/>

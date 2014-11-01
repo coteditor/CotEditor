@@ -115,9 +115,9 @@ Do NOT include the Command key.</string>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                     </scrollView>
-                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="66">
+                    <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="66">
                         <rect key="frame" x="18" y="125" width="76" height="14"/>
-                        <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="Text to insert:" id="152">
+                        <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Text to insert:" usesSingleLineMode="YES" id="152">
                             <font key="font" metaFont="smallSystem"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>

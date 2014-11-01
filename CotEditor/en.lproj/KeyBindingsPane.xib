@@ -33,8 +33,8 @@
                         <rect key="frame" x="2" y="2" width="502" height="122"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" placeholderIntrinsicWidth="184" placeholderIntrinsicHeight="17" translatesAutoresizingMaskIntoConstraints="NO" id="720">
-                                <rect key="frame" x="14" y="93" width="188" height="17"/>
+                            <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="720">
+                                <rect key="frame" x="14" y="93" width="184" height="17"/>
                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" title="Additional Text Key Bindings " usesSingleLineMode="YES" id="3363">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -54,17 +54,17 @@
                                     <action selector="openKeyBindingEditSheet:" target="-2" id="725"/>
                                 </connections>
                             </button>
-                            <textField horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" placeholderIntrinsicWidth="165" placeholderIntrinsicHeight="14" translatesAutoresizingMaskIntoConstraints="NO" id="721">
-                                <rect key="frame" x="14" y="67" width="169" height="14"/>
+                            <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="721">
+                                <rect key="frame" x="14" y="67" width="166" height="14"/>
                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" title="Shortcuts to insert preset text." usesSingleLineMode="YES" id="3364">
                                     <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="726">
+                            <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="726">
                                 <rect key="frame" x="14" y="35" width="294" height="28"/>
-                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="3366">
+                                <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" id="3366">
                                     <font key="font" metaFont="smallSystem"/>
                                     <string key="title">This setting is not for the standard Cocoa key bindings
 but for CotEditor's original function.</string>
@@ -107,15 +107,15 @@ but for CotEditor's original function.</string>
                                     <action selector="openKeyBindingEditSheet:" target="-2" id="723"/>
                                 </connections>
                             </button>
-                            <textField horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" placeholderIntrinsicWidth="157" placeholderIntrinsicHeight="14" translatesAutoresizingMaskIntoConstraints="NO" id="715">
-                                <rect key="frame" x="14" y="67" width="161" height="14"/>
+                            <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="715">
+                                <rect key="frame" x="14" y="67" width="141" height="14"/>
                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" title="Shortcuts for menu items." usesSingleLineMode="YES" id="3361">
                                     <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" placeholderIntrinsicWidth="120" placeholderIntrinsicHeight="17" translatesAutoresizingMaskIntoConstraints="NO" id="713">
+                            <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="713">
                                 <rect key="frame" x="14" y="93" width="124" height="17"/>
                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" title="Menu Key Bindings" usesSingleLineMode="YES" id="3359">
                                     <font key="font" metaFont="system"/>
@@ -123,9 +123,9 @@ but for CotEditor's original function.</string>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="835">
+                            <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="835">
                                 <rect key="frame" x="14" y="49" width="258" height="14"/>
-                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="This setting does not include script menu items." id="3362">
+                                <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="This setting does not include script menu items." id="3362">
                                     <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
