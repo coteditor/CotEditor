@@ -63,6 +63,7 @@
 @interface CEAppDelegate (Migration)
 
 - (void)migrateIfNeeded;
+- (void)migrateBundleIdentifier;
 
 @end
 
@@ -241,6 +242,8 @@
 {
     self = [super init];
     if (self) {
+        [self migrateBundleIdentifier];
+        
         _supportDirectoryURL = [[[NSFileManager defaultManager] URLForDirectory:NSApplicationSupportDirectory
                                                                        inDomain:NSUserDomainMask
                                                               appropriateForURL:nil
@@ -736,6 +739,10 @@
 
 @implementation CEAppDelegate (Migration)
 
+static NSString *const kOldIdentifier = @"com.aynimac.CotEditor";
+static NSString *const kMigrationFlagKey = @"isMigratedToNewBundleIdentifier";
+
+
 //------------------------------------------------------
 /// 必要があれば移行処理を行う
 - (void)migrateIfNeeded
@@ -751,11 +758,6 @@
         if ([self hasSetting]) {
             [self migrateToVersion2];
         }
-    }
-    
-    // 2.0のベータ版で取りこぼした NSDragAndDropTextDelay のリセットを行う
-    if ([lastSemVer compare:[SWFSemanticVersion semanticVersionWithString:@"2.0.0"]] == NSOrderedAscending) {  // lastVer < 2.0.0
-        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"NSDragAndDropTextDelay"];
     }
     
     // store latest version
@@ -778,9 +780,29 @@
     
     // reset menu keybindings setting
     [[CEKeyBindingManager sharedManager] resetMenuKeyBindings];
+}
+
+
+//------------------------------------------------------
+/// copy user defaults from com.aynimac.CotEditor
+- (void)migrateBundleIdentifier
+//------------------------------------------------------
+{
+    NSUserDefaults *oldDefaults = [[NSUserDefaults alloc] init];
+    NSMutableDictionary *oldDefaultsDict = [[oldDefaults persistentDomainForName:kOldIdentifier] mutableCopy];
     
-    // reset drag and drop text delay setting
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"NSDragAndDropTextDelay"];
+    if (!oldDefaultsDict || [oldDefaultsDict[kMigrationFlagKey] boolValue]) { return; }
+    
+    // remove deprecated setting key with "NS"-prefix
+    [oldDefaultsDict removeObjectForKey:@"NSDragAndDropTextDelay"];
+    
+    // copy to current defaults
+    [[NSUserDefaults standardUserDefaults] setPersistentDomain:oldDefaultsDict
+                                                       forName:[[NSBundle mainBundle] bundleIdentifier]];
+    
+    // set migration flag to old defaults
+    oldDefaultsDict[kMigrationFlagKey] = @(YES);
+    [oldDefaults setPersistentDomain:oldDefaultsDict forName:kOldIdentifier];
 }
 
 @end
