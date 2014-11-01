@@ -760,7 +760,7 @@
     }
     
     // store latest version
-    if ([lastSemVer compare:thisSemVer] == NSOrderedAscending) {  // lastVer < thisVer
+    if (!lastSemVer || [lastSemVer compare:thisSemVer] == NSOrderedAscending) {  // lastVer < thisVer
         [[NSUserDefaults standardUserDefaults] setObject:thisVersion forKey:CEDefaultLastVersionKey];
     }
 }
