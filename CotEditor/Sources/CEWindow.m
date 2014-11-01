@@ -3,7 +3,7 @@
  CEWindow
  
  CotEditor
- http://coteditor.github.io
+ http://coteditor.com
  
  Created on 2004-10-31 by 1024jp
  encoding="UTF-8"

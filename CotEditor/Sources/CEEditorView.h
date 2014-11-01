@@ -3,7 +3,7 @@
  CEEditorView
  
  CotEditor
- http://coteditor.github.io
+ http://coteditor.com
  
  Created on 2006-03-18 by nakamuxu
  encoding="UTF-8"

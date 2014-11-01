@@ -3,7 +3,7 @@
  CEATSTypesetter
  
  CotEditor
- http://coteditor.github.io
+ http://coteditor.com
  
  Created on 2005-12-08 by nakamuxu
  encoding="UTF-8"

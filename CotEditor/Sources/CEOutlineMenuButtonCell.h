@@ -3,7 +3,7 @@
  CEOutlineMenuButtonCell
  
  CotEditor
- http://coteditor.github.io
+ http://coteditor.com
  
  Created on 2005-08-25 by nakamuxu
  encoding="UTF-8"

@@ -3,7 +3,7 @@
  CEUnicodeInputPanelController
  
  CotEditor
- http://coteditor.github.io
+ http://coteditor.com
  
  Created by 2014-05-06 by 1024jp
  encoding="UTF-8"

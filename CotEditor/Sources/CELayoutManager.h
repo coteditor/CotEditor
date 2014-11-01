@@ -3,7 +3,7 @@
  CELayoutManager
  
  CotEditor
- http://coteditor.github.io
+ http://coteditor.com
  
  Created on 2005-01-10 by nakamuxu
  encoding="UTF-8"
