@@ -697,7 +697,11 @@ static NSTimeInterval incompatibleCharInterval;
             [[self editor] setSyntaxStyleName:newName recolorNow:NO];
         }
         if (![newName isEqualToString:NSLocalizedString(@"None", nil)]) {
-            [self setNeedsRecolorWithBecomeKey:YES];
+            if ([[self window] isKeyWindow]) {
+                [[self document] doSetSyntaxStyle:newName];
+            } else {
+                [self setNeedsRecolorWithBecomeKey:YES];
+            }
         }
     }
 }
