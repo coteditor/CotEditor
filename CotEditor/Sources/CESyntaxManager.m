@@ -757,9 +757,15 @@ NSString *const CESyntaxValidationMessageKey = @"MessageKey";
         }
     }
     
-    [self setStyleNames:[extensionTable allKeys]];
     [self setExtensionTable:extensionTable];
     [self setFilenameTable:filenameTable];
+    
+    // 定義をアルファベット順にソートする
+    NSMutableArray *styleNames = [[extensionTable allKeys] mutableCopy];
+    [styleNames sortUsingComparator:^NSComparisonResult(NSString *name1, NSString *name2) {
+        return [name1 caseInsensitiveCompare:name2];
+    }];
+    [self setStyleNames:styleNames];
 }
 
 
