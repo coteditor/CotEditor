@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Apache</key>
+	<array>
+		<string>.htaccess</string>
+	</array>
+	<key>AppleScript</key>
+	<array/>
+	<key>C#</key>
+	<array/>
+	<key>C, C++, Objective-C</key>
+	<array/>
+	<key>CSS</key>
+	<array/>
+	<key>CoffeeScript</key>
+	<array/>
+	<key>DTD</key>
+	<array/>
+	<key>Dart</key>
+	<array/>
+	<key>Diff</key>
+	<array/>
+	<key>Go</key>
+	<array/>
+	<key>HTML</key>
+	<array/>
+	<key>Haskell</key>
+	<array/>
+	<key>INI</key>
+	<array/>
+	<key>JSON</key>
+	<array/>
+	<key>Java</key>
+	<array/>
+	<key>JavaScript</key>
+	<array/>
+	<key>LaTeX</key>
+	<array/>
+	<key>Lisp</key>
+	<array/>
+	<key>Lua</key>
+	<array/>
+	<key>Makefile</key>
+	<array>
+		<string>Makefile</string>
+		<string>makefile</string>
+	</array>
+	<key>Markdown</key>
+	<array/>
+	<key>PHP</key>
+	<array/>
+	<key>Perl</key>
+	<array/>
+	<key>Plain Text</key>
+	<array/>
+	<key>Python</key>
+	<array/>
+	<key>R</key>
+	<array/>
+	<key>Ruby</key>
+	<array/>
+	<key>Rust</key>
+	<array/>
+	<key>SQL</key>
+	<array/>
+	<key>SVG</key>
+	<array/>
+	<key>Scala</key>
+	<array/>
+	<key>Scheme</key>
+	<array/>
+	<key>Shell Script</key>
+	<array>
+		<string>.profile</string>
+		<string>.bash_profile</string>
+		<string>.bashrc</string>
+		<string>.zshrc</string>
+		<string>.zshenv</string>
+	</array>
+	<key>Swift</key>
+	<array/>
+	<key>Tcl</key>
+	<array/>
+	<key>Textile</key>
+	<array/>
+	<key>XML</key>
+	<array/>
+	<key>YAML</key>
+	<array/>
+	<key>eRuby</key>
+	<array/>
+	<key>reStructuredText</key>
+	<array/>
+</dict>
+</plist>
