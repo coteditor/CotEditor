@@ -52,6 +52,8 @@ NSString *const CESyntaxValidationMessageKey = @"MessageKey";
 @property (nonatomic, copy) NSArray *bundledStyleNames;  // バンドルされているシンタックススタイル名の配列
 @property (nonatomic, copy) NSDictionary *bundledExtensionTable;
 @property (nonatomic, copy) NSDictionary *bundledFilenameTable;
+@property (nonatomic, copy) NSDictionary *extensionTable;
+@property (nonatomic, copy) NSDictionary *filenameTable;
 @property (nonatomic, copy) NSDictionary *extensionToStyleTable;  // 拡張子<->styleファイルの変換テーブル辞書(key = 拡張子)
 @property (nonatomic, copy) NSDictionary *filenameToStyleTable;
 
@@ -108,13 +110,15 @@ NSString *const CESyntaxValidationMessageKey = @"MessageKey";
 {
     self = [super init];
     if (self) {
+        _styles = @{};
+        
         // バンドルされているstyle定義の一覧を読み込んでおく
         NSURL *extensionTableURL = [[NSBundle mainBundle] URLForResource:@"ExtensionTable"
                                                            withExtension:@"plist"
-                                                            subdirectory:@"SyntaxeTables"];
+                                                            subdirectory:@"SyntaxTables"];
         NSURL *filenameTableURL = [[NSBundle mainBundle] URLForResource:@"FilenameTable"
                                                           withExtension:@"plist"
-                                                           subdirectory:@"SyntaxeTables"];
+                                                           subdirectory:@"SyntaxTables"];
         _bundledExtensionTable = [NSDictionary dictionaryWithContentsOfURL:extensionTableURL];
         _bundledFilenameTable = [NSDictionary dictionaryWithContentsOfURL:filenameTableURL];
         _bundledStyleNames = [_bundledExtensionTable allKeys];
@@ -657,6 +661,7 @@ NSString *const CESyntaxValidationMessageKey = @"MessageKey";
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         typeof(self) strongSelf = weakSelf;
         [strongSelf cacheStyles];
+        [strongSelf updateStyleTables];
         [strongSelf setupExtensionAndSyntaxTable];
         
         dispatch_sync(dispatch_get_main_queue(), ^{
@@ -716,6 +721,41 @@ NSString *const CESyntaxValidationMessageKey = @"MessageKey";
 }
 
 
+//------------------------------------------------------
+///
+- (void)updateStyleTables
+//------------------------------------------------------
+{
+    NSURL *dirURL = [self userStyleDirectoryURL]; // ユーザディレクトリパス取得
+    NSMutableDictionary *extensionTable = [[self bundledExtensionTable] mutableCopy];
+    NSMutableDictionary *filenameTable = [[self bundledFilenameTable] mutableCopy];
+    
+    // ユーザ定義用ディレクトリが存在する場合は読み込む
+    if ([dirURL checkResourceIsReachableAndReturnError:nil]) {
+        NSArray *URLs = [[NSFileManager defaultManager] contentsOfDirectoryAtURL:dirURL
+                                                      includingPropertiesForKeys:nil
+                                                                         options:NSDirectoryEnumerationSkipsSubdirectoryDescendants | NSDirectoryEnumerationSkipsHiddenFiles
+                                                                           error:nil];
+        for (NSURL *URL in URLs) {
+            if (![@[@"yaml", @"yml"] containsObject:[URL pathExtension]]) { continue; }
+            
+            NSString *styleName = [self styleNameFromURL:URL];
+            NSDictionary *style = [self styleDictWithURL:URL];
+            
+            // URLが無効だった場合などに、dictがnilになる場合がある
+            if (!style) { continue; }
+            
+            extensionTable[styleName] = [self keyStringsFromDicts:style[CESyntaxExtensionsKey]];
+            filenameTable[styleName] = [self keyStringsFromDicts:style[CESyntaxFileNamesKey]];
+        }
+    }
+    
+    [self setStyleNames:[extensionTable allKeys]];
+    [self setExtensionTable:extensionTable];
+    [self setFilenameTable:filenameTable];
+}
+
+
 // ------------------------------------------------------
 /// 拡張子<->styleファイルの変換テーブル辞書(key = 拡張子)と、拡張子辞書、拡張子重複エラー辞書を更新
 - (void)setupExtensionAndSyntaxTable
@@ -726,17 +766,9 @@ NSString *const CESyntaxValidationMessageKey = @"MessageKey";
     NSMutableDictionary *filenameTable = [NSMutableDictionary dictionary];
     NSMutableDictionary *filenameConflicts = [NSMutableDictionary dictionary];
     NSString *addedName = nil;
-
-    for (NSString *styleName in [[self styles] allKeys]) {
-        NSMutableDictionary *style = [self styles][styleName];
-        NSArray *extensionDicts = style[CESyntaxExtensionsKey];
-        NSArray *filenameDicts = style[CESyntaxFileNamesKey];
-        
-        for (NSDictionary *dict in extensionDicts) {
-            NSString *extension = dict[CESyntaxKeyStringKey];
-            
-            if (!extension) { continue; }
-            
+    
+    for (NSString *styleName in [self styleNames]) {
+        for (NSString *extension in [self extensionTable][styleName]) {
             if ((addedName = extensionTable[extension])) { // 同じ拡張子を持つものがすでにあるとき
                 NSMutableArray *errors = extensionConflicts[extension];
                 if (!errors) {
@@ -752,11 +784,7 @@ NSString *const CESyntaxValidationMessageKey = @"MessageKey";
             }
         }
         
-        for (NSDictionary *dict in filenameDicts) {
-            NSString *filename = dict[CESyntaxKeyStringKey];
-            
-            if (!filename) { continue; }
-            
+        for (NSString *filename in [self extensionTable][styleName]) {
             if ((addedName = filenameTable[filename])) { // 同じファイル名を持つものがすでにあるとき
                 NSMutableArray *errors = filenameConflicts[filename];
                 if (!errors) {
@@ -776,6 +804,21 @@ NSString *const CESyntaxValidationMessageKey = @"MessageKey";
     [self setExtensionConflicts:extensionConflicts];
     [self setFilenameToStyleTable:filenameTable];
     [self setFilenameConflicts:filenameConflicts];
+}
+
+
+// ------------------------------------------------------
+/// 辞書の array から keyString をキーに持つ string を集めて返す
+- (NSArray *)keyStringsFromDicts:(NSArray *)dicts
+// ------------------------------------------------------
+{
+    NSMutableArray *strings = [NSMutableArray array];
+    
+    for (NSDictionary *dict in dicts) {
+        [strings addObject:dict[CESyntaxKeyStringKey]];
+    }
+    
+    return [strings copy];
 }
 
 @end
