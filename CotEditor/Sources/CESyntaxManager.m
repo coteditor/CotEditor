@@ -49,13 +49,15 @@ NSString *const CESyntaxValidationMessageKey = @"MessageKey";
 @interface CESyntaxManager ()
 
 @property (nonatomic) NSMutableDictionary *styleCaches;  // カラーリング定義のキャッシュ (values are NSMutableDictonary)
+
 @property (nonatomic, copy) NSArray *bundledStyleNames;  // バンドルされているシンタックススタイル名の配列
 @property (nonatomic, copy) NSDictionary *bundledExtensionTable;
 @property (nonatomic, copy) NSDictionary *bundledFilenameTable;
-@property (nonatomic, copy) NSDictionary *extensionTable;
-@property (nonatomic, copy) NSDictionary *filenameTable;
+@property (nonatomic, copy) NSDictionary *extensionTable;  // (key = styleName / value = array of 拡張子)
+@property (nonatomic, copy) NSDictionary *filenameTable;  // (key = styleName / value = array of ファイル名)
+
 @property (nonatomic, copy) NSDictionary *extensionToStyleTable;  // 拡張子<->styleファイルの変換テーブル辞書(key = 拡張子)
-@property (nonatomic, copy) NSDictionary *filenameToStyleTable;
+@property (nonatomic, copy) NSDictionary *filenameToStyleTable;  // ファイル名<->styleファイルの変換テーブル辞書(key = ファイル名)
 
 
 // readonly
@@ -684,7 +686,7 @@ NSString *const CESyntaxValidationMessageKey = @"MessageKey";
 
 
 //------------------------------------------------------
-///
+/// ユーザ領域のスタイル定義を読み直しキャッシュおよびマッピングテーブルを再構築する
 - (void)updateStyleTables
 //------------------------------------------------------
 {
@@ -710,10 +712,8 @@ NSString *const CESyntaxValidationMessageKey = @"MessageKey";
             extensionTable[styleName] = [self keyStringsFromDicts:style[CESyntaxExtensionsKey]];
             filenameTable[styleName] = [self keyStringsFromDicts:style[CESyntaxFileNamesKey]];
             
-            // キャッシュがある場合は上書きしておく
-            if ([self styleCaches][styleName]) {
-                [self styleCaches][styleName] = style;
-            }
+            // せっかく読み込んだのでキャッシュしておく
+            [self styleCaches][styleName] = style;
         }
     }
     
@@ -734,15 +734,15 @@ NSString *const CESyntaxValidationMessageKey = @"MessageKey";
 - (void)setupExtensionAndSyntaxTable
 // ------------------------------------------------------
 {
-    NSMutableDictionary *extensionTable = [NSMutableDictionary dictionary];
+    NSMutableDictionary *extensionToStyleTable = [NSMutableDictionary dictionary];
     NSMutableDictionary *extensionConflicts = [NSMutableDictionary dictionary];
-    NSMutableDictionary *filenameTable = [NSMutableDictionary dictionary];
+    NSMutableDictionary *filenameToStyleTable = [NSMutableDictionary dictionary];
     NSMutableDictionary *filenameConflicts = [NSMutableDictionary dictionary];
     NSString *addedName = nil;
     
     for (NSString *styleName in [self styleNames]) {
         for (NSString *extension in [self extensionTable][styleName]) {
-            if ((addedName = extensionTable[extension])) { // 同じ拡張子を持つものがすでにあるとき
+            if ((addedName = extensionToStyleTable[extension])) { // 同じ拡張子を持つものがすでにあるとき
                 NSMutableArray *errors = extensionConflicts[extension];
                 if (!errors) {
                     errors = [NSMutableArray array];
@@ -753,12 +753,12 @@ NSString *const CESyntaxValidationMessageKey = @"MessageKey";
                 }
                 [errors addObject:styleName];
             } else {
-                [extensionTable setValue:styleName forKey:extension];
+                [extensionToStyleTable setValue:styleName forKey:extension];
             }
         }
         
-        for (NSString *filename in [self extensionTable][styleName]) {
-            if ((addedName = filenameTable[filename])) { // 同じファイル名を持つものがすでにあるとき
+        for (NSString *filename in [self filenameTable][styleName]) {
+            if ((addedName = filenameToStyleTable[filename])) { // 同じファイル名を持つものがすでにあるとき
                 NSMutableArray *errors = filenameConflicts[filename];
                 if (!errors) {
                     errors = [NSMutableArray array];
@@ -769,13 +769,13 @@ NSString *const CESyntaxValidationMessageKey = @"MessageKey";
                 }
                 [errors addObject:styleName];
             } else {
-                [filenameTable setValue:styleName forKey:filename];
+                [filenameToStyleTable setValue:styleName forKey:filename];
             }
         }
     }
-    [self setExtensionToStyleTable:extensionTable];
+    [self setExtensionToStyleTable:extensionToStyleTable];
     [self setExtensionConflicts:extensionConflicts];
-    [self setFilenameToStyleTable:filenameTable];
+    [self setFilenameToStyleTable:filenameToStyleTable];
     [self setFilenameConflicts:filenameConflicts];
 }
 
