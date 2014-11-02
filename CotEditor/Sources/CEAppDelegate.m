@@ -752,7 +752,7 @@ static NSString *const kMigrationFlagKey = @"isMigratedToNewBundleIdentifier";
 {
     NSString *lastVersion = [[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultLastVersionKey];
     NSString *thisVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
-    SWFSemanticVersion *lastSemVer = [SWFSemanticVersion semanticVersionWithString:lastVersion];
+    SWFSemanticVersion *lastSemVer = lastVersion ? [SWFSemanticVersion semanticVersionWithString:lastVersion] : nil;
     SWFSemanticVersion *thisSemVer = [SWFSemanticVersion semanticVersionWithString:thisVersion];
     
     // CotEditor 1.x系からの移行
