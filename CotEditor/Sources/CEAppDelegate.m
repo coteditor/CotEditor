@@ -396,6 +396,15 @@
     
     // 必要があれば移行処理を行う
     [self migrateIfNeeded];
+    
+    // store latest version
+    NSString *lastVersion = [[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultLastVersionKey];
+    NSString *thisVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
+    SWFSemanticVersion *lastSemVer = lastVersion ? [SWFSemanticVersion semanticVersionWithString:lastVersion] : nil;
+    SWFSemanticVersion *thisSemVer = [SWFSemanticVersion semanticVersionWithString:thisVersion];
+    if (!lastSemVer || [lastSemVer compare:thisSemVer] == NSOrderedAscending) {  // lastVer < thisVer
+        [[NSUserDefaults standardUserDefaults] setObject:thisVersion forKey:CEDefaultLastVersionKey];
+    }
 }
 
 
@@ -746,25 +755,14 @@ static NSString *const kMigrationFlagKey = @"isMigratedToNewBundleIdentifier";
 
 
 //------------------------------------------------------
-/// 必要があれば移行処理を行う
+/// 必要があればCotEditor 1.x系からの移行処理を行う
 - (void)migrateIfNeeded
 //------------------------------------------------------
 {
     NSString *lastVersion = [[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultLastVersionKey];
-    NSString *thisVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
-    SWFSemanticVersion *lastSemVer = lastVersion ? [SWFSemanticVersion semanticVersionWithString:lastVersion] : nil;
-    SWFSemanticVersion *thisSemVer = [SWFSemanticVersion semanticVersionWithString:thisVersion];
     
-    // CotEditor 1.x系からの移行
-    if (!lastVersion) {
-        if ([self hasSetting]) {
-            [self migrateToVersion2];
-        }
-    }
-    
-    // store latest version
-    if (!lastSemVer || [lastSemVer compare:thisSemVer] == NSOrderedAscending) {  // lastVer < thisVer
-        [[NSUserDefaults standardUserDefaults] setObject:thisVersion forKey:CEDefaultLastVersionKey];
+    if (!lastVersion && [self hasSetting]) {
+        [self migrateToVersion2];
     }
 }
 
