@@ -50,6 +50,8 @@ NSString *const CESyntaxValidationMessageKey = @"MessageKey";
 
 @property (nonatomic, copy) NSDictionary *styles;  // 全てのカラーリング定義 (values are NSMutableDictonary)
 @property (nonatomic, copy) NSArray *bundledStyleNames;  // バンドルされているシンタックススタイル名の配列
+@property (nonatomic, copy) NSDictionary *bundledExtensionTable;
+@property (nonatomic, copy) NSDictionary *bundledFilenameTable;
 @property (nonatomic, copy) NSDictionary *extensionToStyleTable;  // 拡張子<->styleファイルの変換テーブル辞書(key = 拡張子)
 @property (nonatomic, copy) NSDictionary *filenameToStyleTable;
 
@@ -106,13 +108,16 @@ NSString *const CESyntaxValidationMessageKey = @"MessageKey";
 {
     self = [super init];
     if (self) {
-        // バンドルされているstyle定義の名前を読み込んでおく
-        NSArray *URLs = [[NSBundle mainBundle] URLsForResourcesWithExtension:@"yaml" subdirectory:@"Syntaxes"];
-        NSMutableArray *styleNames = [NSMutableArray array];
-        for (NSURL *URL in URLs) {
-            [styleNames addObject:[self styleNameFromURL:URL]];
-        }
-        [self setBundledStyleNames:styleNames];
+        // バンドルされているstyle定義の一覧を読み込んでおく
+        NSURL *extensionTableURL = [[NSBundle mainBundle] URLForResource:@"ExtensionTable"
+                                                           withExtension:@"plist"
+                                                            subdirectory:@"SyntaxeTables"];
+        NSURL *filenameTableURL = [[NSBundle mainBundle] URLForResource:@"FilenameTable"
+                                                          withExtension:@"plist"
+                                                           subdirectory:@"SyntaxeTables"];
+        _bundledExtensionTable = [NSDictionary dictionaryWithContentsOfURL:extensionTableURL];
+        _bundledFilenameTable = [NSDictionary dictionaryWithContentsOfURL:filenameTableURL];
+        _bundledStyleNames = [_bundledExtensionTable allKeys];
         
         // cache user styles asynchronously but wait until the process will be done
         dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
