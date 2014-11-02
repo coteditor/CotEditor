@@ -685,50 +685,6 @@ NSString *const CESyntaxValidationMessageKey = @"MessageKey";
 
 
 //------------------------------------------------------
-/// styleのファイルからのセットアップと読み込み
-- (void)cacheStyles
-//------------------------------------------------------
-{
-    NSURL *dirURL = [self userStyleDirectoryURL]; // ユーザディレクトリパス取得
-    NSMutableOrderedSet *styleNameSet = [NSMutableOrderedSet orderedSetWithArray:[self bundledStyleNames]];
-    
-    // ユーザ定義用ディレクトリが存在する場合は読み込む
-    if ([dirURL checkResourceIsReachableAndReturnError:nil]) {
-        NSArray *URLs = [[NSFileManager defaultManager] contentsOfDirectoryAtURL:dirURL
-                                                      includingPropertiesForKeys:nil
-                                                                         options:NSDirectoryEnumerationSkipsSubdirectoryDescendants | NSDirectoryEnumerationSkipsHiddenFiles
-                                                                           error:nil];
-        for (NSURL *URL in URLs) {
-            if (![@[@"yaml", @"yml"] containsObject:[URL pathExtension]]) { continue; }
-            
-            NSString *styleName = [self styleNameFromURL:URL];
-            [styleNameSet addObject:styleName];
-        }
-    }
-    
-    // 定義をアルファベット順にソートする
-    [styleNameSet sortUsingComparator:^NSComparisonResult(NSString *name1, NSString *name2) {
-        return [name1 caseInsensitiveCompare:name2];
-    }];
-    
-    // 定義をキャッシュする
-    NSMutableDictionary *styles = [NSMutableDictionary dictionary];
-    for (NSString *styleName in styleNameSet) {
-        NSURL *URL = [self URLForUsedStyle:styleName];
-        NSMutableDictionary *style = [self styleDictWithURL:URL];
-        
-        // URLが無効だった場合などに、dictがnilになる場合がある
-        if (!style) { continue; }
-        
-        styles[styleName] = style;
-    }
-    
-    [self setStyleNames:[styleNameSet array]];
-    [self setStyleCaches:styles];
-}
-
-
-//------------------------------------------------------
 ///
 - (void)updateStyleTables
 //------------------------------------------------------
