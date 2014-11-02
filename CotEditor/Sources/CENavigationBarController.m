@@ -230,7 +230,7 @@ static const NSTimeInterval kDuration = 0.25;
 - (BOOL)canSelectPrevItem
 // ------------------------------------------------------
 {
-    return ([[self outlineMenu] indexOfSelectedItem] > 0);
+    return ([[self outlineMenu] indexOfSelectedItem] > 1);
 }
 
 
