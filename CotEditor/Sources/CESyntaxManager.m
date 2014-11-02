@@ -48,7 +48,7 @@ NSString *const CESyntaxValidationMessageKey = @"MessageKey";
 
 @interface CESyntaxManager ()
 
-@property (nonatomic, copy) NSDictionary *styles;  // 全てのカラーリング定義 (values are NSMutableDictonary)
+@property (nonatomic) NSMutableDictionary *styleCaches;  // カラーリング定義のキャッシュ (values are NSMutableDictonary)
 @property (nonatomic, copy) NSArray *bundledStyleNames;  // バンドルされているシンタックススタイル名の配列
 @property (nonatomic, copy) NSDictionary *bundledExtensionTable;
 @property (nonatomic, copy) NSDictionary *bundledFilenameTable;
@@ -110,7 +110,7 @@ NSString *const CESyntaxValidationMessageKey = @"MessageKey";
 {
     self = [super init];
     if (self) {
-        _styles = @{};
+        _styleCaches = [NSMutableDictionary dictionary];
         
         // バンドルされているstyle定義の一覧を読み込んでおく
         NSURL *extensionTableURL = [[NSBundle mainBundle] URLForResource:@"ExtensionTable"
@@ -178,7 +178,12 @@ NSString *const CESyntaxValidationMessageKey = @"MessageKey";
     NSDictionary *style;
     
     if (![styleName isEqualToString:@""] && ![styleName isEqualToString:NSLocalizedString(@"None", nil)]) {
-        style = [self styles][styleName];
+        style = [self styleCaches][styleName] ? : [self styleDictWithURL:[self URLForUsedStyle:styleName]];
+        
+        /// 新たに読み込んだ場合はキャッシュする
+        if (![self styleCaches][styleName] && style) {
+            [self styleCaches][styleName] = style;
+        }
     }
     
     return style ? : [self emptyStyle];  // 存在しない場合は空のデータを返す
@@ -263,6 +268,7 @@ NSString *const CESyntaxValidationMessageKey = @"MessageKey";
     
     if (success) {
         // 内部で持っているキャッシュ用データを更新
+        [[self styleCaches] removeObjectForKey:[self styleNameFromURL:fileURL]];
         [self updateCacheWithCompletionHandler:nil];
     }
     
@@ -312,6 +318,7 @@ NSString *const CESyntaxValidationMessageKey = @"MessageKey";
         success = [[NSFileManager defaultManager] removeItemAtURL:URL error:nil];
         if (success) {
             // 内部で持っているキャッシュ用データを更新
+            [[self styleCaches] removeObjectForKey:styleName];
             __weak typeof(self) weakSelf = self;
             [self updateCacheWithCompletionHandler:^{
                 typeof(self) strongSelf = weakSelf;
@@ -432,6 +439,7 @@ NSString *const CESyntaxValidationMessageKey = @"MessageKey";
     }
     
     // 内部で持っているキャッシュ用データを更新
+    [[self styleCaches] removeObjectForKey:name];
     __weak typeof(self) weakSelf = self;
     [self updateCacheWithCompletionHandler:^{
         typeof(self) strongSelf = weakSelf;
@@ -660,7 +668,6 @@ NSString *const CESyntaxValidationMessageKey = @"MessageKey";
     __weak typeof(self) weakSelf = self;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         typeof(self) strongSelf = weakSelf;
-        [strongSelf cacheStyles];
         [strongSelf updateStyleTables];
         [strongSelf setupExtensionAndSyntaxTable];
         
@@ -717,7 +724,7 @@ NSString *const CESyntaxValidationMessageKey = @"MessageKey";
     }
     
     [self setStyleNames:[styleNameSet array]];
-    [self setStyles:styles];
+    [self setStyleCaches:styles];
 }
 
 
