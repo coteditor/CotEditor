@@ -268,7 +268,6 @@ NSString *const CESyntaxValidationMessageKey = @"MessageKey";
     
     if (success) {
         // 内部で持っているキャッシュ用データを更新
-        [[self styleCaches] removeObjectForKey:[self styleNameFromURL:fileURL]];
         [self updateCacheWithCompletionHandler:nil];
     }
     
@@ -429,6 +428,7 @@ NSString *const CESyntaxValidationMessageKey = @"MessageKey";
     if ([style isEqualToDictionary:[self bundledStyleWithStyleName:name]]) {
         if ([saveURL checkResourceIsReachableAndReturnError:nil]) {
             [[NSFileManager defaultManager] removeItemAtURL:saveURL error:nil];
+            [[self styleCaches] removeObjectForKey:name];
         }
     } else {
         // 保存
@@ -439,7 +439,6 @@ NSString *const CESyntaxValidationMessageKey = @"MessageKey";
     }
     
     // 内部で持っているキャッシュ用データを更新
-    [[self styleCaches] removeObjectForKey:name];
     __weak typeof(self) weakSelf = self;
     [self updateCacheWithCompletionHandler:^{
         typeof(self) strongSelf = weakSelf;
@@ -710,6 +709,11 @@ NSString *const CESyntaxValidationMessageKey = @"MessageKey";
             
             extensionTable[styleName] = [self keyStringsFromDicts:style[CESyntaxExtensionsKey]];
             filenameTable[styleName] = [self keyStringsFromDicts:style[CESyntaxFileNamesKey]];
+            
+            // キャッシュがある場合は上書きしておく
+            if ([self styleCaches][styleName]) {
+                [self styleCaches][styleName] = style;
+            }
         }
     }
     
