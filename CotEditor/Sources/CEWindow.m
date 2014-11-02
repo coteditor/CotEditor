@@ -52,7 +52,7 @@
 {
     self = [super initWithContentRect:contentRect styleMask:aStyle backing:bufferingType defer:flag];
     if (self) {
-        [self setBackgroundAlpha:1.0];
+        _backgroundAlpha = 1.0;
         
         // observe toggling fullscreen
         [[NSNotificationCenter defaultCenter] addObserver:self

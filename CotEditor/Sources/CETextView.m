@@ -109,7 +109,6 @@ const NSInteger kNoMenuItem = -1;
 
         // テーマの設定
         [self setTheme:[CETheme themeWithName:[defaults stringForKey:CEDefaultThemeKey]]];
-        [self setDrawsBackground:NO];  // 背景色はウインドウが持つので textView は透明固定
         
         // set the values
         [self setAutoTabExpandEnabled:[defaults boolForKey:CEDefaultAutoExpandTabKey]];
@@ -174,7 +173,6 @@ const NSInteger kNoMenuItem = -1;
 {
     id newValue = change[NSKeyValueChangeNewKey];
     
-    
     if ([keyPath isEqualToString:@"opaque"]) {
         // ウインドウが不透明な時は自前で背景を描画する（サブピクセルレンダリングを有効にするためには layer-backed で不透明なビューが必要）
         [self setDrawsBackground:[newValue boolValue]];
@@ -222,6 +220,8 @@ const NSInteger kNoMenuItem = -1;
     // レイヤーバックドビューにする
     if (NSAppKitVersionNumber >= NSAppKitVersionNumber10_8) { // on Mountain Lion and later
         [[self enclosingScrollView] setWantsLayer:YES];
+        [[[self enclosingScrollView] contentView] setCopiesOnScroll:YES];
+        [self setLayerContentsRedrawPolicy:NSViewLayerContentsRedrawOnSetNeedsDisplay];
     }
     
     // ウインドウの透明フラグを監視する
@@ -708,7 +708,7 @@ const NSInteger kNoMenuItem = -1;
     
     // テキストビューを透過させている時に影を更新描画する (on Lion)
     // Lion 上では Layer-backed になっていないのでビュー越しにテキストのドロップシャドウが描画される。Lion サポート落としたら多分不要。(2014-10 1024jp)
-    if ((NSAppKitVersionNumber < NSAppKitVersionNumber10_8) && ([[[self window] backgroundColor] alphaComponent] < 1.0)) {
+    if ((NSAppKitVersionNumber < NSAppKitVersionNumber10_8) && ![[self window] isOpaque]) {
         [[self window] invalidateShadow];
     }
 }
