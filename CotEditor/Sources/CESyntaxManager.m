@@ -49,12 +49,10 @@ NSString *const CESyntaxValidationMessageKey = @"MessageKey";
 @interface CESyntaxManager ()
 
 @property (nonatomic) NSMutableDictionary *styleCaches;  // カラーリング定義のキャッシュ (values are NSMutableDictonary)
+@property (nonatomic, copy) NSDictionary *map;  // style名と拡張子/ファイル名の対応テーブル
 
 @property (nonatomic, copy) NSArray *bundledStyleNames;  // バンドルされているシンタックススタイル名の配列
-@property (nonatomic, copy) NSDictionary *bundledExtensionTable;
-@property (nonatomic, copy) NSDictionary *bundledFilenameTable;
-@property (nonatomic, copy) NSDictionary *extensionTable;  // (key = styleName / value = array of 拡張子)
-@property (nonatomic, copy) NSDictionary *filenameTable;  // (key = styleName / value = array of ファイル名)
+@property (nonatomic, copy) NSDictionary *bundledMap;
 
 @property (nonatomic, copy) NSDictionary *extensionToStyleTable;  // 拡張子<->styleファイルの変換テーブル辞書(key = 拡張子)
 @property (nonatomic, copy) NSDictionary *filenameToStyleTable;  // ファイル名<->styleファイルの変換テーブル辞書(key = ファイル名)
@@ -115,15 +113,11 @@ NSString *const CESyntaxValidationMessageKey = @"MessageKey";
         _styleCaches = [NSMutableDictionary dictionary];
         
         // バンドルされているstyle定義の一覧を読み込んでおく
-        NSURL *extensionTableURL = [[NSBundle mainBundle] URLForResource:@"ExtensionTable"
-                                                           withExtension:@"plist"
-                                                            subdirectory:@"SyntaxTables"];
-        NSURL *filenameTableURL = [[NSBundle mainBundle] URLForResource:@"FilenameTable"
-                                                          withExtension:@"plist"
-                                                           subdirectory:@"SyntaxTables"];
-        _bundledExtensionTable = [NSDictionary dictionaryWithContentsOfURL:extensionTableURL];
-        _bundledFilenameTable = [NSDictionary dictionaryWithContentsOfURL:filenameTableURL];
-        _bundledStyleNames = [_bundledExtensionTable allKeys];
+        NSURL *URL = [[NSBundle mainBundle] URLForResource:@"SyntaxMap" withExtension:@"json"];
+        _bundledMap = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfURL:URL]
+                                                      options:nil
+                                                        error:nil];
+        _bundledStyleNames = [_bundledMap allKeys];
         
         // cache user styles asynchronously but wait until the process will be done
         dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
@@ -691,8 +685,7 @@ NSString *const CESyntaxValidationMessageKey = @"MessageKey";
 //------------------------------------------------------
 {
     NSURL *dirURL = [self userStyleDirectoryURL]; // ユーザディレクトリパス取得
-    NSMutableDictionary *extensionTable = [[self bundledExtensionTable] mutableCopy];
-    NSMutableDictionary *filenameTable = [[self bundledFilenameTable] mutableCopy];
+    NSMutableDictionary *map = [[self bundledMap] mutableCopy];
     
     // ユーザ定義用ディレクトリが存在する場合は読み込む
     if ([dirURL checkResourceIsReachableAndReturnError:nil]) {
@@ -709,19 +702,17 @@ NSString *const CESyntaxValidationMessageKey = @"MessageKey";
             // URLが無効だった場合などに、dictがnilになる場合がある
             if (!style) { continue; }
             
-            extensionTable[styleName] = [self keyStringsFromDicts:style[CESyntaxExtensionsKey]];
-            filenameTable[styleName] = [self keyStringsFromDicts:style[CESyntaxFileNamesKey]];
+            map[styleName] = @{CESyntaxExtensionsKey: [self keyStringsFromDicts:style[CESyntaxExtensionsKey]],
+                               CESyntaxFileNamesKey: [self keyStringsFromDicts:style[CESyntaxFileNamesKey]]};
             
             // せっかく読み込んだのでキャッシュしておく
             [self styleCaches][styleName] = style;
         }
     }
-    
-    [self setExtensionTable:extensionTable];
-    [self setFilenameTable:filenameTable];
+    [self setMap:map];
     
     // 定義をアルファベット順にソートする
-    NSMutableArray *styleNames = [[extensionTable allKeys] mutableCopy];
+    NSMutableArray *styleNames = [[map allKeys] mutableCopy];
     [styleNames sortUsingComparator:^NSComparisonResult(NSString *name1, NSString *name2) {
         return [name1 caseInsensitiveCompare:name2];
     }];
@@ -741,7 +732,7 @@ NSString *const CESyntaxValidationMessageKey = @"MessageKey";
     NSString *addedName = nil;
     
     for (NSString *styleName in [self styleNames]) {
-        for (NSString *extension in [self extensionTable][styleName]) {
+        for (NSString *extension in [self map][styleName][CESyntaxExtensionsKey]) {
             if ((addedName = extensionToStyleTable[extension])) { // 同じ拡張子を持つものがすでにあるとき
                 NSMutableArray *errors = extensionConflicts[extension];
                 if (!errors) {
@@ -757,7 +748,7 @@ NSString *const CESyntaxValidationMessageKey = @"MessageKey";
             }
         }
         
-        for (NSString *filename in [self filenameTable][styleName]) {
+        for (NSString *filename in [self map][styleName][CESyntaxFileNamesKey]) {
             if ((addedName = filenameToStyleTable[filename])) { // 同じファイル名を持つものがすでにあるとき
                 NSMutableArray *errors = filenameConflicts[filename];
                 if (!errors) {

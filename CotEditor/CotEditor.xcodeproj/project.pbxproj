@@ -51,6 +51,7 @@
 		2A15833518E3B83F00601026 /* CEScriptErrorPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A15833418E3B83F00601026 /* CEScriptErrorPanelController.m */; };
 		2A1CFD0D18E5B64F00A5B664 /* Print.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2A1CFD0B18E5B64F00A5B664 /* Print.strings */; };
 		2A1EB5C419AD469500C1E37E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A1EB5C319AD469500C1E37E /* Images.xcassets */; };
+		2A2179F61A07093B002C4AB1 /* SyntaxMap.json in Resources */ = {isa = PBXBuildFile; fileRef = 2A2179F51A07093B002C4AB1 /* SyntaxMap.json */; };
 		2A2BDF0D198A899E0029848B /* NSString+JapaneseTransform.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A2BDF0C198A899E0029848B /* NSString+JapaneseTransform.m */; };
 		2A3A758E19E77C84001DAB88 /* Syntaxes in Resources */ = {isa = PBXBuildFile; fileRef = 2A3A758D19E77C84001DAB88 /* Syntaxes */; };
 		2A3A759119E77D4F001DAB88 /* MigrationWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A3A758F19E77D4F001DAB88 /* MigrationWindow.xib */; };
@@ -88,7 +89,6 @@
 		2A7C530219EE0B5F005EEFF4 /* NSColor+CECGColorSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A7C530119EE0B5F005EEFF4 /* NSColor+CECGColorSupport.m */; };
 		2A8663DD18C9F6B700A6F9CC /* NSData+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A8663DC18C9F6B700A6F9CC /* NSData+MD5.m */; };
 		2A8711681986DAEC009FA1C0 /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A8711671986DAEC009FA1C0 /* NSString+MD5.m */; };
-		2A885A701A06B25D001230B2 /* SyntaxTables in Resources */ = {isa = PBXBuildFile; fileRef = 2A885A6F1A06B25D001230B2 /* SyntaxTables */; };
 		2A94A45A18D08D52009FA90D /* NSWindow+ScriptingSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A94A45918D08D52009FA90D /* NSWindow+ScriptingSupport.m */; };
 		2A94A45E18D0B562009FA90D /* CEOpacityPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A94A45C18D0B562009FA90D /* CEOpacityPanelController.m */; };
 		2A961C5218FC699E002076B6 /* AppleScript.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A961C4718FC699E002076B6 /* AppleScript.rtf */; };
@@ -154,6 +154,16 @@
 		8D15AC310486D014006FF6A4 /* CEDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A37F4ACFDCFA73011CA2CEA /* CEDocument.m */; settings = {ATTRIBUTES = (); }; };
 		8D15AC320486D014006FF6A4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A37F4B0FDCFA73011CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		2A2179F31A070424002C4AB1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2A37F4A9FDCFA73011CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2A2179EF1A0703BD002C4AB1;
+			remoteInfo = SyntaxTableMaker;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		258225FE07794C2A00A0F8D3 /* CESyntaxParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CESyntaxParser.h; sourceTree = "<group>"; };
@@ -237,6 +247,8 @@
 		2A15833418E3B83F00601026 /* CEScriptErrorPanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEScriptErrorPanelController.m; sourceTree = "<group>"; };
 		2A1CFD0C18E5B64F00A5B664 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Print.strings; sourceTree = "<group>"; };
 		2A1EB5C319AD469500C1E37E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		2A2179ED1A07011C002C4AB1 /* makeSyntaxMap.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = makeSyntaxMap.rb; sourceTree = "<group>"; };
+		2A2179F51A07093B002C4AB1 /* SyntaxMap.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SyntaxMap.json; sourceTree = "<group>"; };
 		2A294CD51926666B00DCB672 /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/AppearancePane.xib; sourceTree = "<group>"; };
 		2A2BDF0B198A899E0029848B /* NSString+JapaneseTransform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+JapaneseTransform.h"; sourceTree = "<group>"; };
 		2A2BDF0C198A899E0029848B /* NSString+JapaneseTransform.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+JapaneseTransform.m"; sourceTree = "<group>"; };
@@ -307,7 +319,6 @@
 		2A8663DC18C9F6B700A6F9CC /* NSData+MD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+MD5.m"; sourceTree = "<group>"; };
 		2A8711661986DAEC009FA1C0 /* NSString+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MD5.h"; sourceTree = "<group>"; };
 		2A8711671986DAEC009FA1C0 /* NSString+MD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MD5.m"; sourceTree = "<group>"; };
-		2A885A6F1A06B25D001230B2 /* SyntaxTables */ = {isa = PBXFileReference; lastKnownFileType = folder; path = SyntaxTables; sourceTree = "<group>"; };
 		2A94A45818D08D51009FA90D /* NSWindow+ScriptingSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSWindow+ScriptingSupport.h"; sourceTree = "<group>"; };
 		2A94A45918D08D52009FA90D /* NSWindow+ScriptingSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSWindow+ScriptingSupport.m"; sourceTree = "<group>"; };
 		2A94A45B18D0B562009FA90D /* CEOpacityPanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEOpacityPanelController.h; sourceTree = "<group>"; };
@@ -706,6 +717,7 @@
 			children = (
 				2A37F4B0FDCFA73011CA2CEA /* main.m */,
 				32DBCF750370BD2300C91783 /* CotEditor_Prefix.pch */,
+				2A2179ED1A07011C002C4AB1 /* makeSyntaxMap.rb */,
 			);
 			name = "Other Sources";
 			sourceTree = "<group>";
@@ -724,9 +736,9 @@
 				2AEB8B7A19AF73980098D557 /* FileDropGlossary.txt */,
 				2A75ACCA19E86DDB00444894 /* CotEditor.sdef */,
 				2A6E3F3C19B5218300A63E97 /* CotEditor.help */,
+				2A2179F51A07093B002C4AB1 /* SyntaxMap.json */,
 				2A9871A819AEABDB0081BADB /* KeyBindings */,
 				2A3A758D19E77C84001DAB88 /* Syntaxes */,
-				2A885A6F1A06B25D001230B2 /* SyntaxTables */,
 				2A7846DA18FE035E006BDF00 /* Themes */,
 				6CA3B36012E3B59B0019AB2E /* SampleScript */,
 				259B181207E530DA00C5FD26 /* Internal Script */,
@@ -898,6 +910,23 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXLegacyTarget section */
+		2A2179EF1A0703BD002C4AB1 /* SyntaxMap */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "${SRCROOT}/makeSyntaxMap.rb";
+			buildConfigurationList = 2A2179F01A0703BE002C4AB1 /* Build configuration list for PBXLegacyTarget "SyntaxMap" */;
+			buildPhases = (
+			);
+			buildToolPath = /usr/bin/ruby;
+			buildWorkingDirectory = "";
+			dependencies = (
+			);
+			name = SyntaxMap;
+			passBuildSettingsInEnvironment = 1;
+			productName = SyntaxTableMaker;
+		};
+/* End PBXLegacyTarget section */
+
 /* Begin PBXNativeTarget section */
 		8D15AC270486D014006FF6A4 /* CotEditor */ = {
 			isa = PBXNativeTarget;
@@ -912,6 +941,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				2A2179F41A070424002C4AB1 /* PBXTargetDependency */,
 			);
 			name = CotEditor;
 			productInstallPath = "$(HOME)/Applications";
@@ -929,6 +959,11 @@
 				CLASSPREFIX = CE;
 				LastUpgradeCheck = 0600;
 				ORGANIZATIONNAME = "CotEditor Project";
+				TargetAttributes = {
+					2A2179EF1A0703BD002C4AB1 = {
+						CreatedOnToolsVersion = 6.1;
+					};
+				};
 			};
 			buildConfigurationList = 8C71D95708640EDF00C9C0BD /* Build configuration list for PBXProject "CotEditor" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -943,6 +978,7 @@
 			projectRoot = "";
 			targets = (
 				8D15AC270486D014006FF6A4 /* CotEditor */,
+				2A2179EF1A0703BD002C4AB1 /* SyntaxMap */,
 			);
 		};
 /* End PBXProject section */
@@ -958,8 +994,8 @@
 				6CA3B3E312E3B59B0019AB2E /* SampleScript in Resources */,
 				2A9871A919AEABDB0081BADB /* KeyBindings in Resources */,
 				2A75ACCB19E86DDB00444894 /* CotEditor.sdef in Resources */,
-				2A885A701A06B25D001230B2 /* SyntaxTables in Resources */,
 				2A6E3F3D19B5218300A63E97 /* CotEditor.help in Resources */,
+				2A2179F61A07093B002C4AB1 /* SyntaxMap.json in Resources */,
 				6C6DAE3E13833C0E007F2326 /* dsa_pub.pem in Resources */,
 				2585914D080F503A0038F387 /* openDictionary.applescript in Resources */,
 				8D15AC2D0486D014006FF6A4 /* MainMenu.xib in Resources */,
@@ -1144,6 +1180,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2A2179F41A070424002C4AB1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2A2179EF1A0703BD002C4AB1 /* SyntaxMap */;
+			targetProxy = 2A2179F31A070424002C4AB1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		25859EA5076D8EE80020F779 /* PreferencesWindow.xib */ = {
@@ -1479,11 +1523,89 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		2A2179F11A0703BE002C4AB1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUGGING_SYMBOLS = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		2A2179F21A0703BE002C4AB1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		8C71D95408640EDF00C9C0BD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3381090B4006E7F6090EB49E /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
@@ -1497,7 +1619,9 @@
 				GCC_WARN_ABOUT_POINTER_SIGNEDNESS = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				INFOPLIST_FILE = Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = CotEditor;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -1506,6 +1630,7 @@
 			baseConfigurationReference = 76D1C081C503B0E9585E1BD6 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
@@ -1517,6 +1642,7 @@
 				GCC_PREFIX_HEADER = CotEditor_Prefix.pch;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				INFOPLIST_FILE = Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = CotEditor;
 			};
 			name = Release;
@@ -1543,6 +1669,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		2A2179F01A0703BE002C4AB1 /* Build configuration list for PBXLegacyTarget "SyntaxMap" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2A2179F11A0703BE002C4AB1 /* Debug */,
+				2A2179F21A0703BE002C4AB1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		8C71D95308640EDF00C9C0BD /* Build configuration list for PBXNativeTarget "CotEditor" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

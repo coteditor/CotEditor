@@ -1,0 +1,389 @@
+{
+  "Apache": {
+    "extensions": [
+      "conf"
+    ],
+    "filenames": [
+      ".htaccess"
+    ]
+  },
+  "AppleScript": {
+    "extensions": [
+      "applescript"
+    ],
+    "filenames": [
+
+    ]
+  },
+  "C#": {
+    "extensions": [
+      "cs"
+    ],
+    "filenames": [
+
+    ]
+  },
+  "C, C++, Objective-C": {
+    "extensions": [
+      "c",
+      "h",
+      "m",
+      "mm",
+      "cpp",
+      "cc"
+    ],
+    "filenames": [
+
+    ]
+  },
+  "CSS": {
+    "extensions": [
+      "css"
+    ],
+    "filenames": [
+
+    ]
+  },
+  "CoffeeScript": {
+    "extensions": [
+      "coffee"
+    ],
+    "filenames": [
+
+    ]
+  },
+  "DTD": {
+    "extensions": [
+      "dtd"
+    ],
+    "filenames": [
+
+    ]
+  },
+  "Dart": {
+    "extensions": [
+      "dart"
+    ],
+    "filenames": [
+
+    ]
+  },
+  "Diff": {
+    "extensions": [
+      "diff",
+      "patch",
+      "dif"
+    ],
+    "filenames": [
+
+    ]
+  },
+  "Go": {
+    "extensions": [
+      "go"
+    ],
+    "filenames": [
+
+    ]
+  },
+  "HTML": {
+    "extensions": [
+      "html",
+      "htm",
+      "shtml"
+    ],
+    "filenames": [
+
+    ]
+  },
+  "Haskell": {
+    "extensions": [
+      "hs",
+      "lhs"
+    ],
+    "filenames": [
+
+    ]
+  },
+  "INI": {
+    "extensions": [
+      "ini"
+    ],
+    "filenames": [
+
+    ]
+  },
+  "JSON": {
+    "extensions": [
+      "json",
+      "cottheme"
+    ],
+    "filenames": [
+
+    ]
+  },
+  "Java": {
+    "extensions": [
+      "java"
+    ],
+    "filenames": [
+
+    ]
+  },
+  "JavaScript": {
+    "extensions": [
+      "js"
+    ],
+    "filenames": [
+
+    ]
+  },
+  "LaTeX": {
+    "extensions": [
+      "tex",
+      "TEX",
+      "sty",
+      "cls"
+    ],
+    "filenames": [
+
+    ]
+  },
+  "Lisp": {
+    "extensions": [
+      "lisp",
+      "lsp",
+      "el",
+      "clj",
+      "edn"
+    ],
+    "filenames": [
+
+    ]
+  },
+  "Lua": {
+    "extensions": [
+      "lua"
+    ],
+    "filenames": [
+
+    ]
+  },
+  "Makefile": {
+    "extensions": [
+
+    ],
+    "filenames": [
+      "Makefile",
+      "makefile"
+    ]
+  },
+  "Markdown": {
+    "extensions": [
+      "md",
+      "markdown",
+      "mkd",
+      "mdown",
+      "mkdn"
+    ],
+    "filenames": [
+
+    ]
+  },
+  "PHP": {
+    "extensions": [
+      "php",
+      "php3",
+      "php4",
+      "php5",
+      "phps",
+      "phtml"
+    ],
+    "filenames": [
+
+    ]
+  },
+  "Perl": {
+    "extensions": [
+      "pl",
+      "cgi",
+      "pm"
+    ],
+    "filenames": [
+
+    ]
+  },
+  "Plain Text": {
+    "extensions": [
+      "txt"
+    ],
+    "filenames": [
+
+    ]
+  },
+  "Python": {
+    "extensions": [
+      "py",
+      "pyw"
+    ],
+    "filenames": [
+
+    ]
+  },
+  "R": {
+    "extensions": [
+      "r"
+    ],
+    "filenames": [
+
+    ]
+  },
+  "Ruby": {
+    "extensions": [
+      "rb"
+    ],
+    "filenames": [
+
+    ]
+  },
+  "Rust": {
+    "extensions": [
+      "rs",
+      "rc"
+    ],
+    "filenames": [
+
+    ]
+  },
+  "SQL": {
+    "extensions": [
+      "sql",
+      "mysql",
+      "pgsql"
+    ],
+    "filenames": [
+
+    ]
+  },
+  "SVG": {
+    "extensions": [
+      "svg"
+    ],
+    "filenames": [
+
+    ]
+  },
+  "Scala": {
+    "extensions": [
+      "scala"
+    ],
+    "filenames": [
+
+    ]
+  },
+  "Scheme": {
+    "extensions": [
+      "scm",
+      "ss"
+    ],
+    "filenames": [
+
+    ]
+  },
+  "Shell Script": {
+    "extensions": [
+      "sh"
+    ],
+    "filenames": [
+      ".profile",
+      ".bash_profile",
+      ".bashrc",
+      ".zshrc",
+      ".zshenv"
+    ]
+  },
+  "Swift": {
+    "extensions": [
+      "swift"
+    ],
+    "filenames": [
+
+    ]
+  },
+  "Tcl": {
+    "extensions": [
+      "tcl"
+    ],
+    "filenames": [
+
+    ]
+  },
+  "Textile": {
+    "extensions": [
+      "textile"
+    ],
+    "filenames": [
+
+    ]
+  },
+  "XML": {
+    "extensions": [
+      "xml",
+      "xsl",
+      "xslt",
+      "xsd",
+      "rlx",
+      "rng",
+      "trex",
+      "fo",
+      "fob",
+      "mml",
+      "gml",
+      "cml",
+      "opf",
+      "ncx",
+      "xul",
+      "zul",
+      "smil",
+      "smi",
+      "mxml",
+      "rss",
+      "rdf",
+      "atom",
+      "plist",
+      "xib",
+      "xmp",
+      "sdef"
+    ],
+    "filenames": [
+
+    ]
+  },
+  "YAML": {
+    "extensions": [
+      "yaml",
+      "yml"
+    ],
+    "filenames": [
+
+    ]
+  },
+  "eRuby": {
+    "extensions": [
+      "erb",
+      "rhtml"
+    ],
+    "filenames": [
+
+    ]
+  },
+  "reStructuredText": {
+    "extensions": [
+      "rest",
+      "rst"
+    ],
+    "filenames": [
+
+    ]
+  }
+}
