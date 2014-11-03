@@ -217,11 +217,9 @@ const NSInteger kNoMenuItem = -1;
     [[self window] setBackgroundColor:[[self theme] backgroundColor]];
     
     // レイヤーバックドビューにする
-    if (NSAppKitVersionNumber >= NSAppKitVersionNumber10_8) { // on Mountain Lion and later
-        [[self enclosingScrollView] setWantsLayer:YES];
-        [[[self enclosingScrollView] contentView] setCopiesOnScroll:YES];
-        [self setLayerContentsRedrawPolicy:NSViewLayerContentsRedrawOnSetNeedsDisplay];
-    }
+    [[self enclosingScrollView] setWantsLayer:YES];
+    [[[self enclosingScrollView] contentView] setCopiesOnScroll:YES];
+    [self setLayerContentsRedrawPolicy:NSViewLayerContentsRedrawOnSetNeedsDisplay];
     
     // ウインドウの透明フラグを監視する
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -625,12 +623,6 @@ const NSInteger kNoMenuItem = -1;
         [[[[self theme] textColor] colorWithAlphaComponent:0.2] set];
         [NSBezierPath strokeLineFromPoint:NSMakePoint(x, 0)
                                   toPoint:NSMakePoint(x, length)];
-    }
-    
-    // テキストビューを透過させている時に影を更新描画する (on Lion)
-    // Lion 上では Layer-backed になっていないのでビュー越しにテキストのドロップシャドウが描画される。Lion サポート落としたら多分不要。(2014-10 1024jp)
-    if ((NSAppKitVersionNumber < NSAppKitVersionNumber10_8) && ![[self window] isOpaque]) {
-        [[self window] invalidateShadow];
     }
 }
 
