@@ -77,7 +77,7 @@
     [[self window] setLevel:NSFloatingWindowLevel];
     
     // set background color
-    [[[self slideView] layer] setBackgroundColor:CGColorCreateGenericGray(1.0, 1.0)];
+    [[[self slideView] layer] setBackgroundColor:[[NSColor whiteColor] CGColor]];
     
     // init indicator
     [[self indicator] setMaxValue:5];
