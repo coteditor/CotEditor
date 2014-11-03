@@ -231,7 +231,7 @@
     [openPanel setCanChooseDirectories:NO];
     [openPanel setAllowedFileTypes:@[@"yaml", @"plist"]];
     
-    __unsafe_unretained typeof(self) weakSelf = self;  // cannot be weak on Lion
+    __weak typeof(self) weakSelf = self;
     [openPanel beginSheetModalForWindow:[[self view] window] completionHandler:^(NSInteger result) {
         typeof(self) strongSelf = weakSelf;
         

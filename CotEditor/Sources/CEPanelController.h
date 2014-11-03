@@ -35,7 +35,7 @@
 
 @interface CEPanelController : NSWindowController <NSWindowDelegate>
 
-@property (readonly, nonatomic, strong) CEWindowController *documentWindowController;  // cannot be weak on Lion
+@property (readonly, nonatomic, weak) CEWindowController *documentWindowController;
 
 
 + (instancetype)sharedController;

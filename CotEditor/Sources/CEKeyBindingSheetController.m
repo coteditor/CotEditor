@@ -251,7 +251,7 @@
         item[identifier] = object;
         // 無効な値だったら再び編集状態にする
         if (![self validateKeySpecChars:object oldChars:[self currentKeySpecChars]]) {
-            __unsafe_unretained typeof(self) weakSelf = self;  // cannot be weak on Lion
+            __weak typeof(self) weakSelf = self;
             dispatch_async(dispatch_get_main_queue(), ^{
                 typeof(self) strongSelf = weakSelf;
                 [strongSelf performEditSelectedBindingKeyColumn];
