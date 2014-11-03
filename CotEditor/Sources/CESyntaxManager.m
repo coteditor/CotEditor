@@ -731,7 +731,7 @@ NSString *const CESyntaxValidationMessageKey = @"MessageKey";
     NSMutableDictionary *filenameConflicts = [NSMutableDictionary dictionary];
     NSString *addedName = nil;
     
-    for (NSString *styleName in [self styleNames]) {
+    for (NSString *styleName in [[self map] allKeys]) {
         for (NSString *extension in [self map][styleName][CESyntaxExtensionsKey]) {
             if ((addedName = extensionToStyleTable[extension])) { // 同じ拡張子を持つものがすでにあるとき
                 NSMutableArray *errors = extensionConflicts[extension];
