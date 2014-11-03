@@ -150,7 +150,7 @@ DQ
             <rect key="frame" x="0.0" y="0.0" width="460" height="240"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="vA6-9n-tty">
+                <textField horizontalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vA6-9n-tty">
                     <rect key="frame" x="42" y="182" width="225" height="17"/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="メニューキーバインド設定のリセット" usesSingleLineMode="YES" id="BA1-Y2-S7m">
                         <font key="font" size="13" name="HiraKakuProN-W3"/>
@@ -203,7 +203,7 @@ DQ
                         </binding>
                     </connections>
                 </textField>
-                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="uTv-Qx-FQU">
+                <textField horizontalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uTv-Qx-FQU">
                     <rect key="frame" x="42" y="100" width="212" height="17"/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="カスタムシンタックスタイルの移行" usesSingleLineMode="YES" id="D4s-ma-Iiu">
                         <font key="font" size="13" name="HiraKakuProN-W3"/>
@@ -293,7 +293,7 @@ DQ
                         </binding>
                     </connections>
                 </textField>
-                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="jWg-4Q-d5T">
+                <textField horizontalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jWg-4Q-d5T">
                     <rect key="frame" x="18" y="56" width="345" height="14"/>
                     <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="このほかに、ユーザによる手動の移行処理が必要な場合があります。" allowsEditingTextAttributes="YES" usesSingleLineMode="YES" id="X8Q-Ji-HKU">
                         <font key="font" size="11" name="HiraKakuProN-W3"/>
@@ -301,7 +301,7 @@ DQ
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <button toolTip="See “What's New in CotEditor 2.0” on Help" horizontalHuggingPriority="750" verticalHuggingPriority="750" tag="9" translatesAutoresizingMaskIntoConstraints="NO" id="hGz-yb-qTP">
+                <button toolTip="ヘルプ項目“CotEditor 2.0 の新機能”を見る。" horizontalHuggingPriority="750" verticalHuggingPriority="750" tag="9" translatesAutoresizingMaskIntoConstraints="NO" id="hGz-yb-qTP">
                     <rect key="frame" x="18" y="13" width="22" height="22"/>
                     <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" controlSize="small" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Xzi-xX-1br">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -311,7 +311,7 @@ DQ
                         <action selector="openHelpAnchor:" target="-2" id="AiG-on-ane"/>
                     </connections>
                 </button>
-                <button toolTip="See “Specification Changes on CotEditor 2.0” on Help" horizontalHuggingPriority="750" verticalHuggingPriority="750" tag="10" translatesAutoresizingMaskIntoConstraints="NO" id="qdh-QQ-qcp">
+                <button toolTip="ヘルプ項目“CotEditor 2.0 での仕様変更”を見る。" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" tag="10" translatesAutoresizingMaskIntoConstraints="NO" id="qdh-QQ-qcp">
                     <rect key="frame" x="364" y="54" width="19" height="19"/>
                     <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" controlSize="mini" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Z6i-Dy-waO">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>

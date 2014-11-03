@@ -172,7 +172,7 @@
                             </popUpButtonCell>
                         </popUpButton>
                     </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="E6ABFF49-AA91-4122-802F-15AF6503F110" explicitItemIdentifier="searchFieldItemID" label="Get Info" paletteLabel="get Info" toolTip="Show document information" tag="4" image="GetInfo" id="ogy-SR-Vqr">
+                    <toolbarItem implicitItemIdentifier="E6ABFF49-AA91-4122-802F-15AF6503F110" explicitItemIdentifier="searchFieldItemID" label="Get Info" paletteLabel="Get Info" toolTip="Show document information" tag="4" image="GetInfo" id="ogy-SR-Vqr">
                         <connections>
                             <action selector="getInfo:" target="-1" id="xp5-7V-kLd"/>
                         </connections>
