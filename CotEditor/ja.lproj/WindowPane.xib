@@ -14,11 +14,11 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <userDefaultsController representsSharedInstance="YES" id="26" userLabel="Shared User Defaults Controller"/>
         <customView horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" id="741" userLabel="Window Pane">
-            <rect key="frame" x="0.0" y="0.0" width="540" height="422"/>
+            <rect key="frame" x="0.0" y="0.0" width="540" height="440"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="626">
-                    <rect key="frame" x="156" y="361" width="61" height="18"/>
+                    <rect key="frame" x="156" y="379" width="61" height="18"/>
                     <buttonCell key="cell" type="check" title="行番号" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3348">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
@@ -27,18 +27,8 @@
                         <binding destination="26" name="value" keyPath="values.showLineNumbers" id="630"/>
                     </connections>
                 </button>
-                <button horizontalHuggingPriority="750" verticalHuggingPriority="750" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="2151">
-                    <rect key="frame" x="497" y="17" width="25" height="25"/>
-                    <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" state="on" borderStyle="border" inset="2" id="3358">
-                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="system"/>
-                    </buttonCell>
-                    <connections>
-                        <action selector="openPreferencesHelp:" target="-1" id="AF8-1Q-VjF"/>
-                    </connections>
-                </button>
                 <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="800">
-                    <rect key="frame" x="424" y="361" width="40" height="22"/>
+                    <rect key="frame" x="424" y="379" width="40" height="22"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="40" id="Mqh-Sa-HgR"/>
                     </constraints>
@@ -60,7 +50,7 @@
                     </connections>
                 </textField>
                 <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="799">
-                    <rect key="frame" x="336" y="363" width="82" height="17"/>
+                    <rect key="frame" x="336" y="381" width="82" height="17"/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="表示する列：" usesSingleLineMode="YES" id="3353">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -68,7 +58,7 @@
                     </textFieldCell>
                 </textField>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="798">
-                    <rect key="frame" x="316" y="384" width="100" height="18"/>
+                    <rect key="frame" x="316" y="402" width="100" height="18"/>
                     <buttonCell key="cell" type="check" title="ページガイド" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3352">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
@@ -78,7 +68,7 @@
                     </connections>
                 </button>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="707">
-                    <rect key="frame" x="156" y="384" width="139" height="18"/>
+                    <rect key="frame" x="156" y="402" width="139" height="18"/>
                     <buttonCell key="cell" type="check" title="ナビゲーションバー" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3351">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
@@ -88,7 +78,7 @@
                     </connections>
                 </button>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="627">
-                    <rect key="frame" x="156" y="338" width="113" height="18"/>
+                    <rect key="frame" x="156" y="356" width="113" height="18"/>
                     <buttonCell key="cell" type="check" title="ステータスバー" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3349">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
@@ -98,7 +88,7 @@
                     </connections>
                 </button>
                 <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="614">
-                    <rect key="frame" x="364" y="80" width="40" height="14"/>
+                    <rect key="frame" x="364" y="98" width="40" height="14"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="36" id="r1N-NC-Pbl"/>
                     </constraints>
@@ -117,7 +107,7 @@
                     </connections>
                 </textField>
                 <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="616">
-                    <rect key="frame" x="156" y="77" width="204" height="26"/>
+                    <rect key="frame" x="156" y="95" width="204" height="26"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="200" id="lB5-0J-5jf"/>
                     </constraints>
@@ -129,11 +119,11 @@
                     </connections>
                 </slider>
                 <imageView translatesAutoresizingMaskIntoConstraints="NO" id="613">
-                    <rect key="frame" x="161" y="56" width="195" height="15"/>
+                    <rect key="frame" x="161" y="74" width="195" height="15"/>
                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="axesIndependently" image="OpacityGuide" id="3340"/>
                 </imageView>
                 <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6Rm-ix-3Ik">
-                    <rect key="frame" x="31" y="80" width="121" height="17"/>
+                    <rect key="frame" x="31" y="98" width="121" height="17"/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="ビューの不透明度：" usesSingleLineMode="YES" id="gSx-LA-TPc">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -141,7 +131,7 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Hya-cT-hxD">
-                    <rect key="frame" x="57" y="123" width="95" height="17"/>
+                    <rect key="frame" x="57" y="141" width="95" height="17"/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="ウインドウ幅：" usesSingleLineMode="YES" id="zIR-1y-lBC">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -149,7 +139,7 @@
                     </textFieldCell>
                 </textField>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="623">
-                    <rect key="frame" x="332" y="117" width="180" height="28"/>
+                    <rect key="frame" x="332" y="135" width="180" height="28"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="170" id="CvX-bJ-TEw"/>
                     </constraints>
@@ -162,7 +152,7 @@
                     </connections>
                 </button>
                 <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="624">
-                    <rect key="frame" x="267" y="121" width="50" height="22"/>
+                    <rect key="frame" x="267" y="139" width="50" height="22"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="right" title="800" drawsBackground="YES" id="3347">
                         <numberFormatter key="formatter" formatterBehavior="custom10_4" positiveFormat="0.0" negativeFormat="-0" localizesFormat="NO" usesGroupingSeparator="NO" groupingSize="0" minimumIntegerDigits="1" maximumIntegerDigits="309" groupingSeparator="," id="625">
                             <decimal key="minimum" value="100"/>
@@ -181,7 +171,7 @@
                     </connections>
                 </textField>
                 <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="619">
-                    <rect key="frame" x="218" y="123" width="43" height="17"/>
+                    <rect key="frame" x="218" y="141" width="43" height="17"/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="高さ：" usesSingleLineMode="YES" id="3343">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -189,7 +179,7 @@
                     </textFieldCell>
                 </textField>
                 <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="620">
-                    <rect key="frame" x="158" y="121" width="50" height="22"/>
+                    <rect key="frame" x="158" y="139" width="50" height="22"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="50" id="6Pg-my-wN5"/>
                     </constraints>
@@ -211,19 +201,19 @@
                     </connections>
                 </textField>
                 <box verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="h76-8K-zux">
-                    <rect key="frame" x="20" y="156" width="500" height="5"/>
+                    <rect key="frame" x="20" y="174" width="500" height="5"/>
                     <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <font key="titleFont" metaFont="system"/>
                 </box>
                 <box verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="ybD-hb-S7E">
-                    <rect key="frame" x="20" y="321" width="500" height="5"/>
+                    <rect key="frame" x="20" y="339" width="500" height="5"/>
                     <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <font key="titleFont" metaFont="system"/>
                 </box>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="mSm-CR-7AA">
-                    <rect key="frame" x="156" y="291" width="48" height="18"/>
+                    <rect key="frame" x="156" y="309" width="48" height="18"/>
                     <buttonCell key="cell" type="check" title="行数" bezelStyle="regularSquare" imagePosition="left" inset="2" id="6jK-xX-8AH">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
@@ -233,7 +223,7 @@
                     </connections>
                 </button>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="0nn-xK-L3v">
-                    <rect key="frame" x="156" y="268" width="61" height="18"/>
+                    <rect key="frame" x="156" y="286" width="61" height="18"/>
                     <buttonCell key="cell" type="check" title="文字数" bezelStyle="regularSquare" imagePosition="left" inset="2" id="sHZ-kO-Wvu">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
@@ -243,7 +233,7 @@
                     </connections>
                 </button>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="vUQ-Rf-8xK">
-                    <rect key="frame" x="156" y="245" width="61" height="18"/>
+                    <rect key="frame" x="156" y="263" width="61" height="18"/>
                     <buttonCell key="cell" type="check" title="文字長" bezelStyle="regularSquare" imagePosition="left" inset="2" id="YE8-hr-UbT">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
@@ -253,7 +243,7 @@
                     </connections>
                 </button>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="UlP-b2-t7c">
-                    <rect key="frame" x="156" y="222" width="61" height="18"/>
+                    <rect key="frame" x="156" y="240" width="61" height="18"/>
                     <buttonCell key="cell" type="check" title="単語数" bezelStyle="regularSquare" imagePosition="left" inset="2" id="6kP-eg-42x">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
@@ -263,7 +253,7 @@
                     </connections>
                 </button>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="nru-qe-DDo">
-                    <rect key="frame" x="256" y="291" width="48" height="18"/>
+                    <rect key="frame" x="256" y="309" width="48" height="18"/>
                     <buttonCell key="cell" type="check" title="位置" bezelStyle="regularSquare" imagePosition="left" inset="2" id="ctl-Ps-V8Z">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
@@ -273,7 +263,7 @@
                     </connections>
                 </button>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="n7O-GB-6mQ">
-                    <rect key="frame" x="256" y="268" width="74" height="18"/>
+                    <rect key="frame" x="256" y="286" width="74" height="18"/>
                     <buttonCell key="cell" type="check" title="現在の行" bezelStyle="regularSquare" imagePosition="left" inset="2" id="JbR-gR-aiA">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
@@ -283,7 +273,7 @@
                     </connections>
                 </button>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="rYB-LR-Dp6">
-                    <rect key="frame" x="356" y="291" width="126" height="18"/>
+                    <rect key="frame" x="356" y="309" width="126" height="18"/>
                     <buttonCell key="cell" type="check" title="エンコーディング" bezelStyle="regularSquare" imagePosition="left" inset="2" id="8m3-5I-Moe">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
@@ -293,7 +283,7 @@
                     </connections>
                 </button>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="SCx-th-irQ">
-                    <rect key="frame" x="356" y="269" width="87" height="18"/>
+                    <rect key="frame" x="356" y="287" width="87" height="18"/>
                     <buttonCell key="cell" type="check" title="改行コード" bezelStyle="regularSquare" imagePosition="left" inset="2" id="Ief-Dy-mPR">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" size="13" name="AquaKana"/>
@@ -303,7 +293,7 @@
                     </connections>
                 </button>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="sap-YU-xep">
-                    <rect key="frame" x="356" y="245" width="113" height="18"/>
+                    <rect key="frame" x="356" y="263" width="113" height="18"/>
                     <buttonCell key="cell" type="check" title="ファイルサイズ" bezelStyle="regularSquare" imagePosition="left" inset="2" id="ikB-dS-c4S">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
@@ -313,7 +303,7 @@
                     </connections>
                 </button>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="vmx-rd-HS6">
-                    <rect key="frame" x="256" y="245" width="74" height="18"/>
+                    <rect key="frame" x="256" y="263" width="74" height="18"/>
                     <buttonCell key="cell" type="check" title="現在の列" bezelStyle="regularSquare" imagePosition="left" inset="2" id="SR0-Bx-Nh6">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
@@ -323,7 +313,7 @@
                     </connections>
                 </button>
                 <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="zUH-zh-jyO">
-                    <rect key="frame" x="18" y="292" width="134" height="17"/>
+                    <rect key="frame" x="18" y="310" width="134" height="17"/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="ステータスバー表示：" usesSingleLineMode="YES" id="kjP-FS-fyd">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -331,7 +321,7 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="b4p-xQ-foZ">
-                    <rect key="frame" x="109" y="385" width="43" height="17"/>
+                    <rect key="frame" x="109" y="403" width="43" height="17"/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="表示：" usesSingleLineMode="YES" id="iw9-Ba-eD2">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -339,7 +329,7 @@
                     </textFieldCell>
                 </textField>
                 <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="cYL-hc-lGk">
-                    <rect key="frame" x="465" y="358" width="19" height="27"/>
+                    <rect key="frame" x="465" y="376" width="19" height="27"/>
                     <stepperCell key="cell" continuous="YES" alignment="left" minValue="1" maxValue="1000" doubleValue="1" id="eK1-a7-3Dh"/>
                     <connections>
                         <binding destination="26" name="value" keyPath="values.pageGuideColumn" id="dFr-4X-aRG"/>
@@ -347,13 +337,13 @@
                     </connections>
                 </stepper>
                 <box verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="Hp2-hq-Rg8">
-                    <rect key="frame" x="20" y="205" width="500" height="5"/>
+                    <rect key="frame" x="20" y="223" width="500" height="5"/>
                     <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <font key="titleFont" metaFont="system"/>
                 </box>
                 <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="jVu-K9-ruv">
-                    <rect key="frame" x="44" y="176" width="108" height="17"/>
+                    <rect key="frame" x="44" y="194" width="108" height="17"/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="エディタの分割：" usesSingleLineMode="YES" id="w81-Mg-bDl">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -361,7 +351,7 @@
                     </textFieldCell>
                 </textField>
                 <matrix verticalHuggingPriority="750" allowsEmptySelection="NO" autosizesCells="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Fk-5p-bdl">
-                    <rect key="frame" x="158" y="175" width="82" height="18"/>
+                    <rect key="frame" x="158" y="193" width="82" height="18"/>
                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     <size key="cellSize" width="39" height="18"/>
                     <size key="intercellSpacing" width="4" height="2"/>
@@ -388,20 +378,30 @@
                     </connections>
                 </matrix>
                 <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="N79-3i-wFW">
-                    <rect key="frame" x="176" y="31" width="301" height="14"/>
-                    <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="透過したビューは巨大な書類で遅くなる可能性があります。" id="P07-j7-erT">
+                    <rect key="frame" x="176" y="47" width="301" height="14"/>
+                    <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="透過したビューは巨大な書類で遅くなる可能性があります。" usesSingleLineMode="YES" id="P07-j7-erT">
                         <font key="font" size="11" name="HiraKakuProN-W3"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
                 <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IiJ-Wl-Q76">
-                    <rect key="frame" x="158" y="31" width="16" height="13"/>
+                    <rect key="frame" x="158" y="47" width="16" height="13"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="13" id="sZB-w9-H7o"/>
                     </constraints>
                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="CautionTemplate" id="xOg-qM-dHR"/>
                 </imageView>
+                <button horizontalHuggingPriority="750" verticalHuggingPriority="750" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="2151">
+                    <rect key="frame" x="497" y="17" width="25" height="25"/>
+                    <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" state="on" borderStyle="border" inset="2" id="3358">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="openPreferencesHelp:" target="-1" id="AF8-1Q-VjF"/>
+                    </connections>
+                </button>
             </subviews>
             <constraints>
                 <constraint firstItem="mSm-CR-7AA" firstAttribute="leading" secondItem="UlP-b2-t7c" secondAttribute="leading" id="1DP-4s-862"/>
@@ -440,11 +440,12 @@
                 <constraint firstItem="0nn-xK-L3v" firstAttribute="top" secondItem="mSm-CR-7AA" secondAttribute="bottom" constant="9" id="NiU-Zl-Gn9"/>
                 <constraint firstItem="Hya-cT-hxD" firstAttribute="baseline" secondItem="624" secondAttribute="baseline" id="Nyr-w0-RhL"/>
                 <constraint firstItem="627" firstAttribute="top" secondItem="626" secondAttribute="bottom" constant="9" id="Oxj-YV-EHk"/>
-                <constraint firstItem="IiJ-Wl-Q76" firstAttribute="top" secondItem="613" secondAttribute="bottom" constant="12" id="Qcf-MQ-hgr"/>
+                <constraint firstItem="IiJ-Wl-Q76" firstAttribute="top" secondItem="613" secondAttribute="bottom" constant="14" id="Qcf-MQ-hgr"/>
                 <constraint firstItem="6Rm-ix-3Ik" firstAttribute="top" secondItem="Hya-cT-hxD" secondAttribute="bottom" constant="26" id="RbO-Rf-PfE"/>
                 <constraint firstItem="620" firstAttribute="leading" secondItem="Hya-cT-hxD" secondAttribute="trailing" constant="8" symbolic="YES" id="Rl0-eh-Q53"/>
                 <constraint firstItem="623" firstAttribute="leading" secondItem="624" secondAttribute="trailing" constant="20" id="SNT-fm-1r4"/>
                 <constraint firstItem="616" firstAttribute="top" secondItem="6Rm-ix-3Ik" secondAttribute="top" constant="-6" id="SdR-VE-aFv"/>
+                <constraint firstItem="2151" firstAttribute="top" secondItem="N79-3i-wFW" secondAttribute="bottom" constant="6" id="U6V-Im-ONB"/>
                 <constraint firstItem="614" firstAttribute="leading" secondItem="616" secondAttribute="trailing" constant="8" symbolic="YES" id="UBQ-F3-kSO"/>
                 <constraint firstItem="799" firstAttribute="leading" secondItem="798" secondAttribute="leading" constant="20" id="V1S-Hi-ORw"/>
                 <constraint firstAttribute="trailing" secondItem="ybD-hb-S7E" secondAttribute="trailing" constant="20" symbolic="YES" id="VND-6q-Qn7"/>
@@ -458,7 +459,6 @@
                 <constraint firstItem="IiJ-Wl-Q76" firstAttribute="leading" secondItem="616" secondAttribute="leading" id="gHx-Zo-Ce3"/>
                 <constraint firstAttribute="trailing" secondItem="Hp2-hq-Rg8" secondAttribute="trailing" constant="20" symbolic="YES" id="iGz-jt-yvw"/>
                 <constraint firstAttribute="trailing" secondItem="h76-8K-zux" secondAttribute="trailing" constant="20" symbolic="YES" id="imb-Yc-Ies"/>
-                <constraint firstItem="2151" firstAttribute="top" secondItem="613" secondAttribute="bottom" constant="15" id="iyz-LT-rc7"/>
                 <constraint firstItem="0nn-xK-L3v" firstAttribute="baseline" secondItem="n7O-GB-6mQ" secondAttribute="baseline" id="jc7-IO-zE8"/>
                 <constraint firstItem="4Fk-5p-bdl" firstAttribute="leading" secondItem="jVu-K9-ruv" secondAttribute="trailing" constant="8" symbolic="YES" id="jeH-2x-eUA"/>
                 <constraint firstItem="h76-8K-zux" firstAttribute="leading" secondItem="741" secondAttribute="leading" constant="20" symbolic="YES" id="kZM-A8-bNz"/>
