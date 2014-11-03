@@ -1,11 +1,12 @@
 /*
  
- SyntaxEditSheet.strings (Japanese)
+ SyntaxValidationView.strings (Simplified Chinese)
  
  CotEditor
  http://coteditor.com
  
- Created by 1024jp on 2014-11-04.
+ Created by 1024jp on 2014-12-14.
+ Localized by onevcat.
  
  ------------------------------------------------------------------------------
  
@@ -25,14 +26,6 @@
  
  */
 
-/* Class = "NSTextFieldCell"; title = "Style Name:"; ObjectID = "987"; */
-"987.title" = "スタイル名：";
-/* Class = "NSTextFieldCell"; placeholderString = "Style Name"; ObjectID = "988"; */
-"988.placeholderString" = "スタイル名";
 
-/* Class = "NSButtonCell"; title = "Restore Defaults"; ObjectID = "1020"; */
-"1020.title" = "デフォルトに戻す";
-/* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "986"; */
-"986.title" = "キャンセル";
-/* Class = "NSButtonCell"; title = "OK"; ObjectID = "985"; */
-"985.title" = "OK";
+/* Class = "NSButtonCell"; title = "Start Validation"; ObjectID = "7cj-Tc-SoJ"; */
+"7cj-Tc-SoJ.title" = "开始验证";

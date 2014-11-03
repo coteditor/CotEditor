@@ -1,11 +1,12 @@
 /*
  
- SyntaxEditSheet.strings (Japanese)
+ SyntaxCompletionsEditView.strings (Simplified Chinese)
  
  CotEditor
  http://coteditor.com
  
- Created by 1024jp on 2014-11-04.
+ Created by 1024jp on 2014-12-14.
+ Localized by onevcat.
  
  ------------------------------------------------------------------------------
  
@@ -25,14 +26,9 @@
  
  */
 
-/* Class = "NSTextFieldCell"; title = "Style Name:"; ObjectID = "987"; */
-"987.title" = "スタイル名：";
-/* Class = "NSTextFieldCell"; placeholderString = "Style Name"; ObjectID = "988"; */
-"988.placeholderString" = "スタイル名";
 
-/* Class = "NSButtonCell"; title = "Restore Defaults"; ObjectID = "1020"; */
-"1020.title" = "デフォルトに戻す";
-/* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "986"; */
-"986.title" = "キャンセル";
-/* Class = "NSButtonCell"; title = "OK"; ObjectID = "985"; */
-"985.title" = "OK";
+/* Class = "NSTextFieldCell"; title = "If no word, the completion list will be generated from coloring settings."; ObjectID = "fJg-PK-TBB"; */
+"fJg-PK-TBB.title" = "如果没有单词，补全列表将由高亮设置生成。";
+
+/* Class = "NSTableColumn"; headerCell.title = "Completions"; ObjectID = "uGV-wD-V9T"; */
+"uGV-wD-V9T.headerCell.title" = "补全";
