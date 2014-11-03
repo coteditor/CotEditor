@@ -166,6 +166,7 @@ You MUST include the Command key.</string>
                     <constraint firstItem="25" firstAttribute="leading" secondItem="6" secondAttribute="leading" constant="20" symbolic="YES" id="XXB-Gi-cSX"/>
                     <constraint firstAttribute="bottom" secondItem="12" secondAttribute="bottom" constant="20" symbolic="YES" id="Yqe-ls-2wl"/>
                     <constraint firstItem="7" firstAttribute="top" secondItem="25" secondAttribute="bottom" constant="8" symbolic="YES" id="gAM-wM-vP2"/>
+                    <constraint firstItem="12" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="11" secondAttribute="trailing" constant="12" symbolic="YES" id="qlY-Dc-tFr"/>
                     <constraint firstItem="15" firstAttribute="leading" secondItem="6" secondAttribute="leading" constant="20" symbolic="YES" id="z4S-qY-zgV"/>
                 </constraints>
             </view>

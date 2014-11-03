@@ -1,0 +1,55 @@
+/*
+ FileDropPane.strings
+ 
+ CotEditor
+ http://coteditor.com
+ 
+ Created on 2014-11-04 by 1024jp
+ encoding="UTF-8"
+ 
+ © 2014 CotEditor Project
+ */
+
+/* Class = "NSTextFieldCell"; title = "Extensions:"; ObjectID = "3331"; */
+"3331.title" = "拡張子：";
+/* Class = "NSTextFieldCell"; title = "(comma separated, no dots)"; ObjectID = "3335"; */
+"3335.title" = "（カンマ区切り、ドット不要）";
+
+/* Class = "NSTextFieldCell"; title = ""; ObjectID = "3337"; */
+"3337.title" = "用語説明：";
+
+/* Class = "NSButtonCell"; ibShadowedToolTip = "Add"; ObjectID = "3333"; */
+"3333.ibShadowedToolTip" = "追加";
+/* Class = "NSButtonCell"; ibShadowedToolTip = "Delete"; ObjectID = "3334"; */
+"3334.ibShadowedToolTip" = "削除";
+
+
+/* Class = "NSTextFieldCell"; title = "Insertion Format:"; ObjectID = "3332"; */
+"3332.title" = "挿入文字列のフォーマット：";
+
+/* Class = "NSMenuItem"; title = "Insert Pre-Formatted String"; ObjectID = "541"; */
+"541.title" = "定型文字列を挿入";
+
+/* Class = "NSMenuItem"; ibShadowedToolTip = "The dropped file absolute path."; ObjectID = "544"; */
+"544.ibShadowedToolTip" = "ドロップ元ファイルの絶対パス";
+/* Class = "NSMenuItem"; ibShadowedToolTip = "The relative path between dropped file and the document."; ObjectID = "546"; */
+"546.ibShadowedToolTip" = "ドロップ先ファイルからドロップ元ファイルへの相対パス";
+/* Class = "NSMenuItem"; ibShadowedToolTip = "The dropped file name include extension (if exists)."; ObjectID = "542"; */
+"542.ibShadowedToolTip" = "ドロップ元ファイルの、拡張子を含むファイル名";
+/* Class = "NSMenuItem"; ibShadowedToolTip = "The dropped file name without extension."; ObjectID = "538"; */
+"538.ibShadowedToolTip" = "ドロップ元ファイルの名前から拡張子を削除した文字列";
+/* Class = "NSMenuItem"; ibShadowedToolTip = "The dropped file's extension."; ObjectID = "694"; */
+"694.ibShadowedToolTip" = "ドロップ元ファイルの拡張子";
+/* Class = "NSMenuItem"; ibShadowedToolTip = "The dropped file's extension (converted to lowercase)."; ObjectID = "695"; */
+"695.ibShadowedToolTip" = "ドロップ元ファイルの拡張子（小文字）";
+/* Class = "NSMenuItem"; ibShadowedToolTip = "The dropped file's extension (converted to uppercase)."; ObjectID = "696"; */
+"696.ibShadowedToolTip" = "ドロップ元ファイルの拡張子（大文字）";
+/* Class = "NSMenuItem"; ibShadowedToolTip = "The parent directory name of dropped file."; ObjectID = "539"; */
+"539.ibShadowedToolTip" = "ドロップ元ファイルのあるディレクトリ名";
+/* Class = "NSMenuItem"; ibShadowedToolTip = "(if the dropped file is Image) image width."; ObjectID = "540"; */
+"540.ibShadowedToolTip" = "画像の幅（ドロップ元ファイルが画像ファイルのときのみ有効）";
+/* Class = "NSMenuItem"; ibShadowedToolTip = "(if the dropped file is Image) image height."; ObjectID = "537"; */
+"537.ibShadowedToolTip" = "画像の高さ（ドロップ元ファイルが画像ファイルのときのみ有効）";
+
+/* Class = "IBBindingConnection"; ibShadowedNoSelectionPlaceholder = "No extension is selected."; ObjectID = "ib2-Zw-Ucy"; */
+"ib2-Zw-Ucy.ibShadowedNoSelectionPlaceholder" = "拡張子が選択されていません。";

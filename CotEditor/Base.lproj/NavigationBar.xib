@@ -27,7 +27,7 @@
                     <constraints>
                         <constraint firstAttribute="width" constant="21" id="YCW-yn-jru"/>
                     </constraints>
-                    <buttonCell key="cell" type="smallSquare" title="Previous Outline Item" bezelStyle="smallSquare" image="UpArrowTemplate" imagePosition="only" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="w3h-Kh-7X8">
+                    <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="UpArrowTemplate" imagePosition="overlaps" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="w3h-Kh-7X8">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
@@ -40,7 +40,7 @@
                     <constraints>
                         <constraint firstAttribute="width" constant="21" id="1PN-qX-wNW"/>
                     </constraints>
-                    <buttonCell key="cell" type="smallSquare" title="Next Outline Item" bezelStyle="smallSquare" image="DownArrowTemplate" imagePosition="only" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ptY-uK-2h3">
+                    <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="DownArrowTemplate" imagePosition="overlaps" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ptY-uK-2h3">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
@@ -53,7 +53,7 @@
                     <constraints>
                         <constraint firstAttribute="width" constant="17" id="e7y-hz-Kt5"/>
                     </constraints>
-                    <buttonCell key="cell" type="smallSquare" title="Split View" bezelStyle="smallSquare" image="OpenSplitTemplate" imagePosition="only" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyUpOrDown" inset="2" id="Snx-y4-0J6">
+                    <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="OpenSplitTemplate" imagePosition="overlaps" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyUpOrDown" inset="2" id="Snx-y4-0J6">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
@@ -66,7 +66,7 @@
                     <constraints>
                         <constraint firstAttribute="width" constant="17" id="5Tr-XS-blf"/>
                     </constraints>
-                    <buttonCell key="cell" type="smallSquare" title="Close Split View" bezelStyle="smallSquare" image="CloseSplitTemplate" imagePosition="only" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyUpOrDown" inset="2" id="naK-la-7Mj">
+                    <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="CloseSplitTemplate" imagePosition="overlaps" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyUpOrDown" inset="2" id="naK-la-7Mj">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>

@@ -59,13 +59,13 @@ Gw
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" id="3399">
                             <font key="font" metaFont="system"/>
                             <string key="title">You can resize this window.
-And press "OK" button, this window size will be set to default.</string>
+And press “OK” button, this window size will be set to default.</string>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="136">
-                        <rect key="frame" x="232" y="249" width="80" height="19"/>
+                        <rect key="frame" x="234" y="249" width="80" height="19"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="80" id="xWN-LC-Lew"/>
                         </constraints>
@@ -102,16 +102,16 @@ And press "OK" button, this window size will be set to default.</string>
                             <outlet property="formatter" destination="6fa-a9-iGI" id="0hn-rM-Qsa"/>
                         </connections>
                     </textField>
-                    <textField horizontalHuggingPriority="750" placeholderIntrinsicWidth="34" placeholderIntrinsicHeight="14" translatesAutoresizingMaskIntoConstraints="NO" id="140">
-                        <rect key="frame" x="188" y="251" width="38" height="14"/>
+                    <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="140">
+                        <rect key="frame" x="189" y="251" width="39" height="14"/>
                         <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Width:" usesSingleLineMode="YES" id="3402">
                             <font key="font" metaFont="smallSystem"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <textField horizontalHuggingPriority="750" placeholderIntrinsicWidth="40" placeholderIntrinsicHeight="14" translatesAutoresizingMaskIntoConstraints="NO" id="141">
-                        <rect key="frame" x="330" y="251" width="44" height="14"/>
+                    <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="141">
+                        <rect key="frame" x="332" y="251" width="42" height="14"/>
                         <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Height:" usesSingleLineMode="YES" id="3403">
                             <font key="font" metaFont="smallSystem"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>

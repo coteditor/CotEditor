@@ -1,0 +1,27 @@
+/*
+ EncodingListSheet.strings
+ 
+ CotEditor
+ http://coteditor.com
+ 
+ Created on 2014-11-04 by 1024jp
+ encoding="UTF-8"
+ 
+ © 2014 CotEditor Project
+ */
+
+/* Class = "NSTextFieldCell"; title = "Drag encodings to change the order."; ObjectID = "3395"; */
+"3395.title" = "ドラッグしてエンコーディングを並び替えてください。";
+
+/* Class = "NSTextFieldCell"; title = "This list is for Auto-Detect and the file encoding menu.\nAuto-Detect tries these encodings from the top of the list."; ObjectID = "3394"; */
+"3394.title" = "このリストは自動認識やメニューで使われます。\n自動認識では、上にあるものから順に判別します。";
+
+/* Class = "NSButtonCell"; title = "Add Separator"; ObjectID = "3392"; */
+"3392.title" = "区切り線を追加";
+/* Class = "NSButtonCell"; title = "Delete Separator"; ObjectID = "3393"; */
+"3393.title" = "区切り線を削除";
+
+/* Class = "NSButtonCell"; title = "Restore Defaults"; ObjectID = "3396"; */
+"3396.title" = "デフォルトに戻す";
+/* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "3390"; */
+"3390.title" = "キャンセル";

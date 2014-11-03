@@ -1,0 +1,18 @@
+/*
+ ColorCodePanelAccessory.strings
+ 
+ CotEditor
+ http://coteditor.com
+ 
+ Created on 2014-11-04 by 1024jp
+ encoding="UTF-8"
+ 
+ © 2014 CotEditor Project
+ */
+
+/* Class = "IBBindingConnection"; ObjectID = "qSi-En-4LR"; */
+"qSi-En-4LR.ibShadowedIsNilPlaceholder" = "カラーコード";  /* color code */
+"qSi-En-4LR.ibShadowedNoSelectionPlaceholder" = "選択なし";  /* no selection */
+
+/* Class = "NSButtonCell"; title = "Insert"; ObjectID = "HMC-PY-Ngy"; */
+"HMC-PY-Ngy.title" = "挿入";

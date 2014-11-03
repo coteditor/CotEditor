@@ -215,6 +215,7 @@ Do NOT include the Command key.</string>
                     <constraint firstAttribute="trailing" secondItem="63" secondAttribute="trailing" constant="20" symbolic="YES" id="fAW-1U-5bt"/>
                     <constraint firstItem="63" firstAttribute="leading" secondItem="55" secondAttribute="leading" constant="20" symbolic="YES" id="ftu-8v-qQe"/>
                     <constraint firstItem="56" firstAttribute="leading" secondItem="55" secondAttribute="leading" constant="20" symbolic="YES" id="kML-3A-h0u"/>
+                    <constraint firstItem="70" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="67" secondAttribute="trailing" constant="12" symbolic="YES" id="uEW-Ik-qGP"/>
                     <constraint firstItem="64" firstAttribute="top" secondItem="55" secondAttribute="top" constant="20" symbolic="YES" id="vxi-w3-XoZ"/>
                     <constraint firstItem="63" firstAttribute="top" secondItem="64" secondAttribute="bottom" constant="2" id="yge-Ku-byN"/>
                     <constraint firstItem="68" firstAttribute="top" secondItem="56" secondAttribute="bottom" constant="20" symbolic="YES" id="z1F-n1-fGN"/>

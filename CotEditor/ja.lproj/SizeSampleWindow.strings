@@ -1,0 +1,28 @@
+/*
+ SizeSampleWindow.strings
+ 
+ CotEditor
+ http://coteditor.com
+ 
+ Created on 2014-11-04 by 1024jp
+ encoding="UTF-8"
+ 
+ © 2014 CotEditor Project
+ */
+
+/* Class = "NSWindow"; title = "Sample Window for Size"; ObjectID = "127"; */
+"127.title" = "ウインドウサイズを決定";
+
+/* Class = "NSTextFieldCell"; title = "You can resize this window.\nAnd press “OK” button, this window size will be set to default."; ObjectID = "3399"; */
+"3399.title" = "ウインドウのサイズを決定し “OK” ボタンを押すと、このウインドウのサイズが設定されます。";
+
+/* Class = "NSTextFieldCell"; title = "Width:"; ObjectID = "3402"; */
+"3402.title" = "幅：";
+/* Class = "NSTextFieldCell"; title = "Height:"; ObjectID = "3403"; */
+"3403.title" = "高さ：";
+
+/* Class = "NSTextFieldCell"; title = "Press button, stop modal  >>>"; ObjectID = "3404"; */
+"3404.title" = "ボタンを押して、ウインドウを閉じます >>>";
+
+/* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "3398"; */
+"3398.title" = "キャンセル";

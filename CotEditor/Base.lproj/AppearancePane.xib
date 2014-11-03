@@ -150,7 +150,7 @@
                         <constraint firstAttribute="width" constant="28" id="9BO-km-r2h"/>
                         <constraint firstAttribute="height" constant="21" id="9pA-XR-DT6"/>
                     </constraints>
-                    <buttonCell key="cell" type="smallSquare" title="Add" bezelStyle="smallSquare" image="NSAddTemplate" imagePosition="only" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="3uu-zc-KXm">
+                    <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSAddTemplate" imagePosition="overlaps" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="3uu-zc-KXm">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
@@ -160,7 +160,7 @@
                 </button>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ikC-kc-uJc">
                     <rect key="frame" x="47" y="23" width="28" height="23"/>
-                    <buttonCell key="cell" type="smallSquare" title="Remove" bezelStyle="smallSquare" image="NSRemoveTemplate" imagePosition="only" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Tmb-xM-fGu">
+                    <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSRemoveTemplate" imagePosition="overlaps" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Tmb-xM-fGu">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>

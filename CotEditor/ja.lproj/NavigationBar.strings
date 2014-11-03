@@ -1,0 +1,28 @@
+/*
+ NavigationBar.strings
+ 
+ CotEditor
+ http://coteditor.com
+ 
+ Created on 2014-11-04 by 1024jp
+ encoding="UTF-8"
+ 
+ © 2014 CotEditor Project
+ */
+
+/* Class = "NSButton"; ibShadowedToolTip = "Jump to next outline item"; ObjectID = "MlW-Dz-FOk"; */
+"MlW-Dz-FOk.ibShadowedToolTip" = "前の項目へ";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Jump to previous outline item"; ObjectID = "BUj-TD-scp"; */
+"BUj-TD-scp.ibShadowedToolTip" = "次の項目へ";
+
+
+/* Class = "NSTextFieldCell"; title = "Extracting Outline..."; ObjectID = "aUE-uy-XLQ"; */
+"aUE-uy-XLQ.title" = "アウトラインを抽出中…";
+
+
+/* Class = "NSButton"; ibShadowedToolTip = "Close split view"; ObjectID = "Bmo-XE-CCn"; */
+"Bmo-XE-CCn.ibShadowedToolTip" = "分割されたエディタを閉じる";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Split view"; ObjectID = "syK-XU-x2I"; */
+"syK-XU-x2I.ibShadowedToolTip" = "エディタを分割";

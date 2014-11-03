@@ -21,9 +21,9 @@
                 <rect key="frame" x="0.0" y="0.0" width="540" height="320"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="smZ-W1-fqS">
+                    <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="smZ-W1-fqS">
                         <rect key="frame" x="200" y="152" width="140" height="17"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="No Pane is Selected." id="iXM-53-nYK">
+                        <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="No Pane is Selected." usesSingleLineMode="YES" id="iXM-53-nYK">
                             <font key="font" metaFont="systemBold"/>
                             <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>

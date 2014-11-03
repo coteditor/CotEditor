@@ -1,0 +1,20 @@
+/*
+ LineHeightPanel.strings
+ 
+ CotEditor
+ http://coteditor.com
+ 
+ Created on 2014-11-04 by 1024jp
+ encoding="UTF-8"
+ 
+ © 2014 CotEditor Project
+ */
+
+/* Class = "NSPanel"; title = "Line Height (Custom)"; ObjectID = "7Wu-ph-Az1"; */
+"7Wu-ph-Az1.title" = "行の高さ（カスタム）";
+
+/* Class = "NSTextFieldCell"; title = "lines"; ObjectID = "dyL-SO-rch"; */
+"dyL-SO-rch.title" = "行";
+
+/* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "0fI-Qj-jW1"; */
+"0fI-Qj-jW1.title" = "キャンセル";

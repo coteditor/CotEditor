@@ -22,13 +22,13 @@
                     <constraints>
                         <constraint firstAttribute="width" constant="210" id="ywH-Ua-doT"/>
                     </constraints>
-                    <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="722">
+                    <popUpButtonCell key="cell" type="push" title="Same as document's setting" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="589" id="722">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menu"/>
                         <menu key="menu" title="OtherViews" id="587">
                             <items>
                                 <menuItem title="Black and White" id="590"/>
-                                <menuItem title="Same as document's setting" id="589"/>
+                                <menuItem title="Same as document's setting" state="on" id="589"/>
                             </items>
                         </menu>
                     </popUpButtonCell>
@@ -41,14 +41,14 @@
                     <constraints>
                         <constraint firstAttribute="width" constant="210" id="04O-p7-HaW"/>
                     </constraints>
-                    <popUpButtonCell key="cell" type="push" title="Print all" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="426" id="719">
+                    <popUpButtonCell key="cell" type="push" title="Don't Print" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="428" id="719">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menu"/>
                         <menu key="menu" title="OtherViews" id="425">
                             <items>
-                                <menuItem title="Don't Print" id="428"/>
+                                <menuItem title="Don't Print" state="on" id="428"/>
                                 <menuItem title="Same as document's setting" id="427"/>
-                                <menuItem title="Print all" state="on" id="426"/>
+                                <menuItem title="Print all" id="426"/>
                             </items>
                         </menu>
                     </popUpButtonCell>
@@ -149,7 +149,7 @@
                 </button>
                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="305">
                     <rect key="frame" x="116" y="156" width="215" height="26"/>
-                    <popUpButtonCell key="cell" type="push" title="Print Date" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="4" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="311" id="709">
+                    <popUpButtonCell key="cell" type="push" title="Page Number" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="5" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="310" id="709">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menu"/>
                         <menu key="menu" title="OtherViews" id="306">
@@ -161,8 +161,8 @@
                                 <menuItem title="Syntax Name" tag="1" id="6RR-gp-tKJ"/>
                                 <menuItem title="Document Name" tag="2" id="312"/>
                                 <menuItem title="File Path" tag="3" id="307"/>
-                                <menuItem title="Print Date" state="on" tag="4" id="311"/>
-                                <menuItem title="Page Number" tag="5" id="310"/>
+                                <menuItem title="Print Date" tag="4" id="311"/>
+                                <menuItem title="Page Number" state="on" tag="5" id="310"/>
                             </items>
                         </menu>
                     </popUpButtonCell>

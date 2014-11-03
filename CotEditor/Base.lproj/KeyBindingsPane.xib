@@ -62,9 +62,9 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="726">
-                                <rect key="frame" x="14" y="35" width="294" height="28"/>
-                                <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" id="3366">
+                            <textField setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="726">
+                                <rect key="frame" x="14" y="35" width="373" height="28"/>
+                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="3366">
                                     <font key="font" metaFont="smallSystem"/>
                                     <string key="title">This setting is not for the standard Cocoa key bindings
 but for CotEditor's original function.</string>
@@ -81,6 +81,7 @@ but for CotEditor's original function.</string>
                         <constraint firstItem="721" firstAttribute="top" secondItem="722" secondAttribute="top" id="KtW-Pq-9Qa"/>
                         <constraint firstItem="721" firstAttribute="leading" secondItem="720" secondAttribute="leading" id="Ui1-s8-v8M"/>
                         <constraint firstItem="720" firstAttribute="leading" secondItem="718" secondAttribute="leading" constant="15" id="b2E-yE-fas"/>
+                        <constraint firstItem="722" firstAttribute="leading" secondItem="726" secondAttribute="trailing" constant="8" symbolic="YES" id="fKa-0n-ydy"/>
                         <constraint firstItem="721" firstAttribute="top" secondItem="720" secondAttribute="bottom" constant="12" id="gcQ-vN-VdX"/>
                         <constraint firstItem="726" firstAttribute="top" secondItem="721" secondAttribute="bottom" constant="4" id="jee-Qh-JFK"/>
                         <constraint firstAttribute="trailing" secondItem="722" secondAttribute="trailing" constant="20" id="nLT-NR-Ox0"/>
@@ -123,9 +124,9 @@ but for CotEditor's original function.</string>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="835">
-                                <rect key="frame" x="14" y="49" width="258" height="14"/>
-                                <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="This setting does not include script menu items." id="3362">
+                            <textField setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="835">
+                                <rect key="frame" x="14" y="49" width="373" height="14"/>
+                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="This setting does not include script menu items." id="3362">
                                     <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -134,6 +135,7 @@ but for CotEditor's original function.</string>
                         </subviews>
                     </view>
                     <constraints>
+                        <constraint firstItem="714" firstAttribute="leading" secondItem="835" secondAttribute="trailing" constant="8" symbolic="YES" id="3Mo-be-HsI"/>
                         <constraint firstItem="713" firstAttribute="top" secondItem="716" secondAttribute="top" constant="12" id="5Gc-0a-ayo"/>
                         <constraint firstItem="713" firstAttribute="leading" secondItem="716" secondAttribute="leading" constant="15" id="DkP-HA-TWm"/>
                         <constraint firstAttribute="height" constant="120" id="QEE-Jl-zgK"/>
@@ -159,6 +161,7 @@ but for CotEditor's original function.</string>
                 <constraint firstAttribute="trailing" secondItem="716" secondAttribute="trailing" constant="20" symbolic="YES" id="mKP-VT-4Cq"/>
                 <constraint firstItem="718" firstAttribute="leading" secondItem="748" secondAttribute="leading" constant="20" symbolic="YES" id="wEI-r5-3Rn"/>
             </constraints>
+            <point key="canvasLocation" x="349" y="238.5"/>
         </customView>
     </objects>
 </document>

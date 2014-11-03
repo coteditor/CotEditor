@@ -17,9 +17,9 @@
             <rect key="frame" x="0.0" y="0.0" width="420" height="41"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bt1-Nu-etX">
+                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bt1-Nu-etX">
                     <rect key="frame" x="98" y="12" width="66" height="17"/>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" userInterfaceLayoutDirection="rightToLeft" title="Encoding:" id="voE-Mi-XZu">
+                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" userInterfaceLayoutDirection="rightToLeft" title="Encoding:" usesSingleLineMode="YES" id="voE-Mi-XZu">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>

@@ -1,0 +1,24 @@
+/*
+ GoToSheet.strings
+ 
+ CotEditor
+ http://coteditor.com
+ 
+ Created on 2014-11-04 by 1024jp
+ encoding="UTF-8"
+ 
+ © 2014 CotEditor Project
+ */
+
+/* Class = "NSPanel"; title = "Go To"; ObjectID = "3wP-4P-fon"; */
+"3wP-4P-fon.title" = "移動";
+
+/* Class = "NSMenuItem"; title = "Line"; ObjectID = "AJY-it-0zy"; */
+"AJY-it-0zy.title" = "行";
+/* Class = "NSMenuItem"; title = "Character"; ObjectID = "8lf-5Q-9KX"; */
+"8lf-5Q-9KX.title" = "文字";
+
+/* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "iQf-7n-OD6"; */
+"iQf-7n-OD6.title" = "キャンセル";
+/* Class = "NSButtonCell"; title = "Go To"; ObjectID = "zet-GK-4z4"; */
+"zet-GK-4z4.title" = "移動";

@@ -78,7 +78,7 @@
                     </textFieldCell>
                 </textField>
                 <matrix verticalHuggingPriority="750" allowsEmptySelection="NO" autosizesCells="NO" translatesAutoresizingMaskIntoConstraints="NO" id="686">
-                    <rect key="frame" x="144" y="51" width="376" height="86"/>
+                    <rect key="frame" x="144" y="51" width="299" height="86"/>
                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     <size key="cellSize" width="299" height="20"/>
                     <size key="intercellSpacing" width="4" height="2"/>
@@ -110,17 +110,17 @@
                         <binding destination="26" name="selectedTag" keyPath="values.completeAddStandardWords" id="j63-Mq-XMI"/>
                     </connections>
                 </matrix>
-                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="IXD-kJ-dvh">
+                <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="IXD-kJ-dvh">
                     <rect key="frame" x="50" y="580" width="63" height="17"/>
-                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Behavior:" usesSingleLineMode="YES" id="SqI-BC-ar9">
+                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Behavior:" usesSingleLineMode="YES" id="SqI-BC-ar9">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="4B0-Kj-mzX">
+                <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="4B0-Kj-mzX">
                     <rect key="frame" x="35" y="450" width="78" height="17"/>
-                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Indentation:" usesSingleLineMode="YES" id="9bX-ei-1x8">
+                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Indentation:" usesSingleLineMode="YES" id="9bX-ei-1x8">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -192,9 +192,9 @@
                         <binding destination="26" name="value" keyPath="values.wrapLines" id="90"/>
                     </connections>
                 </button>
-                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fR5-Ie-WnP">
+                <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="fR5-Ie-WnP">
                     <rect key="frame" x="18" y="307" width="95" height="17"/>
-                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Line wrapping:" usesSingleLineMode="YES" id="P1I-gs-RgX">
+                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Line wrapping:" usesSingleLineMode="YES" id="P1I-gs-RgX">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -210,9 +210,9 @@
                         <binding destination="26" name="value" keyPath="values.autoComplete" id="HrP-lE-CrB"/>
                     </connections>
                 </button>
-                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="oXk-4y-elJ">
+                <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="oXk-4y-elJ">
                     <rect key="frame" x="34" y="167" width="79" height="17"/>
-                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Completion:" usesSingleLineMode="YES" id="gDN-SU-sZH">
+                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Completion:" usesSingleLineMode="YES" id="gDN-SU-sZH">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -233,8 +233,8 @@
                         <font key="font" metaFont="system"/>
                     </buttonCell>
                     <connections>
-                        <binding destination="26" name="enabled" keyPath="values.showInvisibles" id="WmD-Ra-Me7"/>
                         <binding destination="26" name="value" keyPath="values.showInvisibleSpace" id="238"/>
+                        <binding destination="26" name="enabled" keyPath="values.showInvisibles" id="WmD-Ra-Me7"/>
                     </connections>
                 </button>
                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="236">
@@ -252,6 +252,9 @@
                         </menu>
                     </popUpButtonCell>
                     <connections>
+                        <binding destination="-2" name="contentValues" keyPath="invisibleSpaces" id="nhg-7o-Cjg"/>
+                        <binding destination="26" name="selectedIndex" keyPath="values.invisibleSpace" previousBinding="nhg-7o-Cjg" id="bLN-Jj-zX1"/>
+                        <binding destination="26" name="enabled" keyPath="values.showInvisibleSpace" id="239"/>
                         <binding destination="26" name="enabled2" keyPath="values.showInvisibles" previousBinding="239" id="NAm-b6-FJp">
                             <dictionary key="options">
                                 <integer key="NSMultipleValuesPlaceholder" value="-1"/>
@@ -260,9 +263,6 @@
                                 <integer key="NSNullPlaceholder" value="-1"/>
                             </dictionary>
                         </binding>
-                        <binding destination="-2" name="contentValues" keyPath="invisibleSpaces" id="nhg-7o-Cjg"/>
-                        <binding destination="26" name="selectedIndex" keyPath="values.invisibleSpace" previousBinding="nhg-7o-Cjg" id="bLN-Jj-zX1"/>
-                        <binding destination="26" name="enabled" keyPath="values.showInvisibleSpace" id="239"/>
                     </connections>
                 </popUpButton>
                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="243">
@@ -277,6 +277,9 @@
                         </menu>
                     </popUpButtonCell>
                     <connections>
+                        <binding destination="-2" name="contentValues" keyPath="invisibleTabs" id="jfI-Rh-dyy"/>
+                        <binding destination="26" name="selectedIndex" keyPath="values.invisibleTab" previousBinding="jfI-Rh-dyy" id="HTm-ic-wn2"/>
+                        <binding destination="26" name="enabled" keyPath="values.showInvisibleTab" id="252"/>
                         <binding destination="26" name="enabled2" keyPath="values.showInvisibles" previousBinding="252" id="cV3-BF-GjG">
                             <dictionary key="options">
                                 <integer key="NSMultipleValuesPlaceholder" value="-1"/>
@@ -285,9 +288,6 @@
                                 <integer key="NSNullPlaceholder" value="-1"/>
                             </dictionary>
                         </binding>
-                        <binding destination="-2" name="contentValues" keyPath="invisibleTabs" id="jfI-Rh-dyy"/>
-                        <binding destination="26" name="selectedIndex" keyPath="values.invisibleTab" previousBinding="jfI-Rh-dyy" id="HTm-ic-wn2"/>
-                        <binding destination="26" name="enabled" keyPath="values.showInvisibleTab" id="252"/>
                     </connections>
                 </popUpButton>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="244">
@@ -297,8 +297,8 @@
                         <font key="font" metaFont="system"/>
                     </buttonCell>
                     <connections>
-                        <binding destination="26" name="enabled" keyPath="values.showInvisibles" id="wHE-xd-ZwS"/>
                         <binding destination="26" name="value" keyPath="values.showInvisibleTab" id="251"/>
+                        <binding destination="26" name="enabled" keyPath="values.showInvisibles" id="wHE-xd-ZwS"/>
                     </connections>
                 </button>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="874">
@@ -312,9 +312,9 @@
                         <binding destination="26" name="value" keyPath="values.showOtherInvisibleChars" id="876"/>
                     </connections>
                 </button>
-                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="r9C-0B-mga">
+                <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="r9C-0B-mga">
                     <rect key="frame" x="48" y="273" width="65" height="17"/>
-                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Invisibles:" usesSingleLineMode="YES" id="pjW-HE-ngH">
+                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Invisibles:" usesSingleLineMode="YES" id="pjW-HE-ngH">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -327,8 +327,8 @@
                         <font key="font" metaFont="system"/>
                     </buttonCell>
                     <connections>
-                        <binding destination="26" name="enabled" keyPath="values.showInvisibles" id="AKk-iZ-a95"/>
                         <binding destination="26" name="value" keyPath="values.showInvisibleNewLine" id="227"/>
+                        <binding destination="26" name="enabled" keyPath="values.showInvisibles" id="AKk-iZ-a95"/>
                     </connections>
                 </button>
                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="224">
@@ -343,6 +343,9 @@
                         </menu>
                     </popUpButtonCell>
                     <connections>
+                        <binding destination="-2" name="contentValues" keyPath="invisibleNewLines" id="dtj-Fb-OId"/>
+                        <binding destination="26" name="selectedIndex" keyPath="values.invisibleNewLine" previousBinding="dtj-Fb-OId" id="GVd-bs-zbe"/>
+                        <binding destination="26" name="enabled" keyPath="values.showInvisibleNewLine" id="230"/>
                         <binding destination="26" name="enabled2" keyPath="values.showInvisibles" previousBinding="230" id="BoY-62-6SM">
                             <dictionary key="options">
                                 <integer key="NSMultipleValuesPlaceholder" value="-1"/>
@@ -351,9 +354,6 @@
                                 <integer key="NSNullPlaceholder" value="-1"/>
                             </dictionary>
                         </binding>
-                        <binding destination="-2" name="contentValues" keyPath="invisibleNewLines" id="dtj-Fb-OId"/>
-                        <binding destination="26" name="selectedIndex" keyPath="values.invisibleNewLine" previousBinding="dtj-Fb-OId" id="GVd-bs-zbe"/>
-                        <binding destination="26" name="enabled" keyPath="values.showInvisibleNewLine" id="230"/>
                     </connections>
                 </popUpButton>
                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="247">
@@ -368,6 +368,9 @@
                         </menu>
                     </popUpButtonCell>
                     <connections>
+                        <binding destination="-2" name="contentValues" keyPath="invisibleFullWidthSpaces" id="OWc-5t-nq8"/>
+                        <binding destination="26" name="selectedIndex" keyPath="values.invisibleZenkakuSpace" previousBinding="OWc-5t-nq8" id="Kgk-eb-Xec"/>
+                        <binding destination="26" name="enabled" keyPath="values.showInvisibleZenkakuSpace" id="255"/>
                         <binding destination="26" name="enabled2" keyPath="values.showInvisibles" previousBinding="255" id="bLe-A2-ixu">
                             <dictionary key="options">
                                 <integer key="NSMultipleValuesPlaceholder" value="-1"/>
@@ -376,9 +379,6 @@
                                 <integer key="NSNullPlaceholder" value="-1"/>
                             </dictionary>
                         </binding>
-                        <binding destination="-2" name="contentValues" keyPath="invisibleFullWidthSpaces" id="OWc-5t-nq8"/>
-                        <binding destination="26" name="selectedIndex" keyPath="values.invisibleZenkakuSpace" previousBinding="OWc-5t-nq8" id="Kgk-eb-Xec"/>
-                        <binding destination="26" name="enabled" keyPath="values.showInvisibleZenkakuSpace" id="255"/>
                     </connections>
                 </popUpButton>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="249">
@@ -388,13 +388,13 @@
                         <font key="font" metaFont="system"/>
                     </buttonCell>
                     <connections>
-                        <binding destination="26" name="enabled" keyPath="values.showInvisibles" id="McR-AG-7PK"/>
                         <binding destination="26" name="value" keyPath="values.showInvisibleZenkakuSpace" id="254"/>
+                        <binding destination="26" name="enabled" keyPath="values.showInvisibles" id="McR-AG-7PK"/>
                     </connections>
                 </button>
-                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="VBo-Ii-1PR">
+                <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="VBo-Ii-1PR">
                     <rect key="frame" x="44" y="365" width="69" height="17"/>
-                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Comment:" usesSingleLineMode="YES" id="EDl-AJ-1dK">
+                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Comment:" usesSingleLineMode="YES" id="EDl-AJ-1dK">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -449,7 +449,6 @@
                 <constraint firstItem="282" firstAttribute="baseline" secondItem="283" secondAttribute="baseline" id="2eo-GD-Kfb"/>
                 <constraint firstItem="C2I-Ub-oUU" firstAttribute="leading" secondItem="644" secondAttribute="leading" id="3eN-aj-0ZB"/>
                 <constraint firstItem="844" firstAttribute="top" secondItem="mK4-4e-plf" secondAttribute="bottom" constant="10" id="53U-9L-xPq"/>
-                <constraint firstAttribute="trailing" secondItem="686" secondAttribute="trailing" constant="20" symbolic="YES" id="5Px-E1-PE3"/>
                 <constraint firstItem="224" firstAttribute="baseline" secondItem="221" secondAttribute="baseline" id="6ki-ac-drF"/>
                 <constraint firstItem="221" firstAttribute="leading" secondItem="249" secondAttribute="leading" id="7h3-GD-axK"/>
                 <constraint firstItem="aZf-lI-jGQ" firstAttribute="top" secondItem="283" secondAttribute="bottom" constant="20" id="7ve-Dq-5V1"/>
@@ -468,10 +467,12 @@
                 <constraint firstItem="247" firstAttribute="leading" secondItem="249" secondAttribute="trailing" constant="8" symbolic="YES" id="QB9-YF-TQu"/>
                 <constraint firstItem="282" firstAttribute="centerY" secondItem="iub-4d-NyY" secondAttribute="centerY" id="QWl-29-mP4"/>
                 <constraint firstItem="644" firstAttribute="leading" secondItem="209" secondAttribute="leading" id="R0S-RG-I45"/>
+                <constraint firstItem="oXk-4y-elJ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="s6I-DY-Ii0" secondAttribute="leading" constant="20" symbolic="YES" id="SL3-Wv-MRs"/>
                 <constraint firstItem="644" firstAttribute="leading" secondItem="mK4-4e-plf" secondAttribute="leading" id="SSF-Ji-WPP"/>
                 <constraint firstItem="209" firstAttribute="leading" secondItem="4B0-Kj-mzX" secondAttribute="trailing" constant="8" symbolic="YES" id="UcK-lH-Or0"/>
                 <constraint firstItem="224" firstAttribute="leading" secondItem="247" secondAttribute="leading" id="Ucv-kh-TdC"/>
                 <constraint firstItem="160" firstAttribute="leading" secondItem="283" secondAttribute="leading" id="VwP-1c-FdO"/>
+                <constraint firstItem="4B0-Kj-mzX" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="s6I-DY-Ii0" secondAttribute="leading" constant="20" symbolic="YES" id="Wny-Wk-nNJ"/>
                 <constraint firstItem="aZf-lI-jGQ" firstAttribute="leading" secondItem="644" secondAttribute="leading" id="Zgo-o6-Vjl"/>
                 <constraint firstItem="1Oj-wo-mCu" firstAttribute="leading" secondItem="r9C-0B-mga" secondAttribute="trailing" constant="8" symbolic="YES" id="ZiU-fC-4NH"/>
                 <constraint firstItem="249" firstAttribute="baseline" secondItem="247" secondAttribute="baseline" id="abF-SR-IDN"/>
@@ -498,9 +499,11 @@
                 <constraint firstItem="VBo-Ii-1PR" firstAttribute="baseline" secondItem="aZf-lI-jGQ" secondAttribute="baseline" id="kbc-5k-bUg"/>
                 <constraint firstItem="249" firstAttribute="baseline" secondItem="244" secondAttribute="baseline" id="kjY-LB-qSG"/>
                 <constraint firstItem="Vf0-M7-9ji" firstAttribute="top" secondItem="aZf-lI-jGQ" secondAttribute="bottom" constant="10" id="kvd-fS-ZRv"/>
-                <constraint firstItem="fR5-Ie-WnP" firstAttribute="leading" secondItem="s6I-DY-Ii0" secondAttribute="leading" constant="20" symbolic="YES" id="kxb-eQ-bj4"/>
+                <constraint firstItem="fR5-Ie-WnP" firstAttribute="leading" secondItem="s6I-DY-Ii0" secondAttribute="leading" priority="750" constant="20" symbolic="YES" id="kxb-eQ-bj4"/>
                 <constraint firstAttribute="trailing" secondItem="z5v-7l-1C4" secondAttribute="trailing" constant="20" symbolic="YES" id="mrm-H0-0da"/>
                 <constraint firstItem="235" firstAttribute="top" secondItem="1Oj-wo-mCu" secondAttribute="bottom" constant="10" id="nHw-Sq-NVR"/>
+                <constraint firstItem="VBo-Ii-1PR" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="s6I-DY-Ii0" secondAttribute="leading" constant="20" symbolic="YES" id="o2w-sC-kkc"/>
+                <constraint firstItem="IXD-kJ-dvh" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="s6I-DY-Ii0" secondAttribute="leading" constant="20" symbolic="YES" id="ofc-c0-fEp"/>
                 <constraint firstItem="243" firstAttribute="width" secondItem="236" secondAttribute="width" id="q7A-SC-Ewq"/>
                 <constraint firstItem="243" firstAttribute="width" secondItem="224" secondAttribute="width" id="rFX-pM-okS"/>
                 <constraint firstItem="644" firstAttribute="leading" secondItem="844" secondAttribute="leading" id="sce-Ba-PNP"/>
@@ -510,13 +513,14 @@
                 <constraint firstItem="IXD-kJ-dvh" firstAttribute="baseline" secondItem="644" secondAttribute="baseline" id="tyZ-uJ-B5y"/>
                 <constraint firstItem="C2I-Ub-oUU" firstAttribute="leading" secondItem="oXk-4y-elJ" secondAttribute="trailing" constant="8" symbolic="YES" id="vcC-iW-1Zh"/>
                 <constraint firstItem="644" firstAttribute="leading" secondItem="69" secondAttribute="leading" id="xBh-wa-ujM"/>
+                <constraint firstItem="r9C-0B-mga" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="s6I-DY-Ii0" secondAttribute="leading" constant="20" symbolic="YES" id="xOr-9j-5M9"/>
                 <constraint firstItem="867" firstAttribute="leading" secondItem="870" secondAttribute="leading" constant="-25" id="yDq-t7-IbV"/>
                 <constraint firstItem="N9e-hF-BPy" firstAttribute="baseline" secondItem="283" secondAttribute="baseline" id="yEK-ut-qCX"/>
                 <constraint firstItem="243" firstAttribute="baseline" secondItem="244" secondAttribute="baseline" id="zZy-Lj-HeQ"/>
                 <constraint firstItem="236" firstAttribute="leading" secondItem="235" secondAttribute="trailing" constant="20" id="zmu-pm-xgy"/>
                 <constraint firstItem="fR5-Ie-WnP" firstAttribute="baseline" secondItem="69" secondAttribute="baseline" id="zrO-8M-62H"/>
             </constraints>
-            <point key="canvasLocation" x="310" y="333"/>
+            <point key="canvasLocation" x="310" y="332.5"/>
         </customView>
     </objects>
 </document>

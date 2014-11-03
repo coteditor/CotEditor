@@ -1,0 +1,17 @@
+/*
+ OpacityPanel.strings
+ 
+ CotEditor
+ http://coteditor.com
+ 
+ Created on 2014-11-04 by 1024jp
+ encoding="UTF-8"
+ 
+ © 2014 CotEditor Project
+ */
+
+/* Class = "NSPanel"; title = "Window Opacity"; ObjectID = "jtp-g5-bGX"; */
+"jtp-g5-bGX.title" = "ウインドウの不透明度";
+
+/* Class = "NSButtonCell"; title = "Set as Default"; ObjectID = "QFp-iC-k4v"; */
+"QFp-iC-k4v.title" = "デフォルトに設定";

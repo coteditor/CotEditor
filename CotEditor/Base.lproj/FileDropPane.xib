@@ -119,9 +119,9 @@ The parent directory name of the dropped file.
                     </scroller>
                 </scrollView>
                 <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="536">
-                    <rect key="frame" x="337" y="156" width="186" height="22"/>
+                    <rect key="frame" x="327" y="156" width="196" height="22"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="180" id="XCP-jV-qFG"/>
+                        <constraint firstAttribute="width" constant="190" id="XCP-jV-qFG"/>
                     </constraints>
                     <popUpButtonCell key="cell" type="push" title="Insert Pre-Formatted String" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="clipping" borderStyle="border" inset="2" pullsDown="YES" preferredEdge="maxY" id="3336">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -233,13 +233,13 @@ The parent directory name of the dropped file.
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <button focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="458">
+                <button toolTip="Delete" focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="458">
                     <rect key="frame" x="49" y="195" width="30" height="22"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="20" id="RDU-2u-Aor"/>
                         <constraint firstAttribute="width" constant="30" id="yzy-Pg-HBT"/>
                     </constraints>
-                    <buttonCell key="cell" type="smallSquare" title="Delete" bezelStyle="smallSquare" image="NSRemoveTemplate" imagePosition="only" alignment="center" borderStyle="border" focusRingType="none" inset="2" id="3334">
+                    <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSRemoveTemplate" imagePosition="overlaps" alignment="center" borderStyle="border" focusRingType="none" inset="2" id="3334">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
@@ -248,9 +248,9 @@ The parent directory name of the dropped file.
                         <binding destination="451" name="enabled" keyPath="canRemove" id="461"/>
                     </connections>
                 </button>
-                <button focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="457">
+                <button toolTip="Add" focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="457">
                     <rect key="frame" x="20" y="195" width="30" height="22"/>
-                    <buttonCell key="cell" type="smallSquare" title="New" bezelStyle="smallSquare" image="NSAddTemplate" imagePosition="only" alignment="center" borderStyle="border" focusRingType="none" inset="2" id="3333">
+                    <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSAddTemplate" imagePosition="overlaps" alignment="center" borderStyle="border" focusRingType="none" inset="2" id="3333">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>

@@ -486,7 +486,7 @@
                                                             <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                             <font key="titleFont" metaFont="system"/>
                                                         </box>
-                                                        <textField horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="507">
+                                                        <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="507">
                                                             <rect key="frame" x="28" y="229" width="58" height="14"/>
                                                             <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="right" title="Encoding:" usesSingleLineMode="YES" id="692">
                                                                 <font key="font" metaFont="smallSystem"/>
@@ -748,6 +748,7 @@
                                                         <constraint firstItem="40" firstAttribute="top" secondItem="39" secondAttribute="bottom" constant="8" symbolic="YES" id="5pv-95-nw8"/>
                                                         <constraint firstItem="59" firstAttribute="top" secondItem="60" secondAttribute="top" id="6F8-ad-EHy"/>
                                                         <constraint firstItem="510" firstAttribute="top" secondItem="50" secondAttribute="bottom" constant="8" symbolic="YES" id="6Qd-o8-IrY"/>
+                                                        <constraint firstItem="507" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="108" secondAttribute="leading" id="7DQ-SD-epS"/>
                                                         <constraint firstItem="49" firstAttribute="leading" secondItem="40" secondAttribute="trailing" constant="8" symbolic="YES" id="7dz-Ll-O0R"/>
                                                         <constraint firstItem="412" firstAttribute="leading" secondItem="413" secondAttribute="trailing" constant="8" symbolic="YES" id="7qg-n6-yYt"/>
                                                         <constraint firstItem="ow1-GK-ghb" firstAttribute="trailing" secondItem="0c5-6r-R0b" secondAttribute="trailing" id="AsW-9E-Vmu"/>

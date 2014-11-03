@@ -1,0 +1,47 @@
+/*
+ MigrationWindow.strings
+ 
+ CotEditor
+ http://coteditor.com
+ 
+ Created on 2014-11-04 by 1024jp
+ encoding="UTF-8"
+ 
+ © 2014 CotEditor Project
+ */
+
+/* Class = "NSTextFieldCell"; title = "Migrating user syntax styles…"; ObjectID = "vqy-cz-YAI"; */
+"vqy-cz-YAI.title" = "ユーザ設定を移行中…";
+
+/* Class = "NSButtonCell"; title = "Next"; ObjectID = "uPQ-1j-6Gc"; */
+"uPQ-1j-6Gc.title" = "次へ";
+
+
+/* Class = "NSTextFieldCell"; title = "The following migrations have been successfully completed."; ObjectID = "cTg-d4-zlT"; */
+"cTg-d4-zlT.title" = "以下の移行処理が完了しました。";
+
+/* Class = "NSTextFieldCell"; title = "Reset menu key bindings setting."; ObjectID = "BA1-Y2-S7m"; */
+"BA1-Y2-S7m.title" = "メニューキーバインド設定のリセット";
+/* Class = "NSTextFieldCell"; title = "The settings for menu key bindings have been once restored."; ObjectID = "hk3-rs-RMV"; */
+"hk3-rs-RMV.title" = "メニュー項目のキーバインド設定はいったんリセットされました。";
+
+
+/* Class = "NSTextFieldCell"; title = "Migrate coloring settings."; ObjectID = "6hO-yA-SXq"; */
+"6hO-yA-SXq.title" = "カラーリング設定の移行";
+/* Class = "NSTextFieldCell"; title = "An custom theme has been created from the previous user setting."; ObjectID = "wdy-J5-ddL"; */
+"wdy-J5-ddL.title" = "過去のユーザ設定からカスタムテーマが作成されました。";
+
+/* Class = "NSTextFieldCell"; title = "Migrate user syntax styles."; ObjectID = "D4s-ma-Iiu"; */
+"D4s-ma-Iiu.title" = "カスタムシンタックスタイルの移行";
+/* Class = "NSTextFieldCell"; title = "The format for syntax style files has been changed from plist to YAML."; ObjectID = "2tb-Wh-X18"; */
+"2tb-Wh-X18.title" = "シンタックススタイルのフォーマットが plist から YAML へ変更されました。";
+
+/* Class = "NSTextFieldCell"; title = "In some cases, user needs aditonal manual migrations."; ObjectID = "X8Q-Ji-HKU"; */
+"X8Q-Ji-HKU.title" = "このほかに、ユーザによる手動の移行処理が必要な場合があります。";
+/* Class = "NSButton"; ibShadowedToolTip = "See “Specification Changes on CotEditor 2.0” on Help"; ObjectID = "qdh-QQ-qcp"; */
+"qdh-QQ-qcp.ibShadowedToolTip" = "ヘルプ項目“CotEditor 2.0 での仕様変更”を見る。";
+
+/* Class = "NSTextFieldCell"; title = "Learn new features on CotEditor 2.0."; ObjectID = "8u8-rr-so0"; */
+"8u8-rr-so0.title" = "CotEditor 2.0 の新機能を知る";
+/* Class = "NSButton"; ibShadowedToolTip = "See “What's New in CotEditor 2.0” on Help"; ObjectID = "hGz-yb-qTP"; */
+"hGz-yb-qTP.ibShadowedToolTip" = "ヘルプ項目“CotEditor 2.0 の新機能”を見る。";

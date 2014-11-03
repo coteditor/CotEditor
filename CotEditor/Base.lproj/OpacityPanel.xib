@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6185.11" systemVersion="13E28" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment defaultVersion="1070" identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6185.11"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6250"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="CEOpacityPanelController">
@@ -16,7 +16,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" utility="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="1120" y="660" width="240" height="105"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1028"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
             <view key="contentView" id="d79-sk-Pi2">
                 <rect key="frame" x="0.0" y="0.0" width="240" height="105"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -28,9 +28,9 @@
                             <binding destination="-2" name="value" keyPath="opacity" id="rJR-cF-d9N"/>
                         </connections>
                     </slider>
-                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hjC-Af-FaT" userLabel="Number Field">
-                        <rect key="frame" x="18" y="36" width="38" height="17"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" state="on" baseWritingDirection="rightToLeft" title="100%" id="QbS-1m-vBI">
+                    <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hjC-Af-FaT" userLabel="Number Field">
+                        <rect key="frame" x="18" y="36" width="41" height="17"/>
+                        <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" sendsActionOnEndEditing="YES" state="on" baseWritingDirection="rightToLeft" title="100%" usesSingleLineMode="YES" id="QbS-1m-vBI">
                             <numberFormatter key="formatter" formatterBehavior="default10_4" localizesFormat="NO" numberStyle="percent" minimumIntegerDigits="1" maximumIntegerDigits="309" id="1yq-w8-91R">
                                 <integer key="multiplier" value="100"/>
                                 <real key="minimum" value="0.20000000000000001"/>

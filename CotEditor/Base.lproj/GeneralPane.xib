@@ -88,15 +88,15 @@
                 </button>
                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3424">
                     <rect key="frame" x="325" y="205" width="84" height="26"/>
-                    <popUpButtonCell key="cell" type="push" title="Weekly" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="604800" imageScaling="proportionallyDown" inset="2" selectedItem="3428" id="3425">
+                    <popUpButtonCell key="cell" type="push" title="Monthly" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="2629800" imageScaling="proportionallyDown" inset="2" selectedItem="3429" id="3425">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menu"/>
                         <menu key="menu" title="OtherViews" id="3426">
                             <items>
                                 <menuItem title="Hourly" tag="3600" id="3427"/>
                                 <menuItem title="Daily" tag="86400" id="3433"/>
-                                <menuItem title="Weekly" state="on" tag="604800" id="3428"/>
-                                <menuItem title="Monthly" tag="2629800" id="3429"/>
+                                <menuItem title="Weekly" tag="604800" id="3428"/>
+                                <menuItem title="Monthly" state="on" tag="2629800" id="3429"/>
                             </items>
                         </menu>
                     </popUpButtonCell>

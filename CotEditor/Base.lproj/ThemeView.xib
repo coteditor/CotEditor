@@ -369,7 +369,7 @@
                         <constraint firstAttribute="height" constant="16" id="Wed-fM-cwd"/>
                         <constraint firstAttribute="width" constant="16" id="iVd-7P-CWd"/>
                     </constraints>
-                    <buttonCell key="cell" type="bevel" title="Button" bezelStyle="rounded" image="InfoTemplate" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="BhO-Wi-xOP">
+                    <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="InfoTemplate" imagePosition="overlaps" alignment="center" imageScaling="proportionallyDown" inset="2" id="BhO-Wi-xOP">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
@@ -642,7 +642,7 @@
                         <constraint firstAttribute="height" constant="15" id="Ksl-fd-kef"/>
                         <constraint firstAttribute="width" secondItem="Usu-Br-G0a" secondAttribute="height" multiplier="1:1" id="wiB-di-rhJ"/>
                     </constraints>
-                    <buttonCell key="cell" type="bevel" title="Button" bezelStyle="rounded" image="NSFollowLinkFreestandingTemplate" imagePosition="only" alignment="center" controlSize="small" imageScaling="proportionallyDown" inset="2" id="Mw1-KT-Ffl">
+                    <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="NSFollowLinkFreestandingTemplate" imagePosition="overlaps" alignment="center" controlSize="small" imageScaling="proportionallyDown" inset="2" id="Mw1-KT-Ffl">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="smallSystem"/>
                     </buttonCell>
@@ -658,7 +658,7 @@
             </subviews>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="8ur-1G-I4N" secondAttribute="trailing" constant="10" id="4ha-e2-ayi"/>
-                <constraint firstItem="G1z-Zi-WGb" firstAttribute="leading" secondItem="GMD-yH-IA7" secondAttribute="leading" constant="10" id="5wK-yN-rWH"/>
+                <constraint firstItem="G1z-Zi-WGb" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="GMD-yH-IA7" secondAttribute="leading" constant="10" id="5wK-yN-rWH"/>
                 <constraint firstItem="G1z-Zi-WGb" firstAttribute="trailing" secondItem="LeB-ux-7aN" secondAttribute="trailing" id="6Fc-9z-Vzn"/>
                 <constraint firstItem="G1z-Zi-WGb" firstAttribute="top" secondItem="LeB-ux-7aN" secondAttribute="bottom" constant="3" id="Ak9-1n-NL5"/>
                 <constraint firstItem="RwK-0h-A9E" firstAttribute="top" secondItem="GMD-yH-IA7" secondAttribute="top" constant="10" id="FWX-Bl-I1L"/>
@@ -667,11 +667,13 @@
                 <constraint firstAttribute="trailing" secondItem="Usu-Br-G0a" secondAttribute="trailing" constant="10" id="Pgt-zQ-A8h"/>
                 <constraint firstItem="AVc-Ci-UnL" firstAttribute="leading" secondItem="LeB-ux-7aN" secondAttribute="trailing" constant="8" symbolic="YES" id="U8X-uj-HjQ"/>
                 <constraint firstItem="Usu-Br-G0a" firstAttribute="centerY" secondItem="wN3-ao-X42" secondAttribute="centerY" id="aUu-nw-h6V"/>
+                <constraint firstItem="RwK-0h-A9E" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="GMD-yH-IA7" secondAttribute="leading" constant="10" id="bE8-2g-kFp"/>
                 <constraint firstItem="FZh-Gd-J2u" firstAttribute="top" secondItem="RwK-0h-A9E" secondAttribute="bottom" constant="3" id="cIF-xh-xGb"/>
                 <constraint firstItem="8ur-1G-I4N" firstAttribute="leading" secondItem="RwK-0h-A9E" secondAttribute="trailing" constant="8" symbolic="YES" id="hNb-YN-beR"/>
                 <constraint firstItem="r9S-sB-zfs" firstAttribute="leading" secondItem="G1z-Zi-WGb" secondAttribute="trailing" constant="8" symbolic="YES" id="i17-bL-zlW"/>
                 <constraint firstItem="G1z-Zi-WGb" firstAttribute="trailing" secondItem="FZh-Gd-J2u" secondAttribute="trailing" id="k0w-gi-U3M"/>
                 <constraint firstItem="AVc-Ci-UnL" firstAttribute="baseline" secondItem="LeB-ux-7aN" secondAttribute="baseline" id="k4A-jT-iqr"/>
+                <constraint firstItem="LeB-ux-7aN" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="GMD-yH-IA7" secondAttribute="leading" constant="10" id="lHx-oC-wV7"/>
                 <constraint firstItem="LeB-ux-7aN" firstAttribute="top" secondItem="FZh-Gd-J2u" secondAttribute="bottom" constant="3" id="oR0-oM-05C"/>
                 <constraint firstItem="Usu-Br-G0a" firstAttribute="leading" secondItem="wN3-ao-X42" secondAttribute="trailing" constant="8" symbolic="YES" id="pMx-FT-St0"/>
                 <constraint firstItem="wN3-ao-X42" firstAttribute="leading" secondItem="FZh-Gd-J2u" secondAttribute="trailing" constant="8" symbolic="YES" id="ppY-vV-8h9"/>
@@ -680,6 +682,7 @@
                 <constraint firstItem="8ur-1G-I4N" firstAttribute="baseline" secondItem="RwK-0h-A9E" secondAttribute="baseline" id="r8M-Yt-buA"/>
                 <constraint firstAttribute="trailing" secondItem="AVc-Ci-UnL" secondAttribute="trailing" constant="10" id="rC2-9I-yNs"/>
                 <constraint firstAttribute="bottom" secondItem="r9S-sB-zfs" secondAttribute="bottom" constant="10" id="tH4-bf-HjL"/>
+                <constraint firstItem="FZh-Gd-J2u" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="GMD-yH-IA7" secondAttribute="leading" constant="10" id="wxb-Gx-YGn"/>
             </constraints>
             <point key="canvasLocation" x="143.5" y="230"/>
         </customView>

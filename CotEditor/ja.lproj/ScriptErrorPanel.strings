@@ -1,0 +1,19 @@
+/*
+ ScriptErrorPanel.strings
+ 
+ CotEditor
+ http://coteditor.com
+ 
+ Created on 2014-11-04 by 1024jp
+ encoding="UTF-8"
+ 
+ © 2014 CotEditor Project
+ */
+
+/* Class = "NSPanel"; title = "Script Errors"; ObjectID = "6"; */
+"6.title" = "スクリプトエラー";
+
+/* Class = "NSToolbarItem"; ObjectID = "9N6-p4-mW2"; */
+"9N6-p4-mW2.label" = "ログを消去";  /* Clean Log */
+"9N6-p4-mW2.paletteLabel" = "ログを消去";  /* Clean Log */
+"9N6-p4-mW2.toolTip" = "エラーログを消去";  /* Clean error log */
