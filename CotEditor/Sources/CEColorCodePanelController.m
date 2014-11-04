@@ -86,7 +86,7 @@
 {
     self = [super init];
     if (self) {
-        [NSBundle loadNibNamed:@"ColorCodePanelAccessory" owner:self];
+        [[NSBundle mainBundle] loadNibNamed:@"ColorCodePanelAccessory" owner:self topLevelObjects:nil];
     }
     return self;
 }

@@ -110,7 +110,7 @@
 {
     // エンコーディングメニューを初期化し、ビューをセット
     if (![self openPanelAccessoryView]) {
-        [NSBundle loadNibNamed:@"OpenDocumentAccessory" owner:self];
+        [[NSBundle mainBundle] loadNibNamed:@"OpenDocumentAccessory" owner:self topLevelObjects:nil];
     }
     [self buildEncodingPopupButton];
     [openPanel setAccessoryView:[self openPanelAccessoryView]];
