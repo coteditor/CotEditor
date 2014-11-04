@@ -28,7 +28,6 @@
  */
 
 #import "CEStatusBarController.h"
-#import "CEByteCountTransformer.h"
 #import "constants.h"
 
 
@@ -40,7 +39,7 @@ static const NSTimeInterval kDuration = 0.25;
 
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint *heightConstraint;
 @property (nonatomic, weak) IBOutlet NSNumberFormatter *decimalFormatter;
-@property (nonatomic) CEByteCountTransformer *byteCountTransformer;
+@property (nonatomic) NSByteCountFormatter *byteCountFormatter;
 @property (nonatomic) NSDictionary *labelAttributes;
 
 @property (nonatomic, copy) NSAttributedString *editorStatus;
@@ -72,7 +71,7 @@ static const NSTimeInterval kDuration = 0.25;
 {
     self = [super initWithCoder:aDecoder];
     if (self) {
-        _byteCountTransformer = [[CEByteCountTransformer alloc] init];
+        _byteCountFormatter = [[NSByteCountFormatter alloc] init];
         
         NSColor *labelColor = [NSColor colorWithCalibratedWhite:0.35 alpha:1.0];
         _labelAttributes = @{NSForegroundColorAttributeName: labelColor};
@@ -152,8 +151,9 @@ static const NSTimeInterval kDuration = 0.25;
         [status addObject:([self lineEndingsInfo] ?: @"-")];
     }
     if ([defaults boolForKey:CEDefaultShowStatusBarFileSizeKey]) {
+        
         [status addObject:([self fileSizeInfo] ?
-                           [[self byteCountTransformer] transformedValue:@([self fileSizeInfo])] : @"-")];
+                           [[self byteCountFormatter] stringFromByteCount:[self fileSizeInfo]] : @"-")];
     }
     
     [self setDocumentStatus:[status componentsJoinedByString:@"   "]];

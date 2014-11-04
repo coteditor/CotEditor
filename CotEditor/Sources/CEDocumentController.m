@@ -30,7 +30,6 @@
 
 #import "CEDocumentController.h"
 #import "CEEncodingManager.h"
-#import "CEByteCountTransformer.h"
 #import "constants.h"
 
 
@@ -81,12 +80,12 @@
         [url getResourceValue:&fileSize forKey:NSURLFileSizeKey error:nil];
         
         if ([fileSize integerValue] > fileSizeThreshold) {
-            CEByteCountTransformer *transformer = [[CEByteCountTransformer alloc] init];
+            NSByteCountFormatter *formatter = [[NSByteCountFormatter alloc] init];
             
             NSAlert *alert = [[NSAlert alloc] init];
             [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"The file “%@” has a size of %@.", nil),
                                    [url lastPathComponent],
-                                   [transformer transformedValue:fileSize]]];
+                                   [formatter stringFromByteCount:[fileSize longLongValue]]];
             [alert setInformativeText:NSLocalizedString(@"Opening such a large file can make the application slow or unresponsive.\n\nDo you really want to open the file?", nil)];
             [alert addButtonWithTitle:NSLocalizedString(@"Open", nil)];
             [alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];

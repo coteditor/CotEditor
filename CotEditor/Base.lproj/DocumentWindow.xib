@@ -375,15 +375,15 @@
                                                         <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="yGj-rp-wdm">
                                                             <rect key="frame" x="90" y="370" width="40" height="14"/>
                                                             <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="left" title="7.1 KB" id="7Jy-4m-8DH">
+                                                                <byteCountFormatter key="formatter" id="oYb-Kz-pvI"/>
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
                                                             <connections>
-                                                                <binding destination="-2" name="value" keyPath="fileSizeInfo" id="pHS-dL-O23">
+                                                                <binding destination="-2" name="value" keyPath="fileSizeInfo" id="G88-Wv-m8e">
                                                                     <dictionary key="options">
                                                                         <string key="NSNullPlaceholder"> - </string>
-                                                                        <string key="NSValueTransformerName">CEByteCountTransformer</string>
                                                                     </dictionary>
                                                                 </binding>
                                                             </connections>
