@@ -3172,8 +3172,8 @@
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </tableHeaderView>
                                         </scrollView>
-                                        <scrollView misplaced="YES" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HWp-47-IFV">
-                                            <rect key="frame" x="176" y="28" width="230" height="135"/>
+                                        <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HWp-47-IFV">
+                                            <rect key="frame" x="176" y="28" width="234" height="135"/>
                                             <clipView key="contentView" misplaced="YES" id="6Ia-4j-BJv">
                                                 <rect key="frame" x="1" y="17" width="228" height="107"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -3184,7 +3184,7 @@
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                         <tableColumns>
-                                                            <tableColumn identifier="extensions" width="225" minWidth="40" maxWidth="1000" id="qKc-FZ-o2j">
+                                                            <tableColumn identifier="extensions" width="229" minWidth="40" maxWidth="1000" id="qKc-FZ-o2j">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="File Name">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -3199,11 +3199,11 @@
                                                                 <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                 <prototypeCellViews>
                                                                     <tableCellView id="et3-jd-MVq">
-                                                                        <rect key="frame" x="1" y="1" width="225" height="17"/>
+                                                                        <rect key="frame" x="1" y="1" width="229" height="17"/>
                                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                         <subviews>
                                                                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="L5j-6M-UDA">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="225" height="17"/>
+                                                                                <rect key="frame" x="0.0" y="0.0" width="229" height="17"/>
                                                                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title=".hiddenFile" usesSingleLineMode="YES" id="qwE-nW-LNZ">
                                                                                     <font key="font" metaFont="system"/>
                                                                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -3311,8 +3311,8 @@
                                                 <binding destination="jqJ-Ce-QDb" name="enabled" keyPath="canRemove" id="eQY-Ir-lOx"/>
                                             </connections>
                                         </button>
-                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="arv-de-MwR">
-                                            <rect key="frame" x="174" y="171" width="234" height="42"/>
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="arv-de-MwR">
+                                            <rect key="frame" x="174" y="171" width="238" height="42"/>
                                             <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="Files that have exactly one of the following names are opened in this syntax style, even they don't have file extension." id="Sr3-Pj-HPi">
                                                 <font key="font" metaFont="smallSystem"/>
                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -3366,7 +3366,7 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                             <connections>
-                                                <binding destination="-2" name="enabled" keyPath="isBundledStyle" id="8fP-vL-te0">
+                                                <binding destination="-2" name="enabled" keyPath="bundledStyle" id="AT8-d7-j6s">
                                                     <dictionary key="options">
                                                         <string key="NSValueTransformerName">NSNegateBoolean</string>
                                                     </dictionary>
@@ -3385,7 +3385,7 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                             <connections>
-                                                <binding destination="-2" name="enabled" keyPath="isBundledStyle" id="8cw-KJ-ogZ">
+                                                <binding destination="-2" name="enabled" keyPath="bundledStyle" id="Gn1-uN-S2t">
                                                     <dictionary key="options">
                                                         <string key="NSValueTransformerName">NSNegateBoolean</string>
                                                     </dictionary>
@@ -3449,7 +3449,7 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                             <connections>
-                                                <binding destination="-2" name="enabled" keyPath="isBundledStyle" id="UIH-Ij-e1m">
+                                                <binding destination="-2" name="enabled" keyPath="bundledStyle" id="gRu-GT-N98">
                                                     <dictionary key="options">
                                                         <string key="NSValueTransformerName">NSNegateBoolean</string>
                                                     </dictionary>
@@ -3465,7 +3465,7 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                             <connections>
-                                                <binding destination="-2" name="enabled" keyPath="isBundledStyle" id="fCI-KY-p5M">
+                                                <binding destination="-2" name="enabled" keyPath="bundledStyle" id="Fba-td-46A">
                                                     <dictionary key="options">
                                                         <string key="NSValueTransformerName">NSNegateBoolean</string>
                                                     </dictionary>
@@ -3481,7 +3481,7 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                             <connections>
-                                                <binding destination="-2" name="enabled" keyPath="isBundledStyle" id="WK8-sm-Thk">
+                                                <binding destination="-2" name="enabled" keyPath="bundledStyle" id="CXS-Jj-TcB">
                                                     <dictionary key="options">
                                                         <string key="NSValueTransformerName">NSNegateBoolean</string>
                                                     </dictionary>
@@ -3497,7 +3497,7 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                             <connections>
-                                                <binding destination="-2" name="enabled" keyPath="isBundledStyle" id="Q1x-nZ-FEt">
+                                                <binding destination="-2" name="enabled" keyPath="bundledStyle" id="jW1-eG-emx">
                                                     <dictionary key="options">
                                                         <string key="NSValueTransformerName">NSNegateBoolean</string>
                                                     </dictionary>
@@ -3513,7 +3513,7 @@
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                             <connections>
-                                                <binding destination="-2" name="hidden" keyPath="isBundledStyle" id="V7N-CX-osS">
+                                                <binding destination="-2" name="hidden" keyPath="bundledStyle" id="JQn-66-pSt">
                                                     <dictionary key="options">
                                                         <string key="NSValueTransformerName">NSNegateBoolean</string>
                                                     </dictionary>
@@ -3527,6 +3527,9 @@
                                                 <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
+                                            <connections>
+                                                <binding destination="-2" name="hidden" keyPath="bundledStyle" id="A1i-aF-mWT"/>
+                                            </connections>
                                         </textField>
                                     </subviews>
                                     <constraints>
@@ -3683,7 +3686,7 @@ DQ
                         </constraints>
                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="NSInvalidDataFreestandingTemplate" id="nuN-fG-4bp"/>
                         <connections>
-                            <binding destination="-2" name="hidden" keyPath="isStyleNameValid" id="vvO-ZI-Hlt"/>
+                            <binding destination="-2" name="hidden" keyPath="styleNameValid" id="XFQ-Zt-sUh"/>
                         </connections>
                     </imageView>
                 </subviews>

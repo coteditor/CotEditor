@@ -60,8 +60,8 @@ typedef NS_ENUM(NSUInteger, CETabIndex) {
 @property (nonatomic) NSMutableDictionary *style;  // スタイル定義（NSArrayControllerを通じて操作）
 @property (nonatomic) CESyntaxEditSheetMode mode;
 @property (nonatomic, copy) NSString *originalStyleName;   // シートを生成した際に指定したスタイル名
-@property (nonatomic) BOOL isStyleNameValid;
-@property (nonatomic) BOOL isBundledStyle;
+@property (nonatomic, getter=isStyleNameValid) BOOL styleNameValid;
+@property (nonatomic, getter=isBundledStyle) BOOL bundledStyle;
 
 @property (nonatomic, weak) IBOutlet NSTableView *menuTableView;
 @property (nonatomic, weak) IBOutlet NSTextField *styleNameField;
@@ -118,8 +118,8 @@ typedef NS_ENUM(NSUInteger, CETabIndex) {
         [self setMode:mode];
         [self setOriginalStyleName:name];
         [self setStyle:style];
-        [self setIsStyleNameValid:YES];
-        [self setIsBundledStyle:[[CESyntaxManager sharedManager] isBundledStyle:name]];
+        [self setStyleNameValid:YES];
+        [self setBundledStyle:[[CESyntaxManager sharedManager] isBundledStyle:name]];
     }
     
     return self;
@@ -403,7 +403,7 @@ typedef NS_ENUM(NSUInteger, CETabIndex) {
         }
     }
     
-    [self setIsStyleNameValid:(!message)];
+    [self setStyleNameValid:(!message)];
     [[self messageField] setStringValue:message ? : @""];
     
     return message;
