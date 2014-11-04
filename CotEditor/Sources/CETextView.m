@@ -161,7 +161,7 @@ const NSInteger kNoMenuItem = -1;
     for (NSString *key in [self observedDefaultKeys]) {
         [[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:key];
     }
-    [[self window] removeObserver:self forKeyPath:@"opaque"];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     [self stopCompletionTimer];
 }
 
@@ -173,12 +173,7 @@ const NSInteger kNoMenuItem = -1;
 {
     id newValue = change[NSKeyValueChangeNewKey];
     
-    if ([keyPath isEqualToString:@"opaque"]) {
-        // ウインドウが不透明な時は自前で背景を描画する（サブピクセルレンダリングを有効にするためには layer-backed で不透明なビューが必要）
-        [self setDrawsBackground:[newValue boolValue]];
-        [self setNeedsDisplay:YES];
-        
-    } else if ([keyPath isEqualToString:CEDefaultAutoExpandTabKey]) {
+    if ([keyPath isEqualToString:CEDefaultAutoExpandTabKey]) {
         [self setAutoTabExpandEnabled:[newValue boolValue]];
         
     } else if ([keyPath isEqualToString:CEDefaultSmartInsertAndDeleteKey]) {
@@ -225,10 +220,10 @@ const NSInteger kNoMenuItem = -1;
     }
     
     // ウインドウの透明フラグを監視する
-    [[self window] addObserver:self
-                    forKeyPath:@"opaque"
-                       options:NSKeyValueObservingOptionNew
-                       context:NULL];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didWindowOpacityChange:)
+                                                 name:CEWindowOpacityDidChangeNotification
+                                               object:[self window]];
 }
 
 
@@ -2094,6 +2089,17 @@ const NSInteger kNoMenuItem = -1;
              CEDefaultSmartInsertAndDeleteKey,
              CEDefaultCheckSpellingAsTypeKey,
              CEDefaultEnableSmartQuotesKey];
+}
+
+
+// ------------------------------------------------------
+/// ウインドウの透明設定が変更された
+- (void)didWindowOpacityChange:(NSNotification *)notification
+// ------------------------------------------------------
+{
+    // ウインドウが不透明な時は自前で背景を描画する（サブピクセルレンダリングを有効にするためには layer-backed で不透明なビューが必要）
+    [self setDrawsBackground:[[self window] isOpaque]];
+    [self setNeedsDisplay:YES];
 }
 
 

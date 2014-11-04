@@ -30,6 +30,10 @@
 #import "CEWindow.h"
 
 
+// notifications
+NSString *const CEWindowOpacityDidChangeNotification = @"CEWindowOpacityDidChangeNotification";
+
+
 @interface CEWindow ()
 
 @property (nonatomic) NSColor *storedBackgroundColor;
@@ -90,6 +94,18 @@
 
 
 #pragma mark Accessors
+
+// ------------------------------------------------------
+/// set opaque
+- (void)setOpaque:(BOOL)opaque
+// ------------------------------------------------------
+{
+    [super setOpaque:opaque];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:CEWindowOpacityDidChangeNotification
+                                                        object:self];
+}
+
 
 // ------------------------------------------------------
 /// set background alpha
