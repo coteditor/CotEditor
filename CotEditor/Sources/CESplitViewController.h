@@ -3,7 +3,7 @@
  CESplitViewController
  
  CotEditor
- http://coteditor.github.io
+ http://coteditor.com
  
  Created on 2006-03-26 by nakamuxu
  encoding="UTF-8"
@@ -54,7 +54,6 @@
 - (void)setSyntaxWithName:(NSString *)syntaxName;
 - (void)recolorAllTextView;
 - (void)updateAllOutlineMenu;
-- (void)setAllBackgroundColorWithAlpha:(CGFloat)alpha;
 
 - (IBAction)toggleSplitOrientation:(id)sender;
 - (IBAction)focusNextSplitTextView:(id)sender;

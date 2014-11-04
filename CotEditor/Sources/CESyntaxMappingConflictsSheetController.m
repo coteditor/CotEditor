@@ -3,7 +3,7 @@
  CESyntaxMappingConflictsSheetController
  
  CotEditor
- http://coteditor.github.io
+ http://coteditor.com
  
  Created on 2014-03-25 by 1024jp
  encoding="UTF-8"
@@ -56,8 +56,8 @@
     if (self) {
         [[self window] setLevel:NSModalPanelWindowLevel];
         
-        [self setExtensionConflicts:[[self class] parseConflictDict:[[CESyntaxManager sharedManager] extensionConflicts]]];
-        [self setFilenameConflicts:[[self class] parseConflictDict:[[CESyntaxManager sharedManager] filenameConflicts]]];
+        _extensionConflicts = [[self class] parseConflictDict:[[CESyntaxManager sharedManager] extensionConflicts]];
+        _filenameConflicts = [[self class] parseConflictDict:[[CESyntaxManager sharedManager] filenameConflicts]];
     }
     return self;
 }

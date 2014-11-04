@@ -3,7 +3,7 @@
  CEPreferencesWindowController
  
  CotEditor
- http://coteditor.github.io
+ http://coteditor.com
  
  Created by 2014-04-18 by 1024jp
  encoding="UTF-8"
@@ -35,6 +35,7 @@
 #import "CEFileDropPaneController.h"
 #import "CEKeyBindingsPaneController.h"
 #import "CEPrintPaneController.h"
+#import "CEAppDelegate.h"
 #import "constants.h"
 
 
@@ -109,14 +110,14 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
     self = [super initWithWindowNibName:windowNibName];
     if (self) {
         // 各ペインを読み込む
-        [self setGeneralPaneController:[[NSViewController alloc] initWithNibName:@"GeneralPane" bundle:nil]];
-        [self setWindowPaneController:[[CEWindowPaneController alloc] initWithNibName:@"WindowPane" bundle:nil]];
-        [self setAppearancePaneController:[[CEAppearancePaneController alloc] initWithNibName:@"AppearancePane" bundle:nil]];
-        [self setEditPaneController:[[CEEditPaneController alloc] initWithNibName:@"EditPane" bundle:nil]];
-        [self setFormatPaneController:[[CEFormatPaneController alloc] initWithNibName:@"FormatPane" bundle:nil]];
-        [self setFileDropPaneController:[[CEFileDropPaneController alloc] initWithNibName:@"FileDropPane" bundle:nil]];
-        [self setKeyBindingsPaneController:[[CEKeyBindingsPaneController alloc] initWithNibName:@"KeyBindingsPane" bundle:nil]];
-        [self setPrintPaneController:[[CEPrintPaneController alloc] initWithNibName:@"PrintPane" bundle:nil]];
+        _generalPaneController = [[NSViewController alloc] initWithNibName:@"GeneralPane" bundle:nil];
+        _windowPaneController = [[CEWindowPaneController alloc] initWithNibName:@"WindowPane" bundle:nil];
+        _appearancePaneController = [[CEAppearancePaneController alloc] initWithNibName:@"AppearancePane" bundle:nil];
+        _editPaneController = [[CEEditPaneController alloc] initWithNibName:@"EditPane" bundle:nil];
+        _formatPaneController = [[CEFormatPaneController alloc] initWithNibName:@"FormatPane" bundle:nil];
+        _fileDropPaneController = [[CEFileDropPaneController alloc] initWithNibName:@"FileDropPane" bundle:nil];
+        _keyBindingsPaneController = [[CEKeyBindingsPaneController alloc] initWithNibName:@"KeyBindingsPane" bundle:nil];
+        _printPaneController = [[CEPrintPaneController alloc] initWithNibName:@"PrintPane" bundle:nil];
     }
     return self;
 }
@@ -206,10 +207,7 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
 - (IBAction)openPreferencesHelp:(id)sender
 //------------------------------------------------------
 {
-    NSString *bookName = [[NSBundle mainBundle] objectForInfoDictionaryKey: @"CFBundleHelpBookName"];
-    
-    [[NSHelpManager sharedHelpManager] openHelpAnchor:kHelpPrefAnchors[[sender tag]]
-                                               inBook:bookName];
+    [(CEAppDelegate *)[NSApp delegate] openHelpAnchor:sender];
 }
 
 @end

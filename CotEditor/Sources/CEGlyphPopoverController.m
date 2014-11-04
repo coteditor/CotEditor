@@ -3,7 +3,7 @@
  CEGlyphPopoverController
  
  CotEditor
- http://coteditor.github.io
+ http://coteditor.com
  
  Created on 2014-05-01 by 1024jp
  encoding="UTF-8"
@@ -61,7 +61,7 @@ static const unichar kEmojiSequenceChar = 0xFE0F;
     
     self = [super initWithNibName:@"GlyphPopover" bundle:nil];
     if (self) {
-        [self setGlyph:character];
+        _glyph = character;
         
         NSUInteger length = [character length];
         
@@ -83,7 +83,7 @@ static const unichar kEmojiSequenceChar = 0xFE0F;
             
             [unicodes addObject:unicode];
         }
-        [self setUnicode:[unicodes componentsJoinedByString:@"  "]];
+        _unicode = [unicodes componentsJoinedByString:@"  "];
         
         BOOL isMultipleChars = NO;
         
@@ -119,7 +119,7 @@ static const unichar kEmojiSequenceChar = 0xFE0F;
         
         if (isMultipleChars) {
             // number of characters message
-            [self setUnicodeName:[NSString stringWithFormat:NSLocalizedString(@"<a letter consisting of %d characters>", nil), [unicodes count]]];
+            _unicodeName = [NSString stringWithFormat:NSLocalizedString(@"<a letter consisting of %d characters>", nil), [unicodes count]];
             
         } else {
             // unicode character name
@@ -129,11 +129,11 @@ static const unichar kEmojiSequenceChar = 0xFE0F;
             NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"\\{(.+?)\\}" options:0 error:nil];
             NSTextCheckingResult *firstMatch = [regex firstMatchInString:unicodeName options:0
                                                                    range:NSMakeRange(0, [unicodeName length])];
-            [self setUnicodeName:[unicodeName substringWithRange:[firstMatch rangeAtIndex:1]]];
+            _unicodeName = [unicodeName substringWithRange:[firstMatch rangeAtIndex:1]];
             
             if (variationSelectorAdditional) {
-                [self setUnicodeName:[NSString stringWithFormat:@"%@ (%@)", [self unicodeName],
-                                      NSLocalizedString(variationSelectorAdditional, nil)]];
+                _unicodeName = [NSString stringWithFormat:@"%@ (%@)", _unicodeName,
+                                NSLocalizedString(variationSelectorAdditional, nil)];
             }
         }
     }

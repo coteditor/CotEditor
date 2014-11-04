@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6206.8" systemVersion="13E28" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment defaultVersion="1070" identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6206.8"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6250"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="CEFileDropPaneController">
@@ -15,7 +15,7 @@
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
-        <customObject id="-3" userLabel="Application"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <arrayController clearsFilterPredicateOnInsertion="NO" id="451" userLabel="File Drop Controller">
             <declaredKeys>
                 <string>extensions</string>
@@ -23,10 +23,10 @@
             </declaredKeys>
         </arrayController>
         <customView horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" id="747" userLabel="File Drop Pane">
-            <rect key="frame" x="0.0" y="0.0" width="540" height="376"/>
+            <rect key="frame" x="0.0" y="0.0" width="540" height="378"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <button horizontalHuggingPriority="750" verticalHuggingPriority="750" tag="5" translatesAutoresizingMaskIntoConstraints="NO" id="2351">
+                <button horizontalHuggingPriority="750" verticalHuggingPriority="750" tag="6" translatesAutoresizingMaskIntoConstraints="NO" id="2351">
                     <rect key="frame" x="497" y="17" width="25" height="25"/>
                     <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" inset="2" id="3338">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -36,8 +36,8 @@
                         <action selector="openPreferencesHelp:" target="-1" id="3an-GZ-vXy"/>
                     </connections>
                 </button>
-                <textField horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" placeholderIntrinsicWidth="48" placeholderIntrinsicHeight="14" translatesAutoresizingMaskIntoConstraints="NO" id="589">
-                    <rect key="frame" x="268" y="339" width="52" height="14"/>
+                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="589">
+                    <rect key="frame" x="268" y="341" width="54" height="14"/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="left" title="Glossary:" usesSingleLineMode="YES" id="3337">
                         <font key="font" metaFont="smallSystem"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -45,7 +45,7 @@
                     </textFieldCell>
                 </textField>
                 <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="587">
-                    <rect key="frame" x="270" y="194" width="250" height="139"/>
+                    <rect key="frame" x="270" y="196" width="250" height="139"/>
                     <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="PI9-s6-0DE">
                         <rect key="frame" x="1" y="1" width="248" height="137"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -110,7 +110,7 @@ The parent directory name of the dropped file. 
                     </scroller>
                 </scrollView>
                 <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="536">
-                    <rect key="frame" x="337" y="154" width="186" height="22"/>
+                    <rect key="frame" x="337" y="156" width="186" height="22"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="180" id="XCP-jV-qFG"/>
                     </constraints>
@@ -120,42 +120,42 @@ The parent directory name of the dropped file. 
                         <menu key="menu" title="OtherViews" id="543">
                             <items>
                                 <menuItem title="Insert Pre-Formatted String" hidden="YES" id="541"/>
-                                <menuItem title="&lt;&lt;&lt;ABSOLUTE-PATH>>>" toolTip="The dropped file absolute path." id="544">
+                                <menuItem title="&lt;&lt;&lt;ABSOLUTE-PATH&gt;&gt;&gt;" toolTip="The dropped file absolute path." id="544">
                                     <connections>
                                         <action selector="insertFormatStringInFileDrop:" target="-2" id="555"/>
                                     </connections>
                                 </menuItem>
-                                <menuItem title="&lt;&lt;&lt;RELATIVE-PATH>>>" toolTip="The relative path between dropped file and the document." id="546">
+                                <menuItem title="&lt;&lt;&lt;RELATIVE-PATH&gt;&gt;&gt;" toolTip="The relative path between dropped file and the document." id="546">
                                     <connections>
                                         <action selector="insertFormatStringInFileDrop:" target="-2" id="556"/>
                                     </connections>
                                 </menuItem>
-                                <menuItem title="&lt;&lt;&lt;FILENAME>>>" toolTip="The dropped file name include extension (if exists)." id="542">
+                                <menuItem title="&lt;&lt;&lt;FILENAME&gt;&gt;&gt;" toolTip="The dropped file name include extension (if exists)." id="542">
                                     <connections>
                                         <action selector="insertFormatStringInFileDrop:" target="-2" id="557"/>
                                     </connections>
                                 </menuItem>
-                                <menuItem title="&lt;&lt;&lt;FILENAME-NOSUFFIX>>>" toolTip="The dropped file name without extension." id="538">
+                                <menuItem title="&lt;&lt;&lt;FILENAME-NOSUFFIX&gt;&gt;&gt;" toolTip="The dropped file name without extension." id="538">
                                     <connections>
                                         <action selector="insertFormatStringInFileDrop:" target="-2" id="558"/>
                                     </connections>
                                 </menuItem>
-                                <menuItem title="&lt;&lt;&lt;FILEEXTENSION>>>" toolTip="The dropped file's extension." id="694">
+                                <menuItem title="&lt;&lt;&lt;FILEEXTENSION&gt;&gt;&gt;" toolTip="The dropped file's extension." id="694">
                                     <connections>
                                         <action selector="insertFormatStringInFileDrop:" target="-2" id="699"/>
                                     </connections>
                                 </menuItem>
-                                <menuItem title="&lt;&lt;&lt;FILEEXTENSION-LOWER>>>" toolTip="The dropped file's extension (converted to lowercase)." id="695">
+                                <menuItem title="&lt;&lt;&lt;FILEEXTENSION-LOWER&gt;&gt;&gt;" toolTip="The dropped file's extension (converted to lowercase)." id="695">
                                     <connections>
                                         <action selector="insertFormatStringInFileDrop:" target="-2" id="698"/>
                                     </connections>
                                 </menuItem>
-                                <menuItem title="&lt;&lt;&lt;FILEEXTENSION-UPPER>>>" toolTip="The dropped file's extension (converted to uppercase)." id="696">
+                                <menuItem title="&lt;&lt;&lt;FILEEXTENSION-UPPER&gt;&gt;&gt;" toolTip="The dropped file's extension (converted to uppercase)." id="696">
                                     <connections>
                                         <action selector="insertFormatStringInFileDrop:" target="-2" id="697"/>
                                     </connections>
                                 </menuItem>
-                                <menuItem title="&lt;&lt;&lt;DIRECTORY>>>" toolTip="The parent directory name of dropped file." id="539">
+                                <menuItem title="&lt;&lt;&lt;DIRECTORY&gt;&gt;&gt;" toolTip="The parent directory name of dropped file." id="539">
                                     <connections>
                                         <action selector="insertFormatStringInFileDrop:" target="-2" id="559"/>
                                     </connections>
@@ -163,12 +163,12 @@ The parent directory name of the dropped file. 
                                 <menuItem isSeparatorItem="YES" state="on" id="545">
                                     <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                 </menuItem>
-                                <menuItem title="&lt;&lt;&lt;IMAGEWIDTH>>>" toolTip="(if the dropped file is Image) image width." id="540">
+                                <menuItem title="&lt;&lt;&lt;IMAGEWIDTH&gt;&gt;&gt;" toolTip="(if the dropped file is Image) image width." id="540">
                                     <connections>
                                         <action selector="insertFormatStringInFileDrop:" target="-2" id="560"/>
                                     </connections>
                                 </menuItem>
-                                <menuItem title="&lt;&lt;&lt;IMAGEHEIGHT>>>" toolTip="(if the dropped file is Image) image height." id="537">
+                                <menuItem title="&lt;&lt;&lt;IMAGEHEIGHT&gt;&gt;&gt;" toolTip="(if the dropped file is Image) image height." id="537">
                                     <connections>
                                         <action selector="insertFormatStringInFileDrop:" target="-2" id="561"/>
                                     </connections>
@@ -178,7 +178,7 @@ The parent directory name of the dropped file. 
                     </popUpButtonCell>
                 </popUpButton>
                 <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="531">
-                    <rect key="frame" x="20" y="51" width="500" height="100"/>
+                    <rect key="frame" x="20" y="53" width="500" height="100"/>
                     <clipView key="contentView" id="ybU-5v-A28">
                         <rect key="frame" x="1" y="1" width="498" height="98"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -212,8 +212,8 @@ The parent directory name of the dropped file. 
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
                 </scrollView>
-                <textField horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" placeholderIntrinsicWidth="149" placeholderIntrinsicHeight="14" translatesAutoresizingMaskIntoConstraints="NO" id="466">
-                    <rect key="frame" x="99" y="339" width="153" height="14"/>
+                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="466">
+                    <rect key="frame" x="99" y="341" width="153" height="14"/>
                     <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="left" title="(comma separated, no dots)" usesSingleLineMode="YES" id="3335">
                         <font key="font" metaFont="smallSystem"/>
                         <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
@@ -221,7 +221,7 @@ The parent directory name of the dropped file. 
                     </textFieldCell>
                 </textField>
                 <button focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="458">
-                    <rect key="frame" x="49" y="193" width="30" height="22"/>
+                    <rect key="frame" x="49" y="195" width="30" height="22"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="20" id="RDU-2u-Aor"/>
                         <constraint firstAttribute="width" constant="30" id="yzy-Pg-HBT"/>
@@ -236,7 +236,7 @@ The parent directory name of the dropped file. 
                     </connections>
                 </button>
                 <button focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="457">
-                    <rect key="frame" x="20" y="193" width="30" height="22"/>
+                    <rect key="frame" x="20" y="195" width="30" height="22"/>
                     <buttonCell key="cell" type="smallSquare" title="New" bezelStyle="smallSquare" image="NSAddTemplate" imagePosition="only" alignment="center" borderStyle="border" focusRingType="none" inset="2" id="3333">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
@@ -246,16 +246,16 @@ The parent directory name of the dropped file. 
                         <binding destination="451" name="enabled" keyPath="canAdd" id="463"/>
                     </connections>
                 </button>
-                <textField horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" placeholderIntrinsicWidth="108" placeholderIntrinsicHeight="17" translatesAutoresizingMaskIntoConstraints="NO" id="456">
-                    <rect key="frame" x="18" y="157" width="112" height="17"/>
+                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="456">
+                    <rect key="frame" x="18" y="159" width="109" height="17"/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="left" title="Insertion Format:" usesSingleLineMode="YES" id="3332">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <textField horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" placeholderIntrinsicWidth="71" placeholderIntrinsicHeight="17" translatesAutoresizingMaskIntoConstraints="NO" id="434">
-                    <rect key="frame" x="18" y="339" width="75" height="17"/>
+                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="434">
+                    <rect key="frame" x="18" y="341" width="76" height="17"/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="left" title="Extensions:" usesSingleLineMode="YES" id="3331">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -263,14 +263,14 @@ The parent directory name of the dropped file. 
                     </textFieldCell>
                 </textField>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="yc6-4W-vhz">
-                    <rect key="frame" x="78" y="193" width="172" height="22"/>
+                    <rect key="frame" x="78" y="195" width="172" height="22"/>
                     <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" imagePosition="overlaps" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="wm6-2c-tEB">
                         <behavior key="behavior" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
                 </button>
                 <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="446">
-                    <rect key="frame" x="20" y="213" width="230" height="120"/>
+                    <rect key="frame" x="20" y="215" width="230" height="120"/>
                     <clipView key="contentView" id="9EX-7h-iHb">
                         <rect key="frame" x="1" y="1" width="228" height="118"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -373,7 +373,7 @@ The parent directory name of the dropped file. 
                 <constraint firstItem="458" firstAttribute="height" secondItem="yc6-4W-vhz" secondAttribute="height" id="ijQ-18-5M6"/>
                 <constraint firstItem="587" firstAttribute="top" secondItem="589" secondAttribute="bottom" constant="6" id="jBc-JJ-b0j"/>
                 <constraint firstItem="446" firstAttribute="leading" secondItem="747" secondAttribute="leading" constant="20" symbolic="YES" id="jEq-km-a6s"/>
-                <constraint firstItem="2351" firstAttribute="top" secondItem="531" secondAttribute="bottom" constant="10" id="kFG-rP-Ktb"/>
+                <constraint firstItem="2351" firstAttribute="top" secondItem="531" secondAttribute="bottom" constant="12" symbolic="YES" id="kFG-rP-Ktb"/>
                 <constraint firstAttribute="trailing" secondItem="531" secondAttribute="trailing" constant="20" symbolic="YES" id="m84-30-ObK"/>
                 <constraint firstItem="446" firstAttribute="trailing" secondItem="466" secondAttribute="trailing" id="qW5-e9-6pY"/>
                 <constraint firstItem="456" firstAttribute="leading" secondItem="747" secondAttribute="leading" constant="20" symbolic="YES" id="r84-dz-jpl"/>
@@ -385,7 +385,7 @@ The parent directory name of the dropped file. 
         </customView>
     </objects>
     <resources>
-        <image name="NSAddTemplate" width="8" height="8"/>
-        <image name="NSRemoveTemplate" width="8" height="8"/>
+        <image name="NSAddTemplate" width="11" height="11"/>
+        <image name="NSRemoveTemplate" width="11" height="11"/>
     </resources>
 </document>

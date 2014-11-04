@@ -3,7 +3,7 @@
  CEEditorView
  
  CotEditor
- http://coteditor.github.io
+ http://coteditor.com
  
  Created on 2006-03-18 by nakamuxu
  encoding="UTF-8"
@@ -65,6 +65,5 @@
 - (void)stopUpdateLineNumberTimer;
 - (void)stopUpdateOutlineMenuTimer;
 - (NSCharacterSet *)firstCompletionCharacterSet;
-- (void)setBackgroundColorAlpha:(CGFloat)alpha;
 
 @end

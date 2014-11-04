@@ -3,7 +3,7 @@
  CEScriptMenuItem
  
  CotEditor
- http://coteditor.github.io
+ http://coteditor.com
  
  Created on 2014-10-02 by 1024jp
  encoding="UTF-8"
@@ -66,7 +66,7 @@
     NSDictionary *globalDefaults = [[NSUserDefaults standardUserDefaults] persistentDomainForName:NSGlobalDomain];
     NSString *theme = globalDefaults[@"AppleInterfaceStyle"];
     
-    NSString *imageName = [theme isEqualToString:@"Dark"] ? @"ScriptMenuWhite" : @"ScriptMenuTemplate";
+    NSString *imageName = [theme isEqualToString:@"Dark"] ? @"ScriptWhite" : @"ScriptTemplate";
     NSImage *scriptIcon = [NSImage imageNamed:imageName];
     
     [self setImage:scriptIcon];

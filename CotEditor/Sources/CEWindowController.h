@@ -3,7 +3,7 @@
  CEWindowController
  
  CotEditor
- http://coteditor.github.io
+ http://coteditor.com
  
  Created on 2004-12-13 by nakamuxu
  encoding="UTF-8"
@@ -36,8 +36,6 @@
 
 
 @interface CEWindowController : NSWindowController <NSWindowDelegate, OgreTextFindDataSource>
-
-@property (nonatomic) CGFloat alpha;
 
 @property (readonly, nonatomic, weak) CEEditorWrapper *editor;
 @property (readonly, nonatomic, weak) CEToolbarController *toolbarController;

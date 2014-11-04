@@ -2,7 +2,7 @@
  Localizable.strings
  
  CotEditor
- http://coteditor.github.io
+ http://coteditor.com
  
  Created on 2004-12-20 by nakamuxu
  encoding="UTF-8"
@@ -29,6 +29,13 @@
 "Install" = "インストール";
 "Open as Text File" = "テキストファイルとして開く";
 "A new theme named “%@” has been successfully installed." = "新しいテーマ“%@”がインストールされました。";
+
+// Migration from 1.x
+"Restorering menu key bindings settings…" = "メニューキーバインド設定をリセット中…";
+"Migrating coloring settings…" = "カラーリング設定を移行中…";
+"Migrating user syntax styles…" = "ユーザシンタックス定義を移行中…";
+"Migration finished." = "設定の移行が終了しました。";
+"Close" = "閉じる";
 
 
 /* CEDocument */
@@ -276,6 +283,12 @@
 "Deleted setting cannot be restored." = "削除した設定は元に戻せません。";
 // Syntax Validation
 "Block comment needs both begin delimiter and end delimiter." = "ブロックコメントは開始文字と終了文字の両方を必要とします。";
+"Begin string" = "開始文字列";
+"End string" = "終了文字列";
+"RE string" = "正規表現";
+"multiple registered." = "重複して登録されています。";
+"Error “%@” in column %@: %@<<HERE>>%@" = "エラー “%@” (%@文字目) ：%@<<ここ>>%@";
+"Error: %@" = "エラー： %@";
 
 
 /* CEThemeManager */

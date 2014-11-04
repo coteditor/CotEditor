@@ -3,7 +3,7 @@
  CEColorPanelController
  
  CotEditor
- http://coteditor.github.io
+ http://coteditor.com
  
  Created by 2014-04-22 by 1024jp
  encoding="UTF-8"

@@ -1,0 +1,1918 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+<html lang="en" xml:lang="en">
+
+<head>
+	<meta charset="UTF-8"/>
+	<meta name="keywords" content="version, history, changelog, release notes"/>
+	<link rel="start" href="../CotEditorHelp.html"/>
+	<link rel="index" href="../xpgs/xall.html"/>
+	<link rel="stylesheet" href="../../Shared/sty/standard.css"/>
+	<link rel="stylesheet" href="../../Shared/sty/releasenotes.css"/>
+	<title>Release Notes</title>
+</head>
+
+<body>
+<a name="releasenotes"></a>
+<h1>Release Notes</h1>
+
+
+<article>
+<header>
+	<h1>CotEditor 2.0.0</h1>
+	<p>release: <time>2014-11-xx</time></p>
+</header>
+
+<section>
+<h2>New Features</h2>
+
+<ul>
+	<li>Coloring theme feature.</li>
+	<li>Comment toggling feature.</li>
+	<li>Add “types”, “attributes” and “variables” to syntax highlighting colors.</li>
+	<li>Now, syntax style can be determined not only from file extension but also from file name.
+		<ul>
+		<li>From this, rename “Extensions” in syntax edit sheet to “File Mapping”.</li>
+	</ul></li>
+	<li>Add metadata fields for syntax styles.</li>
+	<li>Append a correspondent extension to the file name on saving.
+		<ul>
+		<li>The top extension in the extension list in the syntax style definition will be used.</li>
+		<li>From this, setting for “Append “txt” on saving” was deprecated.
+			<ul>
+			<li>If you want to keep using “txt” as default extension, set “Plain Text” syntax style as default style in Preferences > Format.</li>
+		</ul></li>
+	</ul></li>
+	<li>Add “Toggle Text Orientation” icon to toolbar.</li>
+	<li>Add option to split views vertically.</li>
+	<li>Select lines via clicking/dragging line numbers.</li>
+	<li>Add “Select Line” command to “Edit” menu.</li>
+	<li>Add syntax styles for “AppleScript”, “C#”, “Go”, “Lisp”, “Lua”, “R”, “Rust”, “Scheme”, “SQL”, “SVG”, “Swift” and “Tcl”,.</li>
+	<li>Auto-complete feature (experimental implementation, turned off by default).</li>
+</ul>
+</section>
+
+<section>
+<h2>Additions/Changes</h2>
+
+<ul>
+	<li>Support OS X Yosemite.</li>
+	<li>Update application icon with Yosemite style.</li>
+	<li>Change the bundle identifier from <code>com.aynimac.CotEditor</code> to <code>com.coteditor.CotEditor</code>.</li>
+	<li>New default coloring scheme.</li>
+	<li>Improve performance drastically:
+		<ul>
+		<li>Extracting outline list on a background thread.
+			<ul>
+			<li>From this, non-response time till coloring indicator sheet has been shown reduced drastically.</li>
+			<li>Display message for outline extracting in the navigation bar until the first extracting ends.</li>
+		</ul></li>
+		<li>Perform extracting syntax highlights on a background thread.</li>
+		<li>Cache results of syntax highlighting, and use them as long as document is not modified.</li>
+		<li>Improve cursor moving and file opening performance when the current line is highlighted.</li>
+		<li>Improve invisible chars drawing performance (4x faster).</li>
+		<li>Improve line number drawing performance (6x faster).</li>
+		<li>Improve text view scrolling on Mountain Lion and later.</li>
+		<li>For performance, change range to scan encoding declaration up to 2,000 characters from the head of the document.</li>
+	</ul></li>
+	<li>Change syntax style file format from plist (XML) to YAML.
+		<ul>
+		<li>Legacy user styles will be migrated automatically on the first launch of CotEditor 2.0.</li>
+		<li>New user syntax style files are stored in <code>~/Library/Application Support/CotEditor/Syntaxes/</code>. The old styles are kept in <code>SyntaxColorings/</code>, since CotEditor 2.0 doesn’t use </li>
+	</ul></li>
+	<li>Now, IC (ignore case) can be set even RE (regular expression) is set in syntax style editing.</li>
+	<li>Change regular expression engine to extract outline from OniGmo (OgreKit) to ICU (NSRegularExpression).
+		<ul>
+		<li><strong>Attention!</strong>: You may need to update the outline extracting definitions in your custom syntax styles.</li>
+		<li>Remove <code>$&amp;</code> definition that represents whole matched string (Use <code>$0</code> instead).</li>
+	</ul></li>
+	<li>Change tab width to 4 characters in outline menu.</li>
+	<li>Improve coloring indicator:
+		<ul>
+		<li>Improve to perform cancel button correctly.</li>
+		<li>On Mavericks and later, you can work with other documents while coloring dialog is shown.</li>
+		<li>Display current task as message in sheet.</li>
+		<li>Change not to reset syntax style to “None” when user cancels coloring.</li>
+		<li>Change not to remove current coloring when user cancels coloring.</li>
+		<li>Cancel with ESC key.</li>
+	</ul></li>
+	<li>Apply theme color to the line number view.</li>
+	<li>On Mountain Lion and later, text view gets no drop-shadow by texts on semi-transparent.</li>
+	<li>Define document types for CotEditor in more details and also add document icons for each.</li>
+	<li>Scroll line by line with an arrow key.</li>
+	<li>Adjust indent automatically on return just after <code>{</code> and <code>}</code> if Auto-Indent is on. (thanks to Naotaka-san).</li>
+	<li>Update all of bundled syntax styles.</li>
+	<li>Update “CSS” syntax style:
+		<ul>
+		<li>Support CSS level 3.</li>
+	</ul></li>
+	<li>Update “Perl” syntax style:
+		<ul>
+		<li>Add some keywords.</li>
+		<li>Add <code>=pod</code> and <code>=cut</code> to comment coloring.</li>
+		<li>Add “pm” to extensions.</li>
+	</ul></li>
+	<li>Update “JSON” syntax style:
+		<ul>
+		<li>Add “cottheme” to extensions.</li>
+	</ul></li>
+	<li>Update “LaTeX” syntax style:
+		<ul>
+		<li>Add “cls” and “sty” to extensions.</li>
+		<li>Update outline menu style.</li>
+	</ul></li>
+	<li>Update “YAML” syntax style:
+		<ul>
+		<li>Support YAML 1.2.</li>
+		<li>Improve outline extracting rules.</li>
+		<li>Some fixes.</li>
+	</ul></li>
+	<li>Update “Ruby” syntax style:
+		<ul>
+		<li>Support % notation.</li>
+		<li>Add special variables.</li>
+		<li>Improve number literals.</li>
+		<li>Support here document.</li>
+		<li>and some more fixes.</li>
+	</ul></li>
+	<li>Update “Java” syntax style:
+		<ul>
+		<li>Improve number literals.</li>
+		<li>Support annotation.</li>
+		<li>and some more fixes.</li>
+	</ul></li>
+	<li>Update “JavaScript” syntax style:
+		<ul>
+		<li>Completely rewrite.</li>
+	</ul></li>
+	<li>Update “Haskell” syntax style:
+		<ul>
+		<li>Improve number literals.</li>
+		<li>Add escape chars.</li>
+	</ul></li>
+	<li>Separate “DTD” (Document Type Declaration) syntax style from “XML”.
+		<ul>
+		<li>From this, coloring performance with “XML” syntax style was improved.</li>
+	</ul></li>
+	<li>Updates about scripting support:
+		<ul>
+		<li>Migrate AppleScript API definition file to sdef format.</li>
+		<li>Rename <code>unicode normalization</code> command to <code>normalize unicode</code>.</li>
+		<li>Update internal code for <code>range</code> property of <code>text selection</code> objects.
+			<ul>
+			<li>From this, your <strong>compiled</strong> AppleScripts (.scpt) that contain <code>selection</code> handling need to be updated manually. See “Scripting with AppleScript” document in “Help” menu for details.</li>
+		</ul></li>
+		<li>Update documents about scripting with AppleScript.</li>
+	</ul></li>
+	<li>Count characters by composed character sequence in the status bar and the info drawer.
+		<ul>
+		<li>The previous count was actually the length of string in UTF-16 that is internal string expression on OS X (for example, a surrogate pair is counted previously as 2 and now as 1).</li>
+		<li>Rename previous “Char Count” to “Char Length” and add another “Char Count” with the new count method for status bar items.</li>
+	</ul></li>
+	<li>Avoid the move to previous outline item button to select the first “&lt;Outilne Menu&gt;” item.</li>
+	<li>Change key to display hidden menu items in “File” menu to “Option”.</li>
+	<li>Add <code>.</code> and <code>:</code> to word separators that are used for selecting a word with a double click.</li>
+	<li>Improve messages on character info inspector with surrogate pairs and variation selectors. (thanks to doraTeX-san)</li>
+	<li>Disable alert asking for save when blank &amp; unsaved document will be closed. (thanks to Naotaka-san)</li>
+	<li>Brush up toolbar icons.</li>
+	<li>Now, font size of line numbers follows editor font size.</li>
+	<li>Draw page guide in text color.</li>
+	<li>Improve syntax editor sheet so as to edit documents even the sheet is shown. (on Mavericks and later)</li>
+	<li>Tweak result messages by syntax style validator and partially localized.</li>
+	<li>Improve application icon so as not to react with dropped folders.</li>
+	<li>Improve cancellation behavior of word completion.</li>
+	<li>Rename “Inspect Glyph” to “Inspect Character”.</li>
+	<li>Delay timing to store user’s menu key bindings.
+		<ul>
+		<li>The user setting for menu key bindings on CotEditor 1.x will be reset on the first launch of v2.0.</li>
+	</ul></li>
+	<li>Improve key bindings edit sheets.</li>
+	<li>Change line hight value to line height based, that includes the hight of the line itself.</li>
+	<li>Change default line hight value to 1.3.</li>
+	<li>Add thousands separators to values in document info.</li>
+	<li>Change date format in document info drawer.</li>
+	<li>Tweak status bar design.</li>
+	<li>Add back quotes to quotation marks which are accommodated when color comments.</li>
+	<li>Change Go To panel to sheet.</li>
+	<li>Add animation when toggling visibility of the navigation bar and the status bar.</li>
+	<li>Fix used font for invisible characters.</li>
+	<li>Update some of alternative characters for full-width space char.</li>
+	<li>Improve appearance of the encoding list edit sheet.</li>
+	<li>Improve window size setting fields in preferences to move fields with tab key.</li>
+	<li>Tweak some texts in UI.</li>
+	<li>Deprecate “Drag selected text immediately” setting.</li>
+	<li>Remove the output type keyword <code>Pasteboard puts</code> for CotEditor script, that was deprecated on CotEditor 0.7.2 and had remained for backwards compatibility.</li>
+	<li>Add hidden setting key <code>layoutTextVertical</code> (boolean) to set text orientation vertical as default.</li>
+	<li>Deprecate font settings for navigation bar and line number view which are hidden settings.</li>
+	<li>Move version history from rich text format to one of the Help contents.</li>
+	<li>Update documents.</li>
+	<li>Update Sparkle framework to 1.8.0.</li>
+	<li>Update build environment to OS X Yosemite + Xcode 6.1 (SDK 10.10).</li>
+	<li>And more internal changes.</li>
+</ul>
+</section>
+
+<section>
+<h2>Fixes</h2>
+
+<ul>
+	<li>Fix an issue that “Share find strings with other applications” option didn’t work.</li>
+	<li>Fix an issue that comments weren’t highlighted correctly if another comment delimiter is contained in string that is enclosed in quotes before the comment delimiter.</li>
+	<li>Fix an issue that variation selectors, kind of invisible characters, disappeared occasionally.</li>
+	<li>Fix help buttons on preferences panes.</li>
+	<li>Fix an issue that encoding selection in toolbar was reset after changing of encoding list order.</li>
+	<li>Fix over-wrapped text in the status bar to truncate with “…”.</li>
+	<li>Fix an issue that unfocused windows performed also re-coloring after “Replace All”.</li>
+	<li>Fix an issue that page guide was occasionally drawn at wrong place if fallback font is used.</li>
+	<li>Fix to highlight current line only in focused view of split views.</li>
+	<li>Fix an issue that text lines vibrated during moving caret if text orientation is vertical and line hight is fixed.</li>
+	<li>Fix an issue that line numbers in unfocused views were not updated.</li>
+	<li>Fix an issue that lately added toolbar icons didn’t represent the state at the moment.</li>
+	<li>Fix an issue that an error was output in console if blank area of incompatible chars table was clicked.</li>
+	<li>Fix an issue that editors didn’t change to transparent if the opacity setting in preferences window was changed from 100%.</li>
+	<li>Fix an issue that changes in custom line height panel wasn’t applied immediately.</li>
+	<li>Fix an issue that “Same as Document” selection for invisible chars in print panel didn’t work correctly.</li>
+	<li>Fix an issue that line count got one more extra if selection contains return at the end.</li>
+	<li>Fix an issue that <code>range</code> property of <code>text selection</code> objects was displayed as wrong <code>character range</code> on AppleScript Editor.</li>
+	<li>Fix some sample scripts which didn’t run correctly.</li>
+	<li>Fix an issue that some settings did not display in Preferences on OS X Lion.</li>
+	<li>Avoid horizontal scrollers on key bindings edit sheets.</li>
+</ul>
+</section>
+
+<section>
+<h2>Misc.</h2>
+
+<ul>
+	<li>Twitter account for CotEditor was created. Follow <a href="https://twitter.com/CotEditor" rel="external">@CotEditor</a> to get our latest news.</li>
+	<li>Web page address was changed to <a href="http://coteditor.com" rel="external">coteditor.com</a>.</li>
+	<li>You can find additional syntax styles to install on <a href="https://github.com/coteditor/CotEditor/wiki/Additional-Syntax-Styles" rel="external">GitHub Wiki</a>.</li>
+</ul>
+</section>
+</article>
+
+
+
+<article>
+<header>
+	<h1>CotEditor 1.5.4</h1>
+	<p>release: <time>2014-06-29</time></p>
+</header>
+
+<section>
+<h2>Fixes</h2>
+<ul>
+	<li>Fix an issue that second page was also printed even the document was actually one page.</li>
+	<li>Fix an issue that print large size file with syntax coloring would be failed due to the indicator panel.</li>
+	<li>Fix an issue that file size info didn’t update after the file update. (thanks to aki-san)</li>
+	<li>Fix an issue that auto-indent was not invoked with Japanese fill-width space.</li>
+	<li>Fix an issue that change of view opacity would not be applied to the line number views of the opened windows.</li>
+	<li>Fix an issue that some temporary settings for the opened editors could be canceled occasionally.</li>
+</ul>
+</section>
+</article>
+
+
+
+<article>
+<header>
+	<h1>CotEditor 1.5.3</h1>
+	<p>release: <time>2014-05-21</time></p>
+</header>
+
+<section>
+<h2>Additions/Changes</h2>
+<ul>
+	<li>Adjust preferences window layout.</li>
+	<li>Reduce scope of syntax coloring on typing.</li>
+	<li>Update OgreKit framework to 2.1.7:<ul>
+		<li>Refine some labels in Find menu and Find panel.</li>
+	</ul></li>
+</ul>
+</section>
+
+<section>
+<h2>Fixes</h2>
+<ul>
+	<li>Fix an issue that preview didn’t update after changing of footer/header alignment.</li>
+	<li>Fix a rare issue that print cannot be performed under the specific environments.</li>
+	<li>Fix an issue that set file drop cannot be changed.</li>
+	<li>Fix file drop behaviour when files with multiple extensions are dropped.</li>
+	<li>Fix an issue that text view layout doesn’t follow text wrapping change when layout orientation is vertical.</li>
+	<li>Fix some error messages in English.</li>
+</ul>
+</section>
+</article>
+
+
+
+<article>
+<header>
+	<h1>CotEditor 1.5.2</h1>
+	<p>release: <time>2014-05-10</time></p>
+</header>
+
+<section>
+<h2>Additions/Changes</h2>
+<ul>
+	<li>Modify some menu and setting labels. (thanks to zom-san)</li>
+	<li>Now more setting changes are applied also to current document windows.</li>
+	<li>Optimize process when status bar is shown.</li>
+	<li>Update documents</li>
+</ul>
+</section>
+
+<section>
+<h2>Fixes</h2>
+<ul>
+	<li>Fix a critical issue that CotEditor crashes on the first launch.</li>
+	<li>Fix an issue that window position doesn’t restore on Japanese locale.</li>
+	<li>Fix an issue that text insertion on file drop failed.</li>
+	<li>Fix missing short cut key of “Enter Full Screen” action.<ul>
+		<li>To apply this change, perform the “Set to Factory Defaults” on Preferences &gt; Key Bindings &gt; Menu Key Bindings &gt; Edit.</li>
+	</ul></li>
+</ul>
+</section>
+</article>
+
+
+<article>
+<header>
+	<h1>CotEditor 1.5.1</h1>
+	<p>release: <time>2014-05-09</time></p>
+</header>
+
+<section>
+<h2>Fixes</h2>
+<ul>
+	<li>Fix a critical issue that CotEditor 1.5 cannot be launched on OS X 10.7.</li>
+</ul>
+</section>
+</article>
+
+
+
+<article>
+<header>
+	<h1>CotEditor 1.5.0</h1>
+	<p>release: <time>2014-05-08</time></p>
+</header>
+
+<section>
+<h2>New Features</h2>
+
+<ul>
+	<li>“Inspect Glyph” feature:<ul>
+		<li>Popover information of the selected character, if <kbd>Cmd</kbd> + <kbd>Option</kbd> + <kbd>I</kbd> is pressed or “Inspect Glyph” menu item in “Edit” menu is selected when exactly a single character is selected.</li>
+	</ul></li>
+	<li>New color code panel:<ul>
+		<li>Support 3-digit Hex, CSS’s rgb(), rgba(), hsl() and hsla().</li>
+		<li>Fix an issue that the color selected in the color panel was applied also to texts in text view.</li>
+	</ul></li>
+	<li>Add “Input Char in Unicode Hex” feature to “Edit” menu.</li>
+	<li>Informations to display in status bar become selectable.</li>
+	<li>Add word count and file size to status bar info choices.</li>
+	<li>Add word count, file size and byte size to info drawer.</li>
+	<li>Tab format becomes settable via “Format” menu and toolbar to apply only to the current document.</li>
+	<li>On Auto-Indent mode, indent become automatically deeper when return key is pressed exactly between <code>{</code> and <code>}</code> or just after <code>:</code> character.</li>
+	<li>Add new “CoffeeScript” <a href="#v1.5fnote1"><sup>1</sup></a>, “Dart”, “Diff”, “INI” <a href="#v1.5fnote1"><sup>1</sup></a>, “JSON”, “Makefile”, “reStructuredText” <a href="#v1.5fnote1"><sup>1</sup></a>, “Textile” <a href="#v1.5fnote1"><sup>1</sup></a> and “YAML” syntax style definitions.</li>
+	<li>Now, sscript/folder whose name begins with underscore (_) are not displayed in script menu.</li>
+	<li>[experimental] Add “Use Vertical Orientation” action to “Format” menu (Line numbers are always disabled while vertical orientation mode).</li>
+</ul>
+</section>
+
+<section>
+<h2>Additions/Changes</h2>
+
+<ul>
+	<li>Add “Western (ASCII)” and “Chinese (GB 18030)” to encoding list.</li>
+	<li>Brush-up terms on UI.</li>
+	<li>Update “HTML” syntax coloring definition.<ul>
+		<li>Support HTML5 and HTML5.1</li>
+		<li>Better coloring.</li>
+	</ul></li>
+	<li>Update “Perl” syntax coloring definition.<ul>
+		<li>Color numbers and variables.</li>
+		<li>Add some keywords.</li>
+		<li>Improve comments coloring.</li>
+	</ul></li>
+	<li>Add “Speech” to “Edit” menu.</li>
+	<li>Add “Syntax Style only” choice to completion list setting.</li>
+	<li>Add setting for smart quotes/dashes to preferences.</li>
+	<li>Regard numbers and underscore <code>_</code> as string is continuing in non-regex keywords on syntax coloring.</li>
+	<li>Force disable smart quotes/dashes expect the document view.</li>
+	<li>Change the default order of the encodings detection priority, and now “UTF-8” comes to the first position.<ul>
+		<li>You should perform “Set to Factory Default” to apply it. if you update CotEditor from previous version.</li>
+	</ul></li>
+	<li>Updates about window opaque:<ul>
+		<li>Remove the feature to make whole the window semi-transparent, and now opacity setting is applied always only to the view.</li>
+		<li>Now, line number view follows the text view’s opacity.</li>
+		<li>Now, opacity value need not be multiple of 5%</li>
+		<li>Fix term “transparency” to “opacity”.</li>
+		<li>Change “Apply to all Windows” button to “Set as Default”.</li>
+		<li>Update guide image for view opacity slider in preferences.</li>
+		<li>Fix window’s drop-shadow whose text view is full-opaque. </li>
+	</ul></li>
+	<li>Updates about window open behavior:<ul>
+		<li>Store last window’s position and locate new window to the place.</li>
+		<li>Remove the feature that unedited blank window closes automatically when another document is going to open.</li>
+	</ul></li>
+	<li>Updates about print:<ul>
+		<li>Implement print preview on print panel.</li>
+		<li>Apply the document name to the print job.</li>
+		<li>Add “Syntax Name” to the header/footer information choices.</li>
+		<li>Remove hyphens next to page number.</li>
+		<li>Adjust print panel layout.</li>
+	</ul></li>
+	<li>Toggle menu item names occasionally like “Show” / “Hide”, instead displaying checkmark.</li>
+	<li>Change syntax styles management method.<ul>
+		<li>Don’t to copy bundled styles to user’s “Application Support” area on launch.<ul>
+			<li>From this, bundled syntax styles follow updates after CotEditor 1.5 as long as the styles are not customized.<ul>
+				<li>This is not applied to the syntax styles that were copied previous.  To apply it to them, perform “Set to Factory Defaults” on style editing sheet of each bundled syntax style in Preferences &gt; Format pane &gt; Installed styles.</li>
+			</ul></li>
+			<li>for advanced users:  “~/Application Support/CotEditor/SyntaxColorings (old)” will be created on the first launch of CotEditor 1.5, if you updated it from the previous version. This folder is just a backup data for this switching. you can generally remove it if you want.</li>
+		</ul></li>
+		<li>Handle files Sandbox level safety on style import/export.</li>
+	</ul></li>
+	<li>Updates about Preferences window:<ul>
+		<li>More compact window.</li>
+		<li>New grouping.<ul>
+			<li>Remove “Syntax” pane and move its settings to “Format” pane and “Appearance” pane.</li>
+			<li>Create a new “Edit” pane extracting settings about editing from “General” pane and “Format” pane.</li>
+			<li>Other several setting moves.</li>
+		</ul></li>
+		<li>Use More OS X-friendly terms for labels.</li>
+		<li>Apply selected font style to the font fields.</li>
+		<li>Use selected pane name for the preferences window title.</li>
+		<li>New syntax style management UI.</li>
+		<li>Update syntax style editing sheet.<ul>
+			<li>Change mode switching from popup button to list.</li>
+			<li>Now, multiple lines can be selected and removed at once.</li>
+			<li>Validate new syntax name immediately on editing and show an error message if it isn’t valid.</li>
+		</ul></li>
+		<li>Improve UI of the extension conflicts sheet.</li>
+		<li>Add stepper next to number field.</li>
+	</ul></li>
+	<li>Updates about AppleScript:<ul>
+		<li>Remove <code>transparency</code> and <code>alpha only textView</code> properties.</li>
+		<li>Add <code>view opacity</code> property to window object.</li>
+		<li>Remove <code>selection</code> object direct under the Application object.</li>
+	</ul></li>
+	<li>Updates about saving position of the script samples and documents:<ul>
+		<li>Now, documents for CotEditor scripting can be found in “Help” menu.</li>
+		<li>Now, sample scripts will be copied only on the first CotEditor launch.</li>
+		<li>Add hidden “Copy Sample to Scripts Folder” menu item that will be appeared only when option key is pressed.</li>
+	</ul></li>
+	<li>Remove unimportant settings.<ul>
+		<li>Remove setting about file Type/Creator that are used until OS X 10.5 to determine document type on system.</li>
+		<li>Remove setting about wrapped mark in the line number view and now wrapped marks are always shown.</li>
+		<li>Remove the coloring option setting “Include Input Method chars” and now they are always included.</li>
+	</ul></li>
+	<li>Updates about script error panel:<ul>
+		<li>Implement text search in error messages.</li>
+		<li>Increase text size and insert a blank line between error messages.</li>
+	</ul></li>
+	<li>Add information about number of selected lines to status bar and information drawer.</li>
+	<li>Support surrogate pair on Unicode display in information drawer.</li>
+	<li>Make matching brace highlight more noticeable.</li>
+	<li>Add “Report Bug…” menu item to “Help” menu.</li>
+	<li>Use light scroller style when background color is dark.</li>
+	<li>Change line/character selection on Go To panel from radio buttons to popup menu.</li>
+	<li>Improve inspector drawer layout.</li>
+	<li>Now line number view updates while window resizing.</li>
+	<li>Improve syntax coloring on text inputing.</li>
+	<li>Migrate memory management to ARC (Automatic Reference Counting).</li>
+	<li>Optimize processes on application launch.</li>
+	<li>Update Sparkle framework to version 1.6.0:<ul>
+		<li>Add Japanese localization.</li>
+		<li>Fix “Automatically download and install updates in the future.” checkbox.</li>
+	</ul></li>
+	<li>Update OgreKit framework to version 2.1.6.<ul>
+		<li>Now find panel is displayed always on current desktop space.</li>
+		<li>Disable automatic substitutions in find panel.</li>
+	</ul></li>
+	<li>A huge bunch of code and document changes.</li>
+	<li>Many code and document changing.</li>
+</ul>
+</section>
+
+<section>
+<h2>Fixes</h2>
+
+<ul>
+	<li>Fix an issue that all print page number becomes “-1-”.</li>
+	<li>Fix an issue that check mark on line endings popup menu in toolbar was disappear.</li>
+	<li>Fix an issue that re-coloring didn’t proceed after the text replacement.</li>
+	<li>Fix an issue that the <code>close</code> command via AppleScript was ignored.</li>
+	<li>Fix an issue that unwanted window objects were visible and could be handled via AppleScript.</li>
+	<li>Fix an issue that <code>^</code> (beginning of a line) on AppleScript’s search/replacement was not recognized when the document’s line endings are set to CR.</li>
+	<li>Fix an issue that visual tab width didn’t follow new font when font is temporary changed via font panel.</li>
+	<li>Fix an issue that strings between quotes/dashes were not colored when comment coloring definition is not contained in the syntax coloring definition.</li>
+	<li>Fix an issue that invalid style name was accepted and the saving was failed on syntax style editing under the specific conditions.</li>
+	<li>Fix an issue that syntax style file override another existing one without alert on syntax style editing under the specific conditions.</li>
+	<li>Fix an issue that application freeze when one of the installed syntax styles contains an extension definition with the empty string.</li>
+	<li>Fix an issue that key-bindings contain back-slash didn’t work under the Japanese locale.</li>
+	<li>Fix an issue that encoding names in the encoding list on the preferences was editable.</li>
+	<li>Fix an issue that document saving is failed when the document that is set to “Non-lossy ASCII” contains non-ASCII characters.</li>
+	<li>Fix an issue that application didn’t terminate on quite even “Don’t Save and Close” button was selected when a document  whose Finder lock couldn’t be unlocked exists.</li>
+	<li>Fix an issue that error message is output to console when completion list is called while the document is empty.</li>
+	<li>Fix PHP code on the application icon.</li>
+</ul>
+
+</section>
+
+<footer>
+	<ol>
+		<li id="v1.5fnote1">same as ones that were distributed on <a href="http://wolfrosch.com/works/goodies/coteditor_syntax" rel="external" hreflang="ja" title="Syntax Definition Files for CotEditor //Wolfrosch">wolfrosch.com</a></li>
+	</ol>
+</footer>
+</article>
+
+
+
+<article>
+<header>
+	<h1>CotEditor 1.4.1</h1>
+	<p>release: <time>2014-03-22</time></p>
+</header>
+
+
+<section>
+<h2>Additions/Changes</h2>
+<ul>
+	<li>Disabled smart dash/quotes feature of Mavericks as default.
+	<ul>
+		<li>for advanced users: Run <code>defaults write com.aynimac.CotEditor enableSmartQuotes YES</code> in Terminal to enable this feature again.</li>
+		<li>On the next CotEditor 1.5, this feature will be able to be changed on Preferences.</li>
+	</ul></li>
+</ul>
+</section>
+
+<section>
+<h2>Fixes</h2>
+<ul>
+	<li>Fix an issue on ver. 1.4 that line count was always zero.</li>
+</ul>
+</section>
+</article>
+
+
+
+<article>
+<header>
+	<h1>CotEditor 1.4.0</h1>
+	<p>release: <time>2014-03-19</time></p>
+</header>
+
+
+<section>
+<h2>Additions/Changes</h2>
+<ul>
+	<li>Change support OS: OS X 10.7 and later.</li>
+	<li>Support 64-bit.</li>
+	<li>Support Retina display.</li>
+	<li>Update regular expression library used on search &amp; replace feature from Oniguruma to Onigmo.<a href="#v1.4fnote1"><sup>1</sup></a>
+	<ul>
+		<li>Now the most regular expression synax defined on Perl 5.10+ like look-behind/look-ahead can also be used.</li>
+	</ul></li>
+	<li>Update application, document and toolbar icons.</li>
+	<li>Add small size toolbar icons.</li>
+	<li>Add new &quot;Apache&quot;, &quot;Markdown&quot;, &quot;Scala&quot; and &quot;XML&quot; syntax coloring definitions.<a href="#v1.4fnote2"><sup>2</sup></a></li>
+	<li>Update &quot;PHP&quot; syntax coloring definition.<a href="#v1.4fnote2"><sup>2</sup></a>
+	<ul>
+		<li>Support until PHP5.5.</li>
+		<li>Color properties and numbers.</li>
+		<li>Improve outline menu.</li>
+	</ul></li>
+	<li>Update &quot;Python&quot; syntax coloring definition.<a href="#v1.4fnote2"><sup>2</sup></a>
+	<ul>
+		<li>Support Python3. (>=3.3)</li>
+		<li>Color decorators.</li>
+		<li>Improve and fix number coloring.</li>
+		<li>distinguish between &quot;print&quot; statement and &quot;print&quot; command.</li>
+	</ul></li>
+	<li>Update &quot;LaTeX&quot; syntax coloring definition.
+	<ul>
+		<li>Fixed <code>{}</code> symbol escaping</li>
+	</ul></li>
+	<li>Add py, markdown, md, xml, scala and conf extensions to document type.</li>
+	<li>Add &quot;Enter Full Screen&quot; command to menu > View.</li>
+	<li>Remove &quot;Preferences&quot;, &quot;Save&quot;, &quot;Save As&quot;, &quot;Page Setup&quot; and &quot;Transparency Panel&quot; icons from toolbar.</li>
+	<li>Hide dot files and folders in script menu.</li>
+	<li>Improve alert descriptions.</li>
+	<li>Adjust styles of windows and panels.</li>
+	<li>Rename HexColorCode Editor to Color Code Editor</li>
+	<li>Update documents.</li>
+</ul>
+</section>
+
+<section>
+<h2>Fixes</h2>
+<ul>
+	<li>Fixed an issue that unexpected &quot;Update by external process&quot; alert comes up even file is actually not updated.</li>
+	<li>Fixed  &quot;from an unidentified developer&quot; alert on the first launch.</li>
+	<li>Fixed an issue that toolbar background becomes transparent on fullscreen mode (Lion binary).</li>
+	<li>Fixed an issue that text view doesn't become transparent (Lion binary).</li>
+	<li>Fixed an issue that top and bottom margin are flipped on printing since OS X Lion.</li>
+	<li>Fixed an issue that readonly icon in status bar doesn't represent the state correctly, if status bar was hidden when window opened.</li>
+	<li>Fixed a miss placed label on Preferences (Japanese localization).</li>
+	<li>Add blank between words on toolbar labels.</li>
+	<li>Fixed an issue that RegexKitLite was actually not updated to 4.0 on CotEditor 1.1.</li>
+	<li>Fixed an issue that after the specific operation, closed find panel appears again and become not closable.</li>
+</ul>
+
+</section>
+
+<footer>
+	<ol>
+		<li id="v1.4fnote1">The regular expression match on the syntax coloring has no effect by this change, since ICU library is used for it.</li>
+		<li id="v1.4fnote2">same as ones that were distributed on <a href="http://wolfrosch.com/works/goodies/coteditor_syntax" rel="external" hreflang="ja" title="Syntax Definition Files for CotEditor //Wolfrosch">wolfrosch.com</a></li>
+	</ol>
+</footer>
+</article>
+
+
+
+<article>
+<header>
+	<h1>CotEditor 1.3.1</h1>
+	<p>release: <time>2012-02-12</time></p>
+</header>
+
+<section>
+<h2>Fixes</h2>
+<ul>
+	<li>Fixed a bug that cannot install via automatic update.</li>
+</ul>
+
+</section>
+</article>
+
+
+
+<article>
+<header>
+	<h1>CotEditor 1.3.0</h1>
+	<p>release: <time>2012-02-10</time></p>
+</header>
+
+
+<section>
+<h2>New Features</h2>
+<ul>
+	<li>Full screen feature. (For 10.7 only)</li>
+	<li>Add option to append extension “txt” when saving a file.</li>
+</ul>
+</section>
+
+<section>
+<h2>Additions/Changes</h2>
+<ul>
+	<li>On Find Panel,  don't close panel when you press return key. (If you'd like to close panel, press shift+return key.) (thanks to akinull-san)</li>
+	<li>Add binary for 10.7. (build separately for 10.4/10.5/10.6 and for 10.7)</li>
+</ul>
+</section>
+</article>
+
+
+
+<article>
+<header>
+	<h1>CotEditor 1.2.0</h1>
+	<p>release: <time>2011-05-23</time></p>
+</header>
+
+
+<section>
+<h2>New Features</h2>
+<ul>
+	<li>Add feature for automatically update.</li>
+</ul>
+</section>
+
+<section>
+<h2>Additions/Changes</h2>
+<ul>
+	<li>Change the application icon. (thanks to 1024jp-san)</li>
+	<li>Updated 'About The ScriptMenu Folder' document.</li>
+</ul>
+</section>
+
+<section>
+<h2>Fixes</h2>
+<ul>
+	<li>Fixed a bug that ignore tab in auto indent.</li>
+	<li>Fixed a bug that cannot open AppleScript Editor for 10.6 by Option+Click on script menu.</li>
+</ul>
+</section>
+</article>
+
+
+
+<article>
+<header>
+	<h1>CotEditor 1.1.1</h1>
+	<p>release: <time>2014-04-06</time></p>
+</header>
+
+
+<section>
+<h2>Fixes</h2>
+<ul>
+	<li>Fixed a bug that cannot start in some environment.</li>
+</ul>
+</section>
+</article>
+
+
+
+<article>
+<header>
+	<h1>CotEditor 1.1.1</h1>
+	<p>release: <time>2011-04-03</time></p>
+</header>
+
+<section>
+<h2>Additions/Changes</h2>
+<ul>
+	<li>Include documents to application, and open it by help menu.</li>
+	<li>Include sample scripts to application, and copy it to script folder at first.</li>
+	<li>Change SDK version and Deployment target to 10.4.</li>
+	<li>Update OgreKit to 2.1.4.</li>
+	<li>Update RegexKitLite to 4.0.</li>
+	<li>Add usami-k to copyright.</li>
+</ul>
+
+</section>
+
+<section>
+<h2>Fixes</h2>
+<ul>
+	<li>Fixed a crash bug using MacBook Air.</li>
+	<li>Fixed the default style file for CSS.</li>
+</ul>
+</section>
+</article>
+
+
+
+<article>
+<header>
+	<h1>CotEditor 1.0.1</h1>
+	<p>release: <time>2009-05-01</time></p>
+</header>
+
+
+<section>
+<h2>Additions/Changes</h2>
+<ul>
+	<li>Adjusted vertical character display position in a line.</li>
+	<li>Modified some Utility menu items' names (English).</li>
+</ul>
+</section>
+
+<section>
+<h2>Fixes</h2>
+<ul>
+	<li>The default style file for PHP was missing. This problem has been fixed.</li>
+	<li>Updated the default style file for “C, C++, Objective-C”, Java, Haskell.</li>
+	<li>A newly added user couldn't launch CotEditor due to the permission issue of the default style file for eRuby. This problem has been fixed.</li>
+	<li>Fixed a bug where scripts failed to handle selected strings of a document with CR/LF line endings.</li>
+</ul>
+</section>
+</article>
+
+
+
+<article>
+<header>
+	<h1>CotEditor 1.0.0</h1>
+	<p>release: <time>2009-02-28</time></p>
+</header>
+
+
+<section>
+<h2>Additions/Changes</h2>
+<ul>
+	<li>Updated development environment to 10.5.6 + Xcode 3.1.2.</li>
+</ul>
+</section>
+
+<section>
+<h2>Fixes</h2>
+<ul>
+	<li>When the option “Fix line height with composite font” is enabled, the text display with particular fonts was not updated as it should be. This problem has been fixed.</li>
+	<li>Fixed a bug where changing font cluttered the Page Guide display.</li>
+</ul>
+</section>
+</article>
+
+
+
+<article>
+<header>
+	<h1>CotEditor 0.9.6</h1>
+	<p>release: <time>2008-12-27</time></p>
+</header>
+
+
+<section>
+<h2>New Features</h2>
+<ul>
+	<li>Added an option allows you to save UTF-8 files with a BOM. (UTF-8 with BOM may cause various problems, use this option with care. OFF by default.)</li>
+</ul>
+</section>
+
+<section>
+<h2>Additions/Changes</h2>
+<ul>
+	<li>Removed the “A colon (:) is considered as a delimiter when you select a word by double-clicking” feature added on version 0.9.5 (this made expanding the selection with SHIFT-click impossible).</li>
+	<li>Improved syntax coloring accuracy on 10.5.x.</li>
+	<li>Upgraded RegexKitLite to version 2.2.</li>
+	<li>Updated development environment.</li>
+</ul>
+</section>
+
+<section>
+<h2>Fixes</h2>
+<ul>
+	<li>Fixed a problem where you could drop a folder on the CotEditor icon.</li>
+	<li>Fixed a bug where a newly created Syntax Style couldn't be saved.</li>
+	<li>Fixed a bug where the name of a copied Syntax Style couldn't be changed.</li>
+	<li>Cleared unused variables, uninitialized variables and memory leaks from my own code using clang's scan-build.</li>
+	<li>Fixed a bug where pasting text containing line endings would break the highlight of the current line.</li>
+	<li>When you delete strings from the last line, the first line was highlighted as the current line on 10.5.x. This problem has been fixed.</li>
+	<li>Hitting RETURN while selecting the indent part of line auto-indented the new line. This problem has been fixed.</li>
+</ul>
+</section>
+</article>
+
+
+
+<article>
+<header>
+	<h1>CotEditor 0.9.5</h1>
+	<p>release: <time>2008-07-20</time></p>
+</header>
+
+
+<section>
+<h2>New Features</h2>
+<ul>
+<li>You can now highlight the current line.</li>
+<li>The number of characters from the beginning of the line to the current insertion point is now displayed in the status bar and the Get Info drawer.</li>
+<li>You can now inline Script menu items into contextual menu.</li>
+</ul>
+</section>
+
+<section>
+<h2>Additions/Changes</h2>
+<ul>
+	<li>Revised coloring process on 10.4 or later and adopted RegexKitLite for regular expression search of the syntax coloring function, which made coloring speed about 1.5-4.0 times faster compared to version 0.9.3. (Note that there are slight differences between the new and old regular expression syntax. The default coloring rules are not affected by the differences. See “ReadMe-en.rtf” for more details.)</li>
+	<li>When opening a read-only document, the warning message is now displayed immediately (used to be displayed when making a change).</li>
+	<li>Resized the Print dialog smaller.</li>
+	<li>Modified the way of displaying invisible characters (10.4 or later).</li>
+	<li>Improved the performance of text inputting.</li>
+	<li>A colon (:) is now considered as a delimiter when you select a word by double-clicking.</li>
+	<li>Modified the way of updating Outline Menu during inputting text in order to prevent screen flickering.</li>
+	<li>“Show wrapped-line mark” in the Window preference and “Fix line height with composite font” in the Format preference are now turned on by default.</li>
+	<li>Removed “Bounce Dock icon on each file change by another process” from the General preference pane (the setting still works internally, turned on by default).</li>
+	<li>Modified the item layout of the Get Info drawer.</li>
+	<li>If the “Sync Find strings with other apps” option is turned on, the strings in the Find field are now all selected only when they are retrieved, and making CotEditor frontmost does not cancel the selection anymore.</li>
+	<li>When closing the Edit Style sheet by pressing OK, a warning message is now displayed if some errors were detected.</li>
+	<li>Placed the shortcut button for Help on each Preferences pane.</li>
+	<li>When CotEditor Preferences is already opened, selecting “Preferences...” now just makes the Preferences window frontmost without centering it.</li>
+	<li>CotEditor Preferences no longer shows the oval button in the top-right corner of the window (10.4 or later).</li>
+	<li>Modified the look of the default Style Name on the Edit Style sheet.</li>
+	<li>Optimized source code.</li>
+</ul>
+
+</section>
+
+<section>
+<h2>Fixes</h2>
+<ul>
+	<li>Fixed a bug where the line endings of strings generated by drag-and-dropping or copy-and-pasting were always LF.</li>
+	<li>Fixed a coloring issue when pasting at the end of a sentence.</li>
+	<li>Fixed a bug where syntax coloring had not been updated after performing Replace.</li>
+	<li>Fixed a bug where the Line Number display and the Outline Menu display and the Incompatible Char list had not been updated after performing Replace All.</li>
+	<li>Revised the English resource of About window.</li>
+	<li>Fixed a bug where updating Line Number display would cause an endless loop when invisible characters are showed.</li>
+	<li>When a read-only document was saved as another file, the new file also showed the read-only icon. This problem has been fixed.</li>
+	<li>If you closed the Find panel while the Find All window opened, switching applications recreated the panel and there was no way to close it. This problem has been fixed.</li>
+	<li>Fixed a bug where editing text erased the highlight.</li>
+	<li>Fixed a bug where performing Unhighlight after highlighting colored strings erased the color.</li>
+	<li>Fixed an Edit Style sheet issue where the “Set to Factory Defaults” button would become active incorrectly on 10.5.</li>
+	<li>On 10.5, when you pressed “+” button on the Edit Style sheet the added item did not become instantly editable, now it does.</li>
+	<li>After editing a syntax style in the Syntax preference an already opened document using that style will be re-colored when it is made frontmost, but all documents were actually re-colored regardless of their styles. This problem has been fixed.</li>
+	<li>When CotEditor is not in front, selecting “New” or “Open...” from the Dock icon did not make the new window frontmost. This problem has been fixed.</li>
+	<li>Fixed an image lag issue when changing the transparency of text view.</li>
+	<li>When the window was split, changing the transparency of text view did not apply to all views. This problem has been fixed.</li>
+	<li>Removed a redundant item from the default coloring definition for PHP.</li>
+</ul>
+</section>
+</article>
+
+
+
+<article>
+<header>
+	<h1>CotEditor 0.9.4</h1>
+	<p>release: <time>2008-02-01</time></p>
+</header>
+
+
+<section>
+<h2>New Features</h2>
+<ul>
+	<li>Added support for the “com.apple.TextEncoding” extended attribute in order to read/write the encoding of a file (requires Mac OS X 10.5 or later).</li>
+	<li>The progress sheet showing coloring activity now has the Cancel button.</li>
+	<li>You can now print a file with syntax coloring enabled.</li>
+</ul>
+</section>
+
+<section>
+<h2>Additions/Changes</h2>
+<ul>
+	<li>Bundled utility scripts written in Ruby.</li>
+	<li>The Go To panel now automatically closes after the operation.</li>
+	<li>“Auto expand tabs to spaces” in the Format preference is now turned off by default.</li>
+	<li>Single clicking on a character in the Incompatible Char drawer selects the corresponding character (double clicking used to be needed).</li>
+	<li>Made some performance optimizations, for example, a document having no syntax coloring rule (such as a ‘Plain Text’ file) no longer displays coloring progress.</li>
+	<li>Implemented new highlight style for Find results (requires Mac OS X 10.5 or later).</li>
+	<li>Selecting other than “Auto-Detect” for “File Encoding > when opening a file” in the Format preference now brings up a warning message.</li>
+	<li>The Find function can now automatically retrieve the latest Find string searched in another Cocoa application.</li>
+	<li>Modified some of the alternative characters to a half-width space.</li>
+	<li>Readjusted invisible character display position.</li>
+	<li>Adjusted the layout of the Preferences panes.</li>
+	<li>Updated build environment to 10.5.1 + Xcode 3.0.</li>
+	<li>Changed some build options (SDKROOT=10.4u, SDKROOT_i386=&quot;&quot;, SDKROOT_ppc=&quot;&quot;, etc.).</li>
+</ul>
+</section>
+
+<section>
+<h2>Fixes</h2>
+<ul>
+	<li>Fixed a bug where the “Create a new document on startup” and “Open blank window with a reopen AppleEvent” settings in the General preference wouldn't be reflected.</li>
+	<li>Auto-detection of UTF-16 (on Intel machines) and UTF-8 BOM didn't work properly. This problem has been fixed.</li>
+	<li>When a document has only one multi-page-long line, the text view would be forcibly scrolled to the last page. This problem has been fixed.</li>
+	<li>Fixed a bug where changing “Encoding” in the Open dialog also changed the “File Encoding” setting for opening files.</li>
+	<li>Fixed a bug where drag-and-dropping text containing line endings in the same document wouldn't work properly on Mac OS X 10.5.1.</li>
+	<li>Fixed the line number display on Mac OS X 10.5.1.</li>
+	<li>Fixed a bug where the “Line numbers” and “Invisible Chars” settings in the Print dialog didn't work properly.</li>
+	<li>Some of the warning messages were not localized into Japanese. This problem has been fixed.</li>
+</ul>
+</section>
+</article>
+
+
+
+<article>
+<header>
+	<h1>CotEditor 0.9.3</h1>
+	<p>release: <time>2007-10-01</time></p>
+</header>
+
+
+<section>
+<h2>New Features</h2>
+<ul>
+	<li>The character encoding (IANA character encoding name) and the line ending style in use are now displayed on the status bar.</li>
+	<li>You can now exclude line endings from character count.</li>
+</ul>
+</section>
+
+<section>
+<h2>Additions/Changes</h2>
+<ul>
+	<li>Added syntax style files for Haskell and Python.</li>
+	<li>Revised English localization.</li>
+	<li>Added the Unhighlight button to the Find panel.</li>
+	<li>The parameter string of a shell script for storing output data in the clipboard has been changed to 'Pasteboard' (the existing parameter 'Pasteboard puts' can also be used as before).</li>
+	<li>While an input method is translating, the composed text is no longer considered as a selection in the status bar and the Get Info drawer.</li>
+	<li>CotEditor runs an AppleScript when launching (as in version 0.9.1 or earlier).</li>
+</ul>
+</section>
+
+<section>
+<h2>Fixes</h2>
+<ul>
+	<li>When switching panes in the CotEditor preferences using the Tab/arrow/Space key, the toolbar items didn't appear as currently selected. This problem has been fixed.</li>
+	<li>Corrected a problem where an image could be pasted into the Find panel's Replace field.</li>
+	<li>Fixed some scrolling bugs.</li>
+	<li>Fixed a bug where the menu wasn't updated after importing a new syntax file.</li>
+	<li>Some of the “pre-formatted string” menu items in the File Drop preferences pane didn't show tooltips. This problem has been fixed. </li>
+	<li>Showing invisible characters such as control characters would slow down the application performance. This problem has been slightly fixed.</li>
+</ul>
+</section>
+</article>
+
+
+
+<article>
+<header>
+	<h1>CotEditor 0.9.2</h1>
+	<p>release: <time>2006-10-14</time></p>
+</header>
+
+
+<section>
+<h2>New Features</h2>
+
+<ul>
+	<li>Invisible characters such as control characters can now be displayed.</li>
+	<li>When one character is selected, the Unicode code point of the character is now displayed on the Get Info drawer and the status bar.</li>
+	<li>Added an option for specifying whether to read the encoding declaration.</li>
+	<li>Added Print preferences.</li>
+	<li>Implemented the function for highlighting matching braces (ported from Smultron).</li>
+	<li>Double clicking near a brace selects to the matching brace (ported from Smultron).</li>
+</ul>
+</section>
+
+<section>
+<h2>Additions/Changes</h2>
+
+<ul>
+	<li>When switching between Find/Replace fields using the Tab key in the Find panel, text already in the field (if any) is now all selected.</li>
+	<li>Text in the Find field used to be all selected whenever the Find panel was made frontmost, but it now applies only when the Find panel was called via the Find menu or using the keyboard shortcut, which is the default behavior of OgreKit.</li>
+	<li>Updated the Outline Menu settings in the default style files for C, C++, Objective-C.</li>
+	<li>Updated toolbar icons.</li>
+	<li>Improved auto-detection of ISO 2022-JP, UTF-8, and UTF-16 encoding.</li>
+	<li>Added Japanese help.</li>
+	<li>AppleScript no longer runs when launching CotEditor.</li>
+	<li>Updated development environment.</li>
+</ul>
+</section>
+
+<section>
+<h2>Fixes</h2>
+
+<ul>
+	<li>After deleting a string including line endings, edit flag wouldn't be set properly when undoing operations. This problem has been fixed.</li>
+	<li>Fixed a bug where edit flag vanished when you edit a file, save it, undo it, and edit again.</li>
+	<li>When you paste to the current selection, if the selected string was identical to the clipboard's text and contained line endings, the pasted string remained selected. This problem has been fixed.</li>
+	<li>Fixed an implicit bug of index conversion between character and glyph under the process of displaying invisible characters.</li>
+	<li>Fixed a bug where closing a window would cause an application crash.</li>
+	<li>When beginning a new line at the end of a file, text view didn't always scroll properly. This problem has been fixed.</li>
+	<li>On version 0.9.1, the status bar wasn't fully localized in Japanese. This problem has been fixed.</li>
+</ul>
+</section>
+</article>
+
+
+
+<article>
+<header>
+	<h1>CotEditor 0.9.1</h1>
+	<p>release: <time>2006-05-14</time></p>
+</header>
+
+
+<section>
+<h2>New Features</h2>
+
+<ul>
+	<li>Implemented the Split View function.</li>
+	<li>Changed the way of generating the completion list, the strings containing signs can now be listed.</li>
+</ul>
+</section>
+
+<section>
+<h2>Additions/Changes</h2>
+
+<ul>
+	<li>Added syntax style files for eRuby and Java.</li>
+	<li>Updated syntax style files for C, C++, Objective-C.</li>
+	<li>“Additional Text Key Bindings” now doesn't work while the Japanese input method is active.</li>
+	<li>Double clicking on a character in the “Incompatible Char” drawer now selects the corresponding character and scrolls the window if needed so that the character can be seen.</li>
+	<li>When editing “Menu Key Bindings” in the Preferences, you can now double click on a collapsed line to expand.</li>
+	<li>Added tooltips to some navigation view items.</li>
+	<li>Slightly modified the Preferences layout.</li>
+	<li>Updated development environment.</li>
+</ul>
+</section>
+
+<section>
+<h2>Fixes</h2>
+
+<ul>
+	<li>When selecting multiple lines, the selection's background color would break between lines. This problem has been fixed.</li>
+	<li>Turning on the “All controls” option for “Full keyboard access” in the System Preferences could cause some problems (e.g. hiding the caret in a new document or incorrect behavior of input method). This problem has been fixed.</li>
+	<li>Fixed a bug where user-configured key bindings couldn't be deleted in the “Menu Key Bindings” setting.</li>
+	<li>Fixed a bug where current syntax coloring was canceled on each overwrite saving.</li>
+	<li>With the “Fix line height with composite font” option turned off, line height couldn't be changed. This problem has been fixed.</li>
+	<li>Corrected the warning message appears when changing file encoding.</li>
+	<li>Modified the inner workings.</li>
+</ul>
+</section>
+</article>
+
+
+
+<article>
+<header>
+	<h1>CotEditor 0.9.0</h1>
+	<p>release: <time>2006-02-22</time></p>
+</header>
+
+
+<section>
+<h2>New Features</h2>
+
+<ul>
+	<li>Added a menu/toolbar items for toggling “Show Invisible Characters” and “Show Page Guide.”</li>
+	<li>Added an option which allows you to exchange the key bindings for inputting a half-width yen/backslash.</li>
+	<li>The AppleScript ‘document’ object now has a new property ‘line spacing.’</li>
+	<li>Implemented the function for customizing the background color of selection.</li>
+	<li>Implemented the function which fixes the line height regardless of the specified font.</li>
+	<li>Implemented the function which displays marks beside wrapped lines.</li>
+</ul>
+</section>
+
+<section>
+<h2>Additions/Changes</h2>
+
+<ul>
+	<li>CotEditor is now Universal Binary.</li>
+	<li>Updated the default style file for PHP.</li>
+	<li>Upgraded OgreKit to version 2.1.1.</li>
+	<li>Updated some toolbar icons.</li>
+	<li>Text encoding is now variable when reading script files, so the scripts including characters that C-string cannot interpret are now executable.</li>
+	<li>In the case a possible completion includes parentheses, only the string inside them is now selected.</li>
+	<li>After changing the line height or the font size, the scroll position is now adjusted so that the caret/selection can be seen.</li>
+	<li>Slightly enlarged the “Chars” and “Lines” fields on the Get Info drawer.</li>
+	<li>The Key Bindings preferences pane now has explanations of changing/assigning the Script menu's keyboard shortcuts.</li>
+	<li>Bundled an instruction for ATOK users.</li>
+	<li>Updated development environment, changed some build options.</li>
+</ul>
+</section>
+
+<section>
+<h2>Fixes</h2>
+
+<ul>
+	<li>An incorrect Undo item was recorded when inputting a line ending, and the scroll position wasn't properly adjusted when beginning a new line at the end of the file. These problems have been fixed. </li>
+	<li>When hiding line numbers, text area was widened and scrolled incorrectly on toggling the “Wrap Lines.” This problem has been fixed.</li>
+	<li>Fixed a bug where line numbers were not displayed when changing the font size.</li>
+	<li>Fixed a bug where the last line's line number would not be displayed.</li>
+	<li>Corrected some English localizations.</li>
+	<li>Fixed a bug where the last few lines would be lost when printing a rather long document.</li>
+	<li>Fixed a bug where the separator line of footer wasn't printed when printing a document less than one page long.</li>
+	<li>There was an incorrect iteration in the printing process which reduced the speed of printing. This problem has been fixed.</li>
+	<li>Some of the Japanese resources didn't fit the button size. This problem has been fixed.</li>
+	<li>Modified the inner workings.</li>
+</ul>
+</section>
+</article>
+
+
+
+<article>
+<header>
+	<h1>CotEditor 0.8.6</h1>
+	<p>release: <time>2005-12-26</time></p>
+</header>
+
+
+<section>
+<h2>New Features</h2>
+
+<ul>
+	<li>Implemented the function for changing line spacing.</li>
+</ul>
+</section>
+
+<section>
+<h2>Additions/Changes</h2>
+
+<ul>
+	<li>Reworked the Completion List setting in the Preferences, and the pop-up list now shows completions in the following order: words in the file, words generated from coloring style, standard words.</li>
+	<li>Line number of the last empty line is now displayed.</li>
+	<li>Adjusted invisible character display position.</li>
+	<li>Added “Use Antialias” and “Show Page Guide” menu items (both apply to the frontmost window).</li>
+	<li>Enabling/Disabling “Use Antialias” or “Show Page Guide” option in the Preferences now applies to a newly created document.</li>
+	<li>Reorganized some of the Preferences panes.</li>
+	<li>When printing, print area now scales reflecting the header/footer setting.</li>
+	<li>Reworked updating performance of the status bar and the Get Info drawer.</li>
+	<li>Byte counting during opening a file is no longer performed under 10.4.x so that most files can be opened.</li>
+</ul>
+</section>
+
+<section>
+<h2>Fixes</h2>
+
+<ul>
+	<li>Fixed a bug where some umlaut characters couldn't be input using a French keyboard.</li>
+	<li>Fixed a bug where choosing other than “Auto-Detect” under the File Encoding section in the Format preferences was not reflected.</li>
+	<li>When only the text view is made transparent, the drawing of character shadows was not updated when scrolling. This problem has been fixed.</li>
+	<li>Fixed a bug where a key binding including ‘@’ couldn't be set properly.</li>
+	<li>Document icons appeared as generic icons under some environments. This problem has been fixed.</li>
+	<li>After inserting a line ending character not by a key input but by other ways, such as pasting or using a script, the line ending characters couldn't be searched/replaced till you'd saved the file. This problem has been fixed (CotEditor now always use LF when inserting/replacing).</li>
+	<li>Fixed a bug where specifying ‘InsertAfterSelection’ or ‘AppendToAllText’ in a script didn't work properly.</li>
+	<li>Corrected some English localizations.</li>
+</ul>
+</section>
+</article>
+
+
+
+<article>
+<header>
+	<h1>CotEditor 0.8.5</h1>
+	<p>release: <time>2005-12-06</time></p>
+</header>
+
+
+<section>
+<h2>New Features</h2>
+
+<ul>
+	<li>You can now configure possible completions separately from the coloring definition (if no configuration, completions will be generated from the coloring definition as before).</li>
+	<li>Implemented the Page Guide function which shows a vertical line at a specified character width (as reference).</li>
+</ul>
+</section>
+
+<section>
+<h2>Additions/Changes</h2>
+
+<ul>
+	<li>Improved the speed of syntax coloring.</li>
+	<li>Updated the default style files for PHP, LaTex, HTML.</li>
+	<li>Assigned Command-D to “Don't Save” on the Close dialogue of unwritable files.</li>
+	<li>Pressing Shift-Return now inserts ‘<code>&lt;br /&gt;</code>’ by the default “Additional Text Key Bindings” setting.</li>
+	<li>Increased the bottom margin of text area.</li>
+	<li>Expressly added main file extensions to the build setting (in order to make CotEditor appear in the “Open With” contextual menu in Finder).</li>
+	<li>Toggling the “Use Antialiasing Text” option is now reflected immediately.</li>
+</ul>
+</section>
+
+<section>
+<h2>Fixes</h2>
+
+<ul>
+	<li>Fixed a bug where pressing Delete didn't properly close the completion list.</li>
+	<li>After operating “Save As,” the right file is now monitored for file change notification.</li>
+	<li>When closing a locked file that you cannot unlock, a proper alert is now displayed.</li>
+	<li>Fixed a bug where the ‘find’ AppleScript command couldn't search the line ending characters.</li>
+	<li>Fixed a bug where Japanese characters were displayed as the hexadecimal Unicode character values in the “Show Extension Error” window.</li>
+	<li>Corrected some localizations.</li>
+</ul>
+</section>
+</article>
+
+
+
+<article>
+<header>
+	<h1>CotEditor 0.8.4</h1>
+	<p>release: <time>2005-11-17</time></p>
+</header>
+
+
+<section>
+<h2>New Features</h2>
+
+<ul>
+	<li>CotEditor can now read CSS-style ‘@charset’ encoding declaration (interpreting priorities are: ‘charset=’ &gt; ‘encoding=’ &gt; ‘@charset’).</li>
+	<li>CotEditor now supports file change notification.</li>
+</ul>
+</section>
+
+<section>
+<h2>Additions/Changes</h2>
+
+<ul>
+	<li>Updated some Preferences icons.</li>
+	<li>The document window's text area now has small margin on top and bottom.</li>
+	<li>Changed the statement of the URL for OgreKit site.</li>
+	<li>Upgraded development environment to 10.4.3 + Xcode 2.2.</li>
+</ul>
+</section>
+
+<section>
+<h2>Fixes</h2>
+
+<ul>
+	<li>Fixed a bug where syntax coloring wasn't reflected when saving a new document.</li>
+	<li>The AppleScript command ‘replace’ can now replace with blank (delete the matching part).</li>
+	<li>Fixed a bug where only certain part of a word was colored.</li>
+	<li>While editing, the bottom of the document was not colored properly. This problem has been fixed.</li>
+	<li>Fixed wrong implementation of OgreKit.</li>
+</ul>
+</section>
+</article>
+
+
+
+<article>
+<header>
+	<h1>CotEditor 0.8.3</h1>
+	<p>release: <time>2005-10-28</time></p>
+</header>
+
+
+<section>
+<h2>New Features</h2>
+
+<ul>
+	<li>Python scripts can now be added to the Script menu.</li>
+	<li>The “Open” dialogue can now display hidden files (Clicking the Shift key while showing the File menu toggles this on/off. Can be turned always on by customizing the keyboard shortcut).</li>
+	<li>The default coloring style can be specified.</li>
+	<li>You can now customize keyboard shortcuts.</li>
+	<li>You can now insert text snippets using key bindings.</li>
+	<li>You can now print documents.</li>
+</ul>
+</section>
+
+<section>
+<h2>Additions/Changes</h2>
+
+<ul>
+	<li>The Preferences panes now have icons.</li>
+	<li>Added syntax style files for LaTeX and Ruby.</li>
+	<li>Updated the default style file for PHP.</li>
+	<li>Modified the bundled script “current time.applescript.”</li>
+	<li>Changed the order of the default encoding list (See the bundled documentation for details).</li>
+	<li>The “Incompatible Char” drawer now shows converted characters as well.</li>
+	<li>Incompatible characters were not displayed under some encodings, but they are now always displayed depending only on the result of conversion.</li>
+	<li>CotEditor now checks the IANA character encoding name when saving a file and displays an alert if it differs from the current encoding.</li>
+	<li>The file's creation date is no longer changed when saving.</li>
+	<li>Changed the default keyboard shortcuts for “Input Backslash,” “Input YenMark,” “Reset to Default (font).”</li>
+	<li>Assigned shortcut to each Panel sub menu.</li>
+	<li>Changed the display font size of the navigation bar (Outline Menu).</li>
+	<li>Removed “Open Recent” from the Dock menu under 10.3.9.</li>
+	<li>Added “Owner” to the Get Info drawer.</li>
+</ul>
+</section>
+
+<section>
+<h2>Fixes</h2>
+
+<ul>
+	<li>Fixed a bug which would prevent from editing certain files owned by another user.</li>
+	<li>Fixed a bug where the update and close notification of the External Editor Protocol were not sent.</li>
+	<li>Fixed a bug where the warning message didn't show up when failed to open a file dropped on the application icon.</li>
+	<li>After canceling the dialogue of “Copy Style” in the Syntax preferences pane, the style name was not reverted until relaunching CotEditor. This problem has been fixed.</li>
+	<li>Fixed a bug where the Get Info drawer of a new (and not yet saved) document wouldn't show Creator/Type correctly.</li>
+	<li>Worked around the problem where coloring indicator seemed to go backward depending on the document's size.</li>
+	<li>Other minor changes/fixes.</li>
+</ul>
+</section>
+</article>
+
+
+
+<article>
+<header>
+	<h1>CotEditor 0.8.2</h1>
+	<p>release: <time>2005-08-30</time></p>
+</header>
+
+
+<section>
+<h2>Fixes</h2>
+
+<ul>
+	<li>Fixed a bug where Outline Menu's meta character ‘$LN’ didn't work properly.</li>
+	<li>Corrected some localizations.</li>
+</ul>
+</section>
+</article>
+
+
+
+<article>
+<header>
+	<h1>CotEditor 0.8.1</h1>
+	<p>release: <time>2005-08-29</time></p>
+</header>
+
+
+<section>
+<h2>New Features</h2>
+
+<ul>
+	<li>Implemented the navigation bar which contains Outline Menu that allows quick access to a characteristic part of the document.</li>
+	<li>Added the “Delay Coloring” option to the Syntax preferences pane, which delays the timing of real-time coloring in order to let CotEditor (seem to) respond faster to your input.</li>
+	<li>You can now use authentication to open a file even when not having sufficient privilege.</li>
+	<li>Implemented the function which highlights the characters that are not supported by the specified encoding.</li>
+</ul>
+</section>
+
+<section>
+<h2>Additions/Changes</h2>
+
+<ul>
+	<li>Improved  performance for inputting text and changing the selection range.</li>
+	<li>Removed the “Font” menu from the contextual menu.</li>
+	<li>Changed some names of the preferences panes.</li>
+</ul>
+</section>
+
+<section>
+<h2>Fixes</h2>
+
+<ul>
+	<li>Fixed a bug where improper Undo histories remained after reinterpreting the file encoding.</li>
+	<li>Fixed a bug that would make text displayed with wrong font/size when repeating changing the file encoding.</li>
+	<li>Fixed a bug where the AppleScript command ‘line range’ would return wrong values.</li>
+	<li>Modified the inner workings.</li>
+</ul>
+</section>
+</article>
+
+
+
+<article>
+<header>
+	<h1>CotEditor 0.8.0</h1>
+	<p>release: <time>2005-08-14</time></p>
+</header>
+
+
+<section>
+<h2>New Features</h2>
+
+<ul>
+	<li>Added a menu item for inserting the file's encoding as the IANA character encoding name.</li>
+	<li>Now supports for the AppleScript command ‘IANA charset’ which is to get the IANA character encoding name of the file's encoding.</li>
+	<li>The completion list can now contain the words which are in the syntax style file.</li>
+</ul>
+</section>
+
+<section>
+<h2>Additions/Changes</h2>
+
+<ul>
+	<li>Added syntax style files for C, C++, Objective-C.</li>
+	<li>“Finder's Lock” in the Get Info drawer now shows ‘-’ when the file is not locked.</li>
+	<li>When saving, the “Save” dialogue now shows the file name as its name part selected (excluding the suffix part).</li>
+	<li>When failed to open a file, the alert now shows proper text.</li>
+	<li>As opening a file with encoding auto-detection enabled, CotEditor now reads the declaration ‘charset=’ or ‘encoding=’ written in the file and uses it (if any) to determine the character encoding.</li>
+	<li>File Drop now recognizes uppercase file extensions.</li>
+	<li>Added ‘FILEEXTENSION’ and ‘FILEEXTENSION-LOWER’ and ‘FILEEXTENSION-UPPER’ to File Drop's pre-formatted strings.</li>
+	<li>Additional support for the following encodings:<ul>
+		<li>Traditional Chinese (EUC)</li>
+		<li>Simplified Chinese (EUC)</li>
+		<li>Traditional Chinese (Windows, DOS)</li>
+		<li>Simplified Chinese (Windows, DOS)</li>
+		<li>Korean (EUC)</li>
+		<li>Korean (Windows, DOS)</li>
+		</ul>
+		(Mac OS X 10.4.x or later now supports the followings as well)<ul>
+		<li>Unicode (UTF-16BE)</li>
+		<li>Unicode (UTF-16LE)</li>
+		<li>Unicode (UTF-32)</li>
+		<li>Unicode (UTF-32BE)</li>
+		<li>Unicode (UTF-LE)</li>
+	</ul></li>
+	<li>The Encoding List sheet in the Preferences now shows IANA character encoding name as well.</li>
+	<li>The size of the Encoding List sheet in the Preferences is now memorized.</li>
+	<li>The “Set to Factory Defaults” button on the Encoding List sheet in the Preferences is now properly turned into clickable/unclickable.</li>
+	<li>A script for inserting XHTML <code>&lt;pre&gt;</code> tag is now bundled.</li>
+</ul>
+
+</section>
+
+<section>
+<h2>Fixes</h2>
+
+<ul>
+	<li>When changing the character encoding via the toolbar, the new encoding's name sometimes remained shown in the toolbar after clicking Cancel. This problem has been fixed.</li>
+	<li>Fixed a bug where line endings were always set to LF when changing the character encoding.</li>
+	<li>Fixed a bug where coloring wasn't performed after changing the character encoding.</li>
+	<li>Some buttons on the “HexColorCode Editor” panel were not displayed correctly on Mac OS X 10.3.9. This problem has been fixed.</li>
+	<li>Fixed a bug where you couldn't drop a file onto the document window.</li>
+	<li>Fixed a bug where the File Drop preferences pane didn't accept new settings.</li>
+	<li>Half-width yen signs couldn't be replaced under some character encodings. This problem has been fixed.</li>
+</ul>
+</section>
+</article>
+
+
+
+<article>
+<header>
+	<h1>CotEditor 0.7.3</h1>
+	<p>release: <time>2005-08-06</time></p>
+</header>
+
+
+<section>
+<h2>New Features</h2>
+
+<ul>
+	<li>Added toolbar icons for “Edit HexColorCode as Fore” and “Edit HexColorCode as BG.”</li>
+	<li>Implemented the function which allows you to save files that are read-only or locked in Finder (doesn't work when you are not the file's owner).</li>
+	<li>Added an option for specifying whether to apply anti-aliasing to text.</li>
+	<li>Added an option for enabling Smart Insert/Delete.</li>
+	<li>Added “Select All” to the contextual menu.</li>
+</ul>
+</section>
+
+<section>
+<h2>Additions/Changes</h2>
+
+<ul>
+	<li>Enhanced the function of line number displaying, modified the color of line numbers.</li>
+	<li>Updated the default style file for PHP.</li>
+	<li>Divided the View preference pane into Window and View.</li>
+	<li>Under the Syntax preferences pane, enabling/disabling coloring now toggles availability of other controllers.</li>
+	<li>The Get Info drawer now shows the “Finder's Lock” status of the file.</li>
+	<li>Modified the status icon which indicates you don't have write permission for the file.</li>
+	<li>When the document is unwritable, a warning message is displayed on the first attempt to edit or to change its encoding/line ending style, and if you click OK there, the modifications you've made is reflected.</li>
+	<li>CotEditor now only supports Mac OS X 10.3.9 or later.</li>
+</ul>
+</section>
+
+<section>
+<h2>Fixes</h2>
+
+<ul>
+	<li>Fixed a bug where coloring didn't work when saving a new document for the first time.</li>
+	<li>Temporarily fixed a bug that would prevent from setting dirty flag when editing right after saving (there still is a problem that blank Undo history is created).</li>
+	<li>Fixed a memory leak bug of displaying the contextual menu.</li>
+	<li>Modified the inner workings.</li>
+</ul>
+</section>
+</article>
+
+
+
+<article>
+<header>
+	<h1>CotEditor 0.7.2</h1>
+	<p>release: <time>2005-07-23</time></p>
+</header>
+
+
+<section>
+<h2>Additions/Changes</h2>
+
+<ul>
+	<li>Updated the default style file for PHP.</li>
+	<li>The menu items for color code editing are now always available when a window is opened, and they can now open the “HexColorCode Editor” panel (when the selection is not a color code, they only open the panel).</li>
+	<li>Modified the layout and interface of the “HexColorCode Editor” panel.</li>
+	<li>Modified the layout of the Get Info drawer.</li>
+	<li>The Window menu now has the Panels sub menu including Transparency and GoTo.</li>
+	<li>Rebuilded OgreKit under Mac OS X 10.3.9.</li>
+</ul>
+</section>
+
+<section>
+<h2>Fixes</h2>
+
+<ul>
+	<li>Fixed a bug that would cause a crash when changing the coloring style.</li>
+	<li>Fixed a bug where the setting of “Line endings for new document” was not reflected.</li>
+	<li>“Shift Right/Left” now works properly.</li>
+	<li>The initial position of the “HexColorCode Editor” panel is now memorized correctly.</li>
+	<li>You couldn't open “Script Error Window” via the Window menu. This problem has been fixed.</li>
+	<li>Modified the inner workings.</li>
+</ul>
+</section>
+</article>
+
+
+
+<article>
+<header>
+	<h1>CotEditor 0.7.1</h1>
+	<p>release: <time>2005-07-18</time></p>
+</header>
+
+
+<section>
+<h2>New Features</h2>
+
+<ul>
+	<li>Implemented the function for editing a hexadecimal color code as foreground/background color.</li>
+	<li>You can now Undo actions taken before saving the file.</li>
+</ul>
+</section>
+
+<section>
+<h2>Additions/Changes</h2>
+
+<ul>
+	<li>Updated application icon.</li>
+	<li>“ReadOnly” is now displayed with icon.</li>
+	<li>“Script Error Window” is now a panel.</li>
+	<li>Changed the background color of the status bar.</li>
+	<li>The 'position' display on the status bar is now localizable.</li>
+</ul>
+</section>
+
+<section>
+<h2>Fixes</h2>
+
+<ul>
+	<li>Fixed a bug where the AppleScript commands ‘length of document,’ ‘contents of document,’ ‘Range of Selection,’ and ‘Contents of Selection’ didn't return proper values.</li>
+	<li>The status bar now shows correct numbers when the line endings are CRLF.</li>
+	<li>Fixed a bug where the line endings were not set properly when saving.</li>
+	<li>Toggling “Line” and “Character” using keyboard shortcut on the “Go to” panel did not actually perform the action. This problem has been fixed.</li>
+	<li>Syntax coloring is now refreshed when inserting text via a script.</li>
+	<li>Fixed a bug that would cause an error when redoing.</li>
+	<li>If CotEditor was launched under Japanese environment, the menu item “Input Backslash” would be displayed garbled. This problem has been fixed.</li>
+	<li>Fixed a memory leak bug of nib file objects.</li>
+	<li>Modified the inner workings.</li>
+</ul>
+</section>
+</article>
+
+
+
+<article>
+<header>
+	<h1>CotEditor 0.7.0</h1>
+	<p>release: <time>2005-07-10</time></p>
+</header>
+
+
+<section>
+<h2>New Features</h2>
+
+<ul>
+	<li>Added an option “Drag selected text immediately” which enables dragging just like in Classic or Carbon.apps (experimental implementation).</li>
+	<li>Added menu items for inputting backslash and half-width yen sign (Option-¥ or Option-y works as well).</li>
+	<li>Added menu/toolbar item for re-coloring the whole document.</li>
+	<li>When the “Go to” panel is in front, pressing the shortcut for displaying the panel (Command-L) now toggles between “Character” and “Line.”</li>
+	<li>Added Japanese localization.</li>
+</ul>
+</section>
+
+<section>
+<h2>Additions/Changes</h2>
+
+<ul>
+	<li>Under an encoding that doesn't support half-width yen signs, they are now forcibly replaced with backslashes.</li>
+	<li>Improved syntax coloring mechanism and removed “Coloring update interval.”</li>
+	<li>Added syntax style files for Perl, Shell Script, and JavaScript.</li>
+	<li>Updated the default syntax style file for PHP.</li>
+	<li>An unwritable document containing change flag now displays the proper “Save” dialogue.</li>
+	<li>Upgraded OgreKit to version 2.0.2.</li>
+	<li>When the Find panel is made frontmost, the whole text in the Find field is now selected (reorganized OgreKit).</li>
+	<li>The Find field is now empty at the initial condition (reorganized OgreKit).</li>
+	<li>(Updated the documentation concerning the capability of searching a line ending or a tab character.)</li>
+	<li>Updated toolbar icons.</li>
+	<li>Slightly improved the performance of the first time invoking an AppleScript script via the Script menu.</li>
+	<li>When the AppleScript command ‘Replace’ received the Find and Replace strings that are identical to each other, it now returns an error.</li>
+	<li>After executing the AppleScript command ‘Replace,’ the caret now moves to the head of the inserted text.</li>
+	<li>The Script menu can now display the appropriate name of a script even if its file name contains ‘. (dot)’ unrelated to file extension or keyboard shortcut.</li>
+	<li>After editing/deleting a coloring style in the Preferences, coloring will now be updated when a document using that style is made frontmost.</li>
+	<li>When editing a coloring style in the Preferences, you can now start editing right after adding an element.</li>
+	<li>The “Show Extension Error” button in the Syntax preferences is now active only when an error occurred.</li>
+	<li>When all windows are minimized and the CotEditor icon in the Dock is clicked, one window is now always opened out of the Dock regardless of the “Open blank window with reopen AppleEvents” setting in the Preferences.</li>
+	<li>When checking syntax elements, an alert is now displayed if there are multiple identical strings.</li>
+	<li>When opening ‘ScriptMenu’ directory via the Script menu, the command is now invoked by AppleScript in order not to choose the About document.</li>
+	<li>Upgraded development environment to 10.4.1 + Xcode 2.1.</li>
+	<li>Changed the target processor from G4 to G3.</li>
+</ul>
+</section>
+
+<section>
+<h2>Fixes</h2>
+
+<ul>
+	<li>Fixed a memory leak bug due to the process of closing documents.</li>
+	<li>You could not save documents when using certain combinations of character and encoding. This problem has been fixed.</li>
+	<li>Fixed a bug where the “Go to” menu didn't appear in some previous versions.</li>
+	<li>The “Open blank window with reopen AppleEvents” option now works properly when the “Create New document at startup” option was turned off in the Preferences.</li>
+	<li>Fixed a bug that caused an application crash when a shell script you added to the Script menu didn't have any specifying strings for input/output.</li>
+	<li>Fixed a bug where some menu items were not turned on/off properly.</li>
+	<li>Fixed a bug that would make replacing-all using the AppleScript command ‘Replace’ extremely slow or hung.</li>
+	<li>When you copied a coloring style, the default display of the style name contained a file extension. This problem has been fixed.</li>
+	<li>Fixed a bug that would not update line numbers on reinterpreting document's encoding.</li>
+	<li>Modified the inner workings.</li>
+</ul>
+</section>
+</article>
+
+
+
+<article>
+<header>
+	<h1>CotEditor 0.6.5</h1>
+	<p>release: <time>2005-05-21</time></p>
+</header>
+
+
+<section>
+<h2>New Features</h2>
+
+<ul>
+	<li>Ruby scripts can now be added to the Script menu.</li>
+</ul>
+</section>
+
+<section>
+<h2>Additions/Changes</h2>
+
+<ul>
+	<li>Disabled displaying “Open Recent” in the Dock menu on Mac OS X 10.4.x.</li>
+	<li>Changed the resource file of the About window to rtf.</li>
+</ul>
+</section>
+
+<section>
+<h2>Fixes</h2>
+
+<ul>
+	<li>The bundled AppleScript droplet now launches properly.</li>
+</ul>
+</section>
+</article>
+
+
+
+<article>
+<header>
+	<h1>CotEditor 0.6.4</h1>
+	<p>release: <time>2005-04-21</time></p>
+</header>
+
+
+<section>
+<h2>New Features</h2>
+
+<ul>
+	<li>Added support for the AppleScript command ‘<code>string &lt;xx&gt; in {x,x}</code>’ which returns text not by selecting but by specifying the position/length.</li>
+	<li>Shell scripts (.sh, .pl, .php) can now be added to the Script menu.</li>
+	<li>Added support for the External Editor Protocol (ODB Editor Suite).</li>
+	<li>You can now specify whether to open a blank window with a “Re-Open” AppleEvent.</li>
+	<li>You can now enable/disable automatic spell checking by default.</li>
+	<li>Added “New,” “Open,” “Open Recent” to the Dock menu.</li>
+</ul>
+</section>
+
+<section>
+<h2>Additions/Changes</h2>
+
+<ul>
+	<li>When a new window that CotEditor automatically opens is staying unmodified, the next window will be opened at the same position.</li>
+	<li>Increased the speed of initial displaying of invisible characters. </li>
+	<li>With the “Space” of “Show Invisible Characters” turned on, Non-Breaking Spaces (<code>0x00A0</code>) are now also displayed.</li>
+	<li>Added ‘<code>&lt;br /&gt;</code>’ to the HTML style.</li>
+	<li>Bundled templates of script files.</li>
+</ul>
+</section>
+
+<section>
+<h2>Fixes</h2>
+
+<ul>
+	<li>Fixed a bug where the check mark of “Check Spelling as You Type” didn't appear in the menu.</li>
+	<li>Fixed a bug where some process didn't run when CotEditor was launched by double-clicking a document.</li>
+	<li>When CotEditor failed to open a file dropped on the application icon, an error message is now displayed properly.</li>
+	<li>Opening a certain type of binary file could cause an application crash. This problem has been temporarily fixed.</li>
+	<li>Wrong icon resource files are bundled in the previous version. This problem has been fixed.</li>
+</ul>
+</section>
+</article>
+
+
+
+<article>
+<header>
+	<h1>CotEditor 0.6.3</h1>
+	<p>release: <time>2005-07-18</time></p>
+</header>
+
+
+<section>
+<h2>New Features</h2>
+
+<ul>
+	<li>Added toolbar icons.</li>
+	<li>Selecting an item via the AppleScript menu while pressing Option and Shift keys now shows the corresponding script in Finder.</li>
+	<li>Implemented the function which enables you to insert a boilerplate string by dropping a file onto the document window.</li>
+</ul>
+</section>
+
+<section>
+<h2>Additions/Changes</h2>
+
+<ul>
+	<li>Slightly increased the process speed of opening a document.</li>
+	<li>The application icon now has smaller resources than 128 pixel.</li>
+	<li>“Add” and “Delete” buttons in the Preferences are now displayed as images for better visibility.</li>
+	<li>History information is now an individual document.</li>
+	<li>Modified the inner workings.</li>
+</ul>
+</section>
+
+<section>
+<h2>Fixes</h2>
+
+<ul>
+	<li>If you executed a shortcut containing the Option key in the AppleScript menu, Script Editor.app was launched to open the script. This problem has been fixed.</li>
+</ul>
+</section>
+</article>
+
+
+
+<article>
+<header>
+	<h1>CotEditor 0.6.2</h1>
+	<p>release: <time>2005-03-28</time></p>
+</header>
+
+
+<section>
+<h2>New Features</h2>
+
+<ul>
+	<li>Coloring styles can now be set to factory defaults.</li>
+	<li>Syntax coloring can now be disabled.</li>
+</ul>
+</section>
+
+<section>
+<h2>Additions/Changes</h2>
+
+<ul>
+	<li>Updated the syntax style file for CSS (double/single quotation, comment, etc.).</li>
+	<li>“Basic coloring” configuration is now in the View preferences pane.</li>
+</ul>
+</section>
+
+<section>
+<h2>Fixes</h2>
+
+<ul>
+	<li>CotEditor would fail to open a file when it contains only 2 bytes characters. This problem has been fixed.</li>
+</ul>
+</section>
+</article>
+
+
+
+<article>
+<header>
+	<h1>CotEditor 0.6.2</h1>
+	<p>release: <time>2005-07-18</time></p>
+</header>
+
+
+<section>
+<h2>New Features</h2>
+
+<ul>
+	<li>Additional support for AppleScript commands:<ul>
+		<li><code>change kana &lt;selection-object&gt; to [hiragana | katakana]</code></li>
+		<li><code>unicode normalization &lt;selection-object&gt; to [NFD / NFC / NFKD / NFKC]</code></li>
+		<li><code>scroll to caret &lt;document&gt;</code></li>
+	</ul></li>
+	<li>Selecting an item in the AppleScript menu while pressing Option key now opens the corresponding script with Script Editor.app.</li>
+	<li>The Utility and AppleScript menu items are now appear in the contextual menu.</li>
+	<li>The Get Info drawer now shows “Permission.”</li>
+	<li>An unwritable document now shows  “&lt;ReadOnly&gt;” on the status area.</li>
+	<li>An alert is now displayed when modifying an unwritable document.</li>
+</ul>
+</section>
+
+<section>
+<h2>Additions/Changes</h2>
+
+<ul>
+	<li>Changing the line ending style to the style already using is now ignored.</li>
+	<li>Modified the default toolbar to “Line Endings, File Encoding, Syntax Coloring, (flexible space), Get Info.”</li>
+	<li>Added syntax style file for CSS.</li>
+	<li>Updated the default style file for HTML (added ‘&amp;yen;’ and corrected ‘acronym’).</li>
+	<li>The AppleScript command ‘select all’ is no longer supported.</li>
+	<li>Disabled scrolling when changing the selection range with AppleScript commands.</li>
+	<li>Updated the bundled AppleScript scripts (corrected closing <code>&lt;dl&gt;</code> tag, added <code>&lt;hr /&gt;</code>, clarified the documents to that ‘selection’ objects belong).</li>
+	<li>Slightly modified the About window.</li>
+	<li>Slightly modified the buttons of the Edit Syntax Coloring sheet.</li>
+	<li>Increased the minimum number of characters which toggles coloring indicator sheet on opening documents.</li>
+</ul>
+</section>
+
+<section>
+<h2>Fixes</h2>
+
+<ul>
+	<li>You couldn't open a window when the specific font for displaying line numbers was not installed. This problem has been fixed.</li>
+	<li>Fixed a bug where the selection would corrupt after executing AppleScript command ‘<code>shift right</code>’ or ‘<code>shift left</code>.’</li>
+	<li>The document's coloring style became the extension-based style after saving, even when manually selecting a style other than the one determined by the extension. This problem has been fixed.</li>
+	<li>The backwards search option of AppleScript command ‘<code>find</code>’ and ‘<code>replace</code>’ is now ‘<code>backwards</code>.’</li>
+	<li>Fixed a bug that would hide part of text in the Get Info drawer after resizing the document window.</li>
+	<li>Undo now works properly after failing to save an unwritable file.</li>
+	<li>Fixed a bug of “Go to” where inputting negative values didn't work.</li>
+</ul>
+</section>
+</article>
+
+
+
+<article>
+<header>
+	<h1>CotEditor 0.6.0</h1>
+	<p>release: <time>2005-03-19</time></p>
+</header>
+
+<p><strong>initial release</strong></p>
+</article>
+</body>
+</html>

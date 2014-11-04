@@ -3,7 +3,7 @@
  CEOutlineMenuButtonCell
  
  CotEditor
- http://coteditor.github.io
+ http://coteditor.com
  
  Created on 2005-08-25 by nakamuxu
  encoding="UTF-8"
@@ -45,7 +45,7 @@
     
     // draw popup arrow image
     NSImage *arrowImage = [NSImage imageNamed:@"PopUpButtonArrowTemplate"];
-    NSRect imageFrame = NSMakeRect(NSMaxX(cellFrame) - [arrowImage size].width - 4, NSMinY(cellFrame),
+    NSRect imageFrame = NSMakeRect(NSMaxX(cellFrame) - [arrowImage size].width - 5, NSMinY(cellFrame),
                                    [arrowImage size].width, NSHeight(cellFrame));
     [self drawImage:arrowImage withFrame:imageFrame inView:controlView];
     

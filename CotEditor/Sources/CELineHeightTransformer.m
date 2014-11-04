@@ -3,7 +3,7 @@
  CELineHeightTransformer
  
  CotEditor
- http://coteditor.github.io
+ http://coteditor.com
  
  Created on 2014-07-14 by 1024jp
  encoding="UTF-8"

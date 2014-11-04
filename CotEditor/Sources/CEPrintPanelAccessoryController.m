@@ -3,7 +3,7 @@
  CEPrintAccessoryViewController
  
  CotEditor
- http://coteditor.github.io
+ http://coteditor.com
  
  Created on 2014-03-24 by 1024jp
  encoding="UTF-8"
@@ -85,31 +85,31 @@
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         
         // （プリンタ専用フォント設定は含まない。プリンタ専用フォント設定変更は、プリンタダイアログでは実装しない 20060927）
-        [self setLineNumberMode:[defaults integerForKey:CEDefaultPrintLineNumIndexKey]];
-        [self setInvisibleCharsMode:[defaults integerForKey:CEDefaultPrintInvisibleCharIndexKey]];
-        [self setPrintsHeader:[defaults boolForKey:CEDefaultPrintHeaderKey]];
-        [self setHeaderOneInfoType:[defaults integerForKey:CEDefaultHeaderOneStringIndexKey]];
-        [self setHeaderOneAlignmentType:[defaults integerForKey:CEDefaultHeaderOneAlignIndexKey]];
-        [self setHeaderTwoInfoType:[defaults integerForKey:CEDefaultHeaderTwoStringIndexKey]];
-        [self setHeaderTwoAlignmentType:[defaults integerForKey:CEDefaultHeaderTwoAlignIndexKey]];
-        [self setPrintsHeaderSeparator:[defaults boolForKey:CEDefaultPrintHeaderSeparatorKey]];
-        [self setPrintsFooter:[defaults boolForKey:CEDefaultPrintFooterKey]];
-        [self setFooterOneInfoType:[defaults integerForKey:CEDefaultFooterOneStringIndexKey]];
-        [self setFooterOneAlignmentType:[defaults integerForKey:CEDefaultFooterOneAlignIndexKey]];
-        [self setFooterTwoInfoType:[defaults integerForKey:CEDefaultFooterTwoStringIndexKey]];
-        [self setFooterTwoAlignmentType:[defaults integerForKey:CEDefaultFooterTwoAlignIndexKey]];
-        [self setPrintsFooterSeparator:[defaults boolForKey:CEDefaultPrintFooterSeparatorKey]];
+        _lineNumberMode = [defaults integerForKey:CEDefaultPrintLineNumIndexKey];
+        _invisibleCharsMode = [defaults integerForKey:CEDefaultPrintInvisibleCharIndexKey];
+        _printsHeader = [defaults boolForKey:CEDefaultPrintHeaderKey];
+        _headerOneInfoType = [defaults integerForKey:CEDefaultHeaderOneStringIndexKey];
+        _headerOneAlignmentType = [defaults integerForKey:CEDefaultHeaderOneAlignIndexKey];
+        _headerTwoInfoType = [defaults integerForKey:CEDefaultHeaderTwoStringIndexKey];
+        _headerTwoAlignmentType = [defaults integerForKey:CEDefaultHeaderTwoAlignIndexKey];
+        _printsHeaderSeparator = [defaults boolForKey:CEDefaultPrintHeaderSeparatorKey];
+        _printsFooter = [defaults boolForKey:CEDefaultPrintFooterKey];
+        _footerOneInfoType = [defaults integerForKey:CEDefaultFooterOneStringIndexKey];
+        _footerOneAlignmentType = [defaults integerForKey:CEDefaultFooterOneAlignIndexKey];
+        _footerTwoInfoType = [defaults integerForKey:CEDefaultFooterTwoStringIndexKey];
+        _footerTwoAlignmentType = [defaults integerForKey:CEDefaultFooterTwoAlignIndexKey];
+        _printsFooterSeparator = [defaults boolForKey:CEDefaultPrintFooterSeparatorKey];
         
         // テーマを使用する場合はセットしておく
         switch ([defaults integerForKey:CEDefaultPrintColorIndexKey]) {
             case CEBlackColorPrint:
-                [self setTheme:NSLocalizedStringFromTable(@"Black and White", CEPrintLocalizeTable, nil)];
+                _theme = NSLocalizedStringFromTable(@"Black and White", CEPrintLocalizeTable, nil);
                 break;
             case CESameAsDocumentColorPrint:
-                [self setTheme:[defaults stringForKey:CEDefaultThemeKey]];
+                _theme = [defaults stringForKey:CEDefaultThemeKey];
                 break;
             default:
-                [self setTheme:[defaults stringForKey:CEDefaultPrintThemeKey]];
+                _theme = [defaults stringForKey:CEDefaultPrintThemeKey];
         }
         
         // マージンに関わるキー値を監視する

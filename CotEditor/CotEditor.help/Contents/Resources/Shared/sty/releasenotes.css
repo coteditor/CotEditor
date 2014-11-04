@@ -1,0 +1,102 @@
+@charset "UTF-8";
+
+/* /////////////////////////////////////
+   CotEditor Release Notes Style Sheet
+   
+   author  : 1024jp <wolfrosch.com>
+   site    : coteditor.github.io
+   target  : changelog pages
+   lastMod : 2014-10-30
+  ////////////////////////////////////// */
+
+
+ul, ol {
+	border: none;
+	background: transparent;
+	margin: 0;
+	padding: 0 1.5em;
+}
+article li {
+	margin: 0.2em 0;
+}
+article ul li {
+	list-style-type: circle;
+}
+
+footer {
+	font-size: 90%;
+	color: hsl(0,0%,50%);
+	margin-top: 2em;
+	padding: 0 1em;
+}
+footer::before {
+	content: '';
+	display: block;
+	width: 140px;
+	border-top: 1px solid hsla(0,0%,0%,.2);
+	margin: 0.8em 0;
+}
+
+code {
+	border: 1px solid hsla(0,0%,0%,.1);
+	background: hsla(0,0%,0%,.03);
+	padding: 0 0.3em;
+	border-radius: 2px;
+}
+
+
+p.note strong {
+	text-decoration: underline;
+}
+
+article {
+	font-size: 13px;
+}
+
+article+article {
+	margin-top: 4em;
+	border-top: 1px solid hsla(0,0%,0%,.25);
+	padding-top: 1em;
+}
+
+article > header h1 {
+	font-size: 140%;
+	font-weight: normal;
+	margin: 0;
+}
+article > header p {
+	color: hsl(0,0%,40%);
+	margin: 0;
+}
+article h2 {
+	font-size: 110%;
+	font-weight: bold;
+}
+
+.none {
+	color: hsl(0,0%,50%);
+}
+
+/* highlights */
+.highlights {
+	font: 'Helvetica Neue';
+	border-top: 2px solid hsl(203,20%,90%);
+	border-bottom: 2px solid hsl(203,20%,90%);
+	padding: 1em 0;
+}
+.highlights h1 {
+	margin-bottom: 0.5em;
+}
+.highlights dt:before {
+	content: '✔︎';
+	color: hsl(90,50%,50%);
+	font-size:140%;
+	vertical-align: -0.05em;
+	margin-right: 0.3em;
+}
+.highlights dt {
+	font-weight: bold;
+}
+.highlights dd {
+	margin-bottom: 1em;
+}

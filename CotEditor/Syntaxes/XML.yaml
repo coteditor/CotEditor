@@ -37,7 +37,7 @@ attributes:
   regularExpression: true
 metadata:
   author: "1024jp"
-  distributionURL: "http://coteditor.github.io"
+  distributionURL: "http://coteditor.com"
   version: "1.2"
   license: "Same as CotEditor"
   lastModified: "2014-09-24"

@@ -3,7 +3,7 @@
  CESyntaxEditSheetController
  
  CotEditor
- http://coteditor.github.io
+ http://coteditor.com
  
  Created on 2014-04-03 by 1024jp
  encoding="UTF-8"
@@ -60,8 +60,8 @@ typedef NS_ENUM(NSUInteger, CETabIndex) {
 @property (nonatomic) NSMutableDictionary *style;  // スタイル定義（NSArrayControllerを通じて操作）
 @property (nonatomic) CESyntaxEditSheetMode mode;
 @property (nonatomic, copy) NSString *originalStyleName;   // シートを生成した際に指定したスタイル名
-@property (nonatomic) BOOL isStyleNameValid;
-@property (nonatomic) BOOL isBundledStyle;
+@property (nonatomic, getter=isStyleNameValid) BOOL styleNameValid;
+@property (nonatomic, getter=isBundledStyle) BOOL bundledStyle;
 
 @property (nonatomic, weak) IBOutlet NSTableView *menuTableView;
 @property (nonatomic, weak) IBOutlet NSTextField *styleNameField;
@@ -115,11 +115,11 @@ typedef NS_ENUM(NSUInteger, CETabIndex) {
         }
         if (!name) { return nil; }
         
-        [self setMode:mode];
-        [self setOriginalStyleName:name];
-        [self setStyle:style];
-        [self setIsStyleNameValid:YES];
-        [self setIsBundledStyle:[[CESyntaxManager sharedManager] isBundledStyle:name]];
+        _mode = mode;
+        _originalStyleName = name;
+        _style = style;
+        _styleNameValid = YES;
+        _bundledStyle = [[CESyntaxManager sharedManager] isBundledStyle:name];
     }
     
     return self;
@@ -403,7 +403,7 @@ typedef NS_ENUM(NSUInteger, CETabIndex) {
         }
     }
     
-    [self setIsStyleNameValid:(!message)];
+    [self setStyleNameValid:(!message)];
     [[self messageField] setStringValue:message ? : @""];
     
     return message;
@@ -415,23 +415,27 @@ typedef NS_ENUM(NSUInteger, CETabIndex) {
 - (NSUInteger)validate
 // ------------------------------------------------------
 {
-    NSArray *errorMessages = [[CESyntaxManager sharedManager] validateSyntax:[self style]];
-    NSUInteger numberOfErrors = [errorMessages count];
-    NSMutableString *resultMessage = [NSMutableString string];
+    NSArray *results = [[CESyntaxManager sharedManager] validateSyntax:[self style]];
+    NSUInteger numberOfErrors = [results count];
+    NSMutableString *message = [NSMutableString string];
     
     if (numberOfErrors == 0) {
-        [resultMessage appendString:NSLocalizedString(@"No error was found.", nil)];
+        [message appendString:NSLocalizedString(@"No error was found.", nil)];
     } else if (numberOfErrors == 1) {
-        [resultMessage appendString:NSLocalizedString(@"An error was found!", nil)];
+        [message appendString:NSLocalizedString(@"An error was found!", nil)];
     } else {
-        [resultMessage appendFormat:NSLocalizedString(@"%i errors were found!", nil), numberOfErrors];
+        [message appendFormat:NSLocalizedString(@"%i errors were found!", nil), numberOfErrors];
     }
     
-    for (NSString *message in errorMessages) {
-        [resultMessage appendFormat:@"\n\n%@", message];
+    for (NSDictionary *result in results) {
+        [message appendFormat:@"\n\n%@: [%@] %@\n\t> %@",
+         result[CESyntaxValidationTypeKey],
+         result[CESyntaxValidationRoleKey],
+         result[CESyntaxValidationStringKey],
+         result[CESyntaxValidationMessageKey]];
     }
     
-    [[self validationTextView] setString:resultMessage];
+    [[self validationTextView] setString:message];
     
     return numberOfErrors;
 }

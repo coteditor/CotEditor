@@ -297,7 +297,7 @@ attributes:
 - beginString: "@staticmethod"
 metadata:
   author: "nanasiya"
-  distributionURL: "http://coteditor.github.io"
+  distributionURL: "http://coteditor.com"
   version: "2.1"
   description: "Support both Python2 and Python3.\n\nMaintained by 1024jp since
     2013."

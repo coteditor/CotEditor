@@ -3,7 +3,7 @@
  CEScriptManager
  
  CotEditor
- http://coteditor.github.io
+ http://coteditor.com
  
  Created on 2005-03-12 by nakamuxu
  encoding="UTF-8"
@@ -360,9 +360,6 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
         return CEAppendToAllTextType;
         
     } else if ([scannedString isEqualToString:@"Pasteboard"]) {
-        return CEPasteboardType;
-        
-    } else if ([scannedString isEqualToString:@"Pasteboard puts"]) { // 以前の定義文字列。互換性のため。(2007.05.26)
         return CEPasteboardType;
     }
     

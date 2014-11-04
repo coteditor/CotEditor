@@ -3,7 +3,7 @@
  CEODBEventSender
  
  CotEditor
- http://coteditor.github.io
+ http://coteditor.com
  
  Created on 2014-07-04 by 1024jp
  encoding="UTF-8"
@@ -75,9 +75,9 @@
         }
         
         if (fileSender) {
-            [self setFileSender:fileSender];
+            _fileSender = fileSender;
             if (fileToken) {
-                [self setFileToken:fileToken];
+                _fileToken = fileToken;
             }
         }
     }

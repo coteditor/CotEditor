@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6185.11" systemVersion="13E28" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment defaultVersion="1070" identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6185.11"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6250"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
@@ -17,7 +17,7 @@
             <windowStyleMask key="styleMask" titled="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="234" y="322" width="420" height="500"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1028"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
             <view key="contentView" id="268">
                 <rect key="frame" x="0.0" y="0.0" width="420" height="500"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -38,9 +38,9 @@ DQ
                             <action selector="closeSheet:" target="-2" id="vsf-7A-9uH"/>
                         </connections>
                     </button>
-                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="283">
-                        <rect key="frame" x="18" y="463" width="384" height="17"/>
-                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="ファイル関連付けのコンフリクト" id="1022">
+                    <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="283">
+                        <rect key="frame" x="18" y="463" width="199" height="17"/>
+                        <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="left" title="ファイル関連付けのコンフリクト" usesSingleLineMode="YES" id="1022">
                             <font key="font" metaFont="systemBold"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -72,7 +72,7 @@ DQ
                     </textField>
                     <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xAP-IR-n67">
                         <rect key="frame" x="20" y="224" width="380" height="148"/>
-                        <clipView key="contentView" id="L98-b5-a8e">
+                        <clipView key="contentView" misplaced="YES" id="L98-b5-a8e">
                             <rect key="frame" x="1" y="17" width="378" height="130"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
@@ -222,7 +222,7 @@ DQ
                             <rect key="frame" x="1" y="129" width="358" height="16"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
-                        <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="yam-Ud-4eR">
+                        <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="yam-Ud-4eR">
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                         <tableHeaderView key="headerView" id="47b-0u-aDN">
@@ -232,7 +232,7 @@ DQ
                     </scrollView>
                     <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UlG-p8-7Ua">
                         <rect key="frame" x="20" y="46" width="380" height="119"/>
-                        <clipView key="contentView" id="d9t-5K-qp7">
+                        <clipView key="contentView" misplaced="YES" id="d9t-5K-qp7">
                             <rect key="frame" x="1" y="17" width="378" height="101"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
@@ -382,7 +382,7 @@ DQ
                             <rect key="frame" x="1" y="100" width="358" height="16"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
-                        <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="gJ2-m6-0xm">
+                        <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="gJ2-m6-0xm">
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                         <tableHeaderView key="headerView" id="5fu-w7-rdO">
@@ -390,17 +390,17 @@ DQ
                             <autoresizingMask key="autoresizingMask"/>
                         </tableHeaderView>
                     </scrollView>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="PVg-8D-w5u">
+                    <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="PVg-8D-w5u">
                         <rect key="frame" x="18" y="398" width="56" height="17"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="拡張子：" id="31z-NP-PkW">
+                        <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="拡張子：" usesSingleLineMode="YES" id="31z-NP-PkW">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="g7t-aj-KCT">
+                    <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="g7t-aj-KCT">
                         <rect key="frame" x="18" y="191" width="82" height="17"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="ファイル名：" id="Msi-ee-MNF">
+                        <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="ファイル名：" usesSingleLineMode="YES" id="Msi-ee-MNF">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -413,7 +413,6 @@ DQ
                     <constraint firstAttribute="trailing" secondItem="281" secondAttribute="trailing" constant="20" symbolic="YES" id="4Zd-tU-tq9"/>
                     <constraint firstItem="SrJ-wc-JiF" firstAttribute="leading" secondItem="268" secondAttribute="leading" constant="20" symbolic="YES" id="8KV-Dz-zJW"/>
                     <constraint firstItem="SrJ-wc-JiF" firstAttribute="top" secondItem="g7t-aj-KCT" secondAttribute="bottom" constant="4" id="AoD-MM-8MF"/>
-                    <constraint firstAttribute="trailing" secondItem="283" secondAttribute="trailing" constant="20" symbolic="YES" id="Dg4-79-xG3"/>
                     <constraint firstItem="PVg-8D-w5u" firstAttribute="leading" secondItem="268" secondAttribute="leading" constant="20" symbolic="YES" id="E6i-88-l4Z"/>
                     <constraint firstItem="vvf-rg-GPm" firstAttribute="top" secondItem="PVg-8D-w5u" secondAttribute="bottom" constant="4" id="Maf-Gt-73s"/>
                     <constraint firstItem="pm8-il-gYJ" firstAttribute="leading" secondItem="268" secondAttribute="leading" constant="20" symbolic="YES" id="Pnd-c1-OWE"/>

@@ -3,7 +3,7 @@
  CETextView
  
  CotEditor
- http://coteditor.github.io
+ http://coteditor.com
  
  Created on 2005-03-30 by nakamuxu
  encoding="UTF-8"
@@ -92,7 +92,7 @@ const NSInteger kNoMenuItem = -1;
         // set the width of every tab by first checking the size of the tab in spaces in the current font and then remove all tabs that sets automatically and then set the default tab stop distance
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         
-        [self setTabWidth:[defaults integerForKey:CEDefaultTabWidthKey]];
+        _tabWidth = [defaults integerForKey:CEDefaultTabWidthKey];
         
         NSFont *font = [NSFont fontWithName:[defaults stringForKey:CEDefaultFontNameKey]
                                        size:(CGFloat)[defaults doubleForKey:CEDefaultFontSizeKey]];
@@ -102,17 +102,16 @@ const NSInteger kNoMenuItem = -1;
             [paragraphStyle removeTabStop:textTabToBeRemoved];
         }
         [paragraphStyle setDefaultTabInterval:[self tabIntervalFromFont:font]];
-        [self setParagraphStyle:paragraphStyle];
+        _paragraphStyle = paragraphStyle;
         // （NSParagraphStyle の lineSpacing を設定すればテキスト描画時の行間は制御できるが、
         // 「文書の1文字目に1バイト文字（または2バイト文字）を入力してある状態で先頭に2バイト文字（または1バイト文字）を
         // 挿入すると行間がズレる」問題が生じるため、CELayoutManager および CEATSTypesetter で制御している）
 
         // テーマの設定
-        _backgroundAlpha = 1.0;
         [self setTheme:[CETheme themeWithName:[defaults stringForKey:CEDefaultThemeKey]]];
         
         // set the values
-        [self setAutoTabExpandEnabled:[defaults boolForKey:CEDefaultAutoExpandTabKey]];
+        _autoTabExpandEnabled = [defaults boolForKey:CEDefaultAutoExpandTabKey];
         [self setSmartInsertDeleteEnabled:[defaults boolForKey:CEDefaultSmartInsertAndDeleteKey]];
         [self setContinuousSpellCheckingEnabled:[defaults boolForKey:CEDefaultCheckSpellingAsTypeKey]];
         if ([self respondsToSelector:@selector(setAutomaticQuoteSubstitutionEnabled:)]) {  // only on OS X 10.9 and later
@@ -134,10 +133,10 @@ const NSInteger kNoMenuItem = -1;
                                                (CGFloat)([defaults doubleForKey:CEDefaultTextContainerInsetHeightTopKey] +
                                                          [defaults doubleForKey:CEDefaultTextContainerInsetHeightBottomKey]) / 2)];
         [self setLineSpacing:(CGFloat)[defaults doubleForKey:CEDefaultLineSpacingKey]];
-        [self setInsertionRect:NSZeroRect];
-        [self setTextContainerOriginPoint:NSMakePoint((CGFloat)[defaults doubleForKey:CEDefaultTextContainerInsetWidthKey],
-                                                      (CGFloat)[defaults doubleForKey:CEDefaultTextContainerInsetHeightTopKey])];
-        [self setNeedsUpdateOutlineMenuItemSelection:YES];
+        _insertionRect = NSZeroRect;
+        _textContainerOriginPoint = NSMakePoint((CGFloat)[defaults doubleForKey:CEDefaultTextContainerInsetWidthKey],
+                                                (CGFloat)[defaults doubleForKey:CEDefaultTextContainerInsetHeightTopKey]);
+        _needsUpdateOutlineMenuItemSelection = YES;
         
         [self applyTypingAttributes];
         
@@ -162,6 +161,7 @@ const NSInteger kNoMenuItem = -1;
     for (NSString *key in [self observedDefaultKeys]) {
         [[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:key];
     }
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     [self stopCompletionTimer];
 }
 
@@ -199,6 +199,31 @@ const NSInteger kNoMenuItem = -1;
     [[(CEWindowController *)[[self window] windowController] editor] setTextView:self];
     
     return [super becomeFirstResponder];
+}
+
+
+// ------------------------------------------------------
+/// 自身がウインドウに組み込まれた
+-(void)viewDidMoveToWindow
+// ------------------------------------------------------
+{
+    [super viewDidMoveToWindow];
+    
+    // テーマ背景色を反映させる
+    [[self window] setBackgroundColor:[[self theme] backgroundColor]];
+    
+    // レイヤーバックドビューにする
+    if (NSAppKitVersionNumber >= NSAppKitVersionNumber10_8) { // on Mountain Lion and later
+        [[self enclosingScrollView] setWantsLayer:YES];
+        [[[self enclosingScrollView] contentView] setCopiesOnScroll:YES];
+        [self setLayerContentsRedrawPolicy:NSViewLayerContentsRedrawOnSetNeedsDisplay];
+    }
+    
+    // ウインドウの透明フラグを監視する
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didWindowOpacityChange:)
+                                                 name:CEWindowOpacityDidChangeNotification
+                                               object:[self window]];
 }
 
 
@@ -676,8 +701,9 @@ const NSInteger kNoMenuItem = -1;
                                   toPoint:NSMakePoint(x, length)];
     }
     
-    // テキストビューを透過させている時に影を更新描画する
-    if ([[self backgroundColor] alphaComponent] < 1.0) {
+    // テキストビューを透過させている時に影を更新描画する (on Lion)
+    // Lion 上では Layer-backed になっていないのでビュー越しにテキストのドロップシャドウが描画される。Lion サポート落としたら多分不要。(2014-10 1024jp)
+    if ((NSAppKitVersionNumber < NSAppKitVersionNumber10_8) && ![[self window] isOpaque]) {
         [[self window] invalidateShadow];
     }
 }
@@ -1191,24 +1217,6 @@ const NSInteger kNoMenuItem = -1;
 
 
 // ------------------------------------------------------
-/// ビューの不透明度をセット
-- (void)setBackgroundAlpha:(CGFloat)alpha
-// ------------------------------------------------------
-{
-    [self setBackgroundColor:[[self backgroundColor] colorWithAlphaComponent:alpha]];
-    [self setHighlightLineColor:[[self highlightLineColor] colorWithAlphaComponent:alpha]];
-    
-    if (floor(NSAppKitVersionNumber) > 1265) { // on Yosemite and later
-        [[self enclosingScrollView] setWantsLayer:YES];
-    } else if (NSAppKitVersionNumber >= NSAppKitVersionNumber10_8) { // on Mountain Lion or Mavericks
-        [[self enclosingScrollView] setWantsLayer:(alpha == 1.0)];
-    }
-    
-    _backgroundAlpha = alpha;
-}
-
-
-// ------------------------------------------------------
 /// 選択文字列を置換
 - (void)replaceSelectedStringTo:(NSString *)string scroll:(BOOL)doScroll
 // ------------------------------------------------------
@@ -1364,18 +1372,16 @@ const NSInteger kNoMenuItem = -1;
 - (void)setTheme:(CETheme *)theme;
 // ------------------------------------------------------
 {
-    NSColor *backgroundColor = [theme backgroundColor];
-    NSColor *highlightLineColor = [theme lineHighLightColor];
+    [[self window] setBackgroundColor:[theme backgroundColor]];
     
+    [self setBackgroundColor:[theme backgroundColor]];
     [self setTextColor:[theme textColor]];
-    [self setBackgroundColor:[backgroundColor colorWithAlphaComponent:[self backgroundAlpha]]];
-    [self setHighlightLineColor:[highlightLineColor colorWithAlphaComponent:[self backgroundAlpha]]];
+    [self setHighlightLineColor:[theme lineHighLightColor]];
     [self setInsertionPointColor:[theme insertionPointColor]];
     [self setSelectedTextAttributes:@{NSBackgroundColorAttributeName: [theme selectionColor]}];
     
     // 背景色に合わせたスクローラのスタイルをセット
-    CGFloat brightness = [[backgroundColor colorUsingColorSpaceName:NSDeviceRGBColorSpace] brightnessComponent];
-    NSInteger knobStyle = (brightness < 0.5) ? NSScrollerKnobStyleLight : NSScrollerKnobStyleDefault;
+    NSInteger knobStyle = [theme isDarkTheme] ? NSScrollerKnobStyleLight : NSScrollerKnobStyleDefault;
     [[self enclosingScrollView] setScrollerKnobStyle:knobStyle];
     
     _theme = theme;
@@ -2083,6 +2089,17 @@ const NSInteger kNoMenuItem = -1;
              CEDefaultSmartInsertAndDeleteKey,
              CEDefaultCheckSpellingAsTypeKey,
              CEDefaultEnableSmartQuotesKey];
+}
+
+
+// ------------------------------------------------------
+/// ウインドウの透明設定が変更された
+- (void)didWindowOpacityChange:(NSNotification *)notification
+// ------------------------------------------------------
+{
+    // ウインドウが不透明な時は自前で背景を描画する（サブピクセルレンダリングを有効にするためには layer-backed で不透明なビューが必要）
+    [self setDrawsBackground:[[self window] isOpaque]];
+    [self setNeedsDisplay:YES];
 }
 
 

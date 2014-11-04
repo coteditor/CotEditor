@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6249" systemVersion="13F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6249"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6250"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -777,7 +777,7 @@
                         </items>
                     </menu>
                 </menuItem>
-                <menuItem title="スクリプト" image="ScriptMenuTemplate" tag="800" id="617" customClass="CEScriptMenuItem">
+                <menuItem title="スクリプト" image="ScriptTemplate" tag="800" id="617" customClass="CEScriptMenuItem">
                     <menu key="submenu" title="スクリプト" id="616">
                         <items>
                             <menuItem title="項目" id="618"/>
@@ -796,19 +796,19 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="CotEditor スクリプトマニュアル" id="IJM-xJ-1oK">
                                     <items>
-                                        <menuItem title="スクリプトフォルダについて" tag="2" id="DGM-eF-8qs">
+                                        <menuItem title="スクリプトフォルダについて" tag="1" id="DGM-eF-8qs">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="openBundledDocument:" target="290" id="xXK-Q9-6gL"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="AppleScript でのスクリプト作成" tag="3" id="Ahy-z3-Irr">
+                                        <menuItem title="AppleScript でのスクリプト作成" tag="2" id="Ahy-z3-Irr">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="openBundledDocument:" target="290" id="M6M-nd-qMt"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="他言語でのスクリプト作成" tag="4" id="Qer-QI-B6d">
+                                        <menuItem title="他言語でのスクリプト作成" tag="3" id="Qer-QI-B6d">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="openBundledDocument:" target="290" id="Mfq-Ow-Ik9"/>
@@ -826,20 +826,26 @@
                             <menuItem isSeparatorItem="YES" id="619">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
-                            <menuItem title="バージョン履歴" id="823">
+                            <menuItem title="リリースノート" id="823">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
-                                    <action selector="openBundledDocument:" target="290" id="828"/>
+                                    <action selector="openHelpAnchor:" target="290" id="tRC-ed-iOt"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="謝辞" tag="1" id="833">
+                            <menuItem title="CotEditor 2.0 の新機能" tag="9" id="cMc-G8-dgA">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="openHelpAnchor:" target="290" id="dIy-k1-z0p"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="謝辞" id="833">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="openBundledDocument:" target="290" id="834"/>
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="tV2-Tm-LbD"/>
-                            <menuItem title="不具合を報告…" id="qHT-FN-VpY">
+                            <menuItem title="不具合を報告" id="qHT-FN-VpY">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="reportBug:" target="290" id="cdN-Ah-xEy"/>
@@ -863,6 +869,6 @@
         <customObject id="836" customClass="SUUpdater"/>
     </objects>
     <resources>
-        <image name="ScriptMenuTemplate" width="22" height="22"/>
+        <image name="ScriptTemplate" width="22" height="22"/>
     </resources>
 </document>

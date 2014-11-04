@@ -3,7 +3,7 @@
  constants
  
  CotEditor
- http://coteditor.github.io
+ http://coteditor.com
  
  Created on 2004-12-13 by nakamuxu
  encoding="UTF-8"
@@ -58,6 +58,8 @@ extern NSString *const CEDistributionURLKey;
 extern NSString *const CELisenceKey;
 extern NSString *const CEDescriptionKey;
 
+// Help anchors
+extern NSString *const kHelpAnchors[];
 
 
 #pragma mark Notifications
@@ -133,7 +135,6 @@ extern NSString *const CEDefaultSyntaxStyleKey;
 extern NSString *const CEDefaultThemeKey;
 extern NSString *const CEDefaultDelayColoringKey;
 extern NSString *const CEDefaultFileDropArrayKey;
-extern NSString *const CEDefaultNSDragAndDropTextDelayKey;
 extern NSString *const CEDefaultSmartInsertAndDeleteKey;
 extern NSString *const CEDefaultShouldAntialiasKey;
 extern NSString *const CEDefaultAutoCompleteKey;
@@ -180,7 +181,6 @@ extern NSString *const CEDefaultColorCodeTypeKey;
 // hidden settings
 extern NSString *const CEDefaultUsesTextFontForInvisiblesKey;
 extern NSString *const CEDefaultLineNumFontNameKey;
-extern NSString *const CEDefaultLineNumFontColorKey;
 extern NSString *const CEDefaultBasicColoringDelayKey;
 extern NSString *const CEDefaultFirstColoringDelayKey;
 extern NSString *const CEDefaultSecondColoringDelayKey;
@@ -406,17 +406,6 @@ extern CGFloat const kPrintHFVerticalMargin;      // top/bottom margin for heade
 extern CGFloat const kHeaderFooterLineHeight;
 extern CGFloat const kSeparatorPadding;
 extern CGFloat const kNoSeparatorPadding;
-
-
-
-#pragma mark Preferences
-
-// ------------------------------------------------------
-// Preferences
-// ------------------------------------------------------
-
-// Help anchors
-extern NSString *const kHelpPrefAnchors[];
 
 
 

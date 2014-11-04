@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6249" systemVersion="13F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6249"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6250"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -777,7 +777,7 @@
                         </items>
                     </menu>
                 </menuItem>
-                <menuItem title="Script" image="ScriptMenuTemplate" tag="800" id="617" customClass="CEScriptMenuItem">
+                <menuItem title="Script" image="ScriptTemplate" tag="800" id="617" customClass="CEScriptMenuItem">
                     <menu key="submenu" title="Script" id="616">
                         <items>
                             <menuItem title="Item" id="618"/>
@@ -796,19 +796,19 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="CotEditor Scripting Manual" id="OLa-Mb-rXS">
                                     <items>
-                                        <menuItem title="About ScriptMenu Folder" tag="2" id="u2o-8v-WPL">
+                                        <menuItem title="About ScriptMenu Folder" tag="1" id="u2o-8v-WPL">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="openBundledDocument:" target="290" id="HQ0-1V-jTT"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Scripting with AppleScript" tag="3" id="GRD-OA-psD">
+                                        <menuItem title="Scripting with AppleScript" tag="2" id="GRD-OA-psD">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="openBundledDocument:" target="290" id="ALX-8u-IiD"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Scripting with Other Languages" tag="4" id="zKW-b0-WR1">
+                                        <menuItem title="Scripting with Other Languages" tag="3" id="zKW-b0-WR1">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="openBundledDocument:" target="290" id="kms-XO-4c3"/>
@@ -826,20 +826,26 @@
                             <menuItem isSeparatorItem="YES" id="619">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
-                            <menuItem title="Version History" id="822">
+                            <menuItem title="Release Notes" id="822">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
-                                    <action selector="openBundledDocument:" target="290" id="827"/>
+                                    <action selector="openHelpAnchor:" target="290" id="ooo-Mu-EKH"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Acknowledgements" tag="1" id="824">
+                            <menuItem title="What's New in CotEditor 2.0" tag="9" id="DCW-Ij-540">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="openHelpAnchor:" target="290" id="jUU-Pz-dYo"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Acknowledgements" id="824">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="openBundledDocument:" target="290" id="825"/>
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="rfZ-hc-oJE"/>
-                            <menuItem title="Report Bug…" id="Bk3-xx-uft">
+                            <menuItem title="Report a Bug" id="Bk3-xx-uft">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="reportBug:" target="290" id="KOP-ne-blB"/>
@@ -863,6 +869,6 @@
         <customObject id="831" customClass="SUUpdater"/>
     </objects>
     <resources>
-        <image name="ScriptMenuTemplate" width="22" height="22"/>
+        <image name="ScriptTemplate" width="22" height="22"/>
     </resources>
 </document>

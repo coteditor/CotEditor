@@ -3,7 +3,7 @@
  CEAppDelegate
  
  CotEditor
- http://coteditor.github.io
+ http://coteditor.com
  
  Created on 2004-12-13 by nakamuxu
  encoding="UTF-8"
@@ -34,5 +34,9 @@
 @interface CEAppDelegate : NSObject <NSApplicationDelegate>
 
 @property (readonly, nonatomic) NSURL *supportDirectoryURL;
+
+
+// action messages
+- (IBAction)openHelpAnchor:(id)sender;
 
 @end

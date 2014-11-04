@@ -36,9 +36,9 @@
                         <binding destination="-2" name="selectedValue" keyPath="theme" id="aH5-5E-TcJ"/>
                     </connections>
                 </popUpButton>
-                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="584">
+                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="584">
                     <rect key="frame" x="44" y="315" width="56" height="17"/>
-                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="カラー：" id="721">
+                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="カラー：" usesSingleLineMode="YES" id="721">
                         <font key="font" size="13" name="AquaKana"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -64,9 +64,9 @@
                         <binding destination="-2" name="selectedIndex" keyPath="invisibleCharsMode" id="UkP-Ba-QDG"/>
                     </connections>
                 </popUpButton>
-                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="423">
+                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="423">
                     <rect key="frame" x="18" y="253" width="82" height="17"/>
-                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="不可視文字：" id="718">
+                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="不可視文字：" usesSingleLineMode="YES" id="718">
                         <font key="font" size="13" name="AquaKana"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -92,9 +92,9 @@
                         <binding destination="-2" name="selectedIndex" keyPath="lineNumberMode" id="T1v-IJ-jYl"/>
                     </connections>
                 </popUpButton>
-                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="415">
+                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="415">
                     <rect key="frame" x="44" y="284" width="56" height="17"/>
-                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="行番号：" id="716">
+                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="行番号：" usesSingleLineMode="YES" id="716">
                         <font key="font" size="13" name="AquaKana"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -137,9 +137,9 @@
                         <binding destination="-2" name="value" keyPath="printsHeaderSeparator" id="jTb-lZ-Aiz"/>
                     </connections>
                 </button>
-                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="256">
+                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="256">
                     <rect key="frame" x="48" y="190" width="52" height="17"/>
-                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="1行目：" id="706">
+                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="1行目：" usesSingleLineMode="YES" id="706">
                         <font key="font" size="13" name="AquaKana"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -179,9 +179,9 @@
                         <binding destination="-2" name="enabled" keyPath="printsHeader" id="OmC-ew-3w4"/>
                     </connections>
                 </popUpButton>
-                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="257">
+                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="257">
                     <rect key="frame" x="48" y="159" width="52" height="17"/>
-                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="2行目：" id="707">
+                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="2行目：" usesSingleLineMode="YES" id="707">
                         <font key="font" size="13" name="AquaKana"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -265,9 +265,9 @@
                         <binding destination="-2" name="value" keyPath="printsFooterSeparator" id="8Uq-wh-13W"/>
                     </connections>
                 </button>
-                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="296">
+                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="296">
                     <rect key="frame" x="48" y="40" width="52" height="17"/>
-                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="2行目：" id="712">
+                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="2行目：" usesSingleLineMode="YES" id="712">
                         <font key="font" size="13" name="AquaKana"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -300,9 +300,9 @@
                         <binding destination="-2" name="enabled" keyPath="printsFooter" id="OnN-VH-8BV"/>
                     </connections>
                 </popUpButton>
-                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="295">
+                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="295">
                     <rect key="frame" x="48" y="71" width="52" height="17"/>
-                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="1行目：" id="711">
+                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="1行目：" usesSingleLineMode="YES" id="711">
                         <font key="font" size="13" name="AquaKana"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -361,7 +361,7 @@
                 <constraint firstItem="313" firstAttribute="centerY" secondItem="ff5-dQ-geo" secondAttribute="centerY" id="M3y-5l-LG0"/>
                 <constraint firstItem="ErI-yf-OgH" firstAttribute="leading" secondItem="198" secondAttribute="trailing" constant="8" symbolic="YES" id="NCN-Zb-A0L"/>
                 <constraint firstItem="415" firstAttribute="trailing" secondItem="423" secondAttribute="trailing" id="OCa-Df-bFW"/>
-                <constraint firstItem="305" firstAttribute="top" secondItem="198" secondAttribute="bottom" constant="10" id="PRA-Wf-g9H"/>
+                <constraint firstItem="305" firstAttribute="top" secondItem="198" secondAttribute="bottom" constant="10" symbolic="YES" id="PRA-Wf-g9H"/>
                 <constraint firstItem="584" firstAttribute="centerY" secondItem="585" secondAttribute="centerY" id="QBc-rF-mcp"/>
                 <constraint firstItem="416" firstAttribute="leading" secondItem="415" secondAttribute="trailing" constant="8" symbolic="YES" id="QPO-c2-Ndp"/>
                 <constraint firstItem="256" firstAttribute="top" secondItem="303" secondAttribute="bottom" constant="10" id="Ss5-Pi-jim"/>
@@ -377,7 +377,7 @@
                 <constraint firstItem="321" firstAttribute="centerY" secondItem="296" secondAttribute="centerY" id="gR7-c1-6QC"/>
                 <constraint firstItem="ff5-dQ-geo" firstAttribute="leading" secondItem="313" secondAttribute="trailing" constant="8" symbolic="YES" id="iF7-9t-xwc"/>
                 <constraint firstItem="295" firstAttribute="top" secondItem="304" secondAttribute="bottom" constant="8" symbolic="YES" id="iH3-EQ-EN1"/>
-                <constraint firstItem="321" firstAttribute="top" secondItem="313" secondAttribute="bottom" constant="10" id="jPv-78-GLp"/>
+                <constraint firstItem="321" firstAttribute="top" secondItem="313" secondAttribute="bottom" constant="10" symbolic="YES" id="jPv-78-GLp"/>
                 <constraint firstItem="216" firstAttribute="top" secondItem="305" secondAttribute="bottom" constant="8" id="kiW-JN-2di"/>
                 <constraint firstItem="305" firstAttribute="width" secondItem="321" secondAttribute="width" id="lAU-Bw-y2p"/>
                 <constraint firstItem="416" firstAttribute="centerY" secondItem="415" secondAttribute="centerY" id="lib-zJ-PEP"/>

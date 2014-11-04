@@ -3,7 +3,7 @@
  CEOpacityPanelController
  
  CotEditor
- http://coteditor.github.io
+ http://coteditor.com
  
  Created by 2014-03-12 by 1024jp
  encoding="UTF-8"

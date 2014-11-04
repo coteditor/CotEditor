@@ -3,7 +3,7 @@
  CEKeyBindingSheetController
  
  CotEditor
- http://coteditor.github.io
+ http://coteditor.com
  
  Created on 2014-08-20 by 1024jp
  encoding="UTF-8"
@@ -42,8 +42,6 @@
 
 @property (nonatomic, weak) IBOutlet NSOutlineView *outlineView;
 @property (nonatomic, weak) IBOutlet NSTextField *duplicateTextField;
-@property (nonatomic, weak) IBOutlet NSButton *editKeyButton;
-@property (nonatomic, weak) IBOutlet NSButton *deleteKeyButton;
 @property (nonatomic, weak) IBOutlet NSButton *factoryDefaultsButton;
 @property (nonatomic, weak) IBOutlet NSButton *OKButton;
 
@@ -105,7 +103,6 @@
     [super windowDidLoad];
     
     [[self duplicateTextField] setStringValue:@""];
-    [[self editKeyButton] setEnabled:NO];
     
     switch ([self keyBindingsMode]) {
         case CEMenuKeyBindingsType:
@@ -225,8 +222,6 @@
     }
     [(CEKeyBindingSheet *)[self window] setKeyCatchMode:CECatchMenuShortCutMode];
     
-    [[self deleteKeyButton] setEnabled:YES];
-    
     return YES;
 }
 
@@ -262,8 +257,6 @@
         }
     }
     
-    [[self deleteKeyButton] setEnabled:NO];
-    
     [self setCurrentKeySpecChars:nil];
 }
 
@@ -295,9 +288,6 @@
         [[self textInsertStringTextView] setBackgroundColor:color];
     }
     
-    // 編集ボタンを有効化／無効化
-    [[self editKeyButton] setEnabled:(!item[CEKeyBindingChildrenKey])];
-    
     return YES;
 }
 
@@ -316,19 +306,6 @@
 // ------------------------------------------------------
 {
     [self performEditSelectedBindingKeyColumn];
-}
-
-
-// ------------------------------------------------------
-/// 選択行のキー削除
-- (IBAction)deleteKeyBindingKey:(id)sender
-// ------------------------------------------------------
-{
-    NSText *fieldEditor = [[self window] fieldEditor:NO forObject:[self outlineView]];
-    
-    [fieldEditor setString:@""];
-    [[self window] endEditingFor:fieldEditor];
-    [[self window] makeFirstResponder:[self outlineView]];
 }
 
 
@@ -363,7 +340,6 @@
             break;
     }
     
-    [[self editKeyButton] setEnabled:NO];
     [[self factoryDefaultsButton] setEnabled:NO];
     [[self outlineView] deselectAll:nil];
     [[self outlineView] reloadData];
@@ -436,6 +412,7 @@
     NSString *charsIgnoringModifiers = userInfo[CEKeyBindingCharsKey];
     NSString *fieldString = [CEKeyBindingManager keySpecCharsFromKeyEquivalent:charsIgnoringModifiers
                                                                  modifierFrags:modifierFlags];
+    fieldString = ([fieldString isEqualToString:@"\b"]) ? @"" : fieldString;  // NSDeleteCharacter単独は削除扱い
     NSText *fieldEditor = [[self window] fieldEditor:NO forObject:[self outlineView]];
     
     [fieldEditor setString:fieldString];
@@ -516,7 +493,6 @@
     NSTableColumn *column = [[self outlineView] tableColumnWithIdentifier:CEKeyBindingKeySpecCharsKey];
     
     if ([self outlineView:[self outlineView] shouldEditTableColumn:column item:item]) {
-        [[self deleteKeyButton] setEnabled:YES];
         [[self outlineView] editColumn:[[self outlineView] columnWithIdentifier:CEKeyBindingKeySpecCharsKey]
                                    row:selectedRow withEvent:nil select:YES];
     }

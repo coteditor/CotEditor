@@ -3,7 +3,7 @@
  CEToolbarController
  
  CotEditor
- http://coteditor.github.io
+ http://coteditor.com
  
  Created on 2005-01-07 by nakamuxu
  encoding="UTF-8"

@@ -3,7 +3,7 @@
  CEUtils
  
  CotEditor
- http://coteditor.github.io
+ http://coteditor.com
  
  Created on 2014-04-20 by nakamuxu
  encoding="UTF-8"

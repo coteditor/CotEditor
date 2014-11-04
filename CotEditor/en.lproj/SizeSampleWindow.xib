@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6206.8" systemVersion="13E28" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment defaultVersion="1070" identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6206.8"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6250"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="CESizeSampleWindowController">
@@ -16,7 +16,7 @@
         <window title="Sample Window for Size" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="127" userLabel="Sample Window">
             <windowStyleMask key="styleMask" titled="YES" resizable="YES"/>
             <rect key="contentRect" x="192" y="280" width="480" height="360"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1028"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
             <value key="minSize" type="size" width="400" height="200"/>
             <view key="contentView" id="126">
                 <rect key="frame" x="0.0" y="0.0" width="480" height="360"/>
@@ -102,25 +102,25 @@ And press "OK" button, this window size will be set to default.</string>
                             <outlet property="formatter" destination="6fa-a9-iGI" id="0hn-rM-Qsa"/>
                         </connections>
                     </textField>
-                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" placeholderIntrinsicWidth="34" placeholderIntrinsicHeight="14" translatesAutoresizingMaskIntoConstraints="NO" id="140">
+                    <textField horizontalHuggingPriority="750" placeholderIntrinsicWidth="34" placeholderIntrinsicHeight="14" translatesAutoresizingMaskIntoConstraints="NO" id="140">
                         <rect key="frame" x="188" y="251" width="38" height="14"/>
-                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Width:" id="3402">
+                        <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Width:" usesSingleLineMode="YES" id="3402">
                             <font key="font" metaFont="smallSystem"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" placeholderIntrinsicWidth="40" placeholderIntrinsicHeight="14" translatesAutoresizingMaskIntoConstraints="NO" id="141">
+                    <textField horizontalHuggingPriority="750" placeholderIntrinsicWidth="40" placeholderIntrinsicHeight="14" translatesAutoresizingMaskIntoConstraints="NO" id="141">
                         <rect key="frame" x="330" y="251" width="44" height="14"/>
-                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Height:" id="3403">
+                        <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Height:" usesSingleLineMode="YES" id="3403">
                             <font key="font" metaFont="smallSystem"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="154">
-                        <rect key="frame" x="96" y="24" width="170" height="14"/>
-                        <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="right" title="Press button, stop modal  >>>" id="3404">
+                    <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="154">
+                        <rect key="frame" x="100" y="24" width="166" height="14"/>
+                        <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Press button, stop modal  &gt;&gt;&gt;" usesSingleLineMode="YES" id="3404">
                             <font key="font" metaFont="smallSystem"/>
                             <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>

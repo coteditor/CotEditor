@@ -3,7 +3,7 @@
  CESyntaxManager
  
  CotEditor
- http://coteditor.github.io
+ http://coteditor.com
  
  Created on 2004-12-24 by nakamuxu
  encoding="UTF-8"
@@ -37,6 +37,12 @@ extern NSString *const CESyntaxListDidUpdateNotification;
 
 /// Posted when a syntax style is updated.  Information about new/previous style name is in userInfo.
 extern NSString *const CESyntaxDidUpdateNotification;
+
+// keys for validation result
+extern NSString *const CESyntaxValidationTypeKey;
+extern NSString *const CESyntaxValidationRoleKey;
+extern NSString *const CESyntaxValidationStringKey;
+extern NSString *const CESyntaxValidationMessageKey;
 
 
 @interface CESyntaxManager : NSObject
@@ -77,7 +83,7 @@ extern NSString *const CESyntaxDidUpdateNotification;
 // It can be removed when the most of users have been already migrated in the future.
 @interface CESyntaxManager (Migration)
 
-- (BOOL)migrateStyles;
+- (void)migrateStylesWithCompletionHandler:(void (^)(BOOL success))completionHandler;
 - (BOOL)importLegacyStyleFromURL:(NSURL *)fileURL;
 
 @end

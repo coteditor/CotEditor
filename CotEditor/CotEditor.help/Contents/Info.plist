@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en-US</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.aynimac.CotEditor.help</string>
+	<string>com.coteditor.CotEditor.help</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -31,6 +31,6 @@
 	<key>HPDBookType</key>
 	<string>3</string>
 	<key>HPDBookKBURL</key>
-	<string>http://coteditor.github.io/</string>
+	<string>http://coteditor.com/</string>
 </dict>
 </plist>

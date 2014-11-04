@@ -3,7 +3,7 @@
  CEEditorWrapper
  
  CotEditor
- http://coteditor.github.io
+ http://coteditor.com
  
  Created on 2004-12-08 by nakamuxu
  encoding="UTF-8"
@@ -91,8 +91,6 @@
 - (void)recolorAllString;
 - (void)updateColoringAndOutlineMenuWithDelay;
 - (void)setupColoringTimer;
-
-- (void)setBackgroundAlpha:(CGFloat)alpha;
 
 
 // Action Message

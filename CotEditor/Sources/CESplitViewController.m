@@ -3,7 +3,7 @@
  CESplitViewController
  
  CotEditor
- http://coteditor.github.io
+ http://coteditor.com
  
  Created on 2006-03-26 by nakamuxu
  encoding="UTF-8"
@@ -269,17 +269,6 @@
 {
     for (CEEditorView *subview in [[self view] subviews]) {
         [subview updateOutlineMenu];
-    }
-}
-
-
-// ------------------------------------------------------
-/// 全てのテキストビューの背景不透明度を設定
-- (void)setAllBackgroundColorWithAlpha:(CGFloat)alpha
-// ------------------------------------------------------
-{
-    for (CEEditorView *subview in [[self view] subviews]) {
-        [subview setBackgroundColorAlpha:alpha];
     }
 }
 

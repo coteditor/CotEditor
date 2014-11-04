@@ -1,0 +1,1347 @@
+extensions:
+- keyString: "tcl"
+filenames: []
+comments: []
+outlineMenu:
+- beginString: "^([\\t ]*)(constructor|destructor)"
+  keyString: "$1$2"
+- beginString: "^([\\t ]*)method\\s+(\\w+)"
+  keyString: "$1$2"
+- beginString: "^([\\t ]*)proc\\s+(\\S+)"
+  keyString: "$1$2"
+- beginString: "class\\s+create\\s+(\\w+)"
+  keyString: "$1"
+  bold: true
+- beginString: "package\\s+provide\\s+(\\w+)"
+  bold: true
+  underline: true
+  keyString: "$1"
+metadata:
+  distributionURL: "http://coteditor.com"
+  lastModified: "2014-10-25"
+  author: "1024jp"
+  license: "Same as CotEditor"
+  description: "Support Tcl 8.6 / incl. Tcl and Tk commands"
+  version: "1.0"
+numbers:
+- beginString: "(?<![-_.[:alnum:]])\\-?\\d+(\\.\\d+)?\\b"
+  regularExpression: true
+- beginString: "\\b0[0-7]+\\b"
+  regularExpression: true
+- ignoreCase: true
+  beginString: "\\b0x[0-9a-f]+\\b"
+  regularExpression: true
+commands:
+- beginString: "(?<=slave) +alias\\b"
+  regularExpression: true
+- beginString: "(?<=slave) +aliases\\b"
+  regularExpression: true
+- beginString: "(?<=slave) +bgerror\\b"
+  regularExpression: true
+- beginString: "(?<=slave) +eval\\b"
+  regularExpression: true
+- beginString: "(?<=slave) +expose\\b"
+  regularExpression: true
+- beginString: "(?<=slave) +hidden\\b"
+  regularExpression: true
+- beginString: "(?<=slave) +hide\\b"
+  regularExpression: true
+- beginString: "(?<=slave) +invokehidden\\b"
+  regularExpression: true
+- beginString: "(?<=slave) +issafe\\b"
+  regularExpression: true
+- beginString: "(?<=slave) +limit\\b"
+  regularExpression: true
+- beginString: "(?<=slave) +marktrusted\\b"
+  regularExpression: true
+- beginString: "(?<=slave) +recursionlimit\\b"
+  regularExpression: true
+- beginString: "::http::cleanup"
+- beginString: "::http::code"
+- beginString: "::http::config"
+- beginString: "::http::data"
+- beginString: "::http::error"
+- beginString: "::http::formatQuery"
+- beginString: "::http::geturl"
+- beginString: "::http::meta"
+- beginString: "::http::ncode"
+- beginString: "::http::register"
+- beginString: "::http::reset"
+- beginString: "::http::size"
+- beginString: "::http::status"
+- beginString: "::http::unregister"
+- beginString: "::http::wait"
+- beginString: "::msgcat::mc"
+- beginString: "::msgcat::mcflmset"
+- beginString: "::msgcat::mcflset"
+- beginString: "::msgcat::mcload"
+- beginString: "::msgcat::mclocale"
+- beginString: "::msgcat::mcmax"
+- beginString: "::msgcat::mcmcunknown"
+- beginString: "::msgcat::mcmset"
+- beginString: "::msgcat::mcpreferences"
+- beginString: "::msgcat::mcset"
+- beginString: "::tk::mac::antialiasedtext"
+- beginString: "::tk::mac::CGAntialiasLimit"
+- beginString: "::tk::mac::iconBitmap"
+- beginString: "::tk::mac::OnHide"
+- beginString: "::tk::mac::OnShow"
+- beginString: "::tk::mac::OpenApplication"
+- beginString: "::tk::mac::OpenDocument"
+- beginString: "::tk::mac::PrintDocument"
+- beginString: "::tk::mac::Quit"
+- beginString: "::tk::mac::ReopenApplication"
+- beginString: "::tk::mac::ShowHelp"
+- beginString: "::tk::mac::ShowPreferences"
+- beginString: "::tk::mac::standartAboutPanel"
+- beginString: "::tk::mac::useCompatibilityMetrics"
+- beginString: "::tk::mac::useThemedToplevel"
+- beginString: "<cloned>"
+- beginString: "\\bafter cancel\\b"
+  regularExpression: true
+- beginString: "\\bafter idle\\b"
+  regularExpression: true
+- beginString: "\\bafter info\\b"
+  regularExpression: true
+- beginString: "\\barray anymore\\b"
+  regularExpression: true
+- beginString: "\\barray donesearch\\b"
+  regularExpression: true
+- beginString: "\\barray exists\\b"
+  regularExpression: true
+- beginString: "\\barray get\\b"
+  regularExpression: true
+- beginString: "\\barray names\\b"
+  regularExpression: true
+- beginString: "\\barray nextelement\\b"
+  regularExpression: true
+- beginString: "\\barray set\\b"
+  regularExpression: true
+- beginString: "\\barray size\\b"
+  ignoreCase: false
+  regularExpression: true
+- beginString: "\\barray startsearch\\b"
+  regularExpression: true
+- beginString: "\\barray statistics\\b"
+  regularExpression: true
+- beginString: "\\barray unset\\b"
+  regularExpression: true
+- beginString: "\\bbinary decode\\b"
+  regularExpression: true
+- beginString: "\\bbinary encode\\b"
+  regularExpression: true
+- beginString: "\\bbinary format\\b"
+  regularExpression: true
+- beginString: "\\bbinary scan\\b"
+  regularExpression: true
+- beginString: "\\bchan blocked\\b"
+  regularExpression: true
+- beginString: "\\bchan close\\b"
+  regularExpression: true
+- beginString: "\\bchan configure\\b"
+  regularExpression: true
+- beginString: "\\bchan copy\\b"
+  regularExpression: true
+- beginString: "\\bchan create\\b"
+  regularExpression: true
+- beginString: "\\bchan eof\\b"
+  regularExpression: true
+- beginString: "\\bchan event\\b"
+  regularExpression: true
+- beginString: "\\bchan flush\\b"
+  regularExpression: true
+- beginString: "\\bchan gets\\b"
+  regularExpression: true
+- beginString: "\\bchan names\\b"
+  regularExpression: true
+- beginString: "\\bchan pending\\b"
+  regularExpression: true
+- beginString: "\\bchan pipe\\b"
+  regularExpression: true
+- beginString: "\\bchan pop\\b"
+  regularExpression: true
+- beginString: "\\bchan postevent\\b"
+  regularExpression: true
+- beginString: "\\bchan push\\b"
+  regularExpression: true
+- beginString: "\\bchan puts\\b"
+  regularExpression: true
+- beginString: "\\bchan read\\b"
+  regularExpression: true
+- beginString: "\\bchan seek\\b"
+  regularExpression: true
+- beginString: "\\bchan tell\\b"
+  regularExpression: true
+- beginString: "\\bchan truncate\\b"
+  regularExpression: true
+- beginString: "\\bclock add\\b"
+  regularExpression: true
+- beginString: "\\bclock clicks\\b"
+  regularExpression: true
+- beginString: "\\bclock format\\b"
+  regularExpression: true
+- beginString: "\\bclock microseconds\\b"
+  regularExpression: true
+- beginString: "\\bclock milliseconds\\b"
+  regularExpression: true
+- beginString: "\\bclock scan\\b"
+  regularExpression: true
+- beginString: "\\bclock seconds\\b"
+  regularExpression: true
+- beginString: "\\bconsole eval\\b"
+  regularExpression: true
+- beginString: "\\bconsole hide\\b"
+  regularExpression: true
+- beginString: "\\bconsole show\\b"
+  regularExpression: true
+- beginString: "\\bconsole title\\b"
+  regularExpression: true
+- beginString: "\\bconsoleinterp eval\\b"
+  regularExpression: true
+- beginString: "\\bconsoleinterp record\\b"
+  regularExpression: true
+- beginString: "\\bdde eval\\b"
+  regularExpression: true
+- beginString: "\\bdde execute\\b"
+  regularExpression: true
+- beginString: "\\bdde poke\\b"
+  regularExpression: true
+- beginString: "\\bdde request\\b"
+  regularExpression: true
+- beginString: "\\bdde servername\\b"
+  regularExpression: true
+- beginString: "\\bdde services\\b"
+  regularExpression: true
+- beginString: "\\bdict append\\b"
+  regularExpression: true
+- beginString: "\\bdict create\\b"
+  regularExpression: true
+- beginString: "\\bdict exists\\b"
+  regularExpression: true
+- beginString: "\\bdict filter\\b"
+  regularExpression: true
+- beginString: "\\bdict for\\b"
+  regularExpression: true
+- beginString: "\\bdict get\\b"
+  regularExpression: true
+- beginString: "\\bdict incr\\b"
+  regularExpression: true
+- beginString: "\\bdict info\\b"
+  regularExpression: true
+- beginString: "\\bdict keys\\b"
+  regularExpression: true
+- beginString: "\\bdict lappend\\b"
+  regularExpression: true
+- beginString: "\\bdict map\\b"
+  regularExpression: true
+- beginString: "\\bdict merge\\b"
+  regularExpression: true
+- beginString: "\\bdict remove\\b"
+  regularExpression: true
+- beginString: "\\bdict replace\\b"
+  regularExpression: true
+- beginString: "\\bdict set\\b"
+  regularExpression: true
+- beginString: "\\bdict size\\b"
+  regularExpression: true
+- beginString: "\\bdict unset\\b"
+  regularExpression: true
+- beginString: "\\bdict update\\b"
+  regularExpression: true
+- beginString: "\\bdict values\\b"
+  regularExpression: true
+- beginString: "\\bdict with\\b"
+  regularExpression: true
+- beginString: "\\bedit modified\\b"
+  regularExpression: true
+- beginString: "\\bedit redo\\b"
+  regularExpression: true
+- beginString: "\\bedit reset\\b"
+  regularExpression: true
+- beginString: "\\bedit separator\\b"
+  regularExpression: true
+- beginString: "\\bedit undo\\b"
+  regularExpression: true
+- beginString: "\\bencoding convertfrom\\b"
+  regularExpression: true
+- beginString: "\\bencoding convertto\\b"
+  regularExpression: true
+- beginString: "\\bencoding dirs\\b"
+  regularExpression: true
+- beginString: "\\bencoding names\\b"
+  regularExpression: true
+- beginString: "\\bencoding system\\b"
+  regularExpression: true
+- beginString: "\\bevent add\\b"
+  regularExpression: true
+- beginString: "\\bevent delete\\b"
+  regularExpression: true
+- beginString: "\\bevent generate\\b"
+  regularExpression: true
+- beginString: "\\bevent info\\b"
+  regularExpression: true
+- beginString: "\\bfile atime\\b"
+  regularExpression: true
+- beginString: "\\bfile attributes\\b"
+  regularExpression: true
+- beginString: "\\bfile channels\\b"
+  regularExpression: true
+- beginString: "\\bfile copy\\b"
+  regularExpression: true
+- beginString: "\\bfile delete\\b"
+  regularExpression: true
+- beginString: "\\bfile dirname\\b"
+  regularExpression: true
+- beginString: "\\bfile executable\\b"
+  regularExpression: true
+- beginString: "\\bfile exists\\b"
+  regularExpression: true
+- beginString: "\\bfile extension\\b"
+  regularExpression: true
+- beginString: "\\bfile isdirectory\\b"
+  regularExpression: true
+- beginString: "\\bfile isfile\\b"
+  regularExpression: true
+- beginString: "\\bfile join\\b"
+  regularExpression: true
+- beginString: "\\bfile link\\b"
+  regularExpression: true
+- beginString: "\\bfile lstat\\b"
+  regularExpression: true
+- beginString: "\\bfile mkdir\\b"
+  regularExpression: true
+- beginString: "\\bfile mtime\\b"
+  regularExpression: true
+- beginString: "\\bfile nativename\\b"
+  regularExpression: true
+- beginString: "\\bfile normalize\\b"
+  regularExpression: true
+- beginString: "\\bfile owned\\b"
+  regularExpression: true
+- beginString: "\\bfile pathtype\\b"
+  regularExpression: true
+- beginString: "\\bfile readable\\b"
+  regularExpression: true
+- beginString: "\\bfile readlink\\b"
+  regularExpression: true
+- beginString: "\\bfile rename\\b"
+  regularExpression: true
+- beginString: "\\bfile rootname\\b"
+  regularExpression: true
+- beginString: "\\bfile separator\\b"
+  regularExpression: true
+- beginString: "\\bfile size\\b"
+  regularExpression: true
+- beginString: "\\bfile split\\b"
+  regularExpression: true
+- beginString: "\\bfile stat\\b"
+  regularExpression: true
+- beginString: "\\bfile system\\b"
+  regularExpression: true
+- beginString: "\\bfile tail\\b"
+  regularExpression: true
+- beginString: "\\bfile tempfile\\b"
+  regularExpression: true
+- beginString: "\\bfile type\\b"
+  regularExpression: true
+- beginString: "\\bfile volumes\\b"
+  regularExpression: true
+- beginString: "\\bfile writable\\b"
+  regularExpression: true
+- beginString: "\\bfont actual\\b"
+  regularExpression: true
+- beginString: "\\bfont configure\\b"
+  regularExpression: true
+- beginString: "\\bfont create\\b"
+  regularExpression: true
+- beginString: "\\bfont delete\\b"
+  regularExpression: true
+- beginString: "\\bfont families\\b"
+  regularExpression: true
+- beginString: "\\bfont measure\\b"
+  regularExpression: true
+- beginString: "\\bfont metrics\\b"
+  regularExpression: true
+- beginString: "\\bfont names\\b"
+  regularExpression: true
+- beginString: "\\bgrab current\\b"
+  regularExpression: true
+- beginString: "\\bgrab release\\b"
+  regularExpression: true
+- beginString: "\\bgrab set\\b"
+  regularExpression: true
+- beginString: "\\bgrab status\\b"
+  regularExpression: true
+- beginString: "\\bgrid anchor\\b"
+  regularExpression: true
+- beginString: "\\bgrid bbox\\b"
+  regularExpression: true
+- beginString: "\\bgrid columnconfigure\\b"
+  regularExpression: true
+- beginString: "\\bgrid configure\\b"
+  regularExpression: true
+- beginString: "\\bgrid forget\\b"
+  regularExpression: true
+- beginString: "\\bgrid info\\b"
+  regularExpression: true
+- beginString: "\\bgrid location\\b"
+  regularExpression: true
+- beginString: "\\bgrid propagate\\b"
+  regularExpression: true
+- beginString: "\\bgrid remove\\b"
+  regularExpression: true
+- beginString: "\\bgrid rowconfigure\\b"
+  regularExpression: true
+- beginString: "\\bgrid size\\b"
+  regularExpression: true
+- beginString: "\\bgrid slaves\\b"
+  regularExpression: true
+- beginString: "\\bhistory add\\b"
+  regularExpression: true
+- beginString: "\\bhistory change\\b"
+  regularExpression: true
+- beginString: "\\bhistory clear\\b"
+  regularExpression: true
+- beginString: "\\bhistory event\\b"
+  regularExpression: true
+- beginString: "\\bhistory info\\b"
+  regularExpression: true
+- beginString: "\\bhistory keep\\b"
+  regularExpression: true
+- beginString: "\\bhistory nextid\\b"
+  regularExpression: true
+- beginString: "\\bhistory redo\\b"
+  regularExpression: true
+- beginString: "\\bidentify (column|region|element|row)\\b"
+  regularExpression: true
+- beginString: "\\bimage crate\\b"
+  regularExpression: true
+- beginString: "\\bimage delete\\b"
+  regularExpression: true
+- beginString: "\\bimage height\\b"
+  regularExpression: true
+- beginString: "\\bimage inuse\\b"
+  regularExpression: true
+- beginString: "\\bimage names\\b"
+  regularExpression: true
+- beginString: "\\bimage type\\b"
+  regularExpression: true
+- beginString: "\\bimage types\\b"
+  regularExpression: true
+- beginString: "\\bimage width\\b"
+  regularExpression: true
+- beginString: "\\binfo args\\b"
+  regularExpression: true
+- beginString: "\\binfo body\\b"
+  regularExpression: true
+- beginString: "\\binfo class call\\b"
+  regularExpression: true
+- beginString: "\\binfo class constructor\\b"
+  regularExpression: true
+- beginString: "\\binfo class definition\\b"
+  regularExpression: true
+- beginString: "\\binfo class destructor\\b"
+  regularExpression: true
+- beginString: "\\binfo class filters\\b"
+  regularExpression: true
+- beginString: "\\binfo class forward\\b"
+  regularExpression: true
+- beginString: "\\binfo class instances\\b"
+  regularExpression: true
+- beginString: "\\binfo class methods\\b"
+  regularExpression: true
+- beginString: "\\binfo class methodtype\\b"
+  regularExpression: true
+- beginString: "\\binfo class mixins\\b"
+  regularExpression: true
+- beginString: "\\binfo class subclasses\\b"
+  regularExpression: true
+- beginString: "\\binfo class supperclasses\\b"
+  regularExpression: true
+- beginString: "\\binfo class variables\\b"
+  regularExpression: true
+- beginString: "\\binfo class\\b"
+  regularExpression: true
+- beginString: "\\binfo cmdcount\\b"
+  regularExpression: true
+- beginString: "\\binfo commands\\b"
+  regularExpression: true
+- beginString: "\\binfo complete\\b"
+  regularExpression: true
+- beginString: "\\binfo coroutine\\b"
+  regularExpression: true
+- beginString: "\\binfo default\\b"
+  regularExpression: true
+- beginString: "\\binfo errorstack\\b"
+  regularExpression: true
+- beginString: "\\binfo exists\\b"
+  regularExpression: true
+- beginString: "\\binfo frame\\b"
+  regularExpression: true
+- beginString: "\\binfo functions\\b"
+  regularExpression: true
+- beginString: "\\binfo globals\\b"
+  regularExpression: true
+- beginString: "\\binfo hostname\\b"
+  regularExpression: true
+- beginString: "\\binfo level\\b"
+  regularExpression: true
+- beginString: "\\binfo library\\b"
+  regularExpression: true
+- beginString: "\\binfo loaded\\b"
+  regularExpression: true
+- beginString: "\\binfo locals\\b"
+  regularExpression: true
+- beginString: "\\binfo nameofexecutable\\b"
+  regularExpression: true
+- beginString: "\\binfo object call\\b"
+  regularExpression: true
+- beginString: "\\binfo object class\\b"
+  regularExpression: true
+- beginString: "\\binfo object definition\\b"
+  regularExpression: true
+- beginString: "\\binfo object filters\\b"
+  regularExpression: true
+- beginString: "\\binfo object forward\\b"
+  regularExpression: true
+- beginString: "\\binfo object isa class\\b"
+  regularExpression: true
+- beginString: "\\binfo object isa metaclass\\b"
+  regularExpression: true
+- beginString: "\\binfo object isa mixin\\b"
+  regularExpression: true
+- beginString: "\\binfo object isa object\\b"
+  regularExpression: true
+- beginString: "\\binfo object isa typeof\\b"
+  regularExpression: true
+- beginString: "\\binfo object isa\\b"
+  regularExpression: true
+- beginString: "\\binfo object methods\\b"
+  regularExpression: true
+- beginString: "\\binfo object methodtype\\b"
+  regularExpression: true
+- beginString: "\\binfo object mixins\\b"
+  regularExpression: true
+- beginString: "\\binfo object namespace\\b"
+  regularExpression: true
+- beginString: "\\binfo object variables\\b"
+  regularExpression: true
+- beginString: "\\binfo object vars\\b"
+  regularExpression: true
+- beginString: "\\binfo object\\b"
+  regularExpression: true
+- beginString: "\\binfo patchlevel\\b"
+  regularExpression: true
+- beginString: "\\binfo procs\\b"
+  regularExpression: true
+- beginString: "\\binfo script\\b"
+  regularExpression: true
+- beginString: "\\binfo sharedlibexention\\b"
+  regularExpression: true
+- beginString: "\\binfo tclversion\\b"
+  regularExpression: true
+- beginString: "\\binfo vars\\b"
+  regularExpression: true
+- beginString: "\\binterp alias\\b"
+  regularExpression: true
+- beginString: "\\binterp aliases\\b"
+  regularExpression: true
+- beginString: "\\binterp bgerror\\b"
+  regularExpression: true
+- beginString: "\\binterp cancel\\b"
+  regularExpression: true
+- beginString: "\\binterp create\\b"
+  regularExpression: true
+- beginString: "\\binterp debug\\b"
+  regularExpression: true
+- beginString: "\\binterp delete\\b"
+  regularExpression: true
+- beginString: "\\binterp eval\\b"
+  regularExpression: true
+- beginString: "\\binterp exists\\b"
+  regularExpression: true
+- beginString: "\\binterp expose\\b"
+  regularExpression: true
+- beginString: "\\binterp hidden\\b"
+  regularExpression: true
+- beginString: "\\binterp hide\\b"
+  regularExpression: true
+- beginString: "\\binterp invokehidden\\b"
+  regularExpression: true
+- beginString: "\\binterp issafe\\b"
+  regularExpression: true
+- beginString: "\\binterp limit\\b"
+  regularExpression: true
+- beginString: "\\binterp marktrusted\\b"
+  regularExpression: true
+- beginString: "\\binterp recursionlimit\\b"
+  regularExpression: true
+- beginString: "\\binterp share\\b"
+  regularExpression: true
+- beginString: "\\binterp slaves\\b"
+  regularExpression: true
+- beginString: "\\binterp target\\b"
+  regularExpression: true
+- beginString: "\\binterp transfer\\b"
+  regularExpression: true
+- beginString: "\\bmark gravity\\b"
+  regularExpression: true
+- beginString: "\\bmark names\\b"
+  regularExpression: true
+- beginString: "\\bmark next\\b"
+  regularExpression: true
+- beginString: "\\bmark previous\\b"
+  regularExpression: true
+- beginString: "\\bmark set\\b"
+  regularExpression: true
+- beginString: "\\bmark unset\\b"
+  regularExpression: true
+- beginString: "\\bmemory active\\b"
+  regularExpression: true
+- beginString: "\\bmemory break_on_malloc\\b"
+  regularExpression: true
+- beginString: "\\bmemory info\\b"
+  regularExpression: true
+- beginString: "\\bmemory init (on|of)\\b"
+  regularExpression: true
+- beginString: "\\bmemory objs\\b"
+  regularExpression: true
+- beginString: "\\bmemory onexit\\b"
+  regularExpression: true
+- beginString: "\\bmemory tag\\b"
+  regularExpression: true
+- beginString: "\\bmemory trace (on|off)\\b"
+  regularExpression: true
+- beginString: "\\bmemory trace_on_at_malloc\\b"
+  regularExpression: true
+- beginString: "\\bmemory validate (on|off)\\b"
+  regularExpression: true
+- beginString: "\\bnamespace children\\b"
+  regularExpression: true
+- beginString: "\\bnamespace code\\b"
+  regularExpression: true
+- beginString: "\\bnamespace current\\b"
+  regularExpression: true
+- beginString: "\\bnamespace delete\\b"
+  regularExpression: true
+- beginString: "\\bnamespace enseble\\b"
+  regularExpression: true
+- beginString: "\\bnamespace ensemble configure\\b"
+  regularExpression: true
+- beginString: "\\bnamespace ensemble create\\b"
+  regularExpression: true
+- beginString: "\\bnamespace ensemble exists\\b"
+  regularExpression: true
+- beginString: "\\bnamespace eval\\b"
+  regularExpression: true
+- beginString: "\\bnamespace exists\\b"
+  regularExpression: true
+- beginString: "\\bnamespace export\\b"
+  regularExpression: true
+- beginString: "\\bnamespace forget\\b"
+  regularExpression: true
+- beginString: "\\bnamespace import\\b"
+  regularExpression: true
+- beginString: "\\bnamespace inscope\\b"
+  regularExpression: true
+- beginString: "\\bnamespace origin\\b"
+  regularExpression: true
+- beginString: "\\bnamespace parent\\b"
+  regularExpression: true
+- beginString: "\\bnamespace path\\b"
+  regularExpression: true
+- beginString: "\\bnamespace qualifiers\\b"
+  regularExpression: true
+- beginString: "\\bnamespace tail\\b"
+  regularExpression: true
+- beginString: "\\bnamespace unknown\\b"
+  regularExpression: true
+- beginString: "\\bnamespace upvar\\b"
+  regularExpression: true
+- beginString: "\\bnamespace which\\b"
+  regularExpression: true
+- beginString: "\\boption value option value\\b"
+  regularExpression: true
+- beginString: "\\bpack configure\\b"
+  regularExpression: true
+- beginString: "\\bpack forget\\b"
+  regularExpression: true
+- beginString: "\\bpack info\\b"
+  regularExpression: true
+- beginString: "\\bpack propagate\\b"
+  regularExpression: true
+- beginString: "\\bpack slaves\\b"
+  regularExpression: true
+- beginString: "\\bpeer create\\b"
+  regularExpression: true
+- beginString: "\\bpeer names\\b"
+  regularExpression: true
+- beginString: "\\bplace configure\\b"
+  regularExpression: true
+- beginString: "\\bplace forget\\b"
+  regularExpression: true
+- beginString: "\\bplace info\\b"
+  regularExpression: true
+- beginString: "\\bplace slaves\\b"
+  regularExpression: true
+- beginString: "\\bscan dragto\\b"
+  regularExpression: true
+- beginString: "\\bscan mark\\b"
+  regularExpression: true
+- beginString: "\\bselection adjust\\b"
+  regularExpression: true
+- beginString: "\\bselection clear\\b"
+  regularExpression: true
+- beginString: "\\bselection from\\b"
+  regularExpression: true
+- beginString: "\\bselection get\\b"
+  regularExpression: true
+- beginString: "\\bselection handle\\b"
+  regularExpression: true
+- beginString: "\\bselection own\\b"
+  regularExpression: true
+- beginString: "\\bselection present\\b"
+  regularExpression: true
+- beginString: "\\bselection range\\b"
+  regularExpression: true
+- beginString: "\\bselection to\\b"
+  regularExpression: true
+- beginString: "\\btag add\\b"
+  regularExpression: true
+- beginString: "\\btag bind\\b"
+  regularExpression: true
+- beginString: "\\btag cget\\b"
+  regularExpression: true
+- beginString: "\\btag configure\\b"
+  regularExpression: true
+- beginString: "\\btag delete\\b"
+  regularExpression: true
+- beginString: "\\btag lower\\b"
+  regularExpression: true
+- beginString: "\\btag names\\b"
+  regularExpression: true
+- beginString: "\\btag nextrange\\b"
+  regularExpression: true
+- beginString: "\\btag prevrange\\b"
+  regularExpression: true
+- beginString: "\\btag raise\\b"
+  regularExpression: true
+- beginString: "\\btag ranges\\b"
+  regularExpression: true
+- beginString: "\\btag remove\\b"
+  regularExpression: true
+- beginString: "\\btk appname\\b"
+  regularExpression: true
+- beginString: "\\btk busy cget\\b"
+  regularExpression: true
+- beginString: "\\btk busy configure\\b"
+  regularExpression: true
+- beginString: "\\btk busy current\\b"
+  regularExpression: true
+- beginString: "\\btk busy forget\\b"
+  regularExpression: true
+- beginString: "\\btk busy hold\\b"
+  regularExpression: true
+- beginString: "\\btk busy status\\b"
+  regularExpression: true
+- beginString: "\\btk busy\\b"
+  regularExpression: true
+- beginString: "\\btk caret\\b"
+  regularExpression: true
+- beginString: "\\btk fontchooser configure\\b"
+  regularExpression: true
+- beginString: "\\btk fontchooser hide\\b"
+  regularExpression: true
+- beginString: "\\btk fontchooser show\\b"
+  regularExpression: true
+- beginString: "\\btk fontchooser\\b"
+  regularExpression: true
+- beginString: "\\btk inactive\\b"
+  regularExpression: true
+- beginString: "\\btk scaling\\b"
+  regularExpression: true
+- beginString: "\\btk useinputmethods\\b"
+  regularExpression: true
+- beginString: "\\btk windowingsystem\\b"
+  regularExpression: true
+- beginString: "\\btkwait (variable|visibility|window)\\b"
+  regularExpression: true
+- beginString: "\\btransparency get\\b"
+  regularExpression: true
+- beginString: "\\btransparency set\\b"
+  regularExpression: true
+- beginString: "\\bttk::style (configure|map|lookup|layout)\\b"
+  regularExpression: true
+- beginString: "\\bttk::style element (create|names|options)\\b"
+  regularExpression: true
+- beginString: "\\bttk::style theme (crate|settings|names|use)\\b"
+  regularExpression: true
+- beginString: "\\bwinfo atom\\b"
+  regularExpression: true
+- beginString: "\\bwinfo atomname\\b"
+  regularExpression: true
+- beginString: "\\bwinfo cells\\b"
+  regularExpression: true
+- beginString: "\\bwinfo children\\b"
+  regularExpression: true
+- beginString: "\\bwinfo class\\b"
+  regularExpression: true
+- beginString: "\\bwinfo colormapfull\\b"
+  regularExpression: true
+- beginString: "\\bwinfo containing\\b"
+  regularExpression: true
+- beginString: "\\bwinfo depth\\b"
+  regularExpression: true
+- beginString: "\\bwinfo exists\\b"
+  regularExpression: true
+- beginString: "\\bwinfo fpixels\\b"
+  regularExpression: true
+- beginString: "\\bwinfo geometry\\b"
+  regularExpression: true
+- beginString: "\\bwinfo height\\b"
+  regularExpression: true
+- beginString: "\\bwinfo id\\b"
+  regularExpression: true
+- beginString: "\\bwinfo interps\\b"
+  regularExpression: true
+- beginString: "\\bwinfo ismapped\\b"
+  regularExpression: true
+- beginString: "\\bwinfo manager\\b"
+  regularExpression: true
+- beginString: "\\bwinfo name\\b"
+  regularExpression: true
+- beginString: "\\bwinfo parent\\b"
+  regularExpression: true
+- beginString: "\\bwinfo pathname\\b"
+  regularExpression: true
+- beginString: "\\bwinfo pixels\\b"
+  regularExpression: true
+- beginString: "\\bwinfo pointerx\\b"
+  regularExpression: true
+- beginString: "\\bwinfo pointerxy\\b"
+  regularExpression: true
+- beginString: "\\bwinfo pointery\\b"
+  regularExpression: true
+- beginString: "\\bwinfo reqheight\\b"
+  regularExpression: true
+- beginString: "\\bwinfo reqwidth\\b"
+  regularExpression: true
+- beginString: "\\bwinfo rgb\\b"
+  regularExpression: true
+- beginString: "\\bwinfo rootx\\b"
+  regularExpression: true
+- beginString: "\\bwinfo rooty\\b"
+  regularExpression: true
+- beginString: "\\bwinfo screen\\b"
+  regularExpression: true
+- beginString: "\\bwinfo screencells\\b"
+  regularExpression: true
+- beginString: "\\bwinfo screendepth\\b"
+  regularExpression: true
+- beginString: "\\bwinfo screenheight\\b"
+  regularExpression: true
+- beginString: "\\bwinfo screenmmheight\\b"
+  regularExpression: true
+- beginString: "\\bwinfo screenmmwidth\\b"
+  regularExpression: true
+- beginString: "\\bwinfo screenvisual\\b"
+  regularExpression: true
+- beginString: "\\bwinfo screenwidth\\b"
+  regularExpression: true
+- beginString: "\\bwinfo server\\b"
+  regularExpression: true
+- beginString: "\\bwinfo toplevel\\b"
+  regularExpression: true
+- beginString: "\\bwinfo viewable\\b"
+  regularExpression: true
+- beginString: "\\bwinfo visual\\b"
+  regularExpression: true
+- beginString: "\\bwinfo visualid\\b"
+  regularExpression: true
+- beginString: "\\bwinfo visualsavailable\\b"
+  regularExpression: true
+- beginString: "\\bwinfo vrootheight\\b"
+  regularExpression: true
+- beginString: "\\bwinfo vrootwidth\\b"
+  regularExpression: true
+- beginString: "\\bwinfo vrootx\\b"
+  regularExpression: true
+- beginString: "\\bwinfo vrooty\\b"
+  regularExpression: true
+- beginString: "\\bwinfo width\\b"
+  regularExpression: true
+- beginString: "\\bwinfo x\\b"
+  regularExpression: true
+- beginString: "\\bwinfo y\\b"
+  regularExpression: true
+- beginString: "\\bwm aspect\\b"
+  regularExpression: true
+- beginString: "\\bwm attributes\\b"
+  regularExpression: true
+- beginString: "\\bwm client\\b"
+  regularExpression: true
+- beginString: "\\bwm colormapwindows\\b"
+  regularExpression: true
+- beginString: "\\bwm command\\b"
+  regularExpression: true
+- beginString: "\\bwm deiconify\\b"
+  regularExpression: true
+- beginString: "\\bwm focusmodel\\b"
+  regularExpression: true
+- beginString: "\\bwm forget\\b"
+  regularExpression: true
+- beginString: "\\bwm geometory\\b"
+  regularExpression: true
+- beginString: "\\bwm grid\\b"
+  regularExpression: true
+- beginString: "\\bwm group\\b"
+  regularExpression: true
+- beginString: "\\bwm iconbitmap\\b"
+  regularExpression: true
+- beginString: "\\bwm iconify\\b"
+  regularExpression: true
+- beginString: "\\bwm iconmask\\b"
+  regularExpression: true
+- beginString: "\\bwm iconname\\b"
+  regularExpression: true
+- beginString: "\\bwm iconphoto\\b"
+  regularExpression: true
+- beginString: "\\bwm iconposition\\b"
+  regularExpression: true
+- beginString: "\\bwm iconwindow\\b"
+  regularExpression: true
+- beginString: "\\bwm manage\\b"
+  regularExpression: true
+- beginString: "\\bwm maxsize\\b"
+  regularExpression: true
+- beginString: "\\bwm minsize\\b"
+  regularExpression: true
+- beginString: "\\bwm overrideredirect\\b"
+  regularExpression: true
+- beginString: "\\bwm positionfrom\\b"
+  regularExpression: true
+- beginString: "\\bwm protpcol\\b"
+  regularExpression: true
+- beginString: "\\bwm resizable\\b"
+  regularExpression: true
+- beginString: "\\bwm sizefrom\\b"
+  regularExpression: true
+- beginString: "\\bwm stackorder\\b"
+  regularExpression: true
+- beginString: "\\bwm state\\b"
+  regularExpression: true
+- beginString: "\\bwm title\\b"
+  regularExpression: true
+- beginString: "\\bwm transient\\b"
+  regularExpression: true
+- beginString: "\\bwm withdraw\\b"
+  regularExpression: true
+- beginString: "\\bxview moveto\\b"
+  regularExpression: true
+- beginString: "\\bxview scroll\\b"
+  regularExpression: true
+- beginString: "\\byview moveto\\b"
+  regularExpression: true
+- beginString: "\\byview scroll\\b"
+  regularExpression: true
+- beginString: "abs"
+- beginString: "acos"
+- beginString: "activate"
+- beginString: "active"
+- beginString: "after"
+- beginString: "append"
+- beginString: "apply"
+- beginString: "argc"
+- beginString: "argv"
+- beginString: "argv0"
+- beginString: "array"
+- beginString: "asin"
+- beginString: "atan"
+- beginString: "atan2"
+- beginString: "auto"
+- beginString: "auto_execok"
+- beginString: "auto_import"
+- beginString: "auto_load"
+- beginString: "auto_mkindex"
+- beginString: "auto_path"
+- beginString: "auto_qualify"
+- beginString: "auto_reset"
+- beginString: "base64"
+- beginString: "bbox"
+- beginString: "bell"
+- beginString: "bgerror"
+- beginString: "binary"
+- beginString: "bind"
+- beginString: "bindtags"
+- beginString: "bitmap"
+- beginString: "blank"
+- beginString: "body"
+- beginString: "bool"
+- beginString: "break"
+- beginString: "busy"
+- beginString: "button"
+- beginString: "canvas"
+- beginString: "catch"
+- beginString: "cd"
+- beginString: "ceil"
+- beginString: "chan"
+- beginString: "charset"
+- beginString: "checkbutton"
+- beginString: "class"
+- beginString: "clipboard"
+- beginString: "clock"
+- beginString: "close"
+- beginString: "cmd"
+- beginString: "coding"
+- beginString: "colors"
+- beginString: "concat"
+- beginString: "console"
+- beginString: "Content-Length"
+- beginString: "Content-Type"
+- beginString: "continue"
+- beginString: "coords"
+- beginString: "coroutine"
+- beginString: "cos"
+- beginString: "cosh"
+- beginString: "cr"
+- beginString: "create"
+- beginString: "createWithNamespace"
+- beginString: "crlf"
+- beginString: "current"
+- beginString: "currentsize"
+- beginString: "curselection"
+- beginString: "cursors"
+- beginString: "dde"
+- beginString: "deletemethod"
+- beginString: "delineinfo"
+- beginString: "delta"
+- beginString: "destroy"
+- beginString: "dict"
+- beginString: "double"
+- beginString: "dump"
+- beginString: "edit"
+- beginString: "else"
+- beginString: "elseif"
+- beginString: "encoding"
+- beginString: "end"
+- beginString: "entier"
+- beginString: "entry"
+- beginString: "entrycget"
+- beginString: "entryconfigure"
+- beginString: "env"
+- beginString: "eof"
+- beginString: "error"
+- beginString: "errorCode"
+- beginString: "errorInfo"
+- beginString: "eval"
+- beginString: "event"
+- beginString: "exec"
+- beginString: "exit"
+- beginString: "exp"
+- beginString: "export"
+- beginString: "expr"
+- beginString: "fblocked"
+- beginString: "fconfigure"
+- beginString: "fcopy"
+- beginString: "file"
+- beginString: "fileevent"
+- beginString: "filename"
+- beginString: "filter"
+- beginString: "floor"
+- beginString: "flush"
+- beginString: "fmod"
+- beginString: "focus"
+- beginString: "font"
+- beginString: "fontchooser"
+- beginString: "for"
+- beginString: "foreach"
+- beginString: "format"
+- beginString: "forward"
+- beginString: "frame"
+- beginString: "geometry"
+- beginString: "gets"
+- beginString: "glob"
+- beginString: "global"
+- beginString: "grab"
+- beginString: "grid"
+- beginString: "hex"
+- beginString: "history"
+- beginString: "http"
+- beginString: "hypot"
+- beginString: "identify"
+- beginString: "if"
+- beginString: "image"
+- beginString: "incr"
+- beginString: "info"
+- beginString: "insert"
+- beginString: "int"
+- beginString: "interp"
+- beginString: "isabove"
+- beginString: "isbelow"
+- beginString: "isqrt"
+- beginString: "itemcget"
+- beginString: "itemconfigure"
+- beginString: "join"
+- beginString: "key"
+- beginString: "keysyms"
+- beginString: "label"
+- beginString: "labelframe"
+- beginString: "lambda"
+- beginString: "lappend"
+- beginString: "lassign"
+- beginString: "level"
+- beginString: "lf"
+- beginString: "lindex"
+- beginString: "line"
+- beginString: "linsert"
+- beginString: "list"
+- beginString: "listbox"
+- beginString: "llength"
+- beginString: "lmap"
+- beginString: "load"
+- beginString: "Location"
+- beginString: "log"
+- beginString: "log10"
+- beginString: "lower"
+- beginString: "lrange"
+- beginString: "lrepeat"
+- beginString: "lreplace"
+- beginString: "lreverse"
+- beginString: "lsearch"
+- beginString: "lset"
+- beginString: "lsort"
+- beginString: "mathfunc"
+- beginString: "mathop"
+- beginString: "max"
+- beginString: "memory"
+- beginString: "menu"
+- beginString: "menubutton"
+- beginString: "message"
+- beginString: "meta"
+- beginString: "method"
+- beginString: "min"
+- beginString: "mixin"
+- beginString: "moveto"
+- beginString: "msgcat"
+- beginString: "my"
+- beginString: "namespace"
+- beginString: "nearest"
+- beginString: "new"
+- beginString: "next"
+- beginString: "nextto"
+- beginString: "ok"
+- beginString: "oo::class"
+- beginString: "oo::copy"
+- beginString: "oo::define"
+- beginString: "oo::objdefine"
+- beginString: "oo::object"
+- beginString: "open"
+- beginString: "option"
+- beginString: "options"
+- beginString: "pack"
+- beginString: "package"
+- beginString: "panecget"
+- beginString: "paneconfigure"
+- beginString: "panedwindow"
+- beginString: "panes"
+- beginString: "parray"
+- beginString: "passive"
+- beginString: "peer"
+- beginString: "photo"
+- beginString: "pid"
+- beginString: "pkg::create"
+- beginString: "pkg_mkIndex"
+- beginString: "place"
+- beginString: "platform"
+- beginString: "platform::shell"
+- beginString: "postcascade"
+- beginString: "posterror"
+- beginString: "pow"
+- beginString: "precompiled"
+- beginString: "proc"
+- beginString: "proxy"
+- beginString: "puts"
+- beginString: "pwd"
+- beginString: "radiobutton"
+- beginString: "raise"
+- beginString: "rand"
+- beginString: "re_syntax"
+- beginString: "read"
+- beginString: "readable"
+- beginString: "redither"
+- beginString: "refchan"
+- beginString: "regexp"
+- beginString: "registry"
+- beginString: "regsub"
+- beginString: "rename"
+- beginString: "renamemethod"
+- beginString: "replace"
+- beginString: "reset"
+- beginString: "return"
+- beginString: "round"
+- beginString: "safe"
+- beginString: "safe::loadTk"
+- beginString: "sash"
+- beginString: "scale"
+- beginString: "scan"
+- beginString: "script"
+- beginString: "scrollbar"
+- beginString: "search"
+- beginString: "seek"
+- beginString: "selection"
+- beginString: "self"
+- beginString: "send"
+- beginString: "set"
+- beginString: "sin"
+- beginString: "sinh"
+- beginString: "size"
+- beginString: "socket"
+- beginString: "source"
+- beginString: "spinbox"
+- beginString: "split"
+- beginString: "sqrt"
+- beginString: "srand"
+- beginString: "start"
+- beginString: "status"
+- beginString: "string"
+- beginString: "subst"
+- beginString: "switch"
+- beginString: "tailcall"
+- beginString: "tan"
+- beginString: "tanh"
+- beginString: "Tcl"
+- beginString: "tcl::prefix"
+- beginString: "tcl_endOfWord"
+- beginString: "tcl_findLibrary"
+- beginString: "tcl_interactive"
+- beginString: "tcl_library"
+- beginString: "tcl_nonwordchars"
+- beginString: "tcl_patchLevel"
+- beginString: "tcl_pkgPath"
+- beginString: "tcl_platform"
+- beginString: "tcl_precision"
+- beginString: "tcl_rcFileName"
+- beginString: "tcl_startOfNextWord"
+- beginString: "tcl_startOfPreviousWord"
+- beginString: "tcl_traceCompile"
+- beginString: "tcl_traceExec"
+- beginString: "tcl_version"
+- beginString: "tcl_wordBreakAfter"
+- beginString: "tcl_wordBreakBefore"
+- beginString: "tcl_wordchars"
+- beginString: "tcltest"
+- beginString: "tell"
+- beginString: "text"
+- beginString: "then"
+- beginString: "throw"
+- beginString: "time"
+- beginString: "tk"
+- beginString: "tk::mac"
+- beginString: "tk_bisque"
+- beginString: "tk_chooseColor"
+- beginString: "tk_chooseDirectory"
+- beginString: "tk_dialog"
+- beginString: "tk_focusFollowsMouse"
+- beginString: "tk_focusNext"
+- beginString: "tk_focusPrev"
+- beginString: "tk_getOpenFile"
+- beginString: "tk_getSaveFile"
+- beginString: "tk_library"
+- beginString: "tk_menuSetFocus"
+- beginString: "tk_messageBox"
+- beginString: "tk_optionMenu"
+- beginString: "tk_patchLevel"
+- beginString: "tk_popup"
+- beginString: "tk_setPalette"
+- beginString: "tk_strictMotif"
+- beginString: "tk_textCopy"
+- beginString: "tk_textCut"
+- beginString: "tk_textPaste"
+- beginString: "tk_version"
+- beginString: "tkerror"
+- beginString: "tkwait"
+- beginString: "tm"
+- beginString: "toplevel"
+- beginString: "totalsize"
+- beginString: "trace"
+- beginString: "transchan"
+- beginString: "transparency"
+- beginString: "try"
+- beginString: "ttk::button"
+- beginString: "ttk::checkbutton"
+- beginString: "ttk::combobox"
+- beginString: "ttk::entry"
+- beginString: "ttk::frame"
+- beginString: "ttk::intro"
+- beginString: "ttk::label"
+- beginString: "ttk::labelframe"
+- beginString: "ttk::menubutton"
+- beginString: "ttk::notebook"
+- beginString: "ttk::panedwindow"
+- beginString: "ttk::progressbar"
+- beginString: "ttk::radiobutton"
+- beginString: "ttk::scale"
+- beginString: "ttk::scrollbar"
+- beginString: "ttk::separator"
+- beginString: "ttk::sizegrip"
+- beginString: "ttk::spinbox"
+- beginString: "ttk::style"
+- beginString: "ttk::treeview"
+- beginString: "ttk::widget"
+- beginString: "ttk_image"
+- beginString: "ttk_vsapi"
+- beginString: "type"
+- beginString: "unencode"
+- beginString: "unexport"
+- beginString: "unknown"
+- beginString: "unload"
+- beginString: "unpost"
+- beginString: "unset"
+- beginString: "update"
+- beginString: "uplevel"
+- beginString: "upvar"
+- beginString: "url"
+- beginString: "validate"
+- beginString: "value"
+- beginString: "variable"
+- beginString: "varname"
+- beginString: "vwait"
+- beginString: "while"
+- beginString: "wide"
+- beginString: "winfo"
+- beginString: "wm"
+- beginString: "writable"
+- beginString: "xposition"
+- beginString: "xview"
+- beginString: "yield"
+- beginString: "yieldto"
+- beginString: "yposition"
+- beginString: "yview"
+- beginString: "zlib"
+values: []
+keywords: []
+attributes:
+- beginString: " -[-_[:alnum:]]+ "
+  regularExpression: true
+- beginString: "--"
+strings:
+- beginString: "\""
+  endString: "\""
+- beginString: "'"
+  endString: "'"
+types:
+- beginString: "(?<=class create )\\w+"
+  regularExpression: true
+- beginString: "(?<=object create )\\w+"
+  regularExpression: true
+variables:
+- beginString: "${"
+  endString: "}"
+- beginString: "(?<=set|unset)[\\t ]+\\w+"
+  regularExpression: true
+- beginString: "\\$[-_:[:alnum:]]+\\b"
+  regularExpression: true
+commentDelimiters:
+  inlineDelimiter: "#"
+characters: []
+completions: []

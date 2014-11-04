@@ -3,7 +3,7 @@
  CETextSelection
  
  CotEditor
- http://coteditor.github.io
+ http://coteditor.com
  
  Created on 2005-03-01 by nakamuxu
  encoding="UTF-8"
@@ -60,7 +60,7 @@
 {
     self = [super init];
     if (self) {
-        [self setDocument:document];
+        _document = document;
     }
     return self;
 }

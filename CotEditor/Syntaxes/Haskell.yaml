@@ -4,23 +4,42 @@ extensions:
 outlineMenu:
 - beginString: "^[\\t ]*([a-z][\\w_']*\\s*.+?)(?=\\s*=)"
 - beginString: "^[\\t ]*([a-z][\\w_']*\\s*::.+?$)"
-  keyString: "$1"
   bold: true
+  keyString: "$1"
   italic: true
 - beginString: "^[\\t ]*class\\s*([A-Z].*\\s+[a-z].*|\\([\\t ]*[A-Z].*[\\t ]+[a-z].*([\\t
     ]*,[\\t ]*[A-Z][\\w']*[\\t ]+[A-Z][\\w']*)*[\\t ]*\\))?[\\t ]*=>[\\t ]*[A-Z].*(where|$)"
   underline: true
+- beginString: "^[\\t ]*data[\\t ]+([A-Z][\\w']*)(?=[\\t ]*\\=)"
+  keyString: "data $1"
+  bold: true
 - beginString: "^[\\t ]*instance\\s*([A-Z].*\\s+[a-z].*|\\([\\t ]*[A-Z].*[\\t ]+[a-z].*([\\t
     ]*,[\\t ]*[A-Z][\\w']*[\\t ]+[A-Z][\\w']*)*[\\t ]*\\))?[\\t ]*=>[\\t ]*[A-Z].*(where|$)"
   underline: true
-- beginString: "^[\xA5t ]*data[\\t ]+([A-Z][\\w']*)(?=[\\t ]*\\="
-  keyString: "data $1"
-  bold: true
-- beginString: "^[\xA5t ]*type[\\t ]+([A-Z][\\w']*)((?:[\xA5t ]+[a-z][\\w']*)*)(?=[\xA5t
-    ]*"
+- beginString: "^[\\t ]*type[\\t ]+([A-Z][\\w']*)((?:[\\t ]+[a-z][\\w']*)*)(?=[¥t
+    ]*\\=)"
   keyString: "type $1$2"
   bold: true
-completions: []
+comments: []
+metadata:
+  distributionURL: "http://coteditor.com"
+  author: "konn"
+  license: "Same as CotEditor"
+  lastModified: "2014-10-27"
+  description: "Maintained by CotEditor Project."
+  version: "2.0"
+numbers:
+- beginString: "\\b0o[0-7]+\\b"
+  ignoreCase: true
+  regularExpression: true
+- beginString: "\\b0x[0-9a-f]+\\b"
+  ignoreCase: true
+  regularExpression: true
+- beginString: "\\b\\d+\\.\\d+(e[-+]\\d+)?\\b"
+  ignoreCase: true
+  regularExpression: true
+- beginString: "\\b\\d+\\b"
+  regularExpression: true
 commands:
 - beginString: "abs"
 - beginString: "acos"
@@ -192,14 +211,81 @@ commands:
 - beginString: "zip3"
 - beginString: "zipWith"
 - beginString: "zipWith3"
+values:
+- beginString: "EQ"
+- beginString: "False"
+- beginString: "GT"
+- beginString: "Just"
+- beginString: "Left"
+- beginString: "LT"
+- beginString: "Nothing"
+- beginString: "Right"
+- beginString: "True"
+keywords:
+- beginString: "_"
+- beginString: "case"
+- beginString: "class"
+- beginString: "data"
+- beginString: "default"
+- beginString: "deriving"
+- beginString: "do"
+- beginString: "else"
+- beginString: "foreign"
+- beginString: "hiding"
+- beginString: "if"
+- beginString: "import"
+- beginString: "in"
+- beginString: "infix"
+- beginString: "infixl"
+- beginString: "infixr"
+- beginString: "instance"
+- beginString: "let"
+- beginString: "module"
+- beginString: "newtype"
+- beginString: "of"
+- beginString: "then"
+- beginString: "type"
+- beginString: "where"
 attributes: []
-metadata:
-  author: "konn"
-  distributionURL: "http://coteditor.github.io"
-  version: "2.0"
-  description: "Maintained by CotEditor Project."
-  license: "Same as CotEditor"
-  lastModified: "2014-09-24"
+strings:
+- beginString: "\""
+  endString: "\""
+types:
+- beginString: "\\b[A-Z][\\w_\\']*"
+  regularExpression: true
+- beginString: "Bool"
+- beginString: "Bounded"
+- beginString: "Char"
+- beginString: "Double"
+- beginString: "Either"
+- beginString: "Enum"
+- beginString: "Eq"
+- beginString: "Float"
+- beginString: "Floating"
+- beginString: "Fractional"
+- beginString: "Functor"
+- beginString: "Int"
+- beginString: "Integer"
+- beginString: "Integral"
+- beginString: "IO"
+- beginString: "IOError"
+- beginString: "Maybe"
+- beginString: "Monad"
+- beginString: "MonadPlus"
+- beginString: "Num"
+- beginString: "Ord"
+- beginString: "Ordering"
+- beginString: "Rational"
+- beginString: "Read"
+- beginString: "Real"
+- beginString: "RealFloat"
+- beginString: "RealFrac"
+- beginString: "Show"
+- beginString: "String"
+commentDelimiters:
+  endDelimiter: "-}"
+  beginDelimiter: "{-"
+  inlineDelimiter: "--"
 characters:
 - beginString: "'.'"
   regularExpression: true
@@ -242,90 +328,4 @@ characters:
 - beginString: "'\\SYN'"
 - beginString: "'\\US'"
 - beginString: "'\\VT'"
-comments: []
-values:
-- beginString: "EQ"
-- beginString: "False"
-- beginString: "GT"
-- beginString: "Just"
-- beginString: "Left"
-- beginString: "LT"
-- beginString: "Nothing"
-- beginString: "Right"
-- beginString: "True"
-types:
-- beginString: "\\b[A-Z][\\w_\\']*"
-  regularExpression: true
-- beginString: "Bool"
-- beginString: "Bounded"
-- beginString: "Char"
-- beginString: "Double"
-- beginString: "Either"
-- beginString: "Enum"
-- beginString: "Eq"
-- beginString: "Float"
-- beginString: "Floating"
-- beginString: "Fractional"
-- beginString: "Functor"
-- beginString: "Int"
-- beginString: "Integer"
-- beginString: "Integral"
-- beginString: "IO"
-- beginString: "IOError"
-- beginString: "Maybe"
-- beginString: "Monad"
-- beginString: "MonadPlus"
-- beginString: "Num"
-- beginString: "Ord"
-- beginString: "Ordering"
-- beginString: "Rational"
-- beginString: "Read"
-- beginString: "Real"
-- beginString: "RealFloat"
-- beginString: "RealFrac"
-- beginString: "Show"
-- beginString: "String"
-numbers:
-- beginString: "\\b0o[0-7]+\\b"
-  ignoreCase: true
-  regularExpression: true
-- beginString: "\\b0x[0-9a-f]+\\b"
-  ignoreCase: true
-  regularExpression: true
-- beginString: "\\b\\d+\\.\\d+(e[-+]\\d+)?\\b"
-  ignoreCase: true
-  regularExpression: true
-- beginString: "\\b\\d+\\b"
-  regularExpression: true
-strings:
-- beginString: "\""
-  endString: "\""
-keywords:
-- beginString: "_"
-- beginString: "case"
-- beginString: "class"
-- beginString: "data"
-- beginString: "default"
-- beginString: "deriving"
-- beginString: "do"
-- beginString: "else"
-- beginString: "foreign"
-- beginString: "hiding"
-- beginString: "if"
-- beginString: "import"
-- beginString: "in"
-- beginString: "infix"
-- beginString: "infixl"
-- beginString: "infixr"
-- beginString: "instance"
-- beginString: "let"
-- beginString: "module"
-- beginString: "newtype"
-- beginString: "of"
-- beginString: "then"
-- beginString: "type"
-- beginString: "where"
-commentDelimiters:
-  endDelimiter: "-}"
-  beginDelimiter: "{-"
-  inlineDelimiter: "--"
+completions: []

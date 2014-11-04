@@ -3,7 +3,7 @@
  constants
  
  CotEditor
- http://coteditor.github.io
+ http://coteditor.com
  
  Created on 2004-12-13 by nakamuxu
  encoding="UTF-8"
@@ -41,7 +41,7 @@
 NSString *const CESeparatorString = @"-";
 
 // Error domain
-NSString *const CEErrorDomain = @"com.aynimac.CotEditor.ErrorDomain";
+NSString *const CEErrorDomain = @"com.coteditor.CotEditor.ErrorDomain";
 
 // Localized strings table
 NSString *const CEPrintLocalizeTable =  @"Print";
@@ -54,6 +54,20 @@ NSString *const CELisenceKey = @"lisence";
 NSString *const CEDescriptionKey = @"description";
 
 
+// Help anchors
+NSString *const kHelpAnchors[] = {
+    @"releasenotes",
+    @"pref_general",
+    @"pref_window",
+    @"pref_appearance",
+    @"pref_format",
+    @"pref_syntax",
+    @"pref_filedrop",
+    @"pref_keybindings",
+    @"pref_print",
+    @"whats_new",
+    @"specification_changes"
+};
 
 #pragma mark Notifications
 
@@ -128,7 +142,6 @@ NSString *const CEDefaultSyntaxStyleKey = @"defaultColoringStyleName";
 NSString *const CEDefaultThemeKey = @"defaultTheme";
 NSString *const CEDefaultDelayColoringKey = @"delayColoring";
 NSString *const CEDefaultFileDropArrayKey = @"fileDropArray";
-NSString *const CEDefaultNSDragAndDropTextDelayKey = @"NSDragAndDropTextDelay";
 NSString *const CEDefaultSmartInsertAndDeleteKey = @"smartInsertAndDelete";
 NSString *const CEDefaultShouldAntialiasKey = @"shouldAntialias";
 NSString *const CEDefaultAutoCompleteKey = @"autoComplete";
@@ -175,7 +188,6 @@ NSString *const CEDefaultColorCodeTypeKey = @"colorCodeType";
 // hidden settings
 NSString *const CEDefaultUsesTextFontForInvisiblesKey = @"usesTextFontForInvisibles";
 NSString *const CEDefaultLineNumFontNameKey = @"lineNumFontName";
-NSString *const CEDefaultLineNumFontColorKey = @"lineNumFontColor";
 NSString *const CEDefaultBasicColoringDelayKey = @"basicColoringDelay";
 NSString *const CEDefaultFirstColoringDelayKey = @"firstColoringDelay";
 NSString *const CEDefaultSecondColoringDelayKey = @"secondColoringDelay";
@@ -283,7 +295,6 @@ NSString *const CEEndDelimiterKey = @"endDelimiter";
 
 // Help document file names table
 NSString *const kBundledDocumentFileNames[] = {
-    @"Version History",
     @"Acknowledgements",
     @"ScriptMenu Folder",
     @"AppleScript",
@@ -291,7 +302,7 @@ NSString *const kBundledDocumentFileNames[] = {
 };
 
 // Online URLs
-NSString *const kWebSiteURL = @"http://coteditor.github.io";
+NSString *const kWebSiteURL = @"http://coteditor.com";
 NSString *const kIssueTrackerURL = @"https://github.com/coteditor/CotEditor/issues";
 
 
@@ -341,26 +352,6 @@ CGFloat const kPrintHFVerticalMargin = 34.0;
 CGFloat const kHeaderFooterLineHeight = 15.0;
 CGFloat const kSeparatorPadding = 8.0;
 CGFloat const kNoSeparatorPadding = 18.0;
-
-
-
-#pragma mark Preferences
-
-// ------------------------------------------------------
-// Preferences
-// ------------------------------------------------------
-
-// Help anchors
-NSString *const kHelpPrefAnchors[] = {
-    @"pref_general",
-    @"pref_window",
-    @"pref_appearance",
-    @"pref_format",
-    @"pref_syntax",
-    @"pref_filedrop",
-    @"pref_keybinding",
-    @"pref_print"
-};
 
 
 

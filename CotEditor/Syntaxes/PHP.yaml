@@ -5641,7 +5641,7 @@ commands:
 - beginString: "zlib_get_coding_type"
 metadata:
   author: "kaz"
-  distributionURL: "http://coteditor.github.io"
+  distributionURL: "http://coteditor.com"
   version: "2.3"
   description: "Support PHP4 - PHP5.5.\n\nMaintained by 1024jp since 2013."
   license: "Same as CotEditor"
@@ -6192,7 +6192,7 @@ keywords:
 - beginString: "xor"
 - beginString: "yield"
 variables:
-- beginString: "&?\\$[a-zA-Z_\xA5x7f-\xA5xff][a-zA-Z0-9_\xA5x7f-\xA5x"
+- beginString: "&?\\$[a-zA-Z_¥x7f-¥xff][a-zA-Z0-9_¥x7f-¥xff]*"
   regularExpression: true
 - beginString: "(?<=->)\\s*[a-zA-Z_\\x7f-\\xff][a-zA-Z0-9_\\x7f-\\xff]*+(?!\\s*\\()"
   regularExpression: true

@@ -3,7 +3,7 @@
  CELineNumberView
  
  CotEditor
- http://coteditor.github.io
+ http://coteditor.com
  
  Created on 2005-03-30 by nakamuxu
  encoding="UTF-8"
@@ -29,13 +29,13 @@
  */
 
 @import Cocoa;
+#import "CETextViewProtocol.h"
 
 
 @interface CELineNumberView : NSView
 
 @property (nonatomic, getter=isShown) BOOL shown;
-@property (nonatomic) NSTextView *textView;  // should be weak, just because it is NSTextView.
-@property (nonatomic) CGFloat backgroundAlpha;
+@property (nonatomic) NSTextView<CETextViewProtocol> *textView;  // should be weak, just because it is NSTextView.
 
 
 // Public method

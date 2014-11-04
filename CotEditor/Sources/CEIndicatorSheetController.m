@@ -3,7 +3,7 @@
  CEIndicatorSheetController
  
  CotEditor
- http://coteditor.github.io
+ http://coteditor.com
  
  Created on 2014-06-07 by 1024jp
  encoding="UTF-8"
@@ -64,8 +64,8 @@
 {
     self = [super initWithWindowNibName:@"Indicator"];
     if (self) {
-        [self setMessage:message];
-        [self setInformativeText:NSLocalizedString(@"Please wait for a while.", nil)];
+        _message = message;
+        _informativeText = NSLocalizedString(@"Please wait for a while.", nil);
     }
     return self;
 }

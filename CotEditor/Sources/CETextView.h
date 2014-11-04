@@ -3,7 +3,7 @@
  CETextView
  
  CotEditor
- http://coteditor.github.io
+ http://coteditor.com
  
  Created on 2005-03-30 by nakamuxu
  encoding="UTF-8"
@@ -36,6 +36,7 @@
 @import Cocoa;
 #import "CETextViewProtocol.h"
 #import "CELayoutManager.h"
+#import "CEWindow.h"
 
 
 @interface CETextView : NSTextView <NSTextInputClient, CETextViewProtocol>
@@ -51,7 +52,6 @@
 @property (nonatomic, copy) NSCharacterSet *firstCompletionCharacterSet;  // 入力補完の最初の1文字のセット
 @property (nonatomic, weak) NSView *lineNumberView;  // lineNumberView
 @property (nonatomic, copy) NSString *lineEndingString;  // 行末文字
-@property (nonatomic) CGFloat backgroundAlpha;  // ビューの不透明度
 
 @property (nonatomic) CETheme *theme;
 

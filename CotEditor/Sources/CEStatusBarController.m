@@ -3,7 +3,7 @@
  CEStatusBarController
  
  CotEditor
- http://coteditor.github.io
+ http://coteditor.com
  
  Created on 2014-07-11 by 1024jp
  encoding="UTF-8"
@@ -33,7 +33,7 @@
 
 
 static const CGFloat kDefaultHeight = 20.0;
-static const NSTimeInterval kDuration = 0.1;
+static const NSTimeInterval kDuration = 0.25;
 
 
 @interface CEStatusBarController ()

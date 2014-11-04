@@ -13,3 +13,4 @@ pod 'YAML-Framework',
     :git => 'https://github.com/coteditor/YAML.framework.git',
     :branch => 'coteditor-mod'
 pod 'WFColorCode'
+pod 'SWFSemanticVersion'

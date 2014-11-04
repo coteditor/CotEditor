@@ -1,4 +1,5 @@
 language: objective-c
 xcode_workspace: CotEditor.xcworkspace
 xcode_scheme: CotEditor
-before_install: gem install cocoapods -v '= 0.34.4'
+before_install:
+  - gem install cocoapods

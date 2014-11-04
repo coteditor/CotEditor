@@ -3,7 +3,7 @@
  CEEncodingManager
  
  CotEditor
- http://coteditor.github.io
+ http://coteditor.com
  
  Created on 2014-09-24 by 1024jp
  encoding="UTF-8"
@@ -170,7 +170,7 @@ NSString *const CEEncodingListDidUpdateNotification = @"CESyntaxListDidUpdateNot
     [self setEncodingMenuItems:items];
     
     // リストのできあがりを通知
-    dispatch_async(dispatch_get_current_queue(), ^{
+    dispatch_async(dispatch_get_main_queue(), ^{
         [[NSNotificationCenter defaultCenter] postNotificationName:CEEncodingListDidUpdateNotification object:self];
     });
 }

@@ -3,7 +3,7 @@
  CEWindowPaneController
  
  CotEditor
- http://coteditor.github.io
+ http://coteditor.com
  
  Created on 2014-04-18 by 1024jp
  encoding="UTF-8"
@@ -30,9 +30,42 @@
 
 #import "CEWindowPaneController.h"
 #import "CESizeSampleWindowController.h"
+#import "constants.h"
 
+
+@interface CEWindowPaneController ()
+
+@property (nonatomic, getter=isViewOpaque) BOOL viewOpaque;
+
+@end
+
+
+
+
+#pragma mark -
 
 @implementation CEWindowPaneController
+
+#pragma mark Superclass Methods
+
+//=======================================================
+// Superclass method
+//
+//=======================================================
+
+// ------------------------------------------------------
+/// 初期化
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+// ------------------------------------------------------
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        _viewOpaque = ([[NSUserDefaults standardUserDefaults] doubleForKey:CEDefaultWindowAlphaKey] == 1.0);
+    }
+    return self;
+}
+
+
 
 #pragma mark Action Messages
 
@@ -40,6 +73,15 @@
 // Action messages
 //
 //=======================================================
+
+// ------------------------------------------------------
+/// ビューの不透明度設定が変更された
+- (IBAction)changeViewOpaque:(id)sender
+// ------------------------------------------------------
+{
+    [self setViewOpaque:([sender doubleValue] == 1.0)];
+}
+
 
 // ------------------------------------------------------
 /// サイズ設定のためのサンプルウィンドウを開く

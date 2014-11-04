@@ -3,7 +3,7 @@
  CELineNumberView
  
  CotEditor
- http://coteditor.github.io
+ http://coteditor.com
  
  Created on 2005-03-30 by nakamuxu
  encoding="UTF-8"
@@ -40,7 +40,6 @@
 @property (nonatomic) NSLayoutConstraint *thicknessConstraint;
 
 @property (nonatomic) NSString *fontName;
-@property (nonatomic) NSColor *numberColor;
 
 @end
 
@@ -68,8 +67,6 @@
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         NSFont *font = [NSFont fontWithName:[defaults stringForKey:CEDefaultLineNumFontNameKey] size:0] ? : [NSFont paletteFontOfSize:0];
         _fontName = [font fontName];
-        _numberColor = [NSUnarchiver unarchiveObjectWithData:[defaults dataForKey:CEDefaultLineNumFontColorKey]];
-        _backgroundAlpha = 1.0;
         
         // set thickness constraint
         _thicknessConstraint = [NSLayoutConstraint constraintWithItem:self
@@ -97,7 +94,7 @@
 // ------------------------------------------------------
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [self setTextView:nil];
+    _textView = nil;
 }
 
 
@@ -106,13 +103,15 @@
 - (void)drawRect:(NSRect)dirtyRect
 // ------------------------------------------------------
 {
+    NSColor *counterColor = [[[self textView] theme] isDarkTheme] ? [NSColor whiteColor] : [NSColor blackColor];
+    NSColor *textColor = [[[self textView] theme] weakTextColor];
+    
     // fill in the background
-    NSColor *backgroundColor = [[NSColor controlHighlightColor] colorWithAlphaComponent:[self backgroundAlpha]];
-    [backgroundColor set];
+    [[counterColor colorWithAlphaComponent:0.08] set];
     [NSBezierPath fillRect:dirtyRect];
     
     // draw frame border (1px)
-    [[NSColor gridColor] set];
+    [[textColor colorWithAlphaComponent:0.3] set];
     [NSBezierPath strokeLineFromPoint:NSMakePoint(NSMaxX(dirtyRect) - 0.5, NSMaxY(dirtyRect))
                               toPoint:NSMakePoint(NSMaxX(dirtyRect) - 0.5, NSMinY(dirtyRect))];
     
@@ -134,9 +133,9 @@
     // create CGColor from NSColor
     CGColorRef cgColor;
     if (NSAppKitVersionNumber < NSAppKitVersionNumber10_8) {  // on lion
-        cgColor = [[self numberColor] CECGColor];
+        cgColor = [textColor CECGColor];
     } else {
-        cgColor = [[self numberColor] CGColor];
+        cgColor = [textColor CGColor];
     }
     
     CGFontRef cgFont = CTFontCopyGraphicsFont(font, NULL);

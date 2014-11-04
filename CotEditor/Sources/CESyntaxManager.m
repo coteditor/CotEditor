@@ -3,7 +3,7 @@
  CESyntaxManager
  
  CotEditor
- http://coteditor.github.io
+ http://coteditor.com
  
  Created on 2004-12-24 by nakamuxu
  encoding="UTF-8"
@@ -39,13 +39,23 @@
 NSString *const CESyntaxListDidUpdateNotification = @"CESyntaxListDidUpdateNotification";
 NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification";
 
+// keys for validation result
+NSString *const CESyntaxValidationTypeKey = @"SyntaxTypeKey";
+NSString *const CESyntaxValidationRoleKey = @"RoleKey";
+NSString *const CESyntaxValidationStringKey = @"StringKey";
+NSString *const CESyntaxValidationMessageKey = @"MessageKey";
+
 
 @interface CESyntaxManager ()
 
-@property (nonatomic, copy) NSDictionary *styles;  // 全てのカラーリング定義 (values are NSMutableDictonary)
+@property (nonatomic) NSMutableDictionary *styleCaches;  // カラーリング定義のキャッシュ (values are NSMutableDictonary)
+@property (nonatomic, copy) NSDictionary *map;  // style名と拡張子/ファイル名の対応テーブル
+
 @property (nonatomic, copy) NSArray *bundledStyleNames;  // バンドルされているシンタックススタイル名の配列
+@property (nonatomic, copy) NSDictionary *bundledMap;
+
 @property (nonatomic, copy) NSDictionary *extensionToStyleTable;  // 拡張子<->styleファイルの変換テーブル辞書(key = 拡張子)
-@property (nonatomic, copy) NSDictionary *filenameToStyleTable;
+@property (nonatomic, copy) NSDictionary *filenameToStyleTable;  // ファイル名<->styleファイルの変換テーブル辞書(key = ファイル名)
 
 
 // readonly
@@ -100,13 +110,14 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
 {
     self = [super init];
     if (self) {
-        // バンドルされているstyle定義の名前を読み込んでおく
-        NSArray *URLs = [[NSBundle mainBundle] URLsForResourcesWithExtension:@"yaml" subdirectory:@"Syntaxes"];
-        NSMutableArray *styleNames = [NSMutableArray array];
-        for (NSURL *URL in URLs) {
-            [styleNames addObject:[self styleNameFromURL:URL]];
-        }
-        [self setBundledStyleNames:styleNames];
+        _styleCaches = [NSMutableDictionary dictionary];
+        
+        // バンドルされているstyle定義の一覧を読み込んでおく
+        NSURL *URL = [[NSBundle mainBundle] URLForResource:@"SyntaxMap" withExtension:@"json"];
+        _bundledMap = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfURL:URL]
+                                                      options:nil
+                                                        error:nil];
+        _bundledStyleNames = [_bundledMap allKeys];
         
         // cache user styles asynchronously but wait until the process will be done
         dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
@@ -163,7 +174,12 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
     NSDictionary *style;
     
     if (![styleName isEqualToString:@""] && ![styleName isEqualToString:NSLocalizedString(@"None", nil)]) {
-        style = [self styles][styleName];
+        style = [self styleCaches][styleName] ? : [self styleDictWithURL:[self URLForUsedStyle:styleName]];
+        
+        /// 新たに読み込んだ場合はキャッシュする
+        if (![self styleCaches][styleName] && style) {
+            [self styleCaches][styleName] = style;
+        }
     }
     
     return style ? : [self emptyStyle];  // 存在しない場合は空のデータを返す
@@ -297,6 +313,7 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
         success = [[NSFileManager defaultManager] removeItemAtURL:URL error:nil];
         if (success) {
             // 内部で持っているキャッシュ用データを更新
+            [[self styleCaches] removeObjectForKey:styleName];
             __weak typeof(self) weakSelf = self;
             [self updateCacheWithCompletionHandler:^{
                 typeof(self) strongSelf = weakSelf;
@@ -407,6 +424,7 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
     if ([style isEqualToDictionary:[self bundledStyleWithStyleName:name]]) {
         if ([saveURL checkResourceIsReachableAndReturnError:nil]) {
             [[NSFileManager defaultManager] removeItemAtURL:saveURL error:nil];
+            [[self styleCaches] removeObjectForKey:name];
         }
     } else {
         // 保存
@@ -431,11 +449,11 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
 
 
 // ------------------------------------------------------
-/// 正規表現構文と重複のチェック実行をしてエラーメッセージのArrayを返す
+/// 正規表現構文と重複のチェック実行をしてエラーメッセージ(NSDictionary)のArrayを返す
 - (NSArray *)validateSyntax:(NSDictionary *)style
 // ------------------------------------------------------
 {
-    NSMutableArray *errorMessages = [NSMutableArray array];
+    NSMutableArray *results = [NSMutableArray array];
     NSString *tmpBeginStr = nil, *tmpEndStr = nil;
     NSError *error = nil;
     
@@ -446,40 +464,40 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
     [syntaxDictKeys addObject:CESyntaxOutlineMenuKey];
     
     for (NSString *key in syntaxDictKeys) {
-        NSArray *array = style[key];
-        NSString *arrayNameDeletingArray = [key substringToIndex:([key length] - 5)];
-        
-        for (NSDictionary *dict in array) {
+        for (NSDictionary *dict in style[key]) {
             NSString *beginStr = dict[CESyntaxBeginStringKey];
             NSString *endStr = dict[CESyntaxEndStringKey];
             
             if ([tmpBeginStr isEqualToString:beginStr] &&
                 ((!tmpEndStr && !endStr) || [tmpEndStr isEqualToString:endStr])) {
-                [errorMessages addObject:[NSString stringWithFormat:
-                                          @"%@ :(Begin string) > %@\n  >>> multiple registered.",
-                                          arrayNameDeletingArray, beginStr]];
+                [results addObject:@{CESyntaxValidationTypeKey: NSLocalizedString(key, nil),
+                                     CESyntaxValidationRoleKey: NSLocalizedString(@"Begin string", nil),
+                                     CESyntaxValidationStringKey: beginStr,
+                                     CESyntaxValidationMessageKey: NSLocalizedString(@"multiple registered.", nil)}];
                 
             } else if ([dict[CESyntaxRegularExpressionKey] boolValue]) {
-                NSInteger capCount = [beginStr captureCountWithOptions:RKLNoOptions error:&error];
-                if (capCount == -1) { // エラーのとき
-                    [errorMessages addObject:[NSString stringWithFormat:
-                                              @"%@ :(Begin string) > %@\n  >>> Error \"%@\" in column %@: %@<<HERE>>%@",
-                                              arrayNameDeletingArray, beginStr,
-                                              [error userInfo][RKLICURegexErrorNameErrorKey],
-                                              [error userInfo][RKLICURegexOffsetErrorKey],
-                                              [error userInfo][RKLICURegexPreContextErrorKey],
-                                              [error userInfo][RKLICURegexPostContextErrorKey]]];
+                if ([beginStr captureCountWithOptions:RKLNoOptions error:&error] == -1) { // エラーのとき
+                    NSString *message = [NSString stringWithFormat:NSLocalizedString(@"Error “%@” in column %@: %@<<HERE>>%@", nil),
+                                         [error userInfo][RKLICURegexErrorNameErrorKey],
+                                         [error userInfo][RKLICURegexOffsetErrorKey],
+                                         [error userInfo][RKLICURegexPreContextErrorKey],
+                                         [error userInfo][RKLICURegexPostContextErrorKey]];
+                    [results addObject:@{CESyntaxValidationTypeKey: NSLocalizedString(key, nil),
+                                         CESyntaxValidationRoleKey: NSLocalizedString(@"Begin string", nil),
+                                         CESyntaxValidationStringKey: beginStr,
+                                         CESyntaxValidationMessageKey: message}];
                 }
-                if (endStr != nil) {
-                    NSInteger capCount = [endStr captureCountWithOptions:RKLNoOptions error:&error];
-                    if (capCount == -1) { // エラーのとき
-                        [errorMessages addObject:[NSString stringWithFormat:
-                                                  @"%@ :(End string) > %@\n  >>> Error \"%@\" in column %@: %@<<HERE>>%@",
-                                                  arrayNameDeletingArray, endStr,
-                                                  [error userInfo][RKLICURegexErrorNameErrorKey],
-                                                  [error userInfo][RKLICURegexOffsetErrorKey],
-                                                  [error userInfo][RKLICURegexPreContextErrorKey],
-                                                  [error userInfo][RKLICURegexPostContextErrorKey]]];
+                if (endStr) {
+                    if ([endStr captureCountWithOptions:RKLNoOptions error:&error] == -1) { // エラーのとき
+                        NSString *message = [NSString stringWithFormat:NSLocalizedString(@"Error “%@” in column %@: %@<<HERE>>%@", nil),
+                                             [error userInfo][RKLICURegexErrorNameErrorKey],
+                                             [error userInfo][RKLICURegexOffsetErrorKey],
+                                             [error userInfo][RKLICURegexPreContextErrorKey],
+                                             [error userInfo][RKLICURegexPostContextErrorKey]];
+                        [results addObject:@{CESyntaxValidationTypeKey: NSLocalizedString(key, nil),
+                                             CESyntaxValidationRoleKey: NSLocalizedString(@"End string", nil),
+                                             CESyntaxValidationStringKey: endStr,
+                                             CESyntaxValidationMessageKey: message}];
                     }
                 }
                 
@@ -487,8 +505,11 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
                 error = nil;
                 [NSRegularExpression regularExpressionWithPattern:beginStr options:0 error:&error];
                 if (error) {
-                    [errorMessages addObject:[NSString stringWithFormat:@"%@ :((RE string) > %@\n  >>> Regex Error: \"%@\"",
-                                              arrayNameDeletingArray, beginStr, [error localizedFailureReason]]];
+                    [results addObject:@{CESyntaxValidationTypeKey: NSLocalizedString(key, nil),
+                                         CESyntaxValidationRoleKey: NSLocalizedString(@"RE string", nil),
+                                         CESyntaxValidationStringKey: beginStr,
+                                         CESyntaxValidationMessageKey: [NSString stringWithFormat:NSLocalizedString(@"Regex Error: %@", nil),
+                                                      [error localizedFailureReason]]}];
                 }
             }
             tmpBeginStr = beginStr;
@@ -502,10 +523,14 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
     if (([beginDelimiter length] >  0 && [endDelimiter length] == 0) ||
         ([beginDelimiter length] == 0 && [endDelimiter length] >  0))
     {
-        [errorMessages addObject:NSLocalizedString(@"Block comment needs both begin delimiter and end delimiter.", nil)];
+        NSString *role = ([beginDelimiter length] > 0) ? @"Begin string" : @"End string";
+        [results addObject:@{CESyntaxValidationTypeKey: NSLocalizedString(@"comment", nil),
+                             CESyntaxValidationRoleKey: NSLocalizedString(role, nil),
+                             CESyntaxValidationStringKey: ([beginDelimiter length] > 0) ? beginDelimiter : endDelimiter,
+                             CESyntaxValidationMessageKey: NSLocalizedString(@"Block comment needs both begin delimiter and end delimiter.", nil)}];
     }
     
-    return errorMessages;
+    return results;
 }
 
 
@@ -638,7 +663,7 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
     __weak typeof(self) weakSelf = self;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         typeof(self) strongSelf = weakSelf;
-        [strongSelf cacheStyles];
+        [strongSelf updateStyleTables];
         [strongSelf setupExtensionAndSyntaxTable];
         
         dispatch_sync(dispatch_get_main_queue(), ^{
@@ -655,12 +680,12 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
 
 
 //------------------------------------------------------
-/// styleのファイルからのセットアップと読み込み
-- (void)cacheStyles
+/// ユーザ領域のスタイル定義を読み直しキャッシュおよびマッピングテーブルを再構築する
+- (void)updateStyleTables
 //------------------------------------------------------
 {
     NSURL *dirURL = [self userStyleDirectoryURL]; // ユーザディレクトリパス取得
-    NSMutableOrderedSet *styleNameSet = [NSMutableOrderedSet orderedSetWithArray:[self bundledStyleNames]];
+    NSMutableDictionary *map = [[self bundledMap] mutableCopy];
     
     // ユーザ定義用ディレクトリが存在する場合は読み込む
     if ([dirURL checkResourceIsReachableAndReturnError:nil]) {
@@ -672,29 +697,26 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
             if (![@[@"yaml", @"yml"] containsObject:[URL pathExtension]]) { continue; }
             
             NSString *styleName = [self styleNameFromURL:URL];
-            [styleNameSet addObject:styleName];
+            NSDictionary *style = [self styleDictWithURL:URL];
+            
+            // URLが無効だった場合などに、dictがnilになる場合がある
+            if (!style) { continue; }
+            
+            map[styleName] = @{CESyntaxExtensionsKey: [self keyStringsFromDicts:style[CESyntaxExtensionsKey]],
+                               CESyntaxFileNamesKey: [self keyStringsFromDicts:style[CESyntaxFileNamesKey]]};
+            
+            // せっかく読み込んだのでキャッシュしておく
+            [self styleCaches][styleName] = style;
         }
     }
+    [self setMap:map];
     
     // 定義をアルファベット順にソートする
-    [styleNameSet sortUsingComparator:^NSComparisonResult(NSString *name1, NSString *name2) {
+    NSMutableArray *styleNames = [[map allKeys] mutableCopy];
+    [styleNames sortUsingComparator:^NSComparisonResult(NSString *name1, NSString *name2) {
         return [name1 caseInsensitiveCompare:name2];
     }];
-    
-    // 定義をキャッシュする
-    NSMutableDictionary *styles = [NSMutableDictionary dictionary];
-    for (NSString *styleName in styleNameSet) {
-        NSURL *URL = [self URLForUsedStyle:styleName];
-        NSMutableDictionary *style = [self styleDictWithURL:URL];
-        
-        // URLが無効だった場合などに、dictがnilになる場合がある
-        if (!style) { continue; }
-        
-        styles[styleName] = style;
-    }
-    
-    [self setStyleNames:[styleNameSet array]];
-    [self setStyles:styles];
+    [self setStyleNames:styleNames];
 }
 
 
@@ -703,23 +725,15 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
 - (void)setupExtensionAndSyntaxTable
 // ------------------------------------------------------
 {
-    NSMutableDictionary *extensionTable = [NSMutableDictionary dictionary];
+    NSMutableDictionary *extensionToStyleTable = [NSMutableDictionary dictionary];
     NSMutableDictionary *extensionConflicts = [NSMutableDictionary dictionary];
-    NSMutableDictionary *filenameTable = [NSMutableDictionary dictionary];
+    NSMutableDictionary *filenameToStyleTable = [NSMutableDictionary dictionary];
     NSMutableDictionary *filenameConflicts = [NSMutableDictionary dictionary];
     NSString *addedName = nil;
-
-    for (NSString *styleName in [[self styles] allKeys]) {
-        NSMutableDictionary *style = [self styles][styleName];
-        NSArray *extensionDicts = style[CESyntaxExtensionsKey];
-        NSArray *filenameDicts = style[CESyntaxFileNamesKey];
-        
-        for (NSDictionary *dict in extensionDicts) {
-            NSString *extension = dict[CESyntaxKeyStringKey];
-            
-            if (!extension) { continue; }
-            
-            if ((addedName = extensionTable[extension])) { // 同じ拡張子を持つものがすでにあるとき
+    
+    for (NSString *styleName in [[self map] allKeys]) {
+        for (NSString *extension in [self map][styleName][CESyntaxExtensionsKey]) {
+            if ((addedName = extensionToStyleTable[extension])) { // 同じ拡張子を持つものがすでにあるとき
                 NSMutableArray *errors = extensionConflicts[extension];
                 if (!errors) {
                     errors = [NSMutableArray array];
@@ -730,16 +744,12 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
                 }
                 [errors addObject:styleName];
             } else {
-                [extensionTable setValue:styleName forKey:extension];
+                [extensionToStyleTable setValue:styleName forKey:extension];
             }
         }
         
-        for (NSDictionary *dict in filenameDicts) {
-            NSString *filename = dict[CESyntaxKeyStringKey];
-            
-            if (!filename) { continue; }
-            
-            if ((addedName = filenameTable[filename])) { // 同じファイル名を持つものがすでにあるとき
+        for (NSString *filename in [self map][styleName][CESyntaxFileNamesKey]) {
+            if ((addedName = filenameToStyleTable[filename])) { // 同じファイル名を持つものがすでにあるとき
                 NSMutableArray *errors = filenameConflicts[filename];
                 if (!errors) {
                     errors = [NSMutableArray array];
@@ -750,14 +760,29 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
                 }
                 [errors addObject:styleName];
             } else {
-                [filenameTable setValue:styleName forKey:filename];
+                [filenameToStyleTable setValue:styleName forKey:filename];
             }
         }
     }
-    [self setExtensionToStyleTable:extensionTable];
+    [self setExtensionToStyleTable:extensionToStyleTable];
     [self setExtensionConflicts:extensionConflicts];
-    [self setFilenameToStyleTable:filenameTable];
+    [self setFilenameToStyleTable:filenameToStyleTable];
     [self setFilenameConflicts:filenameConflicts];
+}
+
+
+// ------------------------------------------------------
+/// 辞書の array から keyString をキーに持つ string を集めて返す
+- (NSArray *)keyStringsFromDicts:(NSArray *)dicts
+// ------------------------------------------------------
+{
+    NSMutableArray *strings = [NSMutableArray array];
+    
+    for (NSDictionary *dict in dicts) {
+        [strings addObject:dict[CESyntaxKeyStringKey]];
+    }
+    
+    return [strings copy];
 }
 
 @end
@@ -771,7 +796,7 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
 
 // ------------------------------------------------------
 /// CotEditor 1.x から CotEdito 2.0 への移行
-- (BOOL)migrateStyles
+- (void)migrateStylesWithCompletionHandler:(void (^)(BOOL success))completionHandler;
 // ------------------------------------------------------
 {
     BOOL success = NO;
@@ -781,7 +806,8 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
     if (![oldDirURL checkResourceIsReachableAndReturnError:nil] ||
         [[self userStyleDirectoryURL] checkResourceIsReachableAndReturnError:nil])
     {
-        return NO;
+        completionHandler(NO);
+        return;
     }
     
     [self prepareUserStyleDirectory];
@@ -799,11 +825,11 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
     
     if (success) {
         [self updateCacheWithCompletionHandler:^{
-            // do nothing
+            completionHandler(YES);
         }];
+    } else {
+        completionHandler(NO);
     }
-    
-    return success;
 }
 
 

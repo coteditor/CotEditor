@@ -3,7 +3,7 @@
  CEEditorWrapper
  
  CotEditor
- http://coteditor.github.io
+ http://coteditor.com
  
  Created on 2004-12-08 by nakamuxu
  encoding="UTF-8"
@@ -143,7 +143,7 @@ static NSTimeInterval secondColoringDelay;
 // ------------------------------------------------------
 {
     [self stopColoringTimer];
-    [self setTextView:nil];
+    _textView = nil;
 }
 
 
@@ -579,15 +579,6 @@ static NSTimeInterval secondColoringDelay;
                                                               selector:@selector(doColoringWithTimer:)
                                                               userInfo:nil repeats:NO]];
     }
-}
-
-
-// ------------------------------------------------------
-/// 背景の不透明度をセット
-- (void)setBackgroundAlpha:(CGFloat)alpha
-// ------------------------------------------------------
-{
-    [[self splitViewController] setAllBackgroundColorWithAlpha:alpha];
 }
 
 

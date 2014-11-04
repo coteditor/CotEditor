@@ -3,7 +3,7 @@
  NSWindow+ScriptingSupport
  
  CotEditor
- http://coteditor.github.io
+ http://coteditor.com
  
  Created:2014-03-12 by 1024jp
  encoding="UTF-8"
@@ -28,7 +28,7 @@
  */
 
 #import "NSWindow+ScriptingSupport.h"
-#import "CEWindowController.h"
+#import "CEWindow.h"
 
 
 @implementation NSWindow (ScriptingSupport)
@@ -46,7 +46,7 @@
 // ------------------------------------------------------
 {
     if ([self isDocumentWindow]) {
-        return @([(CEWindowController *)[self windowController] alpha]);
+        return @([(CEWindow *)self backgroundAlpha]);
     }
     
     return nil;
@@ -58,7 +58,7 @@
 // ------------------------------------------------------
 {
     if ([self isDocumentWindow]) {
-        [(CEWindowController *)[self windowController] setAlpha:(CGFloat)[viewOpacity doubleValue]];
+        [(CEWindow *)self setBackgroundAlpha:(CGFloat)[viewOpacity doubleValue]];
     }
 }
 
@@ -76,7 +76,7 @@
 - (BOOL)isDocumentWindow
 // ------------------------------------------------------
 {
-    return [[self windowController] isKindOfClass:[CEWindowController class]];
+    return [self isKindOfClass:[CEWindow class]];
 }
 
 @end

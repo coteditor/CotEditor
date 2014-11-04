@@ -3,7 +3,7 @@
  CENavigationBarController
  
  CotEditor
- http://coteditor.github.io
+ http://coteditor.com
  
  Created on 2005-08-22 by nakamuxu
  encoding="UTF-8"
@@ -32,8 +32,8 @@
 #import "constants.h"
 
 
-static const CGFloat defaultHeight = 16.0;
-static const NSTimeInterval duration = 0.1;
+static const CGFloat kDefaultHeight = 16.0;
+static const NSTimeInterval kDuration = 0.25;
 
 
 @interface CENavigationBarController ()
@@ -107,11 +107,11 @@ static const NSTimeInterval duration = 0.1;
 {
     _showsNavigationBar = showsNavigationBar;
     
-    CGFloat height = [self showsNavigationBar] ? defaultHeight : 0.0;
+    CGFloat height = [self showsNavigationBar] ? kDefaultHeight : 0.0;
     
     // resize with animation
     [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
-        [context setDuration:duration];
+        [context setDuration:kDuration];
         [[[self heightConstraint] animator] setConstant:height];
     } completionHandler:nil];
 }
@@ -230,7 +230,7 @@ static const NSTimeInterval duration = 0.1;
 - (BOOL)canSelectPrevItem
 // ------------------------------------------------------
 {
-    return ([[self outlineMenu] indexOfSelectedItem] > 0);
+    return ([[self outlineMenu] indexOfSelectedItem] > 1);
 }
 
 

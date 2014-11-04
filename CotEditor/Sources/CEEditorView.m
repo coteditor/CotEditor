@@ -3,7 +3,7 @@
  CEEditorView
  
  CotEditor
- http://coteditor.github.io
+ http://coteditor.com
  
  Created on 2006-03-18 by nakamuxu
  encoding="UTF-8"
@@ -82,30 +82,30 @@
         _highlightsCurrentLine = [defaults boolForKey:CEDefaultHighlightCurrentLineKey];
 
         // LineNumberView 生成
-        [self setLineNumberView:[[CELineNumberView alloc] initWithFrame:NSZeroRect]];
-        [[self lineNumberView] setTranslatesAutoresizingMaskIntoConstraints:NO];
-        [self addSubview:[self lineNumberView]];
+        _lineNumberView = [[CELineNumberView alloc] initWithFrame:NSZeroRect];
+        [_lineNumberView setTranslatesAutoresizingMaskIntoConstraints:NO];
+        [self addSubview:_lineNumberView];
 
         // navigationBar 生成
-        [self setNavigationBar:[[CENavigationBarController alloc] init]];
-        [self addSubview:[[self navigationBar] view]];
+        _navigationBar = [[CENavigationBarController alloc] init];
+        [self addSubview:[_navigationBar view]];
 
         // scrollView 生成
-        [self setScrollView:[[NSScrollView alloc] initWithFrame:NSZeroRect]];
-        [[self scrollView] setBorderType:NSNoBorder];
-        [[self scrollView] setHasVerticalScroller:YES];
-        [[self scrollView] setHasHorizontalScroller:YES];
-        [[self scrollView] setTranslatesAutoresizingMaskIntoConstraints:NO];
-        [[self scrollView] setAutohidesScrollers:NO];
-        [[self scrollView] setDrawsBackground:NO];
-        [[[self scrollView] contentView] setAutoresizesSubviews:YES];
-        [self addSubview:[self scrollView]];
+        _scrollView = [[NSScrollView alloc] initWithFrame:NSZeroRect];
+        [_scrollView setBorderType:NSNoBorder];
+        [_scrollView setHasVerticalScroller:YES];
+        [_scrollView setHasHorizontalScroller:YES];
+        [_scrollView setTranslatesAutoresizingMaskIntoConstraints:NO];
+        [_scrollView setAutohidesScrollers:NO];
+        [_scrollView setDrawsBackground:NO];
+        [[_scrollView contentView] setAutoresizesSubviews:YES];
+        [self addSubview:_scrollView];
         
         // setup autolayout
-        NSDictionary *views = @{@"navBar": [[self navigationBar] view],
-                                @"lineNumView": [self lineNumberView],
-                                @"scrollView": [self scrollView]};
-        [[[self navigationBar] view] setTranslatesAutoresizingMaskIntoConstraints:NO];
+        NSDictionary *views = @{@"navBar": [_navigationBar view],
+                                @"lineNumView": _lineNumberView,
+                                @"scrollView": _scrollView};
+        [[_navigationBar view] setTranslatesAutoresizingMaskIntoConstraints:NO];
         [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[navBar]|"
                                                                      options:0 metrics:nil views:views]];
         [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[lineNumView][scrollView]|"
@@ -116,9 +116,9 @@
                                                                      options:0 metrics:nil views:views]];
 
         // TextStorage と LayoutManager を生成
-        [self setTextStorage:[[NSTextStorage alloc] initWithString:@" "]];
+        _textStorage = [[NSTextStorage alloc] initWithString:@" "];
         CELayoutManager *layoutManager = [[CELayoutManager alloc] init];
-        [[self textStorage] addLayoutManager:layoutManager];
+        [_textStorage addLayoutManager:layoutManager];
         [layoutManager setBackgroundLayoutEnabled:YES];
         [layoutManager setUsesAntialias:[defaults boolForKey:CEDefaultShouldAntialiasKey]];
         [layoutManager setFixesLineHeight:[defaults boolForKey:CEDefaultFixLineHeightKey]];
@@ -127,23 +127,23 @@
         NSTextContainer *container = [[NSTextContainer alloc] initWithContainerSize:NSMakeSize(CGFLOAT_MAX, CGFLOAT_MAX)];
         [layoutManager addTextContainer:container];
 
-        [self setSyntaxParser:[[CESyntaxParser alloc] initWithStyleName:NSLocalizedString(@"None", @"")
-                                                          layoutManager:layoutManager
-                                                             isPrinting:NO]];
+        _syntaxParser = [[CESyntaxParser alloc] initWithStyleName:NSLocalizedString(@"None", @"")
+                                                    layoutManager:layoutManager
+                                                       isPrinting:NO];
 
         // TextView 生成
-        [self setTextView:[[CETextView alloc] initWithFrame:NSZeroRect textContainer:container]];
-        [[self textView] setDelegate:self];
+        _textView = [[CETextView alloc] initWithFrame:NSZeroRect textContainer:container];
+        [_textView setDelegate:self];
         
-        [[self lineNumberView] setTextView:[self textView]];
-        [[self navigationBar] setTextView:[self textView]];
-        [[self scrollView] setDocumentView:[self textView]];
+        [_lineNumberView setTextView:_textView];
+        [_navigationBar setTextView:_textView];
+        [_scrollView setDocumentView:_textView];
         
         // OgreKit 改造でポストするようにしたノーティフィケーションをキャッチ
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(textDidReplaceAll:)
                                                      name:@"textDidReplaceAllNotification"
-                                                   object:[self textView]];
+                                                   object:_textView];
         
         // 置換の Undo/Redo 後に再カラーリングできるように Undo/Redo アクションをキャッチ
         [[NSNotificationCenter defaultCenter] addObserver:self
@@ -162,19 +162,19 @@
                                                    object:nil];
 
         // slave view をセット
-        [[self textView] setLineNumberView:[self lineNumberView]]; // (the textview will also update slaveView.)
-        [[self textView] setPostsBoundsChangedNotifications:YES]; // observer = lineNumberView
-        [[NSNotificationCenter defaultCenter] addObserver:[self lineNumberView]
+        [_textView setLineNumberView:_lineNumberView]; // (the textview will also update slaveView.)
+        [_textView setPostsBoundsChangedNotifications:YES]; // observer = lineNumberView
+        [[NSNotificationCenter defaultCenter] addObserver:_lineNumberView
                                                  selector:@selector(updateLineNumber:)
                                                      name:NSViewBoundsDidChangeNotification
-                                                   object:[[self scrollView] contentView]];
+                                                   object:[_scrollView contentView]];
         
         // リサイズに現在行ハイライトを追従
         if (_highlightsCurrentLine) {
             [[NSNotificationCenter defaultCenter] addObserver:self
                                                      selector:@selector(highlightCurrentLine)
                                                          name:NSViewFrameDidChangeNotification
-                                                       object:[[self scrollView] contentView]];
+                                                       object:[_scrollView contentView]];
         }
     }
     return self;
@@ -190,7 +190,7 @@
     [self stopUpdateOutlineMenuTimer];
     [[NSNotificationCenter defaultCenter] removeObserver:[self lineNumberView]];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [self setTextView:nil];
+    _textView = nil;
 }
 
 
@@ -440,16 +440,6 @@
 // ------------------------------------------------------
 {
     return [[self syntaxParser] firstCompletionCharacterSet];
-}
-
-
-// ------------------------------------------------------
-/// テキストビューに背景色をセット
-- (void)setBackgroundColorAlpha:(CGFloat)alpha
-// ------------------------------------------------------
-{
-    [[self textView] setBackgroundAlpha:alpha];
-    [[self lineNumberView] setBackgroundAlpha:alpha];
 }
 
 

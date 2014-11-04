@@ -3,7 +3,7 @@
  CEAppDelegate
  
  CotEditor
- http://coteditor.github.io
+ http://coteditor.com
  
  Created on 2004-12-13 by nakamuxu
  encoding="UTF-8"
@@ -44,12 +44,15 @@
 #import "CEColorCodePanelController.h"
 #import "CEScriptErrorPanelController.h"
 #import "CEUnicodeInputPanelController.h"
+#import "CEMigrationWindowController.h"
+#import "SWFSemanticVersion.h"
 #import "constants.h"
 
 
 @interface CEAppDelegate ()
 
 @property (nonatomic) BOOL hasSetting;  // for migration check
+@property (nonatomic) CEMigrationWindowController *migrationWindowController;
 
 
 // readonly
@@ -61,7 +64,8 @@
 
 @interface CEAppDelegate (Migration)
 
-- (void)migrateToVersion2;
+- (void)migrateIfNeeded;
+- (void)migrateBundleIdentifier;
 
 @end
 
@@ -141,7 +145,6 @@
                                CEDefaultDelayColoringKey: @NO,
                                CEDefaultFileDropArrayKey: @[@{CEFileDropExtensionsKey: @"jpg, jpeg, gif, png",
                                                               CEFileDropFormatStringKey: @"<img src=\"<<<RELATIVE-PATH>>>\" alt=\"<<<FILENAME-NOSUFFIX>>>\" title=\"<<<FILENAME-NOSUFFIX>>>\" width=\"<<<IMAGEWIDTH>>>\" height=\"<<<IMAGEHEIGHT>>>\" />"}],
-                               CEDefaultNSDragAndDropTextDelayKey: @1,
                                CEDefaultSmartInsertAndDeleteKey: @NO,
                                CEDefaultEnableSmartQuotesKey: @NO,
                                CEDefaultEnableSmartIndentKey: @YES,
@@ -186,7 +189,6 @@
                                /* -------- 以下、隠し設定 -------- */
                                CEDefaultUsesTextFontForInvisiblesKey: @NO,
                                CEDefaultLineNumFontNameKey: @"ArialNarrow",
-                               CEDefaultLineNumFontColorKey: [NSArchiver archivedDataWithRootObject:[NSColor darkGrayColor]], 
                                CEDefaultBasicColoringDelayKey: @0.001f, 
                                CEDefaultFirstColoringDelayKey: @0.3f, 
                                CEDefaultSecondColoringDelayKey: @0.7f,
@@ -203,7 +205,7 @@
                                CEDefaultTextContainerInsetWidthKey: @0.0f, 
                                CEDefaultTextContainerInsetHeightTopKey: @4.0f, 
                                CEDefaultTextContainerInsetHeightBottomKey: @16.0f, 
-                               CEDefaultShowColoringIndicatorTextLengthKey: @115000U, 
+                               CEDefaultShowColoringIndicatorTextLengthKey: @50000U,
                                CEDefaultRunAppleScriptInLaunchingKey: @YES,
                                CEDefaultShowAlertForNotWritableKey: @YES, 
                                CEDefaultNotifyEditByAnotherKey: @YES,
@@ -242,6 +244,8 @@
 {
     self = [super init];
     if (self) {
+        [self migrateBundleIdentifier];
+        
         _supportDirectoryURL = [[[NSFileManager defaultManager] URLForDirectory:NSApplicationSupportDirectory
                                                                        inDomain:NSUserDomainMask
                                                               appropriateForURL:nil
@@ -390,20 +394,16 @@
     // KeyBindingManagerをセットアップ
     [[CEKeyBindingManager sharedManager] setupAtLaunching];
     
+    // 必要があれば移行処理を行う
+    [self migrateIfNeeded];
     
-    // CotEditor 1.x系からの移行
-    // 本来ならば semantic versioning で比較をするべきだが、2.0 への移行はひとまず lastVersion の有無のみで判断を行なう
+    // store latest version
     NSString *lastVersion = [[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultLastVersionKey];
-    NSString *version = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
-    if (!lastVersion) {
-        if ([self hasSetting]) {
-            [self migrateToVersion2];
-        }
-    }
-    // store current version
-    NSArray *releasedVersions = @[@"2.0.0-alpha", @"2.0.0-beta"];
-    if (!lastVersion || [releasedVersions containsObject:lastVersion]) {
-        [[NSUserDefaults standardUserDefaults] setObject:version forKey:CEDefaultLastVersionKey];
+    NSString *thisVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
+    SWFSemanticVersion *lastSemVer = lastVersion ? [SWFSemanticVersion semanticVersionWithString:lastVersion] : nil;
+    SWFSemanticVersion *thisSemVer = [SWFSemanticVersion semanticVersionWithString:thisVersion];
+    if (!lastSemVer || [lastSemVer compare:thisSemVer] == NSOrderedAscending) {  // lastVer < thisVer
+        [[NSUserDefaults standardUserDefaults] setObject:thisVersion forKey:CEDefaultLastVersionKey];
     }
 }
 
@@ -601,6 +601,19 @@
 
 
 // ------------------------------------------------------
+/// 任意のヘルプコンテンツを開く
+- (IBAction)openHelpAnchor:(id)sender
+// ------------------------------------------------------
+{
+    NSString *bookName = [[NSBundle mainBundle] objectForInfoDictionaryKey: @"CFBundleHelpBookName"];
+    
+    [[NSHelpManager sharedHelpManager] openHelpAnchor:kHelpAnchors[[sender tag]]
+                                               inBook:bookName];
+    
+}
+
+
+// ------------------------------------------------------
 /// 付属ドキュメントを開く
 - (IBAction)openBundledDocument:(id)sender
 // ------------------------------------------------------
@@ -613,7 +626,7 @@
 
 
 // ------------------------------------------------------
-/// Webサイト（coteditor.github.io）を開く
+/// Webサイト（coteditor.com）を開く
 - (IBAction)openWebSite:(id)sender
 // ------------------------------------------------------
 {
@@ -737,19 +750,76 @@
 
 @implementation CEAppDelegate (Migration)
 
+static NSString *const kOldIdentifier = @"com.aynimac.CotEditor";
+static NSString *const kMigrationFlagKey = @"isMigratedToNewBundleIdentifier";
+
+
+//------------------------------------------------------
+/// 必要があればCotEditor 1.x系からの移行処理を行う
+- (void)migrateIfNeeded
+//------------------------------------------------------
+{
+    NSString *lastVersion = [[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultLastVersionKey];
+    
+    if (!lastVersion && [self hasSetting]) {
+        [self migrateToVersion2];
+    }
+}
+
+
 //------------------------------------------------------
 /// perform migration from CotEditor 1.x to 2.0
 - (void)migrateToVersion2
 //------------------------------------------------------
 {
-    // migrate syntax styles to modern style
-    [[CESyntaxManager sharedManager] migrateStyles];
-    
-    // migrate coloring setting
-    [[CEThemeManager sharedManager] migrateTheme];
+    // show migration window
+    CEMigrationWindowController *windowController = [[CEMigrationWindowController alloc] init];
+    [self setMigrationWindowController:windowController];
+    [windowController showWindow:self];
     
     // reset menu keybindings setting
+    [windowController setInformative:@"Restorering menu key bindings settings…"];
     [[CEKeyBindingManager sharedManager] resetMenuKeyBindings];
+    [windowController progressIndicator];
+    [windowController setDidResetKeyBindings:YES];
+    
+    // migrate coloring setting
+    [windowController setInformative:@"Migrating coloring settings…"];
+    BOOL didMigrate = [[CEThemeManager sharedManager] migrateTheme];
+    [windowController progressIndicator];
+    [windowController setDidMigrateTheme:didMigrate];
+    
+    // migrate syntax styles to modern style
+    [windowController setInformative:@"Migrating user syntax styles…"];
+    [[CESyntaxManager sharedManager] migrateStylesWithCompletionHandler:^(BOOL success) {
+        [windowController setDidMigrateSyntaxStyles:success];
+        
+        [windowController setInformative:@"Migration finished."];
+        [windowController setMigrationFinished:YES];
+    }];
+}
+
+
+//------------------------------------------------------
+/// copy user defaults from com.aynimac.CotEditor
+- (void)migrateBundleIdentifier
+//------------------------------------------------------
+{
+    NSUserDefaults *oldDefaults = [[NSUserDefaults alloc] init];
+    NSMutableDictionary *oldDefaultsDict = [[oldDefaults persistentDomainForName:kOldIdentifier] mutableCopy];
+    
+    if (!oldDefaultsDict || [oldDefaultsDict[kMigrationFlagKey] boolValue]) { return; }
+    
+    // remove deprecated setting key with "NS"-prefix
+    [oldDefaultsDict removeObjectForKey:@"NSDragAndDropTextDelay"];
+    
+    // copy to current defaults
+    [[NSUserDefaults standardUserDefaults] setPersistentDomain:oldDefaultsDict
+                                                       forName:[[NSBundle mainBundle] bundleIdentifier]];
+    
+    // set migration flag to old defaults
+    oldDefaultsDict[kMigrationFlagKey] = @(YES);
+    [oldDefaults setPersistentDomain:oldDefaultsDict forName:kOldIdentifier];
 }
 
 @end

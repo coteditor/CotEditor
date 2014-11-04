@@ -3,7 +3,7 @@
  CETheme
  
  CotEditor
- http://coteditor.github.io
+ http://coteditor.com
  
  Created on 2014-04-12 by 1024jp
  encoding="UTF-8"
@@ -42,6 +42,9 @@
 @property (readonly, nonatomic) NSColor *selectionColor;
 @property (readonly, nonatomic) NSColor *insertionPointColor;
 @property (readonly, nonatomic) NSColor *lineHighLightColor;
+
+// auto genereted colors
+@property (readonly, nonatomic) NSColor *weakTextColor;
 @property (readonly, nonatomic) NSColor *markupColor;
 
 // syntax colors
@@ -55,6 +58,9 @@
 @property (readonly, nonatomic) NSColor *stringsColor;
 @property (readonly, nonatomic) NSColor *charactersColor;
 @property (readonly, nonatomic) NSColor *commentsColor;
+
+/// Is background color dark?
+@property (readonly, nonatomic, getter=isDarkTheme) BOOL darkTheme;
 
 
 /// return CETheme instance initialized with theme name
