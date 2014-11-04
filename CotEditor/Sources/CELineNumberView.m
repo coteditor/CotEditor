@@ -94,7 +94,7 @@
 // ------------------------------------------------------
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [self setTextView:nil];
+    _textView = nil;
 }
 
 

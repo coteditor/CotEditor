@@ -92,7 +92,7 @@ const NSInteger kNoMenuItem = -1;
         // set the width of every tab by first checking the size of the tab in spaces in the current font and then remove all tabs that sets automatically and then set the default tab stop distance
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         
-        [self setTabWidth:[defaults integerForKey:CEDefaultTabWidthKey]];
+        _tabWidth = [defaults integerForKey:CEDefaultTabWidthKey];
         
         NSFont *font = [NSFont fontWithName:[defaults stringForKey:CEDefaultFontNameKey]
                                        size:(CGFloat)[defaults doubleForKey:CEDefaultFontSizeKey]];
@@ -102,7 +102,7 @@ const NSInteger kNoMenuItem = -1;
             [paragraphStyle removeTabStop:textTabToBeRemoved];
         }
         [paragraphStyle setDefaultTabInterval:[self tabIntervalFromFont:font]];
-        [self setParagraphStyle:paragraphStyle];
+        _paragraphStyle = paragraphStyle;
         // （NSParagraphStyle の lineSpacing を設定すればテキスト描画時の行間は制御できるが、
         // 「文書の1文字目に1バイト文字（または2バイト文字）を入力してある状態で先頭に2バイト文字（または1バイト文字）を
         // 挿入すると行間がズレる」問題が生じるため、CELayoutManager および CEATSTypesetter で制御している）
@@ -111,7 +111,7 @@ const NSInteger kNoMenuItem = -1;
         [self setTheme:[CETheme themeWithName:[defaults stringForKey:CEDefaultThemeKey]]];
         
         // set the values
-        [self setAutoTabExpandEnabled:[defaults boolForKey:CEDefaultAutoExpandTabKey]];
+        _autoTabExpandEnabled = [defaults boolForKey:CEDefaultAutoExpandTabKey];
         [self setSmartInsertDeleteEnabled:[defaults boolForKey:CEDefaultSmartInsertAndDeleteKey]];
         [self setContinuousSpellCheckingEnabled:[defaults boolForKey:CEDefaultCheckSpellingAsTypeKey]];
         if ([self respondsToSelector:@selector(setAutomaticQuoteSubstitutionEnabled:)]) {  // only on OS X 10.9 and later
@@ -133,10 +133,10 @@ const NSInteger kNoMenuItem = -1;
                                                (CGFloat)([defaults doubleForKey:CEDefaultTextContainerInsetHeightTopKey] +
                                                          [defaults doubleForKey:CEDefaultTextContainerInsetHeightBottomKey]) / 2)];
         [self setLineSpacing:(CGFloat)[defaults doubleForKey:CEDefaultLineSpacingKey]];
-        [self setInsertionRect:NSZeroRect];
-        [self setTextContainerOriginPoint:NSMakePoint((CGFloat)[defaults doubleForKey:CEDefaultTextContainerInsetWidthKey],
-                                                      (CGFloat)[defaults doubleForKey:CEDefaultTextContainerInsetHeightTopKey])];
-        [self setNeedsUpdateOutlineMenuItemSelection:YES];
+        _insertionRect = NSZeroRect;
+        _textContainerOriginPoint = NSMakePoint((CGFloat)[defaults doubleForKey:CEDefaultTextContainerInsetWidthKey],
+                                                (CGFloat)[defaults doubleForKey:CEDefaultTextContainerInsetHeightTopKey]);
+        _needsUpdateOutlineMenuItemSelection = YES;
         
         [self applyTypingAttributes];
         

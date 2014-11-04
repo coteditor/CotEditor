@@ -64,8 +64,8 @@
 {
     self = [super initWithWindowNibName:@"Indicator"];
     if (self) {
-        [self setMessage:message];
-        [self setInformativeText:NSLocalizedString(@"Please wait for a while.", nil)];
+        _message = message;
+        _informativeText = NSLocalizedString(@"Please wait for a while.", nil);
     }
     return self;
 }

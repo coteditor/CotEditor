@@ -60,7 +60,7 @@
 
 // ------------------------------------------------------
 /// 初期化
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 // ------------------------------------------------------
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -85,7 +85,7 @@
         for (NSUInteger i = 0; i < kSizeOfInvisibleFullwidthSpaceCharList; i++) {
             [fullWidthSpaces addObject:[CEUtils invisibleFullwidthSpaceCharacter:i]];
         }
-        [self setInvisibleFullWidthSpaces:fullWidthSpaces];
+        _invisibleFullWidthSpaces = fullWidthSpaces;
     }
     return self;
 }

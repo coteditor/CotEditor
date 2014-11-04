@@ -60,7 +60,7 @@
 {
     self = [super init];
     if (self) {
-        [self setDocument:document];
+        _document = document;
     }
     return self;
 }

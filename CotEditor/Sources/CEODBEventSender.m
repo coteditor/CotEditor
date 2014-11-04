@@ -75,9 +75,9 @@
         }
         
         if (fileSender) {
-            [self setFileSender:fileSender];
+            _fileSender = fileSender;
             if (fileToken) {
-                [self setFileToken:fileToken];
+                _fileToken = fileToken;
             }
         }
     }

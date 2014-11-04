@@ -143,7 +143,7 @@ static NSTimeInterval secondColoringDelay;
 // ------------------------------------------------------
 {
     [self stopColoringTimer];
-    [self setTextView:nil];
+    _textView = nil;
 }
 
 
