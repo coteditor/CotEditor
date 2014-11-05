@@ -40,7 +40,6 @@
 #import "CEPreferencesWindowController.h"
 #import "CEOpacityPanelController.h"
 #import "CELineHightPanelController.h"
-#import "CEGoToSheetController.h"
 #import "CEColorCodePanelController.h"
 #import "CEScriptErrorPanelController.h"
 #import "CEUnicodeInputPanelController.h"
@@ -567,16 +566,6 @@
     NSURL *URL = [[NSBundle mainBundle] URLForResource:@"openDictionary" withExtension:@"applescript"];
     NSAppleScript *AppleScript = [[NSAppleScript alloc] initWithContentsOfURL:URL error:nil];
     [AppleScript executeAndReturnError:nil];
-}
-
-
-// ------------------------------------------------------
-/// Go Toパネルを開く
-- (IBAction)gotoLocation:(id)sender
-// ------------------------------------------------------
-{
-    CEGoToSheetController *sheetController = [[CEGoToSheetController alloc] init];
-    [sheetController beginSheetForDocument:[[NSDocumentController sharedDocumentController] currentDocument]];
 }
 
 

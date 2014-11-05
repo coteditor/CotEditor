@@ -34,6 +34,7 @@
 #import <OgreKit/OgreKit.h>
 #import "CEDocumentController.h"
 #import "CEPrintPanelAccessoryController.h"
+#import "CEGoToSheetController.h"
 #import "CEPrintView.h"
 #import "CEODBEventSender.h"
 #import "CESyntaxManager.h"
@@ -1087,6 +1088,16 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     if (![self acceptSaveDocumentWithIANACharSetName]) { return; }
     if (![self acceptSaveDocumentToConvertEncoding]) { return; }
     [super saveDocumentAs:sender];
+}
+
+
+// ------------------------------------------------------
+/// Go Toパネルを開く
+- (IBAction)gotoLocation:(id)sender
+// ------------------------------------------------------
+{
+    CEGoToSheetController *sheetController = [[CEGoToSheetController alloc] init];
+    [sheetController beginSheetForDocument:self];
 }
 
 
