@@ -63,15 +63,15 @@
 // Public method
 - (void)completeAfterDelay:(NSTimeInterval)delay;
 - (void)applyTypingAttributes;
-- (void)replaceSelectedStringTo:(NSString *)inString scroll:(BOOL)inBoolScroll;
-- (void)replaceAllStringTo:(NSString *)inString;
-- (void)insertAfterSelection:(NSString *)inString;
-- (void)appendAllString:(NSString *)inString;
-- (void)insertCustomTextWithPatternNum:(NSInteger)inPatternNum;
+- (void)replaceSelectedStringTo:(NSString *)string scroll:(BOOL)needsScroll;
+- (void)replaceAllStringTo:(NSString *)string;
+- (void)insertAfterSelection:(NSString *)string;
+- (void)appendAllString:(NSString *)string;
+- (void)insertCustomTextWithPatternNum:(NSInteger)patternNum;
 - (void)resetFont:(id)sender;
-- (void)setNewLineSpacingAndUpdate:(CGFloat)inLineSpacing;
-- (void)doReplaceString:(NSString *)inString withRange:(NSRange)inRange 
-           withSelected:(NSRange)inSelection withActionName:(NSString *)inActionName;
+- (void)setNewLineSpacingAndUpdate:(CGFloat)lineSpacing;
+- (void)doReplaceString:(NSString *)string withRange:(NSRange)range
+           withSelected:(NSRange)selection withActionName:(NSString *)actionName;
 
 // Action Message
 - (IBAction)shiftRight:(id)sender;

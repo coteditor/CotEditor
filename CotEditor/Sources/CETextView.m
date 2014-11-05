@@ -1218,7 +1218,7 @@ const NSInteger kNoMenuItem = -1;
 
 // ------------------------------------------------------
 /// 選択文字列を置換
-- (void)replaceSelectedStringTo:(NSString *)string scroll:(BOOL)doScroll
+- (void)replaceSelectedStringTo:(NSString *)string scroll:(BOOL)needsScroll
 // ------------------------------------------------------
 {
     if (!string) { return; }
@@ -1230,7 +1230,7 @@ const NSInteger kNoMenuItem = -1;
                withRange:selectedRange
             withSelected:NSMakeRange(selectedRange.location, [string length])
           withActionName:NSLocalizedString(actionName, nil)
-                  scroll:doScroll];
+                  scroll:needsScroll];
 }
 
 
