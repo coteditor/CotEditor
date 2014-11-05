@@ -1475,12 +1475,10 @@ const NSInteger kNoMenuItem = -1;
     // ウインドウが不透明な時は自前で背景を描画する（サブピクセルレンダリングを有効にするためには layer-backed で不透明なビューが必要）
     [self setDrawsBackground:[[self window] isOpaque]];
     
-    if (NSAppKitVersionNumber >= NSAppKitVersionNumber10_8) { // on Mountain Lion and later
-        // 半透明時にこれを有効にすると、ファイルサイズが大きいときにハングに近い状態になるため、
-        // 暫定処置として不透明時にだけ有効にする。
-        // 逆に不透明時に無効だと、ウインドウリサイズ時にビューが伸び縮みする (2014-10 by 1024jp)
-        [[self layer] setNeedsDisplayOnBoundsChange:[[self window] isOpaque]];
-    }
+    // 半透明時にこれを有効にすると、ファイルサイズが大きいときにハングに近い状態になるため、
+    // 暫定処置として不透明時にだけ有効にする。
+    // 逆に不透明時に無効だと、ウインドウリサイズ時にビューが伸び縮みする (2014-10 by 1024jp)
+    [[self layer] setNeedsDisplayOnBoundsChange:[[self window] isOpaque]];
     
     [self setNeedsDisplay:YES];
 }
