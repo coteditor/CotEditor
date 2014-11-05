@@ -1,8 +1,16 @@
+@charset "UTF-8";
+
 /*
- * CotEditor Help Additional Style Sheet for Index Pages
- */
+ Additional Help Style Sheet for Index Pages
  
-h1:before {
+ CotEditor
+ http://coteditor.com
+ 
+ © 2006-2014 CotEditor Project
+*/
+
+
+h1::before {
 	display: none;
 }
 

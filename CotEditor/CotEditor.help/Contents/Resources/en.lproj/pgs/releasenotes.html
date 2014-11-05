@@ -78,12 +78,12 @@
 	<li>Change syntax style file format from plist (XML) to YAML.
 		<ul>
 		<li>Legacy user styles will be migrated automatically on the first launch of CotEditor 2.0.</li>
-		<li>New user syntax style files are stored in <code>~/Library/Application Support/CotEditor/Syntaxes/</code>. The old styles are kept in <code>SyntaxColorings/</code>, since CotEditor 2.0 doesn’t use </li>
+		<li>New user syntax style files are stored in <code>~/Library/Application Support/CotEditor/Syntaxes/</code>. The old styles are kept in <code>SyntaxColorings/</code>. Since CotEditor 2.0 doesn’t use them any more, you can delete the direcotry if you want.</li>
 	</ul></li>
 	<li>Now, IC (ignore case) can be set even RE (regular expression) is set in syntax style editing.</li>
 	<li>Change regular expression engine to extract outline from OniGmo (OgreKit) to ICU (NSRegularExpression).
 		<ul>
-		<li><strong>Attention!</strong>: You may need to update the outline extracting definitions in your custom syntax styles.</li>
+		<li><strong>Attention!</strong>: You may need to update the outline extracting definitions in your custom syntax styles. See <a href="./specification_changes.html">Specification Changes on CotEditor 2.0</a> for details.</li>
 		<li>Remove <code>$&amp;</code> definition that represents whole matched string (Use <code>$0</code> instead).</li>
 	</ul></li>
 	<li>Change tab width to 4 characters in outline menu.</li>
@@ -160,7 +160,7 @@
 		<li>Rename <code>unicode normalization</code> command to <code>normalize unicode</code>.</li>
 		<li>Update internal code for <code>range</code> property of <code>text selection</code> objects.
 			<ul>
-			<li>From this, your <strong>compiled</strong> AppleScripts (.scpt) that contain <code>selection</code> handling need to be updated manually. See “Scripting with AppleScript” document in “Help” menu for details.</li>
+			<li>From this, your <strong>compiled</strong> AppleScripts (.scpt) that contain <code>selection</code> handling need to be updated manually. See “Scripting with AppleScript” document in Help menu for details.</li>
 		</ul></li>
 		<li>Update documents about scripting with AppleScript.</li>
 	</ul></li>

@@ -84,6 +84,7 @@
 	<li>シンタックス定義で RE (正規表現) を無効にしていても IC (大文字小文字を無視) を有効にできるように変更</li>
 	<li>アウトライン抽出に用いる正規表現ライブラリを OniGmo (OgreKit) から ICU (NSRegularExpression) に変更
 		<ul>
+		<li><strong>注意!</strong>: シンタックス定義をカスタムしている場合はアウトライン抽出定義の修正が必要な場合があります。詳細は <a href="./specification_changes.html">CotEditor 2.0 での仕様変更</a>をご覧ください。</li>
 		<li>マッチした文字列全体を表す <code>$&amp;</code> 定義の削除（代わりに <code>$0</code> を使ってください）</li>
 	</ul></li>
 	<li>アウトラインメニューでのタブ幅をスペース4個分に変更</li>

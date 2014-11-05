@@ -1,7 +1,15 @@
+@charset "UTF-8";
+
 /*
- * CotEditor Help Standard Style Sheet
- */
+ Standard Help Style Sheet
  
+ CotEditor
+ http://coteditor.com
+ 
+ © 2006-2014 CotEditor Project
+*/
+
+
 body {
 	font: 10pt/1.5 'Helvetica Neue', sans-serif;
 	color: hsla(0,0%,0%,0.8);
@@ -25,6 +33,7 @@ hr {
 
 code {
 	font-family: 'menlo', monospace;
+	font-size: 95%;
 }
 
 body > h1 {
@@ -32,7 +41,7 @@ body > h1 {
 	font-weight: 500;
 	margin: 0 0 1.5em;
 }
-body > h1:before {
+body > h1::before {
 	content: url(../gfx/icon_32x32@2x.png);
 	-webkit-transform: scale(0.5);
 	display: inline-block;
@@ -155,11 +164,11 @@ table {
 	margin: 1em 0;
 }
 table caption {
-  text-align: left;
-  margin: 0.4em 0;
+	text-align: left;
+	margin: 0.4em 0;
 }
 table thead tr:first-child > * {
-  border-top: none;
+	border-top: none;
 }
 table thead tr:last-child > * {
 	border-bottom: 1px solid #888;
