@@ -225,25 +225,21 @@ static NSDictionary *kUnprintableKeyTable;
     for (NSMenuItem *item in [menu itemArray]) {
         if ([item isSeparatorItem] || ([[item title] length] == 0)) { continue; }
         
-        NSMutableDictionary *row;
-        if (([item hasSubmenu]) &&
-            ([item tag] != CEServicesMenuItemTag) &&
-            ([item tag] != CEWindowPanelsMenuItemTag) &&
-            ([item tag] != CEScriptMenuDirectoryTag))
-        {
+        BOOL hasSpecialTag = (([item tag] == CEServicesMenuItemTag) ||
+                              ([item tag] == CEWindowPanelsMenuItemTag) ||
+                              ([item tag] == CEScriptMenuDirectoryTag));
+        
+        NSDictionary *row;
+        if ([item hasSubmenu] && !hasSpecialTag) {
             NSMutableArray *subArray = [self mainMenuArrayForOutlineData:[item submenu]];
-            row = [@{CEKeyBindingTitleKey: [item title],
-                     CEKeyBindingChildrenKey: subArray} mutableCopy];
+            row = @{CEKeyBindingTitleKey: [item title],
+                    CEKeyBindingChildrenKey: subArray};
             
         } else {
             NSString *selectorString = NSStringFromSelector([item action]);
             
             // フォントサイズ変更、エンコーディングの各項目、カラーリングの各項目、などはリストアップしない
-            if ([[CEKeyBindingManager selectorStringsToIgnore] containsObject:selectorString] ||
-                ([item tag] == CEServicesMenuItemTag) ||
-                ([item tag] == CEWindowPanelsMenuItemTag) ||
-                ([item tag] == CEScriptMenuDirectoryTag))
-            {
+            if ([[CEKeyBindingManager selectorStringsToIgnore] containsObject:selectorString] || hasSpecialTag) {
                 continue;
             }
             if ([item isAlternate]) {
@@ -259,11 +255,11 @@ static NSDictionary *kUnprintableKeyTable;
             } else {
                 keySpecChars = @"";
             }
-            row = [@{CEKeyBindingTitleKey: [item title],
-                     CEKeyBindingKeySpecCharsKey: keySpecChars,
-                     CEKeyBindingSelectorStringKey: selectorString} mutableCopy];
+            row = @{CEKeyBindingTitleKey: [item title],
+                    CEKeyBindingKeySpecCharsKey: keySpecChars,
+                    CEKeyBindingSelectorStringKey: selectorString};
         }
-        [outlineDataArray addObject:row];
+        [outlineDataArray addObject:[row mutableCopy]];
     }
     return outlineDataArray;
 }
