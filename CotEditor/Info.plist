@@ -24,6 +24,7 @@
 			<string>Editor</string>
 			<key>LSItemContentTypes</key>
 			<array>
+				<string>public.text</string>
 				<string>public.data</string>
 			</array>
 			<key>LSTypeIsPackage</key>
