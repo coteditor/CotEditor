@@ -21,7 +21,7 @@
         <userDefaultsController representsSharedInstance="YES" id="26" userLabel="Shared User Defaults Controller"/>
         <arrayController objectClassName="NSString" id="Qfx-DD-EBP" userLabel="Styles Controller"/>
         <customView horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" id="745" userLabel="Format Pane">
-            <rect key="frame" x="0.0" y="0.0" width="540" height="423"/>
+            <rect key="frame" x="0.0" y="0.0" width="540" height="425"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <button horizontalHuggingPriority="750" verticalHuggingPriority="750" tag="5" translatesAutoresizingMaskIntoConstraints="NO" id="2157">
@@ -35,9 +35,9 @@
                     </connections>
                 </button>
                 <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="17">
-                    <rect key="frame" x="57" y="386" width="147" height="17"/>
+                    <rect key="frame" x="57" y="388" width="147" height="17"/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="left" title="デフォルト改行コード：" usesSingleLineMode="YES" id="3273">
-                        <font key="font" size="13" name="AquaKana"/>
+                        <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
@@ -63,9 +63,9 @@
                     </connections>
                 </popUpButton>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="44">
-                    <rect key="frame" x="427" y="270" width="102" height="28"/>
+                    <rect key="frame" x="427" y="270" width="104" height="28"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="92" id="iGy-QY-Sx5"/>
+                        <constraint firstAttribute="width" constant="94" id="iGy-QY-Sx5"/>
                     </constraints>
                     <buttonCell key="cell" type="push" title="リストを編集…" bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" inset="2" id="3275">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -92,9 +92,9 @@
                     </connections>
                 </popUpButton>
                 <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="77">
-                    <rect key="frame" x="70" y="276" width="134" height="17"/>
+                    <rect key="frame" x="70" y="278" width="134" height="17"/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="ファイルを開くとき：" usesSingleLineMode="YES" id="3277">
-                        <font key="font" size="13" name="AquaKana"/>
+                        <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
@@ -129,7 +129,7 @@
                     <rect key="frame" x="208" y="251" width="191" height="18"/>
                     <buttonCell key="cell" type="check" title="エンコーディング宣言を参照" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3280">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" size="13" name="AquaKana"/>
+                        <font key="font" metaFont="system"/>
                     </buttonCell>
                     <connections>
                         <binding destination="26" name="value" keyPath="values.referToEncodingTag" id="879"/>
@@ -243,7 +243,7 @@
                     </connections>
                 </popUpButton>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="703">
-                    <rect key="frame" x="406" y="202" width="110" height="18"/>
+                    <rect key="frame" x="406" y="203" width="110" height="18"/>
                     <buttonCell key="cell" type="check" title="遅延カラーリング" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" inset="2" id="3327">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="smallSystem"/>
@@ -257,14 +257,14 @@
                     <rect key="frame" x="18" y="204" width="256" height="18"/>
                     <buttonCell key="cell" type="check" title="シンタックスカラーリングを有効にする" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3326">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" size="13" name="AquaKana"/>
+                        <font key="font" metaFont="system"/>
                     </buttonCell>
                     <connections>
                         <binding destination="26" name="value" keyPath="values.doSyntaxColoring" id="431"/>
                     </connections>
                 </button>
                 <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="710">
-                    <rect key="frame" x="278" y="204" width="125" height="14"/>
+                    <rect key="frame" x="278" y="205" width="125" height="14"/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="（アウトラインを含む）" usesSingleLineMode="YES" id="3325">
                         <font key="font" metaFont="smallSystem"/>
                         <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>

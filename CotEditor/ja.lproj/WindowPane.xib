@@ -284,10 +284,10 @@
                     </connections>
                 </button>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="SCx-th-irQ">
-                    <rect key="frame" x="356" y="277" width="87" height="18"/>
+                    <rect key="frame" x="356" y="276" width="87" height="18"/>
                     <buttonCell key="cell" type="check" title="改行コード" bezelStyle="regularSquare" imagePosition="left" inset="2" id="Ief-Dy-mPR">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" size="13" name="AquaKana"/>
+                        <font key="font" metaFont="system"/>
                     </buttonCell>
                     <connections>
                         <binding destination="26" name="value" keyPath="values.showStatusBarLineEndings" id="1gC-9R-kbc"/>
@@ -352,7 +352,7 @@
                     </textFieldCell>
                 </textField>
                 <matrix verticalHuggingPriority="750" allowsEmptySelection="NO" autosizesCells="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Fk-5p-bdl">
-                    <rect key="frame" x="158" y="183" width="82" height="18"/>
+                    <rect key="frame" x="158" y="183" width="102" height="18"/>
                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     <size key="cellSize" width="39" height="18"/>
                     <size key="intercellSpacing" width="4" height="2"/>
@@ -461,7 +461,7 @@
                 <constraint firstItem="nru-qe-DDo" firstAttribute="leading" secondItem="mSm-CR-7AA" secondAttribute="leading" constant="100" id="Zwd-iG-HAm"/>
                 <constraint firstItem="b4p-xQ-foZ" firstAttribute="baseline" secondItem="707" secondAttribute="baseline" id="aJQ-Cx-OqU"/>
                 <constraint firstItem="ybD-hb-S7E" firstAttribute="leading" secondItem="741" secondAttribute="leading" constant="20" symbolic="YES" id="b86-OZ-25k"/>
-                <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="4Fk-5p-bdl" secondAttribute="trailing" constant="300" id="eQA-JC-hX3"/>
+                <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="4Fk-5p-bdl" secondAttribute="trailing" constant="280" id="eQA-JC-hX3"/>
                 <constraint firstItem="N79-3i-wFW" firstAttribute="leading" secondItem="IiJ-Wl-Q76" secondAttribute="trailing" constant="4" id="fc2-j0-TdD"/>
                 <constraint firstItem="IiJ-Wl-Q76" firstAttribute="leading" secondItem="616" secondAttribute="leading" id="gHx-Zo-Ce3"/>
                 <constraint firstAttribute="trailing" secondItem="Hp2-hq-Rg8" secondAttribute="trailing" constant="20" symbolic="YES" id="iGz-jt-yvw"/>

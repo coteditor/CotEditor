@@ -20,7 +20,7 @@
                     <rect key="frame" x="143" y="123" width="321" height="18"/>
                     <buttonCell key="cell" type="check" title="コンテキストメニューのスクリプトメニューを展開" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3309">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" size="13" name="AquaKana"/>
+                        <font key="font" metaFont="system"/>
                     </buttonCell>
                     <connections>
                         <binding destination="26" name="value" keyPath="values.inlineContextualScriptMenu" id="2741"/>
@@ -40,7 +40,7 @@
                     <rect key="frame" x="143" y="147" width="282" height="18"/>
                     <buttonCell key="cell" type="check" title="検索文字列をほかのアプリケーションと共有" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3307">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" size="13" name="AquaKana"/>
+                        <font key="font" metaFont="system"/>
                     </buttonCell>
                     <connections>
                         <binding destination="26" name="value" keyPath="values.syncFindPboard" id="1194"/>
@@ -50,7 +50,7 @@
                     <rect key="frame" x="143" y="99" width="217" height="18"/>
                     <buttonCell key="cell" type="check" title="改行コードを文字としてカウント" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3306">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" size="13" name="AquaKana"/>
+                        <font key="font" metaFont="system"/>
                     </buttonCell>
                     <connections>
                         <binding destination="26" name="value" keyPath="values.countLineEndingAsChar" id="1032"/>
@@ -60,7 +60,7 @@
                     <rect key="frame" x="143" y="51" width="323" height="18"/>
                     <buttonCell key="cell" type="check" title="CotEditor がアクティブになるとき新規書類を開く" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3299">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" size="13" name="AquaKana"/>
+                        <font key="font" metaFont="system"/>
                     </buttonCell>
                     <connections>
                         <binding destination="26" name="value" keyPath="values.reopenBlankWindow" id="595"/>
@@ -70,7 +70,7 @@
                     <rect key="frame" x="143" y="186" width="113" height="18"/>
                     <buttonCell key="cell" type="check" title="新規書類を開く" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3298">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" size="13" name="AquaKana"/>
+                        <font key="font" metaFont="system"/>
                     </buttonCell>
                     <connections>
                         <binding destination="26" name="value" keyPath="values.createNewAtStartup" id="157"/>
@@ -80,7 +80,7 @@
                     <rect key="frame" x="143" y="210" width="204" height="18"/>
                     <buttonCell key="cell" type="check" title="自動的にアップデートを確認：" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3423">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" size="13" name="AquaKana"/>
+                        <font key="font" metaFont="system"/>
                     </buttonCell>
                     <connections>
                         <binding destination="3430" name="value" keyPath="automaticallyChecksForUpdates" id="3432"/>

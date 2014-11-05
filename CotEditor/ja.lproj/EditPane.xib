@@ -15,7 +15,7 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <userDefaultsController representsSharedInstance="YES" id="26" userLabel="Shared User Defaults Controller"/>
         <customView horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" id="s6I-DY-Ii0" userLabel="Edit Pane">
-            <rect key="frame" x="0.0" y="0.0" width="540" height="590"/>
+            <rect key="frame" x="0.0" y="0.0" width="540" height="593"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="870">
@@ -30,10 +30,10 @@
                     </connections>
                 </button>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="867">
-                    <rect key="frame" x="130" y="483" width="283" height="18"/>
+                    <rect key="frame" x="130" y="483" width="284" height="18"/>
                     <buttonCell key="cell" type="check" title="対応する括弧“( )” “[ ]” “{ }”をハイライト表示" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3304">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" size="13" name="AquaKana"/>
+                        <font key="font" metaFont="system"/>
                     </buttonCell>
                     <connections>
                         <binding destination="26" name="value" keyPath="values.highlightBraces" id="869"/>
@@ -53,7 +53,7 @@
                     <rect key="frame" x="130" y="555" width="282" height="18"/>
                     <buttonCell key="cell" type="check" title="スマートインサート／デリートを有効にする" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3302">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" size="13" name="AquaKana"/>
+                        <font key="font" metaFont="system"/>
                     </buttonCell>
                     <connections>
                         <binding destination="26" name="value" keyPath="values.smartInsertAndDelete" id="646"/>
@@ -63,7 +63,7 @@
                     <rect key="frame" x="130" y="531" width="256" height="18"/>
                     <buttonCell key="cell" type="check" title="スマート引用符／ダッシュを有効にする" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="nA4-HY-d71">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" size="13" name="AquaKana"/>
+                        <font key="font" metaFont="system"/>
                     </buttonCell>
                     <connections>
                         <binding destination="26" name="value" keyPath="values.enableSmartQuotes" id="lE1-jP-Sa0"/>
@@ -111,9 +111,9 @@
                     </connections>
                 </matrix>
                 <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="IXD-kJ-dvh">
-                    <rect key="frame" x="70" y="553" width="56" height="17"/>
+                    <rect key="frame" x="70" y="556" width="56" height="17"/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="編集時：" usesSingleLineMode="YES" id="SqI-BC-ar9">
-                        <font key="font" size="13" name="AquaKana"/>
+                        <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
@@ -159,7 +159,7 @@
                     <rect key="frame" x="130" y="401" width="178" height="18"/>
                     <buttonCell key="cell" type="check" title="タブを空白に自動的に展開" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3283">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" size="13" name="AquaKana"/>
+                        <font key="font" metaFont="system"/>
                     </buttonCell>
                     <connections>
                         <binding destination="26" name="value" keyPath="values.autoExpandTab" id="163"/>
@@ -297,7 +297,7 @@
                     <rect key="frame" x="130" y="200" width="126" height="18"/>
                     <buttonCell key="cell" type="check" title="ほかの不可視文字" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3263">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" size="13" name="AquaKana"/>
+                        <font key="font" metaFont="system"/>
                     </buttonCell>
                     <connections>
                         <binding destination="26" name="value" keyPath="values.showOtherInvisibleChars" id="876"/>
@@ -312,10 +312,10 @@
                     </textFieldCell>
                 </textField>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="221">
-                    <rect key="frame" x="310" y="249" width="87" height="18"/>
+                    <rect key="frame" x="310" y="248" width="87" height="18"/>
                     <buttonCell key="cell" type="check" title="改行コード" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3255">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" size="13" name="AquaKana"/>
+                        <font key="font" metaFont="system"/>
                     </buttonCell>
                     <connections>
                         <binding destination="26" name="value" keyPath="values.showInvisibleNewLine" id="227"/>
@@ -379,16 +379,16 @@
                     <rect key="frame" x="130" y="166" width="100" height="18"/>
                     <buttonCell key="cell" type="check" title="自動入力補完" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="TXb-6g-uiX">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" size="13" name="AquaKana"/>
+                        <font key="font" metaFont="system"/>
                     </buttonCell>
                     <connections>
                         <binding destination="26" name="value" keyPath="values.autoCompletion" id="bew-k0-JUE"/>
                     </connections>
                 </button>
                 <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="H57-OI-MHk">
-                    <rect key="frame" x="57" y="164" width="69" height="17"/>
+                    <rect key="frame" x="57" y="167" width="69" height="17"/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="入力補完：" usesSingleLineMode="YES" id="MIT-0h-S3I">
-                        <font key="font" size="13" name="AquaKana"/>
+                        <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>

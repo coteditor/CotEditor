@@ -124,7 +124,7 @@
                             <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="835">
                                 <rect key="frame" x="14" y="49" width="246" height="14"/>
                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="スクリプトメニューはこの設定に含まれません。" id="3362">
-                                    <font key="font" size="11" name="AquaKana"/>
+                                    <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>

@@ -80,7 +80,7 @@
                     <rect key="frame" x="91" y="408" width="191" height="18"/>
                     <buttonCell key="cell" type="check" title="複合フォントでも高さを固定" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3296">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" size="13" name="AquaKana"/>
+                        <font key="font" metaFont="system"/>
                     </buttonCell>
                     <connections>
                         <binding destination="26" name="value" keyPath="values.fixLineHeight" id="862"/>
