@@ -7,6 +7,8 @@ changelog
 
 ### Additions/Changes
 
+- “Apache” シンタックス定義の更新
+    - アウトラインをインデントで階層化
 - [beta] 書類タイプに public.text を追加
 - [rc] ほか、見た目の微調整
 
