@@ -124,7 +124,9 @@ static const unichar kEmojiSequenceChar = 0xFE0F;
         } else {
             // unicode character name
             NSMutableString *unicodeName = [character mutableCopy];
-            CFStringTransform((__bridge CFMutableStringRef)unicodeName, NULL, kCFStringTransformToUnicodeName, false);
+            // You can't use kCFStringTransformToUnicodeName instead of `Any-Name` here,
+            // because some characters (e.g. normal `a`) don't return their name when use this constant.
+            CFStringTransform((__bridge CFMutableStringRef)unicodeName, NULL, CFSTR("Any-Name"), NO);
             
             NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"\\{(.+?)\\}" options:0 error:nil];
             NSTextCheckingResult *firstMatch = [regex firstMatchInString:unicodeName options:0
