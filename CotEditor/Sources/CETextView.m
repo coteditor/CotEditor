@@ -564,6 +564,7 @@ const NSInteger kNoMenuItem = -1;
                 [addItem setTag:CEScriptMenuItemTag];
                 [outMenu addItem:addItem];
             }
+            [outMenu addItem:[NSMenuItem separatorItem]];
         } else{
             [ASMenuItem setImage:[NSImage imageNamed:@"ScriptTemplate"]];
             [[ASMenuItem image] setTemplate:NO];
