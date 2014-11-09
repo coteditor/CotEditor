@@ -266,23 +266,23 @@
 
 
 // ------------------------------------------------------
-/// 文字列を大文字／小文字／キャピタライズにコンバートし、結果を返す
+/// 文字列を大文字／小文字／キャピタライズにコンバートする
 - (void)handleChangeCaseScriptCommand:(NSScriptCommand *)command
 // ------------------------------------------------------
 {
     NSDictionary *arguments = [command evaluatedArguments];
     CECaseType caseType = [arguments[@"caseType"] unsignedIntegerValue];
-    CETextView *textView = [[[self document] editor] textView];
+    NSTextView *textView = [[[self document] editor] textView];
 
     switch (caseType) {
         case CELowerCase:
-            [textView exchangeLowercase:self];
+            [textView lowercaseWord:self];
             break;
         case CEUpperCase:
-            [textView exchangeUppercase:self];
+            [textView uppercaseWord:self];
             break;
         case CECapitalized:
-            [textView exchangeCapitalized:self];
+            [textView capitalizeWord:self];
             break;
     }
 }

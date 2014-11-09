@@ -1403,18 +1403,15 @@ const NSInteger kNoMenuItem = -1;
 - (BOOL)validateMenuItem:(NSMenuItem *)menuItem
 // ------------------------------------------------------
 {
-    if (([menuItem action] == @selector(exchangeLowercase:)) || 
-            ([menuItem action] == @selector(exchangeUppercase:)) || 
-            ([menuItem action] == @selector(exchangeCapitalized:)) || 
-            ([menuItem action] == @selector(exchangeFullwidthRoman:)) || 
-            ([menuItem action] == @selector(exchangeHalfwidthRoman:)) || 
-            ([menuItem action] == @selector(exchangeKatakana:)) || 
-            ([menuItem action] == @selector(exchangeHiragana:)) || 
-            ([menuItem action] == @selector(unicodeNormalizationNFD:)) || 
-            ([menuItem action] == @selector(unicodeNormalizationNFC:)) || 
-            ([menuItem action] == @selector(unicodeNormalizationNFKD:)) || 
-            ([menuItem action] == @selector(unicodeNormalizationNFKC:)) || 
-            ([menuItem action] == @selector(unicodeNormalization:)))
+    if (([menuItem action] == @selector(exchangeFullwidthRoman:)) ||
+        ([menuItem action] == @selector(exchangeHalfwidthRoman:)) ||
+        ([menuItem action] == @selector(exchangeKatakana:)) ||
+        ([menuItem action] == @selector(exchangeHiragana:)) ||
+        ([menuItem action] == @selector(unicodeNormalizationNFD:)) ||
+        ([menuItem action] == @selector(unicodeNormalizationNFC:)) ||
+        ([menuItem action] == @selector(unicodeNormalizationNFKD:)) ||
+        ([menuItem action] == @selector(unicodeNormalizationNFKC:)) ||
+        ([menuItem action] == @selector(unicodeNormalization:)))
     {
         return ([self selectedRange].length > 0);
         // （カラーコード編集メニューは常に有効）
@@ -1769,60 +1766,6 @@ const NSInteger kNoMenuItem = -1;
 {
     [self setTabWidth:[sender tag]];
     [self setFont:[self font]];  // 新しい幅でレイアウトし直す
-}
-
-
-// ------------------------------------------------------
-/// 小文字へ変更
-- (IBAction)exchangeLowercase:(id)sender
-// ------------------------------------------------------
-{
-    NSRange selectedRange = [self selectedRange];
-    
-    if (selectedRange.length == 0) { return; }
-    
-    NSString *newStr = [[[self string] substringWithRange:selectedRange] lowercaseString];
-    if (newStr) {
-        [self doInsertString:newStr withRange:selectedRange
-                withSelected:NSMakeRange(selectedRange.location, [newStr length])
-              withActionName:NSLocalizedString(@"To Lowercase", nil) scroll:YES];
-    }
-}
-
-
-// ------------------------------------------------------
-/// 大文字へ変更
-- (IBAction)exchangeUppercase:(id)sender
-// ------------------------------------------------------
-{
-    NSRange selectedRange = [self selectedRange];
-    
-    if (selectedRange.length == 0) { return; }
-    
-    NSString *newStr = [[[self string] substringWithRange:selectedRange] uppercaseString];
-    if (newStr) {
-        [self doInsertString:newStr withRange:selectedRange
-                withSelected:NSMakeRange(selectedRange.location, [newStr length])
-              withActionName:NSLocalizedString(@"To Uppercase", nil) scroll:YES];
-    }
-}
-
-
-// ------------------------------------------------------
-/// 単語の頭を大文字へ変更
-- (IBAction)exchangeCapitalized:(id)sender
-// ------------------------------------------------------
-{
-    NSRange selectedRange = [self selectedRange];
-    
-    if (selectedRange.length == 0) { return; }
-    
-    NSString *newStr = [[[self string] substringWithRange:selectedRange] capitalizedString];
-    if (newStr) {
-        [self doInsertString:newStr withRange:selectedRange
-                withSelected:NSMakeRange(selectedRange.location, [newStr length])
-              withActionName:NSLocalizedString(@"To Capitalized", nil) scroll:YES];
-    }
 }
 
 

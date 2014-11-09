@@ -81,9 +81,6 @@
 - (IBAction)uncomment:(id)sender;
 - (IBAction)selectLines:(id)sender;
 - (IBAction)changeTabWidth:(id)sender;
-- (IBAction)exchangeLowercase:(id)sender;
-- (IBAction)exchangeUppercase:(id)sender;
-- (IBAction)exchangeCapitalized:(id)sender;
 - (IBAction)exchangeFullwidthRoman:(id)sender;
 - (IBAction)exchangeHalfwidthRoman:(id)sender;
 - (IBAction)exchangeKatakana:(id)sender;
