@@ -43,6 +43,15 @@
 #import "constants.h"
 
 
+// enum
+typedef NS_ENUM(NSUInteger, CEUnicodeNormalizationForm) {
+    CEUnicodeNormalizationNFD,
+    CEUnicodeNormalizationNFC,
+    CEUnicodeNormalizationNFKD,
+    CEUnicodeNormalizationNFKC
+};
+
+
 // constant
 const NSInteger kNoMenuItem = -1;
 
@@ -1410,8 +1419,7 @@ const NSInteger kNoMenuItem = -1;
         ([menuItem action] == @selector(unicodeNormalizationNFD:)) ||
         ([menuItem action] == @selector(unicodeNormalizationNFC:)) ||
         ([menuItem action] == @selector(unicodeNormalizationNFKD:)) ||
-        ([menuItem action] == @selector(unicodeNormalizationNFKC:)) ||
-        ([menuItem action] == @selector(unicodeNormalization:)))
+        ([menuItem action] == @selector(unicodeNormalizationNFKC:)))
     {
         return ([self selectedRange].length > 0);
         // （カラーコード編集メニューは常に有効）
@@ -1846,7 +1854,7 @@ const NSInteger kNoMenuItem = -1;
 - (IBAction)unicodeNormalizationNFD:(id)sender
 // ------------------------------------------------------
 {
-    [self unicodeNormalization:sender];
+    [self normalizeUnicodeWithForm:CEUnicodeNormalizationNFD];
 }
 
 
@@ -1855,7 +1863,7 @@ const NSInteger kNoMenuItem = -1;
 - (IBAction)unicodeNormalizationNFC:(id)sender
 // ------------------------------------------------------
 {
-    [self unicodeNormalization:sender];
+    [self normalizeUnicodeWithForm:CEUnicodeNormalizationNFC];
 }
 
 
@@ -1864,7 +1872,7 @@ const NSInteger kNoMenuItem = -1;
 - (IBAction)unicodeNormalizationNFKD:(id)sender
 // ------------------------------------------------------
 {
-    [self unicodeNormalization:sender];
+    [self normalizeUnicodeWithForm:CEUnicodeNormalizationNFKD];
 }
 
 
@@ -1873,56 +1881,7 @@ const NSInteger kNoMenuItem = -1;
 - (IBAction)unicodeNormalizationNFKC:(id)sender
 // ------------------------------------------------------
 {
-    [self unicodeNormalization:sender];
-}
-
-
-// ------------------------------------------------------
-/// Unicode正規化
-- (IBAction)unicodeNormalization:(id)sender
-// ------------------------------------------------------
-{
-    NSRange selectedRange = [self selectedRange];
-    CEUnicodeNormalizationType switchType;
-    
-    if (selectedRange.length == 0) { return; }
-
-    if ([sender isKindOfClass:[NSMenuItem class]]) {
-        switchType = [sender tag];
-    } else if ([sender isKindOfClass:[NSNumber class]]) {
-        switchType = [sender integerValue];
-    } else {
-        return;
-    }
-    
-    NSString *originalStr = [[self string] substringWithRange:selectedRange];
-    NSString *actionName = nil, *newStr = nil;
-    
-    switch (switchType) {
-        case CEUnicodeNormalizationNFD:
-            newStr = [originalStr decomposedStringWithCanonicalMapping];
-            actionName = @"NFD";
-            break;
-        case CEUnicodeNormalizationNFC:
-            newStr = [originalStr precomposedStringWithCanonicalMapping];
-            actionName = @"NFC";
-            break;
-        case CEUnicodeNormalizationNFKD:
-            newStr = [originalStr decomposedStringWithCompatibilityMapping];
-            actionName = @"NFKD";
-            break;
-        case CEUnicodeNormalizationNFKC:
-            newStr = [originalStr precomposedStringWithCompatibilityMapping];
-            actionName = @"NFKC";
-            break;
-    }
-    if (newStr) {
-        [self doInsertString:newStr
-                   withRange:selectedRange
-                withSelected:NSMakeRange(selectedRange.location, [newStr length])
-              withActionName:NSLocalizedString(actionName, nil)
-                      scroll:YES];
-    }
+    [self normalizeUnicodeWithForm:CEUnicodeNormalizationNFKC];
 }
 
 
@@ -2248,6 +2207,47 @@ const NSInteger kNoMenuItem = -1;
     }
     
     [self complete:self];
+}
+
+
+// ------------------------------------------------------
+/// Unicode正規化
+- (void)normalizeUnicodeWithForm:(CEUnicodeNormalizationForm)form
+// ------------------------------------------------------
+{
+    NSRange selectedRange = [self selectedRange];
+    
+    if (selectedRange.length == 0) { return; }
+    
+    NSString *originalStr = [[self string] substringWithRange:selectedRange];
+    NSString *actionName = nil, *newStr = nil;
+    
+    switch (form) {
+        case CEUnicodeNormalizationNFD:
+            newStr = [originalStr decomposedStringWithCanonicalMapping];
+            actionName = @"NFD";
+            break;
+        case CEUnicodeNormalizationNFC:
+            newStr = [originalStr precomposedStringWithCanonicalMapping];
+            actionName = @"NFC";
+            break;
+        case CEUnicodeNormalizationNFKD:
+            newStr = [originalStr decomposedStringWithCompatibilityMapping];
+            actionName = @"NFKD";
+            break;
+        case CEUnicodeNormalizationNFKC:
+            newStr = [originalStr precomposedStringWithCompatibilityMapping];
+            actionName = @"NFKC";
+            break;
+    }
+    
+    if (newStr) {
+        [self doInsertString:newStr
+                   withRange:selectedRange
+                withSelected:NSMakeRange(selectedRange.location, [newStr length])
+              withActionName:NSLocalizedString(actionName, nil)
+                      scroll:YES];
+    }
 }
 
 

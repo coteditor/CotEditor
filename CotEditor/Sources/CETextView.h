@@ -39,14 +39,6 @@
 #import "CEWindow.h"
 
 
-typedef NS_ENUM(NSUInteger, CEUnicodeNormalizationType) {
-    CEUnicodeNormalizationNFD,
-    CEUnicodeNormalizationNFC,
-    CEUnicodeNormalizationNFKD,
-    CEUnicodeNormalizationNFKC
-};
-
-
 @interface CETextView : NSTextView <NSTextInputClient, CETextViewProtocol>
 
 @property (nonatomic) BOOL showsPageGuide;
@@ -97,7 +89,6 @@ typedef NS_ENUM(NSUInteger, CEUnicodeNormalizationType) {
 - (IBAction)unicodeNormalizationNFC:(id)sender;
 - (IBAction)unicodeNormalizationNFKD:(id)sender;
 - (IBAction)unicodeNormalizationNFKC:(id)sender;
-- (IBAction)unicodeNormalization:(id)sender;
 - (IBAction)inputYenMark:(id)sender;
 - (IBAction)inputBackSlash:(id)sender;
 - (IBAction)editColorCode:(id)sender;
