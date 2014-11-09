@@ -753,22 +753,22 @@
                                     <items>
                                         <menuItem title="NFD" id="601">
                                             <connections>
-                                                <action selector="unicodeNormalizationNFD:" target="-1" id="604"/>
+                                                <action selector="normalizeUnicodeWithNFD:" target="-1" id="604"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem title="NFC" tag="1" id="602">
                                             <connections>
-                                                <action selector="unicodeNormalizationNFC:" target="-1" id="685"/>
+                                                <action selector="normalizeUnicodeWithNFC:" target="-1" id="685"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem title="NFKD" tag="2" id="603">
                                             <connections>
-                                                <action selector="unicodeNormalizationNFKD:" target="-1" id="686"/>
+                                                <action selector="normalizeUnicodeWithNFKD:" target="-1" id="686"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem title="NFKC" tag="3" id="598">
                                             <connections>
-                                                <action selector="unicodeNormalizationNFKC:" target="-1" id="687"/>
+                                                <action selector="normalizeUnicodeWithNFKC:" target="-1" id="687"/>
                                             </connections>
                                         </menuItem>
                                     </items>

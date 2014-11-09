@@ -85,10 +85,10 @@
 - (IBAction)exchangeHalfwidthRoman:(id)sender;
 - (IBAction)exchangeKatakana:(id)sender;
 - (IBAction)exchangeHiragana:(id)sender;
-- (IBAction)unicodeNormalizationNFD:(id)sender;
-- (IBAction)unicodeNormalizationNFC:(id)sender;
-- (IBAction)unicodeNormalizationNFKD:(id)sender;
-- (IBAction)unicodeNormalizationNFKC:(id)sender;
+- (IBAction)normalizeUnicodeWithNFD:(id)sender;
+- (IBAction)normalizeUnicodeWithNFC:(id)sender;
+- (IBAction)normalizeUnicodeWithNFKD:(id)sender;
+- (IBAction)normalizeUnicodeWithNFKC:(id)sender;
 - (IBAction)inputYenMark:(id)sender;
 - (IBAction)inputBackSlash:(id)sender;
 - (IBAction)editColorCode:(id)sender;

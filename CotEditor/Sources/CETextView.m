@@ -1416,10 +1416,10 @@ const NSInteger kNoMenuItem = -1;
         ([menuItem action] == @selector(exchangeHalfwidthRoman:)) ||
         ([menuItem action] == @selector(exchangeKatakana:)) ||
         ([menuItem action] == @selector(exchangeHiragana:)) ||
-        ([menuItem action] == @selector(unicodeNormalizationNFD:)) ||
-        ([menuItem action] == @selector(unicodeNormalizationNFC:)) ||
-        ([menuItem action] == @selector(unicodeNormalizationNFKD:)) ||
-        ([menuItem action] == @selector(unicodeNormalizationNFKC:)))
+        ([menuItem action] == @selector(normalizeUnicodeWithNFD:)) ||
+        ([menuItem action] == @selector(normalizeUnicodeWithNFC:)) ||
+        ([menuItem action] == @selector(normalizeUnicodeWithNFKD:)) ||
+        ([menuItem action] == @selector(normalizeUnicodeWithNFKC:)))
     {
         return ([self selectedRange].length > 0);
         // （カラーコード編集メニューは常に有効）
@@ -1851,7 +1851,7 @@ const NSInteger kNoMenuItem = -1;
 
 // ------------------------------------------------------
 /// Unicode正規化
-- (IBAction)unicodeNormalizationNFD:(id)sender
+- (IBAction)normalizeUnicodeWithNFD:(id)sender
 // ------------------------------------------------------
 {
     [self normalizeUnicodeWithForm:CEUnicodeNormalizationNFD];
@@ -1860,7 +1860,7 @@ const NSInteger kNoMenuItem = -1;
 
 // ------------------------------------------------------
 /// Unicode正規化
-- (IBAction)unicodeNormalizationNFC:(id)sender
+- (IBAction)normalizeUnicodeWithNFC:(id)sender
 // ------------------------------------------------------
 {
     [self normalizeUnicodeWithForm:CEUnicodeNormalizationNFC];
@@ -1869,7 +1869,7 @@ const NSInteger kNoMenuItem = -1;
 
 // ------------------------------------------------------
 /// Unicode正規化
-- (IBAction)unicodeNormalizationNFKD:(id)sender
+- (IBAction)normalizeUnicodeWithNFKD:(id)sender
 // ------------------------------------------------------
 {
     [self normalizeUnicodeWithForm:CEUnicodeNormalizationNFKD];
@@ -1878,7 +1878,7 @@ const NSInteger kNoMenuItem = -1;
 
 // ------------------------------------------------------
 /// Unicode正規化
-- (IBAction)unicodeNormalizationNFKC:(id)sender
+- (IBAction)normalizeUnicodeWithNFKC:(id)sender
 // ------------------------------------------------------
 {
     [self normalizeUnicodeWithForm:CEUnicodeNormalizationNFKC];

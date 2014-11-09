@@ -339,16 +339,16 @@
     
     switch (UNFType) {
         case CENFC:
-            [textView unicodeNormalizationNFC:self];
+            [textView normalizeUnicodeWithNFC:self];
             break;
         case CENFD:
-            [textView unicodeNormalizationNFD:self];
+            [textView normalizeUnicodeWithNFD:self];
             break;
         case CENFKC:
-            [textView unicodeNormalizationNFKC:self];
+            [textView normalizeUnicodeWithNFKC:self];
             break;
         case CENFKD:
-            [textView unicodeNormalizationNFKD:self];
+            [textView normalizeUnicodeWithNFKD:self];
             break;
     }
 }
