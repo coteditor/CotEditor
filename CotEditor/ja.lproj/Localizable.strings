@@ -93,9 +93,6 @@
 "Shift Left" = "左へシフト";
 "Comment Out" = "コメントアウト";
 "Uncomment" = "コメント解除";
-"To Lowercase" = "小文字に";
-"To Uppercase" = "大文字に";
-"To Capitalized" = "先頭の文字を大文字に";
 "To Fullwidth (ja_JP/Roman)" = "全角英数に";
 "To Halfwidth (ja_JP/Roman)" = "半角英数に";
 "Hiragana to Katakana (ja_JP)" = "ひらがなをカタカナに";
