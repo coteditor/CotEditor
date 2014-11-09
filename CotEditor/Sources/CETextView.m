@@ -1883,7 +1883,7 @@ const NSInteger kNoMenuItem = -1;
 // ------------------------------------------------------
 {
     NSRange selectedRange = [self selectedRange];
-    NSInteger switchType;
+    CEUnicodeNormalizationType switchType;
     
     if (selectedRange.length == 0) { return; }
 
@@ -1899,25 +1899,22 @@ const NSInteger kNoMenuItem = -1;
     NSString *actionName = nil, *newStr = nil;
     
     switch (switchType) {
-        case 0: // from D
+        case CEUnicodeNormalizationNFD:
             newStr = [originalStr decomposedStringWithCanonicalMapping];
             actionName = @"NFD";
             break;
-        case 1: // from C
+        case CEUnicodeNormalizationNFC:
             newStr = [originalStr precomposedStringWithCanonicalMapping];
             actionName = @"NFC";
             break;
-        case 2: // from KD
+        case CEUnicodeNormalizationNFKD:
             newStr = [originalStr decomposedStringWithCompatibilityMapping];
             actionName = @"NFKD";
             break;
-        case 3: // from KC
+        case CEUnicodeNormalizationNFKC:
             newStr = [originalStr precomposedStringWithCompatibilityMapping];
             actionName = @"NFKC";
             break;
-        default:
-            break;
-            return;
     }
     if (newStr) {
         [self doInsertString:newStr

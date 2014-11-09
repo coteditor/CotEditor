@@ -337,12 +337,12 @@
     CEUNFType UNFType = [arguments[@"unfType"] unsignedIntegerValue];
     CETextView *textView = [[[self document] editor] textView];
     
-    NSInteger typeCode;
+    CEUnicodeNormalizationType typeCode;
     switch (UNFType) {
-        case CENFC:  typeCode = 0; break;
-        case CENFD:  typeCode = 1; break;
-        case CENFKC: typeCode = 2; break;
-        case CENFKD: typeCode = 3; break;
+        case CENFC:  typeCode = CEUnicodeNormalizationNFC; break;
+        case CENFD:  typeCode = CEUnicodeNormalizationNFD; break;
+        case CENFKC: typeCode = CEUnicodeNormalizationNFKC; break;
+        case CENFKD: typeCode = CEUnicodeNormalizationNFKD; break;
     }
     [textView unicodeNormalization:@(typeCode)];
 }

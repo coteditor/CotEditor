@@ -39,6 +39,14 @@
 #import "CEWindow.h"
 
 
+typedef NS_ENUM(NSUInteger, CEUnicodeNormalizationType) {
+    CEUnicodeNormalizationNFD,
+    CEUnicodeNormalizationNFC,
+    CEUnicodeNormalizationNFKD,
+    CEUnicodeNormalizationNFKC
+};
+
+
 @interface CETextView : NSTextView <NSTextInputClient, CETextViewProtocol>
 
 @property (nonatomic) BOOL showsPageGuide;
