@@ -86,7 +86,7 @@
                                     <action selector="openDocument:" target="-1" id="195"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Open Hidden…" tag="102" alternate="YES" keyEquivalent="o" id="688">
+                            <menuItem title="Open Hidden…" alternate="YES" keyEquivalent="o" id="688">
                                 <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
                                 <connections>
                                     <action selector="openHiddenDocument:" target="-1" id="690"/>

@@ -911,7 +911,7 @@
 		</dict>
 	</array>
 	<key>CFBundleExecutable</key>
-	<string>CotEditor</string>
+	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleHelpBookFolder</key>
 	<string>CotEditor.help</string>
 	<key>CFBundleHelpBookName</key>
@@ -919,11 +919,11 @@
 	<key>CFBundleIconFile</key>
 	<string>AppIcon</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.coteditor.CotEditor</string>
+	<string>com.coteditor.$(PRODUCT_NAME)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>CotEditor</string>
+	<string>${PRODUCT_NAME}</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
@@ -937,9 +937,9 @@
 	<key>NSAppleScriptEnabled</key>
 	<true/>
 	<key>NSHumanReadableCopyright</key>
-	<string>©2005-2009 nakamuxu
-©2011, 2014 usami-k
-©2014 1024jp</string>
+	<string>© 2005-2009 nakamuxu
+© 2011, 2014 usami-k
+© 2014 1024jp</string>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>

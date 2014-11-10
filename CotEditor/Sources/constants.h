@@ -337,7 +337,6 @@ typedef NS_ENUM(NSInteger, CEMenuItemTag) {
     // in main menu
     CENewMenuItemTag            =  100,
     CEOpenMenuItemTag           =  101,
-    CEOpenHiddenMenuItemTag     =  102,
     CEOpenRecentMenuItemTag     =  103,
     CEInputBackSlashMenuItemTag =  209,
     CEFileEncodingMenuItemTag   = 4001,
