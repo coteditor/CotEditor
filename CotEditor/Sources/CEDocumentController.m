@@ -40,6 +40,10 @@
 @property (nonatomic) IBOutlet NSView *openPanelAccessoryView;
 @property (nonatomic) IBOutlet NSPopUpButton *accessoryEncodingMenu;
 
+
+// readonly
+@property (nonatomic, readwrite) NSStringEncoding accessorySelectedEncoding;
+
 @end
 
 
@@ -66,7 +70,7 @@
         [NSBundle loadNibNamed:@"OpenDocumentAccessory" owner:self];
         
         // ファイルを開くデフォルトエンコーディングをセット
-        [self setSelectAccessoryEncodingMenuToDefault:self];
+        [self resetAccessorySelectedEncodingMenu];
         
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(buildEncodingPopupButton:)
@@ -83,16 +87,13 @@
 // ------------------------------------------------------
 {
     // エンコーディングメニューの選択を初期化し、ビューをセット
-    [self setSelectAccessoryEncodingMenuToDefault:self];
+    [self resetAccessorySelectedEncodingMenu];
     [openPanel setAccessoryView:[self openPanelAccessoryView]];
 
-    // 非表示ファイルも表示するとき
-    if ([self showsHiddenFiles]) {
-        [openPanel setTreatsFilePackagesAsDirectories:YES];
-        [openPanel setShowsHiddenFiles:YES];
-    } else {
-        [openPanel setTreatsFilePackagesAsDirectories:NO];
-    }
+    // 非表示ファイルも表示有無
+    [openPanel setTreatsFilePackagesAsDirectories:[self showsHiddenFiles]];
+    [openPanel setShowsHiddenFiles:[self showsHiddenFiles]];
+    [self setShowsHiddenFiles:NO];  // reset flag
 
     return [super runModalOpenPanel:openPanel forTypes:extensions];
 }
@@ -107,37 +108,13 @@
 //=======================================================
 
 // ------------------------------------------------------
-/// ドキュメントを開く (override)
-- (IBAction)openDocument:(id)sender
-// ------------------------------------------------------
-{
-    [self setShowsHiddenFiles:([sender tag] == CEOpenHiddenMenuItemTag)];
-
-    [super openDocument:sender];
-    // エンコーディングメニューの選択をリセット
-    [self setSelectAccessoryEncodingMenuToDefault:self];
-}
-
-
-// ------------------------------------------------------
 /// ドキュメントを開く
 - (IBAction)openHiddenDocument:(id)sender
 // ------------------------------------------------------
 {
-    [self setShowsHiddenFiles:([sender tag] == CEOpenHiddenMenuItemTag)];
+    [self setShowsHiddenFiles:YES];
 
     [super openDocument:sender];
-}
-
-
-// ------------------------------------------------------
-/// エンコーディングメニューの選択を初期化
-- (IBAction)setSelectAccessoryEncodingMenuToDefault:(id)sender
-// ------------------------------------------------------
-{
-    NSStringEncoding defaultEncoding = (NSStringEncoding)[[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultEncodingInOpenKey];
-
-    [self setAccessorySelectedEncoding:defaultEncoding];
 }
 
 
@@ -150,17 +127,28 @@
 // ------------------------------------------------------
 {
     NSArray *items = [[CEEncodingManager sharedManager] encodingMenuItems];
+    NSMenu *menu = [[self accessoryEncodingMenu] menu];
     
-    [[self accessoryEncodingMenu] removeAllItems];
+    [menu removeAllItems];
     
-    [[self accessoryEncodingMenu] addItemWithTitle:NSLocalizedString(@"Auto-Detect", nil)];
-    [[[self accessoryEncodingMenu] itemAtIndex:0] setTag:CEAutoDetectEncodingMenuItemTag];
-    [[[self accessoryEncodingMenu] menu] addItem:[NSMenuItem separatorItem]];
+    [menu addItemWithTitle:NSLocalizedString(@"Auto-Detect", nil) action:NULL keyEquivalent:@""];
+    [[menu itemAtIndex:0] setTag:CEAutoDetectEncodingMenuItemTag];
+    [menu addItem:[NSMenuItem separatorItem]];
     
     for (NSMenuItem *item in items) {
-        [[[self accessoryEncodingMenu] menu] addItem:item];
+        [menu addItem:item];
     }
+}
+
+
+// ------------------------------------------------------
+/// エンコーディングメニューの選択を初期化
+- (void)resetAccessorySelectedEncodingMenu
+// ------------------------------------------------------
+{
+    NSStringEncoding defaultEncoding = (NSStringEncoding)[[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultEncodingInOpenKey];
     
+    [self setAccessorySelectedEncoding:defaultEncoding];
 }
 
 @end

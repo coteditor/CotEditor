@@ -34,7 +34,6 @@
 #import "CESyntaxMappingConflictsSheetController.h"
 #import "CESyntaxEditSheetController.h"
 #import "CEEncodingListSheetController.h"
-#import "CEDocumentController.h"
 #import "constants.h"
 
 
@@ -310,10 +309,7 @@
 - (IBAction)checkSelectedItemOfEncodingMenuInOpen:(id)sender
 //------------------------------------------------------
 {
-    NSString *newTitle = [NSString stringWithString:[[[self encodingMenuInOpen] selectedItem] title]];
-    // ファイルを開くエンコーディングをセット
-    // （オープンダイアログのエンコーディングポップアップメニューが、デフォルトエンコーディング値の格納場所を兼ねている）
-    [[CEDocumentController sharedDocumentController] setSelectAccessoryEncodingMenuToDefault:self];
+    NSString *newTitle = [[[self encodingMenuInOpen] selectedItem] title];
     
     if ([newTitle isEqualToString:NSLocalizedString(@"Auto-Detect", nil)]) { return; }
     
@@ -416,9 +412,6 @@
     if (returnCode == NSAlertFirstButtonReturn) { // = revert to Auto-Detect
         [[NSUserDefaults standardUserDefaults] setObject:@(CEAutoDetectEncodingMenuItemTag)
                                                   forKey:CEDefaultEncodingInOpenKey];
-        // ファイルを開くエンコーディングをセット
-        // （オープンダイアログのエンコーディングポップアップメニューが、デフォルトエンコーディング値の格納場所を兼ねている）
-        [[CEDocumentController sharedDocumentController] setSelectAccessoryEncodingMenuToDefault:self];
     }
 }
 
