@@ -87,7 +87,6 @@
                         </menu>
                     </popUpButtonCell>
                     <connections>
-                        <action selector="setSelectAccessoryEncodingMenuToDefault:" target="-1" id="778"/>
                         <binding destination="26" name="selectedTag" keyPath="values.encodingInOpen" id="98"/>
                     </connections>
                 </popUpButton>
