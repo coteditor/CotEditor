@@ -55,11 +55,6 @@
 
 #pragma mark NSDocumentController Methods
 
-//=======================================================
-// NSDocumentController Methods
-//
-//=======================================================
-
 // ------------------------------------------------------
 /// inizialize instance
 - (instancetype)init
@@ -67,15 +62,7 @@
 {
     self = [super init];
     if (self) {
-        [NSBundle loadNibNamed:@"OpenDocumentAccessory" owner:self];
-        
-        // ファイルを開くデフォルトエンコーディングをセット
-        [self resetAccessorySelectedEncodingMenu];
-        
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(buildEncodingPopupButton:)
-                                                     name:CEEncodingListDidUpdateNotification
-                                                   object:nil];
+        _accessorySelectedEncoding = (NSStringEncoding)[[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultEncodingInOpenKey];
     }
     return self;
 }
@@ -86,8 +73,11 @@
 - (NSInteger)runModalOpenPanel:(NSOpenPanel *)openPanel forTypes:(NSArray *)extensions
 // ------------------------------------------------------
 {
-    // エンコーディングメニューの選択を初期化し、ビューをセット
-    [self resetAccessorySelectedEncodingMenu];
+    // エンコーディングメニューを初期化し、ビューをセット
+    if (![self openPanelAccessoryView]) {
+        [NSBundle loadNibNamed:@"OpenDocumentAccessory" owner:self];
+    }
+    [self buildEncodingPopupButton];
     [openPanel setAccessoryView:[self openPanelAccessoryView]];
 
     // 非表示ファイルも表示有無
@@ -101,11 +91,6 @@
 
 
 #pragma mark Action Messages
-
-//=======================================================
-// Action messages
-//
-//=======================================================
 
 // ------------------------------------------------------
 /// ドキュメントを開く
@@ -123,7 +108,7 @@
 
 // ------------------------------------------------------
 /// オープンパネルのエンコーディングメニューを再構築
-- (void)buildEncodingPopupButton:(NSNotification *)notification
+- (void)buildEncodingPopupButton
 // ------------------------------------------------------
 {
     NSArray *items = [[CEEncodingManager sharedManager] encodingMenuItems];
@@ -138,12 +123,14 @@
     for (NSMenuItem *item in items) {
         [menu addItem:item];
     }
+    
+    [self resetAccessorySelectedEncoding];
 }
 
 
 // ------------------------------------------------------
 /// エンコーディングメニューの選択を初期化
-- (void)resetAccessorySelectedEncodingMenu
+- (void)resetAccessorySelectedEncoding
 // ------------------------------------------------------
 {
     NSStringEncoding defaultEncoding = (NSStringEncoding)[[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultEncodingInOpenKey];
