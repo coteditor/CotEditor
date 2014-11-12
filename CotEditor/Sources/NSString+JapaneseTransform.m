@@ -82,19 +82,11 @@
 - (NSString *)katakanaString
 // ------------------------------------------------------
 {
-    NSMutableString *katakana = [NSMutableString string];
-    NSCharacterSet *hiraganaCharSet = [NSCharacterSet characterSetWithRange:NSMakeRange(12353, 86)];
-    NSUInteger count = [self length];
+    NSMutableString* katakana = [self mutableCopy];
     
-    for (NSUInteger i = 0; i < count; i++) {
-        unichar theChar = [self characterAtIndex:i];
-        if ([hiraganaCharSet characterIsMember:theChar]) {
-            [katakana appendString:[NSString stringWithFormat:@"%C", (unichar)(theChar + 96)]];
-        } else {
-            [katakana appendString:[self substringWithRange:NSMakeRange(i, 1)]];
-        }
-    }
-    return katakana;
+    CFStringTransform((CFMutableStringRef)katakana, NULL, kCFStringTransformHiraganaKatakana, false);
+    
+    return [katakana copy];
 }
 
 
@@ -103,19 +95,11 @@
 - (NSString *)hiraganaString
 // ------------------------------------------------------
 {
-    NSMutableString *hiragana = [NSMutableString string];
-    NSCharacterSet *katakanaCharSet = [NSCharacterSet characterSetWithRange:NSMakeRange(12449, 86)];
-    NSUInteger count = [self length];
+    NSMutableString* hiragana = [self mutableCopy];
     
-    for (NSUInteger i = 0; i < count; i++) {
-        unichar theChar = [self characterAtIndex:i];
-        if ([katakanaCharSet characterIsMember:theChar]) {
-            [hiragana appendString:[NSString stringWithFormat:@"%C", (unichar)(theChar - 96)]];
-        } else {
-            [hiragana appendString:[self substringWithRange:NSMakeRange(i, 1)]];
-        }
-    }
-    return hiragana;
+    CFStringTransform((CFMutableStringRef)hiragana, NULL, kCFStringTransformHiraganaKatakana, true);
+    
+    return [hiragana copy];
 }
 
 @end

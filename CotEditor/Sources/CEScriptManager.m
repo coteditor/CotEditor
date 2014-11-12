@@ -123,13 +123,16 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
     [self addChildFileItemTo:menu fromDir:[[self class] scriptDirectoryURL]];
     
     if ([menu numberOfItems] > 0) {
-        [menu addItem:[NSMenuItem separatorItem]];
+        menuItem = [NSMenuItem separatorItem];
+        [menuItem setTag:CEDefaultScriptMenuItemTag];
+        [menu addItem:menuItem];
     }
     
     menuItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Open Scripts Folder", nil)
                                           action:@selector(openScriptFolder:)
                                    keyEquivalent:@"a"];
     [menuItem setTarget:self];
+    [menuItem setTag:CEDefaultScriptMenuItemTag];
     [menu addItem:menuItem];
     
     menuItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Copy Sample to Scripts Folder", nil)
@@ -138,14 +141,15 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
     [menuItem setTarget:self];
     [menuItem setAlternate:YES];
     [menuItem setKeyEquivalentModifierMask:NSAlternateKeyMask];
-    [menuItem setTag:CEScriptMenuDirectoryTag];  // Alternate表示のための修飾キーをCotEditor menu key bindingsの対応外にする
     [menuItem setToolTip:NSLocalizedString(@"Copy bundled sample scripts to the scripts folder.", nil)];
+    [menuItem setTag:CEDefaultScriptMenuItemTag];
     [menu addItem:menuItem];
     
     menuItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Update Script Menu", nil)
                                           action:@selector(buildScriptMenu:)
                                    keyEquivalent:@""];
     [menuItem setTarget:self];
+    [menuItem setTag:CEDefaultScriptMenuItemTag];
     [menu addItem:menuItem];
 }
 
@@ -155,7 +159,15 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 - (NSMenu *)contexualMenu
 //------------------------------------------------------
 {
-    return [[[[NSApp mainMenu] itemAtIndex:CEScriptMenuIndex] submenu] copy];
+    NSMenu *menu = [[[[NSApp mainMenu] itemAtIndex:CEScriptMenuIndex] submenu] copy];
+    
+    for (NSMenuItem *item in [menu itemArray]) {
+        if ([item tag] == CEDefaultScriptMenuItemTag) {
+            [menu removeItem:item];
+        }
+    }
+    
+    return ([menu numberOfItems] > 0) ? menu : nil;
 }
 
 

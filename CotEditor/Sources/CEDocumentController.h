@@ -34,10 +34,10 @@
 
 @interface CEDocumentController : NSDocumentController
 
-@property (nonatomic) NSStringEncoding accessorySelectedEncoding;
+// readonly
+@property (nonatomic, readonly) NSStringEncoding accessorySelectedEncoding;
 
 // Action Message
 - (IBAction)openHiddenDocument:(id)sender;
-- (IBAction)setSelectAccessoryEncodingMenuToDefault:(id)sender;
 
 @end

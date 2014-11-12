@@ -221,10 +221,10 @@ static BOOL usesTextFontForInvisibles;
         CGContextConcatCTM(context, transform);
         
         // prepare glyphs
-        CGPathRef spaceGlyphPath = glyphPathWithCharacter([self spaceChar], font);
-        CGPathRef tabGlyphPath = glyphPathWithCharacter([self tabChar], font);
-        CGPathRef newLineGlyphPath = glyphPathWithCharacter([self newLineChar], font);
-        CGPathRef fullWidthSpaceGlyphPath = glyphPathWithCharacter([self fullwidthSpaceChar], font);
+        CGPathRef spaceGlyphPath = glyphPathWithCharacter([self spaceChar], font, false);
+        CGPathRef tabGlyphPath = glyphPathWithCharacter([self tabChar], font, false);
+        CGPathRef newLineGlyphPath = glyphPathWithCharacter([self newLineChar], font, false);
+        CGPathRef fullWidthSpaceGlyphPath = glyphPathWithCharacter([self fullwidthSpaceChar], font, true);
         
         // store value to avoid accessing properties each time  (2014-07 by 1024jp)
         BOOL showsSpace = [self showsSpace];
@@ -403,7 +403,7 @@ static BOOL usesTextFontForInvisibles;
 
 //------------------------------------------------------
 /// 文字とフォントからアウトラインパスを生成して返す
-CGPathRef glyphPathWithCharacter(unichar character, CTFontRef font)
+CGPathRef glyphPathWithCharacter(unichar character, CTFontRef font, bool prefersFullWidth)
 //------------------------------------------------------
 {
     CGFloat fontSize = CTFontGetSize(font);
@@ -418,7 +418,7 @@ CGPathRef glyphPathWithCharacter(unichar character, CTFontRef font)
     // try fallback fonts in cases where user font doesn't support the input charactor
     // - All invisible characters of choices can be covered with the following two fonts.
     CGPathRef path = NULL;
-    NSArray *fallbackFontNames = @[@"LucidaGrande", @"HiraKakuProN-W3"];
+    NSArray *fallbackFontNames = prefersFullWidth ? @[@"HiraKakuProN-W3", @"LucidaGrande"] : @[@"LucidaGrande", @"HiraKakuProN-W3"];
     
     for (NSString *fontName in fallbackFontNames) {
         CTFontRef fallbackFont = CTFontCreateWithName((CFStringRef)fontName, fontSize, 0);

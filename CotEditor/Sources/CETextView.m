@@ -43,6 +43,15 @@
 #import "constants.h"
 
 
+// enum
+typedef NS_ENUM(NSUInteger, CEUnicodeNormalizationForm) {
+    CEUnicodeNormalizationNFD,
+    CEUnicodeNormalizationNFC,
+    CEUnicodeNormalizationNFKD,
+    CEUnicodeNormalizationNFKC
+};
+
+
 // constant
 const NSInteger kNoMenuItem = -1;
 
@@ -564,8 +573,10 @@ const NSInteger kNoMenuItem = -1;
                 [addItem setTag:CEScriptMenuItemTag];
                 [outMenu addItem:addItem];
             }
+            [outMenu addItem:[NSMenuItem separatorItem]];
         } else{
-            [ASMenuItem setImage:[NSImage imageNamed:@"ScriptMenuTemplate"]];
+            [ASMenuItem setImage:[NSImage imageNamed:@"ScriptTemplate"]];
+            [[ASMenuItem image] setTemplate:NO];
             [ASMenuItem setTag:CEScriptMenuItemTag];
             [ASMenuItem setSubmenu:ASSubMenu];
             [outMenu addItem:ASMenuItem];
@@ -1218,7 +1229,7 @@ const NSInteger kNoMenuItem = -1;
 
 // ------------------------------------------------------
 /// 選択文字列を置換
-- (void)replaceSelectedStringTo:(NSString *)string scroll:(BOOL)doScroll
+- (void)replaceSelectedStringTo:(NSString *)string scroll:(BOOL)needsScroll
 // ------------------------------------------------------
 {
     if (!string) { return; }
@@ -1230,7 +1241,7 @@ const NSInteger kNoMenuItem = -1;
                withRange:selectedRange
             withSelected:NSMakeRange(selectedRange.location, [string length])
           withActionName:NSLocalizedString(actionName, nil)
-                  scroll:doScroll];
+                  scroll:needsScroll];
 }
 
 
@@ -1401,18 +1412,14 @@ const NSInteger kNoMenuItem = -1;
 - (BOOL)validateMenuItem:(NSMenuItem *)menuItem
 // ------------------------------------------------------
 {
-    if (([menuItem action] == @selector(exchangeLowercase:)) || 
-            ([menuItem action] == @selector(exchangeUppercase:)) || 
-            ([menuItem action] == @selector(exchangeCapitalized:)) || 
-            ([menuItem action] == @selector(exchangeFullwidthRoman:)) || 
-            ([menuItem action] == @selector(exchangeHalfwidthRoman:)) || 
-            ([menuItem action] == @selector(exchangeKatakana:)) || 
-            ([menuItem action] == @selector(exchangeHiragana:)) || 
-            ([menuItem action] == @selector(unicodeNormalizationNFD:)) || 
-            ([menuItem action] == @selector(unicodeNormalizationNFC:)) || 
-            ([menuItem action] == @selector(unicodeNormalizationNFKD:)) || 
-            ([menuItem action] == @selector(unicodeNormalizationNFKC:)) || 
-            ([menuItem action] == @selector(unicodeNormalization:)))
+    if (([menuItem action] == @selector(exchangeFullwidthRoman:)) ||
+        ([menuItem action] == @selector(exchangeHalfwidthRoman:)) ||
+        ([menuItem action] == @selector(exchangeKatakana:)) ||
+        ([menuItem action] == @selector(exchangeHiragana:)) ||
+        ([menuItem action] == @selector(normalizeUnicodeWithNFD:)) ||
+        ([menuItem action] == @selector(normalizeUnicodeWithNFC:)) ||
+        ([menuItem action] == @selector(normalizeUnicodeWithNFKD:)) ||
+        ([menuItem action] == @selector(normalizeUnicodeWithNFKC:)))
     {
         return ([self selectedRange].length > 0);
         // （カラーコード編集メニューは常に有効）
@@ -1771,60 +1778,6 @@ const NSInteger kNoMenuItem = -1;
 
 
 // ------------------------------------------------------
-/// 小文字へ変更
-- (IBAction)exchangeLowercase:(id)sender
-// ------------------------------------------------------
-{
-    NSRange selectedRange = [self selectedRange];
-    
-    if (selectedRange.length == 0) { return; }
-    
-    NSString *newStr = [[[self string] substringWithRange:selectedRange] lowercaseString];
-    if (newStr) {
-        [self doInsertString:newStr withRange:selectedRange
-                withSelected:NSMakeRange(selectedRange.location, [newStr length])
-              withActionName:NSLocalizedString(@"To Lowercase", nil) scroll:YES];
-    }
-}
-
-
-// ------------------------------------------------------
-/// 大文字へ変更
-- (IBAction)exchangeUppercase:(id)sender
-// ------------------------------------------------------
-{
-    NSRange selectedRange = [self selectedRange];
-    
-    if (selectedRange.length == 0) { return; }
-    
-    NSString *newStr = [[[self string] substringWithRange:selectedRange] uppercaseString];
-    if (newStr) {
-        [self doInsertString:newStr withRange:selectedRange
-                withSelected:NSMakeRange(selectedRange.location, [newStr length])
-              withActionName:NSLocalizedString(@"To Uppercase", nil) scroll:YES];
-    }
-}
-
-
-// ------------------------------------------------------
-/// 単語の頭を大文字へ変更
-- (IBAction)exchangeCapitalized:(id)sender
-// ------------------------------------------------------
-{
-    NSRange selectedRange = [self selectedRange];
-    
-    if (selectedRange.length == 0) { return; }
-    
-    NSString *newStr = [[[self string] substringWithRange:selectedRange] capitalizedString];
-    if (newStr) {
-        [self doInsertString:newStr withRange:selectedRange
-                withSelected:NSMakeRange(selectedRange.location, [newStr length])
-              withActionName:NSLocalizedString(@"To Capitalized", nil) scroll:YES];
-    }
-}
-
-
-// ------------------------------------------------------
 /// 全角Roman文字へ変更
 - (IBAction)exchangeFullwidthRoman:(id)sender
 // ------------------------------------------------------
@@ -1898,89 +1851,37 @@ const NSInteger kNoMenuItem = -1;
 
 // ------------------------------------------------------
 /// Unicode正規化
-- (IBAction)unicodeNormalizationNFD:(id)sender
+- (IBAction)normalizeUnicodeWithNFD:(id)sender
 // ------------------------------------------------------
 {
-    [self unicodeNormalization:sender];
+    [self normalizeUnicodeWithForm:CEUnicodeNormalizationNFD];
 }
 
 
 // ------------------------------------------------------
 /// Unicode正規化
-- (IBAction)unicodeNormalizationNFC:(id)sender
+- (IBAction)normalizeUnicodeWithNFC:(id)sender
 // ------------------------------------------------------
 {
-    [self unicodeNormalization:sender];
+    [self normalizeUnicodeWithForm:CEUnicodeNormalizationNFC];
 }
 
 
 // ------------------------------------------------------
 /// Unicode正規化
-- (IBAction)unicodeNormalizationNFKD:(id)sender
+- (IBAction)normalizeUnicodeWithNFKD:(id)sender
 // ------------------------------------------------------
 {
-    [self unicodeNormalization:sender];
+    [self normalizeUnicodeWithForm:CEUnicodeNormalizationNFKD];
 }
 
 
 // ------------------------------------------------------
 /// Unicode正規化
-- (IBAction)unicodeNormalizationNFKC:(id)sender
+- (IBAction)normalizeUnicodeWithNFKC:(id)sender
 // ------------------------------------------------------
 {
-    [self unicodeNormalization:sender];
-}
-
-
-// ------------------------------------------------------
-/// Unicode正規化
-- (IBAction)unicodeNormalization:(id)sender
-// ------------------------------------------------------
-{
-    NSRange selectedRange = [self selectedRange];
-    NSInteger switchType;
-    
-    if (selectedRange.length == 0) { return; }
-
-    if ([sender isKindOfClass:[NSMenuItem class]]) {
-        switchType = [sender tag];
-    } else if ([sender isKindOfClass:[NSNumber class]]) {
-        switchType = [sender integerValue];
-    } else {
-        return;
-    }
-    
-    NSString *originalStr = [[self string] substringWithRange:selectedRange];
-    NSString *actionName = nil, *newStr = nil;
-    
-    switch (switchType) {
-        case 0: // from D
-            newStr = [originalStr decomposedStringWithCanonicalMapping];
-            actionName = @"NFD";
-            break;
-        case 1: // from C
-            newStr = [originalStr precomposedStringWithCanonicalMapping];
-            actionName = @"NFC";
-            break;
-        case 2: // from KD
-            newStr = [originalStr decomposedStringWithCompatibilityMapping];
-            actionName = @"NFKD";
-            break;
-        case 3: // from KC
-            newStr = [originalStr precomposedStringWithCompatibilityMapping];
-            actionName = @"NFKC";
-            break;
-        default:
-            break;
-            return;
-    }
-    if (newStr) {
-        [self doInsertString:newStr
-                   withRange:selectedRange
-                withSelected:NSMakeRange(selectedRange.location, [newStr length])
-              withActionName:NSLocalizedString(actionName, nil)
-                      scroll:YES];
-    }
+    [self normalizeUnicodeWithForm:CEUnicodeNormalizationNFKC];
 }
 
 
@@ -2099,6 +2000,14 @@ const NSInteger kNoMenuItem = -1;
 {
     // ウインドウが不透明な時は自前で背景を描画する（サブピクセルレンダリングを有効にするためには layer-backed で不透明なビューが必要）
     [self setDrawsBackground:[[self window] isOpaque]];
+    
+    if (NSAppKitVersionNumber >= NSAppKitVersionNumber10_8) { // on Mountain Lion and later
+        // 半透明時にこれを有効にすると、ファイルサイズが大きいときにハングに近い状態になるため、
+        // 暫定処置として不透明時にだけ有効にする。
+        // 逆に不透明時に無効だと、ウインドウリサイズ時にビューが伸び縮みする (2014-10 by 1024jp)
+        [[self layer] setNeedsDisplayOnBoundsChange:[[self window] isOpaque]];
+    }
+    
     [self setNeedsDisplay:YES];
 }
 
@@ -2298,6 +2207,47 @@ const NSInteger kNoMenuItem = -1;
     }
     
     [self complete:self];
+}
+
+
+// ------------------------------------------------------
+/// Unicode正規化
+- (void)normalizeUnicodeWithForm:(CEUnicodeNormalizationForm)form
+// ------------------------------------------------------
+{
+    NSRange selectedRange = [self selectedRange];
+    
+    if (selectedRange.length == 0) { return; }
+    
+    NSString *originalStr = [[self string] substringWithRange:selectedRange];
+    NSString *actionName = nil, *newStr = nil;
+    
+    switch (form) {
+        case CEUnicodeNormalizationNFD:
+            newStr = [originalStr decomposedStringWithCanonicalMapping];
+            actionName = @"NFD";
+            break;
+        case CEUnicodeNormalizationNFC:
+            newStr = [originalStr precomposedStringWithCanonicalMapping];
+            actionName = @"NFC";
+            break;
+        case CEUnicodeNormalizationNFKD:
+            newStr = [originalStr decomposedStringWithCompatibilityMapping];
+            actionName = @"NFKD";
+            break;
+        case CEUnicodeNormalizationNFKC:
+            newStr = [originalStr precomposedStringWithCompatibilityMapping];
+            actionName = @"NFKC";
+            break;
+    }
+    
+    if (newStr) {
+        [self doInsertString:newStr
+                   withRange:selectedRange
+                withSelected:NSMakeRange(selectedRange.location, [newStr length])
+              withActionName:NSLocalizedString(actionName, nil)
+                      scroll:YES];
+    }
 }
 
 

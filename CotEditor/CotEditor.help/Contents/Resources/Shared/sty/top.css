@@ -1,7 +1,15 @@
+@charset "UTF-8";
+
 /*
- * CotEditor Help Style Sheet for CotEditorHelp.html
- */
+ Help Style Sheet for Top Page
  
+ CotEditor
+ http://coteditor.com
+ 
+ © 2006-2014 CotEditor Project
+*/
+
+
 body {
 	font: 10pt/1.5 'Helvetica Neue', sans-serif;
 	color: hsla(0,0%,0%,0.8);

@@ -39,7 +39,7 @@
                 <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="584">
                     <rect key="frame" x="44" y="315" width="56" height="17"/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="カラー：" usesSingleLineMode="YES" id="721">
-                        <font key="font" size="13" name="AquaKana"/>
+                        <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
@@ -67,7 +67,7 @@
                 <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="423">
                     <rect key="frame" x="18" y="253" width="82" height="17"/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="不可視文字：" usesSingleLineMode="YES" id="718">
-                        <font key="font" size="13" name="AquaKana"/>
+                        <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
@@ -95,7 +95,7 @@
                 <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="415">
                     <rect key="frame" x="44" y="284" width="56" height="17"/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="行番号：" usesSingleLineMode="YES" id="716">
-                        <font key="font" size="13" name="AquaKana"/>
+                        <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
@@ -131,7 +131,7 @@
                     <rect key="frame" x="18" y="133" width="217" height="18"/>
                     <buttonCell key="cell" type="check" title="ヘッダの下に区切り線をプリント" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="705">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" size="13" name="AquaKana"/>
+                        <font key="font" metaFont="system"/>
                     </buttonCell>
                     <connections>
                         <binding destination="-2" name="value" keyPath="printsHeaderSeparator" id="jTb-lZ-Aiz"/>
@@ -140,7 +140,7 @@
                 <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="256">
                     <rect key="frame" x="48" y="190" width="52" height="17"/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="1行目：" usesSingleLineMode="YES" id="706">
-                        <font key="font" size="13" name="AquaKana"/>
+                        <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
@@ -149,7 +149,7 @@
                     <rect key="frame" x="18" y="215" width="126" height="18"/>
                     <buttonCell key="cell" type="check" title="ヘッダをプリント" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="708">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" size="13" name="AquaKana"/>
+                        <font key="font" metaFont="system"/>
                     </buttonCell>
                     <connections>
                         <binding destination="-2" name="value" keyPath="printsHeader" id="iKa-8d-dzT"/>
@@ -182,7 +182,7 @@
                 <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="257">
                     <rect key="frame" x="48" y="159" width="52" height="17"/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="2行目：" usesSingleLineMode="YES" id="707">
-                        <font key="font" size="13" name="AquaKana"/>
+                        <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
@@ -259,7 +259,7 @@
                     <rect key="frame" x="18" y="14" width="217" height="18"/>
                     <buttonCell key="cell" type="check" title="フッタの上に区切り線をプリント" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="710">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" size="13" name="AquaKana"/>
+                        <font key="font" metaFont="system"/>
                     </buttonCell>
                     <connections>
                         <binding destination="-2" name="value" keyPath="printsFooterSeparator" id="8Uq-wh-13W"/>
@@ -268,7 +268,7 @@
                 <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="296">
                     <rect key="frame" x="48" y="40" width="52" height="17"/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="2行目：" usesSingleLineMode="YES" id="712">
-                        <font key="font" size="13" name="AquaKana"/>
+                        <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
@@ -303,7 +303,7 @@
                 <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="295">
                     <rect key="frame" x="48" y="71" width="52" height="17"/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="1行目：" usesSingleLineMode="YES" id="711">
-                        <font key="font" size="13" name="AquaKana"/>
+                        <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
@@ -312,7 +312,7 @@
                     <rect key="frame" x="18" y="94" width="126" height="18"/>
                     <buttonCell key="cell" type="check" title="フッタをプリント" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="713">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" size="13" name="AquaKana"/>
+                        <font key="font" metaFont="system"/>
                     </buttonCell>
                     <connections>
                         <binding destination="-2" name="value" keyPath="printsFooter" id="oSd-vJ-Zz6"/>

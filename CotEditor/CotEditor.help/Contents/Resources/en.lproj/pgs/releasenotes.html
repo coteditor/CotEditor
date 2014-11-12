@@ -20,7 +20,7 @@
 <article>
 <header>
 	<h1>CotEditor 2.0.0</h1>
-	<p>release: <time>2014-11-xx</time></p>
+	<p>release: <time>2014-11-13</time></p>
 </header>
 
 <section>
@@ -78,12 +78,12 @@
 	<li>Change syntax style file format from plist (XML) to YAML.
 		<ul>
 		<li>Legacy user styles will be migrated automatically on the first launch of CotEditor 2.0.</li>
-		<li>New user syntax style files are stored in <code>~/Library/Application Support/CotEditor/Syntaxes/</code>. The old styles are kept in <code>SyntaxColorings/</code>, since CotEditor 2.0 doesn’t use </li>
+		<li>New user syntax style files are stored in <code>~/Library/Application Support/CotEditor/Syntaxes/</code>. The old styles are kept in <code>SyntaxColorings/</code>. Since CotEditor 2.0 doesn’t use them any more, you can delete the direcotry if you want.</li>
 	</ul></li>
 	<li>Now, IC (ignore case) can be set even RE (regular expression) is set in syntax style editing.</li>
 	<li>Change regular expression engine to extract outline from OniGmo (OgreKit) to ICU (NSRegularExpression).
 		<ul>
-		<li><strong>Attention!</strong>: You may need to update the outline extracting definitions in your custom syntax styles.</li>
+		<li><strong>Attention!</strong>: You may need to update the outline extracting definitions in your custom syntax styles. See <a href="./specification_changes.html">Specification Changes on CotEditor 2.0</a> for details.</li>
 		<li>Remove <code>$&amp;</code> definition that represents whole matched string (Use <code>$0</code> instead).</li>
 	</ul></li>
 	<li>Change tab width to 4 characters in outline menu.</li>
@@ -101,6 +101,10 @@
 	<li>Define document types for CotEditor in more details and also add document icons for each.</li>
 	<li>Scroll line by line with an arrow key.</li>
 	<li>Adjust indent automatically on return just after <code>{</code> and <code>}</code> if Auto-Indent is on. (thanks to Naotaka-san).</li>
+	<li>Rename “Spelling” menu item to “Spelling and Grammer” in Edit menu, and also add “Substitutions” and “Transformations” items
+	<ul>
+		<li>From this, remove “Uppercase”, “Lowercase” and “Capitalize” in “Utility” menu.</li>
+	</ul></li>
 	<li>Update all of bundled syntax styles.</li>
 	<li>Update “CSS” syntax style:
 		<ul>
@@ -150,6 +154,10 @@
 		<li>Improve number literals.</li>
 		<li>Add escape chars.</li>
 	</ul></li>
+	<li>Update “Apache” syntax style:
+		<ul>
+		<li>Indent outline items.</li>
+	</ul></li>
 	<li>Separate “DTD” (Document Type Declaration) syntax style from “XML”.
 		<ul>
 		<li>From this, coloring performance with “XML” syntax style was improved.</li>
@@ -160,10 +168,11 @@
 		<li>Rename <code>unicode normalization</code> command to <code>normalize unicode</code>.</li>
 		<li>Update internal code for <code>range</code> property of <code>text selection</code> objects.
 			<ul>
-			<li>From this, your <strong>compiled</strong> AppleScripts (.scpt) that contain <code>selection</code> handling need to be updated manually. See “Scripting with AppleScript” document in “Help” menu for details.</li>
+			<li>From this, your <strong>compiled</strong> AppleScripts (.scpt) that contain <code>selection</code> handling need to be updated manually. See “Scripting with AppleScript” document in Help menu for details.</li>
 		</ul></li>
 		<li>Update documents about scripting with AppleScript.</li>
 	</ul></li>
+	<li>Change not to include menu items that manage script menu in context menu.</li>
 	<li>Count characters by composed character sequence in the status bar and the info drawer.
 		<ul>
 		<li>The previous count was actually the length of string in UTF-16 that is internal string expression on OS X (for example, a surrogate pair is counted previously as 2 and now as 1).</li>
@@ -217,6 +226,8 @@
 
 <ul>
 	<li>Fix an issue that “Share find strings with other applications” option didn’t work.</li>
+	<li>Fix an issue that “Open a new document when CotEditor becomes active” option didn’t work correctly.</li>
+	<li>Fix an issue that the encoding select in file open panel was ignored.</li>
 	<li>Fix an issue that comments weren’t highlighted correctly if another comment delimiter is contained in string that is enclosed in quotes before the comment delimiter.</li>
 	<li>Fix an issue that variation selectors, kind of invisible characters, disappeared occasionally.</li>
 	<li>Fix help buttons on preferences panes.</li>
@@ -236,6 +247,7 @@
 	<li>Fix an issue that <code>range</code> property of <code>text selection</code> objects was displayed as wrong <code>character range</code> on AppleScript Editor.</li>
 	<li>Fix some sample scripts which didn’t run correctly.</li>
 	<li>Fix an issue that some settings did not display in Preferences on OS X Lion.</li>
+	<li>Fix an issue that CotEditor could crash after replacement on specific conditions.</li>
 	<li>Avoid horizontal scrollers on key bindings edit sheets.</li>
 </ul>
 </section>

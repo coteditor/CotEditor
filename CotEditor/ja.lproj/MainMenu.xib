@@ -86,7 +86,7 @@
                                     <action selector="openDocument:" target="-1" id="195"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="非表示ファイルを開く…" tag="102" alternate="YES" keyEquivalent="o" id="688">
+                            <menuItem title="非表示ファイルを開く…" alternate="YES" keyEquivalent="o" id="688">
                                 <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
                                 <connections>
                                     <action selector="openHiddenDocument:" target="-1" id="690"/>
@@ -259,22 +259,100 @@
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="2nh-JM-Guj"/>
-                            <menuItem title="スペル" id="184">
-                                <menu key="submenu" title="スペル" id="185">
+                            <menuItem title="スペルと文法" id="Z7q-yM-BHH">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="スペルと文法" id="ifc-ct-d9b">
                                     <items>
-                                        <menuItem title="スペル…" keyEquivalent=":" id="187">
+                                        <menuItem title="スペルと文法を表示" keyEquivalent=":" id="ZhA-Vb-BDT">
                                             <connections>
-                                                <action selector="showGuessPanel:" target="-1" id="188"/>
+                                                <action selector="showGuessPanel:" target="-1" id="bXx-II-NFI"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="スペルチェック" keyEquivalent=";" id="189">
+                                        <menuItem title="書類を今すぐチェック" keyEquivalent=";" id="Xp4-8m-5VU">
                                             <connections>
-                                                <action selector="checkSpelling:" target="-1" id="190"/>
+                                                <action selector="checkSpelling:" target="-1" id="8j6-Tr-u2h"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="入力中に自動スペルチェック" id="191">
+                                        <menuItem isSeparatorItem="YES" id="gUZ-dQ-iqC"/>
+                                        <menuItem title="入力中にスペルをチェック" id="iyw-Et-2Bj">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
-                                                <action selector="toggleContinuousSpellChecking:" target="-1" id="192"/>
+                                                <action selector="toggleContinuousSpellChecking:" target="-1" id="yJc-yP-faF"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="スペルと一緒に文法をチェック" id="3Wy-ue-mDR">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="toggleGrammarChecking:" target="-1" id="GwO-ur-dcI"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="スペルを自動的に修正" id="cw5-MT-dCF">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="toggleAutomaticSpellingCorrection:" target="-1" id="9q9-nI-rbH"/>
+                                            </connections>
+                                        </menuItem>
+                                    </items>
+                                </menu>
+                            </menuItem>
+                            <menuItem title="自動変換" id="15D-Xp-Kkm">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="自動変換" id="HDQ-z5-Y4Y">
+                                    <items>
+                                        <menuItem title="自動変換を表示" id="vc4-xw-VXh">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="orderFrontSubstitutionsPanel:" target="-1" id="nfV-cl-TPD"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="N4z-fn-SDp"/>
+                                        <menuItem title="スマートコピー／ペースト" id="jIN-g8-WVa">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="toggleSmartInsertDelete:" target="-1" id="Dkb-do-3W2"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="スマート引用符" id="Dkc-dd-mML">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="toggleAutomaticQuoteSubstitution:" target="-1" id="NCf-sV-qTF"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="スマートダッシュ記号" id="wbE-Mt-2ZI">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="toggleAutomaticDashSubstitution:" target="-1" id="cdz-DD-yGA"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="テキストの置換" id="cK6-ad-U7n">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="toggleAutomaticTextReplacement:" target="-1" id="peb-R8-aTX"/>
+                                            </connections>
+                                        </menuItem>
+                                    </items>
+                                </menu>
+                            </menuItem>
+                            <menuItem title="変換" id="Iwm-Uh-rxz">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="変換" id="CvY-Pz-c4b">
+                                    <items>
+                                        <menuItem title="大文字にする" id="aFF-7i-VGV">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="uppercaseWord:" target="-1" id="tKN-cd-7tm"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="小文字にする" id="6Bi-F8-QyK">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="lowercaseWord:" target="-1" id="lgg-9B-QT3"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="語頭を大文字にする" id="v1y-yp-3Re">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="capitalizeWord:" target="-1" id="E05-cO-OC4"/>
                                             </connections>
                                         </menuItem>
                                     </items>
@@ -642,27 +720,6 @@
                     <attributedString key="attributedTitle"/>
                     <menu key="submenu" title="ユーティリティ" id="578">
                         <items>
-                            <menuItem title="小文字に" id="577">
-                                <attributedString key="attributedTitle"/>
-                                <connections>
-                                    <action selector="exchangeLowercase:" target="-1" id="580"/>
-                                </connections>
-                            </menuItem>
-                            <menuItem title="大文字に" id="581">
-                                <attributedString key="attributedTitle"/>
-                                <connections>
-                                    <action selector="exchangeUppercase:" target="-1" id="582"/>
-                                </connections>
-                            </menuItem>
-                            <menuItem title="先頭の文字を大文字に" id="583">
-                                <attributedString key="attributedTitle"/>
-                                <connections>
-                                    <action selector="exchangeCapitalized:" target="-1" id="584"/>
-                                </connections>
-                            </menuItem>
-                            <menuItem isSeparatorItem="YES" id="585">
-                                <modifierMask key="keyEquivalentModifierMask" command="YES"/>
-                            </menuItem>
                             <menuItem title="全角英数に" id="586">
                                 <attributedString key="attributedTitle"/>
                                 <connections>
@@ -696,22 +753,22 @@
                                     <items>
                                         <menuItem title="NFD" id="601">
                                             <connections>
-                                                <action selector="unicodeNormalizationNFD:" target="-1" id="604"/>
+                                                <action selector="normalizeUnicodeWithNFD:" target="-1" id="604"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem title="NFC" tag="1" id="602">
                                             <connections>
-                                                <action selector="unicodeNormalizationNFC:" target="-1" id="685"/>
+                                                <action selector="normalizeUnicodeWithNFC:" target="-1" id="685"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem title="NFKD" tag="2" id="603">
                                             <connections>
-                                                <action selector="unicodeNormalizationNFKD:" target="-1" id="686"/>
+                                                <action selector="normalizeUnicodeWithNFKD:" target="-1" id="686"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem title="NFKC" tag="3" id="598">
                                             <connections>
-                                                <action selector="unicodeNormalizationNFKC:" target="-1" id="687"/>
+                                                <action selector="normalizeUnicodeWithNFKC:" target="-1" id="687"/>
                                             </connections>
                                         </menuItem>
                                     </items>

@@ -1,16 +1,18 @@
 @charset "UTF-8";
 
-/* /////////////////////////////////////
-   CotEditor Release Notes Style Sheet
-   
-   author  : 1024jp <wolfrosch.com>
-   site    : coteditor.github.io
-   target  : changelog pages
-   lastMod : 2014-10-30
-  ////////////////////////////////////// */
+/*
+ Additional Help Style Sheet for Release Notes
+ 
+ CotEditor
+ http://coteditor.com
+ 
+ Created on 2014 by 1024jp
+ 
+ © 2014 CotEditor Project
+*/
 
 
-ul, ol {
+article ul, ol {
 	border: none;
 	background: transparent;
 	margin: 0;
@@ -87,10 +89,10 @@ article h2 {
 .highlights h1 {
 	margin-bottom: 0.5em;
 }
-.highlights dt:before {
+.highlights dt::before {
 	content: '✔︎';
 	color: hsl(90,50%,50%);
-	font-size:140%;
+	font-size: 140%;
 	vertical-align: -0.05em;
 	margin-right: 0.3em;
 }

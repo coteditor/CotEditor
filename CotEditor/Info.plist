@@ -24,6 +24,7 @@
 			<string>Editor</string>
 			<key>LSItemContentTypes</key>
 			<array>
+				<string>public.text</string>
 				<string>public.data</string>
 			</array>
 			<key>LSTypeIsPackage</key>
@@ -910,7 +911,7 @@
 		</dict>
 	</array>
 	<key>CFBundleExecutable</key>
-	<string>CotEditor</string>
+	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleHelpBookFolder</key>
 	<string>CotEditor.help</string>
 	<key>CFBundleHelpBookName</key>
@@ -918,27 +919,27 @@
 	<key>CFBundleIconFile</key>
 	<string>AppIcon</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.coteditor.CotEditor</string>
+	<string>com.coteditor.$(PRODUCT_NAME)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>CotEditor</string>
+	<string>${PRODUCT_NAME}</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>2.0RC</string>
+	<string>2.0</string>
 	<key>CFBundleSignature</key>
 	<string>cEd1</string>
 	<key>CFBundleVersion</key>
-	<string>2.0.0-rc</string>
+	<string>2.0.0</string>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.productivity</string>
 	<key>NSAppleScriptEnabled</key>
 	<true/>
 	<key>NSHumanReadableCopyright</key>
-	<string>©2005-2009 nakamuxu
-©2011, 2014 usami-k
-©2014 1024jp</string>
+	<string>© 2005-2009 nakamuxu
+© 2011, 2014 usami-k
+© 2014 1024jp</string>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>

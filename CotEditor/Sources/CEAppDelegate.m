@@ -40,7 +40,6 @@
 #import "CEPreferencesWindowController.h"
 #import "CEOpacityPanelController.h"
 #import "CELineHightPanelController.h"
-#import "CEGoToSheetController.h"
 #import "CEColorCodePanelController.h"
 #import "CEScriptErrorPanelController.h"
 #import "CEUnicodeInputPanelController.h"
@@ -50,6 +49,8 @@
 
 
 @interface CEAppDelegate ()
+
+@property (nonatomic) BOOL didFinishLaunching;
 
 @property (nonatomic) BOOL hasSetting;  // for migration check
 @property (nonatomic) CEMigrationWindowController *migrationWindowController;
@@ -318,7 +319,11 @@
 - (BOOL)applicationShouldOpenUntitledFile:(NSApplication *)sender
 // ------------------------------------------------------
 {
-    return [[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultCreateNewAtStartupKey];
+    if (![self didFinishLaunching]) {
+        return [[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultCreateNewAtStartupKey];
+    }
+    
+    return YES;
 }
 
 
@@ -327,25 +332,11 @@
 - (BOOL)applicationShouldHandleReopen:(NSApplication *)theApplication hasVisibleWindows:(BOOL)flag
 // ------------------------------------------------------
 {
-    BOOL shouldReopen = [[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultReopenBlankWindowKey];
-
-    if (shouldReopen) {
-        return YES;
-        
-    } else if (flag) {
-        // Re-Open に応えない設定でウィンドウがあるときは、すべてのウィンドウをチェックしひとつでも通常通り表示されていれば
-        // NO を返し何もしない。表示されているウィンドウがすべて Dock にしまわれているときは、そのうちひとつを通常表示させる
-        // ため、YES を返す。
-        for (NSWindow *window in [NSApp windows]) {
-            if ([window isVisible] && ![window isMiniaturized]) {
-                return NO;
-            }
-        }
-        
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultReopenBlankWindowKey]) {
         return YES;
     }
-    // Re-Open に応えず、かつウィンドウもないときは何もしない
-    return NO;
+    
+    return flag;
 }
 
 
@@ -405,6 +396,8 @@
     if (!lastSemVer || [lastSemVer compare:thisSemVer] == NSOrderedAscending) {  // lastVer < thisVer
         [[NSUserDefaults standardUserDefaults] setObject:thisVersion forKey:CEDefaultLastVersionKey];
     }
+    
+    [self setDidFinishLaunching:YES];
 }
 
 
@@ -567,16 +560,6 @@
     NSURL *URL = [[NSBundle mainBundle] URLForResource:@"openDictionary" withExtension:@"applescript"];
     NSAppleScript *AppleScript = [[NSAppleScript alloc] initWithContentsOfURL:URL error:nil];
     [AppleScript executeAndReturnError:nil];
-}
-
-
-// ------------------------------------------------------
-/// Go Toパネルを開く
-- (IBAction)gotoLocation:(id)sender
-// ------------------------------------------------------
-{
-    CEGoToSheetController *sheetController = [[CEGoToSheetController alloc] init];
-    [sheetController beginSheetForDocument:[[NSDocumentController sharedDocumentController] currentDocument]];
 }
 
 

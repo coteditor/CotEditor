@@ -37,7 +37,7 @@
             </view>
             <toolbar key="toolbar" implicitIdentifier="5EEA7197-971A-4C0B-ACF0-25FF246C03E2" autosavesConfiguration="NO" allowsUserCustomization="NO" displayMode="iconAndLabel" sizeMode="regular" id="e4w-yq-scj">
                 <allowedToolbarItems>
-                    <toolbarItem implicitItemIdentifier="5C93C654-AD65-4146-887B-9AA6629290C9" label="General" paletteLabel="General" image="NSPreferencesGeneral" selectable="YES" id="HlR-fr-Hwd">
+                    <toolbarItem implicitItemIdentifier="5C93C654-AD65-4146-887B-9AA6629290C9" label="General" paletteLabel="General" image="Pref_General" selectable="YES" id="HlR-fr-Hwd">
                         <connections>
                             <action selector="switchView:" target="-2" id="y23-ul-4nE"/>
                         </connections>
@@ -96,11 +96,11 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
     </objects>
     <resources>
-        <image name="NSPreferencesGeneral" width="32" height="32"/>
         <image name="Pref_Appearance" width="32" height="32"/>
         <image name="Pref_Edit" width="32" height="32"/>
         <image name="Pref_FileDrop" width="32" height="32"/>
         <image name="Pref_Format" width="32" height="32"/>
+        <image name="Pref_General" width="32" height="32"/>
         <image name="Pref_KeyBindings" width="32" height="32"/>
         <image name="Pref_Print" width="32" height="32"/>
         <image name="Pref_Window" width="32" height="32"/>

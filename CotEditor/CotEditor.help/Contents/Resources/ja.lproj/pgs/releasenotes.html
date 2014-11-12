@@ -20,7 +20,7 @@
 <article>
 <header>
 	<h1>CotEditor 2.0.0</h1>
-	<p>リリース: <time>2014-11-xx</time></p>
+	<p>リリース: <time>2014-11-13</time></p>
 </header>
 
 <section>
@@ -84,6 +84,7 @@
 	<li>シンタックス定義で RE (正規表現) を無効にしていても IC (大文字小文字を無視) を有効にできるように変更</li>
 	<li>アウトライン抽出に用いる正規表現ライブラリを OniGmo (OgreKit) から ICU (NSRegularExpression) に変更
 		<ul>
+		<li><strong>注意!</strong>: シンタックス定義をカスタムしている場合はアウトライン抽出定義の修正が必要な場合があります。詳細は <a href="./specification_changes.html">CotEditor 2.0 での仕様変更</a>をご覧ください。</li>
 		<li>マッチした文字列全体を表す <code>$&amp;</code> 定義の削除（代わりに <code>$0</code> を使ってください）</li>
 	</ul></li>
 	<li>アウトラインメニューでのタブ幅をスペース4個分に変更</li>
@@ -101,6 +102,10 @@
 	<li>文書定義と書類アイコンを追加し、CotEditorと関連づけられた書類のアイコンと種類がよりファイルを反映したものになるようにした</li>
 	<li>エディタ内で矢印キーでカーソル移動をしたときのスクロール幅を1行ずつに変更</li>
 	<li>自動インデントが有効なときは、 <code>{</code> または <code>}</code> 直後の改行でインデントの対応を取るように改善 (Naotaka さんに感謝！)</li>
+	<li>「編集」メニューの項目「スペル」を「スペルと文法」に変更し、さらに「自動変換」と「変換」機能を追加
+	<ul>
+		<li>これにともない、「ユーティリティ」メニュー内の「大文字に」、「小文字に」、「先頭の文字を大文字に」を削除</li>
+	</ul></li>
 	<li>シンタックス定義フォーマットの変更に対応するための、すべてのバンドル版シンタックス定義の更新</li>
 	<li>“CSS” シンタックス定義の更新
 		<ul>
@@ -150,6 +155,10 @@
 		<li>数値の抽出条件を改良</li>
 		<li>エスケープ文字を追加</li>
 	</ul></li>
+	<li>“Apache” シンタックス定義の更新
+		<ul>
+		<li>アウトラインをインデントで階層化</li>
+	</ul></li>
 	<li>“DTD” (文書型定義) シンタックス定義 を “XML” シンタックス定義から分離
 		<ul>
 		<li>これにより、“XML” シンタックス定義のカラーリングパフォーマンスを改善</li>
@@ -164,6 +173,7 @@
 		</ul></li>
 		<li>AppleScript に関わるドキュメントの更新</li>
 	</ul></li>
+	<li>コンテキストメニューのスクリプトメニューにはスクリプト管理のための項目を含めないように変更</li>
 	<li>ステータスバーおよび情報ドロワーの文字数カウントを composed character 単位に変更
 		<ul>
 		<li>従来の文字数カウントは愚直にUTF-16 (= OS Xでの文字列内部表現) での length を表示するのに対して、新しいカウント法は表示される文字単位でカウントを行なう（例えば、絵文字などのサロゲートペアは文字数:1, 文字長:2となる）</li>
@@ -217,6 +227,8 @@
 
 <ul>
 	<li>「検索文字列をほかのアプリケーションと共有」オプションが有効にならない不具合を修正</li>
+	<li>「CotEditor がアクティブになるとき新規書類を開く」オプションが正しく機能していなかった不具合を修正</li>
+	<li>ファイルオープンパネルでのエンコーディング選択が無視されていた不具合を修正</li>
 	<li>引用符で囲まれた文字列内にコメント開始記号がある場合、同行内で引用符外にコメントがあってもカラーリングされない不具合を修正</li>
 	<li>不可視制御文字 Variation Selector の表示が消えることがある不具合を修正</li>
 	<li>環境設定ウインドウのヘルプボタンから該当するヘルプページが開かなかった不具合を修正</li>
@@ -236,6 +248,7 @@
 	<li>AppleScript Editor から <code>selection</code> オブジェクトのプロパティを見たときに <code>range</code> プロパティの名前が <code>character range</code> と表示される不具合を修正</li>
 	<li>正しく実行できなかったいくつかのサンプルスクリプトを修正</li>
 	<li>OS X Lion において、環境設定のいくつかの設定項目が非表示になっていた不具合を修正</li>
+	<li>特定の環境下で一括置換時クラッシュすることがあった不具合を修正</li>
 	<li>キーバインド編集シートで横スクロールの発生を抑止</li>
 </ul>
 </section>
@@ -247,7 +260,7 @@
 <ul>
 	<li>CotEditor の Twitter アカウントができました：<a href="https://twitter.com/CotEditor" rel="external">@CotEditor</a></li>
 	<li>公式サイトの URL が <a href="http://coteditor.com" rel="external">coteditor.com</a> に変更されました。</li>
-	<li><a href="https://github.com/coteditor/CotEditor/wiki/Additional-Syntax-Styles" rel="external">GitHub Wiki</a> で追加インストールできるシンタックス定義を見つけることができます</li>
+	<li><a href="https://github.com/coteditor/CotEditor/wiki/Additional-Syntax-Styles" rel="external">GitHub Wiki</a> で追加インストールできるシンタックス定義を見つけることができます。</li>
 </ul>
 </section>
 </article>

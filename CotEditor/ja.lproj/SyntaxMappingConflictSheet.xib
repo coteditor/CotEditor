@@ -29,7 +29,7 @@
                         </constraints>
                         <buttonCell key="cell" type="push" title="閉じる" bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" inset="2" id="1021">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" size="11" name="AquaKana"/>
+                            <font key="font" metaFont="smallSystem"/>
                             <string key="keyEquivalent" base64-UTF8="YES">
 DQ
 </string>

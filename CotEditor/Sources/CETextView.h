@@ -63,15 +63,15 @@
 // Public method
 - (void)completeAfterDelay:(NSTimeInterval)delay;
 - (void)applyTypingAttributes;
-- (void)replaceSelectedStringTo:(NSString *)inString scroll:(BOOL)inBoolScroll;
-- (void)replaceAllStringTo:(NSString *)inString;
-- (void)insertAfterSelection:(NSString *)inString;
-- (void)appendAllString:(NSString *)inString;
-- (void)insertCustomTextWithPatternNum:(NSInteger)inPatternNum;
+- (void)replaceSelectedStringTo:(NSString *)string scroll:(BOOL)needsScroll;
+- (void)replaceAllStringTo:(NSString *)string;
+- (void)insertAfterSelection:(NSString *)string;
+- (void)appendAllString:(NSString *)string;
+- (void)insertCustomTextWithPatternNum:(NSInteger)patternNum;
 - (void)resetFont:(id)sender;
-- (void)setNewLineSpacingAndUpdate:(CGFloat)inLineSpacing;
-- (void)doReplaceString:(NSString *)inString withRange:(NSRange)inRange 
-           withSelected:(NSRange)inSelection withActionName:(NSString *)inActionName;
+- (void)setNewLineSpacingAndUpdate:(CGFloat)lineSpacing;
+- (void)doReplaceString:(NSString *)string withRange:(NSRange)range
+           withSelected:(NSRange)selection withActionName:(NSString *)actionName;
 
 // Action Message
 - (IBAction)shiftRight:(id)sender;
@@ -81,18 +81,14 @@
 - (IBAction)uncomment:(id)sender;
 - (IBAction)selectLines:(id)sender;
 - (IBAction)changeTabWidth:(id)sender;
-- (IBAction)exchangeLowercase:(id)sender;
-- (IBAction)exchangeUppercase:(id)sender;
-- (IBAction)exchangeCapitalized:(id)sender;
 - (IBAction)exchangeFullwidthRoman:(id)sender;
 - (IBAction)exchangeHalfwidthRoman:(id)sender;
 - (IBAction)exchangeKatakana:(id)sender;
 - (IBAction)exchangeHiragana:(id)sender;
-- (IBAction)unicodeNormalizationNFD:(id)sender;
-- (IBAction)unicodeNormalizationNFC:(id)sender;
-- (IBAction)unicodeNormalizationNFKD:(id)sender;
-- (IBAction)unicodeNormalizationNFKC:(id)sender;
-- (IBAction)unicodeNormalization:(id)sender;
+- (IBAction)normalizeUnicodeWithNFD:(id)sender;
+- (IBAction)normalizeUnicodeWithNFC:(id)sender;
+- (IBAction)normalizeUnicodeWithNFKD:(id)sender;
+- (IBAction)normalizeUnicodeWithNFKC:(id)sender;
 - (IBAction)inputYenMark:(id)sender;
 - (IBAction)inputBackSlash:(id)sender;
 - (IBAction)editColorCode:(id)sender;

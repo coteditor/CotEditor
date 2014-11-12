@@ -173,9 +173,11 @@
 - (BOOL)outlineView:(NSOutlineView *)outlineView isItemExpandable:(id)item
 // ------------------------------------------------------
 {
-    NSArray *children = item ? item[CEKeyBindingChildrenKey] : [self outlineDataArray];
-    
-    return (children);
+    if (item) {
+        return (item[CEKeyBindingChildrenKey]);
+    } else {
+        return YES;
+    }
 }
 
 

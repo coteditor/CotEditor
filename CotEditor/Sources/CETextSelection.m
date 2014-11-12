@@ -266,23 +266,23 @@
 
 
 // ------------------------------------------------------
-/// 文字列を大文字／小文字／キャピタライズにコンバートし、結果を返す
+/// 文字列を大文字／小文字／キャピタライズにコンバートする
 - (void)handleChangeCaseScriptCommand:(NSScriptCommand *)command
 // ------------------------------------------------------
 {
     NSDictionary *arguments = [command evaluatedArguments];
     CECaseType caseType = [arguments[@"caseType"] unsignedIntegerValue];
-    CETextView *textView = [[[self document] editor] textView];
+    NSTextView *textView = [[[self document] editor] textView];
 
     switch (caseType) {
         case CELowerCase:
-            [textView exchangeLowercase:self];
+            [textView lowercaseWord:self];
             break;
         case CEUpperCase:
-            [textView exchangeUppercase:self];
+            [textView uppercaseWord:self];
             break;
         case CECapitalized:
-            [textView exchangeCapitalized:self];
+            [textView capitalizeWord:self];
             break;
     }
 }
@@ -337,14 +337,20 @@
     CEUNFType UNFType = [arguments[@"unfType"] unsignedIntegerValue];
     CETextView *textView = [[[self document] editor] textView];
     
-    NSInteger typeCode;
     switch (UNFType) {
-        case CENFC:  typeCode = 0; break;
-        case CENFD:  typeCode = 1; break;
-        case CENFKC: typeCode = 2; break;
-        case CENFKD: typeCode = 3; break;
+        case CENFC:
+            [textView normalizeUnicodeWithNFC:self];
+            break;
+        case CENFD:
+            [textView normalizeUnicodeWithNFD:self];
+            break;
+        case CENFKC:
+            [textView normalizeUnicodeWithNFKC:self];
+            break;
+        case CENFKD:
+            [textView normalizeUnicodeWithNFKD:self];
+            break;
     }
-    [textView unicodeNormalization:@(typeCode)];
 }
 
 @end

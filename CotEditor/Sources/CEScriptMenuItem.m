@@ -55,6 +55,15 @@
 }
 
 
+// ------------------------------------------------------
+/// clean up
+- (void)dealloc
+// ------------------------------------------------------
+{
+    [[NSDistributedNotificationCenter defaultCenter] removeObserver:self];
+}
+
+
 
 #pragma mark Private Methods
 
