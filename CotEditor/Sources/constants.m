@@ -209,6 +209,7 @@ NSString *const CEDefaultRunAppleScriptInLaunchingKey = @"runAppleScriptInLaunch
 NSString *const CEDefaultShowAlertForNotWritableKey = @"showAlertForNotWritable";
 NSString *const CEDefaultNotifyEditByAnotherKey = @"notifyEditByAnother";
 NSString *const CEDefaultColoringRangeBufferLengthKey = @"coloringRangeBufferLength";
+NSString *const CEDefaultLargeFileAlertThresholdKey = @"largeFileAlertThreshold";
 
 // keys for dicts in CEDefaultFileDropArrayKey
 NSString *const CEFileDropExtensionsKey = @"extensions";

@@ -202,6 +202,7 @@ extern NSString *const CEDefaultRunAppleScriptInLaunchingKey;
 extern NSString *const CEDefaultShowAlertForNotWritableKey;
 extern NSString *const CEDefaultNotifyEditByAnotherKey;
 extern NSString *const CEDefaultColoringRangeBufferLengthKey;
+extern NSString *const CEDefaultLargeFileAlertThresholdKey;
 
 // keys for dicts in CEDefaultFileDropArrayKey
 extern NSString *const CEFileDropExtensionsKey;

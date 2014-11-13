@@ -210,7 +210,9 @@
                                CEDefaultRunAppleScriptInLaunchingKey: @YES,
                                CEDefaultShowAlertForNotWritableKey: @YES, 
                                CEDefaultNotifyEditByAnotherKey: @YES,
-                               CEDefaultColoringRangeBufferLengthKey: @5000};
+                               CEDefaultColoringRangeBufferLengthKey: @5000,
+                               CEDefaultLargeFileAlertThresholdKey: @(100 * pow(1024, 2)),  // 100 MB
+                               };
     [[NSUserDefaults standardUserDefaults] registerDefaults:defaults];
     
     // 出荷時へのリセットが必要な項目に付いては NSUserDefaultsController に初期値をセットする
@@ -472,6 +474,7 @@
         
         return YES;
     }
+    
     return NO;
 }
 

@@ -5,9 +5,14 @@ changelog
 2.0.1
 --------------------------
 
+### Additions/Changes
+
+- Display a dialog if the opening file is larger than 100 MB.
+
+
 ### Fixes
 
-- Fix an issue that new docuemnts couldn't be saved with an extension that is automatically added from syntax definition.
+- Fix an issue that new documents couldn't be saved with an extension that is automatically added from syntax definition.
 - Add a missig Japanese localized text in the status bar.
 - Fix an issue that current line highlight didn't update after font size change.
 
