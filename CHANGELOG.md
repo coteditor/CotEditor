@@ -2,6 +2,15 @@
 changelog
 ==========================
 
+2.0.1
+--------------------------
+
+### Fixes
+
+- Add a missig Japanese localized text in the status bar.
+
+
+
 2.0.0
 --------------------------
 
