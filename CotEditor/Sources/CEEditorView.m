@@ -650,6 +650,16 @@
 }
 
 
+// ------------------------------------------------------
+/// font is changed
+- (void)textViewDidChangeTypingAttributes:(NSNotification *)notification
+// ------------------------------------------------------
+{
+    [self highlightCurrentLine];
+}
+
+
+
 //=======================================================
 // Notification method (OgreKit 改)
 //  <== OgreReplaceAllThread

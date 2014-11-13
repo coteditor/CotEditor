@@ -8,6 +8,7 @@ changelog
 ### Fixes
 
 - Add a missig Japanese localized text in the status bar.
+- Fix an issue that current line highlight didn't update after font size change.
 
 
 
