@@ -7,6 +7,7 @@ changelog
 
 ### Fixes
 
+- Fix an issue that new docuemnts couldn't be saved with an extension that is automatically added from syntax definition.
 - Add a missig Japanese localized text in the status bar.
 - Fix an issue that current line highlight didn't update after font size change.
 

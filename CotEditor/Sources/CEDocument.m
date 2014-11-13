@@ -284,7 +284,9 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     [super runModalSavePanelForSaveOperation:saveOperation delegate:delegate
                              didSaveSelector:didSaveSelector contextInfo:contextInfo];
     
-    // ファイル名に拡張子がない場合は現在のシンタックスに対応したものを追加する
+    if ([self fileURL]) { return; }
+    
+    // 新規保存の場合は現在のシンタックスに対応したものを追加する
     {
         NSString *styleName = [[self editor] syntaxStyleName];
         NSString *extension = [[CESyntaxManager sharedManager] defaultExensionWithStyleName:styleName];
@@ -293,8 +295,6 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
         
         NSSavePanel *savePanel = (NSSavePanel *)[[self windowForSheet] attachedSheet];
         NSString *fileName = [savePanel nameFieldStringValue];
-        
-        if (![[fileName pathExtension] isEqualToString:@""]) { return; }
         
         NSText *text;
         for (id view in [[savePanel contentView] subviews]) {
@@ -307,9 +307,22 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
             [text setString:[fileName stringByAppendingPathExtension:extension]];
             
             // 拡張子をのぞいた部分を選択状態にする
-            [text setSelectedRange:NSMakeRange(0, [[fileName stringByDeletingPathExtension] length])];
+            [text setSelectedRange:NSMakeRange(0, [fileName length])];
         }
     }
+}
+
+
+// ------------------------------------------------------
+/// セーブパネルを準備
+- (BOOL)prepareSavePanel:(NSSavePanel *)savePanel
+// ------------------------------------------------------
+{
+    // reset file types
+    // (Otherwise, alert dialog will be displayed if user inputs another extension.)
+    [savePanel setAllowedFileTypes:nil];
+    
+    return [super prepareSavePanel:savePanel];
 }
 
 

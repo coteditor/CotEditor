@@ -15,11 +15,6 @@
 			<array/>
 			<key>CFBundleTypeName</key>
 			<string>Text Document</string>
-			<key>CFBundleTypeOSTypes</key>
-			<array>
-				<string>****</string>
-				<string>TEXT</string>
-			</array>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>LSItemContentTypes</key>
