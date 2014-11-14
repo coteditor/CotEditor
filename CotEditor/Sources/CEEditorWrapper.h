@@ -46,13 +46,13 @@
 @interface CEEditorWrapper : NSResponder
 
 @property (nonatomic) BOOL showsLineNum;
-@property (nonatomic) BOOL showsNavigationBar;
 @property (nonatomic) BOOL wrapsLines;
 @property (nonatomic) BOOL showsPageGuide;
 @property (nonatomic) BOOL showsInvisibles;
 @property (nonatomic, getter=isVerticalLayoutOrientation) BOOL verticalLayoutOrientation;
 @property (nonatomic) CETextView *textView;
 
+@property (readonly, nonatomic) BOOL showsNavigationBar;
 @property (readonly, nonatomic) BOOL canActivateShowInvisibles;
 
 

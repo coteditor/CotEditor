@@ -15,6 +15,7 @@ changelog
 - Fix an issue that new documents couldn't be saved with an extension that is automatically added from syntax definition.
 - Add a missig Japanese localized text in the status bar.
 - Fix an issue that current line highlight didn't update after font size change.
+- Fix an issue that navigation/status bars are shown for a moment on window creation even they are set as hidden.
 
 
 

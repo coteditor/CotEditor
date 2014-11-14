@@ -46,6 +46,9 @@ static const NSTimeInterval kDuration = 0.25;
 @property (nonatomic, copy) NSAttributedString *editorStatus;
 @property (nonatomic, copy) NSString *documentStatus;
 
+// readonly
+@property (readwrite, nonatomic, getter=isShown) BOOL shown;
+
 @end
 
 
@@ -69,7 +72,6 @@ static const NSTimeInterval kDuration = 0.25;
 {
     self = [super initWithCoder:aDecoder];
     if (self) {
-        _showsStatusBar = YES;
         _byteCountTransformer = [[CEByteCountTransformer alloc] init];
         
         NSColor *labelColor = [NSColor colorWithCalibratedWhite:0.35 alpha:1.0];
@@ -160,18 +162,24 @@ static const NSTimeInterval kDuration = 0.25;
 
 // ------------------------------------------------------
 /// update visibility
-- (void)setShowsStatusBar:(BOOL)showsStatusBar
+- (void)setShown:(BOOL)isShown animate:(BOOL)performAnimation
 // ------------------------------------------------------
 {
-    _showsStatusBar = showsStatusBar;
+    [self setShown:isShown];
     
-    CGFloat height = [self showsStatusBar] ? kDefaultHeight : 0.0;
+    CGFloat height = [self isShown] ? kDefaultHeight : 0.0;
     
-    // resize with animation
-    [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
-        [context setDuration:kDuration];
-        [[[self heightConstraint] animator] setConstant:height];
-    } completionHandler:nil];
+    if (performAnimation) {
+        // resize with animation
+        [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
+            [context setDuration:kDuration];
+            [[[self heightConstraint] animator] setConstant:height];
+        } completionHandler:nil];
+        
+    } else {
+        // resize without animation
+        [[self heightConstraint] setConstant:height];
+    }
 }
 
 

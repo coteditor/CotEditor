@@ -151,7 +151,7 @@ static NSTimeInterval incompatibleCharInterval;
     [self updateFileAttributesInfo];
     
     // setup status bar
-    [[self statusBarController] setShowsStatusBar:[defaults boolForKey:CEDefaultShowStatusBarKey]];
+    [[self statusBarController] setShown:[defaults boolForKey:CEDefaultShowStatusBarKey] animate:NO];
     [[self statusBarController] setShowsReadOnly:![[self document] isWritable]];
     
     // テキストビューへフォーカスを移動
@@ -255,7 +255,7 @@ static NSTimeInterval incompatibleCharInterval;
 - (void)updateEditorStatusInfo:(BOOL)needsUpdateDrawer
 // ------------------------------------------------------
 {
-    BOOL updatesStatusBar = [[self statusBarController] showsStatusBar];
+    BOOL updatesStatusBar = [[self statusBarController] isShown];
     BOOL updatesDrawer = needsUpdateDrawer ? YES : [self needsInfoDrawerUpdate];
     
     if (!updatesStatusBar && !updatesDrawer) { return; }
@@ -394,7 +394,7 @@ static NSTimeInterval incompatibleCharInterval;
 - (void)updateEncodingAndLineEndingsInfo:(BOOL)needsUpdateDrawer
 // ------------------------------------------------------
 {
-    BOOL shouldUpdateStatusBar = [[self statusBarController] showsStatusBar];
+    BOOL shouldUpdateStatusBar = [[self statusBarController] isShown];
     BOOL shouldUpdateDrawer = needsUpdateDrawer ? YES : [self needsInfoDrawerUpdate];
     
     if (!shouldUpdateStatusBar && !shouldUpdateDrawer) { return; }
@@ -478,7 +478,7 @@ static NSTimeInterval incompatibleCharInterval;
 - (BOOL)showsStatusBar
 // ------------------------------------------------------
 {
-    return [[self statusBarController] showsStatusBar];
+    return [[self statusBarController] isShown];
 }
 
 
@@ -489,7 +489,7 @@ static NSTimeInterval incompatibleCharInterval;
 {
     if (![self statusBarController]) { return; }
     
-    [[self statusBarController] setShowsStatusBar:showsStatusBar];
+    [[self statusBarController] setShown:showsStatusBar animate:YES];
     [[self toolbarController] toggleItemWithTag:CEToolbarShowStatusBarItemTag
                                           setOn:showsStatusBar];
     [self updateEncodingAndLineEndingsInfo:NO];
