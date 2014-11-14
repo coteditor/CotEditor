@@ -289,9 +289,9 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     // 新規保存の場合は現在のシンタックスに対応したものを追加する
     {
         NSString *styleName = [[self editor] syntaxStyleName];
-        NSString *extension = [[CESyntaxManager sharedManager] defaultExensionWithStyleName:styleName];
+        NSArray *extensions = [[CESyntaxManager sharedManager] extensionsForStyleName:styleName];
         
-        if (!extension) { return; }
+        if (!extensions) { return; }
         
         NSSavePanel *savePanel = (NSSavePanel *)[[self windowForSheet] attachedSheet];
         NSString *fileName = [savePanel nameFieldStringValue];
@@ -304,7 +304,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
             }
         }
         if (text) {
-            [text setString:[fileName stringByAppendingPathExtension:extension]];
+            [text setString:[fileName stringByAppendingPathExtension:extensions[0]]];
             
             // 拡張子をのぞいた部分を選択状態にする
             [text setSelectedRange:NSMakeRange(0, [fileName length])];
