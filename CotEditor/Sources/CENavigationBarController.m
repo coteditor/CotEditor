@@ -83,6 +83,11 @@ static const NSTimeInterval kDuration = 0.25;
 {
     [super loadView];
     
+    // hide as default (avoid flick)
+    [[self prevButton] setHidden:YES];
+    [[self nextButton] setHidden:YES];
+    [[self outlineMenu] setHidden:YES];
+    
     [[self outlineIndicator] setUsesThreadedAnimation:YES];
 }
 
