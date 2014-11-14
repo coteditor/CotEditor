@@ -40,7 +40,7 @@
 - (NSArray *)layoutManagers;
 
 - (void)setShowsLineNum:(BOOL)showsLineNum;
-- (void)setShowsNavigationBar:(BOOL)showsNavigationBar;
+- (void)setShowsNavigationBar:(BOOL)showsNavigationBar animate:(BOOL)performAnimation;
 - (void)setWrapsLines:(BOOL)wrapsLines;
 - (void)setVerticalLayoutOrientation:(BOOL)isVerticalLayoutOrientation;
 - (void)setShowsInvisibles:(BOOL)showsInvisibles;

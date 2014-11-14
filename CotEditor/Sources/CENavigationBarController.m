@@ -48,6 +48,9 @@ static const NSTimeInterval kDuration = 0.25;
 @property (nonatomic, weak) IBOutlet NSProgressIndicator *outlineIndicator;
 @property (nonatomic, weak) IBOutlet NSTextField *outlineLoadingMessage;
 
+// readonly
+@property (readwrite, nonatomic, getter=isShown) BOOL shown;
+
 @end
 
 
@@ -102,18 +105,24 @@ static const NSTimeInterval kDuration = 0.25;
 
 // ------------------------------------------------------
 /// set to show navigation bar.
-- (void)setShowsNavigationBar:(BOOL)showsNavigationBar
+- (void)setShown:(BOOL)isShown animate:(BOOL)performAnimation
 // ------------------------------------------------------
 {
-    _showsNavigationBar = showsNavigationBar;
+    [self setShown:isShown];
     
-    CGFloat height = [self showsNavigationBar] ? kDefaultHeight : 0.0;
+    CGFloat height = [self isShown] ? kDefaultHeight : 0.0;
     
-    // resize with animation
-    [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
-        [context setDuration:kDuration];
-        [[[self heightConstraint] animator] setConstant:height];
-    } completionHandler:nil];
+    if (performAnimation) {
+        // resize with animation
+        [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
+            [context setDuration:kDuration];
+            [[[self heightConstraint] animator] setConstant:height];
+        } completionHandler:nil];
+        
+    } else {
+        // resize without animation
+        [[self heightConstraint] setConstant:height];
+    }
 }
 
 

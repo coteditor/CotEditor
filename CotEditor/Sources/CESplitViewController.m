@@ -114,11 +114,11 @@
 
 // ------------------------------------------------------
 /// ナビゲーションバー描画の有無を設定
-- (void)setShowsNavigationBar:(BOOL)showsNavigationBar
+- (void)setShowsNavigationBar:(BOOL)showsNavigationBar animate:(BOOL)performAnimation
 // ------------------------------------------------------
 {
     for (CEEditorView *subview in [[self view] subviews]) {
-        [subview setShowsNavigationBar:showsNavigationBar];
+        [subview setShowsNavigationBar:showsNavigationBar animate:performAnimation];
     }
 }
 

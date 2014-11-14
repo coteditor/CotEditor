@@ -52,7 +52,7 @@
 - (NSString *)string;
 - (void)replaceTextStorage:(NSTextStorage *)textStorage;
 - (void)setShowsLineNum:(BOOL)showsLineNum;
-- (void)setShowsNavigationBar:(BOOL)showsNavigationBar;
+- (void)setShowsNavigationBar:(BOOL)showsNavigationBar animate:(BOOL)performAnimation;
 - (void)setWrapsLines:(BOOL)wrapsLines;
 - (void)setShowsInvisibles:(BOOL)showsInvisibles;
 - (void)setUsesAntialias:(BOOL)usesAntialias;

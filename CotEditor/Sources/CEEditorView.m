@@ -232,10 +232,10 @@
 
 // ------------------------------------------------------
 /// ナビゲーションバーを表示／非表示
-- (void)setShowsNavigationBar:(BOOL)showsNavigationBar
+- (void)setShowsNavigationBar:(BOOL)showsNavigationBar animate:(BOOL)performAnimation;
 // ------------------------------------------------------
 {
-    [[self navigationBar] setShowsNavigationBar:showsNavigationBar];
+    [[self navigationBar] setShown:showsNavigationBar animate:performAnimation];
     if (![self outlineMenuTimer]) {
         [self updateOutlineMenu];
     }
