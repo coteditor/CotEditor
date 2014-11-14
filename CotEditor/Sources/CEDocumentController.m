@@ -30,6 +30,7 @@
 
 #import "CEDocumentController.h"
 #import "CEEncodingManager.h"
+#import "CEByteCountTransformer.h"
 #import "constants.h"
 
 
@@ -65,6 +66,40 @@
         _accessorySelectedEncoding = (NSStringEncoding)[[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultEncodingInOpenKey];
     }
     return self;
+}
+
+
+// ------------------------------------------------------
+/// check file before creating a new document instance
+- (id)makeDocumentWithContentsOfURL:(NSURL *)url ofType:(NSString *)typeName error:(NSError *__autoreleasing *)outError
+// ------------------------------------------------------
+{
+    // display alert if file is enorm large
+    NSUInteger fileSizeThreshold = [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultLargeFileAlertThresholdKey];
+    if (fileSizeThreshold > 0) {
+        NSNumber *fileSize = nil;
+        [url getResourceValue:&fileSize forKey:NSURLFileSizeKey error:nil];
+        
+        if ([fileSize integerValue] > fileSizeThreshold) {
+            CEByteCountTransformer *transformer = [[CEByteCountTransformer alloc] init];
+            
+            NSAlert *alert = [[NSAlert alloc] init];
+            [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"The file “%@” has a size of %@.", nil),
+                                   [url lastPathComponent],
+                                   [transformer transformedValue:fileSize]]];
+            [alert setInformativeText:NSLocalizedString(@"Opening such a large file can make the application slow or unresponsive.\n\nDo you really want to open the file?", nil)];
+            [alert addButtonWithTitle:NSLocalizedString(@"Open", nil)];
+            [alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
+            
+            // cancel operation
+            if ([alert runModal] == NSAlertSecondButtonReturn) {
+                *outError = [NSError errorWithDomain:NSCocoaErrorDomain code:NSUserCancelledError userInfo:nil];
+                return nil;
+            }
+        }
+    }
+    
+    return [super makeDocumentWithContentsOfURL:url ofType:typeName error:nil];
 }
 
 

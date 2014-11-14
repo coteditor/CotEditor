@@ -38,6 +38,13 @@
 "Close" = "閉じる";
 
 
+/* CEDocumentController */
+// Large file alert
+"The file “%@” has a size of %@." = "“%@”はファイルサイズが %@ です。";
+"Opening such a large file can make the application slow or unresponsive.\n\nDo you really want to open the file?" = "巨大なファイルを開くと、アプリケーションの反応が遅くなる可能性があります。\n\n本当にファイルを開きますか？";
+"Open" = "開く";
+
+
 /* CEDocument */
 // Undo/Redo Action name
 "Encoding to “%@”" = "エンコーディングを“%@”へ";
