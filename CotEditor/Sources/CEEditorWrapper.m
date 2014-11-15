@@ -455,7 +455,7 @@ static NSTimeInterval secondColoringDelay;
 
 
 // ------------------------------------------------------
-/// テーマを適応する
+/// テーマを適用する
 - (void)setThemeWithName:(NSString *)themeName
 // ------------------------------------------------------
 {

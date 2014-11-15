@@ -1230,7 +1230,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 
 // ------------------------------------------------------
-/// 新しいテーマを適応
+/// 新しいテーマを適用
 - (IBAction)changeTheme:(id)sender
 // ------------------------------------------------------
 {
