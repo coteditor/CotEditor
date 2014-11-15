@@ -625,12 +625,12 @@
                             <menuItem title="Line Endings" tag="100" id="294">
                                 <menu key="submenu" title="Line Endings" id="296">
                                     <items>
-                                        <menuItem title="Unix (LF)" id="295">
+                                        <menuItem title="OS X / Unix (LF)" id="295">
                                             <connections>
                                                 <action selector="changeLineEndingToLF:" target="-1" id="608"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Macintosh (CR)" tag="1" id="297">
+                                        <menuItem title="Classic Mac OS (CR)" tag="1" id="297">
                                             <connections>
                                                 <action selector="changeLineEndingToCR:" target="-1" id="683"/>
                                             </connections>

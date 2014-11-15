@@ -43,17 +43,17 @@
                     </textFieldCell>
                 </textField>
                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="13">
-                    <rect key="frame" x="208" y="382" width="165" height="26"/>
+                    <rect key="frame" x="208" y="382" width="175" height="26"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="160" id="D2Q-g5-p9Z"/>
+                        <constraint firstAttribute="width" constant="170" id="D2Q-g5-p9Z"/>
                     </constraints>
                     <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="3272">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menu"/>
                         <menu key="menu" title="OtherViews" id="16">
                             <items>
-                                <menuItem title="Unix (LF)" id="15"/>
-                                <menuItem title="Macintosh (CR)" tag="1" id="14"/>
+                                <menuItem title="OS X / Unix (LF)" id="15"/>
+                                <menuItem title="Classic Mac OS (CR)" tag="1" id="14"/>
                                 <menuItem title="Windows (CR/LF)" tag="2" id="12"/>
                             </items>
                         </menu>

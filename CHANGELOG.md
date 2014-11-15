@@ -8,6 +8,7 @@ changelog
 ### Additions/Changes
 
 - Display a dialog if the opening file is larger than 100 MB.
+- Rename labels for line endings.
 
 
 ### Fixes
