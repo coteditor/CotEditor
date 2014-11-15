@@ -630,7 +630,7 @@
                                                 <action selector="changeLineEndingToLF:" target="-1" id="608"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Classic Mac OS（CR）" tag="1" id="297">
+                                        <menuItem title="クラシック Mac OS（CR）" tag="1" id="297">
                                             <connections>
                                                 <action selector="changeLineEndingToCR:" target="-1" id="683"/>
                                             </connections>

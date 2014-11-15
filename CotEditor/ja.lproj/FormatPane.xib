@@ -53,7 +53,7 @@
                         <menu key="menu" title="OtherViews" id="16">
                             <items>
                                 <menuItem title="OS X / Unix (LF)" id="15"/>
-                                <menuItem title="Classic Mac OS (CR)" tag="1" id="14"/>
+                                <menuItem title="クラシック Mac OS (CR)" tag="1" id="14"/>
                                 <menuItem title="Windows (CR/LF)" tag="2" id="12"/>
                             </items>
                         </menu>
