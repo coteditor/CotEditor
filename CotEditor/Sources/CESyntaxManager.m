@@ -464,7 +464,18 @@ NSString *const CESyntaxValidationMessageKey = @"MessageKey";
     [syntaxDictKeys addObject:CESyntaxOutlineMenuKey];
     
     for (NSString *key in syntaxDictKeys) {
-        for (NSDictionary *dict in style[key]) {
+        NSMutableArray *dicts = [style[key] mutableCopy];
+        
+        // sort for duplication check
+        [dicts sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+            NSComparisonResult result = [obj1[CESyntaxBeginStringKey] compare:obj2[CESyntaxBeginStringKey]];
+            if (result == NSOrderedSame) {
+                result = [obj1[CESyntaxEndStringKey] compare:obj2[CESyntaxEndStringKey]];
+            }
+            return result;
+        }];
+        
+        for (NSDictionary *dict in dicts) {
             NSString *beginStr = dict[CESyntaxBeginStringKey];
             NSString *endStr = dict[CESyntaxEndStringKey];
             
