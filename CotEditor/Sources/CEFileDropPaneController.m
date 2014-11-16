@@ -35,8 +35,8 @@
 @interface CEFileDropPaneController () <NSTableViewDelegate, NSTextFieldDelegate, NSTextViewDelegate>
 
 @property (nonatomic) IBOutlet NSArrayController *fileDropController;
-@property (nonatomic, weak) IBOutlet NSTableView *fileDropTableView;
-@property (nonatomic, strong) IBOutlet NSTextView *fileDropTextView;  // on 10.8 NSTextView cannot be weak
+@property (nonatomic, weak) IBOutlet NSTableView *extensionTableView;
+@property (nonatomic, strong) IBOutlet NSTextView *formatTextView;  // on 10.8 NSTextView cannot be weak
 @property (nonatomic, strong) IBOutlet NSTextView *glossaryTextView;  // on 10.8 NSTextView cannot be weak
 
 @property (nonatomic, getter=isDeletingFileDrop) BOOL deletingFileDrop;
@@ -64,8 +64,8 @@
 {
     [super loadView];
     
-    // 各種セットアップ
-    [self setContentFileDropController];
+    // 設定を読み込む
+    [self loadSetting];
     
     // 用語集をセット
     NSURL *glossaryURL = [[NSBundle mainBundle] URLForResource:@"FileDropGlossary" withExtension:@"txt"];
@@ -74,7 +74,7 @@
     
     // FileDrop 配列コントローラの値を確実に書き戻すためにウインドウクローズを監視
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(writeBackFileDropArray)
+                                             selector:@selector(storeSetting)
                                                  name:NSWindowWillCloseNotification
                                                object:[[self view] window]];
 }
@@ -94,52 +94,60 @@
 
 //=======================================================
 // Delegate method (NSTableView)
-//  <== fileDropTableView
+//  <== extensionTableView
 //=======================================================
 
 // ------------------------------------------------------
-/// FileDrop 拡張子テーブルビューが編集された
+/// 拡張子テーブルが編集された
 - (void)controlTextDidEndEditing:(NSNotification *)notification
 // ------------------------------------------------------
 {
     if (![[notification object] isKindOfClass:[NSTextField class]]) { return; }
     
-    NSString *extension = [[[self fileDropController] selection] valueForKeyPath:CEFileDropExtensionsKey];
+    NSString *extensions = [[[self fileDropController] selection] valueForKeyPath:CEFileDropExtensionsKey];
     NSString *format = [[[self fileDropController] selection] valueForKeyPath:CEFileDropFormatStringKey];
     
     // 入力されていなければ行ごと削除
-    if (!extension && !format) {
+    if (!extensions && !format) {
         // 削除実行フラグを偽に（編集中に削除ボタンが押され、かつ自動削除対象であったときの整合性を取るためのフラグ）
         [self setDeletingFileDrop:NO];
         [[self fileDropController] remove:self];
         
     } else {
         // フォーマットを整える
-        NSCharacterSet *trimSet = [NSCharacterSet characterSetWithCharactersInString:@"./ \t\r\n"];
-        NSArray *components = [extension componentsSeparatedByString:@","];
-        NSMutableArray *newComponents = [NSMutableArray array];
+        NSString *newExtensions = [self sanitizeExtensionsString:extensions];
         
-        for (NSString *component in components) {
-            NSString *partStr = [component stringByTrimmingCharactersInSet:trimSet];
-            if ([partStr length] > 0) {
-                [newComponents addObject:partStr];
-            }
-        }
-        NSString *newExtension = [newComponents componentsJoinedByString:@", "];
         // 有効な文字列が生成できたら、UserDefaults に書き戻し、直ちに反映させる
-        if ([newExtension length] > 0) {
-            [[[self fileDropController] selection] setValue:newExtension forKey:CEFileDropExtensionsKey];
+        if ([newExtensions length] > 0) {
+            [[[self fileDropController] selection] setValue:newExtensions forKey:CEFileDropExtensionsKey];
         } else if (!format) {
             [[self fileDropController] remove:self];
         }
     }
-    [self writeBackFileDropArray];
+    
+    
+    [self storeSetting];
 }
+
+
+// ------------------------------------------------------
+/// 拡張子テーブルの追加行の編集開始
+- (void)tableView:(NSTableView *)tableView didAddRowView:(NSTableRowView *)rowView forRow:(NSInteger)row
+// ------------------------------------------------------
+{
+    BOOL isLastRow = ([tableView numberOfRows] - 1 == row);
+    NSTextField *textField = [[rowView viewAtColumn:0] textField];
+    
+    if (isLastRow && [[textField stringValue] length] == 0) {
+        [tableView editColumn:0 row:row withEvent:nil select:YES];
+    }
+}
+
 
 
 //=======================================================
 // Delegate method (NSTextView)
-//  <== fileDropTextView
+//  <== formatTextView
 //=======================================================
 
 // ------------------------------------------------------
@@ -147,9 +155,9 @@
 - (void)textDidEndEditing:(NSNotification *)notification
 // ------------------------------------------------------
 {
-    if ([notification object] == [self fileDropTextView]) {
+    if ([notification object] == [self formatTextView]) {
         // UserDefaults に書き戻し、直ちに反映させる
-        [self writeBackFileDropArray];
+        [self storeSetting];
     }
 }
 
@@ -163,54 +171,42 @@
 //=======================================================
 
 // ------------------------------------------------------
-/// ファイルドロップ定型文字列挿入メニューが選択された
-- (IBAction)insertFormatStringInFileDrop:(id)sender
+/// 定型文字列挿入メニューが選択された
+- (IBAction)insertToken:(id)sender
 // ------------------------------------------------------
 {
     NSString *title = [(NSMenuItem *)sender title];
     
-    if (title) {
-        [[[self view] window] makeFirstResponder:[self fileDropTextView]];
-        [[self fileDropTextView] insertText:title];
-    }
+    [[[self view] window] makeFirstResponder:[self formatTextView]];
+    [[self formatTextView] insertText:title];
 }
 
 
 // ------------------------------------------------------
 /// ファイルドロップ編集設定を追加
-- (IBAction)addNewFileDropSetting:(id)sender
+- (IBAction)addSetting:(id)sender
 // ------------------------------------------------------
 {
     // フォーカスを移し、値入力を確定
     [[sender window] makeFirstResponder:sender];
     
-    [[[self view] window] makeFirstResponder:[self fileDropTableView]];
     [[self fileDropController] add:self];
-    
-    // ディレイをかけて fileDropController からのバインディングによる行追加を先に実行させる
-    __unsafe_unretained typeof(self) weakSelf = self;  // cannot be weak on Lion
-    dispatch_async(dispatch_get_main_queue(), ^{
-        typeof(self) strongSelf = weakSelf;
-        [strongSelf editNewAddedRowOfFileDropTableView];
-    });
 }
 
 
 // ------------------------------------------------------
 /// ファイルドロップ編集設定の削除ボタンが押された
-- (IBAction)deleteFileDropSetting:(id)sender
+- (IBAction)removeSetting:(id)sender
 // ------------------------------------------------------
 {
     // (編集中に削除ボタンが押され、かつ自動削除対象であったときの整合性を取るための)削除実施フラグをたてる
     [self setDeletingFileDrop:YES];
+    
     // フォーカスを移し、値入力を確定
     [[sender window] makeFirstResponder:sender];
-    // ディレイをかけて controlTextDidEndEditing: の自動編集を実行させる
-    __unsafe_unretained typeof(self) weakSelf = self;  // cannot be weak on Lion
-    dispatch_async(dispatch_get_main_queue(), ^{
-        typeof(self) strongSelf = weakSelf;
-        [strongSelf doDeleteFileDropSetting];
-    });
+    
+    // 確認ダイアログを出す
+    [self confirmDeletion];
 }
 
 
@@ -224,7 +220,7 @@
 
 // ------------------------------------------------------
 //// FileDrop 設定を UserDefaults に書き戻す
-- (void)writeBackFileDropArray
+- (void)storeSetting
 // ------------------------------------------------------
 {
     [[NSUserDefaults standardUserDefaults] setObject:[[self fileDropController] content] forKey:CEDefaultFileDropArrayKey];
@@ -232,8 +228,8 @@
 
 
 // ------------------------------------------------------
-/// ファイルドロップ設定編集用コントローラに値をセット
-- (void)setContentFileDropController
+/// FileDrop 設定をコントローラにセット
+- (void)loadSetting
 // ------------------------------------------------------
 {
     // バインディングで UserDefaults と直結すると「長さゼロの文字列がセットされた」ときなどにいろいろと不具合が発生するので、
@@ -252,8 +248,33 @@
 
 
 // ------------------------------------------------------
-/// ファイルドロップ編集設定の削除を確認
-- (void)doDeleteFileDropSetting
+/// 拡張子文字列のフォーマットを整える（全て無効なときは nil を返す）
+- (NSString *)sanitizeExtensionsString:(NSString *)extensionsString
+// ------------------------------------------------------
+{
+    if (![extensionsString isKindOfClass:[NSString class]]) { return nil; }
+    
+    NSCharacterSet *trimSet = [NSCharacterSet characterSetWithCharactersInString:@"./ \t\r\n"];
+    NSArray *extensions = [extensionsString componentsSeparatedByString:@","];
+    NSMutableArray *sanitizedExtensions = [NSMutableArray array];
+    
+    for (NSString *extension in extensions) {
+        NSString *sanitizedExtension = [extension stringByTrimmingCharactersInSet:trimSet];
+        if ([sanitizedExtension length] > 0) {
+            [sanitizedExtensions addObject:sanitizedExtension];
+        }
+    }
+    if ([sanitizedExtensions count] > 0) {
+        return [sanitizedExtensions componentsJoinedByString:@", "];
+    } else {
+        return nil;
+    }
+}
+
+
+// ------------------------------------------------------
+/// 削除して良いかを確認
+- (void)confirmDeletion
 // ------------------------------------------------------
 {
     // フラグがたっていなければ（既に controlTextDidEndEditing: で自動削除されていれば）何もしない
@@ -267,32 +288,22 @@
         extension = @"";
     }
     
-    NSString *message = [NSString stringWithFormat:NSLocalizedString(@"Delete the File Drop setting for “%@”?", nil), extension];
     NSAlert *alert = [[NSAlert alloc] init];
-    [alert setMessageText:message];
+    [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"Delete the File Drop setting for “%@”?", nil), extension]];
     [alert setInformativeText:NSLocalizedString(@"Deleted setting cannot be restored.", nil)];
     [alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
     [alert addButtonWithTitle:NSLocalizedString(@"Delete", nil)];
     
     [alert beginSheetModalForWindow:[[self view] window]
                       modalDelegate:self
-                     didEndSelector:@selector(deleteFileDropSettingAlertDidEnd:returnCode:contextInfo:)
+                     didEndSelector:@selector(deleteSettingAlertDidEnd:returnCode:contextInfo:)
                         contextInfo:NULL];
 }
 
 
 // ------------------------------------------------------
-/// ファイルドロップ編集設定の追加行の編集開始
-- (void)editNewAddedRowOfFileDropTableView
-// ------------------------------------------------------
-{
-    [[self fileDropTableView] editColumn:0 row:[[self fileDropTableView] selectedRow] withEvent:nil select:YES];
-}
-
-
-// ------------------------------------------------------
 /// ファイルドロップ編集設定削除確認シートが閉じる直前
-- (void)deleteFileDropSettingAlertDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
+- (void)deleteSettingAlertDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
 // ------------------------------------------------------
 {
     if (returnCode != NSAlertSecondButtonReturn) { return; } // != Delete
@@ -301,7 +312,7 @@
     
     if ([self isDeletingFileDrop]) {
         [[self fileDropController] remove:self];
-        [self writeBackFileDropArray];
+        [self storeSetting];
         [self setDeletingFileDrop:NO];
     }
 }
