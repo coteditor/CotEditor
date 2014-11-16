@@ -14,9 +14,10 @@ changelog
 ### Fixes
 
 - Fix an issue that new documents couldn't be saved with an extension that is automatically added from syntax definition.
-- Fix some Japanese localizations.
+- Fix an issue that syntax style mapping conflict tables were always blank.
 - Fix an issue that current line highlight didn't update after font size change.
 - Fix an issue that navigation/status bars are shown for a moment on window creation even they are set as hidden.
+- Fix some Japanese localizations.
 
 
 
