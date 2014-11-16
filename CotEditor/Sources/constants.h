@@ -204,10 +204,6 @@ extern NSString *const CEDefaultNotifyEditByAnotherKey;
 extern NSString *const CEDefaultColoringRangeBufferLengthKey;
 extern NSString *const CEDefaultLargeFileAlertThresholdKey;
 
-// keys for dicts in CEDefaultFileDropArrayKey
-extern NSString *const CEFileDropExtensionsKey;
-extern NSString *const CEFileDropFormatStringKey;
-
 
 
 // ------------------------------------------------------
@@ -311,6 +307,30 @@ extern NSString *const CESyntaxItalicKey;
 // comment delimiter keys
 extern NSString *const CEBeginDelimiterKey;
 extern NSString *const CEEndDelimiterKey;
+
+
+
+#pragma mark File Drop
+
+// ------------------------------------------------------
+// File Drop
+// ------------------------------------------------------
+
+// keys for dicts in CEDefaultFileDropArrayKey
+extern NSString *const CEFileDropExtensionsKey;
+extern NSString *const CEFileDropFormatStringKey;
+
+// tokens
+extern NSString *const CEFileDropAbsolutePathToken;
+extern NSString *const CEFileDropRelativePathToken;
+extern NSString *const CEFileDropFilenameToken;
+extern NSString *const CEFileDropFilenameNosuffixToken;
+extern NSString *const CEFileDropFileextensionToken;
+extern NSString *const CEFileDropFileextensionLowerToken;
+extern NSString *const CEFileDropFileextensionUpperToken;
+extern NSString *const CEFileDropDirectoryToken;
+extern NSString *const CEFileDropImagewidthToken;
+extern NSString *const CEFileDropImagehightToken;
 
 
 

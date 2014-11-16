@@ -211,10 +211,6 @@ NSString *const CEDefaultNotifyEditByAnotherKey = @"notifyEditByAnother";
 NSString *const CEDefaultColoringRangeBufferLengthKey = @"coloringRangeBufferLength";
 NSString *const CEDefaultLargeFileAlertThresholdKey = @"largeFileAlertThreshold";
 
-// keys for dicts in CEDefaultFileDropArrayKey
-NSString *const CEFileDropExtensionsKey = @"extensions";
-NSString *const CEFileDropFormatStringKey = @"formatString";
-
 
 
 // ------------------------------------------------------
@@ -285,6 +281,30 @@ NSString *const CESyntaxItalicKey = @"italic";
 // comment delimiter keys
 NSString *const CEBeginDelimiterKey = @"beginDelimiter";
 NSString *const CEEndDelimiterKey = @"endDelimiter";
+
+
+
+#pragma mark File Drop
+
+// ------------------------------------------------------
+// File Drop
+// ------------------------------------------------------
+
+// keys for dicts in CEDefaultFileDropArrayKey
+NSString *const CEFileDropExtensionsKey = @"extensions";
+NSString *const CEFileDropFormatStringKey = @"formatString";
+
+// tokens
+NSString *const CEFileDropAbsolutePathToken = @"<<<ABSOLUTE-PATH>>>";
+NSString *const CEFileDropRelativePathToken = @"<<<RELATIVE-PATH>>>";
+NSString *const CEFileDropFilenameToken = @"<<<FILENAME>>>";
+NSString *const CEFileDropFilenameNosuffixToken = @"<<<FILENAME-NOSUFFIX>>>";
+NSString *const CEFileDropFileextensionToken = @"<<<FILEEXTENSION>>>";
+NSString *const CEFileDropFileextensionLowerToken = @"<<<FILEEXTENSION-LOWER>>>";
+NSString *const CEFileDropFileextensionUpperToken = @"<<<FILEEXTENSION-UPPER>>>";
+NSString *const CEFileDropDirectoryToken = @"<<<DIRECTORY>>>";
+NSString *const CEFileDropImagewidthToken = @"<<<IMAGEWIDTH>>>";
+NSString *const CEFileDropImagehightToken = @"<<<IMAGEHEIGHT>>>";
 
 
 

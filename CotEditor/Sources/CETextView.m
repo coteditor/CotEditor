@@ -1010,30 +1010,30 @@ const NSInteger kNoMenuItem = -1;
                 NSString *fileNoSuffix = [fileName stringByDeletingPathExtension];
                 NSString *dirName = [[absoluteURL URLByDeletingLastPathComponent] lastPathComponent];
                 
-                stringToDrop = [stringToDrop stringByReplacingOccurrencesOfString:@"<<<ABSOLUTE-PATH>>>"
+                stringToDrop = [stringToDrop stringByReplacingOccurrencesOfString:CEFileDropAbsolutePathToken
                                                                        withString:[absoluteURL path]];
-                stringToDrop = [stringToDrop stringByReplacingOccurrencesOfString:@"<<<RELATIVE-PATH>>>"
+                stringToDrop = [stringToDrop stringByReplacingOccurrencesOfString:CEFileDropRelativePathToken
                                                                        withString:relativePath];
-                stringToDrop = [stringToDrop stringByReplacingOccurrencesOfString:@"<<<FILENAME>>>"
+                stringToDrop = [stringToDrop stringByReplacingOccurrencesOfString:CEFileDropFilenameToken
                                                                        withString:fileName];
-                stringToDrop = [stringToDrop stringByReplacingOccurrencesOfString:@"<<<FILENAME-NOSUFFIX>>>"
+                stringToDrop = [stringToDrop stringByReplacingOccurrencesOfString:CEFileDropFilenameNosuffixToken
                                                                        withString:fileNoSuffix];
-                stringToDrop = [stringToDrop stringByReplacingOccurrencesOfString:@"<<<FILEEXTENSION>>>"
+                stringToDrop = [stringToDrop stringByReplacingOccurrencesOfString:CEFileDropFileextensionToken
                                                                        withString:pathExtension];
-                stringToDrop = [stringToDrop stringByReplacingOccurrencesOfString:@"<<<FILEEXTENSION-LOWER>>>"
+                stringToDrop = [stringToDrop stringByReplacingOccurrencesOfString:CEFileDropFileextensionLowerToken
                                                                        withString:pathExtensionLower];
-                stringToDrop = [stringToDrop stringByReplacingOccurrencesOfString:@"<<<FILEEXTENSION-UPPER>>>"
+                stringToDrop = [stringToDrop stringByReplacingOccurrencesOfString:CEFileDropFileextensionUpperToken
                                                                        withString:pathExtensionUpper];
-                stringToDrop = [stringToDrop stringByReplacingOccurrencesOfString:@"<<<DIRECTORY>>>"
+                stringToDrop = [stringToDrop stringByReplacingOccurrencesOfString:CEFileDropDirectoryToken
                                                                        withString:dirName];
                 
                 NSImageRep *imageRep = [NSImageRep imageRepWithContentsOfURL:absoluteURL];
                 if (imageRep) {
                     // NSImage の size では dpi をも考慮されたサイズが返ってきてしまうので NSImageRep を使う
-                    stringToDrop = [stringToDrop stringByReplacingOccurrencesOfString:@"<<<IMAGEWIDTH>>>"
+                    stringToDrop = [stringToDrop stringByReplacingOccurrencesOfString:CEFileDropImagewidthToken
                                                                            withString:[NSString stringWithFormat:@"%zd",
                                                                                        [imageRep pixelsWide]]];
-                    stringToDrop = [stringToDrop stringByReplacingOccurrencesOfString:@"<<<IMAGEHEIGHT>>>"
+                    stringToDrop = [stringToDrop stringByReplacingOccurrencesOfString:CEFileDropImagehightToken
                                                                            withString:[NSString stringWithFormat:@"%zd",
                                                                                        [imageRep pixelsHigh]]];
                 }
