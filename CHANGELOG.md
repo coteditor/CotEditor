@@ -16,6 +16,7 @@ changelog
 - Fix an issue that new documents couldn't be saved with an extension that is automatically added from syntax definition.
 - Fix an issue that syntax style validator didn't warn about keywords duplication that are newly added.
 - Fix an issue that syntax style mapping conflict tables were always blank.
+- Fix an issue that text view scrolls to the opposite side when line number view is dragged.
 - Fix an issue that current line highlight didn't update after font size change.
 - Fix an issue that navigation/status bars are shown for a moment on window creation even they are set as hidden.
 - Fix an issue that new added row in file drop setting ocasionally disappear immediately.
