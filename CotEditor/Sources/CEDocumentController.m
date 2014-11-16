@@ -85,7 +85,7 @@
             NSAlert *alert = [[NSAlert alloc] init];
             [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"The file “%@” has a size of %@.", nil),
                                    [url lastPathComponent],
-                                   [formatter stringFromByteCount:[fileSize longLongValue]]];
+                                   [formatter stringFromByteCount:[fileSize longLongValue]]]];
             [alert setInformativeText:NSLocalizedString(@"Opening such a large file can make the application slow or unresponsive.\n\nDo you really want to open the file?", nil)];
             [alert addButtonWithTitle:NSLocalizedString(@"Open", nil)];
             [alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
