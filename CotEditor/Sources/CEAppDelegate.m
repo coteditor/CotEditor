@@ -150,7 +150,7 @@
                                CEDefaultEnableSmartQuotesKey: @NO,
                                CEDefaultEnableSmartIndentKey: @YES,
                                CEDefaultAppendsCommentSpacerKey: @YES,
-                               CEDefaultCommentsAtLineHeadKey: @NO,
+                               CEDefaultCommentsAtLineHeadKey: @YES,
                                CEDefaultShouldAntialiasKey: @YES,
                                CEDefaultAutoCompleteKey: @NO,
                                CEDefaultCompletionWordsKey: @2U,
