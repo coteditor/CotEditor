@@ -41,7 +41,14 @@
         </enumeration>
         
         
-        <class-extension name="document" extends="document" description="A CotEditor document.">
+        <class-extension extends="window" description="A CotEditor window.">
+            <cocoa class="NSWindow"/>
+            <property name="view opacity" code="copc" type="real" access="rw" description="The opacity of the text view. (from ‘0.2’ to ‘1.0’)">
+                <cocoa key="viewOpacity"/>
+            </property>
+        </class-extension>
+        
+        <class-extension extends="document" description="A CotEditor document.">
             <cocoa class="CEDocument"/>
             <contents name="text" code="ctxt" type="attribute run" access="rw" description="The whole text of the document.">
                 <cocoa key="textStorage"/>
@@ -96,11 +103,11 @@
         <class name="text selection" plural="text selections" code="tSel" description="A way to refer to the state of the current selection.">
             <cocoa class="CETextSelection"/>
             <contents code="PCnt" type="attribute run" name="contents" access="rw" description="The contents of the selection."/>
-            <property name="line range" code="lRng" access="rw" description="The range of lines of the selection. The format is &quot;{location, length}&quot;.">
+            <property name="line range" code="lRng" access="rw" description="The range of lines of the selection. The format is “{location, length}”.">
                 <cocoa key="lineRange"/>
                 <type type="integer" list="yes"/>
             </property>
-            <property name="range" code="cRng" access="rw" description="The range of characters in the selection. The format is &quot;{location, length}&quot;.">
+            <property name="range" code="cRng" access="rw" description="The range of characters in the selection. The format is “{location, length}”.">
                 <type type="integer" list="yes"/>
             </property>
             <responds-to command="change case">
@@ -129,13 +136,6 @@
             </responds-to>
         </class>
         
-        <class-extension name="window" description="A CotEditor window." extends="window">
-            <cocoa class="NSWindow"/>
-            <property name="view opacity" code="copc" type="real" access="rw" description="The opacity of the text view. (from ‘0.2’ to ‘1.0’)">
-                <cocoa key="viewOpacity"/>
-            </property>
-        </class-extension>
-        
         
         <command name="change case" code="cEd1CGcs" description="Change the case of the selection.">
             <direct-parameter type="text selection" description="The selection to change case."/>
@@ -144,7 +144,7 @@
             </parameter>
         </command>
         
-        <command name="change kana" code="cEd1CKth" description="Change Japanese &quot;Kana&quot; mode of the selection.">
+        <command name="change kana" code="cEd1CKth" description="Change Japanese “Kana” mode of the selection.">
             <direct-parameter type="text selection" description="the selection to change Japanese character mode"/>
             <parameter name="to" code="cHrg" type="kana type" description="The Japanese character mode to change.">
                 <cocoa key="kanaType"/>
@@ -245,7 +245,7 @@
         
         <command name="string" code="cEd1STrg" description="Get text in desired range.">
             <direct-parameter type="document" description="The document to get string."/>
-            <parameter name="in" code="rAng" description="The range in the document. The format is &quot;{location, length}&quot;.">
+            <parameter name="in" code="rAng" description="The range in the document. The format is “{location, length}”.">
                 <cocoa key="range"/>
                 <type type="integer" list="yes"/>
             </parameter>
