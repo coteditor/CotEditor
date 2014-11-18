@@ -41,7 +41,7 @@
         </enumeration>
         
         
-        <class name="document" code="docu" inherits="document" description="A CotEditor document.">
+        <class-extension name="document" extends="document" description="A CotEditor document.">
             <cocoa class="CEDocument"/>
             <contents name="text" code="ctxt" type="attribute run" access="rw" description="The whole text of the document.">
                 <cocoa key="textStorage"/>
@@ -91,7 +91,7 @@
             <responds-to command="string">
                 <cocoa method="handleStringScriptCommand:"/>
             </responds-to>
-        </class>
+        </class-extension>
         
         <class name="text selection" plural="text selections" code="tSel" description="A way to refer to the state of the current selection.">
             <cocoa class="CETextSelection"/>
@@ -129,12 +129,12 @@
             </responds-to>
         </class>
         
-        <class name="window" code="cwin" inherits="window" description="A CotEditor window.">
+        <class-extension name="window" description="A CotEditor window." extends="window">
             <cocoa class="NSWindow"/>
             <property name="view opacity" code="copc" type="real" access="rw" description="The opacity of the text view. (from ‘0.2’ to ‘1.0’)">
                 <cocoa key="viewOpacity"/>
             </property>
-        </class>
+        </class-extension>
         
         
         <command name="change case" code="cEd1CGcs" description="Change the case of the selection.">
