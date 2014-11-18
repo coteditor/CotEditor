@@ -1678,7 +1678,7 @@ const NSInteger kNoMenuItem = -1;
 - (IBAction)uncomment:(id)sender
 // ------------------------------------------------------
 {
-    if (![self canUncomment]) { return; }
+    if (![self blockCommentDelimiters] && ![self inlineCommentDelimiter]) { return; }
     
     BOOL hasUncommented = NO;
     
@@ -1725,8 +1725,8 @@ const NSInteger kNoMenuItem = -1;
     }
     
     // inline comment
-    if (!hasUncommented) {
-        beginDelimiter = [self inlineCommentDelimiter];
+    beginDelimiter = [self inlineCommentDelimiter];
+    if (!hasUncommented && beginDelimiter) {
         
         // remove comment delimiters
         NSArray *lines = [target componentsSeparatedByString:@"\n"];
@@ -1739,6 +1739,8 @@ const NSInteger kNoMenuItem = -1;
                 if ([spacer length] > 0 && [newLine hasPrefix:spacer]) {
                     newLine = [newLine substringFromIndex:[spacer length]];
                 }
+                
+                hasUncommented = YES;
             }
             
             [newLines addObject:newLine];
@@ -1747,6 +1749,8 @@ const NSInteger kNoMenuItem = -1;
         
         newString = [newLines componentsJoinedByString:@"\n"];
     }
+    
+    if (!hasUncommented) { return; }
     
     // set selection
     NSRange selection;
