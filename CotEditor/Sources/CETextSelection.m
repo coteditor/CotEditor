@@ -252,7 +252,7 @@
 - (void)handleShiftRightScriptCommand:(NSScriptCommand *)command
 // ------------------------------------------------------
 {
-    [[[[self document] editor] textView] shiftRight:self];
+    [[[[self document] editor] textView] shiftRight:command];
 }
 
 
@@ -261,7 +261,25 @@
 - (void)handleShiftLeftScriptCommand:(NSScriptCommand *)command
 // ------------------------------------------------------
 {
-    [[[[self document] editor] textView] shiftLeft:self];
+    [[[[self document] editor] textView] shiftLeft:command];
+}
+
+
+// ------------------------------------------------------
+/// 選択範囲をコメントアウト
+- (void)handleCommentOutScriptCommand:(NSScriptCommand *)command
+// ------------------------------------------------------
+{
+    [[[[self document] editor] textView] commentOut:command];
+}
+
+
+// ------------------------------------------------------
+/// 選択範囲をコメント解除
+- (void)handleUncommentScriptCommand:(NSScriptCommand *)command
+// ------------------------------------------------------
+{
+    [[[[self document] editor] textView] uncomment:command];
 }
 
 
@@ -276,13 +294,13 @@
 
     switch (caseType) {
         case CELowerCase:
-            [textView lowercaseWord:self];
+            [textView lowercaseWord:command];
             break;
         case CEUpperCase:
-            [textView uppercaseWord:self];
+            [textView uppercaseWord:command];
             break;
         case CECapitalized:
-            [textView capitalizeWord:self];
+            [textView capitalizeWord:command];
             break;
     }
 }
@@ -299,10 +317,10 @@
 
     switch (widthType) {
         case CEFullwidth:
-            [textView exchangeFullwidthRoman:self];
+            [textView exchangeFullwidthRoman:command];
             break;
         case CEHalfwidth:
-            [textView exchangeHalfwidthRoman:self];
+            [textView exchangeHalfwidthRoman:command];
             break;
     }
 }
@@ -319,10 +337,10 @@
     
     switch (changeKanaType) {
         case CEHiragana:
-            [textView exchangeHiragana:self];
+            [textView exchangeHiragana:command];
             break;
         case CEKatakana:
-            [textView exchangeKatakana:self];
+            [textView exchangeKatakana:command];
             break;
     }
 }
@@ -339,16 +357,16 @@
     
     switch (UNFType) {
         case CENFC:
-            [textView normalizeUnicodeWithNFC:self];
+            [textView normalizeUnicodeWithNFC:command];
             break;
         case CENFD:
-            [textView normalizeUnicodeWithNFD:self];
+            [textView normalizeUnicodeWithNFD:command];
             break;
         case CENFKC:
-            [textView normalizeUnicodeWithNFKC:self];
+            [textView normalizeUnicodeWithNFKC:command];
             break;
         case CENFKD:
-            [textView normalizeUnicodeWithNFKD:self];
+            [textView normalizeUnicodeWithNFKD:command];
             break;
     }
 }

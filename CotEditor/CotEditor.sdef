@@ -118,6 +118,12 @@
             <responds-to command="shift right">
                 <cocoa method="handleShiftRightScriptCommand:"/>
             </responds-to>
+            <responds-to command="comment out">
+                <cocoa method="handleCommentOutScriptCommand:"/>
+            </responds-to>
+            <responds-to command="uncomment">
+                <cocoa method="handleUncommentScriptCommand:"/>
+            </responds-to>
             <responds-to command="normalize unicode">
                 <cocoa method="handleNormalizeUnicodeScriptCommand:"/>
             </responds-to>
@@ -227,6 +233,14 @@
         
         <command name="shift right" code="cEd1SRit" description="Shift selected lines to right.">
             <direct-parameter type="text selection" description="The selection to shift."/>
+        </command>
+        
+        <command name="comment out" code="cEd1Cout" description="Append comment delimiters to selected text if possible.">
+            <direct-parameter type="text selection" description="The selection to comment out"/>
+        </command>
+        
+        <command name="uncomment" code="cEd1Uncm" description="Remove comment delimiters from selected text if possible.">
+            <direct-parameter type="text selection" description="The selection to uncomment."/>
         </command>
         
         <command name="string" code="cEd1STrg" description="Get text in desired range.">

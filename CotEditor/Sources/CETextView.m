@@ -1604,9 +1604,9 @@ const NSInteger kNoMenuItem = -1;
 // ------------------------------------------------------
 {
     if ([self canUncomment]) {
-        [self uncomment:self];
+        [self uncomment:sender];
     } else {
-        [self commentOut:self];
+        [self commentOut:sender];
     }
 }
 
@@ -1620,7 +1620,9 @@ const NSInteger kNoMenuItem = -1;
     
     // determine comment out target
     NSRange targetRange;
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultCommentsAtLineHeadKey]) {
+    if (![sender isKindOfClass:[NSScriptCommand class]] &&
+        [[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultCommentsAtLineHeadKey])
+    {
         targetRange = [[self string] lineRangeForRange:[self selectedRange]];
     } else {
         targetRange = [self selectedRange];
@@ -1676,13 +1678,15 @@ const NSInteger kNoMenuItem = -1;
 - (IBAction)uncomment:(id)sender
 // ------------------------------------------------------
 {
-    if (![self blockCommentDelimiters] && ![self inlineCommentDelimiter]) { return; }
+    if (![self canUncomment]) { return; }
     
     BOOL hasUncommented = NO;
     
     // determine uncomment target
     NSRange targetRange;
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultCommentsAtLineHeadKey]) {
+    if (![sender isKindOfClass:[NSScriptCommand class]] &&
+        [[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultCommentsAtLineHeadKey])
+    {
         targetRange = [[self string] lineRangeForRange:[self selectedRange]];
     } else {
         targetRange = [self selectedRange];

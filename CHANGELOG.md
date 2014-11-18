@@ -5,11 +5,17 @@ changelog
 2.0.1
 --------------------------
 
+### New Features
+
+- Introduce new AppleScript commands `comment out` and `uncomment` for selection object.
+
+
 ### Additions/Changes
 
 - Display a dialog if the opening file is larger than 100 MB.
-- Change default value for "Comment always from line head" option to enable.
+- Change default value for “Comment always from line head” option to enable.
 - Rename labels for line endings.
+- Update documents for scripting with AppleScript.
 
 
 ### Fixes
