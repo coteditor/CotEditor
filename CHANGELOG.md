@@ -26,6 +26,7 @@ changelog
 - Fix an issue that syntax style mapping conflict tables were always blank.
 - Fix an issue that text karning was too narrow with non-antiailiasing text (thanks to tsawada2-san).
 - Fix an issue that text view scrolls to the opposite side when line number view is dragged.
+- Fix an issue that word selection didn't expand correctly under the specific conditions.
 - Fix an issue that current line highlight didn't update after font size change.
 - Fix an issue that navigation/status bars are shown for a moment on window creation even they are set as hidden.
 - Fix an issue that new added row in file drop setting ocasionally disappear immediately.

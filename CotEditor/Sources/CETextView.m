@@ -1066,48 +1066,29 @@ const NSInteger kNoMenuItem = -1;
     // Smultron  Copyright (c) 2004-2005 Peter Borg, All rights reserved.
     // Smultron is released under GNU General Public License, http://www.gnu.org/copyleft/gpl.html
     
-    if (granularity != NSSelectByWord || [[self string] length] == proposedSelRange.location) {  // If it's not a double-click return unchanged
+    if (granularity != NSSelectByWord || [[self string] length] == proposedSelRange.location) {
         return [super selectionRangeForProposedRange:proposedSelRange granularity:granularity];
     }
     
-    // do not continue custom process if selection contains multiple lines (for dragging event with double-click)
-    if ([[[[self string] substringWithRange:proposedSelRange] componentsSeparatedByString:@"\n"] count] > 1) {
-        return [super selectionRangeForProposedRange:proposedSelRange granularity:granularity];
-    }
-    
-    NSString *completeString = [self string];
-    NSInteger lengthOfString = [completeString length];
-    if (lengthOfString == (NSInteger)proposedSelRange.location) { // To avoid crash if a double-click occurs after any text
-        return [super selectionRangeForProposedRange:proposedSelRange granularity:granularity];
-    }
-    
-    NSInteger location = [super selectionRangeForProposedRange:proposedSelRange granularity:NSSelectByCharacter].location;
-    NSRange wordRange = [super selectionRangeForProposedRange:proposedSelRange granularity:NSSelectByWord];
+    NSRange proposedWordRange = [super selectionRangeForProposedRange:proposedSelRange granularity:NSSelectByWord];
     
     // 特定の文字を単語区切りとして扱う
-    if (wordRange.length > 1) {
-        NSString *word = [completeString substringWithRange:wordRange];
-        NSScanner *scanner = [NSScanner scannerWithString:word];
-        NSCharacterSet *breakCharacterSet = [NSCharacterSet characterSetWithCharactersInString:@".:"];
-        
-        NSRange newWrodRange = wordRange;
-        while ([scanner scanUpToCharactersFromSet:breakCharacterSet intoString:nil]) {
-            NSUInteger breakLocation = [scanner scanLocation];
-            if (wordRange.location + breakLocation < location) {
-                newWrodRange.location = wordRange.location + breakLocation + 1;
-                newWrodRange.length = wordRange.length - (breakLocation + 1);
-            } else {
-                newWrodRange.length -= wordRange.length - breakLocation;
-                break;
-            }
-            [scanner scanCharactersFromSet:breakCharacterSet intoString:nil];
+    if (proposedWordRange.length > 0) {
+        NSRange range = [self wordRangeAt:proposedSelRange.location];
+        if (proposedSelRange.length > 1) {
+            range = NSUnionRange(range, [self wordRangeAt:NSMaxRange(proposedSelRange) - 1]);
         }
-        return newWrodRange;
+        return range;
     }
     
-    // ダブルクリックでの括弧内選択
+    // ダブルクリックでの括弧内選択 (選択範囲拡張時を除く)
+    if (proposedSelRange.length > 0) { return proposedWordRange; }
+    
+    NSString *completeString = [self string];
+    NSInteger location = [super selectionRangeForProposedRange:proposedSelRange granularity:NSSelectByCharacter].location;
     unichar beginBrace, endBrace;
     BOOL isEndBrace = NO;
+    
     switch ([completeString characterAtIndex:location]) {
         case ')':
             isEndBrace = YES;
@@ -1138,10 +1119,11 @@ const NSInteger kNoMenuItem = -1;
             break;
             
         default: {
-            return wordRange;
+            return proposedWordRange;
         }
     }
     
+    NSUInteger lengthOfString = [completeString length];
     NSInteger originalLocation = location;
     NSUInteger skipMatchingBrace = 0;
     
@@ -2266,6 +2248,42 @@ const NSInteger kNoMenuItem = -1;
 {
     [[self completionTimer] invalidate];
     [self setCompletionTimer:nil];
+}
+
+
+// ------------------------------------------------------
+/// location を含む最小の単語範囲 (invoke from selectionRangeForProposedRange:granularity:)
+- (NSRange)wordRangeAt:(NSUInteger)location
+// ------------------------------------------------------
+{
+    NSRange proposedWordRange = [super selectionRangeForProposedRange:NSMakeRange(location, 0) granularity:NSSelectByWord];
+    
+    if (proposedWordRange.length <= 1) { return proposedWordRange; }
+    
+    NSRange wordRange = proposedWordRange;
+    NSString *word = [[self string] substringWithRange:proposedWordRange];
+    NSScanner *scanner = [NSScanner scannerWithString:word];
+    NSCharacterSet *breakCharacterSet = [NSCharacterSet characterSetWithCharactersInString:@".:"];
+    
+    while ([scanner scanUpToCharactersFromSet:breakCharacterSet intoString:nil]) {
+        NSUInteger breakLocation = [scanner scanLocation];
+        
+        if (proposedWordRange.location + breakLocation < location) {
+            wordRange.location = proposedWordRange.location + breakLocation + 1;
+            wordRange.length = proposedWordRange.length - (breakLocation + 1);
+            
+        } else if (proposedWordRange.location + breakLocation == location) {
+            wordRange = NSMakeRange(location, 1);
+            break;
+            
+        } else {
+            wordRange.length -= proposedWordRange.length - breakLocation;
+            break;
+        }
+        [scanner scanCharactersFromSet:breakCharacterSet intoString:nil];
+    }
+    
+    return wordRange;
 }
 
 
