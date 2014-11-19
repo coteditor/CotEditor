@@ -49,7 +49,7 @@
 // ------------------------------------------------------
 {
     // on Yosemite
-    if (floor(NSAppKitVersionNumber) > NSAppKitVersionNumber10_9) {
+    if (floor(NSAppKitVersionNumber) > 1265) {  // 1265 = NSAppKitVersionNumber10_9
         return [NSColor windowFrameColor];
     }
     
