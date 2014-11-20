@@ -523,7 +523,7 @@ static CGFloat kPerCompoIncrement;
         [scanner scanUpToString:searchString intoString:nil];
         NSUInteger startLocation = [scanner scanLocation];
         
-        if (startLocation + length >= localLength) { break; }
+        if (startLocation + length > localLength) { break; }
         
         [scanner setScanLocation:(startLocation + length)];
         
@@ -565,7 +565,7 @@ static CGFloat kPerCompoIncrement;
         [scanner scanUpToString:beginString intoString:nil];
         NSUInteger startLocation = [scanner scanLocation];
         
-        if (startLocation + beginLength >= localLength) { break; }
+        if (startLocation + beginLength > localLength) { break; }
         
         [scanner setScanLocation:(startLocation + beginLength)];
         NSUInteger escapesCheckLength = MIN(startLocation, kMaxEscapesCheckLength);

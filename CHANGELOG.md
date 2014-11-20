@@ -24,6 +24,7 @@ changelog
 - Fix an issue that some objects couldn't be handled via JavaScript for Automation on Yosemite.
 - Fix an issue that syntax style validator didn't warn about keywords duplication that are newly added.
 - Fix an issue that syntax style mapping conflict tables were always blank.
+- Fix an issue that quoted texts and block comments at the end of document weren't highlighted.
 - Fix an issue that text karning was too narrow with non-antiailiasing text (thanks to tsawada2-san).
 - Fix an issue that text view scrolls to the opposite side when line number view is dragged.
 - Fix an issue that word selection didn't expand correctly under the specific conditions.
