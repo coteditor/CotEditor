@@ -18,6 +18,8 @@ changelog
 - Rename labels for line endings.
 - Update “Python” syntax style:
     - Fix highlighting `print` command.
+- Update “Ruby” syntax style:
+    - Improve highlighting `%` literals.
 - Update documents for scripting with AppleScript.
 
 
