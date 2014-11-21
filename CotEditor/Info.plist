@@ -52,6 +52,22 @@
 		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
+				<string>bib</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>BibTeXIcon</string>
+			<key>CFBundleTypeName</key>
+			<string>BibTeX</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSTypeIsPackage</key>
+			<integer>0</integer>
+			<key>NSDocumentClass</key>
+			<string>CEDocument</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
 				<string>conf</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>

@@ -15,6 +15,14 @@
 
     ]
   },
+  "BibTeX": {
+    "extensions": [
+      "bib"
+    ],
+    "filenames": [
+
+    ]
+  },
   "C#": {
     "extensions": [
       "cs"

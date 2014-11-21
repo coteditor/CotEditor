@@ -9,6 +9,7 @@ changelog
 
 - Introduce new AppleScript commands `comment out` and `uncomment` for selection object.
 - Add “Create Bug Report…” action to the Help menu.
+- Add syntax style for “BibTeX”.
 
 
 ### Additions/Changes
