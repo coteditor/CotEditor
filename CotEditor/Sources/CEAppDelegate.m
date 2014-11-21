@@ -646,8 +646,8 @@
                                                    withString:[[NSProcessInfo processInfo] operatingSystemVersionString]];
     
     CEDocument *document = [[NSDocumentController sharedDocumentController] openUntitledDocumentAndDisplay:YES error:nil];
+    [document doSetSyntaxStyle:@"Markdown"];
     [[document editor] setString:template];
-    [[document editor] setSyntaxStyleName:@"Markdown" recolorNow:YES];
     [[[document windowController] window] setTitle:NSLocalizedString(@"Bug Report", nil)];
 }
 
