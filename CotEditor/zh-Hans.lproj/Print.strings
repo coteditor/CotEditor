@@ -1,0 +1,44 @@
+/*
+ Print.strings
+ 
+ CotEditor
+ http://coteditor.com
+ 
+ Created on 2014-03-28 by 1024jp
+ encoding="UTF-8"
+ 
+ © 2014 CotEditor Project
+ */
+
+
+"Color" = "カラー";
+"Line Number" = "行番号";
+"Invisible Characters" = "不可視文字";
+"Print Header" = "ヘッダをプリント";
+"Header Line 1" = "ヘッダ行1";
+"Header Line 1 Alignment" = "ヘッダ行1の位置";
+"Header Line 2" = "ヘッダ行2";
+"Header Line 2 Alignment" = "ヘッダ行2の位置";
+"Print Header Separator" = "ヘッダ区切り線をプリント";
+"Print Footer" = "フッタをプリント";
+"Footer Line 1" = "フッタ行1";
+"Footer Line 1 Alignment" = "フッタ行1の位置";
+"Footer Line 2" = "フッタ行2";
+"Footer Line 2 Alignment" = "フッタ行2の位置";
+"Print Footer Separator" = "フッタ区切り線をプリント";
+
+"On" = "オン";
+"Off" = "オフ";
+"Don't Print" = "プリントしない";
+"Same as Document's Setting" = "書類の設定と同じ";
+"Black and White" = "白黒";
+"Print" = "プリント";
+"Print All" = "全てプリント";
+"Syntax Name" = "シンタックス名";
+"Document Name" = "書類名";
+"File Path" = "ファイルパス";
+"Print Date" = "プリント日時";
+"Page Number" = "ページ番号";
+"Left" = "左揃え";
+"Center" = "中央揃え";
+"Right" = "右揃え";
