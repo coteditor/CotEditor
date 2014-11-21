@@ -8,7 +8,7 @@ changelog
 ### New Features
 
 - Introduce new AppleScript commands `comment out` and `uncomment` for selection object.
-- Add “Create Bug Report” action to the Help menu.
+- Add “Create Bug Report…” action to the Help menu.
 
 
 ### Additions/Changes
@@ -25,17 +25,17 @@ changelog
 
 ### Fixes
 
-- Fix an issue that new documents couldn't be saved with an extension that is automatically added from syntax definition.
+- Fix an issue that new documents couldn't occasionally be saved with an extension that is automatically added from syntax definition.
 - Fix an issue that some objects couldn't be handled via JavaScript for Automation on Yosemite.
-- Fix an issue that syntax style validator didn't warn about keywords duplication that are newly added.
+- Fix an issue that syntax style validator didn't warn about keywords duplication that were newly added.
 - Fix an issue that syntax style mapping conflict tables were always blank.
 - Fix an issue that quoted texts and block comments at the end of document weren't highlighted.
-- Fix an issue that text karning was too narrow with non-antiailiasing text (thanks to tsawada2-san).
+- Fix an issue that text kerning was too narrow with non-antialiasing text (thanks to tsawada2-san).
 - Fix an issue that text view scrolls to the opposite side when line number view is dragged.
 - Fix an issue that word selection didn't expand correctly under the specific conditions.
 - Fix an issue that current line highlight didn't update after font size change.
 - Fix an issue that navigation/status bars are shown for a moment on window creation even they are set as hidden.
-- Fix an issue that new added row in file drop setting ocasionally disappear immediately.
+- Fix an issue that new added row in file drop setting occasionally disappear immediately.
 - Fix some Japanese localizations.
 
 

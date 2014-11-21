@@ -19,6 +19,64 @@
 
 <article>
 <header>
+	<h1>CotEditor 2.0.1</h1>
+	<p>release: <time>2014-11-xx</time></p>
+</header>
+
+
+<section>
+<h3>New Features</h3>
+
+<ul>
+	<li>Introduce new AppleScript commands <code>comment out</code> and <code>uncomment</code> for selection object.</li>
+	<li>Add “Create Bug Report…” action to the Help menu.</li>
+</ul>
+</section>
+
+
+<section>
+<h3>Additions/Changes</h3>
+
+<ul>
+	<li>Display an alert if the opening file is larger than 100 MB.</li>
+	<li>Change default value for “Comment always from line head” option to enable.</li>
+	<li>Rename labels for line endings.</li>
+	<li>Update “Python” syntax style:
+	<ul>
+		<li>Fix highlighting <code>print</code> command.</li>
+	</ul></li>
+	<li>Update “Ruby” syntax style:
+	<ul>
+		<li>Improve highlighting <code>%</code> literals.</li>
+	</ul></li>
+	<li>Update documents for scripting with AppleScript.</li>
+</ul>
+</section>
+
+
+<section>
+<h3>Fixes</h3>
+
+<ul>
+	<li>Fix an issue that new documents couldn't occasionally be saved with an extension that is automatically added from syntax definition.</li>
+	<li>Fix an issue that some objects couldn't be handled via JavaScript for Automation on Yosemite.</li>
+	<li>Fix an issue that syntax style validator didn't warn about keywords duplication that were newly added.</li>
+	<li>Fix an issue that syntax style mapping conflict tables were always blank.</li>
+	<li>Fix an issue that quoted texts and block comments at the end of document weren't highlighted.</li>
+	<li>Fix an issue that text kerning was too narrow with non-antialiasing text (thanks to tsawada2-san).</li>
+	<li>Fix an issue that text view scrolls to the opposite side when line number view is dragged.</li>
+	<li>Fix an issue that word selection didn't expand correctly under the specific conditions.</li>
+	<li>Fix an issue that current line highlight didn't update after font size change.</li>
+	<li>Fix an issue that navigation/status bars are shown for a moment on window creation even they are set as hidden.</li>
+	<li>Fix an issue that new added row in file drop setting occasionally disappear immediately.</li>
+	<li>Fix some Japanese localizations.</li>
+</ul>
+</section>
+</article>
+
+
+<article>
+<header>
 	<h1>CotEditor 2.0.0</h1>
 	<p>release: <time>2014-11-13</time></p>
 </header>
