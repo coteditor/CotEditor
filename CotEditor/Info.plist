@@ -558,8 +558,6 @@
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>rb</string>
-				<string>erb</string>
-				<string>rhtml</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
 			<string>RubyIcon</string>
