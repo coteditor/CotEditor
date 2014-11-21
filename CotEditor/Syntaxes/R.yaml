@@ -1,5 +1,7 @@
 extensions:
 - keyString: "r"
+filenames:
+- keyString: ".Rprofile"
 outlineMenu:
 - beginString: "^[\\t ]*(\\S+)[\\t ]*<-[\\t ]*function"
   keyString: "function: $1"
@@ -981,9 +983,9 @@ commands:
 metadata:
   author: "1024jp"
   distributionURL: "http://coteditor.com"
-  version: "1.0"
+  version: "1.0.1"
   license: "Same as CotEditor"
-  lastModified: "2014-09-24"
+  lastModified: "2014-11-21"
 characters: []
 comments: []
 values:

@@ -20,6 +20,8 @@ changelog
     - Fix highlighting `print` command.
 - Update “Ruby” syntax style:
     - Improve highlighting `%` literals.
+- Update “R” syntax style:
+    - Add file name `.Rprofile` to file mapping.
 - Update documents for scripting with AppleScript.
 
 
