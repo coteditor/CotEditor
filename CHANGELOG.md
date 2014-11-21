@@ -14,6 +14,7 @@ changelog
 
 - Display a dialog if the opening file is larger than 100 MB.
 - Change default value for “Comment always from line head” option to enable.
+- Add “Create Bug Report” action to the Help menu. 
 - Rename labels for line endings.
 - Update documents for scripting with AppleScript.
 

@@ -30,6 +30,9 @@
 "Open as Text File" = "テキストファイルとして開く";
 "A new theme named “%@” has been successfully installed." = "新しいテーマ“%@”がインストールされました。";
 
+// Bug report
+"Bug Report" = "不具合レポート";
+
 // Migration from 1.x
 "Restorering menu key bindings settings…" = "メニューキーバインド設定をリセット中…";
 "Migrating coloring settings…" = "カラーリング設定を移行中…";

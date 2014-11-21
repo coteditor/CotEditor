@@ -629,6 +629,29 @@
 }
 
 
+// ------------------------------------------------------
+/// バグレポートを作成する
+- (IBAction)createBugReport:(id)sender
+// ------------------------------------------------------
+{
+    NSBundle *bundle = [NSBundle mainBundle];
+    NSURL *URL = [bundle URLForResource:@"ReportTemplate" withExtension:@"md"];
+    NSString *template = [NSString stringWithContentsOfURL:URL encoding:NSUTF8StringEncoding error:nil];
+    
+    template = [template stringByReplacingOccurrencesOfString:@"%BUNDLE_VERSION%"
+                                                   withString:[bundle objectForInfoDictionaryKey:@"CFBundleVersion"]];
+    template = [template stringByReplacingOccurrencesOfString:@"%SHORT_VERSION%"
+                                                   withString:[bundle objectForInfoDictionaryKey:@"CFBundleShortVersionString"]];
+    template = [template stringByReplacingOccurrencesOfString:@"%SYSTEM_VERSION%"
+                                                   withString:[[NSProcessInfo processInfo] operatingSystemVersionString]];
+    
+    CEDocument *document = [[NSDocumentController sharedDocumentController] openUntitledDocumentAndDisplay:YES error:nil];
+    [[document editor] setString:template];
+    [[document editor] setSyntaxStyleName:@"Markdown" recolorNow:YES];
+    [[[document windowController] window] setTitle:NSLocalizedString(@"Bug Report", nil)];
+}
+
+
 
 #pragma mark Private Methods
 
