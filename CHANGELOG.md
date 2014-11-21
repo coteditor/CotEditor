@@ -8,14 +8,16 @@ changelog
 ### New Features
 
 - Introduce new AppleScript commands `comment out` and `uncomment` for selection object.
+- Add “Create Bug Report” action to the Help menu.
 
 
 ### Additions/Changes
 
-- Display a dialog if the opening file is larger than 100 MB.
+- Display an alert if the opening file is larger than 100 MB.
 - Change default value for “Comment always from line head” option to enable.
-- Add “Create Bug Report” action to the Help menu. 
 - Rename labels for line endings.
+- Update “Python” syntax style:
+    - Fix highlighting `print` command.
 - Update documents for scripting with AppleScript.
 
 

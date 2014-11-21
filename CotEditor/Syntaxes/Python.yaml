@@ -224,7 +224,7 @@ commands:
 - beginString: "pop"
 - beginString: "popitem"
 - beginString: "pow"
-- beginString: "print(?![\\t ]*(\\w|['\"]))"
+- beginString: "\\bprint(?![\\t ]*(\\w|['\"]))"
   regularExpression: true
 - beginString: "property"
 - beginString: "range"
@@ -298,11 +298,11 @@ attributes:
 metadata:
   author: "nanasiya"
   distributionURL: "http://coteditor.com"
-  version: "2.1"
+  version: "2.1.1"
   description: "Support both Python2 and Python3.\n\nMaintained by 1024jp since
     2013."
   license: "Same as CotEditor"
-  lastModified: "2014-09-24"
+  lastModified: "2014-11-21"
 characters: []
 comments: []
 values:
