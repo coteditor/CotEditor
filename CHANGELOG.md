@@ -8,6 +8,8 @@ changelog
 ### New Features
 
 - Introduce new AppleScript commands `comment out` and `uncomment` for selection object.
+- Add “js“ extension to CotEditor script type.
+    - __Hint__: Use `#!/usr/bin/osascript -l JavaScript` as shebang to run script as Yosemite's JavaScript for Automation.
 - Add “Create Bug Report…” action to the Help menu.
 - Add syntax style for “BibTeX”.
 
