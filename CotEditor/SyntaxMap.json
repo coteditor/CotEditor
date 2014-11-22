@@ -376,15 +376,6 @@
 
     ]
   },
-  "eRuby": {
-    "extensions": [
-      "erb",
-      "rhtml"
-    ],
-    "filenames": [
-
-    ]
-  },
   "reStructuredText": {
     "extensions": [
       "rest",
