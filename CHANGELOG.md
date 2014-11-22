@@ -9,7 +9,7 @@ changelog
 
 - Introduce new AppleScript commands `comment out` and `uncomment` for selection object.
 - Add “js“ extension to CotEditor script type.
-    - __Hint__: Use `#!/usr/bin/osascript -l JavaScript` as shebang to run script as Yosemite's JavaScript for Automation.
+    - __Hint__: Use `#!/usr/bin/osascript -l JavaScript` for shebang to run script as Yosemite's JavaScript for Automation.
 - Add “Create Bug Report…” action to the Help menu.
 - Add syntax style for “BibTeX”.
 
@@ -25,6 +25,8 @@ changelog
     - Improve highlighting `%` literals.
 - Update “R” syntax style:
     - Add file name `.Rprofile` to file mapping.
+- Update “JavaScript” syntax style:
+    - Highlight shebang as comment.
 - Update documents for scripting with AppleScript.
 - Update sample scripts.
 - Remove syntax style for “eRuby”.

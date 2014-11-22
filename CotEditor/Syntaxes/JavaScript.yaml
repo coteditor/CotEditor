@@ -1003,13 +1003,15 @@ attributes:
 metadata:
   author: "1024jp"
   distributionURL: "http://coteditor.com"
-  version: "2.0"
+  version: "2.0.1"
   license: "Same as CotEditor"
-  lastModified: "2014-09-24"
+  lastModified: "2014-11-22"
 characters:
 - beginString: "/\\S+/[gimy]*"
   regularExpression: true
-comments: []
+comments:
+- beginString: "^#\\!/.*"
+  regularExpression: true
 values:
 - beginString: "ATTRIBUTE_NODE"
 - beginString: "CDATA_SECTION_NODE"
