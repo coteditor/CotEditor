@@ -1,5 +1,7 @@
 #!/usr/bin/python
 #
+# Sample Python Script for CotEditor
+#
 # %%%{CotEditorXInput=Selection}%%%
 # %%%{CotEditorXOutput=ReplaceSelection}%%%
 

@@ -1,5 +1,8 @@
 #! /usr/bin/php -q
 <?php
+#
+# Sample PHP Script for CotEditor
+#
 # %%%{CotEditorXInput=Selection}%%%
 # %%%{CotEditorXOutput=ReplaceSelection}%%%
 

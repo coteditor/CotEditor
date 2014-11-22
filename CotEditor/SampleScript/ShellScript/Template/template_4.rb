@@ -1,6 +1,6 @@
 #!/usr/bin/ruby
 #
-#     xx)pre.rb
+# Sample Ruby Script for CotEditor
 #
 # %%%{CotEditorXInput=Selection}%%%
 # %%%{CotEditorXOutput=ReplaceSelection}%%%

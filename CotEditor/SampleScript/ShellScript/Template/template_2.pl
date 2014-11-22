@@ -1,4 +1,7 @@
 #! /usr/bin/perl
+#
+# Sample Perl Script for CotEditor
+#
 # %%%{CotEditorXInput=Selection}%%%
 # %%%{CotEditorXOutput=ReplaceSelection}%%%
 
