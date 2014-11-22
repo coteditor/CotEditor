@@ -2,6 +2,9 @@
 #
 # Sample Python Script for CotEditor
 #
+# Gives line numbers for the selection.
+# provided by Yuhei Kuratomi (http://www.tomapd.net/blog)
+#
 # %%%{CotEditorXInput=Selection}%%%
 # %%%{CotEditorXOutput=ReplaceSelection}%%%
 
