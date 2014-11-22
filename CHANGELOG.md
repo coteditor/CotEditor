@@ -24,6 +24,7 @@ changelog
 - Update “R” syntax style:
     - Add file name `.Rprofile` to file mapping.
 - Update documents for scripting with AppleScript.
+- Rename some sample scripts that had Japanese file names to English.
 - Remove syntax style for “eRuby”.
 
 
