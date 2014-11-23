@@ -35,6 +35,7 @@ changelog
 ### Fixes
 
 - Fix an issue that new documents couldn't occasionally be saved with an extension that is automatically added from syntax definition.
+- Fix an issue that the application could crash after closing split view.
 - Fix an issue that some objects couldn't be handled via JavaScript for Automation on Yosemite.
 - Fix an issue that syntax style validator didn't warn about keywords duplication that were newly added.
 - Fix an issue that syntax style mapping conflict tables were always blank.
