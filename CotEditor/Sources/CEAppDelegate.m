@@ -634,14 +634,14 @@
 - (IBAction)createBugReport:(id)sender
 // ------------------------------------------------------
 {
-    NSBundle *bundle = [NSBundle mainBundle];
-    NSURL *URL = [bundle URLForResource:@"ReportTemplate" withExtension:@"md"];
+    NSDictionary *appInfo = [[NSBundle mainBundle] infoDictionary];
+    NSURL *URL = [[NSBundle mainBundle] URLForResource:@"ReportTemplate" withExtension:@"md"];
     NSString *template = [NSString stringWithContentsOfURL:URL encoding:NSUTF8StringEncoding error:nil];
     
     template = [template stringByReplacingOccurrencesOfString:@"%BUNDLE_VERSION%"
-                                                   withString:[bundle objectForInfoDictionaryKey:@"CFBundleVersion"]];
+                                                   withString:appInfo[@"CFBundleVersion"]];
     template = [template stringByReplacingOccurrencesOfString:@"%SHORT_VERSION%"
-                                                   withString:[bundle objectForInfoDictionaryKey:@"CFBundleShortVersionString"]];
+                                                   withString:appInfo[@"CFBundleShortVersionString"]];
     template = [template stringByReplacingOccurrencesOfString:@"%SYSTEM_VERSION%"
                                                    withString:[[NSProcessInfo processInfo] operatingSystemVersionString]];
     
