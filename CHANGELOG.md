@@ -42,6 +42,7 @@ changelog
 - Fix an issue that quoted texts and block comments at the end of document weren't highlighted.
 - Fix an issue that text kerning was too narrow with non-antialiasing text (thanks to tsawada2-san).
 - Fix an issue that text view scrolls to the opposite side when line number view is dragged.
+- Fix an issue that `contents` of document property could’t be set via AppleScript.
 - Fix an issue that word selection didn't expand correctly under the specific conditions.
 - Fix an issue that current line highlight didn't update after font size change.
 - Fix an issue that navigation/status bars are shown for a moment on window creation even they are set as hidden.
