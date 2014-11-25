@@ -24,6 +24,14 @@ EXTERNAL SOURCES:
     :branch: coteditor-mod
     :git: https://github.com/coteditor/YAML.framework.git
 
+CHECKOUT OPTIONS:
+  OgreKit:
+    :commit: 2e4f41f14771a759aa636847044cd344ea5e312f
+    :git: https://github.com/coteditor/OgreKit.git
+  YAML-Framework:
+    :commit: 37c4645466d639cfd738bb5e0ed14d8408ec282c
+    :git: https://github.com/coteditor/YAML.framework.git
+
 SPEC CHECKSUMS:
   LibYAML: d447960375d9114187bfddba6e6c24d69bff11f8
   OgreKit: fce7ef72bcfc79e091226cb01949800d3b5dcf2b
