@@ -560,7 +560,7 @@
 - (IBAction)openAppleScriptDictionary:(id)sender
 // ------------------------------------------------------
 {
-    NSURL *URL = [[NSBundle mainBundle] URLForResource:@"openDictionary" withExtension:@"applescript"];
+    NSURL *URL = [[NSBundle mainBundle] URLForResource:@"openDictionary" withExtension:@"scpt"];
     NSAppleScript *AppleScript = [[NSAppleScript alloc] initWithContentsOfURL:URL error:nil];
     [AppleScript executeAndReturnError:nil];
 }
