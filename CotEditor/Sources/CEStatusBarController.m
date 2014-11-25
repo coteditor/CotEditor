@@ -146,10 +146,10 @@ static const NSTimeInterval kDuration = 0.25;
     NSMutableArray *status = [NSMutableArray array];
     
     if ([defaults boolForKey:CEDefaultShowStatusBarEncodingKey]) {
-        [status addObject:[self encodingInfo]];
+        [status addObject:([self encodingInfo] ?: @"-")];
     }
     if ([defaults boolForKey:CEDefaultShowStatusBarLineEndingsKey]) {
-        [status addObject:[self lineEndingsInfo]];
+        [status addObject:([self lineEndingsInfo] ?: @"-")];
     }
     if ([defaults boolForKey:CEDefaultShowStatusBarFileSizeKey]) {
         [status addObject:([self fileSizeInfo] ?
