@@ -54,8 +54,6 @@
 {
     self = [super initWithWindowNibName:@"SyntaxMappingConflictSheet"];
     if (self) {
-        [[self window] setLevel:NSModalPanelWindowLevel];
-        
         _extensionConflicts = [[self class] parseConflictDict:[[CESyntaxManager sharedManager] extensionConflicts]];
         _filenameConflicts = [[self class] parseConflictDict:[[CESyntaxManager sharedManager] filenameConflicts]];
     }
@@ -95,7 +93,7 @@
                                @"doubledStyles":  [styles componentsJoinedByString:@", "]}];
     }
     
-    return conflicts;
+    return [conflicts copy];
 }
 
 @end

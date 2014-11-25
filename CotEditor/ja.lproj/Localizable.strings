@@ -30,12 +30,22 @@
 "Open as Text File" = "テキストファイルとして開く";
 "A new theme named “%@” has been successfully installed." = "新しいテーマ“%@”がインストールされました。";
 
+// Bug report
+"Bug Report" = "不具合レポート";
+
 // Migration from 1.x
 "Restorering menu key bindings settings…" = "メニューキーバインド設定をリセット中…";
 "Migrating coloring settings…" = "カラーリング設定を移行中…";
 "Migrating user syntax styles…" = "ユーザシンタックス定義を移行中…";
 "Migration finished." = "設定の移行が終了しました。";
 "Close" = "閉じる";
+
+
+/* CEDocumentController */
+// Large file alert
+"The file “%@” has a size of %@." = "“%@”はファイルサイズが %@ です。";
+"Opening such a large file can make the application slow or unresponsive.\n\nDo you really want to open the file?" = "巨大なファイルを開くと、アプリケーションの反応が遅くなる可能性があります。\n\n本当にファイルを開きますか？";
+"Open" = "開く";
 
 
 /* CEDocument */
@@ -163,6 +173,7 @@
 ": " = "：";
 "Lines" = "行数";
 "Chars" = "文字数";
+"Length" = "文字長";
 "Words" = "単語数";
 "Location" = "位置";
 "Line" = "行";
@@ -177,7 +188,7 @@
 "Coloring text…" = "テキストのカラーリング中...";
 "Please wait for a while." = "しばらくお待ちください...";
 "Extracting %@…" = "%@を抽出中...";
-"Applying colors to text" = "テキストにカラーを適応中";
+"Applying colors to text" = "テキストにカラーを適用中";
 "keywords" = "キーワード";
 "commands" = "コマンド";
 "types" = "タイプ";

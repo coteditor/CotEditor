@@ -290,7 +290,7 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 - (NSArray *)scriptExtensions
 // ------------------------------------------------------
 {
-    return @[@"sh", @"pl", @"php", @"rb", @"py"];
+    return @[@"sh", @"pl", @"php", @"rb", @"py", @"js"];
 }
 
 

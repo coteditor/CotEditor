@@ -2,6 +2,55 @@
 changelog
 ==========================
 
+2.0.1
+--------------------------
+
+### New Features
+
+- Introduce new AppleScript commands `comment out` and `uncomment` for selection object.
+- Add “js“ extension to CotEditor script type.
+    - __Hint__: Use `#!/usr/bin/osascript -l JavaScript` for shebang to run script as Yosemite's JavaScript for Automation.
+- Add “Create Bug Report…” action to the Help menu.
+- Add syntax style for “BibTeX”.
+
+
+### Additions/Changes
+
+- Display an alert if the opening file is larger than 100 MB.
+- Change default value for “Comment always from line head” option to enable.
+- Rename labels for line endings.
+- Update “Python” syntax style:
+    - Fix highlighting `print` command.
+- Update “Ruby” syntax style:
+    - Improve highlighting `%` literals.
+- Update “R” syntax style:
+    - Add file name `.Rprofile` to file mapping.
+- Update “JavaScript” syntax style:
+    - Highlight shebang as comment.
+- Update documents for scripting with AppleScript.
+- Update sample scripts.
+- Remove syntax style for “eRuby”.
+
+
+### Fixes
+
+- Fix an issue that new documents couldn't occasionally be saved with an extension that is automatically added from syntax definition.
+- Fix an issue that the application could crash after closing split view.
+- Fix an issue that some objects couldn't be handled via JavaScript for Automation on Yosemite.
+- Fix an issue that syntax style validator didn't warn about keywords duplication that were newly added.
+- Fix an issue that syntax style mapping conflict tables were always blank.
+- Fix an issue that quoted texts and block comments at the end of document weren't highlighted.
+- Fix an issue that text kerning was too narrow with non-antialiasing text (thanks to tsawada2-san).
+- Fix an issue that text view scrolls to the opposite side when line number view is dragged.
+- Fix an issue that `contents` of document property could’t be set via AppleScript.
+- Fix an issue that word selection didn't expand correctly under the specific conditions.
+- Fix an issue that current line highlight didn't update after font size change.
+- Fix an issue that navigation/status bars are shown for a moment on window creation even they are set as hidden.
+- Fix an issue that new added row in file drop setting occasionally disappear immediately.
+- Fix some Japanese localizations.
+
+
+
 2.0.0
 --------------------------
 

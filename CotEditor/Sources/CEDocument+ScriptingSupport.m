@@ -104,6 +104,8 @@
 {
     if ([object isKindOfClass:[NSTextStorage class]]) {
         [[[self editor] textView] replaceAllStringTo:[object string]];
+    } else if ([object isKindOfClass:[NSString class]]) {
+        [[[self editor] textView] replaceAllStringTo:object];
     }
 }
 

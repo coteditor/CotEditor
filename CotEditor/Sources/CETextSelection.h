@@ -80,6 +80,8 @@ typedef NS_ENUM(NSUInteger, CEUNFType) {
 // AppleScript handler
 - (void)handleShiftRightScriptCommand:(NSScriptCommand *)command;
 - (void)handleShiftLeftScriptCommand:(NSScriptCommand *)command;
+- (void)handleCommentOutScriptCommand:(NSScriptCommand *)command;
+- (void)handleUncommentScriptCommand:(NSScriptCommand *)command;
 - (void)handleChangeCaseScriptCommand:(NSScriptCommand *)command;
 - (void)handleChangeWidthRomanScriptCommand:(NSScriptCommand *)command;
 - (void)handleChangeKanaScriptCommand:(NSScriptCommand *)command;

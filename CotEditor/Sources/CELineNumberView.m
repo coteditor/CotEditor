@@ -346,9 +346,9 @@
     CGFloat y = [self convertPoint:[[self window] convertRectFromScreen:NSMakeRect(point.x, point.y, 0, 0)].origin
                           fromView:nil].y;
     if (y < 0) {
-        [textView scrollLineDown:nil];
-    } else if (y > NSHeight([self bounds])) {
         [textView scrollLineUp:nil];
+    } else if (y > NSHeight([self bounds])) {
+        [textView scrollLineDown:nil];
     }
     
     // select lines

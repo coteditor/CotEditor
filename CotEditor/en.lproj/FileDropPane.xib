@@ -7,9 +7,9 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="CEFileDropPaneController">
             <connections>
+                <outlet property="extensionTableView" destination="447" id="xHZ-M3-GTp"/>
                 <outlet property="fileDropController" destination="451" id="Do3-c6-cpR"/>
-                <outlet property="fileDropTableView" destination="447" id="xHZ-M3-GTp"/>
-                <outlet property="fileDropTextView" destination="532" id="C5S-P7-taE"/>
+                <outlet property="formatTextView" destination="532" id="C5S-P7-taE"/>
                 <outlet property="glossaryTextView" destination="586" id="EoC-Yf-e8m"/>
                 <outlet property="view" destination="747" id="ImZ-nW-JkE"/>
             </connections>
@@ -60,23 +60,32 @@
                                 <attributedString key="textStorage">
                                     <fragment>
                                         <mutableString key="content">&lt;&lt;&lt;ABSOLUTE-PATH&gt;&gt;&gt;
-The dropped file's absolute path. 
+The dropped file's absolute path.
+
 &lt;&lt;&lt;RELATIVE-PATH&gt;&gt;&gt;
-The relative path between the dropped file and the document. 
+The relative path between the dropped file and the document.
+
 &lt;&lt;&lt;FILENAME&gt;&gt;&gt;
-The dropped file's name with extension (if exists). 
+The dropped file's name with extension (if exists).
+
 &lt;&lt;&lt;FILENAME-NOSUFFIX&gt;&gt;&gt;
-The dropped file's name without extension. 
+The dropped file's name without extension.
+
 &lt;&lt;&lt;FILEEXTENSION&gt;&gt;&gt;
-The dropped file's extension. 
+The dropped file's extension.
+
 &lt;&lt;&lt;FILEEXTENSION-LOWER&gt;&gt;&gt;
-The dropped file's extension (converted to lowercase). 
+The dropped file's extension (converted to lowercase).
+
 &lt;&lt;&lt;FILEEXTENSION-UPPER&gt;&gt;&gt;
-The dropped file's extension (converted to uppercase). 
+The dropped file's extension (converted to uppercase).
+
 &lt;&lt;&lt;DIRECTORY&gt;&gt;&gt;
-The parent directory name of the dropped file. 
+The parent directory name of the dropped file.
+
 &lt;&lt;&lt;IMAGEWIDTH&gt;&gt;&gt;
-(if the dropped file is Image) The image width. 
+(if the dropped file is Image) The image width.
+
 &lt;&lt;&lt;IMAGEHEIGHT&gt;&gt;&gt;
 </mutableString>
                                         <attributes>
@@ -122,42 +131,42 @@ The parent directory name of the dropped file. 
                                 <menuItem title="Insert Pre-Formatted String" hidden="YES" id="541"/>
                                 <menuItem title="&lt;&lt;&lt;ABSOLUTE-PATH&gt;&gt;&gt;" toolTip="The dropped file absolute path." id="544">
                                     <connections>
-                                        <action selector="insertFormatStringInFileDrop:" target="-2" id="555"/>
+                                        <action selector="insertToken:" target="-2" id="555"/>
                                     </connections>
                                 </menuItem>
                                 <menuItem title="&lt;&lt;&lt;RELATIVE-PATH&gt;&gt;&gt;" toolTip="The relative path between dropped file and the document." id="546">
                                     <connections>
-                                        <action selector="insertFormatStringInFileDrop:" target="-2" id="556"/>
+                                        <action selector="insertToken:" target="-2" id="556"/>
                                     </connections>
                                 </menuItem>
                                 <menuItem title="&lt;&lt;&lt;FILENAME&gt;&gt;&gt;" toolTip="The dropped file name include extension (if exists)." id="542">
                                     <connections>
-                                        <action selector="insertFormatStringInFileDrop:" target="-2" id="557"/>
+                                        <action selector="insertToken:" target="-2" id="557"/>
                                     </connections>
                                 </menuItem>
                                 <menuItem title="&lt;&lt;&lt;FILENAME-NOSUFFIX&gt;&gt;&gt;" toolTip="The dropped file name without extension." id="538">
                                     <connections>
-                                        <action selector="insertFormatStringInFileDrop:" target="-2" id="558"/>
+                                        <action selector="insertToken:" target="-2" id="558"/>
                                     </connections>
                                 </menuItem>
                                 <menuItem title="&lt;&lt;&lt;FILEEXTENSION&gt;&gt;&gt;" toolTip="The dropped file's extension." id="694">
                                     <connections>
-                                        <action selector="insertFormatStringInFileDrop:" target="-2" id="699"/>
+                                        <action selector="insertToken:" target="-2" id="699"/>
                                     </connections>
                                 </menuItem>
                                 <menuItem title="&lt;&lt;&lt;FILEEXTENSION-LOWER&gt;&gt;&gt;" toolTip="The dropped file's extension (converted to lowercase)." id="695">
                                     <connections>
-                                        <action selector="insertFormatStringInFileDrop:" target="-2" id="698"/>
+                                        <action selector="insertToken:" target="-2" id="698"/>
                                     </connections>
                                 </menuItem>
                                 <menuItem title="&lt;&lt;&lt;FILEEXTENSION-UPPER&gt;&gt;&gt;" toolTip="The dropped file's extension (converted to uppercase)." id="696">
                                     <connections>
-                                        <action selector="insertFormatStringInFileDrop:" target="-2" id="697"/>
+                                        <action selector="insertToken:" target="-2" id="697"/>
                                     </connections>
                                 </menuItem>
                                 <menuItem title="&lt;&lt;&lt;DIRECTORY&gt;&gt;&gt;" toolTip="The parent directory name of dropped file." id="539">
                                     <connections>
-                                        <action selector="insertFormatStringInFileDrop:" target="-2" id="559"/>
+                                        <action selector="insertToken:" target="-2" id="559"/>
                                     </connections>
                                 </menuItem>
                                 <menuItem isSeparatorItem="YES" state="on" id="545">
@@ -165,12 +174,12 @@ The parent directory name of the dropped file. 
                                 </menuItem>
                                 <menuItem title="&lt;&lt;&lt;IMAGEWIDTH&gt;&gt;&gt;" toolTip="(if the dropped file is Image) image width." id="540">
                                     <connections>
-                                        <action selector="insertFormatStringInFileDrop:" target="-2" id="560"/>
+                                        <action selector="insertToken:" target="-2" id="560"/>
                                     </connections>
                                 </menuItem>
                                 <menuItem title="&lt;&lt;&lt;IMAGEHEIGHT&gt;&gt;&gt;" toolTip="(if the dropped file is Image) image height." id="537">
                                     <connections>
-                                        <action selector="insertFormatStringInFileDrop:" target="-2" id="561"/>
+                                        <action selector="insertToken:" target="-2" id="561"/>
                                     </connections>
                                 </menuItem>
                             </items>
@@ -193,7 +202,11 @@ The parent directory name of the dropped file. 
                                 <size key="minSize" width="498" height="98"/>
                                 <size key="maxSize" width="600" height="10000000"/>
                                 <connections>
-                                    <binding destination="451" name="value" keyPath="selection.formatString" id="0Lj-fM-ziw"/>
+                                    <binding destination="451" name="value" keyPath="selection.formatString" id="ib2-Zw-Ucy">
+                                        <dictionary key="options">
+                                            <string key="NSNoSelectionPlaceholder">No extension is selected.</string>
+                                        </dictionary>
+                                    </binding>
                                     <outlet property="delegate" destination="-2" id="585"/>
                                 </connections>
                             </textView>
@@ -231,7 +244,7 @@ The parent directory name of the dropped file. 
                         <font key="font" metaFont="system"/>
                     </buttonCell>
                     <connections>
-                        <action selector="deleteFileDropSetting:" target="-2" id="518"/>
+                        <action selector="removeSetting:" target="-2" id="518"/>
                         <binding destination="451" name="enabled" keyPath="canRemove" id="461"/>
                     </connections>
                 </button>
@@ -242,7 +255,7 @@ The parent directory name of the dropped file. 
                         <font key="font" metaFont="system"/>
                     </buttonCell>
                     <connections>
-                        <action selector="addNewFileDropSetting:" target="-2" id="517"/>
+                        <action selector="addSetting:" target="-2" id="517"/>
                         <binding destination="451" name="enabled" keyPath="canAdd" id="463"/>
                     </connections>
                 </button>

@@ -66,7 +66,10 @@ NSString *const kHelpAnchors[] = {
     @"pref_keybindings",
     @"pref_print",
     @"whats_new",
-    @"specification_changes"
+    @"specification_changes",
+    @"about_script_name",
+    @"about_applescript",
+    @"about_unixscript"
 };
 
 #pragma mark Notifications
@@ -209,10 +212,7 @@ NSString *const CEDefaultRunAppleScriptInLaunchingKey = @"runAppleScriptInLaunch
 NSString *const CEDefaultShowAlertForNotWritableKey = @"showAlertForNotWritable";
 NSString *const CEDefaultNotifyEditByAnotherKey = @"notifyEditByAnother";
 NSString *const CEDefaultColoringRangeBufferLengthKey = @"coloringRangeBufferLength";
-
-// keys for dicts in CEDefaultFileDropArrayKey
-NSString *const CEFileDropExtensionsKey = @"extensions";
-NSString *const CEFileDropFormatStringKey = @"formatString";
+NSString *const CEDefaultLargeFileAlertThresholdKey = @"largeFileAlertThreshold";
 
 
 
@@ -284,6 +284,30 @@ NSString *const CESyntaxItalicKey = @"italic";
 // comment delimiter keys
 NSString *const CEBeginDelimiterKey = @"beginDelimiter";
 NSString *const CEEndDelimiterKey = @"endDelimiter";
+
+
+
+#pragma mark File Drop
+
+// ------------------------------------------------------
+// File Drop
+// ------------------------------------------------------
+
+// keys for dicts in CEDefaultFileDropArrayKey
+NSString *const CEFileDropExtensionsKey = @"extensions";
+NSString *const CEFileDropFormatStringKey = @"formatString";
+
+// tokens
+NSString *const CEFileDropAbsolutePathToken = @"<<<ABSOLUTE-PATH>>>";
+NSString *const CEFileDropRelativePathToken = @"<<<RELATIVE-PATH>>>";
+NSString *const CEFileDropFilenameToken = @"<<<FILENAME>>>";
+NSString *const CEFileDropFilenameNosuffixToken = @"<<<FILENAME-NOSUFFIX>>>";
+NSString *const CEFileDropFileextensionToken = @"<<<FILEEXTENSION>>>";
+NSString *const CEFileDropFileextensionLowerToken = @"<<<FILEEXTENSION-LOWER>>>";
+NSString *const CEFileDropFileextensionUpperToken = @"<<<FILEEXTENSION-UPPER>>>";
+NSString *const CEFileDropDirectoryToken = @"<<<DIRECTORY>>>";
+NSString *const CEFileDropImagewidthToken = @"<<<IMAGEWIDTH>>>";
+NSString *const CEFileDropImagehightToken = @"<<<IMAGEHEIGHT>>>";
 
 
 

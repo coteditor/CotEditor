@@ -41,7 +41,7 @@
 {
     self = [super initWithCoder:aDecoder];
     if (self) {
-        if (floor(NSAppKitVersionNumber) > 1265) {  // 1265 = NSAppKitVersionNumber10_9
+        if (floor(NSAppKitVersionNumber) > NSAppKitVersionNumber10_9) {
             [self updateIcon];
             
             // observe menu bar theme change on Yosemite

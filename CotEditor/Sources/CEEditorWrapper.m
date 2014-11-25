@@ -124,7 +124,7 @@ static NSTimeInterval secondColoringDelay;
     
     // Yosemite 未満の場合は手動で Responder Chain に入れる
     // （Yosemite 以降は自動的に追加されるためか以下の一行が入るとハングしてしまう）
-    if (floor(NSAppKitVersionNumber) <= 1265) {  // 1265 = NSAppKitVersionNumber10_9
+    if (floor(NSAppKitVersionNumber) <= NSAppKitVersionNumber10_9) {
         [self setNextResponder:[self splitViewController]];
     }
     
@@ -391,12 +391,12 @@ static NSTimeInterval secondColoringDelay;
 
 // ------------------------------------------------------
 /// ナビバーを表示する／しないをセット
-- (void)setShowsNavigationBar:(BOOL)showsNavigationBar
+- (void)setShowsNavigationBar:(BOOL)showsNavigationBar animate:(BOOL)performAnimation
 // ------------------------------------------------------
 {
     _showsNavigationBar = showsNavigationBar;
     
-    [[self splitViewController] setShowsNavigationBar:showsNavigationBar];
+    [[self splitViewController] setShowsNavigationBar:showsNavigationBar animate:performAnimation];
     [[[self windowController] toolbarController] toggleItemWithTag:CEToolbarShowNavigationBarItemTag
                                                              setOn:showsNavigationBar];
 }
@@ -455,7 +455,7 @@ static NSTimeInterval secondColoringDelay;
 
 
 // ------------------------------------------------------
-/// テーマを適応する
+/// テーマを適用する
 - (void)setThemeWithName:(NSString *)themeName
 // ------------------------------------------------------
 {
@@ -674,7 +674,7 @@ static NSTimeInterval secondColoringDelay;
 - (IBAction)toggleNavigationBar:(id)sender
 // ------------------------------------------------------
 {
-    [self setShowsNavigationBar:![self showsNavigationBar]];
+    [self setShowsNavigationBar:![self showsNavigationBar] animate:YES];
 }
 
 
@@ -798,7 +798,7 @@ static NSTimeInterval secondColoringDelay;
     [[self window] makeFirstResponder:[editorView textView]];
     [[editorView textView] setLineEndingString:[[self document] lineEndingString]];
     [[editorView textView] centerSelectionInVisibleArea:self];
-    [editorView setShowsNavigationBar:[self showsNavigationBar]];
+    [editorView setShowsNavigationBar:[self showsNavigationBar] animate:NO];
     [[self splitViewController] updateCloseSplitViewButton];
 }
 
@@ -866,13 +866,13 @@ static NSTimeInterval secondColoringDelay;
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 
         [self setShowsLineNum:[defaults boolForKey:CEDefaultShowLineNumbersKey]];
-        [self setShowsNavigationBar:[defaults boolForKey:CEDefaultShowNavigationBarKey]];
+        [self setShowsNavigationBar:[defaults boolForKey:CEDefaultShowNavigationBarKey] animate:NO];
         [self setWrapsLines:[defaults boolForKey:CEDefaultWrapLinesKey]];
         [self setVerticalLayoutOrientation:[defaults boolForKey:CEDefaultLayoutTextVerticalKey]];
         [self setShowsPageGuide:[defaults boolForKey:CEDefaultShowPageGuideKey]];
     } else {
         [self setShowsLineNum:[self showsLineNum]];
-        [self setShowsNavigationBar:[self showsNavigationBar]];
+        [self setShowsNavigationBar:[self showsNavigationBar] animate:NO];
         [self setWrapsLines:[self wrapsLines]];
         [self setVerticalLayoutOrientation:[self isVerticalLayoutOrientation]];
         [self setShowsPageGuide:[self showsPageGuide]];

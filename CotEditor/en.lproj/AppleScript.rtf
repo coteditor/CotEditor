@@ -1,4 +1,4 @@
-{\rtf1\ansi\ansicpg1252\cocoartf1265\cocoasubrtf210
+{\rtf1\ansi\ansicpg1252\cocoartf1343\cocoasubrtf160
 \readonlydoc1\cocoascreenfonts1{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset0 Menlo-Regular;\f2\fnil\fcharset128 HiraKakuProN-W3;
 \f3\fmodern\fcharset0 Courier;\f4\fmodern\fcharset0 Courier-Bold;}
 {\colortbl;\red255\green255\blue255;\red26\green32\blue255;\red217\green11\blue0;\red128\green128\blue128;
@@ -8,6 +8,21 @@
 
 \f0\b\fs32 \cf0 Using AppleScript with CotEditor
 \b0\fs24 \
+\
+\
+- - - - - - - - - - - - - - - - - - - - -\
+\pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802
+
+\b \cf0 The terminology change on CotEditor 2.0.1:
+\b0 \
+\pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802
+\cf0 \ul \ulc0 \
+Comment handling\ulnone \
+Introduce new commands `
+\f1 comment out
+\f0 ` and `
+\f1 uncomment
+\f0 ` were added to the \'91selection\'92 object.\
 \
 \
 - - - - - - - - - - - - - - - - - - - - -\
@@ -60,9 +75,8 @@ The internal code for `
 \b compiled
 \b0  AppleScripts (.scpt) which were written previously might need some update for this change.\
 \
-\pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802
 
-\b \cf0 How to fix
+\b How to fix
 \b0 :\
 	Open your .scpt files on AppleScript Editor (or Script Editor), the words that was `
 \f1 range
@@ -79,8 +93,7 @@ This issue doesn\'92t occur with plain-text AppleScript (.applescript). \
 
 \b The terminology change on CotEditor 1.5:
 \b0 \
-\pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802
-\cf0 \ul \
+\ul \
 Window Transparency\ulnone \
 According to the changing of the mechanism to make window transparent on CotEditor 1.5, the terms about window opacity for AppleScripting was also changed. The 
 \b document
@@ -116,7 +129,7 @@ On CotEditor 1.5, it is formally removed.  Specify the target as below (example 
 \f4\b \ul \ulc2 of front document
 \f3\b0 \ulnone \
 end tell
-\f0 \cf2 \
+\f0 \
 \pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802
 \cf0 \
 \pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802
@@ -134,7 +147,7 @@ end tell
 	end tell
 \f3\b0 \ulnone \
 end tell
-\f0 \cf2 \
+\f0 \
 \pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802
 \cf0 - - - - - - - - - - - - - - - - - - - - -\
 \
@@ -147,9 +160,8 @@ end tell
 \pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802
 
 \fs24 \cf0 \ulnone \
-\pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802
 
-\b \cf0 Application
+\b Application
 \b0  = The CotEditor application.\
 \
 
@@ -372,6 +384,25 @@ return value = boolean\
 \f3 \cf7 shift right selection of front document
 \f0 \cf0 \
 	Shifts the line where the selection/caret is positioned right.\
+\
+\
+\pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802
+
+\b \cf0 comment out
+\b0  = Append comment delimiters to selected text if possible.\
+
+\b uncomment
+\b0  = Remove comment delimiters from selected text if possible.\
+\pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802
+
+\i \cf0 # These commands do nothing if not possible for example in cases where no delimiters are set in the current syntax style or no comment delimiters to remove are available.
+\i0 \
+\
+\pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802
+
+\f3 \cf7 comment out selection of front document
+\f0 \cf0 \
+	Comment out the selected text.\
 \
 \
 \pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802

@@ -32,8 +32,9 @@
 
 @interface CEStatusBarController : NSViewController
 
-@property (nonatomic) BOOL showsStatusBar;
 @property (nonatomic) BOOL showsReadOnly;
+
+@property (readonly, nonatomic, getter=isShown) BOOL shown;
 
 // editor status
 @property (nonatomic) NSInteger linesInfo;
@@ -55,6 +56,7 @@
 
 
 // Public method
+- (void)setShown:(BOOL)shown animate:(BOOL)performAnimation;
 - (void)updateEditorStatus;
 - (void)updateDocumentStatus;
 

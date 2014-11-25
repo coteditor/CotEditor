@@ -190,6 +190,8 @@
     [self stopUpdateOutlineMenuTimer];
     [[NSNotificationCenter defaultCenter] removeObserver:[self lineNumberView]];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
+    [_textStorage removeLayoutManager:[_textView layoutManager]];
     _textView = nil;
 }
 
@@ -232,10 +234,10 @@
 
 // ------------------------------------------------------
 /// ナビゲーションバーを表示／非表示
-- (void)setShowsNavigationBar:(BOOL)showsNavigationBar
+- (void)setShowsNavigationBar:(BOOL)showsNavigationBar animate:(BOOL)performAnimation;
 // ------------------------------------------------------
 {
-    [[self navigationBar] setShowsNavigationBar:showsNavigationBar];
+    [[self navigationBar] setShown:showsNavigationBar animate:performAnimation];
     if (![self outlineMenuTimer]) {
         [self updateOutlineMenu];
     }
@@ -648,6 +650,16 @@
     }
     NSBeep();
 }
+
+
+// ------------------------------------------------------
+/// font is changed
+- (void)textViewDidChangeTypingAttributes:(NSNotification *)notification
+// ------------------------------------------------------
+{
+    [self highlightCurrentLine];
+}
+
 
 
 //=======================================================

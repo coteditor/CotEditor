@@ -110,6 +110,7 @@ static BOOL usesTextFontForInvisibles;
         _showsFullwidthSpace = [defaults boolForKey:CEDefaultShowInvisibleFullwidthSpaceKey];
         _showsOtherInvisibles = [defaults boolForKey:CEDefaultShowOtherInvisibleCharsKey];
         
+        [self setUsesScreenFonts:YES];
         [self setShowsControlCharacters:_showsOtherInvisibles];
         [self setTypesetter:[CEATSTypesetter sharedSystemTypesetter]];
     }
@@ -127,8 +128,7 @@ static BOOL usesTextFontForInvisibles;
         // 複合フォントで行の高さがばらつくのを防止する
         // （CETextView で、NSParagraphStyle の lineSpacing を設定しても行間は制御できるが、
         // 「文書の1文字目に1バイト文字（または2バイト文字）を入力してある状態で先頭に2バイト文字（または1バイト文字）を
-        // 挿入すると行間がズレる」問題が生じる）
-        // （[NSGraphicsContext currentContextDrawingToScreen] は真を返す時があるため、専用フラグで印刷中を確認）
+        // 挿入すると行間がズレる」問題が生じる））
         fragmentRect.size.height = [self lineHeight];
         usedRect.size.height = [self lineHeight];
     }
@@ -157,7 +157,6 @@ static BOOL usesTextFontForInvisibles;
 {
     if (![self isPrinting] && [self fixesLineHeight]) {
         // 複合フォントで描画位置Y座標が変わるのを防止する
-        // （[NSGraphicsContext currentContextDrawingToScreen] は真を返す時があるため、専用フラグで印刷中を確認）
         
         if ([[self firstTextView] layoutOrientation] != NSTextLayoutOrientationVertical) {
             // フォントサイズは随時変更されるため、表示時に取得する
@@ -177,8 +176,6 @@ static BOOL usesTextFontForInvisibles;
 - (void)drawGlyphsForGlyphRange:(NSRange)glyphsToShow atPoint:(NSPoint)origin
 // ------------------------------------------------------
 {
-    // （[NSGraphicsContext currentContextDrawingToScreen] は真を返す時があるため、専用フラグで印刷中を確認）
-    
     // スクリーン描画の時、アンチエイリアス制御
     if (![self isPrinting]) {
         [[NSGraphicsContext currentContext] setShouldAntialias:[self usesAntialias]];
@@ -304,6 +301,16 @@ static BOOL usesTextFontForInvisibles;
 // Public method
 //
 //=======================================================
+
+// ------------------------------------------------------
+/// [NSGraphicsContext currentContextDrawingToScreen] は真を返す時があるため、印刷用かを保持する専用フラグを用意
+- (void)setPrinting:(BOOL)printing
+// ------------------------------------------------------
+{
+    [self setUsesScreenFonts:!printing];
+    
+    _printing = printing;
+}
 
 // ------------------------------------------------------
 /// 不可視文字を表示するかどうかを設定する

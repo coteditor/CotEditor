@@ -523,7 +523,7 @@ static CGFloat kPerCompoIncrement;
         [scanner scanUpToString:searchString intoString:nil];
         NSUInteger startLocation = [scanner scanLocation];
         
-        if (startLocation + length >= localLength) { break; }
+        if (startLocation + length > localLength) { break; }
         
         [scanner setScanLocation:(startLocation + length)];
         
@@ -565,7 +565,7 @@ static CGFloat kPerCompoIncrement;
         [scanner scanUpToString:beginString intoString:nil];
         NSUInteger startLocation = [scanner scanLocation];
         
-        if (startLocation + beginLength >= localLength) { break; }
+        if (startLocation + beginLength > localLength) { break; }
         
         [scanner setScanLocation:(startLocation + beginLength)];
         NSUInteger escapesCheckLength = MIN(startLocation, kMaxEscapesCheckLength);
@@ -990,7 +990,7 @@ static CGFloat kPerCompoIncrement;
                 // インジケータシートのメッセージを更新
                 [[strongSelf indicatorController] setInformativeText:NSLocalizedString(@"Applying colors to text", nil)];
                 
-                // カラーを適応する（ループ中に徐々に適応させると文字がチラ付くので、抽出が終わってから一気に適応する）
+                // カラーを適用する（ループ中に徐々に適用させると文字がチラ付くので、抽出が終わってから一気に適用する）
                 [strongSelf applyColorings:colorings range:coloringRange];
             }
             
@@ -1025,7 +1025,7 @@ static CGFloat kPerCompoIncrement;
 
 
 // ------------------------------------------------------
-/// 抽出したカラー範囲配列を書類に適応する
+/// 抽出したカラー範囲配列を書類に適用する
 - (void)applyColorings:(NSArray *)colorings range:(NSRange)coloringRange
 // ------------------------------------------------------
 {

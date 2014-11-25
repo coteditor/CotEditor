@@ -150,7 +150,7 @@
                                CEDefaultEnableSmartQuotesKey: @NO,
                                CEDefaultEnableSmartIndentKey: @YES,
                                CEDefaultAppendsCommentSpacerKey: @YES,
-                               CEDefaultCommentsAtLineHeadKey: @NO,
+                               CEDefaultCommentsAtLineHeadKey: @YES,
                                CEDefaultShouldAntialiasKey: @YES,
                                CEDefaultAutoCompleteKey: @NO,
                                CEDefaultCompletionWordsKey: @2U,
@@ -210,7 +210,9 @@
                                CEDefaultRunAppleScriptInLaunchingKey: @YES,
                                CEDefaultShowAlertForNotWritableKey: @YES, 
                                CEDefaultNotifyEditByAnotherKey: @YES,
-                               CEDefaultColoringRangeBufferLengthKey: @5000};
+                               CEDefaultColoringRangeBufferLengthKey: @5000,
+                               CEDefaultLargeFileAlertThresholdKey: @(100 * pow(1024, 2)),  // 100 MB
+                               };
     [[NSUserDefaults standardUserDefaults] registerDefaults:defaults];
     
     // 出荷時へのリセットが必要な項目に付いては NSUserDefaultsController に初期値をセットする
@@ -472,6 +474,7 @@
         
         return YES;
     }
+    
     return NO;
 }
 
@@ -557,7 +560,7 @@
 - (IBAction)openAppleScriptDictionary:(id)sender
 // ------------------------------------------------------
 {
-    NSURL *URL = [[NSBundle mainBundle] URLForResource:@"openDictionary" withExtension:@"applescript"];
+    NSURL *URL = [[NSBundle mainBundle] URLForResource:@"openDictionary" withExtension:@"scpt"];
     NSAppleScript *AppleScript = [[NSAppleScript alloc] initWithContentsOfURL:URL error:nil];
     [AppleScript executeAndReturnError:nil];
 }
@@ -623,6 +626,29 @@
 // ------------------------------------------------------
 {
     [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:kIssueTrackerURL]];
+}
+
+
+// ------------------------------------------------------
+/// バグレポートを作成する
+- (IBAction)createBugReport:(id)sender
+// ------------------------------------------------------
+{
+    NSDictionary *appInfo = [[NSBundle mainBundle] infoDictionary];
+    NSURL *URL = [[NSBundle mainBundle] URLForResource:@"ReportTemplate" withExtension:@"md"];
+    NSString *template = [NSString stringWithContentsOfURL:URL encoding:NSUTF8StringEncoding error:nil];
+    
+    template = [template stringByReplacingOccurrencesOfString:@"%BUNDLE_VERSION%"
+                                                   withString:appInfo[@"CFBundleVersion"]];
+    template = [template stringByReplacingOccurrencesOfString:@"%SHORT_VERSION%"
+                                                   withString:appInfo[@"CFBundleShortVersionString"]];
+    template = [template stringByReplacingOccurrencesOfString:@"%SYSTEM_VERSION%"
+                                                   withString:[[NSProcessInfo processInfo] operatingSystemVersionString]];
+    
+    CEDocument *document = [[NSDocumentController sharedDocumentController] openUntitledDocumentAndDisplay:YES error:nil];
+    [document doSetSyntaxStyle:@"Markdown"];
+    [[document editor] setString:template];
+    [[[document windowController] window] setTitle:NSLocalizedString(@"Bug Report", nil)];
 }
 
 

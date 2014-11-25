@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		2582260107794C2A00A0F8D3 /* CESyntaxParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 258225FF07794C2A00A0F8D3 /* CESyntaxParser.m */; };
-		2585914D080F503A0038F387 /* openDictionary.applescript in Resources */ = {isa = PBXBuildFile; fileRef = 2585914B080F503A0038F387 /* openDictionary.applescript */; };
 		25859DB3076D65310020F779 /* CEAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 25859DB1076D65310020F779 /* CEAppDelegate.m */; };
 		25859DEE076D75BC0020F779 /* CEWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25859DEC076D75BC0020F779 /* CEWindowController.m */; };
 		25859EA7076D8EE80020F779 /* PreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25859EA5076D8EE80020F779 /* PreferencesWindow.xib */; };
@@ -57,7 +56,9 @@
 		2A3A759119E77D4F001DAB88 /* MigrationWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A3A758F19E77D4F001DAB88 /* MigrationWindow.xib */; };
 		2A3A759419E77D66001DAB88 /* CEMigrationWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A3A759319E77D66001DAB88 /* CEMigrationWindowController.m */; };
 		2A3FB2AD18ECEFF200D9CB2C /* CESyntaxEditSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A3FB2AC18ECEFF200D9CB2C /* CESyntaxEditSheetController.m */; };
+		2A40D7CD1A23FBE200721EB4 /* openDictionary.applescript in Sources */ = {isa = PBXBuildFile; fileRef = 2585914B080F503A0038F387 /* openDictionary.applescript */; };
 		2A42825518FCD47B00386899 /* Acknowledgements.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A961C4518FC699E002076B6 /* Acknowledgements.rtf */; };
+		2A456C451A1EE38E00395158 /* ReportTemplate.md in Resources */ = {isa = PBXBuildFile; fileRef = 2A456C421A1EDCFC00395158 /* ReportTemplate.md */; };
 		2A45AB9C1960BDED0020E72B /* Comment.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 2A45AB9B1960BDED0020E72B /* Comment.tiff */; };
 		2A4DB13D19A265BA005A4F7C /* CEDraggableArrayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A4DB13C19A265BA005A4F7C /* CEDraggableArrayController.m */; };
 		2A5411C01983E5FA008B43DA /* CESplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A5411BF1983E5FA008B43DA /* CESplitViewController.m */; };
@@ -264,6 +265,8 @@
 		2A3A759319E77D66001DAB88 /* CEMigrationWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEMigrationWindowController.m; sourceTree = "<group>"; };
 		2A3FB2AB18ECEFF200D9CB2C /* CESyntaxEditSheetController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CESyntaxEditSheetController.h; sourceTree = "<group>"; };
 		2A3FB2AC18ECEFF200D9CB2C /* CESyntaxEditSheetController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CESyntaxEditSheetController.m; sourceTree = "<group>"; };
+		2A456C431A1EDCFC00395158 /* en */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = en; path = en.lproj/ReportTemplate.md; sourceTree = "<group>"; };
+		2A456C441A1EDD0400395158 /* ja */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = ja; path = ja.lproj/ReportTemplate.md; sourceTree = "<group>"; };
 		2A45AB9B1960BDED0020E72B /* Comment.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Comment.tiff; sourceTree = "<group>"; };
 		2A47A70B18CC8A7C0076B49A /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/ScriptErrorPanel.xib; sourceTree = "<group>"; };
 		2A4DB13B19A265BA005A4F7C /* CEDraggableArrayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEDraggableArrayController.h; sourceTree = "<group>"; };
@@ -734,6 +737,7 @@
 				259C2316077678DE00BA61C5 /* Localizable.strings */,
 				2A1CFD0B18E5B64F00A5B664 /* Print.strings */,
 				2AEB8B7A19AF73980098D557 /* FileDropGlossary.txt */,
+				2A456C421A1EDCFC00395158 /* ReportTemplate.md */,
 				2A75ACCA19E86DDB00444894 /* CotEditor.sdef */,
 				2A6E3F3C19B5218300A63E97 /* CotEditor.help */,
 				2A2179F51A07093B002C4AB1 /* SyntaxMap.json */,
@@ -997,7 +1001,7 @@
 				2A6E3F3D19B5218300A63E97 /* CotEditor.help in Resources */,
 				2A2179F61A07093B002C4AB1 /* SyntaxMap.json in Resources */,
 				6C6DAE3E13833C0E007F2326 /* dsa_pub.pem in Resources */,
-				2585914D080F503A0038F387 /* openDictionary.applescript in Resources */,
+				2A456C451A1EE38E00395158 /* ReportTemplate.md in Resources */,
 				8D15AC2D0486D014006FF6A4 /* MainMenu.xib in Resources */,
 				8D15AC2E0486D014006FF6A4 /* DocumentWindow.xib in Resources */,
 				2A15832118E3814200601026 /* SizeSampleWindow.xib in Resources */,
@@ -1176,6 +1180,7 @@
 				2A2BDF0D198A899E0029848B /* NSString+JapaneseTransform.m in Sources */,
 				2A8711681986DAEC009FA1C0 /* NSString+MD5.m in Sources */,
 				2A8663DD18C9F6B700A6F9CC /* NSData+MD5.m in Sources */,
+				2A40D7CD1A23FBE200721EB4 /* openDictionary.applescript in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1366,6 +1371,15 @@
 				2AF861D71A05C294005054DE /* ja */,
 			);
 			name = MigrationWindow.xib;
+			sourceTree = "<group>";
+		};
+		2A456C421A1EDCFC00395158 /* ReportTemplate.md */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2A456C431A1EDCFC00395158 /* en */,
+				2A456C441A1EDD0400395158 /* ja */,
+			);
+			name = ReportTemplate.md;
 			sourceTree = "<group>";
 		};
 		2A5411C119852C1C008B43DA /* NavigationBar.xib */ = {
@@ -1675,6 +1689,7 @@
 				2A2179F21A0703BE002C4AB1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8C71D95308640EDF00C9C0BD /* Build configuration list for PBXNativeTarget "CotEditor" */ = {
 			isa = XCConfigurationList;

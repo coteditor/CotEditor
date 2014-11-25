@@ -15,6 +15,14 @@
 
     ]
   },
+  "BibTeX": {
+    "extensions": [
+      "bib"
+    ],
+    "filenames": [
+
+    ]
+  },
   "C#": {
     "extensions": [
       "cs"
@@ -235,7 +243,7 @@
       "r"
     ],
     "filenames": [
-
+      ".Rprofile"
     ]
   },
   "Ruby": {
@@ -363,15 +371,6 @@
     "extensions": [
       "yaml",
       "yml"
-    ],
-    "filenames": [
-
-    ]
-  },
-  "eRuby": {
-    "extensions": [
-      "erb",
-      "rhtml"
     ],
     "filenames": [
 
