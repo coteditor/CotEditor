@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6221" systemVersion="13F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6221"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6250"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
@@ -45,7 +45,7 @@
                                         </connections>
                                     </textField>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="r5K-qD-t3c">
-                                        <rect key="frame" x="136" y="64" width="71" height="20"/>
+                                        <rect key="frame" x="136" y="64" width="56" height="20"/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="欢迎使用" id="aBa-Xm-ATa">
                                             <font key="font" size="13" name="HelveticaNeue-Light"/>
                                             <color key="textColor" white="0.33000000000000002" alpha="1" colorSpace="calibratedWhite"/>
@@ -150,8 +150,8 @@ DQ
             <rect key="frame" x="0.0" y="0.0" width="460" height="240"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <textField horizontalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vA6-9n-tty">
-                    <rect key="frame" x="42" y="182" width="209" height="17"/>
+                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="vA6-9n-tty">
+                    <rect key="frame" x="42" y="182" width="108" height="17"/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="重置菜单按键绑定" usesSingleLineMode="YES" id="BA1-Y2-S7m">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -173,8 +173,8 @@ DQ
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <textField horizontalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Z67-Bl-Qme">
-                    <rect key="frame" x="42" y="141" width="161" height="17"/>
+                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Z67-Bl-Qme">
+                    <rect key="frame" x="42" y="141" width="82" height="17"/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="迁移颜色设置" usesSingleLineMode="YES" id="6hO-yA-SXq">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -203,8 +203,8 @@ DQ
                         </binding>
                     </connections>
                 </textField>
-                <textField horizontalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uTv-Qx-FQU">
-                    <rect key="frame" x="42" y="100" width="169" height="17"/>
+                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="uTv-Qx-FQU">
+                    <rect key="frame" x="42" y="100" width="108" height="17"/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="迁移用户语法风格" usesSingleLineMode="YES" id="D4s-ma-Iiu">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -294,7 +294,7 @@ DQ
                     </connections>
                 </textField>
                 <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="jWg-4Q-d5T">
-                    <rect key="frame" x="18" y="56" width="295" height="14"/>
+                    <rect key="frame" x="18" y="56" width="213" height="14"/>
                     <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="某些情况下，用户需要手动进行额外的迁移" allowsEditingTextAttributes="YES" usesSingleLineMode="YES" id="X8Q-Ji-HKU">
                         <font key="font" metaFont="smallSystem"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -312,7 +312,7 @@ DQ
                     </connections>
                 </button>
                 <button toolTip="See “Specification Changes on CotEditor 2.0” on Help" horizontalHuggingPriority="750" verticalHuggingPriority="750" tag="10" translatesAutoresizingMaskIntoConstraints="NO" id="qdh-QQ-qcp">
-                    <rect key="frame" x="314" y="54" width="19" height="19"/>
+                    <rect key="frame" x="232" y="54" width="19" height="19"/>
                     <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" controlSize="mini" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Z6i-Dy-waO">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="miniSystem"/>
@@ -327,8 +327,8 @@ DQ
                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <font key="titleFont" metaFont="system"/>
                 </box>
-                <textField horizontalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pCc-IH-tYo">
-                    <rect key="frame" x="44" y="16" width="231" height="17"/>
+                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pCc-IH-tYo">
+                    <rect key="frame" x="44" y="16" width="174" height="17"/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="查看 CotEditor 2.0 的新功能" usesSingleLineMode="YES" id="8u8-rr-so0">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
