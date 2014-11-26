@@ -1303,7 +1303,7 @@ const NSInteger kNoMenuItem = -1;
     NSString *name = [[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultFontNameKey];
     CGFloat size = (CGFloat)[[NSUserDefaults standardUserDefaults] doubleForKey:CEDefaultFontSizeKey];
 
-    [self setFont:[NSFont fontWithName:name size:size]];
+    [self setFont:[NSFont fontWithName:name size:size] ? : [NSFont systemFontOfSize:size]];
     [self updateLineNumberAndAdjustScroll];
 }
 
