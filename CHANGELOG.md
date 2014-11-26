@@ -7,7 +7,7 @@ changelog
 
 ### Fixes
 
-- Fix a critical issue that the application hung if either file encoding or line eingings is shown in status bar.
+- Fix a critical issue that the application hang up if either file encoding or line eingings is shown in status bar.
 
 
 
