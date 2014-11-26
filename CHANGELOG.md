@@ -2,6 +2,15 @@
 changelog
 ==========================
 
+2.0.2
+--------------------------
+
+### Fixes
+
+- Fix a critical issue that the application hung if either file encoding or line eingings is shown in status bar.
+
+
+
 2.0.1
 --------------------------
 

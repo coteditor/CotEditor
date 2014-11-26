@@ -148,11 +148,12 @@ static NSTimeInterval incompatibleCharInterval;
     // テキストを表示
     [[self document] setStringToEditor];
     
-    [self updateFileAttributesInfo];
-    
     // setup status bar
     [[self statusBarController] setShown:[defaults boolForKey:CEDefaultShowStatusBarKey] animate:NO];
     [[self statusBarController] setShowsReadOnly:![[self document] isWritable]];
+    
+    [self updateFileAttributesInfo];
+    [self updateEncodingAndLineEndingsInfo:YES];
     
     // テキストビューへフォーカスを移動
     [[self window] makeFirstResponder:[[self editor] textView]];
@@ -258,7 +259,7 @@ static NSTimeInterval incompatibleCharInterval;
     BOOL updatesStatusBar = [[self statusBarController] isShown];
     BOOL updatesDrawer = needsUpdateDrawer ? YES : [self needsInfoDrawerUpdate];
     
-    if (!updatesStatusBar && !updatesDrawer) { return; }
+    if (!needsUpdateDrawer && (!updatesStatusBar && !updatesDrawer)) { return; }
     
     NSString *wholeString = ([[[self document] lineEndingString] length] == 2) ? [[self document] stringForSave] : [[[self editor] string] copy];
     NSString *selectedString = [[self editor] substringWithSelection] ? : @"";
@@ -397,7 +398,7 @@ static NSTimeInterval incompatibleCharInterval;
     BOOL shouldUpdateStatusBar = [[self statusBarController] isShown];
     BOOL shouldUpdateDrawer = needsUpdateDrawer ? YES : [self needsInfoDrawerUpdate];
     
-    if (!shouldUpdateStatusBar && !shouldUpdateDrawer) { return; }
+    if (!needsUpdateDrawer && !shouldUpdateStatusBar && !shouldUpdateDrawer) { return; }
     
     NSString *lineEndingsInfo = [[self document] lineEndingName];
     NSString *encodingInfo = [[self document] currentIANACharSetName];
