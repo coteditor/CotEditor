@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6250"/>
@@ -19,16 +19,13 @@
             <subviews>
                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="585">
                     <rect key="frame" x="116" y="310" width="215" height="26"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="210" id="ywH-Ua-doT"/>
-                    </constraints>
-                    <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="722">
+                    <popUpButtonCell key="cell" type="push" title="与文档设置一致" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="589" id="722">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menu"/>
                         <menu key="menu" title="OtherViews" id="587">
                             <items>
-                                <menuItem title="Black and White" id="590"/>
-                                <menuItem title="Same as document's setting" id="589"/>
+                                <menuItem title="黑白" id="590"/>
+                                <menuItem title="与文档设置一致" state="on" id="589"/>
                             </items>
                         </menu>
                     </popUpButtonCell>
@@ -38,17 +35,14 @@
                 </popUpButton>
                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="424">
                     <rect key="frame" x="116" y="248" width="215" height="26"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="210" id="04O-p7-HaW"/>
-                    </constraints>
-                    <popUpButtonCell key="cell" type="push" title="Print all" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="426" id="719">
+                    <popUpButtonCell key="cell" type="push" title="全部打印" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="426" id="719">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menu"/>
                         <menu key="menu" title="OtherViews" id="425">
                             <items>
-                                <menuItem title="Don't Print" id="428"/>
-                                <menuItem title="Same as document's setting" id="427"/>
-                                <menuItem title="Print all" state="on" id="426"/>
+                                <menuItem title="不打印" id="428"/>
+                                <menuItem title="与文档设置一致" id="427"/>
+                                <menuItem title="全部打印" state="on" id="426"/>
                             </items>
                         </menu>
                     </popUpButtonCell>
@@ -57,8 +51,8 @@
                     </connections>
                 </popUpButton>
                 <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="423">
-                    <rect key="frame" x="47" y="253" width="65" height="17"/>
-                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Invisibles:" usesSingleLineMode="YES" id="718">
+                    <rect key="frame" x="19" y="253" width="93" height="17"/>
+                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="不可见字符:" usesSingleLineMode="YES" id="718">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -66,17 +60,14 @@
                 </textField>
                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="416">
                     <rect key="frame" x="116" y="279" width="215" height="26"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="210" id="e5i-sG-u4f"/>
-                    </constraints>
-                    <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="717">
+                    <popUpButtonCell key="cell" type="push" title="与文档设置一致" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="419" id="717">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menu"/>
                         <menu key="menu" title="OtherViews" id="417">
                             <items>
-                                <menuItem title="Don't Print" id="420"/>
-                                <menuItem title="Same as document's setting" id="419"/>
-                                <menuItem title="Print" id="418"/>
+                                <menuItem title="不打印" id="420"/>
+                                <menuItem title="与文档设置一致" state="on" id="419"/>
+                                <menuItem title="打印" id="418"/>
                             </items>
                         </menu>
                     </popUpButtonCell>
@@ -86,7 +77,7 @@
                 </popUpButton>
                 <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="415">
                     <rect key="frame" x="18" y="284" width="94" height="17"/>
-                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Line Numbers:" usesSingleLineMode="YES" id="716">
+                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="行号:" usesSingleLineMode="YES" id="716">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -94,23 +85,20 @@
                 </textField>
                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="198">
                     <rect key="frame" x="116" y="187" width="215" height="26"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="210" id="EKF-Mv-PUx"/>
-                    </constraints>
-                    <popUpButtonCell key="cell" type="push" title="Document Name" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="2" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="202" id="704">
+                    <popUpButtonCell key="cell" type="push" title="页码" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="5" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="200" id="704">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menu"/>
                         <menu key="menu" title="OtherViews" id="199">
                             <items>
-                                <menuItem title="None" id="393"/>
+                                <menuItem title="无" id="393"/>
                                 <menuItem isSeparatorItem="YES" id="394">
                                     <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                 </menuItem>
-                                <menuItem title="Syntax Name" tag="1" id="UJ5-ki-qHL"/>
-                                <menuItem title="Document Name" state="on" tag="2" id="202"/>
-                                <menuItem title="File Path" tag="3" id="203"/>
-                                <menuItem title="Print Date" tag="4" id="206"/>
-                                <menuItem title="Page Number" tag="5" id="200"/>
+                                <menuItem title="语法名" tag="1" id="UJ5-ki-qHL"/>
+                                <menuItem title="文档名" tag="2" id="202"/>
+                                <menuItem title="文件路径" tag="3" id="203"/>
+                                <menuItem title="打印日期" tag="4" id="206"/>
+                                <menuItem title="页码" state="on" tag="5" id="200"/>
                             </items>
                         </menu>
                     </popUpButtonCell>
@@ -121,7 +109,10 @@
                 </popUpButton>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="216">
                     <rect key="frame" x="18" y="135" width="289" height="18"/>
-                    <buttonCell key="cell" type="check" title="Print separator line at the bottom of header" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="705">
+                    <constraints>
+                        <constraint firstAttribute="width" constant="285" id="HnC-kU-Zi5"/>
+                    </constraints>
+                    <buttonCell key="cell" type="check" title="在页眉下方打印分隔线" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="705">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
@@ -131,7 +122,7 @@
                 </button>
                 <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="256">
                     <rect key="frame" x="51" y="192" width="61" height="17"/>
-                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="First line:" usesSingleLineMode="YES" id="706">
+                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="第一行:" usesSingleLineMode="YES" id="706">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -139,7 +130,10 @@
                 </textField>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="303">
                     <rect key="frame" x="18" y="215" width="98" height="18"/>
-                    <buttonCell key="cell" type="check" title="Print header" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="708">
+                    <constraints>
+                        <constraint firstAttribute="width" constant="94" id="nSd-xV-KAW"/>
+                    </constraints>
+                    <buttonCell key="cell" type="check" title="打印页眉" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="708">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
@@ -149,20 +143,20 @@
                 </button>
                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="305">
                     <rect key="frame" x="116" y="156" width="215" height="26"/>
-                    <popUpButtonCell key="cell" type="push" title="Print Date" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="4" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="311" id="709">
+                    <popUpButtonCell key="cell" type="push" title="文件路径" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="3" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="307" id="709">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menu"/>
                         <menu key="menu" title="OtherViews" id="306">
                             <items>
-                                <menuItem title="None" id="395"/>
+                                <menuItem title="无" id="395"/>
                                 <menuItem isSeparatorItem="YES" tag="-1" id="396">
                                     <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                 </menuItem>
-                                <menuItem title="Syntax Name" tag="1" id="6RR-gp-tKJ"/>
-                                <menuItem title="Document Name" tag="2" id="312"/>
-                                <menuItem title="File Path" tag="3" id="307"/>
-                                <menuItem title="Print Date" state="on" tag="4" id="311"/>
-                                <menuItem title="Page Number" tag="5" id="310"/>
+                                <menuItem title="语法名" tag="1" id="6RR-gp-tKJ"/>
+                                <menuItem title="文档名" tag="2" id="312"/>
+                                <menuItem title="文件路径" state="on" tag="3" id="307"/>
+                                <menuItem title="打印日期" tag="4" id="311"/>
+                                <menuItem title="页码" tag="5" id="310"/>
                             </items>
                         </menu>
                     </popUpButtonCell>
@@ -173,7 +167,7 @@
                 </popUpButton>
                 <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="257">
                     <rect key="frame" x="31" y="161" width="81" height="17"/>
-                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Second line:" usesSingleLineMode="YES" id="707">
+                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="第二行:" usesSingleLineMode="YES" id="707">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -181,6 +175,9 @@
                 </textField>
                 <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ErI-yf-OgH">
                     <rect key="frame" x="334" y="188" width="80" height="24"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="76" id="oSX-sU-iA3"/>
+                    </constraints>
                     <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="njJ-Ab-dUQ">
                         <font key="font" metaFont="system"/>
                         <segments>
@@ -249,7 +246,10 @@
                 </segmentedControl>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="276">
                     <rect key="frame" x="18" y="16" width="259" height="18"/>
-                    <buttonCell key="cell" type="check" title="Print separator line at the top of footer" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="710">
+                    <constraints>
+                        <constraint firstAttribute="width" constant="255" id="hJG-8K-fWC"/>
+                    </constraints>
+                    <buttonCell key="cell" type="check" title="在页脚上方打印分隔线" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="710">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
@@ -259,7 +259,7 @@
                 </button>
                 <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="296">
                     <rect key="frame" x="31" y="42" width="81" height="17"/>
-                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Second line:" usesSingleLineMode="YES" id="712">
+                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="第二行:" usesSingleLineMode="YES" id="712">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -267,23 +267,20 @@
                 </textField>
                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="321">
                     <rect key="frame" x="116" y="37" width="215" height="26"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="210" id="rIT-s2-gwW"/>
-                    </constraints>
-                    <popUpButtonCell key="cell" type="push" title="None" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="399" id="715">
+                    <popUpButtonCell key="cell" type="push" title="无" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="399" id="715">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menu"/>
                         <menu key="menu" title="OtherViews" id="322">
                             <items>
-                                <menuItem title="None" state="on" id="399"/>
+                                <menuItem title="无" state="on" id="399"/>
                                 <menuItem isSeparatorItem="YES" id="400">
                                     <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                 </menuItem>
-                                <menuItem title="Syntax Name" tag="1" id="i9p-3e-KNC"/>
-                                <menuItem title="Document Name" tag="2" id="328"/>
-                                <menuItem title="File Path" tag="3" id="323"/>
-                                <menuItem title="Print Date" tag="4" id="327"/>
-                                <menuItem title="Page Number" tag="5" id="326"/>
+                                <menuItem title="语法名" tag="1" id="i9p-3e-KNC"/>
+                                <menuItem title="文档名" tag="2" id="328"/>
+                                <menuItem title="文件路径" tag="3" id="323"/>
+                                <menuItem title="打印日期" tag="4" id="327"/>
+                                <menuItem title="页码" tag="5" id="326"/>
                             </items>
                         </menu>
                     </popUpButtonCell>
@@ -294,7 +291,7 @@
                 </popUpButton>
                 <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="295">
                     <rect key="frame" x="51" y="73" width="61" height="17"/>
-                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="First line:" usesSingleLineMode="YES" id="711">
+                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="第一行:" usesSingleLineMode="YES" id="711">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -302,7 +299,10 @@
                 </textField>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="304">
                     <rect key="frame" x="18" y="96" width="91" height="18"/>
-                    <buttonCell key="cell" type="check" title="Print footer" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="713">
+                    <constraints>
+                        <constraint firstAttribute="width" constant="87" id="2a3-c7-v0T"/>
+                    </constraints>
+                    <buttonCell key="cell" type="check" title="打印页脚" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="713">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
@@ -312,23 +312,20 @@
                 </button>
                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="313">
                     <rect key="frame" x="116" y="68" width="215" height="26"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="210" id="abT-dP-x7p"/>
-                    </constraints>
-                    <popUpButtonCell key="cell" type="push" title="Page Number" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="5" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="318" id="714">
+                    <popUpButtonCell key="cell" type="push" title="页码" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="5" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="318" id="714">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menu"/>
                         <menu key="menu" title="OtherViews" id="314">
                             <items>
-                                <menuItem title="None" id="397"/>
+                                <menuItem title="无" id="397"/>
                                 <menuItem isSeparatorItem="YES" id="398">
                                     <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                 </menuItem>
-                                <menuItem title="Syntax Name" tag="1" id="Ro5-rK-S7p"/>
-                                <menuItem title="Document Name" tag="2" id="320"/>
-                                <menuItem title="File Path" tag="3" id="315"/>
-                                <menuItem title="Print Date" tag="4" id="319"/>
-                                <menuItem title="Page Number" state="on" tag="5" id="318"/>
+                                <menuItem title="语法名" tag="1" id="Ro5-rK-S7p"/>
+                                <menuItem title="文档名" tag="2" id="320"/>
+                                <menuItem title="文件路径" tag="3" id="315"/>
+                                <menuItem title="打印日期" tag="4" id="319"/>
+                                <menuItem title="页码" state="on" tag="5" id="318"/>
                             </items>
                         </menu>
                     </popUpButtonCell>
@@ -339,7 +336,10 @@
                 </popUpButton>
                 <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6jK-7i-UaO">
                     <rect key="frame" x="70" y="316" width="42" height="17"/>
-                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Color:" usesSingleLineMode="YES" id="eXI-55-yQO">
+                    <constraints>
+                        <constraint firstAttribute="width" constant="38" id="bjT-K8-OwX"/>
+                    </constraints>
+                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="颜色:" usesSingleLineMode="YES" id="eXI-55-yQO">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -347,53 +347,63 @@
                 </textField>
             </subviews>
             <constraints>
-                <constraint firstItem="423" firstAttribute="trailing" secondItem="257" secondAttribute="trailing" id="74O-xm-e3g"/>
-                <constraint firstItem="8wl-aM-d8K" firstAttribute="centerY" secondItem="257" secondAttribute="centerY" id="8r2-bi-5x5"/>
-                <constraint firstItem="303" firstAttribute="leading" secondItem="196" secondAttribute="leading" constant="20" symbolic="YES" id="9mq-sZ-rxb"/>
-                <constraint firstItem="8wl-aM-d8K" firstAttribute="leading" secondItem="305" secondAttribute="trailing" constant="8" symbolic="YES" id="Bgj-U2-cfW"/>
-                <constraint firstItem="585" firstAttribute="top" secondItem="196" secondAttribute="top" constant="16" id="Dn7-Pa-zbq"/>
-                <constraint firstItem="256" firstAttribute="centerY" secondItem="ErI-yf-OgH" secondAttribute="centerY" id="EhF-cG-9vr"/>
-                <constraint firstItem="216" firstAttribute="leading" secondItem="196" secondAttribute="leading" constant="20" symbolic="YES" id="FIq-CY-Qq3"/>
-                <constraint firstItem="424" firstAttribute="centerY" secondItem="423" secondAttribute="centerY" id="Gjg-se-imD"/>
-                <constraint firstItem="8wl-aM-d8K" firstAttribute="centerY" secondItem="305" secondAttribute="centerY" id="H1z-kp-hhI"/>
-                <constraint firstItem="321" firstAttribute="leading" secondItem="296" secondAttribute="trailing" constant="8" symbolic="YES" id="Kl0-Q7-Dgr"/>
-                <constraint firstItem="313" firstAttribute="centerY" secondItem="ff5-dQ-geo" secondAttribute="centerY" id="M3y-5l-LG0"/>
-                <constraint firstItem="415" firstAttribute="leading" secondItem="196" secondAttribute="leading" constant="20" symbolic="YES" id="MKj-9x-PWP"/>
-                <constraint firstItem="585" firstAttribute="baseline" secondItem="6jK-7i-UaO" secondAttribute="baseline" id="MLb-XP-yQc"/>
-                <constraint firstItem="ErI-yf-OgH" firstAttribute="leading" secondItem="198" secondAttribute="trailing" constant="8" symbolic="YES" id="NCN-Zb-A0L"/>
-                <constraint firstItem="305" firstAttribute="top" secondItem="198" secondAttribute="bottom" constant="10" symbolic="YES" id="PRA-Wf-g9H"/>
-                <constraint firstItem="416" firstAttribute="leading" secondItem="415" secondAttribute="trailing" constant="8" symbolic="YES" id="QPO-c2-Ndp"/>
-                <constraint firstItem="256" firstAttribute="top" secondItem="303" secondAttribute="bottom" constant="8" symbolic="YES" id="Ss5-Pi-jim"/>
-                <constraint firstItem="313" firstAttribute="centerY" secondItem="295" secondAttribute="centerY" id="THZ-8C-rvC"/>
-                <constraint firstItem="305" firstAttribute="width" secondItem="198" secondAttribute="width" id="Tbu-Bb-8SV"/>
-                <constraint firstItem="305" firstAttribute="width" secondItem="313" secondAttribute="width" id="XsD-IU-YaB"/>
-                <constraint firstItem="276" firstAttribute="top" secondItem="321" secondAttribute="bottom" constant="8" id="Y1m-L2-Z4O"/>
-                <constraint firstItem="304" firstAttribute="top" secondItem="216" secondAttribute="bottom" constant="25" id="af4-r2-1Vb"/>
-                <constraint firstItem="256" firstAttribute="centerY" secondItem="198" secondAttribute="centerY" id="bC2-7Q-elr"/>
-                <constraint firstItem="295" firstAttribute="top" secondItem="304" secondAttribute="bottom" constant="8" symbolic="YES" id="cAH-jN-Wut"/>
-                <constraint firstItem="423" firstAttribute="trailing" secondItem="256" secondAttribute="trailing" id="chF-nn-ONk"/>
-                <constraint firstItem="304" firstAttribute="leading" secondItem="196" secondAttribute="leading" constant="20" symbolic="YES" id="czP-K5-gp3"/>
-                <constraint firstItem="423" firstAttribute="trailing" secondItem="296" secondAttribute="trailing" id="dhp-97-cJj"/>
-                <constraint firstItem="276" firstAttribute="leading" secondItem="196" secondAttribute="leading" constant="20" symbolic="YES" id="fD4-tE-804"/>
-                <constraint firstItem="321" firstAttribute="centerY" secondItem="296" secondAttribute="centerY" id="gR7-c1-6QC"/>
-                <constraint firstItem="ff5-dQ-geo" firstAttribute="leading" secondItem="313" secondAttribute="trailing" constant="8" symbolic="YES" id="iF7-9t-xwc"/>
-                <constraint firstItem="321" firstAttribute="top" secondItem="313" secondAttribute="bottom" constant="10" symbolic="YES" id="jPv-78-GLp"/>
-                <constraint firstItem="216" firstAttribute="top" secondItem="305" secondAttribute="bottom" constant="8" id="kiW-JN-2di"/>
-                <constraint firstItem="585" firstAttribute="leading" secondItem="6jK-7i-UaO" secondAttribute="trailing" constant="8" symbolic="YES" id="kvb-Xw-XM2"/>
-                <constraint firstItem="305" firstAttribute="width" secondItem="321" secondAttribute="width" id="lAU-Bw-y2p"/>
-                <constraint firstItem="416" firstAttribute="centerY" secondItem="415" secondAttribute="centerY" id="lib-zJ-PEP"/>
-                <constraint firstItem="424" firstAttribute="top" secondItem="416" secondAttribute="bottom" constant="10" symbolic="YES" id="lt4-8d-Sh6"/>
-                <constraint firstItem="4T8-80-2uO" firstAttribute="leading" secondItem="321" secondAttribute="trailing" constant="8" symbolic="YES" id="npU-6v-EAd"/>
-                <constraint firstItem="305" firstAttribute="leading" secondItem="257" secondAttribute="trailing" constant="8" symbolic="YES" id="paP-eP-SpA"/>
-                <constraint firstItem="423" firstAttribute="trailing" secondItem="295" secondAttribute="trailing" id="qHL-sU-OX9"/>
-                <constraint firstItem="416" firstAttribute="top" secondItem="585" secondAttribute="bottom" constant="10" symbolic="YES" id="r8v-Hv-s0z"/>
-                <constraint firstItem="424" firstAttribute="leading" secondItem="423" secondAttribute="trailing" constant="8" symbolic="YES" id="s6G-Mv-FJW"/>
-                <constraint firstItem="321" firstAttribute="centerY" secondItem="4T8-80-2uO" secondAttribute="centerY" id="uES-WR-JHg"/>
-                <constraint firstItem="6jK-7i-UaO" firstAttribute="trailing" secondItem="423" secondAttribute="trailing" id="uab-q8-FcD"/>
-                <constraint firstItem="198" firstAttribute="leading" secondItem="256" secondAttribute="trailing" constant="8" symbolic="YES" id="vur-ym-l9z"/>
-                <constraint firstItem="423" firstAttribute="trailing" secondItem="415" secondAttribute="trailing" id="w6f-lo-69O"/>
-                <constraint firstItem="303" firstAttribute="top" secondItem="424" secondAttribute="bottom" constant="20" id="xcv-gj-UGx"/>
-                <constraint firstItem="313" firstAttribute="leading" secondItem="295" secondAttribute="trailing" constant="8" symbolic="YES" id="ypW-y8-87C"/>
+                <constraint firstItem="416" firstAttribute="leading" secondItem="424" secondAttribute="leading" id="00F-zH-2rf"/>
+                <constraint firstItem="216" firstAttribute="top" secondItem="305" secondAttribute="bottom" constant="8" id="0DF-fT-I0Q"/>
+                <constraint firstItem="415" firstAttribute="centerY" secondItem="416" secondAttribute="centerY" id="2OW-Uk-Zg9"/>
+                <constraint firstItem="303" firstAttribute="top" secondItem="423" secondAttribute="bottom" constant="22" id="2hv-EZ-fVj"/>
+                <constraint firstItem="ErI-yf-OgH" firstAttribute="baseline" secondItem="256" secondAttribute="baseline" id="3dx-44-AwH"/>
+                <constraint firstItem="198" firstAttribute="leading" secondItem="305" secondAttribute="leading" id="454-t9-3tl"/>
+                <constraint firstItem="424" firstAttribute="leading" secondItem="423" secondAttribute="trailing" constant="8" symbolic="YES" id="6lW-5k-5fZ"/>
+                <constraint firstItem="198" firstAttribute="trailing" secondItem="424" secondAttribute="trailing" id="8GQ-jQ-wFo"/>
+                <constraint firstItem="6jK-7i-UaO" firstAttribute="leading" secondItem="196" secondAttribute="leading" constant="72" id="927-Jj-b6H"/>
+                <constraint firstItem="424" firstAttribute="top" secondItem="416" secondAttribute="bottom" constant="10" symbolic="YES" id="9HK-nM-XDe"/>
+                <constraint firstItem="8wl-aM-d8K" firstAttribute="leading" secondItem="ff5-dQ-geo" secondAttribute="leading" id="9Zz-QP-zhL"/>
+                <constraint firstItem="305" firstAttribute="leading" secondItem="313" secondAttribute="leading" id="AP3-oF-b0T"/>
+                <constraint firstItem="ff5-dQ-geo" firstAttribute="leading" secondItem="313" secondAttribute="trailing" constant="8" symbolic="YES" id="Aac-2r-jrM"/>
+                <constraint firstItem="256" firstAttribute="leading" secondItem="295" secondAttribute="leading" id="Ah5-xU-uwv"/>
+                <constraint firstItem="216" firstAttribute="leading" secondItem="303" secondAttribute="leading" id="C8o-ZL-wbE"/>
+                <constraint firstItem="424" firstAttribute="trailing" secondItem="416" secondAttribute="trailing" id="E1j-DF-yKZ"/>
+                <constraint firstItem="257" firstAttribute="leading" secondItem="196" secondAttribute="leading" constant="33" id="GVX-nC-rXh"/>
+                <constraint firstItem="415" firstAttribute="centerX" secondItem="423" secondAttribute="centerX" id="GYQ-Om-XQs"/>
+                <constraint firstItem="585" firstAttribute="top" secondItem="196" secondAttribute="top" constant="16" id="Gzl-Ie-FX7"/>
+                <constraint firstItem="416" firstAttribute="leading" secondItem="585" secondAttribute="leading" id="LWV-YZ-fMO"/>
+                <constraint firstItem="585" firstAttribute="trailing" secondItem="416" secondAttribute="trailing" id="Lez-bM-I69"/>
+                <constraint firstItem="296" firstAttribute="baseline" secondItem="4T8-80-2uO" secondAttribute="baseline" id="Lgj-Hw-k8x"/>
+                <constraint firstItem="585" firstAttribute="baseline" secondItem="6jK-7i-UaO" secondAttribute="baseline" id="Oht-oB-w48"/>
+                <constraint firstItem="276" firstAttribute="top" secondItem="321" secondAttribute="bottom" constant="8" id="OnV-By-oHa"/>
+                <constraint firstItem="424" firstAttribute="leading" secondItem="198" secondAttribute="leading" id="Rjb-LB-Axo"/>
+                <constraint firstItem="313" firstAttribute="top" secondItem="ff5-dQ-geo" secondAttribute="top" id="StP-qI-52B"/>
+                <constraint firstItem="415" firstAttribute="leading" secondItem="196" secondAttribute="leading" constant="20" symbolic="YES" id="T6I-ej-yN4"/>
+                <constraint firstItem="296" firstAttribute="leading" secondItem="257" secondAttribute="leading" id="Tlv-5E-4LO"/>
+                <constraint firstItem="ErI-yf-OgH" firstAttribute="leading" secondItem="8wl-aM-d8K" secondAttribute="leading" id="VrW-JS-Egg"/>
+                <constraint firstItem="416" firstAttribute="leading" secondItem="415" secondAttribute="trailing" constant="8" symbolic="YES" id="XI7-rL-THR"/>
+                <constraint firstItem="305" firstAttribute="top" secondItem="8wl-aM-d8K" secondAttribute="top" id="XeM-J2-NNm"/>
+                <constraint firstItem="304" firstAttribute="leading" secondItem="216" secondAttribute="leading" id="Y5O-7l-IOB"/>
+                <constraint firstItem="256" firstAttribute="leading" secondItem="196" secondAttribute="leading" constant="53" id="ZDm-j7-6zL"/>
+                <constraint firstItem="ErI-yf-OgH" firstAttribute="leading" secondItem="198" secondAttribute="trailing" constant="8" symbolic="YES" id="Zy3-co-KL9"/>
+                <constraint firstItem="ErI-yf-OgH" firstAttribute="top" secondItem="198" secondAttribute="top" id="acH-63-mc7"/>
+                <constraint firstItem="198" firstAttribute="leading" secondItem="256" secondAttribute="trailing" constant="8" symbolic="YES" id="bwf-VY-8zv"/>
+                <constraint firstItem="8wl-aM-d8K" firstAttribute="baseline" secondItem="257" secondAttribute="baseline" id="cek-07-7qs"/>
+                <constraint firstItem="321" firstAttribute="top" secondItem="313" secondAttribute="bottom" constant="10" symbolic="YES" id="dhW-o3-f5k"/>
+                <constraint firstItem="416" firstAttribute="top" secondItem="585" secondAttribute="bottom" constant="10" symbolic="YES" id="dwg-3o-eJH"/>
+                <constraint firstItem="304" firstAttribute="top" secondItem="216" secondAttribute="bottom" constant="25" id="fx1-cS-a6Q"/>
+                <constraint firstItem="304" firstAttribute="leading" secondItem="276" secondAttribute="leading" id="gYr-mu-w2K"/>
+                <constraint firstItem="305" firstAttribute="top" secondItem="198" secondAttribute="bottom" constant="10" symbolic="YES" id="hHO-w9-R91"/>
+                <constraint firstAttribute="trailing" secondItem="ErI-yf-OgH" secondAttribute="trailing" constant="18" id="ivE-bC-AWx"/>
+                <constraint firstItem="295" firstAttribute="top" secondItem="304" secondAttribute="bottom" constant="8" symbolic="YES" id="je8-i7-6Zc"/>
+                <constraint firstItem="4T8-80-2uO" firstAttribute="leading" secondItem="ff5-dQ-geo" secondAttribute="leading" id="nCh-zo-zgY"/>
+                <constraint firstItem="585" firstAttribute="leading" secondItem="6jK-7i-UaO" secondAttribute="trailing" constant="8" symbolic="YES" id="nYT-Ch-i0J"/>
+                <constraint firstItem="321" firstAttribute="leading" secondItem="313" secondAttribute="leading" id="nb9-ku-Bj8"/>
+                <constraint firstItem="313" firstAttribute="leading" secondItem="295" secondAttribute="trailing" constant="8" symbolic="YES" id="rbx-7l-Mbl"/>
+                <constraint firstItem="321" firstAttribute="leading" secondItem="296" secondAttribute="trailing" constant="8" symbolic="YES" id="shU-xZ-fdC"/>
+                <constraint firstItem="4T8-80-2uO" firstAttribute="leading" secondItem="321" secondAttribute="trailing" constant="8" symbolic="YES" id="sqS-ae-Uiq"/>
+                <constraint firstItem="321" firstAttribute="top" secondItem="4T8-80-2uO" secondAttribute="top" id="uP1-wZ-ukl"/>
+                <constraint firstItem="8wl-aM-d8K" firstAttribute="leading" secondItem="305" secondAttribute="trailing" constant="8" symbolic="YES" id="uPB-7n-osr"/>
+                <constraint firstItem="423" firstAttribute="centerY" secondItem="424" secondAttribute="centerY" id="vL2-tf-oFH"/>
+                <constraint firstItem="305" firstAttribute="leading" secondItem="257" secondAttribute="trailing" constant="8" symbolic="YES" id="w6X-Gg-giJ"/>
+                <constraint firstItem="303" firstAttribute="leading" secondItem="415" secondAttribute="leading" id="wcm-y2-1sx"/>
+                <constraint firstItem="ff5-dQ-geo" firstAttribute="baseline" secondItem="295" secondAttribute="baseline" id="xxi-k2-03F"/>
+                <constraint firstItem="256" firstAttribute="top" secondItem="303" secondAttribute="bottom" constant="8" symbolic="YES" id="zYq-5O-UJf"/>
             </constraints>
             <point key="canvasLocation" x="138" y="219"/>
         </customView>
