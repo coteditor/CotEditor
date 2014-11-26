@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6221" systemVersion="13F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6221"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6250"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
@@ -27,7 +27,7 @@
                     <constraints>
                         <constraint firstAttribute="width" constant="21" id="YCW-yn-jru"/>
                     </constraints>
-                    <buttonCell key="cell" type="smallSquare" title="上一个提纲项目" bezelStyle="smallSquare" image="UpArrowTemplate" imagePosition="overlaps" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="w3h-Kh-7X8">
+                    <buttonCell key="cell" type="smallSquare" title="上一个提纲项目" bezelStyle="smallSquare" image="UpArrowTemplate" imagePosition="only" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="w3h-Kh-7X8">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
@@ -40,7 +40,7 @@
                     <constraints>
                         <constraint firstAttribute="width" constant="21" id="1PN-qX-wNW"/>
                     </constraints>
-                    <buttonCell key="cell" type="smallSquare" title="下一个提纲项目" bezelStyle="smallSquare" image="DownArrowTemplate" imagePosition="overlaps" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ptY-uK-2h3">
+                    <buttonCell key="cell" type="smallSquare" title="下一个提纲项目" bezelStyle="smallSquare" image="DownArrowTemplate" imagePosition="only" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ptY-uK-2h3">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
@@ -53,7 +53,7 @@
                     <constraints>
                         <constraint firstAttribute="width" constant="17" id="e7y-hz-Kt5"/>
                     </constraints>
-                    <buttonCell key="cell" type="smallSquare" title="分栏视图" bezelStyle="smallSquare" image="OpenSplitTemplate" imagePosition="overlaps" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyUpOrDown" inset="2" id="Snx-y4-0J6">
+                    <buttonCell key="cell" type="smallSquare" title="分栏视图" bezelStyle="smallSquare" image="OpenSplitTemplate" imagePosition="only" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyUpOrDown" inset="2" id="Snx-y4-0J6">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
@@ -66,7 +66,7 @@
                     <constraints>
                         <constraint firstAttribute="width" constant="17" id="5Tr-XS-blf"/>
                     </constraints>
-                    <buttonCell key="cell" type="smallSquare" title="关闭分栏视图" bezelStyle="smallSquare" image="CloseSplitTemplate" imagePosition="overlaps" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyUpOrDown" inset="2" id="naK-la-7Mj">
+                    <buttonCell key="cell" type="smallSquare" title="关闭分栏视图" bezelStyle="smallSquare" image="CloseSplitTemplate" imagePosition="only" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyUpOrDown" inset="2" id="naK-la-7Mj">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
