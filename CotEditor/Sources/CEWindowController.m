@@ -398,7 +398,7 @@ static NSTimeInterval incompatibleCharInterval;
     BOOL shouldUpdateStatusBar = [[self statusBarController] isShown];
     BOOL shouldUpdateDrawer = needsUpdateDrawer ? YES : [self needsInfoDrawerUpdate];
     
-    if (!needsUpdateDrawer && !shouldUpdateStatusBar && !shouldUpdateDrawer) { return; }
+    if (!shouldUpdateStatusBar && !shouldUpdateDrawer) { return; }
     
     NSString *lineEndingsInfo = [[self document] lineEndingName];
     NSString *encodingInfo = [[self document] currentIANACharSetName];
