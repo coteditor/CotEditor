@@ -5,6 +5,9 @@ changelog
 2.0.3
 --------------------------
 
+### Fixes
+
+- Fix a possible hang-up when no text font is found.
 
 
 

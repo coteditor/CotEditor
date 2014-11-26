@@ -103,8 +103,11 @@ const NSInteger kNoMenuItem = -1;
         
         _tabWidth = [defaults integerForKey:CEDefaultTabWidthKey];
         
-        NSFont *font = [NSFont fontWithName:[defaults stringForKey:CEDefaultFontNameKey]
-                                       size:(CGFloat)[defaults doubleForKey:CEDefaultFontSizeKey]];
+        CGFloat fontSize = (CGFloat)[defaults doubleForKey:CEDefaultFontSizeKey];
+        NSFont *font = [NSFont fontWithName:[defaults stringForKey:CEDefaultFontNameKey] size:fontSize];
+        if (!font) {
+            font = [NSFont systemFontOfSize:fontSize];
+        }
 
         NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
         for (NSTextTab *textTabToBeRemoved in [paragraphStyle tabStops]) {
