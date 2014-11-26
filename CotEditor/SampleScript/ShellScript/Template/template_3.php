@@ -1,5 +1,10 @@
 #! /usr/bin/php -q
 <?php
+#
+# Sample PHP Script for CotEditor
+#
+# Transform the half-width alphabet in the selection to full-width.
+#
 # %%%{CotEditorXInput=Selection}%%%
 # %%%{CotEditorXOutput=ReplaceSelection}%%%
 

@@ -190,6 +190,8 @@
     [self stopUpdateOutlineMenuTimer];
     [[NSNotificationCenter defaultCenter] removeObserver:[self lineNumberView]];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
+    [_textStorage removeLayoutManager:[_textView layoutManager]];
     _textView = nil;
 }
 

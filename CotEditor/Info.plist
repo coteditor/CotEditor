@@ -52,6 +52,22 @@
 		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
+				<string>bib</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>BibTeXIcon</string>
+			<key>CFBundleTypeName</key>
+			<string>BibTeX</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSTypeIsPackage</key>
+			<integer>0</integer>
+			<key>NSDocumentClass</key>
+			<string>CEDocument</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
 				<string>conf</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
@@ -542,8 +558,6 @@
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>rb</string>
-				<string>erb</string>
-				<string>rhtml</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
 			<string>RubyIcon</string>
@@ -922,11 +936,11 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>2.0.1 dev</string>
+	<string>2.0.2</string>
 	<key>CFBundleSignature</key>
 	<string>cEd1</string>
 	<key>CFBundleVersion</key>
-	<string>2.0.1-alpha</string>
+	<string>2.0.2</string>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.productivity</string>
 	<key>NSAppleScriptEnabled</key>

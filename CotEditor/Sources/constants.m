@@ -66,7 +66,10 @@ NSString *const kHelpAnchors[] = {
     @"pref_keybindings",
     @"pref_print",
     @"whats_new",
-    @"specification_changes"
+    @"specification_changes",
+    @"about_script_name",
+    @"about_applescript",
+    @"about_unixscript"
 };
 
 #pragma mark Notifications
