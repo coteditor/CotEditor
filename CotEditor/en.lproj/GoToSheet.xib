@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6250"/>
@@ -26,12 +26,12 @@
                         <constraints>
                             <constraint firstAttribute="width" constant="96" id="3zu-tW-wMH"/>
                         </constraints>
-                        <popUpButtonCell key="cell" type="push" title="Line" bezelStyle="rounded" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="AJY-it-0zy" id="Jaf-xK-LUw">
+                        <popUpButtonCell key="cell" type="push" bezelStyle="rounded" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="Jaf-xK-LUw">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="menu"/>
                             <menu key="menu" title="OtherViews" id="c9a-BM-WZG">
                                 <items>
-                                    <menuItem title="Line" state="on" id="AJY-it-0zy"/>
+                                    <menuItem title="Line" id="AJY-it-0zy"/>
                                     <menuItem title="Character" tag="1" id="8lf-5Q-9KX"/>
                                 </items>
                             </menu>
@@ -51,7 +51,12 @@
                             </allowedInputSourceLocales>
                         </textFieldCell>
                         <connections>
-                            <binding destination="-2" name="value" keyPath="location" id="w10-Vf-ZhK"/>
+                            <binding destination="-2" name="value" keyPath="location" id="yWi-Q8-l5p">
+                                <dictionary key="options">
+                                    <bool key="NSContinuouslyUpdatesValue" value="YES"/>
+                                    <bool key="NSValidatesImmediately" value="YES"/>
+                                </dictionary>
+                            </binding>
                         </connections>
                     </textField>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Aef-Xm-gkb">

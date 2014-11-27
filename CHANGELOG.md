@@ -5,7 +5,6 @@ changelog
 2.0.3
 --------------------------
 
-
 ### Additions/Changes
 
 - Disable rech text in find panel.
@@ -14,6 +13,7 @@ changelog
 ### Fixes
 
 - Fix a possible hang-up when no text font is found.
+- “Go” button in “Go To” sheet didn't work by clicking.
 
 
 
