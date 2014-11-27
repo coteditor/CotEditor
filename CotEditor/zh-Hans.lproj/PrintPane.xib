@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6250"/>
@@ -30,8 +30,8 @@
                     </connections>
                 </button>
                 <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1356">
-                    <rect key="frame" x="92" y="357" width="42" height="17"/>
-                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Color:" usesSingleLineMode="YES" id="3388">
+                    <rect key="frame" x="99" y="357" width="35" height="17"/>
+                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="颜色:" usesSingleLineMode="YES" id="3388">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -43,15 +43,15 @@
                         <constraint firstAttribute="width" constant="220" id="76s-Ny-Xgv"/>
                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="KIj-uM-yBR"/>
                     </constraints>
-                    <popUpButtonCell key="cell" type="push" title="Black and White" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="1353" id="3387">
+                    <popUpButtonCell key="cell" type="push" title="与文档设置一致" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="1354" id="3387">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menu"/>
                         <menu key="menu" title="OtherViews" id="1352">
                             <items>
-                                <menuItem title="Black and White" state="on" id="1353">
+                                <menuItem title="黑白" id="1353">
                                     <attributedString key="attributedTitle"/>
                                 </menuItem>
-                                <menuItem title="Same as document's setting" id="1354"/>
+                                <menuItem title="与文档设置一致" state="on" id="1354"/>
                             </items>
                         </menu>
                     </popUpButtonCell>
@@ -62,14 +62,14 @@
                 </popUpButton>
                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="950">
                     <rect key="frame" x="138" y="290" width="225" height="26"/>
-                    <popUpButtonCell key="cell" type="push" title="Print All" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="954" id="3383">
+                    <popUpButtonCell key="cell" type="push" title="全部打印" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="954" id="3383">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menu"/>
                         <menu key="menu" title="OtherViews" id="951">
                             <items>
-                                <menuItem title="Don't Print" id="952"/>
-                                <menuItem title="Same as document's setting" id="953"/>
-                                <menuItem title="Print All" state="on" id="954"/>
+                                <menuItem title="不打印" id="952"/>
+                                <menuItem title="与文档设置一致" id="953"/>
+                                <menuItem title="全部打印" state="on" id="954"/>
                             </items>
                         </menu>
                     </popUpButtonCell>
@@ -78,8 +78,8 @@
                     </connections>
                 </popUpButton>
                 <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="949">
-                    <rect key="frame" x="69" y="295" width="65" height="17"/>
-                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Invisibles:" usesSingleLineMode="YES" id="3382">
+                    <rect key="frame" x="60" y="295" width="74" height="17"/>
+                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="不可见字符:" usesSingleLineMode="YES" id="3382">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -87,14 +87,14 @@
                 </textField>
                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="944">
                     <rect key="frame" x="138" y="321" width="225" height="26"/>
-                    <popUpButtonCell key="cell" type="push" title="Don't Print" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="946" id="3381">
+                    <popUpButtonCell key="cell" type="push" title="打印" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="948" id="3381">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menu"/>
                         <menu key="menu" title="OtherViews" id="945">
                             <items>
-                                <menuItem title="Don't Print" state="on" id="946"/>
-                                <menuItem title="Same as document's setting" id="947"/>
-                                <menuItem title="Print" id="948"/>
+                                <menuItem title="不打印" id="946"/>
+                                <menuItem title="与文档设置一致" id="947"/>
+                                <menuItem title="打印" state="on" id="948"/>
                             </items>
                         </menu>
                     </popUpButtonCell>
@@ -103,8 +103,8 @@
                     </connections>
                 </popUpButton>
                 <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="943">
-                    <rect key="frame" x="42" y="326" width="92" height="17"/>
-                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Line numbers:" usesSingleLineMode="YES" id="3380">
+                    <rect key="frame" x="99" y="326" width="35" height="17"/>
+                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="行号:" usesSingleLineMode="YES" id="3380">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -115,7 +115,7 @@
                     <constraints>
                         <constraint firstAttribute="width" constant="78" id="7Gp-iZ-mz7"/>
                     </constraints>
-                    <buttonCell key="cell" type="push" title="Select…" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="3385">
+                    <buttonCell key="cell" type="push" title="选择…" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="3385">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
@@ -135,7 +135,7 @@
                     </buttonCell>
                     <cells>
                         <column>
-                            <buttonCell type="radio" title="Same as document's font" imagePosition="left" alignment="left" state="on" inset="2" id="1012">
+                            <buttonCell type="radio" title="与文档字体一致" imagePosition="left" alignment="left" state="on" inset="2" id="1012">
                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                 <font key="font" metaFont="system"/>
                             </buttonCell>
@@ -166,8 +166,8 @@
                     </connections>
                 </textField>
                 <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="u8V-Dc-6yR">
-                    <rect key="frame" x="98" y="428" width="36" height="17"/>
-                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Font:" usesSingleLineMode="YES" id="C9y-bs-mE1">
+                    <rect key="frame" x="99" y="428" width="35" height="17"/>
+                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="字体:" usesSingleLineMode="YES" id="C9y-bs-mE1">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -178,20 +178,20 @@
                     <constraints>
                         <constraint firstAttribute="width" constant="220" id="YJo-is-zIW"/>
                     </constraints>
-                    <popUpButtonCell key="cell" type="push" title="Document Name" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="2" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="896" id="3370">
+                    <popUpButtonCell key="cell" type="push" title="页码" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="5" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="893" id="3370">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menu"/>
                         <menu key="menu" title="OtherViews" id="892">
                             <items>
-                                <menuItem title="None" id="895"/>
+                                <menuItem title="无" id="895"/>
                                 <menuItem isSeparatorItem="YES" id="894">
                                     <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                 </menuItem>
-                                <menuItem title="Syntax Name" tag="1" id="uuc-7D-Iot"/>
-                                <menuItem title="Document Name" state="on" tag="2" id="896"/>
-                                <menuItem title="File Path" tag="3" id="897"/>
-                                <menuItem title="Print Date" tag="4" id="898"/>
-                                <menuItem title="Page Number" tag="5" id="893"/>
+                                <menuItem title="语法名" tag="1" id="uuc-7D-Iot"/>
+                                <menuItem title="文档名" tag="2" id="896"/>
+                                <menuItem title="文件路径" tag="3" id="897"/>
+                                <menuItem title="打印日期" tag="4" id="898"/>
+                                <menuItem title="页码" state="on" tag="5" id="893"/>
                             </items>
                         </menu>
                     </popUpButtonCell>
@@ -201,8 +201,8 @@
                     </connections>
                 </popUpButton>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="899">
-                    <rect key="frame" x="28" y="171" width="289" height="18"/>
-                    <buttonCell key="cell" type="check" title="Print separator line at the bottom of header" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3371">
+                    <rect key="frame" x="28" y="171" width="152" height="18"/>
+                    <buttonCell key="cell" type="check" title="在页眉下方打印分隔线" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3371">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
@@ -211,24 +211,24 @@
                     </connections>
                 </button>
                 <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="890">
-                    <rect key="frame" x="73" y="231" width="61" height="17"/>
-                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="First line:" usesSingleLineMode="YES" id="3369">
+                    <rect key="frame" x="86" y="231" width="48" height="17"/>
+                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="第一行:" usesSingleLineMode="YES" id="3369">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="912">
-                    <rect key="frame" x="53" y="200" width="81" height="17"/>
-                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Second line:" usesSingleLineMode="YES" id="3373">
+                    <rect key="frame" x="86" y="200" width="48" height="17"/>
+                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="第二行:" usesSingleLineMode="YES" id="3373">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="889">
-                    <rect key="frame" x="28" y="255" width="98" height="18"/>
-                    <buttonCell key="cell" type="check" title="Print header" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3368">
+                    <rect key="frame" x="28" y="255" width="74" height="18"/>
+                    <buttonCell key="cell" type="check" title="打印页眉" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3368">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
@@ -238,20 +238,20 @@
                 </button>
                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="900">
                     <rect key="frame" x="138" y="194" width="225" height="26"/>
-                    <popUpButtonCell key="cell" type="push" title="Print Date" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="4" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="904" id="3372">
+                    <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="3372">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menu"/>
                         <menu key="menu" title="OtherViews" id="901">
                             <items>
-                                <menuItem title="None" id="906"/>
+                                <menuItem title="无" id="906"/>
                                 <menuItem isSeparatorItem="YES" id="907">
                                     <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                 </menuItem>
-                                <menuItem title="Syntax Name" tag="1" id="plk-U5-NGA"/>
-                                <menuItem title="Document Name" tag="2" id="902"/>
-                                <menuItem title="File Path" tag="3" id="903"/>
-                                <menuItem title="Print Date" state="on" tag="4" id="904"/>
-                                <menuItem title="Page Number" tag="5" id="905"/>
+                                <menuItem title="语法名" tag="1" id="plk-U5-NGA"/>
+                                <menuItem title="文档名" tag="2" id="902"/>
+                                <menuItem title="文件路径" tag="3" id="903"/>
+                                <menuItem title="打印日期" tag="4" id="904"/>
+                                <menuItem title="页码" tag="5" id="905"/>
                             </items>
                         </menu>
                     </popUpButtonCell>
@@ -261,8 +261,8 @@
                     </connections>
                 </popUpButton>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="915">
-                    <rect key="frame" x="28" y="49" width="259" height="18"/>
-                    <buttonCell key="cell" type="check" title="Print separator line at the top of footer" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3374">
+                    <rect key="frame" x="28" y="49" width="152" height="18"/>
+                    <buttonCell key="cell" type="check" title="在页脚上方打印分隔线" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3374">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
@@ -271,24 +271,24 @@
                     </connections>
                 </button>
                 <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="942">
-                    <rect key="frame" x="73" y="109" width="61" height="17"/>
-                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="First line:" usesSingleLineMode="YES" id="3379">
+                    <rect key="frame" x="86" y="109" width="48" height="17"/>
+                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="第一行:" usesSingleLineMode="YES" id="3379">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="933">
-                    <rect key="frame" x="53" y="78" width="81" height="17"/>
-                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Second line:" usesSingleLineMode="YES" id="3377">
+                    <rect key="frame" x="86" y="78" width="48" height="17"/>
+                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="第二行:" usesSingleLineMode="YES" id="3377">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="916">
-                    <rect key="frame" x="28" y="133" width="91" height="18"/>
-                    <buttonCell key="cell" type="check" title="Print footer" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3375">
+                    <rect key="frame" x="28" y="133" width="74" height="18"/>
+                    <buttonCell key="cell" type="check" title="打印页脚" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3375">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
@@ -298,20 +298,20 @@
                 </button>
                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="934">
                     <rect key="frame" x="138" y="103" width="225" height="26"/>
-                    <popUpButtonCell key="cell" type="push" title="Page Number" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="5" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="940" id="3378">
+                    <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="3378">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menu"/>
                         <menu key="menu" title="OtherViews" id="935">
                             <items>
-                                <menuItem title="None" id="941"/>
+                                <menuItem title="无" id="941"/>
                                 <menuItem isSeparatorItem="YES" id="936">
                                     <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                 </menuItem>
-                                <menuItem title="Syntax Name" tag="1" id="Mvg-wT-FTM"/>
-                                <menuItem title="Document Name" tag="2" id="937"/>
-                                <menuItem title="File Path" tag="3" id="938"/>
-                                <menuItem title="Print Date" tag="4" id="939"/>
-                                <menuItem title="Page Number" state="on" tag="5" id="940"/>
+                                <menuItem title="语法名" tag="1" id="Mvg-wT-FTM"/>
+                                <menuItem title="文档名" tag="2" id="937"/>
+                                <menuItem title="文件路径" tag="3" id="938"/>
+                                <menuItem title="打印日期" tag="4" id="939"/>
+                                <menuItem title="页码" tag="5" id="940"/>
                             </items>
                         </menu>
                     </popUpButtonCell>
@@ -322,20 +322,20 @@
                 </popUpButton>
                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="925">
                     <rect key="frame" x="138" y="72" width="225" height="26"/>
-                    <popUpButtonCell key="cell" type="push" title="None" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="927" id="3376">
+                    <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="3376">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menu"/>
                         <menu key="menu" title="OtherViews" id="926">
                             <items>
-                                <menuItem title="None" state="on" id="927"/>
+                                <menuItem title="无" id="927"/>
                                 <menuItem isSeparatorItem="YES" id="928">
                                     <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                 </menuItem>
-                                <menuItem title="Syntax Name" tag="1" id="ckJ-Cw-ccE"/>
-                                <menuItem title="Document Name" tag="2" id="929"/>
-                                <menuItem title="File Path" tag="3" id="930"/>
-                                <menuItem title="Print Date" tag="4" id="931"/>
-                                <menuItem title="Page Number" tag="5" id="932"/>
+                                <menuItem title="语法名" tag="1" id="ckJ-Cw-ccE"/>
+                                <menuItem title="文档名" tag="2" id="929"/>
+                                <menuItem title="文件路径" tag="3" id="930"/>
+                                <menuItem title="打印日期" tag="4" id="931"/>
+                                <menuItem title="页码" tag="5" id="932"/>
                             </items>
                         </menu>
                     </popUpButtonCell>

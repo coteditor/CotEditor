@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6250"/>
@@ -17,8 +17,8 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="2739">
-                    <rect key="frame" x="100" y="123" width="284" height="18"/>
-                    <buttonCell key="cell" type="check" title="Inline script menu items into context menu" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3309">
+                    <rect key="frame" x="83" y="123" width="204" height="18"/>
+                    <buttonCell key="cell" type="check" title="将脚本菜单集成至上下文菜单中" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3309">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
@@ -37,8 +37,8 @@
                     </connections>
                 </button>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="1036">
-                    <rect key="frame" x="100" y="147" width="274" height="18"/>
-                    <buttonCell key="cell" type="check" title="Share find strings with other applications" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3307">
+                    <rect key="frame" x="83" y="147" width="178" height="18"/>
+                    <buttonCell key="cell" type="check" title="与其他应用共享查找字符串" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3307">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
@@ -47,8 +47,8 @@
                     </connections>
                 </button>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="1030">
-                    <rect key="frame" x="100" y="99" width="271" height="18"/>
-                    <buttonCell key="cell" type="check" title="Count each line ending as one character" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3306">
+                    <rect key="frame" x="83" y="99" width="139" height="18"/>
+                    <buttonCell key="cell" type="check" title="统计行尾为一个字符" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3306">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
@@ -57,8 +57,8 @@
                     </connections>
                 </button>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="594">
-                    <rect key="frame" x="100" y="51" width="362" height="18"/>
-                    <buttonCell key="cell" type="check" title="Open a new document when CotEditor becomes active" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3299">
+                    <rect key="frame" x="83" y="51" width="220" height="18"/>
+                    <buttonCell key="cell" type="check" title="当 CotEditor 被激活时打开新文档" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3299">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
@@ -67,8 +67,8 @@
                     </connections>
                 </button>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="106">
-                    <rect key="frame" x="100" y="186" width="162" height="18"/>
-                    <buttonCell key="cell" type="check" title="Open a new document" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3298">
+                    <rect key="frame" x="83" y="186" width="87" height="18"/>
+                    <buttonCell key="cell" type="check" title="打开新文档" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3298">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
@@ -77,8 +77,8 @@
                     </connections>
                 </button>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="3422">
-                    <rect key="frame" x="100" y="210" width="221" height="18"/>
-                    <buttonCell key="cell" type="check" title="Automatically check for updates" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3423">
+                    <rect key="frame" x="83" y="210" width="100" height="18"/>
+                    <buttonCell key="cell" type="check" title="自动检查更新" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3423">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
@@ -87,16 +87,20 @@
                     </connections>
                 </button>
                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3424">
-                    <rect key="frame" x="325" y="205" width="84" height="26"/>
-                    <popUpButtonCell key="cell" type="push" title="Weekly" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="604800" imageScaling="proportionallyDown" inset="2" selectedItem="3428" id="3425">
+                    <rect key="frame" x="187" y="206" width="73" height="26"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="68" id="9xI-SZ-RzN"/>
+                        <constraint firstAttribute="height" constant="21" id="OYh-2o-0aF"/>
+                    </constraints>
+                    <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="3425">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menu"/>
                         <menu key="menu" title="OtherViews" id="3426">
                             <items>
-                                <menuItem title="Hourly" tag="3600" id="3427"/>
-                                <menuItem title="Daily" tag="86400" id="3433"/>
-                                <menuItem title="Weekly" state="on" tag="604800" id="3428"/>
-                                <menuItem title="Monthly" tag="2629800" id="3429"/>
+                                <menuItem title="每小时" tag="3600" id="3427"/>
+                                <menuItem title="每天" tag="86400" id="3433"/>
+                                <menuItem title="每周" tag="604800" id="3428"/>
+                                <menuItem title="每月" tag="2629800" id="3429"/>
                             </items>
                         </menu>
                     </popUpButtonCell>
@@ -106,24 +110,24 @@
                     </connections>
                 </popUpButton>
                 <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="m9P-m9-cpw">
-                    <rect key="frame" x="25" y="211" width="71" height="17"/>
-                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="On launch:" usesSingleLineMode="YES" id="geU-63-sAC">
+                    <rect key="frame" x="31" y="211" width="48" height="17"/>
+                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="启动时:" usesSingleLineMode="YES" id="geU-63-sAC">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="jQj-mP-yhk">
-                    <rect key="frame" x="18" y="148" width="78" height="17"/>
-                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Application:" usesSingleLineMode="YES" id="lzy-Ei-xlT">
+                    <rect key="frame" x="18" y="148" width="61" height="17"/>
+                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="应用选项:" usesSingleLineMode="YES" id="lzy-Ei-xlT">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="596">
-                    <rect key="frame" x="100" y="75" width="188" height="18"/>
-                    <buttonCell key="cell" type="check" title="Check spelling as you type" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3300">
+                    <rect key="frame" x="83" y="75" width="113" height="18"/>
+                    <buttonCell key="cell" type="check" title="输入时检查拼写" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3300">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
@@ -149,7 +153,7 @@
                 <constraint firstItem="1036" firstAttribute="top" secondItem="106" secondAttribute="bottom" constant="25" id="czW-lO-Dzt"/>
                 <constraint firstItem="3422" firstAttribute="leading" secondItem="106" secondAttribute="leading" id="eTK-IK-EoM"/>
                 <constraint firstItem="3422" firstAttribute="leading" secondItem="2739" secondAttribute="leading" id="eWC-pt-6uh"/>
-                <constraint firstItem="3424" firstAttribute="baseline" secondItem="3422" secondAttribute="baseline" id="gZN-8m-k6q"/>
+                <constraint firstItem="3424" firstAttribute="baseline" secondItem="3422" secondAttribute="baseline" constant="-1" id="gZN-8m-k6q"/>
                 <constraint firstItem="1030" firstAttribute="top" secondItem="2739" secondAttribute="bottom" constant="10" id="gbD-2O-xNi"/>
                 <constraint firstItem="3422" firstAttribute="leading" secondItem="594" secondAttribute="leading" id="gjO-Qt-ihS"/>
                 <constraint firstItem="596" firstAttribute="top" secondItem="1030" secondAttribute="bottom" constant="10" id="k19-Ue-wWE"/>

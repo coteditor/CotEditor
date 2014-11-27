@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6250"/>
@@ -34,8 +34,8 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="720">
-                                <rect key="frame" x="14" y="93" width="184" height="17"/>
-                                <textFieldCell key="cell" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" title="Additional Text Key Bindings " usesSingleLineMode="YES" id="3363">
+                                <rect key="frame" x="14" y="93" width="121" height="17"/>
+                                <textFieldCell key="cell" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" title="额外的文本按键绑定" usesSingleLineMode="YES" id="3363">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -46,7 +46,7 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="88" id="Jiu-hk-nks"/>
                                 </constraints>
-                                <buttonCell key="cell" type="push" title="Edit…" bezelStyle="rounded" alignment="center" borderStyle="border" tag="1" inset="2" id="3365">
+                                <buttonCell key="cell" type="push" title="编辑…" bezelStyle="rounded" alignment="center" borderStyle="border" tag="1" inset="2" id="3365">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -55,19 +55,19 @@
                                 </connections>
                             </button>
                             <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="721">
-                                <rect key="frame" x="14" y="67" width="166" height="14"/>
-                                <textFieldCell key="cell" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" title="Shortcuts to insert preset text." usesSingleLineMode="YES" id="3364">
+                                <rect key="frame" x="14" y="67" width="136" height="14"/>
+                                <textFieldCell key="cell" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" title="插入预定义文本的快捷按键" usesSingleLineMode="YES" id="3364">
                                     <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="726">
-                                <rect key="frame" x="14" y="35" width="294" height="28"/>
-                                <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" id="3366">
+                                <rect key="frame" x="14" y="35" width="231" height="28"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" id="3366">
                                     <font key="font" metaFont="smallSystem"/>
-                                    <string key="title">This setting is not for the standard Cocoa key bindings
-but for CotEditor's original function.</string>
+                                    <string key="title">这些设定不是针对标准的 Cocoa 快捷按键的，
+而是对 CotEditor 中的功能有效</string>
                                     <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -99,7 +99,7 @@ but for CotEditor's original function.</string>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="88" id="Ft6-A5-Vzh"/>
                                 </constraints>
-                                <buttonCell key="cell" type="push" title="Edit…" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="3360">
+                                <buttonCell key="cell" type="push" title="编辑…" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="3360">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -108,24 +108,24 @@ but for CotEditor's original function.</string>
                                 </connections>
                             </button>
                             <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="715">
-                                <rect key="frame" x="14" y="67" width="141" height="14"/>
-                                <textFieldCell key="cell" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" title="Shortcuts for menu items." usesSingleLineMode="YES" id="3361">
+                                <rect key="frame" x="14" y="67" width="103" height="14"/>
+                                <textFieldCell key="cell" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" title="菜单项目的快捷按键" usesSingleLineMode="YES" id="3361">
                                     <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="713">
-                                <rect key="frame" x="14" y="93" width="124" height="17"/>
-                                <textFieldCell key="cell" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" title="Menu Key Bindings" usesSingleLineMode="YES" id="3359">
+                                <rect key="frame" x="14" y="93" width="82" height="17"/>
+                                <textFieldCell key="cell" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" title="菜单按键绑定" usesSingleLineMode="YES" id="3359">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="835">
-                                <rect key="frame" x="14" y="49" width="258" height="14"/>
-                                <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="This setting does not include script menu items." id="3362">
+                                <rect key="frame" x="14" y="49" width="169" height="14"/>
+                                <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="这些设定不包括脚本菜单中的项目" id="3362">
                                     <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
