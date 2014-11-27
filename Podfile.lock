@@ -1,6 +1,6 @@
 PODS:
   - LibYAML (0.1.4)
-  - OgreKit (2.1.7.4)
+  - OgreKit (2.1.7.5)
   - RegexKitLite (4.0)
   - Sparkle (1.8.0)
   - SWFSemanticVersion (0.2.0)
@@ -26,7 +26,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   OgreKit:
-    :commit: cdfd1b37fb6abf7a543cfbf2a25b24cd27434089
+    :commit: 8fc6f1e9f4166b1fe49cb5c6e27f3e2bd28c6ac7
     :git: https://github.com/coteditor/OgreKit.git
   YAML-Framework:
     :commit: 37c4645466d639cfd738bb5e0ed14d8408ec282c
@@ -34,7 +34,7 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   LibYAML: d447960375d9114187bfddba6e6c24d69bff11f8
-  OgreKit: 720b7d0a951f48fa5b98589f75151aeb7a2c6c34
+  OgreKit: be72fb0d037fd41df7b0c9a79f04f3da3062757f
   RegexKitLite: c0e4c12e6e7de0769f3a3ed679f0f61604170661
   Sparkle: 5eb20bb37ca21e471dab8417dee880198d905327
   SWFSemanticVersion: b5bb8c03abb6081478fd9ad853adf74b96c2beea

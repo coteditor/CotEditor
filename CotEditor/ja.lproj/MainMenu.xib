@@ -925,9 +925,13 @@
                 </menuItem>
             </items>
         </menu>
-        <customObject id="289" customClass="OgreTextFinder"/>
+        <customObject id="289" customClass="OgreTextFinder">
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="boolean" keyPath="useStylesInFindPanel" value="NO"/>
+            </userDefinedRuntimeAttributes>
+        </customObject>
         <customObject id="290" customClass="CEAppDelegate"/>
-        <customObject id="329" customClass="CEDocumentController"/>
+        <customObject id="329" userLabel="Document Controller" customClass="CEDocumentController"/>
         <customObject id="432" customClass="NSFontManager"/>
         <customObject id="836" customClass="SUUpdater"/>
     </objects>

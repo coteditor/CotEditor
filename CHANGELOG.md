@@ -5,6 +5,12 @@ changelog
 2.0.3
 --------------------------
 
+
+### Additions/Changes
+
+- Disable rech text in find panel.
+
+
 ### Fixes
 
 - Fix a possible hang-up when no text font is found.
