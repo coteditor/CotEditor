@@ -191,7 +191,7 @@
 "keywords" = "关键字";
 "commands" = "命令";
 "types" = "类型";
-"attributes" = "属性";
+"attributes" = "标记";
 "variables" = "变量";
 "values" = "值";
 "numbers" = "数字";
@@ -233,7 +233,7 @@
 "Keywords" = "关键字";
 "Commands" = "命令";
 "Types" = "类型";
-"Attributes" = "属性";
+"Attributes" = "标记";
 "Variables" = "变量";
 "Values" = "值";
 "Numbers" = "数字";
