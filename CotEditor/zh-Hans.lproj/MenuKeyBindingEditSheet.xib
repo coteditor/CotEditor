@@ -16,7 +16,7 @@
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <window title="Menu Key Bindings" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="menuKeyBindingsEditSheet" animationBehavior="default" id="5" userLabel="Edit Sheet" customClass="CEKeyBindingSheet">
+        <window title="菜单按键绑定" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="menuKeyBindingsEditSheet" animationBehavior="default" id="5" userLabel="Edit Sheet" customClass="CEKeyBindingSheet">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <rect key="contentRect" x="44" y="400" width="460" height="360"/>
             <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1418"/>
@@ -38,7 +38,7 @@
                                     <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                     <tableColumns>
                                         <tableColumn identifier="title" width="300" minWidth="16" maxWidth="1000" id="9">
-                                            <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Title / Action">
+                                            <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="标题 / 动作">
                                                 <font key="font" metaFont="smallSystem"/>
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" white="0.33333299" alpha="1" colorSpace="calibratedWhite"/>
@@ -51,7 +51,7 @@
                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                         </tableColumn>
                                         <tableColumn identifier="keyBindingKey" width="112" minWidth="40" maxWidth="1000" id="10">
-                                            <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Key">
+                                            <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="按键">
                                                 <font key="font" metaFont="smallSystem"/>
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" white="0.33333299" alpha="1" colorSpace="calibratedWhite"/>
@@ -91,7 +91,7 @@
                         <constraints>
                             <constraint firstAttribute="width" constant="130" id="wbL-0W-iPk"/>
                         </constraints>
-                        <buttonCell key="cell" type="push" title="Restore Defaults" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" inset="2" id="140">
+                        <buttonCell key="cell" type="push" title="恢复默认" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" inset="2" id="140">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
@@ -104,7 +104,7 @@
                         <constraints>
                             <constraint firstAttribute="width" constant="88" id="pYT-bW-xKj"/>
                         </constraints>
-                        <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="141">
+                        <buttonCell key="cell" type="push" title="取消" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="141">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                             <string key="keyEquivalent" base64-UTF8="YES">
@@ -120,7 +120,7 @@ Gw
                         <constraints>
                             <constraint firstAttribute="width" constant="88" id="mGU-Sm-Wts"/>
                         </constraints>
-                        <buttonCell key="cell" type="push" title="OK" bezelStyle="rounded" alignment="center" borderStyle="border" tag="100" inset="2" id="142">
+                        <buttonCell key="cell" type="push" title="好" bezelStyle="rounded" alignment="center" borderStyle="border" tag="100" inset="2" id="142">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                             <string key="keyEquivalent" base64-UTF8="YES">
@@ -135,15 +135,15 @@ DQ
                         <rect key="frame" x="18" y="312" width="424" height="28"/>
                         <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="left" id="144">
                             <font key="font" metaFont="smallSystem"/>
-                            <string key="title">To change a binding, select it, click the key column, and then type the keys.
-You MUST include the Command key.</string>
+                            <string key="title">选中要绑定的项目并单击按键列来改变绑定
+绑定的快捷键中必须包含 Command 键</string>
                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="25">
                         <rect key="frame" x="18" y="296" width="424" height="14"/>
-                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="'Foo' doesn't include Command Key. Edit it again." id="145">
+                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="'Foo' 没有包含 Command 键。请重试。" id="145">
                             <font key="font" metaFont="smallSystem"/>
                             <color key="textColor" red="0.86335355043411255" green="0.0" blue="0.021221207454800606" alpha="1" colorSpace="calibratedRGB"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
