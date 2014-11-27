@@ -1,25 +1,25 @@
 
-Fill the following template, and post it on [GitHub Issues](https://github.com/coteditor/CotEditor/issues) or send to <coteditor.github@gmail.com>. Please note that the contents of the sent E-Mail can be shared on the Issue page.
+按照示例进行填写，并将它发布到 [GitHub Issues](https://github.com/coteditor/CotEditor/issues) 上或是通过邮件发送到 <coteditor.github@gmail.com>。请注意，通过邮件发送的内容也会被共享至 Issue 页面。
 
 -----------------------------------------------
 
-## Environment
+## 环境
 
 - CotEditor: %SHORT_VERSION% (%BUNDLE_VERSION%)
-- System: OS X %SYSTEM_VERSION%
-- Language: English
+- 系统: OS X %SYSTEM_VERSION%
+- 语言: 简体中文
 
 
-## Short Description
+## 简单描述
 
-<!-- put your comment here -->
-
-
-## Steps to Reproduce the Issue
-
-<!-- put your comment here -->
+<!-- 请在这里输入 -->
 
 
-## Expected Result
+## 重现问题步骤
 
-<!-- put your comment here -->
+<!-- 请在这里输入 -->
+
+
+## 期待结果
+
+<!-- 请在这里输入 -->

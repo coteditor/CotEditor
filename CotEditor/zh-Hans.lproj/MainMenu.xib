@@ -555,7 +555,7 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="wXY-o5-uVy"/>
-                                        <menuItem title="自动扩展 Tab" id="hsG-8k-OKX">
+                                        <menuItem title="Tab 转为空格" id="hsG-8k-OKX">
                                             <connections>
                                                 <action selector="toggleAutoTabExpand:" target="-1" id="Zjj-9f-F0n"/>
                                             </connections>
@@ -662,12 +662,12 @@
                                     <action selector="toggleComment:" target="-1" id="NSz-mr-8wt"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="向右缩进" keyEquivalent="]" id="454">
+                            <menuItem title="右移" keyEquivalent="]" id="454">
                                 <connections>
                                     <action selector="shiftRight:" target="-1" id="456"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="向左缩进" keyEquivalent="[" id="455">
+                            <menuItem title="左移" keyEquivalent="[" id="455">
                                 <connections>
                                     <action selector="shiftLeft:" target="-1" id="457"/>
                                 </connections>
