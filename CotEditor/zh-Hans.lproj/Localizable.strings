@@ -1,0 +1,342 @@
+/*
+ Localizable.strings
+ 
+ CotEditor
+ http://coteditor.com
+ 
+ Created on 2014-11-27 by onevcat
+ encoding="UTF-8"
+ 
+ © 2014 CotEditor Project
+ */
+
+
+/* CEAppDelegate */
+// File open accessory's menu item title.
+"Auto-Detect" = "自动检测";
+// Format - Syntax coloring menu item title.
+"None" = "无";
+"Re-Color All" = "全部重新着色";
+// Find menu added item title.
+"Select Prev Outline Item" = "选择上一个大纲项目";
+"Select Next Outline Item" = "选择下一个大纲项目";
+"Go To…" = "跳转…";
+
+// Import theme
+"“%@” is a CotEditor theme file." = "“%@” 是 CotEditor 主题文件";
+"Do you want to install this theme?" = "是否安装主题？";
+"Install" = "安装";
+"Open as Text File" = "以文本方式打开";
+"A new theme named “%@” has been successfully installed." = "新主题 “%@” 安装完成";
+
+// Bug report
+"Bug Report" = "错误报告";
+
+// Migration from 1.x
+"Restorering menu key bindings settings…" = "正在恢复菜单按键绑定…";
+"Migrating coloring settings…" = "迁移颜色设置…";
+"Migrating user syntax styles…" = "迁移用户语法风格…";
+"Migration finished." = "迁移完成";
+"Close" = "关闭";
+
+
+/* CEDocumentController */
+// Large file alert
+"The file “%@” has a size of %@." = "“%@” 文件尺寸为 %@ 。";
+"Opening such a large file can make the application slow or unresponsive.\n\nDo you really want to open the file?" = "打开大型文件可能导致应用速度变慢。\n\n确定要打开该文件？";
+"Open" = "打开";
+
+
+/* CEDocument */
+// Undo/Redo Action name
+"Encoding to “%@”" = "编码变更为 “%@”";
+"Line Endings to “%@”" = "行尾变更为 “%@”";
+// convert or reinterpret alert
+"File encoding" = "文件编码";
+"Convert" = "转换";
+"Reinterpret" = "再次解释";
+"Cancel" = "取消";
+"Do you want to convert or reinterpret it using “%@”?" = "要使用 “%@” 进行转换或者再次解释吗？";
+
+"Save Available Strings" = "保存有效字符串";
+"Show Incompatible Chars" = "显示不兼容字符";
+
+"Continue Saving" = "继续保存";
+"The encoding is “%@”, but the IANA charset name in text is “%@”." = "编码为 “%@”，但是文本中的 IANA 字符集名字为 “%@”。";
+"Do you want to continue processing?" = "继续进行处理吗？";
+
+"Finder's lock could not be released." = "Finder 锁定无法解除。";
+"You can use “Save As” to save a copy." = "你可以使用 “另存为” 来保存一份副本";
+
+"Discard Changes" = "放弃修改";
+"The file “%@” has unsaved changes." = "文件 “%@” 中有修改内容还没有保存";
+"Do you want to discard the changes and reset the file encodidng?" = "确定要放弃修改内容并且重置文件编码吗？";
+
+"Can not reinterpret" = "无法再次解释";
+"Done" = "好";
+"The file “%@” could not be reinterpreted using the new encoding “%@”." = "文件 “%@” 无法使用 “%@” 编码再次解释";
+
+"new encoding" = "新编码";
+"Change Encoding" = "更改编码";
+"The characters would have to be changed or deleted in saving as “%@”." = "保存为 “%@” 时一些字符可能需要被更改或者删除。";
+"Do you want to continue processing?" = "继续进行处理吗？";
+"Do you want to change encoding and show incompatible characters?" = "改变编码并显示不兼容字符吗？";
+
+"Printed on %@" = "打印：%@";
+
+"Keep CotEditor's Edition" = "保留 CotEditor 编辑的内容";
+"Update" = "更新";
+"The file has been modified by another process. There are also unsaved changes in CotEditor." = "文件被其他进程更改，CotEditor 中进行的变更还没有进行保存。";
+"Do you want to keep CotEditor's edition or update to the modified edition?" = "保留 CotEditor 的版本还是更新至被编辑过的版本？";
+"Keep Unchanged" = "保持不变";
+"The file has been modified by another process." = "文件在其他进程中被更改";
+"Do you want to keep unchanged or update to the modified edition?" = "保持不变还是更新到被更改后的版本？";
+
+
+/* CETextView */
+// undo action name
+"Replace Text" = "替换文本";
+"Insert Text" = "插入文本";
+"Insert Custom Text" = "插入自定义文本";
+"Shift Right" = "右移";
+"Shift Left" = "左移";
+"Comment Out" = "注释";
+"Uncomment" = "取消注释";
+"To Fullwidth (ja_JP/Roman)" = "转为全角";
+"To Halfwidth (ja_JP/Roman)" = "转为半角";
+"Hiragana to Katakana (ja_JP)" = "平假名到片假名";
+"Katakana to Hiragana (ja_JP)" = "片假名到平假名";
+"NFD" = "NFD";
+"NFC" = "NFC";
+"NFKD" = "NFKD";
+"NFKC" = "NFKC";
+"Inspect Character" = "显示字符";
+
+// menu item title
+"Comment Selection" = "注释选中内容";
+"Uncomment Seletion" = "取消注释选中内容";
+
+// contextual menu title
+"Font" = "字体";
+"Utility" = "实用工具";
+"Select All" = "全部选择";
+
+
+/* CharacterPopover */
+"<a letter consisting of %d characters>" = "<包含有 %d 个字符>";
+"Emoji Style" = "表情文字格式";
+"Text Style" = "文本文字格式";
+"Variant" = "异体字";
+
+
+/* CEEditorWrapper */
+// menu items
+"Hide Line Numbers" = "隐藏行号";
+"Show Line Numbers" = "显示行号";
+"Hide Status Bar" = "隐藏状态栏";
+"Show Status Bar" = "显示状态栏";
+"Hide Navigation Bar" = "隐藏导航栏";
+"Show Navigation Bar" = "显示导航栏";
+"Hide Invisible Characters" = "隐藏不可见字符";
+"Show Invisible Characters" = "显示不可见字符";
+"Hide Page Guide" = "隐藏页面指示";
+"Show Page Guide" = "显示页面指示";
+"Unwrap Lines" = "不换行";
+"Wrap Lines" = "换行";
+"Use Vertical Orientation" = "纵向显示";
+"Use Horizontal Orientation" = "横向显示";
+
+// show invisible char menu tooltip
+"Show or hide invisible characters in document" = "显示或隐藏文档中的不可见字符";
+"To display invisible characters, set them in Preferences and re-open the document" = "要显示不可见字符，请在偏好设置中进行设定，然后重新打开文档";
+
+
+// Alert strings
+"The file is not writable." = "该文件不能写入";
+"Allow Editing" = "允许编辑";
+"Cancel" = "取消";
+"You may not be able to save your changes, but you will be able to save a copy somewhere else.\n\nDo you want to edit this file anyway?" = "无法保存更改，但是可以在其他路径保存一份拷贝。\n\n仍然编辑该文件吗？";  // どこで使用されているか不明 (2014-03 by 1024jp)
+"You may not be able to save your changes, but you will be able to save a copy somewhere else." = "无法保存更改，但是可以在其他路径保存一份拷贝。";
+
+"Finder's lock is On." = "Finder 处于锁定状态";
+"Don't Save, and Close" = "不保存，直接关闭";
+"Finder's lock could not be released. So, you can not save your changes on this file, but you will be able to save a copy somewhere else.\n\nDo you want to close?" = "无法解除 Finder 锁定，编辑内容无法保存至该文件中。可以使用 “另存为” 保存一份文件拷贝。\n\n是否关闭文件？";
+
+
+/* CESplitView */
+// menu items
+"Stack Views Horizontally" = "横向分隔编辑器";
+"Stack Views Vertically" = "纵向分隔编辑器";
+
+
+/* CEStatusBarView */
+": " = "：";
+"Lines" = "行数";
+"Chars" = "字符数";
+"Length" = "长度";
+"Words" = "字数";
+"Location" = "位置";
+"Line" = "行";
+"Column" = "列";
+
+
+/* CESyntax */
+// Outline Menu title
+"<Outline Menu>" = "<大纲菜单>";
+
+// coloring indicator
+"Coloring text…" = "文本着色中...";
+"Please wait for a while." = "请稍等片刻...";
+"Extracting %@…" = "%@ 解压中...";
+"Applying colors to text" = "在文本上使用颜色";
+"keywords" = "关键字";
+"commands" = "命令";
+"types" = "类型";
+"attributes" = "标记";
+"variables" = "变量";
+"values" = "值";
+"numbers" = "数字";
+"strings" = "字符串";
+"characters" = "字符";
+"comments" = "注释";
+
+
+/* CEPreferencesWindowController */
+// smart quotes/dashes
+" (on Mavericks and later)" = "（Mavericks 或更新版本）";
+
+// Appearance Pane
+"Duplicate “%@”" = "拷贝 “%@”";
+"Restore “%@”" = "还原 “%@”";
+"Delete the theme “%@”?" = "删除 “%@” 主题？";
+"Deleted theme cannot be restored." = "删除后的主题将无法还原";
+"A new theme named “%@” will be installed, but a custom theme with the same name already exists." = "将要安装名为 “%@” 的新主题，但是已经存在同名的自定义主题";
+"Do you want to replace it?\nReplaced theme cannot be restored." = "要覆盖原主题吗？\n主题删除后将无法还原";
+
+
+// Print Pane
+"Theme" = "主题";
+
+// Pref Format tab
+// encoding menu alert sheet
+"Are you sure you want to change to “%@”?" = "确定要变更至 “%@” 吗？";
+"Change to “%@”" = "“变更至 %@”";
+"Revert to “Auto-Detect”" = "还原回“自动检测”";
+"The default “Auto-Detect” is recommended for most cases." = "在绝大多数情况下，推荐使用默认的“自动检测”";
+
+// installed syntax styles action menu
+"Duplicate “%@”…" = "拷贝“%@”…";
+"Export “%@”…" = "导出“%@”…";
+
+
+/* CESyntaxEditSheetController */
+// menu items
+"Keywords" = "关键字";
+"Commands" = "命令";
+"Types" = "类型";
+"Attributes" = "标记";
+"Variables" = "变量";
+"Values" = "值";
+"Numbers" = "数字";
+"Strings" = "字符串";
+"Characters" = "字符";
+"Comments" = "注释";
+"Outline Menu" = "大纲菜单";
+"Completion List" = "补全列表";
+"File Mapping" = "文件关联";
+"Style Info" = "样式信息";
+"Syntax Validation" = "语法验证";
+
+// syntax element check result (no error)
+"No error was found." = "没有发现错误";
+// syntax element check result (1 error found)
+"An error was found!" = "发现 1 个错误";
+// syntax element check result (2 or more errors found)
+"%i errors were found!" = "发现 %i 个错误";
+
+
+/* CESyntaxManager */
+// Syntax coloring style name errors
+"Input style name." = "请输入样式名称";
+"“%@” is already exist. Input another name." = "“%@” 已经在使用中，请输入其他名称";
+"Style name cannot contain “/”. Input another name." = "样式名称中不能含有“/”，请输入其他名称";
+"Style name cannot begin with “.”. Input another name." = "样式名称中不能含有“.”，请输入其他名称";
+// selected Syntax coloring style name was original
+"Name of the bundled style cannot be changed." = "内置样式的名称不能改变";
+// Suffix of copied syntax coloring style
+" copy" = " 拷贝";
+// Delete syntax coloring style alert message
+"Delete the Syntax style “%@”?" = "确定删除语法样式 “%@”？";
+// syntax coloring style alert button title
+"Cancel" = "取消";
+"Delete" = "删除";
+"Replace" = "替换";
+// Delete syntax coloring style alert information
+"Deleted style cannot be restored." = "样式删除后无法恢复";
+// Deleted error
+"Sorry, could not delete “%@”." = "“%@” 无法删除";
+// Import syntax coloring style file choose openPanel button
+"Import" = "导入";
+// Importing same name style alert title
+"The “%@” style already exists." = "样式 “%@” 已经存在";
+// Importing same name style alert info
+"Do you want to replace it?\nReplaced style cannot be restored." = "要替换样式吗？\n被替换的样式无法将恢复";
+// Imported error
+"Error occured." = "发生了错误";
+"Sorry, could not import “%@”." = "“%@” 无法导入";
+// Export syntax coloring style file savePanel label
+"Export As:" = "导出为：";
+// File Drop setting delete
+"Delete the File Drop setting for “%@”?" = "删除文件拖拽设置 “%@”？";
+"Deleted setting cannot be restored." = "设置删除后无法恢复";
+// Syntax Validation
+"Block comment needs both begin delimiter and end delimiter." = "块注释需要同时有起始符号和终止符号";
+"Begin string" = "开始字符串";
+"End string" = "结束字符串";
+"RE string" = "正则表达式";
+"multiple registered." = "重复注册";
+"Error “%@” in column %@: %@<<HERE>>%@" = "错误 “%@” (%@列) ：%@<<这里>>%@";
+"Error: %@" = "错误： %@";
+
+
+/* CEThemeManager */
+"Untitled" = "未命名";
+"Customized Theme" = "自定义主题";
+"Theme name cannot be empty." = "主题名称不能为空";
+"Theme name cannot contain “/”." = "主题名称不能含有“/”";
+"Theme name cannot begin with “.”." = "主题名称不能含有“.”";
+"Input another name." = "请输入其他名称";
+
+"Auto-generated theme that is mgrated from user's coloring setting on CotEditor 1.x" = "由 CotEditor 1.x 的用户颜色设置中自动生成的主题";
+
+
+/* CEWindowsController */
+"ON" = "ON";
+"OFF" = "OFF";
+
+
+/* CEKeyBindingManager */
+// Sheet text
+"“%@” has already been used. Edit it again." = "“%@” 已在使用中，请重新设置";
+"“%@” does NOT include Command key. Edit it again." = "“%@” 中没有包含 Command 键，请重新设置";
+"“%@” includes Command key. Edit it again." = "“%@” 包含了 Command 键，请重新设置";
+
+
+/* CEScriptManager */
+// menu title
+"Open Scripts Folder" = "打开脚本文件夹";
+"Update Script Menu" = "更新脚本菜单";
+"Copy Sample to Scripts Folder" = "将示例文件复制到脚本文件夹";
+"Copy bundled sample scripts to the scripts folder." = "将内置的示例脚本复制到脚本文件夹";
+
+// script menu item tooltips
+"“Opt + click” to open in Script Editor." = "使用 “Opt + 单击” 打开脚本编辑器";
+
+// Alert message
+"The script “%@” does not exist.\n\nCheck it and do “Update Script Menu”." = "脚本 “%@” 不存在。\n\n请确认文件是否存在，并使用 “更新脚本菜单” 进行更新";
+"%@\nErrorNumber: %i" = "%@\n错误号：%i";
+"Could not open the script file “%@”." = "无法打开脚本文件 “%@”";
+"Cannnot execute the script “%@”.\nShell script requires execute permission.\n\nCheck permission of the script file." = "无法执行脚本 “%@”。\nShell 脚本需要执行权限。\n\n请确认脚本文件访问权限";
+"Could not read the script “%@”." = "无法读取脚本 “%@”";
+"SampleScript folder exists already." = "SampleScript 文件夹已存在";
+"If you want to replace it with the new one, remove the existing folder at “%@” at first." = "如果需要使用新的进行覆盖，请先删除 “%@” 下已有的文件夹";

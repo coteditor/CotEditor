@@ -376,6 +376,44 @@
 		2AFFB72B18D8CB7D00118477 /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/OpenDocumentAccessory.xib; sourceTree = "<group>"; };
 		32DBCF750370BD2300C91783 /* CotEditor_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CotEditor_Prefix.pch; sourceTree = "<group>"; };
 		3381090B4006E7F6090EB49E /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "../Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		4B7998171A1F1BCD0088D167 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = "zh-Hans"; path = "zh-Hans.lproj/AppleScript.rtf"; sourceTree = "<group>"; };
+		4B7998181A1F1BCD0088D167 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = "zh-Hans"; path = "zh-Hans.lproj/ShellScript.rtf"; sourceTree = "<group>"; };
+		4B7998191A1F1BCD0088D167 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		4B79981A1A1F1BCD0088D167 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Print.strings"; sourceTree = "<group>"; };
+		4B79981B1A1F1BCD0088D167 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text; name = "zh-Hans"; path = "zh-Hans.lproj/FileDropGlossary.txt"; sourceTree = "<group>"; };
+		4B79981C1A1F1BCD0088D167 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = "zh-Hans"; path = "zh-Hans.lproj/ReportTemplate.md"; sourceTree = "<group>"; };
+		4B79981D1A1F1BCD0088D167 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/MainMenu.xib"; sourceTree = "<group>"; };
+		4B79981E1A1F1BCD0088D167 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/MigrationWindow.xib"; sourceTree = "<group>"; };
+		4B79981F1A1F1BCD0088D167 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/OpenDocumentAccessory.xib"; sourceTree = "<group>"; };
+		4B7998201A1F1BCD0088D167 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/DocumentWindow.xib"; sourceTree = "<group>"; };
+		4B7998211A1F1BCD0088D167 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/NavigationBar.xib"; sourceTree = "<group>"; };
+		4B7998221A1F1BCD0088D167 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/PrintPanelAccessory.xib"; sourceTree = "<group>"; };
+		4B7998231A1F1BCD0088D167 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/Indicator.xib"; sourceTree = "<group>"; };
+		4B7998241A1F1BCD0088D167 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/GlyphPopover.xib"; sourceTree = "<group>"; };
+		4B7998251A1F1BCD0088D167 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/PreferencesWindow.xib"; sourceTree = "<group>"; };
+		4B7998261A1F1BCD0088D167 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/GeneralPane.xib"; sourceTree = "<group>"; };
+		4B7998271A1F1BCD0088D167 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/WindowPane.xib"; sourceTree = "<group>"; };
+		4B7998281A1F1BCD0088D167 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/AppearancePane.xib"; sourceTree = "<group>"; };
+		4B7998291A1F1BCD0088D167 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/EditPane.xib"; sourceTree = "<group>"; };
+		4B79982A1A1F1BCD0088D167 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/FormatPane.xib"; sourceTree = "<group>"; };
+		4B79982B1A1F1BCD0088D167 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/FileDropPane.xib"; sourceTree = "<group>"; };
+		4B79982C1A1F1BCD0088D167 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/KeyBindingsPane.xib"; sourceTree = "<group>"; };
+		4B79982D1A1F1BCD0088D167 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/PrintPane.xib"; sourceTree = "<group>"; };
+		4B79982E1A1F1BCD0088D167 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/SyntaxEditSheet.xib"; sourceTree = "<group>"; };
+		4B79982F1A1F1BCD0088D167 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/SyntaxMappingConflictSheet.xib"; sourceTree = "<group>"; };
+		4B7998301A1F1BCD0088D167 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/EncodingListSheet.xib"; sourceTree = "<group>"; };
+		4B7998311A1F1BCD0088D167 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/MenuKeyBindingEditSheet.xib"; sourceTree = "<group>"; };
+		4B7998321A1F1BCD0088D167 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/TextKeyBindingEditSheet.xib"; sourceTree = "<group>"; };
+		4B7998331A1F1BCD0088D167 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/SizeSampleWindow.xib"; sourceTree = "<group>"; };
+		4B7998341A1F1BCD0088D167 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/ThemeView.xib"; sourceTree = "<group>"; };
+		4B7998351A1F1BCD0088D167 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/OpacityPanel.xib"; sourceTree = "<group>"; };
+		4B7998361A1F1BCD0088D167 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/LineHightPanel.xib"; sourceTree = "<group>"; };
+		4B7998371A1F1BCE0088D167 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/ScriptErrorPanel.xib"; sourceTree = "<group>"; };
+		4B7998381A1F1BCE0088D167 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/ColorCodePanelAccessory.xib"; sourceTree = "<group>"; };
+		4B7998391A1F1BCE0088D167 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/UnicodePanel.xib"; sourceTree = "<group>"; };
+		4B79983A1A1F1BCE0088D167 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/GoToSheet.xib"; sourceTree = "<group>"; };
+		4B79983B1A1F1BCE0088D167 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = "zh-Hans"; path = "zh-Hans.lproj/Acknowledgements.rtf"; sourceTree = "<group>"; };
+		4B79983C1A1F1BCE0088D167 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = "zh-Hans"; path = "zh-Hans.lproj/ScriptMenu Folder.rtf"; sourceTree = "<group>"; };
 		6C1E212112C9E65600194313 /* ja */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xib; name = ja; path = ja.lproj/Indicator.xib; sourceTree = "<group>"; };
 		6C1E212412C9E65600194313 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		6C1E212512C9E65600194313 /* ja */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xib; name = ja; path = ja.lproj/MainMenu.xib; sourceTree = "<group>"; };
@@ -976,6 +1014,7 @@
 			knownRegions = (
 				en,
 				ja,
+				"zh-Hans",
 			);
 			mainGroup = 2A37F4AAFDCFA73011CA2CEA /* CotEditor */;
 			projectDirPath = "";
@@ -1200,6 +1239,7 @@
 			children = (
 				25859EA6076D8EE80020F779 /* en */,
 				2A149DCA1902BEE800A9D6EF /* ja */,
+				4B7998251A1F1BCD0088D167 /* zh-Hans */,
 			);
 			name = PreferencesWindow.xib;
 			sourceTree = SOURCE_ROOT;
@@ -1209,6 +1249,7 @@
 			children = (
 				2588E9CD07C4851C0060021D /* en */,
 				6C1E212112C9E65600194313 /* ja */,
+				4B7998231A1F1BCD0088D167 /* zh-Hans */,
 			);
 			name = Indicator.xib;
 			sourceTree = "<group>";
@@ -1218,6 +1259,7 @@
 			children = (
 				258EF2F9077FEDD000011E52 /* en */,
 				2A3A758C19E77BF2001DAB88 /* ja */,
+				4B79982E1A1F1BCD0088D167 /* zh-Hans */,
 			);
 			name = SyntaxEditSheet.xib;
 			sourceTree = "<group>";
@@ -1226,6 +1268,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				6C1E212412C9E65600194313 /* ja */,
+				4B7998191A1F1BCD0088D167 /* zh-Hans */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -1235,6 +1278,7 @@
 			children = (
 				2A07202D18E0E421006F3A43 /* en */,
 				2AA562A818E8F630009CD7A2 /* ja */,
+				4B7998221A1F1BCD0088D167 /* zh-Hans */,
 			);
 			name = PrintPanelAccessory.xib;
 			sourceTree = "<group>";
@@ -1244,6 +1288,7 @@
 			children = (
 				2A149D9719016ABB00A9D6EF /* en */,
 				2A294CD51926666B00DCB672 /* ja */,
+				4B7998281A1F1BCD0088D167 /* zh-Hans */,
 			);
 			name = AppearancePane.xib;
 			sourceTree = "<group>";
@@ -1253,6 +1298,7 @@
 			children = (
 				2A149D9919016ABB00A9D6EF /* en */,
 				2A149DCE1902C4D500A9D6EF /* ja */,
+				4B7998291A1F1BCD0088D167 /* zh-Hans */,
 			);
 			name = EditPane.xib;
 			sourceTree = "<group>";
@@ -1262,6 +1308,7 @@
 			children = (
 				2A149D9B19016ABB00A9D6EF /* en */,
 				2A149DD01902C9CA00A9D6EF /* ja */,
+				4B79982B1A1F1BCD0088D167 /* zh-Hans */,
 			);
 			name = FileDropPane.xib;
 			sourceTree = "<group>";
@@ -1271,6 +1318,7 @@
 			children = (
 				2A149D9D19016ABB00A9D6EF /* en */,
 				2A149DCF1902C7E100A9D6EF /* ja */,
+				4B79982A1A1F1BCD0088D167 /* zh-Hans */,
 			);
 			name = FormatPane.xib;
 			sourceTree = "<group>";
@@ -1280,6 +1328,7 @@
 			children = (
 				2A149D9F19016ABB00A9D6EF /* en */,
 				2A149DCB1902C03000A9D6EF /* ja */,
+				4B7998261A1F1BCD0088D167 /* zh-Hans */,
 			);
 			name = GeneralPane.xib;
 			sourceTree = "<group>";
@@ -1289,6 +1338,7 @@
 			children = (
 				2A149DA119016ABB00A9D6EF /* en */,
 				2A149DD11902CA5D00A9D6EF /* ja */,
+				4B79982C1A1F1BCD0088D167 /* zh-Hans */,
 			);
 			name = KeyBindingsPane.xib;
 			sourceTree = "<group>";
@@ -1298,6 +1348,7 @@
 			children = (
 				2A149DA319016ABB00A9D6EF /* en */,
 				2A149DD21902CAFE00A9D6EF /* ja */,
+				4B79982D1A1F1BCD0088D167 /* zh-Hans */,
 			);
 			name = PrintPane.xib;
 			sourceTree = "<group>";
@@ -1307,6 +1358,7 @@
 			children = (
 				2A149DA519016ABB00A9D6EF /* en */,
 				2A149DCC1902C18F00A9D6EF /* ja */,
+				4B7998271A1F1BCD0088D167 /* zh-Hans */,
 			);
 			name = WindowPane.xib;
 			sourceTree = "<group>";
@@ -1316,6 +1368,7 @@
 			children = (
 				2A15831618E3688300601026 /* en */,
 				2A15831E18E3739A00601026 /* ja */,
+				4B7998301A1F1BCD0088D167 /* zh-Hans */,
 			);
 			name = EncodingListSheet.xib;
 			sourceTree = "<group>";
@@ -1325,6 +1378,7 @@
 			children = (
 				2A15832018E3814200601026 /* en */,
 				2A15832518E38F3400601026 /* ja */,
+				4B7998331A1F1BCD0088D167 /* zh-Hans */,
 			);
 			name = SizeSampleWindow.xib;
 			sourceTree = "<group>";
@@ -1334,6 +1388,7 @@
 			children = (
 				2A15832718E39B7400601026 /* en */,
 				2A0E161018E7A17600AAD872 /* ja */,
+				4B7998321A1F1BCD0088D167 /* zh-Hans */,
 			);
 			name = TextKeyBindingEditSheet.xib;
 			sourceTree = "<group>";
@@ -1342,6 +1397,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				2A1CFD0C18E5B64F00A5B664 /* ja */,
+				4B79981A1A1F1BCD0088D167 /* zh-Hans */,
 			);
 			name = Print.strings;
 			sourceTree = "<group>";
@@ -1351,6 +1407,7 @@
 			children = (
 				2A37F4B5FDCFA73011CA2CEA /* en */,
 				2AAEF50A1A026B35005F2AD3 /* ja */,
+				4B7998201A1F1BCD0088D167 /* zh-Hans */,
 			);
 			name = DocumentWindow.xib;
 			sourceTree = "<group>";
@@ -1360,6 +1417,7 @@
 			children = (
 				2A37F4B7FDCFA73011CA2CEA /* en */,
 				6C1E212512C9E65600194313 /* ja */,
+				4B79981D1A1F1BCD0088D167 /* zh-Hans */,
 			);
 			name = MainMenu.xib;
 			sourceTree = "<group>";
@@ -1369,6 +1427,7 @@
 			children = (
 				2A3A759019E77D4F001DAB88 /* en */,
 				2AF861D71A05C294005054DE /* ja */,
+				4B79981E1A1F1BCD0088D167 /* zh-Hans */,
 			);
 			name = MigrationWindow.xib;
 			sourceTree = "<group>";
@@ -1378,6 +1437,7 @@
 			children = (
 				2A456C431A1EDCFC00395158 /* en */,
 				2A456C441A1EDD0400395158 /* ja */,
+				4B79981C1A1F1BCD0088D167 /* zh-Hans */,
 			);
 			name = ReportTemplate.md;
 			sourceTree = "<group>";
@@ -1387,6 +1447,7 @@
 			children = (
 				2A5411C219852C1C008B43DA /* en */,
 				2AD2861819856E2300C9342F /* ja */,
+				4B7998211A1F1BCD0088D167 /* zh-Hans */,
 			);
 			name = NavigationBar.xib;
 			sourceTree = "<group>";
@@ -1396,6 +1457,7 @@
 			children = (
 				2A5ABE78191861E3009265DF /* en */,
 				2A5ABE7A19189021009265DF /* ja */,
+				4B7998391A1F1BCE0088D167 /* zh-Hans */,
 			);
 			name = UnicodePanel.xib;
 			sourceTree = "<group>";
@@ -1405,6 +1467,7 @@
 			children = (
 				2A5B998A18D61443009C2F4F /* en */,
 				2A5B998C18D634A3009C2F4F /* ja */,
+				4B7998361A1F1BCD0088D167 /* zh-Hans */,
 			);
 			name = LineHightPanel.xib;
 			sourceTree = "<group>";
@@ -1414,6 +1477,7 @@
 			children = (
 				2A15830518E24CB300601026 /* en */,
 				2AD2F7171969FE7D000DD47E /* ja */,
+				4B79982F1A1F1BCD0088D167 /* zh-Hans */,
 			);
 			name = SyntaxMappingConflictSheet.xib;
 			sourceTree = "<group>";
@@ -1423,6 +1487,7 @@
 			children = (
 				2A607B0F1905F02F00F3A991 /* en */,
 				2A5B0AF319070EED00B6A51C /* ja */,
+				4B7998381A1F1BCE0088D167 /* zh-Hans */,
 			);
 			name = ColorCodePanelAccessory.xib;
 			sourceTree = "<group>";
@@ -1432,6 +1497,7 @@
 			children = (
 				2A63123019C2D3B60088C5C6 /* en */,
 				2AE4D72419C3BCAA004B2C71 /* ja */,
+				4B7998341A1F1BCD0088D167 /* zh-Hans */,
 			);
 			name = ThemeView.xib;
 			sourceTree = "<group>";
@@ -1441,6 +1507,7 @@
 			children = (
 				2A961C4618FC699E002076B6 /* en */,
 				2A961C5918FC69CC002076B6 /* ja */,
+				4B79983B1A1F1BCE0088D167 /* zh-Hans */,
 			);
 			name = Acknowledgements.rtf;
 			sourceTree = "<group>";
@@ -1450,6 +1517,7 @@
 			children = (
 				2A961C4818FC699E002076B6 /* en */,
 				2A961C5B18FC69D4002076B6 /* ja */,
+				4B7998171A1F1BCD0088D167 /* zh-Hans */,
 			);
 			name = AppleScript.rtf;
 			sourceTree = "<group>";
@@ -1459,6 +1527,7 @@
 			children = (
 				2A961C4C18FC699E002076B6 /* en */,
 				2A961C5A18FC69D0002076B6 /* ja */,
+				4B79983C1A1F1BCE0088D167 /* zh-Hans */,
 			);
 			name = "ScriptMenu Folder.rtf";
 			sourceTree = "<group>";
@@ -1468,6 +1537,7 @@
 			children = (
 				2A961C4E18FC699E002076B6 /* en */,
 				2A961C5C18FC69D9002076B6 /* ja */,
+				4B7998181A1F1BCD0088D167 /* zh-Hans */,
 			);
 			name = ShellScript.rtf;
 			sourceTree = "<group>";
@@ -1476,6 +1546,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				2AB4326D1912ADAC00835004 /* en */,
+				4B7998241A1F1BCD0088D167 /* zh-Hans */,
 			);
 			name = GlyphPopover.xib;
 			sourceTree = "<group>";
@@ -1485,6 +1556,7 @@
 			children = (
 				2AEB8B7B19AF73980098D557 /* en */,
 				2AEB8B7D19AF739F0098D557 /* ja */,
+				4B79981B1A1F1BCD0088D167 /* zh-Hans */,
 			);
 			name = FileDropGlossary.txt;
 			sourceTree = "<group>";
@@ -1494,6 +1566,7 @@
 			children = (
 				2AFFB70618D7BC9300118477 /* en */,
 				2AFFB70818D7BCB300118477 /* ja */,
+				4B7998351A1F1BCD0088D167 /* zh-Hans */,
 			);
 			name = OpacityPanel.xib;
 			sourceTree = "<group>";
@@ -1503,6 +1576,7 @@
 			children = (
 				2AFFB71E18D7F22E00118477 /* en */,
 				2AFFB72018D7FC6000118477 /* ja */,
+				4B79983A1A1F1BCE0088D167 /* zh-Hans */,
 			);
 			name = GoToSheet.xib;
 			sourceTree = "<group>";
@@ -1512,6 +1586,7 @@
 			children = (
 				2AFFB72918D8C7DE00118477 /* en */,
 				2AFFB72B18D8CB7D00118477 /* ja */,
+				4B79981F1A1F1BCD0088D167 /* zh-Hans */,
 			);
 			name = OpenDocumentAccessory.xib;
 			sourceTree = "<group>";
@@ -1521,6 +1596,7 @@
 			children = (
 				8C28CD2D081101A300733DA7 /* en */,
 				2A47A70B18CC8A7C0076B49A /* ja */,
+				4B7998371A1F1BCE0088D167 /* zh-Hans */,
 			);
 			name = ScriptErrorPanel.xib;
 			sourceTree = "<group>";
@@ -1530,6 +1606,7 @@
 			children = (
 				8C7400A308C6D93900683672 /* en */,
 				2A0E160F18E79FFA00AAD872 /* ja */,
+				4B7998311A1F1BCD0088D167 /* zh-Hans */,
 			);
 			name = MenuKeyBindingEditSheet.xib;
 			sourceTree = "<group>";
