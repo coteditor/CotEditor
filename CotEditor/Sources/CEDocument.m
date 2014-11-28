@@ -1427,11 +1427,10 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 - (NSStringEncoding)scanCharsetOrEncodingFromString:(NSString *)string
 // ------------------------------------------------------
 {
-// このメソッドは、Smultron を参考にさせていただきました。(2005.08.10)
-// This method is based on Smultron.(written by Peter Borg – http://smultron.sourceforge.net)
-// Smultron  Copyright (c) 2004-2005 Peter Borg, All rights reserved.
-// Smultron is released under GNU General Public License, http://www.gnu.org/copyleft/gpl.html
-
+    // This method is based on Smultron's SMLTextPerformer.m by Peter Borg. (2005-08-10)
+    // Smultron 2 was distributed on <http://smultron.sourceforge.net> under the terms of the BSD license.
+    // Copyright (c) 2004-2006 Peter Borg
+    
     NSStringEncoding encoding = NSProprietaryStringEncoding;
     if (![[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultReferToEncodingTagKey] || ([string length] < 9)) {
         return encoding; // 参照しない設定になっているか、含まれている余地が無ければ中断

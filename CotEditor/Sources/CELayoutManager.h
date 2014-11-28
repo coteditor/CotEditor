@@ -7,13 +7,6 @@
  
  Created on 2005-01-10 by nakamuxu
  encoding="UTF-8"
- 
- ------------
- This class is based on Smultron - SMLLayoutManager (written by Peter Borg – http://smultron.sourceforge.net)
- Smultron  Copyright (c) 2004 Peter Borg, All rights reserved.
- Smultron is released under GNU General Public License, http://www.gnu.org/copyleft/gpl.html
- arranged by nakamuxu, Jan 2005.
- arranged by 1024jp, Mar 2014.
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu

@@ -591,10 +591,10 @@
     [self updateOutlineMenuSelection];
 
     // 対応するカッコをハイライト表示
-// 以下の部分は、Smultron を参考にさせていただきました。(2006.09.09)
-// This method is based on Smultron.(written by Peter Borg – http://smultron.sourceforge.net)
-// Smultron  Copyright (c) 2004-2005 Peter Borg, All rights reserved.
-// Smultron is released under GNU General Public License, http://www.gnu.org/copyleft/gpl.html
+    
+    // The following part is based on Smultron's SMLTextView.m by Peter Borg. (2006-09-09)
+    // Smultron 2 was distributed on <http://smultron.sourceforge.net> under the terms of the BSD license.
+    // Copyright (c) 2004-2006 Peter Borg
 
     if (![[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultHighlightBracesKey]) { return; }
     

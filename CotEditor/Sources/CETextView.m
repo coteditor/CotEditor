@@ -95,9 +95,10 @@ const NSInteger kNoMenuItem = -1;
 {
     self = [super initWithFrame:frameRect textContainer:aTextContainer];
     if (self) {
-        // このメソッドはSmultronのSMLTextViewを参考にしています。
-        // This method is based on Smultron(SMLTextView) written by Peter Borg. Copyright (C) 2004 Peter Borg.
-        // http://smultron.sourceforge.net
+        // This method is partly based on Smultron's SMLTextView by Peter Borg. (2006-09-09)
+        // Smultron 2 was distributed on <http://smultron.sourceforge.net> under the terms of the BSD license.
+        // Copyright (c) 2004-2006 Peter Borg
+        
         // set the width of every tab by first checking the size of the tab in spaces in the current font and then remove all tabs that sets automatically and then set the default tab stop distance
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         
@@ -1064,10 +1065,9 @@ const NSInteger kNoMenuItem = -1;
 - (NSRange)selectionRangeForProposedRange:(NSRange)proposedSelRange granularity:(NSSelectionGranularity)granularity
 // ------------------------------------------------------
 {
-    // このメソッドは、Smultron のものを使用させていただきました。(2006.09.09)
-    // This method is based on Smultron.(written by Peter Borg – http://smultron.sourceforge.net)
-    // Smultron  Copyright (c) 2004-2005 Peter Borg, All rights reserved.
-    // Smultron is released under GNU General Public License, http://www.gnu.org/copyleft/gpl.html
+    // This method is partly based on Smultron's SMLTextView by Peter Borg (2006-09-09)
+    // Smultron 2 was distributed on <http://smultron.sourceforge.net> under the terms of the BSD license.
+    // Copyright (c) 2004-2006 Peter Borg
     
     NSString *completeString = [self string];
     
