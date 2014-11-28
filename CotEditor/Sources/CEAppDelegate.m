@@ -130,6 +130,7 @@
                                CEDefaultAutoExpandTabKey: @NO,
                                CEDefaultTabWidthKey: @4U,
                                CEDefaultAutoIndentKey: @YES,
+                               CEDefaultShowInvisiblesKey: @YES,
                                CEDefaultShowInvisibleSpaceKey: @NO,
                                CEDefaultInvisibleSpaceKey: @0U,
                                CEDefaultShowInvisibleTabKey: @NO,

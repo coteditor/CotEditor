@@ -120,6 +120,7 @@ extern NSString *const CEDefaultWindowAlphaKey;
 extern NSString *const CEDefaultAutoExpandTabKey;
 extern NSString *const CEDefaultTabWidthKey;
 extern NSString *const CEDefaultAutoIndentKey;
+extern NSString *const CEDefaultShowInvisiblesKey;
 extern NSString *const CEDefaultShowInvisibleSpaceKey;
 extern NSString *const CEDefaultInvisibleSpaceKey;
 extern NSString *const CEDefaultShowInvisibleTabKey;

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6250"/>
@@ -15,11 +15,11 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <userDefaultsController representsSharedInstance="YES" id="26" userLabel="Shared User Defaults Controller"/>
         <customView horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" id="s6I-DY-Ii0" userLabel="Edit Pane">
-            <rect key="frame" x="0.0" y="0.0" width="540" height="593"/>
+            <rect key="frame" x="0.0" y="0.0" width="540" height="620"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="870">
-                    <rect key="frame" x="155" y="459" width="159" height="18"/>
+                    <rect key="frame" x="129" y="486" width="159" height="18"/>
                     <buttonCell key="cell" type="check" title="“&lt; &gt;”をハイライト表示" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3305">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
@@ -30,7 +30,7 @@
                     </connections>
                 </button>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="867">
-                    <rect key="frame" x="130" y="483" width="284" height="18"/>
+                    <rect key="frame" x="104" y="510" width="284" height="18"/>
                     <buttonCell key="cell" type="check" title="対応する括弧“( )” “[ ]” “{ }”をハイライト表示" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3304">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
@@ -40,7 +40,7 @@
                     </connections>
                 </button>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="844">
-                    <rect key="frame" x="130" y="507" width="188" height="18"/>
+                    <rect key="frame" x="104" y="534" width="188" height="18"/>
                     <buttonCell key="cell" type="check" title="“¥”と“\”のキーを入れ替える" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3303">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
@@ -50,7 +50,7 @@
                     </connections>
                 </button>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="644">
-                    <rect key="frame" x="130" y="555" width="282" height="18"/>
+                    <rect key="frame" x="104" y="582" width="282" height="18"/>
                     <buttonCell key="cell" type="check" title="スマートインサート／デリートを有効にする" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3302">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
@@ -60,7 +60,7 @@
                     </connections>
                 </button>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="mK4-4e-plf">
-                    <rect key="frame" x="130" y="531" width="256" height="18"/>
+                    <rect key="frame" x="104" y="558" width="256" height="18"/>
                     <buttonCell key="cell" type="check" title="スマート引用符／ダッシュを有効にする" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="nA4-HY-d71">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
@@ -70,7 +70,7 @@
                     </connections>
                 </button>
                 <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Dte-ly-fKQ">
-                    <rect key="frame" x="130" y="141" width="199" height="17"/>
+                    <rect key="frame" x="104" y="141" width="199" height="17"/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="入力補完候補リストに含む単語：" usesSingleLineMode="YES" id="dLj-Kh-KtX">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -78,7 +78,7 @@
                     </textFieldCell>
                 </textField>
                 <matrix verticalHuggingPriority="750" allowsEmptySelection="NO" autosizesCells="NO" translatesAutoresizingMaskIntoConstraints="NO" id="686">
-                    <rect key="frame" x="157" y="51" width="363" height="86"/>
+                    <rect key="frame" x="131" y="51" width="389" height="86"/>
                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     <size key="cellSize" width="346" height="20"/>
                     <size key="intercellSpacing" width="4" height="2"/>
@@ -111,7 +111,7 @@
                     </connections>
                 </matrix>
                 <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="IXD-kJ-dvh">
-                    <rect key="frame" x="70" y="556" width="56" height="17"/>
+                    <rect key="frame" x="44" y="583" width="56" height="17"/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="編集時：" usesSingleLineMode="YES" id="SqI-BC-ar9">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -119,7 +119,7 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="4B0-Kj-mzX">
-                    <rect key="frame" x="44" y="426" width="82" height="17"/>
+                    <rect key="frame" x="18" y="453" width="82" height="17"/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="インデント：" usesSingleLineMode="YES" id="9bX-ei-1x8">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -127,7 +127,7 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="283">
-                    <rect key="frame" x="130" y="376" width="95" height="17"/>
+                    <rect key="frame" x="104" y="403" width="95" height="17"/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="left" title="インデント幅：" usesSingleLineMode="YES" id="3287">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -135,7 +135,7 @@
                     </textFieldCell>
                 </textField>
                 <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="282">
-                    <rect key="frame" x="231" y="374" width="40" height="22"/>
+                    <rect key="frame" x="205" y="401" width="40" height="22"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="40" id="8n8-kM-Jo2"/>
                     </constraints>
@@ -156,7 +156,7 @@
                     </connections>
                 </textField>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="160">
-                    <rect key="frame" x="130" y="401" width="178" height="18"/>
+                    <rect key="frame" x="104" y="428" width="178" height="18"/>
                     <buttonCell key="cell" type="check" title="タブを空白に自動的に展開" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3283">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
@@ -166,14 +166,14 @@
                     </connections>
                 </button>
                 <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="iub-4d-NyY">
-                    <rect key="frame" x="272" y="371" width="19" height="27"/>
+                    <rect key="frame" x="246" y="398" width="19" height="27"/>
                     <stepperCell key="cell" continuous="YES" alignment="left" minValue="1" maxValue="99" doubleValue="1" id="ajw-Bh-Oc0"/>
                     <connections>
                         <binding destination="26" name="value" keyPath="values.tabWidth" id="5S2-d5-xKG"/>
                     </connections>
                 </stepper>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="209">
-                    <rect key="frame" x="130" y="425" width="113" height="18"/>
+                    <rect key="frame" x="104" y="452" width="113" height="18"/>
                     <buttonCell key="cell" type="check" title="自動インデント" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3285">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
@@ -182,18 +182,8 @@
                         <binding destination="26" name="value" keyPath="values.autoIndent" id="210"/>
                     </connections>
                 </button>
-                <button horizontalHuggingPriority="750" verticalHuggingPriority="750" tag="4" translatesAutoresizingMaskIntoConstraints="NO" id="z5v-7l-1C4">
-                    <rect key="frame" x="497" y="17" width="25" height="25"/>
-                    <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Cmk-AI-Nel">
-                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="system"/>
-                    </buttonCell>
-                    <connections>
-                        <action selector="openPreferencesHelp:" target="-1" id="IXm-LC-3Ux"/>
-                    </connections>
-                </button>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="69">
-                    <rect key="frame" x="130" y="282" width="100" height="18"/>
+                    <rect key="frame" x="104" y="309" width="100" height="18"/>
                     <buttonCell key="cell" type="check" title="行を折り返す" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3274">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
@@ -203,7 +193,7 @@
                     </connections>
                 </button>
                 <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fR5-Ie-WnP">
-                    <rect key="frame" x="57" y="283" width="69" height="17"/>
+                    <rect key="frame" x="31" y="310" width="69" height="17"/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="折り返し：" usesSingleLineMode="YES" id="P1I-gs-RgX">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -211,7 +201,7 @@
                     </textFieldCell>
                 </textField>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="dhF-Zu-Ysd">
-                    <rect key="frame" x="130" y="340" width="204" height="18"/>
+                    <rect key="frame" x="104" y="367" width="204" height="18"/>
                     <buttonCell key="cell" type="check" title="コメント記号にスペースを追加" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="WQl-NZ-CVc">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
@@ -221,7 +211,7 @@
                     </connections>
                 </button>
                 <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Uwh-E6-Tdo">
-                    <rect key="frame" x="57" y="341" width="69" height="17"/>
+                    <rect key="frame" x="31" y="368" width="69" height="17"/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="コメント：" usesSingleLineMode="YES" id="w8J-fQ-izs">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -229,7 +219,7 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="N9e-hF-BPy">
-                    <rect key="frame" x="294" y="376" width="56" height="17"/>
+                    <rect key="frame" x="268" y="403" width="56" height="17"/>
                     <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="スペース" usesSingleLineMode="YES" id="as9-us-CuG">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -237,17 +227,18 @@
                     </textFieldCell>
                 </textField>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="235">
-                    <rect key="frame" x="130" y="248" width="74" height="18"/>
+                    <rect key="frame" x="129" y="248" width="74" height="18"/>
                     <buttonCell key="cell" type="check" title="スペース" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3257">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
                     <connections>
+                        <binding destination="26" name="enabled" keyPath="values.showInvisibles" id="2Jn-zd-WFm"/>
                         <binding destination="26" name="value" keyPath="values.showInvisibleSpace" id="238"/>
                     </connections>
                 </button>
                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="236">
-                    <rect key="frame" x="220" y="243" width="55" height="26"/>
+                    <rect key="frame" x="219" y="243" width="55" height="26"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="50" id="rr2-Bh-XY1"/>
                     </constraints>
@@ -261,13 +252,21 @@
                         </menu>
                     </popUpButtonCell>
                     <connections>
+                        <binding destination="26" name="enabled2" keyPath="values.showInvisibles" previousBinding="239" id="MCy-aa-ISy">
+                            <dictionary key="options">
+                                <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                <integer key="NSNullPlaceholder" value="-1"/>
+                            </dictionary>
+                        </binding>
                         <binding destination="-2" name="contentValues" keyPath="invisibleSpaces" id="nhg-7o-Cjg"/>
                         <binding destination="26" name="selectedIndex" keyPath="values.invisibleSpace" previousBinding="nhg-7o-Cjg" id="bLN-Jj-zX1"/>
                         <binding destination="26" name="enabled" keyPath="values.showInvisibleSpace" id="239"/>
                     </connections>
                 </popUpButton>
                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="243">
-                    <rect key="frame" x="220" y="219" width="55" height="26"/>
+                    <rect key="frame" x="219" y="219" width="55" height="26"/>
                     <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="3259">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menu"/>
@@ -278,51 +277,62 @@
                         </menu>
                     </popUpButtonCell>
                     <connections>
+                        <binding destination="26" name="enabled2" keyPath="values.showInvisibles" previousBinding="252" id="x0D-zR-wHx">
+                            <dictionary key="options">
+                                <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                <integer key="NSNullPlaceholder" value="-1"/>
+                            </dictionary>
+                        </binding>
                         <binding destination="-2" name="contentValues" keyPath="invisibleTabs" id="jfI-Rh-dyy"/>
                         <binding destination="26" name="selectedIndex" keyPath="values.invisibleTab" previousBinding="jfI-Rh-dyy" id="HTm-ic-wn2"/>
                         <binding destination="26" name="enabled" keyPath="values.showInvisibleTab" id="252"/>
                     </connections>
                 </popUpButton>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="244">
-                    <rect key="frame" x="130" y="224" width="48" height="18"/>
+                    <rect key="frame" x="129" y="224" width="48" height="18"/>
                     <buttonCell key="cell" type="check" title="タブ" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3260">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
                     <connections>
+                        <binding destination="26" name="enabled" keyPath="values.showInvisibles" id="tNC-l4-qGy"/>
                         <binding destination="26" name="value" keyPath="values.showInvisibleTab" id="251"/>
                     </connections>
                 </button>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="874">
-                    <rect key="frame" x="130" y="200" width="126" height="18"/>
+                    <rect key="frame" x="129" y="200" width="126" height="18"/>
                     <buttonCell key="cell" type="check" title="ほかの不可視文字" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3263">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
                     <connections>
+                        <binding destination="26" name="enabled" keyPath="values.showInvisibles" id="gD3-9W-apA"/>
                         <binding destination="26" name="value" keyPath="values.showOtherInvisibleChars" id="876"/>
                     </connections>
                 </button>
                 <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="r9C-0B-mga">
-                    <rect key="frame" x="18" y="249" width="108" height="17"/>
-                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="不可視文字表示：" usesSingleLineMode="YES" id="pjW-HE-ngH">
+                    <rect key="frame" x="18" y="276" width="82" height="17"/>
+                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="不可視文字：" usesSingleLineMode="YES" id="pjW-HE-ngH">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="221">
-                    <rect key="frame" x="310" y="248" width="87" height="18"/>
+                    <rect key="frame" x="309" y="248" width="87" height="18"/>
                     <buttonCell key="cell" type="check" title="改行コード" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3255">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
                     <connections>
+                        <binding destination="26" name="enabled" keyPath="values.showInvisibles" id="4cz-rO-hvI"/>
                         <binding destination="26" name="value" keyPath="values.showInvisibleNewLine" id="227"/>
                     </connections>
                 </button>
                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="224">
-                    <rect key="frame" x="414" y="243" width="55" height="26"/>
+                    <rect key="frame" x="413" y="243" width="55" height="26"/>
                     <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="3256">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menu"/>
@@ -333,13 +343,21 @@
                         </menu>
                     </popUpButtonCell>
                     <connections>
+                        <binding destination="26" name="enabled2" keyPath="values.showInvisibles" previousBinding="230" id="5nk-Xj-XLk">
+                            <dictionary key="options">
+                                <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                <integer key="NSNullPlaceholder" value="-1"/>
+                            </dictionary>
+                        </binding>
                         <binding destination="-2" name="contentValues" keyPath="invisibleNewLines" id="dtj-Fb-OId"/>
                         <binding destination="26" name="selectedIndex" keyPath="values.invisibleNewLine" previousBinding="dtj-Fb-OId" id="GVd-bs-zbe"/>
                         <binding destination="26" name="enabled" keyPath="values.showInvisibleNewLine" id="230"/>
                     </connections>
                 </popUpButton>
                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="247">
-                    <rect key="frame" x="414" y="220" width="55" height="26"/>
+                    <rect key="frame" x="413" y="220" width="55" height="26"/>
                     <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="3261">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" size="13" name="HiraKakuProN-W3"/>
@@ -350,23 +368,32 @@
                         </menu>
                     </popUpButtonCell>
                     <connections>
+                        <binding destination="26" name="enabled2" keyPath="values.showInvisibles" previousBinding="255" id="KdJ-Hh-D1g">
+                            <dictionary key="options">
+                                <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                <integer key="NSNullPlaceholder" value="-1"/>
+                            </dictionary>
+                        </binding>
                         <binding destination="-2" name="contentValues" keyPath="invisibleFullWidthSpaces" id="OWc-5t-nq8"/>
                         <binding destination="26" name="selectedIndex" keyPath="values.invisibleZenkakuSpace" previousBinding="OWc-5t-nq8" id="Kgk-eb-Xec"/>
                         <binding destination="26" name="enabled" keyPath="values.showInvisibleZenkakuSpace" id="255"/>
                     </connections>
                 </popUpButton>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="249">
-                    <rect key="frame" x="310" y="224" width="100" height="18"/>
+                    <rect key="frame" x="309" y="224" width="100" height="18"/>
                     <buttonCell key="cell" type="check" title="全角スペース" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3262">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
                     <connections>
+                        <binding destination="26" name="enabled" keyPath="values.showInvisibles" id="KNl-1o-pSj"/>
                         <binding destination="26" name="value" keyPath="values.showInvisibleZenkakuSpace" id="254"/>
                     </connections>
                 </button>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="NYb-54-Clb">
-                    <rect key="frame" x="130" y="316" width="191" height="18"/>
+                    <rect key="frame" x="104" y="343" width="191" height="18"/>
                     <buttonCell key="cell" type="check" title="常に行頭からコメントアウト" bezelStyle="regularSquare" imagePosition="left" inset="2" id="552-Rw-RWZ">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" size="13" name="HiraKakuProN-W3"/>
@@ -376,7 +403,7 @@
                     </connections>
                 </button>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="E3D-ws-f4s">
-                    <rect key="frame" x="130" y="166" width="100" height="18"/>
+                    <rect key="frame" x="104" y="166" width="100" height="18"/>
                     <buttonCell key="cell" type="check" title="自動入力補完" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="TXb-6g-uiX">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
@@ -386,27 +413,50 @@
                     </connections>
                 </button>
                 <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="H57-OI-MHk">
-                    <rect key="frame" x="57" y="167" width="69" height="17"/>
+                    <rect key="frame" x="31" y="167" width="69" height="17"/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="入力補完：" usesSingleLineMode="YES" id="MIT-0h-S3I">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
+                <button translatesAutoresizingMaskIntoConstraints="NO" id="4dV-g5-ZKC">
+                    <rect key="frame" x="104" y="275" width="126" height="18"/>
+                    <buttonCell key="cell" type="check" title="不可視文字を表示" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="ElM-4t-x0D">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <binding destination="26" name="value" keyPath="values.showInvisibles" id="743-oB-7eQ"/>
+                    </connections>
+                </button>
+                <button horizontalHuggingPriority="750" verticalHuggingPriority="750" tag="4" translatesAutoresizingMaskIntoConstraints="NO" id="z5v-7l-1C4">
+                    <rect key="frame" x="497" y="17" width="25" height="25"/>
+                    <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Cmk-AI-Nel">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="openPreferencesHelp:" target="-1" id="IXm-LC-3Ux"/>
+                    </connections>
+                </button>
             </subviews>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="z5v-7l-1C4" secondAttribute="bottom" constant="20" symbolic="YES" id="0Ke-Pr-SYk"/>
                 <constraint firstItem="E3D-ws-f4s" firstAttribute="top" secondItem="874" secondAttribute="bottom" constant="20" id="0dv-iN-FAr"/>
-                <constraint firstItem="235" firstAttribute="baseline" secondItem="r9C-0B-mga" secondAttribute="baseline" id="2UF-ql-3mk"/>
+                <constraint firstItem="874" firstAttribute="leading" secondItem="235" secondAttribute="leading" id="1T7-o5-I4J"/>
                 <constraint firstItem="644" firstAttribute="leading" secondItem="160" secondAttribute="leading" id="2YC-uB-api"/>
                 <constraint firstItem="282" firstAttribute="baseline" secondItem="283" secondAttribute="baseline" id="2eo-GD-Kfb"/>
+                <constraint firstItem="874" firstAttribute="leading" secondItem="244" secondAttribute="leading" id="2sX-p1-OMc"/>
                 <constraint firstItem="E3D-ws-f4s" firstAttribute="leading" secondItem="Dte-ly-fKQ" secondAttribute="leading" id="3w6-oS-gK5"/>
-                <constraint firstItem="235" firstAttribute="top" secondItem="69" secondAttribute="bottom" constant="20" id="4yM-UG-Uyb"/>
                 <constraint firstItem="E3D-ws-f4s" firstAttribute="leading" secondItem="644" secondAttribute="leading" id="712-7r-8SE"/>
                 <constraint firstItem="E3D-ws-f4s" firstAttribute="leading" secondItem="H57-OI-MHk" secondAttribute="trailing" constant="8" symbolic="YES" id="7OA-aM-BRs"/>
                 <constraint firstItem="221" firstAttribute="leading" secondItem="249" secondAttribute="leading" id="7h3-GD-axK"/>
                 <constraint firstItem="69" firstAttribute="top" secondItem="NYb-54-Clb" secondAttribute="bottom" constant="20" id="7mv-wh-scA"/>
+                <constraint firstItem="fR5-Ie-WnP" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="s6I-DY-Ii0" secondAttribute="leading" constant="20" symbolic="YES" id="8ux-S8-H4Z"/>
                 <constraint firstItem="NYb-54-Clb" firstAttribute="leading" secondItem="644" secondAttribute="leading" id="9CA-E0-QmL"/>
+                <constraint firstItem="z5v-7l-1C4" firstAttribute="top" secondItem="686" secondAttribute="bottom" constant="10" id="DPy-vY-6jE"/>
+                <constraint firstItem="4B0-Kj-mzX" firstAttribute="leading" secondItem="s6I-DY-Ii0" secondAttribute="leading" constant="20" symbolic="YES" id="Eaj-6g-lYw"/>
                 <constraint firstItem="Uwh-E6-Tdo" firstAttribute="baseline" secondItem="dhF-Zu-Ysd" secondAttribute="baseline" id="Fie-4M-6hS"/>
                 <constraint firstItem="160" firstAttribute="top" secondItem="209" secondAttribute="bottom" constant="10" id="Frm-gK-yPu"/>
                 <constraint firstItem="644" firstAttribute="leading" secondItem="dhF-Zu-Ysd" secondAttribute="leading" id="GGE-HQ-WU9"/>
@@ -415,13 +465,12 @@
                 <constraint firstItem="283" firstAttribute="top" secondItem="160" secondAttribute="bottom" constant="10" id="IM6-11-CAa"/>
                 <constraint firstItem="644" firstAttribute="leading" secondItem="IXD-kJ-dvh" secondAttribute="trailing" constant="8" symbolic="YES" id="Kcl-7N-AbQ"/>
                 <constraint firstItem="NYb-54-Clb" firstAttribute="top" secondItem="dhF-Zu-Ysd" secondAttribute="bottom" constant="10" id="LQS-HT-5qw"/>
-                <constraint firstItem="z5v-7l-1C4" firstAttribute="top" secondItem="686" secondAttribute="bottom" constant="10" id="Lx4-jO-suz"/>
                 <constraint firstItem="dhF-Zu-Ysd" firstAttribute="top" secondItem="283" secondAttribute="bottom" constant="20" id="Oiw-gK-N1j"/>
                 <constraint firstItem="247" firstAttribute="leading" secondItem="249" secondAttribute="trailing" constant="8" symbolic="YES" id="QB9-YF-TQu"/>
                 <constraint firstItem="282" firstAttribute="centerY" secondItem="iub-4d-NyY" secondAttribute="centerY" id="QWl-29-mP4"/>
                 <constraint firstItem="236" firstAttribute="baseline" secondItem="235" secondAttribute="baseline" id="Qhd-cX-UHI"/>
                 <constraint firstItem="644" firstAttribute="leading" secondItem="209" secondAttribute="leading" id="R0S-RG-I45"/>
-                <constraint firstItem="235" firstAttribute="leading" secondItem="r9C-0B-mga" secondAttribute="trailing" constant="8" symbolic="YES" id="R7c-hV-NqW"/>
+                <constraint firstItem="4dV-g5-ZKC" firstAttribute="top" secondItem="69" secondAttribute="bottom" constant="20" id="RE5-p7-ypx"/>
                 <constraint firstItem="644" firstAttribute="leading" secondItem="mK4-4e-plf" secondAttribute="leading" id="SSF-Ji-WPP"/>
                 <constraint firstItem="209" firstAttribute="leading" secondItem="4B0-Kj-mzX" secondAttribute="trailing" constant="8" symbolic="YES" id="UcK-lH-Or0"/>
                 <constraint firstItem="224" firstAttribute="leading" secondItem="247" secondAttribute="leading" id="Ucv-kh-TdC"/>
@@ -431,6 +480,7 @@
                 <constraint firstItem="243" firstAttribute="width" secondItem="247" secondAttribute="width" id="bJI-zN-7dz"/>
                 <constraint firstItem="870" firstAttribute="top" secondItem="867" secondAttribute="bottom" constant="10" id="bLh-rA-4nS"/>
                 <constraint firstItem="867" firstAttribute="top" secondItem="844" secondAttribute="bottom" constant="10" id="bQy-3Z-nS3"/>
+                <constraint firstItem="236" firstAttribute="top" secondItem="4dV-g5-ZKC" secondAttribute="bottom" constant="10" id="dZg-w3-o74"/>
                 <constraint firstItem="244" firstAttribute="top" secondItem="235" secondAttribute="bottom" constant="10" id="dx8-My-4SK"/>
                 <constraint firstItem="69" firstAttribute="leading" secondItem="fR5-Ie-WnP" secondAttribute="trailing" constant="8" symbolic="YES" id="e18-6y-ozt"/>
                 <constraint firstItem="dhF-Zu-Ysd" firstAttribute="leading" secondItem="Uwh-E6-Tdo" secondAttribute="trailing" constant="8" symbolic="YES" id="eAm-4I-XN7"/>
@@ -441,33 +491,34 @@
                 <constraint firstAttribute="trailing" secondItem="686" secondAttribute="trailing" constant="20" symbolic="YES" id="grz-cC-OEb"/>
                 <constraint firstItem="221" firstAttribute="leading" secondItem="236" secondAttribute="trailing" constant="40" id="h5l-Uw-WGb"/>
                 <constraint firstItem="244" firstAttribute="leading" secondItem="874" secondAttribute="leading" id="i2U-51-7J6"/>
-                <constraint firstItem="r9C-0B-mga" firstAttribute="leading" secondItem="s6I-DY-Ii0" secondAttribute="leading" constant="20" symbolic="YES" id="iGO-dq-4UX"/>
                 <constraint firstItem="282" firstAttribute="leading" secondItem="283" secondAttribute="trailing" constant="8" symbolic="YES" id="iOw-EV-67G"/>
                 <constraint firstItem="844" firstAttribute="top" secondItem="mK4-4e-plf" secondAttribute="bottom" constant="10" id="jZx-YO-1vL"/>
                 <constraint firstItem="mK4-4e-plf" firstAttribute="top" secondItem="644" secondAttribute="bottom" constant="10" id="jbL-02-1xF"/>
                 <constraint firstItem="209" firstAttribute="top" secondItem="870" secondAttribute="bottom" constant="20" id="kKQ-zf-Ke1"/>
-                <constraint firstItem="244" firstAttribute="leading" secondItem="69" secondAttribute="leading" id="kga-1X-UJZ"/>
                 <constraint firstItem="686" firstAttribute="leading" secondItem="Dte-ly-fKQ" secondAttribute="leading" constant="25" id="khU-IM-CJi"/>
                 <constraint firstItem="249" firstAttribute="baseline" secondItem="244" secondAttribute="baseline" id="kjY-LB-qSG"/>
                 <constraint firstItem="224" firstAttribute="baseline" secondItem="221" secondAttribute="baseline" id="lPP-JM-GMF"/>
+                <constraint firstItem="4dV-g5-ZKC" firstAttribute="leading" secondItem="r9C-0B-mga" secondAttribute="trailing" constant="8" symbolic="YES" id="mjM-c2-BQV"/>
+                <constraint firstItem="r9C-0B-mga" firstAttribute="baseline" secondItem="4dV-g5-ZKC" secondAttribute="baseline" id="mlq-fR-zcl"/>
                 <constraint firstAttribute="trailing" secondItem="z5v-7l-1C4" secondAttribute="trailing" constant="20" symbolic="YES" id="mrm-H0-0da"/>
                 <constraint firstItem="243" firstAttribute="width" secondItem="236" secondAttribute="width" id="q7A-SC-Ewq"/>
                 <constraint firstItem="H57-OI-MHk" firstAttribute="baseline" secondItem="E3D-ws-f4s" secondAttribute="baseline" id="qx0-Kj-O7k"/>
                 <constraint firstItem="243" firstAttribute="width" secondItem="224" secondAttribute="width" id="rFX-pM-okS"/>
+                <constraint firstItem="235" firstAttribute="leading" secondItem="4dV-g5-ZKC" secondAttribute="leading" constant="25" id="saJ-Qz-jyh"/>
                 <constraint firstItem="644" firstAttribute="leading" secondItem="844" secondAttribute="leading" id="sce-Ba-PNP"/>
                 <constraint firstItem="iub-4d-NyY" firstAttribute="leading" secondItem="282" secondAttribute="trailing" constant="4" id="tek-TW-5hT"/>
                 <constraint firstItem="4B0-Kj-mzX" firstAttribute="baseline" secondItem="209" secondAttribute="baseline" id="tmg-CX-EMK"/>
                 <constraint firstItem="IXD-kJ-dvh" firstAttribute="baseline" secondItem="644" secondAttribute="baseline" id="tyZ-uJ-B5y"/>
                 <constraint firstItem="Dte-ly-fKQ" firstAttribute="top" secondItem="E3D-ws-f4s" secondAttribute="bottom" constant="10" id="uKO-DQ-zpF"/>
-                <constraint firstItem="244" firstAttribute="leading" secondItem="235" secondAttribute="leading" id="v19-ZV-o22"/>
                 <constraint firstItem="644" firstAttribute="leading" secondItem="69" secondAttribute="leading" id="xBh-wa-ujM"/>
                 <constraint firstItem="867" firstAttribute="leading" secondItem="870" secondAttribute="leading" constant="-25" id="yDq-t7-IbV"/>
                 <constraint firstItem="N9e-hF-BPy" firstAttribute="baseline" secondItem="283" secondAttribute="baseline" id="yEK-ut-qCX"/>
+                <constraint firstItem="4dV-g5-ZKC" firstAttribute="leading" secondItem="644" secondAttribute="leading" id="yHT-dO-jfb"/>
                 <constraint firstItem="243" firstAttribute="baseline" secondItem="244" secondAttribute="baseline" id="zZy-Lj-HeQ"/>
                 <constraint firstItem="236" firstAttribute="leading" secondItem="235" secondAttribute="trailing" constant="20" id="zmu-pm-xgy"/>
                 <constraint firstItem="fR5-Ie-WnP" firstAttribute="baseline" secondItem="69" secondAttribute="baseline" id="zrO-8M-62H"/>
             </constraints>
-            <point key="canvasLocation" x="307" y="302"/>
+            <point key="canvasLocation" x="307" y="320"/>
         </customView>
     </objects>
 </document>
