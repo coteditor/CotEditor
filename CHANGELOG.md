@@ -15,7 +15,8 @@ changelog
 ### Fixes
 
 - Fix a possible hang-up when no text font is found.
-- “Go” button in “Go To” sheet didn't work by clicking.
+- Fix an issue that “Go” button in “Go To” sheet didn't work by clicking.
+- Fix an issue that selecting inside of brackets by double-click didn't work.
 
 
 

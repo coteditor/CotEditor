@@ -1069,29 +1069,29 @@ const NSInteger kNoMenuItem = -1;
     // Smultron  Copyright (c) 2004-2005 Peter Borg, All rights reserved.
     // Smultron is released under GNU General Public License, http://www.gnu.org/copyleft/gpl.html
     
-    if (granularity != NSSelectByWord || [[self string] length] == proposedSelRange.location) {
+    NSString *completeString = [self string];
+    
+    if (granularity != NSSelectByWord || [completeString length] == proposedSelRange.location) {
         return [super selectionRangeForProposedRange:proposedSelRange granularity:granularity];
     }
     
-    NSRange proposedWordRange = [super selectionRangeForProposedRange:proposedSelRange granularity:NSSelectByWord];
+    NSRange wordRange = [super selectionRangeForProposedRange:proposedSelRange granularity:NSSelectByWord];
     
-    // 特定の文字を単語区切りとして扱う
-    if (proposedWordRange.length > 0) {
-        NSRange range = [self wordRangeAt:proposedSelRange.location];
+    // treat additional specific chars as separator (see wordRangeAt: for details)
+    if (wordRange.length > 0) {
+        wordRange = [self wordRangeAt:proposedSelRange.location];
         if (proposedSelRange.length > 1) {
-            range = NSUnionRange(range, [self wordRangeAt:NSMaxRange(proposedSelRange) - 1]);
+            wordRange = NSUnionRange(wordRange, [self wordRangeAt:NSMaxRange(proposedSelRange) - 1]);
         }
-        return range;
     }
     
-    // ダブルクリックでの括弧内選択 (選択範囲拡張時を除く)
-    if (proposedSelRange.length > 0) { return proposedWordRange; }
+    // settle result on expanding selection or if there is no possibility for clicking brackets
+    if (proposedSelRange.length > 0 || wordRange.length != 1) { return wordRange; }
     
-    NSString *completeString = [self string];
-    NSInteger location = [super selectionRangeForProposedRange:proposedSelRange granularity:NSSelectByCharacter].location;
+    // select inside of brackets by double-clicking
+    NSInteger location = wordRange.location;
     unichar beginBrace, endBrace;
     BOOL isEndBrace = NO;
-    
     switch ([completeString characterAtIndex:location]) {
         case ')':
             isEndBrace = YES;
@@ -1122,7 +1122,7 @@ const NSInteger kNoMenuItem = -1;
             break;
             
         default: {
-            return proposedWordRange;
+            return wordRange;
         }
     }
     
