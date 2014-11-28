@@ -10,6 +10,7 @@ changelog
 - Add "show invisible characters" option to set visibility of all invisible characters at once.
     - From this, invisibles visibility of displayed windows can be toggled even all invisibles are hidden as default.
 - Disable rech text in find panel.
+- Change default syntax style from “None” to “Plain Text”.
 
 
 ### Fixes

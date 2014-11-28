@@ -143,7 +143,7 @@
                                CEDefaultHighlightCurrentLineKey: @NO,
                                CEDefaultThemeKey: @"Dendrobates",
                                CEDefaultEnableSyntaxHighlightKey: @YES,
-                               CEDefaultSyntaxStyleKey: NSLocalizedString(@"None", nil),
+                               CEDefaultSyntaxStyleKey: @"Plain Text",
                                CEDefaultDelayColoringKey: @NO,
                                CEDefaultFileDropArrayKey: @[@{CEFileDropExtensionsKey: @"jpg, jpeg, gif, png",
                                                               CEFileDropFormatStringKey: @"<img src=\"<<<RELATIVE-PATH>>>\" alt=\"<<<FILENAME-NOSUFFIX>>>\" title=\"<<<FILENAME-NOSUFFIX>>>\" width=\"<<<IMAGEWIDTH>>>\" height=\"<<<IMAGEHEIGHT>>>\" />"}],
