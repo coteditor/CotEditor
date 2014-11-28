@@ -2,6 +2,23 @@
 changelog
 ==========================
 
+2.0.3
+--------------------------
+
+### Additions/Changes
+
+- Add "show invisible characters" option to set visibility of all invisible characters at once.
+    - From this, invisibles visibility of displayed windows can be toggled even all invisibles are hidden as default.
+- Disable rech text in find panel.
+
+
+### Fixes
+
+- Fix a possible hang-up when no text font is found.
+- “Go” button in “Go To” sheet didn't work by clicking.
+
+
+
 2.0.2
 --------------------------
 

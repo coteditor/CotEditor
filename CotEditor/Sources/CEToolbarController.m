@@ -211,7 +211,7 @@
                 [item setToolTip:NSLocalizedString(@"Show or hide invisible characters in document", nil)];
             } else {
                 [item setAction:nil];
-                [item setToolTip:NSLocalizedString(@"To display invisible characters, set in Preferences and re-open the document.", nil)];
+                [item setToolTip:NSLocalizedString(@"To display invisible characters, set them in Preferences and re-open the document.", nil)];
             }
             break;
         case CEToolbarAutoTabExpandItemTag:

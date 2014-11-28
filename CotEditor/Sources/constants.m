@@ -130,6 +130,7 @@ NSString *const CEDefaultWindowAlphaKey = @"windowAlpha";
 NSString *const CEDefaultAutoExpandTabKey = @"autoExpandTab";
 NSString *const CEDefaultTabWidthKey = @"tabWidth";
 NSString *const CEDefaultAutoIndentKey = @"autoIndent";
+NSString *const CEDefaultShowInvisiblesKey = @"showInvisibles";
 NSString *const CEDefaultShowInvisibleSpaceKey = @"showInvisibleSpace";
 NSString *const CEDefaultInvisibleSpaceKey = @"invisibleSpace";
 NSString *const CEDefaultShowInvisibleTabKey = @"showInvisibleTab";

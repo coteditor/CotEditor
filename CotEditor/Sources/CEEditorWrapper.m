@@ -133,7 +133,7 @@ static NSTimeInterval secondColoringDelay;
     [self setTextView:[editorView textView]];
     
     [self setupViewParamsInInit:YES];
-    [self setShowsInvisibles:[self canActivateShowInvisibles]];
+    [self setShowsInvisibles:[[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultShowInvisiblesKey]];
 }
 
 
@@ -625,7 +625,7 @@ static NSTimeInterval secondColoringDelay;
         [menuItem setTitle:NSLocalizedString(title, nil)];
         
         if (![self canActivateShowInvisibles]) {
-            [menuItem setToolTip:NSLocalizedString(@"To display invisible characters, set in Preferences and re-open the document.", nil)];
+            [menuItem setToolTip:NSLocalizedString(@"To display invisible characters, set them in Preferences and re-open the document.", nil)];
         }
         
         return [self canActivateShowInvisibles];

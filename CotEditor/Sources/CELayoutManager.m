@@ -46,6 +46,12 @@
 
 @interface CELayoutManager ()
 
+@property (nonatomic) BOOL showsSpace;
+@property (nonatomic) BOOL showsTab;
+@property (nonatomic) BOOL showsNewLine;
+@property (nonatomic) BOOL showsFullwidthSpace;
+@property (nonatomic) BOOL showsOtherInvisibles;
+
 @property (nonatomic) unichar spaceChar;
 @property (nonatomic) unichar tabChar;
 @property (nonatomic) unichar newLineChar;

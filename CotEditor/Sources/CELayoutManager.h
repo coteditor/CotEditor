@@ -41,12 +41,6 @@
 @interface CELayoutManager : NSLayoutManager
 
 @property (nonatomic) BOOL showsInvisibles;
-@property (nonatomic) BOOL showsSpace;
-@property (nonatomic) BOOL showsTab;
-@property (nonatomic) BOOL showsNewLine;
-@property (nonatomic) BOOL showsFullwidthSpace;
-@property (nonatomic) BOOL showsOtherInvisibles;
-
 @property (nonatomic) BOOL fixesLineHeight;  // 行高を固定するか
 @property (nonatomic) BOOL usesAntialias;  // アンチエイリアスを適用するかどうか
 @property (nonatomic, getter=isPrinting) BOOL printing;  // プリンタ中かどうかを（[NSGraphicsContext currentContextDrawingToScreen] は真を返す時があるため、専用フラグを使う）

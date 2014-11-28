@@ -322,7 +322,7 @@
 // ------------------------------------------------------
 {
     // layoutManagerにも設定する
-    [(CELayoutManager *)[self layoutManager] setShowsOtherInvisibles:showsInvisibles];
+    [(CELayoutManager *)[self layoutManager] setShowsInvisibles:showsInvisibles];
     
     _documentShowsInvisibles = showsInvisibles;
 }
