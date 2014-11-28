@@ -5,6 +5,11 @@ changelog
 2.0.3
 --------------------------
 
+### New Features 
+
+- Add Chinese (Simplified) localization. (Thanks to Wei Wang!)
+
+
 ### Additions/Changes
 
 - Add "show invisible characters" option to set visibility of all invisible characters at once.
