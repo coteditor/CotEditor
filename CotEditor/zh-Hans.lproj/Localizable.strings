@@ -148,7 +148,8 @@
 
 // show invisible char menu tooltip
 "Show or hide invisible characters in document" = "显示或隐藏文档中的不可见字符";
-"To display invisible characters, set in Preferences and re-open the document" = "要显示不可见字符，请在偏好设置中进行设定，然后重新打开文档";
+"To display invisible characters, set them in Preferences and re-open the document" = "要显示不可见字符，请在偏好设置中进行设定，然后重新打开文档";
+
 
 // Alert strings
 "The file is not writable." = "该文件不能写入";
