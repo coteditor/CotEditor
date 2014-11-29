@@ -96,6 +96,7 @@
 		2A961C5418FC699E002076B6 /* ScriptMenu Folder.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A961C4B18FC699E002076B6 /* ScriptMenu Folder.rtf */; };
 		2A961C5518FC699E002076B6 /* ShellScript.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A961C4D18FC699E002076B6 /* ShellScript.rtf */; };
 		2A9871A919AEABDB0081BADB /* KeyBindings in Resources */ = {isa = PBXBuildFile; fileRef = 2A9871A819AEABDB0081BADB /* KeyBindings */; };
+		2AA0AC7A1A29D8CB0063ED1B /* CEPopUpToolbarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AA0AC791A29D8CB0063ED1B /* CEPopUpToolbarItem.m */; };
 		2AACC9591942A82900E3FF63 /* CEIndicatorSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AACC9581942A82900E3FF63 /* CEIndicatorSheetController.m */; };
 		2AAEF50819FC455C005F2AD3 /* CEClipView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AAEF50719FC455C005F2AD3 /* CEClipView.m */; };
 		2AB4326E1912ADAC00835004 /* GlyphPopover.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2AB4326C1912ADAC00835004 /* GlyphPopover.xib */; };
@@ -335,6 +336,8 @@
 		2A961C5B18FC69D4002076B6 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = ja; path = ja.lproj/AppleScript.rtf; sourceTree = "<group>"; };
 		2A961C5C18FC69D9002076B6 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = ja; path = ja.lproj/ShellScript.rtf; sourceTree = "<group>"; };
 		2A9871A819AEABDB0081BADB /* KeyBindings */ = {isa = PBXFileReference; lastKnownFileType = folder; path = KeyBindings; sourceTree = "<group>"; };
+		2AA0AC781A29D8CB0063ED1B /* CEPopUpToolbarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEPopUpToolbarItem.h; sourceTree = "<group>"; };
+		2AA0AC791A29D8CB0063ED1B /* CEPopUpToolbarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEPopUpToolbarItem.m; sourceTree = "<group>"; };
 		2AA562A818E8F630009CD7A2 /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/PrintPanelAccessory.xib; sourceTree = "<group>"; };
 		2AACC9571942A82900E3FF63 /* CEIndicatorSheetController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEIndicatorSheetController.h; sourceTree = "<group>"; };
 		2AACC9581942A82900E3FF63 /* CEIndicatorSheetController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEIndicatorSheetController.m; sourceTree = "<group>"; };
@@ -846,6 +849,8 @@
 				2A94A45918D08D52009FA90D /* NSWindow+ScriptingSupport.m */,
 				8CB0122B07CA0EFA00221EDC /* CEToolbarController.h */,
 				8CB0122C07CA0EFA00221EDC /* CEToolbarController.m */,
+				2AA0AC781A29D8CB0063ED1B /* CEPopUpToolbarItem.h */,
+				2AA0AC791A29D8CB0063ED1B /* CEPopUpToolbarItem.m */,
 				2AF4E0D5196F7958008E9EF7 /* CEStatusBarController.h */,
 				2AF4E0D6196F7958008E9EF7 /* CEStatusBarController.m */,
 			);
@@ -1210,6 +1215,7 @@
 				2A5411C9198549A7008B43DA /* CENavigationBarView.m in Sources */,
 				8CD7A93C09CBDDDC00739513 /* CEEditorView.m in Sources */,
 				2A149DC21901884500A9D6EF /* CEFileDropPaneController.m in Sources */,
+				2AA0AC7A1A29D8CB0063ED1B /* CEPopUpToolbarItem.m in Sources */,
 				8C8CCCB109D6803400A008E5 /* CESplitView.m in Sources */,
 				2A68F93518F9995500673440 /* CEThemeManager.m in Sources */,
 				2A5ABE761918615E009265DF /* CEUnicodeInputPanelController.m in Sources */,

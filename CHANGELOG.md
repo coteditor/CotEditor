@@ -14,6 +14,7 @@ changelog
 
 - Add "show invisible characters" option to set visibility of all invisible characters at once.
     - From this, invisibles visibility of displayed windows can be toggled even all invisibles are hidden as default.
+- Now, the popup menus in toolbar can be called directly even on "Text Only" mode without mode change.
 - Disable rech text in find panel.
 - Change default syntax style from “None” to “Plain Text”.
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6250"/>
@@ -25,7 +25,7 @@
             <windowCollectionBehavior key="collectionBehavior" fullScreenPrimary="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" topStrut="YES"/>
             <rect key="contentRect" x="10" y="280" width="500" height="420"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1418"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
             <value key="minSize" type="size" width="400" height="200"/>
             <view key="contentView" id="6">
                 <rect key="frame" x="0.0" y="0.0" width="500" height="420"/>
@@ -107,7 +107,7 @@
             </view>
             <toolbar key="toolbar" implicitIdentifier="CED05FB8-D6FA-4FDC-A1D9-8D33CCA40BE5" explicitIdentifier="docWindowToolbarID" displayMode="iconAndLabel" sizeMode="regular" id="olV-v9-4mJ">
                 <allowedToolbarItems>
-                    <toolbarItem implicitItemIdentifier="D0855551-09F0-4844-BEEB-01E31A159043" explicitItemIdentifier="lineEndingsItemID" label="行尾" paletteLabel="行尾" toolTip="Change line endings" tag="1" id="fVR-to-zN3">
+                    <toolbarItem implicitItemIdentifier="D0855551-09F0-4844-BEEB-01E31A159043" explicitItemIdentifier="lineEndingsItemID" label="行尾" paletteLabel="行尾" toolTip="Change line endings" tag="1" id="fVR-to-zN3" customClass="CEPopUpToolbarItem">
                         <size key="minSize" width="77" height="22"/>
                         <size key="maxSize" width="77" height="22"/>
                         <popUpButton key="view" verticalHuggingPriority="750" tag="1" id="77">
@@ -138,7 +138,7 @@
                             </popUpButtonCell>
                         </popUpButton>
                     </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="69A39582-7ACA-4B46-BD98-FA09B10CB92C" explicitItemIdentifier="fileEncodingsItemID" label="文件编码" paletteLabel="文件编码" toolTip="Change file encoding" tag="2" id="d2p-GT-YXm">
+                    <toolbarItem implicitItemIdentifier="69A39582-7ACA-4B46-BD98-FA09B10CB92C" explicitItemIdentifier="fileEncodingsItemID" label="文件编码" paletteLabel="文件编码" toolTip="Change file encoding" tag="2" id="d2p-GT-YXm" customClass="CEPopUpToolbarItem">
                         <size key="minSize" width="140" height="22"/>
                         <size key="maxSize" width="140" height="22"/>
                         <popUpButton key="view" verticalHuggingPriority="750" tag="2" id="90">
@@ -155,7 +155,7 @@
                             </popUpButtonCell>
                         </popUpButton>
                     </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="B40F8010-88AA-4077-B6EF-D961FE4F873C" explicitItemIdentifier="syntaxColoringItemID" label="语法风格" paletteLabel="语法风格" toolTip="Change syntax style" tag="3" id="6gO-UF-7QW">
+                    <toolbarItem implicitItemIdentifier="B40F8010-88AA-4077-B6EF-D961FE4F873C" explicitItemIdentifier="syntaxColoringItemID" label="语法风格" paletteLabel="语法风格" toolTip="Change syntax style" tag="3" id="6gO-UF-7QW" customClass="CEPopUpToolbarItem">
                         <size key="minSize" width="120" height="22"/>
                         <size key="maxSize" width="120" height="22"/>
                         <popUpButton key="view" verticalHuggingPriority="750" tag="3" id="96">
