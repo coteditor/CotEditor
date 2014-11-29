@@ -2306,3 +2306,79 @@ const NSInteger kNoMenuItem = -1;
 }
 
 @end
+
+
+
+
+#pragma mark -
+
+@implementation CETextView (PinchZoomSupport)
+
+// ------------------------------------------------------
+/// change font size by pinch gesture
+- (void)magnifyWithEvent:(NSEvent *)event
+// ------------------------------------------------------
+{
+    BOOL isScalingDown = ([event magnification] < 0);
+    CGFloat defaultSize = (CGFloat)[[NSUserDefaults standardUserDefaults] floatForKey:CEDefaultFontSizeKey];
+    CGFloat size = [[self font] pointSize];
+    
+    // avoid scaling down to smaller than default size
+    if (isScalingDown && size == defaultSize) { return; }
+    
+    // calc new font size
+    NSInteger factor = isScalingDown ? -1 : 1;
+    size = MAX(defaultSize, size + ([event magnification] * 10));
+    
+    [self changeFontSize:size];
+}
+
+
+// ------------------------------------------------------
+/// reset font size by two-finger double tap
+- (void)smartMagnifyWithEvent:(NSEvent *)event
+// ------------------------------------------------------
+{
+    CGFloat defaultSize = (CGFloat)[[NSUserDefaults standardUserDefaults] floatForKey:CEDefaultFontSizeKey];
+    CGFloat size = [[self font] pointSize];
+    
+    if (size == defaultSize) {
+        // pseudo-animation
+        for (CGFloat factor = 1, interval = 0; factor <= 1.5; factor += 0.05, interval += 0.01) {
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(interval * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [self changeFontSize:size * factor];
+            });
+        }
+    } else {
+        [self changeFontSize:defaultSize];
+    }
+}
+
+
+// ------------------------------------------------------
+/// change font size keeping visible area as possible
+- (void)changeFontSize:(CGFloat)size
+// ------------------------------------------------------
+{
+    // store current visible area
+    NSRange glyphRange = [[self layoutManager] glyphRangeForBoundingRect:[self visibleRect]
+                                                         inTextContainer:[self textContainer]];
+    NSRange visibleRange = [[self layoutManager] characterRangeForGlyphRange:glyphRange actualGlyphRange:NULL];
+    NSRange selectedRange = [self selectedRange];
+    selectedRange.length = MAX(selectedRange.length, 1);  // sanitize for NSIntersectionRange()
+    BOOL isSelectionVisible = (NSIntersectionRange(visibleRange, selectedRange).length > 0);
+    
+    // change font size
+    [self setFont:[[NSFontManager sharedFontManager] convertFont:[self font] toSize:size]];
+    
+    // adjust visible area
+    [self scrollRangeToVisible:visibleRange];
+    if (isSelectionVisible) {
+        [self scrollRangeToVisible:selectedRange];
+    }
+    
+    // force redraw line number view
+    [[self lineNumberView] setNeedsDisplay:YES];
+}
+
+@end

@@ -8,6 +8,7 @@ changelog
 ### New Features 
 
 - Add Chinese (Simplified) localization. (Thanks to Wei Wang!)
+- Add feature to scale font size up by pinch gesture
 
 
 ### Additions/Changes
