@@ -615,7 +615,10 @@ const NSInteger kNoMenuItem = -1;
         CGFloat length = ([self layoutOrientation] == NSTextLayoutOrientationVertical) ? NSWidth([self frame]) : NSHeight([self frame]);
         CGFloat linePadding = [[self textContainer] lineFragmentPadding];
         CGFloat inset = [self textContainerOrigin].x;
-        column *= [@"M" sizeWithAttributes:@{NSFontAttributeName:[(CELayoutManager *)[self layoutManager] textFont]}].width;
+        
+        NSFont *font = [(CELayoutManager *)[self layoutManager] textFont];
+        font = [font screenFont] ? : font;
+        column *= [@"M" sizeWithAttributes:@{NSFontAttributeName:font}].width;
         
         // （2ピクセル右に描画してるのは、調整）
         CGFloat x = floor(column + inset + linePadding) + 2.5;
