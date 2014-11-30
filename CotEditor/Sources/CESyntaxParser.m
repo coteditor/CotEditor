@@ -918,6 +918,13 @@ static CGFloat kPerCompoIncrement;
         } // end-for (syntaxKey)
         
         // コメントと引用符
+        if ([self indicatorController]) {
+            CEIndicatorSheetController *indicator = [self indicatorController];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [indicator setInformativeText:[NSString stringWithFormat:NSLocalizedString(@"Extracting %@…", nil),
+                                               NSLocalizedString(@"comment and quoted text", nil)]];
+            });
+        }
         [colorings addObjectsFromArray:[self extractCommentsWithQuotesFromString:string]];
         if ([self indicatorController]) {
             [[self indicatorController] progressIndicator:kPerCompoIncrement];

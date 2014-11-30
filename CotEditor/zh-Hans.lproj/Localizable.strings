@@ -203,6 +203,7 @@
 "strings" = "字符串";
 "characters" = "字符";
 "comments" = "注释";
+"comment and quoted text" = "注释和引用文本";
 
 
 /* CEPreferencesWindowController */
