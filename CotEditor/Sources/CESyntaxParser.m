@@ -456,49 +456,43 @@ static CGFloat kPerCompoIncrement;
 // ------------------------------------------------------
 {
     NSMutableArray *ranges = [NSMutableArray array];
+    CEIndicatorSheetController *indicator = [self indicatorController];
     
     NSScanner *scanner = [NSScanner scannerWithString:[self coloringString]];
     [scanner setCharactersToBeSkipped:[NSCharacterSet characterSetWithCharactersInString:@"\n\t "]];
     [scanner setCaseSensitive:YES];
     
-    @try {
-        while (![scanner isAtEnd]) {
-            if ([[self indicatorController] isCancelled]) { return nil; }
+    while (![scanner isAtEnd]) {
+        if ([indicator isCancelled]) { return nil; }
+        
+        NSString *scannedString = nil;
+        [scanner scanUpToCharactersFromSet:charSet intoString:NULL];
+        if (![scanner scanCharactersFromSet:charSet intoString:&scannedString]) { break; }
+        
+        NSUInteger length = [scannedString length];
+        
+        NSArray *words = wordsDict[@(length)];
+        BOOL isFound = [words containsObject:scannedString];
+        
+        if (!isFound) {
+            words = icWordsDict[@(length)];
             
-            NSString *scannedString = nil;
-            [scanner scanUpToCharactersFromSet:charSet intoString:NULL];
-            if ([scanner scanCharactersFromSet:charSet intoString:&scannedString]) {
-                NSUInteger length = [scannedString length];
-                
-                if (length == 0) { continue; }
-                
-                NSUInteger location = [scanner scanLocation];
-                NSArray *words = wordsDict[@(length)];
-                
-                BOOL isFound = [words containsObject:scannedString];
-                
-                if (!isFound) {
-                    words = icWordsDict[@(length)];
-                    for (NSString *word in words) {
-                        if ([word caseInsensitiveCompare:scannedString] == NSOrderedSame) {
-                            isFound = YES;
-                            break;
-                        }
-                    }
-                }
-                
-                if (isFound) {
-                    NSRange range = NSMakeRange(location - length, length);
-                    [ranges addObject:[NSValue valueWithRange:range]];
-                }
+            // case insensitive search in array
+            if ([words indexOfObjectPassingTest:^(id obj, NSUInteger idx, BOOL *stop) {
+                return (BOOL)([obj caseInsensitiveCompare:scannedString] == NSOrderedSame);
+            }] != NSNotFound) {
+                isFound = YES;
+                break;
             }
         }
-    } @catch (NSException *exception) {
-        // 何もしない
-        NSLog(@"ERROR in \"%s\", reason: %@", __PRETTY_FUNCTION__, [exception reason]);
-        return nil;
+        
+        if (isFound) {
+            NSUInteger location = [scanner scanLocation];
+            NSRange range = NSMakeRange(location - length, length);
+            [ranges addObject:[NSValue valueWithRange:range]];
+        }
     }
-
+    
     return ranges;
 }
 
@@ -511,6 +505,7 @@ static CGFloat kPerCompoIncrement;
     if ([searchString length] == 0) { return nil; }
     
     NSMutableArray *ranges = [NSMutableArray array];
+    CEIndicatorSheetController *indicator = [self indicatorController];
     NSString *string = [self coloringString];
     NSUInteger localLength = [string length];
     NSUInteger length = [searchString length];
@@ -520,21 +515,14 @@ static CGFloat kPerCompoIncrement;
     [scanner setCaseSensitive:!ignoreCase];
     
     while (![scanner isAtEnd]) {
-        if ([[self indicatorController] isCancelled]) { return nil; }
+        if ([indicator isCancelled]) { return nil; }
         
         [scanner scanUpToString:searchString intoString:nil];
         NSUInteger startLocation = [scanner scanLocation];
         
-        if (startLocation + length > localLength) { break; }
+        if (![scanner scanString:searchString intoString:nil]) { break; }
         
-        [scanner setScanLocation:(startLocation + length)];
-        
-        // check escape
-        NSUInteger escapesCheckLength = MIN(startLocation, kMaxEscapesCheckLength);
-        NSRange escapesCheckRange = NSMakeRange(startLocation - escapesCheckLength, escapesCheckLength);
-        NSString *escapesCheckStr = [string substringWithRange:escapesCheckRange];
-        NSUInteger numberOfEscapes = numberOfEscapeSequencesInString(escapesCheckStr);
-        if (numberOfEscapes % 2 == 1) { continue; }
+        if (isCharacterEscaped(string, startLocation)) { continue; }
         
         NSRange range = NSMakeRange(startLocation, length);
         [ranges addObject:[NSValue valueWithRange:range]];
@@ -552,6 +540,7 @@ static CGFloat kPerCompoIncrement;
     if ([beginString length] == 0) { return nil; }
     
     NSMutableArray *ranges = [NSMutableArray array];
+    CEIndicatorSheetController *indicator = [self indicatorController];
     NSString *string = [self coloringString];
     NSUInteger localLength = [string length];
     NSUInteger beginLength = [beginString length];
@@ -562,42 +551,30 @@ static CGFloat kPerCompoIncrement;
     [scanner setCaseSensitive:!ignoreCase];
     
     while (![scanner isAtEnd]) {
-        if ([[self indicatorController] isCancelled]) { return nil; }
+        if ([indicator isCancelled]) { return nil; }
         
         [scanner scanUpToString:beginString intoString:nil];
         NSUInteger startLocation = [scanner scanLocation];
         
-        if (startLocation + beginLength > localLength) { break; }
+        if (![scanner scanString:beginString intoString:nil]) { break; }
         
-        [scanner setScanLocation:(startLocation + beginLength)];
-        NSUInteger escapesCheckLength = MIN(startLocation, kMaxEscapesCheckLength);
-        NSRange escapesCheckRange = NSMakeRange(startLocation - escapesCheckLength, escapesCheckLength);
-        NSString *escapesCheckStr = [string substringWithRange:escapesCheckRange];
-        NSUInteger numberOfEscapes = numberOfEscapeSequencesInString(escapesCheckStr);
-        
-        if (numberOfEscapes % 2 == 1) { continue; }
+        if (isCharacterEscaped(string, startLocation)) { continue; }
         
         // find end string
-        while (1) {
+        while (![scanner isAtEnd]) {
             [scanner scanUpToString:endString intoString:nil];
-            NSUInteger endLocation = [scanner scanLocation] + endLength;
+            if (![scanner scanString:endString intoString:nil]) { break; }
             
-            if (endLocation > localLength) { break; }
+            NSUInteger endLocation = [scanner scanLocation];
             
-            [scanner setScanLocation:endLocation];
-            NSUInteger escapesCheckLength = MIN((endLocation - endLength), kMaxEscapesCheckLength);
-            NSRange escapesCheckRange = NSMakeRange(endLocation - endLength - escapesCheckLength, escapesCheckLength);
-            NSString *escapesCheckStr = [string substringWithRange:escapesCheckRange];
-            NSUInteger numberOfEscapes = numberOfEscapeSequencesInString(escapesCheckStr);
-            
-            if (numberOfEscapes % 2 == 1) { continue; }
+            if (isCharacterEscaped(string, (endLocation - endLength))) { continue; }
             
             NSRange range = NSMakeRange(startLocation, endLocation - startLocation);
             [ranges addObject:[NSValue valueWithRange:range]];
             
             break;
-        } // end-while (1)
-    } // end-while (![scanner isAtEnd])
+        }
+    }
     
     return ranges;
 }
@@ -608,7 +585,10 @@ static CGFloat kPerCompoIncrement;
 - (NSArray *)rangesOfRegularExpressionString:(NSString *)regexStr ignoreCase:(BOOL)ignoreCase
 // ------------------------------------------------------
 {
+    if ([regexStr length] == 0) { return nil; }
+    
     __block NSMutableArray *ranges = [NSMutableArray array];
+    CEIndicatorSheetController *indicator = [self indicatorController];
     NSString *string = [self coloringString];
     uint32_t options = RKLMultiline | (ignoreCase ? RKLCaseless : 0);
     NSError *error = nil;
@@ -623,7 +603,7 @@ static CGFloat kPerCompoIncrement;
                                              const NSRange *capturedRanges,
                                              volatile BOOL *const stop)
      {
-         if ([[self indicatorController] isCancelled]) {
+         if ([indicator isCancelled]) {
              *stop = YES;
              return;
          }
@@ -648,6 +628,7 @@ static CGFloat kPerCompoIncrement;
 // ------------------------------------------------------
 {
     __block NSMutableArray *ranges = [NSMutableArray array];
+    CEIndicatorSheetController *indicator = [self indicatorController];
     NSString *string = [self coloringString];
     uint32_t options = RKLMultiline | (ignoreCase ? RKLCaseless : 0);
     NSError *error = nil;
@@ -662,7 +643,7 @@ static CGFloat kPerCompoIncrement;
                                              const NSRange *capturedRanges,
                                              volatile BOOL *const stop)
      {
-         if ([[self indicatorController] isCancelled]) {
+         if ([indicator isCancelled]) {
              *stop = YES;
              return;
          }
@@ -820,14 +801,15 @@ static CGFloat kPerCompoIncrement;
 // ------------------------------------------------------
 {
     NSMutableArray *colorings = [NSMutableArray array];
+    NSCharacterSet *controlCharacterSet = [NSCharacterSet controlCharacterSet];
     NSScanner *scanner = [NSScanner scannerWithString:string];
 
     while (![scanner isAtEnd]) {
-        [scanner scanUpToCharactersFromSet:[NSCharacterSet controlCharacterSet] intoString:nil];
-        NSUInteger start = [scanner scanLocation];
-        NSString *controlStr;
-        if ([scanner scanCharactersFromSet:[NSCharacterSet controlCharacterSet] intoString:&controlStr]) {
-            NSRange range = NSMakeRange(start, [controlStr length]);
+        [scanner scanUpToCharactersFromSet:controlCharacterSet intoString:nil];
+        NSUInteger location = [scanner scanLocation];
+        NSString *control;
+        if ([scanner scanCharactersFromSet:controlCharacterSet intoString:&control]) {
+            NSRange range = NSMakeRange(location, [control length]);
             
             [colorings addObject:@{ColorKey: InvisiblesType,
                                    RangeKey: [NSValue valueWithRange:range]}];
@@ -853,11 +835,10 @@ static CGFloat kPerCompoIncrement;
         for (NSString *syntaxKey in kSyntaxDictKeys) {
             // インジケータシートのメッセージを更新
             if ([self indicatorController]) {
-                CEIndicatorSheetController *indicatorController = [self indicatorController];
+                CEIndicatorSheetController *indicator = [self indicatorController];
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    [indicatorController setInformativeText:
-                     [NSString stringWithFormat:NSLocalizedString(@"Extracting %@…", nil),
-                      NSLocalizedString([syntaxKey stringByReplacingOccurrencesOfString:@"Array" withString:@""], nil)]];
+                    [indicator setInformativeText:[NSString stringWithFormat:NSLocalizedString(@"Extracting %@…", nil),
+                                                   NSLocalizedString(syntaxKey, nil)]];
                 });
             }
             
@@ -1095,20 +1076,24 @@ static CGFloat kPerCompoIncrement;
 #pragma mark Private Functions
 
 // ------------------------------------------------------
-/// 与えられた文字列の末尾にエスケープシーケンス（バックスラッシュ）がいくつあるかを返す
-NSUInteger numberOfEscapeSequencesInString(NSString *string)
+/// 与えられた位置の文字がバックスラッシュでエスケープされているかを返す
+BOOL isCharacterEscaped(NSString *string, NSUInteger location)
 // ------------------------------------------------------
 {
-    NSUInteger count = 0;
+    NSUInteger escapesCheckLength = MIN(location, kMaxEscapesCheckLength);
+    NSRange escapesCheckRange = NSMakeRange(location - escapesCheckLength, escapesCheckLength);
+    NSString *escapesCheckStr = [string substringWithRange:escapesCheckRange];
     
-    for (NSInteger i = [string length] - 1; i >= 0; i--) {
-        if ([string characterAtIndex:i] == '\\') {
-            count++;
+    NSUInteger numberOfEscapes = 0;
+    for (NSInteger i = [escapesCheckStr length] - 1; i >= 0; i--) {
+        if ([escapesCheckStr characterAtIndex:i] == '\\') {
+            numberOfEscapes++;
         } else {
             break;
         }
     }
-    return count;
+    
+    return (numberOfEscapes % 2 == 1);
 }
 
 @end
