@@ -352,7 +352,9 @@
     // 置換の Undo を判別するために OgreKit 側で登録された actionName を使用しているが、
     // ローカライズ後の名前なので、名前を決め打ちしている。あまり良い方法ではない。 (2014-04 by 1024jp)
     NSString *actionName = [undoManager isUndoing] ? [undoManager redoActionName] : [undoManager undoActionName];
-    if ([@[@"一括置換", @"Replace All"] containsObject:actionName]) {
+    if ([actionName isEqualToString:NSLocalizedString(@"Replace All",
+                                                      @"Attention!: This localized string must be exactly the same to the localized term of “Replace All” in the OgreKit framework.")])
+    {
         [self textDidReplaceAll:aNotification];
     }
 }

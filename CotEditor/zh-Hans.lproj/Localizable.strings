@@ -155,7 +155,7 @@
 "The file is not writable." = "该文件不能写入";
 "Allow Editing" = "允许编辑";
 "Cancel" = "取消";
-"You may not be able to save your changes, but you will be able to save a copy somewhere else.\n\nDo you want to edit this file anyway?" = "无法保存更改，但是可以在其他路径保存一份拷贝。\n\n仍然编辑该文件吗？";  // どこで使用されているか不明 (2014-03 by 1024jp)
+"You may not be able to save your changes, but you will be able to save a copy somewhere else.\n\nDo you want to edit this file anyway?" = "无法保存更改，但是可以在其他路径保存一份拷贝。\n\n仍然编辑该文件吗？";  // ???: I'm not sure where this message is used. (2014-03 by 1024jp)
 "You may not be able to save your changes, but you will be able to save a copy somewhere else." = "无法保存更改，但是可以在其他路径保存一份拷贝。";
 
 "Finder's lock is On." = "Finder 处于锁定状态";
@@ -167,6 +167,10 @@
 // menu items
 "Stack Views Horizontally" = "横向分隔编辑器";
 "Stack Views Vertically" = "纵向分隔编辑器";
+
+
+/* CEEditorView */
+"Replace All" = "替换全部";  // Attention!: This localized string must be exactly the same to the localized term of “Replace All” in the OgreKit framework.
 
 
 /* CEStatusBarView */
