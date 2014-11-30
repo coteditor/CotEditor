@@ -29,6 +29,7 @@
  */
 
 #import "CEDocument+ScriptingSupport.h"
+#import <OgreKit/OgreKit.h>
 #import "CEUtils.h"
 
 

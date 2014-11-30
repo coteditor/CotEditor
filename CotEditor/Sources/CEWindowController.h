@@ -29,7 +29,7 @@
  */
 
 @import Cocoa;
-#import <OgreKit/OgreKit.h>
+#import <OgreKit/OgreTextFinder.h>
 #import "CEDocument.h"
 #import "CEEditorWrapper.h"
 #import "CEToolbarController.h"
