@@ -920,7 +920,7 @@ static CGFloat kPerCompoIncrement;
         if (indicator) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [indicator setInformativeText:[NSString stringWithFormat:NSLocalizedString(@"Extracting %@…", nil),
-                                               NSLocalizedString(@"comment and quoted text", nil)]];
+                                               NSLocalizedString(@"comments and quoted texts", nil)]];
             });
         }
         [colorings addObjectsFromArray:[self extractCommentsWithQuotesFromString:string]];

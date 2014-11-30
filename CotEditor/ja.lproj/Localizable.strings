@@ -203,7 +203,7 @@
 "strings" = "文字列";
 "characters" = "文字";
 "comments" = "コメント";
-"comment and quoted text" = "コメントと引用符で囲まれたテキスト";
+"comments and quoted texts" = "コメントと引用符で囲まれたテキスト";
 
 
 /* CEPreferencesWindowController */
