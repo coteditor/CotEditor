@@ -116,7 +116,7 @@
 
 // ------------------------------------------------------
 /// 改行コードポップアップの選択項目を設定
-- (void)setSelectedLineEnding:(CELineEnding)lineEnding
+- (void)setSelectedLineEnding:(CENewLineType)lineEnding
 // ------------------------------------------------------
 {
     if (lineEnding >= [[self lineEndingPopupButton] numberOfItems]) { return; }

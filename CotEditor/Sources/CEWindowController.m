@@ -261,7 +261,7 @@ static NSTimeInterval incompatibleCharInterval;
     
     if (!needsUpdateDrawer && (!updatesStatusBar && !updatesDrawer)) { return; }
     
-    NSString *wholeString = ([[[self document] lineEndingString] length] == 2) ? [[self document] stringForSave] : [[[self editor] string] copy];
+    NSString *wholeString = ([[NSString newLineStringWithType:[[self document] lineEnding]] length] == 2) ? [[self document] stringForSave] : [[[self editor] string] copy];
     NSString *selectedString = [[self editor] substringWithSelection] ? : @"";
     NSStringEncoding encoding = [[self document] encoding];
     __block NSRange selectedRange = [[self editor] selectedRange];
@@ -313,25 +313,25 @@ static NSTimeInterval incompatibleCharInterval;
             // location カウント
             if (updatesDrawer || [defaults boolForKey:CEDefaultShowStatusBarLocationKey]) {
                 NSString *locString = [wholeString substringToIndex:selectedRange.location];
-                NSString *str = countLineEnding ? locString : [OGRegularExpression chomp:locString];
+                NSString *str = countLineEnding ? locString : [locString stringByDeletingNewLineCharacters];
                 
                 location = [str numberOfComposedCharacters];
             }
             
             // 文字数カウント
             if (updatesDrawer || [defaults boolForKey:CEDefaultShowStatusBarCharsKey]) {
-                NSString *str = countLineEnding ? wholeString : [OGRegularExpression chomp:wholeString];
+                NSString *str = countLineEnding ? wholeString : [wholeString stringByDeletingNewLineCharacters];
                 numberOfChars = [str numberOfComposedCharacters];
                 if (hasSelection) {
-                    str = countLineEnding ? selectedString : [OGRegularExpression chomp:selectedString];
+                    str = countLineEnding ? selectedString : [selectedString stringByDeletingNewLineCharacters];
                     numberOfSelectedChars = [str numberOfComposedCharacters];
                 }
             }
             
             // 改行コードをカウントしない場合は再計算
             if (!countLineEnding) {
-                selectedRange.length = [[OGRegularExpression chomp:selectedString] length];
-                length = [[OGRegularExpression chomp:wholeString] length];
+                selectedRange.length = [[selectedString stringByDeletingNewLineCharacters] length];
+                length = [[wholeString stringByDeletingNewLineCharacters] length];
             }
         }
         
@@ -400,7 +400,7 @@ static NSTimeInterval incompatibleCharInterval;
     
     if (!shouldUpdateStatusBar && !shouldUpdateDrawer) { return; }
     
-    NSString *lineEndingsInfo = [[self document] lineEndingName];
+    NSString *lineEndingsInfo = [NSString newLineNameWithType:[[self document] lineEnding]];
     NSString *encodingInfo = [[self document] currentIANACharSetName];
     
     [self setEncodingInfo:encodingInfo];

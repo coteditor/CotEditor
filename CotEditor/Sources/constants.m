@@ -380,21 +380,6 @@ CGFloat const kNoSeparatorPadding = 18.0;
 
 
 
-#pragma mark Document Window
-
-// ------------------------------------------------------
-// Document Window
-// ------------------------------------------------------
-
-// Line Endings
-NSString * const kLineEndingNames[]=  {
-    @"LF",
-    @"CR",
-    @"CR/LF"
-};
-
-
-
 #pragma mark Encodings
 
 // ------------------------------------------------------

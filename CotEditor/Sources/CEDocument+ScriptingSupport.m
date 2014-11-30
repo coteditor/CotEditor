@@ -143,10 +143,10 @@
 // ------------------------------------------------------
 {
     switch ([self lineEnding]) {
-        case OgreCrNewlineCharacter:
+        case CENewLineCR:
             return CEOSALineEndingCR;
             break;
-        case OgreCrLfNewlineCharacter:
+        case CENewLineCRLF:
             return CEOSALineEndingCRLF;
             break;
         default:
@@ -161,20 +161,20 @@
 - (void)setLineEndingChar:(CEOSALineEnding)lineEndingChar
 // ------------------------------------------------------
 {
-    CELineEnding code;
+    CENewLineType type;
 
     switch (lineEndingChar) {
         case CEOSALineEndingCR:
-            code = CELineEndingCR;
+            type = CENewLineCR;
             break;
         case CEOSALineEndingCRLF:
-            code = CELineEndingCRLF;
+            type = CENewLineCRLF;
             break;
         case CEOSALineEndingLF:
-            code = CELineEndingLF;
+            type = CENewLineLF;
             break;
     }
-    [self doSetLineEnding:code];
+    [self doSetLineEnding:type];
 }
 
 

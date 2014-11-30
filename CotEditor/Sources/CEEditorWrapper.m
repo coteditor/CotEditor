@@ -214,8 +214,7 @@ static NSTimeInterval secondColoringDelay;
 - (NSString *)substringWithSelectionForSave
 // ------------------------------------------------------
 {
-    return [OGRegularExpression replaceNewlineCharactersInString:[self substringWithSelection]
-                                                   withCharacter:[[self document] lineEnding]];
+    return [[self substringWithSelection] stringByReplacingNewLineCharacersWith:[[self document] lineEnding]];
 }
 
 
@@ -295,8 +294,7 @@ static NSTimeInterval secondColoringDelay;
     if ([[[self textView] lineEndingString] length] > 1) {
         NSRange range = [[self textView] selectedRange];
         NSString *tmpLocStr = [[self string] substringWithRange:NSMakeRange(0, range.location)];
-        NSString *locStr = [OGRegularExpression replaceNewlineCharactersInString:tmpLocStr
-                                                                   withCharacter:[[self document] lineEnding]];
+        NSString *locStr = [tmpLocStr stringByReplacingNewLineCharacersWith:[[self document] lineEnding]];
         NSString *lenStr = [self substringWithSelectionForSave];
 
         return NSMakeRange([locStr length], [lenStr length]);
@@ -312,11 +310,9 @@ static NSTimeInterval secondColoringDelay;
 {
     if ([[[self textView] lineEndingString] length] > 1) {
         NSString *tmpLocStr = [[[self document] stringForSave] substringWithRange:NSMakeRange(0, charRange.location)];
-        NSString *locStr = [OGRegularExpression replaceNewlineCharactersInString:tmpLocStr
-                                                                   withCharacter:OgreLfNewlineCharacter];
+        NSString *locStr = [tmpLocStr stringByReplacingNewLineCharacersWith:CENewLineLF];
         NSString *tmpLenStr = [[[self document] stringForSave] substringWithRange:charRange];
-        NSString *lenStr = [OGRegularExpression replaceNewlineCharactersInString:tmpLenStr
-                                                                   withCharacter:OgreLfNewlineCharacter];
+        NSString *lenStr = [tmpLenStr stringByReplacingNewLineCharacersWith:CENewLineLF];
         [[self textView] setSelectedRange:NSMakeRange([locStr length], [lenStr length])];
     } else {
         [[self textView] setSelectedRange:charRange];
@@ -796,7 +792,7 @@ static NSTimeInterval secondColoringDelay;
     [[editorView syntaxParser] colorAllString:[self string]];
     [[self textView] centerSelectionInVisibleArea:self];
     [[self window] makeFirstResponder:[editorView textView]];
-    [[editorView textView] setLineEndingString:[[self document] lineEndingString]];
+    [[editorView textView] setLineEndingString:[NSString newLineStringWithType:[[self document] lineEnding]]];
     [[editorView textView] centerSelectionInVisibleArea:self];
     [editorView setShowsNavigationBar:[self showsNavigationBar] animate:NO];
     [[self splitViewController] updateCloseSplitViewButton];

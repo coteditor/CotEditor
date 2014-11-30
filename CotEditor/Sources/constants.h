@@ -211,12 +211,6 @@ extern NSString *const CEDefaultLargeFileAlertThresholdKey;
 // User Defaults Values
 // ------------------------------------------------------
 
-typedef NS_ENUM(NSUInteger, CELineEnding) {
-    CELineEndingLF,
-    CELineEndingCR,
-    CELineEndingCRLF
-};
-
 typedef NS_ENUM(NSUInteger, CEColorPrintMode) {
     CEBlackColorPrint,
     CESameAsDocumentColorPrint
@@ -430,17 +424,6 @@ extern CGFloat const kPrintHFVerticalMargin;      // top/bottom margin for heade
 extern CGFloat const kHeaderFooterLineHeight;
 extern CGFloat const kSeparatorPadding;
 extern CGFloat const kNoSeparatorPadding;
-
-
-
-#pragma mark Document Window
-
-// ------------------------------------------------------
-// Document Window
-// ------------------------------------------------------
-
-// Line Endings
-extern NSString *const kLineEndingNames[];
 
 
 

@@ -32,7 +32,7 @@
 #import "CEWindowController.h"
 #import "CETextSelection.h"
 #import "CEEditorWrapper.h"
-#import "constants.h"
+#import "NSString+CENewLine.h"
 
 
 @class CEEditorWrapper;
@@ -59,7 +59,7 @@ typedef NS_ENUM(NSUInteger, CEGoToType) {
 @property (readonly, nonatomic) CEWindowController *windowController;
 @property (readonly, nonatomic) CETextSelection *selection;
 @property (readonly, nonatomic) NSStringEncoding encoding;
-@property (readonly, nonatomic) OgreNewlineCharacter lineEnding;
+@property (readonly, nonatomic) CENewLineType lineEnding;
 @property (readonly, nonatomic, copy) NSDictionary *fileAttributes;
 @property (readonly, nonatomic, getter=isWritable) BOOL writable;
 
@@ -77,9 +77,7 @@ typedef NS_ENUM(NSUInteger, CEGoToType) {
 - (BOOL)doSetEncoding:(NSStringEncoding)encoding updateDocument:(BOOL)updateDocument
              askLossy:(BOOL)askLossy lossy:(BOOL)lossy asActionName:(NSString *)actionName;
 
-- (NSString *)lineEndingString;
-- (NSString *)lineEndingName;
-- (void)doSetLineEnding:(CELineEnding)lineEnding;
+- (void)doSetLineEnding:(CENewLineType)lineEnding;
 
 - (void)doSetSyntaxStyle:(NSString *)name;
 

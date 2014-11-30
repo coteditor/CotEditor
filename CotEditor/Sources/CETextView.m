@@ -665,7 +665,7 @@ const NSInteger kNoMenuItem = -1;
         rect = [[self layoutManager] extraLineFragmentRect];
     } else if (length > range.location) {
         NSString *tailStr = [[self string] substringFromIndex:range.location];
-        if ([tailStr newlineCharacter] != OgreNonbreakingNewlineCharacter) {
+        if ([tailStr detectNewLineType] != CENewLineNone) {
             return;
         }
     }
@@ -810,11 +810,9 @@ const NSInteger kNoMenuItem = -1;
         if (pboardType) {
             NSString *string = [pboard stringForType:pboardType];
             if (string) {
-                OgreNewlineCharacter newlineChar = [OGRegularExpression newlineCharacterInString:string];
-                if ((newlineChar != OgreNonbreakingNewlineCharacter) &&
-                    (newlineChar != OgreLfNewlineCharacter)) {
-                    [pboard setString:[OGRegularExpression replaceNewlineCharactersInString:string
-                                                                              withCharacter:OgreLfNewlineCharacter]
+                CENewLineType newlineChar = [string detectNewLineType];
+                if ((newlineChar != CENewLineNone) && (newlineChar != CENewLineLF)) {
+                    [pboard setString:[string stringByReplacingNewLineCharacersWith:CENewLineLF]
                               forType:pboardType];
                 }
             }
@@ -856,11 +854,9 @@ const NSInteger kNoMenuItem = -1;
         
         NSString *pboardStr = [pboard stringForType:NSStringPboardType];
         if (pboardStr) {
-            OgreNewlineCharacter newlineChar = [OGRegularExpression newlineCharacterInString:pboardStr];
-            if ((newlineChar != OgreNonbreakingNewlineCharacter) &&
-                (newlineChar != OgreLfNewlineCharacter)) {
-                NSString *replacedStr = [OGRegularExpression replaceNewlineCharactersInString:pboardStr
-                                                                                withCharacter:OgreLfNewlineCharacter];
+            CENewLineType newlineChar = [pboardStr detectNewLineType];
+            if ((newlineChar != CENewLineNone) && (newlineChar != CENewLineLF)) {
+                NSString *replacedStr = [pboardStr stringByReplacingNewLineCharacersWith:CENewLineLF];
                 selectedRange = [self selectedRange];
                 newRange = NSMakeRange(selectedRange.location + [replacedStr length], 0);
                 // （Action名は自動で付けられる？ので、指定しない）
@@ -1585,17 +1581,16 @@ const NSInteger kNoMenuItem = -1;
 {
     if (!pboard) { return; }
 
-    OgreNewlineCharacter newlineChar = [[[[self window] windowController] document] lineEnding];
+    CENewLineType newLineType = [[[[self window] windowController] document] lineEnding];
 
-    if (newlineChar != OgreLfNewlineCharacter) {
-        NSString *pboardType = [pboard availableTypeFromArray:[self pasteboardTypesForString]];
-        if (pboardType) {
-            NSString *string = [pboard stringForType:pboardType];
-
-            if (string) {
-                [pboard setString:[OGRegularExpression replaceNewlineCharactersInString:string withCharacter:newlineChar]
-                          forType:pboardType];
-            }
+    if (newLineType == CENewLineLF) { return; }
+    NSString *pboardType = [pboard availableTypeFromArray:[self pasteboardTypesForString]];
+    if (pboardType) {
+        NSString *string = [pboard stringForType:pboardType];
+        
+        if (string) {
+            [pboard setString:[string stringByReplacingNewLineCharacersWith:newLineType]
+                      forType:pboardType];
         }
     }
 }
