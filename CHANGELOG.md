@@ -25,6 +25,7 @@ changelog
 - Fix page guide position.
 - Fix a possible hang-up when no text font is found.
 - Fix an issue that “Go” button in “Go To” sheet didn't work by clicking.
+- Fix an issue that the cancelation of syntax extracting didn't work immediatly under the specific conditions.
 - Fix an issue that selecting inside of brackets by double-click didn't work.
 - Fix an issue that re-coloring after “Replace All” wasn't invoked under Japanese localization. 
 

@@ -463,6 +463,8 @@ static CGFloat kPerCompoIncrement;
     
     @try {
         while (![scanner isAtEnd]) {
+            if ([[self indicatorController] isCancelled]) { return nil; }
+            
             NSString *scannedString = nil;
             [scanner scanUpToCharactersFromSet:charSet intoString:NULL];
             if ([scanner scanCharactersFromSet:charSet intoString:&scannedString]) {
