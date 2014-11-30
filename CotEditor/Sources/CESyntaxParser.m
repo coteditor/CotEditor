@@ -826,6 +826,7 @@ static CGFloat kPerCompoIncrement;
 // ------------------------------------------------------
 {
     NSMutableArray *colorings = [NSMutableArray array];  // ColorKey と RangeKey の dict配列
+    CEIndicatorSheetController *indicator = [self indicatorController];
     
     // カラーリング対象文字列を保持
     [self setColoringString:string];
@@ -834,8 +835,7 @@ static CGFloat kPerCompoIncrement;
         // Keywords > Commands > Types > Attributes > Variables > Values > Numbers > Strings > Characters > Comments
         for (NSString *syntaxKey in kSyntaxDictKeys) {
             // インジケータシートのメッセージを更新
-            if ([self indicatorController]) {
-                CEIndicatorSheetController *indicator = [self indicatorController];
+            if (indicator) {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [indicator setInformativeText:[NSString stringWithFormat:NSLocalizedString(@"Extracting %@…", nil),
                                                    NSLocalizedString(syntaxKey, nil)]];
@@ -844,9 +844,7 @@ static CGFloat kPerCompoIncrement;
             
             NSArray *strDicts = [self coloringDictionary][syntaxKey];
             if ([strDicts count] == 0) {
-                if ([self indicatorController]) {
-                    [[self indicatorController] progressIndicator:kPerCompoIncrement];
-                }
+                [indicator progressIndicator:kPerCompoIncrement];
                 continue;
             }
             
@@ -857,9 +855,6 @@ static CGFloat kPerCompoIncrement;
             NSMutableArray *targetRanges = [NSMutableArray arrayWithCapacity:10];
             
             for (NSDictionary *strDict in strDicts) {
-                // キャンセルされたら現在実行中の抽出は破棄して戻る
-                if ([[self indicatorController] isCancelled]) { return nil; }
-                
                 @autoreleasepool {
                     NSString *beginStr = strDict[CESyntaxBeginStringKey];
                     NSString *endStr = strDict[CESyntaxEndStringKey];
@@ -897,10 +892,12 @@ static CGFloat kPerCompoIncrement;
                             }
                         }
                     }
+                    // キャンセルされたら現在実行中の抽出は破棄して戻る
+                    [indicator progressIndicator:indicatorDelta];
+                    
                     // インジケータ更新
-                    if ([self indicatorController]) {
-                        [[self indicatorController] progressIndicator:indicatorDelta];
-                    }
+                    if ([indicator isCancelled]) { return nil; }
+                    
                 } // ==== end-autoreleasepool
             } // end-for (strDict)
             
@@ -917,18 +914,19 @@ static CGFloat kPerCompoIncrement;
             }
         } // end-for (syntaxKey)
         
+        if ([indicator isCancelled]) { return nil; }
+        
         // コメントと引用符
-        if ([self indicatorController]) {
-            CEIndicatorSheetController *indicator = [self indicatorController];
+        if (indicator) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [indicator setInformativeText:[NSString stringWithFormat:NSLocalizedString(@"Extracting %@…", nil),
                                                NSLocalizedString(@"comment and quoted text", nil)]];
             });
         }
         [colorings addObjectsFromArray:[self extractCommentsWithQuotesFromString:string]];
-        if ([self indicatorController]) {
-            [[self indicatorController] progressIndicator:kPerCompoIncrement];
-        }
+        [indicator progressIndicator:kPerCompoIncrement];
+        
+        if ([indicator isCancelled]) { return nil; }
 
         // 不可視文字の追加
         [colorings addObjectsFromArray:[self extractControlCharsFromString:string]];
