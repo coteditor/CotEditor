@@ -28,7 +28,7 @@ changelog
 
 ### Fixes
 
-- Fix page guide position.
+- Fix page guide position and tab width.
 - Fix a possible hang-up when no text font is found.
 - Fix an issue that “Go” button in “Go To” sheet didn't work by clicking.
 - Fix an issue that the cancelation of syntax extracting didn't work immediatly under the specific conditions.

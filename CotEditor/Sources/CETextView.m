@@ -1606,6 +1606,8 @@ const NSInteger kNoMenuItem = -1;
     while (numberOfSpaces--) {
         [widthStr appendString:@" "];
     }
+    font = [font screenFont] ? : font;
+    
     return [widthStr sizeWithAttributes:@{NSFontAttributeName:font}].width;
 }
 
