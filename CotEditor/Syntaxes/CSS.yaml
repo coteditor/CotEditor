@@ -6,6 +6,9 @@ outlineMenu:
 - beginString: "\\@(media|page)\\b(.+)(?=($|\\{))"
   keyString: "@$1 $2"
 commands:
+- beginString: "@-moz-keyframes"
+- beginString: "@-o-keyframes"
+- beginString: "@-webkit-keyframes"
 - beginString: "@charset"
 - beginString: "@counter-style"
 - beginString: "@font-face"
@@ -74,12 +77,12 @@ attributes:
 - beginString: "["
   endString: "]"
 metadata:
-  author: "CotEditor Projcect"
+  author: "CotEditor Project"
   distributionURL: "http://coteditor.com"
-  version: "2.0"
+  version: "2.0.2"
   description: "Support partly CSS3."
   license: "Same as CotEditor"
-  lastModified: "2014-09-24"
+  lastModified: "2014-11-30"
 characters:
 - beginString: "attr(?=\\()"
   regularExpression: true
@@ -87,7 +90,11 @@ characters:
   regularExpression: true
 - beginString: "brightness(?=\\()"
   regularExpression: true
+- beginString: "calc(?=\\()"
+  regularExpression: true
 - beginString: "contrast(?=\\()"
+  regularExpression: true
+- beginString: "cubic-bezier(?=\\()"
   regularExpression: true
 - beginString: "custom(?=\\()"
   regularExpression: true
@@ -178,7 +185,6 @@ values:
 - beginString: "(?<![\\-a-z#.])top(?!\\s*:)"
   regularExpression: true
 - beginString: "absolute"
-- beginString: "active"
 - beginString: "aliceblue"
 - beginString: "all"
 - beginString: "all-petite-caps"
@@ -187,6 +193,7 @@ values:
 - beginString: "alternate"
 - beginString: "always"
 - beginString: "annotation"
+- beginString: "antialiased"
 - beginString: "antiquewhite"
 - beginString: "any"
 - beginString: "aqua"
@@ -285,6 +292,7 @@ values:
 - beginString: "double-circle"
 - beginString: "e-resize"
 - beginString: "each-line"
+- beginString: "ease"
 - beginString: "ease-in"
 - beginString: "ease-in-out"
 - beginString: "ease-out"
@@ -315,6 +323,7 @@ values:
 - beginString: "full-width"
 - beginString: "gainsboro"
 - beginString: "geogian"
+- beginString: "geometricPrecision"
 - beginString: "ghostwhite"
 - beginString: "gold"
 - beginString: "goldenrod"
@@ -336,7 +345,6 @@ values:
 - beginString: "hotpink"
 - beginString: "hue"
 - beginString: "icon"
-- beginString: "inactive"
 - beginString: "indianred"
 - beginString: "indigo"
 - beginString: "infinite"
@@ -447,6 +455,8 @@ values:
 - beginString: "olivedrab"
 - beginString: "open"
 - beginString: "open-quote"
+- beginString: "optimizeLegibility"
+- beginString: "optimizeSpeed"
 - beginString: "orange"
 - beginString: "orangered"
 - beginString: "orchid"
@@ -557,6 +567,7 @@ values:
 - beginString: "styleset"
 - beginString: "stylistic"
 - beginString: "sub"
+- beginString: "subpixel-antialiased"
 - beginString: "super"
 - beginString: "sw-resize"
 - beginString: "swash"
@@ -631,7 +642,7 @@ numbers:
 - beginString: "#[0-9a-f]{6}(?=[ \\n\\t\\);,])"
   ignoreCase: true
   regularExpression: true
-- beginString: "(?<![a-zA-Z0-9\\._])\\-?(?:[0-9\\.]+)?[0-9]*(?:%|em|ex|px|rem|vw|vh|vmin|vmax|mm|cm|in|pt|pc|deg|grad|rad|ms|s|Hz|kHz|dpi|dpcm|dppx)?(?!\\w)"
+- beginString: "(?<![a-zA-Z0-9\\._\\-\\+])\\-?(?!\\s)(?:[0-9\\.]+)?[0-9]*(?:%|em|ex|px|rem|vw|vh|vmin|vmax|mm|cm|in|pt|pc|deg|grad|rad|ms|s|Hz|kHz|dpi|dpcm|dppx)?(?!\\w)"
   regularExpression: true
 strings:
 - beginString: "\""
@@ -814,6 +825,8 @@ keywords:
 - beginString: "overflow"
 - beginString: "overflow-style"
 - beginString: "overflow-wrap"
+- beginString: "overflow-x"
+- beginString: "overflow-y"
 - beginString: "padding"
 - beginString: "padding-bottom"
 - beginString: "padding-left"
@@ -858,6 +871,7 @@ keywords:
 - beginString: "text-justify"
 - beginString: "text-orientation"
 - beginString: "text-overflow"
+- beginString: "text-rendering"
 - beginString: "text-shadow"
 - beginString: "text-transform"
 - beginString: "text-underline-position"
