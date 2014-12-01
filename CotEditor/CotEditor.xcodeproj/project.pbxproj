@@ -385,6 +385,14 @@
 		3381090B4006E7F6090EB49E /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "../Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		3E89432C1A2D21AF005556EE /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3E8943301A2D21B0005556EE /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3E8943321A2D2288005556EE /* ko */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ko; path = ko.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		3E8943331A2D2737005556EE /* ko */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ko; path = ko.lproj/MigrationWindow.xib; sourceTree = "<group>"; };
+		3E8943341A2D27A8005556EE /* ko */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ko; path = ko.lproj/OpenDocumentAccessory.xib; sourceTree = "<group>"; };
+		3E8943351A2D27CA005556EE /* ko */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ko; path = ko.lproj/DocumentWindow.xib; sourceTree = "<group>"; };
+		3E8943361A2D28E9005556EE /* ko */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ko; path = ko.lproj/NavigationBar.xib; sourceTree = "<group>"; };
+		3E8943371A2D291F005556EE /* ko */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ko; path = ko.lproj/Indicator.xib; sourceTree = "<group>"; };
+		3E8943381A2D2964005556EE /* ko */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ko; path = ko.lproj/PrintPanelAccessory.xib; sourceTree = "<group>"; };
+		3E8943391A2D2AAB005556EE /* ko */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ko; path = ko.lproj/PreferencesWindow.xib; sourceTree = "<group>"; };
 		4B7998171A1F1BCD0088D167 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = "zh-Hans"; path = "zh-Hans.lproj/AppleScript.rtf"; sourceTree = "<group>"; };
 		4B7998181A1F1BCD0088D167 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = "zh-Hans"; path = "zh-Hans.lproj/ShellScript.rtf"; sourceTree = "<group>"; };
 		4B7998191A1F1BCD0088D167 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -1029,6 +1037,7 @@
 				en,
 				ja,
 				"zh-Hans",
+				ko,
 			);
 			mainGroup = 2A37F4AAFDCFA73011CA2CEA /* CotEditor */;
 			projectDirPath = "";
@@ -1257,6 +1266,7 @@
 				25859EA6076D8EE80020F779 /* en */,
 				2A149DCA1902BEE800A9D6EF /* ja */,
 				4B7998251A1F1BCD0088D167 /* zh-Hans */,
+				3E8943391A2D2AAB005556EE /* ko */,
 			);
 			name = PreferencesWindow.xib;
 			sourceTree = SOURCE_ROOT;
@@ -1267,6 +1277,7 @@
 				2588E9CD07C4851C0060021D /* en */,
 				6C1E212112C9E65600194313 /* ja */,
 				4B7998231A1F1BCD0088D167 /* zh-Hans */,
+				3E8943371A2D291F005556EE /* ko */,
 			);
 			name = Indicator.xib;
 			sourceTree = "<group>";
@@ -1297,6 +1308,7 @@
 				2A07202D18E0E421006F3A43 /* en */,
 				2AA562A818E8F630009CD7A2 /* ja */,
 				4B7998221A1F1BCD0088D167 /* zh-Hans */,
+				3E8943381A2D2964005556EE /* ko */,
 			);
 			name = PrintPanelAccessory.xib;
 			sourceTree = "<group>";
@@ -1426,6 +1438,7 @@
 				2A37F4B5FDCFA73011CA2CEA /* en */,
 				2AAEF50A1A026B35005F2AD3 /* ja */,
 				4B7998201A1F1BCD0088D167 /* zh-Hans */,
+				3E8943351A2D27CA005556EE /* ko */,
 			);
 			name = DocumentWindow.xib;
 			sourceTree = "<group>";
@@ -1436,6 +1449,7 @@
 				2A37F4B7FDCFA73011CA2CEA /* en */,
 				6C1E212512C9E65600194313 /* ja */,
 				4B79981D1A1F1BCD0088D167 /* zh-Hans */,
+				3E8943321A2D2288005556EE /* ko */,
 			);
 			name = MainMenu.xib;
 			sourceTree = "<group>";
@@ -1446,6 +1460,7 @@
 				2A3A759019E77D4F001DAB88 /* en */,
 				2AF861D71A05C294005054DE /* ja */,
 				4B79981E1A1F1BCD0088D167 /* zh-Hans */,
+				3E8943331A2D2737005556EE /* ko */,
 			);
 			name = MigrationWindow.xib;
 			sourceTree = "<group>";
@@ -1466,6 +1481,7 @@
 				2A5411C219852C1C008B43DA /* en */,
 				2AD2861819856E2300C9342F /* ja */,
 				4B7998211A1F1BCD0088D167 /* zh-Hans */,
+				3E8943361A2D28E9005556EE /* ko */,
 			);
 			name = NavigationBar.xib;
 			sourceTree = "<group>";
@@ -1605,6 +1621,7 @@
 				2AFFB72918D8C7DE00118477 /* en */,
 				2AFFB72B18D8CB7D00118477 /* ja */,
 				4B79981F1A1F1BCD0088D167 /* zh-Hans */,
+				3E8943341A2D27A8005556EE /* ko */,
 			);
 			name = OpenDocumentAccessory.xib;
 			sourceTree = "<group>";
