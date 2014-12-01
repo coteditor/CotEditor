@@ -1,5 +1,5 @@
 PODS:
-  - LibYAML (0.1.4)
+  - LibYAML (0.1.6)
   - OgreKit (2.1.7.5)
   - RegexKitLite (4.0)
   - Sparkle (1.8.0)
@@ -9,6 +9,7 @@ PODS:
     - LibYAML (~> 0.1.4)
 
 DEPENDENCIES:
+  - LibYAML (from `./LibYAML.podspec.json`)
   - OgreKit (from `https://github.com/coteditor/OgreKit.git`, branch `coteditor-mod`)
   - RegexKitLite
   - Sparkle
@@ -17,6 +18,8 @@ DEPENDENCIES:
   - YAML-Framework (from `https://github.com/coteditor/YAML.framework.git`, branch `coteditor-mod`)
 
 EXTERNAL SOURCES:
+  LibYAML:
+    :podspec: ./LibYAML.podspec.json
   OgreKit:
     :branch: coteditor-mod
     :git: https://github.com/coteditor/OgreKit.git
@@ -33,7 +36,7 @@ CHECKOUT OPTIONS:
     :git: https://github.com/coteditor/YAML.framework.git
 
 SPEC CHECKSUMS:
-  LibYAML: d447960375d9114187bfddba6e6c24d69bff11f8
+  LibYAML: f6962a51ab6545592af42c57072e41e04d87df6d
   OgreKit: be72fb0d037fd41df7b0c9a79f04f3da3062757f
   RegexKitLite: c0e4c12e6e7de0769f3a3ed679f0f61604170661
   Sparkle: 5eb20bb37ca21e471dab8417dee880198d905327

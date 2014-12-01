@@ -4,6 +4,8 @@ platform :osx, '10.7'
 xcodeproj 'CotEditor/CotEditor.xcodeproj'
 inhibit_all_warnings!
 
+pod 'LibYAML',
+    :podspec => './LibYAML.podspec.json'
 pod 'OgreKit',
     :git => 'https://github.com/coteditor/OgreKit.git',
     :branch => 'coteditor-mod'
