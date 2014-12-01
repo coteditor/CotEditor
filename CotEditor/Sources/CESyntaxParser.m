@@ -459,32 +459,33 @@ static CGFloat kPerCompoIncrement;
     CEIndicatorSheetController *indicator = [self indicatorController];
     
     NSScanner *scanner = [NSScanner scannerWithString:[self coloringString]];
-    [scanner setCharactersToBeSkipped:[NSCharacterSet characterSetWithCharactersInString:@"\n\t "]];
     [scanner setCaseSensitive:YES];
     
-    while (![scanner isAtEnd]) {
-        if ([indicator isCancelled]) { return nil; }
-        
-        NSString *scannedString = nil;
-        [scanner scanUpToCharactersFromSet:charSet intoString:NULL];
-        if (![scanner scanCharactersFromSet:charSet intoString:&scannedString]) { break; }
-        
-        NSUInteger length = [scannedString length];
-        
-        NSArray *words = wordsDict[@(length)];
-        BOOL isFound = [words containsObject:scannedString];
-        
-        if (!isFound) {
-            words = icWordsDict[@(length)];
-            isFound = [words containsObject:[scannedString lowercaseString]];  // The words are already transformed in lowercase.
+        while (![scanner isAtEnd]) {
+            if ([indicator isCancelled]) { return nil; }
+            
+            @autoreleasepool {
+                NSString *scannedString = nil;
+                [scanner scanUpToCharactersFromSet:charSet intoString:NULL];
+                if (![scanner scanCharactersFromSet:charSet intoString:&scannedString]) { break; }
+                
+                NSUInteger length = [scannedString length];
+                
+                NSArray *words = wordsDict[@(length)];
+                BOOL isFound = [words containsObject:scannedString];
+                
+                if (!isFound) {
+                    words = icWordsDict[@(length)];
+                    isFound = [words containsObject:[scannedString lowercaseString]];  // The words are already transformed in lowercase.
+                }
+                
+                if (isFound) {
+                    NSUInteger location = [scanner scanLocation];
+                    NSRange range = NSMakeRange(location - length, length);
+                    [ranges addObject:[NSValue valueWithRange:range]];
+                }
+            }
         }
-        
-        if (isFound) {
-            NSUInteger location = [scanner scanLocation];
-            NSRange range = NSMakeRange(location - length, length);
-            [ranges addObject:[NSValue valueWithRange:range]];
-        }
-    }
     
     return ranges;
 }
@@ -504,21 +505,22 @@ static CGFloat kPerCompoIncrement;
     NSUInteger length = [searchString length];
     
     NSScanner *scanner = [NSScanner scannerWithString:string];
-    [scanner setCharactersToBeSkipped:nil];
     [scanner setCaseSensitive:!ignoreCase];
     
     while (![scanner isAtEnd]) {
         if ([indicator isCancelled]) { return nil; }
         
-        [scanner scanUpToString:searchString intoString:nil];
-        NSUInteger startLocation = [scanner scanLocation];
-        
-        if (![scanner scanString:searchString intoString:nil]) { break; }
-        
-        if (isCharacterEscaped(string, startLocation)) { continue; }
-        
-        NSRange range = NSMakeRange(startLocation, length);
-        [ranges addObject:[NSValue valueWithRange:range]];
+        @autoreleasepool {
+            [scanner scanUpToString:searchString intoString:nil];
+            NSUInteger startLocation = [scanner scanLocation];
+            
+            if (![scanner scanString:searchString intoString:nil]) { break; }
+            
+            if (isCharacterEscaped(string, startLocation)) { continue; }
+            
+            NSRange range = NSMakeRange(startLocation, length);
+            [ranges addObject:[NSValue valueWithRange:range]];
+        }
     }
     
     return ranges;
@@ -540,32 +542,33 @@ static CGFloat kPerCompoIncrement;
     NSUInteger endLength = [endString length];
     
     NSScanner *scanner = [NSScanner scannerWithString:string];
-    [scanner setCharactersToBeSkipped:nil];
     [scanner setCaseSensitive:!ignoreCase];
     
     while (![scanner isAtEnd]) {
         if ([indicator isCancelled]) { return nil; }
         
-        [scanner scanUpToString:beginString intoString:nil];
-        NSUInteger startLocation = [scanner scanLocation];
-        
-        if (![scanner scanString:beginString intoString:nil]) { break; }
-        
-        if (isCharacterEscaped(string, startLocation)) { continue; }
-        
-        // find end string
-        while (![scanner isAtEnd]) {
-            [scanner scanUpToString:endString intoString:nil];
-            if (![scanner scanString:endString intoString:nil]) { break; }
+        @autoreleasepool {
+            [scanner scanUpToString:beginString intoString:nil];
+            NSUInteger startLocation = [scanner scanLocation];
             
-            NSUInteger endLocation = [scanner scanLocation];
+            if (![scanner scanString:beginString intoString:nil]) { break; }
             
-            if (isCharacterEscaped(string, (endLocation - endLength))) { continue; }
+            if (isCharacterEscaped(string, startLocation)) { continue; }
             
-            NSRange range = NSMakeRange(startLocation, endLocation - startLocation);
-            [ranges addObject:[NSValue valueWithRange:range]];
-            
-            break;
+            // find end string
+            while (![scanner isAtEnd]) {
+                [scanner scanUpToString:endString intoString:nil];
+                if (![scanner scanString:endString intoString:nil]) { break; }
+                
+                NSUInteger endLocation = [scanner scanLocation];
+                
+                if (isCharacterEscaped(string, (endLocation - endLength))) { continue; }
+                
+                NSRange range = NSMakeRange(startLocation, endLocation - startLocation);
+                [ranges addObject:[NSValue valueWithRange:range]];
+                
+                break;
+            }
         }
     }
     
