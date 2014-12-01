@@ -18,6 +18,7 @@ changelog
 - Now, the popup menus in toolbar can be called directly even on "Text Only" mode without mode change.
 - Disable rech text in find panel.
 - Change default syntax style from “None” to “Plain Text”.
+- Improve the delay when a AppleScript/JavaScript is run for the first time after the application launched.
 - Update “CSS” syntax style:
     - Add several keywords. (Thanks to Nathan Rutzky!)
 - Update “JSON” syntax style:

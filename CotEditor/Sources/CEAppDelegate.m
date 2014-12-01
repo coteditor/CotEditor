@@ -378,7 +378,7 @@
     
     // AppleScript 起動のスピードアップのため一度動かしておく
     if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultRunAppleScriptInLaunchingKey]) {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        dispatch_async(dispatch_get_main_queue(), ^{
             NSString *source = @"tell application \"CotEditor\" to number of documents";
             NSAppleScript *AppleScript = [[NSAppleScript alloc] initWithSource:source];
             [AppleScript executeAndReturnError:nil];
