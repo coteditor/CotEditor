@@ -233,8 +233,8 @@
                         <font key="font" metaFont="system"/>
                     </buttonCell>
                     <connections>
-                        <binding destination="26" name="enabled" keyPath="values.showInvisibles" id="2Jn-zd-WFm"/>
                         <binding destination="26" name="value" keyPath="values.showInvisibleSpace" id="238"/>
+                        <binding destination="26" name="enabled" keyPath="values.showInvisibles" id="2Jn-zd-WFm"/>
                     </connections>
                 </button>
                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="236">
@@ -252,6 +252,9 @@
                         </menu>
                     </popUpButtonCell>
                     <connections>
+                        <binding destination="-2" name="contentValues" keyPath="invisibleSpaces" id="nhg-7o-Cjg"/>
+                        <binding destination="26" name="selectedIndex" keyPath="values.invisibleSpace" previousBinding="nhg-7o-Cjg" id="bLN-Jj-zX1"/>
+                        <binding destination="26" name="enabled" keyPath="values.showInvisibleSpace" id="239"/>
                         <binding destination="26" name="enabled2" keyPath="values.showInvisibles" previousBinding="239" id="MCy-aa-ISy">
                             <dictionary key="options">
                                 <integer key="NSMultipleValuesPlaceholder" value="-1"/>
@@ -260,9 +263,6 @@
                                 <integer key="NSNullPlaceholder" value="-1"/>
                             </dictionary>
                         </binding>
-                        <binding destination="-2" name="contentValues" keyPath="invisibleSpaces" id="nhg-7o-Cjg"/>
-                        <binding destination="26" name="selectedIndex" keyPath="values.invisibleSpace" previousBinding="nhg-7o-Cjg" id="bLN-Jj-zX1"/>
-                        <binding destination="26" name="enabled" keyPath="values.showInvisibleSpace" id="239"/>
                     </connections>
                 </popUpButton>
                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="243">
@@ -277,6 +277,9 @@
                         </menu>
                     </popUpButtonCell>
                     <connections>
+                        <binding destination="-2" name="contentValues" keyPath="invisibleTabs" id="jfI-Rh-dyy"/>
+                        <binding destination="26" name="selectedIndex" keyPath="values.invisibleTab" previousBinding="jfI-Rh-dyy" id="HTm-ic-wn2"/>
+                        <binding destination="26" name="enabled" keyPath="values.showInvisibleTab" id="252"/>
                         <binding destination="26" name="enabled2" keyPath="values.showInvisibles" previousBinding="252" id="x0D-zR-wHx">
                             <dictionary key="options">
                                 <integer key="NSMultipleValuesPlaceholder" value="-1"/>
@@ -285,9 +288,6 @@
                                 <integer key="NSNullPlaceholder" value="-1"/>
                             </dictionary>
                         </binding>
-                        <binding destination="-2" name="contentValues" keyPath="invisibleTabs" id="jfI-Rh-dyy"/>
-                        <binding destination="26" name="selectedIndex" keyPath="values.invisibleTab" previousBinding="jfI-Rh-dyy" id="HTm-ic-wn2"/>
-                        <binding destination="26" name="enabled" keyPath="values.showInvisibleTab" id="252"/>
                     </connections>
                 </popUpButton>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="244">
@@ -297,8 +297,8 @@
                         <font key="font" metaFont="system"/>
                     </buttonCell>
                     <connections>
-                        <binding destination="26" name="enabled" keyPath="values.showInvisibles" id="tNC-l4-qGy"/>
                         <binding destination="26" name="value" keyPath="values.showInvisibleTab" id="251"/>
+                        <binding destination="26" name="enabled" keyPath="values.showInvisibles" id="tNC-l4-qGy"/>
                     </connections>
                 </button>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="874">
@@ -327,8 +327,8 @@
                         <font key="font" metaFont="system"/>
                     </buttonCell>
                     <connections>
-                        <binding destination="26" name="enabled" keyPath="values.showInvisibles" id="4cz-rO-hvI"/>
                         <binding destination="26" name="value" keyPath="values.showInvisibleNewLine" id="227"/>
+                        <binding destination="26" name="enabled" keyPath="values.showInvisibles" id="4cz-rO-hvI"/>
                     </connections>
                 </button>
                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="224">
@@ -343,6 +343,9 @@
                         </menu>
                     </popUpButtonCell>
                     <connections>
+                        <binding destination="-2" name="contentValues" keyPath="invisibleNewLines" id="dtj-Fb-OId"/>
+                        <binding destination="26" name="selectedIndex" keyPath="values.invisibleNewLine" previousBinding="dtj-Fb-OId" id="GVd-bs-zbe"/>
+                        <binding destination="26" name="enabled" keyPath="values.showInvisibleNewLine" id="230"/>
                         <binding destination="26" name="enabled2" keyPath="values.showInvisibles" previousBinding="230" id="5nk-Xj-XLk">
                             <dictionary key="options">
                                 <integer key="NSMultipleValuesPlaceholder" value="-1"/>
@@ -351,9 +354,6 @@
                                 <integer key="NSNullPlaceholder" value="-1"/>
                             </dictionary>
                         </binding>
-                        <binding destination="-2" name="contentValues" keyPath="invisibleNewLines" id="dtj-Fb-OId"/>
-                        <binding destination="26" name="selectedIndex" keyPath="values.invisibleNewLine" previousBinding="dtj-Fb-OId" id="GVd-bs-zbe"/>
-                        <binding destination="26" name="enabled" keyPath="values.showInvisibleNewLine" id="230"/>
                     </connections>
                 </popUpButton>
                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="247">
@@ -368,6 +368,9 @@
                         </menu>
                     </popUpButtonCell>
                     <connections>
+                        <binding destination="-2" name="contentValues" keyPath="invisibleFullWidthSpaces" id="OWc-5t-nq8"/>
+                        <binding destination="26" name="selectedIndex" keyPath="values.invisibleZenkakuSpace" previousBinding="OWc-5t-nq8" id="Kgk-eb-Xec"/>
+                        <binding destination="26" name="enabled" keyPath="values.showInvisibleZenkakuSpace" id="255"/>
                         <binding destination="26" name="enabled2" keyPath="values.showInvisibles" previousBinding="255" id="KdJ-Hh-D1g">
                             <dictionary key="options">
                                 <integer key="NSMultipleValuesPlaceholder" value="-1"/>
@@ -376,9 +379,6 @@
                                 <integer key="NSNullPlaceholder" value="-1"/>
                             </dictionary>
                         </binding>
-                        <binding destination="-2" name="contentValues" keyPath="invisibleFullWidthSpaces" id="OWc-5t-nq8"/>
-                        <binding destination="26" name="selectedIndex" keyPath="values.invisibleZenkakuSpace" previousBinding="OWc-5t-nq8" id="Kgk-eb-Xec"/>
-                        <binding destination="26" name="enabled" keyPath="values.showInvisibleZenkakuSpace" id="255"/>
                     </connections>
                 </popUpButton>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="249">
@@ -388,8 +388,8 @@
                         <font key="font" metaFont="system"/>
                     </buttonCell>
                     <connections>
-                        <binding destination="26" name="enabled" keyPath="values.showInvisibles" id="KNl-1o-pSj"/>
                         <binding destination="26" name="value" keyPath="values.showInvisibleZenkakuSpace" id="254"/>
+                        <binding destination="26" name="enabled" keyPath="values.showInvisibles" id="KNl-1o-pSj"/>
                     </connections>
                 </button>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="NYb-54-Clb">
@@ -409,7 +409,7 @@
                         <font key="font" metaFont="system"/>
                     </buttonCell>
                     <connections>
-                        <binding destination="26" name="value" keyPath="values.autoCompletion" id="bew-k0-JUE"/>
+                        <binding destination="26" name="value" keyPath="values.autoComplete" id="2Ab-2j-qEy"/>
                     </connections>
                 </button>
                 <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="H57-OI-MHk">
