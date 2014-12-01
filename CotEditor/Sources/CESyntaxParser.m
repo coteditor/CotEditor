@@ -461,31 +461,31 @@ static CGFloat kPerCompoIncrement;
     NSScanner *scanner = [NSScanner scannerWithString:[self coloringString]];
     [scanner setCaseSensitive:YES];
     
-        while (![scanner isAtEnd]) {
-            if ([indicator isCancelled]) { return nil; }
+    while (![scanner isAtEnd]) {
+        if ([indicator isCancelled]) { return nil; }
+        
+        @autoreleasepool {
+            NSString *scannedString = nil;
+            [scanner scanUpToCharactersFromSet:charSet intoString:NULL];
+            if (![scanner scanCharactersFromSet:charSet intoString:&scannedString]) { break; }
             
-            @autoreleasepool {
-                NSString *scannedString = nil;
-                [scanner scanUpToCharactersFromSet:charSet intoString:NULL];
-                if (![scanner scanCharactersFromSet:charSet intoString:&scannedString]) { break; }
-                
-                NSUInteger length = [scannedString length];
-                
-                NSArray *words = wordsDict[@(length)];
-                BOOL isFound = [words containsObject:scannedString];
-                
-                if (!isFound) {
-                    words = icWordsDict[@(length)];
-                    isFound = [words containsObject:[scannedString lowercaseString]];  // The words are already transformed in lowercase.
-                }
-                
-                if (isFound) {
-                    NSUInteger location = [scanner scanLocation];
-                    NSRange range = NSMakeRange(location - length, length);
-                    [ranges addObject:[NSValue valueWithRange:range]];
-                }
+            NSUInteger length = [scannedString length];
+            
+            NSArray *words = wordsDict[@(length)];
+            BOOL isFound = [words containsObject:scannedString];
+            
+            if (!isFound) {
+                words = icWordsDict[@(length)];
+                isFound = [words containsObject:[scannedString lowercaseString]];  // The words are already transformed in lowercase.
+            }
+            
+            if (isFound) {
+                NSUInteger location = [scanner scanLocation];
+                NSRange range = NSMakeRange(location - length, length);
+                [ranges addObject:[NSValue valueWithRange:range]];
             }
         }
+    }
     
     return ranges;
 }
