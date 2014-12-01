@@ -966,17 +966,27 @@ static CGFloat kPerCompoIncrement;
         [[self indicatorController] beginSheetForWindow:documentWindow];
     }
     
+    // 実行スレッドを決定
+    dispatch_queue_t queue = onMainThread ? dispatch_get_main_queue() : [self coloringQueue];
+    
     __weak typeof(self) weakSelf = self;
-    dispatch_block_t colorBlock = ^{
+    dispatch_async(queue, ^{
         typeof(self) strongSelf = weakSelf;
         NSArray *colorings = [strongSelf extractAllSyntaxFromString:coloringString];
+        
+        // 全文を抽出した場合は抽出結果をキャッシュする
+        if (([colorings count] > 0) && (coloringRange.length == [wholeString length])) {
+            [strongSelf setCacheColorings:colorings];
+            [strongSelf setCacheHash:[wholeString MD5]];
+        }
         
         // インジケータシートのメッセージを更新
         if (colorings && indicator) {
             [indicator setInformativeText:NSLocalizedString(@"Applying colors to text", nil)];
         }
         
-        dispatch_block_t mainThreadBlock = ^{
+        // 描画をメインスレッドで実行
+        dispatch_async(dispatch_get_main_queue(), ^{
             if (colorings) {
                 // カラーを適用する（ループ中に徐々に適用させると文字がチラ付くので、抽出が終わってから一気に適用する）
                 [strongSelf applyColorings:colorings range:coloringRange];
@@ -987,28 +997,8 @@ static CGFloat kPerCompoIncrement;
                 [indicator endSheet];
                 [strongSelf setIndicatorController:nil];
             }
-        };
-        
-        // メインスレッドで実行
-        if ([NSThread isMainThread]) {
-            mainThreadBlock();
-        } else {
-            dispatch_sync(dispatch_get_main_queue(), mainThreadBlock);
-        }
-        
-        // 全文を抽出した場合は抽出結果をキャッシュする
-        if (([colorings count] > 0) && (coloringRange.length == [wholeString length])) {
-            [strongSelf setCacheColorings:colorings];
-            [strongSelf setCacheHash:[wholeString MD5]];
-        }
-    };
-    
-    // 任意のスレッドで実行
-    if (onMainThread) {
-        colorBlock();
-    } else {
-        dispatch_async([self coloringQueue], colorBlock);
-    }
+        });
+    });
 }
 
 
@@ -1021,6 +1011,8 @@ static CGFloat kPerCompoIncrement;
     CETheme *theme = [(NSTextView<CETextViewProtocol> *)[layoutManager firstTextView] theme];
     BOOL isPrinting = [self isPrinting];
     BOOL showsInvisibles = [layoutManager showsControlCharacters];
+    
+    [[layoutManager textStorage] beginEditing];
     
     // 現在あるカラーリングを削除
     if (isPrinting) {
@@ -1074,6 +1066,8 @@ static CGFloat kPerCompoIncrement;
             }
         }
     }
+    
+    [[layoutManager textStorage] endEditing];
 }
 
 
@@ -1085,13 +1079,12 @@ static CGFloat kPerCompoIncrement;
 BOOL isCharacterEscaped(NSString *string, NSUInteger location)
 // ------------------------------------------------------
 {
-    NSUInteger escapesCheckLength = MIN(location, kMaxEscapesCheckLength);
-    NSRange escapesCheckRange = NSMakeRange(location - escapesCheckLength, escapesCheckLength);
-    NSString *escapesCheckStr = [string substringWithRange:escapesCheckRange];
-    
     NSUInteger numberOfEscapes = 0;
-    for (NSInteger i = [escapesCheckStr length] - 1; i >= 0; i--) {
-        if ([escapesCheckStr characterAtIndex:i] == '\\') {
+    NSUInteger escapesCheckLength = MIN(location, kMaxEscapesCheckLength);
+    
+    location--;
+    for (NSUInteger i = 0; i < escapesCheckLength; i++) {
+        if ([string characterAtIndex:location - i] == '\\') {
             numberOfEscapes++;
         } else {
             break;
