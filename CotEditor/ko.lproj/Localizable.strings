@@ -1,0 +1,444 @@
+/* No comment provided by engineer. */
+" (on Mavericks and later)" = " (Mavericks 이상)";
+
+/* No comment provided by engineer. */
+" copy" = " 복사";
+
+/* No comment provided by engineer. */
+"%i errors were found!" = "%i 개의 에러가 있습니다!";
+
+/* No comment provided by engineer. */
+": " = "：";
+
+/* No comment provided by engineer. */
+"<Outline Menu>" = "<아웃라인 메뉴>";
+
+/* No comment provided by engineer. */
+"<a letter consisting of %d characters>" = "<%d 문자로 이루어져 있습니다>";
+
+/* No comment provided by engineer. */
+"A new theme named “%@” has been successfully installed." = "새로운 테마 “%@”가 설치되었습니다.";
+
+/* No comment provided by engineer. */
+"A new theme named “%@” will be installed, but a custom theme with the same name already exists." = "새로운 테마 “%@”을 설치하려고 하였으나, 같은 이름의 사용자 테마가 이미 존재합니다.";
+
+/* No comment provided by engineer. */
+"An error was found!" = "에러가 있습니다!";
+
+/* No comment provided by engineer. */
+"Applying colors to text" = "텍스트에 컬러 적용중";
+
+/* No comment provided by engineer. */
+"Are you sure you want to change to “%@”?" = "진짜로 “%@”로 바꾸시겠습니까?";
+
+/* No comment provided by engineer. */
+"Attributes" = "속성";
+
+/* No comment provided by engineer. */
+"Auto-Detect" = "자동인식";
+
+/* No comment provided by engineer. */
+"Auto-generated theme that is mgrated from user's coloring setting on CotEditor 1.x" = "CotEditor 1.x의 유저 컬러 설정에서 자동생성한 테마";
+
+/* No comment provided by engineer. */
+"Begin string" = "시작 문자열";
+
+/* No comment provided by engineer. */
+"Block comment needs both begin delimiter and end delimiter." = "블럭 코멘트는 시작과 끝 문자 양쪽에서 필요합니다.";
+
+/* No comment provided by engineer. */
+"Bug Report" = "버그 리포트";
+
+/* No comment provided by engineer. */
+"Can not reinterpret" = "재해석할 수 없습니다.";
+
+/* No comment provided by engineer. */
+"Cancel" = "취소";
+
+/* No comment provided by engineer. */
+"Cannnot execute the script “%@”.\nShell script requires execute permission.\n\nCheck permission of the script file." = "스크립트 “%@”을 실행할 수 없습니다.\n셸 스크립를 실행할 권한이 필요합니다.\n\n확인 부탁드리겠습니다.";
+
+/* No comment provided by engineer. */
+"Change Encoding" = "인코딩 변경";
+
+/* No comment provided by engineer. */
+"Change to “%@”" = "“%@”로 변경";
+
+/* No comment provided by engineer. */
+"Characters" = "문자";
+
+/* No comment provided by engineer. */
+"Close" = "닫기";
+
+/* No comment provided by engineer. */
+"Coloring text…" = "텍스트 컬러링 중…";
+
+/* No comment provided by engineer. */
+"Commands" = "명령어";
+
+/* No comment provided by engineer. */
+"Comment Out" = "커멘트 아웃";
+
+/* No comment provided by engineer. */
+"Comments" = "커멘트";
+
+/* No comment provided by engineer. */
+"Completion List" = "입력 보완 목록";
+
+/* No comment provided by engineer. */
+"Continue Saving" = "보존을 계속";
+
+/* No comment provided by engineer. */
+"Convert" = "변환";
+
+/* No comment provided by engineer. */
+"Copy Sample to Scripts Folder" = "샘플을 스크립트 폴더로 복사";
+
+/* No comment provided by engineer. */
+"Copy bundled sample scripts to the scripts folder." = "번들한 샘플 스크립트를 스크립트 폴더로 복사한다.";
+
+/* No comment provided by engineer. */
+"Could not open the script file “%@”." = "스크립트 파일 “%@”을 열 수 없습니다.";
+
+/* No comment provided by engineer. */
+"Could not read the script “%@”." = "스크립트 파일 “%@”을 읽을 수 없습니다.";
+
+/* No comment provided by engineer. */
+"Customized Theme" = "커스텀 테마";
+
+/* No comment provided by engineer. */
+"Delete" = "삭제";
+
+/* No comment provided by engineer. */
+"Delete the File Drop setting for “%@”?" = "파일 드롭 설정 “%@”을 삭제하시겠습니까?";
+
+/* No comment provided by engineer. */
+"Delete the theme “%@”?" = "“%@” 테마를 삭제하시겠습니까?";
+
+/* No comment provided by engineer. */
+"Deleted setting cannot be restored." = "삭제한 설정은 원래대로 되돌릴 수 없습니다.";
+
+/* No comment provided by engineer. */
+"Deleted style cannot be restored." = "삭제한 스타일은 원래대로 되돌릴 수 없습니다.";
+
+/* No comment provided by engineer. */
+"Deleted theme cannot be restored." = "삭제한 테마는 원래대로 되돌릴 수 없습니다.";
+
+/* No comment provided by engineer. */
+"Discard Changes" = "변환 취소";
+
+/* No comment provided by engineer. */
+"Do you want to change encoding and show incompatible characters?" = "인코딩을 변환하고 호환되지 않은 문자를 보시겠습니까?";
+
+/* No comment provided by engineer. */
+"Do you want to continue processing?" = "저장 작업을 계속 할까요?";
+
+/* No comment provided by engineer. */
+"Do you want to convert or reinterpret it using “%@”?" = "“%@”을 사용해서 변환 작업을 다시 할까요?";
+
+/* No comment provided by engineer. */
+"Do you want to discard the changes and reset the file encodidng?" = "변경 내용을 버리고 파일 인코딩을 원래대로 되돌리겠습니까?";
+
+/* No comment provided by engineer. */
+"Do you want to install this theme?" = "이 테마를 설치하시겠습니까?";
+
+/* No comment provided by engineer. */
+"Do you want to replace it?\nReplaced style cannot be restored." = "스타일을 치환하시겠습니까?\n치환한 스타일은 원래대로 되돌릴 수 없습니다.";
+
+/* No comment provided by engineer. */
+"Do you want to replace it?\nReplaced theme cannot be restored." = "테마을 치환하시겠습니까?\n치환한 테마는 원래대로 되돌릴 수 없습니다.";
+
+/* No comment provided by engineer. */
+"Don't Save, and Close" = "저장하지 않고 닫기";
+
+/* No comment provided by engineer. */
+"Done" = "OK";
+
+/* No comment provided by engineer. */
+"Duplicate “%@”" = "“%@”이 중복";
+
+/* No comment provided by engineer. */
+"Duplicate “%@”…" = "“%@”을 복제…";
+
+/* No comment provided by engineer. */
+"Encoding to “%@”" = "인코딩을 “%@”로";
+
+/* No comment provided by engineer. */
+"End string" = "종료 문자열";
+
+/* No comment provided by engineer. */
+"Error occured." = "에러가 발생했습니다.";
+
+/* No comment provided by engineer. */
+"Error “%@” in column %@: %@<<HERE>>%@" = "에러 “%@”(%@번째 문자): %@<<여기>>%@";
+
+/* No comment provided by engineer. */
+"Export As:" = "내보내기:";
+
+/* No comment provided by engineer. */
+"Export “%@”…" = "“%@”로 내보내기…";
+
+/* No comment provided by engineer. */
+"Extracting %@…" = "%@을 추출중…";
+
+/* No comment provided by engineer. */
+"File Mapping" = "파일 매핑";
+
+/* No comment provided by engineer. */
+"File encoding" = "인코딩";
+
+/* No comment provided by engineer. */
+"Finder's lock could not be released." = "Finder의 잠금을 해제할 수 없습니다.";
+
+/* No comment provided by engineer. */
+"Finder's lock could not be released. So, you can not save your changes on this file, but you will be able to save a copy somewhere else.\n\nDo you want to close?" = "파인더의 잠금을 해제할 수 없으므로, 편집 내용을 저장할 수 없습니다. ‘다른 이름으로 저장’으로 복사본을 저장하십시오.\n\n파일을 닫으시겠습니까?";
+
+/* No comment provided by engineer. */
+"Finder's lock is On." = "파인더가 잠겨져 있습니다.";
+
+/* No comment provided by engineer. */
+"Font" = "글꼴";
+
+/* No comment provided by engineer. */
+"Go To…" = "이동…";
+
+/* No comment provided by engineer. */
+"Hiragana to Katakana (ja_JP)" = "히라가나를 가타카나로 (ja_JP)";
+
+/* No comment provided by engineer. */
+"If you want to replace it with the new one, remove the existing folder at “%@” at first." = "새로운 것으로 바꾸려면, 먼저 “%@”에 있는 현재의 폴더를 삭제해 주십시오.";
+
+/* No comment provided by engineer. */
+"Import" = "가져오기";
+
+/* No comment provided by engineer. */
+"Input another name." = "다른 이름을 입력해 주십시오.";
+
+/* No comment provided by engineer. */
+"Input style name." = "스타일 이름을 입력해 주십시오.";
+
+/* No comment provided by engineer. */
+"Insert Custom Text" = "커스텀 텍스트 삽입";
+
+/* No comment provided by engineer. */
+"Insert Text" = "텍스트 삽입";
+
+/* No comment provided by engineer. */
+"Inspect Character" = "문자정보 표시";
+
+/* No comment provided by engineer. */
+"Install" = "설치";
+
+/* No comment provided by engineer. */
+"Katakana to Hiragana (ja_JP)" = "가타카나를 히라가나로 (ja_JP)";
+
+/* No comment provided by engineer. */
+"Keywords" = "키워드";
+
+/* No comment provided by engineer. */
+"Line Endings to “%@”" = "줄바꿈 코드를 “%@”로";
+
+/* No comment provided by engineer. */
+"Name of the bundled style cannot be changed." = "번들로 설치된 스타일의 이름은 바꿀 수 없습니다.";
+
+/* No comment provided by engineer. */
+"No error was found." = "에러가 발생하지 않았습니다.";
+
+/* No comment provided by engineer. */
+"None" = "없음";
+
+/* No comment provided by engineer. */
+"Numbers" = "숫자";
+
+/* No comment provided by engineer. */
+"ON" = "ON";
+
+/* No comment provided by engineer. */
+"Open" = "열기";
+
+/* No comment provided by engineer. */
+"Open Scripts Folder" = "스크립트 폴더 열기";
+
+/* No comment provided by engineer. */
+"Open as Text File" = "텍스트 파일로 열기";
+
+/* No comment provided by engineer. */
+"Opening such a large file can make the application slow or unresponsive.\n\nDo you really want to open the file?" = "대용량 파일을 열면, 어플리케이션의 반응이 느려질 가능성이 있습니다.\n\n정말로 파일을 여시겠습니까?";
+
+/* No comment provided by engineer. */
+"Outline Menu" = "아웃라인 메뉴";
+
+/* No comment provided by engineer. */
+"Please wait for a while." = "잠시마 기다려주십시오…";
+
+/* No comment provided by engineer. */
+"Printed on %@" = "인쇄: %@";
+
+/* No comment provided by engineer. */
+"RE string" = "정규식";
+
+/* No comment provided by engineer. */
+"Re-Color All" = "재컬리링";
+
+/* No comment provided by engineer. */
+"Reinterpret" = "재해석";
+
+/* No comment provided by engineer. */
+"Replace" = "바꾸기";
+
+/* Attention!: This localized string must be exactly the same to the localized term of “Replace All” in the OgreKit framework. */
+"Replace All" = "모두 바꾸기";
+
+/* No comment provided by engineer. */
+"Replace Text" = "텍스트를 바꾸기";
+
+/* No comment provided by engineer. */
+"Restore “%@”" = "“%@”를 되돌리기";
+
+/* No comment provided by engineer. */
+"Revert to “Auto-Detect”" = "“자동인식”으로 돌아가기";
+
+/* No comment provided by engineer. */
+"SampleScript folder exists already." = "SampleScript 폴더가 이미 존재합니다.";
+
+/* No comment provided by engineer. */
+"Save Available Strings" = "유효한 문자열 저장";
+
+/* No comment provided by engineer. */
+"Select All" = "전체 선택";
+
+/* No comment provided by engineer. */
+"Select Next Outline Item" = "다음 아웃라인 항목 선택";
+
+/* No comment provided by engineer. */
+"Select Prev Outline Item" = "이전 아웃라인 항목 선택";
+
+/* No comment provided by engineer. */
+"Shift Left" = "왼쪽 시프트";
+
+/* No comment provided by engineer. */
+"Shift Right" = "오른쪽 시프트";
+
+/* No comment provided by engineer. */
+"Show Incompatible Chars" = "비호환 문자 표시";
+
+/* No comment provided by engineer. */
+"Show or hide invisible characters in document" = "문서의 보이지 않는 문자 보이기/숨기기";
+
+/* No comment provided by engineer. */
+"Sorry, could not delete “%@”." = "“%@”을 삭제할 수 없습니다.";
+
+/* No comment provided by engineer. */
+"Sorry, could not import “%@”." = "“%@”을 가져오기 할 수 없습니다.";
+
+/* No comment provided by engineer. */
+"Strings" = "문자열";
+
+/* No comment provided by engineer. */
+"Style Info" = "스타일 정보";
+
+/* No comment provided by engineer. */
+"Style name cannot begin with “.”. Input another name." = "스타일 이름은 “.”로 시작할 수 없습니다. 다른 이름을 입력해 주십시오.";
+
+/* No comment provided by engineer. */
+"Style name cannot contain “/”. Input another name." = "스타일 이름은 “/”을 포함할 수 없습니다. 다른 이름을 입력해 주십시오.";
+
+/* No comment provided by engineer. */
+"Syntax Validation" = "규칙 검증";
+
+/* No comment provided by engineer. */
+"The characters would have to be changed or deleted in saving as “%@”." = "“%@”로 저장할 때 일부 문자의 변환 또는 삭제가 필요합니다.";
+
+/* No comment provided by engineer. */
+"The default “Auto-Detect” is recommended for most cases." = "일반적인 경우, 기본값인 “자동인식”을 추천합니다.";
+
+/* No comment provided by engineer. */
+"The encoding is “%@”, but the IANA charset name in text is “%@”." = "인코딩은 “%1$@”이지만, IANA 문자세트 이름은 “%2$@”입니다.";
+
+/* No comment provided by engineer. */
+"The file is not writable." = "이 파일을 수정할 수 없습니다.";
+
+/* No comment provided by engineer. */
+"The file “%@” could not be reinterpreted using the new encoding “%@”." = "파일 “%1$@”은 인코딩 “%2$@”로 재해석할 수 없습니다.";
+
+/* No comment provided by engineer. */
+"The file “%@” has a size of %@." = "파일 “%1$@”의 크기는 %2$@ 입니다.";
+
+/* No comment provided by engineer. */
+"The file “%@” has unsaved changes." = "파일 “%@”은 바뀐 내용이 저장되지 않았습니다.";
+
+/* No comment provided by engineer. */
+"The script “%@” does not exist.\n\nCheck it and do “Update Script Menu”." = "스크립트 “%@”은 존재하지 않습니다.\n\n파일을 “스크립트 메뉴 업데이트” 메뉴로 업데이트 해보십시오.";
+
+/* No comment provided by engineer. */
+"The “%@” style already exists." = "스타일 “%@”은 이미 존재합니다.";
+
+/* No comment provided by engineer. */
+"Theme" = "테마";
+
+/* No comment provided by engineer. */
+"Theme name cannot be empty." = "테마 이름은 비워둘 수 없습니다.";
+
+/* No comment provided by engineer. */
+"Theme name cannot begin with “.”." = "테마 이름은 “.”로 시작할 수 없습니다.";
+
+/* No comment provided by engineer. */
+"Theme name cannot contain “/”." = "테마 이름에 “/”을 포함할 수 없습니다.";
+
+/* No comment provided by engineer. */
+"To Fullwidth (ja_JP/Roman)" = "전각 문자로 (ja_JP/Roman)";
+
+/* No comment provided by engineer. */
+"To Halfwidth (ja_JP/Roman)" = "반각 영문자로 (ja_JP/Roman)";
+
+/* No comment provided by engineer. */
+"To display invisible characters, set them in Preferences and re-open the document." = "보이지 않은 문자를 표시하려면, 환경설정 후 문서를 다시 여십시오.";
+
+/* No comment provided by engineer. */
+"Types" = "종류";
+
+/* No comment provided by engineer. */
+"Uncomment" = "コメント解除";
+
+/* No comment provided by engineer. */
+"Untitled" = "무제";
+
+/* No comment provided by engineer. */
+"Update" = "갱신";
+
+/* No comment provided by engineer. */
+"Update Script Menu" = "스크립트 메뉴 업데이트";
+
+/* No comment provided by engineer. */
+"Utility" = "유틸리티";
+
+/* No comment provided by engineer. */
+"Values" = "값";
+
+/* No comment provided by engineer. */
+"Variables" = "변수";
+
+/* No comment provided by engineer. */
+"You can use “Save As” to save a copy." = "‘다른 이름으로 저장’으로 복사본을 저장하십시오.";
+
+/* No comment provided by engineer. */
+"You may not be able to save your changes, but you will be able to save a copy somewhere else." = "이 파일에 변경 사항을 저장할 수 없는 경우에는, 복사본을 다른 곳에 저장하십시오.";
+
+/* No comment provided by engineer. */
+"comments and quoted texts" = "커멘트와 인용부호로 감싼 텍스트";
+
+/* No comment provided by engineer. */
+"multiple registered." = "중복해서 등록되었습니다.";
+
+/* No comment provided by engineer. */
+"“%@” is a CotEditor theme file." = "“%@”은 CotEditor 테마 파일입니다.";
+
+/* No comment provided by engineer. */
+"“%@” is already exist." = "“%@”는 이미 존재합니다.";
+
+/* No comment provided by engineer. */
+"“%@” is already exist. Input another name." = "“%@”은 이미 사용 되었습니다. 다른 이름을 입력해 주십시오.";
+
+/* No comment provided by engineer. */
+"“Opt + click” to open in Script Editor." = "스크립트 편집기를 열려면, “Option + 클릭” 하십시오.";
+

@@ -117,6 +117,7 @@
 		2AFFB71B18D7F18300118477 /* CEGoToSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AFFB71918D7F18300118477 /* CEGoToSheetController.m */; };
 		2AFFB71D18D7F22E00118477 /* GoToSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2AFFB71F18D7F22E00118477 /* GoToSheet.xib */; };
 		2AFFB72818D8C7DE00118477 /* OpenDocumentAccessory.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2AFFB72A18D8C7DE00118477 /* OpenDocumentAccessory.xib */; };
+		3E89432F1A2D21B0005556EE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3E8943311A2D21B0005556EE /* InfoPlist.strings */; };
 		6C6DAE3E13833C0E007F2326 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 6C6DAE3D13833C0E007F2326 /* dsa_pub.pem */; };
 		6CA3B3E312E3B59B0019AB2E /* SampleScript in Resources */ = {isa = PBXBuildFile; fileRef = 6CA3B36012E3B59B0019AB2E /* SampleScript */; };
 		792E1BB17A7E4930ADAFB01E /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F3504B3BB02D4DBA8EA50C0E /* libPods.a */; };
@@ -382,6 +383,8 @@
 		2AFFB72B18D8CB7D00118477 /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/OpenDocumentAccessory.xib; sourceTree = "<group>"; };
 		32DBCF750370BD2300C91783 /* CotEditor_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CotEditor_Prefix.pch; sourceTree = "<group>"; };
 		3381090B4006E7F6090EB49E /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "../Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		3E89432C1A2D21AF005556EE /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
+		3E8943301A2D21B0005556EE /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		4B7998171A1F1BCD0088D167 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = "zh-Hans"; path = "zh-Hans.lproj/AppleScript.rtf"; sourceTree = "<group>"; };
 		4B7998181A1F1BCD0088D167 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = "zh-Hans"; path = "zh-Hans.lproj/ShellScript.rtf"; sourceTree = "<group>"; };
 		4B7998191A1F1BCD0088D167 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -774,6 +777,7 @@
 		2A37F4B8FDCFA73011CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				3E8943311A2D21B0005556EE /* InfoPlist.strings */,
 				2A149DC91902BC3900A9D6EF /* Nibs */,
 				2A1EB5C319AD469500C1E37E /* Images.xcassets */,
 				8CB0122007CA0CCD00221EDC /* Toolbar Icons */,
@@ -1054,6 +1058,7 @@
 				8D15AC2D0486D014006FF6A4 /* MainMenu.xib in Resources */,
 				8D15AC2E0486D014006FF6A4 /* DocumentWindow.xib in Resources */,
 				2A15832118E3814200601026 /* SizeSampleWindow.xib in Resources */,
+				3E89432F1A2D21B0005556EE /* InfoPlist.strings in Resources */,
 				25859EA7076D8EE80020F779 /* PreferencesWindow.xib in Resources */,
 				258EF2FA077FEDD000011E52 /* SyntaxEditSheet.xib in Resources */,
 				2588E9CE07C4851C0060021D /* Indicator.xib in Resources */,
@@ -1281,6 +1286,7 @@
 			children = (
 				6C1E212412C9E65600194313 /* ja */,
 				4B7998191A1F1BCD0088D167 /* zh-Hans */,
+				3E89432C1A2D21AF005556EE /* ko */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -1601,6 +1607,14 @@
 				4B79981F1A1F1BCD0088D167 /* zh-Hans */,
 			);
 			name = OpenDocumentAccessory.xib;
+			sourceTree = "<group>";
+		};
+		3E8943311A2D21B0005556EE /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3E8943301A2D21B0005556EE /* ko */,
+			);
+			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 		8C28CD2C081101A300733DA7 /* ScriptErrorPanel.xib */ = {
