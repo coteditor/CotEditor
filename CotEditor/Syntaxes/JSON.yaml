@@ -7,18 +7,15 @@ commands: []
 metadata:
   author: "1024jp"
   distributionURL: "http://coteditor.com"
-  version: "1.1.1"
+  version: "1.1"
   license: "Same as CotEditor"
-  lastModified: "2014-11-30"
+  lastModified: "2014-09-24"
 characters: []
 comments: []
 values:
-- beginString: "\\bfalse\\b"
-  regularExpression: true
-- beginString: "\\bnull\\b"
-  regularExpression: true
-- beginString: "\\btrue\\b"
-  regularExpression: true
+- beginString: "false"
+- beginString: "null"
+- beginString: "true"
 numbers:
 - beginString: "-?[0-9.]+([eE][-+]?[0-9]+)?"
   regularExpression: true

@@ -21,8 +21,6 @@ changelog
 - Improve the delay when a AppleScript/JavaScript is run for the first time after the application launched.
 - Update “CSS” syntax style:
     - Add several keywords. (Thanks to Nathan Rutzky!)
-- Update “JSON” syntax style:
-    - Superficial fix for taking long time to extract highlights on large file.
 - Improve sytnax highlighting performance.
 
 
