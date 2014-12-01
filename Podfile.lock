@@ -29,7 +29,7 @@ CHECKOUT OPTIONS:
     :commit: 8fc6f1e9f4166b1fe49cb5c6e27f3e2bd28c6ac7
     :git: https://github.com/coteditor/OgreKit.git
   YAML-Framework:
-    :commit: 37c4645466d639cfd738bb5e0ed14d8408ec282c
+    :commit: 5968c1764a06995c68efd03ea2702a9012a94a4b
     :git: https://github.com/coteditor/YAML.framework.git
 
 SPEC CHECKSUMS:
