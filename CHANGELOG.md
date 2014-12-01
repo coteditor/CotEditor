@@ -18,6 +18,8 @@ changelog
 - Now, the popup menus in toolbar can be called directly even on "Text Only" mode without mode change.
 - Disable rech text in find panel.
 - Change default syntax style from “None” to “Plain Text”.
+- Update “CSS” syntax style:
+    - Add several keywords. (Thanks to Nathan Rutzky!)
 - Update “JSON” syntax style:
     - Superficial fix for taking long time to extract highlights on large file.
 
