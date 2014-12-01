@@ -23,6 +23,7 @@ changelog
     - Add several keywords. (Thanks to Nathan Rutzky!)
 - Update “JSON” syntax style:
     - Superficial fix for taking long time to extract highlights on large file.
+- Improve sytnax highlighting performance.
 
 
 ### Fixes

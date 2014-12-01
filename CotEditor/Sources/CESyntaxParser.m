@@ -957,10 +957,12 @@ static CGFloat kPerCompoIncrement;
     
     // 規定の文字数以上の場合にはカラーリングインジケータシートを表示
     // （ただし、CEDefaultShowColoringIndicatorTextLengthKey が「0」の時は表示しない）
+    CEIndicatorSheetController *indicator = nil;
     NSUInteger indicatorThreshold = [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultShowColoringIndicatorTextLengthKey];
     if (![self isPrinting] && (indicatorThreshold > 0) && (coloringRange.length > indicatorThreshold)) {
         NSWindow *documentWindow = [[[self layoutManager] firstTextView] window];
-        [self setIndicatorController:[[CEIndicatorSheetController alloc] initWithMessage:NSLocalizedString(@"Coloring text…", nil)]];
+        indicator = [[CEIndicatorSheetController alloc] initWithMessage:NSLocalizedString(@"Coloring text…", nil)];
+        [self setIndicatorController:indicator];
         [[self indicatorController] beginSheetForWindow:documentWindow];
     }
     
@@ -969,18 +971,20 @@ static CGFloat kPerCompoIncrement;
         typeof(self) strongSelf = weakSelf;
         NSArray *colorings = [strongSelf extractAllSyntaxFromString:coloringString];
         
+        // インジケータシートのメッセージを更新
+        if (colorings && indicator) {
+            [indicator setInformativeText:NSLocalizedString(@"Applying colors to text", nil)];
+        }
+        
         dispatch_block_t mainThreadBlock = ^{
             if (colorings) {
-                // インジケータシートのメッセージを更新
-                [[strongSelf indicatorController] setInformativeText:NSLocalizedString(@"Applying colors to text", nil)];
-                
                 // カラーを適用する（ループ中に徐々に適用させると文字がチラ付くので、抽出が終わってから一気に適用する）
                 [strongSelf applyColorings:colorings range:coloringRange];
             }
             
             // インジーケータシートを片づける
-            if ([strongSelf indicatorController]) {
-                [[strongSelf indicatorController] endSheet];
+            if (indicator) {
+                [indicator endSheet];
                 [strongSelf setIndicatorController:nil];
             }
         };
