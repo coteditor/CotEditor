@@ -476,14 +476,7 @@ static CGFloat kPerCompoIncrement;
         
         if (!isFound) {
             words = icWordsDict[@(length)];
-            
-            // case insensitive search in array
-            if ([words indexOfObjectPassingTest:^(id obj, NSUInteger idx, BOOL *stop) {
-                return (BOOL)([obj caseInsensitiveCompare:scannedString] == NSOrderedSame);
-            }] != NSNotFound) {
-                isFound = YES;
-                break;
-            }
+            isFound = [words containsObject:[scannedString lowercaseString]];  // The words are already transformed in lowercase.
         }
         
         if (isFound) {
