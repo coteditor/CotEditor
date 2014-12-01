@@ -1968,7 +1968,6 @@ const NSInteger kNoMenuItem = -1;
     if (isScalingDown && size == defaultSize) { return; }
     
     // calc new font size
-    NSInteger factor = isScalingDown ? -1 : 1;
     size = MAX(defaultSize, size + ([event magnification] * 10));
     
     [self changeFontSize:size];

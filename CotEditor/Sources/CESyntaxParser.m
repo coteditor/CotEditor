@@ -501,7 +501,6 @@ static CGFloat kPerCompoIncrement;
     NSMutableArray *ranges = [NSMutableArray array];
     CEIndicatorSheetController *indicator = [self indicatorController];
     NSString *string = [self coloringString];
-    NSUInteger localLength = [string length];
     NSUInteger length = [searchString length];
     
     NSScanner *scanner = [NSScanner scannerWithString:string];
@@ -537,8 +536,6 @@ static CGFloat kPerCompoIncrement;
     NSMutableArray *ranges = [NSMutableArray array];
     CEIndicatorSheetController *indicator = [self indicatorController];
     NSString *string = [self coloringString];
-    NSUInteger localLength = [string length];
-    NSUInteger beginLength = [beginString length];
     NSUInteger endLength = [endString length];
     
     NSScanner *scanner = [NSScanner scannerWithString:string];
