@@ -20,7 +20,7 @@
         </customObject>
         <customObject id="-1" customClass="FirstResponder"/>
         <customObject id="-3" customClass="NSObject"/>
-        <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="document" animationBehavior="default" id="5" userLabel="Window" customClass="CEWindow">
+        <window title="창" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="document" animationBehavior="default" id="5" userLabel="Window" customClass="CEWindow">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowCollectionBehavior key="collectionBehavior" fullScreenPrimary="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" topStrut="YES"/>
@@ -155,7 +155,7 @@
                             </popUpButtonCell>
                         </popUpButton>
                     </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="B40F8010-88AA-4077-B6EF-D961FE4F873C" explicitItemIdentifier="syntaxColoringItemID" label="Syntax Style" paletteLabel="Syntax Style" toolTip="Change syntax style" tag="3" id="6gO-UF-7QW" customClass="CEPopUpToolbarItem">
+                    <toolbarItem implicitItemIdentifier="B40F8010-88AA-4077-B6EF-D961FE4F873C" explicitItemIdentifier="syntaxColoringItemID" label="코드 컬러링" paletteLabel="코드 컬러링" toolTip="Change syntax style" tag="3" id="6gO-UF-7QW" customClass="CEPopUpToolbarItem">
                         <size key="minSize" width="120" height="22"/>
                         <size key="maxSize" width="120" height="22"/>
                         <popUpButton key="view" verticalHuggingPriority="750" tag="3" id="96">

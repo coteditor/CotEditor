@@ -399,7 +399,7 @@
                                     <action selector="toggleNavigationBar:" target="-1" id="g8m-wE-T55"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Show Line Numbers" id="323">
+                            <menuItem title="줄번호 보이기" id="323">
                                 <connections>
                                     <action selector="toggleLineNumber:" target="-1" id="ncA-40-bKd"/>
                                 </connections>
@@ -412,7 +412,7 @@
                             <menuItem isSeparatorItem="YES" id="366">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
-                            <menuItem title="Show Invisible Characters" id="788">
+                            <menuItem title="숨겨진 문자 보이기" id="788">
                                 <connections>
                                     <action selector="toggleInvisibleChars:" target="-1" id="mXA-a0-o4w"/>
                                 </connections>
@@ -425,7 +425,7 @@
                             <menuItem isSeparatorItem="YES" id="792">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
-                            <menuItem title="Split View" keyEquivalent="&quot;" id="793">
+                            <menuItem title="창 나누기" keyEquivalent="&quot;" id="793">
                                 <connections>
                                     <action selector="openSplitTextView:" target="-1" id="797"/>
                                 </connections>
@@ -456,7 +456,7 @@
                             <menuItem isSeparatorItem="YES" id="748">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
-                            <menuItem title="Set View's Opacity…" keyEquivalent="T" id="367">
+                            <menuItem title="투명도 설정…" keyEquivalent="T" id="367">
                                 <connections>
                                     <action selector="showOpacityPanel:" target="290" id="vZR-68-5AC"/>
                                 </connections>

@@ -16,18 +16,18 @@
         <window allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="10" userLabel="Panel" customClass="NSPanel">
             <windowStyleMask key="styleMask" titled="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" topStrut="YES"/>
-            <rect key="contentRect" x="180" y="593" width="420" height="106"/>
+            <rect key="contentRect" x="180" y="593" width="420" height="109"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
             <view key="contentView" id="7">
-                <rect key="frame" x="0.0" y="0.0" width="420" height="106"/>
+                <rect key="frame" x="0.0" y="0.0" width="420" height="109"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <progressIndicator verticalHuggingPriority="750" maxValue="100" bezeled="NO" indeterminate="YES" controlSize="small" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="47">
                         <rect key="frame" x="20" y="49" width="380" height="12"/>
                     </progressIndicator>
-                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="17" translatesAutoresizingMaskIntoConstraints="NO" id="50">
-                        <rect key="frame" x="18" y="69" width="384" height="17"/>
-                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="텍스트 염색중…" id="74">
+                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" misplaced="YES" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="17" translatesAutoresizingMaskIntoConstraints="NO" id="50">
+                        <rect key="frame" x="18" y="69" width="384" height="20"/>
+                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="코드 염색중…" id="74">
                             <font key="font" size="13" name="AppleSDGothicNeo-Bold"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>

@@ -1,0 +1,404 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6250"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="CEFileDropPaneController">
+            <connections>
+                <outlet property="extensionTableView" destination="447" id="xHZ-M3-GTp"/>
+                <outlet property="fileDropController" destination="451" id="Do3-c6-cpR"/>
+                <outlet property="formatTextView" destination="532" id="C5S-P7-taE"/>
+                <outlet property="glossaryTextView" destination="586" id="EoC-Yf-e8m"/>
+                <outlet property="view" destination="747" id="ImZ-nW-JkE"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <arrayController clearsFilterPredicateOnInsertion="NO" id="451" userLabel="File Drop Controller">
+            <declaredKeys>
+                <string>extensions</string>
+                <string>formatString</string>
+            </declaredKeys>
+        </arrayController>
+        <customView horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" id="747" userLabel="File Drop Pane">
+            <rect key="frame" x="0.0" y="0.0" width="540" height="378"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <button horizontalHuggingPriority="750" verticalHuggingPriority="750" tag="6" translatesAutoresizingMaskIntoConstraints="NO" id="2351">
+                    <rect key="frame" x="497" y="17" width="25" height="25"/>
+                    <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" inset="2" id="3338">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="openPreferencesHelp:" target="-1" id="3an-GZ-vXy"/>
+                    </connections>
+                </button>
+                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="589">
+                    <rect key="frame" x="268" y="341" width="54" height="14"/>
+                    <textFieldCell key="cell" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="left" title="Glossary:" usesSingleLineMode="YES" id="3337">
+                        <font key="font" metaFont="smallSystem"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="587">
+                    <rect key="frame" x="270" y="196" width="250" height="139"/>
+                    <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="PI9-s6-0DE">
+                        <rect key="frame" x="1" y="1" width="248" height="137"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView editable="NO" importsGraphics="NO" findStyle="panel" continuousSpellChecking="YES" usesRuler="YES" usesFontPanel="YES" verticallyResizable="YES" smartInsertDelete="YES" id="586">
+                                <rect key="frame" x="0.0" y="0.0" width="248" height="276"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="textColor" red="0.19116055965423584" green="0.19115482270717621" blue="0.19115808606147766" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" name="windowBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                <size key="minSize" width="237" height="137"/>
+                                <size key="maxSize" width="586" height="10000000"/>
+                                <attributedString key="textStorage">
+                                    <fragment>
+                                        <mutableString key="content">&lt;&lt;&lt;ABSOLUTE-PATH&gt;&gt;&gt;
+The dropped file's absolute path.
+
+&lt;&lt;&lt;RELATIVE-PATH&gt;&gt;&gt;
+The relative path between the dropped file and the document.
+
+&lt;&lt;&lt;FILENAME&gt;&gt;&gt;
+The dropped file's name with extension (if exists).
+
+&lt;&lt;&lt;FILENAME-NOSUFFIX&gt;&gt;&gt;
+The dropped file's name without extension.
+
+&lt;&lt;&lt;FILEEXTENSION&gt;&gt;&gt;
+The dropped file's extension.
+
+&lt;&lt;&lt;FILEEXTENSION-LOWER&gt;&gt;&gt;
+The dropped file's extension (converted to lowercase).
+
+&lt;&lt;&lt;FILEEXTENSION-UPPER&gt;&gt;&gt;
+The dropped file's extension (converted to uppercase).
+
+&lt;&lt;&lt;DIRECTORY&gt;&gt;&gt;
+The parent directory name of the dropped file.
+
+&lt;&lt;&lt;IMAGEWIDTH&gt;&gt;&gt;
+(if the dropped file is Image) The image width.
+
+&lt;&lt;&lt;IMAGEHEIGHT&gt;&gt;&gt;
+</mutableString>
+                                        <attributes>
+                                            <color key="NSColor" red="0.19116055965423584" green="0.19115482270717621" blue="0.19115808606147766" alpha="1" colorSpace="calibratedRGB"/>
+                                            <font key="NSFont" size="10" name="Helvetica"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content="(if the dropped file is Image) The image height.">
+                                        <attributes>
+                                            <color key="NSColor" red="0.19116055965423584" green="0.19115482270717621" blue="0.19115808606147766" alpha="1" colorSpace="calibratedRGB"/>
+                                            <font key="NSFont" size="10" name="Helvetica"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <size key="minSize" width="237" height="137"/>
+                                <size key="maxSize" width="586" height="10000000"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" name="windowBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </clipView>
+                    <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" controlSize="small" horizontal="YES" id="3419">
+                        <rect key="frame" x="-100" y="-100" width="87" height="18"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </scroller>
+                    <scroller key="verticalScroller" verticalHuggingPriority="750" controlSize="small" horizontal="NO" id="3418">
+                        <rect key="frame" x="235" y="1" width="14" height="137"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </scroller>
+                </scrollView>
+                <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="536">
+                    <rect key="frame" x="337" y="156" width="186" height="22"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="180" id="XCP-jV-qFG"/>
+                    </constraints>
+                    <popUpButtonCell key="cell" type="push" title="Insert Pre-Formatted String" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="clipping" borderStyle="border" inset="2" pullsDown="YES" preferredEdge="maxY" id="3336">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="smallSystem"/>
+                        <menu key="menu" title="OtherViews" id="543">
+                            <items>
+                                <menuItem title="Insert Pre-Formatted String" hidden="YES" id="541"/>
+                                <menuItem title="&lt;&lt;&lt;ABSOLUTE-PATH&gt;&gt;&gt;" toolTip="The dropped file absolute path." id="544">
+                                    <connections>
+                                        <action selector="insertToken:" target="-2" id="555"/>
+                                    </connections>
+                                </menuItem>
+                                <menuItem title="&lt;&lt;&lt;RELATIVE-PATH&gt;&gt;&gt;" toolTip="The relative path between dropped file and the document." id="546">
+                                    <connections>
+                                        <action selector="insertToken:" target="-2" id="556"/>
+                                    </connections>
+                                </menuItem>
+                                <menuItem title="&lt;&lt;&lt;FILENAME&gt;&gt;&gt;" toolTip="The dropped file name include extension (if exists)." id="542">
+                                    <connections>
+                                        <action selector="insertToken:" target="-2" id="557"/>
+                                    </connections>
+                                </menuItem>
+                                <menuItem title="&lt;&lt;&lt;FILENAME-NOSUFFIX&gt;&gt;&gt;" toolTip="The dropped file name without extension." id="538">
+                                    <connections>
+                                        <action selector="insertToken:" target="-2" id="558"/>
+                                    </connections>
+                                </menuItem>
+                                <menuItem title="&lt;&lt;&lt;FILEEXTENSION&gt;&gt;&gt;" toolTip="The dropped file's extension." id="694">
+                                    <connections>
+                                        <action selector="insertToken:" target="-2" id="699"/>
+                                    </connections>
+                                </menuItem>
+                                <menuItem title="&lt;&lt;&lt;FILEEXTENSION-LOWER&gt;&gt;&gt;" toolTip="The dropped file's extension (converted to lowercase)." id="695">
+                                    <connections>
+                                        <action selector="insertToken:" target="-2" id="698"/>
+                                    </connections>
+                                </menuItem>
+                                <menuItem title="&lt;&lt;&lt;FILEEXTENSION-UPPER&gt;&gt;&gt;" toolTip="The dropped file's extension (converted to uppercase)." id="696">
+                                    <connections>
+                                        <action selector="insertToken:" target="-2" id="697"/>
+                                    </connections>
+                                </menuItem>
+                                <menuItem title="&lt;&lt;&lt;DIRECTORY&gt;&gt;&gt;" toolTip="The parent directory name of dropped file." id="539">
+                                    <connections>
+                                        <action selector="insertToken:" target="-2" id="559"/>
+                                    </connections>
+                                </menuItem>
+                                <menuItem isSeparatorItem="YES" state="on" id="545">
+                                    <modifierMask key="keyEquivalentModifierMask" command="YES"/>
+                                </menuItem>
+                                <menuItem title="&lt;&lt;&lt;IMAGEWIDTH&gt;&gt;&gt;" toolTip="(if the dropped file is Image) image width." id="540">
+                                    <connections>
+                                        <action selector="insertToken:" target="-2" id="560"/>
+                                    </connections>
+                                </menuItem>
+                                <menuItem title="&lt;&lt;&lt;IMAGEHEIGHT&gt;&gt;&gt;" toolTip="(if the dropped file is Image) image height." id="537">
+                                    <connections>
+                                        <action selector="insertToken:" target="-2" id="561"/>
+                                    </connections>
+                                </menuItem>
+                            </items>
+                        </menu>
+                    </popUpButtonCell>
+                </popUpButton>
+                <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="531">
+                    <rect key="frame" x="20" y="53" width="500" height="100"/>
+                    <clipView key="contentView" id="ybU-5v-A28">
+                        <rect key="frame" x="1" y="1" width="498" height="98"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView importsGraphics="NO" richText="NO" findStyle="panel" allowsUndo="YES" usesRuler="YES" usesFontPanel="YES" verticallyResizable="YES" smartInsertDelete="YES" id="532">
+                                <rect key="frame" x="0.0" y="0.0" width="498" height="98"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <size key="minSize" width="483" height="98"/>
+                                <size key="maxSize" width="600" height="10000000"/>
+                                <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <size key="minSize" width="483" height="98"/>
+                                <size key="maxSize" width="600" height="10000000"/>
+                                <connections>
+                                    <binding destination="451" name="value" keyPath="selection.formatString" id="ib2-Zw-Ucy">
+                                        <dictionary key="options">
+                                            <string key="NSNoSelectionPlaceholder">No extension is selected.</string>
+                                        </dictionary>
+                                    </binding>
+                                    <outlet property="delegate" destination="-2" id="585"/>
+                                </connections>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </clipView>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="100" id="hTE-3S-LJb"/>
+                    </constraints>
+                    <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="3417">
+                        <rect key="frame" x="-100" y="-100" width="87" height="18"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </scroller>
+                    <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="3416">
+                        <rect key="frame" x="483" y="1" width="16" height="98"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </scroller>
+                </scrollView>
+                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="466">
+                    <rect key="frame" x="99" y="341" width="153" height="14"/>
+                    <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="left" title="(comma separated, no dots)" usesSingleLineMode="YES" id="3335">
+                        <font key="font" metaFont="smallSystem"/>
+                        <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <button focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="458">
+                    <rect key="frame" x="49" y="195" width="30" height="22"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20" id="RDU-2u-Aor"/>
+                        <constraint firstAttribute="width" constant="30" id="yzy-Pg-HBT"/>
+                    </constraints>
+                    <buttonCell key="cell" type="smallSquare" title="Delete" bezelStyle="smallSquare" image="NSRemoveTemplate" imagePosition="only" alignment="center" borderStyle="border" focusRingType="none" inset="2" id="3334">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="removeSetting:" target="-2" id="518"/>
+                        <binding destination="451" name="enabled" keyPath="canRemove" id="461"/>
+                    </connections>
+                </button>
+                <button focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="457">
+                    <rect key="frame" x="20" y="195" width="30" height="22"/>
+                    <buttonCell key="cell" type="smallSquare" title="New" bezelStyle="smallSquare" image="NSAddTemplate" imagePosition="only" alignment="center" borderStyle="border" focusRingType="none" inset="2" id="3333">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="addSetting:" target="-2" id="517"/>
+                        <binding destination="451" name="enabled" keyPath="canAdd" id="463"/>
+                    </connections>
+                </button>
+                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="456">
+                    <rect key="frame" x="18" y="159" width="109" height="17"/>
+                    <textFieldCell key="cell" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="left" title="Insertion Format:" usesSingleLineMode="YES" id="3332">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="434">
+                    <rect key="frame" x="18" y="341" width="76" height="17"/>
+                    <textFieldCell key="cell" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="left" title="Extensions:" usesSingleLineMode="YES" id="3331">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="yc6-4W-vhz">
+                    <rect key="frame" x="78" y="195" width="172" height="22"/>
+                    <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" imagePosition="overlaps" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="wm6-2c-tEB">
+                        <behavior key="behavior" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                </button>
+                <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="446">
+                    <rect key="frame" x="20" y="215" width="230" height="120"/>
+                    <clipView key="contentView" id="9EX-7h-iHb">
+                        <rect key="frame" x="1" y="1" width="228" height="118"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnReordering="NO" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" viewBased="YES" id="447">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <size key="intercellSpacing" width="3" height="2"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
+                                <tableColumns>
+                                    <tableColumn identifier="extensions" width="225" minWidth="40" maxWidth="1000" id="448">
+                                        <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Extensions">
+                                            <font key="font" metaFont="smallSystem"/>
+                                            <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" white="0.33333299" alpha="1" colorSpace="calibratedWhite"/>
+                                        </tableHeaderCell>
+                                        <textFieldCell key="dataCell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" alignment="left" title="Text Cell" id="3412">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </textFieldCell>
+                                        <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
+                                        <prototypeCellViews>
+                                            <tableCellView id="IHk-9m-U05">
+                                                <rect key="frame" x="1" y="1" width="225" height="17"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                <subviews>
+                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="mc9-oM-wvh">
+                                                        <rect key="frame" x="0.0" y="0.0" width="225" height="17"/>
+                                                        <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="png, jpg, gif" usesSingleLineMode="YES" id="pvd-e0-a07">
+                                                            <font key="font" metaFont="system"/>
+                                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                        </textFieldCell>
+                                                        <connections>
+                                                            <binding destination="IHk-9m-U05" name="value" keyPath="objectValue.extensions" id="qti-Lk-n8D"/>
+                                                            <outlet property="delegate" destination="-2" id="EqH-os-RFg"/>
+                                                        </connections>
+                                                    </textField>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstAttribute="trailing" secondItem="mc9-oM-wvh" secondAttribute="trailing" constant="2" id="GmF-ZI-Hax"/>
+                                                    <constraint firstItem="mc9-oM-wvh" firstAttribute="leading" secondItem="IHk-9m-U05" secondAttribute="leading" constant="2" id="Mgu-aX-BVL"/>
+                                                    <constraint firstItem="mc9-oM-wvh" firstAttribute="top" secondItem="IHk-9m-U05" secondAttribute="top" id="aQ8-0g-vOJ"/>
+                                                    <constraint firstAttribute="bottom" secondItem="mc9-oM-wvh" secondAttribute="bottom" id="s4x-tm-U9r"/>
+                                                </constraints>
+                                                <connections>
+                                                    <outlet property="textField" destination="mc9-oM-wvh" id="CLO-MD-srX"/>
+                                                </connections>
+                                            </tableCellView>
+                                        </prototypeCellViews>
+                                    </tableColumn>
+                                </tableColumns>
+                                <connections>
+                                    <binding destination="451" name="content" keyPath="arrangedObjects" id="JdZ-8h-WOL"/>
+                                    <binding destination="451" name="selectionIndexes" keyPath="selectionIndexes" previousBinding="JdZ-8h-WOL" id="HSh-za-EE5"/>
+                                    <binding destination="451" name="sortDescriptors" keyPath="sortDescriptors" previousBinding="HSh-za-EE5" id="CVO-sV-HTH"/>
+                                    <outlet property="delegate" destination="-2" id="8od-ft-NOr"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </clipView>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="230" id="Yd1-nZ-vaP"/>
+                        <constraint firstAttribute="height" constant="120" id="ZuF-zE-Gww"/>
+                    </constraints>
+                    <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="3415">
+                        <rect key="frame" x="1" y="134" width="243" height="15"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </scroller>
+                    <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="3414">
+                        <rect key="frame" x="244" y="1" width="15" height="133"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </scroller>
+                </scrollView>
+            </subviews>
+            <constraints>
+                <constraint firstItem="434" firstAttribute="leading" secondItem="747" secondAttribute="leading" constant="20" symbolic="YES" id="0Hb-oR-Iwd"/>
+                <constraint firstAttribute="trailing" secondItem="536" secondAttribute="trailing" constant="20" symbolic="YES" id="0j0-4e-x2w"/>
+                <constraint firstItem="531" firstAttribute="leading" secondItem="747" secondAttribute="leading" constant="20" symbolic="YES" id="Aaj-vW-vbB"/>
+                <constraint firstItem="587" firstAttribute="bottom" secondItem="458" secondAttribute="bottom" id="DaO-C8-Ago"/>
+                <constraint firstItem="457" firstAttribute="leading" secondItem="747" secondAttribute="leading" constant="20" symbolic="YES" id="E3n-AF-1VB"/>
+                <constraint firstItem="yc6-4W-vhz" firstAttribute="leading" secondItem="458" secondAttribute="trailing" constant="-1" id="H2Q-BH-Ky9"/>
+                <constraint firstItem="yc6-4W-vhz" firstAttribute="top" secondItem="446" secondAttribute="bottom" constant="-1" id="HzY-wS-Be1"/>
+                <constraint firstItem="456" firstAttribute="top" secondItem="457" secondAttribute="bottom" constant="20" id="KHb-dR-Yky"/>
+                <constraint firstItem="457" firstAttribute="width" secondItem="458" secondAttribute="width" id="L7s-Lh-gbd"/>
+                <constraint firstItem="457" firstAttribute="top" secondItem="458" secondAttribute="top" id="LfL-bG-PPn"/>
+                <constraint firstItem="531" firstAttribute="top" secondItem="456" secondAttribute="bottom" constant="6" id="Q8S-IB-Cbn"/>
+                <constraint firstItem="587" firstAttribute="leading" secondItem="446" secondAttribute="trailing" constant="20" id="QRQ-1e-zi4"/>
+                <constraint firstAttribute="trailing" secondItem="2351" secondAttribute="trailing" constant="20" symbolic="YES" id="Tf8-87-OtS"/>
+                <constraint firstItem="457" firstAttribute="height" secondItem="458" secondAttribute="height" id="XaT-cE-9ia"/>
+                <constraint firstItem="446" firstAttribute="top" secondItem="587" secondAttribute="top" id="XhS-3B-DIH"/>
+                <constraint firstItem="446" firstAttribute="trailing" secondItem="yc6-4W-vhz" secondAttribute="trailing" id="Zwy-5T-TuP"/>
+                <constraint firstAttribute="bottom" secondItem="2351" secondAttribute="bottom" constant="20" symbolic="YES" id="a3C-NR-WUl"/>
+                <constraint firstItem="434" firstAttribute="top" secondItem="747" secondAttribute="top" constant="20" symbolic="YES" id="dUv-UC-Zfu"/>
+                <constraint firstItem="466" firstAttribute="bottom" secondItem="434" secondAttribute="bottom" id="g9C-fF-wRH"/>
+                <constraint firstItem="457" firstAttribute="top" secondItem="446" secondAttribute="bottom" constant="-1" id="gtw-pK-C6U"/>
+                <constraint firstItem="587" firstAttribute="leading" secondItem="589" secondAttribute="leading" id="hPx-Hd-zCU"/>
+                <constraint firstItem="458" firstAttribute="height" secondItem="yc6-4W-vhz" secondAttribute="height" id="ijQ-18-5M6"/>
+                <constraint firstItem="587" firstAttribute="top" secondItem="589" secondAttribute="bottom" constant="6" id="jBc-JJ-b0j"/>
+                <constraint firstItem="446" firstAttribute="leading" secondItem="747" secondAttribute="leading" constant="20" symbolic="YES" id="jEq-km-a6s"/>
+                <constraint firstItem="2351" firstAttribute="top" secondItem="531" secondAttribute="bottom" constant="12" symbolic="YES" id="kFG-rP-Ktb"/>
+                <constraint firstAttribute="trailing" secondItem="531" secondAttribute="trailing" constant="20" symbolic="YES" id="m84-30-ObK"/>
+                <constraint firstItem="446" firstAttribute="trailing" secondItem="466" secondAttribute="trailing" id="qW5-e9-6pY"/>
+                <constraint firstItem="456" firstAttribute="leading" secondItem="747" secondAttribute="leading" constant="20" symbolic="YES" id="r84-dz-jpl"/>
+                <constraint firstItem="458" firstAttribute="leading" secondItem="457" secondAttribute="trailing" constant="-1" id="uq0-AS-8wS"/>
+                <constraint firstItem="446" firstAttribute="top" secondItem="434" secondAttribute="bottom" constant="6" id="ur6-7o-itQ"/>
+                <constraint firstAttribute="trailing" secondItem="587" secondAttribute="trailing" constant="20" symbolic="YES" id="xsC-9k-4xe"/>
+                <constraint firstItem="531" firstAttribute="top" secondItem="536" secondAttribute="bottom" constant="6" id="xtB-Bn-7oq"/>
+            </constraints>
+        </customView>
+    </objects>
+    <resources>
+        <image name="NSAddTemplate" width="11" height="11"/>
+        <image name="NSRemoveTemplate" width="11" height="11"/>
+    </resources>
+</document>
