@@ -23,7 +23,7 @@
                                     <action selector="orderFrontStandardAboutPanel:" target="-2" id="142"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="업데이트 확인…" id="832">
+                            <menuItem title="업데이트 확인" id="832">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="checkForUpdates:" target="831" id="833"/>
@@ -41,7 +41,6 @@
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
                             <menuItem title="서비스" tag="999" id="131">
-                                <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="서비스" systemMenu="services" id="130"/>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="144">
@@ -125,12 +124,12 @@
                                     <action selector="performClose:" target="-1" id="193"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="저장…" keyEquivalent="s" id="75">
+                            <menuItem title="저장" keyEquivalent="s" id="75">
                                 <connections>
                                     <action selector="saveDocument:" target="-1" id="196"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="복제" keyEquivalent="S" id="80">
+                            <menuItem title="다른 이름으로 저장…" keyEquivalent="S" id="80">
                                 <connections>
                                     <action selector="saveDocumentAs:" target="-1" id="197"/>
                                 </connections>
@@ -144,7 +143,7 @@
                             <menuItem isSeparatorItem="YES" id="74">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
-                            <menuItem title="페이지 설정" keyEquivalent="P" id="77">
+                            <menuItem title="페이지 설정…" keyEquivalent="P" id="77">
                                 <connections>
                                     <action selector="runPageLayout:" target="-1" id="87"/>
                                 </connections>
@@ -173,7 +172,7 @@
                             <menuItem isSeparatorItem="YES" id="156">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
-                            <menuItem title="오려두기" keyEquivalent="x" id="160">
+                            <menuItem title="자르기" keyEquivalent="x" id="160">
                                 <connections>
                                     <action selector="cut:" target="-1" id="175"/>
                                 </connections>
@@ -207,17 +206,17 @@
                             <menuItem isSeparatorItem="YES" id="630">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
-                            <menuItem title="백슬래쉬 삽입" tag="209" keyEquivalent="¥" toolTip="Opt + ¥" id="631">
+                            <menuItem title="백슬래쉬(\) 삽입" tag="209" keyEquivalent="¥" toolTip="Opt + ¥" id="631">
                                 <connections>
                                     <action selector="inputBackSlash:" target="-1" id="635"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="엔화 표시 삽입" keyEquivalent="y" id="633">
+                            <menuItem title="엔화 표시(¥) 삽입" keyEquivalent="y" id="633">
                                 <connections>
                                     <action selector="inputYenMark:" target="-1" id="634"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="유니코드 문자 삽입…" id="tWx-pj-3PL">
+                            <menuItem title="유니코드로 문자 삽입…" id="tWx-pj-3PL">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="showUnicodeInputPanel:" target="290" id="tnB-r1-Tfo"/>
@@ -384,18 +383,18 @@
                 <menuItem title="보기" id="322">
                     <menu key="submenu" title="보기" id="324">
                         <items>
-                            <menuItem title="도구 막대 가리기" id="612">
+                            <menuItem title="도구막대 가리기" id="612">
                                 <connections>
                                     <action selector="toggleToolbarShown:" target="-1" id="614"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="도구 막대 사용자화…" id="613">
+                            <menuItem title="도구막대 사용자화" id="613">
                                 <connections>
                                     <action selector="runToolbarCustomizationPalette:" target="-1" id="615"/>
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="93A-bv-3Qn"/>
-                            <menuItem title="네비게이션 바 보기" id="681">
+                            <menuItem title="이동 막대 보기" id="681">
                                 <connections>
                                     <action selector="toggleNavigationBar:" target="-1" id="g8m-wE-T55"/>
                                 </connections>
@@ -405,7 +404,7 @@
                                     <action selector="toggleLineNumber:" target="-1" id="ncA-40-bKd"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="상태막대 보기" id="325">
+                            <menuItem title="상태 막대 보기" id="325">
                                 <connections>
                                     <action selector="toggleStatusBar:" target="-1" id="h4S-Yd-wby"/>
                                 </connections>
@@ -413,12 +412,12 @@
                             <menuItem isSeparatorItem="YES" id="366">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
-                            <menuItem title="숨겨진 문자 보이기" id="788">
+                            <menuItem title="숨겨진 문자 보기" id="788">
                                 <connections>
                                     <action selector="toggleInvisibleChars:" target="-1" id="mXA-a0-o4w"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="페이지 표시 보기" id="749">
+                            <menuItem title="쪽 윤곽 보기" id="749">
                                 <connections>
                                     <action selector="togglePageGuide:" target="-1" id="obH-4S-DZg"/>
                                 </connections>
@@ -431,25 +430,25 @@
                                     <action selector="openSplitTextView:" target="-1" id="797"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="다음 나누어진 창" keyEquivalent="" id="794">
+                            <menuItem title="다음 나눠진 창" keyEquivalent="" id="794">
                                 <modifierMask key="keyEquivalentModifierMask" control="YES" option="YES" command="YES"/>
                                 <connections>
                                     <action selector="focusNextSplitTextView:" target="-1" id="799"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="이전 나누어진 창" keyEquivalent="" id="795">
+                            <menuItem title="이전 나눠진 창" keyEquivalent="" id="795">
                                 <modifierMask key="keyEquivalentModifierMask" control="YES" option="YES" command="YES"/>
                                 <connections>
                                     <action selector="focusPrevSplitTextView:" target="-1" id="800"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="나누어진 창 수직으로 정렬" id="u46-te-4c4">
+                            <menuItem title="나눠진 창 세로로 정렬" id="u46-te-4c4">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="toggleSplitOrientation:" target="-1" id="wPh-lV-vs2"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="나누어진 창 닫기" keyEquivalent="'" id="796">
+                            <menuItem title="나눠진 창 닫기" keyEquivalent="'" id="796">
                                 <connections>
                                     <action selector="closeSplitTextView:" target="-1" id="798"/>
                                 </connections>
@@ -457,7 +456,7 @@
                             <menuItem isSeparatorItem="YES" id="748">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
-                            <menuItem title="투명도 설정…" keyEquivalent="T" id="367">
+                            <menuItem title="창 투명도 설정…" keyEquivalent="T" id="367">
                                 <connections>
                                     <action selector="showOpacityPanel:" target="290" id="vZR-68-5AC"/>
                                 </connections>
@@ -465,7 +464,7 @@
                             <menuItem isSeparatorItem="YES" id="611">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
-                            <menuItem title="전체 화면으로 표시" keyEquivalent="f" id="2da-fK-Nkg">
+                            <menuItem title="전체 화면 시작" keyEquivalent="f" id="2da-fK-Nkg">
                                 <modifierMask key="keyEquivalentModifierMask" control="YES" command="YES"/>
                                 <connections>
                                     <action selector="toggleFullScreen:" target="-1" id="4d3-Sb-rkx"/>
@@ -615,7 +614,7 @@
                                         <menuItem isSeparatorItem="YES" id="771">
                                             <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                         </menuItem>
-                                        <menuItem title="Custom…" id="772">
+                                        <menuItem title="사용자 정의…" id="772">
                                             <connections>
                                                 <action selector="showLineHeightPanel:" target="290" id="gc4-61-vez"/>
                                             </connections>
@@ -651,8 +650,8 @@
                                     </items>
                                 </menu>
                             </menuItem>
-                            <menuItem title="코드 컬러링" tag="4002" id="302">
-                                <menu key="submenu" title="코드 컬러링" id="304">
+                            <menuItem title="코드 스타일" tag="4002" id="302">
+                                <menu key="submenu" title="코드 스타일" id="304">
                                     <items>
                                         <menuItem title="Item" id="458"/>
                                     </items>
@@ -668,7 +667,7 @@
                             <menuItem isSeparatorItem="YES" id="453">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
-                            <menuItem title="주석으로 만들기" keyEquivalent="/" id="LLy-Yx-tXI">
+                            <menuItem title="주석으로" keyEquivalent="/" id="LLy-Yx-tXI">
                                 <connections>
                                     <action selector="toggleComment:" target="-1" id="NSz-mr-8wt"/>
                                 </connections>
@@ -850,11 +849,11 @@
                                     <action selector="showHelp:" target="-1" id="122"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="CotEditor 스크립팅 설명서" id="M1N-Fg-Bo4">
+                            <menuItem title="CotEditor 스크립트 설명서" id="M1N-Fg-Bo4">
                                 <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="CotEditor 스크립팅 설명서" id="OLa-Mb-rXS">
+                                <menu key="submenu" title="CotEditor 스크립트 설명서" id="OLa-Mb-rXS">
                                     <items>
-                                        <menuItem title="About ScriptMenu Folder" tag="1" id="u2o-8v-WPL">
+                                        <menuItem title="ScriptMenu 폴더에 관하여" tag="1" id="u2o-8v-WPL">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="openBundledDocument:" target="290" id="HQ0-1V-jTT"/>
@@ -896,7 +895,7 @@
                                     <action selector="openHelpAnchor:" target="290" id="jUU-Pz-dYo"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="감사의 글" id="824">
+                            <menuItem title="감사의 말" id="824">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="openBundledDocument:" target="290" id="825"/>
@@ -909,7 +908,7 @@
                                     <action selector="createBugReport:" target="290" id="am0-BQ-ddP"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="버그 제출" alternate="YES" id="Bk3-xx-uft">
+                            <menuItem title="버그 리포트 제출" alternate="YES" id="Bk3-xx-uft">
                                 <modifierMask key="keyEquivalentModifierMask" option="YES"/>
                                 <connections>
                                     <action selector="reportBug:" target="290" id="KOP-ne-blB"/>
