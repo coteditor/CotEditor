@@ -16,7 +16,7 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <userDefaultsController representsSharedInstance="YES" id="26" userLabel="Shared User Defaults Controller"/>
         <customView horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" id="882" userLabel="Print Pane">
-            <rect key="frame" x="0.0" y="0.0" width="540" height="465"/>
+            <rect key="frame" x="0.0" y="0.0" width="540" height="475"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <button horizontalHuggingPriority="750" verticalHuggingPriority="750" tag="8" translatesAutoresizingMaskIntoConstraints="NO" id="2359">
@@ -29,29 +29,29 @@
                         <action selector="openPreferencesHelp:" target="-1" id="Cll-Q2-P1O"/>
                     </connections>
                 </button>
-                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1356">
-                    <rect key="frame" x="92" y="357" width="42" height="17"/>
-                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Color:" usesSingleLineMode="YES" id="3388">
-                        <font key="font" metaFont="system"/>
+                <textField horizontalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1356">
+                    <rect key="frame" x="114" y="365" width="20" height="17"/>
+                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="색:" usesSingleLineMode="YES" id="3388">
+                        <font key="font" size="13" name="AppleSDGothicNeo-Regular"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1350">
-                    <rect key="frame" x="138" y="352" width="225" height="26"/>
+                    <rect key="frame" x="138" y="362" width="225" height="26"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="220" id="76s-Ny-Xgv"/>
                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="KIj-uM-yBR"/>
                     </constraints>
-                    <popUpButtonCell key="cell" type="push" title="Black and White" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="1353" id="3387">
+                    <popUpButtonCell key="cell" type="push" title="문서와 같은 설정 사용" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="1354" id="3387">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menu"/>
                         <menu key="menu" title="OtherViews" id="1352">
                             <items>
-                                <menuItem title="Black and White" state="on" id="1353">
+                                <menuItem title="흑백" id="1353">
                                     <attributedString key="attributedTitle"/>
                                 </menuItem>
-                                <menuItem title="Same as document's setting" id="1354"/>
+                                <menuItem title="문서와 같은 설정 사용" state="on" id="1354"/>
                             </items>
                         </menu>
                     </popUpButtonCell>
@@ -61,15 +61,15 @@
                     </connections>
                 </popUpButton>
                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="950">
-                    <rect key="frame" x="138" y="290" width="225" height="26"/>
-                    <popUpButtonCell key="cell" type="push" title="Print All" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="954" id="3383">
+                    <rect key="frame" x="138" y="300" width="225" height="26"/>
+                    <popUpButtonCell key="cell" type="push" title="모두 인쇄" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="954" id="3383">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menu"/>
                         <menu key="menu" title="OtherViews" id="951">
                             <items>
-                                <menuItem title="Don't Print" id="952"/>
-                                <menuItem title="Same as document's setting" id="953"/>
-                                <menuItem title="Print All" state="on" id="954"/>
+                                <menuItem title="인쇄하지 않음" id="952"/>
+                                <menuItem title="문서와 같은 설정 사용" id="953"/>
+                                <menuItem title="모두 인쇄" state="on" id="954"/>
                             </items>
                         </menu>
                     </popUpButtonCell>
@@ -77,24 +77,24 @@
                         <binding destination="26" name="selectedIndex" keyPath="values.printInvisibleCharIndex" id="995"/>
                     </connections>
                 </popUpButton>
-                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="949">
-                    <rect key="frame" x="69" y="295" width="65" height="17"/>
-                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Invisibles:" usesSingleLineMode="YES" id="3382">
-                        <font key="font" metaFont="system"/>
+                <textField horizontalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="949">
+                    <rect key="frame" x="77" y="303" width="57" height="17"/>
+                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="숨김 문자:" usesSingleLineMode="YES" id="3382">
+                        <font key="font" size="13" name="AppleSDGothicNeo-Regular"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="944">
-                    <rect key="frame" x="138" y="321" width="225" height="26"/>
-                    <popUpButtonCell key="cell" type="push" title="Don't Print" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="946" id="3381">
+                    <rect key="frame" x="138" y="331" width="225" height="26"/>
+                    <popUpButtonCell key="cell" type="push" title="인쇄" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="948" id="3381">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menu"/>
                         <menu key="menu" title="OtherViews" id="945">
                             <items>
-                                <menuItem title="Don't Print" state="on" id="946"/>
-                                <menuItem title="Same as document's setting" id="947"/>
-                                <menuItem title="Print" id="948"/>
+                                <menuItem title="인쇄하지 않음" id="946"/>
+                                <menuItem title="문서와 같은 설정 사용" id="947"/>
+                                <menuItem title="인쇄" state="on" id="948"/>
                             </items>
                         </menu>
                     </popUpButtonCell>
@@ -102,22 +102,22 @@
                         <binding destination="26" name="selectedIndex" keyPath="values.printLineNumIndex" id="993"/>
                     </connections>
                 </popUpButton>
-                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="943">
-                    <rect key="frame" x="42" y="326" width="92" height="17"/>
-                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Line numbers:" usesSingleLineMode="YES" id="3380">
-                        <font key="font" metaFont="system"/>
+                <textField horizontalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="943">
+                    <rect key="frame" x="92" y="334" width="42" height="17"/>
+                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="줄번호:" usesSingleLineMode="YES" id="3380">
+                        <font key="font" size="13" name="AppleSDGothicNeo-Regular"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1008">
-                    <rect key="frame" x="402" y="394" width="90" height="32"/>
+                    <rect key="frame" x="402" y="404" width="90" height="32"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="78" id="7Gp-iZ-mz7"/>
                     </constraints>
-                    <buttonCell key="cell" type="push" title="Select…" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="3385">
+                    <buttonCell key="cell" type="push" title="서체…" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="3385">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="system"/>
+                        <font key="font" size="13" name="AppleSDGothicNeo-Regular"/>
                     </buttonCell>
                     <connections>
                         <action selector="showFonts:" target="-2" id="1009"/>
@@ -125,7 +125,7 @@
                     </connections>
                 </button>
                 <matrix verticalHuggingPriority="750" allowsEmptySelection="NO" autosizesCells="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1011">
-                    <rect key="frame" x="140" y="396" width="260" height="54"/>
+                    <rect key="frame" x="140" y="406" width="260" height="54"/>
                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     <size key="cellSize" width="183" height="26"/>
                     <size key="intercellSpacing" width="4" height="2"/>
@@ -135,7 +135,7 @@
                     </buttonCell>
                     <cells>
                         <column>
-                            <buttonCell type="radio" title="Same as document's font" imagePosition="left" alignment="left" state="on" inset="2" id="1012">
+                            <buttonCell type="radio" title="문서와 같은 글꼴 사용" imagePosition="left" alignment="left" state="on" inset="2" id="1012">
                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                 <font key="font" metaFont="system"/>
                             </buttonCell>
@@ -150,7 +150,7 @@
                     </connections>
                 </matrix>
                 <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1007">
-                    <rect key="frame" x="160" y="400" width="240" height="22"/>
+                    <rect key="frame" x="160" y="410" width="240" height="22"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="240" id="OeK-6f-UNf"/>
                         <constraint firstAttribute="height" constant="22" id="OfU-j2-cBT"/>
@@ -165,33 +165,33 @@
                         <binding destination="26" name="enabled" keyPath="values.setPrintFont" id="1021"/>
                     </connections>
                 </textField>
-                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="u8V-Dc-6yR">
-                    <rect key="frame" x="98" y="428" width="36" height="17"/>
-                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Font:" usesSingleLineMode="YES" id="C9y-bs-mE1">
-                        <font key="font" metaFont="system"/>
+                <textField horizontalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="u8V-Dc-6yR">
+                    <rect key="frame" x="103" y="438" width="31" height="17"/>
+                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="글꼴:" usesSingleLineMode="YES" id="C9y-bs-mE1">
+                        <font key="font" size="13" name="AppleSDGothicNeo-Regular"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="891">
-                    <rect key="frame" x="138" y="225" width="225" height="26"/>
+                <popUpButton verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="891">
+                    <rect key="frame" x="138" y="231" width="225" height="26"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="220" id="YJo-is-zIW"/>
                     </constraints>
-                    <popUpButtonCell key="cell" type="push" title="Document Name" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="2" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="896" id="3370">
+                    <popUpButtonCell key="cell" type="push" title="쪽 번호" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="5" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="893" id="3370">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menu"/>
                         <menu key="menu" title="OtherViews" id="892">
                             <items>
-                                <menuItem title="None" id="895"/>
+                                <menuItem title="없음" id="895"/>
                                 <menuItem isSeparatorItem="YES" id="894">
                                     <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                 </menuItem>
-                                <menuItem title="Syntax Name" tag="1" id="uuc-7D-Iot"/>
-                                <menuItem title="Document Name" state="on" tag="2" id="896"/>
-                                <menuItem title="File Path" tag="3" id="897"/>
-                                <menuItem title="Print Date" tag="4" id="898"/>
-                                <menuItem title="Page Number" tag="5" id="893"/>
+                                <menuItem title="코드 컬러링" tag="1" id="uuc-7D-Iot"/>
+                                <menuItem title="문서 이름" tag="2" id="896"/>
+                                <menuItem title="파일 경로" tag="3" id="897"/>
+                                <menuItem title="인쇄 날짜" tag="4" id="898"/>
+                                <menuItem title="쪽 번호" state="on" tag="5" id="893"/>
                             </items>
                         </menu>
                     </popUpButtonCell>
@@ -200,58 +200,60 @@
                         <binding destination="26" name="enabled" keyPath="values.printHeader" id="962"/>
                     </connections>
                 </popUpButton>
-                <button translatesAutoresizingMaskIntoConstraints="NO" id="899">
-                    <rect key="frame" x="28" y="171" width="289" height="18"/>
-                    <buttonCell key="cell" type="check" title="Print separator line at the bottom of header" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3371">
+                <button ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="899">
+                    <rect key="frame" x="28" y="175" width="147" height="20"/>
+                    <buttonCell key="cell" type="check" title="머리글 밑에 구분선 인쇄" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3371">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" metaFont="system"/>
+                        <font key="font" size="13" name="AppleSDGothicNeo-Regular"/>
                     </buttonCell>
                     <connections>
                         <binding destination="26" name="value" keyPath="values.printHeaderSeparator" id="964"/>
                     </connections>
                 </button>
-                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="890">
-                    <rect key="frame" x="73" y="231" width="61" height="17"/>
-                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="First line:" usesSingleLineMode="YES" id="3369">
-                        <font key="font" metaFont="system"/>
+                <textField horizontalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="890">
+                    <rect key="frame" x="92" y="233" width="42" height="17"/>
+                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="첫째줄:" usesSingleLineMode="YES" id="3369">
+                        <font key="font" size="13" name="AppleSDGothicNeo-Regular"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="912">
-                    <rect key="frame" x="53" y="200" width="81" height="17"/>
-                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Second line:" usesSingleLineMode="YES" id="3373">
-                        <font key="font" metaFont="system"/>
+                <textField horizontalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="912">
+                    <rect key="frame" x="92" y="202" width="42" height="17"/>
+                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="둘째줄:" usesSingleLineMode="YES" id="3373">
+                        <font key="font" size="13" name="AppleSDGothicNeo-Regular"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <button translatesAutoresizingMaskIntoConstraints="NO" id="889">
-                    <rect key="frame" x="28" y="255" width="98" height="18"/>
-                    <buttonCell key="cell" type="check" title="Print header" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3368">
+                <button ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="889">
+                    <rect key="frame" x="28" y="261" width="82" height="20"/>
+                    <buttonCell key="cell" type="check" title="머리글 인쇄" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3368">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" metaFont="system"/>
+                        <font key="font" size="13" name="AppleSDGothicNeo-Regular"/>
                     </buttonCell>
                     <connections>
                         <binding destination="26" name="value" keyPath="values.printHeader" id="956"/>
                     </connections>
                 </button>
-                <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="900">
-                    <rect key="frame" x="138" y="194" width="225" height="26"/>
-                    <popUpButtonCell key="cell" type="push" title="Print Date" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="4" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="904" id="3372">
+                <popUpButton verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="900">
+                    <rect key="frame" x="138" y="200" width="225" height="26"/>
+                    <popUpButtonCell key="cell" type="push" title="쪽 번호" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="5" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="905" id="3372">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menu"/>
                         <menu key="menu" title="OtherViews" id="901">
                             <items>
-                                <menuItem title="None" id="906"/>
+                                <menuItem title="없음" id="906"/>
                                 <menuItem isSeparatorItem="YES" id="907">
                                     <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                 </menuItem>
-                                <menuItem title="Syntax Name" tag="1" id="plk-U5-NGA"/>
-                                <menuItem title="Document Name" tag="2" id="902"/>
-                                <menuItem title="File Path" tag="3" id="903"/>
-                                <menuItem title="Print Date" state="on" tag="4" id="904"/>
-                                <menuItem title="Page Number" tag="5" id="905"/>
+                                <menuItem title="코드 컬러링" tag="1" id="plk-U5-NGA"/>
+                                <menuItem title="문서 이름" tag="2" id="902"/>
+                                <menuItem title="파일 경로" tag="3" id="903">
+                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                </menuItem>
+                                <menuItem title="인쇄 날짜" state="on" tag="4" id="904"/>
+                                <menuItem title="쪽 번호" state="on" tag="5" id="905"/>
                             </items>
                         </menu>
                     </popUpButtonCell>
@@ -260,58 +262,58 @@
                         <binding destination="26" name="enabled" keyPath="values.printHeader" id="961"/>
                     </connections>
                 </popUpButton>
-                <button translatesAutoresizingMaskIntoConstraints="NO" id="915">
-                    <rect key="frame" x="28" y="49" width="259" height="18"/>
-                    <buttonCell key="cell" type="check" title="Print separator line at the top of footer" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3374">
+                <button ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="915">
+                    <rect key="frame" x="28" y="49" width="147" height="18"/>
+                    <buttonCell key="cell" type="check" title="꼬리글 위헤 구분선 인쇄" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3374">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" metaFont="system"/>
+                        <font key="font" size="13" name="AppleSDGothicNeo-Regular"/>
                     </buttonCell>
                     <connections>
                         <binding destination="26" name="value" keyPath="values.printFooterSeparator" id="982"/>
                     </connections>
                 </button>
-                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="942">
-                    <rect key="frame" x="73" y="109" width="61" height="17"/>
-                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="First line:" usesSingleLineMode="YES" id="3379">
-                        <font key="font" metaFont="system"/>
+                <textField horizontalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="942">
+                    <rect key="frame" x="96" y="113" width="38" height="17"/>
+                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="첫째줄" usesSingleLineMode="YES" id="3379">
+                        <font key="font" size="13" name="AppleSDGothicNeo-Regular"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="933">
-                    <rect key="frame" x="53" y="78" width="81" height="17"/>
-                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Second line:" usesSingleLineMode="YES" id="3377">
-                        <font key="font" metaFont="system"/>
+                <textField horizontalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="933">
+                    <rect key="frame" x="96" y="82" width="38" height="17"/>
+                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="둘째줄" usesSingleLineMode="YES" id="3377">
+                        <font key="font" size="13" name="AppleSDGothicNeo-Regular"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <button translatesAutoresizingMaskIntoConstraints="NO" id="916">
-                    <rect key="frame" x="28" y="133" width="91" height="18"/>
-                    <buttonCell key="cell" type="check" title="Print footer" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3375">
+                <button ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="916">
+                    <rect key="frame" x="28" y="137" width="83" height="18"/>
+                    <buttonCell key="cell" type="check" title="꼬리글 인쇄" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3375">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" metaFont="system"/>
+                        <font key="font" size="13" name="AppleSDGothicNeo-Regular"/>
                     </buttonCell>
                     <connections>
                         <binding destination="26" name="value" keyPath="values.printFooter" id="974"/>
                     </connections>
                 </button>
-                <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="934">
-                    <rect key="frame" x="138" y="103" width="225" height="26"/>
-                    <popUpButtonCell key="cell" type="push" title="Page Number" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="5" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="940" id="3378">
+                <popUpButton verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="934">
+                    <rect key="frame" x="138" y="107" width="225" height="26"/>
+                    <popUpButtonCell key="cell" type="push" title="쪽 번호" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="5" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="940" id="3378">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menu"/>
                         <menu key="menu" title="OtherViews" id="935">
                             <items>
-                                <menuItem title="None" id="941"/>
+                                <menuItem title="없음" id="941"/>
                                 <menuItem isSeparatorItem="YES" id="936">
                                     <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                 </menuItem>
-                                <menuItem title="Syntax Name" tag="1" id="Mvg-wT-FTM"/>
-                                <menuItem title="Document Name" tag="2" id="937"/>
-                                <menuItem title="File Path" tag="3" id="938"/>
-                                <menuItem title="Print Date" tag="4" id="939"/>
-                                <menuItem title="Page Number" state="on" tag="5" id="940"/>
+                                <menuItem title="코드 컬러링" tag="1" id="Mvg-wT-FTM"/>
+                                <menuItem title="문서 이름" tag="2" id="937"/>
+                                <menuItem title="파일 이름" tag="3" id="938"/>
+                                <menuItem title="인쇄 날짜" tag="4" id="939"/>
+                                <menuItem title="쪽 번호" state="on" tag="5" id="940"/>
                             </items>
                         </menu>
                     </popUpButtonCell>
@@ -320,22 +322,22 @@
                         <binding destination="26" name="enabled" keyPath="values.printFooter" id="977"/>
                     </connections>
                 </popUpButton>
-                <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="925">
-                    <rect key="frame" x="138" y="72" width="225" height="26"/>
-                    <popUpButtonCell key="cell" type="push" title="None" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="927" id="3376">
+                <popUpButton verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="925">
+                    <rect key="frame" x="138" y="76" width="225" height="26"/>
+                    <popUpButtonCell key="cell" type="push" title="쪽 번호" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="5" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="932" id="3376">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menu"/>
                         <menu key="menu" title="OtherViews" id="926">
                             <items>
-                                <menuItem title="None" state="on" id="927"/>
+                                <menuItem title="없음" id="927"/>
                                 <menuItem isSeparatorItem="YES" id="928">
                                     <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                 </menuItem>
-                                <menuItem title="Syntax Name" tag="1" id="ckJ-Cw-ccE"/>
-                                <menuItem title="Document Name" tag="2" id="929"/>
-                                <menuItem title="File Path" tag="3" id="930"/>
-                                <menuItem title="Print Date" tag="4" id="931"/>
-                                <menuItem title="Page Number" tag="5" id="932"/>
+                                <menuItem title="코드 컬러링" tag="1" id="ckJ-Cw-ccE"/>
+                                <menuItem title="문서 이름" tag="2" id="929"/>
+                                <menuItem title="파일 경로" tag="3" id="930"/>
+                                <menuItem title="인쇄 날짜" tag="4" id="931"/>
+                                <menuItem title="쪽 번호" state="on" tag="5" id="932"/>
                             </items>
                         </menu>
                     </popUpButtonCell>
@@ -344,8 +346,8 @@
                         <binding destination="26" name="enabled" keyPath="values.printFooter" id="980"/>
                     </connections>
                 </popUpButton>
-                <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="OzI-68-Zyb">
-                    <rect key="frame" x="366" y="226" width="80" height="24"/>
+                <segmentedControl verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OzI-68-Zyb">
+                    <rect key="frame" x="366" y="232" width="80" height="24"/>
                     <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="Jap-f3-ehL">
                         <font key="font" metaFont="system"/>
                         <segments>
@@ -369,8 +371,8 @@
                         <binding destination="26" name="enabled" keyPath="values.printHeader" id="akr-zq-LmW"/>
                     </connections>
                 </segmentedControl>
-                <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="oVS-uF-Ue4">
-                    <rect key="frame" x="366" y="195" width="80" height="24"/>
+                <segmentedControl verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oVS-uF-Ue4">
+                    <rect key="frame" x="366" y="201" width="80" height="24"/>
                     <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="90p-SJ-bXq">
                         <font key="font" metaFont="system"/>
                         <segments>
@@ -394,8 +396,8 @@
                         <binding destination="26" name="enabled" keyPath="values.printHeader" id="w32-tL-tRG"/>
                     </connections>
                 </segmentedControl>
-                <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="GHf-us-wxC">
-                    <rect key="frame" x="366" y="104" width="80" height="24"/>
+                <segmentedControl verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GHf-us-wxC">
+                    <rect key="frame" x="366" y="108" width="80" height="24"/>
                     <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="Zgh-yF-xd2">
                         <font key="font" metaFont="system"/>
                         <segments>
@@ -419,8 +421,8 @@
                         <binding destination="26" name="enabled" keyPath="values.printFooter" id="knu-zE-paY"/>
                     </connections>
                 </segmentedControl>
-                <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2ko-Fv-J5m">
-                    <rect key="frame" x="366" y="73" width="80" height="24"/>
+                <segmentedControl verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2ko-Fv-J5m">
+                    <rect key="frame" x="366" y="77" width="80" height="24"/>
                     <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="Pjk-d8-E4v">
                         <font key="font" metaFont="system"/>
                         <segments>
