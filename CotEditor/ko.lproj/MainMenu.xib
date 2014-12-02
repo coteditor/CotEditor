@@ -685,8 +685,8 @@
                         </items>
                     </menu>
                 </menuItem>
-                <menuItem title="찾기" id="538">
-                    <menu key="submenu" title="찾기" id="535">
+                <menuItem title="Find" id="538">
+                    <menu key="submenu" title="Find" id="535">
                         <items>
                             <menuItem title="찾기…" tag="1" keyEquivalent="f" id="536">
                                 <connections>
