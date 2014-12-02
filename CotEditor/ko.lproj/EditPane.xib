@@ -15,12 +15,12 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <userDefaultsController representsSharedInstance="YES" id="26" userLabel="Shared User Defaults Controller"/>
         <customView horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" id="s6I-DY-Ii0" userLabel="Edit Pane">
-            <rect key="frame" x="0.0" y="0.0" width="540" height="617"/>
+            <rect key="frame" x="0.0" y="0.0" width="540" height="648"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <button translatesAutoresizingMaskIntoConstraints="NO" id="870">
-                    <rect key="frame" x="142" y="483" width="113" height="18"/>
-                    <buttonCell key="cell" type="check" title="Highlight “&lt; &gt;”" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3305">
+                <button misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="870">
+                    <rect key="frame" x="126" y="509" width="81" height="18"/>
+                    <buttonCell key="cell" type="check" title="“&lt; &gt;” 강조" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3305">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
@@ -29,19 +29,19 @@
                         <binding destination="26" name="value" keyPath="values.highlightLtGt" id="873"/>
                     </connections>
                 </button>
-                <button translatesAutoresizingMaskIntoConstraints="NO" id="867">
-                    <rect key="frame" x="117" y="507" width="267" height="18"/>
-                    <buttonCell key="cell" type="check" title="Highlight matching braces “( )” “[ ]” “{ }”" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3304">
+                <button misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="867">
+                    <rect key="frame" x="101" y="533" width="181" height="18"/>
+                    <buttonCell key="cell" type="check" title="괄호 문자 강조 “( )” “[ ]” “{ }”" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3304">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" metaFont="system"/>
+                        <font key="font" size="13" name="AppleSDGothicNeo-Regular"/>
                     </buttonCell>
                     <connections>
                         <binding destination="26" name="value" keyPath="values.highlightBraces" id="869"/>
                     </connections>
                 </button>
-                <button translatesAutoresizingMaskIntoConstraints="NO" id="844">
-                    <rect key="frame" x="117" y="531" width="160" height="18"/>
-                    <buttonCell key="cell" type="check" title="Swap “¥” and “\” keys" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3303">
+                <button misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="844">
+                    <rect key="frame" x="101" y="559" width="142" height="18"/>
+                    <buttonCell key="cell" type="check" title="“¥” 키와 “\” 키 바꾸기" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3303">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
@@ -49,36 +49,36 @@
                         <binding destination="26" name="value" keyPath="values.swapYenAndBackSlashKey" id="846"/>
                     </connections>
                 </button>
-                <button translatesAutoresizingMaskIntoConstraints="NO" id="644">
-                    <rect key="frame" x="117" y="579" width="210" height="18"/>
-                    <buttonCell key="cell" type="check" title="Enable smart insert and delete" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3302">
+                <button misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="644">
+                    <rect key="frame" x="101" y="609" width="147" height="18"/>
+                    <buttonCell key="cell" type="check" title="스마트 삽입과 삭제 사용" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3302">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" metaFont="system"/>
+                        <font key="font" size="13" name="AppleSDGothicNeo-Regular"/>
                     </buttonCell>
                     <connections>
                         <binding destination="26" name="value" keyPath="values.smartInsertAndDelete" id="646"/>
                     </connections>
                 </button>
-                <button translatesAutoresizingMaskIntoConstraints="NO" id="mK4-4e-plf">
-                    <rect key="frame" x="117" y="555" width="225" height="18"/>
-                    <buttonCell key="cell" type="check" title="Enable smart quotes and dashes" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="nA4-HY-d71">
+                <button misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mK4-4e-plf">
+                    <rect key="frame" x="101" y="583" width="147" height="18"/>
+                    <buttonCell key="cell" type="check" title="스마트 인용과 대시 사용" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="nA4-HY-d71">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" metaFont="system"/>
+                        <font key="font" size="13" name="AppleSDGothicNeo-Regular"/>
                     </buttonCell>
                     <connections>
                         <binding destination="26" name="value" keyPath="values.enableSmartQuotes" id="lE1-jP-Sa0"/>
                     </connections>
                 </button>
-                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Dte-ly-fKQ">
-                    <rect key="frame" x="117" y="141" width="212" height="17"/>
-                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Completion list includes words in:" usesSingleLineMode="YES" id="dLj-Kh-KtX">
-                        <font key="font" metaFont="system"/>
+                <textField horizontalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Dte-ly-fKQ">
+                    <rect key="frame" x="101" y="141" width="166" height="20"/>
+                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="자동완성 목록 범위:" usesSingleLineMode="YES" id="dLj-Kh-KtX">
+                        <font key="font" size="13" name="AppleSDGothicNeo-Regular"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <matrix verticalHuggingPriority="750" allowsEmptySelection="NO" autosizesCells="NO" translatesAutoresizingMaskIntoConstraints="NO" id="686">
-                    <rect key="frame" x="144" y="51" width="376" height="86"/>
+                <matrix verticalHuggingPriority="750" misplaced="YES" allowsEmptySelection="NO" autosizesCells="NO" translatesAutoresizingMaskIntoConstraints="NO" id="686">
+                    <rect key="frame" x="128" y="51" width="414" height="86"/>
                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     <size key="cellSize" width="299" height="20"/>
                     <size key="intercellSpacing" width="4" height="2"/>
@@ -88,19 +88,19 @@
                     </buttonCell>
                     <cells>
                         <column>
-                            <buttonCell type="radio" title="Document only" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="689">
+                            <buttonCell type="radio" title="문서에서만" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="689">
                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                 <font key="font" metaFont="system"/>
                             </buttonCell>
-                            <buttonCell type="radio" title="Syntax Style only" bezelStyle="regularSquare" imagePosition="left" alignment="left" tag="3" inset="2" id="690">
+                            <buttonCell type="radio" title="코드 컬러링 스타일에서만" bezelStyle="regularSquare" imagePosition="left" alignment="left" tag="3" inset="2" id="690">
                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                 <font key="font" metaFont="system"/>
                             </buttonCell>
-                            <buttonCell type="radio" title="Document + Syntax Style" bezelStyle="regularSquare" imagePosition="left" alignment="left" tag="1" inset="2" id="691">
+                            <buttonCell type="radio" title="문서와 코드 컬러링 스타일 에서만" bezelStyle="regularSquare" imagePosition="left" alignment="left" tag="1" inset="2" id="691">
                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                 <font key="font" metaFont="system"/>
                             </buttonCell>
-                            <buttonCell type="radio" title="Document + Syntax Style + Standard Words" imagePosition="left" alignment="left" tag="2" inset="2" id="r6f-b7-fJY">
+                            <buttonCell type="radio" title="문서와 코드 컬러링 스타일, 일반 단어에서" imagePosition="left" alignment="left" tag="2" inset="2" id="r6f-b7-fJY">
                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                 <font key="font" metaFont="system"/>
                             </buttonCell>
@@ -110,32 +110,32 @@
                         <binding destination="26" name="selectedTag" keyPath="values.completeAddStandardWords" id="j63-Mq-XMI"/>
                     </connections>
                 </matrix>
-                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="IXD-kJ-dvh">
-                    <rect key="frame" x="50" y="580" width="63" height="17"/>
+                <textField horizontalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IXD-kJ-dvh">
+                    <rect key="frame" x="34" y="611" width="63" height="17"/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Behavior:" usesSingleLineMode="YES" id="SqI-BC-ar9">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="4B0-Kj-mzX">
-                    <rect key="frame" x="35" y="450" width="78" height="17"/>
-                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Indentation:" usesSingleLineMode="YES" id="9bX-ei-1x8">
-                        <font key="font" metaFont="system"/>
+                <textField horizontalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4B0-Kj-mzX">
+                    <rect key="frame" x="48" y="478" width="49" height="17"/>
+                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="들여쓰기" usesSingleLineMode="YES" id="9bX-ei-1x8">
+                        <font key="font" size="13" name="AppleSDGothicNeo-Regular"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="283">
-                    <rect key="frame" x="117" y="400" width="85" height="17"/>
-                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="left" title="Indent width:" usesSingleLineMode="YES" id="3287">
-                        <font key="font" metaFont="system"/>
+                <textField horizontalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="283">
+                    <rect key="frame" x="101" y="419" width="69" height="17"/>
+                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="left" title="들여쓰기 폭:" usesSingleLineMode="YES" id="3287">
+                        <font key="font" size="13" name="AppleSDGothicNeo-Regular"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="282">
-                    <rect key="frame" x="208" y="398" width="40" height="22"/>
+                <textField verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="282">
+                    <rect key="frame" x="214" y="422" width="40" height="22"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="40" id="8n8-kM-Jo2"/>
                     </constraints>
@@ -155,90 +155,82 @@
                         <binding destination="26" name="value" keyPath="values.tabWidth" id="284"/>
                     </connections>
                 </textField>
-                <button translatesAutoresizingMaskIntoConstraints="NO" id="160">
-                    <rect key="frame" x="117" y="425" width="164" height="18"/>
-                    <buttonCell key="cell" type="check" title="Expand tabs to spaces" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3283">
+                <button misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="160">
+                    <rect key="frame" x="101" y="447" width="136" height="18"/>
+                    <buttonCell key="cell" type="check" title="탭을 공백 문자로 처리" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3283">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" metaFont="system"/>
+                        <font key="font" size="13" name="AppleSDGothicNeo-Regular"/>
                     </buttonCell>
                     <connections>
                         <binding destination="26" name="value" keyPath="values.autoExpandTab" id="163"/>
                     </connections>
                 </button>
-                <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="iub-4d-NyY">
-                    <rect key="frame" x="249" y="395" width="19" height="27"/>
+                <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iub-4d-NyY">
+                    <rect key="frame" x="255" y="419" width="19" height="27"/>
                     <stepperCell key="cell" continuous="YES" alignment="left" minValue="1" maxValue="99" doubleValue="1" id="ajw-Bh-Oc0"/>
                     <connections>
                         <binding destination="26" name="value" keyPath="values.tabWidth" id="5S2-d5-xKG"/>
                     </connections>
                 </stepper>
-                <button translatesAutoresizingMaskIntoConstraints="NO" id="209">
-                    <rect key="frame" x="117" y="449" width="93" height="18"/>
-                    <buttonCell key="cell" type="check" title="Auto indent" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3285">
+                <button misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="209">
+                    <rect key="frame" x="101" y="473" width="94" height="18"/>
+                    <buttonCell key="cell" type="check" title="자동 들여쓰기" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3285">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" metaFont="system"/>
+                        <font key="font" size="13" name="AppleSDGothicNeo-Regular"/>
                     </buttonCell>
                     <connections>
                         <binding destination="26" name="value" keyPath="values.autoIndent" id="210"/>
                     </connections>
                 </button>
-                <button translatesAutoresizingMaskIntoConstraints="NO" id="69">
-                    <rect key="frame" x="117" y="306" width="114" height="18"/>
-                    <buttonCell key="cell" type="check" title="Soft wrap lines" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3274">
+                <button misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="69">
+                    <rect key="frame" x="101" y="319" width="109" height="18"/>
+                    <buttonCell key="cell" type="check" title="소프트 줄 바꾸기" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3274">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" metaFont="system"/>
+                        <font key="font" size="13" name="AppleSDGothicNeo-Regular"/>
                     </buttonCell>
                     <connections>
                         <binding destination="26" name="value" keyPath="values.wrapLines" id="90"/>
                     </connections>
                 </button>
-                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fR5-Ie-WnP">
-                    <rect key="frame" x="18" y="307" width="95" height="17"/>
-                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Line wrapping:" usesSingleLineMode="YES" id="P1I-gs-RgX">
-                        <font key="font" metaFont="system"/>
+                <textField horizontalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fR5-Ie-WnP">
+                    <rect key="frame" x="40" y="324" width="57" height="17"/>
+                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="줄 바꾸기:" usesSingleLineMode="YES" id="P1I-gs-RgX">
+                        <font key="font" size="13" name="AppleSDGothicNeo-Regular"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <button translatesAutoresizingMaskIntoConstraints="NO" id="C2I-Ub-oUU">
-                    <rect key="frame" x="117" y="166" width="112" height="18"/>
-                    <buttonCell key="cell" type="check" title="Auto complete" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="J1B-wA-rdr">
+                <button misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="C2I-Ub-oUU">
+                    <rect key="frame" x="101" y="169" width="98" height="18"/>
+                    <buttonCell key="cell" type="check" title="자동 완성 사용" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="J1B-wA-rdr">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" metaFont="system"/>
+                        <font key="font" size="13" name="AppleSDGothicNeo-Regular"/>
                     </buttonCell>
                     <connections>
                         <binding destination="26" name="value" keyPath="values.autoComplete" id="HrP-lE-CrB"/>
                     </connections>
                 </button>
-                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="oXk-4y-elJ">
-                    <rect key="frame" x="34" y="167" width="79" height="17"/>
-                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Completion:" usesSingleLineMode="YES" id="gDN-SU-sZH">
-                        <font key="font" metaFont="system"/>
+                <textField horizontalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="N9e-hF-BPy">
+                    <rect key="frame" x="277" y="419" width="53" height="17"/>
+                    <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="공백 문자" usesSingleLineMode="YES" id="as9-us-CuG">
+                        <font key="font" size="13" name="AppleSDGothicNeo-Regular"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="N9e-hF-BPy">
-                    <rect key="frame" x="271" y="400" width="48" height="17"/>
-                    <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="spaces" usesSingleLineMode="YES" id="as9-us-CuG">
-                        <font key="font" metaFont="system"/>
-                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
-                <button translatesAutoresizingMaskIntoConstraints="NO" id="235">
-                    <rect key="frame" x="142" y="248" width="61" height="18"/>
-                    <buttonCell key="cell" type="check" title="Space" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3257">
+                <button misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="235">
+                    <rect key="frame" x="126" y="257" width="45" height="18"/>
+                    <buttonCell key="cell" type="check" title="공백" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3257">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" metaFont="system"/>
+                        <font key="font" size="13" name="AppleSDGothicNeo-Regular"/>
                     </buttonCell>
                     <connections>
                         <binding destination="26" name="value" keyPath="values.showInvisibleSpace" id="238"/>
                         <binding destination="26" name="enabled" keyPath="values.showInvisibles" id="WmD-Ra-Me7"/>
                     </connections>
                 </button>
-                <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="236">
-                    <rect key="frame" x="219" y="243" width="55" height="26"/>
+                <popUpButton verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="236">
+                    <rect key="frame" x="203" y="256" width="55" height="26"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="50" id="rr2-Bh-XY1"/>
                     </constraints>
@@ -265,8 +257,8 @@
                         </binding>
                     </connections>
                 </popUpButton>
-                <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="243">
-                    <rect key="frame" x="219" y="219" width="55" height="26"/>
+                <popUpButton verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="243">
+                    <rect key="frame" x="203" y="230" width="55" height="26"/>
                     <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="3259">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menu"/>
@@ -290,49 +282,49 @@
                         </binding>
                     </connections>
                 </popUpButton>
-                <button translatesAutoresizingMaskIntoConstraints="NO" id="244">
-                    <rect key="frame" x="142" y="224" width="44" height="18"/>
-                    <buttonCell key="cell" type="check" title="Tab" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3260">
+                <button misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="244">
+                    <rect key="frame" x="126" y="231" width="34" height="18"/>
+                    <buttonCell key="cell" type="check" title="탭" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3260">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" metaFont="system"/>
+                        <font key="font" size="13" name="AppleSDGothicNeo-Regular"/>
                     </buttonCell>
                     <connections>
                         <binding destination="26" name="value" keyPath="values.showInvisibleTab" id="251"/>
                         <binding destination="26" name="enabled" keyPath="values.showInvisibles" id="wHE-xd-ZwS"/>
                     </connections>
                 </button>
-                <button translatesAutoresizingMaskIntoConstraints="NO" id="874">
-                    <rect key="frame" x="142" y="200" width="182" height="18"/>
-                    <buttonCell key="cell" type="check" title="Other Invisible Characters" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3263">
+                <button misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="874">
+                    <rect key="frame" x="126" y="205" width="120" height="18"/>
+                    <buttonCell key="cell" type="check" title="나머지 숨겨진 문자" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3263">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" metaFont="system"/>
+                        <font key="font" size="13" name="AppleSDGothicNeo-Regular"/>
                     </buttonCell>
                     <connections>
                         <binding destination="26" name="enabled" keyPath="values.showInvisibles" id="ujm-II-IKk"/>
                         <binding destination="26" name="value" keyPath="values.showOtherInvisibleChars" id="876"/>
                     </connections>
                 </button>
-                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="r9C-0B-mga">
-                    <rect key="frame" x="48" y="273" width="65" height="17"/>
-                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Invisibles:" usesSingleLineMode="YES" id="pjW-HE-ngH">
-                        <font key="font" metaFont="system"/>
+                <textField horizontalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="r9C-0B-mga">
+                    <rect key="frame" x="32" y="288" width="69" height="17"/>
+                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="숨겨진 문자:" usesSingleLineMode="YES" id="pjW-HE-ngH">
+                        <font key="font" size="13" name="AppleSDGothicNeo-Regular"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <button translatesAutoresizingMaskIntoConstraints="NO" id="221">
-                    <rect key="frame" x="309" y="248" width="95" height="18"/>
-                    <buttonCell key="cell" type="check" title="Line Ending" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3255">
+                <button misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="221">
+                    <rect key="frame" x="293" y="261" width="56" height="18"/>
+                    <buttonCell key="cell" type="check" title="줄바꿈" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3255">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" metaFont="system"/>
+                        <font key="font" size="13" name="AppleSDGothicNeo-Regular"/>
                     </buttonCell>
                     <connections>
                         <binding destination="26" name="value" keyPath="values.showInvisibleNewLine" id="227"/>
                         <binding destination="26" name="enabled" keyPath="values.showInvisibles" id="AKk-iZ-a95"/>
                     </connections>
                 </button>
-                <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="224">
-                    <rect key="frame" x="435" y="243" width="55" height="26"/>
+                <popUpButton verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="224">
+                    <rect key="frame" x="419" y="256" width="55" height="26"/>
                     <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="3256">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menu"/>
@@ -356,8 +348,8 @@
                         </binding>
                     </connections>
                 </popUpButton>
-                <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="247">
-                    <rect key="frame" x="435" y="220" width="55" height="26"/>
+                <popUpButton verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="247">
+                    <rect key="frame" x="419" y="231" width="55" height="26"/>
                     <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="3261">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" size="13" name="HiraKakuProN-W3"/>
@@ -381,50 +373,50 @@
                         </binding>
                     </connections>
                 </popUpButton>
-                <button translatesAutoresizingMaskIntoConstraints="NO" id="249">
-                    <rect key="frame" x="309" y="224" width="122" height="18"/>
-                    <buttonCell key="cell" type="check" title="Fullwidth-Space" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3262">
+                <button misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="249">
+                    <rect key="frame" x="293" y="235" width="71" height="18"/>
+                    <buttonCell key="cell" type="check" title="전각 공백" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3262">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" metaFont="system"/>
+                        <font key="font" size="13" name="AppleSDGothicNeo-Regular"/>
                     </buttonCell>
                     <connections>
                         <binding destination="26" name="value" keyPath="values.showInvisibleZenkakuSpace" id="254"/>
                         <binding destination="26" name="enabled" keyPath="values.showInvisibles" id="McR-AG-7PK"/>
                     </connections>
                 </button>
-                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="VBo-Ii-1PR">
-                    <rect key="frame" x="44" y="365" width="69" height="17"/>
-                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Comment:" usesSingleLineMode="YES" id="EDl-AJ-1dK">
-                        <font key="font" metaFont="system"/>
+                <textField horizontalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VBo-Ii-1PR">
+                    <rect key="frame" x="66" y="386" width="31" height="17"/>
+                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="주석:" usesSingleLineMode="YES" id="EDl-AJ-1dK">
+                        <font key="font" size="13" name="AppleSDGothicNeo-Regular"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <button translatesAutoresizingMaskIntoConstraints="NO" id="aZf-lI-jGQ">
-                    <rect key="frame" x="117" y="364" width="258" height="18"/>
-                    <buttonCell key="cell" type="check" title="Append a space to comment delimiter" bezelStyle="regularSquare" imagePosition="left" inset="2" id="6Dw-5M-Gv0">
+                <button misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aZf-lI-jGQ">
+                    <rect key="frame" x="101" y="381" width="151" height="18"/>
+                    <buttonCell key="cell" type="check" title="주석 표시 뒤에 공백 추가" bezelStyle="regularSquare" imagePosition="left" inset="2" id="6Dw-5M-Gv0">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" metaFont="system"/>
+                        <font key="font" size="13" name="AppleSDGothicNeo-Regular"/>
                     </buttonCell>
                     <connections>
                         <binding destination="26" name="value" keyPath="values.appendsCommentSpacer" id="niv-UY-eBY"/>
                     </connections>
                 </button>
-                <button translatesAutoresizingMaskIntoConstraints="NO" id="Vf0-M7-9ji">
-                    <rect key="frame" x="117" y="340" width="157" height="18"/>
-                    <buttonCell key="cell" type="check" title="Always from line head" bezelStyle="regularSquare" imagePosition="left" inset="2" id="Byi-E9-owf">
+                <button misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vf0-M7-9ji">
+                    <rect key="frame" x="101" y="355" width="173" height="18"/>
+                    <buttonCell key="cell" type="check" title="언제나 라인 제일 앞에서 시작" bezelStyle="regularSquare" imagePosition="left" inset="2" id="Byi-E9-owf">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" metaFont="system"/>
+                        <font key="font" size="13" name="AppleSDGothicNeo-Regular"/>
                     </buttonCell>
                     <connections>
                         <binding destination="26" name="value" keyPath="values.commentsAtLineHead" id="2ir-3p-UIJ"/>
                     </connections>
                 </button>
-                <button translatesAutoresizingMaskIntoConstraints="NO" id="1Oj-wo-mCu">
-                    <rect key="frame" x="117" y="272" width="182" height="18"/>
-                    <buttonCell key="cell" type="check" title="Show invisible Characters" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="CyH-q4-SWY">
+                <button misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1Oj-wo-mCu">
+                    <rect key="frame" x="101" y="283" width="120" height="18"/>
+                    <buttonCell key="cell" type="check" title="숨겨진 문자 보이기" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="CyH-q4-SWY">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" metaFont="system"/>
+                        <font key="font" size="13" name="AppleSDGothicNeo-Regular"/>
                     </buttonCell>
                     <connections>
                         <binding destination="26" name="value" keyPath="values.showInvisibles" id="Q9s-5R-yMz"/>
@@ -440,6 +432,14 @@
                         <action selector="openPreferencesHelp:" target="-1" id="IXm-LC-3Ux"/>
                     </connections>
                 </button>
+                <textField horizontalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oXk-4y-elJ">
+                    <rect key="frame" x="40" y="181" width="57" height="17"/>
+                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="자동 완성:" usesSingleLineMode="YES" id="gDN-SU-sZH">
+                        <font key="font" size="13" name="AppleSDGothicNeo-Regular"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
             </subviews>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="z5v-7l-1C4" secondAttribute="bottom" constant="20" symbolic="YES" id="0Ke-Pr-SYk"/>

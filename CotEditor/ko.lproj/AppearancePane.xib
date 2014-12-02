@@ -30,8 +30,8 @@
                         <action selector="openPreferencesHelp:" target="-1" id="j33-sW-Usa"/>
                     </connections>
                 </button>
-                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="385">
-                    <rect key="frame" x="104" y="493" width="260" height="22"/>
+                <textField verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="385">
+                    <rect key="frame" x="70" y="493" width="260" height="22"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="22" id="4zH-Fv-QUF"/>
                         <constraint firstAttribute="width" constant="260" id="vyL-3O-dlj"/>
@@ -45,8 +45,8 @@
                         <binding destination="26" name="fontFamilyName" keyPath="values.fontName" id="KzD-eX-p4k"/>
                     </connections>
                 </textField>
-                <button translatesAutoresizingMaskIntoConstraints="NO" id="809">
-                    <rect key="frame" x="102" y="469" width="100" height="18"/>
+                <button misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="809">
+                    <rect key="frame" x="68" y="469" width="100" height="18"/>
                     <buttonCell key="cell" type="check" title="Anti-Aliasing" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3290">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
@@ -55,46 +55,38 @@
                         <binding destination="26" name="value" keyPath="values.shouldAntialias" id="811"/>
                     </connections>
                 </button>
-                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="387">
-                    <rect key="frame" x="366" y="487" width="90" height="32"/>
+                <button verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="387">
+                    <rect key="frame" x="332" y="487" width="90" height="32"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="78" id="8cj-Zi-DRd"/>
                     </constraints>
-                    <buttonCell key="cell" type="push" title="Select…" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="3289">
+                    <buttonCell key="cell" type="push" title="서체…" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="3289">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="system"/>
+                        <font key="font" size="13" name="AppleSDGothicNeo-Regular"/>
                     </buttonCell>
                     <connections>
                         <action selector="showFonts:" target="-2" id="389"/>
                     </connections>
                 </button>
-                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="cM2-sa-5cF">
-                    <rect key="frame" x="62" y="496" width="36" height="17"/>
-                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Font:" usesSingleLineMode="YES" id="Z85-S9-uID">
-                        <font key="font" metaFont="system"/>
+                <textField horizontalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cM2-sa-5cF">
+                    <rect key="frame" x="33" y="496" width="31" height="17"/>
+                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="서체:" usesSingleLineMode="YES" id="Z85-S9-uID">
+                        <font key="font" size="13" name="AppleSDGothicNeo-Regular"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <button translatesAutoresizingMaskIntoConstraints="NO" id="860">
-                    <rect key="frame" x="102" y="408" width="234" height="18"/>
-                    <buttonCell key="cell" type="check" title="Fix line height with composite font" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3296">
+                <button misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="860">
+                    <rect key="frame" x="68" y="408" width="147" height="18"/>
+                    <buttonCell key="cell" type="check" title="복합 글꼴에서 높이 고정" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3296">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" metaFont="system"/>
+                        <font key="font" size="13" name="AppleSDGothicNeo-Regular"/>
                     </buttonCell>
                     <connections>
                         <binding destination="26" name="value" keyPath="values.fixLineHeight" id="862"/>
                     </connections>
                 </button>
-                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="DSq-u9-gbq">
-                    <rect key="frame" x="22" y="436" width="76" height="17"/>
-                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Line height:" usesSingleLineMode="YES" id="r1c-v3-qW1">
-                        <font key="font" metaFont="system"/>
-                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
-                <scrollView autohidesScrollers="YES" horizontalLineScroll="21" horizontalPageScroll="10" verticalLineScroll="21" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ICn-lI-aHs">
+                <scrollView misplaced="YES" autohidesScrollers="YES" horizontalLineScroll="21" horizontalPageScroll="10" verticalLineScroll="21" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ICn-lI-aHs">
                     <rect key="frame" x="20" y="53" width="160" height="308"/>
                     <clipView key="contentView" misplaced="YES" id="I0F-fo-Lco">
                         <rect key="frame" x="1" y="17" width="158" height="282"/>
@@ -108,7 +100,7 @@
                                 <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                 <tableColumns>
                                     <tableColumn identifier="themeName" width="155" minWidth="40" maxWidth="1000" id="Avf-y8-wXG">
-                                        <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Theme">
+                                        <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="테마">
                                             <font key="font" metaFont="smallSystem"/>
                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" white="0.33333298560000002" alpha="1" colorSpace="calibratedWhite"/>
@@ -208,7 +200,7 @@
                         </menu>
                     </popUpButtonCell>
                 </popUpButton>
-                <box autoresizesSubviews="NO" title="Box" boxType="custom" borderType="line" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="htB-OO-KPY">
+                <box autoresizesSubviews="NO" misplaced="YES" title="Box" boxType="custom" borderType="line" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="htB-OO-KPY">
                     <rect key="frame" x="188" y="53" width="332" height="308"/>
                     <view key="contentView">
                         <rect key="frame" x="1" y="1" width="330" height="306"/>
@@ -217,15 +209,15 @@
                     <color key="borderColor" name="scrollBarColor" catalog="System" colorSpace="catalog"/>
                     <color key="fillColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                 </box>
-                <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="XpC-pt-aaH">
-                    <rect key="frame" x="153" y="431" width="19" height="27"/>
+                <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XpC-pt-aaH">
+                    <rect key="frame" x="119" y="431" width="19" height="27"/>
                     <stepperCell key="cell" continuous="YES" alignment="left" increment="0.10000000000000001" maxValue="10" doubleValue="1" id="mv9-Cu-Cfr"/>
                     <connections>
                         <binding destination="26" name="value" keyPath="values.lineSpacing" id="kPV-Sp-fwX"/>
                     </connections>
                 </stepper>
-                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="nOa-Ha-LsB">
-                    <rect key="frame" x="104" y="434" width="48" height="22"/>
+                <textField verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nOa-Ha-LsB">
+                    <rect key="frame" x="70" y="434" width="48" height="22"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="48" id="She-Ie-Rji"/>
                     </constraints>
@@ -249,28 +241,36 @@
                         </binding>
                     </connections>
                 </textField>
-                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3FS-mR-rbr">
-                    <rect key="frame" x="175" y="436" width="38" height="17"/>
-                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="times" usesSingleLineMode="YES" id="VLD-jj-zzl">
-                        <font key="font" metaFont="system"/>
+                <textField horizontalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3FS-mR-rbr">
+                    <rect key="frame" x="141" y="436" width="16" height="17"/>
+                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="배" usesSingleLineMode="YES" id="VLD-jj-zzl">
+                        <font key="font" size="13" name="AppleSDGothicNeo-Regular"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <button translatesAutoresizingMaskIntoConstraints="NO" id="uBk-sz-rYS">
-                    <rect key="frame" x="102" y="379" width="182" height="18"/>
-                    <buttonCell key="cell" type="check" title="Change background color" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="ba7-dE-zXz">
+                <button misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uBk-sz-rYS">
+                    <rect key="frame" x="68" y="379" width="98" height="18"/>
+                    <buttonCell key="cell" type="check" title="배경 색 바꾸기" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="ba7-dE-zXz">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" metaFont="system"/>
+                        <font key="font" size="13" name="AppleSDGothicNeo-Regular"/>
                     </buttonCell>
                     <connections>
                         <binding destination="26" name="value" keyPath="values.highlightCurrentLine" id="05q-Gk-6ct"/>
                     </connections>
                 </button>
-                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="7x6-jB-Clt">
-                    <rect key="frame" x="18" y="380" width="80" height="17"/>
-                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Current line:" usesSingleLineMode="YES" id="oKu-Fu-hRU">
-                        <font key="font" metaFont="system"/>
+                <textField horizontalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7x6-jB-Clt">
+                    <rect key="frame" x="18" y="380" width="46" height="17"/>
+                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="현재 줄:" usesSingleLineMode="YES" id="oKu-Fu-hRU">
+                        <font key="font" size="13" name="AppleSDGothicNeo-Regular"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DSq-u9-gbq">
+                    <rect key="frame" x="18" y="437" width="46" height="17"/>
+                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="줄 높이:" usesSingleLineMode="YES" id="r1c-v3-qW1">
+                        <font key="font" size="13" name="AppleSDGothicNeo-Regular"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
