@@ -17,7 +17,7 @@ Pull-Request
 - Make a topic branch, instead commit to the master or develop branch.
 
 
-### General Code improvements
+### General Code Improvements
 
 Bug fixes and improvements are welcome. If you wanna add a new feature or the change is huge, it's better at first to ask the team whether your idea will be accepted.
 
@@ -57,7 +57,7 @@ We aren't accepting pull-requests adding bundled theme at the moment. You can di
 
 ### Graphics Resources
 
-We aren't accepting pull-requests for image resources. 1024jp is enjoying to create and brush-up the graphics ;). Please just point out on the Issues page if graphic resource has some kind of mistake to be fixed.
+We aren't accepting pull-requests for image resources. [1024jp](https://github.com/1024jp) is enjoying to create and brush-up the graphics ;). Please just point out on the Issues page if graphic resource has some kind of mistake to be fixed.
 
 
 Coding Style Guide
