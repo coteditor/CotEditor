@@ -26,9 +26,9 @@
  ==============================================================================
  *)
  
-set theApp to frontmost application
-set scriptEditor to application id "com.apple.ScriptEditor2"
+ set theApp to frontmost application
  
-ignoring application responses
-    tell scriptEditor to open (path to theApp)
-end ignoring
+ tell application id "com.apple.ScriptEditor2"
+     activate
+     open (path to theApp)
+ end tell
