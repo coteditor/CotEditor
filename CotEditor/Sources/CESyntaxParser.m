@@ -504,6 +504,7 @@ static CGFloat kPerCompoIncrement;
     NSUInteger length = [searchString length];
     
     NSScanner *scanner = [NSScanner scannerWithString:string];
+    [scanner setCharactersToBeSkipped:nil];
     [scanner setCaseSensitive:!ignoreCase];
     
     while (![scanner isAtEnd]) {
@@ -539,6 +540,7 @@ static CGFloat kPerCompoIncrement;
     NSUInteger endLength = [endString length];
     
     NSScanner *scanner = [NSScanner scannerWithString:string];
+    [scanner setCharactersToBeSkipped:nil];
     [scanner setCaseSensitive:!ignoreCase];
     
     while (![scanner isAtEnd]) {
