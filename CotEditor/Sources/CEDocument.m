@@ -476,7 +476,6 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
         CENewLineType lineEnding = [[self initialString] detectNewLineType];
         if (lineEnding != CENewLineNone) {  // 改行コードが含まれないときはデフォルトのままにする
             [self setLineEnding:lineEnding];
-            [self applyLineEndingToView]; // to update toolbar
         }
         
         NSString *string = [[self initialString] stringByReplacingNewLineCharacersWith:CENewLineLF];
@@ -487,6 +486,9 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     } else {
         [[self editor] setString:@""];
     }
+    // update toolbar
+    [self applyLineEndingToView];
+    
     // ツールバーのエンコーディングメニュー、ステータスバー、ドロワーを更新
     [self updateEncodingInToolbarAndInfo];
     // カラーリングと行番号を更新
