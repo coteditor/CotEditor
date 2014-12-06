@@ -26,7 +26,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   OgreKit:
-    :commit: 8fc6f1e9f4166b1fe49cb5c6e27f3e2bd28c6ac7
+    :commit: 1703139734a492eb3a5a9628b23fe44765034c30
     :git: https://github.com/coteditor/OgreKit.git
   YAML-Framework:
     :commit: 5968c1764a06995c68efd03ea2702a9012a94a4b
