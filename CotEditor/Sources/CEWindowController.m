@@ -553,6 +553,47 @@ static NSTimeInterval incompatibleCharInterval;
 }
 
 
+// ------------------------------------------------------
+/// save window state on application termination
+- (void)window:(NSWindow *)window willEncodeRestorableState:(NSCoder *)state
+// ------------------------------------------------------
+{
+    [state encodeBool:[[self statusBarController] isShown] forKey:CEDefaultShowStatusBarKey];
+    [state encodeBool:[[self editor] showsNavigationBar] forKey:CEDefaultShowNavigationBarKey];
+    [state encodeBool:[[self editor] showsLineNum] forKey:CEDefaultShowLineNumbersKey];
+    [state encodeBool:[[self editor] showsPageGuide] forKey:CEDefaultShowPageGuideKey];
+    [state encodeBool:[[self editor] showsInvisibles] forKey:CEDefaultShowInvisiblesKey];
+    [state encodeBool:[[self editor] isVerticalLayoutOrientation] forKey:CEDefaultLayoutTextVerticalKey];
+}
+
+
+// ------------------------------------------------------
+/// restore window state from the last session
+- (void)window:(NSWindow *)window didDecodeRestorableState:(NSCoder *)state
+// ------------------------------------------------------
+{
+    if ([state containsValueForKey:CEDefaultShowStatusBarKey]) {
+        [[self statusBarController] setShown:[state decodeBoolForKey:CEDefaultShowStatusBarKey] animate:NO];
+    }
+    if ([state containsValueForKey:CEDefaultShowNavigationBarKey]) {
+        [[self editor] setShowsNavigationBar:[state decodeBoolForKey:CEDefaultShowNavigationBarKey] animate:NO];
+    }
+    if ([state containsValueForKey:CEDefaultShowLineNumbersKey]) {
+        [[self editor] setShowsLineNum:[state decodeBoolForKey:CEDefaultShowLineNumbersKey]];
+    }
+    if ([state containsValueForKey:CEDefaultShowPageGuideKey]) {
+        [[self editor] setShowsPageGuide:[state decodeBoolForKey:CEDefaultShowPageGuideKey]];
+    }
+    if ([state containsValueForKey:CEDefaultShowInvisiblesKey]) {
+        [[self editor] setShowsInvisibles:[state decodeBoolForKey:CEDefaultShowInvisiblesKey]];
+    }
+    if ([state containsValueForKey:CEDefaultLayoutTextVerticalKey]) {
+        [[self editor] setVerticalLayoutOrientation:[state decodeBoolForKey:CEDefaultLayoutTextVerticalKey]];
+    }
+}
+
+
+
 //=======================================================
 // Delegate method (NSTabView)
 //  <== tabView

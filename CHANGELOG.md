@@ -16,6 +16,7 @@ changelog
 - Add "show invisible characters" option to set visibility of all invisible characters at once.
     - From this, invisibles visibility of displayed windows can be toggled even all invisibles are hidden as default.
 - Now, the popup menus in toolbar can be called directly even on "Text Only" mode without mode change.
+- Now, window states will be resotred from the last session.
 - Disable rech text in find panel.
 - Change default syntax style from “None” to “Plain Text”.
 - Improve the delay when a AppleScript/JavaScript is run for the first time after the application launched.

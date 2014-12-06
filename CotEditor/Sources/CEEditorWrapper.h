@@ -80,6 +80,8 @@
 - (void)markupRanges:(NSArray *)ranges;
 - (void)clearAllMarkup;
 
+- (void)setShowsNavigationBar:(BOOL)showsNavigationBar animate:(BOOL)performAnimation;
+
 - (BOOL)usesAntialias;
 - (BOOL)isAutoTabExpandEnabled;
 
