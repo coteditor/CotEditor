@@ -43,7 +43,7 @@
 
 
 /// designated initializer (return nil if no corresponded style dictionary can been found.)
-- (instancetype)initWithStyleName:(NSString *)styleName layoutManager:(NSLayoutManager *)layoutManager isPrinting:(BOOL)isPrinting;
+- (instancetype)initWithStyleName:(NSString *)styleName layoutManager:(NSLayoutManager *)layoutManager isPrinting:(BOOL)isPrinting NS_DESIGNATED_INITIALIZER;
 
 // Public methods
 - (void)colorAllString:(NSString *)wholeString;
