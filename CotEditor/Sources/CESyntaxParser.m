@@ -1011,8 +1011,6 @@ static CGFloat kPerCompoIncrement;
     BOOL isPrinting = [self isPrinting];
     BOOL showsInvisibles = [layoutManager showsControlCharacters];
     
-    [[layoutManager textStorage] beginEditing];
-    
     // 現在あるカラーリングを削除
     if (isPrinting) {
         [[layoutManager firstTextView] setTextColor:[theme textColor] range:coloringRange];
@@ -1065,8 +1063,6 @@ static CGFloat kPerCompoIncrement;
             }
         }
     }
-    
-    [[layoutManager textStorage] endEditing];
 }
 
 

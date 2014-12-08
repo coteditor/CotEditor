@@ -522,9 +522,10 @@ static NSTimeInterval incompatibleCharInterval;
 
 // ------------------------------------------------------
 /// OgreKit method that passes the main textView.
-- (void)tellMeTargetToFindIn:(id)textFinder
+- (void)tellMeTargetToFindIn:(id)sender
 // ------------------------------------------------------
 {
+    OgreTextFinder *textFinder = (OgreTextFinder *)sender;
     [textFinder setTargetToFindIn:[[self editor] textView]];
 }
 
