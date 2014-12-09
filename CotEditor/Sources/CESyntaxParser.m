@@ -70,7 +70,6 @@ typedef NS_ENUM(NSUInteger, QCStartEndType) {
 @property (atomic, copy) NSDictionary *pairedQuoteTypes;  // dict for quote pair to extract with comment
 @property (atomic, copy) NSArray *cacheColorings;  // extracting results cache of the last whole string coloring
 @property (atomic, copy) NSString *cacheHash;  // MD5 hash
-@property (atomic) dispatch_queue_t coloringQueue;
 
 @property (atomic) CEIndicatorSheetController *indicatorController;
 
@@ -254,9 +253,6 @@ static CGFloat kPerCompoIncrement;
                 _hasSyntaxHighlighting = ((count > 0) || _inlineCommentDelimiter || _blockCommentDelimiters);
             }
             
-            // queue
-            _coloringQueue = dispatch_queue_create("com.coteditor.CotEditor.ColoringQueue", DISPATCH_QUEUE_SERIAL);
-            
             // store as properties
             _styleName = styleName;
             _coloringDictionary = [coloringDictionary copy];
@@ -285,7 +281,7 @@ static CGFloat kPerCompoIncrement;
     if ([[wholeString MD5] isEqualToString:[self cacheHash]]) {
         [self applyColorings:[self cacheColorings] range:range];
     } else {
-        [self colorString:wholeString range:range onMainThread:[self isPrinting]];
+        [self colorString:[wholeString copy] range:range];
     }
 }
 
@@ -318,7 +314,7 @@ static CGFloat kPerCompoIncrement;
     NSRange coloringRange = NSMakeRange(start, end - start);
     coloringRange = [wholeString lineRangeForRange:coloringRange];
     
-    [self colorString:wholeString range:coloringRange onMainThread:YES];
+    [self colorString:wholeString range:coloringRange];
 }
 
 
@@ -927,7 +923,7 @@ static CGFloat kPerCompoIncrement;
 
 // ------------------------------------------------------
 /// カラーリングを実行
-- (void)colorString:(NSString *)wholeString range:(NSRange)coloringRange onMainThread:(BOOL)onMainThread
+- (void)colorString:(NSString *)wholeString range:(NSRange)coloringRange
 // ------------------------------------------------------
 {
     // カラーリング対象の文字列
@@ -951,12 +947,11 @@ static CGFloat kPerCompoIncrement;
         [[self indicatorController] beginSheetForWindow:documentWindow];
     }
     
-    // 実行スレッドを決定
-    dispatch_queue_t queue = onMainThread ? dispatch_get_main_queue() : [self coloringQueue];
-    
     __weak typeof(self) weakSelf = self;
-    dispatch_async(queue, ^{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         typeof(self) strongSelf = weakSelf;
+        
+        // カラー範囲を抽出する
         NSArray *colorings = [strongSelf extractAllSyntaxFromString:coloringString];
         
         // 全文を抽出した場合は抽出結果をキャッシュする
@@ -970,22 +965,20 @@ static CGFloat kPerCompoIncrement;
             [indicator setInformativeText:NSLocalizedString(@"Applying colors to text", nil)];
         }
         
-        // 描画をメインスレッドで実行
-        dispatch_async(dispatch_get_main_queue(), ^{
-            // すでにエディタの文字列が解析した文字列から変化しているときは危険なのでカラーリングを諦める
-            BOOL isStringUpdated = ![[[[strongSelf layoutManager] textStorage] string] isEqualToString:wholeString];
-            
-            if (colorings && !isStringUpdated) {
-                // カラーを適用する（ループ中に徐々に適用させると文字がチラ付くので、抽出が終わってから一気に適用する）
+        // カラーを適用する（すでにエディタの文字列が解析した文字列から変化しているときは諦める）
+        if (colorings && [[[[strongSelf layoutManager] textStorage] string] isEqualToString:wholeString]) {
+            dispatch_sync(dispatch_get_main_queue(), ^{
                 [strongSelf applyColorings:colorings range:coloringRange];
-            }
-            
-            // インジーケータシートを片づける
-            if (indicator) {
+            });
+        }
+        
+        // インジーケータシートを片づける
+        if (indicator) {
+            dispatch_sync(dispatch_get_main_queue(), ^{
                 [indicator endSheet];
                 [strongSelf setIndicatorController:nil];
-            }
-        });
+            });
+        }
     });
 }
 
