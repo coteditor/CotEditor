@@ -72,7 +72,6 @@ typedef NS_ENUM(NSUInteger, QCStartEndType) {
 @property (atomic, copy) NSString *cacheHash;  // MD5 hash
 @property (atomic) dispatch_queue_t coloringQueue;
 
-@property (atomic, copy) NSString *coloringString;  // カラーリング対象文字列　extractAllSyntaxFromString: 冒頭でセットされる
 @property (atomic) CEIndicatorSheetController *indicatorController;
 
 
@@ -452,13 +451,13 @@ static CGFloat kPerCompoIncrement;
 
 // ------------------------------------------------------
 /// 指定された文字列をそのまま検索し、位置を返す
-- (NSArray *)rangesOfSimpleWords:(NSDictionary *)wordsDict ignoreCaseWords:(NSDictionary *)icWordsDict charSet:(NSCharacterSet *)charSet
+- (NSArray *)rangesOfSimpleWords:(NSDictionary *)wordsDict ignoreCaseWords:(NSDictionary *)icWordsDict charSet:(NSCharacterSet *)charSet string:(NSString *)string
 // ------------------------------------------------------
 {
     NSMutableArray *ranges = [NSMutableArray array];
     CEIndicatorSheetController *indicator = [self indicatorController];
     
-    NSScanner *scanner = [NSScanner scannerWithString:[self coloringString]];
+    NSScanner *scanner = [NSScanner scannerWithString:string];
     [scanner setCaseSensitive:YES];
     
     while (![scanner isAtEnd]) {
@@ -493,14 +492,13 @@ static CGFloat kPerCompoIncrement;
 
 // ------------------------------------------------------
 /// 指定された文字列を検索し、位置を返す
-- (NSArray *)rangesOfString:(NSString *)searchString ignoreCase:(BOOL)ignoreCase
+- (NSArray *)rangesOfString:(NSString *)searchString ignoreCase:(BOOL)ignoreCase string:(NSString *)string
 // ------------------------------------------------------
 {
     if ([searchString length] == 0) { return nil; }
     
     NSMutableArray *ranges = [NSMutableArray array];
     CEIndicatorSheetController *indicator = [self indicatorController];
-    NSString *string = [self coloringString];
     NSUInteger length = [searchString length];
     
     NSScanner *scanner = [NSScanner scannerWithString:string];
@@ -529,14 +527,13 @@ static CGFloat kPerCompoIncrement;
 
 // ------------------------------------------------------
 /// 指定された開始／終了ペアの文字列を検索し、位置を返す
-- (NSArray *)rangesOfBeginString:(NSString *)beginString endString:(NSString *)endString ignoreCase:(BOOL)ignoreCase
+- (NSArray *)rangesOfBeginString:(NSString *)beginString endString:(NSString *)endString ignoreCase:(BOOL)ignoreCase string:(NSString *)string
 // ------------------------------------------------------
 {
     if ([beginString length] == 0) { return nil; }
     
     NSMutableArray *ranges = [NSMutableArray array];
     CEIndicatorSheetController *indicator = [self indicatorController];
-    NSString *string = [self coloringString];
     NSUInteger endLength = [endString length];
     
     NSScanner *scanner = [NSScanner scannerWithString:string];
@@ -577,14 +574,13 @@ static CGFloat kPerCompoIncrement;
 
 // ------------------------------------------------------
 /// 指定された文字列を正規表現として検索し、位置を返す
-- (NSArray *)rangesOfRegularExpressionString:(NSString *)regexStr ignoreCase:(BOOL)ignoreCase
+- (NSArray *)rangesOfRegularExpressionString:(NSString *)regexStr ignoreCase:(BOOL)ignoreCase string:(NSString *)string
 // ------------------------------------------------------
 {
     if ([regexStr length] == 0) { return nil; }
     
     __block NSMutableArray *ranges = [NSMutableArray array];
     CEIndicatorSheetController *indicator = [self indicatorController];
-    NSString *string = [self coloringString];
     uint32_t options = RKLMultiline | (ignoreCase ? RKLCaseless : 0);
     NSError *error = nil;
     
@@ -619,12 +615,11 @@ static CGFloat kPerCompoIncrement;
 
 // ------------------------------------------------------
 /// 指定された開始／終了文字列を正規表現として検索し、位置を返す
-- (NSArray *)rangesOfRegularExpressionBeginString:(NSString *)beginString endString:(NSString *)endString ignoreCase:(BOOL)ignoreCase
+- (NSArray *)rangesOfRegularExpressionBeginString:(NSString *)beginString endString:(NSString *)endString ignoreCase:(BOOL)ignoreCase string:(NSString *)string
 // ------------------------------------------------------
 {
     __block NSMutableArray *ranges = [NSMutableArray array];
     CEIndicatorSheetController *indicator = [self indicatorController];
-    NSString *string = [self coloringString];
     uint32_t options = RKLMultiline | (ignoreCase ? RKLCaseless : 0);
     NSError *error = nil;
     
@@ -677,7 +672,7 @@ static CGFloat kPerCompoIncrement;
     // コメント定義の位置配列を生成
     if ([self blockCommentDelimiters]) {
         NSString *beginDelimiter = [self blockCommentDelimiters][CEBeginDelimiterKey];
-        NSArray *beginRanges = [self rangesOfString:beginDelimiter ignoreCase:NO];
+        NSArray *beginRanges = [self rangesOfString:beginDelimiter ignoreCase:NO string:string];
         for (NSValue *rangeValue in beginRanges) {
             NSRange range = [rangeValue rangeValue];
             
@@ -688,7 +683,7 @@ static CGFloat kPerCompoIncrement;
         }
         
         NSString *endDelimiter = [self blockCommentDelimiters][CEEndDelimiterKey];
-        NSArray *endRanges = [self rangesOfString:endDelimiter ignoreCase:NO];
+        NSArray *endRanges = [self rangesOfString:endDelimiter ignoreCase:NO string:string];
         for (NSValue *rangeValue in endRanges) {
             NSRange range = [rangeValue rangeValue];
             
@@ -701,7 +696,7 @@ static CGFloat kPerCompoIncrement;
     }
     if ([self inlineCommentDelimiter]) {
         NSString *delimiter = [self inlineCommentDelimiter];
-        NSArray *ranges = [self rangesOfString:delimiter ignoreCase:NO];
+        NSArray *ranges = [self rangesOfString:delimiter ignoreCase:NO string:string];
         for (NSValue *rangeValue in ranges) {
             NSRange range = [rangeValue rangeValue];
             NSRange lineRange = [string lineRangeForRange:range];
@@ -721,7 +716,7 @@ static CGFloat kPerCompoIncrement;
     
     // クォート定義があれば位置配列を生成、マージ
     for (NSString *quote in quoteTypes) {
-        NSArray *ranges = [self rangesOfString:quote ignoreCase:NO];
+        NSArray *ranges = [self rangesOfString:quote ignoreCase:NO string:string];
         for (NSValue *rangeValue in ranges) {
             NSRange range = [rangeValue rangeValue];
             
@@ -824,7 +819,6 @@ static CGFloat kPerCompoIncrement;
     CEIndicatorSheetController *indicator = [self indicatorController];
     
     // カラーリング対象文字列を保持
-    [self setColoringString:string];
     
     @try {
         // Keywords > Commands > Types > Attributes > Variables > Values > Numbers > Strings > Characters > Comments
@@ -862,18 +856,21 @@ static CGFloat kPerCompoIncrement;
                             [targetRanges addObjectsFromArray:
                              [self rangesOfRegularExpressionBeginString:beginStr
                                                               endString:endStr
-                                                             ignoreCase:ignoresCase]];
+                                                             ignoreCase:ignoresCase
+                                                                 string:string]];
                         } else {
                             [targetRanges addObjectsFromArray:
                              [self rangesOfRegularExpressionString:beginStr
-                                                        ignoreCase:ignoresCase]];
+                                                        ignoreCase:ignoresCase
+                                                            string:string]];
                         }
                     } else {
                         if ([endStr length] > 0) {
                             [targetRanges addObjectsFromArray:
                              [self rangesOfBeginString:beginStr
                                              endString:endStr
-                                            ignoreCase:ignoresCase]];
+                                            ignoreCase:ignoresCase
+                                                string:string]];
                         } else {
                             NSNumber *len = @([beginStr length]);
                             NSMutableDictionary *dict = ignoresCase ? simpleICWordsDict : simpleWordsDict;
@@ -900,7 +897,8 @@ static CGFloat kPerCompoIncrement;
                 [targetRanges addObjectsFromArray:
                  [self rangesOfSimpleWords:simpleWordsDict
                            ignoreCaseWords:simpleICWordsDict
-                                   charSet:[self simpleWordsCharacterSets][syntaxKey]]];
+                                   charSet:[self simpleWordsCharacterSets][syntaxKey]
+                                    string:string]];
             }
             // カラーとrangeのペアを格納
             for (NSValue *value in targetRanges) {
@@ -930,9 +928,6 @@ static CGFloat kPerCompoIncrement;
         // 何もしない
         NSLog(@"ERROR in \"%s\" reason: %@", __PRETTY_FUNCTION__, [exception reason]);
         
-    } @finally {
-        // カラーリング対象文字列を片づける
-        [self setColoringString:nil];
     }
     
     return colorings;
