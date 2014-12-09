@@ -973,7 +973,7 @@ static CGFloat kPerCompoIncrement;
         // 描画をメインスレッドで実行
         dispatch_async(dispatch_get_main_queue(), ^{
             // すでにエディタの文字列が解析した文字列から変化しているときは危険なのでカラーリングを諦める
-            BOOL isStringUpdated = ![[[[strongSelf layoutManager] textStorage] string] isEqualToString:coloringString];
+            BOOL isStringUpdated = ![[[[strongSelf layoutManager] textStorage] string] isEqualToString:wholeString];
             
             if (colorings && !isStringUpdated) {
                 // カラーを適用する（ループ中に徐々に適用させると文字がチラ付くので、抽出が終わってから一気に適用する）
