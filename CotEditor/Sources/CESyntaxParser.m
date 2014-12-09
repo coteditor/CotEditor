@@ -255,7 +255,7 @@ static CGFloat kPerCompoIncrement;
             }
             
             // queue
-            _coloringQueue = dispatch_queue_create("com.coteditor.CotEditor.ColoringQueue", DISPATCH_QUEUE_CONCURRENT);
+            _coloringQueue = dispatch_queue_create("com.coteditor.CotEditor.ColoringQueue", DISPATCH_QUEUE_SERIAL);
             
             // store as properties
             _styleName = styleName;
@@ -972,7 +972,10 @@ static CGFloat kPerCompoIncrement;
         
         // 描画をメインスレッドで実行
         dispatch_async(dispatch_get_main_queue(), ^{
-            if (colorings) {
+            // すでにエディタの文字列が解析した文字列から変化しているときは危険なのでカラーリングを諦める
+            BOOL isStringUpdated = ![[[[strongSelf layoutManager] textStorage] string] isEqualToString:coloringString];
+            
+            if (colorings && !isStringUpdated) {
                 // カラーを適用する（ループ中に徐々に適用させると文字がチラ付くので、抽出が終わってから一気に適用する）
                 [strongSelf applyColorings:colorings range:coloringRange];
             }
