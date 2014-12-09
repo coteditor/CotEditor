@@ -382,7 +382,7 @@ static BOOL usesTextFontForInvisibles;
     CGFloat lineSpacing = [(NSTextView<CETextViewProtocol> *)[self firstTextView] lineSpacing];
 
     // 小数点以下を返すと選択範囲が分離することがあるため、丸める
-    return floor([self defaultLineHeightForTextFont] + lineSpacing * [self textFontPointSize] + 0.5);
+    return round([self defaultLineHeightForTextFont] + lineSpacing * [self textFontPointSize]);
 }
 
 
