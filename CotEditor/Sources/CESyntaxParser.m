@@ -68,7 +68,7 @@ typedef NS_ENUM(NSUInteger, QCStartEndType) {
 @property (atomic, copy) NSDictionary *coloringDictionary;
 @property (atomic, copy) NSDictionary *simpleWordsCharacterSets;
 @property (atomic, copy) NSDictionary *pairedQuoteTypes;  // dict for quote pair to extract with comment
-@property (atomic, copy) NSArray *cacheColorings;  // extracting results cache of the last whole string coloring
+@property (atomic, copy) NSArray *cacheColorings;  // extracted results cache of the last whole string coloring
 @property (atomic, copy) NSString *cacheHash;  // MD5 hash
 
 @property (atomic) CEIndicatorSheetController *indicatorController;
@@ -214,7 +214,7 @@ static CGFloat kPerCompoIncrement;
                         [charSet removeCharactersInString:@"\n\t "];  // 改行、タブ、スペースは無視
                         
                         characterSets[key] = charSet;
-                    } // ==== end-autoreleasepool
+                    }
                 }
                 _simpleWordsCharacterSets = characterSets;
             }
@@ -284,6 +284,7 @@ static CGFloat kPerCompoIncrement;
         [self colorString:[wholeString copy] range:range];
     }
 }
+
 
 // ------------------------------------------------------
 /// 表示されている部分をカラーリング
@@ -926,9 +927,10 @@ static CGFloat kPerCompoIncrement;
 - (void)colorString:(NSString *)wholeString range:(NSRange)coloringRange
 // ------------------------------------------------------
 {
+    if (coloringRange.length == 0) { return; }
+    
     // カラーリング対象の文字列
     NSString *coloringString = [wholeString substringWithRange:coloringRange];
-    if ([coloringString length] == 0) { return; }
     
     // カラーリング不要なら不可視文字のカラーリングだけして戻る
     if (![self hasSyntaxHighlighting]) {
