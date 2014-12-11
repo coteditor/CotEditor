@@ -24,6 +24,7 @@ changelog
     - Add several keywords. (Thanks to Nathan Rutzky!)
 - Update “JSON” syntax style:
     - Improve performance.
+- Improve find panel behavior with Spaces.
 - Improve sytnax highlighting performance.
 
 
