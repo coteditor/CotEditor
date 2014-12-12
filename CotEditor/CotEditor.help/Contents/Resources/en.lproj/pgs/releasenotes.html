@@ -17,6 +17,71 @@
 <h1>Release Notes</h1>
 
 
+
+<article>
+<header>
+	<h1>CotEditor 2.0.3</h1>
+	<p>release: <time>2014-12-xx</time></p>
+</header>
+
+
+<section>
+<h3>New Features</h3>
+
+<ul>
+	<li>Add Chinese (Simplified) localization. (Thanks to Wei Wang!)</li>
+	<li>Add feature to scale font size up by pinch gesture.</li>
+</ul>
+</section>
+
+
+<section>
+<h3>Additions/Changes</h3>
+
+<ul>
+	<li>Add “show invisible characters” option to set visibility of all invisible characters at once.
+		<ul>
+		<li>From this, invisibles visibility of displayed windows can be toggled even all invisibles are hidden as default.</li>
+	</ul></li>
+	<li>Now, the popup menus in toolbar can be called directly even on “Text Only” mode without mode change.</li>
+	<li>Now, window states will resume from the last session.</li>
+	<li>Change default syntax style from “None” to “Plain Text”.</li>
+	<li>Improve syntax highlighting performance.</li>
+	<li>Remove delay when a AppleScript/JavaScript is run for the first time after application launch.</li>
+	<li>Update “CSS” syntax style:
+		<ul>
+		<li>Add several keywords. (Thanks to Nathan Rutzky!)</li>
+	</ul></li>
+	<li>Update “JSON” syntax style:
+		<ul>
+		<li>Improve highlighting performance.</li>
+	</ul></li>
+	<li>Improve find panel behavior with Spaces.</li>
+	<li>Disable rech text in find panel.</li>
+</ul>
+</section>
+
+
+<section>
+<h3>Fixes</h3>
+
+<ul>
+	<li>Fix page guide position and tab width.</li>
+	<li>Fix an issue that “Go” button in “Go To” sheet didn't work by clicking.</li>
+	<li>Fix an issue that line endings menu in toolbar whose document had been newly created was always set to “LF”.</li>
+	<li>Fix an issue that cancelation of syntax extracting didn't work immediately under the specific conditions.</li>
+	<li>Fix an issue that selecting inside of brackets by double-clicking didn't work.</li>
+	<li>Fix an issue that script execution with large size output could cause application hang up.</li>
+	<li>Fix a possible issue that syntax highlighting while text editing could cause application crash.</li>
+	<li>Fix an issue that application could hang up when no text font is found.</li>
+	<li>Fix an issue that highlights weren't updated after “Replace All” under Japanese localization.</li>
+	<li>Fix an issue that the Auto-Completion feature couldn't enable from the preferences under Japanese localization.</li>
+</ul>
+</section>
+</article>
+
+
+
 <article>
 <header>
 	<h1>CotEditor 2.0.2</h1>
@@ -29,7 +94,7 @@
 
 
 <ul>
-	<li>Fix a critical issue that the application hang up if either file encoding or line eingings is shown in status bar.</li>
+	<li>Fix a critical issue that the application hang up if either file encoding or line endings is shown in status bar.</li>
 </ul>
 </section>
 </article>
