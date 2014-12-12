@@ -4,35 +4,36 @@
  CotEditor
  http://coteditor.com
  
- Created on 2014-11-04 by 1024jp
+ Created on 2014-12-12 by 1024jp
+ Localized by onevcat
  encoding="UTF-8"
  
  © 2014 CotEditor Project
  */
 
 /* Class = "NSTextFieldCell"; title = "Font:"; ObjectID = "Z85-S9-uID"; */
-"Z85-S9-uID.title" = "フォント：";
+"Z85-S9-uID.title" = "字体:";
 /* Class = "NSButtonCell"; title = "Select…"; ObjectID = "3289"; */
-"3289.title" = "選択…";
+"3289.title" = "选择…";
 /* Class = "NSButtonCell"; title = "Anti-Aliasing"; ObjectID = "3290"; */
-"3290.title" = "アンチエイリアス適用";
+"3290.title" = "抗锯齿";
 
 /* Class = "NSTextFieldCell"; title = "Line height:"; ObjectID = "r1c-v3-qW1"; */
-"r1c-v3-qW1.title" = "行の高さ：";
+"r1c-v3-qW1.title" = "行高:";
 /* Class = "NSTextFieldCell"; title = "times"; ObjectID = "VLD-jj-zzl"; */
 "VLD-jj-zzl.title" = "倍";
 /* Class = "NSButtonCell"; title = "Fix line height with composite font"; ObjectID = "3296"; */
-"3296.title" = "複合フォントでも高さを固定";
+"3296.title" = "多种字体时仍固定行高";
 
 /* Class = "NSTextFieldCell"; title = "Current line:"; ObjectID = "oKu-Fu-hRU"; */
-"oKu-Fu-hRU.title" = "現在の行：";
+"oKu-Fu-hRU.title" = "当前行:";
 /* Class = "NSButtonCell"; title = "Change background color"; ObjectID = "ba7-dE-zXz"; */
-"ba7-dE-zXz.title" = "背景カラーを変更";
+"ba7-dE-zXz.title" = "改变背景颜色";
 
 
 /* Class = "NSTableColumn"; headerCell.title = "Theme"; ObjectID = "Avf-y8-wXG"; */
-"Avf-y8-wXG.headerCell.title" = "テーマ";
-/* Class = "NSMenuItem"; title = "Import…"; ObjectID = "gcs-B8-kPL"; */
-"gcs-B8-kPL.title" = "読み込み…";
+"Avf-y8-wXG.headerCell.title" = "主题";
 /* Class = "NSMenuItem"; title = "Export…"; ObjectID = "4B4-mq-8Fs"; */
-"4B4-mq-8Fs.title" = "書き出し…";
+"4B4-mq-8Fs.title" = "Export…";
+/* Class = "NSMenuItem"; title = "Import…"; ObjectID = "gcs-B8-kPL"; */
+"gcs-B8-kPL.title" = "Import…";

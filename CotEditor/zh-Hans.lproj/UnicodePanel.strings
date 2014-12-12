@@ -1,0 +1,18 @@
+/*
+ UnicodePanel.strings
+ 
+ CotEditor
+ http://coteditor.com
+ 
+ Created on 2014-12-12 by 1024jp
+ Localized by onevcat
+ encoding="UTF-8"
+ 
+ © 2014 CotEditor Project
+ */
+
+/* Class = "NSPanel"; title = "Input Unicode"; ObjectID = "Y41-ro-Xeo"; */
+"Y41-ro-Xeo.title" = "输入 Unicode";
+
+/* Class = "NSButtonCell"; title = "Input"; ObjectID = "rfS-Rp-Al4"; */
+"rfS-Rp-Al4.title" = "输入";

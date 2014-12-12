@@ -1,0 +1,29 @@
+/*
+ NavigationBar.strings
+ 
+ CotEditor
+ http://coteditor.com
+ 
+ Created on 2014-12-12 by 1024jp
+ Localized by onevcat
+ encoding="UTF-8"
+ 
+ © 2014 CotEditor Project
+ */
+
+/* Class = "NSButton"; ibShadowedToolTip = "Jump to previous outline item"; ObjectID = "MlW-Dz-FOk"; */
+"MlW-Dz-FOk.ibShadowedToolTip" = "上一个提纲项目";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Jump to next outline item"; ObjectID = "BUj-TD-scp"; */
+"BUj-TD-scp.ibShadowedToolTip" = "下一个提纲项目";
+
+
+/* Class = "NSTextFieldCell"; title = "Extracting Outline..."; ObjectID = "aUE-uy-XLQ"; */
+"aUE-uy-XLQ.title" = "提取提纲…";
+
+
+/* Class = "NSButton"; ibShadowedToolTip = "Close split view"; ObjectID = "Bmo-XE-CCn"; */
+"Bmo-XE-CCn.ibShadowedToolTip" = "关闭分栏视图";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Split view"; ObjectID = "syK-XU-x2I"; */
+"syK-XU-x2I.ibShadowedToolTip" = "分栏视图";

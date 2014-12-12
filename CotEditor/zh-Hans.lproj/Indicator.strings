@@ -4,17 +4,18 @@
  CotEditor
  http://coteditor.com
  
- Created on 2014-11-04 by 1024jp
+ Created on 2014-12-12 by 1024jp
+ Localized by onevcat
  encoding="UTF-8"
  
  © 2014 CotEditor Project
  */
 
 /* Class = "NSTextFieldCell"; title = "Coloring text…"; ObjectID = "50"; */
-"50.title" = "テキストのカラーリング中…";
+"50.title" = "文本着色中...";
 
 /* Class = "NSTextFieldCell"; title = "Please wait for a while."; ObjectID = "51"; */
-"51.title" = "しばらくお待ちください...";
+"51.title" = "请稍等片刻";
 
 /* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "58"; */
-"58.title" = "キャンセル";
+"58.title" = "取消";

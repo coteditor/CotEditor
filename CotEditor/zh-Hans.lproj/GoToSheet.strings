@@ -4,21 +4,22 @@
  CotEditor
  http://coteditor.com
  
- Created on 2014-11-04 by 1024jp
+ Created on 2014-12-12 by 1024jp
+ Localized by onevcat
  encoding="UTF-8"
  
  © 2014 CotEditor Project
  */
 
-/* Class = "NSPanel"; title = "Go To"; ObjectID = "3wP-4P-fon"; */
-"3wP-4P-fon.title" = "移動";
+/* Class = "NSWindow"; title = "Go To"; ObjectID = "3wP-4P-fon"; */
+"3wP-4P-fon.title" = "跳转";
 
 /* Class = "NSMenuItem"; title = "Line"; ObjectID = "AJY-it-0zy"; */
 "AJY-it-0zy.title" = "行";
 /* Class = "NSMenuItem"; title = "Character"; ObjectID = "8lf-5Q-9KX"; */
-"8lf-5Q-9KX.title" = "文字";
+"8lf-5Q-9KX.title" = "字符";
 
 /* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "iQf-7n-OD6"; */
-"iQf-7n-OD6.title" = "キャンセル";
+"iQf-7n-OD6.title" = "取消";
 /* Class = "NSButtonCell"; title = "Go"; ObjectID = "zet-GK-4z4"; */
-"zet-GK-4z4.title" = "移動";
+"zet-GK-4z4.title" = "跳转";

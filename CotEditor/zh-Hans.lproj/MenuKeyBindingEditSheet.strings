@@ -4,26 +4,27 @@
  CotEditor
  http://coteditor.com
  
- Created on 2014-11-04 by 1024jp
+ Created on 2014-12-12 by 1024jp
+ Localized by onevcat
  encoding="UTF-8"
  
  © 2014 CotEditor Project
  */
 
 /* Class = "CEKeyBindingSheet"; title = "Menu Key Bindings"; ObjectID = "5"; */
-"5.title" = "メニューキーバインド";
+"5.title" = "菜单按键绑定";
 
 /* Class = "NSTextFieldCell"; title = "To change a binding, select it, click the key column, and then type the keys.\nYou MUST include the Command key."; ObjectID = "144"; */
-"144.title" = "アクションを選択し、キー列をクリックして編集状態にしてから、新しいキーを入力してください。\nかならずコマンドキーを含める必要があります";
+"144.title" = "选中要绑定的项目并单击按键列来改变绑定\n绑定的快捷键中必须包含 Command 键";
 
 /* Class = "NSTableColumn"; headerCell.title = "Title / Action"; ObjectID = "9"; */
-"9.headerCell.title" = "タイトル／アクション";
+"9.headerCell.title" = "标题 / 动作";
 /* Class = "NSTableColumn"; headerCell.title = "Key"; ObjectID = "10"; */
-"10.headerCell.title" = "キー";
+"10.headerCell.title" = "按键";
 
 /* Class = "NSButtonCell"; title = "Restore Defaults"; ObjectID = "140"; */
-"140.title" = "デフォルトに戻す";
+"140.title" = "恢复默认";
 /* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "141"; */
-"141.title" = "キャンセル";
+"141.title" = "取消";
 /* Class = "NSButtonCell"; title = "OK"; ObjectID = "142"; */
-"142.title" = "OK";
+"142.title" = "好";
