@@ -413,6 +413,9 @@ CFStringEncodings const kCFStringEncodingList[] = {
     kCFStringEncodingInvalidId, // ----------
     
     kCFStringEncodingGB_18030_2000,  // Chinese (GB18030)
+    kCFStringEncodingBig5_HKSCS_1999,  // Traditional Chinese (Big 5 HKSCS)
+    kCFStringEncodingBig5_E,  // Traditional Chinese (Big 5-E)
+    kCFStringEncodingBig5,  // Traditional Chinese (Big 5)
     kCFStringEncodingMacChineseTrad, // Traditional Chinese (Mac OS)
     kCFStringEncodingMacChineseSimp, // Simplified Chinese (Mac OS)
     kCFStringEncodingEUC_TW,  // Traditional Chinese (EUC)

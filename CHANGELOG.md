@@ -13,6 +13,7 @@ Change Log
 
 ### Additions/Changes
 
+- Add “Traditional Chinese (Big 5 HKSCS)”, “Traditional Chinese (Big 5-E)” and “Traditional Chinese (Big 5)” to encoding list.
 - Add “show invisible characters” option to set visibility of all invisible character types at once.
     - From this, invisibles visibility of displayed windows can be toggled even all invisibles are hidden as default.
 - Now, the popup menus in toolbar can be called directly even on “Text Only” mode without mode change.
