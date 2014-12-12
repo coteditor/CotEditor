@@ -36,6 +36,7 @@ changelog
 - Fix an issue that the line endings in the toolbar was always set to "LF" when its document newly created.
 - Fix an issue that the cancelation of syntax extracting didn't work immediatly under the specific conditions.
 - Fix an issue that selecting inside of brackets by double-click didn't work.
+- Fix an issue that script execution with large size output could cause application hang up.
 - Fix an issue that syntax highlighting while editing chould cause application crash.
 - Fix an issue that re-coloring after “Replace All” wasn't invoked under Japanese localization.
 - Fix an issue that the Auto-Completion feature couldn't enable from preferences under Japanese localization.
