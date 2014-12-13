@@ -198,11 +198,15 @@
 
 
 // ------------------------------------------------------
-/// テーブルセルが編集可能かを返す
-- (BOOL)tableView:(NSTableView *)tableView shouldEditTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
+/// テーブルセルが編集可能かを設定する
+- (void)tableView:(NSTableView *)tableView didAddRowView:(NSTableRowView *)rowView forRow:(NSInteger)row
 // ------------------------------------------------------
 {
-    return ![[CEThemeManager sharedManager] isBundledTheme:[self selectedTheme] cutomized:nil];
+    NSTableCellView *view = [tableView viewAtColumn:0 row:row makeIfNecessary:NO];
+    NSString *themeName = [self themeNames][row];
+    BOOL editable = ![[CEThemeManager sharedManager] isBundledTheme:themeName cutomized:nil];
+    
+    [[view textField] setEditable:editable];
 }
 
 
@@ -211,6 +215,7 @@
 - (BOOL)control:(NSControl *)control textShouldEndEditing:(NSText *)fieldEditor
 // ------------------------------------------------------
 {
+    NSString *oldName = [self selectedTheme];
     NSString *newName = [fieldEditor string];
     NSError *error = nil;
     
@@ -219,11 +224,13 @@
         return YES;
     }
     
-    BOOL success = [[CEThemeManager sharedManager] renameTheme:[self selectedTheme] toName:newName error:&error];
+    BOOL success = [[CEThemeManager sharedManager] renameTheme:oldName toName:newName error:&error];
     
     if (error) {
+        // revert name
+        [fieldEditor setString:oldName];
+        // show alert
         NSAlert *alert = [NSAlert alertWithError:error];
-        NSBeep();
         [alert beginSheetModalForWindow:[[self view] window] modalDelegate:nil didEndSelector:NULL contextInfo:NULL];
     }
     
