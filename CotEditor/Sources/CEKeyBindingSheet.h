@@ -31,22 +31,19 @@
 @import Cocoa;
 
 
-// notification
-/// Posted when menu shortcut input is catched.
-extern NSString *const CEDidCatchMenuShortcutNotification;
-// userInfo keys
-extern NSString *const CEKeyBindingModifierFlagsKey;
-extern NSString *const CEKeyBindingCharsKey;
-
-/// key catch mode
-typedef NS_ENUM(NSUInteger, CEKeyCatchMode) {
-    CEKeyDownNoCatchMode,
-    CECatchMenuShortCutMode
-};
+@protocol CEKeyCatchDelegate;
 
 
 @interface CEKeyBindingSheet : NSWindow
 
-@property (nonatomic) CEKeyCatchMode keyCatchMode;
+@property (nonatomic) BOOL shouldCatchShortcut;
+@property (nonatomic, weak) IBOutlet id<CEKeyCatchDelegate> keyCatchDelegate;
+
+@end
+
+
+@protocol CEKeyCatchDelegate
+
+- (void)didCatchModifierFlags:(NSUInteger)modifierFlags charsIgnoringModifiers:(NSString *)charsIgnoringModifiers;
 
 @end

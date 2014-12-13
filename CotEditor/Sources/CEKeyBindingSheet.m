@@ -31,37 +31,25 @@
 #import "CEKeyBindingSheet.h"
 
 
-// notification
-NSString *const CEDidCatchMenuShortcutNotification = @"CEDidCatchMenuShortcutNotification";
-// userInfo keys
-NSString *const CEKeyBindingModifierFlagsKey = @"keyBindingModifierFlags";
-NSString *const CEKeyBindingCharsKey = @"keyBindingChar";
-
-
 @implementation CEKeyBindingSheet
 
 #pragma mark Superclass Methods
 
-//=======================================================
-// Superclass method
-//
-//=======================================================
-
 // ------------------------------------------------------
-/// keyDownイベントをキャッチする
+/// catch shortcut input
 - (void)sendEvent:(NSEvent *)anEvent
 // ------------------------------------------------------
 {
-    // キーバインディングの設定で入力したキーを捕まえる
-    if (([self keyCatchMode] == CECatchMenuShortCutMode) && ([anEvent type] == NSKeyDown)) {
+    if ([self shouldCatchShortcut] && ([anEvent type] == NSKeyDown)) {
         NSString *charsIgnoringModifiers = [anEvent charactersIgnoringModifiers];
         
         if ([charsIgnoringModifiers length] > 0) {
             NSUInteger modifierFlags = [anEvent modifierFlags];
             NSCharacterSet *ignoringShiftSet = [NSCharacterSet characterSetWithCharactersInString:@"`~!@#$%^&()_{}|\":<>?=/*-+.'"];
             
-            // Backspace または delete キーが押されていた時、是正する
-            // （return 上の方にあるのが Backspace、テンキーとのあいだにある「delete」の刻印があるのが delete(forword)）
+            // correct Backspace and delete keys
+            //   `Backspace` key: the key above `return`
+            //   `delete(forword)` key: the key with printed `delete` where next to ten key pad.
             switch ([charsIgnoringModifiers characterAtIndex:0]) {
                 case NSDeleteCharacter:
                     charsIgnoringModifiers = [NSString stringWithFormat:@"%C", (unichar)NSBackspaceCharacter];
@@ -70,17 +58,17 @@ NSString *const CEKeyBindingCharsKey = @"keyBindingChar";
                     charsIgnoringModifiers = [NSString stringWithFormat:@"%C", (unichar)NSDeleteCharacter];
                     break;
             }
-            // 不要なシフトを削除
+            
+            // remove unwanted Shift
             if ([ignoringShiftSet characterIsMember:[charsIgnoringModifiers characterAtIndex:0]] &&
-                (modifierFlags & NSShiftKeyMask)) {
+                (modifierFlags & NSShiftKeyMask))
+            {
                 modifierFlags ^= NSShiftKeyMask;
             }
             
-            [[NSNotificationCenter defaultCenter] postNotificationName:CEDidCatchMenuShortcutNotification
-                                                                object:self
-                                                              userInfo:@{CEKeyBindingModifierFlagsKey: @(modifierFlags),
-                                                                         CEKeyBindingCharsKey: charsIgnoringModifiers}];
-            [self setKeyCatchMode:CEKeyDownNoCatchMode];
+            [[self keyCatchDelegate] didCatchModifierFlags:modifierFlags charsIgnoringModifiers:charsIgnoringModifiers];
+            [self setShouldCatchShortcut:NO];
+            
             return;
         }
     }
