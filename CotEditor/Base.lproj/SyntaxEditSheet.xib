@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6250"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6254"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="CESyntaxEditSheetController">
@@ -244,7 +244,7 @@
                                                                         <subviews>
                                                                             <button translatesAutoresizingMaskIntoConstraints="NO" id="NDQ-fz-o7y">
                                                                                 <rect key="frame" x="-1" y="-3" width="28" height="23"/>
-                                                                                <buttonCell key="cell" type="check" title="Check" bezelStyle="regularSquare" imagePosition="only" controlSize="small" inset="2" id="SoM-th-907">
+                                                                                <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="overlaps" controlSize="small" inset="2" id="SoM-th-907">
                                                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                                     <font key="font" metaFont="smallSystem"/>
                                                                                 </buttonCell>
@@ -279,7 +279,7 @@
                                                                         <subviews>
                                                                             <button translatesAutoresizingMaskIntoConstraints="NO" id="4yD-Ba-0li">
                                                                                 <rect key="frame" x="-1" y="-3" width="28" height="23"/>
-                                                                                <buttonCell key="cell" type="check" title="Check" bezelStyle="regularSquare" imagePosition="only" controlSize="small" inset="2" id="WYG-Sw-O6e">
+                                                                                <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="overlaps" controlSize="small" inset="2" id="WYG-Sw-O6e">
                                                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                                     <font key="font" metaFont="smallSystem"/>
                                                                                 </buttonCell>
@@ -479,7 +479,7 @@
                                                                         <subviews>
                                                                             <button translatesAutoresizingMaskIntoConstraints="NO" id="XsT-aB-kjg">
                                                                                 <rect key="frame" x="-1" y="-3" width="28" height="23"/>
-                                                                                <buttonCell key="cell" type="check" title="Check" bezelStyle="regularSquare" imagePosition="only" controlSize="small" inset="2" id="YsX-Eh-hf8">
+                                                                                <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="overlaps" controlSize="small" inset="2" id="YsX-Eh-hf8">
                                                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                                     <font key="font" metaFont="smallSystem"/>
                                                                                 </buttonCell>
@@ -514,7 +514,7 @@
                                                                         <subviews>
                                                                             <button translatesAutoresizingMaskIntoConstraints="NO" id="hE3-tp-aEp">
                                                                                 <rect key="frame" x="-1" y="-3" width="28" height="23"/>
-                                                                                <buttonCell key="cell" type="check" title="Check" bezelStyle="regularSquare" imagePosition="only" controlSize="small" inset="2" id="vNl-Wv-cYk">
+                                                                                <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="overlaps" controlSize="small" inset="2" id="vNl-Wv-cYk">
                                                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                                     <font key="font" metaFont="smallSystem"/>
                                                                                 </buttonCell>
@@ -714,7 +714,7 @@
                                                                         <subviews>
                                                                             <button translatesAutoresizingMaskIntoConstraints="NO" id="rMh-3a-OTD">
                                                                                 <rect key="frame" x="-1" y="-3" width="28" height="23"/>
-                                                                                <buttonCell key="cell" type="check" title="Check" bezelStyle="regularSquare" imagePosition="only" controlSize="small" inset="2" id="tau-qZ-Bi0">
+                                                                                <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="overlaps" controlSize="small" inset="2" id="tau-qZ-Bi0">
                                                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                                     <font key="font" metaFont="smallSystem"/>
                                                                                 </buttonCell>
@@ -749,7 +749,7 @@
                                                                         <subviews>
                                                                             <button translatesAutoresizingMaskIntoConstraints="NO" id="ldR-nI-g40">
                                                                                 <rect key="frame" x="-1" y="-3" width="28" height="23"/>
-                                                                                <buttonCell key="cell" type="check" title="Check" bezelStyle="regularSquare" imagePosition="only" controlSize="small" inset="2" id="q2d-Uv-pel">
+                                                                                <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="overlaps" controlSize="small" inset="2" id="q2d-Uv-pel">
                                                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                                     <font key="font" metaFont="smallSystem"/>
                                                                                 </buttonCell>
@@ -949,7 +949,7 @@
                                                                         <subviews>
                                                                             <button translatesAutoresizingMaskIntoConstraints="NO" id="kjh-cv-Qao">
                                                                                 <rect key="frame" x="-1" y="-3" width="28" height="23"/>
-                                                                                <buttonCell key="cell" type="check" title="Check" bezelStyle="regularSquare" imagePosition="only" controlSize="small" inset="2" id="CoC-Rv-VAs">
+                                                                                <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="overlaps" controlSize="small" inset="2" id="CoC-Rv-VAs">
                                                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                                     <font key="font" metaFont="smallSystem"/>
                                                                                 </buttonCell>
@@ -984,7 +984,7 @@
                                                                         <subviews>
                                                                             <button translatesAutoresizingMaskIntoConstraints="NO" id="940-xx-3Mf">
                                                                                 <rect key="frame" x="-1" y="-3" width="28" height="23"/>
-                                                                                <buttonCell key="cell" type="check" title="Check" bezelStyle="regularSquare" imagePosition="only" controlSize="small" inset="2" id="Fnn-22-FfE">
+                                                                                <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="overlaps" controlSize="small" inset="2" id="Fnn-22-FfE">
                                                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                                     <font key="font" metaFont="smallSystem"/>
                                                                                 </buttonCell>
@@ -1184,7 +1184,7 @@
                                                                         <subviews>
                                                                             <button translatesAutoresizingMaskIntoConstraints="NO" id="9xg-Y4-h5p">
                                                                                 <rect key="frame" x="-1" y="-3" width="28" height="23"/>
-                                                                                <buttonCell key="cell" type="check" title="Check" bezelStyle="regularSquare" imagePosition="only" controlSize="small" inset="2" id="LUE-hn-ukE">
+                                                                                <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="overlaps" controlSize="small" inset="2" id="LUE-hn-ukE">
                                                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                                     <font key="font" metaFont="smallSystem"/>
                                                                                 </buttonCell>
@@ -1219,7 +1219,7 @@
                                                                         <subviews>
                                                                             <button translatesAutoresizingMaskIntoConstraints="NO" id="x2a-3x-dHa">
                                                                                 <rect key="frame" x="-1" y="-3" width="28" height="23"/>
-                                                                                <buttonCell key="cell" type="check" title="Check" bezelStyle="regularSquare" imagePosition="only" controlSize="small" inset="2" id="ynD-So-ieb">
+                                                                                <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="overlaps" controlSize="small" inset="2" id="ynD-So-ieb">
                                                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                                     <font key="font" metaFont="smallSystem"/>
                                                                                 </buttonCell>
@@ -1419,7 +1419,7 @@
                                                                         <subviews>
                                                                             <button translatesAutoresizingMaskIntoConstraints="NO" id="SAP-FB-Vc5">
                                                                                 <rect key="frame" x="-1" y="-3" width="28" height="23"/>
-                                                                                <buttonCell key="cell" type="check" title="Check" bezelStyle="regularSquare" imagePosition="only" controlSize="small" inset="2" id="qXI-tO-dod">
+                                                                                <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="overlaps" controlSize="small" inset="2" id="qXI-tO-dod">
                                                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                                     <font key="font" metaFont="smallSystem"/>
                                                                                 </buttonCell>
@@ -1454,7 +1454,7 @@
                                                                         <subviews>
                                                                             <button translatesAutoresizingMaskIntoConstraints="NO" id="tUv-sC-09D">
                                                                                 <rect key="frame" x="-1" y="-3" width="28" height="23"/>
-                                                                                <buttonCell key="cell" type="check" title="Check" bezelStyle="regularSquare" imagePosition="only" controlSize="small" inset="2" id="QbA-lZ-d9G">
+                                                                                <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="overlaps" controlSize="small" inset="2" id="QbA-lZ-d9G">
                                                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                                     <font key="font" metaFont="smallSystem"/>
                                                                                 </buttonCell>
@@ -1654,7 +1654,7 @@
                                                                         <subviews>
                                                                             <button translatesAutoresizingMaskIntoConstraints="NO" id="28E-9N-7Aj">
                                                                                 <rect key="frame" x="-1" y="-3" width="28" height="23"/>
-                                                                                <buttonCell key="cell" type="check" title="Check" bezelStyle="regularSquare" imagePosition="only" controlSize="small" inset="2" id="Ohf-Ac-PL3">
+                                                                                <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="overlaps" controlSize="small" inset="2" id="Ohf-Ac-PL3">
                                                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                                     <font key="font" metaFont="smallSystem"/>
                                                                                 </buttonCell>
@@ -1689,7 +1689,7 @@
                                                                         <subviews>
                                                                             <button translatesAutoresizingMaskIntoConstraints="NO" id="J0o-iA-vZV">
                                                                                 <rect key="frame" x="-1" y="-3" width="28" height="23"/>
-                                                                                <buttonCell key="cell" type="check" title="Check" bezelStyle="regularSquare" imagePosition="only" controlSize="small" inset="2" id="udF-Yh-TNb">
+                                                                                <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="overlaps" controlSize="small" inset="2" id="udF-Yh-TNb">
                                                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                                     <font key="font" metaFont="smallSystem"/>
                                                                                 </buttonCell>
@@ -1889,7 +1889,7 @@
                                                                         <subviews>
                                                                             <button translatesAutoresizingMaskIntoConstraints="NO" id="re6-tn-tFm">
                                                                                 <rect key="frame" x="-1" y="-3" width="28" height="23"/>
-                                                                                <buttonCell key="cell" type="check" title="Check" bezelStyle="regularSquare" imagePosition="only" controlSize="small" inset="2" id="NVs-3Y-7JL">
+                                                                                <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="overlaps" controlSize="small" inset="2" id="NVs-3Y-7JL">
                                                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                                     <font key="font" metaFont="smallSystem"/>
                                                                                 </buttonCell>
@@ -1924,7 +1924,7 @@
                                                                         <subviews>
                                                                             <button translatesAutoresizingMaskIntoConstraints="NO" id="c2z-Xy-sL1">
                                                                                 <rect key="frame" x="-1" y="-3" width="28" height="23"/>
-                                                                                <buttonCell key="cell" type="check" title="Check" bezelStyle="regularSquare" imagePosition="only" controlSize="small" inset="2" id="miZ-f8-sfn">
+                                                                                <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="overlaps" controlSize="small" inset="2" id="miZ-f8-sfn">
                                                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                                     <font key="font" metaFont="smallSystem"/>
                                                                                 </buttonCell>
@@ -2124,7 +2124,7 @@
                                                                         <subviews>
                                                                             <button translatesAutoresizingMaskIntoConstraints="NO" id="QX2-Dv-Km6">
                                                                                 <rect key="frame" x="-1" y="-3" width="28" height="23"/>
-                                                                                <buttonCell key="cell" type="check" title="Check" bezelStyle="regularSquare" imagePosition="only" controlSize="small" inset="2" id="8Da-e8-R3c">
+                                                                                <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="overlaps" controlSize="small" inset="2" id="8Da-e8-R3c">
                                                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                                     <font key="font" metaFont="smallSystem"/>
                                                                                 </buttonCell>
@@ -2159,7 +2159,7 @@
                                                                         <subviews>
                                                                             <button translatesAutoresizingMaskIntoConstraints="NO" id="7PV-Xr-UhX">
                                                                                 <rect key="frame" x="-1" y="-3" width="28" height="23"/>
-                                                                                <buttonCell key="cell" type="check" title="Check" bezelStyle="regularSquare" imagePosition="only" controlSize="small" inset="2" id="HSD-1S-Vq5">
+                                                                                <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="overlaps" controlSize="small" inset="2" id="HSD-1S-Vq5">
                                                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                                     <font key="font" metaFont="smallSystem"/>
                                                                                 </buttonCell>
@@ -2359,7 +2359,7 @@
                                                                         <subviews>
                                                                             <button translatesAutoresizingMaskIntoConstraints="NO" id="tkK-8f-1gH">
                                                                                 <rect key="frame" x="-1" y="-3" width="28" height="23"/>
-                                                                                <buttonCell key="cell" type="check" title="Check" bezelStyle="regularSquare" imagePosition="only" controlSize="small" inset="2" id="TPj-Lx-fCs">
+                                                                                <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="overlaps" controlSize="small" inset="2" id="TPj-Lx-fCs">
                                                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                                     <font key="font" metaFont="smallSystem"/>
                                                                                 </buttonCell>
@@ -2394,7 +2394,7 @@
                                                                         <subviews>
                                                                             <button translatesAutoresizingMaskIntoConstraints="NO" id="rHl-hW-UYJ">
                                                                                 <rect key="frame" x="-1" y="-3" width="28" height="23"/>
-                                                                                <buttonCell key="cell" type="check" title="Check" bezelStyle="regularSquare" imagePosition="only" controlSize="small" inset="2" id="MUI-gn-vVZ">
+                                                                                <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="overlaps" controlSize="small" inset="2" id="MUI-gn-vVZ">
                                                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                                     <font key="font" metaFont="smallSystem"/>
                                                                                 </buttonCell>
@@ -2661,7 +2661,7 @@
                                                                         <subviews>
                                                                             <button translatesAutoresizingMaskIntoConstraints="NO" id="UGh-sP-u1f">
                                                                                 <rect key="frame" x="-1" y="-3" width="28" height="23"/>
-                                                                                <buttonCell key="cell" type="check" title="Check" bezelStyle="regularSquare" imagePosition="only" controlSize="small" inset="2" id="9se-7G-auS">
+                                                                                <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="overlaps" controlSize="small" inset="2" id="9se-7G-auS">
                                                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                                     <font key="font" metaFont="smallSystem"/>
                                                                                 </buttonCell>

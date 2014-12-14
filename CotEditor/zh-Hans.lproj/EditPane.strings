@@ -53,8 +53,8 @@
 
 /* Class = "NSTextFieldCell"; title = "Invisibles:"; ObjectID = "pjW-HE-ngH"; */
 "pjW-HE-ngH.title" = "不可见字符:";
-/* Class = "NSButtonCell"; title = "Show invisibles"; ObjectID = "CBC-vf-Dha"; */
-"CBC-vf-Dha.title" = "显示不可见文字";
+/* Class = "NSButtonCell"; title = "Show invisibles"; ObjectID = "CyH-q4-SWY"; */
+"CyH-q4-SWY.title" = "显示不可见文字";
 /* Class = "NSButtonCell"; title = "Space"; ObjectID = "3257"; */
 "3257.title" = "空格";
 /* Class = "NSButtonCell"; title = "Tab"; ObjectID = "3260"; */

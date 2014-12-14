@@ -14,7 +14,7 @@
 "5.title" = "メニューキーバインド";
 
 /* Class = "NSTextFieldCell"; title = "To change a binding, select it, click the key column, and then type the keys.\nYou MUST include the Command key."; ObjectID = "144"; */
-"144.title" = "アクションを選択し、キー列をクリックして編集状態にしてから、新しいキーを入力してください。\nかならずコマンドキーを含める必要があります";
+"144.title" = "アクションを選択し、キー列をクリックして編集状態にしてから、新しいキーを入力してください。\nかならずコマンドキーを含める必要があります。";
 
 /* Class = "NSTableColumn"; headerCell.title = "Title / Action"; ObjectID = "9"; */
 "9.headerCell.title" = "タイトル／アクション";
