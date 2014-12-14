@@ -1,6 +1,6 @@
 source 'https://github.com/CocoaPods/Specs.git'
 
-platform :osx, '10.7'
+platform :osx, '10.8'
 xcodeproj 'CotEditor/CotEditor.xcodeproj'
 inhibit_all_warnings!
 
