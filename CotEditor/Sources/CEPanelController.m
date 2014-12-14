@@ -34,7 +34,7 @@
 
 @interface CEPanelController ()
 
-@property (readwrite, nonatomic, strong) CEWindowController *documentWindowController;  // cannot be weak on Lion
+@property (readwrite, nonatomic, weak) CEWindowController *documentWindowController;
 
 
 @end
@@ -119,7 +119,6 @@ static NSMutableDictionary *instances;
 - (void)dealloc
 // ------------------------------------------------------
 {
-    _documentWindowController = nil;
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 

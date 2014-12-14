@@ -1,0 +1,140 @@
+/*
+ PrintPanelAccessory.strings
+ 
+ CotEditor
+ http://coteditor.com
+ 
+ Created on 2014-12-12 by 1024jp
+ Localized by onevcat
+ encoding="UTF-8"
+ 
+ © 2014 CotEditor Project
+ */
+
+/* Class = "NSTextFieldCell"; title = "Color:"; ObjectID = "eXI-55-yQO"; */
+"eXI-55-yQO.title" = "颜色:";
+/* Class = "NSMenuItem"; title = "Black and White"; ObjectID = "590"; */
+"590.title" = "黑白";
+/* Class = "NSMenuItem"; title = "Same as document's setting"; ObjectID = "589"; */
+"589.title" = "与文档设置一致";
+
+/* Class = "NSTextFieldCell"; title = "Line Numbers:"; ObjectID = "716"; */
+"716.title" = "行号:";
+/* Class = "NSMenuItem"; title = "Don't Print"; ObjectID = "420"; */
+"420.title" = "不打印";
+/* Class = "NSMenuItem"; title = "Same as document's setting"; ObjectID = "419"; */
+"419.title" = "与文档设置一致";
+/* Class = "NSMenuItem"; title = "Print"; ObjectID = "418"; */
+"418.title" = "打印";
+
+/* Class = "NSTextFieldCell"; title = "Invisibles:"; ObjectID = "718"; */
+"718.title" = "不可见字符:";
+/* Class = "NSMenuItem"; title = "Same as document's setting"; ObjectID = "427"; */
+"427.title" = "与文档设置一致";
+/* Class = "NSMenuItem"; title = "Don't Print"; ObjectID = "428"; */
+"428.title" = "不打印";
+/* Class = "NSMenuItem"; title = "Print all"; ObjectID = "426"; */
+"426.title" = "全部打印";
+
+
+
+/* Class = "NSButtonCell"; title = "Print header"; ObjectID = "708"; */
+"708.title" = "打印页眉";
+
+/* Class = "NSTextFieldCell"; title = "First line:"; ObjectID = "256"; */
+"706.title" = "第一行:";
+
+/* Class = "NSMenuItem"; title = "None"; ObjectID = "393"; */
+"393.title" = "无";
+/* Class = "NSMenuItem"; title = "Syntax Name"; ObjectID = "UJ5-ki-qHL"; */
+"UJ5-ki-qHL.title" = "语法名";
+/* Class = "NSMenuItem"; title = "Document Name"; ObjectID = "202"; */
+"202.title" = "文档名";
+/* Class = "NSMenuItem"; title = "File Path"; ObjectID = "203"; */
+"203.title" = "文件路径";
+/* Class = "NSMenuItem"; title = "Print Date"; ObjectID = "206"; */
+"206.title" = "打印日期";
+/* Class = "NSMenuItem"; title = "Page Number"; ObjectID = "200"; */
+"200.title" = "页码";
+
+/* Class = "NSSegmentedCell"; Aru-Gd-J0D.ibShadowedToolTips[0] = "Align Left"; ObjectID = "Aru-Gd-J0D"; */
+"Aru-Gd-J0D.ibShadowedToolTips[0]" = "Align Left";  /* Align Left */
+"Aru-Gd-J0D.ibShadowedToolTips[1]" = "Center";  /* Center */
+"Aru-Gd-J0D.ibShadowedToolTips[2]" = "Align Right";  /* Align Right */
+
+
+
+/* Class = "NSTextFieldCell"; title = "Second line:"; ObjectID = "257"; */
+"712.title" = "第二行:";
+
+/* Class = "NSMenuItem"; title = "None"; ObjectID = "395"; */
+"395.title" = "无";
+/* Class = "NSMenuItem"; title = "Syntax Name"; ObjectID = "6RR-gp-tKJ"; */
+"6RR-gp-tKJ.title" = "语法名";
+/* Class = "NSMenuItem"; title = "Document Name"; ObjectID = "312"; */
+"312.title" = "文档名";
+/* Class = "NSMenuItem"; title = "File Path"; ObjectID = "307"; */
+"307.title" = "文件路径";
+/* Class = "NSMenuItem"; title = "Print Date"; ObjectID = "311"; */
+"311.title" = "打印日期";
+/* Class = "NSMenuItem"; title = "Page Number"; ObjectID = "310"; */
+"310.title" = "页码";
+
+/* Class = "NSSegmentedCell"; I4t-kQ-lvq.ibShadowedToolTips[0] = "Align Left"; ObjectID = "I4t-kQ-lvq"; */
+"I4t-kQ-lvq.ibShadowedToolTips[0]" = "Align Left";  /* Align Left */
+"I4t-kQ-lvq.ibShadowedToolTips[1]" = "Center";  /* Center */
+"I4t-kQ-lvq.ibShadowedToolTips[2]" = "Align Right";  /* Align Right */
+
+/* Class = "NSButtonCell"; title = "Print separator line at the bottom of header"; ObjectID = "705"; */
+"705.title" = "在页眉下方打印分隔线";
+
+
+
+/* Class = "NSButtonCell"; title = "Print footer"; ObjectID = "713"; */
+"713.title" = "打印页脚";
+
+/* Class = "NSTextFieldCell"; title = "First line:"; ObjectID = "295"; */
+"711.title" = "第一行:";
+
+/* Class = "NSMenuItem"; title = "None"; ObjectID = "397"; */
+"397.title" = "无";
+/* Class = "NSMenuItem"; title = "Syntax Name"; ObjectID = "Ro5-rK-S7p"; */
+"Ro5-rK-S7p.title" = "语法名";
+/* Class = "NSMenuItem"; title = "Document Name"; ObjectID = "320"; */
+"320.title" = "文档名";
+/* Class = "NSMenuItem"; title = "File Path"; ObjectID = "315"; */
+"315.title" = "文件路径";
+/* Class = "NSMenuItem"; title = "Print Date"; ObjectID = "319"; */
+"319.title" = "打印日期";
+/* Class = "NSMenuItem"; title = "Page Number"; ObjectID = "318"; */
+"318.title" = "页码";
+
+/* Class = "NSSegmentedCell"; ObjectID = "njJ-Ab-dUQ"; */
+"njJ-Ab-dUQ.ibShadowedToolTips[0]" = "Align Left";  /* Align Left */
+"njJ-Ab-dUQ.ibShadowedToolTips[1]" = "Center";  /* Center */
+"njJ-Ab-dUQ.ibShadowedToolTips[2]" = "Align Right";  /* Align Right */
+
+
+/* Class = "NSTextFieldCell"; title = "Second line:"; ObjectID = "296"; */
+"707.title" = "第二行:";
+
+/* Class = "NSMenuItem"; title = "None"; ObjectID = "399"; */
+"399.title" = "无";
+/* Class = "NSMenuItem"; title = "Syntax Name"; ObjectID = "i9p-3e-KNC"; */
+"i9p-3e-KNC.title" = "语法名";
+/* Class = "NSMenuItem"; title = "Document Name"; ObjectID = "328"; */
+"328.title" = "文档名";
+/* Class = "NSMenuItem"; title = "File Path"; ObjectID = "323"; */
+"323.title" = "文件路径";
+/* Class = "NSMenuItem"; title = "Print Date"; ObjectID = "327"; */
+"327.title" = "打印日期";
+/* Class = "NSMenuItem"; title = "Page Number"; ObjectID = "326"; */
+"326.title" = "页码";
+
+/* Class = "NSSegmentedCell"; ObjectID = "xAm-2i-Sw1"; */
+"xAm-2i-Sw1.ibShadowedToolTips[0]" = "Align Left";  /* Align Left */
+"xAm-2i-Sw1.ibShadowedToolTips[1]" = "Center";  /* Center */
+"xAm-2i-Sw1.ibShadowedToolTips[2]" = "Align Right";  /* Align Right */
+
+/* Class = "NSButtonCell"; title = "Print separator line at the top of footer"; ObjectID = "710"; */
+"710.title" = "在页脚上方打印分隔线";

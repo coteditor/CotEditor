@@ -217,11 +217,9 @@ const NSInteger kNoMenuItem = -1;
     [[self window] setBackgroundColor:[[self theme] backgroundColor]];
     
     // レイヤーバックドビューにする
-    if (NSAppKitVersionNumber >= NSAppKitVersionNumber10_8) { // on Mountain Lion and later
-        [[self enclosingScrollView] setWantsLayer:YES];
-        [[[self enclosingScrollView] contentView] setCopiesOnScroll:YES];
-        [self setLayerContentsRedrawPolicy:NSViewLayerContentsRedrawOnSetNeedsDisplay];
-    }
+    [[self enclosingScrollView] setWantsLayer:YES];
+    [[[self enclosingScrollView] contentView] setCopiesOnScroll:YES];
+    [self setLayerContentsRedrawPolicy:NSViewLayerContentsRedrawOnSetNeedsDisplay];
     
     // ウインドウの透明フラグを監視する
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -625,12 +623,6 @@ const NSInteger kNoMenuItem = -1;
         [[[[self theme] textColor] colorWithAlphaComponent:0.2] set];
         [NSBezierPath strokeLineFromPoint:NSMakePoint(x, 0)
                                   toPoint:NSMakePoint(x, length)];
-    }
-    
-    // テキストビューを透過させている時に影を更新描画する (on Lion)
-    // Lion 上では Layer-backed になっていないのでビュー越しにテキストのドロップシャドウが描画される。Lion サポート落としたら多分不要。(2014-10 1024jp)
-    if ((NSAppKitVersionNumber < NSAppKitVersionNumber10_8) && ![[self window] isOpaque]) {
-        [[self window] invalidateShadow];
     }
 }
 
@@ -1483,12 +1475,10 @@ const NSInteger kNoMenuItem = -1;
     // ウインドウが不透明な時は自前で背景を描画する（サブピクセルレンダリングを有効にするためには layer-backed で不透明なビューが必要）
     [self setDrawsBackground:[[self window] isOpaque]];
     
-    if (NSAppKitVersionNumber >= NSAppKitVersionNumber10_8) { // on Mountain Lion and later
-        // 半透明時にこれを有効にすると、ファイルサイズが大きいときにハングに近い状態になるため、
-        // 暫定処置として不透明時にだけ有効にする。
-        // 逆に不透明時に無効だと、ウインドウリサイズ時にビューが伸び縮みする (2014-10 by 1024jp)
-        [[self layer] setNeedsDisplayOnBoundsChange:[[self window] isOpaque]];
-    }
+    // 半透明時にこれを有効にすると、ファイルサイズが大きいときにハングに近い状態になるため、
+    // 暫定処置として不透明時にだけ有効にする。
+    // 逆に不透明時に無効だと、ウインドウリサイズ時にビューが伸び縮みする (2014-10 by 1024jp)
+    [[self layer] setNeedsDisplayOnBoundsChange:[[self window] isOpaque]];
     
     [self setNeedsDisplay:YES];
 }

@@ -1,0 +1,84 @@
+/*
+ EditPane.strings
+ 
+ CotEditor
+ http://coteditor.com
+ 
+ Created on 2014-12-12 by 1024jp
+ Localized by onevcat
+ encoding="UTF-8"
+ 
+ © 2014 CotEditor Project
+ */
+
+/* Class = "NSTextFieldCell"; title = "Behavior:"; ObjectID = "SqI-BC-ar9"; */
+"SqI-BC-ar9.title" = "行为:";
+/* Class = "NSButtonCell"; title = "Enable smart insert and delete"; ObjectID = "nA4-HY-d71"; */
+"nA4-HY-d71.title" = "启用智能引号和破折号";
+/* Class = "NSButtonCell"; title = "Enable smart quotes and dashes"; ObjectID = "3302"; */
+"3302.title" = "启用只能插入和删除";
+/* Class = "NSButtonCell"; title = "Swap “¥” and “\\” keys"; ObjectID = "3303"; */
+"3303.title" = "转换 “¥” 和 “\\” 按键";
+/* Class = "NSButtonCell"; title = "Highlight matching braces “( )” “[ ]” “{ }”"; ObjectID = "3304"; */
+"3304.title" = "高亮配对括号 “( )” “[ ]” “{ }”";
+/* Class = "NSButtonCell"; title = "Highlight “< >”"; ObjectID = "3305"; */
+"3305.title" = "高亮 “< >”";
+
+
+/* Class = "NSTextFieldCell"; title = "Indentation:"; ObjectID = "9bX-ei-1x8"; */
+"9bX-ei-1x8.title" = "缩进:";
+/* Class = "NSButtonCell"; title = "Auto indent"; ObjectID = "3285"; */
+"3285.title" = "自动缩进";
+/* Class = "NSButtonCell"; title = "Expand tabs to spaces"; ObjectID = "3283"; */
+"3283.title" = "将 tab 转换为空格";
+/* Class = "NSTextFieldCell"; title = "Indent width:"; ObjectID = "3287"; */
+"3287.title" = "以";
+/* Class = "NSTextFieldCell"; title = "spaces"; ObjectID = "as9-us-CuG"; */
+"as9-us-CuG.title" = "个空格缩进";
+
+
+/* Class = "NSTextFieldCell"; title = "Comment:"; ObjectID = "EDl-AJ-1dK"; */
+"EDl-AJ-1dK.title" = "注释:";
+/* Class = "NSButtonCell"; title = "Append a space to comment delimiter"; ObjectID = "6Dw-5M-Gv0"; */
+"6Dw-5M-Gv0.title" = "在注释符号后追加空格";
+/* Class = "NSButtonCell"; title = "Always from line head"; ObjectID = "Byi-E9-owf"; */
+"Byi-E9-owf.title" = "使用从行首开始";
+
+
+/* Class = "NSTextFieldCell"; title = "Line wrapping:"; ObjectID = "P1I-gs-RgX"; */
+"P1I-gs-RgX.title" = "换行:";
+/* Class = "NSButtonCell"; title = "Soft wrap lines"; ObjectID = "3274"; */
+"3274.title" = "自动换行";
+
+
+/* Class = "NSTextFieldCell"; title = "Invisibles:"; ObjectID = "pjW-HE-ngH"; */
+"pjW-HE-ngH.title" = "不可见字符:";
+/* Class = "NSButtonCell"; title = "Show invisibles"; ObjectID = "CBC-vf-Dha"; */
+"CBC-vf-Dha.title" = "显示不可见文字";
+/* Class = "NSButtonCell"; title = "Space"; ObjectID = "3257"; */
+"3257.title" = "空格";
+/* Class = "NSButtonCell"; title = "Tab"; ObjectID = "3260"; */
+"3260.title" = "Tab";
+/* Class = "NSButtonCell"; title = "Line Ending"; ObjectID = "3255"; */
+"3255.title" = "行尾";
+/* Class = "NSButtonCell"; title = "Fullwidth-Space"; ObjectID = "3262"; */
+"3262.title" = "全角空格";
+/* Class = "NSButtonCell"; title = "Other Invisible Characters"; ObjectID = "3263"; */
+"3263.title" = "其他不可见字符";
+
+
+/* Class = "NSTextFieldCell"; title = "Completion:"; ObjectID = "gDN-SU-sZH"; */
+"gDN-SU-sZH.title" = "补全:";
+/* Class = "NSButtonCell"; title = "Auto complete"; ObjectID = "J1B-wA-rdr"; */
+"J1B-wA-rdr.title" = "自动补全";
+
+/* Class = "NSTextFieldCell"; title = "Completion list includes words in:"; ObjectID = "dLj-Kh-KtX"; */
+"dLj-Kh-KtX.title" = "补全列表包括的单词来源:";
+/* Class = "NSButtonCell"; title = "Document only"; ObjectID = "689"; */
+"689.title" = "仅文档";
+/* Class = "NSButtonCell"; title = "Syntax Style only"; ObjectID = "690"; */
+"690.title" = "仅语法风格";
+/* Class = "NSButtonCell"; title = "Document + Syntax Style"; ObjectID = "691"; */
+"691.title" = "文档 + 语法风格";
+/* Class = "NSButtonCell"; title = "Document + Syntax Style + Standard Words"; ObjectID = "r6f-b7-fJY"; */
+"r6f-b7-fJY.title" = "文档 + 语法风格 + 标准单词";

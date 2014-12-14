@@ -589,17 +589,14 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 - (void)runAppleScript:(NSURL *)URL
 //------------------------------------------------------
 {
-    NSDictionary *errorInfo = nil;
+    NSError *error = nil;
+    NSUserAppleScriptTask *task = [[NSUserAppleScriptTask alloc] initWithURL:URL error:&error];
     
-    NSAppleScript *appleScript = [[NSAppleScript alloc] initWithContentsOfURL:URL error:&errorInfo];
-    [appleScript executeAndReturnError:&errorInfo];
-    
-    // エラーが発生したら、表示
-    if (errorInfo) {
-        [self showAlertWithMessage:[NSString stringWithFormat:NSLocalizedString(@"%@\nErrorNumber: %@", nil),
-                                    errorInfo[NSAppleScriptErrorMessage],
-                                    errorInfo[NSAppleScriptErrorNumber]]];
-    }
+    [task executeWithAppleEvent:nil completionHandler:^(NSAppleEventDescriptor *result, NSError *error) {
+        if (error) {
+            [self showAlertWithMessage:[error localizedDescription]];
+        }
+    }];
 }
 
 
@@ -608,10 +605,12 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 - (void)runShellScript:(NSURL *)URL
 //------------------------------------------------------
 {
+    NSError *error = nil;
+    NSUserUnixTask *task = [[NSUserUnixTask alloc] initWithURL:URL error:&error];
     NSString *script = [self stringOfScript:URL];
 
     // スクリプトファイル内容を得られない場合は警告して抜ける
-    if ([script length] == 0) {
+    if (!task || [script length] == 0) {
         [self showAlertWithMessage:[NSString stringWithFormat:NSLocalizedString(@"Could not read the script “%@”.", nil), URL]];
         return;
     }
@@ -621,50 +620,33 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
     BOOL hasError = NO;
     __block NSString *input = [[self class] documentStringWithInputType:inputType error:&hasError];
     if (hasError) {
-        [self showScriptError:@"NO document, no Input."];
+        [self showScriptError:@"No document, no Input."];
         return;
     }
     
     // 出力タイプを得る
     CEScriptOutputType outputType = [[self class] scanOutputType:script];
-
-    // タスク実行準備
-    // （task に引数をセットすると一部のスクリプトが誤動作する。例えば、Perl 5.8.xで「use encoding 'utf8'」のうえ
-    // printコマンドを使用すると文字化けすることがある。2009-03-31）
-    NSTask *task = [[NSTask alloc] init];
-    [task setLaunchPath:[URL path]];
-    [task setCurrentDirectoryPath:NSHomeDirectory()];
     
-    // Standard Input
+    NSPipe *inPipe = [NSPipe pipe];
+    NSPipe *outPipe = [NSPipe pipe];
+    NSPipe *errPipe = [NSPipe pipe];
+    [task setStandardInput:[inPipe fileHandleForReading]];
+    [task setStandardOutput:[outPipe fileHandleForWriting]];
+    [task setStandardError:[errPipe fileHandleForWriting]];
+    
+    // set input data asynchronously if available
     if ([input length] > 0) {
-        [task setStandardInput:[NSPipe pipe]];
-        [[[task standardInput] fileHandleForWriting] setWriteabilityHandler:^(NSFileHandle *handle) {
-            [handle writeData:[input dataUsingEncoding:NSUTF8StringEncoding]];
+        [[inPipe fileHandleForWriting] setWriteabilityHandler:^(NSFileHandle *handle) {
+            NSData *data = [input dataUsingEncoding:NSUTF8StringEncoding];
+            [handle writeData:data];
             [handle closeFile];
-            
         }];
     }
     
-    // Standard Error
-    __weak typeof(self) weakSelf = self;
-    [task setStandardError:[NSPipe pipe]];
-    [[[task standardError] fileHandleForReading] setReadabilityHandler:^(NSFileHandle *handle) {
-        typeof(self) strongSelf = weakSelf;
-        NSString *error = [[NSString alloc] initWithData:[handle readDataToEndOfFile] encoding:NSUTF8StringEncoding];
-        
-        if ([error length] > 0) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [strongSelf showScriptError:error];
-            });
-        }
-    }];
-    
-    // Standard Output
     // read output asynchronously for safe with huge output
-    [task setStandardOutput:[NSPipe pipe]];
-    [[[task standardOutput] fileHandleForReading] readToEndOfFileInBackgroundAndNotify];
+    [[outPipe fileHandleForReading] readToEndOfFileInBackgroundAndNotify];
     [[NSNotificationCenter defaultCenter] addObserverForName:NSFileHandleReadToEndOfFileCompletionNotification
-                                                      object:[[task standardOutput] fileHandleForReading]
+                                                      object:[outPipe fileHandleForReading]
                                                        queue:nil
                                                   usingBlock:^(NSNotification *note)
      {
@@ -675,18 +657,31 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
          }
      }];
     
-    [task launch];
+    // execute
+    __weak typeof(self) weakSelf = self;
+    [task executeWithCompletionHandler:^(NSError *error) {
+        typeof(self) strongSelf = weakSelf;
+        
+        // error
+        NSData *errorData = [[errPipe fileHandleForReading] readDataToEndOfFile];
+        NSString *errorMsg = [[NSString alloc] initWithData:errorData encoding:NSUTF8StringEncoding];
+        if ([errorMsg length] > 0) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [strongSelf showScriptError:errorMsg];
+            });
+        }
+    }];
 }
 
 
 // ------------------------------------------------------
 /// スクリプトエラーを追記し、エラーログウィンドウを表示
-- (void)showScriptError:(NSString *)newError
+- (void)showScriptError:(NSString *)errorString
 // ------------------------------------------------------
 {
     [[CEScriptErrorPanelController sharedController] showWindow:nil];
     [[CEScriptErrorPanelController sharedController] addErrorString:[NSString stringWithFormat:@"[%@]\n%@",
-                                                                     [[NSDate date] description], newError]];
+                                                                     [[NSDate date] description], errorString]];
 }
 
 @end

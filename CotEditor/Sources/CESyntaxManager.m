@@ -127,7 +127,6 @@ NSString *const CESyntaxValidationMessageKey = @"MessageKey";
         while (dispatch_semaphore_wait(semaphore, DISPATCH_TIME_NOW)) {  // avoid dead lock
             [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
         }
-        dispatch_release(semaphore);
     }
     return self;
 }

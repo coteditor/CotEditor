@@ -1,0 +1,29 @@
+/*
+ MenuKeyBindingEditSheet.strings
+ 
+ CotEditor
+ http://coteditor.com
+ 
+ Created on 2014-11-04 by 1024jp
+ encoding="UTF-8"
+ 
+ © 2014 CotEditor Project
+ */
+
+/* Class = "CEKeyBindingSheet"; title = "Menu Key Bindings"; ObjectID = "5"; */
+"5.title" = "メニューキーバインド";
+
+/* Class = "NSTextFieldCell"; title = "To change a binding, select it, click the key column, and then type the keys.\nYou MUST include the Command key."; ObjectID = "144"; */
+"144.title" = "アクションを選択し、キー列をクリックして編集状態にしてから、新しいキーを入力してください。\nかならずコマンドキーを含める必要があります";
+
+/* Class = "NSTableColumn"; headerCell.title = "Title / Action"; ObjectID = "9"; */
+"9.headerCell.title" = "タイトル／アクション";
+/* Class = "NSTableColumn"; headerCell.title = "Key"; ObjectID = "10"; */
+"10.headerCell.title" = "キー";
+
+/* Class = "NSButtonCell"; title = "Restore Defaults"; ObjectID = "140"; */
+"140.title" = "デフォルトに戻す";
+/* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "141"; */
+"141.title" = "キャンセル";
+/* Class = "NSButtonCell"; title = "OK"; ObjectID = "142"; */
+"142.title" = "OK";

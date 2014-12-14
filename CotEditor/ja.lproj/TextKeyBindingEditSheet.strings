@@ -1,0 +1,34 @@
+/*
+ TextKeyBindingEditSheet.strings
+ 
+ CotEditor
+ http://coteditor.com
+ 
+ Created on 2014-11-04 by 1024jp
+ encoding="UTF-8"
+ 
+ © 2014 CotEditor Project
+ */
+
+/* Class = "CEKeyBindingSheet"; title = "テキストキーバインド"; ObjectID = "54"; */
+"54.title" = "文本按键绑定";
+
+/* Class = "NSTextFieldCell"; title = "To change a binding, select it, click the key column, and then type the keys.\nDo NOT include the Command key."; ObjectID = "150"; */
+"150.title" = "アクションを選択し、キー列をクリックして編集状態にしてから、新しいキーを入力してください。\nコマンドキーを含めることはできません。";
+
+/* Class = "NSTableColumn"; headerCell.title = "Action"; ObjectID = "88"; */
+"88.headerCell.title" = "アクション";
+/* Class = "NSTableColumn"; headerCell.title = "Key"; ObjectID = "87"; */
+"87.headerCell.title" = "キー";
+
+/* Class = "NSTextFieldCell"; title = "Text to insert:"; ObjectID = "152"; */
+"152.title" = "挿入文字列：";
+/* Class = "IBBindingConnection"; ibShadowedNoSelectionPlaceholder = "Select action."; ObjectID = "OsK-7K-roa"; */
+"OsK-7K-roa.ibShadowedNoSelectionPlaceholder" = "アクションを選択してください。";
+
+/* Class = "NSButtonCell"; title = "Restore Defaults"; ObjectID = "153"; */
+"153.title" = "デフォルトに戻す";
+/* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "156"; */
+"156.title" = "キャンセル";
+/* Class = "NSButtonCell"; title = "OK"; ObjectID = "154"; */
+"154.title" = "OK";

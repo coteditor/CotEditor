@@ -2,6 +2,15 @@
 Change Log
 ==========================
 
+2.1.0
+--------------------------
+
+### Additions/Changes
+
+- Improve to display gear icon in menu bar while executing a script.
+
+
+
 2.0.3
 --------------------------
 

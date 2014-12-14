@@ -1,0 +1,33 @@
+/*
+ EncodingListSheet.strings
+ 
+ CotEditor
+ http://coteditor.com
+ 
+ Created on 2014-12-12 by 1024jp
+ Localized by onevcat
+ encoding="UTF-8"
+ 
+ © 2014 CotEditor Project
+ */
+
+/* Class = "NSWindow"; title = "Encoding List"; ObjectID = "36"; */
+"36.title" = "编码列表";
+
+/* Class = "NSTextFieldCell"; title = "Drag encodings to change the order."; ObjectID = "3395"; */
+"3395.title" = "拖拽以改变编码顺序";
+
+/* Class = "NSTextFieldCell"; title = "This list is for Auto-Detect and the file encoding menu.\nAuto-Detect tries these encodings from the top of the list."; ObjectID = "3394"; */
+"3394.title" = "这个列表是为编码菜单中的自动检测准备的\n自动检测将自上而下尝试匹配该列表中的编码";
+
+/* Class = "NSButtonCell"; title = "Add Separator"; ObjectID = "3392"; */
+"3392.title" = "添加分隔线";
+/* Class = "NSButtonCell"; title = "Delete Separator"; ObjectID = "3393"; */
+"3393.title" = "删除分隔线";
+
+/* Class = "NSButtonCell"; title = "Restore Defaults"; ObjectID = "3396"; */
+"3396.title" = "恢复默认";
+/* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "3390"; */
+"3390.title" = "取消";
+/* Class = "NSButtonCell"; title = "OK"; ObjectID = "3391"; */
+"3391.title" = "好";
