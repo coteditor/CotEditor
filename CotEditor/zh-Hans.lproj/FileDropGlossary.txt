@@ -1,0 +1,29 @@
+<<<ABSOLUTE-PATH>>>
+拖拽的文件绝对路径
+
+<<<RELATIVE-PATH>>>
+拖拽的文件与编辑中文档的相对路径
+
+<<<FILENAME>>>
+拖拽的文件的文件名以及扩展名 (如果存在)
+
+<<<FILENAME-NOSUFFIX>>>
+不带扩展名的文件名
+
+<<<FILEEXTENSION>>>
+拖拽的文件的扩展名
+
+<<<FILEEXTENSION-LOWER>>>
+拖拽的文件的扩展名 (转换为小写)
+
+<<<FILEEXTENSION-UPPER>>>
+拖拽的文件的扩展名 (转换为大写)
+
+<<<DIRECTORY>>>
+拖拽的文件的上级目录
+
+<<<IMAGEWIDTH>>>
+图片宽度 (如果拖拽文件是图像)
+
+<<<IMAGEHEIGHT>>>
+图片高度 (如果拖拽文件是图像)

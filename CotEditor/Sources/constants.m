@@ -130,6 +130,7 @@ NSString *const CEDefaultWindowAlphaKey = @"windowAlpha";
 NSString *const CEDefaultAutoExpandTabKey = @"autoExpandTab";
 NSString *const CEDefaultTabWidthKey = @"tabWidth";
 NSString *const CEDefaultAutoIndentKey = @"autoIndent";
+NSString *const CEDefaultShowInvisiblesKey = @"showInvisibles";
 NSString *const CEDefaultShowInvisibleSpaceKey = @"showInvisibleSpace";
 NSString *const CEDefaultInvisibleSpaceKey = @"invisibleSpace";
 NSString *const CEDefaultShowInvisibleTabKey = @"showInvisibleTab";
@@ -379,21 +380,6 @@ CGFloat const kNoSeparatorPadding = 18.0;
 
 
 
-#pragma mark Document Window
-
-// ------------------------------------------------------
-// Document Window
-// ------------------------------------------------------
-
-// Line Endings
-NSString * const kLineEndingNames[]=  {
-    @"LF",
-    @"CR",
-    @"CR/LF"
-};
-
-
-
 #pragma mark Encodings
 
 // ------------------------------------------------------
@@ -427,6 +413,9 @@ CFStringEncodings const kCFStringEncodingList[] = {
     kCFStringEncodingInvalidId, // ----------
     
     kCFStringEncodingGB_18030_2000,  // Chinese (GB18030)
+    kCFStringEncodingBig5_HKSCS_1999,  // Traditional Chinese (Big 5 HKSCS)
+    kCFStringEncodingBig5_E,  // Traditional Chinese (Big 5-E)
+    kCFStringEncodingBig5,  // Traditional Chinese (Big 5)
     kCFStringEncodingMacChineseTrad, // Traditional Chinese (Mac OS)
     kCFStringEncodingMacChineseSimp, // Simplified Chinese (Mac OS)
     kCFStringEncodingEUC_TW,  // Traditional Chinese (EUC)

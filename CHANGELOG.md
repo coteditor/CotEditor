@@ -1,13 +1,55 @@
 
-changelog
+Change Log
 ==========================
+
+2.0.3
+--------------------------
+
+### New Features 
+
+- Add Chinese (Simplified) localization. (Thanks to Wei Wang!)
+- Add feature to scale font size up by pinch gesture.
+
+
+### Additions/Changes
+
+- Add “Traditional Chinese (Big 5 HKSCS)”, “Traditional Chinese (Big 5-E)” and “Traditional Chinese (Big 5)” to encoding list.
+- Add “show invisible characters” option to set visibility of all invisible character types at once.
+    - From this, invisibles visibility of displayed windows can be toggled even all invisibles are hidden as default.
+- Now, the popup menus in toolbar can be called directly even on “Text Only” mode without mode change.
+- Now, window states will resume from the last session.
+- Change default syntax style from “None” to “Plain Text”.
+- Improve syntax highlighting performance.
+- Remove delay when a AppleScript/JavaScript is run for the first time after application launch.
+- Update “CSS” syntax style:
+    - Add several keywords. (Thanks to Nathan Rutzky!)
+- Update “JSON” syntax style:
+    - Improve highlighting performance.
+- Improve find panel behavior with Spaces.
+- Disable rech text in find panel.
+
+
+### Fixes
+
+- Fix page guide position and tab width.
+- Fix an issue that “Go” button in “Go To” sheet didn't work by clicking.
+- Fix an issue that line endings menu in toolbar whose document had been newly created was always set to “LF”.
+- Fix an issue that cancelation of syntax extracting didn't work immediately under the specific conditions.
+- Fix an issue that selecting inside of brackets by double-clicking didn't work.
+- Fix an issue that script execution with large size output could cause application hang up.
+- Fix a possible issue that syntax highlighting while text editing chould cause application crash.
+- Fix an issue that application could hang up when no text font is found.
+- Fix an issue that highlights weren't updated after “Replace All” under Japanese localization.
+- Fix an issue that the Auto-Completion feature couldn't enable from the preferences under Japanese localization.
+
+
 
 2.0.2
 --------------------------
 
 ### Fixes
 
-- Fix a critical issue that the application hung if either file encoding or line eingings is shown in status bar.
+- Fix a critical issue that the application hang up if either file encoding or line endings is shown in status bar.
 
 
 

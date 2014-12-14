@@ -50,7 +50,7 @@
 @property (nonatomic, copy) NSString *inlineCommentDelimiter;  // インラインコメント開始文字列
 @property (nonatomic, copy) NSDictionary *blockCommentDelimiters;  // ブロックコメント開始・終了文字列のペア
 @property (nonatomic, copy) NSCharacterSet *firstCompletionCharacterSet;  // 入力補完の最初の1文字のセット
-@property (nonatomic, weak) NSView *lineNumberView;  // lineNumberView
+@property (nonatomic, weak) NSView *lineNumberView;
 @property (nonatomic, copy) NSString *lineEndingString;  // 行末文字
 
 @property (nonatomic) CETheme *theme;
@@ -61,26 +61,56 @@
 
 
 // Public method
-- (void)completeAfterDelay:(NSTimeInterval)delay;
 - (void)applyTypingAttributes;
 - (void)replaceSelectedStringTo:(NSString *)string scroll:(BOOL)needsScroll;
 - (void)replaceAllStringTo:(NSString *)string;
 - (void)insertAfterSelection:(NSString *)string;
 - (void)appendAllString:(NSString *)string;
 - (void)insertCustomTextWithPatternNum:(NSInteger)patternNum;
-- (void)resetFont:(id)sender;
 - (void)setNewLineSpacingAndUpdate:(CGFloat)lineSpacing;
 - (void)doReplaceString:(NSString *)string withRange:(NSRange)range
            withSelected:(NSRange)selection withActionName:(NSString *)actionName;
 
 // Action Message
+- (IBAction)resetFont:(id)sender;
 - (IBAction)shiftRight:(id)sender;
 - (IBAction)shiftLeft:(id)sender;
+- (IBAction)selectLines:(id)sender;
+- (IBAction)changeTabWidth:(id)sender;
+- (IBAction)inputYenMark:(id)sender;
+- (IBAction)inputBackSlash:(id)sender;
+- (IBAction)setSelectedRangeWithNSValue:(id)sender;
+- (IBAction)changeLineHeight:(id)sender;
+- (IBAction)showSelectionInfo:(id)sender;
+
+@end
+
+
+
+@interface CETextView (WordCompletion)
+
+- (void)completeAfterDelay:(NSTimeInterval)delay;
+
+// semi-private methods
+- (void)stopCompletionTimer;
+
+@end
+
+
+@interface CETextView (Commenting)
+
 - (IBAction)toggleComment:(id)sender;
 - (IBAction)commentOut:(id)sender;
 - (IBAction)uncomment:(id)sender;
-- (IBAction)selectLines:(id)sender;
-- (IBAction)changeTabWidth:(id)sender;
+
+// semi-private methods
+- (BOOL)canUncommentRange:(NSRange)range;
+
+@end
+
+
+@interface CETextView (UtilityMenu)
+
 - (IBAction)exchangeFullwidthRoman:(id)sender;
 - (IBAction)exchangeHalfwidthRoman:(id)sender;
 - (IBAction)exchangeKatakana:(id)sender;
@@ -89,11 +119,6 @@
 - (IBAction)normalizeUnicodeWithNFC:(id)sender;
 - (IBAction)normalizeUnicodeWithNFKD:(id)sender;
 - (IBAction)normalizeUnicodeWithNFKC:(id)sender;
-- (IBAction)inputYenMark:(id)sender;
-- (IBAction)inputBackSlash:(id)sender;
 - (IBAction)editColorCode:(id)sender;
-- (IBAction)setSelectedRangeWithNSValue:(id)sender;
-- (IBAction)setLineSpacingFromMenu:(id)sender;
-- (IBAction)showSelectionInfo:(id)sender;
 
 @end

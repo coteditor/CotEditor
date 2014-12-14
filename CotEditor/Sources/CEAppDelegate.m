@@ -130,6 +130,7 @@
                                CEDefaultAutoExpandTabKey: @NO,
                                CEDefaultTabWidthKey: @4U,
                                CEDefaultAutoIndentKey: @YES,
+                               CEDefaultShowInvisiblesKey: @YES,
                                CEDefaultShowInvisibleSpaceKey: @NO,
                                CEDefaultInvisibleSpaceKey: @0U,
                                CEDefaultShowInvisibleTabKey: @NO,
@@ -142,7 +143,7 @@
                                CEDefaultHighlightCurrentLineKey: @NO,
                                CEDefaultThemeKey: @"Dendrobates",
                                CEDefaultEnableSyntaxHighlightKey: @YES,
-                               CEDefaultSyntaxStyleKey: NSLocalizedString(@"None", nil),
+                               CEDefaultSyntaxStyleKey: @"Plain Text",
                                CEDefaultDelayColoringKey: @NO,
                                CEDefaultFileDropArrayKey: @[@{CEFileDropExtensionsKey: @"jpg, jpeg, gif, png",
                                                               CEFileDropFormatStringKey: @"<img src=\"<<<RELATIVE-PATH>>>\" alt=\"<<<FILENAME-NOSUFFIX>>>\" title=\"<<<FILENAME-NOSUFFIX>>>\" width=\"<<<IMAGEWIDTH>>>\" height=\"<<<IMAGEHEIGHT>>>\" />"}],
@@ -377,7 +378,7 @@
     
     // AppleScript 起動のスピードアップのため一度動かしておく
     if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultRunAppleScriptInLaunchingKey]) {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        dispatch_async(dispatch_get_main_queue(), ^{
             NSString *source = @"tell application \"CotEditor\" to number of documents";
             NSAppleScript *AppleScript = [[NSAppleScript alloc] initWithSource:source];
             [AppleScript executeAndReturnError:nil];

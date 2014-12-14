@@ -120,6 +120,7 @@ extern NSString *const CEDefaultWindowAlphaKey;
 extern NSString *const CEDefaultAutoExpandTabKey;
 extern NSString *const CEDefaultTabWidthKey;
 extern NSString *const CEDefaultAutoIndentKey;
+extern NSString *const CEDefaultShowInvisiblesKey;
 extern NSString *const CEDefaultShowInvisibleSpaceKey;
 extern NSString *const CEDefaultInvisibleSpaceKey;
 extern NSString *const CEDefaultShowInvisibleTabKey;
@@ -209,12 +210,6 @@ extern NSString *const CEDefaultLargeFileAlertThresholdKey;
 // ------------------------------------------------------
 // User Defaults Values
 // ------------------------------------------------------
-
-typedef NS_ENUM(NSUInteger, CELineEnding) {
-    CELineEndingLF,
-    CELineEndingCR,
-    CELineEndingCRLF
-};
 
 typedef NS_ENUM(NSUInteger, CEColorPrintMode) {
     CEBlackColorPrint,
@@ -429,17 +424,6 @@ extern CGFloat const kPrintHFVerticalMargin;      // top/bottom margin for heade
 extern CGFloat const kHeaderFooterLineHeight;
 extern CGFloat const kSeparatorPadding;
 extern CGFloat const kNoSeparatorPadding;
-
-
-
-#pragma mark Document Window
-
-// ------------------------------------------------------
-// Document Window
-// ------------------------------------------------------
-
-// Line Endings
-extern NSString *const kLineEndingNames[];
 
 
 

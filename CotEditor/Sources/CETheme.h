@@ -68,6 +68,6 @@
 
 
 /// default initializer
-- (instancetype)initWithName:(NSString *)themeName;
+- (instancetype)initWithName:(NSString *)themeName NS_DESIGNATED_INITIALIZER;
 
 @end

@@ -61,7 +61,7 @@ typedef NS_ENUM(NSUInteger, CEUNFType) {
 @interface CETextSelection : NSObject <NSTextStorageDelegate>
 
 // Public method
-- (instancetype)initWithDocument:(CEDocument *)document;
+- (instancetype)initWithDocument:(CEDocument *)document NS_DESIGNATED_INITIALIZER;
 - (void)cleanUpTextStorage:(NSTextStorage *)textStorage;
 
 @end

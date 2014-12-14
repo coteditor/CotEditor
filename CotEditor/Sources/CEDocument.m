@@ -31,7 +31,6 @@
 @import ObjectiveC.message;
 #import "CEDocument.h"
 #import <sys/xattr.h>
-#import <OgreKit/OgreKit.h>
 #import "CEDocumentController.h"
 #import "CEPrintPanelAccessoryController.h"
 #import "CEGoToSheetController.h"
@@ -68,7 +67,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 @property (readwrite, nonatomic) CEWindowController *windowController;
 @property (readwrite, nonatomic) CETextSelection *selection;
 @property (readwrite, nonatomic) NSStringEncoding encoding;
-@property (readwrite, nonatomic) OgreNewlineCharacter lineEnding;
+@property (readwrite, nonatomic) CENewLineType lineEnding;
 @property (readwrite, nonatomic, copy) NSDictionary *fileAttributes;
 @property (readwrite, nonatomic, getter=isWritable) BOOL writable;
 
@@ -452,8 +451,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 - (NSString *)stringForSave
 // ------------------------------------------------------
 {
-    return [OGRegularExpression replaceNewlineCharactersInString:[[self editor] string]
-                                                   withCharacter:[self lineEnding]];
+    return [[[self editor] string] stringByReplacingNewLineCharacersWith:[self lineEnding]];
 }
 
 // ------------------------------------------------------
@@ -475,14 +473,12 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     //  * 検索パネルでの置換 = (OgreKit) OgreTextViewPlainAdapter > replaceCharactersInRange:withOGString:
     
     if ([self initialString]) {
-        OgreNewlineCharacter lineEnding = [OGRegularExpression newlineCharacterInString:[self initialString]];
-        if (lineEnding != OgreNonbreakingNewlineCharacter) {  // 改行コードが含まれないときはデフォルトのままにする
+        CENewLineType lineEnding = [[self initialString] detectNewLineType];
+        if (lineEnding != CENewLineNone) {  // 改行コードが含まれないときはデフォルトのままにする
             [self setLineEnding:lineEnding];
-            [self applyLineEndingToView]; // to update toolbar
         }
         
-        NSString *string = [OGRegularExpression replaceNewlineCharactersInString:[self initialString]
-                                                                   withCharacter:OgreLfNewlineCharacter];
+        NSString *string = [[self initialString] stringByReplacingNewLineCharacersWith:CENewLineLF];
         
         [[self editor] setString:string]; // （editorWrapper の setString 内でキャレットを先頭に移動させている）
         [self setInitialString:nil];  // release
@@ -490,6 +486,9 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     } else {
         [[self editor] setString:@""];
     }
+    // update toolbar
+    [self applyLineEndingToView];
+    
     // ツールバーのエンコーディングメニュー、ステータスバー、ドロワーを更新
     [self updateEncodingInToolbarAndInfo];
     // カラーリングと行番号を更新
@@ -741,62 +740,14 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 
 // ------------------------------------------------------
-/// Return line ending in NSString
-- (NSString *)lineEndingString
-// ------------------------------------------------------
-{
-    switch ([self lineEnding]) {
-        case OgreLfNewlineCharacter:  // LF (NSNewlineCharacter)
-            return @"\n";
-        case OgreCrNewlineCharacter:  // CR (NSCarriageReturnCharacter)
-            return @"\r";
-        case OgreCrLfNewlineCharacter:  // CR+LF
-            return @"\r\n";
-        case OgreUnicodeLineSeparatorNewlineCharacter:
-            return [NSString stringWithFormat:@"%C", (unichar)NSLineSeparatorCharacter];
-        case OgreUnicodeParagraphSeparatorNewlineCharacter:
-            return [NSString stringWithFormat:@"%C", (unichar)NSParagraphSeparatorCharacter];
-        case OgreNonbreakingNewlineCharacter:  // 改行なし
-            return @"";
-        default:
-            return nil;
-    }
-}
-
-
-// ------------------------------------------------------
-/// Return line ending name to display
-- (NSString *)lineEndingName
-// ------------------------------------------------------
-{
-    switch ([self lineEnding]) {
-        case OgreLfNewlineCharacter:
-            return @"LF";
-        case OgreCrNewlineCharacter:
-            return @"CR";
-        case OgreCrLfNewlineCharacter:
-            return @"CR/LF";
-        case OgreUnicodeLineSeparatorNewlineCharacter:
-            return @"Unicode-lineSep";
-        case OgreUnicodeParagraphSeparatorNewlineCharacter:
-            return @"Unicode-paraSep";
-        case OgreNonbreakingNewlineCharacter: // 改行なし
-            return @"";
-        default:
-            return nil;
-    }
-}
-
-
-// ------------------------------------------------------
 /// 改行コードを変更する
-- (void)doSetLineEnding:(CELineEnding)lineEnding
+- (void)doSetLineEnding:(CENewLineType)lineEnding
 // ------------------------------------------------------
 {
     // 現在と同じ改行コードなら、何もしない
     if (lineEnding == [self lineEnding]) { return; }
     
-    OgreNewlineCharacter currentLineEnding = [self lineEnding];
+    CENewLineType currentLineEnding = [self lineEnding];
 
     // Undo登録
     NSUndoManager *undoManager = [self undoManager];
@@ -805,7 +756,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     [[undoManager prepareWithInvocationTarget:self] applyLineEndingToView]; // 元の改行コード
     [[undoManager prepareWithInvocationTarget:self] updateChangeCount:NSChangeUndone]; // changeCountデクリメント
     [undoManager setActionName:[NSString stringWithFormat:NSLocalizedString(@"Line Endings to “%@”", @""),
-                                kLineEndingNames[lineEnding]]];
+                                [NSString newLineNameWithType:lineEnding]]];
 
     [self setLineEnding:lineEnding];
     [self applyLineEndingToView];
@@ -1352,7 +1303,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 - (void)applyLineEndingToView
 // ------------------------------------------------------
 {
-    [[self editor] setLineEndingString:[self lineEndingString]];
+    [[self editor] setLineEndingString:[NSString newLineStringWithType:[self lineEnding]]];
     [[[self windowController] toolbarController] setSelectedLineEnding:[self lineEnding]];
 }
 
@@ -1427,11 +1378,10 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 - (NSStringEncoding)scanCharsetOrEncodingFromString:(NSString *)string
 // ------------------------------------------------------
 {
-// このメソッドは、Smultron を参考にさせていただきました。(2005.08.10)
-// This method is based on Smultron.(written by Peter Borg – http://smultron.sourceforge.net)
-// Smultron  Copyright (c) 2004-2005 Peter Borg, All rights reserved.
-// Smultron is released under GNU General Public License, http://www.gnu.org/copyleft/gpl.html
-
+    // This method is based on Smultron's SMLTextPerformer.m by Peter Borg. (2005-08-10)
+    // Smultron 2 was distributed on <http://smultron.sourceforge.net> under the terms of the BSD license.
+    // Copyright (c) 2004-2006 Peter Borg
+    
     NSStringEncoding encoding = NSProprietaryStringEncoding;
     if (![[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultReferToEncodingTagKey] || ([string length] < 9)) {
         return encoding; // 参照しない設定になっているか、含まれている余地が無ければ中断
@@ -1731,7 +1681,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 // ------------------------------------------------------
 /// 改行コードを変更するアクションのRedo登録
-- (void)redoSetLineEnding:(CELineEnding)lineEnding
+- (void)redoSetLineEnding:(CENewLineType)lineEnding
 // ------------------------------------------------------
 {
     [[[self undoManager] prepareWithInvocationTarget:self] doSetLineEnding:lineEnding];

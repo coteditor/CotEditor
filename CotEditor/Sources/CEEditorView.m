@@ -351,8 +351,11 @@
     // OgreKit からの置換の Undo/Redo の後のみ再カラーリングを実行
     // 置換の Undo を判別するために OgreKit 側で登録された actionName を使用しているが、
     // ローカライズ後の名前なので、名前を決め打ちしている。あまり良い方法ではない。 (2014-04 by 1024jp)
+    // [Note] OgreKit側の問題として、すべてのUndoに対して "Replace All" という名前を付けているようだ。なので現在「すべて」以外の置換も対象となっている (2014-12 by 1024jp)
     NSString *actionName = [undoManager isUndoing] ? [undoManager redoActionName] : [undoManager undoActionName];
-    if ([@[@"一括置換", @"Replace All"] containsObject:actionName]) {
+    if ([actionName isEqualToString:NSLocalizedString(@"Replace All",
+                                                      @"Attention!: This localized string must be exactly the same to the localized term of “Replace All” in the OgreKit framework.")])
+    {
         [self textDidReplaceAll:aNotification];
     }
 }
@@ -479,13 +482,11 @@
         return YES;
     }
     
-    OgreNewlineCharacter replacementLineEndingChar = [OGRegularExpression newlineCharacterInString:replacementString];
+    CENewLineType replacementLineEndingType = [replacementString detectNewLineType];
     // 挿入／置換する文字列に改行コードが含まれていたら、LF に置換する
-    if ((replacementLineEndingChar != OgreNonbreakingNewlineCharacter) &&
-        (replacementLineEndingChar != OgreLfNewlineCharacter)) {
+    if ((replacementLineEndingType != CENewLineNone) && (replacementLineEndingType != CENewLineLF)) {
         // （newStrが使用されるのはスクリプトからの入力時。キー入力は条件式を通過しない）
-        NSString *newStr = [OGRegularExpression replaceNewlineCharactersInString:replacementString
-                                                                   withCharacter:OgreLfNewlineCharacter];
+        NSString *newStr = [replacementString stringByReplacingNewLineCharacersWith:CENewLineLF];
         
         if (newStr) {
             // （Action名は自動で付けられる？ので、指定しない）
@@ -591,10 +592,10 @@
     [self updateOutlineMenuSelection];
 
     // 対応するカッコをハイライト表示
-// 以下の部分は、Smultron を参考にさせていただきました。(2006.09.09)
-// This method is based on Smultron.(written by Peter Borg – http://smultron.sourceforge.net)
-// Smultron  Copyright (c) 2004-2005 Peter Borg, All rights reserved.
-// Smultron is released under GNU General Public License, http://www.gnu.org/copyleft/gpl.html
+    
+    // The following part is based on Smultron's SMLTextView.m by Peter Borg. (2006-09-09)
+    // Smultron 2 was distributed on <http://smultron.sourceforge.net> under the terms of the BSD license.
+    // Copyright (c) 2004-2006 Peter Borg
 
     if (![[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultHighlightBracesKey]) { return; }
     

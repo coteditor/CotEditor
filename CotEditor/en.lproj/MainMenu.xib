@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6250"/>
     </dependencies>
     <objects>
@@ -578,37 +577,37 @@
                                     <items>
                                         <menuItem title="1.0" id="753">
                                             <connections>
-                                                <action selector="setLineSpacingFromMenu:" target="-1" id="760"/>
+                                                <action selector="changeLineHeight:" target="-1" id="760"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem title="1.1" id="759">
                                             <connections>
-                                                <action selector="setLineSpacingFromMenu:" target="-1" id="761"/>
+                                                <action selector="changeLineHeight:" target="-1" id="761"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem title="1.2" id="755">
                                             <connections>
-                                                <action selector="setLineSpacingFromMenu:" target="-1" id="762"/>
+                                                <action selector="changeLineHeight:" target="-1" id="762"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem title="1.3" id="758">
                                             <connections>
-                                                <action selector="setLineSpacingFromMenu:" target="-1" id="766"/>
+                                                <action selector="changeLineHeight:" target="-1" id="766"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem title="1.4" id="754">
                                             <connections>
-                                                <action selector="setLineSpacingFromMenu:" target="-1" id="763"/>
+                                                <action selector="changeLineHeight:" target="-1" id="763"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem title="1.5" id="767">
                                             <connections>
-                                                <action selector="setLineSpacingFromMenu:" target="-1" id="768"/>
+                                                <action selector="changeLineHeight:" target="-1" id="768"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem title="2.0" id="757">
                                             <connections>
-                                                <action selector="setLineSpacingFromMenu:" target="-1" id="765"/>
+                                                <action selector="changeLineHeight:" target="-1" id="765"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="771">
@@ -925,9 +924,13 @@
                 </menuItem>
             </items>
         </menu>
-        <customObject id="289" customClass="OgreTextFinder"/>
+        <customObject id="289" userLabel="Ogre Text Finder" customClass="OgreTextFinder">
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="boolean" keyPath="useStylesInFindPanel" value="NO"/>
+            </userDefinedRuntimeAttributes>
+        </customObject>
         <customObject id="290" customClass="CEAppDelegate"/>
-        <customObject id="329" customClass="CEDocumentController"/>
+        <customObject id="329" userLabel="Document Controller" customClass="CEDocumentController"/>
         <customObject id="432" customClass="NSFontManager"/>
         <customObject id="831" customClass="SUUpdater"/>
     </objects>

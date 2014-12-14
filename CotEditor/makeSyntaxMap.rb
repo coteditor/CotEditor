@@ -1,5 +1,3 @@
-#!/usr/bin/env ruby
-
 =begin
  ==============================================================================
  makeSyntaxMap.rb
@@ -10,7 +8,7 @@
  Created on 2014-11-03 by 1024jp
  ------------------------------------------------------------------------------
  
- © 2014 CotEditor Project
+ © 2014 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -62,5 +60,4 @@ Find.find('Syntaxes') {|f|
     }
 }
 
-File.write('SyntaxMap.json',
-           JSON.pretty_generate(map))
+File.write('SyntaxMap.json', JSON.pretty_generate(map))

@@ -619,7 +619,7 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
     // 入力を読み込む
     CEScriptInputType inputType = [[self class] scanInputType:script];
     BOOL hasError = NO;
-    NSString *input = [[self class] documentStringWithInputType:inputType error:&hasError];
+    __block NSString *input = [[self class] documentStringWithInputType:inputType error:&hasError];
     if (hasError) {
         [self showScriptError:@"NO document, no Input."];
         return;
@@ -635,12 +635,22 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
     [task setLaunchPath:[URL path]];
     [task setCurrentDirectoryPath:NSHomeDirectory()];
     
+    // Standard Input
+    if ([input length] > 0) {
+        [task setStandardInput:[NSPipe pipe]];
+        [[[task standardInput] fileHandleForWriting] setWriteabilityHandler:^(NSFileHandle *handle) {
+            [handle writeData:[input dataUsingEncoding:NSUTF8StringEncoding]];
+            [handle closeFile];
+            
+        }];
+    }
+    
     // Standard Error
     __weak typeof(self) weakSelf = self;
     [task setStandardError:[NSPipe pipe]];
-    [[[task standardError] fileHandleForReading] setReadabilityHandler:^(NSFileHandle *file) {
+    [[[task standardError] fileHandleForReading] setReadabilityHandler:^(NSFileHandle *handle) {
         typeof(self) strongSelf = weakSelf;
-        NSString *error = [[NSString alloc] initWithData:[file readDataToEndOfFile] encoding:NSUTF8StringEncoding];
+        NSString *error = [[NSString alloc] initWithData:[handle readDataToEndOfFile] encoding:NSUTF8StringEncoding];
         
         if ([error length] > 0) {
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -650,23 +660,20 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
     }];
     
     // Standard Output
+    // read output asynchronously for safe with huge output
     [task setStandardOutput:[NSPipe pipe]];
-    [[[task standardOutput] fileHandleForReading] setReadabilityHandler:^(NSFileHandle *file) {
-        NSString *output = [[NSString alloc] initWithData:[file readDataToEndOfFile] encoding:NSUTF8StringEncoding];
-        
-        if (output) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [CEScriptManager setOutputToDocument:output outputType:outputType];
-            });
-        }
-    }];
-    
-    // Standard Input
-    if ([input length] > 0) {
-        [task setStandardInput:[NSPipe pipe]];
-        [[[task standardInput] fileHandleForWriting] writeData:[input dataUsingEncoding:NSUTF8StringEncoding]];
-        [[[task standardInput] fileHandleForWriting] closeFile];
-    }
+    [[[task standardOutput] fileHandleForReading] readToEndOfFileInBackgroundAndNotify];
+    [[NSNotificationCenter defaultCenter] addObserverForName:NSFileHandleReadToEndOfFileCompletionNotification
+                                                      object:[[task standardOutput] fileHandleForReading]
+                                                       queue:nil
+                                                  usingBlock:^(NSNotification *note)
+     {
+         NSData *data = [note userInfo][NSFileHandleNotificationDataItem];
+         NSString *output = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+         if (output) {
+             [CEScriptManager setOutputToDocument:output outputType:outputType];
+         }
+     }];
     
     [task launch];
 }

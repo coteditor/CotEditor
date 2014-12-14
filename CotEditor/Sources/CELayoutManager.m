@@ -7,13 +7,6 @@
  
  Created on 2005-01-10 by nakamuxu
  encoding="UTF-8"
- 
- ------------
- This class is based on Smultron - SMLLayoutManager (written by Peter Borg – http://smultron.sourceforge.net)
- Smultron  Copyright (c) 2004 Peter Borg, All rights reserved.
- Smultron is released under GNU General Public License, http://www.gnu.org/copyleft/gpl.html
- arranged by nakamuxu, Jan 2005.
- arranged by 1024jp, Mar 2014.
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
@@ -45,6 +38,12 @@
 
 
 @interface CELayoutManager ()
+
+@property (nonatomic) BOOL showsSpace;
+@property (nonatomic) BOOL showsTab;
+@property (nonatomic) BOOL showsNewLine;
+@property (nonatomic) BOOL showsFullwidthSpace;
+@property (nonatomic) BOOL showsOtherInvisibles;
 
 @property (nonatomic) unichar spaceChar;
 @property (nonatomic) unichar tabChar;
@@ -383,7 +382,7 @@ static BOOL usesTextFontForInvisibles;
     CGFloat lineSpacing = [(NSTextView<CETextViewProtocol> *)[self firstTextView] lineSpacing];
 
     // 小数点以下を返すと選択範囲が分離することがあるため、丸める
-    return floor([self defaultLineHeightForTextFont] + lineSpacing * [self textFontPointSize] + 0.5);
+    return round([self defaultLineHeightForTextFont] + lineSpacing * [self textFontPointSize]);
 }
 
 

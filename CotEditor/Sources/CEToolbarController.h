@@ -29,7 +29,7 @@
  */
 
 @import Cocoa;
-#import "constants.h"
+#import "NSString+CENewLine.h"
 
 
 // Toolbar item tag
@@ -65,7 +65,7 @@ typedef NS_ENUM(NSInteger, CEToolbarItemTag) {
 - (void)toggleItemWithTag:(CEToolbarItemTag)tag setOn:(BOOL)setOn;
 - (void)buildEncodingPopupButton;
 - (void)setSelectedEncoding:(NSStringEncoding)encoding;
-- (void)setSelectedLineEnding:(CELineEnding)lineEnding;
+- (void)setSelectedLineEnding:(CENewLineType)lineEnding;
 - (void)setSelectedSyntaxWithName:(NSString *)name;
 
 @end

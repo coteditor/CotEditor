@@ -261,7 +261,7 @@ static NSTimeInterval incompatibleCharInterval;
     
     if (!needsUpdateDrawer && (!updatesStatusBar && !updatesDrawer)) { return; }
     
-    NSString *wholeString = ([[[self document] lineEndingString] length] == 2) ? [[self document] stringForSave] : [[[self editor] string] copy];
+    NSString *wholeString = ([[NSString newLineStringWithType:[[self document] lineEnding]] length] == 2) ? [[self document] stringForSave] : [[[self editor] string] copy];
     NSString *selectedString = [[self editor] substringWithSelection] ? : @"";
     NSStringEncoding encoding = [[self document] encoding];
     __block NSRange selectedRange = [[self editor] selectedRange];
@@ -313,25 +313,25 @@ static NSTimeInterval incompatibleCharInterval;
             // location カウント
             if (updatesDrawer || [defaults boolForKey:CEDefaultShowStatusBarLocationKey]) {
                 NSString *locString = [wholeString substringToIndex:selectedRange.location];
-                NSString *str = countLineEnding ? locString : [OGRegularExpression chomp:locString];
+                NSString *str = countLineEnding ? locString : [locString stringByDeletingNewLineCharacters];
                 
                 location = [str numberOfComposedCharacters];
             }
             
             // 文字数カウント
             if (updatesDrawer || [defaults boolForKey:CEDefaultShowStatusBarCharsKey]) {
-                NSString *str = countLineEnding ? wholeString : [OGRegularExpression chomp:wholeString];
+                NSString *str = countLineEnding ? wholeString : [wholeString stringByDeletingNewLineCharacters];
                 numberOfChars = [str numberOfComposedCharacters];
                 if (hasSelection) {
-                    str = countLineEnding ? selectedString : [OGRegularExpression chomp:selectedString];
+                    str = countLineEnding ? selectedString : [selectedString stringByDeletingNewLineCharacters];
                     numberOfSelectedChars = [str numberOfComposedCharacters];
                 }
             }
             
             // 改行コードをカウントしない場合は再計算
             if (!countLineEnding) {
-                selectedRange.length = [[OGRegularExpression chomp:selectedString] length];
-                length = [[OGRegularExpression chomp:wholeString] length];
+                selectedRange.length = [[selectedString stringByDeletingNewLineCharacters] length];
+                length = [[wholeString stringByDeletingNewLineCharacters] length];
             }
         }
         
@@ -398,9 +398,9 @@ static NSTimeInterval incompatibleCharInterval;
     BOOL shouldUpdateStatusBar = [[self statusBarController] isShown];
     BOOL shouldUpdateDrawer = needsUpdateDrawer ? YES : [self needsInfoDrawerUpdate];
     
-    if (!needsUpdateDrawer && !shouldUpdateStatusBar && !shouldUpdateDrawer) { return; }
+    if (!shouldUpdateStatusBar && !shouldUpdateDrawer) { return; }
     
-    NSString *lineEndingsInfo = [[self document] lineEndingName];
+    NSString *lineEndingsInfo = [NSString newLineNameWithType:[[self document] lineEnding]];
     NSString *encodingInfo = [[self document] currentIANACharSetName];
     
     [self setEncodingInfo:encodingInfo];
@@ -522,9 +522,10 @@ static NSTimeInterval incompatibleCharInterval;
 
 // ------------------------------------------------------
 /// OgreKit method that passes the main textView.
-- (void)tellMeTargetToFindIn:(id)textFinder
+- (void)tellMeTargetToFindIn:(id)sender
 // ------------------------------------------------------
 {
+    OgreTextFinder *textFinder = (OgreTextFinder *)sender;
     [textFinder setTargetToFindIn:[[self editor] textView]];
 }
 
@@ -551,6 +552,47 @@ static NSTimeInterval incompatibleCharInterval;
         }
     }
 }
+
+
+// ------------------------------------------------------
+/// save window state on application termination
+- (void)window:(NSWindow *)window willEncodeRestorableState:(NSCoder *)state
+// ------------------------------------------------------
+{
+    [state encodeBool:[[self statusBarController] isShown] forKey:CEDefaultShowStatusBarKey];
+    [state encodeBool:[[self editor] showsNavigationBar] forKey:CEDefaultShowNavigationBarKey];
+    [state encodeBool:[[self editor] showsLineNum] forKey:CEDefaultShowLineNumbersKey];
+    [state encodeBool:[[self editor] showsPageGuide] forKey:CEDefaultShowPageGuideKey];
+    [state encodeBool:[[self editor] showsInvisibles] forKey:CEDefaultShowInvisiblesKey];
+    [state encodeBool:[[self editor] isVerticalLayoutOrientation] forKey:CEDefaultLayoutTextVerticalKey];
+}
+
+
+// ------------------------------------------------------
+/// restore window state from the last session
+- (void)window:(NSWindow *)window didDecodeRestorableState:(NSCoder *)state
+// ------------------------------------------------------
+{
+    if ([state containsValueForKey:CEDefaultShowStatusBarKey]) {
+        [[self statusBarController] setShown:[state decodeBoolForKey:CEDefaultShowStatusBarKey] animate:NO];
+    }
+    if ([state containsValueForKey:CEDefaultShowNavigationBarKey]) {
+        [[self editor] setShowsNavigationBar:[state decodeBoolForKey:CEDefaultShowNavigationBarKey] animate:NO];
+    }
+    if ([state containsValueForKey:CEDefaultShowLineNumbersKey]) {
+        [[self editor] setShowsLineNum:[state decodeBoolForKey:CEDefaultShowLineNumbersKey]];
+    }
+    if ([state containsValueForKey:CEDefaultShowPageGuideKey]) {
+        [[self editor] setShowsPageGuide:[state decodeBoolForKey:CEDefaultShowPageGuideKey]];
+    }
+    if ([state containsValueForKey:CEDefaultShowInvisiblesKey]) {
+        [[self editor] setShowsInvisibles:[state decodeBoolForKey:CEDefaultShowInvisiblesKey]];
+    }
+    if ([state containsValueForKey:CEDefaultLayoutTextVerticalKey]) {
+        [[self editor] setVerticalLayoutOrientation:[state decodeBoolForKey:CEDefaultLayoutTextVerticalKey]];
+    }
+}
+
 
 
 //=======================================================
