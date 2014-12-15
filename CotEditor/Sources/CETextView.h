@@ -45,6 +45,7 @@
 @property (nonatomic) BOOL needsRecompletion;  // 再度入力補完をするか
 @property (nonatomic) BOOL needsUpdateOutlineMenuItemSelection;  // アウトラインメニュー項目の更新をすべきか
 @property (nonatomic) CGFloat lineSpacing;
+@property (nonatomic) NSUInteger tabWidth;  // タブ幅
 @property (nonatomic) NSRect highlightLineRect;  // ハイライト行の矩形
 @property (nonatomic, getter=isAutoTabExpandEnabled) BOOL autoTabExpandEnabled;  // タブを自動的にスペースに展開するか
 @property (nonatomic, copy) NSString *inlineCommentDelimiter;  // インラインコメント開始文字列

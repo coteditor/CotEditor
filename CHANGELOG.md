@@ -5,6 +5,11 @@ Change Log
 2.1.0
 --------------------------
 
+### New Features 
+
+- New AppleScript property `tab width` for document object.
+
+
 ### Additions/Changes
 
 - Improve to display gear icon in menu bar while executing a script.

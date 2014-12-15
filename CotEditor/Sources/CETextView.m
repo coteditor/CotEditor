@@ -56,7 +56,6 @@ const NSInteger kNoMenuItem = -1;
 @property (nonatomic) NSString *particalCompletionWord;  // ユーザが実際に入力した補完の元になる文字列
 
 @property (nonatomic) NSColor *highlightLineColor;  // カレント行ハイライト色
-@property (nonatomic) NSUInteger tabWidth;  // タブ幅
 
 
 // readonly
@@ -568,6 +567,16 @@ const NSInteger kNoMenuItem = -1;
     [[self paragraphStyle] setDefaultTabInterval:[self tabIntervalFromFont:font]];
     
     [self applyTypingAttributes];
+}
+
+
+// ------------------------------------------------------
+/// タブ幅を変更する
+- (void)setTabWidth:(NSUInteger)tabWidth
+// ------------------------------------------------------
+{
+    _tabWidth = tabWidth;
+    [self setFont:[self font]];  // 新しい幅でレイアウトし直す
 }
 
 
@@ -1376,7 +1385,6 @@ const NSInteger kNoMenuItem = -1;
 // ------------------------------------------------------
 {
     [self setTabWidth:[sender tag]];
-    [self setFont:[self font]];  // 新しい幅でレイアウトし直す
 }
 
 

@@ -271,6 +271,24 @@
 }
 
 
+// ------------------------------------------------------
+/// タブ幅を返す
+- (NSNumber *)tabWidth
+// ------------------------------------------------------
+{
+    return @([[[self editor] textView] tabWidth]);
+}
+
+
+// ------------------------------------------------------
+/// タブ幅をセット
+- (void)setTabWidth:(NSNumber *)tabWidth
+// ------------------------------------------------------
+{
+    [[[self editor] textView] setTabWidth:[tabWidth unsignedIntegerValue]];
+}
+
+
 
 #pragma mark AppleScript Handlers
 

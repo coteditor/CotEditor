@@ -62,6 +62,8 @@ typedef NS_ENUM(NSUInteger, CEOSALineEnding) {
 - (void)setWrapsLines:(NSNumber *)wrapsLines;
 - (NSNumber *)lineSpacing;
 - (void)setLineSpacing:(NSNumber *)lineSpacing;
+- (NSNumber *)tabWidth;
+- (void)setTabWidth:(NSNumber *)tabWidth;
 
 // AppleScript handler
 - (NSNumber *)handleConvertScriptCommand:(NSScriptCommand *)command;
