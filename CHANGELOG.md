@@ -8,6 +8,7 @@ Change Log
 ### New Features 
 
 - New AppleScript property `tab width` for document object.
+- Now, CotEditor script receives the absolute file path of the frontmost document as an argument if available.
 
 
 ### Additions/Changes

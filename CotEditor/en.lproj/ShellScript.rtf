@@ -7,10 +7,10 @@
 \f0\b\fs32 \cf0 Using Shell Scripts with CotEditor
 \b0\fs24 \
 \pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802\qr
-\cf0 Last modified: 2014-11-22\
+\cf0 Last modified: 2014-12-15\
 \pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802
 \cf0 \
-\'95 The file extensions of the scripts you can add to the Script menu are: .sh .pl .php .rb .py (regardless of their languages)\
+\'95 The file extensions of the scripts you can add to the Script menu are: .sh .pl .php .rb .py .js (regardless of their languages)\
 \
 \'95 In order to run a script, you need to set execute permission for the script file.\
 You can use chmod 755.app, which is an AppleScript droplet for changing a file's permission to 755, bundled in the SampleScript folder.\
@@ -26,7 +26,13 @@ Menu title and keyboard shortcut for a script can be customized by changing its 
 \
 \pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802
 
-\b\fs26 \cf0 Specifying what to pass to a script
+\b\fs26 \cf0 Referring to the document file path
+\b0\fs24 \
+If the frontmost document has already been saved, the absolute file path of the document will be referred to as an argument.\
+\
+\
+
+\b\fs26 Specifying what to pass to a script
 \b0\fs24 \
 Put a comment area at the beginning of the script and embed a specifying string as follows:\
 \pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802

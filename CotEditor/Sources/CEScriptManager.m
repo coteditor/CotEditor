@@ -627,6 +627,14 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
     // 出力タイプを得る
     CEScriptOutputType outputType = [[self class] scanOutputType:script];
     
+    // prepare file path as argument if available
+    NSArray *arguments;
+    NSURL *documentURL = [[[NSDocumentController sharedDocumentController] currentDocument] fileURL];
+    if (documentURL) {
+        arguments = @[[documentURL path]];
+    }
+    
+    // pipes
     NSPipe *inPipe = [NSPipe pipe];
     NSPipe *outPipe = [NSPipe pipe];
     NSPipe *errPipe = [NSPipe pipe];
@@ -659,7 +667,7 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
     
     // execute
     __weak typeof(self) weakSelf = self;
-    [task executeWithCompletionHandler:^(NSError *error) {
+    [task executeWithArguments:arguments completionHandler:^(NSError *error) {
         typeof(self) strongSelf = weakSelf;
         
         // error
