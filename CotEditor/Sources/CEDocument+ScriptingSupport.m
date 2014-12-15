@@ -35,23 +35,6 @@
 
 @implementation CEDocument (ScriptingSupport)
 
-#pragma mark Public Methods
-
-//=======================================================
-// Public method
-//
-//=======================================================
-
-// ------------------------------------------------------
-/// 生成した textStorage のデリゲートであることをやめる
-- (void)cleanUpTextStorage:(NSTextStorage *)textStorage
-// ------------------------------------------------------
-{
-    [textStorage setDelegate:nil];
-}
-
-
-
 #pragma mark Delegate and Notification
 
 //=======================================================
@@ -67,7 +50,7 @@
     NSTextStorage *storage = (NSTextStorage *)[notification object];
 
     [[[self editor] textView] replaceAllStringTo:[storage string]];
-    [self cleanUpTextStorage:storage];
+    [storage setDelegate:nil];
 }
 
 
@@ -87,11 +70,10 @@
     NSTextStorage *storage = [[NSTextStorage alloc] initWithString:[self stringForSave]];
 
     [storage setDelegate:self];
+    
     // 0.5秒後にデリゲートをやめる（放置するとクラッシュの原因になる）
-    __weak typeof(self) weakSelf = self;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        typeof(self) strongSelf = weakSelf;
-        [strongSelf cleanUpTextStorage:storage];
+        [storage setDelegate:nil];
     });
 
     return storage;

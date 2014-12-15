@@ -62,7 +62,6 @@ typedef NS_ENUM(NSUInteger, CEUNFType) {
 
 // Public method
 - (instancetype)initWithDocument:(CEDocument *)document NS_DESIGNATED_INITIALIZER;
-- (void)cleanUpTextStorage:(NSTextStorage *)textStorage;
 
 @end
 

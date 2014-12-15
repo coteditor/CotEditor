@@ -41,7 +41,6 @@
 
 
 
-
 #pragma mark -
 
 @implementation CETextSelection
@@ -65,14 +64,6 @@
     return self;
 }
 
-// ------------------------------------------------------
-/// 生成した textStorage のデリゲートであることをやめる
-- (void)cleanUpTextStorage:(NSTextStorage *)textStorage
-// ------------------------------------------------------
-{
-    [textStorage setDelegate:nil];
-}
-
 
 
 #pragma mark Delegate and Notifications
@@ -90,7 +81,7 @@
     NSTextStorage *storage = (NSTextStorage *)[aNotification object];
 
     [[[[self document] editor] textView] replaceSelectedStringTo:[storage string] scroll:NO];
-    [self cleanUpTextStorage:storage];
+    [storage setDelegate:nil];
 }
 
 @end
@@ -136,11 +127,10 @@
     NSTextStorage *storage = [[NSTextStorage alloc] initWithString:string];
 
     [storage setDelegate:self];
+    
     // 0.5秒後にデリゲートをやめる（放置するとクラッシュの原因になる）
-    __weak typeof(self) weakSelf = self;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        typeof(self) strongSelf = weakSelf;
-        [strongSelf cleanUpTextStorage:storage];
+        [storage setDelegate:nil];
     });
 
     return storage;
