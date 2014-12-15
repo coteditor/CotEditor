@@ -34,7 +34,7 @@ If your localization makes the Autolayout destroy, just tell us about it with a 
 
 #### Submit a new localization
 
-__We will migrate to the Base Internationalisation on CotEditor 2.1 within 2014. We recommend to wait for it to add a new localization.__
+We recommend to copy .strings files in CotEditor/ja.lproj/ directory in order to use them as templates, because Japanese localization is always up-to-date and well organized.
 
 To localize CotEditor, [OgreKit framework](https://github.com/sonoisa/OgreKit) which is used for the CotEditor's find panel and the find menu must also be localized. If OgreKit doesn't contain your language, localize it and make a pull-request to both the original [OgreKit framework](https://github.com/sonoisa/OgreKit) *and* the [CotEditor's repo](https://github.com/coteditor/OgreKit).
 
