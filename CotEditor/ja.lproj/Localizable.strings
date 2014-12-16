@@ -12,7 +12,7 @@
  */
 
 
-/* CEAppDelegate */
+/* MARK: CEAppDelegate */
 // File open accessory's menu item title
 "Auto-Detect" = "自動認識";
 // Format - Syntax coloring menu item title
@@ -41,14 +41,14 @@
 "Close" = "閉じる";
 
 
-/* CEDocumentController */
+/* MARK: CEDocumentController */
 // Large file alert
 "The file “%@” has a size of %@." = "“%@”はファイルサイズが %@ です。";
 "Opening such a large file can make the application slow or unresponsive.\n\nDo you really want to open the file?" = "巨大なファイルを開くと、アプリケーションの反応が遅くなる可能性があります。\n\n本当にファイルを開きますか？";
 "Open" = "開く";
 
 
-/* CEDocument */
+/* MARK: CEDocument */
 // Undo action names
 "Encoding to “%@”" = "エンコーディングを“%@”へ";
 "Line Endings to “%@”" = "改行コードを“%@”へ";
@@ -94,7 +94,7 @@
 "Do you want to keep unchanged or update to the modified edition?" = "未編集のままにしますか、それとも変更された内容に更新しますか？";
 
 
-/* CETextView */
+/* MARK: CETextView */
 // Undo action names
 "Replace Text" = "テキストを置換";
 "Insert Text" = "テキストを挿入";
@@ -123,14 +123,14 @@
 "Select All" = "すべてを選択";
 
 
-/* CharacterPopover */
+/* MARK: CharacterPopover */
 "<a letter consisting of %d characters>" = "<%d字から成る文字>";
 "Emoji Style" = "絵文字スタイル";
 "Text Style" = "テキストスタイル";
 "Variant" = "異体字";
 
 
-/* CEEditorWrapper */
+/* MARK: CEEditorWrapper */
 // Menu items
 "Hide Line Numbers" = "行番号を隠す";
 "Show Line Numbers" = "行番号を表示";
@@ -162,17 +162,17 @@
 "Finder's lock could not be released. So, you can not save your changes on this file, but you will be able to save a copy somewhere else.\n\nDo you want to close?" = "Finder のロックを解除できませんでしたので、編集内容をこのファイルに保存できません。「別名で保存」でコピーを保存できます。\n\nファイルを閉じますか？";
 
 
-/* CESplitView */
+/* MARK: CESplitView */
 // Menu items
 "Stack Views Horizontally" = "分割エディタを横に配置";
 "Stack Views Vertically" = "分割エディタを縦に配置";
 
 
-/* CEEditorView */
+/* MARK: CEEditorView */
 "Replace All" = "すべて置換";  // Attention!: This localized string must be exactly the same to the localized term of “Replace All” in the OgreKit framework.
 
 
-/* CEStatusBarView */
+/* MARK: CEStatusBarView */
 ": " = "：";
 "Lines" = "行数";
 "Chars" = "文字数";
@@ -183,7 +183,7 @@
 "Column" = "列";
 
 
-/* CESyntax */
+/* MARK: CESyntaxParser */
 // Outline menu title
 "<Outline Menu>" = "<アウトラインメニュー>";
 
@@ -205,7 +205,7 @@
 "comments and quoted texts" = "コメントと引用符で囲まれたテキスト";
 
 
-/* CEPreferencesWindowController */
+/* MARK: CEPreferencesWindowController */
 // Smart quotes/dashes
 " (on Mavericks and later)" = "（Mavericks 以上）";
 
@@ -231,9 +231,10 @@
 // Installed syntax styles action menu items
 "Duplicate “%@”…" = "“%@”を複製…";
 "Export “%@”…" = "“%@”を書き出し…";
+"Reveal “%@” in Finder" = "“%@”を Finder で表示";
 
 
-/* CESyntaxEditSheetController */
+/* MARK: CESyntaxEditSheetController */
 // Menu items
 "Keywords" = "キーワード";
 "Commands" = "コマンド";
@@ -257,7 +258,7 @@
 "%i errors were found!" = "%i 個のエラーがありました！";
 
 
-/* CESyntaxManager */
+/* MARK: CESyntaxManager */
 // Syntax coloring style name errors
 "Input style name." = "スタイル名を入力してください。";
 "“%@” is already exist. Input another name." = "“%@”は既に使われています。ほかの名前を入力してください。";
@@ -301,7 +302,7 @@
 "Error: %@" = "エラー： %@";
 
 
-/* CEThemeManager */
+/* MARK: CEThemeManager */
 "Untitled" = "名称未設定";
 "Customized Theme" = "カスタムテーマ";
 "Theme name cannot be empty." = "テーマ名は空にできません。";
@@ -312,20 +313,20 @@
 "Auto-generated theme that is mgrated from user's coloring setting on CotEditor 1.x" = "CotEditor 1.x でのユーザカラーリング設定から自動生成されたテーマ";
 
 
-/* CEWindowsController */
+/* MARK: CEWindowsController */
 // Finder's lock state
 "ON" = "ON";
 "OFF" = "OFF";
 
 
-/* CEKeyBindingManager */
+/* MARK: CEKeyBindingManager */
 // Warning messages
 "“%@” has already been used. Edit it again." = "“%@”は既に使われています。再編集してください。";
 "“%@” does NOT include Command key. Edit it again." = "“%@”にはコマンドキーが含まれていません。再編集してください。";
 "“%@” includes Command key. Edit it again." = "“%@”はコマンドキーを含んでいます。再編集してください。";
 
 
-/* CEScriptManager */
+/* MARK: CEScriptManager */
 // Menu items
 "Open Scripts Folder" = "スクリプトフォルダを開く";
 "Update Script Menu" = "スクリプトメニューを更新";

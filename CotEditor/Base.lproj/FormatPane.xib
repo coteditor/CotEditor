@@ -327,7 +327,7 @@
                         <constraint firstAttribute="width" constant="35" id="C2H-ho-Lhl"/>
                         <constraint firstAttribute="height" constant="21" id="U66-bm-gzy"/>
                     </constraints>
-                    <popUpButtonCell key="cell" type="smallSquare" title="Syntax Action" bezelStyle="smallSquare" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" pullsDown="YES" selectedItem="1lj-x8-ouD" id="DWa-4z-345">
+                    <popUpButtonCell key="cell" type="smallSquare" title="Syntax Action" bezelStyle="smallSquare" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" pullsDown="YES" selectedItem="vJ2-Tx-VZB" id="DWa-4z-345">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menu"/>
                         <menu key="menu" title="OtherViews" id="9gA-X5-Prh">
@@ -341,6 +341,12 @@
                                 <menuItem title="Export…" id="LeQ-Ct-m5f">
                                     <connections>
                                         <action selector="exportSyntaxStyle:" target="-2" id="RDJ-UK-ew3"/>
+                                    </connections>
+                                </menuItem>
+                                <menuItem title="Reveal in Finder" alternate="YES" id="vJ2-Tx-VZB">
+                                    <modifierMask key="keyEquivalentModifierMask" option="YES"/>
+                                    <connections>
+                                        <action selector="revealSyntaxStyleInFinder:" target="-2" id="Hi0-v1-ICF"/>
                                     </connections>
                                 </menuItem>
                                 <menuItem title="Import…" id="1lj-x8-ouD">

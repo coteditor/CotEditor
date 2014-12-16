@@ -115,11 +115,16 @@
         
     // 書き出し/複製メニュー項目に現在選択されているスタイル名を追加
     } if ([menuItem action] == @selector(exportSyntaxStyle:)) {
-        NSString *selectedStyleName = [[self stylesController] selectedObjects][0];
-        [menuItem setTitle:[NSString stringWithFormat:NSLocalizedString(@"Export “%@”…", nil), selectedStyleName]];
+        [menuItem setTitle:[NSString stringWithFormat:NSLocalizedString(@"Export “%@”…", nil), [self selectedStyleName]]];
+        
     } if ([menuItem action] == @selector(openSyntaxEditSheet:) && [menuItem tag] == CECopySyntaxEdit) {
-        NSString *selectedStyleName = [[self stylesController] selectedObjects][0];
-        [menuItem setTitle:[NSString stringWithFormat:NSLocalizedString(@"Duplicate “%@”…", nil), selectedStyleName]];
+        [menuItem setTitle:[NSString stringWithFormat:NSLocalizedString(@"Duplicate “%@”…", nil), [self selectedStyleName]]];
+        
+    } if ([menuItem action] == @selector(revealSyntaxStyleInFinder:)) {
+        [menuItem setTitle:[NSString stringWithFormat:NSLocalizedString(@"Reveal “%@” in Finder", nil), [self selectedStyleName]]];
+        if (![[CESyntaxManager sharedManager] URLForUserStyle:[self selectedStyleName]]) {
+            return NO;
+        }
     }
     
     return YES;
@@ -172,8 +177,7 @@
 - (IBAction)openSyntaxEditSheet:(id)sender
 // ------------------------------------------------------
 {
-    NSString *selectedName = [[self stylesController] selectedObjects][0];
-    CESyntaxEditSheetController *sheetController = [[CESyntaxEditSheetController alloc] initWithStyle:selectedName
+    CESyntaxEditSheetController *sheetController = [[CESyntaxEditSheetController alloc] initWithStyle:[self selectedStyleName]
                                                                                                  mode:[sender tag]];
     if (!sheetController) {
         return;
@@ -201,9 +205,9 @@
 - (IBAction)deleteSyntaxStyle:(id)sender
 // ------------------------------------------------------
 {
-    NSString *selectedStyleName = [[self stylesController] selectedObjects][0];
+    NSString *selectedStyleName = [self selectedStyleName];
     
-    if (![[CESyntaxManager sharedManager] existsStyleFileWithStyleName:selectedStyleName]) { return; }
+    if (![[CESyntaxManager sharedManager] URLForUserStyle:selectedStyleName]) { return; }
     
     NSAlert *alert = [[NSAlert alloc] init];
     [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"Delete the syntax style “%@”?", nil), selectedStyleName]];
@@ -270,8 +274,7 @@
 - (IBAction)exportSyntaxStyle:(id)sender
 // ------------------------------------------------------
 {
-    NSString *selectedStyle = [[self stylesController] selectedObjects][0];
-    
+    NSString *selectedStyle = [self selectedStyleName];
     NSSavePanel *savePanel = [NSSavePanel savePanel];
     
     // SavePanelをセットアップ(既定値を含む)、シートとして開く
@@ -286,6 +289,19 @@
             [[CESyntaxManager sharedManager] exportStyle:selectedStyle toURL:[savePanel URL]];
         }
     }];
+}
+
+
+// ------------------------------------------------------
+/// シンタックスカラーリングファイルをFinderで開く
+- (IBAction)revealSyntaxStyleInFinder:(id)sender
+// ------------------------------------------------------
+{
+    NSURL *URL = [[CESyntaxManager sharedManager] URLForUserStyle:[self selectedStyleName]];
+    
+    if (URL) {
+        [[NSWorkspace sharedWorkspace] activateFileViewerSelectingURLs:@[URL]];
+    }
 }
 
 
@@ -392,12 +408,20 @@
 
 
 // ------------------------------------------------------
+/// 現在選択されているスタイル名を返す
+- (NSString *)selectedStyleName
+// ------------------------------------------------------
+{
+    return [[self stylesController] selectedObjects][0];
+}
+
+
+// ------------------------------------------------------
 /// シンタックススタイル削除ボタンを制御する
 - (void)validateRemoveSyntaxStyleButton
 // ------------------------------------------------------
 {
-    NSString *selectedStyle = [[self stylesController] selectedObjects][0];
-    BOOL isDeletable = ![[CESyntaxManager sharedManager] isBundledStyle:selectedStyle];
+    BOOL isDeletable = ![[CESyntaxManager sharedManager] isBundledStyle:[self selectedStyleName]];
     
     [[self syntaxStyleDeleteButton] setEnabled:isDeletable];
 }
@@ -444,7 +468,7 @@
         return;
     }
     
-    NSString *selectedStyleName = [[self stylesController] selectedObjects][0];
+    NSString *selectedStyleName = [self selectedStyleName];
     
     if (![[CESyntaxManager sharedManager] removeStyleFileWithStyleName:selectedStyleName]) {
         // 削除できなければ、その旨をユーザに通知

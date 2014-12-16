@@ -190,7 +190,16 @@ NSString *const CESyntaxValidationMessageKey = @"MessageKey";
 - (NSDictionary *)bundledStyleWithStyleName:(NSString *)styleName
 // ------------------------------------------------------
 {
-    return [self styleDictWithURL:[self URLForBundledStyle:styleName]];
+    return [self styleDictWithURL:[self URLForBundledStyle:styleName available:NO]];
+}
+
+
+// ------------------------------------------------------
+/// style名に応じたユーザ領域のスタイルファイルURLを返す（ない場合はnil）
+- (NSURL *)URLForUserStyle:(NSString *)styleName
+// ------------------------------------------------------
+{
+    return [self URLForUserStyle:styleName available:YES];
 }
 
 
@@ -215,15 +224,6 @@ NSString *const CESyntaxValidationMessageKey = @"MessageKey";
     NSDictionary *bundledStyle = [[self bundledStyleWithStyleName:styleName] dictionaryWithValuesForKeys:keys];
     
     return [[style dictionaryWithValuesForKeys:keys] isEqualToDictionary:bundledStyle];
-}
-
-
-//------------------------------------------------------
-/// ある名前を持つstyleファイルがstyle保存ディレクトリにあるかどうかを返す
-- (BOOL)existsStyleFileWithStyleName:(NSString *)styleName
-//------------------------------------------------------
-{
-    return [[self URLForUserStyle:styleName] checkResourceIsReachableAndReturnError:nil];
 }
 
 
@@ -306,7 +306,7 @@ NSString *const CESyntaxValidationMessageKey = @"MessageKey";
 {
     BOOL success = NO;
     if ([styleName length] < 1) { return success; }
-    NSURL *URL = [self URLForUserStyle:styleName];
+    NSURL *URL = [self URLForUserStyle:styleName available:NO];
 
     if ([URL checkResourceIsReachableAndReturnError:nil]) {
         success = [[NSFileManager defaultManager] removeItemAtURL:URL error:nil];
@@ -414,10 +414,10 @@ NSString *const CESyntaxValidationMessageKey = @"MessageKey";
     }
     
     // save
-    NSURL *saveURL = [self URLForUserStyle:name];
+    NSURL *saveURL = [self URLForUserStyle:name available:NO];
     // style名が変更されたときは、古いファイルを削除する
     if (![name isEqualToString:oldName]) {
-        [[NSFileManager defaultManager] removeItemAtURL:[self URLForUserStyle:oldName] error:nil];
+        [[NSFileManager defaultManager] removeItemAtURL:[self URLForUserStyle:oldName available:NO] error:nil];
     }
     // 保存しようとしている定義がバンドル版と同じだった場合（出荷時に戻したときなど）はユーザ領域のファイルを削除して終わる
     if ([style isEqualToDictionary:[self bundledStyleWithStyleName:name]]) {
@@ -624,31 +624,37 @@ NSString *const CESyntaxValidationMessageKey = @"MessageKey";
 - (NSURL *)URLForUsedStyle:(NSString *)styleName
 //------------------------------------------------------
 {
-    NSURL *URL = [self URLForUserStyle:styleName];
+    return [self URLForUserStyle:styleName available:YES] ?: [self URLForBundledStyle:styleName available:YES];
+}
+
+
+//------------------------------------------------------
+/// style名からバンドル領域のstyle定義ファイルのURLを返す (availableがYESの場合はファイルが実際に存在するときだけ返す)
+- (NSURL *)URLForBundledStyle:(NSString *)styleName available:(BOOL)available
+//------------------------------------------------------
+{
+    NSURL *URL = [[NSBundle mainBundle] URLForResource:styleName withExtension:@"yaml" subdirectory:@"Syntaxes"];
     
-    if (![URL checkResourceIsReachableAndReturnError:nil]) {
-        URL = [self URLForBundledStyle:styleName];
+    if (available) {
+        return [URL checkResourceIsReachableAndReturnError:nil] ? URL : nil;
+    } else {
+        return URL;
     }
+}
+
+
+//------------------------------------------------------
+/// style名からユーザ領域のstyle定義ファイルのURLを返す (availableがYESの場合はファイルが実際に存在するときだけ返す)
+- (NSURL *)URLForUserStyle:(NSString *)styleName available:(BOOL)available
+//------------------------------------------------------
+{
+    NSURL *URL = [[[self userStyleDirectoryURL] URLByAppendingPathComponent:styleName] URLByAppendingPathExtension:@"yaml"];
     
-    return [URL checkResourceIsReachableAndReturnError:nil] ? URL : nil;
-}
-
-
-//------------------------------------------------------
-/// style名からバンドル領域のstyle定義ファイルのURLを返す
-- (NSURL *)URLForBundledStyle:(NSString *)styleName
-//------------------------------------------------------
-{
-    return [[NSBundle mainBundle] URLForResource:styleName withExtension:@"yaml" subdirectory:@"Syntaxes"];
-}
-
-
-//------------------------------------------------------
-/// style名からユーザ領域のstyle定義ファイルのURLを返す
-- (NSURL *)URLForUserStyle:(NSString *)styleName
-//------------------------------------------------------
-{
-    return [[[self userStyleDirectoryURL] URLByAppendingPathComponent:styleName] URLByAppendingPathExtension:@"yaml"];
+    if (available) {
+        return [URL checkResourceIsReachableAndReturnError:nil] ? URL : nil;
+    } else {
+        return URL;
+    }
 }
 
 
@@ -852,7 +858,7 @@ NSString *const CESyntaxValidationMessageKey = @"MessageKey";
 
     __block BOOL success = NO;
     NSString *styleName = [self styleNameFromURL:fileURL];
-    NSURL *destURL = [self URLForUserStyle:styleName];
+    NSURL *destURL = [self URLForUserStyle:styleName available:NO];
     
     NSFileCoordinator *coordinator = [[NSFileCoordinator alloc] initWithFilePresenter:nil];
     [coordinator coordinateReadingItemAtURL:fileURL options:NSFileCoordinatorReadingWithoutChanges

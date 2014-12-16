@@ -11,7 +11,7 @@
  */
 
 
-/* CEAppDelegate */
+/* MARK: CEAppDelegate */
 // File open accessory's menu item title
 "Auto-Detect" = "自动检测";
 // Format - Syntax coloring menu item title
@@ -40,14 +40,14 @@
 "Close" = "关闭";
 
 
-/* CEDocumentController */
+/* MARK: CEDocumentController */
 // Large file alert
 "The file “%@” has a size of %@." = "“%@” 文件尺寸为 %@ 。";
 "Opening such a large file can make the application slow or unresponsive.\n\nDo you really want to open the file?" = "打开大型文件可能导致应用速度变慢。\n\n确定要打开该文件？";
 "Open" = "打开";
 
 
-/* CEDocument */
+/* MARK: CEDocument */
 // Undo action names
 "Encoding to “%@”" = "编码变更为 “%@”";
 "Line Endings to “%@”" = "行尾变更为 “%@”";
@@ -93,7 +93,7 @@
 "Do you want to keep unchanged or update to the modified edition?" = "保持不变还是更新到被更改后的版本？";
 
 
-/* CETextView */
+/* MARK: CETextView */
 // Undo action names
 "Replace Text" = "替换文本";
 "Insert Text" = "插入文本";
@@ -122,14 +122,14 @@
 "Select All" = "全部选择";
 
 
-/* CharacterPopover */
+/* MARK: CharacterPopover */
 "<a letter consisting of %d characters>" = "<包含有 %d 个字符>";
 "Emoji Style" = "表情文字格式";
 "Text Style" = "文本文字格式";
 "Variant" = "异体字";
 
 
-/* CEEditorWrapper */
+/* MARK: CEEditorWrapper */
 // Menu items
 "Hide Line Numbers" = "隐藏行号";
 "Show Line Numbers" = "显示行号";
@@ -162,17 +162,17 @@
 "Finder's lock could not be released. So, you can not save your changes on this file, but you will be able to save a copy somewhere else.\n\nDo you want to close?" = "无法解除 Finder 锁定，编辑内容无法保存至该文件中。可以使用 “另存为” 保存一份文件拷贝。\n\n是否关闭文件？";
 
 
-/* CESplitView */
+/* MARK: CESplitView */
 // Menu items
 "Stack Views Horizontally" = "横向分隔编辑器";
 "Stack Views Vertically" = "纵向分隔编辑器";
 
 
-/* CEEditorView */
+/* MARK: CEEditorView */
 "Replace All" = "替换全部";  // Attention!: This localized string must be exactly the same to the localized term of “Replace All” in the OgreKit framework.
 
 
-/* CEStatusBarView */
+/* MARK: CEStatusBarView */
 ": " = "：";
 "Lines" = "行数";
 "Chars" = "字符数";
@@ -183,7 +183,7 @@
 "Column" = "列";
 
 
-/* CESyntax */
+/* MARK: CESyntaxParser */
 // Outline menu title
 "<Outline Menu>" = "<大纲菜单>";
 
@@ -205,7 +205,7 @@
 "comments and quoted texts" = "注释和引用文本";
 
 
-/* CEPreferencesWindowController */
+/* MARK: CEPreferencesWindowController */
 // Smart quotes/dashes
 " (on Mavericks and later)" = "（Mavericks 或更新版本）";
 
@@ -231,9 +231,10 @@
 // Installed syntax styles action menu items
 "Duplicate “%@”…" = "拷贝“%@”…";
 "Export “%@”…" = "导出“%@”…";
+"Reveal “%@” in Finder" = "Reveal “%@” in Finder";  /* FIXME: */
 
 
-/* CESyntaxEditSheetController */
+/* MARK: CESyntaxEditSheetController */
 // Menu items
 "Keywords" = "关键字";
 "Commands" = "命令";
@@ -257,7 +258,7 @@
 "%i errors were found!" = "发现 %i 个错误";
 
 
-/* CESyntaxManager */
+/* MARK: CESyntaxManager */
 // Syntax coloring style name errors
 "Input style name." = "请输入样式名称";
 "“%@” is already exist. Input another name." = "“%@” 已经在使用中，请输入其他名称";
@@ -301,7 +302,7 @@
 "Error: %@" = "错误： %@";
 
 
-/* CEThemeManager */
+/* MARK: CEThemeManager */
 "Untitled" = "未命名";
 "Customized Theme" = "自定义主题";
 "Theme name cannot be empty." = "主题名称不能为空";
@@ -312,20 +313,20 @@
 "Auto-generated theme that is mgrated from user's coloring setting on CotEditor 1.x" = "由 CotEditor 1.x 的用户颜色设置中自动生成的主题";
 
 
-/* CEWindowsController */
+/* MARK: CEWindowsController */
 // Finder's lock state
 "ON" = "ON";
 "OFF" = "OFF";
 
 
-/* CEKeyBindingManager */
+/* MARK: CEKeyBindingManager */
 // Warning messages
 "“%@” has already been used. Edit it again." = "“%@” 已在使用中，请重新设置";
 "“%@” does NOT include Command key. Edit it again." = "“%@” 中没有包含 Command 键，请重新设置";
 "“%@” includes Command key. Edit it again." = "“%@” 包含了 Command 键，请重新设置";
 
 
-/* CEScriptManager */
+/* MARK: CEScriptManager */
 // Menu items
 "Open Scripts Folder" = "打开脚本文件夹";
 "Update Script Menu" = "更新脚本菜单";

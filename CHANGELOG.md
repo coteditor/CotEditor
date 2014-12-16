@@ -14,6 +14,7 @@ Change Log
 ### Additions/Changes
 
 - Improve to display gear icon in menu bar while executing a script.
+- Add hidden “Reveal in Finder” menu item to syntax style action menu in Preferences (visible with `Option` key).
 
 
 ### Fixes
