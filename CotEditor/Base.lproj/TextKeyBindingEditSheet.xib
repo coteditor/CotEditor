@@ -51,7 +51,7 @@ Do NOT include the Command key.</string>
                             <rect key="frame" x="1" y="17" width="428" height="130"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
-                                <outlineView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="firstColumnOnly" multipleSelection="NO" autosaveColumns="NO" headerView="167" indentationPerLevel="16" outlineTableColumn="88" id="86">
+                                <outlineView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="firstColumnOnly" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="167" viewBased="YES" indentationPerLevel="16" outlineTableColumn="88" id="86">
                                     <rect key="frame" x="0.0" y="0.0" width="418" height="19"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <size key="intercellSpacing" width="3" height="2"/>
@@ -70,6 +70,34 @@ Do NOT include the Command key.</string>
                                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
+                                            <prototypeCellViews>
+                                                <tableCellView id="PIY-X9-4xG">
+                                                    <rect key="frame" x="1" y="1" width="300" height="17"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                    <subviews>
+                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="TVx-g4-ERo">
+                                                            <rect key="frame" x="0.0" y="0.0" width="300" height="17"/>
+                                                            <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="InsertCustomText_00:" id="nuy-Xq-RWa">
+                                                                <font key="font" metaFont="system"/>
+                                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                            </textFieldCell>
+                                                            <connections>
+                                                                <binding destination="PIY-X9-4xG" name="value" keyPath="objectValue" id="gHX-sa-W2I"/>
+                                                            </connections>
+                                                        </textField>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="TVx-g4-ERo" firstAttribute="top" secondItem="PIY-X9-4xG" secondAttribute="top" id="U9Y-Ne-tSy"/>
+                                                        <constraint firstItem="TVx-g4-ERo" firstAttribute="leading" secondItem="PIY-X9-4xG" secondAttribute="leading" constant="2" id="ahh-Pk-dju"/>
+                                                        <constraint firstAttribute="bottom" secondItem="TVx-g4-ERo" secondAttribute="bottom" id="wU9-tc-nMH"/>
+                                                        <constraint firstAttribute="trailing" secondItem="TVx-g4-ERo" secondAttribute="trailing" constant="2" id="wYT-0d-P1h"/>
+                                                    </constraints>
+                                                    <connections>
+                                                        <outlet property="textField" destination="TVx-g4-ERo" id="Kne-21-HTc"/>
+                                                    </connections>
+                                                </tableCellView>
+                                            </prototypeCellViews>
                                         </tableColumn>
                                         <tableColumn identifier="keyBindingKey" width="112" minWidth="27.056640625" maxWidth="1000" id="87">
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Key">
@@ -86,6 +114,35 @@ Do NOT include the Command key.</string>
                                                 </connections>
                                             </textFieldCell>
                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
+                                            <prototypeCellViews>
+                                                <tableCellView id="W8o-sc-r43">
+                                                    <rect key="frame" x="304" y="1" width="112" height="17"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                    <subviews>
+                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="SmM-E6-XQB">
+                                                            <rect key="frame" x="0.0" y="0.0" width="112" height="17"/>
+                                                            <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="⇧↩" id="7wq-d4-P1R">
+                                                                <font key="font" metaFont="system"/>
+                                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                            </textFieldCell>
+                                                            <connections>
+                                                                <binding destination="W8o-sc-r43" name="value" keyPath="objectValue" id="qD4-u7-diG"/>
+                                                                <outlet property="delegate" destination="-2" id="jVg-w6-lhj"/>
+                                                            </connections>
+                                                        </textField>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstAttribute="bottom" secondItem="SmM-E6-XQB" secondAttribute="bottom" id="Axh-dE-6Tl"/>
+                                                        <constraint firstItem="SmM-E6-XQB" firstAttribute="top" secondItem="W8o-sc-r43" secondAttribute="top" id="B2p-86-5v5"/>
+                                                        <constraint firstAttribute="trailing" secondItem="SmM-E6-XQB" secondAttribute="trailing" constant="2" id="B3p-FY-AZD"/>
+                                                        <constraint firstItem="SmM-E6-XQB" firstAttribute="leading" secondItem="W8o-sc-r43" secondAttribute="leading" constant="2" id="DaT-wu-zze"/>
+                                                    </constraints>
+                                                    <connections>
+                                                        <outlet property="textField" destination="SmM-E6-XQB" id="ERC-f0-UC1"/>
+                                                    </connections>
+                                                </tableCellView>
+                                            </prototypeCellViews>
                                         </tableColumn>
                                     </tableColumns>
                                     <connections>

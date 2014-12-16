@@ -33,7 +33,7 @@
 #import "constants.h"
 
 
-@interface CEKeyBindingSheetController () <NSOutlineViewDataSource, NSOutlineViewDelegate, CEKeyCatchDelegate>
+@interface CEKeyBindingSheetController () <NSOutlineViewDataSource, NSOutlineViewDelegate, NSTextFieldDelegate, CEKeyCatchDelegate>
 
 @property (nonatomic) CEKeyBindingType mode;
 @property (nonatomic) NSMutableArray *outlineDataArray;
