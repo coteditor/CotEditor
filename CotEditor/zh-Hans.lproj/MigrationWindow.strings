@@ -18,7 +18,7 @@
 "aBa-Xm-ATa.title" = "欢迎使用";
 
 /* Class = "NSTextFieldCell"; title = "Migrating user syntax styles…"; ObjectID = "vqy-cz-YAI"; */
-"vqy-cz-YAI.title" = "Migrating user syntax styles…";  // FIXME:
+"vqy-cz-YAI.title" = "迁移用户代码风格…";
 
 /* Class = "NSButtonCell"; title = "Next"; ObjectID = "uPQ-1j-6Gc"; */
 "uPQ-1j-6Gc.title" = "继续";
@@ -46,9 +46,9 @@
 /* Class = "NSTextFieldCell"; title = "In some cases, user needs aditonal manual migrations."; ObjectID = "X8Q-Ji-HKU"; */
 "X8Q-Ji-HKU.title" = "某些情况下，用户需要手动进行额外的迁移";
 /* Class = "NSButton"; ibShadowedToolTip = "See “Specification Changes on CotEditor 2.0” on Help"; ObjectID = "qdh-QQ-qcp"; */
-"qdh-QQ-qcp.ibShadowedToolTip" = "See “Specification Changes on CotEditor 2.0” on Help";  // FIXME:
+"qdh-QQ-qcp.ibShadowedToolTip" = "在帮助中查看 “CotEditor 2.0 特性变更”";
 
 /* Class = "NSTextFieldCell"; title = "Learn new features on CotEditor 2.0."; ObjectID = "8u8-rr-so0"; */
 "8u8-rr-so0.title" = "查看 CotEditor 2.0 的新功能";
 /* Class = "NSButton"; ibShadowedToolTip = "See “What's New in CotEditor 2.0” on Help"; ObjectID = "hGz-yb-qTP"; */
-"hGz-yb-qTP.ibShadowedToolTip" = "See “What's New in CotEditor 2.0” on Help";  // FIXME:
+"hGz-yb-qTP.ibShadowedToolTip" = "在帮助中查看 “CotEditor 2.0 新功能”";

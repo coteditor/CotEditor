@@ -25,7 +25,7 @@
 /* Class = "NSTextFieldCell"; title = "Text to insert:"; ObjectID = "152"; */
 "152.title" = "插入文本:";
 /* Class = "IBBindingConnection"; ibShadowedNoSelectionPlaceholder = "Select action."; ObjectID = "OsK-7K-roa"; */
-"OsK-7K-roa.ibShadowedNoSelectionPlaceholder" = "Select action.";  // FIXME:
+"OsK-7K-roa.ibShadowedNoSelectionPlaceholder" = "选择动作";
 
 /* Class = "NSButtonCell"; title = "Restore Defaults"; ObjectID = "153"; */
 "153.title" = "恢复默认";

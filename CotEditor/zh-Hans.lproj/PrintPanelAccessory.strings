@@ -58,9 +58,9 @@
 "200.title" = "页码";
 
 /* Class = "NSSegmentedCell"; Aru-Gd-J0D.ibShadowedToolTips[0] = "Align Left"; ObjectID = "Aru-Gd-J0D"; */
-"Aru-Gd-J0D.ibShadowedToolTips[0]" = "Align Left";  /* Align Left */  // FIXME:
-"Aru-Gd-J0D.ibShadowedToolTips[1]" = "Center";  /* Center */  // FIXME:
-"Aru-Gd-J0D.ibShadowedToolTips[2]" = "Align Right";  /* Align Right */  // FIXME:
+"Aru-Gd-J0D.ibShadowedToolTips[0]" = "左对齐";  /* Align Left */
+"Aru-Gd-J0D.ibShadowedToolTips[1]" = "居中";  /* Center */
+"Aru-Gd-J0D.ibShadowedToolTips[2]" = "右对齐";  /* Align Right */
 
 
 
@@ -81,9 +81,9 @@
 "310.title" = "页码";
 
 /* Class = "NSSegmentedCell"; I4t-kQ-lvq.ibShadowedToolTips[0] = "Align Left"; ObjectID = "I4t-kQ-lvq"; */
-"I4t-kQ-lvq.ibShadowedToolTips[0]" = "Align Left";  /* Align Left */  // FIXME:
-"I4t-kQ-lvq.ibShadowedToolTips[1]" = "Center";  /* Center */  // FIXME:
-"I4t-kQ-lvq.ibShadowedToolTips[2]" = "Align Right";  /* Align Right */  // FIXME:
+"I4t-kQ-lvq.ibShadowedToolTips[0]" = "左对齐";  /* Align Left */
+"I4t-kQ-lvq.ibShadowedToolTips[1]" = "居中";  /* Center */
+"I4t-kQ-lvq.ibShadowedToolTips[2]" = "右对齐";  /* Align Right */
 
 /* Class = "NSButtonCell"; title = "Print separator line at the bottom of header"; ObjectID = "705"; */
 "705.title" = "在页眉下方打印分隔线";
@@ -110,9 +110,9 @@
 "318.title" = "页码";
 
 /* Class = "NSSegmentedCell"; ObjectID = "njJ-Ab-dUQ"; */
-"njJ-Ab-dUQ.ibShadowedToolTips[0]" = "Align Left";  /* Align Left */  // FIXME:
-"njJ-Ab-dUQ.ibShadowedToolTips[1]" = "Center";  /* Center */  // FIXME:
-"njJ-Ab-dUQ.ibShadowedToolTips[2]" = "Align Right";  /* Align Right */  // FIXME:
+"njJ-Ab-dUQ.ibShadowedToolTips[0]" = "左对齐";  /* Align Left */
+"njJ-Ab-dUQ.ibShadowedToolTips[1]" = "居中";  /* Center */
+"njJ-Ab-dUQ.ibShadowedToolTips[2]" = "右对齐";  /* Align Right */
 
 
 /* Class = "NSTextFieldCell"; title = "Second line:"; ObjectID = "296"; */
@@ -132,9 +132,9 @@
 "326.title" = "页码";
 
 /* Class = "NSSegmentedCell"; ObjectID = "xAm-2i-Sw1"; */
-"xAm-2i-Sw1.ibShadowedToolTips[0]" = "Align Left";  /* Align Left */  // FIXME:
-"xAm-2i-Sw1.ibShadowedToolTips[1]" = "Center";  /* Center */  // FIXME:
-"xAm-2i-Sw1.ibShadowedToolTips[2]" = "Align Right";  /* Align Right */  // FIXME:
+"xAm-2i-Sw1.ibShadowedToolTips[0]" = "左对齐";  /* Align Left */
+"xAm-2i-Sw1.ibShadowedToolTips[1]" = "居中";  /* Center */
+"xAm-2i-Sw1.ibShadowedToolTips[2]" = "右对齐";  /* Align Right */
 
 /* Class = "NSButtonCell"; title = "Print separator line at the top of footer"; ObjectID = "710"; */
 "710.title" = "在页脚上方打印分隔线";

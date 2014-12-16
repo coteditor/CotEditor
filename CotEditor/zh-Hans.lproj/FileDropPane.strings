@@ -20,9 +20,9 @@
 "3337.title" = "用法说明:";
 
 /* Class = "NSButtonCell"; ibShadowedToolTip = "Add"; ObjectID = "3333"; */
-"3333.ibShadowedToolTip" = "Add";  // FIXME:
+"3333.ibShadowedToolTip" = "添加";
 /* Class = "NSButtonCell"; ibShadowedToolTip = "Delete"; ObjectID = "3334"; */
-"3334.ibShadowedToolTip" = "Delete";  // FIXME:
+"3334.ibShadowedToolTip" = "删除";
 
 
 /* Class = "NSTextFieldCell"; title = "Insertion Format:"; ObjectID = "3332"; */
@@ -52,4 +52,4 @@
 "537.ibShadowedToolTip" = "图片高度 (如果拖拽文件是图像)";
 
 /* Class = "IBBindingConnection"; ibShadowedNoSelectionPlaceholder = "No extension is selected."; ObjectID = "ib2-Zw-Ucy"; */
-"ib2-Zw-Ucy.ibShadowedNoSelectionPlaceholder" = "No extension is selected.";  // FIXME:
+"ib2-Zw-Ucy.ibShadowedNoSelectionPlaceholder" = "没有选中扩展名";
