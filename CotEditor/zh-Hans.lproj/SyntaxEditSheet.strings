@@ -43,10 +43,10 @@
 "LqB-N1-UYj.headerCell.title" = "结束字符串";
 /* Class = "NSTableColumn"; ObjectID = "LhT-y3-Wje"; */
 "LhT-y3-Wje.headerCell.title" = "RE";  /* RE */
-"LhT-y3-Wje.headerToolTip" = "Regular Expression";  /* Regular Expression */
+"LhT-y3-Wje.headerToolTip" = "正则表达式";  /* Regular Expression */
 /* Class = "NSTableColumn"; ObjectID = "fdh-0C-efA"; */
 "fdh-0C-efA.headerCell.title" = "IC";  /* IC */
-"fdh-0C-efA.headerToolTip" = "Ignore Case (case-insensitive)";  /* Ignore Case (case-insensitive) */
+"fdh-0C-efA.headerToolTip" = "忽略大小写";  /* Ignore Case (case-insensitive) */
 
 
 /* Class = "NSTableColumn"; headerCell.title = "Begin String"; ObjectID = "mPH-ls-jOW"; */
@@ -55,10 +55,10 @@
 "pHW-Tz-5wr.headerCell.title" = "结束字符串";
 /* Class = "NSTableColumn"; ObjectID = "em5-8M-k9b"; */
 "em5-8M-k9b.headerCell.title" = "RE";  /* RE */
-"em5-8M-k9b.headerToolTip" = "Regular Expression";  /* Regular Expression */
+"em5-8M-k9b.headerToolTip" = "正则表达式";  /* Regular Expression */
 /* Class = "NSTableColumn"; ObjectID = "1uk-qd-25S"; */
 "1uk-qd-25S.headerCell.title" = "IC";  /* IC */
-"1uk-qd-25S.headerToolTip" = "Ignore Case (case-insensitive)";  /* Ignore Case (case-insensitive) */
+"1uk-qd-25S.headerToolTip" = "忽略大小写";  /* Ignore Case (case-insensitive) */
 
 
 /* Class = "NSTableColumn"; headerCell.title = "Begin String"; ObjectID = "D1s-5t-s0A"; */
@@ -67,10 +67,10 @@
 "Z4G-nl-rgz.headerCell.title" = "结束字符串";
 /* Class = "NSTableColumn"; ObjectID = "bmQ-uE-vKx"; */
 "bmQ-uE-vKx.headerCell.title" = "RE";  /* RE */
-"bmQ-uE-vKx.headerToolTip" = "Regular Expression";  /* Regular Expression */
+"bmQ-uE-vKx.headerToolTip" = "正则表达式";  /* Regular Expression */
 /* Class = "NSTableColumn"; ObjectID = "uho-KV-LkW"; */
 "uho-KV-LkW.headerCell.title" = "IC";  /* IC */
-"uho-KV-LkW.headerToolTip" = "Ignore Case (case-insensitive)";  /* Ignore Case (case-insensitive) */
+"uho-KV-LkW.headerToolTip" = "忽略大小写";  /* Ignore Case (case-insensitive) */
 
 
 /* Class = "NSTableColumn"; headerCell.title = "Begin String"; ObjectID = "LSU-x0-u4h"; */
@@ -79,10 +79,10 @@
 "Jba-CO-4ml.headerCell.title" = "结束字符串";
 /* Class = "NSTableColumn"; ObjectID = "tTC-e8-KHA"; */
 "tTC-e8-KHA.headerCell.title" = "RE";  /* RE */
-"tTC-e8-KHA.headerToolTip" = "Regular Expression";  /* Regular Expression */
+"tTC-e8-KHA.headerToolTip" = "正则表达式";  /* Regular Expression */
 /* Class = "NSTableColumn"; ObjectID = "U1c-Gr-hgH"; */
 "U1c-Gr-hgH.headerCell.title" = "IC";  /* IC */
-"U1c-Gr-hgH.headerToolTip" = "Ignore Case (case-insensitive)";  /* Ignore Case (case-insensitive) */
+"U1c-Gr-hgH.headerToolTip" = "忽略大小写";  /* Ignore Case (case-insensitive) */
 
 
 /* Class = "NSTableColumn"; headerCell.title = "Begin String"; ObjectID = "CuI-wN-ekb"; */
@@ -91,10 +91,10 @@
 "YMS-1g-zUW.headerCell.title" = "结束字符串";
 /* Class = "NSTableColumn"; ObjectID = "ESs-Ts-25L"; */
 "ESs-Ts-25L.headerCell.title" = "RE";  /* RE */
-"ESs-Ts-25L.headerToolTip" = "Regular Expression";  /* Regular Expression */
+"ESs-Ts-25L.headerToolTip" = "正则表达式";  /* Regular Expression */
 /* Class = "NSTableColumn"; ObjectID = "9Qp-qv-J49"; */
 "9Qp-qv-J49.headerCell.title" = "IC";  /* IC */
-"9Qp-qv-J49.headerToolTip" = "Ignore Case (case-insensitive)";  /* Ignore Case (case-insensitive) */
+"9Qp-qv-J49.headerToolTip" = "忽略大小写";  /* Ignore Case (case-insensitive) */
 
 
 /* Class = "NSTableColumn"; headerCell.title = "Begin String"; ObjectID = "wmH-mU-cLY"; */
@@ -103,10 +103,10 @@
 "HZn-Lx-tnW.headerCell.title" = "结束字符串";
 /* Class = "NSTableColumn"; ObjectID = "DZX-7q-H9Q"; */
 "DZX-7q-H9Q.headerCell.title" = "RE";  /* RE */
-"DZX-7q-H9Q.headerToolTip" = "Regular Expression";  /* Regular Expression */
+"DZX-7q-H9Q.headerToolTip" = "正则表达式";  /* Regular Expression */
 /* Class = "NSTableColumn"; ObjectID = "Apk-VU-c93"; */
 "Apk-VU-c93.headerCell.title" = "IC";  /* IC */
-"Apk-VU-c93.headerToolTip" = "Ignore Case (case-insensitive)";  /* Ignore Case (case-insensitive) */
+"Apk-VU-c93.headerToolTip" = "忽略大小写";  /* Ignore Case (case-insensitive) */
 
 
 /* Class = "NSTableColumn"; headerCell.title = "Begin String"; ObjectID = "bDC-h2-bAz"; */
@@ -115,10 +115,10 @@
 "d54-9v-F37.headerCell.title" = "结束字符串";
 /* Class = "NSTableColumn"; ObjectID = "HJ6-He-nlS"; */
 "HJ6-He-nlS.headerCell.title" = "RE";  /* RE */
-"HJ6-He-nlS.headerToolTip" = "Regular Expression";  /* Regular Expression */
+"HJ6-He-nlS.headerToolTip" = "正则表达式";  /* Regular Expression */
 /* Class = "NSTableColumn"; ObjectID = "kgS-s1-pAB"; */
 "kgS-s1-pAB.headerCell.title" = "IC";  /* IC */
-"kgS-s1-pAB.headerToolTip" = "Ignore Case (case-insensitive)";  /* Ignore Case (case-insensitive) */
+"kgS-s1-pAB.headerToolTip" = "忽略大小写";  /* Ignore Case (case-insensitive) */
 
 
 /* Class = "NSTableColumn"; headerCell.title = "Begin String"; ObjectID = "Pcb-GQ-2qY"; */
@@ -127,10 +127,10 @@
 "UJw-z0-xAU.headerCell.title" = "结束字符串";
 /* Class = "NSTableColumn"; ObjectID = "59B-PI-ulB"; */
 "59B-PI-ulB.headerCell.title" = "RE";  /* RE */
-"59B-PI-ulB.headerToolTip" = "Regular Expression";  /* Regular Expression */
+"59B-PI-ulB.headerToolTip" = "正则表达式";  /* Regular Expression */
 /* Class = "NSTableColumn"; ObjectID = "8t6-0w-Avl"; */
 "8t6-0w-Avl.headerCell.title" = "IC";  /* IC */
-"8t6-0w-Avl.headerToolTip" = "Ignore Case (case-insensitive)";  /* Ignore Case (case-insensitive) */
+"8t6-0w-Avl.headerToolTip" = "忽略大小写";  /* Ignore Case (case-insensitive) */
 
 
 /* Class = "NSTextFieldCell"; title = "Inline comment:"; ObjectID = "GCw-u2-Lau"; */
@@ -164,10 +164,10 @@
 "665.headerCell.title" = "结束字符串";
 /* Class = "NSTableColumn"; ObjectID = "450"; */
 "450.headerCell.title" = "RE";  /* RE */
-"450.headerToolTip" = "Regular Expression";  /* Regular Expression */
+"450.headerToolTip" = "正则表达式";  /* Regular Expression */
 /* Class = "NSTableColumn"; ObjectID = "396"; */
 "396.headerCell.title" = "IC";  /* IC */
-"396.headerToolTip" = "Ignore Case (case-insensitive)";  /* Ignore Case (case-insensitive) */
+"396.headerToolTip" = "忽略大小写";  /* Ignore Case (case-insensitive) */
 
 
 /* Class = "NSTextFieldCell"; title = "Regular expressions to extract outline menu items"; ObjectID = "1010"; */
@@ -179,7 +179,7 @@
 "720.headerCell.title" = "正则表达式";
 /* Class = "NSTableColumn"; ObjectID = "736"; */
 "736.headerCell.title" = "IC";  /* IC */
-"736.headerToolTip" = "Ignore Case (case-insensitive)";  /* Ignore Case (case-insensitive) */
+"736.headerToolTip" = "忽略大小写";  /* Ignore Case (case-insensitive) */
 
 /* Class = "NSButton"; ibShadowedToolTip = "Bold"; ObjectID = "749"; */
 "749.ibShadowedToolTip" = "粗体";
