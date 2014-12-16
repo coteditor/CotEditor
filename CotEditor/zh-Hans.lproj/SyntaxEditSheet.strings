@@ -31,10 +31,10 @@
 "642.headerCell.title" = "结束字符串";
 /* Class = "NSTableColumn"; ObjectID = "392"; */
 "392.headerCell.title" = "RE";  /* RE */
-"392.headerToolTip" = "Regular Expression";  /* Regular Expression */
+"392.headerToolTip" = "Regular Expression";  /* Regular Expression */  // FIXME:
 /* Class = "NSTableColumn"; ObjectID = "461"; */
 "461.headerCell.title" = "IC";  /* IC */
-"461.headerToolTip" = "Ignore Case (case-insensitive)";  /* Ignore Case (case-insensitive) */
+"461.headerToolTip" = "Ignore Case (case-insensitive)";  /* Ignore Case (case-insensitive) */  // FIXME:
 
 
 /* Class = "NSTableColumn"; headerCell.title = "Begin String"; ObjectID = "Az7-NY-UZX"; */
@@ -182,11 +182,11 @@
 "736.headerToolTip" = "Ignore Case (case-insensitive)";  /* Ignore Case (case-insensitive) */
 
 /* Class = "NSButton"; ibShadowedToolTip = "Bold"; ObjectID = "749"; */
-"749.ibShadowedToolTip" = "Bold";
+"749.ibShadowedToolTip" = "Bold";  // FIXME:
 /* Class = "NSButton"; ibShadowedToolTip = "Underline"; ObjectID = "752"; */
-"752.ibShadowedToolTip" = "Underline";
+"752.ibShadowedToolTip" = "Underline";  // FIXME:
 /* Class = "NSButton"; ibShadowedToolTip = "Italic"; ObjectID = "755"; */
-"755.ibShadowedToolTip" = "Italic";
+"755.ibShadowedToolTip" = "Italic";  // FIXME:
 
 
 /* Class = "NSTextFieldCell"; title = "If no word, the completion list will be generated from coloring settings."; ObjectID = "1018"; */

@@ -12,8 +12,8 @@
  */
 
 /* Class = "IBBindingConnection"; ObjectID = "zwB-Z7-P18"; */
-"zwB-Z7-P18.ibShadowedIsNilPlaceholder" = "color code";  /* color code */
-"zwB-Z7-P18.ibShadowedNoSelectionPlaceholder" = "no selection";  /* no selection */
+"zwB-Z7-P18.ibShadowedIsNilPlaceholder" = "color code";  /* color code */  // FIXME:
+"zwB-Z7-P18.ibShadowedNoSelectionPlaceholder" = "no selection";  /* no selection */  // FIXME:
 
 /* Class = "NSButtonCell"; title = "Insert"; ObjectID = "HMC-PY-Ngy"; */
 "HMC-PY-Ngy.title" = "插入";

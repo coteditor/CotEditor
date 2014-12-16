@@ -15,6 +15,6 @@
 "6.title" = "脚本错误";
 
 /* Class = "NSToolbarItem"; ObjectID = "9N6-p4-mW2"; */
-"9N6-p4-mW2.label" = "Clean Log";  /* Clean Log */
-"9N6-p4-mW2.paletteLabel" = "Clean Log";  /* Clean Log */
-"9N6-p4-mW2.toolTip" = "Clean error log";  /* Clean error log */
+"9N6-p4-mW2.label" = "Clean Log";  /* Clean Log */  // FIXME:
+"9N6-p4-mW2.paletteLabel" = "Clean Log";  /* Clean Log */  // FIXME:
+"9N6-p4-mW2.toolTip" = "Clean error log";  /* Clean error log */  // FIXME:

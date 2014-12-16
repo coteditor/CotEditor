@@ -14,106 +14,106 @@
 /* Class = "NSToolbarItem"; ObjectID = "fVR-to-zN3"; */
 "fVR-to-zN3.label" = "行尾";  /* Line Endings */
 "fVR-to-zN3.paletteLabel" = "行尾";  /* Line Endings */
-"fVR-to-zN3.toolTip" = "Change line endings";  /* Change line endings */
+"fVR-to-zN3.toolTip" = "Change line endings";  /* Change line endings */  // FIXME:
 
 /* Class = "NSToolbarItem"; ObjectID = "d2p-GT-YXm"; */
 "d2p-GT-YXm.label" = "文件编码";  /* File Encoding */
 "d2p-GT-YXm.paletteLabel" = "文件编码";  /* File Encoding */
-"d2p-GT-YXm.toolTip" = "Change file encoding";  /* Change file encoding */
+"d2p-GT-YXm.toolTip" = "Change file encoding";  /* Change file encoding */  // FIXME:
 
 /* Class = "NSToolbarItem"; ObjectID = "6gO-UF-7QW"; */
 "6gO-UF-7QW.label" = "语法风格";  /* Syntax Style */
 "6gO-UF-7QW.paletteLabel" = "语法风格";  /* Syntax Style */
-"6gO-UF-7QW.toolTip" = "Change syntax style";  /* Change syntax style */
+"6gO-UF-7QW.toolTip" = "Change syntax style";  /* Change syntax style */  // FIXME:
 
 /* Class = "NSToolbarItem"; ObjectID = "ogy-SR-Vqr"; */
 "ogy-SR-Vqr.label" = "显示简介";  /* Get Info */
 "ogy-SR-Vqr.paletteLabel" = "显示简介";  /* Get Info */
-"ogy-SR-Vqr.toolTip" = "Show document information";  /* Show document information */
+"ogy-SR-Vqr.toolTip" = "Show document information";  /* Show document information */  // FIXME:
 
 /* Class = "NSToolbarItem"; ObjectID = "LV0-t3-0jM"; */
 "LV0-t3-0jM.label" = "不兼容字符";  /* Incompatible Chars */
 "LV0-t3-0jM.paletteLabel" = "显示不兼容字符";  /* Show Incompatible Chars */
-"LV0-t3-0jM.toolTip" = "Show incompatible chars for selected encoding";  /* Show incompatible chars for selected encoding */
+"LV0-t3-0jM.toolTip" = "Show incompatible chars for selected encoding";  /* Show incompatible chars for selected encoding */  // FIXME:
 
 /* Class = "NSToolbarItem"; ObjectID = "Ptr-aN-aSD"; */
 "Ptr-aN-aSD.label" = "放大";  /* Bigger */
 "Ptr-aN-aSD.paletteLabel" = "放大字体";  /* Bigger Font */
-"Ptr-aN-aSD.toolTip" = "Increase font size";  /* Increase font size */
+"Ptr-aN-aSD.toolTip" = "Increase font size";  /* Increase font size */  // FIXME:
 
 /* Class = "NSToolbarItem"; ObjectID = "5nt-ud-Ewr"; */
 "5nt-ud-Ewr.label" = "缩小";  /* Smaller */
 "5nt-ud-Ewr.paletteLabel" = "缩小字体";  /* Smaller Font */
-"5nt-ud-Ewr.toolTip" = "Decrease font size";  /* Decrease font size */
+"5nt-ud-Ewr.toolTip" = "Decrease font size";  /* Decrease font size */  // FIXME:
 
 /* Class = "NSToolbarItem"; ObjectID = "77g-Yu-UgC"; */
 "77g-Yu-UgC.label" = "向左缩进";  /* Shift Left */
 "77g-Yu-UgC.paletteLabel" = "向左缩进";  /* Shift Left */
-"77g-Yu-UgC.toolTip" = "Shift lines to left";  /* Shift lines to left */
+"77g-Yu-UgC.toolTip" = "Shift lines to left";  /* Shift lines to left */  // FIXME:
 
 /* Class = "NSToolbarItem"; ObjectID = "fa9-a4-ZUv"; */
 "fa9-a4-ZUv.label" = "向右缩进";  /* Shift Right */
 "fa9-a4-ZUv.paletteLabel" = "向右缩进";  /* Shift Right */
-"fa9-a4-ZUv.toolTip" = "Shift lines to right";  /* Shift lines to right */
+"fa9-a4-ZUv.toolTip" = "Shift lines to right";  /* Shift lines to right */  // FIXME:
 
 /* Class = "NSToolbarItem"; ObjectID = "cIM-Hx-SKX"; */
 "cIM-Hx-SKX.label" = "注释";  /* Comment */
 "cIM-Hx-SKX.paletteLabel" = "切换注释";  /* Toggle Comment */
-"cIM-Hx-SKX.toolTip" = "Comment-out or uncomment selection";  /* Comment-out or uncomment selection */
+"cIM-Hx-SKX.toolTip" = "Comment-out or uncomment selection";  /* Comment-out or uncomment selection */  // FIXME:
 
 /* Class = "NSToolbarItem"; ObjectID = "zry-bG-j2J"; */
 "zry-bG-j2J.label" = "扩展 Tab";  /* Expand Tabs */
 "zry-bG-j2J.paletteLabel" = "切换自动扩展 Tab";  /* Toggle Auto Tab Expand */
-"zry-bG-j2J.toolTip" = "Toggle auto tab expand";  /* Toggle auto tab expand */
+"zry-bG-j2J.toolTip" = "Toggle auto tab expand";  /* Toggle auto tab expand */  // FIXME:
 
 /* Class = "NSToolbarItem"; ObjectID = "KpZ-NH-xEh"; */
 "KpZ-NH-xEh.label" = "导航栏";  /* Navigation Bar */
 "KpZ-NH-xEh.paletteLabel" = "显示 / 隐藏导航栏";  /* Show / Hide Navigation Bar */
-"KpZ-NH-xEh.toolTip" = "Show or hide navigation bar of window";  /* Show or hide navigation bar of window */
+"KpZ-NH-xEh.toolTip" = "Show or hide navigation bar of window";  /* Show or hide navigation bar of window */  // FIXME:
 
 /* Class = "NSToolbarItem"; ObjectID = "kfX-UD-siE"; */
 "kfX-UD-siE.label" = "行号";  /* Line Number */
 "kfX-UD-siE.paletteLabel" = "显示 / 隐藏行号";  /* Show / Hide Line Number */
-"kfX-UD-siE.toolTip" = "Show or hide line number of text";  /* Show or hide line number of text */
+"kfX-UD-siE.toolTip" = "Show or hide line number of text";  /* Show or hide line number of text */  // FIXME:
 
 /* Class = "NSToolbarItem"; ObjectID = "moq-h9-h7t"; */
 "moq-h9-h7t.label" = "状态栏";  /* Status Bar */
 "moq-h9-h7t.paletteLabel" = "显示 / 隐藏状态栏";  /* Show / Hide Status Bar */
-"moq-h9-h7t.toolTip" = "Show or hide status bar of window";  /* Show or hide status bar of window */
+"moq-h9-h7t.toolTip" = "Show or hide status bar of window";  /* Show or hide status bar of window */  // FIXME:
 
 /* Class = "NSToolbarItem"; label = "不可见字符"; ObjectID = "KtS-FH-3Py"; */
 "KtS-FH-3Py.label" = "不可见字符";  /* Invisible Chars */
-"KtS-FH-3Py.paletteLabel" = "显示 / 隐藏不可见字符";  /* Show / Hide Invisible Chars */
-"KtS-FH-3Py.toolTip" = "Show or hide invisible characters in text";  /* Show or hide invisible characters in text */
+"KtS-FH-3Py.paletteLabel" = "显示 / 隐藏不可见字符";  /* Show / Hide Invisible Chars */  // FIXME:
+"KtS-FH-3Py.toolTip" = "Show or hide invisible characters in text";  /* Show or hide invisible characters in text */  // FIXME:
 
 /* Class = "NSToolbarItem"; ObjectID = "PES-f4-CAc"; */
 "PES-f4-CAc.label" = "页面指示";  /* Page Guide */
 "PES-f4-CAc.paletteLabel" = "显示 / 隐藏页面指示";  /* Show / Hide Page Guide */
-"PES-f4-CAc.toolTip" = "Show or hide page guide line";  /* Show or hide page guide line */
+"PES-f4-CAc.toolTip" = "Show or hide page guide line";  /* Show or hide page guide line */  // FIXME:
 
 /* Class = "NSToolbarItem"; ObjectID = "oJm-2d-4Yl"; */
 "oJm-2d-4Yl.label" = "换行";  /* Wrap Lines */
 "oJm-2d-4Yl.paletteLabel" = "切换换行";  /* Toggle Wrap Lines */
-"oJm-2d-4Yl.toolTip" = "Toggle wrap lines";  /* Toggle wrap lines */
+"oJm-2d-4Yl.toolTip" = "Toggle wrap lines";  /* Toggle wrap lines */  // FIXME:
 
 /* Class = "NSToolbarItem"; ObjectID = "OJR-Lr-Joc"; */
 "OJR-Lr-Joc.label" = "方向";  /* Orientation */
 "OJR-Lr-Joc.paletteLabel" = "切换文字方向";  /* Toggle text orientation */
-"OJR-Lr-Joc.toolTip" = "Toggle text orientation";  /* Toggle text orientation */
+"OJR-Lr-Joc.toolTip" = "Toggle text orientation";  /* Toggle text orientation */  // FIXME:
 
 /* Class = "NSToolbarItem"; ObjectID = "77o-kx-gNj"; */
 "77o-kx-gNj.label" = "颜色代码";  /* Color Code */
 "77o-kx-gNj.paletteLabel" = "编辑颜色代码";  /* Edit Color Code */
-"77o-kx-gNj.toolTip" = "Open Color Code Editor and set selection as color code";  /* Open Color Code Editor and set selection as color code */
+"77o-kx-gNj.toolTip" = "Open Color Code Editor and set selection as color code";  /* Open Color Code Editor and set selection as color code */  // FIXME:
 
 /* Class = "NSToolbarItem"; ObjectID = "qhr-mN-25W"; */
 "qhr-mN-25W.label" = "重新着色";  /* Re-Color */
 "qhr-mN-25W.paletteLabel" = "全部重新着色";  /* Re-Color All */
-"qhr-mN-25W.toolTip" = "Do re-color whole document";  /* Re-color whole document */
+"qhr-mN-25W.toolTip" = "Do re-color whole document";  /* Re-color whole document */  // FIXME:
 
 
 /* Class = "NSImageView"; ibShadowedToolTip = "This document is read only."; ObjectID = "EP1-My-tQo"; */
-"EP1-My-tQo.ibShadowedToolTip" = "This document is read only.";
+"EP1-My-tQo.ibShadowedToolTip" = "This document is read only.";  // FIXME:
 
 
 

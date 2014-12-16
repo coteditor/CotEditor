@@ -109,9 +109,9 @@
 "Cwp-ys-LJc.title" = "选择行";
 
 /* Class = "NSMenuItem"; title = "Input Backslash"; ObjectID = "631"; */
-"631.title" = "Input Backslash";
+"631.title" = "Input Backslash";  // FIXME:
 /* Class = "NSMenuItem"; title = "Input Yen Mark"; ObjectID = "633"; */
-"633.title" = "Input Yen Mark";
+"633.title" = "Input Yen Mark";  // FIXME:
 /* Class = "NSMenuItem"; title = "Input Char in Unicode Hex…"; ObjectID = "tWx-pj-3PL"; */
 "tWx-pj-3PL.title" = "用 Unicode 输入字符…";
 

@@ -50,13 +50,13 @@
 "vlw-Tc-sLl.title" = "已安装的语法风格:";
 
 /* Class = "NSButton"; ibShadowedToolTip = "Remove selected style"; ObjectID = "dI1-Dk-Mce"; */
-"dI1-Dk-Mce.ibShadowedToolTip" = "Remove selected style";
+"dI1-Dk-Mce.ibShadowedToolTip" = "Remove selected style";  // FIXME:
 /* Class = "NSButton"; ibShadowedToolTip = "Add empty style"; ObjectID = "Hma-8v-2gu"; */
-"Hma-8v-2gu.ibShadowedToolTip" = "Add empty style";
+"Hma-8v-2gu.ibShadowedToolTip" = "Add empty style";  // FIXME:
 /* Class = "NSButton"; ibShadowedToolTip = "Edit selected style"; ObjectID = "Q0c-oI-um3"; */
-"Q0c-oI-um3.ibShadowedToolTip" = "Edit selected style";
+"Q0c-oI-um3.ibShadowedToolTip" = "Edit selected style";  // FIXME:
 
 /* Class = "NSMenuItem"; title = "Import…"; ObjectID = "1lj-x8-ouD"; */
 "1lj-x8-ouD.title" = "导入…";
 /* Class = "NSMenuItem"; title = "Show File Mapping Conflicts…"; ObjectID = "hyN-4W-57i"; */
-"hyN-4W-57i.title" = "Show File Mapping Conflicts…";
+"hyN-4W-57i.title" = "Show File Mapping Conflicts…";  // FIXME:
