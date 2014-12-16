@@ -10,8 +10,8 @@
  © 2014 CotEditor Project
  */
 
-/* Class = "CEKeyBindingSheet"; title = "テキストキーバインド"; ObjectID = "54"; */
-"54.title" = "文本按键绑定";
+/* Class = "CEKeyBindingSheet"; title = "Text Key Bindings"; ObjectID = "54"; */
+"54.title" = "テキストキーバインド";
 
 /* Class = "NSTextFieldCell"; title = "To change a binding, select it, click the key column, and then type the keys.\nDo NOT include the Command key."; ObjectID = "150"; */
 "150.title" = "アクションを選択し、キー列をクリックして編集状態にしてから、新しいキーを入力してください。\nコマンドキーを含めることはできません。";

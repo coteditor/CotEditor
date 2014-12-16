@@ -34,6 +34,6 @@
 /* Class = "NSTableColumn"; headerCell.title = "Theme"; ObjectID = "Avf-y8-wXG"; */
 "Avf-y8-wXG.headerCell.title" = "主题";
 /* Class = "NSMenuItem"; title = "Export…"; ObjectID = "4B4-mq-8Fs"; */
-"4B4-mq-8Fs.title" = "Export…";
+"4B4-mq-8Fs.title" = "导出…";
 /* Class = "NSMenuItem"; title = "Import…"; ObjectID = "gcs-B8-kPL"; */
-"gcs-B8-kPL.title" = "Import…";
+"gcs-B8-kPL.title" = "导入…";

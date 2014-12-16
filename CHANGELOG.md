@@ -16,6 +16,11 @@ Change Log
 - Improve to display gear icon in menu bar while executing a script.
 
 
+### Fixes
+
+- Fix some missing localizations in simplified Chinese.
+
+
 
 2.0.3
 --------------------------

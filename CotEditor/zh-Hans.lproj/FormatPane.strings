@@ -57,6 +57,6 @@
 "Q0c-oI-um3.ibShadowedToolTip" = "Edit selected style";
 
 /* Class = "NSMenuItem"; title = "Import…"; ObjectID = "1lj-x8-ouD"; */
-"1lj-x8-ouD.title" = "Import…";
+"1lj-x8-ouD.title" = "导入…";
 /* Class = "NSMenuItem"; title = "Show File Mapping Conflicts…"; ObjectID = "hyN-4W-57i"; */
 "hyN-4W-57i.title" = "Show File Mapping Conflicts…";

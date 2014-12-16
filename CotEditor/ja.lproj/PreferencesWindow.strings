@@ -13,9 +13,6 @@
 /* Class = "NSWindow"; title = "Preferences"; ObjectID = "6"; */
 "6.title" = "環境設定";
 
-/* Class = "NSTextFieldCell"; title = "No Pane is Selected."; ObjectID = "iXM-53-nYK"; */
-"iXM-53-nYK.title" = "ペインが選択されていません。";
-
 /* Class = "NSToolbarItem"; ObjectID = "HlR-fr-Hwd"; */
 "HlR-fr-Hwd.label" = "一般";  /* General */
 "HlR-fr-Hwd.paletteLabel" = "一般";  /* General */

@@ -12,27 +12,27 @@
 
 
 /* CEAppDelegate */
-// File open accessory's menu item title.
+// File open accessory's menu item title
 "Auto-Detect" = "自动检测";
-// Format - Syntax coloring menu item title.
+// Format - Syntax coloring menu item title
 "None" = "无";
 "Re-Color All" = "全部重新着色";
-// Find menu added item title.
+// Find menu added item titles
 "Select Prev Outline Item" = "选择上一个大纲项目";
 "Select Next Outline Item" = "选择下一个大纲项目";
 "Go To…" = "跳转…";
 
-// Import theme
+// Importing theme
 "“%@” is a CotEditor theme file." = "“%@” 是 CotEditor 主题文件";
 "Do you want to install this theme?" = "是否安装主题？";
 "Install" = "安装";
 "Open as Text File" = "以文本方式打开";
 "A new theme named “%@” has been successfully installed." = "新主题 “%@” 安装完成";
 
-// Bug report
+// Window title of bug report
 "Bug Report" = "错误报告";
 
-// Migration from 1.x
+// Migration from v1.x
 "Restorering menu key bindings settings…" = "正在恢复菜单按键绑定…";
 "Migrating coloring settings…" = "迁移颜色设置…";
 "Migrating user syntax styles…" = "迁移用户语法风格…";
@@ -48,7 +48,7 @@
 
 
 /* CEDocument */
-// Undo/Redo Action name
+// Undo action names
 "Encoding to “%@”" = "编码变更为 “%@”";
 "Line Endings to “%@”" = "行尾变更为 “%@”";
 // convert or reinterpret alert
@@ -94,7 +94,7 @@
 
 
 /* CETextView */
-// undo action name
+// Undo action names
 "Replace Text" = "替换文本";
 "Insert Text" = "插入文本";
 "Insert Custom Text" = "插入自定义文本";
@@ -112,11 +112,11 @@
 "NFKC" = "NFKC";
 "Inspect Character" = "显示字符";
 
-// menu item title
+// Menu items
 "Comment Selection" = "注释选中内容";
 "Uncomment Seletion" = "取消注释选中内容";
 
-// contextual menu title
+// Contextual menu items
 "Font" = "字体";
 "Utility" = "实用工具";
 "Select All" = "全部选择";
@@ -130,7 +130,7 @@
 
 
 /* CEEditorWrapper */
-// menu items
+// Menu items
 "Hide Line Numbers" = "隐藏行号";
 "Show Line Numbers" = "显示行号";
 "Hide Status Bar" = "隐藏状态栏";
@@ -146,7 +146,7 @@
 "Use Vertical Orientation" = "纵向显示";
 "Use Horizontal Orientation" = "横向显示";
 
-// show invisible char menu tooltip
+// Show invisible char menu item tooltip
 "Show or hide invisible characters in document" = "显示或隐藏文档中的不可见字符";
 "To display invisible characters, set them in Preferences and re-open the document" = "要显示不可见字符，请在偏好设置中进行设定，然后重新打开文档";
 
@@ -163,7 +163,7 @@
 
 
 /* CESplitView */
-// menu items
+// Menu items
 "Stack Views Horizontally" = "横向分隔编辑器";
 "Stack Views Vertically" = "纵向分隔编辑器";
 
@@ -184,10 +184,10 @@
 
 
 /* CESyntax */
-// Outline Menu title
+// Outline menu title
 "<Outline Menu>" = "<大纲菜单>";
 
-// coloring indicator
+// Coloring indicator
 "Coloring text…" = "文本着色中...";
 "Please wait for a while." = "请稍等片刻...";
 "Extracting %@…" = "%@ 解压中...";
@@ -206,10 +206,10 @@
 
 
 /* CEPreferencesWindowController */
-// smart quotes/dashes
+// Smart quotes/dashes
 " (on Mavericks and later)" = "（Mavericks 或更新版本）";
 
-// Appearance Pane
+// Appearance pane
 "Duplicate “%@”" = "拷贝 “%@”";
 "Restore “%@”" = "还原 “%@”";
 "Delete the theme “%@”?" = "删除 “%@” 主题？";
@@ -218,23 +218,23 @@
 "Do you want to replace it?\nReplaced theme cannot be restored." = "要覆盖原主题吗？\n主题删除后将无法还原";
 
 
-// Print Pane
+// Print pane
 "Theme" = "主题";
 
-// Pref Format tab
+// Format pane
 // encoding menu alert sheet
 "Are you sure you want to change to “%@”?" = "确定要变更至 “%@” 吗？";
 "Change to “%@”" = "“变更至 %@”";
 "Revert to “Auto-Detect”" = "还原回“自动检测”";
 "The default “Auto-Detect” is recommended for most cases." = "在绝大多数情况下，推荐使用默认的“自动检测”";
 
-// installed syntax styles action menu
+// Installed syntax styles action menu items
 "Duplicate “%@”…" = "拷贝“%@”…";
 "Export “%@”…" = "导出“%@”…";
 
 
 /* CESyntaxEditSheetController */
-// menu items
+// Menu items
 "Keywords" = "关键字";
 "Commands" = "命令";
 "Types" = "类型";
@@ -251,11 +251,9 @@
 "Style Info" = "样式信息";
 "Syntax Validation" = "语法验证";
 
-// syntax element check result (no error)
+// Syntax style validation results
 "No error was found." = "没有发现错误";
-// syntax element check result (1 error found)
 "An error was found!" = "发现 1 个错误";
-// syntax element check result (2 or more errors found)
 "%i errors were found!" = "发现 %i 个错误";
 
 
@@ -265,13 +263,13 @@
 "“%@” is already exist. Input another name." = "“%@” 已经在使用中，请输入其他名称";
 "Style name cannot contain “/”. Input another name." = "样式名称中不能含有“/”，请输入其他名称";
 "Style name cannot begin with “.”. Input another name." = "样式名称中不能含有“.”，请输入其他名称";
-// selected Syntax coloring style name was original
+// Selected syntax coloring style name was original
 "Name of the bundled style cannot be changed." = "内置样式的名称不能改变";
 // Suffix of copied syntax coloring style
 " copy" = " 拷贝";
 // Delete syntax coloring style alert message
 "Delete the Syntax style “%@”?" = "确定删除语法样式 “%@”？";
-// syntax coloring style alert button title
+// Syntax coloring style alert button titles
 "Cancel" = "取消";
 "Delete" = "删除";
 "Replace" = "替换";
@@ -290,10 +288,10 @@
 "Sorry, could not import “%@”." = "“%@” 无法导入";
 // Export syntax coloring style file savePanel label
 "Export As:" = "导出为：";
-// File Drop setting delete
+// File Drop setting deletion alert
 "Delete the File Drop setting for “%@”?" = "删除文件拖拽设置 “%@”？";
 "Deleted setting cannot be restored." = "设置删除后无法恢复";
-// Syntax Validation
+// Syntax validation
 "Block comment needs both begin delimiter and end delimiter." = "块注释需要同时有起始符号和终止符号";
 "Begin string" = "开始字符串";
 "End string" = "结束字符串";
@@ -315,28 +313,29 @@
 
 
 /* CEWindowsController */
+// Finder's lock state
 "ON" = "ON";
 "OFF" = "OFF";
 
 
 /* CEKeyBindingManager */
-// Sheet text
+// Warning messages
 "“%@” has already been used. Edit it again." = "“%@” 已在使用中，请重新设置";
 "“%@” does NOT include Command key. Edit it again." = "“%@” 中没有包含 Command 键，请重新设置";
 "“%@” includes Command key. Edit it again." = "“%@” 包含了 Command 键，请重新设置";
 
 
 /* CEScriptManager */
-// menu title
+// Menu items
 "Open Scripts Folder" = "打开脚本文件夹";
 "Update Script Menu" = "更新脚本菜单";
 "Copy Sample to Scripts Folder" = "将示例文件复制到脚本文件夹";
 "Copy bundled sample scripts to the scripts folder." = "将内置的示例脚本复制到脚本文件夹";
 
-// script menu item tooltips
+// Script menu item tooltips
 "“Opt + click” to open in Script Editor." = "使用 “Opt + 单击” 打开脚本编辑器";
 
-// Alert message
+// Alert messages
 "The script “%@” does not exist.\n\nCheck it and do “Update Script Menu”." = "脚本 “%@” 不存在。\n\n请确认文件是否存在，并使用 “更新脚本菜单” 进行更新";
 "%@\nErrorNumber: %i" = "%@\n错误号：%i";
 "Could not open the script file “%@”." = "无法打开脚本文件 “%@”";

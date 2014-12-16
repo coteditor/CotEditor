@@ -14,14 +14,11 @@
 /* Class = "NSWindow"; title = "Preferences"; ObjectID = "6"; */
 "6.title" = "Preferences";
 
-/* Class = "NSTextFieldCell"; title = "No Pane is Selected."; ObjectID = "iXM-53-nYK"; */
-"iXM-53-nYK.title" = "No Pane is Selected.";
-
 /* Class = "NSToolbarItem"; ObjectID = "HlR-fr-Hwd"; */
 "HlR-fr-Hwd.label" = "一般";  /* General */
 "HlR-fr-Hwd.paletteLabel" = "一般";  /* General */
 
-/* Class = "NSToolbarItem"; label = "窗口"; ObjectID = "agm-iM-Y3j"; */
+/* Class = "NSToolbarItem"; ObjectID = "agm-iM-Y3j"; */
 "agm-iM-Y3j.label" = "窗口";  /* Window */
 "agm-iM-Y3j.paletteLabel" = "窗口";  /* Window */
 
