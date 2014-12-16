@@ -28,17 +28,15 @@
  */
 
 #import "CEKeyBindingSheetController.h"
-#import "CEKeyBindingSheet.h"
 #import "CEKeyBindingManager.h"
 #import "constants.h"
 
 
-@interface CEKeyBindingSheetController () <NSOutlineViewDataSource, NSOutlineViewDelegate, NSTextFieldDelegate, CEKeyCatchDelegate>
+@interface CEKeyBindingSheetController () <NSOutlineViewDataSource, NSOutlineViewDelegate, NSTextFieldDelegate>
 
 @property (nonatomic) CEKeyBindingType mode;
 @property (nonatomic) NSMutableArray *outlineDataArray;
 @property (nonatomic) NSMutableArray *usedKeySpecCharsList;  // for duplication check
-@property (nonatomic, copy) NSString *currentKeySpecChars;  // saved key spec chars setting for editing action
 @property (nonatomic, copy) NSString *warningMessage;
 @property (nonatomic, getter=isRestoreble) BOOL restoreble;
 
@@ -81,7 +79,7 @@
                 NSArray *insertTextArray = [[NSUserDefaults standardUserDefaults] stringArrayForKey:CEDefaultInsertCustomTextArrayKey];
                 
                 _outlineDataArray = [[CEKeyBindingManager sharedManager] textKeySpecCharArrayForOutlineDataWithFactoryDefaults:NO];
-                _usedKeySpecCharsList = [[NSMutableArray alloc] initWithArray:_outlineDataArray copyItems:YES];
+                _usedKeySpecCharsList = [self keySpecCharsListFromOutlineData:_outlineDataArray];
                 _restoreble = ![factoryDefault isEqualToArray:insertTextArray];
                 break;
             }
@@ -171,35 +169,17 @@
 
 
 // ------------------------------------------------------
-/// データをセット
-- (void)outlineView:(NSOutlineView *)outlineView setObjectValue:(id)object forTableColumn:(NSTableColumn *)tableColumn byItem:(id)item
+/// コラムに応じたオブジェクト(表示文字列)をセットして返す
+- (NSView *)outlineView:(NSOutlineView *)outlineView viewForTableColumn:(NSTableColumn *)tableColumn item:(id)item
 // ------------------------------------------------------
 {
     NSString *identifier = [tableColumn identifier];
+    NSTableCellView *cellView = [outlineView makeViewWithIdentifier:identifier owner:self];
+    NSString *content = [self outlineView:outlineView objectValueForTableColumn:tableColumn byItem:item];
     
-    // 現在の表示値との比較
-    if ([object isEqualToString:[self outlineView:outlineView objectValueForTableColumn:tableColumn byItem:item]]) {
-        // データソースの値でなく表示値がそのまま入ってきているのは、選択状態になったあと何の編集もされなかった時
-        if (([[NSApp currentEvent] type] == NSLeftMouseDown) && [self warningMessage]) {
-            item[identifier] = @"";
-            [self setWarningMessage:nil];
-            [self validateKeySpecChars:@"" oldChars:[self currentKeySpecChars]];
-        }
-        
-    } else {
-        // 現在の表示値と違っていたら、セット
-        item[identifier] = object;
-        // 無効な値だったら再び編集状態にする
-        if (![self validateKeySpecChars:object oldChars:[self currentKeySpecChars]]) {
-            __weak typeof(self) weakSelf = self;
-            dispatch_async(dispatch_get_main_queue(), ^{
-                typeof(self) strongSelf = weakSelf;
-                [strongSelf performEditSelectedBindingKeyColumn];
-            });
-        }
-    }
+    [[cellView textField] setStringValue:content];
     
-    [self setCurrentKeySpecChars:nil];
+    return cellView;
 }
 
 
@@ -212,34 +192,10 @@
 //=======================================================
 
 // ------------------------------------------------------
-/// コラム編集直前、キー入力を取得するようにしてから許可を出す
-- (BOOL)outlineView:(NSOutlineView *)outlineView shouldEditTableColumn:(NSTableColumn *)tableColumn item:(id)item
-// ------------------------------------------------------
-{
-    NSString *identifier = [tableColumn identifier];
-    
-    if (![identifier isEqualToString:CEKeyBindingKeySpecCharsKey] || item[CEKeyBindingChildrenKey]) {
-        return NO;
-    }
-    
-    if (![self currentKeySpecChars]) {
-        // （値が既にセットされている時は更新しない）
-        [self setCurrentKeySpecChars:item[identifier]];
-    }
-    [(CEKeyBindingSheet *)[self window] setShouldCatchShortcut:YES];
-    
-    return YES;
-}
-
-
-// ------------------------------------------------------
 /// 選択行の変更を許可
 - (BOOL)outlineView:(NSOutlineView *)outlineView shouldSelectItem:(id)item
 // ------------------------------------------------------
 {
-    // キー取得を停止
-    [(CEKeyBindingSheet *)[self window] setShouldCatchShortcut:NO];
-    
     // テキストのバインディングを編集している時は挿入文字列配列コントローラの選択オブジェクトを変更
     if ([self mode] == CETextKeyBindingsType) {
         NSUInteger index = [outlineView rowForItem:item];
@@ -251,24 +207,69 @@
 }
 
 
+// ------------------------------------------------------
+// テーブルセルが編集可能かを設定する
+- (void)outlineView:(NSOutlineView *)outlineView didAddRowView:(NSTableRowView *)rowView forRow:(NSInteger)row
+// ------------------------------------------------------
+{
+    id item = [outlineView itemAtRow:row];
+    
+    if ([outlineView isExpandable:item]) {
+        NSTableCellView *cellView = [rowView viewAtColumn:[outlineView columnWithIdentifier:CEKeyBindingKeySpecCharsKey]];
+        [[cellView textField] setEditable:NO];
+    }
+}
+
+
 //=======================================================
-// Delegate method (CEKeyCatchDelegate)
-//  <== window
+// Delegate method (NSTextField)
+//  <== outlineView->CEShortcutKeyField
 //=======================================================
 
 // ------------------------------------------------------
-/// 新しいキーバインディングキーの押下をアウトラインビューに取り込む
-- (void)didCatchModifierFlags:(NSUInteger)modifierFlags charsIgnoringModifiers:(NSString *)charsIgnoringModifiers
+/// データをセット
+- (void)controlTextDidEndEditing:(NSNotification *)obj
 // ------------------------------------------------------
 {
-    NSString *fieldString = [CEKeyBindingManager keySpecCharsFromKeyEquivalent:charsIgnoringModifiers
-                                                                 modifierFrags:modifierFlags];
-    fieldString = [fieldString isEqualToString:@"\b"] ? @"" : fieldString;  // NSDeleteCharacter単独は削除扱い
-    NSText *fieldEditor = [[self window] fieldEditor:NO forObject:[self outlineView]];
+    if (![[obj object] isKindOfClass:[NSTextField class]]) { return; }
     
-    [fieldEditor setString:fieldString];
-    [[self window] endEditingFor:fieldEditor];
-    [[self window] makeFirstResponder:[self outlineView]];
+    NSOutlineView *outlineView = [self outlineView];
+    NSTextField *textField = (NSTextField *)[obj object];
+    NSInteger row = [outlineView rowForView:textField];
+    NSInteger column = [outlineView columnWithIdentifier:CEKeyBindingKeySpecCharsKey];
+    NSTableColumn *tableColumn = [outlineView tableColumnWithIdentifier:CEKeyBindingKeySpecCharsKey];
+    id item = [outlineView itemAtRow:row];
+    NSString *keySpecChars = [textField stringValue];
+    NSString *oldChars = item[CEKeyBindingKeySpecCharsKey];
+    
+    // 現在の表示値との比較
+    if ([keySpecChars isEqualToString:[self outlineView:outlineView objectValueForTableColumn:tableColumn byItem:item]]) {
+        // データソースの値でなく表示値がそのまま入ってきているのは、選択状態になったあと何の編集もされなかった時
+        if (([[NSApp currentEvent] type] == NSLeftMouseDown) && [self warningMessage]) {
+            item[CEKeyBindingKeySpecCharsKey] = @"";
+            [self setWarningMessage:nil];
+            [self validateKeySpecChars:@"" oldChars:oldChars];
+        }
+        
+    } else {
+        // 現在の表示値と違っていたら、セット
+        BOOL isValid = [self validateKeySpecChars:keySpecChars oldChars:oldChars];
+        
+        item[CEKeyBindingKeySpecCharsKey] = isValid ? keySpecChars : oldChars;  // reset if invalid
+        
+        // reload row to apply printed form of key spec
+        [outlineView reloadDataForRowIndexes:[NSIndexSet indexSetWithIndex:row]
+                               columnIndexes:[NSIndexSet indexSetWithIndex:column]];
+        
+        // 無効な値だったら再び編集状態にする
+        if (!isValid) {
+            __weak typeof(self) weakSelf = self;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                typeof(self) strongSelf = weakSelf;
+                [strongSelf performEditSelectedBindingKeyColumn];
+            });
+        }
+    }
 }
 
 
@@ -281,25 +282,13 @@
 //=======================================================
 
 // ------------------------------------------------------
-/// 選択行のキー編集開始
-- (IBAction)editKeyBindingKey:(id)sender
-// ------------------------------------------------------
-{
-    [self performEditSelectedBindingKeyColumn];
-}
-
-
-// ------------------------------------------------------
 /// キーバインディングを出荷時設定に戻す
 - (IBAction)setToFactoryDefaults:(id)sender
 // ------------------------------------------------------
 {
     switch ([self mode]) {
         case CEMenuKeyBindingsType:
-        {
             [self resetKeySpecCharsToFactoryDefaults:[self outlineDataArray]];
-            [self setUsedKeySpecCharsList:[[self keySpecCharsListFromOutlineData:[self outlineDataArray]] mutableCopy]];
-        }
             break;
             
         case CETextKeyBindingsType:
@@ -311,13 +300,13 @@
                 [contents addObject:[@{CEDefaultInsertCustomTextKey: object} mutableCopy]];
             }
             [self setOutlineDataArray:[[CEKeyBindingManager sharedManager] textKeySpecCharArrayForOutlineDataWithFactoryDefaults:YES]];
-            [self setUsedKeySpecCharsList:[[self outlineDataArray] mutableCopy]];
             [[self snippetTextArrayController] setContent:contents];
             [[self snippetTextArrayController] setSelectionIndex:NSNotFound]; // 選択なし
         }
             break;
     }
     
+    [self setUsedKeySpecCharsList:[self keySpecCharsListFromOutlineData:[self outlineDataArray]]];
     [self setRestoreble:NO];
     [[self outlineView] deselectAll:nil];
     [[self outlineView] reloadData];
@@ -331,8 +320,6 @@
 {
     // フォーカスを移して入力中の値を確定
     [[self window] makeFirstResponder:sender];
-    // キー入力取得を停止
-    [(CEKeyBindingSheet *)[self window] setShouldCatchShortcut:NO];
     
     if (sender == [self OKButton]) { // ok のときデータを保存、反映させる
         switch ([self mode]) {
@@ -457,12 +444,9 @@
     if (selectedRow == -1) { return; }
     
     id item = [[self outlineView] itemAtRow:selectedRow];
-    NSTableColumn *column = [[self outlineView] tableColumnWithIdentifier:CEKeyBindingKeySpecCharsKey];
+    NSInteger *column = [[self outlineView] columnWithIdentifier:CEKeyBindingKeySpecCharsKey];
     
-    if ([self outlineView:[self outlineView] shouldEditTableColumn:column item:item]) {
-        [[self outlineView] editColumn:[[self outlineView] columnWithIdentifier:CEKeyBindingKeySpecCharsKey]
-                                   row:selectedRow withEvent:nil select:YES];
-    }
+    [[self outlineView] editColumn:column row:selectedRow withEvent:nil select:YES];
 }
 
 
@@ -495,7 +479,7 @@
 
 //------------------------------------------------------
 /// 重複チェック用配列を生成
-- (NSArray *)keySpecCharsListFromOutlineData:(NSArray *)outlineArray
+- (NSMutableArray *)keySpecCharsListFromOutlineData:(NSArray *)outlineArray
 //------------------------------------------------------
 {
     NSMutableArray *keySpecCharsList = [NSMutableArray array];

@@ -14,7 +14,7 @@
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <window title="Menu Key Bindings" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="menuKeyBindingsEditSheet" animationBehavior="default" id="5" userLabel="Edit Sheet" customClass="CEKeyBindingSheet">
+        <window title="Menu Key Bindings" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="menuKeyBindingsEditSheet" animationBehavior="default" id="5" userLabel="Edit Sheet">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <rect key="contentRect" x="44" y="400" width="460" height="360"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
@@ -50,7 +50,6 @@ You MUST include the Command key.</string>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <outlineView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="firstColumnOnly" columnReordering="NO" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="162" viewBased="YES" indentationPerLevel="16" outlineTableColumn="9" id="8">
-                                    <rect key="frame" x="0.0" y="0.0" width="418" height="19"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <size key="intercellSpacing" width="3" height="2"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -107,9 +106,6 @@ You MUST include the Command key.</string>
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                <connections>
-                                                    <action selector="editKeyBindingKey:" target="-2" id="Ywy-R2-ckL"/>
-                                                </connections>
                                             </textFieldCell>
                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                             <prototypeCellViews>
@@ -117,15 +113,18 @@ You MUST include the Command key.</string>
                                                     <rect key="frame" x="304" y="1" width="112" height="17"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
-                                                        <textField identifier="keyBindingKey" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="vza-W8-UBs">
+                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="vza-W8-UBs" customClass="CEShortcutKeyField">
                                                             <rect key="frame" x="0.0" y="0.0" width="112" height="17"/>
                                                             <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="⌘N" id="1VY-aB-nbb">
                                                                 <font key="font" metaFont="system"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                                <allowedInputSourceLocales>
+                                                                    <string>NSAllRomanInputSourcesLocaleIdentifier</string>
+                                                                </allowedInputSourceLocales>
                                                             </textFieldCell>
                                                             <connections>
-                                                                <binding destination="R4j-Uv-uCw" name="value" keyPath="objectValue" id="tUf-eK-8X6"/>
+                                                                <binding destination="R4j-Uv-uCw" name="value" keyPath="objectValue" id="pny-zF-73O"/>
                                                                 <outlet property="delegate" destination="-2" id="8Zf-m9-Zbc"/>
                                                             </connections>
                                                         </textField>
@@ -231,7 +230,6 @@ DQ
             </view>
             <connections>
                 <outlet property="delegate" destination="-2" id="G6m-7G-33c"/>
-                <outlet property="keyCatchDelegate" destination="-2" id="goD-ly-cMq"/>
             </connections>
             <point key="canvasLocation" x="74" y="103"/>
         </window>

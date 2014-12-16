@@ -1,16 +1,15 @@
 /*
  ==============================================================================
- CEKeyBindingSheet
+ CEShortcutKeyField
  
  CotEditor
  http://coteditor.com
  
- Created on 2014-08-20 by 1024jp
+ Created on 2014-12-16 by 1024jp
  encoding="UTF-8"
  ------------------------------------------------------------------------------
  
- © 2004-2007 nakamuxu
- © 2014 CotEditor Project
+ © 2014 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -31,19 +30,6 @@
 @import Cocoa;
 
 
-@protocol CEKeyCatchDelegate;
-
-
-@interface CEKeyBindingSheet : NSWindow
-
-@property (nonatomic) BOOL shouldCatchShortcut;
-@property (nonatomic, weak) IBOutlet id<CEKeyCatchDelegate> keyCatchDelegate;
-
-@end
-
-
-@protocol CEKeyCatchDelegate
-
-- (void)didCatchModifierFlags:(NSUInteger)modifierFlags charsIgnoringModifiers:(NSString *)charsIgnoringModifiers;
+@interface CEShortcutKeyField : NSTextField
 
 @end
