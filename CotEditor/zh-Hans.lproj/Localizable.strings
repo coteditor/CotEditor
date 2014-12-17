@@ -315,8 +315,8 @@
 
 /* MARK: CEWindowsController */
 // Finder's lock state
-"ON" = "ON";
-"OFF" = "OFF";
+"Yes" = "Yes";  // FIXME:
+"No" = "No";  // FIXME:
 
 
 /* MARK: CEKeyBindingManager */

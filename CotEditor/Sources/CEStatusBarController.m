@@ -28,6 +28,7 @@
  */
 
 #import "CEStatusBarController.h"
+#import "CEWindowController.h"
 #import "constants.h"
 
 
@@ -37,6 +38,7 @@ static const NSTimeInterval kDuration = 0.25;
 
 @interface CEStatusBarController ()
 
+@property (nonatomic, weak) IBOutlet NSObjectController *documentInfoController;
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint *heightConstraint;
 @property (nonatomic, weak) IBOutlet NSNumberFormatter *decimalFormatter;
 @property (nonatomic) NSByteCountFormatter *byteCountFormatter;
@@ -95,41 +97,42 @@ static const NSTimeInterval kDuration = 0.25;
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSMutableAttributedString *status = [[NSMutableAttributedString alloc] init];
+    NSDictionary *documentInfo = [[self documentInfoController] content];
     
     if ([defaults boolForKey:CEDefaultShowStatusBarLinesKey]) {
         [status appendAttributedString:[self formattedStateWithLabel:@"Lines"
-                                                               value:[self linesInfo]
-                                                       selectedValue:[self selectedLinesInfo]]];
+                                                               value:documentInfo[CEDocumentLinesKey]
+                                                       selectedValue:documentInfo[CEDocumentSelectedLinesKey]]];
     }
     if ([defaults boolForKey:CEDefaultShowStatusBarCharsKey]) {
         [status appendAttributedString:[self formattedStateWithLabel:@"Chars"
-                                                               value:[self charsInfo]
-                                                       selectedValue:[self selectedCharsInfo]]];
+                                                               value:documentInfo[CEDocumentCharsKey]
+                                                       selectedValue:documentInfo[CEDocumentSelectedCharsKey]]];
     }
     if ([defaults boolForKey:CEDefaultShowStatusBarLengthKey]) {
         [status appendAttributedString:[self formattedStateWithLabel:@"Length"
-                                                               value:[self lengthInfo]
-                                                       selectedValue:[self selectedLengthInfo]]];
+                                                               value:documentInfo[CEDocumentLengthKey]
+                                                       selectedValue:documentInfo[CEDocumentSelectedLengthKey]]];
     }
     if ([defaults boolForKey:CEDefaultShowStatusBarWordsKey]) {
         [status appendAttributedString:[self formattedStateWithLabel:@"Words"
-                                                               value:[self wordsInfo]
-                                                       selectedValue:[self selectedWordsInfo]]];
+                                                               value:documentInfo[CEDocumentWordsKey]
+                                                       selectedValue:documentInfo[CEDocumentSelectedWordsKey]]];
     }
     if ([defaults boolForKey:CEDefaultShowStatusBarLocationKey]) {
         [status appendAttributedString:[self formattedStateWithLabel:@"Location"
-                                                               value:[self locationInfo]
-                                                       selectedValue:-1]];
+                                                               value:documentInfo[CEDocumentLocationKey]
+                                                       selectedValue:nil]];
     }
     if ([defaults boolForKey:CEDefaultShowStatusBarLineKey]) {
         [status appendAttributedString:[self formattedStateWithLabel:@"Line"
-                                                               value:[self lineInfo]
-                                                       selectedValue:-1]];
+                                                               value:documentInfo[CEDocumentLineKey]
+                                                       selectedValue:nil]];
     }
     if ([defaults boolForKey:CEDefaultShowStatusBarColumnKey]) {
         [status appendAttributedString:[self formattedStateWithLabel:@"Column"
-                                                               value:[self columnInfo]
-                                                       selectedValue:-1]];
+                                                               value:documentInfo[CEDocumentColumnKey]
+                                                       selectedValue:nil]];
     }
     
     [self setEditorStatus:status];
@@ -143,17 +146,18 @@ static const NSTimeInterval kDuration = 0.25;
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSMutableArray *status = [NSMutableArray array];
+    NSDictionary *documentInfo = [[self documentInfoController] content];
     
     if ([defaults boolForKey:CEDefaultShowStatusBarEncodingKey]) {
-        [status addObject:([self encodingInfo] ?: @"-")];
+        [status addObject:(documentInfo[CEDocumentEncodingKey] ?: @"-")];
     }
     if ([defaults boolForKey:CEDefaultShowStatusBarLineEndingsKey]) {
-        [status addObject:([self lineEndingsInfo] ?: @"-")];
+        [status addObject:(documentInfo[CEDocumentLineEndingsKey] ?: @"-")];
     }
     if ([defaults boolForKey:CEDefaultShowStatusBarFileSizeKey]) {
         
-        [status addObject:([self fileSizeInfo] ?
-                           [[self byteCountFormatter] stringFromByteCount:[self fileSizeInfo]] : @"-")];
+        [status addObject:(documentInfo[CEDocumentFileSizeKey] ?
+                           [[self byteCountFormatter] stringFromByteCount:documentInfo[CEDocumentFileSizeKey]] : @"-")];
     }
     
     [self setDocumentStatus:[status componentsJoinedByString:@"   "]];
@@ -193,15 +197,15 @@ static const NSTimeInterval kDuration = 0.25;
 
 // ------------------------------------------------------
 /// formatted state
-- (NSAttributedString *)formattedStateWithLabel:(NSString *)label value:(NSInteger)value selectedValue:(NSInteger)selectedValue
+- (NSAttributedString *)formattedStateWithLabel:(NSString *)label value:(NSNumber *)value selectedValue:(NSNumber *)selectedValue
 // ------------------------------------------------------
 {
     NSString *localizedLabel = [NSString stringWithFormat:@"%@%@",
                                 NSLocalizedString(label, nil), NSLocalizedString(@": ", nil)];
     NSMutableString *string = [NSMutableString stringWithFormat:@"%@%@",
-                               localizedLabel, [[self decimalFormatter] stringFromNumber:@(value)]];
-    if (selectedValue > 0) {
-        [string appendFormat:@" (%@)", [[self decimalFormatter] stringFromNumber:@(selectedValue)]];
+                               localizedLabel, [[self decimalFormatter] stringFromNumber:value]];
+    if ([selectedValue integerValue] > 0) {
+        [string appendFormat:@" (%@)", [[self decimalFormatter] stringFromNumber:selectedValue]];
     }
     [string appendString:@"   "];  // buffer to the next state
     

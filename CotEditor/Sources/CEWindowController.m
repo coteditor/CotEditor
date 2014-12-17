@@ -41,6 +41,38 @@
 static NSString *const InfoIdentifier = @"info";
 static NSString *const IncompatibleIdentifier = @"incompatibleChar";
 
+// document information keys
+NSString *const CEDocumentEncodingKey = @"encoding";
+NSString *const CEDocumentLineEndingsKey = @"lineEndings";
+NSString *const CEDocumentCreationDateKey = @"creationDate";         // NSDate
+NSString *const CEDocumentModificationDateKey = @"modificationDate"; // NSDate
+NSString *const CEDocumentOwnerKey = @"owner";
+NSString *const CEDocumentHFSTypeKey = @"type";
+NSString *const CEDocumentHFSCreatorKey = @"creator";
+NSString *const CEDocumentFinderLockKey = @"finderLock";
+NSString *const CEDocumentPermissionKey = @"permission";
+NSString *const CEDocumentFileSizeKey = @"fileSize";
+// editor information keys
+NSString *const CEDocumentLinesKey = @"lines";
+NSString *const CEDocumentCharsKey = @"chars";
+NSString *const CEDocumentWordsKey = @"words";
+NSString *const CEDocumentLengthKey = @"length";
+NSString *const CEDocumentByteLengthKey = @"byteLength";
+NSString *const CEDocumentSelectedLinesKey = @"selectedLines";
+NSString *const CEDocumentSelectedCharsKey = @"selectedChars";
+NSString *const CEDocumentSelectedWordsKey = @"selectedWords";
+NSString *const CEDocumentSelectedByteLengthKey = @"selectedByteLength";
+NSString *const CEDocumentSelectedLengthKey = @"selectedLength";
+NSString *const CEDocumentFormattedLinesKey = @"formattedLines";
+NSString *const CEDocumentFormattedCharsKey = @"formattedChars";
+NSString *const CEDocumentFormattedWordsKey = @"formattedWords";
+NSString *const CEDocumentFormattedLengthKey = @"formattedLength";
+NSString *const CEDocumentFormattedByteLengthKey = @"formattedByteLength";
+NSString *const CEDocumentColumnKey = @"column";         // caret location from line head
+NSString *const CEDocumentLocationKey = @"location";     // caret location from begining of document
+NSString *const CEDocumentLineKey = @"line";             // current line
+NSString *const CEDocumentUnicodeKey = @"unicode";       // Unicode of selected single character (or surrogate-pair)
+
 
 @interface CEWindowController () <NSDrawerDelegate, NSTabViewDelegate>
 
@@ -50,31 +82,13 @@ static NSString *const IncompatibleIdentifier = @"incompatibleChar";
 @property (nonatomic) NSTimer *infoUpdateTimer;
 @property (nonatomic) NSTimer *incompatibleCharTimer;
 
-// document information (for binding in drawer)
-@property (nonatomic, copy) NSString *encodingInfo;
-@property (nonatomic, copy) NSString *lineEndingsInfo;
-@property (nonatomic, copy) NSDate *createdInfo;
-@property (nonatomic, copy) NSDate *modificatedInfo;
-@property (nonatomic, copy) NSString *ownerInfo;
-@property (nonatomic, copy) NSString *typeInfo;
-@property (nonatomic, copy) NSString *creatorInfo;
-@property (nonatomic, copy) NSString *finderLockInfo;
-@property (nonatomic, copy) NSString *permissionInfo;
-@property (nonatomic) unsigned long long fileSizeInfo;
-// editor information (for binding in drawer)
-@property (nonatomic, copy) NSString *linesInfo;
-@property (nonatomic, copy) NSString *charsInfo;
-@property (nonatomic, copy) NSString *wordsInfo;
-@property (nonatomic, copy) NSString *lengthInfo;
-@property (nonatomic, copy) NSString *byteLengthInfo;
-@property (nonatomic) NSUInteger columnInfo;           // caret location from line head
-@property (nonatomic) NSUInteger locationInfo;         // caret location from begining of document
-@property (nonatomic) NSUInteger lineInfo;             // current line
-@property (nonatomic, copy) NSString *singleCharInfo;  // Unicode of selected single character (or surrogate-pair)
+@property (nonatomic) NSMutableDictionary *documentInfo;
+
 
 // IBOutlets
 @property (nonatomic) IBOutlet CEStatusBarController *statusBarController;
-@property (nonatomic) IBOutlet NSArrayController *listController;
+@property (nonatomic) IBOutlet NSObjectController *documentInfoController;
+@property (nonatomic) IBOutlet NSArrayController *incompatibleCharsController;
 @property (nonatomic) IBOutlet NSDrawer *drawer;
 @property (nonatomic, weak) IBOutlet NSTabView *tabView;
 @property (nonatomic, weak) IBOutlet NSTextField *listErrorTextField;
@@ -139,6 +153,8 @@ static NSTimeInterval incompatibleCharInterval;
     NSSize size = NSMakeSize((CGFloat)[defaults doubleForKey:CEDefaultWindowWidthKey],
                              (CGFloat)[defaults doubleForKey:CEDefaultWindowHeightKey]);
     [[self window] setContentSize:size];
+    
+    [self setDocumentInfo:[NSMutableDictionary dictionary]];
     
     // 背景をセットアップ
     [(CEWindow *)[self window] setBackgroundAlpha:[defaults doubleForKey:CEDefaultWindowAlphaKey]];
@@ -268,7 +284,8 @@ static NSTimeInterval incompatibleCharInterval;
     __block CEStatusBarController *statusBar = [self statusBarController];
     __weak typeof(self) weakSelf = self;
     
-    // 別スレッドで情報を計算し、メインスレッドで drawer と statusBar に渡す
+    // 別スレッドで情報を計算し、メインスレッドで controller に渡す
+    NSMutableDictionary *documentInfo = [self documentInfo];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         typeof(self) strongSelf = weakSelf;
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -335,7 +352,7 @@ static NSTimeInterval incompatibleCharInterval;
             }
         }
         
-        NSString *singleCharInfo;
+        NSString *unicodeInfo;
         NSUInteger byteLength = 0, selectedByteLength = 0;
         if (updatesDrawer) {
             {
@@ -344,12 +361,12 @@ static NSTimeInterval incompatibleCharInterval;
                     unichar secondChar = [wholeString characterAtIndex:selectedRange.location + 1];
                     if (CFStringIsSurrogateHighCharacter(firstChar) && CFStringIsSurrogateLowCharacter(secondChar)) {
                         UTF32Char pair = CFStringGetLongCharacterForSurrogatePair(firstChar, secondChar);
-                        singleCharInfo = [NSString stringWithFormat:@"U+%04tX", pair];
+                        unicodeInfo = [NSString stringWithFormat:@"U+%04tX", pair];
                     }
                 }
                 if (selectedRange.length == 1) {
                     unichar character = [wholeString characterAtIndex:selectedRange.location];
-                    singleCharInfo = [NSString stringWithFormat:@"U+%.4X", character];
+                    unicodeInfo = [NSString stringWithFormat:@"U+%.4X", character];
                 }
             }
             
@@ -360,30 +377,32 @@ static NSTimeInterval incompatibleCharInterval;
         
         // apply to UI
         dispatch_sync(dispatch_get_main_queue(), ^{
-            if (updatesStatusBar) {
-                [statusBar setLinesInfo:numberOfLines];
-                [statusBar setSelectedLinesInfo:numberOfSelectedLines];
-                [statusBar setCharsInfo:numberOfChars];
-                [statusBar setSelectedCharsInfo:numberOfSelectedChars];
-                [statusBar setLengthInfo:length];
-                [statusBar setSelectedLengthInfo:selectedRange.length];
-                [statusBar setWordsInfo:numberOfWords];
-                [statusBar setSelectedWordsInfo:numberOfSelectedWords];
-                [statusBar setLocationInfo:location];
-                [statusBar setLineInfo:currentLine];
-                [statusBar setColumnInfo:column];
-                [statusBar updateEditorStatus];
+            documentInfo[CEDocumentLinesKey] = @(numberOfLines);
+            documentInfo[CEDocumentCharsKey] = @(numberOfChars);
+            documentInfo[CEDocumentLengthKey] = @(length);
+            documentInfo[CEDocumentByteLengthKey] = @(byteLength);
+            documentInfo[CEDocumentWordsKey] = @(numberOfWords);
+            documentInfo[CEDocumentSelectedLinesKey] = @(numberOfSelectedLines);
+            documentInfo[CEDocumentSelectedCharsKey] = @(numberOfSelectedChars);
+            documentInfo[CEDocumentSelectedLengthKey] = @(selectedRange.length);
+            documentInfo[CEDocumentSelectedByteLengthKey] = @(selectedByteLength);
+            documentInfo[CEDocumentSelectedWordsKey] = @(numberOfSelectedWords);
+            documentInfo[CEDocumentFormattedLinesKey] = [strongSelf formatCount:numberOfLines selected:numberOfSelectedLines];
+            documentInfo[CEDocumentFormattedCharsKey] = [strongSelf formatCount:numberOfChars selected:numberOfSelectedChars];
+            documentInfo[CEDocumentFormattedLengthKey] = [strongSelf formatCount:length selected:selectedRange.length];
+            documentInfo[CEDocumentFormattedByteLengthKey] = [strongSelf formatCount:byteLength selected:selectedByteLength];
+            documentInfo[CEDocumentFormattedWordsKey] = [strongSelf formatCount:numberOfWords selected:numberOfSelectedWords];
+            documentInfo[CEDocumentLocationKey] = @(location);
+            documentInfo[CEDocumentColumnKey] = @(column);
+            documentInfo[CEDocumentLineKey] = @(currentLine);
+            if (unicodeInfo) {
+                documentInfo[CEDocumentUnicodeKey] = unicodeInfo;
+            } else {
+                [documentInfo removeObjectForKey:CEDocumentUnicodeKey];
             }
-            if (updatesDrawer) {
-                [strongSelf setLinesInfo:[strongSelf formatCount:numberOfLines selected:numberOfSelectedLines]];
-                [strongSelf setCharsInfo:[strongSelf formatCount:numberOfChars selected:numberOfSelectedChars]];
-                [strongSelf setLengthInfo:[strongSelf formatCount:length selected:selectedRange.length]];
-                [strongSelf setByteLengthInfo:[strongSelf formatCount:byteLength selected:selectedByteLength]];
-                [strongSelf setWordsInfo:[strongSelf formatCount:numberOfWords selected:numberOfSelectedWords]];
-                [strongSelf setLocationInfo:location];
-                [strongSelf setColumnInfo:column];
-                [strongSelf setLineInfo:currentLine];
-                [strongSelf setSingleCharInfo:singleCharInfo];
+            
+            if (updatesStatusBar) {
+                [statusBar updateEditorStatus];
             }
         });
     });
@@ -400,14 +419,9 @@ static NSTimeInterval incompatibleCharInterval;
     
     if (!shouldUpdateStatusBar && !shouldUpdateDrawer) { return; }
     
-    NSString *lineEndingsInfo = [NSString newLineNameWithType:[[self document] lineEnding]];
-    NSString *encodingInfo = [[self document] currentIANACharSetName];
+    [self documentInfo][CEDocumentEncodingKey] = [[self document] currentIANACharSetName];
+    [self documentInfo][CEDocumentLineEndingsKey] = [NSString newLineNameWithType:[[self document] lineEnding]];
     
-    [self setEncodingInfo:encodingInfo];
-    [self setLineEndingsInfo:lineEndingsInfo];
-    
-    [[self statusBarController] setEncodingInfo:encodingInfo];
-    [[self statusBarController] setLineEndingsInfo:lineEndingsInfo];
     if (shouldUpdateStatusBar) {
         [[self statusBarController] updateDocumentStatus];
     }
@@ -421,16 +435,21 @@ static NSTimeInterval incompatibleCharInterval;
 {
     NSDictionary *attrs = [[self document] fileAttributes];
     
-    [self setCreatedInfo:[attrs fileCreationDate]];
-    [self setModificatedInfo:[attrs fileModificationDate]];
-    [self setOwnerInfo:[attrs fileOwnerAccountName]];
-    [self setTypeInfo:NSFileTypeForHFSTypeCode([attrs fileHFSTypeCode])];
-    [self setCreatorInfo:NSFileTypeForHFSTypeCode([attrs fileHFSCreatorCode])];
-    [self setFinderLockInfo:([attrs fileIsImmutable] ? NSLocalizedString(@"ON", nil) : nil)];
-    [self setPermissionInfo:[NSString stringWithFormat:@"%tu", [attrs filePosixPermissions]]];
-    [self setFileSizeInfo:[attrs fileSize]];
+    if ([[self document] fileURL]) {
+        [self documentInfo][CEDocumentCreationDateKey] = [attrs fileCreationDate];
+        [self documentInfo][CEDocumentModificationDateKey] = [attrs fileModificationDate];
+        [self documentInfo][CEDocumentFileSizeKey] = @([attrs fileSize]);
+    } else {
+        [[self documentInfo] removeObjectsForKeys:@[CEDocumentCreationDateKey,
+                                                    CEDocumentModificationDateKey,
+                                                    CEDocumentFileSizeKey]];
+    }
+    [self documentInfo][CEDocumentOwnerKey] = [attrs fileOwnerAccountName] ? : @"";
+    [self documentInfo][CEDocumentPermissionKey] = [attrs filePosixPermissions] ? [NSString stringWithFormat:@"%tu", [attrs filePosixPermissions]] : @"";
+    [self documentInfo][CEDocumentFinderLockKey] = NSLocalizedString([attrs fileIsImmutable] ? @"Yes" : @"No", nil);
+    [self documentInfo][CEDocumentHFSTypeKey] = [attrs fileHFSTypeCode] ? NSFileTypeForHFSTypeCode([attrs fileHFSTypeCode]) : @"";
+    [self documentInfo][CEDocumentHFSCreatorKey] = [attrs fileHFSCreatorCode] ? NSFileTypeForHFSTypeCode([attrs fileHFSCreatorCode]) : @"";
     
-    [[self statusBarController] setFileSizeInfo:[attrs fileSize]];
     [[self statusBarController] updateDocumentStatus];
 }
 
@@ -696,9 +715,9 @@ static NSTimeInterval incompatibleCharInterval;
 - (IBAction)selectIncompatibleRange:(id)sender
 // ------------------------------------------------------
 {
-    if ([[[self listController] selectedObjects] count] == 0) { return; }
+    if ([[[self incompatibleCharsController] selectedObjects] count] == 0) { return; }
 
-    NSRange range = [[[self listController] selectedObjects][0][CEIncompatibleRangeKey] rangeValue];
+    NSRange range = [[[self incompatibleCharsController] selectedObjects][0][CEIncompatibleRangeKey] rangeValue];
     
     [[self editor] setSelectedRange:range];
     [[self window] makeFirstResponder:[[self editor] textView]];
@@ -782,7 +801,7 @@ static NSTimeInterval incompatibleCharInterval;
     
     
     [[self listErrorTextField] setHidden:([contents count] > 0)]; // リストが取得できなかった時のメッセージを表示
-    [[self listController] setContent:contents];
+    [[self incompatibleCharsController] setContent:contents];
 }
 
 

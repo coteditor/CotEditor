@@ -144,8 +144,8 @@
 "689.title" = "拥有者:";
 /* Class = "NSTextFieldCell"; title = "Permission:"; ObjectID = "685"; */
 "685.title" = "权限:";
-/* Class = "NSTextFieldCell"; title = "Finder's Lock:"; ObjectID = "687"; */
-"687.title" = "Finder 锁定:";
+/* Class = "NSTextFieldCell"; title = "Locked:"; ObjectID = "687"; */
+"687.title" = "锁定:";
 /* Class = "NSTextFieldCell"; title = "Type:"; ObjectID = "673"; */
 "673.title" = "类型:";
 /* Class = "NSTextFieldCell"; title = "Creator:"; ObjectID = "672"; */
@@ -166,15 +166,11 @@
 "g8t-es-vog.title" = "长度:";
 /* Class = "NSTextFieldCell"; title = "Words:"; ObjectID = "696"; */
 "696.title" = "字数:";
-/* Class = "NSTextFieldCell"; title = "Current Line:"; ObjectID = "679"; */
-"679.title" = "当前行:";
-/* Class = "NSTextFieldCell"; title = "Location:"; ObjectID = "7Eo-jA-QRt"; */
-"7Eo-jA-QRt.title" = "位置:";
+/* Class = "NSTextFieldCell"; title = "Location:"; ObjectID = "679t"; */
+"679.title" = "位置:";
+/* Class = "NSTextFieldCell"; title = "Current Line:"; ObjectID = "7Eo-jA-QRt"; */
+"7Eo-jA-QRt.title" = "当前行:";
 /* Class = "NSTextFieldCell"; title = "Column:"; ObjectID = "691"; */
 "691.title" = "列:";
 /* Class = "NSTextFieldCell"; title = "Unicode:"; ObjectID = "j5R-qU-f98"; */
 "j5R-qU-f98.title" = "Unicode:";
-
-
-/* Class = "NSButtonCell"; title = "Close"; ObjectID = "699"; */
-"699.title" = "关闭";

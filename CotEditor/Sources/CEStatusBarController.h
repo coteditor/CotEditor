@@ -36,24 +36,6 @@
 
 @property (readonly, nonatomic, getter=isShown) BOOL shown;
 
-// editor status
-@property (nonatomic) NSInteger linesInfo;
-@property (nonatomic) NSInteger selectedLinesInfo;
-@property (nonatomic) NSInteger charsInfo;
-@property (nonatomic) NSInteger selectedCharsInfo;
-@property (nonatomic) NSInteger lengthInfo;
-@property (nonatomic) NSInteger selectedLengthInfo;
-@property (nonatomic) NSInteger wordsInfo;
-@property (nonatomic) NSInteger selectedWordsInfo;
-@property (nonatomic) NSInteger locationInfo;
-@property (nonatomic) NSInteger lineInfo;
-@property (nonatomic) NSInteger columnInfo;
-
-// document status
-@property (nonatomic, copy) NSString *encodingInfo;
-@property (nonatomic, copy) NSString *lineEndingsInfo;
-@property (nonatomic) unsigned long long fileSizeInfo;
-
 
 // Public method
 - (void)setShown:(BOOL)shown animate:(BOOL)performAnimation;
