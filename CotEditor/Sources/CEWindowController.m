@@ -715,16 +715,19 @@ static NSTimeInterval incompatibleCharInterval;
 - (IBAction)selectIncompatibleRange:(id)sender
 // ------------------------------------------------------
 {
-    if ([[[self incompatibleCharsController] selectedObjects] count] == 0) { return; }
+    NSArray *selectedIncompatibles = [[self incompatibleCharsController] selectedObjects];
+    
+    if ([selectedIncompatibles count] == 0) { return; }
 
-    NSRange range = [[[self incompatibleCharsController] selectedObjects][0][CEIncompatibleRangeKey] rangeValue];
+    NSRange range = [selectedIncompatibles[0][CEIncompatibleRangeKey] rangeValue];
+    NSTextView *textView = [[self editor] textView];
     
     [[self editor] setSelectedRange:range];
-    [[self window] makeFirstResponder:[[self editor] textView]];
-    [[[self editor] textView] scrollRangeToVisible:range];
+    [[self window] makeFirstResponder:textView];
 
-    // 検索結果表示エフェクトを追加
-    [[[self editor] textView] showFindIndicatorForRange:range];
+    // 検索結果表示エフェクトを追加 (改行コードが CR/LF のときにずれるので range は使えない)
+    [textView scrollRangeToVisible:[textView selectedRange]];
+    [textView showFindIndicatorForRange:[textView selectedRange]];
 }
 
 

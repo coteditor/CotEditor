@@ -1111,7 +1111,7 @@
                 <binding destination="-2" name="contentObject" keyPath="documentInfo" id="8kq-c1-odm"/>
             </connections>
         </objectController>
-        <arrayController automaticallyPreparesContent="YES" selectsInsertedObjects="NO" avoidsEmptySelection="NO" id="127" userLabel="Incompatible Chars Controller">
+        <arrayController objectClassName="NSDictionary" automaticallyPreparesContent="YES" selectsInsertedObjects="NO" avoidsEmptySelection="NO" id="127" userLabel="Incompatible Chars Controller">
             <declaredKeys>
                 <string>lineNumber</string>
                 <string>incompatibleChar</string>

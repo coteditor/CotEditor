@@ -21,7 +21,8 @@ Change Log
 ### Fixes
 
 - Fix duplication check in key bindings editor.
-- Fix some missing localizations in simplified Chinese.
+- Fix an issue that incompatible character markup positions were wrong by CR/LF line endings.
+- Fix some missing localizations in simplified Chinese. (Thanks to Wei Wang!)
 
 
 

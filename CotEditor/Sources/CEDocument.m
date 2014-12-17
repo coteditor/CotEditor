@@ -532,6 +532,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     
     // 削除／変換される文字をリストアップ
     NSString *yenMarkChar = [NSString stringWithCharacters:&kYenMark length:1];
+    BOOL isInvalidYenEncoding = [CEUtils isInvalidYenEncoding:encoding];
     
     for (NSUInteger i = 0; i < currentLength; i++) {
         unichar currentUnichar = [currentString characterAtIndex:i];
@@ -539,32 +540,30 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
         
         if (currentUnichar == convertedUnichar) { continue; }
         
-        NSRange charRange = NSMakeRange(i, 1);
-        NSString *currentChar = [currentString substringWithRange:charRange];
-        NSString *convertedChar = [convertedString substringWithRange:charRange];
-        
-        if ([CEUtils isInvalidYenEncoding:encoding] && [currentChar isEqualToString:yenMarkChar]) {
-            currentChar = yenMarkChar;
-            convertedChar = @"\\";
+        if (isInvalidYenEncoding && currentUnichar == kYenMark) {
+            convertedUnichar = '\\';
         }
         
-        NSUInteger curLine = 1;
+        NSString *currentChar = [NSString stringWithCharacters:&currentUnichar length:1];
+        NSString *convertedChar = [NSString stringWithCharacters:&convertedUnichar length:1];
+        
+        NSUInteger lineNumber = 1;
         for (NSUInteger index = 0, lines = 0; index < currentLength; lines++) {
             if (index <= i) {
-                curLine = lines + 1;
+                lineNumber = lines + 1;
             } else {
                 break;
             }
             index = NSMaxRange([currentString lineRangeForRange:NSMakeRange(index, 0)]);
         }
         
-        [incompatibleChars addObject:[@{CEIncompatibleLineNumberKey: @(curLine),
-                                        CEIncompatibleRangeKey: [NSValue valueWithRange:charRange],
-                                        CEIncompatibleCharKey: currentChar,
-                                        CEIncompatibleConvertedCharKey: convertedChar} mutableCopy]];
+        [incompatibleChars addObject:@{CEIncompatibleLineNumberKey: @(lineNumber),
+                                       CEIncompatibleRangeKey: [NSValue valueWithRange:NSMakeRange(i, 1)],
+                                       CEIncompatibleCharKey: currentChar,
+                                       CEIncompatibleConvertedCharKey: convertedChar}];
     }
     
-    return incompatibleChars;
+    return [incompatibleChars copy];
 }
 
 
@@ -889,9 +888,9 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     }
     
     NSTextView *textView = [[self editor] textView];
+    [[[self windowController] window] makeKeyAndOrderFront:self]; // 対象ウィンドウをキーに
     [textView scrollRangeToVisible:[textView selectedRange]]; // 選択範囲が見えるようにスクロール
     [textView showFindIndicatorForRange:[textView selectedRange]];  // 検索結果表示エフェクトを追加
-    [[[self windowController] window] makeKeyAndOrderFront:self]; // 対象ウィンドウをキーに
 }
 
 

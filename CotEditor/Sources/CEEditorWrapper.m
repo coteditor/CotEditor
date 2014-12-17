@@ -291,15 +291,7 @@ static NSTimeInterval secondColoringDelay;
 - (NSRange)selectedRange
 // ------------------------------------------------------
 {
-    if ([[[self textView] lineEndingString] length] > 1) {
-        NSRange range = [[self textView] selectedRange];
-        NSString *tmpLocStr = [[self string] substringWithRange:NSMakeRange(0, range.location)];
-        NSString *locStr = [tmpLocStr stringByReplacingNewLineCharacersWith:[[self document] lineEnding]];
-        NSString *lenStr = [self substringWithSelectionForSave];
-
-        return NSMakeRange([locStr length], [lenStr length]);
-    }
-    return [[self textView] selectedRange];
+    return [self documentRangeFromRange:[[self textView] selectedRange]];
 }
 
 
@@ -308,15 +300,7 @@ static NSTimeInterval secondColoringDelay;
 - (void)setSelectedRange:(NSRange)charRange
 // ------------------------------------------------------
 {
-    if ([[[self textView] lineEndingString] length] > 1) {
-        NSString *tmpLocStr = [[[self document] stringForSave] substringWithRange:NSMakeRange(0, charRange.location)];
-        NSString *locStr = [tmpLocStr stringByReplacingNewLineCharacersWith:CENewLineLF];
-        NSString *tmpLenStr = [[[self document] stringForSave] substringWithRange:charRange];
-        NSString *lenStr = [tmpLenStr stringByReplacingNewLineCharacersWith:CENewLineLF];
-        [[self textView] setSelectedRange:NSMakeRange([locStr length], [lenStr length])];
-    } else {
-        [[self textView] setSelectedRange:charRange];
-    }
+    [[self textView] setSelectedRange:[self rangeFromDocumentRange:charRange]];
 }
 
 
@@ -352,7 +336,7 @@ static NSTimeInterval secondColoringDelay;
         
         for (NSLayoutManager *manager in layoutManagers) {
             [manager addTemporaryAttribute:NSBackgroundColorAttributeName value:color
-                         forCharacterRange:range];
+                         forCharacterRange:[self rangeFromDocumentRange:range]];
         }
     }
 }
@@ -900,6 +884,43 @@ static NSTimeInterval secondColoringDelay;
 // ------------------------------------------------------
 {
     return [(CEEditorView *)[[self textView] delegate] syntaxParser];
+}
+
+
+// ------------------------------------------------------
+/// sanitized range for text view
+- (NSRange)rangeFromDocumentRange:(NSRange)range
+// ------------------------------------------------------
+{
+    if ([[[self textView] lineEndingString] length] == 1) {
+        return range;
+    }
+    
+    // sanitize for CR/LF
+    NSString *tmpLocStr = [[[self document] stringForSave] substringWithRange:NSMakeRange(0, range.location)];
+    NSString *locStr = [tmpLocStr stringByReplacingNewLineCharacersWith:CENewLineLF];
+    NSString *tmpLenStr = [[[self document] stringForSave] substringWithRange:range];
+    NSString *lenStr = [tmpLenStr stringByReplacingNewLineCharacersWith:CENewLineLF];
+    
+    return NSMakeRange([locStr length], [lenStr length]);
+}
+
+
+// ------------------------------------------------------
+/// sanitized range for document
+- (NSRange)documentRangeFromRange:(NSRange)range
+// ------------------------------------------------------
+{
+    if ([[[self textView] lineEndingString] length] == 1) {
+        return range;
+    }
+    
+    // sanitize for CR/LF
+    NSString *tmpLocStr = [[self string] substringWithRange:NSMakeRange(0, range.location)];
+    NSString *locStr = [tmpLocStr stringByReplacingNewLineCharacersWith:[[self document] lineEnding]];
+    NSString *lenStr = [self substringWithSelectionForSave];
+    
+    return NSMakeRange([locStr length], [lenStr length]);
 }
 
 
