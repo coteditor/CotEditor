@@ -20,6 +20,7 @@ Change Log
 
 ### Fixes
 
+- Fix duplication check in key bindings editor.
 - Fix some missing localizations in simplified Chinese.
 
 
