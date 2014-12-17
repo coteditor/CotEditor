@@ -29,6 +29,7 @@
  */
 
 #import "CEEditorView.h"
+#import <OgreKit/OgreTextFinder.h>
 #import "CELineNumberView.h"
 #import "CEThemeManager.h"
 #import "constants.h"
@@ -349,13 +350,10 @@
     if (undoManager != [[self textView] undoManager]) { return; }
     
     // OgreKit からの置換の Undo/Redo の後のみ再カラーリングを実行
-    // 置換の Undo を判別するために OgreKit 側で登録された actionName を使用しているが、
-    // ローカライズ後の名前なので、名前を決め打ちしている。あまり良い方法ではない。 (2014-04 by 1024jp)
+    // 置換の Undo を判別するために OgreKit 側で登録された actionName を使用 (2014-04 by 1024jp)
     // [Note] OgreKit側の問題として、すべてのUndoに対して "Replace All" という名前を付けているようだ。なので現在「すべて」以外の置換も対象となっている (2014-12 by 1024jp)
     NSString *actionName = [undoManager isUndoing] ? [undoManager redoActionName] : [undoManager undoActionName];
-    if ([actionName isEqualToString:NSLocalizedString(@"Replace All",
-                                                      @"Attention!: This localized string must be exactly the same to the localized term of “Replace All” in the OgreKit framework.")])
-    {
+    if ([actionName isEqualToString:OgreTextFinderLocalizedString(@"Replace All")]) {
         [self textDidReplaceAll:aNotification];
     }
 }

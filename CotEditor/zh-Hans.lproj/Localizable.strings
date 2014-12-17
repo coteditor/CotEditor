@@ -168,10 +168,6 @@
 "Stack Views Vertically" = "纵向分隔编辑器";
 
 
-/* MARK: CEEditorView */
-"Replace All" = "替换全部";  // Attention!: This localized string must be exactly the same to the localized term of “Replace All” in the OgreKit framework.
-
-
 /* MARK: CEStatusBarView */
 ": " = "：";
 "Lines" = "行数";
