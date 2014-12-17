@@ -9,7 +9,7 @@
             <connections>
                 <outlet property="OKButton" destination="68" id="6je-Te-zmC"/>
                 <outlet property="outlineView" destination="86" id="cXw-yD-mOE"/>
-                <outlet property="snippetTextArrayController" destination="98" id="AbM-DH-iYm"/>
+                <outlet property="snippetArrayController" destination="98" id="hVp-m9-i69"/>
                 <outlet property="window" destination="54" id="1m5-H7-VnL"/>
             </connections>
         </customObject>
@@ -982,7 +982,7 @@ DQ
                 <outlet property="delegate" destination="-2" id="Bvv-wn-fJO"/>
             </connections>
         </window>
-        <arrayController objectClassName="NSString" avoidsEmptySelection="NO" id="98" userLabel="Inserting String Array Controller">
+        <arrayController objectClassName="NSString" avoidsEmptySelection="NO" id="98" userLabel="Snippet Array Controller">
             <declaredKeys>
                 <string>insertCustomText</string>
             </declaredKeys>
