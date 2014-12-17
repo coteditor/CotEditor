@@ -1722,7 +1722,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
         defaultButton = @"Keep CotEditor's Edition";
     } else {
         messageText = @"The file has been modified by another process.";
-        informativeText = @"Do you want to keep unchanged or Update to the modified edition?";
+        informativeText = @"Do you want to keep unchanged or update to the modified edition?";
         defaultButton = @"Keep Unchanged";
         [self updateChangeCount:NSChangeDone]; // ダーティーフラグを立てる
     }

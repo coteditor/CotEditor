@@ -23,6 +23,7 @@ Change Log
 - Fix duplication check in key bindings editor.
 - Fix an issue that incompatible character markup positions were wrong by CR/LF line endings.
 - Fix some missing localizations in simplified Chinese. (Thanks to Wei Wang!)
+- Fix an issue that an alert message was not localized.
 
 
 
