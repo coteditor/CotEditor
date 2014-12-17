@@ -950,7 +950,7 @@ static NSTimeInterval secondColoringDelay;
         coloringRange = NSMakeRange(location, length);
     }
     
-    [[self syntaxParser] colorVisibleRange:coloringRange wholeString:[self string]];
+    [[self syntaxParser] colorRange:coloringRange wholeString:[self string]];
 }
 
 

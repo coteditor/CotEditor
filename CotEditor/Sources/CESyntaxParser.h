@@ -47,7 +47,7 @@
 
 // Public methods
 - (void)colorAllString:(NSString *)wholeString;
-- (void)colorVisibleRange:(NSRange)range wholeString:(NSString *)wholeString;
+- (void)colorRange:(NSRange)range wholeString:(NSString *)wholeString;
 - (NSArray *)outlineMenuArrayWithWholeString:(NSString *)wholeString;
 
 @end

@@ -288,7 +288,7 @@ static CGFloat kPerCompoIncrement;
 
 // ------------------------------------------------------
 /// 表示されている部分をカラーリング
-- (void)colorVisibleRange:(NSRange)range wholeString:(NSString *)wholeString
+- (void)colorRange:(NSRange)range wholeString:(NSString *)wholeString
 // ------------------------------------------------------
 {
     if ([wholeString length] == 0) { return; }
