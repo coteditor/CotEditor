@@ -529,7 +529,6 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     }
     
     // 削除／変換される文字をリストアップ
-    NSString *yenMarkChar = [NSString stringWithCharacters:&kYenMark length:1];
     BOOL isInvalidYenEncoding = [CEUtils isInvalidYenEncoding:encoding];
     
     for (NSUInteger i = 0; i < currentLength; i++) {

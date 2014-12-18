@@ -437,7 +437,6 @@
     
     if (selectedRow == -1) { return; }
     
-    id item = [[self outlineView] itemAtRow:selectedRow];
     NSInteger *column = [[self outlineView] columnWithIdentifier:CEKeyBindingKeySpecCharsKey];
     
     [[self outlineView] editColumn:column row:selectedRow withEvent:nil select:YES];
