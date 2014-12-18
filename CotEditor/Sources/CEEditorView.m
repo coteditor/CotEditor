@@ -778,7 +778,7 @@
     }
 
     // 非互換文字リスト更新
-    [[[self window] windowController] setupIncompatibleCharTimer];
+    [[[self window] windowController] updateIncompatibleCharsIfNeeded];
 }
 
 

@@ -495,9 +495,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     // （大きいドキュメントの時はインジケータを表示させるため、ディレイをかけてまずウィンドウを表示させる）
     [[self editor] updateColoringAndOutlineMenuWithDelay];
     
-    if ([[self windowController] needsIncompatibleCharDrawerUpdate]) {
-        [[self windowController] showIncompatibleCharList];
-    }
+    [[self windowController] updateIncompatibleCharsIfNeeded];
 }
 
 
@@ -686,7 +684,6 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     BOOL shouldShowList = NO;
     
     if (updateDocument) {
-        shouldShowList = [[self windowController] needsIncompatibleCharDrawerUpdate];
         NSString *curString = [self stringForSave];
         BOOL allowsLossy = NO;
 
@@ -732,6 +729,8 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     
     if (shouldShowList) {
         [[self windowController] showIncompatibleCharList];
+    } else {
+        [[self windowController] updateIncompatibleCharsIfNeeded];
     }
     
     return YES;

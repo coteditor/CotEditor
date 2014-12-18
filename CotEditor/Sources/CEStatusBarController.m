@@ -38,7 +38,6 @@ static const NSTimeInterval kDuration = 0.25;
 
 @interface CEStatusBarController ()
 
-@property (nonatomic, weak) IBOutlet NSObjectController *documentInfoController;
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint *heightConstraint;
 @property (nonatomic, weak) IBOutlet NSNumberFormatter *decimalFormatter;
 @property (nonatomic) NSByteCountFormatter *byteCountFormatter;
@@ -97,7 +96,7 @@ static const NSTimeInterval kDuration = 0.25;
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSMutableAttributedString *status = [[NSMutableAttributedString alloc] init];
-    NSDictionary *documentInfo = [[self documentInfoController] content];
+    NSDictionary *documentInfo = [self representedObject];
     
     if ([defaults boolForKey:CEDefaultShowStatusBarLinesKey]) {
         [status appendAttributedString:[self formattedStateWithLabel:@"Lines"
@@ -146,7 +145,7 @@ static const NSTimeInterval kDuration = 0.25;
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSMutableArray *status = [NSMutableArray array];
-    NSDictionary *documentInfo = [[self documentInfoController] content];
+    NSDictionary *documentInfo = [self representedObject];
     
     if ([defaults boolForKey:CEDefaultShowStatusBarEncodingKey]) {
         [status addObject:(documentInfo[CEDocumentEncodingKey] ?: @"-")];
@@ -200,14 +199,13 @@ static const NSTimeInterval kDuration = 0.25;
 - (NSAttributedString *)formattedStateWithLabel:(NSString *)label value:(NSNumber *)value selectedValue:(NSNumber *)selectedValue
 // ------------------------------------------------------
 {
-    NSString *localizedLabel = [NSString stringWithFormat:@"%@%@",
-                                NSLocalizedString(label, nil), NSLocalizedString(@": ", nil)];
     NSMutableString *string = [NSMutableString stringWithFormat:@"%@%@",
                                localizedLabel, [[self decimalFormatter] stringFromNumber:value]];
     if ([selectedValue integerValue] > 0) {
         [string appendFormat:@" (%@)", [[self decimalFormatter] stringFromNumber:selectedValue]];
     }
     [string appendString:@"   "];  // buffer to the next state
+    NSString *localizedLabel = [NSString stringWithFormat:NSLocalizedString(@"%@: ", nil), NSLocalizedString(label, nil)];
     
     NSMutableAttributedString *state = [[NSMutableAttributedString alloc] initWithString:string];
     

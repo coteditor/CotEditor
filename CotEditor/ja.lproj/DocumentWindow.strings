@@ -10,6 +10,7 @@
  © 2014 CotEditor Project
  */
 
+
 /* Class = "NSToolbarItem"; ObjectID = "fVR-to-zN3"; */
 "fVR-to-zN3.label" = "改行コード";  /* Line Endings */
 "fVR-to-zN3.paletteLabel" = "改行コード";  /* Line Endings */
@@ -115,61 +116,7 @@
 "EP1-My-tQo.ibShadowedToolTip" = "書類は書き込み不可です。";
 
 
-
 /* Class = "NSMenuItem"; title = "Incompatible Chars"; ObjectID = "145"; */
 "145.title" = "非互換文字";
-
-/* Class = "NSTableColumn"; headerCell.title = "Line"; ObjectID = "123"; */
-"123.headerCell.title" = "行";
-/* Class = "NSTableColumn"; headerCell.title = "Char"; ObjectID = "124"; */
-"124.headerCell.title" = "文字";
-/* Class = "NSTableColumn"; headerCell.title = "Converted"; ObjectID = "186"; */
-"186.headerCell.title" = "変換後";
-
-/* Class = "NSTextFieldCell"; title = "No incompatible chars were found."; ObjectID = "698"; */
-"698.title" = "非互換文字をリストアップできませんでした。";
-
-
 /* Class = "NSMenuItem"; title = "Document Info"; ObjectID = "144"; */
 "144.title" = "書類情報";
-
-/* Class = "NSTextFieldCell"; title = "Created:"; ObjectID = "680"; */
-"680.title" = "作成日時：";
-/* Class = "NSTextFieldCell"; title = "Modified:"; ObjectID = "683"; */
-"683.title" = "変更日時：";
-/* Class = "NSTextFieldCell"; title = "File Size:"; ObjectID = "U0l-4r-6ZD"; */
-"U0l-4r-6ZD.title" = "ファイルサイズ：";
-/* Class = "NSTextFieldCell"; title = "Owner:"; ObjectID = "689"; */
-"689.title" = "オーナー：";
-/* Class = "NSTextFieldCell"; title = "Permission:"; ObjectID = "685"; */
-"685.title" = "アクセス権：";
-/* Class = "NSTextFieldCell"; title = "Locked:"; ObjectID = "687"; */
-"687.title" = "ロック：";
-/* Class = "NSTextFieldCell"; title = "Creator:"; ObjectID = "672"; */
-"672.title" = "クリエータ：";
-/* Class = "NSTextFieldCell"; title = "Type:"; ObjectID = "673"; */
-"673.title" = "タイプ：";
-
-/* Class = "NSTextFieldCell"; title = "Encoding:"; ObjectID = "692"; */
-"692.title" = "エンコーディング：";
-/* Class = "NSTextFieldCell"; title = "Line Endings:"; ObjectID = "694"; */
-"694.title" = "改行コード：";
-/* Class = "NSTextFieldCell"; title = "Byte Length:"; ObjectID = "oVh-Ta-PXw"; */
-"oVh-Ta-PXw.title" = "バイト長：";
-
-/* Class = "NSTextFieldCell"; title = "Lines:"; ObjectID = "670"; */
-"670.title" = "行数：";
-/* Class = "NSTextFieldCell"; title = "Characters:"; ObjectID = "671"; */
-"671.title" = "文字数：";
-/* Class = "NSTextFieldCell"; title = "Length:"; ObjectID = "g8t-es-vog"; */
-"g8t-es-vog.title" = "文字長：";
-/* Class = "NSTextFieldCell"; title = "Words:"; ObjectID = "696"; */
-"696.title" = "単語数：";
-/* Class = "NSTextFieldCell"; title = "Location:"; ObjectID = "679"; */
-"679.title" = "位置：";
-/* Class = "NSTextFieldCell"; title = "Current Line:"; ObjectID = "7Eo-jA-QRt"; */
-"7Eo-jA-QRt.title" = "行：";
-/* Class = "NSTextFieldCell"; title = "Column:"; ObjectID = "691"; */
-"691.title" = "列：";
-/* Class = "NSTextFieldCell"; title = "Unicode:"; ObjectID = "j5R-qU-f98"; */
-"j5R-qU-f98.title" = "Unicode：";

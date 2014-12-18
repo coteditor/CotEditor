@@ -116,61 +116,7 @@
 "EP1-My-tQo.ibShadowedToolTip" = "这是只读文档";
 
 
-
 /* Class = "NSMenuItem"; title = "Incompatible Chars"; ObjectID = "145"; */
 "145.title" = "不兼容字符";
-
-/* Class = "NSTableColumn"; headerCell.title = "Line"; ObjectID = "123"; */
-"123.headerCell.title" = "行";
-/* Class = "NSTableColumn"; headerCell.title = "Char"; ObjectID = "124"; */
-"124.headerCell.title" = "字符";
-/* Class = "NSTableColumn"; headerCell.title = "Converted"; ObjectID = "186"; */
-"186.headerCell.title" = "转换后";
-
-/* Class = "NSTextFieldCell"; title = "No incompatible chars were found."; ObjectID = "698"; */
-"698.title" = "没有找到不兼容字符";
-
-
 /* Class = "NSMenuItem"; title = "Document Info"; ObjectID = "144"; */
 "144.title" = "文稿信息";
-
-/* Class = "NSTextFieldCell"; title = "Created:"; ObjectID = "680"; */
-"680.title" = "创建于:";
-/* Class = "NSTextFieldCell"; title = "Modified:"; ObjectID = "683"; */
-"683.title" = "最后编辑:";
-/* Class = "NSTextFieldCell"; title = "File Size:"; ObjectID = "U0l-4r-6ZD"; */
-"U0l-4r-6ZD.title" = "文件尺寸:";
-/* Class = "NSTextFieldCell"; title = "Owner:"; ObjectID = "689"; */
-"689.title" = "拥有者:";
-/* Class = "NSTextFieldCell"; title = "Permission:"; ObjectID = "685"; */
-"685.title" = "权限:";
-/* Class = "NSTextFieldCell"; title = "Locked:"; ObjectID = "687"; */
-"687.title" = "锁定:";
-/* Class = "NSTextFieldCell"; title = "Type:"; ObjectID = "673"; */
-"673.title" = "类型:";
-/* Class = "NSTextFieldCell"; title = "Creator:"; ObjectID = "672"; */
-"672.title" = "创建者:";
-
-/* Class = "NSTextFieldCell"; title = "Encoding:"; ObjectID = "692"; */
-"692.title" = "编码:";
-/* Class = "NSTextFieldCell"; title = "Line Endings:"; ObjectID = "694"; */
-"694.title" = "行尾:";
-/* Class = "NSTextFieldCell"; title = "Byte Length:"; ObjectID = "oVh-Ta-PXw"; */
-"oVh-Ta-PXw.title" = "字节长度:";
-
-/* Class = "NSTextFieldCell"; title = "Lines:"; ObjectID = "670"; */
-"670.title" = "行数:";
-/* Class = "NSTextFieldCell"; title = "Characters:"; ObjectID = "671"; */
-"671.title" = "字符数:";
-/* Class = "NSTextFieldCell"; title = "Length:"; ObjectID = "g8t-es-vog"; */
-"g8t-es-vog.title" = "长度:";
-/* Class = "NSTextFieldCell"; title = "Words:"; ObjectID = "696"; */
-"696.title" = "字数:";
-/* Class = "NSTextFieldCell"; title = "Location:"; ObjectID = "679t"; */
-"679.title" = "位置:";
-/* Class = "NSTextFieldCell"; title = "Current Line:"; ObjectID = "7Eo-jA-QRt"; */
-"7Eo-jA-QRt.title" = "当前行:";
-/* Class = "NSTextFieldCell"; title = "Column:"; ObjectID = "691"; */
-"691.title" = "列:";
-/* Class = "NSTextFieldCell"; title = "Unicode:"; ObjectID = "j5R-qU-f98"; */
-"j5R-qU-f98.title" = "Unicode:";

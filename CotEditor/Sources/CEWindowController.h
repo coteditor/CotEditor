@@ -74,19 +74,16 @@ extern NSString *const CEDocumentUnicodeKey;   // Unicode of selected single cha
 
 // Public method
 - (void)setWritable:(BOOL)isWritable;
-- (BOOL)needsInfoDrawerUpdate;
-- (BOOL)needsIncompatibleCharDrawerUpdate;
 - (void)showIncompatibleCharList;
+- (void)updateIncompatibleCharsIfNeeded;
 - (void)updateEditorStatusInfo:(BOOL)needsUpdateDrawer;
 - (void)updateEncodingAndLineEndingsInfo:(BOOL)needsUpdateDrawer;
 - (void)updateFileAttributesInfo;
-- (void)setupIncompatibleCharTimer;
 - (void)setupInfoUpdateTimer;
 
 // Action Message
 - (IBAction)getInfo:(id)sender;
 - (IBAction)toggleIncompatibleCharList:(id)sender;
-- (IBAction)selectIncompatibleRange:(id)sender;
 - (IBAction)toggleStatusBar:(id)sender;
 
 @end

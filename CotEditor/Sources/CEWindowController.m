@@ -32,14 +32,11 @@
 #import "CEWindow.h"
 #import "CEDocumentController.h"
 #import "CEStatusBarController.h"
+#import "CEIncompatibleCharsViewController.h"
 #import "CESyntaxManager.h"
 #import "NSString+ComposedCharacter.h"
 #import "constants.h"
 
-
-// Drawer identifier
-static NSString *const InfoIdentifier = @"info";
-static NSString *const IncompatibleIdentifier = @"incompatibleChar";
 
 // document information keys
 NSString *const CEDocumentEncodingKey = @"encoding";
@@ -74,27 +71,32 @@ NSString *const CEDocumentLineKey = @"line";             // current line
 NSString *const CEDocumentUnicodeKey = @"unicode";       // Unicode of selected single character (or surrogate-pair)
 
 
-@interface CEWindowController () <NSDrawerDelegate, NSTabViewDelegate>
+// drawer mode
+typedef NS_ENUM(NSUInteger, CESideBarTag) {
+    CEDocumentInfoTag = 1,
+    CEIncompatibleCharsTag,
+};
 
-@property (nonatomic) NSUInteger tabViewSelectedIndex; // ドロワーのタブビューでのポップアップメニュー選択用バインディング変数(#削除不可)
+
+@interface CEWindowController () <NSDrawerDelegate>
+
+@property (nonatomic) CESideBarTag selectedSideBarTag; // ドロワーのタブビューでのポップアップメニュー選択用バインディング変数(#削除不可)
 @property (nonatomic) BOOL needsRecolorWithBecomeKey; // ウィンドウがキーになったとき再カラーリングをするかどうかのフラグ
 
 @property (nonatomic) NSTimer *infoUpdateTimer;
-@property (nonatomic) NSTimer *incompatibleCharTimer;
 
 @property (nonatomic) NSMutableDictionary *documentInfo;
 
 
 // IBOutlets
 @property (nonatomic) IBOutlet CEStatusBarController *statusBarController;
-@property (nonatomic) IBOutlet NSObjectController *documentInfoController;
-@property (nonatomic) IBOutlet NSArrayController *incompatibleCharsController;
+@property (nonatomic) IBOutlet NSViewController *documentInfoViewController;
+@property (nonatomic) IBOutlet CEIncompatibleCharsViewController *incompatibleCharsViewController;
 @property (nonatomic) IBOutlet NSDrawer *drawer;
-@property (nonatomic, weak) IBOutlet NSTabView *tabView;
-@property (nonatomic, weak) IBOutlet NSTextField *listErrorTextField;
+@property (nonatomic, weak) IBOutlet NSBox *sideBarBox;
 @property (nonatomic) IBOutlet NSNumberFormatter *infoNumberFormatter;
 
-// readonly
+// IBOutlets (readonly)
 @property (readwrite, nonatomic, weak) IBOutlet CEToolbarController *toolbarController;
 @property (readwrite, nonatomic, weak) IBOutlet CEEditorWrapper *editor;
 
@@ -108,7 +110,6 @@ NSString *const CEDocumentUnicodeKey = @"unicode";       // Unicode of selected 
 @implementation CEWindowController
 
 static NSTimeInterval infoUpdateInterval;
-static NSTimeInterval incompatibleCharInterval;
 
 
 #pragma mark Class Methods
@@ -128,7 +129,6 @@ static NSTimeInterval incompatibleCharInterval;
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         
         infoUpdateInterval = [defaults doubleForKey:CEDefaultInfoUpdateIntervalKey];
-        incompatibleCharInterval = [defaults doubleForKey:CEDefaultIncompatibleCharIntervalKey];
     });
 }
 
@@ -155,6 +155,11 @@ static NSTimeInterval incompatibleCharInterval;
     [[self window] setContentSize:size];
     
     [self setDocumentInfo:[NSMutableDictionary dictionary]];
+    [[self documentInfoViewController] setRepresentedObject:[self documentInfo]];
+    [[self statusBarController] setRepresentedObject:[self documentInfo]];
+    
+    // set document instance to incompatible chars view
+    [[self incompatibleCharsViewController] setRepresentedObject:[self document]];
     
     // 背景をセットアップ
     [(CEWindow *)[self window] setBackgroundAlpha:[defaults doubleForKey:CEDefaultWindowAlphaKey]];
@@ -197,7 +202,6 @@ static NSTimeInterval incompatibleCharInterval;
     [[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:CEDefaultWindowAlphaKey];
     
     [self stopInfoUpdateTimer];
-    [self stopIncompatibleCharTimer];
 }
 
 
@@ -233,37 +237,21 @@ static NSTimeInterval incompatibleCharInterval;
 //=======================================================
 
 // ------------------------------------------------------
-/// 文書情報ドロワー内容を更新すべきかを返す
-- (BOOL)needsInfoDrawerUpdate
-// ------------------------------------------------------
-{
-    NSInteger drawerState = [[self drawer] state];
-    BOOL tabState = [[[[self tabView] selectedTabViewItem] identifier] isEqualToString:InfoIdentifier];
-
-    return (tabState && ((drawerState == NSDrawerOpenState) || (drawerState == NSDrawerOpeningState)));
-}
-
-
-// ------------------------------------------------------
-/// 非互換文字ドロワー内容を更新すべきかを返す
-- (BOOL)needsIncompatibleCharDrawerUpdate
-// ------------------------------------------------------
-{
-    NSInteger drawerState = [[self drawer] state];
-    BOOL tabState = [[[[self tabView] selectedTabViewItem] identifier] isEqualToString:IncompatibleIdentifier];
-
-    return (tabState && ((drawerState == NSDrawerOpenState) || (drawerState == NSDrawerOpeningState)));
-}
-
-
-// ------------------------------------------------------
 /// 非互換文字リストを表示
 - (void)showIncompatibleCharList
 // ------------------------------------------------------
 {
-    [self updateIncompatibleCharList];
-    [[self tabView] selectTabViewItemWithIdentifier:IncompatibleIdentifier];
+    [self setSelectedSideBarTag:CEIncompatibleCharsTag];
     [[self drawer] open];
+}
+
+
+// ------------------------------------------------------
+/// 非互換文字を表示している場合はディレイののち更新
+- (void)updateIncompatibleCharsIfNeeded
+// ------------------------------------------------------
+{
+    [[self incompatibleCharsViewController] updateIfNeeded];
 }
 
 
@@ -273,7 +261,7 @@ static NSTimeInterval incompatibleCharInterval;
 // ------------------------------------------------------
 {
     BOOL updatesStatusBar = [[self statusBarController] isShown];
-    BOOL updatesDrawer = needsUpdateDrawer ? YES : [self needsInfoDrawerUpdate];
+    BOOL updatesDrawer = needsUpdateDrawer ? YES : [self isDocumentInfoShown];
     
     if (!needsUpdateDrawer && (!updatesStatusBar && !updatesDrawer)) { return; }
     
@@ -415,7 +403,7 @@ static NSTimeInterval incompatibleCharInterval;
 // ------------------------------------------------------
 {
     BOOL shouldUpdateStatusBar = [[self statusBarController] isShown];
-    BOOL shouldUpdateDrawer = needsUpdateDrawer ? YES : [self needsInfoDrawerUpdate];
+    BOOL shouldUpdateDrawer = needsUpdateDrawer ? YES : [self isDocumentInfoShown];
     
     if (!shouldUpdateStatusBar && !shouldUpdateDrawer) { return; }
     
@@ -451,25 +439,6 @@ static NSTimeInterval incompatibleCharInterval;
     [self documentInfo][CEDocumentHFSCreatorKey] = [attrs fileHFSCreatorCode] ? NSFileTypeForHFSTypeCode([attrs fileHFSCreatorCode]) : @"";
     
     [[self statusBarController] updateDocumentStatus];
-}
-
-
-// ------------------------------------------------------
-/// 非互換文字更新タイマーのファイヤーデイトを設定時間後にセット
-- (void)setupIncompatibleCharTimer
-// ------------------------------------------------------
-{
-    if (![self needsIncompatibleCharDrawerUpdate]) { return; }
-    
-    if ([self incompatibleCharTimer]) {
-        [[self incompatibleCharTimer] setFireDate:[NSDate dateWithTimeIntervalSinceNow:incompatibleCharInterval]];
-    } else {
-        [self setIncompatibleCharTimer:[NSTimer scheduledTimerWithTimeInterval:incompatibleCharInterval
-                                                                        target:self
-                                                                      selector:@selector(updateIncompatibleCharListWithTimer:)
-                                                                      userInfo:nil
-                                                                       repeats:NO]];
-    }
 }
 
 
@@ -613,27 +582,6 @@ static NSTimeInterval incompatibleCharInterval;
 }
 
 
-
-//=======================================================
-// Delegate method (NSTabView)
-//  <== tabView
-//=======================================================
-
-// ------------------------------------------------------
-/// ドロワーのタブが切り替えられる直前に内容の更新を行う
-- (void)tabView:(NSTabView *)tabView willSelectTabViewItem:(NSTabViewItem *)tabViewItem
-// ------------------------------------------------------
-{
-    if ([[tabViewItem identifier] isEqualToString:InfoIdentifier]) {
-        [self updateFileAttributesInfo];
-        [self updateEditorStatusInfo:YES];
-        [self updateEncodingAndLineEndingsInfo:YES];
-    } else if ([[tabViewItem identifier] isEqualToString:IncompatibleIdentifier]) {
-        [self updateIncompatibleCharList];
-    }
-}
-
-
 //=======================================================
 // Delegate method (NSDrawer)
 //  <== drawer
@@ -644,8 +592,8 @@ static NSTimeInterval incompatibleCharInterval;
 - (void)drawerDidClose:(NSNotification *)notification
 // ------------------------------------------------------
 {
-    [[self editor] clearAllMarkup];
     // テキストビューの表示だけをクリアし、リストはそのまま
+    [[self editor] clearAllMarkup];
 }
 
 
@@ -662,25 +610,11 @@ static NSTimeInterval incompatibleCharInterval;
 - (IBAction)getInfo:(id)sender
 // ------------------------------------------------------
 {
-    NSInteger drawerState = [[self drawer] state];
-    BOOL tabState = [[[[self tabView] selectedTabViewItem] identifier] isEqualToString:InfoIdentifier];
-
-    if ((drawerState == NSDrawerClosedState) || (drawerState == NSDrawerClosingState)) {
-        if (tabState) {
-            // 情報の更新
-            [self updateFileAttributesInfo];
-            [self updateEditorStatusInfo:YES];
-            [self updateEncodingAndLineEndingsInfo:YES];
-        } else {
-            [[self tabView] selectTabViewItemWithIdentifier:InfoIdentifier];
-        }
-        [[self drawer] open];
+    if ([self isDocumentInfoShown]) {
+        [[self drawer] close];
     } else {
-        if (tabState) {
-            [[self drawer] close];
-        } else {
-            [[self tabView] selectTabViewItemWithIdentifier:InfoIdentifier];
-        }
+        [self setSelectedSideBarTag:CEDocumentInfoTag];
+        [[self drawer] open];
     }
 }
 
@@ -690,44 +624,12 @@ static NSTimeInterval incompatibleCharInterval;
 - (IBAction)toggleIncompatibleCharList:(id)sender
 // ------------------------------------------------------
 {
-    NSInteger drawerState = [[self drawer] state];
-    BOOL tabState = [[[[self tabView] selectedTabViewItem] identifier] isEqualToString:IncompatibleIdentifier];
-
-    if ((drawerState == NSDrawerClosedState) || (drawerState == NSDrawerClosingState)) {
-        if (tabState) {
-            [self updateIncompatibleCharList];
-        } else {
-            [[self tabView] selectTabViewItemWithIdentifier:IncompatibleIdentifier];
-        }
-        [[self drawer] open];
+    if ([self isDrawerShown] && [self selectedSideBarTag] == CEIncompatibleCharsTag) {
+        [[self drawer] close];
     } else {
-        if (tabState) {
-            [[self drawer] close];
-        } else {
-            [[self tabView] selectTabViewItemWithIdentifier:IncompatibleIdentifier];
-        }
+        [self setSelectedSideBarTag:CEIncompatibleCharsTag];
+        [[self drawer] open];
     }
-}
-
-
-// ------------------------------------------------------
-/// 文字列を選択
-- (IBAction)selectIncompatibleRange:(id)sender
-// ------------------------------------------------------
-{
-    NSArray *selectedIncompatibles = [[self incompatibleCharsController] selectedObjects];
-    
-    if ([selectedIncompatibles count] == 0) { return; }
-
-    NSRange range = [selectedIncompatibles[0][CEIncompatibleRangeKey] rangeValue];
-    NSTextView *textView = [[self editor] textView];
-    
-    [[self editor] setSelectedRange:range];
-    [[self window] makeFirstResponder:textView];
-
-    // 検索結果表示エフェクトを追加 (改行コードが CR/LF のときにずれるので range は使えない)
-    [textView scrollRangeToVisible:[textView selectedRange]];
-    [textView showFindIndicatorForRange:[textView selectedRange]];
 }
 
 
@@ -747,6 +649,52 @@ static NSTimeInterval incompatibleCharInterval;
 // Private method
 //
 //=======================================================
+
+// ------------------------------------------------------
+/// ドロワーが開いているかを返す
+- (BOOL)isDrawerShown
+// ------------------------------------------------------
+{
+    NSInteger state = [[self drawer] state];
+    
+    return (state == NSDrawerOpenState) || (state == NSDrawerOpeningState);
+}
+
+
+// ------------------------------------------------------
+/// 文書情報ドロワー内容を更新すべきかを返す
+- (BOOL)isDocumentInfoShown
+// ------------------------------------------------------
+{
+    return ([self selectedSideBarTag] == CEDocumentInfoTag && [self isDrawerShown]);
+}
+
+
+// ------------------------------------------------------
+/// switch drawer view
+- (void)setSelectedSideBarTag:(CESideBarTag)tag
+// ------------------------------------------------------
+{
+    _selectedSideBarTag = tag;
+    
+    NSViewController *viewController;
+    switch (tag) {
+        case CEDocumentInfoTag:
+            viewController = [self documentInfoViewController];
+            [self updateFileAttributesInfo];
+            [self updateEditorStatusInfo:YES];
+            [self updateEncodingAndLineEndingsInfo:YES];
+            break;
+            
+        case CEIncompatibleCharsTag:
+            viewController = [self incompatibleCharsViewController];
+            [[self incompatibleCharsViewController] update];
+            break;
+    }
+    
+    [[self sideBarBox] setContentView:[viewController view]];
+}
+
 
 // ------------------------------------------------------
 /// 指定されたスタイルを適用していたら、リカラーフラグを立てる
@@ -789,42 +737,12 @@ static NSTimeInterval incompatibleCharInterval;
 
 
 // ------------------------------------------------------
-/// 非互換文字リストを更新
-- (void)updateIncompatibleCharList
-// ------------------------------------------------------
-{
-    NSArray *contents = [[self document] findCharsIncompatibleWithEncoding:[[self document] encoding]];
-    
-    NSMutableArray *ranges = [NSMutableArray array];
-    for (NSDictionary *incompatible in contents) {
-        [ranges addObject:incompatible[CEIncompatibleRangeKey]];
-    }
-    [[self editor] clearAllMarkup];
-    [[self editor] markupRanges:ranges];
-    
-    
-    [[self listErrorTextField] setHidden:([contents count] > 0)]; // リストが取得できなかった時のメッセージを表示
-    [[self incompatibleCharsController] setContent:contents];
-}
-
-
-// ------------------------------------------------------
 /// タイマーの設定時刻に到達、情報更新
 - (void)updateEditorStatusInfoWithTimer:(NSTimer *)timer
 // ------------------------------------------------------
 {
     [self stopInfoUpdateTimer];
     [self updateEditorStatusInfo:NO];
-}
-
-
-// ------------------------------------------------------
-/// タイマーの設定時刻に到達、非互換文字情報更新
-- (void)updateIncompatibleCharListWithTimer:(NSTimer *)timer
-// ------------------------------------------------------
-{
-    [self stopIncompatibleCharTimer];
-    [self updateIncompatibleCharList];
 }
 
 
@@ -836,18 +754,6 @@ static NSTimeInterval incompatibleCharInterval;
     if ([self infoUpdateTimer]) {
         [[self infoUpdateTimer] invalidate];
         [self setInfoUpdateTimer:nil];
-    }
-}
-
-
-// ------------------------------------------------------
-/// 非互換文字情報更新タイマーを停止
-- (void)stopIncompatibleCharTimer
-// ------------------------------------------------------
-{
-    if ([self incompatibleCharTimer]) {
-        [[self incompatibleCharTimer] invalidate];
-        [self setIncompatibleCharTimer:nil];
     }
 }
 

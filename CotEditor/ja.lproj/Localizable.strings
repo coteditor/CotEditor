@@ -169,7 +169,7 @@
 
 
 /* MARK: CEStatusBarView */
-": " = "：";
+"%@: " = "%@：";
 "Lines" = "行数";
 "Chars" = "文字数";
 "Length" = "文字長";
