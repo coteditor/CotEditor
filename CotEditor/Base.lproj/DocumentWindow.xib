@@ -9,10 +9,11 @@
             <connections>
                 <outlet property="documentAnalyzer" destination="GxG-Ha-2we" id="SAg-2c-ORY"/>
                 <outlet property="documentInfoViewController" destination="zfS-u8-roN" id="oK6-CE-TYF"/>
-                <outlet property="drawer" destination="32" id="a7s-jX-e9O"/>
                 <outlet property="editor" destination="Asc-bK-hKW" id="ihd-lk-fQz"/>
                 <outlet property="incompatibleCharsViewController" destination="PNV-ic-0G4" id="eFj-Ts-dkB"/>
-                <outlet property="sidebarBox" destination="Bdv-Hn-dTD" id="hkI-K9-2CI"/>
+                <outlet property="sidebar" destination="34" id="2IU-Vj-94v"/>
+                <outlet property="sidebarBox" destination="Bdv-Hn-dTD" id="rNI-bD-w82"/>
+                <outlet property="sidebarSplitView" destination="jhv-dr-CH4" id="CIg-jJ-bnp"/>
                 <outlet property="statusBarController" destination="ZaC-Gi-qyq" id="JbQ-Wl-HQq"/>
                 <outlet property="toolbarController" destination="71" id="Edj-p3-PkH"/>
                 <outlet property="window" destination="5" id="31"/>
@@ -24,30 +25,89 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowCollectionBehavior key="collectionBehavior" fullScreenPrimary="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" topStrut="YES"/>
-            <rect key="contentRect" x="10" y="280" width="500" height="420"/>
+            <rect key="contentRect" x="10" y="280" width="580" height="550"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
             <value key="minSize" type="size" width="400" height="200"/>
-            <view key="contentView" id="6">
-                <rect key="frame" x="0.0" y="0.0" width="500" height="420"/>
+            <view key="contentView" id="6" userLabel="Content View">
+                <rect key="frame" x="0.0" y="0.0" width="580" height="550"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <splitView dividerStyle="paneSplitter" translatesAutoresizingMaskIntoConstraints="NO" id="Ezm-P5-z5i" customClass="CESplitView">
-                        <rect key="frame" x="0.0" y="20" width="500" height="400"/>
+                    <splitView identifier="documentSidebar" dividerStyle="thin" vertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jhv-dr-CH4" userLabel="Sidebar Split View">
+                        <rect key="frame" x="0.0" y="20" width="580" height="530"/>
                         <subviews>
-                            <customView fixedFrame="YES" id="xVz-uL-qne" customClass="CEEditorView">
-                                <rect key="frame" x="0.0" y="0.0" width="500" height="400"/>
-                                <autoresizingMask key="autoresizingMask"/>
+                            <splitView fixedFrame="YES" dividerStyle="paneSplitter" id="Ezm-P5-z5i" userLabel="Editor Split View" customClass="CESplitView">
+                                <rect key="frame" x="0.0" y="0.0" width="349" height="530"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <subviews>
+                                    <customView fixedFrame="YES" id="xVz-uL-qne" customClass="CEEditorView">
+                                        <rect key="frame" x="0.0" y="0.0" width="349" height="530"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                    </customView>
+                                </subviews>
+                                <holdingPriorities>
+                                    <real value="250"/>
+                                </holdingPriorities>
+                                <connections>
+                                    <outlet property="delegate" destination="cfo-zY-w3h" id="ZBq-Sz-8et"/>
+                                </connections>
+                            </splitView>
+                            <customView wantsLayer="YES" id="34" userLabel="Sidebar View">
+                                <rect key="frame" x="350" y="0.0" width="230" height="530"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <subviews>
+                                    <box autoresizesSubviews="NO" boxType="custom" borderType="none" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="Bdv-Hn-dTD">
+                                        <rect key="frame" x="0.0" y="0.0" width="230" height="490"/>
+                                        <view key="contentView">
+                                            <rect key="frame" x="0.0" y="0.0" width="230" height="490"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        </view>
+                                        <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
+                                        <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </box>
+                                    <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="142">
+                                        <rect key="frame" x="42" y="496" width="146" height="25"/>
+                                        <popUpButtonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" alignment="center" lineBreakMode="truncatingTail" borderStyle="border" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="700">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="menu"/>
+                                            <menu key="menu" title="OtherViews" id="143">
+                                                <items>
+                                                    <menuItem title="Document" tag="1" id="144">
+                                                        <attributedString key="attributedTitle"/>
+                                                    </menuItem>
+                                                    <menuItem title="Incompatible Chars" tag="2" id="145">
+                                                        <attributedString key="attributedTitle"/>
+                                                    </menuItem>
+                                                </items>
+                                            </menu>
+                                        </popUpButtonCell>
+                                        <connections>
+                                            <binding destination="-2" name="selectedTag" keyPath="selectedSidebarTag" id="49V-fU-S9f"/>
+                                        </connections>
+                                    </popUpButton>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="centerX" secondItem="142" secondAttribute="centerX" id="7gs-Rh-Cr0"/>
+                                    <constraint firstItem="142" firstAttribute="top" secondItem="34" secondAttribute="top" constant="10" id="8V2-uN-7IC"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="142" secondAttribute="trailing" constant="8" id="Bs0-KO-jMt"/>
+                                    <constraint firstAttribute="bottom" secondItem="Bdv-Hn-dTD" secondAttribute="bottom" id="Syi-yy-bJt"/>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="300" id="aly-Ib-BsD"/>
+                                    <constraint firstItem="Bdv-Hn-dTD" firstAttribute="leading" secondItem="34" secondAttribute="leading" id="kI2-Bx-TWz"/>
+                                    <constraint firstItem="Bdv-Hn-dTD" firstAttribute="top" secondItem="142" secondAttribute="bottom" constant="8" id="tOc-vW-5hn"/>
+                                    <constraint firstAttribute="trailing" secondItem="Bdv-Hn-dTD" secondAttribute="trailing" id="vpR-e8-GEB"/>
+                                    <constraint firstItem="142" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="34" secondAttribute="leading" constant="8" id="z1f-RB-gge"/>
+                                </constraints>
                             </customView>
                         </subviews>
                         <holdingPriorities>
                             <real value="250"/>
+                            <real value="250"/>
                         </holdingPriorities>
                         <connections>
-                            <outlet property="delegate" destination="cfo-zY-w3h" id="ZBq-Sz-8et"/>
+                            <outlet property="delegate" destination="-2" id="30X-7D-JZT"/>
                         </connections>
                     </splitView>
                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="Rjm-Sf-4Mf" customClass="CEStatusBarView">
-                        <rect key="frame" x="0.0" y="0.0" width="500" height="20"/>
+                        <rect key="frame" x="0.0" y="0.0" width="580" height="20"/>
                         <subviews>
                             <imageView hidden="YES" toolTip="This document is read only." horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EP1-My-tQo">
                                 <rect key="frame" x="8" y="2" width="16" height="16"/>
@@ -72,7 +132,7 @@
                                 </connections>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QO1-yr-imY">
-                                <rect key="frame" x="459" y="3" width="33" height="14"/>
+                                <rect key="frame" x="539" y="3" width="33" height="14"/>
                                 <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" allowsUndo="NO" sendsActionOnEndEditing="YES" title="Label" id="W4S-dh-6hG">
                                     <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -96,13 +156,13 @@
                     </customView>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="jhv-dr-CH4" firstAttribute="leading" secondItem="6" secondAttribute="leading" id="Ev5-RE-odI"/>
                     <constraint firstAttribute="bottom" secondItem="Rjm-Sf-4Mf" secondAttribute="bottom" id="Mte-Of-4Jj"/>
-                    <constraint firstItem="Ezm-P5-z5i" firstAttribute="top" secondItem="6" secondAttribute="top" id="OFO-iX-l4a"/>
-                    <constraint firstItem="Rjm-Sf-4Mf" firstAttribute="top" secondItem="Ezm-P5-z5i" secondAttribute="bottom" id="Qxe-Mj-JW8"/>
                     <constraint firstItem="Rjm-Sf-4Mf" firstAttribute="leading" secondItem="6" secondAttribute="leading" id="Sph-UK-4Zn"/>
-                    <constraint firstAttribute="trailing" secondItem="Ezm-P5-z5i" secondAttribute="trailing" id="Z2L-9l-fFD"/>
+                    <constraint firstAttribute="trailing" secondItem="jhv-dr-CH4" secondAttribute="trailing" id="UJ7-jN-zyi"/>
+                    <constraint firstItem="Rjm-Sf-4Mf" firstAttribute="top" secondItem="jhv-dr-CH4" secondAttribute="bottom" id="lGr-Gd-dC9"/>
+                    <constraint firstItem="jhv-dr-CH4" firstAttribute="top" secondItem="6" secondAttribute="top" id="ocL-uJ-ACf"/>
                     <constraint firstAttribute="trailing" secondItem="Rjm-Sf-4Mf" secondAttribute="trailing" id="vUa-vZ-EE4"/>
-                    <constraint firstItem="Ezm-P5-z5i" firstAttribute="leading" secondItem="6" secondAttribute="leading" id="wbM-Gh-RXF"/>
                 </constraints>
             </view>
             <toolbar key="toolbar" implicitIdentifier="CED05FB8-D6FA-4FDC-A1D9-8D33CCA40BE5" explicitIdentifier="docWindowToolbarID" displayMode="iconAndLabel" sizeMode="regular" id="olV-v9-4mJ">
@@ -276,60 +336,8 @@
             <connections>
                 <outlet property="delegate" destination="-2" id="17"/>
             </connections>
-            <point key="canvasLocation" x="307" y="-423"/>
+            <point key="canvasLocation" x="449" y="-391"/>
         </window>
-        <drawer trailingOffset="15" id="32">
-            <size key="contentSize" width="220" height="380"/>
-            <size key="minContentSize" width="200" height="50"/>
-            <size key="maxContentSize" width="600" height="400"/>
-            <connections>
-                <outlet property="contentView" destination="34" id="37"/>
-                <outlet property="delegate" destination="-2" id="151"/>
-                <outlet property="parentWindow" destination="5" id="33"/>
-            </connections>
-        </drawer>
-        <customView id="34" userLabel="Drawer View">
-            <rect key="frame" x="0.0" y="0.0" width="220" height="500"/>
-            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            <subviews>
-                <box autoresizesSubviews="NO" borderType="line" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="Bdv-Hn-dTD">
-                    <rect key="frame" x="1" y="16" width="218" height="465"/>
-                    <view key="contentView">
-                        <rect key="frame" x="9" y="11" width="200" height="443"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                    </view>
-                    <size key="contentViewMargins" width="8" height="10"/>
-                    <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
-                    <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                </box>
-                <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="142">
-                    <rect key="frame" x="18" y="466" width="185" height="26"/>
-                    <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="700">
-                        <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="menu"/>
-                        <menu key="menu" title="OtherViews" id="143">
-                            <items>
-                                <menuItem title="Document Info" tag="1" id="144"/>
-                                <menuItem title="Incompatible Chars" tag="2" id="145"/>
-                            </items>
-                        </menu>
-                    </popUpButtonCell>
-                    <connections>
-                        <binding destination="-2" name="selectedTag" keyPath="selectedSidebarTag" id="pXL-iw-cvN"/>
-                    </connections>
-                </popUpButton>
-            </subviews>
-            <constraints>
-                <constraint firstItem="142" firstAttribute="top" secondItem="34" secondAttribute="top" constant="10" id="8V2-uN-7IC"/>
-                <constraint firstAttribute="trailing" secondItem="142" secondAttribute="trailing" constant="20" symbolic="YES" id="Bs0-KO-jMt"/>
-                <constraint firstAttribute="bottom" secondItem="Bdv-Hn-dTD" secondAttribute="bottom" constant="20" symbolic="YES" id="Syi-yy-bJt"/>
-                <constraint firstItem="Bdv-Hn-dTD" firstAttribute="leading" secondItem="34" secondAttribute="leading" constant="4" id="kI2-Bx-TWz"/>
-                <constraint firstItem="Bdv-Hn-dTD" firstAttribute="top" secondItem="142" secondAttribute="bottom" constant="-10" id="tOc-vW-5hn"/>
-                <constraint firstAttribute="trailing" secondItem="Bdv-Hn-dTD" secondAttribute="trailing" constant="4" id="vpR-e8-GEB"/>
-                <constraint firstItem="142" firstAttribute="leading" secondItem="34" secondAttribute="leading" constant="20" symbolic="YES" id="z1f-RB-gge"/>
-            </constraints>
-            <point key="canvasLocation" x="491" y="-523"/>
-        </customView>
         <customObject id="71" customClass="CEToolbarController">
             <connections>
                 <outlet property="encodingPopupButton" destination="90" id="9ae-Bd-vPQ"/>

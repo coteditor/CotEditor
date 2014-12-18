@@ -185,7 +185,8 @@
                                CEDefaultInsertCustomTextArrayKey: @[@"<br />\n", @"", @"", @"", @"", @"", @"", @"", @"", @"", @"",
                                                                     @"", @"", @"", @"", @"", @"", @"", @"", @"", @"",
                                                                     @"", @"", @"", @"", @"", @"", @"", @"", @"", @""],
-                               CEDefaultColorCodeTypeKey:@1,
+                               CEDefaultColorCodeTypeKey: @1,
+                               CEDefaultSidebarWidthKey: @220,
                                
                                /* -------- 以下、隠し設定 -------- */
                                CEDefaultUsesTextFontForInvisiblesKey: @NO,

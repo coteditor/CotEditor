@@ -178,6 +178,7 @@ extern NSString *const CEDefaultPrintColorIndexKey;
 extern NSString *const CEDefaultInsertCustomTextArrayKey;
 extern NSString *const CEDefaultInsertCustomTextKey;
 extern NSString *const CEDefaultColorCodeTypeKey;
+extern NSString *const CEDefaultSidebarWidthKey;
 
 // hidden settings
 extern NSString *const CEDefaultUsesTextFontForInvisiblesKey;

@@ -188,6 +188,7 @@ NSString *const CEDefaultPrintColorIndexKey = @"printColorIndex";
 NSString *const CEDefaultInsertCustomTextArrayKey = @"insertCustomTextArray";
 NSString *const CEDefaultInsertCustomTextKey = @"insertCustomText";
 NSString *const CEDefaultColorCodeTypeKey = @"colorCodeType";
+NSString *const CEDefaultSidebarWidthKey = @"sidebarWidth";
 
 // hidden settings
 NSString *const CEDefaultUsesTextFontForInvisiblesKey = @"usesTextFontForInvisibles";

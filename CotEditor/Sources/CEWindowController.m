@@ -45,18 +45,20 @@ typedef NS_ENUM(NSUInteger, CESidebarTag) {
 };
 
 
-@interface CEWindowController () <NSDrawerDelegate>
+@interface CEWindowController () <NSSplitViewDelegate>
 
 @property (nonatomic) NSUInteger selectedSidebarTag; // ドロワーのタブビューでのポップアップメニュー選択用バインディング変数(#削除不可)
 @property (nonatomic) BOOL needsRecolorWithBecomeKey; // ウィンドウがキーになったとき再カラーリングをするかどうかのフラグ
 @property (nonatomic) NSTimer *editorInfoUpdateTimer;
+@property (nonatomic) CGFloat sidebarWidth;
 
 
 // IBOutlets
 @property (nonatomic) IBOutlet CEStatusBarController *statusBarController;
 @property (nonatomic) IBOutlet NSViewController *documentInfoViewController;
 @property (nonatomic) IBOutlet CEIncompatibleCharsViewController *incompatibleCharsViewController;
-@property (nonatomic) IBOutlet NSDrawer *drawer;
+@property (nonatomic, weak) IBOutlet NSSplitView *sidebarSplitView;
+@property (nonatomic, weak) IBOutlet NSView *sidebar;
 @property (nonatomic, weak) IBOutlet NSBox *sidebarBox;
 @property (nonatomic) IBOutlet CEDocumentAnalyzer *documentAnalyzer;
 
@@ -119,6 +121,11 @@ static NSTimeInterval infoUpdateInterval;
     
     // setup background
     [(CEWindow *)[self window] setBackgroundAlpha:[defaults doubleForKey:CEDefaultWindowAlphaKey]];
+    
+    // setup sidebar
+    [[[self sidebar] layer] setBackgroundColor:CGColorCreateGenericGray(0.93, 1.0)];
+    [[self sidebar] setHidden:YES];
+    [[self sidebarSplitView] adjustSubviews];
     
     // setup document analyzer
     [[self documentAnalyzer] setDocument:[self document]];
@@ -206,7 +213,7 @@ static NSTimeInterval infoUpdateInterval;
 // ------------------------------------------------------
 {
     [self setSelectedSidebarTag:CEIncompatibleCharsTag];
-    [[self drawer] open];
+    [self setSidebarShown:YES];
 }
 
 
@@ -368,6 +375,7 @@ static NSTimeInterval infoUpdateInterval;
     [state encodeBool:[[self editor] showsPageGuide] forKey:CEDefaultShowPageGuideKey];
     [state encodeBool:[[self editor] showsInvisibles] forKey:CEDefaultShowInvisiblesKey];
     [state encodeBool:[[self editor] isVerticalLayoutOrientation] forKey:CEDefaultLayoutTextVerticalKey];
+    [state encodeBool:[self isSidebarShown] forKey:@"showSidebar"];
 }
 
 
@@ -394,23 +402,24 @@ static NSTimeInterval infoUpdateInterval;
     if ([state containsValueForKey:CEDefaultLayoutTextVerticalKey]) {
         [[self editor] setVerticalLayoutOrientation:[state decodeBoolForKey:CEDefaultLayoutTextVerticalKey]];
     }
+    if ([state containsValueForKey:@"showSidebar"]) {
+        [self setSidebarShown:[state decodeBoolForKey:@"showSidebar"]];
+    }
 }
 
 
 //=======================================================
-// Delegate method (NSDrawer)
-//  <== drawer
+// Delegate method (NSSplitView)
+//  <== sidebarSplitView
 //=======================================================
 
 // ------------------------------------------------------
-/// ドロワーが閉じたらテキストビューのマークアップをクリア
-- (void)drawerDidClose:(NSNotification *)notification
+/// only sidebar can collapse
+- (BOOL)splitView:(NSSplitView *)splitView canCollapseSubview:(NSView *)subview
 // ------------------------------------------------------
 {
-    // テキストビューの表示だけをクリアし、リストはそのまま
-    [[self editor] clearAllMarkup];
+    return (subview == [self sidebar]);
 }
-
 
 
 #pragma mark Action Messages
@@ -426,10 +435,10 @@ static NSTimeInterval infoUpdateInterval;
 // ------------------------------------------------------
 {
     if ([self isDocumentInfoShown]) {
-        [[self drawer] close];
+        [self setSidebarShown:NO];
     } else {
         [self setSelectedSidebarTag:CEDocumentInfoTag];
-        [[self drawer] open];
+        [self setSidebarShown:YES];
     }
 }
 
@@ -439,11 +448,11 @@ static NSTimeInterval infoUpdateInterval;
 - (IBAction)toggleIncompatibleCharList:(id)sender
 // ------------------------------------------------------
 {
-    if ([self isDrawerShown] && [self selectedSidebarTag] == CEIncompatibleCharsTag) {
-        [[self drawer] close];
+    if ([self isSidebarShown] && [self selectedSidebarTag] == CEIncompatibleCharsTag) {
+        [self setSidebarShown:NO];
     } else {
         [self setSelectedSidebarTag:CEIncompatibleCharsTag];
-        [[self drawer] open];
+        [self setSidebarShown:YES];
     }
 }
 
@@ -466,13 +475,41 @@ static NSTimeInterval infoUpdateInterval;
 //=======================================================
 
 // ------------------------------------------------------
-/// ドロワーが開いているかを返す
-- (BOOL)isDrawerShown
+/// set sidebar visibility
+- (void)setSidebarShown:(BOOL)shown
 // ------------------------------------------------------
 {
-    NSInteger state = [[self drawer] state];
+    if ([self selectedSidebarTag] == 0) {
+        [self setSelectedSidebarTag:CEDocumentInfoTag];
+    }
     
-    return (state == NSDrawerOpenState) || (state == NSDrawerOpeningState);
+    if (shown) {
+        CGFloat width = [self sidebarWidth] ?: [[NSUserDefaults standardUserDefaults] doubleForKey:CEDefaultSidebarWidthKey];
+        CGFloat maxWidth = [[self sidebarSplitView] maxPossiblePositionOfDividerAtIndex:0];
+        
+        [[self sidebarSplitView] setPosition:(maxWidth - width) ofDividerAtIndex:0];
+    } else {
+        // store current sidebar width
+        CGFloat width = NSWidth([[self sidebar] bounds]);
+        [self setSidebarWidth:width];
+        [[NSUserDefaults standardUserDefaults] setDouble:width forKey:CEDefaultSidebarWidthKey];
+        
+        // clear incompatible chars markup
+        [[self editor] clearAllMarkup];
+        
+        // close sidebar
+        [[self sidebar] setHidden:YES];
+    }
+    [[self sidebarSplitView] adjustSubviews];
+}
+
+
+// ------------------------------------------------------
+/// return whether sidebar is opened
+- (BOOL)isSidebarShown
+// ------------------------------------------------------
+{
+    return ![[self sidebarSplitView] isSubviewCollapsed:[self sidebar]];
 }
 
 
@@ -481,12 +518,12 @@ static NSTimeInterval infoUpdateInterval;
 - (BOOL)isDocumentInfoShown
 // ------------------------------------------------------
 {
-    return ([self selectedSidebarTag] == CEDocumentInfoTag && [self isDrawerShown]);
+    return ([self selectedSidebarTag] == CEDocumentInfoTag && [self isSidebarShown]);
 }
 
 
 // ------------------------------------------------------
-/// switch drawer view
+/// switch sidebar view
 - (void)setSelectedSidebarTag:(NSUInteger)tag
 // ------------------------------------------------------
 {
