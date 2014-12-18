@@ -39,7 +39,5 @@
 
 // Public method
 - (void)setShown:(BOOL)shown animate:(BOOL)performAnimation;
-- (void)updateEditorStatus;
-- (void)updateDocumentStatus;
 
 @end

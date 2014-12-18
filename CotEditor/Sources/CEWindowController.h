@@ -35,37 +35,6 @@
 #import "CEToolbarController.h"
 
 
-// document information keys
-extern NSString *const CEDocumentEncodingKey;
-extern NSString *const CEDocumentLineEndingsKey;
-extern NSString *const CEDocumentCreationDateKey;     // NSDate
-extern NSString *const CEDocumentModificationDateKey; // NSDate
-extern NSString *const CEDocumentOwnerKey;
-extern NSString *const CEDocumentHFSTypeKey;
-extern NSString *const CEDocumentHFSCreatorKey;
-extern NSString *const CEDocumentFinderLockKey;
-extern NSString *const CEDocumentPermissionKey;
-extern NSString *const CEDocumentFileSizeKey;
-// editor information keys
-extern NSString *const CEDocumentLinesKey;
-extern NSString *const CEDocumentCharsKey;
-extern NSString *const CEDocumentWordsKey;
-extern NSString *const CEDocumentLengthKey;
-extern NSString *const CEDocumentSelectedLinesKey;
-extern NSString *const CEDocumentSelectedCharsKey;
-extern NSString *const CEDocumentSelectedWordsKey;
-extern NSString *const CEDocumentSelectedLengthKey;
-extern NSString *const CEDocumentFormattedLinesKey;
-extern NSString *const CEDocumentFormattedCharsKey;
-extern NSString *const CEDocumentFormattedWordsKey;
-extern NSString *const CEDocumentFormattedLengthKey;
-extern NSString *const CEDocumentByteLengthKey;
-extern NSString *const CEDocumentColumnKey;    // caret location from line head
-extern NSString *const CEDocumentLocationKey;  // caret location from begining of document
-extern NSString *const CEDocumentLineKey;      // current line
-extern NSString *const CEDocumentUnicodeKey;   // Unicode of selected single character (or surrogate-pair)
-
-
 @interface CEWindowController : NSWindowController <NSWindowDelegate, OgreTextFindDataSource>
 
 @property (readonly, nonatomic, weak) CEEditorWrapper *editor;
@@ -76,10 +45,10 @@ extern NSString *const CEDocumentUnicodeKey;   // Unicode of selected single cha
 - (void)setWritable:(BOOL)isWritable;
 - (void)showIncompatibleCharList;
 - (void)updateIncompatibleCharsIfNeeded;
-- (void)updateEditorStatusInfo:(BOOL)needsUpdateDrawer;
-- (void)updateEncodingAndLineEndingsInfo:(BOOL)needsUpdateDrawer;
-- (void)updateFileAttributesInfo;
-- (void)setupInfoUpdateTimer;
+- (void)updateEditorInfoIfNeeded;
+- (void)updateModeInfoIfNeeded;
+- (void)updateFileInfo;
+- (void)setupEditorInfoUpdateTimer;
 
 // Action Message
 - (IBAction)getInfo:(id)sender;

@@ -584,7 +584,7 @@
     [self highlightCurrentLine];
 
     // 文書情報更新
-    [[[self window] windowController] setupInfoUpdateTimer];
+    [[[self window] windowController] setupEditorInfoUpdateTimer];
 
     // アウトラインメニュー選択項目更新
     [self updateOutlineMenuSelection];
@@ -672,7 +672,7 @@
 // ------------------------------------------------------
 {
     // 文書情報更新（選択範囲・キャレット位置が変更されないまま全置換が実行された場合への対応）
-    [[[self window] windowController] setupInfoUpdateTimer];
+    [[[self window] windowController] setupEditorInfoUpdateTimer];
     
     // アウトラインメニュー項目、非互換文字リスト更新
     [self updateInfo];

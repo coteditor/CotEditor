@@ -245,8 +245,8 @@ static NSTimeInterval secondColoringDelay;
         [(CETextView *)[container textView] setLineEndingString:lineEndingString];
     }
     
-    [[self windowController] updateEncodingAndLineEndingsInfo:NO];
-    [[self windowController] updateEditorStatusInfo:NO];
+    [[self windowController] updateModeInfoIfNeeded];
+    [[self windowController] updateEditorInfoIfNeeded];
 }
 
 

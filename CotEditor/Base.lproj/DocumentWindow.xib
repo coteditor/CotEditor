@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
+        <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6254"/>
     </dependencies>
     <objects>
@@ -291,7 +292,7 @@
             <rect key="frame" x="0.0" y="0.0" width="220" height="500"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <box autoresizesSubviews="NO" title="Box" borderType="line" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="Bdv-Hn-dTD">
+                <box autoresizesSubviews="NO" borderType="line" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="Bdv-Hn-dTD">
                     <rect key="frame" x="1" y="16" width="218" height="465"/>
                     <view key="contentView">
                         <rect key="frame" x="9" y="11" width="200" height="443"/>
@@ -343,9 +344,10 @@
                 <outlet property="splitViewController" destination="cfo-zY-w3h" id="ZU8-hM-dOd"/>
             </connections>
         </customObject>
+        <customObject id="GxG-Ha-2we" customClass="CEDocumentAnalyzer"/>
         <viewController id="ZaC-Gi-qyq" customClass="CEStatusBarController">
             <connections>
-                <outlet property="decimalFormatter" destination="ZXE-Ki-WDP" id="DI4-1N-0dW"/>
+                <outlet property="documentAnalyzer" destination="GxG-Ha-2we" id="InE-dm-D25"/>
                 <outlet property="heightConstraint" destination="rVp-Pk-2Bh" id="diE-OL-1Uw"/>
                 <outlet property="view" destination="Rjm-Sf-4Mf" id="GSM-Z2-IEv"/>
             </connections>
@@ -358,7 +360,6 @@
             </connections>
         </viewController>
         <customObject id="M21-bo-PEe" customClass="NSFontManager"/>
-        <numberFormatter formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="309" maximumFractionDigits="3" id="ZXE-Ki-WDP"/>
     </objects>
     <resources>
         <image name="AutoTabExpand_On" width="32" height="32"/>

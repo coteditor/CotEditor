@@ -34,41 +34,8 @@
 #import "CEStatusBarController.h"
 #import "CEIncompatibleCharsViewController.h"
 #import "CESyntaxManager.h"
-#import "NSString+ComposedCharacter.h"
+#import "CEDocumentAnalyzer.h"
 #import "constants.h"
-
-
-// document information keys
-NSString *const CEDocumentEncodingKey = @"encoding";
-NSString *const CEDocumentLineEndingsKey = @"lineEndings";
-NSString *const CEDocumentCreationDateKey = @"creationDate";         // NSDate
-NSString *const CEDocumentModificationDateKey = @"modificationDate"; // NSDate
-NSString *const CEDocumentOwnerKey = @"owner";
-NSString *const CEDocumentHFSTypeKey = @"type";
-NSString *const CEDocumentHFSCreatorKey = @"creator";
-NSString *const CEDocumentFinderLockKey = @"finderLock";
-NSString *const CEDocumentPermissionKey = @"permission";
-NSString *const CEDocumentFileSizeKey = @"fileSize";
-// editor information keys
-NSString *const CEDocumentLinesKey = @"lines";
-NSString *const CEDocumentCharsKey = @"chars";
-NSString *const CEDocumentWordsKey = @"words";
-NSString *const CEDocumentLengthKey = @"length";
-NSString *const CEDocumentByteLengthKey = @"byteLength";
-NSString *const CEDocumentSelectedLinesKey = @"selectedLines";
-NSString *const CEDocumentSelectedCharsKey = @"selectedChars";
-NSString *const CEDocumentSelectedWordsKey = @"selectedWords";
-NSString *const CEDocumentSelectedByteLengthKey = @"selectedByteLength";
-NSString *const CEDocumentSelectedLengthKey = @"selectedLength";
-NSString *const CEDocumentFormattedLinesKey = @"formattedLines";
-NSString *const CEDocumentFormattedCharsKey = @"formattedChars";
-NSString *const CEDocumentFormattedWordsKey = @"formattedWords";
-NSString *const CEDocumentFormattedLengthKey = @"formattedLength";
-NSString *const CEDocumentFormattedByteLengthKey = @"formattedByteLength";
-NSString *const CEDocumentColumnKey = @"column";         // caret location from line head
-NSString *const CEDocumentLocationKey = @"location";     // caret location from begining of document
-NSString *const CEDocumentLineKey = @"line";             // current line
-NSString *const CEDocumentUnicodeKey = @"unicode";       // Unicode of selected single character (or surrogate-pair)
 
 
 // drawer mode
@@ -80,12 +47,9 @@ typedef NS_ENUM(NSUInteger, CESideBarTag) {
 
 @interface CEWindowController () <NSDrawerDelegate>
 
-@property (nonatomic) CESideBarTag selectedSideBarTag; // ドロワーのタブビューでのポップアップメニュー選択用バインディング変数(#削除不可)
+@property (nonatomic) NSUInteger selectedSideBarTag; // ドロワーのタブビューでのポップアップメニュー選択用バインディング変数(#削除不可)
 @property (nonatomic) BOOL needsRecolorWithBecomeKey; // ウィンドウがキーになったとき再カラーリングをするかどうかのフラグ
-
-@property (nonatomic) NSTimer *infoUpdateTimer;
-
-@property (nonatomic) NSMutableDictionary *documentInfo;
+@property (nonatomic) NSTimer *editorInfoUpdateTimer;
 
 
 // IBOutlets
@@ -94,7 +58,7 @@ typedef NS_ENUM(NSUInteger, CESideBarTag) {
 @property (nonatomic) IBOutlet CEIncompatibleCharsViewController *incompatibleCharsViewController;
 @property (nonatomic) IBOutlet NSDrawer *drawer;
 @property (nonatomic, weak) IBOutlet NSBox *sideBarBox;
-@property (nonatomic) IBOutlet NSNumberFormatter *infoNumberFormatter;
+@property (nonatomic) IBOutlet CEDocumentAnalyzer *documentAnalyzer;
 
 // IBOutlets (readonly)
 @property (readwrite, nonatomic, weak) IBOutlet CEToolbarController *toolbarController;
@@ -142,7 +106,7 @@ static NSTimeInterval infoUpdateInterval;
 //=======================================================
 
 // ------------------------------------------------------
-/// ウィンドウ表示の準備完了時、サイズを設定し文字列／不透明度をセット
+/// ウィンドウ表示の準備
 - (void)windowDidLoad
 // ------------------------------------------------------
 {
@@ -150,36 +114,35 @@ static NSTimeInterval infoUpdateInterval;
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
-    NSSize size = NSMakeSize((CGFloat)[defaults doubleForKey:CEDefaultWindowWidthKey],
-                             (CGFloat)[defaults doubleForKey:CEDefaultWindowHeightKey]);
-    [[self window] setContentSize:size];
+    [[self window] setContentSize:NSMakeSize((CGFloat)[defaults doubleForKey:CEDefaultWindowWidthKey],
+                                             (CGFloat)[defaults doubleForKey:CEDefaultWindowHeightKey])];
     
-    [self setDocumentInfo:[NSMutableDictionary dictionary]];
-    [[self documentInfoViewController] setRepresentedObject:[self documentInfo]];
-    [[self statusBarController] setRepresentedObject:[self documentInfo]];
+    // setup background
+    [(CEWindow *)[self window] setBackgroundAlpha:[defaults doubleForKey:CEDefaultWindowAlphaKey]];
+    
+    // setup document analyzer
+    [[self documentAnalyzer] setDocument:[self document]];
+    [[self documentAnalyzer] setEditor:[self editor]];
+    [[self documentInfoViewController] setRepresentedObject:[self documentAnalyzer]];
     
     // set document instance to incompatible chars view
     [[self incompatibleCharsViewController] setRepresentedObject:[self document]];
     
-    // 背景をセットアップ
-    [(CEWindow *)[self window] setBackgroundAlpha:[defaults doubleForKey:CEDefaultWindowAlphaKey]];
-    
-    // ドキュメントオブジェクトに CEEditorWrapper インスタンスをセット
+    // set CEEditorWrapper to document instance
     [[self document] setEditor:[self editor]];
-    // テキストを表示
     [[self document] setStringToEditor];
     
     // setup status bar
     [[self statusBarController] setShown:[defaults boolForKey:CEDefaultShowStatusBarKey] animate:NO];
     [[self statusBarController] setShowsReadOnly:![[self document] isWritable]];
     
-    [self updateFileAttributesInfo];
-    [self updateEncodingAndLineEndingsInfo:YES];
+    [self updateFileInfo];
+    [self updateModeInfoIfNeeded];
     
-    // テキストビューへフォーカスを移動
+    // move focus to text view
     [[self window] makeFirstResponder:[[self editor] textView]];
     
-    // シンタックス定義の変更を監視
+    // observe sytnax style update
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(syntaxDidUpdate:)
                                                  name:CESyntaxDidUpdateNotification
@@ -201,7 +164,7 @@ static NSTimeInterval infoUpdateInterval;
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:CEDefaultWindowAlphaKey];
     
-    [self stopInfoUpdateTimer];
+    [self stopEditorInfoUpdateTimer];
 }
 
 
@@ -215,6 +178,7 @@ static NSTimeInterval infoUpdateInterval;
     }
 }
 
+
 // ------------------------------------------------------
 /// メニュー項目の有効・無効を制御
 - (BOOL)validateMenuItem:(NSMenuItem *)menuItem
@@ -227,6 +191,7 @@ static NSTimeInterval infoUpdateInterval;
     
     return YES;
 }
+
 
 
 #pragma mark Public Methods
@@ -256,205 +221,55 @@ static NSTimeInterval infoUpdateInterval;
 
 
 // ------------------------------------------------------
-/// 情報ドロワーとステータスバーの文書情報を更新
-- (void)updateEditorStatusInfo:(BOOL)needsUpdateDrawer
+/// 情報ドロワーとステータスバーの文書情報を表示しているとき更新
+- (void)updateEditorInfoIfNeeded
 // ------------------------------------------------------
 {
     BOOL updatesStatusBar = [[self statusBarController] isShown];
-    BOOL updatesDrawer = needsUpdateDrawer ? YES : [self isDocumentInfoShown];
+    BOOL updatesDrawer = [self isDocumentInfoShown];
     
-    if (!needsUpdateDrawer && (!updatesStatusBar && !updatesDrawer)) { return; }
+    if (!updatesStatusBar && !updatesDrawer) { return; }
     
-    NSString *wholeString = ([[NSString newLineStringWithType:[[self document] lineEnding]] length] == 2) ? [[self document] stringForSave] : [[[self editor] string] copy];
-    NSString *selectedString = [[self editor] substringWithSelection] ? : @"";
-    NSStringEncoding encoding = [[self document] encoding];
-    __block NSRange selectedRange = [[self editor] selectedRange];
-    __block CEStatusBarController *statusBar = [self statusBarController];
-    __weak typeof(self) weakSelf = self;
-    
-    // 別スレッドで情報を計算し、メインスレッドで controller に渡す
-    NSMutableDictionary *documentInfo = [self documentInfo];
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        typeof(self) strongSelf = weakSelf;
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        BOOL countLineEnding = [defaults boolForKey:CEDefaultCountLineEndingAsCharKey];
-        NSUInteger column = 0, currentLine = 0, length = [wholeString length], location = 0;
-        NSUInteger numberOfLines = 0, numberOfSelectedLines = 0;
-        NSUInteger numberOfChars = 0, numberOfSelectedChars = 0;
-        NSUInteger numberOfWords = 0, numberOfSelectedWords = 0;
-        
-        // IM で変換途中の文字列は選択範囲としてカウントしない (2007.05.20)
-        if ([[[self editor] textView] hasMarkedText]) {
-            selectedRange.length = 0;
-        }
-        
-        if (length > 0) {
-            BOOL hasSelection = (selectedRange.length > 0);
-            NSRange lineRange = [wholeString lineRangeForRange:selectedRange];
-            column = selectedRange.location - lineRange.location;  // as length
-            column = [[wholeString substringWithRange:NSMakeRange(lineRange.location, column)] numberOfComposedCharacters];
-            
-            for (NSUInteger index = 0; index < length; numberOfLines++) {
-                if (index <= selectedRange.location) {
-                    currentLine = numberOfLines + 1;
-                }
-                index = NSMaxRange([wholeString lineRangeForRange:NSMakeRange(index, 0)]);
-            }
-            
-            // 単語数カウント
-            if (updatesDrawer || [defaults boolForKey:CEDefaultShowStatusBarWordsKey]) {
-                NSSpellChecker *spellChecker = [NSSpellChecker sharedSpellChecker];
-                numberOfWords = [spellChecker countWordsInString:wholeString language:nil];
-                if (hasSelection) {
-                    numberOfSelectedWords = [spellChecker countWordsInString:selectedString
-                                                                    language:nil];
-                }
-            }
-            if (hasSelection) {
-                numberOfSelectedLines = [[[selectedString stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]]
-                                          componentsSeparatedByString:@"\n"] count];
-            }
-            
-            // location カウント
-            if (updatesDrawer || [defaults boolForKey:CEDefaultShowStatusBarLocationKey]) {
-                NSString *locString = [wholeString substringToIndex:selectedRange.location];
-                NSString *str = countLineEnding ? locString : [locString stringByDeletingNewLineCharacters];
-                
-                location = [str numberOfComposedCharacters];
-            }
-            
-            // 文字数カウント
-            if (updatesDrawer || [defaults boolForKey:CEDefaultShowStatusBarCharsKey]) {
-                NSString *str = countLineEnding ? wholeString : [wholeString stringByDeletingNewLineCharacters];
-                numberOfChars = [str numberOfComposedCharacters];
-                if (hasSelection) {
-                    str = countLineEnding ? selectedString : [selectedString stringByDeletingNewLineCharacters];
-                    numberOfSelectedChars = [str numberOfComposedCharacters];
-                }
-            }
-            
-            // 改行コードをカウントしない場合は再計算
-            if (!countLineEnding) {
-                selectedRange.length = [[selectedString stringByDeletingNewLineCharacters] length];
-                length = [[wholeString stringByDeletingNewLineCharacters] length];
-            }
-        }
-        
-        NSString *unicodeInfo;
-        NSUInteger byteLength = 0, selectedByteLength = 0;
-        if (updatesDrawer) {
-            {
-                if (selectedRange.length == 2) {
-                    unichar firstChar = [wholeString characterAtIndex:selectedRange.location];
-                    unichar secondChar = [wholeString characterAtIndex:selectedRange.location + 1];
-                    if (CFStringIsSurrogateHighCharacter(firstChar) && CFStringIsSurrogateLowCharacter(secondChar)) {
-                        UTF32Char pair = CFStringGetLongCharacterForSurrogatePair(firstChar, secondChar);
-                        unicodeInfo = [NSString stringWithFormat:@"U+%04tX", pair];
-                    }
-                }
-                if (selectedRange.length == 1) {
-                    unichar character = [wholeString characterAtIndex:selectedRange.location];
-                    unicodeInfo = [NSString stringWithFormat:@"U+%.4X", character];
-                }
-            }
-            
-            byteLength = [wholeString lengthOfBytesUsingEncoding:encoding];
-            selectedByteLength = [[wholeString substringWithRange:selectedRange]
-                                  lengthOfBytesUsingEncoding:encoding];
-        }
-        
-        // apply to UI
-        dispatch_sync(dispatch_get_main_queue(), ^{
-            documentInfo[CEDocumentLinesKey] = @(numberOfLines);
-            documentInfo[CEDocumentCharsKey] = @(numberOfChars);
-            documentInfo[CEDocumentLengthKey] = @(length);
-            documentInfo[CEDocumentByteLengthKey] = @(byteLength);
-            documentInfo[CEDocumentWordsKey] = @(numberOfWords);
-            documentInfo[CEDocumentSelectedLinesKey] = @(numberOfSelectedLines);
-            documentInfo[CEDocumentSelectedCharsKey] = @(numberOfSelectedChars);
-            documentInfo[CEDocumentSelectedLengthKey] = @(selectedRange.length);
-            documentInfo[CEDocumentSelectedByteLengthKey] = @(selectedByteLength);
-            documentInfo[CEDocumentSelectedWordsKey] = @(numberOfSelectedWords);
-            documentInfo[CEDocumentFormattedLinesKey] = [strongSelf formatCount:numberOfLines selected:numberOfSelectedLines];
-            documentInfo[CEDocumentFormattedCharsKey] = [strongSelf formatCount:numberOfChars selected:numberOfSelectedChars];
-            documentInfo[CEDocumentFormattedLengthKey] = [strongSelf formatCount:length selected:selectedRange.length];
-            documentInfo[CEDocumentFormattedByteLengthKey] = [strongSelf formatCount:byteLength selected:selectedByteLength];
-            documentInfo[CEDocumentFormattedWordsKey] = [strongSelf formatCount:numberOfWords selected:numberOfSelectedWords];
-            documentInfo[CEDocumentLocationKey] = @(location);
-            documentInfo[CEDocumentColumnKey] = @(column);
-            documentInfo[CEDocumentLineKey] = @(currentLine);
-            if (unicodeInfo) {
-                documentInfo[CEDocumentUnicodeKey] = unicodeInfo;
-            } else {
-                [documentInfo removeObjectForKey:CEDocumentUnicodeKey];
-            }
-            
-            if (updatesStatusBar) {
-                [statusBar updateEditorStatus];
-            }
-        });
-    });
+    [[self documentAnalyzer] updateEditorInfo:updatesDrawer];
 }
 
 
 // ------------------------------------------------------
 /// 情報ドロワーとステータスバーの改行コード／エンコーディング表記を更新
-- (void)updateEncodingAndLineEndingsInfo:(BOOL)needsUpdateDrawer
+- (void)updateModeInfoIfNeeded
 // ------------------------------------------------------
 {
-    BOOL shouldUpdateStatusBar = [[self statusBarController] isShown];
-    BOOL shouldUpdateDrawer = needsUpdateDrawer ? YES : [self isDocumentInfoShown];
+    BOOL updatesStatusBar = [[self statusBarController] isShown];
+    BOOL updatesDrawer = [self isDocumentInfoShown];
     
-    if (!shouldUpdateStatusBar && !shouldUpdateDrawer) { return; }
+    if (!updatesStatusBar && !updatesDrawer) { return; }
     
-    [self documentInfo][CEDocumentEncodingKey] = [[self document] currentIANACharSetName];
-    [self documentInfo][CEDocumentLineEndingsKey] = [NSString newLineNameWithType:[[self document] lineEnding]];
-    
-    if (shouldUpdateStatusBar) {
-        [[self statusBarController] updateDocumentStatus];
-    }
+    [[self documentAnalyzer] updateModeInfo];
 }
 
 
 // ------------------------------------------------------
 /// 情報ドロワーとステータスバーのファイル情報を更新
-- (void)updateFileAttributesInfo
+- (void)updateFileInfo
 // ------------------------------------------------------
 {
-    NSDictionary *attrs = [[self document] fileAttributes];
-    
-    if ([[self document] fileURL]) {
-        [self documentInfo][CEDocumentCreationDateKey] = [attrs fileCreationDate];
-        [self documentInfo][CEDocumentModificationDateKey] = [attrs fileModificationDate];
-        [self documentInfo][CEDocumentFileSizeKey] = @([attrs fileSize]);
-    } else {
-        [[self documentInfo] removeObjectsForKeys:@[CEDocumentCreationDateKey,
-                                                    CEDocumentModificationDateKey,
-                                                    CEDocumentFileSizeKey]];
-    }
-    [self documentInfo][CEDocumentOwnerKey] = [attrs fileOwnerAccountName] ? : @"";
-    [self documentInfo][CEDocumentPermissionKey] = [attrs filePosixPermissions] ? [NSString stringWithFormat:@"%tu", [attrs filePosixPermissions]] : @"";
-    [self documentInfo][CEDocumentFinderLockKey] = NSLocalizedString([attrs fileIsImmutable] ? @"Yes" : @"No", nil);
-    [self documentInfo][CEDocumentHFSTypeKey] = [attrs fileHFSTypeCode] ? NSFileTypeForHFSTypeCode([attrs fileHFSTypeCode]) : @"";
-    [self documentInfo][CEDocumentHFSCreatorKey] = [attrs fileHFSCreatorCode] ? NSFileTypeForHFSTypeCode([attrs fileHFSCreatorCode]) : @"";
-    
-    [[self statusBarController] updateDocumentStatus];
+    [[self documentAnalyzer] updateFileInfo];
 }
 
 
 // ------------------------------------------------------
 /// 文書情報更新タイマーのファイヤーデイトを設定時間後にセット
-- (void)setupInfoUpdateTimer
+- (void)setupEditorInfoUpdateTimer
 // ------------------------------------------------------
 {
-    if ([self infoUpdateTimer]) {
-        [[self infoUpdateTimer] setFireDate:[NSDate dateWithTimeIntervalSinceNow:infoUpdateInterval]];
+    if ([self editorInfoUpdateTimer]) {
+        [[self editorInfoUpdateTimer] setFireDate:[NSDate dateWithTimeIntervalSinceNow:infoUpdateInterval]];
     } else {
-        [self setInfoUpdateTimer:[NSTimer scheduledTimerWithTimeInterval:infoUpdateInterval
-                                                                  target:self
-                                                                selector:@selector(updateEditorStatusInfoWithTimer:)
-                                                                userInfo:nil
-                                                                 repeats:NO]];
+        [self setEditorInfoUpdateTimer:[NSTimer scheduledTimerWithTimeInterval:infoUpdateInterval
+                                                                        target:self
+                                                                      selector:@selector(updateEditorInfoWithTimer:)
+                                                                      userInfo:nil
+                                                                       repeats:NO]];
     }
 }
 
@@ -463,7 +278,7 @@ static NSTimeInterval infoUpdateInterval;
 #pragma mark Accessors
 
 // ------------------------------------------------------
-/// ステータスバーを表示するかどうかを返す
+/// ステータスバーを表示しているかどうかを返す
 - (BOOL)showsStatusBar
 // ------------------------------------------------------
 {
@@ -481,10 +296,11 @@ static NSTimeInterval infoUpdateInterval;
     [[self statusBarController] setShown:showsStatusBar animate:YES];
     [[self toolbarController] toggleItemWithTag:CEToolbarShowStatusBarItemTag
                                           setOn:showsStatusBar];
-    [self updateEncodingAndLineEndingsInfo:NO];
     
-    if (![self infoUpdateTimer]) {
-        [self updateEditorStatusInfo:NO];
+    if (showsStatusBar) {
+        [[self documentAnalyzer] updateEditorInfo:NO];
+        [[self documentAnalyzer] updateFileInfo];
+        [[self documentAnalyzer] updateModeInfo];
     }
 }
 
@@ -531,13 +347,13 @@ static NSTimeInterval infoUpdateInterval;
 - (void)windowDidBecomeKey:(NSNotification *)notification
 // ------------------------------------------------------
 {
-    // シートを表示していなければ、各種更新実行
-    if ([[self window] attachedSheet] == nil) {
-        // フラグがたっていたら、改めてスタイル名を指定し直して再カラーリングを実行
-        if ([self needsRecolorWithBecomeKey]) {
-            [self setNeedsRecolorWithBecomeKey:NO];
-            [[self document] doSetSyntaxStyle:[[self editor] syntaxStyleName]];
-        }
+    // do nothing if any sheet is attached
+    if ([[self window] attachedSheet]) { return; }
+    
+    // フラグがたっていたら、改めてスタイル名を指定し直して再カラーリングを実行
+    if ([self needsRecolorWithBecomeKey]) {
+        [self setNeedsRecolorWithBecomeKey:NO];
+        [[self document] doSetSyntaxStyle:[[self editor] syntaxStyleName]];
     }
 }
 
@@ -672,7 +488,7 @@ static NSTimeInterval infoUpdateInterval;
 
 // ------------------------------------------------------
 /// switch drawer view
-- (void)setSelectedSideBarTag:(CESideBarTag)tag
+- (void)setSelectedSideBarTag:(NSUInteger)tag
 // ------------------------------------------------------
 {
     _selectedSideBarTag = tag;
@@ -681,9 +497,9 @@ static NSTimeInterval infoUpdateInterval;
     switch (tag) {
         case CEDocumentInfoTag:
             viewController = [self documentInfoViewController];
-            [self updateFileAttributesInfo];
-            [self updateEditorStatusInfo:YES];
-            [self updateEncodingAndLineEndingsInfo:YES];
+            [[self documentAnalyzer] updateEditorInfo:YES];
+            [[self documentAnalyzer] updateFileInfo];
+            [[self documentAnalyzer] updateModeInfo];
             break;
             
         case CEIncompatibleCharsTag:
@@ -705,55 +521,39 @@ static NSTimeInterval infoUpdateInterval;
     NSString *oldName = [notification userInfo][CEOldNameKey];
     NSString *newName = [notification userInfo][CENewNameKey];
     
-    if ([oldName isEqualToString:currentName]) {
-        if ([oldName isEqualToString:newName]) {
-            [[self editor] setSyntaxStyleName:newName recolorNow:NO];
-        }
-        if (![newName isEqualToString:NSLocalizedString(@"None", nil)]) {
-            if ([[self window] isKeyWindow]) {
-                [[self document] doSetSyntaxStyle:newName];
-            } else {
-                [self setNeedsRecolorWithBecomeKey:YES];
-            }
-        }
-    }
-}
-
-
-// ------------------------------------------------------
-/// 選択範囲内の情報も併記するドロワー用情報のフォーマット
-- (NSString *)formatCount:(NSUInteger)count selected:(NSUInteger)selectedCount
-// ------------------------------------------------------
-{
-    NSNumberFormatter *formatter = [self infoNumberFormatter];
+    if (![oldName isEqualToString:currentName]) { return; }
     
-    if (selectedCount > 0) {
-        return [NSString stringWithFormat:@"%@ (%@)",
-                [formatter stringFromNumber:@(count)], [formatter stringFromNumber:@(selectedCount)]];
-    } else {
-        return [NSString stringWithFormat:@"%@", [formatter stringFromNumber:@(count)]];
+    if ([oldName isEqualToString:newName]) {
+        [[self editor] setSyntaxStyleName:newName recolorNow:NO];
+    }
+    if (![newName isEqualToString:NSLocalizedString(@"None", nil)]) {
+        if ([[self window] isKeyWindow]) {
+            [[self document] doSetSyntaxStyle:newName];
+        } else {
+            [self setNeedsRecolorWithBecomeKey:YES];
+        }
     }
 }
 
 
 // ------------------------------------------------------
 /// タイマーの設定時刻に到達、情報更新
-- (void)updateEditorStatusInfoWithTimer:(NSTimer *)timer
+- (void)updateEditorInfoWithTimer:(NSTimer *)timer
 // ------------------------------------------------------
 {
-    [self stopInfoUpdateTimer];
-    [self updateEditorStatusInfo:NO];
+    [self stopEditorInfoUpdateTimer];
+    [self updateEditorInfoIfNeeded];
 }
 
 
 // ------------------------------------------------------
 /// 文書情報更新タイマーを停止
-- (void)stopInfoUpdateTimer
+- (void)stopEditorInfoUpdateTimer
 // ------------------------------------------------------
 {
-    if ([self infoUpdateTimer]) {
-        [[self infoUpdateTimer] invalidate];
-        [self setInfoUpdateTimer:nil];
+    if ([self editorInfoUpdateTimer]) {
+        [[self editorInfoUpdateTimer] invalidate];
+        [self setEditorInfoUpdateTimer:nil];
     }
 }
 

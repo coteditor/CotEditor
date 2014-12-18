@@ -1263,7 +1263,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     
     if (attributes) {
         [self setFileAttributes:attributes];
-        [[self windowController] updateFileAttributesInfo];
+        [[self windowController] updateFileInfo];
     }
 }
 
@@ -1292,7 +1292,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     // ツールバーのエンコーディングメニューを更新
     [[[self windowController] toolbarController] setSelectedEncoding:[self encoding]];
     // ステータスバー、ドロワーを更新
-    [[self windowController] updateEncodingAndLineEndingsInfo:NO];
+    [[self windowController] updateModeInfoIfNeeded];
 }
 
 
