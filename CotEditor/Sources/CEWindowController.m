@@ -122,7 +122,6 @@ static NSTimeInterval infoUpdateInterval;
     
     // setup document analyzer
     [[self documentAnalyzer] setDocument:[self document]];
-    [[self documentAnalyzer] setEditor:[self editor]];
     [[self documentInfoViewController] setRepresentedObject:[self documentAnalyzer]];
     
     // set document instance to incompatible chars view

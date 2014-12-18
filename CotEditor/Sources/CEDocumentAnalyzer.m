@@ -30,7 +30,6 @@
 
 #import "CEDocumentAnalyzer.h"
 #import "CEDocument.h"
-#import "CEEditorWrapper.h"
 #import "NSString+ComposedCharacter.h"
 #import "constants.h"
 
@@ -51,12 +50,12 @@ NSString *const CEAnalyzerDidUpdateEditorInfoNotification = @"CEAnalyzerDidUpdat
 // file infos
 @property (readwrite, nonatomic) NSString *creationDate;
 @property (readwrite, nonatomic) NSString *modificationDate;
+@property (readwrite, nonatomic) NSString *fileSize;
 @property (readwrite, nonatomic) NSString *owner;
+@property (readwrite, nonatomic) NSString *permission;
+@property (readwrite, nonatomic) NSString *locked;
 @property (readwrite, nonatomic) NSString *HFSType;
 @property (readwrite, nonatomic) NSString *HFSCreator;
-@property (readwrite, nonatomic) NSString *locked;
-@property (readwrite, nonatomic) NSString *permission;
-@property (readwrite, nonatomic) NSString *fileSize;
 
 // mode infos
 @property (readwrite, nonatomic) NSString *encoding;
@@ -147,7 +146,7 @@ NSString *const CEAnalyzerDidUpdateEditorInfoNotification = @"CEAnalyzerDidUpdat
 // ------------------------------------------------------
 {
     CEDocument *document = [self document];
-    CEEditorWrapper *editor = [self editor];
+    CEEditorWrapper *editor = [document editor];
     NSNumberFormatter *integerFormatter = [self integerFormatter];
     
     BOOL hasMarked = [[editor textView] hasMarkedText];

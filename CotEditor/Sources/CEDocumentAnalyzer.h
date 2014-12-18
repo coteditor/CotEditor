@@ -30,30 +30,28 @@
 @import Cocoa;
 
 
-@class CEEditorWrapper;
-@class CEDocument;
-
-
 // notifications
 extern NSString *const CEAnalyzerDidUpdateFileInfoNotification;
 extern NSString *const CEAnalyzerDidUpdateModeInfoNotification;
 extern NSString *const CEAnalyzerDidUpdateEditorInfoNotification;
 
 
+@class CEDocument;
+
+
 @interface CEDocumentAnalyzer : NSObject
 
 @property (nonatomic, weak) CEDocument *document;
-@property (nonatomic, weak) CEEditorWrapper *editor;
 
 // file info
 @property (readonly, nonatomic) NSString *creationDate;
 @property (readonly, nonatomic) NSString *modificationDate;
+@property (readonly, nonatomic) NSString *fileSize;
 @property (readonly, nonatomic) NSString *owner;
+@property (readonly, nonatomic) NSString *permission;
+@property (readonly, nonatomic) NSString *locked;
 @property (readonly, nonatomic) NSString *HFSType;
 @property (readonly, nonatomic) NSString *HFSCreator;
-@property (readonly, nonatomic) NSString *locked;
-@property (readonly, nonatomic) NSString *permission;
-@property (readonly, nonatomic) NSString *fileSize;
 
 // mode info
 @property (readonly, nonatomic) NSString *encoding;
@@ -69,6 +67,7 @@ extern NSString *const CEAnalyzerDidUpdateEditorInfoNotification;
 @property (readonly, nonatomic) NSString *line;      // current line
 @property (readonly, nonatomic) NSString *column;    // caret location from line head
 @property (readonly, nonatomic) NSString *unicode;   // Unicode of selected single character (or surrogate-pair)
+
 
 - (void)updateFileInfo;
 - (void)updateModeInfo;
