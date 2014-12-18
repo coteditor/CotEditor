@@ -12,7 +12,7 @@
                 <outlet property="drawer" destination="32" id="a7s-jX-e9O"/>
                 <outlet property="editor" destination="Asc-bK-hKW" id="ihd-lk-fQz"/>
                 <outlet property="incompatibleCharsViewController" destination="PNV-ic-0G4" id="eFj-Ts-dkB"/>
-                <outlet property="sideBarBox" destination="Bdv-Hn-dTD" id="Flx-14-H7f"/>
+                <outlet property="sidebarBox" destination="Bdv-Hn-dTD" id="hkI-K9-2CI"/>
                 <outlet property="statusBarController" destination="ZaC-Gi-qyq" id="JbQ-Wl-HQq"/>
                 <outlet property="toolbarController" destination="71" id="Edj-p3-PkH"/>
                 <outlet property="window" destination="5" id="31"/>
@@ -315,7 +315,7 @@
                         </menu>
                     </popUpButtonCell>
                     <connections>
-                        <binding destination="-2" name="selectedTag" keyPath="selectedSideBarTag" id="VKz-6J-BLr"/>
+                        <binding destination="-2" name="selectedTag" keyPath="selectedSidebarTag" id="pXL-iw-cvN"/>
                     </connections>
                 </popUpButton>
             </subviews>

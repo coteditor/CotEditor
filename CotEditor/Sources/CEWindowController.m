@@ -38,8 +38,8 @@
 #import "constants.h"
 
 
-// drawer mode
-typedef NS_ENUM(NSUInteger, CESideBarTag) {
+// sidebar mode
+typedef NS_ENUM(NSUInteger, CESidebarTag) {
     CEDocumentInfoTag = 1,
     CEIncompatibleCharsTag,
 };
@@ -47,7 +47,7 @@ typedef NS_ENUM(NSUInteger, CESideBarTag) {
 
 @interface CEWindowController () <NSDrawerDelegate>
 
-@property (nonatomic) NSUInteger selectedSideBarTag; // ドロワーのタブビューでのポップアップメニュー選択用バインディング変数(#削除不可)
+@property (nonatomic) NSUInteger selectedSidebarTag; // ドロワーのタブビューでのポップアップメニュー選択用バインディング変数(#削除不可)
 @property (nonatomic) BOOL needsRecolorWithBecomeKey; // ウィンドウがキーになったとき再カラーリングをするかどうかのフラグ
 @property (nonatomic) NSTimer *editorInfoUpdateTimer;
 
@@ -57,7 +57,7 @@ typedef NS_ENUM(NSUInteger, CESideBarTag) {
 @property (nonatomic) IBOutlet NSViewController *documentInfoViewController;
 @property (nonatomic) IBOutlet CEIncompatibleCharsViewController *incompatibleCharsViewController;
 @property (nonatomic) IBOutlet NSDrawer *drawer;
-@property (nonatomic, weak) IBOutlet NSBox *sideBarBox;
+@property (nonatomic, weak) IBOutlet NSBox *sidebarBox;
 @property (nonatomic) IBOutlet CEDocumentAnalyzer *documentAnalyzer;
 
 // IBOutlets (readonly)
@@ -205,7 +205,7 @@ static NSTimeInterval infoUpdateInterval;
 - (void)showIncompatibleCharList
 // ------------------------------------------------------
 {
-    [self setSelectedSideBarTag:CEIncompatibleCharsTag];
+    [self setSelectedSidebarTag:CEIncompatibleCharsTag];
     [[self drawer] open];
 }
 
@@ -428,7 +428,7 @@ static NSTimeInterval infoUpdateInterval;
     if ([self isDocumentInfoShown]) {
         [[self drawer] close];
     } else {
-        [self setSelectedSideBarTag:CEDocumentInfoTag];
+        [self setSelectedSidebarTag:CEDocumentInfoTag];
         [[self drawer] open];
     }
 }
@@ -439,10 +439,10 @@ static NSTimeInterval infoUpdateInterval;
 - (IBAction)toggleIncompatibleCharList:(id)sender
 // ------------------------------------------------------
 {
-    if ([self isDrawerShown] && [self selectedSideBarTag] == CEIncompatibleCharsTag) {
+    if ([self isDrawerShown] && [self selectedSidebarTag] == CEIncompatibleCharsTag) {
         [[self drawer] close];
     } else {
-        [self setSelectedSideBarTag:CEIncompatibleCharsTag];
+        [self setSelectedSidebarTag:CEIncompatibleCharsTag];
         [[self drawer] open];
     }
 }
@@ -481,16 +481,16 @@ static NSTimeInterval infoUpdateInterval;
 - (BOOL)isDocumentInfoShown
 // ------------------------------------------------------
 {
-    return ([self selectedSideBarTag] == CEDocumentInfoTag && [self isDrawerShown]);
+    return ([self selectedSidebarTag] == CEDocumentInfoTag && [self isDrawerShown]);
 }
 
 
 // ------------------------------------------------------
 /// switch drawer view
-- (void)setSelectedSideBarTag:(NSUInteger)tag
+- (void)setSelectedSidebarTag:(NSUInteger)tag
 // ------------------------------------------------------
 {
-    _selectedSideBarTag = tag;
+    _selectedSidebarTag = tag;
     
     NSViewController *viewController;
     switch (tag) {
@@ -507,7 +507,7 @@ static NSTimeInterval infoUpdateInterval;
             break;
     }
     
-    [[self sideBarBox] setContentView:[viewController view]];
+    [[self sidebarBox] setContentView:[viewController view]];
 }
 
 
