@@ -195,7 +195,7 @@ const NSInteger kNoMenuItem = -1;
 
 
 // ------------------------------------------------------
-/// first responder になれるかを返す  !!!: Deprecated on 10.4
+/// first responder になれるかを返す
 - (BOOL)becomeFirstResponder
 // ------------------------------------------------------
 {
