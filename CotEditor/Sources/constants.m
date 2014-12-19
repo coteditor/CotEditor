@@ -98,6 +98,7 @@ NSString *const CEDefaultLastVersionKey = @"lastVersion";
 NSString *const CEDefaultLayoutTextVerticalKey = @"layoutTextVertical";
 NSString *const CEDefaultSplitViewVerticalKey = @"splitViewVertical";
 NSString *const CEDefaultShowLineNumbersKey = @"showLineNumbers";
+NSString *const CEDefaultShowDocumentInspectorKey = @"showDocumentInspector";
 NSString *const CEDefaultShowStatusBarKey = @"showStatusArea";
 NSString *const CEDefaultShowStatusBarLinesKey = @"showStatusBarLines";
 NSString *const CEDefaultShowStatusBarLengthKey = @"showStatusBarLength";
@@ -188,6 +189,7 @@ NSString *const CEDefaultPrintColorIndexKey = @"printColorIndex";
 NSString *const CEDefaultInsertCustomTextArrayKey = @"insertCustomTextArray";
 NSString *const CEDefaultInsertCustomTextKey = @"insertCustomText";
 NSString *const CEDefaultColorCodeTypeKey = @"colorCodeType";
+NSString *const CEDefaultSidebarWidthKey = @"sidebarWidth";
 
 // hidden settings
 NSString *const CEDefaultUsesTextFontForInvisiblesKey = @"usesTextFontForInvisibles";

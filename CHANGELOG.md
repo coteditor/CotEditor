@@ -13,6 +13,9 @@ Change Log
 
 ### Additions/Changes
 
+- Migrate document drawer to sidebar style.
+    - Add “show document inspector” option to preferences.
+    - Improve document information display.
 - Improve to display gear icon in menu bar while executing a script.
 - Add hidden “Reveal in Finder” menu item to syntax style action menu in Preferences (visible with `Option` key).
 - Improve find result panel behavior with Spaces.

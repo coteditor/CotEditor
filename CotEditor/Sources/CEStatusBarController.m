@@ -186,7 +186,7 @@ static NSColor *kLabelColor;
     CEDocumentAnalyzer *info = [self documentAnalyzer];
     
     if ([defaults boolForKey:CEDefaultShowStatusBarEncodingKey]) {
-        [status addObject:([info encoding] ?: @"-")];
+        [status addObject:([info charsetName] ?: @"-")];
     }
     if ([defaults boolForKey:CEDefaultShowStatusBarLineEndingsKey]) {
         [status addObject:([info lineEndings] ?: @"-")];

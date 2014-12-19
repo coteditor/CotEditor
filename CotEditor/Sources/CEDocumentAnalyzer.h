@@ -55,6 +55,7 @@ extern NSString *const CEAnalyzerDidUpdateEditorInfoNotification;
 
 // mode info
 @property (readonly, nonatomic) NSString *encoding;
+@property (readonly, nonatomic) NSString *charsetName;
 @property (readonly, nonatomic) NSString *lineEndings;
 
 // editor info

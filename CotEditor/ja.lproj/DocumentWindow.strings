@@ -118,5 +118,5 @@
 
 /* Class = "NSMenuItem"; title = "Incompatible Chars"; ObjectID = "145"; */
 "145.title" = "非互換文字";
-/* Class = "NSMenuItem"; title = "Document Info"; ObjectID = "144"; */
+/* Class = "NSMenuItem"; title = "Document"; ObjectID = "144"; */
 "144.title" = "書類情報";

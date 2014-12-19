@@ -14,10 +14,12 @@
 "iw9-Ba-eD2.title" = "表示：";
 /* Class = "NSButtonCell"; title = "Navigation Bar"; ObjectID = "3351"; */
 "3351.title" = "ナビゲーションバー";
-/* Class = "NSButtonCell"; title = "Line Numbers"; ObjectID = "3348"; */
-"3348.title" = "行番号";
+/* Class = "NSButtonCell"; title = "Document Inspector"; ObjectID = "3348"; */
+"3348.title" = "書類情報";
 /* Class = "NSButtonCell"; title = "Status Bar"; ObjectID = "3349"; */
 "3349.title" = "ステータスバー";
+/* Class = "NSButtonCell"; title = "Line Numbers"; ObjectID = "A9U-Sx-or3"; */
+"A9U-Sx-or3.title" = "行番号";
 /* Class = "NSButtonCell"; title = "Page Guide"; ObjectID = "3352"; */
 "3352.title" = "ページガイド";
 /* Class = "NSTextFieldCell"; title = "Display at column:"; ObjectID = "3353"; */

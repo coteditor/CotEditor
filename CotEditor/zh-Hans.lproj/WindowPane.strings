@@ -16,10 +16,12 @@
 "iw9-Ba-eD2.title" = "显示:";
 /* Class = "NSButtonCell"; title = "Navigation Bar"; ObjectID = "3351"; */
 "3351.title" = "导航栏";
-/* Class = "NSButtonCell"; title = "Line Numbers"; ObjectID = "3348"; */
-"3348.title" = "行号";
+/* Class = "NSButtonCell"; title = "Document Inspector"; ObjectID = "3348"; */
+"3348.title" = "Document Inspector";  /* FIXME: */
 /* Class = "NSButtonCell"; title = "Status Bar"; ObjectID = "3349"; */
 "3349.title" = "状态栏";
+/* Class = "NSButtonCell"; title = "Line Numbers"; ObjectID = "A9U-Sx-or3"; */
+"A9U-Sx-or3.title" = "行号";
 /* Class = "NSButtonCell"; title = "Page Guide"; ObjectID = "3352"; */
 "3352.title" = "页面指示";
 /* Class = "NSTextFieldCell"; title = "Display at column:"; ObjectID = "3353"; */
