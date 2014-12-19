@@ -122,14 +122,13 @@ static NSTimeInterval infoUpdateInterval;
     // setup background
     [(CEWindow *)[self window] setBackgroundAlpha:[defaults doubleForKey:CEDefaultWindowAlphaKey]];
     
-    // setup sidebar
-    [[[self sidebar] layer] setBackgroundColor:CGColorCreateGenericGray(0.93, 1.0)];
-    [[self sidebar] setHidden:YES];
-    [[self sidebarSplitView] adjustSubviews];
-    
     // setup document analyzer
     [[self documentAnalyzer] setDocument:[self document]];
     [[self documentInfoViewController] setRepresentedObject:[self documentAnalyzer]];
+    
+    // setup sidebar
+    [[[self sidebar] layer] setBackgroundColor:CGColorCreateGenericGray(0.93, 1.0)];
+    [self setSidebarShown:[defaults boolForKey:CEDefaultShowDocumentInspectorKey]];
     
     // set document instance to incompatible chars view
     [[self incompatibleCharsViewController] setRepresentedObject:[self document]];
@@ -375,7 +374,8 @@ static NSTimeInterval infoUpdateInterval;
     [state encodeBool:[[self editor] showsPageGuide] forKey:CEDefaultShowPageGuideKey];
     [state encodeBool:[[self editor] showsInvisibles] forKey:CEDefaultShowInvisiblesKey];
     [state encodeBool:[[self editor] isVerticalLayoutOrientation] forKey:CEDefaultLayoutTextVerticalKey];
-    [state encodeBool:[self isSidebarShown] forKey:@"showSidebar"];
+    [state encodeBool:[self isSidebarShown] forKey:CEDefaultShowDocumentInspectorKey];
+    [state encodeDouble:[self sidebarWidth] forKey:CEDefaultSidebarWidthKey];
 }
 
 
@@ -402,8 +402,9 @@ static NSTimeInterval infoUpdateInterval;
     if ([state containsValueForKey:CEDefaultLayoutTextVerticalKey]) {
         [[self editor] setVerticalLayoutOrientation:[state decodeBoolForKey:CEDefaultLayoutTextVerticalKey]];
     }
-    if ([state containsValueForKey:@"showSidebar"]) {
-        [self setSidebarShown:[state decodeBoolForKey:@"showSidebar"]];
+    if ([state containsValueForKey:CEDefaultShowDocumentInspectorKey]) {
+        [self setSidebarWidth:[state decodeDoubleForKey:CEDefaultSidebarWidthKey]];
+        [self setSidebarShown:[state decodeBoolForKey:CEDefaultShowDocumentInspectorKey]];
     }
 }
 
@@ -420,6 +421,18 @@ static NSTimeInterval infoUpdateInterval;
 {
     return (subview == [self sidebar]);
 }
+
+
+// ------------------------------------------------------
+/// store current sideview's width
+- (void)splitViewDidResizeSubviews:(NSNotification *)notification
+// ------------------------------------------------------
+{
+    CGFloat width = NSWidth([[self sidebar] bounds]);
+    [self setSidebarWidth:width];
+    [[NSUserDefaults standardUserDefaults] setDouble:width forKey:CEDefaultSidebarWidthKey];
+}
+
 
 
 #pragma mark Action Messages
@@ -490,10 +503,11 @@ static NSTimeInterval infoUpdateInterval;
         [[self sidebarSplitView] setPosition:(maxWidth - width) ofDividerAtIndex:0];
     } else {
         // store current sidebar width
-        CGFloat width = NSWidth([[self sidebar] bounds]);
-        [self setSidebarWidth:width];
-        [[NSUserDefaults standardUserDefaults] setDouble:width forKey:CEDefaultSidebarWidthKey];
-        
+        if ([[self window] isVisible]) {  // ignore initial hide
+            CGFloat width = NSWidth([[self sidebar] bounds]);
+            [self setSidebarWidth:width];
+            [[NSUserDefaults standardUserDefaults] setDouble:width forKey:CEDefaultSidebarWidthKey];
+        }
         // clear incompatible chars markup
         [[self editor] clearAllMarkup];
         

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6250"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6254"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="CEWindowPaneController">
@@ -18,17 +18,17 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="626">
-                    <rect key="frame" x="137" y="359" width="108" height="18"/>
-                    <buttonCell key="cell" type="check" title="Line Numbers" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3348">
+                    <rect key="frame" x="137" y="359" width="148" height="18"/>
+                    <buttonCell key="cell" type="check" title="Document Inspector" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3348">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
                     <connections>
-                        <binding destination="26" name="value" keyPath="values.showLineNumbers" id="630"/>
+                        <binding destination="26" name="value" keyPath="values.showDocumentInspector" id="yBK-ix-RI9"/>
                     </connections>
                 </button>
                 <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="800">
-                    <rect key="frame" x="441" y="359" width="40" height="22"/>
+                    <rect key="frame" x="441" y="336" width="40" height="22"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="40" id="Mqh-Sa-HgR"/>
                     </constraints>
@@ -50,7 +50,7 @@
                     </connections>
                 </textField>
                 <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="799">
-                    <rect key="frame" x="317" y="361" width="118" height="17"/>
+                    <rect key="frame" x="317" y="338" width="118" height="17"/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Display at column:" usesSingleLineMode="YES" id="3353">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -58,7 +58,7 @@
                     </textFieldCell>
                 </textField>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="798">
-                    <rect key="frame" x="297" y="382" width="94" height="18"/>
+                    <rect key="frame" x="297" y="359" width="94" height="18"/>
                     <buttonCell key="cell" type="check" title="Page Guide" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3352">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
@@ -336,7 +336,7 @@
                     </textFieldCell>
                 </textField>
                 <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="cYL-hc-lGk">
-                    <rect key="frame" x="482" y="356" width="19" height="27"/>
+                    <rect key="frame" x="482" y="333" width="19" height="27"/>
                     <stepperCell key="cell" continuous="YES" alignment="left" minValue="1" maxValue="1000" doubleValue="1" id="eK1-a7-3Dh"/>
                     <connections>
                         <binding destination="26" name="value" keyPath="values.pageGuideColumn" id="dFr-4X-aRG"/>
@@ -409,6 +409,16 @@
                         <action selector="openPreferencesHelp:" target="-1" id="AF8-1Q-VjF"/>
                     </connections>
                 </button>
+                <button translatesAutoresizingMaskIntoConstraints="NO" id="LzO-zQ-5et">
+                    <rect key="frame" x="297" y="382" width="108" height="18"/>
+                    <buttonCell key="cell" type="check" title="Line Numbers" bezelStyle="regularSquare" imagePosition="left" inset="2" id="A9U-Sx-or3">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <binding destination="26" name="value" keyPath="values.showLineNumbers" id="iWZ-dx-3Cr"/>
+                    </connections>
+                </button>
             </subviews>
             <constraints>
                 <constraint firstItem="616" firstAttribute="leading" secondItem="6Rm-ix-3Ik" secondAttribute="trailing" constant="8" symbolic="YES" id="1Ma-y8-Fax"/>
@@ -422,7 +432,6 @@
                 <constraint firstItem="800" firstAttribute="leading" secondItem="799" secondAttribute="trailing" constant="8" symbolic="YES" id="6U2-WA-uOo"/>
                 <constraint firstItem="vmx-rd-HS6" firstAttribute="leading" secondItem="n7O-GB-6mQ" secondAttribute="leading" id="6jm-en-kME"/>
                 <constraint firstItem="rYB-LR-Dp6" firstAttribute="baseline" secondItem="zUH-zh-jyO" secondAttribute="baseline" id="7wC-fx-iLo"/>
-                <constraint firstItem="798" firstAttribute="leading" secondItem="707" secondAttribute="leading" constant="160" id="8Ce-M3-hPZ"/>
                 <constraint firstAttribute="trailing" secondItem="2151" secondAttribute="trailing" constant="20" symbolic="YES" id="9Rn-9h-xrV"/>
                 <constraint firstItem="mSm-CR-7AA" firstAttribute="leading" secondItem="zUH-zh-jyO" secondAttribute="trailing" constant="8" symbolic="YES" id="Ajy-Vm-9YN"/>
                 <constraint firstItem="rYB-LR-Dp6" firstAttribute="baseline" secondItem="mSm-CR-7AA" secondAttribute="baseline" id="Apq-nN-FhQ"/>
@@ -447,6 +456,8 @@
                 <constraint firstItem="Hya-cT-hxD" firstAttribute="baseline" secondItem="624" secondAttribute="baseline" id="Nyr-w0-RhL"/>
                 <constraint firstItem="616" firstAttribute="leading" secondItem="dco-7P-YD6" secondAttribute="leading" id="ON9-ZM-XgA"/>
                 <constraint firstItem="627" firstAttribute="top" secondItem="626" secondAttribute="bottom" constant="9" id="Oxj-YV-EHk"/>
+                <constraint firstItem="LzO-zQ-5et" firstAttribute="leading" secondItem="798" secondAttribute="leading" id="QVr-3l-hsG"/>
+                <constraint firstItem="LzO-zQ-5et" firstAttribute="leading" secondItem="707" secondAttribute="leading" constant="160" id="Qsn-yX-Kme"/>
                 <constraint firstItem="6Rm-ix-3Ik" firstAttribute="top" secondItem="Hya-cT-hxD" secondAttribute="bottom" constant="26" id="RbO-Rf-PfE"/>
                 <constraint firstItem="620" firstAttribute="leading" secondItem="Hya-cT-hxD" secondAttribute="trailing" constant="8" symbolic="YES" id="Rl0-eh-Q53"/>
                 <constraint firstItem="623" firstAttribute="leading" secondItem="624" secondAttribute="trailing" constant="20" id="SNT-fm-1r4"/>
@@ -480,10 +491,11 @@
                 <constraint firstItem="rYB-LR-Dp6" firstAttribute="baseline" secondItem="nru-qe-DDo" secondAttribute="baseline" id="rfE-nl-iZ1"/>
                 <constraint firstItem="6Rm-ix-3Ik" firstAttribute="baseline" secondItem="614" secondAttribute="baseline" id="s36-U0-JXe"/>
                 <constraint firstItem="624" firstAttribute="leading" secondItem="619" secondAttribute="trailing" constant="8" symbolic="YES" id="s3x-ny-gw6"/>
+                <constraint firstItem="LzO-zQ-5et" firstAttribute="baseline" secondItem="b4p-xQ-foZ" secondAttribute="baseline" id="sLB-3H-05y"/>
                 <constraint firstItem="Hya-cT-hxD" firstAttribute="baseline" secondItem="619" secondAttribute="baseline" id="tSJ-qq-MF1"/>
                 <constraint firstItem="Hya-cT-hxD" firstAttribute="top" secondItem="h76-8K-zux" secondAttribute="bottom" constant="18" id="tUv-tG-e8f"/>
+                <constraint firstItem="798" firstAttribute="top" secondItem="LzO-zQ-5et" secondAttribute="bottom" constant="9" id="tlb-TT-Cho"/>
                 <constraint firstItem="626" firstAttribute="top" secondItem="707" secondAttribute="bottom" constant="9" id="uFr-S7-0VX"/>
-                <constraint firstItem="798" firstAttribute="top" secondItem="707" secondAttribute="top" id="vWi-xH-hZN"/>
                 <constraint firstItem="799" firstAttribute="baseline" secondItem="800" secondAttribute="baseline" id="x4x-lb-RNe"/>
                 <constraint firstItem="624" firstAttribute="centerY" secondItem="623" secondAttribute="centerY" id="xcx-cx-11F"/>
                 <constraint firstItem="619" firstAttribute="leading" secondItem="620" secondAttribute="trailing" constant="12" id="y1l-OU-XvN"/>

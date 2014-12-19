@@ -97,6 +97,7 @@
     NSDictionary *defaults = @{CEDefaultLayoutTextVerticalKey: @NO,
                                CEDefaultSplitViewVerticalKey: @NO,
                                CEDefaultShowLineNumbersKey: @YES,
+                               CEDefaultShowDocumentInspectorKey: @NO,
                                CEDefaultShowStatusBarKey: @YES,
                                CEDefaultShowStatusBarLinesKey: @YES,
                                CEDefaultShowStatusBarLengthKey: @NO,

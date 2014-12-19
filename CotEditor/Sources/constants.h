@@ -88,6 +88,7 @@ extern NSString *const CEDefaultLastVersionKey;
 extern NSString *const CEDefaultLayoutTextVerticalKey;
 extern NSString *const CEDefaultSplitViewVerticalKey;
 extern NSString *const CEDefaultShowLineNumbersKey;
+extern NSString *const CEDefaultShowDocumentInspectorKey;
 extern NSString *const CEDefaultShowStatusBarKey;
 extern NSString *const CEDefaultShowStatusBarLinesKey;
 extern NSString *const CEDefaultShowStatusBarLengthKey;
