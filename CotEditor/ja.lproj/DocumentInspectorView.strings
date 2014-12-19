@@ -53,3 +53,5 @@
 "kna-yU-liB.title" = "Unicode：";
 /* Class = "IBBindingConnection"; ibShadowedIsNilPlaceholder = "Not selected"; ObjectID = "786-4C-69e"; */
 "786-4C-69e.ibShadowedIsNilPlaceholder" = "未選択";
+/* Class = "NSTextField"; ibShadowedToolTip = "Select a single character to display unicode info."; ObjectID = "2ZU-Mi-aJz"; */
+"2ZU-Mi-aJz.ibShadowedToolTip" = "Unicode 情報を表示するには、文字を1つだけ選択してください。";
