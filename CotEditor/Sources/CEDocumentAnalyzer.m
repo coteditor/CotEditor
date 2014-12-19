@@ -59,6 +59,7 @@ NSString *const CEAnalyzerDidUpdateEditorInfoNotification = @"CEAnalyzerDidUpdat
 
 // mode infos
 @property (readwrite, nonatomic) NSString *encoding;
+@property (readwrite, nonatomic) NSString *charsetName;
 @property (readwrite, nonatomic) NSString *lineEndings;
 
 // editor infos
@@ -132,7 +133,8 @@ NSString *const CEAnalyzerDidUpdateEditorInfoNotification = @"CEAnalyzerDidUpdat
 {
     CEDocument *document = [self document];
     
-    self.encoding = [document currentIANACharSetName];
+    self.encoding = [NSString localizedNameOfStringEncoding:[document encoding]];
+    self.charsetName = [document currentIANACharSetName];
     self.lineEndings = [NSString newLineNameWithType:[document lineEnding]];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:CEAnalyzerDidUpdateModeInfoNotification
