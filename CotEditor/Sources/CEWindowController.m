@@ -280,7 +280,7 @@ static NSTimeInterval infoUpdateInterval;
 
 
 
-#pragma mark Accessors
+#pragma mark Public Accessors
 
 // ------------------------------------------------------
 /// return whether status bar is shown
@@ -306,17 +306,6 @@ static NSTimeInterval infoUpdateInterval;
         [[self documentAnalyzer] updateEditorInfo:NO];
         [[self documentAnalyzer] updateFileInfo];
         [[self documentAnalyzer] updateModeInfo];
-    }
-}
-
-
-// ------------------------------------------------------
-/// set writablity of file to status bar
-- (void)setWritable:(BOOL)isWritable
-// ------------------------------------------------------
-{
-    if ([self statusBarController]) {
-        [[self statusBarController] setShowsReadOnly:!isWritable];
     }
 }
     

@@ -42,7 +42,6 @@
 @property (readonly, nonatomic) BOOL showsStatusBar;
 
 // Public method
-- (void)setWritable:(BOOL)isWritable;
 - (void)showIncompatibleCharList;
 - (void)updateIncompatibleCharsIfNeeded;
 - (void)updateEditorInfoIfNeeded;
