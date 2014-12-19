@@ -79,6 +79,7 @@
 		2A5B998918D61443009C2F4F /* LineHightPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A5B998B18D61443009C2F4F /* LineHightPanel.xib */; };
 		2A5D2B9118E1EC790020AA1F /* CESyntaxMappingConflictsSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D2B9018E1EC790020AA1F /* CESyntaxMappingConflictsSheetController.m */; };
 		2A5D2B9418E1ED420020AA1F /* SyntaxMappingConflictSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A5D2B9218E1ED420020AA1F /* SyntaxMappingConflictSheet.xib */; };
+		2A5E4D7C1A44F0D50072013F /* ServicesMenu.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2A5E4D7A1A44F0D50072013F /* ServicesMenu.strings */; };
 		2A607B0D1905EB5500F3A991 /* CEColorCodePanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A607B0C1905EB5500F3A991 /* CEColorCodePanelController.m */; };
 		2A607B101905F02F00F3A991 /* ColorCodePanelAccessory.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A607B0E1905F02F00F3A991 /* ColorCodePanelAccessory.xib */; };
 		2A63122A19C25CF80088C5C6 /* CEHexColorTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A63122919C25CF80088C5C6 /* CEHexColorTransformer.m */; };
@@ -303,6 +304,8 @@
 		2A5B998518D61421009C2F4F /* CELineHightPanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CELineHightPanelController.m; sourceTree = "<group>"; };
 		2A5D2B8F18E1EC790020AA1F /* CESyntaxMappingConflictsSheetController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CESyntaxMappingConflictsSheetController.h; sourceTree = "<group>"; };
 		2A5D2B9018E1EC790020AA1F /* CESyntaxMappingConflictsSheetController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CESyntaxMappingConflictsSheetController.m; sourceTree = "<group>"; };
+		2A5E4D7B1A44F0D50072013F /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/ServicesMenu.strings; sourceTree = "<group>"; };
+		2A5E4D7D1A44F4A30072013F /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/ServicesMenu.strings"; sourceTree = "<group>"; };
 		2A607B04190582CE00F3A991 /* CETextViewProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CETextViewProtocol.h; sourceTree = "<group>"; };
 		2A607B0B1905EB5400F3A991 /* CEColorCodePanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEColorCodePanelController.h; sourceTree = "<group>"; };
 		2A607B0C1905EB5500F3A991 /* CEColorCodePanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEColorCodePanelController.m; sourceTree = "<group>"; };
@@ -825,6 +828,7 @@
 				8D15AC360486D014006FF6A4 /* Info.plist */,
 				259C2316077678DE00BA61C5 /* Localizable.strings */,
 				2A1CFD0B18E5B64F00A5B664 /* Print.strings */,
+				2A5E4D7A1A44F0D50072013F /* ServicesMenu.strings */,
 				2AEB8B7A19AF73980098D557 /* FileDropGlossary.txt */,
 				2A456C421A1EDCFC00395158 /* ReportTemplate.md */,
 				2A75ACCA19E86DDB00444894 /* CotEditor.sdef */,
@@ -1189,6 +1193,7 @@
 				2AFFB71D18D7F22E00118477 /* GoToSheet.xib in Resources */,
 				259C2318077678DE00BA61C5 /* Localizable.strings in Resources */,
 				2A1CFD0D18E5B64F00A5B664 /* Print.strings in Resources */,
+				2A5E4D7C1A44F0D50072013F /* ServicesMenu.strings in Resources */,
 				2AEB8B7C19AF73980098D557 /* FileDropGlossary.txt in Resources */,
 				2A961C5518FC699E002076B6 /* ShellScript.rtf in Resources */,
 				2A961C5418FC699E002076B6 /* ScriptMenu Folder.rtf in Resources */,
@@ -1632,6 +1637,15 @@
 				2AA0AC6E1A28773C0063ED1B /* zh-Hans */,
 			);
 			name = SyntaxMappingConflictSheet.xib;
+			sourceTree = "<group>";
+		};
+		2A5E4D7A1A44F0D50072013F /* ServicesMenu.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2A5E4D7B1A44F0D50072013F /* ja */,
+				2A5E4D7D1A44F4A30072013F /* zh-Hans */,
+			);
+			name = ServicesMenu.strings;
 			sourceTree = "<group>";
 		};
 		2A607B0E1905F02F00F3A991 /* ColorCodePanelAccessory.xib */ = {

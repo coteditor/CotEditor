@@ -399,6 +399,9 @@
         [[NSUserDefaults standardUserDefaults] setObject:thisVersion forKey:CEDefaultLastVersionKey];
     }
     
+    // register Services
+    [NSApp setServicesProvider:self];
+    
     [self setDidFinishLaunching:YES];
 }
 
@@ -747,6 +750,32 @@
         [menu addItemWithTitle:themeName
                         action:@selector(changeTheme:)
                  keyEquivalent:@""];
+    }
+}
+
+@end
+
+
+
+
+#pragma mark -
+
+@implementation CEAppDelegate (Services)
+
+// ------------------------------------------------------
+/// open new document with string via Services
+- (void)openSelection:(NSPasteboard *)pboard userData:(NSString *)userData error:(NSString **)error
+// ------------------------------------------------------
+{
+    NSError *err = nil;
+    CEDocument *document = [[NSDocumentController sharedDocumentController] openUntitledDocumentAndDisplay:YES error:&err];
+    NSString *selection = [pboard stringForType:NSPasteboardTypeString];
+    
+    if (document) {
+//    [document readFromData:[selection dataUsingEncoding:NSUTF8StringEncoding] ofType:nil error:nil];
+        [[document editor] replaceTextViewSelectedStringTo:selection scroll:NO];
+    } else {
+        [[NSAlert alertWithError:err] runModal];
     }
 }
 
