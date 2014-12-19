@@ -107,6 +107,11 @@
                             <real value="250"/>
                             <real value="250"/>
                         </holdingPriorities>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="dividerColor">
+                                <color key="value" name="gridColor" catalog="System" colorSpace="catalog"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                         <connections>
                             <outlet property="delegate" destination="-2" id="30X-7D-JZT"/>
                         </connections>
