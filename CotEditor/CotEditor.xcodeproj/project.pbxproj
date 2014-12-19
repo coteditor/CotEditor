@@ -60,7 +60,7 @@
 		2A40D7C81A233BF000721EB4 /* cot in Copy Executables */ = {isa = PBXBuildFile; fileRef = 2A40D7BE1A233B4A00721EB4 /* cot */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		2A40D7CD1A23FBE200721EB4 /* openDictionary.applescript in Sources */ = {isa = PBXBuildFile; fileRef = 2585914B080F503A0038F387 /* openDictionary.applescript */; };
 		2A42825518FCD47B00386899 /* Acknowledgements.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A961C4518FC699E002076B6 /* Acknowledgements.rtf */; };
-		2A436DCD1A4243D500275FD4 /* DocumentInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A436DCB1A4243D500275FD4 /* DocumentInfoView.xib */; };
+		2A436DCD1A4243D500275FD4 /* DocumentInspectorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A436DCB1A4243D500275FD4 /* DocumentInspectorView.xib */; };
 		2A436DD01A4249CB00275FD4 /* IncompatibleCharsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A436DCE1A4249CB00275FD4 /* IncompatibleCharsView.xib */; };
 		2A436DDB1A425AE500275FD4 /* CEIncompatibleCharsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A436DDA1A425AE500275FD4 /* CEIncompatibleCharsViewController.m */; };
 		2A436DDF1A4288AC00275FD4 /* CEDocumentAnalyzer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A436DDE1A4288AC00275FD4 /* CEDocumentAnalyzer.m */; };
@@ -273,11 +273,11 @@
 		2A40D7BE1A233B4A00721EB4 /* cot */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = cot; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A40D7C01A233B4B00721EB4 /* cot.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = cot.m; sourceTree = "<group>"; };
 		2A40D7CA1A23A60100721EB4 /* RemoteEditorController.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = RemoteEditorController.applescript; sourceTree = "<group>"; };
-		2A436DCC1A4243D500275FD4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/DocumentInfoView.xib; sourceTree = "<group>"; };
+		2A436DCC1A4243D500275FD4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/DocumentInspectorView.xib; sourceTree = "<group>"; };
 		2A436DCF1A4249CB00275FD4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/IncompatibleCharsView.xib; sourceTree = "<group>"; };
-		2A436DD21A42516900275FD4 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/DocumentInfoView.strings; sourceTree = "<group>"; };
+		2A436DD21A42516900275FD4 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/DocumentInspectorView.strings; sourceTree = "<group>"; };
 		2A436DD41A42533100275FD4 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/IncompatibleCharsView.strings; sourceTree = "<group>"; };
-		2A436DD61A4253B100275FD4 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/DocumentInfoView.strings"; sourceTree = "<group>"; };
+		2A436DD61A4253B100275FD4 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/DocumentInspectorView.strings"; sourceTree = "<group>"; };
 		2A436DD81A4254A400275FD4 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/IncompatibleCharsView.strings"; sourceTree = "<group>"; };
 		2A436DD91A425AE400275FD4 /* CEIncompatibleCharsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEIncompatibleCharsViewController.h; sourceTree = "<group>"; };
 		2A436DDA1A425AE500275FD4 /* CEIncompatibleCharsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEIncompatibleCharsViewController.m; sourceTree = "<group>"; };
@@ -924,7 +924,7 @@
 			isa = PBXGroup;
 			children = (
 				2A37F4B4FDCFA73011CA2CEA /* DocumentWindow.xib */,
-				2A436DCB1A4243D500275FD4 /* DocumentInfoView.xib */,
+				2A436DCB1A4243D500275FD4 /* DocumentInspectorView.xib */,
 				2A436DCE1A4249CB00275FD4 /* IncompatibleCharsView.xib */,
 				2A5411C119852C1C008B43DA /* NavigationBar.xib */,
 			);
@@ -1182,7 +1182,7 @@
 				2A607B101905F02F00F3A991 /* ColorCodePanelAccessory.xib in Resources */,
 				2A149DA819016ABB00A9D6EF /* FileDropPane.xib in Resources */,
 				2A149DA919016ABB00A9D6EF /* FormatPane.xib in Resources */,
-				2A436DCD1A4243D500275FD4 /* DocumentInfoView.xib in Resources */,
+				2A436DCD1A4243D500275FD4 /* DocumentInspectorView.xib in Resources */,
 				2A5ABE79191861E3009265DF /* UnicodePanel.xib in Resources */,
 				2A15832818E39B7400601026 /* TextKeyBindingEditSheet.xib in Resources */,
 				2A15831718E3688300601026 /* EncodingListSheet.xib in Resources */,
@@ -1564,14 +1564,14 @@
 			name = MigrationWindow.xib;
 			sourceTree = "<group>";
 		};
-		2A436DCB1A4243D500275FD4 /* DocumentInfoView.xib */ = {
+		2A436DCB1A4243D500275FD4 /* DocumentInspectorView.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				2A436DCC1A4243D500275FD4 /* Base */,
 				2A436DD21A42516900275FD4 /* ja */,
 				2A436DD61A4253B100275FD4 /* zh-Hans */,
 			);
-			name = DocumentInfoView.xib;
+			name = DocumentInspectorView.xib;
 			sourceTree = "<group>";
 		};
 		2A436DCE1A4249CB00275FD4 /* IncompatibleCharsView.xib */ = {

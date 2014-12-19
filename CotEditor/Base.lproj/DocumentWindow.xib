@@ -8,7 +8,7 @@
         <customObject id="-2" customClass="CEWindowController">
             <connections>
                 <outlet property="documentAnalyzer" destination="GxG-Ha-2we" id="SAg-2c-ORY"/>
-                <outlet property="documentInfoViewController" destination="zfS-u8-roN" id="oK6-CE-TYF"/>
+                <outlet property="documentInspectorViewController" destination="zfS-u8-roN" id="oPb-Zq-odI"/>
                 <outlet property="editor" destination="Asc-bK-hKW" id="ihd-lk-fQz"/>
                 <outlet property="incompatibleCharsViewController" destination="PNV-ic-0G4" id="eFj-Ts-dkB"/>
                 <outlet property="sidebar" destination="34" id="2IU-Vj-94v"/>
@@ -98,14 +98,14 @@
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="142" secondAttribute="trailing" constant="8" id="Bs0-KO-jMt"/>
                                     <constraint firstAttribute="trailing" secondItem="XSO-vY-vMP" secondAttribute="trailing" id="WJj-1f-h9z"/>
                                     <constraint firstItem="XSO-vY-vMP" firstAttribute="leading" secondItem="34" secondAttribute="leading" id="agM-Pc-Qcz"/>
-                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="400" id="aly-Ib-BsD"/>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="350" id="aly-Ib-BsD"/>
                                     <constraint firstItem="142" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="34" secondAttribute="leading" constant="8" id="z1f-RB-gge"/>
                                 </constraints>
                             </customView>
                         </subviews>
                         <holdingPriorities>
                             <real value="250"/>
-                            <real value="250"/>
+                            <real value="251"/>
                         </holdingPriorities>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="dividerColor">
@@ -346,7 +346,7 @@
             <connections>
                 <outlet property="delegate" destination="-2" id="17"/>
             </connections>
-            <point key="canvasLocation" x="449" y="-391"/>
+            <point key="canvasLocation" x="486" y="-425"/>
         </window>
         <customObject id="71" customClass="CEToolbarController">
             <connections>
@@ -370,7 +370,7 @@
                 <outlet property="view" destination="Rjm-Sf-4Mf" id="GSM-Z2-IEv"/>
             </connections>
         </viewController>
-        <viewController title="Document Info" nibName="DocumentInfoView" id="zfS-u8-roN" userLabel="Document Info View Controller"/>
+        <viewController title="Document Inspector" nibName="DocumentInspectorView" id="zfS-u8-roN" userLabel="Document Inspector View Controller"/>
         <viewController title="Incompatible Chars" nibName="IncompatibleCharsView" id="PNV-ic-0G4" userLabel="Incompatible Chars View Controller" customClass="CEIncompatibleCharsViewController"/>
         <viewController id="cfo-zY-w3h" customClass="CESplitViewController">
             <connections>

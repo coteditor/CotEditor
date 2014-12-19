@@ -40,22 +40,22 @@
 
 // sidebar mode
 typedef NS_ENUM(NSUInteger, CESidebarTag) {
-    CEDocumentInfoTag = 1,
+    CEDocumentInspectorTag = 1,
     CEIncompatibleCharsTag,
 };
 
 
 @interface CEWindowController () <NSSplitViewDelegate>
 
-@property (nonatomic) NSUInteger selectedSidebarTag; // ドロワーのタブビューでのポップアップメニュー選択用バインディング変数(#削除不可)
-@property (nonatomic) BOOL needsRecolorWithBecomeKey; // ウィンドウがキーになったとき再カラーリングをするかどうかのフラグ
+@property (nonatomic) NSUInteger selectedSidebarTag;
+@property (nonatomic) BOOL needsRecolorWithBecomeKey;  // flag to update sytnax highlight when window becomes key window
 @property (nonatomic) NSTimer *editorInfoUpdateTimer;
 @property (nonatomic) CGFloat sidebarWidth;
 
 
 // IBOutlets
 @property (nonatomic) IBOutlet CEStatusBarController *statusBarController;
-@property (nonatomic) IBOutlet NSViewController *documentInfoViewController;
+@property (nonatomic) IBOutlet NSViewController *documentInspectorViewController;
 @property (nonatomic) IBOutlet CEIncompatibleCharsViewController *incompatibleCharsViewController;
 @property (nonatomic, weak) IBOutlet NSSplitView *sidebarSplitView;
 @property (nonatomic, weak) IBOutlet NSView *sidebar;
@@ -86,7 +86,7 @@ static NSTimeInterval infoUpdateInterval;
 //=======================================================
 
 // ------------------------------------------------------
-/// クラス初期化
+/// initialize class
 + (void)initialize
 // ------------------------------------------------------
 {
@@ -108,7 +108,7 @@ static NSTimeInterval infoUpdateInterval;
 //=======================================================
 
 // ------------------------------------------------------
-/// ウィンドウ表示の準備
+/// prepare window and other UI
 - (void)windowDidLoad
 // ------------------------------------------------------
 {
@@ -124,7 +124,7 @@ static NSTimeInterval infoUpdateInterval;
     
     // setup document analyzer
     [[self documentAnalyzer] setDocument:[self document]];
-    [[self documentInfoViewController] setRepresentedObject:[self documentAnalyzer]];
+    [[self documentInspectorViewController] setRepresentedObject:[self documentAnalyzer]];
     
     // setup sidebar
     [[[self sidebar] layer] setBackgroundColor:CGColorCreateGenericGray(0.94, 1.0)];
@@ -162,7 +162,7 @@ static NSTimeInterval infoUpdateInterval;
 
 
 // ------------------------------------------------------
-/// あとかたづけ
+/// clean up
 - (void)dealloc
 // ------------------------------------------------------
 {
@@ -185,7 +185,7 @@ static NSTimeInterval infoUpdateInterval;
 
 
 // ------------------------------------------------------
-/// メニュー項目の有効・無効を制御
+/// validate menu items
 - (BOOL)validateMenuItem:(NSMenuItem *)menuItem
 // ------------------------------------------------------
 {
@@ -207,7 +207,7 @@ static NSTimeInterval infoUpdateInterval;
 //=======================================================
 
 // ------------------------------------------------------
-/// 非互換文字リストを表示
+/// show incompatible char list
 - (void)showIncompatibleCharList
 // ------------------------------------------------------
 {
@@ -217,7 +217,7 @@ static NSTimeInterval infoUpdateInterval;
 
 
 // ------------------------------------------------------
-/// 非互換文字を表示している場合はディレイののち更新
+/// update incompatible char list if it is currently shown
 - (void)updateIncompatibleCharsIfNeeded
 // ------------------------------------------------------
 {
@@ -226,12 +226,12 @@ static NSTimeInterval infoUpdateInterval;
 
 
 // ------------------------------------------------------
-/// 情報ドロワーとステータスバーの文書情報を表示しているとき更新
+/// update information about the content text in document inspector and status bar
 - (void)updateEditorInfoIfNeeded
 // ------------------------------------------------------
 {
     BOOL updatesStatusBar = [[self statusBarController] isShown];
-    BOOL updatesDrawer = [self isDocumentInfoShown];
+    BOOL updatesDrawer = [self isDocumentInspectorShown];
     
     if (!updatesStatusBar && !updatesDrawer) { return; }
     
@@ -240,12 +240,12 @@ static NSTimeInterval infoUpdateInterval;
 
 
 // ------------------------------------------------------
-/// 情報ドロワーとステータスバーの改行コード／エンコーディング表記を更新
+/// update information about file encoding and line endings in document inspector and status bar
 - (void)updateModeInfoIfNeeded
 // ------------------------------------------------------
 {
     BOOL updatesStatusBar = [[self statusBarController] isShown];
-    BOOL updatesDrawer = [self isDocumentInfoShown];
+    BOOL updatesDrawer = [self isDocumentInspectorShown];
     
     if (!updatesStatusBar && !updatesDrawer) { return; }
     
@@ -254,7 +254,7 @@ static NSTimeInterval infoUpdateInterval;
 
 
 // ------------------------------------------------------
-/// 情報ドロワーとステータスバーのファイル情報を更新
+/// update information about file in document inspector and status bar
 - (void)updateFileInfo
 // ------------------------------------------------------
 {
@@ -263,7 +263,7 @@ static NSTimeInterval infoUpdateInterval;
 
 
 // ------------------------------------------------------
-/// 文書情報更新タイマーのファイヤーデイトを設定時間後にセット
+/// set update timer for information about the content text
 - (void)setupEditorInfoUpdateTimer
 // ------------------------------------------------------
 {
@@ -283,7 +283,7 @@ static NSTimeInterval infoUpdateInterval;
 #pragma mark Accessors
 
 // ------------------------------------------------------
-/// ステータスバーを表示しているかどうかを返す
+/// return whether status bar is shown
 - (BOOL)showsStatusBar
 // ------------------------------------------------------
 {
@@ -292,7 +292,7 @@ static NSTimeInterval infoUpdateInterval;
 
 
 // ------------------------------------------------------
-/// ステータスバーを表示する／しないをセット
+/// set visibility of status bar
 - (void)setShowsStatusBar:(BOOL)showsStatusBar
 // ------------------------------------------------------
 {
@@ -311,7 +311,7 @@ static NSTimeInterval infoUpdateInterval;
 
 
 // ------------------------------------------------------
-/// 文書への書き込み（ファイル上書き保存）が可能かどうかをセット
+/// set writablity of file to status bar
 - (void)setWritable:(BOOL)isWritable
 // ------------------------------------------------------
 {
@@ -348,14 +348,14 @@ static NSTimeInterval infoUpdateInterval;
 //=======================================================
 
 // ------------------------------------------------------
-/// ウィンドウがキーになった
+/// window becomes key window
 - (void)windowDidBecomeKey:(NSNotification *)notification
 // ------------------------------------------------------
 {
     // do nothing if any sheet is attached
     if ([[self window] attachedSheet]) { return; }
     
-    // フラグがたっていたら、改めてスタイル名を指定し直して再カラーリングを実行
+    // update and style name and highlight if recolor flag is set
     if ([self needsRecolorWithBecomeKey]) {
         [self setNeedsRecolorWithBecomeKey:NO];
         [[self document] doSetSyntaxStyle:[[self editor] syntaxStyleName]];
@@ -432,21 +432,21 @@ static NSTimeInterval infoUpdateInterval;
 //=======================================================
 
 // ------------------------------------------------------
-/// ファイル情報を表示
+/// toggle visibility of document inspector
 - (IBAction)getInfo:(id)sender
 // ------------------------------------------------------
 {
-    if ([self isDocumentInfoShown]) {
+    if ([self isDocumentInspectorShown]) {
         [self setSidebarShown:NO];
     } else {
-        [self setSelectedSidebarTag:CEDocumentInfoTag];
+        [self setSelectedSidebarTag:CEDocumentInspectorTag];
         [self setSidebarShown:YES];
     }
 }
 
 
 // ------------------------------------------------------
-/// 変換不可文字列リストパネルを開く
+/// toggle visibility of incompatible chars list view
 - (IBAction)toggleIncompatibleCharList:(id)sender
 // ------------------------------------------------------
 {
@@ -460,7 +460,7 @@ static NSTimeInterval infoUpdateInterval;
 
 
 // ------------------------------------------------------
-/// ステータスバーの表示をトグルに切り替える
+/// toggle visibility of status bar
 - (IBAction)toggleStatusBar:(id)sender
 // ------------------------------------------------------
 {
@@ -482,27 +482,29 @@ static NSTimeInterval infoUpdateInterval;
 // ------------------------------------------------------
 {
     if ([self selectedSidebarTag] == 0) {
-        [self setSelectedSidebarTag:CEDocumentInfoTag];
+        [self setSelectedSidebarTag:CEDocumentInspectorTag];
     }
     
+    CGFloat width;
     if (shown) {
-        CGFloat width = [self sidebarWidth] ?: [[NSUserDefaults standardUserDefaults] doubleForKey:CEDefaultSidebarWidthKey];
-        CGFloat maxWidth = [[self sidebarSplitView] maxPossiblePositionOfDividerAtIndex:0];
+        width = [self sidebarWidth] ?: [[NSUserDefaults standardUserDefaults] doubleForKey:CEDefaultSidebarWidthKey];
         
-        [[self sidebarSplitView] setPosition:(maxWidth - width) ofDividerAtIndex:0];
     } else {
+        width = 0;
+        
         // store current sidebar width
         if ([[self window] isVisible]) {  // ignore initial hide
-            CGFloat width = NSWidth([[self sidebar] bounds]);
-            [self setSidebarWidth:width];
-            [[NSUserDefaults standardUserDefaults] setDouble:width forKey:CEDefaultSidebarWidthKey];
+            CGFloat currentWidth = NSWidth([[self sidebar] bounds]);
+            [self setSidebarWidth:currentWidth];
+            [[NSUserDefaults standardUserDefaults] setDouble:currentWidth forKey:CEDefaultSidebarWidthKey];
         }
+        
         // clear incompatible chars markup
         [[self editor] clearAllMarkup];
-        
-        // close sidebar
-        [[self sidebar] setHidden:YES];
     }
+    
+    CGFloat maxWidth = [[self sidebarSplitView] maxPossiblePositionOfDividerAtIndex:0];
+    [[self sidebarSplitView] setPosition:(maxWidth - width) ofDividerAtIndex:0];
     [[self sidebarSplitView] adjustSubviews];
 }
 
@@ -517,11 +519,11 @@ static NSTimeInterval infoUpdateInterval;
 
 
 // ------------------------------------------------------
-/// 文書情報ドロワー内容を更新すべきかを返す
-- (BOOL)isDocumentInfoShown
+/// return whether document inspector is shown
+- (BOOL)isDocumentInspectorShown
 // ------------------------------------------------------
 {
-    return ([self selectedSidebarTag] == CEDocumentInfoTag && [self isSidebarShown]);
+    return ([self selectedSidebarTag] == CEDocumentInspectorTag && [self isSidebarShown]);
 }
 
 
@@ -530,12 +532,10 @@ static NSTimeInterval infoUpdateInterval;
 - (void)setSelectedSidebarTag:(NSUInteger)tag
 // ------------------------------------------------------
 {
-    _selectedSidebarTag = tag;
-    
     NSViewController *viewController;
     switch (tag) {
-        case CEDocumentInfoTag:
-            viewController = [self documentInfoViewController];
+        case CEDocumentInspectorTag:
+            viewController = [self documentInspectorViewController];
             [[self documentAnalyzer] updateEditorInfo:YES];
             [[self documentAnalyzer] updateFileInfo];
             [[self documentAnalyzer] updateModeInfo];
@@ -547,12 +547,14 @@ static NSTimeInterval infoUpdateInterval;
             break;
     }
     
+    if (_selectedSidebarTag == tag) { return; }
+    
+    _selectedSidebarTag = tag;
+    
     // swap views
     NSView *placeholder = [self sidebarPlaceholderView];
-    NSView *currentView = [[placeholder subviews] lastObject];
+    NSView *currentView = [[placeholder subviews] firstObject];
     NSView *newView = [viewController view];
-    
-    if (currentView == newView) { return; }
     
     // transit with animation
     [newView setFrame:[currentView frame]];
@@ -566,7 +568,7 @@ static NSTimeInterval infoUpdateInterval;
 
 
 // ------------------------------------------------------
-/// 指定されたスタイルを適用していたら、リカラーフラグを立てる
+/// set a flag of syntax highlight update if corresponded style has been updated
 - (void)syntaxDidUpdate:(NSNotification *)notification
 // ------------------------------------------------------
 {
@@ -590,7 +592,7 @@ static NSTimeInterval infoUpdateInterval;
 
 
 // ------------------------------------------------------
-/// タイマーの設定時刻に到達、情報更新
+/// editor info update timer is fired
 - (void)updateEditorInfoWithTimer:(NSTimer *)timer
 // ------------------------------------------------------
 {
@@ -600,7 +602,7 @@ static NSTimeInterval infoUpdateInterval;
 
 
 // ------------------------------------------------------
-/// 文書情報更新タイマーを停止
+/// stop editor info update timer
 - (void)stopEditorInfoUpdateTimer
 // ------------------------------------------------------
 {

@@ -82,6 +82,8 @@ NSString *const CEAnalyzerDidUpdateEditorInfoNotification = @"CEAnalyzerDidUpdat
 
 @implementation CEDocumentAnalyzer
 
+#pragma mark Superclass methods
+
 // ------------------------------------------------------
 /// setup
 - (instancetype)init
@@ -101,7 +103,9 @@ NSString *const CEAnalyzerDidUpdateEditorInfoNotification = @"CEAnalyzerDidUpdat
     return self;
 }
 
-#pragma Public Methods
+
+
+#pragma mark Public Methods
 
 // ------------------------------------------------------
 /// update file info
@@ -116,8 +120,10 @@ NSString *const CEAnalyzerDidUpdateEditorInfoNotification = @"CEAnalyzerDidUpdat
     self.modificationDate = [attrs fileCreationDate] ? [dateFormatter stringFromDate:[attrs fileCreationDate]] : nil;
     self.fileSize = [attrs fileSize] ? [byteFormatter stringFromByteCount:[attrs fileSize]] : nil;
     self.owner = [attrs fileOwnerAccountName];
-    self.permission = [attrs filePosixPermissions] ? [NSString stringWithFormat:@"%tu", [attrs filePosixPermissions]] : nil;
-    self.locked = NSLocalizedString([attrs fileIsImmutable] ? @"Yes" : @"No", nil);
+    self.permission = [attrs filePosixPermissions] ? [NSString stringWithFormat:@"%tu (%@)",
+                                                      [attrs filePosixPermissions],
+                                                      humanReadablePermission([attrs filePosixPermissions])] : nil;
+    self.locked = attrs ? NSLocalizedString([attrs fileIsImmutable] ? @"Yes" : @"No", nil) : nil;
     self.HFSType = [attrs fileHFSTypeCode] ? NSFileTypeForHFSTypeCode([attrs fileHFSTypeCode]) : nil;
     self.HFSCreator = [attrs fileHFSCreatorCode] ? NSFileTypeForHFSTypeCode([attrs fileHFSCreatorCode]) : nil;
     
@@ -267,7 +273,7 @@ NSString *const CEAnalyzerDidUpdateEditorInfoNotification = @"CEAnalyzerDidUpdat
 
 
 
-#pragma Plivate methods
+#pragma mark Plivate methods
                                      
 // ------------------------------------------------------
 /// format count number with selection
@@ -282,6 +288,24 @@ NSString *const CEAnalyzerDidUpdateEditorInfoNotification = @"CEAnalyzerDidUpdat
     } else {
         return [NSString stringWithFormat:@"%@", [formatter stringFromNumber:@(count)]];
     }
+}
+
+
+// ------------------------------------------------------
+/// create human-readable permission expression from integer
+NSString *humanReadablePermission(NSUInteger permission)
+// ------------------------------------------------------
+{
+    NSArray *units = @[@"---", @"--x", @"-w-", @"-wx", @"r--", @"r-x", @"rw-", @"rwx"];
+    NSMutableString *result = [NSMutableString stringWithString:@"-"];  // always file
+    
+    for (NSInteger i = 2; i >= 0; i--) {
+        NSUInteger digit = (permission >> (i * 3)) & 0x7;
+        
+        [result appendString:units[digit]];
+    }
+    
+    return [result copy];
 }
 
 @end
