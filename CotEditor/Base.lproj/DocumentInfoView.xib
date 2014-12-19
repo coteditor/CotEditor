@@ -17,14 +17,13 @@
                 <binding destination="-2" name="contentObject" keyPath="representedObject" id="Y8W-Hl-k2j"/>
             </connections>
         </objectController>
-        <scrollView verticalHuggingPriority="750" borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" id="kdC-U7-dlL">
+        <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kdC-U7-dlL">
             <rect key="frame" x="0.0" y="0.0" width="220" height="460"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-            <clipView key="contentView" verticalHuggingPriority="750" drawsBackground="NO" copiesOnScroll="NO" id="uiH-oN-aKm">
+            <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="uiH-oN-aKm">
                 <rect key="frame" x="0.0" y="0.0" width="210" height="486"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
-                    <customView verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ZBi-EJ-Lzu" userLabel="Document View">
+                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="ZBi-EJ-Lzu" userLabel="Document View">
                         <rect key="frame" x="0.0" y="16" width="220" height="444"/>
                         <subviews>
                             <textField horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="1HX-hx-Kjq">
@@ -196,7 +195,7 @@
                                     </binding>
                                 </connections>
                             </textField>
-                            <box verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="8vx-z1-gbb">
+                            <box horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="8vx-z1-gbb">
                                 <rect key="frame" x="8" y="257" width="204" height="5"/>
                                 <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                                 <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -210,9 +209,9 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="cfX-uV-IwR">
-                                <rect key="frame" x="90" y="237" width="30" height="14"/>
-                                <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" selectable="YES" sendsActionOnEndEditing="YES" alignment="left" title="utf-8" id="sme-3R-Xwl">
+                            <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="cfX-uV-IwR">
+                                <rect key="frame" x="90" y="237" width="91" height="14"/>
+                                <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" selectable="YES" sendsActionOnEndEditing="YES" alignment="left" title="Unicode (UTF-8)" usesSingleLineMode="YES" id="sme-3R-Xwl">
                                     <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -248,7 +247,7 @@
                                     </binding>
                                 </connections>
                             </textField>
-                            <box verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="n5I-a5-MXu">
+                            <box horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="n5I-a5-MXu">
                                 <rect key="frame" x="8" y="182" width="204" height="5"/>
                                 <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                                 <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -459,6 +458,7 @@
                             <constraint firstItem="V35-jz-vW5" firstAttribute="leading" secondItem="pba-3Y-QND" secondAttribute="trailing" constant="8" symbolic="YES" id="36F-bC-XR3"/>
                             <constraint firstAttribute="bottom" secondItem="mSH-7o-XWe" secondAttribute="bottom" constant="8" id="4az-zi-q14"/>
                             <constraint firstItem="a1f-lJ-HVO" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ZBi-EJ-Lzu" secondAttribute="leading" constant="12" id="4gJ-OA-Kwb"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="cfX-uV-IwR" secondAttribute="trailing" constant="8" id="4mb-CQ-DWn"/>
                             <constraint firstItem="n5I-a5-MXu" firstAttribute="top" secondItem="pho-Pk-A5q" secondAttribute="bottom" constant="8" symbolic="YES" id="5bv-JW-c8b"/>
                             <constraint firstItem="HVJ-V3-aPB" firstAttribute="top" secondItem="7oM-BZ-scP" secondAttribute="bottom" constant="8" symbolic="YES" id="5ea-63-6Om"/>
                             <constraint firstItem="HPb-13-RfP" firstAttribute="baseline" secondItem="mdN-mJ-GP1" secondAttribute="baseline" id="6go-yN-PLF"/>
@@ -466,7 +466,6 @@
                             <constraint firstItem="wTX-Dy-Att" firstAttribute="top" secondItem="1HX-hx-Kjq" secondAttribute="bottom" constant="8" symbolic="YES" id="B2O-BC-yHY"/>
                             <constraint firstItem="cfX-uV-IwR" firstAttribute="top" secondItem="8vx-z1-gbb" secondAttribute="bottom" constant="8" symbolic="YES" id="BF3-AS-Lzf"/>
                             <constraint firstItem="pho-Pk-A5q" firstAttribute="trailing" secondItem="dn8-5V-Iu7" secondAttribute="trailing" id="Bgb-Gf-RU9"/>
-                            <constraint firstItem="8vx-z1-gbb" firstAttribute="top" secondItem="4rR-gL-Y16" secondAttribute="bottom" constant="8" symbolic="YES" id="CDZ-0Q-lHD"/>
                             <constraint firstItem="c3K-vK-uPf" firstAttribute="leading" secondItem="7Fd-u2-ZLc" secondAttribute="trailing" constant="8" symbolic="YES" id="Emq-Zy-Mpd"/>
                             <constraint firstItem="HPb-13-RfP" firstAttribute="top" secondItem="mka-w0-T2n" secondAttribute="bottom" constant="8" symbolic="YES" id="Eyx-nY-pPQ"/>
                             <constraint firstItem="8vx-z1-gbb" firstAttribute="leading" secondItem="ZBi-EJ-Lzu" secondAttribute="leading" constant="8" id="Fv1-ia-9Pd"/>

@@ -59,7 +59,7 @@ typedef NS_ENUM(NSUInteger, CESidebarTag) {
 @property (nonatomic) IBOutlet CEIncompatibleCharsViewController *incompatibleCharsViewController;
 @property (nonatomic, weak) IBOutlet NSSplitView *sidebarSplitView;
 @property (nonatomic, weak) IBOutlet NSView *sidebar;
-@property (nonatomic, weak) IBOutlet NSBox *sidebarBox;
+@property (nonatomic, weak) IBOutlet NSView *sidebarPlaceholderView;
 @property (nonatomic) IBOutlet CEDocumentAnalyzer *documentAnalyzer;
 
 // IBOutlets (readonly)
@@ -127,7 +127,7 @@ static NSTimeInterval infoUpdateInterval;
     [[self documentInfoViewController] setRepresentedObject:[self documentAnalyzer]];
     
     // setup sidebar
-    [[[self sidebar] layer] setBackgroundColor:CGColorCreateGenericGray(0.93, 1.0)];
+    [[[self sidebar] layer] setBackgroundColor:CGColorCreateGenericGray(0.94, 1.0)];
     [self setSidebarShown:[defaults boolForKey:CEDefaultShowDocumentInspectorKey]];
     
     // set document instance to incompatible chars view
@@ -423,17 +423,6 @@ static NSTimeInterval infoUpdateInterval;
 }
 
 
-// ------------------------------------------------------
-/// store current sideview's width
-- (void)splitViewDidResizeSubviews:(NSNotification *)notification
-// ------------------------------------------------------
-{
-    CGFloat width = NSWidth([[self sidebar] bounds]);
-    [self setSidebarWidth:width];
-    [[NSUserDefaults standardUserDefaults] setDouble:width forKey:CEDefaultSidebarWidthKey];
-}
-
-
 
 #pragma mark Action Messages
 
@@ -558,7 +547,21 @@ static NSTimeInterval infoUpdateInterval;
             break;
     }
     
-    [[self sidebarBox] setContentView:[viewController view]];
+    // swap views
+    NSView *placeholder = [self sidebarPlaceholderView];
+    NSView *currentView = [[placeholder subviews] lastObject];
+    NSView *newView = [viewController view];
+    
+    if (currentView == newView) { return; }
+    
+    // transit with animation
+    [newView setFrame:[currentView frame]];
+    [[placeholder animator] replaceSubview:currentView with:newView];
+    
+    // update autolayout constrains
+    NSDictionary *views = @{@"newView": newView};
+    [placeholder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[newView]|" options:0 metrics:nil views:views]];
+    [placeholder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[newView]|" options:0 metrics:nil views:views]];
 }
 
 

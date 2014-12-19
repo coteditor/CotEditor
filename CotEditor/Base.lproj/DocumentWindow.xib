@@ -12,7 +12,7 @@
                 <outlet property="editor" destination="Asc-bK-hKW" id="ihd-lk-fQz"/>
                 <outlet property="incompatibleCharsViewController" destination="PNV-ic-0G4" id="eFj-Ts-dkB"/>
                 <outlet property="sidebar" destination="34" id="2IU-Vj-94v"/>
-                <outlet property="sidebarBox" destination="Bdv-Hn-dTD" id="rNI-bD-w82"/>
+                <outlet property="sidebarPlaceholderView" destination="XSO-vY-vMP" id="9fk-c5-hjU"/>
                 <outlet property="sidebarSplitView" destination="jhv-dr-CH4" id="CIg-jJ-bnp"/>
                 <outlet property="statusBarController" destination="ZaC-Gi-qyq" id="JbQ-Wl-HQq"/>
                 <outlet property="toolbarController" destination="71" id="Edj-p3-PkH"/>
@@ -55,15 +55,20 @@
                                 <rect key="frame" x="350" y="0.0" width="230" height="530"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
-                                    <box autoresizesSubviews="NO" boxType="custom" borderType="none" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="Bdv-Hn-dTD">
+                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="XSO-vY-vMP" userLabel="Placeholder View">
                                         <rect key="frame" x="0.0" y="0.0" width="230" height="490"/>
-                                        <view key="contentView">
-                                            <rect key="frame" x="0.0" y="0.0" width="230" height="490"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                        </view>
-                                        <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
-                                        <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                    </box>
+                                        <subviews>
+                                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="hnD-ep-tH0" userLabel="Dummy View">
+                                                <rect key="frame" x="0.0" y="0.0" width="230" height="490"/>
+                                            </customView>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="hnD-ep-tH0" firstAttribute="leading" secondItem="XSO-vY-vMP" secondAttribute="leading" id="7C0-11-V5B"/>
+                                            <constraint firstItem="hnD-ep-tH0" firstAttribute="top" secondItem="XSO-vY-vMP" secondAttribute="top" id="DfD-f9-iaK"/>
+                                            <constraint firstAttribute="trailing" secondItem="hnD-ep-tH0" secondAttribute="trailing" id="Liy-Fp-KMM"/>
+                                            <constraint firstAttribute="bottom" secondItem="hnD-ep-tH0" secondAttribute="bottom" id="ln0-dD-YX5"/>
+                                        </constraints>
+                                    </customView>
                                     <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="142">
                                         <rect key="frame" x="42" y="496" width="146" height="25"/>
                                         <popUpButtonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" alignment="center" lineBreakMode="truncatingTail" borderStyle="border" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="700">
@@ -86,14 +91,14 @@
                                     </popUpButton>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="XSO-vY-vMP" secondAttribute="bottom" id="0Ar-5d-3z3"/>
+                                    <constraint firstItem="XSO-vY-vMP" firstAttribute="top" secondItem="142" secondAttribute="bottom" constant="8" id="4zM-q5-fqW"/>
                                     <constraint firstAttribute="centerX" secondItem="142" secondAttribute="centerX" id="7gs-Rh-Cr0"/>
                                     <constraint firstItem="142" firstAttribute="top" secondItem="34" secondAttribute="top" constant="10" id="8V2-uN-7IC"/>
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="142" secondAttribute="trailing" constant="8" id="Bs0-KO-jMt"/>
-                                    <constraint firstAttribute="bottom" secondItem="Bdv-Hn-dTD" secondAttribute="bottom" id="Syi-yy-bJt"/>
-                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="300" id="aly-Ib-BsD"/>
-                                    <constraint firstItem="Bdv-Hn-dTD" firstAttribute="leading" secondItem="34" secondAttribute="leading" id="kI2-Bx-TWz"/>
-                                    <constraint firstItem="Bdv-Hn-dTD" firstAttribute="top" secondItem="142" secondAttribute="bottom" constant="8" id="tOc-vW-5hn"/>
-                                    <constraint firstAttribute="trailing" secondItem="Bdv-Hn-dTD" secondAttribute="trailing" id="vpR-e8-GEB"/>
+                                    <constraint firstAttribute="trailing" secondItem="XSO-vY-vMP" secondAttribute="trailing" id="WJj-1f-h9z"/>
+                                    <constraint firstItem="XSO-vY-vMP" firstAttribute="leading" secondItem="34" secondAttribute="leading" id="agM-Pc-Qcz"/>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="400" id="aly-Ib-BsD"/>
                                     <constraint firstItem="142" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="34" secondAttribute="leading" constant="8" id="z1f-RB-gge"/>
                                 </constraints>
                             </customView>
