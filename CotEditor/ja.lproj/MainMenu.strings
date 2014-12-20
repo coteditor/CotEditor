@@ -10,7 +10,8 @@
  © 2014 CotEditor Project
  */
 
-/* CotEditor */
+
+// MARK: CotEditor
 
 /* Class = "NSMenuItem"; title = "CotEditor"; ObjectID = "56"; */
 "56.title" = "CotEditor";
@@ -42,7 +43,7 @@
 
 
 
-/* File */
+// MARK: File
 
 /* Class = "NSMenuItem"; title = "File"; ObjectID = "83"; */
 "83.title" = "ファイル";
@@ -81,7 +82,7 @@
 
 
 
-/* Edit */
+// MARK: Edit
 
 /* Class = "NSMenuItem"; title = "Edit"; ObjectID = "163"; */
 "163.title" = "編集";
@@ -180,7 +181,7 @@
 
 
 
-/* View */
+// MARK: View
 
 /* Class = "NSMenuItem"; title = "View"; ObjectID = "322"; */
 "322.title" = "表示";
@@ -223,7 +224,7 @@
 
 
 
-/* Format */
+// MARK: Format
 
 /* Class = "NSMenuItem"; title = "Format"; ObjectID = "247"; */
 "247.title" = "フォーマット";
@@ -303,7 +304,7 @@
 
 
 
-/* Find */
+// MARK: Find
 
 /* Class = "NSMenuItem"; title = "Find"; ObjectID = "538"; */
 "538.title" = "検索";
@@ -323,7 +324,7 @@
 
 
 
-/* Utility */
+// MARK: Utility
 
 /* Class = "NSMenu"; title = "Utility"; ObjectID = "578"; */
 "578.title" = "ユーティリティ";
@@ -350,7 +351,7 @@
 
 
 
-/* Window */
+// MARK: Window
 
 /* Class = "NSMenuItem"; title = "Window"; ObjectID = "19"; */
 "19.title" = "ウインドウ";
@@ -378,7 +379,7 @@
 
 
 
-/* Script */
+// MARK: Script
 
 /* Class = "NSMenu"; title = "Script"; ObjectID = "616"; */
 "616.title" = "スクリプト";
@@ -387,7 +388,7 @@
 
 
 
-/* Help */
+// MARK: Help
 
 /* Class = "NSMenuItem"; title = "Help"; ObjectID = "103"; */
 "103.title" = "ヘルプ";

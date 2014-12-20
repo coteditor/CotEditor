@@ -11,7 +11,8 @@
  © 2014 CotEditor Project
  */
 
-/* CotEditor */
+
+// MARK: CotEditor
 
 /* Class = "NSMenuItem"; title = "CotEditor"; ObjectID = "56"; */
 "56.title" = "CotEditor";
@@ -43,7 +44,7 @@
 
 
 
-/* File */
+// MARK: File
 
 /* Class = "NSMenuItem"; title = "File"; ObjectID = "83"; */
 "83.title" = "文件";
@@ -82,7 +83,7 @@
 
 
 
-/* Edit */
+// MARK: Edit
 
 
 /* Class = "NSMenuItem"; title = "Edit"; ObjectID = "163"; */
@@ -180,7 +181,7 @@
 "2rV-Ut-h4x.title" = "停止朗读";
 
 
-/* View */
+// MARK: View
 
 /* Class = "NSMenuItem"; title = "View"; ObjectID = "322"; */
 "322.title" = "显示";
@@ -223,7 +224,7 @@
 
 
 
-/* Format */
+// MARK: Format
 
 /* Class = "NSMenuItem"; title = "Format"; ObjectID = "247"; */
 "247.title" = "格式";
@@ -302,7 +303,7 @@
 
 
 
-/* Find */
+// MARK: Find
 
 /* Class = "NSMenuItem"; title = "Find"; ObjectID = "538"; */
 "538.title" = "查找";
@@ -322,7 +323,7 @@
 
 
 
-/* Utility */
+// MARK: Utility
 
 /* Class = "NSMenu"; title = "Utility"; ObjectID = "578"; */
 "578.title" = "工具";
@@ -349,7 +350,7 @@
 
 
 
-/* Window */
+// MARK: Window
 
 /* Class = "NSMenuItem"; title = "Window"; ObjectID = "19"; */
 "19.title" = "窗口";
@@ -378,7 +379,7 @@
 
 
 
-/* Script */
+// MARK: Script
 
 /* Class = "NSMenu"; title = "Script"; ObjectID = "616"; */
 "616.title" = "脚本";
@@ -387,7 +388,7 @@
 
 
 
-/* Help */
+// MARK: Help
 
 /* Class = "NSMenuItem"; title = "Help"; ObjectID = "103"; */
 "103.title" = "帮助";
