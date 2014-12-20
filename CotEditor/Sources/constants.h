@@ -352,8 +352,6 @@ typedef NS_ENUM(NSInteger, CEMenuItemTag) {
     // in main menu
     CENewMenuItemTag            =  100,
     CEOpenMenuItemTag           =  101,
-    CEOpenRecentMenuItemTag     =  103,
-    CEInputBackSlashMenuItemTag =  209,
     CEFileEncodingMenuItemTag   = 4001,
     CESyntaxMenuItemTag         = 4002,
     CEThemeMenuItemTag          = 4003,
@@ -395,7 +393,6 @@ extern NSString *const CEOutlineItemUnderlineMaskKey;
 // layout constants
 extern CGFloat const kDefaultLineNumWidth;
 extern CGFloat const kLineNumPadding;
-extern CGFloat const kLineNumFontDescender;
 extern NSString *const kNavigationBarFontName;
 
 

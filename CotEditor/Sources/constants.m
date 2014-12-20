@@ -348,7 +348,6 @@ NSString *const CEOutlineItemUnderlineMaskKey = @"outlineItemUnderlineMask";
 // layout constants
 CGFloat const kDefaultLineNumWidth = 32.0;
 CGFloat const kLineNumPadding = 3.0;
-CGFloat const kLineNumFontDescender = -2.1;
 NSString *const kNavigationBarFontName = @"Helvetica";
 
 
@@ -480,10 +479,10 @@ CFStringEncodings const kCFStringEncodingInvalidYenList[] = {
     kCFStringEncodingDOSLatinUS, // Latin-US (DOS)
     kCFStringEncodingWindowsLatin2, // Central European (Windows Latin 2)
 };
-NSUInteger const kSizeOfCFStringEncodingInvalidYenList = sizeof(kCFStringEncodingInvalidYenList)/sizeof(CFStringEncodings);
+NSUInteger const kSizeOfCFStringEncodingInvalidYenList = sizeof(kCFStringEncodingInvalidYenList) / sizeof(CFStringEncodings);
 
 // Yen mark char
-unichar const kYenMark = {0x00A5};
+unichar const kYenMark = 0x00A5;
 
 
 
