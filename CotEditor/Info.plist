@@ -970,6 +970,27 @@
 				<string>NSStringPboardType</string>
 			</array>
 		</dict>
+		<dict>
+			<key>NSMenuItem</key>
+			<dict>
+				<key>default</key>
+				<string>Open File in CotEditor</string>
+			</dict>
+			<key>NSMessage</key>
+			<string>openFile</string>
+			<key>NSPortName</key>
+			<string>${PRODUCT_NAME}</string>
+			<key>NSSendTypes</key>
+			<array>
+				<string>NSURLPboardType</string>
+				<string>NSStringPboardType</string>
+			</array>
+			<key>NSRequiredContext</key>
+			<dict>
+				<key>NSTextContent</key>
+				<string>FilePath</string>
+			</dict>
+		</dict>
 	</array>
 	<key>OSAScriptingDefinition</key>
 	<string>${PRODUCT_NAME}.sdef</string>

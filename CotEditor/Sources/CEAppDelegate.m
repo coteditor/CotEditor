@@ -779,6 +779,47 @@
     }
 }
 
+
+// ------------------------------------------------------
+/// open files via Services
+- (void)openFile:(NSPasteboard *)pboard userData:(NSString *)userData error:(NSString **)error
+// ------------------------------------------------------
+{
+    for (NSPasteboardItem *item in [pboard pasteboardItems]) {
+        NSString *type = [item availableTypeFromArray:@[(NSString *)kUTTypeFileURL, (NSString *)kUTTypeText]];
+        NSURL *fileURL = [NSURL URLWithString:[item stringForType:type]];
+        
+        if (![fileURL checkResourceIsReachableAndReturnError:nil]) {
+            continue;
+        }
+        
+        // get file UTI
+        NSString *uti = nil;
+        [fileURL getResourceValue:&uti forKey:NSURLTypeIdentifierKey error:nil];
+        
+        // process only plain-text files
+        if (![[NSWorkspace sharedWorkspace] type:uti conformsToType:(NSString *)kUTTypeText]) {
+            NSError *err = [NSError errorWithDomain:NSCocoaErrorDomain
+                                               code:NSFileReadCorruptFileError
+                                           userInfo:@{NSURLErrorKey: fileURL}];
+            [[NSAlert alertWithError:err] runModal];
+            continue;
+        }
+        
+        // open file
+        [[NSDocumentController sharedDocumentController] openDocumentWithContentsOfURL:fileURL
+                                                                               display:YES
+                                                                     completionHandler:^(NSDocument *document,
+                                                                                         BOOL documentWasAlreadyOpen,
+                                                                                         NSError *error)
+         {
+             if (error) {
+                 [[NSAlert alertWithError:error] runModal];
+             }
+         }];
+    }
+}
+
 @end
 
 

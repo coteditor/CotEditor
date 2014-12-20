@@ -47,5 +47,6 @@
 @interface CEAppDelegate (Services)
 
 - (void)openSelection:(NSPasteboard *)pboard userData:(NSString *)userData error:(NSString **)error;
+- (void)openFile:(NSPasteboard *)pboard userData:(NSString *)userData error:(NSString **)error;
 
 @end
