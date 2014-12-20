@@ -103,7 +103,7 @@
         // テーマを使用する場合はセットしておく
         switch ([defaults integerForKey:CEDefaultPrintColorIndexKey]) {
             case CEBlackColorPrint:
-                _theme = NSLocalizedStringFromTable(@"Black and White", CEPrintLocalizeTable, nil);
+                _theme = NSLocalizedString(@"Black and White", nil);
                 break;
             case CESameAsDocumentColorPrint:
                 _theme = [defaults stringForKey:CEDefaultThemeKey];
@@ -237,13 +237,13 @@
                                             description:([self printsHeader] ? @"On" : @"Off")]];
     
     if ([self printsHeader]) {
-        [items addObject:[self localizedSummaryItemWithName:@"Header Line 1"
+        [items addObject:[self localizedSummaryItemWithName:@"First Header Line"
                                                 description:[self printInfoDescription:[self headerOneInfoType]]]];
-        [items addObject:[self localizedSummaryItemWithName:@"Header Line 1 Alignment"
+        [items addObject:[self localizedSummaryItemWithName:@"First Header Line Alignment"
                                                 description:[self alignmentDescription:[self headerOneAlignmentType]]]];
-        [items addObject:[self localizedSummaryItemWithName:@"Header Line 2"
+        [items addObject:[self localizedSummaryItemWithName:@"Second Header Line"
                                                 description:[self printInfoDescription:[self headerTwoInfoType]]]];
-        [items addObject:[self localizedSummaryItemWithName:@"Header Line 2 Alignment"
+        [items addObject:[self localizedSummaryItemWithName:@"Second Header Line Alignment"
                                                 description:[self alignmentDescription:[self headerTwoAlignmentType]]]];
     }
     [items addObject:[self localizedSummaryItemWithName:@"Print Header Separator"
@@ -252,13 +252,13 @@
     [items addObject:[self localizedSummaryItemWithName:@"Print Footer"
                                             description:([self printsFooter] ? @"On" : @"Off")]];
     if ([self printsFooter]) {
-        [items addObject:[self localizedSummaryItemWithName:@"Footer Line 1"
+        [items addObject:[self localizedSummaryItemWithName:@"First Footer Line"
                                                 description:[self printInfoDescription:[self footerOneInfoType]]]];
-        [items addObject:[self localizedSummaryItemWithName:@"Footer Line 1 Alignment"
+        [items addObject:[self localizedSummaryItemWithName:@"First Footer Line Alignment"
                                                 description:[self alignmentDescription:[self footerOneAlignmentType]]]];
-        [items addObject:[self localizedSummaryItemWithName:@"Footer Line 2"
+        [items addObject:[self localizedSummaryItemWithName:@"Second Footer Line"
                                                 description:[self printInfoDescription:[self footerTwoInfoType]]]];
-        [items addObject:[self localizedSummaryItemWithName:@"Footer Line 2 Alignment"
+        [items addObject:[self localizedSummaryItemWithName:@"Second Footer Line Alignment"
                                                 description:[self alignmentDescription:[self footerTwoAlignmentType]]]];
     }
     [items addObject:[self localizedSummaryItemWithName:@"Print Footer Separator"
@@ -281,8 +281,8 @@
 - (NSDictionary *)localizedSummaryItemWithName:(NSString *)name description:(NSString *)description
 // ------------------------------------------------------
 {
-    return @{NSPrintPanelAccessorySummaryItemNameKey: NSLocalizedStringFromTable(name, CEPrintLocalizeTable, nil),
-             NSPrintPanelAccessorySummaryItemDescriptionKey: NSLocalizedStringFromTable(description, CEPrintLocalizeTable, nil)};
+    return @{NSPrintPanelAccessorySummaryItemNameKey: NSLocalizedString(name, nil),
+             NSPrintPanelAccessorySummaryItemDescriptionKey: NSLocalizedString(description, nil)};
 }
 
 
@@ -404,7 +404,7 @@
 {
     [[self themePopup] removeAllItems];
     
-    [[self themePopup] addItemWithTitle:NSLocalizedStringFromTable(@"Black and White", CEPrintLocalizeTable, nil)];
+    [[self themePopup] addItemWithTitle:NSLocalizedString(@"Black and White", nil)];
     
     [[[self themePopup] menu] addItem:[NSMenuItem separatorItem]];
     

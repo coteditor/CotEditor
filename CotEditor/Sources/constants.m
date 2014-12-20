@@ -43,9 +43,6 @@ NSString *const CESeparatorString = @"-";
 // Error domain
 NSString *const CEErrorDomain = @"com.coteditor.CotEditor.ErrorDomain";
 
-// Localized strings table
-NSString *const CEPrintLocalizeTable =  @"Print";
-
 // Metadata dict keys for themes and syntax styles
 NSString *const CEMetadataKey = @"metadata";
 NSString *const CEAuthorKey = @"author";

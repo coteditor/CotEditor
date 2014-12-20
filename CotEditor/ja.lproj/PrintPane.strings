@@ -48,7 +48,7 @@
 "3368.title" = "ヘッダをプリント";
 
 /* Class = "NSTextFieldCell"; title = "First Line:"; ObjectID = "3369"; */
-"3369.title" = "1行目：";
+"3369.title" = "1 行目：";
 
 /* Class = "NSMenuItem"; title = "None"; ObjectID = "895"; */
 "895.title" = "なし";
@@ -70,7 +70,7 @@
 
 
 /* Class = "NSTextFieldCell"; title = "Second Line:"; ObjectID = "3373"; */
-"3373.title" = "2行目：";
+"3373.title" = "2 行目：";
 
 /* Class = "NSMenuItem"; title = "None"; ObjectID = "906"; */
 "906.title" = "なし";
@@ -99,7 +99,7 @@
 "3375.title" = "フッタをプリント";
 
 /* Class = "NSTextFieldCell"; title = "First Line:"; ObjectID = "3379"; */
-"3379.title" = "1行目：";
+"3379.title" = "1 行目：";
 
 /* Class = "NSMenuItem"; title = "None"; ObjectID = "941"; */
 "941.title" = "なし";
@@ -121,7 +121,7 @@
 
 
 /* Class = "NSTextFieldCell"; title = "Second Line:"; ObjectID = "3377"; */
-"3377.title" = "2行目：";
+"3377.title" = "2 行目：";
 
 /* Class = "NSMenuItem"; title = "None"; ObjectID = "927"; */
 "927.title" = "なし";

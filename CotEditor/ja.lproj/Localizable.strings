@@ -94,6 +94,41 @@
 "Do you want to keep unchanged or update to the modified edition?" = "未編集のままにしますか、それとも変更された内容に更新しますか？";
 
 
+/* MARK: CEPrintAccessoryViewController */
+/// Summary item names
+"Color" = "カラー";
+"Line Number" = "行番号";
+"Invisible Characters" = "不可視文字";
+"Print Header" = "ヘッダをプリント";
+"First Header Line" = "ヘッダ 1 行目";
+"First Header Line Alignment" = "ヘッダ 1 行目の位置";
+"Second Header Line" = "ヘッダ 2 行目";
+"Second Header Line Alignment" = "ヘッダ 2 行目の位置";
+"Print Header Separator" = "ヘッダ区切り線をプリント";
+"Print Footer" = "フッタをプリント";
+"First Footer Line" = "フッタ 1 行目";
+"First Footer Line Alignment" = "フッタ 1 行目の位置";
+"Second Footer Line" = "フッタ 2 行目";
+"Second Footer Line Alignment" = "フッタ 2 行目の位置";
+"Print Footer Separator" = "フッタ区切り線をプリント";
+
+"On" = "オン";
+"Off" = "オフ";
+"Don't Print" = "プリントしない";
+"Same as Document's Setting" = "書類の設定と同じ";
+"Black and White" = "白黒";
+"Print" = "プリント";
+"Print All" = "全てプリント";
+"Syntax Name" = "シンタックス名";
+"Document Name" = "書類名";
+"File Path" = "ファイルパス";
+"Print Date" = "プリント日時";
+"Page Number" = "ページ番号";
+"Left" = "左揃え";
+"Center" = "中央揃え";
+"Right" = "右揃え";
+
+
 /* MARK: CETextView */
 // Undo action names
 "Replace Text" = "テキストを置換";

@@ -34,6 +34,9 @@
 #import "constants.h"
 
 
+static NSString *const PageNumberPlaceholder = @"PAGENUM";
+
+
 @interface CEPrintView ()
 
 @property (nonatomic) NSAttributedString *headerOneString;
@@ -152,7 +155,7 @@
 
     if ([self printsHeader]) {
         if ([self headerOneString]) {
-            if ([[[self headerOneString] string] isEqualToString:@"PAGENUM"]) {
+            if ([[[self headerOneString] string] isEqualToString:PageNumberPlaceholder]) {
                 [self setHeaderOneString:pageString];
             }
             drawPoint.x = [self xValueToDrawAttributedString:[self headerOneString]
@@ -162,7 +165,7 @@
         }
         
         if ([self headerTwoString]) {
-            if ([[[self headerTwoString] string] isEqualToString:@"PAGENUM"]) {
+            if ([[[self headerTwoString] string] isEqualToString:PageNumberPlaceholder]) {
                 [self setHeaderTwoString:pageString];
             }
             drawPoint.x = [self xValueToDrawAttributedString:[self headerTwoString]
@@ -188,7 +191,7 @@
     drawPoint.y = borderSize.height - kPrintHFVerticalMargin + kSeparatorPadding;
     if ([self printsFooter]) {
         if ([self footerTwoString]) {
-            if ([[[self footerTwoString] string] isEqualToString:@"PAGENUM"]) {
+            if ([[[self footerTwoString] string] isEqualToString:PageNumberPlaceholder]) {
                 [self setFooterTwoString:pageString];
             }
             drawPoint.y -= kHeaderFooterLineHeight;
@@ -198,7 +201,7 @@
         }
         
         if ([self footerOneString]) {
-            if ([[[self footerOneString] string] isEqualToString:@"PAGENUM"]) {
+            if ([[[self footerOneString] string] isEqualToString:PageNumberPlaceholder]) {
                 [self setFooterOneString:pageString];
             }
             drawPoint.y -= kHeaderFooterLineHeight;
@@ -382,7 +385,7 @@
     
     
     // カラーリングの設定
-    if ([[accessoryController theme] isEqualToString:NSLocalizedStringFromTable(@"Black and White", CEPrintLocalizeTable,  nil)]) {
+    if ([[accessoryController theme] isEqualToString:NSLocalizedString(@"Black and White",  nil)]) {
         [self setTextColor:[NSColor blackColor]];
         [self setBackgroundColor:[NSColor whiteColor]];
         
@@ -465,7 +468,7 @@
             break;
             
         case CEPageNumberPrintInfo:
-            string = @"PAGENUM";
+            string = PageNumberPlaceholder;
             [self setReadyToDrawPageNum:YES];
             break;
             

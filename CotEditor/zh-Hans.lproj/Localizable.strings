@@ -93,6 +93,40 @@
 "Do you want to keep unchanged or update to the modified edition?" = "保持不变还是更新到被更改后的版本？";
 
 
+/* MARK: CEPrintAccessoryViewController */
+"Color" = "颜色";
+"Line Number" = "行号";
+"Invisible Characters" = "不可见字符";
+"Print Header" = "打印页眉";
+"First Header Line" = "页眉行 1";
+"First Header Line Alignment" = "页眉行 1 对齐";
+"Second Header Line" = "页眉行 2";
+"Second Header Line Alignment" = "页眉行 2 对齐";
+"Print Header Separator" = "打印页眉分隔线";
+"Print Footer" = "打印页脚";
+"First Footer Line" = "页脚行 1";
+"First Footer Line Alignment" = "页脚行 1 对齐";
+"Second Footer Line" = "页脚行 2";
+"Second Footer Line Alignment" = "页脚行 2 对齐";
+"Print Footer Separator" = "打印页脚分隔线";
+
+"On" = "开";
+"Off" = "关";
+"Don't Print" = "不打印";
+"Same as Document's Setting" = "同文档设置一致";
+"Black and White" = "黑白";
+"Print" = "打印";
+"Print All" = "全部打印";
+"Syntax Name" = "语法名";
+"Document Name" = "文档名";
+"File Path" = "文件路径";
+"Print Date" = "打印日期";
+"Page Number" = "页码";
+"Left" = "左";
+"Center" = "居中";
+"Right" = "右";
+
+
 /* MARK: CETextView */
 // Undo action names
 "Replace Text" = "替换文本";
