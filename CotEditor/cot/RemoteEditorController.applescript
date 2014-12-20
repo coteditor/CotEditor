@@ -35,13 +35,16 @@
      
      
      on createNewDocument:contents_
+         --cast argument
+         set contents_ to contents_ as text
+         
          tell my editor
              using terms from application "CotEditor"
                  make new document
                  set my newDocument to front document
                  
                  tell newDocument
-                     set contents to contents_ as text
+                     set contents to contents_
                      set range of selection to {0, 0}
                  end tell
              end using terms from
@@ -50,14 +53,15 @@
      
      
      on jumpToLine:lineNum column:columnNum
+         -- cast arguments
+         set lineNum to lineNum as integer
+         set columnNum to columnNum as integer
+         
          tell my editor
              using terms from application "CotEditor"
                  if front document is missing value then return
                  
                  tell front document
-                     -- cast arguments
-                     set lineNum to lineNum as integer
-                     set columnNum to columnNum as integer
                      
                      -- count location of line
                      set loc to 0

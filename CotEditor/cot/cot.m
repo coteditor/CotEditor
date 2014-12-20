@@ -31,6 +31,8 @@
 @import AppleScriptObjC;
 
 
+static NSString *const kBundleIdentifier = @"com.coteditor.CotEditor";
+
 static NSString *const kFiles = @"files";
 static NSString *const kVersionOption = @"version";
 static NSString *const kHelpOption = @"help";
@@ -62,15 +64,17 @@ typedef NS_ENUM(NSUInteger, OptionTypes) {
 
 const char* version(void)
 {
-    return [[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"] UTF8String];
+    NSURL *URL = [[NSWorkspace sharedWorkspace] URLForApplicationWithBundleIdentifier:kBundleIdentifier];
+    NSBundle *bundle = [NSBundle bundleWithURL:URL];
+    
+    return [[bundle objectForInfoDictionaryKey:@"CFBundleShortVersionString"] UTF8String];
 }
 
 
 void usage(void)
 {
     printf("cot %s - command-line utility for CotEditor.\n", version());
-    printf("Usages: cot [options] [file ...]\n");
-    printf("        cot [options] -\n");
+    printf("Usage: cot [options] [file ...]\n");
     printf("Options:\n");
     printf("    -l, --line <line>     Jump to specific line in opened document.\n");
     printf("    -c, --column <column> Jump to specific column in opened document.\n");
@@ -91,6 +95,7 @@ NSDictionary* parseArguments(NSArray *args)
                          @{kNameKey:kLineOption, kParamKey:@[@"--line", @"-l"], kTypeKey:@(IntType)},
                          @{kNameKey:kColumnOption, kParamKey:@[@"--column", @"-c"], kTypeKey:@(IntType)},
                          ];
+    NSRegularExpression *optRegex = [NSRegularExpression regularExpressionWithPattern:@"^-[-a-z]" options:0 error:nil];
     
     BOOL isFirst = YES;
     NSString *lastKey = nil;
@@ -98,7 +103,7 @@ NSDictionary* parseArguments(NSArray *args)
         if (isFirst) {  // first argument is path to command itself
             isFirst = NO;
             
-        } else if ([arg hasPrefix:@"-"]) {
+        } else if ([[optRegex matchesInString:arg options:0 range:NSMakeRange(0, [arg length])] count] > 0) {
             for (NSDictionary *option in options) {
                 if ([option[kParamKey] containsObject:arg]) {
                     if ([option[kTypeKey] unsignedIntegerValue] == BoolType) {
@@ -122,7 +127,7 @@ NSDictionary* parseArguments(NSArray *args)
     parsedArgs[kFiles] = [files copy];
     
     
-    return parsedArgs;
+    return [parsedArgs copy];
 }
 
 
@@ -152,7 +157,6 @@ int main(int argc, const char * argv[])
         }
         
         NSMutableArray *URLs = [NSMutableArray array];
-        NSString *bundleIdentifier = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleIdentifier"];
         NSWorkspaceLaunchOptions options = 0;
         
         // validate file paths
@@ -177,7 +181,7 @@ int main(int argc, const char * argv[])
         
         // launch CotEditor
         BOOL success = [[NSWorkspace sharedWorkspace] openURLs:URLs
-                                       withAppBundleIdentifier:bundleIdentifier
+                                       withAppBundleIdentifier:kBundleIdentifier
                                                        options:options
                                 additionalEventParamDescriptor:nil
                                              launchIdentifiers:NULL];
@@ -187,21 +191,25 @@ int main(int argc, const char * argv[])
             exit(1);
         }
         
-        // load AppleScript
-        [[NSBundle mainBundle] loadAppleScriptObjectiveCScripts];
-        Class RemoteEditorController = NSClassFromString(@"RemoteEditorController");
-        id<RemoteEditorControllerProtocol> editorController = [[RemoteEditorController alloc] init];
-        
-        // create new document with piped text
-        if (input && [URLs count] == 0) {
-            [editorController createNewDocument:input];
-        }
-        
-        // jump to location
-        NSInteger line = [arguments[kLineOption] integerValue];
-        NSInteger column = [arguments[kColumnOption] integerValue];
-        if (line > 0 || column > 0) {
-            [editorController jumpToLine:@(line) column:@(column)];
+        if (arguments[kLineOption] || arguments[kColumnOption] || input) {
+            // load AppleScript
+            NSURL *URL = [[NSWorkspace sharedWorkspace] URLForApplicationWithBundleIdentifier:kBundleIdentifier];
+            NSBundle *bundle = [NSBundle bundleWithURL:URL];
+            [bundle loadAppleScriptObjectiveCScripts];
+            Class RemoteEditorController = NSClassFromString(@"RemoteEditorController");
+            id<RemoteEditorControllerProtocol> editorController = [[RemoteEditorController alloc] init];
+            
+            // create new document with piped text
+            if (input && [URLs count] == 0) {
+                [editorController createNewDocument:input];
+            }
+            
+            // jump to location
+            if (arguments[kLineOption]|| arguments[kColumnOption]) {
+                NSInteger line = [arguments[kLineOption] integerValue];
+                NSInteger column = [arguments[kColumnOption] integerValue];
+                [editorController jumpToLine:@(line) column:@(column)];
+            }
         }
     }
     

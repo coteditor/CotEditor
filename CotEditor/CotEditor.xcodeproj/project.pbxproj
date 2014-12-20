@@ -101,7 +101,6 @@
 		2A961C5518FC699E002076B6 /* ShellScript.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A961C4D18FC699E002076B6 /* ShellScript.rtf */; };
 		2A9871A919AEABDB0081BADB /* KeyBindings in Resources */ = {isa = PBXBuildFile; fileRef = 2A9871A819AEABDB0081BADB /* KeyBindings */; };
 		2AA0AC4B1A26CDD60063ED1B /* RemoteEditorController.applescript in Sources */ = {isa = PBXBuildFile; fileRef = 2A40D7CA1A23A60100721EB4 /* RemoteEditorController.applescript */; };
-		2AA0AC541A273A490063ED1B /* AppleScriptObjC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AA0AC521A2738C10063ED1B /* AppleScriptObjC.framework */; };
 		2AA0AC551A273F5D0063ED1B /* RemoteEditorController.applescript in Sources */ = {isa = PBXBuildFile; fileRef = 2A40D7CA1A23A60100721EB4 /* RemoteEditorController.applescript */; };
 		2AA0AC7A1A29D8CB0063ED1B /* CEPopUpToolbarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AA0AC791A29D8CB0063ED1B /* CEPopUpToolbarItem.m */; };
 		2AACC9591942A82900E3FF63 /* CEIndicatorSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AACC9581942A82900E3FF63 /* CEIndicatorSheetController.m */; };
@@ -112,6 +111,7 @@
 		2AC2C1D819881543007968CB /* VerticalOrientation_Off.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 2AC2C1D619881543007968CB /* VerticalOrientation_Off.tiff */; };
 		2AC2C1D919881543007968CB /* VerticalOrientation_On.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 2AC2C1D719881543007968CB /* VerticalOrientation_On.tiff */; };
 		2AC75C081A2AF47F00C7DB0A /* NSString+CENewLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AC75C071A2AF47F00C7DB0A /* NSString+CENewLine.m */; };
+		2AD318BB1A461FDC001B8112 /* AppleScriptObjC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AA0AC521A2738C10063ED1B /* AppleScriptObjC.framework */; };
 		2AD4599B19DDCF6600A20FBB /* CEScriptMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD4599A19DDCF6600A20FBB /* CEScriptMenuItem.m */; };
 		2AD5322A19779FD000A925CA /* CELineHeightTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD5322919779FD000A925CA /* CELineHeightTransformer.m */; };
 		2AD84CAA1966314100DE49BD /* CEODBEventSender.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD84CA91966314100DE49BD /* CEODBEventSender.m */; };
@@ -523,7 +523,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2AA0AC541A273A490063ED1B /* AppleScriptObjC.framework in Frameworks */,
+				2AD318BB1A461FDC001B8112 /* AppleScriptObjC.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
