@@ -35,6 +35,7 @@
 #import "CEFileDropPaneController.h"
 #import "CEKeyBindingsPaneController.h"
 #import "CEPrintPaneController.h"
+#import "CEIntegrationPaneController.h"
 
 
 @interface CEPreferencesWindowController ()
@@ -85,7 +86,8 @@
                              [[CEFormatPaneController alloc] initWithNibName:@"FormatPane" bundle:nil],
                              [[CEFileDropPaneController alloc] initWithNibName:@"FileDropPane" bundle:nil],
                              [[CEKeyBindingsPaneController alloc] initWithNibName:@"KeyBindingsPane" bundle:nil],
-                             [[CEPrintPaneController alloc] initWithNibName:@"PrintPane" bundle:nil]];
+                             [[CEPrintPaneController alloc] initWithNibName:@"PrintPane" bundle:nil],
+                             [[CEIntegrationPaneController alloc] initWithNibName:@"IntegrationPane" bundle:nil]];
     }
     return self;
 }

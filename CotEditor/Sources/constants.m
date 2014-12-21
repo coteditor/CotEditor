@@ -66,7 +66,8 @@ NSString *const kHelpAnchors[] = {
     @"specification_changes",
     @"about_script_name",
     @"about_applescript",
-    @"about_unixscript"
+    @"about_unixscript",
+    @"pref_advanced"
 };
 
 #pragma mark Notifications
