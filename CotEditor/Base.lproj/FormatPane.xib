@@ -31,7 +31,7 @@
                         <font key="font" metaFont="system"/>
                     </buttonCell>
                     <connections>
-                        <action selector="openPreferencesHelp:" target="-1" id="MFf-9k-Pkb"/>
+                        <action selector="openHelpAnchor:" target="-1" id="jVh-Ci-BsL"/>
                     </connections>
                 </button>
                 <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="17">

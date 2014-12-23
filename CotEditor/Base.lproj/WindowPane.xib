@@ -406,7 +406,7 @@
                         <font key="font" metaFont="system"/>
                     </buttonCell>
                     <connections>
-                        <action selector="openPreferencesHelp:" target="-1" id="AF8-1Q-VjF"/>
+                        <action selector="openHelpAnchor:" target="-1" id="MrC-lZ-UC2"/>
                     </connections>
                 </button>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="LzO-zQ-5et">

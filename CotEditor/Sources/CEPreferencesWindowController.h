@@ -32,11 +32,6 @@
 
 @interface CEPreferencesWindowController : NSWindowController <NSWindowDelegate>
 
-/// shared controller
 + (instancetype)sharedController;
-
-
-/// open help viewer
-- (IBAction)openPreferencesHelp:(id)sender;
 
 @end
