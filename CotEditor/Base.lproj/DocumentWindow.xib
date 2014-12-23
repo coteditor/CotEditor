@@ -178,10 +178,10 @@
             <toolbar key="toolbar" implicitIdentifier="CED05FB8-D6FA-4FDC-A1D9-8D33CCA40BE5" explicitIdentifier="docWindowToolbarID" displayMode="iconAndLabel" sizeMode="regular" id="olV-v9-4mJ">
                 <allowedToolbarItems>
                     <toolbarItem implicitItemIdentifier="D0855551-09F0-4844-BEEB-01E31A159043" explicitItemIdentifier="lineEndingsItemID" label="Line Endings" paletteLabel="Line Endings" toolTip="Change line endings" tag="1" id="fVR-to-zN3" customClass="CEPopUpToolbarItem">
-                        <size key="minSize" width="77" height="22"/>
-                        <size key="maxSize" width="77" height="22"/>
+                        <size key="minSize" width="70" height="22"/>
+                        <size key="maxSize" width="70" height="22"/>
                         <popUpButton key="view" verticalHuggingPriority="750" tag="1" id="77">
-                            <rect key="frame" x="0.0" y="14" width="77" height="22"/>
+                            <rect key="frame" x="6" y="14" width="70" height="22"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="clipping" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="701">
                                 <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
