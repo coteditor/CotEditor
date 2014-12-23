@@ -412,6 +412,15 @@ static NSTimeInterval infoUpdateInterval;
 }
 
 
+// ------------------------------------------------------
+/// hide sidebar divider when collapsed
+- (BOOL)splitView:(NSSplitView *)splitView shouldHideDividerAtIndex:(NSInteger)dividerIndex
+// ------------------------------------------------------
+{
+    return YES;
+}
+
+
 
 #pragma mark Action Messages
 
