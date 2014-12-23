@@ -14,18 +14,15 @@
 /* Class = "NSWindow"; title = "Sample Window for Size"; ObjectID = "127"; */
 "127.title" = "尺寸调整窗口";
 
-/* Class = "NSTextFieldCell"; title = "You can resize this window.\nAnd press “OK” button, this window size will be set to default."; ObjectID = "3399"; */
-"3399.title" = "你可以缩放这个窗口\n点击确认按钮来将当前窗口尺寸设置为默认值";
+/* Class = "NSTextFieldCell"; title = "Resize this window.\nThe size of this window will be set as default."; ObjectID = "3399"; */
+"3399.title" = "你可以缩放这个窗口\n点击确认按钮来将当前窗口尺寸设置为默认值";  // FIXME:
 
 /* Class = "NSTextFieldCell"; title = "Width:"; ObjectID = "3402"; */
 "3402.title" = "宽度:";
 /* Class = "NSTextFieldCell"; title = "Height:"; ObjectID = "3403"; */
 "3403.title" = "高度:";
 
-/* Class = "NSTextFieldCell"; title = "Press button, stop modal  >>>"; ObjectID = "3404"; */
-"3404.title" = "点击按钮以结束设置 >>>";
-
-/* Class = "NSButtonCell"; title = "OK"; ObjectID = "3397"; */
-"3397.title" = "好";
+/* Class = "NSButtonCell"; title = "Set to Default"; ObjectID = "3397"; */
+"3397.title" = "Set to Default";  // FIXME:
 /* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "3398"; */
 "3398.title" = "取消";
