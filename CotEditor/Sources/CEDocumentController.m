@@ -98,7 +98,13 @@
         }
     }
     
-    return [super makeDocumentWithContentsOfURL:url ofType:typeName error:nil];
+    // let super make document
+    id document = [super makeDocumentWithContentsOfURL:url ofType:typeName error:nil];
+    
+    // reset encoding menu
+    [self resetAccessorySelectedEncoding];
+    
+    return  document;
 }
 
 
@@ -119,7 +125,15 @@
     [openPanel setShowsHiddenFiles:[self showsHiddenFiles]];
     [self setShowsHiddenFiles:NO];  // reset flag
 
-    return [super runModalOpenPanel:openPanel forTypes:extensions];
+    // open modal open panel
+    NSInteger result = [super runModalOpenPanel:openPanel forTypes:extensions];
+    
+    // reset encoding menu if cancelled
+    if (result == NSCancelButton) {
+        [self resetAccessorySelectedEncoding];
+    }
+    
+    return result;
 }
 
 
@@ -132,8 +146,8 @@
 // ------------------------------------------------------
 {
     [self setShowsHiddenFiles:YES];
-
-    [super openDocument:sender];
+    
+    [self openDocument:sender];
 }
 
 
@@ -169,7 +183,9 @@
 {
     NSStringEncoding defaultEncoding = (NSStringEncoding)[[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultEncodingInOpenKey];
     
-    [self setAccessorySelectedEncoding:defaultEncoding];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self setAccessorySelectedEncoding:defaultEncoding];
+    });
 }
 
 @end

@@ -26,6 +26,7 @@ Change Log
 ### Fixes
 
 - Fix duplication check in key bindings editor.
+- Fix an issue that the preferred file encoding for encoding detection could be set wrong after running file open panel.
 - Fix an issue that incompatible character markup positions were wrong by CR/LF line endings.
 - Fix a possible crash on Japanese input.
 - Fix some missing localizations in simplified Chinese. (Thanks to Wei Wang!)
