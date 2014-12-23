@@ -258,7 +258,7 @@
             // 現行シート値を設定し、確認のためにセカンダリシートを開く
             NSBeep();
             [alert beginSheetModalForWindow:[[strongSelf view] window] modalDelegate:strongSelf
-                             didEndSelector:@selector(secondarySheedlDidEnd:returnCode:contextInfo:)
+                             didEndSelector:@selector(secondarySheetDidEnd:returnCode:contextInfo:)
                                 contextInfo:(__bridge_retained void *)(URL)];
         } else {
             // 重複するファイル名がないとき、インポート実行
@@ -485,7 +485,7 @@
 
 // ------------------------------------------------------
 /// セカンダリシートが閉じる直前
-- (void)secondarySheedlDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
+- (void)secondarySheetDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
 // ------------------------------------------------------
 {
     if (returnCode == NSAlertSecondButtonReturn) { // = Replace

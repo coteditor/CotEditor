@@ -47,7 +47,7 @@
 // ------------------------------------------------------
 {
     // シートウィンドウを表示してモーダルループに入る
-    // (閉じる命令は CEKeyBindingSheetController の closeKeyBindingEditSheet: で)
+    // (閉じる命令は CEKeyBindingSheetController の closeSheet: で)
     CEKeyBindingSheetController *sheetController = [[CEKeyBindingSheetController alloc] initWithMode:[sender tag]];
     NSWindow *sheet = [sheetController window];
     

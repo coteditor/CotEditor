@@ -107,13 +107,11 @@
 - (void)changeFont:(id)sender
 // ------------------------------------------------------
 {
-    // (引数"sender"はNSFontManegerのインスタンス)
-    NSFont *newFont = [sender convertFont:[NSFont systemFontOfSize:0]];
-    NSString *name = [newFont fontName];
-    CGFloat size = [newFont pointSize];
+    NSFontManager *fontManager = (NSFontManager *)sender;
+    NSFont *newFont = [fontManager convertFont:[NSFont systemFontOfSize:0]];
     
-    [[NSUserDefaults standardUserDefaults] setObject:name forKey:CEDefaultPrintFontNameKey];
-    [[NSUserDefaults standardUserDefaults] setFloat:size forKey:CEDefaultPrintFontSizeKey];
+    [[NSUserDefaults standardUserDefaults] setObject:[newFont fontName] forKey:CEDefaultPrintFontNameKey];
+    [[NSUserDefaults standardUserDefaults] setDouble:[newFont pointSize] forKey:CEDefaultPrintFontSizeKey];
     
     [self setFontFamilyNameAndSize];
 }
@@ -127,7 +125,7 @@
     NSPopUpButton *popup = (NSPopUpButton *)sender;
     NSUInteger index = [popup indexOfSelectedItem];
     
-    NSString *theme = (index > 2) ? [popup titleOfSelectedItem] : nil;  // 白黒／書類と同じでは印刷用テーマを指定しない
+    NSString *theme = (index > 2) ? [popup titleOfSelectedItem] : nil;  // 白黒／書類と同じ では印刷用テーマを指定しない
     [[NSUserDefaults standardUserDefaults] setObject:theme forKey:CEDefaultPrintThemeKey];
     [[NSUserDefaults standardUserDefaults] setInteger:index forKey:CEDefaultPrintColorIndexKey];
 }
@@ -151,7 +149,7 @@
 
 
 //------------------------------------------------------
-/// カラー設定要ポップアップを設定
+/// カラー設定ポップアップを設定
 - (void)setupColorMenu
 //------------------------------------------------------
 {

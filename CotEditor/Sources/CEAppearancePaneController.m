@@ -265,13 +265,11 @@
 - (void)changeFont:(id)sender
 // ------------------------------------------------------
 {
-    // (引数"sender"はNSFontManegerのインスタンス)
-    NSFont *newFont = [sender convertFont:[NSFont systemFontOfSize:0]];
-    NSString *name = [newFont fontName];
-    CGFloat size = [newFont pointSize];
+    NSFontManager *fontManager = (NSFontManager *)sender;
+    NSFont *newFont = [fontManager convertFont:[NSFont systemFontOfSize:0]];
     
-    [[NSUserDefaults standardUserDefaults] setObject:name forKey:CEDefaultFontNameKey];
-    [[NSUserDefaults standardUserDefaults] setFloat:size forKey:CEDefaultFontSizeKey];
+    [[NSUserDefaults standardUserDefaults] setObject:[newFont fontName] forKey:CEDefaultFontNameKey];
+    [[NSUserDefaults standardUserDefaults] setDouble:[newFont pointSize] forKey:CEDefaultFontSizeKey];
     [self setFontFamilyNameAndSize];
 }
 
