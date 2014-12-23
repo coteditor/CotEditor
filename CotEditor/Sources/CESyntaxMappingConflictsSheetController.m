@@ -86,8 +86,8 @@
     NSMutableArray *conflicts = [NSMutableArray array];
     for (NSString *key in conflictDict) {
         NSMutableArray *styles = [conflictDict[key] mutableCopy];
-        NSString *primaryStyle = styles[0];
-        [styles removeObjectAtIndex:0];
+        NSString *primaryStyle = [styles firstObject];
+        [styles removeObjectIdenticalTo:primaryStyle];
         [conflicts addObject:@{@"name": key,
                                @"primaryStyle": primaryStyle,
                                @"doubledStyles":  [styles componentsJoinedByString:@", "]}];

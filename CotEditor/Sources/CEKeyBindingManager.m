@@ -205,7 +205,7 @@ static NSDictionary *kUnprintableKeyTable;
         } else {
             keys = [[self textKeyBindingDict] allKeysForObject:selector];
         }
-        NSString *key = ([keys count] > 0) ? keys[0] : @"";
+        NSString *key = [keys firstObject] ? : @"";
         
         [textKeySpecCharArray addObject:[@{CEKeyBindingTitleKey: selector,
                                            CEKeyBindingKeySpecCharsKey: key,
@@ -272,7 +272,7 @@ static NSDictionary *kUnprintableKeyTable;
 {
     NSArray *keys = [[self defaultMenuKeyBindingDict] allKeysForObject:selectorString];
     
-    return ([keys count] > 0) ? (NSString *)keys[0] : @"";
+    return [keys firstObject] ? : @"";
 }
 
 
@@ -503,7 +503,7 @@ static NSDictionary *kUnprintableKeyTable;
 - (void)resetKeyBindingWithDictionaryTo:(NSMenu *)menu
 //------------------------------------------------------
 {
-    BOOL isJapaneseResource = [[[NSBundle mainBundle] preferredLocalizations][0] isEqualToString:@"ja"];
+    BOOL isJapaneseResource = [[[[NSBundle mainBundle] preferredLocalizations] firstObject] isEqualToString:@"ja"];
     NSString *yen = [NSString stringWithCharacters:&kYenMark length:1];
     
     // NSMenu の indexOfItemWithTarget:andAction: だと取得できないメニューアイテムがあるため、メニューをひとつずつなめる
@@ -575,7 +575,7 @@ static NSDictionary *kUnprintableKeyTable;
 {
     NSArray *keys = [[self menuKeyBindingDict] allKeysForObject:selectorString];
     
-    return ([keys count] > 0) ? keys[0] : @"";
+    return [keys firstObject] ? : @"";
 }
 
 

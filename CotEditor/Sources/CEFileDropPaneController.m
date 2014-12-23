@@ -281,7 +281,7 @@
     if (![self isDeletingFileDrop]) { return; }
     
     NSArray *selected = [[self fileDropController] selectedObjects];
-    NSString *extension = selected[0][CEFileDropExtensionsKey];
+    NSString *extension = [selected firstObject][CEFileDropExtensionsKey];
     if ([selected count] == 0) {
         return;
     } else if (!extension) {

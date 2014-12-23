@@ -241,7 +241,7 @@
         
         if (result == NSFileHandlingPanelCancelButton) return;
         
-        NSURL *URL = [openPanel URLs][0];
+        NSURL *URL = [openPanel URL];
         NSString *styleName = [[URL lastPathComponent] stringByDeletingPathExtension];
         
         // 同名styleが既にあるときは、置換してもいいか確認
@@ -412,7 +412,7 @@
 - (NSString *)selectedStyleName
 // ------------------------------------------------------
 {
-    return [[self stylesController] selectedObjects][0];
+    return [[[self stylesController] selectedObjects] firstObject];
 }
 
 

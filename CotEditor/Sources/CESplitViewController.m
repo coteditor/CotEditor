@@ -352,7 +352,7 @@
     if (index < 0) {
         nextSubview = [subviews lastObject];
     } else if (index >= count) {
-        nextSubview = subviews[0];
+        nextSubview = [subviews firstObject];
     } else {
         nextSubview = subviews[index];
     }

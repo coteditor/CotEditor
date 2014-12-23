@@ -541,7 +541,7 @@
     }
     
     // 入力済みの単語と同じ候補しかないときは表示しない
-    if ([outWords count] == 1 && [outWords[0] caseInsensitiveCompare:partialWord] == NSOrderedSame) {
+    if ([outWords count] == 1 && [[outWords firstObject] caseInsensitiveCompare:partialWord] == NSOrderedSame) {
         return nil;
     }
 

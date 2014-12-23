@@ -128,7 +128,7 @@ static NSTimeInterval secondColoringDelay;
         [self setNextResponder:[self splitViewController]];
     }
     
-    CEEditorView *editorView = [[[self splitViewController] view] subviews][0];
+    CEEditorView *editorView = [[[[self splitViewController] view] subviews] firstObject];
     [editorView setEditorWrapper:self];
     [self setTextView:[editorView textView]];
     

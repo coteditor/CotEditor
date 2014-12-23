@@ -154,7 +154,7 @@
 - (void)swapView:(NSView *)newView
 // ------------------------------------------------------
 {
-    NSView *currentView = [[self slideView] subviews][0];
+    NSView *currentView = [[[self slideView] subviews] firstObject];
     
     [[[self slideView] animator] replaceSubview:currentView with:newView];
 }

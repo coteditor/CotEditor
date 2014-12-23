@@ -115,7 +115,7 @@
     
     if ([selectedIncompatibles count] == 0) { return; }
     
-    NSRange range = [selectedIncompatibles[0][CEIncompatibleRangeKey] rangeValue];
+    NSRange range = [[selectedIncompatibles firstObject][CEIncompatibleRangeKey] rangeValue];
     CEEditorWrapper *editor = [[self document] editor];
     NSTextView *textView = [editor textView];
     

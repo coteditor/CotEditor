@@ -131,7 +131,7 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
     [super windowDidLoad];
     
     // 最初のビューを選ぶ
-    NSToolbarItem *leftmostItem = [[[self window] toolbar] items][0];
+    NSToolbarItem *leftmostItem = [[[[self window] toolbar] items] firstObject];
     [[[self window] toolbar] setSelectedItemIdentifier:[leftmostItem itemIdentifier]];
     [self switchView:leftmostItem];
     [[self window] center];

@@ -323,7 +323,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
         NSArray *extensions = [[CESyntaxManager sharedManager] extensionsForStyleName:styleName];
         
         if ([extensions count] > 0) {
-            fileName = [fileName stringByAppendingPathExtension:extensions[0]];
+            fileName = [fileName stringByAppendingPathExtension:[extensions firstObject]];
         }
     }
     
