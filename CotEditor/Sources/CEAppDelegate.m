@@ -157,7 +157,7 @@
                                CEDefaultCompletionWordsKey: @2U,
                                CEDefaultShowPageGuideKey: @NO,
                                CEDefaultPageGuideColumnKey: @80,
-                               CEDefaultLineSpacingKey: @0.3f,
+                               CEDefaultLineSpacingKey: @0.1f,
                                CEDefaultSwapYenAndBackSlashKey: @NO,
                                CEDefaultFixLineHeightKey: @YES,
                                CEDefaultHighlightBracesKey: @YES,
