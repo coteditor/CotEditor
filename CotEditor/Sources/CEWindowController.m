@@ -421,6 +421,21 @@ static NSTimeInterval infoUpdateInterval;
 }
 
 
+// ------------------------------------------------------
+/// store current sidebar width
+- (void)splitViewDidResizeSubviews:(NSNotification *)notification
+// ------------------------------------------------------
+{
+    if ([notification userInfo][@"NSSplitViewDividerIndex"]) {  // check wheter the change coused by user's divider dragging
+        if ([self isSidebarShown]) {
+            CGFloat currentWidth = NSWidth([[self sidebar] bounds]);
+            [self setSidebarWidth:currentWidth];
+            [[NSUserDefaults standardUserDefaults] setDouble:currentWidth forKey:CEDefaultSidebarWidthKey];
+        }
+    }
+}
+
+
 
 #pragma mark Action Messages
 
@@ -483,27 +498,19 @@ static NSTimeInterval infoUpdateInterval;
         [self setSelectedSidebarTag:CEDocumentInspectorTag];
     }
     
-    CGFloat width;
+    CGFloat position = [[self sidebarSplitView] maxPossiblePositionOfDividerAtIndex:0];
     if (shown) {
-        width = [self sidebarWidth] ?: [[NSUserDefaults standardUserDefaults] doubleForKey:CEDefaultSidebarWidthKey];
-        
-    } else {
-        width = 0;
-        
-        // store current sidebar width
-        if ([[self window] isVisible]) {  // ignore initial hide
-            CGFloat currentWidth = NSWidth([[self sidebar] bounds]);
-            [self setSidebarWidth:currentWidth];
-            [[NSUserDefaults standardUserDefaults] setDouble:currentWidth forKey:CEDefaultSidebarWidthKey];
-        }
-        
+        position -= [self sidebarWidth] ?: [[NSUserDefaults standardUserDefaults] doubleForKey:CEDefaultSidebarWidthKey];
+        position -= [[self sidebarSplitView] dividerThickness];
+    }
+    
+    [[self sidebarSplitView] setPosition:position ofDividerAtIndex:0];
+    [[self sidebarSplitView] adjustSubviews];
+    
+    if (!shown) {
         // clear incompatible chars markup
         [[self editor] clearAllMarkup];
     }
-    
-    CGFloat maxWidth = [[self sidebarSplitView] maxPossiblePositionOfDividerAtIndex:0];
-    [[self sidebarSplitView] setPosition:(maxWidth - width) ofDividerAtIndex:0];
-    [[self sidebarSplitView] adjustSubviews];
 }
 
 
