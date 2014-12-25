@@ -138,10 +138,10 @@
 "Shift Left" = "左へシフト";
 "Comment Out" = "コメントアウト";
 "Uncomment" = "コメント解除";
-"To Fullwidth (ja_JP/Roman)" = "全角英数に";
-"To Halfwidth (ja_JP/Roman)" = "半角英数に";
-"Hiragana to Katakana (ja_JP)" = "ひらがなをカタカナに";
-"Katakana to Hiragana (ja_JP)" = "カタカナをひらがなに";
+"To Fullwidth Roman" = "全角英数に";
+"To Halfwidth Roman" = "半角英数に";
+"Hiragana to Katakana" = "ひらがなをカタカナに";
+"Katakana to Hiragana" = "カタカナをひらがなに";
 "NFD" = "NFD";
 "NFC" = "NFC";
 "NFKD" = "NFKD";

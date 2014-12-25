@@ -336,9 +336,11 @@
 /* Class = "NSMenuItem"; title = "Fullwidth ASCII to ASCII"; ObjectID = "588"; */
 "588.title" = "半角英数に";
 
-/* Class = "NSMenuItem"; title = "Hiragana to Katakana (ja_JP)"; ObjectID = "592"; */
+/* Class = "NSMenuItem"; title = "Japanese Text"; ObjectID = "XWV-by-mnw"; */
+"XWV-by-mnw.title" = "日本語テキスト";
+/* Class = "NSMenuItem"; title = "Hiragana to Katakana"; ObjectID = "592"; */
 "592.title" = "ひらがなをカタカナに";
-/* Class = "NSMenuItem"; title = "Katakana to Hiragana (ja_JP)"; ObjectID = "594"; */
+/* Class = "NSMenuItem"; title = "Katakana to Hiragana"; ObjectID = "594"; */
 "594.title" = "カタカナをひらがなに";
 
 /* Class = "NSMenu"; title = "Unicode Normalization"; ObjectID = "600"; */

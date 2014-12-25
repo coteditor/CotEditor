@@ -335,10 +335,12 @@
 /* Class = "NSMenuItem"; title = "Fullwidth ASCII to ASCII"; ObjectID = "588"; */
 "588.title" = "全宽 ASCII 到 ASCII";
 
-/* Class = "NSMenuItem"; title = "Hiragana to Katakana (ja_JP)"; ObjectID = "592"; */
-"592.title" = "平假名到片假名 (ja_JP)";
-/* Class = "NSMenuItem"; title = "Katakana to Hiragana (ja_JP)"; ObjectID = "594"; */
-"594.title" = "片假名到平假名 (ja_JP)";
+/* Class = "NSMenuItem"; title = "Japanese Text"; ObjectID = "XWV-by-mnw"; */
+"XWV-by-mnw.title" = "Japanese Text";  // FIXME:
+/* Class = "NSMenuItem"; title = "Hiragana to Katakana"; ObjectID = "592"; */
+"592.title" = "平假名到片假名";
+/* Class = "NSMenuItem"; title = "Katakana to Hiragana"; ObjectID = "594"; */
+"594.title" = "片假名到平假名";
 
 /* Class = "NSMenu"; title = "Unicode Normalization"; ObjectID = "600"; */
 "600.title" = "Unicode 标准化";

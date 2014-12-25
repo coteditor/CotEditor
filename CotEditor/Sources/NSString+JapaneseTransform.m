@@ -37,19 +37,18 @@
 - (NSString *)fullWidthRomanString
 // ------------------------------------------------------
 {
-    NSMutableString *fullRoman = [NSMutableString string];
-    NSCharacterSet *latinCharSet = [NSCharacterSet characterSetWithRange:NSMakeRange((NSUInteger)'!', 94)];
+    NSMutableString *string = [NSMutableString string];
+    NSCharacterSet *latinCharSet = [NSCharacterSet characterSetWithRange:NSMakeRange('!', 94)];
     NSUInteger count = [self length];
     
     for (NSUInteger i = 0; i < count; i++) {
-        unichar theChar = [self characterAtIndex:i];
-        if ([latinCharSet characterIsMember:theChar]) {
-            [fullRoman appendString:[NSString stringWithFormat:@"%C", (unichar)(theChar + 65248)]];
-        } else {
-            [fullRoman appendString:[self substringWithRange:NSMakeRange(i, 1)]];
+        unichar character = [self characterAtIndex:i];
+        if ([latinCharSet characterIsMember:character]) {
+            character += 65248;
         }
+        [string appendFormat:@"%C", character];
     }
-    return fullRoman;
+    return [string copy];
 }
 
 
@@ -58,19 +57,18 @@
 - (NSString *)halfWidthRomanString
 // ------------------------------------------------------
 {
-    NSMutableString *halfRoman = [NSMutableString string];
+    NSMutableString *string = [NSMutableString string];
     NSCharacterSet *fullwidthCharSet = [NSCharacterSet characterSetWithRange:NSMakeRange(65281, 94)];
     NSUInteger count = [self length];
     
     for (NSUInteger i = 0; i < count; i++) {
-        unichar theChar = [self characterAtIndex:i];
-        if ([fullwidthCharSet characterIsMember:theChar]) {
-            [halfRoman appendString:[NSString stringWithFormat:@"%C", (unichar)(theChar - 65248)]];
-        } else {
-            [halfRoman appendString:[self substringWithRange:NSMakeRange(i, 1)]];
+        unichar character = [self characterAtIndex:i];
+        if ([fullwidthCharSet characterIsMember:character]) {
+            character -= 65248;
         }
+        [string appendFormat:@"%C", character];
     }
-    return halfRoman;
+    return [string copy];
 }
 
 
@@ -79,11 +77,11 @@
 - (NSString *)katakanaString
 // ------------------------------------------------------
 {
-    NSMutableString* katakana = [self mutableCopy];
+    NSMutableString* string = [self mutableCopy];
     
-    CFStringTransform((CFMutableStringRef)katakana, NULL, kCFStringTransformHiraganaKatakana, false);
+    CFStringTransform((CFMutableStringRef)string, NULL, kCFStringTransformHiraganaKatakana, false);
     
-    return [katakana copy];
+    return [string copy];
 }
 
 
@@ -92,11 +90,11 @@
 - (NSString *)hiraganaString
 // ------------------------------------------------------
 {
-    NSMutableString* hiragana = [self mutableCopy];
+    NSMutableString* string = [self mutableCopy];
     
-    CFStringTransform((CFMutableStringRef)hiragana, NULL, kCFStringTransformHiraganaKatakana, true);
+    CFStringTransform((CFMutableStringRef)string, NULL, kCFStringTransformHiraganaKatakana, true);
     
-    return [hiragana copy];
+    return [string copy];
 }
 
 @end

@@ -2261,7 +2261,7 @@ typedef NS_ENUM(NSUInteger, CEUnicodeNormalizationForm) {
     if (newStr) {
         [self doInsertString:newStr withRange:selectedRange
                 withSelected:NSMakeRange(selectedRange.location, [newStr length])
-              withActionName:NSLocalizedString(@"To Fullwidth (ja_JP/Roman)", nil) scroll:YES];
+              withActionName:NSLocalizedString(@"To Fullwidth Roman", nil) scroll:YES];
     }
 }
 
@@ -2279,7 +2279,7 @@ typedef NS_ENUM(NSUInteger, CEUnicodeNormalizationForm) {
     if (newStr) {
         [self doInsertString:newStr withRange:selectedRange
                 withSelected:NSMakeRange(selectedRange.location, [newStr length])
-              withActionName:NSLocalizedString(@"To Halfwidth (ja_JP/Roman)", nil) scroll:YES];
+              withActionName:NSLocalizedString(@"To Halfwidth Roman", nil) scroll:YES];
     }
 }
 
@@ -2297,7 +2297,7 @@ typedef NS_ENUM(NSUInteger, CEUnicodeNormalizationForm) {
     if (newStr) {
         [self doInsertString:newStr withRange:selectedRange
                 withSelected:NSMakeRange(selectedRange.location, [newStr length])
-              withActionName:NSLocalizedString(@"Hiragana to Katakana (ja_JP)",@"") scroll:YES];
+              withActionName:NSLocalizedString(@"Hiragana to Katakana",@"") scroll:YES];
     }
 }
 
@@ -2315,7 +2315,7 @@ typedef NS_ENUM(NSUInteger, CEUnicodeNormalizationForm) {
     if (newStr) {
         [self doInsertString:newStr withRange:selectedRange
                 withSelected:NSMakeRange(selectedRange.location, [newStr length])
-              withActionName:NSLocalizedString(@"Katakana to Hiragana (ja_JP)",@"") scroll:YES];
+              withActionName:NSLocalizedString(@"Katakana to Hiragana",@"") scroll:YES];
     }
 }
 

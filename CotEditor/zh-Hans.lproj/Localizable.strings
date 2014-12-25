@@ -136,10 +136,10 @@
 "Shift Left" = "左移";
 "Comment Out" = "注释";
 "Uncomment" = "取消注释";
-"To Fullwidth (ja_JP/Roman)" = "转为全角";
-"To Halfwidth (ja_JP/Roman)" = "转为半角";
-"Hiragana to Katakana (ja_JP)" = "平假名到片假名";
-"Katakana to Hiragana (ja_JP)" = "片假名到平假名";
+"To Fullwidth Roman" = "转为全角";
+"To Halfwidth Roman" = "转为半角";
+"Hiragana to Katakana" = "平假名到片假名";
+"Katakana to Hiragana" = "片假名到平假名";
 "NFD" = "NFD";
 "NFC" = "NFC";
 "NFKD" = "NFKD";
