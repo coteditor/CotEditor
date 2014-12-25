@@ -29,6 +29,7 @@
  */
 
 #import "CEAppDelegate.h"
+#import <OgreKit/OgreTextFinder.h>
 #import "CESyntaxManager.h"
 #import "CEEncodingManager.h"
 #import "CEKeyBindingManager.h"
@@ -284,6 +285,19 @@
                                              selector:@selector(buildThemeMenu)
                                                  name:CEThemeListDidUpdateNotification
                                                object:nil];
+}
+
+
+//=======================================================
+// informal protocol of OgreKit
+//=======================================================
+
+// ------------------------------------------------------
+/// avoid OgreKit find panel handling rich text (see OgreTextFinder.m L203-212 for details)
+- (void)ogreKitShouldUseStylesInFindPanel:(OgreTextFinder*)textFinder
+// ------------------------------------------------------
+{
+    [textFinder setUseStylesInFindPanel:NO];
 }
 
 
