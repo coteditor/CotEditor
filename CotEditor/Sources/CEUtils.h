@@ -35,19 +35,15 @@
 
 /// returns substitute character for invisible space to display
 + (unichar)invisibleSpaceChar:(NSUInteger)index;
-+ (NSString *)invisibleSpaceCharacter:(NSUInteger)index;
 
 /// returns substitute character for invisible tab character to display
 + (unichar)invisibleTabChar:(NSUInteger)index;
-+ (NSString *)invisibleTabCharacter:(NSUInteger)index;
 
 /// returns substitute character for invisible new line character to display
 + (unichar)invisibleNewLineChar:(NSUInteger)index;
-+ (NSString *)invisibleNewLineCharacter:(NSUInteger)index;
 
 /// returns substitute character for invisible full-width to display
 + (unichar)invisibleFullwidthSpaceChar:(NSUInteger)index;
-+ (NSString *)invisibleFullwidthSpaceCharacter:(NSUInteger)index;
 
 /// returns corresponding NSStringEncoding from a encoding name
 + (NSStringEncoding)encodingFromName:(NSString *)encodingName;

@@ -73,17 +73,6 @@ static const NSArray *invalidYenEncodings;
 
 
 // ------------------------------------------------------
-/// returns substitute character for invisible space in NSString type
-+ (NSString *)invisibleSpaceCharacter:(NSUInteger)index
-// ------------------------------------------------------
-{
-    unichar theUnichar = [CEUtils invisibleSpaceChar:index];
-    
-    return [NSString stringWithCharacters:&theUnichar length:1];
-}
-
-
-// ------------------------------------------------------
 /// returns substitute character for invisible tab character
 + (unichar)invisibleTabChar:(NSUInteger)index
 // ------------------------------------------------------
@@ -92,17 +81,6 @@ static const NSArray *invalidYenEncodings;
     NSUInteger sanitizedIndex = MIN(max, index);
     
     return kInvisibleTabCharList[sanitizedIndex];
-}
-
-
-// ------------------------------------------------------
-/// returns substitute character for invisible tab character in NSString type
-+ (NSString *)invisibleTabCharacter:(NSUInteger)index
-// ------------------------------------------------------
-{
-    unichar theUnichar = [CEUtils invisibleTabChar:index];
-    
-    return [NSString stringWithCharacters:&theUnichar length:1];
 }
 
 
@@ -119,17 +97,6 @@ static const NSArray *invalidYenEncodings;
 
 
 // ------------------------------------------------------
-/// returns substitute character for invisible new line character in NSString type
-+ (NSString *)invisibleNewLineCharacter:(NSUInteger)index
-// ------------------------------------------------------
-{
-    unichar theUnichar = [CEUtils invisibleNewLineChar:index];
-    
-    return [NSString stringWithCharacters:&theUnichar length:1];
-}
-
-
-// ------------------------------------------------------
 /// returns substitute character for invisible full-width space
 + (unichar)invisibleFullwidthSpaceChar:(NSUInteger)index
 // ------------------------------------------------------
@@ -138,17 +105,6 @@ static const NSArray *invalidYenEncodings;
     NSUInteger sanitizedIndex = MIN(max, index);
     
     return kInvisibleFullwidthSpaceCharList[sanitizedIndex];
-}
-
-
-// ------------------------------------------------------
-/// returns substitute character for invisible full-width space in NSString type
-+ (NSString *)invisibleFullwidthSpaceCharacter:(NSUInteger)index
-// ------------------------------------------------------
-{
-    unichar theUnichar = [CEUtils invisibleFullwidthSpaceChar:index];
-    
-    return [NSString stringWithCharacters:&theUnichar length:1];
 }
 
 

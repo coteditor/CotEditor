@@ -60,28 +60,28 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // 不可視文字表示ポップアップ用の選択肢をセットする
+        // setup popup menu items for invisible characters
         NSMutableArray *spaces = [NSMutableArray arrayWithCapacity:kSizeOfInvisibleSpaceCharList];
         for (NSUInteger i = 0; i < kSizeOfInvisibleSpaceCharList; i++) {
-            [spaces addObject:[CEUtils invisibleSpaceCharacter:i]];
+            [spaces addObject:[NSString stringWithFormat:@"%C", [CEUtils invisibleSpaceChar:i]]];
         }
         _invisibleSpaces = spaces;
         
         NSMutableArray *tabs = [NSMutableArray arrayWithCapacity:kSizeOfInvisibleTabCharList];
         for (NSUInteger i = 0; i < kSizeOfInvisibleTabCharList; i++) {
-            [tabs addObject:[CEUtils invisibleTabCharacter:i]];
+            [tabs addObject:[NSString stringWithFormat:@"%C", [CEUtils invisibleTabChar:i]]];
         }
         _invisibleTabs = tabs;
         
         NSMutableArray *newLines = [NSMutableArray arrayWithCapacity:kSizeOfInvisibleNewLineCharList];
         for (NSUInteger i = 0; i < kSizeOfInvisibleNewLineCharList; i++) {
-            [newLines addObject:[CEUtils invisibleNewLineCharacter:i]];
+            [newLines addObject:[NSString stringWithFormat:@"%C", [CEUtils invisibleNewLineChar:i]]];
         }
         _invisibleNewLines = newLines;
         
         NSMutableArray *fullWidthSpaces = [NSMutableArray arrayWithCapacity:kSizeOfInvisibleFullwidthSpaceCharList];
         for (NSUInteger i = 0; i < kSizeOfInvisibleFullwidthSpaceCharList; i++) {
-            [fullWidthSpaces addObject:[CEUtils invisibleFullwidthSpaceCharacter:i]];
+            [fullWidthSpaces addObject:[NSString stringWithFormat:@"%C", [CEUtils invisibleFullwidthSpaceChar:i]]];
         }
         _invisibleFullWidthSpaces = fullWidthSpaces;
     }
