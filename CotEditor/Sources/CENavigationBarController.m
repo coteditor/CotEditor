@@ -62,11 +62,6 @@ static const NSTimeInterval kDuration = 0.25;
 
 #pragma mark Superclass Methods
 
-//=======================================================
-// Superclass method
-//
-//=======================================================
-
 // ------------------------------------------------------
 /// designated initializer
 - (instancetype)init
@@ -103,11 +98,6 @@ static const NSTimeInterval kDuration = 0.25;
 
 #pragma mark Public Methods
 
-//=======================================================
-// Public method
-//
-//=======================================================
-
 // ------------------------------------------------------
 /// set to show navigation bar.
 - (void)setShown:(BOOL)isShown animate:(BOOL)performAnimation
@@ -132,7 +122,7 @@ static const NSTimeInterval kDuration = 0.25;
 
 
 // ------------------------------------------------------
-/// 配列を元にアウトラインメニューを生成
+/// build outline menu from given array
 - (void)setOutlineMenuArray:(NSArray *)outlineItems
 // ------------------------------------------------------
 {
@@ -182,7 +172,8 @@ static const NSTimeInterval kDuration = 0.25;
             [menu addItem:menuItem];
         }
     }
-    // （メニューの再描画時のちらつき防止のため、ここで選択項目をセットする 2008.05.17.）
+    
+    // set Buttons status here to avoid flicking (2008-05-17)
     [self selectOutlineMenuItemWithRange:[[self textView] selectedRange]];
     [[self outlineMenu] setMenu:menu];
     [[self outlineMenu] setHidden:NO];
@@ -192,7 +183,7 @@ static const NSTimeInterval kDuration = 0.25;
 
 
 // ------------------------------------------------------
-/// アウトラインメニューの選択項目を設定
+/// set outline menu selection
 - (void)selectOutlineMenuItemWithRange:(NSRange)range
 // ------------------------------------------------------
 {
@@ -217,7 +208,7 @@ static const NSTimeInterval kDuration = 0.25;
     }
     // ループを抜けた時点で「次のアイテムインデックス」になっているので、減ずる
     i--;
-    // セパレータを除外
+    // skip separators
     while ([[[self outlineMenu] itemAtIndex:i] isSeparatorItem]) {
         i--;
         if (i < 0) {
@@ -230,7 +221,7 @@ static const NSTimeInterval kDuration = 0.25;
 
 
 // ------------------------------------------------------
-/// 前／次移動ボタンの有効／無効を切り替え
+/// update enabilities of jump buttons
 - (void)updatePrevNextButtonEnabled
 // ------------------------------------------------------
 {
@@ -296,11 +287,6 @@ static const NSTimeInterval kDuration = 0.25;
 
 
 #pragma mark Action Messages
-
-//=======================================================
-// Action messages
-//
-//=======================================================
 
 // ------------------------------------------------------
 /// set select prev item of outline menu.

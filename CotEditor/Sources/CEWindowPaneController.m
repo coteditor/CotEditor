@@ -48,13 +48,8 @@
 
 #pragma mark Superclass Methods
 
-//=======================================================
-// Superclass method
-//
-//=======================================================
-
 // ------------------------------------------------------
-/// 初期化
+/// initialize
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 // ------------------------------------------------------
 {
@@ -69,13 +64,8 @@
 
 #pragma mark Action Messages
 
-//=======================================================
-// Action messages
-//
-//=======================================================
-
 // ------------------------------------------------------
-/// ビューの不透明度設定が変更された
+/// opaque setting did update
 - (IBAction)changeViewOpaque:(id)sender
 // ------------------------------------------------------
 {
@@ -84,11 +74,11 @@
 
 
 // ------------------------------------------------------
-/// サイズ設定のためのサンプルウィンドウを開く
+/// open sample window for window size setting
 - (IBAction)openSizeSampleWindow:(id)sender
 // ------------------------------------------------------
 {
-    // モーダルで表示
+    // display modal
     CESizeSampleWindowController *sampleWindowController = [[CESizeSampleWindowController alloc] initWithWindowNibName:@"SizeSampleWindow"];
     [sampleWindowController showWindow:sender];
     [NSApp runModalForWindow:[sampleWindowController window]];

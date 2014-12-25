@@ -49,13 +49,8 @@
 
 #pragma mark Superclass Methods
 
-//=======================================================
-// Superclass method
-//
-//=======================================================
-
 // ------------------------------------------------------
-/// ビューの読み込み
+/// setup UI
 - (void)loadView
 // ------------------------------------------------------
 {
@@ -73,7 +68,7 @@
 
 
 // ------------------------------------------------------
-/// あとかたづけ
+/// clean up
 - (void)dealloc
 // ------------------------------------------------------
 {
@@ -81,15 +76,11 @@
 }
 
 
+
 #pragma mark Action Messages
 
-//=======================================================
-// Action messages
-//
-//=======================================================
-
 // ------------------------------------------------------
-/// フォントパネルを表示
+/// show font panel
 - (IBAction)showFonts:(id)sender
 //-------------------------------------------------------
 {
@@ -103,7 +94,7 @@
 
 
 // ------------------------------------------------------
-/// フォントパネルでフォントが変更された
+/// font in font panel did update
 - (void)changeFont:(id)sender
 // ------------------------------------------------------
 {
@@ -118,14 +109,14 @@
 
 
 // ------------------------------------------------------
-/// 印刷用テーマ設定が変更された
+/// color setting did update
 - (IBAction)changePrintTheme:(id)sender
 // ------------------------------------------------------
 {
     NSPopUpButton *popup = (NSPopUpButton *)sender;
     NSUInteger index = [popup indexOfSelectedItem];
     
-    NSString *theme = (index > 2) ? [popup titleOfSelectedItem] : nil;  // 白黒／書類と同じ では印刷用テーマを指定しない
+    NSString *theme = (index > 2) ? [popup titleOfSelectedItem] : nil;  // do not set theme on `Black and White` and `same as document's setting`
     [[NSUserDefaults standardUserDefaults] setObject:theme forKey:CEDefaultPrintThemeKey];
     [[NSUserDefaults standardUserDefaults] setInteger:index forKey:CEDefaultPrintColorIndexKey];
 }
@@ -135,7 +126,7 @@
 #pragma mark Private Methods
 
 //------------------------------------------------------
-/// メインウィンドウのフォントファミリー名とサイズをprefFontFamilyNameSizeに表示させる
+/// display font name and size in the font field
 - (void)setFontFamilyNameAndSize
 //------------------------------------------------------
 {
@@ -149,7 +140,7 @@
 
 
 //------------------------------------------------------
-/// カラー設定ポップアップを設定
+/// setup popup menu for color setting
 - (void)setupColorMenu
 //------------------------------------------------------
 {

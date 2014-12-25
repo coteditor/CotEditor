@@ -36,18 +36,13 @@
 
 #pragma mark Action Messages
 
-//=======================================================
-// Action messages
-//
-//=======================================================
-
 // ------------------------------------------------------
-/// キーバインディング編集シートを開き、閉じる
+/// open key bindng edit sheet
 - (IBAction)openKeyBindingEditSheet:(id)sender
 // ------------------------------------------------------
 {
-    // シートウィンドウを表示してモーダルループに入る
-    // (閉じる命令は CEKeyBindingSheetController の closeSheet: で)
+    // display sheet and start modal loop
+    // (will end on CEKeyBindingSheetController's `closeSheet:`)
     CEKeyBindingSheetController *sheetController = [[CEKeyBindingSheetController alloc] initWithMode:[sender tag]];
     NSWindow *sheet = [sheetController window];
     
@@ -58,7 +53,7 @@
           contextInfo:NULL];
     [NSApp runModalForWindow:sheet];
     
-    // シートを閉じる
+    // close sheet
     [NSApp endSheet:sheet];
     [sheet orderOut:self];
     [[[self view] window] makeKeyAndOrderFront:self];

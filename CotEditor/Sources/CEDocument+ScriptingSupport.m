@@ -43,7 +43,7 @@
 //=======================================================
 
 // ------------------------------------------------------
-/// AppleScriptの返り値としてのtextStorageが更新された
+/// text strage as AppleScript's return value did update
 - (void)textStorageDidProcessEditing:(NSNotification *)notification
 // ------------------------------------------------------
 {
@@ -57,13 +57,8 @@
 
 #pragma mark AppleScript Accessores
 
-//=======================================================
-// AppleScript accessor
-//
-//=======================================================
-
 // ------------------------------------------------------
-/// ドキュメントの文字列を返す(text型)
+/// return whole document string (text type)
 - (NSTextStorage *)textStorage
 // ------------------------------------------------------
 {
@@ -71,7 +66,7 @@
 
     [storage setDelegate:self];
     
-    // 0.5秒後にデリゲートをやめる（放置するとクラッシュの原因になる）
+    // disconnect the delegate after 0.5 sec. (otherwise app may crash)
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [storage setDelegate:nil];
     });
@@ -81,7 +76,7 @@
 
 
 // ------------------------------------------------------
-/// ドキュメントの文字列をセット（全置換）
+/// replase whole document string
 - (void)setTextStorage:(id)object;
 // ------------------------------------------------------
 {
@@ -94,7 +89,7 @@
 
 
 // ------------------------------------------------------
-/// ドキュメントの文字列を返す(text型)
+/// return document string (text type)
 - (NSTextStorage *)contents
 // ------------------------------------------------------
 {
@@ -103,7 +98,7 @@
 
 
 // ------------------------------------------------------
-/// ドキュメントの文字列をセット（全置換）
+/// replase whole document string
 - (void)setContents:(id)object
 // ------------------------------------------------------
 {
@@ -112,7 +107,7 @@
 
 
 // ------------------------------------------------------
-/// ドキュメントの文字数を返す(integer型)
+/// return length of document (integer type)
 - (NSNumber *)length
 // ------------------------------------------------------
 {
@@ -121,7 +116,7 @@
 
 
 // ------------------------------------------------------
-/// 改行コードを返す(enum型)
+/// return new line code (enum type)
 - (CEOSALineEnding)lineEndingChar
 // ------------------------------------------------------
 {
@@ -140,7 +135,7 @@
 
 
 // ------------------------------------------------------
-/// 改行コードをセット
+/// set new line
 - (void)setLineEndingChar:(CEOSALineEnding)lineEndingChar
 // ------------------------------------------------------
 {
@@ -162,7 +157,7 @@
 
 
 // ------------------------------------------------------
-/// エンコーディング名を返す(Unicode text型)
+/// return encoding name (Unicode text type)
 - (NSString *)encodingName
 // ------------------------------------------------------
 {
@@ -171,16 +166,16 @@
 
 
 // ------------------------------------------------------
-/// エンコーディング名の IANA Charset 名を返す(Unicode text型)
+/// return IANA Charset name of encoding (Unicode text type)
 - (NSString *)IANACharSetName
 // ------------------------------------------------------
 {
-    return [self currentIANACharSetName] ? : @"";  // 得られなければ空文字を返す
+    return [self currentIANACharSetName] ? : @"";  // retuns blank string if cannot get
 }
 
 
 // ------------------------------------------------------
-/// カラーリングスタイル名を返す(Unicode text型)
+/// return syntax style name (Unicode text type)
 - (NSString *)coloringStyle
 // ------------------------------------------------------
 {
@@ -189,7 +184,7 @@
 
 
 // ------------------------------------------------------
-/// カラーリングスタイル名をセット
+/// set syntax style
 - (void)setColoringStyle:(NSString *)styleName
 // ------------------------------------------------------
 {
@@ -198,7 +193,7 @@
 
 
 // ------------------------------------------------------
-/// selection-object を返す
+/// return selection-object
 - (CETextSelection *)selectionObject
 // ------------------------------------------------------
 {
@@ -207,7 +202,7 @@
 
 
 // ------------------------------------------------------
-/// 選択範囲へテキストを設定
+/// set text to the selection
 - (void)setSelectionObject:(id)object
 // ------------------------------------------------------
 {
@@ -218,7 +213,7 @@
 
 
 // ------------------------------------------------------
-/// ワードラップの状態を返す
+/// return state of text wrapping
 - (NSNumber *)wrapsLines
 // ------------------------------------------------------
 {
@@ -227,7 +222,7 @@
 
 
 // ------------------------------------------------------
-/// ワードラップを切り替える
+/// toggle warapping state
 - (void)setWrapsLines:(NSNumber *)wrapsLines
 // ------------------------------------------------------
 {
@@ -236,7 +231,7 @@
 
 
 // ------------------------------------------------------
-/// 行間値を返す
+/// return line spacing
 - (NSNumber *)lineSpacing
 // ------------------------------------------------------
 {
@@ -245,7 +240,7 @@
 
 
 // ------------------------------------------------------
-/// 行間値をセット
+/// set line spacing
 - (void)setLineSpacing:(NSNumber *)lineSpacing
 // ------------------------------------------------------
 {
@@ -254,7 +249,7 @@
 
 
 // ------------------------------------------------------
-/// タブ幅を返す
+/// returns tab width (integer type)
 - (NSNumber *)tabWidth
 // ------------------------------------------------------
 {
@@ -263,7 +258,7 @@
 
 
 // ------------------------------------------------------
-/// タブ幅をセット
+/// set tab width
 - (void)setTabWidth:(NSNumber *)tabWidth
 // ------------------------------------------------------
 {
@@ -274,13 +269,8 @@
 
 #pragma mark AppleScript Handlers
 
-//=======================================================
-// AppleScript handler
-//
-//=======================================================
-
 // ------------------------------------------------------
-/// エンコーディングを変更し、テキストをコンバートする
+/// change encoding and convert text
 - (NSNumber *)handleConvertScriptCommand:(NSScriptCommand *)command
 // ------------------------------------------------------
 {
@@ -306,7 +296,7 @@
 
 
 // ------------------------------------------------------
-/// エンコーディングを変更し、テキストを再解釈する
+/// change encoding and reinterpret text
 - (NSNumber *)handleReinterpretScriptCommand:(NSScriptCommand *)command
 // ------------------------------------------------------
 {
@@ -321,9 +311,9 @@
         success = YES;
     } else if ([self readStringFromData:[NSData dataWithContentsOfURL:[self fileURL]] encoding:encoding xattr:NO]) {
         [self setStringToEditor];
-        // ダーティーフラグをクリア
+        // clear dirty flag
         [self updateChangeCount:NSChangeCleared];
-        // ツールバーアイテムの選択状態をセット
+        // update popup menu in the toolbar
         [[[self windowController] toolbarController] setSelectedEncoding:[self encoding]];
         success = YES;
     }
@@ -333,7 +323,7 @@
 
 
 // ------------------------------------------------------
-/// 検索
+/// find
 - (NSNumber *)handleFindScriptCommand:(NSScriptCommand *)command
 // ------------------------------------------------------
 {
@@ -375,7 +365,7 @@
 
 
 // ------------------------------------------------------
-/// 置換
+/// replace
 - (NSNumber *)handleReplaceScriptCommand:(NSScriptCommand *)command
 // ------------------------------------------------------
 {
@@ -417,7 +407,7 @@
     BOOL success = NO;
     NSInteger result = 0;
     if (isAll) {
-        NSMutableString *tmpStr = [wholeStr mutableCopy]; // ===== copy
+        NSMutableString *tmpStr = [wholeStr mutableCopy];
         if (isRegex) {
             result = [tmpStr replaceOccurrencesOfRegularExpressionString:searchStr
                                                               withString:newString options:mask range:targetRange];
@@ -437,7 +427,7 @@
             success = [self doFind:searchStr range:targetRange option:mask withRegularExpression:isRegex];
         }
         if (success) {
-            [[self selection] setContents:newString]; // （CETextSelection の setContents: の引数は NSString も可）
+            [[self selection] setContents:newString];  // CETextSelection's `setContents:` accepts also NSString for its argument
             result = 1;
         }
     }
@@ -447,7 +437,7 @@
 
 
 // ------------------------------------------------------
-/// スクロール実行
+/// scroll to make selection visible
 - (void)handleScrollScriptCommand:(NSScriptCommand *)command
 // ------------------------------------------------------
 {
@@ -457,7 +447,7 @@
 
 
 // ------------------------------------------------------
-/// 指定された範囲の文字列を返す
+/// return sting in the specified range
 - (NSString *)handleStringScriptCommand:(NSScriptCommand *)command
 // ------------------------------------------------------
 {
@@ -479,13 +469,8 @@
 
 #pragma mark Private Method
 
-//=======================================================
-// Private method
-//
-//=======================================================
-
 // ------------------------------------------------------
-/// 文字列を検索し、見つかったら選択して結果を返す
+/// find string, select if found and return whether succeed
 - (BOOL)doFind:(NSString *)searchString range:(NSRange)range
             option:(unsigned)option withRegularExpression:(BOOL)isRegex
 // ------------------------------------------------------

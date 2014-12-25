@@ -109,18 +109,18 @@
 
 
 // ------------------------------------------------------
-/// オープンパネルを開くときにエンコーディング指定メニューを付加する
+/// add encoding menu to open panel
 - (NSInteger)runModalOpenPanel:(NSOpenPanel *)openPanel forTypes:(NSArray *)extensions
 // ------------------------------------------------------
 {
-    // エンコーディングメニューを初期化し、ビューをセット
+    // initialize encoding menu and set the accessory view
     if (![self openPanelAccessoryView]) {
         [[NSBundle mainBundle] loadNibNamed:@"OpenDocumentAccessory" owner:self topLevelObjects:nil];
     }
     [self buildEncodingPopupButton];
     [openPanel setAccessoryView:[self openPanelAccessoryView]];
 
-    // 非表示ファイルも表示有無
+    // set visibility of the hidden files
     [openPanel setTreatsFilePackagesAsDirectories:[self showsHiddenFiles]];
     [openPanel setShowsHiddenFiles:[self showsHiddenFiles]];
     [self setShowsHiddenFiles:NO];  // reset flag
@@ -141,7 +141,7 @@
 #pragma mark Action Messages
 
 // ------------------------------------------------------
-/// ドキュメントを開く
+/// show open panel displaying hidden files
 - (IBAction)openHiddenDocument:(id)sender
 // ------------------------------------------------------
 {
@@ -155,7 +155,7 @@
 #pragma mark Private Methods
 
 // ------------------------------------------------------
-/// オープンパネルのエンコーディングメニューを再構築
+/// update encoding menu in the open panel
 - (void)buildEncodingPopupButton
 // ------------------------------------------------------
 {
@@ -177,7 +177,7 @@
 
 
 // ------------------------------------------------------
-/// エンコーディングメニューの選択を初期化
+/// reset selection of the encoding menu
 - (void)resetAccessorySelectedEncoding
 // ------------------------------------------------------
 {

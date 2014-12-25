@@ -69,7 +69,7 @@ static BOOL usesTextFontForInvisibles;
 #pragma mark Superclass Class Methods
 
 // ------------------------------------------------------
-/// クラスの初期化
+/// initialize class
 + (void)initialize
 // ------------------------------------------------------
 {
@@ -83,13 +83,8 @@ static BOOL usesTextFontForInvisibles;
 
 #pragma mark NSLayoutManager Methods
 
-//=======================================================
-// NSLayoutManager method
-//
-//=======================================================
-
 // ------------------------------------------------------
-/// 初期化
+/// initialize
 - (instancetype)init
 // ------------------------------------------------------
 {
@@ -287,11 +282,6 @@ static BOOL usesTextFontForInvisibles;
 
 #pragma mark Public Methods
 
-//=======================================================
-// Public method
-//
-//=======================================================
-
 // ------------------------------------------------------
 /// [NSGraphicsContext currentContextDrawingToScreen] は真を返す時があるため、印刷用かを保持する専用フラグを用意
 - (void)setPrinting:(BOOL)printing
@@ -378,12 +368,7 @@ static BOOL usesTextFontForInvisibles;
 
 
 
-#pragma mark - Private Methods
-
-//=======================================================
-// Private method
-//
-//=======================================================
+#pragma mark Private Methods
 
 //------------------------------------------------------
 /// グリフを描画する位置を返す

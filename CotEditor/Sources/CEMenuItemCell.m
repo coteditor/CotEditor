@@ -36,7 +36,7 @@
 #pragma mark Superclass Methods
 
 // ------------------------------------------------------
-/// セルの描画
+/// draw cell
 - (void)drawInteriorWithFrame:(NSRect)cellFrame inView:(NSView *)controlView
 // ------------------------------------------------------
 {
@@ -55,7 +55,7 @@
 #pragma mark Public Methods
 
 // ------------------------------------------------------
-/// 自身がセパレータかどうかを返す
+/// whether itself is a separator item
 - (BOOL)isSeparator
 // ------------------------------------------------------
 {

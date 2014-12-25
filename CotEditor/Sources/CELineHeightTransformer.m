@@ -34,11 +34,6 @@
 
 #pragma mark Class Methods
 
-//=======================================================
-// Class method
-//
-//=======================================================
-
 // ------------------------------------------------------
 /// Class of transformed value
 + (Class)transformedValueClass
@@ -59,11 +54,6 @@
 
 
 #pragma mark NSValueTransformer Methods
-
-//=======================================================
-// NSValueTransformer method
-//
-//=======================================================
 
 // ------------------------------------------------------
 /// From line spacing to line height (NSNumber -> NSNumber)

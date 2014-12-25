@@ -82,13 +82,8 @@ typedef NS_ENUM(NSUInteger, CETabIndex) {
 
 #pragma mark Superclass Methods
 
-//=======================================================
-// Superclass method
-//
-//=======================================================
-
 // ------------------------------------------------------
-/// 初期化
+/// initialize
 - (instancetype)initWithStyle:(NSString *)styleName mode:(CESyntaxEditSheetMode)mode
 // ------------------------------------------------------
 {
@@ -125,8 +120,9 @@ typedef NS_ENUM(NSUInteger, CETabIndex) {
     return self;
 }
 
+
 // ------------------------------------------------------
-/// ウインドウロード直後
+/// setup UI
 - (void)windowDidLoad
 // ------------------------------------------------------
 {
@@ -230,11 +226,6 @@ typedef NS_ENUM(NSUInteger, CETabIndex) {
 
 #pragma mark Action Messages
 
-//=======================================================
-// Action messages
-//
-//=======================================================
-
 // ------------------------------------------------------
 /// スタイルの内容を出荷時設定に戻す
 - (IBAction)setToFactoryDefaults:(id)sender
@@ -310,11 +301,6 @@ typedef NS_ENUM(NSUInteger, CETabIndex) {
 
 
 #pragma mark Private Mthods
-
-//=======================================================
-// Private method
-//
-//=======================================================
 
 // ------------------------------------------------------
 /// メニュー項目を返す

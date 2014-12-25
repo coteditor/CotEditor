@@ -32,7 +32,10 @@
 
 @implementation NSString (ComposedCharacter)
 
+// ------------------------------------------------------
+/// number of composed characters in the whole string
 - (NSUInteger)numberOfComposedCharacters
+// ------------------------------------------------------
 {
     // normalize using NFC
     NSString *string = [self precomposedStringWithCanonicalMapping];

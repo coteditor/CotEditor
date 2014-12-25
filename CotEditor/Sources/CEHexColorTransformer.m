@@ -35,11 +35,6 @@
 
 #pragma mark Class Methods
 
-//=======================================================
-// Class method
-//
-//=======================================================
-
 // ------------------------------------------------------
 /// Class of transformed value
 + (Class)transformedValueClass
@@ -60,11 +55,6 @@
 
 
 #pragma mark NSValueTransformer Methods
-
-//=======================================================
-// NSValueTransformer method
-//
-//=======================================================
 
 // ------------------------------------------------------
 /// From color code hex to NSColor (NSString -> NSColor)

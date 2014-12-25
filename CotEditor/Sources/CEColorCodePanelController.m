@@ -50,11 +50,6 @@
 
 #pragma mark Class Methods
 
-//=======================================================
-// Class method
-//
-//=======================================================
-
 // ------------------------------------------------------
 /// return singleton instance
 + (instancetype)sharedController
@@ -74,13 +69,8 @@
 
 #pragma mark Superclass Methods
 
-//=======================================================
-// Superclass method
-//
-//=======================================================
-
 // ------------------------------------------------------
-/// 初期化
+/// initialize
 - (instancetype)init
 // ------------------------------------------------------
 {
@@ -95,13 +85,8 @@
 
 #pragma mark Public Methods
 
-//=======================================================
-// Public method
-//
-//=======================================================
-
 // ------------------------------------------------------
-/// カラーコードから色をセットする
+/// set color to color panel from color code
 - (void)setColorWithCode:(NSString *)colorCode
 // ------------------------------------------------------
 {
@@ -132,7 +117,7 @@
 //=======================================================
 
 // ------------------------------------------------------
-/// パネルをクローズ
+/// panel will close
 - (void)windowWillClose:(NSNotification *)notification
 // ------------------------------------------------------
 {
@@ -147,17 +132,12 @@
 
 #pragma mark Action Messages
 
-//=======================================================
-// Action Messages
-//
-//=======================================================
-
 // ------------------------------------------------------
-/// パネルを表示
+/// on show color panel
 - (void)showWindow:(id)sender
 // ------------------------------------------------------
 {
-    // 共有カラーパネルをセットアップ
+    // setup the shared color panel
     NSColorPanel *colorPanel = [NSColorPanel sharedColorPanel];
     [colorPanel setAccessoryView:[self accessoryView]];
     [colorPanel setShowsAlpha:YES];
@@ -177,7 +157,7 @@
 
 
 // ------------------------------------------------------
-/// 書類にカラーコードを挿入する
+/// insert color code to the selection of the frontmost document
 - (IBAction)insertCodeToDocument:(id)sender
 // ------------------------------------------------------
 {
@@ -186,7 +166,7 @@
 
 
 // ------------------------------------------------------
-/// カラーパネルで新しい色が選ばれた
+/// a new color was selected on the panel
 - (IBAction)selectColor:(id)sender
 // ------------------------------------------------------
 {
@@ -196,7 +176,7 @@
 
 
 // ------------------------------------------------------
-/// カラーコードフィールドのカラーコードからカラーをセット
+/// set color from the color code field in the panel
 - (IBAction)applayColorCode:(id)sender
 // ------------------------------------------------------
 {
@@ -205,14 +185,14 @@
 
 
 // ------------------------------------------------------
-/// カラーコードを更新する
+/// update color code in the field
 - (IBAction)updateCode:(id)sender
 // ------------------------------------------------------
 {
     WFColorCodeType codeType = [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultColorCodeTypeKey];
     NSString *code = [[[self color] colorUsingColorSpaceName:NSCalibratedRGBColorSpace] colorCodeWithType:codeType];
     
-    // 現在の Hex コードが大文字だったら大文字をキープ
+    // keep lettercase if current Hex code is uppercase
     if ((codeType == WFColorCodeHex || codeType == WFColorCodeShortHex) &&
         [[self colorCode] rangeOfString:@"^#[0-9A-F]{1,6}$" options:NSRegularExpressionSearch].location != NSNotFound) {
         code = [code uppercaseString];

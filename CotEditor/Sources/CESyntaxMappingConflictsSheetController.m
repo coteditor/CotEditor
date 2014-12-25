@@ -48,7 +48,7 @@
 #pragma mark NSWindowController Methods
 
 // ------------------------------------------------------
-/// 初期化
+/// initialize
 - (instancetype)init
 // ------------------------------------------------------
 {
@@ -65,7 +65,7 @@
 #pragma mark Action Messages
 
 // ------------------------------------------------------
-/// シートの Done ボタンが押された
+/// Done button was clicked
 - (IBAction)closeSheet:(id)sender
 // ------------------------------------------------------
 {
@@ -79,7 +79,7 @@
 #pragma mark Private Methods
 
 // ------------------------------------------------------
-/// conflictDict をテーブル用に変換
+/// convert conflictDict data for table
 + (NSArray *)parseConflictDict:(NSDictionary *)conflictDict
 // ------------------------------------------------------
 {

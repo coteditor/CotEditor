@@ -38,6 +38,7 @@
 
 
 
+
 #pragma mark -
 
 @implementation CESizeSampleWindowController
@@ -45,7 +46,7 @@
 #pragma mark Super Class Methods
 
 // ------------------------------------------------------
-/// ウインドウをロードした直後
+/// setup UI
 - (void)windowDidLoad
 // ------------------------------------------------------
 {
@@ -58,7 +59,7 @@
 #pragma mark Action Messages
 
 // ------------------------------------------------------
-/// サイズを保存せずに終了する
+/// close window without save
 - (IBAction)cancel:(id)sender
 // ------------------------------------------------------
 {
@@ -68,7 +69,7 @@
 
 
 // ------------------------------------------------------
-/// サンプルウィンドウサイズをuserDefaultsにセットして終了する
+/// save window size to the user defaults and close window
 - (IBAction)save:(id)sender
 // ------------------------------------------------------
 {

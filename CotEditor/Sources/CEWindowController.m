@@ -80,11 +80,6 @@ static NSTimeInterval infoUpdateInterval;
 
 #pragma mark Class Methods
 
-//=======================================================
-// Class method
-//
-//=======================================================
-
 // ------------------------------------------------------
 /// initialize class
 + (void)initialize
@@ -101,11 +96,6 @@ static NSTimeInterval infoUpdateInterval;
 
 
 #pragma mark NSWindowController Methods
-
-//=======================================================
-// NSWindowController method
-//
-//=======================================================
 
 // ------------------------------------------------------
 /// prepare window and other UI
@@ -200,11 +190,6 @@ static NSTimeInterval infoUpdateInterval;
 
 
 #pragma mark Public Methods
-
-//=======================================================
-// Public method
-//
-//=======================================================
 
 // ------------------------------------------------------
 /// show incompatible char list
@@ -439,11 +424,6 @@ static NSTimeInterval infoUpdateInterval;
 
 #pragma mark Action Messages
 
-//=======================================================
-// Action messages
-//
-//=======================================================
-
 // ------------------------------------------------------
 /// toggle visibility of document inspector
 - (IBAction)getInfo:(id)sender
@@ -483,11 +463,6 @@ static NSTimeInterval infoUpdateInterval;
 
 
 #pragma mark Private Methods
-
-//=======================================================
-// Private method
-//
-//=======================================================
 
 // ------------------------------------------------------
 /// set sidebar visibility

@@ -56,7 +56,7 @@
 
 
 // ------------------------------------------------------
-/// ウインドウをロードした直後
+/// setup UI
 - (void)windowDidLoad
 // ------------------------------------------------------
 {
@@ -70,7 +70,7 @@
 #pragma mark Public Methods
 
 // ------------------------------------------------------
-/// Scriptエラーログを追加
+/// append given string to the script error console
 - (void)addErrorString:(NSString *)string
 // ------------------------------------------------------
 {
@@ -85,7 +85,7 @@
 #pragma mark Action Messages
 
 // ------------------------------------------------------
-/// Scriptエラーログを削除
+/// flush script error console
 - (IBAction)cleanScriptError:(id)sender
 // ------------------------------------------------------
 {
@@ -102,11 +102,11 @@
 @implementation CEScriptErrorView
 
 // ------------------------------------------------------
-/// ショートカットキーを捕まえる
+/// catch shortcut input
 - (BOOL)performKeyEquivalent:(NSEvent *)theEvent
 // ------------------------------------------------------
 {
-    // 通常の検索メニューが OgreKit によって書き換えられているので、自力でショートカットキーを捕まえる必要がある
+    // Since the Find menu is overridden by OgreKit framework, we need catch shortcut input manually for find actions.
     NSTextFinder *textFinder = [(CEScriptErrorPanelController *)[[self window] windowController] textFinder];
     
     if ([[theEvent characters] isEqualToString:@"f"]) {

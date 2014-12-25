@@ -47,13 +47,8 @@
 
 #pragma mark Public Methods
 
-//=======================================================
-// Public method
-//
-//=======================================================
-
 // ------------------------------------------------------
-/// 初期化
+/// initialize
 - (instancetype)initWithDocument:(CEDocument *)document
 // ------------------------------------------------------
 {
@@ -74,7 +69,7 @@
 //=======================================================
 
 // ------------------------------------------------------
-/// AppleScriptの返り値としてのtextStorageが更新された
+/// text strage as AppleScript's return value did update
 - (void)textStorageDidProcessEditing:(NSNotification *)aNotification
 // ------------------------------------------------------
 {
@@ -95,13 +90,8 @@
 
 #pragma mark Superclass Methods
 
-//=======================================================
-// Superclass methods
-//
-//=======================================================
-
 // ------------------------------------------------------
-/// sdef 内で定義されている名前を返す
+/// return object name which is determined in the sdef file
 - (NSScriptObjectSpecifier *)objectSpecifier
 // ------------------------------------------------------
 {
@@ -113,13 +103,8 @@
 
 #pragma mark AppleScript Accessors
 
-//=======================================================
-// AppleScript accessor
-//
-//=======================================================
-
 // ------------------------------------------------------
-/// 選択範囲内の文字列を返す(Unicode text型)
+/// return string of the selection (Unicode text type)
 - (NSTextStorage *)contents
 // ------------------------------------------------------
 {
@@ -128,7 +113,7 @@
 
     [storage setDelegate:self];
     
-    // 0.5秒後にデリゲートをやめる（放置するとクラッシュの原因になる）
+    // disconnect the delegate after 0.5 sec. (otherwise app may crash)
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [storage setDelegate:nil];
     });
@@ -138,7 +123,7 @@
 
 
 // ------------------------------------------------------
-/// 選択範囲に文字列をセット
+/// replace the string in the selection
 - (void)setContents:(id)ContentsObject
 // ------------------------------------------------------
 {
@@ -157,7 +142,7 @@
 
 
 // ------------------------------------------------------
-/// 選択範囲の文字の位置と長さを返す(list型)
+/// return character range (location and length) of the selection (list type)
 - (NSArray *)range
 // ------------------------------------------------------
 {
@@ -169,7 +154,7 @@
 
 
 // ------------------------------------------------------
-/// 選択範囲の文字の位置と長さをセット
+/// set character range (location and length) of the selection
 - (void)setRange:(NSArray *)rangeArray
 // ------------------------------------------------------
 {
@@ -182,7 +167,7 @@
 
 
 // ------------------------------------------------------
-/// 選択範囲の行の位置と長さを返す(list型)
+/// return line range (location and length) of the selection (list type)
 - (NSArray *)lineRange
 // ------------------------------------------------------
 {
@@ -208,7 +193,7 @@
 
 
 // ------------------------------------------------------
-/// 選択範囲の行の位置と長さをセット
+/// set line range (location and length) of the selection
 - (void)setLineRange:(NSArray *)rangeArray
 // ------------------------------------------------------
 {
@@ -232,13 +217,8 @@
 
 #pragma mark AppleScript Handlers
 
-//=======================================================
-// AppleScript handler
-//
-//=======================================================
-
 // ------------------------------------------------------
-/// 選択範囲を右にシフト
+/// shift the selection to right
 - (void)handleShiftRightScriptCommand:(NSScriptCommand *)command
 // ------------------------------------------------------
 {
@@ -247,7 +227,7 @@
 
 
 // ------------------------------------------------------
-/// 選択範囲を左にシフト
+/// shift the selection to left
 - (void)handleShiftLeftScriptCommand:(NSScriptCommand *)command
 // ------------------------------------------------------
 {
@@ -256,7 +236,7 @@
 
 
 // ------------------------------------------------------
-/// 選択範囲をコメントアウト
+/// comment-out the selection
 - (void)handleCommentOutScriptCommand:(NSScriptCommand *)command
 // ------------------------------------------------------
 {
@@ -265,7 +245,7 @@
 
 
 // ------------------------------------------------------
-/// 選択範囲をコメント解除
+/// uncomment the selection
 - (void)handleUncommentScriptCommand:(NSScriptCommand *)command
 // ------------------------------------------------------
 {
@@ -274,7 +254,7 @@
 
 
 // ------------------------------------------------------
-/// 文字列を大文字／小文字／キャピタライズにコンバートする
+/// convert letters in the selection to lowercase, uppercase or capitalized
 - (void)handleChangeCaseScriptCommand:(NSScriptCommand *)command
 // ------------------------------------------------------
 {
@@ -297,7 +277,7 @@
 
 
 // ------------------------------------------------------
-/// 半角／全角Romanを切り替える
+/// convert half-width roman in the selection to full-width roman or vice versa
 - (void)handleChangeWidthRomanScriptCommand:(NSScriptCommand *)command
 // ------------------------------------------------------
 {
@@ -317,7 +297,7 @@
 
 
 // ------------------------------------------------------
-/// ひらがな／カタカナを切り替える
+/// convert Japanese Hiragana in the selection to Katakana or vice versa
 - (void)handleChangeKanaScriptCommand:(NSScriptCommand *)command
 // ------------------------------------------------------
 {
@@ -337,7 +317,7 @@
 
 
 // ------------------------------------------------------
-/// Unicode 正規化
+/// Unicode normalization
 - (void)handleNormalizeUnicodeScriptCommand:(NSScriptCommand *)command
 // ------------------------------------------------------
 {

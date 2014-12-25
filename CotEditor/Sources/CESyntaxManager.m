@@ -74,11 +74,6 @@ NSString *const CESyntaxValidationMessageKey = @"MessageKey";
 
 #pragma mark Class Methods
 
-//=======================================================
-// Class method
-//
-//=======================================================
-
 // ------------------------------------------------------
 /// return singleton instance
 + (instancetype)sharedManager
@@ -98,13 +93,8 @@ NSString *const CESyntaxValidationMessageKey = @"MessageKey";
 
 #pragma mark Superclass Methods
 
-//=======================================================
-// Superclass method
-//
-//=======================================================
-
 // ------------------------------------------------------
-/// 初期化
+/// initialize
 - (instancetype)init
 // ------------------------------------------------------
 {
@@ -134,11 +124,6 @@ NSString *const CESyntaxValidationMessageKey = @"MessageKey";
 
 
 #pragma mark Public Methods
-
-//=======================================================
-// Public method
-//
-//=======================================================
 
 // ------------------------------------------------------
 /// ファイル名に応じたstyle名を返す
@@ -570,11 +555,6 @@ NSString *const CESyntaxValidationMessageKey = @"MessageKey";
 
 
 #pragma mark Private Mthods
-
-//=======================================================
-// Private method
-//
-//=======================================================
 
 //------------------------------------------------------
 /// スタイルファイルの URL からスタイル名を返す

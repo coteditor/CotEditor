@@ -78,11 +78,6 @@
 
 #pragma mark Class Methods
 
-//=======================================================
-// Class method
-//
-//=======================================================
-
 // ------------------------------------------------------
 /// set binding keys and values
 + (void)initialize
@@ -182,14 +177,14 @@
                                CEDefaultPrintInvisibleCharIndexKey: @(CENoInvisibleCharsPrint),
                                CEDefaultPrintColorIndexKey: @(CEBlackColorPrint),
                                
-                               /* -------- 以下、環境設定にない設定項目 -------- */
+                               /* -------- settings not in preferences window -------- */
                                CEDefaultInsertCustomTextArrayKey: @[@"<br />\n", @"", @"", @"", @"", @"", @"", @"", @"", @"", @"",
                                                                     @"", @"", @"", @"", @"", @"", @"", @"", @"", @"",
                                                                     @"", @"", @"", @"", @"", @"", @"", @"", @"", @""],
                                CEDefaultColorCodeTypeKey: @1,
                                CEDefaultSidebarWidthKey: @220,
                                
-                               /* -------- 以下、隠し設定 -------- */
+                               /* -------- hidden settings -------- */
                                CEDefaultUsesTextFontForInvisiblesKey: @NO,
                                CEDefaultLineNumFontNameKey: @"ArialNarrow",
                                CEDefaultBasicColoringDelayKey: @0.001f, 
@@ -217,14 +212,14 @@
                                };
     [[NSUserDefaults standardUserDefaults] registerDefaults:defaults];
     
-    // 出荷時へのリセットが必要な項目に付いては NSUserDefaultsController に初期値をセットする
+    // set initial values to NSUserDefaultsController which can restore to defaults
     NSDictionary *initialValues = [defaults dictionaryWithValuesForKeys:@[CEDefaultEncodingListKey,
                                                                           CEDefaultInsertCustomTextArrayKey,
                                                                           CEDefaultWindowWidthKey,
                                                                           CEDefaultWindowHeightKey]];
     [[NSUserDefaultsController sharedUserDefaultsController] setInitialValues:initialValues];
     
-    // transformer 登録
+    // register transformers
     [NSValueTransformer setValueTransformer:[[CEHexColorTransformer alloc] init]
                                     forName:@"CEHexColorTransformer"];
     [NSValueTransformer setValueTransformer:[[CELineHeightTransformer alloc] init]
@@ -235,13 +230,8 @@
 
 #pragma mark Superclass Methods
 
-//=======================================================
-// Superclass method
-//
-//=======================================================
-
 // ------------------------------------------------------
-/// 初期化
+/// initialize
 - (instancetype)init
 // ------------------------------------------------------
 {
@@ -263,7 +253,7 @@
 
 
 // ------------------------------------------------------
-/// あとかたづけ
+/// clean up
 - (void)dealloc
 // ------------------------------------------------------
 {
@@ -271,16 +261,8 @@
 }
 
 
-
-#pragma mark Protocol
-
-//=======================================================
-// NSNibAwaking Protocol
-//
-//=======================================================
-
 // ------------------------------------------------------
-/// Nibファイル読み込み直後
+/// setup UI
 - (void)awakeFromNib
 // ------------------------------------------------------
 {
@@ -290,17 +272,17 @@
     [self buildThemeMenu];
     [[CEScriptManager sharedManager] buildScriptMenu:nil];
     
-    // エンコーディングリスト更新の通知依頼
+    // observe encoding list update
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(buildEncodingMenu)
                                                  name:CEEncodingListDidUpdateNotification
                                                object:nil];
-    // シンタックススタイルリスト更新の通知依頼
+    // observe syntax style lineup update
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(buildSyntaxMenu)
                                                  name:CESyntaxListDidUpdateNotification
                                                object:nil];
-    // テーマリスト更新の通知依頼
+    // observe theme lineup update
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(buildThemeMenu)
                                                  name:CEThemeListDidUpdateNotification
@@ -317,7 +299,7 @@
 //=======================================================
 
 // ------------------------------------------------------
-/// アプリ起動時に新規ドキュメント作成
+/// creates a new document on launch?
 - (BOOL)applicationShouldOpenUntitledFile:(NSApplication *)sender
 // ------------------------------------------------------
 {
@@ -330,7 +312,7 @@
 
 
 // ------------------------------------------------------
-/// Re-Open AppleEvents へ対応してウィンドウを開くかどうかを返す
+/// crates a new document on "Re-Open" AppleEvent
 - (BOOL)applicationShouldHandleReopen:(NSApplication *)theApplication hasVisibleWindows:(BOOL)flag
 // ------------------------------------------------------
 {
@@ -343,14 +325,14 @@
 
 
 // ------------------------------------------------------
-/// アプリ起動直後
+/// just after application did launch
 - (void)applicationDidFinishLaunching:(NSNotification *)notification
 // ------------------------------------------------------
 {
-    // （CEKeyBindingManagerによって、キーボードショートカット設定は上書きされる。
-    // アプリに内包する MenuKeyBindings.plist に、ショートカット設定を記述する必要がある。2007.05.19）
+    // keyboard shortcuts will be overridden by CEKeyBindingManager
+    //   - to apply shortcuts, write them in MenuKeyBindings.plist (2007-05-19)
 
-    // 「Select Outline item」「Goto」メニューを生成／追加
+    // add "Select Outline Item" and "Go To" to the main menu
     NSMenu *findMenu = [[[NSApp mainMenu] itemAtIndex:CEFindMenuIndex] submenu];
     NSMenuItem *menuItem;
 
@@ -375,7 +357,7 @@
                                    keyEquivalent:@"l"];
     [findMenu addItem:menuItem];
     
-    // AppleScript 起動のスピードアップのため一度動かしておく
+    // run AppleScript one for quick launch
     if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultRunAppleScriptInLaunchingKey]) {
         dispatch_async(dispatch_get_main_queue(), ^{
             NSString *source = @"tell application \"CotEditor\" to number of documents";
@@ -384,10 +366,10 @@
         });
     }
     
-    // KeyBindingManagerをセットアップ
+    // setup KeyBindingManager
     [[CEKeyBindingManager sharedManager] setupAtLaunching];
     
-    // 必要があれば移行処理を行う
+    // migrate usr settings if needed
     [self migrateIfNeeded];
     
     // store latest version
@@ -407,7 +389,7 @@
 
 
 // ------------------------------------------------------
-/// Dock メニュー生成
+/// setup Dock menu
 - (NSMenu *)applicationDockMenu:(NSApplication *)sender
 // ------------------------------------------------------
 {
@@ -426,18 +408,18 @@
 
 
 // ------------------------------------------------------
-/// ファイルを開く
+/// open file
 - (BOOL)application:(NSApplication *)theApplication openFile:(NSString *)filename
 // ------------------------------------------------------
 {
-    // テーマファイルの場合はインストール処理をする
+    // perform install if the file is CotEditor theme file
     if ([[filename pathExtension] isEqualToString:CEThemeExtension]) {
         NSURL *URL = [NSURL fileURLWithPath:filename];
         NSString *themeName = [[URL lastPathComponent] stringByDeletingPathExtension];
         NSAlert *alert;
         NSInteger returnCode;
         
-        // テーマファイルをテキストファイルとして開くかを訊く
+        // ask whether theme file should be opened as a text file
         alert = [[NSAlert alloc] init];
         [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"“%@” is a CotEditor theme file.", nil), [URL lastPathComponent]]];
         [alert setInformativeText:NSLocalizedString(@"Do you want to install this theme?", nil)];
@@ -449,11 +431,11 @@
             return NO;
         }
         
-        // テーマ読み込みを実行
+        // import theme
         NSError *error = nil;
         [[CEThemeManager sharedManager] importTheme:URL replace:NO error:&error];
         
-        // すでに同名のテーマが存在する場合は置き換えて良いかを訊く
+        // ask whether the old theme should be repleced with new one if the same name theme is already exists
         if ([error code] == CEThemeFileDuplicationError) {
             alert = [NSAlert alertWithError:error];
             
@@ -483,7 +465,7 @@
 
 
 // ------------------------------------------------------
-/// メニューの有効化／無効化を制御
+/// validate menu items
 - (BOOL)validateMenuItem:(NSMenuItem *)menuItem
 // ------------------------------------------------------
 {
@@ -499,13 +481,8 @@
 
 #pragma mark Action Messages
 
-//=======================================================
-// Action messages
-//
-//=======================================================
-
 // ------------------------------------------------------
-/// 環境設定ウィンドウを開く
+/// show Preferences window
 - (IBAction)showPreferences:(id)sender
 // ------------------------------------------------------
 {
@@ -514,7 +491,7 @@
 
 
 // ------------------------------------------------------
-/// Scriptエラーウィンドウを表示
+/// Show script error panel
 - (IBAction)showScriptErrorPanel:(id)sender
 // ------------------------------------------------------
 {
@@ -523,7 +500,7 @@
 
 
 // ------------------------------------------------------
-/// カラーコードウィンドウを表示
+/// show color code editor panel
 - (IBAction)showHexColorCodeEditor:(id)sender
 // ------------------------------------------------------
 {
@@ -532,7 +509,7 @@
 
 
 // ------------------------------------------------------
-/// 不透明度パネルを開く
+/// show view opacity panel
 - (IBAction)showOpacityPanel:(id)sender
 // ------------------------------------------------------
 {
@@ -541,7 +518,7 @@
 
 
 // ------------------------------------------------------
-/// 行高設定パネルを開く
+/// show line hight panel
 - (IBAction)showLineHeightPanel:(id)sender
 // ------------------------------------------------------
 {
@@ -550,7 +527,7 @@
 
 
 // ------------------------------------------------------
-/// Unicode 入力パネルを開く
+/// show Unicode input panel
 - (IBAction)showUnicodeInputPanel:(id)sender
 // ------------------------------------------------------
 {
@@ -559,7 +536,7 @@
 
 
 // ------------------------------------------------------
-/// アップルスクリプト辞書をスクリプトエディタで開く
+/// open OSAScript dictionary in Script Editor
 - (IBAction)openAppleScriptDictionary:(id)sender
 // ------------------------------------------------------
 {
@@ -570,7 +547,7 @@
 
 
 // ------------------------------------------------------
-/// Dockメニューの「新規」メニューアクション（まず自身をアクティベート）
+/// activate self and perform "New" menu action
 - (IBAction)newInDockMenu:(id)sender
 // ------------------------------------------------------
 {
@@ -580,7 +557,7 @@
 
 
 // ------------------------------------------------------
-/// Dockメニューの「開く」メニューアクション（まず自身をアクティベート）
+/// activate self and perform "Open..." menu action
 - (IBAction)openInDockMenu:(id)sender
 // ------------------------------------------------------
 {
@@ -590,7 +567,7 @@
 
 
 // ------------------------------------------------------
-/// 任意のヘルプコンテンツを開く
+/// open a specific page in Help contents
 - (IBAction)openHelpAnchor:(id)sender
 // ------------------------------------------------------
 {
@@ -603,7 +580,7 @@
 
 
 // ------------------------------------------------------
-/// 付属ドキュメントを開く
+/// open bundled documents in TextEdit.app
 - (IBAction)openBundledDocument:(id)sender
 // ------------------------------------------------------
 {
@@ -615,7 +592,7 @@
 
 
 // ------------------------------------------------------
-/// Webサイト（coteditor.com）を開く
+/// open web site (coteditor.com) in default web browser
 - (IBAction)openWebSite:(id)sender
 // ------------------------------------------------------
 {
@@ -624,7 +601,7 @@
 
 
 // ------------------------------------------------------
-/// バグを報告する
+/// open bug report page in default web browser
 - (IBAction)reportBug:(id)sender
 // ------------------------------------------------------
 {
@@ -633,7 +610,7 @@
 
 
 // ------------------------------------------------------
-/// バグレポートを作成する
+/// open new bug report window
 - (IBAction)createBugReport:(id)sender
 // ------------------------------------------------------
 {
@@ -658,13 +635,8 @@
 
 #pragma mark Private Methods
 
-//=======================================================
-// Private method
-//
-//=======================================================
-
 //------------------------------------------------------
-/// データ保存用ディレクトリの存在をチェック、なければつくる
+/// check existance of the support directory and create it if not exists
 - (void)setupSupportDirectory
 //------------------------------------------------------
 {
@@ -687,7 +659,7 @@
 
 
 //------------------------------------------------------
-/// メインメニューのエンコーディングメニューアイテムを再構築
+/// build encoding menu in the main menu
 - (void)buildEncodingMenu
 //------------------------------------------------------
 {
@@ -704,21 +676,21 @@
 
 
 //------------------------------------------------------
-/// メインメニューのシンタックスカラーリングメニューを再構築
+/// build syntax style menu in the main menu
 - (void)buildSyntaxMenu
 //------------------------------------------------------
 {
     NSMenu *menu = [[[[[NSApp mainMenu] itemAtIndex:CEFormatMenuIndex] submenu] itemWithTag:CESyntaxMenuItemTag] submenu];
     [menu removeAllItems];
     
-    // None を追加
+    // add None
     [menu addItemWithTitle:NSLocalizedString(@"None", nil)
                     action:@selector(changeSyntaxStyle:)
              keyEquivalent:@""];
     
     [menu addItem:[NSMenuItem separatorItem]];
     
-    // シンタックススタイルをラインナップ
+    // add syntax styles
     NSArray *styleNames = [[CESyntaxManager sharedManager] styleNames];
     for (NSString *styleName in styleNames) {
         [menu addItemWithTitle:styleName
@@ -728,7 +700,7 @@
     
     [menu addItem:[NSMenuItem separatorItem]];
     
-    // 全文字列を再カラーリングするメニューを追加
+    // add item to recolor
     NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Re-Color All", nil)
                                                   action:@selector(recolorAll:)
                                            keyEquivalent:@"r"];
@@ -738,7 +710,7 @@
 
 
 //------------------------------------------------------
-/// メインメニューのテーマメニューを再構築
+/// build theme menu in the main menu
 - (void)buildThemeMenu
 //------------------------------------------------------
 {
@@ -834,7 +806,7 @@ static NSString *const kMigrationFlagKey = @"isMigratedToNewBundleIdentifier";
 
 
 //------------------------------------------------------
-/// 必要があればCotEditor 1.x系からの移行処理を行う
+/// migrate user settings from CotEditor v1.x if needed
 - (void)migrateIfNeeded
 //------------------------------------------------------
 {

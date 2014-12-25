@@ -82,11 +82,6 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
 
 #pragma mark Class Methods
 
-//=======================================================
-// Class method
-//
-//=======================================================
-
 // ------------------------------------------------------
 /// return singleton instance
 + (instancetype)sharedManager
@@ -106,13 +101,8 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
 
 #pragma mark Superclass Methods
 
-//=======================================================
-// Superclass method
-//
-//=======================================================
-
 // ------------------------------------------------------
-/// 初期化
+/// initialize
 - (instancetype)init
 // ------------------------------------------------------
 {
@@ -143,11 +133,6 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
 
 
 #pragma mark Public Methods
-
-//=======================================================
-// Public methodƒ
-//
-//=======================================================
 
 //------------------------------------------------------
 /// テーマ名からProperty list形式のテーマ定義を返す
@@ -454,11 +439,6 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
 
 
 #pragma mark Private Methods
-
-//=======================================================
-// Private method
-//
-//=======================================================
 
 //------------------------------------------------------
 /// テーマファイルの URL からスタイル名を返す

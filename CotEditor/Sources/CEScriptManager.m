@@ -60,11 +60,6 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 
 #pragma mark Class Methods
 
-//=======================================================
-// Class method
-//
-//=======================================================
-
 // ------------------------------------------------------
 /// return singleton instance
 + (instancetype)sharedManager
@@ -84,13 +79,8 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 
 #pragma mark Superclass Methods
 
-//=======================================================
-// Superclass method
-//
-//=======================================================
-
 // ------------------------------------------------------
-/// 初期化
+/// initialize
 - (instancetype)init
 // ------------------------------------------------------
 {
@@ -105,17 +95,11 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 
 #pragma mark Public Methods
 
-//=======================================================
-// Public method
-//
-//=======================================================
-
 //------------------------------------------------------
-/// Scriptメニューを生成
+/// build Script menu
 - (void)buildScriptMenu:(id)sender
 //------------------------------------------------------
 {
-    // メニューデータの読み込みとメニュー構成
     NSMenu *menu = [[[NSApp mainMenu] itemAtIndex:CEScriptMenuIndex] submenu];
     [menu removeAllItems];
     NSMenuItem *menuItem;
@@ -155,7 +139,7 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 
 
 //------------------------------------------------------
-/// コンテキストメニュー用のメニューを返す
+/// return menu for context menu
 - (NSMenu *)contexualMenu
 //------------------------------------------------------
 {
@@ -174,13 +158,8 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 
 #pragma mark Action Messages
 
-//=======================================================
-// Action messages
-//
-//=======================================================
-
 //------------------------------------------------------
-/// Script 実行
+/// launch script (invoked by menu item)
 - (IBAction)launchScript:(id)sender
 //------------------------------------------------------
 {
@@ -188,7 +167,7 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
     
     if (!URL) { return; }
 
-    // ファイルがない場合は警告して抜ける
+    // display alert and endup if file not exists
     if (![URL checkResourceIsReachableAndReturnError:nil]) {
         [self showAlertWithMessage:[NSString stringWithFormat:NSLocalizedString(@"The script “%@” does not exist.\n\nCheck it and do “Update Script Menu”.", @""), URL]];
         return;
@@ -196,9 +175,9 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
     
     NSString *extension = [URL pathExtension];
 
-    // 修飾キーが押されている場合は挙動を変更
+    // change behavior if modifier key is pressed
     NSUInteger flags = [NSEvent modifierFlags];
-    if (flags == NSAlternateKeyMask) {  // Optキーが押されていたら、スクリプトを開く
+    if (flags == NSAlternateKeyMask) {  // open script file if Opt key is pressed
         BOOL success = YES;
         NSString *identifier = [[self AppleScriptExtensions] containsObject:extension] ? @"com.apple.ScriptEditor2" : [[NSBundle mainBundle] bundleIdentifier];
         success = [[NSWorkspace sharedWorkspace] openURLs:@[URL]
@@ -207,25 +186,25 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
                            additionalEventParamDescriptor:nil
                                         launchIdentifiers:NULL];
         
-        // 開けなかったり選択できなければその旨を表示
+        // display alert if cannot open/select the script file
         if (!success) {
             NSString *message = [NSString stringWithFormat:NSLocalizedString(@"Could not open the script file “%@”.", nil), URL];
             [self showAlertWithMessage:message];
         }
         return;
         
-    } else if (flags == (NSAlternateKeyMask | NSShiftKeyMask)) {  // Opt+Shiftキーが押されていたら、Finderで表示
+    } else if (flags == (NSAlternateKeyMask | NSShiftKeyMask)) {  // reveal on Finder if Opt+Shift keys are pressed
         [[NSWorkspace sharedWorkspace] activateFileViewerSelectingURLs:@[URL]];
         return;
     }
 
-    // AppleScript を実行
+    // run AppleScript
     if ([[self AppleScriptExtensions] containsObject:extension]) {
         [self runAppleScript:URL];
         
-    // Shell Script を実行
+    // run Shell Script
     } else if ([[self scriptExtensions] containsObject:extension]) {
-        // 実行権限がない場合は警告して抜ける
+        // display alert if script file doesn't have execution permission
         if (![URL checkResourceIsReachableAndReturnError:nil]) {
             [self showAlertWithMessage:[NSString stringWithFormat:NSLocalizedString(@"Cannnot execute the script “%@”.\nShell script requires execute permission.\n\nCheck permission of the script file.", nil), URL]];
             return;
@@ -236,7 +215,7 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 
 
 // ------------------------------------------------------
-/// ScriptフォルダウィンドウをFinderで表示
+/// open Script Menu folder in Finder
 - (IBAction)openScriptFolder:(id)sender
 // ------------------------------------------------------
 {
@@ -245,7 +224,7 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 
 
 // ------------------------------------------------------
-/// サンプルスクリプトをユーザ領域にコピー
+/// copy sample scripts to user domain
 - (IBAction)copySampleScriptToUserDomain:(id)sender
 // ------------------------------------------------------
 {
@@ -268,7 +247,7 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
         }
         
     } else if ([sender isKindOfClass:[NSMenuItem class]]) {
-        // ユーザがメニューからコピーを実行し、すでにサンプルフォルダがあった場合は警告を出す
+        // show alert if sample script folder is already exists only when user performs the copy
         NSAlert *alert = [[NSAlert alloc] init];
         [alert setMessageText:NSLocalizedString(@"SampleScript folder exists already.", nil)];
         [alert setInformativeText:[NSString stringWithFormat:NSLocalizedString(@"If you want to replace it with the new one, remove the existing folder at “%@” at first.", nil), [destURL relativePath]]];
@@ -280,13 +259,8 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 
 #pragma mark Private Class Methods
 
-//=======================================================
-// Private class method
-//
-//=======================================================
-
 // ------------------------------------------------------
-/// 対応しているスクリプトの拡張子
+/// file extensions for UNIX scripts
 - (NSArray *)scriptExtensions
 // ------------------------------------------------------
 {
@@ -295,7 +269,7 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 
 
 // ------------------------------------------------------
-/// 対応しているAppleScriptの拡張子
+/// file extensions for AppleScript
 - (NSArray *)AppleScriptExtensions
 // ------------------------------------------------------
 {
@@ -304,7 +278,7 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 
 
 //------------------------------------------------------
-/// Scriptファイル保存用ディレクトリを返す
+/// return directory to save script files
 + (NSURL *)scriptDirectoryURL
 //------------------------------------------------------
 {
@@ -313,7 +287,7 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 
 
 // ------------------------------------------------------
-/// スクリプトから出力タイプを読み取る
+/// read input type from script
 + (CEScriptInputType)scanInputType:(NSString *)string
 // ------------------------------------------------------
 {
@@ -342,7 +316,7 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 
 
 // ------------------------------------------------------
-/// スクリプトから出力タイプを読み取る
+/// read output type from script
 + (CEScriptOutputType)scanOutputType:(NSString *)string
 // ------------------------------------------------------
 {
@@ -380,7 +354,7 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 
 
 // ------------------------------------------------------
-/// 入力タイプに即した現在の書類の内容を返す
+/// return document content conforming to the input type
 + (NSString *)documentStringWithInputType:(CEScriptInputType)inputType error:(BOOL *)hasError
 // ------------------------------------------------------
 {
@@ -416,7 +390,7 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 
 
 // ------------------------------------------------------
-/// 出力タイプに即したスクリプト結果を現在の書類に反映
+/// apply results conforming to the output type to the frontmost document
 + (void)setOutputToDocument:(NSString *)output outputType:(CEScriptOutputType)outputType
 // ------------------------------------------------------
 {
@@ -456,13 +430,8 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 
 #pragma mark Private Methods
 
-//=======================================================
-// Private method
-//
-//=======================================================
-
 //------------------------------------------------------
-/// ファイルを読み込みメニューアイテムを生成／追加する
+/// read files and create/add menu items
 - (void)addChildFileItemTo:(NSMenu *)menu fromDir:(NSURL *)directoryURL
 //------------------------------------------------------
 {
@@ -472,7 +441,7 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
                                                                        error:nil];
     
     for (NSURL *URL in URLs) {
-        // "_" から始まるファイル/フォルダは無視
+        // ignore files/folders of which name starts with "_"
         if ([[URL lastPathComponent] hasPrefix:@"_"]) {  continue; }
         
         NSString *resourceType;
@@ -481,7 +450,7 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
         
         if ([resourceType isEqualToString:NSURLFileResourceTypeDirectory]) {
             NSString *title = [self menuTitleFromFileName:[URL lastPathComponent]];
-            if ([title isEqualToString:@"-"]) { // セパレータ
+            if ([title isEqualToString:@"-"]) {  // separator
                 [menu addItem:[NSMenuItem separatorItem]];
                 continue;
             }
@@ -520,7 +489,7 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
     NSString *extnFirstChar = [[menuTitle pathExtension] substringFromIndex:0];
     NSCharacterSet *specSet = [NSCharacterSet characterSetWithCharactersInString:@"^~$@"];
 
-    // 順番調整の冒頭の番号を削除
+    // remove the number prefix ordering
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"^[0-9]+\\)"
                                                                            options:0 error:nil];
     menuTitle = [regex stringByReplacingMatchesInString:menuTitle
@@ -528,9 +497,9 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
                                                   range:NSMakeRange(0, [menuTitle length])
                                            withTemplate:@""];
     
-    // キーボードショートカット定義があれば、削除して返す
+    // remove keyboard shortcut definition
     if (([extnFirstChar length] > 0) && [specSet characterIsMember:[extnFirstChar characterAtIndex:0]]) {
-        return [menuTitle stringByDeletingPathExtension];
+        menuTitle = [menuTitle stringByDeletingPathExtension];
     }
     
     return menuTitle;
@@ -538,7 +507,7 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 
 
 //------------------------------------------------------
-/// ファイル名からキーボードショートカット定義を読み取る
+/// get keyboard shortcut from file name
 - (NSString *)keyEquivalentAndModifierMask:(NSUInteger *)modifierMask fromFileName:(NSString *)fileName
 //------------------------------------------------------
 {
@@ -549,7 +518,7 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 
 
 //------------------------------------------------------
-/// エラーアラートを表示
+/// display alert message
 - (void)showAlertWithMessage:(NSString *)message
 //------------------------------------------------------
 {
@@ -562,7 +531,7 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 
 
 //------------------------------------------------------
-/// スクリプトの文字列を得る
+/// read content of script file
 - (NSString *)stringOfScript:(NSURL *)URL
 //------------------------------------------------------
 {
@@ -585,7 +554,7 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 
 
 //------------------------------------------------------
-/// AppleScript実行
+/// run AppleScript
 - (void)runAppleScript:(NSURL *)URL
 //------------------------------------------------------
 {
@@ -601,7 +570,7 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 
 
 //------------------------------------------------------
-/// シェルスクリプト実行
+/// run UNIX script
 - (void)runShellScript:(NSURL *)URL
 //------------------------------------------------------
 {
@@ -609,13 +578,13 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
     NSUserUnixTask *task = [[NSUserUnixTask alloc] initWithURL:URL error:&error];
     NSString *script = [self stringOfScript:URL];
 
-    // スクリプトファイル内容を得られない場合は警告して抜ける
+    // show an alert and endup if script file cannot read
     if (!task || [script length] == 0) {
         [self showAlertWithMessage:[NSString stringWithFormat:NSLocalizedString(@"Could not read the script “%@”.", nil), URL]];
         return;
     }
 
-    // 入力を読み込む
+    // read input
     CEScriptInputType inputType = [[self class] scanInputType:script];
     BOOL hasError = NO;
     __block NSString *input = [[self class] documentStringWithInputType:inputType error:&hasError];
@@ -624,7 +593,7 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
         return;
     }
     
-    // 出力タイプを得る
+    // get output type
     CEScriptOutputType outputType = [[self class] scanOutputType:script];
     
     // prepare file path as argument if available
@@ -683,7 +652,7 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 
 
 // ------------------------------------------------------
-/// スクリプトエラーを追記し、エラーログウィンドウを表示
+/// append message to script error panel and show it
 - (void)showScriptError:(NSString *)errorString
 // ------------------------------------------------------
 {

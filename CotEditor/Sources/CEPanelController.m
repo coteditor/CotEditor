@@ -36,7 +36,6 @@
 
 @property (readwrite, nonatomic, weak) CEWindowController *documentWindowController;
 
-
 @end
 
 

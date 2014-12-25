@@ -69,13 +69,8 @@ static NSString *const PageNumberPlaceholder = @"PAGENUM";
 
 #pragma mark NSTextView Methods
 
-//=======================================================
-// NSTextView method
-//
-//=======================================================
-
 // ------------------------------------------------------
-/// 初期化
+/// initialize
 - (instancetype)initWithFrame:(NSRect)frameRect
 // ------------------------------------------------------
 {
@@ -312,12 +307,7 @@ static NSString *const PageNumberPlaceholder = @"PAGENUM";
 
 
 
-#pragma mark Public Methods
-
-//=======================================================
-// Public method
-//
-//=======================================================
+#pragma mark Public Accessors
 
 // ------------------------------------------------------
 /// 実際のドキュメントで不可視文字を表示しているかをセット
@@ -333,11 +323,6 @@ static NSString *const PageNumberPlaceholder = @"PAGENUM";
 
 
 #pragma mark Private Methods
-
-//=======================================================
-// Private method
-//
-//=======================================================
 
 // ------------------------------------------------------
 /// プリント開始の準備

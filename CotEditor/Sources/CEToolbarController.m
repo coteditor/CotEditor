@@ -52,15 +52,30 @@
 
 @implementation CEToolbarController
 
-#pragma mark Public Method
-
-//=======================================================
-// Public method
-//
-//=======================================================
+#pragma mark Superclass Methods
 
 // ------------------------------------------------------
-/// 後片付け
+/// setup UI
+- (void)awakeFromNib
+// ------------------------------------------------------
+{
+    [self buildEncodingPopupButton];
+    [self buildSyntaxPopupButton];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(buildSyntaxPopupButton)
+                                                 name:CESyntaxListDidUpdateNotification
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(buildEncodingPopupButton)
+                                                 name:CEEncodingListDidUpdateNotification
+                                               object:nil];
+}
+
+
+// ------------------------------------------------------
+/// clean up
 - (void)dealloc
 // ------------------------------------------------------
 {
@@ -68,8 +83,11 @@
 }
 
 
+
+#pragma mark Public Method
+
 // ------------------------------------------------------
-/// トグルアイテムの状態を更新
+/// update state of item which can be toggled
 - (void)toggleItemWithTag:(CEToolbarItemTag)tag setOn:(BOOL)setOn
 // ------------------------------------------------------
 {
@@ -82,7 +100,7 @@
 
 
 // ------------------------------------------------------
-/// エンコーディングポップアップアイテムを生成
+/// build encoding popup item
 - (void)buildEncodingPopupButton
 // ------------------------------------------------------
 {
@@ -101,7 +119,7 @@
 
 
 // ------------------------------------------------------
-/// エンコーディングポップアップの選択項目を設定
+/// select item in the encoding popup menu
 - (void)setSelectedEncoding:(NSStringEncoding)encoding
 // ------------------------------------------------------
 {
@@ -115,7 +133,7 @@
 
 
 // ------------------------------------------------------
-/// 改行コードポップアップの選択項目を設定
+/// select item in the line ending menu
 - (void)setSelectedLineEnding:(CENewLineType)lineEnding
 // ------------------------------------------------------
 {
@@ -126,7 +144,7 @@
 
 
 // ------------------------------------------------------
-/// シンタックスカラーリングポップアップアイテムを生成
+/// build syntax style popup menu
 - (void)buildSyntaxPopupButton
 // ------------------------------------------------------
 {
@@ -149,7 +167,7 @@
 
 
 // ------------------------------------------------------
-/// シンタックスカラーリングポップアップの選択項目をタイトル名で設定
+/// select item in the syntax style menu
 - (void)setSelectedSyntaxWithName:(NSString *)name
 // ------------------------------------------------------
 {
@@ -161,31 +179,7 @@
 
 
 
-#pragma mark Protocol
-
-//=======================================================
-// NSNibAwaking Protocol
-//
-//=======================================================
-
-// ------------------------------------------------------
-/// Nibファイル読み込み直後
-- (void)awakeFromNib
-// ------------------------------------------------------
-{
-    [self buildEncodingPopupButton];
-    [self buildSyntaxPopupButton];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(buildSyntaxPopupButton)
-                                                 name:CESyntaxListDidUpdateNotification
-                                               object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(buildEncodingPopupButton)
-                                                 name:CEEncodingListDidUpdateNotification
-                                               object:nil];
-}
+#pragma mark Delegate
 
 
 //=======================================================
@@ -194,7 +188,7 @@
 //=======================================================
 
 // ------------------------------------------------------
-/// ツールバーアイテムの状態を設定
+/// set state of toolbar item when it will be added
 - (void)toolbarWillAddItem:(NSNotification *)notification
 // ------------------------------------------------------
 {
@@ -205,7 +199,7 @@
         case CEToolbarShowInvisibleCharsItemTag:
             [self toggleItem:item setOn:[editor showsInvisibles]];
             
-            // ツールバーアイテムを有効化できなければボタンを無効状態に
+            // disable button if item cannot be enable
             if ([editor canActivateShowInvisibles]) {
                 [item setAction:@selector(toggleInvisibleChars:)];
                 [item setToolTip:NSLocalizedString(@"Show or hide invisible characters in document", nil)];
@@ -241,13 +235,8 @@
 
 #pragma mark Private Methods
 
-//=======================================================
-// Private method
-//
-//=======================================================
-
 // ------------------------------------------------------
-/// トグルアイテムの状態を更新
+/// update item which can be toggled
 - (void)toggleItem:(NSToolbarItem *)item setOn:(BOOL)setOn
 // ------------------------------------------------------
 {

@@ -33,7 +33,7 @@
 @implementation NSString (JapaneseTransform)
 
 // ------------------------------------------------------
-/// 半角Romanを全角Romanへ変換
+/// transform half-width roman to full-width
 - (NSString *)fullWidthRomanString
 // ------------------------------------------------------
 {
@@ -45,9 +45,6 @@
         unichar theChar = [self characterAtIndex:i];
         if ([latinCharSet characterIsMember:theChar]) {
             [fullRoman appendString:[NSString stringWithFormat:@"%C", (unichar)(theChar + 65248)]];
-//            // 半角カナには未対応
-//        } else if ([hankakuKanaCharSet characterIsMember:theChar]) {
-//            [fullRoman appendString:[NSString stringWithFormat:@"%C", (unichar)(theChar + 65248)]];
         } else {
             [fullRoman appendString:[self substringWithRange:NSMakeRange(i, 1)]];
         }
@@ -57,7 +54,7 @@
 
 
 // ------------------------------------------------------
-/// 全角Romanを半角Romanへ変換
+/// transform full-width roman to half-width
 - (NSString *)halfWidthRomanString
 // ------------------------------------------------------
 {
@@ -78,7 +75,7 @@
 
 
 // ------------------------------------------------------
-/// ひらがなをカタカナへ変換
+/// transform Japanese Katakana to Hiragana
 - (NSString *)katakanaString
 // ------------------------------------------------------
 {
@@ -91,7 +88,7 @@
 
 
 // ------------------------------------------------------
-/// カタカナをひらがなへ変換
+/// transform Japanese Hiragana to Katakana
 - (NSString *)hiraganaString
 // ------------------------------------------------------
 {

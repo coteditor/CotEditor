@@ -73,13 +73,8 @@ const NSInteger kNoMenuItem = -1;
 
 #pragma mark NSTextView Methods
 
-//=======================================================
-// NSTextView method
-//
-//=======================================================
-
 // ------------------------------------------------------
-/// 初期化
+/// initialize
 - (instancetype)initWithFrame:(NSRect)frameRect textContainer:(NSTextContainer *)aTextContainer
 // ------------------------------------------------------
 {
@@ -110,10 +105,10 @@ const NSInteger kNoMenuItem = -1;
         // 「文書の1文字目に1バイト文字（または2バイト文字）を入力してある状態で先頭に2バイト文字（または1バイト文字）を
         // 挿入すると行間がズレる」問題が生じるため、CELayoutManager および CEATSTypesetter で制御している）
 
-        // テーマの設定
+        // setup theme
         [self setTheme:[CETheme themeWithName:[defaults stringForKey:CEDefaultThemeKey]]];
         
-        // set the values
+        // set values
         _autoTabExpandEnabled = [defaults boolForKey:CEDefaultAutoExpandTabKey];
         [self setSmartInsertDeleteEnabled:[defaults boolForKey:CEDefaultSmartInsertAndDeleteKey]];
         [self setContinuousSpellCheckingEnabled:[defaults boolForKey:CEDefaultCheckSpellingAsTypeKey]];
@@ -143,7 +138,7 @@ const NSInteger kNoMenuItem = -1;
         
         [self applyTypingAttributes];
         
-        // 設定の変更を監視
+        // observe change of defaults
         for (NSString *key in [self observedDefaultKeys]) {
             [[NSUserDefaults standardUserDefaults] addObserver:self
                                                     forKeyPath:key
@@ -157,7 +152,7 @@ const NSInteger kNoMenuItem = -1;
 
 
 // ------------------------------------------------------
-/// 後片付け
+/// clean up
 - (void)dealloc
 // ------------------------------------------------------
 {
@@ -983,11 +978,6 @@ const NSInteger kNoMenuItem = -1;
 
 #pragma mark Public Methods
 
-//=======================================================
-// Public method
-//
-//=======================================================
-
 // ------------------------------------------------------
 /// キー入力時の文字修飾辞書をセット
 - (void)applyTypingAttributes
@@ -1215,11 +1205,6 @@ const NSInteger kNoMenuItem = -1;
 
 
 #pragma mark Action Messages
-
-//=======================================================
-// Action messages
-//
-//=======================================================
 
 // ------------------------------------------------------
 /// フォントをリセット
@@ -1457,11 +1442,6 @@ const NSInteger kNoMenuItem = -1;
 
 
 #pragma mark Private Methods
-
-//=======================================================
-// Private method
-//
-//=======================================================
 
 // ------------------------------------------------------
 /// 変更を監視するデフォルトキー

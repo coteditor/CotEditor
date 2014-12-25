@@ -134,8 +134,8 @@ NSString *const CEWindowOpacityDidChangeNotification = @"CEWindowOpacityDidChang
 // ------------------------------------------------------
 {
     [self setStoredBackgroundColor:[self backgroundColor]];
-    [self setBackgroundColor:nil];  // ウインドウ背景をデフォルトにする（ツールバーの背景に影響）
-    [self setOpaque:YES];  // 明示的に opaque フラグを立てることにより、opaque を監視している textView が背景色を有効にする
+    [self setBackgroundColor:nil];  // restore window background to default (affect to the toolbar's background)
+    [self setOpaque:YES];  // set opaque flag　expressly in order to let textView which observes opaque update its background color
 }
 
 
