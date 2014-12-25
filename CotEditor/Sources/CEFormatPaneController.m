@@ -91,13 +91,20 @@
                                                  name:CESyntaxListDidUpdateNotification
                                                object:nil];
     
-    // エンコーディングリスト\更新の通知依頼
+    // エンコーディングリスト更新の通知依頼
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(setupEncodingMenus)
                                                  name:CEEncodingListDidUpdateNotification
                                                object:nil];
 }
 
+
+
+#pragma mark Protocol
+
+//=======================================================
+// NSMenuValidation Protocol
+//=======================================================
 
 // ------------------------------------------------------
 /// メニューの有効化／無効化を制御
@@ -127,11 +134,10 @@
 
 
 
-#pragma mark Delegate and Notification
+#pragma mark Delegate
 
 //=======================================================
-// Delegate method (NSTableView)
-//  <== syntaxTableView
+// NSTableViewDelegate  < syntaxTableView
 //=======================================================
 
 // ------------------------------------------------------

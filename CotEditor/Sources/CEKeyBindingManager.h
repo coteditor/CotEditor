@@ -40,14 +40,14 @@ extern NSString *const CEKeyBindingSelectorStringKey;
 
 @interface CEKeyBindingManager : NSObject
 
-// class method
+// singleton
 + (instancetype)sharedManager;
-
-+ (NSString *)keySpecCharsFromKeyEquivalent:(NSString *)string modifierFrags:(NSUInteger)modifierFlags;
-+ (NSString *)printableKeyStringFromKeySpecChars:(NSString *)string;
 
 
 // Public method
++ (NSString *)keySpecCharsFromKeyEquivalent:(NSString *)string modifierFrags:(NSUInteger)modifierFlags;
++ (NSString *)printableKeyStringFromKeySpecChars:(NSString *)string;
+
 - (void)setupAtLaunching;
 - (NSString *)selectorStringWithKeyEquivalent:(NSString *)string modifierFrags:(NSUInteger)modifierFlags;
 

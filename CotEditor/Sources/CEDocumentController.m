@@ -53,7 +53,7 @@
 
 @implementation CEDocumentController
 
-#pragma mark NSDocumentController Methods
+#pragma mark Superclass Methods
 
 // ------------------------------------------------------
 /// inizialize instance

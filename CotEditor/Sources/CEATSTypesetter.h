@@ -33,7 +33,7 @@
 
 @interface CEATSTypesetter : NSATSTypesetter
 
-// class method
+// singleton
 + (instancetype)sharedSystemTypesetter;
 
 @end

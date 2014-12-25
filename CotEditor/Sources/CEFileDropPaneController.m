@@ -53,6 +53,15 @@
 #pragma mark Superclass Methods
 
 // ------------------------------------------------------
+/// clean up
+- (void)dealloc
+// ------------------------------------------------------
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+
+// ------------------------------------------------------
 /// setup UI
 - (void)loadView
 // ------------------------------------------------------
@@ -75,21 +84,11 @@
 }
 
 
-// ------------------------------------------------------
-/// clean up
-- (void)dealloc
-// ------------------------------------------------------
-{
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
 
-
-
-#pragma mark Delegate and Notification
+#pragma mark Delegate
 
 //=======================================================
-// Delegate method (NSTableView)
-//  <== extensionTableView
+// NSTableViewDelegate  < extensionTableView
 //=======================================================
 
 // ------------------------------------------------------
@@ -139,10 +138,8 @@
 }
 
 
-
 //=======================================================
-// Delegate method (NSTextView)
-//  <== formatTextView
+// NSTextViewDelegate  < formatTextView
 //=======================================================
 
 // ------------------------------------------------------

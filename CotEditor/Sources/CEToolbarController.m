@@ -55,6 +55,15 @@
 #pragma mark Superclass Methods
 
 // ------------------------------------------------------
+/// clean up
+- (void)dealloc
+// ------------------------------------------------------
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+
+// ------------------------------------------------------
 /// setup UI
 - (void)awakeFromNib
 // ------------------------------------------------------
@@ -71,15 +80,6 @@
                                              selector:@selector(buildEncodingPopupButton)
                                                  name:CEEncodingListDidUpdateNotification
                                                object:nil];
-}
-
-
-// ------------------------------------------------------
-/// clean up
-- (void)dealloc
-// ------------------------------------------------------
-{
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 
@@ -181,10 +181,8 @@
 
 #pragma mark Delegate
 
-
 //=======================================================
-// Delegate method (NSToolbarDelegate)
-//  <== toolbar
+// NSToolbarDelegate  < toolbar
 //=======================================================
 
 // ------------------------------------------------------

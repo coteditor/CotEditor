@@ -63,7 +63,7 @@
 
 @implementation CEEditorView
 
-#pragma mark NSView Methods
+#pragma mark Superclass Methods
 
 // ------------------------------------------------------
 /// initialize
@@ -437,11 +437,10 @@
 
 
 
-#pragma mark Delegate and Notification
+#pragma mark Delegate
 
 //=======================================================
-// Delegate method (CETextView)
-//  <== textView
+// NSTextViewDelegate  < textView
 //=======================================================
 
 // ------------------------------------------------------
@@ -538,12 +537,6 @@
     return [outWords array];
 }
 
-
-
-//=======================================================
-// Notification method (NSTextView)
-//  <== CETextView
-//=======================================================
 
 // ------------------------------------------------------
 /// text did edit.
@@ -651,9 +644,10 @@
 
 
 
+#pragma mark Notifications
+
 //=======================================================
-// Notification method (OgreKit 改)
-//  <== OgreReplaceAllThread
+// Notification  < OgreReplaceAllThread (OgreKit-mod)
 //=======================================================
 
 // ------------------------------------------------------

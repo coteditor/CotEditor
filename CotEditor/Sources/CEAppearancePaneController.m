@@ -89,6 +89,13 @@
 }
 
 
+
+#pragma mark Protocol
+
+//=======================================================
+// NSMenuValidation Protocol
+//=======================================================
+
 // ------------------------------------------------------
 /// メニュー項目の有効化／無効化を制御
 - (BOOL)validateMenuItem:(NSMenuItem *)menuItem
@@ -114,11 +121,10 @@
 
 
 
-#pragma mark Delegate and Notification
+#pragma mark Data Source
 
 //=======================================================
-// NSTableDataSource Protocol
-//  <== themeTableView
+// NSTableDataSource Protocol  < themeTableView
 //=======================================================
 
 // ------------------------------------------------------
@@ -139,9 +145,11 @@
 }
 
 
+
+#pragma mark Delegate
+
 //=======================================================
-// Delegate (CEThemeViewController)
-//
+// CEThemeViewControllerDelegate
 //=======================================================
 
 // ------------------------------------------------------
@@ -155,8 +163,7 @@
 
 
 //=======================================================
-// Delegate method (NSTableView)
-//  <== themeTableView
+// NSTableViewDelegate  < themeTableView
 //=======================================================
 
 // ------------------------------------------------------

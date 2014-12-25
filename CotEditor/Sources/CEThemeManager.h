@@ -67,7 +67,7 @@ extern NSString *const CEThemeDidUpdateNotification;
 @property (readonly, nonatomic, copy) NSArray *themeNames;
 
 
-// class method
+// singleton
 + (instancetype)sharedManager;
 
 

@@ -47,7 +47,7 @@
 static const NSRegularExpression *unicodeRegex;
 
 
-#pragma mark Class Methods
+#pragma mark Superclass Methods
 
 // ------------------------------------------------------
 /// initialize class
@@ -62,8 +62,6 @@ static const NSRegularExpression *unicodeRegex;
     });
 }
 
-
-#pragma mark Superclass Methods
 
 // ------------------------------------------------------
 /// initializer of panelController

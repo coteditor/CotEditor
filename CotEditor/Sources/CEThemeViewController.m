@@ -84,6 +84,13 @@
 }
 
 
+
+#pragma mark Protocol
+
+//=======================================================
+// NSKeyValueObserving Protocol
+//=======================================================
+
 // ------------------------------------------------------
 /// theme is modified
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context

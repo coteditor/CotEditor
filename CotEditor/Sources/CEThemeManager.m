@@ -80,7 +80,7 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
 
 @implementation CEThemeManager
 
-#pragma mark Class Methods
+#pragma mark Singleton
 
 // ------------------------------------------------------
 /// return singleton instance

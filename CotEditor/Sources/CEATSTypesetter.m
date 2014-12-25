@@ -34,10 +34,10 @@
 
 @implementation CEATSTypesetter
 
-#pragma mark Class Methods
+#pragma mark Singleton
 
 // ------------------------------------------------------
-/// return shared instance
+/// return singleton instance
 + (instancetype)sharedSystemTypesetter
 // ------------------------------------------------------
 {

@@ -59,7 +59,7 @@ static const NSTimeInterval kDuration = 0.25;
 static NSColor *kLabelColor;
 
 
-#pragma mark Class Methods
+#pragma mark Sueprclass Methods
 
 // ------------------------------------------------------
 /// initialize class
@@ -73,8 +73,14 @@ static NSColor *kLabelColor;
 }
 
 
+// ------------------------------------------------------
+/// clean up
+- (void)dealloc
+// ------------------------------------------------------
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 
-#pragma mark Sueprclass Methods
 
 // ------------------------------------------------------
 /// awake from nib
@@ -93,15 +99,6 @@ static NSColor *kLabelColor;
                                              selector:@selector(updateDocumentStatus)
                                                  name:CEAnalyzerDidUpdateModeInfoNotification
                                                object:[self documentAnalyzer]];
-}
-
-
-// ------------------------------------------------------
-/// clean up
-- (void)dealloc
-// ------------------------------------------------------
-{
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 

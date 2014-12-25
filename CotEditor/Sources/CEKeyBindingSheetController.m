@@ -119,11 +119,10 @@
 
 
 
-#pragma mark Protocol
+#pragma mark Data Source
 
 //=======================================================
-// NSOutlineViewDataSource Protocol
-//  <== outlineView
+// NSOutlineViewDataSource Protocol  < outlineView
 //=======================================================
 
 // ------------------------------------------------------
@@ -184,11 +183,10 @@
 
 
 
-#pragma mark Delegate and Notification
+#pragma mark Delegate
 
 //=======================================================
-// Delegate method (NSOutlineView)
-//  <== outlineView
+// NSOutlineViewDelegate  < outlineView
 //=======================================================
 
 // ------------------------------------------------------
@@ -222,8 +220,7 @@
 
 
 //=======================================================
-// Delegate method (NSTextField)
-//  <== outlineView->CEShortcutKeyField
+// NSTextFieldDelegate  < outlineView->CEShortcutKeyField
 //=======================================================
 
 // ------------------------------------------------------

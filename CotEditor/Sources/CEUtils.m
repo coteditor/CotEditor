@@ -37,7 +37,7 @@
 static const NSArray *invalidYenEncodings;
 
 
-#pragma mark Superclass Class Methods
+#pragma mark Superclass Methods
 
 // ------------------------------------------------------
 /// initialize class
@@ -58,7 +58,7 @@ static const NSArray *invalidYenEncodings;
 
 
 
-#pragma mark Public Class Methods
+#pragma mark Public Methods
 
 // ------------------------------------------------------
 /// returns substitute character for invisible space

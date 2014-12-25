@@ -61,11 +61,10 @@
 
 
 
-#pragma mark Delegate and Notifications
+#pragma mark Delegate
 
 //=======================================================
-// Delegate method (NSTextStorage)
-//  <== NSTextStorage
+// NSTextStorageDelegate
 //=======================================================
 
 // ------------------------------------------------------

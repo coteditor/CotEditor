@@ -95,7 +95,7 @@ static NSArray *kSyntaxDictKeys;
 static CGFloat kPerCompoIncrement;
 
 
-#pragma mark Class Methods
+#pragma mark Superclass Methods
 
 // ------------------------------------------------------
 /// initialize class

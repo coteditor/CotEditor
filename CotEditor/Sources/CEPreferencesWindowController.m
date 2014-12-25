@@ -50,7 +50,7 @@
 
 @implementation CEPreferencesWindowController
 
-#pragma mark Class Methods
+#pragma mark Singleton
 
 // ------------------------------------------------------
 /// return singleton instance

@@ -67,7 +67,7 @@ static NSString *const PageNumberPlaceholder = @"PAGENUM";
 
 @implementation CEPrintView
 
-#pragma mark NSTextView Methods
+#pragma mark Superclass Methods
 
 // ------------------------------------------------------
 /// initialize

@@ -46,15 +46,33 @@
 
 @implementation CESplitViewController
 
+#pragma mark Superclass Methods
+
 // ------------------------------------------------------
 /// ビューの読み込み
-- (void)awakeFromNib
+- (void)loadView
 // ------------------------------------------------------
 {
     [[self splitView] setVertical:[[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultSplitViewVerticalKey]];
     [self updateOpenSplitViewButtons];
 }
 
+// ------------------------------------------------------
+/// 自身の view として NSSplitView を返す (NSSplitViewController のメソッド)
+- (NSSplitView *)splitView
+// ------------------------------------------------------
+{
+    return (NSSplitView *)[super view];
+}
+
+
+
+
+#pragma mark Protocol
+
+//=======================================================
+// NSMenuValidation Protocol
+//=======================================================
 
 // ------------------------------------------------------
 /// メニューの有効化／無効化を制御
@@ -72,14 +90,6 @@
     }
     
     return YES;
-}
-
-// ------------------------------------------------------
-/// 自身の view として NSSplitView を返す (NSSplitViewController のメソッド)
-- (NSSplitView *)splitView
-// ------------------------------------------------------
-{
-    return (NSSplitView *)[super view];
 }
 
 

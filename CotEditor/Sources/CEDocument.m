@@ -80,7 +80,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 @implementation CEDocument
 
-#pragma mark Class Methods
+#pragma mark Superclass Methods
 
 // ------------------------------------------------------
 /// OS X 10.7 AutoSave
@@ -99,8 +99,6 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     return NO;
 }
 
-
-#pragma mark NSDocument Methods
 
 // ------------------------------------------------------
 /// initialize
@@ -429,6 +427,116 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     [[printOperation printPanel] addAccessoryController:accessoryController];
     
     return printOperation;
+}
+
+
+// ------------------------------------------------------
+/// メニュー項目の有効・無効を制御
+- (BOOL)validateMenuItem:(NSMenuItem *)menuItem
+// ------------------------------------------------------
+{
+    NSInteger state = NSOffState;
+    NSString *name;
+    
+    if ([menuItem action] == @selector(saveDocument:)) {
+        // 書き込み不可の時は、アラートが表示され「OK」されるまで保存メニューを無効化する
+        return ([self isWritable] || [self didAlertNotWritable]);
+    } else if ([menuItem action] == @selector(changeEncoding:)) {
+        state = ([menuItem tag] == [self encoding]) ? NSOnState : NSOffState;
+    } else if (([menuItem action] == @selector(changeLineEndingToLF:)) ||
+               ([menuItem action] == @selector(changeLineEndingToCR:)) ||
+               ([menuItem action] == @selector(changeLineEndingToCRLF:)) ||
+               ([menuItem action] == @selector(changeLineEnding:)))
+    {
+        state = ([menuItem tag] == [self lineEnding]) ? NSOnState : NSOffState;
+    } else if ([menuItem action] == @selector(changeTheme:)) {
+        name = [[[self editor] theme] name];
+        if (name && [[menuItem title] isEqualToString:name]) {
+            state = NSOnState;
+        }
+    } else if ([menuItem action] == @selector(changeSyntaxStyle:)) {
+        name = [[self editor] syntaxStyleName];
+        if (name && [[menuItem title] isEqualToString:name]) {
+            state = NSOnState;
+        }
+    } else if ([menuItem action] == @selector(recolorAll:)) {
+        name = [[self editor] syntaxStyleName];
+        if (name && [name isEqualToString:NSLocalizedString(@"None", @"")]) {
+            return NO;
+        }
+    }
+    [menuItem setState:state];
+    
+    return [super validateMenuItem:menuItem];
+}
+
+
+
+#pragma mark Protocol
+
+//=======================================================
+// NSToolbarItemValidation Protocol
+//=======================================================
+
+// ------------------------------------------------------
+/// ツールバー項目の有効・無効を制御
+-(BOOL)validateToolbarItem:(NSToolbarItem *)item
+// ------------------------------------------------------
+{
+    if ([item action] == @selector(recolorAll:)) {
+        NSString *name = [[self editor] syntaxStyleName];
+        if ([name isEqualToString:NSLocalizedString(@"None", @"")]) {
+            return NO;
+        }
+    }
+    return YES;
+}
+
+
+//=======================================================
+// NSFilePresenter Protocol
+//=======================================================
+
+// ------------------------------------------------------
+/// ファイルが変更された
+- (void)presentedItemDidChange
+// ------------------------------------------------------
+{
+    // ファイルのmodificationDateがドキュメントのmodificationDateと同じ場合は無視
+    NSFileCoordinator *coordinator = [[NSFileCoordinator alloc] initWithFilePresenter:self];
+    __block NSDate *fileModificationDate;
+    [coordinator coordinateReadingItemAtURL:[self fileURL] options:NSFileCoordinatorReadingWithoutChanges
+                                      error:nil byAccessor:^(NSURL *newURL)
+     {
+         NSDictionary *fileAttrs = [[NSFileManager defaultManager] attributesOfItemAtPath:[newURL path] error:nil];
+         fileModificationDate = [fileAttrs fileModificationDate];
+     }];
+    if ([fileModificationDate isEqualToDate:[self fileModificationDate]]) { return; }
+    
+    // ファイルのMD5ハッシュが保持しているものと同じ場合は編集されていないと認識させた上で無視
+    __block NSString *MD5;
+    [coordinator coordinateReadingItemAtURL:[self fileURL] options:NSFileCoordinatorReadingWithoutChanges
+                                      error:nil byAccessor:^(NSURL *newURL)
+     {
+         MD5 = [[NSData dataWithContentsOfURL:newURL] MD5];
+     }];
+    if ([MD5 isEqualToString:[self fileMD5]]) {
+        // documentの保持しているfileModificationDateを書き換える (2014-03 by 1024jp)
+        // ここだけで無視してもファイル保存時にアラートが出るのことへの対策
+        [self setFileModificationDate:fileModificationDate];
+        
+        return;
+    }
+    
+    // 書き込み通知を行う
+    [self setNeedsShowUpdateAlertWithBecomeKey:YES];
+    // アプリがアクティブならシート／ダイアログを表示し、そうでなければ設定を見てDockアイコンをジャンプ
+    if ([NSApp isActive]) {
+        [self performSelectorOnMainThread:@selector(showUpdatedByExternalProcessAlert) withObject:nil waitUntilDone:NO];
+        
+    } else if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultNotifyEditByAnotherKey]) {
+        [NSApp requestUserAttention:NSInformationalRequest];
+    }
 }
 
 
@@ -882,129 +990,10 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 
 
-#pragma mark Protocols
+#pragma mark Notifications
 
 //=======================================================
-// NSMenuValidation Protocol
-//
-//=======================================================
-
-// ------------------------------------------------------
-/// メニュー項目の有効・無効を制御
-- (BOOL)validateMenuItem:(NSMenuItem *)menuItem
-// ------------------------------------------------------
-{
-    NSInteger state = NSOffState;
-    NSString *name;
-
-    if ([menuItem action] == @selector(saveDocument:)) {
-        // 書き込み不可の時は、アラートが表示され「OK」されるまで保存メニューを無効化する
-        return ([self isWritable] || [self didAlertNotWritable]);
-    } else if ([menuItem action] == @selector(changeEncoding:)) {
-        state = ([menuItem tag] == [self encoding]) ? NSOnState : NSOffState;
-    } else if (([menuItem action] == @selector(changeLineEndingToLF:)) ||
-               ([menuItem action] == @selector(changeLineEndingToCR:)) ||
-               ([menuItem action] == @selector(changeLineEndingToCRLF:)) ||
-               ([menuItem action] == @selector(changeLineEnding:)))
-    {
-        state = ([menuItem tag] == [self lineEnding]) ? NSOnState : NSOffState;
-    } else if ([menuItem action] == @selector(changeTheme:)) {
-        name = [[[self editor] theme] name];
-        if (name && [[menuItem title] isEqualToString:name]) {
-            state = NSOnState;
-        }
-    } else if ([menuItem action] == @selector(changeSyntaxStyle:)) {
-        name = [[self editor] syntaxStyleName];
-        if (name && [[menuItem title] isEqualToString:name]) {
-            state = NSOnState;
-        }
-    } else if ([menuItem action] == @selector(recolorAll:)) {
-        name = [[self editor] syntaxStyleName];
-        if (name && [name isEqualToString:NSLocalizedString(@"None", @"")]) {
-            return NO;
-        }
-    }
-    [menuItem setState:state];
-
-    return [super validateMenuItem:menuItem];
-}
-
-
-
-//=======================================================
-// NSToolbarItemValidation Protocol
-//
-//=======================================================
-
-// ------------------------------------------------------
-/// ツールバー項目の有効・無効を制御
--(BOOL)validateToolbarItem:(NSToolbarItem *)item
-// ------------------------------------------------------
-{
-    if ([item action] == @selector(recolorAll:)) {
-        NSString *name = [[self editor] syntaxStyleName];
-        if ([name isEqualToString:NSLocalizedString(@"None", @"")]) {
-            return NO;
-        }
-    }
-    return YES;
-}
-
-
-
-#pragma mark Delegate and Notifications
-
-//=======================================================
-// Delegate method (NSFilePresenter)
-//  <== NSFilePresenter
-//=======================================================
-
-// ------------------------------------------------------
-/// ファイルが変更された
-- (void)presentedItemDidChange
-// ------------------------------------------------------
-{
-    // ファイルのmodificationDateがドキュメントのmodificationDateと同じ場合は無視
-    NSFileCoordinator *coordinator = [[NSFileCoordinator alloc] initWithFilePresenter:self];
-    __block NSDate *fileModificationDate;
-    [coordinator coordinateReadingItemAtURL:[self fileURL] options:NSFileCoordinatorReadingWithoutChanges
-                                      error:nil byAccessor:^(NSURL *newURL)
-     {
-         NSDictionary *fileAttrs = [[NSFileManager defaultManager] attributesOfItemAtPath:[newURL path] error:nil];
-         fileModificationDate = [fileAttrs fileModificationDate];
-     }];
-    if ([fileModificationDate isEqualToDate:[self fileModificationDate]]) { return; }
-    
-    // ファイルのMD5ハッシュが保持しているものと同じ場合は編集されていないと認識させた上で無視
-    __block NSString *MD5;
-    [coordinator coordinateReadingItemAtURL:[self fileURL] options:NSFileCoordinatorReadingWithoutChanges
-                                      error:nil byAccessor:^(NSURL *newURL)
-     {
-         MD5 = [[NSData dataWithContentsOfURL:newURL] MD5];
-     }];
-    if ([MD5 isEqualToString:[self fileMD5]]) {
-        // documentの保持しているfileModificationDateを書き換える (2014-03 by 1024jp)
-        // ここだけで無視してもファイル保存時にアラートが出るのことへの対策
-        [self setFileModificationDate:fileModificationDate];
-        
-        return;
-    }
-    
-    // 書き込み通知を行う
-    [self setNeedsShowUpdateAlertWithBecomeKey:YES];
-    // アプリがアクティブならシート／ダイアログを表示し、そうでなければ設定を見てDockアイコンをジャンプ
-    if ([NSApp isActive]) {
-        [self performSelectorOnMainThread:@selector(showUpdatedByExternalProcessAlert) withObject:nil waitUntilDone:NO];
-        
-    } else if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultNotifyEditByAnotherKey]) {
-        [NSApp requestUserAttention:NSInformationalRequest];
-    }
-}
-
-
-//=======================================================
-// Notification method (CESplitView)
-//  <== CESplitView
+// Notification  <- CESplitView
 //=======================================================
 
 // ------------------------------------------------------

@@ -32,6 +32,7 @@
 
 @interface CEPreferencesWindowController : NSWindowController <NSWindowDelegate>
 
+// singleton
 + (instancetype)sharedController;
 
 @end

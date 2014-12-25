@@ -32,6 +32,8 @@
 
 @implementation NSString (ComposedCharacter)
 
+#pragma mark Public Methods
+
 // ------------------------------------------------------
 /// number of composed characters in the whole string
 - (NSUInteger)numberOfComposedCharacters

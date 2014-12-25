@@ -144,6 +144,13 @@
 }
 
 
+
+#pragma mark Protocol
+
+//=======================================================
+// NSKeyValueObserving Protocol
+//=======================================================
+
 // ------------------------------------------------------
 /// 監視しているキー値が変更された
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
@@ -155,12 +162,8 @@
 }
 
 
-
-#pragma mark Protocol
-
 //=======================================================
 // NSPrintPanelAccessorizing Protocol
-//
 //=======================================================
 
 // ------------------------------------------------------

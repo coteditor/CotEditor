@@ -65,7 +65,7 @@ static NSTimeInterval firstColoringDelay;
 static NSTimeInterval secondColoringDelay;
 
 
-#pragma mark Class Methods
+#pragma mark Sperclass Methods
 
 // ------------------------------------------------------
 /// クラス初期化
@@ -83,9 +83,6 @@ static NSTimeInterval secondColoringDelay;
 }
 
 
-
-#pragma mark Sperclass Methods
-
 // ------------------------------------------------------
 /// initialize
 - (instancetype)init
@@ -102,6 +99,16 @@ static NSTimeInterval secondColoringDelay;
                                       [defaults boolForKey:CEDefaultShowOtherInvisibleCharsKey]);
     }
     return self;
+}
+
+
+// ------------------------------------------------------
+/// clean up
+- (void)dealloc
+// ------------------------------------------------------
+{
+    [self stopColoringTimer];
+    _textView = nil;
 }
 
 
@@ -127,13 +134,72 @@ static NSTimeInterval secondColoringDelay;
 }
 
 
+
+#pragma mark Protocol
+
+//=======================================================
+// NSMenuValidation Protocol
+//=======================================================
+
 // ------------------------------------------------------
-/// clean up
-- (void)dealloc
+/// メニュー項目の有効・無効を制御
+- (BOOL)validateMenuItem:(NSMenuItem *)menuItem
 // ------------------------------------------------------
 {
-    [self stopColoringTimer];
-    _textView = nil;
+    NSInteger state = NSOffState;
+    NSString *title;
+    
+    if ([menuItem action] == @selector(toggleLineNumber:)) {
+        title = [self showsLineNum] ? @"Hide Line Numbers" : @"Show Line Numbers";
+        if ([self isVerticalLayoutOrientation]) {
+            return NO;
+        }
+        
+    } else if ([menuItem action] == @selector(toggleNavigationBar:)) {
+        title = [self showsNavigationBar] ? @"Hide Navigation Bar" : @"Show Navigation Bar";
+        
+    } else if ([menuItem action] == @selector(toggleLineWrap:)) {
+        title = [self wrapsLines] ? @"Unwrap Lines" : @"Wrap Lines";
+        
+    } else if ([menuItem action] == @selector(toggleLayoutOrientation:)) {
+        NSString *title = [self isVerticalLayoutOrientation] ? @"Use Horizontal Orientation" :  @"Use Vertical Orientation";
+        [menuItem setTitle:NSLocalizedString(title, nil)];
+        
+    } else if ([menuItem action] == @selector(toggleAntialias:)) {
+        state = [self usesAntialias] ? NSOnState : NSOffState;
+        
+    } else if ([menuItem action] == @selector(togglePageGuide:)) {
+        title = [self showsPageGuide] ? @"Hide Page Guide" : @"Show Page Guide";
+        
+    } else if ([menuItem action] == @selector(toggleInvisibleChars:)) {
+        title = [self showsInvisibles] ? @"Hide Invisible Characters" : @"Show Invisible Characters";
+        [menuItem setTitle:NSLocalizedString(title, nil)];
+        
+        if (![self canActivateShowInvisibles]) {
+            [menuItem setToolTip:NSLocalizedString(@"To display invisible characters, set them in Preferences and re-open the document.", nil)];
+        }
+        
+        return [self canActivateShowInvisibles];
+        
+    } else if ([menuItem action] == @selector(toggleAutoTabExpand:)) {
+        state = [[self textView] isAutoTabExpandEnabled] ? NSOnState : NSOffState;
+        
+    } else if ([menuItem action] == @selector(selectPrevItemOfOutlineMenu:)) {
+        return ([[self navigationBar] canSelectPrevItem]);
+    } else if ([menuItem action] == @selector(selectNextItemOfOutlineMenu:)) {
+        return ([[self navigationBar] canSelectNextItem]);
+        
+    } else if ([menuItem action] == @selector(closeSplitTextView:)) {
+        return ([[[[self splitViewController] view] subviews] count] > 1);
+    }
+    
+    if (title) {
+        [menuItem setTitle:NSLocalizedString(title, nil)];
+    } else {
+        [menuItem setState:state];
+    }
+    
+    return YES;
 }
 
 
@@ -544,76 +610,6 @@ static NSTimeInterval secondColoringDelay;
                                                               selector:@selector(doColoringWithTimer:)
                                                               userInfo:nil repeats:NO]];
     }
-}
-
-
-
-#pragma mark Protocol
-
-//=======================================================
-// NSMenuValidation Protocol
-//
-//=======================================================
-
-// ------------------------------------------------------
-/// メニュー項目の有効・無効を制御
-- (BOOL)validateMenuItem:(NSMenuItem *)menuItem
-// ------------------------------------------------------
-{
-    NSInteger state = NSOffState;
-    NSString *title;
-
-    if ([menuItem action] == @selector(toggleLineNumber:)) {
-        title = [self showsLineNum] ? @"Hide Line Numbers" : @"Show Line Numbers";
-        if ([self isVerticalLayoutOrientation]) {
-            return NO;
-        }
-        
-    } else if ([menuItem action] == @selector(toggleNavigationBar:)) {
-        title = [self showsNavigationBar] ? @"Hide Navigation Bar" : @"Show Navigation Bar";
-        
-    } else if ([menuItem action] == @selector(toggleLineWrap:)) {
-        title = [self wrapsLines] ? @"Unwrap Lines" : @"Wrap Lines";
-        
-    } else if ([menuItem action] == @selector(toggleLayoutOrientation:)) {
-        NSString *title = [self isVerticalLayoutOrientation] ? @"Use Horizontal Orientation" :  @"Use Vertical Orientation";
-        [menuItem setTitle:NSLocalizedString(title, nil)];
-        
-    } else if ([menuItem action] == @selector(toggleAntialias:)) {
-        state = [self usesAntialias] ? NSOnState : NSOffState;
-        
-    } else if ([menuItem action] == @selector(togglePageGuide:)) {
-        title = [self showsPageGuide] ? @"Hide Page Guide" : @"Show Page Guide";
-        
-    } else if ([menuItem action] == @selector(toggleInvisibleChars:)) {
-        title = [self showsInvisibles] ? @"Hide Invisible Characters" : @"Show Invisible Characters";
-        [menuItem setTitle:NSLocalizedString(title, nil)];
-        
-        if (![self canActivateShowInvisibles]) {
-            [menuItem setToolTip:NSLocalizedString(@"To display invisible characters, set them in Preferences and re-open the document.", nil)];
-        }
-        
-        return [self canActivateShowInvisibles];
-    
-    } else if ([menuItem action] == @selector(toggleAutoTabExpand:)) {
-        state = [[self textView] isAutoTabExpandEnabled] ? NSOnState : NSOffState;
-        
-    } else if ([menuItem action] == @selector(selectPrevItemOfOutlineMenu:)) {
-        return ([[self navigationBar] canSelectPrevItem]);
-    } else if ([menuItem action] == @selector(selectNextItemOfOutlineMenu:)) {
-        return ([[self navigationBar] canSelectNextItem]);
-        
-    } else if ([menuItem action] == @selector(closeSplitTextView:)) {
-        return ([[[[self splitViewController] view] subviews] count] > 1);
-    }
-    
-    if (title) {
-        [menuItem setTitle:NSLocalizedString(title, nil)];
-    } else {
-        [menuItem setState:state];
-    }
-    
-    return YES;
 }
 
 

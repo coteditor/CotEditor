@@ -76,7 +76,7 @@
 
 @implementation CEAppDelegate
 
-#pragma mark Class Methods
+#pragma mark Superclass Methods
 
 // ------------------------------------------------------
 /// set binding keys and values
@@ -227,9 +227,6 @@
 }
 
 
-
-#pragma mark Superclass Methods
-
 // ------------------------------------------------------
 /// initialize
 - (instancetype)init
@@ -274,12 +271,12 @@
     
     // observe encoding list update
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(buildEncodingMenu)
+                                             selector:@selector(buildEncodingMenu:)
                                                  name:CEEncodingListDidUpdateNotification
                                                object:nil];
     // observe syntax style lineup update
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(buildSyntaxMenu)
+                                             selector:@selector(buildSyntaxMenu:)
                                                  name:CESyntaxListDidUpdateNotification
                                                object:nil];
     // observe theme lineup update
@@ -291,11 +288,31 @@
 
 
 
-#pragma mark Delegate and Notification
+#pragma mark Protocol
 
 //=======================================================
-// Delegate method (NSApplication)
-//  <== File's Owner
+// NSMenuValidation Protocol
+//=======================================================
+
+// ------------------------------------------------------
+/// validate menu items
+- (BOOL)validateMenuItem:(NSMenuItem *)menuItem
+// ------------------------------------------------------
+{
+    if (([menuItem action] == @selector(showLineHeightPanel:)) ||
+        ([menuItem action] == @selector(showUnicodeInputPanel:))) {
+        return ([[NSDocumentController sharedDocumentController] currentDocument] != nil);
+    }
+    
+    return YES;
+}
+
+
+
+#pragma mark Delegate
+
+//=======================================================
+// NSApplicationDelegate  < File's Owner
 //=======================================================
 
 // ------------------------------------------------------
@@ -452,20 +469,6 @@
     }
     
     return NO;
-}
-
-
-// ------------------------------------------------------
-/// validate menu items
-- (BOOL)validateMenuItem:(NSMenuItem *)menuItem
-// ------------------------------------------------------
-{
-    if (([menuItem action] == @selector(showLineHeightPanel:)) ||
-        ([menuItem action] == @selector(showUnicodeInputPanel:))) {
-        return ([[NSDocumentController sharedDocumentController] currentDocument] != nil);
-    }
-    
-    return YES;
 }
 
 

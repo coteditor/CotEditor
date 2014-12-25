@@ -50,6 +50,15 @@
 #pragma mark Superclass Methods
 
 // ------------------------------------------------------
+/// clean up
+- (void)dealloc
+// ------------------------------------------------------
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+
+// ------------------------------------------------------
 /// setup UI
 - (void)loadView
 // ------------------------------------------------------
@@ -64,15 +73,6 @@
                                              selector:@selector(setupColorMenu)
                                                  name:CEThemeListDidUpdateNotification
                                                object:nil];
-}
-
-
-// ------------------------------------------------------
-/// clean up
-- (void)dealloc
-// ------------------------------------------------------
-{
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 

@@ -43,7 +43,7 @@
 
 @implementation CESizeSampleWindowController
 
-#pragma mark Super Class Methods
+#pragma mark Superclass Methods
 
 // ------------------------------------------------------
 /// setup UI

@@ -35,7 +35,7 @@
 #pragma mark Superclass Methods
 
 // ------------------------------------------------------
-// init
+// initialize
 - (instancetype)initWithCoder:(NSCoder *)aDecoder
 // ------------------------------------------------------
 {

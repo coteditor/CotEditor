@@ -44,7 +44,7 @@
 
 @implementation CEEncodingListSheetController
 
-#pragma mark NSWindowController Methods
+#pragma mark Superclass Methods
 
 // ------------------------------------------------------
 /// initialize

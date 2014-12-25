@@ -41,7 +41,7 @@ extern NSString *const CEEncodingListDidUpdateNotification;
 @property (readonly, nonatomic, copy) NSArray *encodingMenuItems;
 
 
-// class method
+// singleton
 + (CEEncodingManager *)sharedManager;
 
 @end

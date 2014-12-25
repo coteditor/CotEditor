@@ -32,6 +32,8 @@
 
 @implementation NSString (JapaneseTransform)
 
+#pragma mark Public Methods
+
 // ------------------------------------------------------
 /// transform half-width roman to full-width
 - (NSString *)fullWidthRomanString

@@ -45,7 +45,7 @@
 
 @implementation CESyntaxMappingConflictsSheetController
 
-#pragma mark NSWindowController Methods
+#pragma mark Superclass Methods
 
 // ------------------------------------------------------
 /// initialize

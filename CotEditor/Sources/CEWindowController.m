@@ -78,7 +78,7 @@ typedef NS_ENUM(NSUInteger, CESidebarTag) {
 static NSTimeInterval infoUpdateInterval;
 
 
-#pragma mark Class Methods
+#pragma mark Superclass Methods
 
 // ------------------------------------------------------
 /// initialize class
@@ -94,8 +94,17 @@ static NSTimeInterval infoUpdateInterval;
 }
 
 
+// ------------------------------------------------------
+/// clean up
+- (void)dealloc
+// ------------------------------------------------------
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:CEDefaultWindowAlphaKey];
+    
+    [self stopEditorInfoUpdateTimer];
+}
 
-#pragma mark NSWindowController Methods
 
 // ------------------------------------------------------
 /// prepare window and other UI
@@ -151,28 +160,12 @@ static NSTimeInterval infoUpdateInterval;
 }
 
 
-// ------------------------------------------------------
-/// clean up
-- (void)dealloc
-// ------------------------------------------------------
-{
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:CEDefaultWindowAlphaKey];
-    
-    [self stopEditorInfoUpdateTimer];
-}
 
+#pragma mark Protocol
 
-// ------------------------------------------------------
-/// apply user defaults change
--(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
-// ------------------------------------------------------
-{
-    if ([keyPath isEqualToString:CEDefaultWindowAlphaKey]) {
-        [(CEWindow *)[self window] setBackgroundAlpha:(CGFloat)[change[NSKeyValueChangeNewKey] doubleValue]];
-    }
-}
-
+//=======================================================
+// NSMenuValidation Protocol
+//=======================================================
 
 // ------------------------------------------------------
 /// validate menu items
@@ -185,6 +178,35 @@ static NSTimeInterval infoUpdateInterval;
     }
     
     return YES;
+}
+
+
+//=======================================================
+// NSKeyValueObserving Protocol
+//=======================================================
+
+// ------------------------------------------------------
+/// apply user defaults change
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+// ------------------------------------------------------
+{
+    if ([keyPath isEqualToString:CEDefaultWindowAlphaKey]) {
+        [(CEWindow *)[self window] setBackgroundAlpha:(CGFloat)[change[NSKeyValueChangeNewKey] doubleValue]];
+    }
+}
+
+
+//=======================================================
+// OgreTextFindDataSource Protocol
+//=======================================================
+
+// ------------------------------------------------------
+/// OgreKit method that passes the main textView.
+- (void)tellMeTargetToFindIn:(id)sender
+// ------------------------------------------------------
+{
+    OgreTextFinder *textFinder = (OgreTextFinder *)sender;
+    [textFinder setTargetToFindIn:[[self editor] textView]];
 }
 
 
@@ -293,32 +315,13 @@ static NSTimeInterval infoUpdateInterval;
         [[self documentAnalyzer] updateModeInfo];
     }
 }
-    
-
-
-#pragma mark Protocol
-
-//=======================================================
-// OgreKit Protocol
-//
-//=======================================================
-
-// ------------------------------------------------------
-/// OgreKit method that passes the main textView.
-- (void)tellMeTargetToFindIn:(id)sender
-// ------------------------------------------------------
-{
-    OgreTextFinder *textFinder = (OgreTextFinder *)sender;
-    [textFinder setTargetToFindIn:[[self editor] textView]];
-}
 
 
 
-#pragma mark Delegate and Notification
+#pragma mark Delegate
 
 //=======================================================
-// Delegate method (NSWindow)
-//  <== mainWindow
+// NSWindowDelegate  < window
 //=======================================================
 
 // ------------------------------------------------------
@@ -384,8 +387,7 @@ static NSTimeInterval infoUpdateInterval;
 
 
 //=======================================================
-// Delegate method (NSSplitView)
-//  <== sidebarSplitView
+// NSSplitViewDelegate  < sidebarSplitView
 //=======================================================
 
 // ------------------------------------------------------

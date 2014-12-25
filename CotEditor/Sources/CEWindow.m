@@ -126,7 +126,7 @@ NSString *const CEWindowOpacityDidChangeNotification = @"CEWindowOpacityDidChang
 
 
 
-#pragma mark Private Methods
+#pragma mark Notifications
 
 // ------------------------------------------------------
 /// notify entering fullscreen

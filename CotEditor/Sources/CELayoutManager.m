@@ -66,7 +66,7 @@
 static BOOL usesTextFontForInvisibles;
 
 
-#pragma mark Superclass Class Methods
+#pragma mark Superclass Methods
 
 // ------------------------------------------------------
 /// initialize class
@@ -79,9 +79,6 @@ static BOOL usesTextFontForInvisibles;
     });
 }
 
-
-
-#pragma mark NSLayoutManager Methods
 
 // ------------------------------------------------------
 /// initialize

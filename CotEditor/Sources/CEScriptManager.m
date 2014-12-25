@@ -58,7 +58,7 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 
 @implementation CEScriptManager
 
-#pragma mark Class Methods
+#pragma mark Singleton
 
 // ------------------------------------------------------
 /// return singleton instance
@@ -269,7 +269,7 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 
 
 
-#pragma mark Private Class Methods
+#pragma mark Private Methods
 
 // ------------------------------------------------------
 /// file extensions for UNIX scripts
@@ -438,9 +438,6 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
     }
 }
 
-
-
-#pragma mark Private Methods
 
 //------------------------------------------------------
 /// read files and create/add menu items

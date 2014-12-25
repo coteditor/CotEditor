@@ -49,7 +49,7 @@ NSString *const CEEncodingListDidUpdateNotification = @"CESyntaxListDidUpdateNot
 
 @implementation CEEncodingManager
 
-#pragma mark Class Methods
+#pragma mark Singleton
 
 // ------------------------------------------------------
 /// return singleton instance
@@ -68,7 +68,7 @@ NSString *const CEEncodingListDidUpdateNotification = @"CESyntaxListDidUpdateNot
 
 
 
-#pragma mark Superclass Methods
+#pragma mark Sueprclass Methods
 
 // ------------------------------------------------------
 /// initialize

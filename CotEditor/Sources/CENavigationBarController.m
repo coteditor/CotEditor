@@ -72,6 +72,15 @@ static const NSTimeInterval kDuration = 0.25;
 
 
 // ------------------------------------------------------
+/// clean up
+- (void)dealloc
+// ------------------------------------------------------
+{
+    _textView = nil;
+}
+
+
+// ------------------------------------------------------
 /// view is loaded
 - (void)loadView
 // ------------------------------------------------------
@@ -86,14 +95,6 @@ static const NSTimeInterval kDuration = 0.25;
     [[self outlineIndicator] setUsesThreadedAnimation:YES];
 }
 
-
-// ------------------------------------------------------
-/// clean up
-- (void)dealloc
-// ------------------------------------------------------
-{
-    _textView = nil;
-}
 
 
 #pragma mark Public Methods

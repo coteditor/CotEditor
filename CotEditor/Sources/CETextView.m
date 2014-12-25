@@ -71,7 +71,7 @@ const NSInteger kNoMenuItem = -1;
 
 @implementation CETextView
 
-#pragma mark NSTextView Methods
+#pragma mark Superclass Methods
 
 // ------------------------------------------------------
 /// initialize
@@ -161,31 +161,6 @@ const NSInteger kNoMenuItem = -1;
     }
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [self stopCompletionTimer];
-}
-
-
-// ------------------------------------------------------
-/// ユーザ設定の変更を反映する
--(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
-// ------------------------------------------------------
-{
-    id newValue = change[NSKeyValueChangeNewKey];
-    
-    if ([keyPath isEqualToString:CEDefaultAutoExpandTabKey]) {
-        [self setAutoTabExpandEnabled:[newValue boolValue]];
-        
-    } else if ([keyPath isEqualToString:CEDefaultSmartInsertAndDeleteKey]) {
-        [self setSmartInsertDeleteEnabled:[newValue boolValue]];
-        
-    } else if ([keyPath isEqualToString:CEDefaultCheckSpellingAsTypeKey]) {
-        [self setContinuousSpellCheckingEnabled:[newValue boolValue]];
-        
-    } else if ([keyPath isEqualToString:CEDefaultEnableSmartQuotesKey]) {
-        if ([self respondsToSelector:@selector(setAutomaticQuoteSubstitutionEnabled:)]) {  // only on OS X 10.9 and later
-            [self setAutomaticQuoteSubstitutionEnabled:[newValue boolValue]];
-            [self setAutomaticDashSubstitutionEnabled:[newValue boolValue]];
-        }
-    }
 }
 
 
@@ -976,6 +951,93 @@ const NSInteger kNoMenuItem = -1;
 
 
 
+#pragma mark Protocol
+
+//=======================================================
+// NSKeyValueObserving Protocol
+//=======================================================
+
+// ------------------------------------------------------
+/// ユーザ設定の変更を反映する
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+// ------------------------------------------------------
+{
+    id newValue = change[NSKeyValueChangeNewKey];
+    
+    if ([keyPath isEqualToString:CEDefaultAutoExpandTabKey]) {
+        [self setAutoTabExpandEnabled:[newValue boolValue]];
+        
+    } else if ([keyPath isEqualToString:CEDefaultSmartInsertAndDeleteKey]) {
+        [self setSmartInsertDeleteEnabled:[newValue boolValue]];
+        
+    } else if ([keyPath isEqualToString:CEDefaultCheckSpellingAsTypeKey]) {
+        [self setContinuousSpellCheckingEnabled:[newValue boolValue]];
+        
+    } else if ([keyPath isEqualToString:CEDefaultEnableSmartQuotesKey]) {
+        if ([self respondsToSelector:@selector(setAutomaticQuoteSubstitutionEnabled:)]) {  // only on OS X 10.9 and later
+            [self setAutomaticQuoteSubstitutionEnabled:[newValue boolValue]];
+            [self setAutomaticDashSubstitutionEnabled:[newValue boolValue]];
+        }
+    }
+}
+
+
+//=======================================================
+// NSMenuValidation Protocol
+//=======================================================
+
+// ------------------------------------------------------
+/// メニューの有効／無効を制御
+- (BOOL)validateMenuItem:(NSMenuItem *)menuItem
+// ------------------------------------------------------
+{
+    if (([menuItem action] == @selector(exchangeFullwidthRoman:)) ||
+        ([menuItem action] == @selector(exchangeHalfwidthRoman:)) ||
+        ([menuItem action] == @selector(exchangeKatakana:)) ||
+        ([menuItem action] == @selector(exchangeHiragana:)) ||
+        ([menuItem action] == @selector(normalizeUnicodeWithNFD:)) ||
+        ([menuItem action] == @selector(normalizeUnicodeWithNFC:)) ||
+        ([menuItem action] == @selector(normalizeUnicodeWithNFKD:)) ||
+        ([menuItem action] == @selector(normalizeUnicodeWithNFKC:)))
+    {
+        return ([self selectedRange].length > 0);
+        // （カラーコード編集メニューは常に有効）
+        
+    } else if ([menuItem action] == @selector(changeLineHeight:)) {
+        [menuItem setState:(([self lineSpacing] == (CGFloat)[[menuItem title] doubleValue] - 1.0) ? NSOnState : NSOffState)];
+    } else if ([menuItem action] == @selector(changeTabWidth:)) {
+        [menuItem setState:(([self tabWidth] == [menuItem tag]) ? NSOnState : NSOffState)];
+    } else if ([menuItem action] == @selector(showSelectionInfo:)) {
+        NSString *selection = [[self string] substringWithRange:[self selectedRange]];
+        return ([selection numberOfComposedCharacters] == 1);
+    } else if ([menuItem action] == @selector(toggleComment:)) {
+        NSString *title = [self canUncommentRange:[self selectedRange]] ? @"Uncomment Selection" : @"Comment Selection";
+        [menuItem setTitle:NSLocalizedString(title, nil)];
+        return ([self inlineCommentDelimiter] || [self blockCommentDelimiters]);
+    }
+    
+    return [super validateMenuItem:menuItem];
+}
+
+
+//=======================================================
+// NSToolbarItemValidation Protocol
+//=======================================================
+
+// ------------------------------------------------------
+/// ツールバーアイコンの有効／無効を制御
+- (BOOL)validateToolbarItem:(NSToolbarItem *)theItem
+// ------------------------------------------------------
+{
+    if ([theItem action] == @selector(toggleComment:)) {
+        return ([self inlineCommentDelimiter] || [self blockCommentDelimiters]);
+    }
+    
+    return YES;
+}
+
+
+
 #pragma mark Public Methods
 
 // ------------------------------------------------------
@@ -1145,61 +1207,6 @@ const NSInteger kNoMenuItem = -1;
     [[self enclosingScrollView] setScrollerKnobStyle:knobStyle];
     
     _theme = theme;
-}
-
-
-
-#pragma mark Protocol
-
-//=======================================================
-// NSNibAwaking Protocol
-//
-//=======================================================
-
-// ------------------------------------------------------
-/// メニューの有効／無効を制御
-- (BOOL)validateMenuItem:(NSMenuItem *)menuItem
-// ------------------------------------------------------
-{
-    if (([menuItem action] == @selector(exchangeFullwidthRoman:)) ||
-        ([menuItem action] == @selector(exchangeHalfwidthRoman:)) ||
-        ([menuItem action] == @selector(exchangeKatakana:)) ||
-        ([menuItem action] == @selector(exchangeHiragana:)) ||
-        ([menuItem action] == @selector(normalizeUnicodeWithNFD:)) ||
-        ([menuItem action] == @selector(normalizeUnicodeWithNFC:)) ||
-        ([menuItem action] == @selector(normalizeUnicodeWithNFKD:)) ||
-        ([menuItem action] == @selector(normalizeUnicodeWithNFKC:)))
-    {
-        return ([self selectedRange].length > 0);
-        // （カラーコード編集メニューは常に有効）
-
-    } else if ([menuItem action] == @selector(changeLineHeight:)) {
-        [menuItem setState:(([self lineSpacing] == (CGFloat)[[menuItem title] doubleValue] - 1.0) ? NSOnState : NSOffState)];
-    } else if ([menuItem action] == @selector(changeTabWidth:)) {
-        [menuItem setState:(([self tabWidth] == [menuItem tag]) ? NSOnState : NSOffState)];
-    } else if ([menuItem action] == @selector(showSelectionInfo:)) {
-        NSString *selection = [[self string] substringWithRange:[self selectedRange]];
-        return ([selection numberOfComposedCharacters] == 1);
-    } else if ([menuItem action] == @selector(toggleComment:)) {
-        NSString *title = [self canUncommentRange:[self selectedRange]] ? @"Uncomment Selection" : @"Comment Selection";
-        [menuItem setTitle:NSLocalizedString(title, nil)];
-        return ([self inlineCommentDelimiter] || [self blockCommentDelimiters]);
-    }
-
-    return [super validateMenuItem:menuItem];
-}
-
-
-// ------------------------------------------------------
-/// ツールバーアイコンの有効／無効を制御
-- (BOOL)validateToolbarItem:(NSToolbarItem *)theItem
-// ------------------------------------------------------
-{
-    if ([theItem action] == @selector(toggleComment:)) {
-        return ([self inlineCommentDelimiter] || [self blockCommentDelimiters]);
-    }
-    
-    return YES;
 }
 
 
@@ -1615,7 +1622,7 @@ const NSInteger kNoMenuItem = -1;
 
 @implementation CETextView (WordCompletion)
 
-#pragma mark NSTextView Methods
+#pragma mark Superclass Methods
 
 // ------------------------------------------------------
 /// 補完時の範囲を返す
@@ -1780,7 +1787,7 @@ const NSInteger kNoMenuItem = -1;
 
 @implementation CETextView (WordSelection)
 
-#pragma mark NSTextView Methods
+#pragma mark Superclass Methods
 
 // ------------------------------------------------------
 /// adjust word selection range
@@ -1933,7 +1940,7 @@ const NSInteger kNoMenuItem = -1;
 
 @implementation CETextView (PinchZoomSupport)
 
-#pragma mark NSResponder Methods
+#pragma mark Superclass Methods
 
 // ------------------------------------------------------
 /// change font size by pinch gesture

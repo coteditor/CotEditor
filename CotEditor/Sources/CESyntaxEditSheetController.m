@@ -149,11 +149,10 @@ typedef NS_ENUM(NSUInteger, CETabIndex) {
 
 
 
-#pragma mark Delegate and Notification
+#pragma mark Delegate
 
 //=======================================================
-// Delegate method (NSTextField)
-//  <== styleNameField
+// NSTextFieldDelegate  < styleNameField
 //=======================================================
 
 // ------------------------------------------------------
@@ -171,8 +170,7 @@ typedef NS_ENUM(NSUInteger, CETabIndex) {
 
 
 //=======================================================
-// Delegate method (NSTableView)
-//  <== menuTableView
+// NSTableViewDelegate  < menuTableView
 //=======================================================
 
 // ------------------------------------------------------
@@ -186,6 +184,7 @@ typedef NS_ENUM(NSUInteger, CETabIndex) {
     // switch view
     [self setSelectedDetailTag:row];
 }
+
 
 // ------------------------------------------------------
 /// 行を選択するべきかを返す

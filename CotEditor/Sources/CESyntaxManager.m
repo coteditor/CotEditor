@@ -72,7 +72,7 @@ NSString *const CESyntaxValidationMessageKey = @"MessageKey";
 
 @implementation CESyntaxManager
 
-#pragma mark Class Methods
+#pragma mark Singleton
 
 // ------------------------------------------------------
 /// return singleton instance

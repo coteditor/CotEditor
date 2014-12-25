@@ -48,10 +48,10 @@
 static NSMutableDictionary *instances;
 
 
-#pragma mark Class Methods
+#pragma mark Singleton
 
 // ------------------------------------------------------
-/// return shared instance
+/// return shared instance (inheritable)
 + (instancetype) sharedController
 // ------------------------------------------------------
 {
@@ -126,8 +126,7 @@ static NSMutableDictionary *instances;
 #pragma mark Notifications
 
 //=======================================================
-// Notification method (NSWindow)
-//  <== NSWindow
+// NSWindow Notification  < window
 //=======================================================
 
 // ------------------------------------------------------

@@ -33,12 +33,14 @@
 
 @interface CEScriptManager : NSObject
 
-// class method
+// singleton
 + (instancetype)sharedManager;
+
 
 // Public method
 - (void)buildScriptMenu:(id)sender;
 - (NSMenu *)contexualMenu;
+
 
 // Action Message
 - (IBAction)launchScript:(id)sender;

@@ -48,7 +48,7 @@
 
 @implementation CEColorCodePanelController
 
-#pragma mark Class Methods
+#pragma mark Singleton
 
 // ------------------------------------------------------
 /// return singleton instance
@@ -67,7 +67,7 @@
 
 
 
-#pragma mark Superclass Methods
+#pragma mark NSWindowPanel Methods
 
 // ------------------------------------------------------
 /// initialize
@@ -112,8 +112,7 @@
 #pragma mark Delegate
 
 //=======================================================
-// Delegate method (NSWindowDelegate)
-//  <== NSColorPanel
+// NSWindowDelegate  < NSColorPanel
 //=======================================================
 
 // ------------------------------------------------------
@@ -123,7 +122,6 @@
 {
     NSColorPanel *colorPanel = (NSColorPanel *)[self window];
     [[self window] setDelegate:nil];
-    [colorPanel orderOut:self];
     [colorPanel setAccessoryView:nil];
     [colorPanel setShowsAlpha:NO];
 }

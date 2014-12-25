@@ -59,17 +59,7 @@ NSString *const CEKeyBindingSelectorStringKey = @"selectorString";
 static NSDictionary *kUnprintableKeyTable;
 
 
-#pragma mark Class Methods
-
-// ------------------------------------------------------
-/// initialize
-+ (void)initialize
-// ------------------------------------------------------
-{
-    // set statics
-    kUnprintableKeyTable = [CEKeyBindingManager unprintableKeyDictionary];
-}
-
+#pragma mark Singleton
 
 // ------------------------------------------------------
 /// return singleton instance
@@ -86,6 +76,22 @@ static NSDictionary *kUnprintableKeyTable;
     return shared;
 }
 
+
+
+#pragma mark Superclass Methods
+
+// ------------------------------------------------------
+/// initialize
++ (void)initialize
+// ------------------------------------------------------
+{
+    // set statics
+    kUnprintableKeyTable = [CEKeyBindingManager unprintableKeyDictionary];
+}
+
+
+
+#pragma mark Public Methods
 
 //------------------------------------------------------
 /// キーバインディング定義文字列から表示用文字列を生成し、返す
@@ -131,9 +137,6 @@ static NSDictionary *kUnprintableKeyTable;
     return keySpecChars;
 }
 
-
-
-#pragma mark Public Methods
 
 // ------------------------------------------------------
 /// 起動時の準備
@@ -563,9 +566,6 @@ static NSDictionary *kUnprintableKeyTable;
     return [keys firstObject] ? : @"";
 }
 
-
-
-#pragma mark Private Class Methods
 
 //------------------------------------------------------
 /// メニューのキーボードショートカットから表示用文字列を返す

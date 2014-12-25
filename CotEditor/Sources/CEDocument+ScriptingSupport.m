@@ -35,11 +35,10 @@
 
 @implementation CEDocument (ScriptingSupport)
 
-#pragma mark Delegate and Notification
+#pragma mark Delegate
 
 //=======================================================
-// Delegate method (NSTextStorage)
-//  <== NSTextStorage
+// NSTextStorageDelegate  <- selection
 //=======================================================
 
 // ------------------------------------------------------
@@ -467,12 +466,11 @@
 
 
 
-#pragma mark Private Method
+#pragma mark Private Methods
 
 // ------------------------------------------------------
 /// find string, select if found and return whether succeed
-- (BOOL)doFind:(NSString *)searchString range:(NSRange)range
-            option:(unsigned)option withRegularExpression:(BOOL)isRegex
+- (BOOL)doFind:(NSString *)searchString range:(NSRange)range option:(unsigned)option withRegularExpression:(BOOL)isRegex
 // ------------------------------------------------------
 {
     NSString *wholeStr = [[self editor] string];

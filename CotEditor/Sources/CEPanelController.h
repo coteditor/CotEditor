@@ -38,7 +38,9 @@
 @property (readonly, nonatomic, weak) CEWindowController *documentWindowController;
 
 
+// singleton
 + (instancetype)sharedController;
+
 
 // (abstract) invoke when frontmost document window changed
 - (void)keyDocumentDidChange;

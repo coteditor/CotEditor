@@ -54,7 +54,7 @@ extern NSString *const CESyntaxValidationMessageKey;
 @property (readonly, nonatomic, copy) NSDictionary *filenameConflicts;
 
 
-// class method
+// singleton
 + (instancetype)sharedManager;
 
 
