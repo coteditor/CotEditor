@@ -45,7 +45,7 @@
 // constants
 static char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 
-// listController key
+// incompatible chars dictionary keys
 NSString *const CEIncompatibleLineNumberKey = @"lineNumber";
 NSString *const CEIncompatibleRangeKey = @"incompatibleRange";
 NSString *const CEIncompatibleCharKey = @"incompatibleChar";
@@ -102,13 +102,8 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 #pragma mark NSDocument Methods
 
-//=======================================================
-// NSDocument methods
-//
-//=======================================================
-
 // ------------------------------------------------------
-/// 初期化
+/// initialize
 - (instancetype)init
 // ------------------------------------------------------
 {
@@ -135,17 +130,16 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 
 // ------------------------------------------------------
-/// あとかたづけ
+/// clean up
 - (void)dealloc
 // ------------------------------------------------------
 {
-    // ノーティフィケーションセンタから自身を排除
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 
 // ------------------------------------------------------
-/// カスタム windowController を生成
+/// make custom windowControllers
 - (void)makeWindowControllers
 // ------------------------------------------------------
 {
@@ -440,11 +434,6 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 
 #pragma mark Public Methods
-
-//=======================================================
-// Public method
-//
-//=======================================================
 
 // ------------------------------------------------------
 /// 改行コードを指定のものに置換したメイン textView の文字列を返す
@@ -1033,11 +1022,6 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 #pragma mark Action Messages
 
-//=======================================================
-// Action messages
-//
-//=======================================================
-
 // ------------------------------------------------------
 /// 保存
 - (IBAction)saveDocument:(id)sender
@@ -1240,11 +1224,6 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 
 #pragma mark Private Methods
-
-//=======================================================
-// Private method
-//
-//=======================================================
 
 // ------------------------------------------------------
 /// ファイル情報辞書を更新
