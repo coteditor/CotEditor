@@ -214,10 +214,13 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
     // run Shell Script
     } else if ([[self scriptExtensions] containsObject:extension]) {
         // display alert if script file doesn't have execution permission
-        if (![URL checkResourceIsReachableAndReturnError:nil]) {
+        NSNumber *isExecutable;
+        [URL getResourceValue:&isExecutable forKey:NSURLIsExecutableKey error:nil];
+        if (![isExecutable boolValue]) {
             [self showAlertWithMessage:[NSString stringWithFormat:NSLocalizedString(@"Cannnot execute the script “%@”.\nShell script requires execute permission.\n\nCheck permission of the script file.", nil), URL]];
             return;
         }
+        
         [self runShellScript:URL];
     }
 }
