@@ -11,7 +11,7 @@
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
-        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customObject id="-3" userLabel="Application"/>
         <menu title="MainMenu" systemMenu="main" id="29" userLabel="Main Menu">
             <items>
                 <menuItem title="CotEditor" id="56">
@@ -925,13 +925,13 @@
                 </menuItem>
             </items>
         </menu>
-        <customObject id="289" userLabel="Ogre Text Finder" customClass="OgreTextFinder">
+        <customObject id="289" customClass="OgreTextFinder">
             <userDefinedRuntimeAttributes>
                 <userDefinedRuntimeAttribute type="boolean" keyPath="useStylesInFindPanel" value="NO"/>
             </userDefinedRuntimeAttributes>
         </customObject>
         <customObject id="290" customClass="CEAppDelegate"/>
-        <customObject id="329" userLabel="Document Controller" customClass="CEDocumentController"/>
+        <customObject id="329" customClass="CEDocumentController"/>
         <customObject id="432" customClass="NSFontManager"/>
         <customObject id="831" customClass="SUUpdater"/>
     </objects>
