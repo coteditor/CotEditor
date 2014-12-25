@@ -139,7 +139,7 @@ const NSInteger kNoMenuItem = -1;
         [self applyTypingAttributes];
         
         // observe change of defaults
-        for (NSString *key in [self observedDefaultKeys]) {
+        for (NSString *key in [CETextView observedDefaultKeys]) {
             [[NSUserDefaults standardUserDefaults] addObserver:self
                                                     forKeyPath:key
                                                        options:NSKeyValueObservingOptionNew
@@ -156,7 +156,7 @@ const NSInteger kNoMenuItem = -1;
 - (void)dealloc
 // ------------------------------------------------------
 {
-    for (NSString *key in [self observedDefaultKeys]) {
+    for (NSString *key in [CETextView observedDefaultKeys]) {
         [[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:key];
     }
     [[NSNotificationCenter defaultCenter] removeObserver:self];
@@ -206,9 +206,8 @@ const NSInteger kNoMenuItem = -1;
     NSString *charIgnoringMod = [theEvent charactersIgnoringModifiers];
     // IM で日本語入力変換中でないときのみ追加テキストキーバインディングを実行
     if (![self hasMarkedText] && charIgnoringMod) {
-        NSUInteger modFlags = [theEvent modifierFlags];
         NSString *selectorStr = [[CEKeyBindingManager sharedManager] selectorStringWithKeyEquivalent:charIgnoringMod
-                                                                                       modifierFrags:modFlags];
+                                                                                       modifierFrags:[theEvent modifierFlags]];
         NSInteger length = [selectorStr length];
         if (selectorStr && (length > 0)) {
             if (([selectorStr hasPrefix:@"insertCustomText"]) && (length == 20)) {
@@ -272,6 +271,7 @@ const NSInteger kNoMenuItem = -1;
             [spaces appendString:@" "];
         }
         [super insertText:spaces];
+        
     } else {
         [super insertTab:sender];
     }
@@ -395,27 +395,25 @@ const NSInteger kNoMenuItem = -1;
 // ------------------------------------------------------
 {
     NSRange selectedRange = [self selectedRange];
-    if (selectedRange.length == 0) {
-        if ([self isAutoTabExpandEnabled]) {
-            NSUInteger tabWidth = [self tabWidth];
-            NSRange lineRange = [[self string] lineRangeForRange:selectedRange];
-            NSInteger location = selectedRange.location - lineRange.location;
-            NSInteger length = (location + tabWidth) % tabWidth;
-            NSInteger targetWidth = (length == 0) ? tabWidth : length;
-            
-            if (selectedRange.location >= targetWidth) {
-                NSRange targetRange = NSMakeRange(selectedRange.location - targetWidth, targetWidth);
-                NSString *target = [[self string] substringWithRange:targetRange];
-                BOOL shouldDelete = NO;
-                for (NSUInteger i = 0; i < targetWidth; i++) {
-                    shouldDelete = ([target characterAtIndex:i] == ' ');
-                    if (!shouldDelete) {
-                        break;
-                    }
+    if (selectedRange.length == 0 && [self isAutoTabExpandEnabled]) {
+        NSUInteger tabWidth = [self tabWidth];
+        NSRange lineRange = [[self string] lineRangeForRange:selectedRange];
+        NSInteger location = selectedRange.location - lineRange.location;
+        NSInteger length = (location + tabWidth) % tabWidth;
+        NSInteger targetWidth = (length == 0) ? tabWidth : length;
+        
+        if (selectedRange.location >= targetWidth) {
+            NSRange targetRange = NSMakeRange(selectedRange.location - targetWidth, targetWidth);
+            NSString *target = [[self string] substringWithRange:targetRange];
+            BOOL shouldDelete = NO;
+            for (NSUInteger i = 0; i < targetWidth; i++) {
+                shouldDelete = ([target characterAtIndex:i] == ' ');
+                if (!shouldDelete) {
+                    break;
                 }
-                if (shouldDelete) {
-                    [self setSelectedRange:targetRange];
-                }
+            }
+            if (shouldDelete) {
+                [self setSelectedRange:targetRange];
             }
         }
     }
@@ -428,72 +426,61 @@ const NSInteger kNoMenuItem = -1;
 - (NSMenu *)menuForEvent:(NSEvent *)theEvent
 // ------------------------------------------------------
 {
-    NSMenu *outMenu = [super menuForEvent:theEvent];
-    NSMenuItem *selectAllMenuItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Select All", nil)
-                                                               action:@selector(selectAll:) keyEquivalent:@""];
-    NSMenuItem *utilityMenuItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Utility", nil)
-                                                             action:nil keyEquivalent:@""];
-    NSMenu *utilityMenu = [[[[NSApp mainMenu] itemAtIndex:CEUtilityMenuIndex] submenu] copy];
-    NSMenuItem *ASMenuItem = [[NSMenuItem alloc] initWithTitle:@"" action:nil keyEquivalent:@""];
-    NSMenu *ASSubMenu = [[CEScriptManager sharedManager] contexualMenu];
+    NSMenu *menu = [super menuForEvent:theEvent];
 
-    // 「フォント」メニューおよびサブメニューを削除
-    [outMenu removeItem:[outMenu itemWithTitle:NSLocalizedString(@"Font",@"")]];
-
-    // 連続してコンテキストメニューを表示させるとどんどんメニューアイテムが追加されてしまうので、
-    // 既に追加されているかどうかをチェックしている
-    if (selectAllMenuItem &&
-        ([outMenu indexOfItemWithTarget:nil andAction:@selector(selectAll:)] == kNoMenuItem)) {
-        NSInteger pasteIndex = [outMenu indexOfItemWithTarget:nil andAction:@selector(paste:)];
-        if (pasteIndex != kNoMenuItem) {
-            [outMenu insertItem:selectAllMenuItem atIndex:(pasteIndex + 1)];
-        }
-    }
-    if ((utilityMenu || ASSubMenu) &&
-        ([outMenu indexOfItemWithTag:CEUtilityMenuItemTag] == kNoMenuItem) &&
-        ([outMenu indexOfItemWithTag:CEScriptMenuItemTag] == kNoMenuItem)) {
-        [outMenu addItem:[NSMenuItem separatorItem]];
-    }
-    if (utilityMenu && ([outMenu indexOfItemWithTag:CEUtilityMenuItemTag] == kNoMenuItem)) {
-        [utilityMenuItem setTag:CEUtilityMenuItemTag];
-        [utilityMenuItem setSubmenu:utilityMenu];
-        [outMenu addItem:utilityMenuItem];
-    }
-    if (ASSubMenu) {
-        NSMenuItem *delItem = nil;
-        while ((delItem = [outMenu itemWithTag:CEScriptMenuItemTag])) {
-            [outMenu removeItem:delItem];
-        }
-        
-        if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultInlineContextualScriptMenuKey]) {
-            for (NSUInteger i = 0; i < 2; i++) { // セパレータをふたつ追加
-                [outMenu addItem:[NSMenuItem separatorItem]];
-                [[outMenu itemAtIndex:([outMenu numberOfItems] - 1)] setTag:CEScriptMenuItemTag];
-            }
-            NSMenuItem *addItem = nil;
-            for (NSMenuItem *item in [ASSubMenu itemArray]) {
-                addItem = [item copy];
-                [addItem setTag:CEScriptMenuItemTag];
-                [outMenu addItem:addItem];
-            }
-            [outMenu addItem:[NSMenuItem separatorItem]];
-        } else{
-            [ASMenuItem setImage:[NSImage imageNamed:@"ScriptTemplate"]];
-            [[ASMenuItem image] setTemplate:NO];
-            [ASMenuItem setTag:CEScriptMenuItemTag];
-            [ASMenuItem setSubmenu:ASSubMenu];
-            [outMenu addItem:ASMenuItem];
-        }
-    }
+    // remove unwanted "Font" menu and its submenus
+    [menu removeItem:[menu itemWithTitle:NSLocalizedString(@"Font", nil)]];
     
+    // add "Inspect Character" menu item if single character is selected
     if ([[[self string] substringWithRange:[self selectedRange]] numberOfComposedCharacters] == 1) {
-        [outMenu insertItemWithTitle:NSLocalizedString(@"Inspect Character", nil)
+        [menu insertItemWithTitle:NSLocalizedString(@"Inspect Character", nil)
                               action:@selector(showSelectionInfo:)
                        keyEquivalent:@""
                              atIndex:1];
     }
     
-    return outMenu;
+    // add "Select All" menu item
+    NSInteger pasteIndex = [menu indexOfItemWithTarget:nil andAction:@selector(paste:)];
+    if (pasteIndex != kNoMenuItem) {
+        [menu insertItemWithTitle:NSLocalizedString(@"Select All", nil)
+                           action:@selector(selectAll:) keyEquivalent:@""
+                          atIndex:(pasteIndex + 1)];
+    }
+    
+    // append a separator
+    [menu addItem:[NSMenuItem separatorItem]];
+    
+    // append Utility menu
+    NSMenuItem *utilityMenuItem = [[NSApp mainMenu] itemAtIndex:CEUtilityMenuIndex];
+    if (utilityMenuItem) {
+        [menu addItem:[utilityMenuItem copy]];
+    }
+    
+    // append Script menu
+    NSMenu *scriptMenu = [[CEScriptManager sharedManager] contexualMenu];
+    if (scriptMenu) {
+        if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultInlineContextualScriptMenuKey]) {
+            [menu addItem:[NSMenuItem separatorItem]];
+            [[[menu itemArray] lastObject] setTag:CEScriptMenuItemTag];
+            
+            for (NSMenuItem *item in [scriptMenu itemArray]) {
+                NSMenuItem *addItem = [item copy];
+                [addItem setTag:CEScriptMenuItemTag];
+                [menu addItem:addItem];
+            }
+            [menu addItem:[NSMenuItem separatorItem]];
+            
+        } else {
+            NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:@"" action:nil keyEquivalent:@""];
+            [item setImage:[NSImage imageNamed:@"ScriptTemplate"]];
+            [[item image] setTemplate:NO];  // draw in black
+            [item setTag:CEScriptMenuItemTag];
+            [item setSubmenu:scriptMenu];
+            [menu addItem:item];
+        }
+    }
+    
+    return menu;
 }
 
 
@@ -517,7 +504,7 @@ const NSInteger kNoMenuItem = -1;
     NSFont *newFont = [sender convertFont:[self font]];
 
     [self setFont:newFont];
-    [self setNeedsDisplay:YES]; // 本来なくても再描画されるが、最下行以下のページガイドの描画が残るための措置(2009.02.14)
+    [self setNeedsDisplay:YES]; // 本来なくても再描画されるが、最下行以下のページガイドの描画が残るための措置 (2009-02-14)
     [self updateLineNumberAndAdjustScroll];
 }
 
@@ -541,12 +528,12 @@ const NSInteger kNoMenuItem = -1;
 
 
 // ------------------------------------------------------
-/// タブ幅を変更する
+/// タブ幅を変更
 - (void)setTabWidth:(NSUInteger)tabWidth
 // ------------------------------------------------------
 {
     _tabWidth = tabWidth;
-    [self setFont:[self font]];  // 新しい幅でレイアウトし直す
+    [self setFont:[self font]];  // force re-layout with new width
 }
 
 
@@ -566,8 +553,8 @@ const NSInteger kNoMenuItem = -1;
 {
     [super drawViewBackgroundInRect:rect];
     
-    // 現在行ハイライト描画
-    if (NSWidth([self highlightLineRect]) > 0) {
+    // draw current line highlight
+    if (!NSIsEmptyRect([self highlightLineRect])) {
         [[self highlightLineColor] set];
         [NSBezierPath fillRect:[self highlightLineRect]];
     }
@@ -581,7 +568,7 @@ const NSInteger kNoMenuItem = -1;
 {
     [super drawRect:dirtyRect];
     
-    // ページガイド描画
+    // draw page guide
     if ([self showsPageGuide]) {
         CGFloat column = (CGFloat)[[NSUserDefaults standardUserDefaults] doubleForKey:CEDefaultPageGuideColumnKey];
         
@@ -597,8 +584,7 @@ const NSInteger kNoMenuItem = -1;
         font = [font screenFont] ? : font;
         column *= [@"M" sizeWithAttributes:@{NSFontAttributeName:font}].width;
         
-        // （2ピクセル右に描画してるのは、調整）
-        CGFloat x = floor(column + inset + linePadding) + 2.5;
+        CGFloat x = floor(column + inset + linePadding) + 2.5;  // +2px for adjusting
         [[[[self theme] textColor] colorWithAlphaComponent:0.2] set];
         [NSBezierPath strokeLineFromPoint:NSMakePoint(x, 0)
                                   toPoint:NSMakePoint(x, length)];
@@ -707,50 +693,51 @@ const NSInteger kNoMenuItem = -1;
 - (NSDragOperation)dragOperationForDraggingInfo:(id <NSDraggingInfo>)dragInfo type:(NSString *)type
 // ------------------------------------------------------
 {
-    if ([type isEqualToString:NSFilenamesPboardType]) {
-        NSArray *fileDropArray = [[NSUserDefaults standardUserDefaults] arrayForKey:CEDefaultFileDropArrayKey];
-        
-        for (NSDictionary *item in fileDropArray) {
-            NSArray *array = [[dragInfo draggingPasteboard] propertyListForType:NSFilenamesPboardType];
-            NSArray *extensions = [item[CEFileDropExtensionsKey] componentsSeparatedByString:@", "];
-            
-            if ([self draggedItemsArray:array containsExtensionInExtensions:extensions]) {
-                NSString *string = [self string];
-                if ([string length] > 0) {
-                    // 挿入ポイントを自前で描画する
-                    CGFloat partialFraction;
-                    NSLayoutManager *layoutManager = [self layoutManager];
-                    NSUInteger glyphIndex = [layoutManager glyphIndexForPoint:[self convertPoint:[dragInfo draggingLocation] fromView:nil]
-                                                              inTextContainer:[self textContainer]
-                                               fractionOfDistanceThroughGlyph:&partialFraction];
-                    NSPoint glypthIndexPoint;
-                    if ((partialFraction > 0.5) && ([string characterAtIndex:glyphIndex] != '\n')) {
-                        NSRect glyphRect = [layoutManager boundingRectForGlyphRange:NSMakeRange(glyphIndex, 1)
-                                                                    inTextContainer:[self textContainer]];
-                        glypthIndexPoint = [layoutManager locationForGlyphAtIndex:glyphIndex];
-                        glypthIndexPoint.x += NSWidth(glyphRect);
-                    } else {
-                        glypthIndexPoint = [layoutManager locationForGlyphAtIndex:glyphIndex];
-                    }
-                    NSRect lineRect = [layoutManager lineFragmentRectForGlyphAtIndex:glyphIndex effectiveRange:NULL];
-                    NSRect insertionRect = NSMakeRect(glypthIndexPoint.x, lineRect.origin.y, 1, NSHeight(lineRect));
-                    if (!NSEqualRects([self insertionRect], insertionRect)) {
-                        // 古い自前挿入ポイントが描かれたままになることへの対応
-                        [self setNeedsDisplayInRect:[self insertionRect] avoidAdditionalLayout:NO];
-                    }
-                    [[self insertionPointColor] set];
-                    [self lockFocus];
-                    NSFrameRectWithWidth(insertionRect, 1.0);
-                    [self unlockFocus];
-                    [self setInsertionRect:insertionRect];
-                }
-                return NSDragOperationCopy;
-            }
-        }
-        return NSDragOperationNone;
+    if (![type isEqualToString:NSFilenamesPboardType]) {
+        return [super dragOperationForDraggingInfo:dragInfo type:type];
     }
     
-    return [super dragOperationForDraggingInfo:dragInfo type:type];
+    NSArray *fileDropArray = [[NSUserDefaults standardUserDefaults] arrayForKey:CEDefaultFileDropArrayKey];
+    NSArray *array = [[dragInfo draggingPasteboard] propertyListForType:NSFilenamesPboardType];
+    
+    for (NSDictionary *item in fileDropArray) {
+        NSArray *extensions = [item[CEFileDropExtensionsKey] componentsSeparatedByString:@", "];
+        
+        if ([self draggedItemsArray:array containsExtensionInExtensions:extensions]) {
+            NSString *string = [self string];
+            if ([string length] > 0) {
+                // 挿入ポイントを自前で描画する
+                CGFloat partialFraction;
+                NSLayoutManager *layoutManager = [self layoutManager];
+                NSUInteger glyphIndex = [layoutManager glyphIndexForPoint:[self convertPoint:[dragInfo draggingLocation] fromView:nil]
+                                                          inTextContainer:[self textContainer]
+                                           fractionOfDistanceThroughGlyph:&partialFraction];
+                NSPoint glypthIndexPoint;
+                if ((partialFraction > 0.5) && ([string characterAtIndex:glyphIndex] != '\n')) {
+                    NSRect glyphRect = [layoutManager boundingRectForGlyphRange:NSMakeRange(glyphIndex, 1)
+                                                                inTextContainer:[self textContainer]];
+                    glypthIndexPoint = [layoutManager locationForGlyphAtIndex:glyphIndex];
+                    glypthIndexPoint.x += NSWidth(glyphRect);
+                } else {
+                    glypthIndexPoint = [layoutManager locationForGlyphAtIndex:glyphIndex];
+                }
+                NSRect lineRect = [layoutManager lineFragmentRectForGlyphAtIndex:glyphIndex effectiveRange:NULL];
+                NSRect insertionRect = NSMakeRect(glypthIndexPoint.x, lineRect.origin.y, 1, NSHeight(lineRect));
+                if (!NSEqualRects([self insertionRect], insertionRect)) {
+                    // 古い自前挿入ポイントが描かれたままになることへの対応
+                    [self setNeedsDisplayInRect:[self insertionRect] avoidAdditionalLayout:NO];
+                }
+                [[self insertionPointColor] set];
+                [self lockFocus];
+                NSFrameRectWithWidth(insertionRect, 1.0);
+                [self unlockFocus];
+                [self setInsertionRect:insertionRect];
+            }
+            
+            return NSDragOperationCopy;
+        }
+    }
+    return NSDragOperationNone;
 }
 
 
@@ -777,7 +764,7 @@ const NSInteger kNoMenuItem = -1;
         // （自己内ドラッグの場合には、改行コード置換を readSelectionFromPasteboard:type: 内で実行すると
         // アンドゥの登録で文字列範囲の計算が面倒なので、ここでPasteboardを書き換えてしまう）
         NSPasteboard *pboard = [sender draggingPasteboard];
-        NSString *pboardType = [pboard availableTypeFromArray:[self pasteboardTypesForString]];
+        NSString *pboardType = [pboard availableTypeFromArray:[CETextView pasteboardTypesForString]];
         if (pboardType) {
             NSString *string = [pboard stringForType:pboardType];
             if (string) {
@@ -1452,13 +1439,22 @@ const NSInteger kNoMenuItem = -1;
 
 // ------------------------------------------------------
 /// 変更を監視するデフォルトキー
-- (NSArray *)observedDefaultKeys
++ (NSArray *)observedDefaultKeys
 // ------------------------------------------------------
 {
     return @[CEDefaultAutoExpandTabKey,
              CEDefaultSmartInsertAndDeleteKey,
              CEDefaultCheckSpellingAsTypeKey,
              CEDefaultEnableSmartQuotesKey];
+}
+
+
+// ------------------------------------------------------
+/// 改行コード置換のための Pasteboard タイプ
++ (NSArray *)pasteboardTypesForString
+// ------------------------------------------------------
+{
+    return @[NSPasteboardTypeString, (NSString *)kUTTypeUTF8PlainText];
 }
 
 
@@ -1520,28 +1516,18 @@ const NSInteger kNoMenuItem = -1;
 
 
 // ------------------------------------------------------
-/// 改行コード置換のためのPasteboardタイプ配列を返す
-- (NSArray *)pasteboardTypesForString
-// ------------------------------------------------------
-{
-    return @[NSPasteboardTypeString, (NSString *)kUTTypeUTF8PlainText];
-}
-
-
-// ------------------------------------------------------
 /// ドラッグされているアイテムのNSFilenamesPboardTypeに指定された拡張子のものが含まれているかどうかを返す
 - (BOOL)draggedItemsArray:(NSArray *)items containsExtensionInExtensions:(NSArray *)extensions
 // ------------------------------------------------------
 {
-    if ([items count] > 0) {
-        for (NSString *extension in extensions) {
-            for (id item in items) {
-                if ([[item pathExtension] isEqualToString:extension]) {
-                    return YES;
-                }
+    for (NSString *extension in extensions) {
+        for (id item in items) {
+            if ([[item pathExtension] isEqualToString:extension]) {
+                return YES;
             }
         }
     }
+    
     return NO;
 }
 
@@ -1569,7 +1555,7 @@ const NSInteger kNoMenuItem = -1;
     CENewLineType newLineType = [[[[self window] windowController] document] lineEnding];
 
     if (newLineType == CENewLineLF) { return; }
-    NSString *pboardType = [pboard availableTypeFromArray:[self pasteboardTypesForString]];
+    NSString *pboardType = [pboard availableTypeFromArray:[CETextView pasteboardTypesForString]];
     if (pboardType) {
         NSString *string = [pboard stringForType:pboardType];
         
@@ -2388,7 +2374,7 @@ typedef NS_ENUM(NSUInteger, CEUnicodeNormalizationForm) {
 #pragma mark Private Methods
 
 // ------------------------------------------------------
-/// Unicode正規化
+/// Unicode normalization
 - (void)normalizeUnicodeWithForm:(CEUnicodeNormalizationForm)form
 // ------------------------------------------------------
 {
