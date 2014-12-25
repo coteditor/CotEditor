@@ -54,8 +54,6 @@ NSString *const CEAnalyzerDidUpdateEditorInfoNotification = @"CEAnalyzerDidUpdat
 @property (readwrite, nonatomic) NSString *owner;
 @property (readwrite, nonatomic) NSString *permission;
 @property (readwrite, nonatomic) NSString *locked;
-@property (readwrite, nonatomic) NSString *HFSType;
-@property (readwrite, nonatomic) NSString *HFSCreator;
 
 // mode infos
 @property (readwrite, nonatomic) NSString *encoding;
@@ -124,8 +122,6 @@ NSString *const CEAnalyzerDidUpdateEditorInfoNotification = @"CEAnalyzerDidUpdat
                                                       [attrs filePosixPermissions],
                                                       humanReadablePermission([attrs filePosixPermissions])] : nil;
     self.locked = attrs ? NSLocalizedString([attrs fileIsImmutable] ? @"Yes" : @"No", nil) : nil;
-    self.HFSType = [attrs fileHFSTypeCode] ? NSFileTypeForHFSTypeCode([attrs fileHFSTypeCode]) : nil;
-    self.HFSCreator = [attrs fileHFSCreatorCode] ? NSFileTypeForHFSTypeCode([attrs fileHFSCreatorCode]) : nil;
     
     [[NSNotificationCenter defaultCenter] postNotificationName:CEAnalyzerDidUpdateFileInfoNotification
                                                         object:self];

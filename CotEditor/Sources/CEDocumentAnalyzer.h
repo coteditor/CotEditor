@@ -50,8 +50,6 @@ extern NSString *const CEAnalyzerDidUpdateEditorInfoNotification;
 @property (readonly, nonatomic) NSString *owner;
 @property (readonly, nonatomic) NSString *permission;
 @property (readonly, nonatomic) NSString *locked;
-@property (readonly, nonatomic) NSString *HFSType;
-@property (readonly, nonatomic) NSString *HFSCreator;
 
 // mode info
 @property (readonly, nonatomic) NSString *encoding;
