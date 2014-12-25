@@ -357,15 +357,6 @@
                                    keyEquivalent:@"l"];
     [findMenu addItem:menuItem];
     
-    // run AppleScript one for quick launch
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultRunAppleScriptInLaunchingKey]) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            NSString *source = @"tell application \"CotEditor\" to number of documents";
-            NSAppleScript *AppleScript = [[NSAppleScript alloc] initWithSource:source];
-            [AppleScript executeAndReturnError:nil];
-        });
-    }
-    
     // setup KeyBindingManager
     [[CEKeyBindingManager sharedManager] setupAtLaunching];
     
