@@ -115,7 +115,7 @@ NSString *const CEAnalyzerDidUpdateEditorInfoNotification = @"CEAnalyzerDidUpdat
     NSByteCountFormatter *byteFormatter = [self byteCountFormatter];
     
     self.creationDate = [attrs fileCreationDate] ? [dateFormatter stringFromDate:[attrs fileCreationDate]] : nil;
-    self.modificationDate = [attrs fileCreationDate] ? [dateFormatter stringFromDate:[attrs fileCreationDate]] : nil;
+    self.modificationDate = [attrs fileModificationDate] ? [dateFormatter stringFromDate:[attrs fileModificationDate]] : nil;
     self.fileSize = [attrs fileSize] ? [byteFormatter stringFromByteCount:[attrs fileSize]] : nil;
     self.owner = [attrs fileOwnerAccountName];
     self.permission = [attrs filePosixPermissions] ? [NSString stringWithFormat:@"%tu (%@)",
