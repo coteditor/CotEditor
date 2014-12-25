@@ -227,7 +227,7 @@
                                                                     </tableCellView>
                                                                 </prototypeCellViews>
                                                             </tableColumn>
-                                                            <tableColumn width="27" minWidth="27" maxWidth="27" headerToolTip="Regular expression" id="392">
+                                                            <tableColumn identifier="regularExpression" width="27" minWidth="27" maxWidth="27" headerToolTip="Regular expression" id="392">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="RE">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -242,13 +242,14 @@
                                                                         <rect key="frame" x="341" y="1" width="27" height="17"/>
                                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                         <subviews>
-                                                                            <button translatesAutoresizingMaskIntoConstraints="NO" id="NDQ-fz-o7y">
+                                                                            <button identifier="regularExpression" translatesAutoresizingMaskIntoConstraints="NO" id="NDQ-fz-o7y">
                                                                                 <rect key="frame" x="-1" y="-3" width="28" height="23"/>
                                                                                 <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="overlaps" controlSize="small" inset="2" id="SoM-th-907">
                                                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                                     <font key="font" metaFont="smallSystem"/>
                                                                                 </buttonCell>
                                                                                 <connections>
+                                                                                    <action selector="didCheckboxClicked:" target="9lY-yr-OAO" id="9hY-22-49n"/>
                                                                                     <binding destination="znL-eV-C3Y" name="value" keyPath="objectValue.regularExpression" id="KZV-y2-emd"/>
                                                                                 </connections>
                                                                             </button>
@@ -277,13 +278,14 @@
                                                                         <rect key="frame" x="371" y="1" width="27" height="17"/>
                                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                         <subviews>
-                                                                            <button translatesAutoresizingMaskIntoConstraints="NO" id="4yD-Ba-0li">
+                                                                            <button identifier="ignoreCase" translatesAutoresizingMaskIntoConstraints="NO" id="4yD-Ba-0li">
                                                                                 <rect key="frame" x="-1" y="-3" width="28" height="23"/>
                                                                                 <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="overlaps" controlSize="small" inset="2" id="WYG-Sw-O6e">
                                                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                                     <font key="font" metaFont="smallSystem"/>
                                                                                 </buttonCell>
                                                                                 <connections>
+                                                                                    <action selector="didCheckboxClicked:" target="9lY-yr-OAO" id="DMc-ZL-6Gf"/>
                                                                                     <binding destination="WFC-IU-e39" name="value" keyPath="objectValue.ignoreCase" id="VV7-xC-74Q"/>
                                                                                 </connections>
                                                                             </button>
@@ -302,7 +304,7 @@
                                                             <binding destination="35" name="content" keyPath="arrangedObjects" id="B6V-Fz-9DJ"/>
                                                             <binding destination="35" name="selectionIndexes" keyPath="selectionIndexes" previousBinding="B6V-Fz-9DJ" id="yvB-qc-Te1"/>
                                                             <binding destination="35" name="sortDescriptors" keyPath="sortDescriptors" previousBinding="yvB-qc-Te1" id="CBN-dM-2O5"/>
-                                                            <outlet property="delegate" destination="-2" id="677"/>
+                                                            <outlet property="delegate" destination="9lY-yr-OAO" id="WBg-z4-yyU"/>
                                                         </connections>
                                                     </tableView>
                                                 </subviews>
@@ -462,7 +464,7 @@
                                                                     </tableCellView>
                                                                 </prototypeCellViews>
                                                             </tableColumn>
-                                                            <tableColumn width="27" minWidth="27" maxWidth="27" headerToolTip="Regular expression" id="LhT-y3-Wje">
+                                                            <tableColumn identifier="regularExpression" width="27" minWidth="27" maxWidth="27" headerToolTip="Regular expression" id="LhT-y3-Wje">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="RE">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -477,13 +479,14 @@
                                                                         <rect key="frame" x="341" y="1" width="27" height="17"/>
                                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                         <subviews>
-                                                                            <button translatesAutoresizingMaskIntoConstraints="NO" id="XsT-aB-kjg">
+                                                                            <button identifier="regularExpression" translatesAutoresizingMaskIntoConstraints="NO" id="XsT-aB-kjg">
                                                                                 <rect key="frame" x="-1" y="-3" width="28" height="23"/>
                                                                                 <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="overlaps" controlSize="small" inset="2" id="YsX-Eh-hf8">
                                                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                                     <font key="font" metaFont="smallSystem"/>
                                                                                 </buttonCell>
                                                                                 <connections>
+                                                                                    <action selector="didCheckboxClicked:" target="9lY-yr-OAO" id="73c-3W-HuW"/>
                                                                                     <binding destination="yUd-ai-kK4" name="value" keyPath="objectValue.regularExpression" id="TJS-5X-mgn"/>
                                                                                 </connections>
                                                                             </button>
@@ -497,7 +500,7 @@
                                                                     </tableCellView>
                                                                 </prototypeCellViews>
                                                             </tableColumn>
-                                                            <tableColumn editable="NO" width="27" minWidth="27" maxWidth="27" headerToolTip="Ignore Case (case-insensitive)" id="fdh-0C-efA">
+                                                            <tableColumn identifier="ignoreCase" editable="NO" width="27" minWidth="27" maxWidth="27" headerToolTip="Ignore Case (case-insensitive)" id="fdh-0C-efA">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="IC">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -512,13 +515,14 @@
                                                                         <rect key="frame" x="371" y="1" width="27" height="17"/>
                                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                         <subviews>
-                                                                            <button translatesAutoresizingMaskIntoConstraints="NO" id="hE3-tp-aEp">
+                                                                            <button identifier="ignoreCase" translatesAutoresizingMaskIntoConstraints="NO" id="hE3-tp-aEp">
                                                                                 <rect key="frame" x="-1" y="-3" width="28" height="23"/>
                                                                                 <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="overlaps" controlSize="small" inset="2" id="vNl-Wv-cYk">
                                                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                                     <font key="font" metaFont="smallSystem"/>
                                                                                 </buttonCell>
                                                                                 <connections>
+                                                                                    <action selector="didCheckboxClicked:" target="9lY-yr-OAO" id="SrO-34-I1l"/>
                                                                                     <binding destination="rmj-64-lRn" name="value" keyPath="objectValue.ignoreCase" id="00O-PM-fT6"/>
                                                                                 </connections>
                                                                             </button>
@@ -537,7 +541,7 @@
                                                             <binding destination="33" name="content" keyPath="arrangedObjects" id="SVD-3M-093"/>
                                                             <binding destination="33" name="selectionIndexes" keyPath="selectionIndexes" previousBinding="SVD-3M-093" id="B28-eI-eZV"/>
                                                             <binding destination="33" name="sortDescriptors" keyPath="sortDescriptors" previousBinding="B28-eI-eZV" id="a5E-zr-wkX"/>
-                                                            <outlet property="delegate" destination="-2" id="SKb-Z6-T47"/>
+                                                            <outlet property="delegate" destination="9lY-yr-OAO" id="ey1-rQ-mWY"/>
                                                         </connections>
                                                     </tableView>
                                                 </subviews>
@@ -697,7 +701,7 @@
                                                                     </tableCellView>
                                                                 </prototypeCellViews>
                                                             </tableColumn>
-                                                            <tableColumn width="27" minWidth="27" maxWidth="27" headerToolTip="Regular expression" id="em5-8M-k9b">
+                                                            <tableColumn identifier="regularExpression" width="27" minWidth="27" maxWidth="27" headerToolTip="Regular expression" id="em5-8M-k9b">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="RE">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -712,13 +716,14 @@
                                                                         <rect key="frame" x="341" y="1" width="27" height="17"/>
                                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                         <subviews>
-                                                                            <button translatesAutoresizingMaskIntoConstraints="NO" id="rMh-3a-OTD">
+                                                                            <button identifier="regularExpression" translatesAutoresizingMaskIntoConstraints="NO" id="rMh-3a-OTD">
                                                                                 <rect key="frame" x="-1" y="-3" width="28" height="23"/>
                                                                                 <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="overlaps" controlSize="small" inset="2" id="tau-qZ-Bi0">
                                                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                                     <font key="font" metaFont="smallSystem"/>
                                                                                 </buttonCell>
                                                                                 <connections>
+                                                                                    <action selector="didCheckboxClicked:" target="9lY-yr-OAO" id="2z6-5E-3FB"/>
                                                                                     <binding destination="FzO-j7-Foj" name="value" keyPath="objectValue.regularExpression" id="Y8c-BN-Lt5"/>
                                                                                 </connections>
                                                                             </button>
@@ -732,7 +737,7 @@
                                                                     </tableCellView>
                                                                 </prototypeCellViews>
                                                             </tableColumn>
-                                                            <tableColumn editable="NO" width="27" minWidth="27" maxWidth="27" headerToolTip="Ignore Case (case-insensitive)" id="1uk-qd-25S">
+                                                            <tableColumn identifier="ignoreCase" editable="NO" width="27" minWidth="27" maxWidth="27" headerToolTip="Ignore Case (case-insensitive)" id="1uk-qd-25S">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="IC">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -747,13 +752,14 @@
                                                                         <rect key="frame" x="371" y="1" width="27" height="17"/>
                                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                         <subviews>
-                                                                            <button translatesAutoresizingMaskIntoConstraints="NO" id="ldR-nI-g40">
+                                                                            <button identifier="ignoreCase" translatesAutoresizingMaskIntoConstraints="NO" id="ldR-nI-g40">
                                                                                 <rect key="frame" x="-1" y="-3" width="28" height="23"/>
                                                                                 <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="overlaps" controlSize="small" inset="2" id="q2d-Uv-pel">
                                                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                                     <font key="font" metaFont="smallSystem"/>
                                                                                 </buttonCell>
                                                                                 <connections>
+                                                                                    <action selector="didCheckboxClicked:" target="9lY-yr-OAO" id="mtp-mn-d08"/>
                                                                                     <binding destination="BDU-Dz-zH3" name="value" keyPath="objectValue.ignoreCase" id="3UI-AR-TYN"/>
                                                                                 </connections>
                                                                             </button>
@@ -772,7 +778,7 @@
                                                             <binding destination="Xf4-h5-a4r" name="content" keyPath="arrangedObjects" id="8Am-c6-29i"/>
                                                             <binding destination="Xf4-h5-a4r" name="selectionIndexes" keyPath="selectionIndexes" previousBinding="8Am-c6-29i" id="N7V-fc-Xoz"/>
                                                             <binding destination="Xf4-h5-a4r" name="sortDescriptors" keyPath="sortDescriptors" previousBinding="N7V-fc-Xoz" id="BX6-Yx-Ypp"/>
-                                                            <outlet property="delegate" destination="-2" id="jfX-8k-YOk"/>
+                                                            <outlet property="delegate" destination="9lY-yr-OAO" id="IXD-lF-bgh"/>
                                                         </connections>
                                                     </tableView>
                                                 </subviews>
@@ -932,7 +938,7 @@
                                                                     </tableCellView>
                                                                 </prototypeCellViews>
                                                             </tableColumn>
-                                                            <tableColumn width="27" minWidth="27" maxWidth="27" headerToolTip="Regular expression" id="bmQ-uE-vKx">
+                                                            <tableColumn identifier="regularExpression" width="27" minWidth="27" maxWidth="27" headerToolTip="Regular expression" id="bmQ-uE-vKx">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="RE">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -947,13 +953,14 @@
                                                                         <rect key="frame" x="341" y="1" width="27" height="17"/>
                                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                         <subviews>
-                                                                            <button translatesAutoresizingMaskIntoConstraints="NO" id="kjh-cv-Qao">
+                                                                            <button identifier="regularExpression" translatesAutoresizingMaskIntoConstraints="NO" id="kjh-cv-Qao">
                                                                                 <rect key="frame" x="-1" y="-3" width="28" height="23"/>
                                                                                 <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="overlaps" controlSize="small" inset="2" id="CoC-Rv-VAs">
                                                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                                     <font key="font" metaFont="smallSystem"/>
                                                                                 </buttonCell>
                                                                                 <connections>
+                                                                                    <action selector="didCheckboxClicked:" target="9lY-yr-OAO" id="h50-Yu-b9i"/>
                                                                                     <binding destination="0Py-dV-SWs" name="value" keyPath="objectValue.regularExpression" id="JoC-vA-S05"/>
                                                                                 </connections>
                                                                             </button>
@@ -967,7 +974,7 @@
                                                                     </tableCellView>
                                                                 </prototypeCellViews>
                                                             </tableColumn>
-                                                            <tableColumn editable="NO" width="27" minWidth="27" maxWidth="27" headerToolTip="Ignore Case (case-insensitive)" id="uho-KV-LkW">
+                                                            <tableColumn identifier="ignoreCase" editable="NO" width="27" minWidth="27" maxWidth="27" headerToolTip="Ignore Case (case-insensitive)" id="uho-KV-LkW">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="IC">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -982,13 +989,14 @@
                                                                         <rect key="frame" x="371" y="1" width="27" height="17"/>
                                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                         <subviews>
-                                                                            <button translatesAutoresizingMaskIntoConstraints="NO" id="940-xx-3Mf">
+                                                                            <button identifier="ignoreCase" translatesAutoresizingMaskIntoConstraints="NO" id="940-xx-3Mf">
                                                                                 <rect key="frame" x="-1" y="-3" width="28" height="23"/>
                                                                                 <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="overlaps" controlSize="small" inset="2" id="Fnn-22-FfE">
                                                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                                     <font key="font" metaFont="smallSystem"/>
                                                                                 </buttonCell>
                                                                                 <connections>
+                                                                                    <action selector="didCheckboxClicked:" target="9lY-yr-OAO" id="Faf-wN-iX4"/>
                                                                                     <binding destination="dW9-pR-fn2" name="value" keyPath="objectValue.ignoreCase" id="LOM-Ir-Sax"/>
                                                                                 </connections>
                                                                             </button>
@@ -1007,7 +1015,7 @@
                                                             <binding destination="MjW-4d-32N" name="content" keyPath="arrangedObjects" id="HlW-0X-ZXY"/>
                                                             <binding destination="MjW-4d-32N" name="selectionIndexes" keyPath="selectionIndexes" previousBinding="HlW-0X-ZXY" id="K56-rg-tfG"/>
                                                             <binding destination="MjW-4d-32N" name="sortDescriptors" keyPath="sortDescriptors" previousBinding="K56-rg-tfG" id="TWG-yJ-Qky"/>
-                                                            <outlet property="delegate" destination="-2" id="8xb-HU-XBg"/>
+                                                            <outlet property="delegate" destination="9lY-yr-OAO" id="uer-NR-bm7"/>
                                                         </connections>
                                                     </tableView>
                                                 </subviews>
@@ -1167,7 +1175,7 @@
                                                                     </tableCellView>
                                                                 </prototypeCellViews>
                                                             </tableColumn>
-                                                            <tableColumn width="27" minWidth="27" maxWidth="27" headerToolTip="Regular expression" id="tTC-e8-KHA">
+                                                            <tableColumn identifier="regularExpression" width="27" minWidth="27" maxWidth="27" headerToolTip="Regular expression" id="tTC-e8-KHA">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="RE">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1182,13 +1190,14 @@
                                                                         <rect key="frame" x="341" y="1" width="27" height="17"/>
                                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                         <subviews>
-                                                                            <button translatesAutoresizingMaskIntoConstraints="NO" id="9xg-Y4-h5p">
+                                                                            <button identifier="regularExpression" translatesAutoresizingMaskIntoConstraints="NO" id="9xg-Y4-h5p">
                                                                                 <rect key="frame" x="-1" y="-3" width="28" height="23"/>
                                                                                 <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="overlaps" controlSize="small" inset="2" id="LUE-hn-ukE">
                                                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                                     <font key="font" metaFont="smallSystem"/>
                                                                                 </buttonCell>
                                                                                 <connections>
+                                                                                    <action selector="didCheckboxClicked:" target="9lY-yr-OAO" id="QFd-Oo-uu2"/>
                                                                                     <binding destination="kwT-pW-IR7" name="value" keyPath="objectValue.regularExpression" id="aHo-JV-E5o"/>
                                                                                 </connections>
                                                                             </button>
@@ -1202,7 +1211,7 @@
                                                                     </tableCellView>
                                                                 </prototypeCellViews>
                                                             </tableColumn>
-                                                            <tableColumn editable="NO" width="27" minWidth="27" maxWidth="27" headerToolTip="Ignore Case (case-insensitive)" id="U1c-Gr-hgH">
+                                                            <tableColumn identifier="ignoreCase" editable="NO" width="27" minWidth="27" maxWidth="27" headerToolTip="Ignore Case (case-insensitive)" id="U1c-Gr-hgH">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="IC">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1224,6 +1233,7 @@
                                                                                     <font key="font" metaFont="smallSystem"/>
                                                                                 </buttonCell>
                                                                                 <connections>
+                                                                                    <action selector="didCheckboxClicked:" target="9lY-yr-OAO" id="Psh-KG-AoV"/>
                                                                                     <binding destination="SmF-bK-Ghu" name="value" keyPath="objectValue.ignoreCase" id="NcW-2D-d03"/>
                                                                                 </connections>
                                                                             </button>
@@ -1242,7 +1252,7 @@
                                                             <binding destination="5VS-Xp-FDy" name="content" keyPath="arrangedObjects" id="yaA-lC-vNS"/>
                                                             <binding destination="5VS-Xp-FDy" name="selectionIndexes" keyPath="selectionIndexes" previousBinding="yaA-lC-vNS" id="AUn-24-1tl"/>
                                                             <binding destination="5VS-Xp-FDy" name="sortDescriptors" keyPath="sortDescriptors" previousBinding="AUn-24-1tl" id="vge-4h-2bE"/>
-                                                            <outlet property="delegate" destination="-2" id="w27-B0-zQX"/>
+                                                            <outlet property="delegate" destination="9lY-yr-OAO" id="sm6-FO-gZm"/>
                                                         </connections>
                                                     </tableView>
                                                 </subviews>
@@ -1402,7 +1412,7 @@
                                                                     </tableCellView>
                                                                 </prototypeCellViews>
                                                             </tableColumn>
-                                                            <tableColumn width="27" minWidth="27" maxWidth="27" headerToolTip="Regular expression" id="ESs-Ts-25L">
+                                                            <tableColumn identifier="regularExpression" width="27" minWidth="27" maxWidth="27" headerToolTip="Regular expression" id="ESs-Ts-25L">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="RE">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1417,13 +1427,14 @@
                                                                         <rect key="frame" x="341" y="1" width="27" height="17"/>
                                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                         <subviews>
-                                                                            <button translatesAutoresizingMaskIntoConstraints="NO" id="SAP-FB-Vc5">
+                                                                            <button identifier="regularExpression" translatesAutoresizingMaskIntoConstraints="NO" id="SAP-FB-Vc5">
                                                                                 <rect key="frame" x="-1" y="-3" width="28" height="23"/>
                                                                                 <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="overlaps" controlSize="small" inset="2" id="qXI-tO-dod">
                                                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                                     <font key="font" metaFont="smallSystem"/>
                                                                                 </buttonCell>
                                                                                 <connections>
+                                                                                    <action selector="didCheckboxClicked:" target="9lY-yr-OAO" id="SMN-Gd-Kmv"/>
                                                                                     <binding destination="z1o-bK-kfg" name="value" keyPath="objectValue.regularExpression" id="6dJ-IL-1Qh"/>
                                                                                 </connections>
                                                                             </button>
@@ -1437,7 +1448,7 @@
                                                                     </tableCellView>
                                                                 </prototypeCellViews>
                                                             </tableColumn>
-                                                            <tableColumn editable="NO" width="27" minWidth="27" maxWidth="27" headerToolTip="Ignore Case (case-insensitive)" id="9Qp-qv-J49">
+                                                            <tableColumn identifier="ignoreCase" editable="NO" width="27" minWidth="27" maxWidth="27" headerToolTip="Ignore Case (case-insensitive)" id="9Qp-qv-J49">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="IC">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1452,13 +1463,14 @@
                                                                         <rect key="frame" x="371" y="1" width="27" height="17"/>
                                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                         <subviews>
-                                                                            <button translatesAutoresizingMaskIntoConstraints="NO" id="tUv-sC-09D">
+                                                                            <button identifier="ignoreCase" translatesAutoresizingMaskIntoConstraints="NO" id="tUv-sC-09D">
                                                                                 <rect key="frame" x="-1" y="-3" width="28" height="23"/>
                                                                                 <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="overlaps" controlSize="small" inset="2" id="QbA-lZ-d9G">
                                                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                                     <font key="font" metaFont="smallSystem"/>
                                                                                 </buttonCell>
                                                                                 <connections>
+                                                                                    <action selector="didCheckboxClicked:" target="9lY-yr-OAO" id="A2L-qc-Qdx"/>
                                                                                     <binding destination="Ols-7z-sxo" name="value" keyPath="objectValue.ignoreCase" id="J0Q-oy-vwU"/>
                                                                                 </connections>
                                                                             </button>
@@ -1477,7 +1489,7 @@
                                                             <binding destination="174" name="content" keyPath="arrangedObjects" id="ute-fJ-2Wd"/>
                                                             <binding destination="174" name="selectionIndexes" keyPath="selectionIndexes" previousBinding="ute-fJ-2Wd" id="jNH-It-NOw"/>
                                                             <binding destination="174" name="sortDescriptors" keyPath="sortDescriptors" previousBinding="jNH-It-NOw" id="qZH-w5-Zvn"/>
-                                                            <outlet property="delegate" destination="-2" id="6rC-1Q-2V7"/>
+                                                            <outlet property="delegate" destination="9lY-yr-OAO" id="BRZ-F0-JDV"/>
                                                         </connections>
                                                     </tableView>
                                                 </subviews>
@@ -1637,7 +1649,7 @@
                                                                     </tableCellView>
                                                                 </prototypeCellViews>
                                                             </tableColumn>
-                                                            <tableColumn width="27" minWidth="27" maxWidth="27" headerToolTip="Regular expression" id="DZX-7q-H9Q">
+                                                            <tableColumn identifier="regularExpression" width="27" minWidth="27" maxWidth="27" headerToolTip="Regular expression" id="DZX-7q-H9Q">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="RE">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1652,13 +1664,14 @@
                                                                         <rect key="frame" x="341" y="1" width="27" height="17"/>
                                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                         <subviews>
-                                                                            <button translatesAutoresizingMaskIntoConstraints="NO" id="28E-9N-7Aj">
+                                                                            <button identifier="regularExpression" translatesAutoresizingMaskIntoConstraints="NO" id="28E-9N-7Aj">
                                                                                 <rect key="frame" x="-1" y="-3" width="28" height="23"/>
                                                                                 <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="overlaps" controlSize="small" inset="2" id="Ohf-Ac-PL3">
                                                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                                     <font key="font" metaFont="smallSystem"/>
                                                                                 </buttonCell>
                                                                                 <connections>
+                                                                                    <action selector="didCheckboxClicked:" target="9lY-yr-OAO" id="1OL-ZH-nEX"/>
                                                                                     <binding destination="Y8A-Q3-hJD" name="value" keyPath="objectValue.regularExpression" id="jKC-dT-Hs0"/>
                                                                                 </connections>
                                                                             </button>
@@ -1672,7 +1685,7 @@
                                                                     </tableCellView>
                                                                 </prototypeCellViews>
                                                             </tableColumn>
-                                                            <tableColumn editable="NO" width="27" minWidth="27" maxWidth="27" headerToolTip="Ignore Case (case-insensitive)" id="Apk-VU-c93">
+                                                            <tableColumn identifier="ignoreCase" editable="NO" width="27" minWidth="27" maxWidth="27" headerToolTip="Ignore Case (case-insensitive)" id="Apk-VU-c93">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="IC">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1694,6 +1707,7 @@
                                                                                     <font key="font" metaFont="smallSystem"/>
                                                                                 </buttonCell>
                                                                                 <connections>
+                                                                                    <action selector="didCheckboxClicked:" target="9lY-yr-OAO" id="6cK-Qi-Fr5"/>
                                                                                     <binding destination="yal-54-LMp" name="value" keyPath="objectValue.ignoreCase" id="3AF-eL-btd"/>
                                                                                 </connections>
                                                                             </button>
@@ -1712,7 +1726,7 @@
                                                             <binding destination="236" name="content" keyPath="arrangedObjects" id="cwt-BP-mtu"/>
                                                             <binding destination="236" name="selectionIndexes" keyPath="selectionIndexes" previousBinding="cwt-BP-mtu" id="JhJ-6s-Gbh"/>
                                                             <binding destination="236" name="sortDescriptors" keyPath="sortDescriptors" previousBinding="JhJ-6s-Gbh" id="rYu-oV-XAb"/>
-                                                            <outlet property="delegate" destination="-2" id="37b-t6-Sl0"/>
+                                                            <outlet property="delegate" destination="9lY-yr-OAO" id="yoW-kl-fkt"/>
                                                         </connections>
                                                     </tableView>
                                                 </subviews>
@@ -1872,7 +1886,7 @@
                                                                     </tableCellView>
                                                                 </prototypeCellViews>
                                                             </tableColumn>
-                                                            <tableColumn width="27" minWidth="27" maxWidth="27" headerToolTip="Regular expression" id="HJ6-He-nlS">
+                                                            <tableColumn identifier="regularExpression" width="27" minWidth="27" maxWidth="27" headerToolTip="Regular expression" id="HJ6-He-nlS">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="RE">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1887,13 +1901,14 @@
                                                                         <rect key="frame" x="341" y="1" width="27" height="17"/>
                                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                         <subviews>
-                                                                            <button translatesAutoresizingMaskIntoConstraints="NO" id="re6-tn-tFm">
+                                                                            <button identifier="regularExpression" translatesAutoresizingMaskIntoConstraints="NO" id="re6-tn-tFm">
                                                                                 <rect key="frame" x="-1" y="-3" width="28" height="23"/>
                                                                                 <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="overlaps" controlSize="small" inset="2" id="NVs-3Y-7JL">
                                                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                                     <font key="font" metaFont="smallSystem"/>
                                                                                 </buttonCell>
                                                                                 <connections>
+                                                                                    <action selector="didCheckboxClicked:" target="9lY-yr-OAO" id="g95-Yo-Awb"/>
                                                                                     <binding destination="eht-xa-US4" name="value" keyPath="objectValue.regularExpression" id="eDg-ES-ME5"/>
                                                                                 </connections>
                                                                             </button>
@@ -1907,7 +1922,7 @@
                                                                     </tableCellView>
                                                                 </prototypeCellViews>
                                                             </tableColumn>
-                                                            <tableColumn editable="NO" width="27" minWidth="27" maxWidth="27" headerToolTip="Ignore Case (case-insensitive)" id="kgS-s1-pAB">
+                                                            <tableColumn identifier="ignoreCase" editable="NO" width="27" minWidth="27" maxWidth="27" headerToolTip="Ignore Case (case-insensitive)" id="kgS-s1-pAB">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="IC">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1922,7 +1937,7 @@
                                                                         <rect key="frame" x="371" y="1" width="27" height="17"/>
                                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                         <subviews>
-                                                                            <button translatesAutoresizingMaskIntoConstraints="NO" id="c2z-Xy-sL1">
+                                                                            <button identifier="ignoreCase" translatesAutoresizingMaskIntoConstraints="NO" id="c2z-Xy-sL1">
                                                                                 <rect key="frame" x="-1" y="-3" width="28" height="23"/>
                                                                                 <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="overlaps" controlSize="small" inset="2" id="miZ-f8-sfn">
                                                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -1947,7 +1962,7 @@
                                                             <binding destination="239" name="content" keyPath="arrangedObjects" id="0Ej-BV-6Zt"/>
                                                             <binding destination="239" name="selectionIndexes" keyPath="selectionIndexes" previousBinding="0Ej-BV-6Zt" id="t3y-TI-VIx"/>
                                                             <binding destination="239" name="sortDescriptors" keyPath="sortDescriptors" previousBinding="t3y-TI-VIx" id="zEz-lM-ruV"/>
-                                                            <outlet property="delegate" destination="-2" id="pqu-tX-2uf"/>
+                                                            <outlet property="delegate" destination="9lY-yr-OAO" id="0sg-pX-gfZ"/>
                                                         </connections>
                                                     </tableView>
                                                 </subviews>
@@ -2107,7 +2122,7 @@
                                                                     </tableCellView>
                                                                 </prototypeCellViews>
                                                             </tableColumn>
-                                                            <tableColumn width="27" minWidth="27" maxWidth="27" headerToolTip="Regular expression" id="59B-PI-ulB">
+                                                            <tableColumn identifier="regularExpression" width="27" minWidth="27" maxWidth="27" headerToolTip="Regular expression" id="59B-PI-ulB">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="RE">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -2122,13 +2137,14 @@
                                                                         <rect key="frame" x="341" y="1" width="27" height="17"/>
                                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                         <subviews>
-                                                                            <button translatesAutoresizingMaskIntoConstraints="NO" id="QX2-Dv-Km6">
+                                                                            <button identifier="regularExpression" translatesAutoresizingMaskIntoConstraints="NO" id="QX2-Dv-Km6">
                                                                                 <rect key="frame" x="-1" y="-3" width="28" height="23"/>
                                                                                 <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="overlaps" controlSize="small" inset="2" id="8Da-e8-R3c">
                                                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                                     <font key="font" metaFont="smallSystem"/>
                                                                                 </buttonCell>
                                                                                 <connections>
+                                                                                    <action selector="didCheckboxClicked:" target="9lY-yr-OAO" id="4OO-Hz-SsZ"/>
                                                                                     <binding destination="UhU-yS-6ni" name="value" keyPath="objectValue.regularExpression" id="eqI-ZJ-LTF"/>
                                                                                 </connections>
                                                                             </button>
@@ -2142,7 +2158,7 @@
                                                                     </tableCellView>
                                                                 </prototypeCellViews>
                                                             </tableColumn>
-                                                            <tableColumn editable="NO" width="27" minWidth="27" maxWidth="27" headerToolTip="Ignore Case (case-insensitive)" id="8t6-0w-Avl">
+                                                            <tableColumn identifier="ignoreCase" editable="NO" width="27" minWidth="27" maxWidth="27" headerToolTip="Ignore Case (case-insensitive)" id="8t6-0w-Avl">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="IC">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -2164,6 +2180,7 @@
                                                                                     <font key="font" metaFont="smallSystem"/>
                                                                                 </buttonCell>
                                                                                 <connections>
+                                                                                    <action selector="didCheckboxClicked:" target="9lY-yr-OAO" id="8wR-GD-vu1"/>
                                                                                     <binding destination="gpF-m7-f7j" name="value" keyPath="objectValue.ignoreCase" id="BaK-d0-PRj"/>
                                                                                 </connections>
                                                                             </button>
@@ -2182,7 +2199,7 @@
                                                             <binding destination="242" name="content" keyPath="arrangedObjects" id="vQk-FJ-DsS"/>
                                                             <binding destination="242" name="selectionIndexes" keyPath="selectionIndexes" previousBinding="vQk-FJ-DsS" id="5mG-TE-ucq"/>
                                                             <binding destination="242" name="sortDescriptors" keyPath="sortDescriptors" previousBinding="5mG-TE-ucq" id="for-gv-Sak"/>
-                                                            <outlet property="delegate" destination="-2" id="8SH-dJ-7fT"/>
+                                                            <outlet property="delegate" destination="9lY-yr-OAO" id="7o4-PH-bUX"/>
                                                         </connections>
                                                     </tableView>
                                                 </subviews>
@@ -2342,7 +2359,7 @@
                                                                     </tableCellView>
                                                                 </prototypeCellViews>
                                                             </tableColumn>
-                                                            <tableColumn width="27" minWidth="27" maxWidth="27" headerToolTip="Regular expression" id="450">
+                                                            <tableColumn identifier="regularExpression" width="27" minWidth="27" maxWidth="27" headerToolTip="Regular expression" id="450">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="RE">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -2357,13 +2374,14 @@
                                                                         <rect key="frame" x="341" y="1" width="27" height="17"/>
                                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                         <subviews>
-                                                                            <button translatesAutoresizingMaskIntoConstraints="NO" id="tkK-8f-1gH">
+                                                                            <button identifier="regularExpression" translatesAutoresizingMaskIntoConstraints="NO" id="tkK-8f-1gH">
                                                                                 <rect key="frame" x="-1" y="-3" width="28" height="23"/>
                                                                                 <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="overlaps" controlSize="small" inset="2" id="TPj-Lx-fCs">
                                                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                                     <font key="font" metaFont="smallSystem"/>
                                                                                 </buttonCell>
                                                                                 <connections>
+                                                                                    <action selector="didCheckboxClicked:" target="9lY-yr-OAO" id="hDv-vI-Tus"/>
                                                                                     <binding destination="r3P-qo-q6h" name="value" keyPath="objectValue.regularExpression" id="17h-vo-sfc"/>
                                                                                 </connections>
                                                                             </button>
@@ -2377,7 +2395,7 @@
                                                                     </tableCellView>
                                                                 </prototypeCellViews>
                                                             </tableColumn>
-                                                            <tableColumn editable="NO" width="27" minWidth="27" maxWidth="27" headerToolTip="Ignore Case (case-insensitive)" id="396">
+                                                            <tableColumn identifier="ignoreCase" editable="NO" width="27" minWidth="27" maxWidth="27" headerToolTip="Ignore Case (case-insensitive)" id="396">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="IC">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -2392,13 +2410,14 @@
                                                                         <rect key="frame" x="371" y="1" width="27" height="17"/>
                                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                         <subviews>
-                                                                            <button translatesAutoresizingMaskIntoConstraints="NO" id="rHl-hW-UYJ">
+                                                                            <button identifier="ignoreCase" translatesAutoresizingMaskIntoConstraints="NO" id="rHl-hW-UYJ">
                                                                                 <rect key="frame" x="-1" y="-3" width="28" height="23"/>
                                                                                 <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="overlaps" controlSize="small" inset="2" id="MUI-gn-vVZ">
                                                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                                     <font key="font" metaFont="smallSystem"/>
                                                                                 </buttonCell>
                                                                                 <connections>
+                                                                                    <action selector="didCheckboxClicked:" target="9lY-yr-OAO" id="Rco-i0-EJs"/>
                                                                                     <binding destination="fHl-2E-K6J" name="value" keyPath="objectValue.ignoreCase" id="cfO-uo-Auu"/>
                                                                                 </connections>
                                                                             </button>
@@ -2417,7 +2436,7 @@
                                                             <binding destination="34" name="content" keyPath="arrangedObjects" id="TGm-ym-uME"/>
                                                             <binding destination="34" name="selectionIndexes" keyPath="selectionIndexes" previousBinding="TGm-ym-uME" id="JSk-7H-Y5P"/>
                                                             <binding destination="34" name="sortDescriptors" keyPath="sortDescriptors" previousBinding="JSk-7H-Y5P" id="C2b-rG-E0T"/>
-                                                            <outlet property="delegate" destination="-2" id="685"/>
+                                                            <outlet property="delegate" destination="9lY-yr-OAO" id="yNc-9K-KcE"/>
                                                         </connections>
                                                     </tableView>
                                                 </subviews>
@@ -2644,7 +2663,7 @@
                                                                     <binding destination="722" name="value" keyPath="arrangedObjects.beginString" id="724"/>
                                                                 </connections>
                                                             </tableColumn>
-                                                            <tableColumn width="27" minWidth="27" maxWidth="27" headerToolTip="Ignore Case (case-insensitive)" id="736">
+                                                            <tableColumn identifier="ignoreCase" width="27" minWidth="27" maxWidth="27" headerToolTip="Ignore Case (case-insensitive)" id="736">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="IC">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -2659,13 +2678,14 @@
                                                                         <rect key="frame" x="333" y="1" width="27" height="17"/>
                                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                         <subviews>
-                                                                            <button translatesAutoresizingMaskIntoConstraints="NO" id="UGh-sP-u1f">
+                                                                            <button identifier="regularExpression" translatesAutoresizingMaskIntoConstraints="NO" id="UGh-sP-u1f">
                                                                                 <rect key="frame" x="-1" y="-3" width="28" height="23"/>
                                                                                 <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="overlaps" controlSize="small" inset="2" id="9se-7G-auS">
                                                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                                     <font key="font" metaFont="smallSystem"/>
                                                                                 </buttonCell>
                                                                                 <connections>
+                                                                                    <action selector="didCheckboxClicked:" target="9lY-yr-OAO" id="ysl-4K-gWF"/>
                                                                                     <binding destination="io2-On-x28" name="value" keyPath="objectValue.ignoreCase" id="gaW-xd-ohU"/>
                                                                                 </connections>
                                                                             </button>
@@ -2684,7 +2704,7 @@
                                                             <binding destination="722" name="content" keyPath="arrangedObjects" id="ZJo-uy-b1z"/>
                                                             <binding destination="722" name="selectionIndexes" keyPath="selectionIndexes" previousBinding="ZJo-uy-b1z" id="Bu8-61-gSv"/>
                                                             <binding destination="722" name="sortDescriptors" keyPath="sortDescriptors" previousBinding="Bu8-61-gSv" id="nIV-Hi-HhG"/>
-                                                            <outlet property="delegate" destination="-2" id="733"/>
+                                                            <outlet property="delegate" destination="9lY-yr-OAO" id="2QI-Gk-fU6"/>
                                                         </connections>
                                                     </tableView>
                                                 </subviews>
@@ -3017,7 +3037,7 @@
                                                             <binding destination="777" name="content" keyPath="arrangedObjects" id="gTK-Ci-vmV"/>
                                                             <binding destination="777" name="selectionIndexes" keyPath="selectionIndexes" previousBinding="gTK-Ci-vmV" id="CpD-Ga-43I"/>
                                                             <binding destination="777" name="sortDescriptors" keyPath="sortDescriptors" previousBinding="CpD-Ga-43I" id="7sm-jt-RtV"/>
-                                                            <outlet property="delegate" destination="-2" id="786"/>
+                                                            <outlet property="delegate" destination="9lY-yr-OAO" id="dlH-Y5-9Sf"/>
                                                         </connections>
                                                     </tableView>
                                                 </subviews>
@@ -3152,7 +3172,7 @@
                                                             <binding destination="197" name="selectionIndexes" keyPath="selectionIndexes" previousBinding="oDz-PV-2aA" id="fMV-EB-m79"/>
                                                             <binding destination="197" name="sortDescriptors" keyPath="sortDescriptors" previousBinding="fMV-EB-m79" id="U0u-zf-UiV"/>
                                                             <outlet property="dataSource" destination="197" id="QFV-cQ-Kb0"/>
-                                                            <outlet property="delegate" destination="-2" id="686"/>
+                                                            <outlet property="delegate" destination="9lY-yr-OAO" id="lFF-eT-lLP"/>
                                                         </connections>
                                                     </tableView>
                                                 </subviews>
@@ -3231,7 +3251,7 @@
                                                             <binding destination="jqJ-Ce-QDb" name="content" keyPath="arrangedObjects" id="lHJ-9s-aRZ"/>
                                                             <binding destination="jqJ-Ce-QDb" name="selectionIndexes" keyPath="selectionIndexes" previousBinding="lHJ-9s-aRZ" id="Lw2-iZ-nkO"/>
                                                             <binding destination="jqJ-Ce-QDb" name="sortDescriptors" keyPath="sortDescriptors" previousBinding="Lw2-iZ-nkO" id="5kD-oH-q0Q"/>
-                                                            <outlet property="delegate" destination="-2" id="vGz-1x-5jU"/>
+                                                            <outlet property="delegate" destination="9lY-yr-OAO" id="1Fw-z1-ZRe"/>
                                                         </connections>
                                                     </tableView>
                                                 </subviews>
@@ -3934,6 +3954,7 @@ DQ
                 </binding>
             </connections>
         </objectController>
+        <customObject id="9lY-yr-OAO" customClass="CESyntaxEditTableViewDelegate"/>
     </objects>
     <resources>
         <image name="NSAddTemplate" width="11" height="11"/>

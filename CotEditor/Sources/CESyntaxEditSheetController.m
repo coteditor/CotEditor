@@ -30,7 +30,6 @@
 
 #import "CESyntaxEditSheetController.h"
 #import "CESyntaxManager.h"
-#import "CEMenuItemCell.h"
 #import "constants.h"
 
 
@@ -173,7 +172,7 @@ typedef NS_ENUM(NSUInteger, CETabIndex) {
 
 //=======================================================
 // Delegate method (NSTableView)
-//  <== tableViews
+//  <== menuTableView
 //=======================================================
 
 // ------------------------------------------------------
@@ -184,30 +183,9 @@ typedef NS_ENUM(NSUInteger, CETabIndex) {
     NSTableView *tableView = [notification object];
     NSInteger row = [tableView selectedRow];
     
-    // タブを切り替える
-    if (tableView == [self menuTableView]) {
-        [self setSelectedDetailTag:row];
-        return;
-    }
-    
-    // 最下行が選択されたのなら、編集開始のメソッドを呼び出す
-    //（ここですぐに開始しないのは、選択行のセルが持つ文字列をこの段階では取得できないため）
-    if ((row + 1) == [tableView numberOfRows]) {
-        [tableView scrollRowToVisible:row];
-        
-        __weak typeof(self) weakSelf = self;
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.01 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            typeof(self) strongSelf = weakSelf;
-            [strongSelf editNewAddedRowOfTableView:tableView];
-        });
-    }
+    // switch view
+    [self setSelectedDetailTag:row];
 }
-
-
-//=======================================================
-// Delegate method (NSTableView)
-//  <== menuTableView
-//=======================================================
 
 // ------------------------------------------------------
 /// 行を選択するべきかを返す
@@ -215,11 +193,7 @@ typedef NS_ENUM(NSUInteger, CETabIndex) {
 // ------------------------------------------------------
 {
     // セパレータは選択不可
-    if (tableView == [self menuTableView]) {
-        return ![[self menuTitles][row] isEqualToString:CESeparatorString];
-    }
-    
-    return YES;
+    return ![[self menuTitles][row] isEqualToString:CESeparatorString];
 }
 
 
@@ -339,20 +313,6 @@ typedef NS_ENUM(NSUInteger, CETabIndex) {
         [NSApp endSheet:[self window] returnCode:returnCode];
     }
     [self close];
-}
-
-
-//------------------------------------------------------
-/// 最下行が選択され、一番左のコラムが入力されていなければ自動的に編集を開始する
-- (void)editNewAddedRowOfTableView:(NSTableView *)tableView
-//------------------------------------------------------
-{
-    NSInteger row = [tableView selectedRow];
-    NSTableCellView *cellView = [[tableView rowViewAtRow:row makeIfNecessary:NO] viewAtColumn:0];
-    
-    if ([[[cellView textField] stringValue] isEqualToString:@""]) {
-        [tableView editColumn:0 row:row withEvent:nil select:YES];
-    }
 }
 
 

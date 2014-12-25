@@ -17,6 +17,7 @@ Change Log
 - Migrate document drawer to sidebar style.
     - Add “show document inspector” option to preferences.
     - Improve document information display.
+- Enable to change multiple checkboxes in syntax style editor at once.
 - Improve to display gear icon in menu bar while executing a script.
 - Add hidden “Reveal in Finder” menu item to syntax style action menu in Preferences (visible with `Option` key).
 - Close Preferences window with esc key.

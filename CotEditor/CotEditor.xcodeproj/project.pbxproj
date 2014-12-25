@@ -51,6 +51,7 @@
 		2A1EB5C419AD469500C1E37E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A1EB5C319AD469500C1E37E /* Images.xcassets */; };
 		2A2179F61A07093B002C4AB1 /* SyntaxMap.json in Resources */ = {isa = PBXBuildFile; fileRef = 2A2179F51A07093B002C4AB1 /* SyntaxMap.json */; };
 		2A2BDF0D198A899E0029848B /* NSString+JapaneseTransform.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A2BDF0C198A899E0029848B /* NSString+JapaneseTransform.m */; };
+		2A2E034B1A4BF842006ABE9F /* CESyntaxEditTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A2E034A1A4BF842006ABE9F /* CESyntaxEditTableViewDelegate.m */; };
 		2A3A758E19E77C84001DAB88 /* Syntaxes in Resources */ = {isa = PBXBuildFile; fileRef = 2A3A758D19E77C84001DAB88 /* Syntaxes */; };
 		2A3A759119E77D4F001DAB88 /* MigrationWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A3A758F19E77D4F001DAB88 /* MigrationWindow.xib */; };
 		2A3A759419E77D66001DAB88 /* CEMigrationWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A3A759319E77D66001DAB88 /* CEMigrationWindowController.m */; };
@@ -262,6 +263,8 @@
 		2A2179F51A07093B002C4AB1 /* SyntaxMap.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SyntaxMap.json; sourceTree = "<group>"; };
 		2A2BDF0B198A899E0029848B /* NSString+JapaneseTransform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+JapaneseTransform.h"; sourceTree = "<group>"; };
 		2A2BDF0C198A899E0029848B /* NSString+JapaneseTransform.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+JapaneseTransform.m"; sourceTree = "<group>"; };
+		2A2E03491A4BF842006ABE9F /* CESyntaxEditTableViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CESyntaxEditTableViewDelegate.h; sourceTree = "<group>"; };
+		2A2E034A1A4BF842006ABE9F /* CESyntaxEditTableViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CESyntaxEditTableViewDelegate.m; sourceTree = "<group>"; };
 		2A37F4ACFDCFA73011CA2CEA /* CEDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CEDocument.m; sourceTree = "<group>"; };
 		2A37F4AEFDCFA73011CA2CEA /* CEDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEDocument.h; sourceTree = "<group>"; };
 		2A37F4B0FDCFA73011CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -639,27 +642,17 @@
 			name = Panes;
 			sourceTree = "<group>";
 		};
-		2A149DC719019CC400A9D6EF /* Sheets */ = {
+		2A149DC719019CC400A9D6EF /* Encoding List Sheet */ = {
 			isa = PBXGroup;
 			children = (
 				25AC0919077190EB00B0C91C /* CEPrefEncodingDataSource.h */,
 				25AC091A077190EB00B0C91C /* CEPrefEncodingDataSource.m */,
-				2A3FB2AB18ECEFF200D9CB2C /* CESyntaxEditSheetController.h */,
-				2A3FB2AC18ECEFF200D9CB2C /* CESyntaxEditSheetController.m */,
-				2A5D2B8F18E1EC790020AA1F /* CESyntaxMappingConflictsSheetController.h */,
-				2A5D2B9018E1EC790020AA1F /* CESyntaxMappingConflictsSheetController.m */,
 				2A15831818E368CE00601026 /* CEEncodingListSheetController.h */,
 				2A15831918E368CE00601026 /* CEEncodingListSheetController.m */,
-				2A586A1419A4FA9D0053F5E3 /* CEKeyBindingSheetController.h */,
-				2A586A1519A4FA9D0053F5E3 /* CEKeyBindingSheetController.m */,
-				2A5179381A40A3B500A3F852 /* CEShortcutKeyField.h */,
-				2A5179391A40A3B500A3F852 /* CEShortcutKeyField.m */,
 				2A68F93618FB04F300673440 /* CEMenuItemCell.h */,
 				2A68F93718FB04F300673440 /* CEMenuItemCell.m */,
-				2A4DB13B19A265BA005A4F7C /* CEDraggableArrayController.h */,
-				2A4DB13C19A265BA005A4F7C /* CEDraggableArrayController.m */,
 			);
-			name = Sheets;
+			name = "Encoding List Sheet";
 			sourceTree = "<group>";
 		};
 		2A149DC81902BC2B00A9D6EF /* Panels */ = {
@@ -750,7 +743,10 @@
 			children = (
 				2A84C7C31A48F3D50013EE83 /* Window */,
 				2A149DC619018F9200A9D6EF /* Panes */,
-				2A149DC719019CC400A9D6EF /* Sheets */,
+				2A149DC719019CC400A9D6EF /* Encoding List Sheet */,
+				2A2E03471A4BF808006ABE9F /* Syntax Edit Sheet */,
+				2A2E034C1A4C021C006ABE9F /* Syntax Mapping Conflicts Sheet */,
+				2A2E03481A4BF820006ABE9F /* Keybindings Edit Sheet */,
 				2A63122B19C2D2EA0088C5C6 /* Theme Edit */,
 				2A15832218E383C300601026 /* CESizeSampleWindowController.h */,
 				2A15832318E383C300601026 /* CESizeSampleWindowController.m */,
@@ -769,6 +765,39 @@
 				2AD4599A19DDCF6600A20FBB /* CEScriptMenuItem.m */,
 			);
 			name = Application;
+			sourceTree = "<group>";
+		};
+		2A2E03471A4BF808006ABE9F /* Syntax Edit Sheet */ = {
+			isa = PBXGroup;
+			children = (
+				2A3FB2AB18ECEFF200D9CB2C /* CESyntaxEditSheetController.h */,
+				2A3FB2AC18ECEFF200D9CB2C /* CESyntaxEditSheetController.m */,
+				2A2E03491A4BF842006ABE9F /* CESyntaxEditTableViewDelegate.h */,
+				2A2E034A1A4BF842006ABE9F /* CESyntaxEditTableViewDelegate.m */,
+				2A4DB13B19A265BA005A4F7C /* CEDraggableArrayController.h */,
+				2A4DB13C19A265BA005A4F7C /* CEDraggableArrayController.m */,
+			);
+			name = "Syntax Edit Sheet";
+			sourceTree = "<group>";
+		};
+		2A2E03481A4BF820006ABE9F /* Keybindings Edit Sheet */ = {
+			isa = PBXGroup;
+			children = (
+				2A586A1419A4FA9D0053F5E3 /* CEKeyBindingSheetController.h */,
+				2A586A1519A4FA9D0053F5E3 /* CEKeyBindingSheetController.m */,
+				2A5179381A40A3B500A3F852 /* CEShortcutKeyField.h */,
+				2A5179391A40A3B500A3F852 /* CEShortcutKeyField.m */,
+			);
+			name = "Keybindings Edit Sheet";
+			sourceTree = "<group>";
+		};
+		2A2E034C1A4C021C006ABE9F /* Syntax Mapping Conflicts Sheet */ = {
+			isa = PBXGroup;
+			children = (
+				2A5D2B8F18E1EC790020AA1F /* CESyntaxMappingConflictsSheetController.h */,
+				2A5D2B9018E1EC790020AA1F /* CESyntaxMappingConflictsSheetController.m */,
+			);
+			name = "Syntax Mapping Conflicts Sheet";
 			sourceTree = "<group>";
 		};
 		2A37F4AAFDCFA73011CA2CEA /* CotEditor */ = {
@@ -1297,6 +1326,7 @@
 				2A436DDF1A4288AC00275FD4 /* CEDocumentAnalyzer.m in Sources */,
 				25859EC1076D92D60020F779 /* CEPreferencesWindowController.m in Sources */,
 				259BFDCE076EBF7E00A5A6D0 /* CEDocumentController.m in Sources */,
+				2A2E034B1A4BF842006ABE9F /* CESyntaxEditTableViewDelegate.m in Sources */,
 				25AC091C077190EB00B0C91C /* CEPrefEncodingDataSource.m in Sources */,
 				2A149DBF1901828600A9D6EF /* CEFormatPaneController.m in Sources */,
 				2A7314EE1A0326D300C0EDA9 /* CEWindow.m in Sources */,
