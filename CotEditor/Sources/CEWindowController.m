@@ -497,13 +497,28 @@ static NSTimeInterval infoUpdateInterval;
     if ([self selectedSidebarTag] == 0) {
         [self setSelectedSidebarTag:CEDocumentInspectorTag];
     }
+    if ([self isSidebarShown] == shown) { return; }
     
+    BOOL isInitial = ![[self window] isVisible];  // on `windowDidLoad` and `window:didDecodeRestorableState:`
+    BOOL isFullscreen = ([[self window] styleMask] & NSFullScreenWindowMask) == NSFullScreenWindowMask;
+    BOOL changesWindowSize = !isInitial && !isFullscreen;
+    CGFloat sidebarWidth = [self sidebarWidth] ?: [[NSUserDefaults standardUserDefaults] doubleForKey:CEDefaultSidebarWidthKey];
+    CGFloat dividerThickness = [[self sidebarSplitView] dividerThickness];
     CGFloat position = [[self sidebarSplitView] maxPossiblePositionOfDividerAtIndex:0];
-    if (shown) {
-        position -= [self sidebarWidth] ?: [[NSUserDefaults standardUserDefaults] doubleForKey:CEDefaultSidebarWidthKey];
-        position -= [[self sidebarSplitView] dividerThickness];
+    NSRect windowFrame = [[self window] frame];
+    
+    // adjust divider position
+    if ((changesWindowSize && !shown) || (!changesWindowSize && shown)) {
+        position -= sidebarWidth;
     }
     
+    // adjust window width
+    if (changesWindowSize) {
+        windowFrame.size.width += shown ? (sidebarWidth + dividerThickness) : - (sidebarWidth + dividerThickness);
+    }
+    
+    // apply
+    [[self window] setFrame:windowFrame display:NO];
     [[self sidebarSplitView] setPosition:position ofDividerAtIndex:0];
     [[self sidebarSplitView] adjustSubviews];
     
