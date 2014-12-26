@@ -39,7 +39,6 @@
 - (void)setFrameSize:(NSSize)newSize;
 // ------------------------------------------------------
 {
-    
     [self setPreferredMaxLayoutWidth:newSize.width - 4];  // 4 for 2 * inset
     
     [super setFrameSize:newSize];
