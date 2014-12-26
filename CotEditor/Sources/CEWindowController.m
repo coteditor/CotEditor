@@ -126,7 +126,7 @@ static NSTimeInterval infoUpdateInterval;
     [[self documentInspectorViewController] setRepresentedObject:[self documentAnalyzer]];
     
     // setup sidebar
-    [[[self sidebar] layer] setBackgroundColor:CGColorCreateGenericGray(0.94, 1.0)];
+    [[[self sidebar] layer] setBackgroundColor:[[NSColor colorWithCalibratedWhite:0.94 alpha:1.0] CGColor]];
     [self setSidebarShown:[defaults boolForKey:CEDefaultShowDocumentInspectorKey]];
     
     // set document instance to incompatible chars view
@@ -558,7 +558,7 @@ static NSTimeInterval infoUpdateInterval;
     [[placeholder animator] replaceSubview:currentView with:newView];
     
     // update autolayout constrains
-    NSDictionary *views = @{@"newView": newView};
+    NSDictionary *views = NSDictionaryOfVariableBindings(newView);
     [placeholder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[newView]|" options:0 metrics:nil views:views]];
     [placeholder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[newView]|" options:0 metrics:nil views:views]];
 }
