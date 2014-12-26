@@ -81,12 +81,28 @@ static NSDictionary *kUnprintableKeyTable;
 #pragma mark Superclass Methods
 
 // ------------------------------------------------------
-/// initialize
+/// initialize class
 + (void)initialize
 // ------------------------------------------------------
 {
     // set statics
     kUnprintableKeyTable = [CEKeyBindingManager unprintableKeyDictionary];
+}
+
+
+// ------------------------------------------------------
+/// initialize instance
+- (instancetype)init
+// ------------------------------------------------------
+{
+    self = [super init];
+    if (self) {
+        NSURL *URL = [[NSBundle mainBundle] URLForResource:@"MenuKeyBindings"
+                                             withExtension:@"plist"
+                                              subdirectory:@"KeyBindings"];
+        _defaultMenuKeyBindingDict = [NSDictionary dictionaryWithContentsOfURL:URL];
+    }
+    return self;
 }
 
 
@@ -143,13 +159,6 @@ static NSDictionary *kUnprintableKeyTable;
 - (void)setupAtLaunching
 // ------------------------------------------------------
 {
-    NSURL *URL = [[NSBundle mainBundle] URLForResource:@"MenuKeyBindings"
-                                         withExtension:@"plist"
-                                          subdirectory:@"KeyBindings"];
-
-    if ([URL checkResourceIsReachableAndReturnError:nil]) {
-        [self setDefaultMenuKeyBindingDict:[NSDictionary dictionaryWithContentsOfURL:URL]];
-    }
     /// 定義ファイルのセットアップと読み込み
     [self setupMenuKeyBindingDictionary];
     [self setupTextKeyBindingDictionary];
@@ -213,49 +222,42 @@ static NSDictionary *kUnprintableKeyTable;
 - (NSMutableArray *)mainMenuArrayForOutlineData:(NSMenu *)menu
 //------------------------------------------------------
 {
-    NSMutableArray *outlineDataArray = [NSMutableArray array];
+    NSMutableArray *outlineData = [NSMutableArray array];
     
     for (NSMenuItem *item in [menu itemArray]) {
-        if ([item isSeparatorItem] || ([[item title] length] == 0)) { continue; }
-        
-        BOOL hasSpecialTag = (([item tag] == CEServicesMenuItemTag) ||
-                              ([item tag] == CEWindowPanelsMenuItemTag) ||
-                              ([item tag] == CEScriptMenuDirectoryTag));
+        if ([item isSeparatorItem] || [item isAlternate] || ([[item title] length] == 0) ||
+            ([item tag] == CEServicesMenuItemTag) ||
+            ([item tag] == CEWindowPanelsMenuItemTag) ||
+            ([item tag] == CEScriptMenuDirectoryTag))
+        {
+            continue;
+        }
         
         NSDictionary *row;
-        if ([item hasSubmenu] && !hasSpecialTag) {
+        if ([item hasSubmenu]) {
             NSMutableArray *subArray = [self mainMenuArrayForOutlineData:[item submenu]];
             row = @{CEKeyBindingTitleKey: [item title],
                     CEKeyBindingChildrenKey: subArray};
             
         } else {
-            NSString *selectorString = NSStringFromSelector([item action]);
+            NSString *selector = NSStringFromSelector([item action]);
             
             // フォントサイズ変更、エンコーディングの各項目、カラーリングの各項目、などはリストアップしない
-            if ([[CEKeyBindingManager selectorStringsToIgnore] containsObject:selectorString] || hasSpecialTag) {
-                continue;
-            }
-            if ([item isAlternate] || !selectorString) {
+            if (!selector || [[CEKeyBindingManager selectorStringsToIgnore] containsObject:selector]) {
                 continue;
             }
             
-            NSString *keyEquivalent = [item keyEquivalent];
-            NSString *keySpecChars;
-            if ([keyEquivalent length] > 0) {
-                NSUInteger modifierMask = [item keyEquivalentModifierMask];
-                keySpecChars = [CEKeyBindingManager keySpecCharsFromKeyEquivalent:keyEquivalent
-                                                                    modifierFrags:modifierMask];
-            } else {
-                keySpecChars = @"";
-            }
+            NSString *keySpecChars = [CEKeyBindingManager keySpecCharsFromKeyEquivalent:[item keyEquivalent]
+                                                                          modifierFrags:[item keyEquivalentModifierMask]];
             row = @{CEKeyBindingTitleKey: [item title],
-                    CEKeyBindingKeySpecCharsKey: keySpecChars,
-                    CEKeyBindingSelectorStringKey: selectorString};
+                    CEKeyBindingKeySpecCharsKey: keySpecChars ?: @"",
+                    CEKeyBindingSelectorStringKey: selector};
         }
-        [outlineDataArray addObject:[row mutableCopy]];
+        
+        [outlineData addObject:[row mutableCopy]];
     }
     
-    return outlineDataArray;
+    return outlineData;
 }
 
 
@@ -320,7 +322,7 @@ static NSDictionary *kUnprintableKeyTable;
     }
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    if (![texts isEqualToArray:[defaults arrayForKey:CEDefaultInsertCustomTextArrayKey]]) {
+    if (![texts isEqualToArray:[defaults stringArrayForKey:CEDefaultInsertCustomTextArrayKey]]) {
         NSMutableArray *defaultsArray = [NSMutableArray array];
         
         for (NSDictionary *dict in texts) {

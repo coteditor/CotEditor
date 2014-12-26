@@ -714,7 +714,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     }
     
     if (!string && (encoding == CEAutoDetectEncodingMenuItemTag)) {
-        NSArray *encodings = [[[NSUserDefaults standardUserDefaults] arrayForKey:CEDefaultEncodingListKey] copy];
+        NSArray *encodings = [[NSUserDefaults standardUserDefaults] arrayForKey:CEDefaultEncodingListKey];
         
         for (NSNumber *encodingNumber in encodings) {
             encoding = CFStringConvertEncodingToNSStringEncoding([encodingNumber unsignedIntegerValue]);

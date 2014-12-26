@@ -1107,7 +1107,7 @@ const NSInteger kNoMenuItem = -1;
 {
     if (patternNum < 0) { return; }
     
-    NSArray *texts = [[NSUserDefaults standardUserDefaults] arrayForKey:CEDefaultInsertCustomTextArrayKey];
+    NSArray *texts = [[NSUserDefaults standardUserDefaults] stringArrayForKey:CEDefaultInsertCustomTextArrayKey];
 
     if (patternNum < [texts count]) {
         NSString *string = texts[patternNum];
