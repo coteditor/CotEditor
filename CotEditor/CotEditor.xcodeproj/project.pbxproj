@@ -105,6 +105,7 @@
 		2AA0AC4B1A26CDD60063ED1B /* RemoteEditorController.applescript in Sources */ = {isa = PBXBuildFile; fileRef = 2A40D7CA1A23A60100721EB4 /* RemoteEditorController.applescript */; };
 		2AA0AC551A273F5D0063ED1B /* RemoteEditorController.applescript in Sources */ = {isa = PBXBuildFile; fileRef = 2A40D7CA1A23A60100721EB4 /* RemoteEditorController.applescript */; };
 		2AA0AC7A1A29D8CB0063ED1B /* CEPopUpToolbarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AA0AC791A29D8CB0063ED1B /* CEPopUpToolbarItem.m */; };
+		2AAC90011A4E12D10074E076 /* CETextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AAC90001A4E12D10074E076 /* CETextField.m */; };
 		2AACC9591942A82900E3FF63 /* CEIndicatorSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AACC9581942A82900E3FF63 /* CEIndicatorSheetController.m */; };
 		2AB4326E1912ADAC00835004 /* GlyphPopover.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2AB4326C1912ADAC00835004 /* GlyphPopover.xib */; };
 		2AB432711912AF7200835004 /* CEGlyphPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AB432701912AF7200835004 /* CEGlyphPopoverController.m */; };
@@ -379,6 +380,8 @@
 		2AA0AC771A2877970063ED1B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/PrintPane.strings"; sourceTree = "<group>"; };
 		2AA0AC781A29D8CB0063ED1B /* CEPopUpToolbarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEPopUpToolbarItem.h; sourceTree = "<group>"; };
 		2AA0AC791A29D8CB0063ED1B /* CEPopUpToolbarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEPopUpToolbarItem.m; sourceTree = "<group>"; };
+		2AAC8FFF1A4E12D10074E076 /* CETextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CETextField.h; sourceTree = "<group>"; };
+		2AAC90001A4E12D10074E076 /* CETextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CETextField.m; sourceTree = "<group>"; };
 		2AACC9571942A82900E3FF63 /* CEIndicatorSheetController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEIndicatorSheetController.h; sourceTree = "<group>"; };
 		2AACC9581942A82900E3FF63 /* CEIndicatorSheetController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEIndicatorSheetController.m; sourceTree = "<group>"; };
 		2AB4326F1912AF7200835004 /* CEGlyphPopoverController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEGlyphPopoverController.h; sourceTree = "<group>"; };
@@ -734,6 +737,8 @@
 				25B2C23507FA667400F4EFC7 /* CELineNumberView.m */,
 				25B2C24107FA68D100F4EFC7 /* CEStatusBarView.h */,
 				25B2C24207FA68D100F4EFC7 /* CEStatusBarView.m */,
+				2AAC8FFF1A4E12D10074E076 /* CETextField.h */,
+				2AAC90001A4E12D10074E076 /* CETextField.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -1379,6 +1384,7 @@
 				2A5411C9198549A7008B43DA /* CENavigationBarView.m in Sources */,
 				8CD7A93C09CBDDDC00739513 /* CEEditorView.m in Sources */,
 				2A149DC21901884500A9D6EF /* CEFileDropPaneController.m in Sources */,
+				2AAC90011A4E12D10074E076 /* CETextField.m in Sources */,
 				2AA0AC7A1A29D8CB0063ED1B /* CEPopUpToolbarItem.m in Sources */,
 				8C8CCCB109D6803400A008E5 /* CESplitView.m in Sources */,
 				2A68F93518F9995500673440 /* CEThemeManager.m in Sources */,

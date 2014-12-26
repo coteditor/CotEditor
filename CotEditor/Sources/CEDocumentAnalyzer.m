@@ -51,6 +51,7 @@ NSString *const CEAnalyzerDidUpdateEditorInfoNotification = @"CEAnalyzerDidUpdat
 @property (readwrite, nonatomic) NSString *creationDate;
 @property (readwrite, nonatomic) NSString *modificationDate;
 @property (readwrite, nonatomic) NSString *fileSize;
+@property (readwrite, nonatomic) NSString *filePath;
 @property (readwrite, nonatomic) NSString *owner;
 @property (readwrite, nonatomic) NSString *permission;
 @property (readwrite, nonatomic) NSString *locked;
@@ -117,6 +118,7 @@ NSString *const CEAnalyzerDidUpdateEditorInfoNotification = @"CEAnalyzerDidUpdat
     self.creationDate = [attrs fileCreationDate] ? [dateFormatter stringFromDate:[attrs fileCreationDate]] : nil;
     self.modificationDate = [attrs fileModificationDate] ? [dateFormatter stringFromDate:[attrs fileModificationDate]] : nil;
     self.fileSize = [attrs fileSize] ? [byteFormatter stringFromByteCount:[attrs fileSize]] : nil;
+    self.filePath = [[[self document] fileURL] path];
     self.owner = [attrs fileOwnerAccountName];
     self.permission = [attrs filePosixPermissions] ? [NSString stringWithFormat:@"%tu (%@)",
                                                       [attrs filePosixPermissions],

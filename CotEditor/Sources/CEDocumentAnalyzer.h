@@ -47,6 +47,7 @@ extern NSString *const CEAnalyzerDidUpdateEditorInfoNotification;
 @property (readonly, nonatomic) NSString *creationDate;
 @property (readonly, nonatomic) NSString *modificationDate;
 @property (readonly, nonatomic) NSString *fileSize;
+@property (readonly, nonatomic) NSString *filePath;
 @property (readonly, nonatomic) NSString *owner;
 @property (readonly, nonatomic) NSString *permission;
 @property (readonly, nonatomic) NSString *locked;
