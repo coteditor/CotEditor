@@ -272,12 +272,12 @@
     
     // observe encoding list update
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(buildEncodingMenu:)
+                                             selector:@selector(buildEncodingMenu)
                                                  name:CEEncodingListDidUpdateNotification
                                                object:nil];
     // observe syntax style lineup update
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(buildSyntaxMenu:)
+                                             selector:@selector(buildSyntaxMenu)
                                                  name:CESyntaxListDidUpdateNotification
                                                object:nil];
     // observe theme lineup update
