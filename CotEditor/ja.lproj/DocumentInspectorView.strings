@@ -23,10 +23,6 @@
 "N0Y-nO-k3L.title" = "アクセス権：";
 /* Class = "NSTextFieldCell"; title = "Locked:"; ObjectID = "5po-l6-6mm"; */
 "5po-l6-6mm.title" = "ロック：";
-/* Class = "NSTextFieldCell"; title = "Creator:"; ObjectID = "g4B-wx-i5c"; */
-"g4B-wx-i5c.title" = "クリエータ：";
-/* Class = "NSTextFieldCell"; title = "Type:"; ObjectID = "YQb-6z-Wd9"; */
-"YQb-6z-Wd9.title" = "タイプ：";
 
 /* Class = "NSTextFieldCell"; title = "Encoding:"; ObjectID = "B5F-j1-X4E"; */
 "B5F-j1-X4E.title" = "エンコーディング：";
