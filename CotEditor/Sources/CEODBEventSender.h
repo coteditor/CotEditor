@@ -27,7 +27,7 @@
  ==============================================================================
  */
 
-@import Foundation;
+@import Cocoa;
 
 
 @interface CEODBEventSender : NSObject

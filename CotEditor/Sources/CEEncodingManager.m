@@ -149,7 +149,7 @@ NSString *const CEEncodingListDidUpdateNotification = @"CESyntaxListDidUpdateNot
     
     [self setEncodingMenuItems:items];
     
-    // notify that new encodin menu items was created
+    // notify that new encoding menu items was created
     dispatch_async(dispatch_get_main_queue(), ^{
         [[NSNotificationCenter defaultCenter] postNotificationName:CEEncodingListDidUpdateNotification object:self];
     });
