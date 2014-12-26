@@ -23,9 +23,7 @@ Change Log
 - Close Preferences window with esc key.
 - Improve find result panel behavior with Spaces.
 - Delay timing to save text key bindings setting.
-- Update UI elements' text color on Yosemite.
 - Tweak window size sample window.
-
 
 
 ### Fixes
@@ -37,6 +35,7 @@ Change Log
 - Fix a possible crash on Japanese input.
 - Fix some missing localizations in simplified Chinese. (Thanks to Wei Wang!)
 - Fix an issue that an alert message was not localized.
+- And other trivial UI fixes and enhancements.
 
 
 

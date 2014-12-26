@@ -1,6 +1,6 @@
 /*
  ==============================================================================
- CETextField
+ CEWrappingTextField
  
  CotEditor
  http://coteditor.com
@@ -27,9 +27,22 @@
  ==============================================================================
  */
 
-@import Cocoa;
+#import "CEWrappingTextField.h"
 
 
-@interface CETextField : NSTextField
+@implementation CEWrappingTextField
+
+#pragma mark Superclass Methods
+
+// ------------------------------------------------------
+/// make text field vertically expandable on resize
+- (void)setFrameSize:(NSSize)newSize;
+// ------------------------------------------------------
+{
+    
+    [self setPreferredMaxLayoutWidth:newSize.width - 4];  // 4 for 2 * inset
+    
+    [super setFrameSize:newSize];
+}
 
 @end

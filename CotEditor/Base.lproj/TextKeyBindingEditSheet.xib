@@ -24,7 +24,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="460" height="360"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="64">
+                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="64" customClass="CEWrappingTextField">
                         <rect key="frame" x="18" y="312" width="424" height="28"/>
                         <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="left" id="150">
                             <font key="font" metaFont="smallSystem"/>

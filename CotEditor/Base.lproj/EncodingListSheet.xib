@@ -197,6 +197,7 @@ Auto-Detect tries these encodings from the top of the list.</string>
                     <constraint firstAttribute="bottom" secondItem="42" secondAttribute="bottom" constant="20" symbolic="YES" id="RUg-QY-MXl"/>
                     <constraint firstItem="38" firstAttribute="top" secondItem="56" secondAttribute="bottom" constant="8" symbolic="YES" id="Syx-Wi-LNT"/>
                     <constraint firstItem="42" firstAttribute="top" secondItem="38" secondAttribute="bottom" constant="20" symbolic="YES" id="UsJ-hk-9IV"/>
+                    <constraint firstItem="42" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="700" secondAttribute="trailing" constant="12" symbolic="YES" id="ZWT-Y8-hTY"/>
                     <constraint firstItem="38" firstAttribute="leading" secondItem="37" secondAttribute="leading" constant="20" symbolic="YES" id="a28-Q1-dxx"/>
                     <constraint firstAttribute="trailing" secondItem="55" secondAttribute="trailing" constant="20" symbolic="YES" id="aMR-De-Syy"/>
                     <constraint firstItem="700" firstAttribute="leading" secondItem="37" secondAttribute="leading" constant="20" symbolic="YES" id="dyn-hT-SiN"/>
