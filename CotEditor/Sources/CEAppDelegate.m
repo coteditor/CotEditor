@@ -389,7 +389,7 @@
     [findMenu addItem:menuItem];
     
     // setup KeyBindingManager
-    [[CEKeyBindingManager sharedManager] setupAtLaunching];
+    [[CEKeyBindingManager sharedManager] applyKeyBindingsToMainMenu];
     
     // migrate usr settings if needed
     [self migrateIfNeeded];

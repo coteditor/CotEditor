@@ -44,6 +44,7 @@ NSString *const CEKeyBindingSelectorStringKey = @"selectorString";
 @interface CEKeyBindingManager ()
 
 @property (nonatomic, copy) NSDictionary *defaultMenuKeyBindingDict;
+@property (nonatomic, copy) NSDictionary *defaultTextKeyBindingDict;
 @property (nonatomic, copy) NSDictionary *menuKeyBindingDict;
 @property (nonatomic, copy) NSDictionary *textKeyBindingDict;
 
@@ -97,10 +98,22 @@ static NSDictionary *kUnprintableKeyTable;
 {
     self = [super init];
     if (self) {
-        NSURL *URL = [[NSBundle mainBundle] URLForResource:@"MenuKeyBindings"
+        // read default key bindings
+        NSURL *menuURL = [[NSBundle mainBundle] URLForResource:@"MenuKeyBindings"
                                              withExtension:@"plist"
                                               subdirectory:@"KeyBindings"];
-        _defaultMenuKeyBindingDict = [NSDictionary dictionaryWithContentsOfURL:URL];
+        _defaultMenuKeyBindingDict = [NSDictionary dictionaryWithContentsOfURL:menuURL];
+        
+        NSURL *textURL = [[NSBundle mainBundle] URLForResource:@"TextKeyBindings"
+                                             withExtension:@"plist"
+                                              subdirectory:@"KeyBindings"];
+        _defaultTextKeyBindingDict = [NSDictionary dictionaryWithContentsOfURL:textURL];
+        
+        /// read user key bindins if available
+        _menuKeyBindingDict = [NSDictionary dictionaryWithContentsOfURL:[self menuKeyBindingSettingFileURL]] ?
+                            : _defaultMenuKeyBindingDict;
+        _textKeyBindingDict = [NSDictionary dictionaryWithContentsOfURL:[self textKeyBindingSettingFileURL]] ?
+                            : _defaultTextKeyBindingDict;
     }
     return self;
 }
@@ -129,6 +142,22 @@ static NSDictionary *kUnprintableKeyTable;
 
 
 //------------------------------------------------------
+/// すべてのメニューにキーボードショートカットを設定し直す
+- (void)applyKeyBindingsToMainMenu
+//------------------------------------------------------
+{
+    if (![self menuKeyBindingDict]) { return; }
+    
+    // まず、全メニューのショートカット定義をクリアする
+    [self clearAllMenuKeyBindingOf:[NSApp mainMenu]];
+    
+    [self resetKeyBindingWithDictionaryTo:[NSApp mainMenu]];
+    // メニュー更新（キーボードショートカット設定反映）
+    [self updateMenuValidation:[NSApp mainMenu]];
+}
+
+
+//------------------------------------------------------
 /// メニューのキーボードショートカットからキーバインディング定義文字列を返す
 + (NSString *)keySpecCharsFromKeyEquivalent:(NSString *)string modifierFrags:(NSUInteger)modifierFlags
 //------------------------------------------------------
@@ -151,19 +180,6 @@ static NSDictionary *kUnprintableKeyTable;
     [keySpecChars appendString:(isShiftPressed ? [string uppercaseString] : string)];
     
     return keySpecChars;
-}
-
-
-// ------------------------------------------------------
-/// 起動時の準備
-- (void)setupAtLaunching
-// ------------------------------------------------------
-{
-    /// 定義ファイルのセットアップと読み込み
-    [self setupMenuKeyBindingDictionary];
-    [self setupTextKeyBindingDictionary];
-    
-    [self resetAllMenuKeyBindingWithDictionary];
 }
 
 
@@ -195,19 +211,12 @@ static NSDictionary *kUnprintableKeyTable;
     // usesFactoryDefaults == YES で標準設定を返す。NO なら現在の設定を返す。
     
     NSMutableArray *textKeySpecCharArray = [NSMutableArray array];
+    NSDictionary *dict = usesFactoryDefaults ? [self defaultTextKeyBindingDict] : [self textKeyBindingDict];
     
     for (NSString *selector in [CEKeyBindingManager textKeyBindingSelectorStrArray]) {
         if ([selector length] == 0) { continue; }
         
-        NSArray *keys;
-        if (usesFactoryDefaults) {
-            NSURL *sourceURL = [[NSBundle mainBundle] URLForResource:@"TextKeyBindings" withExtension:@"plist"];
-            NSDictionary *defaultDict = [NSDictionary dictionaryWithContentsOfURL:sourceURL];
-            keys = [defaultDict allKeysForObject:selector];
-        } else {
-            keys = [[self textKeyBindingDict] allKeysForObject:selector];
-        }
-        NSString *key = [keys firstObject] ? : @"";
+        NSString *key = [[dict allKeysForObject:selector] firstObject] ? : @"";
         
         [textKeySpecCharArray addObject:[@{CEKeyBindingTitleKey: selector,
                                            CEKeyBindingKeySpecCharsKey: key,
@@ -298,7 +307,7 @@ static NSDictionary *kUnprintableKeyTable;
     } else {
         NSLog(@"Error on saving the menu keybindings setting file.");
     }
-    [self resetAllMenuKeyBindingWithDictionary];
+    [self applyKeyBindingsToMainMenu];
     
     return success;
 }
@@ -311,28 +320,40 @@ static NSDictionary *kUnprintableKeyTable;
 {
     NSDictionary *dictToSave = [self keyBindingDictionaryFromOutlineViewDataArray:outlineViewData];
     NSURL *fileURL = [self textKeyBindingSettingFileURL];
-    
-    if ([self prepareUserSettingDicrectory]) {
-        [self setTextKeyBindingDict:dictToSave];
-        
-        if (![dictToSave writeToURL:fileURL atomically:YES]) {
-            NSLog(@"Error! Could not save the Text keyBindings setting file...");
-            return NO;
-        }
-    }
-    
+    BOOL success = NO;
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    if (![texts isEqualToArray:[defaults stringArrayForKey:CEDefaultInsertCustomTextArrayKey]]) {
-        NSMutableArray *defaultsArray = [NSMutableArray array];
-        
-        for (NSDictionary *dict in texts) {
-             NSString *insertText = dict[CEDefaultInsertCustomTextKey] ? : @"";
-            [defaultsArray addObject:insertText];
-        }
-        [defaults setObject:defaultsArray forKey:CEDefaultInsertCustomTextArrayKey];
+    NSArray *defaultInsertTexts = [[[NSUserDefaults alloc] init] volatileDomainForName:NSRegistrationDomain][CEDefaultInsertCustomTextArrayKey];
+    
+    NSMutableArray *insertTexts = [NSMutableArray array];
+    for (NSDictionary *dict in texts) {
+        NSString *insertText = dict[CEDefaultInsertCustomTextKey] ? : @"";
+        [insertTexts addObject:insertText];
     }
     
-    return YES;
+    // デフォルトと同じ場合は現在のユーザ設定ファイルを削除する
+    if ([dictToSave isEqualToDictionary:[self defaultTextKeyBindingDict]] &&
+        [insertTexts isEqualToArray:defaultInsertTexts])
+    {
+        NSLog(@"is same");
+        [[NSFileManager defaultManager] removeItemAtURL:fileURL error:nil];
+        success = YES;
+        
+    } else {
+        if ([self prepareUserSettingDicrectory]) {
+            success = [dictToSave writeToURL:fileURL atomically:YES];
+        }
+    }
+    
+    // 新しいデータを保存する
+    if (success) {
+        [self setTextKeyBindingDict:dictToSave];
+        [defaults setObject:insertTexts forKey:CEDefaultInsertCustomTextArrayKey];
+        
+    } else {
+        NSLog(@"Error on saving the text keybindings setting file.");
+    }
+    
+    return success;
 }
 
 
@@ -393,45 +414,6 @@ static NSDictionary *kUnprintableKeyTable;
 }
 
 
-// ------------------------------------------------------
-/// メニューキーバインディング定義ファイルのセットアップと読み込み
-- (void)setupMenuKeyBindingDictionary
-// ------------------------------------------------------
-{
-    NSDictionary *dict = [NSDictionary dictionaryWithContentsOfURL:[self menuKeyBindingSettingFileURL]] ?
-                       : [self defaultMenuKeyBindingDict];
-    
-    [self setMenuKeyBindingDict:dict];
-}
-
-
-// ------------------------------------------------------
-/// テキストキーバインディング定義ファイルのセットアップと読み込み
-- (void)setupTextKeyBindingDictionary
-// ------------------------------------------------------
-{
-    NSURL *fileURL = [self textKeyBindingSettingFileURL];
-    
-    if ([self prepareUserSettingDicrectory]) {
-        NSURL *sourceURL = [[NSBundle mainBundle] URLForResource:@"TextKeyBindings"
-                                                   withExtension:@"plist"
-                                                    subdirectory:@"KeyBindings"];
-        
-        if ([sourceURL checkResourceIsReachableAndReturnError:nil] &&
-            ![fileURL checkResourceIsReachableAndReturnError:nil])
-        {
-            if (![[NSFileManager defaultManager] copyItemAtURL:sourceURL toURL:fileURL error:nil]) {
-                NSLog(@"Error! Could not copy \"%@\" to \"%@\"...", sourceURL, fileURL);
-                return;
-            }
-        }
-        
-        // データ読み込み
-        [self setTextKeyBindingDict:[NSDictionary dictionaryWithContentsOfURL:fileURL]];
-    }
-}
-
-
 //------------------------------------------------------
 /// すべてのメニューのキーボードショートカットをクリアする
 - (void)clearAllMenuKeyBindingOf:(NSMenu *)menu
@@ -470,22 +452,6 @@ static NSDictionary *kUnprintableKeyTable;
             [self updateMenuValidation:[item submenu]];
         }
     }
-}
-
-
-//------------------------------------------------------
-/// すべてのメニューにキーボードショートカットを設定し直す
-- (void)resetAllMenuKeyBindingWithDictionary
-//------------------------------------------------------
-{
-    if (![self menuKeyBindingDict]) { return; }
-
-    // まず、全メニューのショートカット定義をクリアする
-    [self clearAllMenuKeyBindingOf:[NSApp mainMenu]];
-
-    [self resetKeyBindingWithDictionaryTo:[NSApp mainMenu]];
-    // メニュー更新（キーボードショートカット設定反映）
-    [self updateMenuValidation:[NSApp mainMenu]];
 }
 
 
@@ -746,7 +712,9 @@ static NSDictionary *kUnprintableKeyTable;
     
     if ([URL checkResourceIsReachableAndReturnError:nil]) {
         success = [[NSFileManager defaultManager] removeItemAtURL:URL error:nil];
-        [[CEKeyBindingManager sharedManager] setupAtLaunching];
+        
+        [self setMenuKeyBindingDict:[self defaultMenuKeyBindingDict]];
+        [[CEKeyBindingManager sharedManager] applyKeyBindingsToMainMenu];
     }
     
     return success;

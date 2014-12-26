@@ -44,11 +44,11 @@ extern NSString *const CEKeyBindingSelectorStringKey;
 + (instancetype)sharedManager;
 
 
-// Public method
+// Public methods
 + (NSString *)keySpecCharsFromKeyEquivalent:(NSString *)string modifierFrags:(NSUInteger)modifierFlags;
 + (NSString *)printableKeyStringFromKeySpecChars:(NSString *)string;
 
-- (void)setupAtLaunching;
+- (void)applyKeyBindingsToMainMenu;
 - (NSString *)selectorStringWithKeyEquivalent:(NSString *)string modifierFrags:(NSUInteger)modifierFlags;
 
 - (BOOL)usesDefaultMenuKeyBindings;

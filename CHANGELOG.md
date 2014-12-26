@@ -22,6 +22,7 @@ Change Log
 - Add hidden “Reveal in Finder” menu item to syntax style action menu in Preferences (visible with `Option` key).
 - Close Preferences window with esc key.
 - Improve find result panel behavior with Spaces.
+- Delay timing to save text key bindings setting.
 - Tweak window size sample window.
 
 
