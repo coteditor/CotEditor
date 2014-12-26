@@ -29,7 +29,7 @@
                         <rect key="frame" x="18" y="410" width="144" height="17"/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Style Name:" id="987">
                             <font key="font" metaFont="system"/>
-                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
@@ -51,7 +51,7 @@
                         <rect key="frame" x="166" y="392" width="436" height="14"/>
                         <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="left" title="message" id="989">
                             <font key="font" metaFont="smallSystem"/>
-                            <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
@@ -2484,7 +2484,7 @@
                                             <rect key="frame" x="6" y="284" width="112" height="17"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Inline comment:" id="GCw-u2-Lau">
                                                 <font key="font" metaFont="systemBold"/>
-                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
@@ -2540,7 +2540,7 @@
                                             <rect key="frame" x="222" y="284" width="110" height="17"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Block comment:" id="Z5Q-Hy-1R7">
                                                 <font key="font" metaFont="systemBold"/>
-                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
@@ -2548,7 +2548,7 @@
                                             <rect key="frame" x="222" y="259" width="74" height="17"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Begin with:" id="OFV-ob-L5e">
                                                 <font key="font" metaFont="system"/>
-                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
@@ -2556,7 +2556,7 @@
                                             <rect key="frame" x="6" y="259" width="74" height="17"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Begin with:" id="Nyf-L8-eh5">
                                                 <font key="font" metaFont="system"/>
-                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
@@ -2564,7 +2564,7 @@
                                             <rect key="frame" x="233" y="227" width="63" height="17"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="End with:" id="QJO-6I-TfV">
                                                 <font key="font" metaFont="system"/>
-                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
@@ -2752,7 +2752,7 @@
                                             <rect key="frame" x="8" y="291" width="402" height="14"/>
                                             <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Regular expressions to extract outline menu items" id="1010">
                                                 <font key="font" metaFont="smallSystem"/>
-                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
@@ -2760,7 +2760,7 @@
                                             <rect key="frame" x="8" y="26" width="366" height="14"/>
                                             <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Menu title pattern (blank matches the whole string)" id="1011">
                                                 <font key="font" metaFont="smallSystem"/>
-                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
@@ -2794,12 +2794,14 @@
                                                     <textView editable="NO" selectable="NO" drawsBackground="NO" importsGraphics="NO" usesRuler="YES" usesFontPanel="YES" verticallyResizable="YES" smartInsertDelete="YES" id="751">
                                                         <rect key="frame" x="0.0" y="0.0" width="16" height="16"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="controlHighlightColor" catalog="System" colorSpace="catalog"/>
                                                         <size key="minSize" width="16" height="16"/>
                                                         <size key="maxSize" width="166" height="10000000"/>
                                                         <attributedString key="textStorage">
                                                             <fragment content="B">
                                                                 <attributes>
+                                                                    <color key="NSColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                                     <font key="NSFont" size="12" name="Courier-Bold"/>
                                                                     <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
                                                                 </attributes>
@@ -2834,12 +2836,14 @@
                                                     <textView editable="NO" selectable="NO" drawsBackground="NO" importsGraphics="NO" usesRuler="YES" usesFontPanel="YES" verticallyResizable="YES" smartInsertDelete="YES" id="754">
                                                         <rect key="frame" x="0.0" y="0.0" width="16" height="16"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="controlHighlightColor" catalog="System" colorSpace="catalog"/>
                                                         <size key="minSize" width="16" height="16"/>
                                                         <size key="maxSize" width="166" height="10000000"/>
                                                         <attributedString key="textStorage">
                                                             <fragment content="U">
                                                                 <attributes>
+                                                                    <color key="NSColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                                     <font key="NSFont" size="12" name="Courier"/>
                                                                     <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
                                                                     <integer key="NSUnderline" value="1"/>
@@ -2889,12 +2893,14 @@
                                                     <textView editable="NO" selectable="NO" drawsBackground="NO" importsGraphics="NO" usesRuler="YES" usesFontPanel="YES" verticallyResizable="YES" smartInsertDelete="YES" id="757">
                                                         <rect key="frame" x="0.0" y="0.0" width="16" height="16"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="controlHighlightColor" catalog="System" colorSpace="catalog"/>
                                                         <size key="minSize" width="16" height="16"/>
                                                         <size key="maxSize" width="166" height="10000000"/>
                                                         <attributedString key="textStorage">
                                                             <fragment content="I">
                                                                 <attributes>
+                                                                    <color key="NSColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                                     <font key="NSFont" size="12" name="Courier-Oblique"/>
                                                                     <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
                                                                 </attributes>
@@ -3059,7 +3065,7 @@
                                             <rect key="frame" x="6" y="291" width="406" height="14"/>
                                             <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="If no word, the completion list will be generated from coloring settings." id="1018">
                                                 <font key="font" metaFont="smallSystem"/>
-                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
@@ -3276,7 +3282,7 @@
                                             <rect key="frame" x="6" y="291" width="78" height="14"/>
                                             <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="(without dots)" id="998">
                                                 <font key="font" metaFont="smallSystem"/>
-                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
@@ -3335,7 +3341,7 @@
                                             <rect key="frame" x="174" y="171" width="238" height="42"/>
                                             <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="Files that have exactly one of the following names are opened in this syntax style, even they don't have file extension." id="Sr3-Pj-HPi">
                                                 <font key="font" metaFont="smallSystem"/>
-                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
@@ -3417,7 +3423,7 @@
                                             <rect key="frame" x="62" y="281" width="55" height="17"/>
                                             <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Version:" usesSingleLineMode="YES" id="PjU-cq-3px">
                                                 <font key="font" metaFont="system"/>
-                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
@@ -3425,7 +3431,7 @@
                                             <rect key="frame" x="65" y="185" width="52" height="17"/>
                                             <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Author:" usesSingleLineMode="YES" id="h87-QY-CvE">
                                                 <font key="font" metaFont="system"/>
-                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
@@ -3433,7 +3439,7 @@
                                             <rect key="frame" x="6" y="217" width="111" height="17"/>
                                             <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Distribution URL:" usesSingleLineMode="YES" id="RaI-42-gtJ">
                                                 <font key="font" metaFont="system"/>
-                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
@@ -3441,7 +3447,7 @@
                                             <rect key="frame" x="23" y="249" width="94" height="17"/>
                                             <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Last modified:" usesSingleLineMode="YES" id="lEv-Gr-9nX">
                                                 <font key="font" metaFont="system"/>
-                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
@@ -3449,7 +3455,7 @@
                                             <rect key="frame" x="37" y="124" width="80" height="17"/>
                                             <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Description:" usesSingleLineMode="YES" id="DVt-gz-R2Z">
                                                 <font key="font" metaFont="system"/>
-                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
@@ -3457,7 +3463,7 @@
                                             <rect key="frame" x="63" y="153" width="54" height="17"/>
                                             <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="License:" usesSingleLineMode="YES" id="4jZ-HS-mYE">
                                                 <font key="font" metaFont="system"/>
-                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
@@ -3529,7 +3535,7 @@
                                             <rect key="frame" x="6" y="4" width="406" height="14"/>
                                             <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Duplicate style to modify meta information of bundled syntax style." id="v3a-UB-E0t">
                                                 <font key="font" metaFont="smallSystem"/>
-                                                <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                             <connections>
@@ -3544,7 +3550,7 @@
                                             <rect key="frame" x="229" y="249" width="130" height="14"/>
                                             <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="(‘YYYY-MM-DD’ format)" id="8qs-tv-hFC">
                                                 <font key="font" metaFont="smallSystem"/>
-                                                <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                             <connections>

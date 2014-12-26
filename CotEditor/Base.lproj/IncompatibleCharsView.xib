@@ -185,7 +185,7 @@
                     </constraints>
                     <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="No incompatible chars were found." id="wsL-BG-Ii8">
                         <font key="font" metaFont="smallSystem"/>
-                        <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                     <connections>

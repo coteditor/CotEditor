@@ -28,7 +28,7 @@
                             <font key="font" metaFont="smallSystem"/>
                             <string key="title">To change a binding, select it, click the key column, and then type the keys.
 You MUST include the Command key.</string>
-                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>

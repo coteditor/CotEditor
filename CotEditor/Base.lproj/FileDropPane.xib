@@ -40,7 +40,7 @@
                     <rect key="frame" x="268" y="341" width="54" height="14"/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="left" title="Glossary:" usesSingleLineMode="YES" id="3337">
                         <font key="font" metaFont="smallSystem"/>
-                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
@@ -53,7 +53,7 @@
                             <textView editable="NO" importsGraphics="NO" findStyle="panel" continuousSpellChecking="YES" usesRuler="YES" usesFontPanel="YES" verticallyResizable="YES" smartInsertDelete="YES" id="586">
                                 <rect key="frame" x="0.0" y="0.0" width="248" height="276"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="textColor" red="0.19116055965423584" green="0.19115482270717621" blue="0.19115808606147766" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                 <color key="backgroundColor" name="windowBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 <size key="minSize" width="248" height="137"/>
                                 <size key="maxSize" width="586" height="10000000"/>
@@ -89,14 +89,14 @@ The parent directory name of the dropped file.
 &lt;&lt;&lt;IMAGEHEIGHT&gt;&gt;&gt;
 </mutableString>
                                         <attributes>
-                                            <color key="NSColor" red="0.19116055965423584" green="0.19115482270717621" blue="0.19115808606147766" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="NSColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                             <font key="NSFont" size="10" name="Helvetica"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
                                         </attributes>
                                     </fragment>
                                     <fragment content="(if the dropped file is Image) The image height.">
                                         <attributes>
-                                            <color key="NSColor" red="0.19116055965423584" green="0.19115482270717621" blue="0.19115808606147766" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="NSColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                             <font key="NSFont" size="10" name="Helvetica"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
@@ -229,7 +229,7 @@ The parent directory name of the dropped file.
                     <rect key="frame" x="99" y="341" width="153" height="14"/>
                     <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="left" title="(comma separated, no dots)" usesSingleLineMode="YES" id="3335">
                         <font key="font" metaFont="smallSystem"/>
-                        <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
@@ -263,7 +263,7 @@ The parent directory name of the dropped file.
                     <rect key="frame" x="18" y="159" width="109" height="17"/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="left" title="Insertion Format:" usesSingleLineMode="YES" id="3332">
                         <font key="font" metaFont="system"/>
-                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
@@ -271,7 +271,7 @@ The parent directory name of the dropped file.
                     <rect key="frame" x="18" y="341" width="76" height="17"/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="left" title="Extensions:" usesSingleLineMode="YES" id="3331">
                         <font key="font" metaFont="system"/>
-                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>

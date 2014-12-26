@@ -72,7 +72,7 @@
                     <rect key="frame" x="62" y="496" width="36" height="17"/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Font:" usesSingleLineMode="YES" id="Z85-S9-uID">
                         <font key="font" metaFont="system"/>
-                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
@@ -90,7 +90,7 @@
                     <rect key="frame" x="22" y="436" width="76" height="17"/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Line height:" usesSingleLineMode="YES" id="r1c-v3-qW1">
                         <font key="font" metaFont="system"/>
-                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
@@ -123,8 +123,8 @@
                                                 <rect key="frame" x="1" y="2" width="155" height="17"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
-                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RkJ-Ue-Rp7">
-                                                        <rect key="frame" x="0.0" y="0.0" width="100" height="17"/>
+                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="RkJ-Ue-Rp7">
+                                                        <rect key="frame" x="0.0" y="0.0" width="155" height="17"/>
                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="Dendrobates" id="ius-eF-x2M">
                                                             <font key="font" metaFont="system"/>
                                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -136,6 +136,12 @@
                                                         </connections>
                                                     </textField>
                                                 </subviews>
+                                                <constraints>
+                                                    <constraint firstAttribute="bottom" secondItem="RkJ-Ue-Rp7" secondAttribute="bottom" id="KA3-4G-Tek"/>
+                                                    <constraint firstAttribute="trailing" secondItem="RkJ-Ue-Rp7" secondAttribute="trailing" constant="2" id="KS6-sR-8px"/>
+                                                    <constraint firstItem="RkJ-Ue-Rp7" firstAttribute="top" secondItem="gfz-zf-gsi" secondAttribute="top" id="Pmp-Jv-uHs"/>
+                                                    <constraint firstItem="RkJ-Ue-Rp7" firstAttribute="leading" secondItem="gfz-zf-gsi" secondAttribute="leading" constant="2" id="oXX-fr-PDN"/>
+                                                </constraints>
                                                 <connections>
                                                     <outlet property="textField" destination="RkJ-Ue-Rp7" id="XZe-ib-7SG"/>
                                                 </connections>
@@ -275,7 +281,7 @@
                     <rect key="frame" x="175" y="436" width="38" height="17"/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="times" usesSingleLineMode="YES" id="VLD-jj-zzl">
                         <font key="font" metaFont="system"/>
-                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
@@ -293,7 +299,7 @@
                     <rect key="frame" x="18" y="380" width="80" height="17"/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Current line:" usesSingleLineMode="YES" id="oKu-Fu-hRU">
                         <font key="font" metaFont="system"/>
-                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>

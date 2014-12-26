@@ -23,7 +23,9 @@ Change Log
 - Close Preferences window with esc key.
 - Improve find result panel behavior with Spaces.
 - Delay timing to save text key bindings setting.
+- Update UI elements' text color on Yosemite.
 - Tweak window size sample window.
+
 
 
 ### Fixes
