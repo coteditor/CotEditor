@@ -235,7 +235,7 @@ static NSDictionary *kUnprintableKeyTable;
             if ([[CEKeyBindingManager selectorStringsToIgnore] containsObject:selectorString] || hasSpecialTag) {
                 continue;
             }
-            if ([item isAlternate]) {
+            if ([item isAlternate] || !selectorString) {
                 continue;
             }
             
@@ -254,6 +254,7 @@ static NSDictionary *kUnprintableKeyTable;
         }
         [outlineDataArray addObject:[row mutableCopy]];
     }
+    
     return outlineDataArray;
 }
 
