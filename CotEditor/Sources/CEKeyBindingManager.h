@@ -49,9 +49,11 @@ extern NSString *const CEKeyBindingSelectorStringKey;
 + (NSString *)printableKeyStringFromKeySpecChars:(NSString *)string;
 
 - (void)applyKeyBindingsToMainMenu;
+
 - (NSString *)selectorStringWithKeyEquivalent:(NSString *)string modifierFrags:(NSUInteger)modifierFlags;
 
 - (BOOL)usesDefaultMenuKeyBindings;
+- (BOOL)usesDefaultTextKeyBindings;
 - (NSMutableArray *)textKeySpecCharArrayForOutlineDataWithFactoryDefaults:(BOOL)usesFactoryDefaults;
 - (NSMutableArray *)mainMenuArrayForOutlineData:(NSMenu *)menu;
 - (NSString *)keySpecCharsInDefaultDictionaryFromSelectorString:(NSString *)selectorString;

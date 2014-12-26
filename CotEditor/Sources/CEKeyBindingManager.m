@@ -203,6 +203,18 @@ static NSDictionary *kUnprintableKeyTable;
 }
 
 
+// ------------------------------------------------------
+/// テキストキーバインディングがカスタマイズされているか
+- (BOOL)usesDefaultTextKeyBindings
+// ------------------------------------------------------
+{
+    NSArray *factoryDefault = [[[NSUserDefaults alloc] init] volatileDomainForName:NSRegistrationDomain][CEDefaultInsertCustomTextArrayKey];
+    NSArray *insertTextArray = [[NSUserDefaults standardUserDefaults] stringArrayForKey:CEDefaultInsertCustomTextArrayKey];
+    
+    return [insertTextArray isEqualToArray:factoryDefault] && [[self textKeyBindingDict] isEqualToDictionary:[self defaultTextKeyBindingDict]];
+}
+
+
 //------------------------------------------------------
 /// テキストキーバインディングの現在の保持データから設定を読み込み編集用アウトラインビューデータ配列を返す
 - (NSMutableArray *)textKeySpecCharArrayForOutlineDataWithFactoryDefaults:(BOOL)usesFactoryDefaults

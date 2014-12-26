@@ -74,11 +74,8 @@
                 
             case CETextKeyBindingsType:
             {
-                NSArray *factoryDefault = [[[NSUserDefaults alloc] init] volatileDomainForName:NSRegistrationDomain][CEDefaultInsertCustomTextArrayKey];
-                NSArray *insertTextArray = [[NSUserDefaults standardUserDefaults] stringArrayForKey:CEDefaultInsertCustomTextArrayKey];
-                
                 _outlineData = [[CEKeyBindingManager sharedManager] textKeySpecCharArrayForOutlineDataWithFactoryDefaults:NO];
-                _restoreble = ![factoryDefault isEqualToArray:insertTextArray];
+                _restoreble = ![[CEKeyBindingManager sharedManager] usesDefaultTextKeyBindings];
                 break;
             }
         }
