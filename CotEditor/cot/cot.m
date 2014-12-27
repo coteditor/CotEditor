@@ -199,16 +199,27 @@ int main(int argc, const char * argv[])
         
         // jump to location
         if (document && (arguments[kLineOption] || arguments[kColumnOption])) {
-            NSInteger line = [arguments[kLineOption] integerValue];
+            NSInteger line = [arguments[kLineOption] integerValue];  // 1 based
             NSInteger column = [arguments[kColumnOption] integerValue];
             
-            // count location of line
+            // sanitize line number
+            NSArray *lines = [[document contents] paragraphs];
+            if (line == 0) {
+                line = 1;
+            } else if  (line < 0) {  // negative line number counts from the last line
+                line = [lines count] - labs(line) + 1;
+            }
+            
+            // count location of line head
             NSIndexSet *lineIndexSet = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, line - 1)];
-            NSArray *lines = [[[document contents] paragraphs] objectsAtIndexes:lineIndexSet];
             NSInteger loc = 0;
-            for (CotEditorParagraph *line in lines) {
+            for (CotEditorParagraph *line in [lines objectsAtIndexes:lineIndexSet]) {
                 loc += [[line characters] count];
             }
+            
+            // sanitize column number
+            CotEditorParagraph *lastLine = lines[line - 1];
+            column = MIN(column, [[lastLine characters] count] - 1);
             
             // set selection range
             [[document selection] setRange:@[@(loc + column), @0]];
