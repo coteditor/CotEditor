@@ -268,6 +268,7 @@
 // Integration Pane
 "Install" = "Install";  /* FIXME: */
 "Uninstall" = "Uninstall";  /* FIXME: */
+"The current 'cot' symbolic link doesn't target to the running CotEditor." = "The current 'cot' symbolic link doesn't target to the running CotEditor.";  /* FIXME: */
 "The current 'cot' symbolic link may target to an invalid path." = "The current 'cot' symbolic link may target to an invalid path.";  /* FIXME: */
 
 // alerts

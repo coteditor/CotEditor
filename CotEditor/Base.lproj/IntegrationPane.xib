@@ -82,7 +82,7 @@
                     <rect key="frame" x="165" y="42" width="357" height="14"/>
                     <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="Warning will be displayed here." id="boy-gV-Bda">
                         <font key="font" metaFont="smallSystem"/>
-                        <color key="textColor" red="0.78431373999999998" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                     <connections>

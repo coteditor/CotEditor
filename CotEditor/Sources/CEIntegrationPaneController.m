@@ -216,25 +216,26 @@ static const NSURL *kPreferredLinkTargetURL;
     
     NSURL *linkDestinationURL = [[self linkURL] URLByResolvingSymlinksInPath];
     
-    // exists something but not symlink
     if ([linkDestinationURL isEqual:[self linkURL]]) {
-        [self setUninstallable:NO];
-        return YES;  // treat as "installed"
-    }
-    
-    // totally valid link
-    if ([linkDestinationURL isEqual:[[self executableURL] URLByStandardizingPath]] ||
-        [linkDestinationURL isEqual:kPreferredLinkTargetURL])  // link to '/Applications/CotEditor.app'
-    {
+        [self setUninstallable:NO];  // treat as "installed"
         return YES;
     }
     
-    // alert if link destination is unreachable
-    if (![linkDestinationURL checkResourceIsReachableAndReturnError:nil]) {
-        [self setWarning:NSLocalizedString(@"The current 'cot' symbolic link may target to an invalid path.", nil)];
+    if ([linkDestinationURL isEqual:[[self executableURL] URLByStandardizingPath]] ||
+        [linkDestinationURL isEqual:kPreferredLinkTargetURL])  // link to '/Applications/CotEditor.app' is always valid
+    {
+        // totaly valid link
+        return YES;
     }
     
-    // !!!: Do nothing even if the link destination is somewhere other and it's still uninstallable
+    // display warning for invalid link
+    if ([linkDestinationURL checkResourceIsReachableAndReturnError:nil]) {
+        // link destinaiton is not running CotEditor
+        [self setWarning:NSLocalizedString(@"The current 'cot' symbolic link doesn't target to the running CotEditor.", nil)];
+    } else {
+        // link destination is unreachable
+        [self setWarning:NSLocalizedString(@"The current 'cot' symbolic link may target to an invalid path.", nil)];
+    }
     
     return YES;
 }
