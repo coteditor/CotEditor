@@ -251,6 +251,7 @@
 // Print pane
 "Theme" = "主题";
 
+
 // Format pane
 // encoding menu alert sheet
 "Are you sure you want to change to “%@”?" = "确定要变更至 “%@” 吗？";
@@ -262,6 +263,19 @@
 "Duplicate “%@”…" = "拷贝“%@”…";
 "Export “%@”…" = "导出“%@”…";
 "Reveal “%@” in Finder" = "Reveal “%@” in Finder";  /* FIXME: */
+
+
+// Integration Pane
+"Install" = "Install";  /* FIXME: */
+"Uninstall" = "Uninstall";  /* FIXME: */
+"The current 'cot' symbolic link may target to an invalid path." = "The current 'cot' symbolic link may target to an invalid path.";  /* FIXME: */
+
+// alerts
+"The running CotEditor is not located in the Application directory." = "The running CotEditor is not located in the Application directory.";  /* FIXME: */
+"Do you really want to install the command-line tool for CotEditor at “%@”?\n\nWe recommend to move CotEditor.app to the Application directory at first." = "Do you really want to install the command-line tool for CotEditor at “%@”?\n\nWe recommend to move CotEditor.app to the Application directory at first.";  /* FIXME: */
+
+"The name of the running CotEditor is modified." = "The name of the running CotEditor is modified.";  /* FIXME: */
+"Do you really want to install the command-line tool for “%@”?" = "Do you really want to install the command-line tool for “%@”?";  /* FIXME: */
 
 
 /* MARK: CESyntaxEditSheetController */

@@ -9,7 +9,6 @@ Change Log
 
 - `cot` command-line tool. (WIP)
     - TODO: help content
-    - TODO: localization
 - New AppleScript property `tab width` for document object.
 - Now, CotEditor script receives the absolute file path of the frontmost document as an argument if available.
 - Add “New CotEditor Document with Selection” and “Open File in CotEditor” Services.
