@@ -252,6 +252,7 @@
 // Print pane
 "Theme" = "テーマ";
 
+
 // Format pane
 // encoding menu alert sheet
 "Are you sure you want to change to “%@”?" = "本当に“%@”へ変更しますか？";
@@ -263,6 +264,19 @@
 "Duplicate “%@”…" = "“%@”を複製…";
 "Export “%@”…" = "“%@”を書き出し…";
 "Reveal “%@” in Finder" = "“%@”を Finder で表示";
+
+
+// Integration Pane
+"Install" = "インストール";
+"Uninstall" = "アンインストール";
+"The current 'cot' symbolic link may target to an invalid path." = "現在の 'cot' シンボリックリンクは無効なパスに向けられています。";
+
+// alerts
+"The running CotEditor is not located in the Application directory." = "現在起動している CotEditor はアプリケーションフォルダ外にあります。";
+"Do you really want to install the command-line tool for CotEditor at “%@”?\n\nWe recommend to move CotEditor.app to the Application directory at first." = "本当に“%@”のためのコマンドラインツールをインストールしますか？\n\n先に CotEditor.app をアプリケーションフォルダに移動することをおすすめします。";
+
+"The name of the running CotEditor is modified." = "現在起動している CotEditor は名前が変更されています。";
+"Do you really want to install the command-line tool for “%@”?" = "本当に“%@”のためのコマンドラインツールをインストールしますか？";
 
 
 /* MARK: CESyntaxEditSheetController */

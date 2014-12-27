@@ -77,6 +77,11 @@
                             <action selector="switchView:" target="-2" id="aO9-N0-Xht"/>
                         </connections>
                     </toolbarItem>
+                    <toolbarItem implicitItemIdentifier="64548054-6C43-4535-9E29-C9CB6200AD6B" label="Integration" paletteLabel="Integration" tag="8" image="Pref_Integration" selectable="YES" id="Bn7-e8-FVC">
+                        <connections>
+                            <action selector="switchView:" target="-2" id="SeR-P3-n8X"/>
+                        </connections>
+                    </toolbarItem>
                 </allowedToolbarItems>
                 <defaultToolbarItems>
                     <toolbarItem reference="HlR-fr-Hwd"/>
@@ -87,6 +92,7 @@
                     <toolbarItem reference="0c4-Jh-Er6"/>
                     <toolbarItem reference="WSf-8J-dN6"/>
                     <toolbarItem reference="uTl-fL-Jcq"/>
+                    <toolbarItem reference="Bn7-e8-FVC"/>
                 </defaultToolbarItems>
             </toolbar>
             <connections>
@@ -101,6 +107,7 @@
         <image name="Pref_FileDrop" width="32" height="32"/>
         <image name="Pref_Format" width="32" height="32"/>
         <image name="Pref_General" width="32" height="32"/>
+        <image name="Pref_Integration" width="32" height="32"/>
         <image name="Pref_KeyBindings" width="32" height="32"/>
         <image name="Pref_Print" width="32" height="32"/>
         <image name="Pref_Window" width="32" height="32"/>

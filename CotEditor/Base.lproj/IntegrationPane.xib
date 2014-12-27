@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6254"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="CEIntegrationPaneController">
+            <connections>
+                <outlet property="installButton" destination="eEc-Sx-LJN" id="Ope-oJ-jYB"/>
+                <outlet property="view" destination="c22-O7-iKe" id="mxI-ay-v2T"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="250" id="c22-O7-iKe" userLabel="Integration Pane">
+            <rect key="frame" x="0.0" y="0.0" width="540" height="140"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eEc-Sx-LJN">
+                    <rect key="frame" x="144" y="93" width="102" height="32"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="90" id="QR6-gE-nsb"/>
+                    </constraints>
+                    <buttonCell key="cell" type="push" title="Install" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ltN-wn-m8M">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="install:" target="-2" id="yKR-QI-Kj8"/>
+                        <binding destination="-2" name="enabled" keyPath="uninstallable" id="45o-bF-VPT"/>
+                    </connections>
+                </button>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="DkP-oI-RXs">
+                    <rect key="frame" x="18" y="103" width="126" height="17"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Command-line tool:" id="kQn-Uu-cqG">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="nVs-Jw-E1L">
+                    <rect key="frame" x="246" y="103" width="156" height="14"/>
+                    <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Installed at /usr/local/bin/cot" id="UOI-xf-lPZ">
+                        <font key="font" metaFont="smallSystem"/>
+                        <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                    <connections>
+                        <binding destination="-2" name="hidden" keyPath="installed" id="D3C-CU-fTG">
+                            <dictionary key="options">
+                                <string key="NSValueTransformerName">NSNegateBoolean</string>
+                            </dictionary>
+                        </binding>
+                        <binding destination="-2" name="displayPatternValue1" keyPath="linkURL.path" id="e2G-16-MxZ">
+                            <dictionary key="options">
+                                <string key="NSDisplayPattern">installed at %{value1}@</string>
+                            </dictionary>
+                        </binding>
+                    </connections>
+                </textField>
+                <button horizontalHuggingPriority="750" verticalHuggingPriority="750" tag="14" translatesAutoresizingMaskIntoConstraints="NO" id="T0F-Mz-b1C">
+                    <rect key="frame" x="497" y="17" width="25" height="25"/>
+                    <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="UdG-G4-xvN">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="openHelpAnchor:" target="-1" id="Nh2-ag-ijG"/>
+                    </connections>
+                </button>
+                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Pev-gA-jbT">
+                    <rect key="frame" x="148" y="64" width="374" height="28"/>
+                    <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="The 'cot' command-line tool allows you to launch CotEditor and let it open files from the command line." id="c48-xK-Ag1">
+                        <font key="font" metaFont="smallSystem"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="otc-Q5-SoO" customClass="CEWrappingTextField">
+                    <rect key="frame" x="165" y="42" width="357" height="14"/>
+                    <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="Warning will be displayed here." id="boy-gV-Bda">
+                        <font key="font" metaFont="smallSystem"/>
+                        <color key="textColor" red="0.78431373999999998" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                    <connections>
+                        <binding destination="-2" name="value" keyPath="warning" id="gyk-BK-cx3"/>
+                    </connections>
+                </textField>
+                <imageView translatesAutoresizingMaskIntoConstraints="NO" id="0SW-Kn-GYs">
+                    <rect key="frame" x="150" y="43" width="13" height="13"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="0SW-Kn-GYs" secondAttribute="height" multiplier="1:1" id="cL4-OJ-pid"/>
+                        <constraint firstAttribute="height" constant="13" id="xjj-p5-XUv"/>
+                    </constraints>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="CautionTemplate" id="4ys-lN-RhZ"/>
+                </imageView>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="Pev-gA-jbT" secondAttribute="trailing" constant="20" symbolic="YES" id="31Q-YL-1j5"/>
+                <constraint firstItem="otc-Q5-SoO" firstAttribute="leading" secondItem="0SW-Kn-GYs" secondAttribute="trailing" constant="4" id="3ys-SG-6ae"/>
+                <constraint firstItem="otc-Q5-SoO" firstAttribute="top" secondItem="Pev-gA-jbT" secondAttribute="bottom" constant="8" symbolic="YES" id="6mk-8i-QpE"/>
+                <constraint firstItem="nVs-Jw-E1L" firstAttribute="leading" secondItem="eEc-Sx-LJN" secondAttribute="trailing" constant="8" symbolic="YES" id="77l-eK-IFQ"/>
+                <constraint firstItem="DkP-oI-RXs" firstAttribute="baseline" secondItem="eEc-Sx-LJN" secondAttribute="baseline" id="8yo-0h-8ug"/>
+                <constraint firstItem="eEc-Sx-LJN" firstAttribute="leading" secondItem="DkP-oI-RXs" secondAttribute="trailing" constant="8" symbolic="YES" id="9oC-un-I7F"/>
+                <constraint firstAttribute="trailing" secondItem="otc-Q5-SoO" secondAttribute="trailing" constant="20" symbolic="YES" id="CcC-7k-LnX"/>
+                <constraint firstItem="DkP-oI-RXs" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="20" symbolic="YES" id="Mbe-2v-iZ0"/>
+                <constraint firstItem="Pev-gA-jbT" firstAttribute="leading" secondItem="eEc-Sx-LJN" secondAttribute="leading" id="N6y-HE-3SX"/>
+                <constraint firstItem="DkP-oI-RXs" firstAttribute="baseline" secondItem="nVs-Jw-E1L" secondAttribute="baseline" id="QkF-OO-wG0"/>
+                <constraint firstAttribute="bottom" secondItem="T0F-Mz-b1C" secondAttribute="bottom" constant="20" symbolic="YES" id="Rug-Fi-y8H"/>
+                <constraint firstItem="DkP-oI-RXs" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="20" symbolic="YES" id="Yap-iD-b0A"/>
+                <constraint firstAttribute="trailing" secondItem="T0F-Mz-b1C" secondAttribute="trailing" constant="20" symbolic="YES" id="d7R-9j-w1V"/>
+                <constraint firstItem="Pev-gA-jbT" firstAttribute="top" secondItem="eEc-Sx-LJN" secondAttribute="bottom" constant="8" id="uxc-zn-0Ad"/>
+                <constraint firstItem="0SW-Kn-GYs" firstAttribute="leading" secondItem="eEc-Sx-LJN" secondAttribute="leading" id="xbR-U9-oS4"/>
+                <constraint firstItem="0SW-Kn-GYs" firstAttribute="top" secondItem="otc-Q5-SoO" secondAttribute="top" id="zp2-A6-WLb"/>
+            </constraints>
+            <point key="canvasLocation" x="374" y="455"/>
+        </customView>
+    </objects>
+    <resources>
+        <image name="CautionTemplate" width="16" height="16"/>
+    </resources>
+</document>
