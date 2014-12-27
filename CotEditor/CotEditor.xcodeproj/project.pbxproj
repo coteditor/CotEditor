@@ -386,6 +386,7 @@
 		2AA0AC791A29D8CB0063ED1B /* CEPopUpToolbarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEPopUpToolbarItem.m; sourceTree = "<group>"; };
 		2AAC8FFF1A4E12D10074E076 /* CEWrappingTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEWrappingTextField.h; sourceTree = "<group>"; };
 		2AAC90001A4E12D10074E076 /* CEWrappingTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEWrappingTextField.m; sourceTree = "<group>"; };
+		2AAC90021A4ED6E40074E076 /* CotEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CotEditor.h; sourceTree = "<group>"; };
 		2AACC9571942A82900E3FF63 /* CEIndicatorSheetController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEIndicatorSheetController.h; sourceTree = "<group>"; };
 		2AACC9581942A82900E3FF63 /* CEIndicatorSheetController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEIndicatorSheetController.m; sourceTree = "<group>"; };
 		2AB4326F1912AF7200835004 /* CEGlyphPopoverController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEGlyphPopoverController.h; sourceTree = "<group>"; };
@@ -898,6 +899,7 @@
 			isa = PBXGroup;
 			children = (
 				2A40D7C01A233B4B00721EB4 /* cot.m */,
+				2AAC90021A4ED6E40074E076 /* CotEditor.h */,
 				2A40D7CA1A23A60100721EB4 /* RemoteEditorController.applescript */,
 			);
 			name = "Command-line Tool";

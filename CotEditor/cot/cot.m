@@ -29,6 +29,7 @@
 
 @import Cocoa;
 @import AppleScriptObjC;
+#import "CotEditor.h"
 
 
 static NSString *const kBundleIdentifier = @"com.coteditor.CotEditor";
