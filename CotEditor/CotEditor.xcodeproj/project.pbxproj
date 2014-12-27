@@ -102,8 +102,6 @@
 		2A961C5418FC699E002076B6 /* ScriptMenu Folder.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A961C4B18FC699E002076B6 /* ScriptMenu Folder.rtf */; };
 		2A961C5518FC699E002076B6 /* ShellScript.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A961C4D18FC699E002076B6 /* ShellScript.rtf */; };
 		2A9871A919AEABDB0081BADB /* KeyBindings in Resources */ = {isa = PBXBuildFile; fileRef = 2A9871A819AEABDB0081BADB /* KeyBindings */; };
-		2AA0AC4B1A26CDD60063ED1B /* RemoteEditorController.applescript in Sources */ = {isa = PBXBuildFile; fileRef = 2A40D7CA1A23A60100721EB4 /* RemoteEditorController.applescript */; };
-		2AA0AC551A273F5D0063ED1B /* RemoteEditorController.applescript in Sources */ = {isa = PBXBuildFile; fileRef = 2A40D7CA1A23A60100721EB4 /* RemoteEditorController.applescript */; };
 		2AA0AC7A1A29D8CB0063ED1B /* CEPopUpToolbarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AA0AC791A29D8CB0063ED1B /* CEPopUpToolbarItem.m */; };
 		2AAC90011A4E12D10074E076 /* CEWrappingTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AAC90001A4E12D10074E076 /* CEWrappingTextField.m */; };
 		2AACC9591942A82900E3FF63 /* CEIndicatorSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AACC9581942A82900E3FF63 /* CEIndicatorSheetController.m */; };
@@ -114,7 +112,6 @@
 		2AC2C1D819881543007968CB /* VerticalOrientation_Off.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 2AC2C1D619881543007968CB /* VerticalOrientation_Off.tiff */; };
 		2AC2C1D919881543007968CB /* VerticalOrientation_On.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 2AC2C1D719881543007968CB /* VerticalOrientation_On.tiff */; };
 		2AC75C081A2AF47F00C7DB0A /* NSString+CENewLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AC75C071A2AF47F00C7DB0A /* NSString+CENewLine.m */; };
-		2AD318BB1A461FDC001B8112 /* AppleScriptObjC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AA0AC521A2738C10063ED1B /* AppleScriptObjC.framework */; };
 		2AD318C01A462A10001B8112 /* IntegrationPane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2AD318BE1A462A10001B8112 /* IntegrationPane.xib */; };
 		2AD318C31A462C30001B8112 /* CEIntegrationPaneController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD318C21A462C30001B8112 /* CEIntegrationPaneController.m */; };
 		2AD4599B19DDCF6600A20FBB /* CEScriptMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD4599A19DDCF6600A20FBB /* CEScriptMenuItem.m */; };
@@ -187,15 +184,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		2A40D7BC1A233B4A00721EB4 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
-			dstSubfolderSpec = 0;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 1;
-		};
 		2A40D7C71A233BD800721EB4 /* Copy Executables */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -278,7 +266,6 @@
 		2A3FB2AC18ECEFF200D9CB2C /* CESyntaxEditSheetController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CESyntaxEditSheetController.m; sourceTree = "<group>"; };
 		2A40D7BE1A233B4A00721EB4 /* cot */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = cot; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A40D7C01A233B4B00721EB4 /* cot.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = cot.m; sourceTree = "<group>"; };
-		2A40D7CA1A23A60100721EB4 /* RemoteEditorController.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = RemoteEditorController.applescript; sourceTree = "<group>"; };
 		2A436DCC1A4243D500275FD4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/DocumentInspectorView.xib; sourceTree = "<group>"; };
 		2A436DCF1A4249CB00275FD4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/IncompatibleCharsView.xib; sourceTree = "<group>"; };
 		2A436DD21A42516900275FD4 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/DocumentInspectorView.strings; sourceTree = "<group>"; };
@@ -387,6 +374,7 @@
 		2AAC8FFF1A4E12D10074E076 /* CEWrappingTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEWrappingTextField.h; sourceTree = "<group>"; };
 		2AAC90001A4E12D10074E076 /* CEWrappingTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEWrappingTextField.m; sourceTree = "<group>"; };
 		2AAC90021A4ED6E40074E076 /* CotEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CotEditor.h; sourceTree = "<group>"; };
+		2AAC90031A4EDEBF0074E076 /* ScriptingBridge.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ScriptingBridge.framework; path = System/Library/Frameworks/ScriptingBridge.framework; sourceTree = SDKROOT; };
 		2AACC9571942A82900E3FF63 /* CEIndicatorSheetController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEIndicatorSheetController.h; sourceTree = "<group>"; };
 		2AACC9581942A82900E3FF63 /* CEIndicatorSheetController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEIndicatorSheetController.m; sourceTree = "<group>"; };
 		2AB4326F1912AF7200835004 /* CEGlyphPopoverController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEGlyphPopoverController.h; sourceTree = "<group>"; };
@@ -536,14 +524,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		2A40D7BB1A233B4A00721EB4 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				2AD318BB1A461FDC001B8112 /* AppleScriptObjC.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		8D15AC330486D014006FF6A4 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -889,6 +869,7 @@
 		2A37F4C3FDCFA73011CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2AAC90031A4EDEBF0074E076 /* ScriptingBridge.framework */,
 				2AA0AC521A2738C10063ED1B /* AppleScriptObjC.framework */,
 				F3504B3BB02D4DBA8EA50C0E /* libPods.a */,
 			);
@@ -900,7 +881,6 @@
 			children = (
 				2A40D7C01A233B4B00721EB4 /* cot.m */,
 				2AAC90021A4ED6E40074E076 /* CotEditor.h */,
-				2A40D7CA1A23A60100721EB4 /* RemoteEditorController.applescript */,
 			);
 			name = "Command-line Tool";
 			path = cot;
@@ -1124,8 +1104,6 @@
 			buildConfigurationList = 2A40D7C41A233B4B00721EB4 /* Build configuration list for PBXNativeTarget "cot" */;
 			buildPhases = (
 				2A40D7BA1A233B4A00721EB4 /* Sources */,
-				2A40D7BB1A233B4A00721EB4 /* Frameworks */,
-				2A40D7BC1A233B4A00721EB4 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -1323,7 +1301,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2A40D7C11A233B4B00721EB4 /* cot.m in Sources */,
-				2AA0AC4B1A26CDD60063ED1B /* RemoteEditorController.applescript in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1410,7 +1387,6 @@
 				2A8711681986DAEC009FA1C0 /* NSString+MD5.m in Sources */,
 				2A8663DD18C9F6B700A6F9CC /* NSData+MD5.m in Sources */,
 				2A40D7CD1A23FBE200721EB4 /* openDictionary.applescript in Sources */,
-				2AA0AC551A273F5D0063ED1B /* RemoteEditorController.applescript in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

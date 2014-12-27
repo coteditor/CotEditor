@@ -28,7 +28,6 @@
  */
 
 @import Cocoa;
-@import AppleScriptObjC;
 #import "CotEditor.h"
 
 
@@ -193,22 +192,41 @@ int main(int argc, const char * argv[])
         }
         
         if (arguments[kLineOption] || arguments[kColumnOption] || input) {
-            // load AppleScript
-            NSURL *URL = [[NSWorkspace sharedWorkspace] URLForApplicationWithBundleIdentifier:kBundleIdentifier];
-            NSBundle *bundle = [NSBundle bundleWithURL:URL];
-            [bundle loadAppleScriptObjectiveCScripts];
-            id<RemoteEditorControllerProtocol> editorController = [[NSClassFromString(@"RemoteEditorController") alloc] init];
+            // load CotEditor
+            CotEditorApplication *CotEditor = [SBApplication applicationWithBundleIdentifier:kBundleIdentifier];
+            CotEditorDocument *document;
             
             // create new document with piped text
             if (input && [URLs count] == 0) {
-                [editorController createNewDocument:input];
+                document = [[[CotEditor classForScriptingClass:@"document"] alloc] init];
+                
+                [[CotEditor documents] addObject:document];
+                [[document selection] setContents:(CotEditorAttributeRun *)input];
+                [[document selection] setRange:@[@0, @0]];
             }
             
             // jump to location
             if (arguments[kLineOption]|| arguments[kColumnOption]) {
-                NSInteger line = [arguments[kLineOption] integerValue];
-                NSInteger column = [arguments[kColumnOption] integerValue];
-                [editorController jumpToLine:@(line) column:@(column)];
+                document = document ? : [[CotEditor documents] firstObject];
+                
+                if (document) {
+                    NSInteger line = [arguments[kLineOption] integerValue];
+                    NSInteger column = [arguments[kColumnOption] integerValue];
+                    
+                    // count location of line
+                    NSIndexSet *lineIndexSet = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, line - 1)];
+                    NSArray *lines = [[[document contents] paragraphs] objectsAtIndexes:lineIndexSet];
+                    NSInteger loc = column;
+                    for (CotEditorParagraph *line in lines) {
+                        loc += [[line characters] count];
+                    }
+                    
+                    // set selection range
+                    [[document selection] setRange:@[@(loc), @0]];
+                    
+                    // jump
+                    [document scrollToCaret];
+                }
             }
         }
     }
