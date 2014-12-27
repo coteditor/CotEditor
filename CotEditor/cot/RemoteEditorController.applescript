@@ -38,16 +38,13 @@
          --cast argument
          set contents_ to contents_ as text
          
-         tell my editor
-             using terms from application "CotEditor"
-                 make new document
-                 set my newDocument to front document
-                 
-                 tell newDocument
-                     set contents to contents_
-                     set range of selection to {0, 0}
-                 end tell
-             end using terms from
+         tell application "CotEditor"
+             set my newDocument to make new document
+             
+             tell my newDocument
+                 set contents to contents_
+                 set range of selection to {0, 0}
+             end tell
          end tell
      end createNewDocument:
      
@@ -57,25 +54,22 @@
          set lineNum to lineNum as integer
          set columnNum to columnNum as integer
          
-         tell my editor
-             using terms from application "CotEditor"
-                 if front document is missing value then return
+         tell application "CotEditor"
+             if not (exists front document) then return
+             
+             tell front document
+                 -- count location of line
+                 set loc to 0
+                 set theLines to paragraphs 1 thru (lineNum - 1) of contents
+                 repeat with theLine in theLines
+                     set loc to loc + (count of theLine)
+                 end repeat
+                 set loc to loc + columnNum
                  
-                 tell front document
-                     
-                     -- count location of line
-                     set loc to 0
-                     set theLines to paragraphs 1 thru (lineNum - 1) of contents
-                     repeat with theLine in theLines
-                         set loc to loc + (count of theLine)
-                     end repeat
-                     set loc to loc + columnNum
-                     
-                     -- jump to location
-                     set range of selection to {loc, 0}
-                     scroll to caret
-                 end tell
-             end using terms from
+                 -- jump to location
+                 set range of selection to {loc, 0}
+                 scroll to caret
+             end tell
          end tell
      end jumpToLine:column:
  end script

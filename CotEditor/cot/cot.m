@@ -196,8 +196,7 @@ int main(int argc, const char * argv[])
             NSURL *URL = [[NSWorkspace sharedWorkspace] URLForApplicationWithBundleIdentifier:kBundleIdentifier];
             NSBundle *bundle = [NSBundle bundleWithURL:URL];
             [bundle loadAppleScriptObjectiveCScripts];
-            Class RemoteEditorController = NSClassFromString(@"RemoteEditorController");
-            id<RemoteEditorControllerProtocol> editorController = [[RemoteEditorController alloc] init];
+            id<RemoteEditorControllerProtocol> editorController = [[NSClassFromString(@"RemoteEditorController") alloc] init];
             
             // create new document with piped text
             if (input && [URLs count] == 0) {
