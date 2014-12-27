@@ -50,14 +50,6 @@ typedef NS_ENUM(NSUInteger, OptionTypes) {
 };
 
 
-@protocol RemoteEditorControllerProtocol <NSObject>
-
-- (void)jumpToLine:(NSNumber *)line column:(NSNumber *)column;
-- (void)createNewDocument:(NSString *)contents;
-
-@end
-
-
 
 
 #pragma mark -
