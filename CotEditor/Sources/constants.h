@@ -46,7 +46,8 @@ extern NSString *const CEErrorDomain;
 typedef NS_ENUM(OSStatus, CEErrorCode) {
     CEInvalidNameError = 1000,
     CEThemeFileDuplicationError,
-    CEApplicationInDiskImageError,
+    
+    // for command-line tool
     CEApplicationNotInApplicationDirectoryError,
     CEApplicationNameIsModifiedError,
 };

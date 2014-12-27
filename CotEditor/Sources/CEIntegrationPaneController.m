@@ -38,7 +38,7 @@ static NSString *const kSymbolicLinkPath = @"/usr/local/bin/cot";
 
 @property (nonatomic) NSURL *linkURL;
 @property (nonatomic) NSURL *executableURL;
-@property (nonatomic, getter=isInstallable) BOOL installable;
+@property (nonatomic, getter=isUninstallable) BOOL uninstallable;
 @property (nonatomic, getter=isInstalled) BOOL installed;
 @property (nonatomic, copy) NSString *warning;
 
@@ -53,7 +53,26 @@ static NSString *const kSymbolicLinkPath = @"/usr/local/bin/cot";
 
 @implementation CEIntegrationPaneController
 
+static const NSURL *kPreferredLinkTargetURL;
+
+
 #pragma mark Superclass Methods
+
+// ------------------------------------------------------
+/// initialize class
++ (void)initialize
+// ------------------------------------------------------
+{
+    NSString *appName = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleName"];
+    NSURL *applicationDirURL = [[NSFileManager defaultManager] URLForDirectory:NSApplicationDirectory
+                                                                      inDomain:NSLocalDomainMask
+                                                             appropriateForURL:nil
+                                                                        create:NO
+                                                                         error:nil];
+    kPreferredLinkTargetURL = [[[applicationDirURL URLByAppendingPathComponent:appName] URLByAppendingPathExtension:@"app"]
+                               URLByAppendingPathComponent:@"Contents/MacOS/cot"];
+}
+
 
 // ------------------------------------------------------
 /// initialize instance
@@ -64,7 +83,8 @@ static NSString *const kSymbolicLinkPath = @"/usr/local/bin/cot";
     if (self) {
         _linkURL = [NSURL fileURLWithPath:kSymbolicLinkPath];
         _executableURL = [[NSBundle mainBundle] URLForAuxiliaryExecutable:@"cot"];
-        _installable = YES;  // TODO: implement
+        _uninstallable = YES;
+        
         _installed = [self validateSymlink];
     }
     return self;
@@ -112,15 +132,7 @@ static NSString *const kSymbolicLinkPath = @"/usr/local/bin/cot";
 - (IBAction)uninstall:(id)sender
 // ------------------------------------------------------
 {
-    BOOL success;
-    NSError *error = nil;
-    
-    unlink([[[self linkURL] path] UTF8String]);
-    
-    if (![self validateSymlink]) {
-        [self setInstalled:NO];
-        [self toggleInstallButtonState:NO];
-    }
+    [self performUninstall];
 }
 
 
@@ -157,6 +169,23 @@ static NSString *const kSymbolicLinkPath = @"/usr/local/bin/cot";
 
 
 // ------------------------------------------------------
+/// unlink symlink at "/usr/local/bin/cot"
+- (void)performUninstall
+// ------------------------------------------------------
+{
+    BOOL success;
+    NSError *error = nil;
+    
+    unlink([[[self linkURL] path] UTF8String]);
+    
+    if (![[self linkURL] checkResourceIsReachableAndReturnError:nil]) {
+        [self setInstalled:NO];
+        [self toggleInstallButtonState:NO];
+    }
+}
+
+
+// ------------------------------------------------------
 /// toggle Install button state between Install and Uninstall
 - (void)toggleInstallButtonState:(BOOL)toUninstall
 // ------------------------------------------------------
@@ -164,25 +193,50 @@ static NSString *const kSymbolicLinkPath = @"/usr/local/bin/cot";
     if (toUninstall) {
         [[self installButton] setAction:@selector(uninstall:)];
         [[self installButton] setTitle:NSLocalizedString(@"Uninstall", nil)];
-        [[self installButton] setEnabled:YES];
     } else {
         [[self installButton] setAction:@selector(install:)];
         [[self installButton] setTitle:NSLocalizedString(@"Install", nil)];
-        [[self installButton] setEnabled:[self isInstallable]];
     }
 }
 
 
 // ------------------------------------------------------
-/// check whether the destination of symlink is the current running CotEditor
+/// check the destination of symlink and return whether 'cot' command is exists at '/usr/local/bin/'
 - (BOOL)validateSymlink
 // ------------------------------------------------------
 {
-    // TODO: link target to '/Applications/CotEditor.app' should be always valid.
+    // reset once
+    [self setUninstallable:YES];
+    [self setWarning:nil];
+    
+    // not installed yet (= can install)
+    if (![[self linkURL] checkResourceIsReachableAndReturnError:nil]) {
+        return NO;
+    }
+    
     NSURL *linkDestinationURL = [[self linkURL] URLByResolvingSymlinksInPath];
     
-    return [linkDestinationURL isEqual:[[self executableURL] URLByStandardizingPath]];
+    // exists something but not symlink
+    if ([linkDestinationURL isEqual:[self linkURL]]) {
+        [self setUninstallable:NO];
+        return YES;  // treat as "installed"
+    }
     
+    // totally valid link
+    if ([linkDestinationURL isEqual:[[self executableURL] URLByStandardizingPath]] ||
+        [linkDestinationURL isEqual:kPreferredLinkTargetURL])  // link to '/Applications/CotEditor.app'
+    {
+        return YES;
+    }
+    
+    // alert if link destination is unreachable
+    if (![linkDestinationURL checkResourceIsReachableAndReturnError:nil]) {
+        [self setWarning:NSLocalizedString(@"The current 'cot' symbolic link may target to an invalid path.", nil)];
+    }
+    
+    // !!!: Do nothing even if the link destination is somewhere other and it's still uninstallable
+    
+    return YES;
 }
 
 

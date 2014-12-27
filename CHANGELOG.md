@@ -8,7 +8,6 @@ Change Log
 ### New Features 
 
 - `cot` command-line tool. (WIP)
-    - TODO: more error handling on install/uninstall
     - TODO: help content
     - TODO: localization
 - New AppleScript property `tab width` for document object.
