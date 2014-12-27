@@ -46,5 +46,5 @@
 "uTl-fL-Jcq.paletteLabel" = "プリント";  /* Print */
 
 /* Class = "NSToolbarItem"; ObjectID = "Bn7-e8-FVC"; */
-"Bn7-e8-FVC.label" = "統合";  /* Integration */
-"Bn7-e8-FVC.paletteLabel" = "統合";  /* Integration */
+"Bn7-e8-FVC.label" = "連携";  /* Integration */
+"Bn7-e8-FVC.paletteLabel" = "連携";  /* Integration */
