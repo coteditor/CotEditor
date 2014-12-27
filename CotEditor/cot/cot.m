@@ -27,7 +27,7 @@
  ==============================================================================
  */
 
-@import Cocoa;
+@import Foundation;
 #import "CotEditor.h"
 
 
@@ -64,10 +64,9 @@ typedef NS_ENUM(NSUInteger, OptionTypes) {
 
 const char* version(void)
 {
-    NSURL *URL = [[NSWorkspace sharedWorkspace] URLForApplicationWithBundleIdentifier:kBundleIdentifier];
-    NSBundle *bundle = [NSBundle bundleWithURL:URL];
+    CotEditorApplication *CotEditor = [SBApplication applicationWithBundleIdentifier:kBundleIdentifier];
     
-    return [[bundle objectForInfoDictionaryKey:@"CFBundleShortVersionString"] UTF8String];
+    return [[CotEditor version] UTF8String];
 }
 
 
@@ -156,10 +155,8 @@ int main(int argc, const char * argv[])
             input = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
         }
         
-        NSMutableArray *URLs = [NSMutableArray array];
-        NSWorkspaceLaunchOptions options = 0;
-        
         // validate file paths
+        NSMutableArray *URLs = [NSMutableArray array];
         for (NSString *path in arguments[kFiles]) {
             NSURL *URL = [NSURL fileURLWithPath:path isDirectory:NO];
             
@@ -174,60 +171,50 @@ int main(int argc, const char * argv[])
             }
         }
         
-        // open in background
-        if ([arguments[kBackgroundOption] boolValue]) {
-            options |= NSWorkspaceLaunchWithoutActivation;
-        }
+        CotEditorApplication *CotEditor = [SBApplication applicationWithBundleIdentifier:kBundleIdentifier];
+        CotEditorDocument *document;
         
         // launch CotEditor
-        BOOL success = [[NSWorkspace sharedWorkspace] openURLs:URLs
-                                       withAppBundleIdentifier:kBundleIdentifier
-                                                       options:options
-                                additionalEventParamDescriptor:nil
-                                             launchIdentifiers:NULL];
+        [CotEditor open:URLs];
         
-        if (!success) {
+        if (!CotEditor) {
             printf("Failed open CotEditor.\n");
             exit(1);
         }
         
-        if (arguments[kLineOption] || arguments[kColumnOption] || input) {
-            // load CotEditor
-            CotEditorApplication *CotEditor = [SBApplication applicationWithBundleIdentifier:kBundleIdentifier];
-            CotEditorDocument *document;
+        if (![arguments[kBackgroundOption] boolValue]) {
+            [CotEditor activate];
+        }
+        
+        // create new document with piped text
+        if (input && [URLs count] == 0) {
+            document = [[[CotEditor classForScriptingClass:@"document"] alloc] init];
             
-            // create new document with piped text
-            if (input && [URLs count] == 0) {
-                document = [[[CotEditor classForScriptingClass:@"document"] alloc] init];
-                
-                [[CotEditor documents] addObject:document];
-                [[document selection] setContents:(CotEditorAttributeRun *)input];
-                [[document selection] setRange:@[@0, @0]];
+            [[CotEditor documents] addObject:document];
+            [[document selection] setContents:(CotEditorAttributeRun *)input];
+            [[document selection] setRange:@[@0, @0]];
+        }
+        
+        document = document ? : [[CotEditor documents] firstObject];
+        
+        // jump to location
+        if (document && (arguments[kLineOption] || arguments[kColumnOption])) {
+            NSInteger line = [arguments[kLineOption] integerValue];
+            NSInteger column = [arguments[kColumnOption] integerValue];
+            
+            // count location of line
+            NSIndexSet *lineIndexSet = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, line - 1)];
+            NSArray *lines = [[[document contents] paragraphs] objectsAtIndexes:lineIndexSet];
+            NSInteger loc = 0;
+            for (CotEditorParagraph *line in lines) {
+                loc += [[line characters] count];
             }
             
-            // jump to location
-            if (arguments[kLineOption]|| arguments[kColumnOption]) {
-                document = document ? : [[CotEditor documents] firstObject];
-                
-                if (document) {
-                    NSInteger line = [arguments[kLineOption] integerValue];
-                    NSInteger column = [arguments[kColumnOption] integerValue];
-                    
-                    // count location of line
-                    NSIndexSet *lineIndexSet = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, line - 1)];
-                    NSArray *lines = [[[document contents] paragraphs] objectsAtIndexes:lineIndexSet];
-                    NSInteger loc = column;
-                    for (CotEditorParagraph *line in lines) {
-                        loc += [[line characters] count];
-                    }
-                    
-                    // set selection range
-                    [[document selection] setRange:@[@(loc), @0]];
-                    
-                    // jump
-                    [document scrollToCaret];
-                }
-            }
+            // set selection range
+            [[document selection] setRange:@[@(loc + column), @0]];
+            
+            // jump
+            [document scrollToCaret];
         }
     }
     
