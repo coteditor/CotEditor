@@ -379,7 +379,7 @@
                     </connections>
                 </matrix>
                 <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="IK7-nJ-RZ9">
-                    <rect key="frame" x="157" y="33" width="296" height="14"/>
+                    <rect key="frame" x="154" y="33" width="296" height="14"/>
                     <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Non-opaque view can slow down on a huge document." usesSingleLineMode="YES" id="gdC-8B-U5B">
                         <font key="font" metaFont="smallSystem"/>
                         <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
@@ -390,10 +390,7 @@
                     </connections>
                 </textField>
                 <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dco-7P-YD6">
-                    <rect key="frame" x="139" y="33" width="16" height="13"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="13" id="Ea3-Ng-l65"/>
-                    </constraints>
+                    <rect key="frame" x="139" y="33" width="13" height="13"/>
                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="CautionTemplate" id="y30-9L-giB"/>
                     <connections>
                         <binding destination="-2" name="hidden" keyPath="viewOpaque" id="px1-Sz-QpG"/>
@@ -470,9 +467,9 @@
                 <constraint firstItem="6Rm-ix-3Ik" firstAttribute="baseline" secondItem="614" secondAttribute="baseline" id="Xuc-ci-sc0"/>
                 <constraint firstItem="nru-qe-DDo" firstAttribute="leading" secondItem="mSm-CR-7AA" secondAttribute="leading" constant="115" id="Zwd-iG-HAm"/>
                 <constraint firstItem="b4p-xQ-foZ" firstAttribute="baseline" secondItem="707" secondAttribute="baseline" id="aJQ-Cx-OqU"/>
+                <constraint firstItem="dco-7P-YD6" firstAttribute="centerY" secondItem="IK7-nJ-RZ9" secondAttribute="centerY" id="abN-IS-YK0"/>
                 <constraint firstItem="ybD-hb-S7E" firstAttribute="leading" secondItem="741" secondAttribute="leading" constant="20" symbolic="YES" id="b86-OZ-25k"/>
                 <constraint firstAttribute="trailing" secondItem="EiB-gC-O39" secondAttribute="trailing" constant="20" symbolic="YES" id="dIc-CJ-DFf"/>
-                <constraint firstItem="dco-7P-YD6" firstAttribute="bottom" secondItem="IK7-nJ-RZ9" secondAttribute="bottom" id="eLz-ya-Zjq"/>
                 <constraint firstItem="EiB-gC-O39" firstAttribute="top" secondItem="CcU-v8-tHr" secondAttribute="bottom" constant="16" id="gsN-G5-LJE"/>
                 <constraint firstItem="EiB-gC-O39" firstAttribute="leading" secondItem="741" secondAttribute="leading" constant="20" symbolic="YES" id="hZn-yn-lqF"/>
                 <constraint firstItem="748-zI-Gft" firstAttribute="top" secondItem="EiB-gC-O39" secondAttribute="bottom" constant="14" id="iN4-tx-JY4"/>
@@ -505,7 +502,7 @@
         </customView>
     </objects>
     <resources>
-        <image name="CautionTemplate" width="16" height="16"/>
+        <image name="CautionTemplate" width="13" height="13"/>
         <image name="OpacityGuide" width="195" height="15"/>
     </resources>
 </document>

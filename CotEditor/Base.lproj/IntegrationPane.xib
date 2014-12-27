@@ -93,9 +93,15 @@
                     <rect key="frame" x="150" y="43" width="13" height="13"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="0SW-Kn-GYs" secondAttribute="height" multiplier="1:1" id="cL4-OJ-pid"/>
-                        <constraint firstAttribute="height" constant="13" id="xjj-p5-XUv"/>
                     </constraints>
                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="CautionTemplate" id="4ys-lN-RhZ"/>
+                    <connections>
+                        <binding destination="-2" name="hidden" keyPath="warning" id="To3-03-bng">
+                            <dictionary key="options">
+                                <string key="NSValueTransformerName">NSIsNil</string>
+                            </dictionary>
+                        </binding>
+                    </connections>
                 </imageView>
             </subviews>
             <constraints>
@@ -120,6 +126,6 @@
         </customView>
     </objects>
     <resources>
-        <image name="CautionTemplate" width="16" height="16"/>
+        <image name="CautionTemplate" width="13" height="13"/>
     </resources>
 </document>
