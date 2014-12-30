@@ -247,7 +247,8 @@ const NSInteger kNoMenuItem = -1;
     }
     
     // smart outdent with '}' charcter
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultEnableSmartIndentKey] &&
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultAutoIndentKey] &&
+        [[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultEnableSmartIndentKey] &&
         (replacementRange.length == 0) && [aString isEqualToString:@"}"])
     {
         NSString *wholeString = [self string];
