@@ -308,10 +308,8 @@ const NSInteger kNoMenuItem = -1;
 {
     if ([self isAutoTabExpandEnabled]) {
         NSInteger tabWidth = [self tabWidth];
-        NSRange selected = [self selectedRange];
-        NSRange lineRange = [[self string] lineRangeForRange:selected];
-        NSInteger location = selected.location - lineRange.location;
-        NSInteger length = tabWidth - ((location + tabWidth) % tabWidth);
+        NSInteger column = [self columnOfLocation:[self selectedRange].location expandsTab:YES];
+        NSInteger length = tabWidth - ((column + tabWidth) % tabWidth);
         NSMutableString *spaces = [NSMutableString string];
 
         while (length--) {
@@ -396,9 +394,8 @@ const NSInteger kNoMenuItem = -1;
     NSRange selectedRange = [self selectedRange];
     if (selectedRange.length == 0 && [self isAutoTabExpandEnabled]) {
         NSUInteger tabWidth = [self tabWidth];
-        NSRange lineRange = [[self string] lineRangeForRange:selectedRange];
-        NSInteger location = selectedRange.location - lineRange.location;
-        NSInteger length = (location + tabWidth) % tabWidth;
+        NSInteger column = [self columnOfLocation:selectedRange.location expandsTab:YES];
+        NSInteger length = tabWidth - ((column + tabWidth) % tabWidth);
         NSInteger targetWidth = (length == 0) ? tabWidth : length;
         
         if (selectedRange.location >= targetWidth) {
@@ -1581,6 +1578,24 @@ const NSInteger kNoMenuItem = -1;
     return [widthStr sizeWithAttributes:@{NSFontAttributeName:font}].width;
 }
 
+
+// ------------------------------------------------------
+/// calculate column number at location in the line
+- (NSUInteger)columnOfLocation:(NSUInteger)location expandsTab:(BOOL)expandsTab
+// ------------------------------------------------------
+{
+    NSRange lineRange = [[self string] lineRangeForRange:NSMakeRange(location, 0)];
+    NSInteger column = location - lineRange.location;
+    
+    // count tab width
+    if (expandsTab) {
+        NSString *beforeInsertion = [[self string] substringWithRange:NSMakeRange(lineRange.location, column)];
+        NSUInteger numberOfTabChars = [[beforeInsertion componentsSeparatedByString:@"\t"] count] - 1;
+        column += numberOfTabChars * ([self tabWidth] - 1);
+    }
+    
+    return column;
+}
 
 
 // ------------------------------------------------------
