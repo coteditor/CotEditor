@@ -35,10 +35,8 @@
 
 @interface CELineNumberView ()
 
+@property (nonatomic) CGFloat thickness;
 @property (nonatomic) NSTimer *draggingTimer;
-@property (nonatomic) NSLayoutConstraint *thicknessConstraint;
-
-@property (nonatomic) NSString *fontName;
 
 @end
 
@@ -49,36 +47,22 @@
 
 @implementation CELineNumberView
 
+static const NSString *LineNumberFontName;
+
+
 #pragma mark Superclass Methods
 
 // ------------------------------------------------------
-/// initialize
-- (instancetype)initWithFrame:(NSRect)frameRect
+/// initialize class
++ (void)initialize
 // ------------------------------------------------------
 {
-    self = [super initWithFrame:frameRect];
-    if (self) {
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        NSFont *font = [NSFont fontWithName:[defaults stringForKey:CEDefaultLineNumFontNameKey] size:0] ? : [NSFont paletteFontOfSize:0];
-        _fontName = [font fontName];
-        
-        // set thickness constraint
-        _thicknessConstraint = [NSLayoutConstraint constraintWithItem:self
-                                                            attribute:NSLayoutAttributeWidth
-                                                            relatedBy:NSLayoutRelationEqual
-                                                               toItem:nil
-                                                            attribute:NSLayoutAttributeNotAnAttribute
-                                                           multiplier:1
-                                                             constant:0];
-        [self addConstraint:_thicknessConstraint];
-        
-        // observe window resize
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(updateLineNumber:)
-                                                     name:NSWindowDidResizeNotification
-                                                   object:[self window]];
-    }
-    return self;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        NSString *defaultFontName = [[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultLineNumFontNameKey];
+        NSFont *font = [NSFont fontWithName:defaultFontName size:0] ? : [NSFont paletteFontOfSize:0];
+        LineNumberFontName = [font fontName];
+    });
 }
 
 
@@ -87,7 +71,6 @@
 - (void)dealloc
 // ------------------------------------------------------
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
     _textView = nil;
 }
 
@@ -122,7 +105,7 @@
     // setup font
     CGFloat masterFontSize = [[[self textView] font] pointSize];
     CGFloat fontSize = round(0.9 * masterFontSize);
-    CTFontRef font = CTFontCreateWithName((CFStringRef)[self fontName], fontSize, nil);
+    CTFontRef font = CTFontCreateWithName((CFStringRef)LineNumberFontName, fontSize, nil);
     
     CGFontRef cgFont = CTFontCopyGraphicsFont(font, NULL);
     CGContextSetFont(context, cgFont);
@@ -242,6 +225,15 @@
 
 
 // ------------------------------------------------------
+/// return self size
+- (NSSize)intrinsicContentSize
+// ------------------------------------------------------
+{
+    return NSMakeSize([self thickness], NSViewNoInstrinsicMetric);
+}
+
+
+// ------------------------------------------------------
 /// start selecting correspondent lines in text view with drag / click event
 - (void)mouseDown:(NSEvent *)theEvent
 // ------------------------------------------------------
@@ -277,21 +269,21 @@
 
 // ------------------------------------------------------
 /// set line numbers visibility
-- (void)setShown:(BOOL)isShown
+- (void)setShown:(BOOL)shown
 // ------------------------------------------------------
 {
-    if (isShown != [self isShown]) {
-        _shown = isShown;
-        
-        CGFloat width = isShown ? kDefaultLineNumWidth : 0.0;
-        [self setThickness:width];
-    }
+    if (shown == [self isShown]) { return; }
+    
+    _shown = shown;
+    
+    CGFloat width = shown ? kDefaultLineNumWidth : 0.0;
+    [self setThickness:width];
 }
 
 
 // ------------------------------------------------------
 /// redraw line numbers
-- (void)updateLineNumber:(id)sender
+- (void)updateLineNumber
 // ------------------------------------------------------
 {
     [self setNeedsDisplay:YES];
@@ -306,7 +298,9 @@
 - (void)setThickness:(CGFloat)thickness
 // ------------------------------------------------------
 {
-    [[self thicknessConstraint] setConstant:thickness];
+    _thickness = thickness;
+    
+    [self invalidateIntrinsicContentSize];
 }
 
 

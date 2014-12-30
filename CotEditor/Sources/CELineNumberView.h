@@ -40,6 +40,6 @@
 
 // Public method
 
-- (void)updateLineNumber:(id)sender;
+- (void)updateLineNumber;
 
 @end

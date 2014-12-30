@@ -158,10 +158,9 @@
                                                    object:nil];
 
         // slave view をセット
-        [_textView setLineNumberView:_lineNumberView]; // (the textview will also update slaveView.)
-        [_textView setPostsBoundsChangedNotifications:YES]; // observer = lineNumberView
+        [_textView setLineNumberView:_lineNumberView]; // (textview will also update lineNumberView)
         [[NSNotificationCenter defaultCenter] addObserver:_lineNumberView
-                                                 selector:@selector(updateLineNumber:)
+                                                 selector:@selector(updateLineNumber)
                                                      name:NSViewBoundsDidChangeNotification
                                                    object:[_scrollView contentView]];
         
@@ -703,7 +702,7 @@
 // ------------------------------------------------------
 {
     [self stopUpdateLineNumberTimer];
-    [[self lineNumberView] updateLineNumber:self];
+    [[self lineNumberView] setNeedsDisplay:YES];
 }
 
 
