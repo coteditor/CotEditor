@@ -20,6 +20,7 @@ Change Log
     - Improve document information display.
 - Enable to change multiple checkboxes in syntax style editor at once.
 - Improve to display gear icon in menu bar while executing a script.
+- Improve auto-outdent behavior with `}` input.
 - Add hidden “Reveal in Finder” menu item to syntax style action menu in Preferences (visible with `Option` key).
 - Close Preferences window with esc key.
 - Improve find result panel behavior with Spaces.
