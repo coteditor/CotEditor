@@ -336,12 +336,11 @@ const NSInteger kNoMenuItem = -1;
     if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultAutoIndentKey]) {
         NSRange selectedRange = [self selectedRange];
         NSRange lineRange = [[self string] lineRangeForRange:selectedRange];
-        NSString *lineStr = [[self string] substringWithRange:
-                             NSMakeRange(lineRange.location,
-                                         lineRange.length - (NSMaxRange(lineRange) - NSMaxRange(selectedRange)))];
+        NSString *lineStr = [[self string] substringWithRange:NSMakeRange(lineRange.location,
+                                                                          NSMaxRange(selectedRange) - lineRange.location)];
         NSRange indentRange = [lineStr rangeOfString:@"^[ \\t　]+" options:NSRegularExpressionSearch];
         
-        // インデントを選択状態で改行入力した時は置換とみなしてオートインデントしない 2008.12.13
+        // インデントを選択状態で改行入力した時は置換とみなしてオートインデントしない 2008-12-13
         if (NSMaxRange(selectedRange) >= (selectedRange.location + NSMaxRange(indentRange))) {
             [super insertNewline:sender];
             return;
