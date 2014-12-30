@@ -29,7 +29,7 @@
  */
 
 #import "CEScriptManager.h"
-#import "CEScriptErrorPanelController.h"
+#import "CEConsolePanelController.h"
 #import "CEDocument.h"
 #import "CEAppDelegate.h"
 #import "CEUtils.h"
@@ -661,12 +661,12 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 
 
 // ------------------------------------------------------
-/// append message to script error panel and show it
+/// append message to console panel and show it
 - (void)showScriptError:(NSString *)errorString
 // ------------------------------------------------------
 {
-    [[CEScriptErrorPanelController sharedController] showWindow:nil];
-    [[CEScriptErrorPanelController sharedController] addErrorString:[NSString stringWithFormat:@"[%@]\n%@",
+    [[CEConsolePanelController sharedController] showWindow:nil];
+    [[CEConsolePanelController sharedController] addErrorString:[NSString stringWithFormat:@"[%@]\n%@",
                                                                      [[NSDate date] description], errorString]];
 }
 

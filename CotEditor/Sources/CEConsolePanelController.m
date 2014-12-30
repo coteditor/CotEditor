@@ -1,6 +1,6 @@
 /*
  ==============================================================================
- CEScriptErrorPanelController
+ CEConsolePanelController
  
  CotEditor
  http://coteditor.com
@@ -27,10 +27,10 @@
  ==============================================================================
  */
 
-#import "CEScriptErrorPanelController.h"
+#import "CEConsolePanelController.h"
 
 
-@interface CEScriptErrorPanelController ()
+@interface CEConsolePanelController ()
 
 @property (nonatomic, strong) IBOutlet NSTextView *textView;  // on 10.8 NSTextView cannot be weak
 @property (nonatomic) IBOutlet NSTextFinder *textFinder;
@@ -42,7 +42,7 @@
 
 #pragma mark -
 
-@implementation CEScriptErrorPanelController
+@implementation CEConsolePanelController
 
 #pragma mark Superclass Mthods
 
@@ -51,7 +51,7 @@
 - (instancetype)init
 // ------------------------------------------------------
 {
-    return [super initWithWindowNibName:@"ScriptErrorPanel"];
+    return [super initWithWindowNibName:@"ConsolePanel"];
 }
 
 
@@ -70,7 +70,7 @@
 #pragma mark Public Methods
 
 // ------------------------------------------------------
-/// append given string to the script error console
+/// append given string to the console
 - (void)addErrorString:(NSString *)string
 // ------------------------------------------------------
 {
@@ -85,7 +85,7 @@
 #pragma mark Action Messages
 
 // ------------------------------------------------------
-/// flush script error console
+/// flush console
 - (IBAction)cleanScriptError:(id)sender
 // ------------------------------------------------------
 {
@@ -107,7 +107,7 @@
 // ------------------------------------------------------
 {
     // Since the Find menu is overridden by OgreKit framework, we need catch shortcut input manually for find actions.
-    NSTextFinder *textFinder = [(CEScriptErrorPanelController *)[[self window] windowController] textFinder];
+    NSTextFinder *textFinder = [(CEConsolePanelController *)[[self window] windowController] textFinder];
     
     if ([[theEvent characters] isEqualToString:@"f"]) {
         [textFinder performAction:NSTextFinderActionShowFindInterface];

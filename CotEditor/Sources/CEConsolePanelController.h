@@ -1,6 +1,6 @@
 /*
  ==============================================================================
- CEScriptErrorPanelController
+ CEConsolePanelController
  
  CotEditor
  http://coteditor.com
@@ -30,7 +30,7 @@
 #import "CEPanelController.h"
 
 
-@interface CEScriptErrorPanelController : CEPanelController
+@interface CEConsolePanelController : CEPanelController
 
 - (void)addErrorString:(NSString *)string;
 

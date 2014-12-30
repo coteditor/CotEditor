@@ -826,9 +826,9 @@
                                                 <action selector="showHexColorCodeEditor:" target="290" id="yVn-uY-7Wr"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Script Error Panel" keyEquivalent="3" id="653">
+                                        <menuItem title="Console Panel" keyEquivalent="3" id="653">
                                             <connections>
-                                                <action selector="showScriptErrorPanel:" target="290" id="kzJ-oH-Hzd"/>
+                                                <action selector="showConsolePanel:" target="290" id="glc-xb-NG9"/>
                                             </connections>
                                         </menuItem>
                                     </items>

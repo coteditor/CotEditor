@@ -376,8 +376,8 @@
 "655.title" = "不透明度パネル";
 /* Class = "NSMenuItem"; title = "Color Code Panel"; ObjectID = "651"; */
 "651.title" = "カラーコードパネル";
-/* Class = "NSMenuItem"; title = "Script Error Panel"; ObjectID = "653"; */
-"653.title" = "スクリプトエラーパネル";
+/* Class = "NSMenuItem"; title = "Console Panel"; ObjectID = "653"; */
+"653.title" = "コンソールパネル";
 
 
 

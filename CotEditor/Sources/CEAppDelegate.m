@@ -41,7 +41,7 @@
 #import "CEOpacityPanelController.h"
 #import "CELineHightPanelController.h"
 #import "CEColorCodePanelController.h"
-#import "CEScriptErrorPanelController.h"
+#import "CEConsolePanelController.h"
 #import "CEUnicodeInputPanelController.h"
 #import "CEMigrationWindowController.h"
 #import "SWFSemanticVersion.h"
@@ -499,11 +499,11 @@
 
 
 // ------------------------------------------------------
-/// Show script error panel
-- (IBAction)showScriptErrorPanel:(id)sender
+/// Show console panel
+- (IBAction)showConsolePanel:(id)sender
 // ------------------------------------------------------
 {
-    [[CEScriptErrorPanelController sharedController] showWindow:self];
+    [[CEConsolePanelController sharedController] showWindow:self];
 }
 
 

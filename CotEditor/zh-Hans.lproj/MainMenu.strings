@@ -376,8 +376,8 @@
 "655.title" = "窗口透明度设置面板";
 /* Class = "NSMenuItem"; title = "Color Code Panel"; ObjectID = "651"; */
 "651.title" = "颜色代码面板";
-/* Class = "NSMenuItem"; title = "Script Error Panel"; ObjectID = "653"; */
-"653.title" = "脚本错误面板";
+/* Class = "NSMenuItem"; title = "Console Panel"; ObjectID = "653"; */
+"653.title" = "Console 面板"; // FIXME:
 
 
 
