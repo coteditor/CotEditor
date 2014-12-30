@@ -62,13 +62,15 @@
                     <constraint firstItem="7" firstAttribute="top" secondItem="5" secondAttribute="top" id="SAj-qa-TKB"/>
                 </constraints>
             </view>
-            <toolbar key="toolbar" implicitIdentifier="1C6AD1A5-EDE4-4B1D-A2C5-5EC0547B5D5A" autosavesConfiguration="NO" displayMode="iconAndLabel" sizeMode="small" id="fb4-be-4LF">
+            <toolbar key="toolbar" implicitIdentifier="1C6AD1A5-EDE4-4B1D-A2C5-5EC0547B5D5A" autosavesConfiguration="NO" displayMode="iconOnly" sizeMode="small" id="fb4-be-4LF">
                 <allowedToolbarItems>
                     <toolbarItem implicitItemIdentifier="AA498B98-0409-47B4-B333-650F18910743" label="Clear Log" paletteLabel="Clear Log" toolTip="Clear error log" tag="-1" image="Script_Clean" id="9N6-p4-mW2">
                         <connections>
                             <action selector="cleanScriptError:" target="-2" id="FQi-Ie-NhW"/>
                         </connections>
                     </toolbarItem>
+                    <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="mdM-pH-uIW"/>
+                    <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="oBh-BF-Mc4"/>
                 </allowedToolbarItems>
                 <defaultToolbarItems>
                     <toolbarItem reference="9N6-p4-mW2"/>
