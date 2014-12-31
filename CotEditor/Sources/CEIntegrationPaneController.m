@@ -70,7 +70,7 @@ static const NSURL *kPreferredLinkTargetURL;
                                                                         create:NO
                                                                          error:nil];
     kPreferredLinkTargetURL = [[[applicationDirURL URLByAppendingPathComponent:appName] URLByAppendingPathExtension:@"app"]
-                               URLByAppendingPathComponent:@"Contents/MacOS/cot"];
+                               URLByAppendingPathComponent:@"Contents/SharedSupport/bin/cot"];
 }
 
 
@@ -82,7 +82,7 @@ static const NSURL *kPreferredLinkTargetURL;
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         _linkURL = [NSURL fileURLWithPath:kSymbolicLinkPath];
-        _executableURL = [[NSBundle mainBundle] URLForAuxiliaryExecutable:@"cot"];
+        _executableURL = [[[NSBundle mainBundle] sharedSupportURL] URLByAppendingPathComponent:@"cot"];
         _uninstallable = YES;
         
         _installed = [self validateSymlink];
@@ -179,6 +179,7 @@ static const NSURL *kPreferredLinkTargetURL;
     unlink([[[self linkURL] path] UTF8String]);
     
     if (![[self linkURL] checkResourceIsReachableAndReturnError:nil]) {
+        [self validateSymlink];
         [self setInstalled:NO];
         [self toggleInstallButtonState:NO];
     }
