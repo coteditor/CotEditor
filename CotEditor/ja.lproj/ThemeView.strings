@@ -10,8 +10,8 @@
  © 2014 CotEditor Project
  */
 
-/* Class = "NSTextFieldCell"; title = "Basic Coloring"; ObjectID = "Bb9-qh-gwK"; */
-"Bb9-qh-gwK.title" = "基本カラーリング";
+/* Class = "NSTextFieldCell"; title = "Basic"; ObjectID = "Bb9-qh-gwK"; */
+"Bb9-qh-gwK.title" = "基本";
 
 /* Class = "NSTextFieldCell"; title = "Text:"; ObjectID = "hbk-iX-4VK"; */
 "hbk-iX-4VK.title" = "文字：";
@@ -29,8 +29,8 @@
 "0ZP-Zp-oBu.title" = "システムカラーを使う";
 
 
-/* Class = "NSTextFieldCell"; title = "Syntax Coloring"; ObjectID = "F64-8o-JYC"; */
-"F64-8o-JYC.title" = "シンタックスカラーリング";
+/* Class = "NSTextFieldCell"; title = "Syntax"; ObjectID = "F64-8o-JYC"; */
+"F64-8o-JYC.title" = "シンタックス";
 
 /* Class = "NSTextFieldCell"; title = "Keywords:"; ObjectID = "IU8-bd-gBv"; */
 "IU8-bd-gBv.title" = "キーワード：";

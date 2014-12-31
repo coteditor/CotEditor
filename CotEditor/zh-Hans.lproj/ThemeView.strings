@@ -11,8 +11,8 @@
  © 2014 CotEditor Project
  */
 
-/* Class = "NSTextFieldCell"; title = "Basic Coloring"; ObjectID = "Bb9-qh-gwK"; */
-"Bb9-qh-gwK.title" = "基本颜色";
+/* Class = "NSTextFieldCell"; title = "Basic"; ObjectID = "Bb9-qh-gwK"; */
+"Bb9-qh-gwK.title" = "基本";
 
 /* Class = "NSTextFieldCell"; title = "Text:"; ObjectID = "hbk-iX-4VK"; */
 "hbk-iX-4VK.title" = "字符:";
@@ -30,8 +30,8 @@
 "0ZP-Zp-oBu.title" = "使用系统颜色";
 
 
-/* Class = "NSTextFieldCell"; title = "Syntax Coloring"; ObjectID = "F64-8o-JYC"; */
-"F64-8o-JYC.title" = "语法颜色";
+/* Class = "NSTextFieldCell"; title = "Syntax"; ObjectID = "F64-8o-JYC"; */
+"F64-8o-JYC.title" = "语法";
 
 /* Class = "NSTextFieldCell"; title = "Keywords:"; ObjectID = "IU8-bd-gBv"; */
 "IU8-bd-gBv.title" = "关键字:";
