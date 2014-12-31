@@ -100,13 +100,13 @@ static NSDictionary *kUnprintableKeyTable;
     if (self) {
         // read default key bindings
         NSURL *menuURL = [[NSBundle mainBundle] URLForResource:@"MenuKeyBindings"
-                                             withExtension:@"plist"
-                                              subdirectory:@"KeyBindings"];
+                                                 withExtension:@"plist"
+                                                  subdirectory:@"KeyBindings"];
         _defaultMenuKeyBindingDict = [NSDictionary dictionaryWithContentsOfURL:menuURL];
         
         NSURL *textURL = [[NSBundle mainBundle] URLForResource:@"TextKeyBindings"
-                                             withExtension:@"plist"
-                                              subdirectory:@"KeyBindings"];
+                                                 withExtension:@"plist"
+                                                  subdirectory:@"KeyBindings"];
         _defaultTextKeyBindingDict = [NSDictionary dictionaryWithContentsOfURL:textURL];
         
         /// read user key bindins if available
@@ -349,7 +349,6 @@ static NSDictionary *kUnprintableKeyTable;
     if ([dictToSave isEqualToDictionary:[self defaultTextKeyBindingDict]] &&
         [insertTexts isEqualToArray:defaultInsertTexts])
     {
-        NSLog(@"is same");
         [[NSFileManager defaultManager] removeItemAtURL:fileURL error:nil];
         success = YES;
         
@@ -439,13 +438,12 @@ static NSDictionary *kUnprintableKeyTable;
         if ([[CEKeyBindingManager selectorStringsToIgnore] containsObject:NSStringFromSelector([item action])] ||
             ([item tag] == CEServicesMenuItemTag) ||
             ([item tag] == CEWindowPanelsMenuItemTag) ||
-            ([item tag] == CEScriptMenuDirectoryTag))
+            ([item tag] == CEScriptMenuDirectoryTag) ||
+            [item isAlternate])  // 隠しメニューは変更しない
         {
             continue;
         }
-        if ([item isAlternate]) {  // 隠しメニューは変更しない
-            continue;
-        }
+        
         [item setKeyEquivalent:@""];
         [item setKeyEquivalentModifierMask:0];
         if ([item hasSubmenu]) {
@@ -565,6 +563,7 @@ static NSDictionary *kUnprintableKeyTable;
         return [CEKeyBindingManager printableCharFromIgnoringModChar:string];
     }
 }
+
 
 //------------------------------------------------------
 /// キーバインディング定義文字列から表示用モディファイアキー文字列を生成し、返す
