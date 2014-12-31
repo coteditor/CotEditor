@@ -948,7 +948,7 @@
 	<key>NSHumanReadableCopyright</key>
 	<string>© 2005-2009 nakamuxu
 © 2011, 2014 usami-k
-© 2014 1024jp</string>
+© 2014-2015 1024jp</string>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
@@ -980,16 +980,16 @@
 			<string>openFile</string>
 			<key>NSPortName</key>
 			<string>${PRODUCT_NAME}</string>
-			<key>NSSendTypes</key>
-			<array>
-				<string>NSURLPboardType</string>
-				<string>NSStringPboardType</string>
-			</array>
 			<key>NSRequiredContext</key>
 			<dict>
 				<key>NSTextContent</key>
 				<string>FilePath</string>
 			</dict>
+			<key>NSSendTypes</key>
+			<array>
+				<string>NSURLPboardType</string>
+				<string>NSStringPboardType</string>
+			</array>
 		</dict>
 	</array>
 	<key>OSAScriptingDefinition</key>
