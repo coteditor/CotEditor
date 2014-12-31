@@ -21,7 +21,7 @@
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eEc-Sx-LJN">
                     <rect key="frame" x="144" y="93" width="102" height="32"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="90" id="QR6-gE-nsb"/>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="90" id="QR6-gE-nsb"/>
                     </constraints>
                     <buttonCell key="cell" type="push" title="Install" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ltN-wn-m8M">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
