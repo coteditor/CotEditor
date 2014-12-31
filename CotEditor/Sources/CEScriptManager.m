@@ -240,7 +240,7 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 - (IBAction)copySampleScriptToUserDomain:(id)sender
 // ------------------------------------------------------
 {
-    NSURL *sourceURL = [[NSBundle mainBundle] URLForResource:@"SampleScript" withExtension:nil];
+    NSURL *sourceURL = [[[NSBundle mainBundle] sharedSupportURL] URLByAppendingPathComponent:@"SampleScripts"];
     NSURL *destURL = [[[self class] scriptDirectoryURL] URLByAppendingPathComponent:@"SampleScript"];
     
     if (![sourceURL checkResourceIsReachableAndReturnError:nil]) {
