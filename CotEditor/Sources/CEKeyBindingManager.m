@@ -696,6 +696,8 @@ static NSDictionary *kUnprintableKeyTable;
              @"changeEncoding:",
              @"changeSyntaxStyle:",
              @"changeTheme:",
+             @"changeTabWidth:",
+             @"changeLineHeight:",
              @"makeKeyAndOrderFront:",
              @"launchScript:",
              @"_openRecentDocument:",  // = 10.3 の「最近開いた書類」
