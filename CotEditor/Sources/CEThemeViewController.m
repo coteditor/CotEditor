@@ -51,7 +51,7 @@
 #pragma mark Superclass methods
 
 // ------------------------------------------------------
-/// init
+/// initialize instance
 - (instancetype)init
 // ------------------------------------------------------
 {
@@ -64,6 +64,7 @@
 - (void)dealloc
 // ------------------------------------------------------
 {
+    [[self popover] setDelegate:nil];  // avoid crash (2014-12-31)
     [self endObservingTheme];
 }
 
