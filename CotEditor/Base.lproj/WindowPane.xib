@@ -88,11 +88,11 @@
                     </connections>
                 </button>
                 <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="614">
-                    <rect key="frame" x="345" y="78" width="40" height="14"/>
+                    <rect key="frame" x="345" y="84" width="40" height="14"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="36" id="r1N-NC-Pbl"/>
                     </constraints>
-                    <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" selectable="YES" sendsActionOnEndEditing="YES" state="on" alignment="right" title="100%" usesSingleLineMode="YES" id="3341">
+                    <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" state="on" alignment="right" title="100%" usesSingleLineMode="YES" id="3341">
                         <numberFormatter key="formatter" formatterBehavior="default10_4" localizesFormat="NO" numberStyle="percent" minimumIntegerDigits="1" maximumIntegerDigits="309" id="615">
                             <integer key="multiplier" value="100"/>
                             <decimal key="minimum" value="0.2"/>
@@ -107,11 +107,11 @@
                     </connections>
                 </textField>
                 <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="616">
-                    <rect key="frame" x="137" y="75" width="204" height="26"/>
+                    <rect key="frame" x="137" y="76" width="204" height="27"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="200" id="lB5-0J-5jf"/>
                     </constraints>
-                    <sliderCell key="cell" continuous="YES" state="on" alignment="left" minValue="0.20000000000000001" maxValue="1" doubleValue="0.99804054054054059" tickMarkPosition="above" numberOfTickMarks="17" sliderType="linear" id="3342">
+                    <sliderCell key="cell" continuous="YES" state="on" alignment="left" minValue="0.20000000000000001" maxValue="1" doubleValue="1" tickMarkPosition="below" numberOfTickMarks="9" sliderType="linear" id="3342">
                         <font key="font" size="12" name="Helvetica"/>
                     </sliderCell>
                     <connections>
@@ -124,7 +124,7 @@
                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="axesIndependently" image="OpacityGuide" id="3340"/>
                 </imageView>
                 <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6Rm-ix-3Ik">
-                    <rect key="frame" x="47" y="78" width="86" height="17"/>
+                    <rect key="frame" x="47" y="84" width="86" height="17"/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="View opacity:" usesSingleLineMode="YES" id="gSx-LA-TPc">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -455,10 +455,10 @@
                 <constraint firstItem="627" firstAttribute="top" secondItem="626" secondAttribute="bottom" constant="9" id="Oxj-YV-EHk"/>
                 <constraint firstItem="LzO-zQ-5et" firstAttribute="leading" secondItem="798" secondAttribute="leading" id="QVr-3l-hsG"/>
                 <constraint firstItem="LzO-zQ-5et" firstAttribute="leading" secondItem="707" secondAttribute="leading" constant="170" id="Qsn-yX-Kme"/>
-                <constraint firstItem="6Rm-ix-3Ik" firstAttribute="top" secondItem="Hya-cT-hxD" secondAttribute="bottom" constant="26" id="RbO-Rf-PfE"/>
+                <constraint firstItem="6Rm-ix-3Ik" firstAttribute="top" secondItem="Hya-cT-hxD" secondAttribute="bottom" constant="20" id="RbO-Rf-PfE"/>
                 <constraint firstItem="620" firstAttribute="leading" secondItem="Hya-cT-hxD" secondAttribute="trailing" constant="8" symbolic="YES" id="Rl0-eh-Q53"/>
                 <constraint firstItem="623" firstAttribute="leading" secondItem="624" secondAttribute="trailing" constant="20" id="SNT-fm-1r4"/>
-                <constraint firstItem="616" firstAttribute="top" secondItem="6Rm-ix-3Ik" secondAttribute="top" constant="-6" id="SdR-VE-aFv"/>
+                <constraint firstItem="616" firstAttribute="top" secondItem="6Rm-ix-3Ik" secondAttribute="top" id="SdR-VE-aFv"/>
                 <constraint firstItem="614" firstAttribute="leading" secondItem="616" secondAttribute="trailing" constant="8" symbolic="YES" id="UBQ-F3-kSO"/>
                 <constraint firstItem="dco-7P-YD6" firstAttribute="top" secondItem="613" secondAttribute="bottom" constant="8" symbolic="YES" id="UiJ-29-qvN"/>
                 <constraint firstItem="799" firstAttribute="leading" secondItem="798" secondAttribute="leading" constant="20" id="V1S-Hi-ORw"/>
