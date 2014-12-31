@@ -238,7 +238,6 @@
                     </popUpButtonCell>
                     <connections>
                         <binding destination="26" name="selectedValue" keyPath="values.defaultColoringStyleName" id="733"/>
-                        <binding destination="26" name="enabled" keyPath="values.doSyntaxColoring" id="732"/>
                     </connections>
                 </popUpButton>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="703">
