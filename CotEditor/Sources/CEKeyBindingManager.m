@@ -224,13 +224,16 @@ static NSDictionary *kUnprintableKeyTable;
     
     NSMutableArray *textKeySpecCharArray = [NSMutableArray array];
     NSDictionary *dict = usesFactoryDefaults ? [self defaultTextKeyBindingDict] : [self textKeyBindingDict];
+    const NSRange actionIndexRange = NSMakeRange(17, 2);  // range of numbers in "insertCustomText_00:"
     
     for (NSString *selector in [CEKeyBindingManager textKeyBindingSelectorStrArray]) {
         if ([selector length] == 0) { continue; }
         
+        NSString *title = [NSString stringWithFormat:NSLocalizedString(@"Insert Text %@", nil),
+                           @([[selector substringWithRange:actionIndexRange] integerValue])] ? : @"";
         NSString *key = [[dict allKeysForObject:selector] firstObject] ? : @"";
         
-        [textKeySpecCharArray addObject:[@{CEKeyBindingTitleKey: selector,
+        [textKeySpecCharArray addObject:[@{CEKeyBindingTitleKey: title,
                                            CEKeyBindingKeySpecCharsKey: key,
                                            CEKeyBindingSelectorStringKey: selector} mutableCopy]];
     }

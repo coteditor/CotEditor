@@ -18,14 +18,14 @@
         <window title="Text Key Bindings" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="textKeyBindingsEditSheet" animationBehavior="default" id="54" userLabel="Edit Sheet">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="309" y="245" width="460" height="360"/>
+            <rect key="contentRect" x="309" y="245" width="450" height="360"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
             <view key="contentView" id="55">
-                <rect key="frame" x="0.0" y="0.0" width="460" height="360"/>
+                <rect key="frame" x="0.0" y="0.0" width="450" height="360"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="64" customClass="CEWrappingTextField">
-                        <rect key="frame" x="18" y="312" width="424" height="28"/>
+                        <rect key="frame" x="18" y="312" width="414" height="28"/>
                         <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="left" id="150">
                             <font key="font" metaFont="smallSystem"/>
                             <string key="title">To change a binding, select it, click the key column, and then type the keys.
@@ -35,7 +35,7 @@ Do NOT include the Command key.</string>
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="63">
-                        <rect key="frame" x="18" y="296" width="424" height="14"/>
+                        <rect key="frame" x="18" y="296" width="414" height="14"/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="'Foo' includes Command Key. Edit it again." id="149">
                             <font key="font" metaFont="smallSystem"/>
                             <color key="textColor" red="0.86335355039999995" green="0.0" blue="0.021221207450000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -54,7 +54,7 @@ Do NOT include the Command key.</string>
                         </textFieldCell>
                     </textField>
                     <scrollView autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="56">
-                        <rect key="frame" x="20" y="61" width="420" height="60"/>
+                        <rect key="frame" x="20" y="61" width="410" height="60"/>
                         <clipView key="contentView" id="xtC-OC-ZcW">
                             <rect key="frame" x="1" y="1" width="428" height="58"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -63,10 +63,10 @@ Do NOT include the Command key.</string>
                                     <rect key="frame" x="0.0" y="0.0" width="428" height="58"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <size key="minSize" width="418" height="58"/>
+                                    <size key="minSize" width="408" height="58"/>
                                     <size key="maxSize" width="430" height="10000000"/>
                                     <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                    <size key="minSize" width="418" height="58"/>
+                                    <size key="minSize" width="408" height="58"/>
                                     <size key="maxSize" width="430" height="10000000"/>
                                     <allowedInputSourceLocales>
                                         <string>eu</string>
@@ -801,7 +801,7 @@ Do NOT include the Command key.</string>
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="70">
-                        <rect key="frame" x="246" y="13" width="100" height="32"/>
+                        <rect key="frame" x="236" y="13" width="100" height="32"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="88" id="I8t-TU-dCH"/>
                         </constraints>
@@ -817,7 +817,7 @@ Gw
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" tag="100" translatesAutoresizingMaskIntoConstraints="NO" id="68">
-                        <rect key="frame" x="346" y="13" width="100" height="32"/>
+                        <rect key="frame" x="336" y="13" width="100" height="32"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="88" id="N2d-XJ-rpq"/>
                         </constraints>
@@ -833,7 +833,7 @@ DQ
                         </connections>
                     </button>
                     <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="85">
-                        <rect key="frame" x="20" y="147" width="420" height="141"/>
+                        <rect key="frame" x="20" y="147" width="410" height="141"/>
                         <clipView key="contentView" misplaced="YES" id="hSR-kT-PyY">
                             <rect key="frame" x="1" y="17" width="428" height="130"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -844,7 +844,7 @@ DQ
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                     <tableColumns>
-                                        <tableColumn identifier="title" editable="NO" width="300" minWidth="16" maxWidth="1000" id="88">
+                                        <tableColumn identifier="title" editable="NO" width="290" minWidth="16" maxWidth="1000" id="88">
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Action">
                                                 <font key="font" metaFont="smallSystem"/>
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -858,12 +858,12 @@ DQ
                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                             <prototypeCellViews>
                                                 <tableCellView id="PIY-X9-4xG">
-                                                    <rect key="frame" x="1" y="1" width="300" height="17"/>
+                                                    <rect key="frame" x="1" y="1" width="290" height="17"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
                                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="TVx-g4-ERo">
-                                                            <rect key="frame" x="0.0" y="0.0" width="300" height="17"/>
-                                                            <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="InsertCustomText_00:" id="nuy-Xq-RWa">
+                                                            <rect key="frame" x="0.0" y="0.0" width="290" height="17"/>
+                                                            <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Insert Text 0" id="nuy-Xq-RWa">
                                                                 <font key="font" metaFont="system"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>

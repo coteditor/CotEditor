@@ -365,6 +365,8 @@
 
 
 /* MARK: CEKeyBindingManager */
+// label for text menu keybindings action
+"Insert Text %@" = "Insert Text %@";  // FIXME:
 // Warning messages
 "“%@” has already been used. Edit it again." = "“%@” 已在使用中，请重新设置";
 "“%@” does NOT include Command key. Edit it again." = "“%@” 中没有包含 Command 键，请重新设置";
