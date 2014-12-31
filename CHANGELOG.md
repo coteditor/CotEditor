@@ -11,6 +11,7 @@ Change Log
 - New AppleScript property `tab width` for document object.
 - Now, CotEditor script receives the absolute file path of the frontmost document as an argument if available.
 - Add “New CotEditor Document with Selection” and “Open File in CotEditor” Services.
+- Add syntax style for “Julia”.
 
 
 ### Additions/Changes

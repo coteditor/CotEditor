@@ -398,6 +398,26 @@
 		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
+				<string>jl</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>JuliaIcon</string>
+			<key>CFBundleTypeMIMETypes</key>
+			<array>
+				<string>text/x-python-script</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>Julia Source</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSTypeIsPackage</key>
+			<integer>0</integer>
+			<key>NSDocumentClass</key>
+			<string>CEDocument</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
 				<string>tex</string>
 				<string>sty</string>
 				<string>cls</string>

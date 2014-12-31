@@ -146,6 +146,14 @@
 
     ]
   },
+  "Julia": {
+    "extensions": [
+      "jl"
+    ],
+    "filenames": [
+
+    ]
+  },
   "LaTeX": {
     "extensions": [
       "tex",
