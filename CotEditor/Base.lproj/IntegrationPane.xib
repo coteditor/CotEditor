@@ -60,6 +60,16 @@
                         </binding>
                     </connections>
                 </textField>
+                <button horizontalHuggingPriority="750" verticalHuggingPriority="750" tag="14" translatesAutoresizingMaskIntoConstraints="NO" id="T0F-Mz-b1C">
+                    <rect key="frame" x="497" y="17" width="25" height="25"/>
+                    <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="UdG-G4-xvN">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="openHelpAnchor:" target="-1" id="Nh2-ag-ijG"/>
+                    </connections>
+                </button>
                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Pev-gA-jbT">
                     <rect key="frame" x="148" y="64" width="374" height="28"/>
                     <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="The 'cot' command-line tool allows you to launch CotEditor and let it open files from the command line." id="c48-xK-Ag1">
@@ -69,7 +79,7 @@
                     </textFieldCell>
                 </textField>
                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="otc-Q5-SoO" customClass="CEWrappingTextField">
-                    <rect key="frame" x="165" y="42" width="324" height="14"/>
+                    <rect key="frame" x="165" y="42" width="357" height="14"/>
                     <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="Warning will be displayed here." id="boy-gV-Bda">
                         <font key="font" metaFont="smallSystem"/>
                         <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
@@ -93,25 +103,15 @@
                         </binding>
                     </connections>
                 </imageView>
-                <button horizontalHuggingPriority="750" verticalHuggingPriority="750" tag="14" translatesAutoresizingMaskIntoConstraints="NO" id="T0F-Mz-b1C">
-                    <rect key="frame" x="497" y="17" width="25" height="25"/>
-                    <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="UdG-G4-xvN">
-                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="system"/>
-                    </buttonCell>
-                    <connections>
-                        <action selector="openHelpAnchor:" target="-1" id="Nh2-ag-ijG"/>
-                    </connections>
-                </button>
             </subviews>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="Pev-gA-jbT" secondAttribute="trailing" constant="20" symbolic="YES" id="31Q-YL-1j5"/>
                 <constraint firstItem="otc-Q5-SoO" firstAttribute="leading" secondItem="0SW-Kn-GYs" secondAttribute="trailing" constant="4" id="3ys-SG-6ae"/>
                 <constraint firstItem="otc-Q5-SoO" firstAttribute="top" secondItem="Pev-gA-jbT" secondAttribute="bottom" constant="8" symbolic="YES" id="6mk-8i-QpE"/>
                 <constraint firstItem="nVs-Jw-E1L" firstAttribute="leading" secondItem="eEc-Sx-LJN" secondAttribute="trailing" constant="8" symbolic="YES" id="77l-eK-IFQ"/>
-                <constraint firstItem="T0F-Mz-b1C" firstAttribute="leading" secondItem="otc-Q5-SoO" secondAttribute="trailing" constant="12" symbolic="YES" id="80f-iB-3yP"/>
                 <constraint firstItem="DkP-oI-RXs" firstAttribute="baseline" secondItem="eEc-Sx-LJN" secondAttribute="baseline" id="8yo-0h-8ug"/>
                 <constraint firstItem="eEc-Sx-LJN" firstAttribute="leading" secondItem="DkP-oI-RXs" secondAttribute="trailing" constant="8" symbolic="YES" id="9oC-un-I7F"/>
+                <constraint firstAttribute="trailing" secondItem="otc-Q5-SoO" secondAttribute="trailing" constant="20" symbolic="YES" id="CcC-7k-LnX"/>
                 <constraint firstItem="DkP-oI-RXs" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="20" symbolic="YES" id="Mbe-2v-iZ0"/>
                 <constraint firstItem="Pev-gA-jbT" firstAttribute="leading" secondItem="eEc-Sx-LJN" secondAttribute="leading" id="N6y-HE-3SX"/>
                 <constraint firstItem="DkP-oI-RXs" firstAttribute="baseline" secondItem="nVs-Jw-E1L" secondAttribute="baseline" id="QkF-OO-wG0"/>
