@@ -234,12 +234,13 @@ const NSInteger kNoMenuItem = -1;
         NSEvent *event = [NSApp currentEvent];
         NSUInteger flags = [NSEvent modifierFlags];
         
-        if (([event type] == NSKeyDown) && (flags == 0)) {
+        if (([event type] == NSKeyDown) && (flags == 0)) {  // ignore input by "Insert Yen/Backslash" menu action
             NSString *yen = [NSString stringWithCharacters:&kYenMark length:1];
-            if ([aString isEqualToString:@"\\"]) {
+            
+            if ([aString isEqual:@"\\"]) {  // Don't use isEqualToString: since aString can be a NSAttributedString.
                 [super insertText:yen replacementRange:replacementRange];
                 return;
-            } else if ([aString isEqualToString:yen]) {
+            } else if ([aString isEqual:yen]) {
                 [super insertText:@"\\" replacementRange:replacementRange];
                 return;
             }
@@ -249,7 +250,7 @@ const NSInteger kNoMenuItem = -1;
     // smart outdent with '}' charcter
     if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultAutoIndentKey] &&
         [[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultEnableSmartIndentKey] &&
-        (replacementRange.length == 0) && [aString isEqualToString:@"}"])
+        (replacementRange.length == 0) && [aString isEqual:@"}"])
     {
         NSString *wholeString = [self string];
         NSUInteger insretionLocation = NSMaxRange([self selectedRange]);

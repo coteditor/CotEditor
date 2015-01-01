@@ -37,7 +37,7 @@ Change Log
 - Fix an issue that the preferred file encoding for encoding detection could be set wrong after running file open panel.
 - Fix an issue that incompatible character markup positions were wrong by CR/LF line endings.
 - Fix “Retore Defaults” button enability on text key bindings edit sheet.
-- Fix a possible crash on Japanese input.
+- Fix possible crashes on input.
 - Fix an issue that application could crash after switching theme in preferences.
 - Fix some missing localizations in simplified Chinese. (Thanks to Wei Wang!)
 - Fix an issue that an alert message was not localized.
