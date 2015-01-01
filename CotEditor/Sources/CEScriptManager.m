@@ -617,6 +617,7 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
     }
     
     // pipes
+    __block BOOL cancelled = NO;  // user cancel state
     NSPipe *inPipe = [NSPipe pipe];
     NSPipe *outPipe = [NSPipe pipe];
     NSPipe *errPipe = [NSPipe pipe];
@@ -640,6 +641,8 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
                                                        queue:nil
                                                   usingBlock:^(NSNotification *note)
      {
+         if (cancelled) { return; }
+         
          NSData *data = [note userInfo][NSFileHandleNotificationDataItem];
          NSString *output = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
          if (output) {
@@ -652,7 +655,12 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
     [task executeWithArguments:arguments completionHandler:^(NSError *error) {
         typeof(self) strongSelf = weakSelf;
         
-        // error
+        // on user cancel
+        if ([[error domain] isEqualToString:NSPOSIXErrorDomain] && [error code] == ENOTBLK) {
+            cancelled = YES;
+            return;
+        }
+        
         NSData *errorData = [[errPipe fileHandleForReading] readDataToEndOfFile];
         NSString *errorMsg = [[NSString alloc] initWithData:errorData encoding:NSUTF8StringEncoding];
         if ([errorMsg length] > 0) {
