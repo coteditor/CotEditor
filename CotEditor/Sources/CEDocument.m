@@ -39,7 +39,6 @@
 #import "CEODBEventSender.h"
 #import "CESyntaxManager.h"
 #import "CEUtils.h"
-#import "NSData+MD5.h"
 #import "constants.h"
 
 
@@ -57,7 +56,6 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 @property (nonatomic) CEPrintPanelAccessoryController *printPanelAccessoryController;
 
-@property (atomic, copy) NSString *fileMD5;
 @property (atomic) BOOL needsShowUpdateAlertWithBecomeKey;
 @property (atomic, getter=isRevertingForExternalFileUpdate) BOOL revertingForExternalFileUpdate;
 @property (nonatomic) BOOL didAlertNotWritable;  // 文書が読み込み専用のときにその警告を表示したかどうか
@@ -499,46 +497,33 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 //=======================================================
 
 // ------------------------------------------------------
-/// ファイルが変更された
+/// file has been modified by an external process
 - (void)presentedItemDidChange
 // ------------------------------------------------------
 {
-    // ファイルのmodificationDateがドキュメントのmodificationDateと同じ場合は無視
+    // check modification date of represented file
+    __block NSDate *contentModificationDate;
     NSFileCoordinator *coordinator = [[NSFileCoordinator alloc] initWithFilePresenter:self];
-    __block NSDate *fileModificationDate;
     [coordinator coordinateReadingItemAtURL:[self fileURL] options:NSFileCoordinatorReadingWithoutChanges
                                       error:nil byAccessor:^(NSURL *newURL)
      {
-         NSDictionary *fileAttrs = [[NSFileManager defaultManager] attributesOfItemAtPath:[newURL path] error:nil];
-         fileModificationDate = [fileAttrs fileModificationDate];
+         [newURL getResourceValue:&contentModificationDate forKey:NSURLContentModificationDateKey error:nil];
      }];
-    if ([fileModificationDate isEqualToDate:[self fileModificationDate]]) { return; }
     
-    // ファイルのMD5ハッシュが保持しているものと同じ場合は編集されていないと認識させた上で無視
-    __block NSString *MD5;
-    [coordinator coordinateReadingItemAtURL:[self fileURL] options:NSFileCoordinatorReadingWithoutChanges
-                                      error:nil byAccessor:^(NSURL *newURL)
-     {
-         MD5 = [[NSData dataWithContentsOfURL:newURL] MD5];
-     }];
-    if ([MD5 isEqualToString:[self fileMD5]]) {
-        // documentの保持しているfileModificationDateを書き換える (2014-03 by 1024jp)
-        // ここだけで無視してもファイル保存時にアラートが出るのことへの対策
-        [self setFileModificationDate:fileModificationDate];
-        
-        return;
-    }
+    // ignore if contents wasn't changed.
+    if ([contentModificationDate isEqualToDate:[self fileModificationDate]]) { return; }
     
-    // 書き込み通知を行う
+    // notify about external file update
     [self setNeedsShowUpdateAlertWithBecomeKey:YES];
-    // アプリがアクティブならシート／ダイアログを表示し、そうでなければ設定を見てDockアイコンをジャンプ
     if ([NSApp isActive]) {
+        // display dialog
         __weak typeof(self) weakSelf = self;
         dispatch_async(dispatch_get_main_queue(), ^{
             [weakSelf showUpdatedByExternalProcessAlert];
         });
         
     } else if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultNotifyEditByAnotherKey]) {
+        // let application icon in Dock jump
         [NSApp requestUserAttention:NSInformationalRequest];
     }
 }
@@ -1296,9 +1281,6 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     
     int status = [task terminationStatus];
     
-    // presentedItemDidChangeにて内容の同一性を比較するためにファイルのMD5を保存する
-    [self setFileMD5:[data MD5]];
-    
     if (status != 0) {
         return NO;
     }
@@ -1540,9 +1522,6 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     success = (status == 0);
     
     if (success) {
-        // presentedItemDidChange にて内容の同一性を比較するためにファイルの MD5 を保存する
-        [self setFileMD5:[data MD5]];
-        
         // クリエータなどを設定
         [[NSFileManager defaultManager] setAttributes:attributes ofItemAtPath:[url path] error:nil];
         
