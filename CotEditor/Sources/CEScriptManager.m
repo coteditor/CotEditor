@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014 CotEditor Project
+ © 2014-2015 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -52,6 +52,13 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 };
 
 
+@interface CEScriptManager ()
+
+@property (nonatomic) NSDateFormatter *dateFormatter;
+
+@end
+
+
 
 
 #pragma mark -
@@ -86,6 +93,9 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 {
     self = [super init];
     if (self) {
+        _dateFormatter = [[NSDateFormatter alloc] init];
+        [_dateFormatter setDateFormat:@"YYYY-MM-DD HH:MM:SS"];
+        
         [self copySampleScriptToUserDomain:self];
         
         // run dummy AppleScript once for quick script launch
@@ -367,48 +377,69 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 
 // ------------------------------------------------------
 /// return document content conforming to the input type
-+ (NSString *)inputStringWithType:(CEScriptInputType)inputType document:(CEDocument *)document error:(BOOL *)hasError
++ (NSString *)inputStringWithType:(CEScriptInputType)inputType document:(CEDocument *)document error:(NSError **)error
 // ------------------------------------------------------
 {
     CEEditorWrapper *editor = [document editor];
     
-    if (!editor) { return nil; }
+    // on no document found
+    if (!editor) {
+        switch (inputType) {
+            case CEInputSelectionType:
+            case CEInputAllTextType:
+                if (error) {
+                    *error = [NSError errorWithDomain:CEErrorDomain
+                                                 code:CEScriptNoTargetDocumentError
+                                             userInfo:@{NSLocalizedDescriptionKey: @"No document to scan input."}];
+                }
+                return nil;
+                
+            default:
+                break;
+        }
+    }
     
     switch (inputType) {
         case CEInputSelectionType:
-            if (editor) {
-                NSRange selectedRange = [[editor textView] selectedRange];
-                return [[editor string] substringWithRange:selectedRange];
-                // ([editor string] は改行コードLFの文字列を返すが、[editor selectedRange] は
-                // 改行コードを反映させた範囲を返すので、「CR/LF」では使えない。そのため、
-                // [[editor textView] selectedRange] を使う必要がある。2009-04-12
-            }
-            break;
+            // ([editor string] は改行コードLFの文字列を返すが、[editor selectedRange] は
+            // 改行コードを反映させた範囲を返すので、「CR/LF」では使えない。そのため、
+            // [[editor textView] selectedRange] を使う必要がある。2009-04-12
+            return [[editor string] substringWithRange:[[editor textView] selectedRange]];
             
         case CEInputAllTextType:
-            if (editor) {
-                return [editor string];
-            }
-            break;
+            return [editor string];
             
         case CENoInputType:
             return nil;
     }
-    
-    if (hasError) {
-        *hasError = YES;
-    }
-    
-    return nil;
 }
 
 
 // ------------------------------------------------------
 /// apply results conforming to the output type to the frontmost document
-+ (void)applyOutput:(NSString *)output document:(CEDocument *)document outputType:(CEScriptOutputType)outputType
++ (void)applyOutput:(NSString *)output document:(CEDocument *)document outputType:(CEScriptOutputType)outputType error:(NSError **)error
 // ------------------------------------------------------
 {
     CEEditorWrapper *editor = [document editor];
+    
+    // on no document found
+    if (!editor) {
+        switch (outputType) {
+            case CEReplaceSelectionType:
+            case CEReplaceAllTextType:
+            case CEInsertAfterSelectionType:
+            case CEAppendToAllTextType:
+                if (error) {
+                    *error = [NSError errorWithDomain:CEErrorDomain
+                                                 code:CEScriptNoTargetDocumentError
+                                             userInfo:@{NSLocalizedDescriptionKey: @"Target document was not found."}];
+                }
+                return;
+                
+            default:
+                break;
+        }
+    }
     
     switch (outputType) {
         case CEReplaceSelectionType:
@@ -588,6 +619,7 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
     NSError *error = nil;
     NSUserUnixTask *task = [[NSUserUnixTask alloc] initWithURL:URL error:&error];
     NSString *script = [self stringOfScript:URL];
+    NSString *scriptName = [URL lastPathComponent];
 
     // show an alert and endup if script file cannot read
     if (!task || [script length] == 0) {
@@ -600,10 +632,10 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 
     // read input
     CEScriptInputType inputType = [[self class] scanInputType:script];
-    BOOL hasError = NO;
-    __block NSString *input = [[self class] inputStringWithType:inputType document:document error:&hasError];
-    if (hasError) {
-        [self showScriptError:@"No document, no Input."];
+    NSError *inputError = nil;
+    __block NSString *input = [[self class] inputStringWithType:inputType document:document error:&inputError];
+    if (inputError) {
+        [self showScriptError:[inputError localizedDescription] scriptName:scriptName];
         return;
     }
     
@@ -616,8 +648,10 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
         arguments = @[[[document fileURL] path]];
     }
     
-    // pipes
+    __weak typeof(self) weakSelf = self;
     __block BOOL cancelled = NO;  // user cancel state
+    
+    // pipes
     NSPipe *inPipe = [NSPipe pipe];
     NSPipe *outPipe = [NSPipe pipe];
     NSPipe *errPipe = [NSPipe pipe];
@@ -641,20 +675,24 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
                                                        queue:nil
                                                   usingBlock:^(NSNotification *note)
      {
+         typeof(self) strongSelf = weakSelf;
+         
          if (cancelled) { return; }
          
          NSData *data = [note userInfo][NSFileHandleNotificationDataItem];
          NSString *output = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
          if (output) {
-             [CEScriptManager applyOutput:output document:document outputType:outputType];
+             NSError *error;
+             [CEScriptManager applyOutput:output document:document outputType:outputType error:&error];
+             if (error) {
+                 [strongSelf showScriptError:[error localizedDescription] scriptName:scriptName];
+             }
          }
      }];
     
     // execute
-    __weak typeof(self) weakSelf = self;
-    [task executeWithArguments:arguments completionHandler:^(NSError *error) {
-        typeof(self) strongSelf = weakSelf;
-        
+    [task executeWithArguments:arguments completionHandler:^(NSError *error)
+     {
         // on user cancel
         if ([[error domain] isEqualToString:NSPOSIXErrorDomain] && [error code] == ENOTBLK) {
             cancelled = YES;
@@ -665,7 +703,8 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
         NSString *errorMsg = [[NSString alloc] initWithData:errorData encoding:NSUTF8StringEncoding];
         if ([errorMsg length] > 0) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                [strongSelf showScriptError:errorMsg];
+                typeof(self) strongSelf = weakSelf;
+                [strongSelf showScriptError:errorMsg scriptName:scriptName];
             });
         }
     }];
@@ -674,12 +713,14 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 
 // ------------------------------------------------------
 /// append message to console panel and show it
-- (void)showScriptError:(NSString *)errorString
+- (void)showScriptError:(NSString *)errorString scriptName:(NSString *)scriptName
 // ------------------------------------------------------
 {
+    NSString *string = [NSString stringWithFormat:@"[%@] %@\n%@",
+                        [[self dateFormatter] stringFromDate:[NSDate date]], scriptName, errorString];
+    
     [[CEConsolePanelController sharedController] showWindow:nil];
-    [[CEConsolePanelController sharedController] addErrorString:[NSString stringWithFormat:@"[%@]\n%@",
-                                                                     [[NSDate date] description], errorString]];
+    [[CEConsolePanelController sharedController] addErrorString:string];
 }
 
 @end
