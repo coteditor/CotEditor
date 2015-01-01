@@ -10,7 +10,8 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2011, 2014 CotEditor Project
+ © 2011, 2014 usami-k
+ © 2014-2015 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -532,7 +533,10 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     [self setNeedsShowUpdateAlertWithBecomeKey:YES];
     // アプリがアクティブならシート／ダイアログを表示し、そうでなければ設定を見てDockアイコンをジャンプ
     if ([NSApp isActive]) {
-        [self performSelectorOnMainThread:@selector(showUpdatedByExternalProcessAlert) withObject:nil waitUntilDone:NO];
+        __weak typeof(self) weakSelf = self;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [weakSelf showUpdatedByExternalProcessAlert];
+        });
         
     } else if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultNotifyEditByAnotherKey]) {
         [NSApp requestUserAttention:NSInformationalRequest];
