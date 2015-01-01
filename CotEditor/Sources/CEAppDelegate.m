@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014 CotEditor Project
+ © 2014-2015 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -213,7 +213,7 @@
                                };
     [[NSUserDefaults standardUserDefaults] registerDefaults:defaults];
     
-    // set initial values to NSUserDefaultsController which can restore to defaults
+    // set initial values to NSUserDefaultsController which can be restored to defaults
     NSDictionary *initialValues = [defaults dictionaryWithValuesForKeys:@[CEDefaultEncodingListKey,
                                                                           CEDefaultInsertCustomTextArrayKey,
                                                                           CEDefaultWindowWidthKey,
@@ -229,7 +229,7 @@
 
 
 // ------------------------------------------------------
-/// initialize
+/// initialize instance
 - (instancetype)init
 // ------------------------------------------------------
 {
@@ -288,19 +288,6 @@
 }
 
 
-//=======================================================
-// informal protocol of OgreKit
-//=======================================================
-
-// ------------------------------------------------------
-/// avoid OgreKit find panel handling rich text (see OgreTextFinder.m L203-212 for details)
-- (void)ogreKitShouldUseStylesInFindPanel:(OgreTextFinder*)textFinder
-// ------------------------------------------------------
-{
-    [textFinder setUseStylesInFindPanel:NO];
-}
-
-
 
 #pragma mark Protocol
 
@@ -319,6 +306,19 @@
     }
     
     return YES;
+}
+
+
+//=======================================================
+// informal protocol of OgreKit
+//=======================================================
+
+// ------------------------------------------------------
+/// avoid OgreKit find panel handling rich text (see OgreTextFinder.m L203-212 for details)
+- (void)ogreKitShouldUseStylesInFindPanel:(OgreTextFinder*)textFinder
+// ------------------------------------------------------
+{
+    [textFinder setUseStylesInFindPanel:NO];
 }
 
 
@@ -396,7 +396,7 @@
     
     // store latest version
     NSString *lastVersion = [[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultLastVersionKey];
-    NSString *thisVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
+    NSString *thisVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:(NSString *)kCFBundleVersionKey];
     SWFSemanticVersion *lastSemVer = lastVersion ? [SWFSemanticVersion semanticVersionWithString:lastVersion] : nil;
     SWFSemanticVersion *thisSemVer = [SWFSemanticVersion semanticVersionWithString:thisVersion];
     if (!lastSemVer || [lastSemVer compare:thisSemVer] == NSOrderedAscending) {  // lastVer < thisVer
@@ -407,25 +407,6 @@
     [NSApp setServicesProvider:self];
     
     [self setDidFinishLaunching:YES];
-}
-
-
-// ------------------------------------------------------
-/// setup Dock menu
-- (NSMenu *)applicationDockMenu:(NSApplication *)sender
-// ------------------------------------------------------
-{
-    NSMenu *menu = [[NSMenu alloc] init];
-    NSMenuItem *newItem = [[[[[NSApp mainMenu] itemAtIndex:CEFileMenuIndex] submenu] itemWithTag:CENewMenuItemTag] copy];
-    NSMenuItem *openItem = [[[[[NSApp mainMenu] itemAtIndex:CEFileMenuIndex] submenu] itemWithTag:CEOpenMenuItemTag] copy];
-
-    [newItem setAction:@selector(newInDockMenu:)];
-    [openItem setAction:@selector(openInDockMenu:)];
-
-    [menu addItem:newItem];
-    [menu addItem:openItem];
-
-    return menu;
 }
 
 
@@ -579,7 +560,7 @@
 - (IBAction)openHelpAnchor:(id)sender
 // ------------------------------------------------------
 {
-    NSString *bookName = [[NSBundle mainBundle] objectForInfoDictionaryKey: @"CFBundleHelpBookName"];
+    NSString *bookName = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleHelpBookName"];
     
     [[NSHelpManager sharedHelpManager] openHelpAnchor:kHelpAnchors[[sender tag]]
                                                inBook:bookName];
@@ -622,14 +603,14 @@
 - (IBAction)createBugReport:(id)sender
 // ------------------------------------------------------
 {
-    NSDictionary *appInfo = [[NSBundle mainBundle] infoDictionary];
-    NSURL *URL = [[NSBundle mainBundle] URLForResource:@"ReportTemplate" withExtension:@"md"];
+    NSBundle *bundle = [NSBundle mainBundle];
+    NSURL *URL = [bundle URLForResource:@"ReportTemplate" withExtension:@"md"];
     NSString *template = [NSString stringWithContentsOfURL:URL encoding:NSUTF8StringEncoding error:nil];
     
     template = [template stringByReplacingOccurrencesOfString:@"%BUNDLE_VERSION%"
-                                                   withString:appInfo[@"CFBundleVersion"]];
+                                                   withString:[bundle objectForInfoDictionaryKey:(NSString *)kCFBundleVersionKey]];
     template = [template stringByReplacingOccurrencesOfString:@"%SHORT_VERSION%"
-                                                   withString:appInfo[@"CFBundleShortVersionString"]];
+                                                   withString:[bundle objectForInfoDictionaryKey:@"CFBundleShortVersionString"]];
     template = [template stringByReplacingOccurrencesOfString:@"%SYSTEM_VERSION%"
                                                    withString:[[NSProcessInfo processInfo] operatingSystemVersionString]];
     

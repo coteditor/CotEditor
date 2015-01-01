@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014 CotEditor Project
+ © 2014-2015 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -354,8 +354,6 @@ typedef NS_ENUM(NSUInteger, CEMainMenuIndex) {
 // Menu item tags
 typedef NS_ENUM(NSInteger, CEMenuItemTag) {
     // in main menu
-    CENewMenuItemTag            =  100,
-    CEOpenMenuItemTag           =  101,
     CEFileEncodingMenuItemTag   = 4001,
     CESyntaxMenuItemTag         = 4002,
     CEThemeMenuItemTag          = 4003,

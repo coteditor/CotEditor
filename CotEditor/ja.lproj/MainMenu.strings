@@ -7,8 +7,17 @@
  Created on 2014-11-04 by 1024jp
  encoding="UTF-8"
  
- © 2014 CotEditor Project
+ © 2014-2015 CotEditor Project
  */
+
+
+// MARK: Dock Menu
+
+/* Class = "NSMenuItem"; title = "New"; ObjectID = "Dq1-kY-xVh"; */
+"Dq1-kY-xVh.title" = "新規";
+/* Class = "NSMenuItem"; title = "Open…"; ObjectID = "d1B-5p-GZQ"; */
+"d1B-5p-GZQ.title" = "開く…";
+
 
 
 // MARK: CotEditor

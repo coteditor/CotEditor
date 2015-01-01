@@ -8,8 +8,17 @@
  Localized by onevcat
  encoding="UTF-8"
  
- © 2014 CotEditor Project
+ © 2014-2015 CotEditor Project
  */
+
+
+// MARK: Dock Menu
+
+/* Class = "NSMenuItem"; title = "New"; ObjectID = "Dq1-kY-xVh"; */
+"Dq1-kY-xVh.title" = "新建";
+/* Class = "NSMenuItem"; title = "Open…"; ObjectID = "d1B-5p-GZQ"; */
+"d1B-5p-GZQ.title" = "打开…";
+
 
 
 // MARK: CotEditor
