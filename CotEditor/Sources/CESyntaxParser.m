@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014 CotEditor Project
+ © 2014-2015 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -919,14 +919,14 @@ static CGFloat kPerCompoIncrement;
 {
     if (coloringRange.length == 0) { return; }
     
-    // カラーリング対象の文字列
-    NSString *coloringString = [wholeString substringWithRange:coloringRange];
-    
-    // カラーリング不要なら不可視文字のカラーリングだけして戻る
+    // カラーリング不要なら現在のカラーリングをクリアして戻る
     if (![self hasSyntaxHighlighting]) {
-        [self applyColorings:[self extractControlCharsFromString:coloringString] range:coloringRange];
+        [self applyColorings:nil range:coloringRange];
         return;
     }
+    
+    // カラーリング対象の文字列
+    NSString *coloringString = [wholeString substringWithRange:coloringRange];
     
     // 規定の文字数以上の場合にはカラーリングインジケータシートを表示
     // （ただし、CEDefaultShowColoringIndicatorTextLengthKey が「0」の時は表示しない）
