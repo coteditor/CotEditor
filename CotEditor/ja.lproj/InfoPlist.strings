@@ -1,0 +1,59 @@
+/*
+ InfoPlist.strings
+ 
+ CotEditor
+ http://coteditor.com
+ 
+ Created on 2015-01-01 by 1024jp
+ encoding="UTF-8"
+ 
+ © 2015 1024jp
+ */
+
+
+// Document Types
+"Text document" = "テキスト書類";
+"Plain text" = "プレーンテキスト";
+"CotEditor Theme" = "CotEditor テーマ";
+"BibTeX" = "BibTeX";
+"Configuration" = "Configuration";
+"C header" = "C ヘッダ";
+"C source" = "C ソース";
+"Objective-C source" = "Objective-C ソース";
+"C++ source" = "C++ ソース";
+"Objective-C++ source" = "Objective-C++ ソース";
+"C++ header" = "C++ ヘッダ";
+"C# source" = "C# ソース";
+"CoffeeScript" = "CoffeeScript";
+"Cascading Style Sheet" = "CSS";
+"Dart script" = "Dart スクリプト";
+"Diff" = "Diff";
+"Document Type Definition" = "文書型定義";
+"Go script" = "Go スクリプト";
+"Haskell script" = "Haskell スクリプト";
+"HTML document" = "HTML 書類";
+"INI" = "INI";
+"Java source" = "Java ソース";
+"JavaScript" = "JavaScript";
+"JSON" = "JSON";
+"Julia script" = "Julia スクリプト";
+"Lisp script" = "Lisp スクリプト";
+"Lua script" = "Lua スクリプト";
+"Markdown document" = "Markdown 書類";
+"Perl script" = "Perl スクリプト";
+"PHP script" = "PHP スクリプト";
+"Python script" = "Python スクリプト";
+"reStructured Text document" = "reStructured Text 書類";
+"Ruby script" = "Ruby スクリプト";
+"Rust script" = "Rust スクリプト";
+"Scalable Vector Graphics" = "SVG";
+"Scala script" = "Scala スクリプト";
+"Scheme script" = "Scheme スクリプト";
+"Shell script" = "シェルスクリプト";
+"SQL source" = "SQL ソース";
+"Swift source" = "Swift ソース";
+"TeX" = "TeX";
+"Textile document" = "Textile 書類";
+"Tcl source" = "Tcl ソース";
+"XML document" = "XML 書類";
+"YAML" = "YAML";

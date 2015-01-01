@@ -28,6 +28,7 @@ Change Log
 - Improve find result panel behavior with Spaces.
 - Rename “Script Error Panel” to “Console Panel.”
 - Delay timing to save text key bindings setting.
+- Localize document types.
 - Tweak window size sample window.
 
 

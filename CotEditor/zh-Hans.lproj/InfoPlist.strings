@@ -1,0 +1,59 @@
+/*
+ InfoPlist.strings
+ 
+ CotEditor
+ http://coteditor.com
+ 
+ Created on 2015-01-01 by 1024jp
+ encoding="UTF-8"
+ 
+ © 2015 1024jp
+ */
+
+
+// Document Types  // FIXME: all of the following document type names
+"Text document" = "Text document";
+"Plain text" = "Plain text";
+"CotEditor Theme" = "CotEditor Theme";
+"BibTeX" = "BibTeX";
+"Configuration" = "Configuration";
+"C header" = "C header";
+"C source" = "C source";
+"Objective-C source" = "Objective-C source";
+"C++ source" = "C++ source";
+"Objective-C++ source" = "Objective-C++ source";
+"C++ header" = "C++ header";
+"C# source" = "C# source";
+"CoffeeScript" = "CoffeeScript";
+"Cascading Style Sheet" = "Cascading Style Sheet";
+"Dart script" = "Dart script";
+"Diff" = "Diff";
+"Document Type Definition" = "Document Type Definition";
+"Go script" = "Go script";
+"Haskell script" = "Haskell script";
+"HTML document" = "HTML document";
+"INI" = "INI";
+"Java source" = "Java source";
+"JavaScript" = "JavaScript";
+"JSON" = "JSON";
+"Julia script" = "Julia script";
+"Lisp script" = "Lisp script";
+"Lua script" = "Lua script";
+"Markdown document" = "Markdown document";
+"Perl script" = "Perl script";
+"PHP script" = "PHP script";
+"Python script" = "Python script";
+"reStructured Text document" = "reStructured Text document";
+"Ruby script" = "Ruby script";
+"Rust script" = "Rust script";
+"Scalable Vector Graphics" = "Scalable Vector Graphics";
+"Scala script" = "Scala script";
+"Scheme script" = "Scheme script";
+"Shell script" = "Shell script";
+"SQL source" = "SQL source";
+"Swift source" = "Swift source";
+"TeX" = "TeX";
+"Textile document" = "Textile document";
+"Tcl source" = "Tcl source";
+"XML document" = "XML document";
+"YAML" = "YAML";

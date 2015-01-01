@@ -121,6 +121,7 @@
 		2AEB8B7C19AF73980098D557 /* FileDropGlossary.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2AEB8B7A19AF73980098D557 /* FileDropGlossary.txt */; };
 		2AF4E0D7196F7958008E9EF7 /* CEStatusBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AF4E0D6196F7958008E9EF7 /* CEStatusBarController.m */; };
 		2AF5C3B91A5481C600C972B5 /* SampleScripts in Copy Shared Supports */ = {isa = PBXBuildFile; fileRef = 6CA3B36012E3B59B0019AB2E /* SampleScripts */; };
+		2AF5C3BE1A55072E00C972B5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2AF5C3BC1A55072E00C972B5 /* InfoPlist.strings */; };
 		2AFFB70718D7BC9300118477 /* OpacityPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2AFFB70518D7BC9300118477 /* OpacityPanel.xib */; };
 		2AFFB71618D7DCC000118477 /* CEPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AFFB71518D7DCC000118477 /* CEPanelController.m */; };
 		2AFFB71B18D7F18300118477 /* CEGoToSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AFFB71918D7F18300118477 /* CEGoToSheetController.m */; };
@@ -468,6 +469,8 @@
 		2AF47C8419227B2300A48047 /* NSString+ComposedCharacter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+ComposedCharacter.h"; sourceTree = "<group>"; };
 		2AF4E0D5196F7958008E9EF7 /* CEStatusBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEStatusBarController.h; sourceTree = "<group>"; };
 		2AF4E0D6196F7958008E9EF7 /* CEStatusBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEStatusBarController.m; sourceTree = "<group>"; };
+		2AF5C3BD1A55072E00C972B5 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		2AF5C3BF1A5510F600C972B5 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		2AFFB71418D7DCC000118477 /* CEPanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEPanelController.h; sourceTree = "<group>"; };
 		2AFFB71518D7DCC000118477 /* CEPanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEPanelController.m; sourceTree = "<group>"; };
 		2AFFB71818D7F18200118477 /* CEGoToSheetController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEGoToSheetController.h; sourceTree = "<group>"; };
@@ -860,6 +863,7 @@
 				6C6DAE3D13833C0E007F2326 /* dsa_pub.pem */,
 				8D15AC360486D014006FF6A4 /* Info.plist */,
 				259C2316077678DE00BA61C5 /* Localizable.strings */,
+				2AF5C3BC1A55072E00C972B5 /* InfoPlist.strings */,
 				2A5E4D7A1A44F0D50072013F /* ServicesMenu.strings */,
 				2AEB8B7A19AF73980098D557 /* FileDropGlossary.txt */,
 				2A456C421A1EDCFC00395158 /* ReportTemplate.md */,
@@ -1209,6 +1213,7 @@
 				8C28CD2E081101A300733DA7 /* ConsolePanel.xib in Resources */,
 				8C7400A408C6D93900683672 /* MenuKeyBindingEditSheet.xib in Resources */,
 				2A149DA619016ABB00A9D6EF /* AppearancePane.xib in Resources */,
+				2AF5C3BE1A55072E00C972B5 /* InfoPlist.strings in Resources */,
 				2A149DAC19016ABB00A9D6EF /* PrintPane.xib in Resources */,
 				2AFFB72818D8C7DE00118477 /* OpenDocumentAccessory.xib in Resources */,
 				2AFFB70718D7BC9300118477 /* OpacityPanel.xib in Resources */,
@@ -1767,6 +1772,15 @@
 				4B79981B1A1F1BCD0088D167 /* zh-Hans */,
 			);
 			name = FileDropGlossary.txt;
+			sourceTree = "<group>";
+		};
+		2AF5C3BC1A55072E00C972B5 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2AF5C3BD1A55072E00C972B5 /* ja */,
+				2AF5C3BF1A5510F600C972B5 /* zh-Hans */,
+			);
+			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 		2AFFB70518D7BC9300118477 /* OpacityPanel.xib */ = {

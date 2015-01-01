@@ -14,7 +14,7 @@
 			<key>CFBundleTypeMIMETypes</key>
 			<array/>
 			<key>CFBundleTypeName</key>
-			<string>Text Document</string>
+			<string>Text document</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>LSItemContentTypes</key>
@@ -24,6 +24,30 @@
 			</array>
 			<key>LSTypeIsPackage</key>
 			<false/>
+			<key>NSDocumentClass</key>
+			<string>CEDocument</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>txt</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>GenericDocumentIcon</string>
+			<key>CFBundleTypeMIMETypes</key>
+			<array>
+				<string>text/plain</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>Plain text</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>public.plain-text</string>
+			</array>
+			<key>LSTypeIsPackage</key>
+			<integer>0</integer>
 			<key>NSDocumentClass</key>
 			<string>CEDocument</string>
 		</dict>
@@ -91,7 +115,7 @@
 			<key>CFBundleTypeMIMETypes</key>
 			<array/>
 			<key>CFBundleTypeName</key>
-			<string>C Header</string>
+			<string>C header</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>LSItemContentTypes</key>
@@ -111,7 +135,7 @@
 			<key>CFBundleTypeIconFile</key>
 			<string>CIcon</string>
 			<key>CFBundleTypeName</key>
-			<string>C Source</string>
+			<string>C source</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>LSItemContentTypes</key>
@@ -155,7 +179,7 @@
 			<key>CFBundleTypeIconFile</key>
 			<string>C++Icon</string>
 			<key>CFBundleTypeName</key>
-			<string>C++ Source</string>
+			<string>C++ source</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>LSItemContentTypes</key>
@@ -175,7 +199,7 @@
 			<key>CFBundleTypeIconFile</key>
 			<string>ObjC++Icon</string>
 			<key>CFBundleTypeName</key>
-			<string>Objective-C++ Source</string>
+			<string>Objective-C++ source</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>LSItemContentTypes</key>
@@ -197,7 +221,7 @@
 			<key>CFBundleTypeIconFile</key>
 			<string>C++Icon</string>
 			<key>CFBundleTypeName</key>
-			<string>C++ Header</string>
+			<string>C++ header</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>LSItemContentTypes</key>
@@ -206,6 +230,22 @@
 			</array>
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
+			<key>NSDocumentClass</key>
+			<string>CEDocument</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>cs</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>C#Icon</string>
+			<key>CFBundleTypeName</key>
+			<string>C# Source</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSTypeIsPackage</key>
+			<false/>
 			<key>NSDocumentClass</key>
 			<string>CEDocument</string>
 		</dict>
@@ -221,7 +261,7 @@
 				<string>text/coffeescript</string>
 			</array>
 			<key>CFBundleTypeName</key>
-			<string>CoffeeScript Source</string>
+			<string>CoffeeScript</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>LSTypeIsPackage</key>
@@ -261,7 +301,59 @@
 			<key>CFBundleTypeIconFile</key>
 			<string>DartIcon</string>
 			<key>CFBundleTypeName</key>
-			<string>Dart Source</string>
+			<string>Dart script</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSTypeIsPackage</key>
+			<integer>0</integer>
+			<key>NSDocumentClass</key>
+			<string>CEDocument</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>diff</string>
+				<string>patch</string>
+				<string>dif</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>DiffIcon</string>
+			<key>CFBundleTypeName</key>
+			<string>Diff</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSTypeIsPackage</key>
+			<integer>0</integer>
+			<key>NSDocumentClass</key>
+			<string>CEDocument</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>dtd</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>XMLIcon</string>
+			<key>CFBundleTypeMIMETypes</key>
+			<array/>
+			<key>CFBundleTypeName</key>
+			<string>Document Type Definition</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSTypeIsPackage</key>
+			<integer>0</integer>
+			<key>NSDocumentClass</key>
+			<string>CEDocument</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>go</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>GoIcon</string>
+			<key>CFBundleTypeName</key>
+			<string>Go script</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>LSTypeIsPackage</key>
@@ -278,7 +370,7 @@
 			<key>CFBundleTypeIconFile</key>
 			<string>HaskellIcon</string>
 			<key>CFBundleTypeName</key>
-			<string>Haskell Source</string>
+			<string>Haskell script</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>LSTypeIsPackage</key>
@@ -299,7 +391,7 @@
 				<string>text/html</string>
 			</array>
 			<key>CFBundleTypeName</key>
-			<string>HTML Document</string>
+			<string>HTML document</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>LSItemContentTypes</key>
@@ -335,7 +427,7 @@
 			<key>CFBundleTypeIconFile</key>
 			<string>JavaIcon</string>
 			<key>CFBundleTypeName</key>
-			<string>Java Source</string>
+			<string>Java source</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>LSItemContentTypes</key>
@@ -359,7 +451,7 @@
 				<string>application/x-javascript</string>
 			</array>
 			<key>CFBundleTypeName</key>
-			<string>JavaScript Source</string>
+			<string>JavaScript</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>LSItemContentTypes</key>
@@ -407,9 +499,323 @@
 				<string>text/x-python-script</string>
 			</array>
 			<key>CFBundleTypeName</key>
-			<string>Julia Source</string>
+			<string>Julia script</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>LSTypeIsPackage</key>
+			<integer>0</integer>
+			<key>NSDocumentClass</key>
+			<string>CEDocument</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>lisp</string>
+				<string>lsp</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>LispIcon</string>
+			<key>CFBundleTypeName</key>
+			<string>Lisp script</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSTypeIsPackage</key>
+			<integer>0</integer>
+			<key>NSDocumentClass</key>
+			<string>CEDocument</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>lua</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>LuaIcon</string>
+			<key>CFBundleTypeName</key>
+			<string>Lua script</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>org.lua.lua-source</string>
+			</array>
+			<key>LSTypeIsPackage</key>
+			<integer>0</integer>
+			<key>NSDocumentClass</key>
+			<string>CEDocument</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>mkd</string>
+				<string>md</string>
+				<string>markdown</string>
+				<string>mdown</string>
+				<string>mkdn</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>MarkdownIcon</string>
+			<key>CFBundleTypeName</key>
+			<string>Markdown document</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>net.daringfireball.markdown</string>
+			</array>
+			<key>LSTypeIsPackage</key>
+			<integer>0</integer>
+			<key>NSDocumentClass</key>
+			<string>CEDocument</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>pl</string>
+				<string>cgi</string>
+				<string>pm</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>PerlIcon</string>
+			<key>CFBundleTypeMIMETypes</key>
+			<array>
+				<string>text/x-perl-script</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>Perl script</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>public.perl-script</string>
+			</array>
+			<key>LSTypeIsPackage</key>
+			<integer>0</integer>
+			<key>NSDocumentClass</key>
+			<string>CEDocument</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>php</string>
+				<string>php3</string>
+				<string>php4</string>
+				<string>php5</string>
+				<string>phps</string>
+				<string>phtml</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>PHPIcon</string>
+			<key>CFBundleTypeName</key>
+			<string>PHP script</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>public.php-script</string>
+			</array>
+			<key>LSTypeIsPackage</key>
+			<integer>0</integer>
+			<key>NSDocumentClass</key>
+			<string>CEDocument</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>py</string>
+				<string>pyw</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>PythonIcon</string>
+			<key>CFBundleTypeMIMETypes</key>
+			<array>
+				<string>text/x-python-script</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>Python script</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>public.python-script</string>
+			</array>
+			<key>LSTypeIsPackage</key>
+			<integer>0</integer>
+			<key>NSDocumentClass</key>
+			<string>CEDocument</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>rst</string>
+				<string>rest</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>reSTIcon</string>
+			<key>CFBundleTypeName</key>
+			<string>reStructured Text document</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSTypeIsPackage</key>
+			<integer>0</integer>
+			<key>NSDocumentClass</key>
+			<string>CEDocument</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>rb</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>RubyIcon</string>
+			<key>CFBundleTypeMIMETypes</key>
+			<array>
+				<string>text/ruby-script</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>Ruby script</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>public.ruby-script</string>
+			</array>
+			<key>LSTypeIsPackage</key>
+			<integer>0</integer>
+			<key>NSDocumentClass</key>
+			<string>CEDocument</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>rs</string>
+				<string>rc</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>RustIcon</string>
+			<key>CFBundleTypeName</key>
+			<string>Rust script</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSTypeIsPackage</key>
+			<integer>0</integer>
+			<key>NSDocumentClass</key>
+			<string>CEDocument</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>svg</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>SVGIcon</string>
+			<key>CFBundleTypeMIMETypes</key>
+			<array>
+				<string>image/svg+xml</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>Scalable Vector Graphics</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>public.svg-image</string>
+			</array>
+			<key>LSTypeIsPackage</key>
+			<integer>0</integer>
+			<key>NSDocumentClass</key>
+			<string>CEDocument</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>scala</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>ScalaIcon</string>
+			<key>CFBundleTypeName</key>
+			<string>Scala script</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSTypeIsPackage</key>
+			<integer>0</integer>
+			<key>NSDocumentClass</key>
+			<string>CEDocument</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>scm</string>
+				<string>ss</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>SchemeIcon</string>
+			<key>CFBundleTypeName</key>
+			<string>Scheme script</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSTypeIsPackage</key>
+			<integer>0</integer>
+			<key>NSDocumentClass</key>
+			<string>CEDocument</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>sh</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>ShellIcon</string>
+			<key>CFBundleTypeName</key>
+			<string>Shell script</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>public.shell-script</string>
+			</array>
+			<key>LSTypeIsPackage</key>
+			<integer>0</integer>
+			<key>NSDocumentClass</key>
+			<string>CEDocument</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>sql</string>
+				<string>mysql</string>
+				<string>pgsql</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>SQLIcon</string>
+			<key>CFBundleTypeName</key>
+			<string>SQL source</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>org.iso.sql</string>
+			</array>
+			<key>LSTypeIsPackage</key>
+			<integer>0</integer>
+			<key>NSDocumentClass</key>
+			<string>CEDocument</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>swift</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>SwiftIcon</string>
+			<key>CFBundleTypeName</key>
+			<string>Swift source</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>public.swift-source</string>
+			</array>
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
@@ -436,230 +842,12 @@
 		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
-				<string>mkd</string>
-				<string>md</string>
-				<string>markdown</string>
-				<string>mdown</string>
-				<string>mkdn</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>MarkdownIcon</string>
-			<key>CFBundleTypeName</key>
-			<string>Markdown Document</string>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>LSItemContentTypes</key>
-			<array>
-				<string>net.daringfireball.markdown</string>
-			</array>
-			<key>LSTypeIsPackage</key>
-			<integer>0</integer>
-			<key>NSDocumentClass</key>
-			<string>CEDocument</string>
-		</dict>
-		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>pl</string>
-				<string>cgi</string>
-				<string>pm</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>PerlIcon</string>
-			<key>CFBundleTypeMIMETypes</key>
-			<array>
-				<string>text/x-perl-script</string>
-			</array>
-			<key>CFBundleTypeName</key>
-			<string>Perl Source</string>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>LSItemContentTypes</key>
-			<array>
-				<string>public.perl-script</string>
-			</array>
-			<key>LSTypeIsPackage</key>
-			<integer>0</integer>
-			<key>NSDocumentClass</key>
-			<string>CEDocument</string>
-		</dict>
-		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>php</string>
-				<string>php3</string>
-				<string>php4</string>
-				<string>php5</string>
-				<string>phps</string>
-				<string>phtml</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>PHPIcon</string>
-			<key>CFBundleTypeName</key>
-			<string>PHP Source</string>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>LSItemContentTypes</key>
-			<array>
-				<string>public.php-script</string>
-			</array>
-			<key>LSTypeIsPackage</key>
-			<integer>0</integer>
-			<key>NSDocumentClass</key>
-			<string>CEDocument</string>
-		</dict>
-		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>txt</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>GenericDocumentIcon</string>
-			<key>CFBundleTypeMIMETypes</key>
-			<array>
-				<string>text/plain</string>
-			</array>
-			<key>CFBundleTypeName</key>
-			<string>Plain Text</string>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>LSItemContentTypes</key>
-			<array>
-				<string>public.plain-text</string>
-			</array>
-			<key>LSTypeIsPackage</key>
-			<integer>0</integer>
-			<key>NSDocumentClass</key>
-			<string>CEDocument</string>
-		</dict>
-		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>py</string>
-				<string>pyw</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>PythonIcon</string>
-			<key>CFBundleTypeMIMETypes</key>
-			<array>
-				<string>text/x-python-script</string>
-			</array>
-			<key>CFBundleTypeName</key>
-			<string>Python Source</string>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>LSItemContentTypes</key>
-			<array>
-				<string>public.python-script</string>
-			</array>
-			<key>LSTypeIsPackage</key>
-			<integer>0</integer>
-			<key>NSDocumentClass</key>
-			<string>CEDocument</string>
-		</dict>
-		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>rst</string>
-				<string>rest</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>reSTIcon</string>
-			<key>CFBundleTypeName</key>
-			<string>reStructured Text Document</string>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>LSTypeIsPackage</key>
-			<integer>0</integer>
-			<key>NSDocumentClass</key>
-			<string>CEDocument</string>
-		</dict>
-		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>rb</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>RubyIcon</string>
-			<key>CFBundleTypeMIMETypes</key>
-			<array>
-				<string>text/ruby-script</string>
-			</array>
-			<key>CFBundleTypeName</key>
-			<string>Ruby Source</string>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>LSItemContentTypes</key>
-			<array>
-				<string>public.ruby-script</string>
-			</array>
-			<key>LSTypeIsPackage</key>
-			<integer>0</integer>
-			<key>NSDocumentClass</key>
-			<string>CEDocument</string>
-		</dict>
-		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>rs</string>
-				<string>rc</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>RustIcon</string>
-			<key>CFBundleTypeName</key>
-			<string>Rust Source</string>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>LSTypeIsPackage</key>
-			<integer>0</integer>
-			<key>NSDocumentClass</key>
-			<string>CEDocument</string>
-		</dict>
-		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>scala</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>ScalaIcon</string>
-			<key>CFBundleTypeName</key>
-			<string>Scala Source</string>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>LSTypeIsPackage</key>
-			<integer>0</integer>
-			<key>NSDocumentClass</key>
-			<string>CEDocument</string>
-		</dict>
-		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>sh</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>ShellIcon</string>
-			<key>CFBundleTypeName</key>
-			<string>Shell Script</string>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>LSItemContentTypes</key>
-			<array>
-				<string>public.shell-script</string>
-			</array>
-			<key>LSTypeIsPackage</key>
-			<integer>0</integer>
-			<key>NSDocumentClass</key>
-			<string>CEDocument</string>
-		</dict>
-		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
 				<string>textile</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
 			<string>TextileIcon</string>
 			<key>CFBundleTypeName</key>
-			<string>Textile Document</string>
+			<string>Textile document</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>LSTypeIsPackage</key>
@@ -675,7 +863,7 @@
 			<key>CFBundleTypeIconFile</key>
 			<string>TclIcon</string>
 			<key>CFBundleTypeName</key>
-			<string>Tcl Source</string>
+			<string>Tcl source</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>LSTypeIsPackage</key>
@@ -721,7 +909,7 @@
 				<string>text/xml</string>
 			</array>
 			<key>CFBundleTypeName</key>
-			<string>XML Document</string>
+			<string>XML document</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>LSItemContentTypes</key>
@@ -747,194 +935,6 @@
 			<string>Editor</string>
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
-			<key>NSDocumentClass</key>
-			<string>CEDocument</string>
-		</dict>
-		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>diff</string>
-				<string>patch</string>
-				<string>dif</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>DiffIcon</string>
-			<key>CFBundleTypeName</key>
-			<string>Diff</string>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>LSTypeIsPackage</key>
-			<integer>0</integer>
-			<key>NSDocumentClass</key>
-			<string>CEDocument</string>
-		</dict>
-		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>swift</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>SwiftIcon</string>
-			<key>CFBundleTypeName</key>
-			<string>Swift Source</string>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>LSItemContentTypes</key>
-			<array>
-				<string>public.swift-source</string>
-			</array>
-			<key>LSTypeIsPackage</key>
-			<integer>0</integer>
-			<key>NSDocumentClass</key>
-			<string>CEDocument</string>
-		</dict>
-		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>lua</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>LuaIcon</string>
-			<key>CFBundleTypeName</key>
-			<string>Lua Source</string>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>LSItemContentTypes</key>
-			<array>
-				<string>org.lua.lua-source</string>
-			</array>
-			<key>LSTypeIsPackage</key>
-			<integer>0</integer>
-			<key>NSDocumentClass</key>
-			<string>CEDocument</string>
-		</dict>
-		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>go</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>GoIcon</string>
-			<key>CFBundleTypeName</key>
-			<string>Go Source</string>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>LSTypeIsPackage</key>
-			<integer>0</integer>
-			<key>NSDocumentClass</key>
-			<string>CEDocument</string>
-		</dict>
-		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>sql</string>
-				<string>mysql</string>
-				<string>pgsql</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>SQLIcon</string>
-			<key>CFBundleTypeName</key>
-			<string>SQL Source</string>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>LSItemContentTypes</key>
-			<array>
-				<string>org.iso.sql</string>
-			</array>
-			<key>LSTypeIsPackage</key>
-			<integer>0</integer>
-			<key>NSDocumentClass</key>
-			<string>CEDocument</string>
-		</dict>
-		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>dtd</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>XMLIcon</string>
-			<key>CFBundleTypeMIMETypes</key>
-			<array/>
-			<key>CFBundleTypeName</key>
-			<string>Document Type Definition</string>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>LSTypeIsPackage</key>
-			<integer>0</integer>
-			<key>NSDocumentClass</key>
-			<string>CEDocument</string>
-		</dict>
-		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>svg</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>SVGIcon</string>
-			<key>CFBundleTypeMIMETypes</key>
-			<array>
-				<string>image/svg+xml</string>
-			</array>
-			<key>CFBundleTypeName</key>
-			<string>Scalable Vector Graphics</string>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>LSItemContentTypes</key>
-			<array>
-				<string>public.svg-image</string>
-			</array>
-			<key>LSTypeIsPackage</key>
-			<integer>0</integer>
-			<key>NSDocumentClass</key>
-			<string>CEDocument</string>
-		</dict>
-		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>scm</string>
-				<string>ss</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>SchemeIcon</string>
-			<key>CFBundleTypeName</key>
-			<string>Scheme Source</string>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>LSTypeIsPackage</key>
-			<integer>0</integer>
-			<key>NSDocumentClass</key>
-			<string>CEDocument</string>
-		</dict>
-		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>lisp</string>
-				<string>lsp</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>LispIcon</string>
-			<key>CFBundleTypeName</key>
-			<string>Lisp Source</string>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>LSTypeIsPackage</key>
-			<integer>0</integer>
-			<key>NSDocumentClass</key>
-			<string>CEDocument</string>
-		</dict>
-		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>cs</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>C#Icon</string>
-			<key>CFBundleTypeName</key>
-			<string>C# Source</string>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>LSTypeIsPackage</key>
-			<false/>
 			<key>NSDocumentClass</key>
 			<string>CEDocument</string>
 		</dict>
