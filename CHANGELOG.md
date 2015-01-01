@@ -24,6 +24,7 @@ Change Log
 - Improve auto-outdent behavior with `}` input.
 - Inprove auto-tab-expand behavior with intent that tab characters and spaces are mixed.
 - Add hidden “Reveal in Finder” menu item to syntax style action menu in Preferences (visible with `Option` key).
+- Improve CotEditor Script to apply the result to the document that was frontmost when the script was launched.
 - Close Preferences window with esc key.
 - Improve find result panel behavior with Spaces.
 - Rename “Script Error Panel” to “Console Panel.”

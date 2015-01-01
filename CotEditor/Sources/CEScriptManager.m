@@ -367,10 +367,12 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 
 // ------------------------------------------------------
 /// return document content conforming to the input type
-+ (NSString *)documentStringWithInputType:(CEScriptInputType)inputType error:(BOOL *)hasError
++ (NSString *)inputStringWithType:(CEScriptInputType)inputType document:(CEDocument *)document error:(BOOL *)hasError
 // ------------------------------------------------------
 {
-    CEEditorWrapper *editor = [[[NSDocumentController sharedDocumentController] currentDocument] editor];
+    CEEditorWrapper *editor = [document editor];
+    
+    if (!editor) { return nil; }
     
     switch (inputType) {
         case CEInputSelectionType:
@@ -403,10 +405,10 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 
 // ------------------------------------------------------
 /// apply results conforming to the output type to the frontmost document
-+ (void)setOutputToDocument:(NSString *)output outputType:(CEScriptOutputType)outputType
++ (void)applyOutput:(NSString *)output document:(CEDocument *)document outputType:(CEScriptOutputType)outputType
 // ------------------------------------------------------
 {
-    CEEditorWrapper *editor = [[[NSDocumentController sharedDocumentController] currentDocument] editor];
+    CEEditorWrapper *editor = [document editor];
     
     switch (outputType) {
         case CEReplaceSelectionType:
@@ -592,11 +594,14 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
         [self showAlertWithMessage:[NSString stringWithFormat:NSLocalizedString(@"Could not read the script “%@”.", nil), URL]];
         return;
     }
+    
+    // hold target document
+    __weak CEDocument *document = [[NSDocumentController sharedDocumentController] currentDocument];
 
     // read input
     CEScriptInputType inputType = [[self class] scanInputType:script];
     BOOL hasError = NO;
-    __block NSString *input = [[self class] documentStringWithInputType:inputType error:&hasError];
+    __block NSString *input = [[self class] inputStringWithType:inputType document:document error:&hasError];
     if (hasError) {
         [self showScriptError:@"No document, no Input."];
         return;
@@ -607,9 +612,8 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
     
     // prepare file path as argument if available
     NSArray *arguments;
-    NSURL *documentURL = [[[NSDocumentController sharedDocumentController] currentDocument] fileURL];
-    if (documentURL) {
-        arguments = @[[documentURL path]];
+    if ([document fileURL]) {
+        arguments = @[[[document fileURL] path]];
     }
     
     // pipes
@@ -639,7 +643,7 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
          NSData *data = [note userInfo][NSFileHandleNotificationDataItem];
          NSString *output = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
          if (output) {
-             [CEScriptManager setOutputToDocument:output outputType:outputType];
+             [CEScriptManager applyOutput:output document:document outputType:outputType];
          }
      }];
     
