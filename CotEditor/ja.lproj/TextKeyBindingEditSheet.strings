@@ -7,7 +7,7 @@
  Created on 2014-11-04 by 1024jp
  encoding="UTF-8"
  
- © 2014 CotEditor Project
+ © 2014-2015 CotEditor Project
  */
 
 /* Class = "CEKeyBindingSheet"; title = "Text Key Bindings"; ObjectID = "54"; */
@@ -23,8 +23,8 @@
 
 /* Class = "NSTextFieldCell"; title = "Text to insert:"; ObjectID = "152"; */
 "152.title" = "挿入文字列：";
-/* Class = "IBBindingConnection"; ibShadowedNoSelectionPlaceholder = "Select action."; ObjectID = "OsK-7K-roa"; */
-"OsK-7K-roa.ibShadowedNoSelectionPlaceholder" = "アクションを選択してください。";
+/* Class = "IBBindingConnection"; ibShadowedNoSelectionPlaceholder = "Select action."; ObjectID = "jTj-QW-dQw"; */
+"jTj-QW-dQw.ibShadowedNoSelectionPlaceholder" = "アクションを選択してください。";
 
 /* Class = "NSButtonCell"; title = "Restore Defaults"; ObjectID = "153"; */
 "153.title" = "デフォルトに戻す";
