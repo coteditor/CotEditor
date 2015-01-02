@@ -8,7 +8,7 @@
  Localized by onevcat
  encoding="UTF-8"
  
- © 2014 CotEditor Project
+ © 2014-2015 CotEditor Project
  */
 
 
@@ -151,12 +151,12 @@
 /* Class = "NSTextFieldCell"; placeholderString = "Not defined"; ObjectID = "1rj-Dy-279"; */
 "1rj-Dy-279.placeholderString" = "未定义";
 
-/* Class = "IBBindingConnection"; ibShadowedIsNilPlaceholder = "Not defined"; ObjectID = "xjg-xP-byE"; */
-"xjg-xP-byE.ibShadowedIsNilPlaceholder" = "未定义";
-/* Class = "IBBindingConnection"; ibShadowedIsNilPlaceholder = "Not defined"; ObjectID = "bQw-Ik-BCi"; */
-"bQw-Ik-BCi.ibShadowedIsNilPlaceholder" = "未定义";
 /* Class = "IBBindingConnection"; ibShadowedIsNilPlaceholder = "Not defined"; ObjectID = "7vx-GV-ich"; */
 "7vx-GV-ich.ibShadowedIsNilPlaceholder" = "未定义";
+/* Class = "IBBindingConnection"; ibShadowedIsNilPlaceholder = "Not defined"; ObjectID = "bQw-Ik-BCi"; */
+"bQw-Ik-BCi.ibShadowedIsNilPlaceholder" = "未定义";
+/* Class = "IBBindingConnection"; ibShadowedIsNilPlaceholder = "Not defined"; ObjectID = "xjg-xP-byE"; */
+"xjg-xP-byE.ibShadowedIsNilPlaceholder" = "未定义";
 
 /* Class = "NSTableColumn"; headerCell.title = "起始字符串"; ObjectID = "447"; */
 "447.headerCell.title" = "起始字符串";

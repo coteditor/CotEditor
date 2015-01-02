@@ -7,7 +7,7 @@
  Created on 2014-11-04 by 1024jp
  encoding="UTF-8"
  
- © 2014 CotEditor Project
+ © 2014-2015 CotEditor Project
  */
 
 
@@ -150,12 +150,12 @@
 /* Class = "NSTextFieldCell"; placeholderString = "Not defined"; ObjectID = "1rj-Dy-279"; */
 "1rj-Dy-279.placeholderString" = "未定義";
 
-/* Class = "IBBindingConnection"; ibShadowedIsNilPlaceholder = "Not defined"; ObjectID = "yEf-6k-27X"; */
-"yEf-6k-27X.ibShadowedIsNilPlaceholder" = "未定義";
-/* Class = "IBBindingConnection"; ibShadowedIsNilPlaceholder = "Not defined"; ObjectID = "DZu-L9-7EL"; */
-"DZu-L9-7EL.ibShadowedIsNilPlaceholder" = "未定義";
-/* Class = "IBBindingConnection"; ibShadowedIsNilPlaceholder = "Not defined"; ObjectID = "fUb-PB-gso"; */
-"fUb-PB-gso.ibShadowedIsNilPlaceholder" = "未定義";
+/* Class = "IBBindingConnection"; ibShadowedIsNilPlaceholder = "Not defined"; ObjectID = "7vx-GV-ich"; */
+"7vx-GV-ich.ibShadowedIsNilPlaceholder" = "未定義";
+/* Class = "IBBindingConnection"; ibShadowedIsNilPlaceholder = "Not defined"; ObjectID = "bQw-Ik-BCi"; */
+"bQw-Ik-BCi.ibShadowedIsNilPlaceholder" = "未定義";
+/* Class = "IBBindingConnection"; ibShadowedIsNilPlaceholder = "Not defined"; ObjectID = "xjg-xP-byE"; */
+"xjg-xP-byE.ibShadowedIsNilPlaceholder" = "未定義";
 
 /* Class = "NSTableColumn"; headerCell.title = "Begin String"; ObjectID = "447"; */
 "447.headerCell.title" = "開始文字列";
