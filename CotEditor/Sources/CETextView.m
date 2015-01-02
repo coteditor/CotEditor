@@ -577,12 +577,12 @@ const NSInteger kNoMenuItem = -1;
         CGFloat linePadding = [[self textContainer] lineFragmentPadding];
         CGFloat inset = [self textContainerOrigin].x;
         
-        NSFont *font = [(CELayoutManager *)[self layoutManager] textFont];
+        NSFont *font = [self typingAttributes][NSFontAttributeName];
         font = [font screenFont] ? : font;
         column *= [@"M" sizeWithAttributes:@{NSFontAttributeName:font}].width;
         
         CGFloat x = floor(column + inset + linePadding) + 2.5;  // +2px for adjusting
-        [[[[self theme] textColor] colorWithAlphaComponent:0.2] set];
+        [[[self textColor] colorWithAlphaComponent:0.2] set];
         [NSBezierPath strokeLineFromPoint:NSMakePoint(x, 0)
                                   toPoint:NSMakePoint(x, length)];
     }
@@ -1143,7 +1143,7 @@ const NSInteger kNoMenuItem = -1;
     NSString *newStr = [string copy];
     NSString *curStr = [[self string] substringWithRange:range];
 
-    // regist Undo
+    // register Undo
     NSDocument *document = [[[self window] windowController] document];
     NSUndoManager *undoManager = [self undoManager];
     NSRange newRange = NSMakeRange(range.location, [string length]); // replaced range after method.
@@ -1388,14 +1388,15 @@ const NSInteger kNoMenuItem = -1;
 // ------------------------------------------------------
 {
     NSValue *value = [sender representedObject];
-    if (value) {
-        NSRange range = [value rangeValue];
-
-        [self setNeedsUpdateOutlineMenuItemSelection:NO]; // 選択範囲変更後にメニュー選択項目が再選択されるオーバーヘッドを省く
-        [self setSelectedRange:range];
-        [self centerSelectionInVisibleArea:self];
-        [[self window] makeFirstResponder:self];
-    }
+    
+    if (!value) { return; }
+    
+    NSRange range = [value rangeValue];
+    
+    [self setNeedsUpdateOutlineMenuItemSelection:NO]; // 選択範囲変更後にメニュー選択項目が再選択されるオーバーヘッドを省く
+    [self setSelectedRange:range];
+    [self centerSelectionInVisibleArea:self];
+    [[self window] makeFirstResponder:self];
 }
 
 

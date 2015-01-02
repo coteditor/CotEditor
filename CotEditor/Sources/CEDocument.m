@@ -195,9 +195,10 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     // stringから保存用のdataを得る
     NSData *data = [string dataUsingEncoding:[self encoding] allowLossyConversion:YES];
     
-    // 必要であれば UTF-8 BOM 追加 (2008.12.13)
+    // 必要であれば UTF-8 BOM 追加 (2008-12-13)
     if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultSaveUTF8BOMKey] &&
-        ([self encoding] == NSUTF8StringEncoding)) {
+        ([self encoding] == NSUTF8StringEncoding))
+    {
         const char utf8Bom[] = {0xef, 0xbb, 0xbf}; // UTF-8 BOM
         NSMutableData *mutableData = [NSMutableData dataWithBytes:utf8Bom length:3];
         [mutableData appendData:data];
@@ -215,12 +216,12 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 {
     // 保存の前後で編集内容をグルーピングさせないための処置
     // ダミーのグループを作り、そのままだと空のアンドゥ内容でダーティーフラグがたってしまうので、アンドゥしておく
-    // ****** 空のアンドゥ履歴が残る問題あり  (2005.08.05) *******
+    // ****** 空のアンドゥ履歴が残る問題あり  (2005-08-05) *******
     // (保存の前後で編集内容がグルーピングされてしまう例：キー入力後保存し、キャレットを動かすなどしないでそのまま入力
     // した場合、ダーティーフラグがたたず、アンドゥすると保存前まで戻されてしまう。さらに、戻された状態でリドゥすると、
     // 保存後の入力までが行われる。つまり、保存をはさんで前後の内容が同一アンドゥグループに入ってしまうための不具合)
     // CETextView > doInsertString:withRange:withSelected:withActionName: でも同様の対処を行っている
-    // ****** 何かもっとうまい回避方法があるはずなんだが … (2005.08.05) *******
+    // ****** 何かもっとうまい回避方法があるはずなんだが … (2005-08-05) *******
     [[self undoManager] beginUndoGrouping];
     [[self undoManager] endUndoGrouping];
     [[self undoManager] undo];
@@ -329,12 +330,12 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 - (void)canCloseDocumentWithDelegate:(id)delegate shouldCloseSelector:(SEL)shouldCloseSelector contextInfo:(void *)contextInfo
 // ------------------------------------------------------
 {
-// このメソッドは下記のページの情報を参考にさせていただきました(2005.07.08)
-// http://www.cocoadev.com/index.pl?ReplaceSaveChangesSheet
+    // This method is based on the following page (2005-07-08)
+    // http://www.cocoadev.com/index.pl?ReplaceSaveChangesSheet
 
     // Finder のロックが解除できず、かつダーティーフラグがたっているときは相応のダイアログを出す
     if ([self isDocumentEdited] &&
-        ![self canReleaseFinderLockAtURL:[self fileURL] isLocked:nil lockAgain:YES])
+        ![self canUnlockFileAtURL:[self fileURL] isLocked:nil lockAgain:YES])
     {
         NSAlert *alert = [[NSAlert alloc] init];
         [alert setMessageText:NSLocalizedString(@"Finder's lock is On.", nil)];
@@ -429,6 +430,13 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 }
 
 
+
+#pragma mark Protocol
+
+//=======================================================
+// NSMenuValidation Protocol
+//=======================================================
+
 // ------------------------------------------------------
 /// メニュー項目の有効・無効を制御
 - (BOOL)validateMenuItem:(NSMenuItem *)menuItem
@@ -469,9 +477,6 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     return [super validateMenuItem:menuItem];
 }
 
-
-
-#pragma mark Protocol
 
 //=======================================================
 // NSToolbarItemValidation Protocol
@@ -662,7 +667,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     
     // ISO 2022-JP / UTF-8 / UTF-16の判定は、「藤棚工房別棟 −徒然−」の
     // 「Cocoaで文字エンコーディングの自動判別プログラムを書いてみました」で公開されている
-    // FJDDetectEncoding を参考にさせていただきました (2006.09.30)
+    // FJDDetectEncoding を参考にさせていただきました (2006-09-30)
     // http://blogs.dion.ne.jp/fujidana/archives/4169016.html
     
     // ファイル拡張属性(com.apple.TextEncoding)を試す
@@ -707,16 +712,14 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
         
         for (NSNumber *encodingNumber in encodings) {
             encoding = CFStringConvertEncodingToNSStringEncoding([encodingNumber unsignedIntegerValue]);
-            if ((encoding == NSISO2022JPStringEncoding) && shouldSkipISO2022JP) {
-                break;
-            } else if ((encoding == NSUTF8StringEncoding) && shouldSkipUTF8) {
-                break;
-            } else if ((encoding == NSUnicodeStringEncoding) && shouldSkipUTF16) {
-                break;
-            } else if (encoding == NSProprietaryStringEncoding) {
-                NSLog(@"encoding == NSProprietaryStringEncoding");
+            if (((encoding == NSISO2022JPStringEncoding) && shouldSkipISO2022JP) ||
+                ((encoding == NSUTF8StringEncoding) && shouldSkipUTF8) ||
+                ((encoding == NSUnicodeStringEncoding) && shouldSkipUTF16) ||
+                (encoding == NSProprietaryStringEncoding))
+            {
                 break;
             }
+            
             string = [[NSString alloc] initWithData:data encoding:encoding];
             if (string) {
                 // "charset="や"encoding="を読んでみて適正なエンコーディングが得られたら、そちらを優先
@@ -744,13 +747,13 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
         // https://www.codingmonkeys.de/bugs/browse/HYR-529?page=all
         if (([data length] <= 8192) ||
             (([data length] > 8192) && ([data length] != ([string length] * 2 + 1)) &&
-             ([data length] != ([string length] * 2)))) {
-                
-                [self setInitialString:string];
-                // (_initialString はあとで開放 == "- (void)setStringToEditor".)
-                [self doSetEncoding:encoding updateDocument:NO askLossy:NO lossy:NO asActionName:nil];
-                return YES;
-            }
+             ([data length] != ([string length] * 2))))
+        {
+            [self setInitialString:string];
+            // (_initialString はあとで開放 == "- (void)setStringToEditor".)
+            [self doSetEncoding:encoding updateDocument:NO askLossy:NO lossy:NO asActionName:nil];
+            return YES;
+        }
     }
     
     return NO;
@@ -794,9 +797,9 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
         
         // Undo登録
         NSUndoManager *undoManager = [self undoManager];
-        [[undoManager prepareWithInvocationTarget:self]
-                    redoSetEncoding:encoding updateDocument:updateDocument 
-                    askLossy:NO lossy:allowsLossy asActionName:actionName]; // undo内redo
+        [[undoManager prepareWithInvocationTarget:self] redoSetEncoding:encoding updateDocument:updateDocument
+                                                               askLossy:NO lossy:allowsLossy
+                                                           asActionName:actionName]; // undo内redo
         if (shouldShowList) {
             [[undoManager prepareWithInvocationTarget:[self windowController]] showIncompatibleCharList];
         }
@@ -909,50 +912,51 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
                                                                            options:NSRegularExpressionAnchorsMatchLines
                                                                              error:nil];
     NSArray *matches = [regex matchesInString:[textView string] options:0
-                                        range:NSMakeRange(0, [[textView string] length])];
+                                        range:NSMakeRange(0, wholeLength)];
+    NSInteger count = [matches count];
     
-    if (matches) {
-        NSInteger count = [matches count];
-        if (location == 0) {
-            [textView setSelectedRange:NSMakeRange(0, 0)];
-        } else if (location > count) {
-            [textView setSelectedRange:NSMakeRange(wholeLength, 0)];
+    if (count == 0) { return; }
+    
+    if (location == 0) {
+        [textView setSelectedRange:NSMakeRange(0, 0)];
+        
+    } else if (location > count) {
+        [textView setSelectedRange:NSMakeRange(wholeLength, 0)];
+        
+    } else {
+        NSInteger newLocation, newLength;
+        
+        newLocation = (location < 0) ? (count + location + 1) : location;
+        if (length < 0) {
+            newLength = count - newLocation + length + 1;
+        } else if (length == 0) {
+            newLength = 1;
         } else {
-            NSInteger newLocation, newLength;
-            
-            newLocation = (location < 0) ? (count + location + 1) : location;
-            if (length < 0) {
-                newLength = count - newLocation + length + 1;
-            } else if (length == 0) {
-                newLength = 1;
-            } else {
-                newLength = length;
-            }
-            if ((newLocation < count) && ((newLocation + newLength - 1) > count)) {
-                newLength = count - newLocation + 1;
-            }
-            if ((length < 0) && (newLength < 0)) {
-                newLength = 1;
-            }
-            if ((newLocation <= 0) || (newLength <= 0)) { return; }
-            
-            NSTextCheckingResult *match = matches[(newLocation - 1)];
-            NSRange range = [match range];
-            NSRange tmpRange = range;
-            NSInteger i;
-            
-            for (i = 0; i < newLength; i++) {
-                if (NSMaxRange(tmpRange) > wholeLength) {
-                    break;
-                }
-                range = [[textView string] lineRangeForRange:tmpRange];
-                tmpRange.length = range.length + 1;
-            }
-            if (wholeLength < NSMaxRange(range)) {
-                range.length = wholeLength - range.location;
-            }
-            [textView setSelectedRange:range];
+            newLength = length;
         }
+        if ((newLocation < count) && ((newLocation + newLength - 1) > count)) {
+            newLength = count - newLocation + 1;
+        }
+        if ((length < 0) && (newLength < 0)) {
+            newLength = 1;
+        }
+        if ((newLocation <= 0) || (newLength <= 0)) { return; }
+        
+        NSTextCheckingResult *match = matches[(newLocation - 1)];
+        NSRange range = [match range];
+        NSRange tmpRange = range;
+        
+        for (NSInteger i = 0; i < newLength; i++) {
+            if (NSMaxRange(tmpRange) > wholeLength) {
+                break;
+            }
+            range = [[textView string] lineRangeForRange:tmpRange];
+            tmpRange.length = range.length + 1;
+        }
+        if (wholeLength < NSMaxRange(range)) {
+            range.length = wholeLength - range.location;
+        }
+        [textView setSelectedRange:range];
     }
 }
 
@@ -1007,6 +1011,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 {
     if (![self acceptSaveDocumentWithIANACharSetName]) { return; }
     if (![self acceptSaveDocumentToConvertEncoding]) { return; }
+    
     [super saveDocument:sender];
 }
 
@@ -1018,6 +1023,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 {
     if (![self acceptSaveDocumentWithIANACharSetName]) { return; }
     if (![self acceptSaveDocumentToConvertEncoding]) { return; }
+    
     [super saveDocumentAs:sender];
 }
 
@@ -1037,7 +1043,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 - (IBAction)changeLineEndingToLF:(id)sender
 // ------------------------------------------------------
 {
-    [self changeLineEnding:sender];
+    [self doSetLineEnding:CENewLineLF];
 }
 
 
@@ -1046,7 +1052,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 - (IBAction)changeLineEndingToCR:(id)sender
 // ------------------------------------------------------
 {
-    [self changeLineEnding:sender];
+    [self doSetLineEnding:CENewLineCR];
 }
 
 
@@ -1055,7 +1061,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 - (IBAction)changeLineEndingToCRLF:(id)sender
 // ------------------------------------------------------
 {
-    [self changeLineEnding:sender];
+    [self doSetLineEnding:CENewLineCRLF];
 }
 
 
@@ -1144,7 +1150,11 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 - (IBAction)changeTheme:(id)sender
 // ------------------------------------------------------
 {
-    [[self editor] setThemeWithName:[sender title]];
+    NSString *name = [sender title];
+    
+    if ([name length] > 0) {
+        [[self editor] setThemeWithName:name];
+    }
 }
 
 
@@ -1496,7 +1506,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     
     // ユーザがオーナーでないファイルに Finder Lock がかかっていたら編集／保存できない
     BOOL isFinderLockOn = NO;
-    if (![self canReleaseFinderLockAtURL:url isLocked:&isFinderLockOn lockAgain:NO]) {
+    if (![self canUnlockFileAtURL:url isLocked:&isFinderLockOn lockAgain:NO]) {
         NSAlert *alert = [[NSAlert alloc] init];
         [alert setMessageText:NSLocalizedString(@"Finder's lock could not be released.", nil)];
         [alert setInformativeText:NSLocalizedString(@"You can use “Save As” to save a copy.", nil)];
@@ -1590,7 +1600,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 // ------------------------------------------------------
 /// Finder のロックが解除出来るか試す。lockAgain が真なら再びロックする。
-- (BOOL)canReleaseFinderLockAtURL:(NSURL *)url isLocked:(BOOL *)isLocked lockAgain:(BOOL)lockAgain
+- (BOOL)canUnlockFileAtURL:(NSURL *)url isLocked:(BOOL *)isLocked lockAgain:(BOOL)lockAgain
 // ------------------------------------------------------
 {
     NSFileManager *fileManager = [NSFileManager defaultManager];
@@ -1619,7 +1629,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 // ------------------------------------------------------
 /// エンコードを変更するアクションのRedo登録
 - (void)redoSetEncoding:(NSStringEncoding)encoding updateDocument:(BOOL)updateDocument
-               askLossy:(BOOL)askLossy  lossy:(BOOL)lossy  asActionName:(NSString *)actionName
+               askLossy:(BOOL)askLossy lossy:(BOOL)lossy asActionName:(NSString *)actionName
 // ------------------------------------------------------
 {
     [[[self undoManager] prepareWithInvocationTarget:self] doSetEncoding:encoding updateDocument:updateDocument
@@ -1726,7 +1736,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 - (void)alertForNotWritableDocCloseDidEnd:(NSAlert *)alert returnCode:(int)returnCode contextInfo:(void *)contextInfo
 // ------------------------------------------------------
 {
-    // このメソッドは下記のページの情報を参考にさせていただきました(2005.07.08)
+    // This method is based on the following page (2005-07-08)
     // http://www.cocoadev.com/index.pl?ReplaceSaveChangesSheet
     
     NSDictionary *contextInfoDict = CFBridgingRelease(contextInfo);
