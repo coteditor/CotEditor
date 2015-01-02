@@ -670,15 +670,16 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
     
     // read output asynchronously for safe with huge output
     [[outPipe fileHandleForReading] readToEndOfFileInBackgroundAndNotify];
-    [[NSNotificationCenter defaultCenter] addObserverForName:NSFileHandleReadToEndOfFileCompletionNotification
-                                                      object:[outPipe fileHandleForReading]
-                                                       queue:nil
-                                                  usingBlock:^(NSNotification *note)
+    __block id observer = [[NSNotificationCenter defaultCenter] addObserverForName:NSFileHandleReadToEndOfFileCompletionNotification
+                                                                    object:[outPipe fileHandleForReading]
+                                                                     queue:nil
+                                                                usingBlock:^(NSNotification *note)
      {
-         typeof(self) strongSelf = weakSelf;
+         [[NSNotificationCenter defaultCenter] removeObserver:observer];
          
          if (cancelled) { return; }
          
+         typeof(weakSelf) strongSelf = weakSelf;
          NSData *data = [note userInfo][NSFileHandleNotificationDataItem];
          NSString *output = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
          if (output) {
