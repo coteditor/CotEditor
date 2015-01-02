@@ -7,7 +7,7 @@
  Created on 2014-12-18 by 1024jp
  encoding="UTF-8"
  
- © 2014 CotEditor Project
+ © 2014-2015 1024jp
  */
 
 
@@ -23,8 +23,8 @@
 "N0Y-nO-k3L.title" = "アクセス権：";
 /* Class = "NSTextFieldCell"; title = "Locked:"; ObjectID = "5po-l6-6mm"; */
 "5po-l6-6mm.title" = "ロック：";
-/* Class = "NSTextFieldCell"; title = "Full Path:"; ObjectID = "WuM-BH-qGJ"; */
-"WuM-BH-qGJ.title" = "フルパス：";
+/* Class = "NSTextFieldCell"; title = "Full Path:"; ObjectID = "zwU-xo-iZu"; */
+"zwU-xo-iZu.title" = "フルパス：";
 
 /* Class = "NSTextFieldCell"; title = "Encoding:"; ObjectID = "B5F-j1-X4E"; */
 "B5F-j1-X4E.title" = "エンコーディング：";

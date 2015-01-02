@@ -8,7 +8,7 @@
  Localized by onevcat
  encoding="UTF-8"
  
- © 2014 CotEditor Project
+ © 2014-2015 CotEditor Project
  */
 
 
@@ -24,8 +24,8 @@
 "N0Y-nO-k3L.title" = "权限:";
 /* Class = "NSTextFieldCell"; title = "Locked:"; ObjectID = "5po-l6-6mm"; */
 "5po-l6-6mm.title" = "锁定:";
-/* Class = "NSTextFieldCell"; title = "Full Path:"; ObjectID = "WuM-BH-qGJ"; */
-"WuM-BH-qGJ.title" = "Full Path:";  // FIXME:
+/* Class = "NSTextFieldCell"; title = "Full Path:"; ObjectID = "zwU-xo-iZu"; */
+"zwU-xo-iZu.title" = "Full Path:";  // FIXME:
 
 /* Class = "NSTextFieldCell"; title = "Encoding:"; ObjectID = "B5F-j1-X4E"; */
 "B5F-j1-X4E.title" = "编码:";
