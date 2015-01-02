@@ -369,7 +369,7 @@
 
     [findMenu addItem:[NSMenuItem separatorItem]];
     unichar upKey = NSUpArrowFunctionKey;
-    menuItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Select Prev Outline Item", nil)
+    menuItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Select Previous Outline Item", nil)
                                           action:@selector(selectPrevItemOfOutlineMenu:)
                                    keyEquivalent:[NSString stringWithCharacters:&upKey length:1]];
     [menuItem setKeyEquivalentModifierMask:(NSCommandKeyMask | NSAlternateKeyMask)];
@@ -391,7 +391,7 @@
     // setup KeyBindingManager
     [[CEKeyBindingManager sharedManager] applyKeyBindingsToMainMenu];
     
-    // migrate usr settings if needed
+    // migrate user settings if needed
     [self migrateIfNeeded];
     
     // store latest version

@@ -18,7 +18,7 @@
 "None" = "无";
 "Re-Color All" = "全部重新着色";
 // Find menu added item titles
-"Select Prev Outline Item" = "选择上一个大纲项目";
+"Select Previous Outline Item" = "选择上一个大纲项目";
 "Select Next Outline Item" = "选择下一个大纲项目";
 "Go To…" = "跳转…";
 

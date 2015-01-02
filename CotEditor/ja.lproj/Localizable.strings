@@ -19,7 +19,7 @@
 "None" = "なし";
 "Re-Color All" = "再カラーリング";
 // Find menu added item titles
-"Select Prev Outline Item" = "前のアウトライン項目を選択";
+"Select Previous Outline Item" = "前のアウトライン項目を選択";
 "Select Next Outline Item" = "次のアウトライン項目を選択";
 "Go To…" = "移動…";
 
