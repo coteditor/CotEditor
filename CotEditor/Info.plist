@@ -494,10 +494,6 @@
 			</array>
 			<key>CFBundleTypeIconFile</key>
 			<string>JuliaIcon</string>
-			<key>CFBundleTypeMIMETypes</key>
-			<array>
-				<string>text/x-python-script</string>
-			</array>
 			<key>CFBundleTypeName</key>
 			<string>Julia script</string>
 			<key>CFBundleTypeRole</key>
