@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014 CotEditor Project
+ © 2014-2015 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -28,6 +28,7 @@
  ==============================================================================
  */
 
+@import AudioToolbox;
 #import "CEAppearancePaneController.h"
 #import "CEThemeViewController.h"
 #import "CEThemeManager.h"
@@ -432,7 +433,9 @@
     }
     
     NSError *error = nil;
-    [[CEThemeManager sharedManager] removeTheme:[self selectedTheme] error:&error];
+    if ([[CEThemeManager sharedManager] removeTheme:[self selectedTheme] error:&error]) {
+        AudioServicesPlaySystemSound(CESystemSoundID_MoveToTrash);
+    }
     
     if (error) {
         // 削除できなければ、その旨をユーザに通知

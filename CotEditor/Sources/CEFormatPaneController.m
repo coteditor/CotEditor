@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014 CotEditor Project
+ © 2014-2015 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -28,6 +28,7 @@
  ==============================================================================
  */
 
+@import AudioToolbox;
 #import "CEFormatPaneController.h"
 #import "CEEncodingManager.h"
 #import "CESyntaxManager.h"
@@ -461,7 +462,9 @@
     
     NSString *selectedStyleName = [self selectedStyleName];
     
-    if (![[CESyntaxManager sharedManager] removeStyleFileWithStyleName:selectedStyleName]) {
+    if ([[CESyntaxManager sharedManager] removeStyleFileWithStyleName:selectedStyleName]) {
+        AudioServicesPlaySystemSound(CESystemSoundID_MoveToTrash);
+    } else {
         // 削除できなければ、その旨をユーザに通知
         [[alert window] orderOut:self];
         [[[self view] window] makeKeyAndOrderFront:self];

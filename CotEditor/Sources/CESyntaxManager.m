@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014 CotEditor Project
+ © 2014-2015 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -294,7 +294,8 @@ NSString *const CESyntaxValidationMessageKey = @"MessageKey";
     NSURL *URL = [self URLForUserStyle:styleName available:NO];
 
     if ([URL checkResourceIsReachableAndReturnError:nil]) {
-        success = [[NSFileManager defaultManager] removeItemAtURL:URL error:nil];
+        success = [[NSFileManager defaultManager] trashItemAtURL:URL resultingItemURL:nil error:nil];
+        
         if (success) {
             // 内部で持っているキャッシュ用データを更新
             [[self styleCaches] removeObjectForKey:styleName];

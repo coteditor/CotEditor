@@ -28,6 +28,7 @@ Change Log
 - Close Preferences window with esc key.
 - Improve find result panel behavior with Spaces.
 - Rename “Script Error Panel” to “Console Panel.”
+- Move removed themes/styles to Trash instead delete them immediately.
 - Delay timing to save text key bindings setting.
 - Localize document types.
 - Tweak window size sample window.
