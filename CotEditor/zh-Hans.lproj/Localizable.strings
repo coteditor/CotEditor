@@ -7,7 +7,7 @@
  Created on 2014-11-27 by onevcat
  encoding="UTF-8"
  
- © 2014 CotEditor Project
+ © 2014-2015 CotEditor Project
  */
 
 
@@ -148,7 +148,7 @@
 
 // Menu items
 "Comment Selection" = "注释选中内容";
-"Uncomment Seletion" = "取消注释选中内容";
+"Uncomment Selection" = "取消注释选中内容";
 
 // Contextual menu items
 "Font" = "字体";

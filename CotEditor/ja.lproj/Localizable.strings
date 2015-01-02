@@ -8,7 +8,7 @@
  encoding="UTF-8"
  
  © 2004-2007 nakamuxu
- © 2014 CotEditor Project
+ © 2014-2015 1024jp
  */
 
 
@@ -150,7 +150,7 @@
 
 // Menu items
 "Comment Selection" = "選択範囲をコメントアウト";
-"Uncomment Seletion" = "選択範囲をコメント解除";
+"Uncomment Selection" = "選択範囲をコメント解除";
 
 // Contextual menu items
 "Font" = "フォント";
