@@ -61,6 +61,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 @property (nonatomic) BOOL didAlertNotWritable;  // 文書が読み込み専用のときにその警告を表示したかどうか
 @property (nonatomic, copy) NSString *initialString;  // 初期表示文字列に表示する文字列;
 @property (nonatomic) CEODBEventSender *ODBEventSender;
+@property (nonatomic) BOOL shouldSaveXattr;
 
 // readonly
 @property (readwrite, nonatomic) CEWindowController *windowController;
@@ -112,6 +113,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
         _lineEnding = [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultLineEndCharCodeKey];
         _selection = [[CETextSelection alloc] initWithDocument:self];
         _writable = YES;
+        _shouldSaveXattr = YES;
         
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(documentDidFinishOpen:)
@@ -1304,10 +1306,13 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     NSStringEncoding newEncoding = encoding;
     BOOL success = NO;
     BOOL isEA = NO;
+    
+    // ファイル拡張属性(com.apple.TextEncoding)からエンコーディング値を得る
+    NSStringEncoding xattrEncoding = [self encodingFromComAppleTextEncodingAtURL:url];
+    [self setShouldSaveXattr:(xattrEncoding != NSProprietaryStringEncoding)];
 
     if (encoding == CEAutoDetectEncodingMenuItemTag) {
-        // ファイル拡張属性(com.apple.TextEncoding)からエンコーディング値を得る
-        newEncoding = [self encodingFromComAppleTextEncodingAtURL:url];
+        newEncoding = xattrEncoding;
         if ([data length] == 0) {
             success = YES;
             [self setInitialString:@""];
@@ -1535,13 +1540,16 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
         // クリエータなどを設定
         [[NSFileManager defaultManager] setAttributes:attributes ofItemAtPath:[url path] error:nil];
         
-        // ファイル拡張属性(com.apple.TextEncoding)にエンコーディングを保存
-        NSData *encodingData = [[[self currentIANACharSetName] stringByAppendingFormat:@";%u",
-                                 (unsigned int)CFStringConvertNSStringEncodingToEncoding([self encoding])]
-                                dataUsingEncoding:NSUTF8StringEncoding];
-        if (encodingData) {
-            setxattr([[url path] UTF8String], XATTR_ENCODING_KEY,
-                     [encodingData bytes], [encodingData length], 0, XATTR_NOFOLLOW);
+        // ファイル拡張属性 (com.apple.TextEncoding) にエンコーディングを保存
+        if ([self shouldSaveXattr]) {
+            NSData *encodingData = [[NSString stringWithFormat:@"%@;%ul",
+                                     [self currentIANACharSetName], CFStringConvertNSStringEncodingToEncoding([self encoding])]
+                                    dataUsingEncoding:NSUTF8StringEncoding];
+            
+            if (encodingData) {
+                setxattr([[url path] UTF8String], XATTR_ENCODING_KEY,
+                         [encodingData bytes], [encodingData length], 0, XATTR_NOFOLLOW);
+            }
         }
     }
     

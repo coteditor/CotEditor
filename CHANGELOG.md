@@ -28,6 +28,7 @@ Change Log
 - Close Preferences window with esc key.
 - Improve find result panel behavior with Spaces.
 - Rename “Script Error Panel” to “Console Panel.”
+- Change to save `com.apple.TextEncoding` xattr only if the file already has the encoding xattr or it's a new document.
 - Move removed themes/styles to Trash instead delete them immediately.
 - Delay timing to save text key bindings setting.
 - Localize document types.
