@@ -417,7 +417,7 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 
 // ------------------------------------------------------
 /// apply results conforming to the output type to the frontmost document
-+ (void)applyOutput:(NSString *)output document:(CEDocument *)document outputType:(CEScriptOutputType)outputType error:(NSError **)error
++ (BOOL)applyOutput:(NSString *)output document:(CEDocument *)document outputType:(CEScriptOutputType)outputType error:(NSError **)error
 // ------------------------------------------------------
 {
     CEEditorWrapper *editor = [document editor];
@@ -434,7 +434,7 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
                                                  code:CEScriptNoTargetDocumentError
                                              userInfo:@{NSLocalizedDescriptionKey: @"Target document was not found."}];
                 }
-                return;
+                return NO;
                 
             default:
                 break;
@@ -469,6 +469,8 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
         case CENoOutputType:
             break;  // do nothing
     }
+    
+    return YES;
 }
 
 
