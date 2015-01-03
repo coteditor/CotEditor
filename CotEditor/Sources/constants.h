@@ -184,6 +184,17 @@ extern NSString *const CEDefaultPrintLineNumIndexKey;
 extern NSString *const CEDefaultPrintInvisibleCharIndexKey;
 extern NSString *const CEDefaultPrintColorIndexKey;
 
+// find panel
+extern NSString *const CEDefaultFindHistoryKey;
+extern NSString *const CEDefaultReplaceHistoryKey;
+extern NSString *const CEDefaultFindRegexSyntaxKey;
+extern NSString *const CEDefaultFindEscapeCharacterKey;
+extern NSString *const CEDefaultFindUsesRegularExpressionKey;
+extern NSString *const CEDefaultFindInSelectionKey;
+extern NSString *const CEDefaultFindIsWrapKey;
+extern NSString *const CEDefaultFindOptionsKey;
+extern NSString *const CEDefaultFindClosesIndicatorWhenDoneKey;
+
 // settings that are not in preferences
 extern NSString *const CEDefaultInsertCustomTextArrayKey;
 extern NSString *const CEDefaultInsertCustomTextKey;
