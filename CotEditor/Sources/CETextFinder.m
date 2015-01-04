@@ -30,7 +30,12 @@
 #import "CETextFinder.h"
 
 
+NSString *const CETextFinderDidReplaceAllNotification = @"CETextFinderDidReplaceAllNotification";
+
+
 @implementation CETextFinder
+
+#pragma mark Superclass Methods
 
 // ------------------------------------------------------
 /// specify custom find panel nib name

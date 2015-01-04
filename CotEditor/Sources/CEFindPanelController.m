@@ -29,6 +29,7 @@
 
 #import <OgreKit/OgreKit.h>
 #import "CEFindPanelController.h"
+#import "CETextFinder.h"
 #import "constants.h"
 
 
@@ -142,6 +143,14 @@ static const int kMaxMatchedStringLength = 250; // 検索結果の最大文字�
 - (BOOL)didEndReplaceAll:(id)anObject
 // ------------------------------------------------------
 {
+    NSTextView *target = [self target];
+    
+    // post notification
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:CETextFinderDidReplaceAllNotification
+                                                            object:target];
+    });
+    
     return [self closesIndicatorWhenDone];
 }
 

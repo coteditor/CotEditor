@@ -32,6 +32,8 @@
 
 @implementation CEFindTextFieldCell
 
+#pragma mark Superclass Methods
+
 // ------------------------------------------------------
 /// add right padding for history popup
 - (NSRect)drawingRectForBounds:(NSRect)theRect
