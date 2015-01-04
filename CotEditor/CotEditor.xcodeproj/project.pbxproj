@@ -25,6 +25,7 @@
 		25B2C24D07FA6BC400F4EFC7 /* CETextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25B2C24B07FA6BC400F4EFC7 /* CETextView.m */; };
 		2A009ACB1A57BA8B00C3D542 /* CETextFinder.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A009ACA1A57BA8B00C3D542 /* CETextFinder.m */; };
 		2A009ACE1A587B3100C3D542 /* CEFindTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A009ACD1A587B3100C3D542 /* CEFindTextFieldCell.m */; };
+		2A009AD11A58ED1D00C3D542 /* CEFindResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A009AD01A58ED1D00C3D542 /* CEFindResultViewController.m */; };
 		2A07202B18E0E1C2006F3A43 /* CEPrintPanelAccessoryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A07202A18E0E1C2006F3A43 /* CEPrintPanelAccessoryController.m */; };
 		2A07202E18E0E421006F3A43 /* PrintPanelAccessory.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A07202C18E0E421006F3A43 /* PrintPanelAccessory.xib */; };
 		2A149DA619016ABB00A9D6EF /* AppearancePane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A149D9619016ABB00A9D6EF /* AppearancePane.xib */; };
@@ -244,6 +245,8 @@
 		2A009ACA1A57BA8B00C3D542 /* CETextFinder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CETextFinder.m; sourceTree = "<group>"; };
 		2A009ACC1A587B3100C3D542 /* CEFindTextFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEFindTextFieldCell.h; sourceTree = "<group>"; };
 		2A009ACD1A587B3100C3D542 /* CEFindTextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEFindTextFieldCell.m; sourceTree = "<group>"; };
+		2A009ACF1A58ED1D00C3D542 /* CEFindResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEFindResultViewController.h; sourceTree = "<group>"; };
+		2A009AD01A58ED1D00C3D542 /* CEFindResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEFindResultViewController.m; sourceTree = "<group>"; };
 		2A07202918E0E1C2006F3A43 /* CEPrintPanelAccessoryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEPrintPanelAccessoryController.h; sourceTree = "<group>"; };
 		2A07202A18E0E1C2006F3A43 /* CEPrintPanelAccessoryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEPrintPanelAccessoryController.m; sourceTree = "<group>"; };
 		2A149DB11901740600A9D6EF /* CEWindowPaneController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEWindowPaneController.h; sourceTree = "<group>"; };
@@ -997,6 +1000,8 @@
 				2A7CF2421A5747EC00D09249 /* CEFindPanelController.m */,
 				2A009ACC1A587B3100C3D542 /* CEFindTextFieldCell.h */,
 				2A009ACD1A587B3100C3D542 /* CEFindTextFieldCell.m */,
+				2A009ACF1A58ED1D00C3D542 /* CEFindResultViewController.h */,
+				2A009AD01A58ED1D00C3D542 /* CEFindResultViewController.m */,
 			);
 			name = "Text Finder";
 			sourceTree = "<group>";
@@ -1383,6 +1388,7 @@
 				2A15833518E3B83F00601026 /* CEConsolePanelController.m in Sources */,
 				2A5B998718D61421009C2F4F /* CELineHightPanelController.m in Sources */,
 				2A586A1619A4FA9D0053F5E3 /* CEKeyBindingSheetController.m in Sources */,
+				2A009AD11A58ED1D00C3D542 /* CEFindResultViewController.m in Sources */,
 				2A07202B18E0E1C2006F3A43 /* CEPrintPanelAccessoryController.m in Sources */,
 				2A3A759419E77D66001DAB88 /* CEMigrationWindowController.m in Sources */,
 				2A51793A1A40A3B500A3F852 /* CEShortcutKeyField.m in Sources */,

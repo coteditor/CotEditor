@@ -29,14 +29,14 @@
 
 #import <OgreKit/OgreKit.h>
 #import "CEFindPanelController.h"
+#import "CEFindResultViewController.h"
 #import "CETextFinder.h"
 #import "constants.h"
 
 
 // constants
+static const CGFloat kDefaultResultViewHeight = 200.0;
 static const NSUInteger kMaxHistorySize = 20;
-static const int kMaxLeftMargin = 30;   // 検索結果の左側の最大文字数 (マッチ結果が隠れてしまうことを防ぐ)
-static const int kMaxMatchedStringLength = 250; // 検索結果の最大文字数
 
 
 @interface CEFindPanelController () <NSWindowDelegate>
@@ -71,6 +71,7 @@ static const int kMaxMatchedStringLength = 250; // 検索結果の最大文字�
 // outlets
 @property (nonatomic, weak) IBOutlet NSMenu *findHistoryMenu;
 @property (nonatomic, weak) IBOutlet NSMenu *replaceHistoryMenu;
+@property (nonatomic) IBOutlet CEFindResultViewController *findResultViewController;
 
 @end
 
@@ -129,9 +130,8 @@ static const int kMaxMatchedStringLength = 250; // 検索結果の最大文字�
     if (![result isSuccess]) { return [self closesIndicatorWhenDone]; }
     
     // prepare result table
-    [result setMaximumLeftMargin:kMaxLeftMargin];
-    [result setMaximumMatchedStringLength:kMaxMatchedStringLength];
-    // TODO: implement result display
+    [[self findResultViewController] setResult:result];
+    [self setResultShown:YES animate:YES];
     [self showFindPanel:self];
     
     return YES;
@@ -190,6 +190,11 @@ static const int kMaxMatchedStringLength = 250; // 検索結果の最大文字�
 - (IBAction)showFindPanel:(id)sender
 // ------------------------------------------------------
 {
+    // close result view
+    if (![[self findPanel] isVisible]) {
+        [self setResultShown:NO animate:NO];
+    }
+    
     // sync search string
     if (![[self findPanel] isVisible] &&
         [[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultSyncFindPboardKey])
@@ -442,8 +447,37 @@ static const int kMaxMatchedStringLength = 250; // 検索結果の最大文字�
 }
 
 
+// ------------------------------------------------------
+/// close opening find result view
+- (IBAction)closeResultView:(id)sender
+// ------------------------------------------------------
+{
+    [self setResultShown:NO animate:YES];
+}
+
+
 
 #pragma mark Private Methods
+
+// ------------------------------------------------------
+/// toggle result view visibility with/without animation
+- (void)setResultShown:(BOOL)shown animate:(BOOL)performAnimation
+// ------------------------------------------------------
+{
+    CEFindResultViewController *controller = [self findResultViewController];
+    
+    NSRect panelFrame = [[self findPanel] frame];
+    NSRect viewFrame = [[controller view] frame];
+    CGFloat height = NSHeight(viewFrame);
+    
+    if ((!shown && height == 0) || (shown && height > 0)) { return; }
+    
+    panelFrame.size.height += shown ? kDefaultResultViewHeight : -height;
+    panelFrame.origin.y += shown ? -kDefaultResultViewHeight : height;
+    
+    [[self findPanel] setFrame:panelFrame display:YES animate:performAnimation];
+}
+
 
 // ------------------------------------------------------
 /// return current target textView

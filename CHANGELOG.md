@@ -19,6 +19,8 @@ Change Log
 - Migrate document drawer to sidebar style.
     - Add “show document inspector” option to preferences.
     - Improve document information display.
+- Introduce brand-new find panel with more organized UI.
+    - OniGmo is still be using for the regular expression engine as before.
 - Enable to change multiple checkboxes in syntax style editor at once.
 - Improve to display gear icon in menu bar while executing a script.
 - Improve auto-outdent behavior with `}` input.
