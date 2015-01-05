@@ -11,5 +11,5 @@
  */
 
 
-"New CotEditor Document with Selection" = "New CotEditor Document with Selection";  // FIXME:
-"Open File in CotEditor" = "Open File in CotEditor";  // FIXME:
+"New CotEditor Document with Selection" = "使用选中内容创建新的 CotEditor 文档";
+"Open File in CotEditor" = "在 CotEditor 中打开文件";

@@ -15,7 +15,7 @@
 "127.title" = "尺寸调整窗口";
 
 /* Class = "NSTextFieldCell"; title = "Resize this window.\nThe size of this window will be set as default."; ObjectID = "3399"; */
-"3399.title" = "你可以缩放这个窗口\n点击确认按钮来将当前窗口尺寸设置为默认值";  // FIXME:
+"3399.title" = "缩放这个窗口\n这个窗口的尺寸将被设置为默认值";
 
 /* Class = "NSTextFieldCell"; title = "Width:"; ObjectID = "3402"; */
 "3402.title" = "宽度:";
@@ -23,6 +23,6 @@
 "3403.title" = "高度:";
 
 /* Class = "NSButtonCell"; title = "Set to Default"; ObjectID = "3397"; */
-"3397.title" = "Set to Default";  // FIXME:
+"3397.title" = "设为默认值";
 /* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "3398"; */
 "3398.title" = "取消";

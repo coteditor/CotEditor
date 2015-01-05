@@ -47,5 +47,5 @@
 "uTl-fL-Jcq.paletteLabel" = "打印";  /* Print */
 
 /* Class = "NSToolbarItem"; ObjectID = "Bn7-e8-FVC"; */
-"Bn7-e8-FVC.label" = "Integration";  /* Integration */  // FIXME:
-"Bn7-e8-FVC.paletteLabel" = "Integration";  /* Integration */  // FIXME:
+"Bn7-e8-FVC.label" = "集成";  /* Integration */
+"Bn7-e8-FVC.paletteLabel" = "集成";  /* Integration */

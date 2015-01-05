@@ -17,7 +17,7 @@
 /* Class = "NSButtonCell"; title = "Navigation Bar"; ObjectID = "3351"; */
 "3351.title" = "导航栏";
 /* Class = "NSButtonCell"; title = "Document Inspector"; ObjectID = "3348"; */
-"3348.title" = "Document Inspector";  /* FIXME: */
+"3348.title" = "文档检查器";
 /* Class = "NSButtonCell"; title = "Status Bar"; ObjectID = "3349"; */
 "3349.title" = "状态栏";
 /* Class = "NSButtonCell"; title = "Line Numbers"; ObjectID = "A9U-Sx-or3"; */
