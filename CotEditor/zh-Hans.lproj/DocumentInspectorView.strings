@@ -25,7 +25,7 @@
 /* Class = "NSTextFieldCell"; title = "Locked:"; ObjectID = "5po-l6-6mm"; */
 "5po-l6-6mm.title" = "锁定:";
 /* Class = "NSTextFieldCell"; title = "Full Path:"; ObjectID = "zwU-xo-iZu"; */
-"zwU-xo-iZu.title" = "Full Path:";  // FIXME:
+"zwU-xo-iZu.title" = "完整路径:";
 
 /* Class = "NSTextFieldCell"; title = "Encoding:"; ObjectID = "B5F-j1-X4E"; */
 "B5F-j1-X4E.title" = "编码:";
@@ -51,6 +51,6 @@
 /* Class = "NSTextFieldCell"; title = "Unicode:"; ObjectID = "kna-yU-liB"; */
 "kna-yU-liB.title" = "Unicode:";
 /* Class = "IBBindingConnection"; ibShadowedIsNilPlaceholder = "Not selected"; ObjectID = "786-4C-69e"; */
-"786-4C-69e.ibShadowedIsNilPlaceholder" = "Not selected";  // FIXME:
+"786-4C-69e.ibShadowedIsNilPlaceholder" = "未选中";
 /* Class = "NSTextField"; ibShadowedToolTip = "Select a single character to display unicode info."; ObjectID = "2ZU-Mi-aJz"; */
-"2ZU-Mi-aJz.ibShadowedToolTip" = "Select a single character to display unicode info.";  // FIXME:
+"2ZU-Mi-aJz.ibShadowedToolTip" = "选中一个字符以显示 unicode 信息";

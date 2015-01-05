@@ -345,7 +345,7 @@
 "588.title" = "全宽 ASCII 到 ASCII";
 
 /* Class = "NSMenuItem"; title = "Japanese Text"; ObjectID = "XWV-by-mnw"; */
-"XWV-by-mnw.title" = "Japanese Text";  // FIXME:
+"XWV-by-mnw.title" = "日文文本";
 /* Class = "NSMenuItem"; title = "Hiragana to Katakana"; ObjectID = "592"; */
 "592.title" = "平假名到片假名";
 /* Class = "NSMenuItem"; title = "Katakana to Hiragana"; ObjectID = "594"; */
@@ -386,7 +386,7 @@
 /* Class = "NSMenuItem"; title = "Color Code Panel"; ObjectID = "651"; */
 "651.title" = "颜色代码面板";
 /* Class = "NSMenuItem"; title = "Console Panel"; ObjectID = "653"; */
-"653.title" = "Console 面板"; // FIXME:
+"653.title" = "控制台面板";
 
 
 
