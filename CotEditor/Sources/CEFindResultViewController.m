@@ -207,7 +207,7 @@ static const int kMaxMatchedStringLength = 256;
     if (![self result]) { return; }
     
     [self setFindString:[[self result] findString]];
-    [self setCount:[[self result]  numberOfMatches]];
+    [self setCount:[[self result] numberOfMatches]];
     [self setDocumentName:[[self result] title]];
     
     NSString *message;
