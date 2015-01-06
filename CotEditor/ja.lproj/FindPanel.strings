@@ -132,6 +132,9 @@
 
 // Find Result
 
+/* Class = "NSButton"; UeN.ibShadowedToolTip = "Close find result."; ObjectID = "oC1-bN-UeN"; */
+"oC1-bN-UeN.ibShadowedToolTip" = "Close find result.";  // FIXME:
+
 /* Class = "IBBindingConnection"; ibShadowedDisplayPattern = "Find String: %{value1}@"; ObjectID = "2MH-SD-x1y"; */
 "2MH-SD-x1y.ibShadowedDisplayPattern" = "検索文字列： %{value1}@";
 

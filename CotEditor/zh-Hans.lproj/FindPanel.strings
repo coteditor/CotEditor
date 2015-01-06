@@ -133,6 +133,9 @@
 
 // Find Result
 
+/* Class = "NSButton"; UeN.ibShadowedToolTip = "Close find result."; ObjectID = "oC1-bN-UeN"; */
+"oC1-bN-UeN.ibShadowedToolTip" = "検索結果を閉じる";
+
 /* Class = "IBBindingConnection"; ibShadowedDisplayPattern = "Find String: %{value1}@"; ObjectID = "2MH-SD-x1y"; */
 "2MH-SD-x1y.ibShadowedDisplayPattern" = "查找字符串: %{value1}@";
 
