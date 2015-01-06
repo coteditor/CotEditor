@@ -1,0 +1,191 @@
+/*
+ FindPanel.strings
+ 
+ CotEditor
+ http://coteditor.com
+ 
+ Created on 2015-01-06 by 1024jp
+ Localized by onevcat
+ encoding="UTF-8"
+ 
+ © 2015 1024jp
+ */
+
+// Find Panel
+
+/* Class = "NSPanel"; title = "Find & Replace"; ObjectID = "Wal-Sg-6d6"; */
+"Wal-Sg-6d6.title" = "查找 & 替换";
+
+/* Class = "NSTextFieldCell"; title = "Find:"; ObjectID = "JnG-4b-frx"; */
+"JnG-4b-frx.title" = "查找:";
+/* Class = "NSTextFieldCell"; title = "Replace:"; ObjectID = "2lU-Yq-CgC"; */
+"2lU-Yq-CgC.title" = "替换:";
+
+/* Class = "IBBindingConnection"; ibShadowedIsNilPlaceholder = "Find String"; ObjectID = "HII-Sb-dGB"; */
+"HII-Sb-dGB.ibShadowedIsNilPlaceholder" = "検索文字列";  // FIXME:
+/* Class = "IBBindingConnection"; ibShadowedIsNilPlaceholder = "Replacement String"; ObjectID = "IkC-WH-Bvt"; */
+"IkC-WH-Bvt.ibShadowedIsNilPlaceholder" = "置換文字列";  // FIXME:
+
+/* Class = "NSButtonCell"; title = "Regular Expression"; ObjectID = "brT-HP-GVL"; */
+"brT-HP-GVL.title" = "正则表达式";
+/* Class = "NSButtonCell"; title = "Ignore Case"; ObjectID = "4wg-Cz-ozb"; */
+"4wg-Cz-ozb.title" = "忽略大小写";
+/* Class = "NSButtonCell"; title = "In Selection"; ObjectID = "9bc-9Q-fhd"; */
+"9bc-9Q-fhd.title" = "In Selection";  // FIXME:
+
+
+// Buttons
+
+/* Class = "NSButtonCell"; title = "Find All"; ObjectID = "XLZ-92-VVF"; */
+"XLZ-92-VVF.title" = "查找全部";
+/* Class = "NSButtonCell"; title = "Replace All"; ObjectID = "5gU-5y-iLn"; */
+"5gU-5y-iLn.title" = "替换全部";
+/* Class = "NSButtonCell"; title = "Replace"; ObjectID = "W4Z-S2-wvv"; */
+"W4Z-S2-wvv.title" = "替换";
+/* Class = "NSButtonCell"; title = "Replace & Find"; ObjectID = "m0f-Il-JLU"; */
+"m0f-Il-JLU.title" = "替换 & 查找";
+
+/* Class = "NSSegmentedCell"; ObjectID = "u6p-Hz-aK5"; */
+"u6p-Hz-aK5.ibShadowedToolTips[0]" = "Find previous match.";  /* "Find previous match." */  // FIXME:
+"u6p-Hz-aK5.ibShadowedToolTips[1]" = "Find next match.";  /* "Find next match." */  // FIXME:
+
+/* Class = "NSMenuItem"; title = "Recent Searches"; ObjectID = "cdV-rY-hCN"; */
+"cdV-rY-hCN.title" = "Recent Searches";  // FIXME:
+/* Class = "NSMenuItem"; title = "Clear Recent Searches"; ObjectID = "vE8-oK-xlC"; */
+"vE8-oK-xlC.title" = "Clear Recent Searches";  // FIXME:
+
+/* Class = "NSMenuItem"; title = "Recent Replacements"; ObjectID = "7cw-iQ-0LM"; */
+"7cw-iQ-0LM.title" = "Recent Replacements";  // FIXME:
+/* Class = "NSMenuItem"; title = "Clear Recent Replacements"; ObjectID = "vfK-an-Qnl"; */
+"vfK-an-Qnl.title" = "Clear Recent Replacements";  // FIXME:
+
+
+// Advanced Options
+
+/* Class = "NSPopUpButton"; ibShadowedToolTip = "Set advanced options"; ObjectID = "EY8-gj-fQb"; */
+"EY8-gj-fQb.ibShadowedToolTip" = "Set advanced options";  // FIXME:
+
+/* Class = "NSMenuItem"; title = "Advanced Options"; ObjectID = "SsS-EF-JyP"; */
+"SsS-EF-JyP.title" = "Advanced Options";  // FIXME:
+
+/* Class = "NSMenuItem"; title = "Wrap Around"; ObjectID = "Oqm-Wt-G7B"; */
+"Oqm-Wt-G7B.title" = "折行查找";
+/* Class = "NSMenuItem"; title = "Auto-Close Progress Sheet"; ObjectID = "ONX-V4-H0w"; */
+"ONX-V4-H0w.title" = "Auto-Close Progress Sheet";  // FIXME:
+
+/* Class = "NSMenuItem"; title = "Textual Search Options"; ObjectID = "hX3-jg-Uqc"; */
+"hX3-jg-Uqc.title" = "Textual Search Options";  // FIXME:
+/* Class = "NSMenuItem"; title = "Delimit by Whitespace"; ObjectID = "4Pf-nh-75E"; */
+"4Pf-nh-75E.title" = "以空格分隔";
+
+/* Class = "NSMenuItem"; title = "Regular Expression Options"; ObjectID = "UZ5-oK-DED"; */
+"UZ5-oK-DED.title" = "Regular Expression Options";  // FIXME:
+
+/* Class = "NSMenuItem"; title = "Syntax"; ObjectID = "Uhr-hw-nIf"; */
+"Uhr-hw-nIf.title" = "查找方式";
+/* Class = "NSMenu"; title = "Syntax"; ObjectID = "bs2-Tz-po4"; */
+"bs2-Tz-po4.title" = "查找方式";
+/* Class = "NSMenuItem"; title = "POSIX Basic"; ObjectID = "y7k-yn-gy6"; */
+"y7k-yn-gy6.title" = "基本 POSIX";
+/* Class = "NSMenuItem"; title = "POSIX Extended"; ObjectID = "QfE-cX-d9h"; */
+"QfE-cX-d9h.title" = "扩展 POSIX";
+/* Class = "NSMenuItem"; title = "Emacs"; ObjectID = "IKR-qF-Nqu"; */
+"IKR-qF-Nqu.title" = "Emacs";
+/* Class = "NSMenuItem"; title = "Grep"; ObjectID = "Nbe-7c-AnJ"; */
+"Nbe-7c-AnJ.title" = "Grep";
+/* Class = "NSMenuItem"; title = "GNU Regex"; ObjectID = "sgn-JJ-gas"; */
+"sgn-JJ-gas.title" = "GNU Regex";
+/* Class = "NSMenuItem"; title = "Java"; ObjectID = "heJ-on-iUB"; */
+"heJ-on-iUB.title" = "Java";
+/* Class = "NSMenuItem"; title = "Perl"; ObjectID = "mdl-TK-1fB"; */
+"mdl-TK-1fB.title" = "Perl";
+/* Class = "NSMenuItem"; title = "Ruby"; ObjectID = "NPK-8x-xDg"; */
+"NPK-8x-xDg.title" = "Ruby";
+
+/* Class = "NSMenuItem"; title = "Escape Character"; ObjectID = "r68-46-LBY"; */
+"r68-46-LBY.title" = "字符转换";
+/* Class = "NSMenu"; title = "Escape Character"; ObjectID = "OVR-vE-lYb"; */
+"OVR-vE-lYb.title" = "字符转换";
+
+/* Class = "NSMenuItem"; title = "Single Line"; ObjectID = "UQ6-Up-xWI"; */
+"UQ6-Up-xWI.title" = "单行";
+/* Class = "NSMenuItem"; title = "Multiline"; ObjectID = "kPN-Hy-ym0"; */
+"kPN-Hy-ym0.title" = "点代表任意字符";
+/* Class = "NSMenuItem"; title = "Extend"; ObjectID = "14O-E6-7lS"; */
+"14O-E6-7lS.title" = "扩展名";
+/* Class = "NSMenuItem"; title = "Find Longest"; ObjectID = "xBb-Le-i3R"; */
+"xBb-Le-i3R.title" = "匹配最长";
+/* Class = "NSMenuItem"; title = "Find Empty"; ObjectID = "amg-LN-hui"; */
+"amg-LN-hui.title" = "不匹配空字符";
+/* Class = "NSMenuItem"; title = "Find Not Empty"; ObjectID = "3D5-4J-V4l"; */
+"3D5-4J-V4l.title" = "匹配非空字符后的空字符";
+/* Class = "NSMenuItem"; title = "Negate Single Line"; ObjectID = "Sdf-5P-GP1"; */
+"Sdf-5P-GP1.title" = "单行无效";
+/* Class = "NSMenuItem"; title = "Capture Group"; ObjectID = "LiY-vD-U6B"; */
+"LiY-vD-U6B.title" = "按组匹配";
+/* Class = "NSMenuItem"; title = "Don't Capture Group"; ObjectID = "fQl-sZ-bjK"; */
+"fQl-sZ-bjK.title" = "不匹配组";
+/* Class = "NSMenuItem"; title = "Not Begin of Line"; ObjectID = "AFF-AC-IR9"; */
+"AFF-AC-IR9.title" = "不匹配行初";
+/* Class = "NSMenuItem"; title = "Not End of Line"; ObjectID = "kCx-M9-GDk"; */
+"kCx-M9-GDk.title" = "不匹配行末";
+
+
+// Find Result
+
+/* Class = "IBBindingConnection"; ibShadowedDisplayPattern = "Find String: %{value1}@"; ObjectID = "2MH-SD-x1y"; */
+"2MH-SD-x1y.ibShadowedDisplayPattern" = "查找字符串: %{value1}@";
+
+/* Class = "NSTableColumn"; headerCell.title = "Line"; ObjectID = "CPd-0W-bKv"; */
+"CPd-0W-bKv.headerCell.title" = "行";
+/* Class = "NSTableColumn"; headerCell.title = "Found String"; ObjectID = "PJ8-wp-pdK"; */
+"PJ8-wp-pdK.headerCell.title" = "找到字符串";
+
+/* Class = "NSButtonCell"; title = "Live Update"; ObjectID = "pqE-XD-1Fq"; */
+"pqE-XD-1Fq.title" = "实时更新";
+
+
+
+// Find Menu
+
+/* Class = "NSMenu"; title = "Find"; ObjectID = "8yc-k8-jhN"; */
+"8yc-k8-jhN.title" = "查找";
+
+/* Class = "NSMenuItem"; title = "Find…"; ObjectID = "4Ib-lS-N9y"; */
+"4Ib-lS-N9y.title" = "查找…";
+/* Class = "NSMenuItem"; title = "Find Next"; ObjectID = "z9Q-kE-L1E"; */
+"z9Q-kE-L1E.title" = "查找下一个";
+/* Class = "NSMenuItem"; title = "Find Previous"; ObjectID = "3jr-gg-CIx"; */
+"3jr-gg-CIx.title" = "查找上一个";
+/* Class = "NSMenuItem"; title = "Find Selected Text"; ObjectID = "iJT-kP-UJW"; */
+"iJT-kP-UJW.title" = "在选择文本中查找";
+/* Class = "NSMenuItem"; title = "Find All"; ObjectID = "LzC-he-HOH"; */
+"LzC-he-HOH.title" = "查找全部";
+
+/* Class = "NSMenuItem"; title = "Use Selection for Find"; ObjectID = "L5W-PB-5MS"; */
+"L5W-PB-5MS.title" = "使用选择查找";
+/* Class = "NSMenuItem"; title = "Use Selection for Replace"; ObjectID = "g4C-zE-9xr"; */
+"g4C-zE-9xr.title" = "使用选择替换";
+/* Class = "NSMenuItem"; title = "Jump to Selection"; ObjectID = "xDx-bo-l30"; */
+"xDx-bo-l30.title" = "跳转到选择";
+
+/* Class = "NSMenuItem"; title = "Replace"; ObjectID = "e8j-L9-L6t"; */
+"e8j-L9-L6t.title" = "替换";
+/* Class = "NSMenuItem"; title = "Replace and Find Next"; ObjectID = "wH0-WV-tx0"; */
+"wH0-WV-tx0.title" = "替换并查找下一个";
+/* Class = "NSMenuItem"; title = "Replace All"; ObjectID = "l6p-Cu-uLV"; */
+"l6p-Cu-uLV.title" = "替换全部";
+
+/* Class = "NSMenuItem"; title = "Highlight"; ObjectID = "y2S-p4-YKu"; */
+"y2S-p4-YKu.title" = "高亮";
+/* Class = "NSMenuItem"; title = "Unhighlight"; ObjectID = "xgh-n2-EcI"; */
+"xgh-n2-EcI.title" = "取消高亮";
+
+
+/* Class = "NSMenuItem"; title = "Select Previous Outline Item"; ObjectID = "ZWx-qS-RDL"; */
+"ZWx-qS-RDL.title" = "选择上一个大纲项目";
+/* Class = "NSMenuItem"; title = "Select Next Outline Item"; ObjectID = "SDH-S0-5aH"; */
+"SDH-S0-5aH.title" = "选择下一个大纲项目";
+
+/* Class = "NSMenuItem"; title = "Go To…"; ObjectID = "58H-5H-mFT"; */
+"58H-5H-mFT.title" = "跳转…";

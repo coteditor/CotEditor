@@ -36,10 +36,11 @@
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                         <connections>
-                                            <binding destination="qZS-yd-wpm" name="value" keyPath="replacementString" id="iDa-Lh-CIr">
+                                            <binding destination="qZS-yd-wpm" name="value" keyPath="replacementString" id="IkC-WH-Bvt">
                                                 <dictionary key="options">
                                                     <bool key="NSAllowsEditingMultipleValuesSelection" value="NO"/>
                                                     <bool key="NSContinuouslyUpdatesValue" value="YES"/>
+                                                    <string key="NSNullPlaceholder">Replacement String</string>
                                                     <bool key="NSValidatesImmediately" value="YES"/>
                                                 </dictionary>
                                             </binding>
@@ -58,10 +59,11 @@
                                         </textFieldCell>
                                         <connections>
                                             <action selector="findNext:" target="qZS-yd-wpm" id="Rw0-sf-WVf"/>
-                                            <binding destination="qZS-yd-wpm" name="value" keyPath="findString" id="vJC-6w-5PE">
+                                            <binding destination="qZS-yd-wpm" name="value" keyPath="findString" id="HII-Sb-dGB">
                                                 <dictionary key="options">
                                                     <bool key="NSAllowsEditingMultipleValuesSelection" value="NO"/>
                                                     <bool key="NSContinuouslyUpdatesValue" value="YES"/>
+                                                    <string key="NSNullPlaceholder">Find String</string>
                                                     <bool key="NSValidatesImmediately" value="YES"/>
                                                 </dictionary>
                                             </binding>
@@ -110,7 +112,7 @@
                                         <constraints>
                                             <constraint firstAttribute="width" constant="22" id="JJ1-IS-oxs"/>
                                         </constraints>
-                                        <popUpButtonCell key="cell" type="recessed" title="Recent Searches" bezelStyle="recessed" imagePosition="only" alignment="left" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" pullsDown="YES" autoenablesItems="NO" selectedItem="vE8-oK-xlC" id="rfC-IT-glr">
+                                        <popUpButtonCell key="cell" type="recessed" title="Recent Searches" bezelStyle="recessed" imagePosition="only" alignment="left" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" pullsDown="YES" autoenablesItems="NO" id="rfC-IT-glr">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                             <menu key="menu" autoenablesItems="NO" id="Zor-um-eIs">
@@ -119,7 +121,7 @@
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                     </menuItem>
                                                     <menuItem isSeparatorItem="YES" tag="-1" id="Cgh-09-On5"/>
-                                                    <menuItem title="Recent Searches" tag="-1" id="vE8-oK-xlC">
+                                                    <menuItem title="Clear Recent Searches" tag="-1" id="vE8-oK-xlC">
                                                         <connections>
                                                             <action selector="clearFindHistory:" target="qZS-yd-wpm" id="m2w-gf-bJF"/>
                                                         </connections>
@@ -133,7 +135,7 @@
                                         <constraints>
                                             <constraint firstAttribute="width" constant="22" id="kRf-Fe-Swy"/>
                                         </constraints>
-                                        <popUpButtonCell key="cell" type="recessed" title="Recent Replacements" bezelStyle="recessed" imagePosition="only" alignment="left" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" pullsDown="YES" autoenablesItems="NO" selectedItem="7cw-iQ-0LM" id="u5j-P5-Mjd">
+                                        <popUpButtonCell key="cell" type="recessed" title="Recent Replacements" bezelStyle="recessed" imagePosition="only" alignment="left" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" pullsDown="YES" autoenablesItems="NO" selectedItem="vfK-an-Qnl" id="u5j-P5-Mjd">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                             <menu key="menu" autoenablesItems="NO" id="xUj-lq-8zt">
@@ -142,7 +144,7 @@
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                     </menuItem>
                                                     <menuItem isSeparatorItem="YES" tag="-1" id="VtR-6M-Yz8"/>
-                                                    <menuItem title="Clear History" tag="-1" id="vfK-an-Qnl">
+                                                    <menuItem title="Clear Recent Replacements" tag="-1" id="vfK-an-Qnl">
                                                         <connections>
                                                             <action selector="clearReplaceHistory:" target="qZS-yd-wpm" id="Jg2-Ba-L6c"/>
                                                         </connections>
@@ -164,11 +166,6 @@
                                                     <menuItem title="Wrap Around" state="on" id="Oqm-Wt-G7B">
                                                         <connections>
                                                             <binding destination="1KP-j4-l6E" name="value" keyPath="values.findIsWrap" id="oZK-lu-PN8"/>
-                                                        </connections>
-                                                    </menuItem>
-                                                    <menuItem title="Auto-Close Progress Sheet" state="on" id="ONX-V4-H0w">
-                                                        <connections>
-                                                            <binding destination="1KP-j4-l6E" name="value" keyPath="values.findClosesIndicatorWhenDone" id="7un-z6-GPy"/>
                                                         </connections>
                                                     </menuItem>
                                                     <menuItem isSeparatorItem="YES" id="WaO-Uo-cUX"/>
@@ -321,6 +318,12 @@
                                                         <connections>
                                                             <action selector="toggleOption:" target="qZS-yd-wpm" id="Alg-oH-Ikz"/>
                                                             <binding destination="qZS-yd-wpm" name="value" keyPath="notEndOfLineOption" id="ikW-d5-Ebf"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem isSeparatorItem="YES" id="X4Y-hC-opX"/>
+                                                    <menuItem title="Auto-Close Progress Sheet" state="on" id="ONX-V4-H0w">
+                                                        <connections>
+                                                            <binding destination="1KP-j4-l6E" name="value" keyPath="values.findClosesIndicatorWhenDone" id="7un-z6-GPy"/>
                                                         </connections>
                                                     </menuItem>
                                                 </items>
@@ -606,7 +609,7 @@
                                         <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="momentary" id="u6p-Hz-aK5">
                                             <font key="font" metaFont="system"/>
                                             <segments>
-                                                <segment toolTip="Find the previous match." image="NSGoLeftTemplate" width="32" tag="3">
+                                                <segment toolTip="Find previous match." image="NSGoLeftTemplate" width="32" tag="3">
                                                     <nil key="label"/>
                                                 </segment>
                                                 <segment toolTip="Find next match." image="NSGoRightTemplate" width="32" tag="2">
@@ -669,7 +672,7 @@
                 <outlet property="textFinder" destination="-2" id="690-pN-rNk"/>
             </connections>
         </customObject>
-        <menu title="Menu" id="8yc-k8-jhN" userLabel="Find Menu">
+        <menu title="Find" id="8yc-k8-jhN" userLabel="Find Menu">
             <items>
                 <menuItem title="Find…" keyEquivalent="f" id="4Ib-lS-N9y">
                     <connections>
@@ -781,6 +784,7 @@
                 <outlet property="view" destination="CRP-NW-b9J" id="HyB-MX-ri4"/>
             </connections>
         </viewController>
+        <menuItem isSeparatorItem="YES" id="qKG-oQ-MVM"/>
     </objects>
     <resources>
         <image name="NSActionTemplate" width="14" height="14"/>
