@@ -27,7 +27,7 @@
  ==============================================================================
  */
 
-#import <OgreKit/OgreKit.h>
+#import <OgreKit/OgreTextFinder.h>
 
 
 // notifications

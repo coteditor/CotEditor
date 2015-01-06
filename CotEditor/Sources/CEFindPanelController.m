@@ -246,9 +246,9 @@ static const NSUInteger kMaxHistorySize = 20;
     
     [self appendFindHistory:[self findString]];
     
-    if ([result isSuccess]) {
-        
-    } else {
+    if ([self alertIfInvalidRegex]) { return; }
+    
+    if (![result isSuccess]) {
         NSBeep();
     }
 }
@@ -297,6 +297,8 @@ static const NSUInteger kMaxHistorySize = 20;
     
     [self appendFindHistory:[self findString]];
     [self appendReplaceHistory:[self replacementString]];
+    
+    if ([self alertIfInvalidRegex]) { return; }
 }
 
 
@@ -313,6 +315,8 @@ static const NSUInteger kMaxHistorySize = 20;
     
     [self appendFindHistory:[self findString]];
     [self appendReplaceHistory:[self replacementString]];
+    
+    if ([self alertIfInvalidRegex]) { return; }
 }
 
 
@@ -328,6 +332,8 @@ static const NSUInteger kMaxHistorySize = 20;
     
     [self appendFindHistory:[self findString]];
     [self appendReplaceHistory:[self replacementString]];
+    
+    if ([self alertIfInvalidRegex]) { return; }
 }
 
 
@@ -342,6 +348,8 @@ static const NSUInteger kMaxHistorySize = 20;
                       inSelection:[self inSelection]];
     
     [self appendFindHistory:[self findString]];
+    
+    if ([self alertIfInvalidRegex]) { return; }
 }
 
 
@@ -504,6 +512,7 @@ static const NSUInteger kMaxHistorySize = 20;
     [self appendFindHistory:[self findString]];
     
     if ([result alertIfErrorOccurred]) { return; }
+    if ([self alertIfInvalidRegex]) { return; }
     
     if ([result isSuccess]) {
         // add visual feedback
@@ -512,6 +521,48 @@ static const NSUInteger kMaxHistorySize = 20;
     } else {
         NSBeep();
     }
+}
+
+
+// ------------------------------------------------------
+/// check regex syntax of find string and return YES if invalid
+- (BOOL)alertIfInvalidRegex
+// ------------------------------------------------------
+{
+    if (![self usesRegularExpression]) { return NO; }
+    
+    @try {
+        [OGRegularExpression regularExpressionWithString:[[self target] string]
+                                                 options:[self options]
+                                                  syntax:[self syntax]
+                                         escapeCharacter:[[self textFinder] escapeCharacter]];
+        
+    } @catch (NSException *exception) {
+        if ([[exception name] isEqualToString:OgreException]) {
+            [self showAlertWithMessage:NSLocalizedString(@"Invalid regular expression.", nil)
+                           informative:[exception reason]];
+            return YES;
+        } else {
+            [exception raise];
+        }
+    }
+    
+    return NO;
+}
+
+
+// ------------------------------------------------------
+/// show error message by OgreKit as alert
+- (void)showAlertWithMessage:(NSString*)message informative:(NSString*)informative
+// ------------------------------------------------------
+{
+    NSAlert *alert = [[NSAlert alloc] init];
+    [alert setMessageText:message];
+    [alert setInformativeText:informative];
+    
+    NSBeep();
+    [[self findPanel] makeKeyAndOrderFront:self];
+    [alert beginSheetModalForWindow:[self findPanel] modalDelegate:nil didEndSelector:NULL contextInfo:NULL];
 }
 
 
