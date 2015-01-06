@@ -39,7 +39,7 @@ static const CGFloat kDefaultResultViewHeight = 200.0;
 static const NSUInteger kMaxHistorySize = 20;
 
 
-@interface CEFindPanelController () <NSWindowDelegate>
+@interface CEFindPanelController () <NSWindowDelegate, NSSplitViewDelegate>
 
 @property (nonatomic, copy) NSString *findString;
 @property (nonatomic, copy) NSString *replacementString;
@@ -69,9 +69,11 @@ static const NSUInteger kMaxHistorySize = 20;
 @property (nonatomic) BOOL notEndOfLineOption;
 
 #pragma mark Outlets
+@property (nonatomic) IBOutlet CEFindResultViewController *resultViewController;
+@property (nonatomic, weak) IBOutlet NSSplitView *splitView;
+@property (nonatomic, weak) IBOutlet NSButton *disclosureButton;
 @property (nonatomic, weak) IBOutlet NSMenu *findHistoryMenu;
 @property (nonatomic, weak) IBOutlet NSMenu *replaceHistoryMenu;
-@property (nonatomic) IBOutlet CEFindResultViewController *findResultViewController;
 
 @end
 
@@ -130,7 +132,7 @@ static const NSUInteger kMaxHistorySize = 20;
     if (![result isSuccess]) { return [self closesIndicatorWhenDone]; }
     
     // prepare result table
-    [[self findResultViewController] setResult:result];
+    [[self resultViewController] setResult:result];
     [self setResultShown:YES animate:YES];
     [self showFindPanel:self];
     
@@ -179,6 +181,69 @@ static const NSUInteger kMaxHistorySize = 20;
     }
     
     return YES;
+}
+
+
+
+#pragma mark Delegate
+
+//=======================================================
+// NSWindowDelegate  < findPanel
+//=======================================================
+
+// ------------------------------------------------------
+/// collapse result view by resizing window
+- (void)windowDidEndLiveResize:(NSNotification *)notification
+// ------------------------------------------------------
+{
+    [self collapseResultViewIfNeeded];
+}
+
+
+//=======================================================
+// NSSplitViewDelegate  < splitView
+//=======================================================
+
+// ------------------------------------------------------
+/// collapse result view by dragging divider
+- (void)splitViewDidResizeSubviews:(NSNotification *)notification
+// ------------------------------------------------------
+{
+    // ignore programmical resize
+    if (![notification userInfo][@"NSSplitViewDividerIndex"]) { return; }
+    
+    [self collapseResultViewIfNeeded];
+}
+
+
+// ------------------------------------------------------
+/// only result view can collapse
+- (BOOL)splitView:(NSSplitView *)splitView canCollapseSubview:(NSView *)subview
+// ------------------------------------------------------
+{
+    return (subview == [[self resultViewController] view]);
+}
+
+
+// ------------------------------------------------------
+/// hide divider when view collapsed
+- (BOOL)splitView:(NSSplitView *)splitView shouldHideDividerAtIndex:(NSInteger)dividerIndex
+// ------------------------------------------------------
+{
+    return YES;
+}
+
+
+// ------------------------------------------------------
+/// avoid showing draggable cursor when result view collapsed
+- (NSRect)splitView:(NSSplitView *)splitView effectiveRect:(NSRect)proposedEffectiveRect forDrawnRect:(NSRect)drawnRect ofDividerAtIndex:(NSInteger)dividerIndex
+// ------------------------------------------------------
+{
+    if ([splitView isSubviewCollapsed:[[self resultViewController] view]] || dividerIndex == 1) {
+        proposedEffectiveRect.size = NSZeroSize;
+    }
+    
+    return proposedEffectiveRect;
 }
 
 
@@ -472,18 +537,69 @@ static const NSUInteger kMaxHistorySize = 20;
 - (void)setResultShown:(BOOL)shown animate:(BOOL)performAnimation
 // ------------------------------------------------------
 {
-    CEFindResultViewController *controller = [self findResultViewController];
+    NSView *resultView = [[self resultViewController] view];
+    CGFloat height = NSHeight([resultView bounds]);
     
-    NSRect panelFrame = [[self findPanel] frame];
-    NSRect viewFrame = [[controller view] frame];
-    CGFloat height = NSHeight(viewFrame);
+    if ((!shown && ![self isResultShown]) || (shown && height > kDefaultResultViewHeight)) { return; }
     
-    if ((!shown && height == 0) || (shown && height > 0)) { return; }
+    // make sure disclosure button points up before open result
+    // (The buttom may points down if the view was closed by dragging.)
+    if (shown) {
+        [[self disclosureButton] setState:NSOffState];
+    }
     
-    panelFrame.size.height += shown ? kDefaultResultViewHeight : -height;
-    panelFrame.origin.y += shown ? -kDefaultResultViewHeight : height;
+    NSPanel *panel = [self findPanel];
+    NSSplitView *splitView = [self splitView];
+    NSRect panelFrame = [panel frame];
+    CGFloat diff = shown ? kDefaultResultViewHeight - height : -height;
     
-    [[self findPanel] setFrame:panelFrame display:YES animate:performAnimation];
+    // uncollapse and add divider without animation if needed
+    if (shown && [resultView isHidden]) {
+        CGFloat thickness = 2 * 1;
+        
+        [resultView setHidden:NO];
+        panelFrame.size.height += thickness;
+        panelFrame.origin.y -= thickness;
+        [panel setFrame:panelFrame display:YES animate:NO];
+    }
+    
+    // resize panel frame
+    panelFrame.size.height += diff;
+    panelFrame.origin.y -= diff;
+    
+    [panel setFrame:panelFrame display:YES animate:performAnimation];
+    
+    if (!shown) {
+        [self collapseResultViewIfNeeded];
+    }
+}
+
+
+// ------------------------------------------------------
+/// whether result view is opened
+- (BOOL)isResultShown
+// ------------------------------------------------------
+{
+    return ![[self splitView] isSubviewCollapsed:[[self resultViewController] view]];
+}
+
+
+// ------------------------------------------------------
+/// collapse result view if closed
+- (void)collapseResultViewIfNeeded
+// ------------------------------------------------------
+{
+    NSView *resultView = [[self resultViewController] view];
+    if ([resultView isHidden] || !NSIsEmptyRect([resultView visibleRect])) { return; }
+    
+    NSRect frame = [[self findPanel] frame];
+    CGFloat thickness = 2 * [[self splitView] dividerThickness];
+    [resultView setHidden:YES];
+    
+    // resize panel to avoid resizing input fields
+    frame.size.height -= thickness;
+    frame.origin.y += thickness;
+    [[self findPanel] setFrame:frame display:YES animate:NO];
 }
 
 
