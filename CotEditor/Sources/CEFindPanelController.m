@@ -179,7 +179,19 @@ static const NSUInteger kMaxHistorySize = 20;
 - (BOOL)validateMenuItem:(NSMenuItem *)menuItem
 // ------------------------------------------------------
 {
-    if ([menuItem action] == @selector(changeSyntax:)) {
+    if ([menuItem action] == @selector(findNext:) ||
+        [menuItem action] == @selector(findPrevious:) ||
+        [menuItem action] == @selector(findSelectedText:) ||
+        [menuItem action] == @selector(findAll:) ||
+        [menuItem action] == @selector(replace:) ||
+        [menuItem action] == @selector(replaceAndFind:) ||
+        [menuItem action] == @selector(replaceAll:) ||
+        [menuItem action] == @selector(unhighlight:) ||
+        [menuItem action] == @selector(highlight:))
+    {
+        return ([self target] != nil);
+        
+    } else if ([menuItem action] == @selector(changeSyntax:)) {
         OgreSyntax syntax = [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultFindRegexSyntaxKey];
         [menuItem setState:([menuItem tag] == syntax) ? NSOnState : NSOffState];
     
