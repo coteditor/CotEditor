@@ -115,7 +115,7 @@
 /* Class = "NSMenuItem"; title = "Find Longest"; ObjectID = "xBb-Le-i3R"; */
 "xBb-Le-i3R.title" = "最長マッチ";
 /* Class = "NSMenuItem"; title = "Find Empty"; ObjectID = "amg-LN-hui"; */
-"amg-LN-hui.title" = "空マッチしない";
+"amg-LN-hui.title" = "非空マッチ後に空マッチ";
 /* Class = "NSMenuItem"; title = "Find Not Empty"; ObjectID = "3D5-4J-V4l"; */
 "3D5-4J-V4l.title" = "空マッチを無視";
 /* Class = "NSMenuItem"; title = "Negate Single Line"; ObjectID = "Sdf-5P-GP1"; */
@@ -127,7 +127,7 @@
 /* Class = "NSMenuItem"; title = "Not Begin of Line"; ObjectID = "AFF-AC-IR9"; */
 "AFF-AC-IR9.title" = "先頭を行頭とみなさない";
 /* Class = "NSMenuItem"; title = "Not End of Line"; ObjectID = "kCx-M9-GDk"; */
-"kCx-M9-GDk.title" = "末尾を行末とみなさない";
+"kCx-M9-GDk.title" = "終端を行末とみなさない";
 
 
 // Find Result
