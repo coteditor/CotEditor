@@ -46,14 +46,14 @@ static const NSUInteger kMaxHistorySize = 20;
 
 @property (nonatomic) NSColor *highlightColor;
 
-// settings
+#pragma mark Settings
 @property (readonly, nonatomic) BOOL usesRegularExpression;
 @property (readonly, nonatomic) BOOL isWrap;
 @property (readonly, nonatomic) BOOL inSection;
 @property (readonly, nonatomic) BOOL closesIndicatorWhenDone;
 @property (readonly, nonatomic) OgreSyntax syntax;
 
-// options
+#pragma mark Options
 @property (nonatomic) BOOL ignoreCaseOption;
 @property (nonatomic) BOOL singleLineOption;
 @property (nonatomic) BOOL multilineOption;
@@ -68,7 +68,7 @@ static const NSUInteger kMaxHistorySize = 20;
 @property (nonatomic) BOOL notBeginOfLineOption;
 @property (nonatomic) BOOL notEndOfLineOption;
 
-// outlets
+#pragma mark Outlets
 @property (nonatomic, weak) IBOutlet NSMenu *findHistoryMenu;
 @property (nonatomic, weak) IBOutlet NSMenu *replaceHistoryMenu;
 @property (nonatomic) IBOutlet CEFindResultViewController *findResultViewController;
@@ -94,7 +94,7 @@ static const NSUInteger kMaxHistorySize = 20;
         _findString = @"";
         _replacementString = @"";
         _highlightColor = [NSColor yellowColor];
-        // Highlight color is currently not customizable. (2014-01-04)
+        // Highlight color is currently not customizable. (2015-01-04)
         // It might better when it can be set in theme also for incompatible chars highlight.
         // Just because I'm lazy.
         
@@ -175,7 +175,7 @@ static const NSUInteger kMaxHistorySize = 20;
     
     } else if ([menuItem action] == @selector(changeEscapeCharacter:)) {
         NSString *escapeCharacter = [[self textFinder] escapeCharacter];
-        [menuItem setState:([[menuItem title] isEqualToString:escapeCharacter]) ? NSOnState : NSOffState];
+        [menuItem setState:[[menuItem title] isEqualToString:escapeCharacter] ? NSOnState : NSOffState];
     }
     
     return YES;
@@ -434,7 +434,7 @@ static const NSUInteger kMaxHistorySize = 20;
     NSString *escapeCharater = [sender title];
     
     [[self textFinder] setEscapeCharacter:escapeCharater];
-    [[NSUserDefaults standardUserDefaults] setInteger:escapeCharater forKey:CEDefaultFindEscapeCharacterKey];
+    [[NSUserDefaults standardUserDefaults] setObject:escapeCharater forKey:CEDefaultFindEscapeCharacterKey];
 }
 
 
