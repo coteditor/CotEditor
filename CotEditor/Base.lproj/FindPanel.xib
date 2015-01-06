@@ -17,7 +17,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" resizable="YES" utility="YES"/>
             <rect key="contentRect" x="167" y="107" width="540" height="400"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
-            <view key="contentView" verticalCompressionResistancePriority="250" id="VS9-oi-ter">
+            <view key="contentView" id="VS9-oi-ter">
                 <rect key="frame" x="0.0" y="0.0" width="540" height="400"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
@@ -28,7 +28,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="540" height="158"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <subviews>
-                                    <textField translatesAutoresizingMaskIntoConstraints="NO" id="l7V-L6-eHO">
+                                    <textField verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="l7V-L6-eHO">
                                         <rect key="frame" x="82" y="30" width="438" height="49"/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" borderStyle="bezel" placeholderString="Replacement String" drawsBackground="YES" id="oVG-0K-H2V" customClass="CEFindTextFieldCell">
                                             <font key="font" metaFont="system"/>
@@ -47,7 +47,7 @@
                                             <outlet property="nextKeyView" destination="bcO-Vd-Pum" id="DSe-ru-2Pe"/>
                                         </connections>
                                     </textField>
-                                    <textField verticalHuggingPriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="bcO-Vd-Pum">
+                                    <textField verticalHuggingPriority="249" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="bcO-Vd-Pum">
                                         <rect key="frame" x="82" y="89" width="438" height="49"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="f9q-Ai-xTj"/>
