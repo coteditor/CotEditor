@@ -31,6 +31,7 @@
 
 
 NSString *const CETextFinderDidReplaceAllNotification = @"CETextFinderDidReplaceAllNotification";
+NSString *const CETextFinderDidUnlighlightNotification = @"CETextFinderDidUnlighlightNotification";
 
 
 @implementation CETextFinder

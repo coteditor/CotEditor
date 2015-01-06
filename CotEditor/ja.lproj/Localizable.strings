@@ -390,7 +390,7 @@
 
 
 /* MARK: CEFindPanelController */
-"Invalid regular expression" =  "無効な正規表現";
+"Invalid regular expression" =  "無効な正規表現です。";
 
 
 /* MARK: CEFindResultViewController */

@@ -141,6 +141,10 @@
                                                  selector:@selector(textDidReplaceAll:)
                                                      name:CETextFinderDidReplaceAllNotification
                                                    object:_textView];
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(recolorAllTextViewString)
+                                                     name:CETextFinderDidUnlighlightNotification
+                                                   object:_textView];
         
         // 置換の Undo/Redo 後に再カラーリングできるように Undo/Redo アクションをキャッチ
         [[NSNotificationCenter defaultCenter] addObserver:self

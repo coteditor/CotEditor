@@ -162,6 +162,14 @@ static const NSUInteger kMaxHistorySize = 20;
 - (BOOL)didEndHighlight:(id)anObject
 // ------------------------------------------------------
 {
+    NSTextView *target = [self target];
+    
+    // post notification
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:CETextFinderDidUnlighlightNotification
+                                                            object:target];
+    });
+    
     return [self closesIndicatorWhenDone];
 }
 
