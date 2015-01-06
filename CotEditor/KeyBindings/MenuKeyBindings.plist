@@ -57,7 +57,7 @@
 	<key>@i</key>
 	<string>getInfo:</string>
 	<key>@j</key>
-	<string>jumpToSelection:</string>
+	<string>centerSelectionInVisibleArea:</string>
 	<key>@l</key>
 	<string>gotoLocation:</string>
 	<key>@m</key>
