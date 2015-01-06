@@ -102,6 +102,9 @@ static const NSUInteger kMaxHistorySize = 20;
         
         // deserialize options setting from defaults
         [self setOptions:[[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultFindOptionsKey]];
+        
+        // add to responder chain
+        [NSApp setNextResponder:self];
     }
     return self;
 }

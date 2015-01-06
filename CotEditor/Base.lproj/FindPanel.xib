@@ -7,7 +7,6 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="CETextFinder">
             <connections>
-                <outlet property="findMenu" destination="8yc-k8-jhN" id="WgS-YH-W6x"/>
                 <outlet property="findPanelController" destination="qZS-yd-wpm" id="CcT-fU-Sgh"/>
             </connections>
         </customObject>
@@ -667,6 +666,7 @@
             </connections>
             <point key="canvasLocation" x="277" y="3"/>
         </window>
+        <userDefaultsController representsSharedInstance="YES" id="1KP-j4-l6E"/>
         <customObject id="qZS-yd-wpm" customClass="CEFindPanelController">
             <connections>
                 <outlet property="disclosureButton" destination="oC1-bN-UeN" id="tQy-dI-Hz8"/>
@@ -678,112 +678,6 @@
                 <outlet property="textFinder" destination="-2" id="690-pN-rNk"/>
             </connections>
         </customObject>
-        <menu title="Find" id="8yc-k8-jhN" userLabel="Find Menu">
-            <items>
-                <menuItem title="Find…" keyEquivalent="f" id="4Ib-lS-N9y">
-                    <connections>
-                        <action selector="showFindPanel:" target="qZS-yd-wpm" id="5es-AD-k3a"/>
-                    </connections>
-                </menuItem>
-                <menuItem title="Find Next" tag="1" keyEquivalent="g" id="z9Q-kE-L1E">
-                    <connections>
-                        <action selector="findNext:" target="qZS-yd-wpm" id="0Ys-aD-qcr"/>
-                    </connections>
-                </menuItem>
-                <menuItem title="Find Previous" tag="2" keyEquivalent="G" id="3jr-gg-CIx">
-                    <connections>
-                        <action selector="findPrevious:" target="qZS-yd-wpm" id="iaO-a4-5DA"/>
-                    </connections>
-                </menuItem>
-                <menuItem title="Find Selected Text" tag="3" id="iJT-kP-UJW">
-                    <connections>
-                        <action selector="findSelectedText:" target="qZS-yd-wpm" id="SaM-HI-Zvs"/>
-                    </connections>
-                </menuItem>
-                <menuItem title="Find All" tag="4" keyEquivalent="F" id="LzC-he-HOH">
-                    <connections>
-                        <action selector="findAll:" target="qZS-yd-wpm" id="bF9-Wl-sHh"/>
-                    </connections>
-                </menuItem>
-                <menuItem isSeparatorItem="YES" id="3IC-50-k9k">
-                    <modifierMask key="keyEquivalentModifierMask" command="YES"/>
-                </menuItem>
-                <menuItem title="Use Selection for Find" tag="5" keyEquivalent="e" id="L5W-PB-5MS">
-                    <connections>
-                        <action selector="useSelectionForFind:" target="qZS-yd-wpm" id="w5X-oU-BPc"/>
-                    </connections>
-                </menuItem>
-                <menuItem title="Use Selection for Replace" tag="5" keyEquivalent="E" id="g4C-zE-9xr">
-                    <connections>
-                        <action selector="useSelectionForReplace:" target="qZS-yd-wpm" id="JjX-zk-Svv"/>
-                    </connections>
-                </menuItem>
-                <menuItem title="Jump to Selection" tag="6" keyEquivalent="j" id="xDx-bo-l30">
-                    <connections>
-                        <action selector="centerSelectionInVisibleArea:" target="-1" id="1Ge-bc-LJ9"/>
-                    </connections>
-                </menuItem>
-                <menuItem isSeparatorItem="YES" id="ReV-ky-C9S">
-                    <modifierMask key="keyEquivalentModifierMask" command="YES"/>
-                </menuItem>
-                <menuItem title="Replace" tag="7" id="e8j-L9-L6t">
-                    <connections>
-                        <action selector="replace:" target="qZS-yd-wpm" id="0A5-zw-WfW"/>
-                    </connections>
-                </menuItem>
-                <menuItem title="Replace and Find Next" tag="8" keyEquivalent="g" id="wH0-WV-tx0">
-                    <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
-                    <connections>
-                        <action selector="replaceAndFind:" target="qZS-yd-wpm" id="ebd-HW-qRS"/>
-                    </connections>
-                </menuItem>
-                <menuItem title="Replace All" tag="9" id="l6p-Cu-uLV">
-                    <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
-                    <connections>
-                        <action selector="replaceAll:" target="qZS-yd-wpm" id="XFV-Le-3ap"/>
-                    </connections>
-                </menuItem>
-                <menuItem isSeparatorItem="YES" id="gQq-XT-8Od">
-                    <modifierMask key="keyEquivalentModifierMask" command="YES"/>
-                </menuItem>
-                <menuItem title="Highlight" tag="10" keyEquivalent="H" id="y2S-p4-YKu">
-                    <connections>
-                        <action selector="highlight:" target="qZS-yd-wpm" id="cJ6-OW-nS7"/>
-                    </connections>
-                </menuItem>
-                <menuItem title="Unhighlight" tag="11" keyEquivalent="H" id="xgh-n2-EcI">
-                    <modifierMask key="keyEquivalentModifierMask" control="YES" command="YES"/>
-                    <connections>
-                        <action selector="unhighlight:" target="qZS-yd-wpm" id="WnE-TR-b7G"/>
-                    </connections>
-                </menuItem>
-                <menuItem isSeparatorItem="YES" id="CdK-uF-nXM">
-                    <modifierMask key="keyEquivalentModifierMask" command="YES"/>
-                </menuItem>
-                <menuItem title="Select Previous Outline Item" keyEquivalent="" id="ZWx-qS-RDL">
-                    <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
-                    <connections>
-                        <action selector="selectPrevItemOfOutlineMenu:" target="-1" id="Q67-n6-pxX"/>
-                    </connections>
-                </menuItem>
-                <menuItem title="Select Next Outline Item" keyEquivalent="" id="SDH-S0-5aH">
-                    <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
-                    <connections>
-                        <action selector="selectNextItemOfOutlineMenu:" target="-1" id="RFb-qE-2wz"/>
-                    </connections>
-                </menuItem>
-                <menuItem isSeparatorItem="YES" id="cBz-M5-kAu">
-                    <modifierMask key="keyEquivalentModifierMask" command="YES"/>
-                </menuItem>
-                <menuItem title="Go To…" keyEquivalent="l" id="58H-5H-mFT">
-                    <connections>
-                        <action selector="gotoLocation:" target="-1" id="G47-m5-wn8"/>
-                    </connections>
-                </menuItem>
-            </items>
-            <point key="canvasLocation" x="277.5" y="159.5"/>
-        </menu>
-        <userDefaultsController representsSharedInstance="YES" id="1KP-j4-l6E"/>
         <viewController id="46P-vJ-49R" customClass="CEFindResultViewController">
             <connections>
                 <outlet property="tableView" destination="4Sw-Gq-de2" id="nR3-HO-4fV"/>

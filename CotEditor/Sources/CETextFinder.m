@@ -46,5 +46,4 @@ NSString *const CETextFinderDidUnlighlightNotification = @"CETextFinderDidUnligh
     return @"FindPanel";
 }
 
-
 @end
