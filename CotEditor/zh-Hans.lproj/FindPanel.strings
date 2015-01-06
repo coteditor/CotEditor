@@ -22,9 +22,9 @@
 "2lU-Yq-CgC.title" = "替换:";
 
 /* Class = "IBBindingConnection"; ibShadowedIsNilPlaceholder = "Find String"; ObjectID = "HII-Sb-dGB"; */
-"HII-Sb-dGB.ibShadowedIsNilPlaceholder" = "検索文字列";  // FIXME:
+"HII-Sb-dGB.ibShadowedIsNilPlaceholder" = "Find String";  // FIXME:
 /* Class = "IBBindingConnection"; ibShadowedIsNilPlaceholder = "Replacement String"; ObjectID = "IkC-WH-Bvt"; */
-"IkC-WH-Bvt.ibShadowedIsNilPlaceholder" = "置換文字列";  // FIXME:
+"IkC-WH-Bvt.ibShadowedIsNilPlaceholder" = "Replacement String";  // FIXME:
 
 /* Class = "NSButtonCell"; title = "Regular Expression"; ObjectID = "brT-HP-GVL"; */
 "brT-HP-GVL.title" = "正则表达式";

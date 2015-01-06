@@ -39,7 +39,9 @@
 - (NSRect)drawingRectForBounds:(NSRect)theRect
 // ------------------------------------------------------
 {
-    theRect.size.width -= 22;
+    CGFloat padding = 22;
+    
+    theRect.size.width -= padding;
     
     return [super drawingRectForBounds:theRect];
 }

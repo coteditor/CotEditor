@@ -741,14 +741,14 @@ static const NSUInteger kMaxHistorySize = 20;
     
     if ([history count] == 0) { return; }
     
-    [menu insertItem:[NSMenuItem separatorItem] atIndex:1];  // the first item is invisible dummy
+    [menu insertItem:[NSMenuItem separatorItem] atIndex:2];  // the first item is invisible dummy
     
     for (NSString *stirng in history) {
         NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:stirng
                                                       action:selector
                                                keyEquivalent:@""];
         [item setTarget:self];
-        [menu insertItem:item atIndex:1];
+        [menu insertItem:item atIndex:2];
     }
 }
 
