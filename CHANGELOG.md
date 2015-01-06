@@ -16,6 +16,7 @@ Change Log
 
 ### Additions/Changes
 
+- Drop support for OS X Lion.
 - Migrate document drawer to sidebar style.
     - Add “show document inspector” option to preferences.
     - Improve document information display.
