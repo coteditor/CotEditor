@@ -18,10 +18,6 @@
 // Format - Syntax coloring menu item title
 "None" = "なし";
 "Re-Color All" = "再カラーリング";
-// Find menu added item titles
-"Select Previous Outline Item" = "前のアウトライン項目を選択";
-"Select Next Outline Item" = "次のアウトライン項目を選択";
-"Go To…" = "移動…";
 
 // Importing theme
 "“%@” is a CotEditor theme file." = "“%@”は CotEditor テーマファイルです。";
@@ -391,3 +387,14 @@
 "Could not read the script “%@”." = "スクリプト“%@”を読み込めませんでした。";
 "SampleScript folder exists already." = "SampleScript フォルダはすでに存在します。";
 "If you want to replace it with the new one, remove the existing folder at “%@” at first." = "新しいものに置き換えたい場合は、まず“%@”にある現存のフォルダを削除して下さい。";
+
+
+/* MARK: CEFindPanelController */
+"Invalid regular expression" =  "無効な正規表現です。";
+
+
+/* MARK: CEFindResultViewController */
+// Find result (“%@” is file name)
+"No strings found in “%@”." = "“%@”内に見つかりませんでした。";
+"Found one string in “%@”." = "“%@”内に1件見つかりました。";
+"Found %li strings in “%@”." = "“%2$@”内に%1$li件見つかりました。";

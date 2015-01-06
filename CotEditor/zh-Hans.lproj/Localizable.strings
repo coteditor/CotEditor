@@ -17,10 +17,6 @@
 // Format - Syntax coloring menu item title
 "None" = "无";
 "Re-Color All" = "全部重新着色";
-// Find menu added item titles
-"Select Previous Outline Item" = "选择上一个大纲项目";
-"Select Next Outline Item" = "选择下一个大纲项目";
-"Go To…" = "跳转…";
 
 // Importing theme
 "“%@” is a CotEditor theme file." = "“%@” 是 CotEditor 主题文件";
@@ -391,3 +387,14 @@
 "Could not read the script “%@”." = "无法读取脚本 “%@”";
 "SampleScript folder exists already." = "SampleScript 文件夹已存在";
 "If you want to replace it with the new one, remove the existing folder at “%@” at first." = "如果需要使用新的进行覆盖，请先删除 “%@” 下已有的文件夹";
+
+
+/* MARK: CEFindPanelController */
+"Invalid regular expression" = "无效的正则表达式";
+
+
+/* MARK: CEFindResultViewController */
+// Find result (“%@” is file name)
+"No strings found in “%@”." = "No strings found in “%@”.";  // FIXME:
+"Found one string in “%@”." = "Found one string in “%@”.";  // FIXME:
+"Found %li strings in “%@”." = "Found %li strings in “%@”.";  // FIXME:

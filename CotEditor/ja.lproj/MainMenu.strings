@@ -317,19 +317,47 @@
 
 /* Class = "NSMenuItem"; title = "Find"; ObjectID = "538"; */
 "538.title" = "検索";
-/* Class = "NSMenu"; title = "Find"; ObjectID = "535"; */
-"535.title" = "検索";
+/* Class = "NSMenu"; title = "Find"; ObjectID = "kGA-vM-cdL"; */
+"kGA-vM-cdL.title" = "検索";
 
-/* Class = "NSMenuItem"; title = "Find…"; ObjectID = "536"; */
-"536.title" = "検索…";
-/* Class = "NSMenuItem"; title = "Find Next"; ObjectID = "533"; */
-"533.title" = "次を検索";
-/* Class = "NSMenuItem"; title = "Find Previous"; ObjectID = "532"; */
-"532.title" = "前を検索";
-/* Class = "NSMenuItem"; title = "Use Selection for Find"; ObjectID = "534"; */
-"534.title" = "選択部分を検索";
-/* Class = "NSMenuItem"; title = "Jump to Selection"; ObjectID = "537"; */
-"537.title" = "選択部分へジャンプ";
+/* Class = "NSMenuItem"; title = "Find…"; ObjectID = "eP6-ss-sUG"; */
+"eP6-ss-sUG.title" = "検索…";
+/* Class = "NSMenuItem"; title = "Find Next"; ObjectID = "NwE-Cf-L9F"; */
+"NwE-Cf-L9F.title" = "次を検索";
+/* Class = "NSMenuItem"; title = "Find Previous"; ObjectID = "wiV-Hh-7xU"; */
+"wiV-Hh-7xU.title" = "前を検索";
+/* Class = "NSMenuItem"; title = "Find Selected Text"; ObjectID = "l33-Nz-UAw"; */
+"l33-Nz-UAw.title" = "選択部分を検索";
+/* Class = "NSMenuItem"; title = "Find All"; ObjectID = "HgR-ke-6gq"; */
+"HgR-ke-6gq.title" = "すべて検索";
+
+/* Class = "NSMenuItem"; title = "Use Selection for Find"; ObjectID = "hTx-ef-3T2"; */
+"hTx-ef-3T2.title" = "選択部分を検索に使用";
+/* Class = "NSMenuItem"; title = "Use Selection for Replace"; ObjectID = "kwa-lu-0Fz"; */
+"kwa-lu-0Fz.title" = "選択部分を置換に使用";
+/* Class = "NSMenuItem"; title = "Jump to Selection"; ObjectID = "p4A-mE-Ve3"; */
+"p4A-mE-Ve3.title" = "選択部分へジャンプ";
+
+/* Class = "NSMenuItem"; title = "Replace"; ObjectID = "bnD-BP-sPi"; */
+"bnD-BP-sPi.title" = "置換";
+/* Class = "NSMenuItem"; title = "Replace and Find Next"; ObjectID = "KrV-3z-r5B"; */
+"KrV-3z-r5B.title" = "置換して次を検索";
+/* Class = "NSMenuItem"; title = "Replace All"; ObjectID = "5HV-xo-NTK"; */
+"5HV-xo-NTK.title" = "すべて置換";
+
+/* Class = "NSMenuItem"; title = "Highlight"; ObjectID = "JAO-3o-fRo"; */
+"JAO-3o-fRo.title" = "ハイライト";
+/* Class = "NSMenuItem"; title = "Unhighlight"; ObjectID = "5is-7G-OVT"; */
+"5is-7G-OVT.title" = "ハイライトの取り消し";
+
+
+/* Class = "NSMenuItem"; title = "Select Previous Outline Item"; ObjectID = "9Lf-39-x5S"; */
+"9Lf-39-x5S.title" = "前のアウトライン項目を選択";
+/* Class = "NSMenuItem"; title = "Select Next Outline Item"; ObjectID = "PWZ-Om-OhX"; */
+"PWZ-Om-OhX.title" = "次のアウトライン項目を選択";
+
+/* Class = "NSMenuItem"; title = "Go To…"; ObjectID = "eIc-Sj-2mO"; */
+"eIc-Sj-2mO.title" = "移動…";
 
 
 

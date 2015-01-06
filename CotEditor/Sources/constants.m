@@ -183,6 +183,17 @@ NSString *const CEDefaultPrintLineNumIndexKey = @"printLineNumIndex";
 NSString *const CEDefaultPrintInvisibleCharIndexKey = @"printInvisibleCharIndex";
 NSString *const CEDefaultPrintColorIndexKey = @"printColorIndex";
 
+// find panel
+NSString *const CEDefaultFindHistoryKey = @"findHistory";
+NSString *const CEDefaultReplaceHistoryKey = @"replaceHistory";
+NSString *const CEDefaultFindRegexSyntaxKey = @"findRegexSynatx";
+NSString *const CEDefaultFindEscapeCharacterKey = @"findEscapeCharacter";
+NSString *const CEDefaultFindUsesRegularExpressionKey = @"findUsesRegularExpression";
+NSString *const CEDefaultFindInSelectionKey = @"findInSelection";
+NSString *const CEDefaultFindIsWrapKey = @"findIsWrap";
+NSString *const CEDefaultFindOptionsKey = @"findOptions";
+NSString *const CEDefaultFindClosesIndicatorWhenDoneKey = @"findClosesIndicatorWhenDone";
+
 // settings that are not in preferences
 NSString *const CEDefaultInsertCustomTextArrayKey = @"insertCustomTextArray";
 NSString *const CEDefaultInsertCustomTextKey = @"insertCustomText";

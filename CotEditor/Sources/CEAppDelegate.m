@@ -29,7 +29,6 @@
  */
 
 #import "CEAppDelegate.h"
-#import <OgreKit/OgreTextFinder.h>
 #import "CESyntaxManager.h"
 #import "CEEncodingManager.h"
 #import "CEKeyBindingManager.h"
@@ -178,6 +177,17 @@
                                CEDefaultPrintInvisibleCharIndexKey: @(CENoInvisibleCharsPrint),
                                CEDefaultPrintColorIndexKey: @(CEBlackColorPrint),
                                
+                               /* -------- settings for find panel -------- */
+                               CEDefaultFindHistoryKey: @[],
+                               CEDefaultReplaceHistoryKey: @[],
+                               CEDefaultFindRegexSyntaxKey: @8,  // Ruby
+                               CEDefaultFindOptionsKey: @256,  // only ONIG_OPTION_CAPTURE_GROUP
+                               CEDefaultFindEscapeCharacterKey: @"\\",
+                               CEDefaultFindUsesRegularExpressionKey: @NO,
+                               CEDefaultFindInSelectionKey: @NO,
+                               CEDefaultFindIsWrapKey: @YES,
+                               CEDefaultFindClosesIndicatorWhenDoneKey: @YES,
+                               
                                /* -------- settings not in preferences window -------- */
                                CEDefaultInsertCustomTextArrayKey: @[@"<br />\n", @"", @"", @"", @"", @"", @"", @"", @"", @"", @"",
                                                                     @"", @"", @"", @"", @"", @"", @"", @"", @"", @"",
@@ -309,19 +319,6 @@
 }
 
 
-//=======================================================
-// informal protocol of OgreKit
-//=======================================================
-
-// ------------------------------------------------------
-/// avoid OgreKit find panel handling rich text (see OgreTextFinder.m L203-212 for details)
-- (void)ogreKitShouldUseStylesInFindPanel:(OgreTextFinder*)textFinder
-// ------------------------------------------------------
-{
-    [textFinder setUseStylesInFindPanel:NO];
-}
-
-
 
 #pragma mark Delegate
 
@@ -362,31 +359,6 @@
 {
     // keyboard shortcuts will be overridden by CEKeyBindingManager
     //   - to apply shortcuts, write them in MenuKeyBindings.plist (2007-05-19)
-
-    // add "Select Outline Item" and "Go To" to the main menu
-    NSMenu *findMenu = [[[NSApp mainMenu] itemAtIndex:CEFindMenuIndex] submenu];
-    NSMenuItem *menuItem;
-
-    [findMenu addItem:[NSMenuItem separatorItem]];
-    unichar upKey = NSUpArrowFunctionKey;
-    menuItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Select Previous Outline Item", nil)
-                                          action:@selector(selectPrevItemOfOutlineMenu:)
-                                   keyEquivalent:[NSString stringWithCharacters:&upKey length:1]];
-    [menuItem setKeyEquivalentModifierMask:(NSCommandKeyMask | NSAlternateKeyMask)];
-    [findMenu addItem:menuItem];
-
-    unichar downKey = NSDownArrowFunctionKey;
-    menuItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Select Next Outline Item", nil)
-                                          action:@selector(selectNextItemOfOutlineMenu:)
-                                   keyEquivalent:[NSString stringWithCharacters:&downKey length:1]];
-    [menuItem setKeyEquivalentModifierMask:(NSCommandKeyMask | NSAlternateKeyMask)];
-    [findMenu addItem:menuItem];
-
-    [findMenu addItem:[NSMenuItem separatorItem]];
-    menuItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Go To…", nil)
-                                          action:@selector(gotoLocation:)
-                                   keyEquivalent:@"l"];
-    [findMenu addItem:menuItem];
     
     // setup KeyBindingManager
     [[CEKeyBindingManager sharedManager] applyKeyBindingsToMainMenu];

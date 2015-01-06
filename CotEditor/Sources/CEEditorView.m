@@ -32,6 +32,7 @@
 #import <OgreKit/OgreTextFinder.h>
 #import "CELineNumberView.h"
 #import "CEThemeManager.h"
+#import "CETextFinder.h"
 #import "constants.h"
 
 
@@ -135,10 +136,14 @@
         [_navigationBar setTextView:_textView];
         [_scrollView setDocumentView:_textView];
         
-        // OgreKit 改造でポストするようにしたノーティフィケーションをキャッチ
+        // すべて置換アクションをキャッチ
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(textDidReplaceAll:)
-                                                     name:@"textDidReplaceAllNotification"
+                                                     name:CETextFinderDidReplaceAllNotification
+                                                   object:_textView];
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(recolorAllTextViewString)
+                                                     name:CETextFinderDidUnlighlightNotification
                                                    object:_textView];
         
         // 置換の Undo/Redo 後に再カラーリングできるように Undo/Redo アクションをキャッチ
@@ -646,7 +651,7 @@
 #pragma mark Notifications
 
 //=======================================================
-// Notification  < OgreReplaceAllThread (OgreKit-mod)
+// Notification  < CETextFinder
 //=======================================================
 
 // ------------------------------------------------------

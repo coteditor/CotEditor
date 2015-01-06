@@ -19,6 +19,8 @@ Change Log
 - Migrate document drawer to sidebar style.
     - Add “show document inspector” option to preferences.
     - Improve document information display.
+- Introduce brand-new find panel with more organized UI.
+    - OniGmo is still be using for the regular expression engine as before.
 - Enable to change multiple checkboxes in syntax style editor at once.
 - Improve to display gear icon in menu bar while executing a script.
 - Improve auto-outdent behavior with `}` input.
@@ -43,6 +45,7 @@ Change Log
 - Fix “Retore Defaults” button enability on text key bindings edit sheet.
 - Fix possible crashes on input.
 - Fix an issue that application could crash after switching theme in preferences.
+- Fix an issue that syntax highlights were removed after perform Unhighlight.
 - Fix some missing localizations in simplified Chinese. (Thanks to Wei Wang!)
 - Fix an issue that an alert message was not localized.
 - And other trivial UI fixes and enhancements.
