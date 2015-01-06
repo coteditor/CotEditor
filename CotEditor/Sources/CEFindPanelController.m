@@ -304,14 +304,14 @@ static const NSUInteger kMaxHistorySize = 20;
 - (IBAction)findAll:(id)sender
 // ------------------------------------------------------
 {
+    if (![self checkIsReadyToFind]) { return; }
+    
     OgreTextFindResult *result = [[self textFinder] findAll:[self findString]
                                                       color:[self highlightColor]
                                                     options:[self options]
                                                 inSelection:[self inSelection]];
     
     [self appendFindHistory:[self findString]];
-    
-    if ([self alertIfInvalidRegex]) { return; }
     
     if (![result isSuccess]) {
         NSBeep();
@@ -356,6 +356,8 @@ static const NSUInteger kMaxHistorySize = 20;
 - (IBAction)replace:(id)sender
 // ------------------------------------------------------
 {
+    if (![self checkIsReadyToFind]) { return; }
+    
     OgreTextFindResult *result = [[self textFinder] replace:[self findString]
                                                  withString:[self replacementString]
                                                     options:[self options]];
@@ -363,7 +365,7 @@ static const NSUInteger kMaxHistorySize = 20;
     [self appendFindHistory:[self findString]];
     [self appendReplaceHistory:[self replacementString]];
     
-    if ([self alertIfInvalidRegex]) { return; }
+    if ([result alertIfErrorOccurred]) { return; }
 }
 
 
@@ -372,6 +374,8 @@ static const NSUInteger kMaxHistorySize = 20;
 - (IBAction)replaceAndFind:(id)sender
 // ------------------------------------------------------
 {
+    if (![self checkIsReadyToFind]) { return; }
+    
     OgreTextFindResult *result = [[self textFinder] replaceAndFind:[self findString]
                                                         withString:[self replacementString]
                                                            options:[self options]
@@ -381,7 +385,7 @@ static const NSUInteger kMaxHistorySize = 20;
     [self appendFindHistory:[self findString]];
     [self appendReplaceHistory:[self replacementString]];
     
-    if ([self alertIfInvalidRegex]) { return; }
+    if ([result alertIfErrorOccurred]) { return; }
 }
 
 
@@ -390,6 +394,8 @@ static const NSUInteger kMaxHistorySize = 20;
 - (IBAction)replaceAll:(id)sender
 // ------------------------------------------------------
 {
+    if (![self checkIsReadyToFind]) { return; }
+    
     OgreTextFindResult *result = [[self textFinder] replaceAll:[self findString]
                                                     withString:[self replacementString]
                                                        options:[self options]
@@ -397,8 +403,6 @@ static const NSUInteger kMaxHistorySize = 20;
     
     [self appendFindHistory:[self findString]];
     [self appendReplaceHistory:[self replacementString]];
-    
-    if ([self alertIfInvalidRegex]) { return; }
 }
 
 
@@ -407,14 +411,14 @@ static const NSUInteger kMaxHistorySize = 20;
 - (IBAction)highlight:(id)sender
 // ------------------------------------------------------
 {
+    if (![self checkIsReadyToFind]) { return; }
+    
     [[self textFinder] hightlight:[self findString]
                             color:[self highlightColor]
                           options:[self options]
                       inSelection:[self inSelection]];
     
     [self appendFindHistory:[self findString]];
-    
-    if ([self alertIfInvalidRegex]) { return; }
 }
 
 
@@ -533,6 +537,15 @@ static const NSUInteger kMaxHistorySize = 20;
 #pragma mark Private Methods
 
 // ------------------------------------------------------
+/// whether result view is opened
+- (BOOL)isResultShown
+// ------------------------------------------------------
+{
+    return ![[self splitView] isSubviewCollapsed:[[self resultViewController] view]];
+}
+
+
+// ------------------------------------------------------
 /// toggle result view visibility with/without animation
 - (void)setResultShown:(BOOL)shown animate:(BOOL)performAnimation
 // ------------------------------------------------------
@@ -576,15 +589,6 @@ static const NSUInteger kMaxHistorySize = 20;
 
 
 // ------------------------------------------------------
-/// whether result view is opened
-- (BOOL)isResultShown
-// ------------------------------------------------------
-{
-    return ![[self splitView] isSubviewCollapsed:[[self resultViewController] view]];
-}
-
-
-// ------------------------------------------------------
 /// collapse result view if closed
 - (void)collapseResultViewIfNeeded
 // ------------------------------------------------------
@@ -617,6 +621,8 @@ static const NSUInteger kMaxHistorySize = 20;
 - (void)findFoward:(BOOL)forward
 // ------------------------------------------------------
 {
+    if (![self checkIsReadyToFind]) { return; }
+    
     [[self textFinder] setSyntax:[self usesRegularExpression] ? [self syntax] : OgreSimpleMatchingSyntax];
     
     OgreTextFindResult *result = [[self textFinder] find:[self findString]
@@ -628,7 +634,6 @@ static const NSUInteger kMaxHistorySize = 20;
     [self appendFindHistory:[self findString]];
     
     if ([result alertIfErrorOccurred]) { return; }
-    if ([self alertIfInvalidRegex]) { return; }
     
     if ([result isSuccess]) {
         // add visual feedback
@@ -641,29 +646,41 @@ static const NSUInteger kMaxHistorySize = 20;
 
 
 // ------------------------------------------------------
-/// check regex syntax of find string and return YES if invalid
-- (BOOL)alertIfInvalidRegex
+/// check Find can be performed and alert if needed
+- (BOOL)checkIsReadyToFind
 // ------------------------------------------------------
 {
-    if (![self usesRegularExpression]) { return NO; }
+    if ([[self findPanel] attachedSheet]) {
+        [[self findPanel] makeKeyAndOrderFront:self];
+        NSBeep();
+        return NO;
+    }
     
-    @try {
-        [OGRegularExpression regularExpressionWithString:[[self target] string]
-                                                 options:[self options]
-                                                  syntax:[self syntax]
-                                         escapeCharacter:[[self textFinder] escapeCharacter]];
-        
-    } @catch (NSException *exception) {
-        if ([[exception name] isEqualToString:OgreException]) {
-            [self showAlertWithMessage:NSLocalizedString(@"Invalid regular expression.", nil)
-                           informative:[exception reason]];
-            return YES;
-        } else {
-            [exception raise];
+    if ([[self findString] length] == 0) {
+        NSBeep();
+        return NO;
+    }
+    
+    // check regex syntax of find string and alert if invalid
+    if ([self usesRegularExpression]) {
+        @try {
+            [OGRegularExpression regularExpressionWithString:[self findString]
+                                                     options:[self options]
+                                                      syntax:[self syntax]
+                                             escapeCharacter:[[self textFinder] escapeCharacter]];
+            
+        } @catch (NSException *exception) {
+            if ([[exception name] isEqualToString:OgreException]) {
+                [self showAlertWithMessage:NSLocalizedString(@"Invalid regular expression", nil)
+                               informative:[exception reason]];
+            } else {
+                [exception raise];
+            }
+            return NO;
         }
     }
     
-    return NO;
+    return YES;
 }
 
 
