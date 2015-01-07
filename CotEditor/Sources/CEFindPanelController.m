@@ -480,7 +480,7 @@ static const NSUInteger kMaxHistorySize = 20;
 - (IBAction)selectFindHistory:(id)sender
 // ------------------------------------------------------
 {
-    [self setFindString:[sender title]];
+    [self setFindString:[sender representedObject]];
 }
 
 
@@ -489,7 +489,7 @@ static const NSUInteger kMaxHistorySize = 20;
 - (IBAction)selectReplaceHistory:(id)sender
 // ------------------------------------------------------
 {
-    [self setReplacementString:[sender title]];
+    [self setReplacementString:[sender representedObject]];
 }
 
 
@@ -766,10 +766,13 @@ static const NSUInteger kMaxHistorySize = 20;
     
     [menu insertItem:[NSMenuItem separatorItem] atIndex:2];  // the first item is invisible dummy
     
-    for (NSString *stirng in history) {
-        NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:stirng
+    for (NSString *string in history) {
+        NSString *title = ([string length] < 64) ? string : [[string substringToIndex:64] stringByAppendingString:@"…"];
+        NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:title
                                                       action:selector
                                                keyEquivalent:@""];
+        [item setRepresentedObject:string];
+        [item setToolTip:string];
         [item setTarget:self];
         [menu insertItem:item atIndex:2];
     }
