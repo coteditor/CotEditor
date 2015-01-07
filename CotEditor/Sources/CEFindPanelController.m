@@ -410,6 +410,14 @@ static const NSUInteger kMaxHistorySize = 20;
     [self appendReplaceHistory:[self replacementString]];
     
     if ([result alertIfErrorOccurred]) { return; }
+    
+    if ([result isSuccess]) {
+        // add visual feedback
+        [[self target] showFindIndicatorForRange:[[self target] selectedRange]];
+        
+    } else {
+        NSBeep();
+    }
 }
 
 
