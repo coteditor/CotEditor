@@ -342,7 +342,7 @@
                                             <font key="font" metaFont="smallSystem"/>
                                         </buttonCell>
                                         <connections>
-                                            <binding destination="1KP-j4-l6E" name="value" keyPath="values.findInSection" id="Xss-TY-jmC"/>
+                                            <binding destination="1KP-j4-l6E" name="value" keyPath="values.findInSelection" id="9WX-m7-TxB"/>
                                         </connections>
                                     </button>
                                 </subviews>
