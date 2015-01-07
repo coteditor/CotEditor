@@ -136,6 +136,7 @@ static const NSUInteger kMaxHistorySize = 20;
     
     // prepare result table
     [[self resultViewController] setResult:result];
+    [[self resultViewController] setTarget:[self target]];
     [self setResultShown:YES animate:YES];
     [self showFindPanel:self];
     

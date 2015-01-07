@@ -166,8 +166,10 @@ static const int kMaxMatchedStringLength = 256;
         return;
     }
     
+    NSTextView *textView = [self target];
     dispatch_async(dispatch_get_main_queue(), ^{
         [result selectMatchedStringAtIndex:row];
+        [textView showFindIndicatorForRange:[textView selectedRange]];
     });
 }
 

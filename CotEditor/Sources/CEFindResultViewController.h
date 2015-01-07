@@ -36,5 +36,6 @@
 @interface CEFindResultViewController : NSViewController <NSTableViewDelegate, NSTableViewDataSource>
 
 @property (nonatomic) OgreTextFindResult *result;
+@property (nonatomic, unsafe_unretained) NSTextView *target;
 
 @end
