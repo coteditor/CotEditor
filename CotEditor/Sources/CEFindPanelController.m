@@ -442,10 +442,10 @@ static const NSUInteger kMaxHistorySize = 20;
 {
     if (![self checkIsReadyToFind]) { return; }
     
-    OgreTextFindResult *result = [[self textFinder] replaceAll:[self findString]
-                                                    withString:[self replacementString]
-                                                       options:[self options]
-                                                   inSelection:[self inSelection]];
+    [[self textFinder] replaceAll:[self findString]
+                       withString:[self replacementString]
+                          options:[self options]
+                      inSelection:[self inSelection]];
     
     [self appendFindHistory:[self findString]];
     [self appendReplaceHistory:[self replacementString]];
@@ -621,7 +621,6 @@ static const NSUInteger kMaxHistorySize = 20;
     }
     
     NSPanel *panel = [self findPanel];
-    NSSplitView *splitView = [self splitView];
     NSRect panelFrame = [panel frame];
     CGFloat diff = shown ? kDefaultResultViewHeight - height : -height;
     
