@@ -1,0 +1,69 @@
+/*
+ RegexReferencePopover.strings
+ 
+ CotEditor
+ http://coteditor.com
+ 
+ Created on 2015-01-09 by 1024jp
+ Localized by ???  // FIXME:
+ encoding="UTF-8"
+ 
+ © 2015 CotEditor Project
+ */
+
+// FIXME: This is a new strings file.
+
+/* Class = "NSTextFieldCell"; title = "Basic Regular Expression Syntax"; ObjectID = "QgQ-JJ-6Nx"; */
+"QgQ-JJ-6Nx.title" = "Basic Regular Expression Syntax";
+
+
+
+/* Note: All of the following elements are NSTextFieldCell. */
+
+"FeJ-t4-Tfx.title" = "Character Types";  // "Character Types"
+
+"RD2-4i-6hI.title" = "any character";  // "any character"
+"9KK-2o-0gf.title" = "new line character";  // "new line character"
+"IEP-BD-aIL.title" = "tab character";  // "tab character"
+"KDl-AT-6pW.title" = "word character";  // "word character"
+"Xh9-Al-Lgr.title" = "whitespace character";  // "whitespace character"
+
+
+
+"3AR-qs-5m4.title" = "Character Class";  // "Character Class"
+
+"Ufv-VB-C8Z.title" = "any character in range A to Z";  // "any character in range A to Z"
+"11L-Hs-8G7.title" = "any character not in range A to Z";  // "any character not in range A to Z"
+
+
+
+"8WL-Ap-X8c.title" = "Anchors";  // "Anchors"
+
+"KTm-Ze-veX.title" = "beginning of the line";  // "beginning of the line"
+"aka-du-qpm.title" = "end of the line";  // "end of the line"
+"PTJ-Gu-IWW.title" = "word boundary";  // "word boundary"
+
+
+
+"nVK-6t-0P3.title" = "Quantifier";  // "Quantifier"
+
+"w4Q-Z2-YET.title" = "1 or 0 times";  // "1 or 0 times"
+"2wE-GY-9nf.title" = "0 or more times";  // "0 or more times"
+"Woe-Vu-PcP.title" = "1 or more times";  // "1 or more times"
+"H6L-Hz-GQ7.title" = "at least n but not more than m times";  // "at least n but not more than m times"
+"MFd-BY-MC4.title" = "at least n times";  // "at least n times"
+"ga2-ht-6SL.title" = "at least 0 but not more than n times";  // "at least 0 but not more than n times"
+"akB-l0-a4P.title" = "n times";  // "n times"
+
+
+
+"RAi-kK-gW5.title" = "Extended Groups";  // "Extended Groups"
+
+"8Hg-0T-mMw.title" = "look-ahead";  // "look-ahead"
+"Fic-V5-VYk.title" = "look-behind";  // "look-behind"
+
+
+
+"EwZ-Li-jaY.title" = "Captured Groups";  // "Captured Groups"
+
+"LXc-Qv-9sn.title" = "first captured group";  // "first captured group"

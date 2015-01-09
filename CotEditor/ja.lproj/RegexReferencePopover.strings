@@ -1,0 +1,66 @@
+/*
+ RegexReferencePopover.strings
+ 
+ CotEditor
+ http://coteditor.com
+ 
+ Created on 2015-01-09 by 1024jp
+ encoding="UTF-8"
+ 
+ © 2015 1024jp
+ */
+
+/* Class = "NSTextFieldCell"; title = "Basic Regular Expression Syntax"; ObjectID = "QgQ-JJ-6Nx"; */
+"QgQ-JJ-6Nx.title" = "基本の正規表現文法";
+
+
+
+/* Note: All of the following elements are NSTextFieldCell. */
+
+"FeJ-t4-Tfx.title" = "文字タイプ";  // "Character Types"
+
+"RD2-4i-6hI.title" = "任意の1文字";  // "any character"
+"9KK-2o-0gf.title" = "改行";  // "new line character"
+"IEP-BD-aIL.title" = "水平タブ";  // "tab character"
+"KDl-AT-6pW.title" = "単語構成文字";  // "word character"
+"Xh9-Al-Lgr.title" = "空白文字";  // "whitespace character"
+
+
+
+"3AR-qs-5m4.title" = "文字クラス";  // "Character Class"
+
+"Ufv-VB-C8Z.title" = "A から Z の中の任意の1文字";  // "any character in range A to Z"
+"11L-Hs-8G7.title" = "A から Z 以外の任意の1文字";  // "any character not in range A to Z"
+
+
+
+"8WL-Ap-X8c.title" = "アンカー";  // "Anchors"
+
+"KTm-Ze-veX.title" = "行頭";  // "beginning of the line"
+"aka-du-qpm.title" = "行末";  // "end of the line"
+"PTJ-Gu-IWW.title" = "非単語境界";  // "word boundary"
+
+
+
+"nVK-6t-0P3.title" = "量指定子";  // "Quantifier"
+
+"w4Q-Z2-YET.title" = "1 回または 0 回";  // "1 or 0 times"
+"2wE-GY-9nf.title" = "0 回以上";  // "0 or more times"
+"Woe-Vu-PcP.title" = "1 回以上";  // "1 or more times"
+"H6L-Hz-GQ7.title" = "n 回以上 m 回以下";  // "at least n but not more than m times"
+"MFd-BY-MC4.title" = "n 回以上";  // "at least n times"
+"ga2-ht-6SL.title" = "0 回以上 n 回以下";  // "at least 0 but not more than n times"
+"akB-l0-a4P.title" = "n 回";  // "n times"
+
+
+
+"RAi-kK-gW5.title" = "拡張グループ";  // "Extended Groups"
+
+"8Hg-0T-mMw.title" = "先読み";  // "look-ahead"
+"Fic-V5-VYk.title" = "戻り読み";  // "look-behind"
+
+
+
+"EwZ-Li-jaY.title" = "捕獲グループ";  // "Captured Groups"
+
+"LXc-Qv-9sn.title" = "1 つ目の捕獲グループ";  // "first captured group"

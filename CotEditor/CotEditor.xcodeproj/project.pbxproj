@@ -55,6 +55,7 @@
 		2A1EB5C419AD469500C1E37E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A1EB5C319AD469500C1E37E /* Images.xcassets */; };
 		2A2179F61A07093B002C4AB1 /* SyntaxMap.json in Resources */ = {isa = PBXBuildFile; fileRef = 2A2179F51A07093B002C4AB1 /* SyntaxMap.json */; };
 		2A2BDF0D198A899E0029848B /* NSString+JapaneseTransform.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A2BDF0C198A899E0029848B /* NSString+JapaneseTransform.m */; };
+		2A2D6C191A602D2C002451FF /* RegexReferencePopover.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A2D6C171A602D2C002451FF /* RegexReferencePopover.xib */; };
 		2A2E034B1A4BF842006ABE9F /* CESyntaxEditTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A2E034A1A4BF842006ABE9F /* CESyntaxEditTableViewDelegate.m */; };
 		2A3A758E19E77C84001DAB88 /* Syntaxes in Resources */ = {isa = PBXBuildFile; fileRef = 2A3A758D19E77C84001DAB88 /* Syntaxes */; };
 		2A3A759119E77D4F001DAB88 /* MigrationWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A3A758F19E77D4F001DAB88 /* MigrationWindow.xib */; };
@@ -280,6 +281,9 @@
 		2A2179F51A07093B002C4AB1 /* SyntaxMap.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SyntaxMap.json; sourceTree = "<group>"; };
 		2A2BDF0B198A899E0029848B /* NSString+JapaneseTransform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+JapaneseTransform.h"; sourceTree = "<group>"; };
 		2A2BDF0C198A899E0029848B /* NSString+JapaneseTransform.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+JapaneseTransform.m"; sourceTree = "<group>"; };
+		2A2D6C181A602D2C002451FF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/RegexReferencePopover.xib; sourceTree = "<group>"; };
+		2A2D6C1E1A603ACA002451FF /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/RegexReferencePopover.strings; sourceTree = "<group>"; };
+		2A2D6C1C1A603781002451FF /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/RegexReferencePopover.strings"; sourceTree = "<group>"; };
 		2A2E03491A4BF842006ABE9F /* CESyntaxEditTableViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CESyntaxEditTableViewDelegate.h; sourceTree = "<group>"; };
 		2A2E034A1A4BF842006ABE9F /* CESyntaxEditTableViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CESyntaxEditTableViewDelegate.m; sourceTree = "<group>"; };
 		2A37F4ACFDCFA73011CA2CEA /* CEDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CEDocument.m; sourceTree = "<group>"; };
@@ -692,7 +696,6 @@
 		2A149DC81902BC2B00A9D6EF /* Panels */ = {
 			isa = PBXGroup;
 			children = (
-				2A7CF23E1A573CEB00D09249 /* FindPanel.xib */,
 				2AFFB70518D7BC9300118477 /* OpacityPanel.xib */,
 				2A5B998B18D61443009C2F4F /* LineHightPanel.xib */,
 				8C28CD2C081101A300733DA7 /* ConsolePanel.xib */,
@@ -708,6 +711,7 @@
 			children = (
 				2A37F4B6FDCFA73011CA2CEA /* MainMenu.xib */,
 				2A3A758F19E77D4F001DAB88 /* MigrationWindow.xib */,
+				2A2D6C1A1A602D7E002451FF /* Text Finder */,
 				2A436DDC1A426EAE00275FD4 /* Document Window */,
 				2AAEA6A01A4342A800A930CA /* Document Accessories */,
 				2A149DAE19016AC500A9D6EF /* Preferences */,
@@ -800,6 +804,15 @@
 				2AD4599A19DDCF6600A20FBB /* CEScriptMenuItem.m */,
 			);
 			name = Application;
+			sourceTree = "<group>";
+		};
+		2A2D6C1A1A602D7E002451FF /* Text Finder */ = {
+			isa = PBXGroup;
+			children = (
+				2A7CF23E1A573CEB00D09249 /* FindPanel.xib */,
+				2A2D6C171A602D2C002451FF /* RegexReferencePopover.xib */,
+			);
+			name = "Text Finder";
 			sourceTree = "<group>";
 		};
 		2A2E03471A4BF808006ABE9F /* Syntax Edit Sheet */ = {
@@ -1306,6 +1319,7 @@
 				8CEF66C30995E47F00C65A84 /* InvisibleChars_Show.tiff in Resources */,
 				8CEF66C60995E4A700C65A84 /* PageGuide_Hide.tiff in Resources */,
 				8CEF66C70995E4A700C65A84 /* PageGuide_Show.tiff in Resources */,
+				2A2D6C191A602D2C002451FF /* RegexReferencePopover.xib in Resources */,
 				8C3E2D610808E210009894D1 /* WrapLines_Off.tiff in Resources */,
 				8C3E2D620808E210009894D1 /* WrapLines_On.tiff in Resources */,
 				2AC2C1D819881543007968CB /* VerticalOrientation_Off.tiff in Resources */,
@@ -1623,6 +1637,16 @@
 				2AA0AC6B1A28771C0063ED1B /* zh-Hans */,
 			);
 			name = TextKeyBindingEditSheet.xib;
+			sourceTree = "<group>";
+		};
+		2A2D6C171A602D2C002451FF /* RegexReferencePopover.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2A2D6C181A602D2C002451FF /* Base */,
+				2A2D6C1E1A603ACA002451FF /* ja */,
+				2A2D6C1C1A603781002451FF /* zh-Hans */,
+			);
+			name = RegexReferencePopover.xib;
 			sourceTree = "<group>";
 		};
 		2A37F4B4FDCFA73011CA2CEA /* DocumentWindow.xib */ = {

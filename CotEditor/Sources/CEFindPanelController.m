@@ -39,7 +39,7 @@ static const CGFloat kDefaultResultViewHeight = 200.0;
 static const NSUInteger kMaxHistorySize = 20;
 
 
-@interface CEFindPanelController () <NSWindowDelegate, NSSplitViewDelegate>
+@interface CEFindPanelController () <NSWindowDelegate, NSSplitViewDelegate, NSPopoverDelegate>
 
 @property (nonatomic, copy) NSString *findString;
 @property (nonatomic, copy) NSString *replacementString;
@@ -70,6 +70,7 @@ static const NSUInteger kMaxHistorySize = 20;
 
 #pragma mark Outlets
 @property (nonatomic) IBOutlet CEFindResultViewController *resultViewController;
+@property (nonatomic) IBOutlet NSPopover *regexPopover;
 @property (nonatomic, weak) IBOutlet NSSplitView *splitView;
 @property (nonatomic, weak) IBOutlet NSButton *disclosureButton;
 @property (nonatomic, weak) IBOutlet NSMenu *findHistoryMenu;
@@ -268,6 +269,19 @@ static const NSUInteger kMaxHistorySize = 20;
     }
     
     return proposedEffectiveRect;
+}
+
+
+//=======================================================
+// NSPopoverDelegate  < regexPopover
+//=======================================================
+
+// ------------------------------------------------------
+/// make popover detachable (on Yosemite and later)
+- (BOOL)popoverShouldDetach:(NSPopover *)popover
+// ------------------------------------------------------
+{
+    return YES;
 }
 
 
@@ -566,6 +580,15 @@ static const NSUInteger kMaxHistorySize = 20;
 // ------------------------------------------------------
 {
     [self setResultShown:NO animate:YES];
+}
+
+
+// ------------------------------------------------------
+/// show regular expression reference as popover
+- (IBAction)showRegexHelp:(id)sender
+// ------------------------------------------------------
+{
+    [[self regexPopover] showRelativeToRect:[sender bounds] ofView:sender preferredEdge:NSMaxYEdge];
 }
 
 

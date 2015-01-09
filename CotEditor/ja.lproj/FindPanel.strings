@@ -27,6 +27,9 @@
 /* Class = "NSButtonCell"; title = "In Selection"; ObjectID = "9bc-9Q-fhd"; */
 "9bc-9Q-fhd.title" = "選択範囲のみ";
 
+/* Class = "NSButton"; ibShadowedToolTip = "Show quick reference for regular expression syntax."; ObjectID = "i2l-7Z-Zmf"; */
+"i2l-7Z-Zmf.ibShadowedToolTip" = "正規表現文法の簡易用語集を表示";
+
 
 // Buttons
 
@@ -140,3 +143,9 @@
 
 /* Class = "NSButtonCell"; title = "Live Update"; ObjectID = "pqE-XD-1Fq"; */
 "pqE-XD-1Fq.title" = "自動更新";
+
+
+// Regex Quick Reference
+
+/* Class = "IBNSViewController"; title = "Quick Reference of Regular Expression"; ObjectID = "uMF-F8-Wjs"; */
+"uMF-F8-Wjs.title" = "正規表現クイック用語集";

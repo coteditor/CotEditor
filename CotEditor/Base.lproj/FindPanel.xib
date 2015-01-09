@@ -323,19 +323,30 @@
                                             </menu>
                                         </popUpButtonCell>
                                     </popUpButton>
+                                    <button toolTip="Show quick reference for regular expression syntax." horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="i2l-7Z-Zmf">
+                                        <rect key="frame" x="504" y="7" width="19" height="19"/>
+                                        <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" controlSize="mini" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="xcc-KP-rT7">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="miniSystem"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="showRegexHelp:" target="qZS-yd-wpm" id="HPR-Fv-fnw"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="bcO-Vd-Pum" secondAttribute="trailing" constant="20" symbolic="YES" id="4xG-MF-G50"/>
                                     <constraint firstItem="gM0-RD-hIC" firstAttribute="leading" secondItem="l7V-L6-eHO" secondAttribute="leading" constant="-3" id="6wd-uq-QGG"/>
+                                    <constraint firstItem="8My-G5-daT" firstAttribute="centerY" secondItem="i2l-7Z-Zmf" secondAttribute="centerY" id="B6G-yH-N5A"/>
                                     <constraint firstAttribute="trailing" secondItem="l7V-L6-eHO" secondAttribute="trailing" constant="20" symbolic="YES" id="CwA-d9-ijx"/>
                                     <constraint firstItem="bcO-Vd-Pum" firstAttribute="leading" secondItem="l7V-L6-eHO" secondAttribute="leading" id="DCe-vg-reB"/>
                                     <constraint firstItem="tu7-IT-dA3" firstAttribute="top" secondItem="l7V-L6-eHO" secondAttribute="bottom" constant="8" symbolic="YES" id="Eu5-LL-cmi"/>
                                     <constraint firstItem="bcO-Vd-Pum" firstAttribute="height" secondItem="l7V-L6-eHO" secondAttribute="height" id="G8q-Mw-Dbl"/>
                                     <constraint firstItem="EY8-gj-fQb" firstAttribute="leading" secondItem="lkE-wj-Gi5" secondAttribute="leading" constant="20" symbolic="YES" id="LOY-dv-dZe"/>
-                                    <constraint firstItem="GvT-tD-Cbk" firstAttribute="leading" secondItem="8My-G5-daT" secondAttribute="trailing" constant="8" symbolic="YES" id="Nss-dk-ofP"/>
                                     <constraint firstItem="bcO-Vd-Pum" firstAttribute="top" secondItem="lkE-wj-Gi5" secondAttribute="top" constant="20" symbolic="YES" id="O7x-yh-1xh"/>
                                     <constraint firstAttribute="bottom" secondItem="8My-G5-daT" secondAttribute="bottom" constant="10" id="U9G-t3-7BQ"/>
                                     <constraint firstItem="8My-G5-daT" firstAttribute="top" secondItem="l7V-L6-eHO" secondAttribute="bottom" constant="8" symbolic="YES" id="Uye-P5-B73"/>
+                                    <constraint firstAttribute="trailing" secondItem="i2l-7Z-Zmf" secondAttribute="trailing" constant="20" symbolic="YES" id="WF4-HF-UDF"/>
                                     <constraint firstItem="ybT-sQ-Vn5" firstAttribute="top" secondItem="bcO-Vd-Pum" secondAttribute="top" constant="2" id="YXj-1y-SnG"/>
                                     <constraint firstItem="ybT-sQ-Vn5" firstAttribute="leading" secondItem="bcO-Vd-Pum" secondAttribute="leading" constant="-3" id="abB-r2-pGB"/>
                                     <constraint firstItem="bcO-Vd-Pum" firstAttribute="leading" secondItem="EY8-gj-fQb" secondAttribute="trailing" constant="8" symbolic="YES" id="fce-xA-WLu"/>
@@ -343,6 +354,7 @@
                                     <constraint firstItem="GvT-tD-Cbk" firstAttribute="top" secondItem="l7V-L6-eHO" secondAttribute="bottom" constant="8" symbolic="YES" id="rFe-ch-03T"/>
                                     <constraint firstItem="gM0-RD-hIC" firstAttribute="top" secondItem="l7V-L6-eHO" secondAttribute="top" constant="2" id="rVe-3h-ueu"/>
                                     <constraint firstItem="tu7-IT-dA3" firstAttribute="leading" secondItem="GvT-tD-Cbk" secondAttribute="trailing" constant="8" symbolic="YES" id="riZ-4A-Sii"/>
+                                    <constraint firstItem="GvT-tD-Cbk" firstAttribute="leading" secondItem="8My-G5-daT" secondAttribute="trailing" constant="8" symbolic="YES" id="tbc-D3-uHU"/>
                                     <constraint firstItem="bcO-Vd-Pum" firstAttribute="leading" secondItem="8My-G5-daT" secondAttribute="leading" id="uec-Po-k7L"/>
                                     <constraint firstItem="bcO-Vd-Pum" firstAttribute="top" secondItem="EY8-gj-fQb" secondAttribute="top" id="vXe-3F-WGA"/>
                                     <constraint firstItem="l7V-L6-eHO" firstAttribute="top" secondItem="bcO-Vd-Pum" secondAttribute="bottom" constant="10" symbolic="YES" id="yh3-8x-L1W"/>
@@ -644,18 +656,26 @@
                 <outlet property="disclosureButton" destination="oC1-bN-UeN" id="tQy-dI-Hz8"/>
                 <outlet property="findHistoryMenu" destination="Zor-um-eIs" id="h8U-Ab-tbx"/>
                 <outlet property="findPanel" destination="Wal-Sg-6d6" id="LNu-bI-x1p"/>
+                <outlet property="regexPopover" destination="aeg-YU-kMW" id="74c-KY-mlG"/>
                 <outlet property="replaceHistoryMenu" destination="xUj-lq-8zt" id="FAg-xb-5HX"/>
                 <outlet property="resultViewController" destination="46P-vJ-49R" id="x2g-10-vDX"/>
                 <outlet property="splitView" destination="ZjI-28-T38" id="3bE-kf-xna"/>
                 <outlet property="textFinder" destination="-2" id="690-pN-rNk"/>
             </connections>
         </customObject>
-        <viewController id="46P-vJ-49R" customClass="CEFindResultViewController">
+        <viewController title="Quick Reference for Regular Expression" id="46P-vJ-49R" customClass="CEFindResultViewController">
             <connections>
                 <outlet property="tableView" destination="4Sw-Gq-de2" id="nR3-HO-4fV"/>
                 <outlet property="view" destination="CRP-NW-b9J" id="HyB-MX-ri4"/>
             </connections>
         </viewController>
+        <viewController title="Quick Reference of Regular Expression" nibName="RegexReferencePopover" id="uMF-F8-Wjs" userLabel="Popover View Controller"/>
+        <popover behavior="t" id="aeg-YU-kMW">
+            <connections>
+                <outlet property="contentViewController" destination="uMF-F8-Wjs" id="O3O-mx-K8n"/>
+                <outlet property="delegate" destination="qZS-yd-wpm" id="yN3-3Z-2n6"/>
+            </connections>
+        </popover>
     </objects>
     <resources>
         <image name="FindTemplate" width="20" height="13"/>
