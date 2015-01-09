@@ -594,7 +594,7 @@ static const NSUInteger kMaxHistorySize = 20;
     // make sure disclosure button points up before open result
     // (The buttom may points down if the view was closed by dragging.)
     if (shown) {
-        [[self disclosureButton] setState:NSOffState];
+        [[self disclosureButton] setState:NSOnState];
     }
     
     NSPanel *panel = [self findPanel];
