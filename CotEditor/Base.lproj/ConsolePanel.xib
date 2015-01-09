@@ -64,16 +64,27 @@
             </view>
             <toolbar key="toolbar" implicitIdentifier="1C6AD1A5-EDE4-4B1D-A2C5-5EC0547B5D5A" autosavesConfiguration="NO" displayMode="iconOnly" sizeMode="small" id="fb4-be-4LF">
                 <allowedToolbarItems>
-                    <toolbarItem implicitItemIdentifier="AA498B98-0409-47B4-B333-650F18910743" label="Clear Log" paletteLabel="Clear Log" toolTip="Clear error log" tag="-1" image="Script_Clean" id="9N6-p4-mW2">
+                    <toolbarItem implicitItemIdentifier="98157D51-D311-4D46-A5A4-AB7528D1C3D7" label="Clear Log" paletteLabel="Clear Log" image="TrashTemplate" id="Yei-b2-m1J">
+                        <nil key="toolTip"/>
+                        <size key="minSize" width="32" height="28"/>
+                        <size key="maxSize" width="32" height="32"/>
+                        <button key="view" verticalHuggingPriority="750" id="OHl-Tn-1z3">
+                            <rect key="frame" x="0.0" y="14" width="32" height="28"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="TrashTemplate" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="WNQ-de-ow3">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                        </button>
                         <connections>
-                            <action selector="cleanScriptError:" target="-2" id="FQi-Ie-NhW"/>
+                            <action selector="cleanScriptError:" target="-2" id="E06-9A-9C2"/>
                         </connections>
                     </toolbarItem>
                     <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="mdM-pH-uIW"/>
                     <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="oBh-BF-Mc4"/>
                 </allowedToolbarItems>
                 <defaultToolbarItems>
-                    <toolbarItem reference="9N6-p4-mW2"/>
+                    <toolbarItem reference="Yei-b2-m1J"/>
                 </defaultToolbarItems>
             </toolbar>
             <connections>
@@ -89,6 +100,6 @@
         </textFinder>
     </objects>
     <resources>
-        <image name="Script_Clean" width="16" height="16"/>
+        <image name="TrashTemplate" width="15" height="16"/>
     </resources>
 </document>

@@ -8,13 +8,13 @@
  Localized by onevcat
  encoding="UTF-8"
  
- © 2014 CotEditor Project
+ © 2014-2015 CotEditor Project
  */
 
 /* Class = "NSPanel"; title = "Console"; ObjectID = "6"; */
 "6.title" = "控制台";
 
-/* Class = "NSToolbarItem"; ObjectID = "9N6-p4-mW2"; */
-"9N6-p4-mW2.label" = "清空记录";  /* Clear Log */
-"9N6-p4-mW2.paletteLabel" = "清空记录";  /* Clear Log */
-"9N6-p4-mW2.toolTip" = "清空错误记录";  /* Clear error log */
+/* Class = "NSToolbarItem"; ObjectID = "Yei-b2-m1J"; */
+"Yei-b2-m1J.label" = "清空记录";  /* Clear Log */
+"Yei-b2-m1J.paletteLabel" = "清空记录";  /* Clear Log */
+"Yei-b2-m1J.toolTip" = "清空错误记录";  /* Clear error log */
