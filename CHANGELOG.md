@@ -29,7 +29,6 @@ Change Log
 - Add hidden “Reveal in Finder” menu item to syntax style action menu in Preferences (visible with `Option` key).
 - Improve CotEditor Script to apply the result to the document that was frontmost when the script was launched.
 - Close Preferences window with esc key.
-- Improve find result panel behavior with Spaces.
 - Rename “Script Error Panel” to “Console Panel.”
 - Change to save `com.apple.TextEncoding` xattr only if the file already has the encoding xattr or it's a new document.
 - Move removed themes/styles to Trash instead delete them immediately.
@@ -46,6 +45,7 @@ Change Log
 - Fix “Retore Defaults” button enability on text key bindings edit sheet.
 - Fix possible crashes on input.
 - Fix an issue that application could crash after switching theme in preferences.
+- Fix an issue that text font could occasionally change after pasting or inputting text from other application.
 - Fix an issue that syntax highlights were removed after perform Unhighlight.
 - Fix some missing localizations in simplified Chinese. (Thanks to Wei Wang!)
 - Fix an issue that an alert message was not localized.

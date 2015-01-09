@@ -229,18 +229,21 @@ const NSInteger kNoMenuItem = -1;
 - (void)insertText:(id)aString replacementRange:(NSRange)replacementRange
 // ------------------------------------------------------
 {
+    // cast NSAttributedString to NSString in order to make sure input string is plain-text
+    NSString *string = [aString isKindOfClass:[NSAttributedString class]] ? [aString string] : aString;
+    
     // swap '¥' with '\' if needed
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultSwapYenAndBackSlashKey] && ([aString length] == 1)) {
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultSwapYenAndBackSlashKey] && ([string length] == 1)) {
         NSEvent *event = [NSApp currentEvent];
         NSUInteger flags = [NSEvent modifierFlags];
         
         if (([event type] == NSKeyDown) && (flags == 0)) {  // ignore input by "Insert Yen/Backslash" menu action
             NSString *yen = [NSString stringWithCharacters:&kYenMark length:1];
             
-            if ([aString isEqual:@"\\"]) {  // Don't use isEqualToString: since aString can be a NSAttributedString.
+            if ([string isEqualToString:@"\\"]) {
                 [super insertText:yen replacementRange:replacementRange];
                 return;
-            } else if ([aString isEqual:yen]) {
+            } else if ([string isEqualToString:yen]) {
                 [super insertText:@"\\" replacementRange:replacementRange];
                 return;
             }
@@ -250,7 +253,7 @@ const NSInteger kNoMenuItem = -1;
     // smart outdent with '}' charcter
     if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultAutoIndentKey] &&
         [[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultEnableSmartIndentKey] &&
-        (replacementRange.length == 0) && [aString isEqual:@"}"])
+        (replacementRange.length == 0) && [string isEqualToString:@"}"])
     {
         NSString *wholeString = [self string];
         NSUInteger insretionLocation = NSMaxRange([self selectedRange]);
@@ -294,7 +297,7 @@ const NSInteger kNoMenuItem = -1;
         }
     }
     
-    [super insertText:aString replacementRange:replacementRange];
+    [super insertText:string replacementRange:replacementRange];
     
     // auto completion
     if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultAutoCompleteKey]) {
