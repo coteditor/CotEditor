@@ -20,18 +20,15 @@
 
 /* Note: All of the following elements are NSTextFieldCell. */
 
-"FeJ-t4-Tfx.title" = "Character Types";  // "Character Types"
+"3AR-qs-5m4.title" = "Characters";  // "Characters"
 
 "RD2-4i-6hI.title" = "any character";  // "any character"
 "9KK-2o-0gf.title" = "new line character";  // "new line character"
 "IEP-BD-aIL.title" = "tab character";  // "tab character"
 "KDl-AT-6pW.title" = "word character";  // "word character"
 "Xh9-Al-Lgr.title" = "whitespace character";  // "whitespace character"
-
-
-
-"3AR-qs-5m4.title" = "Character Class";  // "Character Class"
-
+"nh9-3w-PRK.title" = "non whitespace character";  // "non whitespace character"
+"U6Y-db-fiT.title" = "decimal number";  // "decimal number"
 "Ufv-VB-C8Z.title" = "any character in range A to Z";  // "any character in range A to Z"
 "11L-Hs-8G7.title" = "any character not in range A to Z";  // "any character not in range A to Z"
 
@@ -64,6 +61,6 @@
 
 
 
-"EwZ-Li-jaY.title" = "Captured Groups";  // "Captured Groups"
+"EwZ-Li-jaY.title" = "Back Reference";  // "Back Reference"
 
-"LXc-Qv-9sn.title" = "first captured group";  // "first captured group"
+"LXc-Qv-9sn.title" = "first match";  // "first match"

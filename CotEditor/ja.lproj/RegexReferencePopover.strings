@@ -17,18 +17,15 @@
 
 /* Note: All of the following elements are NSTextFieldCell. */
 
-"FeJ-t4-Tfx.title" = "文字タイプ";  // "Character Types"
+"3AR-qs-5m4.title" = "文字";  // "Characters"
 
 "RD2-4i-6hI.title" = "任意の1文字";  // "any character"
 "9KK-2o-0gf.title" = "改行";  // "new line character"
 "IEP-BD-aIL.title" = "水平タブ";  // "tab character"
 "KDl-AT-6pW.title" = "単語構成文字";  // "word character"
 "Xh9-Al-Lgr.title" = "空白文字";  // "whitespace character"
-
-
-
-"3AR-qs-5m4.title" = "文字クラス";  // "Character Class"
-
+"nh9-3w-PRK.title" = "非空白文字";  // "non whitespace character"
+"U6Y-db-fiT.title" = "10進数字";  // "decimal number"
 "Ufv-VB-C8Z.title" = "A から Z の中の任意の1文字";  // "any character in range A to Z"
 "11L-Hs-8G7.title" = "A から Z 以外の任意の1文字";  // "any character not in range A to Z"
 
@@ -61,6 +58,6 @@
 
 
 
-"EwZ-Li-jaY.title" = "捕獲グループ";  // "Captured Groups"
+"EwZ-Li-jaY.title" = "後方参照";  // "Back Reference"
 
-"LXc-Qv-9sn.title" = "1 つ目の捕獲グループ";  // "first captured group"
+"LXc-Qv-9sn.title" = "最初のマッチ";  // "first match"
