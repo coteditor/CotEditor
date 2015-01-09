@@ -21,7 +21,7 @@
 		259C2318077678DE00BA61C5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 259C2316077678DE00BA61C5 /* Localizable.strings */; };
 		25AC091C077190EB00B0C91C /* CEPrefEncodingDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 25AC091A077190EB00B0C91C /* CEPrefEncodingDataSource.m */; };
 		25B2C23707FA667400F4EFC7 /* CELineNumberView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25B2C23507FA667400F4EFC7 /* CELineNumberView.m */; };
-		25B2C24407FA68D100F4EFC7 /* CEStatusBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25B2C24207FA68D100F4EFC7 /* CEStatusBarView.m */; };
+		25B2C24407FA68D100F4EFC7 /* CEBorderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25B2C24207FA68D100F4EFC7 /* CEBorderView.m */; };
 		25B2C24D07FA6BC400F4EFC7 /* CETextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25B2C24B07FA6BC400F4EFC7 /* CETextView.m */; };
 		2A009ACB1A57BA8B00C3D542 /* CETextFinder.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A009ACA1A57BA8B00C3D542 /* CETextFinder.m */; };
 		2A009ACE1A587B3100C3D542 /* CEFindTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A009ACD1A587B3100C3D542 /* CEFindTextFieldCell.m */; };
@@ -75,7 +75,6 @@
 		2A51793A1A40A3B500A3F852 /* CEShortcutKeyField.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A5179391A40A3B500A3F852 /* CEShortcutKeyField.m */; };
 		2A5411C01983E5FA008B43DA /* CESplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A5411BF1983E5FA008B43DA /* CESplitViewController.m */; };
 		2A5411C319852C1C008B43DA /* NavigationBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A5411C119852C1C008B43DA /* NavigationBar.xib */; };
-		2A5411C9198549A7008B43DA /* CENavigationBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A5411C8198549A7008B43DA /* CENavigationBarView.m */; };
 		2A586A1619A4FA9D0053F5E3 /* CEKeyBindingSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A586A1519A4FA9D0053F5E3 /* CEKeyBindingSheetController.m */; };
 		2A5ABE761918615E009265DF /* CEUnicodeInputPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A5ABE751918615E009265DF /* CEUnicodeInputPanelController.m */; };
 		2A5ABE79191861E3009265DF /* UnicodePanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A5ABE77191861E3009265DF /* UnicodePanel.xib */; };
@@ -239,8 +238,8 @@
 		25AC091A077190EB00B0C91C /* CEPrefEncodingDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEPrefEncodingDataSource.m; sourceTree = "<group>"; };
 		25B2C23407FA667400F4EFC7 /* CELineNumberView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CELineNumberView.h; sourceTree = "<group>"; };
 		25B2C23507FA667400F4EFC7 /* CELineNumberView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CELineNumberView.m; sourceTree = "<group>"; };
-		25B2C24107FA68D100F4EFC7 /* CEStatusBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEStatusBarView.h; sourceTree = "<group>"; };
-		25B2C24207FA68D100F4EFC7 /* CEStatusBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEStatusBarView.m; sourceTree = "<group>"; };
+		25B2C24107FA68D100F4EFC7 /* CEBorderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEBorderView.h; sourceTree = "<group>"; };
+		25B2C24207FA68D100F4EFC7 /* CEBorderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEBorderView.m; sourceTree = "<group>"; };
 		25B2C24A07FA6BC400F4EFC7 /* CETextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CETextView.h; sourceTree = "<group>"; };
 		25B2C24B07FA6BC400F4EFC7 /* CETextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CETextView.m; sourceTree = "<group>"; };
 		2A009AC91A57BA8B00C3D542 /* CETextFinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CETextFinder.h; sourceTree = "<group>"; };
@@ -315,8 +314,6 @@
 		2A5179391A40A3B500A3F852 /* CEShortcutKeyField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEShortcutKeyField.m; sourceTree = "<group>"; };
 		2A5411BE1983E5FA008B43DA /* CESplitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CESplitViewController.h; sourceTree = "<group>"; };
 		2A5411BF1983E5FA008B43DA /* CESplitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CESplitViewController.m; sourceTree = "<group>"; };
-		2A5411C7198549A7008B43DA /* CENavigationBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CENavigationBarView.h; sourceTree = "<group>"; };
-		2A5411C8198549A7008B43DA /* CENavigationBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CENavigationBarView.m; sourceTree = "<group>"; };
 		2A586A1419A4FA9D0053F5E3 /* CEKeyBindingSheetController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEKeyBindingSheetController.h; sourceTree = "<group>"; };
 		2A586A1519A4FA9D0053F5E3 /* CEKeyBindingSheetController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEKeyBindingSheetController.m; sourceTree = "<group>"; };
 		2A5ABE741918615E009265DF /* CEUnicodeInputPanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEUnicodeInputPanelController.h; sourceTree = "<group>"; };
@@ -763,14 +760,12 @@
 			children = (
 				8C8CCCAE09D6803400A008E5 /* CESplitView.h */,
 				8C8CCCAF09D6803400A008E5 /* CESplitView.m */,
-				2A5411C7198549A7008B43DA /* CENavigationBarView.h */,
-				2A5411C8198549A7008B43DA /* CENavigationBarView.m */,
 				8C99DDF808BD8940001F618C /* CEOutlineMenuButtonCell.h */,
 				8C99DDF908BD8940001F618C /* CEOutlineMenuButtonCell.m */,
 				25B2C23407FA667400F4EFC7 /* CELineNumberView.h */,
 				25B2C23507FA667400F4EFC7 /* CELineNumberView.m */,
-				25B2C24107FA68D100F4EFC7 /* CEStatusBarView.h */,
-				25B2C24207FA68D100F4EFC7 /* CEStatusBarView.m */,
+				25B2C24107FA68D100F4EFC7 /* CEBorderView.h */,
+				25B2C24207FA68D100F4EFC7 /* CEBorderView.m */,
 				2AAC8FFF1A4E12D10074E076 /* CEWrappingTextField.h */,
 				2AAC90001A4E12D10074E076 /* CEWrappingTextField.m */,
 			);
@@ -1433,7 +1428,7 @@
 				2A149DB91901788000A9D6EF /* CEPrintPaneController.m in Sources */,
 				2AD318C31A462C30001B8112 /* CEIntegrationPaneController.m in Sources */,
 				2A149DB61901760300A9D6EF /* CEAppearancePaneController.m in Sources */,
-				25B2C24407FA68D100F4EFC7 /* CEStatusBarView.m in Sources */,
+				25B2C24407FA68D100F4EFC7 /* CEBorderView.m in Sources */,
 				25B2C24D07FA6BC400F4EFC7 /* CETextView.m in Sources */,
 				2A63122A19C25CF80088C5C6 /* CEHexColorTransformer.m in Sources */,
 				2A5D2B9118E1EC790020AA1F /* CESyntaxMappingConflictsSheetController.m in Sources */,
@@ -1447,7 +1442,6 @@
 				8C7400A908C6D96D00683672 /* CEKeyBindingManager.m in Sources */,
 				8CC5044508EE829500A525A6 /* CEPrintView.m in Sources */,
 				8C83A48309485F27004E48A8 /* CEATSTypesetter.m in Sources */,
-				2A5411C9198549A7008B43DA /* CENavigationBarView.m in Sources */,
 				8CD7A93C09CBDDDC00739513 /* CEEditorView.m in Sources */,
 				2A149DC21901884500A9D6EF /* CEFileDropPaneController.m in Sources */,
 				2AAC90011A4E12D10074E076 /* CEWrappingTextField.m in Sources */,

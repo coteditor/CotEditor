@@ -1,16 +1,15 @@
 /*
  ==============================================================================
- CEStatusBarView
+ CEBorderView
  
  CotEditor
  http://coteditor.com
  
- Created on 2005-03-30 by nakamuxu
+ Created on 2015-01-09 by 1024jp
  encoding="UTF-8"
  ------------------------------------------------------------------------------
  
- © 2004-2007 nakamuxu
- © 2014 CotEditor Project
+ © 2015 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -28,10 +27,10 @@
  ==============================================================================
  */
 
-#import "CEStatusBarView.h"
+#import "CEBorderView.h"
 
 
-@implementation CEStatusBarView
+@implementation CEBorderView
 
 #pragma mark Superclass Methods
 
@@ -41,13 +40,23 @@
 // ------------------------------------------------------
 {
     // fill in background
-    [[NSColor windowBackgroundColor] set];
+    [[self fillColor] set];
     [NSBezierPath fillRect:dirtyRect];
     
-    // draw frame border (only top)
-    [[NSColor windowFrameColor] set];
-    [NSBezierPath strokeLineFromPoint:NSMakePoint(NSMinX([self frame]), NSMaxY([self frame]) - 0.5)
-                              toPoint:NSMakePoint(NSMaxX([self frame]), NSMaxY([self frame]) - 0.5)];
+    // draw borders
+    const CGFloat borderWidth = 1.0;
+    NSRect frame = [self frame];
+    
+    [[self borderColor] set];
+    if ([self drawsTopBorder] > 0) {
+        [NSBezierPath strokeLineFromPoint:NSMakePoint(NSMinX(frame), NSMaxY(frame) - borderWidth / 2)
+                                  toPoint:NSMakePoint(NSMaxX(frame), NSMaxY(frame) - borderWidth / 2)];
+    }
+    
+    if ([self drawsBottomBorder]) {
+        [NSBezierPath strokeLineFromPoint:NSMakePoint(NSMinX(frame), borderWidth / 2)
+                                  toPoint:NSMakePoint(NSMaxX(frame), borderWidth / 2)];
+    }
 }
 
 @end

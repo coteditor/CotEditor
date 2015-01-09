@@ -1,15 +1,15 @@
 /*
  ==============================================================================
- CENavigationBarView
+ CEBorderView
  
  CotEditor
  http://coteditor.com
  
- Created on 2014-07-27 by 1024jp
+ Created on 2015-01-09 by 1024jp
  encoding="UTF-8"
  ------------------------------------------------------------------------------
  
- © 2014 CotEditor Project
+ © 2015 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -27,26 +27,14 @@
  ==============================================================================
  */
 
-#import "CENavigationBarView.h"
+@import Cocoa;
 
 
-@implementation CENavigationBarView
+@interface CEBorderView : NSView
 
-#pragma mark Superclass Methods
-
-// ------------------------------------------------------
-/// draw background
-- (void)drawRect:(NSRect)dirtyRect
-// ------------------------------------------------------
-{
-    // fill in the background
-    [[NSColor windowBackgroundColor] set];
-    [NSBezierPath fillRect:dirtyRect];
-    
-    // draw frame border (only bottom)
-    [[NSColor windowFrameColor] set];
-    [NSBezierPath strokeLineFromPoint:NSMakePoint(NSMinX(dirtyRect), 0.5)
-                              toPoint:NSMakePoint(NSMaxX(dirtyRect), 0.5)];
-}
+@property (nonatomic) IBInspectable NSColor *fillColor;
+@property (nonatomic) IBInspectable NSColor *borderColor;
+@property (nonatomic) IBInspectable BOOL drawsTopBorder;
+@property (nonatomic) IBInspectable BOOL drawsBottomBorder;
 
 @end

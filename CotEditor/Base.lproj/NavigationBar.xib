@@ -19,7 +19,7 @@
                 <outlet property="view" destination="c22-O7-iKe" id="upR-hv-zYz"/>
             </connections>
         </customObject>
-        <customView translatesAutoresizingMaskIntoConstraints="NO" id="c22-O7-iKe" customClass="CENavigationBarView">
+        <customView translatesAutoresizingMaskIntoConstraints="NO" id="c22-O7-iKe" customClass="CEBorderView">
             <rect key="frame" x="-199" y="40" width="560" height="16"/>
             <subviews>
                 <button toolTip="Jump to previous outline item" verticalHuggingPriority="750" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="MlW-Dz-FOk">
@@ -131,6 +131,16 @@
                 <constraint firstItem="syK-XU-x2I" firstAttribute="leading" secondItem="Bmo-XE-CCn" secondAttribute="trailing" constant="-1" id="qZ8-nx-wlZ"/>
                 <constraint firstAttribute="bottom" secondItem="syK-XU-x2I" secondAttribute="bottom" priority="750" id="sMO-mr-IIf"/>
             </constraints>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="color" keyPath="fillColor">
+                    <color key="value" name="windowBackgroundColor" catalog="System" colorSpace="catalog"/>
+                </userDefinedRuntimeAttribute>
+                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                    <color key="value" name="windowFrameColor" catalog="System" colorSpace="catalog"/>
+                </userDefinedRuntimeAttribute>
+                <userDefinedRuntimeAttribute type="boolean" keyPath="drawsBottomBorder" value="YES"/>
+                <userDefinedRuntimeAttribute type="boolean" keyPath="drawsTopBorder" value="NO"/>
+            </userDefinedRuntimeAttributes>
             <point key="canvasLocation" x="-112" y="44"/>
         </customView>
         <customObject id="-1" customClass="FirstResponder"/>

@@ -74,7 +74,7 @@
                                         <constraints>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" priority="750" constant="160" id="oBe-RN-9uG"/>
                                         </constraints>
-                                        <popUpButtonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" alignment="center" lineBreakMode="truncatingTail" borderStyle="border" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="700">
+                                        <popUpButtonCell key="cell" type="roundTextured" title="Incompatible Chars" bezelStyle="texturedRounded" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" tag="2" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="145" id="700">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="menu"/>
                                             <menu key="menu" title="OtherViews" id="143">
@@ -82,7 +82,7 @@
                                                     <menuItem title="Document" tag="1" id="144">
                                                         <attributedString key="attributedTitle"/>
                                                     </menuItem>
-                                                    <menuItem title="Incompatible Chars" tag="2" id="145">
+                                                    <menuItem title="Incompatible Chars" state="on" tag="2" id="145">
                                                         <attributedString key="attributedTitle"/>
                                                     </menuItem>
                                                 </items>
@@ -119,7 +119,7 @@
                             <outlet property="delegate" destination="-2" id="30X-7D-JZT"/>
                         </connections>
                     </splitView>
-                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="Rjm-Sf-4Mf" customClass="CEStatusBarView">
+                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="Rjm-Sf-4Mf" customClass="CEBorderView">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="20"/>
                         <subviews>
                             <imageView hidden="YES" toolTip="This document is read only." horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EP1-My-tQo">
@@ -166,6 +166,16 @@
                             <constraint firstAttribute="centerY" secondItem="QO1-yr-imY" secondAttribute="centerY" id="tYP-eB-pNq"/>
                             <constraint firstAttribute="centerY" secondItem="G7a-2k-nOK" secondAttribute="centerY" id="wwt-6v-1Di"/>
                         </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                <color key="value" name="windowFrameColor" catalog="System" colorSpace="catalog"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="fillColor">
+                                <color key="value" name="windowBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="drawsTopBorder" value="YES"/>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="drawsBottomBorder" value="NO"/>
+                        </userDefinedRuntimeAttributes>
                     </customView>
                 </subviews>
                 <constraints>
