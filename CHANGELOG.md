@@ -46,6 +46,7 @@ Change Log
 - Fix possible crashes on input.
 - Fix an issue that application could crash after switching theme in preferences.
 - Fix an issue that text font could occasionally change after pasting or inputting text from other application.
+- Fix an issue that number of selected lines displayed less than actual count if last selected lines are blank.
 - Fix an issue that syntax highlights were removed after perform Unhighlight.
 - Fix some missing localizations in simplified Chinese. (Thanks to Wei Wang!)
 - Fix an issue that an alert message was not localized.

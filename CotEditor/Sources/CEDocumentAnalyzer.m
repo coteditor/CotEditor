@@ -192,9 +192,13 @@ NSString *const CEAnalyzerDidUpdateEditorInfoNotification = @"CEAnalyzerDidUpdat
                 }
                 index = NSMaxRange([wholeString lineRangeForRange:NSMakeRange(index, 0)]);
             }
+            
+            // count selected lines
             if (hasSelection) {
-                numberOfSelectedLines = [[[selectedString stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]]
-                                          componentsSeparatedByString:@"\n"] count];
+                numberOfSelectedLines = [[selectedString componentsSeparatedByString:@"\n"] count];
+                if ([selectedString hasSuffix:@"\n"]) {
+                    numberOfSelectedLines--;
+                }
             }
             
             // count words
