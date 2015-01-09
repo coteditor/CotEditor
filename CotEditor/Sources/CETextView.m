@@ -1423,17 +1423,12 @@ const NSInteger kNoMenuItem = -1;
     
     if (!popoverController) { return; }
     
-    NSRange glyphRange = [[self layoutManager] glyphRangeForCharacterRange:selectedRange actualCharacterRange:NULL];
-    NSRect selectedRect = [[self layoutManager] boundingRectForGlyphRange:glyphRange inTextContainer:[self textContainer]];
-    NSPoint containerOrigin = [self textContainerOrigin];
-    selectedRect.origin.x += containerOrigin.x;
-    selectedRect.origin.y += containerOrigin.y - 6.0;
-    selectedRect = [self convertRectToLayer:selectedRect];
+    NSRect selectedRect = [self overlayRectForRange:selectedRange];
+    selectedRect.origin.y -= 4;
     
     [popoverController showPopoverRelativeToRect:selectedRect ofView:self];
     [self showFindIndicatorForRange:NSMakeRange(selectedRange.location, 1)];
 }
-
 
 
 #pragma mark Private Methods
@@ -1616,6 +1611,22 @@ const NSInteger kNoMenuItem = -1;
     NSUInteger numberOfTabChars = [[indent componentsSeparatedByString:@"\t"] count] - 1;
     
     return numberOfTabChars + (([indent length] - numberOfTabChars) / [self tabWidth]);
+}
+
+
+// ------------------------------------------------------
+/// rect for given character range
+- (NSRect)overlayRectForRange:(NSRange)range
+// ------------------------------------------------------
+{
+    NSRange glyphRange = [[self layoutManager] glyphRangeForCharacterRange:range actualCharacterRange:NULL];
+    NSRect rect = [[self layoutManager] boundingRectForGlyphRange:glyphRange inTextContainer:[self textContainer]];
+    NSPoint containerOrigin = [self textContainerOrigin];
+    
+    rect.origin.x += containerOrigin.x;
+    rect.origin.y += containerOrigin.y;
+    
+    return [self convertRectToLayer:rect];
 }
 
 @end
