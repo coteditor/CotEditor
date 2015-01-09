@@ -22,6 +22,7 @@ Change Log
     - Improve document information display.
 - Introduce brand-new find panel with more organized UI.
     - OniGmo is still be using for the regular expression engine as before.
+    - Settings for find panel has been once reset. You can set them again from the gear button in the find panel.
 - Enable to change multiple checkboxes in syntax style editor at once.
 - Improve to display gear icon in menu bar while executing a script.
 - Improve auto-outdent behavior with `}` input.
