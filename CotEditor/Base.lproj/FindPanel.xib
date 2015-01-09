@@ -28,18 +28,18 @@
                                 <autoresizingMask key="autoresizingMask"/>
                                 <subviews>
                                     <textField verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="l7V-L6-eHO">
-                                        <rect key="frame" x="82" y="30" width="438" height="49"/>
-                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" borderStyle="bezel" placeholderString="Replacement String" drawsBackground="YES" id="oVG-0K-H2V" customClass="CEFindTextFieldCell">
+                                        <rect key="frame" x="71" y="30" width="449" height="49"/>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" borderStyle="bezel" placeholderString="       Replace" drawsBackground="YES" id="oVG-0K-H2V" customClass="CEFindTextFieldCell">
                                             <font key="font" metaFont="system"/>
                                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                         <connections>
-                                            <binding destination="qZS-yd-wpm" name="value" keyPath="replacementString" id="IkC-WH-Bvt">
+                                            <binding destination="qZS-yd-wpm" name="value" keyPath="replacementString" id="rCp-kT-O6b">
                                                 <dictionary key="options">
                                                     <bool key="NSAllowsEditingMultipleValuesSelection" value="NO"/>
                                                     <bool key="NSContinuouslyUpdatesValue" value="YES"/>
-                                                    <string key="NSNullPlaceholder">Replacement String</string>
+                                                    <string key="NSNullPlaceholder">Replace</string>
                                                     <bool key="NSValidatesImmediately" value="YES"/>
                                                 </dictionary>
                                             </binding>
@@ -47,38 +47,30 @@
                                         </connections>
                                     </textField>
                                     <textField verticalHuggingPriority="249" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="bcO-Vd-Pum">
-                                        <rect key="frame" x="82" y="89" width="438" height="49"/>
+                                        <rect key="frame" x="71" y="89" width="449" height="49"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="f9q-Ai-xTj"/>
                                         </constraints>
-                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" borderStyle="bezel" placeholderString="Find String" drawsBackground="YES" id="OdZ-gI-O2r" customClass="CEFindTextFieldCell">
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" borderStyle="bezel" placeholderString="       Find" drawsBackground="YES" id="OdZ-gI-O2r" customClass="CEFindTextFieldCell">
                                             <font key="font" metaFont="system"/>
                                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                         <connections>
                                             <action selector="findNext:" target="qZS-yd-wpm" id="Rw0-sf-WVf"/>
-                                            <binding destination="qZS-yd-wpm" name="value" keyPath="findString" id="HII-Sb-dGB">
+                                            <binding destination="qZS-yd-wpm" name="value" keyPath="findString" id="KFJ-K2-zGh">
                                                 <dictionary key="options">
                                                     <bool key="NSAllowsEditingMultipleValuesSelection" value="NO"/>
                                                     <bool key="NSContinuouslyUpdatesValue" value="YES"/>
-                                                    <string key="NSNullPlaceholder">Find String</string>
+                                                    <string key="NSNullPlaceholder">Find</string>
                                                     <bool key="NSValidatesImmediately" value="YES"/>
                                                 </dictionary>
                                             </binding>
                                             <outlet property="nextKeyView" destination="l7V-L6-eHO" id="FTF-NT-nq7"/>
                                         </connections>
                                     </textField>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Ahc-wC-VgG">
-                                        <rect key="frame" x="18" y="62" width="58" height="17"/>
-                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Replace:" id="2lU-Yq-CgC">
-                                            <font key="font" metaFont="system"/>
-                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                        </textFieldCell>
-                                    </textField>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8My-G5-daT">
-                                        <rect key="frame" x="79" y="7" width="125" height="18"/>
+                                        <rect key="frame" x="68" y="7" width="125" height="18"/>
                                         <buttonCell key="cell" type="check" title="Regular Expression" bezelStyle="regularSquare" imagePosition="left" controlSize="small" state="on" inset="2" id="brT-HP-GVL">
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="smallSystem"/>
@@ -88,7 +80,7 @@
                                         </connections>
                                     </button>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="GvT-tD-Cbk">
-                                        <rect key="frame" x="207" y="7" width="86" height="18"/>
+                                        <rect key="frame" x="196" y="7" width="86" height="18"/>
                                         <buttonCell key="cell" type="check" title="Ignore Case" bezelStyle="regularSquare" imagePosition="left" controlSize="small" inset="2" id="4wg-Cz-ozb">
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="smallSystem"/>
@@ -98,25 +90,14 @@
                                             <binding destination="qZS-yd-wpm" name="value" keyPath="ignoreCaseOption" id="sUc-Sw-ZK2"/>
                                         </connections>
                                     </button>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="sQd-5c-S2B">
-                                        <rect key="frame" x="41" y="121" width="35" height="17"/>
-                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Find:" id="JnG-4b-frx">
-                                            <font key="font" metaFont="system"/>
-                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                        </textFieldCell>
-                                    </textField>
-                                    <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="ybT-sQ-Vn5" userLabel="Reacent Searches">
-                                        <rect key="frame" x="498" y="117" width="22" height="21"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="22" id="JJ1-IS-oxs"/>
-                                        </constraints>
-                                        <popUpButtonCell key="cell" type="bevel" title="DUMMY" bezelStyle="rounded" alignment="center" lineBreakMode="truncatingTail" imageScaling="proportionallyDown" inset="2" pullsDown="YES" preferredEdge="minX" autoenablesItems="NO" id="rfC-IT-glr">
+                                    <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="ybT-sQ-Vn5" userLabel="Recent Searches">
+                                        <rect key="frame" x="68" y="119" width="35" height="17"/>
+                                        <popUpButtonCell key="cell" type="smallSquare" title="DUMMY" bezelStyle="smallSquare" imagePosition="only" alignment="left" lineBreakMode="truncatingTail" inset="2" pullsDown="YES" arrowPosition="noArrow" preferredEdge="minX" autoenablesItems="NO" altersStateOfSelectedItem="NO" id="rfC-IT-glr" userLabel="Recent Searches">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="menu"/>
                                             <menu key="menu" autoenablesItems="NO" id="Zor-um-eIs">
                                                 <items>
-                                                    <menuItem title="DUMMY" hidden="YES" id="gvk-oX-y1E">
+                                                    <menuItem title="DUMMY" image="FindTemplate" hidden="YES" id="gvk-oX-y1E">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                     </menuItem>
                                                     <menuItem title="Recent Searches" enabled="NO" id="cdV-rY-hCN">
@@ -132,17 +113,14 @@
                                             </menu>
                                         </popUpButtonCell>
                                     </popUpButton>
-                                    <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="gM0-RD-hIC" userLabel="Reasent Replacements">
-                                        <rect key="frame" x="498" y="58" width="22" height="21"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="22" id="kRf-Fe-Swy"/>
-                                        </constraints>
-                                        <popUpButtonCell key="cell" type="bevel" title="DUMMY" bezelStyle="rounded" alignment="center" lineBreakMode="truncatingTail" imageScaling="proportionallyDown" inset="2" pullsDown="YES" preferredEdge="minX" autoenablesItems="NO" id="u5j-P5-Mjd">
+                                    <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="gM0-RD-hIC" userLabel="Recent Replacements">
+                                        <rect key="frame" x="68" y="60" width="35" height="17"/>
+                                        <popUpButtonCell key="cell" type="smallSquare" title="DUMMY" bezelStyle="smallSquare" imagePosition="only" alignment="left" lineBreakMode="truncatingTail" inset="2" pullsDown="YES" arrowPosition="noArrow" preferredEdge="minX" autoenablesItems="NO" altersStateOfSelectedItem="NO" id="u5j-P5-Mjd" userLabel="Recent Replacements">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="menu"/>
                                             <menu key="menu" autoenablesItems="NO" id="xUj-lq-8zt">
                                                 <items>
-                                                    <menuItem title="DUMMY" hidden="YES" id="IHX-dz-NB6">
+                                                    <menuItem title="DUMMY" image="ReplaceTemplate" hidden="YES" id="IHX-dz-NB6">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                     </menuItem>
                                                     <menuItem title="Recent Replacements" enabled="NO" id="7cw-iQ-0LM">
@@ -158,8 +136,18 @@
                                             </menu>
                                         </popUpButtonCell>
                                     </popUpButton>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tu7-IT-dA3">
+                                        <rect key="frame" x="285" y="7" width="85" height="18"/>
+                                        <buttonCell key="cell" type="check" title="In Selection" bezelStyle="regularSquare" imagePosition="left" controlSize="small" inset="2" id="9bc-9Q-fhd">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="smallSystem"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <binding destination="1KP-j4-l6E" name="value" keyPath="values.findInSelection" id="9WX-m7-TxB"/>
+                                        </connections>
+                                    </button>
                                     <popUpButton toolTip="Set advanced options" translatesAutoresizingMaskIntoConstraints="NO" id="EY8-gj-fQb">
-                                        <rect key="frame" x="475" y="3" width="47" height="26"/>
+                                        <rect key="frame" x="18" y="114" width="47" height="26"/>
                                         <popUpButtonCell key="cell" type="bevel" title="Advanced Options" bezelStyle="regularSquare" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" pullsDown="YES" autoenablesItems="NO" id="sfm-kK-8cs">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="menu"/>
@@ -335,44 +323,28 @@
                                             </menu>
                                         </popUpButtonCell>
                                     </popUpButton>
-                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tu7-IT-dA3">
-                                        <rect key="frame" x="296" y="7" width="85" height="18"/>
-                                        <buttonCell key="cell" type="check" title="In Selection" bezelStyle="regularSquare" imagePosition="left" controlSize="small" inset="2" id="9bc-9Q-fhd">
-                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                            <font key="font" metaFont="smallSystem"/>
-                                        </buttonCell>
-                                        <connections>
-                                            <binding destination="1KP-j4-l6E" name="value" keyPath="values.findInSelection" id="9WX-m7-TxB"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="bcO-Vd-Pum" firstAttribute="leading" secondItem="sQd-5c-S2B" secondAttribute="trailing" constant="8" symbolic="YES" id="4aO-hr-H0w"/>
                                     <constraint firstAttribute="trailing" secondItem="bcO-Vd-Pum" secondAttribute="trailing" constant="20" symbolic="YES" id="4xG-MF-G50"/>
-                                    <constraint firstItem="EY8-gj-fQb" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="tu7-IT-dA3" secondAttribute="trailing" constant="8" symbolic="YES" id="5qZ-f0-fA7"/>
+                                    <constraint firstItem="gM0-RD-hIC" firstAttribute="leading" secondItem="l7V-L6-eHO" secondAttribute="leading" constant="-3" id="6wd-uq-QGG"/>
                                     <constraint firstAttribute="trailing" secondItem="l7V-L6-eHO" secondAttribute="trailing" constant="20" symbolic="YES" id="CwA-d9-ijx"/>
                                     <constraint firstItem="bcO-Vd-Pum" firstAttribute="leading" secondItem="l7V-L6-eHO" secondAttribute="leading" id="DCe-vg-reB"/>
                                     <constraint firstItem="tu7-IT-dA3" firstAttribute="top" secondItem="l7V-L6-eHO" secondAttribute="bottom" constant="8" symbolic="YES" id="Eu5-LL-cmi"/>
                                     <constraint firstItem="bcO-Vd-Pum" firstAttribute="height" secondItem="l7V-L6-eHO" secondAttribute="height" id="G8q-Mw-Dbl"/>
-                                    <constraint firstItem="Ahc-wC-VgG" firstAttribute="leading" secondItem="lkE-wj-Gi5" secondAttribute="leading" priority="750" constant="20" symbolic="YES" id="G9H-eu-PCy"/>
-                                    <constraint firstItem="Ahc-wC-VgG" firstAttribute="top" secondItem="l7V-L6-eHO" secondAttribute="top" id="HDG-OX-Gpi"/>
+                                    <constraint firstItem="EY8-gj-fQb" firstAttribute="leading" secondItem="lkE-wj-Gi5" secondAttribute="leading" constant="20" symbolic="YES" id="LOY-dv-dZe"/>
                                     <constraint firstItem="GvT-tD-Cbk" firstAttribute="leading" secondItem="8My-G5-daT" secondAttribute="trailing" constant="8" symbolic="YES" id="Nss-dk-ofP"/>
                                     <constraint firstItem="bcO-Vd-Pum" firstAttribute="top" secondItem="lkE-wj-Gi5" secondAttribute="top" constant="20" symbolic="YES" id="O7x-yh-1xh"/>
-                                    <constraint firstItem="sQd-5c-S2B" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="lkE-wj-Gi5" secondAttribute="leading" constant="20" symbolic="YES" id="Oto-O6-l9K"/>
-                                    <constraint firstItem="gM0-RD-hIC" firstAttribute="trailing" secondItem="l7V-L6-eHO" secondAttribute="trailing" id="RyI-RY-uL0"/>
-                                    <constraint firstItem="l7V-L6-eHO" firstAttribute="leading" secondItem="Ahc-wC-VgG" secondAttribute="trailing" constant="8" symbolic="YES" id="S1V-TA-UAs"/>
                                     <constraint firstAttribute="bottom" secondItem="8My-G5-daT" secondAttribute="bottom" constant="10" id="U9G-t3-7BQ"/>
                                     <constraint firstItem="8My-G5-daT" firstAttribute="top" secondItem="l7V-L6-eHO" secondAttribute="bottom" constant="8" symbolic="YES" id="Uye-P5-B73"/>
-                                    <constraint firstItem="bcO-Vd-Pum" firstAttribute="top" secondItem="ybT-sQ-Vn5" secondAttribute="top" id="YXj-1y-SnG"/>
-                                    <constraint firstAttribute="trailing" secondItem="EY8-gj-fQb" secondAttribute="trailing" constant="20" symbolic="YES" id="cSl-lK-AUQ"/>
+                                    <constraint firstItem="ybT-sQ-Vn5" firstAttribute="top" secondItem="bcO-Vd-Pum" secondAttribute="top" constant="2" id="YXj-1y-SnG"/>
+                                    <constraint firstItem="ybT-sQ-Vn5" firstAttribute="leading" secondItem="bcO-Vd-Pum" secondAttribute="leading" constant="-3" id="abB-r2-pGB"/>
+                                    <constraint firstItem="bcO-Vd-Pum" firstAttribute="leading" secondItem="EY8-gj-fQb" secondAttribute="trailing" constant="8" symbolic="YES" id="fce-xA-WLu"/>
                                     <constraint firstItem="bcO-Vd-Pum" firstAttribute="leading" secondItem="l7V-L6-eHO" secondAttribute="leading" id="heF-YI-2bT"/>
-                                    <constraint firstItem="bcO-Vd-Pum" firstAttribute="trailing" secondItem="ybT-sQ-Vn5" secondAttribute="trailing" id="jiu-2J-WS6"/>
                                     <constraint firstItem="GvT-tD-Cbk" firstAttribute="top" secondItem="l7V-L6-eHO" secondAttribute="bottom" constant="8" symbolic="YES" id="rFe-ch-03T"/>
-                                    <constraint firstItem="gM0-RD-hIC" firstAttribute="top" secondItem="l7V-L6-eHO" secondAttribute="top" id="rVe-3h-ueu"/>
+                                    <constraint firstItem="gM0-RD-hIC" firstAttribute="top" secondItem="l7V-L6-eHO" secondAttribute="top" constant="2" id="rVe-3h-ueu"/>
                                     <constraint firstItem="tu7-IT-dA3" firstAttribute="leading" secondItem="GvT-tD-Cbk" secondAttribute="trailing" constant="8" symbolic="YES" id="riZ-4A-Sii"/>
-                                    <constraint firstItem="bcO-Vd-Pum" firstAttribute="top" secondItem="sQd-5c-S2B" secondAttribute="top" id="tjs-pJ-9gl"/>
                                     <constraint firstItem="bcO-Vd-Pum" firstAttribute="leading" secondItem="8My-G5-daT" secondAttribute="leading" id="uec-Po-k7L"/>
-                                    <constraint firstItem="8My-G5-daT" firstAttribute="centerY" secondItem="EY8-gj-fQb" secondAttribute="centerY" id="vzZ-84-Ccf"/>
+                                    <constraint firstItem="bcO-Vd-Pum" firstAttribute="top" secondItem="EY8-gj-fQb" secondAttribute="top" id="vXe-3F-WGA"/>
                                     <constraint firstItem="l7V-L6-eHO" firstAttribute="top" secondItem="bcO-Vd-Pum" secondAttribute="bottom" constant="10" symbolic="YES" id="yh3-8x-L1W"/>
                                 </constraints>
                             </customView>
@@ -686,8 +658,10 @@
         </viewController>
     </objects>
     <resources>
+        <image name="FindTemplate" width="20" height="13"/>
         <image name="NSActionTemplate" width="14" height="14"/>
         <image name="NSGoLeftTemplate" width="9" height="12"/>
         <image name="NSGoRightTemplate" width="9" height="12"/>
+        <image name="ReplaceTemplate" width="20" height="13"/>
     </resources>
 </document>

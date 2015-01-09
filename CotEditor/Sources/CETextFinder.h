@@ -35,6 +35,7 @@
 extern NSString *const CETextFinderDidReplaceAllNotification;
 extern NSString *const CETextFinderDidUnlighlightNotification;
 
+
 @interface CETextFinder : OgreTextFinder
 
 @end

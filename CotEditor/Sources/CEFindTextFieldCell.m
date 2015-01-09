@@ -35,13 +35,14 @@
 #pragma mark Superclass Methods
 
 // ------------------------------------------------------
-/// add right padding for history popup
+/// add left padding for history popup
 - (NSRect)drawingRectForBounds:(NSRect)theRect
 // ------------------------------------------------------
 {
-    CGFloat padding = 22;
+    const CGFloat padding = 28;
     
     theRect.size.width -= padding;
+    theRect.origin.x += padding;
     
     return [super drawingRectForBounds:theRect];
 }

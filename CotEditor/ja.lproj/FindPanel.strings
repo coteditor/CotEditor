@@ -15,15 +15,10 @@
 /* Class = "NSPanel"; title = "Find & Replace"; ObjectID = "Wal-Sg-6d6"; */
 "Wal-Sg-6d6.title" = "検索と置換";
 
-/* Class = "NSTextFieldCell"; title = "Find:"; ObjectID = "JnG-4b-frx"; */
-"JnG-4b-frx.title" = "検索：";
-/* Class = "NSTextFieldCell"; title = "Replace:"; ObjectID = "2lU-Yq-CgC"; */
-"2lU-Yq-CgC.title" = "置換：";
-
-/* Class = "IBBindingConnection"; ibShadowedIsNilPlaceholder = "Find String"; ObjectID = "HII-Sb-dGB"; */
-"HII-Sb-dGB.ibShadowedIsNilPlaceholder" = "検索文字列";
-/* Class = "IBBindingConnection"; ibShadowedIsNilPlaceholder = "Replacement String"; ObjectID = "IkC-WH-Bvt"; */
-"IkC-WH-Bvt.ibShadowedIsNilPlaceholder" = "置換文字列";
+/* Class = "IBBindingConnection"; ibShadowedIsNilPlaceholder = "Find"; ObjectID = "KFJ-K2-zGh"; */
+"KFJ-K2-zGh.ibShadowedIsNilPlaceholder" = "検索";
+/* Class = "IBBindingConnection"; ibShadowedIsNilPlaceholder = "Replace"; ObjectID = "rCp-kT-O6b"; */
+"rCp-kT-O6b.ibShadowedIsNilPlaceholder" = "置換";
 
 /* Class = "NSButtonCell"; title = "Regular Expression"; ObjectID = "brT-HP-GVL"; */
 "brT-HP-GVL.title" = "正規表現";
