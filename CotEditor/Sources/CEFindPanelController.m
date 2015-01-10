@@ -196,6 +196,11 @@ static const NSUInteger kMaxHistorySize = 20;
     {
         return ([self target] != nil);
         
+    } else if ([menuItem action] == @selector(useSelectionForFind:) ||
+               [menuItem action] == @selector(useSelectionForReplace:))
+    {
+        return ![[self textFinder] isSelectionEmpty];
+        
     } else if ([menuItem action] == @selector(changeSyntax:)) {
         OgreSyntax syntax = [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultFindRegexSyntaxKey];
         [menuItem setState:([menuItem tag] == syntax) ? NSOnState : NSOffState];
