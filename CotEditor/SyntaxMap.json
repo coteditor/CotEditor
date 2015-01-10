@@ -86,6 +86,14 @@
 
     ]
   },
+  "Erlang": {
+    "extensions": [
+      "erl"
+    ],
+    "filenames": [
+
+    ]
+  },
   "Go": {
     "extensions": [
       "go"

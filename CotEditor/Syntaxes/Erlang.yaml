@@ -1,0 +1,85 @@
+extensions:
+- keyString: "erl"
+filenames: []
+outlineMenu:
+- beginString: "^([\\t ]*)(\\w+)\\s*\\(.*\\)\\s+->"
+  keyString: "$1$2"
+comments: []
+metadata:
+  version: "1.0"
+  author: "1024jp"
+  lastModified: "2015-01-10"
+  license: "Same as CotEditor"
+  distributionURL: "http://coteditor.com"
+numbers:
+- beginString: "\\b(\\d{1,2}#)?\\d+\\b"
+  regularExpression: true
+- beginString: "\\b1\\d#[0-9a-f]+\\b"
+  ignoreCase: true
+  regularExpression: true
+- beginString: "\\b\\d+\\.\\d+([eE][-+]?\\d+)?"
+  regularExpression: true
+commands:
+- beginString: "\\w+(?=\\()"
+  regularExpression: true
+values:
+- beginString: "false"
+- beginString: "true"
+keywords:
+- beginString: "after"
+- beginString: "and"
+- beginString: "andalso"
+- beginString: "band"
+- beginString: "begin"
+- beginString: "big"
+- beginString: "binary"
+- beginString: "bnot"
+- beginString: "bor"
+- beginString: "bsl"
+- beginString: "bxor"
+- beginString: "case"
+- beginString: "catch"
+- beginString: "cond"
+- beginString: "div"
+- beginString: "end"
+- beginString: "float"
+- beginString: "fun"
+- beginString: "if"
+- beginString: "integer"
+- beginString: "let"
+- beginString: "little"
+- beginString: "native"
+- beginString: "not"
+- beginString: "of"
+- beginString: "or"
+- beginString: "orelse"
+- beginString: "receive"
+- beginString: "rem"
+- beginString: "signed"
+- beginString: "try"
+- beginString: "unit"
+- beginString: "unsigned"
+- beginString: "when"
+- beginString: "xor"
+attributes:
+- beginString: "\\-[a-z][a-zA-Z0-9_@]*(?=\\()"
+  regularExpression: true
+strings:
+- beginString: "\""
+  endString: "\""
+- beginString: "'"
+  endString: "'"
+types:
+- beginString: "(?<=-module\\().*(?=\\))"
+  regularExpression: true
+- beginString: "\\b\\w+(?=:)"
+  regularExpression: true
+variables:
+- beginString: "\\b[A-Z_]\\w*\\b"
+  regularExpression: true
+commentDelimiters:
+  inlineDelimiter: "%"
+characters:
+- beginString: "\\$\\S{1,10}"
+  regularExpression: true
+completions: []
