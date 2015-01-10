@@ -423,7 +423,7 @@
                                                                 </tableCellView>
                                                             </prototypeCellViews>
                                                         </tableColumn>
-                                                        <tableColumn identifier="string" editable="NO" width="484" minWidth="40" maxWidth="1000" id="PJ8-wp-pdK">
+                                                        <tableColumn identifier="string" editable="NO" width="492" minWidth="40" maxWidth="1000" id="PJ8-wp-pdK">
                                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Found String">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -440,9 +440,9 @@
                                                                     <rect key="frame" x="54" y="1" width="484" height="14"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <subviews>
-                                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="d3D-Y0-LDS">
+                                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d3D-Y0-LDS">
                                                                             <rect key="frame" x="0.0" y="0.0" width="484" height="14"/>
-                                                                            <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" selectable="YES" sendsActionOnEndEditing="YES" title="foo bar" usesSingleLineMode="YES" id="hRt-CI-xKd">
+                                                                            <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" selectable="YES" sendsActionOnEndEditing="YES" title="Clarus says moof!" usesSingleLineMode="YES" id="hRt-CI-xKd">
                                                                                 <font key="font" metaFont="smallSystem"/>
                                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -509,7 +509,7 @@
                                     </button>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="J3a-A0-07I">
                                         <rect key="frame" x="18" y="146" width="415" height="14"/>
-                                        <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" selectable="YES" sendsActionOnEndEditing="YES" title="Find string: Claus" usesSingleLineMode="YES" id="t0t-lo-Df5">
+                                        <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" selectable="YES" sendsActionOnEndEditing="YES" title="Find string: Clarus" usesSingleLineMode="YES" id="t0t-lo-Df5">
                                             <font key="font" metaFont="smallSystem"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
