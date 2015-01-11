@@ -148,7 +148,7 @@
                                     </button>
                                     <popUpButton toolTip="Set advanced options" translatesAutoresizingMaskIntoConstraints="NO" id="EY8-gj-fQb">
                                         <rect key="frame" x="18" y="114" width="47" height="26"/>
-                                        <popUpButtonCell key="cell" type="bevel" title="Advanced Options" bezelStyle="regularSquare" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" pullsDown="YES" autoenablesItems="NO" id="sfm-kK-8cs">
+                                        <popUpButtonCell key="cell" type="bevel" title="Advanced Options" bezelStyle="regularSquare" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" pullsDown="YES" autoenablesItems="NO" selectedItem="Uhr-hw-nIf" id="sfm-kK-8cs">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="menu"/>
                                             <menu key="menu" autoenablesItems="NO" id="oEy-4y-qoZ">
@@ -178,6 +178,13 @@
                                                     <menuItem title="Syntax" indentationLevel="1" id="Uhr-hw-nIf">
                                                         <menu key="submenu" title="Syntax" id="bs2-Tz-po4">
                                                             <items>
+                                                                <menuItem title="Ruby" tag="8" id="NPK-8x-xDg">
+                                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                                    <connections>
+                                                                        <action selector="changeSyntax:" target="qZS-yd-wpm" id="OeC-kx-L3N"/>
+                                                                    </connections>
+                                                                </menuItem>
+                                                                <menuItem isSeparatorItem="YES" id="mQv-EX-V07"/>
                                                                 <menuItem title="POSIX Basic" tag="1" id="y7k-yn-gy6">
                                                                     <modifierMask key="keyEquivalentModifierMask"/>
                                                                     <connections>
@@ -218,12 +225,6 @@
                                                                     <modifierMask key="keyEquivalentModifierMask"/>
                                                                     <connections>
                                                                         <action selector="changeSyntax:" target="qZS-yd-wpm" id="bws-WR-NYM"/>
-                                                                    </connections>
-                                                                </menuItem>
-                                                                <menuItem title="Ruby" tag="8" id="NPK-8x-xDg">
-                                                                    <modifierMask key="keyEquivalentModifierMask"/>
-                                                                    <connections>
-                                                                        <action selector="changeSyntax:" target="qZS-yd-wpm" id="OeC-kx-L3N"/>
                                                                     </connections>
                                                                 </menuItem>
                                                             </items>
@@ -440,8 +441,8 @@
                                                                     <rect key="frame" x="54" y="1" width="484" height="14"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <subviews>
-                                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d3D-Y0-LDS">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="484" height="14"/>
+                                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="d3D-Y0-LDS">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="492" height="14"/>
                                                                             <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" selectable="YES" sendsActionOnEndEditing="YES" title="Clarus says moof!" usesSingleLineMode="YES" id="hRt-CI-xKd">
                                                                                 <font key="font" metaFont="smallSystem"/>
                                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
