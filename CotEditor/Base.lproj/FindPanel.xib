@@ -672,7 +672,7 @@
             </connections>
         </viewController>
         <viewController title="Quick Reference of Regular Expression" nibName="RegexReferencePopover" id="uMF-F8-Wjs" userLabel="Popover View Controller"/>
-        <popover behavior="t" id="aeg-YU-kMW">
+        <popover behavior="semitransient" id="aeg-YU-kMW">
             <connections>
                 <outlet property="contentViewController" destination="uMF-F8-Wjs" id="O3O-mx-K8n"/>
                 <outlet property="delegate" destination="qZS-yd-wpm" id="yN3-3Z-2n6"/>
