@@ -1484,16 +1484,16 @@ const NSInteger kNoMenuItem = -1;
 
 // ------------------------------------------------------
 /// 置換実行
-- (void)doInsertString:(NSString *)string withRange:(NSRange)range 
-            withSelected:(NSRange)selection withActionName:(NSString *)actionName scroll:(BOOL)doScroll
+- (void)doInsertString:(NSString *)string withRange:(NSRange)range
+          withSelected:(NSRange)selection withActionName:(NSString *)actionName scroll:(BOOL)doScroll
 // ------------------------------------------------------
 {
     NSUndoManager *undoManager = [self undoManager];
-
+    
     // 一時的にイベントごとのグループを作らないようにする
     // （でないと、グルーピングするとchangeCountが余分にカウントされる）
     [undoManager setGroupsByEvent:NO];
-
+    
     // それ以前のキー入力と分離するため、グルーピング
     // CEDocument > writeWithBackupToFile:ofType:saveOperation:でも同様の処理を行っている (2008.06.01)
     [undoManager beginUndoGrouping];
@@ -1502,6 +1502,45 @@ const NSInteger kNoMenuItem = -1;
     [self setSelectedRange:selection];
     if (doScroll) {
         [self scrollRangeToVisible:selection];
+    }
+    if ([actionName length] > 0) {
+        [undoManager setActionName:actionName];
+    }
+    [undoManager endUndoGrouping];
+    [undoManager setGroupsByEvent:YES]; // イベントごとのグループ作成設定を元に戻す
+}
+
+
+// ------------------------------------------------------
+/// 置換実行 (複数選択時)
+- (void)doInsertStrings:(NSArray *)strings ranges:(NSArray *)ranges selectedRanges:(NSArray *)selectedRanges actionName:(NSString *)actionName scroll:(BOOL)doScroll
+// ------------------------------------------------------
+{
+    NSUndoManager *undoManager = [self undoManager];
+    
+    // 一時的にイベントごとのグループを作らないようにする
+    // （でないと、グルーピングするとchangeCountが余分にカウントされる）
+    [undoManager setGroupsByEvent:NO];
+    
+    // それ以前のキー入力と分離するため、グルーピング
+    // CEDocument > writeWithBackupToFile:ofType:saveOperation:でも同様の処理を行っている (2008.06.01)
+    [undoManager beginUndoGrouping];
+    
+    __unsafe_unretained typeof(self) weakSelf = self;  // avoid using __weak because of NSTextView subclass
+    // use backwards enumeration to skip adjustment of applying location
+    [ranges enumerateObjectsWithOptions:NSEnumerationReverse
+                             usingBlock:^(id obj, NSUInteger idx, BOOL *stop)
+    {
+        NSRange range = [obj rangeValue];
+        NSString *string = strings[idx];
+        
+        [weakSelf setSelectedRange:range];
+        [super insertText:[string copy]];
+    }];
+    
+    [self setSelectedRanges:selectedRanges];
+    if (doScroll) {
+        [self scrollRangeToVisible:[selectedRanges[0] rangeValue]];
     }
     if ([actionName length] > 0) {
         [undoManager setActionName:actionName];
@@ -2276,16 +2315,11 @@ typedef NS_ENUM(NSUInteger, CEUnicodeNormalizationForm) {
 - (IBAction)exchangeFullwidthRoman:(id)sender
 // ------------------------------------------------------
 {
-    NSRange selectedRange = [self selectedRange];
-    
-    if (selectedRange.length == 0) { return; }
-    
-    NSString *newStr =  [[[self string] substringWithRange:selectedRange] fullWidthRomanString];
-    if (newStr) {
-        [self doInsertString:newStr withRange:selectedRange
-                withSelected:NSMakeRange(selectedRange.location, [newStr length])
-              withActionName:NSLocalizedString(@"To Fullwidth Roman", nil) scroll:YES];
-    }
+    [self transformSelectionWithActionName:NSLocalizedString(@"To Fullwidth Roman", nil)
+                          operationHandler:^NSString *(NSString *substring)
+     {
+         return [substring fullWidthRomanString];
+     }];
 }
 
 
@@ -2294,16 +2328,11 @@ typedef NS_ENUM(NSUInteger, CEUnicodeNormalizationForm) {
 - (IBAction)exchangeHalfwidthRoman:(id)sender
 // ------------------------------------------------------
 {
-    NSRange selectedRange = [self selectedRange];
-    
-    if (selectedRange.length == 0) { return; }
-    
-    NSString *newStr =  [[[self string] substringWithRange:selectedRange] halfWidthRomanString];
-    if (newStr) {
-        [self doInsertString:newStr withRange:selectedRange
-                withSelected:NSMakeRange(selectedRange.location, [newStr length])
-              withActionName:NSLocalizedString(@"To Halfwidth Roman", nil) scroll:YES];
-    }
+    [self transformSelectionWithActionName:NSLocalizedString(@"To Halfwidth Roman", nil)
+                          operationHandler:^NSString *(NSString *substring)
+     {
+         return [substring halfWidthRomanString];
+     }];
 }
 
 
@@ -2312,16 +2341,11 @@ typedef NS_ENUM(NSUInteger, CEUnicodeNormalizationForm) {
 - (IBAction)exchangeKatakana:(id)sender
 // ------------------------------------------------------
 {
-    NSRange selectedRange = [self selectedRange];
-    
-    if (selectedRange.length == 0) { return; }
-    
-    NSString *newStr =  [[[self string] substringWithRange:selectedRange] katakanaString];
-    if (newStr) {
-        [self doInsertString:newStr withRange:selectedRange
-                withSelected:NSMakeRange(selectedRange.location, [newStr length])
-              withActionName:NSLocalizedString(@"Hiragana to Katakana",@"") scroll:YES];
-    }
+    [self transformSelectionWithActionName:NSLocalizedString(@"Hiragana to Katakana", nil)
+                          operationHandler:^NSString *(NSString *substring)
+     {
+         return [substring katakanaString];
+     }];
 }
 
 
@@ -2330,16 +2354,11 @@ typedef NS_ENUM(NSUInteger, CEUnicodeNormalizationForm) {
 - (IBAction)exchangeHiragana:(id)sender
 // ------------------------------------------------------
 {
-    NSRange selectedRange = [self selectedRange];
-    
-    if (selectedRange.length == 0) { return; }
-    
-    NSString *newStr = [[[self string] substringWithRange:selectedRange] hiraganaString];
-    if (newStr) {
-        [self doInsertString:newStr withRange:selectedRange
-                withSelected:NSMakeRange(selectedRange.location, [newStr length])
-              withActionName:NSLocalizedString(@"Katakana to Hiragana",@"") scroll:YES];
-    }
+    [self transformSelectionWithActionName:NSLocalizedString(@"Katakana to Hiragana", nil)
+                          operationHandler:^NSString *(NSString *substring)
+     {
+         return [substring hiraganaString];
+     }];
 }
 
 
@@ -2402,6 +2421,44 @@ typedef NS_ENUM(NSUInteger, CEUnicodeNormalizationForm) {
 
 
 #pragma mark Private Methods
+
+// ------------------------------------------------------
+/// transform characters in all selections and register to undo manager
+- (void)transformSelectionWithActionName:(NSString *)actionName operationHandler:(NSString *(^)(NSString *substring))operationHandler
+// ------------------------------------------------------
+{
+    NSArray *selectedRanges = [self selectedRanges];
+    NSMutableArray *appliedRanges = [NSMutableArray array];
+    NSMutableArray *strings = [NSMutableArray array];
+    NSMutableArray *newSelectedRanges = [NSMutableArray array];
+    BOOL success = NO;
+    NSInteger deltaLocation = 0;
+    
+    for (NSValue *rangeValue in selectedRanges) {
+        NSRange range = [rangeValue rangeValue];
+        
+        if (range.length == 0) { continue; }
+        
+        NSString *substring = [[self string] substringWithRange:range];
+        NSString *string = operationHandler(substring);
+        
+        if (string) {
+            NSRange newRange = NSMakeRange(range.location + deltaLocation, [string length]);
+            
+            [strings addObject:string];
+            [appliedRanges addObject:rangeValue];
+            [newSelectedRanges addObject:[NSValue valueWithRange:newRange]];
+            deltaLocation += [substring length] - [string length];
+            success = YES;
+        }
+    }
+    
+    if (!success) { return; }
+    
+    [self doInsertStrings:strings ranges:appliedRanges selectedRanges:newSelectedRanges
+               actionName:actionName scroll:YES];
+}
+
 
 // ------------------------------------------------------
 /// Unicode normalization
