@@ -69,8 +69,8 @@
 - (void)appendAllString:(NSString *)string;
 - (void)insertCustomTextWithPatternNum:(NSInteger)patternNum;
 - (void)setNewLineSpacingAndUpdate:(CGFloat)lineSpacing;
-- (void)doReplaceString:(NSString *)string withRange:(NSRange)range
-           withSelected:(NSRange)selection withActionName:(NSString *)actionName;
+- (void)replaceWithString:(NSString *)string range:(NSRange)range
+            selectedRange:(NSRange)selectedRange actionName:(NSString *)actionName;
 
 // Action Message
 - (IBAction)resetFont:(id)sender;

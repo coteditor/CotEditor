@@ -477,14 +477,13 @@
     // 挿入／置換する文字列に改行コードが含まれていたら、LF に置換する
     if ((replacementLineEndingType != CENewLineNone) && (replacementLineEndingType != CENewLineLF)) {
         // （newStrが使用されるのはスクリプトからの入力時。キー入力は条件式を通過しない）
-        NSString *newStr = [replacementString stringByReplacingNewLineCharacersWith:CENewLineLF];
+        NSString *newString = [replacementString stringByReplacingNewLineCharacersWith:CENewLineLF];
         
-        if (newStr) {
-            // （Action名は自動で付けられる？ので、指定しない）
-            [(CETextView *)aTextView doReplaceString:newStr
-                                           withRange:affectedCharRange
-                                        withSelected:NSMakeRange(affectedCharRange.location + [newStr length], 0)
-                                      withActionName:@""];
+        if (newString) {
+            [(CETextView *)aTextView replaceWithString:newString
+                                                 range:affectedCharRange
+                                         selectedRange:NSMakeRange(affectedCharRange.location + [newString length], 0)
+                                            actionName:nil];  // Action名は自動で付けられる？ので、指定しない
             
             return NO;
         }
