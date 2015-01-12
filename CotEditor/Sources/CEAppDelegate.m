@@ -43,6 +43,7 @@
 #import "CEConsolePanelController.h"
 #import "CEUnicodeInputPanelController.h"
 #import "CEMigrationWindowController.h"
+#import "CEDocument.h"
 #import "SWFSemanticVersion.h"
 #import "constants.h"
 
