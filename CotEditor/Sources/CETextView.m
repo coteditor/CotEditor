@@ -1191,138 +1191,127 @@ const NSInteger kNoMenuItem = -1;
 
 
 // ------------------------------------------------------
-/// 右へシフト
+/// increase indent level
 - (IBAction)shiftRight:(id)sender
 // ------------------------------------------------------
 {
-    // 現在の選択区域とシフトする行範囲を得る
+    if ([self tabWidth] < 1) { return; }
+    
+    // get range to process
     NSRange selectedRange = [self selectedRange];
     NSRange lineRange = [[self string] lineRangeForRange:selectedRange];
-
+    
+    // remove the last line ending
     if (lineRange.length > 1) {
-        lineRange.length--; // 最末尾の改行分を減ずる
+        lineRange.length--;
     }
-    // シフトするために挿入する文字列と長さを得る
-    NSMutableString *shiftStr = [NSMutableString string];
-    NSUInteger shiftLength = 0;
+    
+    // create indent string to prepend
+    NSMutableString *indent = [NSMutableString string];
     if ([self isAutoTabExpandEnabled]) {
         NSUInteger tabWidth = [self tabWidth];
-        shiftLength = tabWidth;
         while (tabWidth--) {
-            [shiftStr appendString:@" "];
+            [indent appendString:@" "];
         }
     } else {
-        shiftLength = 1;
-        [shiftStr setString:@"\t"];
+        [indent setString:@"\t"];
     }
-    if (shiftLength < 1) { return; }
-
-    // 置換する行を生成する
-    NSMutableString *newLine = [NSMutableString stringWithString:[[self string] substringWithRange:lineRange]];
-    NSString *newStr = [NSString stringWithFormat:@"%@%@", @"\n", shiftStr];
-    NSUInteger lines = [newLine replaceOccurrencesOfString:@"\n"
-                                                withString:newStr
-                                                   options:0
-                                                     range:NSMakeRange(0, [newLine length])];
-    [newLine insertString:shiftStr atIndex:0];
-    // 置換後の選択位置の調整
-    NSUInteger newLocation;
+    
+    // create shifted string
+    NSMutableString *newString = [NSMutableString stringWithString:[[self string] substringWithRange:lineRange]];
+    NSUInteger numberOfLines = [newString replaceOccurrencesOfString:@"\n"
+                                                          withString:[NSString stringWithFormat:@"%@%@", @"\n", indent]
+                                                             options:0
+                                                               range:NSMakeRange(0, [newString length])];
+    [newString insertString:indent atIndex:0];
+    
+    // calculate new selection range
+    NSRange newSelectedRange = selectedRange;
     if ((lineRange.location == selectedRange.location) && (selectedRange.length > 0) &&
         ([[[self string] substringWithRange:selectedRange] hasSuffix:@"\n"]))
     {
         // 行頭から行末まで選択されていたときは、処理後も同様に選択する
-        newLocation = selectedRange.location;
-        lines++;
+        numberOfLines++;
     } else {
-        newLocation = selectedRange.location + shiftLength;
+        newSelectedRange.location += [indent length];
     }
-    // 置換実行
-    [self replaceWithString:newLine range:lineRange
-              selectedRange:NSMakeRange(newLocation, selectedRange.length + shiftLength * lines)
+    selectedRange.length += [indent length] * numberOfLines;
+    
+    // perform replace and register to undo manager
+    [self replaceWithString:newString range:lineRange selectedRange:selectedRange
                  actionName:NSLocalizedString(@"Shift Right", nil)];
 }
 
 
 // ------------------------------------------------------
-/// 左へシフト
+/// decrease indent level
 - (IBAction)shiftLeft:(id)sender
 // ------------------------------------------------------
 {
-    // 現在の選択区域とシフトする行範囲を得る
+    if ([self tabWidth] < 1) { return; }
+    
+    // get range to process
     NSRange selectedRange = [self selectedRange];
     NSRange lineRange = [[self string] lineRangeForRange:selectedRange];
-    if (NSMaxRange(lineRange) == 0) { // 空行で実行された場合は何もしない
-        return;
+    
+    if (lineRange.length == 0) { return; } // do nothing with blank line
+    
+    // remove the last line ending
+    if ((lineRange.length > 1) && ([[self string] characterAtIndex:NSMaxRange(lineRange) - 1] == '\n')) {
+        lineRange.length--;
     }
-    if ((lineRange.length > 1) &&  ([[self string] characterAtIndex:NSMaxRange(lineRange) - 1] == '\n')) {
-        lineRange.length--; // 末尾の改行分を減ずる
-    }
-    // シフトするために削除するスペースの長さを得る
-    NSInteger shiftLength = [self tabWidth];
-    if (shiftLength < 1) { return; }
 
-    // 置換する行を生成する
-    NSArray *lines = [[[self string] substringWithRange:lineRange] componentsSeparatedByString:@"\n"];
-    NSMutableString *newLine = [NSMutableString string];
-    NSUInteger totalDeleted = 0;
-    NSInteger newLocation = selectedRange.location, newLength = selectedRange.length;
-    NSUInteger count = [lines count];
+    // create shifted string
+    NSMutableArray *newLines = [NSMutableArray array];
+    NSInteger tabWidth = [self tabWidth];
+    __block NSRange newSelectedRange = selectedRange;
+    __block BOOL didShift = NO;
+    __block NSUInteger scanningLineLocation = lineRange.location;
+    __block BOOL isFirstLine = YES;
 
-    // 選択区域を含む行をスキャンし、冒頭のスペース／タブを削除
-    for (NSUInteger i = 0; i < count; i++) {
+    // scan selected lines and remove tab/spaces at the beginning of lines
+    [[[self string] substringWithRange:lineRange] enumerateLinesUsingBlock:^(NSString *line, BOOL *stop) {
         NSUInteger numberOfDeleted = 0;
-        NSMutableString *tmpLine = [lines[i] mutableCopy];
-        BOOL spaceDeleted = NO;
-        for (NSUInteger j = 0; j < shiftLength; j++) {
-            if ([tmpLine length] == 0) {
-                break;
-            }
-            unichar theChar = [lines[i] characterAtIndex:j];
-            if (theChar == '\t') {
-                if (!spaceDeleted) {
-                    [tmpLine deleteCharactersInRange:NSMakeRange(0, 1)];
-                    numberOfDeleted++;
-                }
+        
+        // count tab/spaces to delete
+        BOOL isDeletingSpace = NO;
+        for (NSUInteger i = 0; i < MIN(tabWidth, [line length]); i++) {
+            unichar theChar = [line characterAtIndex:i];
+            if (theChar == '\t' && !isDeletingSpace) {
+                numberOfDeleted = 1;
                 break;
             } else if (theChar == ' ') {
-                [tmpLine deleteCharactersInRange:NSMakeRange(0, 1)];
                 numberOfDeleted++;
-                spaceDeleted = YES;
+                isDeletingSpace = YES;
             } else {
                 break;
             }
         }
-        // 処理後の選択区域用の値を算出
-        if (i == 0) {
-            newLocation -= numberOfDeleted;
-            if (newLocation < (NSInteger)lineRange.location) {
-                newLength -= (lineRange.location - newLocation);
-                newLocation = lineRange.location;
-            }
-        } else {
-            newLength -= numberOfDeleted;
-            if (newLength < (NSInteger)lineRange.location - newLocation + (NSInteger)[newLine length]) {
-                newLength = lineRange.location - newLocation + [newLine length];
-            }
+        
+        NSString *newLine = [line substringFromIndex:numberOfDeleted];
+        
+        // calculate new selection range
+        NSRange deletedRange = NSMakeRange(scanningLineLocation, numberOfDeleted);
+        newSelectedRange.length -= NSIntersectionRange(deletedRange, newSelectedRange).length;
+        if (isFirstLine) {
+            newSelectedRange.location = MAX(selectedRange.location - numberOfDeleted, lineRange.location);
+            isFirstLine = NO;
         }
-        // 冒頭のスペース／タブを削除した行を合成
-        [newLine appendString:tmpLine];
-        if (i != ((NSInteger)[lines count] - 1)) {
-            [newLine appendString:@"\n"];
-        }
-        totalDeleted += numberOfDeleted;
-    }
-    // シフトされなかったら中止
-    if (totalDeleted == 0) { return; }
-    if (newLocation < 0) {
-        newLocation = 0;
-    }
-    if (newLength < 0) {
-        newLength = 0;
-    }
-    // 置換実行
-    [self replaceWithString:newLine range:lineRange
-              selectedRange:NSMakeRange(newLocation, newLength)
+        
+        // append new line
+        [newLines addObject:newLine];
+        
+        didShift = didShift ? : (numberOfDeleted > 0);
+        scanningLineLocation += [newLine length] + 1;  // +1 for line ending
+    }];
+    
+    // cancel if not shifted
+    if (!didShift) { return; }
+    
+    NSString *newString = [newLines componentsJoinedByString:@"\n"];
+    
+    // perform replace and register to undo manager
+    [self replaceWithString:newString range:lineRange selectedRange:newSelectedRange
                  actionName:NSLocalizedString(@"Shift Left", nil)];
 }
 
