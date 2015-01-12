@@ -2299,15 +2299,6 @@ const NSInteger kNoMenuItem = -1;
 
 @implementation CETextView (UtilityMenu)
 
-// enum
-typedef NS_ENUM(NSUInteger, CEUnicodeNormalizationForm) {
-    CEUnicodeNormalizationNFD,
-    CEUnicodeNormalizationNFC,
-    CEUnicodeNormalizationNFKD,
-    CEUnicodeNormalizationNFKC
-};
-
-
 #pragma mark Action Messages
 
 // ------------------------------------------------------
@@ -2367,7 +2358,11 @@ typedef NS_ENUM(NSUInteger, CEUnicodeNormalizationForm) {
 - (IBAction)normalizeUnicodeWithNFD:(id)sender
 // ------------------------------------------------------
 {
-    [self normalizeUnicodeWithForm:CEUnicodeNormalizationNFD];
+    [self transformSelectionWithActionName:@"NFD"
+                          operationHandler:^NSString *(NSString *substring)
+     {
+         return [substring decomposedStringWithCanonicalMapping];
+     }];
 }
 
 
@@ -2376,7 +2371,11 @@ typedef NS_ENUM(NSUInteger, CEUnicodeNormalizationForm) {
 - (IBAction)normalizeUnicodeWithNFC:(id)sender
 // ------------------------------------------------------
 {
-    [self normalizeUnicodeWithForm:CEUnicodeNormalizationNFC];
+    [self transformSelectionWithActionName:@"NFC"
+                          operationHandler:^NSString *(NSString *substring)
+     {
+         return [substring precomposedStringWithCanonicalMapping];
+     }];
 }
 
 
@@ -2385,7 +2384,11 @@ typedef NS_ENUM(NSUInteger, CEUnicodeNormalizationForm) {
 - (IBAction)normalizeUnicodeWithNFKD:(id)sender
 // ------------------------------------------------------
 {
-    [self normalizeUnicodeWithForm:CEUnicodeNormalizationNFKD];
+    [self transformSelectionWithActionName:@"NFKD"
+                          operationHandler:^NSString *(NSString *substring)
+     {
+         return [substring decomposedStringWithCompatibilityMapping];
+     }];
 }
 
 
@@ -2394,7 +2397,11 @@ typedef NS_ENUM(NSUInteger, CEUnicodeNormalizationForm) {
 - (IBAction)normalizeUnicodeWithNFKC:(id)sender
 // ------------------------------------------------------
 {
-    [self normalizeUnicodeWithForm:CEUnicodeNormalizationNFKC];
+    [self transformSelectionWithActionName:@"NFKC"
+                          operationHandler:^NSString *(NSString *substring)
+     {
+         return [substring precomposedStringWithCompatibilityMapping];
+     }];
 }
 
 
@@ -2423,7 +2430,7 @@ typedef NS_ENUM(NSUInteger, CEUnicodeNormalizationForm) {
 #pragma mark Private Methods
 
 // ------------------------------------------------------
-/// transform characters in all selections and register to undo manager
+/// transform all selected strings and register to undo manager
 - (void)transformSelectionWithActionName:(NSString *)actionName operationHandler:(NSString *(^)(NSString *substring))operationHandler
 // ------------------------------------------------------
 {
@@ -2443,7 +2450,7 @@ typedef NS_ENUM(NSUInteger, CEUnicodeNormalizationForm) {
         NSString *string = operationHandler(substring);
         
         if (string) {
-            NSRange newRange = NSMakeRange(range.location + deltaLocation, [string length]);
+            NSRange newRange = NSMakeRange(range.location - deltaLocation, [string length]);
             
             [strings addObject:string];
             [appliedRanges addObject:rangeValue];
@@ -2457,47 +2464,6 @@ typedef NS_ENUM(NSUInteger, CEUnicodeNormalizationForm) {
     
     [self doInsertStrings:strings ranges:appliedRanges selectedRanges:newSelectedRanges
                actionName:actionName scroll:YES];
-}
-
-
-// ------------------------------------------------------
-/// Unicode normalization
-- (void)normalizeUnicodeWithForm:(CEUnicodeNormalizationForm)form
-// ------------------------------------------------------
-{
-    NSRange selectedRange = [self selectedRange];
-    
-    if (selectedRange.length == 0) { return; }
-    
-    NSString *originalStr = [[self string] substringWithRange:selectedRange];
-    NSString *actionName = nil, *newStr = nil;
-    
-    switch (form) {
-        case CEUnicodeNormalizationNFD:
-            newStr = [originalStr decomposedStringWithCanonicalMapping];
-            actionName = @"NFD";
-            break;
-        case CEUnicodeNormalizationNFC:
-            newStr = [originalStr precomposedStringWithCanonicalMapping];
-            actionName = @"NFC";
-            break;
-        case CEUnicodeNormalizationNFKD:
-            newStr = [originalStr decomposedStringWithCompatibilityMapping];
-            actionName = @"NFKD";
-            break;
-        case CEUnicodeNormalizationNFKC:
-            newStr = [originalStr precomposedStringWithCompatibilityMapping];
-            actionName = @"NFKC";
-            break;
-    }
-    
-    if (newStr) {
-        [self doInsertString:newStr
-                   withRange:selectedRange
-                withSelected:NSMakeRange(selectedRange.location, [newStr length])
-              withActionName:NSLocalizedString(actionName, nil)
-                      scroll:YES];
-    }
 }
 
 @end
