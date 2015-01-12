@@ -159,7 +159,10 @@
 - (IBAction)insertCodeToDocument:(id)sender
 // ------------------------------------------------------
 {
-    [[[self documentWindowController] editor] replaceTextViewSelectedStringTo:[self colorCode] scroll:YES];
+    CEEditorWrapper *editor = [[self documentWindowController] editor];
+    
+    [editor replaceTextViewSelectedStringWithString:[self colorCode]];
+    [[editor textView] scrollRangeToVisible:[[editor textView] selectedRange]];
 }
 
 

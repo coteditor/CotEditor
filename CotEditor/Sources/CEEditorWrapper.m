@@ -303,37 +303,37 @@ static NSTimeInterval secondColoringDelay;
 
 // ------------------------------------------------------
 /// 選択文字列を置換する
-- (void)replaceTextViewSelectedStringTo:(NSString *)string scroll:(BOOL)doScroll
+- (void)replaceTextViewSelectedStringWithString:(NSString *)string
 // ------------------------------------------------------
 {
-    [[self textView] replaceSelectedStringTo:string scroll:doScroll];
+    [[self textView] replaceSelectedStringWithString:string];
 }
 
 
 // ------------------------------------------------------
 /// 全文字列を置換
-- (void)replaceTextViewAllStringTo:(NSString *)string
+- (void)replaceTextViewAllStringWithString:(NSString *)string
 // ------------------------------------------------------
 {
-    [[self textView] replaceAllStringTo:string];
+    [[self textView] replaceAllStringWithString:string];
 }
 
 
 // ------------------------------------------------------
 /// 選択範囲の直後に文字列を挿入
-- (void)insertTextViewAfterSelectionStringTo:(NSString *)string
+- (void)insertTextViewStringAfterSelection:(NSString *)string
 // ------------------------------------------------------
 {
-    [[self textView] insertAfterSelection:string];
+    [[self textView] insertStringAfterSelection:string];
 }
 
 
 // ------------------------------------------------------
 /// 文字列の最後に新たな文字列を追加
-- (void)appendTextViewAfterAllStringTo:(NSString *)string
+- (void)appendTextViewString:(NSString *)string
 // ------------------------------------------------------
 {
-    [[self textView] appendAllString:string];
+    [[self textView] appendString:string];
 }
 
 

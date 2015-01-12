@@ -63,10 +63,10 @@
 
 // Public method
 - (void)applyTypingAttributes;
-- (void)replaceSelectedStringTo:(NSString *)string scroll:(BOOL)needsScroll;
-- (void)replaceAllStringTo:(NSString *)string;
-- (void)insertAfterSelection:(NSString *)string;
-- (void)appendAllString:(NSString *)string;
+- (void)replaceSelectedStringWithString:(NSString *)string;
+- (void)replaceAllStringWithString:(NSString *)string;
+- (void)insertStringAfterSelection:(NSString *)string;
+- (void)appendString:(NSString *)string;
 - (void)insertCustomTextWithPatternNum:(NSInteger)patternNum;
 - (void)setNewLineSpacingAndUpdate:(CGFloat)lineSpacing;
 - (void)replaceWithString:(NSString *)string range:(NSRange)range

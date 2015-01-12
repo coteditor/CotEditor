@@ -1040,7 +1040,7 @@ const NSInteger kNoMenuItem = -1;
 
 // ------------------------------------------------------
 /// 選択文字列を置換
-- (void)replaceSelectedStringTo:(NSString *)string scroll:(BOOL)needsScroll
+- (void)replaceSelectedStringWithString:(NSString *)string
 // ------------------------------------------------------
 {
     if (!string) { return; }
@@ -1052,16 +1052,12 @@ const NSInteger kNoMenuItem = -1;
                       range:selectedRange
               selectedRange:NSMakeRange(selectedRange.location, [string length])
                  actionName:NSLocalizedString(actionName, nil)];
-    
-    if (needsScroll) {
-        [self scrollRangeToVisible:[self selectedRange]];
-    }
 }
 
 
 // ------------------------------------------------------
 /// 全文字列を置換
-- (void)replaceAllStringTo:(NSString *)string
+- (void)replaceAllStringWithString:(NSString *)string
 // ------------------------------------------------------
 {
     if (!string) { return; }
@@ -1075,7 +1071,7 @@ const NSInteger kNoMenuItem = -1;
 
 // ------------------------------------------------------
 /// 選択文字列の後ろへ新規文字列を挿入
-- (void)insertAfterSelection:(NSString *)string
+- (void)insertStringAfterSelection:(NSString *)string
 // ------------------------------------------------------
 {
     if (!string) { return; }
@@ -1089,7 +1085,7 @@ const NSInteger kNoMenuItem = -1;
 
 // ------------------------------------------------------
 /// 末尾に新規文字列を追加
-- (void)appendAllString:(NSString *)string
+- (void)appendString:(NSString *)string
 // ------------------------------------------------------
 {
     if (!string) { return; }

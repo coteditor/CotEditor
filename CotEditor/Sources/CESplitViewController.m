@@ -237,7 +237,7 @@
         CETextView *textView = [subview textView];
         [textView setTheme:theme];
         [subview recolorAllTextViewString];
-        [textView setSelectedRanges:[textView selectedRanges]];  //  選択範囲の再描画
+        [textView setNeedsDisplay:YES];  //  選択範囲の再描画
     }
 }
 

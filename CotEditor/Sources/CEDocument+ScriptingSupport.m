@@ -48,7 +48,7 @@
 {
     NSTextStorage *storage = (NSTextStorage *)[notification object];
 
-    [[[self editor] textView] replaceAllStringTo:[storage string]];
+    [[self editor] replaceTextViewAllStringWithString:[storage string]];
     [storage setDelegate:nil];
 }
 
@@ -80,9 +80,9 @@
 // ------------------------------------------------------
 {
     if ([object isKindOfClass:[NSTextStorage class]]) {
-        [[[self editor] textView] replaceAllStringTo:[object string]];
+        [[self editor] replaceTextViewAllStringWithString:[object string]];
     } else if ([object isKindOfClass:[NSString class]]) {
-        [[[self editor] textView] replaceAllStringTo:object];
+        [[self editor] replaceTextViewAllStringWithString:object];
     }
 }
 
@@ -415,7 +415,7 @@
                                              withString:newString options:mask range:targetRange];
         }
         if (result > 0) {
-            [[[self editor] textView] replaceAllStringTo:tmpStr];
+            [[self editor] replaceTextViewAllStringWithString:tmpStr];
             [[[self editor] textView] setSelectedRange:NSMakeRange(0,0)];
         }
 

@@ -443,19 +443,19 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
     
     switch (outputType) {
         case CEReplaceSelectionType:
-            [editor replaceTextViewSelectedStringTo:output scroll:NO];
+            [editor replaceTextViewSelectedStringWithString:output];
             break;
             
         case CEReplaceAllTextType:
-            [editor replaceTextViewAllStringTo:output];
+            [editor replaceTextViewAllStringWithString:output];
             break;
             
         case CEInsertAfterSelectionType:
-            [editor insertTextViewAfterSelectionStringTo:output];
+            [editor insertTextViewStringAfterSelection:output];
             break;
             
         case CEAppendToAllTextType:
-            [editor appendTextViewAfterAllStringTo:output];
+            [editor appendTextViewString:output];
             break;
             
         case CEPasteboardType: {

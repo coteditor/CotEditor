@@ -74,7 +74,7 @@
 {
     NSTextStorage *storage = (NSTextStorage *)[aNotification object];
 
-    [[[[self document] editor] textView] replaceSelectedStringTo:[storage string] scroll:NO];
+    [[[self document] editor] replaceTextViewSelectedStringWithString:[storage string]];
     [storage setDelegate:nil];
 }
 
@@ -136,7 +136,7 @@
         return;
     }
     
-    [[[self document] editor] replaceTextViewSelectedStringTo:string scroll:NO];
+    [[[self document] editor] replaceTextViewSelectedStringWithString:string];
 }
 
 

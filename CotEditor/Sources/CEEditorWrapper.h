@@ -67,10 +67,10 @@
 - (NSString *)substringWithSelectionForSave;
 - (void)setString:(NSString *)string;
 - (void)setLineEndingString:(NSString *)lineEndingString;
-- (void)replaceTextViewSelectedStringTo:(NSString *)inString scroll:(BOOL)doScroll;
-- (void)replaceTextViewAllStringTo:(NSString *)string;
-- (void)insertTextViewAfterSelectionStringTo:(NSString *)string;
-- (void)appendTextViewAfterAllStringTo:(NSString *)string;
+- (void)replaceTextViewSelectedStringWithString:(NSString *)inString;
+- (void)replaceTextViewAllStringWithString:(NSString *)string;
+- (void)insertTextViewStringAfterSelection:(NSString *)string;
+- (void)appendTextViewString:(NSString *)string;
 - (NSRange)selectedRange;
 - (void)setSelectedRange:(NSRange)charRange;
 
