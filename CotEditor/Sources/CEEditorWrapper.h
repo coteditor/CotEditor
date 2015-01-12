@@ -15,7 +15,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014 CotEditor Project
+ © 2014-2015 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -34,13 +34,11 @@
  */
 
 @import Cocoa;
-#import "CEEditorView.h"
 #import "CETextView.h"
-#import "CEWindowController.h"
 
 
-@class CEDocument;
-@class CEWindowController;
+@class CETextView;
+@class CETheme;
 
 
 @interface CEEditorWrapper : NSResponder
@@ -50,27 +48,23 @@
 @property (nonatomic) BOOL showsPageGuide;
 @property (nonatomic) BOOL showsInvisibles;
 @property (nonatomic, getter=isVerticalLayoutOrientation) BOOL verticalLayoutOrientation;
-@property (nonatomic) CETextView *textView;
+@property (nonatomic) CETextView *focusedTextView;
 
 @property (readonly, nonatomic) BOOL showsNavigationBar;
 @property (readonly, nonatomic) BOOL canActivateShowInvisibles;
 
 
 // Public method
-- (CEDocument *)document;
-- (CEWindowController *)windowController;
-- (NSTextStorage *)textStorage;
-
 - (NSString *)string;
 - (NSString *)substringWithRange:(NSRange)range;
 - (NSString *)substringWithSelection;
 - (NSString *)substringWithSelectionForSave;
 - (void)setString:(NSString *)string;
 - (void)setLineEndingString:(NSString *)lineEndingString;
-- (void)replaceTextViewSelectedStringTo:(NSString *)inString scroll:(BOOL)doScroll;
-- (void)replaceTextViewAllStringTo:(NSString *)string;
-- (void)insertTextViewAfterSelectionStringTo:(NSString *)string;
-- (void)appendTextViewAfterAllStringTo:(NSString *)string;
+- (void)replaceTextViewSelectedStringWithString:(NSString *)inString;
+- (void)replaceTextViewAllStringWithString:(NSString *)string;
+- (void)insertTextViewStringAfterSelection:(NSString *)string;
+- (void)appendTextViewString:(NSString *)string;
 - (NSRange)selectedRange;
 - (void)setSelectedRange:(NSRange)charRange;
 

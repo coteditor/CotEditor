@@ -222,8 +222,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     // (保存の前後で編集内容がグルーピングされてしまう例：キー入力後保存し、キャレットを動かすなどしないでそのまま入力
     // した場合、ダーティーフラグがたたず、アンドゥすると保存前まで戻されてしまう。さらに、戻された状態でリドゥすると、
     // 保存後の入力までが行われる。つまり、保存をはさんで前後の内容が同一アンドゥグループに入ってしまうための不具合)
-    // CETextView > doInsertString:withRange:withSelected:withActionName: でも同様の対処を行っている
-    // ****** 何かもっとうまい回避方法があるはずなんだが … (2005-08-05) *******
+    // ****** 何かもっとうまい回避方法があるはずなんだが… (2005-08-05) *******
     [[self undoManager] beginUndoGrouping];
     [[self undoManager] endUndoGrouping];
     [[self undoManager] undo];
@@ -400,7 +399,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     [printView setPrintPanelAccessoryController:[self printPanelAccessoryController]];
     [printView setDocumentShowsInvisibles:[[self editor] showsInvisibles]];
     [printView setDocumentShowsLineNum:[[self editor] showsLineNum]];
-    [printView setLineSpacing:[[[self editor] textView] lineSpacing]];
+    [printView setLineSpacing:[[[self editor] focusedTextView] lineSpacing]];
     
     // プリントに使用するフォント
     NSFont *font;
@@ -869,7 +868,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 - (NSRange)rangeInTextViewWithLocation:(NSInteger)location length:(NSInteger)length
 // ------------------------------------------------------
 {
-    CETextView *textView = [[self editor] textView];
+    NSTextView *textView = [[self editor] focusedTextView];
     NSUInteger wholeLength = [[textView string] length];
     NSRange range = NSMakeRange(0, 0);
     
@@ -908,7 +907,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 - (void)setSelectedLineRangeInTextViewWithLocation:(NSInteger)location length:(NSInteger)length
 // ------------------------------------------------------
 {
-    CETextView *textView = [[self editor] textView];
+    NSTextView *textView = [[self editor] focusedTextView];
     NSUInteger wholeLength = [[textView string] length];
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"^"
                                                                            options:NSRegularExpressionAnchorsMatchLines
@@ -977,7 +976,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
             break;
     }
     
-    NSTextView *textView = [[self editor] textView];
+    NSTextView *textView = [[self editor] focusedTextView];
     [[[self windowController] window] makeKeyAndOrderFront:self]; // 対象ウィンドウをキーに
     [textView scrollRangeToVisible:[textView selectedRange]]; // 選択範囲が見えるようにスクロール
     [textView showFindIndicatorForRange:[textView selectedRange]];  // 検索結果表示エフェクトを追加
@@ -1181,7 +1180,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     NSString *string = [self currentIANACharSetName];
 
     if (string) {
-        [[[self editor] textView] insertText:string];
+        [[[self editor] focusedTextView] insertText:string];
     }
 }
 
@@ -1194,7 +1193,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     NSString *string = [self currentIANACharSetName];
 
     if (string) {
-        [[[self editor] textView] insertText:[NSString stringWithFormat:@"charset=\"%@\"", string]];
+        [[[self editor] focusedTextView] insertText:[NSString stringWithFormat:@"charset=\"%@\"", string]];
     }
 }
 
@@ -1207,7 +1206,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     NSString *string = [self currentIANACharSetName];
 
     if (string) {
-        [[[self editor] textView] insertText:[NSString stringWithFormat:@"encoding=\"%@\"", string]];
+        [[[self editor] focusedTextView] insertText:[NSString stringWithFormat:@"encoding=\"%@\"", string]];
     }
 }
 

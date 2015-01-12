@@ -403,8 +403,8 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
         case CEInputSelectionType:
             // ([editor string] は改行コードLFの文字列を返すが、[editor selectedRange] は
             // 改行コードを反映させた範囲を返すので、「CR/LF」では使えない。そのため、
-            // [[editor textView] selectedRange] を使う必要がある。2009-04-12
-            return [[editor string] substringWithRange:[[editor textView] selectedRange]];
+            // [[editor focusedTextView] selectedRange] を使う必要がある。2009-04-12
+            return [[editor string] substringWithRange:[[editor focusedTextView] selectedRange]];
             
         case CEInputAllTextType:
             return [editor string];
@@ -443,19 +443,19 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
     
     switch (outputType) {
         case CEReplaceSelectionType:
-            [editor replaceTextViewSelectedStringTo:output scroll:NO];
+            [editor replaceTextViewSelectedStringWithString:output];
             break;
             
         case CEReplaceAllTextType:
-            [editor replaceTextViewAllStringTo:output];
+            [editor replaceTextViewAllStringWithString:output];
             break;
             
         case CEInsertAfterSelectionType:
-            [editor insertTextViewAfterSelectionStringTo:output];
+            [editor insertTextViewStringAfterSelection:output];
             break;
             
         case CEAppendToAllTextType:
-            [editor appendTextViewAfterAllStringTo:output];
+            [editor appendTextViewString:output];
             break;
             
         case CEPasteboardType: {

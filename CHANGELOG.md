@@ -36,6 +36,7 @@ Change Log
     - Change toolbar style.
 - Change to save `com.apple.TextEncoding` xattr only if the file already has the encoding xattr or it's a new document.
 - Move removed themes/styles to Trash instead delete them immediately.
+- Now, Utility actions perform with multiple selection.
 - Delay timing to save text key bindings setting.
 - Localize document types.
 - Tweak window size sample window.

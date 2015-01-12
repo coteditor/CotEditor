@@ -30,9 +30,13 @@
 
 #import "CEEditorView.h"
 #import <OgreKit/OgreTextFinder.h>
+#import "CEWindowController.h"
+#import "CEEditorWrapper.h"
 #import "CELineNumberView.h"
+#import "CESyntaxParser.h"
 #import "CEThemeManager.h"
 #import "CETextFinder.h"
+#import "NSString+CENewLine.h"
 #import "constants.h"
 
 
@@ -279,7 +283,7 @@
     // （不可視文字が選択状態で表示／非表示を切り替えられた時、不可視文字の背景選択色を描画するための時間差での選択処理）
     // （もっとスマートな解決方法はないものか...？ 2006-09-25）
     if (showsInvisibles) {
-        __block CETextView *textView = [self textView];
+        __block NSTextView *textView = [self textView];
         dispatch_async(dispatch_get_main_queue(), ^{
             NSRange selectedRange = [textView selectedRange];
             [textView setSelectedRange:NSMakeRange(0, 0)];
@@ -477,14 +481,13 @@
     // 挿入／置換する文字列に改行コードが含まれていたら、LF に置換する
     if ((replacementLineEndingType != CENewLineNone) && (replacementLineEndingType != CENewLineLF)) {
         // （newStrが使用されるのはスクリプトからの入力時。キー入力は条件式を通過しない）
-        NSString *newStr = [replacementString stringByReplacingNewLineCharacersWith:CENewLineLF];
+        NSString *newString = [replacementString stringByReplacingNewLineCharacersWith:CENewLineLF];
         
-        if (newStr) {
-            // （Action名は自動で付けられる？ので、指定しない）
-            [(CETextView *)aTextView doReplaceString:newStr
-                                           withRange:affectedCharRange
-                                        withSelected:NSMakeRange(affectedCharRange.location + [newStr length], 0)
-                                      withActionName:@""];
+        if (newString) {
+            [(CETextView *)aTextView replaceWithString:newString
+                                                 range:affectedCharRange
+                                         selectedRange:NSMakeRange(affectedCharRange.location + [newString length], 0)
+                                            actionName:nil];  // Action名は自動で付けられる？ので、指定しない
             
             return NO;
         }

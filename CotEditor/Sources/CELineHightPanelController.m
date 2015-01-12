@@ -9,7 +9,7 @@
  encoding="UTF-8"
  ------------------------------------------------------------------------------
  
- © 2014 CotEditor Project
+ © 2014-2015 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -28,6 +28,7 @@
  */
 
 #import "CELineHightPanelController.h"
+#import "CEEditorWrapper.h"
 
 
 @interface CELineHightPanelController ()
@@ -61,7 +62,7 @@
 - (void)keyDocumentDidChange
 // ------------------------------------------------------
 {
-    [self setLineSpacing:[[[[self documentWindowController] editor] textView] lineSpacing]];
+    [self setLineSpacing:[[self textView] lineSpacing]];
     
 }
 
@@ -74,8 +75,20 @@
 - (IBAction)apply:(id)sender
 // ------------------------------------------------------
 {
-    [[[[self documentWindowController] editor] textView] setNewLineSpacingAndUpdate:[self lineSpacing]];
+    [[self textView] setNewLineSpacingAndUpdate:[self lineSpacing]];
     [[self window] close];
+}
+
+
+
+#pragma mark Private Methods
+
+// ------------------------------------------------------
+/// return text view to apply
+- (CETextView *)textView
+// ------------------------------------------------------
+{
+    return [[[self documentWindowController] editor] focusedTextView];
 }
 
 @end

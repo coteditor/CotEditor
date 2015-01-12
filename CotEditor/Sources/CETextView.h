@@ -15,7 +15,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014 CotEditor Project
+ © 2014-2015 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -36,7 +36,6 @@
 @import Cocoa;
 #import "CETextViewProtocol.h"
 #import "CELayoutManager.h"
-#import "CEWindow.h"
 
 
 @interface CETextView : NSTextView <NSTextInputClient, CETextViewProtocol>
@@ -63,14 +62,14 @@
 
 // Public method
 - (void)applyTypingAttributes;
-- (void)replaceSelectedStringTo:(NSString *)string scroll:(BOOL)needsScroll;
-- (void)replaceAllStringTo:(NSString *)string;
-- (void)insertAfterSelection:(NSString *)string;
-- (void)appendAllString:(NSString *)string;
+- (void)replaceSelectedStringWithString:(NSString *)string;
+- (void)replaceAllStringWithString:(NSString *)string;
+- (void)insertStringAfterSelection:(NSString *)string;
+- (void)appendString:(NSString *)string;
 - (void)insertCustomTextWithPatternNum:(NSInteger)patternNum;
 - (void)setNewLineSpacingAndUpdate:(CGFloat)lineSpacing;
-- (void)doReplaceString:(NSString *)string withRange:(NSRange)range
-           withSelected:(NSRange)selection withActionName:(NSString *)actionName;
+- (void)replaceWithString:(NSString *)string range:(NSRange)range
+            selectedRange:(NSRange)selectedRange actionName:(NSString *)actionName;
 
 // Action Message
 - (IBAction)resetFont:(id)sender;
