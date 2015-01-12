@@ -1445,6 +1445,7 @@ const NSInteger kNoMenuItem = -1;
     NSDocument *document = [[[self window] windowController] document];
     NSTextStorage *textStorage = [self textStorage];
     NSString *wholeString = [self string];
+    NSDictionary *attributes = [self typingAttributes];
     
     // register redo in undo
     [[undoManager prepareWithInvocationTarget:self] redoReplaceWithStrings:strings ranges:ranges
@@ -1474,22 +1475,17 @@ const NSInteger kNoMenuItem = -1;
     }
     
     // process text
-    BOOL needsResetAttributes = ([wholeString length] == 0);
     [textStorage beginEditing];
     // use backwards enumeration to skip adjustment of applying location
-    [ranges enumerateObjectsWithOptions:NSEnumerationReverse 
+    [ranges enumerateObjectsWithOptions:NSEnumerationReverse
                              usingBlock:^(id obj, NSUInteger idx, BOOL *stop)
      {
          NSRange range = [obj rangeValue];
          NSString *string = strings[idx];
          
          [textStorage replaceCharactersInRange:range withString:string];
+         [textStorage setAttributes:attributes range:NSMakeRange(range.location, [string length])];
      }];
-    // reset attributes for in case of that attributes aren't applied if strings are added to blank text storage via AppleScript
-    if (needsResetAttributes) {
-        [textStorage setAttributes:[self typingAttributes]
-                             range:NSMakeRange(0, [[textStorage string] length])];
-    }
     [textStorage endEditing];
     
     // post didEdit notification (It's not posted automatically, since here NSTextStorage is directly edited.)
