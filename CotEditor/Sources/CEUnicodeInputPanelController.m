@@ -9,7 +9,7 @@
  encoding="UTF-8"
  ------------------------------------------------------------------------------
  
- © 2014 CotEditor Project
+ © 2014-2015 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -28,6 +28,7 @@
  */
 
 #import "CEUnicodeInputPanelController.h"
+#import "CEEditorWrapper.h"
 
 
 @interface CEUnicodeInputPanelController () <NSTextFieldDelegate>
@@ -106,7 +107,7 @@ static const NSRegularExpression *unicodeRegex;
     NSUInteger length = CFStringGetSurrogatePairForLongCharacter(longChar, chars) ? 2 : 1;
     NSString *character = [[NSString alloc] initWithCharacters:chars length:length];
     
-    [[[[self documentWindowController] editor] textView] insertText:character];
+    [[[[self documentWindowController] editor] focusedTextView] insertText:character];
     [[self window] performClose:sender];
     [self setUnicode:@""];
 }

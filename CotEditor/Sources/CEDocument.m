@@ -399,7 +399,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     [printView setPrintPanelAccessoryController:[self printPanelAccessoryController]];
     [printView setDocumentShowsInvisibles:[[self editor] showsInvisibles]];
     [printView setDocumentShowsLineNum:[[self editor] showsLineNum]];
-    [printView setLineSpacing:[[[self editor] textView] lineSpacing]];
+    [printView setLineSpacing:[[[self editor] focusedTextView] lineSpacing]];
     
     // プリントに使用するフォント
     NSFont *font;
@@ -868,7 +868,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 - (NSRange)rangeInTextViewWithLocation:(NSInteger)location length:(NSInteger)length
 // ------------------------------------------------------
 {
-    CETextView *textView = [[self editor] textView];
+    NSTextView *textView = [[self editor] focusedTextView];
     NSUInteger wholeLength = [[textView string] length];
     NSRange range = NSMakeRange(0, 0);
     
@@ -907,7 +907,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 - (void)setSelectedLineRangeInTextViewWithLocation:(NSInteger)location length:(NSInteger)length
 // ------------------------------------------------------
 {
-    CETextView *textView = [[self editor] textView];
+    NSTextView *textView = [[self editor] focusedTextView];
     NSUInteger wholeLength = [[textView string] length];
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"^"
                                                                            options:NSRegularExpressionAnchorsMatchLines
@@ -976,7 +976,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
             break;
     }
     
-    NSTextView *textView = [[self editor] textView];
+    NSTextView *textView = [[self editor] focusedTextView];
     [[[self windowController] window] makeKeyAndOrderFront:self]; // 対象ウィンドウをキーに
     [textView scrollRangeToVisible:[textView selectedRange]]; // 選択範囲が見えるようにスクロール
     [textView showFindIndicatorForRange:[textView selectedRange]];  // 検索結果表示エフェクトを追加
@@ -1180,7 +1180,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     NSString *string = [self currentIANACharSetName];
 
     if (string) {
-        [[[self editor] textView] insertText:string];
+        [[[self editor] focusedTextView] insertText:string];
     }
 }
 
@@ -1193,7 +1193,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     NSString *string = [self currentIANACharSetName];
 
     if (string) {
-        [[[self editor] textView] insertText:[NSString stringWithFormat:@"charset=\"%@\"", string]];
+        [[[self editor] focusedTextView] insertText:[NSString stringWithFormat:@"charset=\"%@\"", string]];
     }
 }
 
@@ -1206,7 +1206,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     NSString *string = [self currentIANACharSetName];
 
     if (string) {
-        [[[self editor] textView] insertText:[NSString stringWithFormat:@"encoding=\"%@\"", string]];
+        [[[self editor] focusedTextView] insertText:[NSString stringWithFormat:@"encoding=\"%@\"", string]];
     }
 }
 

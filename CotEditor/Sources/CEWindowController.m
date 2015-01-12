@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014 CotEditor Project
+ © 2014-2015 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -29,10 +29,12 @@
  */
 
 #import "CEWindowController.h"
+#import <OgreKit/OgreTextFinder.h>
 #import "CEWindow.h"
-#import "CEDocumentController.h"
+#import "CEDocument.h"
 #import "CEStatusBarController.h"
 #import "CEIncompatibleCharsViewController.h"
+#import "CEEditorWrapper.h"
 #import "CESyntaxManager.h"
 #import "CEDocumentAnalyzer.h"
 #import "constants.h"
@@ -45,7 +47,7 @@ typedef NS_ENUM(NSUInteger, CESidebarTag) {
 };
 
 
-@interface CEWindowController () <NSSplitViewDelegate>
+@interface CEWindowController () <OgreTextFindDataSource, NSSplitViewDelegate>
 
 @property (nonatomic) NSUInteger selectedSidebarTag;
 @property (nonatomic) BOOL needsRecolorWithBecomeKey;  // flag to update sytnax highlight when window becomes key window
@@ -144,7 +146,7 @@ static NSTimeInterval infoUpdateInterval;
     [self updateModeInfoIfNeeded];
     
     // move focus to text view
-    [[self window] makeFirstResponder:[[self editor] textView]];
+    [[self window] makeFirstResponder:[[self editor] focusedTextView]];
     
     // observe sytnax style update
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -206,7 +208,7 @@ static NSTimeInterval infoUpdateInterval;
 // ------------------------------------------------------
 {
     OgreTextFinder *textFinder = (OgreTextFinder *)sender;
-    [textFinder setTargetToFindIn:[[self editor] textView]];
+    [textFinder setTargetToFindIn:[[self editor] focusedTextView]];
 }
 
 

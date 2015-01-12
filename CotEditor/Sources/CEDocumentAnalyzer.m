@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014 1024jp
+ © 2014-2015 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -155,7 +155,7 @@ NSString *const CEAnalyzerDidUpdateEditorInfoNotification = @"CEAnalyzerDidUpdat
     CEEditorWrapper *editor = [document editor];
     NSNumberFormatter *integerFormatter = [self integerFormatter];
     
-    BOOL hasMarked = [[editor textView] hasMarkedText];
+    BOOL hasMarked = [[editor focusedTextView] hasMarkedText];
     NSString *wholeString = ([document lineEnding] == CENewLineCRLF) ? [document stringForSave] : [[editor string] copy];
     NSString *selectedString = hasMarked ? nil : [editor substringWithSelection];
     NSStringEncoding encoding = [document encoding];

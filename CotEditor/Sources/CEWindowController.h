@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014 CotEditor Project
+ © 2014-2015 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -29,13 +29,13 @@
  */
 
 @import Cocoa;
-#import <OgreKit/OgreTextFinder.h>
-#import "CEDocument.h"
-#import "CEEditorWrapper.h"
 #import "CEToolbarController.h"
 
 
-@interface CEWindowController : NSWindowController <NSWindowDelegate, OgreTextFindDataSource>
+@class CEEditorWrapper;
+
+
+@interface CEWindowController : NSWindowController <NSWindowDelegate>
 
 @property (readonly, nonatomic, weak) CEEditorWrapper *editor;
 @property (readonly, nonatomic, weak) CEToolbarController *toolbarController;

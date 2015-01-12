@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014 CotEditor Project
+ © 2014-2015 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -221,7 +221,7 @@
 - (void)handleShiftRightScriptCommand:(NSScriptCommand *)command
 // ------------------------------------------------------
 {
-    [[[[self document] editor] textView] shiftRight:command];
+    [[[[self document] editor] focusedTextView] shiftRight:command];
 }
 
 
@@ -230,7 +230,7 @@
 - (void)handleShiftLeftScriptCommand:(NSScriptCommand *)command
 // ------------------------------------------------------
 {
-    [[[[self document] editor] textView] shiftLeft:command];
+    [[[[self document] editor] focusedTextView] shiftLeft:command];
 }
 
 
@@ -239,7 +239,7 @@
 - (void)handleCommentOutScriptCommand:(NSScriptCommand *)command
 // ------------------------------------------------------
 {
-    [[[[self document] editor] textView] commentOut:command];
+    [[[[self document] editor] focusedTextView] commentOut:command];
 }
 
 
@@ -248,7 +248,7 @@
 - (void)handleUncommentScriptCommand:(NSScriptCommand *)command
 // ------------------------------------------------------
 {
-    [[[[self document] editor] textView] uncomment:command];
+    [[[[self document] editor] focusedTextView] uncomment:command];
 }
 
 
@@ -259,7 +259,7 @@
 {
     NSDictionary *arguments = [command evaluatedArguments];
     CECaseType caseType = [arguments[@"caseType"] unsignedIntegerValue];
-    NSTextView *textView = [[[self document] editor] textView];
+    NSTextView *textView = [[[self document] editor] focusedTextView];
 
     switch (caseType) {
         case CELowerCase:
@@ -282,7 +282,7 @@
 {
     NSDictionary *arguments = [command evaluatedArguments];
     CEWidthType widthType = [arguments[@"widthType"] unsignedIntegerValue];
-    CETextView *textView = [[[self document] editor] textView];
+    CETextView *textView = [[[self document] editor] focusedTextView];
 
     switch (widthType) {
         case CEFullwidth:
@@ -302,7 +302,7 @@
 {
     NSDictionary *arguments = [command evaluatedArguments];
     CEChangeKanaType changeKanaType = [arguments[@"kanaType"] unsignedIntegerValue];
-    CETextView *textView = [[[self document] editor] textView];
+    CETextView *textView = [[[self document] editor] focusedTextView];
     
     switch (changeKanaType) {
         case CEHiragana:
@@ -322,7 +322,7 @@
 {
     NSDictionary *arguments = [command evaluatedArguments];
     CEUNFType UNFType = [arguments[@"unfType"] unsignedIntegerValue];
-    CETextView *textView = [[[self document] editor] textView];
+    CETextView *textView = [[[self document] editor] focusedTextView];
     
     switch (UNFType) {
         case CENFC:

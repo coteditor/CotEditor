@@ -37,8 +37,10 @@
 #import "CELineNumberView.h"
 #import "CEColorCodePanelController.h"
 #import "CEGlyphPopoverController.h"
+#import "CEDocument.h"
 #import "CEKeyBindingManager.h"
 #import "CEScriptManager.h"
+#import "CEWindow.h"
 #import "NSString+JapaneseTransform.h"
 #import "constants.h"
 
@@ -169,7 +171,7 @@ const NSInteger kNoMenuItem = -1;
 - (BOOL)becomeFirstResponder
 // ------------------------------------------------------
 {
-    [[(CEWindowController *)[[self window] windowController] editor] setTextView:self];
+    [[(CEWindowController *)[[self window] windowController] editor] setFocusedTextView:self];
     
     return [super becomeFirstResponder];
 }

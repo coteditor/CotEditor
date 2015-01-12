@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014 CotEditor Project
+ © 2014-2015 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -234,7 +234,7 @@
 - (NSNumber *)lineSpacing
 // ------------------------------------------------------
 {
-    return @([[[self editor] textView] lineSpacing]);
+    return @([[[self editor] focusedTextView] lineSpacing]);
 }
 
 
@@ -243,7 +243,7 @@
 - (void)setLineSpacing:(NSNumber *)lineSpacing
 // ------------------------------------------------------
 {
-    [[[self editor] textView] setLineSpacing:(CGFloat)[lineSpacing doubleValue]];
+    [[[self editor] focusedTextView] setLineSpacing:(CGFloat)[lineSpacing doubleValue]];
 }
 
 
@@ -252,7 +252,7 @@
 - (NSNumber *)tabWidth
 // ------------------------------------------------------
 {
-    return @([[[self editor] textView] tabWidth]);
+    return @([[[self editor] focusedTextView] tabWidth]);
 }
 
 
@@ -261,7 +261,7 @@
 - (void)setTabWidth:(NSNumber *)tabWidth
 // ------------------------------------------------------
 {
-    [[[self editor] textView] setTabWidth:[tabWidth unsignedIntegerValue]];
+    [[[self editor] focusedTextView] setTabWidth:[tabWidth unsignedIntegerValue]];
 }
 
 
@@ -416,7 +416,7 @@
         }
         if (result > 0) {
             [[self editor] replaceTextViewAllStringWithString:tmpStr];
-            [[[self editor] textView] setSelectedRange:NSMakeRange(0,0)];
+            [[self editor] setSelectedRange:NSMakeRange(0, 0)];
         }
 
     } else {
@@ -440,7 +440,7 @@
 - (void)handleScrollScriptCommand:(NSScriptCommand *)command
 // ------------------------------------------------------
 {
-    NSTextView *textView = [[self editor] textView];
+    NSTextView *textView = [[self editor] focusedTextView];
     [textView scrollRangeToVisible:[textView selectedRange]];
 }
 
@@ -461,7 +461,7 @@
     if (NSEqualRanges(NSMakeRange(0, 0), range)) {
         return @"";
     }
-    return [[[[self editor] textView] string] substringWithRange:range];
+    return [[[[self editor] focusedTextView] string] substringWithRange:range];
 }
 
 

@@ -117,7 +117,7 @@
     
     NSRange range = [[selectedIncompatibles firstObject][CEIncompatibleRangeKey] rangeValue];
     CEEditorWrapper *editor = [[self document] editor];
-    NSTextView *textView = [editor textView];
+    NSTextView *textView = [editor focusedTextView];
     
     [editor setSelectedRange:range];
     [[[self view] window] makeFirstResponder:textView];
