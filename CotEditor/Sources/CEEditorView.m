@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014 CotEditor Project
+ © 2014-2015 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -63,7 +63,6 @@
 
 
 
-
 #pragma mark -
 
 @implementation CEEditorView
@@ -71,12 +70,11 @@
 #pragma mark Superclass Methods
 
 // ------------------------------------------------------
-/// initialize
+/// initialize instance
 - (instancetype)initWithFrame:(NSRect)frameRect
 // ------------------------------------------------------
 {
     self = [super initWithFrame:frameRect];
-
     if (self) {
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         
@@ -202,15 +200,6 @@
 
 
 #pragma mark Public Methods
-
-// ------------------------------------------------------
-/// テキストビューの文字列を返す
-- (NSString *)string
-// ------------------------------------------------------
-{
-    return [[self textView] string];
-}
-
 
 // ------------------------------------------------------
 /// TextStorage を置換
@@ -364,15 +353,16 @@
 {
     [self stopUpdateOutlineMenuTimer];
     
+    NSString *wholeString = [[[self textView] string] copy];  // 解析中に参照元が変更されると困るのでコピーする
+    
     // 規定の文字数以上の場合にはインジケータを表示
     // （ただし、CEDefaultShowColoringIndicatorTextLengthKey が「0」の時は表示しない）
     NSUInteger indicatorThreshold = [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultShowColoringIndicatorTextLengthKey];
-    if (indicatorThreshold > 0 && indicatorThreshold < [[self string] length]) {
+    if (indicatorThreshold > 0 && indicatorThreshold < [wholeString length]) {
         [[self navigationBar] showOutlineIndicator];
     }
     
     // 別スレッドでアウトラインを抽出して、メインスレッドで navigationBar に渡す
-    NSString *wholeString = [[self string] copy];  // 解析中に参照元が変更されると困るのでコピーする
     __weak typeof(self) weakSelf = self;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         typeof(self) strongSelf = weakSelf;
@@ -383,64 +373,6 @@
             // （選択項目の更新も上記メソッド内で行われるので、updateOutlineMenuSelection は呼ぶ必要なし。 2008.05.16.）
         });
     });
-}
-
-
-// ------------------------------------------------------
-/// アウトラインメニューの選択項目を更新
-- (void)updateOutlineMenuSelection
-// ------------------------------------------------------
-{
-    if ([self outlineMenuTimer]) { return; }
-    
-    if ([[self textView] needsUpdateOutlineMenuItemSelection]) {
-        [[self navigationBar] selectOutlineMenuItemWithRange:[[self textView] selectedRange]];
-    } else {
-        [[self textView] setNeedsUpdateOutlineMenuItemSelection:YES];
-        [[self navigationBar] updatePrevNextButtonEnabled];
-    }
-}
-
-
-// ------------------------------------------------------
-/// テキストビュー分割削除ボタンの有効化／無効化を制御
-- (void)updateCloseSplitViewButton:(BOOL)isEnabled
-// ------------------------------------------------------
-{
-    [[self navigationBar] setCloseSplitButtonEnabled:isEnabled];
-}
-
-
-// ------------------------------------------------------
-/// 行番号更新タイマーを停止
-- (void)stopUpdateLineNumberTimer
-// ------------------------------------------------------
-{
-    if ([self lineNumUpdateTimer]) {
-        [[self lineNumUpdateTimer] invalidate];
-        [self setLineNumUpdateTimer:nil];
-    }
-}
-
-
-// ------------------------------------------------------
-/// アウトラインメニュー更新タイマーを停止
-- (void)stopUpdateOutlineMenuTimer
-// ------------------------------------------------------
-{
-    if ([self outlineMenuTimer]) {
-        [[self outlineMenuTimer] invalidate];
-        [self setOutlineMenuTimer:nil];
-    }
-}
-
-
-// ------------------------------------------------------
-/// 入力補完文字列に設定された最初の1文字のセットを返す
-- (NSCharacterSet *)firstCompletionCharacterSet
-// ------------------------------------------------------
-{
-    return [[self syntaxParser] firstCompletionCharacterSet];
 }
 
 
@@ -587,15 +519,14 @@
 
     if (![[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultHighlightBracesKey]) { return; }
     
-    NSString *string = [self string];
-    NSInteger stringLength = [string length];
-    if (stringLength == 0) { return; }
+    NSString *string = [[self textView] string];
+    if ([string length] == 0) { return; }
     NSRange selectedRange = [[self textView] selectedRange];
     NSInteger location = selectedRange.location;
     NSInteger difference = location - [self lastCursorLocation];
     [self setLastCursorLocation:location];
 
-    // Smultron では「if (difference != 1 && difference != -1)」の条件を使ってキャレットを前方に動かした時も強調表示させているが、CotEditor では Xcode 同様、入力時またはキャレットを後方に動かした時だけに限定した（2006.09.10）
+    // Smultron では「if (difference != 1 && difference != -1)」の条件を使ってキャレットを前方に動かした時も強調表示させているが、CotEditor では Xcode 同様、入力時またはキャレットを後方に動かした時だけに限定した（2006-09-10）
     if (difference != 1) {
         return; // If the difference is more than one, they've moved the cursor with the mouse or it has been moved by resetSelectedRange below and we shouldn't check for matching braces then
     }
@@ -604,7 +535,7 @@
         location--;
     }
 
-    if (location == stringLength) {
+    if (location == [string length]) {
         return;
     }
     
@@ -673,6 +604,23 @@
 }
 
 
+//=======================================================
+// Notification  < CEThemeManager
+//=======================================================
+
+// ------------------------------------------------------
+/// テーマが更新された
+- (void)themeDidUpdate:(NSNotification *)notification
+// ------------------------------------------------------
+{
+    if ([[notification userInfo][CEOldNameKey] isEqualToString:[[[self textView] theme] name]]) {
+        [[self textView] setTheme:[CETheme themeWithName:[notification userInfo][CENewNameKey]]];
+        [[self textView] setSelectedRanges:[[self textView] selectedRanges]];  // 現在行のハイライトカラーの更新するために選択し直す
+        [[self editorWrapper] recolorAllString];
+    }
+}
+
+
 
 #pragma mark Private Mthods
 
@@ -688,19 +636,6 @@
                                                object:textStorage];
     
     _textStorage = textStorage;
-}
-
-
-// ------------------------------------------------------
-/// テーマが更新された
-- (void)themeDidUpdate:(NSNotification *)notification
-// ------------------------------------------------------
-{
-    if ([[notification userInfo][CEOldNameKey] isEqualToString:[[[self textView] theme] name]]) {
-        [[self textView] setTheme:[CETheme themeWithName:[notification userInfo][CENewNameKey]]];
-        [[self textView] setSelectedRanges:[[self textView] selectedRanges]];  // 現在行のハイライトカラーの更新するために選択し直す
-        [[self editorWrapper] recolorAllString];
-    }
 }
 
 
@@ -745,6 +680,55 @@
 
 
 // ------------------------------------------------------
+/// アウトラインメニューの選択項目を更新
+- (void)updateOutlineMenuSelection
+// ------------------------------------------------------
+{
+    if ([self outlineMenuTimer]) { return; }
+    
+    if ([[self textView] needsUpdateOutlineMenuItemSelection]) {
+        [[self navigationBar] selectOutlineMenuItemWithRange:[[self textView] selectedRange]];
+    } else {
+        [[self textView] setNeedsUpdateOutlineMenuItemSelection:YES];
+        [[self navigationBar] updatePrevNextButtonEnabled];
+    }
+}
+
+
+// ------------------------------------------------------
+/// テキストビュー分割削除ボタンの有効化／無効化を制御
+- (void)updateCloseSplitViewButton:(BOOL)isEnabled
+// ------------------------------------------------------
+{
+    [[self navigationBar] setCloseSplitButtonEnabled:isEnabled];
+}
+
+
+// ------------------------------------------------------
+/// 行番号更新タイマーを停止
+- (void)stopUpdateLineNumberTimer
+// ------------------------------------------------------
+{
+    if ([self lineNumUpdateTimer]) {
+        [[self lineNumUpdateTimer] invalidate];
+        [self setLineNumUpdateTimer:nil];
+    }
+}
+
+
+// ------------------------------------------------------
+/// アウトラインメニュー更新タイマーを停止
+- (void)stopUpdateOutlineMenuTimer
+// ------------------------------------------------------
+{
+    if ([self outlineMenuTimer]) {
+        [[self outlineMenuTimer] invalidate];
+        [self setOutlineMenuTimer:nil];
+    }
+}
+
+
+// ------------------------------------------------------
 /// アウトラインメニューなどを更新
 - (void)updateInfo
 // ------------------------------------------------------
@@ -783,11 +767,11 @@
     NSRect rect;
     
     // 選択行の矩形を得る
-    if ([textView selectedRange].location == [[self string] length] && [layoutManager extraLineFragmentTextContainer]) {  // 最終行
+    if ([textView selectedRange].location == [[textView string] length] && [layoutManager extraLineFragmentTextContainer]) {  // 最終行
         rect = [layoutManager extraLineFragmentRect];
         
     } else {
-        NSRange lineRange = [[self string] lineRangeForRange:[textView selectedRange]];
+        NSRange lineRange = [[textView string] lineRangeForRange:[textView selectedRange]];
         lineRange.length -= (lineRange.length > 0) ? 1 : 0;  // remove line ending
         NSRange glyphRange = [layoutManager glyphRangeForCharacterRange:lineRange actualCharacterRange:NULL];
         

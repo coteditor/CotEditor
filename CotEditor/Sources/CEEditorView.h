@@ -48,7 +48,6 @@
 
 
 // Public method
-- (NSString *)string;
 - (void)replaceTextStorage:(NSTextStorage *)textStorage;
 - (void)setShowsLineNum:(BOOL)showsLineNum;
 - (void)setShowsNavigationBar:(BOOL)showsNavigationBar animate:(BOOL)performAnimation;
@@ -60,9 +59,5 @@
 - (void)setSyntaxWithName:(NSString *)styleName;
 - (void)recolorAllTextViewString;
 - (void)updateOutlineMenu;
-- (void)updateOutlineMenuSelection;
-- (void)stopUpdateLineNumberTimer;
-- (void)stopUpdateOutlineMenuTimer;
-- (NSCharacterSet *)firstCompletionCharacterSet;
 
 @end

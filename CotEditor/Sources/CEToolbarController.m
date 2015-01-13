@@ -73,13 +73,13 @@
     [self buildSyntaxPopupButton];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(buildSyntaxPopupButton)
-                                                 name:CESyntaxListDidUpdateNotification
+                                             selector:@selector(buildEncodingPopupButton)
+                                                 name:CEEncodingListDidUpdateNotification
                                                object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(buildEncodingPopupButton)
-                                                 name:CEEncodingListDidUpdateNotification
+                                             selector:@selector(buildSyntaxPopupButton)
+                                                 name:CESyntaxListDidUpdateNotification
                                                object:nil];
 }
 
@@ -97,25 +97,6 @@
             [self toggleItem:item setOn:setOn];
         }
     }
-}
-
-
-// ------------------------------------------------------
-/// build encoding popup item
-- (void)buildEncodingPopupButton
-// ------------------------------------------------------
-{
-    NSArray *items = [[CEEncodingManager sharedManager] encodingMenuItems];
-    NSStringEncoding encoding = [[[self encodingPopupButton] selectedItem] tag];
-    
-    [[self encodingPopupButton] removeAllItems];
-    for (NSMenuItem *item in items) {
-        [item setAction:@selector(changeEncoding:)];
-        [item setTarget:nil];
-        [[[self encodingPopupButton] menu] addItem:item];
-    }
-    
-    [self setSelectedEncoding:encoding];
 }
 
 
@@ -141,29 +122,6 @@
     if (lineEnding >= [[self lineEndingPopupButton] numberOfItems]) { return; }
 
     [[self lineEndingPopupButton] selectItemAtIndex:lineEnding];
-}
-
-
-// ------------------------------------------------------
-/// build syntax style popup menu
-- (void)buildSyntaxPopupButton
-// ------------------------------------------------------
-{
-    NSArray *styleNames = [[CESyntaxManager sharedManager] styleNames];
-    NSString *title = [[self syntaxPopupButton] titleOfSelectedItem];
-    
-    [[self syntaxPopupButton] removeAllItems];
-    [[[self syntaxPopupButton] menu] addItemWithTitle:NSLocalizedString(@"None", nil)
-                                               action:@selector(changeSyntaxStyle:)
-                                        keyEquivalent:@""];
-    [[[self syntaxPopupButton] menu] addItem:[NSMenuItem separatorItem]];
-    for (NSString *styleName in styleNames) {
-        [[[self syntaxPopupButton] menu] addItemWithTitle:styleName
-                                                   action:@selector(changeSyntaxStyle:)
-                                            keyEquivalent:@""];
-    }
-    
-    [self setSelectedSyntaxWithName:title];
 }
 
 
@@ -271,6 +229,48 @@
     }
     
     [item setImage:[NSImage imageNamed:imageName]];
+}
+
+
+// ------------------------------------------------------
+/// build encoding popup item
+- (void)buildEncodingPopupButton
+// ------------------------------------------------------
+{
+    NSArray *items = [[CEEncodingManager sharedManager] encodingMenuItems];
+    NSStringEncoding encoding = [[[self encodingPopupButton] selectedItem] tag];
+    
+    [[self encodingPopupButton] removeAllItems];
+    for (NSMenuItem *item in items) {
+        [item setAction:@selector(changeEncoding:)];
+        [item setTarget:nil];
+        [[[self encodingPopupButton] menu] addItem:item];
+    }
+    
+    [self setSelectedEncoding:encoding];
+}
+
+
+// ------------------------------------------------------
+/// build syntax style popup menu
+- (void)buildSyntaxPopupButton
+// ------------------------------------------------------
+{
+    NSArray *styleNames = [[CESyntaxManager sharedManager] styleNames];
+    NSString *title = [[self syntaxPopupButton] titleOfSelectedItem];
+    
+    [[self syntaxPopupButton] removeAllItems];
+    [[[self syntaxPopupButton] menu] addItemWithTitle:NSLocalizedString(@"None", nil)
+                                               action:@selector(changeSyntaxStyle:)
+                                        keyEquivalent:@""];
+    [[[self syntaxPopupButton] menu] addItem:[NSMenuItem separatorItem]];
+    for (NSString *styleName in styleNames) {
+        [[[self syntaxPopupButton] menu] addItemWithTitle:styleName
+                                                   action:@selector(changeSyntaxStyle:)
+                                            keyEquivalent:@""];
+    }
+    
+    [self setSelectedSyntaxWithName:title];
 }
 
 @end
