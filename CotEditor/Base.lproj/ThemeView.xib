@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6254"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="CEThemeViewController">
@@ -570,7 +569,7 @@
                     </connections>
                 </textField>
                 <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="wN3-ao-X42">
-                    <rect key="frame" x="85" y="58" width="181" height="14"/>
+                    <rect key="frame" x="85" y="58" width="184" height="14"/>
                     <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="http://coteditor.com" placeholderString="" id="nyA-Sj-7rb">
                         <font key="font" metaFont="smallSystem"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -637,12 +636,12 @@
                     </connections>
                 </textField>
                 <button toolTip="Jump to URL" translatesAutoresizingMaskIntoConstraints="NO" id="Usu-Br-G0a">
-                    <rect key="frame" x="272" y="57" width="15" height="15"/>
+                    <rect key="frame" x="275" y="59" width="12" height="13"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="15" id="Ksl-fd-kef"/>
-                        <constraint firstAttribute="width" secondItem="Usu-Br-G0a" secondAttribute="height" multiplier="1:1" id="wiB-di-rhJ"/>
+                        <constraint firstAttribute="height" constant="13" id="c1l-or-d4k"/>
+                        <constraint firstAttribute="width" constant="12" id="dst-sM-oZW"/>
                     </constraints>
-                    <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="NSFollowLinkFreestandingTemplate" imagePosition="overlaps" alignment="center" controlSize="small" imageScaling="proportionallyDown" inset="2" id="Mw1-KT-Ffl">
+                    <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="NSFollowLinkFreestandingTemplate" imagePosition="only" alignment="center" controlSize="small" imageScaling="proportionallyDown" inset="2" id="Mw1-KT-Ffl">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="smallSystem"/>
                     </buttonCell>
