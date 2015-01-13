@@ -1464,6 +1464,8 @@ const NSInteger kNoMenuItem = -1;
          NSString *originalString = [wholeString substringWithRange:range];
          NSRange newRange = NSMakeRange(range.location + deltaLocation, [string length]);  // replaced range after method.
          
+         [[undoManager prepareWithInvocationTarget:textStorage] setAttributes:attributes
+                                                                        range:range];
          [[undoManager prepareWithInvocationTarget:textStorage] replaceCharactersInRange:newRange
                                                                               withString:originalString];
          
