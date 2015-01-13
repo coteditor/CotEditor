@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014 CotEditor Project
+ © 2014-2015 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -191,32 +191,31 @@ static const NSTimeInterval kDuration = 0.25;
     if (![[self outlineMenu] isEnabled]) { return; }
     
     NSMenu *menu = [[self outlineMenu] menu];
-    NSInteger i;
     NSInteger count = [menu numberOfItems];
-    NSUInteger location = range.location;
     if (count < 1) { return; }
+    NSInteger index;
 
     if (NSEqualRanges(range, NSMakeRange(0, 0))) {
-        i = 1;
+        index = 1;
     } else {
-        for (i = 1; i < count; i++) {
-            NSMenuItem *menuItem = [menu itemAtIndex:i];
-            NSUInteger markedLocation = [[menuItem representedObject] rangeValue].location;
-            if (markedLocation > location) {
+        for (index = 1; index < count; index++) {
+            NSMenuItem *menuItem = [menu itemAtIndex:index];
+            NSRange itemRange = [[menuItem representedObject] rangeValue];
+            if (itemRange.location > range.location) {
                 break;
             }
         }
     }
     // ループを抜けた時点で「次のアイテムインデックス」になっているので、減ずる
-    i--;
+    index--;
     // skip separators
-    while ([[[self outlineMenu] itemAtIndex:i] isSeparatorItem]) {
-        i--;
-        if (i < 0) {
+    while ([[[self outlineMenu] itemAtIndex:index] isSeparatorItem]) {
+        index--;
+        if (index < 0) {
             break;
         }
     }
-    [[self outlineMenu] selectItemAtIndex:i];
+    [[self outlineMenu] selectItemAtIndex:index];
     [self updatePrevNextButtonEnabled];
 }
 

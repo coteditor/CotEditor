@@ -54,34 +54,42 @@
 @property (readonly, nonatomic) BOOL canActivateShowInvisibles;
 
 
-// Public method
+#pragma mark Public Methods
+
+// text processing
 - (NSString *)string;
 - (NSString *)substringWithRange:(NSRange)range;
 - (NSString *)substringWithSelection;
-- (NSString *)substringWithSelectionForSave;
+- (NSString *)substringWithSelectionForSave;  // line ending applied
 - (void)setString:(NSString *)string;
 - (void)setLineEndingString:(NSString *)lineEndingString;
+
 - (void)replaceTextViewSelectedStringWithString:(NSString *)inString;
 - (void)replaceTextViewAllStringWithString:(NSString *)string;
 - (void)insertTextViewStringAfterSelection:(NSString *)string;
 - (void)appendTextViewString:(NSString *)string;
-- (NSRange)selectedRange;
-- (void)setSelectedRange:(NSRange)charRange;
 
-- (NSFont *)font;
-- (void)setFont:(NSFont *)font;
+- (NSRange)selectedRange;  // line ending applied
+- (void)setSelectedRange:(NSRange)charRange;  // line ending applied
 
 - (void)markupRanges:(NSArray *)ranges;
 - (void)clearAllMarkup;
 
-- (void)setShowsNavigationBar:(BOOL)showsNavigationBar animate:(BOOL)performAnimation;
-
-- (BOOL)usesAntialias;
 - (BOOL)isAutoTabExpandEnabled;
 
+// navigation bar
+- (void)setShowsNavigationBar:(BOOL)showsNavigationBar animate:(BOOL)performAnimation;
+
+// font
+- (NSFont *)font;
+- (void)setFont:(NSFont *)font;
+- (BOOL)usesAntialias;
+
+// theme
 - (void)setThemeWithName:(NSString *)themeName;
 - (CETheme *)theme;
 
+// syntax
 - (NSString *)syntaxStyleName;
 - (void)setSyntaxStyleName:(NSString *)inName recolorNow:(BOOL)recolorNow;
 - (void)recolorAllString;
@@ -89,7 +97,8 @@
 - (void)setupColoringTimer;
 
 
-// Action Message
+#pragma mark Action Messages
+
 - (IBAction)toggleLineNumber:(id)sender;
 - (IBAction)toggleNavigationBar:(id)sender;
 - (IBAction)toggleLineWrap:(id)sender;

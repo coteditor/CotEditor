@@ -39,7 +39,6 @@
 #import "CEWindowController.h"
 #import "CESplitViewController.h"
 #import "CENavigationBarController.h"
-#import "CELineNumberView.h"
 #import "CESyntaxParser.h"
 #import "constants.h"
 
@@ -71,7 +70,7 @@ static NSTimeInterval secondColoringDelay;
 #pragma mark Sperclass Methods
 
 // ------------------------------------------------------
-/// クラス初期化
+/// initialize class
 + (void)initialize
 // ------------------------------------------------------
 {
@@ -87,7 +86,7 @@ static NSTimeInterval secondColoringDelay;
 
 
 // ------------------------------------------------------
-/// initialize
+/// initialize instance
 - (instancetype)init
 // ------------------------------------------------------
 {
@@ -132,7 +131,7 @@ static NSTimeInterval secondColoringDelay;
     [editorView setEditorWrapper:self];
     [self setFocusedTextView:[editorView textView]];
     
-    [self setupViewParamsInInit:YES];
+    [self setupViewParamsOnInit:YES];
     [self setShowsInvisibles:[[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultShowInvisiblesKey]];
 }
 
@@ -246,7 +245,7 @@ static NSTimeInterval secondColoringDelay;
 
 
 // ------------------------------------------------------
-/// メインtextViewに文字列をセット。改行コードはLFに置換される
+/// メインtextViewに文字列をセット
 - (void)setString:(NSString *)string
 // ------------------------------------------------------
 {
@@ -332,38 +331,20 @@ static NSTimeInterval secondColoringDelay;
 
 
 // ------------------------------------------------------
-/// フォントを返す
-- (NSFont *)font
-// ------------------------------------------------------
-{
-    return [[self focusedTextView] font];
-}
-
-
-// ------------------------------------------------------
-/// フォントをセット
-- (void)setFont:(NSFont *)font
-// ------------------------------------------------------
-{
-    [[self focusedTextView] setFont:font];
-}
-
-
-// ------------------------------------------------------
 /// 現在のエンコードにコンバートできない文字列をマークアップ
 - (void)markupRanges:(NSArray *)ranges
 // ------------------------------------------------------
 {
     NSColor *color = [[[self focusedTextView] theme] markupColor];
-    
-    // ハイライト
     NSArray *layoutManagers = [[self splitViewController] layoutManagers];
+    
     for (NSValue *rangeValue in ranges) {
-        NSRange range = [rangeValue rangeValue];
+        NSRange documentRange = [rangeValue rangeValue];
+        NSRange range = [self rangeFromDocumentRange:documentRange];
         
         for (NSLayoutManager *manager in layoutManagers) {
             [manager addTemporaryAttribute:NSBackgroundColorAttributeName value:color
-                         forCharacterRange:[self rangeFromDocumentRange:range]];
+                         forCharacterRange:range];
         }
     }
 }
@@ -384,6 +365,34 @@ static NSTimeInterval secondColoringDelay;
 
 
 // ------------------------------------------------------
+/// ソフトタブの有効／無効を返す
+- (BOOL)isAutoTabExpandEnabled
+// ------------------------------------------------------
+{
+    CETextView *textView = [self focusedTextView];
+    
+    if (textView) {
+        return [textView isAutoTabExpandEnabled];
+    } else {
+        return [[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultAutoExpandTabKey];
+    }
+}
+
+
+// ------------------------------------------------------
+/// ナビゲーションバーを表示する／しないをセット
+- (void)setShowsNavigationBar:(BOOL)showsNavigationBar animate:(BOOL)performAnimation
+// ------------------------------------------------------
+{
+    _showsNavigationBar = showsNavigationBar;
+    
+    [[self splitViewController] setShowsNavigationBar:showsNavigationBar animate:performAnimation];
+    [[[self windowController] toolbarController] toggleItemWithTag:CEToolbarShowNavigationBarItemTag
+                                                             setOn:showsNavigationBar];
+}
+
+
+// ------------------------------------------------------
 /// 行番号の表示をする／しないをセット
 - (void)setShowsLineNum:(BOOL)showsLineNum
 // ------------------------------------------------------
@@ -393,19 +402,6 @@ static NSTimeInterval secondColoringDelay;
     [[self splitViewController] setShowsLineNum:showsLineNum];
     [[[self windowController] toolbarController] toggleItemWithTag:CEToolbarShowLineNumItemTag
                                                              setOn:showsLineNum];
-}
-
-
-// ------------------------------------------------------
-/// ナビバーを表示する／しないをセット
-- (void)setShowsNavigationBar:(BOOL)showsNavigationBar animate:(BOOL)performAnimation
-// ------------------------------------------------------
-{
-    _showsNavigationBar = showsNavigationBar;
-    
-    [[self splitViewController] setShowsNavigationBar:showsNavigationBar animate:performAnimation];
-    [[[self windowController] toolbarController] toggleItemWithTag:CEToolbarShowNavigationBarItemTag
-                                                             setOn:showsNavigationBar];
 }
 
 
@@ -436,6 +432,24 @@ static NSTimeInterval secondColoringDelay;
 
 
 // ------------------------------------------------------
+/// フォントを返す
+- (NSFont *)font
+// ------------------------------------------------------
+{
+    return [[self focusedTextView] font];
+}
+
+
+// ------------------------------------------------------
+/// フォントをセット
+- (void)setFont:(NSFont *)font
+// ------------------------------------------------------
+{
+    [[self focusedTextView] setFont:font];
+}
+
+
+// ------------------------------------------------------
 /// アンチエイリアスでの描画の許可を得る
 - (BOOL)usesAntialias
 // ------------------------------------------------------
@@ -443,21 +457,6 @@ static NSTimeInterval secondColoringDelay;
     CELayoutManager *manager = (CELayoutManager *)[[self focusedTextView] layoutManager];
     
     return [manager usesAntialias];
-}
-
-
-// ------------------------------------------------------
-/// ソフトタブの有効／無効を返す
-- (BOOL)isAutoTabExpandEnabled
-// ------------------------------------------------------
-{
-    CETextView *textView = [self focusedTextView];
-    
-    if (textView) {
-        return [textView isAutoTabExpandEnabled];
-    } else {
-        return [[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultAutoExpandTabKey];
-    }
 }
 
 
@@ -718,7 +717,7 @@ static NSTimeInterval secondColoringDelay;
     [editorView setEditorWrapper:self];
     // 新たな subView は、押された追加ボタンが属する（またはフォーカスのある）editorView のすぐ下に挿入する
     [[[self splitViewController] view] addSubview:editorView positioned:NSWindowAbove relativeTo:currentEditorView];
-    [self setupViewParamsInInit:NO];
+    [self setupViewParamsOnInit:NO];
     [[editorView textView] setFont:[[self focusedTextView] font]];
     [[editorView textView] setTheme:[self theme]];
     [[editorView textView] setLineSpacing:[[self focusedTextView] lineSpacing]];
@@ -786,7 +785,7 @@ static NSTimeInterval secondColoringDelay;
 
 // ------------------------------------------------------
 /// サブビューに初期値を設定
-- (void)setupViewParamsInInit:(BOOL)isInitial
+- (void)setupViewParamsOnInit:(BOOL)isInitial
 // ------------------------------------------------------
 {
     if (isInitial) {
@@ -862,7 +861,7 @@ static NSTimeInterval secondColoringDelay;
     }
     
     // sanitize for CR/LF
-    NSString *tmpLocStr = [[[self document] stringForSave] substringWithRange:NSMakeRange(0, range.location)];
+    NSString *tmpLocStr = [[[self document] stringForSave] substringToIndex:range.location];
     NSString *tmpLenStr = [[[self document] stringForSave] substringWithRange:range];
     NSString *locStr = [tmpLocStr stringByReplacingNewLineCharacersWith:CENewLineLF];
     NSString *lenStr = [tmpLenStr stringByReplacingNewLineCharacersWith:CENewLineLF];
@@ -881,9 +880,10 @@ static NSTimeInterval secondColoringDelay;
     }
     
     // sanitize for CR/LF
-    NSString *tmpLocStr = [[self string] substringWithRange:NSMakeRange(0, range.location)];
+    NSString *tmpLocStr = [[self string] substringToIndex:range.location];
+    NSString *tmpLenStr = [[self string] substringWithRange:range];
     NSString *locStr = [tmpLocStr stringByReplacingNewLineCharacersWith:[[self document] lineEnding]];
-    NSString *lenStr = [self substringWithSelectionForSave];
+    NSString *lenStr = [tmpLenStr stringByReplacingNewLineCharacersWith:[[self document] lineEnding]];
     
     return NSMakeRange([locStr length], [lenStr length]);
 }
@@ -896,26 +896,24 @@ static NSTimeInterval secondColoringDelay;
 {
     if ([self coloringTimer]) { return; }
     
-    NSRect visibleRect = [[[[self focusedTextView] enclosingScrollView] contentView] documentVisibleRect];
-    NSRange glyphRange = [[[self focusedTextView] layoutManager] glyphRangeForBoundingRect:visibleRect
-                                                                    inTextContainer:[[self focusedTextView] textContainer]];
-    NSRange charRange = [[[self focusedTextView] layoutManager] characterRangeForGlyphRange:glyphRange
-                                                                    actualGlyphRange:NULL];
-    NSRange selectedRange = [[self focusedTextView] selectedRange];
-    NSRange coloringRange = charRange;
+    NSTextView *textView = [self focusedTextView];
+    NSRange glyphRange = [[textView layoutManager] glyphRangeForBoundingRect:[textView visibleRect]
+                                                             inTextContainer:[textView textContainer]];
+    NSRange visibleRange = [[textView layoutManager] characterRangeForGlyphRange:glyphRange
+                                                                actualGlyphRange:NULL];
+    NSRange selectedRange = [textView selectedRange];
+    NSRange updateRange = visibleRange;
     
-    // = 選択領域（編集場所）が見えないときは編集場所周辺を更新
-    if (!NSLocationInRange(selectedRange.location, charRange)) {
-        NSInteger location = selectedRange.location - charRange.length;
-        if (location < 0) { location = 0; }
-        NSInteger length = selectedRange.length + charRange.length;
-        NSInteger max = [[self string] length] - location;
-        length = MIN(length, max);
+    // 選択領域（編集場所）が見えないときは編集場所周辺を更新
+    if (!NSLocationInRange(selectedRange.location, visibleRange)) {
+        NSUInteger location = MAX((NSInteger)selectedRange.location - visibleRange.length, 0);
+        NSInteger maxLength = [[textView string] length] - location;
+        NSUInteger length = MIN(selectedRange.length + visibleRange.length, maxLength);
         
-        coloringRange = NSMakeRange(location, length);
+        updateRange = NSMakeRange(location, length);
     }
     
-    [[self syntaxParser] colorRange:coloringRange wholeString:[self string]];
+    [[self syntaxParser] colorRange:updateRange wholeString:[self string]];
 }
 
 
