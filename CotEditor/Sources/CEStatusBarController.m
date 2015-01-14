@@ -9,7 +9,7 @@
  encoding="UTF-8"
  ------------------------------------------------------------------------------
  
- © 2014 CotEditor Project
+ © 2014-2015 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -41,6 +41,7 @@ static const NSTimeInterval kDuration = 0.25;
 @property (nonatomic, weak) IBOutlet CEDocumentAnalyzer *documentAnalyzer;
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint *heightConstraint;
 
+@property (nonatomic) BOOL showsReadOnly;
 @property (nonatomic, copy) NSAttributedString *editorStatus;
 @property (nonatomic, copy) NSString *documentStatus;
 
@@ -112,21 +113,22 @@ static NSColor *kLabelColor;
 {
     [self setShown:isShown];
     
-    CGFloat height = [self isShown] ? kDefaultHeight : 0.0;
+    if (isShown) {
+        [self updateEditorStatus];
+        [self updateDocumentStatus];
+    }
+    
+    NSLayoutConstraint *heightConstraint = [self heightConstraint];
+    CGFloat height = isShown ? kDefaultHeight : 0.0;
     
     if (performAnimation) {
         [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
             [context setDuration:kDuration];
-            [[[self heightConstraint] animator] setConstant:height];
+            [[heightConstraint animator] setConstant:height];
         } completionHandler:nil];
         
     } else {
-        [[self heightConstraint] setConstant:height];
-    }
-    
-    if (isShown) {
-        [self updateEditorStatus];
-        [self updateDocumentStatus];
+        [heightConstraint setConstant:height];
     }
 }
 
@@ -172,7 +174,7 @@ static NSColor *kLabelColor;
 
 
 // ------------------------------------------------------
-/// update right side text
+/// update right side text and readonly icon state
 - (void)updateDocumentStatus
 // ------------------------------------------------------
 {
@@ -193,6 +195,8 @@ static NSColor *kLabelColor;
     }
     
     [self setDocumentStatus:[status componentsJoinedByString:@"   "]];
+    
+    [self setShowsReadOnly:![info isWritable]];
 }
 
 

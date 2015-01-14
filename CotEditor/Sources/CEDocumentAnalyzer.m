@@ -55,6 +55,7 @@ NSString *const CEAnalyzerDidUpdateEditorInfoNotification = @"CEAnalyzerDidUpdat
 @property (readwrite, nonatomic) NSString *owner;
 @property (readwrite, nonatomic) NSString *permission;
 @property (readwrite, nonatomic) NSString *locked;
+@property (readwrite, nonatomic, getter=isWritable) BOOL writable;
 
 // mode infos
 @property (readwrite, nonatomic) NSString *encoding;
@@ -111,19 +112,21 @@ NSString *const CEAnalyzerDidUpdateEditorInfoNotification = @"CEAnalyzerDidUpdat
 - (void)updateFileInfo
 // ------------------------------------------------------
 {
-    NSDictionary *attrs = [[self document] fileAttributes];
+    CEDocument *document = [self document];
+    NSDictionary *attrs = [document fileAttributes];
     NSDateFormatter *dateFormatter = [self dateFormatter];
     NSByteCountFormatter *byteFormatter = [self byteCountFormatter];
     
     self.creationDate = [attrs fileCreationDate] ? [dateFormatter stringFromDate:[attrs fileCreationDate]] : nil;
     self.modificationDate = [attrs fileModificationDate] ? [dateFormatter stringFromDate:[attrs fileModificationDate]] : nil;
     self.fileSize = [attrs fileSize] ? [byteFormatter stringFromByteCount:[attrs fileSize]] : nil;
-    self.filePath = [[[self document] fileURL] path];
+    self.filePath = [[document fileURL] path];
     self.owner = [attrs fileOwnerAccountName];
     self.permission = [attrs filePosixPermissions] ? [NSString stringWithFormat:@"%tu (%@)",
                                                       [attrs filePosixPermissions],
                                                       humanReadablePermission([attrs filePosixPermissions])] : nil;
     self.locked = attrs ? NSLocalizedString([attrs fileIsImmutable] ? @"Yes" : @"No", nil) : nil;
+    self.writable = [document isWritable];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:CEAnalyzerDidUpdateFileInfoNotification
                                                         object:self];
@@ -299,7 +302,7 @@ NSString *humanReadablePermission(NSUInteger permission)
 // ------------------------------------------------------
 {
     NSArray *units = @[@"---", @"--x", @"-w-", @"-wx", @"r--", @"r-x", @"rw-", @"rwx"];
-    NSMutableString *result = [NSMutableString stringWithString:@"-"];  // always file
+    NSMutableString *result = [NSMutableString stringWithString:@"-"];  // Document is always file.
     
     for (NSInteger i = 2; i >= 0; i--) {
         NSUInteger digit = (permission >> (i * 3)) & 0x7;

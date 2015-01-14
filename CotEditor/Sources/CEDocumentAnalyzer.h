@@ -9,7 +9,7 @@
  encoding="UTF-8"
  ------------------------------------------------------------------------------
  
- © 2014 1024jp
+ © 2014-2015 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -51,6 +51,7 @@ extern NSString *const CEAnalyzerDidUpdateEditorInfoNotification;
 @property (readonly, nonatomic) NSString *owner;
 @property (readonly, nonatomic) NSString *permission;
 @property (readonly, nonatomic) NSString *locked;
+@property (readonly, nonatomic, getter=isWritable) BOOL writable;
 
 // mode info
 @property (readonly, nonatomic) NSString *encoding;
@@ -63,12 +64,13 @@ extern NSString *const CEAnalyzerDidUpdateEditorInfoNotification;
 @property (readonly, nonatomic) NSString *words;
 @property (readonly, nonatomic) NSString *length;
 @property (readonly, nonatomic) NSString *byteLength;
-@property (readonly, nonatomic) NSString *location;  // caret location from begining of document
+@property (readonly, nonatomic) NSString *location;  // caret location from the beginning of document
 @property (readonly, nonatomic) NSString *line;      // current line
-@property (readonly, nonatomic) NSString *column;    // caret location from line head
+@property (readonly, nonatomic) NSString *column;    // caret location from the beginning of line
 @property (readonly, nonatomic) NSString *unicode;   // Unicode of selected single character (or surrogate-pair)
 
 
+// Public Methods
 - (void)updateFileInfo;
 - (void)updateModeInfo;
 - (void)updateEditorInfo:(BOOL)needsAll;

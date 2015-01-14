@@ -41,7 +41,8 @@
 @property (readonly, nonatomic, weak) CEToolbarController *toolbarController;
 @property (readonly, nonatomic) BOOL showsStatusBar;
 
-// Public method
+
+// Public Methods
 - (void)showIncompatibleCharList;
 - (void)updateIncompatibleCharsIfNeeded;
 - (void)updateEditorInfoIfNeeded;
@@ -49,7 +50,7 @@
 - (void)updateFileInfo;
 - (void)setupEditorInfoUpdateTimer;
 
-// Action Message
+// Action Messages
 - (IBAction)getInfo:(id)sender;
 - (IBAction)toggleIncompatibleCharList:(id)sender;
 - (IBAction)toggleStatusBar:(id)sender;

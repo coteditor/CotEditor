@@ -49,7 +49,7 @@ typedef NS_ENUM(NSUInteger, CESidebarTag) {
 
 @interface CEWindowController () <OgreTextFindDataSource, NSSplitViewDelegate>
 
-@property (nonatomic) NSUInteger selectedSidebarTag;
+@property (nonatomic) CESidebarTag selectedSidebarTag;
 @property (nonatomic) BOOL needsRecolorWithBecomeKey;  // flag to update sytnax highlight when window becomes key window
 @property (nonatomic) NSTimer *editorInfoUpdateTimer;
 @property (nonatomic) CGFloat sidebarWidth;
@@ -140,7 +140,6 @@ static NSTimeInterval infoUpdateInterval;
     
     // setup status bar
     [[self statusBarController] setShown:[defaults boolForKey:CEDefaultShowStatusBarKey] animate:NO];
-    [[self statusBarController] setShowsReadOnly:![[self document] isWritable]];
     
     [self updateFileInfo];
     [self updateModeInfoIfNeeded];
@@ -528,7 +527,7 @@ static NSTimeInterval infoUpdateInterval;
 
 // ------------------------------------------------------
 /// switch sidebar view
-- (void)setSelectedSidebarTag:(NSUInteger)tag
+- (void)setSelectedSidebarTag:(CESidebarTag)tag
 // ------------------------------------------------------
 {
     NSViewController *viewController;
