@@ -681,7 +681,7 @@ static NSPoint kTextContainerOrigin;
         
         // 縦書きのときは強制的に行番号ビューを非表示
         BOOL showsLineNum = isVertical ? NO : [[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultShowLineNumbersKey];
-        [(CELineNumberView *)[self lineNumberView] setShown:showsLineNum];
+        [[self enclosingScrollView] setRulersVisible:showsLineNum];
     }
     
     [super setLayoutOrientation:theOrientation];
@@ -1425,6 +1425,18 @@ static NSPoint kTextContainerOrigin;
 // ------------------------------------------------------
 {
     return @[NSPasteboardTypeString, (NSString *)kUTTypeUTF8PlainText];
+}
+
+
+// ------------------------------------------------------
+/// return current line number view
+- (NSRulerView *)lineNumberView
+// ------------------------------------------------------
+{
+    BOOL isVertical = ([self layoutOrientation] == NSTextLayoutOrientationVertical);
+    NSScrollView *scrollView = [self enclosingScrollView];
+    
+    return isVertical ?  [scrollView horizontalRulerView] : [scrollView verticalRulerView];
 }
 
 

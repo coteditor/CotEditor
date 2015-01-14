@@ -80,11 +80,6 @@
         
         _highlightsCurrentLine = [defaults boolForKey:CEDefaultHighlightCurrentLineKey];
 
-        // LineNumberView 生成
-        _lineNumberView = [[CELineNumberView alloc] initWithFrame:NSZeroRect];
-        [_lineNumberView setTranslatesAutoresizingMaskIntoConstraints:NO];
-        [self addSubview:_lineNumberView];
-
         // navigationBar 生成
         _navigationBar = [[CENavigationBarController alloc] init];
         [self addSubview:[_navigationBar view]];
@@ -97,21 +92,23 @@
         [_scrollView setTranslatesAutoresizingMaskIntoConstraints:NO];
         [_scrollView setAutohidesScrollers:NO];
         [_scrollView setDrawsBackground:NO];
-        [[_scrollView contentView] setAutoresizesSubviews:YES];
         [self addSubview:_scrollView];
+        
+        // LineNumberView 生成
+        _lineNumberView = [[CELineNumberView alloc] initWithScrollView:_scrollView orientation:NSVerticalRuler];
+        [_scrollView setVerticalRulerView:_lineNumberView];
+        [_scrollView setHasVerticalRuler:YES];
+        [_scrollView setHasHorizontalRuler:NO];
         
         // setup autolayout
         NSDictionary *views = @{@"navBar": [_navigationBar view],
-                                @"lineNumView": _lineNumberView,
                                 @"scrollView": _scrollView};
         [[_navigationBar view] setTranslatesAutoresizingMaskIntoConstraints:NO];
         [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[navBar]|"
                                                                      options:0 metrics:nil views:views]];
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[lineNumView][scrollView]|"
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[scrollView]|"
                                                                      options:0 metrics:nil views:views]];
         [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[navBar][scrollView]|"
-                                                                     options:0 metrics:nil views:views]];
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[navBar][lineNumView]|"
                                                                      options:0 metrics:nil views:views]];
 
         // TextStorage と LayoutManager を生成
@@ -134,7 +131,7 @@
         _textView = [[CETextView alloc] initWithFrame:NSZeroRect textContainer:container];
         [_textView setDelegate:self];
         
-        [_lineNumberView setTextView:_textView];
+        [_lineNumberView setClientView:_textView];
         [_navigationBar setTextView:_textView];
         [_scrollView setDocumentView:_textView];
         
@@ -163,13 +160,6 @@
                                                  selector:@selector(themeDidUpdate:)
                                                      name:CEThemeDidUpdateNotification
                                                    object:nil];
-
-        // slave view をセット
-        [_textView setLineNumberView:_lineNumberView]; // (textview will also update lineNumberView)
-        [[NSNotificationCenter defaultCenter] addObserver:_lineNumberView
-                                                 selector:@selector(updateLineNumber)
-                                                     name:NSViewBoundsDidChangeNotification
-                                                   object:[_scrollView contentView]];
         
         // リサイズに現在行ハイライトを追従
         if (_highlightsCurrentLine) {
@@ -190,7 +180,6 @@
 {
     [self stopUpdateLineNumberTimer];
     [self stopUpdateOutlineMenuTimer];
-    [[NSNotificationCenter defaultCenter] removeObserver:[self lineNumberView]];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     
     [_textStorage removeLayoutManager:[_textView layoutManager]];
@@ -216,7 +205,7 @@
 - (void)setShowsLineNum:(BOOL)showsLineNum
 // ------------------------------------------------------
 {
-    [[self lineNumberView] setShown:showsLineNum];
+    [[self scrollView] setRulersVisible:showsLineNum];
 }
 
 
