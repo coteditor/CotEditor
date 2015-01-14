@@ -251,9 +251,10 @@ static NSTimeInterval secondColoringDelay;
 {
     // UTF-16 でないものを UTF-16 で表示した時など当該フォントで表示できない文字が表示されてしまった後だと、
     // 設定されたフォントでないもので表示されることがあるため、リセットする
-    [[self focusedTextView] setString:@""];
-    [[self focusedTextView] applyTypingAttributes];
-    [[self focusedTextView] setString:string];
+    NSDictionary *attributes = [[self focusedTextView] typingAttributes];
+    NSAttributedString *attrString = [[NSAttributedString alloc] initWithString:string attributes:attributes];
+    
+    [[[self focusedTextView] textStorage] setAttributedString:attrString];
     
     // キャレットを先頭に移動
     if ([string length] > 0) {

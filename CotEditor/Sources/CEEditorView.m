@@ -290,7 +290,7 @@
     CELayoutManager *manager = (CELayoutManager *)[[self textView] layoutManager];
 
     [manager setUsesAntialias:usesAntialias];
-    [[self textView] setNeedsDisplay:YES];
+    [[self textView] setNeedsDisplayInRect:[[self textView] visibleRect]];
 }
 
 

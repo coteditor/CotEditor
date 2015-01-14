@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014 CotEditor Project
+ © 2014-2015 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -175,7 +175,7 @@
 {
     for (CEEditorView *subview in [[self view] subviews]) {
         [[subview textView] setShowsPageGuide:showsPageGuide];
-        [[subview textView] setNeedsDisplay:YES];
+        [[subview textView] setNeedsDisplayInRect:[[subview textView] visibleRect] avoidAdditionalLayout:YES];
     }
 }
 
@@ -237,7 +237,7 @@
         CETextView *textView = [subview textView];
         [textView setTheme:theme];
         [subview recolorAllTextViewString];
-        [textView setNeedsDisplay:YES];  //  選択範囲の再描画
+        [textView setNeedsDisplayInRect:[textView visibleRect] avoidAdditionalLayout:YES];  //  選択範囲の再描画
     }
 }
 

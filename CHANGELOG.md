@@ -39,7 +39,7 @@ Change Log
 - Now, Utility actions perform with multiple selection.
 - Delay timing to save text key bindings setting.
 - Localize document types.
-- Tweak window size sample window.
+- Tweak text view drawing peformance.
 
 
 ### Fixes

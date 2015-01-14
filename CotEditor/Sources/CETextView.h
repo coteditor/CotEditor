@@ -61,7 +61,6 @@
 
 
 // Public method
-- (void)applyTypingAttributes;
 - (void)replaceSelectedStringWithString:(NSString *)string;
 - (void)replaceAllStringWithString:(NSString *)string;
 - (void)insertStringAfterSelection:(NSString *)string;

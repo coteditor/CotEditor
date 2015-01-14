@@ -106,18 +106,17 @@ static const NSTimeInterval kDuration = 0.25;
 {
     [self setShown:isShown];
     
+    NSLayoutConstraint *heightConstraint = [self heightConstraint];
     CGFloat height = [self isShown] ? kDefaultHeight : 0.0;
     
     if (performAnimation) {
-        // resize with animation
         [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
             [context setDuration:kDuration];
-            [[[self heightConstraint] animator] setConstant:height];
+            [[heightConstraint animator] setConstant:height];
         } completionHandler:nil];
         
     } else {
-        // resize without animation
-        [[self heightConstraint] setConstant:height];
+        [heightConstraint setConstant:height];
     }
 }
 

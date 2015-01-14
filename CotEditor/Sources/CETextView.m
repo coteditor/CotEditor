@@ -52,7 +52,6 @@ const NSInteger kNoMenuItem = -1;
 @interface CETextView ()
 
 @property (nonatomic) NSRect insertionRect;
-@property (nonatomic) NSPoint textContainerOriginPoint;
 @property (nonatomic) NSMutableParagraphStyle *paragraphStyle;
 @property (nonatomic) NSTimer *completionTimer;
 @property (nonatomic) NSString *particalCompletionWord;  // ユーザが実際に入力した補完の元になる文字列
@@ -73,10 +72,28 @@ const NSInteger kNoMenuItem = -1;
 
 @implementation CETextView
 
+static NSPoint kTextContainerOrigin;
+
 #pragma mark Superclass Methods
 
 // ------------------------------------------------------
-/// initialize
+/// initialize class
++ (void)initialize
+// ------------------------------------------------------
+{
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        
+        kTextContainerOrigin = NSMakePoint((CGFloat)[defaults doubleForKey:CEDefaultTextContainerInsetWidthKey],
+                                           (CGFloat)[defaults doubleForKey:CEDefaultTextContainerInsetHeightTopKey]);
+    });
+    
+}
+
+
+// ------------------------------------------------------
+/// initialize instance
 - (instancetype)initWithFrame:(NSRect)frameRect textContainer:(NSTextContainer *)aTextContainer
 // ------------------------------------------------------
 {
@@ -134,8 +151,6 @@ const NSInteger kNoMenuItem = -1;
                                                          [defaults doubleForKey:CEDefaultTextContainerInsetHeightBottomKey]) / 2)];
         [self setLineSpacing:(CGFloat)[defaults doubleForKey:CEDefaultLineSpacingKey]];
         _insertionRect = NSZeroRect;
-        _textContainerOriginPoint = NSMakePoint((CGFloat)[defaults doubleForKey:CEDefaultTextContainerInsetWidthKey],
-                                                (CGFloat)[defaults doubleForKey:CEDefaultTextContainerInsetHeightTopKey]);
         _needsUpdateOutlineMenuItemSelection = YES;
         
         [self applyTypingAttributes];
@@ -506,7 +521,7 @@ const NSInteger kNoMenuItem = -1;
     NSFont *newFont = [sender convertFont:[self font]];
 
     [self setFont:newFont];
-    [self setNeedsDisplay:YES]; // 本来なくても再描画されるが、最下行以下のページガイドの描画が残るための措置 (2009-02-14)
+    [self setNeedsDisplayInRect:[self visibleRect] avoidAdditionalLayout:YES];  // 最下行以下のページガイドの描画が残るための措置 (2009-02-14)
     [self updateLineNumberAndAdjustScroll];
 }
 
@@ -544,7 +559,7 @@ const NSInteger kNoMenuItem = -1;
 - (NSPoint)textContainerOrigin
 // ------------------------------------------------------
 {
-    return [self textContainerOriginPoint];
+    return kTextContainerOrigin;
 }
 
 
@@ -614,6 +629,10 @@ const NSInteger kNoMenuItem = -1;
     }
     
     [super scrollRangeToVisible:range];
+    
+    if (floor(NSAppKitVersionNumber) > NSAppKitVersionNumber10_9) { return; }
+    // The following additional scroll adjustment might be no more required thanks to the changing on Yosemite.
+    // cf.: NSScrollView section in AppKit Release Notes for OS X v10.10
     
     // 完全にスクロールさせる
     // （setTextContainerInset で上下に空白領域を挿入している関係で、ちゃんとスクロールしない場合があることへの対策）
@@ -727,7 +746,7 @@ const NSInteger kNoMenuItem = -1;
                 NSRect insertionRect = NSMakeRect(glypthIndexPoint.x, lineRect.origin.y, 1, NSHeight(lineRect));
                 if (!NSEqualRects([self insertionRect], insertionRect)) {
                     // 古い自前挿入ポイントが描かれたままになることへの対応
-                    [self setNeedsDisplayInRect:[self insertionRect] avoidAdditionalLayout:NO];
+                    [self setNeedsDisplayInRect:[self insertionRect] avoidAdditionalLayout:YES];
                 }
                 [[self insertionPointColor] set];
                 [self lockFocus];
@@ -1028,17 +1047,6 @@ const NSInteger kNoMenuItem = -1;
 
 
 #pragma mark Public Methods
-
-// ------------------------------------------------------
-/// キー入力時の文字修飾辞書をセット
-- (void)applyTypingAttributes
-// ------------------------------------------------------
-{
-    [self setTypingAttributes:@{NSParagraphStyleAttributeName: [self paragraphStyle],
-                                NSFontAttributeName: [self font],
-                                NSForegroundColorAttributeName: [[self theme] textColor]}];
-}
-
 
 // ------------------------------------------------------
 /// 選択文字列を置換
@@ -1420,6 +1428,17 @@ const NSInteger kNoMenuItem = -1;
 
 
 // ------------------------------------------------------
+/// キー入力時の文字修飾辞書をセット
+- (void)applyTypingAttributes
+// ------------------------------------------------------
+{
+    [self setTypingAttributes:@{NSParagraphStyleAttributeName: [self paragraphStyle],
+                                NSFontAttributeName: [self font],
+                                NSForegroundColorAttributeName: [[self theme] textColor]}];
+}
+
+
+// ------------------------------------------------------
 /// ウインドウの透明設定が変更された
 - (void)didWindowOpacityChange:(NSNotification *)notification
 // ------------------------------------------------------
@@ -1432,7 +1451,7 @@ const NSInteger kNoMenuItem = -1;
     // 逆に不透明時に無効だと、ウインドウリサイズ時にビューが伸び縮みする (2014-10 by 1024jp)
     [[self layer] setNeedsDisplayOnBoundsChange:[[self window] isOpaque]];
     
-    [self setNeedsDisplay:YES];
+    [self setNeedsDisplayInRect:[self visibleRect] avoidAdditionalLayout:YES];
 }
 
 
