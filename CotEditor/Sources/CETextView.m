@@ -74,6 +74,7 @@ const NSInteger kNoMenuItem = -1;
 
 static NSPoint kTextContainerOrigin;
 
+
 #pragma mark Superclass Methods
 
 // ------------------------------------------------------

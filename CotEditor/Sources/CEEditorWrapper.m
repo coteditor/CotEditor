@@ -264,20 +264,6 @@ static NSTimeInterval secondColoringDelay;
 
 
 // ------------------------------------------------------
-/// 改行コードをセット
-- (void)setLineEndingString:(NSString *)lineEndingString
-// ------------------------------------------------------
-{
-    for (CEEditorView *editorView in [[[self splitViewController] view] subviews]) {
-        [[editorView textView] setLineEndingString:lineEndingString];
-    }
-    
-    [[self windowController] updateModeInfoIfNeeded];
-    [[self windowController] updateEditorInfoIfNeeded];
-}
-
-
-// ------------------------------------------------------
 /// 選択文字列を置換する
 - (void)replaceTextViewSelectedStringWithString:(NSString *)string
 // ------------------------------------------------------
@@ -728,7 +714,6 @@ static NSTimeInterval secondColoringDelay;
     [[editorView syntaxParser] colorAllString:[self string]];
     [[self focusedTextView] centerSelectionInVisibleArea:self];
     [[self window] makeFirstResponder:[editorView textView]];
-    [[editorView textView] setLineEndingString:[NSString newLineStringWithType:[[self document] lineEnding]]];
     [[editorView textView] centerSelectionInVisibleArea:self];
     [editorView setShowsNavigationBar:[self showsNavigationBar] animate:NO];
     [[self splitViewController] updateCloseSplitViewButton];
@@ -857,7 +842,7 @@ static NSTimeInterval secondColoringDelay;
 - (NSRange)rangeFromDocumentRange:(NSRange)range
 // ------------------------------------------------------
 {
-    if ([[[self focusedTextView] lineEndingString] length] == 1) {
+    if ([[self document] lineEnding] != CENewLineCRLF) {
         return range;
     }
     
@@ -876,7 +861,7 @@ static NSTimeInterval secondColoringDelay;
 - (NSRange)documentRangeFromRange:(NSRange)range
 // ------------------------------------------------------
 {
-    if ([[[self focusedTextView] lineEndingString] length] == 1) {
+    if ([[self document] lineEnding] != CENewLineCRLF) {
         return range;
     }
     

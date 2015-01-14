@@ -51,7 +51,6 @@
 @property (nonatomic, copy) NSDictionary *blockCommentDelimiters;  // ブロックコメント開始・終了文字列のペア
 @property (nonatomic, copy) NSCharacterSet *firstCompletionCharacterSet;  // 入力補完の最初の1文字のセット
 @property (nonatomic, weak) NSView *lineNumberView;
-@property (nonatomic, copy) NSString *lineEndingString;  // 行末文字
 
 @property (nonatomic) CETheme *theme;
 

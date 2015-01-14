@@ -1268,7 +1268,8 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 - (void)applyLineEndingToView
 // ------------------------------------------------------
 {
-    [[self editor] setLineEndingString:[NSString newLineStringWithType:[self lineEnding]]];
+    [[self windowController] updateModeInfoIfNeeded];
+    [[self windowController] updateEditorInfoIfNeeded];
     [[[self windowController] toolbarController] setSelectedLineEnding:[self lineEnding]];
 }
 
