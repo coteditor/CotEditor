@@ -32,7 +32,7 @@
 #import <OgreKit/OgreTextFinder.h>
 #import "CEWindowController.h"
 #import "CEEditorWrapper.h"
-#import "CELineNumberView.h"
+#import "CEEditorScrollView.h"
 #import "CESyntaxParser.h"
 #import "CEThemeManager.h"
 #import "CETextFinder.h"
@@ -42,8 +42,7 @@
 
 @interface CEEditorView ()
 
-@property (nonatomic) NSScrollView *scrollView;
-@property (nonatomic) CELineNumberView *lineNumberView;
+@property (nonatomic) CEEditorScrollView *scrollView;
 @property (nonatomic) NSTextStorage *textStorage;
 
 @property (nonatomic) NSTimer *lineNumUpdateTimer;
@@ -84,8 +83,8 @@
         _navigationBar = [[CENavigationBarController alloc] init];
         [self addSubview:[_navigationBar view]];
 
-        // scrollView 生成
-        _scrollView = [[NSScrollView alloc] initWithFrame:NSZeroRect];
+        // create scroller with line number view
+        _scrollView = [[CEEditorScrollView alloc] initWithFrame:NSZeroRect];
         [_scrollView setBorderType:NSNoBorder];
         [_scrollView setHasVerticalScroller:YES];
         [_scrollView setHasHorizontalScroller:YES];
@@ -93,12 +92,6 @@
         [_scrollView setAutohidesScrollers:NO];
         [_scrollView setDrawsBackground:NO];
         [self addSubview:_scrollView];
-        
-        // LineNumberView 生成
-        _lineNumberView = [[CELineNumberView alloc] initWithScrollView:_scrollView orientation:NSVerticalRuler];
-        [_scrollView setVerticalRulerView:_lineNumberView];
-        [_scrollView setHasVerticalRuler:YES];
-        [_scrollView setHasHorizontalRuler:NO];
         
         // setup autolayout
         NSDictionary *views = @{@"navBar": [_navigationBar view],
@@ -131,7 +124,6 @@
         _textView = [[CETextView alloc] initWithFrame:NSZeroRect textContainer:container];
         [_textView setDelegate:self];
         
-        [_lineNumberView setClientView:_textView];
         [_navigationBar setTextView:_textView];
         [_scrollView setDocumentView:_textView];
         
@@ -248,6 +240,8 @@
     if (isVertical) {
         [textView setLayoutOrientation:NSTextLayoutOrientationVertical];
     }
+    
+    [[self scrollView] invalidateLineNumber];
 }
 
 
@@ -634,7 +628,7 @@
 // ------------------------------------------------------
 {
     [self stopUpdateLineNumberTimer];
-    [[self lineNumberView] setNeedsDisplay:YES];
+    [[self scrollView] invalidateLineNumber];
 }
 
 

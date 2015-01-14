@@ -73,8 +73,6 @@ static const NSString *LineNumberFontName;
 {
     self = [super initWithScrollView:scrollView orientation:orientation];
     if (self) {
-        [self setRuleThickness:kDefaultLineNumWidth];
-        
         // update line number on scroll view resize for text wrapping change
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(invalidateLineNumber)
@@ -144,11 +142,11 @@ static const NSString *LineNumberFontName;
     
     // prepare glyphs
     CGGlyph wrappedMarkGlyph;
-    unichar dash = '-';
+    const unichar dash = '-';
     CTFontGetGlyphsForCharacters(font, &dash, &wrappedMarkGlyph, 1);
     
     CGGlyph digitGlyphs[10];
-    unichar numbers[10] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
+    const unichar numbers[10] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
     CTFontGetGlyphsForCharacters(font, numbers, digitGlyphs, 10);
     
     // calc character width as monospaced font
@@ -157,7 +155,7 @@ static const NSString *LineNumberFontName;
     CGFloat charWidth = advance.width;
     
     // prepare frame width
-    CGFloat width = NSWidth([self frame]);
+    CGFloat width = kDefaultLineNumWidth;
     
     // adjust drawing coordinate
     NSPoint relativePoint = [self convertPoint:NSZeroPoint fromView:[self textView]];
@@ -254,6 +252,15 @@ static const NSString *LineNumberFontName;
 
 
 // ------------------------------------------------------
+/// remove extra thickness
+- (CGFloat)requiredThickness
+// ------------------------------------------------------
+{
+    return [self ruleThickness];
+}
+
+
+// ------------------------------------------------------
 /// start selecting correspondent lines in text view with drag / click event
 - (void)mouseDown:(NSEvent *)theEvent
 // ------------------------------------------------------
@@ -292,7 +299,7 @@ static const NSString *LineNumberFontName;
 - (NSTextView<CETextViewProtocol> *)textView
 // ------------------------------------------------------
 {
-    return (NSTextView<CETextViewProtocol> *)[self clientView];
+    return (NSTextView<CETextViewProtocol> *)[[self scrollView] documentView];
 }
 
 

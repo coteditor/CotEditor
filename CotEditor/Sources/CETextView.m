@@ -34,9 +34,9 @@
  */
 
 #import "CETextView.h"
-#import "CELineNumberView.h"
 #import "CEColorCodePanelController.h"
 #import "CEGlyphPopoverController.h"
+#import "CEEditorScrollView.h"
 #import "CEDocument.h"
 #import "CEKeyBindingManager.h"
 #import "CEScriptManager.h"
@@ -1429,14 +1429,11 @@ static NSPoint kTextContainerOrigin;
 
 
 // ------------------------------------------------------
-/// return current line number view
-- (NSRulerView *)lineNumberView
+/// return enclosing scroll view after casting
+- (CEEditorScrollView *)scrollView
 // ------------------------------------------------------
 {
-    BOOL isVertical = ([self layoutOrientation] == NSTextLayoutOrientationVertical);
-    NSScrollView *scrollView = [self enclosingScrollView];
-    
-    return isVertical ?  [scrollView horizontalRulerView] : [scrollView verticalRulerView];
+    return (CEEditorScrollView *)[self enclosingScrollView];
 }
 
 
@@ -1566,7 +1563,7 @@ static NSPoint kTextContainerOrigin;
 // ------------------------------------------------------
 {
     // 行番号を強制的に更新（スクロール位置が調整されない時は再描画が行われないため）
-    [[self lineNumberView] setNeedsDisplay:YES];
+    [[self scrollView] invalidateLineNumber];
     
     // キャレット／選択範囲が見えるようにスクロール位置を調整
     [self scrollRangeToVisible:[self selectedRange]];
@@ -2056,7 +2053,7 @@ static NSPoint kTextContainerOrigin;
     }
     
     // force redraw line number view
-    [[self lineNumberView] setNeedsDisplay:YES];
+    [[self scrollView] invalidateLineNumber];
 }
 
 @end
