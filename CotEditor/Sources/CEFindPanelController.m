@@ -47,6 +47,7 @@ static const NSUInteger kMaxHistorySize = 20;
 @property (nonatomic) NSColor *highlightColor;
 
 #pragma mark Settings
+@property (nonatomic, copy) NSString *escapeCharacter;
 @property (readonly, nonatomic) BOOL usesRegularExpression;
 @property (readonly, nonatomic) BOOL isWrap;
 @property (readonly, nonatomic) BOOL inSection;
@@ -104,6 +105,8 @@ static const NSUInteger kMaxHistorySize = 20;
         // deserialize options setting from defaults
         [self setOptions:[[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultFindOptionsKey]];
         
+        _escapeCharacter = [[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultFindEscapeCharacterKey];
+        
         // add to responder chain
         [NSApp setNextResponder:self];
     }
@@ -121,7 +124,7 @@ static const NSUInteger kMaxHistorySize = 20;
     [self updateFindHistoryMenu];
     [self updateReplaceHistoryMenu];
     
-    [[self textFinder] setEscapeCharacter:[[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultFindEscapeCharacterKey]];
+    [[self textFinder] setEscapeCharacter:[self escapeCharacter]];
 }
 
 
@@ -206,7 +209,7 @@ static const NSUInteger kMaxHistorySize = 20;
         [menuItem setState:([menuItem tag] == syntax) ? NSOnState : NSOffState];
     
     } else if ([menuItem action] == @selector(changeEscapeCharacter:)) {
-        NSString *escapeCharacter = [[self textFinder] escapeCharacter];
+        NSString *escapeCharacter = [self escapeCharacter];
         [menuItem setState:[[menuItem title] isEqualToString:escapeCharacter] ? NSOnState : NSOffState];
     }
     
@@ -561,6 +564,7 @@ static const NSUInteger kMaxHistorySize = 20;
 {
     NSString *escapeCharater = [sender title];
     
+    [self setEscapeCharacter:escapeCharater];
     [[self textFinder] setEscapeCharacter:escapeCharater];
     [[NSUserDefaults standardUserDefaults] setObject:escapeCharater forKey:CEDefaultFindEscapeCharacterKey];
 }
@@ -730,7 +734,7 @@ static const NSUInteger kMaxHistorySize = 20;
             [OGRegularExpression regularExpressionWithString:[self findString]
                                                      options:[self options]
                                                       syntax:[self syntax]
-                                             escapeCharacter:[[self textFinder] escapeCharacter]];
+                                             escapeCharacter:[self escapeCharacter]];
             
         } @catch (NSException *exception) {
             if ([[exception name] isEqualToString:OgreException]) {
