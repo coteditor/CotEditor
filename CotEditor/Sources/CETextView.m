@@ -128,6 +128,10 @@ static NSPoint kTextContainerOrigin;
         // setup theme
         [self setTheme:[CETheme themeWithName:[defaults stringForKey:CEDefaultThemeKey]]];
         
+        // set layer drawing policies
+        [self setLayerContentsRedrawPolicy:NSViewLayerContentsRedrawOnSetNeedsDisplay];
+        [self setLayerContentsPlacement:NSViewLayerContentsPlacementScaleAxesIndependently];
+        
         // set values
         _autoTabExpandEnabled = [defaults boolForKey:CEDefaultAutoExpandTabKey];
         [self setSmartInsertDeleteEnabled:[defaults boolForKey:CEDefaultSmartInsertAndDeleteKey]];
@@ -202,11 +206,6 @@ static NSPoint kTextContainerOrigin;
     
     // テーマ背景色を反映させる
     [[self window] setBackgroundColor:[[self theme] backgroundColor]];
-    
-    // レイヤーバックドビューにする
-    [[self enclosingScrollView] setWantsLayer:YES];
-    [[[self enclosingScrollView] contentView] setCopiesOnScroll:YES];
-    [self setLayerContentsRedrawPolicy:NSViewLayerContentsRedrawOnSetNeedsDisplay];
     
     // ウインドウの透明フラグを監視する
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -1449,18 +1448,27 @@ static NSPoint kTextContainerOrigin;
 
 
 // ------------------------------------------------------
-/// ウインドウの透明設定が変更された
+/// window's opacity did change
 - (void)didWindowOpacityChange:(NSNotification *)notification
 // ------------------------------------------------------
 {
-    // ウインドウが不透明な時は自前で背景を描画する（サブピクセルレンダリングを有効にするためには layer-backed で不透明なビューが必要）
-    [self setDrawsBackground:[[self window] isOpaque]];
+    BOOL isOpaque = [[self window] isOpaque];
     
-    // 半透明時にこれを有効にすると、ファイルサイズが大きいときにハングに近い状態になるため、
-    // 暫定処置として不透明時にだけ有効にする。
-    // 逆に不透明時に無効だと、ウインドウリサイズ時にビューが伸び縮みする (2014-10 by 1024jp)
-    [[self layer] setNeedsDisplayOnBoundsChange:[[self window] isOpaque]];
+    // let text view have own background if possible
+    [self setDrawsBackground:isOpaque];
     
+    // By opaque window, turn `copiesOnScroll` on to enable Responsive Scrolling with traditional drawing.
+    // -> Better not using layer-backed view to avoid ugly text rendering and performance issue (1024jp on 2015-01)
+    //    cf. Responsive Scrolling section in the Release Notes for OS X 10.9
+    [[[self enclosingScrollView] contentView] setCopiesOnScroll:isOpaque];
+    
+    // Make view layer-backed in order to disable dropshadow from letters on Mavericks and earlier (1024jp on 2015-01)
+    // -> This makes scrolling laggy on huge file.
+    if (floor(NSAppKitVersionNumber) <= NSAppKitVersionNumber10_9) {
+        [[self enclosingScrollView] setWantsLayer:!isOpaque];
+    }
+    
+    // redraw visible area
     [self setNeedsDisplayInRect:[self visibleRect] avoidAdditionalLayout:YES];
 }
 

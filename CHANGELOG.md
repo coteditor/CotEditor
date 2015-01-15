@@ -39,6 +39,7 @@ Change Log
 - Now, Utility actions perform with multiple selection.
 - Delay timing to save text key bindings setting.
 - Localize document types.
+- Improve text rendering with non-opaque view.
 - Tweak text view drawing peformance.
 
 

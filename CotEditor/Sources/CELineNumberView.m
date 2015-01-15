@@ -34,6 +34,9 @@
 #import "constants.h"
 
 
+const CGFloat kMinVerticalThickness = 32.0;
+
+
 @interface CELineNumberView ()
 
 @property (nonatomic) NSTimer *draggingTimer;
@@ -155,7 +158,7 @@ static const NSString *LineNumberFontName;
     CGFloat charWidth = advance.width;
     
     // prepare frame width
-    CGFloat width = kDefaultLineNumWidth;
+    CGFloat width = kMinVerticalThickness;
     
     // adjust drawing coordinate
     NSPoint relativePoint = [self convertPoint:NSZeroPoint fromView:[self textView]];
@@ -235,7 +238,7 @@ static const NSString *LineNumberFontName;
     }
     
     // adjust thickness
-    CGFloat requiredWidth = MAX(numberOfDigits(lineNum) * charWidth + 3 * kLineNumPadding, kDefaultLineNumWidth);
+    CGFloat requiredWidth = MAX(numberOfDigits(lineNum) * charWidth + 3 * kLineNumPadding, kMinVerticalThickness);
     [self setRuleThickness:ceil(requiredWidth)];
     
     CGContextRestoreGState(context);
@@ -256,7 +259,7 @@ static const NSString *LineNumberFontName;
 - (CGFloat)requiredThickness
 // ------------------------------------------------------
 {
-    return [self ruleThickness];
+    return MAX(kMinVerticalThickness, [self ruleThickness]);
 }
 
 

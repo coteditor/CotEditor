@@ -412,7 +412,6 @@ extern NSString *const CEOutlineItemFontItalicKey;
 extern NSString *const CEOutlineItemUnderlineMaskKey;
 
 // layout constants
-extern CGFloat const kDefaultLineNumWidth;
 extern CGFloat const kLineNumPadding;
 extern NSString *const kNavigationBarFontName;
 

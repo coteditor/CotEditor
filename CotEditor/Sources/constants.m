@@ -358,7 +358,6 @@ NSString *const CEOutlineItemFontItalicKey = @"outlineItemFontItalic";
 NSString *const CEOutlineItemUnderlineMaskKey = @"outlineItemUnderlineMask";
 
 // layout constants
-CGFloat const kDefaultLineNumWidth = 32.0;
 CGFloat const kLineNumPadding = 3.0;
 NSString *const kNavigationBarFontName = @"Helvetica";
 
