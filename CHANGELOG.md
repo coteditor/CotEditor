@@ -16,7 +16,7 @@ Change Log
 
 ### Additions/Changes
 
-- Drop support for OS X Lion.
+- Drop support for __OS X Lion.__
 - Migrate document drawer to sidebar style.
     - Add “show document inspector” option to preferences.
     - Improve document information display.
@@ -26,7 +26,7 @@ Change Log
 - Enable to change multiple checkboxes in syntax style editor at once.
 - Improve to display gear icon in menu bar while executing a script.
 - Improve auto-outdent behavior with `}` input.
-- Inprove auto-tab-expand behavior with intent that tab characters and spaces are mixed.
+- Improve auto-tab-expand behavior with intent that tab characters and spaces are mixed.
 - Add hidden “Reveal in Finder” menu item to syntax style action menu in Preferences (visible with `Option` key).
 - Improve CotEditor Script to apply the result to the document that was frontmost when the script was launched.
 - Close Preferences window with esc key.
@@ -40,15 +40,15 @@ Change Log
 - Delay timing to save text key bindings setting.
 - Localize document types.
 - Improve text rendering with non-opaque view.
-- Tweak text view drawing peformance.
+- Tweak text view drawing performance.
 
 
 ### Fixes
 
-- Fix duplication check in key bindings editor.
 - Fix an issue that the preferred file encoding for encoding detection could be set wrong after running file open panel.
 - Fix an issue that incompatible character markup positions were wrong by CR/LF line endings.
-- Fix “Retore Defaults” button enability on text key bindings edit sheet.
+- Fix duplication check in key bindings editor.
+- Fix “Restore Defaults” button enability on text key bindings edit sheet.
 - Fix possible crashes on input.
 - Fix an issue that application could crash after switching theme in preferences.
 - Fix an issue that text font could occasionally change after pasting or inputting text from other application.

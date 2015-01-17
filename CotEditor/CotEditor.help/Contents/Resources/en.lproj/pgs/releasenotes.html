@@ -20,6 +20,88 @@
 
 <article>
 <header>
+	<h1>CotEditor 2.1.0</h1>
+	<p>release: <time>2015-02-xx</time></p>
+</header>
+
+
+<section>
+<h2>New Features</h2>
+
+<ul>
+	<li><code>cot</code> command-line tool.</li>
+	<li>New AppleScript property <code>tab width</code> for document object.</li>
+	<li>Now, CotEditor script receives the absolute file path of the frontmost document as an argument if available.</li>
+	<li>Add “New CotEditor Document with Selection” and “Open File in CotEditor” Services.</li>
+	<li>Add syntax styles for “Erlang” and “Julia”.</li>
+</ul>
+
+</section>
+
+
+<section>
+<h2>Additions/Changes</h2>
+
+<ul>
+	<li>Drop support for <strong>OS X Lion.</strong></li>
+	<li>Migrate document drawer to sidebar style.
+	<ul>
+		<li>Add “show document inspector” option to preferences.</li>
+		<li>Improve document information display.</li>
+	</ul></li>
+	<li>Introduce brand-new find panel with more organized UI.
+	<ul>
+		<li>OniGmo is still be using for the regular expression engine as before.</li>
+		<li>Settings for find panel has been once reset. You can set them again from the gear button in the find panel.</li>
+	</ul></li>
+	<li>Enable to change multiple checkboxes in syntax style editor at once.</li>
+	<li>Improve to display gear icon in menu bar while executing a script.</li>
+	<li>Improve auto-outdent behavior with <code>}</code> input.</li>
+	<li>Improve auto-tab-expand behavior with intent that tab characters and spaces are mixed.</li>
+	<li>Add hidden “Reveal in Finder” menu item to syntax style action menu in Preferences (visible with <kbd>Option</kbd> key).</li>
+	<li>Improve CotEditor Script to apply the result to the document that was frontmost when the script was launched.</li>
+	<li>Close Preferences window with <kbd>esc</kbd> key.</li>
+	<li>Character inspector popover becomes detachable (on Yosemite and later).</li>
+	<li>Update about Console Panel:
+	<ul>
+		<li>Rename “Script Error Panel” to “Console Panel.”</li>
+		<li>Change toolbar style.</li>
+	</ul></li>
+	<li>Change to save <code>com.apple.TextEncoding</code> xattr only if the file already has the encoding xattr or it's a new document.</li>
+	<li>Move removed themes/styles to Trash instead delete them immediately.</li>
+	<li>Now, Utility actions perform with multiple selection.</li>
+	<li>Delay timing to save text key bindings setting.</li>
+	<li>Localize document types.</li>
+	<li>Improve text rendering with non-opaque view.</li>
+	<li>Tweak text view drawing performance.</li>
+</ul>
+</section>
+
+
+<section>
+<h2>Fixes</h2>
+
+<ul>
+	<li>Fix an issue that the preferred file encoding for encoding detection could be set wrong after running file open panel.</li>
+	<li>Fix an issue that incompatible character markup positions were wrong by CR/LF line endings.</li>
+	<li>Fix duplication check in key bindings editor.</li>
+	<li>Fix “Restore Defaults” button enability on text key bindings edit sheet.</li>
+	<li>Fix possible crashes on input.</li>
+	<li>Fix an issue that application could crash after switching theme in preferences.</li>
+	<li>Fix an issue that text font could occasionally change after pasting or inputting text from other application.</li>
+	<li>Fix an issue that number of selected lines displayed less than actual count if last selected lines are blank.</li>
+	<li>Fix an issue that syntax highlights were removed after perform Unhighlight.</li>
+	<li>Fix some missing localizations in simplified Chinese. (Thanks to Wei Wang!)</li>
+	<li>Fix an issue that an alert message was not localized.</li>
+	<li>And other trivial UI fixes and enhancements.</li>
+</ul>
+</section>
+</article>
+
+
+
+<article>
+<header>
 	<h1>CotEditor 2.0.3</h1>
 	<p>release: <time>2014-12-14</time></p>
 </header>
