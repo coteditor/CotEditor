@@ -313,6 +313,9 @@ static const NSUInteger kMaxHistorySize = 20;
         [self setFindString:[self findStringFromPasteboard]];
     }
     
+    // select text in find text field
+    [[self findPanel] makeFirstResponder:[[self findPanel] nextResponder]];
+    
     [super showFindPanel:sender];
 }
 
