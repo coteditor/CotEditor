@@ -597,11 +597,11 @@ static NSPoint kTextContainerOrigin;
         CGFloat linePadding = [[self textContainer] lineFragmentPadding];
         CGFloat inset = [self textContainerOrigin].x;
         
-        NSFont *font = [self typingAttributes][NSFontAttributeName];
+        NSFont *font = [(CELayoutManager *)[self layoutManager] textFont];
         font = [font screenFont] ? : font;
-        column *= [@"M" sizeWithAttributes:@{NSFontAttributeName:font}].width;
+        column *= [@"M" sizeWithAttributes:@{NSFontAttributeName: font}].width;
         
-        CGFloat x = floor(column + inset + linePadding) + 2.5;  // +2px for adjusting
+        CGFloat x = floor(column + inset + linePadding) + 2.5;  // +2px for adjustment
         [[[self textColor] colorWithAlphaComponent:0.2] set];
         [NSBezierPath strokeLineFromPoint:NSMakePoint(x, 0)
                                   toPoint:NSMakePoint(x, length)];
