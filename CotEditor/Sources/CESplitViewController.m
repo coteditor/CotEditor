@@ -57,6 +57,7 @@
     [self updateOpenSplitViewButtons];
 }
 
+
 // ------------------------------------------------------
 /// 自身の view として NSSplitView を返す (NSSplitViewController のメソッド)
 - (NSSplitView *)splitView

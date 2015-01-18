@@ -132,7 +132,6 @@ static NSTimeInterval secondColoringDelay;
     [self setFocusedTextView:[editorView textView]];
     
     [self setupViewParamsOnInit:YES];
-    [self setShowsInvisibles:[[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultShowInvisiblesKey]];
 }
 
 
@@ -685,7 +684,7 @@ static NSTimeInterval secondColoringDelay;
 {
     CEEditorView *currentEditorView;
     
-    // 基準となる CEEditorView を探す
+    // find CEEditorView to base
     id view = [sender isMemberOfClass:[NSMenuItem class]] ? [[self window] firstResponder] : sender;
     while (view) {
         if ([view isKindOfClass:[CEEditorView class]]) {
@@ -697,25 +696,38 @@ static NSTimeInterval secondColoringDelay;
     
     if (!currentEditorView) { return; }
     
-    NSRange selectedRange = [[currentEditorView textView] selectedRange];
-    CEEditorView *editorView = [[CEEditorView alloc] initWithFrame:[currentEditorView frame]];
+    // end current editing
+    [[self class] endCurrentEditing];
+    
+    CEEditorView *newEditorView = [[CEEditorView alloc] initWithFrame:[currentEditorView frame]];
 
-    [editorView replaceTextStorage:[[self focusedTextView] textStorage]];
-    [editorView setEditorWrapper:self];
-    // 新たな subView は、押された追加ボタンが属する（またはフォーカスのある）editorView のすぐ下に挿入する
-    [[[self splitViewController] view] addSubview:editorView positioned:NSWindowAbove relativeTo:currentEditorView];
+    [newEditorView replaceTextStorage:[[self focusedTextView] textStorage]];
+    [newEditorView setEditorWrapper:self];
+    
+    // instert new editorView just below the editorView that the pressed button belongs to or has focus
+    [[[self splitViewController] view] addSubview:newEditorView
+                                       positioned:NSWindowAbove
+                                       relativeTo:currentEditorView];
+    
+    // apply current status to the new editorView
     [self setupViewParamsOnInit:NO];
-    [[editorView textView] setFont:[[self focusedTextView] font]];
-    [[editorView textView] setTheme:[self theme]];
-    [[editorView textView] setLineSpacing:[[self focusedTextView] lineSpacing]];
-    [self setShowsInvisibles:[(CELayoutManager *)[[self focusedTextView] layoutManager] showsInvisibles]];
-    [[editorView textView] setSelectedRange:selectedRange];
-    [editorView setSyntaxWithName:[[self syntaxParser] styleName]];
-    [[editorView syntaxParser] colorAllString:[self string]];
-    [[self focusedTextView] centerSelectionInVisibleArea:self];
-    [[self window] makeFirstResponder:[editorView textView]];
-    [[editorView textView] centerSelectionInVisibleArea:self];
-    [editorView setShowsNavigationBar:[self showsNavigationBar] animate:NO];
+    [[newEditorView textView] setFont:[[currentEditorView textView] font]];
+    [[newEditorView textView] setTheme:[[currentEditorView textView] theme]];
+    [[newEditorView textView] setLineSpacing:[[currentEditorView textView] lineSpacing]];
+    [[newEditorView textView] setSelectedRange:[[currentEditorView textView] selectedRange]];
+    
+    [newEditorView setSyntaxWithName:[[self syntaxParser] styleName]];
+    [newEditorView updateOutlineMenu];
+    [[newEditorView syntaxParser] colorAllString:[self string]];
+    
+    // move focus to the new editor
+    [[self window] makeFirstResponder:[newEditorView textView]];
+    
+    // adjust visible areas
+    [[currentEditorView textView] centerSelectionInVisibleArea:self];
+    [[newEditorView textView] centerSelectionInVisibleArea:self];
+    
+    // update split buttons state
     [[self splitViewController] updateCloseSplitViewButton];
 }
 
@@ -727,7 +739,7 @@ static NSTimeInterval secondColoringDelay;
 {
     CEEditorView *editorViewToClose;
     
-    // 閉じるべき CEEditorView を探す
+    // find CEEditorView to close
     id view = [sender isMemberOfClass:[NSMenuItem class]] ? [[self window] firstResponder] : sender;
     while (view) {
         if ([view isKindOfClass:[CEEditorView class]]) {
@@ -739,7 +751,10 @@ static NSTimeInterval secondColoringDelay;
     
     if (!editorViewToClose) { return; }
     
-    // フォーカスのあるテキストビューの場合はフォーカスを隣に移す
+    // end current editing
+    [[self class] endCurrentEditing];
+    
+    // move focus to the next text view if the view to close has a focus
     if ([[self window] firstResponder] == [editorViewToClose textView]) {
         NSArray *subViews = [[[self splitViewController] view] subviews];
         NSUInteger count = [subViews count];
@@ -751,8 +766,10 @@ static NSTimeInterval secondColoringDelay;
         [[self window] makeFirstResponder:[subViews[index] textView]];
     }
     
-    // 閉じる
+    // close
     [editorViewToClose removeFromSuperview];
+    
+    // update split buttons state
     [[self splitViewController] updateCloseSplitViewButton];
 }
 
@@ -770,6 +787,18 @@ static NSTimeInterval secondColoringDelay;
 #pragma mark Private Methods
 
 // ------------------------------------------------------
+/// fix current marked text
++ (void)endCurrentEditing
+// ------------------------------------------------------
+{
+    id<NSTextInputClient> client = [[NSTextInputContext currentInputContext] client];
+    if ([client hasMarkedText]) {
+        [client doCommandBySelector:@selector(insertNewline:)];
+    }
+}
+
+
+// ------------------------------------------------------
 /// サブビューに初期値を設定
 - (void)setupViewParamsOnInit:(BOOL)isInitial
 // ------------------------------------------------------
@@ -782,12 +811,14 @@ static NSTimeInterval secondColoringDelay;
         [self setWrapsLines:[defaults boolForKey:CEDefaultWrapLinesKey]];
         [self setVerticalLayoutOrientation:[defaults boolForKey:CEDefaultLayoutTextVerticalKey]];
         [self setShowsPageGuide:[defaults boolForKey:CEDefaultShowPageGuideKey]];
+        [self setShowsInvisibles:[defaults boolForKey:CEDefaultShowInvisiblesKey]];
     } else {
         [self setShowsLineNum:[self showsLineNum]];
         [self setShowsNavigationBar:[self showsNavigationBar] animate:NO];
         [self setWrapsLines:[self wrapsLines]];
         [self setVerticalLayoutOrientation:[self isVerticalLayoutOrientation]];
         [self setShowsPageGuide:[self showsPageGuide]];
+        [self setShowsInvisibles:[self showsInvisibles]];
     }
 }
 

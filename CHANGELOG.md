@@ -50,6 +50,7 @@ Change Log
 - Fix duplication check in key bindings editor.
 - Fix “Restore Defaults” button enability on text key bindings edit sheet.
 - Fix possible crashes on input.
+- Fix an issue that application could crash after closing split view.
 - Fix an issue that application could crash after switching theme in preferences.
 - Fix an issue that text font could occasionally change after pasting or inputting text from other application.
 - Fix an issue that number of selected lines displayed less than actual count if last selected lines are blank.
