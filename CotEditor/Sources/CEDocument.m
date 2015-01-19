@@ -987,7 +987,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 #pragma mark Notifications
 
 //=======================================================
-// Notification  <- CESplitView
+// Notification  <- CEWindowController
 //=======================================================
 
 // ------------------------------------------------------
@@ -995,7 +995,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 - (void)documentDidFinishOpen:(NSNotification *)notification
 // ------------------------------------------------------
 {
-    if ([notification object] == [[self windowController] window]) {
+    if ([notification object] == [self windowController]) {
         // 書き込み禁止アラートを表示
         [self showNotWritableAlert];
     }

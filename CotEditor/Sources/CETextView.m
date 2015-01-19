@@ -1177,6 +1177,9 @@ static NSPoint kTextContainerOrigin;
     [[self enclosingScrollView] setScrollerKnobStyle:knobStyle];
     
     _theme = theme;
+    
+    // redraw selection
+    [self setNeedsDisplayInRect:[self visibleRect] avoidAdditionalLayout:YES];
 }
 
 

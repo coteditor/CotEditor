@@ -33,17 +33,6 @@
 #import "constants.h"
 
 
-@interface CESplitViewController ()
-
-@property (nonatomic) BOOL finishedOpen;
-
-@end
-
-
-
-
-#pragma mark -
-
 @implementation CESplitViewController
 
 #pragma mark Superclass Methods
@@ -86,7 +75,8 @@
         return ([[[self view] subviews] count] > 1);
         
     } else if (([menuItem action] == @selector(focusNextSplitTextView:)) ||
-               ([menuItem action] == @selector(focusPrevSplitTextView:))) {
+               ([menuItem action] == @selector(focusPrevSplitTextView:)))
+    {
         return ([[[self view] subviews] count] > 1);
     }
     
@@ -98,107 +88,12 @@
 #pragma mark Public Methods
 
 // ------------------------------------------------------
-/// 全layoutManagerを配列で返す
-- (NSArray *)layoutManagers
-// ------------------------------------------------------
-{
-    NSMutableArray *managers = [NSMutableArray array];
-    
-    for (CEEditorView *subview in [[self view] subviews]) {
-        [managers addObject:[[subview textView] layoutManager]];
-    }
-    
-    return [managers copy];
-}
-
-
-// ------------------------------------------------------
-/// 行番号表示の有無を設定
-- (void)setShowsLineNum:(BOOL)showsLineNum
+/// enumerate all subviews as CEEditorView
+- (void)enumerateEditorViewsUsingBlock:(void (^)(CEEditorView *))block
 // ------------------------------------------------------
 {
     for (CEEditorView *subview in [[self view] subviews]) {
-        [subview setShowsLineNum:showsLineNum];
-    }
-}
-
-
-// ------------------------------------------------------
-/// ナビゲーションバー描画の有無を設定
-- (void)setShowsNavigationBar:(BOOL)showsNavigationBar animate:(BOOL)performAnimation
-// ------------------------------------------------------
-{
-    for (CEEditorView *subview in [[self view] subviews]) {
-        [subview setShowsNavigationBar:showsNavigationBar animate:performAnimation];
-    }
-}
-
-
-// ------------------------------------------------------
-/// ラップする／しないを設定
-- (void)setWrapsLines:(BOOL)wrapsLines
-// ------------------------------------------------------
-{
-    for (CEEditorView *subview in [[self view] subviews]) {
-        [subview setWrapsLines:wrapsLines];
-    }
-    [[self view] setNeedsDisplay:YES];
-}
-
-
-// ------------------------------------------------------
-/// 横書き／縦書きを設定
-- (void)setVerticalLayoutOrientation:(BOOL)isVerticalLayoutOrientation
-// ------------------------------------------------------
-{
-    NSTextLayoutOrientation orientation = isVerticalLayoutOrientation ? NSTextLayoutOrientationVertical : NSTextLayoutOrientationHorizontal;
-    for (CEEditorView *subview in [[self view] subviews]) {
-        [[subview textView] setLayoutOrientation:orientation];
-    }
-}
-
-
-// ------------------------------------------------------
-/// 不可視文字の表示／非表示を設定
-- (void)setShowsInvisibles:(BOOL)showsInvisibles
-// ------------------------------------------------------
-{
-    for (CEEditorView *subview in [[self view] subviews]) {
-        [subview setShowsInvisibles:showsInvisibles];
-    }
-}
-
-
-// ------------------------------------------------------
-/// ページガイドの表示／非表示を設定
-- (void)setShowsPageGuide:(BOOL)showsPageGuide
-// ------------------------------------------------------
-{
-    for (CEEditorView *subview in [[self view] subviews]) {
-        [[subview textView] setShowsPageGuide:showsPageGuide];
-        [[subview textView] setNeedsDisplayInRect:[[subview textView] visibleRect] avoidAdditionalLayout:YES];
-    }
-}
-
-
-// ------------------------------------------------------
-/// ソフトタブの有効／無効を設定
-- (void)setAutoTabExpandEnabled:(BOOL)isEnabled
-// ------------------------------------------------------
-{
-    for (CEEditorView *subview in [[self view] subviews]) {
-        [[subview textView] setAutoTabExpandEnabled:isEnabled];
-    }
-}
-
-
-// ------------------------------------------------------
-/// 文字にアンチエイリアスを使うかどうかを設定
-- (void)setUsesAntialias:(BOOL)usesAntialias
-// ------------------------------------------------------
-{
-    for (CEEditorView *subview in [[self view] subviews]) {
-        [subview setUsesAntialias:usesAntialias];
+        block(subview);
     }
 }
 
@@ -210,77 +105,9 @@
 {
     BOOL isEnabled = ([[[self view] subviews] count] > 1);
     
-    for (CEEditorView *subview in [[self view] subviews]) {
-        [subview updateCloseSplitViewButton:isEnabled];
-    }
-}
-
-
-// ------------------------------------------------------
-/// キャレットを先頭に移動
-- (void)moveAllCaretToBeginning
-// ------------------------------------------------------
-{
-    for (CEEditorView *subview in [[self view] subviews]) {
-        [subview setCaretToBeginning];
-    }
-}
-
-
-// ------------------------------------------------------
-/// テーマを設定
-- (void)setTheme:(CETheme *)theme
-// ------------------------------------------------------
-{
-    if (!theme) { return; }
-    
-    for (CEEditorView *subview in [[self view] subviews]) {
-        CETextView *textView = [subview textView];
-        [textView setTheme:theme];
-        [subview recolorAllTextViewString];
-        [textView setNeedsDisplayInRect:[textView visibleRect] avoidAdditionalLayout:YES];  //  選択範囲の再描画
-    }
-}
-
-
-// ------------------------------------------------------
-/// シンタックススタイルを設定
-- (void)setSyntaxWithName:(NSString *)syntaxName
-// ------------------------------------------------------
-{
-    if (!syntaxName) { return; }
-    
-    for (CEEditorView *subview in [[self view] subviews]) {
-        [subview setSyntaxWithName:syntaxName];
-    }
-}
-
-
-// ------------------------------------------------------
-/// 全てを再カラーリング、文書表示処理の完了をポスト（ここが最終地点）
-- (void)recolorAllTextView
-// ------------------------------------------------------
-{
-    for (CEEditorView *subview in [[self view] subviews]) {
-        [subview recolorAllTextViewString];
-    }
-    
-    if (![self finishedOpen]) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:CEDocumentDidFinishOpenNotification
-                                                            object:[[self view] window]];
-        [self setFinishedOpen:YES];
-    }
-}
-
-
-// ------------------------------------------------------
-/// 全てのアウトラインメニューを再更新
-- (void)updateAllOutlineMenu
-// ------------------------------------------------------
-{
-    for (CEEditorView *subview in [[self view] subviews]) {
-        [subview updateOutlineMenu];
-    }
+    [self enumerateEditorViewsUsingBlock:^(CEEditorView *editorView) {
+        [editorView updateCloseSplitViewButton:isEnabled];
+    }];
 }
 
 
@@ -377,9 +204,11 @@
 - (void)updateOpenSplitViewButtons
 // ------------------------------------------------------
 {
-    for (CEEditorView *subview in [[self view] subviews]) {
-        [[subview navigationBar] setSplitOrientationVertical:[[self splitView] isVertical]];
-    }
+    BOOL isVertical = [[self splitView] isVertical];
+    
+    [self enumerateEditorViewsUsingBlock:^(CEEditorView *editorView) {
+        [[editorView navigationBar] setSplitOrientationVertical:isVertical];
+    }];
 }
 
 @end
