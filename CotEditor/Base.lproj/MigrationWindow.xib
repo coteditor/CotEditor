@@ -19,7 +19,7 @@
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <window title="Welcome to CotEditor 2.0" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="QvC-M9-y7g">
+        <window title="Welcome to CotEditor 2.0" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="QvC-M9-y7g" userLabel="Welcome to CotEditor 2.1">
             <windowStyleMask key="styleMask" closable="YES"/>
             <rect key="contentRect" x="196" y="240" width="460" height="310"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
@@ -35,7 +35,7 @@
                                 <subviews>
                                     <textField horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="4tE-FT-D5Q">
                                         <rect key="frame" x="134" y="25" width="192" height="39"/>
-                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="CotEditor 2.0" id="s49-9c-WyQ">
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="CotEditor 2.1" id="s49-9c-WyQ">
                                             <font key="font" size="32" name="HelveticaNeue-Light"/>
                                             <color key="textColor" white="0.33000000000000002" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -55,12 +55,10 @@
                                     <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="a6j-Ka-Roa">
                                         <rect key="frame" x="166" y="84" width="128" height="128"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="128" id="Vfm-R5-XoK"/>
-                                            <constraint firstAttribute="width" constant="128" id="Zun-p0-mXY"/>
+                                            <constraint firstAttribute="width" secondItem="a6j-Ka-Roa" secondAttribute="height" multiplier="1:1" id="OeL-8g-bLt"/>
                                             <constraint firstAttribute="height" constant="128" id="ani-KQ-dkr"/>
-                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="128" id="xnX-jb-fcz"/>
                                         </constraints>
-                                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="AppIcon" id="nmD-Xa-bwe"/>
+                                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSApplicationIcon" id="nmD-Xa-bwe"/>
                                     </imageView>
                                 </subviews>
                                 <constraints>
@@ -380,7 +378,7 @@ DQ
         </customView>
     </objects>
     <resources>
-        <image name="AppIcon" width="128" height="128"/>
+        <image name="NSApplicationIcon" width="128" height="128"/>
         <image name="NSMenuOnStateTemplate" width="12" height="12"/>
     </resources>
 </document>
