@@ -420,6 +420,7 @@ static NSTimeInterval secondColoringDelay;
     _verticalLayoutOrientation = isVerticalLayoutOrientation;
     
     NSTextLayoutOrientation orientation = isVerticalLayoutOrientation ? NSTextLayoutOrientationVertical : NSTextLayoutOrientationHorizontal;
+    
     [[self splitViewController] enumerateEditorViewsUsingBlock:^(CEEditorView *editorView) {
         [[editorView textView] setLayoutOrientation:orientation];
     }];
@@ -487,15 +488,14 @@ static NSTimeInterval secondColoringDelay;
 - (void)setShowsPageGuide:(BOOL)showsPageGuide
 // ------------------------------------------------------
 {
+    _showsPageGuide = showsPageGuide;
+    
     [[self splitViewController] enumerateEditorViewsUsingBlock:^(CEEditorView *editorView) {
         [[editorView textView] setShowsPageGuide:showsPageGuide];
         [[editorView textView] setNeedsDisplayInRect:[[editorView textView] visibleRect] avoidAdditionalLayout:YES];
     }];
-    
     [[[self windowController] toolbarController] toggleItemWithTag:CEToolbarShowPageGuideItemTag
                                                              setOn:showsPageGuide];
-    
-    _showsPageGuide = showsPageGuide;
 }
 
 
@@ -515,13 +515,11 @@ static NSTimeInterval secondColoringDelay;
 {
     if (![self syntaxParser]) { return; }
     
-    BOOL showsNavigationBar = [self showsNavigationBar];
-    
     [[self splitViewController] enumerateEditorViewsUsingBlock:^(CEEditorView *editorView) {
         [editorView setSyntaxWithName:name];
         if (recolorNow) {
             [editorView recolorAllTextViewString];
-            if (showsNavigationBar) {
+            if ([[editorView navigationBar] isShown]) {
                 [editorView updateOutlineMenu];
             }
         }
@@ -535,6 +533,7 @@ static NSTimeInterval secondColoringDelay;
 // ------------------------------------------------------
 {
     [self stopColoringTimer];
+    
     [[self splitViewController] enumerateEditorViewsUsingBlock:^(CEEditorView *editorView) {
         [editorView recolorAllTextViewString];
     }];
@@ -548,7 +547,7 @@ static NSTimeInterval secondColoringDelay;
 {
     [self stopColoringTimer];
     
-    __block CESplitViewController *splitViewController = [self splitViewController];
+    CESplitViewController *splitViewController = [self splitViewController];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.01 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [splitViewController enumerateEditorViewsUsingBlock:^(CEEditorView *editorView) {
             [editorView updateOutlineMenu];
@@ -645,10 +644,10 @@ static NSTimeInterval secondColoringDelay;
 - (IBAction)toggleAntialias:(id)sender
 // ------------------------------------------------------
 {
-    CELayoutManager *manager = (CELayoutManager *)[[self focusedTextView] layoutManager];
+    BOOL usesAntialias = ![(CELayoutManager *)[[self focusedTextView] layoutManager] usesAntialias];
     
     [[self splitViewController] enumerateEditorViewsUsingBlock:^(CEEditorView *editorView) {
-        [editorView setUsesAntialias:![manager usesAntialias]];
+        [editorView setUsesAntialias:usesAntialias];
     }];
 }
 
@@ -658,13 +657,13 @@ static NSTimeInterval secondColoringDelay;
 - (IBAction)toggleInvisibleChars:(id)sender
 // ------------------------------------------------------
 {
-    BOOL showsInvisibles = [(CELayoutManager *)[[self focusedTextView] layoutManager] showsInvisibles];
+    BOOL showsInvisibles = ![(CELayoutManager *)[[self focusedTextView] layoutManager] showsInvisibles];
     
     [[self splitViewController] enumerateEditorViewsUsingBlock:^(CEEditorView *editorView) {
-        [editorView setShowsInvisibles:!showsInvisibles];
+        [editorView setShowsInvisibles:showsInvisibles];
     }];
     [[[self windowController] toolbarController] toggleItemWithTag:CEToolbarShowInvisibleCharsItemTag
-                                                             setOn:!showsInvisibles];
+                                                             setOn:showsInvisibles];
 }
 
 
@@ -678,7 +677,6 @@ static NSTimeInterval secondColoringDelay;
     [[self splitViewController] enumerateEditorViewsUsingBlock:^(CEEditorView *editorView) {
         [[editorView textView] setAutoTabExpandEnabled:isEnabled];
     }];
-    
     [[[self windowController] toolbarController] toggleItemWithTag:CEToolbarAutoTabExpandItemTag
                                                              setOn:isEnabled];
 }

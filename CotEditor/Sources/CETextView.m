@@ -1229,7 +1229,7 @@ static NSPoint kTextContainerOrigin;
     // create shifted string
     NSMutableString *newString = [NSMutableString stringWithString:[[self string] substringWithRange:lineRange]];
     NSUInteger numberOfLines = [newString replaceOccurrencesOfString:@"\n"
-                                                          withString:[NSString stringWithFormat:@"%@%@", @"\n", indent]
+                                                          withString:[NSString stringWithFormat:@"\n%@", indent]
                                                              options:0
                                                                range:NSMakeRange(0, [newString length])];
     [newString insertString:indent atIndex:0];
