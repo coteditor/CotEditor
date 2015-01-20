@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014 CotEditor Project
+ © 2014-2015 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -38,6 +38,8 @@
 
 @interface CELayoutManager ()
 
+@property (nonatomic) CGFloat textFontGlyphY;  // 表示フォントグリフのY位置を返す
+
 @property (nonatomic) BOOL showsSpace;
 @property (nonatomic) BOOL showsTab;
 @property (nonatomic) BOOL showsNewLine;
@@ -52,7 +54,6 @@
 // readonly properties
 @property (readwrite, nonatomic) CGFloat textFontPointSize;
 @property (readwrite, nonatomic) CGFloat defaultLineHeightForTextFont;
-@property (readwrite, nonatomic) CGFloat textFontGlyphY;
 
 @end
 
@@ -330,29 +331,6 @@ static BOOL usesTextFontForInvisibles;
 
 
 // ------------------------------------------------------
-/// 表示フォントの各種値をキャッシュする
-- (void)setValuesForTextFont:(NSFont *)textFont
-// ------------------------------------------------------
-{
-    if (textFont) {
-        [self setDefaultLineHeightForTextFont:[self defaultLineHeightForFont:textFont] * kDefaultLineHeightMultiple];
-        [self setTextFontPointSize:[textFont pointSize]];
-        [self setTextFontGlyphY:[textFont pointSize]];
-        // （textFontGlyphYは「複合フォントでも描画位置Y座標を固定」する時のみlocationForGlyphAtIndex:内で使われる。
-        // 本来の値は[textFont ascender]か？ 2009.03.28）
-
-        // [textFont pointSize]は通常、([textFont ascender] - [textFont descender])と一致する。例えばCourier 48ptだと、
-        // ascender　=　36.187500, descender = -11.812500 となっている。 2009.03.28
-
-    } else {
-        [self setDefaultLineHeightForTextFont:0.0];
-        [self setTextFontPointSize:0.0];
-        [self setTextFontGlyphY:0.0];
-    }
-}
-
-
-// ------------------------------------------------------
 /// 複合フォントで行の高さがばらつくのを防止するため、規定した行の高さを返す
 - (CGFloat)lineHeight
 // ------------------------------------------------------
@@ -367,6 +345,29 @@ static BOOL usesTextFontForInvisibles;
 
 #pragma mark Private Methods
 
+// ------------------------------------------------------
+/// 表示フォントの各種値をキャッシュする
+- (void)setValuesForTextFont:(NSFont *)textFont
+// ------------------------------------------------------
+{
+    if (textFont) {
+        [self setDefaultLineHeightForTextFont:[self defaultLineHeightForFont:textFont] * kDefaultLineHeightMultiple];
+        [self setTextFontPointSize:[textFont pointSize]];
+        [self setTextFontGlyphY:[textFont pointSize]];
+        // （textFontGlyphYは「複合フォントでも描画位置Y座標を固定」する時のみlocationForGlyphAtIndex:内で使われる。
+        // 本来の値は[textFont ascender]か？ 2009.03.28）
+        
+        // [textFont pointSize]は通常、([textFont ascender] - [textFont descender])と一致する。例えばCourier 48ptだと、
+        // ascender　=　36.187500, descender = -11.812500 となっている。 2009.03.28
+        
+    } else {
+        [self setDefaultLineHeightForTextFont:0.0];
+        [self setTextFontPointSize:0.0];
+        [self setTextFontGlyphY:0.0];
+    }
+}
+
+
 //------------------------------------------------------
 /// グリフを描画する位置を返す
 - (NSPoint)pointToDrawGlyphAtIndex:(NSUInteger)glyphIndex
@@ -377,7 +378,6 @@ static BOOL usesTextFontForInvisibles;
     
     return NSMakePoint(drawPoint.x, -glyphPoint.y);
 }
-
 
 
 //------------------------------------------------------

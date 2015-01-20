@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014 CotEditor Project
+ © 2014-2015 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -41,10 +41,8 @@
 
 @property (readonly, nonatomic) CGFloat textFontPointSize;
 @property (readonly, nonatomic) CGFloat defaultLineHeightForTextFont;  // 表示フォントでの行高
-@property (readonly, nonatomic) CGFloat textFontGlyphY;  // 表示フォントグリフのY位置を返す
 
 
-- (void)setValuesForTextFont:(NSFont *)font;
 - (CGFloat)lineHeight;
 
 @end
