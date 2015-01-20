@@ -9,7 +9,7 @@
  encoding="UTF-8"
  ------------------------------------------------------------------------------
  
- © 2014 CotEditor Project
+ © 2014-2015 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -30,7 +30,13 @@
 #import "CEConsolePanelController.h"
 
 
+const CGFloat kFontSize = 11;
+
+
 @interface CEConsolePanelController ()
+
+@property (nonatomic, copy) NSParagraphStyle *messageParagraphStyle;
+@property (nonatomic) NSDateFormatter *dateFormatter;
 
 @property (nonatomic, strong) IBOutlet NSTextView *textView;  // on 10.8 NSTextView cannot be weak
 @property (nonatomic) IBOutlet NSTextFinder *textFinder;
@@ -51,7 +57,18 @@
 - (instancetype)init
 // ------------------------------------------------------
 {
-    return [super initWithWindowNibName:@"ConsolePanel"];
+    self = [super initWithWindowNibName:@"ConsolePanel"];
+    if (self) {
+        _dateFormatter = [[NSDateFormatter alloc] init];
+        [_dateFormatter setDateFormat:@"YYYY-MM-DD HH:MM:SS"];
+        
+        // indent for message body
+        NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+        [paragraphStyle setHeadIndent:kFontSize];
+        [paragraphStyle setFirstLineHeadIndent:kFontSize];
+        _messageParagraphStyle = [paragraphStyle copy];
+    }
+    return self;
 }
 
 
@@ -62,7 +79,9 @@
 {
     [super windowDidLoad];
     
-    [[self textView] setFont:[NSFont messageFontOfSize:11]];
+    [[self textView] setFont:[NSFont messageFontOfSize:kFontSize]];
+    [[self textView] setTextContainerInset:NSMakeSize(0.0, 4.0)];
+
 }
 
 
@@ -70,14 +89,24 @@
 #pragma mark Public Methods
 
 // ------------------------------------------------------
-/// append given string to the console
-- (void)addErrorString:(NSString *)string
+/// append given message to the console
+- (void)appendMessage:(NSString *)message title:(NSString *)title
 // ------------------------------------------------------
 {
-    [[self textView] setEditable:YES];
-    [[self textView] setSelectedRange:NSMakeRange([[[self textView] string] length], 0)];
-    [[self textView] insertText:[NSString stringWithFormat:@"%@\n", string]];
-    [[self textView] setEditable:NO];
+    NSString *date = [[self dateFormatter] stringFromDate:[NSDate date]];
+    NSString *string = [NSString stringWithFormat:@"[%@] %@\n%@\n", date, title, message];
+    
+    NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:string];
+    
+    // bold title
+    [attrString applyFontTraits:NSBoldFontMask range:NSMakeRange([date length] + 3, [title length])];
+    
+    // apply message paragraph style to body
+    [attrString addAttribute:NSParagraphStyleAttributeName
+                       value:[self messageParagraphStyle]
+                       range:NSMakeRange([attrString length] - [message length] - 1, [message length])];
+    
+    [[[self textView] textStorage] appendAttributedString:attrString];
 }
 
 
@@ -86,7 +115,7 @@
 
 // ------------------------------------------------------
 /// flush console
-- (IBAction)cleanScriptError:(id)sender
+- (IBAction)cleanConsole:(id)sender
 // ------------------------------------------------------
 {
     [[self textView] setString:@""];
@@ -99,7 +128,7 @@
 
 #pragma mark -
 
-@implementation CEScriptErrorView
+@implementation CEConsoleTextView
 
 // ------------------------------------------------------
 /// catch shortcut input

@@ -34,6 +34,7 @@ Change Log
 - Update about Console Panel:
     - Rename “Script Error Panel” to “Console Panel.”
     - Change toolbar style.
+    - Beautify output message style.
 - Change to save `com.apple.TextEncoding` xattr only if the file already has the encoding xattr or it's a new document.
 - Move removed themes/styles to Trash instead delete them immediately.
 - Now, Utility actions perform with multiple selection.

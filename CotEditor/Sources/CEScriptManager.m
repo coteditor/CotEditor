@@ -52,17 +52,6 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 };
 
 
-@interface CEScriptManager ()
-
-@property (nonatomic) NSDateFormatter *dateFormatter;
-
-@end
-
-
-
-
-#pragma mark -
-
 @implementation CEScriptManager
 
 #pragma mark Singleton
@@ -93,9 +82,6 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 {
     self = [super init];
     if (self) {
-        _dateFormatter = [[NSDateFormatter alloc] init];
-        [_dateFormatter setDateFormat:@"YYYY-MM-DD HH:MM:SS"];
-        
         [self copySampleScriptToUserDomain:self];
         
         // run dummy AppleScript once for quick script launch
@@ -493,7 +479,7 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
         [URL getResourceValue:&resourceType forKey:NSURLFileResourceTypeKey error:nil];
         
         if ([resourceType isEqualToString:NSURLFileResourceTypeDirectory]) {
-            NSString *title = [self menuTitleFromFileName:[URL lastPathComponent]];
+            NSString *title = [self scriptNameFromURL:URL];
             if ([title isEqualToString:@"-"]) {  // separator
                 [menu addItem:[NSMenuItem separatorItem]];
                 continue;
@@ -510,7 +496,7 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
         {
             NSUInteger modifierMask = 0;
             NSString *keyEquivalent = [self keyEquivalentAndModifierMask:&modifierMask fromFileName:[URL lastPathComponent]];
-            NSString *title = [self menuTitleFromFileName:[URL lastPathComponent]];
+            NSString *title = [self scriptNameFromURL:URL];
             NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:title
                                                           action:@selector(launchScript:)
                                                    keyEquivalent:keyEquivalent];
@@ -526,27 +512,28 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 
 //------------------------------------------------------
 /// ファイル／フォルダ名からメニューアイテムタイトル名を生成
-- (NSString *)menuTitleFromFileName:(NSString *)fileName
+- (NSString *)scriptNameFromURL:(NSURL *)URL
 //------------------------------------------------------
 {
-    NSString *menuTitle = [fileName stringByDeletingPathExtension];
-    NSString *extnFirstChar = [[menuTitle pathExtension] substringFromIndex:0];
+    NSString *fileName = [URL lastPathComponent];
+    NSString *scriptName = [fileName stringByDeletingPathExtension];
+    NSString *extnFirstChar = [[scriptName pathExtension] substringFromIndex:0];
     NSCharacterSet *specSet = [NSCharacterSet characterSetWithCharactersInString:@"^~$@"];
 
     // remove the number prefix ordering
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"^[0-9]+\\)"
                                                                            options:0 error:nil];
-    menuTitle = [regex stringByReplacingMatchesInString:menuTitle
+    scriptName = [regex stringByReplacingMatchesInString:scriptName
                                                 options:0
-                                                  range:NSMakeRange(0, [menuTitle length])
+                                                  range:NSMakeRange(0, [scriptName length])
                                            withTemplate:@""];
     
     // remove keyboard shortcut definition
     if (([extnFirstChar length] > 0) && [specSet characterIsMember:[extnFirstChar characterAtIndex:0]]) {
-        menuTitle = [menuTitle stringByDeletingPathExtension];
+        scriptName = [scriptName stringByDeletingPathExtension];
     }
     
-    return menuTitle;
+    return scriptName;
 }
 
 
@@ -621,7 +608,7 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
     NSError *error = nil;
     NSUserUnixTask *task = [[NSUserUnixTask alloc] initWithURL:URL error:&error];
     NSString *script = [self stringOfScript:URL];
-    NSString *scriptName = [URL lastPathComponent];
+    NSString *scriptName = [self scriptNameFromURL:URL];
 
     // show an alert and endup if script file cannot read
     if (!task || [script length] == 0) {
@@ -719,11 +706,8 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 - (void)showScriptError:(NSString *)errorString scriptName:(NSString *)scriptName
 // ------------------------------------------------------
 {
-    NSString *string = [NSString stringWithFormat:@"[%@] %@\n%@",
-                        [[self dateFormatter] stringFromDate:[NSDate date]], scriptName, errorString];
-    
-    [[CEConsolePanelController sharedController] showWindow:nil];
-    [[CEConsolePanelController sharedController] addErrorString:string];
+    [[CEConsolePanelController sharedController] showWindow:self];
+    [[CEConsolePanelController sharedController] appendMessage:errorString title:scriptName];
 }
 
 @end
