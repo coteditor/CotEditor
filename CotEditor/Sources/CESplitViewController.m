@@ -42,6 +42,8 @@
 - (void)loadView
 // ------------------------------------------------------
 {
+    [super loadView];
+    
     [[self splitView] setVertical:[[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultSplitViewVerticalKey]];
     [self updateOpenSplitViewButtons];
 }
@@ -143,7 +145,7 @@
 - (IBAction)focusNextSplitTextView:(id)sender
 // ------------------------------------------------------
 {
-    [self focusOtherSplitTextViewOnNext:YES];
+    [self focusSplitTextViewOnNext:YES];
 }
 
 
@@ -152,7 +154,7 @@
 - (IBAction)focusPrevSplitTextView:(id)sender
 // ------------------------------------------------------
 {
-    [self focusOtherSplitTextViewOnNext:NO];
+    [self focusSplitTextViewOnNext:NO];
 }
 
 
@@ -170,7 +172,7 @@
 
 // ------------------------------------------------------
 /// 分割された前／後のテキストビューにフォーカス移動
-- (void)focusOtherSplitTextViewOnNext:(BOOL)onNext
+- (void)focusSplitTextViewOnNext:(BOOL)onNext
 // ------------------------------------------------------
 {
     NSUInteger count = [[[self view] subviews] count];
@@ -179,14 +181,14 @@
     
     NSArray *subviews = [[self view] subviews];
     NSInteger index = [subviews indexOfObject:[self currentSubview]];
-    CEEditorView *nextSubview;
     
-    if (onNext) {  // == Next
+    if (onNext) {
         index++;
-    } else {  // == Prev
+    } else {
         index--;
     }
     
+    CEEditorView *nextSubview;
     if (index < 0) {
         nextSubview = [subviews lastObject];
     } else if (index >= count) {
