@@ -571,7 +571,7 @@ static NSPoint kTextContainerOrigin;
     [super drawViewBackgroundInRect:rect];
     
     // draw current line highlight
-    if (!NSIsEmptyRect([self highlightLineRect])) {
+    if (NSIntersectsRect(rect, [self highlightLineRect])) {
         [[self highlightLineColor] set];
         [NSBezierPath fillRect:[self highlightLineRect]];
     }
@@ -593,7 +593,9 @@ static NSPoint kTextContainerOrigin;
             return;
         }
         
-        CGFloat length = ([self layoutOrientation] == NSTextLayoutOrientationVertical) ? NSWidth([self frame]) : NSHeight([self frame]);
+        BOOL isVertical = ([self layoutOrientation] == NSTextLayoutOrientationVertical);
+        CGFloat minY = isVertical ? NSMinX(dirtyRect) : NSMinY(dirtyRect);
+        CGFloat maxY = isVertical ? NSMaxX(dirtyRect) : NSMaxY(dirtyRect);
         CGFloat linePadding = [[self textContainer] lineFragmentPadding];
         CGFloat inset = [self textContainerOrigin].x;
         
@@ -603,8 +605,8 @@ static NSPoint kTextContainerOrigin;
         
         CGFloat x = floor(column + inset + linePadding) + 2.5;  // +2px for adjustment
         [[[self textColor] colorWithAlphaComponent:0.2] set];
-        [NSBezierPath strokeLineFromPoint:NSMakePoint(x, 0)
-                                  toPoint:NSMakePoint(x, length)];
+        [NSBezierPath strokeLineFromPoint:NSMakePoint(x, minY)
+                                  toPoint:NSMakePoint(x, maxY)];
     }
 }
 
