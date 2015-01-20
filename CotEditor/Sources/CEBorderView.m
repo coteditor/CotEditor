@@ -44,19 +44,28 @@
     [NSBezierPath fillRect:dirtyRect];
     
     // draw borders
-    const CGFloat borderWidth = 1.0;
+    const CGFloat strokeWidth = 1.0;
     NSRect frame = [self frame];
     
     [[self borderColor] set];
     if ([self drawsTopBorder] > 0) {
-        [NSBezierPath strokeLineFromPoint:NSMakePoint(NSMinX(frame), NSMaxY(frame) - borderWidth / 2)
-                                  toPoint:NSMakePoint(NSMaxX(frame), NSMaxY(frame) - borderWidth / 2)];
+        [NSBezierPath strokeLineFromPoint:NSMakePoint(NSMinX(dirtyRect), NSMaxY(frame) - strokeWidth / 2)
+                                  toPoint:NSMakePoint(NSMaxX(dirtyRect), NSMaxY(frame) - strokeWidth / 2)];
     }
     
     if ([self drawsBottomBorder]) {
-        [NSBezierPath strokeLineFromPoint:NSMakePoint(NSMinX(frame), borderWidth / 2)
-                                  toPoint:NSMakePoint(NSMaxX(frame), borderWidth / 2)];
+        [NSBezierPath strokeLineFromPoint:NSMakePoint(NSMinX(dirtyRect), strokeWidth / 2)
+                                  toPoint:NSMakePoint(NSMaxX(dirtyRect), strokeWidth / 2)];
     }
+}
+
+
+// ------------------------------------------------------
+/// whether it's opaque view
+- (BOOL)isOpaque
+// ------------------------------------------------------
+{
+    return ([[self fillColor] alphaComponent] == 1.0);
 }
 
 @end
