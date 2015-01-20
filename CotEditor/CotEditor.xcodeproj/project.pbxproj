@@ -523,7 +523,7 @@
 		8C65C0E607927D0F0028D94A /* CELayoutManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CELayoutManager.m; sourceTree = "<group>"; wrapsLines = 1; };
 		8C7400A608C6D96D00683672 /* CEKeyBindingManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEKeyBindingManager.h; sourceTree = "<group>"; };
 		8C7400A708C6D96D00683672 /* CEKeyBindingManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEKeyBindingManager.m; sourceTree = "<group>"; };
-		8C7F74EB091C738C005C7598 /* ODBEditorSuite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODBEditorSuite.h; sourceTree = "<group>"; };
+		8C7F74EB091C738C005C7598 /* ODBEditorSuite.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = ODBEditorSuite.h; sourceTree = "<group>"; };
 		8C83A48009485F27004E48A8 /* CEATSTypesetter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CEATSTypesetter.h; sourceTree = "<group>"; };
 		8C83A48109485F27004E48A8 /* CEATSTypesetter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CEATSTypesetter.m; sourceTree = "<group>"; };
 		8C8CCCAE09D6803400A008E5 /* CESplitView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CESplitView.h; sourceTree = "<group>"; };

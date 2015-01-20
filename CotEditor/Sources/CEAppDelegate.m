@@ -831,7 +831,7 @@ static NSString *const kMigrationFlagKey = @"isMigratedToNewBundleIdentifier";
                                                        forName:[[NSBundle mainBundle] bundleIdentifier]];
     
     // set migration flag to old defaults
-    oldDefaultsDict[kMigrationFlagKey] = @(YES);
+    oldDefaultsDict[kMigrationFlagKey] = @YES;
     [oldDefaults setPersistentDomain:oldDefaultsDict forName:kOldIdentifier];
 }
 
