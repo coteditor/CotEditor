@@ -591,20 +591,17 @@ static NSPoint kTextContainerOrigin;
             return;
         }
         
-        BOOL isVertical = ([self layoutOrientation] == NSTextLayoutOrientationVertical);
-        CGFloat minY = isVertical ? NSMinX(dirtyRect) : NSMinY(dirtyRect);
-        CGFloat maxY = isVertical ? NSMaxX(dirtyRect) : NSMaxY(dirtyRect);
-        CGFloat linePadding = [[self textContainer] lineFragmentPadding];
-        CGFloat inset = [self textContainerOrigin].x;
-        
         NSFont *font = [(CELayoutManager *)[self layoutManager] textFont];
         font = [font screenFont] ? : font;
         column *= [@"M" sizeWithAttributes:@{NSFontAttributeName: font}].width;
         
+        CGFloat inset = [self textContainerOrigin].x;
+        CGFloat linePadding = [[self textContainer] lineFragmentPadding];
         CGFloat x = floor(column + inset + linePadding) + 2.5;  // +2px for adjustment
+        
         [[[self textColor] colorWithAlphaComponent:0.2] set];
-        [NSBezierPath strokeLineFromPoint:NSMakePoint(x, minY)
-                                  toPoint:NSMakePoint(x, maxY)];
+        [NSBezierPath strokeLineFromPoint:NSMakePoint(x, NSMinY(dirtyRect))
+                                  toPoint:NSMakePoint(x, NSMaxY(dirtyRect))];
     }
 }
 
