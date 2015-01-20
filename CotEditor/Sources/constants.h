@@ -492,9 +492,9 @@ extern NSUInteger const kSizeOfInvisibleFullwidthSpaceCharList;
 // ------------------------------------------------------
 
 // Modifier masks and characters for keybindings
-extern NSUInteger const kModifierKeyMaskList[];
-extern unichar    const kModifierKeySymbolCharList[];
-extern unichar    const kKeySpecCharList[];
+extern NSEventModifierFlags const kModifierKeyMaskList[];
+extern unichar const kModifierKeySymbolCharList[];
+extern unichar const kKeySpecCharList[];
 
 // size of kModifierKeyMaskList, kKeySpecCharList and kModifierKeySymbolCharList
 extern NSUInteger const kSizeOfModifierKeys;

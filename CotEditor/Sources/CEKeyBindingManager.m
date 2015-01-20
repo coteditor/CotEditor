@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014 CotEditor Project
+ © 2014-2015 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -159,7 +159,7 @@ static NSDictionary *kUnprintableKeyTable;
 
 //------------------------------------------------------
 /// メニューのキーボードショートカットからキーバインディング定義文字列を返す
-+ (NSString *)keySpecCharsFromKeyEquivalent:(NSString *)string modifierFrags:(NSUInteger)modifierFlags
++ (NSString *)keySpecCharsFromKeyEquivalent:(NSString *)string modifierFrags:(NSEventModifierFlags)modifierFlags
 //------------------------------------------------------
 {
     if ([string length] < 1) { return @""; }
@@ -185,7 +185,7 @@ static NSDictionary *kUnprintableKeyTable;
 
 // ------------------------------------------------------
 /// キー入力に応じたセレクタ文字列を返す
-- (NSString *)selectorStringWithKeyEquivalent:(NSString *)string modifierFrags:(NSUInteger)modifierFlags
+- (NSString *)selectorStringWithKeyEquivalent:(NSString *)string modifierFrags:(NSEventModifierFlags)modifierFlags
 // ------------------------------------------------------
 {
     NSString *keySpecChars = [CEKeyBindingManager keySpecCharsFromKeyEquivalent:string modifierFrags:modifierFlags];

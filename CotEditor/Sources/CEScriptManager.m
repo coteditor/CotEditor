@@ -195,8 +195,8 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
     NSString *extension = [URL pathExtension];
 
     // change behavior if modifier key is pressed
-    NSUInteger flags = [NSEvent modifierFlags];
-    if (flags == NSAlternateKeyMask) {  // open script file if Opt key is pressed
+    NSEventModifierFlags modifierFlags = [NSEvent modifierFlags];
+    if (modifierFlags == NSAlternateKeyMask) {  // open script file if Opt key is pressed
         BOOL success = YES;
         NSString *identifier = [[self AppleScriptExtensions] containsObject:extension] ? @"com.apple.ScriptEditor2" : [[NSBundle mainBundle] bundleIdentifier];
         success = [[NSWorkspace sharedWorkspace] openURLs:@[URL]
@@ -212,7 +212,7 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
         }
         return;
         
-    } else if (flags == (NSAlternateKeyMask | NSShiftKeyMask)) {  // reveal on Finder if Opt+Shift keys are pressed
+    } else if (modifierFlags == (NSAlternateKeyMask | NSShiftKeyMask)) {  // reveal on Finder if Opt+Shift keys are pressed
         [[NSWorkspace sharedWorkspace] activateFileViewerSelectingURLs:@[URL]];
         return;
     }

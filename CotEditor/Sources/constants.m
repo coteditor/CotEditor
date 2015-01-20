@@ -521,7 +521,7 @@ NSUInteger  const kSizeOfInvisibleFullwidthSpaceCharList = sizeof(kInvisibleFull
 // ------------------------------------------------------
 
 // Modifier keys and characters for keybinding
-NSUInteger const kModifierKeyMaskList[] = {
+NSEventModifierFlags const kModifierKeyMaskList[] = {
     NSControlKeyMask,
     NSAlternateKeyMask,
     NSShiftKeyMask,
@@ -530,7 +530,7 @@ NSUInteger const kModifierKeyMaskList[] = {
 unichar const kModifierKeySymbolCharList[] = {0x005E, 0x2325, 0x21E7, 0x2318};
 unichar const kKeySpecCharList[]           = {0x005E, 0x007E, 0x0024, 0x0040};  // == "^~$@"
 
-NSUInteger const kSizeOfModifierKeys = sizeof(kModifierKeyMaskList) / sizeof(NSUInteger);
+NSUInteger const kSizeOfModifierKeys = sizeof(kModifierKeyMaskList) / sizeof(NSEventModifierFlags);
 
 
 // Unprintable key list

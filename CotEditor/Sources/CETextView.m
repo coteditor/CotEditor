@@ -250,9 +250,9 @@ static NSPoint kTextContainerOrigin;
     // swap '¥' with '\' if needed
     if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultSwapYenAndBackSlashKey] && ([string length] == 1)) {
         NSEvent *event = [NSApp currentEvent];
-        NSUInteger flags = [NSEvent modifierFlags];
+        NSEventModifierFlags modifierFlags = [NSEvent modifierFlags];
         
-        if (([event type] == NSKeyDown) && (flags == 0)) {  // ignore input by "Insert Yen/Backslash" menu action
+        if (([event type] == NSKeyDown) && (modifierFlags == 0)) {  // ignore input by "Insert Yen/Backslash" menu action
             NSString *yen = [NSString stringWithCharacters:&kYenMark length:1];
             
             if ([string isEqualToString:@"\\"]) {
