@@ -51,7 +51,6 @@ const NSInteger kNoMenuItem = -1;
 
 @interface CETextView ()
 
-@property (nonatomic) NSRect insertionRect;
 @property (nonatomic) NSMutableParagraphStyle *paragraphStyle;
 @property (nonatomic) NSTimer *completionTimer;
 @property (nonatomic) NSString *particalCompletionWord;  // ユーザが実際に入力した補完の元になる文字列
@@ -155,7 +154,6 @@ static NSPoint kTextContainerOrigin;
                                                (CGFloat)([defaults doubleForKey:CEDefaultTextContainerInsetHeightTopKey] +
                                                          [defaults doubleForKey:CEDefaultTextContainerInsetHeightBottomKey]) / 2)];
         [self setLineSpacing:(CGFloat)[defaults doubleForKey:CEDefaultLineSpacingKey]];
-        _insertionRect = NSZeroRect;
         _needsUpdateOutlineMenuItemSelection = YES;
         
         [self applyTypingAttributes];
@@ -654,7 +652,8 @@ static NSPoint kTextContainerOrigin;
         NSRange targetRange = [[self string] lineRangeForRange:range];
         NSRange glyphRange = [[self layoutManager] glyphRangeForCharacterRange:targetRange actualCharacterRange:nil];
         rect = [[self layoutManager] lineFragmentRectForGlyphAtIndex:(NSMaxRange(glyphRange) - 1)
-                                                      effectiveRange:nil];
+                                                      effectiveRange:nil
+                                             withoutAdditionalLayout:YES];
     }
     if (NSEqualRects(rect, NSZeroRect)) { return; }
     
@@ -690,15 +689,6 @@ static NSPoint kTextContainerOrigin;
 
 
 // ------------------------------------------------------
-/// 読み取り可能なPasteboardタイプを返す
-- (NSArray *)readablePasteboardTypes
-// ------------------------------------------------------
-{
-    return [[super readablePasteboardTypes] arrayByAddingObject:NSFilenamesPboardType];
-}
-
-
-// ------------------------------------------------------
 /// ドラッグする文字列の改行コードを書類に設定されたものに置換する
 - (NSDraggingSession *)beginDraggingSessionWithItems:(NSArray *)items event:(NSEvent *)event source:(id<NSDraggingSource>)source
 // ------------------------------------------------------
@@ -708,59 +698,6 @@ static NSPoint kTextContainerOrigin;
     [self replaceLineEndingToDocCharInPboard:[session draggingPasteboard]];
     
     return session;
-}
-
-
-// ------------------------------------------------------
-/// 領域内でオブジェクトがドラッグされている
-- (NSDragOperation)dragOperationForDraggingInfo:(id <NSDraggingInfo>)dragInfo type:(NSString *)type
-// ------------------------------------------------------
-{
-    if (![type isEqualToString:NSFilenamesPboardType]) {
-        return [super dragOperationForDraggingInfo:dragInfo type:type];
-    }
-    
-    NSArray *fileDropArray = [[NSUserDefaults standardUserDefaults] arrayForKey:CEDefaultFileDropArrayKey];
-    NSArray *array = [[dragInfo draggingPasteboard] propertyListForType:NSFilenamesPboardType];
-    
-    for (NSDictionary *item in fileDropArray) {
-        NSArray *extensions = [item[CEFileDropExtensionsKey] componentsSeparatedByString:@", "];
-        
-        if ([self draggedItemsArray:array containsExtensionInExtensions:extensions]) {
-            NSString *string = [self string];
-            if ([string length] > 0) {
-                // 挿入ポイントを自前で描画する
-                CGFloat partialFraction;
-                NSLayoutManager *layoutManager = [self layoutManager];
-                NSUInteger glyphIndex = [layoutManager glyphIndexForPoint:[self convertPoint:[dragInfo draggingLocation] fromView:nil]
-                                                          inTextContainer:[self textContainer]
-                                           fractionOfDistanceThroughGlyph:&partialFraction];
-                NSPoint glypthIndexPoint;
-                if ((partialFraction > 0.5) && ([string characterAtIndex:glyphIndex] != '\n')) {
-                    NSRect glyphRect = [layoutManager boundingRectForGlyphRange:NSMakeRange(glyphIndex, 1)
-                                                                inTextContainer:[self textContainer]];
-                    glypthIndexPoint = [layoutManager locationForGlyphAtIndex:glyphIndex];
-                    glypthIndexPoint.x += NSWidth(glyphRect);
-                } else {
-                    glypthIndexPoint = [layoutManager locationForGlyphAtIndex:glyphIndex];
-                }
-                NSRect lineRect = [layoutManager lineFragmentRectForGlyphAtIndex:glyphIndex effectiveRange:NULL];
-                NSRect insertionRect = NSMakeRect(glypthIndexPoint.x, lineRect.origin.y, 1, NSHeight(lineRect));
-                if (!NSEqualRects([self insertionRect], insertionRect)) {
-                    // 古い自前挿入ポイントが描かれたままになることへの対応
-                    [self setNeedsDisplayInRect:[self insertionRect] avoidAdditionalLayout:YES];
-                }
-                [[self insertionPointColor] set];
-                [self lockFocus];
-                NSFrameRectWithWidth(insertionRect, 1.0);
-                [self unlockFocus];
-                [self setInsertionRect:insertionRect];
-            }
-            
-            return NSDragOperationCopy;
-        }
-    }
-    return NSDragOperationNone;
 }
 
 
@@ -1550,23 +1487,6 @@ static NSPoint kTextContainerOrigin;
 {
     [[[self undoManager] prepareWithInvocationTarget:self]
      replaceWithStrings:strings ranges:ranges selectedRanges:selectedRanges actionName:actionName];
-}
-
-
-// ------------------------------------------------------
-/// ドラッグされているアイテムのNSFilenamesPboardTypeに指定された拡張子のものが含まれているかどうかを返す
-- (BOOL)draggedItemsArray:(NSArray *)items containsExtensionInExtensions:(NSArray *)extensions
-// ------------------------------------------------------
-{
-    for (NSString *extension in extensions) {
-        for (id item in items) {
-            if ([[item pathExtension] isEqualToString:extension]) {
-                return YES;
-            }
-        }
-    }
-    
-    return NO;
 }
 
 

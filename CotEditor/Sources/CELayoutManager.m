@@ -374,7 +374,9 @@ static BOOL usesTextFontForInvisibles;
 //------------------------------------------------------
 {
     NSPoint drawPoint = [self locationForGlyphAtIndex:glyphIndex];
-    NSPoint glyphPoint = [self lineFragmentRectForGlyphAtIndex:glyphIndex effectiveRange:NULL].origin;
+    NSPoint glyphPoint = [self lineFragmentRectForGlyphAtIndex:glyphIndex
+                                                effectiveRange:NULL
+                                       withoutAdditionalLayout:YES].origin;
     
     return NSMakePoint(drawPoint.x, -glyphPoint.y);
 }
