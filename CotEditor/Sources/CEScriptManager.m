@@ -72,10 +72,10 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 + (instancetype)sharedManager
 // ------------------------------------------------------
 {
-    static dispatch_once_t predicate;
+    static dispatch_once_t onceToken;
     static id shared = nil;
     
-    dispatch_once(&predicate, ^{
+    dispatch_once(&onceToken, ^{
         shared = [[self alloc] init];
     });
     
