@@ -745,17 +745,6 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     }
     
     if (string && (encoding != CEAutoDetectEncoding)) {
-        // 10.3.9 で、一部のバイナリファイルを開いたときにクラッシュする問題への暫定対応。
-        // 10.4+ ではスルー（2005-12-25）
-        // ＞＞ しかし「すべて2バイト文字で4096文字以上あるユニコードでない文書」は開けない（2005-12-25）
-        // (下記の現象と同じ理由で発生していると思われる）
-        // https://www.codingmonkeys.de/bugs/browse/HYR-529?page=all
-        if (([data length] > 4096 * 2) &&
-            (([data length] == ([string length] * 2 + 1)) || ([data length] == ([string length] * 2))))
-        {
-            return NO;
-        }
-        
         [self setInitialString:string];  // _initialString will be released in `setStringToEditor`
         [self doSetEncoding:encoding updateDocument:NO askLossy:NO lossy:NO asActionName:nil];
         return YES;
