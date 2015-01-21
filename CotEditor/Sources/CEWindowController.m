@@ -148,8 +148,11 @@ static NSTimeInterval infoUpdateInterval;
     [[self window] makeFirstResponder:[[self editor] focusedTextView]];
     
     // notify finish of the document open process (Here is probably the final point.)
-    [[NSNotificationCenter defaultCenter] postNotificationName:CEDocumentDidFinishOpenNotification
-                                                        object:self];
+    __weak typeof(self) weakSelf = self;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:CEDocumentDidFinishOpenNotification
+                                                            object:weakSelf];
+    });
     
     // observe sytnax style update
     [[NSNotificationCenter defaultCenter] addObserver:self
