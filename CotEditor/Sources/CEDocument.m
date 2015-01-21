@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2011, 2014 usami-k
+ © 2011,2014 usami-k
  © 2014-2015 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
@@ -83,7 +83,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 #pragma mark Superclass Methods
 
 // ------------------------------------------------------
-/// OS X 10.7 AutoSave
+/// enable AutoSave
 + (BOOL)autosavesInPlace
 // ------------------------------------------------------
 {
@@ -92,7 +92,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 
 // ------------------------------------------------------
-/// OS X 10.7 Versions
+/// enable Versions
 + (BOOL)preservesVersions
 // ------------------------------------------------------
 {
@@ -101,7 +101,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 
 // ------------------------------------------------------
-/// initialize
+/// initialize instance
 - (instancetype)init
 // ------------------------------------------------------
 {
