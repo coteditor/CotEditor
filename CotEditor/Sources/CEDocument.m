@@ -720,7 +720,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
                     ((encoding == NSUTF8StringEncoding) && shouldSkipUTF8) ||
                     ((encoding == NSUnicodeStringEncoding) && shouldSkipUTF16))
                 {
-                    break;  // ???: これは本当に break で良いのだろうか？ 文脈的に continue では？ (2015-01-21 by 1024jp)
+                    continue;
                 }
                 
                 string = [[NSString alloc] initWithData:data encoding:encoding];
@@ -740,7 +740,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
                 }
             }
         }
-    } else {
+    } else if (!string) {
         string = [[NSString alloc] initWithData:data encoding:encoding];
     }
     
@@ -750,13 +750,13 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
         // ＞＞ しかし「すべて2バイト文字で4096文字以上あるユニコードでない文書」は開けない（2005-12-25）
         // (下記の現象と同じ理由で発生していると思われる）
         // https://www.codingmonkeys.de/bugs/browse/HYR-529?page=all
-        if (([data length] > 8192) &&
+        if (([data length] > 4096 * 2) &&
             (([data length] == ([string length] * 2 + 1)) || ([data length] == ([string length] * 2))))
         {
             return NO;
         }
         
-        [self setInitialString:string];  // (_initialString はあとで開放 == "- (void)setStringToEditor")
+        [self setInitialString:string];  // _initialString will be released in `setStringToEditor`
         [self doSetEncoding:encoding updateDocument:NO askLossy:NO lossy:NO asActionName:nil];
         return YES;
     }
@@ -1326,8 +1326,9 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     if (encoding == CEAutoDetectEncoding) {
         newEncoding = hasXattr ? xattrEncoding : newEncoding;
         
+        // just use given encoding if content is empty
         if ([data length] == 0) {
-            [self setInitialString:@""];  // (_initialString はあとで開放 == "- (void)setStringToEditor")
+            [self setInitialString:@""];  // _initialString will be released in `setStringToEditor`
             if (hasXattr) {
                 [self doSetEncoding:newEncoding updateDocument:NO askLossy:NO lossy:NO asActionName:nil];
             }
