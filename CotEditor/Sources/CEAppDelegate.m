@@ -379,6 +379,7 @@
     // register Services
     [NSApp setServicesProvider:self];
     
+    // raise didFinishLaunching flag
     [self setDidFinishLaunching:YES];
 }
 
@@ -444,6 +445,26 @@
 #pragma mark Action Messages
 
 // ------------------------------------------------------
+/// activate self and perform "New" menu action
+- (IBAction)newInDockMenu:(id)sender
+// ------------------------------------------------------
+{
+    [NSApp activateIgnoringOtherApps:YES];
+    [[NSDocumentController sharedDocumentController] newDocument:nil];
+}
+
+
+// ------------------------------------------------------
+/// activate self and perform "Open..." menu action
+- (IBAction)openInDockMenu:(id)sender
+// ------------------------------------------------------
+{
+    [NSApp activateIgnoringOtherApps:YES];
+    [[NSDocumentController sharedDocumentController] openDocument:nil];
+}
+
+
+// ------------------------------------------------------
 /// show Preferences window
 - (IBAction)showPreferences:(id)sender
 // ------------------------------------------------------
@@ -505,26 +526,6 @@
     NSURL *URL = [[NSBundle mainBundle] URLForResource:@"openDictionary" withExtension:@"scpt"];
     NSAppleScript *AppleScript = [[NSAppleScript alloc] initWithContentsOfURL:URL error:nil];
     [AppleScript executeAndReturnError:nil];
-}
-
-
-// ------------------------------------------------------
-/// activate self and perform "New" menu action
-- (IBAction)newInDockMenu:(id)sender
-// ------------------------------------------------------
-{
-    [NSApp activateIgnoringOtherApps:YES];
-    [[NSDocumentController sharedDocumentController] newDocument:nil];
-}
-
-
-// ------------------------------------------------------
-/// activate self and perform "Open..." menu action
-- (IBAction)openInDockMenu:(id)sender
-// ------------------------------------------------------
-{
-    [NSApp activateIgnoringOtherApps:YES];
-    [[NSDocumentController sharedDocumentController] openDocument:nil];
 }
 
 
