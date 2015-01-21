@@ -22,8 +22,6 @@
 "AjV-U0-lC7.title" = "拥有者:";
 /* Class = "NSTextFieldCell"; title = "Permission:"; ObjectID = "N0Y-nO-k3L"; */
 "N0Y-nO-k3L.title" = "权限:";
-/* Class = "NSTextFieldCell"; title = "Locked:"; ObjectID = "5po-l6-6mm"; */
-"5po-l6-6mm.title" = "锁定:";
 /* Class = "NSTextFieldCell"; title = "Full Path:"; ObjectID = "zwU-xo-iZu"; */
 "zwU-xo-iZu.title" = "完整路径:";
 

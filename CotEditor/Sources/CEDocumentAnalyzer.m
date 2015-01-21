@@ -54,7 +54,6 @@ NSString *const CEAnalyzerDidUpdateEditorInfoNotification = @"CEAnalyzerDidUpdat
 @property (readwrite, nonatomic) NSString *filePath;
 @property (readwrite, nonatomic) NSString *owner;
 @property (readwrite, nonatomic) NSString *permission;
-@property (readwrite, nonatomic) NSString *locked;
 @property (readwrite, nonatomic, getter=isWritable) BOOL writable;
 
 // mode infos
@@ -125,7 +124,6 @@ NSString *const CEAnalyzerDidUpdateEditorInfoNotification = @"CEAnalyzerDidUpdat
     self.permission = [attrs filePosixPermissions] ? [NSString stringWithFormat:@"%tu (%@)",
                                                       [attrs filePosixPermissions],
                                                       humanReadablePermission([attrs filePosixPermissions])] : nil;
-    self.locked = attrs ? NSLocalizedString([attrs fileIsImmutable] ? @"Yes" : @"No", nil) : nil;
     self.writable = [document isWritable];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:CEAnalyzerDidUpdateFileInfoNotification

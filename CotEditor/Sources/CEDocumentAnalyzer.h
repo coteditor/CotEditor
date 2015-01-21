@@ -50,7 +50,6 @@ extern NSString *const CEAnalyzerDidUpdateEditorInfoNotification;
 @property (readonly, nonatomic) NSString *filePath;
 @property (readonly, nonatomic) NSString *owner;
 @property (readonly, nonatomic) NSString *permission;
-@property (readonly, nonatomic) NSString *locked;
 @property (readonly, nonatomic, getter=isWritable) BOOL writable;
 
 // mode info

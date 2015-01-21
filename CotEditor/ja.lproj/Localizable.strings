@@ -355,12 +355,6 @@
 "Auto-generated theme that is mgrated from user's coloring setting on CotEditor 1.x" = "CotEditor 1.x でのユーザカラーリング設定から自動生成されたテーマ";
 
 
-/* MARK: CEWindowsController */
-// Finder's lock state
-"Yes" = "はい";
-"No" = "いいえ";
-
-
 /* MARK: CEKeyBindingManager */
 // label for text menu keybindings action
 "Insert Text %@" = "テキストを挿入 %@";

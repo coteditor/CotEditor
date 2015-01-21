@@ -354,12 +354,6 @@
 "Auto-generated theme that is mgrated from user's coloring setting on CotEditor 1.x" = "由 CotEditor 1.x 的用户颜色设置中自动生成的主题";
 
 
-/* MARK: CEWindowsController */
-// Finder's lock state
-"Yes" = "是";
-"No" = "否";
-
-
 /* MARK: CEKeyBindingManager */
 // label for text menu keybindings action
 "Insert Text %@" = "插入文本 %@";
