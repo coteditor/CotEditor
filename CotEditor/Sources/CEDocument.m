@@ -215,16 +215,8 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 - (BOOL)writeSafelyToURL:(NSURL *)url ofType:(NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation error:(NSError **)outError
 // ------------------------------------------------------
 {
-    // 保存の前後で編集内容をグルーピングさせないための処置
-    // ダミーのグループを作り、そのままだと空のアンドゥ内容でダーティーフラグがたってしまうので、アンドゥしておく
-    // ****** 空のアンドゥ履歴が残る問題あり  (2005-08-05) *******
-    // (保存の前後で編集内容がグルーピングされてしまう例：キー入力後保存し、キャレットを動かすなどしないでそのまま入力
-    // した場合、ダーティーフラグがたたず、アンドゥすると保存前まで戻されてしまう。さらに、戻された状態でリドゥすると、
-    // 保存後の入力までが行われる。つまり、保存をはさんで前後の内容が同一アンドゥグループに入ってしまうための不具合)
-    // ****** 何かもっとうまい回避方法があるはずなんだが… (2005-08-05) *******
-    [[self undoManager] beginUndoGrouping];
-    [[self undoManager] endUndoGrouping];
-    [[self undoManager] undo];
+    // break undo grouping before and after saving
+    [[[self editor] focusedTextView] breakUndoCoalescing];
     
     id token = [self changeCountTokenForSaveOperation:saveOperation];
     
