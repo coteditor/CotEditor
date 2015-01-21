@@ -161,7 +161,7 @@
     NSInteger location = [rangeArray[0] integerValue];
     NSInteger length = [rangeArray[1] integerValue];
 
-    [[self document] setSelectedCharacterRangeInTextViewWithLocation:location length:length];
+    [[[self document] editor] setSelectedCharacterRangeWithLocation:location length:length];
 }
 
 
@@ -209,7 +209,7 @@
         return;
     }
 
-    [[self document] setSelectedLineRangeInTextViewWithLocation:location length:length];
+    [[[self document] editor] setSelectedLineRangeWithLocation:location length:length];
 }
 
 

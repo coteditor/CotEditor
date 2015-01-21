@@ -9,7 +9,7 @@
  encoding="UTF-8"
  ------------------------------------------------------------------------------
  
- © 2014 1024jp
+ © 2014-2015 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -28,11 +28,11 @@
  */
 
 @import AppKit;
-#import "CEDocument.h"
+#import "CEEditorWrapper.h"
 
 
 @interface CEGoToSheetController : NSWindowController <NSWindowDelegate>
 
-- (void)beginSheetForDocument:(CEDocument *)document;
+- (void)beginSheetForEditor:(CEEditorWrapper *)editor;
 
 @end

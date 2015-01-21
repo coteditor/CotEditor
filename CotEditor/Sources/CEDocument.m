@@ -34,7 +34,6 @@
 #import <sys/xattr.h>
 #import "CEDocumentController.h"
 #import "CEPrintPanelAccessoryController.h"
-#import "CEGoToSheetController.h"
 #import "CEPrintView.h"
 #import "CEODBEventSender.h"
 #import "CESyntaxManager.h"
@@ -849,126 +848,6 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 }
 
 
-// ------------------------------------------------------
-/// マイナス指定された文字範囲／長さをNSRangeにコンバートして返す
-- (NSRange)rangeInTextViewWithLocation:(NSInteger)location length:(NSInteger)length
-// ------------------------------------------------------
-{
-    NSTextView *textView = [[self editor] focusedTextView];
-    NSUInteger wholeLength = [[textView string] length];
-    NSRange range = NSMakeRange(0, 0);
-    
-    NSInteger newLocation = (location < 0) ? (wholeLength + location) : location;
-    NSInteger newLength = (length < 0) ? (wholeLength - newLocation + length) : length;
-    if ((newLocation < wholeLength) && ((newLocation + newLength) > wholeLength)) {
-        newLength = wholeLength - newLocation;
-    }
-    if ((length < 0) && (newLength < 0)) {
-        newLength = 0;
-    }
-    if ((newLocation < 0) || (newLength < 0)) {
-        return range;
-    }
-    range = NSMakeRange(newLocation, newLength);
-    if (wholeLength >= NSMaxRange(range)) {
-        return range;
-    }
-    return range;
-}
-
-
-// ------------------------------------------------------
-/// editor 内部の textView で指定された部分を文字単位で選択
-- (void)setSelectedCharacterRangeInTextViewWithLocation:(NSInteger)location length:(NSInteger)length
-// ------------------------------------------------------
-{
-    NSRange selectionRange = [self rangeInTextViewWithLocation:location length:length];
-    
-    [[self editor] setSelectedRange:selectionRange];
-}
-
-
-// ------------------------------------------------------
-/// editor 内部の textView で指定された部分を行単位で選択
-- (void)setSelectedLineRangeInTextViewWithLocation:(NSInteger)location length:(NSInteger)length
-// ------------------------------------------------------
-{
-    NSTextView *textView = [[self editor] focusedTextView];
-    NSUInteger wholeLength = [[textView string] length];
-    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"^"
-                                                                           options:NSRegularExpressionAnchorsMatchLines
-                                                                             error:nil];
-    NSArray *matches = [regex matchesInString:[textView string] options:0
-                                        range:NSMakeRange(0, wholeLength)];
-    NSInteger count = [matches count];
-    
-    if (count == 0) { return; }
-    
-    if (location == 0) {
-        [textView setSelectedRange:NSMakeRange(0, 0)];
-        
-    } else if (location > count) {
-        [textView setSelectedRange:NSMakeRange(wholeLength, 0)];
-        
-    } else {
-        NSInteger newLocation, newLength;
-        
-        newLocation = (location < 0) ? (count + location + 1) : location;
-        if (length < 0) {
-            newLength = count - newLocation + length + 1;
-        } else if (length == 0) {
-            newLength = 1;
-        } else {
-            newLength = length;
-        }
-        if ((newLocation < count) && ((newLocation + newLength - 1) > count)) {
-            newLength = count - newLocation + 1;
-        }
-        if ((length < 0) && (newLength < 0)) {
-            newLength = 1;
-        }
-        if ((newLocation <= 0) || (newLength <= 0)) { return; }
-        
-        NSTextCheckingResult *match = matches[(newLocation - 1)];
-        NSRange range = [match range];
-        NSRange tmpRange = range;
-        
-        for (NSInteger i = 0; i < newLength; i++) {
-            if (NSMaxRange(tmpRange) > wholeLength) {
-                break;
-            }
-            range = [[textView string] lineRangeForRange:tmpRange];
-            tmpRange.length = range.length + 1;
-        }
-        if (wholeLength < NSMaxRange(range)) {
-            range.length = wholeLength - range.location;
-        }
-        [textView setSelectedRange:range];
-    }
-}
-
-
-// ------------------------------------------------------
-/// 選択範囲を変更する
-- (void)gotoLocation:(NSInteger)location length:(NSInteger)length type:(CEGoToType)type
-// ------------------------------------------------------
-{
-    switch (type) {
-        case CEGoToLine:
-            [self setSelectedLineRangeInTextViewWithLocation:location length:length];
-            break;
-        case CEGoToCharacter:
-            [self setSelectedCharacterRangeInTextViewWithLocation:location length:length];
-            break;
-    }
-    
-    NSTextView *textView = [[self editor] focusedTextView];
-    [[[self windowController] window] makeKeyAndOrderFront:self]; // 対象ウィンドウをキーに
-    [textView scrollRangeToVisible:[textView selectedRange]]; // 選択範囲が見えるようにスクロール
-    [textView showFindIndicatorForRange:[textView selectedRange]];  // 検索結果表示エフェクトを追加
-}
-
-
 
 #pragma mark Notifications
 
@@ -1012,16 +891,6 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     if (![self acceptSaveDocumentToConvertEncoding]) { return; }
     
     [super saveDocumentAs:sender];
-}
-
-
-// ------------------------------------------------------
-/// Go Toパネルを開く
-- (IBAction)gotoLocation:(id)sender
-// ------------------------------------------------------
-{
-    CEGoToSheetController *sheetController = [[CEGoToSheetController alloc] init];
-    [sheetController beginSheetForDocument:self];
 }
 
 

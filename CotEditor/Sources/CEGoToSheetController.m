@@ -9,7 +9,7 @@
  encoding="UTF-8"
  ------------------------------------------------------------------------------
  
- © 2014 1024jp
+ © 2014-2015 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -31,6 +31,8 @@
 
 
 @interface CEGoToSheetController ()
+
+@property (nonatomic, weak) CEEditorWrapper *editor;
 
 @property (nonatomic) NSString *location;
 @property (nonatomic) CEGoToType gotoType;
@@ -60,13 +62,13 @@
 
 // ------------------------------------------------------
 /// begin sheet for document
-- (void)beginSheetForDocument:(CEDocument *)document
+- (void)beginSheetForEditor:(CEEditorWrapper *)editor
 // ------------------------------------------------------
 {
-    [self setDocument:document];
+    [self setEditor:editor];
     
     [NSApp beginSheet:[self window]
-       modalForWindow:[document windowForSheet]
+       modalForWindow:[[editor focusedTextView] window]
         modalDelegate:nil didEndSelector:NULL contextInfo:NULL];
     [NSApp runModalForWindow:[self window]];
 }
@@ -86,7 +88,7 @@
         NSInteger location = [locLen[0] integerValue];
         NSInteger length = ([locLen count] > 1) ? [locLen[1] integerValue] : 0;
         
-        [[self document] gotoLocation:location length:length type:[self gotoType]];
+        [[self editor] gotoLocation:location length:length type:[self gotoType]];
     }
     [self close:sender];
 }

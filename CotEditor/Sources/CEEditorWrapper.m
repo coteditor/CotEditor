@@ -40,6 +40,7 @@
 #import "CESplitViewController.h"
 #import "CENavigationBarController.h"
 #import "CESyntaxParser.h"
+#import "CEGoToSheetController.h"
 #import "constants.h"
 
 
@@ -994,6 +995,149 @@ static NSTimeInterval secondColoringDelay;
         [[self coloringTimer] invalidate];
         [self setColoringTimer:nil];
     }
+}
+
+@end
+
+
+
+
+#pragma mark -
+
+@implementation CEEditorWrapper (Locating)
+
+#pragma mark Action Messages
+
+// ------------------------------------------------------
+/// show Go To sheet
+- (IBAction)gotoLocation:(id)sender
+// ------------------------------------------------------
+{
+    CEGoToSheetController *sheetController = [[CEGoToSheetController alloc] init];
+    [sheetController beginSheetForEditor:self];
+}
+
+
+
+#pragma mark Public Methods
+
+// ------------------------------------------------------
+/// convert minus location/length to NSRange
+- (NSRange)rangeWithLocation:(NSInteger)location length:(NSInteger)length
+// ------------------------------------------------------
+{
+    NSTextView *textView = [self focusedTextView];
+    NSUInteger wholeLength = [[textView string] length];
+    NSRange range = NSMakeRange(0, 0);
+    
+    NSInteger newLocation = (location < 0) ? (wholeLength + location) : location;
+    NSInteger newLength = (length < 0) ? (wholeLength - newLocation + length) : length;
+    if ((newLocation < wholeLength) && ((newLocation + newLength) > wholeLength)) {
+        newLength = wholeLength - newLocation;
+    }
+    if ((length < 0) && (newLength < 0)) {
+        newLength = 0;
+    }
+    if ((newLocation < 0) || (newLength < 0)) {
+        return range;
+    }
+    range = NSMakeRange(newLocation, newLength);
+    if (wholeLength >= NSMaxRange(range)) {
+        return range;
+    }
+    return range;
+}
+
+
+// ------------------------------------------------------
+/// editor 内部の textView で指定された部分を文字単位で選択
+- (void)setSelectedCharacterRangeWithLocation:(NSInteger)location length:(NSInteger)length
+// ------------------------------------------------------
+{
+    NSRange selectionRange = [self rangeWithLocation:location length:length];
+    
+    [self setSelectedRange:selectionRange];
+}
+
+
+// ------------------------------------------------------
+/// editor 内部の textView で指定された部分を行単位で選択
+- (void)setSelectedLineRangeWithLocation:(NSInteger)location length:(NSInteger)length
+// ------------------------------------------------------
+{
+    NSTextView *textView = [self focusedTextView];
+    NSUInteger wholeLength = [[textView string] length];
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"^"
+                                                                           options:NSRegularExpressionAnchorsMatchLines
+                                                                             error:nil];
+    NSArray *matches = [regex matchesInString:[textView string] options:0
+                                        range:NSMakeRange(0, wholeLength)];
+    NSInteger count = [matches count];
+    
+    if (count == 0) { return; }
+    
+    if (location == 0) {
+        [textView setSelectedRange:NSMakeRange(0, 0)];
+        
+    } else if (location > count) {
+        [textView setSelectedRange:NSMakeRange(wholeLength, 0)];
+        
+    } else {
+        NSInteger newLocation, newLength;
+        
+        newLocation = (location < 0) ? (count + location + 1) : location;
+        if (length < 0) {
+            newLength = count - newLocation + length + 1;
+        } else if (length == 0) {
+            newLength = 1;
+        } else {
+            newLength = length;
+        }
+        if ((newLocation < count) && ((newLocation + newLength - 1) > count)) {
+            newLength = count - newLocation + 1;
+        }
+        if ((length < 0) && (newLength < 0)) {
+            newLength = 1;
+        }
+        if ((newLocation <= 0) || (newLength <= 0)) { return; }
+        
+        NSTextCheckingResult *match = matches[(newLocation - 1)];
+        NSRange range = [match range];
+        NSRange tmpRange = range;
+        
+        for (NSInteger i = 0; i < newLength; i++) {
+            if (NSMaxRange(tmpRange) > wholeLength) {
+                break;
+            }
+            range = [[textView string] lineRangeForRange:tmpRange];
+            tmpRange.length = range.length + 1;
+        }
+        if (wholeLength < NSMaxRange(range)) {
+            range.length = wholeLength - range.location;
+        }
+        [textView setSelectedRange:range];
+    }
+}
+
+
+// ------------------------------------------------------
+/// 選択範囲を変更する
+- (void)gotoLocation:(NSInteger)location length:(NSInteger)length type:(CEGoToType)type
+// ------------------------------------------------------
+{
+    switch (type) {
+        case CEGoToLine:
+            [self setSelectedLineRangeWithLocation:location length:length];
+            break;
+        case CEGoToCharacter:
+            [self setSelectedCharacterRangeWithLocation:location length:length];
+            break;
+    }
+    
+    NSTextView *textView = [self focusedTextView];
+    [[textView window] makeKeyAndOrderFront:self]; // 対象ウィンドウをキーに
+    [textView scrollRangeToVisible:[textView selectedRange]]; // 選択範囲が見えるようにスクロール
+    [textView showFindIndicatorForRange:[textView selectedRange]];  // 検索結果表示エフェクトを追加
 }
 
 @end

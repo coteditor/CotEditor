@@ -45,11 +45,6 @@ extern NSString *const CEIncompatibleRangeKey;
 extern NSString *const CEIncompatibleCharKey;
 extern NSString *const CEIncompatibleConvertedCharKey;
 
-typedef NS_ENUM(NSUInteger, CEGoToType) {
-    CEGoToLine,
-    CEGoToCharacter
-};
-
 
 @interface CEDocument : NSDocument
 
@@ -71,20 +66,18 @@ typedef NS_ENUM(NSUInteger, CEGoToType) {
 
 - (void)setStringToEditor;
 
+// string encoding
 - (NSString *)currentIANACharSetName;
 - (NSArray *)findCharsIncompatibleWithEncoding:(NSStringEncoding)encoding;
 - (BOOL)readStringFromData:(NSData *)data encoding:(NSStringEncoding)encoding;
 - (BOOL)doSetEncoding:(NSStringEncoding)encoding updateDocument:(BOOL)updateDocument
              askLossy:(BOOL)askLossy lossy:(BOOL)lossy asActionName:(NSString *)actionName;
 
+// line ending
 - (void)doSetLineEnding:(CENewLineType)lineEnding;
 
+// syntax style
 - (void)doSetSyntaxStyle:(NSString *)name;
-
-- (NSRange)rangeInTextViewWithLocation:(NSInteger)location length:(NSInteger)length;
-- (void)setSelectedCharacterRangeInTextViewWithLocation:(NSInteger)location length:(NSInteger)length;
-- (void)setSelectedLineRangeInTextViewWithLocation:(NSInteger)location length:(NSInteger)length;
-- (void)gotoLocation:(NSInteger)location length:(NSInteger)length type:(CEGoToType)type;
 
 
 #pragma mark Action Messages

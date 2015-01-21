@@ -113,3 +113,22 @@
 - (IBAction)recolorAll:(id)sender;
 
 @end
+
+
+
+
+#pragma mark -
+
+typedef NS_ENUM(NSUInteger, CEGoToType) {
+    CEGoToLine,
+    CEGoToCharacter
+};
+
+@interface CEEditorWrapper (Locating)
+
+- (NSRange)rangeWithLocation:(NSInteger)location length:(NSInteger)length;
+- (void)setSelectedCharacterRangeWithLocation:(NSInteger)location length:(NSInteger)length;
+- (void)setSelectedLineRangeWithLocation:(NSInteger)location length:(NSInteger)length;
+- (void)gotoLocation:(NSInteger)location length:(NSInteger)length type:(CEGoToType)type;
+
+@end

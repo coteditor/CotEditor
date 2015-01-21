@@ -456,7 +456,7 @@
     if ([rangeArray count] == 0) { return [NSString string]; }
     NSInteger location = [rangeArray[0] integerValue];
     NSInteger length = ([rangeArray count] > 1) ? [rangeArray[1] integerValue] : 1;
-    NSRange range = [self rangeInTextViewWithLocation:location length:length];
+    NSRange range = [[self editor] rangeWithLocation:location length:length];
 
     if (NSEqualRanges(NSMakeRange(0, 0), range)) {
         return @"";
