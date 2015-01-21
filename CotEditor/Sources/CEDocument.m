@@ -658,20 +658,15 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 //------------------------------------------------------
 /// データから指定エンコードで文字列を得る
-- (BOOL)readStringFromData:(NSData *)data encoding:(NSStringEncoding)encoding xattr:(BOOL)isXattr
+- (BOOL)readStringFromData:(NSData *)data encoding:(NSStringEncoding)encoding
 //------------------------------------------------------
 {
     NSString *string = nil;
     
-    // ファイル拡張属性 (com.apple.TextEncoding) を試す
-    if (isXattr && (encoding != CEAutoDetectEncoding)) {
-        string = [[NSString alloc] initWithData:data encoding:encoding];
-        if (!string) {
-            encoding = CEAutoDetectEncoding;  // reset to Auto-Detect
-        }
-    }
-    
-    if (encoding == CEAutoDetectEncoding) {
+    if (encoding != CEAutoDetectEncoding) {
+        string = ([data length] == 0) ? @"" : [[NSString alloc] initWithData:data encoding:encoding];
+        
+    } else {  // auto-detect
         BOOL shouldSkipISO2022JP = NO;
         BOOL shouldSkipUTF8 = NO;
         BOOL shouldSkipUTF16 = NO;
@@ -740,8 +735,6 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
                 }
             }
         }
-    } else if (!string) {
-        string = [[NSString alloc] initWithData:data encoding:encoding];
     }
     
     if (string && (encoding != CEAutoDetectEncoding)) {
@@ -1304,29 +1297,37 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
         return NO;
     }
 
-    NSStringEncoding newEncoding = encoding;
     BOOL success = NO;
     
-    // ファイル拡張属性 (com.apple.TextEncoding) からエンコーディング値を得る
+    // try reading the `com.apple.TextEncoding` extended attribute
     NSStringEncoding xattrEncoding = [self encodingFromComAppleTextEncodingAtURL:[self fileURL]];
     BOOL hasXattr = (xattrEncoding != CEUnknownEncoding);
+    
+    // don't save xattr if file doesn't have it in order to avoid saving wrong encoding (2015-01 by 1024jp).
     [self setShouldSaveXattr:hasXattr];
 
-    if (encoding == CEAutoDetectEncoding) {
-        newEncoding = hasXattr ? xattrEncoding : newEncoding;
+    // interpret using xattr encoding
+    if (encoding == CEAutoDetectEncoding && hasXattr) {
+        NSString *string;
         
-        // just use given encoding if content is empty
         if ([data length] == 0) {
-            [self setInitialString:@""];  // _initialString will be released in `setStringToEditor`
-            if (hasXattr) {
-                [self doSetEncoding:newEncoding updateDocument:NO askLossy:NO lossy:NO asActionName:nil];
-            }
+            // just trust xattr encoding if content is empty
+            string = @"";
+        } else {
+            // try converting data using xattr encoding
+            string = [[NSString alloc] initWithData:data encoding:xattrEncoding];
+        }
+        
+        if (string) {
+            [self setInitialString:string];  // _initialString will be released in `setStringToEditor`
+            [self doSetEncoding:xattrEncoding updateDocument:NO askLossy:NO lossy:NO asActionName:nil];
+            
             success = YES;
         }
     }
     
     if (!success) {
-        success = [self readStringFromData:data encoding:newEncoding xattr:hasXattr];
+        success = [self readStringFromData:data encoding:encoding];
     }
     
     if (success) {

@@ -308,7 +308,7 @@
         success = NO;
     } else if (encoding == [self encoding]) {
         success = YES;
-    } else if ([self readStringFromData:[NSData dataWithContentsOfURL:[self fileURL]] encoding:encoding xattr:NO]) {
+    } else if ([self readStringFromData:[NSData dataWithContentsOfURL:[self fileURL]] encoding:encoding]) {
         [self setStringToEditor];
         // clear dirty flag
         [self updateChangeCount:NSChangeCleared];

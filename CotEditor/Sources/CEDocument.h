@@ -64,7 +64,7 @@ typedef NS_ENUM(NSUInteger, CEGoToType) {
 @property (readonly, nonatomic, getter=isWritable) BOOL writable;
 
 
-// Public methods
+#pragma mark - Public Methods
 
 /// Return whole string in the current text view which document's line endings are already applied to.  (Note: The internal string (e.g. in text storage) has always LF for its line ending.)
 - (NSString *)stringForSave;
@@ -73,7 +73,7 @@ typedef NS_ENUM(NSUInteger, CEGoToType) {
 
 - (NSString *)currentIANACharSetName;
 - (NSArray *)findCharsIncompatibleWithEncoding:(NSStringEncoding)encoding;
-- (BOOL)readStringFromData:(NSData *)data encoding:(NSStringEncoding)encoding xattr:(BOOL)isXattr;
+- (BOOL)readStringFromData:(NSData *)data encoding:(NSStringEncoding)encoding;
 - (BOOL)doSetEncoding:(NSStringEncoding)encoding updateDocument:(BOOL)updateDocument
              askLossy:(BOOL)askLossy lossy:(BOOL)lossy asActionName:(NSString *)actionName;
 
@@ -86,7 +86,9 @@ typedef NS_ENUM(NSUInteger, CEGoToType) {
 - (void)setSelectedLineRangeInTextViewWithLocation:(NSInteger)location length:(NSInteger)length;
 - (void)gotoLocation:(NSInteger)location length:(NSInteger)length type:(CEGoToType)type;
 
-// Action Messages
+
+#pragma mark Action Messages
+
 - (IBAction)changeLineEndingToLF:(id)sender;
 - (IBAction)changeLineEndingToCR:(id)sender;
 - (IBAction)changeLineEndingToCRLF:(id)sender;
