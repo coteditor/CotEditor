@@ -114,7 +114,7 @@
                                CEDefaultEncodingListKey: encodings,
                                CEDefaultFontNameKey: [[NSFont controlContentFontOfSize:[NSFont systemFontSize]] fontName],
                                CEDefaultFontSizeKey: @([NSFont systemFontSize]),
-                               CEDefaultEncodingInOpenKey: @(CEAutoDetectEncodingMenuItemTag),
+                               CEDefaultEncodingInOpenKey: @(CEAutoDetectEncoding),
                                CEDefaultEncodingInNewKey: @(CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingUTF8)),
                                CEDefaultReferToEncodingTagKey: @YES,
                                CEDefaultCreateNewAtStartupKey: @YES,

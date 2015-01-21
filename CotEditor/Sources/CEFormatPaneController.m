@@ -356,7 +356,7 @@
     
     NSMenuItem *autoDetectItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Auto-Detect", nil)
                                                             action:nil keyEquivalent:@""];
-    [autoDetectItem setTag:CEAutoDetectEncodingMenuItemTag];
+    [autoDetectItem setTag:CEAutoDetectEncoding];
     [[[self encodingMenuInOpen] menu] addItem:autoDetectItem];
     [[[self encodingMenuInOpen] menu] addItem:[NSMenuItem separatorItem]];
     
@@ -426,7 +426,7 @@
 // ------------------------------------------------------
 {
     if (returnCode == NSAlertFirstButtonReturn) { // = revert to Auto-Detect
-        [[NSUserDefaults standardUserDefaults] setObject:@(CEAutoDetectEncodingMenuItemTag)
+        [[NSUserDefaults standardUserDefaults] setObject:@(CEAutoDetectEncoding)
                                                   forKey:CEDefaultEncodingInOpenKey];
     }
 }

@@ -449,8 +449,9 @@ extern CGFloat const kNoSeparatorPadding;
 // Encodings
 // ------------------------------------------------------
 
-// Encoding menu
-extern NSInteger const CEAutoDetectEncodingMenuItemTag;
+// Original special encoding type
+extern NSInteger const CEAutoDetectEncoding;
+extern NSStringEncoding const CEUnknownEncoding;
 
 // Max length to scan encoding declaration
 extern NSUInteger        const kMaxEncodingScanLength;
