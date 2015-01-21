@@ -1172,34 +1172,20 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 
 // ------------------------------------------------------
-// authopen コマンドを使って読み込む
-- (NSData *)forceReadDataFromURL:(NSURL *)url
+// file coordinator を通じて読み込む
+- (NSData *)readDataAtURL:(NSURL *)url
 // ------------------------------------------------------
 {
-    __block BOOL success = NO;
     __block NSData *data = nil;
     
     NSFileCoordinator *coordinator = [[NSFileCoordinator alloc] initWithFilePresenter:self];
-    [coordinator coordinateReadingItemAtURL:url options:0
-                                      error:nil
-                                 byAccessor:^(NSURL *newURL)
+    [coordinator coordinateReadingItemAtURL:[self fileURL] options:NSFileCoordinatorReadingResolvesSymbolicLink
+                                      error:nil byAccessor:^(NSURL *newURL)
      {
-         NSString *convertedPath = @([[newURL path] UTF8String]);
-         NSTask *task = [[NSTask alloc] init];
-         
-         [task setLaunchPath:@"/usr/libexec/authopen"];
-         [task setArguments:@[convertedPath]];
-         [task setStandardOutput:[NSPipe pipe]];
-         
-         [task launch];
-         data = [NSData dataWithData:[[[task standardOutput] fileHandleForReading] readDataToEndOfFile]];
-         [task waitUntilExit];
-         
-         int status = [task terminationStatus];
-         success = (status == 0);
+         data = [NSData dataWithContentsOfURL:newURL];
      }];
     
-    return success ? data : nil;
+    return data;
 }
 
 
@@ -1208,8 +1194,8 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 - (BOOL)readFromURL:(NSURL *)url encoding:(NSStringEncoding)encoding
 // ------------------------------------------------------
 {
-    // authopen コマンドを使って読み込む
-    NSData *data = [self forceReadDataFromURL:url];
+    // file coordinator を通じて読み込む
+    NSData *data = [self readDataAtURL:url];
     
     if (!data) {
         // オープンダイアログでのエラーアラートは CEDocumentController > openDocument: で表示する
