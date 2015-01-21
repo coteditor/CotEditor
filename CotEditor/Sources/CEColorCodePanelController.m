@@ -159,10 +159,11 @@
 - (IBAction)insertCodeToDocument:(id)sender
 // ------------------------------------------------------
 {
-    CEEditorWrapper *editor = [[self documentWindowController] editor];
+    NSTextView *textView = [[[self documentWindowController] editor] focusedTextView];
     
-    [editor replaceTextViewSelectedStringWithString:[self colorCode]];
-    [[editor focusedTextView] scrollRangeToVisible:[[editor focusedTextView] selectedRange]];
+    [textView insertText:[self colorCode]];
+    [[textView undoManager] setActionName:NSLocalizedString(@"Insert Color Code", nil)];
+    [textView scrollRangeToVisible:[textView selectedRange]];
 }
 
 

@@ -232,6 +232,11 @@
 "comments and quoted texts" = "コメントと引用符で囲まれたテキスト";
 
 
+/* MARK: CEColorCodePanelController */
+// Undo action name
+"Insert Color Code" = "カラーコードを挿入";
+
+
 /* MARK: CEPreferencesWindowController */
 // Smart quotes/dashes
 " (on Mavericks and later)" = "（Mavericks 以上）";

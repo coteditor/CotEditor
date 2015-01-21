@@ -231,6 +231,11 @@
 "comments and quoted texts" = "注释和引用文本";
 
 
+/* MARK: CEColorCodePanelController */
+// Undo action name
+"Insert Color Code" = "Insert Color Code";  // FIXME:
+
+
 /* MARK: CEPreferencesWindowController */
 // Smart quotes/dashes
 " (on Mavericks and later)" = "（Mavericks 或更新版本）";

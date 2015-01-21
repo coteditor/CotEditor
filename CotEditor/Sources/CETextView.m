@@ -749,7 +749,6 @@ static NSPoint kTextContainerOrigin;
     // （このメソッドは、performDragOperation: 内で呼ばれる）
     
     BOOL success = NO;
-    NSRange selectedRange, newRange;
     
     // 実行中フラグを立てる
     [self setReadingFromPboard:YES];
@@ -772,10 +771,10 @@ static NSPoint kTextContainerOrigin;
             CENewLineType newlineChar = [pboardStr detectNewLineType];
             if ((newlineChar != CENewLineNone) && (newlineChar != CENewLineLF)) {
                 NSString *replacedStr = [pboardStr stringByReplacingNewLineCharacersWith:CENewLineLF];
-                selectedRange = [self selectedRange];
-                newRange = NSMakeRange(selectedRange.location + [replacedStr length], 0);
-                // （Action名は自動で付けられる？ので、指定しない）
-                [self replaceWithString:replacedStr range:selectedRange selectedRange:newRange actionName:nil];
+                NSRange newRange = NSMakeRange([self selectedRange].location + [replacedStr length], 0);
+                
+                [super insertText:replacedStr];
+                [self setSelectedRange:newRange];
                 success = YES;
             }
         }
@@ -791,7 +790,6 @@ static NSPoint kTextContainerOrigin;
             NSString *pathExtension = nil, *pathExtensionLower = nil, *pathExtensionUpper = nil;
             NSString *stringToDrop = nil;
             
-            selectedRange = [self selectedRange];
             for (NSDictionary *definition in fileDropDefs) {
                 NSArray *extensions = [definition[CEFileDropExtensionsKey] componentsSeparatedByString:@", "];
                 pathExtension = [absoluteURL pathExtension];
@@ -864,11 +862,11 @@ static NSPoint kTextContainerOrigin;
                                                                                        [imageRep pixelsHigh]]];
                 }
                 // （ファイルをドロップしたときは、挿入文字列全体を選択状態にする）
-                newRange = NSMakeRange(selectedRange.location, [stringToDrop length]);
-                // （Action名は自動で付けられる？ので、指定しない）
-                [self replaceWithString:stringToDrop range:selectedRange selectedRange:newRange actionName:nil];
+                NSRange newRange = NSMakeRange([self selectedRange].location, 0);
+                
+                [super insertText:stringToDrop];
+                [self setSelectedRange:newRange];
                 // 挿入後、選択範囲を移動させておかないと複数オブジェクトをドロップされた時に重ね書きしてしまう
-                [self setSelectedRange:NSMakeRange(NSMaxRange(newRange), 0)];
                 success = YES;
             }
         }
@@ -992,12 +990,12 @@ static NSPoint kTextContainerOrigin;
     if (!string) { return; }
     
     NSRange selectedRange = [self selectedRange];
-    NSString *actionName = (selectedRange.length > 0) ? @"Replace Text" : @"Insert Text";
     
-    [self replaceWithString:string
-                      range:selectedRange
-              selectedRange:NSMakeRange(selectedRange.location, [string length])
-                 actionName:NSLocalizedString(actionName, nil)];
+    [super insertText:string];
+    [self setSelectedRange:NSMakeRange(selectedRange.location, [string length])];
+    
+    NSString *actionName = (selectedRange.length > 0) ? @"Replace Text" : @"Insert Text";
+    [[self undoManager] setActionName:NSLocalizedString(actionName, nil)];
 }
 
 
@@ -1008,10 +1006,10 @@ static NSPoint kTextContainerOrigin;
 {
     if (!string) { return; }
     
-    [self replaceWithString:string
-                      range:NSMakeRange(0, [[self string] length])
-              selectedRange:NSMakeRange(0, [string length])
-                 actionName:NSLocalizedString(@"Replace Text", nil)];
+    [super insertText:string replacementRange:NSMakeRange(0, [[self string] length])];
+    [self setSelectedRange:NSMakeRange(0, [string length])];
+    
+    [[self undoManager] setActionName:NSLocalizedString(@"Replace Text", nil)];
 }
 
 
@@ -1022,10 +1020,13 @@ static NSPoint kTextContainerOrigin;
 {
     if (!string) { return; }
     
-    [self replaceWithString:string
-                      range:NSMakeRange(NSMaxRange([self selectedRange]), 0)
-              selectedRange:NSMakeRange(NSMaxRange([self selectedRange]), [string length])
-                 actionName:NSLocalizedString(@"Insert Text", nil)];
+    
+    NSUInteger location = NSMaxRange([self selectedRange]);
+    
+    [super insertText:string replacementRange:NSMakeRange(location, 0)];
+    [self setSelectedRange:NSMakeRange(location, [string length])];
+    
+    [[self undoManager] setActionName:NSLocalizedString(@"Insert Text", nil)];
 }
 
 
@@ -1036,10 +1037,12 @@ static NSPoint kTextContainerOrigin;
 {
     if (!string) { return; }
     
-    [self replaceWithString:string
-                      range:NSMakeRange([[self string] length], 0)
-              selectedRange:NSMakeRange([[self string] length], [string length])
-                 actionName:NSLocalizedString(@"Insert Text", nil)];
+    NSUInteger location = [[self string] length];
+    
+    [super insertText:string replacementRange:NSMakeRange(location, 0)];
+    [self setSelectedRange:NSMakeRange(location, [string length])];
+    
+    [[self undoManager] setActionName:NSLocalizedString(@"Insert Text", nil)];
 }
 
 
@@ -1051,14 +1054,12 @@ static NSPoint kTextContainerOrigin;
     if (patternNum < 0) { return; }
     
     NSArray *texts = [[NSUserDefaults standardUserDefaults] stringArrayForKey:CEDefaultInsertCustomTextArrayKey];
-
+    
     if (patternNum < [texts count]) {
         NSString *string = texts[patternNum];
         
-        [self replaceWithString:string
-                          range:[self selectedRange]
-                  selectedRange:NSMakeRange([self selectedRange].location + [string length], 0)
-                     actionName:NSLocalizedString(@"Insert Custom Text", nil)];
+        [super insertText:string];
+        [[self undoManager] setActionName:NSLocalizedString(@"Insert Custom Text", nil)];
         
         [self scrollRangeToVisible:[self selectedRange]];
     }
@@ -2065,9 +2066,7 @@ static NSPoint kTextContainerOrigin;
     }
     
     // replace
-    [self replaceWithString:newString
-                      range:targetRange
-              selectedRange:selected
+    [self replaceWithString:newString range:targetRange selectedRange:selected
                  actionName:NSLocalizedString(@"Comment Out", nil)];
 }
 
