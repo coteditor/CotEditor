@@ -26,10 +26,10 @@
 /* Class = "NSButtonCell"; title = "Ignore Case"; ObjectID = "4wg-Cz-ozb"; */
 "4wg-Cz-ozb.title" = "忽略大小写";
 /* Class = "NSButtonCell"; title = "In Selection"; ObjectID = "9bc-9Q-fhd"; */
-"9bc-9Q-fhd.title" = "In Selection";  // FIXME:
+"9bc-9Q-fhd.title" = "选中范围内";
 
 /* Class = "NSButton"; ibShadowedToolTip = "Show quick reference for regular expression syntax."; ObjectID = "i2l-7Z-Zmf"; */
-"i2l-7Z-Zmf.ibShadowedToolTip" = "Show quick reference for regular expression syntax.";  // FIXME:
+"i2l-7Z-Zmf.ibShadowedToolTip" = "显示正则表达式快速参考";
 
 
 // Buttons
@@ -44,40 +44,40 @@
 "m0f-Il-JLU.title" = "替换 & 查找";
 
 /* Class = "NSSegmentedCell"; ObjectID = "u6p-Hz-aK5"; */
-"u6p-Hz-aK5.ibShadowedToolTips[0]" = "Find previous match.";  /* "Find previous match." */  // FIXME:
-"u6p-Hz-aK5.ibShadowedToolTips[1]" = "Find next match.";  /* "Find next match." */  // FIXME:
+"u6p-Hz-aK5.ibShadowedToolTips[0]" = "查找前一个匹配";  /* "Find previous match." */
+"u6p-Hz-aK5.ibShadowedToolTips[1]" = "查找后一个匹配";  /* "Find next match." */
 
 /* Class = "NSMenuItem"; title = "Recent Searches"; ObjectID = "cdV-rY-hCN"; */
-"cdV-rY-hCN.title" = "Recent Searches";  // FIXME:
+"cdV-rY-hCN.title" = "最近查找";
 /* Class = "NSMenuItem"; title = "Clear Recent Searches"; ObjectID = "vE8-oK-xlC"; */
-"vE8-oK-xlC.title" = "Clear Recent Searches";  // FIXME:
+"vE8-oK-xlC.title" = "清除最近查找";
 
 /* Class = "NSMenuItem"; title = "Recent Replacements"; ObjectID = "7cw-iQ-0LM"; */
-"7cw-iQ-0LM.title" = "Recent Replacements";  // FIXME:
+"7cw-iQ-0LM.title" = "最近替换";
 /* Class = "NSMenuItem"; title = "Clear Recent Replacements"; ObjectID = "vfK-an-Qnl"; */
-"vfK-an-Qnl.title" = "Clear Recent Replacements";  // FIXME:
+"vfK-an-Qnl.title" = "清除最近替换";
 
 
 // Advanced Options
 
 /* Class = "NSPopUpButton"; ibShadowedToolTip = "Set advanced options"; ObjectID = "EY8-gj-fQb"; */
-"EY8-gj-fQb.ibShadowedToolTip" = "Set advanced options";  // FIXME:
+"EY8-gj-fQb.ibShadowedToolTip" = "设置高级选项";
 
 /* Class = "NSMenuItem"; title = "Advanced Options"; ObjectID = "SsS-EF-JyP"; */
-"SsS-EF-JyP.title" = "Advanced Options";  // FIXME:
+"SsS-EF-JyP.title" = "高级选项";
 
 /* Class = "NSMenuItem"; title = "Wrap Around"; ObjectID = "Oqm-Wt-G7B"; */
 "Oqm-Wt-G7B.title" = "折行查找";
 /* Class = "NSMenuItem"; title = "Auto-Close Progress Sheet"; ObjectID = "ONX-V4-H0w"; */
-"ONX-V4-H0w.title" = "Auto-Close Progress Sheet";  // FIXME:
+"ONX-V4-H0w.title" = "自动关闭进度表";
 
 /* Class = "NSMenuItem"; title = "Textual Search Options"; ObjectID = "hX3-jg-Uqc"; */
-"hX3-jg-Uqc.title" = "Textual Search Options";  // FIXME:
+"hX3-jg-Uqc.title" = "文本查找选项";
 /* Class = "NSMenuItem"; title = "Delimit by Whitespace"; ObjectID = "4Pf-nh-75E"; */
 "4Pf-nh-75E.title" = "以空格分隔";
 
 /* Class = "NSMenuItem"; title = "Regular Expression Options"; ObjectID = "UZ5-oK-DED"; */
-"UZ5-oK-DED.title" = "Regular Expression Options";  // FIXME:
+"UZ5-oK-DED.title" = "正则表达式选项";
 
 /* Class = "NSMenuItem"; title = "Syntax"; ObjectID = "Uhr-hw-nIf"; */
 "Uhr-hw-nIf.title" = "查找方式";
@@ -149,4 +149,4 @@
 // Regex Quick Reference
 
 /* Class = "IBNSViewController"; title = "Quick Reference of Regular Expression"; ObjectID = "uMF-F8-Wjs"; */
-"uMF-F8-Wjs.title" = "Quick Reference of Regular Expression";  // FIXME:
+"uMF-F8-Wjs.title" = "正则表达式快速参考";
