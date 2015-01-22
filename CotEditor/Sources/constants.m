@@ -397,8 +397,6 @@ CGFloat const kNoSeparatorPadding = 18.0;
 
 // Encoding menu
 NSInteger const CEAutoDetectEncoding = 0;
-NSStringEncoding const CEUnknownEncoding = 65536;  // ex-NSProprietaryStringEncoding (2015-01 by 1024jp)
-
 
 // Max length to scan encding declaration
 NSUInteger const kMaxEncodingScanLength = 2000;

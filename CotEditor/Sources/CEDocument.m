@@ -1097,7 +1097,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     
     // try reading the `com.apple.TextEncoding` extended attribute
     NSStringEncoding xattrEncoding = [self encodingFromComAppleTextEncodingAtURL:[self fileURL]];
-    BOOL hasXattr = (xattrEncoding != CEUnknownEncoding);
+    BOOL hasXattr = (xattrEncoding != NSNotFound);
     
     // don't save xattr if file doesn't have it in order to avoid saving wrong encoding (2015-01 by 1024jp).
     [self setShouldSaveXattr:hasXattr];
@@ -1202,7 +1202,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
                 if (string) {
                     // "charset=" や "encoding=" を読んでみて適正なエンコーディングが得られたら、そちらを優先
                     NSStringEncoding scannedEncoding = [self scanCharsetOrEncodingFromString:string];
-                    if ((scannedEncoding == CEUnknownEncoding) || (scannedEncoding == encoding)) {
+                    if ((scannedEncoding == NSNotFound) || (scannedEncoding == encoding)) {
                         break;
                     }
                     NSString *tmpStr = [[NSString alloc] initWithData:data encoding:scannedEncoding];
@@ -1235,7 +1235,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     // Smultron 2 was distributed on <http://smultron.sourceforge.net> under the terms of the BSD license.
     // Copyright (c) 2004-2006 Peter Borg
     
-    NSStringEncoding encoding = CEUnknownEncoding;
+    NSStringEncoding encoding = NSNotFound;
     if (![[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultReferToEncodingTagKey] || ([string length] < 9)) {
         return encoding; // 参照しない設定になっているか、含まれている余地が無ければ中断
     }
@@ -1320,7 +1320,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 - (NSStringEncoding)encodingFromComAppleTextEncodingAtURL:(NSURL *)url
 // ------------------------------------------------------
 {
-    NSStringEncoding encoding = CEUnknownEncoding;
+    NSStringEncoding encoding = NSNotFound;
     
     // get xattr data
     NSMutableData* data = nil;
@@ -1357,7 +1357,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     NSStringEncoding ShiftJIS = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingShiftJIS);
     NSStringEncoding X0213 = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingShiftJIS_X0213);
 
-    if ((IANACharSetEncoding != CEUnknownEncoding) && (IANACharSetEncoding != [self encoding]) &&
+    if ((IANACharSetEncoding != NSNotFound) && (IANACharSetEncoding != [self encoding]) &&
         (!(((IANACharSetEncoding == ShiftJIS) || (IANACharSetEncoding == X0213)) &&
            (([self encoding] == ShiftJIS) || ([self encoding] == X0213))))) {
             // （Shift-JIS の時は要注意 = scanCharsetOrEncodingFromString: を参照）
