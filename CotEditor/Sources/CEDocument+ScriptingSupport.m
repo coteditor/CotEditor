@@ -302,20 +302,8 @@
     NSDictionary *arguments = [command evaluatedArguments];
     NSString *encodingName = arguments[@"newEncoding"];
     NSStringEncoding encoding = [CEUtils encodingFromName:encodingName];
-    BOOL success = NO;
-
-    if ((encoding == NSNotFound) || ![self fileURL]) {
-        success = NO;
-    } else if (encoding == [self encoding]) {
-        success = YES;
-    } else if ([self readStringFromData:[NSData dataWithContentsOfURL:[self fileURL]] encoding:encoding]) {
-        [self setStringToEditor];
-        // clear dirty flag
-        [self updateChangeCount:NSChangeCleared];
-        // update popup menu in the toolbar
-        [[[self windowController] toolbarController] setSelectedEncoding:[self encoding]];
-        success = YES;
-    }
+    
+    BOOL success = [self reinterpretWithEncoding:encoding];
 
     return @(success);
 }

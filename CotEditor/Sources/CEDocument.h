@@ -69,9 +69,8 @@ extern NSString *const CEIncompatibleConvertedCharKey;
 // string encoding
 - (NSString *)currentIANACharSetName;
 - (NSArray *)findCharsIncompatibleWithEncoding:(NSStringEncoding)encoding;
-- (BOOL)readStringFromData:(NSData *)data encoding:(NSStringEncoding)encoding;
-- (BOOL)doSetEncoding:(NSStringEncoding)encoding updateDocument:(BOOL)updateDocument
-             askLossy:(BOOL)askLossy lossy:(BOOL)lossy asActionName:(NSString *)actionName;
+- (BOOL)reinterpretWithEncoding:(NSStringEncoding)encoding;
+- (BOOL)doSetEncoding:(NSStringEncoding)encoding updateDocument:(BOOL)updateDocument askLossy:(BOOL)askLossy lossy:(BOOL)lossy asActionName:(NSString *)actionName;
 
 // line ending
 - (void)doSetLineEnding:(CENewLineType)lineEnding;
