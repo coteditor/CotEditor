@@ -572,7 +572,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     // update toolbar
     [self applyLineEndingToView];
     
-    // ツールバーのエンコーディングメニュー、ステータスバー、ドロワーを更新
+    // ツールバーのエンコーディングメニュー、ステータスバー、インスペクタを更新
     [self updateEncodingInToolbarAndInfo];
     // カラーリングと行番号を更新
     // （大きいドキュメントの時はインジケータを表示させるため、ディレイをかけてまずウィンドウを表示させる）
@@ -658,7 +658,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     if (encoding == [self encoding]) { return YES; }
     
     // reinterpret
-    BOOL success = [self readStringFromData:[NSData dataWithContentsOfURL:[self fileURL]] encoding:encoding];
+    BOOL success = [self readFromURL:[self fileURL] encoding:encoding];
     
     if (success) {
         [self setStringToEditor];
@@ -666,10 +666,10 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
         // clear dirty flag
         [[self undoManager] removeAllActions];
         [self updateChangeCount:NSChangeCleared];
+        
+        // update popup menu in the toolbar
+        [[[self windowController] toolbarController] setSelectedEncoding:[self encoding]];
     }
-    
-    // update popup menu in the toolbar
-    [[[self windowController] toolbarController] setSelectedEncoding:[self encoding]];
     
     return success;
 }
@@ -728,7 +728,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     }
     
     [self setEncoding:encoding];
-    [self updateEncodingInToolbarAndInfo];  // ツールバーのエンコーディングメニュー、ステータスバー、ドロワーを更新
+    [self updateEncodingInToolbarAndInfo];  // ツールバーのエンコーディングメニュー、ステータスバー、インスペクタを更新
     
     if (shouldShowList) {
         [[self windowController] showIncompatibleCharList];
@@ -1034,13 +1034,13 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 
 // ------------------------------------------------------
-/// ツールバーのエンコーディングメニュー、ステータスバー、ドロワーを更新
+/// ツールバーのエンコーディングメニュー、ステータスバー、インスペクタを更新
 - (void)updateEncodingInToolbarAndInfo
 // ------------------------------------------------------
 {
     // ツールバーのエンコーディングメニューを更新
     [[[self windowController] toolbarController] setSelectedEncoding:[self encoding]];
-    // ステータスバー、ドロワーを更新
+    // ステータスバー、インスペクタを更新
     [[self windowController] updateModeInfoIfNeeded];
 }
 
