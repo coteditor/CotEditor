@@ -233,7 +233,7 @@
 
 /* MARK: CEColorCodePanelController */
 // Undo action name
-"Insert Color Code" = "Insert Color Code";  // FIXME:
+"Insert Color Code" = "插入颜色代码";
 
 
 /* MARK: CEPreferencesWindowController */
@@ -394,6 +394,6 @@
 
 /* MARK: CEFindResultViewController */
 // Find result (“%@” is file name)
-"No strings found in “%@”." = "No strings found in “%@”.";  // FIXME:
-"Found one string in “%@”." = "Found one string in “%@”.";  // FIXME:
-"Found %li strings in “%@”." = "Found %li strings in “%@”.";  // FIXME:
+"No strings found in “%@”." = "在 “%@” 中没有找到字符串";
+"Found one string in “%@”." = "在 “%@” 中找到一个字符串";
+"Found %li strings in “%@”." = "%li 个字符串在 “%@” 中被找到";
