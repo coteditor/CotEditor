@@ -1154,19 +1154,19 @@ static NSPoint kTextContainerOrigin;
     [newString insertString:indent atIndex:0];
     
     // calculate new selection range
-    NSRange newSelectedRange = selectedRange;
+    NSRange newSelectedRange = NSMakeRange(selectedRange.location,
+                                           selectedRange.length + [indent length] * numberOfLines);
     if ((lineRange.location == selectedRange.location) && (selectedRange.length > 0) &&
         ([[[self string] substringWithRange:selectedRange] hasSuffix:@"\n"]))
     {
         // 行頭から行末まで選択されていたときは、処理後も同様に選択する
-        numberOfLines++;
+        newSelectedRange.length += [indent length];
     } else {
         newSelectedRange.location += [indent length];
     }
-    selectedRange.length += [indent length] * numberOfLines;
     
     // perform replace and register to undo manager
-    [self replaceWithString:newString range:lineRange selectedRange:selectedRange
+    [self replaceWithString:newString range:lineRange selectedRange:newSelectedRange
                  actionName:NSLocalizedString(@"Shift Right", nil)];
 }
 
@@ -1401,9 +1401,7 @@ static NSPoint kTextContainerOrigin;
 // ------------------------------------------------------
 {
     NSUndoManager *undoManager = [self undoManager];
-    NSDocument *document = [[[self window] windowController] document];
     NSTextStorage *textStorage = [self textStorage];
-    NSString *wholeString = [self string];
     NSDictionary *attributes = [self typingAttributes];
     
     // register redo in undo
@@ -1412,7 +1410,9 @@ static NSPoint kTextContainerOrigin;
                                                                 actionName:actionName];
     
     // register undo
-    [[undoManager prepareWithInvocationTarget:self] setSelectedRanges:[self selectedRanges]];
+    NSArray *currentSelectedRanges = [self selectedRanges];
+    [undoManager beginUndoGrouping];
+    [[undoManager prepareWithInvocationTarget:self] setSelectedRanges:currentSelectedRanges];
     [[undoManager prepareWithInvocationTarget:self] didChangeText];  // post notification.
     
     __block NSInteger deltaLocation = 0;
@@ -1420,17 +1420,15 @@ static NSPoint kTextContainerOrigin;
      {
          NSRange range = [obj rangeValue];
          NSString *string = strings[idx];
-         NSString *originalString = [wholeString substringWithRange:range];
+         NSAttributedString *currentString = [textStorage attributedSubstringFromRange:range];
          NSRange newRange = NSMakeRange(range.location + deltaLocation, [string length]);  // replaced range after method.
          
-         [[undoManager prepareWithInvocationTarget:textStorage] setAttributes:attributes
-                                                                        range:range];
-         [[undoManager prepareWithInvocationTarget:textStorage] replaceCharactersInRange:newRange
-                                                                              withString:originalString];
+         [[undoManager prepareWithInvocationTarget:textStorage]
+          replaceCharactersInRange:newRange withAttributedString:currentString];
          
-         deltaLocation += [string length] - [originalString length];
+         deltaLocation += newRange.length - range.length;
      }];
-    [[undoManager prepareWithInvocationTarget:document] updateChangeCount:NSChangeUndone];  // decrement changeCount.
+    [undoManager endUndoGrouping];
     if (actionName) {
         [undoManager setActionName:actionName];
     }
@@ -1442,10 +1440,10 @@ static NSPoint kTextContainerOrigin;
                              usingBlock:^(id obj, NSUInteger idx, BOOL *stop)
      {
          NSRange range = [obj rangeValue];
-         NSString *string = strings[idx];
+         NSAttributedString *attrString = [[NSAttributedString alloc] initWithString:strings[idx]
+                                                                          attributes:attributes];
          
-         [textStorage replaceCharactersInRange:range withString:string];
-         [textStorage setAttributes:attributes range:NSMakeRange(range.location, [string length])];
+         [textStorage replaceCharactersInRange:range withAttributedString:attrString];
      }];
     [textStorage endEditing];
     
@@ -1454,9 +1452,6 @@ static NSPoint kTextContainerOrigin;
     
     // apply new selection ranges
     [self setSelectedRanges:selectedRanges];
-    
-    // increment undo count
-    [document updateChangeCount:NSChangeDone];
 }
 
 
@@ -2256,7 +2251,7 @@ static NSPoint kTextContainerOrigin;
     [self transformSelectionWithActionName:NSLocalizedString(@"Hiragana to Katakana", nil)
                           operationHandler:^NSString *(NSString *substring)
      {
-         return [substring katakanaString];
+         return [[substring katakanaString] stringByAppendingString:@"test"];
      }];
 }
 
