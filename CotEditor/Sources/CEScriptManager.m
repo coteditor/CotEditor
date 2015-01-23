@@ -429,7 +429,7 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
     
     switch (outputType) {
         case CEReplaceSelectionType:
-            [editor replaceTextViewSelectedStringWithString:output];
+            [editor insertTextViewString:output];
             break;
             
         case CEReplaceAllTextType:

@@ -75,7 +75,7 @@
 - (IBAction)apply:(id)sender
 // ------------------------------------------------------
 {
-    [[self textView] setNewLineSpacingAndUpdate:[self lineSpacing]];
+    [[self textView] setLineSpacingAndUpdate:[self lineSpacing]];
     [[self window] close];
 }
 

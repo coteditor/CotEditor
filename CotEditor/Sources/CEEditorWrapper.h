@@ -63,9 +63,9 @@
 - (NSString *)substringWithSelectionForSave;  // line ending applied
 - (void)setString:(NSString *)string;
 
-- (void)replaceTextViewSelectedStringWithString:(NSString *)inString;
-- (void)replaceTextViewAllStringWithString:(NSString *)string;
+- (void)insertTextViewString:(NSString *)inString;
 - (void)insertTextViewStringAfterSelection:(NSString *)string;
+- (void)replaceTextViewAllStringWithString:(NSString *)string;
 - (void)appendTextViewString:(NSString *)string;
 
 - (NSRange)selectedRange;  // line ending applied

@@ -74,7 +74,7 @@
 {
     NSTextStorage *storage = (NSTextStorage *)[aNotification object];
 
-    [[[self document] editor] replaceTextViewSelectedStringWithString:[storage string]];
+    [[[self document] editor] insertTextViewString:[storage string]];
     [storage setDelegate:nil];
 }
 
@@ -136,7 +136,7 @@
         return;
     }
     
-    [[[self document] editor] replaceTextViewSelectedStringWithString:string];
+    [[[self document] editor] insertTextViewString:string];
 }
 
 

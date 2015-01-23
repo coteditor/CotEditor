@@ -267,19 +267,10 @@ static NSTimeInterval secondColoringDelay;
 
 // ------------------------------------------------------
 /// 選択文字列を置換する
-- (void)replaceTextViewSelectedStringWithString:(NSString *)string
+- (void)insertTextViewString:(NSString *)string
 // ------------------------------------------------------
 {
-    [[self focusedTextView] replaceSelectedStringWithString:string];
-}
-
-
-// ------------------------------------------------------
-/// 全文字列を置換
-- (void)replaceTextViewAllStringWithString:(NSString *)string
-// ------------------------------------------------------
-{
-    [[self focusedTextView] replaceAllStringWithString:string];
+    [[self focusedTextView] insertString:string];
 }
 
 
@@ -289,6 +280,15 @@ static NSTimeInterval secondColoringDelay;
 // ------------------------------------------------------
 {
     [[self focusedTextView] insertStringAfterSelection:string];
+}
+
+
+// ------------------------------------------------------
+/// 全文字列を置換
+- (void)replaceTextViewAllStringWithString:(NSString *)string
+// ------------------------------------------------------
+{
+    [[self focusedTextView] replaceAllStringWithString:string];
 }
 
 

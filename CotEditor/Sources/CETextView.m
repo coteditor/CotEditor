@@ -983,10 +983,12 @@ static NSPoint kTextContainerOrigin;
 #pragma mark Public Methods
 
 // ------------------------------------------------------
-/// 選択文字列を置換
-- (void)replaceSelectedStringWithString:(NSString *)string
+- (void)insertString:(NSString *)string
+/// treat programmatic text insertion
 // ------------------------------------------------------
 {
+    // should not use `insertText:` and insertText:replacementRange:` methods since they are generally for user typing.
+    
     if (!string) { return; }
     
     NSRange selectedRange = [self selectedRange];
@@ -995,12 +997,29 @@ static NSPoint kTextContainerOrigin;
     [self setSelectedRange:NSMakeRange(selectedRange.location, [string length])];
     
     NSString *actionName = (selectedRange.length > 0) ? @"Replace Text" : @"Insert Text";
+    
     [[self undoManager] setActionName:NSLocalizedString(actionName, nil)];
 }
 
 
 // ------------------------------------------------------
-/// 全文字列を置換
+/// insert given string just after current selection and select inserted range
+- (void)insertStringAfterSelection:(NSString *)string
+// ------------------------------------------------------
+{
+    if (!string) { return; }
+    
+    NSUInteger location = NSMaxRange([self selectedRange]);
+    
+    [super insertText:string replacementRange:NSMakeRange(location, 0)];
+    [self setSelectedRange:NSMakeRange(location, [string length])];
+    
+    [[self undoManager] setActionName:NSLocalizedString(@"Insert Text", nil)];
+}
+
+
+// ------------------------------------------------------
+/// swap whole current string with given string and select inserted range
 - (void)replaceAllStringWithString:(NSString *)string
 // ------------------------------------------------------
 {
@@ -1014,24 +1033,7 @@ static NSPoint kTextContainerOrigin;
 
 
 // ------------------------------------------------------
-/// 選択文字列の後ろへ新規文字列を挿入
-- (void)insertStringAfterSelection:(NSString *)string
-// ------------------------------------------------------
-{
-    if (!string) { return; }
-    
-    
-    NSUInteger location = NSMaxRange([self selectedRange]);
-    
-    [super insertText:string replacementRange:NSMakeRange(location, 0)];
-    [self setSelectedRange:NSMakeRange(location, [string length])];
-    
-    [[self undoManager] setActionName:NSLocalizedString(@"Insert Text", nil)];
-}
-
-
-// ------------------------------------------------------
-/// 末尾に新規文字列を追加
+/// append string at the end of the whole string and select inserted range
 - (void)appendString:(NSString *)string
 // ------------------------------------------------------
 {
@@ -1068,16 +1070,16 @@ static NSPoint kTextContainerOrigin;
 
 // ------------------------------------------------------
 /// 行間値をセットし、テキストと行番号を再描画
-- (void)setNewLineSpacingAndUpdate:(CGFloat)lineSpacing
+- (void)setLineSpacingAndUpdate:(CGFloat)lineSpacing
 // ------------------------------------------------------
 {
     if (lineSpacing == [self lineSpacing]) { return; }
     
-    NSRange range = NSMakeRange(0, [[self string] length]);
-    
     [self setLineSpacing:lineSpacing];
-    // テキストを再描画
-    [[self layoutManager] invalidateLayoutForCharacterRange:range isSoft:NO actualCharacterRange:nil];
+    
+    // redraw
+    NSRange range = NSMakeRange(0, [[self string] length]);
+    [[self layoutManager] invalidateLayoutForCharacterRange:range actualCharacterRange:nil];
     [self updateLineNumberAndAdjustScroll];
 }
 
@@ -1321,7 +1323,7 @@ static NSPoint kTextContainerOrigin;
 - (IBAction)changeLineHeight:(id)sender
 // ------------------------------------------------------
 {
-    [self setNewLineSpacingAndUpdate:(CGFloat)[[sender title] doubleValue] - 1.0];  // title is line height
+    [self setLineSpacingAndUpdate:(CGFloat)[[sender title] doubleValue] - 1.0];  // title is line height
 }
 
 

@@ -708,7 +708,7 @@
     
     if (document) {
 //    [document readFromData:[selection dataUsingEncoding:NSUTF8StringEncoding] ofType:nil error:nil];
-        [[document editor] replaceTextViewSelectedStringWithString:selection];
+        [[document editor] insertTextViewString:selection];
     } else {
         [[NSAlert alertWithError:err] runModal];
     }
