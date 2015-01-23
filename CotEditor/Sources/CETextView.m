@@ -226,8 +226,8 @@ static NSPoint kTextContainerOrigin;
         NSInteger length = [selectorStr length];
         if (selectorStr && (length > 0)) {
             if (([selectorStr hasPrefix:@"insertCustomText"]) && (length == 20)) {
-                NSInteger theNum = [[selectorStr substringFromIndex:17] integerValue];
-                [self insertCustomTextWithPatternNum:theNum];
+                NSInteger patternNumber = [[selectorStr substringFromIndex:17] integerValue];
+                [self insertCustomTextWithPatternNumber:patternNumber];
             } else {
                 [self doCommandBySelector:NSSelectorFromString(selectorStr)];
             }
@@ -1049,26 +1049,6 @@ static NSPoint kTextContainerOrigin;
 
 
 // ------------------------------------------------------
-/// カスタムキーバインドで文字列入力
-- (void)insertCustomTextWithPatternNum:(NSInteger)patternNum
-// ------------------------------------------------------
-{
-    if (patternNum < 0) { return; }
-    
-    NSArray *texts = [[NSUserDefaults standardUserDefaults] stringArrayForKey:CEDefaultInsertCustomTextArrayKey];
-    
-    if (patternNum < [texts count]) {
-        NSString *string = texts[patternNum];
-        
-        [super insertText:string];
-        [[self undoManager] setActionName:NSLocalizedString(@"Insert Custom Text", nil)];
-        
-        [self scrollRangeToVisible:[self selectedRange]];
-    }
-}
-
-
-// ------------------------------------------------------
 /// 行間値をセットし、テキストと行番号を再描画
 - (void)setLineSpacingAndUpdate:(CGFloat)lineSpacing
 // ------------------------------------------------------
@@ -1521,6 +1501,26 @@ static NSPoint kTextContainerOrigin;
             [pboard setString:[string stringByReplacingNewLineCharacersWith:newLineType]
                       forType:pboardType];
         }
+    }
+}
+
+
+// ------------------------------------------------------
+/// カスタムキーバインドで文字列入力
+- (void)insertCustomTextWithPatternNumber:(NSInteger)patternNumber
+// ------------------------------------------------------
+{
+    if (patternNumber < 0) { return; }
+    
+    NSArray *texts = [[NSUserDefaults standardUserDefaults] stringArrayForKey:CEDefaultInsertCustomTextArrayKey];
+    
+    if (patternNumber < [texts count]) {
+        NSString *string = texts[patternNumber];
+        
+        [super insertText:string];
+        [[self undoManager] setActionName:NSLocalizedString(@"Insert Custom Text", nil)];
+        
+        [self scrollRangeToVisible:[self selectedRange]];
     }
 }
 

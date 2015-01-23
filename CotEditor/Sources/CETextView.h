@@ -63,7 +63,6 @@
 - (void)insertStringAfterSelection:(NSString *)string;
 - (void)replaceAllStringWithString:(NSString *)string;
 - (void)appendString:(NSString *)string;
-- (void)insertCustomTextWithPatternNum:(NSInteger)patternNum;
 - (void)setLineSpacingAndUpdate:(CGFloat)lineSpacing;
 - (void)replaceWithString:(NSString *)string range:(NSRange)range
             selectedRange:(NSRange)selectedRange actionName:(NSString *)actionName;
