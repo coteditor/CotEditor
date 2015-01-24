@@ -952,7 +952,7 @@ static NSPoint kTextContainerOrigin;
         
     } else if ([menuItem action] == @selector(changeLineHeight:)) {
         CGFloat lineSpacing = [[menuItem title] doubleValue] - 1.0;
-        [menuItem setState:(CEIsEqualCGFloats([self lineSpacing], lineSpacing, 3) ? NSOnState : NSOffState)];
+        [menuItem setState:(CEIsAlmostEqualCGFloats([self lineSpacing], lineSpacing) ? NSOnState : NSOffState)];
     } else if ([menuItem action] == @selector(changeTabWidth:)) {
         [menuItem setState:(([self tabWidth] == [menuItem tag]) ? NSOnState : NSOffState)];
     } else if ([menuItem action] == @selector(showSelectionInfo:)) {
