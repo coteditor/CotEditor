@@ -2251,7 +2251,7 @@ static NSPoint kTextContainerOrigin;
     [self transformSelectionWithActionName:NSLocalizedString(@"Hiragana to Katakana", nil)
                           operationHandler:^NSString *(NSString *substring)
      {
-         return [[substring katakanaString] stringByAppendingString:@"test"];
+         return [substring katakanaString];
      }];
 }
 
