@@ -238,9 +238,6 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
         // 外部エディタプロトコル(ODB Editor Suite)のファイル更新通知送信
         [[self ODBEventSender] sendModifiedEventWithURL:url operation:saveOperation];
         
-        // ファイル保存更新を Finder へ通知（デスクトップに保存した時に白紙アイコンになる問題への対応）
-        [[NSWorkspace sharedWorkspace] noteFileSystemChanged:[url path]];
-        
         // changeCountを更新
         [self updateChangeCountWithToken:token forSaveOperation:saveOperation];
     }
