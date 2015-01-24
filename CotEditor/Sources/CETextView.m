@@ -951,7 +951,8 @@ static NSPoint kTextContainerOrigin;
         // （カラーコード編集メニューは常に有効）
         
     } else if ([menuItem action] == @selector(changeLineHeight:)) {
-        [menuItem setState:(([self lineSpacing] == (CGFloat)[[menuItem title] doubleValue] - 1.0) ? NSOnState : NSOffState)];
+        CGFloat lineSpacing = [[menuItem title] doubleValue] - 1.0;
+        [menuItem setState:(CEIsEqualCGFloats([self lineSpacing], lineSpacing, 3) ? NSOnState : NSOffState)];
     } else if ([menuItem action] == @selector(changeTabWidth:)) {
         [menuItem setState:(([self tabWidth] == [menuItem tag]) ? NSOnState : NSOffState)];
     } else if ([menuItem action] == @selector(showSelectionInfo:)) {

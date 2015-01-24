@@ -70,6 +70,15 @@ NSString *const kHelpAnchors[] = {
     @"pref_integration"
 };
 
+
+// convenient functions
+/// compare CGFloats
+BOOL CEIsEqualCGFloats(CGFloat float1, CGFloat float2, NSInteger accuracy) {
+    return (fabs(float1 - float2) < pow(10, -accuracy));
+}
+
+
+
 #pragma mark Notifications
 
 // ------------------------------------------------------

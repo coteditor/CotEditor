@@ -70,6 +70,11 @@ typedef NS_ENUM(UInt32, CESystemSoundID) {
 };
 
 
+// convenient functions
+/// compare CGFloats
+BOOL CEIsEqualCGFloats(CGFloat float1, CGFloat float2, NSInteger accuracy);
+
+
 
 #pragma mark Notifications
 
