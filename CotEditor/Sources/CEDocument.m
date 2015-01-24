@@ -31,19 +31,18 @@
 
 @import ObjectiveC.message;
 #import "CEDocument.h"
-#import <sys/xattr.h>
 #import "CEDocumentController.h"
 #import "CEPrintPanelAccessoryController.h"
 #import "CEPrintView.h"
 #import "CEODBEventSender.h"
 #import "CESyntaxManager.h"
 #import "CEUtils.h"
+#import "NSURL+AppleTextEncoding.h"
 #import "constants.h"
 
 
 // constants
 static char const UTF8_BOM[] = {0xef, 0xbb, 0xbf};
-static char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 
 // incompatible chars dictionary keys
 NSString *const CEIncompatibleLineNumberKey = @"lineNumber";
@@ -1093,7 +1092,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     BOOL success = NO;
     
     // try reading the `com.apple.TextEncoding` extended attribute
-    NSStringEncoding xattrEncoding = [self encodingFromComAppleTextEncodingAtURL:[self fileURL]];
+    NSStringEncoding xattrEncoding = [url getAppleTextEncoding];
     BOOL hasXattr = (xattrEncoding != NSNotFound);
     
     // don't save xattr if file doesn't have it in order to avoid saving wrong encoding (2015-01 by 1024jp).
@@ -1313,39 +1312,6 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 
 // ------------------------------------------------------
-/// ファイル拡張属性 (com.apple.TextEncoding) からエンコーディングを得る
-- (NSStringEncoding)encodingFromComAppleTextEncodingAtURL:(NSURL *)url
-// ------------------------------------------------------
-{
-    NSStringEncoding encoding = NSNotFound;
-    
-    // get xattr data
-    NSMutableData* data = nil;
-    const char *path = [[url path] UTF8String];
-    ssize_t bufferSize = getxattr(path, XATTR_ENCODING_KEY, NULL, 0, 0, XATTR_NOFOLLOW);
-    if (bufferSize > 0) {
-        data = [NSMutableData dataWithLength:bufferSize];
-        getxattr(path, XATTR_ENCODING_KEY, [data mutableBytes], [data length], 0, XATTR_NOFOLLOW);
-    }
-    
-    // parse value
-    NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    NSArray *strings = [string componentsSeparatedByString:@";"];
-    if (([strings count] >= 2) && ([strings[1] length] > 1)) {
-        // （配列の2番目の要素の末尾には改行コードが付加されているため、長さの最小は1）
-        encoding = CFStringConvertEncodingToNSStringEncoding([strings[1] integerValue]);
-    } else if ([strings[0] length] > 1) {
-        CFStringEncoding cfEncoding = CFStringConvertIANACharSetNameToEncoding((CFStringRef)strings[0]);
-        if (cfEncoding != kCFStringEncodingInvalidId) {
-            encoding = CFStringConvertEncodingToNSStringEncoding(cfEncoding);
-        }
-    }
-    
-    return encoding;
-}
-
-
-// ------------------------------------------------------
 /// IANA文字コード名を読み、設定されたエンコーディングと矛盾があれば警告する
 - (BOOL)acceptSaveDocumentWithIANACharSetName
 // ------------------------------------------------------
@@ -1426,14 +1392,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
         
         // ファイル拡張属性 (com.apple.TextEncoding) にエンコーディングを保存
         if ([self shouldSaveXattr]) {
-            NSData *encodingData = [[NSString stringWithFormat:@"%@;%ul",
-                                     [self currentIANACharSetName], CFStringConvertNSStringEncodingToEncoding([self encoding])]
-                                    dataUsingEncoding:NSUTF8StringEncoding];
-            
-            if (encodingData) {
-                setxattr([[url path] UTF8String], XATTR_ENCODING_KEY,
-                         [encodingData bytes], [encodingData length], 0, XATTR_NOFOLLOW);
-            }
+            [url setAppleTextEncoding:[self encoding]];
         }
     }
     

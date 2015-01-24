@@ -29,6 +29,7 @@
 		2A009ADA1A5AAE8000C3D542 /* CEFindPanelSplitView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A009AD91A5AAE8000C3D542 /* CEFindPanelSplitView.m */; };
 		2A07202B18E0E1C2006F3A43 /* CEPrintPanelAccessoryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A07202A18E0E1C2006F3A43 /* CEPrintPanelAccessoryController.m */; };
 		2A07202E18E0E421006F3A43 /* PrintPanelAccessory.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A07202C18E0E421006F3A43 /* PrintPanelAccessory.xib */; };
+		2A1068C31A745FCE001DB9AA /* NSURL+AppleTextEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A1068C21A745FCE001DB9AA /* NSURL+AppleTextEncoding.m */; };
 		2A149DA619016ABB00A9D6EF /* AppearancePane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A149D9619016ABB00A9D6EF /* AppearancePane.xib */; };
 		2A149DA719016ABB00A9D6EF /* EditPane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A149D9819016ABB00A9D6EF /* EditPane.xib */; };
 		2A149DA819016ABB00A9D6EF /* FileDropPane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A149D9A19016ABB00A9D6EF /* FileDropPane.xib */; };
@@ -253,6 +254,8 @@
 		2A009AD91A5AAE8000C3D542 /* CEFindPanelSplitView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEFindPanelSplitView.m; sourceTree = "<group>"; };
 		2A07202918E0E1C2006F3A43 /* CEPrintPanelAccessoryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEPrintPanelAccessoryController.h; sourceTree = "<group>"; };
 		2A07202A18E0E1C2006F3A43 /* CEPrintPanelAccessoryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEPrintPanelAccessoryController.m; sourceTree = "<group>"; };
+		2A1068C11A745FCE001DB9AA /* NSURL+AppleTextEncoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+AppleTextEncoding.h"; sourceTree = "<group>"; };
+		2A1068C21A745FCE001DB9AA /* NSURL+AppleTextEncoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+AppleTextEncoding.m"; sourceTree = "<group>"; };
 		2A149DB11901740600A9D6EF /* CEWindowPaneController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEWindowPaneController.h; sourceTree = "<group>"; };
 		2A149DB21901740600A9D6EF /* CEWindowPaneController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEWindowPaneController.m; sourceTree = "<group>"; };
 		2A149DB41901760300A9D6EF /* CEAppearancePaneController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEAppearancePaneController.h; sourceTree = "<group>"; };
@@ -754,6 +757,8 @@
 				2AB432731915D6AA00835004 /* NSString+ComposedCharacter.m */,
 				2A2BDF0B198A899E0029848B /* NSString+JapaneseTransform.h */,
 				2A2BDF0C198A899E0029848B /* NSString+JapaneseTransform.m */,
+				2A1068C11A745FCE001DB9AA /* NSURL+AppleTextEncoding.h */,
+				2A1068C21A745FCE001DB9AA /* NSURL+AppleTextEncoding.m */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -1406,6 +1411,7 @@
 				258D708A07D456DF0062A3E5 /* CETextSelection.m in Sources */,
 				8CC1925707E2D84500B54AE4 /* CEDocument+ScriptingSupport.m in Sources */,
 				2A63122E19C2D30C0088C5C6 /* CEThemeViewController.m in Sources */,
+				2A1068C31A745FCE001DB9AA /* NSURL+AppleTextEncoding.m in Sources */,
 				8CC1961D07E2E54E00B54AE4 /* CEScriptManager.m in Sources */,
 				2AACC9591942A82900E3FF63 /* CEIndicatorSheetController.m in Sources */,
 				2A7CF2431A5747EC00D09249 /* CEFindPanelController.m in Sources */,
