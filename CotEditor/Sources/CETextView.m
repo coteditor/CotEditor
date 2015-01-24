@@ -244,24 +244,29 @@ static NSPoint kTextContainerOrigin;
 - (void)insertText:(id)aString replacementRange:(NSRange)replacementRange
 // ------------------------------------------------------
 {
+    // just insert text on programmatic insertion
+    // -> This `insertText:replacementRange:` should generally be invoked only on user typing.
+    //    However, in fact, CotEditor uses this method also on programmatic text insertion
+    //    because of its convenience.
+    //    Thus, we need to check whether it is the true typing insertion. (2015-01 by 1024jp)
+    NSEvent *event = [NSApp currentEvent];
+    if ([event type] != NSKeyDown && [NSEvent modifierFlags] == 0) {
+        return [super insertText:aString replacementRange:replacementRange];
+    }
+    
     // cast NSAttributedString to NSString in order to make sure input string is plain-text
     NSString *string = [aString isKindOfClass:[NSAttributedString class]] ? [aString string] : aString;
     
     // swap '¥' with '\' if needed
     if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultSwapYenAndBackSlashKey] && ([string length] == 1)) {
-        NSEvent *event = [NSApp currentEvent];
-        NSEventModifierFlags modifierFlags = [NSEvent modifierFlags];
+        NSString *yen = [NSString stringWithCharacters:&kYenMark length:1];
         
-        if (([event type] == NSKeyDown) && (modifierFlags == 0)) {  // ignore input by "Insert Yen/Backslash" menu action
-            NSString *yen = [NSString stringWithCharacters:&kYenMark length:1];
-            
-            if ([string isEqualToString:@"\\"]) {
-                [super insertText:yen replacementRange:replacementRange];
-                return;
-            } else if ([string isEqualToString:yen]) {
-                [super insertText:@"\\" replacementRange:replacementRange];
-                return;
-            }
+        if ([string isEqualToString:@"\\"]) {
+            [super insertText:yen replacementRange:replacementRange];
+            return;
+        } else if ([string isEqualToString:yen]) {
+            [super insertText:@"\\" replacementRange:replacementRange];
+            return;
         }
     }
     
