@@ -55,7 +55,7 @@ Change Log
 - Fix possible crashes on input.
 - Fix an issue that application could crash after closing split view.
 - Fix an issue that application could crash after switching theme in preferences.
-- Fix an issue that application couldn't open file that is not Unicode, has more than 4,096 characterse and consists of only 2 byte characters.
+- Fix an issue that application couldn't open file that is not Unicode, has more than 4,096 characters and consists only of 2 byte characters.
 - Fix an issue that text font could occasionally change after pasting or inputting text from other application.
 - Fix an issue that number of selected lines displayed less than actual count if last selected lines are blank.
 - Fix an issue that Unicode character insertion was occasionally failed.
