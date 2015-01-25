@@ -412,14 +412,14 @@ static CGFloat kPerCompoIncrement;
     
     if ([outlineMenuDicts count] > 0) {
         // 出現順にソート
-        NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:CEOutlineItemRangeKey
-                                                                   ascending:YES
-                                                                  comparator:^NSComparisonResult(id obj1, id obj2)
-        {
-            NSRange range1 = [obj1 rangeValue];
-            NSRange range2 = [obj2 rangeValue];
-            return range1.location > range2.location;
-        }];
+        NSSortDescriptor *descriptor = [NSSortDescriptor sortDescriptorWithKey:CEOutlineItemRangeKey
+                                                                     ascending:YES
+                                                                    comparator:^NSComparisonResult(id obj1, id obj2)
+                                        {
+                                            NSRange range1 = [obj1 rangeValue];
+                                            NSRange range2 = [obj2 rangeValue];
+                                            return range1.location > range2.location;
+                                        }];
         
         [outlineMenuDicts sortUsingDescriptors:@[descriptor]];
         

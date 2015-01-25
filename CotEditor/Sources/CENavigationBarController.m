@@ -150,15 +150,19 @@ static const NSTimeInterval kDuration = 0.25;
             continue;
         }
         
-        NSFontTraitMask underlineFontMask = NSUnderlineByWordMask | NSUnderlinePatternSolid | NSUnderlineStyleThick;
+        NSMutableDictionary *attrs = [NSMutableDictionary dictionary];
         
         NSFontTraitMask fontTrait = [outlineItem[CEOutlineItemStyleBoldKey] boolValue] ? NSBoldFontMask : 0;
         fontTrait |= [outlineItem[CEOutlineItemStyleItalicKey] boolValue] ? NSItalicFontMask : 0;
-        fontTrait |= [outlineItem[CEOutlineItemStyleUnderlineKey] boolValue] ? underlineFontMask : 0;
         NSFont *font = [[NSFontManager sharedFontManager] convertFont:defaultFont toHaveTrait:fontTrait];
+        attrs[NSFontAttributeName] = font;
+        
+        if ([outlineItem[CEOutlineItemStyleUnderlineKey] boolValue]) {
+            attrs[NSUnderlineStyleAttributeName] = @(NSUnderlineByWordMask | NSUnderlinePatternSolid | NSUnderlineStyleThick);
+        }
         
         NSAttributedString *title = [[NSAttributedString alloc] initWithString:outlineItem[CEOutlineItemTitleKey]
-                                                                    attributes:@{NSFontAttributeName: font}];
+                                                                    attributes:attrs];
         
         NSMenuItem *menuItem = [[NSMenuItem alloc] init];
         [menuItem setAttributedTitle:title];
