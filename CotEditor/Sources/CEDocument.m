@@ -1088,137 +1088,138 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
         // 復帰時は NSDocument 内部で表示
         return NO;
     }
-
-    BOOL success = NO;
     
     // try reading the `com.apple.TextEncoding` extended attribute
     NSStringEncoding xattrEncoding = [url getAppleTextEncoding];
-    BOOL hasXattr = (xattrEncoding != NSNotFound);
     
     // don't save xattr if file doesn't have it in order to avoid saving wrong encoding (2015-01 by 1024jp).
-    [self setShouldSaveXattr:hasXattr];
-
-    // interpret using xattr encoding
-    if (encoding == CEAutoDetectEncoding && hasXattr) {
-        NSString *string;
-        
-        if ([data length] == 0) {
-            // just trust xattr encoding if content is empty
-            string = @"";
-        } else {
-            // try converting data using xattr encoding
-            string = [[NSString alloc] initWithData:data encoding:xattrEncoding];
-        }
-        
-        if (string) {
-            [self setInitialString:string];  // _initialString will be released in `setStringToEditor`
-            [self doSetEncoding:xattrEncoding updateDocument:NO askLossy:NO lossy:NO asActionName:nil];
-            
-            success = YES;
-        }
-    }
+    [self setShouldSaveXattr:(xattrEncoding != NSNotFound)];
     
-    if (!success) {
-        success = [self readStringFromData:data encoding:encoding];
-    }
-    
-    if (success) {
-        // 保持しているファイル情報／表示する文書情報を更新
-        [self getFileAttributes];
-    }
-    
-    return success;
+    return [self readStringFromData:data encoding:encoding xattrEncoding:xattrEncoding];
 }
 
 
 //------------------------------------------------------
-/// データから指定エンコードで文字列を得る
-- (BOOL)readStringFromData:(NSData *)data encoding:(NSStringEncoding)encoding
+/// データから指定エンコードで文字列を読み込み、成功したかどうかを返す
+- (BOOL)readStringFromData:(NSData *)data encoding:(NSStringEncoding)encoding xattrEncoding:(NSStringEncoding)xattrEncoding
 //------------------------------------------------------
 {
-    NSString *string = nil;
+    NSString *string;
+    NSStringEncoding usedEncoding;
     
-    if (encoding != CEAutoDetectEncoding) {
+    if (encoding != CEAutoDetectEncoding) {  // interpret with specific encoding
+        usedEncoding = encoding;
         string = ([data length] == 0) ? @"" : [[NSString alloc] initWithData:data encoding:encoding];
         
-    } else {  // auto-detect
-        BOOL shouldSkipISO2022JP = NO;
-        BOOL shouldSkipUTF8 = NO;
-        BOOL shouldSkipUTF16 = NO;
-        
-        if ([data length] > 0) {
-            // ISO 2022-JP / UTF-8 / UTF-16の判定は、「藤棚工房別棟 −徒然−」の
-            // 「Cocoaで文字エンコーディングの自動判別プログラムを書いてみました」で公開されている
-            // FJDDetectEncoding を参考にさせていただきました (2006-09-30)
-            // http://blogs.dion.ne.jp/fujidana/archives/4169016.html
+    } else {  // Auto-Detection
+        // try interpreting with xattr encoding
+        if (xattrEncoding != NSNotFound) {
+            // just trust xattr encoding if content is empty
+            string = ([data length] == 0) ? @"" : [[NSString alloc] initWithData:data encoding:xattrEncoding];
             
-            // BOM付きUTF-8判定
-            if (memchr([data bytes], *UTF8_BOM, 3) != NULL) {
-                shouldSkipUTF8 = YES;
-                string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-                if (string) {
-                    encoding = NSUTF8StringEncoding;
-                }
-                // UTF-16判定
-            } else if ((memchr([data bytes], 0xfffe, 2) != NULL) ||
-                       (memchr([data bytes], 0xfeff, 2) != NULL))
-            {
-                shouldSkipUTF16 = YES;
-                string = [[NSString alloc] initWithData:data encoding:NSUnicodeStringEncoding];
-                if (string) {
-                    encoding = NSUnicodeStringEncoding;
-                }
-                
-                // ISO 2022-JP判定
-            } else if (memchr([data bytes], 0x1b, [data length]) != NULL) {
-                shouldSkipISO2022JP = YES;
-                string = [[NSString alloc] initWithData:data encoding:NSISO2022JPStringEncoding];
-                if (string) {
-                    encoding = NSISO2022JPStringEncoding;
-                }
+            if (string) {
+                usedEncoding = xattrEncoding;
             }
         }
         
         if (!string) {
-            // try encodings in order from the top of the encoding list
-            NSArray *encodings = [[NSUserDefaults standardUserDefaults] arrayForKey:CEDefaultEncodingListKey];
-            
-            for (NSNumber *encodingNumber in encodings) {
-                encoding = CFStringConvertEncodingToNSStringEncoding([encodingNumber unsignedIntegerValue]);
-                
-                if (((encoding == NSISO2022JPStringEncoding) && shouldSkipISO2022JP) ||
-                    ((encoding == NSUTF8StringEncoding) && shouldSkipUTF8) ||
-                    ((encoding == NSUnicodeStringEncoding) && shouldSkipUTF16))
-                {
-                    continue;
-                }
-                
-                string = [[NSString alloc] initWithData:data encoding:encoding];
-                
-                if (string) {
-                    // "charset=" や "encoding=" を読んでみて適正なエンコーディングが得られたら、そちらを優先
-                    NSStringEncoding scannedEncoding = [self scanCharsetOrEncodingFromString:string];
-                    if ((scannedEncoding == NSNotFound) || (scannedEncoding == encoding)) {
-                        break;
-                    }
-                    NSString *tmpStr = [[NSString alloc] initWithData:data encoding:scannedEncoding];
-                    if (tmpStr) {
-                        string = tmpStr;
-                        encoding = scannedEncoding;
-                    }
-                    break;
-                }
-            }
+            // detect encoding from data
+            string = [self stringFromData:data usedEncoding:&usedEncoding];
         }
     }
     
-    if (string && (encoding != CEAutoDetectEncoding)) {
+    if (string) {
         [self setInitialString:string];  // _initialString will be released in `setStringToEditor`
-        [self doSetEncoding:encoding updateDocument:NO askLossy:NO lossy:NO asActionName:nil];
+        [self doSetEncoding:usedEncoding updateDocument:NO askLossy:NO lossy:NO asActionName:nil];
+        
+        // 保持しているファイル情報を更新
+        [self getFileAttributes];
         return YES;
     }
     
     return NO;
+}
+
+
+//------------------------------------------------------
+/// データからエンコードを推測して文字列を得る
+- (NSString *)stringFromData:(NSData *)data usedEncoding:(NSStringEncoding *)usedEncoding
+//------------------------------------------------------
+{
+    BOOL shouldSkipISO2022JP = NO;
+    BOOL shouldSkipUTF8 = NO;
+    BOOL shouldSkipUTF16 = NO;
+    
+    if ([data length] > 0) {
+        // ISO 2022-JP / UTF-8 / UTF-16の判定は、「藤棚工房別棟 −徒然−」の
+        // 「Cocoaで文字エンコーディングの自動判別プログラムを書いてみました」で公開されている
+        // FJDDetectEncoding を参考にさせていただきました (2006-09-30)
+        // http://blogs.dion.ne.jp/fujidana/archives/4169016.html
+        
+        // BOM 付き UTF-8 判定
+        if (memchr([data bytes], *UTF8_BOM, 3) != NULL) {
+            shouldSkipUTF8 = YES;
+            NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+            if (string) {
+                *usedEncoding = NSUTF8StringEncoding;
+                return string;
+            }
+            // UTF-16 判定
+        } else if ((memchr([data bytes], 0xfffe, 2) != NULL) ||
+                   (memchr([data bytes], 0xfeff, 2) != NULL))
+        {
+            shouldSkipUTF16 = YES;
+            NSString *string = [[NSString alloc] initWithData:data encoding:NSUnicodeStringEncoding];
+            if (string) {
+                *usedEncoding = NSUnicodeStringEncoding;
+                return string;
+            }
+            
+            // ISO 2022-JP 判定
+        } else if (memchr([data bytes], 0x1b, [data length]) != NULL) {
+            shouldSkipISO2022JP = YES;
+            NSString *string = [[NSString alloc] initWithData:data encoding:NSISO2022JPStringEncoding];
+            if (string) {
+                *usedEncoding = NSISO2022JPStringEncoding;
+                return string;
+            }
+        }
+    }
+    
+    // try encodings in order from the top of the encoding list
+    NSArray *encodings = [[NSUserDefaults standardUserDefaults] arrayForKey:CEDefaultEncodingListKey];
+    
+    for (NSNumber *encodingNumber in encodings) {
+        NSStringEncoding encoding = CFStringConvertEncodingToNSStringEncoding([encodingNumber unsignedIntegerValue]);
+        
+        if (((encoding == NSISO2022JPStringEncoding) && shouldSkipISO2022JP) ||
+            ((encoding == NSUTF8StringEncoding) && shouldSkipUTF8) ||
+            ((encoding == NSUnicodeStringEncoding) && shouldSkipUTF16))
+        {
+            continue;
+        }
+        
+        NSString *string = [[NSString alloc] initWithData:data encoding:encoding];
+        
+        if (string) {
+            // "charset=" や "encoding=" を読んでみて適正なエンコーディングが得られたら、そちらを優先
+            NSStringEncoding scannedEncoding = [self scanCharsetOrEncodingFromString:string];
+            
+            if (scannedEncoding != NSNotFound && scannedEncoding != encoding) {
+                NSString *tmpString = [[NSString alloc] initWithData:data encoding:scannedEncoding];
+                if (tmpString) {
+                    *usedEncoding = scannedEncoding;
+                    return tmpString;
+                }
+            }
+            
+            *usedEncoding = encoding;
+            return string;
+        }
+    }
+    
+    *usedEncoding = NSNotFound;
+    return nil;
 }
 
 
