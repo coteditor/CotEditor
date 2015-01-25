@@ -706,21 +706,19 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
             allowsLossy = lossy;
         }
         
-        // Undo登録
+        // register undo
         NSUndoManager *undoManager = [self undoManager];
         [[undoManager prepareWithInvocationTarget:self] redoSetEncoding:encoding updateDocument:updateDocument
                                                                askLossy:NO lossy:allowsLossy
-                                                           asActionName:actionName]; // undo内redo
+                                                           asActionName:actionName];  // redo in undo
         if (shouldShowList) {
             [[undoManager prepareWithInvocationTarget:[self windowController]] showIncompatibleCharList];
         }
-        [[undoManager prepareWithInvocationTarget:self] setEncoding:[self encoding]]; // エンコード値設定
         [[undoManager prepareWithInvocationTarget:self] updateEncodingInToolbarAndInfo];
-        [[undoManager prepareWithInvocationTarget:self] updateChangeCount:NSChangeUndone]; // changeCount減値
+        [[undoManager prepareWithInvocationTarget:self] setEncoding:[self encoding]];  // エンコード値設定
         if (actionName) {
             [undoManager setActionName:actionName];
         }
-        [self updateChangeCount:NSChangeDone];
     }
     
     [self setEncoding:encoding];
@@ -741,23 +739,20 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 - (void)doSetLineEnding:(CENewLineType)lineEnding
 // ------------------------------------------------------
 {
-    // 現在と同じ改行コードなら、何もしない
     if (lineEnding == [self lineEnding]) { return; }
     
     CENewLineType currentLineEnding = [self lineEnding];
 
-    // Undo登録
+    // register undo
     NSUndoManager *undoManager = [self undoManager];
-    [[undoManager prepareWithInvocationTarget:self] redoSetLineEnding:lineEnding]; // undo内redo
-    [[undoManager prepareWithInvocationTarget:self] setLineEnding:currentLineEnding]; // 元の改行コード
-    [[undoManager prepareWithInvocationTarget:self] applyLineEndingToView]; // 元の改行コード
-    [[undoManager prepareWithInvocationTarget:self] updateChangeCount:NSChangeUndone]; // changeCountデクリメント
-    [undoManager setActionName:[NSString stringWithFormat:NSLocalizedString(@"Line Endings to “%@”", @""),
+    [[undoManager prepareWithInvocationTarget:self] redoSetLineEnding:lineEnding];  // redo in undo
+    [[undoManager prepareWithInvocationTarget:self] applyLineEndingToView];
+    [[undoManager prepareWithInvocationTarget:self] setLineEnding:currentLineEnding];
+    [undoManager setActionName:[NSString stringWithFormat:NSLocalizedString(@"Line Endings to “%@”", nil),
                                 [NSString newLineNameWithType:lineEnding]]];
 
     [self setLineEnding:lineEnding];
     [self applyLineEndingToView];
-    [self updateChangeCount:NSChangeDone]; // changeCountインクリメント
 }
 
 

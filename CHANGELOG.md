@@ -59,6 +59,7 @@ Change Log
 - Fix an issue that Unicode character insertion was occasionally failed.
 - Fix an issue that syntax highlights were removed after perform Unhighlight.
 - Fix timing to display sheets on file open.
+- Fix an issue that selection of line endings menu and encoding menu in toolbar did not update on undo/redo.
 - Fix an issue that checkmark in line height menu was not displayed.
 - Fix some missing localizations in simplified Chinese. (Thanks to Wei Wang!)
 - Fix an issue that an alert message was not localized.
