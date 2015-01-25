@@ -128,6 +128,25 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 
 // ------------------------------------------------------
+/// initialize instance with existing file
+- (instancetype)initWithContentsOfURL:(NSURL *)url ofType:(NSString *)typeName error:(NSError *__autoreleasing *)outError
+// ------------------------------------------------------
+{
+    self = [super initWithContentsOfURL:url ofType:typeName error:outError];
+    if (self) {
+        // set sender of external editor protocol (ODB Editor Suite)
+        _ODBEventSender = [[CEODBEventSender alloc] init];
+        
+        // check writability
+        NSNumber *isWritable = nil;
+        [url getResourceValue:&isWritable forKey:NSURLIsWritableKey error:nil];
+        _writable = [isWritable boolValue];
+    }
+    return self;
+}
+
+
+// ------------------------------------------------------
 /// clean up
 - (void)dealloc
 // ------------------------------------------------------
@@ -151,14 +170,8 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 - (BOOL)readFromURL:(NSURL *)url ofType:(NSString *)typeName error:(NSError **)outError
 // ------------------------------------------------------
 {
-    // 外部エディタプロトコル(ODB Editor Suite)用の値をセット
-    [self setODBEventSender:[[CEODBEventSender alloc] init]];
-    
-    // 書き込み可能かをチェック
-    NSNumber *isWritable = nil;
-    [url getResourceValue:&isWritable forKey:NSURLIsWritableKey error:nil];
-    [self setWritable:[isWritable boolValue]];
-    
+    // set encoding to read file
+    // -> The value is either user setting or selection of open panel.
     NSStringEncoding encoding = [[CEDocumentController sharedDocumentController] accessorySelectedEncoding];
     
     return [self readFromURL:url encoding:encoding];
