@@ -41,6 +41,8 @@ Change Log
 - Delay timing to save text key bindings setting.
 - Localize document types.
 - Improve text rendering with non-opaque view.
+- Update “Markdown” syntax style:
+    - Add horizontal rules to outline menu.
 - Tweak text view drawing performance.
 
 
