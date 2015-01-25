@@ -533,45 +533,50 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     return [[[self editor] string] stringByReplacingNewLineCharacersWith:[self lineEnding]];
 }
 
+
 // ------------------------------------------------------
-/// editor に文字列をセット
+/// transfer file content string to editor
 - (void)setStringToEditor
 // ------------------------------------------------------
 {
     [self setSyntaxStyleWithFileName:[[self fileURL] lastPathComponent] coloring:NO];
     
-    // 表示する文字列内の改行コードをLFに統一する
-    // （その他の編集は、下記の通りの別の場所で置換している）
-    // # テキスト編集時の改行コードの置換場所
-    //  * ファイルオープン = CEDocument > setStringToEditor
-    //  * スクリプト = CEEditorView > textView:shouldChangeTextInRange:replacementString:
-    //  * キー入力 = CEEditorView > textView:shouldChangeTextInRange:replacementString:
-    //  * ペースト = CETextView > readSelectionFromPasteboard:type:
-    //  * ドロップ（別書類または別アプリから） = CETextView > readSelectionFromPasteboard:type:
-    //  * ドロップ（同一書類内） = CETextView > performDragOperation:
-    //  * 検索パネルでの置換 = (OgreKit) OgreTextViewPlainAdapter > replaceCharactersInRange:withOGString:
+    // standardize line endings to LF (File Open)
+    // (Line endings replacemement by other text modifications are processed in the following methods.)
+    //
+    // # Methods Standardizing Line Endings on Text Editing
+    //   - File Open: CEDocument > setStringToEditor
+    //   - Script: CEEditorView > textView:shouldChangeTextInRange:replacementString:
+    //   - Key Type: CEEditorView > textView:shouldChangeTextInRange:replacementString:
+    //   - Paste: CETextView > readSelectionFromPasteboard:type:
+    //   - Drop (from other documents/apps): CETextView > readSelectionFromPasteboard:type:
+    //   - Drop (from the same document): CETextView > performDragOperation:
+    //   - Replace on Find Penel: (OgreKit) OgreTextViewPlainAdapter > replaceCharactersInRange:withOGString:
     
     if ([self fileContentString]) {
         CENewLineType lineEnding = [[self fileContentString] detectNewLineType];
-        if (lineEnding != CENewLineNone) {  // 改行コードが含まれないときはデフォルトのままにする
+        if (lineEnding != CENewLineNone) {  // keep default if no line endings are found
             [self setLineEnding:lineEnding];
         }
         
         NSString *string = [[self fileContentString] stringByReplacingNewLineCharacersWith:CENewLineLF];
         
-        [[self editor] setString:string]; // （editorWrapper の setString 内でキャレットを先頭に移動させている）
+        [[self editor] setString:string];  // In this `setString:`, caret will be moved to the beginning.
         [self setFileContentString:nil];  // release
         
     } else {
         [[self editor] setString:@""];
     }
-    // update toolbar
+    
+    // update line endings menu selection in toolbar
     [self applyLineEndingToView];
     
-    // ツールバーのエンコーディングメニュー、ステータスバー、インスペクタを更新
+    // update encoding menu selection in toolbar, status bar and document inspector
     [self updateEncodingInToolbarAndInfo];
-    // カラーリングと行番号を更新
-    // （大きいドキュメントの時はインジケータを表示させるため、ディレイをかけてまずウィンドウを表示させる）
+    
+    // update syntax highlights and outline menu
+    // -> Since a coloring indicator will be attached to the window if the file is large,
+    //    insert delay in order to display the window at first.
     [[self editor] updateColoringAndOutlineMenuWithDelay];
     
     [[self windowController] updateIncompatibleCharsIfNeeded];

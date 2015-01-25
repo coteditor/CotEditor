@@ -708,16 +708,17 @@ static NSPoint kTextContainerOrigin;
 - (BOOL)performDragOperation:(id<NSDraggingInfo>)sender
 // ------------------------------------------------------
 {
-    // ドロップによる編集で改行コードをLFに統一する
-    // （その他の編集は、下記の通りの別の場所で置換している）
-    // # テキスト編集時の改行コードの置換場所
-    //  * ファイルオープン = CEDocument > setStringToEditor
-    //  * スクリプト = CEEditorView > textView:shouldChangeTextInRange:replacementString:
-    //  * キー入力 = CEEditorView > textView:shouldChangeTextInRange:replacementString:
-    //  * ペースト = CETextView > readSelectionFromPasteboard:type:
-    //  * ドロップ（別書類または別アプリから） = CETextView > readSelectionFromPasteboard:type:
-    //  * ドロップ（同一書類内） = CETextView > performDragOperation:
-    //  * 検索パネルでの置換 = (OgreKit) OgreTextViewPlainAdapter > replaceCharactersInRange:withOGString:
+    // standardize line endings to LF (Drop from the same document)
+    // (Line endings replacemement by other text modifications are processed in the following methods.)
+    //
+    // # Methods Standardizing Line Endings on Text Editing
+    //   - File Open: CEDocument > setStringToEditor
+    //   - Script: CEEditorView > textView:shouldChangeTextInRange:replacementString:
+    //   - Key Typing: CEEditorView > textView:shouldChangeTextInRange:replacementString:
+    //   - Paste: CETextView > readSelectionFromPasteboard:type:
+    //   - Drop (from other documents/apps): CETextView > readSelectionFromPasteboard:type:
+    //   - Drop (from the same document): CETextView > performDragOperation:
+    //   - Replace on Find Penel: (OgreKit) OgreTextViewPlainAdapter > replaceCharactersInRange:withOGString:
     
     // まず、自己内ドラッグかどうかのフラグを立てる
     [self setSelfDrop:([sender draggingSource] == self)];
@@ -760,16 +761,17 @@ static NSPoint kTextContainerOrigin;
     
     // ペーストされたか、他からテキストがドロップされた
     if (![self isSelfDrop] && [type isEqualToString:NSStringPboardType]) {
-        // ペースト、他からのドロップによる編集で改行コードをLFに統一する
-        // （その他の編集は、下記の通りの別の場所で置換している）
-        // # テキスト編集時の改行コードの置換場所
-        //  * ファイルオープン = CEDocument > setStringToEditor
-        //  * スクリプト = CEEditorView > textView:shouldChangeTextInRange:replacementString:
-        //  * キー入力 = CEEditorView > textView:shouldChangeTextInRange:replacementString:
-        //  * ペースト = CETextView > readSelectionFromPasteboard:type:
-        //  * ドロップ（別書類または別アプリから） = CETextView > readSelectionFromPasteboard:type:
-        //  * ドロップ（同一書類内） = CETextView > performDragOperation:
-        //  * 検索パネルでの置換 = (OgreKit) OgreTextViewPlainAdapter > replaceCharactersInRange:withOGString:
+        // standardize line endings to LF (Paste, Drop from other documents/apps)
+        // (Line endings replacemement by other text modifications are processed in the following methods.)
+        //
+        // # Methods Standardizing Line Endings on Text Editing
+        //   - File Open: CEDocument > setStringToEditor
+        //   - Script: CEEditorView > textView:shouldChangeTextInRange:replacementString:
+        //   - Key Typing: CEEditorView > textView:shouldChangeTextInRange:replacementString:
+        //   - Paste: CETextView > readSelectionFromPasteboard:type:
+        //   - Drop (from other documents/apps): CETextView > readSelectionFromPasteboard:type:
+        //   - Drop (from the same document): CETextView > performDragOperation:
+        //   - Replace on Find Penel: (OgreKit) OgreTextViewPlainAdapter > replaceCharactersInRange:withOGString:
         
         NSString *pboardStr = [pboard stringForType:NSStringPboardType];
         if (pboardStr) {
@@ -784,7 +786,7 @@ static NSPoint kTextContainerOrigin;
             }
         }
         
-        // ファイルがドロップされた
+    // ファイルがドロップされた
     } else if ([type isEqualToString:NSFilenamesPboardType]) {
         NSArray *fileDropDefs = [[NSUserDefaults standardUserDefaults] arrayForKey:CEDefaultFileDropArrayKey];
         NSArray *files = [pboard propertyListForType:NSFilenamesPboardType];

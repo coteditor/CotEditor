@@ -372,16 +372,18 @@
         replacementString:(NSString *)replacementString
 // ------------------------------------------------------
 {
-    // キー入力、スクリプトによる編集で改行コードをLFに統一する
-    // （その他の編集は、下記の通りの別の場所で置換している）
-    // # テキスト編集時の改行コードの置換場所
-    //  * ファイルオープン = CEDocument > setStringToEditor
-    //  * スクリプト = CEEditorView > textView:shouldChangeTextInRange:replacementString:
-    //  * キー入力 = CEEditorView > textView:shouldChangeTextInRange:replacementString:
-    //  * ペースト = CETextView > readSelectionFromPasteboard:type:
-    //  * ドロップ（別書類または別アプリから） = CETextView > readSelectionFromPasteboard:type:
-    //  * ドロップ（同一書類内） = CETextView > performDragOperation:
-    //  * 検索パネルでの置換 = (OgreKit) OgreTextViewPlainAdapter > replaceCharactersInRange:withOGString:
+    // standardize line endings to LF (Script, Key Typing)
+    // (Line endings replacemement by other text modifications are processed in the following methods.)
+    //
+    // # Methods Standardizing Line Endings on Text Editing
+    //   - File Open: CEDocument > setStringToEditor
+    //   - Script: CEEditorView > textView:shouldChangeTextInRange:replacementString:
+    //   - Key Typing: CEEditorView > textView:shouldChangeTextInRange:replacementString:
+    //   - Paste: CETextView > readSelectionFromPasteboard:type:
+    //   - Drop (from other documents/apps): CETextView > readSelectionFromPasteboard:type:
+    //   - Drop (from the same document): CETextView > performDragOperation:
+    //   - Replace on Find Penel: (OgreKit) OgreTextViewPlainAdapter > replaceCharactersInRange:withOGString:
+    
     if (!replacementString ||  // = attributesのみの変更
         ([replacementString length] == 0) ||  // = 文章の削除
         [(CETextView *)aTextView isSelfDrop] ||  // = 自己内ドラッグ&ドロップ
