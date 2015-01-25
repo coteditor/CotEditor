@@ -411,10 +411,9 @@ extern NSString *const kIssueTrackerURL;
 // Outline item dict keys
 extern NSString *const CEOutlineItemTitleKey;
 extern NSString *const CEOutlineItemRangeKey;
-extern NSString *const CEOutlineItemSortKeyKey;
-extern NSString *const CEOutlineItemFontBoldKey;
-extern NSString *const CEOutlineItemFontItalicKey;
-extern NSString *const CEOutlineItemUnderlineMaskKey;
+extern NSString *const CEOutlineItemStyleBoldKey;
+extern NSString *const CEOutlineItemStyleItalicKey;
+extern NSString *const CEOutlineItemStyleUnderlineKey;
 
 // layout constants
 extern CGFloat const kLineNumPadding;

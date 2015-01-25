@@ -362,10 +362,9 @@ NSString *const kIssueTrackerURL = @"https://github.com/coteditor/CotEditor/issu
 // Outline item dict keys
 NSString *const CEOutlineItemTitleKey = @"outlineItemTitle";
 NSString *const CEOutlineItemRangeKey = @"outlineItemRange";
-NSString *const CEOutlineItemSortKeyKey = @"outlineItemSortKey";
-NSString *const CEOutlineItemFontBoldKey = @"outlineItemFontBold";
-NSString *const CEOutlineItemFontItalicKey = @"outlineItemFontItalic";
-NSString *const CEOutlineItemUnderlineMaskKey = @"outlineItemUnderlineMask";
+NSString *const CEOutlineItemStyleBoldKey = @"outlineItemStyleBold";
+NSString *const CEOutlineItemStyleItalicKey = @"outlineItemStyleItalic";
+NSString *const CEOutlineItemStyleUnderlineKey = @"outlineItemStyleUnderline";
 
 // layout constants
 CGFloat const kLineNumPadding = 3.0;

@@ -355,8 +355,7 @@ static CGFloat kPerCompoIncrement;
              // セパレータのとき
              if ([template isEqualToString:CESeparatorString]) {
                  [outlineMenuDicts addObject:@{CEOutlineItemRangeKey: [NSValue valueWithRange:range],
-                                               CEOutlineItemTitleKey: CESeparatorString,
-                                               CEOutlineItemSortKeyKey: @(range.location)}];
+                                               CEOutlineItemTitleKey: CESeparatorString}];
                  return;
              }
              
@@ -397,35 +396,36 @@ static CGFloat kPerCompoIncrement;
                  title = [NSString stringWithFormat:@"%@ ...", [title substringToIndex:menuTitleMaxLength]];
              }
              
-             // ボールド
+             // font styles (cast once to avoid set nil to dict)
              BOOL isBold = [definition[CESyntaxBoldKey] boolValue];
-             // イタリック
              BOOL isItalic = [definition[CESyntaxItalicKey] boolValue];
-             // アンダーライン
-             NSUInteger underlineMask = [definition[CESyntaxUnderlineKey] boolValue] ?
-             (NSUnderlineByWordMask | NSUnderlinePatternSolid | NSUnderlineStyleThick) : 0;
+             BOOL isUnderline = [definition[CESyntaxUnderlineKey] boolValue];
              
              // 辞書生成
              [outlineMenuDicts addObject:@{CEOutlineItemRangeKey: [NSValue valueWithRange:range],
                                            CEOutlineItemTitleKey: title,
-                                           CEOutlineItemSortKeyKey: @(range.location),
-                                           CEOutlineItemFontBoldKey: @(isBold),
-                                           CEOutlineItemFontItalicKey: @(isItalic),
-                                           CEOutlineItemUnderlineMaskKey: @(underlineMask)}];
+                                           CEOutlineItemStyleBoldKey: @(isBold),
+                                           CEOutlineItemStyleItalicKey: @(isItalic),
+                                           CEOutlineItemStyleUnderlineKey: @(isUnderline)}];
          }];
     }
     
     if ([outlineMenuDicts count] > 0) {
         // 出現順にソート
-        NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:CEOutlineItemSortKeyKey
+        NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:CEOutlineItemRangeKey
                                                                    ascending:YES
-                                                                    selector:@selector(compare:)];
+                                                                  comparator:^NSComparisonResult(id obj1, id obj2)
+        {
+            NSRange range1 = [obj1 rangeValue];
+            NSRange range2 = [obj2 rangeValue];
+            return range1.location > range2.location;
+        }];
+        
         [outlineMenuDicts sortUsingDescriptors:@[descriptor]];
         
         // 冒頭のアイテムを追加
         [outlineMenuDicts insertObject:@{CEOutlineItemRangeKey: [NSValue valueWithRange:NSMakeRange(0, 0)],
-                                         CEOutlineItemTitleKey: NSLocalizedString(@"<Outline Menu>", nil),
-                                         CEOutlineItemSortKeyKey: @0U}
+                                         CEOutlineItemTitleKey: NSLocalizedString(@"<Outline Menu>", nil)}
                                atIndex:0];
     }
     
