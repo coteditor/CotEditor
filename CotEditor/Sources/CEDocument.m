@@ -58,7 +58,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 @property (atomic) BOOL needsShowUpdateAlertWithBecomeKey;
 @property (atomic, getter=isRevertingForExternalFileUpdate) BOOL revertingForExternalFileUpdate;
 @property (nonatomic) BOOL didAlertNotWritable;  // 文書が読み込み専用のときにその警告を表示したかどうか
-@property (nonatomic, copy) NSString *initialString;  // 初期表示文字列に表示する文字列;
+@property (nonatomic, copy) NSString *fileContentString;  // string that is read from the document file
 @property (nonatomic) CEODBEventSender *ODBEventSender;
 @property (nonatomic) BOOL shouldSaveXattr;
 
@@ -551,16 +551,16 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     //  * ドロップ（同一書類内） = CETextView > performDragOperation:
     //  * 検索パネルでの置換 = (OgreKit) OgreTextViewPlainAdapter > replaceCharactersInRange:withOGString:
     
-    if ([self initialString]) {
-        CENewLineType lineEnding = [[self initialString] detectNewLineType];
+    if ([self fileContentString]) {
+        CENewLineType lineEnding = [[self fileContentString] detectNewLineType];
         if (lineEnding != CENewLineNone) {  // 改行コードが含まれないときはデフォルトのままにする
             [self setLineEnding:lineEnding];
         }
         
-        NSString *string = [[self initialString] stringByReplacingNewLineCharacersWith:CENewLineLF];
+        NSString *string = [[self fileContentString] stringByReplacingNewLineCharacersWith:CENewLineLF];
         
         [[self editor] setString:string]; // （editorWrapper の setString 内でキャレットを先頭に移動させている）
-        [self setInitialString:nil];  // release
+        [self setFileContentString:nil];  // release
         
     } else {
         [[self editor] setString:@""];
@@ -1124,7 +1124,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     }
     
     if (string) {
-        [self setInitialString:string];  // _initialString will be released in `setStringToEditor`
+        [self setFileContentString:string];  // _fileContentString will be released in `setStringToEditor`
         [self doSetEncoding:usedEncoding updateDocument:NO askLossy:NO lossy:NO asActionName:nil];
         
         // 保持しているファイル情報を更新
