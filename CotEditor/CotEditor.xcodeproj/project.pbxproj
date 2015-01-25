@@ -111,7 +111,6 @@
 		2A9871A919AEABDB0081BADB /* KeyBindings in Resources */ = {isa = PBXBuildFile; fileRef = 2A9871A819AEABDB0081BADB /* KeyBindings */; };
 		2AA0AC7A1A29D8CB0063ED1B /* CEPopUpToolbarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AA0AC791A29D8CB0063ED1B /* CEPopUpToolbarItem.m */; };
 		2AAC90011A4E12D10074E076 /* CEWrappingTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AAC90001A4E12D10074E076 /* CEWrappingTextField.m */; };
-		2AAC900B1A52A60E0074E076 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		2AACC9591942A82900E3FF63 /* CEIndicatorSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AACC9581942A82900E3FF63 /* CEIndicatorSheetController.m */; };
 		2AB4326E1912ADAC00835004 /* GlyphPopover.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2AB4326C1912ADAC00835004 /* GlyphPopover.xib */; };
 		2AB432711912AF7200835004 /* CEGlyphPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AB432701912AF7200835004 /* CEGlyphPopoverController.m */; };
@@ -1299,6 +1298,8 @@
 				2AFFB71D18D7F22E00118477 /* GoToSheet.xib in Resources */,
 				259C2318077678DE00BA61C5 /* Localizable.strings in Resources */,
 				2A5E4D7C1A44F0D50072013F /* ServicesMenu.strings in Resources */,
+				2AD318C01A462A10001B8112 /* IntegrationPane.xib in Resources */,
+				2A2D6C191A602D2C002451FF /* RegexReferencePopover.xib in Resources */,
 				2AEB8B7C19AF73980098D557 /* FileDropGlossary.txt in Resources */,
 				2A961C5518FC699E002076B6 /* ShellScript.rtf in Resources */,
 				2A961C5418FC699E002076B6 /* ScriptMenu Folder.rtf in Resources */,
@@ -1315,7 +1316,6 @@
 				2A712CA218EFB716001FEC33 /* AutoTabExpand_Off.tiff in Resources */,
 				8C99DD5108BD561B001F618C /* NaviBar_Hide.tiff in Resources */,
 				8C99DD5208BD561B001F618C /* NaviBar_Show.tiff in Resources */,
-				2AD318C01A462A10001B8112 /* IntegrationPane.xib in Resources */,
 				8C3E2D500808E203009894D1 /* LineNumber_Hide.tiff in Resources */,
 				8C3E2D510808E203009894D1 /* LineNumber_Show.tiff in Resources */,
 				8C3E2D5E0808E210009894D1 /* StatusBar_Hide.tiff in Resources */,
@@ -1324,7 +1324,6 @@
 				8CEF66C30995E47F00C65A84 /* InvisibleChars_Show.tiff in Resources */,
 				8CEF66C60995E4A700C65A84 /* PageGuide_Hide.tiff in Resources */,
 				8CEF66C70995E4A700C65A84 /* PageGuide_Show.tiff in Resources */,
-				2A2D6C191A602D2C002451FF /* RegexReferencePopover.xib in Resources */,
 				8C3E2D610808E210009894D1 /* WrapLines_Off.tiff in Resources */,
 				8C3E2D620808E210009894D1 /* WrapLines_On.tiff in Resources */,
 				2AC2C1D819881543007968CB /* VerticalOrientation_Off.tiff in Resources */,
@@ -1390,7 +1389,6 @@
 				2A149DBC1901803C00A9D6EF /* CEEditPaneController.m in Sources */,
 				2AD4599B19DDCF6600A20FBB /* CEScriptMenuItem.m in Sources */,
 				25859DB3076D65310020F779 /* CEAppDelegate.m in Sources */,
-				2AC75C081A2AF47F00C7DB0A /* NSString+CENewLine.m in Sources */,
 				25859DEE076D75BC0020F779 /* CEWindowController.m in Sources */,
 				2A436DDF1A4288AC00275FD4 /* CEDocumentAnalyzer.m in Sources */,
 				25859EC1076D92D60020F779 /* CEPreferencesWindowController.m in Sources */,
@@ -1411,11 +1409,9 @@
 				258D708A07D456DF0062A3E5 /* CETextSelection.m in Sources */,
 				8CC1925707E2D84500B54AE4 /* CEDocument+ScriptingSupport.m in Sources */,
 				2A63122E19C2D30C0088C5C6 /* CEThemeViewController.m in Sources */,
-				2A1068C31A745FCE001DB9AA /* NSURL+AppleTextEncoding.m in Sources */,
 				8CC1961D07E2E54E00B54AE4 /* CEScriptManager.m in Sources */,
 				2AACC9591942A82900E3FF63 /* CEIndicatorSheetController.m in Sources */,
 				2A7CF2431A5747EC00D09249 /* CEFindPanelController.m in Sources */,
-				2AAC900B1A52A60E0074E076 /* (null) in Sources */,
 				2A009ADA1A5AAE8000C3D542 /* CEFindPanelSplitView.m in Sources */,
 				2A149DB31901740600A9D6EF /* CEWindowPaneController.m in Sources */,
 				2AFFB71618D7DCC000118477 /* CEPanelController.m in Sources */,
@@ -1466,6 +1462,8 @@
 				2AB432741915D6AA00835004 /* NSString+ComposedCharacter.m in Sources */,
 				2A2BDF0D198A899E0029848B /* NSString+JapaneseTransform.m in Sources */,
 				2A8711681986DAEC009FA1C0 /* NSString+MD5.m in Sources */,
+				2AC75C081A2AF47F00C7DB0A /* NSString+CENewLine.m in Sources */,
+				2A1068C31A745FCE001DB9AA /* NSURL+AppleTextEncoding.m in Sources */,
 				2A40D7CD1A23FBE200721EB4 /* openDictionary.applescript in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
