@@ -104,13 +104,13 @@
     // reset encoding menu
     [self resetAccessorySelectedEncoding];
     
-    return  document;
+    return document;
 }
 
 
 // ------------------------------------------------------
 /// add encoding menu to open panel
-- (NSInteger)runModalOpenPanel:(NSOpenPanel *)openPanel forTypes:(NSArray *)extensions
+- (void)beginOpenPanel:(NSOpenPanel *)openPanel forTypes:(NSArray *)inTypes completionHandler:(void (^)(NSInteger))completionHandler
 // ------------------------------------------------------
 {
     // initialize encoding menu and set the accessory view
@@ -119,21 +119,22 @@
     }
     [self buildEncodingPopupButton];
     [openPanel setAccessoryView:[self openPanelAccessoryView]];
-
+    
     // set visibility of the hidden files
     [openPanel setTreatsFilePackagesAsDirectories:[self showsHiddenFiles]];
     [openPanel setShowsHiddenFiles:[self showsHiddenFiles]];
     [self setShowsHiddenFiles:NO];  // reset flag
-
-    // open modal open panel
-    NSInteger result = [super runModalOpenPanel:openPanel forTypes:extensions];
     
-    // reset encoding menu if cancelled
-    if (result == NSCancelButton) {
-        [self resetAccessorySelectedEncoding];
-    }
-    
-    return result;
+    // run non-modal open panel
+    __weak typeof(self) weakSelf = self;
+    [super beginOpenPanel:openPanel forTypes:inTypes completionHandler:^(NSInteger result) {
+        // reset encoding menu if cancelled
+        if (result == NSCancelButton) {
+            [weakSelf resetAccessorySelectedEncoding];
+        }
+        
+        completionHandler(result);
+    }];
 }
 
 
