@@ -132,15 +132,12 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 - (instancetype)initWithContentsOfURL:(NSURL *)url ofType:(NSString *)typeName error:(NSError *__autoreleasing *)outError
 // ------------------------------------------------------
 {
+    // This method won't be invoked on Resume. (2015-01-26)
+    
     self = [super initWithContentsOfURL:url ofType:typeName error:outError];
     if (self) {
         // set sender of external editor protocol (ODB Editor Suite)
         _ODBEventSender = [[CEODBEventSender alloc] init];
-        
-        // check writability
-        NSNumber *isWritable = nil;
-        [url getResourceValue:&isWritable forKey:NSURLIsWritableKey error:nil];
-        _writable = [isWritable boolValue];
     }
     return self;
 }
@@ -173,6 +170,11 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     // set encoding to read file
     // -> The value is either user setting or selection of open panel.
     NSStringEncoding encoding = [[CEDocumentController sharedDocumentController] accessorySelectedEncoding];
+    
+    // check writability
+    NSNumber *isWritable = nil;
+    [url getResourceValue:&isWritable forKey:NSURLIsWritableKey error:nil];
+    _writable = [isWritable boolValue];
     
     return [self readFromURL:url encoding:encoding];
 }
@@ -232,14 +234,12 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     
     id token = [self changeCountTokenForSaveOperation:saveOperation];
     
-    // 新規書類を最初に保存する場合のフラグをセット
-    BOOL isFirstSave = (![self fileURL] || (saveOperation == NSSaveAsOperation));
-    
     // 保存処理実行
     BOOL success = [self forceWriteToURL:url ofType:typeName forSaveOperation:saveOperation];
 
     if (success) {
         // 新規保存時、カラーリングのために拡張子を保持
+        BOOL isFirstSave = (![self fileURL] || (saveOperation == NSSaveAsOperation));
         if (isFirstSave) {
             [self setSyntaxStyleWithFileName:[url lastPathComponent] coloring:YES];
         }
