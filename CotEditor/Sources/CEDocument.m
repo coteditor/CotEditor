@@ -431,6 +431,16 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 }
 
 
+// ------------------------------------------------------
+/// resume UI state
+- (void)restoreStateWithCoder:(NSCoder *)coder
+// ------------------------------------------------------
+{
+    // not need to show unwritable alert on resume
+    [self setDidAlertNotWritable:YES];
+}
+
+
 
 #pragma mark Protocol
 
