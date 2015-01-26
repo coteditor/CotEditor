@@ -99,7 +99,7 @@
     }
     
     // let super make document
-    id document = [super makeDocumentWithContentsOfURL:url ofType:typeName error:nil];
+    id document = [super makeDocumentWithContentsOfURL:url ofType:typeName error:outError];
     
     // reset encoding menu
     [self resetAccessorySelectedEncoding];
