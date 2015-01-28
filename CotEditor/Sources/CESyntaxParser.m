@@ -30,6 +30,7 @@
 
 #import "CESyntaxParser.h"
 #import "CETextViewProtocol.h"
+#import "CELayoutManager.h"
 #import "CESyntaxManager.h"
 #import "CEIndicatorSheetController.h"
 #import "RegexKitLite.h"
@@ -61,8 +62,7 @@ typedef NS_ENUM(NSUInteger, QCStartEndType) {
 
 @interface CESyntaxParser ()
 
-@property (nonatomic) NSLayoutManager *layoutManager;
-@property (nonatomic, getter=isPrinting) BOOL printing;  // プリント中かどうかを返す（[NSGraphicsContext currentContextDrawingToScreen] は真を返す時があるため、専用フラグを使う）
+@property (nonatomic) CELayoutManager *layoutManager;
 
 @property (nonatomic) BOOL hasSyntaxHighlighting;
 @property (atomic, copy) NSDictionary *coloringDictionary;
@@ -121,7 +121,7 @@ static CGFloat kPerCompoIncrement;
 
 // ------------------------------------------------------
 /// designated initializer
-- (instancetype)initWithStyleName:(NSString *)styleName layoutManager:(NSLayoutManager *)layoutManager isPrinting:(BOOL)isPrinting
+- (instancetype)initWithStyleName:(NSString *)styleName layoutManager:(CELayoutManager *)layoutManager
 // ------------------------------------------------------
 {
     self = [super init];
@@ -257,7 +257,6 @@ static CGFloat kPerCompoIncrement;
         }
         
         _layoutManager = layoutManager;
-        _printing = isPrinting;
     }
     return self;
 }
@@ -932,7 +931,7 @@ static CGFloat kPerCompoIncrement;
     // （ただし、CEDefaultShowColoringIndicatorTextLengthKey が「0」の時は表示しない）
     CEIndicatorSheetController *indicator = nil;
     NSUInteger indicatorThreshold = [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultShowColoringIndicatorTextLengthKey];
-    if (![self isPrinting] && (indicatorThreshold > 0) && (coloringRange.length > indicatorThreshold)) {
+    if ((indicatorThreshold > 0) && (coloringRange.length > indicatorThreshold)) {
         NSWindow *documentWindow = [[[self layoutManager] firstTextView] window];
         indicator = [[CEIndicatorSheetController alloc] initWithMessage:NSLocalizedString(@"Coloring text…", nil)];
         [self setIndicatorController:indicator];
@@ -982,7 +981,7 @@ static CGFloat kPerCompoIncrement;
 {
     NSLayoutManager *layoutManager = [self layoutManager];
     CETheme *theme = [(NSTextView<CETextViewProtocol> *)[layoutManager firstTextView] theme];
-    BOOL isPrinting = [self isPrinting];
+    BOOL isPrinting = [[self layoutManager] isPrinting];
     BOOL showsInvisibles = [layoutManager showsControlCharacters];
     
     // 現在あるカラーリングを削除

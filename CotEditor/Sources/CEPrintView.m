@@ -382,8 +382,7 @@ static NSString *const PageNumberPlaceholder = @"PAGENUM";
         // カラーリング実行オブジェクトを用意して実行
         if (![self syntaxParser]) {
             [self setSyntaxParser:[[CESyntaxParser alloc] initWithStyleName:[self syntaxName]
-                                                              layoutManager:(CELayoutManager *)[[self textContainer] layoutManager]
-                                                                 isPrinting:YES]];
+                                                              layoutManager:(CELayoutManager *)[[self textContainer] layoutManager]]];
         }
         [[self syntaxParser] colorAllString:[self string]];
     }

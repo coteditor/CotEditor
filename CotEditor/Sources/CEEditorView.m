@@ -117,8 +117,7 @@
         [layoutManager addTextContainer:container];
 
         _syntaxParser = [[CESyntaxParser alloc] initWithStyleName:NSLocalizedString(@"None", @"")
-                                                    layoutManager:layoutManager
-                                                       isPrinting:NO];
+                                                    layoutManager:layoutManager];
 
         // TextView 生成
         _textView = [[CETextView alloc] initWithFrame:NSZeroRect textContainer:container];
@@ -292,8 +291,7 @@
 // ------------------------------------------------------
 {
     [self setSyntaxParser:[[CESyntaxParser alloc] initWithStyleName:styleName
-                                                      layoutManager:(CELayoutManager *)[[self textView] layoutManager]
-                                                         isPrinting:NO]];
+                                                      layoutManager:(CELayoutManager *)[[self textView] layoutManager]]];
     
     [[self textView] setInlineCommentDelimiter:[[self syntaxParser] inlineCommentDelimiter]];
     [[self textView] setBlockCommentDelimiters:[[self syntaxParser] blockCommentDelimiters]];
