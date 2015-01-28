@@ -107,7 +107,8 @@ NSString *const CESyntaxValidationMessageKey = @"MessageKey";
         _bundledMap = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfURL:URL]
                                                       options:nil
                                                         error:nil];
-        _bundledStyleNames = [_bundledMap allKeys];
+        _bundledStyleNames = [[_bundledMap allKeys]
+                              sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
         
         // cache user styles asynchronously but wait until the process will be done
         dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
@@ -710,9 +711,7 @@ NSString *const CESyntaxValidationMessageKey = @"MessageKey";
     
     // 定義をアルファベット順にソートする
     NSMutableArray *styleNames = [[map allKeys] mutableCopy];
-    [styleNames sortUsingComparator:^NSComparisonResult(NSString *name1, NSString *name2) {
-        return [name1 caseInsensitiveCompare:name2];
-    }];
+    [styleNames sortUsingSelector:@selector(caseInsensitiveCompare:)];
     [self setStyleNames:styleNames];
 }
 
@@ -722,13 +721,18 @@ NSString *const CESyntaxValidationMessageKey = @"MessageKey";
 - (void)setupExtensionAndSyntaxTable
 // ------------------------------------------------------
 {
+    NSMutableOrderedSet *styleNames = [NSMutableOrderedSet orderedSetWithArray:[self styleNames]];
     NSMutableDictionary *extensionToStyleTable = [NSMutableDictionary dictionary];
     NSMutableDictionary *extensionConflicts = [NSMutableDictionary dictionary];
     NSMutableDictionary *filenameToStyleTable = [NSMutableDictionary dictionary];
     NSMutableDictionary *filenameConflicts = [NSMutableDictionary dictionary];
     NSString *addedName = nil;
     
-    for (NSString *styleName in [[self map] allKeys]) {
+    // postpone bundled styles
+    [styleNames removeObjectsInArray:[self bundledStyleNames]];
+    [styleNames addObjectsFromArray:[self bundledStyleNames]];
+    
+    for (NSString *styleName in styleNames) {
         for (NSString *extension in [self map][styleName][CESyntaxExtensionsKey]) {
             if ((addedName = extensionToStyleTable[extension])) { // 同じ拡張子を持つものがすでにあるとき
                 NSMutableArray *errors = extensionConflicts[extension];
