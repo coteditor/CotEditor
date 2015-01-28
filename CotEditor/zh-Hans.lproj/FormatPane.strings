@@ -1,0 +1,62 @@
+/*
+ FormatPane.strings
+ 
+ CotEditor
+ http://coteditor.com
+ 
+ Created on 2014-12-12 by 1024jp
+ Localized by onevcat
+ encoding="UTF-8"
+ 
+ © 2014 CotEditor Project
+ */
+
+/* Class = "NSTextFieldCell"; title = "Default line endings:"; ObjectID = "3273"; */
+"3273.title" = "默认行尾:";
+/* Class = "NSMenuItem"; title = "OS X / Unix (LF)"; ObjectID = "15"; */
+"15.title" = "OS X / Unix (LF)";
+/* Class = "NSMenuItem"; title = "Classic Mac OS (CR)"; ObjectID = "14"; */
+"14.title" = "Classic Mac OS (CR)";
+/* Class = "NSMenuItem"; title = "Windows (CR/LF)"; ObjectID = "12"; */
+"12.title" = "Windows (CR/LF)";
+
+
+/* Class = "NSTextFieldCell"; title = "Default text encoding:"; ObjectID = "3278"; */
+"3278.title" = "默认文本编码:";
+/* Class = "NSButtonCell"; title = "Save UTF-8 files with a BOM  (not recommended)"; ObjectID = "3281"; */
+"3281.title" = "以带有 BOM 的方式保存 UTF-8 文件 (不推荐)";
+
+/* Class = "NSTextFieldCell"; title = "Opening Files:"; ObjectID = "3277"; */
+"3277.title" = "打开文件:";
+/* Class = "NSButtonCell"; title = "Edit List…"; ObjectID = "3275"; */
+"3275.title" = "编辑列表…";
+/* Class = "NSButtonCell"; title = "Refer to encoding declaration"; ObjectID = "3280"; */
+"3280.title" = "参考编码声明";
+
+
+
+/* Class = "NSButtonCell"; title = "Enable syntax highlighting"; ObjectID = "3326"; */
+"3326.title" = "启用语法高亮";
+/* Class = "NSTextFieldCell"; title = "(Including Outline Menu)"; ObjectID = "3325"; */
+"3325.title" = "(包括大纲菜单)";
+
+/* Class = "NSButtonCell"; title = "Delay coloring"; ObjectID = "3327"; */
+"3327.title" = "延时渲染";
+
+/* Class = "NSTextFieldCell"; title = "Default syntax style:"; ObjectID = "3329"; */
+"3329.title" = "默认语法风格:";
+
+/* Class = "NSTextFieldCell"; title = "Installed syntax styles:"; ObjectID = "vlw-Tc-sLl"; */
+"vlw-Tc-sLl.title" = "已安装的语法风格:";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Remove selected style"; ObjectID = "dI1-Dk-Mce"; */
+"dI1-Dk-Mce.ibShadowedToolTip" = "移除选中的风格";
+/* Class = "NSButton"; ibShadowedToolTip = "Add empty style"; ObjectID = "Hma-8v-2gu"; */
+"Hma-8v-2gu.ibShadowedToolTip" = "添加新的风格";
+/* Class = "NSButton"; ibShadowedToolTip = "Edit selected style"; ObjectID = "Q0c-oI-um3"; */
+"Q0c-oI-um3.ibShadowedToolTip" = "编辑选中风格";
+
+/* Class = "NSMenuItem"; title = "Import…"; ObjectID = "1lj-x8-ouD"; */
+"1lj-x8-ouD.title" = "导入…";
+/* Class = "NSMenuItem"; title = "Show File Mapping Conflicts…"; ObjectID = "hyN-4W-57i"; */
+"hyN-4W-57i.title" = "显示文件映射冲突…";

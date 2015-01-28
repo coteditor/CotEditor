@@ -1,0 +1,146 @@
+/*
+ PrintPane.strings
+ 
+ CotEditor
+ http://coteditor.com
+ 
+ Created on 2014-11-04 by 1024jp
+ encoding="UTF-8"
+ 
+ © 2014 CotEditor Project
+ */
+
+/* Class = "NSTextFieldCell"; title = "Font:"; ObjectID = "C9y-bs-mE1"; */
+"C9y-bs-mE1.title" = "フォント：";
+/* Class = "NSButtonCell"; title = "Same as document's setting"; ObjectID = "1012"; */
+"1012.title" = "書類の設定と同じ";
+/* Class = "NSButtonCell"; title = "Select…"; ObjectID = "3385"; */
+"3385.title" = "選択…";
+
+/* Class = "NSTextFieldCell"; title = "Color:"; ObjectID = "3388"; */
+"3388.title" = "カラー：";
+/* Class = "NSMenuItem"; title = "Black and White"; ObjectID = "1353"; */
+"1353.title" = "白黒";
+/* Class = "NSMenuItem"; title = "Same as document's setting"; ObjectID = "1354"; */
+"1354.title" = "書類の設定と同じ";
+
+/* Class = "NSTextFieldCell"; title = "Line numbers:"; ObjectID = "3380"; */
+"3380.title" = "行番号：";
+/* Class = "NSMenuItem"; title = "Don't Print"; ObjectID = "946"; */
+"946.title" = "プリントしない";
+/* Class = "NSMenuItem"; title = "Same as document's setting"; ObjectID = "947"; */
+"947.title" = "書類の設定と同じ";
+/* Class = "NSMenuItem"; title = "Print"; ObjectID = "948"; */
+"948.title" = "プリント";
+
+/* Class = "NSTextFieldCell"; title = "Invisibles:"; ObjectID = "3382"; */
+"3382.title" = "不可視文字：";
+/* Class = "NSMenuItem"; title = "Don't Print"; ObjectID = "952"; */
+"952.title" = "プリントしない";
+/* Class = "NSMenuItem"; title = "Same as document's setting"; ObjectID = "953"; */
+"953.title" = "書類の設定と同じ";
+/* Class = "NSMenuItem"; title = "Print All"; ObjectID = "954"; */
+"954.title" = "すべてプリント";
+
+
+
+/* Class = "NSButtonCell"; title = "Print header"; ObjectID = "3368"; */
+"3368.title" = "ヘッダをプリント";
+
+/* Class = "NSTextFieldCell"; title = "First Line:"; ObjectID = "3369"; */
+"3369.title" = "1 行目：";
+
+/* Class = "NSMenuItem"; title = "None"; ObjectID = "895"; */
+"895.title" = "なし";
+/* Class = "NSMenuItem"; title = "Syntax Name"; ObjectID = "uuc-7D-Iot"; */
+"uuc-7D-Iot.title" = "シンタックス名";
+/* Class = "NSMenuItem"; title = "Document Name"; ObjectID = "896"; */
+"896.title" = "書類名";
+/* Class = "NSMenuItem"; title = "File Path"; ObjectID = "897"; */
+"897.title" = "ファイルパス";
+/* Class = "NSMenuItem"; title = "Print Date"; ObjectID = "898"; */
+"898.title" = "プリント日時";
+/* Class = "NSMenuItem"; title = "Page Number"; ObjectID = "893"; */
+"893.title" = "ページ番号";
+
+/* Class = "NSSegmentedCell"; ObjectID = "Jap-f3-ehL"; */
+"Jap-f3-ehL.ibShadowedToolTips[0]" = "左揃え";  /* Align Left */
+"Jap-f3-ehL.ibShadowedToolTips[1]" = "中央揃え";  /* Center */
+"Jap-f3-ehL.ibShadowedToolTips[2]" = "右揃え";  /* Align Right */
+
+
+/* Class = "NSTextFieldCell"; title = "Second Line:"; ObjectID = "3373"; */
+"3373.title" = "2 行目：";
+
+/* Class = "NSMenuItem"; title = "None"; ObjectID = "906"; */
+"906.title" = "なし";
+/* Class = "NSMenuItem"; title = "Syntax Name"; ObjectID = "plk-U5-NGA"; */
+"plk-U5-NGA.title" = "シンタックス名";
+/* Class = "NSMenuItem"; title = "Document Name"; ObjectID = "902"; */
+"902.title" = "書類名";
+/* Class = "NSMenuItem"; title = "File Path"; ObjectID = "903"; */
+"903.title" = "ファイルパス";
+/* Class = "NSMenuItem"; title = "Print Date"; ObjectID = "904"; */
+"904.title" = "プリント日時";
+/* Class = "NSMenuItem"; title = "Page Number"; ObjectID = "905"; */
+"905.title" = "ページ番号";
+
+/* Class = "NSSegmentedCell"; ObjectID = "90p-SJ-bXq"; */
+"90p-SJ-bXq.ibShadowedToolTips[0]" = "左揃え";  /* Align Left */
+"90p-SJ-bXq.ibShadowedToolTips[1]" = "中央揃え";  /* Center */
+"90p-SJ-bXq.ibShadowedToolTips[2]" = "右揃え";  /* Align Right */
+
+/* Class = "NSButtonCell"; title = "ヘッダの下に区切り線をプリント"; ObjectID = "3371"; */
+"3371.title" = "ヘッダの下に区切り線をプリント";
+
+
+
+/* Class = "NSButtonCell"; title = "Print footer"; ObjectID = "3375"; */
+"3375.title" = "フッタをプリント";
+
+/* Class = "NSTextFieldCell"; title = "First Line:"; ObjectID = "3379"; */
+"3379.title" = "1 行目：";
+
+/* Class = "NSMenuItem"; title = "None"; ObjectID = "941"; */
+"941.title" = "なし";
+/* Class = "NSMenuItem"; title = "Syntax Name"; ObjectID = "Mvg-wT-FTM"; */
+"Mvg-wT-FTM.title" = "シンタックス名";
+/* Class = "NSMenuItem"; title = "Document Name"; ObjectID = "937"; */
+"937.title" = "書類名";
+/* Class = "NSMenuItem"; title = "File Path"; ObjectID = "938"; */
+"938.title" = "ファイルパス";
+/* Class = "NSMenuItem"; title = "Print Date"; ObjectID = "939"; */
+"939.title" = "プリント日時";
+/* Class = "NSMenuItem"; title = "Page Number"; ObjectID = "940"; */
+"940.title" = "ページ番号";
+
+/* Class = "NSSegmentedCell"; ObjectID = "Zgh-yF-xd2"; */
+"Zgh-yF-xd2.ibShadowedToolTips[0]" = "左揃え";  /* Align Left */
+"Zgh-yF-xd2.ibShadowedToolTips[1]" = "中央揃え";  /* Center */
+"Zgh-yF-xd2.ibShadowedToolTips[2]" = "右揃え";  /* Align Right */
+
+
+/* Class = "NSTextFieldCell"; title = "Second Line:"; ObjectID = "3377"; */
+"3377.title" = "2 行目：";
+
+/* Class = "NSMenuItem"; title = "None"; ObjectID = "927"; */
+"927.title" = "なし";
+/* Class = "NSMenuItem"; title = "Syntax Name"; ObjectID = "ckJ-Cw-ccE"; */
+"ckJ-Cw-ccE.title" = "シンタックス名";
+/* Class = "NSMenuItem"; title = "Document Name"; ObjectID = "929"; */
+"929.title" = "書類名";
+/* Class = "NSMenuItem"; title = "File Path"; ObjectID = "930"; */
+"930.title" = "ファイルパス";
+/* Class = "NSMenuItem"; title = "Print Date"; ObjectID = "931"; */
+"931.title" = "プリント日時";
+/* Class = "NSMenuItem"; title = "Page Number"; ObjectID = "932"; */
+"932.title" = "ページ番号";
+
+/* Class = "NSSegmentedCell"; ObjectID = "Pjk-d8-E4v"; */
+"Pjk-d8-E4v.ibShadowedToolTips[0]" = "左揃え";  /* Align Left */
+"Pjk-d8-E4v.ibShadowedToolTips[1]" = "中央揃え";  /* Center */
+"Pjk-d8-E4v.ibShadowedToolTips[2]" = "右揃え";  /* Align Right */
+
+
+/* Class = "NSButtonCell"; title = "Print separator line at the top of footer"; ObjectID = "3374"; */
+"3374.title" = "フッタの上に区切り線をプリント";

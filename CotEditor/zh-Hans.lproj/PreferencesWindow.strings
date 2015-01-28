@@ -1,0 +1,51 @@
+/*
+ PreferencsWindow.strings
+ 
+ CotEditor
+ http://coteditor.com
+ 
+ Created on 2014-12-12 by 1024jp
+ Localized by onevcat
+ encoding="UTF-8"
+ 
+ © 2014 CotEditor Project
+ */
+
+/* Class = "NSWindow"; title = "Preferences"; ObjectID = "6"; */
+"6.title" = "Preferences";
+
+/* Class = "NSToolbarItem"; ObjectID = "HlR-fr-Hwd"; */
+"HlR-fr-Hwd.label" = "一般";  /* General */
+"HlR-fr-Hwd.paletteLabel" = "一般";  /* General */
+
+/* Class = "NSToolbarItem"; ObjectID = "agm-iM-Y3j"; */
+"agm-iM-Y3j.label" = "窗口";  /* Window */
+"agm-iM-Y3j.paletteLabel" = "窗口";  /* Window */
+
+/* Class = "NSToolbarItem"; ObjectID = "TSL-LZ-a98"; */
+"TSL-LZ-a98.label" = "外观";  /* Appearance */
+"TSL-LZ-a98.paletteLabel" = "外观";  /* Appearance */
+
+/* Class = "NSToolbarItem"; ObjectID = "bYW-oU-kKx"; */
+"bYW-oU-kKx.label" = "编辑";  /* Edit */
+"bYW-oU-kKx.paletteLabel" = "编辑";  /* Edit */
+
+/* Class = "NSToolbarItem"; ObjectID = "Pxf-UL-fD9"; */
+"Pxf-UL-fD9.label" = "格式";  /* Format  */
+"Pxf-UL-fD9.paletteLabel" = "格式";  /* Format  */
+
+/* Class = "NSToolbarItem"; ObjectID = "0c4-Jh-Er6"; */
+"0c4-Jh-Er6.label" = "文件拖拽";  /* File Drop */
+"0c4-Jh-Er6.paletteLabel" = "文件拖拽";  /* File Drop */
+
+/* Class = "NSToolbarItem"; ObjectID = "WSf-8J-dN6"; */
+"WSf-8J-dN6.label" = "按键绑定";  /* Key Bindings */
+"WSf-8J-dN6.paletteLabel" = "按键绑定";  /* Key Bindings */
+
+/* Class = "NSToolbarItem"; ObjectID = "uTl-fL-Jcq"; */
+"uTl-fL-Jcq.label" = "打印";  /* Print */
+"uTl-fL-Jcq.paletteLabel" = "打印";  /* Print */
+
+/* Class = "NSToolbarItem"; ObjectID = "Bn7-e8-FVC"; */
+"Bn7-e8-FVC.label" = "集成";  /* Integration */
+"Bn7-e8-FVC.paletteLabel" = "集成";  /* Integration */

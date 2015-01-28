@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014 CotEditor Project
+ © 2014-2015 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -43,9 +43,6 @@ NSString *const CESeparatorString = @"-";
 // Error domain
 NSString *const CEErrorDomain = @"com.coteditor.CotEditor.ErrorDomain";
 
-// Localized strings table
-NSString *const CEPrintLocalizeTable =  @"Print";
-
 // Metadata dict keys for themes and syntax styles
 NSString *const CEMetadataKey = @"metadata";
 NSString *const CEAuthorKey = @"author";
@@ -69,8 +66,19 @@ NSString *const kHelpAnchors[] = {
     @"specification_changes",
     @"about_script_name",
     @"about_applescript",
-    @"about_unixscript"
+    @"about_unixscript",
+    @"pref_integration"
 };
+
+
+// Convenient functions
+/// compare CGFloats
+BOOL CEIsAlmostEqualCGFloats(CGFloat float1, CGFloat float2) {
+    const double ACCURACY = 5;
+    return (fabs(float1 - float2) < pow(10, -ACCURACY));
+}
+
+
 
 #pragma mark Notifications
 
@@ -98,6 +106,7 @@ NSString *const CEDefaultLastVersionKey = @"lastVersion";
 NSString *const CEDefaultLayoutTextVerticalKey = @"layoutTextVertical";
 NSString *const CEDefaultSplitViewVerticalKey = @"splitViewVertical";
 NSString *const CEDefaultShowLineNumbersKey = @"showLineNumbers";
+NSString *const CEDefaultShowDocumentInspectorKey = @"showDocumentInspector";
 NSString *const CEDefaultShowStatusBarKey = @"showStatusArea";
 NSString *const CEDefaultShowStatusBarLinesKey = @"showStatusBarLines";
 NSString *const CEDefaultShowStatusBarLengthKey = @"showStatusBarLength";
@@ -184,10 +193,22 @@ NSString *const CEDefaultPrintLineNumIndexKey = @"printLineNumIndex";
 NSString *const CEDefaultPrintInvisibleCharIndexKey = @"printInvisibleCharIndex";
 NSString *const CEDefaultPrintColorIndexKey = @"printColorIndex";
 
+// find panel
+NSString *const CEDefaultFindHistoryKey = @"findHistory";
+NSString *const CEDefaultReplaceHistoryKey = @"replaceHistory";
+NSString *const CEDefaultFindRegexSyntaxKey = @"findRegexSynatx";
+NSString *const CEDefaultFindEscapeCharacterKey = @"findEscapeCharacter";
+NSString *const CEDefaultFindUsesRegularExpressionKey = @"findUsesRegularExpression";
+NSString *const CEDefaultFindInSelectionKey = @"findInSelection";
+NSString *const CEDefaultFindIsWrapKey = @"findIsWrap";
+NSString *const CEDefaultFindOptionsKey = @"findOptions";
+NSString *const CEDefaultFindClosesIndicatorWhenDoneKey = @"findClosesIndicatorWhenDone";
+
 // settings that are not in preferences
 NSString *const CEDefaultInsertCustomTextArrayKey = @"insertCustomTextArray";
 NSString *const CEDefaultInsertCustomTextKey = @"insertCustomText";
 NSString *const CEDefaultColorCodeTypeKey = @"colorCodeType";
+NSString *const CEDefaultSidebarWidthKey = @"sidebarWidth";
 
 // hidden settings
 NSString *const CEDefaultUsesTextFontForInvisiblesKey = @"usesTextFontForInvisibles";
@@ -200,7 +221,6 @@ NSString *const CEDefaultLineNumUpdateIntervalKey = @"lineNumUpdateInterval";
 NSString *const CEDefaultInfoUpdateIntervalKey = @"infoUpdateInterval";
 NSString *const CEDefaultIncompatibleCharIntervalKey = @"incompatibleCharInterval";
 NSString *const CEDefaultOutlineMenuIntervalKey = @"outlineMenuInterval";
-NSString *const CEDefaultOutlineMenuMaxLengthKey = @"outlineMenuMaxLength";
 NSString *const CEDefaultHeaderFooterFontNameKey = @"headerFooterFontName";
 NSString *const CEDefaultHeaderFooterFontSizeKey = @"headerFooterFontSize";
 NSString *const CEDefaultHeaderFooterDateFormatKey = @"headerFooterDateFormat";
@@ -341,15 +361,12 @@ NSString *const kIssueTrackerURL = @"https://github.com/coteditor/CotEditor/issu
 // Outline item dict keys
 NSString *const CEOutlineItemTitleKey = @"outlineItemTitle";
 NSString *const CEOutlineItemRangeKey = @"outlineItemRange";
-NSString *const CEOutlineItemSortKeyKey = @"outlineItemSortKey";
-NSString *const CEOutlineItemFontBoldKey = @"outlineItemFontBold";
-NSString *const CEOutlineItemFontItalicKey = @"outlineItemFontItalic";
-NSString *const CEOutlineItemUnderlineMaskKey = @"outlineItemUnderlineMask";
+NSString *const CEOutlineItemStyleBoldKey = @"outlineItemStyleBold";
+NSString *const CEOutlineItemStyleItalicKey = @"outlineItemStyleItalic";
+NSString *const CEOutlineItemStyleUnderlineKey = @"outlineItemStyleUnderline";
 
 // layout constants
-CGFloat const kDefaultLineNumWidth = 32.0;
 CGFloat const kLineNumPadding = 3.0;
-CGFloat const kLineNumFontDescender = -2.1;
 NSString *const kNavigationBarFontName = @"Helvetica";
 
 
@@ -387,7 +404,7 @@ CGFloat const kNoSeparatorPadding = 18.0;
 // ------------------------------------------------------
 
 // Encoding menu
-NSInteger const CEAutoDetectEncodingMenuItemTag = 0;
+NSInteger const CEAutoDetectEncoding = 0;
 
 // Max length to scan encding declaration
 NSUInteger const kMaxEncodingScanLength = 2000;
@@ -481,10 +498,10 @@ CFStringEncodings const kCFStringEncodingInvalidYenList[] = {
     kCFStringEncodingDOSLatinUS, // Latin-US (DOS)
     kCFStringEncodingWindowsLatin2, // Central European (Windows Latin 2)
 };
-NSUInteger const kSizeOfCFStringEncodingInvalidYenList = sizeof(kCFStringEncodingInvalidYenList)/sizeof(CFStringEncodings);
+NSUInteger const kSizeOfCFStringEncodingInvalidYenList = sizeof(kCFStringEncodingInvalidYenList) / sizeof(CFStringEncodings);
 
 // Yen mark char
-unichar const kYenMark = {0x00A5};
+unichar const kYenMark = 0x00A5;
 
 
 
@@ -512,7 +529,7 @@ NSUInteger  const kSizeOfInvisibleFullwidthSpaceCharList = sizeof(kInvisibleFull
 // ------------------------------------------------------
 
 // Modifier keys and characters for keybinding
-NSUInteger const kModifierKeyMaskList[] = {
+NSEventModifierFlags const kModifierKeyMaskList[] = {
     NSControlKeyMask,
     NSAlternateKeyMask,
     NSShiftKeyMask,
@@ -521,7 +538,7 @@ NSUInteger const kModifierKeyMaskList[] = {
 unichar const kModifierKeySymbolCharList[] = {0x005E, 0x2325, 0x21E7, 0x2318};
 unichar const kKeySpecCharList[]           = {0x005E, 0x007E, 0x0024, 0x0040};  // == "^~$@"
 
-NSUInteger const kSizeOfModifierKeys = sizeof(kModifierKeyMaskList) / sizeof(NSUInteger);
+NSUInteger const kSizeOfModifierKeys = sizeof(kModifierKeyMaskList) / sizeof(NSEventModifierFlags);
 
 
 // Unprintable key list

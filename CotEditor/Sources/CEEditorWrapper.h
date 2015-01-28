@@ -15,7 +15,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014 CotEditor Project
+ © 2014-2015 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -34,13 +34,11 @@
  */
 
 @import Cocoa;
-#import "CEEditorView.h"
 #import "CETextView.h"
-#import "CEWindowController.h"
 
 
-@class CEDocument;
-@class CEWindowController;
+@class CETextView;
+@class CETheme;
 
 
 @interface CEEditorWrapper : NSResponder
@@ -50,44 +48,47 @@
 @property (nonatomic) BOOL showsPageGuide;
 @property (nonatomic) BOOL showsInvisibles;
 @property (nonatomic, getter=isVerticalLayoutOrientation) BOOL verticalLayoutOrientation;
-@property (nonatomic) CETextView *textView;
+@property (nonatomic) CETextView *focusedTextView;
 
 @property (readonly, nonatomic) BOOL showsNavigationBar;
 @property (readonly, nonatomic) BOOL canActivateShowInvisibles;
 
 
-// Public method
-- (CEDocument *)document;
-- (CEWindowController *)windowController;
-- (NSTextStorage *)textStorage;
+#pragma mark Public Methods
 
+// text processing
 - (NSString *)string;
 - (NSString *)substringWithRange:(NSRange)range;
 - (NSString *)substringWithSelection;
-- (NSString *)substringWithSelectionForSave;
+- (NSString *)substringWithSelectionForSave;  // line ending applied
 - (void)setString:(NSString *)string;
-- (void)setLineEndingString:(NSString *)lineEndingString;
-- (void)replaceTextViewSelectedStringTo:(NSString *)inString scroll:(BOOL)doScroll;
-- (void)replaceTextViewAllStringTo:(NSString *)string;
-- (void)insertTextViewAfterSelectionStringTo:(NSString *)string;
-- (void)appendTextViewAfterAllStringTo:(NSString *)string;
-- (NSRange)selectedRange;
-- (void)setSelectedRange:(NSRange)charRange;
 
-- (NSFont *)font;
-- (void)setFont:(NSFont *)font;
+- (void)insertTextViewString:(NSString *)inString;
+- (void)insertTextViewStringAfterSelection:(NSString *)string;
+- (void)replaceTextViewAllStringWithString:(NSString *)string;
+- (void)appendTextViewString:(NSString *)string;
+
+- (NSRange)selectedRange;  // line ending applied
+- (void)setSelectedRange:(NSRange)charRange;  // line ending applied
 
 - (void)markupRanges:(NSArray *)ranges;
 - (void)clearAllMarkup;
 
-- (void)setShowsNavigationBar:(BOOL)showsNavigationBar animate:(BOOL)performAnimation;
-
-- (BOOL)usesAntialias;
 - (BOOL)isAutoTabExpandEnabled;
 
+// navigation bar
+- (void)setShowsNavigationBar:(BOOL)showsNavigationBar animate:(BOOL)performAnimation;
+
+// font
+- (NSFont *)font;
+- (void)setFont:(NSFont *)font;
+- (BOOL)usesAntialias;
+
+// theme
 - (void)setThemeWithName:(NSString *)themeName;
 - (CETheme *)theme;
 
+// syntax
 - (NSString *)syntaxStyleName;
 - (void)setSyntaxStyleName:(NSString *)inName recolorNow:(BOOL)recolorNow;
 - (void)recolorAllString;
@@ -95,7 +96,8 @@
 - (void)setupColoringTimer;
 
 
-// Action Message
+#pragma mark Action Messages
+
 - (IBAction)toggleLineNumber:(id)sender;
 - (IBAction)toggleNavigationBar:(id)sender;
 - (IBAction)toggleLineWrap:(id)sender;
@@ -109,5 +111,24 @@
 - (IBAction)openSplitTextView:(id)sender;
 - (IBAction)closeSplitTextView:(id)sender;
 - (IBAction)recolorAll:(id)sender;
+
+@end
+
+
+
+
+#pragma mark -
+
+typedef NS_ENUM(NSUInteger, CEGoToType) {
+    CEGoToLine,
+    CEGoToCharacter
+};
+
+@interface CEEditorWrapper (Locating)
+
+- (NSRange)rangeWithLocation:(NSInteger)location length:(NSInteger)length;
+- (void)setSelectedCharacterRangeWithLocation:(NSInteger)location length:(NSInteger)length;
+- (void)setSelectedLineRangeWithLocation:(NSInteger)location length:(NSInteger)length;
+- (void)gotoLocation:(NSInteger)location length:(NSInteger)length type:(CEGoToType)type;
 
 @end

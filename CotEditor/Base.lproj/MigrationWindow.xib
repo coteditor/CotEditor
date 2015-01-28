@@ -1,0 +1,384 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6254"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="CEMigrationWindowController">
+            <connections>
+                <outlet property="button" destination="GtV-JW-xjR" id="uVC-Yt-NpU"/>
+                <outlet property="finishedView" destination="TDz-KL-JnO" id="rR9-l8-IV0"/>
+                <outlet property="indicator" destination="ufs-NL-pEW" id="FYs-yw-Lic"/>
+                <outlet property="informativeField" destination="bN7-nW-UJk" id="Avy-Zd-6ys"/>
+                <outlet property="initialView" destination="d0V-Ww-t6E" id="oQ5-60-nKz"/>
+                <outlet property="slideView" destination="Cqi-He-haH" id="fXz-ey-4yk"/>
+                <outlet property="window" destination="QvC-M9-y7g" id="ikE-4J-tb4"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <window title="Welcome to CotEditor 2.0" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="QvC-M9-y7g" userLabel="Welcome to CotEditor 2.1">
+            <windowStyleMask key="styleMask" closable="YES"/>
+            <rect key="contentRect" x="196" y="240" width="460" height="310"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
+            <view key="contentView" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" id="EiT-Mj-1SZ">
+                <rect key="frame" x="0.0" y="0.0" width="460" height="310"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <customView wantsLayer="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Cqi-He-haH" userLabel="Slide View">
+                        <rect key="frame" x="0.0" y="70" width="460" height="240"/>
+                        <subviews>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="d0V-Ww-t6E" userLabel="Initial View">
+                                <rect key="frame" x="0.0" y="0.0" width="460" height="240"/>
+                                <subviews>
+                                    <textField horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="4tE-FT-D5Q">
+                                        <rect key="frame" x="134" y="25" width="192" height="39"/>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="CotEditor 2.1" id="s49-9c-WyQ">
+                                            <font key="font" size="32" name="HelveticaNeue-Light"/>
+                                            <color key="textColor" white="0.33000000000000002" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                        <connections>
+                                            <binding destination="-2" name="value" keyPath="appName" id="NMt-M2-g6h"/>
+                                        </connections>
+                                    </textField>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="r5K-qD-t3c">
+                                        <rect key="frame" x="136" y="64" width="71" height="20"/>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Welcome to" id="aBa-Xm-ATa">
+                                            <font key="font" size="13" name="HelveticaNeue-Light"/>
+                                            <color key="textColor" white="0.33000000000000002" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="a6j-Ka-Roa">
+                                        <rect key="frame" x="166" y="84" width="128" height="128"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="a6j-Ka-Roa" secondAttribute="height" multiplier="1:1" id="OeL-8g-bLt"/>
+                                            <constraint firstAttribute="height" constant="128" id="ani-KQ-dkr"/>
+                                        </constraints>
+                                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSApplicationIcon" id="nmD-Xa-bwe"/>
+                                    </imageView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="centerX" secondItem="a6j-Ka-Roa" secondAttribute="centerX" id="5Ku-1R-h28"/>
+                                    <constraint firstItem="a6j-Ka-Roa" firstAttribute="top" secondItem="d0V-Ww-t6E" secondAttribute="top" constant="28" id="5rN-Ge-4Sq"/>
+                                    <constraint firstItem="r5K-qD-t3c" firstAttribute="top" secondItem="a6j-Ka-Roa" secondAttribute="bottom" id="EO2-aC-0Ov"/>
+                                    <constraint firstAttribute="centerX" secondItem="4tE-FT-D5Q" secondAttribute="centerX" id="YVR-6u-WB7"/>
+                                    <constraint firstItem="4tE-FT-D5Q" firstAttribute="top" secondItem="r5K-qD-t3c" secondAttribute="bottom" id="jc3-aM-KtS"/>
+                                    <constraint firstItem="4tE-FT-D5Q" firstAttribute="leading" secondItem="r5K-qD-t3c" secondAttribute="leading" constant="-2" id="otJ-ls-y3w"/>
+                                </constraints>
+                            </customView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="d0V-Ww-t6E" firstAttribute="leading" secondItem="Cqi-He-haH" secondAttribute="leading" id="7ya-7W-k3B"/>
+                            <constraint firstAttribute="trailing" secondItem="d0V-Ww-t6E" secondAttribute="trailing" id="Gkk-ts-gpx"/>
+                            <constraint firstItem="d0V-Ww-t6E" firstAttribute="top" secondItem="Cqi-He-haH" secondAttribute="top" id="Hyr-6a-2on"/>
+                            <constraint firstAttribute="bottom" secondItem="d0V-Ww-t6E" secondAttribute="bottom" id="r65-sY-4Nw"/>
+                        </constraints>
+                        <animations>
+                            <caTransition key="subviews">
+                                <mutableData key="keyedArchiveRepresentation">
+YnBsaXN0MDDUAQIDBAUGJCVYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoKkHCBES
+EwsKGR9VJG51bGzUCQoLDA0ODxBWJGNsYXNzVHR5cGVXc3VidHlwZV8QEl9fQ0FDb2RpbmdDb250ZW50
+c4AIgAOAAoAEWWZyb21SaWdodFRwdXNo0hQJFRhaTlMub2JqZWN0c6IWF4AFgAaAB9IaGxwdWiRjbGFz
+c25hbWVYJGNsYXNzZXNXTlNBcnJheaIcHlhOU09iamVjdNIaGyAhXENBVHJhbnNpdGlvbqMiIx5cQ0FU
+cmFuc2l0aW9uW0NBQW5pbWF0aW9uXxAPTlNLZXllZEFyY2hpdmVy0SYnVHJvb3SAAQAIABEAGgAjAC0A
+MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCLAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
++QEFARcBGgEfAAAAAAAAAgEAAAAAAAAAKAAAAAAAAAAAAAAAAAAAASE
+</mutableData>
+                            </caTransition>
+                        </animations>
+                    </customView>
+                    <progressIndicator maxValue="100" controlSize="small" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="ufs-NL-pEW">
+                        <rect key="frame" x="20" y="42" width="420" height="12"/>
+                    </progressIndicator>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bN7-nW-UJk">
+                        <rect key="frame" x="18" y="20" width="346" height="14"/>
+                        <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Migrating user syntax styles…" id="vqy-cz-YAI">
+                            <font key="font" metaFont="smallSystem"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <button hidden="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="GtV-JW-xjR">
+                        <rect key="frame" x="365" y="10" width="80" height="28"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="70" id="lhT-LE-JEl"/>
+                        </constraints>
+                        <buttonCell key="cell" type="push" title="Next" bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="uPQ-1j-6Gc">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="smallSystem"/>
+                            <string key="keyEquivalent" base64-UTF8="YES">
+DQ
+</string>
+                        </buttonCell>
+                        <connections>
+                            <action selector="didFinishMigration:" target="-2" id="5Or-L4-6YY"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="GtV-JW-xjR" secondAttribute="trailing" constant="20" symbolic="YES" id="Ms0-AE-gye"/>
+                    <constraint firstItem="ufs-NL-pEW" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="20" symbolic="YES" id="NLV-XO-kqx"/>
+                    <constraint firstAttribute="trailing" secondItem="Cqi-He-haH" secondAttribute="trailing" id="Nld-Rs-gWz"/>
+                    <constraint firstAttribute="bottom" secondItem="GtV-JW-xjR" secondAttribute="bottom" constant="16" id="XJw-bi-ruF"/>
+                    <constraint firstItem="bN7-nW-UJk" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="20" symbolic="YES" id="Z65-IY-o5e"/>
+                    <constraint firstItem="ufs-NL-pEW" firstAttribute="top" secondItem="Cqi-He-haH" secondAttribute="bottom" constant="16" id="ZwK-5X-Thd"/>
+                    <constraint firstAttribute="trailing" secondItem="ufs-NL-pEW" secondAttribute="trailing" constant="20" symbolic="YES" id="aMP-WW-HJ2"/>
+                    <constraint firstItem="Cqi-He-haH" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" id="bd6-4P-k0f"/>
+                    <constraint firstItem="bN7-nW-UJk" firstAttribute="top" secondItem="ufs-NL-pEW" secondAttribute="bottom" constant="8" symbolic="YES" id="bpV-qh-m4D"/>
+                    <constraint firstItem="GtV-JW-xjR" firstAttribute="top" secondItem="ufs-NL-pEW" secondAttribute="bottom" constant="8" symbolic="YES" id="hEE-b8-W85"/>
+                    <constraint firstItem="Cqi-He-haH" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" id="lwD-ld-esm"/>
+                    <constraint firstItem="GtV-JW-xjR" firstAttribute="leading" secondItem="bN7-nW-UJk" secondAttribute="trailing" constant="8" symbolic="YES" id="t5c-c9-Sbt"/>
+                </constraints>
+            </view>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="color" keyPath="backgroundColor">
+                    <color key="value" white="0.95000000000000007" alpha="1" colorSpace="calibratedWhite"/>
+                </userDefinedRuntimeAttribute>
+            </userDefinedRuntimeAttributes>
+            <connections>
+                <outlet property="delegate" destination="-2" id="3Cm-U8-DfP"/>
+            </connections>
+            <point key="canvasLocation" x="151" y="221"/>
+        </window>
+        <customView id="TDz-KL-JnO" userLabel="Finished View">
+            <rect key="frame" x="0.0" y="0.0" width="460" height="240"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="vA6-9n-tty">
+                    <rect key="frame" x="42" y="182" width="209" height="17"/>
+                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Reset menu key bindings setting." usesSingleLineMode="YES" id="BA1-Y2-S7m">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                    <connections>
+                        <binding destination="-2" name="hidden" keyPath="didResetKeyBindings" id="srW-JU-APb">
+                            <dictionary key="options">
+                                <string key="NSValueTransformerName">NSNegateBoolean</string>
+                            </dictionary>
+                        </binding>
+                    </connections>
+                </textField>
+                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="sKS-uj-Tsy">
+                    <rect key="frame" x="18" y="207" width="424" height="17"/>
+                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="The following migrations have been successfully completed." id="cTg-d4-zlT">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Z67-Bl-Qme">
+                    <rect key="frame" x="42" y="141" width="161" height="17"/>
+                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Migrate coloring settings." usesSingleLineMode="YES" id="6hO-yA-SXq">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                    <connections>
+                        <binding destination="-2" name="hidden" keyPath="didMigrateTheme" id="RL0-dU-zxe">
+                            <dictionary key="options">
+                                <string key="NSValueTransformerName">NSNegateBoolean</string>
+                            </dictionary>
+                        </binding>
+                    </connections>
+                </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hKA-5b-UTn">
+                    <rect key="frame" x="42" y="125" width="400" height="14"/>
+                    <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="An custom theme has been created from the previous user setting." id="wdy-J5-ddL">
+                        <font key="font" metaFont="smallSystem"/>
+                        <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                    <connections>
+                        <binding destination="-2" name="hidden" keyPath="didMigrateTheme" id="LJ3-8H-2hW">
+                            <dictionary key="options">
+                                <string key="NSValueTransformerName">NSNegateBoolean</string>
+                            </dictionary>
+                        </binding>
+                    </connections>
+                </textField>
+                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="uTv-Qx-FQU">
+                    <rect key="frame" x="42" y="100" width="169" height="17"/>
+                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Migrate user syntax styles." usesSingleLineMode="YES" id="D4s-ma-Iiu">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                    <connections>
+                        <binding destination="-2" name="hidden" keyPath="didMigrateSyntaxStyles" id="DFi-wf-r4W">
+                            <dictionary key="options">
+                                <string key="NSValueTransformerName">NSNegateBoolean</string>
+                            </dictionary>
+                        </binding>
+                    </connections>
+                </textField>
+                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4x8-xv-gxa">
+                    <rect key="frame" x="20" y="183" width="16" height="16"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="4x8-xv-gxa" secondAttribute="height" multiplier="1:1" id="FFF-no-sMx"/>
+                        <constraint firstAttribute="width" constant="16" id="a4C-gJ-47S"/>
+                    </constraints>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSMenuOnStateTemplate" id="sRl-p7-VIh"/>
+                    <connections>
+                        <binding destination="-2" name="hidden" keyPath="didResetKeyBindings" id="S3S-fs-c39">
+                            <dictionary key="options">
+                                <string key="NSValueTransformerName">NSNegateBoolean</string>
+                            </dictionary>
+                        </binding>
+                    </connections>
+                </imageView>
+                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="b6m-dG-Sbw">
+                    <rect key="frame" x="20" y="142" width="16" height="15"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="b6m-dG-Sbw" secondAttribute="height" multiplier="1:1" id="dPx-Qa-jdo"/>
+                        <constraint firstAttribute="width" constant="16" id="rh2-Bd-CNE"/>
+                    </constraints>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSMenuOnStateTemplate" id="XvN-T1-0pC"/>
+                    <connections>
+                        <binding destination="-2" name="hidden" keyPath="didMigrateTheme" id="IZg-Ef-OlA">
+                            <dictionary key="options">
+                                <string key="NSValueTransformerName">NSNegateBoolean</string>
+                            </dictionary>
+                        </binding>
+                    </connections>
+                </imageView>
+                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wGr-MH-7rW">
+                    <rect key="frame" x="20" y="100" width="16" height="16"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="wGr-MH-7rW" secondAttribute="height" multiplier="1:1" id="GfD-xW-RFq"/>
+                        <constraint firstAttribute="width" constant="16" id="mrU-t1-HBK"/>
+                    </constraints>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSMenuOnStateTemplate" id="RTC-1V-JPz"/>
+                    <connections>
+                        <binding destination="-2" name="hidden" keyPath="didMigrateSyntaxStyles" id="hYj-Ej-bPd">
+                            <dictionary key="options">
+                                <string key="NSValueTransformerName">NSNegateBoolean</string>
+                            </dictionary>
+                        </binding>
+                    </connections>
+                </imageView>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Bf0-Or-heZ">
+                    <rect key="frame" x="42" y="166" width="400" height="14"/>
+                    <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="The settings for menu key bindings have been once restored." id="hk3-rs-RMV">
+                        <font key="font" metaFont="smallSystem"/>
+                        <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                    <connections>
+                        <binding destination="-2" name="hidden" keyPath="didResetKeyBindings" id="1KK-Z4-KSe">
+                            <dictionary key="options">
+                                <string key="NSValueTransformerName">NSNegateBoolean</string>
+                            </dictionary>
+                        </binding>
+                    </connections>
+                </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="W15-Nc-3r0">
+                    <rect key="frame" x="42" y="84" width="400" height="14"/>
+                    <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="The format for syntax style files has been changed from plist to YAML." id="2tb-Wh-X18">
+                        <font key="font" metaFont="smallSystem"/>
+                        <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                    <connections>
+                        <binding destination="-2" name="hidden" keyPath="didMigrateSyntaxStyles" id="VtC-OA-x6C">
+                            <dictionary key="options">
+                                <string key="NSValueTransformerName">NSNegateBoolean</string>
+                            </dictionary>
+                        </binding>
+                    </connections>
+                </textField>
+                <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="jWg-4Q-d5T">
+                    <rect key="frame" x="18" y="56" width="295" height="14"/>
+                    <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="In some cases, user needs aditonal manual migrations." allowsEditingTextAttributes="YES" usesSingleLineMode="YES" id="X8Q-Ji-HKU">
+                        <font key="font" metaFont="smallSystem"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <button toolTip="See “What's New in CotEditor 2.0” on Help" horizontalHuggingPriority="750" verticalHuggingPriority="750" tag="9" translatesAutoresizingMaskIntoConstraints="NO" id="hGz-yb-qTP">
+                    <rect key="frame" x="18" y="13" width="22" height="22"/>
+                    <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" controlSize="small" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Xzi-xX-1br">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="smallSystem"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="openHelpAnchor:" target="-2" id="AiG-on-ane"/>
+                    </connections>
+                </button>
+                <button toolTip="See “Specification Changes on CotEditor 2.0” on Help" horizontalHuggingPriority="750" verticalHuggingPriority="750" tag="10" translatesAutoresizingMaskIntoConstraints="NO" id="qdh-QQ-qcp">
+                    <rect key="frame" x="314" y="54" width="19" height="19"/>
+                    <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" controlSize="mini" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Z6i-Dy-waO">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="miniSystem"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="openHelpAnchor:" target="-2" id="Bfi-ok-fKv"/>
+                    </connections>
+                </button>
+                <box verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="mNu-OY-rmz">
+                    <rect key="frame" x="20" y="45" width="420" height="5"/>
+                    <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
+                    <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <font key="titleFont" metaFont="system"/>
+                </box>
+                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pCc-IH-tYo">
+                    <rect key="frame" x="44" y="16" width="231" height="17"/>
+                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Learn new features on CotEditor 2.0." usesSingleLineMode="YES" id="8u8-rr-so0">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="W15-Nc-3r0" secondAttribute="trailing" constant="20" symbolic="YES" id="0TT-dd-twP"/>
+                <constraint firstAttribute="bottom" secondItem="pCc-IH-tYo" secondAttribute="bottom" constant="16" id="38j-G0-JaI"/>
+                <constraint firstItem="vA6-9n-tty" firstAttribute="centerY" secondItem="4x8-xv-gxa" secondAttribute="centerY" id="5gg-cU-adO"/>
+                <constraint firstItem="uTv-Qx-FQU" firstAttribute="leading" secondItem="W15-Nc-3r0" secondAttribute="leading" id="8mB-9I-VFP"/>
+                <constraint firstItem="mNu-OY-rmz" firstAttribute="leading" secondItem="TDz-KL-JnO" secondAttribute="leading" constant="20" symbolic="YES" id="8nR-K5-J7x"/>
+                <constraint firstItem="vA6-9n-tty" firstAttribute="leading" secondItem="Bf0-Or-heZ" secondAttribute="leading" id="A5h-gZ-2fh"/>
+                <constraint firstItem="uTv-Qx-FQU" firstAttribute="leading" secondItem="wGr-MH-7rW" secondAttribute="trailing" constant="8" symbolic="YES" id="AEZ-zA-Eqy"/>
+                <constraint firstItem="hGz-yb-qTP" firstAttribute="centerY" secondItem="pCc-IH-tYo" secondAttribute="centerY" id="Bet-jo-6cO"/>
+                <constraint firstItem="Z67-Bl-Qme" firstAttribute="centerY" secondItem="b6m-dG-Sbw" secondAttribute="centerY" id="H07-Fc-JuQ"/>
+                <constraint firstItem="sKS-uj-Tsy" firstAttribute="top" secondItem="TDz-KL-JnO" secondAttribute="top" constant="16" id="HAr-y0-AsF"/>
+                <constraint firstItem="wGr-MH-7rW" firstAttribute="leading" secondItem="TDz-KL-JnO" secondAttribute="leading" constant="20" symbolic="YES" id="HTb-Mx-Znp"/>
+                <constraint firstAttribute="trailing" secondItem="mNu-OY-rmz" secondAttribute="trailing" constant="20" symbolic="YES" id="Hjz-PZ-gnI"/>
+                <constraint firstItem="Z67-Bl-Qme" firstAttribute="leading" secondItem="b6m-dG-Sbw" secondAttribute="trailing" constant="8" symbolic="YES" id="IK8-S2-CJo"/>
+                <constraint firstItem="hGz-yb-qTP" firstAttribute="leading" secondItem="TDz-KL-JnO" secondAttribute="leading" constant="20" symbolic="YES" id="Kr2-j8-yeW"/>
+                <constraint firstItem="jWg-4Q-d5T" firstAttribute="leading" secondItem="TDz-KL-JnO" secondAttribute="leading" constant="20" symbolic="YES" id="Mvm-mR-2R0"/>
+                <constraint firstItem="4x8-xv-gxa" firstAttribute="leading" secondItem="TDz-KL-JnO" secondAttribute="leading" constant="20" symbolic="YES" id="OcB-JJ-Gq4"/>
+                <constraint firstAttribute="trailing" secondItem="Bf0-Or-heZ" secondAttribute="trailing" constant="20" symbolic="YES" id="P0t-Gk-ts4"/>
+                <constraint firstItem="b6m-dG-Sbw" firstAttribute="width" secondItem="b6m-dG-Sbw" secondAttribute="height" multiplier="1:1" id="QLM-NP-Ei1"/>
+                <constraint firstItem="Z67-Bl-Qme" firstAttribute="leading" secondItem="hKA-5b-UTn" secondAttribute="leading" id="SWo-xB-HfG"/>
+                <constraint firstItem="Bf0-Or-heZ" firstAttribute="top" secondItem="vA6-9n-tty" secondAttribute="bottom" constant="2" id="TVx-YL-vqi"/>
+                <constraint firstItem="vA6-9n-tty" firstAttribute="leading" secondItem="4x8-xv-gxa" secondAttribute="trailing" constant="8" symbolic="YES" id="V4a-9S-gyq"/>
+                <constraint firstItem="b6m-dG-Sbw" firstAttribute="leading" secondItem="TDz-KL-JnO" secondAttribute="leading" constant="20" symbolic="YES" id="XnA-hN-afK"/>
+                <constraint firstItem="W15-Nc-3r0" firstAttribute="top" secondItem="uTv-Qx-FQU" secondAttribute="bottom" constant="2" id="Xtv-Ks-Sfe"/>
+                <constraint firstItem="sKS-uj-Tsy" firstAttribute="leading" secondItem="TDz-KL-JnO" secondAttribute="leading" constant="20" symbolic="YES" id="cwZ-H7-oGe"/>
+                <constraint firstItem="pCc-IH-tYo" firstAttribute="leading" secondItem="hGz-yb-qTP" secondAttribute="trailing" constant="8" symbolic="YES" id="eOf-mt-buU"/>
+                <constraint firstAttribute="trailing" secondItem="hKA-5b-UTn" secondAttribute="trailing" constant="20" symbolic="YES" id="fLs-dj-uZf"/>
+                <constraint firstItem="wGr-MH-7rW" firstAttribute="width" secondItem="wGr-MH-7rW" secondAttribute="height" multiplier="1:1" id="hY8-IW-ylW"/>
+                <constraint firstAttribute="trailing" secondItem="sKS-uj-Tsy" secondAttribute="trailing" constant="20" symbolic="YES" id="iYu-eZ-JuP"/>
+                <constraint firstItem="Z67-Bl-Qme" firstAttribute="top" secondItem="Bf0-Or-heZ" secondAttribute="bottom" constant="8" symbolic="YES" id="iyU-VL-2J6"/>
+                <constraint firstItem="vA6-9n-tty" firstAttribute="top" secondItem="sKS-uj-Tsy" secondAttribute="bottom" constant="8" symbolic="YES" id="mOZ-g5-2dg"/>
+                <constraint firstItem="pCc-IH-tYo" firstAttribute="top" secondItem="mNu-OY-rmz" secondAttribute="bottom" constant="14" id="mVf-ln-bAz"/>
+                <constraint firstItem="uTv-Qx-FQU" firstAttribute="top" secondItem="hKA-5b-UTn" secondAttribute="bottom" constant="8" symbolic="YES" id="nqe-br-bxk"/>
+                <constraint firstItem="mNu-OY-rmz" firstAttribute="top" secondItem="jWg-4Q-d5T" secondAttribute="bottom" constant="8" symbolic="YES" id="pyM-z7-QaR"/>
+                <constraint firstItem="hKA-5b-UTn" firstAttribute="top" secondItem="Z67-Bl-Qme" secondAttribute="bottom" constant="2" id="u0B-hX-CL7"/>
+                <constraint firstItem="wGr-MH-7rW" firstAttribute="centerY" secondItem="uTv-Qx-FQU" secondAttribute="centerY" id="v5V-2a-s1L"/>
+                <constraint firstItem="jWg-4Q-d5T" firstAttribute="centerY" secondItem="qdh-QQ-qcp" secondAttribute="centerY" id="wQ2-qM-4go"/>
+                <constraint firstItem="qdh-QQ-qcp" firstAttribute="leading" secondItem="jWg-4Q-d5T" secondAttribute="trailing" constant="4" id="wxE-oZ-pfO"/>
+                <constraint firstItem="vA6-9n-tty" firstAttribute="leading" secondItem="4x8-xv-gxa" secondAttribute="trailing" constant="8" symbolic="YES" id="xy1-z8-hdq"/>
+            </constraints>
+            <point key="canvasLocation" x="151" y="562"/>
+        </customView>
+    </objects>
+    <resources>
+        <image name="NSApplicationIcon" width="128" height="128"/>
+        <image name="NSMenuOnStateTemplate" width="12" height="12"/>
+    </resources>
+</document>

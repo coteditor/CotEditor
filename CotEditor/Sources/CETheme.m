@@ -81,7 +81,7 @@ static const CGFloat kDarkThemeThreshold = 0.5;
 
 @implementation CETheme
 
-#pragma mark Class Methods
+#pragma mark Public Methods
 
 //------------------------------------------------------
 /// 簡易イニシャライザ
@@ -91,9 +91,6 @@ static const CGFloat kDarkThemeThreshold = 0.5;
     return [[CETheme alloc] initWithName:themeName];
 }
 
-
-
-#pragma mark Public Methods
 
 //------------------------------------------------------
 // 初期化
@@ -187,7 +184,7 @@ static const CGFloat kDarkThemeThreshold = 0.5;
 
 
 
-#pragma mark Private Class Methods
+#pragma mark Private Methods
 
 //------------------------------------------------------
 /// テーマファイルで色が格納されているキー

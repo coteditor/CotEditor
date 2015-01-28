@@ -1,0 +1,23 @@
+/*
+ IncompatibleCharsView.strings
+ 
+ CotEditor
+ http://coteditor.com
+ 
+ Created on 2014-12-18 by 1024jp
+ Localized by onevcat
+ encoding="UTF-8"
+ 
+ © 2014 CotEditor Project
+ */
+
+
+/* Class = "NSTableColumn"; headerCell.title = "Converted"; ObjectID = "2AE-nU-rdc"; */
+"2AE-nU-rdc.headerCell.title" = "转换后";
+/* Class = "NSTableColumn"; headerCell.title = "Char"; ObjectID = "Nhb-U5-BOF"; */
+"Nhb-U5-BOF.headerCell.title" = "字符";
+/* Class = "NSTableColumn"; headerCell.title = "Line"; ObjectID = "weY-lf-jGz"; */
+"weY-lf-jGz.headerCell.title" = "行";
+
+/* Class = "NSTextFieldCell"; title = "No incompatible chars were found."; ObjectID = "wsL-BG-Ii8"; */
+"wsL-BG-Ii8.title" = "没有找到不兼容字符";

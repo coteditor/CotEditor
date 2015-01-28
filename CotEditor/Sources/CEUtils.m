@@ -37,10 +37,10 @@
 static const NSArray *invalidYenEncodings;
 
 
-#pragma mark Superclass Class Methods
+#pragma mark Superclass Methods
 
 // ------------------------------------------------------
-/// クラスの初期化
+/// initialize class
 + (void)initialize
 // ------------------------------------------------------
 {
@@ -58,10 +58,10 @@ static const NSArray *invalidYenEncodings;
 
 
 
-#pragma mark Public Class Methods
+#pragma mark Public Methods
 
 // ------------------------------------------------------
-/// 非表示半角スペース表示用文字を返す
+/// returns substitute character for invisible space
 + (unichar)invisibleSpaceChar:(NSUInteger)index
 // ------------------------------------------------------
 {
@@ -73,18 +73,7 @@ static const NSArray *invalidYenEncodings;
 
 
 // ------------------------------------------------------
-/// 非表示半角スペース表示用文字を NSString 型で返す
-+ (NSString *)invisibleSpaceCharacter:(NSUInteger)index
-// ------------------------------------------------------
-{
-    unichar theUnichar = [CEUtils invisibleSpaceChar:index];
-    
-    return [NSString stringWithCharacters:&theUnichar length:1];
-}
-
-
-// ------------------------------------------------------
-/// 非表示タブ表示用文字を返す
+/// returns substitute character for invisible tab character
 + (unichar)invisibleTabChar:(NSUInteger)index
 // ------------------------------------------------------
 {
@@ -96,18 +85,7 @@ static const NSArray *invalidYenEncodings;
 
 
 // ------------------------------------------------------
-/// 非表示タブ表示用文字を NSString 型で返す
-+ (NSString *)invisibleTabCharacter:(NSUInteger)index
-// ------------------------------------------------------
-{
-    unichar theUnichar = [CEUtils invisibleTabChar:index];
-    
-    return [NSString stringWithCharacters:&theUnichar length:1];
-}
-
-
-// ------------------------------------------------------
-/// 非表示改行表示用文字を返す
+/// returns substitute character for invisible new line character
 + (unichar)invisibleNewLineChar:(NSUInteger)index
 // ------------------------------------------------------
 {
@@ -119,18 +97,7 @@ static const NSArray *invalidYenEncodings;
 
 
 // ------------------------------------------------------
-/// 非表示改行表示用文字を NSString 型で返す
-+ (NSString *)invisibleNewLineCharacter:(NSUInteger)index
-// ------------------------------------------------------
-{
-    unichar theUnichar = [CEUtils invisibleNewLineChar:index];
-    
-    return [NSString stringWithCharacters:&theUnichar length:1];
-}
-
-
-// ------------------------------------------------------
-/// 非表示改行表示用文字を返す
+/// returns substitute character for invisible full-width space
 + (unichar)invisibleFullwidthSpaceChar:(NSUInteger)index
 // ------------------------------------------------------
 {
@@ -142,18 +109,7 @@ static const NSArray *invalidYenEncodings;
 
 
 // ------------------------------------------------------
-/// 非表示全角スペース表示用文字を NSString 型で返す
-+ (NSString *)invisibleFullwidthSpaceCharacter:(NSUInteger)index
-// ------------------------------------------------------
-{
-    unichar theUnichar = [CEUtils invisibleFullwidthSpaceChar:index];
-    
-    return [NSString stringWithCharacters:&theUnichar length:1];
-}
-
-
-// ------------------------------------------------------
-/// エンコーディング名からNSStringEncodingを返す
+/// returns corresponding NSStringEncoding from a encoding name
 + (NSStringEncoding)encodingFromName:(NSString *)encodingName
 // ------------------------------------------------------
 {
@@ -176,7 +132,7 @@ static const NSArray *invalidYenEncodings;
 
 
 // ------------------------------------------------------
-/// エンコーディング名からNSStringEncodingを返す
+/// whether Yen sign (U+00A5) can be converted to the given encoding
 + (BOOL)isInvalidYenEncoding:(NSStringEncoding)encoding
 // ------------------------------------------------------
 {
@@ -185,7 +141,7 @@ static const NSArray *invalidYenEncodings;
 
 
 // ------------------------------------------------------
-/// 文字列からキーボードショートカット定義を読み取る
+/// returns string form keyEquivalent (keyboard shortcut) for menu item
 + (NSString *)keyEquivalentAndModifierMask:(NSUInteger *)modifierMask fromString:(NSString *)string includingCommandKey:(BOOL)needsIncludingCommandKey
 //------------------------------------------------------
 {

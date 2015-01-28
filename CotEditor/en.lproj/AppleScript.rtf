@@ -13,12 +13,26 @@
 - - - - - - - - - - - - - - - - - - - - -\
 \pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802
 
+\b \cf0 The terminology change on CotEditor 2.1:
+\b0 \
+\pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802
+\cf0 \ul \ulc0 \
+Tab width\ulnone \
+A new property `
+\f1 tab width
+\f0 ` was added to the \'91document\'92 object.\
+\
+\
+\pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802
+\cf0 - - - - - - - - - - - - - - - - - - - - -\
+\pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802
+
 \b \cf0 The terminology change on CotEditor 2.0.1:
 \b0 \
 \pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802
 \cf0 \ul \ulc0 \
 Comment handling\ulnone \
-Introduce new commands `
+New commands `
 \f1 comment out
 \f0 ` and `
 \f1 uncomment
@@ -31,8 +45,8 @@ Introduce new commands `
 \b \cf0 The terminology change on CotEditor 2.0:
 \b0 \
 \pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802
-\cf0 \ul \ulc0 \
-Unicode normalizaation\ulnone \
+\cf0 \ul \
+Unicode normalization\ulnone \
 The command `
 \f1 unicode normalization
 \f0 ` on CotEditor 1.x was renamed on 2.0 to`
@@ -75,8 +89,9 @@ The internal code for `
 \b compiled
 \b0  AppleScripts (.scpt) which were written previously might need some update for this change.\
 \
+\pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802
 
-\b How to fix
+\b \cf0 How to fix
 \b0 :\
 	Open your .scpt files on AppleScript Editor (or Script Editor), the words that was `
 \f1 range
@@ -93,7 +108,8 @@ This issue doesn\'92t occur with plain-text AppleScript (.applescript). \
 
 \b The terminology change on CotEditor 1.5:
 \b0 \
-\ul \
+\pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802
+\cf0 \ul \
 Window Transparency\ulnone \
 According to the changing of the mechanism to make window transparent on CotEditor 1.5, the terms about window opacity for AppleScripting was also changed. The 
 \b document
@@ -160,8 +176,9 @@ end tell
 \pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802
 
 \fs24 \cf0 \ulnone \
+\pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802
 
-\b Application
+\b \cf0 Application
 \b0  = The CotEditor application.\
 \
 
@@ -180,6 +197,7 @@ end tell
 	IANA charset = The IANA charset name of the document. (Unicode text, e.g. Shift_JIS, EUC-JP)\
 	line ending = The line ending code of the document. (CR/LF/CRLF)\
 	line spacing = The spacing between lines. (real, from \'910.0\'92 to \'9110.0\'92)\
+	tab width = The width of a tab character in space equivalents. (int)  \cf3 new on CotEditor 2.1\cf0 \
 	wrap lines = Whether to wrap lines or not. (boolean)\
 	coloring style = The syntax coloring style name of the document. (Unicode text)\
 \pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802
@@ -233,7 +251,7 @@ end tell
 \i \cf0 # When \'91location\'92 is a negative value, the selection range starts from the \'91location\'92-th last character.\
 When \'91length\'92 is a positive value, the selection range becomes the \'91length\'92 characters starting from \'91location.\'92 If \'91length\'92 is larger than the number of the rest characters in the document, the range will be from \'91location\'92 to the end.\
 When \'91length\'92 is a negative value, the selection range ends at the \'91length\'92-th last character. If the absolute value of \'91length\'92 is smaller than \'91location\'92 (i.e. the selection's end point is before \'91location\'92), the caret just moves to \'91location\'92 (same as when \{location, 0\} was input).\
-# This specifying method is modeled after that of PHP's \'91substr.\'92\
+# This specifying method is modelled after that of PHP's \'91substr.\'92\
 # The command for changing selection doesn't scroll the window. Use the \'91scroll to caret\'92 command to make the selection remain in the view.
 \i0 \
 \

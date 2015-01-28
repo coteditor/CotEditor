@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+<html lang="en" xml:lang="en">
+
+<head>
+	<meta charset="UTF-8"/>
+	<meta name="keywords" content="cot, command"/>
+	<link rel="start" href="../CotEditorHelp.html"/>
+	<link rel="index" href="../xpgs/xall.html"/>
+	<link rel="stylesheet" href="../../Shared/sty/standard.css"/>
+	<title>cot command</title>
+</head>
+
+<body>
+<h1><code>cot</code> command</h1>
+
+<p>CotEditor has '<strong><code>cot</code></strong>' command-line tool which allows you to control CotEditor from the command-line. To use '<code>cot</code>' command, install it at first.</p>
+
+<h2>Installation</h2>
+<p>The '<code>cot</code>' command-line tool can be easily installed at '/usr/local/bin/cot' from the <a href="../pgs/pref_integration.html">Integration pane</a> in CotEditor's Preferences.</p>
+<p>You can also install it to a desired location creating a symbolic link via Terminal.</p>
+<pre><code>ln -s /Applications/CotEditor.app/Contents/MacOS/cot ~/bin/cot</code></pre>
+
+
+<h2>Options</h2>
+<p>The following options can be used on <code>cot</code> command.</p>
+
+<table>
+	<tr><th><code>-l</code>, <code>--line</code> <code>&lt;line&gt;</code></th><td>Jump to specific line in opened document. <code>&lt;line&gt;</code> is an integer specifying the number of line.</td></tr>
+	<tr><th><code>-c</code>, <code>--column</code> <code>&lt;column&gt;</code></th><td>Jump to specific column in opened document. <code>&lt;column&gt;</code> is an integer specifying the number of column.</td></td></tr>
+	<tr><th><code>-b</code>, <code>--background</code></th><td>Do not bring the application to the foreground.</td></tr>
+	<tr><th><code>-h</code>, <code>--help</code></th><td>Show help.</td></tr>
+	<tr><th><code>-v</code>, <code>--version</code></th><td>Print version information.</td></tr>
+</table>
+
+<h2>Examples</h2>
+<p>A simple <code>cot</code> command will launch CotEditor, or just acivate it if CotEditor is already running.</p>
+
+<pre><code>cot
+</code></pre>
+
+<p>The following command opens the foo.txt file on CotEditor and scroll to the line 200 in the opened document. <code>cot</code> command do nothing if foo.txt file is not exists.</p>
+
+<pre><code>cot --line 200 foo.txt
+</code></pre>
+
+<p>You can also pipe a text. CotEditor will open a new document with the piped text.</p>
+
+<pre><code>echo &quot;I am a dog but also a cow at the same time.&quot; | cot
+</code></pre>
+
+
+<section id="cf">
+<h2>See also</h2>
+<ul>
+	<li><a href="../pgs/pref_integration.html">Integration preferences</a></li>
+</ul>
+</section>
+
+</body>
+</html>

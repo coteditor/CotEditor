@@ -34,8 +34,7 @@
 
 @interface CEPanelController ()
 
-@property (readwrite, nonatomic, strong) CEWindowController *documentWindowController;  // cannot be weak on Lion
-
+@property (readwrite, nonatomic, weak) CEWindowController *documentWindowController;
 
 @end
 
@@ -49,10 +48,10 @@
 static NSMutableDictionary *instances;
 
 
-#pragma mark Class Methods
+#pragma mark Singleton
 
 // ------------------------------------------------------
-/// return shared instance
+/// return shared instance (inheritable)
 + (instancetype) sharedController
 // ------------------------------------------------------
 {
@@ -119,7 +118,6 @@ static NSMutableDictionary *instances;
 - (void)dealloc
 // ------------------------------------------------------
 {
-    _documentWindowController = nil;
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
@@ -128,8 +126,7 @@ static NSMutableDictionary *instances;
 #pragma mark Notifications
 
 //=======================================================
-// Notification method (NSWindow)
-//  <== NSWindow
+// NSWindow Notification  < window
 //=======================================================
 
 // ------------------------------------------------------

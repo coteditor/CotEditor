@@ -36,6 +36,12 @@ static NSString *const CEObjectsType = @"CEObjectsType";
 
 @implementation CEDraggableArrayController
 
+#pragma mark Data Source
+
+//=======================================================
+// NSTableDataSource Protocol
+//=======================================================
+
 // ------------------------------------------------------
 /// start dragging
 - (BOOL)tableView:(NSTableView *)tableView writeRowsWithIndexes:(NSIndexSet *)rowIndexes toPasteboard:(NSPasteboard *)pboard

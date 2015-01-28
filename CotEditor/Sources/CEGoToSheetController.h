@@ -5,11 +5,11 @@
  CotEditor
  http://coteditor.com
  
- Created by 2014-03-16 by 1024jp
+ Created on 2014-03-16 by 1024jp
  encoding="UTF-8"
  ------------------------------------------------------------------------------
  
- © 2014 CotEditor Project
+ © 2014-2015 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -28,11 +28,11 @@
  */
 
 @import AppKit;
-#import "CEDocument.h"
+#import "CEEditorWrapper.h"
 
 
 @interface CEGoToSheetController : NSWindowController <NSWindowDelegate>
 
-- (void)beginSheetForDocument:(CEDocument *)document;
+- (void)beginSheetForEditor:(CEEditorWrapper *)editor;
 
 @end

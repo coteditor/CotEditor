@@ -56,11 +56,6 @@ static NSInteger const kLastRow = -1;
 
 #pragma mark Public Methods
 
-//=======================================================
-// Public method
-//
-//=======================================================
-
 // ------------------------------------------------------
 /// 表示／変更のためのエンコーディングリストをセットアップ
 - (void)setupEncodingsToEdit
@@ -87,11 +82,10 @@ static NSInteger const kLastRow = -1;
 
 
 
-#pragma mark Protocol
+#pragma mark Data Source
 
 //=======================================================
 // NSTableDataSource Protocol
-//
 //=======================================================
 
 // ------------------------------------------------------
@@ -207,11 +201,10 @@ static NSInteger const kLastRow = -1;
 
 
 
-#pragma mark Delegate and Notification
+#pragma mark Delegate
 
 //=======================================================
-// Delegate method (NSTableView)
-//  <== tableView
+// NSTableViewDelegate  < tableView
 //=======================================================
 
 // ------------------------------------------------------
@@ -237,11 +230,6 @@ static NSInteger const kLastRow = -1;
 
 
 #pragma mark Action Messages
-
-//=======================================================
-// Action messages
-//
-//=======================================================
 
 // ------------------------------------------------------
 /// デフォルトのエンコーディング設定に戻す

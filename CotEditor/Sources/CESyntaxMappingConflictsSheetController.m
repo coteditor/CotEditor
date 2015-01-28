@@ -45,10 +45,10 @@
 
 @implementation CESyntaxMappingConflictsSheetController
 
-#pragma mark NSWindowController Methods
+#pragma mark Superclass Methods
 
 // ------------------------------------------------------
-/// 初期化
+/// initialize
 - (instancetype)init
 // ------------------------------------------------------
 {
@@ -65,7 +65,7 @@
 #pragma mark Action Messages
 
 // ------------------------------------------------------
-/// シートの Done ボタンが押された
+/// Done button was clicked
 - (IBAction)closeSheet:(id)sender
 // ------------------------------------------------------
 {
@@ -79,15 +79,15 @@
 #pragma mark Private Methods
 
 // ------------------------------------------------------
-/// conflictDict をテーブル用に変換
+/// convert conflictDict data for table
 + (NSArray *)parseConflictDict:(NSDictionary *)conflictDict
 // ------------------------------------------------------
 {
     NSMutableArray *conflicts = [NSMutableArray array];
     for (NSString *key in conflictDict) {
         NSMutableArray *styles = [conflictDict[key] mutableCopy];
-        NSString *primaryStyle = styles[0];
-        [styles removeObjectAtIndex:0];
+        NSString *primaryStyle = [styles firstObject];
+        [styles removeObjectIdenticalTo:primaryStyle];
         [conflicts addObject:@{@"name": key,
                                @"primaryStyle": primaryStyle,
                                @"doubledStyles":  [styles componentsJoinedByString:@", "]}];

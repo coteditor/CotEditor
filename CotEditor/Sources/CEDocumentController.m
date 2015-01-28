@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014 CotEditor Project
+ © 2014-2015 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -30,7 +30,6 @@
 
 #import "CEDocumentController.h"
 #import "CEEncodingManager.h"
-#import "CEByteCountTransformer.h"
 #import "constants.h"
 
 
@@ -54,7 +53,7 @@
 
 @implementation CEDocumentController
 
-#pragma mark NSDocumentController Methods
+#pragma mark Superclass Methods
 
 // ------------------------------------------------------
 /// inizialize instance
@@ -81,12 +80,12 @@
         [url getResourceValue:&fileSize forKey:NSURLFileSizeKey error:nil];
         
         if ([fileSize integerValue] > fileSizeThreshold) {
-            CEByteCountTransformer *transformer = [[CEByteCountTransformer alloc] init];
+            NSByteCountFormatter *formatter = [[NSByteCountFormatter alloc] init];
             
             NSAlert *alert = [[NSAlert alloc] init];
             [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"The file “%@” has a size of %@.", nil),
                                    [url lastPathComponent],
-                                   [transformer transformedValue:fileSize]]];
+                                   [formatter stringFromByteCount:[fileSize longLongValue]]]];
             [alert setInformativeText:NSLocalizedString(@"Opening such a large file can make the application slow or unresponsive.\n\nDo you really want to open the file?", nil)];
             [alert addButtonWithTitle:NSLocalizedString(@"Open", nil)];
             [alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
@@ -99,28 +98,43 @@
         }
     }
     
-    return [super makeDocumentWithContentsOfURL:url ofType:typeName error:nil];
+    // let super make document
+    id document = [super makeDocumentWithContentsOfURL:url ofType:typeName error:outError];
+    
+    // reset encoding menu
+    [self resetAccessorySelectedEncoding];
+    
+    return document;
 }
 
 
 // ------------------------------------------------------
-/// オープンパネルを開くときにエンコーディング指定メニューを付加する
-- (NSInteger)runModalOpenPanel:(NSOpenPanel *)openPanel forTypes:(NSArray *)extensions
+/// add encoding menu to open panel
+- (void)beginOpenPanel:(NSOpenPanel *)openPanel forTypes:(NSArray *)inTypes completionHandler:(void (^)(NSInteger))completionHandler
 // ------------------------------------------------------
 {
-    // エンコーディングメニューを初期化し、ビューをセット
+    // initialize encoding menu and set the accessory view
     if (![self openPanelAccessoryView]) {
-        [NSBundle loadNibNamed:@"OpenDocumentAccessory" owner:self];
+        [[NSBundle mainBundle] loadNibNamed:@"OpenDocumentAccessory" owner:self topLevelObjects:nil];
     }
     [self buildEncodingPopupButton];
     [openPanel setAccessoryView:[self openPanelAccessoryView]];
-
-    // 非表示ファイルも表示有無
+    
+    // set visibility of the hidden files
     [openPanel setTreatsFilePackagesAsDirectories:[self showsHiddenFiles]];
     [openPanel setShowsHiddenFiles:[self showsHiddenFiles]];
     [self setShowsHiddenFiles:NO];  // reset flag
-
-    return [super runModalOpenPanel:openPanel forTypes:extensions];
+    
+    // run non-modal open panel
+    __weak typeof(self) weakSelf = self;
+    [super beginOpenPanel:openPanel forTypes:inTypes completionHandler:^(NSInteger result) {
+        // reset encoding menu if cancelled
+        if (result == NSCancelButton) {
+            [weakSelf resetAccessorySelectedEncoding];
+        }
+        
+        completionHandler(result);
+    }];
 }
 
 
@@ -128,13 +142,13 @@
 #pragma mark Action Messages
 
 // ------------------------------------------------------
-/// ドキュメントを開く
+/// show open panel displaying hidden files
 - (IBAction)openHiddenDocument:(id)sender
 // ------------------------------------------------------
 {
     [self setShowsHiddenFiles:YES];
-
-    [super openDocument:sender];
+    
+    [self openDocument:sender];
 }
 
 
@@ -142,7 +156,7 @@
 #pragma mark Private Methods
 
 // ------------------------------------------------------
-/// オープンパネルのエンコーディングメニューを再構築
+/// update encoding menu in the open panel
 - (void)buildEncodingPopupButton
 // ------------------------------------------------------
 {
@@ -152,7 +166,7 @@
     [menu removeAllItems];
     
     [menu addItemWithTitle:NSLocalizedString(@"Auto-Detect", nil) action:NULL keyEquivalent:@""];
-    [[menu itemAtIndex:0] setTag:CEAutoDetectEncodingMenuItemTag];
+    [[menu itemAtIndex:0] setTag:CEAutoDetectEncoding];
     [menu addItem:[NSMenuItem separatorItem]];
     
     for (NSMenuItem *item in items) {
@@ -164,13 +178,15 @@
 
 
 // ------------------------------------------------------
-/// エンコーディングメニューの選択を初期化
+/// reset selection of the encoding menu
 - (void)resetAccessorySelectedEncoding
 // ------------------------------------------------------
 {
     NSStringEncoding defaultEncoding = (NSStringEncoding)[[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultEncodingInOpenKey];
     
-    [self setAccessorySelectedEncoding:defaultEncoding];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self setAccessorySelectedEncoding:defaultEncoding];
+    });
 }
 
 @end

@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014 CotEditor Project
+ © 2014-2015 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -28,6 +28,7 @@
  ==============================================================================
  */
 
+@import AudioToolbox;
 #import "CEFormatPaneController.h"
 #import "CEEncodingManager.h"
 #import "CESyntaxManager.h"
@@ -58,13 +59,8 @@
 
 #pragma mark Superclass Methods
 
-//=======================================================
-// Superclass method
-//
-//=======================================================
-
 // ------------------------------------------------------
-/// あとかたづけ
+/// clean up
 - (void)dealloc
 // ------------------------------------------------------
 {
@@ -73,7 +69,7 @@
 
 
 // ------------------------------------------------------
-/// ビューの読み込み
+/// setup UI
 - (void)loadView
 // ------------------------------------------------------
 {
@@ -96,13 +92,20 @@
                                                  name:CESyntaxListDidUpdateNotification
                                                object:nil];
     
-    // エンコーディングリスト\更新の通知依頼
+    // エンコーディングリスト更新の通知依頼
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(setupEncodingMenus)
                                                  name:CEEncodingListDidUpdateNotification
                                                object:nil];
 }
 
+
+
+#pragma mark Protocol
+
+//=======================================================
+// NSMenuValidation Protocol
+//=======================================================
 
 // ------------------------------------------------------
 /// メニューの有効化／無効化を制御
@@ -115,11 +118,16 @@
         
     // 書き出し/複製メニュー項目に現在選択されているスタイル名を追加
     } if ([menuItem action] == @selector(exportSyntaxStyle:)) {
-        NSString *selectedStyleName = [[self stylesController] selectedObjects][0];
-        [menuItem setTitle:[NSString stringWithFormat:NSLocalizedString(@"Export “%@”…", nil), selectedStyleName]];
+        [menuItem setTitle:[NSString stringWithFormat:NSLocalizedString(@"Export “%@”…", nil), [self selectedStyleName]]];
+        
     } if ([menuItem action] == @selector(openSyntaxEditSheet:) && [menuItem tag] == CECopySyntaxEdit) {
-        NSString *selectedStyleName = [[self stylesController] selectedObjects][0];
-        [menuItem setTitle:[NSString stringWithFormat:NSLocalizedString(@"Duplicate “%@”…", nil), selectedStyleName]];
+        [menuItem setTitle:[NSString stringWithFormat:NSLocalizedString(@"Duplicate “%@”…", nil), [self selectedStyleName]]];
+        
+    } if ([menuItem action] == @selector(revealSyntaxStyleInFinder:)) {
+        [menuItem setTitle:[NSString stringWithFormat:NSLocalizedString(@"Reveal “%@” in Finder", nil), [self selectedStyleName]]];
+        if (![[CESyntaxManager sharedManager] URLForUserStyle:[self selectedStyleName]]) {
+            return NO;
+        }
     }
     
     return YES;
@@ -127,11 +135,10 @@
 
 
 
-#pragma mark Delegate and Notification
+#pragma mark Delegate
 
 //=======================================================
-// Delegate method (NSTableView)
-//  <== syntaxTableView
+// NSTableViewDelegate  < syntaxTableView
 //=======================================================
 
 // ------------------------------------------------------
@@ -147,11 +154,6 @@
 
 
 #pragma mark Action Messages
-
-//=======================================================
-// Action messages
-//
-//=======================================================
 
 // ------------------------------------------------------
 /// エンコーディングリスト編集シートを開き、閉じる
@@ -172,8 +174,7 @@
 - (IBAction)openSyntaxEditSheet:(id)sender
 // ------------------------------------------------------
 {
-    NSString *selectedName = [[self stylesController] selectedObjects][0];
-    CESyntaxEditSheetController *sheetController = [[CESyntaxEditSheetController alloc] initWithStyle:selectedName
+    CESyntaxEditSheetController *sheetController = [[CESyntaxEditSheetController alloc] initWithStyle:[self selectedStyleName]
                                                                                                  mode:[sender tag]];
     if (!sheetController) {
         return;
@@ -201,9 +202,9 @@
 - (IBAction)deleteSyntaxStyle:(id)sender
 // ------------------------------------------------------
 {
-    NSString *selectedStyleName = [[self stylesController] selectedObjects][0];
+    NSString *selectedStyleName = [self selectedStyleName];
     
-    if (![[CESyntaxManager sharedManager] existsStyleFileWithStyleName:selectedStyleName]) { return; }
+    if (![[CESyntaxManager sharedManager] URLForUserStyle:selectedStyleName]) { return; }
     
     NSAlert *alert = [[NSAlert alloc] init];
     [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"Delete the syntax style “%@”?", nil), selectedStyleName]];
@@ -231,13 +232,13 @@
     [openPanel setCanChooseDirectories:NO];
     [openPanel setAllowedFileTypes:@[@"yaml", @"plist"]];
     
-    __unsafe_unretained typeof(self) weakSelf = self;  // cannot be weak on Lion
+    __weak typeof(self) weakSelf = self;
     [openPanel beginSheetModalForWindow:[[self view] window] completionHandler:^(NSInteger result) {
         typeof(self) strongSelf = weakSelf;
         
         if (result == NSFileHandlingPanelCancelButton) return;
         
-        NSURL *URL = [openPanel URLs][0];
+        NSURL *URL = [openPanel URL];
         NSString *styleName = [[URL lastPathComponent] stringByDeletingPathExtension];
         
         // 同名styleが既にあるときは、置換してもいいか確認
@@ -254,7 +255,7 @@
             // 現行シート値を設定し、確認のためにセカンダリシートを開く
             NSBeep();
             [alert beginSheetModalForWindow:[[strongSelf view] window] modalDelegate:strongSelf
-                             didEndSelector:@selector(secondarySheedlDidEnd:returnCode:contextInfo:)
+                             didEndSelector:@selector(secondarySheetDidEnd:returnCode:contextInfo:)
                                 contextInfo:(__bridge_retained void *)(URL)];
         } else {
             // 重複するファイル名がないとき、インポート実行
@@ -270,8 +271,7 @@
 - (IBAction)exportSyntaxStyle:(id)sender
 // ------------------------------------------------------
 {
-    NSString *selectedStyle = [[self stylesController] selectedObjects][0];
-    
+    NSString *selectedStyle = [self selectedStyleName];
     NSSavePanel *savePanel = [NSSavePanel savePanel];
     
     // SavePanelをセットアップ(既定値を含む)、シートとして開く
@@ -286,6 +286,19 @@
             [[CESyntaxManager sharedManager] exportStyle:selectedStyle toURL:[savePanel URL]];
         }
     }];
+}
+
+
+// ------------------------------------------------------
+/// シンタックスカラーリングファイルをFinderで開く
+- (IBAction)revealSyntaxStyleInFinder:(id)sender
+// ------------------------------------------------------
+{
+    NSURL *URL = [[CESyntaxManager sharedManager] URLForUserStyle:[self selectedStyleName]];
+    
+    if (URL) {
+        [[NSWorkspace sharedWorkspace] activateFileViewerSelectingURLs:@[URL]];
+    }
 }
 
 
@@ -331,11 +344,6 @@
 
 #pragma mark Private Methods
 
-//=======================================================
-// Private method
-//
-//=======================================================
-
 // ------------------------------------------------------
 /// エンコーディング設定メニューを生成
 - (void)setupEncodingMenus
@@ -348,7 +356,7 @@
     
     NSMenuItem *autoDetectItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Auto-Detect", nil)
                                                             action:nil keyEquivalent:@""];
-    [autoDetectItem setTag:CEAutoDetectEncodingMenuItemTag];
+    [autoDetectItem setTag:CEAutoDetectEncoding];
     [[[self encodingMenuInOpen] menu] addItem:autoDetectItem];
     [[[self encodingMenuInOpen] menu] addItem:[NSMenuItem separatorItem]];
     
@@ -392,12 +400,20 @@
 
 
 // ------------------------------------------------------
+/// 現在選択されているスタイル名を返す
+- (NSString *)selectedStyleName
+// ------------------------------------------------------
+{
+    return [[[self stylesController] selectedObjects] firstObject];
+}
+
+
+// ------------------------------------------------------
 /// シンタックススタイル削除ボタンを制御する
 - (void)validateRemoveSyntaxStyleButton
 // ------------------------------------------------------
 {
-    NSString *selectedStyle = [[self stylesController] selectedObjects][0];
-    BOOL isDeletable = ![[CESyntaxManager sharedManager] isBundledStyle:selectedStyle];
+    BOOL isDeletable = ![[CESyntaxManager sharedManager] isBundledStyle:[self selectedStyleName]];
     
     [[self syntaxStyleDeleteButton] setEnabled:isDeletable];
 }
@@ -410,7 +426,7 @@
 // ------------------------------------------------------
 {
     if (returnCode == NSAlertFirstButtonReturn) { // = revert to Auto-Detect
-        [[NSUserDefaults standardUserDefaults] setObject:@(CEAutoDetectEncodingMenuItemTag)
+        [[NSUserDefaults standardUserDefaults] setObject:@(CEAutoDetectEncoding)
                                                   forKey:CEDefaultEncodingInOpenKey];
     }
 }
@@ -444,9 +460,11 @@
         return;
     }
     
-    NSString *selectedStyleName = [[self stylesController] selectedObjects][0];
+    NSString *selectedStyleName = [self selectedStyleName];
     
-    if (![[CESyntaxManager sharedManager] removeStyleFileWithStyleName:selectedStyleName]) {
+    if ([[CESyntaxManager sharedManager] removeStyleFileWithStyleName:selectedStyleName]) {
+        AudioServicesPlaySystemSound(CESystemSoundID_MoveToTrash);
+    } else {
         // 削除できなければ、その旨をユーザに通知
         [[alert window] orderOut:self];
         [[[self view] window] makeKeyAndOrderFront:self];
@@ -461,7 +479,7 @@
 
 // ------------------------------------------------------
 /// セカンダリシートが閉じる直前
-- (void)secondarySheedlDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
+- (void)secondarySheetDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
 // ------------------------------------------------------
 {
     if (returnCode == NSAlertSecondButtonReturn) { // = Replace

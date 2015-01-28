@@ -1,0 +1,152 @@
+/*
+ FindPanel.strings
+ 
+ CotEditor
+ http://coteditor.com
+ 
+ Created on 2015-01-06 by 1024jp
+ Localized by onevcat
+ encoding="UTF-8"
+ 
+ © 2015 1024jp
+ */
+
+// Find Panel
+
+/* Class = "NSPanel"; title = "Find & Replace"; ObjectID = "Wal-Sg-6d6"; */
+"Wal-Sg-6d6.title" = "查找 & 替换";
+
+/* Class = "IBBindingConnection"; ibShadowedIsNilPlaceholder = "Find"; ObjectID = "KFJ-K2-zGh"; */
+"KFJ-K2-zGh.ibShadowedIsNilPlaceholder" = "查找";
+/* Class = "IBBindingConnection"; ibShadowedIsNilPlaceholder = "Replace"; ObjectID = "rCp-kT-O6b"; */
+"rCp-kT-O6b.ibShadowedIsNilPlaceholder" = "替换";
+
+/* Class = "NSButtonCell"; title = "Regular Expression"; ObjectID = "brT-HP-GVL"; */
+"brT-HP-GVL.title" = "正则表达式";
+/* Class = "NSButtonCell"; title = "Ignore Case"; ObjectID = "4wg-Cz-ozb"; */
+"4wg-Cz-ozb.title" = "忽略大小写";
+/* Class = "NSButtonCell"; title = "In Selection"; ObjectID = "9bc-9Q-fhd"; */
+"9bc-9Q-fhd.title" = "选中范围内";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Show quick reference for regular expression syntax."; ObjectID = "i2l-7Z-Zmf"; */
+"i2l-7Z-Zmf.ibShadowedToolTip" = "显示正则表达式快速参考";
+
+
+// Buttons
+
+/* Class = "NSButtonCell"; title = "Find All"; ObjectID = "XLZ-92-VVF"; */
+"XLZ-92-VVF.title" = "查找全部";
+/* Class = "NSButtonCell"; title = "Replace All"; ObjectID = "5gU-5y-iLn"; */
+"5gU-5y-iLn.title" = "替换全部";
+/* Class = "NSButtonCell"; title = "Replace"; ObjectID = "W4Z-S2-wvv"; */
+"W4Z-S2-wvv.title" = "替换";
+/* Class = "NSButtonCell"; title = "Replace & Find"; ObjectID = "m0f-Il-JLU"; */
+"m0f-Il-JLU.title" = "替换 & 查找";
+
+/* Class = "NSSegmentedCell"; ObjectID = "u6p-Hz-aK5"; */
+"u6p-Hz-aK5.ibShadowedToolTips[0]" = "查找前一个匹配";  /* "Find previous match." */
+"u6p-Hz-aK5.ibShadowedToolTips[1]" = "查找后一个匹配";  /* "Find next match." */
+
+/* Class = "NSMenuItem"; title = "Recent Searches"; ObjectID = "cdV-rY-hCN"; */
+"cdV-rY-hCN.title" = "最近查找";
+/* Class = "NSMenuItem"; title = "Clear Recent Searches"; ObjectID = "vE8-oK-xlC"; */
+"vE8-oK-xlC.title" = "清除最近查找";
+
+/* Class = "NSMenuItem"; title = "Recent Replacements"; ObjectID = "7cw-iQ-0LM"; */
+"7cw-iQ-0LM.title" = "最近替换";
+/* Class = "NSMenuItem"; title = "Clear Recent Replacements"; ObjectID = "vfK-an-Qnl"; */
+"vfK-an-Qnl.title" = "清除最近替换";
+
+
+// Advanced Options
+
+/* Class = "NSPopUpButton"; ibShadowedToolTip = "Set advanced options"; ObjectID = "EY8-gj-fQb"; */
+"EY8-gj-fQb.ibShadowedToolTip" = "设置高级选项";
+
+/* Class = "NSMenuItem"; title = "Advanced Options"; ObjectID = "SsS-EF-JyP"; */
+"SsS-EF-JyP.title" = "高级选项";
+
+/* Class = "NSMenuItem"; title = "Wrap Around"; ObjectID = "Oqm-Wt-G7B"; */
+"Oqm-Wt-G7B.title" = "折行查找";
+/* Class = "NSMenuItem"; title = "Auto-Close Progress Sheet"; ObjectID = "ONX-V4-H0w"; */
+"ONX-V4-H0w.title" = "自动关闭进度表";
+
+/* Class = "NSMenuItem"; title = "Textual Search Options"; ObjectID = "hX3-jg-Uqc"; */
+"hX3-jg-Uqc.title" = "文本查找选项";
+/* Class = "NSMenuItem"; title = "Delimit by Whitespace"; ObjectID = "4Pf-nh-75E"; */
+"4Pf-nh-75E.title" = "以空格分隔";
+
+/* Class = "NSMenuItem"; title = "Regular Expression Options"; ObjectID = "UZ5-oK-DED"; */
+"UZ5-oK-DED.title" = "正则表达式选项";
+
+/* Class = "NSMenuItem"; title = "Syntax"; ObjectID = "Uhr-hw-nIf"; */
+"Uhr-hw-nIf.title" = "查找方式";
+/* Class = "NSMenu"; title = "Syntax"; ObjectID = "bs2-Tz-po4"; */
+"bs2-Tz-po4.title" = "查找方式";
+/* Class = "NSMenuItem"; title = "POSIX Basic"; ObjectID = "y7k-yn-gy6"; */
+"y7k-yn-gy6.title" = "基本 POSIX";
+/* Class = "NSMenuItem"; title = "POSIX Extended"; ObjectID = "QfE-cX-d9h"; */
+"QfE-cX-d9h.title" = "扩展 POSIX";
+/* Class = "NSMenuItem"; title = "Emacs"; ObjectID = "IKR-qF-Nqu"; */
+"IKR-qF-Nqu.title" = "Emacs";
+/* Class = "NSMenuItem"; title = "Grep"; ObjectID = "Nbe-7c-AnJ"; */
+"Nbe-7c-AnJ.title" = "Grep";
+/* Class = "NSMenuItem"; title = "GNU Regex"; ObjectID = "sgn-JJ-gas"; */
+"sgn-JJ-gas.title" = "GNU Regex";
+/* Class = "NSMenuItem"; title = "Java"; ObjectID = "heJ-on-iUB"; */
+"heJ-on-iUB.title" = "Java";
+/* Class = "NSMenuItem"; title = "Perl"; ObjectID = "mdl-TK-1fB"; */
+"mdl-TK-1fB.title" = "Perl";
+/* Class = "NSMenuItem"; title = "Ruby"; ObjectID = "NPK-8x-xDg"; */
+"NPK-8x-xDg.title" = "Ruby";
+
+/* Class = "NSMenuItem"; title = "Escape Character"; ObjectID = "r68-46-LBY"; */
+"r68-46-LBY.title" = "字符转换";
+/* Class = "NSMenu"; title = "Escape Character"; ObjectID = "OVR-vE-lYb"; */
+"OVR-vE-lYb.title" = "字符转换";
+
+/* Class = "NSMenuItem"; title = "Single Line"; ObjectID = "UQ6-Up-xWI"; */
+"UQ6-Up-xWI.title" = "单行";
+/* Class = "NSMenuItem"; title = "Multiline"; ObjectID = "kPN-Hy-ym0"; */
+"kPN-Hy-ym0.title" = "点代表任意字符";
+/* Class = "NSMenuItem"; title = "Extend"; ObjectID = "14O-E6-7lS"; */
+"14O-E6-7lS.title" = "扩展名";
+/* Class = "NSMenuItem"; title = "Find Longest"; ObjectID = "xBb-Le-i3R"; */
+"xBb-Le-i3R.title" = "匹配最长";
+/* Class = "NSMenuItem"; title = "Find Empty"; ObjectID = "amg-LN-hui"; */
+"amg-LN-hui.title" = "不匹配空字符";
+/* Class = "NSMenuItem"; title = "Find Not Empty"; ObjectID = "3D5-4J-V4l"; */
+"3D5-4J-V4l.title" = "匹配非空字符后的空字符";
+/* Class = "NSMenuItem"; title = "Negate Single Line"; ObjectID = "Sdf-5P-GP1"; */
+"Sdf-5P-GP1.title" = "单行无效";
+/* Class = "NSMenuItem"; title = "Capture Group"; ObjectID = "LiY-vD-U6B"; */
+"LiY-vD-U6B.title" = "按组匹配";
+/* Class = "NSMenuItem"; title = "Don't Capture Group"; ObjectID = "fQl-sZ-bjK"; */
+"fQl-sZ-bjK.title" = "不匹配组";
+/* Class = "NSMenuItem"; title = "Not Begin of Line"; ObjectID = "AFF-AC-IR9"; */
+"AFF-AC-IR9.title" = "不匹配行初";
+/* Class = "NSMenuItem"; title = "Not End of Line"; ObjectID = "kCx-M9-GDk"; */
+"kCx-M9-GDk.title" = "不匹配行末";
+
+
+// Find Result
+
+/* Class = "NSButton"; UeN.ibShadowedToolTip = "Close find result."; ObjectID = "oC1-bN-UeN"; */
+"oC1-bN-UeN.ibShadowedToolTip" = "検索結果を閉じる";
+
+/* Class = "IBBindingConnection"; ibShadowedDisplayPattern = "Find String: %{value1}@"; ObjectID = "2MH-SD-x1y"; */
+"2MH-SD-x1y.ibShadowedDisplayPattern" = "查找字符串: %{value1}@";
+
+/* Class = "NSTableColumn"; headerCell.title = "Line"; ObjectID = "CPd-0W-bKv"; */
+"CPd-0W-bKv.headerCell.title" = "行";
+/* Class = "NSTableColumn"; headerCell.title = "Found String"; ObjectID = "PJ8-wp-pdK"; */
+"PJ8-wp-pdK.headerCell.title" = "找到字符串";
+
+/* Class = "NSButtonCell"; title = "Live Update"; ObjectID = "pqE-XD-1Fq"; */
+"pqE-XD-1Fq.title" = "实时更新";
+
+
+// Regex Quick Reference
+
+/* Class = "IBNSViewController"; title = "Quick Reference of Regular Expression"; ObjectID = "uMF-F8-Wjs"; */
+"uMF-F8-Wjs.title" = "正则表达式快速参考";

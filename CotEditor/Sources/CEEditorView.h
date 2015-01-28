@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014 CotEditor Project
+ © 2014-2015 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -29,13 +29,12 @@
  */
 
 @import Cocoa;
-#import "CEEditorWrapper.h"
 #import "CENavigationBarController.h"
 #import "CETextView.h"
-#import "CESyntaxParser.h"
 
 
 @class CEEditorWrapper;
+@class CESyntaxParser;
 
 
 @interface CEEditorView : NSView <NSTextViewDelegate>
@@ -49,7 +48,6 @@
 
 
 // Public method
-- (NSString *)string;
 - (void)replaceTextStorage:(NSTextStorage *)textStorage;
 - (void)setShowsLineNum:(BOOL)showsLineNum;
 - (void)setShowsNavigationBar:(BOOL)showsNavigationBar animate:(BOOL)performAnimation;
@@ -61,9 +59,5 @@
 - (void)setSyntaxWithName:(NSString *)styleName;
 - (void)recolorAllTextViewString;
 - (void)updateOutlineMenu;
-- (void)updateOutlineMenuSelection;
-- (void)stopUpdateLineNumberTimer;
-- (void)stopUpdateOutlineMenuTimer;
-- (NSCharacterSet *)firstCompletionCharacterSet;
 
 @end

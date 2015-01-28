@@ -1,0 +1,15 @@
+/*
+ OpenDocumentAccessory.strings
+ 
+ CotEditor
+ http://coteditor.com
+ 
+ Created on 2014-12-12 by 1024jp
+ Localized by onevcat
+ encoding="UTF-8"
+ 
+ © 2014 CotEditor Project
+ */
+
+/* Class = "NSTextFieldCell"; title = "Encoding:"; ObjectID = "voE-Mi-XZu"; */
+"voE-Mi-XZu.title" = "编码:";

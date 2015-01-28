@@ -5,11 +5,11 @@
  CotEditor
  http://coteditor.com
  
- Created by 2014-04-22 by 1024jp
+ Created on 2014-04-22 by 1024jp
  encoding="UTF-8"
  ------------------------------------------------------------------------------
  
- © 2014 CotEditor Project
+ © 2014-2015 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -48,22 +48,17 @@
 
 @implementation CEColorCodePanelController
 
-#pragma mark Class Methods
-
-//=======================================================
-// Class method
-//
-//=======================================================
+#pragma mark Singleton
 
 // ------------------------------------------------------
 /// return singleton instance
 + (instancetype)sharedController
 // ------------------------------------------------------
 {
-    static dispatch_once_t predicate;
+    static dispatch_once_t onceToken;
     static id shared = nil;
     
-    dispatch_once(&predicate, ^{
+    dispatch_once(&onceToken, ^{
         shared = [[self alloc] init];
     });
     
@@ -72,21 +67,16 @@
 
 
 
-#pragma mark Superclass Methods
-
-//=======================================================
-// Superclass method
-//
-//=======================================================
+#pragma mark NSWindowPanel Methods
 
 // ------------------------------------------------------
-/// 初期化
+/// initialize
 - (instancetype)init
 // ------------------------------------------------------
 {
     self = [super init];
     if (self) {
-        [NSBundle loadNibNamed:@"ColorCodePanelAccessory" owner:self];
+        [[NSBundle mainBundle] loadNibNamed:@"ColorCodePanelAccessory" owner:self topLevelObjects:nil];
     }
     return self;
 }
@@ -95,13 +85,8 @@
 
 #pragma mark Public Methods
 
-//=======================================================
-// Public method
-//
-//=======================================================
-
 // ------------------------------------------------------
-/// カラーコードから色をセットする
+/// set color to color panel from color code
 - (void)setColorWithCode:(NSString *)colorCode
 // ------------------------------------------------------
 {
@@ -127,18 +112,16 @@
 #pragma mark Delegate
 
 //=======================================================
-// Delegate method (NSWindowDelegate)
-//  <== NSColorPanel
+// NSWindowDelegate  < NSColorPanel
 //=======================================================
 
 // ------------------------------------------------------
-/// パネルをクローズ
+/// panel will close
 - (void)windowWillClose:(NSNotification *)notification
 // ------------------------------------------------------
 {
     NSColorPanel *colorPanel = (NSColorPanel *)[self window];
     [[self window] setDelegate:nil];
-    [colorPanel orderOut:self];
     [colorPanel setAccessoryView:nil];
     [colorPanel setShowsAlpha:NO];
 }
@@ -147,17 +130,12 @@
 
 #pragma mark Action Messages
 
-//=======================================================
-// Action Messages
-//
-//=======================================================
-
 // ------------------------------------------------------
-/// パネルを表示
+/// on show color panel
 - (void)showWindow:(id)sender
 // ------------------------------------------------------
 {
-    // 共有カラーパネルをセットアップ
+    // setup the shared color panel
     NSColorPanel *colorPanel = [NSColorPanel sharedColorPanel];
     [colorPanel setAccessoryView:[self accessoryView]];
     [colorPanel setShowsAlpha:YES];
@@ -177,16 +155,20 @@
 
 
 // ------------------------------------------------------
-/// 書類にカラーコードを挿入する
+/// insert color code to the selection of the frontmost document
 - (IBAction)insertCodeToDocument:(id)sender
 // ------------------------------------------------------
 {
-    [[[self documentWindowController] editor] replaceTextViewSelectedStringTo:[self colorCode] scroll:YES];
+    NSTextView *textView = [[[self documentWindowController] editor] focusedTextView];
+    
+    [textView insertText:[self colorCode]];
+    [[textView undoManager] setActionName:NSLocalizedString(@"Insert Color Code", nil)];
+    [textView scrollRangeToVisible:[textView selectedRange]];
 }
 
 
 // ------------------------------------------------------
-/// カラーパネルで新しい色が選ばれた
+/// a new color was selected on the panel
 - (IBAction)selectColor:(id)sender
 // ------------------------------------------------------
 {
@@ -196,7 +178,7 @@
 
 
 // ------------------------------------------------------
-/// カラーコードフィールドのカラーコードからカラーをセット
+/// set color from the color code field in the panel
 - (IBAction)applayColorCode:(id)sender
 // ------------------------------------------------------
 {
@@ -205,14 +187,14 @@
 
 
 // ------------------------------------------------------
-/// カラーコードを更新する
+/// update color code in the field
 - (IBAction)updateCode:(id)sender
 // ------------------------------------------------------
 {
     WFColorCodeType codeType = [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultColorCodeTypeKey];
     NSString *code = [[[self color] colorUsingColorSpaceName:NSCalibratedRGBColorSpace] colorCodeWithType:codeType];
     
-    // 現在の Hex コードが大文字だったら大文字をキープ
+    // keep lettercase if current Hex code is uppercase
     if ((codeType == WFColorCodeHex || codeType == WFColorCodeShortHex) &&
         [[self colorCode] rangeOfString:@"^#[0-9A-F]{1,6}$" options:NSRegularExpressionSearch].location != NSNotFound) {
         code = [code uppercaseString];

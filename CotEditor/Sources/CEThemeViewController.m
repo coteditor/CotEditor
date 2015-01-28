@@ -51,7 +51,7 @@
 #pragma mark Superclass methods
 
 // ------------------------------------------------------
-/// init
+/// initialize instance
 - (instancetype)init
 // ------------------------------------------------------
 {
@@ -64,7 +64,7 @@
 - (void)dealloc
 // ------------------------------------------------------
 {
-    _delegate = nil;
+    [[self popover] setDelegate:nil];  // avoid crash (2014-12-31)
     [self endObservingTheme];
 }
 
@@ -84,6 +84,13 @@
     [super setRepresentedObject:theme];
 }
 
+
+
+#pragma mark Protocol
+
+//=======================================================
+// NSKeyValueObserving Protocol
+//=======================================================
 
 // ------------------------------------------------------
 /// theme is modified

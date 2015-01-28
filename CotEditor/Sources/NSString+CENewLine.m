@@ -40,7 +40,7 @@ unichar const kNewLineChars[] = {
 
 @implementation NSString (CENewLine)
 
-#pragma mark Class Methods
+#pragma mark Public Methods
 
 // ------------------------------------------------------
 /// NSString form for new line character
@@ -86,9 +86,6 @@ unichar const kNewLineChars[] = {
     }
 }
 
-
-
-#pragma mark Public Methods
 
 // ------------------------------------------------------
 /// return the first new line charater type

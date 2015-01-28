@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014 CotEditor Project
+ © 2014-2015 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -40,18 +40,20 @@ extern NSString *const CEKeyBindingSelectorStringKey;
 
 @interface CEKeyBindingManager : NSObject
 
-// class method
+// singleton
 + (instancetype)sharedManager;
 
-+ (NSString *)keySpecCharsFromKeyEquivalent:(NSString *)string modifierFrags:(NSUInteger)modifierFlags;
+
+// Public methods
++ (NSString *)keySpecCharsFromKeyEquivalent:(NSString *)string modifierFrags:(NSEventModifierFlags)modifierFlags;
 + (NSString *)printableKeyStringFromKeySpecChars:(NSString *)string;
 
+- (void)applyKeyBindingsToMainMenu;
 
-// Public method
-- (void)setupAtLaunching;
-- (NSString *)selectorStringWithKeyEquivalent:(NSString *)string modifierFrags:(NSUInteger)modifierFlags;
+- (NSString *)selectorStringWithKeyEquivalent:(NSString *)string modifierFrags:(NSEventModifierFlags)modifierFlags;
 
 - (BOOL)usesDefaultMenuKeyBindings;
+- (BOOL)usesDefaultTextKeyBindings;
 - (NSMutableArray *)textKeySpecCharArrayForOutlineDataWithFactoryDefaults:(BOOL)usesFactoryDefaults;
 - (NSMutableArray *)mainMenuArrayForOutlineData:(NSMenu *)menu;
 - (NSString *)keySpecCharsInDefaultDictionaryFromSelectorString:(NSString *)selectorString;

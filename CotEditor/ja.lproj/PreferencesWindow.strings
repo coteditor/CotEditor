@@ -1,0 +1,50 @@
+/*
+ PreferencsWindow.strings
+ 
+ CotEditor
+ http://coteditor.com
+ 
+ Created on 2014-11-04 by 1024jp
+ encoding="UTF-8"
+ 
+ © 2014 CotEditor Project
+ */
+
+/* Class = "NSWindow"; title = "Preferences"; ObjectID = "6"; */
+"6.title" = "環境設定";
+
+/* Class = "NSToolbarItem"; ObjectID = "HlR-fr-Hwd"; */
+"HlR-fr-Hwd.label" = "一般";  /* General */
+"HlR-fr-Hwd.paletteLabel" = "一般";  /* General */
+
+/* Class = "NSToolbarItem"; ObjectID = "agm-iM-Y3j"; */
+"agm-iM-Y3j.label" = "ウインドウ";  /* Window */
+"agm-iM-Y3j.paletteLabel" = "ウインドウ";  /* Window */
+
+/* Class = "NSToolbarItem"; ObjectID = "TSL-LZ-a98"; */
+"TSL-LZ-a98.label" = "表示";  /* Appearance */
+"TSL-LZ-a98.paletteLabel" = "表示";  /* Appearance */
+
+/* Class = "NSToolbarItem"; ObjectID = "bYW-oU-kKx"; */
+"bYW-oU-kKx.label" = "編集";  /* Edit */
+"bYW-oU-kKx.paletteLabel" = "編集";  /* Edit */
+
+/* Class = "NSToolbarItem"; ObjectID = "Pxf-UL-fD9"; */
+"Pxf-UL-fD9.label" = "フォーマット";  /* Format  */
+"Pxf-UL-fD9.paletteLabel" = "フォーマット";  /* Format  */
+
+/* Class = "NSToolbarItem"; ObjectID = "0c4-Jh-Er6"; */
+"0c4-Jh-Er6.label" = "ファイルドロップ";  /* File Drop */
+"0c4-Jh-Er6.paletteLabel" = "ファイルドロップ";  /* File Drop */
+
+/* Class = "NSToolbarItem"; ObjectID = "WSf-8J-dN6"; */
+"WSf-8J-dN6.label" = "キーバインド";  /* Key Bindings */
+"WSf-8J-dN6.paletteLabel" = "キーバインド";  /* Key Bindings */
+
+/* Class = "NSToolbarItem"; ObjectID = "uTl-fL-Jcq"; */
+"uTl-fL-Jcq.label" = "プリント";  /* Print */
+"uTl-fL-Jcq.paletteLabel" = "プリント";  /* Print */
+
+/* Class = "NSToolbarItem"; ObjectID = "Bn7-e8-FVC"; */
+"Bn7-e8-FVC.label" = "連携";  /* Integration */
+"Bn7-e8-FVC.paletteLabel" = "連携";  /* Integration */

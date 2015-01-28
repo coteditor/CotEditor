@@ -39,14 +39,15 @@
 
 
 
+
 #pragma mark -
 
 @implementation CEEncodingListSheetController
 
-#pragma mark NSWindowController Methods
+#pragma mark Superclass Methods
 
 // ------------------------------------------------------
-/// 初期化
+/// initialize
 - (instancetype)init
 // ------------------------------------------------------
 {
@@ -55,7 +56,7 @@
 
 
 // ------------------------------------------------------
-/// ウインドウをロードした直後
+/// setup UI
 - (void)windowDidLoad
 // ------------------------------------------------------
 {
@@ -69,11 +70,11 @@
 #pragma mark Action Messages
 
 // ------------------------------------------------------
-/// OK ボタンが押された
+/// OK button was clicked
 - (IBAction)save:(id)sender
 // ------------------------------------------------------
 {
-    [[self dataSource] writeEncodingsToUserDefaults]; // エンコーディングを保存
+    [[self dataSource] writeEncodingsToUserDefaults];  // save the current setting
     
     [NSApp stopModal];
     [NSApp endSheet:[self window] returnCode:NSOKButton];
@@ -82,7 +83,7 @@
 
 
 // ------------------------------------------------------
-/// Cancel ボタンが押された
+/// Cancel button was clicked
 - (IBAction)cancel:(id)sender
 // ------------------------------------------------------
 {

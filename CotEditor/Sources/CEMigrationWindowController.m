@@ -77,7 +77,7 @@
     [[self window] setLevel:NSFloatingWindowLevel];
     
     // set background color
-    [[[self slideView] layer] setBackgroundColor:CGColorCreateGenericGray(1.0, 1.0)];
+    [[[self slideView] layer] setBackgroundColor:[[NSColor whiteColor] CGColor]];
     
     // init indicator
     [[self indicator] setMaxValue:5];
@@ -154,7 +154,7 @@
 - (void)swapView:(NSView *)newView
 // ------------------------------------------------------
 {
-    NSView *currentView = [[self slideView] subviews][0];
+    NSView *currentView = [[[self slideView] subviews] firstObject];
     
     [[[self slideView] animator] replaceSubview:currentView with:newView];
 }

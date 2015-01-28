@@ -33,12 +33,7 @@
 
 @implementation CEHexColorTransformer
 
-#pragma mark Class Methods
-
-//=======================================================
-// Class method
-//
-//=======================================================
+#pragma mark Superclass Methods
 
 // ------------------------------------------------------
 /// Class of transformed value
@@ -57,14 +52,6 @@
     return YES;
 }
 
-
-
-#pragma mark NSValueTransformer Methods
-
-//=======================================================
-// NSValueTransformer method
-//
-//=======================================================
 
 // ------------------------------------------------------
 /// From color code hex to NSColor (NSString -> NSColor)

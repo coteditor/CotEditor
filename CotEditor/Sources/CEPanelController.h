@@ -35,10 +35,12 @@
 
 @interface CEPanelController : NSWindowController <NSWindowDelegate>
 
-@property (readonly, nonatomic, strong) CEWindowController *documentWindowController;  // cannot be weak on Lion
+@property (readonly, nonatomic, weak) CEWindowController *documentWindowController;
 
 
+// singleton
 + (instancetype)sharedController;
+
 
 // (abstract) invoke when frontmost document window changed
 - (void)keyDocumentDidChange;

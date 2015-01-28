@@ -9,7 +9,7 @@
  encoding="UTF-8"
  ------------------------------------------------------------------------------
  
- © 2014 CotEditor Project
+ © 2014-2015 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -32,32 +32,10 @@
 
 @interface CEStatusBarController : NSViewController
 
-@property (nonatomic) BOOL showsReadOnly;
-
 @property (readonly, nonatomic, getter=isShown) BOOL shown;
 
-// editor status
-@property (nonatomic) NSInteger linesInfo;
-@property (nonatomic) NSInteger selectedLinesInfo;
-@property (nonatomic) NSInteger charsInfo;
-@property (nonatomic) NSInteger selectedCharsInfo;
-@property (nonatomic) NSInteger lengthInfo;
-@property (nonatomic) NSInteger selectedLengthInfo;
-@property (nonatomic) NSInteger wordsInfo;
-@property (nonatomic) NSInteger selectedWordsInfo;
-@property (nonatomic) NSInteger locationInfo;
-@property (nonatomic) NSInteger lineInfo;
-@property (nonatomic) NSInteger columnInfo;
 
-// document status
-@property (nonatomic, copy) NSString *encodingInfo;
-@property (nonatomic, copy) NSString *lineEndingsInfo;
-@property (nonatomic) unsigned long long fileSizeInfo;
-
-
-// Public method
+// Public Method
 - (void)setShown:(BOOL)shown animate:(BOOL)performAnimation;
-- (void)updateEditorStatus;
-- (void)updateDocumentStatus;
 
 @end

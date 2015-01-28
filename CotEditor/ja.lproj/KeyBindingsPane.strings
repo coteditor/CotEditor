@@ -1,0 +1,29 @@
+/*
+ KeyBindingsPane.strings
+ 
+ CotEditor
+ http://coteditor.com
+ 
+ Created on 2014-11-04 by 1024jp
+ encoding="UTF-8"
+ 
+ © 2014 CotEditor Project
+ */
+
+/* Class = "NSTextFieldCell"; title = "Menu Key Bindings"; ObjectID = "3359"; */
+"3359.title" = "メニューキーバインド";
+/* Class = "NSTextFieldCell"; title = "Shortcuts for menu items."; ObjectID = "3361"; */
+"3361.title" = "メニュー項目へのショートカット";
+/* Class = "NSTextFieldCell"; title = "This setting does not include script menu items."; ObjectID = "3362"; */
+"3362.title" = "スクリプトメニューはこの設定に含まれません。";
+/* Class = "NSButtonCell"; title = "Edit…"; ObjectID = "3360"; */
+"3360.title" = "編集…";
+
+/* Class = "NSTextFieldCell"; title = "Additional Text Key Bindings"; ObjectID = "3363"; */
+"3363.title" = "追加テキストキーバインド";
+/* Class = "NSTextFieldCell"; title = "Shortcuts to insert preset text."; ObjectID = "3364"; */
+"3364.title" = "プリセットしたテキストを挿入するショートカット";
+/* Class = "NSTextFieldCell"; title = "This setting is not for the standard Cocoa key bindings\nbut for CotEditor's original function."; ObjectID = "3366"; */
+"3366.title" = "CotEditor の独自機能であり、Cocoa 標準のキーバインドを設定するものではありません。";
+/* Class = "NSButtonCell"; title = "Edit…"; ObjectID = "3365"; */
+"3365.title" = "編集…";

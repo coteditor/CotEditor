@@ -1,0 +1,23 @@
+/*
+ AdvancedPane.strings
+ 
+ CotEditor
+ http://coteditor.com
+ 
+ Created on 2014-12-21 by 1024jp
+ encoding="UTF-8"
+ 
+ © 2014 CotEditor Project
+ */
+
+/* Class = "NSTextFieldCell"; title = "Command-line tool:"; ObjectID = "kQn-Uu-cqG"; */
+"kQn-Uu-cqG.title" = "コマンドラインツール：";
+
+/* Class = "NSButtonCell"; title = "Install"; ObjectID = "ltN-wn-m8M"; */
+"ltN-wn-m8M.title" = "インストール";
+
+/* Class = "IBBindingConnection"; ibShadowedDisplayPattern = "installed at %{value1}@"; ObjectID = "e2G-16-MxZ"; */
+"e2G-16-MxZ.ibShadowedDisplayPattern" = "%{value1}@ にインストール済み";
+
+/* Class = "NSTextFieldCell"; title = "The cot command-line tool allows you to launch CotEditor and let it open files from the command line."; ObjectID = "c48-xK-Ag1"; */
+"c48-xK-Ag1.title" = "cot コマンドラインツールは、コマンドラインからの CotEditor 起動やファイルオープンを可能にします。";

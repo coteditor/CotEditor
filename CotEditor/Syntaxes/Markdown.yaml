@@ -11,6 +11,8 @@ outlineMenu:
 - beginString: "(.+)(?=\\n\\=+[\\t ]*$)"
   keyString: "$1"
   bold: true
+- beginString: "(?<=\\n\\n|\\A)([*-_] ?)\\1{2,}$"
+  keyString: "-"
 - beginString: "^#[\\t ]?([^#][^\\n]*?)#*$"
   keyString: "$1"
   bold: true
@@ -30,9 +32,9 @@ commands: []
 metadata:
   author: "1024jp"
   distributionURL: "http://coteditor.com"
-  version: "1.1"
+  version: "1.2"
   license: "Same as CotEditor"
-  lastModified: "2014-09-24"
+  lastModified: "2015-01-25"
 characters:
 - beginString: "(?#[extra] codeblock)^[~]{3,}[{[:space:]](?!~~~)(?:.|\\n)*?\\n[\\t
     ]*[~]{3,}[\\t ]*$"

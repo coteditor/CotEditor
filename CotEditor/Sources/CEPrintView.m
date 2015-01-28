@@ -34,6 +34,9 @@
 #import "constants.h"
 
 
+static NSString *const PageNumberPlaceholder = @"PAGENUM";
+
+
 @interface CEPrintView ()
 
 @property (nonatomic) NSAttributedString *headerOneString;
@@ -64,15 +67,10 @@
 
 @implementation CEPrintView
 
-#pragma mark NSTextView Methods
-
-//=======================================================
-// NSTextView method
-//
-//=======================================================
+#pragma mark Superclass Methods
 
 // ------------------------------------------------------
-/// 初期化
+/// initialize
 - (instancetype)initWithFrame:(NSRect)frameRect
 // ------------------------------------------------------
 {
@@ -152,7 +150,7 @@
 
     if ([self printsHeader]) {
         if ([self headerOneString]) {
-            if ([[[self headerOneString] string] isEqualToString:@"PAGENUM"]) {
+            if ([[[self headerOneString] string] isEqualToString:PageNumberPlaceholder]) {
                 [self setHeaderOneString:pageString];
             }
             drawPoint.x = [self xValueToDrawAttributedString:[self headerOneString]
@@ -162,7 +160,7 @@
         }
         
         if ([self headerTwoString]) {
-            if ([[[self headerTwoString] string] isEqualToString:@"PAGENUM"]) {
+            if ([[[self headerTwoString] string] isEqualToString:PageNumberPlaceholder]) {
                 [self setHeaderTwoString:pageString];
             }
             drawPoint.x = [self xValueToDrawAttributedString:[self headerTwoString]
@@ -188,7 +186,7 @@
     drawPoint.y = borderSize.height - kPrintHFVerticalMargin + kSeparatorPadding;
     if ([self printsFooter]) {
         if ([self footerTwoString]) {
-            if ([[[self footerTwoString] string] isEqualToString:@"PAGENUM"]) {
+            if ([[[self footerTwoString] string] isEqualToString:PageNumberPlaceholder]) {
                 [self setFooterTwoString:pageString];
             }
             drawPoint.y -= kHeaderFooterLineHeight;
@@ -198,7 +196,7 @@
         }
         
         if ([self footerOneString]) {
-            if ([[[self footerOneString] string] isEqualToString:@"PAGENUM"]) {
+            if ([[[self footerOneString] string] isEqualToString:PageNumberPlaceholder]) {
                 [self setFooterOneString:pageString];
             }
             drawPoint.y -= kHeaderFooterLineHeight;
@@ -309,12 +307,7 @@
 
 
 
-#pragma mark Public Methods
-
-//=======================================================
-// Public method
-//
-//=======================================================
+#pragma mark Public Accessors
 
 // ------------------------------------------------------
 /// 実際のドキュメントで不可視文字を表示しているかをセット
@@ -330,11 +323,6 @@
 
 
 #pragma mark Private Methods
-
-//=======================================================
-// Private method
-//
-//=======================================================
 
 // ------------------------------------------------------
 /// プリント開始の準備
@@ -382,7 +370,7 @@
     
     
     // カラーリングの設定
-    if ([[accessoryController theme] isEqualToString:NSLocalizedStringFromTable(@"Black and White", CEPrintLocalizeTable,  nil)]) {
+    if ([[accessoryController theme] isEqualToString:NSLocalizedString(@"Black and White",  nil)]) {
         [self setTextColor:[NSColor blackColor]];
         [self setBackgroundColor:[NSColor whiteColor]];
         
@@ -394,8 +382,7 @@
         // カラーリング実行オブジェクトを用意して実行
         if (![self syntaxParser]) {
             [self setSyntaxParser:[[CESyntaxParser alloc] initWithStyleName:[self syntaxName]
-                                                              layoutManager:(CELayoutManager *)[[self textContainer] layoutManager]
-                                                                 isPrinting:YES]];
+                                                              layoutManager:(CELayoutManager *)[[self textContainer] layoutManager]]];
         }
         [[self syntaxParser] colorAllString:[self string]];
     }
@@ -465,7 +452,7 @@
             break;
             
         case CEPageNumberPrintInfo:
-            string = @"PAGENUM";
+            string = PageNumberPlaceholder;
             [self setReadyToDrawPageNum:YES];
             break;
             

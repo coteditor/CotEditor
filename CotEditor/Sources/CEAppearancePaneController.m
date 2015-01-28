@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014 CotEditor Project
+ © 2014-2015 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -28,6 +28,7 @@
  ==============================================================================
  */
 
+@import AudioToolbox;
 #import "CEAppearancePaneController.h"
 #import "CEThemeViewController.h"
 #import "CEThemeManager.h"
@@ -55,13 +56,8 @@
 
 #pragma mark Superclass Methods
 
-//=======================================================
-// Superclass method
-//
-//=======================================================
-
 // ------------------------------------------------------
-/// あとかたづけ
+/// clean up
 - (void)dealloc
 // ------------------------------------------------------
 {
@@ -70,7 +66,7 @@
 
 
 // ------------------------------------------------------
-/// ビューの読み込み
+/// setup UI
 - (void)loadView
 // ------------------------------------------------------
 {
@@ -93,6 +89,13 @@
                                                object:nil];
 }
 
+
+
+#pragma mark Protocol
+
+//=======================================================
+// NSMenuValidation Protocol
+//=======================================================
 
 // ------------------------------------------------------
 /// メニュー項目の有効化／無効化を制御
@@ -119,11 +122,10 @@
 
 
 
-#pragma mark Delegate and Notification
+#pragma mark Data Source
 
 //=======================================================
-// NSTableDataSource Protocol
-//  <== themeTableView
+// NSTableDataSource Protocol  < themeTableView
 //=======================================================
 
 // ------------------------------------------------------
@@ -144,9 +146,11 @@
 }
 
 
+
+#pragma mark Delegate
+
 //=======================================================
-// Delegate (CEThemeViewController)
-//
+// CEThemeViewControllerDelegate
 //=======================================================
 
 // ------------------------------------------------------
@@ -160,8 +164,7 @@
 
 
 //=======================================================
-// Delegate method (NSTableView)
-//  <== themeTableView
+// NSTableViewDelegate  < themeTableView
 //=======================================================
 
 // ------------------------------------------------------
@@ -198,11 +201,15 @@
 
 
 // ------------------------------------------------------
-/// テーブルセルが編集可能かを返す
-- (BOOL)tableView:(NSTableView *)tableView shouldEditTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
+/// テーブルセルが編集可能かを設定する
+- (void)tableView:(NSTableView *)tableView didAddRowView:(NSTableRowView *)rowView forRow:(NSInteger)row
 // ------------------------------------------------------
 {
-    return ![[CEThemeManager sharedManager] isBundledTheme:[self selectedTheme] cutomized:nil];
+    NSTableCellView *view = [tableView viewAtColumn:0 row:row makeIfNecessary:NO];
+    NSString *themeName = [self themeNames][row];
+    BOOL editable = ![[CEThemeManager sharedManager] isBundledTheme:themeName cutomized:nil];
+    
+    [[view textField] setEditable:editable];
 }
 
 
@@ -211,6 +218,7 @@
 - (BOOL)control:(NSControl *)control textShouldEndEditing:(NSText *)fieldEditor
 // ------------------------------------------------------
 {
+    NSString *oldName = [self selectedTheme];
     NSString *newName = [fieldEditor string];
     NSError *error = nil;
     
@@ -219,11 +227,13 @@
         return YES;
     }
     
-    BOOL success = [[CEThemeManager sharedManager] renameTheme:[self selectedTheme] toName:newName error:&error];
+    BOOL success = [[CEThemeManager sharedManager] renameTheme:oldName toName:newName error:&error];
     
     if (error) {
+        // revert name
+        [fieldEditor setString:oldName];
+        // show alert
         NSAlert *alert = [NSAlert alertWithError:error];
-        NSBeep();
         [alert beginSheetModalForWindow:[[self view] window] modalDelegate:nil didEndSelector:NULL contextInfo:NULL];
     }
     
@@ -234,13 +244,8 @@
 
 #pragma mark Action Messages
 
-//=======================================================
-// Action messages
-//
-//=======================================================
-
 // ------------------------------------------------------
-/// フォントパネルを表示
+/// show font panel
 - (IBAction)showFonts:(id)sender
 //-------------------------------------------------------
 {
@@ -254,17 +259,15 @@
 
 
 // ------------------------------------------------------
-/// フォントパネルでフォントが変更された
+/// font in font panel did update
 - (void)changeFont:(id)sender
 // ------------------------------------------------------
 {
-    // (引数"sender"はNSFontManegerのインスタンス)
-    NSFont *newFont = [sender convertFont:[NSFont systemFontOfSize:0]];
-    NSString *name = [newFont fontName];
-    CGFloat size = [newFont pointSize];
+    NSFontManager *fontManager = (NSFontManager *)sender;
+    NSFont *newFont = [fontManager convertFont:[NSFont systemFontOfSize:0]];
     
-    [[NSUserDefaults standardUserDefaults] setObject:name forKey:CEDefaultFontNameKey];
-    [[NSUserDefaults standardUserDefaults] setFloat:size forKey:CEDefaultFontSizeKey];
+    [[NSUserDefaults standardUserDefaults] setObject:[newFont fontName] forKey:CEDefaultFontNameKey];
+    [[NSUserDefaults standardUserDefaults] setDouble:[newFont pointSize] forKey:CEDefaultFontSizeKey];
     [self setFontFamilyNameAndSize];
 }
 
@@ -274,7 +277,7 @@
 - (IBAction)addTheme:(id)sender
 //------------------------------------------------------
 {
-    __unsafe_unretained typeof(self) weakSelf = self;  // cannot be weak on Lion
+    __weak typeof(self) weakSelf = self;
     [[CEThemeManager sharedManager] createUntitledThemeWithCompletionHandler:^(NSString *themeName, NSError *error) {
         typeof(self) strongSelf = weakSelf;
         
@@ -397,13 +400,8 @@
 
 #pragma mark Private Methods
 
-//=======================================================
-// Private method
-//
-//=======================================================
-
 //------------------------------------------------------
-/// メインウィンドウのフォントファミリー名とサイズをprefFontFamilyNameSizeに表示させる
+/// display font name and size in the font field
 - (void)setFontFamilyNameAndSize
 //------------------------------------------------------
 {
@@ -435,7 +433,9 @@
     }
     
     NSError *error = nil;
-    [[CEThemeManager sharedManager] removeTheme:[self selectedTheme] error:&error];
+    if ([[CEThemeManager sharedManager] removeTheme:[self selectedTheme] error:&error]) {
+        AudioServicesPlaySystemSound(CESystemSoundID_MoveToTrash);
+    }
     
     if (error) {
         // 削除できなければ、その旨をユーザに通知

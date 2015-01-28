@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014 CotEditor Project
+ © 2014-2015 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -29,58 +29,42 @@
  */
 
 #import "CEWindowController.h"
+#import <OgreKit/OgreTextFinder.h>
 #import "CEWindow.h"
-#import "CEDocumentController.h"
+#import "CEDocument.h"
 #import "CEStatusBarController.h"
+#import "CEIncompatibleCharsViewController.h"
+#import "CEEditorWrapper.h"
 #import "CESyntaxManager.h"
-#import "NSString+ComposedCharacter.h"
+#import "CEDocumentAnalyzer.h"
 #import "constants.h"
 
 
-// Drawer identifier
-static NSString *const InfoIdentifier = @"info";
-static NSString *const IncompatibleIdentifier = @"incompatibleChar";
+// sidebar mode
+typedef NS_ENUM(NSUInteger, CESidebarTag) {
+    CEDocumentInspectorTag = 1,
+    CEIncompatibleCharsTag,
+};
 
 
-@interface CEWindowController () <NSDrawerDelegate, NSTabViewDelegate>
+@interface CEWindowController () <OgreTextFindDataSource, NSSplitViewDelegate>
 
-@property (nonatomic) NSUInteger tabViewSelectedIndex; // ドロワーのタブビューでのポップアップメニュー選択用バインディング変数(#削除不可)
-@property (nonatomic) BOOL needsRecolorWithBecomeKey; // ウィンドウがキーになったとき再カラーリングをするかどうかのフラグ
+@property (nonatomic) CESidebarTag selectedSidebarTag;
+@property (nonatomic) BOOL needsRecolorWithBecomeKey;  // flag to update sytnax highlight when window becomes key window
+@property (nonatomic) NSTimer *editorInfoUpdateTimer;
+@property (nonatomic) CGFloat sidebarWidth;
 
-@property (nonatomic) NSTimer *infoUpdateTimer;
-@property (nonatomic) NSTimer *incompatibleCharTimer;
-
-// document information (for binding in drawer)
-@property (nonatomic, copy) NSString *encodingInfo;
-@property (nonatomic, copy) NSString *lineEndingsInfo;
-@property (nonatomic, copy) NSDate *createdInfo;
-@property (nonatomic, copy) NSDate *modificatedInfo;
-@property (nonatomic, copy) NSString *ownerInfo;
-@property (nonatomic, copy) NSString *typeInfo;
-@property (nonatomic, copy) NSString *creatorInfo;
-@property (nonatomic, copy) NSString *finderLockInfo;
-@property (nonatomic, copy) NSString *permissionInfo;
-@property (nonatomic) unsigned long long fileSizeInfo;
-// editor information (for binding in drawer)
-@property (nonatomic, copy) NSString *linesInfo;
-@property (nonatomic, copy) NSString *charsInfo;
-@property (nonatomic, copy) NSString *wordsInfo;
-@property (nonatomic, copy) NSString *lengthInfo;
-@property (nonatomic, copy) NSString *byteLengthInfo;
-@property (nonatomic) NSUInteger columnInfo;           // caret location from line head
-@property (nonatomic) NSUInteger locationInfo;         // caret location from begining of document
-@property (nonatomic) NSUInteger lineInfo;             // current line
-@property (nonatomic, copy) NSString *singleCharInfo;  // Unicode of selected single character (or surrogate-pair)
 
 // IBOutlets
 @property (nonatomic) IBOutlet CEStatusBarController *statusBarController;
-@property (nonatomic) IBOutlet NSArrayController *listController;
-@property (nonatomic) IBOutlet NSDrawer *drawer;
-@property (nonatomic, weak) IBOutlet NSTabView *tabView;
-@property (nonatomic, weak) IBOutlet NSTextField *listErrorTextField;
-@property (nonatomic) IBOutlet NSNumberFormatter *infoNumberFormatter;
+@property (nonatomic) IBOutlet NSViewController *documentInspectorViewController;
+@property (nonatomic) IBOutlet CEIncompatibleCharsViewController *incompatibleCharsViewController;
+@property (nonatomic, weak) IBOutlet NSSplitView *sidebarSplitView;
+@property (nonatomic, weak) IBOutlet NSView *sidebar;
+@property (nonatomic, weak) IBOutlet NSView *sidebarPlaceholderView;
+@property (nonatomic) IBOutlet CEDocumentAnalyzer *documentAnalyzer;
 
-// readonly
+// IBOutlets (readonly)
 @property (readwrite, nonatomic, weak) IBOutlet CEToolbarController *toolbarController;
 @property (readwrite, nonatomic, weak) IBOutlet CEEditorWrapper *editor;
 
@@ -94,18 +78,12 @@ static NSString *const IncompatibleIdentifier = @"incompatibleChar";
 @implementation CEWindowController
 
 static NSTimeInterval infoUpdateInterval;
-static NSTimeInterval incompatibleCharInterval;
 
 
-#pragma mark Class Methods
-
-//=======================================================
-// Class method
-//
-//=======================================================
+#pragma mark Superclass Methods
 
 // ------------------------------------------------------
-/// クラス初期化
+/// initialize class
 + (void)initialize
 // ------------------------------------------------------
 {
@@ -114,21 +92,24 @@ static NSTimeInterval incompatibleCharInterval;
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         
         infoUpdateInterval = [defaults doubleForKey:CEDefaultInfoUpdateIntervalKey];
-        incompatibleCharInterval = [defaults doubleForKey:CEDefaultIncompatibleCharIntervalKey];
     });
 }
 
 
+// ------------------------------------------------------
+/// clean up
+- (void)dealloc
+// ------------------------------------------------------
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:CEDefaultWindowAlphaKey];
+    
+    [self stopEditorInfoUpdateTimer];
+}
 
-#pragma mark NSWindowController Methods
-
-//=======================================================
-// NSWindowController method
-//
-//=======================================================
 
 // ------------------------------------------------------
-/// ウィンドウ表示の準備完了時、サイズを設定し文字列／不透明度をセット
+/// prepare window and other UI
 - (void)windowDidLoad
 // ------------------------------------------------------
 {
@@ -136,29 +117,44 @@ static NSTimeInterval incompatibleCharInterval;
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
-    NSSize size = NSMakeSize((CGFloat)[defaults doubleForKey:CEDefaultWindowWidthKey],
-                             (CGFloat)[defaults doubleForKey:CEDefaultWindowHeightKey]);
-    [[self window] setContentSize:size];
+    [[self window] setContentSize:NSMakeSize((CGFloat)[defaults doubleForKey:CEDefaultWindowWidthKey],
+                                             (CGFloat)[defaults doubleForKey:CEDefaultWindowHeightKey])];
     
-    // 背景をセットアップ
+    // setup background
     [(CEWindow *)[self window] setBackgroundAlpha:[defaults doubleForKey:CEDefaultWindowAlphaKey]];
     
-    // ドキュメントオブジェクトに CEEditorWrapper インスタンスをセット
+    // setup document analyzer
+    [[self documentAnalyzer] setDocument:[self document]];
+    [[self documentInspectorViewController] setRepresentedObject:[self documentAnalyzer]];
+    
+    // setup sidebar
+    [[[self sidebar] layer] setBackgroundColor:[[NSColor colorWithCalibratedWhite:0.94 alpha:1.0] CGColor]];
+    [self setSidebarShown:[defaults boolForKey:CEDefaultShowDocumentInspectorKey]];
+    
+    // set document instance to incompatible chars view
+    [[self incompatibleCharsViewController] setRepresentedObject:[self document]];
+    
+    // set CEEditorWrapper to document instance
     [[self document] setEditor:[self editor]];
-    // テキストを表示
     [[self document] setStringToEditor];
     
     // setup status bar
     [[self statusBarController] setShown:[defaults boolForKey:CEDefaultShowStatusBarKey] animate:NO];
-    [[self statusBarController] setShowsReadOnly:![[self document] isWritable]];
     
-    [self updateFileAttributesInfo];
-    [self updateEncodingAndLineEndingsInfo:YES];
+    [self updateFileInfo];
+    [self updateModeInfoIfNeeded];
     
-    // テキストビューへフォーカスを移動
-    [[self window] makeFirstResponder:[[self editor] textView]];
+    // move focus to text view
+    [[self window] makeFirstResponder:[[self editor] focusedTextView]];
     
-    // シンタックス定義の変更を監視
+    // notify finish of the document open process (Here is probably the final point.)
+    __weak typeof(self) weakSelf = self;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:CEDocumentDidFinishOpenNotification
+                                                            object:weakSelf];
+    });
+    
+    // observe sytnax style update
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(syntaxDidUpdate:)
                                                  name:CESyntaxDidUpdateNotification
@@ -172,31 +168,15 @@ static NSTimeInterval incompatibleCharInterval;
 }
 
 
-// ------------------------------------------------------
-/// あとかたづけ
-- (void)dealloc
-// ------------------------------------------------------
-{
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:CEDefaultWindowAlphaKey];
-    
-    [self stopInfoUpdateTimer];
-    [self stopIncompatibleCharTimer];
-}
 
+#pragma mark Protocol
+
+//=======================================================
+// NSMenuValidation Protocol
+//=======================================================
 
 // ------------------------------------------------------
-/// apply user defaults change
--(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
-// ------------------------------------------------------
-{
-    if ([keyPath isEqualToString:CEDefaultWindowAlphaKey]) {
-        [(CEWindow *)[self window] setBackgroundAlpha:(CGFloat)[change[NSKeyValueChangeNewKey] doubleValue]];
-    }
-}
-
-// ------------------------------------------------------
-/// メニュー項目の有効・無効を制御
+/// validate menu items
 - (BOOL)validateMenuItem:(NSMenuItem *)menuItem
 // ------------------------------------------------------
 {
@@ -209,315 +189,23 @@ static NSTimeInterval incompatibleCharInterval;
 }
 
 
-#pragma mark Public Methods
-
 //=======================================================
-// Public method
-//
+// NSKeyValueObserving Protocol
 //=======================================================
 
 // ------------------------------------------------------
-/// 文書情報ドロワー内容を更新すべきかを返す
-- (BOOL)needsInfoDrawerUpdate
+/// apply user defaults change
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 // ------------------------------------------------------
 {
-    NSInteger drawerState = [[self drawer] state];
-    BOOL tabState = [[[[self tabView] selectedTabViewItem] identifier] isEqualToString:InfoIdentifier];
-
-    return (tabState && ((drawerState == NSDrawerOpenState) || (drawerState == NSDrawerOpeningState)));
-}
-
-
-// ------------------------------------------------------
-/// 非互換文字ドロワー内容を更新すべきかを返す
-- (BOOL)needsIncompatibleCharDrawerUpdate
-// ------------------------------------------------------
-{
-    NSInteger drawerState = [[self drawer] state];
-    BOOL tabState = [[[[self tabView] selectedTabViewItem] identifier] isEqualToString:IncompatibleIdentifier];
-
-    return (tabState && ((drawerState == NSDrawerOpenState) || (drawerState == NSDrawerOpeningState)));
-}
-
-
-// ------------------------------------------------------
-/// 非互換文字リストを表示
-- (void)showIncompatibleCharList
-// ------------------------------------------------------
-{
-    [self updateIncompatibleCharList];
-    [[self tabView] selectTabViewItemWithIdentifier:IncompatibleIdentifier];
-    [[self drawer] open];
-}
-
-
-// ------------------------------------------------------
-/// 情報ドロワーとステータスバーの文書情報を更新
-- (void)updateEditorStatusInfo:(BOOL)needsUpdateDrawer
-// ------------------------------------------------------
-{
-    BOOL updatesStatusBar = [[self statusBarController] isShown];
-    BOOL updatesDrawer = needsUpdateDrawer ? YES : [self needsInfoDrawerUpdate];
-    
-    if (!needsUpdateDrawer && (!updatesStatusBar && !updatesDrawer)) { return; }
-    
-    NSString *wholeString = ([[NSString newLineStringWithType:[[self document] lineEnding]] length] == 2) ? [[self document] stringForSave] : [[[self editor] string] copy];
-    NSString *selectedString = [[self editor] substringWithSelection] ? : @"";
-    NSStringEncoding encoding = [[self document] encoding];
-    __block NSRange selectedRange = [[self editor] selectedRange];
-    __block CEStatusBarController *statusBar = [self statusBarController];
-    __unsafe_unretained typeof(self) weakSelf = self;  // cannot be weak on Lion
-    
-    // 別スレッドで情報を計算し、メインスレッドで drawer と statusBar に渡す
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        typeof(self) strongSelf = weakSelf;
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        BOOL countLineEnding = [defaults boolForKey:CEDefaultCountLineEndingAsCharKey];
-        NSUInteger column = 0, currentLine = 0, length = [wholeString length], location = 0;
-        NSUInteger numberOfLines = 0, numberOfSelectedLines = 0;
-        NSUInteger numberOfChars = 0, numberOfSelectedChars = 0;
-        NSUInteger numberOfWords = 0, numberOfSelectedWords = 0;
-        
-        // IM で変換途中の文字列は選択範囲としてカウントしない (2007.05.20)
-        if ([[[self editor] textView] hasMarkedText]) {
-            selectedRange.length = 0;
-        }
-        
-        if (length > 0) {
-            BOOL hasSelection = (selectedRange.length > 0);
-            NSRange lineRange = [wholeString lineRangeForRange:selectedRange];
-            column = selectedRange.location - lineRange.location;  // as length
-            column = [[wholeString substringWithRange:NSMakeRange(lineRange.location, column)] numberOfComposedCharacters];
-            
-            for (NSUInteger index = 0; index < length; numberOfLines++) {
-                if (index <= selectedRange.location) {
-                    currentLine = numberOfLines + 1;
-                }
-                index = NSMaxRange([wholeString lineRangeForRange:NSMakeRange(index, 0)]);
-            }
-            
-            // 単語数カウント
-            if (updatesDrawer || [defaults boolForKey:CEDefaultShowStatusBarWordsKey]) {
-                NSSpellChecker *spellChecker = [NSSpellChecker sharedSpellChecker];
-                numberOfWords = [spellChecker countWordsInString:wholeString language:nil];
-                if (hasSelection) {
-                    numberOfSelectedWords = [spellChecker countWordsInString:selectedString
-                                                                    language:nil];
-                }
-            }
-            if (hasSelection) {
-                numberOfSelectedLines = [[[selectedString stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]]
-                                          componentsSeparatedByString:@"\n"] count];
-            }
-            
-            // location カウント
-            if (updatesDrawer || [defaults boolForKey:CEDefaultShowStatusBarLocationKey]) {
-                NSString *locString = [wholeString substringToIndex:selectedRange.location];
-                NSString *str = countLineEnding ? locString : [locString stringByDeletingNewLineCharacters];
-                
-                location = [str numberOfComposedCharacters];
-            }
-            
-            // 文字数カウント
-            if (updatesDrawer || [defaults boolForKey:CEDefaultShowStatusBarCharsKey]) {
-                NSString *str = countLineEnding ? wholeString : [wholeString stringByDeletingNewLineCharacters];
-                numberOfChars = [str numberOfComposedCharacters];
-                if (hasSelection) {
-                    str = countLineEnding ? selectedString : [selectedString stringByDeletingNewLineCharacters];
-                    numberOfSelectedChars = [str numberOfComposedCharacters];
-                }
-            }
-            
-            // 改行コードをカウントしない場合は再計算
-            if (!countLineEnding) {
-                selectedRange.length = [[selectedString stringByDeletingNewLineCharacters] length];
-                length = [[wholeString stringByDeletingNewLineCharacters] length];
-            }
-        }
-        
-        NSString *singleCharInfo;
-        NSUInteger byteLength = 0, selectedByteLength = 0;
-        if (updatesDrawer) {
-            {
-                if (selectedRange.length == 2) {
-                    unichar firstChar = [wholeString characterAtIndex:selectedRange.location];
-                    unichar secondChar = [wholeString characterAtIndex:selectedRange.location + 1];
-                    if (CFStringIsSurrogateHighCharacter(firstChar) && CFStringIsSurrogateLowCharacter(secondChar)) {
-                        UTF32Char pair = CFStringGetLongCharacterForSurrogatePair(firstChar, secondChar);
-                        singleCharInfo = [NSString stringWithFormat:@"U+%04tX", pair];
-                    }
-                }
-                if (selectedRange.length == 1) {
-                    unichar character = [wholeString characterAtIndex:selectedRange.location];
-                    singleCharInfo = [NSString stringWithFormat:@"U+%.4X", character];
-                }
-            }
-            
-            byteLength = [wholeString lengthOfBytesUsingEncoding:encoding];
-            selectedByteLength = [[wholeString substringWithRange:selectedRange]
-                                  lengthOfBytesUsingEncoding:encoding];
-        }
-        
-        // apply to UI
-        dispatch_sync(dispatch_get_main_queue(), ^{
-            if (updatesStatusBar) {
-                [statusBar setLinesInfo:numberOfLines];
-                [statusBar setSelectedLinesInfo:numberOfSelectedLines];
-                [statusBar setCharsInfo:numberOfChars];
-                [statusBar setSelectedCharsInfo:numberOfSelectedChars];
-                [statusBar setLengthInfo:length];
-                [statusBar setSelectedLengthInfo:selectedRange.length];
-                [statusBar setWordsInfo:numberOfWords];
-                [statusBar setSelectedWordsInfo:numberOfSelectedWords];
-                [statusBar setLocationInfo:location];
-                [statusBar setLineInfo:currentLine];
-                [statusBar setColumnInfo:column];
-                [statusBar updateEditorStatus];
-            }
-            if (updatesDrawer) {
-                [strongSelf setLinesInfo:[strongSelf formatCount:numberOfLines selected:numberOfSelectedLines]];
-                [strongSelf setCharsInfo:[strongSelf formatCount:numberOfChars selected:numberOfSelectedChars]];
-                [strongSelf setLengthInfo:[strongSelf formatCount:length selected:selectedRange.length]];
-                [strongSelf setByteLengthInfo:[strongSelf formatCount:byteLength selected:selectedByteLength]];
-                [strongSelf setWordsInfo:[strongSelf formatCount:numberOfWords selected:numberOfSelectedWords]];
-                [strongSelf setLocationInfo:location];
-                [strongSelf setColumnInfo:column];
-                [strongSelf setLineInfo:currentLine];
-                [strongSelf setSingleCharInfo:singleCharInfo];
-            }
-        });
-    });
-}
-
-
-// ------------------------------------------------------
-/// 情報ドロワーとステータスバーの改行コード／エンコーディング表記を更新
-- (void)updateEncodingAndLineEndingsInfo:(BOOL)needsUpdateDrawer
-// ------------------------------------------------------
-{
-    BOOL shouldUpdateStatusBar = [[self statusBarController] isShown];
-    BOOL shouldUpdateDrawer = needsUpdateDrawer ? YES : [self needsInfoDrawerUpdate];
-    
-    if (!shouldUpdateStatusBar && !shouldUpdateDrawer) { return; }
-    
-    NSString *lineEndingsInfo = [NSString newLineNameWithType:[[self document] lineEnding]];
-    NSString *encodingInfo = [[self document] currentIANACharSetName];
-    
-    [self setEncodingInfo:encodingInfo];
-    [self setLineEndingsInfo:lineEndingsInfo];
-    
-    [[self statusBarController] setEncodingInfo:encodingInfo];
-    [[self statusBarController] setLineEndingsInfo:lineEndingsInfo];
-    if (shouldUpdateStatusBar) {
-        [[self statusBarController] updateDocumentStatus];
+    if ([keyPath isEqualToString:CEDefaultWindowAlphaKey]) {
+        [(CEWindow *)[self window] setBackgroundAlpha:(CGFloat)[change[NSKeyValueChangeNewKey] doubleValue]];
     }
 }
 
-
-// ------------------------------------------------------
-/// 情報ドロワーとステータスバーのファイル情報を更新
-- (void)updateFileAttributesInfo
-// ------------------------------------------------------
-{
-    NSDictionary *attrs = [[self document] fileAttributes];
-    
-    [self setCreatedInfo:[attrs fileCreationDate]];
-    [self setModificatedInfo:[attrs fileModificationDate]];
-    [self setOwnerInfo:[attrs fileOwnerAccountName]];
-    [self setTypeInfo:NSFileTypeForHFSTypeCode([attrs fileHFSTypeCode])];
-    [self setCreatorInfo:NSFileTypeForHFSTypeCode([attrs fileHFSCreatorCode])];
-    [self setFinderLockInfo:([attrs fileIsImmutable] ? NSLocalizedString(@"ON", nil) : nil)];
-    [self setPermissionInfo:[NSString stringWithFormat:@"%tu", [attrs filePosixPermissions]]];
-    [self setFileSizeInfo:[attrs fileSize]];
-    
-    [[self statusBarController] setFileSizeInfo:[attrs fileSize]];
-    [[self statusBarController] updateDocumentStatus];
-}
-
-
-// ------------------------------------------------------
-/// 非互換文字更新タイマーのファイヤーデイトを設定時間後にセット
-- (void)setupIncompatibleCharTimer
-// ------------------------------------------------------
-{
-    if (![self needsIncompatibleCharDrawerUpdate]) { return; }
-    
-    if ([self incompatibleCharTimer]) {
-        [[self incompatibleCharTimer] setFireDate:[NSDate dateWithTimeIntervalSinceNow:incompatibleCharInterval]];
-    } else {
-        [self setIncompatibleCharTimer:[NSTimer scheduledTimerWithTimeInterval:incompatibleCharInterval
-                                                                        target:self
-                                                                      selector:@selector(updateIncompatibleCharListWithTimer:)
-                                                                      userInfo:nil
-                                                                       repeats:NO]];
-    }
-}
-
-
-// ------------------------------------------------------
-/// 文書情報更新タイマーのファイヤーデイトを設定時間後にセット
-- (void)setupInfoUpdateTimer
-// ------------------------------------------------------
-{
-    if ([self infoUpdateTimer]) {
-        [[self infoUpdateTimer] setFireDate:[NSDate dateWithTimeIntervalSinceNow:infoUpdateInterval]];
-    } else {
-        [self setInfoUpdateTimer:[NSTimer scheduledTimerWithTimeInterval:infoUpdateInterval
-                                                                  target:self
-                                                                selector:@selector(updateEditorStatusInfoWithTimer:)
-                                                                userInfo:nil
-                                                                 repeats:NO]];
-    }
-}
-
-
-
-#pragma mark Accessors
-
-// ------------------------------------------------------
-/// ステータスバーを表示するかどうかを返す
-- (BOOL)showsStatusBar
-// ------------------------------------------------------
-{
-    return [[self statusBarController] isShown];
-}
-
-
-// ------------------------------------------------------
-/// ステータスバーを表示する／しないをセット
-- (void)setShowsStatusBar:(BOOL)showsStatusBar
-// ------------------------------------------------------
-{
-    if (![self statusBarController]) { return; }
-    
-    [[self statusBarController] setShown:showsStatusBar animate:YES];
-    [[self toolbarController] toggleItemWithTag:CEToolbarShowStatusBarItemTag
-                                          setOn:showsStatusBar];
-    [self updateEncodingAndLineEndingsInfo:NO];
-    
-    if (![self infoUpdateTimer]) {
-        [self updateEditorStatusInfo:NO];
-    }
-}
-
-
-// ------------------------------------------------------
-/// 文書への書き込み（ファイル上書き保存）が可能かどうかをセット
-- (void)setWritable:(BOOL)isWritable
-// ------------------------------------------------------
-{
-    if ([self statusBarController]) {
-        [[self statusBarController] setShowsReadOnly:!isWritable];
-    }
-}
-    
-
-
-#pragma mark Protocol
 
 //=======================================================
-// OgreKit Protocol
-//
+// OgreTextFindDataSource Protocol
 //=======================================================
 
 // ------------------------------------------------------
@@ -526,30 +214,136 @@ static NSTimeInterval incompatibleCharInterval;
 // ------------------------------------------------------
 {
     OgreTextFinder *textFinder = (OgreTextFinder *)sender;
-    [textFinder setTargetToFindIn:[[self editor] textView]];
+    [textFinder setTargetToFindIn:[[self editor] focusedTextView]];
 }
 
 
 
-#pragma mark Delegate and Notification
+#pragma mark Public Methods
+
+// ------------------------------------------------------
+/// show incompatible char list
+- (void)showIncompatibleCharList
+// ------------------------------------------------------
+{
+    [self setSelectedSidebarTag:CEIncompatibleCharsTag];
+    [self setSidebarShown:YES];
+}
+
+
+// ------------------------------------------------------
+/// update incompatible char list if it is currently shown
+- (void)updateIncompatibleCharsIfNeeded
+// ------------------------------------------------------
+{
+    [[self incompatibleCharsViewController] updateIfNeeded];
+}
+
+
+// ------------------------------------------------------
+/// update information about the content text in document inspector and status bar
+- (void)updateEditorInfoIfNeeded
+// ------------------------------------------------------
+{
+    BOOL updatesStatusBar = [[self statusBarController] isShown];
+    BOOL updatesDrawer = [self isDocumentInspectorShown];
+    
+    if (!updatesStatusBar && !updatesDrawer) { return; }
+    
+    [[self documentAnalyzer] updateEditorInfo:updatesDrawer];
+}
+
+
+// ------------------------------------------------------
+/// update information about file encoding and line endings in document inspector and status bar
+- (void)updateModeInfoIfNeeded
+// ------------------------------------------------------
+{
+    BOOL updatesStatusBar = [[self statusBarController] isShown];
+    BOOL updatesDrawer = [self isDocumentInspectorShown];
+    
+    if (!updatesStatusBar && !updatesDrawer) { return; }
+    
+    [[self documentAnalyzer] updateModeInfo];
+}
+
+
+// ------------------------------------------------------
+/// update information about file in document inspector and status bar
+- (void)updateFileInfo
+// ------------------------------------------------------
+{
+    [[self documentAnalyzer] updateFileInfo];
+}
+
+
+// ------------------------------------------------------
+/// set update timer for information about the content text
+- (void)setupEditorInfoUpdateTimer
+// ------------------------------------------------------
+{
+    if ([self editorInfoUpdateTimer]) {
+        [[self editorInfoUpdateTimer] setFireDate:[NSDate dateWithTimeIntervalSinceNow:infoUpdateInterval]];
+    } else {
+        [self setEditorInfoUpdateTimer:[NSTimer scheduledTimerWithTimeInterval:infoUpdateInterval
+                                                                        target:self
+                                                                      selector:@selector(updateEditorInfoWithTimer:)
+                                                                      userInfo:nil
+                                                                       repeats:NO]];
+    }
+}
+
+
+
+#pragma mark Public Accessors
+
+// ------------------------------------------------------
+/// return whether status bar is shown
+- (BOOL)showsStatusBar
+// ------------------------------------------------------
+{
+    return [[self statusBarController] isShown];
+}
+
+
+// ------------------------------------------------------
+/// set visibility of status bar
+- (void)setShowsStatusBar:(BOOL)showsStatusBar
+// ------------------------------------------------------
+{
+    if (![self statusBarController]) { return; }
+    
+    [[self statusBarController] setShown:showsStatusBar animate:YES];
+    [[self toolbarController] toggleItemWithTag:CEToolbarShowStatusBarItemTag
+                                          setOn:showsStatusBar];
+    
+    if (showsStatusBar) {
+        [[self documentAnalyzer] updateEditorInfo:NO];
+        [[self documentAnalyzer] updateFileInfo];
+        [[self documentAnalyzer] updateModeInfo];
+    }
+}
+
+
+
+#pragma mark Delegate
 
 //=======================================================
-// Delegate method (NSWindow)
-//  <== mainWindow
+// NSWindowDelegate  < window
 //=======================================================
 
 // ------------------------------------------------------
-/// ウィンドウがキーになった
+/// window becomes key window
 - (void)windowDidBecomeKey:(NSNotification *)notification
 // ------------------------------------------------------
 {
-    // シートを表示していなければ、各種更新実行
-    if ([[self window] attachedSheet] == nil) {
-        // フラグがたっていたら、改めてスタイル名を指定し直して再カラーリングを実行
-        if ([self needsRecolorWithBecomeKey]) {
-            [self setNeedsRecolorWithBecomeKey:NO];
-            [[self document] doSetSyntaxStyle:[[self editor] syntaxStyleName]];
-        }
+    // do nothing if any sheet is attached
+    if ([[self window] attachedSheet]) { return; }
+    
+    // update and style name and highlight if recolor flag is set
+    if ([self needsRecolorWithBecomeKey]) {
+        [self setNeedsRecolorWithBecomeKey:NO];
+        [[self document] doSetSyntaxStyle:[[self editor] syntaxStyleName]];
     }
 }
 
@@ -565,6 +359,8 @@ static NSTimeInterval incompatibleCharInterval;
     [state encodeBool:[[self editor] showsPageGuide] forKey:CEDefaultShowPageGuideKey];
     [state encodeBool:[[self editor] showsInvisibles] forKey:CEDefaultShowInvisiblesKey];
     [state encodeBool:[[self editor] isVerticalLayoutOrientation] forKey:CEDefaultLayoutTextVerticalKey];
+    [state encodeBool:[self isSidebarShown] forKey:CEDefaultShowDocumentInspectorKey];
+    [state encodeDouble:[self sidebarWidth] forKey:CEDefaultSidebarWidthKey];
 }
 
 
@@ -591,126 +387,83 @@ static NSTimeInterval incompatibleCharInterval;
     if ([state containsValueForKey:CEDefaultLayoutTextVerticalKey]) {
         [[self editor] setVerticalLayoutOrientation:[state decodeBoolForKey:CEDefaultLayoutTextVerticalKey]];
     }
-}
-
-
-
-//=======================================================
-// Delegate method (NSTabView)
-//  <== tabView
-//=======================================================
-
-// ------------------------------------------------------
-/// ドロワーのタブが切り替えられる直前に内容の更新を行う
-- (void)tabView:(NSTabView *)tabView willSelectTabViewItem:(NSTabViewItem *)tabViewItem
-// ------------------------------------------------------
-{
-    if ([[tabViewItem identifier] isEqualToString:InfoIdentifier]) {
-        [self updateFileAttributesInfo];
-        [self updateEditorStatusInfo:YES];
-        [self updateEncodingAndLineEndingsInfo:YES];
-    } else if ([[tabViewItem identifier] isEqualToString:IncompatibleIdentifier]) {
-        [self updateIncompatibleCharList];
+    if ([state containsValueForKey:CEDefaultShowDocumentInspectorKey]) {
+        [self setSidebarWidth:[state decodeDoubleForKey:CEDefaultSidebarWidthKey]];
+        [self setSidebarShown:[state decodeBoolForKey:CEDefaultShowDocumentInspectorKey]];
     }
 }
 
 
 //=======================================================
-// Delegate method (NSDrawer)
-//  <== drawer
+// NSSplitViewDelegate  < sidebarSplitView
 //=======================================================
 
 // ------------------------------------------------------
-/// ドロワーが閉じたらテキストビューのマークアップをクリア
-- (void)drawerDidClose:(NSNotification *)notification
+/// only sidebar can collapse
+- (BOOL)splitView:(NSSplitView *)splitView canCollapseSubview:(NSView *)subview
 // ------------------------------------------------------
 {
-    [[self editor] clearAllMarkup];
-    // テキストビューの表示だけをクリアし、リストはそのまま
+    return (subview == [self sidebar]);
+}
+
+
+// ------------------------------------------------------
+/// hide sidebar divider when collapsed
+- (BOOL)splitView:(NSSplitView *)splitView shouldHideDividerAtIndex:(NSInteger)dividerIndex
+// ------------------------------------------------------
+{
+    return YES;
+}
+
+
+// ------------------------------------------------------
+/// store current sidebar width
+- (void)splitViewDidResizeSubviews:(NSNotification *)notification
+// ------------------------------------------------------
+{
+    if ([notification userInfo][@"NSSplitViewDividerIndex"]) {  // check wheter the change coused by user's divider dragging
+        if ([self isSidebarShown]) {
+            CGFloat currentWidth = NSWidth([[self sidebar] bounds]);
+            [self setSidebarWidth:currentWidth];
+            [[NSUserDefaults standardUserDefaults] setDouble:currentWidth forKey:CEDefaultSidebarWidthKey];
+        }
+    }
 }
 
 
 
 #pragma mark Action Messages
 
-//=======================================================
-// Action messages
-//
-//=======================================================
-
 // ------------------------------------------------------
-/// ファイル情報を表示
+/// toggle visibility of document inspector
 - (IBAction)getInfo:(id)sender
 // ------------------------------------------------------
 {
-    NSInteger drawerState = [[self drawer] state];
-    BOOL tabState = [[[[self tabView] selectedTabViewItem] identifier] isEqualToString:InfoIdentifier];
-
-    if ((drawerState == NSDrawerClosedState) || (drawerState == NSDrawerClosingState)) {
-        if (tabState) {
-            // 情報の更新
-            [self updateFileAttributesInfo];
-            [self updateEditorStatusInfo:YES];
-            [self updateEncodingAndLineEndingsInfo:YES];
-        } else {
-            [[self tabView] selectTabViewItemWithIdentifier:InfoIdentifier];
-        }
-        [[self drawer] open];
+    if ([self isDocumentInspectorShown]) {
+        [self setSidebarShown:NO];
     } else {
-        if (tabState) {
-            [[self drawer] close];
-        } else {
-            [[self tabView] selectTabViewItemWithIdentifier:InfoIdentifier];
-        }
+        [self setSelectedSidebarTag:CEDocumentInspectorTag];
+        [self setSidebarShown:YES];
     }
 }
 
 
 // ------------------------------------------------------
-/// 変換不可文字列リストパネルを開く
+/// toggle visibility of incompatible chars list view
 - (IBAction)toggleIncompatibleCharList:(id)sender
 // ------------------------------------------------------
 {
-    NSInteger drawerState = [[self drawer] state];
-    BOOL tabState = [[[[self tabView] selectedTabViewItem] identifier] isEqualToString:IncompatibleIdentifier];
-
-    if ((drawerState == NSDrawerClosedState) || (drawerState == NSDrawerClosingState)) {
-        if (tabState) {
-            [self updateIncompatibleCharList];
-        } else {
-            [[self tabView] selectTabViewItemWithIdentifier:IncompatibleIdentifier];
-        }
-        [[self drawer] open];
+    if ([self isSidebarShown] && [self selectedSidebarTag] == CEIncompatibleCharsTag) {
+        [self setSidebarShown:NO];
     } else {
-        if (tabState) {
-            [[self drawer] close];
-        } else {
-            [[self tabView] selectTabViewItemWithIdentifier:IncompatibleIdentifier];
-        }
+        [self setSelectedSidebarTag:CEIncompatibleCharsTag];
+        [self setSidebarShown:YES];
     }
 }
 
 
 // ------------------------------------------------------
-/// 文字列を選択
-- (IBAction)selectIncompatibleRange:(id)sender
-// ------------------------------------------------------
-{
-    if ([[[self listController] selectedObjects] count] == 0) { return; }
-
-    NSRange range = [[[self listController] selectedObjects][0][CEIncompatibleRangeKey] rangeValue];
-    
-    [[self editor] setSelectedRange:range];
-    [[self window] makeFirstResponder:[[self editor] textView]];
-    [[[self editor] textView] scrollRangeToVisible:range];
-
-    // 検索結果表示エフェクトを追加
-    [[[self editor] textView] showFindIndicatorForRange:range];
-}
-
-
-// ------------------------------------------------------
-/// ステータスバーの表示をトグルに切り替える
+/// toggle visibility of status bar
 - (IBAction)toggleStatusBar:(id)sender
 // ------------------------------------------------------
 {
@@ -721,13 +474,106 @@ static NSTimeInterval incompatibleCharInterval;
 
 #pragma mark Private Methods
 
-//=======================================================
-// Private method
-//
-//=======================================================
+// ------------------------------------------------------
+/// set sidebar visibility
+- (void)setSidebarShown:(BOOL)shown
+// ------------------------------------------------------
+{
+    if ([self selectedSidebarTag] == 0) {
+        [self setSelectedSidebarTag:CEDocumentInspectorTag];
+    }
+    if ([self isSidebarShown] == shown) { return; }
+    
+    BOOL isInitial = ![[self window] isVisible];  // on `windowDidLoad` and `window:didDecodeRestorableState:`
+    BOOL isFullscreen = ([[self window] styleMask] & NSFullScreenWindowMask) == NSFullScreenWindowMask;
+    BOOL changesWindowSize = !isInitial && !isFullscreen;
+    CGFloat sidebarWidth = [self sidebarWidth] ?: [[NSUserDefaults standardUserDefaults] doubleForKey:CEDefaultSidebarWidthKey];
+    CGFloat dividerThickness = [[self sidebarSplitView] dividerThickness];
+    CGFloat position = [[self sidebarSplitView] maxPossiblePositionOfDividerAtIndex:0];
+    NSRect windowFrame = [[self window] frame];
+    
+    // adjust divider position
+    if ((changesWindowSize && !shown) || (!changesWindowSize && shown)) {
+        position -= sidebarWidth;
+    }
+    
+    // adjust window width
+    if (changesWindowSize) {
+        windowFrame.size.width += shown ? (sidebarWidth + dividerThickness) : - (sidebarWidth + dividerThickness);
+    }
+    
+    // apply
+    [[self window] setFrame:windowFrame display:NO];
+    [[self sidebarSplitView] setPosition:position ofDividerAtIndex:0];
+    [[self sidebarSplitView] adjustSubviews];
+    
+    if (!shown) {
+        // clear incompatible chars markup
+        [[self editor] clearAllMarkup];
+    }
+}
+
 
 // ------------------------------------------------------
-/// 指定されたスタイルを適用していたら、リカラーフラグを立てる
+/// return whether sidebar is opened
+- (BOOL)isSidebarShown
+// ------------------------------------------------------
+{
+    return ![[self sidebarSplitView] isSubviewCollapsed:[self sidebar]];
+}
+
+
+// ------------------------------------------------------
+/// return whether document inspector is shown
+- (BOOL)isDocumentInspectorShown
+// ------------------------------------------------------
+{
+    return ([self selectedSidebarTag] == CEDocumentInspectorTag && [self isSidebarShown]);
+}
+
+
+// ------------------------------------------------------
+/// switch sidebar view
+- (void)setSelectedSidebarTag:(CESidebarTag)tag
+// ------------------------------------------------------
+{
+    NSViewController *viewController;
+    switch (tag) {
+        case CEDocumentInspectorTag:
+            viewController = [self documentInspectorViewController];
+            [[self documentAnalyzer] updateEditorInfo:YES];
+            [[self documentAnalyzer] updateFileInfo];
+            [[self documentAnalyzer] updateModeInfo];
+            break;
+            
+        case CEIncompatibleCharsTag:
+            viewController = [self incompatibleCharsViewController];
+            [[self incompatibleCharsViewController] update];
+            break;
+    }
+    
+    if (_selectedSidebarTag == tag) { return; }
+    
+    _selectedSidebarTag = tag;
+    
+    // swap views
+    NSView *placeholder = [self sidebarPlaceholderView];
+    NSView *currentView = [[placeholder subviews] firstObject];
+    NSView *newView = [viewController view];
+    
+    // transit with animation
+    [newView setFrame:[currentView frame]];
+    [[placeholder animator] replaceSubview:currentView with:newView];
+    
+    // update autolayout constrains
+    NSDictionary *views = NSDictionaryOfVariableBindings(newView);
+    [placeholder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[newView]|" options:0 metrics:nil views:views]];
+    [placeholder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[newView]|" options:0 metrics:nil views:views]];
+}
+
+
+// ------------------------------------------------------
+/// set a flag of syntax highlight update if corresponded style has been updated
 - (void)syntaxDidUpdate:(NSNotification *)notification
 // ------------------------------------------------------
 {
@@ -735,97 +581,39 @@ static NSTimeInterval incompatibleCharInterval;
     NSString *oldName = [notification userInfo][CEOldNameKey];
     NSString *newName = [notification userInfo][CENewNameKey];
     
-    if ([oldName isEqualToString:currentName]) {
-        if ([oldName isEqualToString:newName]) {
-            [[self editor] setSyntaxStyleName:newName recolorNow:NO];
+    if (![oldName isEqualToString:currentName]) { return; }
+    
+    if ([oldName isEqualToString:newName]) {
+        [[self editor] setSyntaxStyleName:newName recolorNow:NO];
+    }
+    if (![newName isEqualToString:NSLocalizedString(@"None", nil)]) {
+        if ([[self window] isKeyWindow]) {
+            [[self document] doSetSyntaxStyle:newName];
+        } else {
+            [self setNeedsRecolorWithBecomeKey:YES];
         }
-        if (![newName isEqualToString:NSLocalizedString(@"None", nil)]) {
-            if ([[self window] isKeyWindow]) {
-                [[self document] doSetSyntaxStyle:newName];
-            } else {
-                [self setNeedsRecolorWithBecomeKey:YES];
-            }
-        }
     }
 }
 
 
 // ------------------------------------------------------
-/// 選択範囲内の情報も併記するドロワー用情報のフォーマット
-- (NSString *)formatCount:(NSUInteger)count selected:(NSUInteger)selectedCount
+/// editor info update timer is fired
+- (void)updateEditorInfoWithTimer:(NSTimer *)timer
 // ------------------------------------------------------
 {
-    NSNumberFormatter *formatter = [self infoNumberFormatter];
-    
-    if (selectedCount > 0) {
-        return [NSString stringWithFormat:@"%@ (%@)",
-                [formatter stringFromNumber:@(count)], [formatter stringFromNumber:@(selectedCount)]];
-    } else {
-        return [NSString stringWithFormat:@"%@", [formatter stringFromNumber:@(count)]];
-    }
+    [self stopEditorInfoUpdateTimer];
+    [self updateEditorInfoIfNeeded];
 }
 
 
 // ------------------------------------------------------
-/// 非互換文字リストを更新
-- (void)updateIncompatibleCharList
+/// stop editor info update timer
+- (void)stopEditorInfoUpdateTimer
 // ------------------------------------------------------
 {
-    NSArray *contents = [[self document] findCharsIncompatibleWithEncoding:[[self document] encoding]];
-    
-    NSMutableArray *ranges = [NSMutableArray array];
-    for (NSDictionary *incompatible in contents) {
-        [ranges addObject:incompatible[CEIncompatibleRangeKey]];
-    }
-    [[self editor] clearAllMarkup];
-    [[self editor] markupRanges:ranges];
-    
-    
-    [[self listErrorTextField] setHidden:([contents count] > 0)]; // リストが取得できなかった時のメッセージを表示
-    [[self listController] setContent:contents];
-}
-
-
-// ------------------------------------------------------
-/// タイマーの設定時刻に到達、情報更新
-- (void)updateEditorStatusInfoWithTimer:(NSTimer *)timer
-// ------------------------------------------------------
-{
-    [self stopInfoUpdateTimer];
-    [self updateEditorStatusInfo:NO];
-}
-
-
-// ------------------------------------------------------
-/// タイマーの設定時刻に到達、非互換文字情報更新
-- (void)updateIncompatibleCharListWithTimer:(NSTimer *)timer
-// ------------------------------------------------------
-{
-    [self stopIncompatibleCharTimer];
-    [self updateIncompatibleCharList];
-}
-
-
-// ------------------------------------------------------
-/// 文書情報更新タイマーを停止
-- (void)stopInfoUpdateTimer
-// ------------------------------------------------------
-{
-    if ([self infoUpdateTimer]) {
-        [[self infoUpdateTimer] invalidate];
-        [self setInfoUpdateTimer:nil];
-    }
-}
-
-
-// ------------------------------------------------------
-/// 非互換文字情報更新タイマーを停止
-- (void)stopIncompatibleCharTimer
-// ------------------------------------------------------
-{
-    if ([self incompatibleCharTimer]) {
-        [[self incompatibleCharTimer] invalidate];
-        [self setIncompatibleCharTimer:nil];
+    if ([self editorInfoUpdateTimer]) {
+        [[self editorInfoUpdateTimer] invalidate];
+        [self setEditorInfoUpdateTimer:nil];
     }
 }
 

@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014 CotEditor Project
+ © 2014-2015 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -29,7 +29,7 @@
  */
 
 #import "CEScriptManager.h"
-#import "CEScriptErrorPanelController.h"
+#import "CEConsolePanelController.h"
 #import "CEDocument.h"
 #import "CEAppDelegate.h"
 #import "CEUtils.h"
@@ -52,28 +52,19 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 };
 
 
-
-
-#pragma mark -
-
 @implementation CEScriptManager
 
-#pragma mark Class Methods
-
-//=======================================================
-// Class method
-//
-//=======================================================
+#pragma mark Singleton
 
 // ------------------------------------------------------
 /// return singleton instance
 + (instancetype)sharedManager
 // ------------------------------------------------------
 {
-    static dispatch_once_t predicate;
+    static dispatch_once_t onceToken;
     static id shared = nil;
     
-    dispatch_once(&predicate, ^{
+    dispatch_once(&onceToken, ^{
         shared = [[self alloc] init];
     });
     
@@ -84,19 +75,23 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 
 #pragma mark Superclass Methods
 
-//=======================================================
-// Superclass method
-//
-//=======================================================
-
 // ------------------------------------------------------
-/// 初期化
+/// initialize
 - (instancetype)init
 // ------------------------------------------------------
 {
     self = [super init];
     if (self) {
         [self copySampleScriptToUserDomain:self];
+        
+        // run dummy AppleScript once for quick script launch
+        if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultRunAppleScriptInLaunchingKey]) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                NSString *source = @"tell application \"CotEditor\" to number of documents";
+                NSAppleScript *AppleScript = [[NSAppleScript alloc] initWithSource:source];
+                [AppleScript executeAndReturnError:nil];
+            });
+        }
     }
     return self;
 }
@@ -105,17 +100,11 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 
 #pragma mark Public Methods
 
-//=======================================================
-// Public method
-//
-//=======================================================
-
 //------------------------------------------------------
-/// Scriptメニューを生成
+/// build Script menu
 - (void)buildScriptMenu:(id)sender
 //------------------------------------------------------
 {
-    // メニューデータの読み込みとメニュー構成
     NSMenu *menu = [[[NSApp mainMenu] itemAtIndex:CEScriptMenuIndex] submenu];
     [menu removeAllItems];
     NSMenuItem *menuItem;
@@ -155,7 +144,7 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 
 
 //------------------------------------------------------
-/// コンテキストメニュー用のメニューを返す
+/// return menu for context menu
 - (NSMenu *)contexualMenu
 //------------------------------------------------------
 {
@@ -174,13 +163,8 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 
 #pragma mark Action Messages
 
-//=======================================================
-// Action messages
-//
-//=======================================================
-
 //------------------------------------------------------
-/// Script 実行
+/// launch script (invoked by menu item)
 - (IBAction)launchScript:(id)sender
 //------------------------------------------------------
 {
@@ -188,7 +172,7 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
     
     if (!URL) { return; }
 
-    // ファイルがない場合は警告して抜ける
+    // display alert and endup if file not exists
     if (![URL checkResourceIsReachableAndReturnError:nil]) {
         [self showAlertWithMessage:[NSString stringWithFormat:NSLocalizedString(@"The script “%@” does not exist.\n\nCheck it and do “Update Script Menu”.", @""), URL]];
         return;
@@ -196,9 +180,9 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
     
     NSString *extension = [URL pathExtension];
 
-    // 修飾キーが押されている場合は挙動を変更
-    NSUInteger flags = [NSEvent modifierFlags];
-    if (flags == NSAlternateKeyMask) {  // Optキーが押されていたら、スクリプトを開く
+    // change behavior if modifier key is pressed
+    NSEventModifierFlags modifierFlags = [NSEvent modifierFlags];
+    if (modifierFlags == NSAlternateKeyMask) {  // open script file if Opt key is pressed
         BOOL success = YES;
         NSString *identifier = [[self AppleScriptExtensions] containsObject:extension] ? @"com.apple.ScriptEditor2" : [[NSBundle mainBundle] bundleIdentifier];
         success = [[NSWorkspace sharedWorkspace] openURLs:@[URL]
@@ -207,36 +191,39 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
                            additionalEventParamDescriptor:nil
                                         launchIdentifiers:NULL];
         
-        // 開けなかったり選択できなければその旨を表示
+        // display alert if cannot open/select the script file
         if (!success) {
             NSString *message = [NSString stringWithFormat:NSLocalizedString(@"Could not open the script file “%@”.", nil), URL];
             [self showAlertWithMessage:message];
         }
         return;
         
-    } else if (flags == (NSAlternateKeyMask | NSShiftKeyMask)) {  // Opt+Shiftキーが押されていたら、Finderで表示
+    } else if (modifierFlags == (NSAlternateKeyMask | NSShiftKeyMask)) {  // reveal on Finder if Opt+Shift keys are pressed
         [[NSWorkspace sharedWorkspace] activateFileViewerSelectingURLs:@[URL]];
         return;
     }
 
-    // AppleScript を実行
+    // run AppleScript
     if ([[self AppleScriptExtensions] containsObject:extension]) {
         [self runAppleScript:URL];
         
-    // Shell Script を実行
+    // run Shell Script
     } else if ([[self scriptExtensions] containsObject:extension]) {
-        // 実行権限がない場合は警告して抜ける
-        if (![URL checkResourceIsReachableAndReturnError:nil]) {
+        // display alert if script file doesn't have execution permission
+        NSNumber *isExecutable;
+        [URL getResourceValue:&isExecutable forKey:NSURLIsExecutableKey error:nil];
+        if (![isExecutable boolValue]) {
             [self showAlertWithMessage:[NSString stringWithFormat:NSLocalizedString(@"Cannnot execute the script “%@”.\nShell script requires execute permission.\n\nCheck permission of the script file.", nil), URL]];
             return;
         }
+        
         [self runShellScript:URL];
     }
 }
 
 
 // ------------------------------------------------------
-/// ScriptフォルダウィンドウをFinderで表示
+/// open Script Menu folder in Finder
 - (IBAction)openScriptFolder:(id)sender
 // ------------------------------------------------------
 {
@@ -245,11 +232,11 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 
 
 // ------------------------------------------------------
-/// サンプルスクリプトをユーザ領域にコピー
+/// copy sample scripts to user domain
 - (IBAction)copySampleScriptToUserDomain:(id)sender
 // ------------------------------------------------------
 {
-    NSURL *sourceURL = [[NSBundle mainBundle] URLForResource:@"SampleScript" withExtension:nil];
+    NSURL *sourceURL = [[[NSBundle mainBundle] sharedSupportURL] URLByAppendingPathComponent:@"SampleScripts"];
     NSURL *destURL = [[[self class] scriptDirectoryURL] URLByAppendingPathComponent:@"SampleScript"];
     
     if (![sourceURL checkResourceIsReachableAndReturnError:nil]) {
@@ -268,7 +255,7 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
         }
         
     } else if ([sender isKindOfClass:[NSMenuItem class]]) {
-        // ユーザがメニューからコピーを実行し、すでにサンプルフォルダがあった場合は警告を出す
+        // show alert if sample script folder is already exists only when user performs the copy
         NSAlert *alert = [[NSAlert alloc] init];
         [alert setMessageText:NSLocalizedString(@"SampleScript folder exists already.", nil)];
         [alert setInformativeText:[NSString stringWithFormat:NSLocalizedString(@"If you want to replace it with the new one, remove the existing folder at “%@” at first.", nil), [destURL relativePath]]];
@@ -278,15 +265,10 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 
 
 
-#pragma mark Private Class Methods
-
-//=======================================================
-// Private class method
-//
-//=======================================================
+#pragma mark Private Methods
 
 // ------------------------------------------------------
-/// 対応しているスクリプトの拡張子
+/// file extensions for UNIX scripts
 - (NSArray *)scriptExtensions
 // ------------------------------------------------------
 {
@@ -295,7 +277,7 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 
 
 // ------------------------------------------------------
-/// 対応しているAppleScriptの拡張子
+/// file extensions for AppleScript
 - (NSArray *)AppleScriptExtensions
 // ------------------------------------------------------
 {
@@ -304,7 +286,7 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 
 
 //------------------------------------------------------
-/// Scriptファイル保存用ディレクトリを返す
+/// return directory to save script files
 + (NSURL *)scriptDirectoryURL
 //------------------------------------------------------
 {
@@ -313,7 +295,7 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 
 
 // ------------------------------------------------------
-/// スクリプトから出力タイプを読み取る
+/// read input type from script
 + (CEScriptInputType)scanInputType:(NSString *)string
 // ------------------------------------------------------
 {
@@ -342,7 +324,7 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 
 
 // ------------------------------------------------------
-/// スクリプトから出力タイプを読み取る
+/// read output type from script
 + (CEScriptOutputType)scanOutputType:(NSString *)string
 // ------------------------------------------------------
 {
@@ -380,63 +362,86 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 
 
 // ------------------------------------------------------
-/// 入力タイプに即した現在の書類の内容を返す
-+ (NSString *)documentStringWithInputType:(CEScriptInputType)inputType error:(BOOL *)hasError
+/// return document content conforming to the input type
++ (NSString *)inputStringWithType:(CEScriptInputType)inputType document:(CEDocument *)document error:(NSError **)error
 // ------------------------------------------------------
 {
-    CEEditorWrapper *editor = [[[NSDocumentController sharedDocumentController] currentDocument] editor];
+    CEEditorWrapper *editor = [document editor];
+    
+    // on no document found
+    if (!editor) {
+        switch (inputType) {
+            case CEInputSelectionType:
+            case CEInputAllTextType:
+                if (error) {
+                    *error = [NSError errorWithDomain:CEErrorDomain
+                                                 code:CEScriptNoTargetDocumentError
+                                             userInfo:@{NSLocalizedDescriptionKey: @"No document to scan input."}];
+                }
+                return nil;
+                
+            default:
+                break;
+        }
+    }
     
     switch (inputType) {
         case CEInputSelectionType:
-            if (editor) {
-                NSRange selectedRange = [[editor textView] selectedRange];
-                return [[editor string] substringWithRange:selectedRange];
-                // ([editor string] は改行コードLFの文字列を返すが、[editor selectedRange] は
-                // 改行コードを反映させた範囲を返すので、「CR/LF」では使えない。そのため、
-                // [[editor textView] selectedRange] を使う必要がある。2009-04-12
-            }
-            break;
+            // ([editor string] は改行コードLFの文字列を返すが、[editor selectedRange] は
+            // 改行コードを反映させた範囲を返すので、「CR/LF」では使えない。そのため、
+            // [[editor focusedTextView] selectedRange] を使う必要がある。2009-04-12
+            return [[editor string] substringWithRange:[[editor focusedTextView] selectedRange]];
             
         case CEInputAllTextType:
-            if (editor) {
-                return [editor string];
-            }
-            break;
+            return [editor string];
             
         case CENoInputType:
             return nil;
     }
-    
-    if (hasError) {
-        *hasError = YES;
-    }
-    
-    return nil;
 }
 
 
 // ------------------------------------------------------
-/// 出力タイプに即したスクリプト結果を現在の書類に反映
-+ (void)setOutputToDocument:(NSString *)output outputType:(CEScriptOutputType)outputType
+/// apply results conforming to the output type to the frontmost document
++ (BOOL)applyOutput:(NSString *)output document:(CEDocument *)document outputType:(CEScriptOutputType)outputType error:(NSError **)error
 // ------------------------------------------------------
 {
-    CEEditorWrapper *editor = [[[NSDocumentController sharedDocumentController] currentDocument] editor];
+    CEEditorWrapper *editor = [document editor];
+    
+    // on no document found
+    if (!editor) {
+        switch (outputType) {
+            case CEReplaceSelectionType:
+            case CEReplaceAllTextType:
+            case CEInsertAfterSelectionType:
+            case CEAppendToAllTextType:
+                if (error) {
+                    *error = [NSError errorWithDomain:CEErrorDomain
+                                                 code:CEScriptNoTargetDocumentError
+                                             userInfo:@{NSLocalizedDescriptionKey: @"Target document was not found."}];
+                }
+                return NO;
+                
+            default:
+                break;
+        }
+    }
     
     switch (outputType) {
         case CEReplaceSelectionType:
-            [editor replaceTextViewSelectedStringTo:output scroll:NO];
+            [editor insertTextViewString:output];
             break;
             
         case CEReplaceAllTextType:
-            [editor replaceTextViewAllStringTo:output];
+            [editor replaceTextViewAllStringWithString:output];
             break;
             
         case CEInsertAfterSelectionType:
-            [editor insertTextViewAfterSelectionStringTo:output];
+            [editor insertTextViewStringAfterSelection:output];
             break;
             
         case CEAppendToAllTextType:
-            [editor appendTextViewAfterAllStringTo:output];
+            [editor appendTextViewString:output];
             break;
             
         case CEPasteboardType: {
@@ -450,19 +455,13 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
         case CENoOutputType:
             break;  // do nothing
     }
+    
+    return YES;
 }
 
 
-
-#pragma mark Private Methods
-
-//=======================================================
-// Private method
-//
-//=======================================================
-
 //------------------------------------------------------
-/// ファイルを読み込みメニューアイテムを生成／追加する
+/// read files and create/add menu items
 - (void)addChildFileItemTo:(NSMenu *)menu fromDir:(NSURL *)directoryURL
 //------------------------------------------------------
 {
@@ -472,7 +471,7 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
                                                                        error:nil];
     
     for (NSURL *URL in URLs) {
-        // "_" から始まるファイル/フォルダは無視
+        // ignore files/folders of which name starts with "_"
         if ([[URL lastPathComponent] hasPrefix:@"_"]) {  continue; }
         
         NSString *resourceType;
@@ -480,8 +479,8 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
         [URL getResourceValue:&resourceType forKey:NSURLFileResourceTypeKey error:nil];
         
         if ([resourceType isEqualToString:NSURLFileResourceTypeDirectory]) {
-            NSString *title = [self menuTitleFromFileName:[URL lastPathComponent]];
-            if ([title isEqualToString:@"-"]) { // セパレータ
+            NSString *title = [self scriptNameFromURL:URL];
+            if ([title isEqualToString:@"-"]) {  // separator
                 [menu addItem:[NSMenuItem separatorItem]];
                 continue;
             }
@@ -497,7 +496,7 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
         {
             NSUInteger modifierMask = 0;
             NSString *keyEquivalent = [self keyEquivalentAndModifierMask:&modifierMask fromFileName:[URL lastPathComponent]];
-            NSString *title = [self menuTitleFromFileName:[URL lastPathComponent]];
+            NSString *title = [self scriptNameFromURL:URL];
             NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:title
                                                           action:@selector(launchScript:)
                                                    keyEquivalent:keyEquivalent];
@@ -513,32 +512,33 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 
 //------------------------------------------------------
 /// ファイル／フォルダ名からメニューアイテムタイトル名を生成
-- (NSString *)menuTitleFromFileName:(NSString *)fileName
+- (NSString *)scriptNameFromURL:(NSURL *)URL
 //------------------------------------------------------
 {
-    NSString *menuTitle = [fileName stringByDeletingPathExtension];
-    NSString *extnFirstChar = [[menuTitle pathExtension] substringFromIndex:0];
+    NSString *fileName = [URL lastPathComponent];
+    NSString *scriptName = [fileName stringByDeletingPathExtension];
+    NSString *extnFirstChar = [[scriptName pathExtension] substringFromIndex:0];
     NSCharacterSet *specSet = [NSCharacterSet characterSetWithCharactersInString:@"^~$@"];
 
-    // 順番調整の冒頭の番号を削除
+    // remove the number prefix ordering
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"^[0-9]+\\)"
                                                                            options:0 error:nil];
-    menuTitle = [regex stringByReplacingMatchesInString:menuTitle
+    scriptName = [regex stringByReplacingMatchesInString:scriptName
                                                 options:0
-                                                  range:NSMakeRange(0, [menuTitle length])
+                                                  range:NSMakeRange(0, [scriptName length])
                                            withTemplate:@""];
     
-    // キーボードショートカット定義があれば、削除して返す
+    // remove keyboard shortcut definition
     if (([extnFirstChar length] > 0) && [specSet characterIsMember:[extnFirstChar characterAtIndex:0]]) {
-        return [menuTitle stringByDeletingPathExtension];
+        scriptName = [scriptName stringByDeletingPathExtension];
     }
     
-    return menuTitle;
+    return scriptName;
 }
 
 
 //------------------------------------------------------
-/// ファイル名からキーボードショートカット定義を読み取る
+/// get keyboard shortcut from file name
 - (NSString *)keyEquivalentAndModifierMask:(NSUInteger *)modifierMask fromFileName:(NSString *)fileName
 //------------------------------------------------------
 {
@@ -549,7 +549,7 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 
 
 //------------------------------------------------------
-/// エラーアラートを表示
+/// display alert message
 - (void)showAlertWithMessage:(NSString *)message
 //------------------------------------------------------
 {
@@ -562,7 +562,7 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 
 
 //------------------------------------------------------
-/// スクリプトの文字列を得る
+/// read content of script file
 - (NSString *)stringOfScript:(NSURL *)URL
 //------------------------------------------------------
 {
@@ -585,108 +585,129 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 
 
 //------------------------------------------------------
-/// AppleScript実行
+/// run AppleScript
 - (void)runAppleScript:(NSURL *)URL
 //------------------------------------------------------
 {
-    NSDictionary *errorInfo = nil;
+    NSError *error = nil;
+    NSUserAppleScriptTask *task = [[NSUserAppleScriptTask alloc] initWithURL:URL error:&error];
     
-    NSAppleScript *appleScript = [[NSAppleScript alloc] initWithContentsOfURL:URL error:&errorInfo];
-    [appleScript executeAndReturnError:&errorInfo];
-    
-    // エラーが発生したら、表示
-    if (errorInfo) {
-        [self showAlertWithMessage:[NSString stringWithFormat:NSLocalizedString(@"%@\nErrorNumber: %@", nil),
-                                    errorInfo[NSAppleScriptErrorMessage],
-                                    errorInfo[NSAppleScriptErrorNumber]]];
-    }
+    [task executeWithAppleEvent:nil completionHandler:^(NSAppleEventDescriptor *result, NSError *error) {
+        if (error) {
+            [self showAlertWithMessage:[error localizedDescription]];
+        }
+    }];
 }
 
 
 //------------------------------------------------------
-/// シェルスクリプト実行
+/// run UNIX script
 - (void)runShellScript:(NSURL *)URL
 //------------------------------------------------------
 {
+    NSError *error = nil;
+    NSUserUnixTask *task = [[NSUserUnixTask alloc] initWithURL:URL error:&error];
     NSString *script = [self stringOfScript:URL];
+    NSString *scriptName = [self scriptNameFromURL:URL];
 
-    // スクリプトファイル内容を得られない場合は警告して抜ける
-    if ([script length] == 0) {
+    // show an alert and endup if script file cannot read
+    if (!task || [script length] == 0) {
         [self showAlertWithMessage:[NSString stringWithFormat:NSLocalizedString(@"Could not read the script “%@”.", nil), URL]];
         return;
     }
+    
+    // hold target document
+    __weak CEDocument *document = [[NSDocumentController sharedDocumentController] currentDocument];
 
-    // 入力を読み込む
+    // read input
     CEScriptInputType inputType = [[self class] scanInputType:script];
-    BOOL hasError = NO;
-    __block NSString *input = [[self class] documentStringWithInputType:inputType error:&hasError];
-    if (hasError) {
-        [self showScriptError:@"NO document, no Input."];
+    NSError *inputError = nil;
+    __block NSString *input = [[self class] inputStringWithType:inputType document:document error:&inputError];
+    if (inputError) {
+        [self showScriptError:[inputError localizedDescription] scriptName:scriptName];
         return;
     }
     
-    // 出力タイプを得る
+    // get output type
     CEScriptOutputType outputType = [[self class] scanOutputType:script];
-
-    // タスク実行準備
-    // （task に引数をセットすると一部のスクリプトが誤動作する。例えば、Perl 5.8.xで「use encoding 'utf8'」のうえ
-    // printコマンドを使用すると文字化けすることがある。2009-03-31）
-    NSTask *task = [[NSTask alloc] init];
-    [task setLaunchPath:[URL path]];
-    [task setCurrentDirectoryPath:NSHomeDirectory()];
     
-    // Standard Input
+    // prepare file path as argument if available
+    NSArray *arguments;
+    if ([document fileURL]) {
+        arguments = @[[[document fileURL] path]];
+    }
+    
+    __weak typeof(self) weakSelf = self;
+    __block BOOL cancelled = NO;  // user cancel state
+    
+    // pipes
+    NSPipe *inPipe = [NSPipe pipe];
+    NSPipe *outPipe = [NSPipe pipe];
+    NSPipe *errPipe = [NSPipe pipe];
+    [task setStandardInput:[inPipe fileHandleForReading]];
+    [task setStandardOutput:[outPipe fileHandleForWriting]];
+    [task setStandardError:[errPipe fileHandleForWriting]];
+    
+    // set input data asynchronously if available
     if ([input length] > 0) {
-        [task setStandardInput:[NSPipe pipe]];
-        [[[task standardInput] fileHandleForWriting] setWriteabilityHandler:^(NSFileHandle *handle) {
-            [handle writeData:[input dataUsingEncoding:NSUTF8StringEncoding]];
+        [[inPipe fileHandleForWriting] setWriteabilityHandler:^(NSFileHandle *handle) {
+            NSData *data = [input dataUsingEncoding:NSUTF8StringEncoding];
+            [handle writeData:data];
             [handle closeFile];
-            
         }];
     }
     
-    // Standard Error
-    __weak typeof(self) weakSelf = self;
-    [task setStandardError:[NSPipe pipe]];
-    [[[task standardError] fileHandleForReading] setReadabilityHandler:^(NSFileHandle *handle) {
-        typeof(self) strongSelf = weakSelf;
-        NSString *error = [[NSString alloc] initWithData:[handle readDataToEndOfFile] encoding:NSUTF8StringEncoding];
-        
-        if ([error length] > 0) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [strongSelf showScriptError:error];
-            });
-        }
-    }];
-    
-    // Standard Output
     // read output asynchronously for safe with huge output
-    [task setStandardOutput:[NSPipe pipe]];
-    [[[task standardOutput] fileHandleForReading] readToEndOfFileInBackgroundAndNotify];
-    [[NSNotificationCenter defaultCenter] addObserverForName:NSFileHandleReadToEndOfFileCompletionNotification
-                                                      object:[[task standardOutput] fileHandleForReading]
-                                                       queue:nil
-                                                  usingBlock:^(NSNotification *note)
+    [[outPipe fileHandleForReading] readToEndOfFileInBackgroundAndNotify];
+    __block id observer = [[NSNotificationCenter defaultCenter] addObserverForName:NSFileHandleReadToEndOfFileCompletionNotification
+                                                                    object:[outPipe fileHandleForReading]
+                                                                     queue:nil
+                                                                usingBlock:^(NSNotification *note)
      {
+         [[NSNotificationCenter defaultCenter] removeObserver:observer];
+         
+         if (cancelled) { return; }
+         
+         typeof(weakSelf) strongSelf = weakSelf;
          NSData *data = [note userInfo][NSFileHandleNotificationDataItem];
          NSString *output = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
          if (output) {
-             [CEScriptManager setOutputToDocument:output outputType:outputType];
+             NSError *error;
+             [CEScriptManager applyOutput:output document:document outputType:outputType error:&error];
+             if (error) {
+                 [strongSelf showScriptError:[error localizedDescription] scriptName:scriptName];
+             }
          }
      }];
     
-    [task launch];
+    // execute
+    [task executeWithArguments:arguments completionHandler:^(NSError *error)
+     {
+        // on user cancel
+        if ([[error domain] isEqualToString:NSPOSIXErrorDomain] && [error code] == ENOTBLK) {
+            cancelled = YES;
+            return;
+        }
+        
+        NSData *errorData = [[errPipe fileHandleForReading] readDataToEndOfFile];
+        NSString *errorMsg = [[NSString alloc] initWithData:errorData encoding:NSUTF8StringEncoding];
+        if ([errorMsg length] > 0) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                typeof(self) strongSelf = weakSelf;
+                [strongSelf showScriptError:errorMsg scriptName:scriptName];
+            });
+        }
+    }];
 }
 
 
 // ------------------------------------------------------
-/// スクリプトエラーを追記し、エラーログウィンドウを表示
-- (void)showScriptError:(NSString *)newError
+/// append message to console panel and show it
+- (void)showScriptError:(NSString *)errorString scriptName:(NSString *)scriptName
 // ------------------------------------------------------
 {
-    [[CEScriptErrorPanelController sharedController] showWindow:nil];
-    [[CEScriptErrorPanelController sharedController] addErrorString:[NSString stringWithFormat:@"[%@]\n%@",
-                                                                     [[NSDate date] description], newError]];
+    [[CEConsolePanelController sharedController] showWindow:self];
+    [[CEConsolePanelController sharedController] appendMessage:errorString title:scriptName];
 }
 
 @end

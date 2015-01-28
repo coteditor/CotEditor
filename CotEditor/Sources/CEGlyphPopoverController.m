@@ -35,7 +35,7 @@ static const unichar  kTextSequenceChar = 0xFE0E;
 static const unichar kEmojiSequenceChar = 0xFE0F;
 
 
-@interface CEGlyphPopoverController ()
+@interface CEGlyphPopoverController () <NSPopoverDelegate>
 
 @property (nonatomic, copy) NSString *glyph;
 @property (nonatomic, copy) NSString *unicodeName;
@@ -150,9 +150,26 @@ static const unichar kEmojiSequenceChar = 0xFE0F;
 {
     NSPopover *popover = [[NSPopover alloc] init];
     [popover setContentViewController:self];
+    [popover setDelegate:self];
     [popover setBehavior:NSPopoverBehaviorSemitransient];
     [popover showRelativeToRect:positioningRect ofView:parentView preferredEdge:NSMinYEdge];
     [[parentView window] makeFirstResponder:parentView];
+}
+
+
+
+#pragma mark Delegate
+
+//=======================================================
+// NSPopoverDelegate
+//=======================================================
+
+// ------------------------------------------------------
+/// make popover detachable (on Yosemite and later)
+- (BOOL)popoverShouldDetach:(NSPopover *)popover
+// ------------------------------------------------------
+{
+    return YES;
 }
 
 @end

@@ -32,12 +32,7 @@
 
 @implementation CELineHeightTransformer
 
-#pragma mark Class Methods
-
-//=======================================================
-// Class method
-//
-//=======================================================
+#pragma mark Superclass Methods
 
 // ------------------------------------------------------
 /// Class of transformed value
@@ -56,14 +51,6 @@
     return YES;
 }
 
-
-
-#pragma mark NSValueTransformer Methods
-
-//=======================================================
-// NSValueTransformer method
-//
-//=======================================================
 
 // ------------------------------------------------------
 /// From line spacing to line height (NSNumber -> NSNumber)

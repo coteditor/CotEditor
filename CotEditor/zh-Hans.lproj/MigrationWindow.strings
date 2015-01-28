@@ -1,0 +1,54 @@
+/*
+ MigrationWindow.strings
+ 
+ CotEditor
+ http://coteditor.com
+ 
+ Created on 2014-12-12 by 1024jp
+ Localized by onevcat
+ encoding="UTF-8"
+ 
+ © 2014 CotEditor Project
+ */
+
+/* Class = "NSWindow"; title = "Welcome to CotEditor 2.0"; ObjectID = "QvC-M9-y7g"; */
+"QvC-M9-y7g.title" = "Welcome to CotEditor 2.0";
+
+/* Class = "NSTextFieldCell"; title = "欢迎使用"; ObjectID = "aBa-Xm-ATa"; */
+"aBa-Xm-ATa.title" = "欢迎使用";
+
+/* Class = "NSTextFieldCell"; title = "Migrating user syntax styles…"; ObjectID = "vqy-cz-YAI"; */
+"vqy-cz-YAI.title" = "迁移用户代码风格…";
+
+/* Class = "NSButtonCell"; title = "Next"; ObjectID = "uPQ-1j-6Gc"; */
+"uPQ-1j-6Gc.title" = "继续";
+
+
+/* Class = "NSTextFieldCell"; title = "The following migrations have been successfully completed."; ObjectID = "cTg-d4-zlT"; */
+"cTg-d4-zlT.title" = "以下迁移成功完成:";
+
+/* Class = "NSTextFieldCell"; title = "Reset menu key bindings setting."; ObjectID = "BA1-Y2-S7m"; */
+"BA1-Y2-S7m.title" = "重置菜单按键绑定";
+/* Class = "NSTextFieldCell"; title = "The settings for menu key bindings have been once restored."; ObjectID = "hk3-rs-RMV"; */
+"hk3-rs-RMV.title" = "菜单按键绑定已经被恢复至初始设置";
+
+
+/* Class = "NSTextFieldCell"; title = "Migrate coloring settings."; ObjectID = "6hO-yA-SXq"; */
+"6hO-yA-SXq.title" = "迁移颜色设置";
+/* Class = "NSTextFieldCell"; title = "An custom theme has been created from the previous user setting."; ObjectID = "wdy-J5-ddL"; */
+"wdy-J5-ddL.title" = "已从之前的用户设置中创建自定义主题";
+
+/* Class = "NSTextFieldCell"; title = "Migrate user syntax styles."; ObjectID = "D4s-ma-Iiu"; */
+"D4s-ma-Iiu.title" = "迁移用户语法风格";
+/* Class = "NSTextFieldCell"; title = "The format for syntax style files has been changed from plist to YAML."; ObjectID = "2tb-Wh-X18"; */
+"2tb-Wh-X18.title" = "语法风格文件已经从 plist 迁移到 YAML 格式";
+
+/* Class = "NSTextFieldCell"; title = "In some cases, user needs aditonal manual migrations."; ObjectID = "X8Q-Ji-HKU"; */
+"X8Q-Ji-HKU.title" = "某些情况下，用户需要手动进行额外的迁移";
+/* Class = "NSButton"; ibShadowedToolTip = "See “Specification Changes on CotEditor 2.0” on Help"; ObjectID = "qdh-QQ-qcp"; */
+"qdh-QQ-qcp.ibShadowedToolTip" = "在帮助中查看 “CotEditor 2.0 特性变更”";
+
+/* Class = "NSTextFieldCell"; title = "Learn new features on CotEditor 2.0."; ObjectID = "8u8-rr-so0"; */
+"8u8-rr-so0.title" = "查看 CotEditor 2.0 的新功能";
+/* Class = "NSButton"; ibShadowedToolTip = "See “What's New in CotEditor 2.0” on Help"; ObjectID = "hGz-yb-qTP"; */
+"hGz-yb-qTP.ibShadowedToolTip" = "在帮助中查看 “CotEditor 2.0 新功能”";

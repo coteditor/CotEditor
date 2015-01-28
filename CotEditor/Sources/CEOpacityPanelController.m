@@ -5,11 +5,11 @@
  CotEditor
  http://coteditor.com
  
- Created by 2014-03-12 by 1024jp
+ Created on 2014-03-12 by 1024jp
  encoding="UTF-8"
  ------------------------------------------------------------------------------
  
- © 2014 CotEditor Project
+ © 2014 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software

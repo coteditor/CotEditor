@@ -1,0 +1,226 @@
+/*
+ SyntaxEditSheet.strings
+ 
+ CotEditor
+ http://coteditor.com
+ 
+ Created on 2014-11-04 by 1024jp
+ encoding="UTF-8"
+ 
+ © 2014-2015 CotEditor Project
+ */
+
+
+/* Class = "NSTextFieldCell"; title = "Style Name:"; ObjectID = "987"; */
+"987.title" = "スタイル名：";
+/* Class = "NSTextFieldCell"; placeholderString = "Style Name"; ObjectID = "988"; */
+"988.placeholderString" = "スタイル名";
+
+/* Class = "NSButtonCell"; title = "Restore Defaults"; ObjectID = "1020"; */
+"1020.title" = "デフォルトに戻す";
+/* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "986"; */
+"986.title" = "キャンセル";
+/* Class = "NSButtonCell"; title = "OK"; ObjectID = "985"; */
+"985.title" = "OK";
+
+
+/* Class = "NSTableColumn"; headerCell.title = "Begin String"; ObjectID = "455"; */
+"455.headerCell.title" = "開始文字列";
+/* Class = "NSTableColumn"; headerCell.title = "End String"; ObjectID = "642"; */
+"642.headerCell.title" = "終了文字列";
+/* Class = "NSTableColumn"; ObjectID = "392"; */
+"392.headerCell.title" = "RE";  /* RE */
+"392.headerToolTip" = "正規表現";  /* Regular Expression */
+/* Class = "NSTableColumn"; ObjectID = "461"; */
+"461.headerCell.title" = "IC";  /* IC */
+"461.headerToolTip" = "大文字小文字を無視";  /* Ignore Case (case-insensitive) */
+
+
+/* Class = "NSTableColumn"; headerCell.title = "Begin String"; ObjectID = "Az7-NY-UZX"; */
+"Az7-NY-UZX.headerCell.title" = "開始文字列";
+/* Class = "NSTableColumn"; headerCell.title = "End String"; ObjectID = "LqB-N1-UYj"; */
+"LqB-N1-UYj.headerCell.title" = "終了文字列";
+/* Class = "NSTableColumn"; ObjectID = "LhT-y3-Wje"; */
+"LhT-y3-Wje.headerCell.title" = "RE";  /* RE */
+"LhT-y3-Wje.headerToolTip" = "正規表現";  /* Regular Expression */
+/* Class = "NSTableColumn"; ObjectID = "fdh-0C-efA"; */
+"fdh-0C-efA.headerCell.title" = "IC";  /* IC */
+"fdh-0C-efA.headerToolTip" = "大文字小文字を無視";  /* Ignore Case (case-insensitive) */
+
+
+/* Class = "NSTableColumn"; headerCell.title = "Begin String"; ObjectID = "mPH-ls-jOW"; */
+"mPH-ls-jOW.headerCell.title" = "開始文字列";
+/* Class = "NSTableColumn"; headerCell.title = "End String"; ObjectID = "pHW-Tz-5wr"; */
+"pHW-Tz-5wr.headerCell.title" = "終了文字列";
+/* Class = "NSTableColumn"; ObjectID = "em5-8M-k9b"; */
+"em5-8M-k9b.headerCell.title" = "RE";  /* RE */
+"em5-8M-k9b.headerToolTip" = "正規表現";  /* Regular Expression */
+/* Class = "NSTableColumn"; ObjectID = "1uk-qd-25S"; */
+"1uk-qd-25S.headerCell.title" = "IC";  /* IC */
+"1uk-qd-25S.headerToolTip" = "大文字小文字を無視";  /* Ignore Case (case-insensitive) */
+
+
+/* Class = "NSTableColumn"; headerCell.title = "Begin String"; ObjectID = "D1s-5t-s0A"; */
+"D1s-5t-s0A.headerCell.title" = "開始文字列";
+/* Class = "NSTableColumn"; headerCell.title = "End String"; ObjectID = "Z4G-nl-rgz"; */
+"Z4G-nl-rgz.headerCell.title" = "終了文字列";
+/* Class = "NSTableColumn"; ObjectID = "bmQ-uE-vKx"; */
+"bmQ-uE-vKx.headerCell.title" = "RE";  /* RE */
+"bmQ-uE-vKx.headerToolTip" = "正規表現";  /* Regular Expression */
+/* Class = "NSTableColumn"; ObjectID = "uho-KV-LkW"; */
+"uho-KV-LkW.headerCell.title" = "IC";  /* IC */
+"uho-KV-LkW.headerToolTip" = "大文字小文字を無視";  /* Ignore Case (case-insensitive) */
+
+
+/* Class = "NSTableColumn"; headerCell.title = "Begin String"; ObjectID = "LSU-x0-u4h"; */
+"LSU-x0-u4h.headerCell.title" = "開始文字列";
+/* Class = "NSTableColumn"; headerCell.title = "End String"; ObjectID = "Jba-CO-4ml"; */
+"Jba-CO-4ml.headerCell.title" = "終了文字列";
+/* Class = "NSTableColumn"; ObjectID = "tTC-e8-KHA"; */
+"tTC-e8-KHA.headerCell.title" = "RE";  /* RE */
+"tTC-e8-KHA.headerToolTip" = "正規表現";  /* Regular Expression */
+/* Class = "NSTableColumn"; ObjectID = "U1c-Gr-hgH"; */
+"U1c-Gr-hgH.headerCell.title" = "IC";  /* IC */
+"U1c-Gr-hgH.headerToolTip" = "大文字小文字を無視";  /* Ignore Case (case-insensitive) */
+
+
+/* Class = "NSTableColumn"; headerCell.title = "Begin String"; ObjectID = "CuI-wN-ekb"; */
+"CuI-wN-ekb.headerCell.title" = "開始文字列";
+/* Class = "NSTableColumn"; headerCell.title = "End String"; ObjectID = "YMS-1g-zUW"; */
+"YMS-1g-zUW.headerCell.title" = "終了文字列";
+/* Class = "NSTableColumn"; ObjectID = "ESs-Ts-25L"; */
+"ESs-Ts-25L.headerCell.title" = "RE";  /* RE */
+"ESs-Ts-25L.headerToolTip" = "正規表現";  /* Regular Expression */
+/* Class = "NSTableColumn"; ObjectID = "9Qp-qv-J49"; */
+"9Qp-qv-J49.headerCell.title" = "IC";  /* IC */
+"9Qp-qv-J49.headerToolTip" = "大文字小文字を無視";  /* Ignore Case (case-insensitive) */
+
+
+/* Class = "NSTableColumn"; headerCell.title = "Begin String"; ObjectID = "wmH-mU-cLY"; */
+"wmH-mU-cLY.headerCell.title" = "開始文字列";
+/* Class = "NSTableColumn"; headerCell.title = "End String"; ObjectID = "HZn-Lx-tnW"; */
+"HZn-Lx-tnW.headerCell.title" = "終了文字列";
+/* Class = "NSTableColumn"; ObjectID = "DZX-7q-H9Q"; */
+"DZX-7q-H9Q.headerCell.title" = "RE";  /* RE */
+"DZX-7q-H9Q.headerToolTip" = "正規表現";  /* Regular Expression */
+/* Class = "NSTableColumn"; ObjectID = "Apk-VU-c93"; */
+"Apk-VU-c93.headerCell.title" = "IC";  /* IC */
+"Apk-VU-c93.headerToolTip" = "大文字小文字を無視";  /* Ignore Case (case-insensitive) */
+
+
+/* Class = "NSTableColumn"; headerCell.title = "Begin String"; ObjectID = "bDC-h2-bAz"; */
+"bDC-h2-bAz.headerCell.title" = "開始文字列";
+/* Class = "NSTableColumn"; headerCell.title = "End String"; ObjectID = "d54-9v-F37"; */
+"d54-9v-F37.headerCell.title" = "終了文字列";
+/* Class = "NSTableColumn"; ObjectID = "HJ6-He-nlS"; */
+"HJ6-He-nlS.headerCell.title" = "RE";  /* RE */
+"HJ6-He-nlS.headerToolTip" = "正規表現";  /* Regular Expression */
+/* Class = "NSTableColumn"; ObjectID = "kgS-s1-pAB"; */
+"kgS-s1-pAB.headerCell.title" = "IC";  /* IC */
+"kgS-s1-pAB.headerToolTip" = "大文字小文字を無視";  /* Ignore Case (case-insensitive) */
+
+
+/* Class = "NSTableColumn"; headerCell.title = "Begin String"; ObjectID = "Pcb-GQ-2qY"; */
+"Pcb-GQ-2qY.headerCell.title" = "開始文字列";
+/* Class = "NSTableColumn"; headerCell.title = "End String"; ObjectID = "UJw-z0-xAU"; */
+"UJw-z0-xAU.headerCell.title" = "終了文字列";
+/* Class = "NSTableColumn"; ObjectID = "59B-PI-ulB"; */
+"59B-PI-ulB.headerCell.title" = "RE";  /* RE */
+"59B-PI-ulB.headerToolTip" = "正規表現";  /* Regular Expression */
+/* Class = "NSTableColumn"; ObjectID = "8t6-0w-Avl"; */
+"8t6-0w-Avl.headerCell.title" = "IC";  /* IC */
+"8t6-0w-Avl.headerToolTip" = "大文字小文字を無視";  /* Ignore Case (case-insensitive) */
+
+
+/* Class = "NSTextFieldCell"; title = "Inline comment:"; ObjectID = "GCw-u2-Lau"; */
+"GCw-u2-Lau.title" = "インラインコメント：";
+/* Class = "NSTextFieldCell"; title = "Begin width:"; ObjectID = "Nyf-L8-eh5"; */
+"Nyf-L8-eh5.title" = "開始：";
+/* Class = "NSTextFieldCell"; placeholderString = "Not defined"; ObjectID = "nI8-cM-hcS"; */
+"nI8-cM-hcS.placeholderString" = "未定義";
+
+/* Class = "NSTextFieldCell"; title = "Block comment:"; ObjectID = "Z5Q-Hy-1R7"; */
+"Z5Q-Hy-1R7.title" = "ブロックコメント：";
+/* Class = "NSTextFieldCell"; title = "Begin width:"; ObjectID = "OFV-ob-L5e"; */
+"OFV-ob-L5e.title" = "開始：";
+/* Class = "NSTextFieldCell"; placeholderString = "Not defined"; ObjectID = "L2M-Fz-f48"; */
+"L2M-Fz-f48.placeholderString" = "未定義";
+/* Class = "NSTextFieldCell"; title = "End width:"; ObjectID = "QJO-6I-TfV"; */
+"QJO-6I-TfV.title" = "終了：";
+/* Class = "NSTextFieldCell"; placeholderString = "Not defined"; ObjectID = "1rj-Dy-279"; */
+"1rj-Dy-279.placeholderString" = "未定義";
+
+/* Class = "IBBindingConnection"; ibShadowedIsNilPlaceholder = "Not defined"; ObjectID = "7vx-GV-ich"; */
+"7vx-GV-ich.ibShadowedIsNilPlaceholder" = "未定義";
+/* Class = "IBBindingConnection"; ibShadowedIsNilPlaceholder = "Not defined"; ObjectID = "bQw-Ik-BCi"; */
+"bQw-Ik-BCi.ibShadowedIsNilPlaceholder" = "未定義";
+/* Class = "IBBindingConnection"; ibShadowedIsNilPlaceholder = "Not defined"; ObjectID = "xjg-xP-byE"; */
+"xjg-xP-byE.ibShadowedIsNilPlaceholder" = "未定義";
+
+/* Class = "NSTableColumn"; headerCell.title = "Begin String"; ObjectID = "447"; */
+"447.headerCell.title" = "開始文字列";
+/* Class = "NSTableColumn"; headerCell.title = "End String"; ObjectID = "665"; */
+"665.headerCell.title" = "終了文字列";
+/* Class = "NSTableColumn"; ObjectID = "450"; */
+"450.headerCell.title" = "RE";  /* RE */
+"450.headerToolTip" = "正規表現";  /* Regular Expression */
+/* Class = "NSTableColumn"; ObjectID = "396"; */
+"396.headerCell.title" = "IC";  /* IC */
+"396.headerToolTip" = "大文字小文字を無視";  /* Ignore Case (case-insensitive) */
+
+
+/* Class = "NSTextFieldCell"; title = "Regular expressions to extract outline menu items"; ObjectID = "1010"; */
+"1010.title" = "アウトライン項目検索用正規表現";
+/* Class = "NSTextFieldCell"; title = "Menu title pattern (blank matches the whole string)"; ObjectID = "1011"; */
+"1011.title" = "メニュータイトルパターン（空白はマッチした全文字列）";
+
+/* Class = "NSTableColumn"; headerCell.title = "RE String"; ObjectID = "720"; */
+"720.headerCell.title" = "正規表現";
+/* Class = "NSTableColumn"; ObjectID = "736"; */
+"736.headerCell.title" = "IC";  /* IC */
+"736.headerToolTip" = "大文字小文字を無視";  /* Ignore Case (case-insensitive) */
+
+/* Class = "NSButton"; ibShadowedToolTip = "Bold"; ObjectID = "749"; */
+"749.ibShadowedToolTip" = "ボールド";
+/* Class = "NSButton"; ibShadowedToolTip = "Underline"; ObjectID = "752"; */
+"752.ibShadowedToolTip" = "アンダーライン";
+/* Class = "NSButton"; ibShadowedToolTip = "Italic"; ObjectID = "755"; */
+"755.ibShadowedToolTip" = "イタリック";
+
+
+/* Class = "NSTextFieldCell"; title = "If no word, the completion list will be generated from coloring settings."; ObjectID = "1018"; */
+"1018.title" = "設定がない時はカラーリング設定から補完リストが生成されます。";
+/* Class = "NSTableColumn"; headerCell.title = "Completions"; ObjectID = "773"; */
+"773.headerCell.title" = "入力補完";
+
+
+/* Class = "NSTextFieldCell"; title = "(without dots)"; ObjectID = "998"; */
+"998.title" = "（ドット不要）";
+/* Class = "NSTableColumn"; headerCell.title = "Extention"; ObjectID = "453"; */
+"453.headerCell.title" = "拡張子";
+/* Class = "NSTextFieldCell"; title = "Files that have exactly one of the following names are opened in this syntax style, even they don't have file extension."; ObjectID = "Sr3-Pj-HPi"; */
+"Sr3-Pj-HPi.title" = "下記のファイル名と一致するファイルは、拡張子がなくてもこのシンタックススタイルで開かれます。";
+/* Class = "NSTableColumn"; headerCell.title = "File Name"; ObjectID = "qKc-FZ-o2j"; */
+"qKc-FZ-o2j.headerCell.title" = "ファイル名";
+
+
+/* Class = "NSTextFieldCell"; title = "Version:"; ObjectID = "PjU-cq-3px"; */
+"PjU-cq-3px.title" = "バージョン：";
+/* Class = "NSTextFieldCell"; title = "Last modified:"; ObjectID = "lEv-Gr-9nX"; */
+"lEv-Gr-9nX.title" = "最終更新日：";
+/* Class = "NSTextFieldCell"; title = "(‘YYYY-MM-DD’ format)"; ObjectID = "R2a-AA-hPB"; */
+"R2a-AA-hPB.title" = "(‘YYYY-MM-DD’ 形式)";
+/* Class = "NSTextFieldCell"; title = "Distribution URL:"; ObjectID = "RaI-42-gtJ"; */
+"RaI-42-gtJ.title" = "配付URL：";
+/* Class = "NSTextFieldCell"; title = "Author:"; ObjectID = "h87-QY-CvE"; */
+"h87-QY-CvE.title" = "作者：";
+/* Class = "NSTextFieldCell"; title = "License:"; ObjectID = "4jZ-HS-mYE"; */
+"4jZ-HS-mYE.title" = "ライセンス：";
+/* Class = "NSTextFieldCell"; title = "Description:"; ObjectID = "DVt-gz-R2Z"; */
+"DVt-gz-R2Z.title" = "説明：";
+/* Class = "NSTextFieldCell"; title = "Duplicate style to modify meta information of bundled syntax style."; ObjectID = "v3a-UB-E0t"; */
+"v3a-UB-E0t.title" = "バンドルされているスタイルの情報は変更できません。まず複製してください。";
+
+
+/* Class = "NSButtonCell"; title = "Start Validation"; ObjectID = "1005"; */
+"1005.title" = "検証を開始";

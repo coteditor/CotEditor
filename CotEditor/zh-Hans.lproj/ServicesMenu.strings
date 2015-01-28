@@ -1,0 +1,15 @@
+/*
+ ServicesMenu.strings
+ 
+ CotEditor
+ http://coteditor.com
+ 
+ Created on 2014-12-20 by 1024jp
+ encoding="UTF-8"
+ 
+ © 2014 1024jp
+ */
+
+
+"New CotEditor Document with Selection" = "使用选中内容创建新的 CotEditor 文档";
+"Open File in CotEditor" = "在 CotEditor 中打开文件";

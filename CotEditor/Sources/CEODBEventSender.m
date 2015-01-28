@@ -48,13 +48,8 @@
 
 #pragma mark Superclass Methods
 
-//=======================================================
-// Superclass method
-//
-//=======================================================
-
 // ------------------------------------------------------
-/// 初期化
+/// initialize
 - (instancetype)init
 // ------------------------------------------------------
 {
@@ -88,13 +83,8 @@
 
 #pragma mark Public Methods
 
-//=======================================================
-// Public method
-//
-//=======================================================
-
 // ------------------------------------------------------
-/// ファイルクライアントにファイル更新を通知する
+/// notify the file update to the file client
 - (void)sendModifiedEventWithURL:(NSURL *)URLToSave operation:(NSSaveOperationType)saveOperationType
 // ------------------------------------------------------
 {
@@ -105,7 +95,7 @@
 
 
 // ------------------------------------------------------
-/// ファイルクライアントにファイルクローズを通知する
+/// nofity the file closing to the file client
 - (void)sendCloseEventWithURL:(NSURL *)fileURL
 // ------------------------------------------------------
 {
@@ -116,13 +106,8 @@
 
 #pragma mark Private Methods
 
-//=======================================================
-// Private method
-//
-//=======================================================
-
 // ------------------------------------------------------
-/// ファイルクライアントに通知を送る
+/// send a notification to the file client
 - (void)sendODBEventWithType:(AEEventID)eventType URL:(NSURL *)fileURL
 // ------------------------------------------------------
 {
@@ -154,7 +139,7 @@
     
     AESendMessage([eventDescriptor aeDesc], NULL, kAENoReply, kAEDefaultTimeout);
     
-    // 複数回コールされてしまう場合の予防措置
+    // avoid calling multiple times
     if (eventType == kAEClosedFile || eventType == keyNewLocation) {
         [self setFileSender:nil];
     }

@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014 CotEditor Project
+ © 2014-2015 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -46,10 +46,12 @@ extern NSString *const CEErrorDomain;
 typedef NS_ENUM(OSStatus, CEErrorCode) {
     CEInvalidNameError = 1000,
     CEThemeFileDuplicationError,
+    CEScriptNoTargetDocumentError,
+    
+    // for command-line tool
+    CEApplicationNotInApplicationDirectoryError,
+    CEApplicationNameIsModifiedError,
 };
-
-// Localized strings table
-extern NSString *const CEPrintLocalizeTable;
 
 // Metadata dict keys
 extern NSString *const CEMetadataKey;
@@ -60,6 +62,18 @@ extern NSString *const CEDescriptionKey;
 
 // Help anchors
 extern NSString *const kHelpAnchors[];
+
+
+// labels for system sound ID on AudioToolbox (There are no constants provided by Apple)
+typedef NS_ENUM(UInt32, CESystemSoundID) {
+    CESystemSoundID_MoveToTrash = 0x10,
+};
+
+
+// Convenient functions
+/// compare CGFloats
+BOOL CEIsAlmostEqualCGFloats(CGFloat float1, CGFloat float2);
+
 
 
 #pragma mark Notifications
@@ -88,6 +102,7 @@ extern NSString *const CEDefaultLastVersionKey;
 extern NSString *const CEDefaultLayoutTextVerticalKey;
 extern NSString *const CEDefaultSplitViewVerticalKey;
 extern NSString *const CEDefaultShowLineNumbersKey;
+extern NSString *const CEDefaultShowDocumentInspectorKey;
 extern NSString *const CEDefaultShowStatusBarKey;
 extern NSString *const CEDefaultShowStatusBarLinesKey;
 extern NSString *const CEDefaultShowStatusBarLengthKey;
@@ -174,10 +189,22 @@ extern NSString *const CEDefaultPrintLineNumIndexKey;
 extern NSString *const CEDefaultPrintInvisibleCharIndexKey;
 extern NSString *const CEDefaultPrintColorIndexKey;
 
+// find panel
+extern NSString *const CEDefaultFindHistoryKey;
+extern NSString *const CEDefaultReplaceHistoryKey;
+extern NSString *const CEDefaultFindRegexSyntaxKey;
+extern NSString *const CEDefaultFindEscapeCharacterKey;
+extern NSString *const CEDefaultFindUsesRegularExpressionKey;
+extern NSString *const CEDefaultFindInSelectionKey;
+extern NSString *const CEDefaultFindIsWrapKey;
+extern NSString *const CEDefaultFindOptionsKey;
+extern NSString *const CEDefaultFindClosesIndicatorWhenDoneKey;
+
 // settings that are not in preferences
 extern NSString *const CEDefaultInsertCustomTextArrayKey;
 extern NSString *const CEDefaultInsertCustomTextKey;
 extern NSString *const CEDefaultColorCodeTypeKey;
+extern NSString *const CEDefaultSidebarWidthKey;
 
 // hidden settings
 extern NSString *const CEDefaultUsesTextFontForInvisiblesKey;
@@ -190,7 +217,6 @@ extern NSString *const CEDefaultLineNumUpdateIntervalKey;
 extern NSString *const CEDefaultInfoUpdateIntervalKey;
 extern NSString *const CEDefaultIncompatibleCharIntervalKey;
 extern NSString *const CEDefaultOutlineMenuIntervalKey;
-extern NSString *const CEDefaultOutlineMenuMaxLengthKey;
 extern NSString *const CEDefaultHeaderFooterFontNameKey;
 extern NSString *const CEDefaultHeaderFooterFontSizeKey;
 extern NSString *const CEDefaultHeaderFooterDateFormatKey;
@@ -351,10 +377,6 @@ typedef NS_ENUM(NSUInteger, CEMainMenuIndex) {
 // Menu item tags
 typedef NS_ENUM(NSInteger, CEMenuItemTag) {
     // in main menu
-    CENewMenuItemTag            =  100,
-    CEOpenMenuItemTag           =  101,
-    CEOpenRecentMenuItemTag     =  103,
-    CEInputBackSlashMenuItemTag =  209,
     CEFileEncodingMenuItemTag   = 4001,
     CESyntaxMenuItemTag         = 4002,
     CEThemeMenuItemTag          = 4003,
@@ -388,15 +410,12 @@ extern NSString *const kIssueTrackerURL;
 // Outline item dict keys
 extern NSString *const CEOutlineItemTitleKey;
 extern NSString *const CEOutlineItemRangeKey;
-extern NSString *const CEOutlineItemSortKeyKey;
-extern NSString *const CEOutlineItemFontBoldKey;
-extern NSString *const CEOutlineItemFontItalicKey;
-extern NSString *const CEOutlineItemUnderlineMaskKey;
+extern NSString *const CEOutlineItemStyleBoldKey;
+extern NSString *const CEOutlineItemStyleItalicKey;
+extern NSString *const CEOutlineItemStyleUnderlineKey;
 
 // layout constants
-extern CGFloat const kDefaultLineNumWidth;
 extern CGFloat const kLineNumPadding;
-extern CGFloat const kLineNumFontDescender;
 extern NSString *const kNavigationBarFontName;
 
 
@@ -433,8 +452,8 @@ extern CGFloat const kNoSeparatorPadding;
 // Encodings
 // ------------------------------------------------------
 
-// Encoding menu
-extern NSInteger const CEAutoDetectEncodingMenuItemTag;
+// Original special encoding type
+extern NSInteger const CEAutoDetectEncoding;
 
 // Max length to scan encoding declaration
 extern NSUInteger        const kMaxEncodingScanLength;
@@ -476,9 +495,9 @@ extern NSUInteger const kSizeOfInvisibleFullwidthSpaceCharList;
 // ------------------------------------------------------
 
 // Modifier masks and characters for keybindings
-extern NSUInteger const kModifierKeyMaskList[];
-extern unichar    const kModifierKeySymbolCharList[];
-extern unichar    const kKeySpecCharList[];
+extern NSEventModifierFlags const kModifierKeyMaskList[];
+extern unichar const kModifierKeySymbolCharList[];
+extern unichar const kKeySpecCharList[];
 
 // size of kModifierKeyMaskList, kKeySpecCharList and kModifierKeySymbolCharList
 extern NSUInteger const kSizeOfModifierKeys;

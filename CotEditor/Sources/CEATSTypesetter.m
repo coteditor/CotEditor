@@ -34,22 +34,17 @@
 
 @implementation CEATSTypesetter
 
-#pragma mark Class Methods
-
-//=======================================================
-// Class method
-//
-//=======================================================
+#pragma mark Singleton
 
 // ------------------------------------------------------
-/// 共有インスタンスを返す
+/// return singleton instance
 + (instancetype)sharedSystemTypesetter
 // ------------------------------------------------------
 {
-    static dispatch_once_t predicate;
+    static dispatch_once_t onceToken;
     static id shared = nil;
     
-    dispatch_once(&predicate, ^{
+    dispatch_once(&onceToken, ^{
         shared = [[self alloc] init];
     });
     
@@ -59,11 +54,6 @@
 
 
 #pragma mark Superclass Methods
-
-//=======================================================
-// NSATSTypesetter method
-//
-//=======================================================
 
 // ------------------------------------------------------
 /// フォントの leading 値を反映させるかどうかを返す

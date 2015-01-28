@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014 CotEditor Project
+ © 2014-2015 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -72,22 +72,17 @@ NSString *const CESyntaxValidationMessageKey = @"MessageKey";
 
 @implementation CESyntaxManager
 
-#pragma mark Class Methods
-
-//=======================================================
-// Class method
-//
-//=======================================================
+#pragma mark Singleton
 
 // ------------------------------------------------------
 /// return singleton instance
 + (instancetype)sharedManager
 // ------------------------------------------------------
 {
-    static dispatch_once_t predicate;
+    static dispatch_once_t onceToken;
     static id shared = nil;
     
-    dispatch_once(&predicate, ^{
+    dispatch_once(&onceToken, ^{
         shared = [[self alloc] init];
     });
     
@@ -98,13 +93,8 @@ NSString *const CESyntaxValidationMessageKey = @"MessageKey";
 
 #pragma mark Superclass Methods
 
-//=======================================================
-// Superclass method
-//
-//=======================================================
-
 // ------------------------------------------------------
-/// 初期化
+/// initialize
 - (instancetype)init
 // ------------------------------------------------------
 {
@@ -117,7 +107,8 @@ NSString *const CESyntaxValidationMessageKey = @"MessageKey";
         _bundledMap = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfURL:URL]
                                                       options:nil
                                                         error:nil];
-        _bundledStyleNames = [_bundledMap allKeys];
+        _bundledStyleNames = [[_bundledMap allKeys]
+                              sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
         
         // cache user styles asynchronously but wait until the process will be done
         dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
@@ -127,7 +118,6 @@ NSString *const CESyntaxValidationMessageKey = @"MessageKey";
         while (dispatch_semaphore_wait(semaphore, DISPATCH_TIME_NOW)) {  // avoid dead lock
             [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
         }
-        dispatch_release(semaphore);
     }
     return self;
 }
@@ -135,11 +125,6 @@ NSString *const CESyntaxValidationMessageKey = @"MessageKey";
 
 
 #pragma mark Public Methods
-
-//=======================================================
-// Public method
-//
-//=======================================================
 
 // ------------------------------------------------------
 /// ファイル名に応じたstyle名を返す
@@ -191,7 +176,16 @@ NSString *const CESyntaxValidationMessageKey = @"MessageKey";
 - (NSDictionary *)bundledStyleWithStyleName:(NSString *)styleName
 // ------------------------------------------------------
 {
-    return [self styleDictWithURL:[self URLForBundledStyle:styleName]];
+    return [self styleDictWithURL:[self URLForBundledStyle:styleName available:NO]];
+}
+
+
+// ------------------------------------------------------
+/// style名に応じたユーザ領域のスタイルファイルURLを返す（ない場合はnil）
+- (NSURL *)URLForUserStyle:(NSString *)styleName
+// ------------------------------------------------------
+{
+    return [self URLForUserStyle:styleName available:YES];
 }
 
 
@@ -216,15 +210,6 @@ NSString *const CESyntaxValidationMessageKey = @"MessageKey";
     NSDictionary *bundledStyle = [[self bundledStyleWithStyleName:styleName] dictionaryWithValuesForKeys:keys];
     
     return [[style dictionaryWithValuesForKeys:keys] isEqualToDictionary:bundledStyle];
-}
-
-
-//------------------------------------------------------
-/// ある名前を持つstyleファイルがstyle保存ディレクトリにあるかどうかを返す
-- (BOOL)existsStyleFileWithStyleName:(NSString *)styleName
-//------------------------------------------------------
-{
-    return [[self URLForUserStyle:styleName] checkResourceIsReachableAndReturnError:nil];
 }
 
 
@@ -307,10 +292,11 @@ NSString *const CESyntaxValidationMessageKey = @"MessageKey";
 {
     BOOL success = NO;
     if ([styleName length] < 1) { return success; }
-    NSURL *URL = [self URLForUserStyle:styleName];
+    NSURL *URL = [self URLForUserStyle:styleName available:NO];
 
     if ([URL checkResourceIsReachableAndReturnError:nil]) {
-        success = [[NSFileManager defaultManager] removeItemAtURL:URL error:nil];
+        success = [[NSFileManager defaultManager] trashItemAtURL:URL resultingItemURL:nil error:nil];
+        
         if (success) {
             // 内部で持っているキャッシュ用データを更新
             [[self styleCaches] removeObjectForKey:styleName];
@@ -415,10 +401,10 @@ NSString *const CESyntaxValidationMessageKey = @"MessageKey";
     }
     
     // save
-    NSURL *saveURL = [self URLForUserStyle:name];
+    NSURL *saveURL = [self URLForUserStyle:name available:NO];
     // style名が変更されたときは、古いファイルを削除する
     if (![name isEqualToString:oldName]) {
-        [[NSFileManager defaultManager] removeItemAtURL:[self URLForUserStyle:oldName] error:nil];
+        [[NSFileManager defaultManager] removeItemAtURL:[self URLForUserStyle:oldName available:NO] error:nil];
     }
     // 保存しようとしている定義がバンドル版と同じだった場合（出荷時に戻したときなど）はユーザ領域のファイルを削除して終わる
     if ([style isEqualToDictionary:[self bundledStyleWithStyleName:name]]) {
@@ -572,11 +558,6 @@ NSString *const CESyntaxValidationMessageKey = @"MessageKey";
 
 #pragma mark Private Mthods
 
-//=======================================================
-// Private method
-//
-//=======================================================
-
 //------------------------------------------------------
 /// スタイルファイルの URL からスタイル名を返す
 - (NSString *)styleNameFromURL:(NSURL *)fileURL
@@ -625,31 +606,37 @@ NSString *const CESyntaxValidationMessageKey = @"MessageKey";
 - (NSURL *)URLForUsedStyle:(NSString *)styleName
 //------------------------------------------------------
 {
-    NSURL *URL = [self URLForUserStyle:styleName];
+    return [self URLForUserStyle:styleName available:YES] ?: [self URLForBundledStyle:styleName available:YES];
+}
+
+
+//------------------------------------------------------
+/// style名からバンドル領域のstyle定義ファイルのURLを返す (availableがYESの場合はファイルが実際に存在するときだけ返す)
+- (NSURL *)URLForBundledStyle:(NSString *)styleName available:(BOOL)available
+//------------------------------------------------------
+{
+    NSURL *URL = [[NSBundle mainBundle] URLForResource:styleName withExtension:@"yaml" subdirectory:@"Syntaxes"];
     
-    if (![URL checkResourceIsReachableAndReturnError:nil]) {
-        URL = [self URLForBundledStyle:styleName];
+    if (available) {
+        return [URL checkResourceIsReachableAndReturnError:nil] ? URL : nil;
+    } else {
+        return URL;
     }
+}
+
+
+//------------------------------------------------------
+/// style名からユーザ領域のstyle定義ファイルのURLを返す (availableがYESの場合はファイルが実際に存在するときだけ返す)
+- (NSURL *)URLForUserStyle:(NSString *)styleName available:(BOOL)available
+//------------------------------------------------------
+{
+    NSURL *URL = [[[self userStyleDirectoryURL] URLByAppendingPathComponent:styleName] URLByAppendingPathExtension:@"yaml"];
     
-    return [URL checkResourceIsReachableAndReturnError:nil] ? URL : nil;
-}
-
-
-//------------------------------------------------------
-/// style名からバンドル領域のstyle定義ファイルのURLを返す
-- (NSURL *)URLForBundledStyle:(NSString *)styleName
-//------------------------------------------------------
-{
-    return [[NSBundle mainBundle] URLForResource:styleName withExtension:@"yaml" subdirectory:@"Syntaxes"];
-}
-
-
-//------------------------------------------------------
-/// style名からユーザ領域のstyle定義ファイルのURLを返す
-- (NSURL *)URLForUserStyle:(NSString *)styleName
-//------------------------------------------------------
-{
-    return [[[self userStyleDirectoryURL] URLByAppendingPathComponent:styleName] URLByAppendingPathExtension:@"yaml"];
+    if (available) {
+        return [URL checkResourceIsReachableAndReturnError:nil] ? URL : nil;
+    } else {
+        return URL;
+    }
 }
 
 
@@ -724,9 +711,7 @@ NSString *const CESyntaxValidationMessageKey = @"MessageKey";
     
     // 定義をアルファベット順にソートする
     NSMutableArray *styleNames = [[map allKeys] mutableCopy];
-    [styleNames sortUsingComparator:^NSComparisonResult(NSString *name1, NSString *name2) {
-        return [name1 caseInsensitiveCompare:name2];
-    }];
+    [styleNames sortUsingSelector:@selector(caseInsensitiveCompare:)];
     [self setStyleNames:styleNames];
 }
 
@@ -736,13 +721,18 @@ NSString *const CESyntaxValidationMessageKey = @"MessageKey";
 - (void)setupExtensionAndSyntaxTable
 // ------------------------------------------------------
 {
+    NSMutableOrderedSet *styleNames = [NSMutableOrderedSet orderedSetWithArray:[self styleNames]];
     NSMutableDictionary *extensionToStyleTable = [NSMutableDictionary dictionary];
     NSMutableDictionary *extensionConflicts = [NSMutableDictionary dictionary];
     NSMutableDictionary *filenameToStyleTable = [NSMutableDictionary dictionary];
     NSMutableDictionary *filenameConflicts = [NSMutableDictionary dictionary];
     NSString *addedName = nil;
     
-    for (NSString *styleName in [[self map] allKeys]) {
+    // postpone bundled styles
+    [styleNames removeObjectsInArray:[self bundledStyleNames]];
+    [styleNames addObjectsFromArray:[self bundledStyleNames]];
+    
+    for (NSString *styleName in styleNames) {
         for (NSString *extension in [self map][styleName][CESyntaxExtensionsKey]) {
             if ((addedName = extensionToStyleTable[extension])) { // 同じ拡張子を持つものがすでにあるとき
                 NSMutableArray *errors = extensionConflicts[extension];
@@ -853,7 +843,7 @@ NSString *const CESyntaxValidationMessageKey = @"MessageKey";
 
     __block BOOL success = NO;
     NSString *styleName = [self styleNameFromURL:fileURL];
-    NSURL *destURL = [self URLForUserStyle:styleName];
+    NSURL *destURL = [self URLForUserStyle:styleName available:NO];
     
     NSFileCoordinator *coordinator = [[NSFileCoordinator alloc] initWithFilePresenter:nil];
     [coordinator coordinateReadingItemAtURL:fileURL options:NSFileCoordinatorReadingWithoutChanges

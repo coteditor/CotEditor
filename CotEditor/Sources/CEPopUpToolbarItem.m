@@ -32,6 +32,8 @@
 
 @implementation CEPopUpToolbarItem
 
+#pragma mark Superclass Methods
+
 // ------------------------------------------------------
 /// setup popup menu for "Text Only" mode
 - (void)awakeFromNib

@@ -15,7 +15,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014 CotEditor Project
+ © 2014-2015 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -34,11 +34,13 @@
  */
 
 #import "CETextView.h"
-#import "CELineNumberView.h"
 #import "CEColorCodePanelController.h"
 #import "CEGlyphPopoverController.h"
+#import "CEEditorScrollView.h"
+#import "CEDocument.h"
 #import "CEKeyBindingManager.h"
 #import "CEScriptManager.h"
+#import "CEWindow.h"
 #import "NSString+JapaneseTransform.h"
 #import "constants.h"
 
@@ -49,14 +51,11 @@ const NSInteger kNoMenuItem = -1;
 
 @interface CETextView ()
 
-@property (nonatomic) NSRect insertionRect;
-@property (nonatomic) NSPoint textContainerOriginPoint;
 @property (nonatomic) NSMutableParagraphStyle *paragraphStyle;
 @property (nonatomic) NSTimer *completionTimer;
 @property (nonatomic) NSString *particalCompletionWord;  // ユーザが実際に入力した補完の元になる文字列
 
 @property (nonatomic) NSColor *highlightLineColor;  // カレント行ハイライト色
-@property (nonatomic) NSUInteger tabWidth;  // タブ幅
 
 
 // readonly
@@ -72,27 +71,41 @@ const NSInteger kNoMenuItem = -1;
 
 @implementation CETextView
 
-#pragma mark NSTextView Methods
+static NSPoint kTextContainerOrigin;
 
-//=======================================================
-// NSTextView method
-//
-//=======================================================
+
+#pragma mark Superclass Methods
 
 // ------------------------------------------------------
-/// 初期化
+/// initialize class
++ (void)initialize
+// ------------------------------------------------------
+{
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        
+        kTextContainerOrigin = NSMakePoint((CGFloat)[defaults doubleForKey:CEDefaultTextContainerInsetWidthKey],
+                                           (CGFloat)[defaults doubleForKey:CEDefaultTextContainerInsetHeightTopKey]);
+    });
+    
+}
+
+
+// ------------------------------------------------------
+/// initialize instance
 - (instancetype)initWithFrame:(NSRect)frameRect textContainer:(NSTextContainer *)aTextContainer
 // ------------------------------------------------------
 {
     self = [super initWithFrame:frameRect textContainer:aTextContainer];
     if (self) {
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        
         // This method is partly based on Smultron's SMLTextView by Peter Borg. (2006-09-09)
         // Smultron 2 was distributed on <http://smultron.sourceforge.net> under the terms of the BSD license.
         // Copyright (c) 2004-2006 Peter Borg
         
         // set the width of every tab by first checking the size of the tab in spaces in the current font and then remove all tabs that sets automatically and then set the default tab stop distance
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        
         _tabWidth = [defaults integerForKey:CEDefaultTabWidthKey];
         
         CGFloat fontSize = (CGFloat)[defaults doubleForKey:CEDefaultFontSizeKey];
@@ -111,10 +124,14 @@ const NSInteger kNoMenuItem = -1;
         // 「文書の1文字目に1バイト文字（または2バイト文字）を入力してある状態で先頭に2バイト文字（または1バイト文字）を
         // 挿入すると行間がズレる」問題が生じるため、CELayoutManager および CEATSTypesetter で制御している）
 
-        // テーマの設定
+        // setup theme
         [self setTheme:[CETheme themeWithName:[defaults stringForKey:CEDefaultThemeKey]]];
         
-        // set the values
+        // set layer drawing policies
+        [self setLayerContentsRedrawPolicy:NSViewLayerContentsRedrawOnSetNeedsDisplay];
+        [self setLayerContentsPlacement:NSViewLayerContentsPlacementScaleAxesIndependently];
+        
+        // set values
         _autoTabExpandEnabled = [defaults boolForKey:CEDefaultAutoExpandTabKey];
         [self setSmartInsertDeleteEnabled:[defaults boolForKey:CEDefaultSmartInsertAndDeleteKey]];
         [self setContinuousSpellCheckingEnabled:[defaults boolForKey:CEDefaultCheckSpellingAsTypeKey]];
@@ -137,15 +154,12 @@ const NSInteger kNoMenuItem = -1;
                                                (CGFloat)([defaults doubleForKey:CEDefaultTextContainerInsetHeightTopKey] +
                                                          [defaults doubleForKey:CEDefaultTextContainerInsetHeightBottomKey]) / 2)];
         [self setLineSpacing:(CGFloat)[defaults doubleForKey:CEDefaultLineSpacingKey]];
-        _insertionRect = NSZeroRect;
-        _textContainerOriginPoint = NSMakePoint((CGFloat)[defaults doubleForKey:CEDefaultTextContainerInsetWidthKey],
-                                                (CGFloat)[defaults doubleForKey:CEDefaultTextContainerInsetHeightTopKey]);
         _needsUpdateOutlineMenuItemSelection = YES;
         
         [self applyTypingAttributes];
         
-        // 設定の変更を監視
-        for (NSString *key in [self observedDefaultKeys]) {
+        // observe change of defaults
+        for (NSString *key in [CETextView observedDefaultKeys]) {
             [[NSUserDefaults standardUserDefaults] addObserver:self
                                                     forKeyPath:key
                                                        options:NSKeyValueObservingOptionNew
@@ -158,11 +172,11 @@ const NSInteger kNoMenuItem = -1;
 
 
 // ------------------------------------------------------
-/// 後片付け
+/// clean up
 - (void)dealloc
 // ------------------------------------------------------
 {
-    for (NSString *key in [self observedDefaultKeys]) {
+    for (NSString *key in [CETextView observedDefaultKeys]) {
         [[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:key];
     }
     [[NSNotificationCenter defaultCenter] removeObserver:self];
@@ -171,36 +185,11 @@ const NSInteger kNoMenuItem = -1;
 
 
 // ------------------------------------------------------
-/// ユーザ設定の変更を反映する
--(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
-// ------------------------------------------------------
-{
-    id newValue = change[NSKeyValueChangeNewKey];
-    
-    if ([keyPath isEqualToString:CEDefaultAutoExpandTabKey]) {
-        [self setAutoTabExpandEnabled:[newValue boolValue]];
-        
-    } else if ([keyPath isEqualToString:CEDefaultSmartInsertAndDeleteKey]) {
-        [self setSmartInsertDeleteEnabled:[newValue boolValue]];
-        
-    } else if ([keyPath isEqualToString:CEDefaultCheckSpellingAsTypeKey]) {
-        [self setContinuousSpellCheckingEnabled:[newValue boolValue]];
-        
-    } else if ([keyPath isEqualToString:CEDefaultEnableSmartQuotesKey]) {
-        if ([self respondsToSelector:@selector(setAutomaticQuoteSubstitutionEnabled:)]) {  // only on OS X 10.9 and later
-            [self setAutomaticQuoteSubstitutionEnabled:[newValue boolValue]];
-            [self setAutomaticDashSubstitutionEnabled:[newValue boolValue]];
-        }
-    }
-}
-
-
-// ------------------------------------------------------
-/// first responder になれるかを返す  !!!: Deprecated on 10.4
+/// first responder になれるかを返す
 - (BOOL)becomeFirstResponder
 // ------------------------------------------------------
 {
-    [[(CEWindowController *)[[self window] windowController] editor] setTextView:self];
+    [[(CEWindowController *)[[self window] windowController] editor] setFocusedTextView:self];
     
     return [super becomeFirstResponder];
 }
@@ -215,13 +204,6 @@ const NSInteger kNoMenuItem = -1;
     
     // テーマ背景色を反映させる
     [[self window] setBackgroundColor:[[self theme] backgroundColor]];
-    
-    // レイヤーバックドビューにする
-    if (NSAppKitVersionNumber >= NSAppKitVersionNumber10_8) { // on Mountain Lion and later
-        [[self enclosingScrollView] setWantsLayer:YES];
-        [[[self enclosingScrollView] contentView] setCopiesOnScroll:YES];
-        [self setLayerContentsRedrawPolicy:NSViewLayerContentsRedrawOnSetNeedsDisplay];
-    }
     
     // ウインドウの透明フラグを監視する
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -239,14 +221,13 @@ const NSInteger kNoMenuItem = -1;
     NSString *charIgnoringMod = [theEvent charactersIgnoringModifiers];
     // IM で日本語入力変換中でないときのみ追加テキストキーバインディングを実行
     if (![self hasMarkedText] && charIgnoringMod) {
-        NSUInteger modFlags = [theEvent modifierFlags];
         NSString *selectorStr = [[CEKeyBindingManager sharedManager] selectorStringWithKeyEquivalent:charIgnoringMod
-                                                                                       modifierFrags:modFlags];
+                                                                                       modifierFrags:[theEvent modifierFlags]];
         NSInteger length = [selectorStr length];
         if (selectorStr && (length > 0)) {
             if (([selectorStr hasPrefix:@"insertCustomText"]) && (length == 20)) {
-                NSInteger theNum = [[selectorStr substringFromIndex:17] integerValue];
-                [self insertCustomTextWithPatternNum:theNum];
+                NSInteger patternNumber = [[selectorStr substringFromIndex:17] integerValue];
+                [self insertCustomTextWithPatternNumber:patternNumber];
             } else {
                 [self doCommandBySelector:NSSelectorFromString(selectorStr)];
             }
@@ -259,27 +240,84 @@ const NSInteger kNoMenuItem = -1;
 
 
 // ------------------------------------------------------
-/// 文字列入力、'¥' と '\' を入れ替える (NSTextInputClient)
+/// on inputting text (NSTextInputClient Protocol)
 - (void)insertText:(id)aString replacementRange:(NSRange)replacementRange
 // ------------------------------------------------------
 {
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultSwapYenAndBackSlashKey] && ([aString length] == 1)) {
-        NSEvent *event = [NSApp currentEvent];
-        NSUInteger flags = [NSEvent modifierFlags];
+    // just insert text on programmatic insertion
+    // -> This `insertText:replacementRange:` should generally be invoked only on user typing.
+    //    However, in fact, CotEditor uses this method also on programmatic text insertion
+    //    because of its convenience.
+    //    Thus, we need to check whether it is the true typing insertion. (2015-01 by 1024jp)
+    NSEvent *event = [NSApp currentEvent];
+    if ([event type] != NSKeyDown && [NSEvent modifierFlags] == 0) {
+        return [super insertText:aString replacementRange:replacementRange];
+    }
+    
+    // cast NSAttributedString to NSString in order to make sure input string is plain-text
+    NSString *string = [aString isKindOfClass:[NSAttributedString class]] ? [aString string] : aString;
+    
+    // swap '¥' with '\' if needed
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultSwapYenAndBackSlashKey] && ([string length] == 1)) {
+        NSString *yen = [NSString stringWithCharacters:&kYenMark length:1];
         
-        if (([event type] == NSKeyDown) && (flags == 0)) {
-            NSString *yen = [NSString stringWithCharacters:&kYenMark length:1];
-            if ([aString isEqualToString:@"\\"]) {
-                [super insertText:yen replacementRange:replacementRange];
-                return;
-            } else if ([aString isEqualToString:yen]) {
-                [super insertText:@"\\" replacementRange:replacementRange];
-                return;
+        if ([string isEqualToString:@"\\"]) {
+            [super insertText:yen replacementRange:replacementRange];
+            return;
+        } else if ([string isEqualToString:yen]) {
+            [super insertText:@"\\" replacementRange:replacementRange];
+            return;
+        }
+    }
+    
+    // smart outdent with '}' charcter
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultAutoIndentKey] &&
+        [[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultEnableSmartIndentKey] &&
+        (replacementRange.length == 0) && [string isEqualToString:@"}"])
+    {
+        NSString *wholeString = [self string];
+        NSUInteger insretionLocation = NSMaxRange([self selectedRange]);
+        NSRange lineRange = [wholeString lineRangeForRange:NSMakeRange(insretionLocation, 0)];
+        NSString *lineStr = [wholeString substringWithRange:lineRange];
+        
+        // decrease indent level if the line is consists of only whitespaces
+        if ([lineStr rangeOfString:@"^[ \\t　]+\\n?$"
+                           options:NSRegularExpressionSearch
+                             range:NSMakeRange(0, [lineStr length])].location != NSNotFound)
+        {
+            // find correspondent opening-brace
+            NSInteger precedingLocation = insretionLocation - 1;
+            NSUInteger skipMatchingBrace = 0;
+            
+            while (precedingLocation--) {
+                unichar characterToCheck = [wholeString characterAtIndex:precedingLocation];
+                if (characterToCheck == '{') {
+                    if (skipMatchingBrace) {
+                        skipMatchingBrace--;
+                    } else {
+                        break;  // found
+                    }
+                } else if (characterToCheck == '}') {
+                    skipMatchingBrace++;
+                }
+            }
+            
+            // outdent
+            if (precedingLocation >= 0) {
+                NSRange precedingLineRange = [wholeString lineRangeForRange:NSMakeRange(precedingLocation, 0)];
+                NSString *precedingLineStr = [wholeString substringWithRange:precedingLineRange];
+                NSUInteger desiredLevel = [self indentLevelOfString:precedingLineStr];
+                NSUInteger currentLevel = [self indentLevelOfString:lineStr];
+                NSUInteger levelToReduce = currentLevel - desiredLevel;
+                
+                while (levelToReduce--) {
+                    [self deleteBackward:self];
+                }
             }
         }
     }
     
-    [super insertText:aString replacementRange:replacementRange];
+    [super insertText:string replacementRange:replacementRange];
     
     // auto completion
     if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultAutoCompleteKey]) {
@@ -295,16 +333,15 @@ const NSInteger kNoMenuItem = -1;
 {
     if ([self isAutoTabExpandEnabled]) {
         NSInteger tabWidth = [self tabWidth];
-        NSRange selected = [self selectedRange];
-        NSRange lineRange = [[self string] lineRangeForRange:selected];
-        NSInteger location = selected.location - lineRange.location;
-        NSInteger length = tabWidth - ((location + tabWidth) % tabWidth);
+        NSInteger column = [self columnOfLocation:[self selectedRange].location expandsTab:YES];
+        NSInteger length = tabWidth - ((column + tabWidth) % tabWidth);
         NSMutableString *spaces = [NSMutableString string];
 
         while (length--) {
             [spaces appendString:@" "];
         }
         [super insertText:spaces];
+        
     } else {
         [super insertTab:sender];
     }
@@ -318,18 +355,16 @@ const NSInteger kNoMenuItem = -1;
 {
     NSString *indent = @"";
     BOOL shouldIncreaseIndentLevel = NO;
-    BOOL shouldDecreaseIndentLevel = NO;
     BOOL shouldExpandBlock = NO;
     
     if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultAutoIndentKey]) {
         NSRange selectedRange = [self selectedRange];
         NSRange lineRange = [[self string] lineRangeForRange:selectedRange];
-        NSString *lineStr = [[self string] substringWithRange:
-                             NSMakeRange(lineRange.location,
-                                         lineRange.length - (NSMaxRange(lineRange) - NSMaxRange(selectedRange)))];
+        NSString *lineStr = [[self string] substringWithRange:NSMakeRange(lineRange.location,
+                                                                          NSMaxRange(selectedRange) - lineRange.location)];
         NSRange indentRange = [lineStr rangeOfString:@"^[ \\t　]+" options:NSRegularExpressionSearch];
         
-        // インデントを選択状態で改行入力した時は置換とみなしてオートインデントしない 2008.12.13
+        // インデントを選択状態で改行入力した時は置換とみなしてオートインデントしない 2008-12-13
         if (NSMaxRange(selectedRange) >= (selectedRange.location + NSMaxRange(indentRange))) {
             [super insertNewline:sender];
             return;
@@ -339,7 +374,7 @@ const NSInteger kNoMenuItem = -1;
             indent = [lineStr substringWithRange:indentRange];
         }
         
-        // スマートインデント
+        // smart indent
         if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultEnableSmartIndentKey]) {
             unichar lastChar = NULL;
             unichar nextChar = NULL;
@@ -353,53 +388,6 @@ const NSInteger kNoMenuItem = -1;
             shouldExpandBlock = ((lastChar == '{') && (nextChar == '}'));
             // 改行直前の文字が `:` か `{` の場合はインデントレベルを1つ上げる
             shouldIncreaseIndentLevel = ((lastChar == ':') || (lastChar == '{'));
-            // 改行直前の文字が `}` でそれ以外が空白の行の場合はインデントレベルを1つ下げる
-            shouldDecreaseIndentLevel = ((lastChar == '}') &&
-                                         ([lineStr rangeOfString:@"^[ \\t　]+$"
-                                                         options:NSRegularExpressionSearch
-                                                           range:NSMakeRange(0, [lineStr length] - 1)].location != NSNotFound));
-        }
-    }
-    
-    // インデントレベルを下げる必要があるかを改めて判定して必要であれば下げる
-    if (shouldDecreaseIndentLevel) {
-        NSString *completeString = [self string];
-        NSUInteger currentIndentLevel = [self indentLevelOfString:indent];
-        NSInteger precedingLocation = [self selectedRange].location - 1;
-        NSUInteger skipMatchingBrace = 0;
-        BOOL isSearching = YES;
-        
-        while (isSearching && precedingLocation--) {
-            unichar characterToCheck = [completeString characterAtIndex:precedingLocation];
-            if (characterToCheck == '{') {
-                if (!skipMatchingBrace) {
-                    isSearching = NO;
-                    #pragma unused(isSearching)  // `isSearching` is in fact used in condition for while
-                    break;
-                } else {
-                    skipMatchingBrace--;
-                }
-            } else if (characterToCheck == '}') {
-                skipMatchingBrace++;
-            }
-        }
-        
-        if (precedingLocation >= 0) {
-            NSRange precedingRange = NSMakeRange(precedingLocation, 0);
-            NSRange precedingLineRange = [completeString lineRangeForRange:precedingRange];
-            NSString *lineStr = [completeString substringWithRange:
-                                 NSMakeRange(precedingLineRange.location, precedingLineRange.length)];
-            NSInteger desiredIndentLevel = [self indentLevelOfString:lineStr];
-            
-            while (desiredIndentLevel < currentIndentLevel) {
-                [self moveLeft:sender];
-                [self deleteBackward:sender];
-                [self moveRight:sender];
-                
-                NSUInteger inentWidth = ([indent characterAtIndex:[indent length] - 1] == ' ') ? [self tabWidth] : 1;
-                indent = [indent substringToIndex:[indent length] - inentWidth];
-                currentIndentLevel--;
-            }
         }
     }
     
@@ -428,27 +416,24 @@ const NSInteger kNoMenuItem = -1;
 // ------------------------------------------------------
 {
     NSRange selectedRange = [self selectedRange];
-    if (selectedRange.length == 0) {
-        if ([self isAutoTabExpandEnabled]) {
-            NSUInteger tabWidth = [self tabWidth];
-            NSRange lineRange = [[self string] lineRangeForRange:selectedRange];
-            NSInteger location = selectedRange.location - lineRange.location;
-            NSInteger length = (location + tabWidth) % tabWidth;
-            NSInteger targetWidth = (length == 0) ? tabWidth : length;
-            
-            if (selectedRange.location >= targetWidth) {
-                NSRange targetRange = NSMakeRange(selectedRange.location - targetWidth, targetWidth);
-                NSString *target = [[self string] substringWithRange:targetRange];
-                BOOL shouldDelete = NO;
-                for (NSUInteger i = 0; i < targetWidth; i++) {
-                    shouldDelete = ([target characterAtIndex:i] == ' ');
-                    if (!shouldDelete) {
-                        break;
-                    }
+    if (selectedRange.length == 0 && [self isAutoTabExpandEnabled]) {
+        NSUInteger tabWidth = [self tabWidth];
+        NSInteger column = [self columnOfLocation:selectedRange.location expandsTab:YES];
+        NSInteger length = tabWidth - ((column + tabWidth) % tabWidth);
+        NSInteger targetWidth = (length == 0) ? tabWidth : length;
+        
+        if (selectedRange.location >= targetWidth) {
+            NSRange targetRange = NSMakeRange(selectedRange.location - targetWidth, targetWidth);
+            NSString *target = [[self string] substringWithRange:targetRange];
+            BOOL shouldDelete = NO;
+            for (NSUInteger i = 0; i < targetWidth; i++) {
+                shouldDelete = ([target characterAtIndex:i] == ' ');
+                if (!shouldDelete) {
+                    break;
                 }
-                if (shouldDelete) {
-                    [self setSelectedRange:targetRange];
-                }
+            }
+            if (shouldDelete) {
+                [self setSelectedRange:targetRange];
             }
         }
     }
@@ -461,72 +446,61 @@ const NSInteger kNoMenuItem = -1;
 - (NSMenu *)menuForEvent:(NSEvent *)theEvent
 // ------------------------------------------------------
 {
-    NSMenu *outMenu = [super menuForEvent:theEvent];
-    NSMenuItem *selectAllMenuItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Select All", nil)
-                                                               action:@selector(selectAll:) keyEquivalent:@""];
-    NSMenuItem *utilityMenuItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Utility", nil)
-                                                             action:nil keyEquivalent:@""];
-    NSMenu *utilityMenu = [[[[NSApp mainMenu] itemAtIndex:CEUtilityMenuIndex] submenu] copy];
-    NSMenuItem *ASMenuItem = [[NSMenuItem alloc] initWithTitle:@"" action:nil keyEquivalent:@""];
-    NSMenu *ASSubMenu = [[CEScriptManager sharedManager] contexualMenu];
+    NSMenu *menu = [super menuForEvent:theEvent];
 
-    // 「フォント」メニューおよびサブメニューを削除
-    [outMenu removeItem:[outMenu itemWithTitle:NSLocalizedString(@"Font",@"")]];
-
-    // 連続してコンテキストメニューを表示させるとどんどんメニューアイテムが追加されてしまうので、
-    // 既に追加されているかどうかをチェックしている
-    if (selectAllMenuItem &&
-        ([outMenu indexOfItemWithTarget:nil andAction:@selector(selectAll:)] == kNoMenuItem)) {
-        NSInteger pasteIndex = [outMenu indexOfItemWithTarget:nil andAction:@selector(paste:)];
-        if (pasteIndex != kNoMenuItem) {
-            [outMenu insertItem:selectAllMenuItem atIndex:(pasteIndex + 1)];
-        }
-    }
-    if ((utilityMenu || ASSubMenu) &&
-        ([outMenu indexOfItemWithTag:CEUtilityMenuItemTag] == kNoMenuItem) &&
-        ([outMenu indexOfItemWithTag:CEScriptMenuItemTag] == kNoMenuItem)) {
-        [outMenu addItem:[NSMenuItem separatorItem]];
-    }
-    if (utilityMenu && ([outMenu indexOfItemWithTag:CEUtilityMenuItemTag] == kNoMenuItem)) {
-        [utilityMenuItem setTag:CEUtilityMenuItemTag];
-        [utilityMenuItem setSubmenu:utilityMenu];
-        [outMenu addItem:utilityMenuItem];
-    }
-    if (ASSubMenu) {
-        NSMenuItem *delItem = nil;
-        while ((delItem = [outMenu itemWithTag:CEScriptMenuItemTag])) {
-            [outMenu removeItem:delItem];
-        }
-        
-        if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultInlineContextualScriptMenuKey]) {
-            for (NSUInteger i = 0; i < 2; i++) { // セパレータをふたつ追加
-                [outMenu addItem:[NSMenuItem separatorItem]];
-                [[outMenu itemAtIndex:([outMenu numberOfItems] - 1)] setTag:CEScriptMenuItemTag];
-            }
-            NSMenuItem *addItem = nil;
-            for (NSMenuItem *item in [ASSubMenu itemArray]) {
-                addItem = [item copy];
-                [addItem setTag:CEScriptMenuItemTag];
-                [outMenu addItem:addItem];
-            }
-            [outMenu addItem:[NSMenuItem separatorItem]];
-        } else{
-            [ASMenuItem setImage:[NSImage imageNamed:@"ScriptTemplate"]];
-            [[ASMenuItem image] setTemplate:NO];
-            [ASMenuItem setTag:CEScriptMenuItemTag];
-            [ASMenuItem setSubmenu:ASSubMenu];
-            [outMenu addItem:ASMenuItem];
-        }
-    }
+    // remove unwanted "Font" menu and its submenus
+    [menu removeItem:[menu itemWithTitle:NSLocalizedString(@"Font", nil)]];
     
+    // add "Inspect Character" menu item if single character is selected
     if ([[[self string] substringWithRange:[self selectedRange]] numberOfComposedCharacters] == 1) {
-        [outMenu insertItemWithTitle:NSLocalizedString(@"Inspect Character", nil)
+        [menu insertItemWithTitle:NSLocalizedString(@"Inspect Character", nil)
                               action:@selector(showSelectionInfo:)
                        keyEquivalent:@""
                              atIndex:1];
     }
     
-    return outMenu;
+    // add "Select All" menu item
+    NSInteger pasteIndex = [menu indexOfItemWithTarget:nil andAction:@selector(paste:)];
+    if (pasteIndex != kNoMenuItem) {
+        [menu insertItemWithTitle:NSLocalizedString(@"Select All", nil)
+                           action:@selector(selectAll:) keyEquivalent:@""
+                          atIndex:(pasteIndex + 1)];
+    }
+    
+    // append a separator
+    [menu addItem:[NSMenuItem separatorItem]];
+    
+    // append Utility menu
+    NSMenuItem *utilityMenuItem = [[NSApp mainMenu] itemAtIndex:CEUtilityMenuIndex];
+    if (utilityMenuItem) {
+        [menu addItem:[utilityMenuItem copy]];
+    }
+    
+    // append Script menu
+    NSMenu *scriptMenu = [[CEScriptManager sharedManager] contexualMenu];
+    if (scriptMenu) {
+        if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultInlineContextualScriptMenuKey]) {
+            [menu addItem:[NSMenuItem separatorItem]];
+            [[[menu itemArray] lastObject] setTag:CEScriptMenuItemTag];
+            
+            for (NSMenuItem *item in [scriptMenu itemArray]) {
+                NSMenuItem *addItem = [item copy];
+                [addItem setTag:CEScriptMenuItemTag];
+                [menu addItem:addItem];
+            }
+            [menu addItem:[NSMenuItem separatorItem]];
+            
+        } else {
+            NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:@"" action:nil keyEquivalent:@""];
+            [item setImage:[NSImage imageNamed:@"ScriptTemplate"]];
+            [[item image] setTemplate:NO];  // draw in black
+            [item setTag:CEScriptMenuItemTag];
+            [item setSubmenu:scriptMenu];
+            [menu addItem:item];
+        }
+    }
+    
+    return menu;
 }
 
 
@@ -550,7 +524,7 @@ const NSInteger kNoMenuItem = -1;
     NSFont *newFont = [sender convertFont:[self font]];
 
     [self setFont:newFont];
-    [self setNeedsDisplay:YES]; // 本来なくても再描画されるが、最下行以下のページガイドの描画が残るための措置(2009.02.14)
+    [self setNeedsDisplayInRect:[self visibleRect] avoidAdditionalLayout:YES];  // 最下行以下のページガイドの描画が残るための措置 (2009-02-14)
     [self updateLineNumberAndAdjustScroll];
 }
 
@@ -574,11 +548,21 @@ const NSInteger kNoMenuItem = -1;
 
 
 // ------------------------------------------------------
+/// タブ幅を変更
+- (void)setTabWidth:(NSUInteger)tabWidth
+// ------------------------------------------------------
+{
+    _tabWidth = tabWidth;
+    [self setFont:[self font]];  // force re-layout with new width
+}
+
+
+// ------------------------------------------------------
 /// テキストコンテナの原点（左上）座標を返す
 - (NSPoint)textContainerOrigin
 // ------------------------------------------------------
 {
-    return [self textContainerOriginPoint];
+    return kTextContainerOrigin;
 }
 
 
@@ -589,8 +573,8 @@ const NSInteger kNoMenuItem = -1;
 {
     [super drawViewBackgroundInRect:rect];
     
-    // 現在行ハイライト描画
-    if (NSWidth([self highlightLineRect]) > 0) {
+    // draw current line highlight
+    if (NSIntersectsRect(rect, [self highlightLineRect])) {
         [[self highlightLineColor] set];
         [NSBezierPath fillRect:[self highlightLineRect]];
     }
@@ -604,7 +588,7 @@ const NSInteger kNoMenuItem = -1;
 {
     [super drawRect:dirtyRect];
     
-    // ページガイド描画
+    // draw page guide
     if ([self showsPageGuide]) {
         CGFloat column = (CGFloat)[[NSUserDefaults standardUserDefaults] doubleForKey:CEDefaultPageGuideColumnKey];
         
@@ -612,25 +596,17 @@ const NSInteger kNoMenuItem = -1;
             return;
         }
         
-        CGFloat length = ([self layoutOrientation] == NSTextLayoutOrientationVertical) ? NSWidth([self frame]) : NSHeight([self frame]);
-        CGFloat linePadding = [[self textContainer] lineFragmentPadding];
-        CGFloat inset = [self textContainerOrigin].x;
-        
         NSFont *font = [(CELayoutManager *)[self layoutManager] textFont];
         font = [font screenFont] ? : font;
-        column *= [@"M" sizeWithAttributes:@{NSFontAttributeName:font}].width;
+        column *= [@"M" sizeWithAttributes:@{NSFontAttributeName: font}].width;
         
-        // （2ピクセル右に描画してるのは、調整）
-        CGFloat x = floor(column + inset + linePadding) + 2.5;
-        [[[[self theme] textColor] colorWithAlphaComponent:0.2] set];
-        [NSBezierPath strokeLineFromPoint:NSMakePoint(x, 0)
-                                  toPoint:NSMakePoint(x, length)];
-    }
-    
-    // テキストビューを透過させている時に影を更新描画する (on Lion)
-    // Lion 上では Layer-backed になっていないのでビュー越しにテキストのドロップシャドウが描画される。Lion サポート落としたら多分不要。(2014-10 1024jp)
-    if ((NSAppKitVersionNumber < NSAppKitVersionNumber10_8) && ![[self window] isOpaque]) {
-        [[self window] invalidateShadow];
+        CGFloat inset = [self textContainerOrigin].x;
+        CGFloat linePadding = [[self textContainer] lineFragmentPadding];
+        CGFloat x = floor(column + inset + linePadding) + 2.5;  // +2px for adjustment
+        
+        [[[self textColor] colorWithAlphaComponent:0.2] set];
+        [NSBezierPath strokeLineFromPoint:NSMakePoint(x, NSMinY(dirtyRect))
+                                  toPoint:NSMakePoint(x, NSMaxY(dirtyRect))];
     }
 }
 
@@ -656,6 +632,10 @@ const NSInteger kNoMenuItem = -1;
     
     [super scrollRangeToVisible:range];
     
+    if (floor(NSAppKitVersionNumber) > NSAppKitVersionNumber10_9) { return; }
+    // The following additional scroll adjustment might be no more required thanks to the changing on Yosemite.
+    // cf.: NSScrollView section in AppKit Release Notes for OS X v10.10
+    
     // 完全にスクロールさせる
     // （setTextContainerInset で上下に空白領域を挿入している関係で、ちゃんとスクロールしない場合があることへの対策）
     NSUInteger length = [[self string] length];
@@ -674,7 +654,8 @@ const NSInteger kNoMenuItem = -1;
         NSRange targetRange = [[self string] lineRangeForRange:range];
         NSRange glyphRange = [[self layoutManager] glyphRangeForCharacterRange:targetRange actualCharacterRange:nil];
         rect = [[self layoutManager] lineFragmentRectForGlyphAtIndex:(NSMaxRange(glyphRange) - 1)
-                                                      effectiveRange:nil];
+                                                      effectiveRange:nil
+                                             withoutAdditionalLayout:YES];
     }
     if (NSEqualRects(rect, NSZeroRect)) { return; }
     
@@ -702,19 +683,10 @@ const NSInteger kNoMenuItem = -1;
         
         // 縦書きのときは強制的に行番号ビューを非表示
         BOOL showsLineNum = isVertical ? NO : [[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultShowLineNumbersKey];
-        [(CELineNumberView *)[self lineNumberView] setShown:showsLineNum];
+        [[self enclosingScrollView] setRulersVisible:showsLineNum];
     }
     
     [super setLayoutOrientation:theOrientation];
-}
-
-
-// ------------------------------------------------------
-/// 読み取り可能なPasteboardタイプを返す
-- (NSArray *)readablePasteboardTypes
-// ------------------------------------------------------
-{
-    return [[super readablePasteboardTypes] arrayByAddingObject:NSFilenamesPboardType];
 }
 
 
@@ -732,72 +704,21 @@ const NSInteger kNoMenuItem = -1;
 
 
 // ------------------------------------------------------
-/// 領域内でオブジェクトがドラッグされている
-- (NSDragOperation)dragOperationForDraggingInfo:(id <NSDraggingInfo>)dragInfo type:(NSString *)type
-// ------------------------------------------------------
-{
-    if ([type isEqualToString:NSFilenamesPboardType]) {
-        NSArray *fileDropArray = [[NSUserDefaults standardUserDefaults] arrayForKey:CEDefaultFileDropArrayKey];
-        
-        for (NSDictionary *item in fileDropArray) {
-            NSArray *array = [[dragInfo draggingPasteboard] propertyListForType:NSFilenamesPboardType];
-            NSArray *extensions = [item[CEFileDropExtensionsKey] componentsSeparatedByString:@", "];
-            
-            if ([self draggedItemsArray:array containsExtensionInExtensions:extensions]) {
-                NSString *string = [self string];
-                if ([string length] > 0) {
-                    // 挿入ポイントを自前で描画する
-                    CGFloat partialFraction;
-                    NSLayoutManager *layoutManager = [self layoutManager];
-                    NSUInteger glyphIndex = [layoutManager glyphIndexForPoint:[self convertPoint:[dragInfo draggingLocation] fromView:nil]
-                                                              inTextContainer:[self textContainer]
-                                               fractionOfDistanceThroughGlyph:&partialFraction];
-                    NSPoint glypthIndexPoint;
-                    if ((partialFraction > 0.5) && ([string characterAtIndex:glyphIndex] != '\n')) {
-                        NSRect glyphRect = [layoutManager boundingRectForGlyphRange:NSMakeRange(glyphIndex, 1)
-                                                                    inTextContainer:[self textContainer]];
-                        glypthIndexPoint = [layoutManager locationForGlyphAtIndex:glyphIndex];
-                        glypthIndexPoint.x += NSWidth(glyphRect);
-                    } else {
-                        glypthIndexPoint = [layoutManager locationForGlyphAtIndex:glyphIndex];
-                    }
-                    NSRect lineRect = [layoutManager lineFragmentRectForGlyphAtIndex:glyphIndex effectiveRange:NULL];
-                    NSRect insertionRect = NSMakeRect(glypthIndexPoint.x, lineRect.origin.y, 1, NSHeight(lineRect));
-                    if (!NSEqualRects([self insertionRect], insertionRect)) {
-                        // 古い自前挿入ポイントが描かれたままになることへの対応
-                        [self setNeedsDisplayInRect:[self insertionRect] avoidAdditionalLayout:NO];
-                    }
-                    [[self insertionPointColor] set];
-                    [self lockFocus];
-                    NSFrameRectWithWidth(insertionRect, 1.0);
-                    [self unlockFocus];
-                    [self setInsertionRect:insertionRect];
-                }
-                return NSDragOperationCopy;
-            }
-        }
-        return NSDragOperationNone;
-    }
-    
-    return [super dragOperationForDraggingInfo:dragInfo type:type];
-}
-
-
-// ------------------------------------------------------
 /// ドロップ実行（同じ書類からドロップされた文字列の改行コードをLFへ置換するためにオーバーライド）
 - (BOOL)performDragOperation:(id<NSDraggingInfo>)sender
 // ------------------------------------------------------
 {
-    // ドロップによる編集で改行コードをLFに統一する
-    // （その他の編集は、下記の通りの別の場所で置換している）
-    // # テキスト編集時の改行コードの置換場所
-    //  * ファイルオープン = CEDocument > setStringToEditor
-    //  * スクリプト = CEEditorView > textView:shouldChangeTextInRange:replacementString:
-    //  * キー入力 = CEEditorView > textView:shouldChangeTextInRange:replacementString:
-    //  * ペースト = CETextView > readSelectionFromPasteboard:type:
-    //  * ドロップ（別書類または別アプリから） = CETextView > readSelectionFromPasteboard:type:
-    //  * ドロップ（同一書類内） = CETextView > performDragOperation:
-    //  * 検索パネルでの置換 = (OgreKit) OgreTextViewPlainAdapter > replaceCharactersInRange:withOGString:
+    // standardize line endings to LF (Drop from the same document)
+    // (Line endings replacemement by other text modifications are processed in the following methods.)
+    //
+    // # Methods Standardizing Line Endings on Text Editing
+    //   - File Open: CEDocument > setStringToEditor
+    //   - Script: CEEditorView > textView:shouldChangeTextInRange:replacementString:
+    //   - Key Typing: CEEditorView > textView:shouldChangeTextInRange:replacementString:
+    //   - Paste: CETextView > readSelectionFromPasteboard:type:
+    //   - Drop (from other documents/apps): CETextView > readSelectionFromPasteboard:type:
+    //   - Drop (from the same document): CETextView > performDragOperation:
+    //   - Replace on Find Penel: (OgreKit) OgreTextViewPlainAdapter > replaceCharactersInRange:withOGString:
     
     // まず、自己内ドラッグかどうかのフラグを立てる
     [self setSelfDrop:([sender draggingSource] == self)];
@@ -806,7 +727,7 @@ const NSInteger kNoMenuItem = -1;
         // （自己内ドラッグの場合には、改行コード置換を readSelectionFromPasteboard:type: 内で実行すると
         // アンドゥの登録で文字列範囲の計算が面倒なので、ここでPasteboardを書き換えてしまう）
         NSPasteboard *pboard = [sender draggingPasteboard];
-        NSString *pboardType = [pboard availableTypeFromArray:[self pasteboardTypesForString]];
+        NSString *pboardType = [pboard availableTypeFromArray:[CETextView pasteboardTypesForString]];
         if (pboardType) {
             NSString *string = [pboard stringForType:pboardType];
             if (string) {
@@ -834,38 +755,38 @@ const NSInteger kNoMenuItem = -1;
     // （このメソッドは、performDragOperation: 内で呼ばれる）
     
     BOOL success = NO;
-    NSRange selectedRange, newRange;
     
     // 実行中フラグを立てる
     [self setReadingFromPboard:YES];
     
     // ペーストされたか、他からテキストがドロップされた
     if (![self isSelfDrop] && [type isEqualToString:NSStringPboardType]) {
-        // ペースト、他からのドロップによる編集で改行コードをLFに統一する
-        // （その他の編集は、下記の通りの別の場所で置換している）
-        // # テキスト編集時の改行コードの置換場所
-        //  * ファイルオープン = CEDocument > setStringToEditor
-        //  * スクリプト = CEEditorView > textView:shouldChangeTextInRange:replacementString:
-        //  * キー入力 = CEEditorView > textView:shouldChangeTextInRange:replacementString:
-        //  * ペースト = CETextView > readSelectionFromPasteboard:type:
-        //  * ドロップ（別書類または別アプリから） = CETextView > readSelectionFromPasteboard:type:
-        //  * ドロップ（同一書類内） = CETextView > performDragOperation:
-        //  * 検索パネルでの置換 = (OgreKit) OgreTextViewPlainAdapter > replaceCharactersInRange:withOGString:
+        // standardize line endings to LF (Paste, Drop from other documents/apps)
+        // (Line endings replacemement by other text modifications are processed in the following methods.)
+        //
+        // # Methods Standardizing Line Endings on Text Editing
+        //   - File Open: CEDocument > setStringToEditor
+        //   - Script: CEEditorView > textView:shouldChangeTextInRange:replacementString:
+        //   - Key Typing: CEEditorView > textView:shouldChangeTextInRange:replacementString:
+        //   - Paste: CETextView > readSelectionFromPasteboard:type:
+        //   - Drop (from other documents/apps): CETextView > readSelectionFromPasteboard:type:
+        //   - Drop (from the same document): CETextView > performDragOperation:
+        //   - Replace on Find Penel: (OgreKit) OgreTextViewPlainAdapter > replaceCharactersInRange:withOGString:
         
         NSString *pboardStr = [pboard stringForType:NSStringPboardType];
         if (pboardStr) {
             CENewLineType newlineChar = [pboardStr detectNewLineType];
             if ((newlineChar != CENewLineNone) && (newlineChar != CENewLineLF)) {
                 NSString *replacedStr = [pboardStr stringByReplacingNewLineCharacersWith:CENewLineLF];
-                selectedRange = [self selectedRange];
-                newRange = NSMakeRange(selectedRange.location + [replacedStr length], 0);
-                // （Action名は自動で付けられる？ので、指定しない）
-                [self doReplaceString:replacedStr withRange:selectedRange withSelected:newRange withActionName:@""];
+                NSRange newRange = NSMakeRange([self selectedRange].location + [replacedStr length], 0);
+                
+                [super insertText:replacedStr];
+                [self setSelectedRange:newRange];
                 success = YES;
             }
         }
         
-        // ファイルがドロップされた
+    // ファイルがドロップされた
     } else if ([type isEqualToString:NSFilenamesPboardType]) {
         NSArray *fileDropDefs = [[NSUserDefaults standardUserDefaults] arrayForKey:CEDefaultFileDropArrayKey];
         NSArray *files = [pboard propertyListForType:NSFilenamesPboardType];
@@ -876,7 +797,6 @@ const NSInteger kNoMenuItem = -1;
             NSString *pathExtension = nil, *pathExtensionLower = nil, *pathExtensionUpper = nil;
             NSString *stringToDrop = nil;
             
-            selectedRange = [self selectedRange];
             for (NSDictionary *definition in fileDropDefs) {
                 NSArray *extensions = [definition[CEFileDropExtensionsKey] componentsSeparatedByString:@", "];
                 pathExtension = [absoluteURL pathExtension];
@@ -949,11 +869,11 @@ const NSInteger kNoMenuItem = -1;
                                                                                        [imageRep pixelsHigh]]];
                 }
                 // （ファイルをドロップしたときは、挿入文字列全体を選択状態にする）
-                newRange = NSMakeRange(selectedRange.location, [stringToDrop length]);
-                // （Action名は自動で付けられる？ので、指定しない）
-                [self doReplaceString:stringToDrop withRange:selectedRange withSelected:newRange withActionName:@""];
+                NSRange newRange = NSMakeRange([self selectedRange].location, 0);
+                
+                [super insertText:stringToDrop];
+                [self setSelectedRange:newRange];
                 // 挿入後、選択範囲を移動させておかないと複数オブジェクトをドロップされた時に重ね書きしてしまう
-                [self setSelectedRange:NSMakeRange(NSMaxRange(newRange), 0)];
                 success = YES;
             }
         }
@@ -980,159 +900,189 @@ const NSInteger kNoMenuItem = -1;
 
 
 
-#pragma mark Public Methods
+#pragma mark Protocol
 
 //=======================================================
-// Public method
-//
+// NSKeyValueObserving Protocol
 //=======================================================
 
 // ------------------------------------------------------
-/// キー入力時の文字修飾辞書をセット
-- (void)applyTypingAttributes
+/// ユーザ設定の変更を反映する
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 // ------------------------------------------------------
 {
-    [self setTypingAttributes:@{NSParagraphStyleAttributeName: [self paragraphStyle],
-                                NSFontAttributeName: [self font],
-                                NSForegroundColorAttributeName: [[self theme] textColor]}];
+    id newValue = change[NSKeyValueChangeNewKey];
+    
+    if ([keyPath isEqualToString:CEDefaultAutoExpandTabKey]) {
+        [self setAutoTabExpandEnabled:[newValue boolValue]];
+        
+    } else if ([keyPath isEqualToString:CEDefaultSmartInsertAndDeleteKey]) {
+        [self setSmartInsertDeleteEnabled:[newValue boolValue]];
+        
+    } else if ([keyPath isEqualToString:CEDefaultCheckSpellingAsTypeKey]) {
+        [self setContinuousSpellCheckingEnabled:[newValue boolValue]];
+        
+    } else if ([keyPath isEqualToString:CEDefaultEnableSmartQuotesKey]) {
+        if ([self respondsToSelector:@selector(setAutomaticQuoteSubstitutionEnabled:)]) {  // only on OS X 10.9 and later
+            [self setAutomaticQuoteSubstitutionEnabled:[newValue boolValue]];
+            [self setAutomaticDashSubstitutionEnabled:[newValue boolValue]];
+        }
+    }
 }
 
 
+//=======================================================
+// NSMenuValidation Protocol
+//=======================================================
+
 // ------------------------------------------------------
-/// 選択文字列を置換
-- (void)replaceSelectedStringTo:(NSString *)string scroll:(BOOL)needsScroll
+/// メニューの有効／無効を制御
+- (BOOL)validateMenuItem:(NSMenuItem *)menuItem
 // ------------------------------------------------------
 {
+    if (([menuItem action] == @selector(exchangeFullwidthRoman:)) ||
+        ([menuItem action] == @selector(exchangeHalfwidthRoman:)) ||
+        ([menuItem action] == @selector(exchangeKatakana:)) ||
+        ([menuItem action] == @selector(exchangeHiragana:)) ||
+        ([menuItem action] == @selector(normalizeUnicodeWithNFD:)) ||
+        ([menuItem action] == @selector(normalizeUnicodeWithNFC:)) ||
+        ([menuItem action] == @selector(normalizeUnicodeWithNFKD:)) ||
+        ([menuItem action] == @selector(normalizeUnicodeWithNFKC:)))
+    {
+        return ([self selectedRange].length > 0);
+        // （カラーコード編集メニューは常に有効）
+        
+    } else if ([menuItem action] == @selector(changeLineHeight:)) {
+        CGFloat lineSpacing = [[menuItem title] doubleValue] - 1.0;
+        [menuItem setState:(CEIsAlmostEqualCGFloats([self lineSpacing], lineSpacing) ? NSOnState : NSOffState)];
+    } else if ([menuItem action] == @selector(changeTabWidth:)) {
+        [menuItem setState:(([self tabWidth] == [menuItem tag]) ? NSOnState : NSOffState)];
+    } else if ([menuItem action] == @selector(showSelectionInfo:)) {
+        NSString *selection = [[self string] substringWithRange:[self selectedRange]];
+        return ([selection numberOfComposedCharacters] == 1);
+    } else if ([menuItem action] == @selector(toggleComment:)) {
+        NSString *title = [self canUncommentRange:[self selectedRange]] ? @"Uncomment Selection" : @"Comment Selection";
+        [menuItem setTitle:NSLocalizedString(title, nil)];
+        return ([self inlineCommentDelimiter] || [self blockCommentDelimiters]);
+    }
+    
+    return [super validateMenuItem:menuItem];
+}
+
+
+//=======================================================
+// NSToolbarItemValidation Protocol
+//=======================================================
+
+// ------------------------------------------------------
+/// ツールバーアイコンの有効／無効を制御
+- (BOOL)validateToolbarItem:(NSToolbarItem *)theItem
+// ------------------------------------------------------
+{
+    if ([theItem action] == @selector(toggleComment:)) {
+        return ([self inlineCommentDelimiter] || [self blockCommentDelimiters]);
+    }
+    
+    return YES;
+}
+
+
+
+#pragma mark Public Methods
+
+// ------------------------------------------------------
+- (void)insertString:(NSString *)string
+/// treat programmatic text insertion
+// ------------------------------------------------------
+{
+    // should not use `insertText:` and insertText:replacementRange:` methods since they are generally for user typing.
+    
     if (!string) { return; }
     
     NSRange selectedRange = [self selectedRange];
+    
+    [super insertText:string];
+    [self setSelectedRange:NSMakeRange(selectedRange.location, [string length])];
+    
     NSString *actionName = (selectedRange.length > 0) ? @"Replace Text" : @"Insert Text";
-
-    [self doInsertString:string
-               withRange:selectedRange
-            withSelected:NSMakeRange(selectedRange.location, [string length])
-          withActionName:NSLocalizedString(actionName, nil)
-                  scroll:needsScroll];
+    
+    [[self undoManager] setActionName:NSLocalizedString(actionName, nil)];
 }
 
 
 // ------------------------------------------------------
-/// 全文字列を置換
-- (void)replaceAllStringTo:(NSString *)string
+/// insert given string just after current selection and select inserted range
+- (void)insertStringAfterSelection:(NSString *)string
 // ------------------------------------------------------
 {
     if (!string) { return; }
     
-    [self doReplaceString:string
-                withRange:NSMakeRange(0, [[self string] length])
-             withSelected:NSMakeRange(0, [string length])
-           withActionName:NSLocalizedString(@"Replace Text", nil)];
-}
-
-
-// ------------------------------------------------------
-/// 選択文字列の後ろへ新規文字列を挿入
-- (void)insertAfterSelection:(NSString *)string
-// ------------------------------------------------------
-{
-    if (!string) { return; }
-
-    [self doInsertString:string
-               withRange:NSMakeRange(NSMaxRange([self selectedRange]), 0)
-            withSelected:NSMakeRange(NSMaxRange([self selectedRange]), [string length])
-          withActionName:NSLocalizedString(@"Insert Text", nil)
-                  scroll:NO];
-}
-
-
-// ------------------------------------------------------
-/// 末尾に新規文字列を追加
-- (void)appendAllString:(NSString *)string
-// ------------------------------------------------------
-{
-    if (!string) { return; }
-
-    [self doInsertString:string
-               withRange:NSMakeRange([[self string] length], 0)
-            withSelected:NSMakeRange([[self string] length], [string length])
-          withActionName:NSLocalizedString(@"Insert Text", nil)
-                  scroll:NO];
-}
-
-
-// ------------------------------------------------------
-/// カスタムキーバインドで文字列入力
-- (void)insertCustomTextWithPatternNum:(NSInteger)patternNum
-// ------------------------------------------------------
-{
-    if (patternNum < 0) { return; }
+    NSUInteger location = NSMaxRange([self selectedRange]);
     
-    NSArray *texts = [[NSUserDefaults standardUserDefaults] arrayForKey:CEDefaultInsertCustomTextArrayKey];
+    [super insertText:string replacementRange:NSMakeRange(location, 0)];
+    [self setSelectedRange:NSMakeRange(location, [string length])];
+    
+    [[self undoManager] setActionName:NSLocalizedString(@"Insert Text", nil)];
+}
 
-    if (patternNum < [texts count]) {
-        NSString *string = texts[patternNum];
 
-        [self doInsertString:string
-                   withRange:[self selectedRange]
-                withSelected:NSMakeRange([self selectedRange].location + [string length], 0)
-              withActionName:NSLocalizedString(@"Insert Custom Text", nil)
-                      scroll:YES];
-    }
+// ------------------------------------------------------
+/// swap whole current string with given string and select inserted range
+- (void)replaceAllStringWithString:(NSString *)string
+// ------------------------------------------------------
+{
+    if (!string) { return; }
+    
+    [super insertText:string replacementRange:NSMakeRange(0, [[self string] length])];
+    [self setSelectedRange:NSMakeRange(0, [string length])];
+    
+    [[self undoManager] setActionName:NSLocalizedString(@"Replace Text", nil)];
+}
+
+
+// ------------------------------------------------------
+/// append string at the end of the whole string and select inserted range
+- (void)appendString:(NSString *)string
+// ------------------------------------------------------
+{
+    if (!string) { return; }
+    
+    NSUInteger location = [[self string] length];
+    
+    [super insertText:string replacementRange:NSMakeRange(location, 0)];
+    [self setSelectedRange:NSMakeRange(location, [string length])];
+    
+    [[self undoManager] setActionName:NSLocalizedString(@"Insert Text", nil)];
 }
 
 
 // ------------------------------------------------------
 /// 行間値をセットし、テキストと行番号を再描画
-- (void)setNewLineSpacingAndUpdate:(CGFloat)lineSpacing
+- (void)setLineSpacingAndUpdate:(CGFloat)lineSpacing
 // ------------------------------------------------------
 {
     if (lineSpacing == [self lineSpacing]) { return; }
     
-    NSRange range = NSMakeRange(0, [[self string] length]);
-    
     [self setLineSpacing:lineSpacing];
-    // テキストを再描画
-    [[self layoutManager] invalidateLayoutForCharacterRange:range isSoft:NO actualCharacterRange:nil];
+    
+    // redraw
+    NSRange range = NSMakeRange(0, [[self string] length]);
+    [[self layoutManager] invalidateLayoutForCharacterRange:range actualCharacterRange:nil];
     [self updateLineNumberAndAdjustScroll];
 }
 
 
 // ------------------------------------------------------
 /// 置換を実行
-- (void)doReplaceString:(NSString *)string withRange:(NSRange)range
-           withSelected:(NSRange)selection withActionName:(NSString *)actionName
+- (void)replaceWithString:(NSString *)string range:(NSRange)range selectedRange:(NSRange)selectedRange actionName:(NSString *)actionName
 // ------------------------------------------------------
 {
-    NSString *newStr = [string copy];
-    NSString *curStr = [[self string] substringWithRange:range];
-
-    // regist Undo
-    NSDocument *document = [[[self window] windowController] document];
-    NSUndoManager *undoManager = [self undoManager];
-    NSRange newRange = NSMakeRange(range.location, [string length]); // replaced range after method.
-
-    [[undoManager prepareWithInvocationTarget:self] redoReplaceString:newStr withRange:range
-                                                         withSelected:selection withActionName:actionName]; // redo in undo
-    [[undoManager prepareWithInvocationTarget:self] setSelectedRange:[self selectedRange]]; // select current selection.
-    [[undoManager prepareWithInvocationTarget:self] didChangeText]; // post notification.
-    [[undoManager prepareWithInvocationTarget:[self textStorage]] replaceCharactersInRange:newRange withString:curStr];
-    [[undoManager prepareWithInvocationTarget:document] updateChangeCount:NSChangeUndone]; // to decrement changeCount.
-    if ([actionName length] > 0) {
-        [undoManager setActionName:actionName];
-    }
-    BOOL shouldSetAttrs = ([[self string] length] == 0);
-    [[self textStorage] beginEditing];
-    [[self textStorage] replaceCharactersInRange:range withString:newStr];
-    if (shouldSetAttrs) { // 文字列がない場合に AppleScript から文字列を追加されたときに Attributes が適用されないことへの対応
-        [[self textStorage] setAttributes:[self typingAttributes]
-                                    range:NSMakeRange(0, [[[self textStorage] string] length])];
-    }
-    [[self textStorage] endEditing];
-    // テキストの編集ノーティフィケーションをポスト（ここでは NSTextStorage を編集しているため自動ではポストされない）
-    [self didChangeText];
-    // 選択範囲を変更、アンドゥカウントを増やす
-    [self setSelectedRange:selection];
-    [document updateChangeCount:NSChangeDone];
+    if (!string) { return; }
+    
+    [self replaceWithStrings:@[string]
+                      ranges:@[[NSValue valueWithRange:range]]
+              selectedRanges:@[[NSValue valueWithRange:selectedRange]]
+                  actionName:actionName];
 }
 
 
@@ -1154,71 +1104,14 @@ const NSInteger kNoMenuItem = -1;
     [[self enclosingScrollView] setScrollerKnobStyle:knobStyle];
     
     _theme = theme;
-}
-
-
-
-#pragma mark Protocol
-
-//=======================================================
-// NSNibAwaking Protocol
-//
-//=======================================================
-
-// ------------------------------------------------------
-/// メニューの有効／無効を制御
-- (BOOL)validateMenuItem:(NSMenuItem *)menuItem
-// ------------------------------------------------------
-{
-    if (([menuItem action] == @selector(exchangeFullwidthRoman:)) ||
-        ([menuItem action] == @selector(exchangeHalfwidthRoman:)) ||
-        ([menuItem action] == @selector(exchangeKatakana:)) ||
-        ([menuItem action] == @selector(exchangeHiragana:)) ||
-        ([menuItem action] == @selector(normalizeUnicodeWithNFD:)) ||
-        ([menuItem action] == @selector(normalizeUnicodeWithNFC:)) ||
-        ([menuItem action] == @selector(normalizeUnicodeWithNFKD:)) ||
-        ([menuItem action] == @selector(normalizeUnicodeWithNFKC:)))
-    {
-        return ([self selectedRange].length > 0);
-        // （カラーコード編集メニューは常に有効）
-
-    } else if ([menuItem action] == @selector(changeLineHeight:)) {
-        [menuItem setState:(([self lineSpacing] == (CGFloat)[[menuItem title] doubleValue] - 1.0) ? NSOnState : NSOffState)];
-    } else if ([menuItem action] == @selector(changeTabWidth:)) {
-        [menuItem setState:(([self tabWidth] == [menuItem tag]) ? NSOnState : NSOffState)];
-    } else if ([menuItem action] == @selector(showSelectionInfo:)) {
-        NSString *selection = [[self string] substringWithRange:[self selectedRange]];
-        return ([selection numberOfComposedCharacters] == 1);
-    } else if ([menuItem action] == @selector(toggleComment:)) {
-        NSString *title = [self canUncommentRange:[self selectedRange]] ? @"Uncomment Selection" : @"Comment Selection";
-        [menuItem setTitle:NSLocalizedString(title, nil)];
-        return ([self inlineCommentDelimiter] || [self blockCommentDelimiters]);
-    }
-
-    return [super validateMenuItem:menuItem];
-}
-
-
-// ------------------------------------------------------
-/// ツールバーアイコンの有効／無効を制御
-- (BOOL)validateToolbarItem:(NSToolbarItem *)theItem
-// ------------------------------------------------------
-{
-    if ([theItem action] == @selector(toggleComment:)) {
-        return ([self inlineCommentDelimiter] || [self blockCommentDelimiters]);
-    }
     
-    return YES;
+    // redraw selection
+    [self setNeedsDisplayInRect:[self visibleRect] avoidAdditionalLayout:YES];
 }
 
 
 
 #pragma mark Action Messages
-
-//=======================================================
-// Action messages
-//
-//=======================================================
 
 // ------------------------------------------------------
 /// フォントをリセット
@@ -1234,138 +1127,128 @@ const NSInteger kNoMenuItem = -1;
 
 
 // ------------------------------------------------------
-/// 右へシフト
+/// increase indent level
 - (IBAction)shiftRight:(id)sender
 // ------------------------------------------------------
 {
-    // 現在の選択区域とシフトする行範囲を得る
+    if ([self tabWidth] < 1) { return; }
+    
+    // get range to process
     NSRange selectedRange = [self selectedRange];
     NSRange lineRange = [[self string] lineRangeForRange:selectedRange];
-
+    
+    // remove the last line ending
     if (lineRange.length > 1) {
-        lineRange.length--; // 最末尾の改行分を減ずる
+        lineRange.length--;
     }
-    // シフトするために挿入する文字列と長さを得る
-    NSMutableString *shiftStr = [NSMutableString string];
-    NSUInteger shiftLength = 0;
+    
+    // create indent string to prepend
+    NSMutableString *indent = [NSMutableString string];
     if ([self isAutoTabExpandEnabled]) {
         NSUInteger tabWidth = [self tabWidth];
-        shiftLength = tabWidth;
         while (tabWidth--) {
-            [shiftStr appendString:@" "];
+            [indent appendString:@" "];
         }
     } else {
-        shiftLength = 1;
-        [shiftStr setString:@"\t"];
+        [indent setString:@"\t"];
     }
-    if (shiftLength < 1) { return; }
-
-    // 置換する行を生成する
-    NSMutableString *newLine = [NSMutableString stringWithString:[[self string] substringWithRange:lineRange]];
-    NSString *newStr = [NSString stringWithFormat:@"%@%@", @"\n", shiftStr];
-    NSUInteger lines = [newLine replaceOccurrencesOfString:@"\n"
-                                                withString:newStr
-                                                   options:0
-                                                     range:NSMakeRange(0, [newLine length])];
-    [newLine insertString:shiftStr atIndex:0];
-    // 置換後の選択位置の調整
-    NSUInteger newLocation;
+    
+    // create shifted string
+    NSMutableString *newString = [NSMutableString stringWithString:[[self string] substringWithRange:lineRange]];
+    NSUInteger numberOfLines = [newString replaceOccurrencesOfString:@"\n"
+                                                          withString:[NSString stringWithFormat:@"\n%@", indent]
+                                                             options:0
+                                                               range:NSMakeRange(0, [newString length])];
+    [newString insertString:indent atIndex:0];
+    
+    // calculate new selection range
+    NSRange newSelectedRange = NSMakeRange(selectedRange.location,
+                                           selectedRange.length + [indent length] * numberOfLines);
     if ((lineRange.location == selectedRange.location) && (selectedRange.length > 0) &&
         ([[[self string] substringWithRange:selectedRange] hasSuffix:@"\n"]))
     {
         // 行頭から行末まで選択されていたときは、処理後も同様に選択する
-        newLocation = selectedRange.location;
-        lines++;
+        newSelectedRange.length += [indent length];
     } else {
-        newLocation = selectedRange.location + shiftLength;
+        newSelectedRange.location += [indent length];
     }
-    // 置換実行
-    [self doReplaceString:newLine withRange:lineRange
-             withSelected:NSMakeRange(newLocation, selectedRange.length + shiftLength * lines)
-           withActionName:NSLocalizedString(@"Shift Right", nil)];
+    
+    // perform replace and register to undo manager
+    [self replaceWithString:newString range:lineRange selectedRange:newSelectedRange
+                 actionName:NSLocalizedString(@"Shift Right", nil)];
 }
 
 
 // ------------------------------------------------------
-/// 左へシフト
+/// decrease indent level
 - (IBAction)shiftLeft:(id)sender
 // ------------------------------------------------------
 {
-    // 現在の選択区域とシフトする行範囲を得る
+    if ([self tabWidth] < 1) { return; }
+    
+    // get range to process
     NSRange selectedRange = [self selectedRange];
     NSRange lineRange = [[self string] lineRangeForRange:selectedRange];
-    if (NSMaxRange(lineRange) == 0) { // 空行で実行された場合は何もしない
-        return;
+    
+    if (lineRange.length == 0) { return; } // do nothing with blank line
+    
+    // remove the last line ending
+    if ((lineRange.length > 1) && ([[self string] characterAtIndex:NSMaxRange(lineRange) - 1] == '\n')) {
+        lineRange.length--;
     }
-    if ((lineRange.length > 1) &&  ([[self string] characterAtIndex:NSMaxRange(lineRange) - 1] == '\n')) {
-        lineRange.length--; // 末尾の改行分を減ずる
-    }
-    // シフトするために削除するスペースの長さを得る
-    NSInteger shiftLength = [self tabWidth];
-    if (shiftLength < 1) { return; }
 
-    // 置換する行を生成する
-    NSArray *lines = [[[self string] substringWithRange:lineRange] componentsSeparatedByString:@"\n"];
-    NSMutableString *newLine = [NSMutableString string];
-    NSUInteger totalDeleted = 0;
-    NSInteger newLocation = selectedRange.location, newLength = selectedRange.length;
-    NSUInteger count = [lines count];
+    // create shifted string
+    NSMutableArray *newLines = [NSMutableArray array];
+    NSInteger tabWidth = [self tabWidth];
+    __block NSRange newSelectedRange = selectedRange;
+    __block BOOL didShift = NO;
+    __block NSUInteger scanningLineLocation = lineRange.location;
+    __block BOOL isFirstLine = YES;
 
-    // 選択区域を含む行をスキャンし、冒頭のスペース／タブを削除
-    for (NSUInteger i = 0; i < count; i++) {
+    // scan selected lines and remove tab/spaces at the beginning of lines
+    [[[self string] substringWithRange:lineRange] enumerateLinesUsingBlock:^(NSString *line, BOOL *stop) {
         NSUInteger numberOfDeleted = 0;
-        NSMutableString *tmpLine = [lines[i] mutableCopy];
-        BOOL spaceDeleted = NO;
-        for (NSUInteger j = 0; j < shiftLength; j++) {
-            if ([tmpLine length] == 0) {
-                break;
-            }
-            unichar theChar = [lines[i] characterAtIndex:j];
-            if (theChar == '\t') {
-                if (!spaceDeleted) {
-                    [tmpLine deleteCharactersInRange:NSMakeRange(0, 1)];
-                    numberOfDeleted++;
-                }
+        
+        // count tab/spaces to delete
+        BOOL isDeletingSpace = NO;
+        for (NSUInteger i = 0; i < MIN(tabWidth, [line length]); i++) {
+            unichar theChar = [line characterAtIndex:i];
+            if (theChar == '\t' && !isDeletingSpace) {
+                numberOfDeleted = 1;
                 break;
             } else if (theChar == ' ') {
-                [tmpLine deleteCharactersInRange:NSMakeRange(0, 1)];
                 numberOfDeleted++;
-                spaceDeleted = YES;
+                isDeletingSpace = YES;
             } else {
                 break;
             }
         }
-        // 処理後の選択区域用の値を算出
-        if (i == 0) {
-            newLocation -= numberOfDeleted;
-            if (newLocation < (NSInteger)lineRange.location) {
-                newLength -= (lineRange.location - newLocation);
-                newLocation = lineRange.location;
-            }
-        } else {
-            newLength -= numberOfDeleted;
-            if (newLength < (NSInteger)lineRange.location - newLocation + (NSInteger)[newLine length]) {
-                newLength = lineRange.location - newLocation + [newLine length];
-            }
+        
+        NSString *newLine = [line substringFromIndex:numberOfDeleted];
+        
+        // calculate new selection range
+        NSRange deletedRange = NSMakeRange(scanningLineLocation, numberOfDeleted);
+        newSelectedRange.length -= NSIntersectionRange(deletedRange, newSelectedRange).length;
+        if (isFirstLine) {
+            newSelectedRange.location = MAX(selectedRange.location - numberOfDeleted, lineRange.location);
+            isFirstLine = NO;
         }
-        // 冒頭のスペース／タブを削除した行を合成
-        [newLine appendString:tmpLine];
-        if (i != ((NSInteger)[lines count] - 1)) {
-            [newLine appendString:@"\n"];
-        }
-        totalDeleted += numberOfDeleted;
-    }
-    // シフトされなかったら中止
-    if (totalDeleted == 0) { return; }
-    if (newLocation < 0) {
-        newLocation = 0;
-    }
-    if (newLength < 0) {
-        newLength = 0;
-    }
-    // 置換実行
-    [self doReplaceString:newLine withRange:lineRange
-             withSelected:NSMakeRange(newLocation, newLength) withActionName:NSLocalizedString(@"Shift Left", nil)];
+        
+        // append new line
+        [newLines addObject:newLine];
+        
+        didShift = didShift ? : (numberOfDeleted > 0);
+        scanningLineLocation += [newLine length] + 1;  // +1 for line ending
+    }];
+    
+    // cancel if not shifted
+    if (!didShift) { return; }
+    
+    NSString *newString = [newLines componentsJoinedByString:@"\n"];
+    
+    // perform replace and register to undo manager
+    [self replaceWithString:newString range:lineRange selectedRange:newSelectedRange
+                 actionName:NSLocalizedString(@"Shift Left", nil)];
 }
 
 
@@ -1384,7 +1267,6 @@ const NSInteger kNoMenuItem = -1;
 // ------------------------------------------------------
 {
     [self setTabWidth:[sender tag]];
-    [self setFont:[self font]];  // 新しい幅でレイアウトし直す
 }
 
 
@@ -1412,14 +1294,15 @@ const NSInteger kNoMenuItem = -1;
 // ------------------------------------------------------
 {
     NSValue *value = [sender representedObject];
-    if (value) {
-        NSRange range = [value rangeValue];
-
-        [self setNeedsUpdateOutlineMenuItemSelection:NO]; // 選択範囲変更後にメニュー選択項目が再選択されるオーバーヘッドを省く
-        [self setSelectedRange:range];
-        [self centerSelectionInVisibleArea:self];
-        [[self window] makeFirstResponder:self];
-    }
+    
+    if (!value) { return; }
+    
+    NSRange range = [value rangeValue];
+    
+    [self setNeedsUpdateOutlineMenuItemSelection:NO]; // 選択範囲変更後にメニュー選択項目が再選択されるオーバーヘッドを省く
+    [self setSelectedRange:range];
+    [self centerSelectionInVisibleArea:self];
+    [[self window] makeFirstResponder:self];
 }
 
 
@@ -1428,7 +1311,7 @@ const NSInteger kNoMenuItem = -1;
 - (IBAction)changeLineHeight:(id)sender
 // ------------------------------------------------------
 {
-    [self setNewLineSpacingAndUpdate:(CGFloat)[[sender title] doubleValue] - 1.0];  // title is line height
+    [self setLineSpacingAndUpdate:(CGFloat)[[sender title] doubleValue] - 1.0];  // title is line height
 }
 
 
@@ -1443,29 +1326,19 @@ const NSInteger kNoMenuItem = -1;
     
     if (!popoverController) { return; }
     
-    NSRange glyphRange = [[self layoutManager] glyphRangeForCharacterRange:selectedRange actualCharacterRange:NULL];
-    NSRect selectedRect = [[self layoutManager] boundingRectForGlyphRange:glyphRange inTextContainer:[self textContainer]];
-    NSPoint containerOrigin = [self textContainerOrigin];
-    selectedRect.origin.x += containerOrigin.x;
-    selectedRect.origin.y += containerOrigin.y - 6.0;
-    selectedRect = [self convertRectToLayer:selectedRect];
+    NSRect selectedRect = [self overlayRectForRange:selectedRange];
+    selectedRect.origin.y -= 4;
     
     [popoverController showPopoverRelativeToRect:selectedRect ofView:self];
     [self showFindIndicatorForRange:NSMakeRange(selectedRange.location, 1)];
 }
 
 
-
 #pragma mark Private Methods
-
-//=======================================================
-// Private method
-//
-//=======================================================
 
 // ------------------------------------------------------
 /// 変更を監視するデフォルトキー
-- (NSArray *)observedDefaultKeys
++ (NSArray *)observedDefaultKeys
 // ------------------------------------------------------
 {
     return @[CEDefaultAutoExpandTabKey,
@@ -1476,67 +1349,8 @@ const NSInteger kNoMenuItem = -1;
 
 
 // ------------------------------------------------------
-/// ウインドウの透明設定が変更された
-- (void)didWindowOpacityChange:(NSNotification *)notification
-// ------------------------------------------------------
-{
-    // ウインドウが不透明な時は自前で背景を描画する（サブピクセルレンダリングを有効にするためには layer-backed で不透明なビューが必要）
-    [self setDrawsBackground:[[self window] isOpaque]];
-    
-    if (NSAppKitVersionNumber >= NSAppKitVersionNumber10_8) { // on Mountain Lion and later
-        // 半透明時にこれを有効にすると、ファイルサイズが大きいときにハングに近い状態になるため、
-        // 暫定処置として不透明時にだけ有効にする。
-        // 逆に不透明時に無効だと、ウインドウリサイズ時にビューが伸び縮みする (2014-10 by 1024jp)
-        [[self layer] setNeedsDisplayOnBoundsChange:[[self window] isOpaque]];
-    }
-    
-    [self setNeedsDisplay:YES];
-}
-
-
-// ------------------------------------------------------
-/// 文字列置換のリドゥーを登録
-- (void)redoReplaceString:(NSString *)string withRange:(NSRange)range 
-            withSelected:(NSRange)selection withActionName:(NSString *)actionName
-// ------------------------------------------------------
-{
-    [[[self undoManager] prepareWithInvocationTarget:self]
-        doReplaceString:string withRange:range withSelected:selection withActionName:actionName];
-}
-
-
-// ------------------------------------------------------
-/// 置換実行
-- (void)doInsertString:(NSString *)string withRange:(NSRange)range 
-            withSelected:(NSRange)selection withActionName:(NSString *)actionName scroll:(BOOL)doScroll
-// ------------------------------------------------------
-{
-    NSUndoManager *undoManager = [self undoManager];
-
-    // 一時的にイベントごとのグループを作らないようにする
-    // （でないと、グルーピングするとchangeCountが余分にカウントされる）
-    [undoManager setGroupsByEvent:NO];
-
-    // それ以前のキー入力と分離するため、グルーピング
-    // CEDocument > writeWithBackupToFile:ofType:saveOperation:でも同様の処理を行っている (2008.06.01)
-    [undoManager beginUndoGrouping];
-    [self setSelectedRange:range];
-    [super insertText:[string copy]];
-    [self setSelectedRange:selection];
-    if (doScroll) {
-        [self scrollRangeToVisible:selection];
-    }
-    if ([actionName length] > 0) {
-        [undoManager setActionName:actionName];
-    }
-    [undoManager endUndoGrouping];
-    [undoManager setGroupsByEvent:YES]; // イベントごとのグループ作成設定を元に戻す
-}
-
-
-// ------------------------------------------------------
-/// 改行コード置換のためのPasteboardタイプ配列を返す
-- (NSArray *)pasteboardTypesForString
+/// 改行コード置換のための Pasteboard タイプ
++ (NSArray *)pasteboardTypesForString
 // ------------------------------------------------------
 {
     return @[NSPasteboardTypeString, (NSString *)kUTTypeUTF8PlainText];
@@ -1544,20 +1358,118 @@ const NSInteger kNoMenuItem = -1;
 
 
 // ------------------------------------------------------
-/// ドラッグされているアイテムのNSFilenamesPboardTypeに指定された拡張子のものが含まれているかどうかを返す
-- (BOOL)draggedItemsArray:(NSArray *)items containsExtensionInExtensions:(NSArray *)extensions
+/// return enclosing scroll view after casting
+- (CEEditorScrollView *)scrollView
 // ------------------------------------------------------
 {
-    if ([items count] > 0) {
-        for (NSString *extension in extensions) {
-            for (id item in items) {
-                if ([[item pathExtension] isEqualToString:extension]) {
-                    return YES;
-                }
-            }
-        }
+    return (CEEditorScrollView *)[self enclosingScrollView];
+}
+
+
+// ------------------------------------------------------
+/// キー入力時の文字修飾辞書をセット
+- (void)applyTypingAttributes
+// ------------------------------------------------------
+{
+    [self setTypingAttributes:@{NSParagraphStyleAttributeName: [self paragraphStyle],
+                                NSFontAttributeName: [self font],
+                                NSForegroundColorAttributeName: [[self theme] textColor]}];
+}
+
+
+// ------------------------------------------------------
+/// window's opacity did change
+- (void)didWindowOpacityChange:(NSNotification *)notification
+// ------------------------------------------------------
+{
+    BOOL isOpaque = [[self window] isOpaque];
+    
+    // let text view have own background if possible
+    [self setDrawsBackground:isOpaque];
+    
+    // By opaque window, turn `copiesOnScroll` on to enable Responsive Scrolling with traditional drawing.
+    // -> Better not using layer-backed view to avoid ugly text rendering and performance issue (1024jp on 2015-01)
+    //    cf. Responsive Scrolling section in the Release Notes for OS X 10.9
+    [[[self enclosingScrollView] contentView] setCopiesOnScroll:isOpaque];
+    
+    // Make view layer-backed in order to disable dropshadow from letters on Mavericks and earlier (1024jp on 2015-01)
+    // -> This makes scrolling laggy on huge file.
+    if (floor(NSAppKitVersionNumber) <= NSAppKitVersionNumber10_9) {
+        [[self enclosingScrollView] setWantsLayer:!isOpaque];
     }
-    return NO;
+    
+    // redraw visible area
+    [self setNeedsDisplayInRect:[self visibleRect] avoidAdditionalLayout:YES];
+}
+
+
+// ------------------------------------------------------
+/// perform multiple replacements
+- (void)replaceWithStrings:(NSArray *)strings ranges:(NSArray *)ranges selectedRanges:(NSArray *)selectedRanges actionName:(NSString *)actionName
+// ------------------------------------------------------
+{
+    NSUndoManager *undoManager = [self undoManager];
+    NSTextStorage *textStorage = [self textStorage];
+    NSDictionary *attributes = [self typingAttributes];
+    
+    // register redo in undo
+    [[undoManager prepareWithInvocationTarget:self] redoReplaceWithStrings:strings ranges:ranges
+                                                            selectedRanges:selectedRanges
+                                                                actionName:actionName];
+    
+    // register undo
+    NSArray *currentSelectedRanges = [self selectedRanges];
+    [undoManager beginUndoGrouping];
+    [[undoManager prepareWithInvocationTarget:self] setSelectedRanges:currentSelectedRanges];
+    [[undoManager prepareWithInvocationTarget:self] didChangeText];  // post notification.
+    
+    __block NSInteger deltaLocation = 0;
+    [ranges enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop)
+     {
+         NSRange range = [obj rangeValue];
+         NSString *string = strings[idx];
+         NSAttributedString *currentString = [textStorage attributedSubstringFromRange:range];
+         NSRange newRange = NSMakeRange(range.location + deltaLocation, [string length]);  // replaced range after method.
+         
+         [[undoManager prepareWithInvocationTarget:textStorage]
+          replaceCharactersInRange:newRange withAttributedString:currentString];
+         
+         deltaLocation += newRange.length - range.length;
+     }];
+    [undoManager endUndoGrouping];
+    if (actionName) {
+        [undoManager setActionName:actionName];
+    }
+    
+    // process text
+    [textStorage beginEditing];
+    // use backwards enumeration to skip adjustment of applying location
+    [ranges enumerateObjectsWithOptions:NSEnumerationReverse
+                             usingBlock:^(id obj, NSUInteger idx, BOOL *stop)
+     {
+         NSRange range = [obj rangeValue];
+         NSAttributedString *attrString = [[NSAttributedString alloc] initWithString:strings[idx]
+                                                                          attributes:attributes];
+         
+         [textStorage replaceCharactersInRange:range withAttributedString:attrString];
+     }];
+    [textStorage endEditing];
+    
+    // post didEdit notification (It's not posted automatically, since here NSTextStorage is directly edited.)
+    [self didChangeText];
+    
+    // apply new selection ranges
+    [self setSelectedRanges:selectedRanges];
+}
+
+
+// ------------------------------------------------------
+/// register Redo for string replacement
+- (void)redoReplaceWithStrings:(NSArray *)strings ranges:(NSArray *)ranges selectedRanges:(NSArray *)selectedRanges actionName:(NSString *)actionName
+// ------------------------------------------------------
+{
+    [[[self undoManager] prepareWithInvocationTarget:self]
+     replaceWithStrings:strings ranges:ranges selectedRanges:selectedRanges actionName:actionName];
 }
 
 
@@ -1567,7 +1479,7 @@ const NSInteger kNoMenuItem = -1;
 // ------------------------------------------------------
 {
     // 行番号を強制的に更新（スクロール位置が調整されない時は再描画が行われないため）
-    [[self lineNumberView] setNeedsDisplay:YES];
+    [[self scrollView] invalidateLineNumber];
     
     // キャレット／選択範囲が見えるようにスクロール位置を調整
     [self scrollRangeToVisible:[self selectedRange]];
@@ -1584,7 +1496,7 @@ const NSInteger kNoMenuItem = -1;
     CENewLineType newLineType = [[[[self window] windowController] document] lineEnding];
 
     if (newLineType == CENewLineLF) { return; }
-    NSString *pboardType = [pboard availableTypeFromArray:[self pasteboardTypesForString]];
+    NSString *pboardType = [pboard availableTypeFromArray:[CETextView pasteboardTypesForString]];
     if (pboardType) {
         NSString *string = [pboard stringForType:pboardType];
         
@@ -1592,6 +1504,26 @@ const NSInteger kNoMenuItem = -1;
             [pboard setString:[string stringByReplacingNewLineCharacersWith:newLineType]
                       forType:pboardType];
         }
+    }
+}
+
+
+// ------------------------------------------------------
+/// カスタムキーバインドで文字列入力
+- (void)insertCustomTextWithPatternNumber:(NSInteger)patternNumber
+// ------------------------------------------------------
+{
+    if (patternNumber < 0) { return; }
+    
+    NSArray *texts = [[NSUserDefaults standardUserDefaults] stringArrayForKey:CEDefaultInsertCustomTextArrayKey];
+    
+    if (patternNumber < [texts count]) {
+        NSString *string = texts[patternNumber];
+        
+        [super insertText:string];
+        [[self undoManager] setActionName:NSLocalizedString(@"Insert Custom Text", nil)];
+        
+        [self scrollRangeToVisible:[self selectedRange]];
     }
 }
 
@@ -1612,6 +1544,24 @@ const NSInteger kNoMenuItem = -1;
 }
 
 
+// ------------------------------------------------------
+/// calculate column number at location in the line
+- (NSUInteger)columnOfLocation:(NSUInteger)location expandsTab:(BOOL)expandsTab
+// ------------------------------------------------------
+{
+    NSRange lineRange = [[self string] lineRangeForRange:NSMakeRange(location, 0)];
+    NSInteger column = location - lineRange.location;
+    
+    // count tab width
+    if (expandsTab) {
+        NSString *beforeInsertion = [[self string] substringWithRange:NSMakeRange(lineRange.location, column)];
+        NSUInteger numberOfTabChars = [[beforeInsertion componentsSeparatedByString:@"\t"] count] - 1;
+        column += numberOfTabChars * ([self tabWidth] - 1);
+    }
+    
+    return column;
+}
+
 
 // ------------------------------------------------------
 /// インデントレベルを算出
@@ -1628,6 +1578,22 @@ const NSInteger kNoMenuItem = -1;
     return numberOfTabChars + (([indent length] - numberOfTabChars) / [self tabWidth]);
 }
 
+
+// ------------------------------------------------------
+/// rect for given character range
+- (NSRect)overlayRectForRange:(NSRange)range
+// ------------------------------------------------------
+{
+    NSRange glyphRange = [[self layoutManager] glyphRangeForCharacterRange:range actualCharacterRange:NULL];
+    NSRect rect = [[self layoutManager] boundingRectForGlyphRange:glyphRange inTextContainer:[self textContainer]];
+    NSPoint containerOrigin = [self textContainerOrigin];
+    
+    rect.origin.x += containerOrigin.x;
+    rect.origin.y += containerOrigin.y;
+    
+    return [self convertRectToLayer:rect];
+}
+
 @end
 
 
@@ -1637,7 +1603,7 @@ const NSInteger kNoMenuItem = -1;
 
 @implementation CETextView (WordCompletion)
 
-#pragma mark NSTextView Methods
+#pragma mark Superclass Methods
 
 // ------------------------------------------------------
 /// 補完時の範囲を返す
@@ -1802,7 +1768,7 @@ const NSInteger kNoMenuItem = -1;
 
 @implementation CETextView (WordSelection)
 
-#pragma mark NSTextView Methods
+#pragma mark Superclass Methods
 
 // ------------------------------------------------------
 /// adjust word selection range
@@ -1955,7 +1921,7 @@ const NSInteger kNoMenuItem = -1;
 
 @implementation CETextView (PinchZoomSupport)
 
-#pragma mark NSResponder Methods
+#pragma mark Superclass Methods
 
 // ------------------------------------------------------
 /// change font size by pinch gesture
@@ -2023,7 +1989,7 @@ const NSInteger kNoMenuItem = -1;
     }
     
     // force redraw line number view
-    [[self lineNumberView] setNeedsDisplay:YES];
+    [[self scrollView] invalidateLineNumber];
 }
 
 @end
@@ -2105,10 +2071,8 @@ const NSInteger kNoMenuItem = -1;
     }
     
     // replace
-    [self doReplaceString:newString
-                withRange:targetRange
-             withSelected:selected
-           withActionName:NSLocalizedString(@"Comment Out", nil)];
+    [self replaceWithString:newString range:targetRange selectedRange:selected
+                 actionName:NSLocalizedString(@"Comment Out", nil)];
 }
 
 
@@ -2200,8 +2164,8 @@ const NSInteger kNoMenuItem = -1;
         selection.location -= MIN(MIN(selection.location, selection.location - targetRange.location), removedChars);
     }
     
-    [self doReplaceString:newString withRange:targetRange withSelected:selection
-           withActionName:NSLocalizedString(@"Uncomment", nil)];
+    [self replaceWithString:newString range:targetRange selectedRange:selection
+                 actionName:NSLocalizedString(@"Uncomment", nil)];
 }
 
 
@@ -2259,15 +2223,6 @@ const NSInteger kNoMenuItem = -1;
 
 @implementation CETextView (UtilityMenu)
 
-// enum
-typedef NS_ENUM(NSUInteger, CEUnicodeNormalizationForm) {
-    CEUnicodeNormalizationNFD,
-    CEUnicodeNormalizationNFC,
-    CEUnicodeNormalizationNFKD,
-    CEUnicodeNormalizationNFKC
-};
-
-
 #pragma mark Action Messages
 
 // ------------------------------------------------------
@@ -2275,16 +2230,11 @@ typedef NS_ENUM(NSUInteger, CEUnicodeNormalizationForm) {
 - (IBAction)exchangeFullwidthRoman:(id)sender
 // ------------------------------------------------------
 {
-    NSRange selectedRange = [self selectedRange];
-    
-    if (selectedRange.length == 0) { return; }
-    
-    NSString *newStr =  [[[self string] substringWithRange:selectedRange] fullWidthRomanString];
-    if (newStr) {
-        [self doInsertString:newStr withRange:selectedRange
-                withSelected:NSMakeRange(selectedRange.location, [newStr length])
-              withActionName:NSLocalizedString(@"To Fullwidth (ja_JP/Roman)", nil) scroll:YES];
-    }
+    [self transformSelectionWithActionName:NSLocalizedString(@"To Fullwidth Roman", nil)
+                          operationHandler:^NSString *(NSString *substring)
+     {
+         return [substring fullWidthRomanString];
+     }];
 }
 
 
@@ -2293,16 +2243,11 @@ typedef NS_ENUM(NSUInteger, CEUnicodeNormalizationForm) {
 - (IBAction)exchangeHalfwidthRoman:(id)sender
 // ------------------------------------------------------
 {
-    NSRange selectedRange = [self selectedRange];
-    
-    if (selectedRange.length == 0) { return; }
-    
-    NSString *newStr =  [[[self string] substringWithRange:selectedRange] halfWidthRomanString];
-    if (newStr) {
-        [self doInsertString:newStr withRange:selectedRange
-                withSelected:NSMakeRange(selectedRange.location, [newStr length])
-              withActionName:NSLocalizedString(@"To Halfwidth (ja_JP/Roman)", nil) scroll:YES];
-    }
+    [self transformSelectionWithActionName:NSLocalizedString(@"To Halfwidth Roman", nil)
+                          operationHandler:^NSString *(NSString *substring)
+     {
+         return [substring halfWidthRomanString];
+     }];
 }
 
 
@@ -2311,16 +2256,11 @@ typedef NS_ENUM(NSUInteger, CEUnicodeNormalizationForm) {
 - (IBAction)exchangeKatakana:(id)sender
 // ------------------------------------------------------
 {
-    NSRange selectedRange = [self selectedRange];
-    
-    if (selectedRange.length == 0) { return; }
-    
-    NSString *newStr =  [[[self string] substringWithRange:selectedRange] katakanaString];
-    if (newStr) {
-        [self doInsertString:newStr withRange:selectedRange
-                withSelected:NSMakeRange(selectedRange.location, [newStr length])
-              withActionName:NSLocalizedString(@"Hiragana to Katakana (ja_JP)",@"") scroll:YES];
-    }
+    [self transformSelectionWithActionName:NSLocalizedString(@"Hiragana to Katakana", nil)
+                          operationHandler:^NSString *(NSString *substring)
+     {
+         return [substring katakanaString];
+     }];
 }
 
 
@@ -2329,16 +2269,11 @@ typedef NS_ENUM(NSUInteger, CEUnicodeNormalizationForm) {
 - (IBAction)exchangeHiragana:(id)sender
 // ------------------------------------------------------
 {
-    NSRange selectedRange = [self selectedRange];
-    
-    if (selectedRange.length == 0) { return; }
-    
-    NSString *newStr = [[[self string] substringWithRange:selectedRange] hiraganaString];
-    if (newStr) {
-        [self doInsertString:newStr withRange:selectedRange
-                withSelected:NSMakeRange(selectedRange.location, [newStr length])
-              withActionName:NSLocalizedString(@"Katakana to Hiragana (ja_JP)",@"") scroll:YES];
-    }
+    [self transformSelectionWithActionName:NSLocalizedString(@"Katakana to Hiragana", nil)
+                          operationHandler:^NSString *(NSString *substring)
+     {
+         return [substring hiraganaString];
+     }];
 }
 
 
@@ -2347,7 +2282,11 @@ typedef NS_ENUM(NSUInteger, CEUnicodeNormalizationForm) {
 - (IBAction)normalizeUnicodeWithNFD:(id)sender
 // ------------------------------------------------------
 {
-    [self normalizeUnicodeWithForm:CEUnicodeNormalizationNFD];
+    [self transformSelectionWithActionName:@"NFD"
+                          operationHandler:^NSString *(NSString *substring)
+     {
+         return [substring decomposedStringWithCanonicalMapping];
+     }];
 }
 
 
@@ -2356,7 +2295,11 @@ typedef NS_ENUM(NSUInteger, CEUnicodeNormalizationForm) {
 - (IBAction)normalizeUnicodeWithNFC:(id)sender
 // ------------------------------------------------------
 {
-    [self normalizeUnicodeWithForm:CEUnicodeNormalizationNFC];
+    [self transformSelectionWithActionName:@"NFC"
+                          operationHandler:^NSString *(NSString *substring)
+     {
+         return [substring precomposedStringWithCanonicalMapping];
+     }];
 }
 
 
@@ -2365,7 +2308,11 @@ typedef NS_ENUM(NSUInteger, CEUnicodeNormalizationForm) {
 - (IBAction)normalizeUnicodeWithNFKD:(id)sender
 // ------------------------------------------------------
 {
-    [self normalizeUnicodeWithForm:CEUnicodeNormalizationNFKD];
+    [self transformSelectionWithActionName:@"NFKD"
+                          operationHandler:^NSString *(NSString *substring)
+     {
+         return [substring decomposedStringWithCompatibilityMapping];
+     }];
 }
 
 
@@ -2374,7 +2321,11 @@ typedef NS_ENUM(NSUInteger, CEUnicodeNormalizationForm) {
 - (IBAction)normalizeUnicodeWithNFKC:(id)sender
 // ------------------------------------------------------
 {
-    [self normalizeUnicodeWithForm:CEUnicodeNormalizationNFKC];
+    [self transformSelectionWithActionName:@"NFKC"
+                          operationHandler:^NSString *(NSString *substring)
+     {
+         return [substring precomposedStringWithCompatibilityMapping];
+     }];
 }
 
 
@@ -2403,43 +2354,41 @@ typedef NS_ENUM(NSUInteger, CEUnicodeNormalizationForm) {
 #pragma mark Private Methods
 
 // ------------------------------------------------------
-/// Unicode正規化
-- (void)normalizeUnicodeWithForm:(CEUnicodeNormalizationForm)form
+/// transform all selected strings and register to undo manager
+- (void)transformSelectionWithActionName:(NSString *)actionName operationHandler:(NSString *(^)(NSString *substring))operationHandler
 // ------------------------------------------------------
 {
-    NSRange selectedRange = [self selectedRange];
+    NSArray *selectedRanges = [self selectedRanges];
+    NSMutableArray *appliedRanges = [NSMutableArray array];
+    NSMutableArray *strings = [NSMutableArray array];
+    NSMutableArray *newSelectedRanges = [NSMutableArray array];
+    BOOL success = NO;
+    NSInteger deltaLocation = 0;
     
-    if (selectedRange.length == 0) { return; }
-    
-    NSString *originalStr = [[self string] substringWithRange:selectedRange];
-    NSString *actionName = nil, *newStr = nil;
-    
-    switch (form) {
-        case CEUnicodeNormalizationNFD:
-            newStr = [originalStr decomposedStringWithCanonicalMapping];
-            actionName = @"NFD";
-            break;
-        case CEUnicodeNormalizationNFC:
-            newStr = [originalStr precomposedStringWithCanonicalMapping];
-            actionName = @"NFC";
-            break;
-        case CEUnicodeNormalizationNFKD:
-            newStr = [originalStr decomposedStringWithCompatibilityMapping];
-            actionName = @"NFKD";
-            break;
-        case CEUnicodeNormalizationNFKC:
-            newStr = [originalStr precomposedStringWithCompatibilityMapping];
-            actionName = @"NFKC";
-            break;
+    for (NSValue *rangeValue in selectedRanges) {
+        NSRange range = [rangeValue rangeValue];
+        
+        if (range.length == 0) { continue; }
+        
+        NSString *substring = [[self string] substringWithRange:range];
+        NSString *string = operationHandler(substring);
+        
+        if (string) {
+            NSRange newRange = NSMakeRange(range.location - deltaLocation, [string length]);
+            
+            [strings addObject:string];
+            [appliedRanges addObject:rangeValue];
+            [newSelectedRanges addObject:[NSValue valueWithRange:newRange]];
+            deltaLocation += [substring length] - [string length];
+            success = YES;
+        }
     }
     
-    if (newStr) {
-        [self doInsertString:newStr
-                   withRange:selectedRange
-                withSelected:NSMakeRange(selectedRange.location, [newStr length])
-              withActionName:NSLocalizedString(actionName, nil)
-                      scroll:YES];
-    }
+    if (!success) { return; }
+    
+    [self replaceWithStrings:strings ranges:appliedRanges selectedRanges:newSelectedRanges actionName:actionName];
+    
+    [self scrollRangeToVisible:[self selectedRange]];
 }
 
 @end

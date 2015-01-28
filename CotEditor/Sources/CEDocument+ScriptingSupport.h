@@ -41,9 +41,6 @@ typedef NS_ENUM(NSUInteger, CEOSALineEnding) {
     CEOSALineEndingCRLF = 'leCL'
 };
 
-// Public method
-- (void)cleanUpTextStorage:(NSTextStorage *)inTextStorage;
-
 // AppleScript accessor
 - (NSTextStorage *)textStorage;
 - (void)setTextStorage:(id)object;
@@ -62,6 +59,8 @@ typedef NS_ENUM(NSUInteger, CEOSALineEnding) {
 - (void)setWrapsLines:(NSNumber *)wrapsLines;
 - (NSNumber *)lineSpacing;
 - (void)setLineSpacing:(NSNumber *)lineSpacing;
+- (NSNumber *)tabWidth;
+- (void)setTabWidth:(NSNumber *)tabWidth;
 
 // AppleScript handler
 - (NSNumber *)handleConvertScriptCommand:(NSScriptCommand *)command;

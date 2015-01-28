@@ -49,12 +49,12 @@ extern NSString *const CESyntaxValidationMessageKey;
 
 // readonly
 @property (readonly, nonatomic, copy) NSArray *styleNames;
-/// 拡張子重複エラー辞書
+/// conflict error dicts
 @property (readonly, nonatomic, copy) NSDictionary *extensionConflicts;
 @property (readonly, nonatomic, copy) NSDictionary *filenameConflicts;
 
 
-// class method
+// singleton
 + (instancetype)sharedManager;
 
 
@@ -64,9 +64,9 @@ extern NSString *const CESyntaxValidationMessageKey;
 - (NSDictionary *)styleWithStyleName:(NSString *)styleName;
 - (NSDictionary *)bundledStyleWithStyleName:(NSString *)styleName;
 - (NSDictionary *)emptyStyle;
+- (NSURL *)URLForUserStyle:(NSString *)styleName;  // returns nil if file is not available
 - (BOOL)isBundledStyle:(NSString *)styleName;  // check only the name
 - (BOOL)isEqualToBundledStyle:(NSDictionary *)style name:(NSString *)styleName;
-- (BOOL)existsStyleFileWithStyleName:(NSString *)styleName;
 - (BOOL)importStyleFromURL:(NSURL *)fileURL;
 - (BOOL)exportStyle:(NSString *)styleName toURL:(NSURL *)fileURL;
 - (BOOL)removeStyleFileWithStyleName:(NSString *)styleName;

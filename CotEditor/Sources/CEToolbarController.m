@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014 CotEditor Project
+ © 2014-2015 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -29,6 +29,7 @@
  */
 
 #import "CEToolbarController.h"
+#import "CEEditorWrapper.h"
 #import "CEEncodingManager.h"
 #import "CESyntaxManager.h"
 #import "CEWindowController.h"
@@ -38,7 +39,7 @@
 @interface CEToolbarController ()
 
 @property (nonatomic, weak) IBOutlet NSToolbar *toolbar;
-@property (nonatomic, unsafe_unretained) IBOutlet CEWindowController *windowController;  // Cannot be weak on Lion
+@property (nonatomic, weak) IBOutlet CEWindowController *windowController;
 @property (nonatomic, weak) IBOutlet NSPopUpButton *lineEndingPopupButton;
 @property (nonatomic, weak) IBOutlet NSPopUpButton *encodingPopupButton;
 @property (nonatomic, weak) IBOutlet NSPopUpButton *syntaxPopupButton;
@@ -52,15 +53,10 @@
 
 @implementation CEToolbarController
 
-#pragma mark Public Method
-
-//=======================================================
-// Public method
-//
-//=======================================================
+#pragma mark Superclass Methods
 
 // ------------------------------------------------------
-/// 後片付け
+/// clean up
 - (void)dealloc
 // ------------------------------------------------------
 {
@@ -69,7 +65,30 @@
 
 
 // ------------------------------------------------------
-/// トグルアイテムの状態を更新
+/// setup UI
+- (void)awakeFromNib
+// ------------------------------------------------------
+{
+    [self buildEncodingPopupButton];
+    [self buildSyntaxPopupButton];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(buildEncodingPopupButton)
+                                                 name:CEEncodingListDidUpdateNotification
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(buildSyntaxPopupButton)
+                                                 name:CESyntaxListDidUpdateNotification
+                                               object:nil];
+}
+
+
+
+#pragma mark Public Method
+
+// ------------------------------------------------------
+/// update state of item which can be toggled
 - (void)toggleItemWithTag:(CEToolbarItemTag)tag setOn:(BOOL)setOn
 // ------------------------------------------------------
 {
@@ -82,26 +101,7 @@
 
 
 // ------------------------------------------------------
-/// エンコーディングポップアップアイテムを生成
-- (void)buildEncodingPopupButton
-// ------------------------------------------------------
-{
-    NSArray *items = [[CEEncodingManager sharedManager] encodingMenuItems];
-    NSStringEncoding encoding = [[[self encodingPopupButton] selectedItem] tag];
-    
-    [[self encodingPopupButton] removeAllItems];
-    for (NSMenuItem *item in items) {
-        [item setAction:@selector(changeEncoding:)];
-        [item setTarget:nil];
-        [[[self encodingPopupButton] menu] addItem:item];
-    }
-    
-    [self setSelectedEncoding:encoding];
-}
-
-
-// ------------------------------------------------------
-/// エンコーディングポップアップの選択項目を設定
+/// select item in the encoding popup menu
 - (void)setSelectedEncoding:(NSStringEncoding)encoding
 // ------------------------------------------------------
 {
@@ -115,7 +115,7 @@
 
 
 // ------------------------------------------------------
-/// 改行コードポップアップの選択項目を設定
+/// select item in the line ending menu
 - (void)setSelectedLineEnding:(CENewLineType)lineEnding
 // ------------------------------------------------------
 {
@@ -126,30 +126,7 @@
 
 
 // ------------------------------------------------------
-/// シンタックスカラーリングポップアップアイテムを生成
-- (void)buildSyntaxPopupButton
-// ------------------------------------------------------
-{
-    NSArray *styleNames = [[CESyntaxManager sharedManager] styleNames];
-    NSString *title = [[self syntaxPopupButton] titleOfSelectedItem];
-    
-    [[self syntaxPopupButton] removeAllItems];
-    [[[self syntaxPopupButton] menu] addItemWithTitle:NSLocalizedString(@"None", nil)
-                                               action:@selector(changeSyntaxStyle:)
-                                        keyEquivalent:@""];
-    [[[self syntaxPopupButton] menu] addItem:[NSMenuItem separatorItem]];
-    for (NSString *styleName in styleNames) {
-        [[[self syntaxPopupButton] menu] addItemWithTitle:styleName
-                                                   action:@selector(changeSyntaxStyle:)
-                                            keyEquivalent:@""];
-    }
-    
-    [self setSelectedSyntaxWithName:title];
-}
-
-
-// ------------------------------------------------------
-/// シンタックスカラーリングポップアップの選択項目をタイトル名で設定
+/// select item in the syntax style menu
 - (void)setSelectedSyntaxWithName:(NSString *)name
 // ------------------------------------------------------
 {
@@ -161,40 +138,14 @@
 
 
 
-#pragma mark Protocol
+#pragma mark Delegate
 
 //=======================================================
-// NSNibAwaking Protocol
-//
-//=======================================================
-
-// ------------------------------------------------------
-/// Nibファイル読み込み直後
-- (void)awakeFromNib
-// ------------------------------------------------------
-{
-    [self buildEncodingPopupButton];
-    [self buildSyntaxPopupButton];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(buildSyntaxPopupButton)
-                                                 name:CESyntaxListDidUpdateNotification
-                                               object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(buildEncodingPopupButton)
-                                                 name:CEEncodingListDidUpdateNotification
-                                               object:nil];
-}
-
-
-//=======================================================
-// Delegate method (NSToolbarDelegate)
-//  <== toolbar
+// NSToolbarDelegate  < toolbar
 //=======================================================
 
 // ------------------------------------------------------
-/// ツールバーアイテムの状態を設定
+/// set state of toolbar item when it will be added
 - (void)toolbarWillAddItem:(NSNotification *)notification
 // ------------------------------------------------------
 {
@@ -205,7 +156,7 @@
         case CEToolbarShowInvisibleCharsItemTag:
             [self toggleItem:item setOn:[editor showsInvisibles]];
             
-            // ツールバーアイテムを有効化できなければボタンを無効状態に
+            // disable button if item cannot be enable
             if ([editor canActivateShowInvisibles]) {
                 [item setAction:@selector(toggleInvisibleChars:)];
                 [item setToolTip:NSLocalizedString(@"Show or hide invisible characters in document", nil)];
@@ -241,13 +192,8 @@
 
 #pragma mark Private Methods
 
-//=======================================================
-// Private method
-//
-//=======================================================
-
 // ------------------------------------------------------
-/// トグルアイテムの状態を更新
+/// update item which can be toggled
 - (void)toggleItem:(NSToolbarItem *)item setOn:(BOOL)setOn
 // ------------------------------------------------------
 {
@@ -283,6 +229,48 @@
     }
     
     [item setImage:[NSImage imageNamed:imageName]];
+}
+
+
+// ------------------------------------------------------
+/// build encoding popup item
+- (void)buildEncodingPopupButton
+// ------------------------------------------------------
+{
+    NSArray *items = [[CEEncodingManager sharedManager] encodingMenuItems];
+    NSStringEncoding encoding = [[[self encodingPopupButton] selectedItem] tag];
+    
+    [[self encodingPopupButton] removeAllItems];
+    for (NSMenuItem *item in items) {
+        [item setAction:@selector(changeEncoding:)];
+        [item setTarget:nil];
+        [[[self encodingPopupButton] menu] addItem:item];
+    }
+    
+    [self setSelectedEncoding:encoding];
+}
+
+
+// ------------------------------------------------------
+/// build syntax style popup menu
+- (void)buildSyntaxPopupButton
+// ------------------------------------------------------
+{
+    NSArray *styleNames = [[CESyntaxManager sharedManager] styleNames];
+    NSString *title = [[self syntaxPopupButton] titleOfSelectedItem];
+    
+    [[self syntaxPopupButton] removeAllItems];
+    [[[self syntaxPopupButton] menu] addItemWithTitle:NSLocalizedString(@"None", nil)
+                                               action:@selector(changeSyntaxStyle:)
+                                        keyEquivalent:@""];
+    [[[self syntaxPopupButton] menu] addItem:[NSMenuItem separatorItem]];
+    for (NSString *styleName in styleNames) {
+        [[[self syntaxPopupButton] menu] addItemWithTitle:styleName
+                                                   action:@selector(changeSyntaxStyle:)
+                                            keyEquivalent:@""];
+    }
+    
+    [self setSelectedSyntaxWithName:title];
 }
 
 @end

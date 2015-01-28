@@ -5,11 +5,11 @@
  CotEditor
  http://coteditor.com
  
- Created by 2014-03-26 by 1024jp
+ Created on 2014-03-26 by 1024jp
  encoding="UTF-8"
  ------------------------------------------------------------------------------
  
- © 2014 CotEditor Project
+ © 2014 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -38,14 +38,15 @@
 
 
 
+
 #pragma mark -
 
 @implementation CESizeSampleWindowController
 
-#pragma mark Super Class Methods
+#pragma mark Superclass Methods
 
 // ------------------------------------------------------
-/// ウインドウをロードした直後
+/// setup UI
 - (void)windowDidLoad
 // ------------------------------------------------------
 {
@@ -58,7 +59,7 @@
 #pragma mark Action Messages
 
 // ------------------------------------------------------
-/// サイズを保存せずに終了する
+/// close window without save
 - (IBAction)cancel:(id)sender
 // ------------------------------------------------------
 {
@@ -68,7 +69,7 @@
 
 
 // ------------------------------------------------------
-/// サンプルウィンドウサイズをuserDefaultsにセットして終了する
+/// save window size to the user defaults and close window
 - (IBAction)save:(id)sender
 // ------------------------------------------------------
 {

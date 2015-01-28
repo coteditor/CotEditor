@@ -72,6 +72,9 @@ pre {
 	border-radius: 3px;
 	clear: both;
 }
+pre {
+	padding: 0.4em 1.0em;
+}
 
 ul {
 	list-style-type: square;

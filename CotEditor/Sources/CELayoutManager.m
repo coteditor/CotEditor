@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014 CotEditor Project
+ © 2014-2015 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -32,12 +32,13 @@
 #import "CELayoutManager.h"
 #import "CETextViewProtocol.h"
 #import "CEATSTypesetter.h"
-#import "NSColor+CECGColorSupport.h"
 #import "CEUtils.h"
 #import "constants.h"
 
 
 @interface CELayoutManager ()
+
+@property (nonatomic) CGFloat textFontGlyphY;  // 表示フォントグリフのY位置を返す
 
 @property (nonatomic) BOOL showsSpace;
 @property (nonatomic) BOOL showsTab;
@@ -53,7 +54,6 @@
 // readonly properties
 @property (readwrite, nonatomic) CGFloat textFontPointSize;
 @property (readwrite, nonatomic) CGFloat defaultLineHeightForTextFont;
-@property (readwrite, nonatomic) CGFloat textFontGlyphY;
 
 @end
 
@@ -67,10 +67,10 @@
 static BOOL usesTextFontForInvisibles;
 
 
-#pragma mark Superclass Class Methods
+#pragma mark Superclass Methods
 
 // ------------------------------------------------------
-/// クラスの初期化
+/// initialize class
 + (void)initialize
 // ------------------------------------------------------
 {
@@ -81,16 +81,8 @@ static BOOL usesTextFontForInvisibles;
 }
 
 
-
-#pragma mark NSLayoutManager Methods
-
-//=======================================================
-// NSLayoutManager method
-//
-//=======================================================
-
 // ------------------------------------------------------
-/// 初期化
+/// initialize
 - (instancetype)init
 // ------------------------------------------------------
 {
@@ -194,19 +186,11 @@ static BOOL usesTextFontForInvisibles;
         // for other invisibles
         NSFont *replaceFont;
         NSGlyph replaceGlyph;
-
-        // create CGColor from NSColor
-        CGColorRef cgColor;
-        if (NSAppKitVersionNumber < NSAppKitVersionNumber10_8) {  // on lion
-            cgColor = [color CECGColor];
-        } else {
-            cgColor = [color CGColor];
-        }
         
         // set graphics context
         CGContextRef context = (CGContextRef)[[NSGraphicsContext currentContext] graphicsPort];
         CGContextSaveGState(context);
-        CGContextSetFillColorWithColor(context, cgColor);
+        CGContextSetFillColorWithColor(context, [color CGColor]);
         CGMutablePathRef paths = CGPathCreateMutable();
         
         // adjust drawing coordinate
@@ -296,11 +280,6 @@ static BOOL usesTextFontForInvisibles;
 
 #pragma mark Public Methods
 
-//=======================================================
-// Public method
-//
-//=======================================================
-
 // ------------------------------------------------------
 /// [NSGraphicsContext currentContextDrawingToScreen] は真を返す時があるため、印刷用かを保持する専用フラグを用意
 - (void)setPrinting:(BOOL)printing
@@ -352,29 +331,6 @@ static BOOL usesTextFontForInvisibles;
 
 
 // ------------------------------------------------------
-/// 表示フォントの各種値をキャッシュする
-- (void)setValuesForTextFont:(NSFont *)textFont
-// ------------------------------------------------------
-{
-    if (textFont) {
-        [self setDefaultLineHeightForTextFont:[self defaultLineHeightForFont:textFont] * kDefaultLineHeightMultiple];
-        [self setTextFontPointSize:[textFont pointSize]];
-        [self setTextFontGlyphY:[textFont pointSize]];
-        // （textFontGlyphYは「複合フォントでも描画位置Y座標を固定」する時のみlocationForGlyphAtIndex:内で使われる。
-        // 本来の値は[textFont ascender]か？ 2009.03.28）
-
-        // [textFont pointSize]は通常、([textFont ascender] - [textFont descender])と一致する。例えばCourier 48ptだと、
-        // ascender　=　36.187500, descender = -11.812500 となっている。 2009.03.28
-
-    } else {
-        [self setDefaultLineHeightForTextFont:0.0];
-        [self setTextFontPointSize:0.0];
-        [self setTextFontGlyphY:0.0];
-    }
-}
-
-
-// ------------------------------------------------------
 /// 複合フォントで行の高さがばらつくのを防止するため、規定した行の高さを返す
 - (CGFloat)lineHeight
 // ------------------------------------------------------
@@ -387,12 +343,30 @@ static BOOL usesTextFontForInvisibles;
 
 
 
-#pragma mark - Private Methods
+#pragma mark Private Methods
 
-//=======================================================
-// Private method
-//
-//=======================================================
+// ------------------------------------------------------
+/// 表示フォントの各種値をキャッシュする
+- (void)setValuesForTextFont:(NSFont *)textFont
+// ------------------------------------------------------
+{
+    if (textFont) {
+        [self setDefaultLineHeightForTextFont:[self defaultLineHeightForFont:textFont] * kDefaultLineHeightMultiple];
+        [self setTextFontPointSize:[textFont pointSize]];
+        [self setTextFontGlyphY:[textFont pointSize]];
+        // （textFontGlyphYは「複合フォントでも描画位置Y座標を固定」する時のみlocationForGlyphAtIndex:内で使われる。
+        // 本来の値は[textFont ascender]か？ 2009.03.28）
+        
+        // [textFont pointSize]は通常、([textFont ascender] - [textFont descender])と一致する。例えばCourier 48ptだと、
+        // ascender　=　36.187500, descender = -11.812500 となっている。 2009.03.28
+        
+    } else {
+        [self setDefaultLineHeightForTextFont:0.0];
+        [self setTextFontPointSize:0.0];
+        [self setTextFontGlyphY:0.0];
+    }
+}
+
 
 //------------------------------------------------------
 /// グリフを描画する位置を返す
@@ -400,11 +374,12 @@ static BOOL usesTextFontForInvisibles;
 //------------------------------------------------------
 {
     NSPoint drawPoint = [self locationForGlyphAtIndex:glyphIndex];
-    NSPoint glyphPoint = [self lineFragmentRectForGlyphAtIndex:glyphIndex effectiveRange:NULL].origin;
+    NSPoint glyphPoint = [self lineFragmentRectForGlyphAtIndex:glyphIndex
+                                                effectiveRange:NULL
+                                       withoutAdditionalLayout:YES].origin;
     
     return NSMakePoint(drawPoint.x, -glyphPoint.y);
 }
-
 
 
 //------------------------------------------------------

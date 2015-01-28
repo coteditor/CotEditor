@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014 CotEditor Project
+ © 2014-2015 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -31,6 +31,9 @@
 @import Cocoa;
 
 
+@class CELayoutManager;
+
+
 @interface CESyntaxParser : NSObject
 
 // readonly
@@ -43,11 +46,11 @@
 
 
 /// designated initializer (return nil if no corresponded style dictionary can be found.)
-- (instancetype)initWithStyleName:(NSString *)styleName layoutManager:(NSLayoutManager *)layoutManager isPrinting:(BOOL)isPrinting NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithStyleName:(NSString *)styleName layoutManager:(CELayoutManager *)layoutManager NS_DESIGNATED_INITIALIZER;
 
 // Public methods
 - (void)colorAllString:(NSString *)wholeString;
-- (void)colorVisibleRange:(NSRange)range wholeString:(NSString *)wholeString;
+- (void)colorRange:(NSRange)range wholeString:(NSString *)wholeString;
 - (NSArray *)outlineMenuArrayWithWholeString:(NSString *)wholeString;
 
 @end

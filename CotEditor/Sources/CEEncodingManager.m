@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014 CotEditor Project
+ © 2014-2015 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -49,22 +49,17 @@ NSString *const CEEncodingListDidUpdateNotification = @"CESyntaxListDidUpdateNot
 
 @implementation CEEncodingManager
 
-#pragma mark Class Methods
-
-//=======================================================
-// Class method
-//
-//=======================================================
+#pragma mark Singleton
 
 // ------------------------------------------------------
 /// return singleton instance
-+ (CEEncodingManager *)sharedManager
++ (instancetype)sharedManager
 // ------------------------------------------------------
 {
-    static dispatch_once_t predicate;
+    static dispatch_once_t onceToken;
     static id shared = nil;
     
-    dispatch_once(&predicate, ^{
+    dispatch_once(&onceToken, ^{
         shared = [[self alloc] init];
     });
     
@@ -73,15 +68,10 @@ NSString *const CEEncodingListDidUpdateNotification = @"CESyntaxListDidUpdateNot
 
 
 
-#pragma mark Superclass Methods
-
-//=======================================================
-// Superclass method
-//
-//=======================================================
+#pragma mark Sueprclass Methods
 
 // ------------------------------------------------------
-/// 初期化
+/// initialize
 - (instancetype)init
 // ------------------------------------------------------
 {
@@ -99,7 +89,7 @@ NSString *const CEEncodingListDidUpdateNotification = @"CESyntaxListDidUpdateNot
 
 
 // ------------------------------------------------------
-/// あとかたづけ
+/// clean up
 - (void)dealloc
 // ------------------------------------------------------
 {
@@ -108,7 +98,7 @@ NSString *const CEEncodingListDidUpdateNotification = @"CESyntaxListDidUpdateNot
 
 
 // ------------------------------------------------------
-/// 監視しているキー値が変更された
+/// observed key value did update
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 // ------------------------------------------------------
 {
@@ -121,13 +111,8 @@ NSString *const CEEncodingListDidUpdateNotification = @"CESyntaxListDidUpdateNot
 
 #pragma mark Public Methods
 
-//=======================================================
-// Public method
-//
-//=======================================================
-
 //------------------------------------------------------
-/// メニューアイテムをコピーしてから渡す
+/// return copied menu items
 - (NSArray *)encodingMenuItems
 //------------------------------------------------------
 {
@@ -138,13 +123,8 @@ NSString *const CEEncodingListDidUpdateNotification = @"CESyntaxListDidUpdateNot
 
 #pragma mark Private Methods
 
-//=======================================================
-// Private method
-//
-//=======================================================
-
 //------------------------------------------------------
-/// エンコーディングメニューアイテムを生成
+/// build encoding menu items
 - (void)buildEncodingMenuItems
 //------------------------------------------------------
 {
@@ -169,7 +149,7 @@ NSString *const CEEncodingListDidUpdateNotification = @"CESyntaxListDidUpdateNot
     
     [self setEncodingMenuItems:items];
     
-    // リストのできあがりを通知
+    // notify that new encoding menu items was created
     dispatch_async(dispatch_get_main_queue(), ^{
         [[NSNotificationCenter defaultCenter] postNotificationName:CEEncodingListDidUpdateNotification object:self];
     });

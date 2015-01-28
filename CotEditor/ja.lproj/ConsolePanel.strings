@@ -1,0 +1,19 @@
+/*
+ ConsolePanel.strings
+ 
+ CotEditor
+ http://coteditor.com
+ 
+ Created on 2014-11-04 by 1024jp
+ encoding="UTF-8"
+ 
+ © 2014-2015 1024jp
+ */
+
+/* Class = "NSPanel"; title = "Console"; ObjectID = "6"; */
+"6.title" = "コンソール";
+
+/* Class = "NSToolbarItem"; ObjectID = "Yei-b2-m1J"; */
+"Yei-b2-m1J.label" = "ログを消去";  /* Clear Log */
+"Yei-b2-m1J.paletteLabel" = "ログを消去";  /* Clear Log */
+"Yei-b2-m1J.toolTip" = "エラーログを消去";  /* Clear error log */

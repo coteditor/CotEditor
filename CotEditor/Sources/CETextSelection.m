@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014 CotEditor Project
+ © 2014-2015 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -41,20 +41,14 @@
 
 
 
-
 #pragma mark -
 
 @implementation CETextSelection
 
 #pragma mark Public Methods
 
-//=======================================================
-// Public method
-//
-//=======================================================
-
 // ------------------------------------------------------
-/// 初期化
+/// initialize
 - (instancetype)initWithDocument:(CEDocument *)document
 // ------------------------------------------------------
 {
@@ -65,32 +59,23 @@
     return self;
 }
 
-// ------------------------------------------------------
-/// 生成した textStorage のデリゲートであることをやめる
-- (void)cleanUpTextStorage:(NSTextStorage *)textStorage
-// ------------------------------------------------------
-{
-    [textStorage setDelegate:nil];
-}
 
 
-
-#pragma mark Delegate and Notifications
+#pragma mark Delegate
 
 //=======================================================
-// Delegate method (NSTextStorage)
-//  <== NSTextStorage
+// NSTextStorageDelegate
 //=======================================================
 
 // ------------------------------------------------------
-/// AppleScriptの返り値としてのtextStorageが更新された
+/// text strage as AppleScript's return value did update
 - (void)textStorageDidProcessEditing:(NSNotification *)aNotification
 // ------------------------------------------------------
 {
     NSTextStorage *storage = (NSTextStorage *)[aNotification object];
 
-    [[[[self document] editor] textView] replaceSelectedStringTo:[storage string] scroll:NO];
-    [self cleanUpTextStorage:storage];
+    [[[self document] editor] insertTextViewString:[storage string]];
+    [storage setDelegate:nil];
 }
 
 @end
@@ -104,13 +89,8 @@
 
 #pragma mark Superclass Methods
 
-//=======================================================
-// Superclass methods
-//
-//=======================================================
-
 // ------------------------------------------------------
-/// sdef 内で定義されている名前を返す
+/// return object name which is determined in the sdef file
 - (NSScriptObjectSpecifier *)objectSpecifier
 // ------------------------------------------------------
 {
@@ -122,13 +102,8 @@
 
 #pragma mark AppleScript Accessors
 
-//=======================================================
-// AppleScript accessor
-//
-//=======================================================
-
 // ------------------------------------------------------
-/// 選択範囲内の文字列を返す(Unicode text型)
+/// return string of the selection (Unicode text type)
 - (NSTextStorage *)contents
 // ------------------------------------------------------
 {
@@ -136,11 +111,10 @@
     NSTextStorage *storage = [[NSTextStorage alloc] initWithString:string];
 
     [storage setDelegate:self];
-    // 0.5秒後にデリゲートをやめる（放置するとクラッシュの原因になる）
-    __weak typeof(self) weakSelf = self;
+    
+    // disconnect the delegate after 0.5 sec. (otherwise app may crash)
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        typeof(self) strongSelf = weakSelf;
-        [strongSelf cleanUpTextStorage:storage];
+        [storage setDelegate:nil];
     });
 
     return storage;
@@ -148,7 +122,7 @@
 
 
 // ------------------------------------------------------
-/// 選択範囲に文字列をセット
+/// replace the string in the selection
 - (void)setContents:(id)ContentsObject
 // ------------------------------------------------------
 {
@@ -162,12 +136,12 @@
         return;
     }
     
-    [[[self document] editor] replaceTextViewSelectedStringTo:string scroll:NO];
+    [[[self document] editor] insertTextViewString:string];
 }
 
 
 // ------------------------------------------------------
-/// 選択範囲の文字の位置と長さを返す(list型)
+/// return character range (location and length) of the selection (list type)
 - (NSArray *)range
 // ------------------------------------------------------
 {
@@ -179,7 +153,7 @@
 
 
 // ------------------------------------------------------
-/// 選択範囲の文字の位置と長さをセット
+/// set character range (location and length) of the selection
 - (void)setRange:(NSArray *)rangeArray
 // ------------------------------------------------------
 {
@@ -187,12 +161,12 @@
     NSInteger location = [rangeArray[0] integerValue];
     NSInteger length = [rangeArray[1] integerValue];
 
-    [[self document] setSelectedCharacterRangeInTextViewWithLocation:location length:length];
+    [[[self document] editor] setSelectedCharacterRangeWithLocation:location length:length];
 }
 
 
 // ------------------------------------------------------
-/// 選択範囲の行の位置と長さを返す(list型)
+/// return line range (location and length) of the selection (list type)
 - (NSArray *)lineRange
 // ------------------------------------------------------
 {
@@ -218,7 +192,7 @@
 
 
 // ------------------------------------------------------
-/// 選択範囲の行の位置と長さをセット
+/// set line range (location and length) of the selection
 - (void)setLineRange:(NSArray *)rangeArray
 // ------------------------------------------------------
 {
@@ -235,62 +209,57 @@
         return;
     }
 
-    [[self document] setSelectedLineRangeInTextViewWithLocation:location length:length];
+    [[[self document] editor] setSelectedLineRangeWithLocation:location length:length];
 }
 
 
 
 #pragma mark AppleScript Handlers
 
-//=======================================================
-// AppleScript handler
-//
-//=======================================================
-
 // ------------------------------------------------------
-/// 選択範囲を右にシフト
+/// shift the selection to right
 - (void)handleShiftRightScriptCommand:(NSScriptCommand *)command
 // ------------------------------------------------------
 {
-    [[[[self document] editor] textView] shiftRight:command];
+    [[[[self document] editor] focusedTextView] shiftRight:command];
 }
 
 
 // ------------------------------------------------------
-/// 選択範囲を左にシフト
+/// shift the selection to left
 - (void)handleShiftLeftScriptCommand:(NSScriptCommand *)command
 // ------------------------------------------------------
 {
-    [[[[self document] editor] textView] shiftLeft:command];
+    [[[[self document] editor] focusedTextView] shiftLeft:command];
 }
 
 
 // ------------------------------------------------------
-/// 選択範囲をコメントアウト
+/// comment-out the selection
 - (void)handleCommentOutScriptCommand:(NSScriptCommand *)command
 // ------------------------------------------------------
 {
-    [[[[self document] editor] textView] commentOut:command];
+    [[[[self document] editor] focusedTextView] commentOut:command];
 }
 
 
 // ------------------------------------------------------
-/// 選択範囲をコメント解除
+/// uncomment the selection
 - (void)handleUncommentScriptCommand:(NSScriptCommand *)command
 // ------------------------------------------------------
 {
-    [[[[self document] editor] textView] uncomment:command];
+    [[[[self document] editor] focusedTextView] uncomment:command];
 }
 
 
 // ------------------------------------------------------
-/// 文字列を大文字／小文字／キャピタライズにコンバートする
+/// convert letters in the selection to lowercase, uppercase or capitalized
 - (void)handleChangeCaseScriptCommand:(NSScriptCommand *)command
 // ------------------------------------------------------
 {
     NSDictionary *arguments = [command evaluatedArguments];
     CECaseType caseType = [arguments[@"caseType"] unsignedIntegerValue];
-    NSTextView *textView = [[[self document] editor] textView];
+    NSTextView *textView = [[[self document] editor] focusedTextView];
 
     switch (caseType) {
         case CELowerCase:
@@ -307,13 +276,13 @@
 
 
 // ------------------------------------------------------
-/// 半角／全角Romanを切り替える
+/// convert half-width roman in the selection to full-width roman or vice versa
 - (void)handleChangeWidthRomanScriptCommand:(NSScriptCommand *)command
 // ------------------------------------------------------
 {
     NSDictionary *arguments = [command evaluatedArguments];
     CEWidthType widthType = [arguments[@"widthType"] unsignedIntegerValue];
-    CETextView *textView = [[[self document] editor] textView];
+    CETextView *textView = [[[self document] editor] focusedTextView];
 
     switch (widthType) {
         case CEFullwidth:
@@ -327,13 +296,13 @@
 
 
 // ------------------------------------------------------
-/// ひらがな／カタカナを切り替える
+/// convert Japanese Hiragana in the selection to Katakana or vice versa
 - (void)handleChangeKanaScriptCommand:(NSScriptCommand *)command
 // ------------------------------------------------------
 {
     NSDictionary *arguments = [command evaluatedArguments];
     CEChangeKanaType changeKanaType = [arguments[@"kanaType"] unsignedIntegerValue];
-    CETextView *textView = [[[self document] editor] textView];
+    CETextView *textView = [[[self document] editor] focusedTextView];
     
     switch (changeKanaType) {
         case CEHiragana:
@@ -347,13 +316,13 @@
 
 
 // ------------------------------------------------------
-/// Unicode 正規化
+/// Unicode normalization
 - (void)handleNormalizeUnicodeScriptCommand:(NSScriptCommand *)command
 // ------------------------------------------------------
 {
     NSDictionary *arguments = [command evaluatedArguments];
     CEUNFType UNFType = [arguments[@"unfType"] unsignedIntegerValue];
-    CETextView *textView = [[[self document] editor] textView];
+    CETextView *textView = [[[self document] editor] focusedTextView];
     
     switch (UNFType) {
         case CENFC:

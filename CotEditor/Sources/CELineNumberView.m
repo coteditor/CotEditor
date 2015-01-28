@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014 CotEditor Project
+ © 2014-2015 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -30,16 +30,16 @@
 
 @import CoreText;
 #import "CELineNumberView.h"
-#import "NSColor+CECGColorSupport.h"
+#import "CETextViewProtocol.h"
 #import "constants.h"
+
+
+const CGFloat kMinVerticalThickness = 32.0;
 
 
 @interface CELineNumberView ()
 
 @property (nonatomic) NSTimer *draggingTimer;
-@property (nonatomic) NSLayoutConstraint *thicknessConstraint;
-
-@property (nonatomic) NSString *fontName;
 
 @end
 
@@ -50,39 +50,37 @@
 
 @implementation CELineNumberView
 
+static const NSString *LineNumberFontName;
+
+
 #pragma mark Superclass Methods
 
-//=======================================================
-// Superclass method
-//
-//=======================================================
-
 // ------------------------------------------------------
-/// initialize
-- (instancetype)initWithFrame:(NSRect)frameRect
+/// initialize class
++ (void)initialize
 // ------------------------------------------------------
 {
-    self = [super initWithFrame:frameRect];
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        NSString *defaultFontName = [[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultLineNumFontNameKey];
+        NSFont *font = [NSFont fontWithName:defaultFontName size:0] ? : [NSFont paletteFontOfSize:0];
+        LineNumberFontName = [font fontName];
+    });
+}
+
+
+// ------------------------------------------------------
+/// initialize instance
+- (instancetype)initWithScrollView:(NSScrollView *)scrollView orientation:(NSRulerOrientation)orientation
+// ------------------------------------------------------
+{
+    self = [super initWithScrollView:scrollView orientation:orientation];
     if (self) {
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        NSFont *font = [NSFont fontWithName:[defaults stringForKey:CEDefaultLineNumFontNameKey] size:0] ? : [NSFont paletteFontOfSize:0];
-        _fontName = [font fontName];
-        
-        // set thickness constraint
-        _thicknessConstraint = [NSLayoutConstraint constraintWithItem:self
-                                                            attribute:NSLayoutAttributeWidth
-                                                            relatedBy:NSLayoutRelationEqual
-                                                               toItem:nil
-                                                            attribute:NSLayoutAttributeNotAnAttribute
-                                                           multiplier:1
-                                                             constant:0];
-        [self addConstraint:_thicknessConstraint];
-        
-        // observe window resize
+        // update line number on scroll view resize for text wrapping change
         [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(updateLineNumber:)
-                                                     name:NSWindowDidResizeNotification
-                                                   object:[self window]];
+                                                 selector:@selector(invalidateLineNumber)
+                                                     name:NSViewFrameDidChangeNotification
+                                                   object:scrollView];
     }
     return self;
 }
@@ -94,19 +92,18 @@
 // ------------------------------------------------------
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    _textView = nil;
 }
 
 
 // ------------------------------------------------------
-/// draw line numbers.
+/// draw background
 - (void)drawRect:(NSRect)dirtyRect
 // ------------------------------------------------------
 {
     NSColor *counterColor = [[[self textView] theme] isDarkTheme] ? [NSColor whiteColor] : [NSColor blackColor];
     NSColor *textColor = [[[self textView] theme] weakTextColor];
     
-    // fill in the background
+    // fill background
     [[counterColor colorWithAlphaComponent:0.08] set];
     [NSBezierPath fillRect:dirtyRect];
     
@@ -115,42 +112,44 @@
     [NSBezierPath strokeLineFromPoint:NSMakePoint(NSMaxX(dirtyRect) - 0.5, NSMaxY(dirtyRect))
                               toPoint:NSMakePoint(NSMaxX(dirtyRect) - 0.5, NSMinY(dirtyRect))];
     
-    // get document data
+    [self drawHashMarksAndLabelsInRect:dirtyRect];
+}
+
+
+// ------------------------------------------------------
+/// draw line numbers
+- (void)drawHashMarksAndLabelsInRect:(NSRect)rect
+// ------------------------------------------------------
+{
     NSString *string = [[self textView] string];
-    NSLayoutManager *layoutManager = [[self textView] layoutManager];
     
     if ([string length] == 0) { return; }
+    
+    NSLayoutManager *layoutManager = [[self textView] layoutManager];
+    NSColor *textColor = [[[self textView] theme] weakTextColor];
     
     // set graphics context
     CGContextRef context = (CGContextRef)[[NSGraphicsContext currentContext] graphicsPort];
     CGContextSaveGState(context);
-    
+
     // setup font
     CGFloat masterFontSize = [[[self textView] font] pointSize];
     CGFloat fontSize = round(0.9 * masterFontSize);
-    CTFontRef font = CTFontCreateWithName((CFStringRef)[self fontName], fontSize, nil);
-    
-    // create CGColor from NSColor
-    CGColorRef cgColor;
-    if (NSAppKitVersionNumber < NSAppKitVersionNumber10_8) {  // on lion
-        cgColor = [textColor CECGColor];
-    } else {
-        cgColor = [textColor CGColor];
-    }
+    CTFontRef font = CTFontCreateWithName((CFStringRef)LineNumberFontName, fontSize, nil);
     
     CGFontRef cgFont = CTFontCopyGraphicsFont(font, NULL);
     CGContextSetFont(context, cgFont);
     CGContextSetFontSize(context, fontSize);
-    CGContextSetFillColorWithColor(context, cgColor);
+    CGContextSetFillColorWithColor(context, [textColor CGColor]);
     CFRelease(cgFont);
     
     // prepare glyphs
     CGGlyph wrappedMarkGlyph;
-    unichar dash = '-';
+    const unichar dash = '-';
     CTFontGetGlyphsForCharacters(font, &dash, &wrappedMarkGlyph, 1);
     
     CGGlyph digitGlyphs[10];
-    unichar numbers[10] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
+    const unichar numbers[10] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
     CTFontGetGlyphsForCharacters(font, numbers, digitGlyphs, 10);
     
     // calc character width as monospaced font
@@ -159,7 +158,7 @@
     CGFloat charWidth = advance.width;
     
     // prepare frame width
-    CGFloat width = NSWidth([self frame]);
+    CGFloat width = kMinVerticalThickness;
     
     // adjust drawing coordinate
     NSPoint relativePoint = [self convertPoint:NSZeroPoint fromView:[self textView]];
@@ -239,19 +238,28 @@
     }
     
     // adjust thickness
-    CGFloat requiredWidth = MAX(numberOfDigits(lineNum) * charWidth + 3 * kLineNumPadding, kDefaultLineNumWidth);
-    [self setThickness:ceil(requiredWidth)];
+    CGFloat requiredWidth = MAX(numberOfDigits(lineNum) * charWidth + 3 * kLineNumPadding, kMinVerticalThickness);
+    [self setRuleThickness:ceil(requiredWidth)];
     
     CGContextRestoreGState(context);
 }
 
 
 // ------------------------------------------------------
-/// flip vertical coordinate
-- (BOOL)isFlipped
+/// make background transparent
+- (BOOL)isOpaque
 // ------------------------------------------------------
 {
-    return YES;
+    return NO;
+}
+
+
+// ------------------------------------------------------
+/// remove extra thickness
+- (CGFloat)requiredThickness
+// ------------------------------------------------------
+{
+    return MAX(kMinVerticalThickness, [self ruleThickness]);
 }
 
 
@@ -287,50 +295,23 @@
 
 
 
-#pragma mark Public Methods
-
-//=======================================================
-// Public method
-//
-//=======================================================
+#pragma mark Private Methods
 
 // ------------------------------------------------------
-/// set line numbers visibility
-- (void)setShown:(BOOL)isShown
+/// return client view casting to textView
+- (NSTextView<CETextViewProtocol> *)textView
 // ------------------------------------------------------
 {
-    if (isShown != [self isShown]) {
-        _shown = isShown;
-        
-        CGFloat width = isShown ? kDefaultLineNumWidth : 0.0;
-        [self setThickness:width];
-    }
+    return (NSTextView<CETextViewProtocol> *)[[self scrollView] documentView];
 }
 
 
 // ------------------------------------------------------
-/// redraw line numbers
-- (void)updateLineNumber:(id)sender
+/// update line number
+- (void)invalidateLineNumber
 // ------------------------------------------------------
 {
     [self setNeedsDisplay:YES];
-}
-
-
-
-#pragma mark Private Methods
-
-//=======================================================
-// Private method
-//
-//=======================================================
-
-// ------------------------------------------------------
-/// set view thickness
-- (void)setThickness:(CGFloat)thickness
-// ------------------------------------------------------
-{
-    [[self thicknessConstraint] setConstant:thickness];
 }
 
 

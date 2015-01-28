@@ -33,29 +33,25 @@
 
 @interface CEUtils : NSObject
 
-/// 非表示半角スペース表示用文字を返す
+/// returns substitute character for invisible space to display
 + (unichar)invisibleSpaceChar:(NSUInteger)index;
-+ (NSString *)invisibleSpaceCharacter:(NSUInteger)index;
 
-/// 非表示タブ表示用文字を返す
+/// returns substitute character for invisible tab character to display
 + (unichar)invisibleTabChar:(NSUInteger)index;
-+ (NSString *)invisibleTabCharacter:(NSUInteger)index;
 
-/// 非表示改行表示用文字を返す
+/// returns substitute character for invisible new line character to display
 + (unichar)invisibleNewLineChar:(NSUInteger)index;
-+ (NSString *)invisibleNewLineCharacter:(NSUInteger)index;
 
-/// 非表示全角スペース表示用文字を返す
+/// returns substitute character for invisible full-width to display
 + (unichar)invisibleFullwidthSpaceChar:(NSUInteger)index;
-+ (NSString *)invisibleFullwidthSpaceCharacter:(NSUInteger)index;
 
-/// エンコーディング名からNSStringEncodingを返す
+/// returns corresponding NSStringEncoding from a encoding name
 + (NSStringEncoding)encodingFromName:(NSString *)encodingName;
 
-/// エンコーディング名からNSStringEncodingを返す
+/// whether Yen sign (U+00A5) can be converted to the given encoding
 + (BOOL)isInvalidYenEncoding:(NSStringEncoding)encoding;
 
-/// 文字列からキーボードショートカット定義を読み取る
+/// returns string form keyEquivalent (keyboard shortcut) for menu item
 + (NSString *)keyEquivalentAndModifierMask:(NSUInteger *)modifierMask
                                 fromString:(NSString *)string
                        includingCommandKey:(BOOL)needsIncludingCommandKey;

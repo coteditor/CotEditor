@@ -53,37 +53,35 @@
 
 #pragma mark Superclass Methods
 
-//=======================================================
-// Superclass method
-//
-//=======================================================
-
 // ------------------------------------------------------
-/// 初期化
+/// initialize
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 // ------------------------------------------------------
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // 不可視文字表示ポップアップ用の選択肢をセットする
-        NSMutableArray *spaces = [[NSMutableArray alloc] initWithCapacity:kSizeOfInvisibleSpaceCharList];
+        // setup popup menu items for invisible characters
+        NSMutableArray *spaces = [NSMutableArray arrayWithCapacity:kSizeOfInvisibleSpaceCharList];
         for (NSUInteger i = 0; i < kSizeOfInvisibleSpaceCharList; i++) {
-            [spaces addObject:[CEUtils invisibleSpaceCharacter:i]];
+            [spaces addObject:[NSString stringWithFormat:@"%C", [CEUtils invisibleSpaceChar:i]]];
         }
-        [self setInvisibleSpaces:spaces];
-        NSMutableArray *tabs = [[NSMutableArray alloc] initWithCapacity:kSizeOfInvisibleTabCharList];
+        _invisibleSpaces = spaces;
+        
+        NSMutableArray *tabs = [NSMutableArray arrayWithCapacity:kSizeOfInvisibleTabCharList];
         for (NSUInteger i = 0; i < kSizeOfInvisibleTabCharList; i++) {
-            [tabs addObject:[CEUtils invisibleTabCharacter:i]];
+            [tabs addObject:[NSString stringWithFormat:@"%C", [CEUtils invisibleTabChar:i]]];
         }
-        [self setInvisibleTabs:tabs];
-        NSMutableArray *newLines = [[NSMutableArray alloc] initWithCapacity:kSizeOfInvisibleNewLineCharList];
+        _invisibleTabs = tabs;
+        
+        NSMutableArray *newLines = [NSMutableArray arrayWithCapacity:kSizeOfInvisibleNewLineCharList];
         for (NSUInteger i = 0; i < kSizeOfInvisibleNewLineCharList; i++) {
-            [newLines addObject:[CEUtils invisibleNewLineCharacter:i]];
+            [newLines addObject:[NSString stringWithFormat:@"%C", [CEUtils invisibleNewLineChar:i]]];
         }
-        [self setInvisibleNewLines:newLines];
-        NSMutableArray *fullWidthSpaces = [[NSMutableArray alloc] initWithCapacity:kSizeOfInvisibleFullwidthSpaceCharList];
+        _invisibleNewLines = newLines;
+        
+        NSMutableArray *fullWidthSpaces = [NSMutableArray arrayWithCapacity:kSizeOfInvisibleFullwidthSpaceCharList];
         for (NSUInteger i = 0; i < kSizeOfInvisibleFullwidthSpaceCharList; i++) {
-            [fullWidthSpaces addObject:[CEUtils invisibleFullwidthSpaceCharacter:i]];
+            [fullWidthSpaces addObject:[NSString stringWithFormat:@"%C", [CEUtils invisibleFullwidthSpaceChar:i]]];
         }
         _invisibleFullWidthSpaces = fullWidthSpaces;
     }
@@ -92,13 +90,13 @@
 
 
 // ------------------------------------------------------
-/// ビューの読み込み
+/// setup UI
 - (void)loadView
 // ------------------------------------------------------
 {
     [super loadView];
     
-    // Mavericks用の設定をMavericks以下では無効にする
+    // disable Smart Quotes/Dashes setting on under Mavericks
     if (floor(NSAppKitVersionNumber) <= NSAppKitVersionNumber10_8) {
         [[self smartQuoteCheckButton] setEnabled:NO];
         [[self smartQuoteCheckButton] setState:NSOffState];

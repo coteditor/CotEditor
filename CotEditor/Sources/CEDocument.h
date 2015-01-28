@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014 CotEditor Project
+ © 2014-2015 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -45,11 +45,6 @@ extern NSString *const CEIncompatibleRangeKey;
 extern NSString *const CEIncompatibleCharKey;
 extern NSString *const CEIncompatibleConvertedCharKey;
 
-typedef NS_ENUM(NSUInteger, CEGoToType) {
-    CEGoToLine,
-    CEGoToCharacter
-};
-
 
 @interface CEDocument : NSDocument
 
@@ -64,29 +59,28 @@ typedef NS_ENUM(NSUInteger, CEGoToType) {
 @property (readonly, nonatomic, getter=isWritable) BOOL writable;
 
 
-// Public methods
+#pragma mark - Public Methods
 
 /// Return whole string in the current text view which document's line endings are already applied to.  (Note: The internal string (e.g. in text storage) has always LF for its line ending.)
 - (NSString *)stringForSave;
 
 - (void)setStringToEditor;
 
+// string encoding
 - (NSString *)currentIANACharSetName;
 - (NSArray *)findCharsIncompatibleWithEncoding:(NSStringEncoding)encoding;
-- (BOOL)readStringFromData:(NSData *)data encoding:(NSStringEncoding)encoding xattr:(BOOL)checksXattr;
-- (BOOL)doSetEncoding:(NSStringEncoding)encoding updateDocument:(BOOL)updateDocument
-             askLossy:(BOOL)askLossy lossy:(BOOL)lossy asActionName:(NSString *)actionName;
+- (BOOL)reinterpretWithEncoding:(NSStringEncoding)encoding;
+- (BOOL)doSetEncoding:(NSStringEncoding)encoding updateDocument:(BOOL)updateDocument askLossy:(BOOL)askLossy lossy:(BOOL)lossy asActionName:(NSString *)actionName;
 
+// line ending
 - (void)doSetLineEnding:(CENewLineType)lineEnding;
 
+// syntax style
 - (void)doSetSyntaxStyle:(NSString *)name;
 
-- (NSRange)rangeInTextViewWithLocation:(NSInteger)location length:(NSInteger)length;
-- (void)setSelectedCharacterRangeInTextViewWithLocation:(NSInteger)location length:(NSInteger)length;
-- (void)setSelectedLineRangeInTextViewWithLocation:(NSInteger)location length:(NSInteger)length;
-- (void)gotoLocation:(NSInteger)location length:(NSInteger)length type:(CEGoToType)type;
 
-// Action Messages
+#pragma mark Action Messages
+
 - (IBAction)changeLineEndingToLF:(id)sender;
 - (IBAction)changeLineEndingToCR:(id)sender;
 - (IBAction)changeLineEndingToCRLF:(id)sender;

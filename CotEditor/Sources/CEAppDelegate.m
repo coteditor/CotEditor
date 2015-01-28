@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014 CotEditor Project
+ © 2014-2015 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -35,15 +35,15 @@
 #import "CEScriptManager.h"
 #import "CEThemeManager.h"
 #import "CEHexColorTransformer.h"
-#import "CEByteCountTransformer.h"
 #import "CELineHeightTransformer.h"
 #import "CEPreferencesWindowController.h"
 #import "CEOpacityPanelController.h"
 #import "CELineHightPanelController.h"
 #import "CEColorCodePanelController.h"
-#import "CEScriptErrorPanelController.h"
+#import "CEConsolePanelController.h"
 #import "CEUnicodeInputPanelController.h"
 #import "CEMigrationWindowController.h"
+#import "CEDocument.h"
 #import "SWFSemanticVersion.h"
 #import "constants.h"
 
@@ -77,12 +77,7 @@
 
 @implementation CEAppDelegate
 
-#pragma mark Class Methods
-
-//=======================================================
-// Class method
-//
-//=======================================================
+#pragma mark Superclass Methods
 
 // ------------------------------------------------------
 /// set binding keys and values
@@ -98,6 +93,7 @@
     NSDictionary *defaults = @{CEDefaultLayoutTextVerticalKey: @NO,
                                CEDefaultSplitViewVerticalKey: @NO,
                                CEDefaultShowLineNumbersKey: @YES,
+                               CEDefaultShowDocumentInspectorKey: @NO,
                                CEDefaultShowStatusBarKey: @YES,
                                CEDefaultShowStatusBarLinesKey: @YES,
                                CEDefaultShowStatusBarLengthKey: @NO,
@@ -118,7 +114,7 @@
                                CEDefaultEncodingListKey: encodings,
                                CEDefaultFontNameKey: [[NSFont controlContentFontOfSize:[NSFont systemFontSize]] fontName],
                                CEDefaultFontSizeKey: @([NSFont systemFontSize]),
-                               CEDefaultEncodingInOpenKey: @(CEAutoDetectEncodingMenuItemTag),
+                               CEDefaultEncodingInOpenKey: @(CEAutoDetectEncoding),
                                CEDefaultEncodingInNewKey: @(CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingUTF8)),
                                CEDefaultReferToEncodingTagKey: @YES,
                                CEDefaultCreateNewAtStartupKey: @YES,
@@ -157,7 +153,7 @@
                                CEDefaultCompletionWordsKey: @2U,
                                CEDefaultShowPageGuideKey: @NO,
                                CEDefaultPageGuideColumnKey: @80,
-                               CEDefaultLineSpacingKey: @0.3f,
+                               CEDefaultLineSpacingKey: @0.1f,
                                CEDefaultSwapYenAndBackSlashKey: @NO,
                                CEDefaultFixLineHeightKey: @YES,
                                CEDefaultHighlightBracesKey: @YES,
@@ -167,28 +163,40 @@
                                CEDefaultPrintFontNameKey: [[NSFont controlContentFontOfSize:[NSFont systemFontSize]] fontName],
                                CEDefaultPrintFontSizeKey: @([NSFont systemFontSize]),
                                CEDefaultPrintHeaderKey: @YES,
-                               CEDefaultHeaderOneStringIndexKey: @3,
-                               CEDefaultHeaderTwoStringIndexKey: @4,
-                               CEDefaultHeaderOneAlignIndexKey: @0,
-                               CEDefaultHeaderTwoAlignIndexKey: @2,
+                               CEDefaultHeaderOneStringIndexKey: @(CEFilePathPrintInfo),
+                               CEDefaultHeaderOneAlignIndexKey: @(CEAlignLeft),
+                               CEDefaultHeaderTwoStringIndexKey: @(CEPrintDatePrintInfo),
+                               CEDefaultHeaderTwoAlignIndexKey: @(CEAlignRight),
                                CEDefaultPrintHeaderSeparatorKey: @YES,
                                CEDefaultPrintFooterKey: @YES,
-                               CEDefaultFooterOneStringIndexKey: @0,
-                               CEDefaultFooterTwoStringIndexKey: @5,
-                               CEDefaultFooterOneAlignIndexKey: @0,
-                               CEDefaultFooterTwoAlignIndexKey: @1,
+                               CEDefaultFooterOneStringIndexKey: @(CENoPrintInfo),
+                               CEDefaultFooterOneAlignIndexKey: @(CEAlignLeft),
+                               CEDefaultFooterTwoStringIndexKey: @(CEPageNumberPrintInfo),
+                               CEDefaultFooterTwoAlignIndexKey: @(CEAlignCenter),
                                CEDefaultPrintFooterSeparatorKey: @YES,
-                               CEDefaultPrintLineNumIndexKey: @0,
-                               CEDefaultPrintInvisibleCharIndexKey: @0,
-                               CEDefaultPrintColorIndexKey: @0,
+                               CEDefaultPrintLineNumIndexKey: @(CENoLinePrint),
+                               CEDefaultPrintInvisibleCharIndexKey: @(CENoInvisibleCharsPrint),
+                               CEDefaultPrintColorIndexKey: @(CEBlackColorPrint),
                                
-                               /* -------- 以下、環境設定にない設定項目 -------- */
+                               /* -------- settings for find panel -------- */
+                               CEDefaultFindHistoryKey: @[],
+                               CEDefaultReplaceHistoryKey: @[],
+                               CEDefaultFindRegexSyntaxKey: @8,  // Ruby
+                               CEDefaultFindOptionsKey: @256,  // only ONIG_OPTION_CAPTURE_GROUP
+                               CEDefaultFindEscapeCharacterKey: @"\\",
+                               CEDefaultFindUsesRegularExpressionKey: @NO,
+                               CEDefaultFindInSelectionKey: @NO,
+                               CEDefaultFindIsWrapKey: @YES,
+                               CEDefaultFindClosesIndicatorWhenDoneKey: @YES,
+                               
+                               /* -------- settings not in preferences window -------- */
                                CEDefaultInsertCustomTextArrayKey: @[@"<br />\n", @"", @"", @"", @"", @"", @"", @"", @"", @"", @"",
                                                                     @"", @"", @"", @"", @"", @"", @"", @"", @"", @"",
                                                                     @"", @"", @"", @"", @"", @"", @"", @"", @"", @""],
-                               CEDefaultColorCodeTypeKey:@1,
+                               CEDefaultColorCodeTypeKey: @1,
+                               CEDefaultSidebarWidthKey: @220,
                                
-                               /* -------- 以下、隠し設定 -------- */
+                               /* -------- hidden settings -------- */
                                CEDefaultUsesTextFontForInvisiblesKey: @NO,
                                CEDefaultLineNumFontNameKey: @"ArialNarrow",
                                CEDefaultBasicColoringDelayKey: @0.001f, 
@@ -199,7 +207,6 @@
                                CEDefaultInfoUpdateIntervalKey: @0.2f, 
                                CEDefaultIncompatibleCharIntervalKey: @0.42f, 
                                CEDefaultOutlineMenuIntervalKey: @0.37f, 
-                               CEDefaultOutlineMenuMaxLengthKey: @110U, 
                                CEDefaultHeaderFooterFontNameKey: [[NSFont systemFontOfSize:[NSFont systemFontSize]] fontName], 
                                CEDefaultHeaderFooterFontSizeKey: @10.0f, 
                                CEDefaultHeaderFooterDateFormatKey: @"YYYY-MM-dd HH:mm",
@@ -216,33 +223,23 @@
                                };
     [[NSUserDefaults standardUserDefaults] registerDefaults:defaults];
     
-    // 出荷時へのリセットが必要な項目に付いては NSUserDefaultsController に初期値をセットする
+    // set initial values to NSUserDefaultsController which can be restored to defaults
     NSDictionary *initialValues = [defaults dictionaryWithValuesForKeys:@[CEDefaultEncodingListKey,
                                                                           CEDefaultInsertCustomTextArrayKey,
                                                                           CEDefaultWindowWidthKey,
                                                                           CEDefaultWindowHeightKey]];
     [[NSUserDefaultsController sharedUserDefaultsController] setInitialValues:initialValues];
     
-    // transformer 登録
+    // register transformers
     [NSValueTransformer setValueTransformer:[[CEHexColorTransformer alloc] init]
                                     forName:@"CEHexColorTransformer"];
-    [NSValueTransformer setValueTransformer:[[CEByteCountTransformer alloc] init]
-                                    forName:@"CEByteCountTransformer"];
     [NSValueTransformer setValueTransformer:[[CELineHeightTransformer alloc] init]
                                     forName:@"CELineHeightTransformer"];
 }
 
 
-
-#pragma mark Superclass Methods
-
-//=======================================================
-// Superclass method
-//
-//=======================================================
-
 // ------------------------------------------------------
-/// 初期化
+/// initialize instance
 - (instancetype)init
 // ------------------------------------------------------
 {
@@ -264,7 +261,7 @@
 
 
 // ------------------------------------------------------
-/// あとかたづけ
+/// clean up
 - (void)dealloc
 // ------------------------------------------------------
 {
@@ -272,16 +269,8 @@
 }
 
 
-
-#pragma mark Protocol
-
-//=======================================================
-// NSNibAwaking Protocol
-//
-//=======================================================
-
 // ------------------------------------------------------
-/// Nibファイル読み込み直後
+/// setup UI
 - (void)awakeFromNib
 // ------------------------------------------------------
 {
@@ -291,17 +280,17 @@
     [self buildThemeMenu];
     [[CEScriptManager sharedManager] buildScriptMenu:nil];
     
-    // エンコーディングリスト更新の通知依頼
+    // observe encoding list update
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(buildEncodingMenu)
                                                  name:CEEncodingListDidUpdateNotification
                                                object:nil];
-    // シンタックススタイルリスト更新の通知依頼
+    // observe syntax style lineup update
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(buildSyntaxMenu)
                                                  name:CESyntaxListDidUpdateNotification
                                                object:nil];
-    // テーマリスト更新の通知依頼
+    // observe theme lineup update
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(buildThemeMenu)
                                                  name:CEThemeListDidUpdateNotification
@@ -310,15 +299,35 @@
 
 
 
-#pragma mark Delegate and Notification
+#pragma mark Protocol
 
 //=======================================================
-// Delegate method (NSApplication)
-//  <== File's Owner
+// NSMenuValidation Protocol
 //=======================================================
 
 // ------------------------------------------------------
-/// アプリ起動時に新規ドキュメント作成
+/// validate menu items
+- (BOOL)validateMenuItem:(NSMenuItem *)menuItem
+// ------------------------------------------------------
+{
+    if (([menuItem action] == @selector(showLineHeightPanel:)) ||
+        ([menuItem action] == @selector(showUnicodeInputPanel:))) {
+        return ([[NSDocumentController sharedDocumentController] currentDocument] != nil);
+    }
+    
+    return YES;
+}
+
+
+
+#pragma mark Delegate
+
+//=======================================================
+// NSApplicationDelegate  < File's Owner
+//=======================================================
+
+// ------------------------------------------------------
+/// creates a new document on launch?
 - (BOOL)applicationShouldOpenUntitledFile:(NSApplication *)sender
 // ------------------------------------------------------
 {
@@ -331,7 +340,7 @@
 
 
 // ------------------------------------------------------
-/// Re-Open AppleEvents へ対応してウィンドウを開くかどうかを返す
+/// crates a new document on "Re-Open" AppleEvent
 - (BOOL)applicationShouldHandleReopen:(NSApplication *)theApplication hasVisibleWindows:(BOOL)flag
 // ------------------------------------------------------
 {
@@ -344,98 +353,49 @@
 
 
 // ------------------------------------------------------
-/// アプリ起動直後
+/// just after application did launch
 - (void)applicationDidFinishLaunching:(NSNotification *)notification
 // ------------------------------------------------------
 {
-    // （CEKeyBindingManagerによって、キーボードショートカット設定は上書きされる。
-    // アプリに内包する MenuKeyBindings.plist に、ショートカット設定を記述する必要がある。2007.05.19）
-
-    // 「Select Outline item」「Goto」メニューを生成／追加
-    NSMenu *findMenu = [[[NSApp mainMenu] itemAtIndex:CEFindMenuIndex] submenu];
-    NSMenuItem *menuItem;
-
-    [findMenu addItem:[NSMenuItem separatorItem]];
-    unichar upKey = NSUpArrowFunctionKey;
-    menuItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Select Prev Outline Item", nil)
-                                          action:@selector(selectPrevItemOfOutlineMenu:)
-                                   keyEquivalent:[NSString stringWithCharacters:&upKey length:1]];
-    [menuItem setKeyEquivalentModifierMask:(NSCommandKeyMask | NSAlternateKeyMask)];
-    [findMenu addItem:menuItem];
-
-    unichar downKey = NSDownArrowFunctionKey;
-    menuItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Select Next Outline Item", nil)
-                                          action:@selector(selectNextItemOfOutlineMenu:)
-                                   keyEquivalent:[NSString stringWithCharacters:&downKey length:1]];
-    [menuItem setKeyEquivalentModifierMask:(NSCommandKeyMask | NSAlternateKeyMask)];
-    [findMenu addItem:menuItem];
-
-    [findMenu addItem:[NSMenuItem separatorItem]];
-    menuItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Go To…", nil)
-                                          action:@selector(gotoLocation:)
-                                   keyEquivalent:@"l"];
-    [findMenu addItem:menuItem];
+    // keyboard shortcuts will be overridden by CEKeyBindingManager
+    //   - to apply shortcuts, write them in MenuKeyBindings.plist (2007-05-19)
     
-    // AppleScript 起動のスピードアップのため一度動かしておく
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultRunAppleScriptInLaunchingKey]) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            NSString *source = @"tell application \"CotEditor\" to number of documents";
-            NSAppleScript *AppleScript = [[NSAppleScript alloc] initWithSource:source];
-            [AppleScript executeAndReturnError:nil];
-        });
-    }
+    // setup KeyBindingManager
+    [[CEKeyBindingManager sharedManager] applyKeyBindingsToMainMenu];
     
-    // KeyBindingManagerをセットアップ
-    [[CEKeyBindingManager sharedManager] setupAtLaunching];
-    
-    // 必要があれば移行処理を行う
+    // migrate user settings if needed
     [self migrateIfNeeded];
     
     // store latest version
     NSString *lastVersion = [[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultLastVersionKey];
-    NSString *thisVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
+    NSString *thisVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:(NSString *)kCFBundleVersionKey];
     SWFSemanticVersion *lastSemVer = lastVersion ? [SWFSemanticVersion semanticVersionWithString:lastVersion] : nil;
     SWFSemanticVersion *thisSemVer = [SWFSemanticVersion semanticVersionWithString:thisVersion];
     if (!lastSemVer || [lastSemVer compare:thisSemVer] == NSOrderedAscending) {  // lastVer < thisVer
         [[NSUserDefaults standardUserDefaults] setObject:thisVersion forKey:CEDefaultLastVersionKey];
     }
     
+    // register Services
+    [NSApp setServicesProvider:self];
+    
+    // raise didFinishLaunching flag
     [self setDidFinishLaunching:YES];
 }
 
 
 // ------------------------------------------------------
-/// Dock メニュー生成
-- (NSMenu *)applicationDockMenu:(NSApplication *)sender
-// ------------------------------------------------------
-{
-    NSMenu *menu = [[NSMenu alloc] init];
-    NSMenuItem *newItem = [[[[[NSApp mainMenu] itemAtIndex:CEFileMenuIndex] submenu] itemWithTag:CENewMenuItemTag] copy];
-    NSMenuItem *openItem = [[[[[NSApp mainMenu] itemAtIndex:CEFileMenuIndex] submenu] itemWithTag:CEOpenMenuItemTag] copy];
-
-    [newItem setAction:@selector(newInDockMenu:)];
-    [openItem setAction:@selector(openInDockMenu:)];
-
-    [menu addItem:newItem];
-    [menu addItem:openItem];
-
-    return menu;
-}
-
-
-// ------------------------------------------------------
-/// ファイルを開く
+/// open file
 - (BOOL)application:(NSApplication *)theApplication openFile:(NSString *)filename
 // ------------------------------------------------------
 {
-    // テーマファイルの場合はインストール処理をする
+    // perform install if the file is CotEditor theme file
     if ([[filename pathExtension] isEqualToString:CEThemeExtension]) {
         NSURL *URL = [NSURL fileURLWithPath:filename];
         NSString *themeName = [[URL lastPathComponent] stringByDeletingPathExtension];
         NSAlert *alert;
         NSInteger returnCode;
         
-        // テーマファイルをテキストファイルとして開くかを訊く
+        // ask whether theme file should be opened as a text file
         alert = [[NSAlert alloc] init];
         [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"“%@” is a CotEditor theme file.", nil), [URL lastPathComponent]]];
         [alert setInformativeText:NSLocalizedString(@"Do you want to install this theme?", nil)];
@@ -447,11 +407,11 @@
             return NO;
         }
         
-        // テーマ読み込みを実行
+        // import theme
         NSError *error = nil;
         [[CEThemeManager sharedManager] importTheme:URL replace:NO error:&error];
         
-        // すでに同名のテーマが存在する場合は置き換えて良いかを訊く
+        // ask whether the old theme should be repleced with new one if the same name theme is already exists
         if ([error code] == CEThemeFileDuplicationError) {
             alert = [NSAlert alertWithError:error];
             
@@ -480,30 +440,31 @@
 }
 
 
-// ------------------------------------------------------
-/// メニューの有効化／無効化を制御
-- (BOOL)validateMenuItem:(NSMenuItem *)menuItem
-// ------------------------------------------------------
-{
-    if (([menuItem action] == @selector(showLineHeightPanel:)) ||
-        ([menuItem action] == @selector(showUnicodeInputPanel:))) {
-        return ([[NSDocumentController sharedDocumentController] currentDocument] != nil);
-    }
-    
-    return YES;
-}
-
-
 
 #pragma mark Action Messages
 
-//=======================================================
-// Action messages
-//
-//=======================================================
+// ------------------------------------------------------
+/// activate self and perform "New" menu action
+- (IBAction)newInDockMenu:(id)sender
+// ------------------------------------------------------
+{
+    [NSApp activateIgnoringOtherApps:YES];
+    [[NSDocumentController sharedDocumentController] newDocument:nil];
+}
+
 
 // ------------------------------------------------------
-/// 環境設定ウィンドウを開く
+/// activate self and perform "Open..." menu action
+- (IBAction)openInDockMenu:(id)sender
+// ------------------------------------------------------
+{
+    [NSApp activateIgnoringOtherApps:YES];
+    [[NSDocumentController sharedDocumentController] openDocument:nil];
+}
+
+
+// ------------------------------------------------------
+/// show Preferences window
 - (IBAction)showPreferences:(id)sender
 // ------------------------------------------------------
 {
@@ -512,16 +473,16 @@
 
 
 // ------------------------------------------------------
-/// Scriptエラーウィンドウを表示
-- (IBAction)showScriptErrorPanel:(id)sender
+/// Show console panel
+- (IBAction)showConsolePanel:(id)sender
 // ------------------------------------------------------
 {
-    [[CEScriptErrorPanelController sharedController] showWindow:self];
+    [[CEConsolePanelController sharedController] showWindow:self];
 }
 
 
 // ------------------------------------------------------
-/// カラーコードウィンドウを表示
+/// show color code editor panel
 - (IBAction)showHexColorCodeEditor:(id)sender
 // ------------------------------------------------------
 {
@@ -530,7 +491,7 @@
 
 
 // ------------------------------------------------------
-/// 不透明度パネルを開く
+/// show view opacity panel
 - (IBAction)showOpacityPanel:(id)sender
 // ------------------------------------------------------
 {
@@ -539,7 +500,7 @@
 
 
 // ------------------------------------------------------
-/// 行高設定パネルを開く
+/// show line hight panel
 - (IBAction)showLineHeightPanel:(id)sender
 // ------------------------------------------------------
 {
@@ -548,7 +509,7 @@
 
 
 // ------------------------------------------------------
-/// Unicode 入力パネルを開く
+/// show Unicode input panel
 - (IBAction)showUnicodeInputPanel:(id)sender
 // ------------------------------------------------------
 {
@@ -557,7 +518,7 @@
 
 
 // ------------------------------------------------------
-/// アップルスクリプト辞書をスクリプトエディタで開く
+/// open OSAScript dictionary in Script Editor
 - (IBAction)openAppleScriptDictionary:(id)sender
 // ------------------------------------------------------
 {
@@ -568,31 +529,11 @@
 
 
 // ------------------------------------------------------
-/// Dockメニューの「新規」メニューアクション（まず自身をアクティベート）
-- (IBAction)newInDockMenu:(id)sender
-// ------------------------------------------------------
-{
-    [NSApp activateIgnoringOtherApps:YES];
-    [[NSDocumentController sharedDocumentController] newDocument:nil];
-}
-
-
-// ------------------------------------------------------
-/// Dockメニューの「開く」メニューアクション（まず自身をアクティベート）
-- (IBAction)openInDockMenu:(id)sender
-// ------------------------------------------------------
-{
-    [NSApp activateIgnoringOtherApps:YES];
-    [[NSDocumentController sharedDocumentController] openDocument:nil];
-}
-
-
-// ------------------------------------------------------
-/// 任意のヘルプコンテンツを開く
+/// open a specific page in Help contents
 - (IBAction)openHelpAnchor:(id)sender
 // ------------------------------------------------------
 {
-    NSString *bookName = [[NSBundle mainBundle] objectForInfoDictionaryKey: @"CFBundleHelpBookName"];
+    NSString *bookName = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleHelpBookName"];
     
     [[NSHelpManager sharedHelpManager] openHelpAnchor:kHelpAnchors[[sender tag]]
                                                inBook:bookName];
@@ -601,7 +542,7 @@
 
 
 // ------------------------------------------------------
-/// 付属ドキュメントを開く
+/// open bundled documents in TextEdit.app
 - (IBAction)openBundledDocument:(id)sender
 // ------------------------------------------------------
 {
@@ -613,7 +554,7 @@
 
 
 // ------------------------------------------------------
-/// Webサイト（coteditor.com）を開く
+/// open web site (coteditor.com) in default web browser
 - (IBAction)openWebSite:(id)sender
 // ------------------------------------------------------
 {
@@ -622,7 +563,7 @@
 
 
 // ------------------------------------------------------
-/// バグを報告する
+/// open bug report page in default web browser
 - (IBAction)reportBug:(id)sender
 // ------------------------------------------------------
 {
@@ -631,18 +572,18 @@
 
 
 // ------------------------------------------------------
-/// バグレポートを作成する
+/// open new bug report window
 - (IBAction)createBugReport:(id)sender
 // ------------------------------------------------------
 {
-    NSDictionary *appInfo = [[NSBundle mainBundle] infoDictionary];
-    NSURL *URL = [[NSBundle mainBundle] URLForResource:@"ReportTemplate" withExtension:@"md"];
+    NSBundle *bundle = [NSBundle mainBundle];
+    NSURL *URL = [bundle URLForResource:@"ReportTemplate" withExtension:@"md"];
     NSString *template = [NSString stringWithContentsOfURL:URL encoding:NSUTF8StringEncoding error:nil];
     
     template = [template stringByReplacingOccurrencesOfString:@"%BUNDLE_VERSION%"
-                                                   withString:appInfo[@"CFBundleVersion"]];
+                                                   withString:[bundle objectForInfoDictionaryKey:(NSString *)kCFBundleVersionKey]];
     template = [template stringByReplacingOccurrencesOfString:@"%SHORT_VERSION%"
-                                                   withString:appInfo[@"CFBundleShortVersionString"]];
+                                                   withString:[bundle objectForInfoDictionaryKey:@"CFBundleShortVersionString"]];
     template = [template stringByReplacingOccurrencesOfString:@"%SYSTEM_VERSION%"
                                                    withString:[[NSProcessInfo processInfo] operatingSystemVersionString]];
     
@@ -656,13 +597,8 @@
 
 #pragma mark Private Methods
 
-//=======================================================
-// Private method
-//
-//=======================================================
-
 //------------------------------------------------------
-/// データ保存用ディレクトリの存在をチェック、なければつくる
+/// check existance of the support directory and create it if not exists
 - (void)setupSupportDirectory
 //------------------------------------------------------
 {
@@ -685,7 +621,7 @@
 
 
 //------------------------------------------------------
-/// メインメニューのエンコーディングメニューアイテムを再構築
+/// build encoding menu in the main menu
 - (void)buildEncodingMenu
 //------------------------------------------------------
 {
@@ -702,21 +638,21 @@
 
 
 //------------------------------------------------------
-/// メインメニューのシンタックスカラーリングメニューを再構築
+/// build syntax style menu in the main menu
 - (void)buildSyntaxMenu
 //------------------------------------------------------
 {
     NSMenu *menu = [[[[[NSApp mainMenu] itemAtIndex:CEFormatMenuIndex] submenu] itemWithTag:CESyntaxMenuItemTag] submenu];
     [menu removeAllItems];
     
-    // None を追加
+    // add None
     [menu addItemWithTitle:NSLocalizedString(@"None", nil)
                     action:@selector(changeSyntaxStyle:)
              keyEquivalent:@""];
     
     [menu addItem:[NSMenuItem separatorItem]];
     
-    // シンタックススタイルをラインナップ
+    // add syntax styles
     NSArray *styleNames = [[CESyntaxManager sharedManager] styleNames];
     for (NSString *styleName in styleNames) {
         [menu addItemWithTitle:styleName
@@ -726,7 +662,7 @@
     
     [menu addItem:[NSMenuItem separatorItem]];
     
-    // 全文字列を再カラーリングするメニューを追加
+    // add item to recolor
     NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Re-Color All", nil)
                                                   action:@selector(recolorAll:)
                                            keyEquivalent:@"r"];
@@ -736,7 +672,7 @@
 
 
 //------------------------------------------------------
-/// メインメニューのテーマメニューを再構築
+/// build theme menu in the main menu
 - (void)buildThemeMenu
 //------------------------------------------------------
 {
@@ -758,6 +694,73 @@
 
 #pragma mark -
 
+@implementation CEAppDelegate (Services)
+
+// ------------------------------------------------------
+/// open new document with string via Services
+- (void)openSelection:(NSPasteboard *)pboard userData:(NSString *)userData error:(NSString **)error
+// ------------------------------------------------------
+{
+    NSError *err = nil;
+    CEDocument *document = [[NSDocumentController sharedDocumentController] openUntitledDocumentAndDisplay:YES error:&err];
+    NSString *selection = [pboard stringForType:NSPasteboardTypeString];
+    
+    if (document) {
+//    [document readFromData:[selection dataUsingEncoding:NSUTF8StringEncoding] ofType:nil error:nil];
+        [[document editor] insertTextViewString:selection];
+    } else {
+        [[NSAlert alertWithError:err] runModal];
+    }
+}
+
+
+// ------------------------------------------------------
+/// open files via Services
+- (void)openFile:(NSPasteboard *)pboard userData:(NSString *)userData error:(NSString **)error
+// ------------------------------------------------------
+{
+    for (NSPasteboardItem *item in [pboard pasteboardItems]) {
+        NSString *type = [item availableTypeFromArray:@[(NSString *)kUTTypeFileURL, (NSString *)kUTTypeText]];
+        NSURL *fileURL = [NSURL URLWithString:[item stringForType:type]];
+        
+        if (![fileURL checkResourceIsReachableAndReturnError:nil]) {
+            continue;
+        }
+        
+        // get file UTI
+        NSString *uti = nil;
+        [fileURL getResourceValue:&uti forKey:NSURLTypeIdentifierKey error:nil];
+        
+        // process only plain-text files
+        if (![[NSWorkspace sharedWorkspace] type:uti conformsToType:(NSString *)kUTTypeText]) {
+            NSError *err = [NSError errorWithDomain:NSCocoaErrorDomain
+                                               code:NSFileReadCorruptFileError
+                                           userInfo:@{NSURLErrorKey: fileURL}];
+            [[NSAlert alertWithError:err] runModal];
+            continue;
+        }
+        
+        // open file
+        [[NSDocumentController sharedDocumentController] openDocumentWithContentsOfURL:fileURL
+                                                                               display:YES
+                                                                     completionHandler:^(NSDocument *document,
+                                                                                         BOOL documentWasAlreadyOpen,
+                                                                                         NSError *error)
+         {
+             if (error) {
+                 [[NSAlert alertWithError:error] runModal];
+             }
+         }];
+    }
+}
+
+@end
+
+
+
+
+#pragma mark -
+
 @implementation CEAppDelegate (Migration)
 
 static NSString *const kOldIdentifier = @"com.aynimac.CotEditor";
@@ -765,7 +768,7 @@ static NSString *const kMigrationFlagKey = @"isMigratedToNewBundleIdentifier";
 
 
 //------------------------------------------------------
-/// 必要があればCotEditor 1.x系からの移行処理を行う
+/// migrate user settings from CotEditor v1.x if needed
 - (void)migrateIfNeeded
 //------------------------------------------------------
 {
@@ -828,7 +831,7 @@ static NSString *const kMigrationFlagKey = @"isMigratedToNewBundleIdentifier";
                                                        forName:[[NSBundle mainBundle] bundleIdentifier]];
     
     // set migration flag to old defaults
-    oldDefaultsDict[kMigrationFlagKey] = @(YES);
+    oldDefaultsDict[kMigrationFlagKey] = @YES;
     [oldDefaults setPersistentDomain:oldDefaultsDict forName:kOldIdentifier];
 }
 

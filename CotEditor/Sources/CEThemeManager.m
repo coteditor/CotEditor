@@ -9,7 +9,7 @@
  encoding="UTF-8"
  ------------------------------------------------------------------------------
  
- © 2014 CotEditor Project
+ © 2014-2015 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -80,22 +80,17 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
 
 @implementation CEThemeManager
 
-#pragma mark Class Methods
-
-//=======================================================
-// Class method
-//
-//=======================================================
+#pragma mark Singleton
 
 // ------------------------------------------------------
 /// return singleton instance
 + (instancetype)sharedManager
 // ------------------------------------------------------
 {
-    static dispatch_once_t predicate;
+    static dispatch_once_t onceToken;
     static id shared = nil;
     
-    dispatch_once(&predicate, ^{
+    dispatch_once(&onceToken, ^{
         shared = [[self alloc] init];
     });
     
@@ -106,13 +101,8 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
 
 #pragma mark Superclass Methods
 
-//=======================================================
-// Superclass method
-//
-//=======================================================
-
 // ------------------------------------------------------
-/// 初期化
+/// initialize
 - (instancetype)init
 // ------------------------------------------------------
 {
@@ -136,7 +126,6 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
         while (dispatch_semaphore_wait(semaphore, DISPATCH_TIME_NOW)) {  // avoid dead lock
             [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
         }
-        dispatch_release(semaphore);
     }
     return self;
 }
@@ -144,11 +133,6 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
 
 
 #pragma mark Public Methods
-
-//=======================================================
-// Public methodƒ
-//
-//=======================================================
 
 //------------------------------------------------------
 /// テーマ名からProperty list形式のテーマ定義を返す
@@ -258,7 +242,7 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
     NSURL *URL = [self URLForUserTheme:themeName];
     
     if ([URL checkResourceIsReachableAndReturnError:nil]) {
-        success = [[NSFileManager defaultManager] removeItemAtURL:URL error:error];
+        success = [[NSFileManager defaultManager] trashItemAtURL:URL resultingItemURL:nil error:nil];
     }
     
     if (success) {
@@ -455,11 +439,6 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
 
 
 #pragma mark Private Methods
-
-//=======================================================
-// Private method
-//
-//=======================================================
 
 //------------------------------------------------------
 /// テーマファイルの URL からスタイル名を返す

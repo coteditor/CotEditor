@@ -1,0 +1,59 @@
+/*
+ InfoPlist.strings
+ 
+ CotEditor
+ http://coteditor.com
+ 
+ Created on 2015-01-01 by 1024jp
+ encoding="UTF-8"
+ 
+ © 2015 1024jp
+ */
+
+
+// Document Types
+"Text document" = "文本文档";
+"Plain text" = "纯文本";
+"CotEditor Theme" = "CotEditor 主题";
+"BibTeX" = "BibTeX";
+"Configuration" = "配置文件";
+"C header" = "C 头文件";
+"C source" = "C 源码";
+"Objective-C source" = "Objective-C 源码";
+"C++ source" = "C++ 源码";
+"Objective-C++ source" = "Objective-C++ 源码";
+"C++ header" = "C++ 头文件";
+"C# source" = "C# 源码";
+"CoffeeScript" = "CoffeeScript";
+"Cascading Style Sheet" = "CSS 文件";
+"Dart script" = "Dart 脚本";
+"Diff" = "Diff";
+"Document Type Definition" = "文档类型定义";
+"Go script" = "Go 脚本";
+"Haskell script" = "Haskell 脚本";
+"HTML document" = "HTML 文档";
+"INI" = "INI";
+"Java source" = "Java 源码";
+"JavaScript" = "JavaScript";
+"JSON" = "JSON";
+"Julia script" = "Julia 脚本";
+"Lisp script" = "Lisp 脚本";
+"Lua script" = "Lua 脚本";
+"Markdown document" = "Markdown 文档";
+"Perl script" = "Perl 脚本";
+"PHP script" = "PHP 脚本";
+"Python script" = "Python 脚本";
+"reStructured Text document" = "reStructured 文本文档";
+"Ruby script" = "Ruby 脚本";
+"Rust script" = "Rust 脚本";
+"Scalable Vector Graphics" = "矢量图";
+"Scala script" = "Scala 脚本";
+"Scheme script" = "Scheme 脚本";
+"Shell script" = "Shell 脚本";
+"SQL source" = "SQL 源码";
+"Swift source" = "Swift 源码";
+"TeX" = "TeX";
+"Textile document" = "Textile 文档";
+"Tcl source" = "Tcl 源码";
+"XML document" = "XML 文档";
+"YAML" = "YAML";

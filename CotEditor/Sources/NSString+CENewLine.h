@@ -27,7 +27,7 @@
  ==============================================================================
  */
 
-@import Foundation;
+@import Cocoa;
 
 
 typedef NS_ENUM(NSInteger, CENewLineType) {

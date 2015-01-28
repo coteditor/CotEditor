@@ -15,7 +15,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014 CotEditor Project
+ © 2014-2015 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -36,7 +36,6 @@
 @import Cocoa;
 #import "CETextViewProtocol.h"
 #import "CELayoutManager.h"
-#import "CEWindow.h"
 
 
 @interface CETextView : NSTextView <NSTextInputClient, CETextViewProtocol>
@@ -45,13 +44,12 @@
 @property (nonatomic) BOOL needsRecompletion;  // 再度入力補完をするか
 @property (nonatomic) BOOL needsUpdateOutlineMenuItemSelection;  // アウトラインメニュー項目の更新をすべきか
 @property (nonatomic) CGFloat lineSpacing;
+@property (nonatomic) NSUInteger tabWidth;  // タブ幅
 @property (nonatomic) NSRect highlightLineRect;  // ハイライト行の矩形
 @property (nonatomic, getter=isAutoTabExpandEnabled) BOOL autoTabExpandEnabled;  // タブを自動的にスペースに展開するか
 @property (nonatomic, copy) NSString *inlineCommentDelimiter;  // インラインコメント開始文字列
 @property (nonatomic, copy) NSDictionary *blockCommentDelimiters;  // ブロックコメント開始・終了文字列のペア
 @property (nonatomic, copy) NSCharacterSet *firstCompletionCharacterSet;  // 入力補完の最初の1文字のセット
-@property (nonatomic, weak) NSView *lineNumberView;
-@property (nonatomic, copy) NSString *lineEndingString;  // 行末文字
 
 @property (nonatomic) CETheme *theme;
 
@@ -61,15 +59,13 @@
 
 
 // Public method
-- (void)applyTypingAttributes;
-- (void)replaceSelectedStringTo:(NSString *)string scroll:(BOOL)needsScroll;
-- (void)replaceAllStringTo:(NSString *)string;
-- (void)insertAfterSelection:(NSString *)string;
-- (void)appendAllString:(NSString *)string;
-- (void)insertCustomTextWithPatternNum:(NSInteger)patternNum;
-- (void)setNewLineSpacingAndUpdate:(CGFloat)lineSpacing;
-- (void)doReplaceString:(NSString *)string withRange:(NSRange)range
-           withSelected:(NSRange)selection withActionName:(NSString *)actionName;
+- (void)insertString:(NSString *)string;
+- (void)insertStringAfterSelection:(NSString *)string;
+- (void)replaceAllStringWithString:(NSString *)string;
+- (void)appendString:(NSString *)string;
+- (void)setLineSpacingAndUpdate:(CGFloat)lineSpacing;
+- (void)replaceWithString:(NSString *)string range:(NSRange)range
+            selectedRange:(NSRange)selectedRange actionName:(NSString *)actionName;
 
 // Action Message
 - (IBAction)resetFont:(id)sender;

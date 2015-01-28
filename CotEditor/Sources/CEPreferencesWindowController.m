@@ -5,11 +5,11 @@
  CotEditor
  http://coteditor.com
  
- Created by 2014-04-18 by 1024jp
+ Created on 2014-04-18 by 1024jp
  encoding="UTF-8"
  ------------------------------------------------------------------------------
  
- © 2014 CotEditor Project
+ © 2014 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -35,32 +35,12 @@
 #import "CEFileDropPaneController.h"
 #import "CEKeyBindingsPaneController.h"
 #import "CEPrintPaneController.h"
-#import "CEAppDelegate.h"
-#import "constants.h"
-
-
-typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
-    CEGeneralPane,
-    CEWindowPane,
-    CEAppearancePane,
-    CEEditPane,
-    CEFormatPane,
-    CEFileDropPane,
-    CEKeyBindingsPane,
-    CEPrintPane
-};
+#import "CEIntegrationPaneController.h"
 
 
 @interface CEPreferencesWindowController ()
 
-@property (nonatomic) NSViewController *generalPaneController;
-@property (nonatomic) CEWindowPaneController *windowPaneController;
-@property (nonatomic) CEAppearancePaneController *appearancePaneController;
-@property (nonatomic) CEEditPaneController *editPaneController;
-@property (nonatomic) CEFormatPaneController *formatPaneController;
-@property (nonatomic) CEFileDropPaneController *fileDropPaneController;
-@property (nonatomic) CEKeyBindingsPaneController *keyBindingsPaneController;
-@property (nonatomic) CEPrintPaneController *printPaneController;
+@property (nonatomic, copy) NSArray *viewControllers;
 
 @end
 
@@ -71,22 +51,17 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
 
 @implementation CEPreferencesWindowController
 
-#pragma mark Class Methods
-
-//=======================================================
-// Class method
-//
-//=======================================================
+#pragma mark Singleton
 
 // ------------------------------------------------------
 /// return singleton instance
 + (instancetype)sharedController
 // ------------------------------------------------------
 {
-    static dispatch_once_t predicate;
+    static dispatch_once_t onceToken;
     static id shared = nil;
     
-    dispatch_once(&predicate, ^{
+    dispatch_once(&onceToken, ^{
         shared = [[self alloc] initWithWindowNibName:@"PreferencesWindow"];
     });
     
@@ -97,41 +72,36 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
 
 #pragma mark Superclass Methods
 
-//=======================================================
-// Superclass method
-//
-//=======================================================
-
 // ------------------------------------------------------
-/// 初期化
+/// initialize
 - (instancetype)initWithWindowNibName:(NSString *)windowNibName
 // ------------------------------------------------------
 {
     self = [super initWithWindowNibName:windowNibName];
     if (self) {
-        // 各ペインを読み込む
-        _generalPaneController = [[NSViewController alloc] initWithNibName:@"GeneralPane" bundle:nil];
-        _windowPaneController = [[CEWindowPaneController alloc] initWithNibName:@"WindowPane" bundle:nil];
-        _appearancePaneController = [[CEAppearancePaneController alloc] initWithNibName:@"AppearancePane" bundle:nil];
-        _editPaneController = [[CEEditPaneController alloc] initWithNibName:@"EditPane" bundle:nil];
-        _formatPaneController = [[CEFormatPaneController alloc] initWithNibName:@"FormatPane" bundle:nil];
-        _fileDropPaneController = [[CEFileDropPaneController alloc] initWithNibName:@"FileDropPane" bundle:nil];
-        _keyBindingsPaneController = [[CEKeyBindingsPaneController alloc] initWithNibName:@"KeyBindingsPane" bundle:nil];
-        _printPaneController = [[CEPrintPaneController alloc] initWithNibName:@"PrintPane" bundle:nil];
+        _viewControllers = @[[[NSViewController alloc] initWithNibName:@"GeneralPane" bundle:nil],
+                             [[CEWindowPaneController alloc] initWithNibName:@"WindowPane" bundle:nil],
+                             [[CEAppearancePaneController alloc] initWithNibName:@"AppearancePane" bundle:nil],
+                             [[CEEditPaneController alloc] initWithNibName:@"EditPane" bundle:nil],
+                             [[CEFormatPaneController alloc] initWithNibName:@"FormatPane" bundle:nil],
+                             [[CEFileDropPaneController alloc] initWithNibName:@"FileDropPane" bundle:nil],
+                             [[CEKeyBindingsPaneController alloc] initWithNibName:@"KeyBindingsPane" bundle:nil],
+                             [[CEPrintPaneController alloc] initWithNibName:@"PrintPane" bundle:nil],
+                             [[CEIntegrationPaneController alloc] initWithNibName:@"IntegrationPane" bundle:nil]];
     }
     return self;
 }
 
 
 // ------------------------------------------------------
-/// ウインドウをロードした直後
+/// setup UI
 - (void)windowDidLoad
 // ------------------------------------------------------
 {
     [super windowDidLoad];
     
-    // 最初のビューを選ぶ
-    NSToolbarItem *leftmostItem = [[[self window] toolbar] items][0];
+    // select first view
+    NSToolbarItem *leftmostItem = [[[[self window] toolbar] items] firstObject];
     [[[self window] toolbar] setSelectedItemIdentifier:[leftmostItem itemIdentifier]];
     [self switchView:leftmostItem];
     [[self window] center];
@@ -139,19 +109,14 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
 
 
 
-#pragma mark Delegate and Notification
-
-//=======================================================
-// Delegate method (NSWindow)
-//  <== prefWindow
-//=======================================================
+#pragma mark Delegate
 
 // ------------------------------------------------------
-/// ウインドウが閉じる
+/// window will close
 - (void)windowWillClose:(NSNotification *)notification
 // ------------------------------------------------------
 {
-    // 編集中の設定値も保存
+    // finish current edit
     [[self window] makeFirstResponder:[self window]];
 }
 
@@ -159,28 +124,13 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
 
 #pragma mark Action Messages
 
-//=======================================================
-// Action messages
-//
-//=======================================================
-
 // ------------------------------------------------------
-/// ツールバーからビューをスイッチする
+/// switch panes from toolbar
 - (IBAction)switchView:(id)sender
 // ------------------------------------------------------
 {
-    // detect clicked icon and select a view to switch
-    NSView   *newView;
-    switch ([sender tag]) {
-        case CEGeneralPane:     newView = [[self generalPaneController] view];     break;
-        case CEWindowPane:      newView = [[self windowPaneController] view];      break;
-        case CEAppearancePane:  newView = [[self appearancePaneController] view];  break;
-        case CEEditPane:        newView = [[self editPaneController] view];        break;
-        case CEFormatPane:      newView = [[self formatPaneController] view];      break;
-        case CEFileDropPane:    newView = [[self fileDropPaneController] view];    break;
-        case CEKeyBindingsPane: newView = [[self keyBindingsPaneController] view]; break;
-        case CEPrintPane:       newView = [[self printPaneController] view];       break;
-    }
+    // detect clicked icon and select the view to switch
+    NSView *newView = [(NSViewController *)[self viewControllers][[sender tag]] view];
     
     // remove current view from the main view
     for (NSView *view in [[[self window] contentView] subviews]) {
@@ -199,15 +149,6 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
     
     // add new view to the main view
     [[[self window] contentView] addSubview:newView];
-}
-
-
-//------------------------------------------------------
-/// ヘルプの環境設定説明部分を開く
-- (IBAction)openPreferencesHelp:(id)sender
-//------------------------------------------------------
-{
-    [(CEAppDelegate *)[NSApp delegate] openHelpAnchor:sender];
 }
 
 @end

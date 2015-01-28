@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6254"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="NSViewController">
+            <connections>
+                <outlet property="view" destination="743" id="NV1-KF-qM5"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" id="743" userLabel="General Pane">
+            <rect key="frame" x="0.0" y="0.0" width="540" height="248"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <button translatesAutoresizingMaskIntoConstraints="NO" id="2739">
+                    <rect key="frame" x="100" y="123" width="284" height="18"/>
+                    <buttonCell key="cell" type="check" title="Inline script menu items into context menu" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3309">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <binding destination="26" name="value" keyPath="values.inlineContextualScriptMenu" id="2741"/>
+                    </connections>
+                </button>
+                <button horizontalHuggingPriority="750" verticalHuggingPriority="750" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="1832">
+                    <rect key="frame" x="497" y="17" width="25" height="25"/>
+                    <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" inset="2" id="3308">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="openHelpAnchor:" target="-1" id="chy-NR-7O2"/>
+                    </connections>
+                </button>
+                <button translatesAutoresizingMaskIntoConstraints="NO" id="1036">
+                    <rect key="frame" x="100" y="147" width="274" height="18"/>
+                    <buttonCell key="cell" type="check" title="Share find strings with other applications" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3307">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <binding destination="26" name="value" keyPath="values.syncFindPboard" id="1194"/>
+                    </connections>
+                </button>
+                <button translatesAutoresizingMaskIntoConstraints="NO" id="1030">
+                    <rect key="frame" x="100" y="99" width="271" height="18"/>
+                    <buttonCell key="cell" type="check" title="Count each line ending as one character" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3306">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <binding destination="26" name="value" keyPath="values.countLineEndingAsChar" id="1032"/>
+                    </connections>
+                </button>
+                <button translatesAutoresizingMaskIntoConstraints="NO" id="594">
+                    <rect key="frame" x="100" y="51" width="362" height="18"/>
+                    <buttonCell key="cell" type="check" title="Open a new document when CotEditor becomes active" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3299">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <binding destination="26" name="value" keyPath="values.reopenBlankWindow" id="595"/>
+                    </connections>
+                </button>
+                <button translatesAutoresizingMaskIntoConstraints="NO" id="106">
+                    <rect key="frame" x="100" y="186" width="162" height="18"/>
+                    <buttonCell key="cell" type="check" title="Open a new document" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3298">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <binding destination="26" name="value" keyPath="values.createNewAtStartup" id="157"/>
+                    </connections>
+                </button>
+                <button translatesAutoresizingMaskIntoConstraints="NO" id="3422">
+                    <rect key="frame" x="100" y="210" width="221" height="18"/>
+                    <buttonCell key="cell" type="check" title="Automatically check for updates" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3423">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <binding destination="3430" name="value" keyPath="automaticallyChecksForUpdates" id="3432"/>
+                    </connections>
+                </button>
+                <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3424">
+                    <rect key="frame" x="325" y="205" width="84" height="26"/>
+                    <popUpButtonCell key="cell" type="push" title="Monthly" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="2629800" imageScaling="proportionallyDown" inset="2" selectedItem="3429" id="3425">
+                        <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="menu"/>
+                        <menu key="menu" title="OtherViews" id="3426">
+                            <items>
+                                <menuItem title="Hourly" tag="3600" id="3427"/>
+                                <menuItem title="Daily" tag="86400" id="3433"/>
+                                <menuItem title="Weekly" tag="604800" id="3428"/>
+                                <menuItem title="Monthly" state="on" tag="2629800" id="3429"/>
+                            </items>
+                        </menu>
+                    </popUpButtonCell>
+                    <connections>
+                        <binding destination="3430" name="enabled" keyPath="automaticallyChecksForUpdates" id="3438"/>
+                        <binding destination="3430" name="selectedTag" keyPath="updateCheckInterval" id="3436"/>
+                    </connections>
+                </popUpButton>
+                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="m9P-m9-cpw">
+                    <rect key="frame" x="25" y="211" width="71" height="17"/>
+                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="On launch:" usesSingleLineMode="YES" id="geU-63-sAC">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="jQj-mP-yhk">
+                    <rect key="frame" x="18" y="148" width="78" height="17"/>
+                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Application:" usesSingleLineMode="YES" id="lzy-Ei-xlT">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <button translatesAutoresizingMaskIntoConstraints="NO" id="596">
+                    <rect key="frame" x="100" y="75" width="188" height="18"/>
+                    <buttonCell key="cell" type="check" title="Check spelling as you type" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3300">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <binding destination="26" name="value" keyPath="values.checkSpellingAsType" id="597"/>
+                    </connections>
+                </button>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="1832" secondAttribute="trailing" constant="20" symbolic="YES" id="4no-Le-Zal"/>
+                <constraint firstItem="jQj-mP-yhk" firstAttribute="baseline" secondItem="1036" secondAttribute="baseline" id="5SA-y4-4I5"/>
+                <constraint firstItem="2739" firstAttribute="top" secondItem="1036" secondAttribute="bottom" constant="10" id="5hj-jV-79F"/>
+                <constraint firstItem="594" firstAttribute="top" secondItem="596" secondAttribute="bottom" constant="10" id="A1l-Ua-9qn"/>
+                <constraint firstItem="jQj-mP-yhk" firstAttribute="leading" secondItem="743" secondAttribute="leading" constant="20" symbolic="YES" id="DsN-Cc-cHw"/>
+                <constraint firstItem="1030" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="743" secondAttribute="leading" constant="20" symbolic="YES" id="Hs5-xc-hrY"/>
+                <constraint firstItem="3422" firstAttribute="leading" secondItem="1030" secondAttribute="leading" id="K9I-sT-SFI"/>
+                <constraint firstItem="3422" firstAttribute="leading" secondItem="m9P-m9-cpw" secondAttribute="trailing" constant="8" symbolic="YES" id="KeM-Td-IjG"/>
+                <constraint firstItem="m9P-m9-cpw" firstAttribute="baseline" secondItem="3422" secondAttribute="baseline" id="MJy-z5-MlA"/>
+                <constraint firstAttribute="bottom" secondItem="1832" secondAttribute="bottom" constant="20" symbolic="YES" id="O8a-WJ-l1a"/>
+                <constraint firstItem="596" firstAttribute="leading" secondItem="3422" secondAttribute="leading" id="WVh-w1-aQP"/>
+                <constraint firstItem="3424" firstAttribute="leading" secondItem="3422" secondAttribute="trailing" constant="8" symbolic="YES" id="Xa1-CL-vaM"/>
+                <constraint firstItem="594" firstAttribute="leading" secondItem="106" secondAttribute="leading" id="cXS-EO-jRV"/>
+                <constraint firstItem="1036" firstAttribute="top" secondItem="106" secondAttribute="bottom" constant="25" id="czW-lO-Dzt"/>
+                <constraint firstItem="3422" firstAttribute="leading" secondItem="106" secondAttribute="leading" id="eTK-IK-EoM"/>
+                <constraint firstItem="3422" firstAttribute="leading" secondItem="2739" secondAttribute="leading" id="eWC-pt-6uh"/>
+                <constraint firstItem="3424" firstAttribute="baseline" secondItem="3422" secondAttribute="baseline" id="gZN-8m-k6q"/>
+                <constraint firstItem="1030" firstAttribute="top" secondItem="2739" secondAttribute="bottom" constant="10" id="gbD-2O-xNi"/>
+                <constraint firstItem="3422" firstAttribute="leading" secondItem="594" secondAttribute="leading" id="gjO-Qt-ihS"/>
+                <constraint firstItem="596" firstAttribute="top" secondItem="1030" secondAttribute="bottom" constant="10" id="k19-Ue-wWE"/>
+                <constraint firstItem="3422" firstAttribute="leading" secondItem="1036" secondAttribute="leading" id="naf-FM-YAQ"/>
+                <constraint firstItem="m9P-m9-cpw" firstAttribute="top" secondItem="743" secondAttribute="top" constant="20" symbolic="YES" id="t6z-cb-9DK"/>
+                <constraint firstItem="1036" firstAttribute="leading" secondItem="jQj-mP-yhk" secondAttribute="trailing" constant="8" symbolic="YES" id="tFg-vu-eDc"/>
+                <constraint firstItem="1832" firstAttribute="top" secondItem="594" secondAttribute="bottom" constant="12" symbolic="YES" id="vdC-qT-xfa"/>
+                <constraint firstItem="106" firstAttribute="top" secondItem="3422" secondAttribute="bottom" constant="10" id="xwZ-5j-IV1"/>
+            </constraints>
+            <point key="canvasLocation" x="364" y="234"/>
+        </customView>
+        <userDefaultsController representsSharedInstance="YES" id="26" userLabel="Shared User Defaults Controller"/>
+        <customObject id="3430" customClass="SUUpdater"/>
+    </objects>
+</document>

@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014 CotEditor Project
+ © 2014-2015 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -29,17 +29,8 @@
  */
 
 @import Cocoa;
-#import "CETextViewProtocol.h"
 
 
-@interface CELineNumberView : NSView
-
-@property (nonatomic, getter=isShown) BOOL shown;
-@property (nonatomic) NSTextView<CETextViewProtocol> *textView;  // should be weak, just because it is NSTextView.
-
-
-// Public method
-
-- (void)updateLineNumber:(id)sender;
+@interface CELineNumberView : NSRulerView
 
 @end

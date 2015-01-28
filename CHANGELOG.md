@@ -2,6 +2,75 @@
 Change Log
 ==========================
 
+2.1.0
+--------------------------
+
+### New Features 
+
+- `cot` command-line tool.
+- New AppleScript property `tab width` for document object.
+- Now, CotEditor script receives the absolute file path of the frontmost document as an argument if available.
+- Add “New CotEditor Document with Selection” and “Open File in CotEditor” Services.
+- Add syntax styles for “Erlang” and “Julia”.
+
+
+### Additions/Changes
+
+- Drop support for __OS X Lion.__
+- Migrate document drawer to sidebar style.
+    - Add “show document inspector” option to preferences.
+    - Improve document information display.
+- Introduce brand-new find panel with more organized UI.
+    - OniGmo is still be using for the regular expression engine as before.
+    - Settings for find panel has been once reset. You can set them again from the gear button in the find panel.
+- Enable to change multiple checkboxes in syntax style editor at once.
+- Improve to display gear icon in menu bar while executing a script.
+- Improve auto-outdent behavior with `}` input.
+- Improve auto-tab-expand behavior with intent that tab characters and spaces are mixed.
+- Add hidden “Reveal in Finder” menu item to syntax style action menu in Preferences (visible with `Option` key).
+- Improve CotEditor Script to apply the result to the document that was frontmost when the script was launched.
+- Close Preferences window with esc key.
+- Character inspector popover becomes detachable (on Yosemite and later).
+- Update about Console Panel:
+    - Rename “Script Error Panel” to “Console Panel.”
+    - Change toolbar style.
+    - Beautify output message style.
+- Prefer using user custom syntax style if the file mapping conflicts with other bundled style.
+- Change to save `com.apple.TextEncoding` xattr only if the file already has the encoding xattr or it's a new document.
+- Move removed themes/styles to Trash instead delete them immediately.
+- Now, Utility actions perform with multiple selection.
+- Avoid showing not-writable alert on Resume again.
+- Delay timing to save text key bindings setting.
+- Localize document types.
+- Improve text rendering with non-opaque view.
+- Update “Markdown” syntax style:
+    - Add horizontal rules to outline menu.
+- Tweak text view drawing performance.
+
+
+### Fixes
+
+- Fix an issue that the preferred file encoding for encoding detection could be set wrong after running file open panel.
+- Fix an issue that incompatible character markup positions were wrong by CR/LF line endings.
+- Fix duplication check in key bindings editor.
+- Fix “Restore Defaults” button enability on text key bindings edit sheet.
+- Fix possible crashes on input.
+- Fix an issue that application could crash after closing split view.
+- Fix an issue that application could crash after switching theme in preferences.
+- Fix an issue that application couldn't open file that is not Unicode, has more than 4,096 characters and consists only of 2 byte characters.
+- Fix an issue that text font could occasionally change after pasting or inputting text from other application.
+- Fix an issue that number of selected lines displayed less than actual count if last selected lines are blank.
+- Fix an issue that Unicode character insertion was occasionally failed.
+- Fix an issue that syntax highlights were removed after perform Unhighlight.
+- Fix timing to display sheets on file open.
+- Fix an issue that selection of line endings menu and encoding menu in toolbar did not update on undo/redo.
+- Fix an issue that checkmark in line height menu was not displayed.
+- Fix some missing localizations in simplified Chinese. (Thanks to Wei Wang!)
+- Fix an issue that an alert message was not localized.
+- And other trivial UI fixes and enhancements.
+
+
+
 2.0.3
 --------------------------
 

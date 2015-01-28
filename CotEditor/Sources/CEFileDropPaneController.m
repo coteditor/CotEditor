@@ -52,13 +52,17 @@
 
 #pragma mark Superclass Methods
 
-//=======================================================
-// Superclass method
-//
-//=======================================================
+// ------------------------------------------------------
+/// clean up
+- (void)dealloc
+// ------------------------------------------------------
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 
 // ------------------------------------------------------
-/// ビューの読み込み
+/// setup UI
 - (void)loadView
 // ------------------------------------------------------
 {
@@ -80,21 +84,11 @@
 }
 
 
-// ------------------------------------------------------
-/// 後片付け
-- (void)dealloc
-// ------------------------------------------------------
-{
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
 
-
-
-#pragma mark Delegate and Notification
+#pragma mark Delegate
 
 //=======================================================
-// Delegate method (NSTableView)
-//  <== extensionTableView
+// NSTableViewDelegate  < extensionTableView
 //=======================================================
 
 // ------------------------------------------------------
@@ -144,10 +138,8 @@
 }
 
 
-
 //=======================================================
-// Delegate method (NSTextView)
-//  <== formatTextView
+// NSTextViewDelegate  < formatTextView
 //=======================================================
 
 // ------------------------------------------------------
@@ -164,11 +156,6 @@
 
 
 #pragma mark Action Messages
-
-//=======================================================
-// Action messages
-//
-//=======================================================
 
 // ------------------------------------------------------
 /// 定型文字列挿入メニューが選択された
@@ -212,11 +199,6 @@
 
 
 #pragma mark Private Mthods
-
-//=======================================================
-// Private method
-//
-//=======================================================
 
 // ------------------------------------------------------
 //// FileDrop 設定を UserDefaults に書き戻す
@@ -281,7 +263,7 @@
     if (![self isDeletingFileDrop]) { return; }
     
     NSArray *selected = [[self fileDropController] selectedObjects];
-    NSString *extension = selected[0][CEFileDropExtensionsKey];
+    NSString *extension = [selected firstObject][CEFileDropExtensionsKey];
     if ([selected count] == 0) {
         return;
     } else if (!extension) {

@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014 CotEditor Project
+ © 2014-2015 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -30,6 +30,7 @@
 
 #import "CESyntaxParser.h"
 #import "CETextViewProtocol.h"
+#import "CELayoutManager.h"
 #import "CESyntaxManager.h"
 #import "CEIndicatorSheetController.h"
 #import "RegexKitLite.h"
@@ -61,8 +62,7 @@ typedef NS_ENUM(NSUInteger, QCStartEndType) {
 
 @interface CESyntaxParser ()
 
-@property (nonatomic) NSLayoutManager *layoutManager;
-@property (nonatomic, getter=isPrinting) BOOL printing;  // プリント中かどうかを返す（[NSGraphicsContext currentContextDrawingToScreen] は真を返す時があるため、専用フラグを使う）
+@property (nonatomic) CELayoutManager *layoutManager;
 
 @property (nonatomic) BOOL hasSyntaxHighlighting;
 @property (atomic, copy) NSDictionary *coloringDictionary;
@@ -95,10 +95,10 @@ static NSArray *kSyntaxDictKeys;
 static CGFloat kPerCompoIncrement;
 
 
-#pragma mark Class Methods
+#pragma mark Superclass Methods
 
 // ------------------------------------------------------
-/// クラスの初期化
+/// initialize class
 + (void)initialize
 // ------------------------------------------------------
 {
@@ -119,14 +119,9 @@ static CGFloat kPerCompoIncrement;
 
 #pragma mark Public Methods
 
-//=======================================================
-// Public method
-//
-//=======================================================
-
 // ------------------------------------------------------
 /// designated initializer
-- (instancetype)initWithStyleName:(NSString *)styleName layoutManager:(NSLayoutManager *)layoutManager isPrinting:(BOOL)isPrinting
+- (instancetype)initWithStyleName:(NSString *)styleName layoutManager:(CELayoutManager *)layoutManager
 // ------------------------------------------------------
 {
     self = [super init];
@@ -177,7 +172,7 @@ static CGFloat kPerCompoIncrement;
                         } // ==== end-autoreleasepool
                     }
                     // ソート
-                    [completionWords sortedArrayUsingSelector:@selector(compare:)];
+                    [completionWords sortUsingSelector:@selector(compare:)];
                 }
                 // completionWords を保持する
                 _completionWords = completionWords;
@@ -262,7 +257,6 @@ static CGFloat kPerCompoIncrement;
         }
         
         _layoutManager = layoutManager;
-        _printing = isPrinting;
     }
     return self;
 }
@@ -288,7 +282,7 @@ static CGFloat kPerCompoIncrement;
 
 // ------------------------------------------------------
 /// 表示されている部分をカラーリング
-- (void)colorVisibleRange:(NSRange)range wholeString:(NSString *)wholeString
+- (void)colorRange:(NSRange)range wholeString:(NSString *)wholeString
 // ------------------------------------------------------
 {
     if ([wholeString length] == 0) { return; }
@@ -328,9 +322,7 @@ static CGFloat kPerCompoIncrement;
         return @[];
     }
     
-    __block NSMutableArray *outlineMenuDicts = [NSMutableArray array];
-    
-    NSUInteger menuTitleMaxLength = [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultOutlineMenuMaxLengthKey];
+    NSMutableArray *outlineMenuDicts = [NSMutableArray array];
     NSArray *definitions = [self coloringDictionary][CESyntaxOutlineMenuKey];
     
     for (NSDictionary *definition in definitions) {
@@ -357,81 +349,77 @@ static CGFloat kPerCompoIncrement;
          {
              NSRange range = [result range];
              
-             // セパレータのとき
+             // separator item
              if ([template isEqualToString:CESeparatorString]) {
                  [outlineMenuDicts addObject:@{CEOutlineItemRangeKey: [NSValue valueWithRange:range],
-                                               CEOutlineItemTitleKey: CESeparatorString,
-                                               CEOutlineItemSortKeyKey: @(range.location)}];
+                                               CEOutlineItemTitleKey: CESeparatorString}];
                  return;
              }
              
-             // メニュー項目タイトル
+             // menu item title
              NSString *title;
              
              if ([template length] == 0) {
-                 // パターン定義なし
+                 // no pattern definition
                  title = [wholeString substringWithRange:range];;
                  
              } else {
-                 // マッチ文字列をテンプレートで置換
+                 // replace matched string with template
                  title = [regex replacementStringForResult:result
                                                   inString:wholeString
                                                     offset:0
                                                   template:template];
                  
                  
-                 // マッチした範囲の開始位置の行を得る
-                 NSUInteger lineNum = 0, index = 0;
-                 while (index <= range.location) {
-                     index = NSMaxRange([wholeString lineRangeForRange:NSMakeRange(index, 0)]);
-                     lineNum++;
+                 // replace line number ($LN)
+                 if ([title rangeOfString:@"$LN"].location != NSNotFound) {
+                     // count line number of the beginning of the matched range
+                     NSUInteger lineCount = 0, index = 0;
+                     while (index <= range.location) {
+                         index = NSMaxRange([wholeString lineRangeForRange:NSMakeRange(index, 0)]);
+                         lineCount++;
+                     }
+                     
+                     // replace
+                     title = [title stringByReplacingOccurrencesOfString:@"(?<!\\\\)\\$LN"
+                                                              withString:[NSString stringWithFormat:@"%tu", lineCount]
+                                                                 options:NSRegularExpressionSearch
+                                                                   range:NSMakeRange(0, [title length])];
                  }
-                 //行番号（$LN）置換
-                 title = [title stringByReplacingOccurrencesOfString:@"(?<!\\\\)\\$LN"
-                                                          withString:[NSString stringWithFormat:@"%tu", lineNum]
-                                                             options:NSRegularExpressionSearch
-                                                               range:NSMakeRange(0, [title length])];
              }
              
-             // 改行またはタブをスペースに置換
+             // replace whitespaces
              title = [title stringByReplacingOccurrencesOfString:@"\n" withString:@" "];
              title = [title stringByReplacingOccurrencesOfString:@"\t" withString:@"    "];
              
-             // 長過ぎる場合は末尾を省略
-             if ([title length] > menuTitleMaxLength) {
-                 title = [NSString stringWithFormat:@"%@ ...", [title substringToIndex:menuTitleMaxLength]];
-             }
-             
-             // ボールド
+             // font styles (unwrap once to avoid setting nil to dict)
              BOOL isBold = [definition[CESyntaxBoldKey] boolValue];
-             // イタリック
              BOOL isItalic = [definition[CESyntaxItalicKey] boolValue];
-             // アンダーライン
-             NSUInteger underlineMask = [definition[CESyntaxUnderlineKey] boolValue] ?
-             (NSUnderlineByWordMask | NSUnderlinePatternSolid | NSUnderlineStyleThick) : 0;
+             BOOL isUnderline = [definition[CESyntaxUnderlineKey] boolValue];
              
-             // 辞書生成
+             // append outline item
              [outlineMenuDicts addObject:@{CEOutlineItemRangeKey: [NSValue valueWithRange:range],
                                            CEOutlineItemTitleKey: title,
-                                           CEOutlineItemSortKeyKey: @(range.location),
-                                           CEOutlineItemFontBoldKey: @(isBold),
-                                           CEOutlineItemFontItalicKey: @(isItalic),
-                                           CEOutlineItemUnderlineMaskKey: @(underlineMask)}];
+                                           CEOutlineItemStyleBoldKey: @(isBold),
+                                           CEOutlineItemStyleItalicKey: @(isItalic),
+                                           CEOutlineItemStyleUnderlineKey: @(isUnderline)}];
          }];
     }
     
     if ([outlineMenuDicts count] > 0) {
-        // 出現順にソート
-        NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:CEOutlineItemSortKeyKey
-                                                                   ascending:YES
-                                                                    selector:@selector(compare:)];
-        [outlineMenuDicts sortUsingDescriptors:@[descriptor]];
-        
-        // 冒頭のアイテムを追加
-        [outlineMenuDicts insertObject:@{CEOutlineItemRangeKey: [NSValue valueWithRange:NSMakeRange(0, 0)],
-                                         CEOutlineItemTitleKey: NSLocalizedString(@"<Outline Menu>", nil),
-                                         CEOutlineItemSortKeyKey: @0U}
-                               atIndex:0];
+        // sort by location
+        [outlineMenuDicts sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+            NSRange range1 = [obj1[CEOutlineItemRangeKey] rangeValue];
+            NSRange range2 = [obj2[CEOutlineItemRangeKey] rangeValue];
+            
+            if (range1.location > range2.location) {
+                return NSOrderedDescending;
+            } else if (range1.location < range2.location) {
+                return NSOrderedAscending;
+            } else {
+                return NSOrderedSame;
+            }
+        }];
     }
     
     return outlineMenuDicts;
@@ -440,11 +428,6 @@ static CGFloat kPerCompoIncrement;
 
 
 #pragma mark Private Methods
-
-//=======================================================
-// Private method
-//
-//=======================================================
 
 // ------------------------------------------------------
 /// 指定された文字列をそのまま検索し、位置を返す
@@ -929,20 +912,20 @@ static CGFloat kPerCompoIncrement;
 {
     if (coloringRange.length == 0) { return; }
     
-    // カラーリング対象の文字列
-    NSString *coloringString = [wholeString substringWithRange:coloringRange];
-    
-    // カラーリング不要なら不可視文字のカラーリングだけして戻る
+    // カラーリング不要なら現在のカラーリングをクリアして戻る
     if (![self hasSyntaxHighlighting]) {
-        [self applyColorings:[self extractControlCharsFromString:coloringString] range:coloringRange];
+        [self applyColorings:nil range:coloringRange];
         return;
     }
+    
+    // カラーリング対象の文字列
+    NSString *coloringString = [wholeString substringWithRange:coloringRange];
     
     // 規定の文字数以上の場合にはカラーリングインジケータシートを表示
     // （ただし、CEDefaultShowColoringIndicatorTextLengthKey が「0」の時は表示しない）
     CEIndicatorSheetController *indicator = nil;
     NSUInteger indicatorThreshold = [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultShowColoringIndicatorTextLengthKey];
-    if (![self isPrinting] && (indicatorThreshold > 0) && (coloringRange.length > indicatorThreshold)) {
+    if ((indicatorThreshold > 0) && (coloringRange.length > indicatorThreshold)) {
         NSWindow *documentWindow = [[[self layoutManager] firstTextView] window];
         indicator = [[CEIndicatorSheetController alloc] initWithMessage:NSLocalizedString(@"Coloring text…", nil)];
         [self setIndicatorController:indicator];
@@ -992,7 +975,7 @@ static CGFloat kPerCompoIncrement;
 {
     NSLayoutManager *layoutManager = [self layoutManager];
     CETheme *theme = [(NSTextView<CETextViewProtocol> *)[layoutManager firstTextView] theme];
-    BOOL isPrinting = [self isPrinting];
+    BOOL isPrinting = [[self layoutManager] isPrinting];
     BOOL showsInvisibles = [layoutManager showsControlCharacters];
     
     // 現在あるカラーリングを削除
