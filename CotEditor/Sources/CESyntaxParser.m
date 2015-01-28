@@ -172,7 +172,7 @@ static CGFloat kPerCompoIncrement;
                         } // ==== end-autoreleasepool
                     }
                     // ソート
-                    [completionWords sortedArrayUsingSelector:@selector(compare:)];
+                    [completionWords sortUsingSelector:@selector(compare:)];
                 }
                 // completionWords を保持する
                 _completionWords = completionWords;
@@ -322,9 +322,7 @@ static CGFloat kPerCompoIncrement;
         return @[];
     }
     
-    __block NSMutableArray *outlineMenuDicts = [NSMutableArray array];
-    
-    NSUInteger menuTitleMaxLength = [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultOutlineMenuMaxLengthKey];
+    NSMutableArray *outlineMenuDicts = [NSMutableArray array];
     NSArray *definitions = [self coloringDictionary][CESyntaxOutlineMenuKey];
     
     for (NSDictionary *definition in definitions) {
@@ -351,56 +349,55 @@ static CGFloat kPerCompoIncrement;
          {
              NSRange range = [result range];
              
-             // セパレータのとき
+             // separator item
              if ([template isEqualToString:CESeparatorString]) {
                  [outlineMenuDicts addObject:@{CEOutlineItemRangeKey: [NSValue valueWithRange:range],
                                                CEOutlineItemTitleKey: CESeparatorString}];
                  return;
              }
              
-             // メニュー項目タイトル
+             // menu item title
              NSString *title;
              
              if ([template length] == 0) {
-                 // パターン定義なし
+                 // no pattern definition
                  title = [wholeString substringWithRange:range];;
                  
              } else {
-                 // マッチ文字列をテンプレートで置換
+                 // replace matched string with template
                  title = [regex replacementStringForResult:result
                                                   inString:wholeString
                                                     offset:0
                                                   template:template];
                  
                  
-                 // マッチした範囲の開始位置の行を得る
-                 NSUInteger lineNum = 0, index = 0;
-                 while (index <= range.location) {
-                     index = NSMaxRange([wholeString lineRangeForRange:NSMakeRange(index, 0)]);
-                     lineNum++;
+                 // replace line number ($LN)
+                 if ([title rangeOfString:@"$LN"].location != NSNotFound) {
+                     // count line number of the beginning of the matched range
+                     NSUInteger lineCount = 0, index = 0;
+                     while (index <= range.location) {
+                         index = NSMaxRange([wholeString lineRangeForRange:NSMakeRange(index, 0)]);
+                         lineCount++;
+                     }
+                     
+                     // replace
+                     title = [title stringByReplacingOccurrencesOfString:@"(?<!\\\\)\\$LN"
+                                                              withString:[NSString stringWithFormat:@"%tu", lineCount]
+                                                                 options:NSRegularExpressionSearch
+                                                                   range:NSMakeRange(0, [title length])];
                  }
-                 //行番号（$LN）置換
-                 title = [title stringByReplacingOccurrencesOfString:@"(?<!\\\\)\\$LN"
-                                                          withString:[NSString stringWithFormat:@"%tu", lineNum]
-                                                             options:NSRegularExpressionSearch
-                                                               range:NSMakeRange(0, [title length])];
              }
              
-             // 改行またはタブをスペースに置換
+             // replace whitespaces
              title = [title stringByReplacingOccurrencesOfString:@"\n" withString:@" "];
              title = [title stringByReplacingOccurrencesOfString:@"\t" withString:@"    "];
              
-             // 長過ぎる場合は末尾を省略
-             if ([title length] > menuTitleMaxLength) {
-                 title = [NSString stringWithFormat:@"%@ ...", [title substringToIndex:menuTitleMaxLength]];
-             }
-             
-             // font styles (cast once to avoid set nil to dict)
+             // font styles (unwrap once to avoid setting nil to dict)
              BOOL isBold = [definition[CESyntaxBoldKey] boolValue];
              BOOL isItalic = [definition[CESyntaxItalicKey] boolValue];
              BOOL isUnderline = [definition[CESyntaxUnderlineKey] boolValue];
              
-             // 辞書生成
+             // append outline item
              [outlineMenuDicts addObject:@{CEOutlineItemRangeKey: [NSValue valueWithRange:range],
                                            CEOutlineItemTitleKey: title,
                                            CEOutlineItemStyleBoldKey: @(isBold),
@@ -410,22 +407,19 @@ static CGFloat kPerCompoIncrement;
     }
     
     if ([outlineMenuDicts count] > 0) {
-        // 出現順にソート
-        NSSortDescriptor *descriptor = [NSSortDescriptor sortDescriptorWithKey:CEOutlineItemRangeKey
-                                                                     ascending:YES
-                                                                    comparator:^NSComparisonResult(id obj1, id obj2)
-                                        {
-                                            NSRange range1 = [obj1 rangeValue];
-                                            NSRange range2 = [obj2 rangeValue];
-                                            return range1.location > range2.location;
-                                        }];
-        
-        [outlineMenuDicts sortUsingDescriptors:@[descriptor]];
-        
-        // 冒頭のアイテムを追加
-        [outlineMenuDicts insertObject:@{CEOutlineItemRangeKey: [NSValue valueWithRange:NSMakeRange(0, 0)],
-                                         CEOutlineItemTitleKey: NSLocalizedString(@"<Outline Menu>", nil)}
-                               atIndex:0];
+        // sort by location
+        [outlineMenuDicts sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+            NSRange range1 = [obj1[CEOutlineItemRangeKey] rangeValue];
+            NSRange range2 = [obj2[CEOutlineItemRangeKey] rangeValue];
+            
+            if (range1.location > range2.location) {
+                return NSOrderedDescending;
+            } else if (range1.location < range2.location) {
+                return NSOrderedAscending;
+            } else {
+                return NSOrderedSame;
+            }
+        }];
     }
     
     return outlineMenuDicts;

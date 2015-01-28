@@ -209,10 +209,12 @@
 "Column" = "列";
 
 
-/* MARK: CESyntaxParser */
+/* MARK: CENavigationBarController */
 // Outline menu title
 "<Outline Menu>" = "<大纲菜单>";
 
+
+/* MARK: CESyntaxParser */
 // Coloring indicator
 "Coloring text…" = "文本着色中...";
 "Please wait for a while." = "请稍等片刻...";

@@ -221,7 +221,6 @@ NSString *const CEDefaultLineNumUpdateIntervalKey = @"lineNumUpdateInterval";
 NSString *const CEDefaultInfoUpdateIntervalKey = @"infoUpdateInterval";
 NSString *const CEDefaultIncompatibleCharIntervalKey = @"incompatibleCharInterval";
 NSString *const CEDefaultOutlineMenuIntervalKey = @"outlineMenuInterval";
-NSString *const CEDefaultOutlineMenuMaxLengthKey = @"outlineMenuMaxLength";
 NSString *const CEDefaultHeaderFooterFontNameKey = @"headerFooterFontName";
 NSString *const CEDefaultHeaderFooterFontSizeKey = @"headerFooterFontSize";
 NSString *const CEDefaultHeaderFooterDateFormatKey = @"headerFooterDateFormat";

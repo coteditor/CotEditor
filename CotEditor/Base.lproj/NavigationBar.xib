@@ -86,8 +86,6 @@
                         <menu key="menu" id="Vdo-Jz-Z3I">
                             <items>
                                 <menuItem title="&lt;Outline Menu&gt;" id="UE9-BG-Ggr"/>
-                                <menuItem title="Item 2" id="ukv-Ec-6vm"/>
-                                <menuItem title="Item 3" id="HFU-gs-ltH"/>
                             </items>
                         </menu>
                     </popUpButtonCell>

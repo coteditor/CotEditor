@@ -210,10 +210,12 @@
 "Column" = "列";
 
 
-/* MARK: CESyntaxParser */
+/* MARK: CENavigationBarController */
 // Outline menu title
 "<Outline Menu>" = "<アウトラインメニュー>";
 
+
+/* MARK: CESyntaxParser */
 // Coloring indicator
 "Coloring text…" = "テキストのカラーリング中...";
 "Please wait for a while." = "しばらくお待ちください...";

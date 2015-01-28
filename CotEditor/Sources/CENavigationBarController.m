@@ -126,7 +126,7 @@ static const NSTimeInterval kDuration = 0.25;
 - (void)setOutlineMenuArray:(NSArray *)outlineItems
 // ------------------------------------------------------
 {
-    // stop outine indicator
+    // stop outline extracting indicator
     [[self outlineIndicator] stopAnimation:self];
     [[self outlineLoadingMessage] setHidden:YES];
     
@@ -144,6 +144,14 @@ static const NSTimeInterval kDuration = 0.25;
     NSFont *defaultFont = [NSFont fontWithName:kNavigationBarFontName
                                           size:[NSFont smallSystemFontSize]];
     
+    // add headding item
+    [menu addItemWithTitle:NSLocalizedString(@"<Outline Menu>", nil)
+                    action:@selector(setSelectedRangeWithNSValue:)
+             keyEquivalent:@""];
+    [[menu itemAtIndex:0] setTarget:[self textView]];
+    [[menu itemAtIndex:0] setRepresentedObject:[NSValue valueWithRange:NSMakeRange(0, 0)]];
+    
+    // add outline items
     for (NSDictionary *outlineItem in outlineItems) {
         if ([outlineItem[CEOutlineItemTitleKey] isEqualToString:CESeparatorString]) {
             [menu addItem:[NSMenuItem separatorItem]];
@@ -173,7 +181,7 @@ static const NSTimeInterval kDuration = 0.25;
         [menu addItem:menuItem];
     }
     
-    // set Buttons status here to avoid flicking (2008-05-17)
+    // set buttons status here to avoid flicking (2008-05-17)
     [self selectOutlineMenuItemWithRange:[[self textView] selectedRange]];
     [[self outlineMenu] setMenu:menu];
     [[self outlineMenu] setHidden:NO];

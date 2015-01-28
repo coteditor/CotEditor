@@ -207,7 +207,6 @@
                                CEDefaultInfoUpdateIntervalKey: @0.2f, 
                                CEDefaultIncompatibleCharIntervalKey: @0.42f, 
                                CEDefaultOutlineMenuIntervalKey: @0.37f, 
-                               CEDefaultOutlineMenuMaxLengthKey: @110U, 
                                CEDefaultHeaderFooterFontNameKey: [[NSFont systemFontOfSize:[NSFont systemFontSize]] fontName], 
                                CEDefaultHeaderFooterFontSizeKey: @10.0f, 
                                CEDefaultHeaderFooterDateFormatKey: @"YYYY-MM-dd HH:mm",
