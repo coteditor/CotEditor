@@ -16,8 +16,9 @@ Change Log
 
 ### Fixes
 
-- [beta] Fix an issue where find panel could fail to set escape character.
 - [beta] Fix an issue where `cot` command couldn't open relative path.
+- [beta] Fix an issue where find panel could fail to set escape character.
+- [beta] Fix an issue where find panel occasionally did not update setting of regex enability and syntax.
 
 
 

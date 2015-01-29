@@ -364,6 +364,8 @@ static const NSUInteger kMaxHistorySize = 20;
 {
     if (![self checkIsReadyToFind]) { return; }
     
+    [self invalidateSyntaxInTextFinder];
+    
     OgreTextFindResult *result = [[self textFinder] findAll:[self findString]
                                                       color:[self highlightColor]
                                                     options:[self options]
@@ -422,6 +424,8 @@ static const NSUInteger kMaxHistorySize = 20;
     
     if (![self checkIsReadyToFind]) { return; }
     
+    [self invalidateSyntaxInTextFinder];
+    
     OgreTextFindResult *result = [[self textFinder] replace:[self findString]
                                                  withString:[self replacementString]
                                                     options:[self options]];
@@ -439,6 +443,8 @@ static const NSUInteger kMaxHistorySize = 20;
 // ------------------------------------------------------
 {
     if (![self checkIsReadyToFind]) { return; }
+    
+    [self invalidateSyntaxInTextFinder];
     
     OgreTextFindResult *result = [[self textFinder] replaceAndFind:[self findString]
                                                         withString:[self replacementString]
@@ -468,6 +474,8 @@ static const NSUInteger kMaxHistorySize = 20;
 {
     if (![self checkIsReadyToFind]) { return; }
     
+    [self invalidateSyntaxInTextFinder];
+    
     [[self textFinder] replaceAll:[self findString]
                        withString:[self replacementString]
                           options:[self options]
@@ -484,6 +492,8 @@ static const NSUInteger kMaxHistorySize = 20;
 // ------------------------------------------------------
 {
     if (![self checkIsReadyToFind]) { return; }
+    
+    [self invalidateSyntaxInTextFinder];
     
     [[self textFinder] hightlight:[self findString]
                             color:[self highlightColor]
@@ -623,6 +633,15 @@ static const NSUInteger kMaxHistorySize = 20;
 #pragma mark Private Methods
 
 // ------------------------------------------------------
+/// update syntax (and regex enability) setting in textFinder
+- (void)invalidateSyntaxInTextFinder
+// ------------------------------------------------------
+{
+    [[self textFinder] setSyntax:[self usesRegularExpression] ? [self syntax] : OgreSimpleMatchingSyntax];
+}
+
+
+// ------------------------------------------------------
 /// whether result view is opened
 - (BOOL)isResultShown
 // ------------------------------------------------------
@@ -708,7 +727,7 @@ static const NSUInteger kMaxHistorySize = 20;
 {
     if (![self checkIsReadyToFind]) { return; }
     
-    [[self textFinder] setSyntax:[self usesRegularExpression] ? [self syntax] : OgreSimpleMatchingSyntax];
+    [self invalidateSyntaxInTextFinder];
     
     OgreTextFindResult *result = [[self textFinder] find:[self findString]
                                                  options:[self options]
