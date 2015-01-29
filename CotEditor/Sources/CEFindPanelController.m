@@ -325,7 +325,12 @@ static const NSUInteger kMaxHistorySize = 20;
 - (IBAction)findNext:(id)sender
 // ------------------------------------------------------
 {
-    [self findFoward:YES];
+    if ([NSEvent modifierFlags] & NSShiftKeyMask) {
+        // find backwards if Shift key pressed
+        [self findFoward:NO];
+    } else {
+        [self findFoward:YES];
+    }
 }
 
 

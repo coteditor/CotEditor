@@ -5,6 +5,11 @@ Change Log
 2.1.0-beta.2
 --------------------------
 
+### Additions/Changes
+
+- Now, return with Shift key in find text field finds text backwards.
+
+
 ### Fixes
 
 - Fix an issue where `cot` command couldn't open relative path.
