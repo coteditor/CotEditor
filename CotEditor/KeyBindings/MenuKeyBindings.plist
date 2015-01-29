@@ -42,6 +42,10 @@
 	<string>shiftRight:</string>
 	<key>@/</key>
 	<string>toggleComment:</string>
+	<key>@1</key>
+	<string>showConsolePanel:</string>
+	<key>@2</key>
+	<string>showColorCodePanel:</string>
 	<key>@a</key>
 	<string>selectAll:</string>
 	<key>@c</key>

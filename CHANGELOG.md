@@ -7,14 +7,15 @@ Change Log
 
 ### Additions/Changes
 
-- Now, return with Shift key in find text field finds text backwards.
-- Always bring focus to the find text field when find panel is called.
+- Make key bindings for panel windows customizable.
+- [beta] Now, return with Shift key in find text field finds text backwards.
+- [beta] Always bring focus to the find text field when find panel is called.
 
 
 ### Fixes
 
-- Fix an issue where find panel could fail to set escape character.
-- Fix an issue where `cot` command couldn't open relative path.
+- [beta] Fix an issue where find panel could fail to set escape character.
+- [beta] Fix an issue where `cot` command couldn't open relative path.
 
 
 

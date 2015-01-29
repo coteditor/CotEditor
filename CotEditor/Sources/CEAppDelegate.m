@@ -474,7 +474,7 @@
 
 // ------------------------------------------------------
 /// show color code editor panel
-- (IBAction)showHexColorCodeEditor:(id)sender
+- (IBAction)showColorCodePanel:(id)sender
 // ------------------------------------------------------
 {
     [[CEColorCodePanelController sharedController] showWindow:self];

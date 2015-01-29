@@ -409,12 +409,10 @@
 "649.title" = "パネル";
 /* Class = "NSMenu"; title = "Panels"; ObjectID = "650"; */
 "650.title" = "パネル";
-/* Class = "NSMenuItem"; title = "Window Opacity Panel"; ObjectID = "655"; */
-"655.title" = "不透明度パネル";
-/* Class = "NSMenuItem"; title = "Color Code Panel"; ObjectID = "651"; */
-"651.title" = "カラーコードパネル";
 /* Class = "NSMenuItem"; title = "Console Panel"; ObjectID = "653"; */
 "653.title" = "コンソールパネル";
+/* Class = "NSMenuItem"; title = "Color Code Panel"; ObjectID = "651"; */
+"651.title" = "カラーコードパネル";
 
 
 
