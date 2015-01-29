@@ -34,6 +34,8 @@
 
 // Buttons
 
+/* Class = "NSButtonCell"; title = "Highlight"; ObjectID = "zHg-Yd-nG3"; */
+"zHg-Yd-nG3.title" = "高亮";
 /* Class = "NSButtonCell"; title = "Find All"; ObjectID = "XLZ-92-VVF"; */
 "XLZ-92-VVF.title" = "查找全部";
 /* Class = "NSButtonCell"; title = "Replace All"; ObjectID = "5gU-5y-iLn"; */

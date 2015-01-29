@@ -9,6 +9,7 @@ Change Log
 
 - Make key bindings for panel windows customizable.
 - [beta] Enhance Find & Replace panel:
+    - Revert "Highlight" button in find panel.
     - Remove "Replace & Find" button from find panel and add "Select Next Match after Replace" option.
     - Now, return with Shift key in find text field finds text backwards.
     - Always bring focus to the find text field when find panel is called.

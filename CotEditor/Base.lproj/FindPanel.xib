@@ -575,7 +575,7 @@
                                         </connections>
                                     </button>
                                     <button verticalHuggingPriority="750" tag="4" translatesAutoresizingMaskIntoConstraints="NO" id="RR6-rj-B8P">
-                                        <rect key="frame" x="152" y="13" width="110" height="32"/>
+                                        <rect key="frame" x="195" y="13" width="110" height="32"/>
                                         <buttonCell key="cell" type="push" title="Replace All" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="5gU-5y-iLn">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
@@ -585,7 +585,7 @@
                                         </connections>
                                     </button>
                                     <button verticalHuggingPriority="750" tag="9" translatesAutoresizingMaskIntoConstraints="NO" id="OCv-Y5-8XR">
-                                        <rect key="frame" x="66" y="13" width="86" height="32"/>
+                                        <rect key="frame" x="109" y="13" width="86" height="32"/>
                                         <buttonCell key="cell" type="push" title="Find All" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="XLZ-92-VVF">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
@@ -611,6 +611,16 @@
                                             <action selector="clickSegmentedFindButton:" target="qZS-yd-wpm" id="YJT-Nk-DYH"/>
                                         </connections>
                                     </segmentedControl>
+                                    <button verticalHuggingPriority="750" tag="9" translatesAutoresizingMaskIntoConstraints="NO" id="j1n-jm-66v">
+                                        <rect key="frame" x="14" y="13" width="95" height="32"/>
+                                        <buttonCell key="cell" type="push" title="Highlight" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="zHg-Yd-nG3">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="highlight:" target="qZS-yd-wpm" id="mzc-FR-HhS"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="ZIn-Dy-dyd" firstAttribute="leading" secondItem="7cY-9y-k1i" secondAttribute="trailing" constant="8" symbolic="YES" id="0bZ-Y1-LJA"/>
@@ -620,8 +630,10 @@
                                     <constraint firstAttribute="bottom" secondItem="RR6-rj-B8P" secondAttribute="bottom" constant="20" symbolic="YES" id="HsB-w6-TMe"/>
                                     <constraint firstItem="7cY-9y-k1i" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="RR6-rj-B8P" secondAttribute="trailing" constant="12" symbolic="YES" id="Ndh-3C-Dey"/>
                                     <constraint firstAttribute="bottom" secondItem="7cY-9y-k1i" secondAttribute="bottom" constant="20" symbolic="YES" id="UrC-1u-ij5"/>
+                                    <constraint firstItem="OCv-Y5-8XR" firstAttribute="leading" secondItem="j1n-jm-66v" secondAttribute="trailing" constant="12" symbolic="YES" id="a28-w6-fAI"/>
+                                    <constraint firstAttribute="bottom" secondItem="j1n-jm-66v" secondAttribute="bottom" constant="20" symbolic="YES" id="bK2-FF-eP2"/>
                                     <constraint firstAttribute="bottom" secondItem="ZIn-Dy-dyd" secondAttribute="bottom" constant="20" symbolic="YES" id="kVl-8C-O8g"/>
-                                    <constraint firstItem="OCv-Y5-8XR" firstAttribute="leading" secondItem="qJx-yz-gkf" secondAttribute="leading" constant="72" id="mzp-sj-Yc0"/>
+                                    <constraint firstItem="j1n-jm-66v" firstAttribute="leading" secondItem="qJx-yz-gkf" secondAttribute="leading" constant="20" symbolic="YES" id="qwC-tQ-ZVX"/>
                                     <constraint firstAttribute="bottom" secondItem="OCv-Y5-8XR" secondAttribute="bottom" constant="20" symbolic="YES" id="ytj-1b-As3"/>
                                 </constraints>
                             </customView>
