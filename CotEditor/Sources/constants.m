@@ -201,6 +201,7 @@ NSString *const CEDefaultFindEscapeCharacterKey = @"findEscapeCharacter";
 NSString *const CEDefaultFindUsesRegularExpressionKey = @"findUsesRegularExpression";
 NSString *const CEDefaultFindInSelectionKey = @"findInSelection";
 NSString *const CEDefaultFindIsWrapKey = @"findIsWrap";
+NSString *const CEDefaultFindNextAfterReplaceKey = @"findsNextAfterReplace";
 NSString *const CEDefaultFindOptionsKey = @"findOptions";
 NSString *const CEDefaultFindClosesIndicatorWhenDoneKey = @"findClosesIndicatorWhenDone";
 

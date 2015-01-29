@@ -414,6 +414,12 @@ static const NSUInteger kMaxHistorySize = 20;
 - (IBAction)replace:(id)sender
 // ------------------------------------------------------
 {
+    // perform "Replace & Find" instead of "Replace"
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultFindNextAfterReplaceKey]) {
+        [self replaceAndFind:sender];
+        return;
+    }
+    
     if (![self checkIsReadyToFind]) { return; }
     
     OgreTextFindResult *result = [[self textFinder] replace:[self findString]

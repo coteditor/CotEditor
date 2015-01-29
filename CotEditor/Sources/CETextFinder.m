@@ -56,6 +56,7 @@ NSString *const CETextFinderDidUnlighlightNotification = @"CETextFinderDidUnligh
                                CEDefaultFindUsesRegularExpressionKey: @NO,
                                CEDefaultFindInSelectionKey: @NO,
                                CEDefaultFindIsWrapKey: @YES,
+                               CEDefaultFindNextAfterReplaceKey: @YES,
                                CEDefaultFindClosesIndicatorWhenDoneKey: @YES,
                                };
     

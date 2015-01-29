@@ -39,8 +39,6 @@
 "5gU-5y-iLn.title" = "すべて置換";
 /* Class = "NSButtonCell"; title = "Replace"; ObjectID = "W4Z-S2-wvv"; */
 "W4Z-S2-wvv.title" = "置換";
-/* Class = "NSButtonCell"; title = "Replace & Find"; ObjectID = "m0f-Il-JLU"; */
-"m0f-Il-JLU.title" = "置換と検索";
 
 /* Class = "NSSegmentedCell"; ObjectID = "u6p-Hz-aK5"; */
 "u6p-Hz-aK5.ibShadowedToolTips[0]" = "次の一致を検索";  /* "Find previous match." */
@@ -67,6 +65,8 @@
 
 /* Class = "NSMenuItem"; title = "Wrap Around"; ObjectID = "Oqm-Wt-G7B"; */
 "Oqm-Wt-G7B.title" = "折り返す";
+/* Class = "NSMenuItem"; title = "Select Next Match after Replace"; ObjectID = "RfX-XI-iRH"; */
+"RfX-XI-iRH.title" = "置換後に次のマッチを選択";
 /* Class = "NSMenuItem"; title = "Auto-Close Progress Sheet"; ObjectID = "ONX-V4-H0w"; */
 "ONX-V4-H0w.title" = "完了後自動的に進捗表示を閉じる";
 

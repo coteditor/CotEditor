@@ -40,8 +40,6 @@
 "5gU-5y-iLn.title" = "替换全部";
 /* Class = "NSButtonCell"; title = "Replace"; ObjectID = "W4Z-S2-wvv"; */
 "W4Z-S2-wvv.title" = "替换";
-/* Class = "NSButtonCell"; title = "Replace & Find"; ObjectID = "m0f-Il-JLU"; */
-"m0f-Il-JLU.title" = "替换 & 查找";
 
 /* Class = "NSSegmentedCell"; ObjectID = "u6p-Hz-aK5"; */
 "u6p-Hz-aK5.ibShadowedToolTips[0]" = "查找前一个匹配";  /* "Find previous match." */
@@ -68,6 +66,8 @@
 
 /* Class = "NSMenuItem"; title = "Wrap Around"; ObjectID = "Oqm-Wt-G7B"; */
 "Oqm-Wt-G7B.title" = "折行查找";
+/* Class = "NSMenuItem"; title = "Select Next Match after Replace"; ObjectID = "RfX-XI-iRH"; */
+"RfX-XI-iRH.title" = "Select Next Match after Replace";  // FIXME
 /* Class = "NSMenuItem"; title = "Auto-Close Progress Sheet"; ObjectID = "ONX-V4-H0w"; */
 "ONX-V4-H0w.title" = "自动关闭进度表";
 

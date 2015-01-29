@@ -197,6 +197,7 @@ extern NSString *const CEDefaultFindEscapeCharacterKey;
 extern NSString *const CEDefaultFindUsesRegularExpressionKey;
 extern NSString *const CEDefaultFindInSelectionKey;
 extern NSString *const CEDefaultFindIsWrapKey;
+extern NSString *const CEDefaultFindNextAfterReplaceKey;
 extern NSString *const CEDefaultFindOptionsKey;
 extern NSString *const CEDefaultFindClosesIndicatorWhenDoneKey;
 
