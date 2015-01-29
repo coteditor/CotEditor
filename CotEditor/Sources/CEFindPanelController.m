@@ -331,9 +331,9 @@ static const NSUInteger kMaxHistorySize = 20;
 {
     if ([NSEvent modifierFlags] & NSShiftKeyMask) {
         // find backwards if Shift key pressed
-        [self findFoward:NO];
+        [self findForward:NO];
     } else {
-        [self findFoward:YES];
+        [self findForward:YES];
     }
 }
 
@@ -343,7 +343,7 @@ static const NSUInteger kMaxHistorySize = 20;
 - (IBAction)findPrevious:(id)sender
 // ------------------------------------------------------
 {
-    [self findFoward:NO];
+    [self findForward:NO];
 }
 
 
@@ -703,7 +703,7 @@ static const NSUInteger kMaxHistorySize = 20;
 
 // ------------------------------------------------------
 /// perform "Find Next" and "Find Previous"
-- (void)findFoward:(BOOL)forward
+- (void)findForward:(BOOL)forward
 // ------------------------------------------------------
 {
     if (![self checkIsReadyToFind]) { return; }
