@@ -426,9 +426,11 @@ static const NSUInteger kMaxHistorySize = 20;
     
     [self invalidateSyntaxInTextFinder];
     
-    OgreTextFindResult *result = [[self textFinder] replace:[self findString]
-                                                 withString:[self replacementString]
-                                                    options:[self options]];
+    OgreTextFindResult *result = [[self textFinder] replaceAndFind:[self findString]
+                                                        withString:[self replacementString]
+                                                           options:[self options]
+                                                     replacingOnly:YES
+                                                              wrap:NO];
     
     [self appendFindHistory:[self findString]];
     [self appendReplaceHistory:[self replacementString]];
