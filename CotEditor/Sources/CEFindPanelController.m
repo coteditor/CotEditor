@@ -93,6 +93,8 @@ static const NSUInteger kMaxHistorySize = 20;
 - (instancetype)init
 // ------------------------------------------------------
 {
+    // [attention] This method can be invoked before initializing user defaults in CEAppDelegate.
+    
     self = [super init];
     if (self) {
         _findString = @"";
@@ -119,6 +121,8 @@ static const NSUInteger kMaxHistorySize = 20;
 - (void)awakeFromNib
 // ------------------------------------------------------
 {
+    // [attention] This method can be invoked before initializing user defaults in CEAppDelegate.
+    
     [super awakeFromNib];
     
     [self updateFindHistoryMenu];

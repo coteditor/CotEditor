@@ -13,6 +13,7 @@ Change Log
 
 ### Fixes
 
+- Fix an issue where find panel could fail to set escape character.
 - Fix an issue where `cot` command couldn't open relative path.
 
 

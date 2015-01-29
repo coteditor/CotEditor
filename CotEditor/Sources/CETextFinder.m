@@ -28,6 +28,7 @@
  */
 
 #import "CETextFinder.h"
+#import "constants.h"
 
 
 NSString *const CETextFinderDidReplaceAllNotification = @"CETextFinderDidReplaceAllNotification";
@@ -37,6 +38,30 @@ NSString *const CETextFinderDidUnlighlightNotification = @"CETextFinderDidUnligh
 @implementation CETextFinder
 
 #pragma mark Superclass Methods
+
+// ------------------------------------------------------
+/// register default setting for find panel
++ (void)initialize
+// ------------------------------------------------------
+{
+    [super initialize];
+    
+    // register defaults for find panel here
+    // sicne CEFindPanelController can be initialized before registering user defaults in CEAppDelegate. (2015-01 by 1024jp)
+    NSDictionary *defaults = @{CEDefaultFindHistoryKey: @[],
+                               CEDefaultReplaceHistoryKey: @[],
+                               CEDefaultFindRegexSyntaxKey: @([OGRegularExpression defaultSyntax]),
+                               CEDefaultFindOptionsKey: @(OgreCaptureGroupOption),
+                               CEDefaultFindEscapeCharacterKey: [OGRegularExpression defaultEscapeCharacter],
+                               CEDefaultFindUsesRegularExpressionKey: @NO,
+                               CEDefaultFindInSelectionKey: @NO,
+                               CEDefaultFindIsWrapKey: @YES,
+                               CEDefaultFindClosesIndicatorWhenDoneKey: @YES,
+                               };
+    
+    [[NSUserDefaults standardUserDefaults] registerDefaults:defaults];
+}
+
 
 // ------------------------------------------------------
 /// specify custom find panel nib name

@@ -178,23 +178,14 @@
                                CEDefaultPrintInvisibleCharIndexKey: @(CENoInvisibleCharsPrint),
                                CEDefaultPrintColorIndexKey: @(CEBlackColorPrint),
                                
-                               /* -------- settings for find panel -------- */
-                               CEDefaultFindHistoryKey: @[],
-                               CEDefaultReplaceHistoryKey: @[],
-                               CEDefaultFindRegexSyntaxKey: @8,  // Ruby
-                               CEDefaultFindOptionsKey: @256,  // only ONIG_OPTION_CAPTURE_GROUP
-                               CEDefaultFindEscapeCharacterKey: @"\\",
-                               CEDefaultFindUsesRegularExpressionKey: @NO,
-                               CEDefaultFindInSelectionKey: @NO,
-                               CEDefaultFindIsWrapKey: @YES,
-                               CEDefaultFindClosesIndicatorWhenDoneKey: @YES,
-                               
                                /* -------- settings not in preferences window -------- */
                                CEDefaultInsertCustomTextArrayKey: @[@"<br />\n", @"", @"", @"", @"", @"", @"", @"", @"", @"", @"",
                                                                     @"", @"", @"", @"", @"", @"", @"", @"", @"", @"",
                                                                     @"", @"", @"", @"", @"", @"", @"", @"", @"", @""],
                                CEDefaultColorCodeTypeKey: @1,
                                CEDefaultSidebarWidthKey: @220,
+                               
+                               // settings for find panel are register in CETextFinder
                                
                                /* -------- hidden settings -------- */
                                CEDefaultUsesTextFontForInvisiblesKey: @NO,
