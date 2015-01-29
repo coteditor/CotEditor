@@ -28,7 +28,7 @@
                                 <autoresizingMask key="autoresizingMask"/>
                                 <subviews>
                                     <textField verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="l7V-L6-eHO">
-                                        <rect key="frame" x="71" y="30" width="449" height="49"/>
+                                        <rect key="frame" x="72" y="30" width="448" height="49"/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" borderStyle="bezel" placeholderString="       Replace" drawsBackground="YES" id="oVG-0K-H2V" customClass="CEFindTextFieldCell">
                                             <font key="font" metaFont="system"/>
                                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -47,7 +47,7 @@
                                         </connections>
                                     </textField>
                                     <textField verticalHuggingPriority="249" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="bcO-Vd-Pum">
-                                        <rect key="frame" x="71" y="89" width="449" height="49"/>
+                                        <rect key="frame" x="72" y="89" width="448" height="49"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="f9q-Ai-xTj"/>
                                         </constraints>
@@ -70,7 +70,7 @@
                                         </connections>
                                     </textField>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8My-G5-daT">
-                                        <rect key="frame" x="68" y="7" width="125" height="18"/>
+                                        <rect key="frame" x="69" y="7" width="125" height="18"/>
                                         <buttonCell key="cell" type="check" title="Regular Expression" bezelStyle="regularSquare" imagePosition="left" controlSize="small" state="on" inset="2" id="brT-HP-GVL">
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="smallSystem"/>
@@ -80,7 +80,7 @@
                                         </connections>
                                     </button>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="GvT-tD-Cbk">
-                                        <rect key="frame" x="196" y="7" width="86" height="18"/>
+                                        <rect key="frame" x="197" y="7" width="86" height="18"/>
                                         <buttonCell key="cell" type="check" title="Ignore Case" bezelStyle="regularSquare" imagePosition="left" controlSize="small" inset="2" id="4wg-Cz-ozb">
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="smallSystem"/>
@@ -91,7 +91,7 @@
                                         </connections>
                                     </button>
                                     <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="ybT-sQ-Vn5" userLabel="Recent Searches">
-                                        <rect key="frame" x="68" y="119" width="35" height="17"/>
+                                        <rect key="frame" x="69" y="119" width="35" height="17"/>
                                         <popUpButtonCell key="cell" type="smallSquare" title="DUMMY" bezelStyle="smallSquare" imagePosition="only" alignment="left" lineBreakMode="truncatingTail" inset="2" pullsDown="YES" arrowPosition="noArrow" preferredEdge="minX" autoenablesItems="NO" altersStateOfSelectedItem="NO" id="rfC-IT-glr" userLabel="Recent Searches">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="menu"/>
@@ -114,7 +114,7 @@
                                         </popUpButtonCell>
                                     </popUpButton>
                                     <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="gM0-RD-hIC" userLabel="Recent Replacements">
-                                        <rect key="frame" x="68" y="60" width="35" height="17"/>
+                                        <rect key="frame" x="69" y="60" width="35" height="17"/>
                                         <popUpButtonCell key="cell" type="smallSquare" title="DUMMY" bezelStyle="smallSquare" imagePosition="only" alignment="left" lineBreakMode="truncatingTail" inset="2" pullsDown="YES" arrowPosition="noArrow" preferredEdge="minX" autoenablesItems="NO" altersStateOfSelectedItem="NO" id="u5j-P5-Mjd" userLabel="Recent Replacements">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="menu"/>
@@ -137,7 +137,7 @@
                                         </popUpButtonCell>
                                     </popUpButton>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tu7-IT-dA3">
-                                        <rect key="frame" x="285" y="7" width="85" height="18"/>
+                                        <rect key="frame" x="286" y="7" width="85" height="18"/>
                                         <buttonCell key="cell" type="check" title="In Selection" bezelStyle="regularSquare" imagePosition="left" controlSize="small" inset="2" id="9bc-9Q-fhd">
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="smallSystem"/>
@@ -147,7 +147,10 @@
                                         </connections>
                                     </button>
                                     <popUpButton toolTip="Set advanced options" translatesAutoresizingMaskIntoConstraints="NO" id="EY8-gj-fQb">
-                                        <rect key="frame" x="18" y="114" width="47" height="26"/>
+                                        <rect key="frame" x="18" y="114" width="48" height="26"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="44" id="9LH-7p-gFL"/>
+                                        </constraints>
                                         <popUpButtonCell key="cell" type="bevel" title="Advanced Options" bezelStyle="regularSquare" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" pullsDown="YES" autoenablesItems="NO" id="sfm-kK-8cs">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="menu"/>
@@ -572,7 +575,7 @@
                                         </connections>
                                     </button>
                                     <button verticalHuggingPriority="750" tag="4" translatesAutoresizingMaskIntoConstraints="NO" id="RR6-rj-B8P">
-                                        <rect key="frame" x="250" y="13" width="110" height="32"/>
+                                        <rect key="frame" x="152" y="13" width="110" height="32"/>
                                         <buttonCell key="cell" type="push" title="Replace All" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="5gU-5y-iLn">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
@@ -582,7 +585,7 @@
                                         </connections>
                                     </button>
                                     <button verticalHuggingPriority="750" tag="9" translatesAutoresizingMaskIntoConstraints="NO" id="OCv-Y5-8XR">
-                                        <rect key="frame" x="164" y="13" width="86" height="32"/>
+                                        <rect key="frame" x="66" y="13" width="86" height="32"/>
                                         <buttonCell key="cell" type="push" title="Find All" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="XLZ-92-VVF">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
@@ -615,10 +618,10 @@
                                     <constraint firstItem="RR6-rj-B8P" firstAttribute="leading" secondItem="OCv-Y5-8XR" secondAttribute="trailing" constant="12" symbolic="YES" id="FZz-ys-DfB"/>
                                     <constraint firstItem="ZIn-Dy-dyd" firstAttribute="top" secondItem="qJx-yz-gkf" secondAttribute="top" constant="10" id="Fvh-cp-LU9"/>
                                     <constraint firstAttribute="bottom" secondItem="RR6-rj-B8P" secondAttribute="bottom" constant="20" symbolic="YES" id="HsB-w6-TMe"/>
-                                    <constraint firstItem="7cY-9y-k1i" firstAttribute="leading" secondItem="RR6-rj-B8P" secondAttribute="trailing" constant="12" symbolic="YES" id="Ndh-3C-Dey"/>
+                                    <constraint firstItem="7cY-9y-k1i" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="RR6-rj-B8P" secondAttribute="trailing" constant="12" symbolic="YES" id="Ndh-3C-Dey"/>
                                     <constraint firstAttribute="bottom" secondItem="7cY-9y-k1i" secondAttribute="bottom" constant="20" symbolic="YES" id="UrC-1u-ij5"/>
                                     <constraint firstAttribute="bottom" secondItem="ZIn-Dy-dyd" secondAttribute="bottom" constant="20" symbolic="YES" id="kVl-8C-O8g"/>
-                                    <constraint firstItem="OCv-Y5-8XR" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="qJx-yz-gkf" secondAttribute="leading" constant="20" symbolic="YES" id="mzp-sj-Yc0"/>
+                                    <constraint firstItem="OCv-Y5-8XR" firstAttribute="leading" secondItem="qJx-yz-gkf" secondAttribute="leading" constant="72" id="mzp-sj-Yc0"/>
                                     <constraint firstAttribute="bottom" secondItem="OCv-Y5-8XR" secondAttribute="bottom" constant="20" symbolic="YES" id="ytj-1b-As3"/>
                                 </constraints>
                             </customView>
