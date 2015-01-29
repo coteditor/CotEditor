@@ -2,7 +2,16 @@
 Change Log
 ==========================
 
-2.1.0
+2.1.0-beta.2
+--------------------------
+
+### Fixes
+
+- Fix an issue where `cot` command couldn't open relative path.
+
+
+
+2.1.0-beta
 --------------------------
 
 ### New Features 
