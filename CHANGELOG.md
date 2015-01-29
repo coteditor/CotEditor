@@ -17,6 +17,7 @@ Change Log
 
 ### Fixes
 
+- Fix an issue where the help button on Edit pane and Format pane didn't show correct help page.
 - [beta] Fix an issue where `cot` command couldn't open relative path.
 - [beta] Fix an issue where find panel could fail to set escape character.
 - [beta] Fix an issue where find panel occasionally did not update setting of regex enability and syntax.
