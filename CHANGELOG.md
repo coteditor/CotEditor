@@ -8,6 +8,7 @@ Change Log
 ### Additions/Changes
 
 - Now, return with Shift key in find text field finds text backwards.
+- Always bring focus to the find text field when find panel is called.
 
 
 ### Fixes

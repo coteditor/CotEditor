@@ -314,7 +314,7 @@ static const NSUInteger kMaxHistorySize = 20;
     }
     
     // select text in find text field
-    [[self findPanel] makeFirstResponder:[[self findPanel] nextResponder]];
+    [[self findPanel] makeFirstResponder:[[self findPanel] initialFirstResponder]];
     
     [super showFindPanel:sender];
 }
