@@ -150,7 +150,7 @@ int main(int argc, const char * argv[])
         // validate file paths
         NSMutableArray *URLs = [NSMutableArray array];
         for (NSString *path in arguments[kFiles]) {
-            NSURL *URL = [NSURL fileURLWithPath:path isDirectory:NO];
+            NSURL *URL = [[NSURL fileURLWithPath:path isDirectory:NO] URLByStandardizingPath];
             
             if ([arguments[kFiles] count] == 1 && ![URL checkResourceIsReachableAndReturnError:nil]) {
                 printf("%s is not valid file.\n", [path UTF8String]);

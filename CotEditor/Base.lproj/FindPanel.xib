@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6254"/>
@@ -15,7 +15,7 @@
         <window identifier="findPanel" title="Find &amp; Replace" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="findPanel" animationBehavior="default" id="Wal-Sg-6d6" userLabel="Find Panel" customClass="NSPanel">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" resizable="YES" utility="YES"/>
             <rect key="contentRect" x="167" y="107" width="540" height="400"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1280" height="777"/>
             <view key="contentView" id="VS9-oi-ter">
                 <rect key="frame" x="0.0" y="0.0" width="540" height="400"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -28,7 +28,7 @@
                                 <autoresizingMask key="autoresizingMask"/>
                                 <subviews>
                                     <textField verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="l7V-L6-eHO">
-                                        <rect key="frame" x="71" y="30" width="449" height="49"/>
+                                        <rect key="frame" x="72" y="30" width="448" height="49"/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" borderStyle="bezel" placeholderString="       Replace" drawsBackground="YES" id="oVG-0K-H2V" customClass="CEFindTextFieldCell">
                                             <font key="font" metaFont="system"/>
                                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -47,7 +47,7 @@
                                         </connections>
                                     </textField>
                                     <textField verticalHuggingPriority="249" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="bcO-Vd-Pum">
-                                        <rect key="frame" x="71" y="89" width="449" height="49"/>
+                                        <rect key="frame" x="72" y="89" width="448" height="49"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="f9q-Ai-xTj"/>
                                         </constraints>
@@ -70,7 +70,7 @@
                                         </connections>
                                     </textField>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8My-G5-daT">
-                                        <rect key="frame" x="68" y="7" width="125" height="18"/>
+                                        <rect key="frame" x="69" y="7" width="125" height="18"/>
                                         <buttonCell key="cell" type="check" title="Regular Expression" bezelStyle="regularSquare" imagePosition="left" controlSize="small" state="on" inset="2" id="brT-HP-GVL">
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="smallSystem"/>
@@ -80,7 +80,7 @@
                                         </connections>
                                     </button>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="GvT-tD-Cbk">
-                                        <rect key="frame" x="196" y="7" width="86" height="18"/>
+                                        <rect key="frame" x="197" y="7" width="86" height="18"/>
                                         <buttonCell key="cell" type="check" title="Ignore Case" bezelStyle="regularSquare" imagePosition="left" controlSize="small" inset="2" id="4wg-Cz-ozb">
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="smallSystem"/>
@@ -91,7 +91,7 @@
                                         </connections>
                                     </button>
                                     <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="ybT-sQ-Vn5" userLabel="Recent Searches">
-                                        <rect key="frame" x="68" y="119" width="35" height="17"/>
+                                        <rect key="frame" x="69" y="119" width="35" height="17"/>
                                         <popUpButtonCell key="cell" type="smallSquare" title="DUMMY" bezelStyle="smallSquare" imagePosition="only" alignment="left" lineBreakMode="truncatingTail" inset="2" pullsDown="YES" arrowPosition="noArrow" preferredEdge="minX" autoenablesItems="NO" altersStateOfSelectedItem="NO" id="rfC-IT-glr" userLabel="Recent Searches">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="menu"/>
@@ -114,7 +114,7 @@
                                         </popUpButtonCell>
                                     </popUpButton>
                                     <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="gM0-RD-hIC" userLabel="Recent Replacements">
-                                        <rect key="frame" x="68" y="60" width="35" height="17"/>
+                                        <rect key="frame" x="69" y="60" width="35" height="17"/>
                                         <popUpButtonCell key="cell" type="smallSquare" title="DUMMY" bezelStyle="smallSquare" imagePosition="only" alignment="left" lineBreakMode="truncatingTail" inset="2" pullsDown="YES" arrowPosition="noArrow" preferredEdge="minX" autoenablesItems="NO" altersStateOfSelectedItem="NO" id="u5j-P5-Mjd" userLabel="Recent Replacements">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="menu"/>
@@ -137,7 +137,7 @@
                                         </popUpButtonCell>
                                     </popUpButton>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tu7-IT-dA3">
-                                        <rect key="frame" x="285" y="7" width="85" height="18"/>
+                                        <rect key="frame" x="286" y="7" width="85" height="18"/>
                                         <buttonCell key="cell" type="check" title="In Selection" bezelStyle="regularSquare" imagePosition="left" controlSize="small" inset="2" id="9bc-9Q-fhd">
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="smallSystem"/>
@@ -147,8 +147,11 @@
                                         </connections>
                                     </button>
                                     <popUpButton toolTip="Set advanced options" translatesAutoresizingMaskIntoConstraints="NO" id="EY8-gj-fQb">
-                                        <rect key="frame" x="18" y="114" width="47" height="26"/>
-                                        <popUpButtonCell key="cell" type="bevel" title="Advanced Options" bezelStyle="regularSquare" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" pullsDown="YES" autoenablesItems="NO" selectedItem="Uhr-hw-nIf" id="sfm-kK-8cs">
+                                        <rect key="frame" x="18" y="114" width="48" height="26"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="44" id="9LH-7p-gFL"/>
+                                        </constraints>
+                                        <popUpButtonCell key="cell" type="bevel" title="Advanced Options" bezelStyle="regularSquare" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" pullsDown="YES" autoenablesItems="NO" id="sfm-kK-8cs">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="menu"/>
                                             <menu key="menu" autoenablesItems="NO" id="oEy-4y-qoZ">
@@ -159,6 +162,11 @@
                                                     <menuItem title="Wrap Around" state="on" id="Oqm-Wt-G7B">
                                                         <connections>
                                                             <binding destination="1KP-j4-l6E" name="value" keyPath="values.findIsWrap" id="oZK-lu-PN8"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="Select Next Match after Replace" state="on" id="RfX-XI-iRH">
+                                                        <connections>
+                                                            <binding destination="1KP-j4-l6E" name="value" keyPath="values.findsNextAfterReplace" id="Bcj-Ic-Qib"/>
                                                         </connections>
                                                     </menuItem>
                                                     <menuItem isSeparatorItem="YES" id="WaO-Uo-cUX"/>
@@ -343,6 +351,7 @@
                                     <constraint firstItem="bcO-Vd-Pum" firstAttribute="leading" secondItem="l7V-L6-eHO" secondAttribute="leading" id="DCe-vg-reB"/>
                                     <constraint firstItem="tu7-IT-dA3" firstAttribute="top" secondItem="l7V-L6-eHO" secondAttribute="bottom" constant="8" symbolic="YES" id="Eu5-LL-cmi"/>
                                     <constraint firstItem="bcO-Vd-Pum" firstAttribute="height" secondItem="l7V-L6-eHO" secondAttribute="height" id="G8q-Mw-Dbl"/>
+                                    <constraint firstItem="i2l-7Z-Zmf" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="tu7-IT-dA3" secondAttribute="trailing" constant="12" symbolic="YES" id="IKi-Zn-5pX"/>
                                     <constraint firstItem="EY8-gj-fQb" firstAttribute="leading" secondItem="lkE-wj-Gi5" secondAttribute="leading" constant="20" symbolic="YES" id="LOY-dv-dZe"/>
                                     <constraint firstItem="bcO-Vd-Pum" firstAttribute="top" secondItem="lkE-wj-Gi5" secondAttribute="top" constant="20" symbolic="YES" id="O7x-yh-1xh"/>
                                     <constraint firstAttribute="bottom" secondItem="8My-G5-daT" secondAttribute="bottom" constant="10" id="U9G-t3-7BQ"/>
@@ -556,7 +565,7 @@
                                 <autoresizingMask key="autoresizingMask"/>
                                 <subviews>
                                     <button verticalHuggingPriority="750" tag="5" translatesAutoresizingMaskIntoConstraints="NO" id="7cY-9y-k1i">
-                                        <rect key="frame" x="226" y="13" width="91" height="32"/>
+                                        <rect key="frame" x="360" y="13" width="91" height="32"/>
                                         <buttonCell key="cell" type="push" title="Replace" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="W4Z-S2-wvv">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
@@ -566,7 +575,7 @@
                                         </connections>
                                     </button>
                                     <button verticalHuggingPriority="750" tag="4" translatesAutoresizingMaskIntoConstraints="NO" id="RR6-rj-B8P">
-                                        <rect key="frame" x="116" y="13" width="110" height="32"/>
+                                        <rect key="frame" x="195" y="13" width="110" height="32"/>
                                         <buttonCell key="cell" type="push" title="Replace All" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="5gU-5y-iLn">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
@@ -576,23 +585,13 @@
                                         </connections>
                                     </button>
                                     <button verticalHuggingPriority="750" tag="9" translatesAutoresizingMaskIntoConstraints="NO" id="OCv-Y5-8XR">
-                                        <rect key="frame" x="30" y="13" width="86" height="32"/>
+                                        <rect key="frame" x="109" y="13" width="86" height="32"/>
                                         <buttonCell key="cell" type="push" title="Find All" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="XLZ-92-VVF">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
                                         <connections>
                                             <action selector="findAll:" target="qZS-yd-wpm" id="Wke-hq-F4e"/>
-                                        </connections>
-                                    </button>
-                                    <button verticalHuggingPriority="750" tag="6" translatesAutoresizingMaskIntoConstraints="NO" id="dvY-EI-Ovp">
-                                        <rect key="frame" x="317" y="13" width="134" height="32"/>
-                                        <buttonCell key="cell" type="push" title="Replace &amp; Find" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="m0f-Il-JLU">
-                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="system"/>
-                                        </buttonCell>
-                                        <connections>
-                                            <action selector="replaceAndFind:" target="qZS-yd-wpm" id="kg3-wH-iYQ"/>
                                         </connections>
                                     </button>
                                     <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ZIn-Dy-dyd">
@@ -612,19 +611,29 @@
                                             <action selector="clickSegmentedFindButton:" target="qZS-yd-wpm" id="YJT-Nk-DYH"/>
                                         </connections>
                                     </segmentedControl>
+                                    <button verticalHuggingPriority="750" tag="9" translatesAutoresizingMaskIntoConstraints="NO" id="j1n-jm-66v">
+                                        <rect key="frame" x="14" y="13" width="95" height="32"/>
+                                        <buttonCell key="cell" type="push" title="Highlight" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="zHg-Yd-nG3">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="highlight:" target="qZS-yd-wpm" id="mzc-FR-HhS"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="dvY-EI-Ovp" secondAttribute="bottom" constant="20" symbolic="YES" id="02u-2a-dCQ"/>
+                                    <constraint firstItem="ZIn-Dy-dyd" firstAttribute="leading" secondItem="7cY-9y-k1i" secondAttribute="trailing" constant="8" symbolic="YES" id="0bZ-Y1-LJA"/>
                                     <constraint firstAttribute="trailing" secondItem="ZIn-Dy-dyd" secondAttribute="trailing" constant="20" symbolic="YES" id="8wp-3q-iQW"/>
                                     <constraint firstItem="RR6-rj-B8P" firstAttribute="leading" secondItem="OCv-Y5-8XR" secondAttribute="trailing" constant="12" symbolic="YES" id="FZz-ys-DfB"/>
                                     <constraint firstItem="ZIn-Dy-dyd" firstAttribute="top" secondItem="qJx-yz-gkf" secondAttribute="top" constant="10" id="Fvh-cp-LU9"/>
                                     <constraint firstAttribute="bottom" secondItem="RR6-rj-B8P" secondAttribute="bottom" constant="20" symbolic="YES" id="HsB-w6-TMe"/>
-                                    <constraint firstItem="7cY-9y-k1i" firstAttribute="leading" secondItem="RR6-rj-B8P" secondAttribute="trailing" constant="12" symbolic="YES" id="Ndh-3C-Dey"/>
+                                    <constraint firstItem="7cY-9y-k1i" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="RR6-rj-B8P" secondAttribute="trailing" constant="12" symbolic="YES" id="Ndh-3C-Dey"/>
                                     <constraint firstAttribute="bottom" secondItem="7cY-9y-k1i" secondAttribute="bottom" constant="20" symbolic="YES" id="UrC-1u-ij5"/>
-                                    <constraint firstItem="dvY-EI-Ovp" firstAttribute="leading" secondItem="7cY-9y-k1i" secondAttribute="trailing" constant="12" symbolic="YES" id="hsj-hZ-VKC"/>
+                                    <constraint firstItem="OCv-Y5-8XR" firstAttribute="leading" secondItem="j1n-jm-66v" secondAttribute="trailing" constant="12" symbolic="YES" id="a28-w6-fAI"/>
+                                    <constraint firstAttribute="bottom" secondItem="j1n-jm-66v" secondAttribute="bottom" constant="20" symbolic="YES" id="bK2-FF-eP2"/>
                                     <constraint firstAttribute="bottom" secondItem="ZIn-Dy-dyd" secondAttribute="bottom" constant="20" symbolic="YES" id="kVl-8C-O8g"/>
-                                    <constraint firstItem="OCv-Y5-8XR" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="qJx-yz-gkf" secondAttribute="leading" constant="20" symbolic="YES" id="mzp-sj-Yc0"/>
-                                    <constraint firstItem="ZIn-Dy-dyd" firstAttribute="leading" secondItem="dvY-EI-Ovp" secondAttribute="trailing" constant="8" symbolic="YES" id="qSg-bV-vwG"/>
+                                    <constraint firstItem="j1n-jm-66v" firstAttribute="leading" secondItem="qJx-yz-gkf" secondAttribute="leading" constant="20" symbolic="YES" id="qwC-tQ-ZVX"/>
                                     <constraint firstAttribute="bottom" secondItem="OCv-Y5-8XR" secondAttribute="bottom" constant="20" symbolic="YES" id="ytj-1b-As3"/>
                                 </constraints>
                             </customView>
@@ -650,7 +659,7 @@
                 <outlet property="delegate" destination="qZS-yd-wpm" id="ypw-qP-ztD"/>
                 <outlet property="initialFirstResponder" destination="bcO-Vd-Pum" id="UOj-bz-AOm"/>
             </connections>
-            <point key="canvasLocation" x="277" y="3"/>
+            <point key="canvasLocation" x="261" y="-21"/>
         </window>
         <userDefaultsController representsSharedInstance="YES" id="1KP-j4-l6E"/>
         <customObject id="qZS-yd-wpm" customClass="CEFindPanelController">

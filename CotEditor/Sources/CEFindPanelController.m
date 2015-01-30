@@ -93,6 +93,8 @@ static const NSUInteger kMaxHistorySize = 20;
 - (instancetype)init
 // ------------------------------------------------------
 {
+    // [attention] This method can be invoked before initializing user defaults in CEAppDelegate.
+    
     self = [super init];
     if (self) {
         _findString = @"";
@@ -119,6 +121,8 @@ static const NSUInteger kMaxHistorySize = 20;
 - (void)awakeFromNib
 // ------------------------------------------------------
 {
+    // [attention] This method can be invoked before initializing user defaults in CEAppDelegate.
+    
     [super awakeFromNib];
     
     [self updateFindHistoryMenu];
@@ -314,7 +318,7 @@ static const NSUInteger kMaxHistorySize = 20;
     }
     
     // select text in find text field
-    [[self findPanel] makeFirstResponder:[[self findPanel] nextResponder]];
+    [[self findPanel] makeFirstResponder:[[self findPanel] initialFirstResponder]];
     
     [super showFindPanel:sender];
 }
@@ -325,7 +329,12 @@ static const NSUInteger kMaxHistorySize = 20;
 - (IBAction)findNext:(id)sender
 // ------------------------------------------------------
 {
-    [self findFoward:YES];
+    if ([NSEvent modifierFlags] & NSShiftKeyMask) {
+        // find backwards if Shift key pressed
+        [self findForward:NO];
+    } else {
+        [self findForward:YES];
+    }
 }
 
 
@@ -334,7 +343,7 @@ static const NSUInteger kMaxHistorySize = 20;
 - (IBAction)findPrevious:(id)sender
 // ------------------------------------------------------
 {
-    [self findFoward:NO];
+    [self findForward:NO];
 }
 
 
@@ -354,6 +363,8 @@ static const NSUInteger kMaxHistorySize = 20;
 // ------------------------------------------------------
 {
     if (![self checkIsReadyToFind]) { return; }
+    
+    [self invalidateSyntaxInTextFinder];
     
     OgreTextFindResult *result = [[self textFinder] findAll:[self findString]
                                                       color:[self highlightColor]
@@ -405,11 +416,21 @@ static const NSUInteger kMaxHistorySize = 20;
 - (IBAction)replace:(id)sender
 // ------------------------------------------------------
 {
+    // perform "Replace & Find" instead of "Replace"
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultFindNextAfterReplaceKey]) {
+        [self replaceAndFind:sender];
+        return;
+    }
+    
     if (![self checkIsReadyToFind]) { return; }
     
-    OgreTextFindResult *result = [[self textFinder] replace:[self findString]
-                                                 withString:[self replacementString]
-                                                    options:[self options]];
+    [self invalidateSyntaxInTextFinder];
+    
+    OgreTextFindResult *result = [[self textFinder] replaceAndFind:[self findString]
+                                                        withString:[self replacementString]
+                                                           options:[self options]
+                                                     replacingOnly:YES
+                                                              wrap:NO];
     
     [self appendFindHistory:[self findString]];
     [self appendReplaceHistory:[self replacementString]];
@@ -424,6 +445,8 @@ static const NSUInteger kMaxHistorySize = 20;
 // ------------------------------------------------------
 {
     if (![self checkIsReadyToFind]) { return; }
+    
+    [self invalidateSyntaxInTextFinder];
     
     OgreTextFindResult *result = [[self textFinder] replaceAndFind:[self findString]
                                                         withString:[self replacementString]
@@ -453,6 +476,8 @@ static const NSUInteger kMaxHistorySize = 20;
 {
     if (![self checkIsReadyToFind]) { return; }
     
+    [self invalidateSyntaxInTextFinder];
+    
     [[self textFinder] replaceAll:[self findString]
                        withString:[self replacementString]
                           options:[self options]
@@ -469,6 +494,8 @@ static const NSUInteger kMaxHistorySize = 20;
 // ------------------------------------------------------
 {
     if (![self checkIsReadyToFind]) { return; }
+    
+    [self invalidateSyntaxInTextFinder];
     
     [[self textFinder] hightlight:[self findString]
                             color:[self highlightColor]
@@ -608,6 +635,15 @@ static const NSUInteger kMaxHistorySize = 20;
 #pragma mark Private Methods
 
 // ------------------------------------------------------
+/// update syntax (and regex enability) setting in textFinder
+- (void)invalidateSyntaxInTextFinder
+// ------------------------------------------------------
+{
+    [[self textFinder] setSyntax:[self usesRegularExpression] ? [self syntax] : OgreSimpleMatchingSyntax];
+}
+
+
+// ------------------------------------------------------
 /// whether result view is opened
 - (BOOL)isResultShown
 // ------------------------------------------------------
@@ -688,12 +724,12 @@ static const NSUInteger kMaxHistorySize = 20;
 
 // ------------------------------------------------------
 /// perform "Find Next" and "Find Previous"
-- (void)findFoward:(BOOL)forward
+- (void)findForward:(BOOL)forward
 // ------------------------------------------------------
 {
     if (![self checkIsReadyToFind]) { return; }
     
-    [[self textFinder] setSyntax:[self usesRegularExpression] ? [self syntax] : OgreSimpleMatchingSyntax];
+    [self invalidateSyntaxInTextFinder];
     
     OgreTextFindResult *result = [[self textFinder] find:[self findString]
                                                  options:[self options]

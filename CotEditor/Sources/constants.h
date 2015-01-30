@@ -197,6 +197,7 @@ extern NSString *const CEDefaultFindEscapeCharacterKey;
 extern NSString *const CEDefaultFindUsesRegularExpressionKey;
 extern NSString *const CEDefaultFindInSelectionKey;
 extern NSString *const CEDefaultFindIsWrapKey;
+extern NSString *const CEDefaultFindNextAfterReplaceKey;
 extern NSString *const CEDefaultFindOptionsKey;
 extern NSString *const CEDefaultFindClosesIndicatorWhenDoneKey;
 
@@ -381,7 +382,6 @@ typedef NS_ENUM(NSInteger, CEMenuItemTag) {
     CESyntaxMenuItemTag         = 4002,
     CEThemeMenuItemTag          = 4003,
     CEServicesMenuItemTag       =  999,  // const to not list up in "Menu Key Bindings" setting
-    CEWindowPanelsMenuItemTag   = 7999,  // const to not list up in "Menu Key Bindings" setting
     CEScriptMenuDirectoryTag    = 8999,  // const to not list up in "Menu Key Bindings" setting
     
     // in script menu

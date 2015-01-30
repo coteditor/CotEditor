@@ -57,8 +57,8 @@ NSString *const kHelpAnchors[] = {
     @"pref_general",
     @"pref_window",
     @"pref_appearance",
+    @"pref_edit",
     @"pref_format",
-    @"pref_syntax",
     @"pref_filedrop",
     @"pref_keybindings",
     @"pref_print",
@@ -201,6 +201,7 @@ NSString *const CEDefaultFindEscapeCharacterKey = @"findEscapeCharacter";
 NSString *const CEDefaultFindUsesRegularExpressionKey = @"findUsesRegularExpression";
 NSString *const CEDefaultFindInSelectionKey = @"findInSelection";
 NSString *const CEDefaultFindIsWrapKey = @"findIsWrap";
+NSString *const CEDefaultFindNextAfterReplaceKey = @"findsNextAfterReplace";
 NSString *const CEDefaultFindOptionsKey = @"findOptions";
 NSString *const CEDefaultFindClosesIndicatorWhenDoneKey = @"findClosesIndicatorWhenDone";
 

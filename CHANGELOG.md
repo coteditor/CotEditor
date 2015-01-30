@@ -2,7 +2,29 @@
 Change Log
 ==========================
 
-2.1.0
+2.1.0-beta.2
+--------------------------
+
+### Additions/Changes
+
+- Make key bindings for panel windows customizable.
+- [beta] Enhance Find & Replace panel:
+    - Revert “Highlight” button in find panel.
+    - Remove “Replace & Find” button from find panel and add “Select Next Match after Replace” option.
+    - Now, return with Shift key in find text field finds text backwards.
+    - Always bring focus to the find text field when find panel is called.
+
+
+### Fixes
+
+- Fix an issue where the help button on Edit pane and Format pane didn't show correct help page.
+- [beta] Fix an issue where `cot` command couldn't open relative path.
+- [beta] Fix an issue where find panel could fail to set escape character.
+- [beta] Fix an issue where find panel occasionally did not update setting of regex enability and syntax.
+
+
+
+2.1.0-beta
 --------------------------
 
 ### New Features 

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6254"/>
     </dependencies>
     <objects>
@@ -889,22 +888,17 @@
                             <menuItem isSeparatorItem="YES" id="622">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
-                            <menuItem title="Panels" tag="7999" id="649">
+                            <menuItem title="Panels" id="649">
                                 <menu key="submenu" title="Panels" id="650">
                                     <items>
-                                        <menuItem title="Window Opacity Panel" keyEquivalent="1" id="655">
-                                            <connections>
-                                                <action selector="showOpacityPanel:" target="290" id="G8h-8R-17R"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Color Code Panel" tag="2" keyEquivalent="2" id="651">
-                                            <connections>
-                                                <action selector="showHexColorCodeEditor:" target="290" id="yVn-uY-7Wr"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Console Panel" keyEquivalent="3" id="653">
+                                        <menuItem title="Console Panel" keyEquivalent="1" id="653">
                                             <connections>
                                                 <action selector="showConsolePanel:" target="290" id="glc-xb-NG9"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Color Code Panel" keyEquivalent="2" id="651">
+                                            <connections>
+                                                <action selector="showColorCodePanel:" target="290" id="0bX-dd-iko"/>
                                             </connections>
                                         </menuItem>
                                     </items>

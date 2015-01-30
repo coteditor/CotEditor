@@ -251,7 +251,6 @@ static NSDictionary *kUnprintableKeyTable;
     for (NSMenuItem *item in [menu itemArray]) {
         if ([item isSeparatorItem] || [item isAlternate] || ([[item title] length] == 0) ||
             ([item tag] == CEServicesMenuItemTag) ||
-            ([item tag] == CEWindowPanelsMenuItemTag) ||
             ([item tag] == CEScriptMenuDirectoryTag))
         {
             continue;
@@ -437,7 +436,6 @@ static NSDictionary *kUnprintableKeyTable;
         // フォントサイズ変更、エンコーディングの各項目、カラーリングの各項目、などは変更しない
         if ([[CEKeyBindingManager selectorStringsToIgnore] containsObject:NSStringFromSelector([item action])] ||
             ([item tag] == CEServicesMenuItemTag) ||
-            ([item tag] == CEWindowPanelsMenuItemTag) ||
             ([item tag] == CEScriptMenuDirectoryTag) ||
             [item isAlternate])  // 隠しメニューは変更しない
         {
@@ -483,7 +481,6 @@ static NSDictionary *kUnprintableKeyTable;
         // フォントサイズ変更、エンコーディングの各項目、カラーリングの各項目、などは変更しない
         if ([[CEKeyBindingManager selectorStringsToIgnore] containsObject:selectorString] ||
             ([item tag] == CEServicesMenuItemTag) ||
-            ([item tag] == CEWindowPanelsMenuItemTag) ||
             ([item tag] == CEScriptMenuDirectoryTag))
         {
             continue;
