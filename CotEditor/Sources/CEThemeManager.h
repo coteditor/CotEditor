@@ -9,7 +9,7 @@
  encoding="UTF-8"
  ------------------------------------------------------------------------------
  
- © 2014 CotEditor Project
+ © 2014-2015 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -80,12 +80,12 @@ extern NSString *const CEThemeDidUpdateNotification;
 
 // manage themes
 - (BOOL)saveTheme:(NSDictionary *)theme name:(NSString *)themeName completionHandler:(void (^)(NSError *error))completionHandler;
-- (BOOL)renameTheme:(NSString *)themeName toName:(NSString *)newThemeName error:(NSError **)error;
-- (BOOL)removeTheme:(NSString *)themeName error:(NSError **)error;
+- (BOOL)renameTheme:(NSString *)themeName toName:(NSString *)newThemeName error:(NSError **)outError;
+- (BOOL)removeTheme:(NSString *)themeName error:(NSError **)outError;
 - (BOOL)restoreTheme:(NSString *)themeName completionHandler:(void (^)(NSError *error))completionHandler;
-- (BOOL)duplicateTheme:(NSString *)themeName error:(NSError **)error;
-- (BOOL)exportTheme:(NSString *)themeName toURL:(NSURL *)URL error:(NSError **)error;
-- (BOOL)importTheme:(NSURL *)URL replace:(BOOL)doReplace error:(NSError **)error;
+- (BOOL)duplicateTheme:(NSString *)themeName error:(NSError **)outError;
+- (BOOL)exportTheme:(NSString *)themeName toURL:(NSURL *)URL error:(NSError **)outError;
+- (BOOL)importTheme:(NSURL *)URL replace:(BOOL)doReplace error:(NSError **)outError;
 - (BOOL)createUntitledThemeWithCompletionHandler:(void (^)(NSString *themeName, NSError *error))completionHandler;
 
 @end

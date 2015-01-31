@@ -9,7 +9,7 @@
  encoding="UTF-8"
  ------------------------------------------------------------------------------
  
- © 2014 1024jp
+ © 2014-2015 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -243,7 +243,7 @@ static const NSURL *kPreferredLinkTargetURL;
 
 // ------------------------------------------------------
 /// check whether current running CotEditor is located in the /Application directory
-- (BOOL)checkApplicationLocationAndReturnError:(NSError **)error
+- (BOOL)checkApplicationLocationAndReturnError:(NSError *__autoreleasing *)outError
 // ------------------------------------------------------
 {
     NSString *preferredAppName = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleName"];
@@ -257,7 +257,7 @@ static const NSURL *kPreferredLinkTargetURL;
                                               error:nil];
     
     if (relationship != NSURLRelationshipContains) {
-        if (error) {
+        if (outError) {
             NSDictionary *userInfo = @{NSLocalizedDescriptionKey: NSLocalizedString(@"The running CotEditor is not located in the Application directory.", nil),
                                        NSLocalizedRecoverySuggestionErrorKey: [NSString stringWithFormat:NSLocalizedString(@"Do you really want to install the command-line tool for CotEditor at “%@”?\n\nWe recommend to move CotEditor.app to the Application directory at first.", nil),
                                                                                [[[NSBundle mainBundle] bundleURL] path]],
@@ -265,12 +265,12 @@ static const NSURL *kPreferredLinkTargetURL;
                                                                              NSLocalizedString(@"Cancel", nil)],
                                        NSURLErrorKey: appURL};
             
-            *error = [NSError errorWithDomain:CEErrorDomain code:CEApplicationNotInApplicationDirectoryError userInfo:userInfo];
+            *outError = [NSError errorWithDomain:CEErrorDomain code:CEApplicationNotInApplicationDirectoryError userInfo:userInfo];
         }
         return NO;
         
     } else if (![[[appURL lastPathComponent] stringByDeletingPathExtension] isEqualToString:preferredAppName]) {
-        if (error) {
+        if (outError) {
             NSDictionary *userInfo = @{NSLocalizedDescriptionKey: NSLocalizedString(@"The name of the running CotEditor is modified.", nil),
                                        NSLocalizedRecoverySuggestionErrorKey: [NSString stringWithFormat:NSLocalizedString(@"Do you really want to install the command-line tool for “%@”?", nil),
                                                                                [appURL lastPathComponent]],
@@ -278,7 +278,7 @@ static const NSURL *kPreferredLinkTargetURL;
                                                                              NSLocalizedString(@"Cancel", nil)],
                                        NSURLErrorKey: appURL};
             
-            *error = [NSError errorWithDomain:CEErrorDomain code:CEApplicationNameIsModifiedError userInfo:userInfo];
+            *outError = [NSError errorWithDomain:CEErrorDomain code:CEApplicationNameIsModifiedError userInfo:userInfo];
         }
         return NO;
     }

@@ -200,14 +200,14 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
 
 //------------------------------------------------------
 /// テーマ名を変更する
-- (BOOL)renameTheme:(NSString *)themeName toName:(NSString *)newThemeName error:(NSError *__autoreleasing *)error
+- (BOOL)renameTheme:(NSString *)themeName toName:(NSString *)newThemeName error:(NSError *__autoreleasing *)outError
 //------------------------------------------------------
 {
     BOOL success = NO;
     
     newThemeName = [newThemeName stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     
-    if (![self validateThemeName:newThemeName originalName:themeName error:error]) {
+    if (![self validateThemeName:newThemeName originalName:themeName error:outError]) {
         return NO;
     }
     
@@ -235,7 +235,7 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
 
 //------------------------------------------------------
 /// テーマ名に応じたテーマファイルを削除する
-- (BOOL)removeTheme:(NSString *)themeName error:(NSError *__autoreleasing *)error
+- (BOOL)removeTheme:(NSString *)themeName error:(NSError *__autoreleasing *)outError
 //------------------------------------------------------
 {
     BOOL success = NO;
@@ -300,7 +300,7 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
 
 //------------------------------------------------------
 /// 外部テーマファイルをユーザ領域にコピーする
-- (BOOL)importTheme:(NSURL *)URL replace:(BOOL)doReplace error:(NSError *__autoreleasing *)error
+- (BOOL)importTheme:(NSURL *)URL replace:(BOOL)doReplace error:(NSError *__autoreleasing *)outError
 //------------------------------------------------------
 {
     __block BOOL success = NO;
@@ -318,13 +318,13 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
             }
         }
         if (isDuplicated) {
-            if (error) {
+            if (outError) {
                 NSDictionary *userInfo = @{NSLocalizedDescriptionKey: [NSString stringWithFormat:NSLocalizedString(@"A new theme named “%@” will be installed, but a custom theme with the same name already exists.", nil), themeName],
                                            NSLocalizedRecoverySuggestionErrorKey: NSLocalizedString(@"Do you want to replace it?\nReplaced theme cannot be restored.", nil),
                                            NSLocalizedRecoveryOptionsErrorKey: @[NSLocalizedString(@"Cancel", nil),
                                                                                  NSLocalizedString(@"Replace", nil)],
                                            NSURLErrorKey: URL};
-                *error = [NSError errorWithDomain:CEErrorDomain code:CEThemeFileDuplicationError userInfo:userInfo];
+                *outError = [NSError errorWithDomain:CEErrorDomain code:CEThemeFileDuplicationError userInfo:userInfo];
             }
             return NO;
         }
@@ -339,13 +339,13 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
     NSFileCoordinator *coordinator = [[NSFileCoordinator alloc] initWithFilePresenter:nil];
     [coordinator coordinateReadingItemAtURL:URL options:NSFileCoordinatorReadingWithoutChanges | NSFileCoordinatorReadingResolvesSymbolicLink
                            writingItemAtURL:[self URLForUserTheme:themeName] options:NSFileCoordinatorWritingForReplacing
-                                      error:error byAccessor:^(NSURL *newReadingURL, NSURL *newWritingURL)
+                                      error:outError byAccessor:^(NSURL *newReadingURL, NSURL *newWritingURL)
      {
          if ([newWritingURL checkResourceIsReachableAndReturnError:nil]) {
-             [[NSFileManager defaultManager] removeItemAtURL:newWritingURL error:error];
+             [[NSFileManager defaultManager] removeItemAtURL:newWritingURL error:outError];
          }
          
-         success = [[NSFileManager defaultManager] copyItemAtURL:newReadingURL toURL:newWritingURL error:error];
+         success = [[NSFileManager defaultManager] copyItemAtURL:newReadingURL toURL:newWritingURL error:outError];
      }];
     
     if (success) {
@@ -358,7 +358,7 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
 
 //------------------------------------------------------
 /// テーマファイルを指定のURLにコピーする
-- (BOOL)exportTheme:(NSString *)themeName toURL:(NSURL *)URL error:(NSError *__autoreleasing *)error
+- (BOOL)exportTheme:(NSString *)themeName toURL:(NSURL *)URL error:(NSError *__autoreleasing *)outError
 //------------------------------------------------------
 {
     __block BOOL success = NO;
@@ -366,13 +366,13 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
     NSFileCoordinator *coordinator = [[NSFileCoordinator alloc] initWithFilePresenter:nil];
     [coordinator coordinateReadingItemAtURL:[self URLForUserTheme:themeName] options:NSFileCoordinatorReadingWithoutChanges
                            writingItemAtURL:URL options:NSFileCoordinatorWritingForMoving
-                                      error:error byAccessor:^(NSURL *newReadingURL, NSURL *newWritingURL)
+                                      error:outError byAccessor:^(NSURL *newReadingURL, NSURL *newWritingURL)
      {
          if ([newWritingURL checkResourceIsReachableAndReturnError:nil]) {
-             [[NSFileManager defaultManager] removeItemAtURL:newWritingURL error:error];
+             [[NSFileManager defaultManager] removeItemAtURL:newWritingURL error:outError];
          }
          
-         success = [[NSFileManager defaultManager] copyItemAtURL:newReadingURL toURL:newWritingURL error:error];
+         success = [[NSFileManager defaultManager] copyItemAtURL:newReadingURL toURL:newWritingURL error:outError];
      }];
     
     return success;
@@ -381,7 +381,7 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
 
 //------------------------------------------------------
 /// テーマを複製する
-- (BOOL)duplicateTheme:(NSString *)themeName error:(NSError *__autoreleasing *)error
+- (BOOL)duplicateTheme:(NSString *)themeName error:(NSError *__autoreleasing *)outError
 //------------------------------------------------------
 {
     BOOL success = NO;
@@ -401,7 +401,8 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
     }
     
     success = [[NSFileManager defaultManager] copyItemAtURL:[self URLForUsedTheme:themeName]
-                                                      toURL:[self URLForUserTheme:newThemeName] error:error];
+                                                      toURL:[self URLForUserTheme:newThemeName]
+                                                      error:outError];
     
     if (success) {
         [self updateCacheWithCompletionHandler:nil];
@@ -587,7 +588,7 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
 
 // ------------------------------------------------------
 // 有効なテーマ名かチェックしてエラーメッセージを返す
-- (BOOL)validateThemeName:(NSString *)themeName originalName:(NSString *)originalThemeName error:(NSError *__autoreleasing *)error
+- (BOOL)validateThemeName:(NSString *)themeName originalName:(NSString *)originalThemeName error:(NSError *__autoreleasing *)outError
 // ------------------------------------------------------
 {
     // 元の名前とのケース違いはOK
@@ -614,11 +615,11 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
         description = [NSString stringWithFormat:NSLocalizedString(@"“%@” is already exist.", nil), duplicatedThemeName];
     }
     
-    if (error && description) {
-        *error = [NSError errorWithDomain:CEErrorDomain
-                                     code:CEInvalidNameError
-                                 userInfo:@{NSLocalizedDescriptionKey: description,
-                                            NSLocalizedRecoverySuggestionErrorKey: NSLocalizedString(@"Input another name.", nil)}];
+    if (outError && description) {
+        *outError = [NSError errorWithDomain:CEErrorDomain
+                                        code:CEInvalidNameError
+                                    userInfo:@{NSLocalizedDescriptionKey: description,
+                                               NSLocalizedRecoverySuggestionErrorKey: NSLocalizedString(@"Input another name.", nil)}];
     }
     
     return (!description);
