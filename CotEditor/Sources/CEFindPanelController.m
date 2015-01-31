@@ -627,7 +627,11 @@ static const NSUInteger kMaxHistorySize = 20;
 - (IBAction)showRegexHelp:(id)sender
 // ------------------------------------------------------
 {
-    [[self regexPopover] showRelativeToRect:[sender bounds] ofView:sender preferredEdge:NSMaxYEdge];
+    if ([[self regexPopover] isShown]) {
+        [[self regexPopover] close];
+    } else {
+        [[self regexPopover] showRelativeToRect:[sender bounds] ofView:sender preferredEdge:NSMaxYEdge];
+    }
 }
 
 

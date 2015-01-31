@@ -2,6 +2,15 @@
 Change Log
 ==========================
 
+2.1.0-beta.3
+--------------------------
+
+### Additions/Changes
+
+- [beta] close popover on clicking regex help button if it's already shown.
+
+
+
 2.1.0-beta.2
 --------------------------
 
