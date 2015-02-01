@@ -436,6 +436,8 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 - (void)restoreStateWithCoder:(NSCoder *)coder
 // ------------------------------------------------------
 {
+    [super restoreStateWithCoder:coder];
+    
     // not need to show unwritable alert on resume
     [self setDidAlertNotWritable:YES];
 }
