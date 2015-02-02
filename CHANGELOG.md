@@ -2,13 +2,18 @@
 Change Log
 ==========================
 
-2.1.0
+2.1.0-beta.3
 --------------------------
 
 ### Additions/Changes
 
 - Update Sparkle framework to version 1.9.0.
 - [beta] close popover on clicking regex help button if it's already shown.
+
+
+### Fixes
+
+- [beta] Fix an issue where application could crash on Mountain Lion.
 
 
 
