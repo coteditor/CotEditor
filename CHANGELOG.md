@@ -13,7 +13,7 @@ Change Log
 
 ### Fixes
 
-- [beta] Fix an issue where application could crash on Mountain Lion.
+- [beta] Fix an issue where the application could crash on Mountain Lion.
 
 
 

@@ -27,6 +27,7 @@
  ==============================================================================
  */
 
+@import ObjectiveC.message;
 #import "CEIntegrationPaneController.h"
 #import "constants.h"
 
@@ -103,6 +104,31 @@ static const NSURL *kPreferredLinkTargetURL;
 
 
 
+#pragma mark Protocol
+
+//=======================================================
+// NSErrorRecoveryAttempting Protocol
+//=======================================================
+
+// ------------------------------------------------------
+/// alert asking to install command-line tool is closed (invoked in `install:`)
+- (void)attemptRecoveryFromError:(NSError *)error optionIndex:(NSUInteger)recoveryOptionIndex delegate:(id)delegate didRecoverSelector:(SEL)didRecoverSelector contextInfo:(void *)contextInfo
+// ------------------------------------------------------
+{
+    BOOL success = NO;
+    
+    if ([[error domain] isEqualToString:CEErrorDomain]) {
+        if (recoveryOptionIndex == 0) {  // Install
+            [self performInstall];
+        }
+        success = YES;
+    }
+    
+    objc_msgSend(delegate, didRecoverSelector, success, contextInfo);
+}
+
+
+
 #pragma mark Action Messages
 
 // ------------------------------------------------------
@@ -113,13 +139,9 @@ static const NSURL *kPreferredLinkTargetURL;
     NSError *error = nil;
     
     if (![self checkApplicationLocationAndReturnError:&error]) {
-        NSAlert *alert = [NSAlert alertWithError:error];
-        
         NSBeep();
-        [alert beginSheetModalForWindow:[[self view] window]
-                          modalDelegate:self
-                         didEndSelector:@selector(installAlertDidEnd:returnCode:contextInfo:)
-                            contextInfo:NULL];
+        [[self view] presentError:error modalForWindow:[[self view] window]
+                         delegate:nil didPresentSelector:NULL contextInfo:NULL];
         return;
     }
     
@@ -162,8 +184,8 @@ static const NSURL *kPreferredLinkTargetURL;
         [self toggleInstallButtonState:YES];
         
     } else if (error) {
-        NSAlert *alert = [NSAlert alertWithError:error];
-        [alert beginSheetModalForWindow:[[self view] window] modalDelegate:nil didEndSelector:NULL contextInfo:NULL];
+        [[self view] presentError:error modalForWindow:[[self view] window]
+                         delegate:nil didPresentSelector:NULL contextInfo:NULL];
     }
 }
 
@@ -263,6 +285,7 @@ static const NSURL *kPreferredLinkTargetURL;
                                                                                [[[NSBundle mainBundle] bundleURL] path]],
                                        NSLocalizedRecoveryOptionsErrorKey: @[NSLocalizedString(@"Install", nil),
                                                                              NSLocalizedString(@"Cancel", nil)],
+                                       NSRecoveryAttempterErrorKey: self,
                                        NSURLErrorKey: appURL};
             
             *outError = [NSError errorWithDomain:CEErrorDomain code:CEApplicationNotInApplicationDirectoryError userInfo:userInfo];
@@ -276,6 +299,7 @@ static const NSURL *kPreferredLinkTargetURL;
                                                                                [appURL lastPathComponent]],
                                        NSLocalizedRecoveryOptionsErrorKey: @[NSLocalizedString(@"Install", nil),
                                                                              NSLocalizedString(@"Cancel", nil)],
+                                       NSRecoveryAttempterErrorKey: self,
                                        NSURLErrorKey: appURL};
             
             *outError = [NSError errorWithDomain:CEErrorDomain code:CEApplicationNameIsModifiedError userInfo:userInfo];
@@ -284,17 +308,6 @@ static const NSURL *kPreferredLinkTargetURL;
     }
     
     return YES;
-}
-
-
-// ------------------------------------------------------
-/// alert asking to install command-line tool is closed (invoked in `install:`)
-- (void)installAlertDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
-// ------------------------------------------------------
-{
-    if (returnCode != NSAlertFirstButtonReturn) { return; }  // == Cancel
-
-    [self performInstall];
 }
 
 @end
