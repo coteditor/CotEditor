@@ -51,7 +51,6 @@ const NSInteger kNoMenuItem = -1;
 
 @interface CETextView ()
 
-@property (nonatomic) NSMutableParagraphStyle *paragraphStyle;
 @property (nonatomic) NSTimer *completionTimer;
 @property (nonatomic) NSString *particalCompletionWord;  // ユーザが実際に入力した補完の元になる文字列
 
@@ -115,11 +114,9 @@ static NSPoint kTextContainerOrigin;
         }
 
         NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
-        for (NSTextTab *textTabToBeRemoved in [paragraphStyle tabStops]) {
-            [paragraphStyle removeTabStop:textTabToBeRemoved];
-        }
+        [paragraphStyle setTabStops:@[]];  // clear default tab stops
         [paragraphStyle setDefaultTabInterval:[self tabIntervalFromFont:font]];
-        _paragraphStyle = paragraphStyle;
+        [self setDefaultParagraphStyle:paragraphStyle];
         // （NSParagraphStyle の lineSpacing を設定すればテキスト描画時の行間は制御できるが、
         // 「文書の1文字目に1バイト文字（または2バイト文字）を入力してある状態で先頭に2バイト文字（または1バイト文字）を
         // 挿入すると行間がズレる」問題が生じるため、CELayoutManager および CEATSTypesetter で制御している）
@@ -541,7 +538,9 @@ static NSPoint kTextContainerOrigin;
     [(CELayoutManager *)[self layoutManager] setTextFont:font];
     [super setFont:font];
     
-    [[self paragraphStyle] setDefaultTabInterval:[self tabIntervalFromFont:font]];
+    NSMutableParagraphStyle *paragraphStyle = [[self defaultParagraphStyle] mutableCopy];
+    [paragraphStyle setDefaultTabInterval:[self tabIntervalFromFont:font]];
+    [self setDefaultParagraphStyle:paragraphStyle];
     
     [self applyTypingAttributes];
 }
@@ -1371,7 +1370,7 @@ static NSPoint kTextContainerOrigin;
 - (void)applyTypingAttributes
 // ------------------------------------------------------
 {
-    [self setTypingAttributes:@{NSParagraphStyleAttributeName: [self paragraphStyle],
+    [self setTypingAttributes:@{NSParagraphStyleAttributeName: [self defaultParagraphStyle],
                                 NSFontAttributeName: [self font],
                                 NSForegroundColorAttributeName: [[self theme] textColor]}];
 }
@@ -1533,14 +1532,10 @@ static NSPoint kTextContainerOrigin;
 - (CGFloat)tabIntervalFromFont:(NSFont *)font
 // ------------------------------------------------------
 {
-    NSMutableString *widthStr = [[NSMutableString alloc] init];
-    NSUInteger numberOfSpaces = [self tabWidth];
-    while (numberOfSpaces--) {
-        [widthStr appendString:@" "];
-    }
-    font = [font screenFont] ? : font;
+    NSFont *screenFont = [font screenFont] ? : font;
+    CGFloat spaceWidth = [font advancementForGlyph:(NSGlyph)' '].width;
     
-    return [widthStr sizeWithAttributes:@{NSFontAttributeName:font}].width;
+    return [self tabWidth] * spaceWidth;
 }
 
 
