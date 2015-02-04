@@ -1537,7 +1537,7 @@ static NSPoint kTextContainerOrigin;
 // ------------------------------------------------------
 {
     NSFont *screenFont = [font screenFont] ? : font;
-    CGFloat spaceWidth = [font advancementForGlyph:(NSGlyph)' '].width;
+    CGFloat spaceWidth = [screenFont advancementForGlyph:(NSGlyph)' '].width;
     
     return [self tabWidth] * spaceWidth;
 }
