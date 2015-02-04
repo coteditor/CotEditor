@@ -13,6 +13,7 @@ Change Log
 
 ### Fixes
 
+- Fix an issue where tab width didn't update on font size change.
 - [beta] Fix an issue where the application could crash on Mountain Lion.
 
 

@@ -1373,6 +1373,10 @@ static NSPoint kTextContainerOrigin;
     [self setTypingAttributes:@{NSParagraphStyleAttributeName: [self defaultParagraphStyle],
                                 NSFontAttributeName: [self font],
                                 NSForegroundColorAttributeName: [[self theme] textColor]}];
+    
+    // update current text
+    [[self textStorage] setAttributes:[self typingAttributes]
+                                range:NSMakeRange(0, [[self textStorage] length])];
 }
 
 
