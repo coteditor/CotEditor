@@ -178,7 +178,7 @@ static const NSUInteger kMaxHistorySize = 20;
     
     // post notification
     dispatch_async(dispatch_get_main_queue(), ^{
-        [[NSNotificationCenter defaultCenter] postNotificationName:CETextFinderDidUnlighlightNotification
+        [[NSNotificationCenter defaultCenter] postNotificationName:CETextFinderDidUnhighlightNotification
                                                             object:target];
     });
     

@@ -32,7 +32,7 @@
 
 
 NSString *const CETextFinderDidReplaceAllNotification = @"CETextFinderDidReplaceAllNotification";
-NSString *const CETextFinderDidUnlighlightNotification = @"CETextFinderDidUnlighlightNotification";
+NSString *const CETextFinderDidUnhighlightNotification = @"CETextFinderDidUnhighlightNotification";
 
 
 @implementation CETextFinder
