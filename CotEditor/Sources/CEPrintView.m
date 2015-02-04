@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014 CotEditor Project
+ © 2014-2015 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -299,6 +299,20 @@ static NSString *const PageNumberPlaceholder = @"PAGENUM";
 - (void)setFont:(NSFont *)font
 // ------------------------------------------------------
 {
+    // set tab width
+    NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+    NSUInteger tabWidth = [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultTabWidthKey];
+    CGFloat spaceWidth = [font advancementForGlyph:(NSGlyph)' '].width;
+    
+    [paragraphStyle setTabStops:@[]];
+    [paragraphStyle setDefaultTabInterval:tabWidth * spaceWidth];
+    [self setDefaultParagraphStyle:paragraphStyle];
+    
+    // apply to current string
+    [[self textStorage] addAttribute:NSParagraphStyleAttributeName
+                               value:paragraphStyle
+                               range:NSMakeRange(0, [[self textStorage] length])];
+    
     // layoutManagerにもフォントを設定する
     [(CELayoutManager *)[self layoutManager] setTextFont:font];
     
