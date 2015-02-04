@@ -667,7 +667,7 @@ static const NSUInteger kMaxHistorySize = 20;
     if ((!shown && ![self isResultShown]) || (shown && height > kDefaultResultViewHeight)) { return; }
     
     // make sure disclosure button points up before open result
-    // (The buttom may points down if the view was closed by dragging.)
+    // (The buttom may point down if the view was closed by dragging.)
     if (shown) {
         [[self disclosureButton] setState:NSOnState];
     }

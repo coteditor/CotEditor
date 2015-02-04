@@ -674,7 +674,7 @@
                 <outlet property="textFinder" destination="-2" id="690-pN-rNk"/>
             </connections>
         </customObject>
-        <viewController title="Quick Reference for Regular Expression" id="46P-vJ-49R" customClass="CEFindResultViewController">
+        <viewController id="46P-vJ-49R" customClass="CEFindResultViewController">
             <connections>
                 <outlet property="tableView" destination="4Sw-Gq-de2" id="nR3-HO-4fV"/>
                 <outlet property="view" destination="CRP-NW-b9J" id="HyB-MX-ri4"/>
