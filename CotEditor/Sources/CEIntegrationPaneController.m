@@ -271,28 +271,33 @@ static const NSURL *kPreferredLinkTargetURL;
     NSString *preferredAppName = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleName"];
     NSURL *appURL = [[NSBundle mainBundle] bundleURL];
     
-    NSURLRelationship relationship;
-    [[NSFileManager defaultManager] getRelationship:&relationship
-                                        ofDirectory:NSApplicationDirectory
-                                           inDomain:NSLocalDomainMask
-                                        toItemAtURL:appURL
-                                              error:nil];
-    
-    if (relationship != NSURLRelationshipContains) {
-        if (outError) {
-            NSDictionary *userInfo = @{NSLocalizedDescriptionKey: NSLocalizedString(@"The running CotEditor is not located in the Application directory.", nil),
-                                       NSLocalizedRecoverySuggestionErrorKey: [NSString stringWithFormat:NSLocalizedString(@"Do you really want to install the command-line tool for CotEditor at “%@”?\n\nWe recommend to move CotEditor.app to the Application directory at first.", nil),
-                                                                               [[[NSBundle mainBundle] bundleURL] path]],
-                                       NSLocalizedRecoveryOptionsErrorKey: @[NSLocalizedString(@"Install", nil),
-                                                                             NSLocalizedString(@"Cancel", nil)],
-                                       NSRecoveryAttempterErrorKey: self,
-                                       NSURLErrorKey: appURL};
-            
-            *outError = [NSError errorWithDomain:CEErrorDomain code:CEApplicationNotInApplicationDirectoryError userInfo:userInfo];
-        }
-        return NO;
+    // check current running app's location only on Yosemite and later (2015-02 by 1024jp)
+    // (Just because `getRelation:~` is first available on Yosemite.)
+    if (floor(NSAppKitVersionNumber) > NSAppKitVersionNumber10_9) {
+        NSURLRelationship relationship;
+        [[NSFileManager defaultManager] getRelationship:&relationship
+                                            ofDirectory:NSApplicationDirectory
+                                               inDomain:NSLocalDomainMask
+                                            toItemAtURL:appURL
+                                                  error:nil];
         
-    } else if (![[[appURL lastPathComponent] stringByDeletingPathExtension] isEqualToString:preferredAppName]) {
+        if (relationship != NSURLRelationshipContains) {
+            if (outError) {
+                NSDictionary *userInfo = @{NSLocalizedDescriptionKey: NSLocalizedString(@"The running CotEditor is not located in the Application directory.", nil),
+                                           NSLocalizedRecoverySuggestionErrorKey: [NSString stringWithFormat:NSLocalizedString(@"Do you really want to install the command-line tool for CotEditor at “%@”?\n\nWe recommend to move CotEditor.app to the Application directory at first.", nil),
+                                                                                   [[[NSBundle mainBundle] bundleURL] path]],
+                                           NSLocalizedRecoveryOptionsErrorKey: @[NSLocalizedString(@"Install", nil),
+                                                                                 NSLocalizedString(@"Cancel", nil)],
+                                           NSRecoveryAttempterErrorKey: self,
+                                           NSURLErrorKey: appURL};
+                
+                *outError = [NSError errorWithDomain:CEErrorDomain code:CEApplicationNotInApplicationDirectoryError userInfo:userInfo];
+            }
+            return NO;
+        }
+    }
+    
+    if (![[[appURL lastPathComponent] stringByDeletingPathExtension] isEqualToString:preferredAppName]) {
         if (outError) {
             NSDictionary *userInfo = @{NSLocalizedDescriptionKey: NSLocalizedString(@"The name of the running CotEditor is modified.", nil),
                                        NSLocalizedRecoverySuggestionErrorKey: [NSString stringWithFormat:NSLocalizedString(@"Do you really want to install the command-line tool for “%@”?", nil),
