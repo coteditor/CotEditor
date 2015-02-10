@@ -45,6 +45,7 @@ static const NSUInteger kMaxHistorySize = 20;
 @property (nonatomic, copy) NSString *replacementString;
 
 @property (nonatomic) NSColor *highlightColor;
+@property (nonatomic) NSLayoutConstraint *resultHeightConstraint;  // for autolayout on OS X 10.8
 
 #pragma mark Settings
 @property (nonatomic, copy) NSString *escapeCharacter;
@@ -672,6 +673,13 @@ static const NSUInteger kMaxHistorySize = 20;
         [[self disclosureButton] setState:NSOnState];
     }
     
+    // remove height constraint on 10.8 (see the last lines in `collapseResultViewIfNeeded`)
+    if (NSAppKitVersionNumber < NSAppKitVersionNumber10_9) {
+        if (shown) {
+            [resultView removeConstraint:[self resultHeightConstraint]];
+        }
+    }
+    
     NSPanel *panel = [self findPanel];
     NSRect panelFrame = [panel frame];
     CGFloat diff = shown ? kDefaultResultViewHeight - height : -height;
@@ -714,6 +722,22 @@ static const NSUInteger kMaxHistorySize = 20;
     frame.size.height -= thickness;
     frame.origin.y += thickness;
     [[self findPanel] setFrame:frame display:YES animate:NO];
+    
+    // have a layout constraint to avoid opening result view by resizing window on OS X 10.8.
+    // (This constraint is probably not needed on 10.9 and later.)
+    if (NSAppKitVersionNumber < NSAppKitVersionNumber10_9) {
+        if (![self resultHeightConstraint]) {
+            NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:resultView
+                                                                          attribute:NSLayoutAttributeHeight
+                                                                          relatedBy:NSLayoutRelationEqual
+                                                                             toItem:nil
+                                                                          attribute:NSLayoutAttributeHeight
+                                                                         multiplier:1.0
+                                                                           constant:0];
+            [self setResultHeightConstraint:constraint];
+        }
+        [resultView addConstraint:[self resultHeightConstraint]];
+    }
 }
 
 
