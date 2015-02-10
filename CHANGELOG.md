@@ -17,6 +17,7 @@ Change Log
 - Fix an issue where tab width didn't update on font size change.
 - [beta] Fix an issue where the application could crash on Mountain Lion.
 - [beta] Fix an issue where `cot` command cannot be insalled on Mavericks and earlier.
+- [beta] Fix some layout issues on Mountain Lion.
 
 
 

@@ -129,6 +129,9 @@ static NSTimeInterval infoUpdateInterval;
     
     // setup sidebar
     [[[self sidebar] layer] setBackgroundColor:[[NSColor colorWithCalibratedWhite:0.94 alpha:1.0] CGColor]];
+    // The following line is required for NSSplitView with Autolayout on OS X 10.8 (2015-02-10 by 1024jp)
+    // Otherwise, visibility of splitView's subviews can not be initialized.
+    [[self sidebarSplitView] layoutSubtreeIfNeeded];
     [self setSidebarShown:[defaults boolForKey:CEDefaultShowDocumentInspectorKey]];
     
     // set document instance to incompatible chars view
@@ -490,20 +493,20 @@ static NSTimeInterval infoUpdateInterval;
     CGFloat sidebarWidth = [self sidebarWidth] ?: [[NSUserDefaults standardUserDefaults] doubleForKey:CEDefaultSidebarWidthKey];
     CGFloat dividerThickness = [[self sidebarSplitView] dividerThickness];
     CGFloat position = [[self sidebarSplitView] maxPossiblePositionOfDividerAtIndex:0];
-    NSRect windowFrame = [[self window] frame];
     
     // adjust divider position
     if ((changesWindowSize && !shown) || (!changesWindowSize && shown)) {
         position -= sidebarWidth;
     }
     
-    // adjust window width
+    // update window width
     if (changesWindowSize) {
+        NSRect windowFrame = [[self window] frame];
         windowFrame.size.width += shown ? (sidebarWidth + dividerThickness) : - (sidebarWidth + dividerThickness);
+        [[self window] setFrame:windowFrame display:NO];
     }
     
     // apply
-    [[self window] setFrame:windowFrame display:NO];
     [[self sidebarSplitView] setPosition:position ofDividerAtIndex:0];
     [[self sidebarSplitView] adjustSubviews];
     
