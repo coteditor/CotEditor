@@ -163,8 +163,8 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 
 // ------------------------------------------------------
-/// ファイルを読み込み、成功したかどうかを返す
-- (BOOL)readFromURL:(NSURL *)url ofType:(NSString *)typeName error:(NSError **)outError
+/// load document from file and return whether it succeeded
+- (BOOL)readFromURL:(NSURL *)url ofType:(NSString *)typeName error:(NSError *__autoreleasing *)outError
 // ------------------------------------------------------
 {
     // set encoding to read file
@@ -174,7 +174,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     // check writability
     NSNumber *isWritable = nil;
     [url getResourceValue:&isWritable forKey:NSURLIsWritableKey error:nil];
-    _writable = [isWritable boolValue];
+    [self setWritable:[isWritable boolValue]];
     
     return [self readFromURL:url encoding:encoding];
 }
@@ -182,7 +182,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 // ------------------------------------------------------
 /// セーブ時の状態に戻す
-- (BOOL)revertToContentsOfURL:(NSURL *)url ofType:(NSString *)typeName error:(NSError **)outError
+- (BOOL)revertToContentsOfURL:(NSURL *)url ofType:(NSString *)typeName error:(NSError *__autoreleasing *)outError
 // ------------------------------------------------------
 {
     // 認証が必要な時に重なって表示されるのを避けるため、まず復帰確認シートを片づける
@@ -202,7 +202,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 // ------------------------------------------------------
 /// 保存用のデータを生成
-- (NSData *)dataOfType:(NSString *)typeName error:(NSError **)outError
+- (NSData *)dataOfType:(NSString *)typeName error:(NSError *__autoreleasing *)outError
 // ------------------------------------------------------
 {
     // エンコーディングを見て、半角円マークを変換しておく
@@ -226,7 +226,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 // ------------------------------------------------------
 /// ファイルの保存(保存処理で包括的に呼ばれる)
-- (BOOL)writeSafelyToURL:(NSURL *)url ofType:(NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation error:(NSError **)outError
+- (BOOL)writeSafelyToURL:(NSURL *)url ofType:(NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation error:(NSError *__autoreleasing *)outError
 // ------------------------------------------------------
 {
     // break undo grouping before and after saving
@@ -436,6 +436,8 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 - (void)restoreStateWithCoder:(NSCoder *)coder
 // ------------------------------------------------------
 {
+    [super restoreStateWithCoder:coder];
+    
     // not need to show unwritable alert on resume
     [self setDidAlertNotWritable:YES];
 }

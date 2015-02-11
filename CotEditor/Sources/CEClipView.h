@@ -1,15 +1,15 @@
 /*
  ==============================================================================
- CETextFinder
+ CEClipView
  
  CotEditor
  http://coteditor.com
  
- Created on 2015-01-03 by 1024jp
+ Created on 2014-10-25 by 1024jp
  encoding="UTF-8"
  ------------------------------------------------------------------------------
  
- © 2015 1024jp
+ © 2014 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -27,15 +27,9 @@
  ==============================================================================
  */
 
-#import <OgreKit/OgreTextFinder.h>
+@import Cocoa;
 
 
-// notifications
-/// Posted when text finder performed "Replace All." Object is target text view.
-extern NSString *const CETextFinderDidReplaceAllNotification;
-extern NSString *const CETextFinderDidUnhighlightNotification;
-
-
-@interface CETextFinder : OgreTextFinder
+@interface CEClipView : NSClipView
 
 @end

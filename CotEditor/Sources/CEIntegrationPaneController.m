@@ -9,7 +9,7 @@
  encoding="UTF-8"
  ------------------------------------------------------------------------------
  
- © 2014 1024jp
+ © 2014-2015 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -27,6 +27,7 @@
  ==============================================================================
  */
 
+@import ObjectiveC.message;
 #import "CEIntegrationPaneController.h"
 #import "constants.h"
 
@@ -103,6 +104,31 @@ static const NSURL *kPreferredLinkTargetURL;
 
 
 
+#pragma mark Protocol
+
+//=======================================================
+// NSErrorRecoveryAttempting Protocol
+//=======================================================
+
+// ------------------------------------------------------
+/// alert asking to install command-line tool is closed (invoked in `install:`)
+- (void)attemptRecoveryFromError:(NSError *)error optionIndex:(NSUInteger)recoveryOptionIndex delegate:(id)delegate didRecoverSelector:(SEL)didRecoverSelector contextInfo:(void *)contextInfo
+// ------------------------------------------------------
+{
+    BOOL success = NO;
+    
+    if ([[error domain] isEqualToString:CEErrorDomain]) {
+        if (recoveryOptionIndex == 0) {  // Install
+            [self performInstall];
+        }
+        success = YES;
+    }
+    
+    objc_msgSend(delegate, didRecoverSelector, success, contextInfo);
+}
+
+
+
 #pragma mark Action Messages
 
 // ------------------------------------------------------
@@ -113,13 +139,9 @@ static const NSURL *kPreferredLinkTargetURL;
     NSError *error = nil;
     
     if (![self checkApplicationLocationAndReturnError:&error]) {
-        NSAlert *alert = [NSAlert alertWithError:error];
-        
         NSBeep();
-        [alert beginSheetModalForWindow:[[self view] window]
-                          modalDelegate:self
-                         didEndSelector:@selector(installAlertDidEnd:returnCode:contextInfo:)
-                            contextInfo:NULL];
+        [[self view] presentError:error modalForWindow:[[self view] window]
+                         delegate:nil didPresentSelector:NULL contextInfo:NULL];
         return;
     }
     
@@ -162,8 +184,8 @@ static const NSURL *kPreferredLinkTargetURL;
         [self toggleInstallButtonState:YES];
         
     } else if (error) {
-        NSAlert *alert = [NSAlert alertWithError:error];
-        [alert beginSheetModalForWindow:[[self view] window] modalDelegate:nil didEndSelector:NULL contextInfo:NULL];
+        [[self view] presentError:error modalForWindow:[[self view] window]
+                         delegate:nil didPresentSelector:NULL contextInfo:NULL];
     }
 }
 
@@ -243,58 +265,54 @@ static const NSURL *kPreferredLinkTargetURL;
 
 // ------------------------------------------------------
 /// check whether current running CotEditor is located in the /Application directory
-- (BOOL)checkApplicationLocationAndReturnError:(NSError **)error
+- (BOOL)checkApplicationLocationAndReturnError:(NSError *__autoreleasing *)outError
 // ------------------------------------------------------
 {
     NSString *preferredAppName = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleName"];
     NSURL *appURL = [[NSBundle mainBundle] bundleURL];
     
-    NSURLRelationship relationship;
-    [[NSFileManager defaultManager] getRelationship:&relationship
-                                        ofDirectory:NSApplicationDirectory
-                                           inDomain:NSLocalDomainMask
-                                        toItemAtURL:appURL
-                                              error:nil];
-    
-    if (relationship != NSURLRelationshipContains) {
-        if (error) {
-            NSDictionary *userInfo = @{NSLocalizedDescriptionKey: NSLocalizedString(@"The running CotEditor is not located in the Application directory.", nil),
-                                       NSLocalizedRecoverySuggestionErrorKey: [NSString stringWithFormat:NSLocalizedString(@"Do you really want to install the command-line tool for CotEditor at “%@”?\n\nWe recommend to move CotEditor.app to the Application directory at first.", nil),
-                                                                               [[[NSBundle mainBundle] bundleURL] path]],
-                                       NSLocalizedRecoveryOptionsErrorKey: @[NSLocalizedString(@"Install", nil),
-                                                                             NSLocalizedString(@"Cancel", nil)],
-                                       NSURLErrorKey: appURL};
-            
-            *error = [NSError errorWithDomain:CEErrorDomain code:CEApplicationNotInApplicationDirectoryError userInfo:userInfo];
-        }
-        return NO;
+    // check current running app's location only on Yosemite and later (2015-02 by 1024jp)
+    // (Just because `getRelation:~` is first available on Yosemite.)
+    if (floor(NSAppKitVersionNumber) > NSAppKitVersionNumber10_9) {
+        NSURLRelationship relationship;
+        [[NSFileManager defaultManager] getRelationship:&relationship
+                                            ofDirectory:NSApplicationDirectory
+                                               inDomain:NSLocalDomainMask
+                                            toItemAtURL:appURL
+                                                  error:nil];
         
-    } else if (![[[appURL lastPathComponent] stringByDeletingPathExtension] isEqualToString:preferredAppName]) {
-        if (error) {
+        if (relationship != NSURLRelationshipContains) {
+            if (outError) {
+                NSDictionary *userInfo = @{NSLocalizedDescriptionKey: NSLocalizedString(@"The running CotEditor is not located in the Application directory.", nil),
+                                           NSLocalizedRecoverySuggestionErrorKey: [NSString stringWithFormat:NSLocalizedString(@"Do you really want to install the command-line tool for CotEditor at “%@”?\n\nWe recommend to move CotEditor.app to the Application directory at first.", nil),
+                                                                                   [[[NSBundle mainBundle] bundleURL] path]],
+                                           NSLocalizedRecoveryOptionsErrorKey: @[NSLocalizedString(@"Install", nil),
+                                                                                 NSLocalizedString(@"Cancel", nil)],
+                                           NSRecoveryAttempterErrorKey: self,
+                                           NSURLErrorKey: appURL};
+                
+                *outError = [NSError errorWithDomain:CEErrorDomain code:CEApplicationNotInApplicationDirectoryError userInfo:userInfo];
+            }
+            return NO;
+        }
+    }
+    
+    if (![[[appURL lastPathComponent] stringByDeletingPathExtension] isEqualToString:preferredAppName]) {
+        if (outError) {
             NSDictionary *userInfo = @{NSLocalizedDescriptionKey: NSLocalizedString(@"The name of the running CotEditor is modified.", nil),
                                        NSLocalizedRecoverySuggestionErrorKey: [NSString stringWithFormat:NSLocalizedString(@"Do you really want to install the command-line tool for “%@”?", nil),
                                                                                [appURL lastPathComponent]],
                                        NSLocalizedRecoveryOptionsErrorKey: @[NSLocalizedString(@"Install", nil),
                                                                              NSLocalizedString(@"Cancel", nil)],
+                                       NSRecoveryAttempterErrorKey: self,
                                        NSURLErrorKey: appURL};
             
-            *error = [NSError errorWithDomain:CEErrorDomain code:CEApplicationNameIsModifiedError userInfo:userInfo];
+            *outError = [NSError errorWithDomain:CEErrorDomain code:CEApplicationNameIsModifiedError userInfo:userInfo];
         }
         return NO;
     }
     
     return YES;
-}
-
-
-// ------------------------------------------------------
-/// alert asking to install command-line tool is closed (invoked in `install:`)
-- (void)installAlertDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
-// ------------------------------------------------------
-{
-    if (returnCode != NSAlertFirstButtonReturn) { return; }  // == Cancel
-
-    [self performInstall];
 }
 
 @end

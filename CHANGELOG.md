@@ -2,6 +2,25 @@
 Change Log
 ==========================
 
+2.1.0-rc
+--------------------------
+
+### Additions/Changes
+
+- Update Sparkle framework to version 1.9.0.
+- [beta] close popover on clicking regex help button if it's already shown.
+
+
+### Fixes
+
+- Fix an issue where tab width on printing didn't reflect user indent setting.
+- Fix an issue where tab width didn't update on font size change.
+- [beta] Fix an issue where the application could crash on Mountain Lion.
+- [beta] Fix an issue where `cot` command cannot be insalled on Mavericks and earlier.
+- [beta] Fix some layout issues on Mountain Lion.
+
+
+
 2.1.0-beta.2
 --------------------------
 
@@ -86,6 +105,7 @@ Change Log
 - Fix an issue that syntax highlights were removed after perform Unhighlight.
 - Fix timing to display sheets on file open.
 - Fix an issue that selection of line endings menu and encoding menu in toolbar did not update on undo/redo.
+- Fix an issue where “Go To” dialog could duplicate and then most of controls were disabled.
 - Fix an issue that checkmark in line height menu was not displayed.
 - Fix some missing localizations in simplified Chinese. (Thanks to Wei Wang!)
 - Fix an issue that an alert message was not localized.

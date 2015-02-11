@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6254"/>
@@ -17,13 +17,13 @@
                 <binding destination="-2" name="contentObject" keyPath="representedObject" id="Y8W-Hl-k2j"/>
             </connections>
         </objectController>
-        <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kdC-U7-dlL">
+        <scrollView verticalHuggingPriority="750" borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kdC-U7-dlL">
             <rect key="frame" x="0.0" y="0.0" width="220" height="410"/>
-            <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="uiH-oN-aKm">
+            <clipView key="contentView" verticalHuggingPriority="750" drawsBackground="NO" copiesOnScroll="NO" id="uiH-oN-aKm" customClass="CEClipView">
                 <rect key="frame" x="0.0" y="0.0" width="210" height="486"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
-                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="ZBi-EJ-Lzu" userLabel="Document View">
+                    <customView verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ZBi-EJ-Lzu" userLabel="Document View">
                         <rect key="frame" x="0.0" y="65" width="220" height="414"/>
                         <subviews>
                             <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="1HX-hx-Kjq">
@@ -516,15 +516,12 @@
                     <constraint firstAttribute="trailing" secondItem="ZBi-EJ-Lzu" secondAttribute="trailing" id="Rbn-bq-IZ0"/>
                     <constraint firstItem="ZBi-EJ-Lzu" firstAttribute="leading" secondItem="uiH-oN-aKm" secondAttribute="leading" id="dDi-Ga-o20"/>
                 </constraints>
-                <userDefinedRuntimeAttributes>
-                    <userDefinedRuntimeAttribute type="boolean" keyPath="flipped" value="YES"/>
-                </userDefinedRuntimeAttributes>
             </clipView>
             <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="0.90909093618392944" controlSize="small" horizontal="YES" id="s25-Da-0iM">
                 <rect key="frame" x="-100" y="-100" width="194" height="11"/>
                 <autoresizingMask key="autoresizingMask"/>
             </scroller>
-            <scroller key="verticalScroller" verticalHuggingPriority="750" controlSize="small" horizontal="NO" id="BV6-hN-8In">
+            <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" controlSize="small" horizontal="NO" id="BV6-hN-8In">
                 <rect key="frame" x="196" y="0.0" width="14" height="406"/>
                 <autoresizingMask key="autoresizingMask"/>
             </scroller>

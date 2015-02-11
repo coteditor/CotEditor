@@ -125,6 +125,7 @@
 		2AD5322A19779FD000A925CA /* CELineHeightTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD5322919779FD000A925CA /* CELineHeightTransformer.m */; };
 		2AD84CAA1966314100DE49BD /* CEODBEventSender.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD84CA91966314100DE49BD /* CEODBEventSender.m */; };
 		2AE2E9D519D2CF00000D66A9 /* CEEncodingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AE2E9D419D2CF00000D66A9 /* CEEncodingManager.m */; };
+		2AE356461A86D32500E29FEF /* CEClipView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AE356451A86D32500E29FEF /* CEClipView.m */; };
 		2AEB8B7C19AF73980098D557 /* FileDropGlossary.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2AEB8B7A19AF73980098D557 /* FileDropGlossary.txt */; };
 		2AF4E0D7196F7958008E9EF7 /* CEStatusBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AF4E0D6196F7958008E9EF7 /* CEStatusBarController.m */; };
 		2AF5C3B91A5481C600C972B5 /* SampleScripts in Copy Shared Supports */ = {isa = PBXBuildFile; fileRef = 6CA3B36012E3B59B0019AB2E /* SampleScripts */; };
@@ -487,6 +488,8 @@
 		2AD84CA91966314100DE49BD /* CEODBEventSender.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEODBEventSender.m; sourceTree = "<group>"; };
 		2AE2E9D319D2CF00000D66A9 /* CEEncodingManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEEncodingManager.h; sourceTree = "<group>"; };
 		2AE2E9D419D2CF00000D66A9 /* CEEncodingManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEEncodingManager.m; sourceTree = "<group>"; };
+		2AE356441A86D32500E29FEF /* CEClipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEClipView.h; sourceTree = "<group>"; };
+		2AE356451A86D32500E29FEF /* CEClipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEClipView.m; sourceTree = "<group>"; };
 		2AEB8B7B19AF73980098D557 /* en */ = {isa = PBXFileReference; lastKnownFileType = text; name = en; path = en.lproj/FileDropGlossary.txt; sourceTree = "<group>"; };
 		2AEB8B7D19AF739F0098D557 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text; name = ja; path = ja.lproj/FileDropGlossary.txt; sourceTree = "<group>"; };
 		2AF47C8419227B2300A48047 /* NSString+ComposedCharacter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+ComposedCharacter.h"; sourceTree = "<group>"; };
@@ -777,6 +780,8 @@
 				25B2C24207FA68D100F4EFC7 /* CEBorderView.m */,
 				2AAC8FFF1A4E12D10074E076 /* CEWrappingTextField.h */,
 				2AAC90001A4E12D10074E076 /* CEWrappingTextField.m */,
+				2AE356441A86D32500E29FEF /* CEClipView.h */,
+				2AE356451A86D32500E29FEF /* CEClipView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -1429,6 +1434,7 @@
 				2A68F93818FB04F400673440 /* CEMenuItemCell.m in Sources */,
 				2AB432711912AF7200835004 /* CEGlyphPopoverController.m in Sources */,
 				2A009ACE1A587B3100C3D542 /* CEFindTextFieldCell.m in Sources */,
+				2AE356461A86D32500E29FEF /* CEClipView.m in Sources */,
 				2AFFB71B18D7F18300118477 /* CEGoToSheetController.m in Sources */,
 				2A3FB2AD18ECEFF200D9CB2C /* CESyntaxEditSheetController.m in Sources */,
 				25B2C23707FA667400F4EFC7 /* CELineNumberView.m in Sources */,

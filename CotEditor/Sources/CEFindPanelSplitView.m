@@ -46,4 +46,20 @@
     return [super dividerThickness];
 }
 
+
+// ------------------------------------------------------
+/// hide divider completely when the second view (result view) is collapsed on OS X 10.8
+- (NSColor *)dividerColor
+// ------------------------------------------------------
+{
+    // -> This override is probably not important on Yosemite and later.
+    if (NSAppKitVersionNumber < NSAppKitVersionNumber10_9) {
+        if ([self isSubviewCollapsed:[self subviews][1]]) {
+            return [NSColor clearColor];
+        }
+    }
+    
+    return [super dividerColor];
+}
+
 @end

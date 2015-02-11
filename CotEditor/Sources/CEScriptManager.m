@@ -363,7 +363,7 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 
 // ------------------------------------------------------
 /// return document content conforming to the input type
-+ (NSString *)inputStringWithType:(CEScriptInputType)inputType document:(CEDocument *)document error:(NSError **)error
++ (NSString *)inputStringWithType:(CEScriptInputType)inputType document:(CEDocument *)document error:(NSError *__autoreleasing *)outError
 // ------------------------------------------------------
 {
     CEEditorWrapper *editor = [document editor];
@@ -373,10 +373,10 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
         switch (inputType) {
             case CEInputSelectionType:
             case CEInputAllTextType:
-                if (error) {
-                    *error = [NSError errorWithDomain:CEErrorDomain
-                                                 code:CEScriptNoTargetDocumentError
-                                             userInfo:@{NSLocalizedDescriptionKey: @"No document to scan input."}];
+                if (outError) {
+                    *outError = [NSError errorWithDomain:CEErrorDomain
+                                                    code:CEScriptNoTargetDocumentError
+                                                userInfo:@{NSLocalizedDescriptionKey: @"No document to scan input."}];
                 }
                 return nil;
                 
@@ -403,7 +403,7 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 
 // ------------------------------------------------------
 /// apply results conforming to the output type to the frontmost document
-+ (BOOL)applyOutput:(NSString *)output document:(CEDocument *)document outputType:(CEScriptOutputType)outputType error:(NSError **)error
++ (BOOL)applyOutput:(NSString *)output document:(CEDocument *)document outputType:(CEScriptOutputType)outputType error:(NSError *__autoreleasing *)outError
 // ------------------------------------------------------
 {
     CEEditorWrapper *editor = [document editor];
@@ -415,10 +415,10 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
             case CEReplaceAllTextType:
             case CEInsertAfterSelectionType:
             case CEAppendToAllTextType:
-                if (error) {
-                    *error = [NSError errorWithDomain:CEErrorDomain
-                                                 code:CEScriptNoTargetDocumentError
-                                             userInfo:@{NSLocalizedDescriptionKey: @"Target document was not found."}];
+                if (outError) {
+                    *outError = [NSError errorWithDomain:CEErrorDomain
+                                                    code:CEScriptNoTargetDocumentError
+                                                userInfo:@{NSLocalizedDescriptionKey: @"Target document was not found."}];
                 }
                 return NO;
                 

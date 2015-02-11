@@ -44,7 +44,7 @@ static char const XATTR_ENCODING_NAME[] = "com.apple.TextEncoding";
 {
     // get xattr data
     NSMutableData* data = nil;
-    const char *path = [self fileSystemRepresentation];
+    const char *path = [[self path] UTF8String];
     ssize_t bufferSize = getxattr(path, XATTR_ENCODING_NAME, NULL, 0, 0, XATTR_NOFOLLOW);
     if (bufferSize > 0) {
         data = [NSMutableData dataWithLength:bufferSize];
@@ -86,7 +86,7 @@ static char const XATTR_ENCODING_NAME[] = "com.apple.TextEncoding";
     
     if (!data) { return; }
     
-    setxattr([self fileSystemRepresentation], XATTR_ENCODING_NAME, [data bytes], [data length], 0, XATTR_NOFOLLOW);
+    setxattr([[self path] UTF8String], XATTR_ENCODING_NAME, [data bytes], [data length], 0, XATTR_NOFOLLOW);
 }
 
 @end
