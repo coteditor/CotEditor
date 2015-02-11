@@ -35,7 +35,7 @@
 #pragma mark Superclass Methods
 
 // ------------------------------------------------------
-/// hide divider completely when the second view (result view) is collapsed
+/// hide divider completely when the second view (Find All result) is collapsed
 - (CGFloat)dividerThickness
 // ------------------------------------------------------
 {
@@ -48,11 +48,11 @@
 
 
 // ------------------------------------------------------
-/// hide divider completely when the second view (result view) is collapsed on OS X 10.8
+/// hide divider completely when the second view (Find All result) is collapsed on OS X 10.8
 - (NSColor *)dividerColor
 // ------------------------------------------------------
 {
-    // -> This override is probably not important on Yosemite and later.
+    // -> This override is not important on Mavericks and later.
     if (NSAppKitVersionNumber < NSAppKitVersionNumber10_9) {
         if ([self isSubviewCollapsed:[self subviews][1]]) {
             return [NSColor clearColor];
