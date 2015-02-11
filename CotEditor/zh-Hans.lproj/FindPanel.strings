@@ -69,7 +69,7 @@
 /* Class = "NSMenuItem"; title = "Wrap Around"; ObjectID = "Oqm-Wt-G7B"; */
 "Oqm-Wt-G7B.title" = "折行查找";
 /* Class = "NSMenuItem"; title = "Select Next Match after Replace"; ObjectID = "RfX-XI-iRH"; */
-"RfX-XI-iRH.title" = "Select Next Match after Replace";  // FIXME
+"RfX-XI-iRH.title" = "替换后选择下一个匹配";
 /* Class = "NSMenuItem"; title = "Auto-Close Progress Sheet"; ObjectID = "ONX-V4-H0w"; */
 "ONX-V4-H0w.title" = "自动关闭进度表";
 
