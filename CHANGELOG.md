@@ -2,6 +2,15 @@
 Change Log
 ==========================
 
+2.1.0
+--------------------------
+
+### Additions/Changes
+
+- [beta] add a missing localization in simplified Chinese. (Thanks to Wei Wang!)
+
+
+
 2.1.0-rc
 --------------------------
 
