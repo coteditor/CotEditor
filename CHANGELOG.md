@@ -5,6 +5,11 @@ Change Log
 2.1.0
 --------------------------
 
+### Additions/Changes
+
+- Update help contents.
+
+
 ### Fixes
 
 - [beta] Fix an issue where split orientation setting was ignored.
