@@ -2,6 +2,21 @@
 Change Log
 ==========================
 
+2.1.0-rc.2
+--------------------------
+
+### New Features
+
+- Now your documents are automatically backuped while editing and and will be resumed at the next session, even after force quitting.
+    - This feature doesn't modify your actual files. You still need to perform “Save” manually to apply changes to your files.
+
+
+### Additions/Changes
+
+- [beta] add a missing localization in simplified Chinese. (Thanks to Wei Wang!)
+
+
+
 2.1.0-rc
 --------------------------
 
