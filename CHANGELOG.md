@@ -2,6 +2,15 @@
 Change Log
 ==========================
 
+2.1.0
+--------------------------
+
+### Fixes
+
+- [beta] Fix an issue where split orientation setting was ignored.
+
+
+
 2.1.0-rc.2
 --------------------------
 
