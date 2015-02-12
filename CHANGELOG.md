@@ -7,7 +7,7 @@ Change Log
 
 ### New Features
 
-- Now your documents are automatically backuped while editing and and will be resumed at the next session, even after force quitting.
+- Now your documents are automatically backuped while editing and will be resumed at the next session, even after force quitting.
     - This feature doesn't modify your actual files. You still need to perform “Save” manually to apply changes to your files.
 
 
