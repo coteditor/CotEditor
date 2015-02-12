@@ -13,6 +13,7 @@ Change Log
 ### Fixes
 
 - [beta] Fix an issue where split orientation setting was ignored.
+- [beta] Fix an issue where text replacement could occasionally fail.
 
 
 

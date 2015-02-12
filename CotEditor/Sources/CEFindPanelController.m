@@ -428,7 +428,7 @@ static const NSUInteger kMaxHistorySize = 20;
     [self invalidateSyntaxInTextFinder];
     
     OgreTextFindResult *result = [[self textFinder] replaceAndFind:[self findString]
-                                                        withString:[self replacementString]
+                                                        withString:[self replacementString] ? : @""
                                                            options:[self options]
                                                      replacingOnly:YES
                                                               wrap:NO];
@@ -450,7 +450,7 @@ static const NSUInteger kMaxHistorySize = 20;
     [self invalidateSyntaxInTextFinder];
     
     OgreTextFindResult *result = [[self textFinder] replaceAndFind:[self findString]
-                                                        withString:[self replacementString]
+                                                        withString:[self replacementString] ? : @""
                                                            options:[self options]
                                                      replacingOnly:NO
                                                               wrap:[self isWrap]];
@@ -480,7 +480,7 @@ static const NSUInteger kMaxHistorySize = 20;
     [self invalidateSyntaxInTextFinder];
     
     [[self textFinder] replaceAll:[self findString]
-                       withString:[self replacementString]
+                       withString:[self replacementString] ? : @""
                           options:[self options]
                       inSelection:[self inSelection]];
     
