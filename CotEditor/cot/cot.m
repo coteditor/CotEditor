@@ -37,6 +37,7 @@ static NSString *const kFiles = @"files";
 static NSString *const kVersionOption = @"version";
 static NSString *const kHelpOption = @"help";
 static NSString *const kBackgroundOption = @"background";
+static NSString *const kNewOption = @"new";
 static NSString *const kLineOption = @"line";
 static NSString *const kColumnOption = @"column";
 
@@ -67,6 +68,7 @@ void usage(void)
     printf("cot %s - command-line utility for CotEditor.\n", version());
     printf("Usage: cot [options] [file ...]\n");
     printf("Options:\n");
+    printf("    -n, --new             Create a new blank document.\n");
     printf("    -l, --line <line>     Jump to specific line in opened document.\n");
     printf("    -c, --column <column> Jump to specific column in opened document.\n");
     printf("    -g, --background      Do not bring the application to the foreground.\n");
@@ -83,6 +85,7 @@ NSDictionary* parseArguments(NSArray *args)
     NSArray *options = @[@{kNameKey:kVersionOption, kParamKey:@[@"--version", @"-v"], kTypeKey:@(BoolType)},
                          @{kNameKey:kHelpOption, kParamKey:@[@"--help", @"-h"], kTypeKey:@(BoolType)},
                          @{kNameKey:kBackgroundOption, kParamKey:@[@"--background", @"-g"], kTypeKey:@(BoolType)},
+                         @{kNameKey:kNewOption, kParamKey:@[@"--new", @"-n"], kTypeKey:@(BoolType)},
                          @{kNameKey:kLineOption, kParamKey:@[@"--line", @"-l"], kTypeKey:@(IntType)},
                          @{kNameKey:kColumnOption, kParamKey:@[@"--column", @"-c"], kTypeKey:@(IntType)},
                          ];
@@ -178,13 +181,18 @@ int main(int argc, const char * argv[])
             [CotEditor activate];
         }
         
-        // create new document with piped text
-        if (input && [URLs count] == 0) {
+        // create new document
+        if (input && [URLs count] == 0) {  // with piped text
             document = [[[CotEditor classForScriptingClass:@"document"] alloc] init];
             
             [[CotEditor documents] addObject:document];
             [[document selection] setContents:(CotEditorAttributeRun *)input];
             [[document selection] setRange:@[@0, @0]];
+            
+        } else if ([arguments[kNewOption] boolValue]) {  // brank document
+            document = [[[CotEditor classForScriptingClass:@"document"] alloc] init];
+            
+            [[CotEditor documents] addObject:document];
         }
         
         document = document ? : [[CotEditor documents] firstObject];

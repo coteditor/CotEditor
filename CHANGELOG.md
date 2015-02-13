@@ -7,6 +7,7 @@ Change Log
 
 ### Additions/Changes
 
+- [beta] Add the `--new` option to `cot` command-line tool.
 - Update help contents.
 
 
