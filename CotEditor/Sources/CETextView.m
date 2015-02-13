@@ -1951,9 +1951,10 @@ static NSPoint kTextContainerOrigin;
     
     if (size == defaultSize) {
         // pseudo-animation
+        __unsafe_unretained typeof(self) weakSelf = self;  // NSTextView cannnot be weak
         for (CGFloat factor = 1, interval = 0; factor <= 1.5; factor += 0.05, interval += 0.01) {
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(interval * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                [self changeFontSize:size * factor];
+                [weakSelf changeFontSize:size * factor];
             });
         }
     } else {

@@ -234,7 +234,7 @@
     
     __weak typeof(self) weakSelf = self;
     [openPanel beginSheetModalForWindow:[[self view] window] completionHandler:^(NSInteger result) {
-        typeof(self) strongSelf = weakSelf;
+        typeof(weakSelf) strongSelf = weakSelf;
         
         if (result == NSFileHandlingPanelCancelButton) return;
         

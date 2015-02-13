@@ -150,8 +150,9 @@ NSString *const CEEncodingListDidUpdateNotification = @"CESyntaxListDidUpdateNot
     [self setEncodingMenuItems:items];
     
     // notify that new encoding menu items was created
+    __weak typeof(self) weakSelf = self;
     dispatch_async(dispatch_get_main_queue(), ^{
-        [[NSNotificationCenter defaultCenter] postNotificationName:CEEncodingListDidUpdateNotification object:self];
+        [[NSNotificationCenter defaultCenter] postNotificationName:CEEncodingListDidUpdateNotification object:weakSelf];
     });
 }
 

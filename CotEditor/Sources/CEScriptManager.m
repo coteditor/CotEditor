@@ -592,9 +592,11 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
     NSError *error = nil;
     NSUserAppleScriptTask *task = [[NSUserAppleScriptTask alloc] initWithURL:URL error:&error];
     
+    __weak typeof(self) weakSelf = self;
     [task executeWithAppleEvent:nil completionHandler:^(NSAppleEventDescriptor *result, NSError *error) {
+        typeof(weakSelf) strongSelf = weakSelf;
         if (error) {
-            [self showAlertWithMessage:[error localizedDescription]];
+            [strongSelf showAlertWithMessage:[error localizedDescription]];
         }
     }];
 }
@@ -660,9 +662,9 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
     // read output asynchronously for safe with huge output
     [[outPipe fileHandleForReading] readToEndOfFileInBackgroundAndNotify];
     __block id observer = [[NSNotificationCenter defaultCenter] addObserverForName:NSFileHandleReadToEndOfFileCompletionNotification
-                                                                    object:[outPipe fileHandleForReading]
-                                                                     queue:nil
-                                                                usingBlock:^(NSNotification *note)
+                                                                            object:[outPipe fileHandleForReading]
+                                                                             queue:nil
+                                                                        usingBlock:^(NSNotification *note)
      {
          [[NSNotificationCenter defaultCenter] removeObserver:observer];
          
@@ -693,7 +695,7 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
         NSString *errorMsg = [[NSString alloc] initWithData:errorData encoding:NSUTF8StringEncoding];
         if ([errorMsg length] > 0) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                typeof(self) strongSelf = weakSelf;
+                typeof(weakSelf) strongSelf = weakSelf;
                 [strongSelf showScriptError:errorMsg scriptName:scriptName];
             });
         }

@@ -132,15 +132,6 @@
 #pragma mark Private Methods
 
 // ------------------------------------------------------
-/// return represented document instance
-- (CEDocument *)document
-// ------------------------------------------------------
-{
-    return [self representedObject];
-}
-
-
-// ------------------------------------------------------
 /// update incompatible chars afer interval
 - (void)updateWithTimer:(NSTimer *)timer
 // ------------------------------------------------------

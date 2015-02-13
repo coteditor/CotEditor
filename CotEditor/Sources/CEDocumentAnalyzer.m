@@ -170,7 +170,7 @@ NSString *const CEAnalyzerDidUpdateEditorInfoNotification = @"CEAnalyzerDidUpdat
     // calculate on background thread
     __weak typeof(self) weakSelf = self;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        typeof(self) strongSelf = weakSelf;
+        typeof(weakSelf) strongSelf = weakSelf;
         
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         BOOL countsLineEnding = [defaults boolForKey:CEDefaultCountLineEndingAsCharKey];

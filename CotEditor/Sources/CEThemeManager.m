@@ -179,7 +179,7 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
     if (success) {
         __weak typeof(self) weakSelf = self;
         [self updateCacheWithCompletionHandler:^{
-            typeof(self) strongSelf = weakSelf;
+            typeof(weakSelf) strongSelf = weakSelf;
             [[NSNotificationCenter defaultCenter] postNotificationName:CEThemeDidUpdateNotification
                                                                 object:strongSelf
                                                               userInfo:@{CEOldNameKey: themeName,
@@ -221,7 +221,7 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
         
         __weak typeof(self) weakSelf = self;
         [self updateCacheWithCompletionHandler:^{
-            typeof(self) strongSelf = weakSelf;
+            typeof(weakSelf) strongSelf = weakSelf;
             [[NSNotificationCenter defaultCenter] postNotificationName:CEThemeDidUpdateNotification
                                                                 object:strongSelf
                                                               userInfo:@{CEOldNameKey: themeName,
@@ -248,7 +248,7 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
     if (success) {
         __weak typeof(self) weakSelf = self;
         [self updateCacheWithCompletionHandler:^{
-            typeof(self) strongSelf = weakSelf;
+            typeof(weakSelf) strongSelf = weakSelf;
             
             // 開いているウインドウのテーマをデフォルトに戻す
             NSString *defaultThemeName = [[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultThemeKey];
@@ -278,7 +278,7 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
     if (success) {
         __weak typeof(self) weakSelf = self;
         [self updateCacheWithCompletionHandler:^{
-            typeof(self) strongSelf = weakSelf;
+            typeof(weakSelf) strongSelf = weakSelf;
             [[NSNotificationCenter defaultCenter] postNotificationName:CEThemeDidUpdateNotification
                                                                 object:strongSelf
                                                               userInfo:@{CEOldNameKey: themeName,
@@ -535,7 +535,7 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
 {
     __weak typeof(self) weakSelf = self;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        typeof(self) strongSelf = weakSelf;
+        typeof(weakSelf) strongSelf = weakSelf;
         NSURL *userDirURL = [strongSelf userThemeDirectoryURL];
         
         NSMutableOrderedSet *themeNameSet = [NSMutableOrderedSet orderedSetWithArray:[strongSelf bundledThemeNames]];
@@ -555,16 +555,16 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
             }
         }
         
-        BOOL isListUpdated = ![[themeNameSet array] isEqualToArray:[self themeNames]];
-        [self setThemeNames:[themeNameSet array]];
+        BOOL isListUpdated = ![[themeNameSet array] isEqualToArray:[strongSelf themeNames]];
+        [strongSelf setThemeNames:[themeNameSet array]];
         
         // 定義をキャッシュする
         NSMutableDictionary *themes = [NSMutableDictionary dictionary];
         for (NSString *name in themeNameSet) {
-            themes[name] = [self themeDictWithURL:[self URLForUsedTheme:name]];
+            themes[name] = [strongSelf themeDictWithURL:[strongSelf URLForUsedTheme:name]];
         }
         
-        [self setArchivedThemes:themes];
+        [strongSelf setArchivedThemes:themes];
         
         // デフォルトテーマが見当たらないときはリセットする
         if (![themeNameSet containsObject:[[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultThemeKey]]) {
