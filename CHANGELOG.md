@@ -7,7 +7,7 @@ Change Log
 
 ### Additions/Changes
 
-- [beta] Add the `--new` option to `cot` command-line tool.
+- [beta] Add `--new` option to `cot` command-line tool.
 - Update help contents.
 
 
@@ -16,6 +16,7 @@ Change Log
 - [beta] Fix an issue where split orientation setting was ignored.
 - [beta] Fix an issue where text replacement could occasionally fail.
 - [beta] Fix an issue where closed windows remained in memory.
+- [beta] Fix line number drawing with non-opaque view on Mountain Lion.
 
 
 

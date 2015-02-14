@@ -577,6 +577,11 @@ static NSPoint kTextContainerOrigin;
         [[self highlightLineColor] set];
         [NSBezierPath fillRect:[self highlightLineRect]];
     }
+    
+    // avoid rimaining dropshadow from letters on Mountain Lion (2015-02 by 1024jp)
+    if (NSAppKitVersionNumber < NSAppKitVersionNumber10_9 && ![[self window] isOpaque]) {
+        [[self window] invalidateShadow];
+    }
 }
 
 
@@ -1395,9 +1400,9 @@ static NSPoint kTextContainerOrigin;
     //    cf. Responsive Scrolling section in the Release Notes for OS X 10.9
     [[[self enclosingScrollView] contentView] setCopiesOnScroll:isOpaque];
     
-    // Make view layer-backed in order to disable dropshadow from letters on Mavericks and earlier (1024jp on 2015-01)
+    // Make view layer-backed in order to disable dropshadow from letters on Mavericks (1024jp on 2015-02)
     // -> This makes scrolling laggy on huge file.
-    if (floor(NSAppKitVersionNumber) <= NSAppKitVersionNumber10_9) {
+    if (floor(NSAppKitVersionNumber) == NSAppKitVersionNumber10_9) {
         [[self enclosingScrollView] setWantsLayer:!isOpaque];
     }
     
