@@ -47,9 +47,9 @@
 /* Class = "NSMenuItem"; ibShadowedToolTip = "The parent directory name of dropped file."; ObjectID = "539"; */
 "539.ibShadowedToolTip" = "ドロップ元ファイルのあるディレクトリ名";
 /* Class = "NSMenuItem"; ibShadowedToolTip = "(if the dropped file is Image) image width."; ObjectID = "540"; */
-"540.ibShadowedToolTip" = "画像の幅（ドロップ元ファイルが画像ファイルのときのみ有効）";
+"540.ibShadowedToolTip" = "イメージの幅（ドロップ元ファイルが画像ファイルのときのみ有効）";
 /* Class = "NSMenuItem"; ibShadowedToolTip = "(if the dropped file is Image) image height."; ObjectID = "537"; */
-"537.ibShadowedToolTip" = "画像の高さ（ドロップ元ファイルが画像ファイルのときのみ有効）";
+"537.ibShadowedToolTip" = "イメージの高さ（ドロップ元ファイルが画像ファイルのときのみ有効）";
 
 /* Class = "IBBindingConnection"; ibShadowedNoSelectionPlaceholder = "No extension is selected."; ObjectID = "ib2-Zw-Ucy"; */
 "ib2-Zw-Ucy.ibShadowedNoSelectionPlaceholder" = "拡張子が選択されていません。";
