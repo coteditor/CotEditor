@@ -239,8 +239,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 
     if (success) {
         // 新規保存時、カラーリングのために拡張子を保持
-        BOOL isFirstSave = (![self fileURL] || (saveOperation == NSSaveAsOperation));
-        if (isFirstSave) {
+        if (saveOperation == NSSaveAsOperation) {
             [self setSyntaxStyleWithFileName:[url lastPathComponent] coloring:YES];
         }
 

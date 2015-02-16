@@ -13,6 +13,7 @@ Change Log
 
 ### Fixes
 
+- [rc.2] Fix an issue where syntax style was suddenly reset while editing on new document.
 - [beta] Fix an issue where split orientation setting was ignored.
 - [beta] Fix an issue where text replacement could occasionally fail.
 - [beta] Fix an issue where closed windows remained in memory.
