@@ -1142,7 +1142,7 @@ static NSPoint kTextContainerOrigin;
     NSRange lineRange = [[self string] lineRangeForRange:selectedRange];
     
     // remove the last line ending
-    if (lineRange.length > 1) {
+    if (lineRange.length > 0) {
         lineRange.length--;
     }
     
