@@ -15,6 +15,7 @@ Change Log
 
 - Fix an issue where some document icons were not applied under the specific environments.
 - [rc.2] Fix an issue where syntax style was suddenly reset while editing on new document.
+- [beta] Fix an issue where “Shift Left” action with whole text makes application hang up. 
 - [beta] Fix an issue where split orientation setting was ignored.
 - [beta] Fix an issue where text replacement could occasionally fail.
 - [beta] Fix an issue where closed windows remained in memory.

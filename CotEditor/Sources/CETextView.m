@@ -1234,7 +1234,8 @@ static NSPoint kTextContainerOrigin;
         NSRange deletedRange = NSMakeRange(scanningLineLocation, numberOfDeleted);
         newSelectedRange.length -= NSIntersectionRange(deletedRange, newSelectedRange).length;
         if (isFirstLine) {
-            newSelectedRange.location = MAX(selectedRange.location - numberOfDeleted, lineRange.location);
+            newSelectedRange.location = MAX((NSInteger)(selectedRange.location - numberOfDeleted),
+                                            (NSInteger)lineRange.location);
             isFirstLine = NO;
         }
         
