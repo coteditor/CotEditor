@@ -9,7 +9,7 @@
  encoding="UTF-8"
  ------------------------------------------------------------------------------
  
- © 2014 1024jp
+ © 2014-2015 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -39,7 +39,10 @@
 - (void)setFrameSize:(NSSize)newSize;
 // ------------------------------------------------------
 {
-    [self setPreferredMaxLayoutWidth:newSize.width - 4];  // 4 for 2 * inset
+    // Setting preferredMaxLayoutWidth on 10.8 makes application hang up on document with specific file names (2015-02 by 1024jp).
+    if (NSAppKitVersionNumber >= NSAppKitVersionNumber10_9) {
+        [self setPreferredMaxLayoutWidth:newSize.width - 4];  // 4 for 2 * inset
+    }
     
     [super setFrameSize:newSize];
 }
