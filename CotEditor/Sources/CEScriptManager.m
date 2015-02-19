@@ -557,7 +557,10 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
     [alert setMessageText:NSLocalizedString(@"Script Error", nil)];
     [alert setInformativeText:message];
     [alert setAlertStyle:NSCriticalAlertStyle];
-    [alert runModal];
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [alert runModal];
+    });
 }
 
 
