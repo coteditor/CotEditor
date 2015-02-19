@@ -114,7 +114,7 @@
 "Same as Document's Setting" = "書類の設定と同じ";
 "Black and White" = "白黒";
 "Print" = "プリント";
-"Print All" = "全てプリント";
+"Print All" = "すべてプリント";
 "Syntax Name" = "シンタックス名";
 "Document Name" = "書類名";
 "File Path" = "ファイルパス";
@@ -387,7 +387,7 @@
 "Cannnot execute the script “%@”.\nShell script requires execute permission.\n\nCheck permission of the script file." = "スクリプト“%@”を実行できません。\nシェルスクリプトの場合は実行権が必要です。\n\nアクセス権を確認してください。";
 "Could not read the script “%@”." = "スクリプト“%@”を読み込めませんでした。";
 "SampleScript folder exists already." = "SampleScript フォルダはすでに存在します。";
-"If you want to replace it with the new one, remove the existing folder at “%@” at first." = "新しいものに置き換えたい場合は、まず“%@”にある現存のフォルダを削除して下さい。";
+"If you want to replace it with the new one, remove the existing folder at “%@” at first." = "新しいものに置き換えたい場合は、まず“%@”にある現存のフォルダを削除してください。";
 
 
 /* MARK: CEFindPanelController */

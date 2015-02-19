@@ -934,7 +934,7 @@ static CGFloat kPerCompoIncrement;
     
     __weak typeof(self) weakSelf = self;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        typeof(self) strongSelf = weakSelf;
+        typeof(weakSelf) strongSelf = weakSelf;
         
         // カラー範囲を抽出する
         NSArray *colorings = [strongSelf extractAllSyntaxFromString:coloringString];

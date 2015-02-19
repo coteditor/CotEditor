@@ -6,7 +6,7 @@
  CotEditor
  http://coteditor.com
  
- © 2006-2014 CotEditor Project
+ © 2006-2015 CotEditor Project
 */
 
 
@@ -22,7 +22,7 @@ ul {
 	list-style-type: none;
 }
 
-li {
+body > ul li {
 	border-bottom: 1px solid hsl(0,0%,80%);
 	padding: 2px 0;
 }

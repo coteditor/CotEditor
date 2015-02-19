@@ -190,8 +190,9 @@ static const NSTimeInterval kAutosavingDelay = 5.0;
 {
     NSStringEncoding defaultEncoding = (NSStringEncoding)[[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultEncodingInOpenKey];
     
+    __weak typeof(self) weakSelf = self;
     dispatch_async(dispatch_get_main_queue(), ^{
-        [self setAccessorySelectedEncoding:defaultEncoding];
+        [weakSelf setAccessorySelectedEncoding:defaultEncoding];
     });
 }
 

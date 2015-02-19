@@ -135,7 +135,7 @@ static NSTimeInterval infoUpdateInterval;
     [self setSidebarShown:[defaults boolForKey:CEDefaultShowDocumentInspectorKey]];
     
     // set document instance to incompatible chars view
-    [[self incompatibleCharsViewController] setRepresentedObject:[self document]];
+    [[self incompatibleCharsViewController] setDocument:[self document]];
     
     // set CEEditorWrapper to document instance
     [[self document] setEditor:[self editor]];

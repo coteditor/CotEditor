@@ -346,7 +346,7 @@
     // 別スレッドでアウトラインを抽出して、メインスレッドで navigationBar に渡す
     __weak typeof(self) weakSelf = self;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        typeof(self) strongSelf = weakSelf;
+        typeof(weakSelf) strongSelf = weakSelf;
         NSArray *outlineMenuArray = [[strongSelf syntaxParser] outlineMenuArrayWithWholeString:wholeString];
         
         dispatch_sync(dispatch_get_main_queue(), ^{

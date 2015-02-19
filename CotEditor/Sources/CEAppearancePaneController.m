@@ -279,7 +279,7 @@
 {
     __weak typeof(self) weakSelf = self;
     [[CEThemeManager sharedManager] createUntitledThemeWithCompletionHandler:^(NSString *themeName, NSError *error) {
-        typeof(self) strongSelf = weakSelf;
+        typeof(weakSelf) strongSelf = weakSelf;
         
         NSArray *themeNames = [[CEThemeManager sharedManager] themeNames];
         NSInteger row = [themeNames indexOfObject:themeName];

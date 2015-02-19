@@ -30,7 +30,12 @@
 @import Cocoa;
 
 
+@class CEDocument;
+
+
 @interface CEIncompatibleCharsViewController : NSViewController
+
+@property (nonatomic, weak) CEDocument *document;
 
 /// set update timer only if needed
 - (void)updateIfNeeded;

@@ -57,7 +57,7 @@
     __weak typeof(self) weakSelf = self;
     [self setKeyDownMonitor:[NSEvent addLocalMonitorForEventsMatchingMask:NSKeyDownMask handler:^NSEvent *(NSEvent *event)
     {
-        typeof(self) strongSelf = weakSelf;
+        typeof(weakSelf) strongSelf = weakSelf;
         NSString *charsIgnoringModifiers = [event charactersIgnoringModifiers];
         NSEventModifierFlags modifierFlags = [event modifierFlags];
         

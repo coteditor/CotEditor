@@ -14,7 +14,7 @@
 "1022.title" = "ファイル関連付けのコンフリクト";
 
 /* Class = "NSTextFieldCell"; title = "CotEditor uses the first style automatically. To resolve conflicts, edit each syntax style."; ObjectID = "gnp-H7-p1W"; */
-"gnp-H7-p1W.title" = "CotEditor は自動的に最初のスタイルを使用します。解決するにはそれぞれのシンタックススタイルを編集して下さい。";
+"gnp-H7-p1W.title" = "CotEditor は自動的に最初のスタイルを使用します。解決するにはそれぞれのシンタックススタイルを編集してください。";
 
 
 /* Class = "NSTextFieldCell"; title = "Extension:"; ObjectID = "31z-NP-PkW"; */

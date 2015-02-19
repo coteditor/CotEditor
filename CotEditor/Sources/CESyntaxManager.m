@@ -302,7 +302,7 @@ NSString *const CESyntaxValidationMessageKey = @"MessageKey";
             [[self styleCaches] removeObjectForKey:styleName];
             __weak typeof(self) weakSelf = self;
             [self updateCacheWithCompletionHandler:^{
-                typeof(self) strongSelf = weakSelf;
+                typeof(weakSelf) strongSelf = weakSelf;
                 [[NSNotificationCenter defaultCenter] postNotificationName:CESyntaxDidUpdateNotification
                                                                     object:strongSelf
                                                                   userInfo:@{CEOldNameKey: styleName,
@@ -423,7 +423,7 @@ NSString *const CESyntaxValidationMessageKey = @"MessageKey";
     // 内部で持っているキャッシュ用データを更新
     __weak typeof(self) weakSelf = self;
     [self updateCacheWithCompletionHandler:^{
-        typeof(self) strongSelf = weakSelf;
+        typeof(weakSelf) strongSelf = weakSelf;
         
         // notify
         [[NSNotificationCenter defaultCenter] postNotificationName:CESyntaxDidUpdateNotification
@@ -660,7 +660,7 @@ NSString *const CESyntaxValidationMessageKey = @"MessageKey";
 {
     __weak typeof(self) weakSelf = self;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        typeof(self) strongSelf = weakSelf;
+        typeof(weakSelf) strongSelf = weakSelf;
         [strongSelf updateStyleTables];
         [strongSelf setupExtensionAndSyntaxTable];
         

@@ -39,10 +39,10 @@
 
 // ------------------------------------------------------
 /// ビューの読み込み
-- (void)loadView
+- (void)awakeFromNib
 // ------------------------------------------------------
 {
-    [super loadView];
+    [super awakeFromNib];
     
     [[self splitView] setVertical:[[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultSplitViewVerticalKey]];
     [self updateOpenSplitViewButtons];

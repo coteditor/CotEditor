@@ -6,7 +6,7 @@
  CotEditor
  http://coteditor.com
  
- © 2006-2014 CotEditor Project
+ © 2006-2015 CotEditor Project
 */
 
 
@@ -37,8 +37,8 @@ code {
 }
 
 body > h1 {
-	font-size: 140%;
-	font-weight: 500;
+	font-size: 160%;
+	font-weight: 300;
 	margin: 0 0 1.5em;
 }
 body > h1::before {
@@ -47,7 +47,7 @@ body > h1::before {
 	display: inline-block;
 	width: 16px;
 	height: 16px;
-	vertical-align: 10px;
+	vertical-align: 12px;
 	margin-right: 26px;
 }
 h2 {
@@ -198,4 +198,33 @@ tbody th:first-child {
 tt,
 pre {
 	font-family: 'Courier', 'Courier New', monospace;
+}
+
+
+/* header */
+body {
+	padding-top: 48px;
+}
+
+body > nav {
+	border-bottom: 1px solid hsl(0,0%,80%);
+	background: hsl(0,0%,96%);
+	
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+}
+body > nav a {
+	color: hsl(0,0%,40%);
+}
+body > nav ul {
+	border: none;
+	background: transparent;
+	margin: 0;
+	padding: 0;
+}
+body > nav li {
+	display: inline-block;
+	margin: 0.2em 1em;
 }

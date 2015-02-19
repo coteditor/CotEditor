@@ -2,12 +2,35 @@
 Change Log
 ==========================
 
+2.1.0
+--------------------------
+
+### Additions/Changes
+
+- [beta] Add `--new` option to `cot` command-line tool.
+- Update help contents.
+
+
+### Fixes
+
+- Fix an issue where some document icons were not applied under the specific environments.
+- [rc.2] Fix an issue where syntax style was suddenly reset while editing on new document.
+- [beta] Fix an issue where “Shift Left” action with whole text makes application hang up.
+- [beta] Fix an issue where “Shift Right” action at blank line inserts unwanted indent to the next line.
+- [beta] Fix an issue where split orientation setting was ignored.
+- [beta] Fix an issue where text replacement could occasionally fail.
+- [beta] Fix an issue where closed windows remained in memory.
+- [beta] Fix an issue where application hang up on opening documents with specific file name on Mountain Lion.
+- [beta] Fix line number drawing with non-opaque view on Mountain Lion.
+
+
+
 2.1.0-rc.2
 --------------------------
 
 ### New Features
 
-- Now your documents are automatically backuped while editing and and will be resumed at the next session, even after force quitting.
+- Now your documents are automatically backuped while editing and will be resumed at the next session, even after force quitting.
     - This feature doesn't modify your actual files. You still need to perform “Save” manually to apply changes to your files.
 
 
