@@ -1413,7 +1413,13 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     
     if (success) {
         // クリエータなどを設定
-        [[NSFileManager defaultManager] setAttributes:attributes ofItemAtPath:[url path] error:nil];
+        NSFileCoordinator *coordinator = [[NSFileCoordinator alloc] initWithFilePresenter:self];
+        [coordinator coordinateWritingItemAtURL:url options:0
+                                          error:nil
+                                     byAccessor:^(NSURL *newURL)
+         {
+            [[NSFileManager defaultManager] setAttributes:attributes ofItemAtPath:[newURL path] error:nil];
+        }];
         
         // ファイル拡張属性 (com.apple.TextEncoding) にエンコーディングを保存
         if ([self shouldSaveXattr]) {
@@ -1480,11 +1486,10 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 {
     NSFileManager *fileManager = [NSFileManager defaultManager];
     BOOL isFinderLocked = [[fileManager attributesOfItemAtPath:[url path] error:nil] fileIsImmutable];
-    BOOL success = NO;
     
     if (isFinderLocked) {
         // Finder Lock がかかっていれば、解除
-        success = [fileManager setAttributes:@{NSFileImmutable:@NO} ofItemAtPath:[url path] error:nil];
+        BOOL success = [fileManager setAttributes:@{NSFileImmutable:@NO} ofItemAtPath:[url path] error:nil];
         if (success) {
             if (lockAgain) {
                 // フラグが立っていたなら、再びかける
