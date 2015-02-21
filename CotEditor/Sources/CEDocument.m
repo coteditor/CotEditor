@@ -1484,25 +1484,40 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 - (BOOL)canUnlockFileAtURL:(NSURL *)url isLocked:(BOOL *)isLocked lockAgain:(BOOL)lockAgain
 // ------------------------------------------------------
 {
+    __block BOOL isFinderLocked = NO;
+    BOOL success = NO;
+    NSError *error = nil;
     NSFileManager *fileManager = [NSFileManager defaultManager];
-    BOOL isFinderLocked = [[fileManager attributesOfItemAtPath:[url path] error:nil] fileIsImmutable];
     
-    if (isFinderLocked) {
-        // Finder Lock がかかっていれば、解除
-        BOOL success = [fileManager setAttributes:@{NSFileImmutable:@NO} ofItemAtPath:[url path] error:nil];
-        if (success) {
-            if (lockAgain) {
-                // フラグが立っていたなら、再びかける
-                [fileManager setAttributes:@{NSFileImmutable:@YES} ofItemAtPath:[url path] error:nil];
+    @synchronized(self) {
+        NSFileCoordinator *coordinator = [[NSFileCoordinator alloc] initWithFilePresenter:self];
+        [coordinator coordinateReadingItemAtURL:url options:NSFileCoordinatorReadingWithoutChanges
+                                          error:&error
+                                     byAccessor:^(NSURL *newURL)
+         {
+             isFinderLocked = [[fileManager attributesOfItemAtPath:[newURL path] error:nil] fileIsImmutable];
+         }];
+        
+        if (isFinderLocked) {
+            // unlock file once
+            success = [fileManager setAttributes:@{NSFileImmutable:@NO} ofItemAtPath:[url path] error:nil];
+            if (success) {
+                // lock file again if needed
+                if (lockAgain) {
+                    [fileManager setAttributes:@{NSFileImmutable:@YES} ofItemAtPath:[url path] error:nil];
+                }
             }
         } else {
-            return NO;
+            // no-lock file is always treated as success
+            success = YES;
         }
     }
+    
     if (isLocked) {
         *isLocked = isFinderLocked;
     }
-    return YES;
+    
+    return success;
 }
 
 
