@@ -5,6 +5,10 @@ Change Log
 2.1.1
 --------------------------
 
+### Fixes
+
+- Fix an issue where octal file permisson in the document inspector was wrong.
+
 
 
 2.1.0
