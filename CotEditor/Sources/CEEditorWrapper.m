@@ -965,7 +965,7 @@ static NSTimeInterval secondColoringDelay;
     
     // 選択領域（編集場所）が見えないときは編集場所周辺を更新
     if (!NSLocationInRange(selectedRange.location, visibleRange)) {
-        NSUInteger location = MAX((NSInteger)selectedRange.location - visibleRange.length, 0);
+        NSUInteger location = MAX((NSInteger)(selectedRange.location - visibleRange.length), 0);
         NSInteger maxLength = [[textView string] length] - location;
         NSUInteger length = MIN(selectedRange.length + visibleRange.length, maxLength);
         

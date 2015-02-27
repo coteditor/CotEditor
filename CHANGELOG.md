@@ -8,6 +8,7 @@ Change Log
 ### Fixes
 
 - Fix an issue where octal file permisson in the document inspector was wrong.
+- Fix an issue where application could hang up on text editing.
 - Improve general stability.
 
 
