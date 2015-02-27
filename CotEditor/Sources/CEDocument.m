@@ -1081,16 +1081,19 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 - (NSData *)forceReadDataFromURL:(NSURL *)url
 // ------------------------------------------------------
 {
+    NSData *data = nil;
     NSString *convertedPath = @([[url path] UTF8String]);
     NSTask *task = [[NSTask alloc] init];
     
-    [task setLaunchPath:@"/usr/libexec/authopen"];
-    [task setArguments:@[convertedPath]];
-    [task setStandardOutput:[NSPipe pipe]];
-    
-    [task launch];
-    NSData *data = [NSData dataWithData:[[[task standardOutput] fileHandleForReading] readDataToEndOfFile]];
-    [task waitUntilExit];
+    @synchronized(self) {
+        [task setLaunchPath:@"/usr/libexec/authopen"];
+        [task setArguments:@[convertedPath]];
+        [task setStandardOutput:[NSPipe pipe]];
+        
+        [task launch];
+        data = [NSData dataWithData:[[[task standardOutput] fileHandleForReading] readDataToEndOfFile]];
+        [task waitUntilExit];
+    }
     
     int status = [task terminationStatus];
     
@@ -1429,7 +1432,15 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     
     // Finder Lock がかかってたなら、再びかける
     if (isFinderLockOn) {
-        BOOL lockSuccess = [[NSFileManager defaultManager] setAttributes:@{NSFileImmutable:@YES} ofItemAtPath:[url path] error:nil];
+        __block BOOL lockSuccess = NO;
+        NSFileCoordinator *coordinator = [[NSFileCoordinator alloc] initWithFilePresenter:self];
+        [coordinator coordinateWritingItemAtURL:url options:0
+                                          error:nil
+                                     byAccessor:^(NSURL *newURL)
+         {
+             lockSuccess = [[NSFileManager defaultManager] setAttributes:@{NSFileImmutable:@YES} ofItemAtPath:[newURL path] error:nil];
+         }];
+        
         success = (success && lockSuccess);
     }
     
