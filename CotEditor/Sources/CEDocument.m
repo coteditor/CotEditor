@@ -55,8 +55,8 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 @property (nonatomic) CEPrintPanelAccessoryController *printPanelAccessoryController;
 
-@property (atomic) BOOL needsShowUpdateAlertWithBecomeKey;
-@property (atomic, getter=isRevertingForExternalFileUpdate) BOOL revertingForExternalFileUpdate;
+@property (nonatomic) BOOL needsShowUpdateAlertWithBecomeKey;
+@property (nonatomic, getter=isRevertingForExternalFileUpdate) BOOL revertingForExternalFileUpdate;
 @property (nonatomic) BOOL didAlertNotWritable;  // 文書が読み込み専用のときにその警告を表示したかどうか
 @property (nonatomic, copy) NSString *fileContentString;  // string that is read from the document file
 @property (nonatomic) CEODBEventSender *ODBEventSender;
