@@ -121,8 +121,8 @@ NSString *const CEAnalyzerDidUpdateEditorInfoNotification = @"CEAnalyzerDidUpdat
     self.fileSize = [attrs fileSize] ? [byteFormatter stringFromByteCount:[attrs fileSize]] : nil;
     self.filePath = [[document fileURL] path];
     self.owner = [attrs fileOwnerAccountName];
-    self.permission = [attrs filePosixPermissions] ? [NSString stringWithFormat:@"%tu (%@)",
-                                                      [attrs filePosixPermissions],
+    self.permission = [attrs filePosixPermissions] ? [NSString stringWithFormat:@"%lo (%@)",
+                                                      (unsigned long)[attrs filePosixPermissions],
                                                       humanReadablePermission([attrs filePosixPermissions])] : nil;
     self.writable = [document isWritable];
     
@@ -277,7 +277,7 @@ NSString *const CEAnalyzerDidUpdateEditorInfoNotification = @"CEAnalyzerDidUpdat
 
 
 #pragma mark Plivate methods
-                                     
+
 // ------------------------------------------------------
 /// format count number with selection
 - (NSString *)formatCount:(NSUInteger)count selected:(NSUInteger)selectedCount

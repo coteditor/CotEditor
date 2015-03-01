@@ -1081,16 +1081,19 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 - (NSData *)forceReadDataFromURL:(NSURL *)url
 // ------------------------------------------------------
 {
+    NSData *data = nil;
     NSString *convertedPath = @([[url path] UTF8String]);
     NSTask *task = [[NSTask alloc] init];
     
-    [task setLaunchPath:@"/usr/libexec/authopen"];
-    [task setArguments:@[convertedPath]];
-    [task setStandardOutput:[NSPipe pipe]];
-    
-    [task launch];
-    NSData *data = [NSData dataWithData:[[[task standardOutput] fileHandleForReading] readDataToEndOfFile]];
-    [task waitUntilExit];
+    @synchronized(self) {
+        [task setLaunchPath:@"/usr/libexec/authopen"];
+        [task setArguments:@[convertedPath]];
+        [task setStandardOutput:[NSPipe pipe]];
+        
+        [task launch];
+        data = [NSData dataWithData:[[[task standardOutput] fileHandleForReading] readDataToEndOfFile]];
+        [task waitUntilExit];
+    }
     
     int status = [task terminationStatus];
     
@@ -1429,7 +1432,15 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     
     // Finder Lock がかかってたなら、再びかける
     if (isFinderLockOn) {
-        BOOL lockSuccess = [[NSFileManager defaultManager] setAttributes:@{NSFileImmutable:@YES} ofItemAtPath:[url path] error:nil];
+        __block BOOL lockSuccess = NO;
+        NSFileCoordinator *coordinator = [[NSFileCoordinator alloc] initWithFilePresenter:self];
+        [coordinator coordinateWritingItemAtURL:url options:0
+                                          error:nil
+                                     byAccessor:^(NSURL *newURL)
+         {
+             lockSuccess = [[NSFileManager defaultManager] setAttributes:@{NSFileImmutable:@YES} ofItemAtPath:[newURL path] error:nil];
+         }];
+        
         success = (success && lockSuccess);
     }
     
@@ -1484,25 +1495,40 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 - (BOOL)canUnlockFileAtURL:(NSURL *)url isLocked:(BOOL *)isLocked lockAgain:(BOOL)lockAgain
 // ------------------------------------------------------
 {
+    __block BOOL isFinderLocked = NO;
+    BOOL success = NO;
+    NSError *error = nil;
     NSFileManager *fileManager = [NSFileManager defaultManager];
-    BOOL isFinderLocked = [[fileManager attributesOfItemAtPath:[url path] error:nil] fileIsImmutable];
     
-    if (isFinderLocked) {
-        // Finder Lock がかかっていれば、解除
-        BOOL success = [fileManager setAttributes:@{NSFileImmutable:@NO} ofItemAtPath:[url path] error:nil];
-        if (success) {
-            if (lockAgain) {
-                // フラグが立っていたなら、再びかける
-                [fileManager setAttributes:@{NSFileImmutable:@YES} ofItemAtPath:[url path] error:nil];
+    @synchronized(self) {
+        NSFileCoordinator *coordinator = [[NSFileCoordinator alloc] initWithFilePresenter:self];
+        [coordinator coordinateReadingItemAtURL:url options:NSFileCoordinatorReadingWithoutChanges
+                                          error:&error
+                                     byAccessor:^(NSURL *newURL)
+         {
+             isFinderLocked = [[fileManager attributesOfItemAtPath:[newURL path] error:nil] fileIsImmutable];
+         }];
+        
+        if (isFinderLocked) {
+            // unlock file once
+            success = [fileManager setAttributes:@{NSFileImmutable:@NO} ofItemAtPath:[url path] error:nil];
+            if (success) {
+                // lock file again if needed
+                if (lockAgain) {
+                    [fileManager setAttributes:@{NSFileImmutable:@YES} ofItemAtPath:[url path] error:nil];
+                }
             }
         } else {
-            return NO;
+            // no-lock file is always treated as success
+            success = YES;
         }
     }
+    
     if (isLocked) {
         *isLocked = isFinderLocked;
     }
-    return YES;
+    
+    return success;
 }
 
 
