@@ -2,6 +2,15 @@
 Change Log
 ==========================
 
+2.1.2
+--------------------------
+
+### Additions/Changes
+
+- Add “Cyrillic (Windows)” to the encoding list.
+
+
+
 2.1.1
 --------------------------
 

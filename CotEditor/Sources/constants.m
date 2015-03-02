@@ -453,6 +453,7 @@ CFStringEncodings const kCFStringEncodingList[] = {
     kCFStringEncodingISOLatinGreek, // Greek (ISO 8859-7)
     kCFStringEncodingMacCyrillic, // Cyrillic (Mac OS)
     kCFStringEncodingISOLatinCyrillic, // Cyrillic (ISO 8859-5)
+    kCFStringEncodingWindowsCyrillic, // Cyrillic (Windows)
     kCFStringEncodingMacCentralEurRoman, // Central European (Mac OS)
     kCFStringEncodingMacTurkish, // Turkish (Mac OS)
     kCFStringEncodingMacIcelandic, // Icelandic (Mac OS)
@@ -470,7 +471,6 @@ CFStringEncodings const kCFStringEncodingList[] = {
     kCFStringEncodingNonLossyASCII, // Non-lossy ASCII
     kCFStringEncodingInvalidId, // ----------
     
-    // Encodings available 10.4 and later (CotEditor added in 0.8.0)
     kCFStringEncodingUTF16BE, // Unicode (UTF-16BE)
     kCFStringEncodingUTF16LE, // Unicode (UTF-16LE)
     kCFStringEncodingUTF32, // Unicode (UTF-32)
@@ -492,6 +492,7 @@ CFStringEncodings const kCFStringEncodingInvalidYenList[] = {
     kCFStringEncodingISOLatinGreek, // Greek (ISO 8859-7)
     kCFStringEncodingMacCyrillic, // Cyrillic (Mac OS)
     kCFStringEncodingISOLatinCyrillic, // Cyrillic (ISO 8859-5)
+    kCFStringEncodingWindowsCyrillic, // Cyrillic (Windows)
     kCFStringEncodingMacCentralEurRoman, // Central European (Mac OS)
     kCFStringEncodingISOLatin2, // Central European (ISO Latin 2)
     kCFStringEncodingISOLatin3, // Western (ISO Latin 3)
