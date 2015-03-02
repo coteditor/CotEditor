@@ -225,6 +225,29 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 
 // ------------------------------------------------------
+/// modify place to create backup file
+- (void)saveToURL:(NSURL *)url ofType:(NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation completionHandler:(void (^)(NSError *))completionHandler
+// ------------------------------------------------------
+{
+    // save backup file always in `~/Library/Autosaved Information/` direcotory
+    // (The default backup URL is the same directory as the fileURL.)
+    if (saveOperation == NSAutosaveElsewhereOperation && [self fileURL]) {
+        NSURL *autosaveDirectoryURL =  [[NSFileManager defaultManager] URLForDirectory:NSAutosavedInformationDirectory
+                                                                              inDomain:NSUserDomainMask
+                                                                     appropriateForURL:nil
+                                                                                create:YES
+                                                                                 error:nil];
+        NSString *baseFileName = [[self fileURL] lastPathComponent];
+        NSString *fileName = [NSString stringWithFormat:@"%@ (%p)", [baseFileName stringByDeletingPathExtension], self];  // append a unique string to avoid overwriting another backup file with the same file name.
+        
+        url = [[autosaveDirectoryURL URLByAppendingPathComponent:fileName] URLByAppendingPathExtension:[baseFileName pathExtension]];
+    }
+    
+    [super saveToURL:url ofType:typeName forSaveOperation:saveOperation completionHandler:completionHandler];
+}
+
+
+// ------------------------------------------------------
 /// ファイルの保存(保存処理で包括的に呼ばれる)
 - (BOOL)writeSafelyToURL:(NSURL *)url ofType:(NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation error:(NSError *__autoreleasing *)outError
 // ------------------------------------------------------

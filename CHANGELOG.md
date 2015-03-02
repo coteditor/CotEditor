@@ -7,6 +7,7 @@ Change Log
 
 ### Additions/Changes
 
+- Change please to create backup files (Now, backup files are always created in `~/Library/Autosave Information/`).
 - Add “Cyrillic (Windows)” to the encoding list.
 
 
