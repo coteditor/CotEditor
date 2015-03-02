@@ -247,7 +247,9 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
         [self getFileAttributes];
         
         // 外部エディタプロトコル(ODB Editor Suite)のファイル更新通知送信
-        [[self ODBEventSender] sendModifiedEventWithURL:url operation:saveOperation];
+        if (saveOperation != NSAutosaveElsewhereOperation) {
+            [[self ODBEventSender] sendModifiedEventWithURL:url operation:saveOperation];
+        }
         
         // changeCountを更新
         [self updateChangeCountWithToken:token forSaveOperation:saveOperation];
