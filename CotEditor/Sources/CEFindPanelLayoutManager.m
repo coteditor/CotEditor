@@ -34,7 +34,6 @@
 
 @interface CEFindPanelLayoutManager ()
 
-@property (nonatomic, copy) NSDictionary *invisibleAttributes;
 @property (nonatomic) CGFloat fontSize;
 
 @end
@@ -68,13 +67,13 @@
 // ------------------------------------------------------
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    BOOL showInvisibles = YES;
+    BOOL showInvisibles = [defaults boolForKey:CEDefaultShowInvisiblesKey];
     
     if (showInvisibles) {
         NSTextView *textView = [self firstTextView];
         NSString *completeStr = [[self textStorage] string];
         NSUInteger lengthToRedraw = NSMaxRange(glyphsToShow);
-        NSSize size = [textView textContainerInset];
+        NSSize inset = [textView textContainerInset];
         
         NSColor *color;
         if (floor(NSAppKitVersionNumber) > NSAppKitVersionNumber10_9) {
@@ -85,9 +84,9 @@
         
         NSFont *font = [[self firstTextView] font];
         font = [font screenFont] ? : font;
-        NSFont *fullwidthFont = [[NSFont fontWithName:@"HiraKakuProN-W3" size:[font pointSize]] screenFont] ? : font;
         NSDictionary *attributes = @{NSFontAttributeName: font,
                                      NSForegroundColorAttributeName: color};
+        NSFont *fullwidthFont = [[NSFont fontWithName:@"HiraKakuProN-W3" size:[font pointSize]] screenFont] ? : font;
         NSDictionary *fullwidthAttributes = @{NSFontAttributeName: fullwidthFont,
                                               NSForegroundColorAttributeName: color};
         
@@ -97,20 +96,20 @@
         BOOL showsFullwidthSpace = [defaults boolForKey:CEDefaultShowInvisibleFullwidthSpaceKey];
         BOOL showsOtherInvisibles = [defaults boolForKey:CEDefaultShowOtherInvisibleCharsKey];
         
-        unichar spaceCharacter = [CEUtils invisibleSpaceChar:[defaults integerForKey:CEDefaultInvisibleSpaceKey]];
-        NSAttributedString *space = [[NSAttributedString alloc] initWithString:[NSString stringWithCharacters:&spaceCharacter length:1]
+        unichar spaceChar = [CEUtils invisibleSpaceChar:[defaults integerForKey:CEDefaultInvisibleSpaceKey]];
+        NSAttributedString *space = [[NSAttributedString alloc] initWithString:[NSString stringWithCharacters:&spaceChar length:1]
                                                                     attributes:attributes];
         
-        unichar tabCharacter = [CEUtils invisibleTabChar:[defaults integerForKey:CEDefaultInvisibleTabKey]];
-        NSAttributedString *tab = [[NSAttributedString alloc] initWithString:[NSString stringWithCharacters:&tabCharacter length:1]
+        unichar tabChar = [CEUtils invisibleTabChar:[defaults integerForKey:CEDefaultInvisibleTabKey]];
+        NSAttributedString *tab = [[NSAttributedString alloc] initWithString:[NSString stringWithCharacters:&tabChar length:1]
                                                                   attributes:attributes];
         
-        unichar newLineCharacter = [CEUtils invisibleNewLineChar:[defaults integerForKey:CEDefaultInvisibleNewLineKey]];
-        NSAttributedString *newLine = [[NSAttributedString alloc] initWithString:[NSString stringWithCharacters:&newLineCharacter length:1]
+        unichar newLineChar = [CEUtils invisibleNewLineChar:[defaults integerForKey:CEDefaultInvisibleNewLineKey]];
+        NSAttributedString *newLine = [[NSAttributedString alloc] initWithString:[NSString stringWithCharacters:&newLineChar length:1]
                                                                       attributes:attributes];
         
-        unichar fullwidthSpaceCharacter = [CEUtils invisibleFullwidthSpaceChar:[defaults integerForKey:CEDefaultInvisibleFullwidthSpaceKey]];
-        NSAttributedString *fullwidthSpace = [[NSAttributedString alloc] initWithString:[NSString stringWithCharacters:&fullwidthSpaceCharacter length:1]
+        unichar fullwidthSpaceChar = [CEUtils invisibleFullwidthSpaceChar:[defaults integerForKey:CEDefaultInvisibleFullwidthSpaceKey]];
+        NSAttributedString *fullwidthSpace = [[NSAttributedString alloc] initWithString:[NSString stringWithCharacters:&fullwidthSpaceChar length:1]
                                                                              attributes:fullwidthAttributes];
         
         for (NSUInteger glyphIndex = glyphsToShow.location; glyphIndex < lengthToRedraw; glyphIndex++) {
@@ -118,19 +117,19 @@
             unichar character = [completeStr characterAtIndex:charIndex];
             
             if (showsSpace && ((character == ' ') || (character == 0x00A0))) {
-                NSPoint pointToDraw = [self pointToDrawGlyphAtIndex:glyphIndex adjust:size];
+                NSPoint pointToDraw = [self pointToDrawGlyphAtIndex:glyphIndex adjust:inset];
                 [space drawAtPoint:pointToDraw];
                 
             } else if (showsTab && (character == '\t')) {
-                NSPoint pointToDraw = [self pointToDrawGlyphAtIndex:glyphIndex adjust:size];
+                NSPoint pointToDraw = [self pointToDrawGlyphAtIndex:glyphIndex adjust:inset];
                 [tab drawAtPoint:pointToDraw];
                 
             } else if (showsNewLine && (character == '\n')) {
-                NSPoint pointToDraw = [self pointToDrawGlyphAtIndex:glyphIndex adjust:size];
+                NSPoint pointToDraw = [self pointToDrawGlyphAtIndex:glyphIndex adjust:inset];
                 [newLine drawAtPoint:pointToDraw];
                 
             } else if (showsFullwidthSpace && (character == 0x3000)) { // Fullwidth-space (JP)
-                NSPoint pointToDraw = [self pointToDrawGlyphAtIndex:glyphIndex adjust:size];
+                NSPoint pointToDraw = [self pointToDrawGlyphAtIndex:glyphIndex adjust:inset];
                 [fullwidthSpace drawAtPoint:pointToDraw];
                 
             } else if (showsOtherInvisibles && ([self glyphAtIndex:glyphIndex] == NSControlGlyph)) {
@@ -194,10 +193,10 @@
 //------------------------------------------------------
 {
     NSPoint drawPoint = [self locationForGlyphAtIndex:glyphIndex];
-    NSRect theGlyphRect = [self lineFragmentRectForGlyphAtIndex:glyphIndex effectiveRange:NULL];
+    NSPoint lineOrigin = [self lineFragmentRectForGlyphAtIndex:glyphIndex effectiveRange:NULL].origin;
     
     drawPoint.x += size.width;
-    drawPoint.y = theGlyphRect.origin.y + size.height;
+    drawPoint.y = lineOrigin.y + size.height;
     
     return drawPoint;
 }
