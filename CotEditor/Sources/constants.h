@@ -193,7 +193,6 @@ extern NSString *const CEDefaultPrintColorIndexKey;
 extern NSString *const CEDefaultFindHistoryKey;
 extern NSString *const CEDefaultReplaceHistoryKey;
 extern NSString *const CEDefaultFindRegexSyntaxKey;
-extern NSString *const CEDefaultFindEscapeCharacterKey;
 extern NSString *const CEDefaultFindUsesRegularExpressionKey;
 extern NSString *const CEDefaultFindInSelectionKey;
 extern NSString *const CEDefaultFindIsWrapKey;

@@ -238,24 +238,6 @@
                                                                     <modifierMask key="keyEquivalentModifierMask"/>
                                                                     <connections>
                                                                         <action selector="changeSyntax:" target="qZS-yd-wpm" id="F7y-5o-SvY"/>
-                                                    <menuItem title="Escape Character" indentationLevel="1" id="r68-46-LBY">
-                                                        <menu key="submenu" title="Escape Character" id="OVR-vE-lYb">
-                                                            <items>
-                                                                <menuItem title="\" id="jZU-Im-diP">
-                                                                    <modifierMask key="keyEquivalentModifierMask"/>
-                                                                    <connections>
-                                                                        <action selector="changeEscapeCharacter:" target="qZS-yd-wpm" id="q6T-Wz-YU7"/>
-                                                                    </connections>
-                                                                </menuItem>
-                                                                <menuItem title="¥" id="sBj-Z6-qJG">
-                                                                    <modifierMask key="keyEquivalentModifierMask"/>
-                                                                    <connections>
-                                                                        <action selector="changeEscapeCharacter:" target="qZS-yd-wpm" id="Uep-ff-9Oe"/>
-                                                                    </connections>
-                                                                </menuItem>
-                                                            </items>
-                                                        </menu>
-                                                    </menuItem>
                                                                     </connections>
                                                                 </menuItem>
                                                                 <menuItem title="POSIX Extended" tag="2" id="QfE-cX-d9h">

@@ -101,11 +101,6 @@
 /* Class = "NSMenuItem"; title = "Ruby"; ObjectID = "NPK-8x-xDg"; */
 "NPK-8x-xDg.title" = "Ruby";
 
-/* Class = "NSMenuItem"; title = "Escape Character"; ObjectID = "r68-46-LBY"; */
-"r68-46-LBY.title" = "エスケープ文字";
-/* Class = "NSMenu"; title = "Escape Character"; ObjectID = "OVR-vE-lYb"; */
-"OVR-vE-lYb.title" = "エスケープ文字";
-
 /* Class = "NSMenuItem"; title = "Single Line"; ObjectID = "UQ6-Up-xWI"; */
 "UQ6-Up-xWI.title" = "単一行";
 /* Class = "NSMenuItem"; title = "Multiline"; ObjectID = "kPN-Hy-ym0"; */

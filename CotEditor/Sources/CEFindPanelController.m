@@ -37,6 +37,7 @@
 // constants
 static const CGFloat kDefaultResultViewHeight = 200.0;
 static const NSUInteger kMaxHistorySize = 20;
+static NSString *const kEscapeCharacter = @"\\";
 
 
 @interface CEFindPanelController () <NSWindowDelegate, NSSplitViewDelegate, NSPopoverDelegate>
@@ -48,7 +49,6 @@ static const NSUInteger kMaxHistorySize = 20;
 @property (nonatomic) NSLayoutConstraint *resultHeightConstraint;  // for autolayout on OS X 10.8
 
 #pragma mark Settings
-@property (nonatomic, copy) NSString *escapeCharacter;
 @property (readonly, nonatomic) BOOL usesRegularExpression;
 @property (readonly, nonatomic) BOOL isWrap;
 @property (readonly, nonatomic) BOOL inSection;
@@ -108,8 +108,6 @@ static const NSUInteger kMaxHistorySize = 20;
         // deserialize options setting from defaults
         [self setOptions:[[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultFindOptionsKey]];
         
-        _escapeCharacter = [[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultFindEscapeCharacterKey];
-        
         // add to responder chain
         [NSApp setNextResponder:self];
     }
@@ -129,7 +127,7 @@ static const NSUInteger kMaxHistorySize = 20;
     [self updateFindHistoryMenu];
     [self updateReplaceHistoryMenu];
     
-    [[self textFinder] setEscapeCharacter:[self escapeCharacter]];
+    [[self textFinder] setEscapeCharacter:kEscapeCharacter];
 }
 
 
@@ -212,10 +210,6 @@ static const NSUInteger kMaxHistorySize = 20;
     } else if ([menuItem action] == @selector(changeSyntax:)) {
         OgreSyntax syntax = [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultFindRegexSyntaxKey];
         [menuItem setState:([menuItem tag] == syntax) ? NSOnState : NSOffState];
-    
-    } else if ([menuItem action] == @selector(changeEscapeCharacter:)) {
-        NSString *escapeCharacter = [self escapeCharacter];
-        [menuItem setState:[[menuItem title] isEqualToString:escapeCharacter] ? NSOnState : NSOffState];
     }
     
     return YES;
@@ -589,19 +583,6 @@ static const NSUInteger kMaxHistorySize = 20;
 
 
 // ------------------------------------------------------
-/// change escape character setting via menu item
-- (IBAction)changeEscapeCharacter:(id)sender
-// ------------------------------------------------------
-{
-    NSString *escapeCharater = [sender title];
-    
-    [self setEscapeCharacter:escapeCharater];
-    [[self textFinder] setEscapeCharacter:escapeCharater];
-    [[NSUserDefaults standardUserDefaults] setObject:escapeCharater forKey:CEDefaultFindEscapeCharacterKey];
-}
-
-
-// ------------------------------------------------------
 /// option is toggled
 - (IBAction)toggleOption:(id)sender
 // ------------------------------------------------------
@@ -801,7 +782,7 @@ static const NSUInteger kMaxHistorySize = 20;
             [OGRegularExpression regularExpressionWithString:[self findString]
                                                      options:[self options]
                                                       syntax:[self syntax]
-                                             escapeCharacter:[self escapeCharacter]];
+                                             escapeCharacter:kEscapeCharacter];
             
         } @catch (NSException *exception) {
             if ([[exception name] isEqualToString:OgreException]) {
