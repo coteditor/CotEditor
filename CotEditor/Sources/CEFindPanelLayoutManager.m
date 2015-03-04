@@ -32,13 +32,10 @@
 #import "constants.h"
 
 
-// constants
-static const CGFloat kLineSpacing = 4.0;
-
-
 @interface CEFindPanelLayoutManager ()
 
 @property (nonatomic, copy) NSDictionary *invisibleAttributes;
+@property (nonatomic) CGFloat fontSize;
 
 @end
 
@@ -59,6 +56,7 @@ static const CGFloat kLineSpacing = 4.0;
 {
     self = [super init];
     if (self) {
+        _fontSize = [NSFont systemFontSize];
         [self setUsesScreenFonts:YES];
     }
     return self;
@@ -157,6 +155,33 @@ static const CGFloat kLineSpacing = 4.0;
     }
     
     [super drawGlyphsForGlyphRange:glyphsToShow atPoint:origin];
+}
+
+
+// ------------------------------------------------------
+/// fix vertical glyph location for mixed font
+- (NSPoint)locationForGlyphAtIndex:(NSUInteger)glyphIndex
+// ------------------------------------------------------
+{
+    NSPoint point = [super locationForGlyphAtIndex:glyphIndex];
+    point.y = [[NSFont systemFontOfSize:[self fontSize]] ascender];
+    
+    return point;
+}
+
+
+// ------------------------------------------------------
+/// fix line height for mixed font
+- (void)setLineFragmentRect:(NSRect)fragmentRect forGlyphRange:(NSRange)glyphRange usedRect:(NSRect)usedRect
+// ------------------------------------------------------
+{
+    static const CGFloat kLineSpacing = 4.0;
+    CGFloat lineHeight = [self fontSize] + kLineSpacing;
+    
+    fragmentRect.size.height = lineHeight;
+    usedRect.size.height = lineHeight;
+    
+    [super setLineFragmentRect:fragmentRect forGlyphRange:glyphRange usedRect:usedRect];
 }
 
 
