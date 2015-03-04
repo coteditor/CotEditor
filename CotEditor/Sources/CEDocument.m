@@ -1106,23 +1106,30 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 - (NSData *)forceReadDataFromURL:(NSURL *)url
 // ------------------------------------------------------
 {
-    NSData *data = nil;
-    NSString *convertedPath = @([[url path] UTF8String]);
-    NSTask *task = [[NSTask alloc] init];
+    __block BOOL success = NO;
+    __block NSData *data = nil;
     
-    @synchronized(self) {
-        [task setLaunchPath:@"/usr/libexec/authopen"];
-        [task setArguments:@[convertedPath]];
-        [task setStandardOutput:[NSPipe pipe]];
-        
-        [task launch];
-        data = [NSData dataWithData:[[[task standardOutput] fileHandleForReading] readDataToEndOfFile]];
-        [task waitUntilExit];
-    }
+    NSFileCoordinator *coordinator = [[NSFileCoordinator alloc] initWithFilePresenter:self];
+    [coordinator coordinateReadingItemAtURL:url options:0
+                                      error:nil
+                                 byAccessor:^(NSURL *newURL)
+     {
+         NSString *convertedPath = @([[newURL path] UTF8String]);
+         NSTask *task = [[NSTask alloc] init];
+         
+         [task setLaunchPath:@"/usr/libexec/authopen"];
+         [task setArguments:@[convertedPath]];
+         [task setStandardOutput:[NSPipe pipe]];
+         
+         [task launch];
+         data = [NSData dataWithData:[[[task standardOutput] fileHandleForReading] readDataToEndOfFile]];
+         [task waitUntilExit];
+         
+         int status = [task terminationStatus];
+         success = (status == 0);
+     }];
     
-    int status = [task terminationStatus];
-    
-    return (status == 0) ? data : nil;
+    return success ? data : nil;
 }
 
 
@@ -1400,7 +1407,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 - (BOOL)forceWriteToURL:(NSURL *)url ofType:(NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation
 // ------------------------------------------------------
 {
-    BOOL success = NO;
+    __block BOOL success = NO;
     NSData *data = [self dataOfType:typeName error:nil];
     
     if (!data) { return NO; }
@@ -1423,25 +1430,31 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
         return NO;
     }
     
+    NSFileCoordinator *coordinator = [[NSFileCoordinator alloc] initWithFilePresenter:self];
+    
     // "authopen" コマンドを使って保存
-    NSString *convertedPath = @([[url path] UTF8String]);
-    NSTask *task = [[NSTask alloc] init];
-
-    [task setLaunchPath:@"/usr/libexec/authopen"];
-    [task setArguments:@[@"-c", @"-w", convertedPath]];
-    [task setStandardInput:[NSPipe pipe]];
-
-    [task launch];
-    [[[task standardInput] fileHandleForWriting] writeData:data];
-    [[[task standardInput] fileHandleForWriting] closeFile];
-    [task waitUntilExit];
-
-    int status = [task terminationStatus];
-    success = (status == 0);
+    [coordinator coordinateWritingItemAtURL:url options:0
+                                      error:nil
+                                 byAccessor:^(NSURL *newURL)
+     {
+         NSString *convertedPath = @([[newURL path] UTF8String]);
+         NSTask *task = [[NSTask alloc] init];
+         
+         [task setLaunchPath:@"/usr/libexec/authopen"];
+         [task setArguments:@[@"-c", @"-w", convertedPath]];
+         [task setStandardInput:[NSPipe pipe]];
+         
+         [task launch];
+         [[[task standardInput] fileHandleForWriting] writeData:data];
+         [[[task standardInput] fileHandleForWriting] closeFile];
+         [task waitUntilExit];
+         
+         int status = [task terminationStatus];
+         success = (status == 0);
+     }];
     
     if (success) {
         // クリエータなどを設定
-        NSFileCoordinator *coordinator = [[NSFileCoordinator alloc] initWithFilePresenter:self];
         [coordinator coordinateWritingItemAtURL:url options:0
                                           error:nil
                                      byAccessor:^(NSURL *newURL)
@@ -1458,7 +1471,6 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     // Finder Lock がかかってたなら、再びかける
     if (isFinderLockOn) {
         __block BOOL lockSuccess = NO;
-        NSFileCoordinator *coordinator = [[NSFileCoordinator alloc] initWithFilePresenter:self];
         [coordinator coordinateWritingItemAtURL:url options:0
                                           error:nil
                                      byAccessor:^(NSURL *newURL)
