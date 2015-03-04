@@ -8,6 +8,11 @@ Change Log
 ### Additions/Changes
 
 - Change place to create backup files (Now, backup files are always created in `~/Library/Autosave Information/`).
+- Improve find panel:
+    - Add scroll bars to the text fields.
+    - Show invisible characters in text fields.
+    - Now, “Swap Yen and backslash keys” option is also applied to the fields in the find panel.
+    - Remove “Escape Character” option for regular expression search.
 - Add “Cyrillic (Windows)” to the encoding list.
 
 

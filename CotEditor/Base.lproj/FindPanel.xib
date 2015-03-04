@@ -15,7 +15,7 @@
         <window identifier="findPanel" title="Find &amp; Replace" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="findPanel" animationBehavior="default" id="Wal-Sg-6d6" userLabel="Find Panel" customClass="NSPanel">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" resizable="YES" utility="YES"/>
             <rect key="contentRect" x="167" y="107" width="540" height="380"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1280" height="777"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
             <view key="contentView" id="VS9-oi-ter">
                 <rect key="frame" x="0.0" y="0.0" width="540" height="380"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -27,48 +27,89 @@
                                 <rect key="frame" x="0.0" y="0.0" width="540" height="148"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <subviews>
-                                    <textField verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="l7V-L6-eHO">
-                                        <rect key="frame" x="72" y="30" width="448" height="44"/>
-                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" borderStyle="bezel" placeholderString="       Replace" drawsBackground="YES" id="oVG-0K-H2V" customClass="CEFindTextFieldCell">
-                                            <font key="font" metaFont="system"/>
-                                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                        </textFieldCell>
-                                        <connections>
-                                            <binding destination="qZS-yd-wpm" name="value" keyPath="replacementString" id="rCp-kT-O6b">
-                                                <dictionary key="options">
-                                                    <bool key="NSAllowsEditingMultipleValuesSelection" value="NO"/>
-                                                    <bool key="NSContinuouslyUpdatesValue" value="YES"/>
-                                                    <string key="NSNullPlaceholder">Replace</string>
-                                                    <bool key="NSValidatesImmediately" value="YES"/>
-                                                </dictionary>
-                                            </binding>
-                                            <outlet property="nextKeyView" destination="bcO-Vd-Pum" id="DSe-ru-2Pe"/>
-                                        </connections>
-                                    </textField>
-                                    <textField verticalHuggingPriority="249" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="bcO-Vd-Pum">
+                                    <scrollView focusRingType="exterior" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hxw-DS-gxQ" userLabel="Find Scroll View">
                                         <rect key="frame" x="72" y="84" width="448" height="44"/>
+                                        <clipView key="contentView" copiesOnScroll="NO" id="YCX-T1-drQ" customClass="CEFindPanelTextClipView">
+                                            <rect key="frame" x="1" y="1" width="223" height="133"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <subviews>
+                                                <textView importsGraphics="NO" richText="NO" allowsUndo="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" id="fDB-No-De7" customClass="CEFindPanelTextView">
+                                                    <rect key="frame" x="0.0" y="0.0" width="223" height="133"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <size key="minSize" width="446" height="42"/>
+                                                    <size key="maxSize" width="463" height="10000000"/>
+                                                    <color key="insertionPointColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                    <size key="minSize" width="446" height="42"/>
+                                                    <size key="maxSize" width="463" height="10000000"/>
+                                                    <connections>
+                                                        <binding destination="qZS-yd-wpm" name="value" keyPath="findString" id="oNs-q5-oCH">
+                                                            <dictionary key="options">
+                                                                <bool key="NSAllowsEditingMultipleValuesSelection" value="NO"/>
+                                                                <bool key="NSContinuouslyUpdatesValue" value="YES"/>
+                                                                <string key="NSNullPlaceholder">Find</string>
+                                                                <bool key="NSValidatesImmediately" value="YES"/>
+                                                            </dictionary>
+                                                        </binding>
+                                                        <outlet property="findPanelController" destination="qZS-yd-wpm" id="OWD-3g-T9c"/>
+                                                        <outlet property="nextKeyView" destination="0XH-tC-fau" id="nZE-Wv-9Ph"/>
+                                                    </connections>
+                                                </textView>
+                                            </subviews>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </clipView>
                                         <constraints>
-                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="f9q-Ai-xTj"/>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="pES-RH-prG"/>
                                         </constraints>
-                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" borderStyle="bezel" placeholderString="       Find" drawsBackground="YES" id="OdZ-gI-O2r" customClass="CEFindTextFieldCell">
-                                            <font key="font" metaFont="system"/>
-                                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                        </textFieldCell>
-                                        <connections>
-                                            <action selector="findNext:" target="qZS-yd-wpm" id="Rw0-sf-WVf"/>
-                                            <binding destination="qZS-yd-wpm" name="value" keyPath="findString" id="KFJ-K2-zGh">
-                                                <dictionary key="options">
-                                                    <bool key="NSAllowsEditingMultipleValuesSelection" value="NO"/>
-                                                    <bool key="NSContinuouslyUpdatesValue" value="YES"/>
-                                                    <string key="NSNullPlaceholder">Find</string>
-                                                    <bool key="NSValidatesImmediately" value="YES"/>
-                                                </dictionary>
-                                            </binding>
-                                            <outlet property="nextKeyView" destination="l7V-L6-eHO" id="FTF-NT-nq7"/>
-                                        </connections>
-                                    </textField>
+                                        <scroller key="horizontalScroller" verticalHuggingPriority="750" doubleValue="1" controlSize="small" horizontal="YES" id="r5Z-he-d07">
+                                            <rect key="frame" x="-100" y="-100" width="87" height="18"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </scroller>
+                                        <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" controlSize="small" horizontal="NO" id="UpI-hP-Ru9">
+                                            <rect key="frame" x="224" y="1" width="15" height="133"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </scroller>
+                                    </scrollView>
+                                    <scrollView focusRingType="exterior" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qiQ-tb-XCa" userLabel="Replecement Scroll View">
+                                        <rect key="frame" x="72" y="30" width="448" height="44"/>
+                                        <clipView key="contentView" copiesOnScroll="NO" id="sC4-EU-bnm" customClass="CEFindPanelTextClipView">
+                                            <rect key="frame" x="1" y="1" width="223" height="133"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <subviews>
+                                                <textView importsGraphics="NO" richText="NO" allowsUndo="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" id="0XH-tC-fau" customClass="CEFindPanelTextView">
+                                                    <rect key="frame" x="0.0" y="0.0" width="223" height="133"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <size key="minSize" width="446" height="42"/>
+                                                    <size key="maxSize" width="463" height="10000000"/>
+                                                    <color key="insertionPointColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                    <size key="minSize" width="446" height="42"/>
+                                                    <size key="maxSize" width="463" height="10000000"/>
+                                                    <connections>
+                                                        <binding destination="qZS-yd-wpm" name="value" keyPath="replacementString" id="zd8-iN-ws4">
+                                                            <dictionary key="options">
+                                                                <bool key="NSAllowsEditingMultipleValuesSelection" value="NO"/>
+                                                                <bool key="NSContinuouslyUpdatesValue" value="YES"/>
+                                                                <string key="NSNullPlaceholder">Replace</string>
+                                                                <bool key="NSValidatesImmediately" value="YES"/>
+                                                            </dictionary>
+                                                        </binding>
+                                                        <outlet property="nextKeyView" destination="fDB-No-De7" id="Xrl-J9-oZh"/>
+                                                    </connections>
+                                                </textView>
+                                            </subviews>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </clipView>
+                                        <scroller key="horizontalScroller" verticalHuggingPriority="750" doubleValue="1" controlSize="small" horizontal="YES" id="DHo-wb-6CP">
+                                            <rect key="frame" x="-100" y="-100" width="87" height="18"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </scroller>
+                                        <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" controlSize="small" horizontal="NO" id="kcQ-as-bev">
+                                            <rect key="frame" x="224" y="1" width="15" height="133"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </scroller>
+                                    </scrollView>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8My-G5-daT">
                                         <rect key="frame" x="69" y="7" width="125" height="18"/>
                                         <buttonCell key="cell" type="check" title="Regular Expression" bezelStyle="regularSquare" imagePosition="left" controlSize="small" state="on" inset="2" id="brT-HP-GVL">
@@ -238,24 +279,6 @@
                                                             </items>
                                                         </menu>
                                                     </menuItem>
-                                                    <menuItem title="Escape Character" indentationLevel="1" id="r68-46-LBY">
-                                                        <menu key="submenu" title="Escape Character" id="OVR-vE-lYb">
-                                                            <items>
-                                                                <menuItem title="\" id="jZU-Im-diP">
-                                                                    <modifierMask key="keyEquivalentModifierMask"/>
-                                                                    <connections>
-                                                                        <action selector="changeEscapeCharacter:" target="qZS-yd-wpm" id="q6T-Wz-YU7"/>
-                                                                    </connections>
-                                                                </menuItem>
-                                                                <menuItem title="¥" id="sBj-Z6-qJG">
-                                                                    <modifierMask key="keyEquivalentModifierMask"/>
-                                                                    <connections>
-                                                                        <action selector="changeEscapeCharacter:" target="qZS-yd-wpm" id="Uep-ff-9Oe"/>
-                                                                    </connections>
-                                                                </menuItem>
-                                                            </items>
-                                                        </menu>
-                                                    </menuItem>
                                                     <menuItem title="Single Line" tag="1" indentationLevel="1" id="UQ6-Up-xWI">
                                                         <connections>
                                                             <action selector="toggleOption:" target="qZS-yd-wpm" id="lGm-6L-ovY"/>
@@ -344,30 +367,29 @@
                                     </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="bcO-Vd-Pum" secondAttribute="trailing" constant="20" symbolic="YES" id="4xG-MF-G50"/>
-                                    <constraint firstItem="gM0-RD-hIC" firstAttribute="leading" secondItem="l7V-L6-eHO" secondAttribute="leading" constant="-3" id="6wd-uq-QGG"/>
+                                    <constraint firstItem="hxw-DS-gxQ" firstAttribute="leading" secondItem="EY8-gj-fQb" secondAttribute="trailing" constant="8" symbolic="YES" id="2Oh-vm-AAA"/>
+                                    <constraint firstItem="8My-G5-daT" firstAttribute="leading" secondItem="hxw-DS-gxQ" secondAttribute="leading" id="2Px-Ls-3RC"/>
+                                    <constraint firstItem="tu7-IT-dA3" firstAttribute="top" secondItem="qiQ-tb-XCa" secondAttribute="bottom" constant="8" symbolic="YES" id="3zE-iF-XlX"/>
+                                    <constraint firstAttribute="trailing" secondItem="hxw-DS-gxQ" secondAttribute="trailing" constant="20" symbolic="YES" id="56k-C9-YpU"/>
+                                    <constraint firstItem="hxw-DS-gxQ" firstAttribute="leading" secondItem="qiQ-tb-XCa" secondAttribute="leading" id="5cn-Lc-y98"/>
+                                    <constraint firstItem="hxw-DS-gxQ" firstAttribute="top" secondItem="lkE-wj-Gi5" secondAttribute="top" constant="20" symbolic="YES" id="7Zc-gJ-cne"/>
+                                    <constraint firstItem="GvT-tD-Cbk" firstAttribute="top" secondItem="qiQ-tb-XCa" secondAttribute="bottom" constant="8" symbolic="YES" id="7fX-EX-Etf"/>
                                     <constraint firstItem="8My-G5-daT" firstAttribute="centerY" secondItem="i2l-7Z-Zmf" secondAttribute="centerY" id="B6G-yH-N5A"/>
-                                    <constraint firstAttribute="trailing" secondItem="l7V-L6-eHO" secondAttribute="trailing" constant="20" symbolic="YES" id="CwA-d9-ijx"/>
-                                    <constraint firstItem="bcO-Vd-Pum" firstAttribute="leading" secondItem="l7V-L6-eHO" secondAttribute="leading" id="DCe-vg-reB"/>
-                                    <constraint firstItem="tu7-IT-dA3" firstAttribute="top" secondItem="l7V-L6-eHO" secondAttribute="bottom" constant="8" symbolic="YES" id="Eu5-LL-cmi"/>
-                                    <constraint firstItem="bcO-Vd-Pum" firstAttribute="height" secondItem="l7V-L6-eHO" secondAttribute="height" id="G8q-Mw-Dbl"/>
                                     <constraint firstItem="i2l-7Z-Zmf" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="tu7-IT-dA3" secondAttribute="trailing" constant="12" symbolic="YES" id="IKi-Zn-5pX"/>
                                     <constraint firstItem="EY8-gj-fQb" firstAttribute="leading" secondItem="lkE-wj-Gi5" secondAttribute="leading" constant="20" symbolic="YES" id="LOY-dv-dZe"/>
-                                    <constraint firstItem="bcO-Vd-Pum" firstAttribute="top" secondItem="lkE-wj-Gi5" secondAttribute="top" constant="20" symbolic="YES" id="O7x-yh-1xh"/>
                                     <constraint firstAttribute="bottom" secondItem="8My-G5-daT" secondAttribute="bottom" constant="10" id="U9G-t3-7BQ"/>
-                                    <constraint firstItem="8My-G5-daT" firstAttribute="top" secondItem="l7V-L6-eHO" secondAttribute="bottom" constant="8" symbolic="YES" id="Uye-P5-B73"/>
+                                    <constraint firstItem="hxw-DS-gxQ" firstAttribute="height" secondItem="qiQ-tb-XCa" secondAttribute="height" id="U9g-2U-ALP"/>
                                     <constraint firstAttribute="trailing" secondItem="i2l-7Z-Zmf" secondAttribute="trailing" constant="20" symbolic="YES" id="WF4-HF-UDF"/>
-                                    <constraint firstItem="ybT-sQ-Vn5" firstAttribute="top" secondItem="bcO-Vd-Pum" secondAttribute="top" constant="2" id="YXj-1y-SnG"/>
-                                    <constraint firstItem="ybT-sQ-Vn5" firstAttribute="leading" secondItem="bcO-Vd-Pum" secondAttribute="leading" constant="-3" id="abB-r2-pGB"/>
-                                    <constraint firstItem="bcO-Vd-Pum" firstAttribute="leading" secondItem="EY8-gj-fQb" secondAttribute="trailing" constant="8" symbolic="YES" id="fce-xA-WLu"/>
-                                    <constraint firstItem="bcO-Vd-Pum" firstAttribute="leading" secondItem="l7V-L6-eHO" secondAttribute="leading" id="heF-YI-2bT"/>
-                                    <constraint firstItem="GvT-tD-Cbk" firstAttribute="top" secondItem="l7V-L6-eHO" secondAttribute="bottom" constant="8" symbolic="YES" id="rFe-ch-03T"/>
-                                    <constraint firstItem="gM0-RD-hIC" firstAttribute="top" secondItem="l7V-L6-eHO" secondAttribute="top" constant="2" id="rVe-3h-ueu"/>
+                                    <constraint firstItem="hxw-DS-gxQ" firstAttribute="leading" secondItem="ybT-sQ-Vn5" secondAttribute="leading" constant="3" id="Ygo-iO-YvZ"/>
+                                    <constraint firstItem="hxw-DS-gxQ" firstAttribute="top" secondItem="EY8-gj-fQb" secondAttribute="top" id="ZnD-4N-pni"/>
+                                    <constraint firstItem="qiQ-tb-XCa" firstAttribute="leading" secondItem="gM0-RD-hIC" secondAttribute="leading" constant="3" id="duc-IJ-uJo"/>
+                                    <constraint firstItem="qiQ-tb-XCa" firstAttribute="top" secondItem="gM0-RD-hIC" secondAttribute="top" constant="-2" id="kM3-sK-QkA"/>
+                                    <constraint firstAttribute="trailing" secondItem="qiQ-tb-XCa" secondAttribute="trailing" constant="20" symbolic="YES" id="p4e-o4-Jfv"/>
+                                    <constraint firstItem="8My-G5-daT" firstAttribute="top" secondItem="qiQ-tb-XCa" secondAttribute="bottom" constant="8" symbolic="YES" id="pMc-aZ-JfI"/>
                                     <constraint firstItem="tu7-IT-dA3" firstAttribute="leading" secondItem="GvT-tD-Cbk" secondAttribute="trailing" constant="8" symbolic="YES" id="riZ-4A-Sii"/>
+                                    <constraint firstItem="hxw-DS-gxQ" firstAttribute="top" secondItem="ybT-sQ-Vn5" secondAttribute="top" constant="-2" id="tO8-50-o7G"/>
                                     <constraint firstItem="GvT-tD-Cbk" firstAttribute="leading" secondItem="8My-G5-daT" secondAttribute="trailing" constant="8" symbolic="YES" id="tbc-D3-uHU"/>
-                                    <constraint firstItem="bcO-Vd-Pum" firstAttribute="leading" secondItem="8My-G5-daT" secondAttribute="leading" id="uec-Po-k7L"/>
-                                    <constraint firstItem="bcO-Vd-Pum" firstAttribute="top" secondItem="EY8-gj-fQb" secondAttribute="top" id="vXe-3F-WGA"/>
-                                    <constraint firstItem="l7V-L6-eHO" firstAttribute="top" secondItem="bcO-Vd-Pum" secondAttribute="bottom" constant="10" symbolic="YES" id="yh3-8x-L1W"/>
+                                    <constraint firstItem="qiQ-tb-XCa" firstAttribute="top" secondItem="hxw-DS-gxQ" secondAttribute="bottom" constant="10" id="wWy-WI-ln7"/>
                                 </constraints>
                             </customView>
                             <customView id="CRP-NW-b9J" userLabel="Result View">
@@ -657,7 +679,7 @@
             </view>
             <connections>
                 <outlet property="delegate" destination="qZS-yd-wpm" id="ypw-qP-ztD"/>
-                <outlet property="initialFirstResponder" destination="bcO-Vd-Pum" id="UOj-bz-AOm"/>
+                <outlet property="initialFirstResponder" destination="fDB-No-De7" id="ADj-AL-xHX"/>
             </connections>
             <point key="canvasLocation" x="261" y="-21"/>
         </window>

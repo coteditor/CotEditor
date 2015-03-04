@@ -52,7 +52,6 @@ NSString *const CETextFinderDidUnhighlightNotification = @"CETextFinderDidUnhigh
                                CEDefaultReplaceHistoryKey: @[],
                                CEDefaultFindRegexSyntaxKey: @([OGRegularExpression defaultSyntax]),
                                CEDefaultFindOptionsKey: @(OgreCaptureGroupOption),
-                               CEDefaultFindEscapeCharacterKey: [OGRegularExpression defaultEscapeCharacter],
                                CEDefaultFindUsesRegularExpressionKey: @NO,
                                CEDefaultFindInSelectionKey: @NO,
                                CEDefaultFindIsWrapKey: @YES,

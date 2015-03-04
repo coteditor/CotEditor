@@ -197,7 +197,6 @@ NSString *const CEDefaultPrintColorIndexKey = @"printColorIndex";
 NSString *const CEDefaultFindHistoryKey = @"findHistory";
 NSString *const CEDefaultReplaceHistoryKey = @"replaceHistory";
 NSString *const CEDefaultFindRegexSyntaxKey = @"findRegexSynatx";
-NSString *const CEDefaultFindEscapeCharacterKey = @"findEscapeCharacter";
 NSString *const CEDefaultFindUsesRegularExpressionKey = @"findUsesRegularExpression";
 NSString *const CEDefaultFindInSelectionKey = @"findInSelection";
 NSString *const CEDefaultFindIsWrapKey = @"findIsWrap";
