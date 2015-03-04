@@ -28,6 +28,7 @@
  */
 
 #import "CEFindPanelTextView.h"
+#import "CEFindPanelLayoutManager.h"
 #import "CEFindPanelController.h"
 #import "constants.h"
 
@@ -65,6 +66,10 @@
         [[self textContainer] setWidthTracksTextView:NO];
         [[self textContainer] setContainerSize:NSMakeSize(CGFLOAT_MAX, CGFLOAT_MAX)];
         [self setHorizontallyResizable:YES];
+        
+        // set subclassed layout manager for invisible characters
+        CEFindPanelLayoutManager *layoutManager = [[CEFindPanelLayoutManager alloc] init];
+        [[self textContainer] replaceLayoutManager:layoutManager];
     }
     return self;
 }
