@@ -1521,33 +1521,31 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 // ------------------------------------------------------
 {
     __block BOOL isFinderLocked = NO;
-    BOOL success = NO;
+    __block BOOL success = NO;
     NSError *error = nil;
     NSFileManager *fileManager = [NSFileManager defaultManager];
     
-    @synchronized(self) {
-        NSFileCoordinator *coordinator = [[NSFileCoordinator alloc] initWithFilePresenter:self];
-        [coordinator coordinateReadingItemAtURL:url options:NSFileCoordinatorReadingWithoutChanges
-                                          error:&error
-                                     byAccessor:^(NSURL *newURL)
-         {
-             isFinderLocked = [[fileManager attributesOfItemAtPath:[newURL path] error:nil] fileIsImmutable];
-         }];
-        
-        if (isFinderLocked) {
-            // unlock file once
-            success = [fileManager setAttributes:@{NSFileImmutable:@NO} ofItemAtPath:[url path] error:nil];
-            if (success) {
-                // lock file again if needed
-                if (lockAgain) {
-                    [fileManager setAttributes:@{NSFileImmutable:@YES} ofItemAtPath:[url path] error:nil];
-                }
-            }
-        } else {
-            // no-lock file is always treated as success
-            success = YES;
-        }
-    }
+    NSFileCoordinator *coordinator = [[NSFileCoordinator alloc] initWithFilePresenter:self];
+    [coordinator coordinateWritingItemAtURL:url options:0
+                                      error:&error
+                                 byAccessor:^(NSURL *newURL)
+     {
+         isFinderLocked = [[fileManager attributesOfItemAtPath:[newURL path] error:nil] fileIsImmutable];
+         
+         if (isFinderLocked) {
+             // unlock file once
+             success = [fileManager setAttributes:@{NSFileImmutable:@NO} ofItemAtPath:[newURL path] error:nil];
+             if (success) {
+                 // lock file again if needed
+                 if (lockAgain) {
+                     [fileManager setAttributes:@{NSFileImmutable:@YES} ofItemAtPath:[newURL path] error:nil];
+                 }
+             }
+         } else {
+             // no-lock file is always treated as success
+             success = YES;
+         }
+     }];
     
     if (isLocked) {
         *isLocked = isFinderLocked;
