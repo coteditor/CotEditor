@@ -143,7 +143,7 @@ int main(int argc, const char * argv[])
         }
         
         // read piped text if exists
-        NSString *input;
+        NSString *input = nil;
         if (!isatty(fileno(stdin))) {
             NSFileHandle *inputHandler = [NSFileHandle fileHandleWithStandardInput];
             NSData *data = [inputHandler availableData];
@@ -195,10 +195,12 @@ int main(int argc, const char * argv[])
             [[CotEditor documents] addObject:document];
         }
         
-        document = document ? : [[CotEditor documents] firstObject];
-        
         // jump to location
-        if (document && (arguments[kLineOption] || arguments[kColumnOption])) {
+        if (arguments[kLineOption] || arguments[kColumnOption]) {
+            document = document ? : [[CotEditor documents] firstObject];
+            
+            if (!document) { exit(0); }
+            
             NSInteger line = [arguments[kLineOption] integerValue];  // 1 based
             NSInteger column = [arguments[kColumnOption] integerValue];
             

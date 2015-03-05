@@ -14,6 +14,7 @@ Change Log
     - Now, “Swap Yen and backslash keys” option is also applied to the fields in the find panel.
     - Remove “Escape Character” option for regular expression search.
 - Add “Cyrillic (Windows)” to the encoding list.
+- Optimize launching speed of `cot` command-line tool.
 
 
 ### Fixes
