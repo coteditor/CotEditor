@@ -383,7 +383,6 @@ static NSString *const kEscapeCharacter = @"\\";
     
     if (selectedString) {
         [self setFindString:selectedString];
-        [self showFindPanel:sender];
     } else {
         NSBeep();
     }
@@ -399,7 +398,6 @@ static NSString *const kEscapeCharacter = @"\\";
     
     if (selectedString) {
         [self setReplacementString:selectedString];
-        [self showFindPanel:sender];
     } else {
         NSBeep();
     }

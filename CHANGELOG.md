@@ -16,6 +16,11 @@ Change Log
 - Add “Cyrillic (Windows)” to the encoding list.
 
 
+### Fixes
+
+- Fix an issue where unwanted find panel was shown when perform “Use Selection for Find” or “Use Selection for Replace” action.
+
+
 
 2.1.1
 --------------------------
