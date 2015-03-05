@@ -11,7 +11,7 @@ Change Log
 - Improve find panel:
     - Add scroll bars to the text fields.
     - Show invisible characters in text fields.
-    - Now, “Swap Yen and backslash keys” option is also applied to the fields in the find panel.
+    - Now, “Swap Yen and backslash keys” option is also applied to the fields in the find panel.
     - Remove “Escape Character” option for regular expression search.
 - Add “Cyrillic (Windows)” to the encoding list.
 - Optimize launching speed of `cot` command-line tool.
@@ -19,6 +19,7 @@ Change Log
 
 ### Fixes
 
+- Fix an issue where application could hang up on saving backup file.
 - Fix an issue where unwanted find panel was shown when perform “Use Selection for Find” or “Use Selection for Replace” action.
 
 
