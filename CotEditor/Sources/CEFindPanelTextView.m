@@ -67,6 +67,15 @@
         [[self textContainer] setContainerSize:NSMakeSize(CGFLOAT_MAX, CGFLOAT_MAX)];
         [self setHorizontallyResizable:YES];
         
+        // disable automatic text substitutions
+        if ([self respondsToSelector:@selector(setAutomaticQuoteSubstitutionEnabled:)]) {  // only on OS X 10.9 and later
+            [self setAutomaticQuoteSubstitutionEnabled:NO];
+            [self setAutomaticDashSubstitutionEnabled:NO];
+        }
+        [self setAutomaticTextReplacementEnabled:NO];
+        [self setAutomaticSpellingCorrectionEnabled:NO];
+        [self setSmartInsertDeleteEnabled:NO];
+        
         // set subclassed layout manager for invisible characters
         CEFindPanelLayoutManager *layoutManager = [[CEFindPanelLayoutManager alloc] init];
         [[self textContainer] replaceLayoutManager:layoutManager];
