@@ -1538,13 +1538,18 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     NSFileManager *fileManager = [NSFileManager defaultManager];
     
     NSFileCoordinator *coordinator = [[NSFileCoordinator alloc] initWithFilePresenter:self];
-    [coordinator coordinateWritingItemAtURL:url options:0
+    [coordinator coordinateReadingItemAtURL:url options:NSFileCoordinatorReadingWithoutChanges
                                       error:&error
                                  byAccessor:^(NSURL *newURL)
      {
          isFinderLocked = [[fileManager attributesOfItemAtPath:[newURL path] error:nil] fileIsImmutable];
-         
-         if (isFinderLocked) {
+     }];
+    
+    if (isFinderLocked) {
+        [coordinator coordinateWritingItemAtURL:url options:0
+                                          error:&error
+                                     byAccessor:^(NSURL *newURL)
+         {
              // unlock file once
              success = [fileManager setAttributes:@{NSFileImmutable:@NO} ofItemAtPath:[newURL path] error:nil];
              if (success) {
@@ -1553,11 +1558,11 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
                      [fileManager setAttributes:@{NSFileImmutable:@YES} ofItemAtPath:[newURL path] error:nil];
                  }
              }
-         } else {
-             // no-lock file is always treated as success
-             success = YES;
-         }
-     }];
+         }];
+    } else {
+        // no-lock file is always treated as success
+        success = YES;
+    }
     
     if (isLocked) {
         *isLocked = isFinderLocked;
