@@ -1,11 +1,11 @@
 /*
  ==============================================================================
- CEFindTextFieldCell
+ CEFindPanelLayoutManager
  
  CotEditor
  http://coteditor.com
  
- Created on 2015-01-03 by 1024jp
+ Created on 2015-03-04 by 1024jp
  encoding="UTF-8"
  ------------------------------------------------------------------------------
  
@@ -27,24 +27,9 @@
  ==============================================================================
  */
 
-#import "CEFindTextFieldCell.h"
+@import Cocoa;
 
 
-@implementation CEFindTextFieldCell
-
-#pragma mark Superclass Methods
-
-// ------------------------------------------------------
-/// add left padding for history popup
-- (NSRect)drawingRectForBounds:(NSRect)theRect
-// ------------------------------------------------------
-{
-    const CGFloat padding = 28;
-    
-    theRect.size.width -= padding;
-    theRect.origin.x += padding;
-    
-    return [super drawingRectForBounds:theRect];
-}
+@interface CEFindPanelLayoutManager : NSLayoutManager
 
 @end

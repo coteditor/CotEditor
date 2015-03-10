@@ -16,10 +16,10 @@
 /* Class = "NSPanel"; title = "Find & Replace"; ObjectID = "Wal-Sg-6d6"; */
 "Wal-Sg-6d6.title" = "查找 & 替换";
 
-/* Class = "IBBindingConnection"; ibShadowedIsNilPlaceholder = "Find"; ObjectID = "KFJ-K2-zGh"; */
-"KFJ-K2-zGh.ibShadowedIsNilPlaceholder" = "查找";
-/* Class = "IBBindingConnection"; ibShadowedIsNilPlaceholder = "Replace"; ObjectID = "rCp-kT-O6b"; */
-"rCp-kT-O6b.ibShadowedIsNilPlaceholder" = "替换";
+/* Class = "IBBindingConnection"; ibShadowedIsNilPlaceholder = "Find"; ObjectID = "oNs-q5-oCH"; */
+"oNs-q5-oCH.ibShadowedIsNilPlaceholder" = "查找";
+/* Class = "IBBindingConnection"; ibShadowedIsNilPlaceholder = "Replace"; ObjectID = "zd8-iN-ws4"; */
+"zd8-iN-ws4.ibShadowedIsNilPlaceholder" = "替换";
 
 /* Class = "NSButtonCell"; title = "Regular Expression"; ObjectID = "brT-HP-GVL"; */
 "brT-HP-GVL.title" = "正则表达式";
@@ -101,11 +101,6 @@
 "mdl-TK-1fB.title" = "Perl";
 /* Class = "NSMenuItem"; title = "Ruby"; ObjectID = "NPK-8x-xDg"; */
 "NPK-8x-xDg.title" = "Ruby";
-
-/* Class = "NSMenuItem"; title = "Escape Character"; ObjectID = "r68-46-LBY"; */
-"r68-46-LBY.title" = "字符转换";
-/* Class = "NSMenu"; title = "Escape Character"; ObjectID = "OVR-vE-lYb"; */
-"OVR-vE-lYb.title" = "字符转换";
 
 /* Class = "NSMenuItem"; title = "Single Line"; ObjectID = "UQ6-Up-xWI"; */
 "UQ6-Up-xWI.title" = "单行";

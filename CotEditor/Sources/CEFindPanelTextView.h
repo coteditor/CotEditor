@@ -1,11 +1,11 @@
 /*
  ==============================================================================
- CEFindTextFieldCell
+ CEFindPanelTextView
  
  CotEditor
  http://coteditor.com
  
- Created on 2015-01-03 by 1024jp
+ Created on 2015-03-04 by 1024jp
  encoding="UTF-8"
  ------------------------------------------------------------------------------
  
@@ -30,6 +30,6 @@
 @import Cocoa;
 
 
-@interface CEFindTextFieldCell : NSTextFieldCell
+@interface CEFindPanelTextView : NSTextView
 
 @end

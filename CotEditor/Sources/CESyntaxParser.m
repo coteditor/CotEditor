@@ -65,11 +65,11 @@ typedef NS_ENUM(NSUInteger, QCStartEndType) {
 @property (nonatomic) CELayoutManager *layoutManager;
 
 @property (nonatomic) BOOL hasSyntaxHighlighting;
-@property (atomic, copy) NSDictionary *coloringDictionary;
-@property (atomic, copy) NSDictionary *simpleWordsCharacterSets;
-@property (atomic, copy) NSDictionary *pairedQuoteTypes;  // dict for quote pair to extract with comment
-@property (atomic, copy) NSArray *cacheColorings;  // extracted results cache of the last whole string coloring
-@property (atomic, copy) NSString *cacheHash;  // MD5 hash
+@property (nonatomic, copy) NSDictionary *coloringDictionary;
+@property (nonatomic, copy) NSDictionary *simpleWordsCharacterSets;
+@property (nonatomic, copy) NSDictionary *pairedQuoteTypes;  // dict for quote pair to extract with comment
+@property (nonatomic, copy) NSArray *cacheColorings;  // extracted results cache of the last whole string coloring
+@property (nonatomic, copy) NSString *cacheHash;  // MD5 hash
 
 @property (atomic) CEIndicatorSheetController *indicatorController;
 

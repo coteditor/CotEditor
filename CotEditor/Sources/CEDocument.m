@@ -55,8 +55,8 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 @property (nonatomic) CEPrintPanelAccessoryController *printPanelAccessoryController;
 
-@property (atomic) BOOL needsShowUpdateAlertWithBecomeKey;
-@property (atomic, getter=isRevertingForExternalFileUpdate) BOOL revertingForExternalFileUpdate;
+@property (nonatomic) BOOL needsShowUpdateAlertWithBecomeKey;
+@property (nonatomic, getter=isRevertingForExternalFileUpdate) BOOL revertingForExternalFileUpdate;
 @property (nonatomic) BOOL didAlertNotWritable;  // 文書が読み込み専用のときにその警告を表示したかどうか
 @property (nonatomic, copy) NSString *fileContentString;  // string that is read from the document file
 @property (nonatomic) CEODBEventSender *ODBEventSender;
@@ -225,6 +225,29 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 
 // ------------------------------------------------------
+/// modify place to create backup file
+- (void)saveToURL:(NSURL *)url ofType:(NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation completionHandler:(void (^)(NSError *))completionHandler
+// ------------------------------------------------------
+{
+    // save backup file always in `~/Library/Autosaved Information/` direcotory
+    // (The default backup URL is the same directory as the fileURL.)
+    if (saveOperation == NSAutosaveElsewhereOperation && [self fileURL]) {
+        NSURL *autosaveDirectoryURL =  [[NSFileManager defaultManager] URLForDirectory:NSAutosavedInformationDirectory
+                                                                              inDomain:NSUserDomainMask
+                                                                     appropriateForURL:nil
+                                                                                create:YES
+                                                                                 error:nil];
+        NSString *baseFileName = [[self fileURL] lastPathComponent];
+        NSString *fileName = [NSString stringWithFormat:@"%@ (%p)", [baseFileName stringByDeletingPathExtension], self];  // append a unique string to avoid overwriting another backup file with the same file name.
+        
+        url = [[autosaveDirectoryURL URLByAppendingPathComponent:fileName] URLByAppendingPathExtension:[baseFileName pathExtension]];
+    }
+    
+    [super saveToURL:url ofType:typeName forSaveOperation:saveOperation completionHandler:completionHandler];
+}
+
+
+// ------------------------------------------------------
 /// ファイルの保存(保存処理で包括的に呼ばれる)
 - (BOOL)writeSafelyToURL:(NSURL *)url ofType:(NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation error:(NSError *__autoreleasing *)outError
 // ------------------------------------------------------
@@ -247,7 +270,9 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
         [self getFileAttributes];
         
         // 外部エディタプロトコル(ODB Editor Suite)のファイル更新通知送信
-        [[self ODBEventSender] sendModifiedEventWithURL:url operation:saveOperation];
+        if (saveOperation != NSAutosaveElsewhereOperation) {
+            [[self ODBEventSender] sendModifiedEventWithURL:url operation:saveOperation];
+        }
         
         // changeCountを更新
         [self updateChangeCountWithToken:token forSaveOperation:saveOperation];
@@ -1081,23 +1106,30 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 - (NSData *)forceReadDataFromURL:(NSURL *)url
 // ------------------------------------------------------
 {
-    NSData *data = nil;
-    NSString *convertedPath = @([[url path] UTF8String]);
-    NSTask *task = [[NSTask alloc] init];
+    __block BOOL success = NO;
+    __block NSData *data = nil;
     
-    @synchronized(self) {
-        [task setLaunchPath:@"/usr/libexec/authopen"];
-        [task setArguments:@[convertedPath]];
-        [task setStandardOutput:[NSPipe pipe]];
-        
-        [task launch];
-        data = [NSData dataWithData:[[[task standardOutput] fileHandleForReading] readDataToEndOfFile]];
-        [task waitUntilExit];
-    }
+    NSFileCoordinator *coordinator = [[NSFileCoordinator alloc] initWithFilePresenter:self];
+    [coordinator coordinateReadingItemAtURL:url options:0
+                                      error:nil
+                                 byAccessor:^(NSURL *newURL)
+     {
+         NSString *convertedPath = @([[newURL path] UTF8String]);
+         NSTask *task = [[NSTask alloc] init];
+         
+         [task setLaunchPath:@"/usr/libexec/authopen"];
+         [task setArguments:@[convertedPath]];
+         [task setStandardOutput:[NSPipe pipe]];
+         
+         [task launch];
+         data = [NSData dataWithData:[[[task standardOutput] fileHandleForReading] readDataToEndOfFile]];
+         [task waitUntilExit];
+         
+         int status = [task terminationStatus];
+         success = (status == 0);
+     }];
     
-    int status = [task terminationStatus];
-    
-    return (status == 0) ? data : nil;
+    return success ? data : nil;
 }
 
 
@@ -1375,7 +1407,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 - (BOOL)forceWriteToURL:(NSURL *)url ofType:(NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation
 // ------------------------------------------------------
 {
-    BOOL success = NO;
+    __block BOOL success = NO;
     NSData *data = [self dataOfType:typeName error:nil];
     
     if (!data) { return NO; }
@@ -1398,25 +1430,31 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
         return NO;
     }
     
+    NSFileCoordinator *coordinator = [[NSFileCoordinator alloc] initWithFilePresenter:self];
+    
     // "authopen" コマンドを使って保存
-    NSString *convertedPath = @([[url path] UTF8String]);
-    NSTask *task = [[NSTask alloc] init];
-
-    [task setLaunchPath:@"/usr/libexec/authopen"];
-    [task setArguments:@[@"-c", @"-w", convertedPath]];
-    [task setStandardInput:[NSPipe pipe]];
-
-    [task launch];
-    [[[task standardInput] fileHandleForWriting] writeData:data];
-    [[[task standardInput] fileHandleForWriting] closeFile];
-    [task waitUntilExit];
-
-    int status = [task terminationStatus];
-    success = (status == 0);
+    [coordinator coordinateWritingItemAtURL:url options:0
+                                      error:nil
+                                 byAccessor:^(NSURL *newURL)
+     {
+         NSString *convertedPath = @([[newURL path] UTF8String]);
+         NSTask *task = [[NSTask alloc] init];
+         
+         [task setLaunchPath:@"/usr/libexec/authopen"];
+         [task setArguments:@[@"-c", @"-w", convertedPath]];
+         [task setStandardInput:[NSPipe pipe]];
+         
+         [task launch];
+         [[[task standardInput] fileHandleForWriting] writeData:data];
+         [[[task standardInput] fileHandleForWriting] closeFile];
+         [task waitUntilExit];
+         
+         int status = [task terminationStatus];
+         success = (status == 0);
+     }];
     
     if (success) {
         // クリエータなどを設定
-        NSFileCoordinator *coordinator = [[NSFileCoordinator alloc] initWithFilePresenter:self];
         [coordinator coordinateWritingItemAtURL:url options:0
                                           error:nil
                                      byAccessor:^(NSURL *newURL)
@@ -1433,7 +1471,6 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     // Finder Lock がかかってたなら、再びかける
     if (isFinderLockOn) {
         __block BOOL lockSuccess = NO;
-        NSFileCoordinator *coordinator = [[NSFileCoordinator alloc] initWithFilePresenter:self];
         [coordinator coordinateWritingItemAtURL:url options:0
                                           error:nil
                                      byAccessor:^(NSURL *newURL)
@@ -1496,32 +1533,35 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 // ------------------------------------------------------
 {
     __block BOOL isFinderLocked = NO;
-    BOOL success = NO;
+    __block BOOL success = NO;
     NSError *error = nil;
     NSFileManager *fileManager = [NSFileManager defaultManager];
     
-    @synchronized(self) {
-        NSFileCoordinator *coordinator = [[NSFileCoordinator alloc] initWithFilePresenter:self];
-        [coordinator coordinateReadingItemAtURL:url options:NSFileCoordinatorReadingWithoutChanges
+    NSFileCoordinator *coordinator = [[NSFileCoordinator alloc] initWithFilePresenter:self];
+    [coordinator coordinateReadingItemAtURL:url options:NSFileCoordinatorReadingWithoutChanges
+                                      error:&error
+                                 byAccessor:^(NSURL *newURL)
+     {
+         isFinderLocked = [[fileManager attributesOfItemAtPath:[newURL path] error:nil] fileIsImmutable];
+     }];
+    
+    if (isFinderLocked) {
+        [coordinator coordinateWritingItemAtURL:url options:0
                                           error:&error
                                      byAccessor:^(NSURL *newURL)
          {
-             isFinderLocked = [[fileManager attributesOfItemAtPath:[newURL path] error:nil] fileIsImmutable];
+             // unlock file once
+             success = [fileManager setAttributes:@{NSFileImmutable:@NO} ofItemAtPath:[newURL path] error:nil];
+             if (success) {
+                 // lock file again if needed
+                 if (lockAgain) {
+                     [fileManager setAttributes:@{NSFileImmutable:@YES} ofItemAtPath:[newURL path] error:nil];
+                 }
+             }
          }];
-        
-        if (isFinderLocked) {
-            // unlock file once
-            success = [fileManager setAttributes:@{NSFileImmutable:@NO} ofItemAtPath:[url path] error:nil];
-            if (success) {
-                // lock file again if needed
-                if (lockAgain) {
-                    [fileManager setAttributes:@{NSFileImmutable:@YES} ofItemAtPath:[url path] error:nil];
-                }
-            }
-        } else {
-            // no-lock file is always treated as success
-            success = YES;
-        }
+    } else {
+        // no-lock file is always treated as success
+        success = YES;
     }
     
     if (isLocked) {
