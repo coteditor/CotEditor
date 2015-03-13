@@ -2,6 +2,15 @@
 Change Log
 ==========================
 
+develop
+--------------------------
+
+### Additions/Changes
+
+- Revert find panel behavior to select always whole text in find field when the panel is called.
+
+
+
 2.1.2
 --------------------------
 

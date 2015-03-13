@@ -313,6 +313,11 @@ static NSString *const kEscapeCharacter = @"\\";
     }
     
     // select text in find text field
+    if ([[self findPanel] firstResponder] == [[self findPanel] initialFirstResponder]) {
+        // force reset firstResponder to invoke becomeFirstResponder in CEFindPanelTextView every time
+        // -> `becomeFirstResponder` will not be called on `makeFirstResponder:` if it given object is alrady set as first responder.
+        [[self findPanel] makeFirstResponder:nil];
+    }
     [[self findPanel] makeFirstResponder:[[self findPanel] initialFirstResponder]];
     
     [super showFindPanel:sender];
