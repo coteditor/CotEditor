@@ -10,6 +10,11 @@ develop
 - Revert find panel behavior to select always whole text in find field when the panel is called.
 
 
+### Fixes
+
+- Fix line number drawing with large line numbers.
+
+
 
 2.1.2
 --------------------------
