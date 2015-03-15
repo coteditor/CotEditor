@@ -67,9 +67,8 @@
 // ------------------------------------------------------
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    BOOL showInvisibles = [defaults boolForKey:CEDefaultShowInvisiblesKey];
     
-    if (showInvisibles) {
+    if ([defaults boolForKey:CEDefaultShowInvisiblesKey]) {
         NSTextView *textView = [self firstTextView];
         NSString *completeStr = [[self textStorage] string];
         NSUInteger lengthToRedraw = NSMaxRange(glyphsToShow);
