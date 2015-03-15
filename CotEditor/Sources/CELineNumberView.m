@@ -35,6 +35,7 @@
 
 
 static const CGFloat kMinVerticalThickness = 32.0;
+static const NSUInteger kMinNumberOfDigits = 3;
 
 
 @interface CELineNumberView ()
@@ -251,7 +252,8 @@ static const NSString *LineNumberFontName;
     CGContextRestoreGState(context);
     
     // adjust thickness
-    CGFloat requiredWidth = MAX(numberOfDigits(lineNum) * charWidth + 3 * kLineNumPadding, kMinVerticalThickness);
+    NSUInteger length = MAX(numberOfDigits(lineNum), kMinNumberOfDigits);
+    CGFloat requiredWidth = MAX(length * charWidth + 3 * kLineNumPadding, kMinVerticalThickness);
     [self setRuleThickness:ceil(requiredWidth)];
 }
 
