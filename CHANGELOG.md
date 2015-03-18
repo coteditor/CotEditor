@@ -13,6 +13,7 @@ develop
 ### Fixes
 
 - Fix line number drawing with large line numbers.
+- Improve general stability.
 
 
 

@@ -265,12 +265,12 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
         if (saveOperation == NSSaveAsOperation) {
             [self setSyntaxStyleWithFileName:[url lastPathComponent] coloring:YES];
         }
-
-        // 保持しているファイル情報／表示する文書情報を更新
-        [self getFileAttributes];
         
-        // 外部エディタプロトコル(ODB Editor Suite)のファイル更新通知送信
         if (saveOperation != NSAutosaveElsewhereOperation) {
+            // 保持しているファイル情報／表示する文書情報を更新
+            [self getFileAttributes];
+            
+            // 外部エディタプロトコル(ODB Editor Suite)のファイル更新通知送信
             [[self ODBEventSender] sendModifiedEventWithURL:url operation:saveOperation];
         }
         
