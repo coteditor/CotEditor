@@ -1157,15 +1157,15 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     // authopen コマンドを使って読み込む
     NSData *data = [self forceReadDataFromURL:url];
     
-    // presentedItemDidChangeにて内容の同一性を比較するためにファイルのMD5を保存する
-    [self setFileMD5:[data MD5]];
-    
     if (!data) {
         // オープンダイアログでのエラーアラートは CEDocumentController > openDocument: で表示する
         // アプリアイコンへのファイルドロップでのエラーアラートは NSDocumentController (NSApp ?) 内部で表示される
         // 復帰時は NSDocument 内部で表示
         return NO;
     }
+    
+    // presentedItemDidChangeにて内容の同一性を比較するためにファイルのMD5を保存する
+    [self setFileMD5:[data MD5]];
     
     // try reading the `com.apple.TextEncoding` extended attribute
     NSStringEncoding xattrEncoding = [url getAppleTextEncoding];
@@ -1473,8 +1473,10 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
      }];
     
     if (success) {
-        // presentedItemDidChange にて内容の同一性を比較するためにファイルの MD5 を保存する
-        [self setFileMD5:[data MD5]];
+        if (saveOperation != NSAutosaveElsewhereOperation) {
+            // presentedItemDidChange にて内容の同一性を比較するためにファイルの MD5 を保存する
+            [self setFileMD5:[data MD5]];
+        }
         
         // クリエータなどを設定
         [coordinator coordinateWritingItemAtURL:url options:0
