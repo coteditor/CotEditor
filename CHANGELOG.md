@@ -13,6 +13,7 @@ develop
 ### Fixes
 
 - Fix line number drawing with large line numbers.
+- Fix an issue where the external modification notification did not work.
 - Improve general stability.
 
 
