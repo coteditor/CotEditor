@@ -211,6 +211,7 @@
                                CEDefaultNotifyEditByAnotherKey: @YES,
                                CEDefaultColoringRangeBufferLengthKey: @5000,
                                CEDefaultLargeFileAlertThresholdKey: @(100 * pow(1024, 2)),  // 100 MB
+                               CEDefaultAutosavingDelayKey: @5.0,
                                };
     [[NSUserDefaults standardUserDefaults] registerDefaults:defaults];
     

@@ -234,6 +234,7 @@ NSString *const CEDefaultShowAlertForNotWritableKey = @"showAlertForNotWritable"
 NSString *const CEDefaultNotifyEditByAnotherKey = @"notifyEditByAnother";
 NSString *const CEDefaultColoringRangeBufferLengthKey = @"coloringRangeBufferLength";
 NSString *const CEDefaultLargeFileAlertThresholdKey = @"largeFileAlertThreshold";
+NSString *const CEDefaultAutosavingDelayKey = @"autosavingDelay";
 
 
 
