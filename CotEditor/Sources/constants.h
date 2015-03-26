@@ -230,6 +230,7 @@ extern NSString *const CEDefaultShowAlertForNotWritableKey;
 extern NSString *const CEDefaultNotifyEditByAnotherKey;
 extern NSString *const CEDefaultColoringRangeBufferLengthKey;
 extern NSString *const CEDefaultLargeFileAlertThresholdKey;
+extern NSString *const CEDefaultAutosavingDelayKey;
 
 
 

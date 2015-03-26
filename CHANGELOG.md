@@ -2,6 +2,22 @@
 Change Log
 ==========================
 
+develop
+--------------------------
+
+### Additions/Changes
+
+- Revert find panel behavior to select always whole text in find field when the panel is called.
+
+
+### Fixes
+
+- Fix line number drawing with large line numbers.
+- Fix an issue where the external modification notification did not work.
+- Improve general stability.
+
+
+
 2.1.2
 --------------------------
 

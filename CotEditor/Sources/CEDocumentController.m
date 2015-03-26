@@ -33,10 +33,6 @@
 #import "constants.h"
 
 
-// constant
-static const NSTimeInterval kAutosavingDelay = 5.0;
-
-
 @interface CEDocumentController ()
 
 @property (nonatomic) BOOL showsHiddenFiles;
@@ -68,7 +64,7 @@ static const NSTimeInterval kAutosavingDelay = 5.0;
     if (self) {
         _accessorySelectedEncoding = (NSStringEncoding)[[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultEncodingInOpenKey];
         
-        [self setAutosavingDelay:kAutosavingDelay];
+        [self setAutosavingDelay:(NSTimeInterval)[[NSUserDefaults standardUserDefaults] doubleForKey:CEDefaultAutosavingDelayKey]];
     }
     return self;
 }

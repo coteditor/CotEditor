@@ -34,7 +34,8 @@
 #import "constants.h"
 
 
-const CGFloat kMinVerticalThickness = 32.0;
+static const CGFloat kMinVerticalThickness = 32.0;
+static const NSUInteger kMinNumberOfDigits = 3;
 
 
 @interface CELineNumberView ()
@@ -83,6 +84,17 @@ static const NSString *LineNumberFontName;
                                                    object:scrollView];
     }
     return self;
+}
+
+
+// ------------------------------------------------------
+/// setup initial size
+- (void)viewDidMoveToSuperview
+// ------------------------------------------------------
+{
+    [super viewDidMoveToSuperview];
+    
+    [self setRuleThickness:kMinVerticalThickness];
 }
 
 
@@ -158,7 +170,7 @@ static const NSString *LineNumberFontName;
     CGFloat charWidth = advance.width;
     
     // prepare frame width
-    CGFloat width = kMinVerticalThickness;
+    CGFloat width = [self ruleThickness];
     
     // adjust drawing coordinate
     NSPoint relativePoint = [self convertPoint:NSZeroPoint fromView:[self textView]];
@@ -237,11 +249,12 @@ static const NSString *LineNumberFontName;
         CGContextShowGlyphsAtPositions(context, glyphs, positions, digit);  // draw line number
     }
     
-    // adjust thickness
-    CGFloat requiredWidth = MAX(numberOfDigits(lineNum) * charWidth + 3 * kLineNumPadding, kMinVerticalThickness);
-    [self setRuleThickness:ceil(requiredWidth)];
-    
     CGContextRestoreGState(context);
+    
+    // adjust thickness
+    NSUInteger length = MAX(numberOfDigits(lineNum), kMinNumberOfDigits);
+    CGFloat requiredWidth = MAX(length * charWidth + 3 * kLineNumPadding, kMinVerticalThickness);
+    [self setRuleThickness:ceil(requiredWidth)];
 }
 
 
