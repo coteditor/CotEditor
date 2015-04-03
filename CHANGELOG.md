@@ -5,6 +5,10 @@ Change Log
 develop
 --------------------------
 
+### Fixes
+
+- Improve general stability.
+
 
 
 2.1.3
