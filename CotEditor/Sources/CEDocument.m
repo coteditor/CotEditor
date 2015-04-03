@@ -1478,7 +1478,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
             [self setFileMD5:[data MD5]];
         }
         
-        // クリエータなどを設定
+        // ファイルのメタデータを設定
         [coordinator coordinateWritingItemAtURL:url options:0
                                           error:nil
                                      byAccessor:^(NSURL *newURL)
