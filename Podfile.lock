@@ -14,7 +14,8 @@ DEPENDENCIES:
   - Sparkle
   - SWFSemanticVersion
   - WFColorCode
-  - YAML-Framework (from `https://github.com/coteditor/YAML.framework.git`, branch `coteditor-mod`)
+  - YAML-Framework (from `https://github.com/coteditor/YAML.framework.git`, branch
+    `coteditor-mod`)
 
 EXTERNAL SOURCES:
   OgreKit:
@@ -41,4 +42,4 @@ SPEC CHECKSUMS:
   WFColorCode: 9d927e2ef98f45380bff2492e88bf7d987a1990a
   YAML-Framework: 6fe698e19d39d778829f5937e39d1e6bc12afd7b
 
-COCOAPODS: 0.36.0
+COCOAPODS: 0.36.3
