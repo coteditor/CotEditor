@@ -349,7 +349,7 @@ static const NSString *LineNumberFontName;
     NSUInteger currentIndex = [textView characterIndexForPoint:point];
     NSUInteger clickedIndex = timer ? [[timer userInfo] unsignedIntegerValue] : currentIndex;
     NSRange range = [[textView string] lineRangeForRange:NSMakeRange(MIN(currentIndex, clickedIndex),
-                                                                     abs(currentIndex - clickedIndex))];
+                                                                     currentIndex - clickedIndex)];
     [textView setSelectedRange:range];
 }
 
