@@ -9,7 +9,7 @@
  encoding="UTF-8"
  ------------------------------------------------------------------------------
  
- © 2014 CotEditor Project
+ © 2014-2015 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -30,9 +30,17 @@
 #import "CEGlyphPopoverController.h"
 
 
-// variation Selector
+// variation selectors
 static const unichar  kTextSequenceChar = 0xFE0E;
 static const unichar kEmojiSequenceChar = 0xFE0F;
+
+// emoji modifiers
+static const UTF32Char kType12EmojiModifierChar = 0x1F3FB; // Emoji Modifier Fitzpatrick type-1-2
+static const UTF32Char kType3EmojiModifierChar = 0x1F3FC;  // Emoji Modifier Fitzpatrick type-3
+static const UTF32Char kType4EmojiModifierChar = 0x1F3FD;  // Emoji Modifier Fitzpatrick type-4
+static const UTF32Char kType5EmojiModifierChar = 0x1F3FE;  // Emoji Modifier Fitzpatrick type-5
+static const UTF32Char kType6EmojiModifierChar = 0x1F3FF;  // Emoji Modifier Fitzpatrick type-6
+
 
 
 @interface CEGlyphPopoverController () <NSPopoverDelegate>
@@ -87,7 +95,7 @@ static const unichar kEmojiSequenceChar = 0xFE0F;
         
         BOOL isMultipleChars = NO;
         
-        // check valiation selector
+        // check variation selector
         NSString *variationSelectorAdditional;
         if ([unicodes count] == 2) {
             unichar lastChar = [character characterAtIndex:(length - 1)];
@@ -106,10 +114,30 @@ static const unichar kEmojiSequenceChar = 0xFE0F;
                     CFStringIsSurrogateLowCharacter(lowSurrogate))
                 {
                     UTF32Char pair = CFStringGetLongCharacterForSurrogatePair(highSurrogate, lowSurrogate);
-                    if (pair >= 0xE0100 && pair <= 0xE01EF) {
-                        variationSelectorAdditional = @"Variant";
-                    } else {
-                        isMultipleChars = YES;
+                    
+                    switch (pair) {
+                        case kType12EmojiModifierChar:
+                            variationSelectorAdditional = @"Skin Tone I-II";  // Light Skin Tone
+                            break;
+                        case kType3EmojiModifierChar:
+                            variationSelectorAdditional = @"Skin Tone III";  // Medium Light Skin Tone
+                            break;
+                        case kType4EmojiModifierChar:
+                            variationSelectorAdditional = @"Skin Tone IV";  // Medium Skin Tone
+                            break;
+                        case kType5EmojiModifierChar:
+                            variationSelectorAdditional = @"Skin Tone V";  // Medium Dark Skin Tone
+                            break;
+                        case kType6EmojiModifierChar:
+                            variationSelectorAdditional = @"Skin Tone VI";  // Dark Skin Tone
+                            break;
+                        default:
+                            if (pair >= 0xE0100 && pair <= 0xE01EF) {
+                                variationSelectorAdditional = @"Variant";
+                            } else {
+                                isMultipleChars = YES;
+                            }
+                            break;
                     }
                 }
             }

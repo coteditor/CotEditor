@@ -5,6 +5,11 @@ Change Log
 develop
 --------------------------
 
+### Additions/Changes
+
+- Support displaying skin tone variations of Unicode 8.0 on the character inspector.
+
+
 ### Fixes
 
 - Improve general stability.
