@@ -7,6 +7,20 @@ develop
 
 ### Additions/Changes
 
+- Support displaying skin tone variations of Unicode 8.0 on the character inspector.
+
+
+### Fixes
+
+- Fix an issue where the application could hang up on saving backup file.
+
+
+
+2.1.3
+--------------------------
+
+### Additions/Changes
+
 - Revert find panel behavior to select always whole text in find field when the panel is called.
 
 

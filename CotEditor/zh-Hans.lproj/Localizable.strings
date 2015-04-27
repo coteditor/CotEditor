@@ -156,6 +156,11 @@
 "<a letter consisting of %d characters>" = "<包含有 %d 个字符>";
 "Emoji Style" = "表情文字格式";
 "Text Style" = "文本文字格式";
+"Skin Tone I-II" = "Skin Tone I-II";  // FIXME:
+"Skin Tone III" = "Skin Tone III";  // FIXME:
+"Skin Tone IV" = "Skin Tone IV";  // FIXME:
+"Skin Tone V" = "Skin Tone V";  // FIXME:
+"Skin Tone VI" = "Skin Tone VI";  // FIXME:
 "Variant" = "异体字";
 
 

@@ -21,7 +21,7 @@ The source code is written in Cocoa and Objective-C with ARC enabled.
 
 ### Development Environment
 - OS X Yosemite
-- Xcode 6.1
+- Xcode 6.3
 
 
 

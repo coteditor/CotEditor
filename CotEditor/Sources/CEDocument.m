@@ -228,7 +228,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 // ------------------------------------------------------
 /// modify place to create backup file
-- (void)saveToURL:(NSURL *)url ofType:(NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation completionHandler:(void (^)(NSError *))completionHandler
+- (void)saveToURL:(NSURL *)url ofType:(NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation delegate:(id)delegate didSaveSelector:(SEL)didSaveSelector contextInfo:(void *)contextInfo
 // ------------------------------------------------------
 {
     // save backup file always in `~/Library/Autosaved Information/` direcotory
@@ -245,7 +245,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
         url = [[autosaveDirectoryURL URLByAppendingPathComponent:fileName] URLByAppendingPathExtension:[baseFileName pathExtension]];
     }
     
-    [super saveToURL:url ofType:typeName forSaveOperation:saveOperation completionHandler:completionHandler];
+    [super saveToURL:url ofType:typeName forSaveOperation:saveOperation delegate:delegate didSaveSelector:didSaveSelector contextInfo:contextInfo];
 }
 
 
@@ -254,14 +254,18 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 - (BOOL)writeSafelyToURL:(NSURL *)url ofType:(NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation error:(NSError *__autoreleasing *)outError
 // ------------------------------------------------------
 {
+    BOOL success = NO;
+    
     // break undo grouping before and after saving
     [[[self editor] focusedTextView] breakUndoCoalescing];
     
     id token = [self changeCountTokenForSaveOperation:saveOperation];
     
     // 保存処理実行
-    BOOL success = [self forceWriteToURL:url ofType:typeName forSaveOperation:saveOperation];
-
+    @synchronized(self) {
+        success = [self forceWriteToURL:url ofType:typeName forSaveOperation:saveOperation];
+    }
+    
     if (success) {
         // 新規保存時、カラーリングのために拡張子を保持
         if (saveOperation == NSSaveAsOperation) {
@@ -551,8 +555,10 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     [coordinator coordinateReadingItemAtURL:[self fileURL] options:NSFileCoordinatorReadingWithoutChanges
                                       error:nil byAccessor:^(NSURL *newURL)
      {
-         NSDictionary *fileAttrs = [[NSFileManager defaultManager] attributesOfItemAtPath:[newURL path] error:nil];
-         fileModificationDate = [fileAttrs fileModificationDate];
+         @synchronized(self) {
+             NSDictionary *fileAttrs = [[NSFileManager defaultManager] attributesOfItemAtPath:[newURL path] error:nil];
+             fileModificationDate = [fileAttrs fileModificationDate];
+         }
      }];
     if ([fileModificationDate isEqualToDate:[self fileModificationDate]]) { return; }
     
@@ -561,7 +567,9 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     [coordinator coordinateReadingItemAtURL:[self fileURL] options:NSFileCoordinatorReadingWithoutChanges
                                       error:nil byAccessor:^(NSURL *newURL)
      {
-         MD5 = [[NSData dataWithContentsOfURL:newURL] MD5];
+         @synchronized(self) {
+             MD5 = [[NSData dataWithContentsOfURL:newURL] MD5];
+         }
      }];
     if ([MD5 isEqualToString:[self fileMD5]]) {
         // documentの保持しているfileModificationDateを書き換える (2014-03 by 1024jp)
@@ -1068,7 +1076,9 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
                                       error:nil
                                  byAccessor:^(NSURL *newURL)
      {
-         attributes = [[NSFileManager defaultManager] attributesOfItemAtPath:[newURL path] error:nil];
+         @synchronized(self) {
+             attributes = [[NSFileManager defaultManager] attributesOfItemAtPath:[newURL path] error:nil];
+         }
      }];
     
     if (attributes) {
@@ -1478,7 +1488,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
             [self setFileMD5:[data MD5]];
         }
         
-        // クリエータなどを設定
+        // ファイルのメタデータを設定
         [coordinator coordinateWritingItemAtURL:url options:0
                                           error:nil
                                      byAccessor:^(NSURL *newURL)
