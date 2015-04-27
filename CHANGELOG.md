@@ -12,7 +12,7 @@ develop
 
 ### Fixes
 
-- Improve general stability.
+- Fix an issue where the application could hang up on saving backup file.
 
 
 
