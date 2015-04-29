@@ -205,12 +205,14 @@ static BOOL usesTextFontForInvisibles;
         CGPathRef tabGlyphPath = glyphPathWithCharacter([self tabChar], font, false);
         CGPathRef newLineGlyphPath = glyphPathWithCharacter([self newLineChar], font, false);
         CGPathRef fullWidthSpaceGlyphPath = glyphPathWithCharacter([self fullwidthSpaceChar], font, true);
+        CGPathRef verticalTabGlyphPath = glyphPathWithCharacter(kVerticalTabChar, font, true);
         
         // store value to avoid accessing properties each time  (2014-07 by 1024jp)
         BOOL showsSpace = [self showsSpace];
         BOOL showsTab = [self showsTab];
         BOOL showsNewLine = [self showsNewLine];
         BOOL showsFullwidthSpace = [self showsFullwidthSpace];
+        BOOL showsVerticalTab = [self showsOtherInvisibles];  // Vertical tab belongs to other invisibles.
         BOOL showsOtherInvisibles = [self showsOtherInvisibles];
         
         // draw invisibles glyph by glyph
@@ -233,10 +235,15 @@ static BOOL usesTextFontForInvisibles;
                 CGAffineTransform translate = CGAffineTransformMakeTranslation(point.x, point.y);
                 CGPathAddPath(paths, &translate, newLineGlyphPath);
 
-            } else if (showsFullwidthSpace && (character == 0x3000)) { // Fullwidth-space (JP)
+            } else if (showsFullwidthSpace && (character == 0x3000)) { // fullwidth-space (JP)
                 NSPoint point = [self pointToDrawGlyphAtIndex:glyphIndex];
                 CGAffineTransform translate = CGAffineTransformMakeTranslation(point.x, point.y);
                 CGPathAddPath(paths, &translate, fullWidthSpaceGlyphPath);
+                
+            } else if (showsVerticalTab && (character == '\v')) {
+                NSPoint point = [self pointToDrawGlyphAtIndex:glyphIndex];
+                CGAffineTransform translate = CGAffineTransformMakeTranslation(point.x, point.y);
+                CGPathAddPath(paths, &translate, verticalTabGlyphPath);
 
             } else if (showsOtherInvisibles && ([self glyphAtIndex:glyphIndex isValidIndex:NULL] == NSControlGlyph)) {
                 if (!replaceFont) {  // delay creating font/glyph till they are really needed
@@ -398,8 +405,9 @@ CGPathRef glyphPathWithCharacter(unichar character, CTFontRef font, bool prefers
     
     // try fallback fonts in cases where user font doesn't support the input charactor
     // - All invisible characters of choices can be covered with the following two fonts.
+    // - Monaco for vertical tab
     CGPathRef path = NULL;
-    NSArray *fallbackFontNames = prefersFullWidth ? @[@"HiraKakuProN-W3", @"LucidaGrande"] : @[@"LucidaGrande", @"HiraKakuProN-W3"];
+    NSArray *fallbackFontNames = prefersFullWidth ? @[@"HiraKakuProN-W3", @"LucidaGrande", @"Monaco"] : @[@"LucidaGrande", @"HiraKakuProN-W3", @"Monaco"];
     
     for (NSString *fontName in fallbackFontNames) {
         CTFontRef fallbackFont = CTFontCreateWithName((CFStringRef)fontName, fontSize, 0);
