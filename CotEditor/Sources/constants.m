@@ -524,6 +524,8 @@ NSUInteger  const kSizeOfInvisibleNewLineCharList = sizeof(kInvisibleNewLineChar
 unichar     const kInvisibleFullwidthSpaceCharList[] = {0x25A1, 0x22A0, 0x25A0, 0x25B3};
 NSUInteger  const kSizeOfInvisibleFullwidthSpaceCharList = sizeof(kInvisibleFullwidthSpaceCharList) / sizeof(unichar);
 
+unichar const kVerticalTabChar = 0x240B;  // symbol for vertical tablation
+
 
 
 // ------------------------------------------------------
