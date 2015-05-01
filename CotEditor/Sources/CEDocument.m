@@ -228,7 +228,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 // ------------------------------------------------------
 /// modify place to create backup file
-- (void)saveToURL:(NSURL *)url ofType:(NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation delegate:(id)delegate didSaveSelector:(SEL)didSaveSelector contextInfo:(void *)contextInfo
+- (void)saveToURL:(NSURL *)url ofType:(NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation completionHandler:(void (^)(NSError *))completionHandler
 // ------------------------------------------------------
 {
     // save backup file always in `~/Library/Autosaved Information/` direcotory
@@ -245,7 +245,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
         url = [[autosaveDirectoryURL URLByAppendingPathComponent:fileName] URLByAppendingPathExtension:[baseFileName pathExtension]];
     }
     
-    [super saveToURL:url ofType:typeName forSaveOperation:saveOperation delegate:delegate didSaveSelector:didSaveSelector contextInfo:contextInfo];
+    [super saveToURL:url ofType:typeName forSaveOperation:saveOperation completionHandler:completionHandler];
 }
 
 
