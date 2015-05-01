@@ -14,6 +14,7 @@ develop
 ### Fixes
 
 - Fix an issue where the application could hang up on saving backup file.
+- Fix an issue where the auto-update notifier did not recognize a new stable version from specific beta version numbers.
 
 
 
