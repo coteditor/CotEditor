@@ -269,9 +269,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     id token = [self changeCountTokenForSaveOperation:saveOperation];
     
     // 保存処理実行
-    @synchronized(self) {
-        success = [self forceWriteToURL:url ofType:typeName forSaveOperation:saveOperation];
-    }
+    success = [self forceWriteToURL:url ofType:typeName forSaveOperation:saveOperation];
     
     if (success) {
         // 新規保存時、カラーリングのために拡張子を保持
@@ -562,10 +560,8 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     [coordinator coordinateReadingItemAtURL:[self fileURL] options:NSFileCoordinatorReadingWithoutChanges
                                       error:nil byAccessor:^(NSURL *newURL)
      {
-         @synchronized(self) {
-             NSDictionary *fileAttrs = [[NSFileManager defaultManager] attributesOfItemAtPath:[newURL path] error:nil];
-             fileModificationDate = [fileAttrs fileModificationDate];
-         }
+         NSDictionary *fileAttrs = [[NSFileManager defaultManager] attributesOfItemAtPath:[newURL path] error:nil];
+         fileModificationDate = [fileAttrs fileModificationDate];
      }];
     if ([fileModificationDate isEqualToDate:[self fileModificationDate]]) { return; }
     
@@ -574,9 +570,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     [coordinator coordinateReadingItemAtURL:[self fileURL] options:NSFileCoordinatorReadingWithoutChanges
                                       error:nil byAccessor:^(NSURL *newURL)
      {
-         @synchronized(self) {
-             MD5 = [[NSData dataWithContentsOfURL:newURL] MD5];
-         }
+         MD5 = [[NSData dataWithContentsOfURL:newURL] MD5];
      }];
     if ([MD5 isEqualToString:[self fileMD5]]) {
         // documentの保持しているfileModificationDateを書き換える (2014-03 by 1024jp)
@@ -1083,9 +1077,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
                                       error:nil
                                  byAccessor:^(NSURL *newURL)
      {
-         @synchronized(self) {
-             attributes = [[NSFileManager defaultManager] attributesOfItemAtPath:[newURL path] error:nil];
-         }
+         attributes = [[NSFileManager defaultManager] attributesOfItemAtPath:[newURL path] error:nil];
      }];
     
     if (attributes) {
