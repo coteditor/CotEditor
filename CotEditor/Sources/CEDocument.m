@@ -228,24 +228,31 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 // ------------------------------------------------------
 /// modify place to create backup file
-- (void)saveToURL:(NSURL *)url ofType:(NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation delegate:(id)delegate didSaveSelector:(SEL)didSaveSelector contextInfo:(void *)contextInfo
+- (void)saveToURL:(NSURL *)url ofType:(NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation completionHandler:(void (^)(NSError *))completionHandler
 // ------------------------------------------------------
 {
-    // save backup file always in `~/Library/Autosaved Information/` direcotory
-    // (The default backup URL is the same directory as the fileURL.)
-    if (saveOperation == NSAutosaveElsewhereOperation && [self fileURL]) {
-        NSURL *autosaveDirectoryURL =  [[NSFileManager defaultManager] URLForDirectory:NSAutosavedInformationDirectory
-                                                                              inDomain:NSUserDomainMask
-                                                                     appropriateForURL:nil
-                                                                                create:YES
-                                                                                 error:nil];
-        NSString *baseFileName = [[self fileURL] lastPathComponent];
-        NSString *fileName = [NSString stringWithFormat:@"%@ (%p)", [baseFileName stringByDeletingPathExtension], self];  // append a unique string to avoid overwriting another backup file with the same file name.
+    [self performAsynchronousFileAccessUsingBlock:^(void (^fileAccessCompletionHandler)(void)) {
+        NSURL *newURL = url;
         
-        url = [[autosaveDirectoryURL URLByAppendingPathComponent:fileName] URLByAppendingPathExtension:[baseFileName pathExtension]];
-    }
-    
-    [super saveToURL:url ofType:typeName forSaveOperation:saveOperation delegate:delegate didSaveSelector:didSaveSelector contextInfo:contextInfo];
+        // save backup file always in `~/Library/Autosaved Information/` direcotory
+        // (The default backup URL is the same directory as the fileURL.)
+        if (saveOperation == NSAutosaveElsewhereOperation && [self fileURL]) {
+            NSURL *autosaveDirectoryURL =  [[NSFileManager defaultManager] URLForDirectory:NSAutosavedInformationDirectory
+                                                                                  inDomain:NSUserDomainMask
+                                                                         appropriateForURL:nil
+                                                                                    create:YES
+                                                                                     error:nil];
+            NSString *baseFileName = [[self fileURL] lastPathComponent];
+            NSString *fileName = [NSString stringWithFormat:@"%@ (%p)", [baseFileName stringByDeletingPathExtension], self];  // append a unique string to avoid overwriting another backup file with the same file name.
+            
+            newURL = [[autosaveDirectoryURL URLByAppendingPathComponent:fileName] URLByAppendingPathExtension:[baseFileName pathExtension]];
+        }
+        
+        [super saveToURL:newURL ofType:typeName forSaveOperation:saveOperation completionHandler:^(NSError *error) {
+            fileAccessCompletionHandler();
+            completionHandler(error);
+        }];
+    }];
 }
 
 
@@ -262,9 +269,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     id token = [self changeCountTokenForSaveOperation:saveOperation];
     
     // 保存処理実行
-    @synchronized(self) {
-        success = [self forceWriteToURL:url ofType:typeName forSaveOperation:saveOperation];
-    }
+    success = [self forceWriteToURL:url ofType:typeName forSaveOperation:saveOperation];
     
     if (success) {
         // 新規保存時、カラーリングのために拡張子を保持
@@ -555,10 +560,8 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     [coordinator coordinateReadingItemAtURL:[self fileURL] options:NSFileCoordinatorReadingWithoutChanges
                                       error:nil byAccessor:^(NSURL *newURL)
      {
-         @synchronized(self) {
-             NSDictionary *fileAttrs = [[NSFileManager defaultManager] attributesOfItemAtPath:[newURL path] error:nil];
-             fileModificationDate = [fileAttrs fileModificationDate];
-         }
+         NSDictionary *fileAttrs = [[NSFileManager defaultManager] attributesOfItemAtPath:[newURL path] error:nil];
+         fileModificationDate = [fileAttrs fileModificationDate];
      }];
     if ([fileModificationDate isEqualToDate:[self fileModificationDate]]) { return; }
     
@@ -567,9 +570,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     [coordinator coordinateReadingItemAtURL:[self fileURL] options:NSFileCoordinatorReadingWithoutChanges
                                       error:nil byAccessor:^(NSURL *newURL)
      {
-         @synchronized(self) {
-             MD5 = [[NSData dataWithContentsOfURL:newURL] MD5];
-         }
+         MD5 = [[NSData dataWithContentsOfURL:newURL] MD5];
      }];
     if ([MD5 isEqualToString:[self fileMD5]]) {
         // documentの保持しているfileModificationDateを書き換える (2014-03 by 1024jp)
@@ -1076,9 +1077,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
                                       error:nil
                                  byAccessor:^(NSURL *newURL)
      {
-         @synchronized(self) {
-             attributes = [[NSFileManager defaultManager] attributesOfItemAtPath:[newURL path] error:nil];
-         }
+         attributes = [[NSFileManager defaultManager] attributesOfItemAtPath:[newURL path] error:nil];
      }];
     
     if (attributes) {

@@ -44,7 +44,7 @@
 #import "CEUnicodeInputPanelController.h"
 #import "CEMigrationWindowController.h"
 #import "CEDocument.h"
-#import "SWFSemanticVersion.h"
+#import "EDSemVer.h"
 #import "constants.h"
 
 
@@ -361,9 +361,9 @@
     // store latest version
     NSString *lastVersion = [[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultLastVersionKey];
     NSString *thisVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:(NSString *)kCFBundleVersionKey];
-    SWFSemanticVersion *lastSemVer = lastVersion ? [SWFSemanticVersion semanticVersionWithString:lastVersion] : nil;
-    SWFSemanticVersion *thisSemVer = [SWFSemanticVersion semanticVersionWithString:thisVersion];
-    if (!lastSemVer || [lastSemVer compare:thisSemVer] == NSOrderedAscending) {  // lastVer < thisVer
+    EDSemver *lastSemVer = lastVersion ? [EDSemver semverWithString:lastVersion] : nil;
+    EDSemver *thisSemVer = [EDSemver semverWithString:thisVersion];
+    if (!lastSemVer || [lastSemVer isLessThan:thisSemVer]) {
         [[NSUserDefaults standardUserDefaults] setObject:thisVersion forKey:CEDefaultLastVersionKey];
     }
     

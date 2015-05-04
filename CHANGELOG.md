@@ -8,11 +8,13 @@ develop
 ### Additions/Changes
 
 - Support displaying skin tone variations of Unicode 8.0 on the character inspector.
+- Display invisible vertical tab (`U+000B`) with `␋` symbol if “Show other invisible characters” turns on.
 
 
 ### Fixes
 
 - Fix an issue where the application could hang up on saving backup file.
+- Fix an issue where the auto-update notifier did not recognize a new stable version from specific beta version numbers.
 
 
 

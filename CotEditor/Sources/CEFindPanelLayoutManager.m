@@ -93,6 +93,7 @@
         BOOL showsTab = [defaults boolForKey:CEDefaultShowInvisibleTabKey];
         BOOL showsNewLine = [defaults boolForKey:CEDefaultShowInvisibleNewLineKey];
         BOOL showsFullwidthSpace = [defaults boolForKey:CEDefaultShowInvisibleFullwidthSpaceKey];
+        BOOL showsVerticalTab = [defaults boolForKey:CEDefaultShowOtherInvisibleCharsKey];
         BOOL showsOtherInvisibles = [defaults boolForKey:CEDefaultShowOtherInvisibleCharsKey];
         
         unichar spaceChar = [CEUtils invisibleSpaceChar:[defaults integerForKey:CEDefaultInvisibleSpaceKey]];
@@ -111,6 +112,9 @@
         NSAttributedString *fullwidthSpace = [[NSAttributedString alloc] initWithString:[NSString stringWithCharacters:&fullwidthSpaceChar length:1]
                                                                              attributes:fullwidthAttributes];
         
+        NSAttributedString *verticalTab = [[NSAttributedString alloc] initWithString:[NSString stringWithCharacters:&kVerticalTabChar length:1]
+                                                                          attributes:attributes];
+        
         for (NSUInteger glyphIndex = glyphsToShow.location; glyphIndex < lengthToRedraw; glyphIndex++) {
             NSUInteger charIndex = [self characterIndexForGlyphAtIndex:glyphIndex];
             unichar character = [completeStr characterAtIndex:charIndex];
@@ -127,9 +131,13 @@
                 NSPoint pointToDraw = [self pointToDrawGlyphAtIndex:glyphIndex adjust:inset];
                 [newLine drawAtPoint:pointToDraw];
                 
-            } else if (showsFullwidthSpace && (character == 0x3000)) { // Fullwidth-space (JP)
+            } else if (showsFullwidthSpace && (character == 0x3000)) { // fullwidth-space (JP)
                 NSPoint pointToDraw = [self pointToDrawGlyphAtIndex:glyphIndex adjust:inset];
                 [fullwidthSpace drawAtPoint:pointToDraw];
+                
+            } else if (showsVerticalTab && (character == '\v')) {
+                NSPoint pointToDraw = [self pointToDrawGlyphAtIndex:glyphIndex adjust:inset];
+                [verticalTab drawAtPoint:pointToDraw];
                 
             } else if (showsOtherInvisibles && ([self glyphAtIndex:glyphIndex] == NSControlGlyph)) {
                 NSFont *replaceFont = [NSFont fontWithName:@"Lucida Grande" size:[font pointSize]];

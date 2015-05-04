@@ -488,6 +488,8 @@ extern NSUInteger const kSizeOfInvisibleNewLineCharList;
 extern unichar    const kInvisibleFullwidthSpaceCharList[];
 extern NSUInteger const kSizeOfInvisibleFullwidthSpaceCharList;
 
+extern unichar const kVerticalTabChar;
+
 
 
 // ------------------------------------------------------
