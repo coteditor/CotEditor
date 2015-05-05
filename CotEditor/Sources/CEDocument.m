@@ -231,19 +231,21 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 - (void)saveToURL:(NSURL *)url ofType:(NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation completionHandler:(void (^)(NSError *))completionHandler
 // ------------------------------------------------------
 {
+    __weak typeof(self) weakSelf = self;
     [self performAsynchronousFileAccessUsingBlock:^(void (^fileAccessCompletionHandler)(void)) {
+        typeof(weakSelf) strongSelf = weakSelf;
         NSURL *newURL = url;
         
         // save backup file always in `~/Library/Autosaved Information/` direcotory
         // (The default backup URL is the same directory as the fileURL.)
-        if (saveOperation == NSAutosaveElsewhereOperation && [self fileURL]) {
+        if (saveOperation == NSAutosaveElsewhereOperation && [strongSelf fileURL]) {
             NSURL *autosaveDirectoryURL =  [[NSFileManager defaultManager] URLForDirectory:NSAutosavedInformationDirectory
                                                                                   inDomain:NSUserDomainMask
                                                                          appropriateForURL:nil
                                                                                     create:YES
                                                                                      error:nil];
-            NSString *baseFileName = [[self fileURL] lastPathComponent];
-            NSString *fileName = [NSString stringWithFormat:@"%@ (%p)", [baseFileName stringByDeletingPathExtension], self];  // append a unique string to avoid overwriting another backup file with the same file name.
+            NSString *baseFileName = [[strongSelf fileURL] lastPathComponent];
+            NSString *fileName = [NSString stringWithFormat:@"%@ (%p)", [baseFileName stringByDeletingPathExtension], strongSelf];  // append a unique string to avoid overwriting another backup file with the same file name.
             
             newURL = [[autosaveDirectoryURL URLByAppendingPathComponent:fileName] URLByAppendingPathExtension:[baseFileName pathExtension]];
         }
