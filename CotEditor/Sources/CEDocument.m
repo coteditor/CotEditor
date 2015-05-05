@@ -266,7 +266,9 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     BOOL success = NO;
     
     // break undo grouping before and after saving
-    [[[self editor] focusedTextView] breakUndoCoalescing];
+    if (saveOperation != NSAutosaveInPlaceOperation && saveOperation != NSAutosaveElsewhereOperation) {
+        [[[self editor] focusedTextView] breakUndoCoalescing];
+    }
     
     id token = [self changeCountTokenForSaveOperation:saveOperation];
     
