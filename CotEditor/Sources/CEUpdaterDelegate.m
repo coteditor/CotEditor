@@ -35,6 +35,10 @@
 
 #pragma mark Delegate
 
+//=======================================================
+// SUUpdaterDelegate
+//=======================================================
+
 // ------------------------------------------------------
 /// compare updater versions by myself
 - (id <SUVersionComparison>)versionComparatorForUpdater:(SUUpdater *)updater
@@ -43,6 +47,10 @@
     return self;
 }
 
+
+//=======================================================
+// SUVersionComparison Protocol
+//=======================================================
 
 // ------------------------------------------------------
 /// compare versions using the Semantic Versioning 2.0

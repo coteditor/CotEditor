@@ -361,9 +361,9 @@
     // store latest version
     NSString *lastVersion = [[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultLastVersionKey];
     NSString *thisVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:(NSString *)kCFBundleVersionKey];
-    EDSemver *lastSemVer = lastVersion ? [EDSemver semverWithString:lastVersion] : nil;
-    EDSemver *thisSemVer = [EDSemver semverWithString:thisVersion];
-    if (!lastSemVer || [lastSemVer isLessThan:thisSemVer]) {
+    EDSemver *lastSemver = lastVersion ? [EDSemver semverWithString:lastVersion] : nil;
+    EDSemver *thisSemver = [EDSemver semverWithString:thisVersion];
+    if (!lastSemver || [lastSemver isLessThan:thisSemver]) {
         [[NSUserDefaults standardUserDefaults] setObject:thisVersion forKey:CEDefaultLastVersionKey];
     }
     
