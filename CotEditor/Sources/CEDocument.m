@@ -558,7 +558,9 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 - (void)presentedItemDidChange
 // ------------------------------------------------------
 {
-    // ファイルのmodificationDateがドキュメントのmodificationDateと同じ場合は無視
+    // [caution] This method can be called from any thread.
+    
+    // ignore if file's modificationDate is the same as document's modificationDate
     NSFileCoordinator *coordinator = [[NSFileCoordinator alloc] initWithFilePresenter:self];
     __block NSDate *fileModificationDate;
     [coordinator coordinateReadingItemAtURL:[self fileURL] options:NSFileCoordinatorReadingWithoutChanges
@@ -569,7 +571,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
      }];
     if ([fileModificationDate isEqualToDate:[self fileModificationDate]]) { return; }
     
-    // ファイルのMD5ハッシュが保持しているものと同じ場合は編集されていないと認識させた上で無視
+    // ignore if file's MD5 hash is the same as the stored MD5 and deal as if it was not modified.
     __block NSString *MD5;
     [coordinator coordinateReadingItemAtURL:[self fileURL] options:NSFileCoordinatorReadingWithoutChanges
                                       error:nil byAccessor:^(NSURL *newURL)
@@ -577,9 +579,12 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
          MD5 = [[NSData dataWithContentsOfURL:newURL] MD5];
      }];
     if ([MD5 isEqualToString:[self fileMD5]]) {
-        // documentの保持しているfileModificationDateを書き換える (2014-03 by 1024jp)
-        // ここだけで無視してもファイル保存時にアラートが出るのことへの対策
-        [self setFileModificationDate:fileModificationDate];
+        // update the document's fileModificationDate for a workaround (2014-03 by 1024jp)
+        // If not, an alert shows up when user saves the file.
+        __weak typeof(self) weakSelf = self;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [weakSelf setFileModificationDate:fileModificationDate];
+        });
         
         return;
     }
@@ -1086,7 +1091,10 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     
     if (attributes) {
         [self setFileAttributes:attributes];
-        [[self windowController] updateFileInfo];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [[self windowController] updateFileInfo];
+        });
     }
 }
 
