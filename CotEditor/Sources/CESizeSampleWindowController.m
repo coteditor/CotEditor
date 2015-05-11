@@ -9,7 +9,7 @@
  encoding="UTF-8"
  ------------------------------------------------------------------------------
  
- © 2014 1024jp
+ © 2014-2015 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -32,7 +32,7 @@
 
 @interface CESizeSampleWindowController ()
 
-@property (nonatomic) IBOutlet NSUserDefaultsController *userDefaultsController;
+@property (nonatomic, nullable) IBOutlet NSUserDefaultsController *userDefaultsController;
 
 @end
 
@@ -60,7 +60,7 @@
 
 // ------------------------------------------------------
 /// close window without save
-- (IBAction)cancel:(id)sender
+- (IBAction)cancel:(nullable id)sender
 // ------------------------------------------------------
 {
     [[self userDefaultsController] revert:sender];
@@ -70,7 +70,7 @@
 
 // ------------------------------------------------------
 /// save window size to the user defaults and close window
-- (IBAction)save:(id)sender
+- (IBAction)save:(nullable id)sender
 // ------------------------------------------------------
 {
     [[self userDefaultsController] save:sender];

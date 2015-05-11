@@ -38,11 +38,11 @@
 
 @interface CEToolbarController ()
 
-@property (nonatomic, weak) IBOutlet NSToolbar *toolbar;
-@property (nonatomic, weak) IBOutlet CEWindowController *windowController;
-@property (nonatomic, weak) IBOutlet NSPopUpButton *lineEndingPopupButton;
-@property (nonatomic, weak) IBOutlet NSPopUpButton *encodingPopupButton;
-@property (nonatomic, weak) IBOutlet NSPopUpButton *syntaxPopupButton;
+@property (nonatomic, nullable, weak) IBOutlet NSToolbar *toolbar;
+@property (nonatomic, nullable, weak) IBOutlet CEWindowController *windowController;
+@property (nonatomic, nullable, weak) IBOutlet NSPopUpButton *lineEndingPopupButton;
+@property (nonatomic, nullable, weak) IBOutlet NSPopUpButton *encodingPopupButton;
+@property (nonatomic, nullable, weak) IBOutlet NSPopUpButton *syntaxPopupButton;
 
 @end
 
@@ -127,7 +127,7 @@
 
 // ------------------------------------------------------
 /// select item in the syntax style menu
-- (void)setSelectedSyntaxWithName:(NSString *)name
+- (void)setSelectedSyntaxWithName:(nonnull NSString *)name
 // ------------------------------------------------------
 {
     [[self syntaxPopupButton] selectItemWithTitle:name];
@@ -194,7 +194,7 @@
 
 // ------------------------------------------------------
 /// update item which can be toggled
-- (void)toggleItem:(NSToolbarItem *)item setOn:(BOOL)setOn
+- (void)toggleItem:(nonnull NSToolbarItem *)item setOn:(BOOL)setOn
 // ------------------------------------------------------
 {
     NSString *imageName;

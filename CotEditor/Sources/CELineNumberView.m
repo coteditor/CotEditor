@@ -40,7 +40,7 @@ static const NSUInteger kMinNumberOfDigits = 3;
 
 @interface CELineNumberView ()
 
-@property (nonatomic) NSTimer *draggingTimer;
+@property (nonatomic, nullable) NSTimer *draggingTimer;
 
 @end
 
@@ -312,7 +312,7 @@ static const NSString *LineNumberFontName;
 
 // ------------------------------------------------------
 /// return client view casting to textView
-- (NSTextView<CETextViewProtocol> *)textView
+- (nullable NSTextView<CETextViewProtocol> *)textView
 // ------------------------------------------------------
 {
     return (NSTextView<CETextViewProtocol> *)[[self scrollView] documentView];
@@ -330,7 +330,7 @@ static const NSString *LineNumberFontName;
 
 // ------------------------------------------------------
 /// select lines while dragging event
-- (void)selectLines:(NSTimer *)timer
+- (void)selectLines:(nullable NSTimer *)timer
 // ------------------------------------------------------
 {
     NSTextView *textView = [self textView];

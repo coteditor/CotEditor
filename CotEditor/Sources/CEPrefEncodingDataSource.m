@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014 CotEditor Project
+ © 2014-2015 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -39,11 +39,11 @@ static NSInteger const kLastRow = -1;
 
 @interface CEPrefEncodingDataSource ()
 
-@property (nonatomic) NSMutableArray *encodingsForTmp;
+@property (nonatomic, nullable) NSMutableArray *encodingsForTmp;
 
-@property (nonatomic, weak) IBOutlet NSTableView *tableView;
-@property (nonatomic, weak) IBOutlet NSButton *deleteSeparatorButton;
-@property (nonatomic, weak) IBOutlet NSButton *revertButton;
+@property (nonatomic, nullable, weak) IBOutlet NSTableView *tableView;
+@property (nonatomic, nullable, weak) IBOutlet NSButton *deleteSeparatorButton;
+@property (nonatomic, nullable, weak) IBOutlet NSButton *revertButton;
 
 @end
 
@@ -233,7 +233,7 @@ static NSInteger const kLastRow = -1;
 
 // ------------------------------------------------------
 /// デフォルトのエンコーディング設定に戻す
-- (IBAction)revertDefaultEncodings:(id)sender
+- (IBAction)revertDefaultEncodings:(nullable id)sender
 // ------------------------------------------------------
 {
     NSDictionary *initValues = [[NSUserDefaultsController sharedUserDefaultsController] initialValues];
@@ -247,7 +247,7 @@ static NSInteger const kLastRow = -1;
 
 // ------------------------------------------------------
 /// セパレータ追加
-- (IBAction)addSeparator:(id)sender
+- (IBAction)addSeparator:(nullable id)sender
 // ------------------------------------------------------
 {
     NSUInteger index = MAX([[self tableView] selectedRow], 0);
@@ -260,7 +260,7 @@ static NSInteger const kLastRow = -1;
 
 // ------------------------------------------------------
 /// セパレータ削除
-- (IBAction)deleteSeparator:(id)sender
+- (IBAction)deleteSeparator:(nullable id)sender
 // ------------------------------------------------------
 {
     NSIndexSet *selectedIndexes = [[self tableView] selectedRowIndexes];

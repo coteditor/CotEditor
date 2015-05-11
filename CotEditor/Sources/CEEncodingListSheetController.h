@@ -33,6 +33,6 @@
 @interface CEEncodingListSheetController : NSWindowController <NSWindowDelegate>
 
 // default initializer
-- (instancetype)init;
+- (nonnull instancetype)init;
 
 @end

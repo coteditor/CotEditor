@@ -9,7 +9,7 @@
  encoding="UTF-8"
  ------------------------------------------------------------------------------
  
- © 2014 CotEditor Project
+ © 2014-2015 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -37,20 +37,20 @@
 
 // ------------------------------------------------------
 /// return opacity of the editor view (real type)
-- (NSNumber *)viewOpacity
+- (nonnull NSNumber *)viewOpacity
 // ------------------------------------------------------
 {
     if ([self isDocumentWindow]) {
         return @([(CEWindow *)self backgroundAlpha]);
     }
     
-    return nil;
+    return @1.0;
 }
 
 
 // ------------------------------------------------------
 /// set opacity of the editor view
-- (void)setViewOpacity:(NSNumber *)viewOpacity
+- (void)setViewOpacity:(nonnull NSNumber *)viewOpacity
 // ------------------------------------------------------
 {
     if ([self isDocumentWindow]) {

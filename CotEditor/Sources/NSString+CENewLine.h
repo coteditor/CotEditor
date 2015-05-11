@@ -9,7 +9,7 @@
  encoding="UTF-8"
  ------------------------------------------------------------------------------
  
- © 2014 1024jp
+ © 2014-2015 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -42,11 +42,11 @@ typedef NS_ENUM(NSInteger, CENewLineType) {
 
 @interface NSString (CENewLine)
 
-+ (NSString *)newLineStringWithType:(CENewLineType)type;
-+ (NSString *)newLineNameWithType:(CENewLineType)type;
++ (nonnull NSString *)newLineStringWithType:(CENewLineType)type;
++ (nonnull NSString *)newLineNameWithType:(CENewLineType)type;
 
 - (CENewLineType)detectNewLineType;
-- (NSString *)stringByReplacingNewLineCharacersWith:(CENewLineType)type;
-- (NSString *)stringByDeletingNewLineCharacters;
+- (nonnull NSString *)stringByReplacingNewLineCharacersWith:(CENewLineType)type;
+- (nonnull NSString *)stringByDeletingNewLineCharacters;
 
 @end

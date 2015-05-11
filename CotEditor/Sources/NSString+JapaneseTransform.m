@@ -9,7 +9,7 @@
  encoding="UTF-8"
  ------------------------------------------------------------------------------
  
- © 2014 CotEditor Project
+ © 2014-1025 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -36,7 +36,7 @@
 
 // ------------------------------------------------------
 /// transform half-width roman to full-width
-- (NSString *)fullWidthRomanString
+- (nonnull NSString *)fullWidthRomanString
 // ------------------------------------------------------
 {
     NSMutableString *string = [NSMutableString string];
@@ -56,7 +56,7 @@
 
 // ------------------------------------------------------
 /// transform full-width roman to half-width
-- (NSString *)halfWidthRomanString
+- (nonnull NSString *)halfWidthRomanString
 // ------------------------------------------------------
 {
     NSMutableString *string = [NSMutableString string];
@@ -76,7 +76,7 @@
 
 // ------------------------------------------------------
 /// transform Japanese Katakana to Hiragana
-- (NSString *)katakanaString
+- (nonnull NSString *)katakanaString
 // ------------------------------------------------------
 {
     NSMutableString* string = [self mutableCopy];
@@ -89,7 +89,7 @@
 
 // ------------------------------------------------------
 /// transform Japanese Hiragana to Katakana
-- (NSString *)hiraganaString
+- (nonnull NSString *)hiraganaString
 // ------------------------------------------------------
 {
     NSMutableString* string = [self mutableCopy];

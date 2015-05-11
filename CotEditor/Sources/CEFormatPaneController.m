@@ -40,13 +40,13 @@
 
 @interface CEFormatPaneController () <NSTableViewDelegate>
 
-@property (nonatomic, weak) IBOutlet NSPopUpButton *encodingMenuInOpen;
-@property (nonatomic, weak) IBOutlet NSPopUpButton *encodingMenuInNew;
+@property (nonatomic, nullable, weak) IBOutlet NSPopUpButton *encodingMenuInOpen;
+@property (nonatomic, nullable, weak) IBOutlet NSPopUpButton *encodingMenuInNew;
 
-@property (nonatomic) IBOutlet NSArrayController *stylesController;
-@property (nonatomic, weak) IBOutlet NSTableView *syntaxTableView;
-@property (nonatomic, weak) IBOutlet NSPopUpButton *syntaxStylesDefaultPopup;
-@property (nonatomic, weak) IBOutlet NSButton *syntaxStyleDeleteButton;
+@property (nonatomic, nullable) IBOutlet NSArrayController *stylesController;
+@property (nonatomic, nullable, weak) IBOutlet NSTableView *syntaxTableView;
+@property (nonatomic, nullable, weak) IBOutlet NSPopUpButton *syntaxStylesDefaultPopup;
+@property (nonatomic, nullable, weak) IBOutlet NSButton *syntaxStyleDeleteButton;
 
 @end
 
@@ -157,7 +157,7 @@
 
 // ------------------------------------------------------
 /// エンコーディングリスト編集シートを開き、閉じる
-- (IBAction)openEncodingEditSheet:(id)sender
+- (IBAction)openEncodingEditSheet:(nullable id)sender
 // ------------------------------------------------------
 {
     CEEncodingListSheetController *sheetController = [[CEEncodingListSheetController alloc] init];
@@ -171,7 +171,7 @@
 
 // ------------------------------------------------------
 /// カラーシンタックス編集シートを開き、閉じる
-- (IBAction)openSyntaxEditSheet:(id)sender
+- (IBAction)openSyntaxEditSheet:(nullable id)sender
 // ------------------------------------------------------
 {
     CESyntaxEditSheetController *sheetController = [[CESyntaxEditSheetController alloc] initWithStyle:[self selectedStyleName]
@@ -199,7 +199,7 @@
 
 // ------------------------------------------------------
 /// シンタックススタイル削除ボタンが押された
-- (IBAction)deleteSyntaxStyle:(id)sender
+- (IBAction)deleteSyntaxStyle:(nullable id)sender
 // ------------------------------------------------------
 {
     NSString *selectedStyleName = [self selectedStyleName];
@@ -220,7 +220,7 @@
 
 // ------------------------------------------------------
 /// シンタックスカラーリングスタイルインポートボタンが押された
-- (IBAction)importSyntaxStyle:(id)sender
+- (IBAction)importSyntaxStyle:(nullable id)sender
 // ------------------------------------------------------
 {
     NSOpenPanel *openPanel = [NSOpenPanel openPanel];
@@ -268,7 +268,7 @@
 
 // ------------------------------------------------------
 /// シンタックスカラーリングスタイルエクスポートボタンが押された
-- (IBAction)exportSyntaxStyle:(id)sender
+- (IBAction)exportSyntaxStyle:(nullable id)sender
 // ------------------------------------------------------
 {
     NSString *selectedStyle = [self selectedStyleName];
@@ -291,7 +291,7 @@
 
 // ------------------------------------------------------
 /// シンタックスカラーリングファイルをFinderで開く
-- (IBAction)revealSyntaxStyleInFinder:(id)sender
+- (IBAction)revealSyntaxStyleInFinder:(nullable id)sender
 // ------------------------------------------------------
 {
     NSURL *URL = [[CESyntaxManager sharedManager] URLForUserStyle:[self selectedStyleName]];
@@ -304,7 +304,7 @@
 
 // ------------------------------------------------------
 /// シンタックスマッピング重複エラー表示シートを開き、閉じる
-- (IBAction)openSyntaxMappingConflictSheet:(id)sender
+- (IBAction)openSyntaxMappingConflictSheet:(nullable id)sender
 // ------------------------------------------------------
 {
     CESyntaxMappingConflictsSheetController *sheetController = [[CESyntaxMappingConflictsSheetController alloc] init];
@@ -319,7 +319,7 @@
 
 //------------------------------------------------------
 /// 既存のファイルを開くエンコーディングが変更されたとき、選択項目をチェック
-- (IBAction)checkSelectedItemOfEncodingMenuInOpen:(id)sender
+- (IBAction)checkSelectedItemOfEncodingMenuInOpen:(nullable id)sender
 //------------------------------------------------------
 {
     NSString *newTitle = [[[self encodingMenuInOpen] selectedItem] title];
@@ -401,7 +401,7 @@
 
 // ------------------------------------------------------
 /// 現在選択されているスタイル名を返す
-- (NSString *)selectedStyleName
+- (nullable NSString *)selectedStyleName
 // ------------------------------------------------------
 {
     return [[[self stylesController] selectedObjects] firstObject];
@@ -421,8 +421,7 @@
 
 // ------------------------------------------------------
 /// 既存ファイルを開くときのエンコーディングメニューで自動認識以外が選択されたときの警告シートが閉じる直前
-- (void)autoDetectAlertDidEnd:(NSAlert *)sheet
-                   returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
+- (void)autoDetectAlertDidEnd:(nonnull NSAlert *)sheet returnCode:(NSInteger)returnCode contextInfo:(nullable void *)contextInfo
 // ------------------------------------------------------
 {
     if (returnCode == NSAlertFirstButtonReturn) { // = revert to Auto-Detect
@@ -434,12 +433,12 @@
 
 // ------------------------------------------------------
 /// styleインポート実行
-- (void)doImport:(NSURL *)fileURL withCurrentSheetWindow:(NSWindow *)inWindow
+- (void)doImport:(nonnull NSURL *)fileURL withCurrentSheetWindow:(nullable NSWindow *)window
 // ------------------------------------------------------
 {
     if (![[CESyntaxManager sharedManager] importStyleFromURL:fileURL]) {
         // インポートできなかったときは、セカンダリシートを閉じ、メッセージシートを表示
-        [inWindow orderOut:self];
+        [window orderOut:self];
         [[[self view] window] makeKeyAndOrderFront:self];
         NSAlert *alert = [[NSAlert alloc] init];
         [alert setMessageText:NSLocalizedString(@"Error occured.", nil)];
@@ -453,7 +452,7 @@
 
 // ------------------------------------------------------
 /// style削除確認シートが閉じる直前
-- (void)deleteStyleAlertDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
+- (void)deleteStyleAlertDidEnd:(nonnull NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(nullable void *)contextInfo
 // ------------------------------------------------------
 {
     if (returnCode != NSAlertSecondButtonReturn) {  // != Delete
@@ -479,7 +478,7 @@
 
 // ------------------------------------------------------
 /// セカンダリシートが閉じる直前
-- (void)secondarySheetDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
+- (void)secondarySheetDidEnd:(nonnull NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(nullable void *)contextInfo
 // ------------------------------------------------------
 {
     if (returnCode == NSAlertSecondButtonReturn) { // = Replace
