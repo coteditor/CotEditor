@@ -412,7 +412,9 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 // ------------------------------------------------------
 {
     // 外部エディタプロトコル(ODB Editor Suite)のファイルクローズを送信
-    [[self ODBEventSender] sendCloseEventWithURL:[self fileURL]];
+    if ([self fileURL]) {
+        [[self ODBEventSender] sendCloseEventWithURL:[self fileURL]];
+    }
     
     [super close];
 }
