@@ -26,6 +26,11 @@ develop
 - Improve general stability.
 
 
+### Fixes
+
+- Fix an issue where line numbers did't draw completely on OS X 10.8 when scroll bar is always shown.
+
+
 
 2.1.6
 --------------------------

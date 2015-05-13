@@ -183,8 +183,12 @@ static const NSString *LineNumberFontName;
     CGContextSetTextMatrix(context, transform);
     CFRelease(font);
     
+    // add enough buffer to avoid broken drawing on Mountain Lion (10.8) with scroller (2015-07)
+    NSRect visibleRect = [[self textView] visibleRect];
+    visibleRect.size.height += fontSize;
+    
     // get glyph range which line number should be drawn
-    NSRange visibleGlyphRange = [layoutManager glyphRangeForBoundingRect:[[self textView] visibleRect]
+    NSRange visibleGlyphRange = [layoutManager glyphRangeForBoundingRect:visibleRect
                                                          inTextContainer:[[self textView] textContainer]];
     
     // counters
