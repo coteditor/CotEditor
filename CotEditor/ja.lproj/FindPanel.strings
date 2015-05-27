@@ -17,15 +17,28 @@
 
 /* Class = "IBBindingConnection"; ibShadowedIsNilPlaceholder = "Find"; ObjectID = "oNs-q5-oCH"; */
 "oNs-q5-oCH.ibShadowedIsNilPlaceholder" = "検索";
+/* Class = "NSScrollView"; ibShadowedToolTip = "Type the text to search for."; ObjectID = "hxw-DS-gxQ"; */
+"hxw-DS-gxQ.ibShadowedToolTip" = "検索するテキストを入力";
+
 /* Class = "IBBindingConnection"; ibShadowedIsNilPlaceholder = "Replace"; ObjectID = "zd8-iN-ws4"; */
 "zd8-iN-ws4.ibShadowedIsNilPlaceholder" = "置換";
+/* Class = "NSScrollView"; ibShadowedToolTip = "Type the text to replace the found text."; ObjectID = "qiQ-tb-XCa"; */
+"qiQ-tb-XCa.ibShadowedToolTip" = "見つかったテキストと入れ替えるテキストを入力";
 
 /* Class = "NSButtonCell"; title = "Regular Expression"; ObjectID = "brT-HP-GVL"; */
 "brT-HP-GVL.title" = "正規表現";
+/* Class = "NSButton"; ibShadowedToolTip = "Select to search with regular expression."; ObjectID = "8My-G5-daT"; */
+"8My-G5-daT.ibShadowedToolTip" = "検索に正規表現を使う場合に選択";
+
 /* Class = "NSButtonCell"; title = "Ignore Case"; ObjectID = "4wg-Cz-ozb"; */
 "4wg-Cz-ozb.title" = "大文字／小文字を無視";
+/* Class = "NSButton"; ibShadowedToolTip = "Select to ignore character case on search."; ObjectID = "GvT-tD-Cbk"; */
+"GvT-tD-Cbk.ibShadowedToolTip" = "大文字／小文字を区別せずに検索する場合に選択";
+
 /* Class = "NSButtonCell"; title = "In Selection"; ObjectID = "9bc-9Q-fhd"; */
 "9bc-9Q-fhd.title" = "選択範囲のみ";
+/* Class = "NSButton"; ibShadowedToolTip = "Select to search text only from selection."; ObjectID = "tu7-IT-dA3"; */
+"tu7-IT-dA3.ibShadowedToolTip" = "現在の選択範囲のみを検索対象とする場合に選択";
 
 /* Class = "NSButton"; ibShadowedToolTip = "Show quick reference for regular expression syntax."; ObjectID = "i2l-7Z-Zmf"; */
 "i2l-7Z-Zmf.ibShadowedToolTip" = "正規表現文法の簡易用語集を表示";
@@ -35,16 +48,26 @@
 
 /* Class = "NSButtonCell"; title = "Highlight"; ObjectID = "zHg-Yd-nG3"; */
 "zHg-Yd-nG3.title" = "ハイライト";
+/* Class = "NSButton"; ibShadowedToolTip = "Highlight all matches."; ObjectID = "j1n-jm-66v"; */
+"j1n-jm-66v.ibShadowedToolTip" = "すべてのマッチをハイライト表示";
+
 /* Class = "NSButtonCell"; title = "Find All"; ObjectID = "XLZ-92-VVF"; */
 "XLZ-92-VVF.title" = "すべて検索";
+/* Class = "NSButton"; ibShadowedToolTip = "List all matches."; ObjectID = "OCv-Y5-8XR"; */
+"OCv-Y5-8XR.ibShadowedToolTip" = "すべてのマッチを検索しリストアップ";
+
 /* Class = "NSButtonCell"; title = "Replace All"; ObjectID = "5gU-5y-iLn"; */
 "5gU-5y-iLn.title" = "すべて置換";
+/* Class = "NSButton"; ibShadowedToolTip = "Replace all matches with the replacement text."; ObjectID = "RR6-rj-B8P"; */
+"RR6-rj-B8P.ibShadowedToolTip" = "すべてのマッチを置換テキストで置き換え";
+
 /* Class = "NSButtonCell"; title = "Replace"; ObjectID = "W4Z-S2-wvv"; */
 "W4Z-S2-wvv.title" = "置換";
+// Note: The tooltip for "Replace button is set the in CEFindPanelController.
 
 /* Class = "NSSegmentedCell"; ObjectID = "u6p-Hz-aK5"; */
-"u6p-Hz-aK5.ibShadowedToolTips[0]" = "次の一致を検索";  /* "Find previous match." */
-"u6p-Hz-aK5.ibShadowedToolTips[1]" = "前の一致を検索";  /* "Find next match." */
+"u6p-Hz-aK5.ibShadowedToolTips[0]" = "次のマッチを検索";  /* "Find previous match." */
+"u6p-Hz-aK5.ibShadowedToolTips[1]" = "前のマッチを検索";  /* "Find next match." */
 
 /* Class = "NSMenuItem"; title = "Recent Searches"; ObjectID = "cdV-rY-hCN"; */
 "cdV-rY-hCN.title" = "最近の検索";
@@ -128,7 +151,7 @@
 // Find Result
 
 /* Class = "NSButton"; UeN.ibShadowedToolTip = "Close find result."; ObjectID = "oC1-bN-UeN"; */
-"oC1-bN-UeN.ibShadowedToolTip" = "Close find result.";  // FIXME:
+"oC1-bN-UeN.ibShadowedToolTip" = "検索結果を閉じる";
 
 /* Class = "IBBindingConnection"; ibShadowedDisplayPattern = "Find String: %{value1}@"; ObjectID = "2MH-SD-x1y"; */
 "2MH-SD-x1y.ibShadowedDisplayPattern" = "検索文字列： %{value1}@";
@@ -140,6 +163,8 @@
 
 /* Class = "NSButtonCell"; title = "Live Update"; ObjectID = "pqE-XD-1Fq"; */
 "pqE-XD-1Fq.title" = "自動更新";
+/* Class = "NSButton"; ibShadowedToolTip = "Select to update find result when document is edited."; ObjectID = "PEV-3w-HeQ"; */
+"PEV-3w-HeQ.ibShadowedToolTip" = "選択すると、書類が編集されたときにリストを自動で更新";
 
 
 // Regex Quick Reference

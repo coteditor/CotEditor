@@ -9,6 +9,7 @@ develop
 
 - Support displaying skin tone variations of Unicode 8.0 on the character inspector.
 - Display invisible vertical tab (`U+000B`) with `␋` symbol if “Show other invisible characters” turns on.
+- Add tooltip hint to controls in the find panel.
 
 
 ### Fixes

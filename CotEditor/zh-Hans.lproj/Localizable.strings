@@ -36,6 +36,11 @@
 "Close" = "关闭";
 
 
+/* MARK: CEFindPanelController */
+"Replace the current selection with the replacement text, then find the next match." = "Replace the current selection with the replacement text, then find the next match."; // FIXME:
+"Replace the current selection with the replacement text." = "Replace the current selection with the replacement text.";  // FIXME:
+
+
 /* MARK: CEDocumentController */
 // Large file alert
 "The file “%@” has a size of %@." = "“%@” 文件尺寸为 %@ 。";

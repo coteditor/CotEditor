@@ -77,6 +77,7 @@ static NSString *const kEscapeCharacter = @"\\";
 @property (nonatomic, weak) IBOutlet NSButton *disclosureButton;
 @property (nonatomic, weak) IBOutlet NSMenu *findHistoryMenu;
 @property (nonatomic, weak) IBOutlet NSMenu *replaceHistoryMenu;
+@property (nonatomic, weak) IBOutlet NSButton *replaceButton;
 
 @end
 
@@ -110,8 +111,23 @@ static NSString *const kEscapeCharacter = @"\\";
         
         // add to responder chain
         [NSApp setNextResponder:self];
+        
+        // observe default change for the "Replace" button tooltip
+        [[NSUserDefaults standardUserDefaults] addObserver:self
+                                                forKeyPath:CEDefaultFindNextAfterReplaceKey
+                                                   options:NSKeyValueObservingOptionNew
+                                                   context:NULL];
     }
     return self;
+}
+
+
+// ------------------------------------------------------
+/// clean up
+- (void)dealloc
+// ------------------------------------------------------
+{
+    [[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:CEDefaultFindNextAfterReplaceKey];
 }
 
 
@@ -128,6 +144,8 @@ static NSString *const kEscapeCharacter = @"\\";
     [self updateReplaceHistoryMenu];
     
     [[self textFinder] setEscapeCharacter:kEscapeCharacter];
+    
+    [self toggleReplaceButtonBehavior];
 }
 
 
@@ -213,6 +231,24 @@ static NSString *const kEscapeCharacter = @"\\";
     }
     
     return YES;
+}
+
+
+
+#pragma mark Protocol
+
+//=======================================================
+// NSKeyValueObserving Protocol
+//=======================================================
+
+// ------------------------------------------------------
+/// observed user defaults are changed
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+// ------------------------------------------------------
+{
+    if ([keyPath isEqualToString:CEDefaultFindNextAfterReplaceKey]) {
+       [self toggleReplaceButtonBehavior];
+    }
 }
 
 
@@ -989,6 +1025,19 @@ static NSString *const kEscapeCharacter = @"\\";
     [self setDelimitByWhitespaceOption:((options & OgreDelimitByWhitespaceOption) != 0)];
     [self setNotBeginOfLineOption:((options & OgreNotBOLOption) != 0)];
     [self setNotEndOfLineOption:((options & OgreNotEOLOption) != 0)];
+}
+
+
+// ------------------------------------------------------
+/// toggle replace button behavior and tooltip
+- (void)toggleReplaceButtonBehavior
+// ------------------------------------------------------
+{
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultFindNextAfterReplaceKey]) {
+        [[self replaceButton] setToolTip:NSLocalizedString(@"Replace the current selection with the replacement text, then find the next match.", nil)];
+    } else {
+        [[self replaceButton] setToolTip:NSLocalizedString(@"Replace the current selection with the replacement text.", nil)];
+    }
 }
 
 
