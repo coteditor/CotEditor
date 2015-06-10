@@ -35,6 +35,20 @@
 #pragma mark Superclass Methods
 
 // ------------------------------------------------------
+/// initialize
+- (instancetype)initWithCoder:(NSCoder *)coder
+// ------------------------------------------------------
+{
+    self = [super initWithCoder:coder];
+    if (self) {
+        // make sure frame to be initialized (Otherwise input area can be arranged in a wrong place.)
+        [self setFrame:[self frame]];
+    }
+    return self;
+}
+
+
+// ------------------------------------------------------
 /// add left padding for popup button
 - (void)setFrame:(NSRect)frame
 // ------------------------------------------------------
