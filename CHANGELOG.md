@@ -8,6 +8,7 @@ develop
 ### Additions/Changes
 
 - Support displaying skin tone variations of Unicode 8.0 on the character inspector.
+- Support Automatic Termination (Now, CotEditor can be terminated automatically if it has no window).
 - Display invisible vertical tab (`U+000B`) with `␋` symbol if “Show other invisible characters” turns on.
 - Add tooltip hint to controls in the find panel.
 - Update Sparkle framework to version 1.10.0.
