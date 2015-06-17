@@ -107,7 +107,8 @@ static NSMutableDictionary *instances;
                                                      name:NSWindowDidBecomeMainNotification
                                                    object:nil];
         // apply current window
-        [self windowDidBecomeMain:nil];
+        NSNotification *notification = [NSNotification notificationWithName:NSWindowDidBecomeMainNotification object:window];
+        [self windowDidBecomeMain:notification];
     }
     return self;
 }

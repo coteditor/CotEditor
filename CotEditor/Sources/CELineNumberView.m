@@ -166,7 +166,7 @@ static const NSString *LineNumberFontName;
     
     // calc character width as monospaced font
     CGSize advance;
-    CTFontGetAdvancesForGlyphs(font, kCTFontHorizontalOrientation, &digitGlyphs[8], &advance, 1);  // use '8' to get width
+    CTFontGetAdvancesForGlyphs(font, kCTFontOrientationHorizontal, &digitGlyphs[8], &advance, 1);  // use '8' to get width
     CGFloat charWidth = advance.width;
     
     // prepare frame width
