@@ -103,11 +103,12 @@ static const NSRegularExpression *unicodeRegex;
     [scanner setCharactersToBeSkipped:[NSCharacterSet characterSetWithCharactersInString:@"uU+\\"]];
     [scanner scanHexInt:&longChar];
     
+    NSTextView *textView = [[[self documentWindowController] editor] focusedTextView];
     UniChar chars[2];
     NSUInteger length = CFStringGetSurrogatePairForLongCharacter(longChar, chars) ? 2 : 1;
     NSString *character = [[NSString alloc] initWithCharacters:chars length:length];
     
-    [[[[self documentWindowController] editor] focusedTextView] insertText:character];
+    [textView insertText:character replacementRange:[textView selectedRange]];
     [[self window] performClose:sender];
     [self setUnicode:@""];
 }

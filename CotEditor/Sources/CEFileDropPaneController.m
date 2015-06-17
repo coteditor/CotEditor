@@ -165,7 +165,8 @@
     NSString *title = [(NSMenuItem *)sender title];
     
     [[[self view] window] makeFirstResponder:[self formatTextView]];
-    [[self formatTextView] insertText:title];
+    [[self formatTextView] insertText:title
+                     replacementRange:[[self formatTextView] selectedRange]];
 }
 
 
