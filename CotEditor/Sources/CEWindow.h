@@ -9,7 +9,7 @@
  encoding="UTF-8"
  ------------------------------------------------------------------------------
  
- © 2014 CotEditor Project
+ © 2014-2015 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -30,7 +30,7 @@
 @import Cocoa;
 
 // notifications
-extern NSString *const CEWindowOpacityDidChangeNotification;
+extern NSString *__nonnull const CEWindowOpacityDidChangeNotification;
 
 
 @interface CEWindow : NSWindow

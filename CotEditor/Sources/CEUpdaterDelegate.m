@@ -9,7 +9,7 @@
  encoding="UTF-8"
  ------------------------------------------------------------------------------
  
- © 2015 CotEditor Project
+ © 2015 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -53,7 +53,7 @@
 - (void)updater:(SUUpdater *)updater didFindValidUpdate:(SUAppcastItem *)update
 // ------------------------------------------------------
 {
-    /// !!!: This method should be removed after updating CotEditor to the first Mac App Store version.
+    // !!!: This method should be removed after updating CotEditor to the first Mac App Store version.
     NSString *thisVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:(NSString *)kCFBundleVersionKey];
     EDSemver *thisSemver = [EDSemver semverWithString:thisVersion];
     EDSemver *newSemver = [EDSemver semverWithString:[update versionString]];
