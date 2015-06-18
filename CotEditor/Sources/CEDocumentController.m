@@ -37,8 +37,8 @@
 
 @property (nonatomic) BOOL showsHiddenFiles;
 
-@property (nonatomic) IBOutlet NSView *openPanelAccessoryView;
-@property (nonatomic) IBOutlet NSPopUpButton *accessoryEncodingMenu;
+@property (nonatomic, nullable) IBOutlet NSView *openPanelAccessoryView;
+@property (nonatomic, nullable) IBOutlet NSPopUpButton *accessoryEncodingMenu;
 
 
 // readonly
@@ -145,7 +145,7 @@
 
 // ------------------------------------------------------
 /// show open panel displaying hidden files
-- (IBAction)openHiddenDocument:(id)sender
+- (IBAction)openHiddenDocument:(nullable id)sender
 // ------------------------------------------------------
 {
     [self setShowsHiddenFiles:YES];

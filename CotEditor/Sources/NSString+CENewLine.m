@@ -9,7 +9,7 @@
  encoding="UTF-8"
  ------------------------------------------------------------------------------
  
- © 2014 1024jp
+ © 2014-2015 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -44,7 +44,7 @@ unichar const kNewLineChars[] = {
 
 // ------------------------------------------------------
 /// NSString form for new line character
-+ (NSString *)newLineStringWithType:(CENewLineType)type
++ (nonnull NSString *)newLineStringWithType:(CENewLineType)type
 // ------------------------------------------------------
 {
     switch (type) {
@@ -67,7 +67,7 @@ unichar const kNewLineChars[] = {
 
 // ------------------------------------------------------
 /// line ending name to display
-+ (NSString *)newLineNameWithType:(CENewLineType)type
++ (nonnull NSString *)newLineNameWithType:(CENewLineType)type
 // ------------------------------------------------------
 {
     switch (type) {
@@ -137,7 +137,7 @@ unichar const kNewLineChars[] = {
 
 // ------------------------------------------------------
 /// replace all kind of new line characters in the string with the desired new line type.
-- (NSString *)stringByReplacingNewLineCharacersWith:(CENewLineType)type
+- (nonnull NSString *)stringByReplacingNewLineCharacersWith:(CENewLineType)type
 // ------------------------------------------------------
 {
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"\\r\\n|[\\n\\r\\u2028\\u2029]"
@@ -152,7 +152,7 @@ unichar const kNewLineChars[] = {
 
 // ------------------------------------------------------
 /// remove all kind of new line characters in string
-- (NSString *)stringByDeletingNewLineCharacters
+- (nonnull NSString *)stringByDeletingNewLineCharacters
 // ------------------------------------------------------
 {
     return [self stringByReplacingNewLineCharacersWith:CENewLineNone];

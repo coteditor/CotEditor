@@ -37,12 +37,12 @@
 
 @interface CEAppearancePaneController () <NSTableViewDelegate, NSTableViewDataSource, CEThemeViewControllerDelegate>
 
-@property (nonatomic, weak) IBOutlet NSTextField *fontField;
-@property (nonatomic, weak) IBOutlet NSTableView *themeTableView;
-@property (nonatomic, weak) IBOutlet NSBox *box;
+@property (nonatomic, nullable, weak) IBOutlet NSTextField *fontField;
+@property (nonatomic, nullable, weak) IBOutlet NSTableView *themeTableView;
+@property (nonatomic, nullable, weak) IBOutlet NSBox *box;
 
-@property (nonatomic) CEThemeViewController *themeViewController;
-@property (nonatomic) NSArray *themeNames;
+@property (nonatomic, nullable) CEThemeViewController *themeViewController;
+@property (nonatomic, nullable) NSArray *themeNames;
 @property (nonatomic, getter=isBundled) BOOL bundled;
 
 @end

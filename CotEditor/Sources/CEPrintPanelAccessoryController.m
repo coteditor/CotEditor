@@ -9,7 +9,7 @@
  encoding="UTF-8"
  ------------------------------------------------------------------------------
  
- © 2014 CotEditor Project
+ © 2014-2015 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -36,7 +36,7 @@
 @property (nonatomic) IBOutlet NSPopUpButton *themePopup;
 
 
-@property (readwrite, nonatomic) NSString *theme;
+@property (readwrite, nonatomic, nonnull) NSString *theme;
 @property (readwrite, nonatomic) CELineNumberPrintMode lineNumberMode;
 @property (readwrite, nonatomic) CEInvisibleCharsPrintMode invisibleCharsMode;
 
@@ -270,7 +270,7 @@
 
 // ------------------------------------------------------
 /// localizedSummaryItems で返す辞書を生成
-- (NSDictionary *)localizedSummaryItemWithName:(NSString *)name description:(NSString *)description
+- (nonnull NSDictionary *)localizedSummaryItemWithName:(nonnull NSString *)name description:(nonnull NSString *)description
 // ------------------------------------------------------
 {
     return @{NSPrintPanelAccessorySummaryItemNameKey: NSLocalizedString(name, nil),
@@ -330,7 +330,7 @@
 
 // ------------------------------------------------------
 /// ヘッダー／フッターの表示情報タイプから文字列を返す
-- (NSString *)printInfoDescription:(CEPrintInfoType)type
+- (nonnull NSString *)printInfoDescription:(CEPrintInfoType)type
 // ------------------------------------------------------
 {
     switch (type) {
@@ -357,7 +357,7 @@
 
 // ------------------------------------------------------
 /// 行揃えタイプから文字列を返す
-- (NSString *)alignmentDescription:(CEAlignmentType)type
+- (nonnull NSString *)alignmentDescription:(CEAlignmentType)type
 // ------------------------------------------------------
 {
     switch (type) {
@@ -375,7 +375,7 @@
 
 // ------------------------------------------------------
 /// マージンに影響するキーのセットを返す
-- (NSSet *)keyPathsForValuesAffectingMargin
+- (nonnull NSSet *)keyPathsForValuesAffectingMargin
 // ------------------------------------------------------
 {
     return [NSSet setWithArray:@[@"printsHeader",

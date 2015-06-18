@@ -9,7 +9,7 @@
  encoding="UTF-8"
  ------------------------------------------------------------------------------
  
- © 2014 CotEditor Project
+ © 2014-2015 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -33,7 +33,7 @@
 
 @interface CEEncodingListSheetController ()
 
-@property (nonatomic, weak) IBOutlet CEPrefEncodingDataSource *dataSource;
+@property (nonatomic, nullable, weak) IBOutlet CEPrefEncodingDataSource *dataSource;
 
 @end
 
@@ -48,7 +48,7 @@
 
 // ------------------------------------------------------
 /// initialize
-- (instancetype)init
+- (nonnull instancetype)init
 // ------------------------------------------------------
 {
     return [super initWithWindowNibName:@"EncodingListSheet"];
@@ -71,7 +71,7 @@
 
 // ------------------------------------------------------
 /// OK button was clicked
-- (IBAction)save:(id)sender
+- (IBAction)save:(nullable id)sender
 // ------------------------------------------------------
 {
     [[self dataSource] writeEncodingsToUserDefaults];  // save the current setting
@@ -84,7 +84,7 @@
 
 // ------------------------------------------------------
 /// Cancel button was clicked
-- (IBAction)cancel:(id)sender
+- (IBAction)cancel:(nullable id)sender
 // ------------------------------------------------------
 {
     [NSApp stopModal];

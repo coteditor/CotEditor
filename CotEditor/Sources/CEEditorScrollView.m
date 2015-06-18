@@ -75,7 +75,7 @@
 
 // ------------------------------------------------------
 /// return current line number veiw
-- (NSRulerView *)lineNumberView
+- (nullable NSRulerView *)lineNumberView
 // ------------------------------------------------------
 {
     return [self verticalRulerView];

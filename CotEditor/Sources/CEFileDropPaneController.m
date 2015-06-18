@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014 CotEditor Project
+ © 2014-2015 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -34,10 +34,10 @@
 
 @interface CEFileDropPaneController () <NSTableViewDelegate, NSTextFieldDelegate, NSTextViewDelegate>
 
-@property (nonatomic) IBOutlet NSArrayController *fileDropController;
-@property (nonatomic, weak) IBOutlet NSTableView *extensionTableView;
-@property (nonatomic, strong) IBOutlet NSTextView *formatTextView;  // on 10.8 NSTextView cannot be weak
-@property (nonatomic, strong) IBOutlet NSTextView *glossaryTextView;  // on 10.8 NSTextView cannot be weak
+@property (nonatomic, nullable) IBOutlet NSArrayController *fileDropController;
+@property (nonatomic, nullable, weak) IBOutlet NSTableView *extensionTableView;
+@property (nonatomic, nullable, strong) IBOutlet NSTextView *formatTextView;  // on 10.8 NSTextView cannot be weak
+@property (nonatomic, nullable, strong) IBOutlet NSTextView *glossaryTextView;  // on 10.8 NSTextView cannot be weak
 
 @property (nonatomic, getter=isDeletingFileDrop) BOOL deletingFileDrop;
 
@@ -159,7 +159,7 @@
 
 // ------------------------------------------------------
 /// 定型文字列挿入メニューが選択された
-- (IBAction)insertToken:(id)sender
+- (IBAction)insertToken:(nullable id)sender
 // ------------------------------------------------------
 {
     NSString *title = [(NSMenuItem *)sender title];
@@ -172,7 +172,7 @@
 
 // ------------------------------------------------------
 /// ファイルドロップ編集設定を追加
-- (IBAction)addSetting:(id)sender
+- (IBAction)addSetting:(nullable id)sender
 // ------------------------------------------------------
 {
     // フォーカスを移し、値入力を確定
@@ -184,7 +184,7 @@
 
 // ------------------------------------------------------
 /// ファイルドロップ編集設定の削除ボタンが押された
-- (IBAction)removeSetting:(id)sender
+- (IBAction)removeSetting:(nullable id)sender
 // ------------------------------------------------------
 {
     // (編集中に削除ボタンが押され、かつ自動削除対象であったときの整合性を取るための)削除実施フラグをたてる
@@ -232,7 +232,7 @@
 
 // ------------------------------------------------------
 /// 拡張子文字列のフォーマットを整える（全て無効なときは nil を返す）
-- (NSString *)sanitizeExtensionsString:(NSString *)extensionsString
+- (nullable NSString *)sanitizeExtensionsString:(nullable NSString *)extensionsString
 // ------------------------------------------------------
 {
     if (![extensionsString isKindOfClass:[NSString class]]) { return nil; }
@@ -286,7 +286,7 @@
 
 // ------------------------------------------------------
 /// ファイルドロップ編集設定削除確認シートが閉じる直前
-- (void)deleteSettingAlertDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
+- (void)deleteSettingAlertDidEnd:(nonnull NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(nullable void *)contextInfo
 // ------------------------------------------------------
 {
     if (returnCode != NSAlertSecondButtonReturn) { return; } // != Delete

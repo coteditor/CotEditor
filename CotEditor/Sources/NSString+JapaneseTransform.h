@@ -9,7 +9,7 @@
  encoding="UTF-8"
  ------------------------------------------------------------------------------
  
- © 2014 CotEditor Project
+ © 2014-1025 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -32,10 +32,10 @@
 
 @interface NSString (JapaneseTransform)
 
-- (NSString *)fullWidthRomanString;
-- (NSString *)halfWidthRomanString;
+- (nonnull NSString *)fullWidthRomanString;
+- (nonnull NSString *)halfWidthRomanString;
 
-- (NSString *)katakanaString;
-- (NSString *)hiraganaString;
+- (nonnull NSString *)katakanaString;
+- (nonnull NSString *)hiraganaString;
 
 @end

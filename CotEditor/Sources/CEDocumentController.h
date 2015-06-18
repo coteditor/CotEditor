@@ -37,6 +37,6 @@
 @property (nonatomic, readonly) NSStringEncoding accessorySelectedEncoding;
 
 // Action Message
-- (IBAction)openHiddenDocument:(id)sender;
+- (IBAction)openHiddenDocument:(nullable id)sender;
 
 @end

@@ -35,16 +35,16 @@
 @interface CEKeyBindingSheetController () <NSOutlineViewDataSource, NSOutlineViewDelegate, NSTextFieldDelegate>
 
 @property (nonatomic) CEKeyBindingType mode;
-@property (nonatomic) NSMutableArray *outlineData;
-@property (nonatomic) NSMutableArray *registeredKeySpecCharsList;  // for duplication check
-@property (nonatomic, copy) NSString *warningMessage;  // for binding
+@property (nonatomic, nonnull) NSMutableArray *outlineData;
+@property (nonatomic, nonnull) NSMutableArray *registeredKeySpecCharsList;  // for duplication check
+@property (nonatomic, nullable, copy) NSString *warningMessage;  // for binding
 @property (nonatomic, getter=isRestoreble) BOOL restoreble;  // for binding
 
-@property (nonatomic, weak) IBOutlet NSOutlineView *outlineView;
-@property (nonatomic, weak) IBOutlet NSButton *OKButton;
+@property (nonatomic, nullable, weak) IBOutlet NSOutlineView *outlineView;
+@property (nonatomic, nullable, weak) IBOutlet NSButton *OKButton;
 
 // only in text key bindings edit sheet
-@property (nonatomic) IBOutlet NSArrayController *snippetArrayController;
+@property (nonatomic, nullable) IBOutlet NSArrayController *snippetArrayController;
 
 @end
 
@@ -57,7 +57,7 @@
 
 // ------------------------------------------------------
 /// initialize
-- (instancetype)initWithMode:(CEKeyBindingType)mode
+- (nonnull instancetype)initWithMode:(CEKeyBindingType)mode
 // ------------------------------------------------------
 {
     NSString *nibName = (mode == CEMenuKeyBindingsType) ? @"MenuKeyBindingEditSheet" : @"TextKeyBindingEditSheet";
@@ -73,11 +73,9 @@
                 break;
                 
             case CETextKeyBindingsType:
-            {
                 _outlineData = [[CEKeyBindingManager sharedManager] textKeySpecCharArrayForOutlineDataWithFactoryDefaults:NO];
                 _restoreble = ![[CEKeyBindingManager sharedManager] usesDefaultTextKeyBindings];
                 break;
-            }
         }
         
         _registeredKeySpecCharsList = [self keySpecCharsListFromOutlineData:_outlineData];

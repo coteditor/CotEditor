@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014 CotEditor Project
+ © 2014-2015 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -35,12 +35,12 @@
 
 @interface CEEditPaneController ()
 
-@property (nonatomic, weak) IBOutlet NSButton *smartQuoteCheckButton;
+@property (nonatomic, nullable, weak) IBOutlet NSButton *smartQuoteCheckButton;
 
-@property (nonatomic, copy) NSArray *invisibleSpaces;
-@property (nonatomic, copy) NSArray *invisibleTabs;
-@property (nonatomic, copy) NSArray *invisibleNewLines;
-@property (nonatomic, copy) NSArray *invisibleFullWidthSpaces;
+@property (nonatomic, nonnull, copy) NSArray *invisibleSpaces;
+@property (nonatomic, nonnull, copy) NSArray *invisibleTabs;
+@property (nonatomic, nonnull, copy) NSArray *invisibleNewLines;
+@property (nonatomic, nonnull, copy) NSArray *invisibleFullWidthSpaces;
 
 @end
 
