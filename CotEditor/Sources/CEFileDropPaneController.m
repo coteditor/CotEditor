@@ -93,7 +93,7 @@
 
 // ------------------------------------------------------
 /// 拡張子テーブルが編集された
-- (void)controlTextDidEndEditing:(NSNotification *)notification
+- (void)controlTextDidEndEditing:(nonnull NSNotification *)notification
 // ------------------------------------------------------
 {
     if (![[notification object] isKindOfClass:[NSTextField class]]) { return; }
@@ -126,7 +126,7 @@
 
 // ------------------------------------------------------
 /// 拡張子テーブルの追加行の編集開始
-- (void)tableView:(NSTableView *)tableView didAddRowView:(NSTableRowView *)rowView forRow:(NSInteger)row
+- (void)tableView:(nonnull NSTableView *)tableView didAddRowView:(nonnull NSTableRowView *)rowView forRow:(NSInteger)row
 // ------------------------------------------------------
 {
     BOOL isLastRow = ([tableView numberOfRows] - 1 == row);
@@ -144,7 +144,7 @@
 
 // ------------------------------------------------------
 /// FileDrop 挿入文字列フォーマットテキストビューが編集された
-- (void)textDidEndEditing:(NSNotification *)notification
+- (void)textDidEndEditing:(nonnull NSNotification *)notification
 // ------------------------------------------------------
 {
     if ([notification object] == [self formatTextView]) {

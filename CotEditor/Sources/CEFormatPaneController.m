@@ -109,7 +109,7 @@
 
 // ------------------------------------------------------
 /// メニューの有効化／無効化を制御
-- (BOOL)validateMenuItem:(NSMenuItem *)menuItem
+- (BOOL)validateMenuItem:(nonnull NSMenuItem *)menuItem
 // ------------------------------------------------------
 {
     // 拡張子重複エラー表示メニューの有効化を制御
@@ -143,7 +143,7 @@
 
 // ------------------------------------------------------
 /// テーブルの選択が変更された
-- (void)tableViewSelectionDidChange:(NSNotification *)notification
+- (void)tableViewSelectionDidChange:(nonnull NSNotification *)notification
 // ------------------------------------------------------
 {
     if ([notification object] == [self syntaxTableView]) {

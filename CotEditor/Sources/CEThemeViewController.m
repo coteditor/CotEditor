@@ -52,7 +52,7 @@
 
 // ------------------------------------------------------
 /// initialize instance
-- (nullable instancetype)init
+- (instancetype)init
 // ------------------------------------------------------
 {
     return [super initWithNibName:@"ThemeView" bundle:nil];
@@ -71,7 +71,7 @@
 
 // ------------------------------------------------------
 /// observe theme dict changes
-- (void)setRepresentedObject:(id)representedObject
+- (void)setRepresentedObject:(nullable id)representedObject
 // ------------------------------------------------------
 {
     // remove current observing (in case when the theme is restored)
@@ -94,7 +94,7 @@
 
 // ------------------------------------------------------
 /// theme is modified
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+- (void)observeValueForKeyPath:(nullable NSString *)keyPath ofObject:(nullable id)object change:(nullable NSDictionary *)change context:(nullable void *)context
 // ------------------------------------------------------
 {
     if (object == [self representedObject]) {
@@ -108,7 +108,7 @@
 
 // ------------------------------------------------------
 /// meta data was possible edited
-- (void)controlTextDidChange:(NSNotification *)obj
+- (void)controlTextDidChange:(nonnull NSNotification *)obj
 // ------------------------------------------------------
 {
     [self setMetadataEdited:YES];
@@ -117,7 +117,7 @@
 
 // ------------------------------------------------------
 /// popover closed
-- (void)popoverDidClose:(NSNotification *)notification
+- (void)popoverDidClose:(nonnull NSNotification *)notification
 // ------------------------------------------------------
 {
     if ([self isMetadataEdited]) {

@@ -33,7 +33,7 @@
 
 @interface CEPrintPanelAccessoryController ()
 
-@property (nonatomic) IBOutlet NSPopUpButton *themePopup;
+@property (nonatomic, nullable) IBOutlet NSPopUpButton *themePopup;
 
 
 @property (readwrite, nonatomic, nonnull) NSString *theme;
@@ -168,7 +168,7 @@
 
 // ------------------------------------------------------
 /// プレビューに影響するキーのセットを返す
-- (NSSet *)keyPathsForValuesAffectingPreview
+- (nonnull NSSet *)keyPathsForValuesAffectingPreview
 // ------------------------------------------------------
 {
     return [NSSet setWithArray:@[@"theme",
@@ -189,7 +189,7 @@
 
 // ------------------------------------------------------
 /// ローカライズ済みの設定説明を返す
--(NSArray *)localizedSummaryItems
+-(nonnull NSArray *)localizedSummaryItems
 // ------------------------------------------------------
 {
     // 現時点ではこのアクセサリビューでの設定値はプリントパネルにあるプリセットに対応していない (2014-03-29 1024jp)

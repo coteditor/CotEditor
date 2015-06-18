@@ -53,11 +53,11 @@
 @property (nonatomic) BOOL didFinishLaunching;
 
 @property (nonatomic) BOOL hasSetting;  // for migration check
-@property (nonatomic) CEMigrationWindowController *migrationWindowController;
+@property (nonatomic, nullable) CEMigrationWindowController *migrationWindowController;
 
 
 // readonly
-@property (readwrite, nonatomic) NSURL *supportDirectoryURL;
+@property (readwrite, nonatomic, nonnull) NSURL *supportDirectoryURL;
 
 @end
 
@@ -299,7 +299,7 @@
 
 // ------------------------------------------------------
 /// validate menu items
-- (BOOL)validateMenuItem:(NSMenuItem *)menuItem
+- (BOOL)validateMenuItem:(nonnull NSMenuItem *)menuItem
 // ------------------------------------------------------
 {
     if (([menuItem action] == @selector(showLineHeightPanel:)) ||
@@ -320,7 +320,7 @@
 
 // ------------------------------------------------------
 /// creates a new document on launch?
-- (BOOL)applicationShouldOpenUntitledFile:(NSApplication *)sender
+- (BOOL)applicationShouldOpenUntitledFile:(nonnull NSApplication *)sender
 // ------------------------------------------------------
 {
     if (![self didFinishLaunching]) {
@@ -333,7 +333,7 @@
 
 // ------------------------------------------------------
 /// crates a new document on "Re-Open" AppleEvent
-- (BOOL)applicationShouldHandleReopen:(NSApplication *)theApplication hasVisibleWindows:(BOOL)flag
+- (BOOL)applicationShouldHandleReopen:(nonnull NSApplication *)theApplication hasVisibleWindows:(BOOL)flag
 // ------------------------------------------------------
 {
     if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultReopenBlankWindowKey]) {
@@ -346,7 +346,7 @@
 
 // ------------------------------------------------------
 /// just after application did launch
-- (void)applicationDidFinishLaunching:(NSNotification *)notification
+- (void)applicationDidFinishLaunching:(nonnull NSNotification *)notification
 // ------------------------------------------------------
 {
     // keyboard shortcuts will be overridden by CEKeyBindingManager
@@ -377,7 +377,7 @@
 
 // ------------------------------------------------------
 /// open file
-- (BOOL)application:(NSApplication *)theApplication openFile:(NSString *)filename
+- (BOOL)application:(nonnull NSApplication *)theApplication openFile:(nonnull NSString *)filename
 // ------------------------------------------------------
 {
     // perform install if the file is CotEditor theme file
@@ -437,7 +437,7 @@
 
 // ------------------------------------------------------
 /// activate self and perform "New" menu action
-- (IBAction)newInDockMenu:(id)sender
+- (IBAction)newInDockMenu:(nullable id)sender
 // ------------------------------------------------------
 {
     [NSApp activateIgnoringOtherApps:YES];
@@ -447,7 +447,7 @@
 
 // ------------------------------------------------------
 /// activate self and perform "Open..." menu action
-- (IBAction)openInDockMenu:(id)sender
+- (IBAction)openInDockMenu:(nullable id)sender
 // ------------------------------------------------------
 {
     [NSApp activateIgnoringOtherApps:YES];
@@ -457,7 +457,7 @@
 
 // ------------------------------------------------------
 /// show Preferences window
-- (IBAction)showPreferences:(id)sender
+- (IBAction)showPreferences:(nullable id)sender
 // ------------------------------------------------------
 {
     [[CEPreferencesWindowController sharedController] showWindow:self];
@@ -466,7 +466,7 @@
 
 // ------------------------------------------------------
 /// Show console panel
-- (IBAction)showConsolePanel:(id)sender
+- (IBAction)showConsolePanel:(nullable id)sender
 // ------------------------------------------------------
 {
     [[CEConsolePanelController sharedController] showWindow:self];
@@ -475,7 +475,7 @@
 
 // ------------------------------------------------------
 /// show color code editor panel
-- (IBAction)showColorCodePanel:(id)sender
+- (IBAction)showColorCodePanel:(nullable id)sender
 // ------------------------------------------------------
 {
     [[CEColorCodePanelController sharedController] showWindow:self];
@@ -484,7 +484,7 @@
 
 // ------------------------------------------------------
 /// show view opacity panel
-- (IBAction)showOpacityPanel:(id)sender
+- (IBAction)showOpacityPanel:(nullable id)sender
 // ------------------------------------------------------
 {
     [[CEOpacityPanelController sharedController] showWindow:self];
@@ -493,7 +493,7 @@
 
 // ------------------------------------------------------
 /// show line hight panel
-- (IBAction)showLineHeightPanel:(id)sender
+- (IBAction)showLineHeightPanel:(nullable id)sender
 // ------------------------------------------------------
 {
     [[CELineHightPanelController sharedController] showWindow:self];
@@ -502,7 +502,7 @@
 
 // ------------------------------------------------------
 /// show Unicode input panel
-- (IBAction)showUnicodeInputPanel:(id)sender
+- (IBAction)showUnicodeInputPanel:(nullable id)sender
 // ------------------------------------------------------
 {
     [[CEUnicodeInputPanelController sharedController] showWindow:self];
@@ -511,7 +511,7 @@
 
 // ------------------------------------------------------
 /// open OSAScript dictionary in Script Editor
-- (IBAction)openAppleScriptDictionary:(id)sender
+- (IBAction)openAppleScriptDictionary:(nullable id)sender
 // ------------------------------------------------------
 {
     NSURL *URL = [[NSBundle mainBundle] URLForResource:@"openDictionary" withExtension:@"scpt"];
@@ -522,7 +522,7 @@
 
 // ------------------------------------------------------
 /// open a specific page in Help contents
-- (IBAction)openHelpAnchor:(id)sender
+- (IBAction)openHelpAnchor:(nullable id)sender
 // ------------------------------------------------------
 {
     NSString *bookName = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleHelpBookName"];
@@ -535,7 +535,7 @@
 
 // ------------------------------------------------------
 /// open bundled documents in TextEdit.app
-- (IBAction)openBundledDocument:(id)sender
+- (IBAction)openBundledDocument:(nullable id)sender
 // ------------------------------------------------------
 {
     NSString *fileName = kBundledDocumentFileNames[[sender tag]];
@@ -547,7 +547,7 @@
 
 // ------------------------------------------------------
 /// open web site (coteditor.com) in default web browser
-- (IBAction)openWebSite:(id)sender
+- (IBAction)openWebSite:(nullable id)sender
 // ------------------------------------------------------
 {
     [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:kWebSiteURL]];
@@ -556,7 +556,7 @@
 
 // ------------------------------------------------------
 /// open bug report page in default web browser
-- (IBAction)reportBug:(id)sender
+- (IBAction)reportBug:(nullable id)sender
 // ------------------------------------------------------
 {
     [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:kIssueTrackerURL]];
@@ -565,7 +565,7 @@
 
 // ------------------------------------------------------
 /// open new bug report window
-- (IBAction)createBugReport:(id)sender
+- (IBAction)createBugReport:(nullable id)sender
 // ------------------------------------------------------
 {
     NSBundle *bundle = [NSBundle mainBundle];
@@ -690,7 +690,7 @@
 
 // ------------------------------------------------------
 /// open new document with string via Services
-- (void)openSelection:(NSPasteboard *)pboard userData:(NSString *)userData error:(NSString **)error
+- (void)openSelection:(nonnull NSPasteboard *)pboard userData:(nonnull NSString *)userData error:(NSString * __nullable * __nullable)error
 // ------------------------------------------------------
 {
     NSError *err = nil;
@@ -708,7 +708,7 @@
 
 // ------------------------------------------------------
 /// open files via Services
-- (void)openFile:(NSPasteboard *)pboard userData:(NSString *)userData error:(NSString **)error
+- (void)openFile:(nonnull NSPasteboard *)pboard userData:(nonnull NSString *)userData error:(NSString * __nullable * __nullable)error
 // ------------------------------------------------------
 {
     for (NSPasteboardItem *item in [pboard pasteboardItems]) {
@@ -755,8 +755,8 @@
 
 @implementation CEAppDelegate (Migration)
 
-static NSString *const kOldIdentifier = @"com.aynimac.CotEditor";
-static NSString *const kMigrationFlagKey = @"isMigratedToNewBundleIdentifier";
+static NSString *__nonnull const kOldIdentifier = @"com.aynimac.CotEditor";
+static NSString *__nonnull const kMigrationFlagKey = @"isMigratedToNewBundleIdentifier";
 
 
 //------------------------------------------------------

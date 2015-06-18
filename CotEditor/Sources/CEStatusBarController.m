@@ -38,12 +38,12 @@ static const NSTimeInterval kDuration = 0.25;
 
 @interface CEStatusBarController ()
 
-@property (nonatomic, weak) IBOutlet CEDocumentAnalyzer *documentAnalyzer;
-@property (nonatomic, weak) IBOutlet NSLayoutConstraint *heightConstraint;
+@property (nonatomic, nullable, weak) IBOutlet CEDocumentAnalyzer *documentAnalyzer;
+@property (nonatomic, nullable, weak) IBOutlet NSLayoutConstraint *heightConstraint;
 
 @property (nonatomic) BOOL showsReadOnly;
-@property (nonatomic, copy) NSAttributedString *editorStatus;
-@property (nonatomic, copy) NSString *documentStatus;
+@property (nonatomic, nullable, copy) NSAttributedString *editorStatus;
+@property (nonatomic, nullable, copy) NSString *documentStatus;
 
 // readonly
 @property (readwrite, nonatomic, getter=isShown) BOOL shown;
@@ -202,7 +202,7 @@ static NSColor *kLabelColor;
 
 // ------------------------------------------------------
 /// formatted state
-- (NSAttributedString *)formattedStateWithLabel:(NSString *)label value:(NSString *)value
+- (NSAttributedString *)formattedStateWithLabel:(nonnull NSString *)label value:(nullable NSString *)value
 // ------------------------------------------------------
 {
     NSString *localizedLabel = [NSString stringWithFormat:NSLocalizedString(@"%@: ", nil), NSLocalizedString(label, nil)];

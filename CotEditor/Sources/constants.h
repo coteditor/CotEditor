@@ -38,10 +38,10 @@
 // ------------------------------------------------------
 
 // Separator
-extern NSString *const CESeparatorString;
+extern NSString *__nonnull const CESeparatorString;
 
 // Error domain
-extern NSString *const CEErrorDomain;
+extern NSString *__nonnull const CEErrorDomain;
 
 typedef NS_ENUM(OSStatus, CEErrorCode) {
     CEInvalidNameError = 1000,
@@ -54,14 +54,14 @@ typedef NS_ENUM(OSStatus, CEErrorCode) {
 };
 
 // Metadata dict keys
-extern NSString *const CEMetadataKey;
-extern NSString *const CEAuthorKey;
-extern NSString *const CEDistributionURLKey;
-extern NSString *const CELisenceKey;
-extern NSString *const CEDescriptionKey;
+extern NSString *__nonnull const CEMetadataKey;
+extern NSString *__nonnull const CEAuthorKey;
+extern NSString *__nonnull const CEDistributionURLKey;
+extern NSString *__nonnull const CELisenceKey;
+extern NSString *__nonnull const CEDescriptionKey;
 
 // Help anchors
-extern NSString *const kHelpAnchors[];
+extern NSString *__nonnull const kHelpAnchors[];
 
 
 // labels for system sound ID on AudioToolbox (There are no constants provided by Apple)
@@ -83,11 +83,11 @@ BOOL CEIsAlmostEqualCGFloats(CGFloat float1, CGFloat float2);
 // ------------------------------------------------------
 
 // Notification name
-extern NSString *const CEDocumentDidFinishOpenNotification;
+extern NSString *__nonnull const CEDocumentDidFinishOpenNotification;
 
 // General notification's userInfo keys
-extern NSString *const CEOldNameKey;
-extern NSString *const CENewNameKey;
+extern NSString *__nonnull const CEOldNameKey;
+extern NSString *__nonnull const CENewNameKey;
 
 
 
@@ -98,139 +98,139 @@ extern NSString *const CENewNameKey;
 // ------------------------------------------------------
 
 // general settings
-extern NSString *const CEDefaultLastVersionKey;
-extern NSString *const CEDefaultLayoutTextVerticalKey;
-extern NSString *const CEDefaultSplitViewVerticalKey;
-extern NSString *const CEDefaultShowLineNumbersKey;
-extern NSString *const CEDefaultShowDocumentInspectorKey;
-extern NSString *const CEDefaultShowStatusBarKey;
-extern NSString *const CEDefaultShowStatusBarLinesKey;
-extern NSString *const CEDefaultShowStatusBarLengthKey;
-extern NSString *const CEDefaultShowStatusBarCharsKey;
-extern NSString *const CEDefaultShowStatusBarWordsKey;
-extern NSString *const CEDefaultShowStatusBarLocationKey;
-extern NSString *const CEDefaultShowStatusBarLineKey;
-extern NSString *const CEDefaultShowStatusBarColumnKey;
-extern NSString *const CEDefaultShowStatusBarEncodingKey;
-extern NSString *const CEDefaultShowStatusBarLineEndingsKey;
-extern NSString *const CEDefaultShowStatusBarFileSizeKey;
-extern NSString *const CEDefaultShowNavigationBarKey;
-extern NSString *const CEDefaultCountLineEndingAsCharKey;
-extern NSString *const CEDefaultSyncFindPboardKey;
-extern NSString *const CEDefaultInlineContextualScriptMenuKey;
-extern NSString *const CEDefaultWrapLinesKey;
-extern NSString *const CEDefaultLineEndCharCodeKey;
-extern NSString *const CEDefaultEncodingListKey;
-extern NSString *const CEDefaultFontNameKey;
-extern NSString *const CEDefaultFontSizeKey;
-extern NSString *const CEDefaultEncodingInOpenKey;
-extern NSString *const CEDefaultEncodingInNewKey;
-extern NSString *const CEDefaultReferToEncodingTagKey;
-extern NSString *const CEDefaultCreateNewAtStartupKey;
-extern NSString *const CEDefaultReopenBlankWindowKey;
-extern NSString *const CEDefaultCheckSpellingAsTypeKey;
-extern NSString *const CEDefaultWindowWidthKey;
-extern NSString *const CEDefaultWindowHeightKey;
-extern NSString *const CEDefaultWindowAlphaKey;
-extern NSString *const CEDefaultAutoExpandTabKey;
-extern NSString *const CEDefaultTabWidthKey;
-extern NSString *const CEDefaultAutoIndentKey;
-extern NSString *const CEDefaultShowInvisiblesKey;
-extern NSString *const CEDefaultShowInvisibleSpaceKey;
-extern NSString *const CEDefaultInvisibleSpaceKey;
-extern NSString *const CEDefaultShowInvisibleTabKey;
-extern NSString *const CEDefaultInvisibleTabKey;
-extern NSString *const CEDefaultShowInvisibleNewLineKey;
-extern NSString *const CEDefaultInvisibleNewLineKey;
-extern NSString *const CEDefaultShowInvisibleFullwidthSpaceKey;
-extern NSString *const CEDefaultInvisibleFullwidthSpaceKey;
-extern NSString *const CEDefaultShowOtherInvisibleCharsKey;
-extern NSString *const CEDefaultHighlightCurrentLineKey;
-extern NSString *const CEDefaultEnableSyntaxHighlightKey;
-extern NSString *const CEDefaultSyntaxStyleKey;
-extern NSString *const CEDefaultThemeKey;
-extern NSString *const CEDefaultDelayColoringKey;
-extern NSString *const CEDefaultFileDropArrayKey;
-extern NSString *const CEDefaultSmartInsertAndDeleteKey;
-extern NSString *const CEDefaultShouldAntialiasKey;
-extern NSString *const CEDefaultAutoCompleteKey;
-extern NSString *const CEDefaultCompletionWordsKey;
-extern NSString *const CEDefaultShowPageGuideKey;
-extern NSString *const CEDefaultPageGuideColumnKey;
-extern NSString *const CEDefaultLineSpacingKey;
-extern NSString *const CEDefaultSwapYenAndBackSlashKey;
-extern NSString *const CEDefaultFixLineHeightKey;
-extern NSString *const CEDefaultHighlightBracesKey;
-extern NSString *const CEDefaultHighlightLtGtKey;
-extern NSString *const CEDefaultSaveUTF8BOMKey;
-extern NSString *const CEDefaultEnableSmartQuotesKey;
-extern NSString *const CEDefaultEnableSmartIndentKey;
-extern NSString *const CEDefaultAppendsCommentSpacerKey;
-extern NSString *const CEDefaultCommentsAtLineHeadKey;
+extern NSString *__nonnull const CEDefaultLastVersionKey;
+extern NSString *__nonnull const CEDefaultLayoutTextVerticalKey;
+extern NSString *__nonnull const CEDefaultSplitViewVerticalKey;
+extern NSString *__nonnull const CEDefaultShowLineNumbersKey;
+extern NSString *__nonnull const CEDefaultShowDocumentInspectorKey;
+extern NSString *__nonnull const CEDefaultShowStatusBarKey;
+extern NSString *__nonnull const CEDefaultShowStatusBarLinesKey;
+extern NSString *__nonnull const CEDefaultShowStatusBarLengthKey;
+extern NSString *__nonnull const CEDefaultShowStatusBarCharsKey;
+extern NSString *__nonnull const CEDefaultShowStatusBarWordsKey;
+extern NSString *__nonnull const CEDefaultShowStatusBarLocationKey;
+extern NSString *__nonnull const CEDefaultShowStatusBarLineKey;
+extern NSString *__nonnull const CEDefaultShowStatusBarColumnKey;
+extern NSString *__nonnull const CEDefaultShowStatusBarEncodingKey;
+extern NSString *__nonnull const CEDefaultShowStatusBarLineEndingsKey;
+extern NSString *__nonnull const CEDefaultShowStatusBarFileSizeKey;
+extern NSString *__nonnull const CEDefaultShowNavigationBarKey;
+extern NSString *__nonnull const CEDefaultCountLineEndingAsCharKey;
+extern NSString *__nonnull const CEDefaultSyncFindPboardKey;
+extern NSString *__nonnull const CEDefaultInlineContextualScriptMenuKey;
+extern NSString *__nonnull const CEDefaultWrapLinesKey;
+extern NSString *__nonnull const CEDefaultLineEndCharCodeKey;
+extern NSString *__nonnull const CEDefaultEncodingListKey;
+extern NSString *__nonnull const CEDefaultFontNameKey;
+extern NSString *__nonnull const CEDefaultFontSizeKey;
+extern NSString *__nonnull const CEDefaultEncodingInOpenKey;
+extern NSString *__nonnull const CEDefaultEncodingInNewKey;
+extern NSString *__nonnull const CEDefaultReferToEncodingTagKey;
+extern NSString *__nonnull const CEDefaultCreateNewAtStartupKey;
+extern NSString *__nonnull const CEDefaultReopenBlankWindowKey;
+extern NSString *__nonnull const CEDefaultCheckSpellingAsTypeKey;
+extern NSString *__nonnull const CEDefaultWindowWidthKey;
+extern NSString *__nonnull const CEDefaultWindowHeightKey;
+extern NSString *__nonnull const CEDefaultWindowAlphaKey;
+extern NSString *__nonnull const CEDefaultAutoExpandTabKey;
+extern NSString *__nonnull const CEDefaultTabWidthKey;
+extern NSString *__nonnull const CEDefaultAutoIndentKey;
+extern NSString *__nonnull const CEDefaultShowInvisiblesKey;
+extern NSString *__nonnull const CEDefaultShowInvisibleSpaceKey;
+extern NSString *__nonnull const CEDefaultInvisibleSpaceKey;
+extern NSString *__nonnull const CEDefaultShowInvisibleTabKey;
+extern NSString *__nonnull const CEDefaultInvisibleTabKey;
+extern NSString *__nonnull const CEDefaultShowInvisibleNewLineKey;
+extern NSString *__nonnull const CEDefaultInvisibleNewLineKey;
+extern NSString *__nonnull const CEDefaultShowInvisibleFullwidthSpaceKey;
+extern NSString *__nonnull const CEDefaultInvisibleFullwidthSpaceKey;
+extern NSString *__nonnull const CEDefaultShowOtherInvisibleCharsKey;
+extern NSString *__nonnull const CEDefaultHighlightCurrentLineKey;
+extern NSString *__nonnull const CEDefaultEnableSyntaxHighlightKey;
+extern NSString *__nonnull const CEDefaultSyntaxStyleKey;
+extern NSString *__nonnull const CEDefaultThemeKey;
+extern NSString *__nonnull const CEDefaultDelayColoringKey;
+extern NSString *__nonnull const CEDefaultFileDropArrayKey;
+extern NSString *__nonnull const CEDefaultSmartInsertAndDeleteKey;
+extern NSString *__nonnull const CEDefaultShouldAntialiasKey;
+extern NSString *__nonnull const CEDefaultAutoCompleteKey;
+extern NSString *__nonnull const CEDefaultCompletionWordsKey;
+extern NSString *__nonnull const CEDefaultShowPageGuideKey;
+extern NSString *__nonnull const CEDefaultPageGuideColumnKey;
+extern NSString *__nonnull const CEDefaultLineSpacingKey;
+extern NSString *__nonnull const CEDefaultSwapYenAndBackSlashKey;
+extern NSString *__nonnull const CEDefaultFixLineHeightKey;
+extern NSString *__nonnull const CEDefaultHighlightBracesKey;
+extern NSString *__nonnull const CEDefaultHighlightLtGtKey;
+extern NSString *__nonnull const CEDefaultSaveUTF8BOMKey;
+extern NSString *__nonnull const CEDefaultEnableSmartQuotesKey;
+extern NSString *__nonnull const CEDefaultEnableSmartIndentKey;
+extern NSString *__nonnull const CEDefaultAppendsCommentSpacerKey;
+extern NSString *__nonnull const CEDefaultCommentsAtLineHeadKey;
 
 // print settings
-extern NSString *const CEDefaultSetPrintFontKey;
-extern NSString *const CEDefaultPrintFontNameKey;
-extern NSString *const CEDefaultPrintFontSizeKey;
-extern NSString *const CEDefaultPrintThemeKey;
-extern NSString *const CEDefaultPrintHeaderKey;
-extern NSString *const CEDefaultHeaderOneStringIndexKey;
-extern NSString *const CEDefaultHeaderTwoStringIndexKey;
-extern NSString *const CEDefaultHeaderOneAlignIndexKey;
-extern NSString *const CEDefaultHeaderTwoAlignIndexKey;
-extern NSString *const CEDefaultPrintHeaderSeparatorKey;
-extern NSString *const CEDefaultPrintFooterKey;
-extern NSString *const CEDefaultFooterOneStringIndexKey;
-extern NSString *const CEDefaultFooterTwoStringIndexKey;
-extern NSString *const CEDefaultFooterOneAlignIndexKey;
-extern NSString *const CEDefaultFooterTwoAlignIndexKey;
-extern NSString *const CEDefaultPrintFooterSeparatorKey;
-extern NSString *const CEDefaultPrintLineNumIndexKey;
-extern NSString *const CEDefaultPrintInvisibleCharIndexKey;
-extern NSString *const CEDefaultPrintColorIndexKey;
+extern NSString *__nonnull const CEDefaultSetPrintFontKey;
+extern NSString *__nonnull const CEDefaultPrintFontNameKey;
+extern NSString *__nonnull const CEDefaultPrintFontSizeKey;
+extern NSString *__nonnull const CEDefaultPrintThemeKey;
+extern NSString *__nonnull const CEDefaultPrintHeaderKey;
+extern NSString *__nonnull const CEDefaultHeaderOneStringIndexKey;
+extern NSString *__nonnull const CEDefaultHeaderTwoStringIndexKey;
+extern NSString *__nonnull const CEDefaultHeaderOneAlignIndexKey;
+extern NSString *__nonnull const CEDefaultHeaderTwoAlignIndexKey;
+extern NSString *__nonnull const CEDefaultPrintHeaderSeparatorKey;
+extern NSString *__nonnull const CEDefaultPrintFooterKey;
+extern NSString *__nonnull const CEDefaultFooterOneStringIndexKey;
+extern NSString *__nonnull const CEDefaultFooterTwoStringIndexKey;
+extern NSString *__nonnull const CEDefaultFooterOneAlignIndexKey;
+extern NSString *__nonnull const CEDefaultFooterTwoAlignIndexKey;
+extern NSString *__nonnull const CEDefaultPrintFooterSeparatorKey;
+extern NSString *__nonnull const CEDefaultPrintLineNumIndexKey;
+extern NSString *__nonnull const CEDefaultPrintInvisibleCharIndexKey;
+extern NSString *__nonnull const CEDefaultPrintColorIndexKey;
 
 // find panel
-extern NSString *const CEDefaultFindHistoryKey;
-extern NSString *const CEDefaultReplaceHistoryKey;
-extern NSString *const CEDefaultFindRegexSyntaxKey;
-extern NSString *const CEDefaultFindUsesRegularExpressionKey;
-extern NSString *const CEDefaultFindInSelectionKey;
-extern NSString *const CEDefaultFindIsWrapKey;
-extern NSString *const CEDefaultFindNextAfterReplaceKey;
-extern NSString *const CEDefaultFindOptionsKey;
-extern NSString *const CEDefaultFindClosesIndicatorWhenDoneKey;
+extern NSString *__nonnull const CEDefaultFindHistoryKey;
+extern NSString *__nonnull const CEDefaultReplaceHistoryKey;
+extern NSString *__nonnull const CEDefaultFindRegexSyntaxKey;
+extern NSString *__nonnull const CEDefaultFindUsesRegularExpressionKey;
+extern NSString *__nonnull const CEDefaultFindInSelectionKey;
+extern NSString *__nonnull const CEDefaultFindIsWrapKey;
+extern NSString *__nonnull const CEDefaultFindNextAfterReplaceKey;
+extern NSString *__nonnull const CEDefaultFindOptionsKey;
+extern NSString *__nonnull const CEDefaultFindClosesIndicatorWhenDoneKey;
 
 // settings that are not in preferences
-extern NSString *const CEDefaultInsertCustomTextArrayKey;
-extern NSString *const CEDefaultInsertCustomTextKey;
-extern NSString *const CEDefaultColorCodeTypeKey;
-extern NSString *const CEDefaultSidebarWidthKey;
+extern NSString *__nonnull const CEDefaultInsertCustomTextArrayKey;
+extern NSString *__nonnull const CEDefaultInsertCustomTextKey;
+extern NSString *__nonnull const CEDefaultColorCodeTypeKey;
+extern NSString *__nonnull const CEDefaultSidebarWidthKey;
 
 // hidden settings
-extern NSString *const CEDefaultUsesTextFontForInvisiblesKey;
-extern NSString *const CEDefaultLineNumFontNameKey;
-extern NSString *const CEDefaultBasicColoringDelayKey;
-extern NSString *const CEDefaultFirstColoringDelayKey;
-extern NSString *const CEDefaultSecondColoringDelayKey;
-extern NSString *const CEDefaultAutoCompletionDelayKey;
-extern NSString *const CEDefaultLineNumUpdateIntervalKey;
-extern NSString *const CEDefaultInfoUpdateIntervalKey;
-extern NSString *const CEDefaultIncompatibleCharIntervalKey;
-extern NSString *const CEDefaultOutlineMenuIntervalKey;
-extern NSString *const CEDefaultHeaderFooterFontNameKey;
-extern NSString *const CEDefaultHeaderFooterFontSizeKey;
-extern NSString *const CEDefaultHeaderFooterDateFormatKey;
-extern NSString *const CEDefaultHeaderFooterPathAbbreviatingWithTildeKey;
-extern NSString *const CEDefaultTextContainerInsetWidthKey;
-extern NSString *const CEDefaultTextContainerInsetHeightTopKey;
-extern NSString *const CEDefaultTextContainerInsetHeightBottomKey;
-extern NSString *const CEDefaultShowColoringIndicatorTextLengthKey;
-extern NSString *const CEDefaultRunAppleScriptInLaunchingKey;
-extern NSString *const CEDefaultShowAlertForNotWritableKey;
-extern NSString *const CEDefaultNotifyEditByAnotherKey;
-extern NSString *const CEDefaultColoringRangeBufferLengthKey;
-extern NSString *const CEDefaultLargeFileAlertThresholdKey;
-extern NSString *const CEDefaultAutosavingDelayKey;
+extern NSString *__nonnull const CEDefaultUsesTextFontForInvisiblesKey;
+extern NSString *__nonnull const CEDefaultLineNumFontNameKey;
+extern NSString *__nonnull const CEDefaultBasicColoringDelayKey;
+extern NSString *__nonnull const CEDefaultFirstColoringDelayKey;
+extern NSString *__nonnull const CEDefaultSecondColoringDelayKey;
+extern NSString *__nonnull const CEDefaultAutoCompletionDelayKey;
+extern NSString *__nonnull const CEDefaultLineNumUpdateIntervalKey;
+extern NSString *__nonnull const CEDefaultInfoUpdateIntervalKey;
+extern NSString *__nonnull const CEDefaultIncompatibleCharIntervalKey;
+extern NSString *__nonnull const CEDefaultOutlineMenuIntervalKey;
+extern NSString *__nonnull const CEDefaultHeaderFooterFontNameKey;
+extern NSString *__nonnull const CEDefaultHeaderFooterFontSizeKey;
+extern NSString *__nonnull const CEDefaultHeaderFooterDateFormatKey;
+extern NSString *__nonnull const CEDefaultHeaderFooterPathAbbreviatingWithTildeKey;
+extern NSString *__nonnull const CEDefaultTextContainerInsetWidthKey;
+extern NSString *__nonnull const CEDefaultTextContainerInsetHeightTopKey;
+extern NSString *__nonnull const CEDefaultTextContainerInsetHeightBottomKey;
+extern NSString *__nonnull const CEDefaultShowColoringIndicatorTextLengthKey;
+extern NSString *__nonnull const CEDefaultRunAppleScriptInLaunchingKey;
+extern NSString *__nonnull const CEDefaultShowAlertForNotWritableKey;
+extern NSString *__nonnull const CEDefaultNotifyEditByAnotherKey;
+extern NSString *__nonnull const CEDefaultColoringRangeBufferLengthKey;
+extern NSString *__nonnull const CEDefaultLargeFileAlertThresholdKey;
+extern NSString *__nonnull const CEDefaultAutosavingDelayKey;
 
 
 
@@ -290,45 +290,45 @@ extern NSUInteger const kMaxPageGuideColumn;
 
 // syntax parsing
 extern NSUInteger const kMaxEscapesCheckLength;
-extern NSString  *const kAllAlphabetChars;
+extern NSString  *__nonnull const kAllAlphabetChars;
 
 // syntax style keys
-extern NSString *const CESyntaxMetadataKey;
-extern NSString *const CESyntaxExtensionsKey;
-extern NSString *const CESyntaxFileNamesKey;
-extern NSString *const CESyntaxKeywordsKey;
-extern NSString *const CESyntaxCommandsKey;
-extern NSString *const CESyntaxTypesKey;
-extern NSString *const CESyntaxAttributesKey;
-extern NSString *const CESyntaxVariablesKey;
-extern NSString *const CESyntaxValuesKey;
-extern NSString *const CESyntaxNumbersKey;
-extern NSString *const CESyntaxStringsKey;
-extern NSString *const CESyntaxCharactersKey;
-extern NSString *const CESyntaxCommentsKey;
-extern NSString *const CESyntaxCommentDelimitersKey;
-extern NSString *const CESyntaxOutlineMenuKey;
-extern NSString *const CESyntaxCompletionsKey;
-extern NSString *const kAllColoringKeys[];
+extern NSString *__nonnull const CESyntaxMetadataKey;
+extern NSString *__nonnull const CESyntaxExtensionsKey;
+extern NSString *__nonnull const CESyntaxFileNamesKey;
+extern NSString *__nonnull const CESyntaxKeywordsKey;
+extern NSString *__nonnull const CESyntaxCommandsKey;
+extern NSString *__nonnull const CESyntaxTypesKey;
+extern NSString *__nonnull const CESyntaxAttributesKey;
+extern NSString *__nonnull const CESyntaxVariablesKey;
+extern NSString *__nonnull const CESyntaxValuesKey;
+extern NSString *__nonnull const CESyntaxNumbersKey;
+extern NSString *__nonnull const CESyntaxStringsKey;
+extern NSString *__nonnull const CESyntaxCharactersKey;
+extern NSString *__nonnull const CESyntaxCommentsKey;
+extern NSString *__nonnull const CESyntaxCommentDelimitersKey;
+extern NSString *__nonnull const CESyntaxOutlineMenuKey;
+extern NSString *__nonnull const CESyntaxCompletionsKey;
+extern NSString *__nonnull const kAllColoringKeys[];
 extern NSUInteger const kSizeOfAllColoringKeys;
 
-extern NSString *const CESyntaxKeyStringKey;
-extern NSString *const CESyntaxBeginStringKey;
-extern NSString *const CESyntaxEndStringKey;
-extern NSString *const CESyntaxIgnoreCaseKey;
-extern NSString *const CESyntaxRegularExpressionKey;
+extern NSString *__nonnull const CESyntaxKeyStringKey;
+extern NSString *__nonnull const CESyntaxBeginStringKey;
+extern NSString *__nonnull const CESyntaxEndStringKey;
+extern NSString *__nonnull const CESyntaxIgnoreCaseKey;
+extern NSString *__nonnull const CESyntaxRegularExpressionKey;
 
-extern NSString *const CESyntaxInlineCommentKey;
-extern NSString *const CESyntaxBeginCommentKey;
-extern NSString *const CESyntaxEndCommentKey;
+extern NSString *__nonnull const CESyntaxInlineCommentKey;
+extern NSString *__nonnull const CESyntaxBeginCommentKey;
+extern NSString *__nonnull const CESyntaxEndCommentKey;
 
-extern NSString *const CESyntaxBoldKey;
-extern NSString *const CESyntaxUnderlineKey;
-extern NSString *const CESyntaxItalicKey;
+extern NSString *__nonnull const CESyntaxBoldKey;
+extern NSString *__nonnull const CESyntaxUnderlineKey;
+extern NSString *__nonnull const CESyntaxItalicKey;
 
 // comment delimiter keys
-extern NSString *const CEBeginDelimiterKey;
-extern NSString *const CEEndDelimiterKey;
+extern NSString *__nonnull const CEBeginDelimiterKey;
+extern NSString *__nonnull const CEEndDelimiterKey;
 
 
 
@@ -339,20 +339,20 @@ extern NSString *const CEEndDelimiterKey;
 // ------------------------------------------------------
 
 // keys for dicts in CEDefaultFileDropArrayKey
-extern NSString *const CEFileDropExtensionsKey;
-extern NSString *const CEFileDropFormatStringKey;
+extern NSString *__nonnull const CEFileDropExtensionsKey;
+extern NSString *__nonnull const CEFileDropFormatStringKey;
 
 // tokens
-extern NSString *const CEFileDropAbsolutePathToken;
-extern NSString *const CEFileDropRelativePathToken;
-extern NSString *const CEFileDropFilenameToken;
-extern NSString *const CEFileDropFilenameNosuffixToken;
-extern NSString *const CEFileDropFileextensionToken;
-extern NSString *const CEFileDropFileextensionLowerToken;
-extern NSString *const CEFileDropFileextensionUpperToken;
-extern NSString *const CEFileDropDirectoryToken;
-extern NSString *const CEFileDropImagewidthToken;
-extern NSString *const CEFileDropImagehightToken;
+extern NSString *__nonnull const CEFileDropAbsolutePathToken;
+extern NSString *__nonnull const CEFileDropRelativePathToken;
+extern NSString *__nonnull const CEFileDropFilenameToken;
+extern NSString *__nonnull const CEFileDropFilenameNosuffixToken;
+extern NSString *__nonnull const CEFileDropFileextensionToken;
+extern NSString *__nonnull const CEFileDropFileextensionLowerToken;
+extern NSString *__nonnull const CEFileDropFileextensionUpperToken;
+extern NSString *__nonnull const CEFileDropDirectoryToken;
+extern NSString *__nonnull const CEFileDropImagewidthToken;
+extern NSString *__nonnull const CEFileDropImagehightToken;
 
 
 
@@ -393,11 +393,11 @@ typedef NS_ENUM(NSInteger, CEMenuItemTag) {
 };
 
 // Help document file names table
-extern NSString *const kBundledDocumentFileNames[];
+extern NSString *__nonnull const kBundledDocumentFileNames[];
 
 // Online URLs
-extern NSString *const kWebSiteURL;
-extern NSString *const kIssueTrackerURL;
+extern NSString *__nonnull const kWebSiteURL;
+extern NSString *__nonnull const kIssueTrackerURL;
 
 
 
@@ -408,15 +408,15 @@ extern NSString *const kIssueTrackerURL;
 // ------------------------------------------------------
 
 // Outline item dict keys
-extern NSString *const CEOutlineItemTitleKey;
-extern NSString *const CEOutlineItemRangeKey;
-extern NSString *const CEOutlineItemStyleBoldKey;
-extern NSString *const CEOutlineItemStyleItalicKey;
-extern NSString *const CEOutlineItemStyleUnderlineKey;
+extern NSString *__nonnull const CEOutlineItemTitleKey;
+extern NSString *__nonnull const CEOutlineItemRangeKey;
+extern NSString *__nonnull const CEOutlineItemStyleBoldKey;
+extern NSString *__nonnull const CEOutlineItemStyleItalicKey;
+extern NSString *__nonnull const CEOutlineItemStyleUnderlineKey;
 
 // layout constants
 extern CGFloat const kLineNumPadding;
-extern NSString *const kNavigationBarFontName;
+extern NSString *__nonnull const kNavigationBarFontName;
 
 
 

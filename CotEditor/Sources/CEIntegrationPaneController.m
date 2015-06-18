@@ -77,7 +77,7 @@ static const NSURL *kPreferredLinkTargetURL;
 
 // ------------------------------------------------------
 /// initialize instance
-- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (nullable instancetype)initWithNibName:(nullable NSString *)nibNameOrNil bundle:(nullable NSBundle *)nibBundleOrNil
 // ------------------------------------------------------
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -112,7 +112,7 @@ static const NSURL *kPreferredLinkTargetURL;
 
 // ------------------------------------------------------
 /// alert asking to install command-line tool is closed (invoked in `install:`)
-- (void)attemptRecoveryFromError:(NSError *)error optionIndex:(NSUInteger)recoveryOptionIndex delegate:(id)delegate didRecoverSelector:(SEL)didRecoverSelector contextInfo:(void *)contextInfo
+- (void)attemptRecoveryFromError:(nonnull NSError *)error optionIndex:(NSUInteger)recoveryOptionIndex delegate:(nullable id)delegate didRecoverSelector:(SEL)didRecoverSelector contextInfo:(nullable void *)contextInfo
 // ------------------------------------------------------
 {
     BOOL success = NO;

@@ -32,7 +32,7 @@
 
 @interface CEConsolePanelController : CEPanelController
 
-- (void)appendMessage:(NSString *)message title:(NSString *)title;
+- (void)appendMessage:(nonnull NSString *)message title:(nullable NSString *)title;
 
 @end
 

@@ -33,6 +33,6 @@
 
 @interface CEGoToSheetController : NSWindowController <NSWindowDelegate>
 
-- (void)beginSheetForEditor:(CEEditorWrapper *)editor;
+- (void)beginSheetForEditor:(nonnull CEEditorWrapper *)editor;
 
 @end

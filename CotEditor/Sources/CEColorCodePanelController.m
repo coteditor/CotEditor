@@ -35,9 +35,9 @@
 
 @interface CEColorCodePanelController ()
 
-@property (nonatomic) IBOutlet NSView *accessoryView;
-@property (nonatomic) NSColor *color;
-@property (nonatomic) NSString *colorCode;
+@property (nonatomic, nullable) IBOutlet NSView *accessoryView;
+@property (nonatomic, nullable) NSColor *color;
+@property (nonatomic, nullable) NSString *colorCode;
 
 @end
 
@@ -52,7 +52,7 @@
 
 // ------------------------------------------------------
 /// return singleton instance
-+ (instancetype)sharedController
++ (nonnull instancetype)sharedController
 // ------------------------------------------------------
 {
     static dispatch_once_t onceToken;
@@ -71,7 +71,7 @@
 
 // ------------------------------------------------------
 /// initialize
-- (instancetype)init
+- (nonnull instancetype)init
 // ------------------------------------------------------
 {
     self = [super init];
@@ -87,7 +87,7 @@
 
 // ------------------------------------------------------
 /// set color to color panel from color code
-- (void)setColorWithCode:(NSString *)colorCode
+- (void)setColorWithCode:(nullable NSString *)colorCode
 // ------------------------------------------------------
 {
     colorCode = [colorCode stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
@@ -117,7 +117,7 @@
 
 // ------------------------------------------------------
 /// panel will close
-- (void)windowWillClose:(NSNotification *)notification
+- (void)windowWillClose:(nonnull NSNotification *)notification
 // ------------------------------------------------------
 {
     NSColorPanel *colorPanel = (NSColorPanel *)[self window];
@@ -132,7 +132,7 @@
 
 // ------------------------------------------------------
 /// on show color panel
-- (void)showWindow:(id)sender
+- (void)showWindow:(nullable id)sender
 // ------------------------------------------------------
 {
     // setup the shared color panel
@@ -156,7 +156,7 @@
 
 // ------------------------------------------------------
 /// insert color code to the selection of the frontmost document
-- (IBAction)insertCodeToDocument:(id)sender
+- (IBAction)insertCodeToDocument:(nullable id)sender
 // ------------------------------------------------------
 {
     NSTextView *textView = [[[self documentWindowController] editor] focusedTextView];
@@ -169,7 +169,7 @@
 
 // ------------------------------------------------------
 /// a new color was selected on the panel
-- (IBAction)selectColor:(id)sender
+- (IBAction)selectColor:(nullable id)sender
 // ------------------------------------------------------
 {
     [self setColor:[sender color]];
@@ -179,7 +179,7 @@
 
 // ------------------------------------------------------
 /// set color from the color code field in the panel
-- (IBAction)applayColorCode:(id)sender
+- (IBAction)applayColorCode:(nullable id)sender
 // ------------------------------------------------------
 {
     [self setColorWithCode:[self colorCode]];
@@ -188,7 +188,7 @@
 
 // ------------------------------------------------------
 /// update color code in the field
-- (IBAction)updateCode:(id)sender
+- (IBAction)updateCode:(nullable id)sender
 // ------------------------------------------------------
 {
     WFColorCodeType codeType = [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultColorCodeTypeKey];

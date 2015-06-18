@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014 CotEditor Project
+ © 2014-2015 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -35,13 +35,13 @@
 
 @interface CEPrintView : NSTextView <CETextViewProtocol>
 
-@property (nonatomic) CEPrintPanelAccessoryController *printPanelAccessoryController;
+@property (nonatomic, nullable) CEPrintPanelAccessoryController *printPanelAccessoryController;
 
-@property (nonatomic, copy) NSString *filePath;
-@property (nonatomic, copy) NSString *documentName;
-@property (nonatomic, copy) NSString *syntaxName;
+@property (nonatomic, nullable, copy) NSString *filePath;
+@property (nonatomic, nullable, copy) NSString *documentName;
+@property (nonatomic, nullable, copy) NSString *syntaxName;
 @property (nonatomic) CGFloat lineSpacing;
-@property (nonatomic) CETheme *theme;
+@property (nonatomic, nullable) CETheme *theme;
 
 // settings on current window to be set by CEDocument.
 // These values are used if set option is "Same as document's setting"

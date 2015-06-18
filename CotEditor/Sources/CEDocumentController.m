@@ -57,7 +57,7 @@
 
 // ------------------------------------------------------
 /// inizialize instance
-- (instancetype)init
+- (nonnull instancetype)init
 // ------------------------------------------------------
 {
     self = [super init];
@@ -72,7 +72,7 @@
 
 // ------------------------------------------------------
 /// check file before creating a new document instance
-- (id)makeDocumentWithContentsOfURL:(NSURL *)url ofType:(NSString *)typeName error:(NSError *__autoreleasing *)outError
+- (nullable id)makeDocumentWithContentsOfURL:(nonnull NSURL *)url ofType:(nonnull NSString *)typeName error:(NSError *__autoreleasing __nullable *)outError
 // ------------------------------------------------------
 {
     // display alert if file is enorm large
@@ -112,7 +112,7 @@
 
 // ------------------------------------------------------
 /// add encoding menu to open panel
-- (void)beginOpenPanel:(NSOpenPanel *)openPanel forTypes:(NSArray *)inTypes completionHandler:(void (^)(NSInteger))completionHandler
+- (void)beginOpenPanel:(nonnull NSOpenPanel *)openPanel forTypes:(nonnull NSArray *)inTypes completionHandler:(void (^ __nonnull)(NSInteger))completionHandler
 // ------------------------------------------------------
 {
     // initialize encoding menu and set the accessory view

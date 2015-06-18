@@ -708,7 +708,7 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 
 // ------------------------------------------------------
 /// append message to console panel and show it
-- (void)showScriptError:(NSString *)errorString scriptName:(NSString *)scriptName
+- (void)showScriptError:(nonnull NSString *)errorString scriptName:(NSString *)scriptName
 // ------------------------------------------------------
 {
     [[CEConsolePanelController sharedController] showWindow:self];

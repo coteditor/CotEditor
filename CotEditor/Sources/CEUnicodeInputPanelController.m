@@ -33,7 +33,7 @@
 
 @interface CEUnicodeInputPanelController () <NSTextFieldDelegate>
 
-@property (nonatomic, copy) NSString *unicode;
+@property (nonatomic, nonnull, copy) NSString *unicode;
 @property (nonatomic, getter=isValid) BOOL valid;
 
 @end
@@ -66,10 +66,14 @@ static const NSRegularExpression *unicodeRegex;
 
 // ------------------------------------------------------
 /// initializer of panelController
-- (instancetype)init
+- (nonnull instancetype)init
 // ------------------------------------------------------
 {
-    return [super initWithWindowNibName:@"UnicodePanel"];
+    self = [super initWithWindowNibName:@"UnicodePanel"];
+    if (self) {
+        _unicode = @"";
+    }
+    return self;
 }
 
 
@@ -78,7 +82,7 @@ static const NSRegularExpression *unicodeRegex;
 
 // ------------------------------------------------------
 /// text in text field was changed
-- (void)controlTextDidChange:(NSNotification *)notification
+- (void)controlTextDidChange:(nonnull NSNotification *)notification
 // ------------------------------------------------------
 {
     NSString *input = [[notification object] stringValue];
@@ -95,7 +99,7 @@ static const NSRegularExpression *unicodeRegex;
 
 // ------------------------------------------------------
 /// input unicode character to the frontmost document
-- (IBAction)insertToDocument:(id)sender
+- (IBAction)insertToDocument:(nullable id)sender
 // ------------------------------------------------------
 {
     unsigned int longChar;

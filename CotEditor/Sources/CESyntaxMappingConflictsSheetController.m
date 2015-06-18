@@ -66,7 +66,7 @@
 
 // ------------------------------------------------------
 /// Done button was clicked
-- (IBAction)closeSheet:(id)sender
+- (IBAction)closeSheet:(nullable id)sender
 // ------------------------------------------------------
 {
     [NSApp stopModal];
@@ -80,7 +80,7 @@
 
 // ------------------------------------------------------
 /// convert conflictDict data for table
-+ (NSArray *)parseConflictDict:(NSDictionary *)conflictDict
++ (nonnull NSArray *)parseConflictDict:(nonnull NSDictionary *)conflictDict
 // ------------------------------------------------------
 {
     NSMutableArray *conflicts = [NSMutableArray array];

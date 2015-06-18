@@ -37,7 +37,7 @@
 
 // ------------------------------------------------------
 /// selection did change
-- (void)tableViewSelectionDidChange:(NSNotification *)notification
+- (void)tableViewSelectionDidChange:(nonnull NSNotification *)notification
 // ------------------------------------------------------
 {
     NSTableView *tableView = [notification object];
@@ -66,7 +66,7 @@
 
 // ------------------------------------------------------
 /// click all selected checkboxes
-- (IBAction)didCheckboxClicked:(id)sender
+- (IBAction)didCheckboxClicked:(nullable id)sender
 // ------------------------------------------------------
 {
     // To perform this action,

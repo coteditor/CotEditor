@@ -74,7 +74,7 @@
 
 // ------------------------------------------------------
 /// initialize
-- (instancetype)initWithWindowNibName:(NSString *)windowNibName
+- (nonnull instancetype)initWithWindowNibName:(nonnull NSString *)windowNibName
 // ------------------------------------------------------
 {
     self = [super initWithWindowNibName:windowNibName];
@@ -113,7 +113,7 @@
 
 // ------------------------------------------------------
 /// window will close
-- (void)windowWillClose:(NSNotification *)notification
+- (void)windowWillClose:(nonnull NSNotification *)notification
 // ------------------------------------------------------
 {
     // finish current edit

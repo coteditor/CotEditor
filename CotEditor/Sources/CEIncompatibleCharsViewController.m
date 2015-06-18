@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014 1024jp
+ © 2014-2015 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -35,10 +35,10 @@
 
 @interface CEIncompatibleCharsViewController () <NSTableViewDelegate>
 
-@property (nonatomic) NSTimer *updateTimer;
+@property (nonatomic, nullable) NSTimer *updateTimer;
 @property (nonatomic, getter=isCharAvailable) BOOL charAvailable;
 
-@property (nonatomic) IBOutlet NSArrayController *incompatibleCharsController;
+@property (nonatomic, nullable) IBOutlet NSArrayController *incompatibleCharsController;
 
 @end
 
@@ -108,7 +108,7 @@
 
 // ------------------------------------------------------
 /// select correspondent char in text view
-- (void)tableViewSelectionDidChange:(NSNotification *)notification
+- (void)tableViewSelectionDidChange:(nonnull NSNotification *)notification
 // ------------------------------------------------------
 {
     NSArray *selectedIncompatibles = [[self incompatibleCharsController] selectedObjects];
@@ -133,7 +133,7 @@
 
 // ------------------------------------------------------
 /// update incompatible chars afer interval
-- (void)updateWithTimer:(NSTimer *)timer
+- (void)updateWithTimer:(nonnull NSTimer *)timer
 // ------------------------------------------------------
 {
     [self stopUpdateTimer];

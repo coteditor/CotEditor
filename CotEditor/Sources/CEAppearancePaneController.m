@@ -99,7 +99,7 @@
 
 // ------------------------------------------------------
 /// メニュー項目の有効化／無効化を制御
-- (BOOL)validateMenuItem:(NSMenuItem *)menuItem
+- (BOOL)validateMenuItem:(nonnull NSMenuItem *)menuItem
 // ------------------------------------------------------
 {
     BOOL isCustomized;
@@ -130,7 +130,7 @@
 
 // ------------------------------------------------------
 /// テーブルの行数を返す
-- (NSInteger)numberOfRowsInTableView:(NSTableView *)aTableView
+- (NSInteger)numberOfRowsInTableView:(nonnull NSTableView *)aTableView
 // ------------------------------------------------------
 {
     return [[self themeNames] count];
@@ -139,7 +139,7 @@
 
 // ------------------------------------------------------
 /// テーブルのセルの内容を返す
-- (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex
+- (nullable id)tableView:(nonnull NSTableView *)aTableView objectValueForTableColumn:(nullable NSTableColumn *)aTableColumn row:(NSInteger)rowIndex
 // ------------------------------------------------------
 {
     return [self themeNames][rowIndex];
@@ -169,7 +169,7 @@
 
 // ------------------------------------------------------
 /// テーブルの選択が変更された
-- (void)tableViewSelectionDidChange:(NSNotification *)notification
+- (void)tableViewSelectionDidChange:(nonnull NSNotification *)notification
 // ------------------------------------------------------
 {
     if ([notification object] == [self themeTableView]) {
@@ -202,7 +202,7 @@
 
 // ------------------------------------------------------
 /// テーブルセルが編集可能かを設定する
-- (void)tableView:(NSTableView *)tableView didAddRowView:(NSTableRowView *)rowView forRow:(NSInteger)row
+- (void)tableView:(nonnull NSTableView *)tableView didAddRowView:(nonnull NSTableRowView *)rowView forRow:(NSInteger)row
 // ------------------------------------------------------
 {
     NSTableCellView *view = [tableView viewAtColumn:0 row:row makeIfNecessary:NO];
@@ -215,7 +215,7 @@
 
 // ------------------------------------------------------
 /// テーマ名が編集された
-- (BOOL)control:(NSControl *)control textShouldEndEditing:(NSText *)fieldEditor
+- (BOOL)control:(nonnull NSControl *)control textShouldEndEditing:(nonnull NSText *)fieldEditor
 // ------------------------------------------------------
 {
     NSString *oldName = [self selectedTheme];
@@ -246,7 +246,7 @@
 
 // ------------------------------------------------------
 /// show font panel
-- (IBAction)showFonts:(id)sender
+- (IBAction)showFonts:(nullable id)sender
 //-------------------------------------------------------
 {
     NSFont *font = [NSFont fontWithName:[[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultFontNameKey]
@@ -260,7 +260,7 @@
 
 // ------------------------------------------------------
 /// font in font panel did update
-- (void)changeFont:(id)sender
+- (void)changeFont:(nullable id)sender
 // ------------------------------------------------------
 {
     NSFontManager *fontManager = (NSFontManager *)sender;
@@ -274,7 +274,7 @@
 
 //------------------------------------------------------
 /// テーマを追加
-- (IBAction)addTheme:(id)sender
+- (IBAction)addTheme:(nullable id)sender
 //------------------------------------------------------
 {
     __weak typeof(self) weakSelf = self;
@@ -290,7 +290,7 @@
 
 //------------------------------------------------------
 /// 選択しているテーマを削除
-- (IBAction)deleteTheme:(id)sender
+- (IBAction)deleteTheme:(nullable id)sender
 //------------------------------------------------------
 {
     NSAlert *alert = [[NSAlert alloc] init];
@@ -308,7 +308,7 @@
 
 //------------------------------------------------------
 /// 選択しているテーマを複製
-- (IBAction)duplicateTheme:(id)sender
+- (IBAction)duplicateTheme:(nullable id)sender
 //------------------------------------------------------
 {
     [[CEThemeManager sharedManager] duplicateTheme:[self selectedTheme] error:nil];
@@ -317,7 +317,7 @@
 
 //------------------------------------------------------
 /// 選択しているテーマを書き出し
-- (IBAction)exportTheme:(id)sender
+- (IBAction)exportTheme:(nullable id)sender
 //------------------------------------------------------
 {
     NSString *selectedThemeName = [self selectedTheme];
@@ -339,7 +339,7 @@
 
 //------------------------------------------------------
 /// テーマを読み込み
-- (IBAction)importTheme:(id)sender
+- (IBAction)importTheme:(nullable id)sender
 //------------------------------------------------------
 {
     NSOpenPanel *openPanel = [NSOpenPanel openPanel];
@@ -383,7 +383,7 @@
 
 // ------------------------------------------------------
 /// カスタマイズされたバンドル版テーマをオリジナルに戻す
-- (IBAction)restoreTheme:(id)sender
+- (IBAction)restoreTheme:(nullable id)sender
 // ------------------------------------------------------
 {
     [[CEThemeManager sharedManager] restoreTheme:[self selectedTheme] completionHandler:^(NSError *error) {
@@ -416,7 +416,7 @@
 
 //------------------------------------------------------
 /// 現在選択されているテーマ名を返す
-- (NSString *)selectedTheme
+- (nonnull NSString *)selectedTheme
 //------------------------------------------------------
 {
     return [self themeNames][[[self themeTableView] selectedRow]];

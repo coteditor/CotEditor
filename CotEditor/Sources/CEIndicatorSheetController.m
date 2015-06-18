@@ -9,7 +9,7 @@
  encoding="UTF-8"
  ------------------------------------------------------------------------------
  
- © 2014 CotEditor Project
+ © 2014-2015 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -35,7 +35,7 @@
 @property (weak) IBOutlet NSProgressIndicator *indicator;
 @property NSWindow *parentWindow;
 
-@property (copy) NSString *message;
+@property (nonnull, copy) NSString *message;
 @property NSModalSession modalSession;
 
 // readonly
@@ -54,7 +54,7 @@
 
 // ------------------------------------------------------
 /// initialize
-- (instancetype)initWithMessage:(NSString *)message
+- (nonnull instancetype)initWithMessage:(nonnull NSString *)message
 // ------------------------------------------------------
 {
     self = [super initWithWindowNibName:@"Indicator"];
@@ -104,7 +104,7 @@
 
 // ------------------------------------------------------
 /// show as sheet
-- (void)beginSheetForWindow:(NSWindow *)window
+- (void)beginSheetForWindow:(nonnull NSWindow *)window
 // ------------------------------------------------------
 {
     if (floor(NSAppKitVersionNumber) > NSAppKitVersionNumber10_8) { // on Mavericks or later
@@ -155,7 +155,7 @@
 
 // ------------------------------------------------------
 /// cancel current coloring
-- (IBAction)cancelColoring:(id)sender
+- (IBAction)cancelColoring:(nullable id)sender
 // ------------------------------------------------------
 {
     [self setCancelled:YES];

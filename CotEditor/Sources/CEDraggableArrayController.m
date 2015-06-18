@@ -9,7 +9,7 @@
  encoding="UTF-8"
  ------------------------------------------------------------------------------
  
- © 2014 CotEditor Project
+ © 2014 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -30,8 +30,8 @@
 #import "CEDraggableArrayController.h"
 
 
-static NSString *const CERowsType = @"CERowsType";
-static NSString *const CEObjectsType = @"CEObjectsType";
+static NSString *__nonnull const CERowsType = @"CERowsType";
+static NSString *__nonnull const CEObjectsType = @"CEObjectsType";
 
 
 @implementation CEDraggableArrayController
@@ -44,7 +44,7 @@ static NSString *const CEObjectsType = @"CEObjectsType";
 
 // ------------------------------------------------------
 /// start dragging
-- (BOOL)tableView:(NSTableView *)tableView writeRowsWithIndexes:(NSIndexSet *)rowIndexes toPasteboard:(NSPasteboard *)pboard
+- (BOOL)tableView:(nonnull NSTableView *)tableView writeRowsWithIndexes:(nonnull NSIndexSet *)rowIndexes toPasteboard:(nonnull NSPasteboard *)pboard
 // ------------------------------------------------------
 {
     [tableView registerForDraggedTypes:@[CERowsType, CEObjectsType]];
@@ -68,7 +68,7 @@ static NSString *const CEObjectsType = @"CEObjectsType";
 
 // ------------------------------------------------------
 /// validate dorpped objects
-- (NSDragOperation)tableView:(NSTableView *)tableView validateDrop:(id<NSDraggingInfo>)info proposedRow:(NSInteger)row proposedDropOperation:(NSTableViewDropOperation)operation
+- (NSDragOperation)tableView:(nonnull NSTableView *)tableView validateDrop:(nonnull id<NSDraggingInfo>)info proposedRow:(NSInteger)row proposedDropOperation:(NSTableViewDropOperation)operation
 // ------------------------------------------------------
 {
     // accept only self drag-and-drop
@@ -86,7 +86,7 @@ static NSString *const CEObjectsType = @"CEObjectsType";
 
 // ------------------------------------------------------
 /// insert dropped objects
-- (BOOL)tableView:(NSTableView *)tableView acceptDrop:(id<NSDraggingInfo>)info row:(NSInteger)row dropOperation:(NSTableViewDropOperation)dropOperation
+- (BOOL)tableView:(nonnull NSTableView *)tableView acceptDrop:(nonnull id<NSDraggingInfo>)info row:(NSInteger)row dropOperation:(NSTableViewDropOperation)dropOperation
 // ------------------------------------------------------
 {
     // accept only self drag-and-drop

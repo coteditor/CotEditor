@@ -90,7 +90,7 @@ static NSInteger const kLastRow = -1;
 
 // ------------------------------------------------------
 /// tableView の行数を返す
-- (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView
+- (NSInteger)numberOfRowsInTableView:(nonnull NSTableView *)tableView
 // ------------------------------------------------------
 {
     return [[self encodingsForTmp] count];
@@ -99,7 +99,7 @@ static NSInteger const kLastRow = -1;
 
 // ------------------------------------------------------
 /// tableViewの列・行で指定された内容を返す
-- (id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)rowIndex
+- (nullable id)tableView:(nonnull NSTableView *)tableView objectValueForTableColumn:(nullable NSTableColumn *)tableColumn row:(NSInteger)rowIndex
 // ------------------------------------------------------
 {
     CFStringEncoding cfEncoding = [[self encodingsForTmp][rowIndex] unsignedLongValue];
@@ -125,7 +125,7 @@ static NSInteger const kLastRow = -1;
 
 // ------------------------------------------------------
 /// ドラッグ開始／tableView からのドラッグアイテム内容をセット
-- (BOOL)tableView:(NSTableView *)tableView writeRowsWithIndexes:(NSIndexSet *)rowIndexes toPasteboard:(NSPasteboard *)pboard
+- (BOOL)tableView:(nonnull NSTableView *)tableView writeRowsWithIndexes:(nonnull NSIndexSet *)rowIndexes toPasteboard:(nonnull NSPasteboard *)pboard
 // ------------------------------------------------------
 {
     // ドラッグ受付タイプを登録
@@ -143,7 +143,7 @@ static NSInteger const kLastRow = -1;
 
 // ------------------------------------------------------
 /// tableViewへドラッグアイテムが入ってきたときの判定
-- (NSDragOperation)tableView:(NSTableView *)tableView validateDrop:(id <NSDraggingInfo>)info proposedRow:(NSInteger)row proposedDropOperation:(NSTableViewDropOperation)operation
+- (NSDragOperation)tableView:(nonnull NSTableView *)tableView validateDrop:(nonnull id <NSDraggingInfo>)info proposedRow:(NSInteger)row proposedDropOperation:(NSTableViewDropOperation)operation
 // ------------------------------------------------------
 {
     if ([info draggingSource] == tableView) {  // = Local dragging
@@ -159,7 +159,7 @@ static NSInteger const kLastRow = -1;
 
 // ------------------------------------------------------
 /// ドロップの許可、アイテムの移動挿入
-- (BOOL)tableView:(NSTableView *)tableView acceptDrop:(id <NSDraggingInfo>)info row:(NSInteger)row dropOperation:(NSTableViewDropOperation)operation
+- (BOOL)tableView:(nonnull NSTableView *)tableView acceptDrop:(nonnull id <NSDraggingInfo>)info row:(NSInteger)row dropOperation:(NSTableViewDropOperation)operation
 // ------------------------------------------------------
 {
     NSIndexSet *originalRows = [NSKeyedUnarchiver unarchiveObjectWithData:[[info draggingPasteboard] propertyListForType:CERowsType]];
@@ -209,7 +209,7 @@ static NSInteger const kLastRow = -1;
 
 // ------------------------------------------------------
 /// tableView の選択行が変更される直前にその許可を出す
-- (void)tableViewSelectionDidChange:(NSNotification *)notification
+- (void)tableViewSelectionDidChange:(nonnull NSNotification *)notification
 // ------------------------------------------------------
 {
     NSIndexSet *selectedIndexes = [[self tableView] selectedRowIndexes];

@@ -9,7 +9,7 @@
  encoding="UTF-8"
  ------------------------------------------------------------------------------
  
- © 2014 CotEditor Project
+ © 2014-2015 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -37,7 +37,7 @@
 
 // ------------------------------------------------------
 /// Class of transformed value
-+ (Class)transformedValueClass
++ (nonnull Class)transformedValueClass
 // ------------------------------------------------------
 {
     return [NSString class];
@@ -55,7 +55,7 @@
 
 // ------------------------------------------------------
 /// From color code hex to NSColor (NSString -> NSColor)
-- (id)transformedValue:(id)value
+- (nullable id)transformedValue:(nullable id)value
 // ------------------------------------------------------
 {
     if (!value) { return nil; }
@@ -69,7 +69,7 @@
 
 // ------------------------------------------------------
 /// From NSColor to hex color code string (NSColor -> NSString)
-- (id)reverseTransformedValue:(id)value
+- (nullable id)reverseTransformedValue:(nullable id)value
 // ------------------------------------------------------
 {
     if (![value isKindOfClass:[NSColor class]]) { return @"#000000"; }

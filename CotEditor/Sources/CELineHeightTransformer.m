@@ -9,7 +9,7 @@
  encoding="UTF-8"
  ------------------------------------------------------------------------------
  
- © 2014 CotEditor Project
+ © 2014-2015 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -54,7 +54,7 @@
 
 // ------------------------------------------------------
 /// From line spacing to line height (NSNumber -> NSNumber)
-- (id)transformedValue:(id)value
+- (nullable id)transformedValue:(nullable id)value
 // ------------------------------------------------------
 {
     if (!value) { return nil; }
@@ -65,7 +65,7 @@
 
 // ------------------------------------------------------
 /// From line height to line spacing (NSNumber -> NSNumber)
-- (id)reverseTransformedValue:(id)value
+- (nullable id)reverseTransformedValue:(nullable id)value
 // ------------------------------------------------------
 {
     if (!value) { return nil; }

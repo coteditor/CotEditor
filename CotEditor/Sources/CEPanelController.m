@@ -11,7 +11,7 @@
  encoding="UTF-8"
  ------------------------------------------------------------------------------
  
- © 2014 CotEditor Project
+ © 2014-2015 CotEditor Project
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -34,7 +34,7 @@
 
 @interface CEPanelController ()
 
-@property (readwrite, nonatomic, weak) CEWindowController *documentWindowController;
+@property (readwrite, nonatomic, nullable, weak) CEWindowController *documentWindowController;
 
 @end
 
@@ -52,7 +52,7 @@ static NSMutableDictionary *instances;
 
 // ------------------------------------------------------
 /// return shared instance (inheritable)
-+ (instancetype) sharedController
++ (nonnull instancetype) sharedController
 // ------------------------------------------------------
 {
     // This method is based on the following article:
@@ -71,7 +71,7 @@ static NSMutableDictionary *instances;
 
 // ------------------------------------------------------
 /// allocate
-+ (instancetype)allocWithZone:(NSZone *)zone
++ (nonnull instancetype)allocWithZone:(nonnull NSZone *)zone
 // ------------------------------------------------------
 {
     // This method is based on the following article:
@@ -96,7 +96,7 @@ static NSMutableDictionary *instances;
 
 // ------------------------------------------------------
 /// default initializer
-- (instancetype)initWithWindow:(NSWindow *)window
+- (nonnull instancetype)initWithWindow:(nullable NSWindow *)window
 // ------------------------------------------------------
 {
     self = [super initWithWindow:window];
@@ -132,7 +132,7 @@ static NSMutableDictionary *instances;
 
 // ------------------------------------------------------
 /// notification about main window change
-- (void)windowDidBecomeMain:(NSNotification *)notification
+- (void)windowDidBecomeMain:(nonnull NSNotification *)notification
 // ------------------------------------------------------
 {
     // update properties if the new main window is a document window
