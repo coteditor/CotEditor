@@ -37,7 +37,7 @@
 
 // ------------------------------------------------------
 /// use custom ruler view
-+ (Class)rulerViewClass
++ (nonnull Class)rulerViewClass
 // ------------------------------------------------------
 {
     return [CELineNumberView class];
@@ -46,7 +46,7 @@
 
 // ------------------------------------------------------
 /// initialize instance
-- (instancetype)initWithFrame:(NSRect)frameRect
+- (nonnull instancetype)initWithFrame:(NSRect)frameRect
 // ------------------------------------------------------
 {
     self = [super initWithFrame:frameRect];

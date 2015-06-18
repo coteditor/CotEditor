@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014 CotEditor Project
+ © 2014-2015 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -34,17 +34,17 @@
 @interface CEScriptManager : NSObject
 
 // singleton
-+ (instancetype)sharedManager;
++ (nonnull instancetype)sharedManager;
 
 
 // Public method
-- (void)buildScriptMenu:(id)sender;
-- (NSMenu *)contexualMenu;
+- (void)buildScriptMenu:(nullable id)sender;
+- (nullable NSMenu *)contexualMenu;
 
 
 // Action Message
-- (IBAction)launchScript:(id)sender;
-- (IBAction)openScriptFolder:(id)sender;
-- (IBAction)copySampleScriptToUserDomain:(id)sender;
+- (IBAction)launchScript:(nullable id)sender;
+- (IBAction)openScriptFolder:(nullable id)sender;
+- (IBAction)copySampleScriptToUserDomain:(nullable id)sender;
 
 @end

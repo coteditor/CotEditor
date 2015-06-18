@@ -93,7 +93,7 @@ static const CGFloat kDarkThemeThreshold = 0.5;
 
 
 //------------------------------------------------------
-// 初期化
+/// 初期化
 - (nullable instancetype)initWithName:(nonnull NSString *)themeName
 //------------------------------------------------------
 {

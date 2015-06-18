@@ -72,7 +72,7 @@ static const NSString *LineNumberFontName;
 
 // ------------------------------------------------------
 /// initialize instance
-- (instancetype)initWithScrollView:(NSScrollView *)scrollView orientation:(NSRulerOrientation)orientation
+- (nonnull instancetype)initWithScrollView:(nullable NSScrollView *)scrollView orientation:(NSRulerOrientation)orientation
 // ------------------------------------------------------
 {
     self = [super initWithScrollView:scrollView orientation:orientation];
@@ -278,7 +278,7 @@ static const NSString *LineNumberFontName;
 
 // ------------------------------------------------------
 /// start selecting correspondent lines in text view with drag / click event
-- (void)mouseDown:(NSEvent *)theEvent
+- (void)mouseDown:(nonnull NSEvent *)theEvent
 // ------------------------------------------------------
 {
     // get start point
@@ -299,7 +299,7 @@ static const NSString *LineNumberFontName;
 
 // ------------------------------------------------------
 /// end selecting correspondent lines in text view with drag event
-- (void)mouseUp:(NSEvent *)theEvent
+- (void)mouseUp:(nonnull NSEvent *)theEvent
 // ------------------------------------------------------
 {
     [[self draggingTimer] invalidate];

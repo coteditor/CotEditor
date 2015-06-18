@@ -67,7 +67,7 @@
 + (nullable CETheme *)themeWithName:(nonnull NSString *)themeName;
 
 
-/// default initializer
+/// designated initializer
 - (nullable instancetype)initWithName:(nonnull NSString *)themeName NS_DESIGNATED_INITIALIZER;
 
 @end
