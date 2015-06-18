@@ -1050,7 +1050,8 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     NSString *string = [self currentIANACharSetName];
 
     if (string) {
-        [[[self editor] focusedTextView] insertText:string];
+        NSTextView *textView = [[self editor] focusedTextView];
+        [textView insertText:string replacementRange:[textView selectedRange]];
     }
 }
 
@@ -1063,7 +1064,9 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     NSString *string = [self currentIANACharSetName];
 
     if (string) {
-        [[[self editor] focusedTextView] insertText:[NSString stringWithFormat:@"charset=\"%@\"", string]];
+        NSTextView *textView = [[self editor] focusedTextView];
+        [textView insertText:[NSString stringWithFormat:@"charset=\"%@\"", string]
+            replacementRange:[textView selectedRange]];
     }
 }
 
@@ -1076,7 +1079,9 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     NSString *string = [self currentIANACharSetName];
 
     if (string) {
-        [[[self editor] focusedTextView] insertText:[NSString stringWithFormat:@"encoding=\"%@\"", string]];
+        NSTextView *textView = [[self editor] focusedTextView];
+        [textView insertText:[NSString stringWithFormat:@"encoding=\"%@\"", string]
+            replacementRange:[textView selectedRange]];
     }
 }
 
