@@ -39,7 +39,7 @@
 
 @implementation NSData (MD5)
 
-- (NSString*)MD5
+- (nonnull NSString *)MD5
 {
     // Create byte array of unsigned chars
     unsigned char md5Buffer[CC_MD5_DIGEST_LENGTH];

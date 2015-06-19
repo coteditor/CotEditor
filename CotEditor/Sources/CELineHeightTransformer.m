@@ -36,7 +36,7 @@
 
 // ------------------------------------------------------
 /// Class of transformed value
-+ (Class)transformedValueClass
++ (nonnull Class)transformedValueClass
 // ------------------------------------------------------
 {
     return [NSNumber class];

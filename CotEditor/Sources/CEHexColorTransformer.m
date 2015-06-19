@@ -60,7 +60,7 @@
 {
     if (!value) { return nil; }
     
-    WFColorCodeType type = nil;
+    WFColorCodeType type = WFColorCodeInvalid;
     NSColor *color = [NSColor colorWithColorCode:value codeType:&type];
     
     return (type == WFColorCodeHex || type == WFColorCodeShortHex) ? color : nil;

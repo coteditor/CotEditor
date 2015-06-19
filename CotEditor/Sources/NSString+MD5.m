@@ -39,7 +39,7 @@
 
 @implementation NSString (MD5)
 
-- (NSString*)MD5
+- (nonnull NSString *)MD5
 {
     // Create pointer to the string as UTF8
     const char *ptr = [self UTF8String];
