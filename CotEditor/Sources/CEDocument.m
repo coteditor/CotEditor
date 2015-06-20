@@ -244,13 +244,11 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
         // save backup file always in `~/Library/Autosaved Information/` direcotory
         // (The default backup URL is the same directory as the fileURL.)
         if (saveOperation == NSAutosaveElsewhereOperation && [strongSelf fileURL]) {
-            NSURL *autosaveDirectoryURL =  [[NSFileManager defaultManager] URLForDirectory:NSAutosavedInformationDirectory
-                                                                                  inDomain:NSUserDomainMask
-                                                                         appropriateForURL:nil
-                                                                                    create:YES
-                                                                                     error:nil];
+            NSURL *autosaveDirectoryURL =  [[CEDocumentController sharedDocumentController] autosaveDirectoryURL];
             NSString *baseFileName = [[strongSelf fileURL] lastPathComponent];
-            NSString *fileName = [NSString stringWithFormat:@"%@ (%@)", [baseFileName stringByDeletingPathExtension], [strongSelf autosaveIdentifier]];  // append a unique string to avoid overwriting another backup file with the same file name.
+            NSString *fileName = [NSString stringWithFormat:@"%@ (%@)",
+                                  [baseFileName stringByDeletingPathExtension],
+                                  [strongSelf autosaveIdentifier]];  // append a unique string to avoid overwriting another backup file with the same file name.
             
             newURL = [[autosaveDirectoryURL URLByAppendingPathComponent:fileName] URLByAppendingPathExtension:[baseFileName pathExtension]];
         }

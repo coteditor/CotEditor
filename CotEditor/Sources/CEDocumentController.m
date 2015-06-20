@@ -42,7 +42,8 @@
 
 
 // readonly
-@property (nonatomic, readwrite) NSStringEncoding accessorySelectedEncoding;
+@property (readwrite, nonatomic) NSStringEncoding accessorySelectedEncoding;
+@property (readwrite, nonatomic, nonnull) NSURL *autosaveDirectoryURL;
 
 @end
 
@@ -63,6 +64,12 @@
     self = [super init];
     if (self) {
         _accessorySelectedEncoding = (NSStringEncoding)[[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultEncodingInOpenKey];
+        
+        _autosaveDirectoryURL = [[NSFileManager defaultManager] URLForDirectory:NSAutosavedInformationDirectory
+                                                                       inDomain:NSUserDomainMask
+                                                              appropriateForURL:nil
+                                                                         create:YES
+                                                                          error:nil];
         
         [self setAutosavingDelay:(NSTimeInterval)[[NSUserDefaults standardUserDefaults] doubleForKey:CEDefaultAutosavingDelayKey]];
     }
