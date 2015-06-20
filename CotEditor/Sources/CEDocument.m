@@ -600,17 +600,17 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     
     // notify about external file update
     [self setNeedsShowUpdateAlertWithBecomeKey:YES];
-    if ([NSApp isActive]) {
-        // display dialog
-        __weak typeof(self) weakSelf = self;
-        dispatch_async(dispatch_get_main_queue(), ^{
+    __weak typeof(self) weakSelf = self;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if ([NSApp isActive]) {
+            // display dialog
             [weakSelf showUpdatedByExternalProcessAlert];
-        });
-        
-    } else if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultNotifyEditByAnotherKey]) {
-        // let application icon in Dock jump
-        [NSApp requestUserAttention:NSInformationalRequest];
-    }
+            
+        } else if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultNotifyEditByAnotherKey]) {
+            // let application icon in Dock jump
+            [NSApp requestUserAttention:NSInformationalRequest];
+        }
+    });
 }
 
 
