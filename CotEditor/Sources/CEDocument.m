@@ -1514,17 +1514,18 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
         }
         
         // ファイルのメタデータを設定
+        BOOL shouldSaveXattr = [self shouldSaveXattr];
         [coordinator coordinateWritingItemAtURL:url options:0
                                           error:nil
                                      byAccessor:^(NSURL *newURL)
          {
             [[NSFileManager defaultManager] setAttributes:attributes ofItemAtPath:[newURL path] error:nil];
+             
+             // ファイル拡張属性 (com.apple.TextEncoding) にエンコーディングを保存
+             if (shouldSaveXattr) {
+                 [newURL setAppleTextEncoding:[self encoding]];
+             }
         }];
-        
-        // ファイル拡張属性 (com.apple.TextEncoding) にエンコーディングを保存
-        if ([self shouldSaveXattr]) {
-            [url setAppleTextEncoding:[self encoding]];
-        }
     }
     
     // Finder Lock がかかってたなら、再びかける
