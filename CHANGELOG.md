@@ -20,6 +20,7 @@ develop
 - Fix an issue where the layout of the text fields in the find panel could rarely be broken.
 - Fix an issue where the auto-update notifier did not recognize a new stable version from specific beta version numbers.
 - Add some missing Localized strings in simplified Chinese. (Thanks to Wei Wang!)
+- Improve general stability.
 
 
 

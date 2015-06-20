@@ -1113,8 +1113,9 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     if (attributes) {
         [self setFileAttributes:attributes];
         
+        CEWindowController *windowController = [self windowController];
         dispatch_async(dispatch_get_main_queue(), ^{
-            [[self windowController] updateFileInfo];
+            [windowController updateFileInfo];
         });
     }
 }
