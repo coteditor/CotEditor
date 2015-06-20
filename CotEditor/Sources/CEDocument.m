@@ -45,6 +45,9 @@
 // constants
 static char const UTF8_BOM[] = {0xef, 0xbb, 0xbf};
 
+NSUInteger const CEUniqueFileIDLength = 8;
+NSString *const CEAutosaveIdentierKey = @"autosaveIdentifier";
+
 // incompatible chars dictionary keys
 NSString *const CEIncompatibleLineNumberKey = @"lineNumber";
 NSString *const CEIncompatibleRangeKey = @"incompatibleRange";
@@ -63,6 +66,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 @property (nonatomic, copy) NSString *fileContentString;  // string that is read from the document file
 @property (nonatomic) CEODBEventSender *ODBEventSender;
 @property (nonatomic) BOOL shouldSaveXattr;
+@property (nonatomic, copy) NSString *autosaveIdentifier;
 
 // readonly
 @property (readwrite, nonatomic) CEWindowController *windowController;
@@ -115,6 +119,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
         _selection = [[CETextSelection alloc] initWithDocument:self];
         _writable = YES;
         _shouldSaveXattr = YES;
+        _autosaveIdentifier = [[[NSUUID UUID] UUIDString] substringToIndex:CEUniqueFileIDLength];
         
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(documentDidFinishOpen:)
@@ -245,7 +250,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
                                                                                     create:YES
                                                                                      error:nil];
             NSString *baseFileName = [[strongSelf fileURL] lastPathComponent];
-            NSString *fileName = [NSString stringWithFormat:@"%@ (%p)", [baseFileName stringByDeletingPathExtension], strongSelf];  // append a unique string to avoid overwriting another backup file with the same file name.
+            NSString *fileName = [NSString stringWithFormat:@"%@ (%@)", [baseFileName stringByDeletingPathExtension], [strongSelf autosaveIdentifier]];  // append a unique string to avoid overwriting another backup file with the same file name.
             
             newURL = [[autosaveDirectoryURL URLByAppendingPathComponent:fileName] URLByAppendingPathExtension:[baseFileName pathExtension]];
         }
@@ -473,12 +478,24 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 
 // ------------------------------------------------------
+/// store internal document state
+- (void)encodeRestorableStateWithCoder:(NSCoder *)coder
+// ------------------------------------------------------
+{
+    [coder encodeObject:[self autosaveIdentifier] forKey:CEAutosaveIdentierKey];
+    
+    [super encodeRestorableStateWithCoder:coder];
+}
+
+
+// ------------------------------------------------------
 /// resume UI state
 - (void)restoreStateWithCoder:(NSCoder *)coder
 // ------------------------------------------------------
 {
     [super restoreStateWithCoder:coder];
     
+    [self setAutosaveIdentifier:[coder decodeObjectForKey:CEAutosaveIdentierKey]];
     // not need to show unwritable alert on resume
     [self setDidAlertNotWritable:YES];
 }
