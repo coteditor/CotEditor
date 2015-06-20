@@ -38,18 +38,19 @@ static char const XATTR_ENCODING_NAME[] = "com.apple.TextEncoding";
 @implementation NSURL (AppleTextEncoding)
 
 // ------------------------------------------------------
-/// read text encoding from the `com.apple.TextEncoding` extended attribute of the file at URL
+/// read text encoding from `com.apple.TextEncoding` extended attribute of the file at URL
 - (NSStringEncoding)getAppleTextEncoding
 // ------------------------------------------------------
 {
-    // get xattr data
-    NSMutableData* data = nil;
+    // check buffer size
     const char *path = [[self path] UTF8String];
     ssize_t bufferSize = getxattr(path, XATTR_ENCODING_NAME, NULL, 0, 0, XATTR_NOFOLLOW);
-    if (bufferSize > 0) {
-        data = [NSMutableData dataWithLength:bufferSize];
-        getxattr(path, XATTR_ENCODING_NAME, [data mutableBytes], [data length], 0, XATTR_NOFOLLOW);
-    }
+    
+    if (bufferSize <= 0) { return NSNotFound; }
+    
+    // get xattr data
+    NSMutableData *data = [NSMutableData dataWithLength:bufferSize];
+    getxattr(path, XATTR_ENCODING_NAME, [data mutableBytes], [data length], 0, XATTR_NOFOLLOW);
     
     // parse value
     CFStringEncoding cfEncoding = kCFStringEncodingInvalidId;
@@ -63,11 +64,9 @@ static char const XATTR_ENCODING_NAME[] = "com.apple.TextEncoding";
         cfEncoding = CFStringConvertIANACharSetNameToEncoding((CFStringRef)IANACharSetName);
     }
     
-    if (cfEncoding != kCFStringEncodingInvalidId) {
-        return CFStringConvertEncodingToNSStringEncoding(cfEncoding);
-    }
+    if (cfEncoding == kCFStringEncodingInvalidId) { return NSNotFound; }
     
-    return NSNotFound;
+    return CFStringConvertEncodingToNSStringEncoding(cfEncoding);
 }
 
 
