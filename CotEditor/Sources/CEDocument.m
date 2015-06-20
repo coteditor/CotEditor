@@ -236,28 +236,19 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 - (void)saveToURL:(NSURL *)url ofType:(NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation completionHandler:(void (^)(NSError *))completionHandler
 // ------------------------------------------------------
 {
-    __weak typeof(self) weakSelf = self;
-    [self performAsynchronousFileAccessUsingBlock:^(void (^fileAccessCompletionHandler)(void)) {
-        typeof(weakSelf) strongSelf = weakSelf;
-        NSURL *newURL = url;
+    // save backup file always in `~/Library/Autosaved Information/` direcotory
+    // (The default backup URL is the same directory as the fileURL.)
+    if (saveOperation == NSAutosaveElsewhereOperation && [self fileURL]) {
+        NSURL *autosaveDirectoryURL =  [[CEDocumentController sharedDocumentController] autosaveDirectoryURL];
+        NSString *baseFileName = [[self fileURL] lastPathComponent];
+        NSString *fileName = [NSString stringWithFormat:@"%@ (%@)",
+                              [baseFileName stringByDeletingPathExtension],
+                              [self autosaveIdentifier]];  // append a unique string to avoid overwriting another backup file with the same file name.
         
-        // save backup file always in `~/Library/Autosaved Information/` direcotory
-        // (The default backup URL is the same directory as the fileURL.)
-        if (saveOperation == NSAutosaveElsewhereOperation && [strongSelf fileURL]) {
-            NSURL *autosaveDirectoryURL =  [[CEDocumentController sharedDocumentController] autosaveDirectoryURL];
-            NSString *baseFileName = [[strongSelf fileURL] lastPathComponent];
-            NSString *fileName = [NSString stringWithFormat:@"%@ (%@)",
-                                  [baseFileName stringByDeletingPathExtension],
-                                  [strongSelf autosaveIdentifier]];  // append a unique string to avoid overwriting another backup file with the same file name.
-            
-            newURL = [[autosaveDirectoryURL URLByAppendingPathComponent:fileName] URLByAppendingPathExtension:[baseFileName pathExtension]];
-        }
-        
-        [super saveToURL:newURL ofType:typeName forSaveOperation:saveOperation completionHandler:^(NSError *error) {
-            fileAccessCompletionHandler();
-            completionHandler(error);
-        }];
-    }];
+        url = [[autosaveDirectoryURL URLByAppendingPathComponent:fileName] URLByAppendingPathExtension:[baseFileName pathExtension]];
+    }
+    
+    [super saveToURL:url ofType:typeName forSaveOperation:saveOperation completionHandler:completionHandler];
 }
 
 
