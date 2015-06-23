@@ -293,16 +293,7 @@
 - (IBAction)deleteTheme:(nullable id)sender
 //------------------------------------------------------
 {
-    NSAlert *alert = [[NSAlert alloc] init];
-    [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"Delete the theme “%@”?", nil),
-                           [self selectedTheme]]];
-    [alert setInformativeText:NSLocalizedString(@"Deleted theme cannot be restored.", nil)];
-    [alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
-    [alert addButtonWithTitle:NSLocalizedString(@"Delete", nil)];
-    
-    [alert beginSheetModalForWindow:[[self view] window]
-                      modalDelegate:self
-                     didEndSelector:@selector(deleteThemeAlertDidEnd:returnCode:contextInfo:) contextInfo:NULL];
+    [self deleteTheme:[self selectedTheme]];
 }
 
 
@@ -386,14 +377,7 @@
 - (IBAction)restoreTheme:(nullable id)sender
 // ------------------------------------------------------
 {
-    [[CEThemeManager sharedManager] restoreTheme:[self selectedTheme] completionHandler:^(NSError *error) {
-        if (!error) {
-            // 辞書をセットし直す
-            NSMutableDictionary *bundledTheme = [[CEThemeManager sharedManager] archivedTheme:[self selectedTheme] isBundled:nil];
-            
-            [[self themeViewController] setRepresentedObject:bundledTheme];
-        }
-    }];
+    [self restoreTheme:[self selectedTheme]];
 }
 
 
@@ -423,6 +407,42 @@
 }
 
 
+//------------------------------------------------------
+/// try to delete given theme
+- (void)deleteThemeWithName:(nonnull NSString *)themeName
+//------------------------------------------------------
+{
+    NSAlert *alert = [[NSAlert alloc] init];
+    [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"Delete the theme “%@”?", nil), themeName]];
+    [alert setInformativeText:NSLocalizedString(@"Deleted theme cannot be restored.", nil)];
+    [alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
+    [alert addButtonWithTitle:NSLocalizedString(@"Delete", nil)];
+    
+    [alert beginSheetModalForWindow:[[self view] window]
+                      modalDelegate:self
+                     didEndSelector:@selector(deleteThemeAlertDidEnd:returnCode:contextInfo:)
+                        contextInfo:(__bridge_retained void *)themeName];
+    
+}
+
+
+//------------------------------------------------------
+/// try to restore given theme
+- (void)restoreThemeWithName:(nonnull NSString *)themeName
+//------------------------------------------------------
+{
+    [[CEThemeManager sharedManager] restoreTheme:themeName completionHandler:^(NSError *error) {
+        // refresh theme view if current displayed theme was restored
+        if (!error && [themeName isEqualToString:[self selectedTheme]]) {
+            NSMutableDictionary *bundledTheme = [[CEThemeManager sharedManager] archivedTheme:themeName isBundled:nil];
+            
+            [[self themeViewController] setRepresentedObject:bundledTheme];
+        }
+    }];
+    
+}
+
+
 // ------------------------------------------------------
 /// テーマ削除確認シートが閉じる直前
 - (void)deleteThemeAlertDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
@@ -431,9 +451,10 @@
     if (returnCode != NSAlertSecondButtonReturn) {  // != Delete
         return;
     }
+    NSString *themeName = (__bridge_transfer NSString *)contextInfo;
     
     NSError *error = nil;
-    if ([[CEThemeManager sharedManager] removeTheme:[self selectedTheme] error:&error]) {
+    if ([[CEThemeManager sharedManager] removeTheme:themeName error:&error]) {
         AudioServicesPlaySystemSound(CESystemSoundID_MoveToTrash);
     }
     

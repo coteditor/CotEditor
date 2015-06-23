@@ -202,19 +202,7 @@
 - (IBAction)deleteSyntaxStyle:(nullable id)sender
 // ------------------------------------------------------
 {
-    NSString *selectedStyleName = [self selectedStyleName];
-    
-    if (![[CESyntaxManager sharedManager] URLForUserStyle:selectedStyleName]) { return; }
-    
-    NSAlert *alert = [[NSAlert alloc] init];
-    [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"Delete the syntax style “%@”?", nil), selectedStyleName]];
-    [alert setInformativeText:NSLocalizedString(@"Deleted style cannot be restored.", nil)];
-    [alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
-    [alert addButtonWithTitle:NSLocalizedString(@"Delete", nil)];
-    
-    [alert beginSheetModalForWindow:[[self view] window]
-                      modalDelegate:self
-                     didEndSelector:@selector(deleteStyleAlertDidEnd:returnCode:contextInfo:) contextInfo:NULL];
+    [self deleteSyntaxStyleWithName:[self selectedStyleName]];
 }
 
 
@@ -420,6 +408,26 @@
 
 
 // ------------------------------------------------------
+/// try to delete given syntax style
+- (void)deleteSyntaxStyleWithName:(nonnull NSString *)styleName
+// ------------------------------------------------------
+{
+    if (![[CESyntaxManager sharedManager] URLForUserStyle:styleName]) { return; }
+    
+    NSAlert *alert = [[NSAlert alloc] init];
+    [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"Delete the syntax style “%@”?", nil), styleName]];
+    [alert setInformativeText:NSLocalizedString(@"Deleted style cannot be restored.", nil)];
+    [alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
+    [alert addButtonWithTitle:NSLocalizedString(@"Delete", nil)];
+    
+    [alert beginSheetModalForWindow:[[self view] window]
+                      modalDelegate:self
+                     didEndSelector:@selector(deleteStyleAlertDidEnd:returnCode:contextInfo:)
+                        contextInfo:(__bridge_retained void *)styleName];
+}
+
+
+// ------------------------------------------------------
 /// 既存ファイルを開くときのエンコーディングメニューで自動認識以外が選択されたときの警告シートが閉じる直前
 - (void)autoDetectAlertDidEnd:(nonnull NSAlert *)sheet returnCode:(NSInteger)returnCode contextInfo:(nullable void *)contextInfo
 // ------------------------------------------------------
@@ -459,9 +467,9 @@
         return;
     }
     
-    NSString *selectedStyleName = [self selectedStyleName];
+    NSString *styleName = (__bridge_transfer NSString *)contextInfo;
     
-    if ([[CESyntaxManager sharedManager] removeStyleFileWithStyleName:selectedStyleName]) {
+    if ([[CESyntaxManager sharedManager] removeStyleFileWithStyleName:styleName]) {
         AudioServicesPlaySystemSound(CESystemSoundID_MoveToTrash);
     } else {
         // 削除できなければ、その旨をユーザに通知
@@ -469,7 +477,7 @@
         [[[self view] window] makeKeyAndOrderFront:self];
         NSAlert *alert = [[NSAlert alloc] init];
         [alert setMessageText:NSLocalizedString(@"Error occured.", nil)];
-        [alert setInformativeText:[NSString stringWithFormat:NSLocalizedString(@"Sorry, could not delete “%@”.", nil), selectedStyleName]];
+        [alert setInformativeText:[NSString stringWithFormat:NSLocalizedString(@"Sorry, could not delete “%@”.", nil), styleName]];
         NSBeep();
         [alert beginSheetModalForWindow:[[self view] window] modalDelegate:self didEndSelector:NULL contextInfo:NULL];
     }
