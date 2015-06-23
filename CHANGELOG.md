@@ -20,6 +20,7 @@ develop
 - Better file encoding handling on revert action.
 - Set access-group `com.coteditor.CotEditor.edit` to CotEditor's script definition.
 - Change behavior to save `com.apple.TextEncoding` xattr on saving if the file had no content.
+- [experimental] Support some new swipe gestures on El Capitan.
 
 ### Fixes
 
