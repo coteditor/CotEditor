@@ -109,7 +109,7 @@ static NSDictionary *kUnprintableKeyTable;
                                                   subdirectory:@"KeyBindings"];
         _defaultTextKeyBindingDict = [NSDictionary dictionaryWithContentsOfURL:textURL];
         
-        /// read user key bindins if available
+        // read user key bindins if available
         _menuKeyBindingDict = [NSDictionary dictionaryWithContentsOfURL:[self menuKeyBindingSettingFileURL]] ?
                             : _defaultMenuKeyBindingDict;
         _textKeyBindingDict = [NSDictionary dictionaryWithContentsOfURL:[self textKeyBindingSettingFileURL]] ?

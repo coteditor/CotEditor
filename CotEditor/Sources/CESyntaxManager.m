@@ -161,7 +161,7 @@ NSString *const CESyntaxValidationMessageKey = @"MessageKey";
     if (![styleName isEqualToString:@""] && ![styleName isEqualToString:NSLocalizedString(@"None", nil)]) {
         style = [self styleCaches][styleName] ? : [self styleDictWithURL:[self URLForUsedStyle:styleName]];
         
-        /// 新たに読み込んだ場合はキャッシュする
+        // 新たに読み込んだ場合はキャッシュする
         if (![self styleCaches][styleName] && style) {
             [self styleCaches][styleName] = style;
         }

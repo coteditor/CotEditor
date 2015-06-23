@@ -143,7 +143,7 @@ static CGFloat kPerCompoIncrement;
                                             CEEndDelimiterKey: delimiters[CESyntaxEndCommentKey]};
             }
             
-            /// カラーリング辞書から補完文字列配列を生成
+            // カラーリング辞書から補完文字列配列を生成
             {
                 NSMutableArray *completionWords = [NSMutableArray array];
                 NSMutableString *firstCharsString = [NSMutableString string];
@@ -244,7 +244,7 @@ static CGFloat kPerCompoIncrement;
                 }
                 _pairedQuoteTypes = quoteTypes;
                 
-                /// シンタックスカラーリングが必要かをキャッシュ
+                // シンタックスカラーリングが必要かをキャッシュ
                 _hasSyntaxHighlighting = ((count > 0) || _inlineCommentDelimiter || _blockCommentDelimiters);
             }
             
