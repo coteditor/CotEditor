@@ -260,10 +260,8 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 {
     BOOL success = NO;
     
-    // break undo grouping before and after saving
-    if (saveOperation != NSAutosaveElsewhereOperation) {
-        [[[self editor] focusedTextView] breakUndoCoalescing];
-    }
+    // break undo grouping
+    [[[self editor] focusedTextView] breakUndoCoalescing];
     
     id token = [self changeCountTokenForSaveOperation:saveOperation];
     
