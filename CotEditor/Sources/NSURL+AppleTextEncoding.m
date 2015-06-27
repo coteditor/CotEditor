@@ -80,7 +80,7 @@ static char const XATTR_ENCODING_NAME[] = "com.apple.TextEncoding";
     if (cfEncoding == kCFStringEncodingInvalidId) { return; }
     
     NSString *IANACharSetName = (NSString *)CFStringConvertEncodingToIANACharSetName(cfEncoding);
-    NSString *string = [NSString stringWithFormat:@"%@;%ul", IANACharSetName, cfEncoding];
+    NSString *string = [NSString stringWithFormat:@"%@;%u", IANACharSetName, cfEncoding];
     NSData *data = [string dataUsingEncoding:NSUTF8StringEncoding];
     
     if (!data) { return; }
