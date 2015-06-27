@@ -31,9 +31,9 @@
 
 
 // notifications
-extern NSString *const CEAnalyzerDidUpdateFileInfoNotification;
-extern NSString *const CEAnalyzerDidUpdateModeInfoNotification;
-extern NSString *const CEAnalyzerDidUpdateEditorInfoNotification;
+extern NSString *__nonnull const CEAnalyzerDidUpdateFileInfoNotification;
+extern NSString *__nonnull const CEAnalyzerDidUpdateModeInfoNotification;
+extern NSString *__nonnull const CEAnalyzerDidUpdateEditorInfoNotification;
 
 
 @class CEDocument;
@@ -41,32 +41,32 @@ extern NSString *const CEAnalyzerDidUpdateEditorInfoNotification;
 
 @interface CEDocumentAnalyzer : NSObject
 
-@property (nonatomic, weak) CEDocument *document;
+@property (nonatomic, nullable, weak) CEDocument *document;
 
 // file info
-@property (readonly, nonatomic) NSString *creationDate;
-@property (readonly, nonatomic) NSString *modificationDate;
-@property (readonly, nonatomic) NSString *fileSize;
-@property (readonly, nonatomic) NSString *filePath;
-@property (readonly, nonatomic) NSString *owner;
-@property (readonly, nonatomic) NSString *permission;
+@property (readonly, nonatomic, nullable) NSString *creationDate;
+@property (readonly, nonatomic, nullable) NSString *modificationDate;
+@property (readonly, nonatomic, nullable) NSString *fileSize;
+@property (readonly, nonatomic, nullable) NSString *filePath;
+@property (readonly, nonatomic, nullable) NSString *owner;
+@property (readonly, nonatomic, nullable) NSString *permission;
 @property (readonly, nonatomic, getter=isWritable) BOOL writable;
 
 // mode info
-@property (readonly, nonatomic) NSString *encoding;
-@property (readonly, nonatomic) NSString *charsetName;
-@property (readonly, nonatomic) NSString *lineEndings;
+@property (readonly, nonatomic, nullable) NSString *encoding;
+@property (readonly, nonatomic, nullable) NSString *charsetName;
+@property (readonly, nonatomic, nullable) NSString *lineEndings;
 
 // editor info
-@property (readonly, nonatomic) NSString *lines;
-@property (readonly, nonatomic) NSString *chars;
-@property (readonly, nonatomic) NSString *words;
-@property (readonly, nonatomic) NSString *length;
-@property (readonly, nonatomic) NSString *byteLength;
-@property (readonly, nonatomic) NSString *location;  // caret location from the beginning of document
-@property (readonly, nonatomic) NSString *line;      // current line
-@property (readonly, nonatomic) NSString *column;    // caret location from the beginning of line
-@property (readonly, nonatomic) NSString *unicode;   // Unicode of selected single character (or surrogate-pair)
+@property (readonly, nonatomic, nullable) NSString *lines;
+@property (readonly, nonatomic, nullable) NSString *chars;
+@property (readonly, nonatomic, nullable) NSString *words;
+@property (readonly, nonatomic, nullable) NSString *length;
+@property (readonly, nonatomic, nullable) NSString *byteLength;
+@property (readonly, nonatomic, nullable) NSString *location;  // caret location from the beginning of document
+@property (readonly, nonatomic, nullable) NSString *line;      // current line
+@property (readonly, nonatomic, nullable) NSString *column;    // caret location from the beginning of line
+@property (readonly, nonatomic, nullable) NSString *unicode;   // Unicode of selected single character (or surrogate-pair)
 
 
 // Public Methods

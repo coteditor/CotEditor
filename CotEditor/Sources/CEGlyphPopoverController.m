@@ -45,9 +45,9 @@ static const UTF32Char kType6EmojiModifierChar = 0x1F3FF;  // Emoji Modifier Fit
 
 @interface CEGlyphPopoverController () <NSPopoverDelegate>
 
-@property (nonatomic, copy) NSString *glyph;
-@property (nonatomic, copy) NSString *unicodeName;
-@property (nonatomic, copy) NSString *unicode;
+@property (nonatomic, nonnull, copy) NSString *glyph;
+@property (nonatomic, nonnull, copy) NSString *unicodeName;
+@property (nonatomic, nonnull, copy) NSString *unicode;
 
 @end
 
@@ -62,7 +62,7 @@ static const UTF32Char kType6EmojiModifierChar = 0x1F3FF;  // Emoji Modifier Fit
 
 // ------------------------------------------------------
 /// failable initialize
-- (instancetype)initWithCharacter:(NSString *)character
+- (nullable instancetype)initWithCharacter:(nonnull NSString *)character
 // ------------------------------------------------------
 {
     if ([character numberOfComposedCharacters] != 1) { return nil; }
@@ -173,7 +173,7 @@ static const UTF32Char kType6EmojiModifierChar = 0x1F3FF;  // Emoji Modifier Fit
 
 // ------------------------------------------------------
 /// show popover
-- (void)showPopoverRelativeToRect:(NSRect)positioningRect ofView:(NSView *)parentView
+- (void)showPopoverRelativeToRect:(NSRect)positioningRect ofView:(nonnull NSView *)parentView
 // ------------------------------------------------------
 {
     NSPopover *popover = [[NSPopover alloc] init];

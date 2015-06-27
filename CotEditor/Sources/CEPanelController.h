@@ -11,7 +11,7 @@
  encoding="UTF-8"
  ------------------------------------------------------------------------------
  
- © 2014 CotEditor Project
+ © 2014-2015 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -35,11 +35,11 @@
 
 @interface CEPanelController : NSWindowController <NSWindowDelegate>
 
-@property (readonly, nonatomic, weak) CEWindowController *documentWindowController;
+@property (readonly, nonatomic, nullable, weak) CEWindowController *documentWindowController;
 
 
 // singleton
-+ (instancetype)sharedController;
++ (nonnull instancetype)sharedController;
 
 
 // (abstract) invoke when frontmost document window changed

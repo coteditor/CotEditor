@@ -37,7 +37,7 @@
 @property (nonatomic) BOOL fixesLineHeight;  // 行高を固定するか
 @property (nonatomic) BOOL usesAntialias;  // アンチエイリアスを適用するかどうか
 @property (nonatomic, getter=isPrinting) BOOL printing;  // プリンタ中かどうかを（[NSGraphicsContext currentContextDrawingToScreen] は真を返す時があるため、専用フラグを使う）
-@property (nonatomic) NSFont *textFont;
+@property (nonatomic, nullable) NSFont *textFont;
 
 @property (readonly, nonatomic) CGFloat textFontPointSize;
 @property (readonly, nonatomic) CGFloat defaultLineHeightForTextFont;  // 表示フォントでの行高

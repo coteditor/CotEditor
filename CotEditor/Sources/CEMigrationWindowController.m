@@ -9,7 +9,7 @@
  encoding="UTF-8"
  ------------------------------------------------------------------------------
  
- © 2014 CotEditor Project
+ © 2014-2015 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -33,15 +33,15 @@
 
 @interface CEMigrationWindowController ()
 
-@property (nonatomic) NSString *appName;
+@property (nonatomic, nonnull) NSString *appName;
 
-@property (nonatomic) IBOutlet NSView *finishedView;
-@property (nonatomic) IBOutlet NSView *initialView;
+@property (nonatomic, nullable) IBOutlet NSView *finishedView;
+@property (nonatomic, nullable) IBOutlet NSView *initialView;
 
-@property (nonatomic, weak) IBOutlet NSView *slideView;
-@property (nonatomic, weak) IBOutlet NSProgressIndicator *indicator;
-@property (nonatomic, weak) IBOutlet NSTextField *informativeField;
-@property (nonatomic, weak) IBOutlet NSButton *button;
+@property (nonatomic, nullable, weak) IBOutlet NSView *slideView;
+@property (nonatomic, nullable, weak) IBOutlet NSProgressIndicator *indicator;
+@property (nonatomic, nullable, weak) IBOutlet NSTextField *informativeField;
+@property (nonatomic, nullable, weak) IBOutlet NSButton *button;
 
 @end
 
@@ -102,7 +102,7 @@
 
 // ------------------------------------------------------
 /// update progress message
-- (void)setInformative:(NSString *)informative
+- (void)setInformative:(nonnull NSString *)informative
 // ------------------------------------------------------
 {
     [[self informativeField] setStringValue:NSLocalizedString(informative, nil)];
@@ -126,7 +126,7 @@
 
 // ------------------------------------------------------
 /// transit to finished mode
-- (IBAction)didFinishMigration:(id)sender
+- (IBAction)didFinishMigration:(nullable id)sender
 // ------------------------------------------------------
 {
     [self swapView:[self finishedView]];
@@ -139,7 +139,7 @@
 
 // ------------------------------------------------------
 /// open a specific help page with anchor
-- (IBAction)openHelpAnchor:(id)sender
+- (IBAction)openHelpAnchor:(nullable id)sender
 // ------------------------------------------------------
 {
     [(CEAppDelegate *)[NSApp delegate] openHelpAnchor:sender];
@@ -151,7 +151,7 @@
 
 // ------------------------------------------------------
 /// swap current slide view with another view
-- (void)swapView:(NSView *)newView
+- (void)swapView:(nonnull NSView *)newView
 // ------------------------------------------------------
 {
     NSView *currentView = [[[self slideView] subviews] firstObject];

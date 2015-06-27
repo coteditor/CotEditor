@@ -34,9 +34,10 @@
 @interface CEDocumentController : NSDocumentController
 
 // readonly
-@property (nonatomic, readonly) NSStringEncoding accessorySelectedEncoding;
+@property (readonly, nonatomic) NSStringEncoding accessorySelectedEncoding;
+@property (readonly, nonatomic, nonnull) NSURL *autosaveDirectoryURL;
 
 // Action Message
-- (IBAction)openHiddenDocument:(id)sender;
+- (IBAction)openHiddenDocument:(nullable id)sender;
 
 @end

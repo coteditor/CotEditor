@@ -35,42 +35,42 @@
 
 
 // notifications
-NSString *const CEAnalyzerDidUpdateFileInfoNotification = @"CEAnalyzerDidUpdateFileInfoNotification";
-NSString *const CEAnalyzerDidUpdateModeInfoNotification = @"CEAnalyzerDidUpdateModeInfoNotification";
-NSString *const CEAnalyzerDidUpdateEditorInfoNotification = @"CEAnalyzerDidUpdateEditorInfoNotification";
+NSString *__nonnull const CEAnalyzerDidUpdateFileInfoNotification = @"CEAnalyzerDidUpdateFileInfoNotification";
+NSString *__nonnull const CEAnalyzerDidUpdateModeInfoNotification = @"CEAnalyzerDidUpdateModeInfoNotification";
+NSString *__nonnull const CEAnalyzerDidUpdateEditorInfoNotification = @"CEAnalyzerDidUpdateEditorInfoNotification";
 
 
 @interface CEDocumentAnalyzer ()
 
 // formatters
-@property (nonatomic) NSNumberFormatter *integerFormatter;
-@property (nonatomic) NSDateFormatter *dateFormatter;
-@property (nonatomic) NSByteCountFormatter *byteCountFormatter;
+@property (nonatomic, nonnull) NSNumberFormatter *integerFormatter;
+@property (nonatomic, nonnull) NSDateFormatter *dateFormatter;
+@property (nonatomic, nonnull) NSByteCountFormatter *byteCountFormatter;
 
 // file infos
-@property (readwrite, nonatomic) NSString *creationDate;
-@property (readwrite, nonatomic) NSString *modificationDate;
-@property (readwrite, nonatomic) NSString *fileSize;
-@property (readwrite, nonatomic) NSString *filePath;
-@property (readwrite, nonatomic) NSString *owner;
-@property (readwrite, nonatomic) NSString *permission;
+@property (readwrite, nonatomic, nullable) NSString *creationDate;
+@property (readwrite, nonatomic, nullable) NSString *modificationDate;
+@property (readwrite, nonatomic, nullable) NSString *fileSize;
+@property (readwrite, nonatomic, nullable) NSString *filePath;
+@property (readwrite, nonatomic, nullable) NSString *owner;
+@property (readwrite, nonatomic, nullable) NSString *permission;
 @property (readwrite, nonatomic, getter=isWritable) BOOL writable;
 
 // mode infos
-@property (readwrite, nonatomic) NSString *encoding;
-@property (readwrite, nonatomic) NSString *charsetName;
-@property (readwrite, nonatomic) NSString *lineEndings;
+@property (readwrite, nonatomic, nullable) NSString *encoding;
+@property (readwrite, nonatomic, nullable) NSString *charsetName;
+@property (readwrite, nonatomic, nullable) NSString *lineEndings;
 
 // editor infos
-@property (readwrite, nonatomic) NSString *lines;
-@property (readwrite, nonatomic) NSString *chars;
-@property (readwrite, nonatomic) NSString *words;
-@property (readwrite, nonatomic) NSString *length;
-@property (readwrite, nonatomic) NSString *byteLength;
-@property (readwrite, nonatomic) NSString *location;
-@property (readwrite, nonatomic) NSString *line;
-@property (readwrite, nonatomic) NSString *column;
-@property (readwrite, nonatomic) NSString *unicode;
+@property (readwrite, nonatomic, nullable) NSString *lines;
+@property (readwrite, nonatomic, nullable) NSString *chars;
+@property (readwrite, nonatomic, nullable) NSString *words;
+@property (readwrite, nonatomic, nullable) NSString *length;
+@property (readwrite, nonatomic, nullable) NSString *byteLength;
+@property (readwrite, nonatomic, nullable) NSString *location;
+@property (readwrite, nonatomic, nullable) NSString *line;
+@property (readwrite, nonatomic, nullable) NSString *column;
+@property (readwrite, nonatomic, nullable) NSString *unicode;
 
 @end
 

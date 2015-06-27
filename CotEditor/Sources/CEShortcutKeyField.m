@@ -34,7 +34,7 @@
 
 @interface CEShortcutKeyField ()
 
-@property (nonatomic) id keyDownMonitor;
+@property (nonatomic, nullable) id keyDownMonitor;
 
 @end
 

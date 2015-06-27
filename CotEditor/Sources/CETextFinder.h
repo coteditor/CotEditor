@@ -32,8 +32,8 @@
 
 // notifications
 /// Posted when text finder performed "Replace All." Object is target text view.
-extern NSString *const CETextFinderDidReplaceAllNotification;
-extern NSString *const CETextFinderDidUnhighlightNotification;
+extern NSString *__nonnull const CETextFinderDidReplaceAllNotification;
+extern NSString *__nonnull const CETextFinderDidUnhighlightNotification;
 
 
 @interface CETextFinder : OgreTextFinder

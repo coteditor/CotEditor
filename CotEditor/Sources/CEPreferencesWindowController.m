@@ -9,7 +9,7 @@
  encoding="UTF-8"
  ------------------------------------------------------------------------------
  
- © 2014 1024jp
+ © 2014-2015 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -55,7 +55,7 @@
 
 // ------------------------------------------------------
 /// return singleton instance
-+ (instancetype)sharedController
++ (nonnull instancetype)sharedController
 // ------------------------------------------------------
 {
     static dispatch_once_t onceToken;
@@ -74,7 +74,7 @@
 
 // ------------------------------------------------------
 /// initialize
-- (instancetype)initWithWindowNibName:(NSString *)windowNibName
+- (nonnull instancetype)initWithWindowNibName:(nonnull NSString *)windowNibName
 // ------------------------------------------------------
 {
     self = [super initWithWindowNibName:windowNibName];
@@ -113,7 +113,7 @@
 
 // ------------------------------------------------------
 /// window will close
-- (void)windowWillClose:(NSNotification *)notification
+- (void)windowWillClose:(nonnull NSNotification *)notification
 // ------------------------------------------------------
 {
     // finish current edit
@@ -126,7 +126,7 @@
 
 // ------------------------------------------------------
 /// switch panes from toolbar
-- (IBAction)switchView:(id)sender
+- (IBAction)switchView:(nullable id)sender
 // ------------------------------------------------------
 {
     // detect clicked icon and select the view to switch

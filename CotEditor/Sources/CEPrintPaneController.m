@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014 CotEditor Project
+ © 2014-2015 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -35,8 +35,8 @@
 
 @interface CEPrintPaneController ()
 
-@property (nonatomic, weak) IBOutlet NSTextField *fontField;
-@property (nonatomic, weak) IBOutlet NSPopUpButton *colorPopupButton;
+@property (nonatomic, nullable, weak) IBOutlet NSTextField *fontField;
+@property (nonatomic, nullable, weak) IBOutlet NSPopUpButton *colorPopupButton;
 
 @end
 
@@ -81,7 +81,7 @@
 
 // ------------------------------------------------------
 /// show font panel
-- (IBAction)showFonts:(id)sender
+- (IBAction)showFonts:(nullable id)sender
 //-------------------------------------------------------
 {
     NSFont *font = [NSFont fontWithName:[[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultPrintFontNameKey]
@@ -95,7 +95,7 @@
 
 // ------------------------------------------------------
 /// font in font panel did update
-- (void)changeFont:(id)sender
+- (void)changeFont:(nullable id)sender
 // ------------------------------------------------------
 {
     NSFontManager *fontManager = (NSFontManager *)sender;
@@ -110,7 +110,7 @@
 
 // ------------------------------------------------------
 /// color setting did update
-- (IBAction)changePrintTheme:(id)sender
+- (IBAction)changePrintTheme:(nullable id)sender
 // ------------------------------------------------------
 {
     NSPopUpButton *popup = (NSPopUpButton *)sender;

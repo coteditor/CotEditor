@@ -9,7 +9,7 @@
  encoding="UTF-8"
  ------------------------------------------------------------------------------
  
- © 2014 CotEditor Project
+ © 2014-2015 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -37,7 +37,7 @@
 
 @property (nonatomic, getter=isMetadataEdited) BOOL metadataEdited;
 
-@property (nonatomic) IBOutlet NSPopover *popover;
+@property (nonatomic, nullable) IBOutlet NSPopover *popover;
 
 @end
 
@@ -71,7 +71,7 @@
 
 // ------------------------------------------------------
 /// observe theme dict changes
-- (void)setRepresentedObject:(id)representedObject
+- (void)setRepresentedObject:(nullable id)representedObject
 // ------------------------------------------------------
 {
     // remove current observing (in case when the theme is restored)
@@ -94,7 +94,7 @@
 
 // ------------------------------------------------------
 /// theme is modified
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+- (void)observeValueForKeyPath:(nullable NSString *)keyPath ofObject:(nullable id)object change:(nullable NSDictionary *)change context:(nullable void *)context
 // ------------------------------------------------------
 {
     if (object == [self representedObject]) {
@@ -108,7 +108,7 @@
 
 // ------------------------------------------------------
 /// meta data was possible edited
-- (void)controlTextDidChange:(NSNotification *)obj
+- (void)controlTextDidChange:(nonnull NSNotification *)obj
 // ------------------------------------------------------
 {
     [self setMetadataEdited:YES];
@@ -117,7 +117,7 @@
 
 // ------------------------------------------------------
 /// popover closed
-- (void)popoverDidClose:(NSNotification *)notification
+- (void)popoverDidClose:(nonnull NSNotification *)notification
 // ------------------------------------------------------
 {
     if ([self isMetadataEdited]) {
@@ -132,7 +132,7 @@
 
 // ------------------------------------------------------
 /// apply system highlight color to color well
-- (IBAction)applySystemSelectionColor:(id)sender
+- (IBAction)applySystemSelectionColor:(nullable id)sender
 // ------------------------------------------------------
 {
     if ([sender state] == NSOnState) {
@@ -144,7 +144,7 @@
 
 // ------------------------------------------------------
 /// show medatada of theme file via popover
-- (IBAction)showMedatada:(id)sender
+- (IBAction)showMedatada:(nullable id)sender
 // ------------------------------------------------------
 {
     [[self popover] showRelativeToRect:[sender frame] ofView:[self view] preferredEdge:NSMaxYEdge];
@@ -154,7 +154,7 @@
 
 // ------------------------------------------------------
 /// jump to theme's destribution URL
-- (IBAction)jumpToURL:(id)sender
+- (IBAction)jumpToURL:(nullable id)sender
 // ------------------------------------------------------
 {
     NSURL *URL = [NSURL URLWithString:[self representedObject][CEMetadataKey][CEDistributionURLKey]];
@@ -173,7 +173,7 @@
 
 // ------------------------------------------------------
 /// start observing theme change
-- (void)observeTheme:(NSDictionary *)theme
+- (void)observeTheme:(nonnull NSDictionary *)theme
 // ------------------------------------------------------
 {
     for (NSString *key in [theme allKeys]) {

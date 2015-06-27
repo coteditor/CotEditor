@@ -9,7 +9,7 @@
  encoding="UTF-8"
  ------------------------------------------------------------------------------
  
- © 2014 CotEditor Project
+ © 2014-2015 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -33,41 +33,41 @@
 @interface CETheme : NSObject
 
 /// name of the theme
-@property (readonly, nonatomic, copy) NSString *name;
+@property (readonly, nonatomic, nonnull, copy) NSString *name;
 
 // basic colors
-@property (readonly, nonatomic) NSColor *textColor;
-@property (readonly, nonatomic) NSColor *backgroundColor;
-@property (readonly, nonatomic) NSColor *invisiblesColor;
-@property (readonly, nonatomic) NSColor *selectionColor;
-@property (readonly, nonatomic) NSColor *insertionPointColor;
-@property (readonly, nonatomic) NSColor *lineHighLightColor;
+@property (readonly, nonatomic, nonnull) NSColor *textColor;
+@property (readonly, nonatomic, nonnull) NSColor *backgroundColor;
+@property (readonly, nonatomic, nonnull) NSColor *invisiblesColor;
+@property (readonly, nonatomic, nonnull) NSColor *selectionColor;
+@property (readonly, nonatomic, nonnull) NSColor *insertionPointColor;
+@property (readonly, nonatomic, nonnull) NSColor *lineHighLightColor;
 
 // auto genereted colors
-@property (readonly, nonatomic) NSColor *weakTextColor;
-@property (readonly, nonatomic) NSColor *markupColor;
+@property (readonly, nonatomic, nonnull) NSColor *weakTextColor;
+@property (readonly, nonatomic, nonnull) NSColor *markupColor;
 
 // syntax colors
-@property (readonly, nonatomic) NSColor *keywordsColor;
-@property (readonly, nonatomic) NSColor *commandsColor;
-@property (readonly, nonatomic) NSColor *typesColor;
-@property (readonly, nonatomic) NSColor *attributesColor;
-@property (readonly, nonatomic) NSColor *variablesColor;
-@property (readonly, nonatomic) NSColor *valuesColor;
-@property (readonly, nonatomic) NSColor *numbersColor;
-@property (readonly, nonatomic) NSColor *stringsColor;
-@property (readonly, nonatomic) NSColor *charactersColor;
-@property (readonly, nonatomic) NSColor *commentsColor;
+@property (readonly, nonatomic, nonnull) NSColor *keywordsColor;
+@property (readonly, nonatomic, nonnull) NSColor *commandsColor;
+@property (readonly, nonatomic, nonnull) NSColor *typesColor;
+@property (readonly, nonatomic, nonnull) NSColor *attributesColor;
+@property (readonly, nonatomic, nonnull) NSColor *variablesColor;
+@property (readonly, nonatomic, nonnull) NSColor *valuesColor;
+@property (readonly, nonatomic, nonnull) NSColor *numbersColor;
+@property (readonly, nonatomic, nonnull) NSColor *stringsColor;
+@property (readonly, nonatomic, nonnull) NSColor *charactersColor;
+@property (readonly, nonatomic, nonnull) NSColor *commentsColor;
 
 /// Is background color dark?
 @property (readonly, nonatomic, getter=isDarkTheme) BOOL darkTheme;
 
 
 /// return CETheme instance initialized with theme name
-+ (CETheme *)themeWithName:(NSString *)themeName;
++ (nullable CETheme *)themeWithName:(nonnull NSString *)themeName;
 
 
-/// default initializer
-- (instancetype)initWithName:(NSString *)themeName NS_DESIGNATED_INITIALIZER;
+/// designated initializer
+- (nullable instancetype)initWithName:(nonnull NSString *)themeName NS_DESIGNATED_INITIALIZER;
 
 @end

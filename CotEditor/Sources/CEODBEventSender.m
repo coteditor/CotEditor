@@ -9,7 +9,7 @@
  encoding="UTF-8"
  ------------------------------------------------------------------------------
  
- © 2014 CotEditor Project
+ © 2014-2015 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -33,8 +33,8 @@
 
 @interface CEODBEventSender ()
 
-@property (nonatomic) NSAppleEventDescriptor *fileSender;
-@property (nonatomic) NSAppleEventDescriptor *fileToken;
+@property (nonatomic, nullable) NSAppleEventDescriptor *fileSender;
+@property (nonatomic, nullable) NSAppleEventDescriptor *fileToken;
 
 @end
 
@@ -50,7 +50,7 @@
 
 // ------------------------------------------------------
 /// initialize
-- (instancetype)init
+- (nonnull instancetype)init
 // ------------------------------------------------------
 {
     self = [super init];
@@ -85,7 +85,7 @@
 
 // ------------------------------------------------------
 /// notify the file update to the file client
-- (void)sendModifiedEventWithURL:(NSURL *)URLToSave operation:(NSSaveOperationType)saveOperationType
+- (void)sendModifiedEventWithURL:(nonnull NSURL *)URLToSave operation:(NSSaveOperationType)saveOperationType
 // ------------------------------------------------------
 {
     AEEventID type = (saveOperationType == NSSaveAsOperation) ? keyNewLocation : kAEModifiedFile;
@@ -96,7 +96,7 @@
 
 // ------------------------------------------------------
 /// nofity the file closing to the file client
-- (void)sendCloseEventWithURL:(NSURL *)fileURL
+- (void)sendCloseEventWithURL:(nonnull NSURL *)fileURL
 // ------------------------------------------------------
 {
     [self sendODBEventWithType:kAEClosedFile URL:fileURL];
@@ -108,7 +108,7 @@
 
 // ------------------------------------------------------
 /// send a notification to the file client
-- (void)sendODBEventWithType:(AEEventID)eventType URL:(NSURL *)fileURL
+- (void)sendODBEventWithType:(AEEventID)eventType URL:(nonnull NSURL *)fileURL
 // ------------------------------------------------------
 {
     if (!fileURL) { return; }

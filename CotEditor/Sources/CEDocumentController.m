@@ -37,12 +37,13 @@
 
 @property (nonatomic) BOOL showsHiddenFiles;
 
-@property (nonatomic) IBOutlet NSView *openPanelAccessoryView;
-@property (nonatomic) IBOutlet NSPopUpButton *accessoryEncodingMenu;
+@property (nonatomic, nullable) IBOutlet NSView *openPanelAccessoryView;
+@property (nonatomic, nullable) IBOutlet NSPopUpButton *accessoryEncodingMenu;
 
 
 // readonly
-@property (nonatomic, readwrite) NSStringEncoding accessorySelectedEncoding;
+@property (readwrite, nonatomic) NSStringEncoding accessorySelectedEncoding;
+@property (readwrite, nonatomic, nonnull) NSURL *autosaveDirectoryURL;
 
 @end
 
@@ -57,12 +58,18 @@
 
 // ------------------------------------------------------
 /// inizialize instance
-- (instancetype)init
+- (nonnull instancetype)init
 // ------------------------------------------------------
 {
     self = [super init];
     if (self) {
         _accessorySelectedEncoding = (NSStringEncoding)[[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultEncodingInOpenKey];
+        
+        _autosaveDirectoryURL = [[NSFileManager defaultManager] URLForDirectory:NSAutosavedInformationDirectory
+                                                                       inDomain:NSUserDomainMask
+                                                              appropriateForURL:nil
+                                                                         create:YES
+                                                                          error:nil];
         
         [self setAutosavingDelay:(NSTimeInterval)[[NSUserDefaults standardUserDefaults] doubleForKey:CEDefaultAutosavingDelayKey]];
     }
@@ -72,7 +79,7 @@
 
 // ------------------------------------------------------
 /// check file before creating a new document instance
-- (id)makeDocumentWithContentsOfURL:(NSURL *)url ofType:(NSString *)typeName error:(NSError *__autoreleasing *)outError
+- (nullable id)makeDocumentWithContentsOfURL:(nonnull NSURL *)url ofType:(nonnull NSString *)typeName error:(NSError *__autoreleasing __nullable *)outError
 // ------------------------------------------------------
 {
     // display alert if file is enorm large
@@ -112,7 +119,7 @@
 
 // ------------------------------------------------------
 /// add encoding menu to open panel
-- (void)beginOpenPanel:(NSOpenPanel *)openPanel forTypes:(NSArray *)inTypes completionHandler:(void (^)(NSInteger))completionHandler
+- (void)beginOpenPanel:(nonnull NSOpenPanel *)openPanel forTypes:(nonnull NSArray *)inTypes completionHandler:(void (^ __nonnull)(NSInteger))completionHandler
 // ------------------------------------------------------
 {
     // initialize encoding menu and set the accessory view
@@ -145,7 +152,7 @@
 
 // ------------------------------------------------------
 /// show open panel displaying hidden files
-- (IBAction)openHiddenDocument:(id)sender
+- (IBAction)openHiddenDocument:(nullable id)sender
 // ------------------------------------------------------
 {
     [self setShowsHiddenFiles:YES];

@@ -337,7 +337,7 @@ static NSPoint kTextContainerOrigin;
         while (length--) {
             [spaces appendString:@" "];
         }
-        [super insertText:spaces];
+        [super insertText:spaces replacementRange:[self selectedRange]];
         
     } else {
         [super insertTab:sender];
@@ -391,14 +391,14 @@ static NSPoint kTextContainerOrigin;
     [super insertNewline:sender];
     
     if ([indent length] > 0) {
-        [super insertText:indent];
+        [super insertText:indent replacementRange:[self selectedRange]];
     }
     
     if (shouldExpandBlock) {
         [self insertTab:sender];
         NSRange selection = [self selectedRange];
         [super insertNewline:sender];
-        [super insertText:indent];
+        [super insertText:indent replacementRange:selection];
         [self setSelectedRange:selection];
         
     } else if (shouldIncreaseIndentLevel) {
@@ -784,7 +784,7 @@ static NSPoint kTextContainerOrigin;
                 NSString *replacedStr = [pboardStr stringByReplacingNewLineCharacersWith:CENewLineLF];
                 NSRange newRange = NSMakeRange([self selectedRange].location + [replacedStr length], 0);
                 
-                [super insertText:replacedStr];
+                [super insertText:replacedStr replacementRange:[self selectedRange]];
                 [self setSelectedRange:newRange];
                 success = YES;
             }
@@ -875,7 +875,7 @@ static NSPoint kTextContainerOrigin;
                 // （ファイルをドロップしたときは、挿入文字列全体を選択状態にする）
                 NSRange newRange = NSMakeRange([self selectedRange].location, 0);
                 
-                [super insertText:stringToDrop];
+                [super insertText:stringToDrop replacementRange:[self selectedRange]];
                 [self setSelectedRange:newRange];
                 // 挿入後、選択範囲を移動させておかないと複数オブジェクトをドロップされた時に重ね書きしてしまう
                 success = YES;
@@ -999,13 +999,13 @@ static NSPoint kTextContainerOrigin;
 /// treat programmatic text insertion
 // ------------------------------------------------------
 {
-    // should not use `insertText:` and insertText:replacementRange:` methods since they are generally for user typing.
+    // should not use insertText:replacementRange:` methods since they are generally for user typing.
     
     if (!string) { return; }
     
     NSRange selectedRange = [self selectedRange];
     
-    [super insertText:string];
+    [super insertText:string replacementRange:selectedRange];
     [self setSelectedRange:NSMakeRange(selectedRange.location, [string length])];
     
     NSString *actionName = (selectedRange.length > 0) ? @"Replace Text" : @"Insert Text";
@@ -1280,7 +1280,8 @@ static NSPoint kTextContainerOrigin;
 - (IBAction)inputYenMark:(id)sender
 // ------------------------------------------------------
 {
-    [super insertText:[NSString stringWithCharacters:&kYenMark length:1]];
+    [super insertText:[NSString stringWithCharacters:&kYenMark length:1]
+     replacementRange:[self selectedRange]];
 }
 
 
@@ -1289,7 +1290,7 @@ static NSPoint kTextContainerOrigin;
 - (IBAction)inputBackSlash:(id)sender
 // ------------------------------------------------------
 {
-    [super insertText:@"\\"];
+    [super insertText:@"\\" replacementRange:[self selectedRange]];
 }
 
 
@@ -1529,7 +1530,7 @@ static NSPoint kTextContainerOrigin;
     if (patternNumber < [texts count]) {
         NSString *string = texts[patternNumber];
         
-        [super insertText:string];
+        [super insertText:string replacementRange:[self selectedRange]];
         [[self undoManager] setActionName:NSLocalizedString(@"Insert Custom Text", nil)];
         
         [self scrollRangeToVisible:[self selectedRange]];

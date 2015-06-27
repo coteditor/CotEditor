@@ -9,7 +9,7 @@
  encoding="UTF-8"
  ------------------------------------------------------------------------------
  
- © 2014 CotEditor Project
+ © 2014-2015 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -37,7 +37,7 @@
 @property (nonatomic) BOOL didResetKeyBindings;
 
 
-- (void)setInformative:(NSString *)informative;
+- (void)setInformative:(nonnull NSString *)informative;
 - (void)progressIndicator;  // max: 5
 - (void)setMigrationFinished:(BOOL)migrationFinished;
 

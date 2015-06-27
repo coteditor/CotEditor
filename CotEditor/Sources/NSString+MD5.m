@@ -15,7 +15,7 @@
  Copyright iOSDeveloperTips.com All rights reserved.
  ------------------------------------------------------------------------------
  
- © 2014 CotEditor Project
+ © 2014 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -39,7 +39,7 @@
 
 @implementation NSString (MD5)
 
-- (NSString*)MD5
+- (nonnull NSString *)MD5
 {
     // Create pointer to the string as UTF8
     const char *ptr = [self UTF8String];

@@ -54,9 +54,9 @@ static NSString *const PageNumberPlaceholder = @"PAGENUM";
 @property (nonatomic) BOOL printsLineNum;
 @property (nonatomic, getter=isReadyToDrawPageNum) BOOL readyToDrawPageNum;
 @property (nonatomic) CGFloat xOffset;
-@property (nonatomic, copy) NSDictionary *headerFooterAttrs;
-@property (nonatomic) CESyntaxParser *syntaxParser;
-@property (nonatomic) NSDateFormatter *dateFormatter;
+@property (nonatomic, nonnull, copy) NSDictionary *headerFooterAttrs;
+@property (nonatomic, nullable) CESyntaxParser *syntaxParser;
+@property (nonatomic, nonnull) NSDateFormatter *dateFormatter;
 
 @end
 
@@ -71,7 +71,7 @@ static NSString *const PageNumberPlaceholder = @"PAGENUM";
 
 // ------------------------------------------------------
 /// initialize
-- (instancetype)initWithFrame:(NSRect)frameRect
+- (nonnull instancetype)initWithFrame:(NSRect)frameRect
 // ------------------------------------------------------
 {
     self = [super initWithFrame:frameRect];
@@ -296,7 +296,7 @@ static NSString *const PageNumberPlaceholder = @"PAGENUM";
 
 // ------------------------------------------------------
 /// set printing font
-- (void)setFont:(NSFont *)font
+- (void)setFont:(nullable NSFont *)font
 // ------------------------------------------------------
 {
     // set tab width
@@ -433,7 +433,7 @@ static NSString *const PageNumberPlaceholder = @"PAGENUM";
 
 // ------------------------------------------------------
 /// ヘッダ／フッタに印字する文字列を生成し、返す
-- (NSAttributedString *)attributedStringFromPrintInfoType:(CEPrintInfoType)selectedTag maxWidth:(CGFloat)maxWidth
+- (nullable NSAttributedString *)attributedStringFromPrintInfoType:(CEPrintInfoType)selectedTag maxWidth:(CGFloat)maxWidth
 // ------------------------------------------------------
 {
     NSString *string = @"";
@@ -497,7 +497,7 @@ static NSString *const PageNumberPlaceholder = @"PAGENUM";
 
 // ------------------------------------------------------
 /// X軸方向の印字開始位置を返す
-- (CGFloat)xValueToDrawAttributedString:(NSAttributedString *)attrString
+- (CGFloat)xValueToDrawAttributedString:(nonnull NSAttributedString *)attrString
                             borderWidth:(CGFloat)borderWidth
                               alignment:(CEAlignmentType)alignmentType
 // ------------------------------------------------------

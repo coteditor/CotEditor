@@ -35,16 +35,16 @@
 @interface CEKeyBindingSheetController () <NSOutlineViewDataSource, NSOutlineViewDelegate, NSTextFieldDelegate>
 
 @property (nonatomic) CEKeyBindingType mode;
-@property (nonatomic) NSMutableArray *outlineData;
-@property (nonatomic) NSMutableArray *registeredKeySpecCharsList;  // for duplication check
-@property (nonatomic, copy) NSString *warningMessage;  // for binding
+@property (nonatomic, nonnull) NSMutableArray *outlineData;
+@property (nonatomic, nonnull) NSMutableArray *registeredKeySpecCharsList;  // for duplication check
+@property (nonatomic, nullable, copy) NSString *warningMessage;  // for binding
 @property (nonatomic, getter=isRestoreble) BOOL restoreble;  // for binding
 
-@property (nonatomic, weak) IBOutlet NSOutlineView *outlineView;
-@property (nonatomic, weak) IBOutlet NSButton *OKButton;
+@property (nonatomic, nullable, weak) IBOutlet NSOutlineView *outlineView;
+@property (nonatomic, nullable, weak) IBOutlet NSButton *OKButton;
 
 // only in text key bindings edit sheet
-@property (nonatomic) IBOutlet NSArrayController *snippetArrayController;
+@property (nonatomic, nullable) IBOutlet NSArrayController *snippetArrayController;
 
 @end
 
@@ -57,7 +57,7 @@
 
 // ------------------------------------------------------
 /// initialize
-- (instancetype)initWithMode:(CEKeyBindingType)mode
+- (nonnull instancetype)initWithMode:(CEKeyBindingType)mode
 // ------------------------------------------------------
 {
     NSString *nibName = (mode == CEMenuKeyBindingsType) ? @"MenuKeyBindingEditSheet" : @"TextKeyBindingEditSheet";
@@ -73,11 +73,9 @@
                 break;
                 
             case CETextKeyBindingsType:
-            {
                 _outlineData = [[CEKeyBindingManager sharedManager] textKeySpecCharArrayForOutlineDataWithFactoryDefaults:NO];
                 _restoreble = ![[CEKeyBindingManager sharedManager] usesDefaultTextKeyBindings];
                 break;
-            }
         }
         
         _registeredKeySpecCharsList = [self keySpecCharsListFromOutlineData:_outlineData];
@@ -124,7 +122,7 @@
 
 // ------------------------------------------------------
 /// 子アイテムの数を返す
-- (NSInteger)outlineView:(NSOutlineView *)outlineView numberOfChildrenOfItem:(id)item
+- (NSInteger)outlineView:(nonnull NSOutlineView *)outlineView numberOfChildrenOfItem:(nullable id)item
 // ------------------------------------------------------
 {
     return [[self childrenOfItem:item] count];
@@ -133,7 +131,7 @@
 
 // ------------------------------------------------------
 /// アイテムが展開可能かどうかを返す
-- (BOOL)outlineView:(NSOutlineView *)outlineView isItemExpandable:(id)item
+- (BOOL)outlineView:(nonnull NSOutlineView *)outlineView isItemExpandable:(nonnull id)item
 // ------------------------------------------------------
 {
     return ([self childrenOfItem:item]);
@@ -142,7 +140,7 @@
 
 // ------------------------------------------------------
 /// 子アイテムオブジェクトを返す
-- (id)outlineView:(NSOutlineView *)outlineView child:(NSInteger)index ofItem:(id)item
+- (nonnull id)outlineView:(nonnull NSOutlineView *)outlineView child:(NSInteger)index ofItem:(nullable id)item
 // ------------------------------------------------------
 {
     return [self childrenOfItem:item][index];
@@ -151,7 +149,7 @@
 
 // ------------------------------------------------------
 /// コラムに応じたオブジェクト(表示文字列)を返す
-- (id)outlineView:(NSOutlineView *)outlineView objectValueForTableColumn:(NSTableColumn *)tableColumn byItem:(id)item
+- (nullable id)outlineView:(nonnull NSOutlineView *)outlineView objectValueForTableColumn:(nullable NSTableColumn *)tableColumn byItem:(nullable id)item
 // ------------------------------------------------------
 {
     NSString *identifier = [tableColumn identifier];
@@ -166,7 +164,7 @@
 
 // ------------------------------------------------------
 /// コラムに応じたオブジェクト(表示文字列)をセットして返す
-- (NSView *)outlineView:(NSOutlineView *)outlineView viewForTableColumn:(NSTableColumn *)tableColumn item:(id)item
+- (nullable NSView *)outlineView:(nonnull NSOutlineView *)outlineView viewForTableColumn:(nullable NSTableColumn *)tableColumn item:(nonnull id)item
 // ------------------------------------------------------
 {
     NSString *identifier = [tableColumn identifier];
@@ -188,7 +186,7 @@
 
 // ------------------------------------------------------
 /// 選択行の変更を許可
-- (BOOL)outlineView:(NSOutlineView *)outlineView shouldSelectItem:(id)item
+- (BOOL)outlineView:(nonnull NSOutlineView *)outlineView shouldSelectItem:(nonnull id)item
 // ------------------------------------------------------
 {
     // テキストのバインディングを編集している時は挿入文字列配列コントローラの選択オブジェクトを変更
@@ -204,7 +202,7 @@
 
 // ------------------------------------------------------
 // テーブルセルが編集可能かを設定する
-- (void)outlineView:(NSOutlineView *)outlineView didAddRowView:(NSTableRowView *)rowView forRow:(NSInteger)row
+- (void)outlineView:(nonnull NSOutlineView *)outlineView didAddRowView:(nonnull NSTableRowView *)rowView forRow:(NSInteger)row
 // ------------------------------------------------------
 {
     id item = [outlineView itemAtRow:row];
@@ -222,7 +220,7 @@
 
 // ------------------------------------------------------
 /// データをセット
-- (void)controlTextDidEndEditing:(NSNotification *)obj
+- (void)controlTextDidEndEditing:(nonnull NSNotification *)obj
 // ------------------------------------------------------
 {
     if (![[obj object] isKindOfClass:[NSTextField class]]) { return; }
@@ -267,7 +265,7 @@
 
 // ------------------------------------------------------
 /// キーバインディングを出荷時設定に戻す
-- (IBAction)setToFactoryDefaults:(id)sender
+- (IBAction)setToFactoryDefaults:(nullable id)sender
 // ------------------------------------------------------
 {
     switch ([self mode]) {
@@ -299,7 +297,7 @@
 
 // ------------------------------------------------------
 /// キーバインディング編集シートの OK / Cancel ボタンが押された
-- (IBAction)closeSheet:(id)sender
+- (IBAction)closeSheet:(nullable id)sender
 // ------------------------------------------------------
 {
     // end current editing progress
@@ -325,7 +323,7 @@
 
 //------------------------------------------------------
 /// アウトラインビューの行がダブルクリックされた
-- (IBAction)toggleOutlineItemExpand:(id)sender
+- (IBAction)toggleOutlineItemExpand:(nullable id)sender
 // ------------------------------------------------------
 {
     NSInteger selectedRow = [[self outlineView] selectedRow];
@@ -348,7 +346,7 @@
 
 // ------------------------------------------------------
 /// 子アイテムを返す
-- (NSArray *)childrenOfItem:(id)item
+- (nonnull NSArray *)childrenOfItem:(id)item
 // ------------------------------------------------------
 {
     return item ? item[CEKeyBindingChildrenKey] : [self outlineData];
@@ -357,11 +355,9 @@
 
 //------------------------------------------------------
 /// 重複などの警告メッセージを表示
-- (BOOL)validateKeySpecChars:(NSString *)keySpec oldChars:(NSString *)oldSpec
+- (BOOL)validateKeySpecChars:(nonnull NSString *)keySpec oldChars:(nonnull NSString *)oldSpec
 //------------------------------------------------------
 {
-    if (![self registeredKeySpecCharsList] || !keySpec) { return NO; }
-    
     NSString *warning = nil;
     if ([keySpec length] == 0) {
         // blank key is always valid
@@ -429,7 +425,7 @@
 
 //------------------------------------------------------
 /// 重複チェック用配列を生成
-- (NSMutableArray *)keySpecCharsListFromOutlineData:(NSArray *)outlineArray
+- (nonnull NSMutableArray *)keySpecCharsListFromOutlineData:(nonnull NSArray *)outlineArray
 //------------------------------------------------------
 {
     NSMutableArray *keySpecCharsList = [NSMutableArray array];
@@ -451,7 +447,7 @@
 
 //------------------------------------------------------
 /// 配列中のキーバインディング設定文字列をデフォルトに戻す
-- (void)resetKeySpecCharsToFactoryDefaults:(NSMutableArray *)outlineArray
+- (void)resetKeySpecCharsToFactoryDefaults:(nonnull NSMutableArray *)outlineArray
 //------------------------------------------------------
 {
     for (NSMutableDictionary *item in outlineArray) {

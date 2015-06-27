@@ -40,13 +40,13 @@
 
 @interface CEFormatPaneController () <NSTableViewDelegate>
 
-@property (nonatomic, weak) IBOutlet NSPopUpButton *encodingMenuInOpen;
-@property (nonatomic, weak) IBOutlet NSPopUpButton *encodingMenuInNew;
+@property (nonatomic, nullable, weak) IBOutlet NSPopUpButton *encodingMenuInOpen;
+@property (nonatomic, nullable, weak) IBOutlet NSPopUpButton *encodingMenuInNew;
 
-@property (nonatomic) IBOutlet NSArrayController *stylesController;
-@property (nonatomic, weak) IBOutlet NSTableView *syntaxTableView;
-@property (nonatomic, weak) IBOutlet NSPopUpButton *syntaxStylesDefaultPopup;
-@property (nonatomic, weak) IBOutlet NSButton *syntaxStyleDeleteButton;
+@property (nonatomic, nullable) IBOutlet NSArrayController *stylesController;
+@property (nonatomic, nullable, weak) IBOutlet NSTableView *syntaxTableView;
+@property (nonatomic, nullable, weak) IBOutlet NSPopUpButton *syntaxStylesDefaultPopup;
+@property (nonatomic, nullable, weak) IBOutlet NSButton *syntaxStyleDeleteButton;
 
 @end
 
@@ -109,7 +109,7 @@
 
 // ------------------------------------------------------
 /// メニューの有効化／無効化を制御
-- (BOOL)validateMenuItem:(NSMenuItem *)menuItem
+- (BOOL)validateMenuItem:(nonnull NSMenuItem *)menuItem
 // ------------------------------------------------------
 {
     // 拡張子重複エラー表示メニューの有効化を制御
@@ -143,7 +143,7 @@
 
 // ------------------------------------------------------
 /// テーブルの選択が変更された
-- (void)tableViewSelectionDidChange:(NSNotification *)notification
+- (void)tableViewSelectionDidChange:(nonnull NSNotification *)notification
 // ------------------------------------------------------
 {
     if ([notification object] == [self syntaxTableView]) {
@@ -157,7 +157,7 @@
 
 // ------------------------------------------------------
 /// エンコーディングリスト編集シートを開き、閉じる
-- (IBAction)openEncodingEditSheet:(id)sender
+- (IBAction)openEncodingEditSheet:(nullable id)sender
 // ------------------------------------------------------
 {
     CEEncodingListSheetController *sheetController = [[CEEncodingListSheetController alloc] init];
@@ -171,7 +171,7 @@
 
 // ------------------------------------------------------
 /// カラーシンタックス編集シートを開き、閉じる
-- (IBAction)openSyntaxEditSheet:(id)sender
+- (IBAction)openSyntaxEditSheet:(nullable id)sender
 // ------------------------------------------------------
 {
     CESyntaxEditSheetController *sheetController = [[CESyntaxEditSheetController alloc] initWithStyle:[self selectedStyleName]
@@ -199,28 +199,16 @@
 
 // ------------------------------------------------------
 /// シンタックススタイル削除ボタンが押された
-- (IBAction)deleteSyntaxStyle:(id)sender
+- (IBAction)deleteSyntaxStyle:(nullable id)sender
 // ------------------------------------------------------
 {
-    NSString *selectedStyleName = [self selectedStyleName];
-    
-    if (![[CESyntaxManager sharedManager] URLForUserStyle:selectedStyleName]) { return; }
-    
-    NSAlert *alert = [[NSAlert alloc] init];
-    [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"Delete the syntax style “%@”?", nil), selectedStyleName]];
-    [alert setInformativeText:NSLocalizedString(@"Deleted style cannot be restored.", nil)];
-    [alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
-    [alert addButtonWithTitle:NSLocalizedString(@"Delete", nil)];
-    
-    [alert beginSheetModalForWindow:[[self view] window]
-                      modalDelegate:self
-                     didEndSelector:@selector(deleteStyleAlertDidEnd:returnCode:contextInfo:) contextInfo:NULL];
+    [self deleteSyntaxStyleWithName:[self selectedStyleName]];
 }
 
 
 // ------------------------------------------------------
 /// シンタックスカラーリングスタイルインポートボタンが押された
-- (IBAction)importSyntaxStyle:(id)sender
+- (IBAction)importSyntaxStyle:(nullable id)sender
 // ------------------------------------------------------
 {
     NSOpenPanel *openPanel = [NSOpenPanel openPanel];
@@ -268,7 +256,7 @@
 
 // ------------------------------------------------------
 /// シンタックスカラーリングスタイルエクスポートボタンが押された
-- (IBAction)exportSyntaxStyle:(id)sender
+- (IBAction)exportSyntaxStyle:(nullable id)sender
 // ------------------------------------------------------
 {
     NSString *selectedStyle = [self selectedStyleName];
@@ -291,7 +279,7 @@
 
 // ------------------------------------------------------
 /// シンタックスカラーリングファイルをFinderで開く
-- (IBAction)revealSyntaxStyleInFinder:(id)sender
+- (IBAction)revealSyntaxStyleInFinder:(nullable id)sender
 // ------------------------------------------------------
 {
     NSURL *URL = [[CESyntaxManager sharedManager] URLForUserStyle:[self selectedStyleName]];
@@ -304,7 +292,7 @@
 
 // ------------------------------------------------------
 /// シンタックスマッピング重複エラー表示シートを開き、閉じる
-- (IBAction)openSyntaxMappingConflictSheet:(id)sender
+- (IBAction)openSyntaxMappingConflictSheet:(nullable id)sender
 // ------------------------------------------------------
 {
     CESyntaxMappingConflictsSheetController *sheetController = [[CESyntaxMappingConflictsSheetController alloc] init];
@@ -319,7 +307,7 @@
 
 //------------------------------------------------------
 /// 既存のファイルを開くエンコーディングが変更されたとき、選択項目をチェック
-- (IBAction)checkSelectedItemOfEncodingMenuInOpen:(id)sender
+- (IBAction)checkSelectedItemOfEncodingMenuInOpen:(nullable id)sender
 //------------------------------------------------------
 {
     NSString *newTitle = [[[self encodingMenuInOpen] selectedItem] title];
@@ -401,7 +389,7 @@
 
 // ------------------------------------------------------
 /// 現在選択されているスタイル名を返す
-- (NSString *)selectedStyleName
+- (nullable NSString *)selectedStyleName
 // ------------------------------------------------------
 {
     return [[[self stylesController] selectedObjects] firstObject];
@@ -420,9 +408,28 @@
 
 
 // ------------------------------------------------------
+/// try to delete given syntax style
+- (void)deleteSyntaxStyleWithName:(nonnull NSString *)styleName
+// ------------------------------------------------------
+{
+    if (![[CESyntaxManager sharedManager] URLForUserStyle:styleName]) { return; }
+    
+    NSAlert *alert = [[NSAlert alloc] init];
+    [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"Delete the syntax style “%@”?", nil), styleName]];
+    [alert setInformativeText:NSLocalizedString(@"Deleted style cannot be restored.", nil)];
+    [alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
+    [alert addButtonWithTitle:NSLocalizedString(@"Delete", nil)];
+    
+    [alert beginSheetModalForWindow:[[self view] window]
+                      modalDelegate:self
+                     didEndSelector:@selector(deleteStyleAlertDidEnd:returnCode:contextInfo:)
+                        contextInfo:(__bridge_retained void *)styleName];
+}
+
+
+// ------------------------------------------------------
 /// 既存ファイルを開くときのエンコーディングメニューで自動認識以外が選択されたときの警告シートが閉じる直前
-- (void)autoDetectAlertDidEnd:(NSAlert *)sheet
-                   returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
+- (void)autoDetectAlertDidEnd:(nonnull NSAlert *)sheet returnCode:(NSInteger)returnCode contextInfo:(nullable void *)contextInfo
 // ------------------------------------------------------
 {
     if (returnCode == NSAlertFirstButtonReturn) { // = revert to Auto-Detect
@@ -434,12 +441,12 @@
 
 // ------------------------------------------------------
 /// styleインポート実行
-- (void)doImport:(NSURL *)fileURL withCurrentSheetWindow:(NSWindow *)inWindow
+- (void)doImport:(nonnull NSURL *)fileURL withCurrentSheetWindow:(nullable NSWindow *)window
 // ------------------------------------------------------
 {
     if (![[CESyntaxManager sharedManager] importStyleFromURL:fileURL]) {
         // インポートできなかったときは、セカンダリシートを閉じ、メッセージシートを表示
-        [inWindow orderOut:self];
+        [window orderOut:self];
         [[[self view] window] makeKeyAndOrderFront:self];
         NSAlert *alert = [[NSAlert alloc] init];
         [alert setMessageText:NSLocalizedString(@"Error occured.", nil)];
@@ -453,16 +460,16 @@
 
 // ------------------------------------------------------
 /// style削除確認シートが閉じる直前
-- (void)deleteStyleAlertDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
+- (void)deleteStyleAlertDidEnd:(nonnull NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(nullable void *)contextInfo
 // ------------------------------------------------------
 {
     if (returnCode != NSAlertSecondButtonReturn) {  // != Delete
         return;
     }
     
-    NSString *selectedStyleName = [self selectedStyleName];
+    NSString *styleName = (__bridge_transfer NSString *)contextInfo;
     
-    if ([[CESyntaxManager sharedManager] removeStyleFileWithStyleName:selectedStyleName]) {
+    if ([[CESyntaxManager sharedManager] removeStyleFileWithStyleName:styleName]) {
         AudioServicesPlaySystemSound(CESystemSoundID_MoveToTrash);
     } else {
         // 削除できなければ、その旨をユーザに通知
@@ -470,7 +477,7 @@
         [[[self view] window] makeKeyAndOrderFront:self];
         NSAlert *alert = [[NSAlert alloc] init];
         [alert setMessageText:NSLocalizedString(@"Error occured.", nil)];
-        [alert setInformativeText:[NSString stringWithFormat:NSLocalizedString(@"Sorry, could not delete “%@”.", nil), selectedStyleName]];
+        [alert setInformativeText:[NSString stringWithFormat:NSLocalizedString(@"Sorry, could not delete “%@”.", nil), styleName]];
         NSBeep();
         [alert beginSheetModalForWindow:[[self view] window] modalDelegate:self didEndSelector:NULL contextInfo:NULL];
     }
@@ -479,7 +486,7 @@
 
 // ------------------------------------------------------
 /// セカンダリシートが閉じる直前
-- (void)secondarySheetDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
+- (void)secondarySheetDidEnd:(nonnull NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(nullable void *)contextInfo
 // ------------------------------------------------------
 {
     if (returnCode == NSAlertSecondButtonReturn) { // = Replace

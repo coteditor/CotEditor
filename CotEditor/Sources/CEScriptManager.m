@@ -58,7 +58,7 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 
 // ------------------------------------------------------
 /// return singleton instance
-+ (instancetype)sharedManager
++ (nonnull instancetype)sharedManager
 // ------------------------------------------------------
 {
     static dispatch_once_t onceToken;
@@ -77,7 +77,7 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 
 // ------------------------------------------------------
 /// initialize
-- (instancetype)init
+- (nonnull instancetype)init
 // ------------------------------------------------------
 {
     self = [super init];
@@ -102,7 +102,7 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 
 //------------------------------------------------------
 /// build Script menu
-- (void)buildScriptMenu:(id)sender
+- (void)buildScriptMenu:(nullable id)sender
 //------------------------------------------------------
 {
     NSMenu *menu = [[[NSApp mainMenu] itemAtIndex:CEScriptMenuIndex] submenu];
@@ -145,7 +145,7 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 
 //------------------------------------------------------
 /// return menu for context menu
-- (NSMenu *)contexualMenu
+- (nullable NSMenu *)contexualMenu
 //------------------------------------------------------
 {
     NSMenu *menu = [[[[NSApp mainMenu] itemAtIndex:CEScriptMenuIndex] submenu] copy];
@@ -165,7 +165,7 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 
 //------------------------------------------------------
 /// launch script (invoked by menu item)
-- (IBAction)launchScript:(id)sender
+- (IBAction)launchScript:(nullable id)sender
 //------------------------------------------------------
 {
     NSURL *URL = [sender representedObject];
@@ -224,7 +224,7 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 
 // ------------------------------------------------------
 /// open Script Menu folder in Finder
-- (IBAction)openScriptFolder:(id)sender
+- (IBAction)openScriptFolder:(nullable id)sender
 // ------------------------------------------------------
 {
     [[NSWorkspace sharedWorkspace] activateFileViewerSelectingURLs:@[[CEScriptManager scriptDirectoryURL]]];
@@ -233,7 +233,7 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 
 // ------------------------------------------------------
 /// copy sample scripts to user domain
-- (IBAction)copySampleScriptToUserDomain:(id)sender
+- (IBAction)copySampleScriptToUserDomain:(nullable id)sender
 // ------------------------------------------------------
 {
     NSURL *sourceURL = [[[NSBundle mainBundle] sharedSupportURL] URLByAppendingPathComponent:@"SampleScripts"];
@@ -269,7 +269,7 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 
 // ------------------------------------------------------
 /// file extensions for UNIX scripts
-- (NSArray *)scriptExtensions
+- (nonnull NSArray *)scriptExtensions
 // ------------------------------------------------------
 {
     return @[@"sh", @"pl", @"php", @"rb", @"py", @"js"];
@@ -278,7 +278,7 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 
 // ------------------------------------------------------
 /// file extensions for AppleScript
-- (NSArray *)AppleScriptExtensions
+- (nonnull NSArray *)AppleScriptExtensions
 // ------------------------------------------------------
 {
     return @[@"applescript", @"scpt"];
@@ -287,7 +287,7 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 
 //------------------------------------------------------
 /// return directory to save script files
-+ (NSURL *)scriptDirectoryURL
++ (nonnull NSURL *)scriptDirectoryURL
 //------------------------------------------------------
 {
     return [[(CEAppDelegate *)[NSApp delegate] supportDirectoryURL] URLByAppendingPathComponent:@"ScriptMenu"];
@@ -296,7 +296,7 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 
 // ------------------------------------------------------
 /// read input type from script
-+ (CEScriptInputType)scanInputType:(NSString *)string
++ (CEScriptInputType)scanInputType:(nonnull NSString *)string
 // ------------------------------------------------------
 {
     NSString *scannedString = nil;
@@ -325,7 +325,7 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 
 // ------------------------------------------------------
 /// read output type from script
-+ (CEScriptOutputType)scanOutputType:(NSString *)string
++ (CEScriptOutputType)scanOutputType:(nonnull NSString *)string
 // ------------------------------------------------------
 {
     NSString *scannedString = nil;
@@ -363,7 +363,7 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 
 // ------------------------------------------------------
 /// return document content conforming to the input type
-+ (NSString *)inputStringWithType:(CEScriptInputType)inputType document:(CEDocument *)document error:(NSError *__autoreleasing *)outError
++ (nullable NSString *)inputStringWithType:(CEScriptInputType)inputType document:(nullable CEDocument *)document error:(NSError *__autoreleasing __nullable *)outError
 // ------------------------------------------------------
 {
     CEEditorWrapper *editor = [document editor];
@@ -403,7 +403,7 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 
 // ------------------------------------------------------
 /// apply results conforming to the output type to the frontmost document
-+ (BOOL)applyOutput:(NSString *)output document:(CEDocument *)document outputType:(CEScriptOutputType)outputType error:(NSError *__autoreleasing *)outError
++ (BOOL)applyOutput:(nonnull NSString *)output document:(nullable CEDocument *)document outputType:(CEScriptOutputType)outputType error:(NSError *__autoreleasing __nullable *)outError
 // ------------------------------------------------------
 {
     CEEditorWrapper *editor = [document editor];
@@ -462,7 +462,7 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 
 //------------------------------------------------------
 /// read files and create/add menu items
-- (void)addChildFileItemTo:(NSMenu *)menu fromDir:(NSURL *)directoryURL
+- (void)addChildFileItemTo:(nonnull NSMenu *)menu fromDir:(nonnull NSURL *)directoryURL
 //------------------------------------------------------
 {
     NSArray *URLs = [[NSFileManager defaultManager] contentsOfDirectoryAtURL:directoryURL
@@ -512,7 +512,7 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 
 //------------------------------------------------------
 /// ファイル／フォルダ名からメニューアイテムタイトル名を生成
-- (NSString *)scriptNameFromURL:(NSURL *)URL
+- (nonnull NSString *)scriptNameFromURL:(nonnull NSURL *)URL
 //------------------------------------------------------
 {
     NSString *fileName = [URL lastPathComponent];
@@ -539,7 +539,7 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 
 //------------------------------------------------------
 /// get keyboard shortcut from file name
-- (NSString *)keyEquivalentAndModifierMask:(NSUInteger *)modifierMask fromFileName:(NSString *)fileName
+- (nonnull NSString *)keyEquivalentAndModifierMask:(nonnull NSUInteger *)modifierMask fromFileName:(nonnull NSString *)fileName
 //------------------------------------------------------
 {
     NSString *keySpec = [[fileName stringByDeletingPathExtension] pathExtension];
@@ -550,7 +550,7 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 
 //------------------------------------------------------
 /// display alert message
-- (void)showAlertWithMessage:(NSString *)message
+- (void)showAlertWithMessage:(nonnull NSString *)message
 //------------------------------------------------------
 {
     NSAlert *alert = [[NSAlert alloc] init];
@@ -566,7 +566,7 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 
 //------------------------------------------------------
 /// read content of script file
-- (NSString *)stringOfScript:(NSURL *)URL
+- (nullable NSString *)stringOfScript:(nonnull NSURL *)URL
 //------------------------------------------------------
 {
     NSData *data = [NSData dataWithContentsOfURL:URL];
@@ -589,7 +589,7 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 
 //------------------------------------------------------
 /// run AppleScript
-- (void)runAppleScript:(NSURL *)URL
+- (void)runAppleScript:(nonnull NSURL *)URL
 //------------------------------------------------------
 {
     NSError *error = nil;
@@ -607,7 +607,7 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 
 //------------------------------------------------------
 /// run UNIX script
-- (void)runShellScript:(NSURL *)URL
+- (void)runShellScript:(nonnull NSURL *)URL
 //------------------------------------------------------
 {
     NSError *error = nil;
@@ -708,7 +708,7 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 
 // ------------------------------------------------------
 /// append message to console panel and show it
-- (void)showScriptError:(NSString *)errorString scriptName:(NSString *)scriptName
+- (void)showScriptError:(nonnull NSString *)errorString scriptName:(nonnull NSString *)scriptName
 // ------------------------------------------------------
 {
     [[CEConsolePanelController sharedController] showWindow:self];

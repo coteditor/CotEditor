@@ -36,6 +36,11 @@
 "Close" = "关闭";
 
 
+/* MARK: CEFindPanelController */
+"Replace the current selection with the replacement text, then find the next match." = "用替换文本替换当前选中内容，然后查找下一个匹配项目";
+"Replace the current selection with the replacement text." = "用替换文本替换当前选中内容";
+
+
 /* MARK: CEDocumentController */
 // Large file alert
 "The file “%@” has a size of %@." = "“%@” 文件尺寸为 %@ 。";
@@ -156,11 +161,11 @@
 "<a letter consisting of %d characters>" = "<包含有 %d 个字符>";
 "Emoji Style" = "表情文字格式";
 "Text Style" = "文本文字格式";
-"Skin Tone I-II" = "Skin Tone I-II";  // FIXME:
-"Skin Tone III" = "Skin Tone III";  // FIXME:
-"Skin Tone IV" = "Skin Tone IV";  // FIXME:
-"Skin Tone V" = "Skin Tone V";  // FIXME:
-"Skin Tone VI" = "Skin Tone VI";  // FIXME:
+"Skin Tone I-II" = "色调 I-II";
+"Skin Tone III" = "色调 III";
+"Skin Tone IV" = "色调 IV";
+"Skin Tone V" = "色调 V";
+"Skin Tone VI" = "色调 VI";
 "Variant" = "异体字";
 
 

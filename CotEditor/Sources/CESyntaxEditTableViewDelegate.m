@@ -37,13 +37,13 @@
 
 // ------------------------------------------------------
 /// selection did change
-- (void)tableViewSelectionDidChange:(NSNotification *)notification
+- (void)tableViewSelectionDidChange:(nonnull NSNotification *)notification
 // ------------------------------------------------------
 {
     NSTableView *tableView = [notification object];
     NSInteger row = [tableView selectedRow];
     
-    /// the last row is selected
+    // the last row is selected
     if ((row + 1) == [tableView numberOfRows]) {
         [tableView scrollRowToVisible:row];
         
@@ -52,7 +52,7 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             NSTableCellView *cellView = [[tableView rowViewAtRow:row makeIfNecessary:NO] viewAtColumn:0];
             
-            /// start editing automatically if the leftmost cell of the added row is blank
+            // start editing automatically if the leftmost cell of the added row is blank
             if ([[[cellView textField] stringValue] isEqualToString:@""]) {
                 [tableView editColumn:0 row:row withEvent:nil select:YES];
             }
@@ -66,7 +66,7 @@
 
 // ------------------------------------------------------
 /// click all selected checkboxes
-- (IBAction)didCheckboxClicked:(id)sender
+- (IBAction)didCheckboxClicked:(nullable id)sender
 // ------------------------------------------------------
 {
     // To perform this action,

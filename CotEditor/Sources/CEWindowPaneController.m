@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014 CotEditor Project
+ © 2014-2015 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -50,7 +50,7 @@
 
 // ------------------------------------------------------
 /// initialize
-- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (nullable instancetype)initWithNibName:(nullable NSString *)nibNameOrNil bundle:(nullable NSBundle *)nibBundleOrNil
 // ------------------------------------------------------
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -66,7 +66,7 @@
 
 // ------------------------------------------------------
 /// opaque setting did update
-- (IBAction)changeViewOpaque:(id)sender
+- (IBAction)changeViewOpaque:(nullable id)sender
 // ------------------------------------------------------
 {
     [self setViewOpaque:([sender doubleValue] == 1.0)];
@@ -75,7 +75,7 @@
 
 // ------------------------------------------------------
 /// open sample window for window size setting
-- (IBAction)openSizeSampleWindow:(id)sender
+- (IBAction)openSizeSampleWindow:(nullable id)sender
 // ------------------------------------------------------
 {
     // display modal

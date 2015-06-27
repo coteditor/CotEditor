@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014 CotEditor Project
+ © 2014-2015 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -33,11 +33,11 @@
 
 @interface CEAppDelegate : NSObject <NSApplicationDelegate>
 
-@property (readonly, nonatomic) NSURL *supportDirectoryURL;
+@property (readonly, nonatomic, nonnull) NSURL *supportDirectoryURL;
 
 
 // action messages
-- (IBAction)openHelpAnchor:(id)sender;
+- (IBAction)openHelpAnchor:(nullable id)sender;
 
 @end
 
@@ -46,7 +46,7 @@
 
 @interface CEAppDelegate (Services)
 
-- (void)openSelection:(NSPasteboard *)pboard userData:(NSString *)userData error:(NSString **)error;
-- (void)openFile:(NSPasteboard *)pboard userData:(NSString *)userData error:(NSString **)error;
+- (void)openSelection:(nonnull NSPasteboard *)pboard userData:(nonnull NSString *)userData error:( NSString * __nullable * __nullable)error;
+- (void)openFile:(nonnull NSPasteboard *)pboard userData:(nonnull NSString *)userData error:( NSString * __nullable * __nullable)error;
 
 @end

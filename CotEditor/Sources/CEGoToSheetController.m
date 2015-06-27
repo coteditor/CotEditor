@@ -32,9 +32,9 @@
 
 @interface CEGoToSheetController ()
 
-@property (nonatomic, weak) CEEditorWrapper *editor;
+@property (nonatomic, nullable, weak) CEEditorWrapper *editor;
 
-@property (nonatomic) NSString *location;
+@property (nonatomic, nullable) NSString *location;
 @property (nonatomic) CEGoToType gotoType;
 
 @end
@@ -50,7 +50,7 @@
 
 // ------------------------------------------------------
 /// initializer of sheetController
-- (instancetype)init;
+- (nonnull instancetype)init;
 // ------------------------------------------------------
 {
     return [super initWithWindowNibName:@"GoToSheet"];
@@ -62,7 +62,7 @@
 
 // ------------------------------------------------------
 /// begin sheet for document
-- (void)beginSheetForEditor:(CEEditorWrapper *)editor
+- (void)beginSheetForEditor:(nonnull CEEditorWrapper *)editor
 // ------------------------------------------------------
 {
     [self setEditor:editor];
@@ -79,7 +79,7 @@
 
 // ------------------------------------------------------
 /// apply to the parent document window
-- (IBAction)apply:(id)sender
+- (IBAction)apply:(nullable id)sender
 // ------------------------------------------------------
 {
     NSArray *locLen = [[self location] componentsSeparatedByString:@":"];
@@ -96,7 +96,7 @@
 
 // ------------------------------------------------------
 /// close sheet
-- (IBAction)close:(id)sender
+- (IBAction)close:(nullable id)sender
 // ------------------------------------------------------
 {
     [NSApp stopModal];

@@ -9,7 +9,7 @@
  encoding="UTF-8"
  ------------------------------------------------------------------------------
  
- © 2014 CotEditor Project
+ © 2014-2015 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -32,13 +32,13 @@
 
 @interface CEIndicatorSheetController : NSWindowController <NSWindowDelegate>
 
-@property (copy) NSString *informativeText;
+@property (nonnull, copy) NSString *informativeText;
 @property (readonly, getter=isCancelled) BOOL cancelled;
 
 
-- (instancetype)initWithMessage:(NSString *)message;
+- (nonnull instancetype)initWithMessage:(nonnull NSString *)message;
 
-- (void)beginSheetForWindow:(NSWindow *)window;
+- (void)beginSheetForWindow:(nonnull NSWindow *)window;
 - (void)endSheet;
 - (void)progressIndicator:(CGFloat)delta;  // max = 100
 

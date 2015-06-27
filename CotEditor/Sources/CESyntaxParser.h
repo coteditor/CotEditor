@@ -37,20 +37,20 @@
 @interface CESyntaxParser : NSObject
 
 // readonly
-@property (readonly, nonatomic, copy) NSString *styleName;
-@property (readonly, nonatomic, copy) NSArray *completionWords;  // 入力補完文字列配列
-@property (readonly, nonatomic, copy) NSCharacterSet *firstCompletionCharacterSet;  // 入力補完の最初の1文字のセット
-@property (readonly, nonatomic, copy) NSString *inlineCommentDelimiter;
-@property (readonly, nonatomic, copy) NSDictionary *blockCommentDelimiters;
+@property (readonly, nonatomic, nonnull, copy) NSString *styleName;
+@property (readonly, nonatomic, nullable, copy) NSArray *completionWords;  // 入力補完文字列配列
+@property (readonly, nonatomic, nullable, copy) NSCharacterSet *firstCompletionCharacterSet;  // 入力補完の最初の1文字のセット
+@property (readonly, nonatomic, nullable, copy) NSString *inlineCommentDelimiter;
+@property (readonly, nonatomic, nullable, copy) NSDictionary *blockCommentDelimiters;
 @property (readonly, nonatomic, getter=isNone) BOOL none;
 
 
 /// designated initializer (return nil if no corresponded style dictionary can be found.)
-- (instancetype)initWithStyleName:(NSString *)styleName layoutManager:(CELayoutManager *)layoutManager NS_DESIGNATED_INITIALIZER;
+- (nullable instancetype)initWithStyleName:(nullable NSString *)styleName layoutManager:(nonnull CELayoutManager *)layoutManager NS_DESIGNATED_INITIALIZER;
 
 // Public methods
-- (void)colorAllString:(NSString *)wholeString;
-- (void)colorRange:(NSRange)range wholeString:(NSString *)wholeString;
-- (NSArray *)outlineMenuArrayWithWholeString:(NSString *)wholeString;
+- (void)colorAllString:(nullable NSString *)wholeString;
+- (void)colorRange:(NSRange)range wholeString:(nullable NSString *)wholeString;
+- (nonnull NSArray *)outlineMenuArrayWithWholeString:(nullable NSString *)wholeString;
 
 @end

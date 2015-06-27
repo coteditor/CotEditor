@@ -9,7 +9,7 @@
  encoding="UTF-8"
  ------------------------------------------------------------------------------
  
- © 2014 1024jp
+ © 2014-2015 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -35,7 +35,7 @@
 
 @interface CEIncompatibleCharsViewController : NSViewController
 
-@property (nonatomic, weak) CEDocument *document;
+@property (nonatomic, nullable, weak) CEDocument *document;
 
 /// set update timer only if needed
 - (void)updateIfNeeded;

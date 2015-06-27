@@ -15,7 +15,7 @@
  Copyright iOSDeveloperTips.com All rights reserved.
  ------------------------------------------------------------------------------
  
- © 2014 CotEditor Project
+ © 2014 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -39,7 +39,7 @@
 
 @implementation NSData (MD5)
 
-- (NSString*)MD5
+- (nonnull NSString *)MD5
 {
     // Create byte array of unsigned chars
     unsigned char md5Buffer[CC_MD5_DIGEST_LENGTH];

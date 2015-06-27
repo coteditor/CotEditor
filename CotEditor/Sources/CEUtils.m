@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014 CotEditor Project
+ © 2014-2015 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -110,7 +110,7 @@ static const NSArray *invalidYenEncodings;
 
 // ------------------------------------------------------
 /// returns corresponding NSStringEncoding from a encoding name
-+ (NSStringEncoding)encodingFromName:(NSString *)encodingName
++ (NSStringEncoding)encodingFromName:(nonnull NSString *)encodingName
 // ------------------------------------------------------
 {
     NSArray *encodings = [[NSUserDefaults standardUserDefaults] arrayForKey:CEDefaultEncodingListKey];
@@ -142,7 +142,7 @@ static const NSArray *invalidYenEncodings;
 
 // ------------------------------------------------------
 /// returns string form keyEquivalent (keyboard shortcut) for menu item
-+ (NSString *)keyEquivalentAndModifierMask:(NSUInteger *)modifierMask fromString:(NSString *)string includingCommandKey:(BOOL)needsIncludingCommandKey
++ (nonnull NSString *)keyEquivalentAndModifierMask:(nonnull NSUInteger *)modifierMask fromString:(nonnull NSString *)string includingCommandKey:(BOOL)needsIncludingCommandKey
 //------------------------------------------------------
 {
     *modifierMask = 0;

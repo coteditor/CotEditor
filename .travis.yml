@@ -3,4 +3,4 @@ xcode_workspace: CotEditor.xcworkspace
 xcode_scheme: CotEditor
 before_install:
   - gem install cocoapods
-osx_image: xcode63
+osx_image: beta-xcode6.3

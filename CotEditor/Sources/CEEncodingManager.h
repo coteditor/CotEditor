@@ -33,15 +33,15 @@
 
 // notifications
 /// Posted when current encoding list menu items is ready to build
-extern NSString *const CEEncodingListDidUpdateNotification;
+extern NSString *__nonnull const CEEncodingListDidUpdateNotification;
 
 
 @interface CEEncodingManager : NSObject
 
-@property (readonly, nonatomic, copy) NSArray *encodingMenuItems;
+@property (readonly, nonatomic, nonnull, copy) NSArray *encodingMenuItems;
 
 
 // singleton
-+ (instancetype)sharedManager;
++ (nonnull instancetype)sharedManager;
 
 @end

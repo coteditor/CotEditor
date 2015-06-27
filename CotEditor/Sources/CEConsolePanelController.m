@@ -35,11 +35,11 @@ const CGFloat kFontSize = 11;
 
 @interface CEConsolePanelController ()
 
-@property (nonatomic, copy) NSParagraphStyle *messageParagraphStyle;
-@property (nonatomic) NSDateFormatter *dateFormatter;
+@property (nonatomic, nonnull, copy) NSParagraphStyle *messageParagraphStyle;
+@property (nonatomic, nonnull) NSDateFormatter *dateFormatter;
 
-@property (nonatomic, strong) IBOutlet NSTextView *textView;  // on 10.8 NSTextView cannot be weak
-@property (nonatomic) IBOutlet NSTextFinder *textFinder;
+@property (nonatomic, nullable, strong) IBOutlet NSTextView *textView;  // on 10.8 NSTextView cannot be weak
+@property (nonatomic, nullable) IBOutlet NSTextFinder *textFinder;
 
 @end
 
@@ -54,7 +54,7 @@ const CGFloat kFontSize = 11;
 
 // ------------------------------------------------------
 /// initializer of panelController
-- (instancetype)init
+- (nonnull instancetype)init
 // ------------------------------------------------------
 {
     self = [super initWithWindowNibName:@"ConsolePanel"];
@@ -90,7 +90,7 @@ const CGFloat kFontSize = 11;
 
 // ------------------------------------------------------
 /// append given message to the console
-- (void)appendMessage:(NSString *)message title:(NSString *)title
+- (void)appendMessage:(nonnull NSString *)message title:(NSString *)title  // TODO: check nullability for `title`
 // ------------------------------------------------------
 {
     NSString *date = [[self dateFormatter] stringFromDate:[NSDate date]];
@@ -115,7 +115,7 @@ const CGFloat kFontSize = 11;
 
 // ------------------------------------------------------
 /// flush console
-- (IBAction)cleanConsole:(id)sender
+- (IBAction)cleanConsole:(nullable id)sender
 // ------------------------------------------------------
 {
     [[self textView] setString:@""];
@@ -132,7 +132,7 @@ const CGFloat kFontSize = 11;
 
 // ------------------------------------------------------
 /// catch shortcut input
-- (BOOL)performKeyEquivalent:(NSEvent *)theEvent
+- (BOOL)performKeyEquivalent:(nonnull NSEvent *)theEvent
 // ------------------------------------------------------
 {
     // Since the Find menu is overridden by OgreKit framework, we need catch shortcut input manually for find actions.

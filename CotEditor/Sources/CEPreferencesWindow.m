@@ -9,7 +9,7 @@
  encoding="UTF-8"
  ------------------------------------------------------------------------------
  
- © 2014 1024jp
+ © 2014-2015 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -36,7 +36,7 @@
 
 // ------------------------------------------------------
 /// avoid hidding toolbar
-- (BOOL)validateUserInterfaceItem:(id<NSValidatedUserInterfaceItem>)anItem
+- (BOOL)validateUserInterfaceItem:(nonnull id<NSValidatedUserInterfaceItem>)anItem
 // ------------------------------------------------------
 {
     if ([anItem action] == @selector(toggleToolbarShown:)) {
@@ -49,7 +49,7 @@
 
 // ------------------------------------------------------
 /// close window with esc key
-- (void)cancelOperation:(id)sender
+- (void)cancelOperation:(nullable id)sender
 // ------------------------------------------------------
 {
     [self orderOut:sender];

@@ -9,7 +9,7 @@
  encoding="UTF-8"
  ------------------------------------------------------------------------------
  
- © 2014 CotEditor Project
+ © 2014-2015 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -38,32 +38,32 @@ static const CGFloat kDarkThemeThreshold = 0.5;
 @interface CETheme ()
 
 /// name of the theme
-@property (readwrite, nonatomic, copy) NSString *name;
+@property (readwrite, nonatomic, nonnull, copy) NSString *name;
 
 
 // basic colors
-@property (readwrite, nonatomic) NSColor *textColor;
-@property (readwrite, nonatomic) NSColor *backgroundColor;
-@property (readwrite, nonatomic) NSColor *invisiblesColor;
-@property (readwrite, nonatomic) NSColor *selectionColor;
-@property (readwrite, nonatomic) NSColor *insertionPointColor;
-@property (readwrite, nonatomic) NSColor *lineHighLightColor;
+@property (readwrite, nonatomic, nonnull) NSColor *textColor;
+@property (readwrite, nonatomic, nonnull) NSColor *backgroundColor;
+@property (readwrite, nonatomic, nonnull) NSColor *invisiblesColor;
+@property (readwrite, nonatomic, nonnull) NSColor *selectionColor;
+@property (readwrite, nonatomic, nonnull) NSColor *insertionPointColor;
+@property (readwrite, nonatomic, nonnull) NSColor *lineHighLightColor;
 
 // auto genereted colors
-@property (readwrite, nonatomic) NSColor *weakTextColor;
-@property (readwrite, nonatomic) NSColor *markupColor;
+@property (readwrite, nonatomic, nonnull) NSColor *weakTextColor;
+@property (readwrite, nonatomic, nonnull) NSColor *markupColor;
 
 // syntax colors
-@property (readwrite, nonatomic) NSColor *keywordsColor;
-@property (readwrite, nonatomic) NSColor *commandsColor;
-@property (readwrite, nonatomic) NSColor *typesColor;
-@property (readwrite, nonatomic) NSColor *attributesColor;
-@property (readwrite, nonatomic) NSColor *variablesColor;
-@property (readwrite, nonatomic) NSColor *valuesColor;
-@property (readwrite, nonatomic) NSColor *numbersColor;
-@property (readwrite, nonatomic) NSColor *stringsColor;
-@property (readwrite, nonatomic) NSColor *charactersColor;
-@property (readwrite, nonatomic) NSColor *commentsColor;
+@property (readwrite, nonatomic, nonnull) NSColor *keywordsColor;
+@property (readwrite, nonatomic, nonnull) NSColor *commandsColor;
+@property (readwrite, nonatomic, nonnull) NSColor *typesColor;
+@property (readwrite, nonatomic, nonnull) NSColor *attributesColor;
+@property (readwrite, nonatomic, nonnull) NSColor *variablesColor;
+@property (readwrite, nonatomic, nonnull) NSColor *valuesColor;
+@property (readwrite, nonatomic, nonnull) NSColor *numbersColor;
+@property (readwrite, nonatomic, nonnull) NSColor *stringsColor;
+@property (readwrite, nonatomic, nonnull) NSColor *charactersColor;
+@property (readwrite, nonatomic, nonnull) NSColor *commentsColor;
 
 /// Is background color dark?
 @property (readwrite, nonatomic, getter=isDarkTheme) BOOL darkTheme;
@@ -85,7 +85,7 @@ static const CGFloat kDarkThemeThreshold = 0.5;
 
 //------------------------------------------------------
 /// 簡易イニシャライザ
-+ (CETheme *)themeWithName:(NSString *)themeName
++ (nullable CETheme *)themeWithName:(nonnull NSString *)themeName
 //------------------------------------------------------
 {
     return [[CETheme alloc] initWithName:themeName];
@@ -93,13 +93,16 @@ static const CGFloat kDarkThemeThreshold = 0.5;
 
 
 //------------------------------------------------------
-// 初期化
-- (instancetype)initWithName:(NSString *)themeName
+/// 初期化
+- (nullable instancetype)initWithName:(nonnull NSString *)themeName
 //------------------------------------------------------
 {
     self = [super init];
     if (self) {
         NSDictionary *themeDict = [[CEThemeManager sharedManager] archivedTheme:themeName isBundled:NULL];
+        
+        if (!themeDict) { return nil; }
+        
         NSMutableDictionary *colorDict = [NSMutableDictionary dictionary];
         
         // カラーを解凍
@@ -172,7 +175,7 @@ static const CGFloat kDarkThemeThreshold = 0.5;
 
 //------------------------------------------------------
 /// 選択範囲のハイライトカラーを返す
-- (NSColor *)selectionColor
+- (nonnull NSColor *)selectionColor
 //------------------------------------------------------
 {
     // システム環境設定の設定を使う場合はここで再定義する
@@ -188,7 +191,7 @@ static const CGFloat kDarkThemeThreshold = 0.5;
 
 //------------------------------------------------------
 /// テーマファイルで色が格納されているキー
-+ (NSArray *)colorKeys
++ (nonnull NSArray *)colorKeys
 //------------------------------------------------------
 {
     return @[CEThemeTextKey,

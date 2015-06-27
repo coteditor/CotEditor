@@ -83,7 +83,7 @@ static BOOL usesTextFontForInvisibles;
 
 // ------------------------------------------------------
 /// initialize
-- (instancetype)init
+- (nonnull instancetype)init
 // ------------------------------------------------------
 {
     if (self = [super init]) {
@@ -131,7 +131,7 @@ static BOOL usesTextFontForInvisibles;
 // ------------------------------------------------------
 /// 最終行描画矩形をセット
 - (void)setExtraLineFragmentRect:(NSRect)aRect
-        usedRect:(NSRect)usedRect textContainer:(NSTextContainer *)aTextContainer
+        usedRect:(NSRect)usedRect textContainer:(nonnull NSTextContainer *)aTextContainer
 // ------------------------------------------------------
 {
     // 複合フォントで行の高さがばらつくのを防止するために一般の行の高さを変更しているので、それにあわせる
@@ -325,7 +325,7 @@ static BOOL usesTextFontForInvisibles;
 
 // ------------------------------------------------------
 /// 表示フォントをセット
-- (void)setTextFont:(NSFont *)textFont
+- (void)setTextFont:(nullable NSFont *)textFont
 // ------------------------------------------------------
 {
 // 複合フォントで行間が等間隔でなくなる問題を回避するため、自前でフォントを持っておく。
@@ -354,7 +354,7 @@ static BOOL usesTextFontForInvisibles;
 
 // ------------------------------------------------------
 /// 表示フォントの各種値をキャッシュする
-- (void)setValuesForTextFont:(NSFont *)textFont
+- (void)setValuesForTextFont:(nullable NSFont *)textFont
 // ------------------------------------------------------
 {
     if (textFont) {

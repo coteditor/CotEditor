@@ -9,7 +9,7 @@
  encoding="UTF-8"
  ------------------------------------------------------------------------------
  
- © 2015 CotEditor Project
+ © 2015 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -35,6 +35,10 @@
 
 #pragma mark Delegate
 
+//=======================================================
+// SUUpdaterDelegate
+//=======================================================
+
 // ------------------------------------------------------
 /// compare updater versions by myself
 - (id <SUVersionComparison>)versionComparatorForUpdater:(SUUpdater *)updater
@@ -43,6 +47,30 @@
     return self;
 }
 
+
+// ------------------------------------------------------
+/// force displaying release notes to nofity App Store migration
+- (void)updater:(SUUpdater *)updater didFindValidUpdate:(SUAppcastItem *)update
+// ------------------------------------------------------
+{
+    // !!!: This method should be removed after updating CotEditor to the first Mac App Store version.
+    NSString *thisVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:(NSString *)kCFBundleVersionKey];
+    EDSemver *thisSemver = [EDSemver semverWithString:thisVersion];
+    EDSemver *newSemver = [EDSemver semverWithString:[update versionString]];
+    EDSemver *appStoreSemver = [EDSemver semverWithString:@"2.2.0"];
+    
+    if (([newSemver isEqualTo:appStoreSemver] || [newSemver isGreaterThan:appStoreSemver])
+        && [thisSemver isLessThan:appStoreSemver])
+    {
+        // once reset the silent updating on Sparkle in order to announce the release of Mac App Store version to everyone.
+        [[NSUserDefaults standardUserDefaults] setBool:@YES forKey:@"SUShowReleaseNotes"];
+    }
+}
+
+
+//=======================================================
+// SUVersionComparison Protocol
+//=======================================================
 
 // ------------------------------------------------------
 /// compare versions using the Semantic Versioning 2.0

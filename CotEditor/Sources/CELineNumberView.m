@@ -40,7 +40,7 @@ static const NSUInteger kMinNumberOfDigits = 3;
 
 @interface CELineNumberView ()
 
-@property (nonatomic) NSTimer *draggingTimer;
+@property (nonatomic, nullable) NSTimer *draggingTimer;
 
 @end
 
@@ -72,7 +72,7 @@ static const NSString *LineNumberFontName;
 
 // ------------------------------------------------------
 /// initialize instance
-- (instancetype)initWithScrollView:(NSScrollView *)scrollView orientation:(NSRulerOrientation)orientation
+- (nonnull instancetype)initWithScrollView:(nullable NSScrollView *)scrollView orientation:(NSRulerOrientation)orientation
 // ------------------------------------------------------
 {
     self = [super initWithScrollView:scrollView orientation:orientation];
@@ -166,7 +166,7 @@ static const NSString *LineNumberFontName;
     
     // calc character width as monospaced font
     CGSize advance;
-    CTFontGetAdvancesForGlyphs(font, kCTFontHorizontalOrientation, &digitGlyphs[8], &advance, 1);  // use '8' to get width
+    CTFontGetAdvancesForGlyphs(font, kCTFontOrientationHorizontal, &digitGlyphs[8], &advance, 1);  // use '8' to get width
     CGFloat charWidth = advance.width;
     
     // prepare frame width
@@ -278,7 +278,7 @@ static const NSString *LineNumberFontName;
 
 // ------------------------------------------------------
 /// start selecting correspondent lines in text view with drag / click event
-- (void)mouseDown:(NSEvent *)theEvent
+- (void)mouseDown:(nonnull NSEvent *)theEvent
 // ------------------------------------------------------
 {
     // get start point
@@ -299,7 +299,7 @@ static const NSString *LineNumberFontName;
 
 // ------------------------------------------------------
 /// end selecting correspondent lines in text view with drag event
-- (void)mouseUp:(NSEvent *)theEvent
+- (void)mouseUp:(nonnull NSEvent *)theEvent
 // ------------------------------------------------------
 {
     [[self draggingTimer] invalidate];
@@ -312,7 +312,7 @@ static const NSString *LineNumberFontName;
 
 // ------------------------------------------------------
 /// return client view casting to textView
-- (NSTextView<CETextViewProtocol> *)textView
+- (nullable NSTextView<CETextViewProtocol> *)textView
 // ------------------------------------------------------
 {
     return (NSTextView<CETextViewProtocol> *)[[self scrollView] documentView];
@@ -330,7 +330,7 @@ static const NSString *LineNumberFontName;
 
 // ------------------------------------------------------
 /// select lines while dragging event
-- (void)selectLines:(NSTimer *)timer
+- (void)selectLines:(nullable NSTimer *)timer
 // ------------------------------------------------------
 {
     NSTextView *textView = [self textView];

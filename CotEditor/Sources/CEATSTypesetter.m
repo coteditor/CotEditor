@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014 CotEditor Project
+ © 2014-2015 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -38,7 +38,7 @@
 
 // ------------------------------------------------------
 /// return singleton instance
-+ (instancetype)sharedSystemTypesetter
++ (nonnull instancetype)sharedSystemTypesetter
 // ------------------------------------------------------
 {
     static dispatch_once_t onceToken;

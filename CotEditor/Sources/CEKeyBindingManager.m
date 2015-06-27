@@ -35,18 +35,18 @@
 
 
 // outlineView data key, column identifier
-NSString *const CEKeyBindingTitleKey = @"title";
-NSString *const CEKeyBindingChildrenKey = @"children";
-NSString *const CEKeyBindingKeySpecCharsKey = @"keyBindingKey";
-NSString *const CEKeyBindingSelectorStringKey = @"selectorString";
+NSString *__nonnull const CEKeyBindingTitleKey = @"title";
+NSString *__nonnull const CEKeyBindingChildrenKey = @"children";
+NSString *__nonnull const CEKeyBindingKeySpecCharsKey = @"keyBindingKey";
+NSString *__nonnull const CEKeyBindingSelectorStringKey = @"selectorString";
 
 
 @interface CEKeyBindingManager ()
 
-@property (nonatomic, copy) NSDictionary *defaultMenuKeyBindingDict;
-@property (nonatomic, copy) NSDictionary *defaultTextKeyBindingDict;
-@property (nonatomic, copy) NSDictionary *menuKeyBindingDict;
-@property (nonatomic, copy) NSDictionary *textKeyBindingDict;
+@property (nonatomic, nonnull, copy) NSDictionary *defaultMenuKeyBindingDict;
+@property (nonatomic, nonnull, copy) NSDictionary *defaultTextKeyBindingDict;
+@property (nonatomic, nonnull, copy) NSDictionary *menuKeyBindingDict;
+@property (nonatomic, nonnull, copy) NSDictionary *textKeyBindingDict;
 
 @end
 
@@ -109,7 +109,7 @@ static NSDictionary *kUnprintableKeyTable;
                                                   subdirectory:@"KeyBindings"];
         _defaultTextKeyBindingDict = [NSDictionary dictionaryWithContentsOfURL:textURL];
         
-        /// read user key bindins if available
+        // read user key bindins if available
         _menuKeyBindingDict = [NSDictionary dictionaryWithContentsOfURL:[self menuKeyBindingSettingFileURL]] ?
                             : _defaultMenuKeyBindingDict;
         _textKeyBindingDict = [NSDictionary dictionaryWithContentsOfURL:[self textKeyBindingSettingFileURL]] ?
@@ -124,7 +124,7 @@ static NSDictionary *kUnprintableKeyTable;
 
 //------------------------------------------------------
 /// キーバインディング定義文字列から表示用文字列を生成し、返す
-+ (NSString *)printableKeyStringFromKeySpecChars:(NSString *)string
++ (nonnull NSString *)printableKeyStringFromKeySpecChars:(nonnull NSString *)string
 //------------------------------------------------------
 {
     NSInteger length = [string length];
@@ -159,7 +159,7 @@ static NSDictionary *kUnprintableKeyTable;
 
 //------------------------------------------------------
 /// メニューのキーボードショートカットからキーバインディング定義文字列を返す
-+ (NSString *)keySpecCharsFromKeyEquivalent:(NSString *)string modifierFrags:(NSEventModifierFlags)modifierFlags
++ (nonnull NSString *)keySpecCharsFromKeyEquivalent:(nonnull NSString *)string modifierFrags:(NSEventModifierFlags)modifierFlags
 //------------------------------------------------------
 {
     if ([string length] < 1) { return @""; }
@@ -185,7 +185,7 @@ static NSDictionary *kUnprintableKeyTable;
 
 // ------------------------------------------------------
 /// キー入力に応じたセレクタ文字列を返す
-- (NSString *)selectorStringWithKeyEquivalent:(NSString *)string modifierFrags:(NSEventModifierFlags)modifierFlags
+- (nonnull NSString *)selectorStringWithKeyEquivalent:(nonnull NSString *)string modifierFrags:(NSEventModifierFlags)modifierFlags
 // ------------------------------------------------------
 {
     NSString *keySpecChars = [CEKeyBindingManager keySpecCharsFromKeyEquivalent:string modifierFrags:modifierFlags];
@@ -217,7 +217,7 @@ static NSDictionary *kUnprintableKeyTable;
 
 //------------------------------------------------------
 /// テキストキーバインディングの現在の保持データから設定を読み込み編集用アウトラインビューデータ配列を返す
-- (NSMutableArray *)textKeySpecCharArrayForOutlineDataWithFactoryDefaults:(BOOL)usesFactoryDefaults
+- (nonnull NSMutableArray *)textKeySpecCharArrayForOutlineDataWithFactoryDefaults:(BOOL)usesFactoryDefaults
 //------------------------------------------------------
 {
     // usesFactoryDefaults == YES で標準設定を返す。NO なら現在の設定を返す。
@@ -243,7 +243,7 @@ static NSDictionary *kUnprintableKeyTable;
 
 //------------------------------------------------------
 /// 現在のメニューからショートカットキー設定を読み込み編集用アウトラインビューデータ配列を返す
-- (NSMutableArray *)mainMenuArrayForOutlineData:(NSMenu *)menu
+- (nonnull NSMutableArray *)mainMenuArrayForOutlineData:(nonnull NSMenu *)menu
 //------------------------------------------------------
 {
     NSMutableArray *outlineData = [NSMutableArray array];
@@ -286,7 +286,7 @@ static NSDictionary *kUnprintableKeyTable;
 
 //------------------------------------------------------
 /// デフォルト設定の、セレクタ名を定義しているキーバインディング文字列（キー）を得る
-- (NSString *)keySpecCharsInDefaultDictionaryFromSelectorString:(NSString *)selectorString
+- (nonnull NSString *)keySpecCharsInDefaultDictionaryFromSelectorString:(nonnull NSString *)selectorString
 //------------------------------------------------------
 {
     NSArray *keys = [[self defaultMenuKeyBindingDict] allKeysForObject:selectorString];
@@ -329,7 +329,7 @@ static NSDictionary *kUnprintableKeyTable;
 
 //------------------------------------------------------
 /// テキストキーバインディング設定を保存
-- (BOOL)saveTextKeyBindings:(NSArray *)outlineViewData texts:(NSArray *)texts
+- (BOOL)saveTextKeyBindings:(NSArray *)outlineViewData texts:(nullable NSArray *)texts
 //------------------------------------------------------
 {
     NSDictionary *dictToSave = [self keyBindingDictionaryFromOutlineViewDataArray:outlineViewData];

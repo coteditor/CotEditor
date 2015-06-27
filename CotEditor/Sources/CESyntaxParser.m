@@ -62,24 +62,24 @@ typedef NS_ENUM(NSUInteger, QCStartEndType) {
 
 @interface CESyntaxParser ()
 
-@property (nonatomic) CELayoutManager *layoutManager;
+@property (nonatomic, nonnull) CELayoutManager *layoutManager;
 
 @property (nonatomic) BOOL hasSyntaxHighlighting;
-@property (nonatomic, copy) NSDictionary *coloringDictionary;
-@property (nonatomic, copy) NSDictionary *simpleWordsCharacterSets;
-@property (nonatomic, copy) NSDictionary *pairedQuoteTypes;  // dict for quote pair to extract with comment
-@property (nonatomic, copy) NSArray *cacheColorings;  // extracted results cache of the last whole string coloring
-@property (nonatomic, copy) NSString *cacheHash;  // MD5 hash
+@property (nonatomic, nullable, copy) NSDictionary *coloringDictionary;
+@property (nonatomic, nullable, copy) NSDictionary *simpleWordsCharacterSets;
+@property (nonatomic, nullable, copy) NSDictionary *pairedQuoteTypes;  // dict for quote pair to extract with comment
+@property (nonatomic, nullable, copy) NSArray *cacheColorings;  // extracted results cache of the last whole string coloring
+@property (nonatomic, nullable, copy) NSString *cacheHash;  // MD5 hash
 
-@property (atomic) CEIndicatorSheetController *indicatorController;
+@property (atomic, nullable) CEIndicatorSheetController *indicatorController;
 
 
 // readonly
-@property (readwrite, nonatomic, copy) NSString *styleName;
-@property (readwrite, nonatomic, copy) NSArray *completionWords;
-@property (readwrite, nonatomic, copy) NSCharacterSet *firstCompletionCharacterSet;
-@property (readwrite, nonatomic, copy) NSString *inlineCommentDelimiter;
-@property (readwrite, nonatomic, copy) NSDictionary *blockCommentDelimiters;
+@property (readwrite, nonatomic, nonnull, copy) NSString *styleName;
+@property (readwrite, nonatomic, nullable, copy) NSArray *completionWords;
+@property (readwrite, nonatomic, nullable, copy) NSCharacterSet *firstCompletionCharacterSet;
+@property (readwrite, nonatomic, nullable, copy) NSString *inlineCommentDelimiter;
+@property (readwrite, nonatomic, nullable, copy) NSDictionary *blockCommentDelimiters;
 @property (readwrite, nonatomic, getter=isNone) BOOL none;
 
 @end
@@ -121,7 +121,7 @@ static CGFloat kPerCompoIncrement;
 
 // ------------------------------------------------------
 /// designated initializer
-- (instancetype)initWithStyleName:(NSString *)styleName layoutManager:(CELayoutManager *)layoutManager
+- (nullable instancetype)initWithStyleName:(nullable NSString *)styleName layoutManager:(nonnull CELayoutManager *)layoutManager
 // ------------------------------------------------------
 {
     self = [super init];
@@ -143,7 +143,7 @@ static CGFloat kPerCompoIncrement;
                                             CEEndDelimiterKey: delimiters[CESyntaxEndCommentKey]};
             }
             
-            /// カラーリング辞書から補完文字列配列を生成
+            // カラーリング辞書から補完文字列配列を生成
             {
                 NSMutableArray *completionWords = [NSMutableArray array];
                 NSMutableString *firstCharsString = [NSMutableString string];
@@ -244,7 +244,7 @@ static CGFloat kPerCompoIncrement;
                 }
                 _pairedQuoteTypes = quoteTypes;
                 
-                /// シンタックスカラーリングが必要かをキャッシュ
+                // シンタックスカラーリングが必要かをキャッシュ
                 _hasSyntaxHighlighting = ((count > 0) || _inlineCommentDelimiter || _blockCommentDelimiters);
             }
             
@@ -264,7 +264,7 @@ static CGFloat kPerCompoIncrement;
 
 // ------------------------------------------------------
 /// 全体をカラーリング
-- (void)colorAllString:(NSString *)wholeString
+- (void)colorAllString:(nullable NSString *)wholeString
 // ------------------------------------------------------
 {
     if ([wholeString length] == 0) { return; }
@@ -282,7 +282,7 @@ static CGFloat kPerCompoIncrement;
 
 // ------------------------------------------------------
 /// 表示されている部分をカラーリング
-- (void)colorRange:(NSRange)range wholeString:(NSString *)wholeString
+- (void)colorRange:(NSRange)range wholeString:(nullable NSString *)wholeString
 // ------------------------------------------------------
 {
     if ([wholeString length] == 0) { return; }
@@ -315,7 +315,7 @@ static CGFloat kPerCompoIncrement;
 
 // ------------------------------------------------------
 /// アウトラインメニュー用の配列を生成し、返す
-- (NSArray *)outlineMenuArrayWithWholeString:(NSString *)wholeString
+- (nonnull NSArray *)outlineMenuArrayWithWholeString:(nullable NSString *)wholeString
 // ------------------------------------------------------
 {
     if (([wholeString length] == 0) || [self isNone]) {

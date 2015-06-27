@@ -37,13 +37,13 @@ static NSString *const kSymbolicLinkPath = @"/usr/local/bin/cot";
 
 @interface CEIntegrationPaneController ()
 
-@property (nonatomic) NSURL *linkURL;
-@property (nonatomic) NSURL *executableURL;
+@property (nonatomic, nonnull) NSURL *linkURL;
+@property (nonatomic, nonnull) NSURL *executableURL;
 @property (nonatomic, getter=isUninstallable) BOOL uninstallable;
 @property (nonatomic, getter=isInstalled) BOOL installed;
-@property (nonatomic, copy) NSString *warning;
+@property (nonatomic, nullable, copy) NSString *warning;
 
-@property (nonatomic, weak) IBOutlet NSButton *installButton;
+@property (nonatomic, nullable, weak) IBOutlet NSButton *installButton;
 
 @end
 
@@ -77,7 +77,7 @@ static const NSURL *kPreferredLinkTargetURL;
 
 // ------------------------------------------------------
 /// initialize instance
-- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (nullable instancetype)initWithNibName:(nullable NSString *)nibNameOrNil bundle:(nullable NSBundle *)nibBundleOrNil
 // ------------------------------------------------------
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -112,7 +112,7 @@ static const NSURL *kPreferredLinkTargetURL;
 
 // ------------------------------------------------------
 /// alert asking to install command-line tool is closed (invoked in `install:`)
-- (void)attemptRecoveryFromError:(NSError *)error optionIndex:(NSUInteger)recoveryOptionIndex delegate:(id)delegate didRecoverSelector:(SEL)didRecoverSelector contextInfo:(void *)contextInfo
+- (void)attemptRecoveryFromError:(nonnull NSError *)error optionIndex:(NSUInteger)recoveryOptionIndex delegate:(nullable id)delegate didRecoverSelector:(SEL)didRecoverSelector contextInfo:(nullable void *)contextInfo
 // ------------------------------------------------------
 {
     BOOL success = NO;
@@ -133,7 +133,7 @@ static const NSURL *kPreferredLinkTargetURL;
 
 // ------------------------------------------------------
 /// "Install" button is clicked
-- (IBAction)install:(id)sender
+- (IBAction)install:(nullable id)sender
 // ------------------------------------------------------
 {
     NSError *error = nil;
@@ -151,7 +151,7 @@ static const NSURL *kPreferredLinkTargetURL;
 
 // ------------------------------------------------------
 ///  "Uninstall" button is clicked
-- (IBAction)uninstall:(id)sender
+- (IBAction)uninstall:(nullable id)sender
 // ------------------------------------------------------
 {
     [self performUninstall];
@@ -265,7 +265,7 @@ static const NSURL *kPreferredLinkTargetURL;
 
 // ------------------------------------------------------
 /// check whether current running CotEditor is located in the /Application directory
-- (BOOL)checkApplicationLocationAndReturnError:(NSError *__autoreleasing *)outError
+- (BOOL)checkApplicationLocationAndReturnError:(NSError *__autoreleasing __nullable *)outError
 // ------------------------------------------------------
 {
     NSString *preferredAppName = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleName"];

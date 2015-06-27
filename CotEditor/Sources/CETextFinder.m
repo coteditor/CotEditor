@@ -31,8 +31,8 @@
 #import "constants.h"
 
 
-NSString *const CETextFinderDidReplaceAllNotification = @"CETextFinderDidReplaceAllNotification";
-NSString *const CETextFinderDidUnhighlightNotification = @"CETextFinderDidUnhighlightNotification";
+NSString *__nonnull const CETextFinderDidReplaceAllNotification = @"CETextFinderDidReplaceAllNotification";
+NSString *__nonnull const CETextFinderDidUnhighlightNotification = @"CETextFinderDidUnhighlightNotification";
 
 
 @implementation CETextFinder

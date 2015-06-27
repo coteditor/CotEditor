@@ -48,7 +48,7 @@
 
 // ------------------------------------------------------
 /// initializer of panelController
-- (instancetype)init
+- (nonnull instancetype)init
 // ------------------------------------------------------
 {
     self = [super initWithWindowNibName:@"LineHightPanel"];
@@ -72,7 +72,7 @@
 
 // ------------------------------------------------------
 /// apply to the frontmost document window
-- (IBAction)apply:(id)sender
+- (IBAction)apply:(nullable id)sender
 // ------------------------------------------------------
 {
     [[self textView] setLineSpacingAndUpdate:[self lineSpacing]];
@@ -85,7 +85,7 @@
 
 // ------------------------------------------------------
 /// return text view to apply
-- (CETextView *)textView
+- (nullable CETextView *)textView
 // ------------------------------------------------------
 {
     return [[[self documentWindowController] editor] focusedTextView];

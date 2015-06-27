@@ -32,13 +32,13 @@
 #import "constants.h"
 
 
-NSString *const CEEncodingListDidUpdateNotification = @"CESyntaxListDidUpdateNotification";
+NSString *__nonnull const CEEncodingListDidUpdateNotification = @"CESyntaxListDidUpdateNotification";
 
 
 @interface CEEncodingManager ()
 
 // readonly
-@property (readwrite, nonatomic, copy) NSArray *encodingMenuItems;
+@property (readwrite, nonatomic, nonnull, copy) NSArray *encodingMenuItems;
 
 @end
 
@@ -53,7 +53,7 @@ NSString *const CEEncodingListDidUpdateNotification = @"CESyntaxListDidUpdateNot
 
 // ------------------------------------------------------
 /// return singleton instance
-+ (instancetype)sharedManager
++ (nonnull instancetype)sharedManager
 // ------------------------------------------------------
 {
     static dispatch_once_t onceToken;
@@ -72,7 +72,7 @@ NSString *const CEEncodingListDidUpdateNotification = @"CESyntaxListDidUpdateNot
 
 // ------------------------------------------------------
 /// initialize
-- (instancetype)init
+- (nonnull instancetype)init
 // ------------------------------------------------------
 {
     self = [super init];
@@ -99,7 +99,7 @@ NSString *const CEEncodingListDidUpdateNotification = @"CESyntaxListDidUpdateNot
 
 // ------------------------------------------------------
 /// observed key value did update
--(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+-(void)observeValueForKeyPath:(nullable NSString *)keyPath ofObject:(nullable id)object change:(nullable NSDictionary *)change context:(nullable void *)context
 // ------------------------------------------------------
 {
     if ([keyPath isEqualToString:CEDefaultEncodingListKey]) {
@@ -113,7 +113,7 @@ NSString *const CEEncodingListDidUpdateNotification = @"CESyntaxListDidUpdateNot
 
 //------------------------------------------------------
 /// return copied menu items
-- (NSArray *)encodingMenuItems
+- (nonnull NSArray *)encodingMenuItems
 //------------------------------------------------------
 {
     return [[NSArray alloc] initWithArray:_encodingMenuItems copyItems:YES];

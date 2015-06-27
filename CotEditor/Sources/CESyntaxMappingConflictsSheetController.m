@@ -9,7 +9,7 @@
  encoding="UTF-8"
  ------------------------------------------------------------------------------
  
- © 2014 CotEditor Project
+ © 2014-2015 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -33,8 +33,8 @@
 
 @interface CESyntaxMappingConflictsSheetController ()
 
-@property (nonatomic, copy) NSArray *extensionConflicts;
-@property (nonatomic, copy) NSArray *filenameConflicts;
+@property (nonatomic, nonnull, copy) NSArray *extensionConflicts;
+@property (nonatomic, nonnull, copy) NSArray *filenameConflicts;
 
 @end
 
@@ -49,7 +49,7 @@
 
 // ------------------------------------------------------
 /// initialize
-- (instancetype)init
+- (nonnull instancetype)init
 // ------------------------------------------------------
 {
     self = [super initWithWindowNibName:@"SyntaxMappingConflictSheet"];
@@ -66,7 +66,7 @@
 
 // ------------------------------------------------------
 /// Done button was clicked
-- (IBAction)closeSheet:(id)sender
+- (IBAction)closeSheet:(nullable id)sender
 // ------------------------------------------------------
 {
     [NSApp stopModal];
@@ -80,7 +80,7 @@
 
 // ------------------------------------------------------
 /// convert conflictDict data for table
-+ (NSArray *)parseConflictDict:(NSDictionary *)conflictDict
++ (nonnull NSArray *)parseConflictDict:(nonnull NSDictionary *)conflictDict
 // ------------------------------------------------------
 {
     NSMutableArray *conflicts = [NSMutableArray array];

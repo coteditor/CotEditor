@@ -9,7 +9,7 @@
  encoding="UTF-8"
  ------------------------------------------------------------------------------
  
- © 2014 CotEditor Project
+ © 2014-2015 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -34,9 +34,9 @@
 @interface CEGlyphPopoverController : NSViewController
 
 /// default initializer (singleString must be a single character (or a surrogate-pair). If not, return nil.)
-- (instancetype)initWithCharacter:(NSString *)singleString;
+- (nullable instancetype)initWithCharacter:(nonnull NSString *)singleString;
 
 /// show popover
-- (void)showPopoverRelativeToRect:(NSRect)positioningRect ofView:(NSView *)parentView;
+- (void)showPopoverRelativeToRect:(NSRect)positioningRect ofView:(nonnull NSView *)parentView;
 
 @end
