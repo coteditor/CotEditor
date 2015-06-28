@@ -42,7 +42,7 @@
 @property (nonatomic, nullable, weak) IBOutlet NSBox *box;
 
 @property (nonatomic, nullable) CEThemeViewController *themeViewController;
-@property (nonatomic, nullable) NSArray *themeNames;
+@property (nonatomic, nullable, copy) NSArray *themeNames;
 @property (nonatomic, getter=isBundled) BOOL bundled;
 
 @end
@@ -341,31 +341,10 @@
     [openPanel beginSheetModalForWindow:[[self view] window] completionHandler:^(NSInteger result) {
         if (result == NSFileHandlingPanelCancelButton) { return; }
         
-        NSURL *URL = [openPanel URL];
-        NSError *error = nil;
+        [openPanel orderOut:nil];
+        [[openPanel sheetParent] makeKeyAndOrderFront:nil];
         
-        // インポートを試みる
-        [[CEThemeManager sharedManager] importTheme:URL replace:NO error:&error];
-        
-        if (error) {
-            NSAlert *alert = [NSAlert alertWithError:error];
-            
-            [openPanel orderOut:nil];
-            [[openPanel sheetParent] makeKeyAndOrderFront:nil];
-            
-            // 同名のファイルがある場合は上書きするかを訊く
-            if ([error code] == CEThemeFileDuplicationError) {
-                [alert beginSheetModalForWindow:[[self view] window]
-                                  modalDelegate:self
-                                 didEndSelector:@selector(importDuplicateThemeAlertDidEnd:returnCode:contextInfo:)
-                                    contextInfo:(__bridge_retained void *)(URL)];
-            } else {
-                [alert beginSheetModalForWindow:[[self view] window]
-                                  modalDelegate:nil
-                                 didEndSelector:NULL
-                                    contextInfo:NULL];
-            }
-        }
+        [self importThemeWithURL:[openPanel URL]];
     }];
 }
 
@@ -375,7 +354,7 @@
 - (IBAction)restoreTheme:(nullable id)sender
 // ------------------------------------------------------
 {
-    [self restoreTheme:[self selectedTheme]];
+    [self restoreThemeWithName:[self selectedTheme]];
 }
 
 
@@ -437,7 +416,33 @@
             [[self themeViewController] setRepresentedObject:bundledTheme];
         }
     }];
+}
+
+
+//------------------------------------------------------
+/// try to import theme file at given URL
+- (void)importThemeWithURL:(nonnull NSURL *)URL
+//------------------------------------------------------
+{
+    NSError *error = nil;
+    [[CEThemeManager sharedManager] importTheme:URL replace:NO error:&error];
     
+    if (error) {
+        NSAlert *alert = [NSAlert alertWithError:error];
+        
+        // ask for overwriting if a theme with the same name already exists
+        if ([error code] == CEThemeFileDuplicationError) {
+            [alert beginSheetModalForWindow:[[self view] window]
+                              modalDelegate:self
+                             didEndSelector:@selector(importDuplicateThemeAlertDidEnd:returnCode:contextInfo:)
+                                contextInfo:(__bridge_retained void *)URL];
+        } else {
+            [alert beginSheetModalForWindow:[[self view] window]
+                              modalDelegate:nil
+                             didEndSelector:NULL
+                                contextInfo:NULL];
+        }
+    }
 }
 
 
