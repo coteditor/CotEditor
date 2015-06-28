@@ -5,6 +5,11 @@ Change Log
 develop
 --------------------------
 
+### New Features
+
+- Importing theme files via drag-and-drop to theme list in preferences.
+
+
 ### Additions/Changes
 
 - Support displaying skin tone variations of Unicode 8.0 on the character inspector.

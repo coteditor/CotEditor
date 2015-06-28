@@ -76,6 +76,9 @@
     
     [self setupThemeList];
     
+    // register droppable types
+    [[self themeTableView] registerForDraggedTypes:@[(NSString *)kUTTypeFileURL]];
+    
     // デフォルトテーマを選択
     NSArray *themeNames = [[self themeNames] copy];
     NSInteger row = [themeNames indexOfObject:[[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultThemeKey]];
@@ -238,6 +241,48 @@
     }
     
     return success;
+}
+
+
+// ------------------------------------------------------
+/// validate when dragged items come to tableView
+- (NSDragOperation)tableView:(NSTableView *)tableView validateDrop:(id<NSDraggingInfo>)info proposedRow:(NSInteger)row proposedDropOperation:(NSTableViewDropOperation)dropOperation
+// ------------------------------------------------------
+{
+    // get file URLs from pasteboard
+    NSPasteboard *pboard = [info draggingPasteboard];
+    NSArray *URLs = [pboard readObjectsForClasses:@[[NSURL class]]
+                                          options:@{NSPasteboardURLReadingFileURLsOnlyKey: @YES,
+                                                    NSPasteboardURLReadingContentsConformToTypesKey: @[CEUTTypeTheme]}];
+    
+    if ([URLs count] == 0) { return NSDragOperationNone; }
+    
+    // highlight text view itself
+    [tableView setDropRow:-1 dropOperation:NSTableViewDropOn];
+    
+    // show number of theme files
+    [info setNumberOfValidItemsForDrop:[URLs count]];
+    
+    return NSDragOperationCopy;
+}
+
+
+// ------------------------------------------------------
+/// check acceptability of dragged items and insert them to table
+- (BOOL)tableView:(NSTableView *)tableView acceptDrop:(id<NSDraggingInfo>)info row:(NSInteger)row dropOperation:(NSTableViewDropOperation)dropOperation
+// ------------------------------------------------------
+{
+    [info enumerateDraggingItemsWithOptions:0 forView:tableView classes:@[[NSURL class]]
+                              searchOptions:@{NSPasteboardURLReadingFileURLsOnlyKey: @YES,
+                                              NSPasteboardURLReadingContentsConformToTypesKey: @[CEUTTypeTheme]}
+                                 usingBlock:^(NSDraggingItem *draggingItem, NSInteger idx, BOOL *stop)
+     {
+         NSURL *fileURL = [draggingItem item];
+         
+         [self importThemeWithURL:fileURL];
+     }];
+    
+    return YES;
 }
 
 
@@ -429,15 +474,22 @@
     
     if (error) {
         NSAlert *alert = [NSAlert alertWithError:error];
+        NSWindow *window = [[self view] window];
+        
+        // display as an independent window if any sheet is already attached
+        if ([window attachedSheet]) {
+            window = nil;
+        }
         
         // ask for overwriting if a theme with the same name already exists
         if ([error code] == CEThemeFileDuplicationError) {
-            [alert beginSheetModalForWindow:[[self view] window]
-                              modalDelegate:self
-                             didEndSelector:@selector(importDuplicateThemeAlertDidEnd:returnCode:contextInfo:)
-                                contextInfo:(__bridge_retained void *)URL];
+                [alert beginSheetModalForWindow:window
+                                  modalDelegate:self
+                                 didEndSelector:@selector(importDuplicateThemeAlertDidEnd:returnCode:contextInfo:)
+                                    contextInfo:(__bridge_retained void *)URL];
+            
         } else {
-            [alert beginSheetModalForWindow:[[self view] window]
+            [alert beginSheetModalForWindow:window
                               modalDelegate:nil
                              didEndSelector:NULL
                                 contextInfo:NULL];
