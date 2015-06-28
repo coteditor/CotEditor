@@ -173,42 +173,18 @@ static NSInteger const kLastRow = -1;
     }
     
     NSIndexSet *originalRows = [NSKeyedUnarchiver unarchiveObjectWithData:[[info draggingPasteboard] propertyListForType:CERowsPboardType]];
-    NSMutableArray *draggingItems = [NSMutableArray array];
-    NSMutableArray *newEncodings = [[self encodings] mutableCopy];
-    __block NSInteger currentRow = row;
+    NSArray *draggingItems = [[self encodings] objectsAtIndexes:originalRows];
+    NSUInteger newRow = row - [originalRows countOfIndexesInRange:NSMakeRange(0, row)];  // real insertion point after removing items to move
+    NSIndexSet *insertRows = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(newRow, [draggingItems count])];
 
-    [originalRows enumerateIndexesWithOptions:NSEnumerationReverse usingBlock:^(NSUInteger idx, BOOL *stop) {
-        NSNumber *draggedItem = [self encodings][idx];
-        
-        [draggingItems addObject:draggedItem];
-        [newEncodings removeObjectAtIndex:idx];
-        
-        if (idx < row) { // if items are dragged to below
-            currentRow--;
-        }
-    }];
-    
-    NSMutableIndexSet *selectRows = [NSMutableIndexSet indexSet];
-    NSInteger count = [draggingItems count];
-    for (NSUInteger i = 0; i < count; i++) {
-        if (row != kLastRow) {
-            [newEncodings insertObject:draggingItems[i] atIndex:currentRow];
-            [selectRows addIndex:(currentRow + i)];
-        } else {
-            [newEncodings addObject:draggingItems[(count - i - 1)]];
-            [selectRows addIndex:i];
-        }
-    }
-
-    // write back to encodings
-    if (![newEncodings isEqualToArray:[self encodings]]) {
-        [[self encodings] setArray:newEncodings];
-    }
+    // update data
+    [[self encodings] removeObjectsAtIndexes:originalRows];
+    [[self encodings] insertObjects:draggingItems atIndexes:insertRows];
     
     // update UI
     [tableView removeRowsAtIndexes:originalRows withAnimation:NSTableViewAnimationEffectFade];
-    [tableView insertRowsAtIndexes:selectRows withAnimation:NSTableViewAnimationEffectGap];
-    [tableView selectRowIndexes:selectRows byExtendingSelection:NO];
+    [tableView insertRowsAtIndexes:insertRows withAnimation:NSTableViewAnimationEffectGap];
+    [tableView selectRowIndexes:insertRows byExtendingSelection:NO];
     
     return YES;
 }
