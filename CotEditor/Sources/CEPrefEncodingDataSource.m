@@ -185,6 +185,7 @@ static NSInteger const kLastRow = -1;
     [tableView removeRowsAtIndexes:originalRows withAnimation:NSTableViewAnimationEffectFade];
     [tableView insertRowsAtIndexes:insertRows withAnimation:NSTableViewAnimationEffectGap];
     [tableView selectRowIndexes:insertRows byExtendingSelection:NO];
+    [self validateRestorebility];
     
     return YES;
 }
@@ -255,6 +256,15 @@ static NSInteger const kLastRow = -1;
 #pragma mark Private Methods
 
 // ------------------------------------------------------
+/// validate "Restore Defaults" button
+- (void)validateRestorebility
+// ------------------------------------------------------
+{
+    [self setCanRestore:![[self encodings] isEqualToArray:[self defaultEncodings]]];
+}
+
+
+// ------------------------------------------------------
 /// add separator to desired row
 - (void)addSeparatorAtIndex:(NSUInteger)rowIndex
 // ------------------------------------------------------
@@ -266,6 +276,8 @@ static NSInteger const kLastRow = -1;
     NSIndexSet *indexSet = [NSIndexSet indexSetWithIndex:rowIndex];
     [[self tableView] insertRowsAtIndexes:indexSet withAnimation:NSTableViewAnimationEffectGap];
     [[self tableView] selectRowIndexes:indexSet byExtendingSelection:NO];
+    
+    [self validateRestorebility];
 }
 
 
@@ -296,6 +308,8 @@ static NSInteger const kLastRow = -1;
     
     // update data
     [[self encodings] removeObjectsAtIndexes:toDeleteIndexes];
+    
+    [self validateRestorebility];
 }
 
 @end
