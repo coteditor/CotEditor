@@ -5,7 +5,7 @@
  CotEditor
  http://coteditor.com
  
- Created on 2004-12-16 by 1024jp
+ Created on 2014-12-16 by 1024jp
  encoding="UTF-8"
  ------------------------------------------------------------------------------
  
@@ -39,7 +39,7 @@ static NSInteger const kLastRow = -1;
 
 @interface CEPrefEncodingDataSource ()
 
-@property (nonatomic, nonnull) NSArray *defaultEncodings;
+@property (nonatomic, nonnull, copy) NSArray *defaultEncodings;
 @property (nonatomic, nonnull) NSMutableArray *encodings;
 @property (nonatomic) BOOL canRestore;  // enability of "Restore Default" button
 
