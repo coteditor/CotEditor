@@ -154,13 +154,13 @@ static NSString *const CERowsPboardType = @"CERowsPboardType";
         return NSDragOperationNone;
     }
     
+    // avoid drop-on
     if (operation == NSTableViewDropOn) {
         NSUInteger newRow = MIN(row + 1, [tableView numberOfRows] - 1);
         [tableView setDropRow:newRow dropOperation:NSTableViewDropAbove];
     }
     
     [tableView setDraggingDestinationFeedbackStyle:NSTableViewDraggingDestinationFeedbackStyleSourceList];
-    
     
     return NSDragOperationMove;
 }
