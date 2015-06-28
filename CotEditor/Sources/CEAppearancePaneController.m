@@ -293,7 +293,7 @@
 - (IBAction)deleteTheme:(nullable id)sender
 //------------------------------------------------------
 {
-    [self deleteTheme:[self selectedTheme]];
+    [self deleteThemeWithName:[self selectedTheme]];
 }
 
 
