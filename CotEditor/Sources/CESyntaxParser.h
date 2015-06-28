@@ -48,6 +48,10 @@
 /// designated initializer (return nil if no corresponded style dictionary can be found.)
 - (nullable instancetype)initWithStyleName:(nullable NSString *)styleName layoutManager:(nonnull CELayoutManager *)layoutManager NS_DESIGNATED_INITIALIZER;
 
+// unavailable initializer
+- (nullable instancetype)init __attribute__((unavailable("use -initWithStyleName:layoutManager: instead")));
+
+
 // Public methods
 - (void)colorAllString:(nullable NSString *)wholeString;
 - (void)colorRange:(NSRange)range wholeString:(nullable NSString *)wholeString;

@@ -81,10 +81,22 @@ static const CGFloat kDarkThemeThreshold = 0.5;
 
 @implementation CETheme
 
+#pragma mark Superclass Methods
+
+//------------------------------------------------------
+/// override designated initializer
+- (nullable instancetype)init
+//------------------------------------------------------
+{
+    return [self initWithName:@"None"];  // Actually, this might return nil.
+}
+
+
+
 #pragma mark Public Methods
 
 //------------------------------------------------------
-/// 簡易イニシャライザ
+/// convenience constractor
 + (nullable CETheme *)themeWithName:(nonnull NSString *)themeName
 //------------------------------------------------------
 {
@@ -93,7 +105,7 @@ static const CGFloat kDarkThemeThreshold = 0.5;
 
 
 //------------------------------------------------------
-/// 初期化
+/// designated initializer
 - (nullable instancetype)initWithName:(nonnull NSString *)themeName
 //------------------------------------------------------
 {
@@ -104,7 +116,6 @@ static const CGFloat kDarkThemeThreshold = 0.5;
         if (!themeDict) { return nil; }
         
         NSMutableDictionary *colorDict = [NSMutableDictionary dictionary];
-        
         // カラーを解凍
         for (NSString *key in [CETheme colorKeys]) {
             NSString *colorCode = themeDict[key][CEThemeColorKey];

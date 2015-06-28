@@ -63,6 +63,9 @@ typedef NS_ENUM(NSUInteger, CEUNFType) {
 // Public method
 - (instancetype)initWithDocument:(CEDocument *)document NS_DESIGNATED_INITIALIZER;
 
+// unavailable initializer
+- (instancetype)init __attribute__((unavailable("use -initWithDocument: instead")));
+
 @end
 
 
