@@ -55,17 +55,6 @@
 }
 
 
-// ------------------------------------------------------
-/// setup UI
-- (void)windowDidLoad
-// ------------------------------------------------------
-{
-    [super windowDidLoad];
-    
-    [[self dataSource] setupEncodingsToEdit];
-}
-
-
 
 #pragma mark Action Messages
 
@@ -74,7 +63,7 @@
 - (IBAction)save:(nullable id)sender
 // ------------------------------------------------------
 {
-    [[self dataSource] writeEncodingsToUserDefaults];  // save the current setting
+    [[self dataSource] writeToUserDefaults];  // save current setting
     
     [NSApp stopModal];
     [NSApp endSheet:[self window] returnCode:NSOKButton];

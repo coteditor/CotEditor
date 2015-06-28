@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6254"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="7706"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="CEEncodingListSheetController">
@@ -17,7 +17,7 @@
             <windowStyleMask key="styleMask" titled="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="247" y="236" width="400" height="367"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
             <value key="minSize" type="size" width="350" height="320"/>
             <view key="contentView" id="37">
                 <rect key="frame" x="0.0" y="0.0" width="400" height="367"/>
@@ -30,9 +30,10 @@
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" autosaveColumns="NO" rowSizeStyle="automatic" viewBased="YES" id="39">
+                                    <rect key="frame" x="0.0" y="0.0" width="242" height="0.0"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <size key="intercellSpacing" width="3" height="2"/>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                     <tableColumns>
                                         <tableColumn editable="NO" width="239" minWidth="40" maxWidth="1000" id="40">
@@ -176,6 +177,7 @@ Auto-Detect tries these encodings from the top of the list.</string>
                         </buttonCell>
                         <connections>
                             <action selector="revertDefaultEncodings:" target="47" id="701"/>
+                            <binding destination="47" name="enabled" keyPath="canRestore" id="Dzd-6R-0kZ"/>
                         </connections>
                     </button>
                 </subviews>
@@ -214,7 +216,6 @@ Auto-Detect tries these encodings from the top of the list.</string>
         <customObject id="47" userLabel="Encoding Data Source" customClass="CEPrefEncodingDataSource">
             <connections>
                 <outlet property="deleteSeparatorButton" destination="55" id="fyX-Sr-NbH"/>
-                <outlet property="revertButton" destination="700" id="wWk-oz-yr2"/>
                 <outlet property="tableView" destination="39" id="nzf-UN-llV"/>
             </connections>
         </customObject>
