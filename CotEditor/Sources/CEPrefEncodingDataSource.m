@@ -34,7 +34,6 @@
 
 // constants
 static NSString *const CERowsPboardType = @"CERowsPboardType";
-static NSInteger const kLastRow = -1;
 
 
 @interface CEPrefEncodingDataSource ()
@@ -155,10 +154,15 @@ static NSInteger const kLastRow = -1;
         return NSDragOperationNone;
     }
     
-    BOOL isValid = (((row == kLastRow) && (operation == NSTableViewDropOn)) ||
-                    ((row != kLastRow) && (operation == NSTableViewDropAbove)));
+    if (operation == NSTableViewDropOn) {
+        NSUInteger newRow = MIN(row + 1, [tableView numberOfRows] - 1);
+        [tableView setDropRow:newRow dropOperation:NSTableViewDropAbove];
+    }
     
-    return isValid ? NSDragOperationMove : NSDragOperationNone;
+    [tableView setDraggingDestinationFeedbackStyle:NSTableViewDraggingDestinationFeedbackStyleSourceList];
+    
+    
+    return NSDragOperationMove;
 }
 
 
@@ -186,6 +190,9 @@ static NSInteger const kLastRow = -1;
     [tableView insertRowsAtIndexes:insertRows withAnimation:NSTableViewAnimationEffectGap];
     [tableView selectRowIndexes:insertRows byExtendingSelection:NO];
     [self validateRestorebility];
+    
+    [tableView reloadData];
+
     
     return YES;
 }
