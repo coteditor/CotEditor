@@ -149,6 +149,48 @@
 }
 
 
+// ------------------------------------------------------
+/// validate when dragged items come to tableView
+- (NSDragOperation)tableView:(nonnull NSTableView *)tableView validateDrop:(nonnull id<NSDraggingInfo>)info proposedRow:(NSInteger)row proposedDropOperation:(NSTableViewDropOperation)dropOperation
+// ------------------------------------------------------
+{
+    // get file URLs from pasteboard
+    NSPasteboard *pboard = [info draggingPasteboard];
+    NSArray *URLs = [pboard readObjectsForClasses:@[[NSURL class]]
+                                          options:@{NSPasteboardURLReadingFileURLsOnlyKey: @YES,
+                                                    NSPasteboardURLReadingContentsConformToTypesKey: @[CEUTTypeTheme]}];
+    
+    if ([URLs count] == 0) { return NSDragOperationNone; }
+    
+    // highlight text view itself
+    [tableView setDropRow:-1 dropOperation:NSTableViewDropOn];
+    
+    // show number of theme files
+    [info setNumberOfValidItemsForDrop:[URLs count]];
+    
+    return NSDragOperationCopy;
+}
+
+
+// ------------------------------------------------------
+/// check acceptability of dragged items and insert them to table
+- (BOOL)tableView:(nonnull NSTableView *)tableView acceptDrop:(nonnull id<NSDraggingInfo>)info row:(NSInteger)row dropOperation:(NSTableViewDropOperation)dropOperation
+// ------------------------------------------------------
+{
+    [info enumerateDraggingItemsWithOptions:0 forView:tableView classes:@[[NSURL class]]
+                              searchOptions:@{NSPasteboardURLReadingFileURLsOnlyKey: @YES,
+                                              NSPasteboardURLReadingContentsConformToTypesKey: @[CEUTTypeTheme]}
+                                 usingBlock:^(NSDraggingItem *draggingItem, NSInteger idx, BOOL *stop)
+     {
+         NSURL *fileURL = [draggingItem item];
+         
+         [self importThemeWithURL:fileURL];
+     }];
+    
+    return YES;
+}
+
+
 
 #pragma mark Delegate
 
@@ -241,48 +283,6 @@
     }
     
     return success;
-}
-
-
-// ------------------------------------------------------
-/// validate when dragged items come to tableView
-- (NSDragOperation)tableView:(NSTableView *)tableView validateDrop:(id<NSDraggingInfo>)info proposedRow:(NSInteger)row proposedDropOperation:(NSTableViewDropOperation)dropOperation
-// ------------------------------------------------------
-{
-    // get file URLs from pasteboard
-    NSPasteboard *pboard = [info draggingPasteboard];
-    NSArray *URLs = [pboard readObjectsForClasses:@[[NSURL class]]
-                                          options:@{NSPasteboardURLReadingFileURLsOnlyKey: @YES,
-                                                    NSPasteboardURLReadingContentsConformToTypesKey: @[CEUTTypeTheme]}];
-    
-    if ([URLs count] == 0) { return NSDragOperationNone; }
-    
-    // highlight text view itself
-    [tableView setDropRow:-1 dropOperation:NSTableViewDropOn];
-    
-    // show number of theme files
-    [info setNumberOfValidItemsForDrop:[URLs count]];
-    
-    return NSDragOperationCopy;
-}
-
-
-// ------------------------------------------------------
-/// check acceptability of dragged items and insert them to table
-- (BOOL)tableView:(NSTableView *)tableView acceptDrop:(id<NSDraggingInfo>)info row:(NSInteger)row dropOperation:(NSTableViewDropOperation)dropOperation
-// ------------------------------------------------------
-{
-    [info enumerateDraggingItemsWithOptions:0 forView:tableView classes:@[[NSURL class]]
-                              searchOptions:@{NSPasteboardURLReadingFileURLsOnlyKey: @YES,
-                                              NSPasteboardURLReadingContentsConformToTypesKey: @[CEUTTypeTheme]}
-                                 usingBlock:^(NSDraggingItem *draggingItem, NSInteger idx, BOOL *stop)
-     {
-         NSURL *fileURL = [draggingItem item];
-         
-         [self importThemeWithURL:fileURL];
-     }];
-    
-    return YES;
 }
 
 
@@ -500,7 +500,7 @@
 
 // ------------------------------------------------------
 /// テーマ削除確認シートが閉じる直前
-- (void)deleteThemeAlertDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
+- (void)deleteThemeAlertDidEnd:(nonnull NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(nullable void *)contextInfo
 // ------------------------------------------------------
 {
     if (returnCode != NSAlertSecondButtonReturn) {  // != Delete
@@ -526,7 +526,7 @@
 
 // ------------------------------------------------------
 /// テーマ読み込みでの重複するテーマの上書き確認シートが閉じる直前
-- (void)importDuplicateThemeAlertDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
+- (void)importDuplicateThemeAlertDidEnd:(nonnull NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(nullable void *)contextInfo
 // ------------------------------------------------------
 {
     if (returnCode != NSAlertSecondButtonReturn) {  // Cancel
