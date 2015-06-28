@@ -163,18 +163,18 @@ static NSInteger const kLastRow = -1;
 // ------------------------------------------------------
 {
     NSIndexSet *originalRows = [NSKeyedUnarchiver unarchiveObjectWithData:[[info draggingPasteboard] propertyListForType:CERowsType]];
-    NSMutableIndexSet *selectIndexSet = [NSMutableIndexSet indexSet];
+    NSMutableIndexSet *selectRows = [NSMutableIndexSet indexSet];
     NSMutableArray *draggingArray = [NSMutableArray array];
     NSMutableArray *newArray = [[self encodingsForTmp] mutableCopy];
     __block NSInteger newRow = row;
 
     [originalRows enumerateIndexesWithOptions:NSEnumerationReverse usingBlock:^(NSUInteger idx, BOOL *stop) {
-        if (idx < [newArray count]) {
-            [draggingArray addObject:[newArray[idx] copy]];
-            [newArray removeObjectAtIndex:idx];
-            if (idx < row) { // 下方へドラッグ移動されるときの調整
-                newRow--;
-            }
+        if (idx >= [newArray count]) { return; }
+        
+        [draggingArray addObject:[newArray[idx] copy]];
+        [newArray removeObjectAtIndex:idx];
+        if (idx < row) { // 下方へドラッグ移動されるときの調整
+            newRow--;
         }
     }];
     
@@ -182,10 +182,10 @@ static NSInteger const kLastRow = -1;
     for (NSUInteger i = 0; i < count; i++) {
         if (row != kLastRow) {
             [newArray insertObject:draggingArray[i] atIndex:newRow];
-            [selectIndexSet addIndex:(newRow + i)];
+            [selectRows addIndex:(newRow + i)];
         } else {
             [newArray addObject:draggingArray[(count - i - 1)]];
-            [selectIndexSet addIndex:i];
+            [selectRows addIndex:i];
         }
     }
 
@@ -193,8 +193,11 @@ static NSInteger const kLastRow = -1;
     if (![newArray isEqualToArray:[self encodingsForTmp]]) {
         [[self encodingsForTmp] setArray:newArray];
     }
-    [tableView reloadData];
-    [tableView selectRowIndexes:selectIndexSet byExtendingSelection:NO];
+    
+    // update UI
+    [tableView removeRowsAtIndexes:originalRows withAnimation:NSTableViewAnimationEffectFade];
+    [tableView insertRowsAtIndexes:selectRows withAnimation:NSTableViewAnimationEffectGap];
+    [tableView selectRowIndexes:selectRows byExtendingSelection:NO];
     
     return YES;
 }
@@ -232,7 +235,7 @@ static NSInteger const kLastRow = -1;
 #pragma mark Action Messages
 
 // ------------------------------------------------------
-/// デフォルトのエンコーディング設定に戻す
+/// restore encoding setting to default
 - (IBAction)revertDefaultEncodings:(nullable id)sender
 // ------------------------------------------------------
 {
@@ -246,49 +249,70 @@ static NSInteger const kLastRow = -1;
 
 
 // ------------------------------------------------------
-/// セパレータ追加
+/// add separator
 - (IBAction)addSeparator:(nullable id)sender
 // ------------------------------------------------------
 {
     NSUInteger index = MAX([[self tableView] selectedRow], 0);
     
-    [[self encodingsForTmp] insertObject:@(kCFStringEncodingInvalidId) atIndex:index];
-    [[self tableView] reloadData];
-    [[self tableView] selectRowIndexes:[NSIndexSet indexSetWithIndex:index] byExtendingSelection:NO];
+    [self addSeparatorAtIndex:index];
 }
 
 
 // ------------------------------------------------------
-/// セパレータ削除
+/// remove separator
 - (IBAction)deleteSeparator:(nullable id)sender
 // ------------------------------------------------------
 {
-    NSIndexSet *selectedIndexes = [[self tableView] selectedRowIndexes];
+    [self deleteSeparatorAtIndexes:[[self tableView] selectedRowIndexes]];
+}
 
-    if ([selectedIndexes count] == 0) {
-        return;
-    }
-    NSMutableArray *encodings = [NSMutableArray array];
-    NSUInteger deletedCount = 0;
 
-    NSUInteger i = 0;
-    for (NSNumber* encodingNumber in [self encodingsForTmp]) {
-        if ([selectedIndexes containsIndex:i] && ([encodingNumber unsignedLongValue] == kCFStringEncodingInvalidId)) {
-            deletedCount++;
-            continue;
+
+#pragma mark Private Methods
+
+// ------------------------------------------------------
+/// add separator to desired row
+- (void)addSeparatorAtIndex:(NSUInteger)rowIndex
+// ------------------------------------------------------
+{
+    // add to data
+    [[self encodingsForTmp] insertObject:@(kCFStringEncodingInvalidId) atIndex:rowIndex];
+    
+    // update UI
+    NSIndexSet *indexSet = [NSIndexSet indexSetWithIndex:rowIndex];
+    [[self tableView] insertRowsAtIndexes:indexSet withAnimation:NSTableViewAnimationEffectGap];
+    [[self tableView] selectRowIndexes:indexSet byExtendingSelection:NO];
+}
+
+
+// ------------------------------------------------------
+/// remove separators at desired rows
+- (void)deleteSeparatorAtIndexes:(nonnull NSIndexSet *)rowIndexes
+// ------------------------------------------------------
+{
+    if ([rowIndexes count] == 0) { return; }
+    
+    NSMutableIndexSet *toDeleteIndexes = [NSMutableIndexSet indexSet];
+    
+    // pick only separators up
+    NSArray *encodings = [self encodingsForTmp];
+    [rowIndexes enumerateIndexesUsingBlock:^(NSUInteger idx, BOOL *stop) {
+        CFStringEncoding encoding = [encodings[idx] unsignedLongLongValue];
+        
+        if (encoding == kCFStringEncodingInvalidId) {
+            [toDeleteIndexes addIndex:idx];
         }
-        [encodings addObject:encodingNumber];
-        i++;
-    }
-    if (deletedCount == 0) {
-        return;
-    }
-    [[self tableView] deselectAll:self];
-    // リストが変更されたら、encodingsForTmp に書き戻す
-    if (![encodings isEqualToArray:[self encodingsForTmp]]) {
-        [[self encodingsForTmp] setArray:encodings];
-    }
-    [[self tableView] reloadData];
+    }];
+    
+    if ([toDeleteIndexes count] == 0) { return; }
+    
+    // update UI
+    [[self tableView] selectRowIndexes:toDeleteIndexes byExtendingSelection:NO];
+    [[self tableView] removeRowsAtIndexes:toDeleteIndexes withAnimation:NSTableViewAnimationSlideUp];
+    
+    // update data
+    [[self encodingsForTmp] removeObjectsAtIndexes:toDeleteIndexes];
 }
 
 @end
