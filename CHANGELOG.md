@@ -21,6 +21,7 @@ develop
 - Fix an issue where the layout of the text fields in the find panel could rarely be broken.
 - Fix an issue where the auto-update notifier did not recognize a new stable version from specific beta version numbers.
 - Fix an issue where some 3rd-party text editors for OS X cannot interpret files which were created by CotEditor.
+- Fix an issue where selection after modifying sort of extnsion priority in syntax style edit sheet was wrong.
 - Add some missing Localized strings in simplified Chinese. (Thanks to Wei Wang!)
 - Improve general stability.
 
