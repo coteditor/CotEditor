@@ -160,8 +160,6 @@ static NSString *const CERowsPboardType = @"CERowsPboardType";
         [tableView setDropRow:newRow dropOperation:NSTableViewDropAbove];
     }
     
-    [tableView setDraggingDestinationFeedbackStyle:NSTableViewDraggingDestinationFeedbackStyleSourceList];
-    
     return NSDragOperationMove;
 }
 
@@ -193,7 +191,6 @@ static NSString *const CERowsPboardType = @"CERowsPboardType";
     
     [tableView reloadData];
 
-    
     return YES;
 }
 
