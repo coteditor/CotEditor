@@ -277,13 +277,11 @@
 - (IBAction)addTheme:(nullable id)sender
 //------------------------------------------------------
 {
-    __weak typeof(self) weakSelf = self;
+    NSTableView *tableView = [self themeTableView];
     [[CEThemeManager sharedManager] createUntitledThemeWithCompletionHandler:^(NSString *themeName, NSError *error) {
-        typeof(weakSelf) strongSelf = weakSelf;
-        
         NSArray *themeNames = [[CEThemeManager sharedManager] themeNames];
         NSInteger row = [themeNames indexOfObject:themeName];
-        [[strongSelf themeTableView] selectRowIndexes:[NSIndexSet indexSetWithIndex:row] byExtendingSelection:NO];
+        [tableView selectRowIndexes:[NSIndexSet indexSetWithIndex:row] byExtendingSelection:NO];
     }];
 }
 
