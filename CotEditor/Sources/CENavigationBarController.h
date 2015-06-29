@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014 1024jp
+ © 2014-2015 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -33,7 +33,7 @@
 
 @interface CENavigationBarController : NSViewController
 
-@property (nonatomic, strong) NSTextView *textView;  // NSTextView cannot be weak
+@property (nonatomic, nullable, strong) NSTextView *textView;  // NSTextView cannot be weak
 
 @property (readonly, nonatomic, getter=isShown) BOOL shown;
 
@@ -41,7 +41,7 @@
 // Public method
 - (void)setShown:(BOOL)shown animate:(BOOL)performAnimation;
 
-- (void)setOutlineMenuArray:(NSArray *)outlineItems;
+- (void)setOutlineMenuArray:(nonnull NSArray *)outlineItems;
 - (void)selectOutlineMenuItemWithRange:(NSRange)range;
 - (void)updatePrevNextButtonEnabled;
 - (BOOL)canSelectPrevItem;
@@ -53,7 +53,7 @@
 
 
 // action messages
-- (IBAction)selectPrevItem:(id)sender;
-- (IBAction)selectNextItem:(id)sender;
+- (IBAction)selectPrevItem:(nullable id)sender;
+- (IBAction)selectNextItem:(nullable id)sender;
 
 @end

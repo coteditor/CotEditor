@@ -38,15 +38,15 @@ static const NSTimeInterval kDuration = 0.25;
 
 @interface CENavigationBarController ()
 
-@property (nonatomic, weak) IBOutlet NSPopUpButton *outlineMenu;
-@property (nonatomic, weak) IBOutlet NSButton *prevButton;
-@property (nonatomic, weak) IBOutlet NSButton *nextButton;
-@property (nonatomic, weak) IBOutlet NSButton *openSplitButton;
-@property (nonatomic, weak) IBOutlet NSButton *closeSplitButton;
-@property (nonatomic, weak) IBOutlet NSLayoutConstraint *heightConstraint;
+@property (nonatomic, nullable, weak) IBOutlet NSPopUpButton *outlineMenu;
+@property (nonatomic, nullable, weak) IBOutlet NSButton *prevButton;
+@property (nonatomic, nullable, weak) IBOutlet NSButton *nextButton;
+@property (nonatomic, nullable, weak) IBOutlet NSButton *openSplitButton;
+@property (nonatomic, nullable, weak) IBOutlet NSButton *closeSplitButton;
+@property (nonatomic, nullable, weak) IBOutlet NSLayoutConstraint *heightConstraint;
 
-@property (nonatomic, weak) IBOutlet NSProgressIndicator *outlineIndicator;
-@property (nonatomic, weak) IBOutlet NSTextField *outlineLoadingMessage;
+@property (nonatomic, nullable, weak) IBOutlet NSProgressIndicator *outlineIndicator;
+@property (nonatomic, nullable, weak) IBOutlet NSTextField *outlineLoadingMessage;
 
 // readonly
 @property (readwrite, nonatomic, getter=isShown) BOOL shown;
@@ -123,7 +123,7 @@ static const NSTimeInterval kDuration = 0.25;
 
 // ------------------------------------------------------
 /// build outline menu from given array
-- (void)setOutlineMenuArray:(NSArray *)outlineItems
+- (void)setOutlineMenuArray:(nonnull NSArray *)outlineItems
 // ------------------------------------------------------
 {
     // stop outline extracting indicator
@@ -297,7 +297,7 @@ static const NSTimeInterval kDuration = 0.25;
 
 // ------------------------------------------------------
 /// set select prev item of outline menu.
-- (IBAction)selectPrevItem:(id)sender
+- (IBAction)selectPrevItem:(nullable id)sender
 // ------------------------------------------------------
 {
     if (![self canSelectPrevItem]) { return; }
@@ -316,7 +316,7 @@ static const NSTimeInterval kDuration = 0.25;
 
 // ------------------------------------------------------
 /// set select next item of outline menu.
-- (IBAction)selectNextItem:(id)sender
+- (IBAction)selectNextItem:(nullable id)sender
 // ------------------------------------------------------
 {
     if (![self canSelectNextItem]) { return; }
