@@ -882,7 +882,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 - (void)documentDidFinishOpen:(NSNotification *)notification
 // ------------------------------------------------------
 {
-    if ([notification object] == [self windowController]) {
+    if ([notification object] == [self windowController] && ![self isInViewingMode]) {
         // 書き込み禁止アラートを表示
         [self showNotWritableAlert];
     }
