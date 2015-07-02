@@ -597,7 +597,11 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
         // If not, an alert shows up when user saves the file.
         __weak typeof(self) weakSelf = self;
         dispatch_async(dispatch_get_main_queue(), ^{
-            [weakSelf setFileModificationDate:fileModificationDate];
+            typeof(weakSelf) strongSelf = weakSelf;
+            // if the current document's mod-date is older than the file's mod-date...
+            if ([[strongSelf fileModificationDate] compare:fileModificationDate] == NSOrderedAscending) {
+                [strongSelf setFileModificationDate:fileModificationDate];
+            }
         });
         
         return;
