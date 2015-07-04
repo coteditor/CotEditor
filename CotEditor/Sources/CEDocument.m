@@ -1481,6 +1481,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
                                                forSaveOperation:saveOperation
                                             originalContentsURL:nil
                                                           error:nil];
+    BOOL shouldSaveXattr = [self shouldSaveXattr];
     
     // ユーザがオーナーでないファイルに Finder Lock がかかっていたら編集／保存できない
     BOOL isFinderLockOn = NO;
@@ -1494,12 +1495,11 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     }
     
     NSFileCoordinator *coordinator = [[NSFileCoordinator alloc] initWithFilePresenter:self];
-    
-    // "authopen" コマンドを使って保存
     [coordinator coordinateWritingItemAtURL:url options:0
                                       error:nil
                                  byAccessor:^(NSURL *newURL)
      {
+         // "authopen" コマンドを使って保存
          NSString *convertedPath = @([[newURL path] UTF8String]);
          NSTask *task = [[NSTask alloc] init];
          
@@ -1514,40 +1514,28 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
          
          int status = [task terminationStatus];
          success = (status == 0);
-     }];
-    
-    if (success) {
-        if (saveOperation != NSAutosaveElsewhereOperation) {
-            // presentedItemDidChange にて内容の同一性を比較するためにファイルの MD5 を保存する
-            [self setFileMD5:[data MD5]];
-        }
-        
-        // ファイルのメタデータを設定
-        BOOL shouldSaveXattr = [self shouldSaveXattr];
-        [coordinator coordinateWritingItemAtURL:url options:0
-                                          error:nil
-                                     byAccessor:^(NSURL *newURL)
-         {
-            [[NSFileManager defaultManager] setAttributes:attributes ofItemAtPath:[newURL path] error:nil];
+         
+         // set metadata to the file
+         if (success) {
+             [[NSFileManager defaultManager] setAttributes:attributes ofItemAtPath:[newURL path] error:nil];
              
              // ファイル拡張属性 (com.apple.TextEncoding) にエンコーディングを保存
              if (shouldSaveXattr) {
                  [newURL setAppleTextEncoding:[self encoding]];
              }
-        }];
-    }
+         }
+         
+         // Finder Lock がかかってたなら、再びかける
+         if (isFinderLockOn) {
+             BOOL lockSuccess = [[NSFileManager defaultManager] setAttributes:@{NSFileImmutable:@YES} ofItemAtPath:[newURL path] error:nil];
+             
+             success = (success && lockSuccess);
+         }
+     }];
     
-    // Finder Lock がかかってたなら、再びかける
-    if (isFinderLockOn) {
-        __block BOOL lockSuccess = NO;
-        [coordinator coordinateWritingItemAtURL:url options:0
-                                          error:nil
-                                     byAccessor:^(NSURL *newURL)
-         {
-             lockSuccess = [[NSFileManager defaultManager] setAttributes:@{NSFileImmutable:@YES} ofItemAtPath:[newURL path] error:nil];
-         }];
-        
-        success = (success && lockSuccess);
+    // presentedItemDidChange にて内容の同一性を比較するためにファイルの MD5 を保存する
+    if (success && saveOperation != NSAutosaveElsewhereOperation) {
+        [self setFileMD5:[data MD5]];
     }
     
     return success;
