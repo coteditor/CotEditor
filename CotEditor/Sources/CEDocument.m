@@ -202,6 +202,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     
     if (success) {
         [self setStringToEditor];
+        [self setFileModificationDate:[self fileAttributes][NSFileModificationDate]];
     }
     return success;
 }
@@ -1729,7 +1730,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
             [self updateChangeCount:NSChangeCleared];
         }
     }
-    [self setRevertingForExternalFileUpdate:YES];
+    [self setRevertingForExternalFileUpdate:NO];
     [self setNeedsShowUpdateAlertWithBecomeKey:NO];
 }
 
