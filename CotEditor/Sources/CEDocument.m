@@ -566,31 +566,31 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 {
     // [caution] This method can be called from any thread.
     
-    // ignore if file's modificationDate is the same as document's modificationDate
+    // read fileModificationDate and MD5 of the file
+    __block NSDate *fileModificationDate;
+    __block NSString *MD5;
+    NSDate *documentModificationDate = [self fileModificationDate];
     NSFileCoordinator *coordinator = [[NSFileCoordinator alloc] initWithFilePresenter:self];
     NSError *error = nil;
-    __block NSDate *fileModificationDate;
     [coordinator coordinateReadingItemAtURL:[self fileURL] options:NSFileCoordinatorReadingWithoutChanges
                                       error:&error byAccessor:^(NSURL *newURL)
      {
          NSDictionary *fileAttrs = [[NSFileManager defaultManager] attributesOfItemAtPath:[newURL path] error:nil];
          fileModificationDate = [fileAttrs fileModificationDate];
+         
+         if (![fileModificationDate isEqualToDate:documentModificationDate]) {
+             MD5 = [[NSData dataWithContentsOfURL:newURL] MD5];
+         }
      }];
     if (error) {
         NSLog(@"error on `presentedItemDidChange`: %@ %@", [error localizedDescription], [error localizedFailureReason]);
+        return;
     }
-    if ([fileModificationDate isEqualToDate:[self fileModificationDate]]) { return; }
+    
+    // ignore if file's modificationDate is the same as document's modificationDate
+    if ([fileModificationDate isEqualToDate:documentModificationDate]) { return; }
     
     // ignore if file's MD5 hash is the same as the stored MD5 and deal as if it was not modified.
-    __block NSString *MD5;
-    [coordinator coordinateReadingItemAtURL:[self fileURL] options:NSFileCoordinatorReadingWithoutChanges
-                                      error:&error byAccessor:^(NSURL *newURL)
-     {
-         MD5 = [[NSData dataWithContentsOfURL:newURL] MD5];
-     }];
-    if (error) {
-        NSLog(@"error on `presentedItemDidChange`: %@ %@", [error localizedDescription], [error localizedFailureReason]);
-    }
     if ([MD5 isEqualToString:[self fileMD5]]) {
         // update the document's fileModificationDate for a workaround (2014-03 by 1024jp)
         // If not, an alert shows up when user saves the file.
