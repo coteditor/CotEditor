@@ -253,7 +253,30 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
         [self setAutosavedContentsFileURL:url];
     }
     
-    [super saveToURL:url ofType:typeName forSaveOperation:saveOperation completionHandler:completionHandler];
+    __weak typeof(self) weakSelf = self;
+    [super saveToURL:url ofType:typeName forSaveOperation:saveOperation completionHandler:^(NSError *error)
+     {
+         // [note] This completionHandler block will always be invoked on the main thread.
+         
+         typeof(weakSelf) strongSelf = weakSelf;
+         
+         if (!error) {
+             // apply syntax style that is inferred from the file name
+             if (saveOperation == NSSaveAsOperation) {
+                 [strongSelf setSyntaxStyleWithFileName:[url lastPathComponent] coloring:YES];
+             }
+             
+             if (saveOperation != NSAutosaveElsewhereOperation) {
+                 // update file information
+                 [strongSelf getFileAttributes];
+                 
+                 // send file update notification for the external editor protocol (ODB Editor Suite)
+                 [[strongSelf ODBEventSender] sendModifiedEventWithURL:url operation:saveOperation];
+             }
+         }
+         
+         completionHandler(error);
+     }];
 }
 
 
@@ -262,25 +285,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 - (BOOL)writeSafelyToURL:(NSURL *)url ofType:(NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation error:(NSError *__autoreleasing *)outError
 // ------------------------------------------------------
 {
-    // 保存処理実行
-    BOOL success = [self forceWriteToURL:url ofType:typeName forSaveOperation:saveOperation];
-    
-    if (success) {
-        // 新規保存時、カラーリングのために拡張子を保持
-        if (saveOperation == NSSaveAsOperation) {
-            [self setSyntaxStyleWithFileName:[url lastPathComponent] coloring:YES];
-        }
-        
-        if (saveOperation != NSAutosaveElsewhereOperation) {
-            // 保持しているファイル情報／表示する文書情報を更新
-            [self getFileAttributes];
-            
-            // 外部エディタプロトコル(ODB Editor Suite)のファイル更新通知送信
-            [[self ODBEventSender] sendModifiedEventWithURL:url operation:saveOperation];
-        }
-    }
-
-    return success;
+    return [self forceWriteToURL:url ofType:typeName forSaveOperation:saveOperation];
 }
 
 
