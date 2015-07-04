@@ -232,12 +232,16 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 
 // ------------------------------------------------------
-/// modify place to create backup file
+/// save or autosave the document contents to a file
 - (void)saveToURL:(NSURL *)url ofType:(NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation completionHandler:(void (^)(NSError *))completionHandler
 // ------------------------------------------------------
 {
-    // save backup file always in `~/Library/Autosaved Information/` direcotory
-    // (The default backup URL is the same directory as the fileURL.)
+    // break undo grouping
+    [[[self editor] focusedTextView] breakUndoCoalescing];
+    
+    // modify place to create backup file
+    //   -> save backup file always in `~/Library/Autosaved Information/` direcotory
+    //      (The default backup URL is the same directory as the fileURL.)
     if (saveOperation == NSAutosaveElsewhereOperation && [self fileURL]) {
         NSURL *autosaveDirectoryURL =  [[CEDocumentController sharedDocumentController] autosaveDirectoryURL];
         NSString *baseFileName = [[self fileURL] lastPathComponent];
@@ -258,15 +262,8 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 - (BOOL)writeSafelyToURL:(NSURL *)url ofType:(NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation error:(NSError *__autoreleasing *)outError
 // ------------------------------------------------------
 {
-    BOOL success = NO;
-    
-    // break undo grouping
-    [[[self editor] focusedTextView] breakUndoCoalescing];
-    
-    id token = [self changeCountTokenForSaveOperation:saveOperation];
-    
     // 保存処理実行
-    success = [self forceWriteToURL:url ofType:typeName forSaveOperation:saveOperation];
+    BOOL success = [self forceWriteToURL:url ofType:typeName forSaveOperation:saveOperation];
     
     if (success) {
         // 新規保存時、カラーリングのために拡張子を保持
@@ -281,9 +278,6 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
             // 外部エディタプロトコル(ODB Editor Suite)のファイル更新通知送信
             [[self ODBEventSender] sendModifiedEventWithURL:url operation:saveOperation];
         }
-        
-        // changeCountを更新
-        [self updateChangeCountWithToken:token forSaveOperation:saveOperation];
     }
 
     return success;
