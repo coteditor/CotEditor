@@ -61,6 +61,8 @@
 - (nonnull instancetype)init
 // ------------------------------------------------------
 {
+    // [caution] This method can be called before the userDefaults are initialized.
+    
     self = [super init];
     if (self) {
         _accessorySelectedEncoding = (NSStringEncoding)[[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultEncodingInOpenKey];
@@ -70,10 +72,19 @@
                                                               appropriateForURL:nil
                                                                          create:YES
                                                                           error:nil];
-        
-        [self setAutosavingDelay:(NSTimeInterval)[[NSUserDefaults standardUserDefaults] doubleForKey:CEDefaultAutosavingDelayKey]];
     }
     return self;
+}
+
+
+// ------------------------------------------------------
+/// time interval for periodic autosaving in seconds
+- (NSTimeInterval)autosavingDelay
+// ------------------------------------------------------
+{
+    // [note] Better not to set this `autosavingDelay` on the documentController's `init`,
+    //        since the `init` can be invoked before the userDefaults are initialized with the default values in CEAppDelegate.
+    return (NSTimeInterval)[[NSUserDefaults standardUserDefaults] doubleForKey:CEDefaultAutosavingDelayKey];
 }
 
 

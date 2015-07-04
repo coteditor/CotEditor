@@ -23,6 +23,7 @@ develop
 ### Fixes
 
 - Fix an issue where the application could hang up on document saving.
+- Fix an issue where the autosaving could sometime be disabled.
 - Fix an issue where the layout of the text fields in the find panel could rarely be broken.
 - Fix an issue where the auto-update notifier did not recognize a new stable version from specific beta version numbers.
 - Fix an issue where some 3rd-party text editors for OS X cannot interpret files which were created by CotEditor.
