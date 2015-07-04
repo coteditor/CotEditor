@@ -116,6 +116,15 @@ static CGFloat kPerCompoIncrement;
 }
 
 
+//------------------------------------------------------
+/// override designated initializer
+- (nullable instancetype)init
+//------------------------------------------------------
+{
+    return [self initWithStyleName:nil layoutManager:[[CELayoutManager alloc] init]];
+}
+
+
 
 #pragma mark Public Methods
 

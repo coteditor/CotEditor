@@ -42,7 +42,7 @@
 @property (nonatomic, nullable, weak) IBOutlet NSBox *box;
 
 @property (nonatomic, nullable) CEThemeViewController *themeViewController;
-@property (nonatomic, nullable) NSArray *themeNames;
+@property (nonatomic, nullable, copy) NSArray *themeNames;
 @property (nonatomic, getter=isBundled) BOOL bundled;
 
 @end
@@ -75,6 +75,9 @@
     [self setFontFamilyNameAndSize];
     
     [self setupThemeList];
+    
+    // register droppable types
+    [[self themeTableView] registerForDraggedTypes:@[(NSString *)kUTTypeFileURL]];
     
     // デフォルトテーマを選択
     NSArray *themeNames = [[self themeNames] copy];
@@ -143,6 +146,48 @@
 // ------------------------------------------------------
 {
     return [self themeNames][rowIndex];
+}
+
+
+// ------------------------------------------------------
+/// validate when dragged items come to tableView
+- (NSDragOperation)tableView:(nonnull NSTableView *)tableView validateDrop:(nonnull id<NSDraggingInfo>)info proposedRow:(NSInteger)row proposedDropOperation:(NSTableViewDropOperation)dropOperation
+// ------------------------------------------------------
+{
+    // get file URLs from pasteboard
+    NSPasteboard *pboard = [info draggingPasteboard];
+    NSArray *URLs = [pboard readObjectsForClasses:@[[NSURL class]]
+                                          options:@{NSPasteboardURLReadingFileURLsOnlyKey: @YES,
+                                                    NSPasteboardURLReadingContentsConformToTypesKey: @[CEUTTypeTheme]}];
+    
+    if ([URLs count] == 0) { return NSDragOperationNone; }
+    
+    // highlight text view itself
+    [tableView setDropRow:-1 dropOperation:NSTableViewDropOn];
+    
+    // show number of theme files
+    [info setNumberOfValidItemsForDrop:[URLs count]];
+    
+    return NSDragOperationCopy;
+}
+
+
+// ------------------------------------------------------
+/// check acceptability of dragged items and insert them to table
+- (BOOL)tableView:(nonnull NSTableView *)tableView acceptDrop:(nonnull id<NSDraggingInfo>)info row:(NSInteger)row dropOperation:(NSTableViewDropOperation)dropOperation
+// ------------------------------------------------------
+{
+    [info enumerateDraggingItemsWithOptions:0 forView:tableView classes:@[[NSURL class]]
+                              searchOptions:@{NSPasteboardURLReadingFileURLsOnlyKey: @YES,
+                                              NSPasteboardURLReadingContentsConformToTypesKey: @[CEUTTypeTheme]}
+                                 usingBlock:^(NSDraggingItem *draggingItem, NSInteger idx, BOOL *stop)
+     {
+         NSURL *fileURL = [draggingItem item];
+         
+         [self importThemeWithURL:fileURL];
+     }];
+    
+    return YES;
 }
 
 
@@ -277,13 +322,11 @@
 - (IBAction)addTheme:(nullable id)sender
 //------------------------------------------------------
 {
-    __weak typeof(self) weakSelf = self;
+    NSTableView *tableView = [self themeTableView];
     [[CEThemeManager sharedManager] createUntitledThemeWithCompletionHandler:^(NSString *themeName, NSError *error) {
-        typeof(weakSelf) strongSelf = weakSelf;
-        
         NSArray *themeNames = [[CEThemeManager sharedManager] themeNames];
         NSInteger row = [themeNames indexOfObject:themeName];
-        [[strongSelf themeTableView] selectRowIndexes:[NSIndexSet indexSetWithIndex:row] byExtendingSelection:NO];
+        [tableView selectRowIndexes:[NSIndexSet indexSetWithIndex:row] byExtendingSelection:NO];
     }];
 }
 
@@ -293,7 +336,7 @@
 - (IBAction)deleteTheme:(nullable id)sender
 //------------------------------------------------------
 {
-    [self deleteTheme:[self selectedTheme]];
+    [self deleteThemeWithName:[self selectedTheme]];
 }
 
 
@@ -343,31 +386,10 @@
     [openPanel beginSheetModalForWindow:[[self view] window] completionHandler:^(NSInteger result) {
         if (result == NSFileHandlingPanelCancelButton) { return; }
         
-        NSURL *URL = [openPanel URL];
-        NSError *error = nil;
+        [openPanel orderOut:nil];
+        [[openPanel sheetParent] makeKeyAndOrderFront:nil];
         
-        // インポートを試みる
-        [[CEThemeManager sharedManager] importTheme:URL replace:NO error:&error];
-        
-        if (error) {
-            NSAlert *alert = [NSAlert alertWithError:error];
-            
-            [openPanel orderOut:nil];
-            [[openPanel sheetParent] makeKeyAndOrderFront:nil];
-            
-            // 同名のファイルがある場合は上書きするかを訊く
-            if ([error code] == CEThemeFileDuplicationError) {
-                [alert beginSheetModalForWindow:[[self view] window]
-                                  modalDelegate:self
-                                 didEndSelector:@selector(importDuplicateThemeAlertDidEnd:returnCode:contextInfo:)
-                                    contextInfo:(__bridge_retained void *)(URL)];
-            } else {
-                [alert beginSheetModalForWindow:[[self view] window]
-                                  modalDelegate:nil
-                                 didEndSelector:NULL
-                                    contextInfo:NULL];
-            }
-        }
+        [self importThemeWithURL:[openPanel URL]];
     }];
 }
 
@@ -377,7 +399,7 @@
 - (IBAction)restoreTheme:(nullable id)sender
 // ------------------------------------------------------
 {
-    [self restoreTheme:[self selectedTheme]];
+    [self restoreThemeWithName:[self selectedTheme]];
 }
 
 
@@ -439,13 +461,46 @@
             [[self themeViewController] setRepresentedObject:bundledTheme];
         }
     }];
+}
+
+
+//------------------------------------------------------
+/// try to import theme file at given URL
+- (void)importThemeWithURL:(nonnull NSURL *)URL
+//------------------------------------------------------
+{
+    NSError *error = nil;
+    [[CEThemeManager sharedManager] importTheme:URL replace:NO error:&error];
     
+    if (error) {
+        NSAlert *alert = [NSAlert alertWithError:error];
+        NSWindow *window = [[self view] window];
+        
+        // display as an independent window if any sheet is already attached
+        if ([window attachedSheet]) {
+            window = nil;
+        }
+        
+        // ask for overwriting if a theme with the same name already exists
+        if ([error code] == CEThemeFileDuplicationError) {
+                [alert beginSheetModalForWindow:window
+                                  modalDelegate:self
+                                 didEndSelector:@selector(importDuplicateThemeAlertDidEnd:returnCode:contextInfo:)
+                                    contextInfo:(__bridge_retained void *)URL];
+            
+        } else {
+            [alert beginSheetModalForWindow:window
+                              modalDelegate:nil
+                             didEndSelector:NULL
+                                contextInfo:NULL];
+        }
+    }
 }
 
 
 // ------------------------------------------------------
 /// テーマ削除確認シートが閉じる直前
-- (void)deleteThemeAlertDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
+- (void)deleteThemeAlertDidEnd:(nonnull NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(nullable void *)contextInfo
 // ------------------------------------------------------
 {
     if (returnCode != NSAlertSecondButtonReturn) {  // != Delete
@@ -471,7 +526,7 @@
 
 // ------------------------------------------------------
 /// テーマ読み込みでの重複するテーマの上書き確認シートが閉じる直前
-- (void)importDuplicateThemeAlertDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
+- (void)importDuplicateThemeAlertDidEnd:(nonnull NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(nullable void *)contextInfo
 // ------------------------------------------------------
 {
     if (returnCode != NSAlertSecondButtonReturn) {  // Cancel

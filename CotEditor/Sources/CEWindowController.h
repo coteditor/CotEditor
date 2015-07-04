@@ -37,8 +37,8 @@
 
 @interface CEWindowController : NSWindowController <NSWindowDelegate>
 
-@property (readonly, nonatomic, weak) CEEditorWrapper *editor;
-@property (readonly, nonatomic, weak) CEToolbarController *toolbarController;
+@property (readonly, nonatomic, nullable, weak) CEEditorWrapper *editor;
+@property (readonly, nonatomic, nullable, weak) CEToolbarController *toolbarController;
 @property (readonly, nonatomic) BOOL showsStatusBar;
 
 
@@ -51,8 +51,8 @@
 - (void)setupEditorInfoUpdateTimer;
 
 // Action Messages
-- (IBAction)getInfo:(id)sender;
-- (IBAction)toggleIncompatibleCharList:(id)sender;
-- (IBAction)toggleStatusBar:(id)sender;
+- (IBAction)getInfo:(nullable id)sender;
+- (IBAction)toggleIncompatibleCharList:(nullable id)sender;
+- (IBAction)toggleStatusBar:(nullable id)sender;
 
 @end

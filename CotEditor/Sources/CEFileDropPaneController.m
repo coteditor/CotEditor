@@ -187,6 +187,10 @@
 - (IBAction)removeSetting:(nullable id)sender
 // ------------------------------------------------------
 {
+    NSInteger selectedRow = [[self extensionTableView] selectedRow];
+    
+    if (selectedRow == -1) { return; }
+    
     // (編集中に削除ボタンが押され、かつ自動削除対象であったときの整合性を取るための)削除実施フラグをたてる
     [self setDeletingFileDrop:YES];
     
@@ -194,7 +198,7 @@
     [[sender window] makeFirstResponder:sender];
     
     // 確認ダイアログを出す
-    [self confirmDeletion];
+    [self deleteSettingAtIndex:selectedRow];
 }
 
 
@@ -257,19 +261,14 @@
 
 // ------------------------------------------------------
 /// 削除して良いかを確認
-- (void)confirmDeletion
+- (void)deleteSettingAtIndex:(NSUInteger)rowIndex
 // ------------------------------------------------------
 {
     // フラグがたっていなければ（既に controlTextDidEndEditing: で自動削除されていれば）何もしない
     if (![self isDeletingFileDrop]) { return; }
     
-    NSArray *selected = [[self fileDropController] selectedObjects];
-    NSString *extension = [selected firstObject][CEFileDropExtensionsKey];
-    if ([selected count] == 0) {
-        return;
-    } else if (!extension) {
-        extension = @"";
-    }
+    NSDictionary *item = [[self fileDropController] arrangedObjects][rowIndex];
+    NSString *extension = item ? item[CEFileDropExtensionsKey] : @"";
     
     NSAlert *alert = [[NSAlert alloc] init];
     [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"Delete the File Drop setting for “%@”?", nil), extension]];
@@ -280,7 +279,7 @@
     [alert beginSheetModalForWindow:[[self view] window]
                       modalDelegate:self
                      didEndSelector:@selector(deleteSettingAlertDidEnd:returnCode:contextInfo:)
-                        contextInfo:NULL];
+                        contextInfo:rowIndex];
 }
 
 
@@ -291,13 +290,13 @@
 {
     if (returnCode != NSAlertSecondButtonReturn) { return; } // != Delete
     
-    if ([[self fileDropController] selectionIndex] == NSNotFound) { return; }
+    if (![self isDeletingFileDrop]) { return; }
     
-    if ([self isDeletingFileDrop]) {
-        [[self fileDropController] remove:self];
-        [self storeSetting];
-        [self setDeletingFileDrop:NO];
-    }
+    NSUInteger index = contextInfo;
+    
+    [[self fileDropController] removeObjectAtArrangedObjectIndex:index];
+    [self storeSetting];
+    [self setDeletingFileDrop:NO];
 }
 
 @end

@@ -51,22 +51,22 @@ typedef NS_ENUM(NSUInteger, CESidebarTag) {
 
 @property (nonatomic) CESidebarTag selectedSidebarTag;
 @property (nonatomic) BOOL needsRecolorWithBecomeKey;  // flag to update sytnax highlight when window becomes key window
-@property (nonatomic) NSTimer *editorInfoUpdateTimer;
+@property (nonatomic, nullable) NSTimer *editorInfoUpdateTimer;
 @property (nonatomic) CGFloat sidebarWidth;
 
 
 // IBOutlets
-@property (nonatomic) IBOutlet CEStatusBarController *statusBarController;
-@property (nonatomic) IBOutlet NSViewController *documentInspectorViewController;
-@property (nonatomic) IBOutlet CEIncompatibleCharsViewController *incompatibleCharsViewController;
-@property (nonatomic, weak) IBOutlet NSSplitView *sidebarSplitView;
-@property (nonatomic, weak) IBOutlet NSView *sidebar;
-@property (nonatomic, weak) IBOutlet NSView *sidebarPlaceholderView;
-@property (nonatomic) IBOutlet CEDocumentAnalyzer *documentAnalyzer;
+@property (nonatomic, nullable) IBOutlet CEStatusBarController *statusBarController;
+@property (nonatomic, nullable) IBOutlet NSViewController *documentInspectorViewController;
+@property (nonatomic, nullable) IBOutlet CEIncompatibleCharsViewController *incompatibleCharsViewController;
+@property (nonatomic, nullable, weak) IBOutlet NSSplitView *sidebarSplitView;
+@property (nonatomic, nullable, weak) IBOutlet NSView *sidebar;
+@property (nonatomic, nullable, weak) IBOutlet NSView *sidebarPlaceholderView;
+@property (nonatomic, nullable) IBOutlet CEDocumentAnalyzer *documentAnalyzer;
 
 // IBOutlets (readonly)
-@property (readwrite, nonatomic, weak) IBOutlet CEToolbarController *toolbarController;
-@property (readwrite, nonatomic, weak) IBOutlet CEEditorWrapper *editor;
+@property (readwrite, nonatomic, nullable, weak) IBOutlet CEToolbarController *toolbarController;
+@property (readwrite, nonatomic, nullable, weak) IBOutlet CEEditorWrapper *editor;
 
 @end
 
@@ -180,7 +180,7 @@ static NSTimeInterval infoUpdateInterval;
 
 // ------------------------------------------------------
 /// validate menu items
-- (BOOL)validateMenuItem:(NSMenuItem *)menuItem
+- (BOOL)validateMenuItem:(nonnull NSMenuItem *)menuItem
 // ------------------------------------------------------
 {
     if ([menuItem action] == @selector(toggleStatusBar:)) {
@@ -198,7 +198,7 @@ static NSTimeInterval infoUpdateInterval;
 
 // ------------------------------------------------------
 /// apply user defaults change
--(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+-(void)observeValueForKeyPath:(nullable NSString *)keyPath ofObject:(nullable id)object change:(nullable NSDictionary *)change context:(nullable void *)context
 // ------------------------------------------------------
 {
     if ([keyPath isEqualToString:CEDefaultWindowAlphaKey]) {
@@ -213,7 +213,7 @@ static NSTimeInterval infoUpdateInterval;
 
 // ------------------------------------------------------
 /// OgreKit method that passes the main textView.
-- (void)tellMeTargetToFindIn:(id)sender
+- (void)tellMeTargetToFindIn:(nullable id)sender
 // ------------------------------------------------------
 {
     OgreTextFinder *textFinder = (OgreTextFinder *)sender;
@@ -337,7 +337,7 @@ static NSTimeInterval infoUpdateInterval;
 
 // ------------------------------------------------------
 /// window becomes key window
-- (void)windowDidBecomeKey:(NSNotification *)notification
+- (void)windowDidBecomeKey:(nonnull NSNotification *)notification
 // ------------------------------------------------------
 {
     // do nothing if any sheet is attached
@@ -353,7 +353,7 @@ static NSTimeInterval infoUpdateInterval;
 
 // ------------------------------------------------------
 /// save window state on application termination
-- (void)window:(NSWindow *)window willEncodeRestorableState:(NSCoder *)state
+- (void)window:(nonnull NSWindow *)window willEncodeRestorableState:(nonnull NSCoder *)state
 // ------------------------------------------------------
 {
     [state encodeBool:[[self statusBarController] isShown] forKey:CEDefaultShowStatusBarKey];
@@ -369,7 +369,7 @@ static NSTimeInterval infoUpdateInterval;
 
 // ------------------------------------------------------
 /// restore window state from the last session
-- (void)window:(NSWindow *)window didDecodeRestorableState:(NSCoder *)state
+- (void)window:(nonnull NSWindow *)window didDecodeRestorableState:(nonnull NSCoder *)state
 // ------------------------------------------------------
 {
     if ([state containsValueForKey:CEDefaultShowStatusBarKey]) {
@@ -403,7 +403,7 @@ static NSTimeInterval infoUpdateInterval;
 
 // ------------------------------------------------------
 /// only sidebar can collapse
-- (BOOL)splitView:(NSSplitView *)splitView canCollapseSubview:(NSView *)subview
+- (BOOL)splitView:(nonnull NSSplitView *)splitView canCollapseSubview:(nonnull NSView *)subview
 // ------------------------------------------------------
 {
     return (subview == [self sidebar]);
@@ -412,7 +412,7 @@ static NSTimeInterval infoUpdateInterval;
 
 // ------------------------------------------------------
 /// hide sidebar divider when collapsed
-- (BOOL)splitView:(NSSplitView *)splitView shouldHideDividerAtIndex:(NSInteger)dividerIndex
+- (BOOL)splitView:(nonnull NSSplitView *)splitView shouldHideDividerAtIndex:(NSInteger)dividerIndex
 // ------------------------------------------------------
 {
     return YES;
@@ -421,7 +421,7 @@ static NSTimeInterval infoUpdateInterval;
 
 // ------------------------------------------------------
 /// store current sidebar width
-- (void)splitViewDidResizeSubviews:(NSNotification *)notification
+- (void)splitViewDidResizeSubviews:(nonnull NSNotification *)notification
 // ------------------------------------------------------
 {
     if ([notification userInfo][@"NSSplitViewDividerIndex"]) {  // check wheter the change coused by user's divider dragging
@@ -439,7 +439,7 @@ static NSTimeInterval infoUpdateInterval;
 
 // ------------------------------------------------------
 /// toggle visibility of document inspector
-- (IBAction)getInfo:(id)sender
+- (IBAction)getInfo:(nullable id)sender
 // ------------------------------------------------------
 {
     if ([self isDocumentInspectorShown]) {
@@ -453,7 +453,7 @@ static NSTimeInterval infoUpdateInterval;
 
 // ------------------------------------------------------
 /// toggle visibility of incompatible chars list view
-- (IBAction)toggleIncompatibleCharList:(id)sender
+- (IBAction)toggleIncompatibleCharList:(nullable id)sender
 // ------------------------------------------------------
 {
     if ([self isSidebarShown] && [self selectedSidebarTag] == CEIncompatibleCharsTag) {
@@ -467,7 +467,7 @@ static NSTimeInterval infoUpdateInterval;
 
 // ------------------------------------------------------
 /// toggle visibility of status bar
-- (IBAction)toggleStatusBar:(id)sender
+- (IBAction)toggleStatusBar:(nullable id)sender
 // ------------------------------------------------------
 {
     [self setShowsStatusBar:![self showsStatusBar]];
@@ -577,7 +577,7 @@ static NSTimeInterval infoUpdateInterval;
 
 // ------------------------------------------------------
 /// set a flag of syntax highlight update if corresponded style has been updated
-- (void)syntaxDidUpdate:(NSNotification *)notification
+- (void)syntaxDidUpdate:(nonnull NSNotification *)notification
 // ------------------------------------------------------
 {
     NSString *currentName = [[self editor] syntaxStyleName];
@@ -601,7 +601,7 @@ static NSTimeInterval infoUpdateInterval;
 
 // ------------------------------------------------------
 /// editor info update timer is fired
-- (void)updateEditorInfoWithTimer:(NSTimer *)timer
+- (void)updateEditorInfoWithTimer:(nonnull NSTimer *)timer
 // ------------------------------------------------------
 {
     [self stopEditorInfoUpdateTimer];

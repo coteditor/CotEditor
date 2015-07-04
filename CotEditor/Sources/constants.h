@@ -40,6 +40,9 @@
 // Separator
 extern NSString *__nonnull const CESeparatorString;
 
+// Exported UTI
+extern NSString *__nonnull const CEUTTypeTheme;
+
 // Error domain
 extern NSString *__nonnull const CEErrorDomain;
 

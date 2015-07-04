@@ -5,11 +5,17 @@ Change Log
 develop
 --------------------------
 
+### New Features
+
+- Importing theme files via drag-and-drop to theme list in preferences.
+
+
 ### Additions/Changes
 
 - Support displaying skin tone variations of Unicode 8.0 on the character inspector.
 - Support Automatic Termination (Now, CotEditor can be terminated automatically if it has no window).
 - Display invisible vertical tab (`U+000B`) with `␋` symbol if “Show other invisible characters” turns on.
+- Add fancy animations to encoding list edit sheet in preferences.
 - Add tooltip hint to controls in the find panel.
 - Update Sparkle framework to version 1.10.0.
 
@@ -17,9 +23,11 @@ develop
 ### Fixes
 
 - Fix an issue where the application could hang up on document saving.
+- Fix an issue where the autosaving could sometime be disabled.
 - Fix an issue where the layout of the text fields in the find panel could rarely be broken.
 - Fix an issue where the auto-update notifier did not recognize a new stable version from specific beta version numbers.
 - Fix an issue where some 3rd-party text editors for OS X cannot interpret files which were created by CotEditor.
+- Fix an issue where selection after modifying sort of extnsion priority in syntax style edit sheet was wrong.
 - Add some missing Localized strings in simplified Chinese. (Thanks to Wei Wang!)
 - Improve general stability.
 

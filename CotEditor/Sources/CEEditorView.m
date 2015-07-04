@@ -105,7 +105,7 @@
                                                                      options:0 metrics:nil views:views]];
 
         // TextStorage と LayoutManager を生成
-        [self setTextStorage:[[NSTextStorage alloc] initWithString:@" "]];
+        [self setTextStorage:[[NSTextStorage alloc] init]];
         CELayoutManager *layoutManager = [[CELayoutManager alloc] init];
         [_textStorage addLayoutManager:layoutManager];
         [layoutManager setBackgroundLayoutEnabled:YES];

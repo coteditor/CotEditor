@@ -232,12 +232,16 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 
 // ------------------------------------------------------
-/// modify place to create backup file
+/// save or autosave the document contents to a file
 - (void)saveToURL:(NSURL *)url ofType:(NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation completionHandler:(void (^)(NSError *))completionHandler
 // ------------------------------------------------------
 {
-    // save backup file always in `~/Library/Autosaved Information/` direcotory
-    // (The default backup URL is the same directory as the fileURL.)
+    // break undo grouping
+    [[[self editor] focusedTextView] breakUndoCoalescing];
+    
+    // modify place to create backup file
+    //   -> save backup file always in `~/Library/Autosaved Information/` direcotory
+    //      (The default backup URL is the same directory as the fileURL.)
     if (saveOperation == NSAutosaveElsewhereOperation && [self fileURL]) {
         NSURL *autosaveDirectoryURL =  [[CEDocumentController sharedDocumentController] autosaveDirectoryURL];
         NSString *baseFileName = [[self fileURL] lastPathComponent];
@@ -249,7 +253,30 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
         [self setAutosavedContentsFileURL:url];
     }
     
-    [super saveToURL:url ofType:typeName forSaveOperation:saveOperation completionHandler:completionHandler];
+    __weak typeof(self) weakSelf = self;
+    [super saveToURL:url ofType:typeName forSaveOperation:saveOperation completionHandler:^(NSError *error)
+     {
+         // [note] This completionHandler block will always be invoked on the main thread.
+         
+         typeof(weakSelf) strongSelf = weakSelf;
+         
+         if (!error) {
+             // apply syntax style that is inferred from the file name
+             if (saveOperation == NSSaveAsOperation) {
+                 [strongSelf setSyntaxStyleWithFileName:[url lastPathComponent] coloring:YES];
+             }
+             
+             if (saveOperation != NSAutosaveElsewhereOperation) {
+                 // update file information
+                 [strongSelf getFileAttributes];
+                 
+                 // send file update notification for the external editor protocol (ODB Editor Suite)
+                 [[strongSelf ODBEventSender] sendModifiedEventWithURL:url operation:saveOperation];
+             }
+         }
+         
+         completionHandler(error);
+     }];
 }
 
 
@@ -258,35 +285,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 - (BOOL)writeSafelyToURL:(NSURL *)url ofType:(NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation error:(NSError *__autoreleasing *)outError
 // ------------------------------------------------------
 {
-    BOOL success = NO;
-    
-    // break undo grouping
-    [[[self editor] focusedTextView] breakUndoCoalescing];
-    
-    id token = [self changeCountTokenForSaveOperation:saveOperation];
-    
-    // 保存処理実行
-    success = [self forceWriteToURL:url ofType:typeName forSaveOperation:saveOperation];
-    
-    if (success) {
-        // 新規保存時、カラーリングのために拡張子を保持
-        if (saveOperation == NSSaveAsOperation) {
-            [self setSyntaxStyleWithFileName:[url lastPathComponent] coloring:YES];
-        }
-        
-        if (saveOperation != NSAutosaveElsewhereOperation) {
-            // 保持しているファイル情報／表示する文書情報を更新
-            [self getFileAttributes];
-            
-            // 外部エディタプロトコル(ODB Editor Suite)のファイル更新通知送信
-            [[self ODBEventSender] sendModifiedEventWithURL:url operation:saveOperation];
-        }
-        
-        // changeCountを更新
-        [self updateChangeCountWithToken:token forSaveOperation:saveOperation];
-    }
-
-    return success;
+    return [self forceWriteToURL:url ofType:typeName forSaveOperation:saveOperation];
 }
 
 
@@ -567,37 +566,41 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 {
     // [caution] This method can be called from any thread.
     
-    // ignore if file's modificationDate is the same as document's modificationDate
+    // read fileModificationDate and MD5 of the file
+    __block NSDate *fileModificationDate;
+    __block NSString *MD5;
+    NSDate *documentModificationDate = [self fileModificationDate];
     NSFileCoordinator *coordinator = [[NSFileCoordinator alloc] initWithFilePresenter:self];
     NSError *error = nil;
-    __block NSDate *fileModificationDate;
     [coordinator coordinateReadingItemAtURL:[self fileURL] options:NSFileCoordinatorReadingWithoutChanges
                                       error:&error byAccessor:^(NSURL *newURL)
      {
          NSDictionary *fileAttrs = [[NSFileManager defaultManager] attributesOfItemAtPath:[newURL path] error:nil];
          fileModificationDate = [fileAttrs fileModificationDate];
+         
+         if (![fileModificationDate isEqualToDate:documentModificationDate]) {
+             MD5 = [[NSData dataWithContentsOfURL:newURL] MD5];
+         }
      }];
     if (error) {
         NSLog(@"error on `presentedItemDidChange`: %@ %@", [error localizedDescription], [error localizedFailureReason]);
+        return;
     }
-    if ([fileModificationDate isEqualToDate:[self fileModificationDate]]) { return; }
+    
+    // ignore if file's modificationDate is the same as document's modificationDate
+    if ([fileModificationDate isEqualToDate:documentModificationDate]) { return; }
     
     // ignore if file's MD5 hash is the same as the stored MD5 and deal as if it was not modified.
-    __block NSString *MD5;
-    [coordinator coordinateReadingItemAtURL:[self fileURL] options:NSFileCoordinatorReadingWithoutChanges
-                                      error:&error byAccessor:^(NSURL *newURL)
-     {
-         MD5 = [[NSData dataWithContentsOfURL:newURL] MD5];
-     }];
-    if (error) {
-        NSLog(@"error on `presentedItemDidChange`: %@ %@", [error localizedDescription], [error localizedFailureReason]);
-    }
     if ([MD5 isEqualToString:[self fileMD5]]) {
         // update the document's fileModificationDate for a workaround (2014-03 by 1024jp)
         // If not, an alert shows up when user saves the file.
         __weak typeof(self) weakSelf = self;
         dispatch_async(dispatch_get_main_queue(), ^{
-            [weakSelf setFileModificationDate:fileModificationDate];
+            typeof(weakSelf) strongSelf = weakSelf;
+            // if the current document's mod-date is older than the file's mod-date...
+            if ([[strongSelf fileModificationDate] compare:fileModificationDate] == NSOrderedAscending) {
+                [strongSelf setFileModificationDate:fileModificationDate];
+            }
         });
         
         return;
@@ -882,7 +885,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 - (void)documentDidFinishOpen:(NSNotification *)notification
 // ------------------------------------------------------
 {
-    if ([notification object] == [self windowController]) {
+    if ([notification object] == [self windowController] && ![self isInViewingMode]) {
         // 書き込み禁止アラートを表示
         [self showNotWritableAlert];
     }
@@ -1478,6 +1481,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
                                                forSaveOperation:saveOperation
                                             originalContentsURL:nil
                                                           error:nil];
+    BOOL shouldSaveXattr = [self shouldSaveXattr];
     
     // ユーザがオーナーでないファイルに Finder Lock がかかっていたら編集／保存できない
     BOOL isFinderLockOn = NO;
@@ -1491,12 +1495,11 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     }
     
     NSFileCoordinator *coordinator = [[NSFileCoordinator alloc] initWithFilePresenter:self];
-    
-    // "authopen" コマンドを使って保存
     [coordinator coordinateWritingItemAtURL:url options:0
                                       error:nil
                                  byAccessor:^(NSURL *newURL)
      {
+         // "authopen" コマンドを使って保存
          NSString *convertedPath = @([[newURL path] UTF8String]);
          NSTask *task = [[NSTask alloc] init];
          
@@ -1511,40 +1514,28 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
          
          int status = [task terminationStatus];
          success = (status == 0);
-     }];
-    
-    if (success) {
-        if (saveOperation != NSAutosaveElsewhereOperation) {
-            // presentedItemDidChange にて内容の同一性を比較するためにファイルの MD5 を保存する
-            [self setFileMD5:[data MD5]];
-        }
-        
-        // ファイルのメタデータを設定
-        BOOL shouldSaveXattr = [self shouldSaveXattr];
-        [coordinator coordinateWritingItemAtURL:url options:0
-                                          error:nil
-                                     byAccessor:^(NSURL *newURL)
-         {
-            [[NSFileManager defaultManager] setAttributes:attributes ofItemAtPath:[newURL path] error:nil];
+         
+         // set metadata to the file
+         if (success) {
+             [[NSFileManager defaultManager] setAttributes:attributes ofItemAtPath:[newURL path] error:nil];
              
              // ファイル拡張属性 (com.apple.TextEncoding) にエンコーディングを保存
              if (shouldSaveXattr) {
                  [newURL setAppleTextEncoding:[self encoding]];
              }
-        }];
-    }
+         }
+         
+         // Finder Lock がかかってたなら、再びかける
+         if (isFinderLockOn) {
+             BOOL lockSuccess = [[NSFileManager defaultManager] setAttributes:@{NSFileImmutable:@YES} ofItemAtPath:[newURL path] error:nil];
+             
+             success = (success && lockSuccess);
+         }
+     }];
     
-    // Finder Lock がかかってたなら、再びかける
-    if (isFinderLockOn) {
-        __block BOOL lockSuccess = NO;
-        [coordinator coordinateWritingItemAtURL:url options:0
-                                          error:nil
-                                     byAccessor:^(NSURL *newURL)
-         {
-             lockSuccess = [[NSFileManager defaultManager] setAttributes:@{NSFileImmutable:@YES} ofItemAtPath:[newURL path] error:nil];
-         }];
-        
-        success = (success && lockSuccess);
+    // presentedItemDidChange にて内容の同一性を比較するためにファイルの MD5 を保存する
+    if (success && saveOperation != NSAutosaveElsewhereOperation) {
+        [self setFileMD5:[data MD5]];
     }
     
     return success;

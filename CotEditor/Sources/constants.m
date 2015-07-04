@@ -40,6 +40,9 @@
 // separator
 NSString *__nonnull const CESeparatorString = @"-";
 
+// Exported UTI
+NSString *__nonnull const CEUTTypeTheme = @"com.coteditor.CotEditor.theme";
+
 // Error domain
 NSString *__nonnull const CEErrorDomain = @"com.coteditor.CotEditor.ErrorDomain";
 

@@ -9,7 +9,7 @@
  encoding="UTF-8"
  ------------------------------------------------------------------------------
  
- © 2014 1024jp
+ © 2014-2015 1024jp
  
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU General Public License as published by the Free Software
@@ -56,10 +56,7 @@ static NSString *__nonnull const CEObjectsType = @"CEObjectsType";
     [pboard setPropertyList:[NSKeyedArchiver archivedDataWithRootObject:rowIndexes] forType:CERowsType];
     
     // store objects to drag to pasteboard
-    __block NSMutableArray *objects = [NSMutableArray arrayWithCapacity:[rowIndexes count]];
-    [rowIndexes enumerateIndexesUsingBlock:^(NSUInteger idx, BOOL *stop) {
-        [objects addObject:[self arrangedObjects][idx]];
-    }];
+    NSArray *objects = [[self arrangedObjects] objectsAtIndexes:rowIndexes];
     [pboard setPropertyList:objects forType:CEObjectsType];
     
     return YES;
@@ -95,19 +92,18 @@ static NSString *__nonnull const CEObjectsType = @"CEObjectsType";
     }
     
     NSIndexSet *originalRows = [NSKeyedUnarchiver unarchiveObjectWithData:[[info draggingPasteboard] propertyListForType:CERowsType]];
-    NSMutableArray *objects = [[info draggingPasteboard] propertyListForType:CEObjectsType];
+    NSArray *draggingItems = [[info draggingPasteboard] propertyListForType:CEObjectsType];
+    NSUInteger newRow = row - [originalRows countOfIndexesInRange:NSMakeRange(0, row)];  // real insertion point after removing items to move
+    NSIndexSet *insertRows = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(newRow, [draggingItems count])];
     
     // remove original rows
     [self removeObjectsAtArrangedObjectIndexes:originalRows];
     
     // insert objects to new rows
-    __block NSUInteger newRow = row - [originalRows countOfIndexesInRange:NSMakeRange(0, row)];
-    __block NSUInteger i = 0;
-    [originalRows enumerateIndexesUsingBlock:^(NSUInteger idx, BOOL *stop) {
-        [self insertObject:objects[i] atArrangedObjectIndex:newRow];
-        newRow++;
-        i++;
-    }];
+    [self insertObjects:draggingItems atArrangedObjectIndexes:insertRows];
+    
+    // select dropped items
+    [tableView selectRowIndexes:insertRows byExtendingSelection:NO];
     
     return  YES;
 }

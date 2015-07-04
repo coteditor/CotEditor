@@ -40,7 +40,7 @@
 
 @interface CEPreferencesWindowController ()
 
-@property (nonatomic, copy) NSArray *viewControllers;
+@property (nonatomic, nonnull, copy) NSArray *viewControllers;
 
 @end
 
@@ -141,9 +141,9 @@
     [[self window] setTitle:[sender label]];
     
     // resize window to fit to new view
-    NSRect frame    = [[self window] frame];
+    NSRect frame = [[self window] frame];
     NSRect newFrame = [[self window] frameRectForContentRect:[newView frame]];
-    newFrame.origin    = frame.origin;
+    newFrame.origin = frame.origin;
     newFrame.origin.y += NSHeight(frame) - NSHeight(newFrame);
     [[self window] setFrame:newFrame display:YES animate:YES];
     
