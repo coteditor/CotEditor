@@ -67,6 +67,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 @property (nonatomic) CEODBEventSender *ODBEventSender;
 @property (nonatomic) BOOL shouldSaveXattr;
 @property (nonatomic, copy) NSString *autosaveIdentifier;
+@property (nonatomic) BOOL suppressesIANACharsetConflictAlert;
 
 // readonly
 @property (readwrite, nonatomic) CEWindowController *windowController;
@@ -1440,7 +1441,10 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 - (BOOL)acceptsSaveDocumentWithIANACharSetName
 // ------------------------------------------------------
 {
+    if ([self suppressesIANACharsetConflictAlert]) { return YES; }
+    
     NSStringEncoding IANACharSetEncoding = [self scanCharsetOrEncodingFromString:[self stringForSave]];
+    
     NSStringEncoding ShiftJIS = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingShiftJIS);
     NSStringEncoding X0213 = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingShiftJIS_X0213);
     
@@ -1463,7 +1467,14 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
         NSError *error = [NSError errorWithDomain:CEErrorDomain code:CEIANACharsetNameConflictError userInfo:userInfo];
         
         NSAlert *alert = [NSAlert alertWithError:error];
+        [alert setShowsSuppressionButton:YES];
+        [[alert suppressionButton] setTitle:NSLocalizedString(@"Do not show this warning for this document again", nil)];
+        
         NSInteger result = [alert runModal];
+        // do not show the alert in this document again
+        if ([[alert suppressionButton] state] == NSOnState) {
+            [self setSuppressesIANACharsetConflictAlert:YES];
+        }
         if (result != NSAlertSecondButtonReturn) {  // == Cancel
             return NO;
         }
@@ -1489,6 +1500,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
                                    NSLocalizedRecoveryOptionsErrorKey: @[NSLocalizedString(@"Show Incompatible Chars", nil),
                                                                          NSLocalizedString(@"Save Available Strings", nil),
                                                                          NSLocalizedString(@"Cancel", nil)],
+                                   NSRecoveryAttempterErrorKey: self,
                                    NSStringEncodingErrorKey: @([self encoding]),
                                    };
         

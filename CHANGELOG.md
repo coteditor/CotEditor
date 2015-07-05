@@ -16,6 +16,7 @@ develop
 - Support Automatic Termination (Now, CotEditor can be terminated automatically if it has no window).
 - Display invisible vertical tab (`U+000B`) with `␋` symbol if “Show other invisible characters” turns on.
 - Add fancy animations to encoding list edit sheet in preferences.
+- Add suppression button to the IANA charset name conflict alret.
 - Add tooltip hint to controls in the find panel.
 - Update Sparkle framework to version 1.10.0.
 

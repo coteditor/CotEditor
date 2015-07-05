@@ -65,6 +65,7 @@
 "Continue Saving" = "继续保存";
 "The encoding is “%@”, but the IANA charset name in text is “%@”." = "编码为 “%@”，但是文本中的 IANA 字符集名字为 “%@”。";
 "Do you want to continue processing?" = "继续进行处理吗？";
+"Do not show this warning for this document again" = "不再显示此信息";  // FIXME:
 
 "Finder's lock could not be released." = "Finder 锁定无法解除。";
 "You can use “Save As” to save a copy." = "你可以使用 “另存为” 来保存一份副本";
