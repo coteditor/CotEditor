@@ -752,16 +752,24 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 // ------------------------------------------------------
 /// 指定されたエンコーディングでファイルを再解釈する
-- (BOOL)reinterpretWithEncoding:(NSStringEncoding)encoding
+- (BOOL)reinterpretWithEncoding:(NSStringEncoding)encoding error:(NSError *__autoreleasing *)outError
 // ------------------------------------------------------
 {
-    if (encoding == NSNotFound || ![self fileURL]) { return NO; }
+    BOOL success = NO;
+    
+    if (encoding == NSNotFound || ![self fileURL]) {
+        if (outError) {
+            // TODO: add userInfo (The outError under this condition will actually not be used, but better not to pass an empty errer pointer.)
+            *outError = [NSError errorWithDomain:CEErrorDomain code:CEReinterpretationFailedError userInfo:nil];
+        }
+        return NO;
+    }
     
     // do nothing if given encoding is the same as current one
     if (encoding == [self encoding]) { return YES; }
     
     // reinterpret
-    BOOL success = [self readFromURL:[self fileURL] encoding:encoding];
+    success = [self readFromURL:[self fileURL] encoding:encoding];
     
     if (success) {
         [self setStringToEditor];
@@ -772,6 +780,17 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
         
         // update popup menu in the toolbar
         [[[self windowController] toolbarController] setSelectedEncoding:[self encoding]];
+        
+    } else {
+        if (outError) {
+            NSString *encodingName = [NSString localizedNameOfStringEncoding:encoding];
+            NSDictionary *userInfo = @{NSLocalizedDescriptionKey: NSLocalizedString(@"Can not reinterpret", nil),
+                                       NSLocalizedRecoverySuggestionErrorKey: [NSString stringWithFormat:NSLocalizedString(@"The file “%@” could not be reinterpreted using the new encoding “%@”.", nil), [[self fileURL] path], encodingName],
+                                       NSStringEncodingErrorKey: @(encoding),
+                                       NSURLErrorKey: [self fileURL],
+                                       };
+            *outError = [NSError errorWithDomain:CEErrorDomain code:CEReinterpretationFailedError userInfo:userInfo];
+        }
     }
     
     return success;
@@ -1008,13 +1027,11 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
             }
         }
         
-        BOOL success = [self reinterpretWithEncoding:encoding];
+        NSError *error = nil;
+        [self reinterpretWithEncoding:encoding error:&error];
         
-        if (!success) {
-            NSAlert *alert = [[NSAlert alloc] init];
-            [alert setMessageText:NSLocalizedString(@"Can not reinterpret", nil)];
-            [alert setInformativeText:[NSString stringWithFormat:NSLocalizedString(@"The file “%@” could not be reinterpreted using the new encoding “%@”.", nil), [[self fileURL] path], encodingName]];
-            [alert addButtonWithTitle:NSLocalizedString(@"Done", nil)];
+        if (error) {
+            NSAlert *alert = [NSAlert alertWithError:error];
             [alert setAlertStyle:NSCriticalAlertStyle];
             
             NSBeep();

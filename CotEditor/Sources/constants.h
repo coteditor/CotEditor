@@ -54,6 +54,7 @@ typedef NS_ENUM(OSStatus, CEErrorCode) {
     // encoding errors
     CEIANACharsetNameConflictError,
     CEUnconvertibleCharactersError,
+    CEReinterpretationFailedError,
     
     // for command-line tool
     CEApplicationNotInApplicationDirectoryError,

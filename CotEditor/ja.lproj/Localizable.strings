@@ -76,7 +76,6 @@
 "Do you want to discard the changes and reset the file encodidng?" = "変更内容を破棄してエンコードをリセットしてもよろしいですか？";
 
 "Can not reinterpret" = "再解釈できません。";
-"Done" = "OK";
 "The file “%@” could not be reinterpreted using the new encoding “%@”." = "ファイル“%@”はエンコード“%@”で再解釈できませんでした。";
 
 "new encoding" = "新しいエンコーディング";

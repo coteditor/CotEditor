@@ -69,7 +69,7 @@ extern NSString *const CEIncompatibleConvertedCharKey;
 // string encoding
 - (NSString *)currentIANACharSetName;
 - (NSArray *)findCharsIncompatibleWithEncoding:(NSStringEncoding)encoding;
-- (BOOL)reinterpretWithEncoding:(NSStringEncoding)encoding;
+- (BOOL)reinterpretWithEncoding:(NSStringEncoding)encoding error:(NSError **)outError;
 - (BOOL)doSetEncoding:(NSStringEncoding)encoding updateDocument:(BOOL)updateDocument askLossy:(BOOL)askLossy lossy:(BOOL)lossy asActionName:(NSString *)actionName;
 
 // line ending

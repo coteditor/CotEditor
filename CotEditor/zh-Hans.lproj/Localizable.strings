@@ -75,7 +75,6 @@
 "Do you want to discard the changes and reset the file encodidng?" = "确定要放弃修改内容并且重置文件编码吗？";
 
 "Can not reinterpret" = "无法再次解释";
-"Done" = "好";
 "The file “%@” could not be reinterpreted using the new encoding “%@”." = "文件 “%@” 无法使用 “%@” 编码再次解释";
 
 "new encoding" = "新编码";
