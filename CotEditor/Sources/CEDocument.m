@@ -901,8 +901,8 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 - (IBAction)saveDocument:(id)sender
 // ------------------------------------------------------
 {
-    if (![self acceptSaveDocumentWithIANACharSetName]) { return; }
-    if (![self acceptSaveDocumentToConvertEncoding]) { return; }
+    if (![self acceptsSaveDocumentWithIANACharSetName]) { return; }
+    if (![self acceptsSaveDocumentToConvertEncoding]) { return; }
     
     [super saveDocument:sender];
 }
@@ -913,8 +913,8 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 - (IBAction)saveDocumentAs:(id)sender
 // ------------------------------------------------------
 {
-    if (![self acceptSaveDocumentWithIANACharSetName]) { return; }
-    if (![self acceptSaveDocumentToConvertEncoding]) { return; }
+    if (![self acceptsSaveDocumentWithIANACharSetName]) { return; }
+    if (![self acceptsSaveDocumentToConvertEncoding]) { return; }
     
     [super saveDocumentAs:sender];
 }
@@ -1437,31 +1437,65 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 // ------------------------------------------------------
 /// IANA文字コード名を読み、設定されたエンコーディングと矛盾があれば警告する
-- (BOOL)acceptSaveDocumentWithIANACharSetName
+- (BOOL)acceptsSaveDocumentWithIANACharSetName
 // ------------------------------------------------------
 {
     NSStringEncoding IANACharSetEncoding = [self scanCharsetOrEncodingFromString:[self stringForSave]];
     NSStringEncoding ShiftJIS = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingShiftJIS);
     NSStringEncoding X0213 = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingShiftJIS_X0213);
-
+    
     if ((IANACharSetEncoding != NSNotFound) && (IANACharSetEncoding != [self encoding]) &&
         (!(((IANACharSetEncoding == ShiftJIS) || (IANACharSetEncoding == X0213)) &&
-           (([self encoding] == ShiftJIS) || ([self encoding] == X0213))))) {
-            // （Shift-JIS の時は要注意 = scanCharsetOrEncodingFromString: を参照）
+           (([self encoding] == ShiftJIS) || ([self encoding] == X0213)))))
+    {
+        // (Caution needed on Shift-JIS. See `scanCharsetOrEncodingFromString:` for details.)
 
-        NSString *IANANameStr = [NSString localizedNameOfStringEncoding:IANACharSetEncoding];
-        NSString *encodingNameStr = [NSString localizedNameOfStringEncoding:[self encoding]];
+        NSString *IANAName = [NSString localizedNameOfStringEncoding:IANACharSetEncoding];
+        NSString *encodingName = [NSString localizedNameOfStringEncoding:[self encoding]];
+        
         NSAlert *alert = [[NSAlert alloc] init];
-        [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"The encoding is “%@”, but the IANA charset name in text is “%@”.", nil), encodingNameStr, IANANameStr]];
+        [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"The encoding is “%@”, but the IANA charset name in text is “%@”.", nil), encodingName, IANAName]];
         [alert setInformativeText:NSLocalizedString(@"Do you want to continue processing?", nil)];
         [alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
         [alert addButtonWithTitle:NSLocalizedString(@"Continue Saving", nil)];
 
         NSInteger result = [alert runModal];
-        if (result != NSAlertSecondButtonReturn) { // == Cancel
+        if (result != NSAlertSecondButtonReturn) {  // == Cancel
             return NO;
         }
     }
+    
+    return YES;
+}
+
+
+// ------------------------------------------------------
+/// ファイル保存前のエンコーディング変換チェック、ユーザに承認を求める
+- (BOOL)acceptsSaveDocumentToConvertEncoding
+// ------------------------------------------------------
+{
+    // エンコーディングを見て、半角円マークを変換しておく
+    NSString *contentString = [self convertCharacterString:[self stringForSave] encoding:[self encoding]];
+    
+    if (![contentString canBeConvertedToEncoding:[self encoding]]) {
+        NSString *encodingName = [NSString localizedNameOfStringEncoding:[self encoding]];
+        
+        NSAlert *alert = [[NSAlert alloc] init];
+        [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"The characters would have to be changed or deleted in saving as “%@”.", nil), encodingName]];
+        [alert setInformativeText:NSLocalizedString(@"Do you want to continue processing?", nil)];
+        [alert addButtonWithTitle:NSLocalizedString(@"Show Incompatible Chars", nil)];
+        [alert addButtonWithTitle:NSLocalizedString(@"Save Available Strings", nil)];
+        [alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
+        
+        NSInteger result = [alert runModal];
+        if (result != NSAlertSecondButtonReturn) {  // != Save
+            if (result == NSAlertFirstButtonReturn) {  // == Show Incompatible Chars
+                [[self windowController] showIncompatibleCharList];
+            }
+            return NO;
+        }
+    }
+    
     return YES;
 }
 
@@ -1540,35 +1574,6 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     }
     
     return success;
-}
-
-
-// ------------------------------------------------------
-/// ファイル保存前のエンコーディング変換チェック、ユーザに承認を求める
-- (BOOL)acceptSaveDocumentToConvertEncoding
-// ------------------------------------------------------
-{
-    // エンコーディングを見て、半角円マークを変換しておく
-    NSString *curString = [self convertCharacterString:[self stringForSave] encoding:[self encoding]];
-    
-    if (![curString canBeConvertedToEncoding:[self encoding]]) {
-        NSString *encodingName = [NSString localizedNameOfStringEncoding:[self encoding]];
-        NSAlert *alert = [[NSAlert alloc] init];
-        [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"The characters would have to be changed or deleted in saving as “%@”.", nil), encodingName]];
-        [alert setInformativeText:NSLocalizedString(@"Do you want to continue processing?", nil)];
-        [alert addButtonWithTitle:NSLocalizedString(@"Show Incompatible Chars", nil)];
-        [alert addButtonWithTitle:NSLocalizedString(@"Save Available Strings", nil)];
-        [alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
-        
-        NSInteger result = [alert runModal];
-        if (result != NSAlertSecondButtonReturn) { // != Save
-            if (result == NSAlertFirstButtonReturn) { // == show incompatible chars
-                [[self windowController] showIncompatibleCharList];
-            }
-            return NO;
-        }
-    }
-    return YES;
 }
 
 
