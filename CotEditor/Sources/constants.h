@@ -51,6 +51,10 @@ typedef NS_ENUM(OSStatus, CEErrorCode) {
     CEThemeFileDuplicationError,
     CEScriptNoTargetDocumentError,
     
+    // encoding errors
+    CEIANACharsetNameConflictError,
+    CEUnconvertibleCharactersError,
+    
     // for command-line tool
     CEApplicationNotInApplicationDirectoryError,
     CEApplicationNameIsModifiedError,
