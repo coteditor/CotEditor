@@ -1537,7 +1537,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 - (BOOL)forceWriteToURL:(NSURL *)url ofType:(NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation
 // ------------------------------------------------------
 {
-    __block BOOL success = NO;
+    BOOL success = NO;
     NSData *data = [self dataOfType:typeName error:nil];
     
     if (!data) { return NO; }
@@ -1561,44 +1561,38 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
         return NO;
     }
     
-    NSFileCoordinator *coordinator = [[NSFileCoordinator alloc] initWithFilePresenter:self];
-    [coordinator coordinateWritingItemAtURL:url options:0
-                                      error:nil
-                                 byAccessor:^(NSURL *newURL)
-     {
-         // "authopen" コマンドを使って保存
-         NSString *convertedPath = @([[newURL path] UTF8String]);
-         NSTask *task = [[NSTask alloc] init];
-         
-         [task setLaunchPath:@"/usr/libexec/authopen"];
-         [task setArguments:@[@"-c", @"-w", convertedPath]];
-         [task setStandardInput:[NSPipe pipe]];
-         
-         [task launch];
-         [[[task standardInput] fileHandleForWriting] writeData:data];
-         [[[task standardInput] fileHandleForWriting] closeFile];
-         [task waitUntilExit];
-         
-         int status = [task terminationStatus];
-         success = (status == 0);
-         
-         // set metadata to the file
-         if (success) {
-             [[NSFileManager defaultManager] setAttributes:attributes ofItemAtPath:[newURL path] error:nil];
-             
-             // ファイル拡張属性 (com.apple.TextEncoding) にエンコーディングを保存
-             if (shouldSaveXattr) {
-                 [newURL setAppleTextEncoding:[self encoding]];
-             }
-         }
-         
-         // Finder Lock がかかってたなら、再びかける
-         if (isFinderLockOn) {
-             BOOL lockSuccess = [[NSFileManager defaultManager] setAttributes:@{NSFileImmutable:@YES} ofItemAtPath:[newURL path] error:nil];
-             
-             success = (success && lockSuccess);
-         }
-     }];
+    // "authopen" コマンドを使って保存
+    NSString *convertedPath = @([[url path] UTF8String]);
+    NSTask *task = [[NSTask alloc] init];
+    
+    [task setLaunchPath:@"/usr/libexec/authopen"];
+    [task setArguments:@[@"-c", @"-w", convertedPath]];
+    [task setStandardInput:[NSPipe pipe]];
+    
+    [task launch];
+    [[[task standardInput] fileHandleForWriting] writeData:data];
+    [[[task standardInput] fileHandleForWriting] closeFile];
+    [task waitUntilExit];
+    
+    int status = [task terminationStatus];
+    success = (status == 0);
+    
+    // set metadata to the file
+    if (success) {
+        [[NSFileManager defaultManager] setAttributes:attributes ofItemAtPath:[url path] error:nil];
+        
+        // ファイル拡張属性 (com.apple.TextEncoding) にエンコーディングを保存
+        if (shouldSaveXattr) {
+            [url setAppleTextEncoding:[self encoding]];
+        }
+    }
+    
+    // Finder Lock がかかってたなら、再びかける
+    if (isFinderLockOn) {
+        BOOL lockSuccess = [[NSFileManager defaultManager] setAttributes:@{NSFileImmutable:@YES} ofItemAtPath:[url path] error:nil];
+        
+        success = (success && lockSuccess);
+    }
     
     // presentedItemDidChange にて内容の同一性を比較するためにファイルの MD5 を保存する
     if (success && saveOperation != NSAutosaveElsewhereOperation) {
@@ -1632,28 +1626,17 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     NSError *error = nil;
     NSFileManager *fileManager = [NSFileManager defaultManager];
     
-    NSFileCoordinator *coordinator = [[NSFileCoordinator alloc] initWithFilePresenter:self];
-    [coordinator coordinateReadingItemAtURL:url options:NSFileCoordinatorReadingWithoutChanges
-                                      error:&error
-                                 byAccessor:^(NSURL *newURL)
-     {
-         isFinderLocked = [[fileManager attributesOfItemAtPath:[newURL path] error:nil] fileIsImmutable];
-     }];
+         isFinderLocked = [[fileManager attributesOfItemAtPath:[url path] error:nil] fileIsImmutable];
     
     if (isFinderLocked) {
-        [coordinator coordinateWritingItemAtURL:url options:0
-                                          error:&error
-                                     byAccessor:^(NSURL *newURL)
-         {
              // unlock file once
-             success = [fileManager setAttributes:@{NSFileImmutable:@NO} ofItemAtPath:[newURL path] error:nil];
+             success = [fileManager setAttributes:@{NSFileImmutable:@NO} ofItemAtPath:[url path] error:nil];
              if (success) {
                  // lock file again if needed
                  if (lockAgain) {
-                     [fileManager setAttributes:@{NSFileImmutable:@YES} ofItemAtPath:[newURL path] error:nil];
+                     [fileManager setAttributes:@{NSFileImmutable:@YES} ofItemAtPath:[url path] error:nil];
                  }
              }
-         }];
     } else {
         // no-lock file is always treated as success
         success = YES;
