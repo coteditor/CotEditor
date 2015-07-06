@@ -83,6 +83,8 @@
     NSMenu *applicationMenu = [[[NSApp mainMenu] itemAtIndex:CEApplicationMenuIndex] submenu];
     [applicationMenu insertItem:menuItem atIndex:1];
     
+    // lock update check interval to daily
+    [updater setUpdateCheckInterval:60 * 60 * 24];
 }
 
 

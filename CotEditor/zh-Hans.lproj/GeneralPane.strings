@@ -15,7 +15,7 @@
 /* Class = "NSTextFieldCell"; title = "Application:"; ObjectID = "lzy-Ei-xlT"; */
 "lzy-Ei-xlT.title" = "应用选项:";
 
-/* Class = "NSButtonCell"; title = "Share find strings with other applications"; ObjectID = "3307"; */
+/* Class = "NSButtonCell"; title = "Share find text with other applications"; ObjectID = "3307"; */
 "3307.title" = "与其他应用共享查找字符串";
 /* Class = "NSButtonCell"; title = "Inline script menu items into context menu"; ObjectID = "3309"; */
 "3309.title" = "将脚本菜单集成至上下文菜单中";
@@ -39,9 +39,3 @@
 
 /* Class = "NSButtonCell"; title = "Automatically check for updates"; ObjectID = "3423"; */
 "3423.title" = "自动检查更新";
-/* Class = "NSMenuItem"; title = "Hourly"; ObjectID = "3427"; */
-"3427.title" = "每小时";
-/* Class = "NSMenuItem"; title = "Daily"; ObjectID = "3433"; */
-"3433.title" = "每天";
-/* Class = "NSMenuItem"; title = "Weekly"; ObjectID = "3428"; */
-"3428.title" = "每周";
