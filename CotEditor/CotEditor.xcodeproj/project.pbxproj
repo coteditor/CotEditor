@@ -52,7 +52,7 @@
 		2A15832418E383C300601026 /* CESizeSampleWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A15832318E383C300601026 /* CESizeSampleWindowController.m */; };
 		2A15832818E39B7400601026 /* TextKeyBindingEditSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A15832618E39B7400601026 /* TextKeyBindingEditSheet.xib */; };
 		2A15833518E3B83F00601026 /* CEConsolePanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A15833418E3B83F00601026 /* CEConsolePanelController.m */; };
-		2A162FEA1AF395A400E97285 /* CEUpdaterDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A162FE91AF395A400E97285 /* CEUpdaterDelegate.m */; };
+		2A162FEA1AF395A400E97285 /* CEUpdaterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A162FE91AF395A400E97285 /* CEUpdaterManager.m */; };
 		2A1EB5C419AD469500C1E37E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A1EB5C319AD469500C1E37E /* Images.xcassets */; };
 		2A2179F61A07093B002C4AB1 /* SyntaxMap.json in Resources */ = {isa = PBXBuildFile; fileRef = 2A2179F51A07093B002C4AB1 /* SyntaxMap.json */; };
 		2A2BDF0D198A899E0029848B /* NSString+JapaneseTransform.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A2BDF0C198A899E0029848B /* NSString+JapaneseTransform.m */; };
@@ -281,8 +281,8 @@
 		2A15832318E383C300601026 /* CESizeSampleWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CESizeSampleWindowController.m; sourceTree = "<group>"; };
 		2A15833318E3B83F00601026 /* CEConsolePanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEConsolePanelController.h; sourceTree = "<group>"; };
 		2A15833418E3B83F00601026 /* CEConsolePanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEConsolePanelController.m; sourceTree = "<group>"; };
-		2A162FE81AF395A400E97285 /* CEUpdaterDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEUpdaterDelegate.h; sourceTree = "<group>"; };
-		2A162FE91AF395A400E97285 /* CEUpdaterDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEUpdaterDelegate.m; sourceTree = "<group>"; };
+		2A162FE81AF395A400E97285 /* CEUpdaterManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEUpdaterManager.h; sourceTree = "<group>"; };
+		2A162FE91AF395A400E97285 /* CEUpdaterManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEUpdaterManager.m; sourceTree = "<group>"; };
 		2A1EB5C319AD469500C1E37E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		2A2179ED1A07011C002C4AB1 /* makeSyntaxMap.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = makeSyntaxMap.rb; sourceTree = "<group>"; };
 		2A2179F51A07093B002C4AB1 /* SyntaxMap.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SyntaxMap.json; sourceTree = "<group>"; };
@@ -821,8 +821,8 @@
 			children = (
 				25859DB2076D65310020F779 /* CEAppDelegate.h */,
 				25859DB1076D65310020F779 /* CEAppDelegate.m */,
-				2A162FE81AF395A400E97285 /* CEUpdaterDelegate.h */,
-				2A162FE91AF395A400E97285 /* CEUpdaterDelegate.m */,
+				2A162FE81AF395A400E97285 /* CEUpdaterManager.h */,
+				2A162FE91AF395A400E97285 /* CEUpdaterManager.m */,
 				2A3A759219E77D66001DAB88 /* CEMigrationWindowController.h */,
 				2A3A759319E77D66001DAB88 /* CEMigrationWindowController.m */,
 				2AD4599919DDCF6600A20FBB /* CEScriptMenuItem.h */,
@@ -1476,7 +1476,7 @@
 				8C99DDFB08BD8940001F618C /* CEOutlineMenuButtonCell.m in Sources */,
 				2AD84CAA1966314100DE49BD /* CEODBEventSender.m in Sources */,
 				8C7400A908C6D96D00683672 /* CEKeyBindingManager.m in Sources */,
-				2A162FEA1AF395A400E97285 /* CEUpdaterDelegate.m in Sources */,
+				2A162FEA1AF395A400E97285 /* CEUpdaterManager.m in Sources */,
 				8CC5044508EE829500A525A6 /* CEPrintView.m in Sources */,
 				8C83A48309485F27004E48A8 /* CEATSTypesetter.m in Sources */,
 				8CD7A93C09CBDDDC00739513 /* CEEditorView.m in Sources */,
