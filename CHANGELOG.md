@@ -30,7 +30,8 @@ develop
 - Fix an issue where the auto-update notifier did not recognize a new stable version from specific beta version numbers.
 - Fix an issue where some 3rd-party text editors for OS X cannot interpret files which were created by CotEditor.
 - Fix an issue where an unwanted alert did show on the first save after reverting back.
-- Fix an issue where selection after modifying sort of extnsion priority in syntax style edit sheet was wrong.
+- Fix an issue where selection after modifying sort of extension priority in syntax style edit sheet was wrong.
+- Fix an issue where “Help” menu item duplicated in the menu bar on the second launch.
 - Add some missing Localized strings in simplified Chinese. (Thanks to Wei Wang!)
 - Improve general stability.
 
