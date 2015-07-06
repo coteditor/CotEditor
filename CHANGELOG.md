@@ -17,6 +17,7 @@ develop
 - Display invisible vertical tab (`U+000B`) with `␋` symbol if “Show other invisible characters” turns on.
 - Add fancy animations to encoding list edit sheet in preferences.
 - Add suppression button to the IANA charset name conflict alret.
+- Improve word completion with words that exist in the document.
 - Add tooltip hint to controls in the find panel.
 - Optimize image resources size.
 - Update Sparkle framework to version 1.10.0.
