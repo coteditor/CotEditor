@@ -609,17 +609,9 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     }
     
     // notify about external file update
-    [self setNeedsShowUpdateAlertWithBecomeKey:YES];
     __weak typeof(self) weakSelf = self;
     dispatch_async(dispatch_get_main_queue(), ^{
-        if ([NSApp isActive]) {
-            // display dialog
-            [weakSelf showUpdatedByExternalProcessAlert];
-            
-        } else if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultNotifyEditByAnotherKey]) {
-            // let application icon in Dock jump
-            [NSApp requestUserAttention:NSInformationalRequest];
-        }
+        [weakSelf notifyExternalFileUpdate];
     });
 }
 
@@ -1714,6 +1706,25 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
                             contextInfo:NULL];
     }
     [self setDidAlertNotWritable:YES];
+}
+
+
+// ------------------------------------------------------
+/// notify about external file update
+- (void)notifyExternalFileUpdate
+// ------------------------------------------------------
+{
+    // rise a flag
+    [self setNeedsShowUpdateAlertWithBecomeKey:YES];
+    
+    if ([NSApp isActive]) {
+        // display dialog
+        [self showUpdatedByExternalProcessAlert];
+        
+    } else if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultNotifyEditByAnotherKey]) {
+        // let application icon in Dock jump
+        [NSApp requestUserAttention:NSInformationalRequest];
+    }
 }
 
 
