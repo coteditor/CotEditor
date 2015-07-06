@@ -241,44 +241,49 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     // break undo grouping
     [[[self editor] focusedTextView] breakUndoCoalescing];
     
-    // modify place to create backup file
-    //   -> save backup file always in `~/Library/Autosaved Information/` direcotory
-    //      (The default backup URL is the same directory as the fileURL.)
-    if (saveOperation == NSAutosaveElsewhereOperation && [self fileURL]) {
-        NSURL *autosaveDirectoryURL =  [[CEDocumentController sharedDocumentController] autosaveDirectoryURL];
-        NSString *baseFileName = [[self fileURL] lastPathComponent];
-        NSString *fileName = [NSString stringWithFormat:@"%@ (%@)",
-                              [baseFileName stringByDeletingPathExtension],
-                              [self autosaveIdentifier]];  // append a unique string to avoid overwriting another backup file with the same file name.
+    // wait for other file access
+    [self performAsynchronousFileAccessUsingBlock:^(void (^fileAccessCompletionHandler)(void)) {
+        NSURL *newURL = url;
+        // modify place to create backup file
+        //   -> save backup file always in `~/Library/Autosaved Information/` direcotory
+        //      (The default backup URL is the same directory as the fileURL.)
+        if (saveOperation == NSAutosaveElsewhereOperation && [self fileURL]) {
+            NSURL *autosaveDirectoryURL =  [[CEDocumentController sharedDocumentController] autosaveDirectoryURL];
+            NSString *baseFileName = [[self fileURL] lastPathComponent];
+            NSString *fileName = [NSString stringWithFormat:@"%@ (%@)",
+                                  [baseFileName stringByDeletingPathExtension],
+                                  [self autosaveIdentifier]];  // append a unique string to avoid overwriting another backup file with the same file name.
+            
+            newURL = [[autosaveDirectoryURL URLByAppendingPathComponent:fileName] URLByAppendingPathExtension:[baseFileName pathExtension]];
+            [self setAutosavedContentsFileURL:newURL];
+        }
         
-        url = [[autosaveDirectoryURL URLByAppendingPathComponent:fileName] URLByAppendingPathExtension:[baseFileName pathExtension]];
-        [self setAutosavedContentsFileURL:url];
-    }
-    
-    __weak typeof(self) weakSelf = self;
-    [super saveToURL:url ofType:typeName forSaveOperation:saveOperation completionHandler:^(NSError *error)
-     {
-         // [note] This completionHandler block will always be invoked on the main thread.
-         
-         typeof(weakSelf) strongSelf = weakSelf;
-         
-         if (!error) {
-             // apply syntax style that is inferred from the file name
-             if (saveOperation == NSSaveAsOperation) {
-                 [strongSelf setSyntaxStyleWithFileName:[url lastPathComponent] coloring:YES];
+        __weak typeof(self) weakSelf = self;
+        [super saveToURL:newURL ofType:typeName forSaveOperation:saveOperation completionHandler:^(NSError *error)
+         {
+             // [note] This completionHandler block will always be invoked on the main thread.
+             
+             typeof(weakSelf) strongSelf = weakSelf;
+             
+             if (!error) {
+                 // apply syntax style that is inferred from the file name
+                 if (saveOperation == NSSaveAsOperation) {
+                     [strongSelf setSyntaxStyleWithFileName:[url lastPathComponent] coloring:YES];
+                 }
+                 
+                 if (saveOperation != NSAutosaveElsewhereOperation) {
+                     // update file information
+                     [strongSelf getFileAttributes];
+                     
+                     // send file update notification for the external editor protocol (ODB Editor Suite)
+                     [[strongSelf ODBEventSender] sendModifiedEventWithURL:url operation:saveOperation];
+                 }
              }
              
-             if (saveOperation != NSAutosaveElsewhereOperation) {
-                 // update file information
-                 [strongSelf getFileAttributes];
-                 
-                 // send file update notification for the external editor protocol (ODB Editor Suite)
-                 [[strongSelf ODBEventSender] sendModifiedEventWithURL:url operation:saveOperation];
-             }
-         }
-         
-         completionHandler(error);
-     }];
+             fileAccessCompletionHandler();
+             completionHandler(error);
+         }];
+    }];
 }
 
 
@@ -568,51 +573,45 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 {
     // [caution] This method can be called from any thread.
     
-    // read fileModificationDate and MD5 of the file
-    __block NSDate *fileModificationDate;
-    __block NSString *MD5;
-    NSDate *documentModificationDate = [self fileModificationDate];
-    NSFileCoordinator *coordinator = [[NSFileCoordinator alloc] initWithFilePresenter:self];
-    NSError *error = nil;
-    [coordinator coordinateReadingItemAtURL:[self fileURL] options:NSFileCoordinatorReadingWithoutChanges
-                                      error:&error byAccessor:^(NSURL *newURL)
-     {
-         NSDictionary *fileAttrs = [[NSFileManager defaultManager] attributesOfItemAtPath:[newURL path] error:nil];
-         fileModificationDate = [fileAttrs fileModificationDate];
-         
-         if (![fileModificationDate isEqualToDate:documentModificationDate]) {
-             MD5 = [[NSData dataWithContentsOfURL:newURL] MD5];
-         }
-     }];
-    if (error) {
-        NSLog(@"error on `presentedItemDidChange`: %@ %@", [error localizedDescription], [error localizedFailureReason]);
-        return;
-    }
-    
-    // ignore if file's modificationDate is the same as document's modificationDate
-    if ([fileModificationDate isEqualToDate:documentModificationDate]) { return; }
-    
-    // ignore if file's MD5 hash is the same as the stored MD5 and deal as if it was not modified.
-    if ([MD5 isEqualToString:[self fileMD5]]) {
-        // update the document's fileModificationDate for a workaround (2014-03 by 1024jp)
-        // If not, an alert shows up when user saves the file.
-        __weak typeof(self) weakSelf = self;
-        dispatch_async(dispatch_get_main_queue(), ^{
-            typeof(weakSelf) strongSelf = weakSelf;
-            // if the current document's mod-date is older than the file's mod-date...
-            if ([[strongSelf fileModificationDate] compare:fileModificationDate] == NSOrderedAscending) {
-                [strongSelf setFileModificationDate:fileModificationDate];
-            }
-        });
-        
-        return;
-    }
-    
-    // notify about external file update
-    __weak typeof(self) weakSelf = self;
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [weakSelf notifyExternalFileUpdate];
-    });
+    [[self presentedItemOperationQueue] addOperationWithBlock:^{  // wait for operations by external process
+        [self performAsynchronousFileAccessUsingBlock:^(void (^fileAccessCompletionHandler)(void)) {  // avoid conflict with saving
+            // read modificationDate and MD5 from the file
+            __block NSDate *fileModificationDate;
+            __block NSString *MD5;
+            NSFileCoordinator *coordinator = [[NSFileCoordinator alloc] initWithFilePresenter:self];
+            [coordinator coordinateReadingItemAtURL:[self fileURL] options:NSFileCoordinatorReadingWithoutChanges
+                                              error:nil byAccessor:^(NSURL *newURL)
+             {
+                 NSDictionary *fileAttrs = [[NSFileManager defaultManager] attributesOfItemAtPath:[newURL path] error:nil];
+                 fileModificationDate = [fileAttrs fileModificationDate];
+                 
+                 // get MD5 only if the modificationDate was updated
+                 if (![fileModificationDate isEqualToDate:[self fileModificationDate]]) {
+                     MD5 = [[NSData dataWithContentsOfURL:newURL] MD5];
+                 }
+             }];
+            
+            [self continueAsynchronousWorkOnMainThreadUsingBlock:^{
+                // ignore if file's modificationDate is the same as document's modificationDate
+                BOOL didChange = ![fileModificationDate isEqualToDate:[self fileModificationDate]];
+                
+                // ignore if file's MD5 hash is the same as the stored MD5 and deal as if it was not modified
+                if (didChange && [MD5 isEqualToString:[self fileMD5]]) {
+                    didChange = NO;
+                    // update the document's fileModificationDate for a workaround (2014-03 by 1024jp)
+                    // If not, an alert shows up when user saves the file.
+                    [self setFileModificationDate:fileModificationDate];
+                }
+                
+                fileAccessCompletionHandler();  // ???: completionHandler should be invoked on the main thread
+                
+                // notify about external file update
+                if (didChange) {
+                    [self notifyExternalFileUpdate];
+                }
+            }];
+        }];
+    }];
 }
 
 
