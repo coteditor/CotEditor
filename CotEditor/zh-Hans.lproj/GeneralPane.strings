@@ -8,25 +8,8 @@
  Localized by onevcat
  encoding="UTF-8"
  
- © 2014 CotEditor Project
+ © 2014-2015 CotEditor Project
  */
-
-/* Class = "NSTextFieldCell"; title = "On launch:"; ObjectID = "geU-63-sAC"; */
-"geU-63-sAC.title" = "启动时:";
-
-/* Class = "NSButtonCell"; title = "Automatically check for updates"; ObjectID = "3423"; */
-"3423.title" = "自动检查更新";
-/* Class = "NSMenuItem"; title = "Hourly"; ObjectID = "3427"; */
-"3427.title" = "每小时";
-/* Class = "NSMenuItem"; title = "Daily"; ObjectID = "3433"; */
-"3433.title" = "每天";
-/* Class = "NSMenuItem"; title = "Weekly"; ObjectID = "3428"; */
-"3428.title" = "每周";
-/* Class = "NSMenuItem"; title = "Monthly"; ObjectID = "3429"; */
-"3429.title" = "每月";
-
-/* Class = "NSButtonCell"; title = "Open a new document"; ObjectID = "3298"; */
-"3298.title" = "打开新文档";
 
 
 /* Class = "NSTextFieldCell"; title = "Application:"; ObjectID = "lzy-Ei-xlT"; */
@@ -40,5 +23,25 @@
 "3306.title" = "统计行尾为一个字符";
 /* Class = "NSButtonCell"; title = "Check spelling as you type"; ObjectID = "3300"; */
 "3300.title" = "输入时检查拼写";
-/* Class = "NSButtonCell"; title = "Open a new document when CotEditor becomes active"; ObjectID = "3299"; */
-"3299.title" = "当 CotEditor 被激活时打开新文档";
+
+
+/* Class = "NSTextFieldCell"; title = "Open a new document:"; ObjectID = "zDW-aW-9G8"; */
+"zDW-aW-9G8.title" = "打开新文档:";
+
+/* Class = "NSButtonCell"; title = "On launch"; ObjectID = "3298"; */
+"3298.title" = "启动时";
+/* Class = "NSButtonCell"; title = "When CotEditor becomes active"; ObjectID = "3299"; */
+"3299.title" = "当 CotEditor 被激活时";
+
+
+/* Class = "NSTextFieldCell"; title = "Software Updates:"; ObjectID = "geU-63-sAC"; */
+"geU-63-sAC.title" = "软件更新:";
+
+/* Class = "NSButtonCell"; title = "Automatically check for updates"; ObjectID = "3423"; */
+"3423.title" = "自动检查更新";
+/* Class = "NSMenuItem"; title = "Hourly"; ObjectID = "3427"; */
+"3427.title" = "每小时";
+/* Class = "NSMenuItem"; title = "Daily"; ObjectID = "3433"; */
+"3433.title" = "每天";
+/* Class = "NSMenuItem"; title = "Weekly"; ObjectID = "3428"; */
+"3428.title" = "每周";
