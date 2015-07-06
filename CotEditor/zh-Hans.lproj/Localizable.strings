@@ -11,6 +11,9 @@
  */
 
 
+// Menu item title for Sparkle
+"Check for Updates…" = "检查更新…";
+
 /* MARK: CEAppDelegate */
 // File open accessory's menu item title
 "Auto-Detect" = "自动检测";

@@ -77,6 +77,7 @@
 - (NSComparisonResult)compareVersion:(NSString *)versionA toVersion:(NSString *)versionB
 // ------------------------------------------------------
 {
+    NSLog(@"%s", __func__);
     EDSemver *semverA = [EDSemver semverWithString:versionA];
     EDSemver *semverB = [EDSemver semverWithString:versionB];
     

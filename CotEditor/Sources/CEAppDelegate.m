@@ -28,6 +28,7 @@
  ==============================================================================
  */
 
+@import Sparkle;
 #import "CEAppDelegate.h"
 #import "CESyntaxManager.h"
 #import "CEEncodingManager.h"
@@ -44,6 +45,7 @@
 #import "CEUnicodeInputPanelController.h"
 #import "CEMigrationWindowController.h"
 #import "CEDocument.h"
+#import "CEUpdaterDelegate.h"
 #import "EDSemVer.h"
 #import "constants.h"
 
@@ -54,6 +56,8 @@
 
 @property (nonatomic) BOOL hasSetting;  // for migration check
 @property (nonatomic, nullable) CEMigrationWindowController *migrationWindowController;
+
+@property (nonatomic, nullable) CEUpdaterDelegate *updaterDelegate;
 
 
 // readonly
@@ -341,6 +345,28 @@
     }
     
     return flag;
+}
+
+
+// ------------------------------------------------------
+/// setup Sparkle framework
+- (void)applicationWillFinishLaunching:(NSNotification *)notification
+// ------------------------------------------------------
+{
+    SUUpdater *updater = [SUUpdater sharedUpdater];
+    
+    // set delegate
+    CEUpdaterDelegate *updaterDelegate = [[CEUpdaterDelegate alloc] init];
+    [self setUpdaterDelegate:updaterDelegate];
+    [updater setDelegate:updaterDelegate];
+    
+    // insert "Check for Upates…" menu item
+    NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Check for Updates…", nil)
+                                                      action:@selector(checkForUpdates:)
+                                               keyEquivalent:@""];
+    [menuItem setTarget:updater];
+    NSMenu *applicationMenu = [[[NSApp mainMenu] itemAtIndex:CEApplicationMenuIndex] submenu];
+    [applicationMenu insertItem:menuItem atIndex:1];
 }
 
 
