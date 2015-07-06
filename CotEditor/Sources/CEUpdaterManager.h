@@ -1,6 +1,6 @@
 /*
  ==============================================================================
- CEUpdaterDelegate
+ CEUpdaterManager
  
  CotEditor
  http://coteditor.com
@@ -28,9 +28,16 @@
  */
 
 @import Foundation;
-@import Sparkle;
 
 
-@interface CEUpdaterDelegate : NSObject <SUUpdaterDelegate, SUVersionComparison>
+@interface CEUpdaterManager : NSObject
+
+// singleton
++ (nonnull instancetype)sharedManager;
+
+
+// Public Methods
+/// setup Sparkle (Invoke this in `applicationWillFinishLaunching:`.)
+- (void)setup;
 
 @end
