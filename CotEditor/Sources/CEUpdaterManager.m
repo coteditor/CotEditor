@@ -1,6 +1,6 @@
 /*
  ==============================================================================
- CEUpdaterDelegate
+ CEUpdaterManager
  
  CotEditor
  http://coteditor.com
@@ -27,11 +27,67 @@
  ==============================================================================
  */
 
-#import "CEUpdaterDelegate.h"
+@import Sparkle;
+#import "CEUpdaterManager.h"
 #import "EDSemver.h"
+#import "constants.h"
 
 
-@implementation CEUpdaterDelegate
+@interface CEUpdaterManager () <SUUpdaterDelegate, SUVersionComparison>
+
+@end
+
+
+
+
+#pragma mark -
+
+@implementation CEUpdaterManager
+
+#pragma mark Singleton
+
+// ------------------------------------------------------
+/// return singleton instance
++ (nonnull instancetype)sharedManager
+// ------------------------------------------------------
+{
+    static dispatch_once_t onceToken;
+    static id shared = nil;
+    
+    dispatch_once(&onceToken, ^{
+        shared = [[self alloc] init];
+    });
+    
+    return shared;
+}
+
+
+
+#pragma mark Public Methods
+
+// ------------------------------------------------------
+/// setup Sparkle
+- (void)setup
+// ------------------------------------------------------
+{
+    SUUpdater *updater = [SUUpdater sharedUpdater];
+    
+    // set delegate
+    [updater setDelegate:self];
+    
+    // insert "Check for Updates…" menu item
+    NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Check for Updates…", nil)
+                                                      action:@selector(checkForUpdates:)
+                                               keyEquivalent:@""];
+    [menuItem setTarget:updater];
+    NSMenu *applicationMenu = [[[NSApp mainMenu] itemAtIndex:CEApplicationMenuIndex] submenu];
+    [applicationMenu insertItem:menuItem atIndex:1];
+    
+    // lock update check interval to daily
+    [updater setUpdateCheckInterval:60 * 60 * 24];
+}
+
+
 
 #pragma mark Delegate
 

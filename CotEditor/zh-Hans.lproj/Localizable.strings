@@ -11,6 +11,9 @@
  */
 
 
+// Menu item title for Sparkle
+"Check for Updates…" = "检查更新…";
+
 /* MARK: CEAppDelegate */
 // File open accessory's menu item title
 "Auto-Detect" = "自动检测";
@@ -65,6 +68,7 @@
 "Continue Saving" = "继续保存";
 "The encoding is “%@”, but the IANA charset name in text is “%@”." = "编码为 “%@”，但是文本中的 IANA 字符集名字为 “%@”。";
 "Do you want to continue processing?" = "继续进行处理吗？";
+"Do not show this warning for this document again" = "不再显示此信息";  // FIXME:
 
 "Finder's lock could not be released." = "Finder 锁定无法解除。";
 "You can use “Save As” to save a copy." = "你可以使用 “另存为” 来保存一份副本";
@@ -74,7 +78,6 @@
 "Do you want to discard the changes and reset the file encodidng?" = "确定要放弃修改内容并且重置文件编码吗？";
 
 "Can not reinterpret" = "无法再次解释";
-"Done" = "好";
 "The file “%@” could not be reinterpreted using the new encoding “%@”." = "文件 “%@” 无法使用 “%@” 编码再次解释";
 
 "new encoding" = "新编码";

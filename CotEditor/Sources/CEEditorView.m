@@ -418,22 +418,28 @@
         forPartialWordRange:(NSRange)charRange indexOfSelectedItem:(NSInteger *)index
 // ------------------------------------------------------
 {
-    NSMutableOrderedSet *outWords = [NSMutableOrderedSet orderedSet];
+    NSMutableOrderedSet *candidateWords = [NSMutableOrderedSet orderedSet];
     NSUInteger addingMode = [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultCompletionWordsKey];
     NSString *partialWord = [[textView string] substringWithRange:charRange];
 
-    //"ファイル中の語彙" を検索して outArray に入れる
+    
+    //"ファイル中の語彙" を検索して candidateWords に入れる
     if (addingMode != 3) {
-        NSString *documentString = [textView string];
-        NSString *pattern = [NSString stringWithFormat:@"(?:^|\\b|(?<=\\W))%@\\w+?(?:$|\\b)",
-                             [NSRegularExpression escapedPatternForString:partialWord]];
-        NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:pattern options:0 error:nil];
-        [regex enumerateMatchesInString:documentString options:0
-                                  range:NSMakeRange(0, [documentString length])
-                             usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop)
-         {
-             [outWords addObject:[documentString substringWithRange:[result range]]];
-         }];
+        if (charRange.length == 1 && ![[NSCharacterSet alphanumericCharacterSet] characterIsMember:[partialWord characterAtIndex:0]]) {
+            // do nothing if the particle word is an symbol
+            
+        } else {
+            NSString *documentString = [textView string];
+            NSString *pattern = [NSString stringWithFormat:@"(?:^|\\b|(?<=\\W))%@\\w+?(?:$|\\b)",
+                                 [NSRegularExpression escapedPatternForString:partialWord]];
+            NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:pattern options:0 error:nil];
+            [regex enumerateMatchesInString:documentString options:0
+                                      range:NSMakeRange(0, [documentString length])
+                                 usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop)
+             {
+                 [candidateWords addObject:[documentString substringWithRange:[result range]]];
+             }];
+        }
     }
     
     //"カラーシンタックス辞書の語彙" をコピーする
@@ -441,22 +447,22 @@
         NSArray *syntaxWords = [[self syntaxParser] completionWords];
         for (NSString *word in syntaxWords) {
             if ([word rangeOfString:partialWord options:NSCaseInsensitiveSearch|NSAnchoredSearch].location != NSNotFound) {
-                [outWords addObject:word];
+                [candidateWords addObject:word];
             }
         }
     }
     
     //デフォルトの候補から "一般英単語" をコピーする
     if (addingMode == 2) {
-        [outWords addObjectsFromArray:words];
+        [candidateWords addObjectsFromArray:words];
     }
     
     // 入力済みの単語と同じ候補しかないときは表示しない
-    if ([outWords count] == 1 && [[outWords firstObject] caseInsensitiveCompare:partialWord] == NSOrderedSame) {
+    if ([candidateWords count] == 1 && [[candidateWords firstObject] caseInsensitiveCompare:partialWord] == NSOrderedSame) {
         return nil;
     }
 
-    return [outWords array];
+    return [candidateWords array];
 }
 
 

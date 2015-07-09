@@ -16,18 +16,24 @@ develop
 - Support Automatic Termination (Now, CotEditor can be terminated automatically if it has no window).
 - Display invisible vertical tab (`U+000B`) with `␋` symbol if “Show other invisible characters” turns on.
 - Add fancy animations to encoding list edit sheet in preferences.
+- Add suppression button to the IANA charset name conflict alret.
+- Improve word completion with words that exist in the document.
+- Modify layout of “General” pane in Preferences.
 - Add tooltip hint to controls in the find panel.
+- Optimize image resources size.
 - Update Sparkle framework to version 1.10.0.
 
 
 ### Fixes
 
-- Fix an issue where the application could hang up on document saving.
+- Address an issue where the application could hang up on document saving.
 - Fix an issue where the autosaving could sometime be disabled.
 - Fix an issue where the layout of the text fields in the find panel could rarely be broken.
 - Fix an issue where the auto-update notifier did not recognize a new stable version from specific beta version numbers.
 - Fix an issue where some 3rd-party text editors for OS X cannot interpret files which were created by CotEditor.
-- Fix an issue where selection after modifying sort of extnsion priority in syntax style edit sheet was wrong.
+- Fix an issue where an unwanted alert did show on the first save after reverting back.
+- Fix an issue where selection after modifying sort of extension priority in syntax style edit sheet was wrong.
+- Fix an issue where “Help” menu item duplicated in the menu bar on the second launch.
 - Add some missing Localized strings in simplified Chinese. (Thanks to Wei Wang!)
 - Improve general stability.
 
