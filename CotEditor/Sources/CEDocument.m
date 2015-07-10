@@ -573,41 +573,53 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 {
     // [caution] This method can be called from any thread.
     
+    __weak typeof(self) weakSelf = self;
     [[self presentedItemOperationQueue] addOperationWithBlock:^{  // wait for operations by external process
-        [self performAsynchronousFileAccessUsingBlock:^(void (^fileAccessCompletionHandler)(void)) {  // avoid conflict with saving
+        [weakSelf performAsynchronousFileAccessUsingBlock:^(void (^fileAccessCompletionHandler)(void)) {  // avoid conflict with saving
+            // nil check for weakSelf
+            typeof(weakSelf) strongSelf = weakSelf;
+            if (!strongSelf) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    fileAccessCompletionHandler();
+                });
+                return;
+            }
+            
             // read modificationDate and MD5 from the file
             __block NSDate *fileModificationDate;
             __block NSString *MD5;
-            NSFileCoordinator *coordinator = [[NSFileCoordinator alloc] initWithFilePresenter:self];
-            [coordinator coordinateReadingItemAtURL:[self fileURL] options:NSFileCoordinatorReadingWithoutChanges
+            
+            NSFileCoordinator *coordinator = [[NSFileCoordinator alloc] initWithFilePresenter:strongSelf];
+            [coordinator coordinateReadingItemAtURL:[strongSelf fileURL] options:NSFileCoordinatorReadingWithoutChanges
                                               error:nil byAccessor:^(NSURL *newURL)
              {
                  NSDictionary *fileAttrs = [[NSFileManager defaultManager] attributesOfItemAtPath:[newURL path] error:nil];
                  fileModificationDate = [fileAttrs fileModificationDate];
                  
                  // get MD5 only if the modificationDate was updated
-                 if (![fileModificationDate isEqualToDate:[self fileModificationDate]]) {
+                 if (![fileModificationDate isEqualToDate:[strongSelf fileModificationDate]]) {
                      MD5 = [[NSData dataWithContentsOfURL:newURL] MD5];
                  }
              }];
             
-            [self continueAsynchronousWorkOnMainThreadUsingBlock:^{
+            [strongSelf continueAsynchronousWorkOnMainThreadUsingBlock:^{
                 // ignore if file's modificationDate is the same as document's modificationDate
-                BOOL didChange = ![fileModificationDate isEqualToDate:[self fileModificationDate]];
+                BOOL didChange = ![fileModificationDate isEqualToDate:[strongSelf fileModificationDate]];
                 
                 // ignore if file's MD5 hash is the same as the stored MD5 and deal as if it was not modified
-                if (didChange && [MD5 isEqualToString:[self fileMD5]]) {
+                if (didChange && [MD5 isEqualToString:[strongSelf fileMD5]]) {
                     didChange = NO;
                     // update the document's fileModificationDate for a workaround (2014-03 by 1024jp)
                     // If not, an alert shows up when user saves the file.
-                    [self setFileModificationDate:fileModificationDate];
+                    
+                    [strongSelf setFileModificationDate:fileModificationDate];
                 }
                 
                 fileAccessCompletionHandler();  // ???: completionHandler should be invoked on the main thread
                 
                 // notify about external file update
                 if (didChange) {
-                    [self notifyExternalFileUpdate];
+                    [strongSelf notifyExternalFileUpdate];
                 }
             }];
         }];
