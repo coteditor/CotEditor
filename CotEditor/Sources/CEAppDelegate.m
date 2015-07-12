@@ -53,7 +53,6 @@
 
 @property (nonatomic) BOOL didFinishLaunching;
 
-@property (nonatomic) BOOL hasSetting;  // for migration check
 @property (nonatomic, nullable) CEMigrationWindowController *migrationWindowController;
 
 @property (nonatomic, nullable) CEUpdaterManager *updaterDelegate;
@@ -248,8 +247,6 @@
                                                                          create:NO
                                                                           error:nil]
                                 URLByAppendingPathComponent:@"CotEditor"];
-        
-        [self setupSupportDirectory];
     }
     return self;
 }
@@ -603,29 +600,6 @@
 #pragma mark Private Methods
 
 //------------------------------------------------------
-/// check existance of the support directory and create it if not exists
-- (void)setupSupportDirectory
-//------------------------------------------------------
-{
-    NSURL *URL = [self supportDirectoryURL];
-    NSNumber *isDirectory;
-    if (![URL getResourceValue:&isDirectory forKey:NSURLIsDirectoryKey error:nil]) {
-        BOOL success = [[NSFileManager defaultManager] createDirectoryAtURL:URL
-                                                withIntermediateDirectories:YES
-                                                                 attributes:nil
-                                                                      error:nil];
-        if (!success) {
-            NSLog(@"Failed to create support directory for CotEditor...");
-        }
-    } else if (![isDirectory boolValue]) {
-        NSLog(@"\"%@\" is not dir.", URL);
-    } else {
-        [self setHasSetting:YES];
-    }
-}
-
-
-//------------------------------------------------------
 /// build encoding menu in the main menu
 - (void)buildEncodingMenu
 //------------------------------------------------------
@@ -779,7 +753,7 @@ static NSString *__nonnull const kMigrationFlagKey = @"isMigratedToNewBundleIden
 {
     NSString *lastVersion = [[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultLastVersionKey];
     
-    if (!lastVersion && [self hasSetting]) {
+    if (!lastVersion && [[self supportDirectoryURL] checkResourceIsReachableAndReturnError:nil]) {
         [self migrateToVersion2];
     }
 }
