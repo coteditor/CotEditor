@@ -2,6 +2,15 @@
 Change Log
 ==========================
 
+develop
+--------------------------
+
+### Additions/Changes
+
+- __Drop authopen support.__
+
+
+
 2.1.4
 --------------------------
 
