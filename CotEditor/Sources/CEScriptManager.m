@@ -31,7 +31,6 @@
 #import "CEScriptManager.h"
 #import "CEConsolePanelController.h"
 #import "CEDocument.h"
-#import "CEAppDelegate.h"
 #import "CEUtils.h"
 #import "constants.h"
 
@@ -51,6 +50,17 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
     CEInputAllTextType
 };
 
+
+@interface CEScriptManager ()
+
+@property (nonatomic, nonnull) NSURL *scriptsDirectoryURL;
+
+@end
+
+
+
+
+#pragma mark -
 
 @implementation CEScriptManager
 
@@ -82,6 +92,14 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 {
     self = [super init];
     if (self) {
+        // find Application Scripts folder
+        NSString *bundleIdentifier = [[NSBundle mainBundle] bundleIdentifier];
+        _scriptsDirectoryURL = [[NSFileManager defaultManager] URLForDirectory:NSApplicationScriptsDirectory
+                                                                      inDomain:NSUserDomainMask
+                                                             appropriateForURL:nil
+                                                                        create:YES
+                                                                         error:nil];
+        
         [self copySampleScriptToUserDomain:self];
         
         // run dummy AppleScript once for quick script launch
@@ -109,7 +127,7 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
     [menu removeAllItems];
     NSMenuItem *menuItem;
 
-    [self addChildFileItemTo:menu fromDir:[[self class] scriptDirectoryURL]];
+    [self addChildFileItemTo:menu fromDir:[self scriptsDirectoryURL]];
     
     if ([menu numberOfItems] > 0) {
         menuItem = [NSMenuItem separatorItem];
@@ -227,7 +245,7 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 - (IBAction)openScriptFolder:(nullable id)sender
 // ------------------------------------------------------
 {
-    [[NSWorkspace sharedWorkspace] activateFileViewerSelectingURLs:@[[CEScriptManager scriptDirectoryURL]]];
+    [[NSWorkspace sharedWorkspace] activateFileViewerSelectingURLs:@[[self scriptsDirectoryURL]]];
 }
 
 
@@ -237,27 +255,28 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 // ------------------------------------------------------
 {
     NSURL *sourceURL = [[[NSBundle mainBundle] sharedSupportURL] URLByAppendingPathComponent:@"SampleScripts"];
-    NSURL *destURL = [[[self class] scriptDirectoryURL] URLByAppendingPathComponent:@"SampleScript"];
+    NSURL *destURL = [[self scriptsDirectoryURL] URLByAppendingPathComponent:@"Sample Scripts"];
     
     if (![sourceURL checkResourceIsReachableAndReturnError:nil]) {
         return;
     }
     
     if (![destURL checkResourceIsReachableAndReturnError:nil]) {
+        NSError *error;
         [[NSFileManager defaultManager] createDirectoryAtURL:[destURL URLByDeletingLastPathComponent]
-                                 withIntermediateDirectories:NO attributes:nil error:nil];
-        BOOL success = [[NSFileManager defaultManager] copyItemAtURL:sourceURL toURL:destURL error:nil];
+                                 withIntermediateDirectories:YES attributes:nil error:nil];
+        BOOL success = [[NSFileManager defaultManager] copyItemAtURL:sourceURL toURL:destURL error:&error];
         
         if (success) {
             [self buildScriptMenu:self];
         } else {
-            NSLog(@"Error. Sample script folder could not be copied.");
+            NSLog(@"Error: %@", [error localizedDescription]);
         }
         
     } else if ([sender isKindOfClass:[NSMenuItem class]]) {
         // show alert if sample script folder is already exists only when user performs the copy
         NSAlert *alert = [[NSAlert alloc] init];
-        [alert setMessageText:NSLocalizedString(@"SampleScript folder exists already.", nil)];
+        [alert setMessageText:NSLocalizedString(@"Sample Scripts folder exists already.", nil)];
         [alert setInformativeText:[NSString stringWithFormat:NSLocalizedString(@"If you want to replace it with the new one, remove the existing folder at “%@” at first.", nil), [destURL relativePath]]];
         [alert runModal];
     }
@@ -282,15 +301,6 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 // ------------------------------------------------------
 {
     return @[@"applescript", @"scpt"];
-}
-
-
-//------------------------------------------------------
-/// return directory to save script files
-+ (nonnull NSURL *)scriptDirectoryURL
-//------------------------------------------------------
-{
-    return [[(CEAppDelegate *)[NSApp delegate] supportDirectoryURL] URLByAppendingPathComponent:@"ScriptMenu"];
 }
 
 
