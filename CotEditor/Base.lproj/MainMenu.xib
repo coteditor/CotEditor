@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="7702"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="7706"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -21,12 +22,6 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="orderFrontStandardAboutPanel:" target="-2" id="142"/>
-                                </connections>
-                            </menuItem>
-                            <menuItem title="Check for Updates…" id="832">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                                <connections>
-                                    <action selector="checkForUpdates:" target="831" id="833"/>
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="202">
@@ -1023,12 +1018,6 @@
         </customObject>
         <customObject id="329" customClass="CEDocumentController"/>
         <customObject id="432" customClass="NSFontManager"/>
-        <customObject id="831" customClass="SUUpdater">
-            <connections>
-                <outlet property="delegate" destination="r3q-qM-B4R" id="1bv-9k-Sz0"/>
-            </connections>
-        </customObject>
-        <customObject id="r3q-qM-B4R" customClass="CEUpdaterDelegate"/>
     </objects>
     <resources>
         <image name="ScriptTemplate" width="22" height="22"/>

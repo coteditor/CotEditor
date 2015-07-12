@@ -303,7 +303,7 @@
     NSString *encodingName = arguments[@"newEncoding"];
     NSStringEncoding encoding = [CEUtils encodingFromName:encodingName];
     
-    BOOL success = [self reinterpretWithEncoding:encoding];
+    BOOL success = [self reinterpretWithEncoding:encoding error:nil];
 
     return @(success);
 }

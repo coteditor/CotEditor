@@ -11,7 +11,7 @@
 
 
 body {
-	font: 10pt/1.5 'Helvetica Neue', sans-serif;
+	font: 10pt/1.5 -apple-system-font, 'Helvetica Neue', sans-serif;
 	color: hsla(0,0%,0%,0.8);
 	margin: 0;
 	padding: 1.5em;
@@ -33,10 +33,11 @@ hr {
 
 code {
 	font-family: 'menlo', monospace;
-	font-size: 95%;
+	font-size: 90%;
 }
 
 body > h1 {
+    font-family: 'Helvetica Neue', sans-serif;
 	font-size: 160%;
 	font-weight: 300;
 	margin: 0 0 1.5em;

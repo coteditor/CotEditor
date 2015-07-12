@@ -130,7 +130,7 @@
 
 // ------------------------------------------------------
 /// add encoding menu to open panel
-- (void)beginOpenPanel:(nonnull NSOpenPanel *)openPanel forTypes:(nonnull NSArray *)inTypes completionHandler:(void (^ __nonnull)(NSInteger))completionHandler
+- (void)beginOpenPanel:(nonnull NSOpenPanel *)openPanel forTypes:(nullable NSArray *)inTypes completionHandler:(void (^ __nonnull)(NSInteger))completionHandler
 // ------------------------------------------------------
 {
     // initialize encoding menu and set the accessory view

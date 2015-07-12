@@ -29,8 +29,6 @@
 
 /* Class = "NSMenuItem"; title = "About CotEditor"; ObjectID = "58"; */
 "58.title" = "CotEditor について";
-/* Class = "NSMenuItem"; title = "Check for Updates…"; ObjectID = "832"; */
-"832.title" = "アップデートを確認…";
 
 /* Class = "NSMenuItem"; title = "Preferences…"; ObjectID = "129"; */
 "129.title" = "環境設定…";

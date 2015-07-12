@@ -30,8 +30,6 @@
 
 /* Class = "NSMenuItem"; title = "About CotEditor"; ObjectID = "58"; */
 "58.title" = "关于 CotEditor";
-/* Class = "NSMenuItem"; title = "Check for Updates…"; ObjectID = "832"; */
-"832.title" = "检查更新…";
 
 /* Class = "NSMenuItem"; title = "Preferences…"; ObjectID = "129"; */
 "129.title" = "偏好设置…";

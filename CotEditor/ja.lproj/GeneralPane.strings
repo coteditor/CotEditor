@@ -7,31 +7,14 @@
  Created on 2014-11-04 by 1024jp
  encoding="UTF-8"
  
- © 2014 CotEditor Project
+ © 2014-2015 CotEditor Project
  */
-
-/* Class = "NSTextFieldCell"; title = "On launch:"; ObjectID = "geU-63-sAC"; */
-"geU-63-sAC.title" = "起動時：";
-
-/* Class = "NSButtonCell"; title = "Automatically check for updates"; ObjectID = "3423"; */
-"3423.title" = "自動的にアップデートを確認：";
-/* Class = "NSMenuItem"; title = "Hourly"; ObjectID = "3427"; */
-"3427.title" = "1 時間ごと";
-/* Class = "NSMenuItem"; title = "Daily"; ObjectID = "3433"; */
-"3433.title" = "1 日ごと";
-/* Class = "NSMenuItem"; title = "Weekly"; ObjectID = "3428"; */
-"3428.title" = "1 週間ごと";
-/* Class = "NSMenuItem"; title = "Monthly"; ObjectID = "3429"; */
-"3429.title" = "1 ヶ月ごと";
-
-/* Class = "NSButtonCell"; title = "Open a new document"; ObjectID = "3298"; */
-"3298.title" = "新規書類を開く";
 
 
 /* Class = "NSTextFieldCell"; title = "Application:"; ObjectID = "lzy-Ei-xlT"; */
 "lzy-Ei-xlT.title" = "アプリケーション：";
 
-/* Class = "NSButtonCell"; title = "Share find strings with other applications"; ObjectID = "3307"; */
+/* Class = "NSButtonCell"; title = "Share find text with other applications"; ObjectID = "3307"; */
 "3307.title" = "検索文字列をほかのアプリケーションと共有";
 /* Class = "NSButtonCell"; title = "Inline script menu items into context menu"; ObjectID = "3309"; */
 "3309.title" = "コンテキストメニューのスクリプトメニューを展開";
@@ -39,5 +22,19 @@
 "3306.title" = "改行コードを文字としてカウント";
 /* Class = "NSButtonCell"; title = "Check spelling as you type"; ObjectID = "3300"; */
 "3300.title" = "入力中に自動スペルチェック";
-/* Class = "NSButtonCell"; title = "Open a new document when CotEditor becomes active"; ObjectID = "3299"; */
-"3299.title" = "CotEditor がアクティブになるとき新規書類を開く";
+
+
+/* Class = "NSTextFieldCell"; title = "Open a new document:"; ObjectID = "zDW-aW-9G8"; */
+"zDW-aW-9G8.title" = "新規書類を開く：";
+
+/* Class = "NSButtonCell"; title = "On launch"; ObjectID = "3298"; */
+"3298.title" = "起動したとき";
+/* Class = "NSButtonCell"; title = "When CotEditor becomes active"; ObjectID = "3299"; */
+"3299.title" = "CotEditor がアクティブになるとき";
+
+
+/* Class = "NSTextFieldCell"; title = "Software Updates:"; ObjectID = "geU-63-sAC"; */
+"geU-63-sAC.title" = "ソフトウェアアップデート：";
+
+/* Class = "NSButtonCell"; title = "Automatically check for updates"; ObjectID = "3423"; */
+"3423.title" = "自動的にアップデートを確認";

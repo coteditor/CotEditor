@@ -44,6 +44,7 @@
 #import "CEUnicodeInputPanelController.h"
 #import "CEMigrationWindowController.h"
 #import "CEDocument.h"
+#import "CEUpdaterManager.h"
 #import "EDSemVer.h"
 #import "constants.h"
 
@@ -54,6 +55,8 @@
 
 @property (nonatomic) BOOL hasSetting;  // for migration check
 @property (nonatomic, nullable) CEMigrationWindowController *migrationWindowController;
+
+@property (nonatomic, nullable) CEUpdaterManager *updaterDelegate;
 
 
 // readonly
@@ -341,6 +344,16 @@
     }
     
     return flag;
+}
+
+
+// ------------------------------------------------------
+/// setup Sparkle framework
+- (void)applicationWillFinishLaunching:(NSNotification *)notification
+// ------------------------------------------------------
+{
+    // setup updater
+    [[CEUpdaterManager sharedManager] setup];
 }
 
 
