@@ -298,6 +298,9 @@
 // Integration Pane
 "Install" = "インストール";
 "Uninstall" = "アンインストール";
+"Command:" = "コマンド名：";
+"Select “Install” to install the command-line tool at the following location." = "以下の場所にコマンドラインツールをインストールするために、“インストール”を選択してください。";
+"Select “Uninstall” to uninstall the command-line tool at the following location." = "以下の場所のコマンドラインツールをアンインストールするために、“アンインストール”を選択してください。";
 "The current 'cot' symbolic link doesn’t target the running CotEditor." = "現在の 'cot' シンボリックリンクはこの CotEditor 以外に向けられています。";
 "The current 'cot' symbolic link may target on an invalid path." = "現在の 'cot' シンボリックリンクは無効なパスに向けられています。";
 

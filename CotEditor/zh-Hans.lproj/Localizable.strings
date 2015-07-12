@@ -297,6 +297,9 @@
 // Integration Pane
 "Install" = "安装";
 "Uninstall" = "卸载";
+"Command:" = "Command Name:";  // FIXME: added
+"Select “Install” to install the command-line tool at the following location." = "Select “Install” to install the command-line tool at the following location.";  // FIXME: added
+"Select “Uninstall” to uninstall the command-line tool at the following location." = "Select “Uninstall” to uninstall the command-line tool at the following location.";  // FIXME: added
 "The current 'cot' symbolic link doesn’t target the running CotEditor." = "当前的 'cot' 符号链接没有指向正在运行的 CotEditor。";
 "The current 'cot' symbolic link may target on an invalid path." = "当前的 'cot' 符号链接可能指向无效路径。";
 

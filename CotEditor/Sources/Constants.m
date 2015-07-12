@@ -240,6 +240,7 @@ NSString *__nonnull const CEDefaultLargeFileAlertThresholdKey = @"largeFileAlert
 NSString *__nonnull const CEDefaultAutosavingDelayKey = @"autosavingDelay";
 NSString *__nonnull const CEDefaultEnablesAutosaveInPlaceKey = @"enablesAutosaveInPlace";
 NSString *__nonnull const CEDefaultSavesTextOrientationKey = @"savesTextOrientation";
+NSString *__nonnull const CEDefaultCotCommandBookmarkKey = @"cotCommandBookmarkKey";
 
 
 
