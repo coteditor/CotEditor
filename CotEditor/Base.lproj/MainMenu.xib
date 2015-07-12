@@ -902,7 +902,7 @@
                         </items>
                     </menu>
                 </menuItem>
-                <menuItem title="Script" image="ScriptTemplate" tag="800" id="617" customClass="CEScriptMenuItem">
+                <menuItem title="Script" image="ScriptTemplate" tag="800" id="617">
                     <menu key="submenu" title="Script" id="616">
                         <items>
                             <menuItem title="Item" id="618"/>
