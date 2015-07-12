@@ -70,9 +70,6 @@
 "Do you want to continue processing?" = "继续进行处理吗？";
 "Do not show this warning for this document again" = "不再显示此信息";  // FIXME:
 
-"Finder's lock could not be released." = "Finder 锁定无法解除。";
-"You can use “Save As” to save a copy." = "你可以使用 “另存为” 来保存一份副本";
-
 "Discard Changes" = "放弃修改";
 "The file “%@” has unsaved changes." = "文件 “%@” 中有修改内容还没有保存";
 "Do you want to discard the changes and reset the file encodidng?" = "确定要放弃修改内容并且重置文件编码吗？";
@@ -199,10 +196,6 @@
 "Allow Editing" = "允许编辑";
 "Cancel" = "取消";
 "You may not be able to save your changes, but you will be able to save a copy somewhere else." = "无法保存更改，但是可以在其他路径保存一份拷贝。";
-
-"Finder's lock is On." = "Finder 处于锁定状态";
-"Don't Save, and Close" = "不保存，直接关闭";
-"Finder's lock could not be released. So, you can not save your changes on this file, but you will be able to save a copy somewhere else.\n\nDo you want to close?" = "无法解除 Finder 锁定，编辑内容无法保存至该文件中。可以使用 “另存为” 保存一份文件拷贝。\n\n是否关闭文件？";
 
 
 /* MARK: CESplitView */

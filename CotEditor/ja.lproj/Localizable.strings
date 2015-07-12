@@ -71,9 +71,6 @@
 "Do you want to continue processing?" = "保存作業を続けますか？";
 "Do not show this warning for this document again" = "今後この書類ではこの警告を表示しない";
 
-"Finder's lock could not be released." = "Finder のロックを解除できませんでした。";
-"You can use “Save As” to save a copy." = "「別名で保存」でコピーを保存できます。";
-
 "Discard Changes" = "変更内容を破棄";
 "The file “%@” has unsaved changes." = "ファイル“%@”の変更内容は保存されていません。";
 "Do you want to discard the changes and reset the file encodidng?" = "変更内容を破棄してエンコードをリセットしてもよろしいですか？";
@@ -200,10 +197,6 @@
 "Allow Editing" = "編集を許可";
 "Cancel" = "キャンセル";
 "You may not be able to save your changes, but you will be able to save a copy somewhere else." = "このファイルに加えられた変更は保存できない場合がありますが、コピーを別の場所に保存することができます。";
-
-"Finder's lock is On." = "Finder のロックがかかっています。";
-"Don't Save, and Close" = "保存しないで閉じる";
-"Finder's lock could not be released. So, you can not save your changes on this file, but you will be able to save a copy somewhere else.\n\nDo you want to close?" = "Finder のロックを解除できませんでしたので、編集内容をこのファイルに保存できません。「別名で保存」でコピーを保存できます。\n\nファイルを閉じますか？";
 
 
 /* MARK: CESplitView */

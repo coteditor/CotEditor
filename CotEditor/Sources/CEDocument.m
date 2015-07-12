@@ -29,7 +29,6 @@
  ==============================================================================
  */
 
-@import ObjectiveC.message;
 #import "CEDocument.h"
 #import "CEDocumentController.h"
 #import "CEPrintPanelAccessoryController.h"
@@ -289,10 +288,27 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 // ------------------------------------------------------
 /// ファイルの保存(保存処理で包括的に呼ばれる)
-- (BOOL)writeSafelyToURL:(NSURL *)url ofType:(NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation error:(NSError *__autoreleasing *)outError
+- (BOOL)writeToURL:(NSURL *)url ofType:(NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation originalContentsURL:(NSURL *)absoluteOriginalContentsURL error:(NSError *__autoreleasing *)outError
 // ------------------------------------------------------
 {
-    return [self forceWriteToURL:url ofType:typeName forSaveOperation:saveOperation];
+    // 保存処理実行
+    BOOL success = [super writeToURL:url ofType:typeName forSaveOperation:saveOperation originalContentsURL:absoluteOriginalContentsURL error:outError];
+
+    if (success) {
+        // ファイル拡張属性 (com.apple.TextEncoding) にエンコーディングを保存
+        if ([self shouldSaveXattr]) {
+            [url setAppleTextEncoding:[self encoding]];
+        }
+        
+        // presentedItemDidChange にて内容の同一性を比較するためにファイルの MD5 を保存する
+        //    So, `dataOfType:error:` will be invoked twice in a single save operation... (2015-06)
+        if (saveOperation != NSAutosaveElsewhereOperation) {
+            NSData *data = [self dataOfType:typeName error:nil];
+            [self setFileMD5:[data MD5]];
+        }
+    }
+
+    return success;
 }
 
 
@@ -369,39 +385,12 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 - (void)canCloseDocumentWithDelegate:(id)delegate shouldCloseSelector:(SEL)shouldCloseSelector contextInfo:(void *)contextInfo
 // ------------------------------------------------------
 {
-    // This method is based on the following page (2005-07-08)
-    // http://www.cocoadev.com/index.pl?ReplaceSaveChangesSheet
-
-    // Finder のロックが解除できず、かつダーティーフラグがたっているときは相応のダイアログを出す
-    if ([self isDocumentEdited] &&
-        ![self canUnlockFileAtURL:[self fileURL] isLocked:nil lockAgain:YES])
-    {
-        NSAlert *alert = [[NSAlert alloc] init];
-        [alert setMessageText:NSLocalizedString(@"Finder's lock is On.", nil)];
-        [alert setInformativeText:NSLocalizedString(@"Finder's lock could not be released. So, you can not save your changes on this file, but you will be able to save a copy somewhere else.\n\nDo you want to close?", nil)];
-        [alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
-        [alert addButtonWithTitle:NSLocalizedString(@"Don't Save, and Close", nil)];
-
-        NSButton *dontSaveButton = [alert buttons][1];
-        [dontSaveButton setKeyEquivalent:@"d"];
-        [dontSaveButton setKeyEquivalentModifierMask:NSCommandKeyMask];
-        
-        NSDictionary *contextInfoDict = @{@"delegate": delegate,
-                                         @"shouldCloseSelector": [NSValue valueWithPointer:shouldCloseSelector],
-                                         @"contextInfo": [NSValue valueWithPointer:contextInfo]};
-        
-        [alert beginSheetModalForWindow:[self windowForSheet]
-                          modalDelegate:self
-                         didEndSelector:@selector(alertForNotWritableDocCloseDidEnd:returnCode:contextInfo:)
-                            contextInfo:(__bridge_retained void *)(contextInfoDict)];
-    } else {
-        // Disable save dialog if content is empty and not saved
-        if (![self fileURL] && [[[self editor] string] length] == 0) {
-            [self updateChangeCount:NSChangeCleared];
-        }
-        
-        [super canCloseDocumentWithDelegate:delegate shouldCloseSelector:shouldCloseSelector contextInfo:contextInfo];
+    // Disable save dialog if content is empty and not saved
+    if (![self fileURL] && [[[self editor] string] length] == 0) {
+        [self updateChangeCount:NSChangeCleared];
     }
+    
+    [super canCloseDocumentWithDelegate:delegate shouldCloseSelector:shouldCloseSelector contextInfo:contextInfo];
 }
 
 
@@ -1184,34 +1173,20 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 
 // ------------------------------------------------------
-// authopen コマンドを使って読み込む
-- (NSData *)forceReadDataFromURL:(NSURL *)url
+// file coordinator を通じて読み込む
+- (NSData *)readDataAtURL:(NSURL *)url
 // ------------------------------------------------------
 {
-    __block BOOL success = NO;
     __block NSData *data = nil;
     
     NSFileCoordinator *coordinator = [[NSFileCoordinator alloc] initWithFilePresenter:self];
-    [coordinator coordinateReadingItemAtURL:url options:0
-                                      error:nil
-                                 byAccessor:^(NSURL *newURL)
+    [coordinator coordinateReadingItemAtURL:[self fileURL] options:NSFileCoordinatorReadingResolvesSymbolicLink
+                                      error:nil byAccessor:^(NSURL *newURL)
      {
-         NSString *convertedPath = @([[newURL path] UTF8String]);
-         NSTask *task = [[NSTask alloc] init];
-         
-         [task setLaunchPath:@"/usr/libexec/authopen"];
-         [task setArguments:@[convertedPath]];
-         [task setStandardOutput:[NSPipe pipe]];
-         
-         [task launch];
-         data = [NSData dataWithData:[[[task standardOutput] fileHandleForReading] readDataToEndOfFile]];
-         [task waitUntilExit];
-         
-         int status = [task terminationStatus];
-         success = (status == 0);
+         data = [NSData dataWithContentsOfURL:newURL];
      }];
     
-    return success ? data : nil;
+    return data;
 }
 
 
@@ -1220,8 +1195,8 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 - (BOOL)readFromURL:(NSURL *)url encoding:(NSStringEncoding)encoding
 // ------------------------------------------------------
 {
-    // authopen コマンドを使って読み込む
-    NSData *data = [self forceReadDataFromURL:url];
+    // file coordinator を通じて読み込む
+    NSData *data = [self readDataAtURL:url];
     
     if (!data) {
         // オープンダイアログでのエラーアラートは CEDocumentController > openDocument: で表示する
@@ -1509,109 +1484,27 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 - (BOOL)acceptsSaveDocumentToConvertEncoding
 // ------------------------------------------------------
 {
-    // convert harfwidth-Yen-signs for the current encoding
-    NSString *contentString = [self convertCharacterString:[self stringForSave] encoding:[self encoding]];
+    // エンコーディングを見て、半角円マークを変換しておく
+    NSString *curString = [self convertCharacterString:[self stringForSave] encoding:[self encoding]];
     
-    if (![contentString canBeConvertedToEncoding:[self encoding]]) {
+    if (![curString canBeConvertedToEncoding:[self encoding]]) {
         NSString *encodingName = [NSString localizedNameOfStringEncoding:[self encoding]];
-        
-        NSDictionary *userInfo = @{NSLocalizedDescriptionKey: [NSString stringWithFormat:NSLocalizedString(@"The characters would have to be changed or deleted in saving as “%@”.", nil), encodingName],
-                                   NSLocalizedRecoverySuggestionErrorKey: NSLocalizedString(@"Do you want to continue processing?", nil),
-                                   NSLocalizedRecoveryOptionsErrorKey: @[NSLocalizedString(@"Show Incompatible Chars", nil),
-                                                                         NSLocalizedString(@"Save Available Strings", nil),
-                                                                         NSLocalizedString(@"Cancel", nil)],
-                                   NSRecoveryAttempterErrorKey: self,
-                                   NSStringEncodingErrorKey: @([self encoding]),
-                                   };
-        
-        NSError *error = [NSError errorWithDomain:CEErrorDomain code:CEUnconvertibleCharactersError userInfo:userInfo];
-        
-        NSAlert *alert = [NSAlert alertWithError:error];
-        switch ([alert runModal]) {
-            case NSAlertFirstButtonReturn:  // == Show Incompatible Chars
-                [[self windowController] showIncompatibleCharList];
-                return NO;
-                
-            case NSAlertSecondButtonReturn:  // == Save Available Strings
-                return YES;
-                
-            case NSAlertThirdButtonReturn:  // == Cancel
-                return NO;
-        }
-    }
-    
-    return YES;
-}
-
-
-// ------------------------------------------------------
-/// authopenを使ってファイルを書き込む
-- (BOOL)forceWriteToURL:(NSURL *)url ofType:(NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation
-// ------------------------------------------------------
-{
-    BOOL success = NO;
-    NSData *data = [self dataOfType:typeName error:nil];
-    
-    if (!data) { return NO; }
-    
-    // 設定すべきfileAttributesを準備しておく
-    NSDictionary *attributes = [self fileAttributesToWriteToURL:url
-                                                         ofType:typeName
-                                               forSaveOperation:saveOperation
-                                            originalContentsURL:nil
-                                                          error:nil];
-    BOOL shouldSaveXattr = [self shouldSaveXattr];
-    
-    // ユーザがオーナーでないファイルに Finder Lock がかかっていたら編集／保存できない
-    BOOL isFinderLockOn = NO;
-    if (![self canUnlockFileAtURL:url isLocked:&isFinderLockOn lockAgain:NO]) {
         NSAlert *alert = [[NSAlert alloc] init];
-        [alert setMessageText:NSLocalizedString(@"Finder's lock could not be released.", nil)];
-        [alert setInformativeText:NSLocalizedString(@"You can use “Save As” to save a copy.", nil)];
-        [alert setAlertStyle:NSCriticalAlertStyle];
-        [alert runModal];
-        return NO;
-    }
-    
-    // "authopen" コマンドを使って保存
-    NSString *convertedPath = @([[url path] UTF8String]);
-    NSTask *task = [[NSTask alloc] init];
-    
-    [task setLaunchPath:@"/usr/libexec/authopen"];
-    [task setArguments:@[@"-c", @"-w", convertedPath]];
-    [task setStandardInput:[NSPipe pipe]];
-    
-    [task launch];
-    [[[task standardInput] fileHandleForWriting] writeData:data];
-    [[[task standardInput] fileHandleForWriting] closeFile];
-    [task waitUntilExit];
-    
-    int status = [task terminationStatus];
-    success = (status == 0);
-    
-    // set metadata to the file
-    if (success) {
-        [[NSFileManager defaultManager] setAttributes:attributes ofItemAtPath:[url path] error:nil];
+        [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"The characters would have to be changed or deleted in saving as “%@”.", nil), encodingName]];
+        [alert setInformativeText:NSLocalizedString(@"Do you want to continue processing?", nil)];
+        [alert addButtonWithTitle:NSLocalizedString(@"Show Incompatible Chars", nil)];
+        [alert addButtonWithTitle:NSLocalizedString(@"Save Available Strings", nil)];
+        [alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
         
-        // ファイル拡張属性 (com.apple.TextEncoding) にエンコーディングを保存
-        if (shouldSaveXattr) {
-            [url setAppleTextEncoding:[self encoding]];
+        NSInteger result = [alert runModal];
+        if (result != NSAlertSecondButtonReturn) { // != Save
+            if (result == NSAlertFirstButtonReturn) { // == show incompatible chars
+                [[self windowController] showIncompatibleCharList];
+            }
+            return NO;
         }
     }
-    
-    // Finder Lock がかかってたなら、再びかける
-    if (isFinderLockOn) {
-        BOOL lockSuccess = [[NSFileManager defaultManager] setAttributes:@{NSFileImmutable:@YES} ofItemAtPath:[url path] error:nil];
-        
-        success = (success && lockSuccess);
-    }
-    
-    // presentedItemDidChange にて内容の同一性を比較するためにファイルの MD5 を保存する
-    if (success && saveOperation != NSAutosaveElsewhereOperation) {
-        [self setFileMD5:[data MD5]];
-    }
-    
-    return success;
+    return YES;
 }
 
 
@@ -1625,40 +1518,6 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
                                                  withString:@"\\"];
     }
     return string;
-}
-
-
-// ------------------------------------------------------
-/// Finder のロックが解除出来るか試す。lockAgain が真なら再びロックする。
-- (BOOL)canUnlockFileAtURL:(NSURL *)url isLocked:(BOOL *)isLocked lockAgain:(BOOL)lockAgain
-// ------------------------------------------------------
-{
-    __block BOOL isFinderLocked = NO;
-    __block BOOL success = NO;
-    NSError *error = nil;
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    
-         isFinderLocked = [[fileManager attributesOfItemAtPath:[url path] error:nil] fileIsImmutable];
-    
-    if (isFinderLocked) {
-             // unlock file once
-             success = [fileManager setAttributes:@{NSFileImmutable:@NO} ofItemAtPath:[url path] error:nil];
-             if (success) {
-                 // lock file again if needed
-                 if (lockAgain) {
-                     [fileManager setAttributes:@{NSFileImmutable:@YES} ofItemAtPath:[url path] error:nil];
-                 }
-             }
-    } else {
-        // no-lock file is always treated as success
-        success = YES;
-    }
-    
-    if (isLocked) {
-        *isLocked = isFinderLocked;
-    }
-    
-    return success;
 }
 
 
@@ -1783,30 +1642,6 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     }
     [self setRevertingForExternalFileUpdate:NO];
     [self setNeedsShowUpdateAlertWithBecomeKey:NO];
-}
-
-
-// ------------------------------------------------------
-/// 書き込み不可ドキュメントが閉じるときの確認アラートが閉じた
-- (void)alertForNotWritableDocCloseDidEnd:(NSAlert *)alert returnCode:(int)returnCode contextInfo:(void *)contextInfo
-// ------------------------------------------------------
-{
-    // This method is based on the following page (2005-07-08)
-    // http://www.cocoadev.com/index.pl?ReplaceSaveChangesSheet
-    
-    NSDictionary *contextInfoDict = CFBridgingRelease(contextInfo);
-    id delegate = contextInfoDict[@"delegate"];
-    SEL shouldCloseSelector = [contextInfoDict[@"shouldCloseSelector"] pointerValue];
-    void *originalContextInfo = [contextInfoDict[@"contextInfo"] pointerValue];
-    BOOL shouldClose = (returnCode == NSAlertSecondButtonReturn); // YES == Don't Save and Close
-    
-    if (delegate) {
-        void (*callback)(id, SEL, id, BOOL, void *) = (void (*)(id, SEL, id, BOOL, void *))objc_msgSend;
-        (*callback)(delegate, shouldCloseSelector, self, shouldClose, originalContextInfo);
-        if (shouldClose) {
-            [[NSApplication sharedApplication] terminate:nil];
-        }
-    }
 }
 
 @end
