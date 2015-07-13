@@ -381,7 +381,9 @@
 // Menu items
 "Open Scripts Folder" = "スクリプトフォルダを開く";
 "Update Script Menu" = "スクリプトメニューを更新";
-"Copy Sample to Scripts Folder" = "サンプルをスクリプトフォルダにコピー";
+"Copy Sample Scripts…" = "サンプルスクリプトをコピー…";
+"Copy Sample Scripts" = "サンプルスクリプトをコピー";
+"Scripts in “%@” will be listed in the script menu." = "“%@”にあるスクリプトがスクリプトメニューに表示されます。";
 "Copy bundled sample scripts to the scripts folder." = "バンドルされているサンプルスクリプトをスクリプトフォルダにコピーする。";
 
 // Script menu item tooltips
@@ -392,8 +394,6 @@
 "Could not open the script file “%@”." = "スクリプトファイル“%@”を開けませんでした。";
 "Cannnot execute the script “%@”.\nShell script requires execute permission.\n\nCheck permission of the script file." = "スクリプト“%@”を実行できません。\nシェルスクリプトの場合は実行権が必要です。\n\nアクセス権を確認してください。";
 "Could not read the script “%@”." = "スクリプト“%@”を読み込めませんでした。";
-"SampleScript folder exists already." = "SampleScript フォルダはすでに存在します。";
-"If you want to replace it with the new one, remove the existing folder at “%@” at first." = "新しいものに置き換えたい場合は、まず“%@”にある現存のフォルダを削除してください。";
 
 
 /* MARK: CEFindPanelController */
