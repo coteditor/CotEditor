@@ -304,6 +304,7 @@
 		2A3FB2AC18ECEFF200D9CB2C /* CESyntaxEditSheetController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CESyntaxEditSheetController.m; sourceTree = "<group>"; };
 		2A40D7BE1A233B4A00721EB4 /* cot */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = cot; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A40D7C01A233B4B00721EB4 /* cot.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = cot.m; sourceTree = "<group>"; };
+		2A42BD661B5383990000BC37 /* cot-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "cot-Info.plist"; sourceTree = "<group>"; };
 		2A436DCC1A4243D500275FD4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/DocumentInspectorView.xib; sourceTree = "<group>"; };
 		2A436DCF1A4249CB00275FD4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/IncompatibleCharsView.xib; sourceTree = "<group>"; };
 		2A436DD21A42516900275FD4 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/DocumentInspectorView.strings; sourceTree = "<group>"; };
@@ -963,6 +964,7 @@
 			children = (
 				2A40D7C01A233B4B00721EB4 /* cot.m */,
 				2AAC90021A4ED6E40074E076 /* CotEditor.h */,
+				2A42BD661B5383990000BC37 /* cot-Info.plist */,
 			);
 			name = "Command-line Tool";
 			path = cot;
@@ -2001,6 +2003,12 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = (
+					"-sectcreate",
+					__TEXT,
+					__info_plist,
+					"cot/cot-Info.plist",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -2032,6 +2040,12 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = (
+					"-sectcreate",
+					__TEXT,
+					__info_plist,
+					"cot/cot-Info.plist",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};

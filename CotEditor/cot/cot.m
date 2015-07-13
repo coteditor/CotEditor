@@ -57,9 +57,9 @@ typedef NS_ENUM(NSUInteger, OptionTypes) {
 
 const char* version(void)
 {
-    CotEditorApplication *CotEditor = [SBApplication applicationWithBundleIdentifier:kBundleIdentifier];
+    NSString *version = [[NSBundle mainBundle] objectForInfoDictionaryKey:(NSString *)kCFBundleVersionKey];
     
-    return [[CotEditor version] UTF8String];
+    return [version UTF8String];
 }
 
 
@@ -138,7 +138,7 @@ int main(int argc, const char * argv[])
         
         // display version
         if ([arguments[kVersionOption] boolValue]) {
-            printf("CotEditor %s\n", version());
+            printf("cot %s\n", version());
             exit(0);
         }
         

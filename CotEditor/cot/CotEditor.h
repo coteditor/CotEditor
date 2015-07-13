@@ -336,4 +336,3 @@ typedef enum CotEditorCharacterWidthType CotEditorCharacterWidthType;
 
 
 @end
-
