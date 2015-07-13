@@ -398,7 +398,7 @@ static NSPoint kTextContainerOrigin;
         [self insertTab:sender];
         NSRange selection = [self selectedRange];
         [super insertNewline:sender];
-        [super insertText:indent replacementRange:selection];
+        [super insertText:indent replacementRange:[self selectedRange]];
         [self setSelectedRange:selection];
         
     } else if (shouldIncreaseIndentLevel) {
