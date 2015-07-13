@@ -380,7 +380,9 @@
 // Menu items
 "Open Scripts Folder" = "打开脚本文件夹";
 "Update Script Menu" = "更新脚本菜单";
-"Copy Sample to Scripts Folder" = "将示例文件复制到脚本文件夹";
+"Copy Sample Scripts…" = "Copy Sample Scripts…";  // FIXME:
+"Copy Sample Scripts" = "Copy Sample Scripts";  // FIXME:
+"Scripts in “%@” will be listed in the script menu." = "Scripts in “%@” will be listed in the script menu."; // FIXME:
 "Copy bundled sample scripts to the scripts folder." = "将内置的示例脚本复制到脚本文件夹";
 
 // Script menu item tooltips
@@ -392,8 +394,6 @@
 "Could not open the script file “%@”." = "无法打开脚本文件 “%@”";
 "Cannnot execute the script “%@”.\nShell script requires execute permission.\n\nCheck permission of the script file." = "无法执行脚本 “%@”。\nShell 脚本需要执行权限。\n\n请确认脚本文件访问权限";
 "Could not read the script “%@”." = "无法读取脚本 “%@”";
-"SampleScript folder exists already." = "SampleScript 文件夹已存在";
-"If you want to replace it with the new one, remove the existing folder at “%@” at first." = "如果需要使用新的进行覆盖，请先删除 “%@” 下已有的文件夹";
 
 
 /* MARK: CEFindPanelController */

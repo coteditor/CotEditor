@@ -31,8 +31,8 @@
 #import "CEScriptManager.h"
 #import "CEConsolePanelController.h"
 #import "CEDocument.h"
-#import "CEAppDelegate.h"
 #import "CEUtils.h"
+#import "NSString+Sandboxing.h"
 #import "constants.h"
 
 
@@ -51,6 +51,17 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
     CEInputAllTextType
 };
 
+
+@interface CEScriptManager ()
+
+@property (nonatomic, nonnull) NSURL *scriptsDirectoryURL;
+
+@end
+
+
+
+
+#pragma mark -
 
 @implementation CEScriptManager
 
@@ -82,7 +93,15 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 {
     self = [super init];
     if (self) {
-        [self copySampleScriptToUserDomain:self];
+        // find Application Scripts folder
+        NSString *bundleIdentifier = [[NSBundle mainBundle] bundleIdentifier];
+        _scriptsDirectoryURL = [[NSFileManager defaultManager] URLForDirectory:NSApplicationScriptsDirectory
+                                                                      inDomain:NSUserDomainMask
+                                                             appropriateForURL:nil
+                                                                        create:YES
+                                                                         error:nil];
+        
+        [self buildScriptMenu:self];
         
         // run dummy AppleScript once for quick script launch
         if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultRunAppleScriptInLaunchingKey]) {
@@ -107,39 +126,44 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 {
     NSMenu *menu = [[[NSApp mainMenu] itemAtIndex:CEScriptMenuIndex] submenu];
     [menu removeAllItems];
-    NSMenuItem *menuItem;
 
-    [self addChildFileItemTo:menu fromDir:[[self class] scriptDirectoryURL]];
+    [self addChildFileItemTo:menu fromDir:[self scriptsDirectoryURL]];
     
-    if ([menu numberOfItems] > 0) {
-        menuItem = [NSMenuItem separatorItem];
-        [menuItem setTag:CEDefaultScriptMenuItemTag];
-        [menu addItem:menuItem];
+    BOOL isEmpty = [menu numberOfItems] == 0;
+    
+    NSMenuItem *copySampleMenuItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Copy Sample Scripts…", nil)
+                                                                action:@selector(copySampleScriptToUserDomain:)
+                                                         keyEquivalent:@""];
+    [copySampleMenuItem setTarget:self];
+    [copySampleMenuItem setToolTip:NSLocalizedString(@"Copy bundled sample scripts to the scripts folder.", nil)];
+    [copySampleMenuItem setTag:CEDefaultScriptMenuItemTag];
+    if (isEmpty) {
+        [menu addItem:copySampleMenuItem];
     }
     
-    menuItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Open Scripts Folder", nil)
-                                          action:@selector(openScriptFolder:)
-                                   keyEquivalent:@"a"];
-    [menuItem setTarget:self];
-    [menuItem setTag:CEDefaultScriptMenuItemTag];
-    [menu addItem:menuItem];
+    NSMenuItem *separatorItem = [NSMenuItem separatorItem];
+    [separatorItem setTag:CEDefaultScriptMenuItemTag];
+    [menu addItem:separatorItem];
     
-    menuItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Copy Sample to Scripts Folder", nil)
-                                          action:@selector(copySampleScriptToUserDomain:)
-                                   keyEquivalent:@""];
-    [menuItem setTarget:self];
-    [menuItem setAlternate:YES];
-    [menuItem setKeyEquivalentModifierMask:NSAlternateKeyMask];
-    [menuItem setToolTip:NSLocalizedString(@"Copy bundled sample scripts to the scripts folder.", nil)];
-    [menuItem setTag:CEDefaultScriptMenuItemTag];
-    [menu addItem:menuItem];
+    NSMenuItem *openMenuItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Open Scripts Folder", nil)
+                                                          action:@selector(openScriptFolder:)
+                                                   keyEquivalent:@"a"];
+    [openMenuItem setTarget:self];
+    [openMenuItem setTag:CEDefaultScriptMenuItemTag];
+    [menu addItem:openMenuItem];
     
-    menuItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Update Script Menu", nil)
-                                          action:@selector(buildScriptMenu:)
-                                   keyEquivalent:@""];
-    [menuItem setTarget:self];
-    [menuItem setTag:CEDefaultScriptMenuItemTag];
-    [menu addItem:menuItem];
+    if (!isEmpty) {
+        [copySampleMenuItem setAlternate:YES];
+        [copySampleMenuItem setKeyEquivalentModifierMask:NSAlternateKeyMask];
+        [menu addItem:copySampleMenuItem];
+    }
+    
+    NSMenuItem *updateMenuItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Update Script Menu", nil)
+                                                action:@selector(buildScriptMenu:)
+                                         keyEquivalent:@""];
+    [updateMenuItem setTarget:self];
+    [updateMenuItem setTag:CEDefaultScriptMenuItemTag];
+    [menu addItem:updateMenuItem];
 }
 
 
@@ -227,7 +251,7 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 - (IBAction)openScriptFolder:(nullable id)sender
 // ------------------------------------------------------
 {
-    [[NSWorkspace sharedWorkspace] activateFileViewerSelectingURLs:@[[CEScriptManager scriptDirectoryURL]]];
+    [[NSWorkspace sharedWorkspace] activateFileViewerSelectingURLs:@[[self scriptsDirectoryURL]]];
 }
 
 
@@ -236,30 +260,32 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 - (IBAction)copySampleScriptToUserDomain:(nullable id)sender
 // ------------------------------------------------------
 {
+    // ask location to copy sample scripts
+    NSSavePanel *savePanel = [NSSavePanel savePanel];
+    [savePanel setDirectoryURL:[self scriptsDirectoryURL]];
+    [savePanel setNameFieldStringValue:@"Sample Scripts"];
+    [savePanel setTitle:NSLocalizedString(@"Copy Sample Scripts", nil)];
+    [savePanel setAllowedFileTypes:@[(NSString *)kUTTypeFolder]];
+    [savePanel setShowsTagField:NO];
+    [savePanel setMessage:[NSString stringWithFormat:NSLocalizedString(@"Scripts in “%@” will be listed in the script menu.", nil),
+                           [[[self scriptsDirectoryURL] path] stringByAbbreviatingWithTildeInSandboxedPath]]];
+    
+    // run save panel
+    NSInteger result = [savePanel runModal];
+    if (result == NSFileHandlingPanelCancelButton) { return; }
+    
+    NSURL *destURL = [savePanel URL];
     NSURL *sourceURL = [[[NSBundle mainBundle] sharedSupportURL] URLByAppendingPathComponent:@"SampleScripts"];
-    NSURL *destURL = [[[self class] scriptDirectoryURL] URLByAppendingPathComponent:@"SampleScript"];
     
-    if (![sourceURL checkResourceIsReachableAndReturnError:nil]) {
-        return;
-    }
+    // copy
+    NSError *error;
+    [[NSFileManager defaultManager] removeItemAtURL:destURL error:&error];
+    BOOL success = [[NSFileManager defaultManager] copyItemAtURL:sourceURL toURL:destURL error:&error];
     
-    if (![destURL checkResourceIsReachableAndReturnError:nil]) {
-        [[NSFileManager defaultManager] createDirectoryAtURL:[destURL URLByDeletingLastPathComponent]
-                                 withIntermediateDirectories:NO attributes:nil error:nil];
-        BOOL success = [[NSFileManager defaultManager] copyItemAtURL:sourceURL toURL:destURL error:nil];
-        
-        if (success) {
-            [self buildScriptMenu:self];
-        } else {
-            NSLog(@"Error. Sample script folder could not be copied.");
-        }
-        
-    } else if ([sender isKindOfClass:[NSMenuItem class]]) {
-        // show alert if sample script folder is already exists only when user performs the copy
-        NSAlert *alert = [[NSAlert alloc] init];
-        [alert setMessageText:NSLocalizedString(@"SampleScript folder exists already.", nil)];
-        [alert setInformativeText:[NSString stringWithFormat:NSLocalizedString(@"If you want to replace it with the new one, remove the existing folder at “%@” at first.", nil), [destURL relativePath]]];
-        [alert runModal];
+    if (success) {
+        [self buildScriptMenu:self];
+    } else {
+        NSLog(@"Error on %s: %@", __func__, [error localizedDescription]);
     }
 }
 
@@ -282,15 +308,6 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 // ------------------------------------------------------
 {
     return @[@"applescript", @"scpt"];
-}
-
-
-//------------------------------------------------------
-/// return directory to save script files
-+ (nonnull NSURL *)scriptDirectoryURL
-//------------------------------------------------------
-{
-    return [[(CEAppDelegate *)[NSApp delegate] supportDirectoryURL] URLByAppendingPathComponent:@"ScriptMenu"];
 }
 
 
