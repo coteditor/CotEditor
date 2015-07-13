@@ -31,6 +31,7 @@
 #import "CEPrintView.h"
 #import "CELayoutManager.h"
 #import "CESyntaxParser.h"
+#import "NSString+Sandboxing.h"
 #import "constants.h"
 
 
@@ -453,7 +454,7 @@ static NSString *const PageNumberPlaceholder = @"PAGENUM";
             if ([self filePath]) {
                 string = [self filePath];
                 if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultHeaderFooterPathAbbreviatingWithTildeKey]) {
-                    string = [string stringByAbbreviatingWithTildeInPath];
+                    string = [string stringByAbbreviatingWithTildeInSandboxedPath];
                 }
             } else {
                 string = [self documentName];  // パスがない場合は書類名をプリント
