@@ -16,7 +16,7 @@ About Source Code
 -----------------------------
 [![Build Status](https://travis-ci.org/coteditor/CotEditor.png)](https://travis-ci.org/coteditor/CotEditor)
 
-The source code is written in Cocoa and Objective-C with ARC enabled.
+It's pure Cocoa document-based application. The source code is written in Objective-C with ARC enabled.
 
 
 ### Development Environment
