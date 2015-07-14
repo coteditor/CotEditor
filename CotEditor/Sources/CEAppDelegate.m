@@ -44,9 +44,12 @@
 #import "CEUnicodeInputPanelController.h"
 #import "CEMigrationWindowController.h"
 #import "CEDocument.h"
-#import "CEUpdaterManager.h"
 #import "EDSemVer.h"
 #import "constants.h"
+
+#ifndef APPSTORE
+#import "CEUpdaterManager.h"
+#endif
 
 
 @interface CEAppDelegate ()
@@ -55,7 +58,10 @@
 
 @property (nonatomic, nullable) CEMigrationWindowController *migrationWindowController;
 
+
+#ifndef APPSTORE
 @property (nonatomic, nullable) CEUpdaterManager *updaterDelegate;
+#endif
 
 
 // readonly
@@ -344,6 +350,7 @@
 }
 
 
+#ifndef APPSTORE
 // ------------------------------------------------------
 /// setup Sparkle framework
 - (void)applicationWillFinishLaunching:(NSNotification *)notification
@@ -352,6 +359,7 @@
     // setup updater
     [[CEUpdaterManager sharedManager] setup];
 }
+#endif
 
 
 // ------------------------------------------------------

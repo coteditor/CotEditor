@@ -102,7 +102,6 @@
 		2A6F0D591B5500E100C2D03C /* CotEditor.sdef in Resources */ = {isa = PBXBuildFile; fileRef = 2A75ACCA19E86DDB00444894 /* CotEditor.sdef */; };
 		2A6F0D5A1B5500E100C2D03C /* CotEditor.help in Resources */ = {isa = PBXBuildFile; fileRef = 2A6E3F3C19B5218300A63E97 /* CotEditor.help */; };
 		2A6F0D5B1B5500E100C2D03C /* SyntaxMap.json in Resources */ = {isa = PBXBuildFile; fileRef = 2A2179F51A07093B002C4AB1 /* SyntaxMap.json */; };
-		2A6F0D5C1B5500E100C2D03C /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 6C6DAE3D13833C0E007F2326 /* dsa_pub.pem */; };
 		2A6F0D5D1B5500E100C2D03C /* ReportTemplate.md in Resources */ = {isa = PBXBuildFile; fileRef = 2A456C421A1EDCFC00395158 /* ReportTemplate.md */; };
 		2A6F0D5E1B5500E100C2D03C /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B6FDCFA73011CA2CEA /* MainMenu.xib */; };
 		2A6F0D5F1B5500E100C2D03C /* DocumentWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B4FDCFA73011CA2CEA /* DocumentWindow.xib */; };
@@ -243,7 +242,6 @@
 		2A6F0DE71B5500E100C2D03C /* CEOutlineMenuButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C99DDF908BD8940001F618C /* CEOutlineMenuButtonCell.m */; };
 		2A6F0DE81B5500E100C2D03C /* CEODBEventSender.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD84CA91966314100DE49BD /* CEODBEventSender.m */; };
 		2A6F0DE91B5500E100C2D03C /* CEKeyBindingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C7400A708C6D96D00683672 /* CEKeyBindingManager.m */; };
-		2A6F0DEA1B5500E100C2D03C /* CEUpdaterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A162FE91AF395A400E97285 /* CEUpdaterManager.m */; };
 		2A6F0DEB1B5500E100C2D03C /* CEPrintView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CC5044308EE829500A525A6 /* CEPrintView.m */; };
 		2A6F0DEC1B5500E100C2D03C /* CEATSTypesetter.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C83A48109485F27004E48A8 /* CEATSTypesetter.m */; };
 		2A6F0DED1B5500E100C2D03C /* CEEditorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CD7A93A09CBDDDC00739513 /* CEEditorView.m */; };
@@ -262,7 +260,6 @@
 		2A6F0DFA1B5500E100C2D03C /* NSString+CENewLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AC75C071A2AF47F00C7DB0A /* NSString+CENewLine.m */; };
 		2A6F0DFB1B5500E100C2D03C /* NSURL+AppleTextEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A1068C21A745FCE001DB9AA /* NSURL+AppleTextEncoding.m */; };
 		2A6F0DFC1B5500E100C2D03C /* openDictionary.applescript in Sources */ = {isa = PBXBuildFile; fileRef = 2585914B080F503A0038F387 /* openDictionary.applescript */; };
-		2A6F0DFE1B5500E100C2D03C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F3504B3BB02D4DBA8EA50C0E /* libPods.a */; };
 		2A6F0E011B5500E100C2D03C /* cot in Copy Executables */ = {isa = PBXBuildFile; fileRef = 2A40D7BE1A233B4A00721EB4 /* cot */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		2A6F0E031B5500E100C2D03C /* SampleScripts in Copy Shared Supports */ = {isa = PBXBuildFile; fileRef = 6CA3B36012E3B59B0019AB2E /* SampleScripts */; };
 		2A712CA218EFB716001FEC33 /* AutoTabExpand_Off.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 2A712CA018EFB716001FEC33 /* AutoTabExpand_Off.tiff */; };
@@ -311,7 +308,6 @@
 		2AFFB71D18D7F22E00118477 /* GoToSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2AFFB71F18D7F22E00118477 /* GoToSheet.xib */; };
 		2AFFB72818D8C7DE00118477 /* OpenDocumentAccessory.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2AFFB72A18D8C7DE00118477 /* OpenDocumentAccessory.xib */; };
 		6C6DAE3E13833C0E007F2326 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 6C6DAE3D13833C0E007F2326 /* dsa_pub.pem */; };
-		792E1BB17A7E4930ADAFB01E /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F3504B3BB02D4DBA8EA50C0E /* libPods.a */; };
 		8C081B4B07D0A85A0060191A /* GetInfo.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 8C081B4A07D0A85A0060191A /* GetInfo.tiff */; };
 		8C28CD2E081101A300733DA7 /* ConsolePanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C28CD2C081101A300733DA7 /* ConsolePanel.xib */; };
 		8C3E2D500808E203009894D1 /* LineNumber_Hide.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 8C3E2D480808E203009894D1 /* LineNumber_Hide.tiff */; };
@@ -348,6 +344,8 @@
 		8D15AC2E0486D014006FF6A4 /* DocumentWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B4FDCFA73011CA2CEA /* DocumentWindow.xib */; };
 		8D15AC310486D014006FF6A4 /* CEDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A37F4ACFDCFA73011CA2CEA /* CEDocument.m */; settings = {ATTRIBUTES = (); }; };
 		8D15AC320486D014006FF6A4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A37F4B0FDCFA73011CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
+		BED9FB377321352F7A748759 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F3504B3BB02D4DBA8EA50C0E /* libPods.a */; };
+		D3F0D0D055B0931687B33C98 /* libPods-appstore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DD42F3AFDE3081DC5D669D51 /* libPods-appstore.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -559,6 +557,7 @@
 		2A6E3F3C19B5218300A63E97 /* CotEditor.help */ = {isa = PBXFileReference; lastKnownFileType = folder; path = CotEditor.help; sourceTree = "<group>"; };
 		2A6F0E071B5500E100C2D03C /* CotEditor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CotEditor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A6F0E081B5500E100C2D03C /* CotEditor (AppStore)-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "CotEditor (AppStore)-Info.plist"; path = "/Users/imanishi/Developer/CotEditor/CotEditor/CotEditor/CotEditor (AppStore)-Info.plist"; sourceTree = "<absolute>"; };
+		2A6F0E091B55043800C2D03C /* CotEditor (AppStore).entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "CotEditor (AppStore).entitlements"; sourceTree = "<group>"; };
 		2A712CA018EFB716001FEC33 /* AutoTabExpand_Off.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = AutoTabExpand_Off.tiff; sourceTree = "<group>"; };
 		2A712CA118EFB716001FEC33 /* AutoTabExpand_On.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = AutoTabExpand_On.tiff; sourceTree = "<group>"; };
 		2A7314EC1A0326D300C0EDA9 /* CEWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEWindow.h; sourceTree = "<group>"; };
@@ -723,11 +722,14 @@
 		2AF4E0D6196F7958008E9EF7 /* CEStatusBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEStatusBarController.m; sourceTree = "<group>"; };
 		2AF5C3BD1A55072E00C972B5 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2AF5C3BF1A5510F600C972B5 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		2AFB50511B556B2C00DE5FE1 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "../Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		2AFB50521B556B2C00DE5FE1 /* Pods.release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "../Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		2AFB50551B556BD500DE5FE1 /* Pods-appstore.debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = "Pods-appstore.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-appstore/Pods-appstore.debug.xcconfig"; sourceTree = "<group>"; };
+		2AFB50561B556BD500DE5FE1 /* Pods-appstore.release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = "Pods-appstore.release.xcconfig"; path = "../Pods/Target Support Files/Pods-appstore/Pods-appstore.release.xcconfig"; sourceTree = "<group>"; };
 		2AFFB71418D7DCC000118477 /* CEPanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEPanelController.h; sourceTree = "<group>"; };
 		2AFFB71518D7DCC000118477 /* CEPanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEPanelController.m; sourceTree = "<group>"; };
 		2AFFB71818D7F18200118477 /* CEGoToSheetController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEGoToSheetController.h; sourceTree = "<group>"; };
 		2AFFB71918D7F18300118477 /* CEGoToSheetController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEGoToSheetController.m; sourceTree = "<group>"; };
-		3381090B4006E7F6090EB49E /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "../Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		4B7998171A1F1BCD0088D167 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = "zh-Hans"; path = "zh-Hans.lproj/AppleScript.rtf"; sourceTree = "<group>"; };
 		4B7998181A1F1BCD0088D167 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = "zh-Hans"; path = "zh-Hans.lproj/ShellScript.rtf"; sourceTree = "<group>"; };
 		4B7998191A1F1BCD0088D167 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -738,7 +740,6 @@
 		6C1E212412C9E65600194313 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		6C6DAE3D13833C0E007F2326 /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
 		6CA3B36012E3B59B0019AB2E /* SampleScripts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = SampleScripts; sourceTree = "<group>"; };
-		76D1C081C503B0E9585E1BD6 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "../Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		8C081B4A07D0A85A0060191A /* GetInfo.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = GetInfo.tiff; sourceTree = "<group>"; };
 		8C3E2D480808E203009894D1 /* LineNumber_Hide.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = LineNumber_Hide.tiff; sourceTree = "<group>"; };
 		8C3E2D490808E203009894D1 /* LineNumber_Show.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = LineNumber_Show.tiff; sourceTree = "<group>"; };
@@ -783,6 +784,7 @@
 		8CF02E1408B9B9F8004044EB /* CENavigationBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CENavigationBarController.m; sourceTree = "<group>"; };
 		8D15AC360486D014006FF6A4 /* CotEditor-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "CotEditor-Info.plist"; sourceTree = "<group>"; };
 		8D15AC370486D014006FF6A4 /* CotEditor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CotEditor.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DD42F3AFDE3081DC5D669D51 /* libPods-appstore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-appstore.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3504B3BB02D4DBA8EA50C0E /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -791,7 +793,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2A6F0DFE1B5500E100C2D03C /* libPods.a in Frameworks */,
+				D3F0D0D055B0931687B33C98 /* libPods-appstore.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -799,7 +801,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				792E1BB17A7E4930ADAFB01E /* libPods.a in Frameworks */,
+				BED9FB377321352F7A748759 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -819,8 +821,10 @@
 		234A213E93629F3A79324102 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				3381090B4006E7F6090EB49E /* Pods.debug.xcconfig */,
-				76D1C081C503B0E9585E1BD6 /* Pods.release.xcconfig */,
+				2AFB50511B556B2C00DE5FE1 /* Pods.debug.xcconfig */,
+				2AFB50521B556B2C00DE5FE1 /* Pods.release.xcconfig */,
+				2AFB50551B556BD500DE5FE1 /* Pods-appstore.debug.xcconfig */,
+				2AFB50561B556BD500DE5FE1 /* Pods-appstore.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -1150,8 +1154,9 @@
 				6C6DAE3D13833C0E007F2326 /* dsa_pub.pem */,
 				8D15AC360486D014006FF6A4 /* CotEditor-Info.plist */,
 				2A6F0E081B5500E100C2D03C /* CotEditor (AppStore)-Info.plist */,
-				2A61B7FD1B52D14400CE3AFB /* container-migration.plist */,
 				2A61B7FC1B52CDD800CE3AFB /* CotEditor.entitlements */,
+				2A6F0E091B55043800C2D03C /* CotEditor (AppStore).entitlements */,
+				2A61B7FD1B52D14400CE3AFB /* container-migration.plist */,
 				259C2316077678DE00BA61C5 /* Localizable.strings */,
 				2AF5C3BC1A55072E00C972B5 /* InfoPlist.strings */,
 				2A5E4D7A1A44F0D50072013F /* ServicesMenu.strings */,
@@ -1173,6 +1178,7 @@
 			isa = PBXGroup;
 			children = (
 				F3504B3BB02D4DBA8EA50C0E /* libPods.a */,
+				DD42F3AFDE3081DC5D669D51 /* libPods-appstore.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1535,7 +1541,6 @@
 				2A6F0D591B5500E100C2D03C /* CotEditor.sdef in Resources */,
 				2A6F0D5A1B5500E100C2D03C /* CotEditor.help in Resources */,
 				2A6F0D5B1B5500E100C2D03C /* SyntaxMap.json in Resources */,
-				2A6F0D5C1B5500E100C2D03C /* dsa_pub.pem in Resources */,
 				2A6F0D5D1B5500E100C2D03C /* ReportTemplate.md in Resources */,
 				2A6F0D5E1B5500E100C2D03C /* MainMenu.xib in Resources */,
 				2A6F0D5F1B5500E100C2D03C /* DocumentWindow.xib in Resources */,
@@ -1724,7 +1729,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-appstore/Pods-appstore-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		360866EE86A144AF8F8698E8 /* Check Pods Manifest.lock */ = {
@@ -1842,7 +1847,6 @@
 				2A6F0DE71B5500E100C2D03C /* CEOutlineMenuButtonCell.m in Sources */,
 				2A6F0DE81B5500E100C2D03C /* CEODBEventSender.m in Sources */,
 				2A6F0DE91B5500E100C2D03C /* CEKeyBindingManager.m in Sources */,
-				2A6F0DEA1B5500E100C2D03C /* CEUpdaterManager.m in Sources */,
 				2A6F0DEB1B5500E100C2D03C /* CEPrintView.m in Sources */,
 				2A6F0DEC1B5500E100C2D03C /* CEATSTypesetter.m in Sources */,
 				2A6F0DED1B5500E100C2D03C /* CEEditorView.m in Sources */,
@@ -2517,7 +2521,7 @@
 		};
 		2A6F0E051B5500E100C2D03C /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3381090B4006E7F6090EB49E /* Pods.debug.xcconfig */;
+			baseConfigurationReference = 2AFB50551B556BD500DE5FE1 /* Pods-appstore.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "CotEditor (AppStore).entitlements";
@@ -2542,7 +2546,7 @@
 		};
 		2A6F0E061B5500E100C2D03C /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 76D1C081C503B0E9585E1BD6 /* Pods.release.xcconfig */;
+			baseConfigurationReference = 2AFB50561B556BD500DE5FE1 /* Pods-appstore.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "CotEditor (AppStore).entitlements";
@@ -2567,7 +2571,7 @@
 		};
 		8C71D95408640EDF00C9C0BD /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3381090B4006E7F6090EB49E /* Pods.debug.xcconfig */;
+			baseConfigurationReference = 2AFB50511B556B2C00DE5FE1 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = CotEditor.entitlements;
@@ -2588,7 +2592,7 @@
 		};
 		8C71D95508640EDF00C9C0BD /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 76D1C081C503B0E9585E1BD6 /* Pods.release.xcconfig */;
+			baseConfigurationReference = 2AFB50521B556B2C00DE5FE1 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = CotEditor.entitlements;
