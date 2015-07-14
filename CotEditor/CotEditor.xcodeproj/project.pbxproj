@@ -95,6 +95,176 @@
 		2A68F93518F9995500673440 /* CEThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A68F93418F9995500673440 /* CEThemeManager.m */; };
 		2A68F93818FB04F400673440 /* CEMenuItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A68F93718FB04F300673440 /* CEMenuItemCell.m */; };
 		2A6E3F3D19B5218300A63E97 /* CotEditor.help in Resources */ = {isa = PBXBuildFile; fileRef = 2A6E3F3C19B5218300A63E97 /* CotEditor.help */; };
+		2A6F0D551B5500E100C2D03C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A1EB5C319AD469500C1E37E /* Images.xcassets */; };
+		2A6F0D561B5500E100C2D03C /* Syntaxes in Resources */ = {isa = PBXBuildFile; fileRef = 2A3A758D19E77C84001DAB88 /* Syntaxes */; };
+		2A6F0D571B5500E100C2D03C /* Themes in Resources */ = {isa = PBXBuildFile; fileRef = 2A7846DA18FE035E006BDF00 /* Themes */; };
+		2A6F0D581B5500E100C2D03C /* KeyBindings in Resources */ = {isa = PBXBuildFile; fileRef = 2A9871A819AEABDB0081BADB /* KeyBindings */; };
+		2A6F0D591B5500E100C2D03C /* CotEditor.sdef in Resources */ = {isa = PBXBuildFile; fileRef = 2A75ACCA19E86DDB00444894 /* CotEditor.sdef */; };
+		2A6F0D5A1B5500E100C2D03C /* CotEditor.help in Resources */ = {isa = PBXBuildFile; fileRef = 2A6E3F3C19B5218300A63E97 /* CotEditor.help */; };
+		2A6F0D5B1B5500E100C2D03C /* SyntaxMap.json in Resources */ = {isa = PBXBuildFile; fileRef = 2A2179F51A07093B002C4AB1 /* SyntaxMap.json */; };
+		2A6F0D5C1B5500E100C2D03C /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 6C6DAE3D13833C0E007F2326 /* dsa_pub.pem */; };
+		2A6F0D5D1B5500E100C2D03C /* ReportTemplate.md in Resources */ = {isa = PBXBuildFile; fileRef = 2A456C421A1EDCFC00395158 /* ReportTemplate.md */; };
+		2A6F0D5E1B5500E100C2D03C /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B6FDCFA73011CA2CEA /* MainMenu.xib */; };
+		2A6F0D5F1B5500E100C2D03C /* DocumentWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B4FDCFA73011CA2CEA /* DocumentWindow.xib */; };
+		2A6F0D601B5500E100C2D03C /* FindPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A7CF23E1A573CEB00D09249 /* FindPanel.xib */; };
+		2A6F0D611B5500E100C2D03C /* SizeSampleWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A15831F18E3814200601026 /* SizeSampleWindow.xib */; };
+		2A6F0D621B5500E100C2D03C /* IncompatibleCharsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A436DCE1A4249CB00275FD4 /* IncompatibleCharsView.xib */; };
+		2A6F0D631B5500E100C2D03C /* PreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25859EA5076D8EE80020F779 /* PreferencesWindow.xib */; };
+		2A6F0D641B5500E100C2D03C /* SyntaxEditSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 258EF2F8077FEDD000011E52 /* SyntaxEditSheet.xib */; };
+		2A6F0D651B5500E100C2D03C /* Indicator.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2588E9CC07C4851C0060021D /* Indicator.xib */; };
+		2A6F0D661B5500E100C2D03C /* ConsolePanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C28CD2C081101A300733DA7 /* ConsolePanel.xib */; };
+		2A6F0D671B5500E100C2D03C /* MenuKeyBindingEditSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C7400A208C6D93900683672 /* MenuKeyBindingEditSheet.xib */; };
+		2A6F0D681B5500E100C2D03C /* AppearancePane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A149D9619016ABB00A9D6EF /* AppearancePane.xib */; };
+		2A6F0D691B5500E100C2D03C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2AF5C3BC1A55072E00C972B5 /* InfoPlist.strings */; };
+		2A6F0D6A1B5500E100C2D03C /* PrintPane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A149DA219016ABB00A9D6EF /* PrintPane.xib */; };
+		2A6F0D6B1B5500E100C2D03C /* OpenDocumentAccessory.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2AFFB72A18D8C7DE00118477 /* OpenDocumentAccessory.xib */; };
+		2A6F0D6C1B5500E100C2D03C /* OpacityPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2AFFB70518D7BC9300118477 /* OpacityPanel.xib */; };
+		2A6F0D6D1B5500E100C2D03C /* GlyphPopover.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2AB4326C1912ADAC00835004 /* GlyphPopover.xib */; };
+		2A6F0D6E1B5500E100C2D03C /* PrintPanelAccessory.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A07202C18E0E421006F3A43 /* PrintPanelAccessory.xib */; };
+		2A6F0D6F1B5500E100C2D03C /* ThemeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A63122F19C2D3B60088C5C6 /* ThemeView.xib */; };
+		2A6F0D701B5500E100C2D03C /* KeyBindingsPane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A149DA019016ABB00A9D6EF /* KeyBindingsPane.xib */; };
+		2A6F0D711B5500E100C2D03C /* GeneralPane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A149D9E19016ABB00A9D6EF /* GeneralPane.xib */; };
+		2A6F0D721B5500E100C2D03C /* MigrationWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A3A758F19E77D4F001DAB88 /* MigrationWindow.xib */; };
+		2A6F0D731B5500E100C2D03C /* EditPane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A149D9819016ABB00A9D6EF /* EditPane.xib */; };
+		2A6F0D741B5500E100C2D03C /* LineHightPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A5B998B18D61443009C2F4F /* LineHightPanel.xib */; };
+		2A6F0D751B5500E100C2D03C /* SyntaxMappingConflictSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A5D2B9218E1ED420020AA1F /* SyntaxMappingConflictSheet.xib */; };
+		2A6F0D761B5500E100C2D03C /* WindowPane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A149DA419016ABB00A9D6EF /* WindowPane.xib */; };
+		2A6F0D771B5500E100C2D03C /* NavigationBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A5411C119852C1C008B43DA /* NavigationBar.xib */; };
+		2A6F0D781B5500E100C2D03C /* ColorCodePanelAccessory.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A607B0E1905F02F00F3A991 /* ColorCodePanelAccessory.xib */; };
+		2A6F0D791B5500E100C2D03C /* FileDropPane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A149D9A19016ABB00A9D6EF /* FileDropPane.xib */; };
+		2A6F0D7A1B5500E100C2D03C /* FormatPane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A149D9C19016ABB00A9D6EF /* FormatPane.xib */; };
+		2A6F0D7B1B5500E100C2D03C /* DocumentInspectorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A436DCB1A4243D500275FD4 /* DocumentInspectorView.xib */; };
+		2A6F0D7C1B5500E100C2D03C /* UnicodePanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A5ABE77191861E3009265DF /* UnicodePanel.xib */; };
+		2A6F0D7D1B5500E100C2D03C /* TextKeyBindingEditSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A15832618E39B7400601026 /* TextKeyBindingEditSheet.xib */; };
+		2A6F0D7E1B5500E100C2D03C /* EncodingListSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A15831518E3688300601026 /* EncodingListSheet.xib */; };
+		2A6F0D7F1B5500E100C2D03C /* GoToSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2AFFB71F18D7F22E00118477 /* GoToSheet.xib */; };
+		2A6F0D801B5500E100C2D03C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 259C2316077678DE00BA61C5 /* Localizable.strings */; };
+		2A6F0D811B5500E100C2D03C /* ServicesMenu.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2A5E4D7A1A44F0D50072013F /* ServicesMenu.strings */; };
+		2A6F0D821B5500E100C2D03C /* IntegrationPane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2AD318BE1A462A10001B8112 /* IntegrationPane.xib */; };
+		2A6F0D831B5500E100C2D03C /* RegexReferencePopover.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A2D6C171A602D2C002451FF /* RegexReferencePopover.xib */; };
+		2A6F0D841B5500E100C2D03C /* FileDropGlossary.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2AEB8B7A19AF73980098D557 /* FileDropGlossary.txt */; };
+		2A6F0D851B5500E100C2D03C /* ShellScript.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A961C4D18FC699E002076B6 /* ShellScript.rtf */; };
+		2A6F0D861B5500E100C2D03C /* ScriptMenu Folder.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A961C4B18FC699E002076B6 /* ScriptMenu Folder.rtf */; };
+		2A6F0D871B5500E100C2D03C /* AppleScript.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A961C4718FC699E002076B6 /* AppleScript.rtf */; };
+		2A6F0D881B5500E100C2D03C /* Acknowledgements.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A961C4518FC699E002076B6 /* Acknowledgements.rtf */; };
+		2A6F0D891B5500E100C2D03C /* GetInfo.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 8C081B4A07D0A85A0060191A /* GetInfo.tiff */; };
+		2A6F0D8A1B5500E100C2D03C /* IncompatibleChars.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 8C98366608C0211D00746F92 /* IncompatibleChars.tiff */; };
+		2A6F0D8B1B5500E100C2D03C /* BiggerFont.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 8CA71BCC07D2A79100C146B0 /* BiggerFont.tiff */; };
+		2A6F0D8C1B5500E100C2D03C /* SmallerFont.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 8CA71BCD07D2A79100C146B0 /* SmallerFont.tiff */; };
+		2A6F0D8D1B5500E100C2D03C /* Comment.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 2A45AB9B1960BDED0020E72B /* Comment.tiff */; };
+		2A6F0D8E1B5500E100C2D03C /* ShiftLeft.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 8C3E2D4E0808E203009894D1 /* ShiftLeft.tiff */; };
+		2A6F0D8F1B5500E100C2D03C /* ShiftRight.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 8C3E2D4F0808E203009894D1 /* ShiftRight.tiff */; };
+		2A6F0D901B5500E100C2D03C /* AutoTabExpand_On.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 2A712CA118EFB716001FEC33 /* AutoTabExpand_On.tiff */; };
+		2A6F0D911B5500E100C2D03C /* AutoTabExpand_Off.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 2A712CA018EFB716001FEC33 /* AutoTabExpand_Off.tiff */; };
+		2A6F0D921B5500E100C2D03C /* NaviBar_Hide.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 8C99DD4F08BD561B001F618C /* NaviBar_Hide.tiff */; };
+		2A6F0D931B5500E100C2D03C /* NaviBar_Show.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 8C99DD5008BD561B001F618C /* NaviBar_Show.tiff */; };
+		2A6F0D941B5500E100C2D03C /* LineNumber_Hide.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 8C3E2D480808E203009894D1 /* LineNumber_Hide.tiff */; };
+		2A6F0D951B5500E100C2D03C /* LineNumber_Show.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 8C3E2D490808E203009894D1 /* LineNumber_Show.tiff */; };
+		2A6F0D961B5500E100C2D03C /* StatusBar_Hide.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 8C3E2D590808E210009894D1 /* StatusBar_Hide.tiff */; };
+		2A6F0D971B5500E100C2D03C /* StatusBar_Show.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 8C3E2D5A0808E210009894D1 /* StatusBar_Show.tiff */; };
+		2A6F0D981B5500E100C2D03C /* container-migration.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2A61B7FD1B52D14400CE3AFB /* container-migration.plist */; };
+		2A6F0D991B5500E100C2D03C /* InvisibleChars_Hide.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 8CEF66C00995E47F00C65A84 /* InvisibleChars_Hide.tiff */; };
+		2A6F0D9A1B5500E100C2D03C /* InvisibleChars_Show.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 8CEF66C10995E47F00C65A84 /* InvisibleChars_Show.tiff */; };
+		2A6F0D9B1B5500E100C2D03C /* PageGuide_Hide.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 8CEF66C40995E4A700C65A84 /* PageGuide_Hide.tiff */; };
+		2A6F0D9C1B5500E100C2D03C /* PageGuide_Show.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 8CEF66C50995E4A700C65A84 /* PageGuide_Show.tiff */; };
+		2A6F0D9D1B5500E100C2D03C /* WrapLines_Off.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 8C3E2D5C0808E210009894D1 /* WrapLines_Off.tiff */; };
+		2A6F0D9E1B5500E100C2D03C /* WrapLines_On.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 8C3E2D5D0808E210009894D1 /* WrapLines_On.tiff */; };
+		2A6F0D9F1B5500E100C2D03C /* VerticalOrientation_Off.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 2AC2C1D619881543007968CB /* VerticalOrientation_Off.tiff */; };
+		2A6F0DA01B5500E100C2D03C /* VerticalOrientation_On.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 2AC2C1D719881543007968CB /* VerticalOrientation_On.tiff */; };
+		2A6F0DA11B5500E100C2D03C /* EditColorCode.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 2A5B0AF4190723AC00B6A51C /* EditColorCode.tiff */; };
+		2A6F0DA21B5500E100C2D03C /* RecolorAll.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 8C5208090880BAAF005734F2 /* RecolorAll.tiff */; };
+		2A6F0DA41B5500E100C2D03C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A37F4B0FDCFA73011CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
+		2A6F0DA51B5500E100C2D03C /* constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A149DD619033CBB00A9D6EF /* constants.m */; };
+		2A6F0DA61B5500E100C2D03C /* CESizeSampleWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A15832318E383C300601026 /* CESizeSampleWindowController.m */; };
+		2A6F0DA71B5500E100C2D03C /* CEDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A37F4ACFDCFA73011CA2CEA /* CEDocument.m */; settings = {ATTRIBUTES = (); }; };
+		2A6F0DA81B5500E100C2D03C /* CESplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A5411BF1983E5FA008B43DA /* CESplitViewController.m */; };
+		2A6F0DA91B5500E100C2D03C /* CEEditPaneController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A149DBB1901803C00A9D6EF /* CEEditPaneController.m */; };
+		2A6F0DAA1B5500E100C2D03C /* CEAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 25859DB1076D65310020F779 /* CEAppDelegate.m */; };
+		2A6F0DAB1B5500E100C2D03C /* CEWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25859DEC076D75BC0020F779 /* CEWindowController.m */; };
+		2A6F0DAC1B5500E100C2D03C /* CEDocumentAnalyzer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A436DDE1A4288AC00275FD4 /* CEDocumentAnalyzer.m */; };
+		2A6F0DAD1B5500E100C2D03C /* CEPreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25859EBF076D92D60020F779 /* CEPreferencesWindowController.m */; };
+		2A6F0DAE1B5500E100C2D03C /* CEDocumentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 259BFDCC076EBF7E00A5A6D0 /* CEDocumentController.m */; };
+		2A6F0DAF1B5500E100C2D03C /* CESyntaxEditTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A2E034A1A4BF842006ABE9F /* CESyntaxEditTableViewDelegate.m */; };
+		2A6F0DB01B5500E100C2D03C /* CEPrefEncodingDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 25AC091A077190EB00B0C91C /* CEPrefEncodingDataSource.m */; };
+		2A6F0DB11B5500E100C2D03C /* CEFormatPaneController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A149DBE1901828600A9D6EF /* CEFormatPaneController.m */; };
+		2A6F0DB21B5500E100C2D03C /* CEWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A7314ED1A0326D300C0EDA9 /* CEWindow.m */; };
+		2A6F0DB31B5500E100C2D03C /* CEEncodingListSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A15831918E368CE00601026 /* CEEncodingListSheetController.m */; };
+		2A6F0DB41B5500E100C2D03C /* CESyntaxParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 258225FF07794C2A00A0F8D3 /* CESyntaxParser.m */; };
+		2A6F0DB51B5500E100C2D03C /* CEIncompatibleCharsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A436DDA1A425AE500275FD4 /* CEIncompatibleCharsViewController.m */; };
+		2A6F0DB61B5500E100C2D03C /* CESyntaxManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 258700E4077BAD2200E541BB /* CESyntaxManager.m */; };
+		2A6F0DB71B5500E100C2D03C /* CEKeyBindingsPaneController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A149DC41901885A00A9D6EF /* CEKeyBindingsPaneController.m */; };
+		2A6F0DB81B5500E100C2D03C /* CELayoutManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C65C0E607927D0F0028D94A /* CELayoutManager.m */; };
+		2A6F0DB91B5500E100C2D03C /* CEEditorWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 2588E9BE07C47ACC0060021D /* CEEditorWrapper.m */; };
+		2A6F0DBA1B5500E100C2D03C /* CEDraggableArrayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A4DB13C19A265BA005A4F7C /* CEDraggableArrayController.m */; };
+		2A6F0DBB1B5500E100C2D03C /* CEToolbarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CB0122C07CA0EFA00221EDC /* CEToolbarController.m */; };
+		2A6F0DBC1B5500E100C2D03C /* CETextSelection.m in Sources */ = {isa = PBXBuildFile; fileRef = 258D708807D456DF0062A3E5 /* CETextSelection.m */; };
+		2A6F0DBD1B5500E100C2D03C /* CEDocument+ScriptingSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CC1925507E2D84500B54AE4 /* CEDocument+ScriptingSupport.m */; };
+		2A6F0DBE1B5500E100C2D03C /* CEFindPanelTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD67C231AA7285F0078BB95 /* CEFindPanelTextView.m */; };
+		2A6F0DBF1B5500E100C2D03C /* CEThemeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A63122D19C2D30C0088C5C6 /* CEThemeViewController.m */; };
+		2A6F0DC01B5500E100C2D03C /* CEScriptManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CC1961B07E2E54E00B54AE4 /* CEScriptManager.m */; };
+		2A6F0DC11B5500E100C2D03C /* CEIndicatorSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AACC9581942A82900E3FF63 /* CEIndicatorSheetController.m */; };
+		2A6F0DC21B5500E100C2D03C /* CEFindPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A7CF2421A5747EC00D09249 /* CEFindPanelController.m */; };
+		2A6F0DC31B5500E100C2D03C /* CEFindPanelSplitView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A009AD91A5AAE8000C3D542 /* CEFindPanelSplitView.m */; };
+		2A6F0DC41B5500E100C2D03C /* CEWindowPaneController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A149DB21901740600A9D6EF /* CEWindowPaneController.m */; };
+		2A6F0DC51B5500E100C2D03C /* CEPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AFFB71518D7DCC000118477 /* CEPanelController.m */; };
+		2A6F0DC61B5500E100C2D03C /* CEEditorScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A49861E1A67CC7100172797 /* CEEditorScrollView.m */; };
+		2A6F0DC71B5500E100C2D03C /* CEPreferencesWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A84C7C11A48F3150013EE83 /* CEPreferencesWindow.m */; };
+		2A6F0DC81B5500E100C2D03C /* CEOpacityPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A94A45C18D0B562009FA90D /* CEOpacityPanelController.m */; };
+		2A6F0DC91B5500E100C2D03C /* CEConsolePanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A15833418E3B83F00601026 /* CEConsolePanelController.m */; };
+		2A6F0DCA1B5500E100C2D03C /* CELineHightPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A5B998518D61421009C2F4F /* CELineHightPanelController.m */; };
+		2A6F0DCB1B5500E100C2D03C /* CEKeyBindingSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A586A1519A4FA9D0053F5E3 /* CEKeyBindingSheetController.m */; };
+		2A6F0DCC1B5500E100C2D03C /* CEFindResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A009AD01A58ED1D00C3D542 /* CEFindResultViewController.m */; };
+		2A6F0DCD1B5500E100C2D03C /* CEPrintPanelAccessoryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A07202A18E0E1C2006F3A43 /* CEPrintPanelAccessoryController.m */; };
+		2A6F0DCE1B5500E100C2D03C /* CEMigrationWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A3A759319E77D66001DAB88 /* CEMigrationWindowController.m */; };
+		2A6F0DCF1B5500E100C2D03C /* CEShortcutKeyField.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A5179391A40A3B500A3F852 /* CEShortcutKeyField.m */; };
+		2A6F0DD01B5500E100C2D03C /* CEFindPanelTextClipView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD67C291AA75E7F0078BB95 /* CEFindPanelTextClipView.m */; };
+		2A6F0DD11B5500E100C2D03C /* CEFindPanelLayoutManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD67C2E1AA7651B0078BB95 /* CEFindPanelLayoutManager.m */; };
+		2A6F0DD21B5500E100C2D03C /* CETheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A7846DD18FE0C0C006BDF00 /* CETheme.m */; };
+		2A6F0DD31B5500E100C2D03C /* CEMenuItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A68F93718FB04F300673440 /* CEMenuItemCell.m */; };
+		2A6F0DD41B5500E100C2D03C /* CEGlyphPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AB432701912AF7200835004 /* CEGlyphPopoverController.m */; };
+		2A6F0DD51B5500E100C2D03C /* CEClipView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AE356451A86D32500E29FEF /* CEClipView.m */; };
+		2A6F0DD61B5500E100C2D03C /* CEGoToSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AFFB71918D7F18300118477 /* CEGoToSheetController.m */; };
+		2A6F0DD71B5500E100C2D03C /* CESyntaxEditSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A3FB2AC18ECEFF200D9CB2C /* CESyntaxEditSheetController.m */; };
+		2A6F0DD81B5500E100C2D03C /* CELineNumberView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25B2C23507FA667400F4EFC7 /* CELineNumberView.m */; };
+		2A6F0DD91B5500E100C2D03C /* CELineHeightTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD5322919779FD000A925CA /* CELineHeightTransformer.m */; };
+		2A6F0DDA1B5500E100C2D03C /* CEPrintPaneController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A149DB81901788000A9D6EF /* CEPrintPaneController.m */; };
+		2A6F0DDB1B5500E100C2D03C /* CEIntegrationPaneController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD318C21A462C30001B8112 /* CEIntegrationPaneController.m */; };
+		2A6F0DDC1B5500E100C2D03C /* CEAppearancePaneController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A149DB51901760300A9D6EF /* CEAppearancePaneController.m */; };
+		2A6F0DDD1B5500E100C2D03C /* CEBorderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25B2C24207FA68D100F4EFC7 /* CEBorderView.m */; };
+		2A6F0DDE1B5500E100C2D03C /* CETextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25B2C24B07FA6BC400F4EFC7 /* CETextView.m */; };
+		2A6F0DDF1B5500E100C2D03C /* CEHexColorTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A63122919C25CF80088C5C6 /* CEHexColorTransformer.m */; };
+		2A6F0DE01B5500E100C2D03C /* CESyntaxMappingConflictsSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D2B9018E1EC790020AA1F /* CESyntaxMappingConflictsSheetController.m */; };
+		2A6F0DE11B5500E100C2D03C /* CENavigationBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CF02E1408B9B9F8004044EB /* CENavigationBarController.m */; };
+		2A6F0DE21B5500E100C2D03C /* NSString+Sandboxing.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD9625E1B53496500D46C3A /* NSString+Sandboxing.m */; };
+		2A6F0DE31B5500E100C2D03C /* CEStatusBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AF4E0D6196F7958008E9EF7 /* CEStatusBarController.m */; };
+		2A6F0DE41B5500E100C2D03C /* CEEncodingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AE2E9D419D2CF00000D66A9 /* CEEncodingManager.m */; };
+		2A6F0DE51B5500E100C2D03C /* CETextFinder.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A009ACA1A57BA8B00C3D542 /* CETextFinder.m */; };
+		2A6F0DE61B5500E100C2D03C /* CEColorCodePanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A607B0C1905EB5500F3A991 /* CEColorCodePanelController.m */; };
+		2A6F0DE71B5500E100C2D03C /* CEOutlineMenuButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C99DDF908BD8940001F618C /* CEOutlineMenuButtonCell.m */; };
+		2A6F0DE81B5500E100C2D03C /* CEODBEventSender.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD84CA91966314100DE49BD /* CEODBEventSender.m */; };
+		2A6F0DE91B5500E100C2D03C /* CEKeyBindingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C7400A708C6D96D00683672 /* CEKeyBindingManager.m */; };
+		2A6F0DEA1B5500E100C2D03C /* CEUpdaterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A162FE91AF395A400E97285 /* CEUpdaterManager.m */; };
+		2A6F0DEB1B5500E100C2D03C /* CEPrintView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CC5044308EE829500A525A6 /* CEPrintView.m */; };
+		2A6F0DEC1B5500E100C2D03C /* CEATSTypesetter.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C83A48109485F27004E48A8 /* CEATSTypesetter.m */; };
+		2A6F0DED1B5500E100C2D03C /* CEEditorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CD7A93A09CBDDDC00739513 /* CEEditorView.m */; };
+		2A6F0DEE1B5500E100C2D03C /* CEFileDropPaneController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A149DC11901884500A9D6EF /* CEFileDropPaneController.m */; };
+		2A6F0DEF1B5500E100C2D03C /* CEWrappingTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AAC90001A4E12D10074E076 /* CEWrappingTextField.m */; };
+		2A6F0DF01B5500E100C2D03C /* CEPopUpToolbarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AA0AC791A29D8CB0063ED1B /* CEPopUpToolbarItem.m */; };
+		2A6F0DF11B5500E100C2D03C /* CESplitView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C8CCCAF09D6803400A008E5 /* CESplitView.m */; };
+		2A6F0DF21B5500E100C2D03C /* CEThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A68F93418F9995500673440 /* CEThemeManager.m */; };
+		2A6F0DF31B5500E100C2D03C /* CEUnicodeInputPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A5ABE751918615E009265DF /* CEUnicodeInputPanelController.m */; };
+		2A6F0DF41B5500E100C2D03C /* CEUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A149DD419032CC900A9D6EF /* CEUtils.m */; };
+		2A6F0DF51B5500E100C2D03C /* NSWindow+ScriptingSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A94A45918D08D52009FA90D /* NSWindow+ScriptingSupport.m */; };
+		2A6F0DF61B5500E100C2D03C /* NSString+ComposedCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AB432731915D6AA00835004 /* NSString+ComposedCharacter.m */; };
+		2A6F0DF71B5500E100C2D03C /* NSString+JapaneseTransform.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A2BDF0C198A899E0029848B /* NSString+JapaneseTransform.m */; };
+		2A6F0DF81B5500E100C2D03C /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A8711671986DAEC009FA1C0 /* NSString+MD5.m */; };
+		2A6F0DF91B5500E100C2D03C /* NSData+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A8663DC18C9F6B700A6F9CC /* NSData+MD5.m */; };
+		2A6F0DFA1B5500E100C2D03C /* NSString+CENewLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AC75C071A2AF47F00C7DB0A /* NSString+CENewLine.m */; };
+		2A6F0DFB1B5500E100C2D03C /* NSURL+AppleTextEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A1068C21A745FCE001DB9AA /* NSURL+AppleTextEncoding.m */; };
+		2A6F0DFC1B5500E100C2D03C /* openDictionary.applescript in Sources */ = {isa = PBXBuildFile; fileRef = 2585914B080F503A0038F387 /* openDictionary.applescript */; };
+		2A6F0DFE1B5500E100C2D03C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F3504B3BB02D4DBA8EA50C0E /* libPods.a */; };
+		2A6F0E011B5500E100C2D03C /* cot in Copy Executables */ = {isa = PBXBuildFile; fileRef = 2A40D7BE1A233B4A00721EB4 /* cot */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		2A6F0E031B5500E100C2D03C /* SampleScripts in Copy Shared Supports */ = {isa = PBXBuildFile; fileRef = 6CA3B36012E3B59B0019AB2E /* SampleScripts */; };
 		2A712CA218EFB716001FEC33 /* AutoTabExpand_Off.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 2A712CA018EFB716001FEC33 /* AutoTabExpand_Off.tiff */; };
 		2A712CA318EFB716001FEC33 /* AutoTabExpand_On.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 2A712CA118EFB716001FEC33 /* AutoTabExpand_On.tiff */; };
 		2A7314EE1A0326D300C0EDA9 /* CEWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A7314ED1A0326D300C0EDA9 /* CEWindow.m */; };
@@ -195,6 +365,20 @@
 			remoteGlobalIDString = 2A40D7BD1A233B4A00721EB4;
 			remoteInfo = cot;
 		};
+		2A6F0D501B5500E100C2D03C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2A37F4A9FDCFA73011CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2A40D7BD1A233B4A00721EB4;
+			remoteInfo = cot;
+		};
+		2A6F0D521B5500E100C2D03C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2A37F4A9FDCFA73011CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2A2179EF1A0703BD002C4AB1;
+			remoteInfo = SyntaxTableMaker;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -207,6 +391,28 @@
 				2A40D7C81A233BF000721EB4 /* cot in Copy Executables */,
 			);
 			name = "Copy Executables";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2A6F0E001B5500E100C2D03C /* Copy Executables */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 6;
+			files = (
+				2A6F0E011B5500E100C2D03C /* cot in Copy Executables */,
+			);
+			name = "Copy Executables";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2A6F0E021B5500E100C2D03C /* Copy Shared Supports */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 12;
+			files = (
+				2A6F0E031B5500E100C2D03C /* SampleScripts in Copy Shared Supports */,
+			);
+			name = "Copy Shared Supports";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		2AF5C3B81A5481A900C972B5 /* Copy Shared Supports */ = {
@@ -351,6 +557,8 @@
 		2A68F93618FB04F300673440 /* CEMenuItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEMenuItemCell.h; sourceTree = "<group>"; };
 		2A68F93718FB04F300673440 /* CEMenuItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEMenuItemCell.m; sourceTree = "<group>"; };
 		2A6E3F3C19B5218300A63E97 /* CotEditor.help */ = {isa = PBXFileReference; lastKnownFileType = folder; path = CotEditor.help; sourceTree = "<group>"; };
+		2A6F0E071B5500E100C2D03C /* CotEditor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CotEditor.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2A6F0E081B5500E100C2D03C /* CotEditor (AppStore)-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "CotEditor (AppStore)-Info.plist"; path = "/Users/imanishi/Developer/CotEditor/CotEditor/CotEditor/CotEditor (AppStore)-Info.plist"; sourceTree = "<absolute>"; };
 		2A712CA018EFB716001FEC33 /* AutoTabExpand_Off.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = AutoTabExpand_Off.tiff; sourceTree = "<group>"; };
 		2A712CA118EFB716001FEC33 /* AutoTabExpand_On.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = AutoTabExpand_On.tiff; sourceTree = "<group>"; };
 		2A7314EC1A0326D300C0EDA9 /* CEWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEWindow.h; sourceTree = "<group>"; };
@@ -579,6 +787,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		2A6F0DFD1B5500E100C2D03C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2A6F0DFE1B5500E100C2D03C /* libPods.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8D15AC330486D014006FF6A4 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -595,6 +811,7 @@
 			children = (
 				8D15AC370486D014006FF6A4 /* CotEditor.app */,
 				2A40D7BE1A233B4A00721EB4 /* cot */,
+				2A6F0E071B5500E100C2D03C /* CotEditor.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -932,6 +1149,7 @@
 				2A961C4418FC6979002076B6 /* Documents */,
 				6C6DAE3D13833C0E007F2326 /* dsa_pub.pem */,
 				8D15AC360486D014006FF6A4 /* CotEditor-Info.plist */,
+				2A6F0E081B5500E100C2D03C /* CotEditor (AppStore)-Info.plist */,
 				2A61B7FD1B52D14400CE3AFB /* container-migration.plist */,
 				2A61B7FC1B52CDD800CE3AFB /* CotEditor.entitlements */,
 				259C2316077678DE00BA61C5 /* Localizable.strings */,
@@ -1209,6 +1427,30 @@
 			productReference = 2A40D7BE1A233B4A00721EB4 /* cot */;
 			productType = "com.apple.product-type.tool";
 		};
+		2A6F0D4E1B5500E100C2D03C /* CotEditor (AppStore) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2A6F0E041B5500E100C2D03C /* Build configuration list for PBXNativeTarget "CotEditor (AppStore)" */;
+			buildPhases = (
+				2A6F0D531B5500E100C2D03C /* Check Pods Manifest.lock */,
+				2A6F0D541B5500E100C2D03C /* Resources */,
+				2A6F0DA31B5500E100C2D03C /* Sources */,
+				2A6F0DFD1B5500E100C2D03C /* Frameworks */,
+				2A6F0DFF1B5500E100C2D03C /* Copy Pods Resources */,
+				2A6F0E001B5500E100C2D03C /* Copy Executables */,
+				2A6F0E021B5500E100C2D03C /* Copy Shared Supports */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2A6F0D4F1B5500E100C2D03C /* PBXTargetDependency */,
+				2A6F0D511B5500E100C2D03C /* PBXTargetDependency */,
+			);
+			name = "CotEditor (AppStore)";
+			productInstallPath = "$(HOME)/Applications";
+			productName = CotEditor;
+			productReference = 2A6F0E071B5500E100C2D03C /* CotEditor.app */;
+			productType = "com.apple.product-type.application";
+		};
 		8D15AC270486D014006FF6A4 /* CotEditor */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8C71D95308640EDF00C9C0BD /* Build configuration list for PBXNativeTarget "CotEditor" */;
@@ -1274,6 +1516,7 @@
 			projectRoot = "";
 			targets = (
 				8D15AC270486D014006FF6A4 /* CotEditor */,
+				2A6F0D4E1B5500E100C2D03C /* CotEditor (AppStore) */,
 				2A2179EF1A0703BD002C4AB1 /* SyntaxMap */,
 				2A40D7BD1A233B4A00721EB4 /* cot */,
 			);
@@ -1281,6 +1524,91 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		2A6F0D541B5500E100C2D03C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2A6F0D551B5500E100C2D03C /* Images.xcassets in Resources */,
+				2A6F0D561B5500E100C2D03C /* Syntaxes in Resources */,
+				2A6F0D571B5500E100C2D03C /* Themes in Resources */,
+				2A6F0D581B5500E100C2D03C /* KeyBindings in Resources */,
+				2A6F0D591B5500E100C2D03C /* CotEditor.sdef in Resources */,
+				2A6F0D5A1B5500E100C2D03C /* CotEditor.help in Resources */,
+				2A6F0D5B1B5500E100C2D03C /* SyntaxMap.json in Resources */,
+				2A6F0D5C1B5500E100C2D03C /* dsa_pub.pem in Resources */,
+				2A6F0D5D1B5500E100C2D03C /* ReportTemplate.md in Resources */,
+				2A6F0D5E1B5500E100C2D03C /* MainMenu.xib in Resources */,
+				2A6F0D5F1B5500E100C2D03C /* DocumentWindow.xib in Resources */,
+				2A6F0D601B5500E100C2D03C /* FindPanel.xib in Resources */,
+				2A6F0D611B5500E100C2D03C /* SizeSampleWindow.xib in Resources */,
+				2A6F0D621B5500E100C2D03C /* IncompatibleCharsView.xib in Resources */,
+				2A6F0D631B5500E100C2D03C /* PreferencesWindow.xib in Resources */,
+				2A6F0D641B5500E100C2D03C /* SyntaxEditSheet.xib in Resources */,
+				2A6F0D651B5500E100C2D03C /* Indicator.xib in Resources */,
+				2A6F0D661B5500E100C2D03C /* ConsolePanel.xib in Resources */,
+				2A6F0D671B5500E100C2D03C /* MenuKeyBindingEditSheet.xib in Resources */,
+				2A6F0D681B5500E100C2D03C /* AppearancePane.xib in Resources */,
+				2A6F0D691B5500E100C2D03C /* InfoPlist.strings in Resources */,
+				2A6F0D6A1B5500E100C2D03C /* PrintPane.xib in Resources */,
+				2A6F0D6B1B5500E100C2D03C /* OpenDocumentAccessory.xib in Resources */,
+				2A6F0D6C1B5500E100C2D03C /* OpacityPanel.xib in Resources */,
+				2A6F0D6D1B5500E100C2D03C /* GlyphPopover.xib in Resources */,
+				2A6F0D6E1B5500E100C2D03C /* PrintPanelAccessory.xib in Resources */,
+				2A6F0D6F1B5500E100C2D03C /* ThemeView.xib in Resources */,
+				2A6F0D701B5500E100C2D03C /* KeyBindingsPane.xib in Resources */,
+				2A6F0D711B5500E100C2D03C /* GeneralPane.xib in Resources */,
+				2A6F0D721B5500E100C2D03C /* MigrationWindow.xib in Resources */,
+				2A6F0D731B5500E100C2D03C /* EditPane.xib in Resources */,
+				2A6F0D741B5500E100C2D03C /* LineHightPanel.xib in Resources */,
+				2A6F0D751B5500E100C2D03C /* SyntaxMappingConflictSheet.xib in Resources */,
+				2A6F0D761B5500E100C2D03C /* WindowPane.xib in Resources */,
+				2A6F0D771B5500E100C2D03C /* NavigationBar.xib in Resources */,
+				2A6F0D781B5500E100C2D03C /* ColorCodePanelAccessory.xib in Resources */,
+				2A6F0D791B5500E100C2D03C /* FileDropPane.xib in Resources */,
+				2A6F0D7A1B5500E100C2D03C /* FormatPane.xib in Resources */,
+				2A6F0D7B1B5500E100C2D03C /* DocumentInspectorView.xib in Resources */,
+				2A6F0D7C1B5500E100C2D03C /* UnicodePanel.xib in Resources */,
+				2A6F0D7D1B5500E100C2D03C /* TextKeyBindingEditSheet.xib in Resources */,
+				2A6F0D7E1B5500E100C2D03C /* EncodingListSheet.xib in Resources */,
+				2A6F0D7F1B5500E100C2D03C /* GoToSheet.xib in Resources */,
+				2A6F0D801B5500E100C2D03C /* Localizable.strings in Resources */,
+				2A6F0D811B5500E100C2D03C /* ServicesMenu.strings in Resources */,
+				2A6F0D821B5500E100C2D03C /* IntegrationPane.xib in Resources */,
+				2A6F0D831B5500E100C2D03C /* RegexReferencePopover.xib in Resources */,
+				2A6F0D841B5500E100C2D03C /* FileDropGlossary.txt in Resources */,
+				2A6F0D851B5500E100C2D03C /* ShellScript.rtf in Resources */,
+				2A6F0D861B5500E100C2D03C /* ScriptMenu Folder.rtf in Resources */,
+				2A6F0D871B5500E100C2D03C /* AppleScript.rtf in Resources */,
+				2A6F0D881B5500E100C2D03C /* Acknowledgements.rtf in Resources */,
+				2A6F0D891B5500E100C2D03C /* GetInfo.tiff in Resources */,
+				2A6F0D8A1B5500E100C2D03C /* IncompatibleChars.tiff in Resources */,
+				2A6F0D8B1B5500E100C2D03C /* BiggerFont.tiff in Resources */,
+				2A6F0D8C1B5500E100C2D03C /* SmallerFont.tiff in Resources */,
+				2A6F0D8D1B5500E100C2D03C /* Comment.tiff in Resources */,
+				2A6F0D8E1B5500E100C2D03C /* ShiftLeft.tiff in Resources */,
+				2A6F0D8F1B5500E100C2D03C /* ShiftRight.tiff in Resources */,
+				2A6F0D901B5500E100C2D03C /* AutoTabExpand_On.tiff in Resources */,
+				2A6F0D911B5500E100C2D03C /* AutoTabExpand_Off.tiff in Resources */,
+				2A6F0D921B5500E100C2D03C /* NaviBar_Hide.tiff in Resources */,
+				2A6F0D931B5500E100C2D03C /* NaviBar_Show.tiff in Resources */,
+				2A6F0D941B5500E100C2D03C /* LineNumber_Hide.tiff in Resources */,
+				2A6F0D951B5500E100C2D03C /* LineNumber_Show.tiff in Resources */,
+				2A6F0D961B5500E100C2D03C /* StatusBar_Hide.tiff in Resources */,
+				2A6F0D971B5500E100C2D03C /* StatusBar_Show.tiff in Resources */,
+				2A6F0D981B5500E100C2D03C /* container-migration.plist in Resources */,
+				2A6F0D991B5500E100C2D03C /* InvisibleChars_Hide.tiff in Resources */,
+				2A6F0D9A1B5500E100C2D03C /* InvisibleChars_Show.tiff in Resources */,
+				2A6F0D9B1B5500E100C2D03C /* PageGuide_Hide.tiff in Resources */,
+				2A6F0D9C1B5500E100C2D03C /* PageGuide_Show.tiff in Resources */,
+				2A6F0D9D1B5500E100C2D03C /* WrapLines_Off.tiff in Resources */,
+				2A6F0D9E1B5500E100C2D03C /* WrapLines_On.tiff in Resources */,
+				2A6F0D9F1B5500E100C2D03C /* VerticalOrientation_Off.tiff in Resources */,
+				2A6F0DA01B5500E100C2D03C /* VerticalOrientation_On.tiff in Resources */,
+				2A6F0DA11B5500E100C2D03C /* EditColorCode.tiff in Resources */,
+				2A6F0DA21B5500E100C2D03C /* RecolorAll.tiff in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8D15AC2B0486D014006FF6A4 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1369,6 +1697,36 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		2A6F0D531B5500E100C2D03C /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		2A6F0DFF1B5500E100C2D03C /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		360866EE86A144AF8F8698E8 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1407,6 +1765,102 @@
 			buildActionMask = 2147483647;
 			files = (
 				2A40D7C11A233B4B00721EB4 /* cot.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2A6F0DA31B5500E100C2D03C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2A6F0DA41B5500E100C2D03C /* main.m in Sources */,
+				2A6F0DA51B5500E100C2D03C /* constants.m in Sources */,
+				2A6F0DA61B5500E100C2D03C /* CESizeSampleWindowController.m in Sources */,
+				2A6F0DA71B5500E100C2D03C /* CEDocument.m in Sources */,
+				2A6F0DA81B5500E100C2D03C /* CESplitViewController.m in Sources */,
+				2A6F0DA91B5500E100C2D03C /* CEEditPaneController.m in Sources */,
+				2A6F0DAA1B5500E100C2D03C /* CEAppDelegate.m in Sources */,
+				2A6F0DAB1B5500E100C2D03C /* CEWindowController.m in Sources */,
+				2A6F0DAC1B5500E100C2D03C /* CEDocumentAnalyzer.m in Sources */,
+				2A6F0DAD1B5500E100C2D03C /* CEPreferencesWindowController.m in Sources */,
+				2A6F0DAE1B5500E100C2D03C /* CEDocumentController.m in Sources */,
+				2A6F0DAF1B5500E100C2D03C /* CESyntaxEditTableViewDelegate.m in Sources */,
+				2A6F0DB01B5500E100C2D03C /* CEPrefEncodingDataSource.m in Sources */,
+				2A6F0DB11B5500E100C2D03C /* CEFormatPaneController.m in Sources */,
+				2A6F0DB21B5500E100C2D03C /* CEWindow.m in Sources */,
+				2A6F0DB31B5500E100C2D03C /* CEEncodingListSheetController.m in Sources */,
+				2A6F0DB41B5500E100C2D03C /* CESyntaxParser.m in Sources */,
+				2A6F0DB51B5500E100C2D03C /* CEIncompatibleCharsViewController.m in Sources */,
+				2A6F0DB61B5500E100C2D03C /* CESyntaxManager.m in Sources */,
+				2A6F0DB71B5500E100C2D03C /* CEKeyBindingsPaneController.m in Sources */,
+				2A6F0DB81B5500E100C2D03C /* CELayoutManager.m in Sources */,
+				2A6F0DB91B5500E100C2D03C /* CEEditorWrapper.m in Sources */,
+				2A6F0DBA1B5500E100C2D03C /* CEDraggableArrayController.m in Sources */,
+				2A6F0DBB1B5500E100C2D03C /* CEToolbarController.m in Sources */,
+				2A6F0DBC1B5500E100C2D03C /* CETextSelection.m in Sources */,
+				2A6F0DBD1B5500E100C2D03C /* CEDocument+ScriptingSupport.m in Sources */,
+				2A6F0DBE1B5500E100C2D03C /* CEFindPanelTextView.m in Sources */,
+				2A6F0DBF1B5500E100C2D03C /* CEThemeViewController.m in Sources */,
+				2A6F0DC01B5500E100C2D03C /* CEScriptManager.m in Sources */,
+				2A6F0DC11B5500E100C2D03C /* CEIndicatorSheetController.m in Sources */,
+				2A6F0DC21B5500E100C2D03C /* CEFindPanelController.m in Sources */,
+				2A6F0DC31B5500E100C2D03C /* CEFindPanelSplitView.m in Sources */,
+				2A6F0DC41B5500E100C2D03C /* CEWindowPaneController.m in Sources */,
+				2A6F0DC51B5500E100C2D03C /* CEPanelController.m in Sources */,
+				2A6F0DC61B5500E100C2D03C /* CEEditorScrollView.m in Sources */,
+				2A6F0DC71B5500E100C2D03C /* CEPreferencesWindow.m in Sources */,
+				2A6F0DC81B5500E100C2D03C /* CEOpacityPanelController.m in Sources */,
+				2A6F0DC91B5500E100C2D03C /* CEConsolePanelController.m in Sources */,
+				2A6F0DCA1B5500E100C2D03C /* CELineHightPanelController.m in Sources */,
+				2A6F0DCB1B5500E100C2D03C /* CEKeyBindingSheetController.m in Sources */,
+				2A6F0DCC1B5500E100C2D03C /* CEFindResultViewController.m in Sources */,
+				2A6F0DCD1B5500E100C2D03C /* CEPrintPanelAccessoryController.m in Sources */,
+				2A6F0DCE1B5500E100C2D03C /* CEMigrationWindowController.m in Sources */,
+				2A6F0DCF1B5500E100C2D03C /* CEShortcutKeyField.m in Sources */,
+				2A6F0DD01B5500E100C2D03C /* CEFindPanelTextClipView.m in Sources */,
+				2A6F0DD11B5500E100C2D03C /* CEFindPanelLayoutManager.m in Sources */,
+				2A6F0DD21B5500E100C2D03C /* CETheme.m in Sources */,
+				2A6F0DD31B5500E100C2D03C /* CEMenuItemCell.m in Sources */,
+				2A6F0DD41B5500E100C2D03C /* CEGlyphPopoverController.m in Sources */,
+				2A6F0DD51B5500E100C2D03C /* CEClipView.m in Sources */,
+				2A6F0DD61B5500E100C2D03C /* CEGoToSheetController.m in Sources */,
+				2A6F0DD71B5500E100C2D03C /* CESyntaxEditSheetController.m in Sources */,
+				2A6F0DD81B5500E100C2D03C /* CELineNumberView.m in Sources */,
+				2A6F0DD91B5500E100C2D03C /* CELineHeightTransformer.m in Sources */,
+				2A6F0DDA1B5500E100C2D03C /* CEPrintPaneController.m in Sources */,
+				2A6F0DDB1B5500E100C2D03C /* CEIntegrationPaneController.m in Sources */,
+				2A6F0DDC1B5500E100C2D03C /* CEAppearancePaneController.m in Sources */,
+				2A6F0DDD1B5500E100C2D03C /* CEBorderView.m in Sources */,
+				2A6F0DDE1B5500E100C2D03C /* CETextView.m in Sources */,
+				2A6F0DDF1B5500E100C2D03C /* CEHexColorTransformer.m in Sources */,
+				2A6F0DE01B5500E100C2D03C /* CESyntaxMappingConflictsSheetController.m in Sources */,
+				2A6F0DE11B5500E100C2D03C /* CENavigationBarController.m in Sources */,
+				2A6F0DE21B5500E100C2D03C /* NSString+Sandboxing.m in Sources */,
+				2A6F0DE31B5500E100C2D03C /* CEStatusBarController.m in Sources */,
+				2A6F0DE41B5500E100C2D03C /* CEEncodingManager.m in Sources */,
+				2A6F0DE51B5500E100C2D03C /* CETextFinder.m in Sources */,
+				2A6F0DE61B5500E100C2D03C /* CEColorCodePanelController.m in Sources */,
+				2A6F0DE71B5500E100C2D03C /* CEOutlineMenuButtonCell.m in Sources */,
+				2A6F0DE81B5500E100C2D03C /* CEODBEventSender.m in Sources */,
+				2A6F0DE91B5500E100C2D03C /* CEKeyBindingManager.m in Sources */,
+				2A6F0DEA1B5500E100C2D03C /* CEUpdaterManager.m in Sources */,
+				2A6F0DEB1B5500E100C2D03C /* CEPrintView.m in Sources */,
+				2A6F0DEC1B5500E100C2D03C /* CEATSTypesetter.m in Sources */,
+				2A6F0DED1B5500E100C2D03C /* CEEditorView.m in Sources */,
+				2A6F0DEE1B5500E100C2D03C /* CEFileDropPaneController.m in Sources */,
+				2A6F0DEF1B5500E100C2D03C /* CEWrappingTextField.m in Sources */,
+				2A6F0DF01B5500E100C2D03C /* CEPopUpToolbarItem.m in Sources */,
+				2A6F0DF11B5500E100C2D03C /* CESplitView.m in Sources */,
+				2A6F0DF21B5500E100C2D03C /* CEThemeManager.m in Sources */,
+				2A6F0DF31B5500E100C2D03C /* CEUnicodeInputPanelController.m in Sources */,
+				2A6F0DF41B5500E100C2D03C /* CEUtils.m in Sources */,
+				2A6F0DF51B5500E100C2D03C /* NSWindow+ScriptingSupport.m in Sources */,
+				2A6F0DF61B5500E100C2D03C /* NSString+ComposedCharacter.m in Sources */,
+				2A6F0DF71B5500E100C2D03C /* NSString+JapaneseTransform.m in Sources */,
+				2A6F0DF81B5500E100C2D03C /* NSString+MD5.m in Sources */,
+				2A6F0DF91B5500E100C2D03C /* NSData+MD5.m in Sources */,
+				2A6F0DFA1B5500E100C2D03C /* NSString+CENewLine.m in Sources */,
+				2A6F0DFB1B5500E100C2D03C /* NSURL+AppleTextEncoding.m in Sources */,
+				2A6F0DFC1B5500E100C2D03C /* openDictionary.applescript in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1518,6 +1972,16 @@
 			isa = PBXTargetDependency;
 			target = 2A40D7BD1A233B4A00721EB4 /* cot */;
 			targetProxy = 2A40D7C51A233BC800721EB4 /* PBXContainerItemProxy */;
+		};
+		2A6F0D4F1B5500E100C2D03C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2A40D7BD1A233B4A00721EB4 /* cot */;
+			targetProxy = 2A6F0D501B5500E100C2D03C /* PBXContainerItemProxy */;
+		};
+		2A6F0D511B5500E100C2D03C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2A2179EF1A0703BD002C4AB1 /* SyntaxMap */;
+			targetProxy = 2A6F0D521B5500E100C2D03C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -2051,6 +2515,56 @@
 			};
 			name = Release;
 		};
+		2A6F0E051B5500E100C2D03C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3381090B4006E7F6090EB49E /* Pods.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "CotEditor (AppStore).entitlements";
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"APPSTORE=1",
+				);
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				INFOPLIST_FILE = "CotEditor (AppStore)-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				OTHER_CODE_SIGN_FLAGS = "--deep";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.coteditor.$(PRODUCT_NAME)";
+				PRODUCT_NAME = CotEditor;
+			};
+			name = Debug;
+		};
+		2A6F0E061B5500E100C2D03C /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 76D1C081C503B0E9585E1BD6 /* Pods.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "CotEditor (AppStore).entitlements";
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_DYNAMIC_NO_PIC = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"APPSTORE=1",
+				);
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				INFOPLIST_FILE = "CotEditor (AppStore)-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				OTHER_CODE_SIGN_FLAGS = "--deep";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.coteditor.$(PRODUCT_NAME)";
+				PRODUCT_NAME = CotEditor;
+			};
+			name = Release;
+		};
 		8C71D95408640EDF00C9C0BD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3381090B4006E7F6090EB49E /* Pods.debug.xcconfig */;
@@ -2131,6 +2645,15 @@
 			buildConfigurations = (
 				2A40D7C21A233B4B00721EB4 /* Debug */,
 				2A40D7C31A233B4B00721EB4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2A6F0E041B5500E100C2D03C /* Build configuration list for PBXNativeTarget "CotEditor (AppStore)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2A6F0E051B5500E100C2D03C /* Debug */,
+				2A6F0E061B5500E100C2D03C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
