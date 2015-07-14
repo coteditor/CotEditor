@@ -28,6 +28,7 @@
  */
 
 #import "CEPreferencesWindowController.h"
+#import "CEGeneralPaneController.h"
 #import "CEWindowPaneController.h"
 #import "CEAppearancePaneController.h"
 #import "CEEditPaneController.h"
@@ -79,7 +80,7 @@
 {
     self = [super initWithWindowNibName:windowNibName];
     if (self) {
-        _viewControllers = @[[[NSViewController alloc] initWithNibName:@"GeneralPane" bundle:nil],
+        _viewControllers = @[[[CEGeneralPaneController alloc] initWithNibName:@"GeneralPane" bundle:nil],
                              [[CEWindowPaneController alloc] initWithNibName:@"WindowPane" bundle:nil],
                              [[CEAppearancePaneController alloc] initWithNibName:@"AppearancePane" bundle:nil],
                              [[CEEditPaneController alloc] initWithNibName:@"EditPane" bundle:nil],

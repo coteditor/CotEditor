@@ -77,6 +77,8 @@
 		2A51793A1A40A3B500A3F852 /* CEShortcutKeyField.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A5179391A40A3B500A3F852 /* CEShortcutKeyField.m */; };
 		2A5411C01983E5FA008B43DA /* CESplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A5411BF1983E5FA008B43DA /* CESplitViewController.m */; };
 		2A5411C319852C1C008B43DA /* NavigationBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A5411C119852C1C008B43DA /* NavigationBar.xib */; };
+		2A55335D1B556F2A0056FF3E /* CEGeneralPaneController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A55335C1B556F2A0056FF3E /* CEGeneralPaneController.m */; };
+		2A55335E1B556F2A0056FF3E /* CEGeneralPaneController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A55335C1B556F2A0056FF3E /* CEGeneralPaneController.m */; };
 		2A586A1619A4FA9D0053F5E3 /* CEKeyBindingSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A586A1519A4FA9D0053F5E3 /* CEKeyBindingSheetController.m */; };
 		2A5ABE761918615E009265DF /* CEUnicodeInputPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A5ABE751918615E009265DF /* CEUnicodeInputPanelController.m */; };
 		2A5ABE79191861E3009265DF /* UnicodePanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A5ABE77191861E3009265DF /* UnicodePanel.xib */; };
@@ -530,6 +532,8 @@
 		2A5179391A40A3B500A3F852 /* CEShortcutKeyField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEShortcutKeyField.m; sourceTree = "<group>"; };
 		2A5411BE1983E5FA008B43DA /* CESplitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CESplitViewController.h; sourceTree = "<group>"; };
 		2A5411BF1983E5FA008B43DA /* CESplitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CESplitViewController.m; sourceTree = "<group>"; };
+		2A55335B1B556F2A0056FF3E /* CEGeneralPaneController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEGeneralPaneController.h; sourceTree = "<group>"; };
+		2A55335C1B556F2A0056FF3E /* CEGeneralPaneController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEGeneralPaneController.m; sourceTree = "<group>"; };
 		2A586A1419A4FA9D0053F5E3 /* CEKeyBindingSheetController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEKeyBindingSheetController.h; sourceTree = "<group>"; };
 		2A586A1519A4FA9D0053F5E3 /* CEKeyBindingSheetController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEKeyBindingSheetController.m; sourceTree = "<group>"; };
 		2A5ABE741918615E009265DF /* CEUnicodeInputPanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEUnicodeInputPanelController.h; sourceTree = "<group>"; };
@@ -903,6 +907,8 @@
 		2A149DC619018F9200A9D6EF /* Panes */ = {
 			isa = PBXGroup;
 			children = (
+				2A55335B1B556F2A0056FF3E /* CEGeneralPaneController.h */,
+				2A55335C1B556F2A0056FF3E /* CEGeneralPaneController.m */,
 				2A149DB11901740600A9D6EF /* CEWindowPaneController.h */,
 				2A149DB21901740600A9D6EF /* CEWindowPaneController.m */,
 				2A149DB41901760300A9D6EF /* CEAppearancePaneController.h */,
@@ -1832,6 +1838,7 @@
 				2A6F0DD81B5500E100C2D03C /* CELineNumberView.m in Sources */,
 				2A6F0DD91B5500E100C2D03C /* CELineHeightTransformer.m in Sources */,
 				2A6F0DDA1B5500E100C2D03C /* CEPrintPaneController.m in Sources */,
+				2A55335E1B556F2A0056FF3E /* CEGeneralPaneController.m in Sources */,
 				2A6F0DDB1B5500E100C2D03C /* CEIntegrationPaneController.m in Sources */,
 				2A6F0DDC1B5500E100C2D03C /* CEAppearancePaneController.m in Sources */,
 				2A6F0DDD1B5500E100C2D03C /* CEBorderView.m in Sources */,
@@ -1914,6 +1921,7 @@
 				2A586A1619A4FA9D0053F5E3 /* CEKeyBindingSheetController.m in Sources */,
 				2A009AD11A58ED1D00C3D542 /* CEFindResultViewController.m in Sources */,
 				2A07202B18E0E1C2006F3A43 /* CEPrintPanelAccessoryController.m in Sources */,
+				2A55335D1B556F2A0056FF3E /* CEGeneralPaneController.m in Sources */,
 				2A3A759419E77D66001DAB88 /* CEMigrationWindowController.m in Sources */,
 				2A51793A1A40A3B500A3F852 /* CEShortcutKeyField.m in Sources */,
 				2AD67C2A1AA75E7F0078BB95 /* CEFindPanelTextClipView.m in Sources */,
