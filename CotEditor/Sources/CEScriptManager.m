@@ -94,7 +94,6 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
     self = [super init];
     if (self) {
         // find Application Scripts folder
-        NSString *bundleIdentifier = [[NSBundle mainBundle] bundleIdentifier];
         _scriptsDirectoryURL = [[NSFileManager defaultManager] URLForDirectory:NSApplicationScriptsDirectory
                                                                       inDomain:NSUserDomainMask
                                                              appropriateForURL:nil
