@@ -155,33 +155,38 @@ int main(int argc, const char * argv[])
         for (NSString *path in arguments[kFiles]) {
             NSURL *URL = [[NSURL fileURLWithPath:path isDirectory:NO] URLByStandardizingPath];
             
-            if ([arguments[kFiles] count] == 1 && ![URL checkResourceIsReachableAndReturnError:nil]) {
-                printf("%s is not valid file.\n", [path UTF8String]);
-                exit(1);
-            }
-            
             NSDictionary *info = [URL resourceValuesForKeys:@[NSURLIsDirectoryKey, NSURLIsReadableKey] error:nil];
             if (![info[NSURLIsDirectoryKey] boolValue] && [info[NSURLIsReadableKey] boolValue]) {
                 [URLs addObject:URL];
+                
+            } else if ([arguments[kFiles] count] == 1) {
+                printf("%s is not readable file.\n", [path UTF8String]);
+                exit(1);
             }
         }
         
-        CotEditorApplication *CotEditor = [SBApplication applicationWithBundleIdentifier:kBundleIdentifier];
-        CotEditorDocument *document;
-        
-        // launch CotEditor
-        [CotEditor open:URLs];
+        // create scriptable application object
+        NSURL *applicationURL = [[NSBundle mainBundle] bundleURL];  // CotEditor.app
+        CotEditorApplication *CotEditor;
+        if ([[applicationURL pathExtension] isEqualToString:@"app"]) {
+            CotEditor = [SBApplication applicationWithURL:applicationURL];
+        } else {
+            CotEditor = [SBApplication applicationWithBundleIdentifier:kBundleIdentifier];
+        }
         
         if (!CotEditor) {
             printf("Failed open CotEditor.\n");
             exit(1);
         }
         
+        // launch CotEditor
+        [CotEditor open:URLs];
         if (![arguments[kBackgroundOption] boolValue]) {
             [CotEditor activate];
         }
         
         // create new document
+        CotEditorDocument *document;
         if (input && [URLs count] == 0) {  // with piped text
             document = [[[CotEditor classForScriptingClass:@"document"] alloc] init];
             
