@@ -1,6 +1,8 @@
 language: objective-c
 xcode_workspace: CotEditor.xcworkspace
-xcode_scheme: CotEditor
+xcode_scheme: 
+  - CotEditor 
+  - CotEditor (AppStore)
 before_install:
   - gem install cocoapods
 osx_image: xcode6.4

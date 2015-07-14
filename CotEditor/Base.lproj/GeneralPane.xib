@@ -5,7 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="7706"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="NSViewController">
+        <customObject id="-2" userLabel="File's Owner" customClass="CEGeneralPaneController">
             <connections>
                 <outlet property="view" destination="743" id="NV1-KF-qM5"/>
             </connections>
@@ -66,23 +66,35 @@
                         <binding destination="26" name="value" keyPath="values.createNewAtStartup" id="157"/>
                     </connections>
                 </button>
-                <button translatesAutoresizingMaskIntoConstraints="NO" id="3422">
+                <button hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3422">
                     <rect key="frame" x="170" y="49" width="221" height="18"/>
                     <buttonCell key="cell" type="check" title="Automatically check for updates" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3423">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
                     <connections>
+                        <binding destination="-2" name="hidden" keyPath="hasUpdater" id="ckT-Fh-KBu">
+                            <dictionary key="options">
+                                <string key="NSValueTransformerName">NSNegateBoolean</string>
+                            </dictionary>
+                        </binding>
                         <binding destination="26" name="value" keyPath="values.SUEnableAutomaticChecks" id="txi-WH-Brt"/>
                     </connections>
                 </button>
-                <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="m9P-m9-cpw">
+                <textField hidden="YES" horizontalHuggingPriority="750" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="m9P-m9-cpw">
                     <rect key="frame" x="47" y="50" width="119" height="17"/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Software Updates:" usesSingleLineMode="YES" id="geU-63-sAC">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
+                    <connections>
+                        <binding destination="-2" name="hidden" keyPath="hasUpdater" id="HOZ-Mt-fSl">
+                            <dictionary key="options">
+                                <string key="NSValueTransformerName">NSNegateBoolean</string>
+                            </dictionary>
+                        </binding>
+                    </connections>
                 </textField>
                 <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="bTW-FZ-qkl">
                     <rect key="frame" x="18" y="108" width="148" height="17"/>
@@ -141,7 +153,6 @@
                 <constraint firstItem="3422" firstAttribute="top" secondItem="594" secondAttribute="bottom" constant="20" id="QZa-8x-UNI"/>
                 <constraint firstItem="jQj-mP-yhk" firstAttribute="top" secondItem="743" secondAttribute="top" constant="20" symbolic="YES" id="SOf-tP-0qi"/>
                 <constraint firstItem="2739" firstAttribute="leading" secondItem="jQj-mP-yhk" secondAttribute="trailing" constant="8" symbolic="YES" id="TLW-AM-cja"/>
-                <constraint firstItem="1832" firstAttribute="top" secondItem="3422" secondAttribute="bottom" constant="10" id="f3P-kX-LNp"/>
                 <constraint firstItem="1030" firstAttribute="top" secondItem="2739" secondAttribute="bottom" constant="10" id="gbD-2O-xNi"/>
                 <constraint firstItem="bTW-FZ-qkl" firstAttribute="leading" secondItem="743" secondAttribute="leading" priority="750" constant="20" symbolic="YES" id="i53-pI-uqV"/>
                 <constraint firstItem="m9P-m9-cpw" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="743" secondAttribute="leading" constant="20" symbolic="YES" id="jUr-eF-2JP"/>
