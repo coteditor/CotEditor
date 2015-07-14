@@ -15,6 +15,15 @@ develop
 
 
 
+2.1.5
+--------------------------
+
+### Fixes
+
+- Fix an issue where auto-indent between curly brackets puts some spaces to a wrong place.
+
+
+
 2.1.4
 --------------------------
 
