@@ -9,7 +9,7 @@ develop
 
 - __Enable Sandbox.__
 - __Drop authopen support.__
-- Move scripts folder from `~/Library/Application Support/CotEditor/ScriptMenu/` to `~/Library/Application Scripts/com.coteditor.CotEditor/` because of the Sandbox requirement.
+- Move scripts folder location from `~/Library/Application Support/CotEditor/ScriptMenu/` to `~/Library/Application Scripts/com.coteditor.CotEditor/` because of the Sandbox requirement.
     - Users need to migrate their script to the new folder manually, since CotEditor doesn't have the write permisson to the new location.
 - Set access-group `com.coteditor.CotEditor.edit` to CotEditor's script definition.
 
