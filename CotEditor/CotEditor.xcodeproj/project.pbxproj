@@ -573,7 +573,7 @@
 		8CEF66C50995E4A700C65A84 /* PageGuide_Show.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = PageGuide_Show.tiff; sourceTree = "<group>"; };
 		8CF02E1308B9B9F8004044EB /* CENavigationBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CENavigationBarController.h; sourceTree = "<group>"; };
 		8CF02E1408B9B9F8004044EB /* CENavigationBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CENavigationBarController.m; sourceTree = "<group>"; };
-		8D15AC360486D014006FF6A4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		8D15AC360486D014006FF6A4 /* CotEditor-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "CotEditor-Info.plist"; sourceTree = "<group>"; };
 		8D15AC370486D014006FF6A4 /* CotEditor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CotEditor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3504B3BB02D4DBA8EA50C0E /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -931,7 +931,7 @@
 				8CB0122007CA0CCD00221EDC /* Toolbar Icons */,
 				2A961C4418FC6979002076B6 /* Documents */,
 				6C6DAE3D13833C0E007F2326 /* dsa_pub.pem */,
-				8D15AC360486D014006FF6A4 /* Info.plist */,
+				8D15AC360486D014006FF6A4 /* CotEditor-Info.plist */,
 				2A61B7FD1B52D14400CE3AFB /* container-migration.plist */,
 				2A61B7FC1B52CDD800CE3AFB /* CotEditor.entitlements */,
 				259C2316077678DE00BA61C5 /* Localizable.strings */,
@@ -2064,7 +2064,7 @@
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				INFOPLIST_FILE = Info.plist;
+				INFOPLIST_FILE = "CotEditor-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				OTHER_CODE_SIGN_FLAGS = "--deep";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.coteditor.$(PRODUCT_NAME)";
@@ -2085,7 +2085,7 @@
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				INFOPLIST_FILE = Info.plist;
+				INFOPLIST_FILE = "CotEditor-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				OTHER_CODE_SIGN_FLAGS = "--deep";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.coteditor.$(PRODUCT_NAME)";
