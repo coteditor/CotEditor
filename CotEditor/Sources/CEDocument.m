@@ -62,7 +62,6 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 @property (nonatomic) NSStringEncoding readingEncoding;  // encoding to read document file
 @property (nonatomic) BOOL needsShowUpdateAlertWithBecomeKey;
-@property (nonatomic, getter=isReinterpretingEncoding) BOOL reinterpretingEncoding;
 @property (nonatomic, getter=isRevertingForExternalFileUpdate) BOOL revertingForExternalFileUpdate;
 @property (nonatomic) BOOL didAlertNotWritable;  // 文書が読み込み専用のときにその警告を表示したかどうか
 @property (nonatomic, copy) NSString *fileMD5;
@@ -206,19 +205,12 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 - (BOOL)revertToContentsOfURL:(NSURL *)url ofType:(NSString *)typeName error:(NSError *__autoreleasing *)outError
 // ------------------------------------------------------
 {
-    // always use auto-detect on revert
-    // (I'm not sure whether this behaviour is the best. Just it was so... by 1024 on 2015-07)
-    if (![self isReinterpretingEncoding]) {
-        [self setReadingEncoding:CEAutoDetectEncoding];
-    }
-    
     BOOL success = [super revertToContentsOfURL:url ofType:typeName error:outError];
     
     // apply to UI
     if (success) {
         [self setStringToEditor];
     }
-    [self setReinterpretingEncoding:NO];
     
     return success;
 }
@@ -315,11 +307,14 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
             [url setAppleTextEncoding:[self encoding]];
         }
         
-        // store file hash (MD5) in order to check the file content identity in `presentedItemDidChange`
-        //    So, `dataOfType:error:` will be invoked twice in a single save operation... (2015-06)
         if (saveOperation != NSAutosaveElsewhereOperation) {
+            // store file hash (MD5) in order to check the file content identity in `presentedItemDidChange`
+            //    So, `dataOfType:error:` will be invoked twice in a single save operation... (2015-06)
             NSData *data = [self dataOfType:typeName error:nil];
             [self setFileMD5:[data MD5]];
+            
+            // store file encoding for revert
+            [self setReadingEncoding:[self encoding]];
         }
     }
 
@@ -780,7 +775,6 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     if (encoding == [self encoding]) { return YES; }
     
     // reinterpret
-    [self setReinterpretingEncoding:YES];
     [self setReadingEncoding:encoding];
     success = [self revertToContentsOfURL:[self fileURL] ofType:[self fileType] error:nil];
     
