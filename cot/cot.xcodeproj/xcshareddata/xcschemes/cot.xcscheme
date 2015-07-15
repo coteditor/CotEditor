@@ -10,28 +10,14 @@
             buildForTesting = "YES"
             buildForRunning = "YES"
             buildForProfiling = "YES"
-            buildForArchiving = "NO"
+            buildForArchiving = "YES"
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2A5533671B5642110056FF3E"
                BuildableName = "cot"
                BlueprintName = "cot"
-               ReferencedContainer = "container:../cot/cot.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "8D15AC270486D014006FF6A4"
-               BuildableName = "CotEditor.app"
-               BlueprintName = "CotEditor"
-               ReferencedContainer = "container:CotEditor.xcodeproj">
+               ReferencedContainer = "container:cot.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -46,10 +32,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8D15AC270486D014006FF6A4"
-            BuildableName = "CotEditor.app"
-            BlueprintName = "CotEditor"
-            ReferencedContainer = "container:CotEditor.xcodeproj">
+            BlueprintIdentifier = "2A5533671B5642110056FF3E"
+            BuildableName = "cot"
+            BlueprintName = "cot"
+            ReferencedContainer = "container:cot.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -66,10 +52,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8D15AC270486D014006FF6A4"
-            BuildableName = "CotEditor.app"
-            BlueprintName = "CotEditor"
-            ReferencedContainer = "container:CotEditor.xcodeproj">
+            BlueprintIdentifier = "2A5533671B5642110056FF3E"
+            BuildableName = "cot"
+            BlueprintName = "cot"
+            ReferencedContainer = "container:cot.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -85,10 +71,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8D15AC270486D014006FF6A4"
-            BuildableName = "CotEditor.app"
-            BlueprintName = "CotEditor"
-            ReferencedContainer = "container:CotEditor.xcodeproj">
+            BlueprintIdentifier = "2A5533671B5642110056FF3E"
+            BuildableName = "cot"
+            BlueprintName = "cot"
+            ReferencedContainer = "container:cot.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
