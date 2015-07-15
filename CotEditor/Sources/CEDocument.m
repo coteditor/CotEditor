@@ -46,6 +46,7 @@ static char const UTF8_BOM[] = {0xef, 0xbb, 0xbf};
 
 NSUInteger const CEUniqueFileIDLength = 8;
 NSString *const CEWritablilityKey = @"writability";
+NSString *const CEReadingEncodingKey = @"readingEncoding";
 NSString *const CEAutosaveIdentierKey = @"autosaveIdentifier";
 
 // incompatible chars dictionary keys
@@ -59,7 +60,9 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 @property (nonatomic) CEPrintPanelAccessoryController *printPanelAccessoryController;
 
+@property (nonatomic) NSStringEncoding readingEncoding;  // encoding to read document file
 @property (nonatomic) BOOL needsShowUpdateAlertWithBecomeKey;
+@property (nonatomic, getter=isReinterpretingEncoding) BOOL reinterpretingEncoding;
 @property (nonatomic, getter=isRevertingForExternalFileUpdate) BOOL revertingForExternalFileUpdate;
 @property (nonatomic) BOOL didAlertNotWritable;  // 文書が読み込み専用のときにその警告を表示したかどうか
 @property (nonatomic, copy) NSString *fileMD5;
@@ -122,6 +125,11 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
         _shouldSaveXattr = YES;
         _autosaveIdentifier = [[[NSUUID UUID] UUIDString] substringToIndex:CEUniqueFileIDLength];
         
+        // set encoding to read file
+        // -> The value is either user setting or selection of open panel.
+        // -> This must be set before `readFromData:ofType:error:` is called.
+        _readingEncoding = [[CEDocumentController sharedDocumentController] accessorySelectedEncoding];
+        
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(documentDidFinishOpen:)
                                                      name:CEDocumentDidFinishOpenNotification object:nil];
@@ -177,14 +185,19 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 // ------------------------------------------------------
 /// load document from file and return whether it succeeded
-- (BOOL)readFromURL:(NSURL *)url ofType:(NSString *)typeName error:(NSError *__autoreleasing *)outError
+- (BOOL)readFromData:(NSData *)data ofType:(NSString *)typeName error:(NSError *__autoreleasing *)outError
 // ------------------------------------------------------
 {
-    // set encoding to read file
-    // -> The value is either user setting or selection of open panel.
-    NSStringEncoding encoding = [[CEDocumentController sharedDocumentController] accessorySelectedEncoding];
+    // presentedItemDidChangeにて内容の同一性を比較するためにファイルのMD5を保存する
+    [self setFileMD5:[data MD5]];
     
-    return [self readFromURL:url encoding:encoding];
+    // try reading the `com.apple.TextEncoding` extended attribute
+    NSStringEncoding xattrEncoding = [self fileURL] ? [[self fileURL] getAppleTextEncoding] : NSNotFound;
+    
+    // don't save xattr if file doesn't have it in order to avoid saving wrong encoding (2015-01 by 1024jp).
+    [self setShouldSaveXattr:(xattrEncoding != NSNotFound)];
+    
+    return [self readStringFromData:data encoding:[self readingEncoding] xattrEncoding:xattrEncoding];
 }
 
 
@@ -193,18 +206,20 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 - (BOOL)revertToContentsOfURL:(NSURL *)url ofType:(NSString *)typeName error:(NSError *__autoreleasing *)outError
 // ------------------------------------------------------
 {
-    // 認証が必要な時に重なって表示されるのを避けるため、まず復帰確認シートを片づける
-    //（外部プロセスによる変更通知アラートシートはそのままに）
-    if (![self isRevertingForExternalFileUpdate]) {
-        [[[self windowForSheet] attachedSheet] orderOut:self];
+    // always use auto-detect on revert
+    // (I'm not sure whether this behaviour is the best. Just it was so... by 1024 on 2015-07)
+    if (![self isReinterpretingEncoding]) {
+        [self setReadingEncoding:CEAutoDetectEncoding];
     }
     
-    BOOL success = [self readFromURL:url encoding:CEAutoDetectEncoding];
+    BOOL success = [super revertToContentsOfURL:url ofType:typeName error:outError];
     
+    // apply to UI
     if (success) {
         [self setStringToEditor];
-        [self setFileModificationDate:[self fileAttributes][NSFileModificationDate]];
     }
+    [self setReinterpretingEncoding:NO];
+    
     return success;
 }
 
@@ -467,6 +482,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 // ------------------------------------------------------
 {
     [coder encodeBool:[self isWritable] forKey:CEWritablilityKey];
+    [coder encodeInteger:[self encoding] forKey:CEReadingEncodingKey];
     [coder encodeObject:[self autosaveIdentifier] forKey:CEAutosaveIdentierKey];
     
     [super encodeRestorableStateWithCoder:coder];
@@ -481,6 +497,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     [super restoreStateWithCoder:coder];
     
     [self setWritable:[coder decodeBoolForKey:CEWritablilityKey]];
+    [self setReadingEncoding:[coder decodeIntegerForKey:CEReadingEncodingKey]];
     [self setAutosaveIdentifier:[coder decodeObjectForKey:CEAutosaveIdentierKey]];
     // not need to show unwritable alert on resume
     [self setDidAlertNotWritable:YES];
@@ -764,28 +781,19 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     if (encoding == [self encoding]) { return YES; }
     
     // reinterpret
-    success = [self readFromURL:[self fileURL] encoding:encoding];
+    [self setReinterpretingEncoding:YES];
+    [self setReadingEncoding:encoding];
+    success = [self revertToContentsOfURL:[self fileURL] ofType:[self fileType] error:nil];
     
-    if (success) {
-        [self setStringToEditor];
-        
-        // clear dirty flag
-        [[self undoManager] removeAllActions];
-        [self updateChangeCount:NSChangeCleared];
-        
-        // update popup menu in the toolbar
-        [[[self windowController] toolbarController] setSelectedEncoding:[self encoding]];
-        
-    } else {
-        if (outError) {
-            NSString *encodingName = [NSString localizedNameOfStringEncoding:encoding];
-            NSDictionary *userInfo = @{NSLocalizedDescriptionKey: NSLocalizedString(@"Can not reinterpret", nil),
-                                       NSLocalizedRecoverySuggestionErrorKey: [NSString stringWithFormat:NSLocalizedString(@"The file “%@” could not be reinterpreted using the new encoding “%@”.", nil), [[self fileURL] path], encodingName],
-                                       NSStringEncodingErrorKey: @(encoding),
-                                       NSURLErrorKey: [self fileURL],
-                                       };
-            *outError = [NSError errorWithDomain:CEErrorDomain code:CEReinterpretationFailedError userInfo:userInfo];
-        }
+    // set outError
+    if (!success && outError) {
+        NSString *encodingName = [NSString localizedNameOfStringEncoding:encoding];
+        NSDictionary *userInfo = @{NSLocalizedDescriptionKey: NSLocalizedString(@"Can not reinterpret", nil),
+                                   NSLocalizedRecoverySuggestionErrorKey: [NSString stringWithFormat:NSLocalizedString(@"The file “%@” could not be reinterpreted using the new encoding “%@”.", nil), [[self fileURL] path], encodingName],
+                                   NSStringEncodingErrorKey: @(encoding),
+                                   NSURLErrorKey: [self fileURL],
+                                   };
+        *outError = [NSError errorWithDomain:CEErrorDomain code:CEReinterpretationFailedError userInfo:userInfo];
     }
     
     return success;
@@ -1174,52 +1182,6 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     [[self windowController] updateModeInfoIfNeeded];
     [[self windowController] updateEditorInfoIfNeeded];
     [[[self windowController] toolbarController] setSelectedLineEnding:[self lineEnding]];
-}
-
-
-// ------------------------------------------------------
-// file coordinator を通じて読み込む
-- (NSData *)readDataAtURL:(NSURL *)url
-// ------------------------------------------------------
-{
-    __block NSData *data = nil;
-    
-    NSFileCoordinator *coordinator = [[NSFileCoordinator alloc] initWithFilePresenter:self];
-    [coordinator coordinateReadingItemAtURL:[self fileURL] options:NSFileCoordinatorReadingResolvesSymbolicLink
-                                      error:nil byAccessor:^(NSURL *newURL)
-     {
-         data = [NSData dataWithContentsOfURL:newURL];
-     }];
-    
-    return data;
-}
-
-
-// ------------------------------------------------------
-/// ファイルを読み込み、成功したかどうかを返す
-- (BOOL)readFromURL:(NSURL *)url encoding:(NSStringEncoding)encoding
-// ------------------------------------------------------
-{
-    // file coordinator を通じて読み込む
-    NSData *data = [self readDataAtURL:url];
-    
-    if (!data) {
-        // オープンダイアログでのエラーアラートは CEDocumentController > openDocument: で表示する
-        // アプリアイコンへのファイルドロップでのエラーアラートは NSDocumentController (NSApp ?) 内部で表示される
-        // 復帰時は NSDocument 内部で表示
-        return NO;
-    }
-    
-    // presentedItemDidChangeにて内容の同一性を比較するためにファイルのMD5を保存する
-    [self setFileMD5:[data MD5]];
-    
-    // try reading the `com.apple.TextEncoding` extended attribute
-    NSStringEncoding xattrEncoding = [url getAppleTextEncoding];
-    
-    // don't save xattr if file doesn't have it in order to avoid saving wrong encoding (2015-01 by 1024jp).
-    [self setShouldSaveXattr:(xattrEncoding != NSNotFound)];
-    
-    return [self readStringFromData:data encoding:encoding xattrEncoding:xattrEncoding];
 }
 
 
@@ -1640,10 +1602,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 {
     if (returnCode == NSAlertSecondButtonReturn) { // == Revert
         // Revert 確認アラートを表示させないため、実行メソッドを直接呼び出す
-        if ([self revertToContentsOfURL:[self fileURL] ofType:[self fileType] error:nil]) {
-            [[self undoManager] removeAllActions];
-            [self updateChangeCount:NSChangeCleared];
-        }
+        [self revertToContentsOfURL:[self fileURL] ofType:[self fileType] error:nil];
     }
     [self setRevertingForExternalFileUpdate:NO];
     [self setNeedsShowUpdateAlertWithBecomeKey:NO];
