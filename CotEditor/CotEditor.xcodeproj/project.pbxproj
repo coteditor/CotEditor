@@ -1092,9 +1092,9 @@
 				2A37F4ABFDCFA73011CA2CEA /* Sources */,
 				2A37F4AFFDCFA73011CA2CEA /* Other Sources */,
 				2A37F4B8FDCFA73011CA2CEA /* Resources */,
+				2A99FEE31B56D79800BF46CC /* Executables */,
 				2A37F4C3FDCFA73011CA2CEA /* Frameworks */,
 				19C28FB0FE9D524F11CA2CBB /* Products */,
-				2A5533751B56490A0056FF3E /* cot */,
 				234A213E93629F3A79324102 /* Pods */,
 			);
 			name = CotEditor;
@@ -1292,6 +1292,14 @@
 				2A961C4D18FC699E002076B6 /* ShellScript.rtf */,
 			);
 			name = Documents;
+			sourceTree = "<group>";
+		};
+		2A99FEE31B56D79800BF46CC /* Executables */ = {
+			isa = PBXGroup;
+			children = (
+				2A5533751B56490A0056FF3E /* cot */,
+			);
+			name = Executables;
 			sourceTree = "<group>";
 		};
 		2AAEA6A01A4342A800A930CA /* Document Accessories */ = {
@@ -1497,6 +1505,7 @@
 				2A6F0D5A1B5500E100C2D03C /* CotEditor.help in Resources */,
 				2A6F0D5B1B5500E100C2D03C /* SyntaxMap.json in Resources */,
 				2A6F0D5D1B5500E100C2D03C /* ReportTemplate.md in Resources */,
+				2A6F0D841B5500E100C2D03C /* FileDropGlossary.txt in Resources */,
 				2A6F0D5E1B5500E100C2D03C /* MainMenu.xib in Resources */,
 				2A6F0D5F1B5500E100C2D03C /* DocumentWindow.xib in Resources */,
 				2A6F0D601B5500E100C2D03C /* FindPanel.xib in Resources */,
@@ -1535,7 +1544,6 @@
 				2A6F0D811B5500E100C2D03C /* ServicesMenu.strings in Resources */,
 				2A6F0D821B5500E100C2D03C /* IntegrationPane.xib in Resources */,
 				2A6F0D831B5500E100C2D03C /* RegexReferencePopover.xib in Resources */,
-				2A6F0D841B5500E100C2D03C /* FileDropGlossary.txt in Resources */,
 				2A6F0D851B5500E100C2D03C /* ShellScript.rtf in Resources */,
 				2A6F0D861B5500E100C2D03C /* ScriptMenu Folder.rtf in Resources */,
 				2A6F0D871B5500E100C2D03C /* AppleScript.rtf in Resources */,
@@ -1582,6 +1590,7 @@
 				2A2179F61A07093B002C4AB1 /* SyntaxMap.json in Resources */,
 				6C6DAE3E13833C0E007F2326 /* dsa_pub.pem in Resources */,
 				2A456C451A1EE38E00395158 /* ReportTemplate.md in Resources */,
+				2AEB8B7C19AF73980098D557 /* FileDropGlossary.txt in Resources */,
 				8D15AC2D0486D014006FF6A4 /* MainMenu.xib in Resources */,
 				8D15AC2E0486D014006FF6A4 /* DocumentWindow.xib in Resources */,
 				2A7CF2401A573CEB00D09249 /* FindPanel.xib in Resources */,
@@ -1620,7 +1629,6 @@
 				2A5E4D7C1A44F0D50072013F /* ServicesMenu.strings in Resources */,
 				2AD318C01A462A10001B8112 /* IntegrationPane.xib in Resources */,
 				2A2D6C191A602D2C002451FF /* RegexReferencePopover.xib in Resources */,
-				2AEB8B7C19AF73980098D557 /* FileDropGlossary.txt in Resources */,
 				2A961C5518FC699E002076B6 /* ShellScript.rtf in Resources */,
 				2A961C5418FC699E002076B6 /* ScriptMenu Folder.rtf in Resources */,
 				2A961C5218FC699E002076B6 /* AppleScript.rtf in Resources */,
