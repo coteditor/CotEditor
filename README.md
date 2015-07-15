@@ -14,7 +14,8 @@ __Distribution Site__ : <http://coteditor.com>
 
 About Source Code
 -----------------------------
-[![Build Status](https://travis-ci.org/coteditor/CotEditor.png)](https://travis-ci.org/coteditor/CotEditor)
+[![Build Status](https://travis-ci.org/coteditor/CotEditor.svg?branch=develop)](https://travis-ci.org/coteditor/CotEditor)
+[![License](https://img.shields.io/badge/license-GPL2-lightgrey.svg?style=flat)](https://github.com/coteditor/CotEditor/blob/develop/LICENSE)
 
 It's pure Cocoa document-based application. The source code is written in Objective-C with ARC enabled.
 
