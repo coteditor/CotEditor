@@ -195,7 +195,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     NSStringEncoding xattrEncoding = [self fileURL] ? [[self fileURL] getAppleTextEncoding] : NSNotFound;
     
     // don't save xattr if file doesn't have it in order to avoid saving wrong encoding (2015-01 by 1024jp).
-    [self setShouldSaveXattr:(xattrEncoding != NSNotFound)];
+    [self setShouldSaveXattr:(xattrEncoding != NSNotFound) || ([data length] == 0)];
     
     return [self readStringFromData:data encoding:[self readingEncoding] xattrEncoding:xattrEncoding];
 }
