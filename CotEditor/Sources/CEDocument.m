@@ -134,7 +134,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
                                                  selector:@selector(documentDidFinishOpen:)
                                                      name:CEDocumentDidFinishOpenNotification object:nil];
         
-        // アプリケーションがアクティブになったタイミングで外部プロセスによって変更保存されていた場合の通知を行なう
+        // alert about file modification by an external process when application becomes active
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(showUpdatedByExternalProcessAlert)
                                                      name:NSApplicationDidBecomeActiveNotification object:nil];
@@ -188,7 +188,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 - (BOOL)readFromData:(NSData *)data ofType:(NSString *)typeName error:(NSError *__autoreleasing *)outError
 // ------------------------------------------------------
 {
-    // presentedItemDidChangeにて内容の同一性を比較するためにファイルのMD5を保存する
+    // store file hash (MD5) in order to check the file content identity in `presentedItemDidChange`
     [self setFileMD5:[data MD5]];
     
     // try reading the `com.apple.TextEncoding` extended attribute
@@ -202,7 +202,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 
 // ------------------------------------------------------
-/// セーブ時の状態に戻す
+/// revert to saved file contents
 - (BOOL)revertToContentsOfURL:(NSURL *)url ofType:(NSString *)typeName error:(NSError *__autoreleasing *)outError
 // ------------------------------------------------------
 {
@@ -225,17 +225,17 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 
 // ------------------------------------------------------
-/// 保存用のデータを生成
+/// create NSData object to save
 - (NSData *)dataOfType:(NSString *)typeName error:(NSError *__autoreleasing *)outError
 // ------------------------------------------------------
 {
-    // エンコーディングを見て、半角円マークを変換しておく
+    // convert Yen sign in consideration of the current encoding
     NSString *string = [self convertCharacterString:[self stringForSave] encoding:[self encoding]];
     
-    // stringから保存用のdataを得る
+    // get data from string to save
     NSData *data = [string dataUsingEncoding:[self encoding] allowLossyConversion:YES];
     
-    // 必要であれば UTF-8 BOM 追加 (2008-12-13)
+    // add UTF-8 BOM if needed
     if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultSaveUTF8BOMKey] &&
         ([self encoding] == NSUTF8StringEncoding))
     {
@@ -307,16 +307,15 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 - (BOOL)writeToURL:(NSURL *)url ofType:(NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation originalContentsURL:(NSURL *)absoluteOriginalContentsURL error:(NSError *__autoreleasing *)outError
 // ------------------------------------------------------
 {
-    // 保存処理実行
     BOOL success = [super writeToURL:url ofType:typeName forSaveOperation:saveOperation originalContentsURL:absoluteOriginalContentsURL error:outError];
 
     if (success) {
-        // ファイル拡張属性 (com.apple.TextEncoding) にエンコーディングを保存
+        // write encoding to the external file attributes (com.apple.TextEncoding)
         if ([self shouldSaveXattr]) {
             [url setAppleTextEncoding:[self encoding]];
         }
         
-        // presentedItemDidChange にて内容の同一性を比較するためにファイルの MD5 を保存する
+        // store file hash (MD5) in order to check the file content identity in `presentedItemDidChange`
         //    So, `dataOfType:error:` will be invoked twice in a single save operation... (2015-06)
         if (saveOperation != NSAutosaveElsewhereOperation) {
             NSData *data = [self dataOfType:typeName error:nil];
@@ -415,7 +414,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 - (void)close
 // ------------------------------------------------------
 {
-    // 外部エディタプロトコル(ODB Editor Suite)のファイルクローズを送信
+    // send file close notification for the external editor protocol (ODB Editor Suite)
     if ([self fileURL]) {
         [[self ODBEventSender] sendCloseEventWithURL:[self fileURL]];
     }
@@ -434,7 +433,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     }
     CEPrintPanelAccessoryController *accessoryController = [self printPanelAccessoryController];
     
-    // プリントビュー生成
+    // create printView
     CEPrintView *printView = [[CEPrintView alloc] init];
     [printView setString:[[self editor] string]];
     [printView setTheme:[[self editor] theme]];
@@ -446,7 +445,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     [printView setDocumentShowsLineNum:[[self editor] showsLineNum]];
     [printView setLineSpacing:[[[self editor] focusedTextView] lineSpacing]];
     
-    // プリントに使用するフォント
+    // set font for printing
     NSFont *font;
     if ([[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultSetPrintFontKey] == 1) { // == プリンタ専用フォントで印字
         font = [NSFont fontWithName:[[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultPrintFontNameKey]
@@ -456,7 +455,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     }
     [printView setFont:font];
     
-    // PrintInfo 設定
+    // setup PrintInfo
     NSPrintInfo *printInfo = [self printInfo];
     [printInfo setHorizontalPagination:NSFitPagination];
     [printInfo setHorizontallyCentered:NO];
@@ -466,7 +465,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     [printInfo setTopMargin:kPrintHFVerticalMargin];
     [printInfo setBottomMargin:kPrintHFVerticalMargin];
     
-    // プリントオペレーション生成、設定、プリント実行
+    // create print operation
     NSPrintOperation *printOperation = [NSPrintOperation printOperationWithView:printView printInfo:printInfo];
     [printOperation setJobTitle:[self displayName]];
     [printOperation setShowsProgressPanel:YES];
