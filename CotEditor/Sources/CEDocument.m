@@ -45,6 +45,7 @@
 static char const UTF8_BOM[] = {0xef, 0xbb, 0xbf};
 
 NSUInteger const CEUniqueFileIDLength = 8;
+NSString *const CEWritablilityKey = @"writability";
 NSString *const CEAutosaveIdentierKey = @"autosaveIdentifier";
 
 // incompatible chars dictionary keys
@@ -145,6 +146,11 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     if (self) {
         // set sender of external editor protocol (ODB Editor Suite)
         _ODBEventSender = [[CEODBEventSender alloc] init];
+        
+        // check writability
+        NSNumber *isWritable = nil;
+        [url getResourceValue:&isWritable forKey:NSURLIsWritableKey error:nil];
+        _writable = [isWritable boolValue];
     }
     return self;
 }
@@ -177,11 +183,6 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     // set encoding to read file
     // -> The value is either user setting or selection of open panel.
     NSStringEncoding encoding = [[CEDocumentController sharedDocumentController] accessorySelectedEncoding];
-    
-    // check writability
-    NSNumber *isWritable = nil;
-    [url getResourceValue:&isWritable forKey:NSURLIsWritableKey error:nil];
-    [self setWritable:[isWritable boolValue]];
     
     return [self readFromURL:url encoding:encoding];
 }
@@ -465,6 +466,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 - (void)encodeRestorableStateWithCoder:(NSCoder *)coder
 // ------------------------------------------------------
 {
+    [coder encodeBool:[self isWritable] forKey:CEWritablilityKey];
     [coder encodeObject:[self autosaveIdentifier] forKey:CEAutosaveIdentierKey];
     
     [super encodeRestorableStateWithCoder:coder];
@@ -478,6 +480,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 {
     [super restoreStateWithCoder:coder];
     
+    [self setWritable:[coder decodeBoolForKey:CEWritablilityKey]];
     [self setAutosaveIdentifier:[coder decodeObjectForKey:CEAutosaveIdentierKey]];
     // not need to show unwritable alert on resume
     [self setDidAlertNotWritable:YES];
@@ -1113,6 +1116,8 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 - (void)getFileAttributes
 // ------------------------------------------------------
 {
+    if (![self fileURL]) { return; }
+    
     __block NSDictionary *attributes;
     NSFileCoordinator *coordinator = [[NSFileCoordinator alloc] initWithFilePresenter:self];
     [coordinator coordinateReadingItemAtURL:[self fileURL] options:NSFileCoordinatorReadingWithoutChanges
