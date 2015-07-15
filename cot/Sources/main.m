@@ -153,10 +153,11 @@ int main(int argc, const char * argv[])
         // validate file paths
         NSMutableArray *URLs = [NSMutableArray array];
         for (NSString *path in arguments[kFiles]) {
-            NSURL *URL = [[NSURL fileURLWithPath:path isDirectory:NO] URLByStandardizingPath];
+            BOOL isDirectory;
+            BOOL exists = [[NSFileManager defaultManager] fileExistsAtPath:path isDirectory:&isDirectory];
             
-            NSDictionary *info = [URL resourceValuesForKeys:@[NSURLIsDirectoryKey, NSURLIsReadableKey] error:nil];
-            if (![info[NSURLIsDirectoryKey] boolValue] && [info[NSURLIsReadableKey] boolValue]) {
+            if (exists && !isDirectory) {
+                NSURL *URL = [[NSURL fileURLWithPath:path isDirectory:NO] URLByStandardizingPath];
                 [URLs addObject:URL];
                 
             } else if ([arguments[kFiles] count] == 1) {
