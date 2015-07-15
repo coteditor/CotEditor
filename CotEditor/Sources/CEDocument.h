@@ -64,7 +64,7 @@ extern NSString *const CEIncompatibleConvertedCharKey;
 /// Return whole string in the current text view which document's line endings are already applied to.  (Note: The internal string (e.g. in text storage) has always LF for its line ending.)
 - (NSString *)stringForSave;
 
-- (void)setStringToEditor;
+- (void)applyContentToEditor;
 
 // string encoding
 - (NSString *)currentIANACharSetName;

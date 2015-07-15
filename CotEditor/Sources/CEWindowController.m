@@ -139,7 +139,7 @@ static NSTimeInterval infoUpdateInterval;
     
     // set CEEditorWrapper to document instance
     [[self document] setEditor:[self editor]];
-    [[self document] setStringToEditor];
+    [[self document] applyContentToEditor];
     
     // setup status bar
     [[self statusBarController] setShown:[defaults boolForKey:CEDefaultShowStatusBarKey] animate:NO];

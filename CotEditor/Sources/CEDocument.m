@@ -209,7 +209,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     
     // apply to UI
     if (success) {
-        [self setStringToEditor];
+        [self applyContentToEditor];
     }
     
     return success;
@@ -644,7 +644,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 // ------------------------------------------------------
 /// transfer file content string to editor
-- (void)setStringToEditor
+- (void)applyContentToEditor
 // ------------------------------------------------------
 {
     [self setSyntaxStyleWithFileName:[[self fileURL] lastPathComponent] coloring:NO];
