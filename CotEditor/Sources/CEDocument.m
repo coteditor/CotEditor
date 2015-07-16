@@ -248,51 +248,46 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     // break undo grouping
     [[[self editor] focusedTextView] breakUndoCoalescing];
     
-    // wait for other file access
-    [self performAsynchronousFileAccessUsingBlock:^(void (^fileAccessCompletionHandler)(void)) {
-        NSURL *newURL = url;
-        // modify place to create backup file
-        //   -> save backup file always in `~/Library/Autosaved Information/` direcotory
-        //      (The default backup URL is the same directory as the fileURL.)
-        if (saveOperation == NSAutosaveElsewhereOperation && [self fileURL]) {
-            NSURL *autosaveDirectoryURL =  [[CEDocumentController sharedDocumentController] autosaveDirectoryURL];
-            NSString *baseFileName = [[self fileURL] lastPathComponent];
-            if ([baseFileName hasPrefix:@"."]) {  // avoid file to be hidden
-                baseFileName = [baseFileName substringFromIndex:1];
-            }
-            NSString *fileName = [NSString stringWithFormat:@"%@ (%@)",
-                                  [baseFileName stringByDeletingPathExtension],
-                                  [self autosaveIdentifier]];  // append a unique string to avoid overwriting another backup file with the same file name.
-            
-            newURL = [[autosaveDirectoryURL URLByAppendingPathComponent:fileName] URLByAppendingPathExtension:[baseFileName pathExtension]];
+    // modify place to create backup file
+    //   -> save backup file always in `~/Library/Autosaved Information/` direcotory
+    //      (The default backup URL is the same directory as the fileURL.)
+    if (saveOperation == NSAutosaveElsewhereOperation && [self fileURL]) {
+        NSURL *autosaveDirectoryURL =  [[CEDocumentController sharedDocumentController] autosaveDirectoryURL];
+        NSString *baseFileName = [[self fileURL] lastPathComponent];
+        if ([baseFileName hasPrefix:@"."]) {  // avoid file to be hidden
+            baseFileName = [baseFileName substringFromIndex:1];
         }
+        NSString *fileName = [NSString stringWithFormat:@"%@ (%@)",
+                              [baseFileName stringByDeletingPathExtension],
+                              [self autosaveIdentifier]];  // append a unique string to avoid overwriting another backup file with the same file name.
         
-        __weak typeof(self) weakSelf = self;
-        [super saveToURL:newURL ofType:typeName forSaveOperation:saveOperation completionHandler:^(NSError *error)
-         {
-             // [note] This completionHandler block will always be invoked on the main thread.
-             
-             typeof(weakSelf) strongSelf = weakSelf;
-             
-             if (!error) {
-                 // apply syntax style that is inferred from the file name
-                 if (saveOperation == NSSaveAsOperation) {
-                     [strongSelf setSyntaxStyleWithFileName:[url lastPathComponent] coloring:YES];
-                 }
-                 
-                 if (saveOperation != NSAutosaveElsewhereOperation) {
-                     // update file information
-                     [strongSelf getFileAttributes];
-                     
-                     // send file update notification for the external editor protocol (ODB Editor Suite)
-                     [[strongSelf ODBEventSender] sendModifiedEventWithURL:url operation:saveOperation];
-                 }
+        url = [[autosaveDirectoryURL URLByAppendingPathComponent:fileName] URLByAppendingPathExtension:[baseFileName pathExtension]];
+    }
+    
+    __weak typeof(self) weakSelf = self;
+    [super saveToURL:url ofType:typeName forSaveOperation:saveOperation completionHandler:^(NSError *error)
+     {
+         // [note] This completionHandler block will always be invoked on the main thread.
+         
+         typeof(weakSelf) strongSelf = weakSelf;
+         
+         if (!error) {
+             // apply syntax style that is inferred from the file name
+             if (saveOperation == NSSaveAsOperation) {
+                 [strongSelf setSyntaxStyleWithFileName:[url lastPathComponent] coloring:YES];
              }
              
-             fileAccessCompletionHandler();
-             completionHandler(error);
-         }];
-    }];
+             if (saveOperation != NSAutosaveElsewhereOperation) {
+                 // update file information
+                 [strongSelf getFileAttributes];
+                 
+                 // send file update notification for the external editor protocol (ODB Editor Suite)
+                 [[strongSelf ODBEventSender] sendModifiedEventWithURL:url operation:saveOperation];
+             }
+         }
+         
+         completionHandler(error);
+     }];
 }
 
 
