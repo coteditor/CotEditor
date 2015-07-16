@@ -265,7 +265,6 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
                                   [self autosaveIdentifier]];  // append a unique string to avoid overwriting another backup file with the same file name.
             
             newURL = [[autosaveDirectoryURL URLByAppendingPathComponent:fileName] URLByAppendingPathExtension:[baseFileName pathExtension]];
-            [self setAutosavedContentsFileURL:newURL];
         }
         
         __weak typeof(self) weakSelf = self;
