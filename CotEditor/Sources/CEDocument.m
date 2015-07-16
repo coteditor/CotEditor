@@ -257,6 +257,9 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
         if (saveOperation == NSAutosaveElsewhereOperation && [self fileURL]) {
             NSURL *autosaveDirectoryURL =  [[CEDocumentController sharedDocumentController] autosaveDirectoryURL];
             NSString *baseFileName = [[self fileURL] lastPathComponent];
+            if ([baseFileName hasPrefix:@"."]) {  // avoid file to be hidden
+                baseFileName = [baseFileName substringFromIndex:1];
+            }
             NSString *fileName = [NSString stringWithFormat:@"%@ (%@)",
                                   [baseFileName stringByDeletingPathExtension],
                                   [self autosaveIdentifier]];  // append a unique string to avoid overwriting another backup file with the same file name.
