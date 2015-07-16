@@ -612,9 +612,9 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
                 // ignore if file's MD5 hash is the same as the stored MD5 and deal as if it was not modified
                 if (didChange && [MD5 isEqualToString:[strongSelf fileMD5]]) {
                     didChange = NO;
+                    
                     // update the document's fileModificationDate for a workaround (2014-03 by 1024jp)
                     // If not, an alert shows up when user saves the file.
-                    
                     [strongSelf setFileModificationDate:fileModificationDate];
                 }
                 
