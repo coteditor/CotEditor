@@ -1584,7 +1584,9 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     [task launch];
     [[[task standardInput] fileHandleForWriting] writeData:data];
     [[[task standardInput] fileHandleForWriting] closeFile];
-    [task waitUntilExit];
+    while ([task isRunning]) {
+        usleep(200);
+    }
     
     int status = [task terminationStatus];
     success = (status == 0);
