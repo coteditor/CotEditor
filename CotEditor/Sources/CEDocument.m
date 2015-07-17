@@ -612,7 +612,9 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
                     
                     // update the document's fileModificationDate for a workaround (2014-03 by 1024jp)
                     // If not, an alert shows up when user saves the file.
-                    [strongSelf setFileModificationDate:fileModificationDate];
+                    if ([fileModificationDate compare:[strongSelf fileModificationDate]] == NSOrderedDescending) {
+                        [strongSelf setFileModificationDate:fileModificationDate];
+                    }
                 }
                 
                 fileAccessCompletionHandler();  // ???: completionHandler should be invoked on the main thread
