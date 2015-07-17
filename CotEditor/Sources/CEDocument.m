@@ -583,6 +583,9 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 {
     // [caution] This method can be called from any thread.
     
+    // don't check twice if document is already marked as modified
+    if ([self needsShowUpdateAlertWithBecomeKey]) { return; }
+    
     __weak typeof(self) weakSelf = self;
     [[self presentedItemOperationQueue] addOperationWithBlock:^{  // wait for operations by external process
         [weakSelf performAsynchronousFileAccessUsingBlock:^(void (^fileAccessCompletionHandler)(void)) {  // avoid conflict with saving
