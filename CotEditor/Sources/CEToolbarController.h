@@ -56,6 +56,7 @@ typedef NS_ENUM(NSInteger, CEToolbarItemTag) {
     CEToolbarTextOrientationItemTag,
     CEToolbarEditColorCodeItemTag,
     CEToolbarSyntaxReColorAllItemTag,
+    CEToolbarShareItemTag,
 };
 
 

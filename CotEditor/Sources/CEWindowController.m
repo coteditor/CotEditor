@@ -47,7 +47,7 @@ typedef NS_ENUM(NSUInteger, CESidebarTag) {
 };
 
 
-@interface CEWindowController () <OgreTextFindDataSource, NSSplitViewDelegate>
+@interface CEWindowController () <OgreTextFindDataSource, NSSplitViewDelegate, NSSharingServicePickerDelegate>
 
 @property (nonatomic) CESidebarTag selectedSidebarTag;
 @property (nonatomic) BOOL needsRecolorWithBecomeKey;  // flag to update sytnax highlight when window becomes key window
@@ -62,6 +62,7 @@ typedef NS_ENUM(NSUInteger, CESidebarTag) {
 @property (nonatomic, nullable, weak) IBOutlet NSSplitView *sidebarSplitView;
 @property (nonatomic, nullable, weak) IBOutlet NSView *sidebar;
 @property (nonatomic, nullable, weak) IBOutlet NSView *sidebarPlaceholderView;
+@property (nonatomic, nullable, weak) IBOutlet NSButton *shareButton;
 @property (nonatomic, nullable) IBOutlet CEDocumentAnalyzer *documentAnalyzer;
 
 // IBOutlets (readonly)
@@ -149,6 +150,9 @@ static NSTimeInterval infoUpdateInterval;
     
     // move focus to text view
     [[self window] makeFirstResponder:[[self editor] focusedTextView]];
+    
+    // setup share button
+    [[self shareButton] sendActionOn:NSLeftMouseDownMask];
     
     // notify finish of the document open process (Here is probably the final point.)
     __weak typeof(self) weakSelf = self;
@@ -448,6 +452,21 @@ static NSTimeInterval infoUpdateInterval;
         [self setSelectedSidebarTag:CEDocumentInspectorTag];
         [self setSidebarShown:YES];
     }
+}
+
+
+// ------------------------------------------------------
+/// show Share Service menu
+- (IBAction)share:(nullable id)sender
+// ------------------------------------------------------
+{
+    NSURL *url = [[self document] fileURL];
+    NSArray *items = url ? @[url] : @[];
+    
+    NSSharingServicePicker *sharingServicePicker = [[NSSharingServicePicker alloc] initWithItems:items];
+    [sharingServicePicker showRelativeToRect:[sender bounds]
+                                      ofView:sender
+                               preferredEdge:NSMinYEdge];
 }
 
 

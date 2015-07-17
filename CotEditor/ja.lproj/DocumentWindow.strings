@@ -7,7 +7,7 @@
  Created on 2014-11-04 by 1024jp
  encoding="UTF-8"
  
- © 2014 CotEditor Project
+ © 2014-2015 CotEditor Project
  */
 
 
@@ -25,6 +25,11 @@
 "6gO-UF-7QW.label" = "シンタックス";  /* Syntax Style */
 "6gO-UF-7QW.paletteLabel" = "シンタックス";  /* Syntax Style */
 "6gO-UF-7QW.toolTip" = "シンタックススタイルを変更";  /* Change syntax style */
+
+/* Class = "NSToolbarItem"; ObjectID = "tZT-2A-nIl"; */
+"tZT-2A-nIl.label" = "共有";  /* Share */
+"tZT-2A-nIl.paletteLabel" = "共有";  /* Share */
+"tZT-2A-nIl.toolTip" = "書類ファイルを共有";  /* Share document file */
 
 /* Class = "NSToolbarItem"; ObjectID = "ogy-SR-Vqr"; */
 "ogy-SR-Vqr.label" = "情報を見る";  /* Get Info */

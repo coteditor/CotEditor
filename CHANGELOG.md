@@ -5,6 +5,11 @@ Change Log
 develop
 --------------------------
 
+### New Features
+
+- Share button in toolbar.
+
+
 ### Additions/Changes
 
 - __Enable Sandbox.__

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="7706" systemVersion="14F6a" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="7706"/>
@@ -11,6 +11,7 @@
                 <outlet property="documentInspectorViewController" destination="zfS-u8-roN" id="oPb-Zq-odI"/>
                 <outlet property="editor" destination="Asc-bK-hKW" id="ihd-lk-fQz"/>
                 <outlet property="incompatibleCharsViewController" destination="PNV-ic-0G4" id="eFj-Ts-dkB"/>
+                <outlet property="shareButton" destination="b09-OH-vIj" id="lS2-qi-AN6"/>
                 <outlet property="sidebar" destination="34" id="2IU-Vj-94v"/>
                 <outlet property="sidebarPlaceholderView" destination="XSO-vY-vMP" id="9fk-c5-hjU"/>
                 <outlet property="sidebarSplitView" destination="jhv-dr-CH4" id="CIg-jJ-bnp"/>
@@ -255,12 +256,34 @@
                             </popUpButtonCell>
                         </popUpButton>
                     </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="E6ABFF49-AA91-4122-802F-15AF6503F110" explicitItemIdentifier="searchFieldItemID" label="Get Info" paletteLabel="Get Info" toolTip="Show document information" tag="4" image="GetInfo" id="ogy-SR-Vqr">
+                    <toolbarItem implicitItemIdentifier="BBDC186D-4E5D-425D-B728-8CB0614989B6" explicitItemIdentifier="shareItemID" label="Share" paletteLabel="Share" toolTip="Share document file" image="NSShareTemplate" id="tZT-2A-nIl">
+                        <size key="minSize" width="48" height="32"/>
+                        <size key="maxSize" width="48" height="32"/>
+                        <button key="view" verticalHuggingPriority="750" id="b09-OH-vIj">
+                            <rect key="frame" x="0.0" y="14" width="48" height="32"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <buttonCell key="cell" type="push" bezelStyle="rounded" image="NSShareTemplate" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="mH9-PF-JoG">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                            <connections>
+                                <action selector="share:" target="-2" id="SUM-6X-NUT"/>
+                            </connections>
+                        </button>
+                        <connections>
+                            <binding destination="-2" name="enabled" keyPath="document.fileURL" id="hyc-4g-MCT">
+                                <dictionary key="options">
+                                    <string key="NSValueTransformerName">NSIsNotNil</string>
+                                </dictionary>
+                            </binding>
+                        </connections>
+                    </toolbarItem>
+                    <toolbarItem implicitItemIdentifier="82C1E76C-32C8-4656-AAFD-8B7BAFD847B7" explicitItemIdentifier="searchFieldItemID" label="Get Info" paletteLabel="Get Info" toolTip="Show document information" tag="4" image="GetInfo" id="ogy-SR-Vqr">
                         <connections>
                             <action selector="getInfo:" target="-1" id="xp5-7V-kLd"/>
                         </connections>
                     </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="F23A039F-1579-4832-B183-00159B59C4E0" explicitItemIdentifier="showIncompatibleCharItemID" label="Incompatible Chars" paletteLabel="Show Incompatible Chars" toolTip="Show incompatible chars for selected encoding" tag="5" image="IncompatibleChars" id="LV0-t3-0jM">
+                    <toolbarItem implicitItemIdentifier="313FDC8F-8862-4A70-9610-B4567CBBEE10" explicitItemIdentifier="showIncompatibleCharItemID" label="Incompatible Chars" paletteLabel="Show Incompatible Chars" toolTip="Show incompatible chars for selected encoding" tag="5" image="IncompatibleChars" id="LV0-t3-0jM">
                         <connections>
                             <action selector="toggleIncompatibleCharList:" target="-1" id="kT9-cS-eHR"/>
                         </connections>
@@ -402,6 +425,7 @@
         <image name="InvisibleChars_Show" width="32" height="32"/>
         <image name="LineNumber_Show" width="32" height="32"/>
         <image name="LockedTemplate" width="16" height="16"/>
+        <image name="NSShareTemplate" width="11" height="16"/>
         <image name="NaviBar_Show" width="32" height="32"/>
         <image name="PageGuide_Show" width="32" height="32"/>
         <image name="RecolorAll" width="32" height="32"/>
