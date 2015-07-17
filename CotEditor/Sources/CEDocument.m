@@ -616,8 +616,8 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
              }];
             
             [strongSelf continueAsynchronousWorkOnMainThreadUsingBlock:^{
-                // ignore if file's modificationDate is the same as document's modificationDate
-                BOOL didChange = ![fileModificationDate isEqualToDate:[strongSelf fileModificationDate]];
+                // ignore if file's modificationDate is older than document's modificationDate
+                BOOL didChange = [fileModificationDate compare:[strongSelf fileModificationDate]] == NSOrderedDescending;
                 
                 // ignore if file's MD5 hash is the same as the stored MD5 and deal as if it was not modified
                 if (didChange && [MD5 isEqualToString:[strongSelf fileMD5]]) {
@@ -625,9 +625,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
                     
                     // update the document's fileModificationDate for a workaround (2014-03 by 1024jp)
                     // If not, an alert shows up when user saves the file.
-                    if ([fileModificationDate compare:[strongSelf fileModificationDate]] == NSOrderedDescending) {
-                        [strongSelf setFileModificationDate:fileModificationDate];
-                    }
+                    [strongSelf setFileModificationDate:fileModificationDate];
                 }
                 
                 fileAccessCompletionHandler();  // ???: completionHandler should be invoked on the main thread
