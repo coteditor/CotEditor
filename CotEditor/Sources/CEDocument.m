@@ -190,6 +190,12 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     // store file hash (MD5) in order to check the file content identity in `presentedItemDidChange`
     [self setFileMD5:[data MD5]];
     
+    // read file attributes
+    if ([self fileURL]) {
+        NSDictionary *attributes = [[NSFileManager defaultManager] attributesOfItemAtPath:[[self fileURL] path] error:outError];
+        [self setFileAttributes:attributes];
+    }
+    
     // try reading the `com.apple.TextEncoding` extended attribute
     NSStringEncoding xattrEncoding = [self fileURL] ? [[self fileURL] getAppleTextEncoding] : NSNotFound;
     
@@ -210,6 +216,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     // apply to UI
     if (success) {
         [self applyContentToEditor];
+        [[self windowController] updateFileInfo];
     }
     
     return success;
@@ -279,7 +286,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
              
              if (saveOperation != NSAutosaveElsewhereOperation) {
                  // update file information
-                 [strongSelf getFileAttributes];
+                 [[strongSelf windowController] updateFileInfo];
                  
                  // send file update notification for the external editor protocol (ODB Editor Suite)
                  [[strongSelf ODBEventSender] sendModifiedEventWithURL:url operation:saveOperation];
@@ -311,6 +318,10 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
             
             // store file encoding for revert
             [self setReadingEncoding:[self encoding]];
+            
+            // store file attributes
+            NSDictionary *attributes = [[NSFileManager defaultManager] attributesOfItemAtPath:[url path] error:nil];
+            [self setFileAttributes:attributes];
         }
     }
 
@@ -1111,33 +1122,6 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 #pragma mark Private Methods
 
 // ------------------------------------------------------
-/// ファイル情報辞書を更新
-- (void)getFileAttributes
-// ------------------------------------------------------
-{
-    if (![self fileURL]) { return; }
-    
-    __block NSDictionary *attributes;
-    NSFileCoordinator *coordinator = [[NSFileCoordinator alloc] initWithFilePresenter:self];
-    [coordinator coordinateReadingItemAtURL:[self fileURL] options:NSFileCoordinatorReadingWithoutChanges
-                                      error:nil
-                                 byAccessor:^(NSURL *newURL)
-     {
-         attributes = [[NSFileManager defaultManager] attributesOfItemAtPath:[newURL path] error:nil];
-     }];
-    
-    if (attributes) {
-        [self setFileAttributes:attributes];
-        
-        CEWindowController *windowController = [self windowController];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [windowController updateFileInfo];
-        });
-    }
-}
-
-
-// ------------------------------------------------------
 /// editor を通じて syntax インスタンスをセット
 - (void)setSyntaxStyleWithFileName:(NSString *)fileName coloring:(BOOL)doColoring
 // ------------------------------------------------------
@@ -1209,8 +1193,6 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
         [self setFileContentString:string];  // _fileContentString will be released in `setStringToEditor`
         [self doSetEncoding:usedEncoding updateDocument:NO askLossy:NO lossy:NO asActionName:nil];
         
-        // 保持しているファイル情報を更新
-        [self getFileAttributes];
         return YES;
     }
     
