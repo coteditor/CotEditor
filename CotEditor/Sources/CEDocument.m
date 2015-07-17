@@ -306,8 +306,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
         
         if (saveOperation != NSAutosaveElsewhereOperation) {
             // store file hash (MD5) in order to check the file content identity in `presentedItemDidChange`
-            //    So, `dataOfType:error:` will be invoked twice in a single save operation... (2015-06)
-            NSData *data = [self dataOfType:typeName error:nil];
+            NSData *data = [NSData dataWithContentsOfURL:url];
             [self setFileMD5:[data MD5]];
             
             // store file encoding for revert
