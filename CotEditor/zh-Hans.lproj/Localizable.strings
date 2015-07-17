@@ -277,8 +277,8 @@
 // Integration Pane
 "Install" = "安装";
 "Uninstall" = "卸载";
-"The current 'cot' symbolic link doesn't target to the running CotEditor." = "当前的 'cot' 符号链接没有指向正在运行的 CotEditor。";
-"The current 'cot' symbolic link may target to an invalid path." = "当前的 'cot' 符号链接可能指向无效路径。";
+"The current 'cot' symbolic link doesn't target on the running CotEditor." = "当前的 'cot' 符号链接没有指向正在运行的 CotEditor。";
+"The current 'cot' symbolic link may target on an invalid path." = "当前的 'cot' 符号链接可能指向无效路径。";
 
 // alerts
 "The running CotEditor is not located in the Application directory." = "正在运行的 CotEditor 没有位于应用程序文件夹中。";
