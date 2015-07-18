@@ -132,10 +132,10 @@ static const int kMaxMatchedStringLength = 256;
     if (![self result]) { return nil; }
     
     OgreFindResultBranch<OgreTextViewFindResultInterface> *textViewResult = [self textViewResult];
-    BOOL existsTarge = [textViewResult selectMatchedString];
+    BOOL existsTarget = [textViewResult selectMatchedString];
     
     if ([[tableColumn identifier] isEqualToString:@"line"]) {
-        return existsTarge ? [textViewResult lineOfMatchedStringAtIndex:row] : nil;
+        return existsTarget ? [textViewResult lineOfMatchedStringAtIndex:row] : nil;
     } else {
         return [textViewResult matchedStringAtIndex:row];
     }
