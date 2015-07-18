@@ -28,27 +28,12 @@
  */
 
 @import Foundation;
+#import <getopt.h>
 #import "CotEditor.h"
 
 
+// constants
 static NSString *const kBundleIdentifier = @"com.coteditor.CotEditor";
-
-static NSString *const kFiles = @"files";
-static NSString *const kVersionOption = @"version";
-static NSString *const kHelpOption = @"help";
-static NSString *const kBackgroundOption = @"background";
-static NSString *const kNewOption = @"new";
-static NSString *const kLineOption = @"line";
-static NSString *const kColumnOption = @"column";
-
-static NSString *const kNameKey = @"name";
-static NSString *const kParamKey = @"param";
-static NSString *const kTypeKey = @"type";
-typedef NS_ENUM(NSUInteger, OptionTypes) {
-    BoolType,
-    IntType,
-    StringType,
-};
 
 
 
@@ -77,69 +62,83 @@ void usage(void)
 }
 
 
-NSDictionary* parseArguments(NSArray *args)
-{
-    NSMutableDictionary *parsedArgs = [NSMutableDictionary dictionary];
-    NSMutableArray *files = [NSMutableArray array];
-    
-    NSArray *options = @[@{kNameKey:kVersionOption, kParamKey:@[@"--version", @"-v"], kTypeKey:@(BoolType)},
-                         @{kNameKey:kHelpOption, kParamKey:@[@"--help", @"-h"], kTypeKey:@(BoolType)},
-                         @{kNameKey:kBackgroundOption, kParamKey:@[@"--background", @"-g"], kTypeKey:@(BoolType)},
-                         @{kNameKey:kNewOption, kParamKey:@[@"--new", @"-n"], kTypeKey:@(BoolType)},
-                         @{kNameKey:kLineOption, kParamKey:@[@"--line", @"-l"], kTypeKey:@(IntType)},
-                         @{kNameKey:kColumnOption, kParamKey:@[@"--column", @"-c"], kTypeKey:@(IntType)},
-                         ];
-    NSRegularExpression *optRegex = [NSRegularExpression regularExpressionWithPattern:@"^-[-a-z]" options:0 error:nil];
-    
-    BOOL isFirst = YES;
-    NSString *lastKey = nil;
-    for (NSString *arg in args) {
-        if (isFirst) {  // first argument is path to command itself
-            isFirst = NO;
-            
-        } else if ([[optRegex matchesInString:arg options:0 range:NSMakeRange(0, [arg length])] count] > 0) {
-            for (NSDictionary *option in options) {
-                if ([option[kParamKey] containsObject:arg]) {
-                    if ([option[kTypeKey] unsignedIntegerValue] == BoolType) {
-                        parsedArgs[option[kNameKey]] = @YES;
-                        lastKey = nil;
-                    } else {
-                        lastKey = option[kNameKey];
-                    }
-                    break;
-                }
-            }
-            
-        } else if (lastKey) {
-            parsedArgs[lastKey] = arg;
-            lastKey = nil;
-            
-        } else {
-            [files addObject:arg];
-        }
-    }
-    parsedArgs[kFiles] = [files copy];
-    
-    
-    return [parsedArgs copy];
-}
-
-
-int main(int argc, const char * argv[])
+int main(int argc, char *argv[])
 {
     @autoreleasepool {
-        NSDictionary *arguments = parseArguments([[NSProcessInfo processInfo] arguments]);
+        // options
+        bool isBackground = false;
+        bool isNew = false;
+        bool wantsJump = false;
+        long line = 1;  // 1 based
+        long column = 0;
         
-        // display usage
-        if ([arguments[kHelpOption] boolValue]) {
-            usage();
-            exit(0);
+        // parse options
+        static struct option longopts[] = {
+            {"version",    no_argument,       NULL, 'v'},
+            {"help",       no_argument,       NULL, 'h'},
+            {"background", no_argument,       NULL, 'g'},
+            {"new",        no_argument,       NULL, 'n'},
+            {"line",       required_argument, NULL, 'l'},
+            {"column",     required_argument, NULL, 'c'},
+            {0, 0, 0, 0}
+        };
+        int option = -1;
+        while ((option = getopt_long(argc, argv, "vhgnl:c:", longopts, NULL)) != -1) {
+            switch (option) {
+                case 'v':  // version
+                    printf("cot %s\n", version());  // display version
+                    exit(EXIT_SUCCESS);
+                    
+                case 'h':  // help
+                    usage();  // display usage
+                    exit(EXIT_SUCCESS);
+                    
+                case 'g':  // background
+                    isBackground = true;
+                    break;
+                    
+                case 'n':  // new
+                    isNew = true;
+                    break;
+                    
+                case 'l':  // line
+                    line = atol(optarg);
+                    wantsJump = true;
+                    break;
+                    
+                case 'c':  //column
+                    column = atol(optarg);
+                    wantsJump = true;
+                    break;
+                    
+                case '?':  // invalid option
+                    exit(EXIT_FAILURE);
+            }
         }
         
-        // display version
-        if ([arguments[kVersionOption] boolValue]) {
-            printf("cot %s\n", version());
-            exit(0);
+        // parse parameters
+        NSMutableArray *URLs = [NSMutableArray array];
+        if (argc - optind > 0) {  // if parameter exists
+            // get user's current directory
+            NSDictionary *env = [[NSProcessInfo processInfo] environment];
+            NSURL *currentURL = env[@"PWD"] ? [NSURL fileURLWithPath:env[@"PWD"]] : nil;
+            
+            // convert chars to NSURL
+            for(int i = optind; i < argc; i++) {
+                NSURL *URL = [NSURL fileURLWithFileSystemRepresentation:argv[i] isDirectory:NO relativeToURL:currentURL];
+                
+                // validate file paths
+                BOOL isDirectory;
+                BOOL exists = [[NSFileManager defaultManager] fileExistsAtPath:[URL path] isDirectory:&isDirectory];
+                
+                if (exists && !isDirectory) {
+                    [URLs addObject:[URL URLByStandardizingPath]];
+                    
+                } else if ([URLs count] == 1) {
+                    printf("%s is not readable file.\n", argv[i]);
+                    exit(EXIT_FAILURE);
+                }
+            }
         }
         
         // read piped text if exists
@@ -150,21 +149,7 @@ int main(int argc, const char * argv[])
             input = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
         }
         
-        // validate file paths
-        NSMutableArray *URLs = [NSMutableArray array];
-        for (NSString *path in arguments[kFiles]) {
-            BOOL isDirectory;
-            BOOL exists = [[NSFileManager defaultManager] fileExistsAtPath:path isDirectory:&isDirectory];
-            
-            if (exists && !isDirectory) {
-                NSURL *URL = [[NSURL fileURLWithPath:path isDirectory:NO] URLByStandardizingPath];
-                [URLs addObject:URL];
-                
-            } else if ([arguments[kFiles] count] == 1) {
-                printf("%s is not readable file.\n", [path UTF8String]);
-                exit(1);
-            }
-        }
+        [[NSWorkspace sharedWorkspace] openURLs:URLs withAppBundleIdentifier:kBundleIdentifier options:0 additionalEventParamDescriptor:nil launchIdentifiers:NULL];
         
         // create scriptable application object
         NSURL *applicationURL = [[NSBundle mainBundle] bundleURL];  // CotEditor.app
@@ -177,12 +162,12 @@ int main(int argc, const char * argv[])
         
         if (!CotEditor) {
             printf("Failed open CotEditor.\n");
-            exit(1);
+            exit(EXIT_FAILURE);
         }
         
         // launch CotEditor
         [CotEditor open:URLs];
-        if (![arguments[kBackgroundOption] boolValue]) {
+        if (!isBackground) {
             [CotEditor activate];
         }
         
@@ -195,20 +180,17 @@ int main(int argc, const char * argv[])
             [[document selection] setContents:(CotEditorAttributeRun *)input];
             [[document selection] setRange:@[@0, @0]];
             
-        } else if ([arguments[kNewOption] boolValue]) {  // brank document
+        } else if (isNew) {  // brank document
             document = [[[CotEditor classForScriptingClass:@"document"] alloc] init];
             
             [[CotEditor documents] addObject:document];
         }
         
         // jump to location
-        if (arguments[kLineOption] || arguments[kColumnOption]) {
+        if (wantsJump) {
             document = document ? : [[CotEditor documents] firstObject];
             
-            if (!document) { exit(0); }
-            
-            NSInteger line = [arguments[kLineOption] integerValue];  // 1 based
-            NSInteger column = [arguments[kColumnOption] integerValue];
+            if (!document) { exit(EXIT_SUCCESS); }
             
             // sanitize line number
             NSArray *lines = [[document contents] paragraphs];
@@ -237,5 +219,5 @@ int main(int argc, const char * argv[])
         }
     }
     
-    return 0;
+    exit(EXIT_SUCCESS);
 }
