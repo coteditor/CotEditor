@@ -7,9 +7,12 @@
  Created on 2014-12-18 by 1024jp
  encoding="UTF-8"
  
- © 2014 CotEditor Project
+ © 2014-2015 CotEditor Project
  */
 
+
+/* Class = "NSTextFieldCell"; title = "Incompatible Characters"; ObjectID = "W1c-aP-XZa"; */
+"W1c-aP-XZa.title" = "非互換文字";
 
 /* Class = "NSTableColumn"; headerCell.title = "Converted"; ObjectID = "2AE-nU-rdc"; */
 "2AE-nU-rdc.headerCell.title" = "変換後";

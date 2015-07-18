@@ -8,9 +8,12 @@
  Localized by onevcat
  encoding="UTF-8"
  
- © 2014 CotEditor Project
+ © 2014-2015 CotEditor Project
  */
 
+
+/* Class = "NSTextFieldCell"; title = "Incompatible Characters"; ObjectID = "W1c-aP-XZa"; */
+"W1c-aP-XZa.title" = "不兼容字符";
 
 /* Class = "NSTableColumn"; headerCell.title = "Converted"; ObjectID = "2AE-nU-rdc"; */
 "2AE-nU-rdc.headerCell.title" = "转换后";

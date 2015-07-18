@@ -121,7 +121,6 @@
 "EP1-My-tQo.ibShadowedToolTip" = "書類は書き込み不可です。";
 
 
-/* Class = "NSMenuItem"; title = "Incompatible Chars"; ObjectID = "145"; */
-"145.title" = "非互換文字";
-/* Class = "NSMenuItem"; title = "Document"; ObjectID = "144"; */
-"144.title" = "書類情報";
+/* Class = "NSSegmentedCell"; ObjectID = "TPz-kb-PBa"; */
+"TPz-kb-PBa.ibShadowedLabels[0]" = "書類";  /* Document */
+"TPz-kb-PBa.ibShadowedLabels[1]" = "エラー";  /* Errors */

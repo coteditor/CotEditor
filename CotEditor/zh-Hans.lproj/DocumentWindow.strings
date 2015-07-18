@@ -121,7 +121,6 @@
 "EP1-My-tQo.ibShadowedToolTip" = "这是只读文档";
 
 
-/* Class = "NSMenuItem"; title = "Incompatible Chars"; ObjectID = "145"; */
-"145.title" = "不兼容字符";
-/* Class = "NSMenuItem"; title = "Document"; ObjectID = "144"; */
-"144.title" = "文稿信息";
+/* Class = "NSSegmentedCell"; ObjectID = "TPz-kb-PBa"; */
+"TPz-kb-PBa.ibShadowedLabels[0]" = "文稿";  /* Document */
+"TPz-kb-PBa.ibShadowedLabels[1]" = "Errors";  /* Errors */  // FIXME:
