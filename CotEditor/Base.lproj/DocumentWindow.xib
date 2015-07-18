@@ -71,12 +71,12 @@
                                         </constraints>
                                     </customView>
                                     <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="t7l-ac-OCh">
-                                        <rect key="frame" x="43" y="496" width="144" height="25"/>
+                                        <rect key="frame" x="25" y="496" width="181" height="25"/>
                                         <segmentedCell key="cell" borderStyle="border" alignment="left" style="texturedSquare" trackingMode="selectOne" id="TPz-kb-PBa">
                                             <font key="font" metaFont="system"/>
                                             <segments>
-                                                <segment label="Document" selected="YES" tag="1"/>
-                                                <segment label="Errors" tag="2"/>
+                                                <segment label="Document" image="DocumentTemplate" selected="YES" tag="1"/>
+                                                <segment label="Issues" image="ConflictsTemplate" tag="2"/>
                                             </segments>
                                         </segmentedCell>
                                         <connections>
@@ -409,6 +409,8 @@
         <image name="AutoTabExpand_On" width="32" height="32"/>
         <image name="BiggerFont" width="32" height="32"/>
         <image name="Comment" width="32" height="32"/>
+        <image name="ConflictsTemplate" width="13" height="13"/>
+        <image name="DocumentTemplate" width="13" height="13"/>
         <image name="EditColorCode" width="32" height="32"/>
         <image name="GetInfo" width="32" height="32"/>
         <image name="IncompatibleChars" width="32" height="32"/>

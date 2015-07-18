@@ -123,4 +123,4 @@
 
 /* Class = "NSSegmentedCell"; ObjectID = "TPz-kb-PBa"; */
 "TPz-kb-PBa.ibShadowedLabels[0]" = "文稿";  /* Document */
-"TPz-kb-PBa.ibShadowedLabels[1]" = "Errors";  /* Errors */  // FIXME:
+"TPz-kb-PBa.ibShadowedLabels[1]" = "Issues";  /* Issues */  // FIXME:
