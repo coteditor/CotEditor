@@ -11,6 +11,9 @@
  */
 
 
+/* Class = "NSTextFieldCell"; title = "Dofument File"; ObjectID = "5tP-OA-Ujw"; */
+"5tP-OA-Ujw.title" = "文書ファイル";
+
 /* Class = "NSTextFieldCell"; title = "Created"; ObjectID = "hgp-Cc-KHJ"; */
 "hgp-Cc-KHJ.title" = "作成日時";
 /* Class = "NSTextFieldCell"; title = "Modified"; ObjectID = "BtZ-Pl-H7s"; */
@@ -24,12 +27,20 @@
 /* Class = "NSTextFieldCell"; title = "Full Path"; ObjectID = "zwU-xo-iZu"; */
 "zwU-xo-iZu.title" = "フルパス";
 
+
+/* Class = "NSTextFieldCell"; title = "Text Settings"; ObjectID = "8KW-Mc-cRX"; */
+"8KW-Mc-cRX.title" = "テキスト設定";
+
 /* Class = "NSTextFieldCell"; title = "Encoding"; ObjectID = "B5F-j1-X4E"; */
 "B5F-j1-X4E.title" = "エンコーディング";
 /* Class = "NSTextFieldCell"; title = "Line Endings"; ObjectID = "XBS-xa-s3p"; */
 "XBS-xa-s3p.title" = "改行コード";
 /* Class = "NSTextFieldCell"; title = "Byte Length"; ObjectID = "aId-DL-y8T"; */
 "aId-DL-y8T.title" = "バイト長";
+
+
+/* Class = "NSTextFieldCell"; title = "Count and Location"; ObjectID = "cbf-0f-9rd"; */
+"cbf-0f-9rd.title" = "カウントと位置";
 
 /* Class = "NSTextFieldCell"; title = "Lines"; ObjectID = "yRM-Y0-4Oq"; */
 "yRM-Y0-4Oq.title" = "行数";
@@ -45,8 +56,14 @@
 "f9g-dQ-g3K.title" = "行";
 /* Class = "NSTextFieldCell"; title = "Column"; ObjectID = "Wwr-gI-HPc"; */
 "Wwr-gI-HPc.title" = "列";
+
+
+/* Class = "NSTextFieldCell"; title = "Character"; ObjectID = "H2Z-jU-biZ"; */
+"H2Z-jU-biZ.title" = "文字";
+
 /* Class = "NSTextFieldCell"; title = "Unicode"; ObjectID = "kna-yU-liB"; */
 "kna-yU-liB.title" = "Unicode";
+
 /* Class = "IBBindingConnection"; ibShadowedIsNilPlaceholder = "Not selected"; ObjectID = "786-4C-69e"; */
 "786-4C-69e.ibShadowedIsNilPlaceholder" = "未選択";
 /* Class = "NSTextField"; ibShadowedToolTip = "Select a single character to display unicode info."; ObjectID = "2ZU-Mi-aJz"; */
