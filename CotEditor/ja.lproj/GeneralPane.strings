@@ -33,7 +33,7 @@
 "3299.title" = "CotEditor がアクティブになるとき";
 
 
-/* Class = "NSTextFieldCell"; title = "When document was modified by another application:"; ObjectID = "x4n-2n-I3p"; */
+/* Class = "NSTextFieldCell"; title = "When document is modified by another application:"; ObjectID = "x4n-2n-I3p"; */
 "x4n-2n-I3p.title" = "書類が他のアプリケーションによって更新されたとき：";
 
 /* Class = "NSButtonCell"; title = "Ignore"; ObjectID = "DnS-XJ-7RI"; */

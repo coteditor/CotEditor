@@ -34,8 +34,8 @@
 "3299.title" = "当 CotEditor 被激活时";
 
 
-/* Class = "NSTextFieldCell"; title = "When document was modified by another application:"; ObjectID = "x4n-2n-I3p"; */
-"x4n-2n-I3p.title" = "When document was modified by another application:";  // FIXME:
+/* Class = "NSTextFieldCell"; title = "When document is modified by another application:"; ObjectID = "x4n-2n-I3p"; */
+"x4n-2n-I3p.title" = "When document is modified by another application:";  // FIXME:
 
 /* Class = "NSButtonCell"; title = "Ignore"; ObjectID = "DnS-XJ-7RI"; */
 "DnS-XJ-7RI.title" = "Ignore";  // FIXME:
