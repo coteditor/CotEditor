@@ -91,17 +91,8 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 #pragma mark Superclass Methods
 
 // ------------------------------------------------------
-/// enable AutoSave
+/// enable Autosave in Place
 + (BOOL)autosavesInPlace
-// ------------------------------------------------------
-{
-    return NO;
-}
-
-
-// ------------------------------------------------------
-/// enable Versions
-+ (BOOL)preservesVersions
 // ------------------------------------------------------
 {
     return NO;
