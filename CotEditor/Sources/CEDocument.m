@@ -574,6 +574,11 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 {
     // [caution] This method can be called from any thread.
     
+    CEDocumentConflictOption option = [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultDocumentConflictOptionKey];
+    
+    // do nothing
+    if (option == CEDocumentConflictIgnore) { return; }
+    
     // don't check twice if document is already marked as modified
     if ([self needsShowUpdateAlertWithBecomeKey]) { return; }
     
@@ -623,7 +628,13 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
                 
                 // notify about external file update
                 if (didChange) {
-                    [strongSelf notifyExternalFileUpdate];
+                    if (option == CEDocumentConflictRevert) {
+                        [strongSelf revertToContentsOfURL:[strongSelf fileURL] ofType:[strongSelf fileType] error:nil];
+                        
+                    } else {
+                        // notify about external file update
+                        [strongSelf notifyExternalFileUpdate];
+                    }
                 }
             }];
         }];

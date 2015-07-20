@@ -34,6 +34,17 @@
 "3299.title" = "当 CotEditor 被激活时";
 
 
+/* Class = "NSTextFieldCell"; title = "When document was modified by another application:"; ObjectID = "x4n-2n-I3p"; */
+"x4n-2n-I3p.title" = "When document was modified by another application:";  // FIXME:
+
+/* Class = "NSButtonCell"; title = "Ignore"; ObjectID = "DnS-XJ-7RI"; */
+"DnS-XJ-7RI.title" = "Ignore";  // FIXME:
+/* Class = "NSButtonCell"; title = "Notify and ask how to resolve"; ObjectID = "1qS-Ay-sca"; */
+"1qS-Ay-sca.title" = "Notify and ask how to resolve";  // FIXME:
+/* Class = "NSButtonCell"; title = "Update automatically"; ObjectID = "FWi-En-qeX"; */
+"FWi-En-qeX.title" = "Update automatically";  // FIXME:
+
+
 /* Class = "NSTextFieldCell"; title = "Software Updates:"; ObjectID = "geU-63-sAC"; */
 "geU-63-sAC.title" = "软件更新:";
 

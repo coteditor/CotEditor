@@ -33,6 +33,17 @@
 "3299.title" = "CotEditor がアクティブになるとき";
 
 
+/* Class = "NSTextFieldCell"; title = "When document was modified by another application:"; ObjectID = "x4n-2n-I3p"; */
+"x4n-2n-I3p.title" = "書類が他のアプリケーションによって更新されたとき：";
+
+/* Class = "NSButtonCell"; title = "Ignore"; ObjectID = "DnS-XJ-7RI"; */
+"DnS-XJ-7RI.title" = "なにもしない";
+/* Class = "NSButtonCell"; title = "Notify and ask how to resolve"; ObjectID = "1qS-Ay-sca"; */
+"1qS-Ay-sca.title" = "通知して解決方法を尋ねる";
+/* Class = "NSButtonCell"; title = "Update automatically"; ObjectID = "FWi-En-qeX"; */
+"FWi-En-qeX.title" = "更新";
+
+
 /* Class = "NSTextFieldCell"; title = "Software Updates:"; ObjectID = "geU-63-sAC"; */
 "geU-63-sAC.title" = "ソフトウェアアップデート：";
 

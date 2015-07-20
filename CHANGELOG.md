@@ -7,6 +7,7 @@ develop
 
 ### New Features
 
+- New setting option for the behavior on document modification by external process
 - Share button in toolbar.
 
 

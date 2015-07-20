@@ -239,6 +239,7 @@ extern NSString *__nonnull const CEDefaultNotifyEditByAnotherKey;
 extern NSString *__nonnull const CEDefaultColoringRangeBufferLengthKey;
 extern NSString *__nonnull const CEDefaultLargeFileAlertThresholdKey;
 extern NSString *__nonnull const CEDefaultAutosavingDelayKey;
+extern NSString *__nonnull const CEDefaultDocumentConflictOptionKey;
 
 
 
@@ -276,6 +277,12 @@ typedef NS_ENUM(NSUInteger, CEAlignmentType) {
     CEAlignLeft,
     CEAlignCenter,
     CEAlignRight
+};
+
+typedef NS_ENUM(NSUInteger, CEDocumentConflictOption) {
+    CEDocumentConflictIgnore,
+    CEDocumentConflictNotify,
+    CEDocumentConflictRevert,
 };
 
 

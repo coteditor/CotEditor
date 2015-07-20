@@ -238,6 +238,7 @@ NSString *__nonnull const CEDefaultNotifyEditByAnotherKey = @"notifyEditByAnothe
 NSString *__nonnull const CEDefaultColoringRangeBufferLengthKey = @"coloringRangeBufferLength";
 NSString *__nonnull const CEDefaultLargeFileAlertThresholdKey = @"largeFileAlertThreshold";
 NSString *__nonnull const CEDefaultAutosavingDelayKey = @"autosavingDelay";
+NSString *__nonnull const CEDefaultDocumentConflictOptionKey = @"documentConflictOption";
 
 
 
