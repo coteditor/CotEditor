@@ -92,7 +92,7 @@
 - (NSString *)syntaxStyleName;
 - (void)setSyntaxStyleName:(NSString *)inName recolorNow:(BOOL)recolorNow;
 - (void)recolorAllString;
-- (void)updateColoringAndOutlineMenuWithDelay;
+- (void)updateColoringAndOutlineMenu;
 - (void)setupColoringTimer;
 
 

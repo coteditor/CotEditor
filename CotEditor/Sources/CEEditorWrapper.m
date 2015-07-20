@@ -542,19 +542,16 @@ static NSTimeInterval secondColoringDelay;
 
 
 // ------------------------------------------------------
-/// ディレイをかけて、全テキストを再カラーリング、アウトラインメニューを更新
-- (void)updateColoringAndOutlineMenuWithDelay
+/// 全テキストを再カラーリング、アウトラインメニューを更新
+- (void)updateColoringAndOutlineMenu
 // ------------------------------------------------------
 {
     [self stopColoringTimer];
     
-    CESplitViewController *splitViewController = [self splitViewController];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.03 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [splitViewController enumerateEditorViewsUsingBlock:^(CEEditorView *editorView) {
-            [editorView updateOutlineMenu];
-            [editorView recolorAllTextViewString];
-        }];
-    });
+    [[self splitViewController] enumerateEditorViewsUsingBlock:^(CEEditorView *editorView) {
+        [editorView updateOutlineMenu];
+        [editorView recolorAllTextViewString];
+    }];
 }
 
 
