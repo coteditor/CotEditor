@@ -149,8 +149,6 @@ int main(int argc, char *argv[])
             input = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
         }
         
-        [[NSWorkspace sharedWorkspace] openURLs:URLs withAppBundleIdentifier:kBundleIdentifier options:0 additionalEventParamDescriptor:nil launchIdentifiers:NULL];
-        
         // create scriptable application object
         NSURL *applicationURL = [[NSBundle mainBundle] bundleURL];  // CotEditor.app
         CotEditorApplication *CotEditor;
