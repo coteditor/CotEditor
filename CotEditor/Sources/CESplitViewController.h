@@ -36,14 +36,14 @@
 
 @interface CESplitViewController : NSViewController <NSSplitViewDelegate>
 
-- (NSSplitView *)splitView;
+- (nonnull NSSplitView *)splitView;
 
-- (void)enumerateEditorViewsUsingBlock:(void (^)(CEEditorView *editorView))block;
+- (void)enumerateEditorViewsUsingBlock:(void (^ __nonnull)(CEEditorView __nonnull *editorView))block;
 
 - (void)updateCloseSplitViewButton;
 
-- (IBAction)toggleSplitOrientation:(id)sender;
-- (IBAction)focusNextSplitTextView:(id)sender;
-- (IBAction)focusPrevSplitTextView:(id)sender;
+- (IBAction)toggleSplitOrientation:(nullable id)sender;
+- (IBAction)focusNextSplitTextView:(nullable id)sender;
+- (IBAction)focusPrevSplitTextView:(nullable id)sender;
 
 @end

@@ -65,7 +65,7 @@
 
 // ------------------------------------------------------
 /// draw
-- (void)drawLayer:(CALayer *)layer inContext:(CGContextRef)ctx
+- (void)drawLayer:(nonnull CALayer *)layer inContext:(nonnull CGContextRef)ctx
 // ------------------------------------------------------
 {
     CGRect bounds = [self bounds];

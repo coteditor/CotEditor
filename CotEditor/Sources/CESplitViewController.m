@@ -51,12 +51,11 @@
 
 // ------------------------------------------------------
 /// 自身の view として NSSplitView を返す (NSSplitViewController のメソッド)
-- (NSSplitView *)splitView
+- (nonnull NSSplitView *)splitView
 // ------------------------------------------------------
 {
     return (NSSplitView *)[super view];
 }
-
 
 
 
@@ -68,7 +67,7 @@
 
 // ------------------------------------------------------
 /// メニューの有効化／無効化を制御
-- (BOOL)validateMenuItem:(NSMenuItem *)menuItem
+- (BOOL)validateMenuItem:(nonnull NSMenuItem *)menuItem
 // ------------------------------------------------------
 {
     if ([menuItem action] == @selector(toggleSplitOrientation:)) {
@@ -91,7 +90,7 @@
 
 // ------------------------------------------------------
 /// enumerate all subviews as CEEditorView
-- (void)enumerateEditorViewsUsingBlock:(void (^)(CEEditorView *))block
+- (void)enumerateEditorViewsUsingBlock:(void (^ __nonnull)(CEEditorView __nonnull *editorView))block;
 // ------------------------------------------------------
 {
     for (CEEditorView *subview in [[self view] subviews]) {
@@ -118,7 +117,7 @@
 
 // ------------------------------------------------------
 /// 分割位置を調整
-- (CGFloat)splitView:(NSSplitView *)splitView constrainSplitPosition:(CGFloat)proposedPosition ofSubviewAt:(NSInteger)dividerIndex
+- (CGFloat)splitView:(nonnull NSSplitView *)splitView constrainSplitPosition:(CGFloat)proposedPosition ofSubviewAt:(NSInteger)dividerIndex
 // ------------------------------------------------------
 {
     // 0.5pxの端数が出ないようにする
@@ -131,7 +130,7 @@
 
 // ------------------------------------------------------
 /// 分割方向を変更する
-- (IBAction)toggleSplitOrientation:(id)sender
+- (IBAction)toggleSplitOrientation:(nullable id)sender
 // ------------------------------------------------------
 {
     [[self splitView] setVertical:![[self splitView] isVertical]];
@@ -142,7 +141,7 @@
 
 // ------------------------------------------------------
 /// 次の分割されたテキストビューへフォーカス移動
-- (IBAction)focusNextSplitTextView:(id)sender
+- (IBAction)focusNextSplitTextView:(nullable id)sender
 // ------------------------------------------------------
 {
     [self focusSplitTextViewOnNext:YES];
@@ -151,7 +150,7 @@
 
 // ------------------------------------------------------
 /// 前の分割されたテキストビューへフォーカス移動
-- (IBAction)focusPrevSplitTextView:(id)sender
+- (IBAction)focusPrevSplitTextView:(nullable id)sender
 // ------------------------------------------------------
 {
     [self focusSplitTextViewOnNext:NO];
@@ -163,7 +162,7 @@
 
 // ------------------------------------------------------
 /// 現在フォーカスのある分割ビューを返す
-- (CEEditorView *)currentSubview
+- (nullable CEEditorView *)currentSubview
 // ------------------------------------------------------
 {
     return (CEEditorView *)[(NSTextView *)[[[self view] window] firstResponder] delegate];
