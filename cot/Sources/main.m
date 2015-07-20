@@ -125,15 +125,17 @@ int main(int argc, char *argv[])
             
             // convert chars to NSURL
             for(int i = optind; i < argc; i++) {
-//                NSURL *URL = [NSURL fileURLWithFileSystemRepresentation:argv[i] isDirectory:NO relativeToURL:currentURL];  // on 10.9 and later
-                NSURL *URL = [currentURL URLByAppendingPathComponent:[NSString stringWithUTF8String:argv[i]] isDirectory:NO];
+//                NSURL *URL = [[NSURL fileURLWithFileSystemRepresentation:argv[i] isDirectory:NO relativeToURL:currentURL] URLByStandardizingPath];  // on 10.9 and later
+                NSURL *URL = [[currentURL URLByAppendingPathComponent:[NSString stringWithUTF8String:argv[i]] isDirectory:NO] URLByStandardizingPath];
+                
+                if (!URL) { continue; }
                 
                 // validate file paths
                 BOOL isDirectory;
                 BOOL exists = [[NSFileManager defaultManager] fileExistsAtPath:[URL path] isDirectory:&isDirectory];
                 
                 if (exists && !isDirectory) {
-                    [URLs addObject:[URL URLByStandardizingPath]];
+                    [URLs addObject:URL];
                     
                 } else if ([URLs count] == 1) {
                     printf("%s is not readable file.\n", argv[i]);
