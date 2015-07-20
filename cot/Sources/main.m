@@ -125,7 +125,8 @@ int main(int argc, char *argv[])
             
             // convert chars to NSURL
             for(int i = optind; i < argc; i++) {
-                NSURL *URL = [NSURL fileURLWithFileSystemRepresentation:argv[i] isDirectory:NO relativeToURL:currentURL];
+//                NSURL *URL = [NSURL fileURLWithFileSystemRepresentation:argv[i] isDirectory:NO relativeToURL:currentURL];  // on 10.9 and later
+                NSURL *URL = [currentURL URLByAppendingPathComponent:[NSString stringWithUTF8String:argv[i]] isDirectory:NO];
                 
                 // validate file paths
                 BOOL isDirectory;
