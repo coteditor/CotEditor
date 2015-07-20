@@ -7,7 +7,7 @@ develop
 
 ### New Features
 
-- New setting option for the behavior on document modification by external process
+- New setting option for the behavior on document modification by external process (in Genearal pane).
 - Share button in toolbar.
 
 
