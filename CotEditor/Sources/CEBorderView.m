@@ -35,28 +35,19 @@
 #pragma mark Superclass Methods
 
 // ------------------------------------------------------
-/// draw background
-- (void)drawRect:(NSRect)dirtyRect
+/// setup layer
+- (void)awakeFromNib
 // ------------------------------------------------------
 {
-    // fill in background
-    [[self fillColor] set];
-    [NSBezierPath fillRect:dirtyRect];
+    // set layer
+    CALayer *layer = [CALayer layer];
+    [layer setDelegate:self];
+    [self setLayer:layer];
+    [self setWantsLayer:YES];
     
-    // draw borders
-    const CGFloat strokeWidth = 1.0;
-    NSRect frame = [self frame];
-    
-    [[self borderColor] set];
-    if ([self drawsTopBorder] > 0) {
-        [NSBezierPath strokeLineFromPoint:NSMakePoint(NSMinX(dirtyRect), NSMaxY(frame) - strokeWidth / 2)
-                                  toPoint:NSMakePoint(NSMaxX(dirtyRect), NSMaxY(frame) - strokeWidth / 2)];
-    }
-    
-    if ([self drawsBottomBorder]) {
-        [NSBezierPath strokeLineFromPoint:NSMakePoint(NSMinX(dirtyRect), strokeWidth / 2)
-                                  toPoint:NSMakePoint(NSMaxX(dirtyRect), strokeWidth / 2)];
-    }
+    // set layer drawing policies
+    [self setLayerContentsRedrawPolicy:NSViewLayerContentsRedrawBeforeViewResize];
+    [self setLayerContentsPlacement:NSViewLayerContentsPlacementScaleAxesIndependently];
 }
 
 
@@ -65,7 +56,37 @@
 - (BOOL)isOpaque
 // ------------------------------------------------------
 {
-    return ([[self fillColor] alphaComponent] == 1.0);
+    return YES;
+}
+
+
+
+#pragma mark CALayer Methods
+
+// ------------------------------------------------------
+/// draw
+- (void)drawLayer:(CALayer *)layer inContext:(CGContextRef)ctx
+// ------------------------------------------------------
+{
+    CGRect bounds = [self bounds];
+    
+    // fill background
+    CGContextSetFillColorWithColor(ctx, [[self fillColor] CGColor]);
+    CGContextFillRect(ctx, bounds);
+    
+    // draw borders
+    CGRect frame = [self frame];
+    const CGFloat strokeWidth = 1.0;
+    CGContextSetStrokeColorWithColor(ctx, [[self borderColor] CGColor]);
+    if ([self drawsTopBorder]) {
+        CGContextMoveToPoint(ctx, NSMinX(frame), NSMaxY(frame) - strokeWidth / 2);
+        CGContextAddLineToPoint(ctx, NSMaxX(frame), NSMaxY(frame) - strokeWidth / 2);
+    }
+    if ([self drawsBottomBorder]) {
+        CGContextMoveToPoint(ctx ,NSMinX(frame), strokeWidth / 2);
+        CGContextAddLineToPoint(ctx, NSMaxX(frame), strokeWidth / 2);
+    }
+    CGContextStrokePath(ctx);
 }
 
 @end
