@@ -349,23 +349,6 @@
 		D3F0D0D055B0931687B33C98 /* libPods-appstore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DD42F3AFDE3081DC5D669D51 /* libPods-appstore.a */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		2A2179F31A070424002C4AB1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2A37F4A9FDCFA73011CA2CEA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 2A2179EF1A0703BD002C4AB1;
-			remoteInfo = SyntaxTableMaker;
-		};
-		2A6F0D521B5500E100C2D03C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2A37F4A9FDCFA73011CA2CEA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 2A2179EF1A0703BD002C4AB1;
-			remoteInfo = SyntaxTableMaker;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXCopyFilesBuildPhase section */
 		2A40D7C71A233BD800721EB4 /* Copy Executables */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -1384,29 +1367,13 @@
 		};
 /* End PBXGroup section */
 
-/* Begin PBXLegacyTarget section */
-		2A2179EF1A0703BD002C4AB1 /* SyntaxMap */ = {
-			isa = PBXLegacyTarget;
-			buildArgumentsString = "${SRCROOT}/makeSyntaxMap.rb";
-			buildConfigurationList = 2A2179F01A0703BE002C4AB1 /* Build configuration list for PBXLegacyTarget "SyntaxMap" */;
-			buildPhases = (
-			);
-			buildToolPath = /usr/bin/ruby;
-			buildWorkingDirectory = "";
-			dependencies = (
-			);
-			name = SyntaxMap;
-			passBuildSettingsInEnvironment = 1;
-			productName = SyntaxTableMaker;
-		};
-/* End PBXLegacyTarget section */
-
 /* Begin PBXNativeTarget section */
 		2A6F0D4E1B5500E100C2D03C /* CotEditor (AppStore) */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2A6F0E041B5500E100C2D03C /* Build configuration list for PBXNativeTarget "CotEditor (AppStore)" */;
 			buildPhases = (
 				2A6F0D531B5500E100C2D03C /* Check Pods Manifest.lock */,
+				2A5DBE5F1B5D30A500F8CB13 /* Build Syntax Map */,
 				2A6F0D541B5500E100C2D03C /* Resources */,
 				2A6F0DA31B5500E100C2D03C /* Sources */,
 				2A6F0DFD1B5500E100C2D03C /* Frameworks */,
@@ -1417,7 +1384,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				2A6F0D511B5500E100C2D03C /* PBXTargetDependency */,
 			);
 			name = "CotEditor (AppStore)";
 			productInstallPath = "$(HOME)/Applications";
@@ -1430,6 +1396,7 @@
 			buildConfigurationList = 8C71D95308640EDF00C9C0BD /* Build configuration list for PBXNativeTarget "CotEditor" */;
 			buildPhases = (
 				360866EE86A144AF8F8698E8 /* Check Pods Manifest.lock */,
+				2A5DBE5E1B5D2E1300F8CB13 /* Build Syntax Map */,
 				8D15AC2B0486D014006FF6A4 /* Resources */,
 				8D15AC300486D014006FF6A4 /* Sources */,
 				8D15AC330486D014006FF6A4 /* Frameworks */,
@@ -1440,7 +1407,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				2A2179F41A070424002C4AB1 /* PBXTargetDependency */,
 			);
 			name = CotEditor;
 			productInstallPath = "$(HOME)/Applications";
@@ -1459,9 +1425,6 @@
 				LastUpgradeCheck = 0600;
 				ORGANIZATIONNAME = "CotEditor Project";
 				TargetAttributes = {
-					2A2179EF1A0703BD002C4AB1 = {
-						CreatedOnToolsVersion = 6.1;
-					};
 					8D15AC270486D014006FF6A4 = {
 						SystemCapabilities = {
 							com.apple.Sandbox = {
@@ -1487,7 +1450,6 @@
 			targets = (
 				8D15AC270486D014006FF6A4 /* CotEditor */,
 				2A6F0D4E1B5500E100C2D03C /* CotEditor (AppStore) */,
-				2A2179EF1A0703BD002C4AB1 /* SyntaxMap */,
 			);
 		};
 /* End PBXProject section */
@@ -1665,6 +1627,34 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		2A5DBE5E1B5D2E1300F8CB13 /* Build Syntax Map */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Build Syntax Map";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "ruby makeSyntaxMap.rb";
+		};
+		2A5DBE5F1B5D30A500F8CB13 /* Build Syntax Map */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Build Syntax Map";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "ruby makeSyntaxMap.rb";
+		};
 		2A6F0D531B5500E100C2D03C /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1922,19 +1912,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		2A2179F41A070424002C4AB1 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 2A2179EF1A0703BD002C4AB1 /* SyntaxMap */;
-			targetProxy = 2A2179F31A070424002C4AB1 /* PBXContainerItemProxy */;
-		};
-		2A6F0D511B5500E100C2D03C /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 2A2179EF1A0703BD002C4AB1 /* SyntaxMap */;
-			targetProxy = 2A6F0D521B5500E100C2D03C /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		25859EA5076D8EE80020F779 /* PreferencesWindow.xib */ = {
@@ -2375,18 +2352,6 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		2A2179F11A0703BE002C4AB1 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-			};
-			name = Debug;
-		};
-		2A2179F21A0703BE002C4AB1 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-			};
-			name = Release;
-		};
 		2A6F0E051B5500E100C2D03C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2AFB50551B556BD500DE5FE1 /* Pods-appstore.debug.xcconfig */;
@@ -2503,15 +2468,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		2A2179F01A0703BE002C4AB1 /* Build configuration list for PBXLegacyTarget "SyntaxMap" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				2A2179F11A0703BE002C4AB1 /* Debug */,
-				2A2179F21A0703BE002C4AB1 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		2A6F0E041B5500E100C2D03C /* Build configuration list for PBXNativeTarget "CotEditor (AppStore)" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
