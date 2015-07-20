@@ -152,6 +152,31 @@
 }
 
 
+#if MAC_OS_X_VERSION_MAX_ALLOWED >= 101100
+// ------------------------------------------------------
+/// set action on swiping theme name (on El Capitan and leter)
+- (nonnull NSArray<NSTableViewRowAction *> *)tableView:(nonnull NSTableView *)tableView rowActionsForRow:(NSInteger)row edge:(NSTableRowActionEdge)edge
+// ------------------------------------------------------
+{
+    if (edge == NSTableRowActionEdgeLeading) { return @[]; }
+    
+    NSString *swipedSyntaxName = [[self stylesController] arrangedObjects][row];
+    BOOL isDeletable = ![[CESyntaxManager sharedManager] isBundledStyle:swipedSyntaxName];
+    
+    if (!isDeletable) { return @[]; }
+    
+    __weak typeof(self) weakSelf = self;
+    return @[[NSTableViewRowAction rowActionWithStyle:NSTableViewRowActionStyleDestructive
+                                                title:NSLocalizedString(@"Delete", nil)
+                                              handler:^(NSTableViewRowAction *action, NSInteger row)
+              {
+                  typeof(weakSelf) strongSelf = weakSelf;
+                  [strongSelf deleteSyntaxStyleWithName:swipedSyntaxName];
+              }]];
+}
+#endif  // MAC_OS_X_VERSION_10_11
+
+
 
 #pragma mark Action Messages
 

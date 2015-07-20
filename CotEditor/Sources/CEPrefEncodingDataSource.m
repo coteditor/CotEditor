@@ -222,6 +222,31 @@ static NSString *const CERowsPboardType = @"CERowsPboardType";
 }
 
 
+#if MAC_OS_X_VERSION_MAX_ALLOWED >= 101100
+// ------------------------------------------------------
+/// set action on swiping theme name (on El Capitan and leter)
+- (nonnull NSArray<NSTableViewRowAction *> *)tableView:(nonnull NSTableView *)tableView rowActionsForRow:(NSInteger)row edge:(NSTableRowActionEdge)edge
+// ------------------------------------------------------
+{
+    if (edge == NSTableRowActionEdgeLeading) { return @[]; }
+    
+    CFStringEncoding encoding = [[self encodings][row] unsignedIntegerValue];
+    
+    // only separater can be removed
+    if (encoding != kCFStringEncodingInvalidId) { return @[]; }
+    
+    // Delete
+    return @[[NSTableViewRowAction rowActionWithStyle:NSTableViewRowActionStyleDestructive
+                                                title:NSLocalizedString(@"Delete", nil)
+                                              handler:^(NSTableViewRowAction *action, NSInteger row)
+              {
+                  [tableView removeRowsAtIndexes:[NSIndexSet indexSetWithIndex:row] withAnimation:NSTableViewAnimationSlideLeft];
+                  [[self encodings] removeObjectAtIndex:row];
+              }]];
+}
+#endif  // MAC_OS_X_VERSION_10_11
+
+
 
 #pragma mark Action Messages
 

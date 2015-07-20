@@ -256,6 +256,10 @@
 "A new theme named “%@” will be installed, but a custom theme with the same name already exists." = "将要安装名为 “%@” 的新主题，但是已经存在同名的自定义主题";
 "Do you want to replace it?\nReplaced theme cannot be restored." = "要覆盖原主题吗？\n主题删除后将无法还原";
 
+// swipe to delete (also used in the Format pane)
+"Delete" = "删除";
+"Restore" = "还原";
+
 
 // Print pane
 "Theme" = "主题";
