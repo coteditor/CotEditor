@@ -25,7 +25,7 @@ develop
 
 ### Fixes
 
-- Fix an issue where line numbers did't draw completely on OS X 10.8 when scroll bar is always shown.
+- Fix an issue where line numbers did't draw completely on OS X 10.8 when scroll bars are set as always shown.
 - Improve general stability.
 
 
