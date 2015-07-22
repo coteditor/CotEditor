@@ -5,7 +5,7 @@
  CotEditor
  http://coteditor.com
  
- Created on 2005-01-15 by 1024jp
+ Created on 2015-01-15 by 1024jp
  encoding="UTF-8"
  ------------------------------------------------------------------------------
  
@@ -62,7 +62,7 @@
 #pragma mark Public Methods
 
 // ------------------------------------------------------
-/// initialize instance
+/// update line numbers
 - (void)invalidateLineNumber
 // ------------------------------------------------------
 {

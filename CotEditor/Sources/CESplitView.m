@@ -35,7 +35,7 @@
 #pragma mark Superclass Methods
 
 // ------------------------------------------------------
-/// change divider style depending on its split otientation
+/// change divider style depending on its split orientation
 - (NSSplitViewDividerStyle)dividerStyle
 // ------------------------------------------------------
 {
@@ -48,7 +48,7 @@
 - (nonnull NSColor *)dividerColor
 // ------------------------------------------------------
 {
-    // on Yosemite
+    // on Yosemite and later
     if (floor(NSAppKitVersionNumber) > NSAppKitVersionNumber10_9) {
         return [NSColor windowFrameColor];
     }

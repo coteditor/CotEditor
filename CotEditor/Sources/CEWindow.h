@@ -5,7 +5,7 @@
  CotEditor
  http://coteditor.com
  
- Created on 2004-10-31 by 1024jp
+ Created on 2014-10-31 by 1024jp
  encoding="UTF-8"
  ------------------------------------------------------------------------------
  
