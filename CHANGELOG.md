@@ -7,13 +7,13 @@ develop
 
 ### New Features
 
+- CotEditor is now __Sandboxed__.
 - New setting option for the behavior on document modification by external process (in Genearal pane).
-- Share button in toolbar.
+- Share button in toolbar (Customize toobar to use it).
 
 
 ### Additions/Changes
 
-- __Enable Sandbox.__
 - __Drop authopen support.__
 - Improve side inspector UI.
 - Move scripts folder location from `~/Library/Application Support/CotEditor/ScriptMenu/` to `~/Library/Application Scripts/com.coteditor.CotEditor/` because of the Sandbox requirement.
@@ -66,7 +66,7 @@ develop
 - Improve word completion with words that exist in the document.
 - Modify layout of “General” pane in Preferences.
 - Add tooltip hint to controls in the find panel.
-- Optimize image resources size.
+- Optimize image resources size.
 - Update Sparkle framework to version 1.10.0.
 
 
