@@ -39,14 +39,16 @@
 - (void)awakeFromNib
 // ------------------------------------------------------
 {
-    // set layer
+    // setup layer
     CALayer *layer = [CALayer layer];
     [layer setDelegate:self];
+    [layer setBackgroundColor:[[self fillColor] CGColor]];
+    [layer setNeedsDisplay];
     [self setLayer:layer];
     [self setWantsLayer:YES];
     
     // set layer drawing policies
-    [self setLayerContentsRedrawPolicy:NSViewLayerContentsRedrawBeforeViewResize];
+    [self setLayerContentsRedrawPolicy:NSViewLayerContentsRedrawNever];
     [self setLayerContentsPlacement:NSViewLayerContentsPlacementScaleAxesIndependently];
 }
 
@@ -64,19 +66,13 @@
 #pragma mark CALayer Methods
 
 // ------------------------------------------------------
-/// draw
+/// draw borders
 - (void)drawLayer:(nonnull CALayer *)layer inContext:(nonnull CGContextRef)ctx
 // ------------------------------------------------------
 {
-    CGRect bounds = [self bounds];
-    
-    // fill background
-    CGContextSetFillColorWithColor(ctx, [[self fillColor] CGColor]);
-    CGContextFillRect(ctx, bounds);
-    
-    // draw borders
     CGRect frame = [self frame];
     const CGFloat strokeWidth = 1.0;
+    
     CGContextSetStrokeColorWithColor(ctx, [[self borderColor] CGColor]);
     if ([self drawsTopBorder]) {
         CGContextMoveToPoint(ctx, NSMinX(frame), NSMaxY(frame) - strokeWidth / 2);
