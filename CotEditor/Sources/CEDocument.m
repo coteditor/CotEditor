@@ -645,15 +645,16 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
                 
                 fileAccessCompletionHandler();  // ???: completionHandler should be invoked on the main thread
                 
+                if (!didChange) { return; }
+                
                 // notify about external file update
-                if (didChange) {
-                    if (option == CEDocumentConflictRevert) {
-                        [strongSelf revertToContentsOfURL:[strongSelf fileURL] ofType:[strongSelf fileType] error:nil];
-                        
-                    } else {
-                        // notify about external file update
-                        [strongSelf notifyExternalFileUpdate];
-                    }
+                if (option == CEDocumentConflictRevert) {
+                    // revert
+                    [strongSelf revertToContentsOfURL:[strongSelf fileURL] ofType:[strongSelf fileType] error:nil];
+                    
+                } else {
+                    // notify and show dialog later
+                    [strongSelf notifyExternalFileUpdate];
                 }
             }];
         }];
