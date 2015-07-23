@@ -248,7 +248,8 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 - (BOOL)canAsynchronouslyWriteToURL:(NSURL *)url ofType:(NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation
 // ------------------------------------------------------
 {
-    return YES;
+    return (saveOperation == NSAutosaveElsewhereOperation ||
+            saveOperation == NSAutosaveInPlaceOperation);
 }
 
 
