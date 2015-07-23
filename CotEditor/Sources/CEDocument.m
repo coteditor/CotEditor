@@ -219,15 +219,20 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 - (NSData *)dataOfType:(NSString *)typeName error:(NSError *__autoreleasing *)outError
 // ------------------------------------------------------
 {
+    NSStringEncoding encoding = [self encoding];
+    
     // convert Yen sign in consideration of the current encoding
-    NSString *string = [self convertCharacterString:[self stringForSave] encoding:[self encoding]];
+    NSString *string = [self convertCharacterString:[self stringForSave] encoding:encoding];
     
     // get data from string to save
-    NSData *data = [string dataUsingEncoding:[self encoding] allowLossyConversion:YES];
+    NSData *data = [string dataUsingEncoding:encoding allowLossyConversion:YES];
+    
+    // unblock the user interface, since fetching current document satte has been done here
+    [self unblockUserInteraction];
     
     // add UTF-8 BOM if needed
     if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultSaveUTF8BOMKey] &&
-        ([self encoding] == NSUTF8StringEncoding))
+        (encoding == NSUTF8StringEncoding))
     {
         NSMutableData *mutableData = [NSMutableData dataWithBytes:UTF8_BOM length:3];
         [mutableData appendData:data];
@@ -235,6 +240,15 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     }
     
     return data;
+}
+
+
+// ------------------------------------------------------
+/// enable asynchronous saving
+- (BOOL)canAsynchronouslyWriteToURL:(NSURL *)url ofType:(NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation
+// ------------------------------------------------------
+{
+    return YES;
 }
 
 
@@ -294,12 +308,17 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 - (BOOL)writeToURL:(NSURL *)url ofType:(NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation originalContentsURL:(NSURL *)absoluteOriginalContentsURL error:(NSError *__autoreleasing *)outError
 // ------------------------------------------------------
 {
+    // [caution] This method may be called from a background thread due to async-saving.
+    
+    // store current encoding here, since the main thread will already be unblocked after `dataOfType:error:`
+    NSStringEncoding encoding = [self encoding];
+    
     BOOL success = [super writeToURL:url ofType:typeName forSaveOperation:saveOperation originalContentsURL:absoluteOriginalContentsURL error:outError];
 
     if (success) {
         // write encoding to the external file attributes (com.apple.TextEncoding)
         if ([self shouldSaveXattr]) {
-            [url setAppleTextEncoding:[self encoding]];
+            [url setAppleTextEncoding:encoding];
         }
         
         if (saveOperation != NSAutosaveElsewhereOperation) {
@@ -308,7 +327,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
             [self setFileMD5:[data MD5]];
             
             // store file encoding for revert
-            [self setReadingEncoding:[self encoding]];
+            [self setReadingEncoding:encoding];
             
             // store file attributes
             NSDictionary *attributes = [[NSFileManager defaultManager] attributesOfItemAtPath:[url path] error:nil];
@@ -582,63 +601,49 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     // don't check twice if document is already marked as modified
     if ([self needsShowUpdateAlertWithBecomeKey]) { return; }
     
+    // ignore if file's modificationDate is the same as document's modificationDate
+    __block NSDate *fileModificationDate;
+    NSFileCoordinator *coordinator = [[NSFileCoordinator alloc] initWithFilePresenter:self];
+    [coordinator coordinateReadingItemAtURL:[self fileURL] options:NSFileCoordinatorReadingWithoutChanges
+                                      error:nil byAccessor:^(NSURL *newURL)
+     {
+         NSDictionary *fileAttrs = [[NSFileManager defaultManager] attributesOfItemAtPath:[newURL path] error:nil];
+         fileModificationDate = [fileAttrs fileModificationDate];
+     }];
+    if ([fileModificationDate isEqualTo:[self fileModificationDate]]) { return; }
+    
+    // ignore if file's MD5 hash is the same as the stored MD5 and deal as if it was not modified
+    __block NSString *MD5;
+    [coordinator coordinateReadingItemAtURL:[self fileURL] options:NSFileCoordinatorReadingWithoutChanges
+                                      error:nil byAccessor:^(NSURL *newURL)
+     {
+         MD5 = [[NSData dataWithContentsOfURL:newURL] MD5];
+     }];
+    if ([MD5 isEqualToString:[self fileMD5]]) {
+        // update the document's fileModificationDate for a workaround (2014-03 by 1024jp)
+        // If not, an alert shows up when user saves the file.
+        if ([fileModificationDate compare:[self fileModificationDate]] == NSOrderedDescending) {
+            [self setFileModificationDate:fileModificationDate];
+        }
+        
+        return;
+    }
+    
+    // notify about external file update
     __weak typeof(self) weakSelf = self;
-    [[self presentedItemOperationQueue] addOperationWithBlock:^{  // wait for operations by external process
-        [weakSelf performAsynchronousFileAccessUsingBlock:^(void (^fileAccessCompletionHandler)(void)) {  // avoid conflict with saving
-            // nil check for weakSelf
-            typeof(weakSelf) strongSelf = weakSelf;
-            if (!strongSelf) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    fileAccessCompletionHandler();
-                });
-                return;
-            }
+    dispatch_async(dispatch_get_main_queue(), ^{
+        typeof(weakSelf) strongSelf = weakSelf;
+        if (!strongSelf) { return; }
+        
+        if (option == CEDocumentConflictRevert) {
+            // revert
+            [strongSelf revertToContentsOfURL:[strongSelf fileURL] ofType:[strongSelf fileType] error:nil];
             
-            // read modificationDate and MD5 from the file
-            __block NSDate *fileModificationDate;
-            __block NSString *MD5;
-            
-            NSFileCoordinator *coordinator = [[NSFileCoordinator alloc] initWithFilePresenter:strongSelf];
-            [coordinator coordinateReadingItemAtURL:[strongSelf fileURL] options:NSFileCoordinatorReadingWithoutChanges
-                                              error:nil byAccessor:^(NSURL *newURL)
-             {
-                 NSDictionary *fileAttrs = [[NSFileManager defaultManager] attributesOfItemAtPath:[newURL path] error:nil];
-                 fileModificationDate = [fileAttrs fileModificationDate];
-                 
-                 // get MD5 only if the modificationDate was updated
-                 if (![fileModificationDate isEqualToDate:[strongSelf fileModificationDate]]) {
-                     MD5 = [[NSData dataWithContentsOfURL:newURL] MD5];
-                 }
-             }];
-            
-            [strongSelf continueAsynchronousWorkOnMainThreadUsingBlock:^{
-                // ignore if file's modificationDate is older than document's modificationDate
-                BOOL didChange = [fileModificationDate compare:[strongSelf fileModificationDate]] == NSOrderedDescending;
-                
-                // ignore if file's MD5 hash is the same as the stored MD5 and deal as if it was not modified
-                if (didChange && [MD5 isEqualToString:[strongSelf fileMD5]]) {
-                    didChange = NO;
-                    
-                    // update the document's fileModificationDate for a workaround (2014-03 by 1024jp)
-                    // If not, an alert shows up when user saves the file.
-                    [strongSelf setFileModificationDate:fileModificationDate];
-                }
-                
-                fileAccessCompletionHandler();  // ???: completionHandler should be invoked on the main thread
-                
-                // notify about external file update
-                if (didChange) {
-                    if (option == CEDocumentConflictRevert) {
-                        [strongSelf revertToContentsOfURL:[strongSelf fileURL] ofType:[strongSelf fileType] error:nil];
-                        
-                    } else {
-                        // notify about external file update
-                        [strongSelf notifyExternalFileUpdate];
-                    }
-                }
-            }];
-        }];
-    }];
+        } else {
+            // notify and show dialog later
+            [strongSelf notifyExternalFileUpdate];
+        }
+    });
 }
 
 
