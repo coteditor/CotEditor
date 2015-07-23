@@ -224,11 +224,11 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     // convert Yen sign in consideration of the current encoding
     NSString *string = [self convertCharacterString:[self stringForSave] encoding:encoding];
     
-    // get data from string to save
-    NSData *data = [string dataUsingEncoding:encoding allowLossyConversion:YES];
-    
     // unblock the user interface, since fetching current document satte has been done here
     [self unblockUserInteraction];
+    
+    // get data from string to save
+    NSData *data = [string dataUsingEncoding:encoding allowLossyConversion:YES];
     
     // add UTF-8 BOM if needed
     if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultSaveUTF8BOMKey] &&
