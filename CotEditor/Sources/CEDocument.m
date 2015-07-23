@@ -219,15 +219,20 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 - (NSData *)dataOfType:(NSString *)typeName error:(NSError *__autoreleasing *)outError
 // ------------------------------------------------------
 {
+    NSStringEncoding encoding = [self encoding];
+    
     // convert Yen sign in consideration of the current encoding
-    NSString *string = [self convertCharacterString:[self stringForSave] encoding:[self encoding]];
+    NSString *string = [self convertCharacterString:[self stringForSave] encoding:encoding];
     
     // get data from string to save
-    NSData *data = [string dataUsingEncoding:[self encoding] allowLossyConversion:YES];
+    NSData *data = [string dataUsingEncoding:encoding allowLossyConversion:YES];
+    
+    // unblock the user interface, since fetching current document satte has been done here
+    [self unblockUserInteraction];
     
     // add UTF-8 BOM if needed
     if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultSaveUTF8BOMKey] &&
-        ([self encoding] == NSUTF8StringEncoding))
+        (encoding == NSUTF8StringEncoding))
     {
         NSMutableData *mutableData = [NSMutableData dataWithBytes:UTF8_BOM length:3];
         [mutableData appendData:data];
@@ -235,6 +240,15 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     }
     
     return data;
+}
+
+
+// ------------------------------------------------------
+/// enable asynchronous saving
+- (BOOL)canAsynchronouslyWriteToURL:(NSURL *)url ofType:(NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation
+// ------------------------------------------------------
+{
+    return YES;
 }
 
 
@@ -294,12 +308,17 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 - (BOOL)writeToURL:(NSURL *)url ofType:(NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation originalContentsURL:(NSURL *)absoluteOriginalContentsURL error:(NSError *__autoreleasing *)outError
 // ------------------------------------------------------
 {
+    // [caution] This method may be called from a background thread due to async-saving.
+    
+    // store current encoding here, since the main thread will already be unblocked after `dataOfType:error:`
+    NSStringEncoding encoding = [self encoding];
+    
     BOOL success = [super writeToURL:url ofType:typeName forSaveOperation:saveOperation originalContentsURL:absoluteOriginalContentsURL error:outError];
 
     if (success) {
         // write encoding to the external file attributes (com.apple.TextEncoding)
         if ([self shouldSaveXattr]) {
-            [url setAppleTextEncoding:[self encoding]];
+            [url setAppleTextEncoding:encoding];
         }
         
         if (saveOperation != NSAutosaveElsewhereOperation) {
@@ -308,7 +327,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
             [self setFileMD5:[data MD5]];
             
             // store file encoding for revert
-            [self setReadingEncoding:[self encoding]];
+            [self setReadingEncoding:encoding];
             
             // store file attributes
             NSDictionary *attributes = [[NSFileManager defaultManager] attributesOfItemAtPath:[url path] error:nil];
