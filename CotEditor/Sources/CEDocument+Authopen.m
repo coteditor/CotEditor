@@ -91,6 +91,9 @@
          [task launch];
          [[[task standardInput] fileHandleForWriting] writeData:data];
          [[[task standardInput] fileHandleForWriting] closeFile];
+         
+         // [caution] Do not use `[task waitUntilExit]` here,
+         //           since it passes through the run-loop and other file access can interrupt.
          while ([task isRunning]) {
              usleep(200);
          }
