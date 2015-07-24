@@ -47,6 +47,7 @@ static char const UTF8_BOM[] = {0xef, 0xbb, 0xbf};
 NSUInteger const CEUniqueFileIDLength = 8;
 NSString *const CEWritablilityKey = @"writability";
 NSString *const CEReadingEncodingKey = @"readingEncoding";
+NSString *const CESyntaxStyleKey = @"syntaxStyle";
 NSString *const CEAutosaveIdentierKey = @"autosaveIdentifier";
 
 // incompatible chars dictionary keys
@@ -496,6 +497,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     [coder encodeBool:[self isWritable] forKey:CEWritablilityKey];
     [coder encodeInteger:[self encoding] forKey:CEReadingEncodingKey];
     [coder encodeObject:[self autosaveIdentifier] forKey:CEAutosaveIdentierKey];
+    [coder encodeObject:[[self editor] syntaxStyleName] forKey:CESyntaxStyleKey];
     
     [super encodeRestorableStateWithCoder:coder];
 }
@@ -511,6 +513,12 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     [self setWritable:[coder decodeBoolForKey:CEWritablilityKey]];
     [self setReadingEncoding:[coder decodeIntegerForKey:CEReadingEncodingKey]];
     [self setAutosaveIdentifier:[coder decodeObjectForKey:CEAutosaveIdentierKey]];
+    
+    // restore last syntax style
+    NSString *syntaxStyle = [coder decodeObjectForKey:CESyntaxStyleKey];
+    [[self editor] setSyntaxStyleName:syntaxStyle recolorNow:NO];
+    [[[self windowController] toolbarController] setSelectedSyntaxWithName:syntaxStyle];
+    
     // not need to show unwritable alert on resume
     [self setDidAlertNotWritable:YES];
 }

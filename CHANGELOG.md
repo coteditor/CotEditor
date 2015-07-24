@@ -21,12 +21,13 @@ develop
 - Better file encoding handling on revert action.
 - Set access-group `com.coteditor.CotEditor.edit` to CotEditor's script definition.
 - Change behavior to save `com.apple.TextEncoding` xattr on saving if the file had no content.
+- Improve to restore also the last syntax style mode of unsaved documents.
 - Optimize saving process.
 
 
 ### Fixes
 
-- Fix an issue where line numbers did't draw completely on OS X 10.8 when scroll bars are set as always shown.
+- Fix an issue where line numbers were not drawn completely on OS X 10.8 when scroll bars are set as always shown.
 - Improve general stability.
 
 
