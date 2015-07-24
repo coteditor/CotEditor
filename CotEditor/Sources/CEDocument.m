@@ -510,14 +510,22 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 {
     [super restoreStateWithCoder:coder];
     
-    [self setWritable:[coder decodeBoolForKey:CEWritablilityKey]];
-    [self setReadingEncoding:[coder decodeIntegerForKey:CEReadingEncodingKey]];
-    [self setAutosaveIdentifier:[coder decodeObjectForKey:CEAutosaveIdentierKey]];
+    if ([coder containsValueForKey:CEWritablilityKey]) {
+        [self setWritable:[coder decodeBoolForKey:CEWritablilityKey]];
+    }
+    if ([coder containsValueForKey:CEReadingEncodingKey]) {
+        [self setReadingEncoding:[coder decodeIntegerForKey:CEReadingEncodingKey]];
+    }
+    if ([coder containsValueForKey:CEAutosaveIdentierKey]) {
+        [self setAutosaveIdentifier:[coder decodeObjectForKey:CEAutosaveIdentierKey]];
+    }
     
     // restore last syntax style
-    NSString *syntaxStyle = [coder decodeObjectForKey:CESyntaxStyleKey];
-    [[self editor] setSyntaxStyleName:syntaxStyle recolorNow:NO];
-    [[[self windowController] toolbarController] setSelectedSyntaxWithName:syntaxStyle];
+    if ([coder containsValueForKey:CESyntaxStyleKey]) {
+        NSString *syntaxStyle = [coder decodeObjectForKey:CESyntaxStyleKey];
+        [[self editor] setSyntaxStyleName:syntaxStyle recolorNow:NO];
+        [[[self windowController] toolbarController] setSelectedSyntaxWithName:syntaxStyle];
+    }
     
     // not need to show unwritable alert on resume
     [self setDidAlertNotWritable:YES];
