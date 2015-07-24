@@ -44,7 +44,7 @@
 #import "CEUnicodeInputPanelController.h"
 #import "CEMigrationWindowController.h"
 #import "CEDocument.h"
-#import "EDSemVer.h"
+#import "EDSemver.h"
 #import "constants.h"
 
 #ifndef APPSTORE
