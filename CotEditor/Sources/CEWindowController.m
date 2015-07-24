@@ -365,7 +365,6 @@ static NSTimeInterval infoUpdateInterval;
     [state encodeBool:[[self editor] showsLineNum] forKey:CEDefaultShowLineNumbersKey];
     [state encodeBool:[[self editor] showsPageGuide] forKey:CEDefaultShowPageGuideKey];
     [state encodeBool:[[self editor] showsInvisibles] forKey:CEDefaultShowInvisiblesKey];
-    [state encodeBool:[[self editor] isVerticalLayoutOrientation] forKey:CEDefaultLayoutTextVerticalKey];
     [state encodeBool:[self isSidebarShown] forKey:CEDefaultShowDocumentInspectorKey];
     [state encodeDouble:[self sidebarWidth] forKey:CEDefaultSidebarWidthKey];
 }
@@ -390,9 +389,6 @@ static NSTimeInterval infoUpdateInterval;
     }
     if ([state containsValueForKey:CEDefaultShowInvisiblesKey]) {
         [[self editor] setShowsInvisibles:[state decodeBoolForKey:CEDefaultShowInvisiblesKey]];
-    }
-    if ([state containsValueForKey:CEDefaultLayoutTextVerticalKey]) {
-        [[self editor] setVerticalLayoutOrientation:[state decodeBoolForKey:CEDefaultLayoutTextVerticalKey]];
     }
     if ([state containsValueForKey:CEDefaultShowDocumentInspectorKey]) {
         [self setSidebarWidth:[state decodeDoubleForKey:CEDefaultSidebarWidthKey]];
