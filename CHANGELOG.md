@@ -22,7 +22,7 @@ develop
 - Set access-group `com.coteditor.CotEditor.edit` to CotEditor's script definition.
 - Change behavior to save `com.apple.TextEncoding` xattr on saving if the file had no content.
 - Improve window restoration:
-    - To restore also the last scroll position and cursor position.
+    - To restore also the last scroll position, cursor position and text orientation.
     - To restore also the last syntax style mode of unsaved documents.
 - Optimize saving process.
 
