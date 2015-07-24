@@ -21,7 +21,9 @@ develop
 - Better file encoding handling on revert action.
 - Set access-group `com.coteditor.CotEditor.edit` to CotEditor's script definition.
 - Change behavior to save `com.apple.TextEncoding` xattr on saving if the file had no content.
-- Improve to restore also the last syntax style mode of unsaved documents.
+- Improve window restoration:
+    - To restore also the last scroll position and cursor position.
+    - To restore also the last syntax style mode of unsaved documents.
 - Optimize saving process.
 
 
@@ -134,7 +136,7 @@ develop
 - Fix an issue where application could hang up on text editing.
 - Improve general stability.
 
-
+a
 
 2.1.0
 --------------------------
@@ -228,7 +230,7 @@ develop
 
 
 ### Additions/Changes
-
+a
 - Drop support for __OS X Lion.__
 - Migrate document drawer to sidebar style.
     - Add “show document inspector” option to preferences.

@@ -48,6 +48,9 @@
 // constant
 const NSInteger kNoMenuItem = -1;
 
+NSString *const CESelectedRangesKey = @"selectedRange";
+NSString *const CEVisibleRectKey = @"visibleRect";
+
 
 @interface CETextView ()
 
@@ -98,6 +101,9 @@ static NSPoint kTextContainerOrigin;
 {
     self = [super initWithFrame:frameRect textContainer:aTextContainer];
     if (self) {
+        // set class identifier for window restoration
+        [self setIdentifier:@"coreTextView"];
+        
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         
         // This method is partly based on Smultron's SMLTextView by Peter Borg. (2006-09-09)
@@ -178,6 +184,40 @@ static NSPoint kTextContainerOrigin;
     }
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [self stopCompletionTimer];
+}
+
+
+// ------------------------------------------------------
+/// store UI state for the window restoration
+- (void)encodeRestorableStateWithCoder:(NSCoder *)coder
+// ------------------------------------------------------
+{
+    [super encodeRestorableStateWithCoder:coder];
+    
+    [coder encodeObject:[self selectedRanges] forKey:CESelectedRangesKey];
+    [coder encodeRect:[self visibleRect]forKey:CEVisibleRectKey];
+}
+
+
+// ------------------------------------------------------
+/// restore UI state on the window restoration
+- (void)restoreStateWithCoder:(NSCoder *)coder
+// ------------------------------------------------------
+{
+    [super restoreStateWithCoder:coder];
+    
+    if ([coder containsValueForKey:CEVisibleRectKey]) {
+        NSRect visibleRect = [coder decodeRectForKey:CEVisibleRectKey];
+        NSArray *selectedRanges = [coder decodeObjectForKey:CESelectedRangesKey];
+        
+        [self setSelectedRanges:selectedRanges];
+        
+        // perform scroll
+        __unsafe_unretained typeof(self) weakSelf = self;  // NSTextView cannnot be weak
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [weakSelf scrollRectToVisible:visibleRect];
+        });
+    }
 }
 
 
