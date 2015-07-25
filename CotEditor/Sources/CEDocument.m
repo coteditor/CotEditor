@@ -955,6 +955,11 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 #pragma mark Action Messages
 
+- (void)saveDocumentWithDelegate:(id)delegate didSaveSelector:(SEL)didSaveSelector contextInfo:(void *)contextInfo
+{
+    [super saveDocumentWithDelegate:delegate didSaveSelector:didSaveSelector contextInfo:contextInfo];
+}
+
 // ------------------------------------------------------
 /// 保存
 - (IBAction)saveDocument:(id)sender
@@ -1478,6 +1483,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
             return NO;
         }
     }
+    
     return YES;
 }
 

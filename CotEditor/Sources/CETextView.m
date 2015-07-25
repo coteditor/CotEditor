@@ -197,7 +197,7 @@ static NSPoint kTextContainerOrigin;
     
     [coder encodeInteger:[self layoutOrientation] forKey:CELayoutOrientationKey];
     [coder encodeObject:[self selectedRanges] forKey:CESelectedRangesKey];
-    [coder encodeRect:[self visibleRect]forKey:CEVisibleRectKey];
+    [coder encodeRect:[self visibleRect] forKey:CEVisibleRectKey];
 }
 
 
@@ -218,7 +218,7 @@ static NSPoint kTextContainerOrigin;
         
         [self setSelectedRanges:selectedRanges];
         
-        // perform scroll
+        // perform scroll on the next run-loop
         __unsafe_unretained typeof(self) weakSelf = self;  // NSTextView cannnot be weak
         dispatch_async(dispatch_get_main_queue(), ^{
             [weakSelf scrollRectToVisible:visibleRect];
