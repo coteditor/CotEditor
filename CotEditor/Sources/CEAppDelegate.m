@@ -694,7 +694,6 @@
     NSString *selection = [pboard stringForType:NSPasteboardTypeString];
     
     if (document) {
-//    [document readFromData:[selection dataUsingEncoding:NSUTF8StringEncoding] ofType:nil error:nil];
         [[document editor] insertTextViewString:selection];
     } else {
         [[NSAlert alertWithError:err] runModal];
