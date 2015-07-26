@@ -1475,8 +1475,8 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 {
     NSStringEncoding IANACharSetEncoding = [self scanCharsetOrEncodingFromString:string];
     
-    NSStringEncoding ShiftJIS = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingShiftJIS);
-    NSStringEncoding X0213 = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingShiftJIS_X0213);
+    const NSStringEncoding ShiftJIS = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingShiftJIS);
+    const NSStringEncoding X0213 = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingShiftJIS_X0213);
     
     if ((IANACharSetEncoding != NSNotFound) &&
         (IANACharSetEncoding != encoding) &&
