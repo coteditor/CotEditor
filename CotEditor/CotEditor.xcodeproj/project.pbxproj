@@ -1465,6 +1465,7 @@
 				2A6F0D581B5500E100C2D03C /* KeyBindings in Resources */,
 				2A6F0D591B5500E100C2D03C /* CotEditor.sdef in Resources */,
 				2A6F0D5A1B5500E100C2D03C /* CotEditor.help in Resources */,
+				2A6F0D981B5500E100C2D03C /* container-migration.plist in Resources */,
 				2A6F0D5B1B5500E100C2D03C /* SyntaxMap.json in Resources */,
 				2A6F0D5D1B5500E100C2D03C /* ReportTemplate.md in Resources */,
 				2A6F0D841B5500E100C2D03C /* FileDropGlossary.txt in Resources */,
@@ -1525,7 +1526,6 @@
 				2A6F0D951B5500E100C2D03C /* LineNumber_Show.tiff in Resources */,
 				2A6F0D961B5500E100C2D03C /* StatusBar_Hide.tiff in Resources */,
 				2A6F0D971B5500E100C2D03C /* StatusBar_Show.tiff in Resources */,
-				2A6F0D981B5500E100C2D03C /* container-migration.plist in Resources */,
 				2A6F0D991B5500E100C2D03C /* InvisibleChars_Hide.tiff in Resources */,
 				2A6F0D9A1B5500E100C2D03C /* InvisibleChars_Show.tiff in Resources */,
 				2A6F0D9B1B5500E100C2D03C /* PageGuide_Hide.tiff in Resources */,
@@ -1549,6 +1549,7 @@
 				2A9871A919AEABDB0081BADB /* KeyBindings in Resources */,
 				2A75ACCB19E86DDB00444894 /* CotEditor.sdef in Resources */,
 				2A6E3F3D19B5218300A63E97 /* CotEditor.help in Resources */,
+				2A61B7FE1B52D14400CE3AFB /* container-migration.plist in Resources */,
 				2A2179F61A07093B002C4AB1 /* SyntaxMap.json in Resources */,
 				6C6DAE3E13833C0E007F2326 /* dsa_pub.pem in Resources */,
 				2A456C451A1EE38E00395158 /* ReportTemplate.md in Resources */,
@@ -1610,7 +1611,6 @@
 				8C3E2D510808E203009894D1 /* LineNumber_Show.tiff in Resources */,
 				8C3E2D5E0808E210009894D1 /* StatusBar_Hide.tiff in Resources */,
 				8C3E2D5F0808E210009894D1 /* StatusBar_Show.tiff in Resources */,
-				2A61B7FE1B52D14400CE3AFB /* container-migration.plist in Resources */,
 				8CEF66C20995E47F00C65A84 /* InvisibleChars_Hide.tiff in Resources */,
 				8CEF66C30995E47F00C65A84 /* InvisibleChars_Show.tiff in Resources */,
 				8CEF66C60995E4A700C65A84 /* PageGuide_Hide.tiff in Resources */,
@@ -2364,7 +2364,6 @@
 					"APPSTORE=1",
 				);
 				INFOPLIST_FILE = "CotEditor (AppStore)-Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				OTHER_CODE_SIGN_FLAGS = "--deep";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.coteditor.$(PRODUCT_NAME)";
 				PRODUCT_NAME = CotEditor;
@@ -2383,7 +2382,6 @@
 					"APPSTORE=1",
 				);
 				INFOPLIST_FILE = "CotEditor (AppStore)-Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				OTHER_CODE_SIGN_FLAGS = "--deep";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.coteditor.$(PRODUCT_NAME)";
 				PRODUCT_NAME = CotEditor;
@@ -2398,9 +2396,8 @@
 				CODE_SIGN_ENTITLEMENTS = CotEditor.entitlements;
 				CODE_SIGN_IDENTITY = "-";
 				INFOPLIST_FILE = "CotEditor-Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				OTHER_CODE_SIGN_FLAGS = "--deep";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.coteditor.$(PRODUCT_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.coteditor.CotEditor;
 				PRODUCT_NAME = CotEditor;
 			};
 			name = Debug;
@@ -2413,9 +2410,8 @@
 				CODE_SIGN_ENTITLEMENTS = CotEditor.entitlements;
 				CODE_SIGN_IDENTITY = "-";
 				INFOPLIST_FILE = "CotEditor-Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				OTHER_CODE_SIGN_FLAGS = "--deep";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.coteditor.$(PRODUCT_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.coteditor.CotEditor;
 				PRODUCT_NAME = CotEditor;
 			};
 			name = Release;
@@ -2432,6 +2428,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=1";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
@@ -2449,6 +2446,7 @@
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				SDKROOT = macosx;
 			};
