@@ -955,11 +955,6 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 #pragma mark Action Messages
 
-- (void)saveDocumentWithDelegate:(id)delegate didSaveSelector:(SEL)didSaveSelector contextInfo:(void *)contextInfo
-{
-    [super saveDocumentWithDelegate:delegate didSaveSelector:didSaveSelector contextInfo:contextInfo];
-}
-
 // ------------------------------------------------------
 /// 保存
 - (IBAction)saveDocument:(id)sender
@@ -1417,29 +1412,10 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 {
     if ([self suppressesIANACharsetConflictAlert]) { return YES; }
     
-    NSStringEncoding IANACharSetEncoding = [self scanCharsetOrEncodingFromString:[self stringForSave]];
+    NSError *error;
+    [self checkSavingSafetyWithIANACharSetNameForString:[self stringForSave] encoding:[self encoding] error:&error];
     
-    NSStringEncoding ShiftJIS = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingShiftJIS);
-    NSStringEncoding X0213 = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingShiftJIS_X0213);
-    
-    if ((IANACharSetEncoding != NSNotFound) && (IANACharSetEncoding != [self encoding]) &&
-        (!(((IANACharSetEncoding == ShiftJIS) || (IANACharSetEncoding == X0213)) &&
-           (([self encoding] == ShiftJIS) || ([self encoding] == X0213)))))
-    {
-        // (Caution needed on Shift-JIS. See `scanCharsetOrEncodingFromString:` for details.)
-        
-        NSString *IANAName = [NSString localizedNameOfStringEncoding:IANACharSetEncoding];
-        NSString *encodingName = [NSString localizedNameOfStringEncoding:[self encoding]];
-        
-        NSDictionary *userInfo = @{NSLocalizedDescriptionKey: [NSString stringWithFormat:NSLocalizedString(@"The encoding is “%@”, but the IANA charset name in text is “%@”.", nil), encodingName, IANAName],
-                                   NSLocalizedRecoverySuggestionErrorKey: NSLocalizedString(@"Do you want to continue processing?", nil),
-                                   NSLocalizedRecoveryOptionsErrorKey: @[NSLocalizedString(@"Cancel", nil),
-                                                                         NSLocalizedString(@"Continue Saving", nil)],
-                                   NSStringEncodingErrorKey: @([self encoding]),
-                                   };
-        
-        NSError *error = [NSError errorWithDomain:CEErrorDomain code:CEIANACharsetNameConflictError userInfo:userInfo];
-        
+    if (error) {
         NSAlert *alert = [NSAlert alertWithError:error];
         [alert setShowsSuppressionButton:YES];
         [[alert suppressionButton] setTitle:NSLocalizedString(@"Do not show this warning for this document again", nil)];
@@ -1449,8 +1425,13 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
         if ([[alert suppressionButton] state] == NSOnState) {
             [self setSuppressesIANACharsetConflictAlert:YES];
         }
-        if (result != NSAlertSecondButtonReturn) {  // == Cancel
-            return NO;
+        
+        switch (result) {
+            case NSAlertFirstButtonReturn:  // == Cancel
+                return NO;
+                
+            case NSAlertSecondButtonReturn:  // == Continue Saving
+                return YES;
         }
     }
     
@@ -1463,25 +1444,91 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 - (BOOL)acceptsSaveDocumentToConvertEncoding
 // ------------------------------------------------------
 {
-    // エンコーディングを見て、半角円マークを変換しておく
-    NSString *curString = [self convertCharacterString:[self stringForSave] encoding:[self encoding]];
+    NSError *error;
+    [self checkSavingSafetyForConvertingString:[self stringForSave] encoding:[self encoding] error:&error];
     
-    if (![curString canBeConvertedToEncoding:[self encoding]]) {
-        NSString *encodingName = [NSString localizedNameOfStringEncoding:[self encoding]];
-        NSAlert *alert = [[NSAlert alloc] init];
-        [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"The characters would have to be changed or deleted in saving as “%@”.", nil), encodingName]];
-        [alert setInformativeText:NSLocalizedString(@"Do you want to continue processing?", nil)];
-        [alert addButtonWithTitle:NSLocalizedString(@"Show Incompatible Chars", nil)];
-        [alert addButtonWithTitle:NSLocalizedString(@"Save Available Strings", nil)];
-        [alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
+    if (error) {
+        NSAlert *alert = [NSAlert alertWithError:error];
         
         NSInteger result = [alert runModal];
-        if (result != NSAlertSecondButtonReturn) { // != Save
-            if (result == NSAlertFirstButtonReturn) { // == show incompatible chars
+        switch (result) {
+            case NSAlertFirstButtonReturn:  // == Show Incompatible Chars
                 [[self windowController] showIncompatibleCharList];
-            }
-            return NO;
+                return NO;
+                
+            case NSAlertSecondButtonReturn:  // == Save
+                return YES;
+                
+            case NSAlertThirdButtonReturn:  // == Cancel
+                return NO;
         }
+    }
+    
+    return YES;
+}
+
+
+// ------------------------------------------------------
+/// 書類内のIANA文字コード名と設定されたエンコーディングの矛盾をチェック
+- (BOOL)checkSavingSafetyWithIANACharSetNameForString:(NSString *)string encoding:(NSStringEncoding)encoding error:(NSError *__autoreleasing *)outError
+// ------------------------------------------------------
+{
+    NSStringEncoding IANACharSetEncoding = [self scanCharsetOrEncodingFromString:string];
+    
+    NSStringEncoding ShiftJIS = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingShiftJIS);
+    NSStringEncoding X0213 = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingShiftJIS_X0213);
+    
+    if ((IANACharSetEncoding != NSNotFound) &&
+        (IANACharSetEncoding != encoding) &&
+        !(((IANACharSetEncoding == ShiftJIS) || (IANACharSetEncoding == X0213)) &&
+          ((encoding == ShiftJIS) || (encoding == X0213))))
+    {
+        // (Caution needed on Shift-JIS. See `scanCharsetOrEncodingFromString:` for details.)
+        
+        if (outError) {
+            NSString *encodingName = [NSString localizedNameOfStringEncoding:encoding];
+            NSString *IANAName = [NSString localizedNameOfStringEncoding:IANACharSetEncoding];
+            
+            NSDictionary *userInfo = @{NSLocalizedDescriptionKey: [NSString stringWithFormat:NSLocalizedString(@"The encoding is “%@”, but the IANA charset name in text is “%@”.", nil), encodingName, IANAName],
+                                       NSLocalizedRecoverySuggestionErrorKey: NSLocalizedString(@"Do you want to continue processing?", nil),
+                                       NSLocalizedRecoveryOptionsErrorKey: @[NSLocalizedString(@"Cancel", nil),
+                                                                             NSLocalizedString(@"Continue Saving", nil)],
+                                       NSStringEncodingErrorKey: @(encoding),
+                                       };
+            
+            *outError = [NSError errorWithDomain:CEErrorDomain code:CEIANACharsetNameConflictError userInfo:userInfo];
+        }
+        
+        return NO;
+    }
+    
+    return YES;
+}
+
+
+// ------------------------------------------------------
+/// ファイル保存前のエンコーディング変換チェック
+- (BOOL)checkSavingSafetyForConvertingString:(NSString *)string encoding:(NSStringEncoding)encoding error:(NSError *__autoreleasing *)outError
+// ------------------------------------------------------
+{
+    // エンコーディングを見て、半角円マークを変換しておく
+    NSString *newString = [self convertCharacterString:string encoding:encoding];
+    
+    if (![newString canBeConvertedToEncoding:encoding]) {
+        if (outError) {
+            NSString *encodingName = [NSString localizedNameOfStringEncoding:encoding];
+            
+            NSDictionary *userInfo = @{NSLocalizedDescriptionKey: [NSString stringWithFormat:NSLocalizedString(@"The characters would have to be changed or deleted in saving as “%@”.", nil), encodingName],
+                                       NSLocalizedRecoverySuggestionErrorKey: NSLocalizedString(@"Do you want to continue processing?", nil),
+                                       NSLocalizedRecoveryOptionsErrorKey: @[NSLocalizedString(@"Show Incompatible Chars", nil),
+                                                                             NSLocalizedString(@"Save Available Strings", nil),
+                                                                             NSLocalizedString(@"Cancel", nil)],
+                                       NSStringEncodingErrorKey: @(encoding),
+                                       };
+            *outError = [NSError errorWithDomain:CEErrorDomain code:CEUnconvertibleCharactersError userInfo:userInfo];
+        }
+        
+        return NO;
     }
     
     return YES;
@@ -1497,14 +1544,14 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
         return [string stringByReplacingOccurrencesOfString:[NSString stringWithCharacters:&kYenMark length:1]
                                                  withString:@"\\"];
     }
+    
     return string;
 }
 
 
 // ------------------------------------------------------
 /// エンコードを変更するアクションのRedo登録
-- (void)redoSetEncoding:(NSStringEncoding)encoding updateDocument:(BOOL)updateDocument
-               askLossy:(BOOL)askLossy lossy:(BOOL)lossy asActionName:(NSString *)actionName
+- (void)redoSetEncoding:(NSStringEncoding)encoding updateDocument:(BOOL)updateDocument askLossy:(BOOL)askLossy lossy:(BOOL)lossy asActionName:(NSString *)actionName
 // ------------------------------------------------------
 {
     [[[self undoManager] prepareWithInvocationTarget:self] doSetEncoding:encoding updateDocument:updateDocument
