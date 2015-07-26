@@ -33,7 +33,7 @@
 #import "CETextViewProtocol.h"
 #import "CEATSTypesetter.h"
 #import "CEUtils.h"
-#import "constants.h"
+#import "Constants.h"
 
 
 @interface CELayoutManager ()

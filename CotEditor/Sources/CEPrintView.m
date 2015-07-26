@@ -32,7 +32,7 @@
 #import "CELayoutManager.h"
 #import "CESyntaxParser.h"
 #import "NSString+Sandboxing.h"
-#import "constants.h"
+#import "Constants.h"
 
 
 static NSString *const PageNumberPlaceholder = @"PAGENUM";

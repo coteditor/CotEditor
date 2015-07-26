@@ -30,7 +30,7 @@
 
 #import "CEIncompatibleCharsViewController.h"
 #import "CEDocument.h"
-#import "constants.h"
+#import "Constants.h"
 
 
 @interface CEIncompatibleCharsViewController () <NSTableViewDelegate>

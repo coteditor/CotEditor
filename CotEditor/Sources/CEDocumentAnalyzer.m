@@ -31,7 +31,7 @@
 #import "CEDocumentAnalyzer.h"
 #import "CEDocument.h"
 #import "NSString+ComposedCharacter.h"
-#import "constants.h"
+#import "Constants.h"
 
 
 // notifications

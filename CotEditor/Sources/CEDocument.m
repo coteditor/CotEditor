@@ -38,7 +38,7 @@
 #import "CEUtils.h"
 #import "NSURL+AppleTextEncoding.h"
 #import "NSData+MD5.h"
-#import "constants.h"
+#import "Constants.h"
 
 
 // constants

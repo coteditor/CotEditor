@@ -1,6 +1,6 @@
 /*
  ==============================================================================
- constants
+ Constants
  
  CotEditor
  http://coteditor.com

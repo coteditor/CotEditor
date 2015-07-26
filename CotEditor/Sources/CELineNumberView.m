@@ -31,7 +31,7 @@
 @import CoreText;
 #import "CELineNumberView.h"
 #import "CETextViewProtocol.h"
-#import "constants.h"
+#import "Constants.h"
 
 
 static const CGFloat kMinVerticalThickness = 32.0;

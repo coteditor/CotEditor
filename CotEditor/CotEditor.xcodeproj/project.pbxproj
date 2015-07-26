@@ -45,7 +45,7 @@
 		2A149DC21901884500A9D6EF /* CEFileDropPaneController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A149DC11901884500A9D6EF /* CEFileDropPaneController.m */; };
 		2A149DC51901885A00A9D6EF /* CEKeyBindingsPaneController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A149DC41901885A00A9D6EF /* CEKeyBindingsPaneController.m */; };
 		2A149DD519032CC900A9D6EF /* CEUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A149DD419032CC900A9D6EF /* CEUtils.m */; };
-		2A149DD719033CBB00A9D6EF /* constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A149DD619033CBB00A9D6EF /* constants.m */; };
+		2A149DD719033CBB00A9D6EF /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A149DD619033CBB00A9D6EF /* Constants.m */; };
 		2A15831718E3688300601026 /* EncodingListSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A15831518E3688300601026 /* EncodingListSheet.xib */; };
 		2A15831A18E368CE00601026 /* CEEncodingListSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A15831918E368CE00601026 /* CEEncodingListSheetController.m */; };
 		2A15832118E3814200601026 /* SizeSampleWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A15831F18E3814200601026 /* SizeSampleWindow.xib */; };
@@ -175,7 +175,7 @@
 		2A6F0DA11B5500E100C2D03C /* EditColorCode.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 2A5B0AF4190723AC00B6A51C /* EditColorCode.tiff */; };
 		2A6F0DA21B5500E100C2D03C /* RecolorAll.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 8C5208090880BAAF005734F2 /* RecolorAll.tiff */; };
 		2A6F0DA41B5500E100C2D03C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A37F4B0FDCFA73011CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
-		2A6F0DA51B5500E100C2D03C /* constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A149DD619033CBB00A9D6EF /* constants.m */; };
+		2A6F0DA51B5500E100C2D03C /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A149DD619033CBB00A9D6EF /* Constants.m */; };
 		2A6F0DA61B5500E100C2D03C /* CESizeSampleWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A15832318E383C300601026 /* CESizeSampleWindowController.m */; };
 		2A6F0DA71B5500E100C2D03C /* CEDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A37F4ACFDCFA73011CA2CEA /* CEDocument.m */; settings = {ATTRIBUTES = (); }; };
 		2A6F0DA81B5500E100C2D03C /* CESplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A5411BF1983E5FA008B43DA /* CESplitViewController.m */; };
@@ -404,7 +404,7 @@
 		25859DB2076D65310020F779 /* CEAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEAppDelegate.h; sourceTree = "<group>"; };
 		25859DEB076D75BC0020F779 /* CEWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEWindowController.h; sourceTree = "<group>"; };
 		25859DEC076D75BC0020F779 /* CEWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEWindowController.m; sourceTree = "<group>"; };
-		25859E90076D88ED0020F779 /* constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = constants.h; sourceTree = "<group>"; };
+		25859E90076D88ED0020F779 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		25859EBE076D92D60020F779 /* CEPreferencesWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEPreferencesWindowController.h; sourceTree = "<group>"; };
 		25859EBF076D92D60020F779 /* CEPreferencesWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEPreferencesWindowController.m; sourceTree = "<group>"; };
 		258700E3077BAD2200E541BB /* CESyntaxManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CESyntaxManager.h; sourceTree = "<group>"; };
@@ -449,7 +449,7 @@
 		2A149DC41901885A00A9D6EF /* CEKeyBindingsPaneController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEKeyBindingsPaneController.m; sourceTree = "<group>"; };
 		2A149DD319032CC900A9D6EF /* CEUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEUtils.h; sourceTree = "<group>"; };
 		2A149DD419032CC900A9D6EF /* CEUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEUtils.m; sourceTree = "<group>"; };
-		2A149DD619033CBB00A9D6EF /* constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = constants.m; sourceTree = "<group>"; };
+		2A149DD619033CBB00A9D6EF /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		2A15831818E368CE00601026 /* CEEncodingListSheetController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEEncodingListSheetController.h; sourceTree = "<group>"; };
 		2A15831918E368CE00601026 /* CEEncodingListSheetController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEEncodingListSheetController.m; sourceTree = "<group>"; };
 		2A15832218E383C300601026 /* CESizeSampleWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CESizeSampleWindowController.h; sourceTree = "<group>"; };
@@ -1098,8 +1098,8 @@
 				2A0E160B18E7240C00AAD872 /* Print */,
 				2A15832C18E3A29A00601026 /* Views */,
 				2A15832B18E3A25C00601026 /* Utilities */,
-				25859E90076D88ED0020F779 /* constants.h */,
-				2A149DD619033CBB00A9D6EF /* constants.m */,
+				25859E90076D88ED0020F779 /* Constants.h */,
+				2A149DD619033CBB00A9D6EF /* Constants.m */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -1723,7 +1723,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2A6F0DA41B5500E100C2D03C /* main.m in Sources */,
-				2A6F0DA51B5500E100C2D03C /* constants.m in Sources */,
+				2A6F0DA51B5500E100C2D03C /* Constants.m in Sources */,
 				2A6F0DA61B5500E100C2D03C /* CESizeSampleWindowController.m in Sources */,
 				2A6F0DA71B5500E100C2D03C /* CEDocument.m in Sources */,
 				2A6F0DA81B5500E100C2D03C /* CESplitViewController.m in Sources */,
@@ -1819,7 +1819,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D15AC320486D014006FF6A4 /* main.m in Sources */,
-				2A149DD719033CBB00A9D6EF /* constants.m in Sources */,
+				2A149DD719033CBB00A9D6EF /* Constants.m in Sources */,
 				2A15832418E383C300601026 /* CESizeSampleWindowController.m in Sources */,
 				8D15AC310486D014006FF6A4 /* CEDocument.m in Sources */,
 				2A5411C01983E5FA008B43DA /* CESplitViewController.m in Sources */,

@@ -37,7 +37,7 @@
 #import "CEEditorWrapper.h"
 #import "CESyntaxManager.h"
 #import "CEDocumentAnalyzer.h"
-#import "constants.h"
+#import "Constants.h"
 
 
 // sidebar mode

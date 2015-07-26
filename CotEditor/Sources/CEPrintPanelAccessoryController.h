@@ -28,7 +28,7 @@
  */
 
 @import Cocoa;
-#import "constants.h"
+#import "Constants.h"
 
 
 @interface CEPrintPanelAccessoryController : NSViewController <NSPrintPanelAccessorizing>

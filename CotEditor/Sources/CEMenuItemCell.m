@@ -28,7 +28,7 @@
  */
 
 #import "CEMenuItemCell.h"
-#import "constants.h"
+#import "Constants.h"
 
 
 @implementation CEMenuItemCell

@@ -1,6 +1,6 @@
 /*
  ==============================================================================
- constants
+ Constants
  
  CotEditor
  http://coteditor.com
@@ -28,7 +28,7 @@
  ==============================================================================
  */
 
-#import "constants.h"
+#import "Constants.h"
 
 
 #pragma mark General

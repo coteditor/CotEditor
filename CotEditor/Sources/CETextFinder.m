@@ -28,7 +28,7 @@
  */
 
 #import "CETextFinder.h"
-#import "constants.h"
+#import "Constants.h"
 
 
 NSString *__nonnull const CETextFinderDidReplaceAllNotification = @"CETextFinderDidReplaceAllNotification";

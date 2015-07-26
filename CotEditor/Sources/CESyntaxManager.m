@@ -32,7 +32,7 @@
 #import "CESyntaxManager.h"
 #import "CEAppDelegate.h"
 #import "RegexKitLite.h"
-#import "constants.h"
+#import "Constants.h"
 
 
 // notifications

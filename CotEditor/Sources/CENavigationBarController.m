@@ -29,7 +29,7 @@
  */
 
 #import "CENavigationBarController.h"
-#import "constants.h"
+#import "Constants.h"
 
 
 static const CGFloat kDefaultHeight = 16.0;

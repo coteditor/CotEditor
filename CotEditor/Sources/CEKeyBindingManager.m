@@ -31,7 +31,7 @@
 #import "CEKeyBindingManager.h"
 #import "CEAppDelegate.h"
 #import "CEUtils.h"
-#import "constants.h"
+#import "Constants.h"
 
 
 // outlineView data key, column identifier

@@ -30,7 +30,7 @@
 #import "CEFindPanelTextView.h"
 #import "CEFindPanelLayoutManager.h"
 #import "CEFindPanelController.h"
-#import "constants.h"
+#import "Constants.h"
 
 
 @interface CEFindPanelTextView ()

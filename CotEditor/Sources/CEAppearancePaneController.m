@@ -32,7 +32,7 @@
 #import "CEAppearancePaneController.h"
 #import "CEThemeViewController.h"
 #import "CEThemeManager.h"
-#import "constants.h"
+#import "Constants.h"
 
 
 @interface CEAppearancePaneController () <NSTableViewDelegate, NSTableViewDataSource, CEThemeViewControllerDelegate>

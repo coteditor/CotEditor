@@ -37,7 +37,7 @@
 #import "CEThemeManager.h"
 #import "CETextFinder.h"
 #import "NSString+CENewLine.h"
-#import "constants.h"
+#import "Constants.h"
 
 
 @interface CEEditorView ()

@@ -29,7 +29,7 @@
 
 #import "CEKeyBindingSheetController.h"
 #import "CEKeyBindingManager.h"
-#import "constants.h"
+#import "Constants.h"
 
 
 @interface CEKeyBindingSheetController () <NSOutlineViewDataSource, NSOutlineViewDelegate, NSTextFieldDelegate>

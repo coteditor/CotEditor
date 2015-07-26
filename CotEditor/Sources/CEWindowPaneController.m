@@ -30,7 +30,7 @@
 
 #import "CEWindowPaneController.h"
 #import "CESizeSampleWindowController.h"
-#import "constants.h"
+#import "Constants.h"
 
 
 @interface CEWindowPaneController ()

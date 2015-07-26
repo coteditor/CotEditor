@@ -42,7 +42,7 @@
 #import "CEScriptManager.h"
 #import "CEWindow.h"
 #import "NSString+JapaneseTransform.h"
-#import "constants.h"
+#import "Constants.h"
 
 
 // constant

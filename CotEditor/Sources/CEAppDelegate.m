@@ -45,7 +45,7 @@
 #import "CEMigrationWindowController.h"
 #import "CEDocument.h"
 #import "EDSemver.h"
-#import "constants.h"
+#import "Constants.h"
 
 #ifndef APPSTORE
 #import "CEUpdaterManager.h"

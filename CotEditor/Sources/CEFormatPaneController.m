@@ -35,7 +35,7 @@
 #import "CESyntaxMappingConflictsSheetController.h"
 #import "CESyntaxEditSheetController.h"
 #import "CEEncodingListSheetController.h"
-#import "constants.h"
+#import "Constants.h"
 
 
 @interface CEFormatPaneController () <NSTableViewDelegate>

@@ -30,7 +30,7 @@
 
 #import "CESplitViewController.h"
 #import "CEEditorView.h"
-#import "constants.h"
+#import "Constants.h"
 
 
 @implementation CESplitViewController

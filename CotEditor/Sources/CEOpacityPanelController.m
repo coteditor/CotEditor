@@ -29,7 +29,7 @@
 
 #import "CEOpacityPanelController.h"
 #import "CEWindow.h"
-#import "constants.h"
+#import "Constants.h"
 
 
 @interface CEOpacityPanelController ()

@@ -30,7 +30,7 @@
 
 #import "CEEditPaneController.h"
 #import "CEUtils.h"
-#import "constants.h"
+#import "Constants.h"
 
 
 @interface CEEditPaneController ()

@@ -35,7 +35,7 @@
 #import "CEIndicatorSheetController.h"
 #import "RegexKitLite.h"
 #import "NSString+MD5.h"
-#import "constants.h"
+#import "Constants.h"
 
 
 // local constants (QC might abbr of Quotes/Comment)

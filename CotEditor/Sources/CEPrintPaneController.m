@@ -30,7 +30,7 @@
 
 #import "CEPrintPaneController.h"
 #import "CEThemeManager.h"
-#import "constants.h"
+#import "Constants.h"
 
 
 @interface CEPrintPaneController ()

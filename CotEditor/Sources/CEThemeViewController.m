@@ -30,7 +30,7 @@
 #import "CEThemeViewController.h"
 #import "CEThemeManager.h"
 #import "NSColor+WFColorCode.h"
-#import "constants.h"
+#import "Constants.h"
 
 
 @interface CEThemeViewController () <NSPopoverDelegate, NSTextFieldDelegate>

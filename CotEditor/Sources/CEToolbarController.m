@@ -33,7 +33,7 @@
 #import "CEEncodingManager.h"
 #import "CESyntaxManager.h"
 #import "CEWindowController.h"
-#import "constants.h"
+#import "Constants.h"
 
 
 @interface CEToolbarController ()

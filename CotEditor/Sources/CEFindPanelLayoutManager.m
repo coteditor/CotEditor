@@ -29,7 +29,7 @@
 
 #import "CEFindPanelLayoutManager.h"
 #import "CEUtils.h"
-#import "constants.h"
+#import "Constants.h"
 
 
 @interface CEFindPanelLayoutManager ()

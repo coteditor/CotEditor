@@ -30,7 +30,7 @@
 
 #import "CESyntaxEditSheetController.h"
 #import "CESyntaxManager.h"
-#import "constants.h"
+#import "Constants.h"
 
 
 typedef NS_ENUM(NSUInteger, CETabIndex) {

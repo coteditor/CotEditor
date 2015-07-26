@@ -33,7 +33,7 @@
 #import "CEDocument.h"
 #import "CEUtils.h"
 #import "NSString+Sandboxing.h"
-#import "constants.h"
+#import "Constants.h"
 
 
 typedef NS_ENUM(NSUInteger, CEScriptOutputType) {

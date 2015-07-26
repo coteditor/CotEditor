@@ -29,7 +29,7 @@
  */
 
 #import "CEFileDropPaneController.h"
-#import "constants.h"
+#import "Constants.h"
 
 
 @interface CEFileDropPaneController () <NSTableViewDelegate, NSTextFieldDelegate, NSTextViewDelegate>

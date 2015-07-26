@@ -31,7 +31,7 @@
 #import "CEFindPanelController.h"
 #import "CEFindResultViewController.h"
 #import "CETextFinder.h"
-#import "constants.h"
+#import "Constants.h"
 
 
 // constants

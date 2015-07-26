@@ -41,7 +41,7 @@
 #import "CENavigationBarController.h"
 #import "CESyntaxParser.h"
 #import "CEGoToSheetController.h"
-#import "constants.h"
+#import "Constants.h"
 
 
 @interface CEEditorWrapper ()

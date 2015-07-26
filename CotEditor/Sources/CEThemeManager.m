@@ -30,7 +30,7 @@
 #import "CEThemeManager.h"
 #import "CEAppDelegate.h"
 #import "NSColor+WFColorCode.h"
-#import "constants.h"
+#import "Constants.h"
 
 
 // extension for theme file

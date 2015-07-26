@@ -29,7 +29,7 @@
 
 @import ObjectiveC.message;
 #import "CEIntegrationPaneController.h"
-#import "constants.h"
+#import "Constants.h"
 
 
 static NSString *const kSymbolicLinkPath = @"/usr/local/bin/cot";
