@@ -595,6 +595,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
             return NO;
         }
     }
+    
     return YES;
 }
 
@@ -741,10 +742,9 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 {
     CFStringEncoding cfEncoding = CFStringConvertNSStringEncodingToEncoding([self encoding]);
     
-    if (cfEncoding != kCFStringEncodingInvalidId) {
-        return (NSString *)CFStringConvertEncodingToIANACharSetName(cfEncoding);
-    }
-    return nil;
+    if (cfEncoding == kCFStringEncodingInvalidId) { return nil; }
+    
+    return (NSString *)CFStringConvertEncodingToIANACharSetName(cfEncoding);
 }
 
 
@@ -1022,15 +1022,15 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 {
     NSStringEncoding encoding = [sender tag];
 
-    if ((encoding < 1) || (encoding == [self encoding])) {
-        return;
-    }
+    if ((encoding < 1) || (encoding == [self encoding])) { return; }
+    
     NSInteger result;
     NSString *encodingName = [sender title];
 
     // 文字列がないまたは未保存の時は直ちに変換プロセスへ
     if (([[[self editor] string] length] < 1) || (![self fileURL])) {
         result = NSAlertFirstButtonReturn;
+        
     } else {
         // 変換するか再解釈するかの選択ダイアログを表示
         NSAlert *alert = [[NSAlert alloc] init];
@@ -1077,6 +1077,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
             [alert runModal];
         }
     }
+    
     // ツールバーから変更された場合のため、ツールバーアイテムの選択状態をリセット
     [[[self windowController] toolbarController] setSelectedEncoding:[self encoding]];
 }
@@ -1178,6 +1179,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 {
     // ツールバーのエンコーディングメニューを更新
     [[[self windowController] toolbarController] setSelectedEncoding:[self encoding]];
+    
     // ステータスバー、インスペクタを更新
     [[self windowController] updateModeInfoIfNeeded];
 }
@@ -1257,7 +1259,8 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
                 *usedEncoding = NSUTF8StringEncoding;
                 return string;
             }
-            // UTF-16 判定
+            
+        // UTF-16 判定
         } else if ((memchr([data bytes], 0xfffe, 2) != NULL) ||
                    (memchr([data bytes], 0xfeff, 2) != NULL))
         {
@@ -1268,7 +1271,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
                 return string;
             }
             
-            // ISO 2022-JP 判定
+        // ISO 2022-JP 判定
         } else if (memchr([data bytes], 0x1b, [data length]) != NULL) {
             shouldSkipISO2022JP = YES;
             NSString *string = [[NSString alloc] initWithData:data encoding:NSISO2022JPStringEncoding];
@@ -1661,7 +1664,6 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 // ------------------------------------------------------
 {
     if (returnCode == NSAlertSecondButtonReturn) { // == Revert
-        // Revert 確認アラートを表示させないため、実行メソッドを直接呼び出す
         [self revertToContentsOfURL:[self fileURL] ofType:[self fileType] error:nil];
     }
     [self setRevertingForExternalFileUpdate:NO];

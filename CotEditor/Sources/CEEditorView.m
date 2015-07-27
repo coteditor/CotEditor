@@ -350,7 +350,7 @@
         NSArray *outlineMenuArray = [[strongSelf syntaxParser] outlineMenuArrayWithWholeString:wholeString];
         
         dispatch_sync(dispatch_get_main_queue(), ^{
-            [[strongSelf navigationBar] setOutlineMenuArray:outlineMenuArray];
+            [[strongSelf navigationBar] setOutlineMenuItems:outlineMenuArray];
             // （選択項目の更新も上記メソッド内で行われるので、updateOutlineMenuSelection は呼ぶ必要なし。 2008.05.16.）
         });
     });

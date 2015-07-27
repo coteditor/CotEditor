@@ -55,7 +55,10 @@
          
          [task launch];
          data = [NSData dataWithData:[[[task standardOutput] fileHandleForReading] readDataToEndOfFile]];
-         [task waitUntilExit];
+         
+         while ([task isRunning]) {
+             usleep(200);
+         }
          
          int status = [task terminationStatus];
          success = (status == 0);

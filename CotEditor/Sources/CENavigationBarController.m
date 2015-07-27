@@ -123,7 +123,7 @@ static const NSTimeInterval kDuration = 0.25;
 
 // ------------------------------------------------------
 /// build outline menu from given array
-- (void)setOutlineMenuArray:(nonnull NSArray *)outlineItems
+- (void)setOutlineMenuItems:(nonnull NSArray *)outlineItems
 // ------------------------------------------------------
 {
     // stop outline extracting indicator
