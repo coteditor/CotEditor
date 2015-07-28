@@ -128,6 +128,8 @@ static NSString *const kEscapeCharacter = @"\\";
 // ------------------------------------------------------
 {
     [[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:CEDefaultFindNextAfterReplaceKey];
+    
+    [_splitView setDelegate:nil];  // NSSplitView's delegate is assign, not weak
 }
 
 
