@@ -605,6 +605,20 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 //=======================================================
 
 // ------------------------------------------------------
+/// file location has changed
+- (void)presentedItemDidMoveToURL:(NSURL *)newURL
+// ------------------------------------------------------
+{
+    [super presentedItemDidMoveToURL:newURL];
+    
+    __weak typeof(self) weakSelf = self;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[weakSelf windowController] updateFileInfo];
+    });
+}
+
+
+// ------------------------------------------------------
 /// file has been modified by an external process
 - (void)presentedItemDidChange
 // ------------------------------------------------------
