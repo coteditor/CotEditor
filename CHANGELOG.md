@@ -25,6 +25,7 @@ develop
     - To restore also the last scroll position and cursor position.
     - To restore also the last syntax style mode of unsaved documents.
 - Optimize saving process.
+- Improve compatibility with OS X 10.11 El Capitan.
 
 
 ### Fixes

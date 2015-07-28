@@ -105,6 +105,10 @@ static NSTimeInterval infoUpdateInterval;
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:CEDefaultWindowAlphaKey];
     
+    // Need to set nil to NSSPlitView's delegate manually since it is not weak but just assign,
+    //     and may crash when closing split fullscreen window on El Capitan beta 5 (2015-07)
+    [_sidebarSplitView setDelegate:nil];
+    
     [self stopEditorInfoUpdateTimer];
 }
 
