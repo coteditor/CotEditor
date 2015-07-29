@@ -97,7 +97,7 @@
     [super loadView];
     
     // disable Smart Quotes/Dashes setting on under Mavericks
-    if (floor(NSAppKitVersionNumber) <= NSAppKitVersionNumber10_8) {
+    if (NSAppKitVersionNumber < NSAppKitVersionNumber10_9) {
         [[self smartQuoteCheckButton] setEnabled:NO];
         [[self smartQuoteCheckButton] setState:NSOffState];
         [[self smartQuoteCheckButton] setTitle:[NSString stringWithFormat:@"%@%@", [[self smartQuoteCheckButton] title],

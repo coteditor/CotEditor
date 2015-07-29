@@ -107,7 +107,7 @@
 - (void)beginSheetForWindow:(nonnull NSWindow *)window
 // ------------------------------------------------------
 {
-    if (floor(NSAppKitVersionNumber) > NSAppKitVersionNumber10_8) { // on Mavericks or later
+    if (NSAppKitVersionNumber >= NSAppKitVersionNumber10_9) { // on Mavericks or later
         [window beginSheet:[self window] completionHandler:nil];
         [self setParentWindow:window];
         
@@ -124,7 +124,7 @@
 - (void)endSheet
 // ------------------------------------------------------
 {
-    if (floor(NSAppKitVersionNumber) > NSAppKitVersionNumber10_8) { // on Mavericks or later
+    if (NSAppKitVersionNumber >= NSAppKitVersionNumber10_9) { // on Mavericks or later
         [[self parentWindow] endSheet:[self window] returnCode:NSModalResponseCancel];
         
     } else {

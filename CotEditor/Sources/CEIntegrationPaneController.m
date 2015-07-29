@@ -273,7 +273,7 @@ static const NSURL *kPreferredLinkTargetURL;
     
     // check current running app's location only on Yosemite and later (2015-02 by 1024jp)
     // (Just because `getRelation:~` is first available on Yosemite.)
-    if (floor(NSAppKitVersionNumber) > NSAppKitVersionNumber10_9) {
+    if (NSAppKitVersionNumber >= NSAppKitVersionNumber10_10) {
         NSURLRelationship relationship;
         [[NSFileManager defaultManager] getRelationship:&relationship
                                             ofDirectory:NSApplicationDirectory

@@ -209,7 +209,7 @@
     // (閉じる命令は CESyntaxEditSheetController の endSheetWithReturnCode: で)
     NSWindow *sheet = [sheetController window];
     
-    if (floor(NSAppKitVersionNumber) > NSAppKitVersionNumber10_8) { // on Mavericks or later
+    if (NSAppKitVersionNumber >= NSAppKitVersionNumber10_9) { // on Mavericks or later
         [[[self view] window] beginSheet:sheet completionHandler:^(NSModalResponse returnCode) {
             [sheetController close];
         }];

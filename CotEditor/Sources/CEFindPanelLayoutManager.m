@@ -75,7 +75,7 @@
         NSSize inset = [textView textContainerInset];
         
         NSColor *color;
-        if (floor(NSAppKitVersionNumber) > NSAppKitVersionNumber10_9) {
+        if (NSAppKitVersionNumber >= NSAppKitVersionNumber10_10) {
             color = [NSColor tertiaryLabelColor];
         } else {
             color = [NSColor colorWithCalibratedWhite:0.0 alpha:0.25];

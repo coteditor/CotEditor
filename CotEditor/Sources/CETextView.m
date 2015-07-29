@@ -682,7 +682,7 @@ static NSPoint kTextContainerOrigin;
     
     [super scrollRangeToVisible:range];
     
-    if (floor(NSAppKitVersionNumber) > NSAppKitVersionNumber10_9) { return; }
+    if (NSAppKitVersionNumber >= NSAppKitVersionNumber10_10) { return; }
     // The following additional scroll adjustment might be no more required thanks to the changing on Yosemite.
     // cf.: NSScrollView section in AppKit Release Notes for OS X v10.10
     

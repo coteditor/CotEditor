@@ -124,7 +124,7 @@ static NSTimeInterval secondColoringDelay;
     
     // Yosemite 未満の場合は手動で Responder Chain に入れる
     // （Yosemite 以降は自動的に追加されるためか以下の一行が入るとハングしてしまう）
-    if (floor(NSAppKitVersionNumber) <= NSAppKitVersionNumber10_9) {
+    if (NSAppKitVersionNumber < NSAppKitVersionNumber10_10) {
         [self setNextResponder:[self splitViewController]];
     }
     
