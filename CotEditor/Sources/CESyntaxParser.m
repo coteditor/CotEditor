@@ -39,7 +39,7 @@
 
 
 // local constants (QC might abbr of Quotes/Comment)
-static NSString *const ColorKey = @"ColorKey";
+static NSString *const TypeKey = @"TypeKey";
 static NSString *const RangeKey = @"RangeKey";
 static NSString *const InvisiblesType = @"invisibles";
 
@@ -751,7 +751,7 @@ static CGFloat kPerCompoIncrement;
             NSString *colorType = quoteTypes[searchPairKind] ? : CESyntaxCommentsKey;
             NSRange range = NSMakeRange(startLocation, endLocation - startLocation);
             
-            [colorings addObject:@{ColorKey: colorType,
+            [colorings addObject:@{TypeKey: colorType,
                                    RangeKey: [NSValue valueWithRange:range]}];
             
             searchPairKind = nil;
@@ -766,7 +766,7 @@ static CGFloat kPerCompoIncrement;
         NSString *colorType = quoteTypes[searchPairKind] ? : CESyntaxCommentsKey;
         NSRange range = NSMakeRange(startLocation, [string length] - startLocation);
         
-        [colorings addObject:@{ColorKey: colorType,
+        [colorings addObject:@{TypeKey: colorType,
                                RangeKey: [NSValue valueWithRange:range]}];
     }
     
@@ -790,7 +790,7 @@ static CGFloat kPerCompoIncrement;
         if ([scanner scanCharactersFromSet:controlCharacterSet intoString:&control]) {
             NSRange range = NSMakeRange(location, [control length]);
             
-            [colorings addObject:@{ColorKey: InvisiblesType,
+            [colorings addObject:@{TypeKey: InvisiblesType,
                                    RangeKey: [NSValue valueWithRange:range]}];
         }
     }
@@ -888,7 +888,7 @@ static CGFloat kPerCompoIncrement;
         }
         // カラーとrangeのペアを格納
         for (NSValue *value in targetRanges) {
-            [colorings addObject:@{ColorKey: syntaxKey,
+            [colorings addObject:@{TypeKey: syntaxKey,
                                    RangeKey: value}];
         }
     } // end-for (syntaxKey)
@@ -999,7 +999,7 @@ static CGFloat kPerCompoIncrement;
     for (NSDictionary *coloring in colorings) {
         @autoreleasepool {
             NSColor *color;
-            NSString *colorType = coloring[ColorKey];
+            NSString *colorType = coloring[TypeKey];
             if ([colorType isEqualToString:InvisiblesType]) {
                 if (!showsInvisibles) { continue; }
                 
