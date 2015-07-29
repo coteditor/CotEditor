@@ -298,13 +298,13 @@ static CGFloat kPerCompoIncrement;
 
     // 直前／直後が同色ならカラーリング範囲を拡大する
     [layoutManager temporaryAttributesAtCharacterIndex:start
-                                        longestEffectiveRange:&effectiveRange
-                                                      inRange:wholeRange];
+                                 longestEffectiveRange:&effectiveRange
+                                               inRange:wholeRange];
     start = effectiveRange.location;
     
     [layoutManager temporaryAttributesAtCharacterIndex:end
-                                        longestEffectiveRange:&effectiveRange
-                                                      inRange:wholeRange];
+                                 longestEffectiveRange:&effectiveRange
+                                               inRange:wholeRange];
     end = NSMaxRange(effectiveRange);
     
     // 表示領域の前もある程度カラーリングの対象に含める
@@ -319,12 +319,12 @@ static CGFloat kPerCompoIncrement;
 
 // ------------------------------------------------------
 /// アウトラインメニュー用の配列を生成し、返す
-- (nonnull NSArray *)outlineMenuItemsWithWholeString:(nullable NSString *)wholeString
+- (nonnull NSArray *)outlineItemsWithWholeString:(nullable NSString *)wholeString
 // ------------------------------------------------------
 {
     if (([wholeString length] == 0) || [self isNone]) { return @[]; }
     
-    NSMutableArray *outlineMenuDicts = [NSMutableArray array];
+    NSMutableArray *outlineItems = [NSMutableArray array];
     NSArray *definitions = [self coloringDictionary][CESyntaxOutlineMenuKey];
     
     for (NSDictionary *definition in definitions) {
@@ -353,8 +353,8 @@ static CGFloat kPerCompoIncrement;
              
              // separator item
              if ([template isEqualToString:CESeparatorString]) {
-                 [outlineMenuDicts addObject:@{CEOutlineItemRangeKey: [NSValue valueWithRange:range],
-                                               CEOutlineItemTitleKey: CESeparatorString}];
+                 [outlineItems addObject:@{CEOutlineItemRangeKey: [NSValue valueWithRange:range],
+                                           CEOutlineItemTitleKey: CESeparatorString}];
                  return;
              }
              
@@ -400,17 +400,17 @@ static CGFloat kPerCompoIncrement;
              BOOL isUnderline = [definition[CESyntaxUnderlineKey] boolValue];
              
              // append outline item
-             [outlineMenuDicts addObject:@{CEOutlineItemRangeKey: [NSValue valueWithRange:range],
-                                           CEOutlineItemTitleKey: title,
-                                           CEOutlineItemStyleBoldKey: @(isBold),
-                                           CEOutlineItemStyleItalicKey: @(isItalic),
-                                           CEOutlineItemStyleUnderlineKey: @(isUnderline)}];
+             [outlineItems addObject:@{CEOutlineItemRangeKey: [NSValue valueWithRange:range],
+                                       CEOutlineItemTitleKey: title,
+                                       CEOutlineItemStyleBoldKey: @(isBold),
+                                       CEOutlineItemStyleItalicKey: @(isItalic),
+                                       CEOutlineItemStyleUnderlineKey: @(isUnderline)}];
          }];
     }
     
-    if ([outlineMenuDicts count] > 0) {
+    if ([outlineItems count] > 0) {
         // sort by location
-        [outlineMenuDicts sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        [outlineItems sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
             NSRange range1 = [obj1[CEOutlineItemRangeKey] rangeValue];
             NSRange range2 = [obj2[CEOutlineItemRangeKey] rangeValue];
             
@@ -424,7 +424,7 @@ static CGFloat kPerCompoIncrement;
         }];
     }
     
-    return outlineMenuDicts;
+    return outlineItems;
 }
 
 
