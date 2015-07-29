@@ -55,6 +55,6 @@
 - (void)colorRange:(NSRange)range wholeString:(nullable NSString *)wholeString layoutManager:(nonnull NSLayoutManager *)layoutManager temporal:(BOOL)isTemporal;
 
 
-- (nonnull NSArray *)outlineMenuArrayWithWholeString:(nullable NSString *)wholeString;
+- (nonnull NSArray *)outlineMenuItemsWithWholeString:(nullable NSString *)wholeString;
 
 @end

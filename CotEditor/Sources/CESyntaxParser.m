@@ -319,7 +319,7 @@ static CGFloat kPerCompoIncrement;
 
 // ------------------------------------------------------
 /// アウトラインメニュー用の配列を生成し、返す
-- (nonnull NSArray *)outlineMenuArrayWithWholeString:(nullable NSString *)wholeString
+- (nonnull NSArray *)outlineMenuItemsWithWholeString:(nullable NSString *)wholeString
 // ------------------------------------------------------
 {
     if (([wholeString length] == 0) || [self isNone]) { return @[]; }
