@@ -45,15 +45,11 @@
 /// designated initializer (return nil if no corresponded style dictionary can be found.)
 - (nullable instancetype)initWithStyleName:(nullable NSString *)styleName NS_DESIGNATED_INITIALIZER;
 
-// unavailable initializer
-- (nullable instancetype)init __attribute__((unavailable("use -initWithStyleName: instead")));
-
 
 // Public methods
 
 - (void)colorAllString:(nullable NSString *)wholeString layoutManager:(nonnull NSLayoutManager *)layoutManager temporal:(BOOL)isTemporal;
 - (void)colorRange:(NSRange)range wholeString:(nullable NSString *)wholeString layoutManager:(nonnull NSLayoutManager *)layoutManager temporal:(BOOL)isTemporal;
-
 
 - (nonnull NSArray *)outlineItemsWithWholeString:(nullable NSString *)wholeString;
 
