@@ -185,6 +185,7 @@
 - (void)replaceTextStorage:(NSTextStorage *)textStorage
 // ------------------------------------------------------
 {
+    [textStorage addLayoutManager:[[self textView] layoutManager]];
     [self setTextStorage:textStorage];
     [[[self textView] layoutManager] replaceTextStorage:textStorage];
 }

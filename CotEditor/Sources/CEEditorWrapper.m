@@ -749,7 +749,7 @@ static NSTimeInterval secondColoringDelay;
     [newEditorView setSyntaxWithName:[[self syntaxParser] styleName]];
     [newEditorView updateOutlineMenu];
     [[newEditorView syntaxParser] colorAllString:[self string]
-                                   layoutManager:(CELayoutManager *)[[self focusedTextView] layoutManager]];
+                                   layoutManager:(CELayoutManager *)[[newEditorView textView] layoutManager]];
     
     // move focus to the new editor
     [[self window] makeFirstResponder:[newEditorView textView]];
