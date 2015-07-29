@@ -304,7 +304,8 @@
 // ------------------------------------------------------
 {
     [[self syntaxParser] colorAllString:[[self textView] string]
-                          layoutManager:(CELayoutManager *)[[self textView] layoutManager]];
+                          layoutManager:[[self textView] layoutManager]
+                               temporal:YES];
 }
 
 

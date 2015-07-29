@@ -31,9 +31,6 @@
 @import Cocoa;
 
 
-@class CELayoutManager;
-
-
 @interface CESyntaxParser : NSObject
 
 // readonly
@@ -53,8 +50,11 @@
 
 
 // Public methods
-- (void)colorAllString:(nullable NSString *)wholeString layoutManager:(nonnull CELayoutManager *)layoutManager;
-- (void)colorRange:(NSRange)range wholeString:(nullable NSString *)wholeString layoutManager:(nonnull CELayoutManager *)layoutManager;
+
+- (void)colorAllString:(nullable NSString *)wholeString layoutManager:(nonnull NSLayoutManager *)layoutManager temporal:(BOOL)isTemporal;
+- (void)colorRange:(NSRange)range wholeString:(nullable NSString *)wholeString layoutManager:(nonnull NSLayoutManager *)layoutManager temporal:(BOOL)isTemporal;
+
+
 - (nonnull NSArray *)outlineMenuArrayWithWholeString:(nullable NSString *)wholeString;
 
 @end
