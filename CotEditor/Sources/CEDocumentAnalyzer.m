@@ -276,7 +276,7 @@ NSString *__nonnull const CEAnalyzerDidUpdateEditorInfoNotification = @"CEAnalyz
 
 
 
-#pragma mark Plivate methods
+#pragma mark Private methods
 
 // ------------------------------------------------------
 /// format count number with selection
