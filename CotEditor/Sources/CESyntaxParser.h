@@ -46,15 +46,15 @@
 
 
 /// designated initializer (return nil if no corresponded style dictionary can be found.)
-- (nullable instancetype)initWithStyleName:(nullable NSString *)styleName layoutManager:(nonnull CELayoutManager *)layoutManager NS_DESIGNATED_INITIALIZER;
+- (nullable instancetype)initWithStyleName:(nullable NSString *)styleName NS_DESIGNATED_INITIALIZER;
 
 // unavailable initializer
-- (nullable instancetype)init __attribute__((unavailable("use -initWithStyleName:layoutManager: instead")));
+- (nullable instancetype)init __attribute__((unavailable("use -initWithStyleName: instead")));
 
 
 // Public methods
-- (void)colorAllString:(nullable NSString *)wholeString;
-- (void)colorRange:(NSRange)range wholeString:(nullable NSString *)wholeString;
+- (void)colorAllString:(nullable NSString *)wholeString layoutManager:(nonnull CELayoutManager *)layoutManager;
+- (void)colorRange:(NSRange)range wholeString:(nullable NSString *)wholeString layoutManager:(nonnull CELayoutManager *)layoutManager;
 - (nonnull NSArray *)outlineMenuArrayWithWholeString:(nullable NSString *)wholeString;
 
 @end

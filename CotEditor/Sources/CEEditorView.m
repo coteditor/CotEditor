@@ -116,8 +116,7 @@
         NSTextContainer *container = [[NSTextContainer alloc] initWithContainerSize:NSMakeSize(CGFLOAT_MAX, CGFLOAT_MAX)];
         [layoutManager addTextContainer:container];
 
-        _syntaxParser = [[CESyntaxParser alloc] initWithStyleName:NSLocalizedString(@"None", @"")
-                                                    layoutManager:layoutManager];
+        _syntaxParser = [[CESyntaxParser alloc] initWithStyleName:NSLocalizedString(@"None", nil)];
 
         // TextView 生成
         _textView = [[CETextView alloc] initWithFrame:NSZeroRect textContainer:container];
@@ -290,8 +289,7 @@
 - (void)setSyntaxWithName:(NSString *)styleName
 // ------------------------------------------------------
 {
-    [self setSyntaxParser:[[CESyntaxParser alloc] initWithStyleName:styleName
-                                                      layoutManager:(CELayoutManager *)[[self textView] layoutManager]]];
+    [self setSyntaxParser:[[CESyntaxParser alloc] initWithStyleName:styleName]];
     
     [[self textView] setInlineCommentDelimiter:[[self syntaxParser] inlineCommentDelimiter]];
     [[self textView] setBlockCommentDelimiters:[[self syntaxParser] blockCommentDelimiters]];
@@ -304,7 +302,8 @@
 - (void)recolorAllTextViewString
 // ------------------------------------------------------
 {
-    [[self syntaxParser] colorAllString:[[self textView] string]];
+    [[self syntaxParser] colorAllString:[[self textView] string]
+                          layoutManager:(CELayoutManager *)[[self textView] layoutManager]];
 }
 
 

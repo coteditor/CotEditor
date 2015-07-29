@@ -62,8 +62,6 @@ typedef NS_ENUM(NSUInteger, QCStartEndType) {
 
 @interface CESyntaxParser ()
 
-@property (nonatomic, nonnull) CELayoutManager *layoutManager;
-
 @property (nonatomic) BOOL hasSyntaxHighlighting;
 @property (nonatomic, nullable, copy) NSDictionary *coloringDictionary;
 @property (nonatomic, nullable, copy) NSDictionary *simpleWordsCharacterSets;
@@ -121,7 +119,7 @@ static CGFloat kPerCompoIncrement;
 - (nullable instancetype)init
 //------------------------------------------------------
 {
-    return [self initWithStyleName:nil layoutManager:[[CELayoutManager alloc] init]];
+    return [self initWithStyleName:nil];
 }
 
 
@@ -130,7 +128,7 @@ static CGFloat kPerCompoIncrement;
 
 // ------------------------------------------------------
 /// designated initializer
-- (nullable instancetype)initWithStyleName:(nullable NSString *)styleName layoutManager:(nonnull CELayoutManager *)layoutManager
+- (nullable instancetype)initWithStyleName:(nullable NSString *)styleName
 // ------------------------------------------------------
 {
     self = [super init];
@@ -264,8 +262,6 @@ static CGFloat kPerCompoIncrement;
         } else {
             return nil;
         }
-        
-        _layoutManager = layoutManager;
     }
     return self;
 }
@@ -273,7 +269,7 @@ static CGFloat kPerCompoIncrement;
 
 // ------------------------------------------------------
 /// 全体をカラーリング
-- (void)colorAllString:(nullable NSString *)wholeString
+- (void)colorAllString:(nullable NSString *)wholeString layoutManager:(nonnull CELayoutManager *)layoutManager
 // ------------------------------------------------------
 {
     if ([wholeString length] == 0) { return; }
@@ -282,16 +278,16 @@ static CGFloat kPerCompoIncrement;
     
     // 前回の全文カラーリングと内容が全く同じ場合はキャッシュを使う
     if ([[wholeString MD5] isEqualToString:[self cacheHash]]) {
-        [self applyColorings:[self cacheColorings] range:range];
+        [self applyColorings:[self cacheColorings] range:range layoutManager:layoutManager];
     } else {
-        [self colorString:[wholeString copy] range:range];
+        [self colorString:[wholeString copy] range:range layoutManager:layoutManager];
     }
 }
 
 
 // ------------------------------------------------------
 /// 表示されている部分をカラーリング
-- (void)colorRange:(NSRange)range wholeString:(nullable NSString *)wholeString
+- (void)colorRange:(NSRange)range wholeString:(nullable NSString *)wholeString layoutManager:(nonnull CELayoutManager *)layoutManager
 // ------------------------------------------------------
 {
     if ([wholeString length] == 0) { return; }
@@ -302,12 +298,12 @@ static CGFloat kPerCompoIncrement;
     NSUInteger end = NSMaxRange(range) - 1;
 
     // 直前／直後が同色ならカラーリング範囲を拡大する
-    [[self layoutManager] temporaryAttributesAtCharacterIndex:start
+    [layoutManager temporaryAttributesAtCharacterIndex:start
                                         longestEffectiveRange:&effectiveRange
                                                       inRange:wholeRange];
     start = effectiveRange.location;
     
-    [[self layoutManager] temporaryAttributesAtCharacterIndex:end
+    [layoutManager temporaryAttributesAtCharacterIndex:end
                                         longestEffectiveRange:&effectiveRange
                                                       inRange:wholeRange];
     end = MIN(NSMaxRange(effectiveRange), NSMaxRange(wholeRange));
@@ -318,7 +314,7 @@ static CGFloat kPerCompoIncrement;
     NSRange coloringRange = NSMakeRange(start, end - start);
     coloringRange = [wholeString lineRangeForRange:coloringRange];
     
-    [self colorString:wholeString range:coloringRange];
+    [self colorString:wholeString range:coloringRange layoutManager:layoutManager];
 }
 
 
@@ -916,14 +912,14 @@ static CGFloat kPerCompoIncrement;
 
 // ------------------------------------------------------
 /// カラーリングを実行
-- (void)colorString:(NSString *)wholeString range:(NSRange)coloringRange
+- (void)colorString:(NSString *)wholeString range:(NSRange)coloringRange layoutManager:(nonnull CELayoutManager *)layoutManager
 // ------------------------------------------------------
 {
     if (coloringRange.length == 0) { return; }
     
     // カラーリング不要なら現在のカラーリングをクリアして戻る
     if (![self hasSyntaxHighlighting]) {
-        [self applyColorings:nil range:coloringRange];
+        [self applyColorings:@[] range:coloringRange layoutManager:layoutManager];
         return;
     }
     
@@ -935,7 +931,7 @@ static CGFloat kPerCompoIncrement;
     CEIndicatorSheetController *indicator = nil;
     NSUInteger indicatorThreshold = [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultShowColoringIndicatorTextLengthKey];
     if ((indicatorThreshold > 0) && (coloringRange.length > indicatorThreshold)) {
-        NSWindow *documentWindow = [[[self layoutManager] firstTextView] window];
+        NSWindow *documentWindow = [[layoutManager firstTextView] window];
         indicator = [[CEIndicatorSheetController alloc] initWithMessage:NSLocalizedString(@"Coloring text…", nil)];
         [self setIndicatorController:indicator];
         [[self indicatorController] beginSheetForWindow:documentWindow];
@@ -948,22 +944,24 @@ static CGFloat kPerCompoIncrement;
         // カラー範囲を抽出する
         NSArray *colorings = [strongSelf extractAllSyntaxFromString:coloringString];
         
-        // 全文を抽出した場合は抽出結果をキャッシュする
-        if (([colorings count] > 0) && (coloringRange.length == [wholeString length])) {
-            [strongSelf setCacheColorings:colorings];
-            [strongSelf setCacheHash:[wholeString MD5]];
-        }
-        
-        // インジケータシートのメッセージを更新
-        if (colorings && indicator) {
-            [indicator setInformativeText:NSLocalizedString(@"Applying colors to text", nil)];
-        }
-        
-        // カラーを適用する（すでにエディタの文字列が解析した文字列から変化しているときは諦める）
-        if (colorings && [[[[strongSelf layoutManager] textStorage] string] isEqualToString:wholeString]) {
-            dispatch_sync(dispatch_get_main_queue(), ^{
-                [strongSelf applyColorings:colorings range:coloringRange];
-            });
+        if ([colorings count] > 0) {
+            // 全文を抽出した場合は抽出結果をキャッシュする
+            if (coloringRange.length == [wholeString length]) {
+                [strongSelf setCacheColorings:colorings];
+                [strongSelf setCacheHash:[wholeString MD5]];
+            }
+            
+            // カラーを適用する（すでにエディタの文字列が解析した文字列から変化しているときは諦める）
+            if ([[[layoutManager textStorage] string] isEqualToString:wholeString]) {
+                dispatch_sync(dispatch_get_main_queue(), ^{
+                    // インジケータシートのメッセージを更新
+                    if (indicator) {
+                        [indicator setInformativeText:NSLocalizedString(@"Applying colors to text", nil)];
+                    }
+                    
+                    [strongSelf applyColorings:colorings range:coloringRange layoutManager:layoutManager];
+                });
+            }
         }
         
         // インジーケータシートを片づける
@@ -979,12 +977,11 @@ static CGFloat kPerCompoIncrement;
 
 // ------------------------------------------------------
 /// 抽出したカラー範囲配列を書類に適用する
-- (void)applyColorings:(NSArray *)colorings range:(NSRange)coloringRange
+- (void)applyColorings:(NSArray *)colorings range:(NSRange)coloringRange layoutManager:(nonnull CELayoutManager *)layoutManager
 // ------------------------------------------------------
 {
-    NSLayoutManager *layoutManager = [self layoutManager];
     CETheme *theme = [(NSTextView<CETextViewProtocol> *)[layoutManager firstTextView] theme];
-    BOOL isPrinting = [[self layoutManager] isPrinting];
+    BOOL isPrinting = [layoutManager isPrinting];
     BOOL showsInvisibles = [layoutManager showsControlCharacters];
     
     // 現在あるカラーリングを削除
