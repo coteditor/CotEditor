@@ -536,7 +536,6 @@ static NSPoint kTextContainerOrigin;
         } else {
             NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:@"" action:nil keyEquivalent:@""];
             [item setImage:[NSImage imageNamed:@"ScriptTemplate"]];
-            [[item image] setTemplate:NO];  // draw in black
             [item setTag:CEScriptMenuItemTag];
             [item setSubmenu:scriptMenu];
             [menu addItem:item];
