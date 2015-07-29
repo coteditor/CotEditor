@@ -98,7 +98,8 @@
         [encodings addObject:@(kCFStringEncodingList[i])];
     }
     
-    NSDictionary *defaults = @{CEDefaultLayoutTextVerticalKey: @NO,
+    NSDictionary *defaults = @{CEDefaultDocumentConflictOptionKey: @(CEDocumentConflictRevert),
+                               CEDefaultLayoutTextVerticalKey: @NO,
                                CEDefaultSplitViewVerticalKey: @NO,
                                CEDefaultShowLineNumbersKey: @YES,
                                CEDefaultShowDocumentInspectorKey: @NO,
@@ -220,7 +221,7 @@
                                CEDefaultColoringRangeBufferLengthKey: @5000,
                                CEDefaultLargeFileAlertThresholdKey: @(100 * pow(1024, 2)),  // 100 MB
                                CEDefaultAutosavingDelayKey: @5.0,
-                               CEDefaultDocumentConflictOptionKey: @(CEDocumentConflictRevert),
+                               CEDefaultEnablesAutosaveInPlaceKey: @NO,
                                };
     [[NSUserDefaults standardUserDefaults] registerDefaults:defaults];
     

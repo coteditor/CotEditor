@@ -107,6 +107,7 @@ extern NSString *__nonnull const CENewNameKey;
 
 // general settings
 extern NSString *__nonnull const CEDefaultLastVersionKey;
+extern NSString *__nonnull const CEDefaultDocumentConflictOptionKey;
 extern NSString *__nonnull const CEDefaultLayoutTextVerticalKey;
 extern NSString *__nonnull const CEDefaultSplitViewVerticalKey;
 extern NSString *__nonnull const CEDefaultShowLineNumbersKey;
@@ -239,7 +240,7 @@ extern NSString *__nonnull const CEDefaultNotifyEditByAnotherKey;
 extern NSString *__nonnull const CEDefaultColoringRangeBufferLengthKey;
 extern NSString *__nonnull const CEDefaultLargeFileAlertThresholdKey;
 extern NSString *__nonnull const CEDefaultAutosavingDelayKey;
-extern NSString *__nonnull const CEDefaultDocumentConflictOptionKey;
+extern NSString *__nonnull const CEDefaultEnablesAutosaveInPlaceKey;
 
 
 

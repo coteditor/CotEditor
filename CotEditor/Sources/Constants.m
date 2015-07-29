@@ -106,6 +106,7 @@ NSString *__nonnull const CENewNameKey = @"CENewNameKey";
 
 // general settings
 NSString *__nonnull const CEDefaultLastVersionKey = @"lastVersion";
+NSString *__nonnull const CEDefaultDocumentConflictOptionKey = @"documentConflictOption";
 NSString *__nonnull const CEDefaultLayoutTextVerticalKey = @"layoutTextVertical";
 NSString *__nonnull const CEDefaultSplitViewVerticalKey = @"splitViewVertical";
 NSString *__nonnull const CEDefaultShowLineNumbersKey = @"showLineNumbers";
@@ -238,7 +239,7 @@ NSString *__nonnull const CEDefaultNotifyEditByAnotherKey = @"notifyEditByAnothe
 NSString *__nonnull const CEDefaultColoringRangeBufferLengthKey = @"coloringRangeBufferLength";
 NSString *__nonnull const CEDefaultLargeFileAlertThresholdKey = @"largeFileAlertThreshold";
 NSString *__nonnull const CEDefaultAutosavingDelayKey = @"autosavingDelay";
-NSString *__nonnull const CEDefaultDocumentConflictOptionKey = @"documentConflictOption";
+NSString *__nonnull const CEDefaultEnablesAutosaveInPlaceKey = @"enablesAutosaveInPlace";
 
 
 
