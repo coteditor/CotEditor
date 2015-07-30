@@ -265,57 +265,16 @@ static CGFloat kPerCompoIncrement;
     return self;
 }
 
-
-// ------------------------------------------------------
-/// 全体をカラーリング
-- (void)colorAllString:(nullable NSString *)wholeString layoutManager:(nonnull NSLayoutManager *)layoutManager temporal:(BOOL)isTemporal
-// ------------------------------------------------------
-{
-    if ([wholeString length] == 0) { return; }
-    
-    NSRange range = NSMakeRange(0, [wholeString length]);
-    
-    // 前回の全文カラーリングと内容が全く同じ場合はキャッシュを使う
-    if ([[wholeString MD5] isEqualToString:[self cacheHash]]) {
-        [self applyColorings:[self cacheColorings] range:range layoutManager:layoutManager temporal:isTemporal];
-    } else {
-        [self colorString:[wholeString copy] range:range layoutManager:layoutManager temporal:isTemporal];
-    }
-}
+@end
 
 
-// ------------------------------------------------------
-/// 表示されている部分をカラーリング
-- (void)colorRange:(NSRange)range wholeString:(nullable NSString *)wholeString layoutManager:(nonnull NSLayoutManager *)layoutManager temporal:(BOOL)isTemporal
-// ------------------------------------------------------
-{
-    if ([wholeString length] == 0) { return; }
-    
-    NSRange wholeRange = NSMakeRange(0, [wholeString length]);
-    NSRange effectiveRange;
-    NSUInteger start = range.location;
-    NSUInteger end = NSMaxRange(range) - 1;
 
-    // 直前／直後が同色ならカラーリング範囲を拡大する
-    [layoutManager temporaryAttributesAtCharacterIndex:start
-                                 longestEffectiveRange:&effectiveRange
-                                               inRange:wholeRange];
-    start = effectiveRange.location;
-    
-    [layoutManager temporaryAttributesAtCharacterIndex:end
-                                 longestEffectiveRange:&effectiveRange
-                                               inRange:wholeRange];
-    end = NSMaxRange(effectiveRange);
-    
-    // 表示領域の前もある程度カラーリングの対象に含める
-    start -= MIN(start, [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultColoringRangeBufferLengthKey]);
-    
-    NSRange coloringRange = NSMakeRange(start, end - start);
-    coloringRange = [wholeString lineRangeForRange:coloringRange];
-    
-    [self colorString:wholeString range:coloringRange layoutManager:layoutManager temporal:isTemporal];
-}
 
+#pragma mark -
+
+@implementation CESyntaxParser (Outline)
+
+#pragma mark Public Methods
 
 // ------------------------------------------------------
 /// アウトラインメニュー用の配列を生成し、返す
@@ -332,7 +291,7 @@ static CGFloat kPerCompoIncrement;
         if ([definition[CESyntaxIgnoreCaseKey] boolValue]) {
             options |= NSRegularExpressionCaseInsensitive;
         }
-
+        
         NSError *error = nil;
         NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:definition[CESyntaxBeginStringKey]
                                                                                options:options
@@ -425,6 +384,67 @@ static CGFloat kPerCompoIncrement;
     }
     
     return outlineItems;
+}
+
+@end
+
+
+
+
+#pragma mark -
+
+@implementation CESyntaxParser (Highlighting)
+
+#pragma mark Public Methods
+
+// ------------------------------------------------------
+/// 全体をカラーリング
+- (void)colorAllString:(nullable NSString *)wholeString layoutManager:(nonnull NSLayoutManager *)layoutManager temporal:(BOOL)isTemporal
+// ------------------------------------------------------
+{
+    if ([wholeString length] == 0) { return; }
+    
+    NSRange range = NSMakeRange(0, [wholeString length]);
+    
+    // 前回の全文カラーリングと内容が全く同じ場合はキャッシュを使う
+    if ([[wholeString MD5] isEqualToString:[self cacheHash]]) {
+        [self applyColorings:[self cacheColorings] range:range layoutManager:layoutManager temporal:isTemporal];
+    } else {
+        [self colorString:[wholeString copy] range:range layoutManager:layoutManager temporal:isTemporal];
+    }
+}
+
+
+// ------------------------------------------------------
+/// 表示されている部分をカラーリング
+- (void)colorRange:(NSRange)range wholeString:(nullable NSString *)wholeString layoutManager:(nonnull NSLayoutManager *)layoutManager temporal:(BOOL)isTemporal
+// ------------------------------------------------------
+{
+    if ([wholeString length] == 0) { return; }
+    
+    NSRange wholeRange = NSMakeRange(0, [wholeString length]);
+    NSRange effectiveRange;
+    NSUInteger start = range.location;
+    NSUInteger end = NSMaxRange(range) - 1;
+
+    // 直前／直後が同色ならカラーリング範囲を拡大する
+    [layoutManager temporaryAttributesAtCharacterIndex:start
+                                 longestEffectiveRange:&effectiveRange
+                                               inRange:wholeRange];
+    start = effectiveRange.location;
+    
+    [layoutManager temporaryAttributesAtCharacterIndex:end
+                                 longestEffectiveRange:&effectiveRange
+                                               inRange:wholeRange];
+    end = NSMaxRange(effectiveRange);
+    
+    // 表示領域の前もある程度カラーリングの対象に含める
+    start -= MIN(start, [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultColoringRangeBufferLengthKey]);
+    
+    NSRange coloringRange = NSMakeRange(start, end - start);
+    coloringRange = [wholeString lineRangeForRange:coloringRange];
+    
+    [self colorString:wholeString range:coloringRange layoutManager:layoutManager temporal:isTemporal];
 }
 
 

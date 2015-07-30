@@ -45,12 +45,21 @@
 /// designated initializer (return nil if no corresponded style dictionary can be found.)
 - (nullable instancetype)initWithStyleName:(nullable NSString *)styleName NS_DESIGNATED_INITIALIZER;
 
+@end
 
-// Public methods
+
+
+@interface CESyntaxParser (Outline)
+
+- (nonnull NSArray *)outlineItemsWithWholeString:(nullable NSString *)wholeString;
+
+@end
+
+
+
+@interface CESyntaxParser (Highlighting)
 
 - (void)colorAllString:(nullable NSString *)wholeString layoutManager:(nonnull NSLayoutManager *)layoutManager temporal:(BOOL)isTemporal;
 - (void)colorRange:(NSRange)range wholeString:(nullable NSString *)wholeString layoutManager:(nonnull NSLayoutManager *)layoutManager temporal:(BOOL)isTemporal;
-
-- (nonnull NSArray *)outlineItemsWithWholeString:(nullable NSString *)wholeString;
 
 @end
