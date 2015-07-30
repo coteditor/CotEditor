@@ -96,7 +96,15 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 + (BOOL)autosavesInPlace
 // ------------------------------------------------------
 {
-    return [[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultEnablesAutosaveInPlaceKey];
+    static dispatch_once_t onceToken;
+    static BOOL autosavesInPlace;
+    
+    // avoid changing the value while the application is running
+    dispatch_once(&onceToken, ^{
+        autosavesInPlace = [[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultEnablesAutosaveInPlaceKey];
+    });
+    
+    return autosavesInPlace;
 }
 
 
