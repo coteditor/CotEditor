@@ -27,7 +27,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   OgreKit:
-    :commit: b4963bb2f43a94ebb5df76a1233d90ec1e2401ff
+    :commit: 4686726848f33a818f88b6b955651c4cdbf2ce48
     :git: https://github.com/coteditor/OgreKit.git
   YAML-Framework:
     :commit: 5968c1764a06995c68efd03ea2702a9012a94a4b
@@ -36,7 +36,7 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   EDSemver: 124a90685873628ec30f42504b461a1a61757568
   LibYAML: 3af2c5adf3a40dff936d087aa6a77edc10036bc5
-  OgreKit: 2b6ef7d9eb630bddae894dc8e83d3914612a3f08
+  OgreKit: d747b33f7237f76a4301ce5a737af99f2fcd461f
   RegexKitLite: c0e4c12e6e7de0769f3a3ed679f0f61604170661
   Sparkle: c859bf5283b9f12aa45bceccf8e25ebb4c008eb2
   WFColorCode: 96a5a4b6d8267dae1915274b5bb964de09c30d07
