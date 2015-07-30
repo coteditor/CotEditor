@@ -32,14 +32,13 @@
 
 @interface CEIndicatorSheetController ()
 
-@property (weak) IBOutlet NSProgressIndicator *indicator;
-@property NSWindow *parentWindow;
+@property (nonatomic, weak) IBOutlet NSProgressIndicator *indicator;
 
-@property (nonnull, copy) NSString *message;
+@property (nonatomic, nonnull, copy) NSString *message;
 @property NSModalSession modalSession;
 
 // readonly
-@property (readwrite, getter=isCancelled) BOOL cancelled;
+@property (readwrite, nonatomic, getter=isCancelled) BOOL cancelled;
 
 @end
 
@@ -84,32 +83,12 @@
 #pragma mark Public Methods
 
 // ------------------------------------------------------
-/// return indicator progress
-- (CGFloat)indicatorValue
-// ------------------------------------------------------
-{
-    return (CGFloat)[[self indicator] doubleValue];
-}
-
-
-// ------------------------------------------------------
-/// set indicator progress
-- (void)setIndicatorValue:(CGFloat)indicatorValue
-// ------------------------------------------------------
-{
-    [[self indicator] setDoubleValue:(double)indicatorValue];
-    [[self indicator] displayIfNeeded];
-}
-
-
-// ------------------------------------------------------
 /// show as sheet
 - (void)beginSheetForWindow:(nonnull NSWindow *)window
 // ------------------------------------------------------
 {
     if (NSAppKitVersionNumber >= NSAppKitVersionNumber10_9) { // on Mavericks or later
         [window beginSheet:[self window] completionHandler:nil];
-        [self setParentWindow:window];
         
     } else {
         [NSApp beginSheet:[self window] modalForWindow:window
@@ -125,7 +104,7 @@
 // ------------------------------------------------------
 {
     if (NSAppKitVersionNumber >= NSAppKitVersionNumber10_9) { // on Mavericks or later
-        [[self parentWindow] endSheet:[self window] returnCode:NSModalResponseCancel];
+        [[[self window] parentWindow] endSheet:[self window] returnCode:NSModalResponseCancel];
         
     } else {
         [NSApp abortModal];
@@ -137,6 +116,7 @@
     [[self window] close];
 }
 
+
 // ------------------------------------------------------
 /// increase indicator
 - (void)progressIndicator:(CGFloat)delta
@@ -145,7 +125,7 @@
     // set always on main thread
     NSProgressIndicator *indicator = [self indicator];
     dispatch_async(dispatch_get_main_queue(), ^{
-        [indicator setDoubleValue:[indicator doubleValue] + (double)delta];
+        [indicator incrementBy:(double)delta];
     });
 }
 
