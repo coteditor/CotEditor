@@ -54,7 +54,7 @@
 #ifdef APPSTORE
     // cut down height for updater checkbox
     NSRect frame = [[self view] frame];
-    frame.size.height -= 30;
+    frame.size.height -= 55;
     [[self view] setFrame:frame];
 #else
     [self setHasUpdater:YES];

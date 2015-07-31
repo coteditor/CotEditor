@@ -1264,8 +1264,6 @@
 	<string>${PRODUCT_NAME}.sdef</string>
 	<key>NSSupportsAutomaticTermination</key>
 	<true/>
-	<key>SUFeedURL</key>
-	<string>http://coteditor.com/appcast.xml</string>
 	<key>SUPublicDSAKeyFile</key>
 	<string>dsa_pub.pem</string>
 </dict>

@@ -30,7 +30,12 @@
 @import Sparkle;
 #import "CEUpdaterManager.h"
 #import "EDSemver.h"
-#import "constants.h"
+#import "Constants.h"
+
+
+// constants
+static NSString *__nonnull const AppCastURL = @"http://coteditor.com/appcast.xml";
+static NSString *__nonnull const AppCastBetaURL = @"http://coteditor.com/appcast-beta.xml";
 
 
 @interface CEUpdaterManager () <SUUpdaterDelegate, SUVersionComparison>
@@ -101,6 +106,17 @@
 // ------------------------------------------------------
 {
     return self;
+}
+
+
+// ------------------------------------------------------
+/// return AppCast file URL dinamically
+- (NSString *)feedURLStringForUpdater:(SUUpdater *)updater
+// ------------------------------------------------------
+{
+    BOOL checksBeta = [[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultChecksUpdatesForBetaKey];
+    
+    return checksBeta ? AppCastBetaURL : AppCastURL;
 }
 
 

@@ -49,3 +49,6 @@
 
 /* Class = "NSButtonCell"; title = "Automatically check for updates"; ObjectID = "3423"; */
 "3423.title" = "自動的にアップデートを確認";
+
+/* Class = "NSButtonCell"; title = "Update to pre-releases when available"; ObjectID = "4aT-ka-sbv"; */
+"4aT-ka-sbv.title" = "プレリリース版を対象に含める";

@@ -175,6 +175,7 @@ NSString *__nonnull const CEDefaultEnableSmartQuotesKey = @"enableSmartQuotes";
 NSString *__nonnull const CEDefaultEnableSmartIndentKey = @"enableSmartIndent";
 NSString *__nonnull const CEDefaultAppendsCommentSpacerKey = @"appendsCommentSpacer";
 NSString *__nonnull const CEDefaultCommentsAtLineHeadKey = @"commentsAtLineHead";
+NSString *__nonnull const CEDefaultChecksUpdatesForBetaKey = @"checksUpdatesForBeta";
 
 // print settings
 NSString *__nonnull const CEDefaultSetPrintFontKey = @"setPrintFont";

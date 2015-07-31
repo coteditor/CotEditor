@@ -176,6 +176,7 @@ extern NSString *__nonnull const CEDefaultEnableSmartQuotesKey;
 extern NSString *__nonnull const CEDefaultEnableSmartIndentKey;
 extern NSString *__nonnull const CEDefaultAppendsCommentSpacerKey;
 extern NSString *__nonnull const CEDefaultCommentsAtLineHeadKey;
+extern NSString *__nonnull const CEDefaultChecksUpdatesForBetaKey;
 
 // print settings
 extern NSString *__nonnull const CEDefaultSetPrintFontKey;
