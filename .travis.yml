@@ -10,3 +10,4 @@ before_install:
 
 # enable container-based infrastructure
 sudo: false
+cache: bundler
