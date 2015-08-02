@@ -32,6 +32,7 @@ develop
 ### Fixes
 
 - Fix an issue where the full path display in the document inspector did not update after the document file moved.
+- Fix an issue where the find panel could not find matched strings when the find string includes CR or CR/LF line endings.
 - Fix an issue where line numbers were not drawn completely on OS X 10.8 when scroll bars are set as always shown.
 - Improve general stability.
 

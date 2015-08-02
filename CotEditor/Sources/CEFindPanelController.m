@@ -404,7 +404,7 @@ static NSString *const kEscapeCharacter = @"\\";
     
     [self invalidateSyntaxInTextFinder];
     
-    OgreTextFindResult *result = [[self textFinder] findAll:[self findString]
+    OgreTextFindResult *result = [[self textFinder] findAll:[self sanitizedFindString]
                                                       color:[self highlightColor]
                                                     options:[self options]
                                                 inSelection:[self inSelection]];
@@ -462,7 +462,7 @@ static NSString *const kEscapeCharacter = @"\\";
     
     [self invalidateSyntaxInTextFinder];
     
-    OgreTextFindResult *result = [[self textFinder] replaceAndFind:[self findString]
+    OgreTextFindResult *result = [[self textFinder] replaceAndFind:[self sanitizedFindString]
                                                         withString:[self replacementString] ? : @""
                                                            options:[self options]
                                                      replacingOnly:YES
@@ -484,7 +484,7 @@ static NSString *const kEscapeCharacter = @"\\";
     
     [self invalidateSyntaxInTextFinder];
     
-    OgreTextFindResult *result = [[self textFinder] replaceAndFind:[self findString]
+    OgreTextFindResult *result = [[self textFinder] replaceAndFind:[self sanitizedFindString]
                                                         withString:[self replacementString] ? : @""
                                                            options:[self options]
                                                      replacingOnly:NO
@@ -514,7 +514,7 @@ static NSString *const kEscapeCharacter = @"\\";
     
     [self invalidateSyntaxInTextFinder];
     
-    [[self textFinder] replaceAll:[self findString]
+    [[self textFinder] replaceAll:[self sanitizedFindString]
                        withString:[self replacementString] ? : @""
                           options:[self options]
                       inSelection:[self inSelection]];
@@ -533,7 +533,7 @@ static NSString *const kEscapeCharacter = @"\\";
     
     [self invalidateSyntaxInTextFinder];
     
-    [[self textFinder] hightlight:[self findString]
+    [[self textFinder] hightlight:[self sanitizedFindString]
                             color:[self highlightColor]
                           options:[self options]
                       inSelection:[self inSelection]];
@@ -662,6 +662,16 @@ static NSString *const kEscapeCharacter = @"\\";
 #pragma mark Private Methods
 
 // ------------------------------------------------------
+/// find string of which line endings are standardized to LF
+- (NSString *)sanitizedFindString
+// ------------------------------------------------------
+{
+    return [OGRegularExpression replaceNewlineCharactersInString:[self findString]
+                                                   withCharacter:OgreLfNewlineCharacter];
+}
+
+
+// ------------------------------------------------------
 /// update syntax (and regex enability) setting in textFinder
 - (void)invalidateSyntaxInTextFinder
 // ------------------------------------------------------
@@ -781,7 +791,7 @@ static NSString *const kEscapeCharacter = @"\\";
     
     [self invalidateSyntaxInTextFinder];
     
-    OgreTextFindResult *result = [[self textFinder] find:[self findString]
+    OgreTextFindResult *result = [[self textFinder] find:[self sanitizedFindString]
                                                  options:[self options]
                                                  fromTop:NO
                                                  forward:forward
@@ -820,7 +830,7 @@ static NSString *const kEscapeCharacter = @"\\";
     // check regex syntax of find string and alert if invalid
     if ([self usesRegularExpression]) {
         @try {
-            [OGRegularExpression regularExpressionWithString:[self findString]
+            [OGRegularExpression regularExpressionWithString:[self sanitizedFindString]
                                                      options:[self options]
                                                       syntax:[self syntax]
                                              escapeCharacter:kEscapeCharacter];
