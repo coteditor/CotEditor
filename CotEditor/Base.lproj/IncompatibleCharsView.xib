@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="7706" systemVersion="14F6a" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="7706" systemVersion="14F19a" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="7706"/>
@@ -17,7 +17,7 @@
             <rect key="frame" x="0.0" y="0.0" width="220" height="446"/>
             <subviews>
                 <scrollView horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1fA-a5-pHs">
-                    <rect key="frame" x="12" y="12" width="196" height="404"/>
+                    <rect key="frame" x="12" y="12" width="196" height="408"/>
                     <clipView key="contentView" id="BWW-Dc-ntm">
                         <rect key="frame" x="1" y="0.0" width="197" height="465"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -180,7 +180,7 @@
                     </tableHeaderView>
                 </scrollView>
                 <textField verticalHuggingPriority="1000" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="iOD-RT-n3c" customClass="CEWrappingTextField">
-                    <rect key="frame" x="14" y="378" width="192" height="14"/>
+                    <rect key="frame" x="14" y="382" width="192" height="14"/>
                     <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="No incompatible chars were found." id="wsL-BG-Ii8">
                         <font key="font" metaFont="smallSystem"/>
                         <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
@@ -191,7 +191,7 @@
                     </connections>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Rrr-tD-nLq">
-                    <rect key="frame" x="10" y="424" width="200" height="14"/>
+                    <rect key="frame" x="10" y="428" width="200" height="14"/>
                     <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Incompatible Characters" id="W1c-aP-XZa">
                         <font key="font" metaFont="smallSystemBold"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -206,7 +206,7 @@
                 <constraint firstItem="iOD-RT-n3c" firstAttribute="trailing" secondItem="1fA-a5-pHs" secondAttribute="trailing" constant="-4" id="EtF-yg-i6k"/>
                 <constraint firstItem="iOD-RT-n3c" firstAttribute="leading" secondItem="1fA-a5-pHs" secondAttribute="leading" constant="4" id="FwC-VY-tff"/>
                 <constraint firstItem="Rrr-tD-nLq" firstAttribute="leading" secondItem="jLy-9i-VMu" secondAttribute="leading" constant="12" id="M8a-CP-Ev4"/>
-                <constraint firstItem="Rrr-tD-nLq" firstAttribute="top" secondItem="jLy-9i-VMu" secondAttribute="top" constant="8" id="bZ1-jy-Kbz"/>
+                <constraint firstItem="Rrr-tD-nLq" firstAttribute="top" secondItem="jLy-9i-VMu" secondAttribute="top" constant="4" id="bZ1-jy-Kbz"/>
                 <constraint firstItem="1fA-a5-pHs" firstAttribute="top" secondItem="Rrr-tD-nLq" secondAttribute="bottom" constant="8" symbolic="YES" id="oMS-GT-GHU"/>
                 <constraint firstAttribute="trailing" secondItem="Rrr-tD-nLq" secondAttribute="trailing" constant="12" id="xfT-kC-nbY"/>
                 <constraint firstItem="1fA-a5-pHs" firstAttribute="leading" secondItem="jLy-9i-VMu" secondAttribute="leading" constant="12" id="yr3-h4-MVA"/>

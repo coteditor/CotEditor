@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="7706" systemVersion="14F6a" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="7706" systemVersion="14F19a" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="7706"/>
@@ -18,13 +18,13 @@
             </connections>
         </objectController>
         <scrollView verticalHuggingPriority="750" borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kdC-U7-dlL">
-            <rect key="frame" x="0.0" y="0.0" width="220" height="475"/>
+            <rect key="frame" x="0.0" y="0.0" width="220" height="471"/>
             <clipView key="contentView" verticalHuggingPriority="750" drawsBackground="NO" copiesOnScroll="NO" id="uiH-oN-aKm" customClass="CEClipView">
                 <rect key="frame" x="0.0" y="0.0" width="210" height="486"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
                     <customView verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ZBi-EJ-Lzu" userLabel="Document View">
-                        <rect key="frame" x="0.0" y="30" width="220" height="475"/>
+                        <rect key="frame" x="0.0" y="0.0" width="220" height="471"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="agR-rr-ESl">
                                 <rect key="frame" x="10" y="453" width="86" height="14"/>
@@ -510,7 +510,7 @@
                             <constraint firstItem="bMZ-dg-rTd" firstAttribute="leading" secondItem="alZ-aH-yTj" secondAttribute="trailing" constant="8" symbolic="YES" id="Riz-Vr-bn3"/>
                             <constraint firstItem="pho-Pk-A5q" firstAttribute="trailing" secondItem="HS1-NO-xbQ" secondAttribute="trailing" id="SAy-WH-w8b"/>
                             <constraint firstItem="DIu-Ro-39n" firstAttribute="leading" secondItem="Iks-uX-et7" secondAttribute="trailing" constant="8" symbolic="YES" id="Snw-3w-cpZ"/>
-                            <constraint firstItem="agR-rr-ESl" firstAttribute="top" secondItem="ZBi-EJ-Lzu" secondAttribute="top" constant="8" id="T6s-GW-Kq0"/>
+                            <constraint firstItem="agR-rr-ESl" firstAttribute="top" secondItem="ZBi-EJ-Lzu" secondAttribute="top" constant="4" id="T6s-GW-Kq0"/>
                             <constraint firstItem="Iks-uX-et7" firstAttribute="leading" secondItem="ZBi-EJ-Lzu" secondAttribute="leading" constant="12" id="U4E-Id-q7Z"/>
                             <constraint firstItem="UmS-5X-1Cm" firstAttribute="leading" secondItem="ZBi-EJ-Lzu" secondAttribute="leading" constant="8" id="UJs-C1-UCj"/>
                             <constraint firstItem="HVJ-V3-aPB" firstAttribute="baseline" secondItem="zhY-Cw-5nN" secondAttribute="baseline" id="US3-rq-zxm"/>
