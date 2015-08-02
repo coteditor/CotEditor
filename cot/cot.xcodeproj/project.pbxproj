@@ -10,35 +10,13 @@
 		2A55336C1B5642110056FF3E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A55336B1B5642110056FF3E /* main.m */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		2A5533661B5642110056FF3E /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
-			dstSubfolderSpec = 0;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 1;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
 		2A5533681B5642110056FF3E /* cot */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = cot; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A55336B1B5642110056FF3E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		2A5533731B5642FA0056FF3E /* cot-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "cot-Info.plist"; sourceTree = SOURCE_ROOT; };
+		2A5533731B5642FA0056FF3E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = SOURCE_ROOT; };
 		2A5533741B5645E70056FF3E /* CotEditor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CotEditor.h; sourceTree = "<group>"; };
 		2A5533781B5666CD0056FF3E /* cot.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = cot.entitlements; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
-
-/* Begin PBXFrameworksBuildPhase section */
-		2A5533651B5642110056FF3E /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		2A55335F1B5642110056FF3E = {
@@ -70,7 +48,7 @@
 		2A5533721B5642D00056FF3E /* Supporting FIles */ = {
 			isa = PBXGroup;
 			children = (
-				2A5533731B5642FA0056FF3E /* cot-Info.plist */,
+				2A5533731B5642FA0056FF3E /* Info.plist */,
 				2A5533781B5666CD0056FF3E /* cot.entitlements */,
 			);
 			name = "Supporting FIles";
@@ -85,8 +63,6 @@
 			buildConfigurationList = 2A55336F1B5642110056FF3E /* Build configuration list for PBXNativeTarget "cot" */;
 			buildPhases = (
 				2A5533641B5642110056FF3E /* Sources */,
-				2A5533651B5642110056FF3E /* Frameworks */,
-				2A5533661B5642110056FF3E /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -228,7 +204,7 @@
 					"-sectcreate",
 					__TEXT,
 					__info_plist,
-					"cot-Info.plist",
+					Info.plist,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -244,7 +220,7 @@
 					"-sectcreate",
 					__TEXT,
 					__info_plist,
-					"cot-Info.plist",
+					Info.plist,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
