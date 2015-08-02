@@ -47,6 +47,15 @@
 "3299.title" = "Wenn CotEditor aktiv wird";
 
 
+/* Class = "NSTextFieldCell"; title = "Auto Save documents:"; ObjectID = "Ki4-3Y-AZL"; */
+"Ki4-3Y-AZL.title" = "Automatisch sichern:";
+
+/* Class = "NSButtonCell"; title = "Enable Auto Save and Versions"; ObjectID = "SGo-FL-Pax"; */
+"SGo-FL-Pax.title" = "Automatische Sicherung und Versionen aktivieren";
+/* Class = "NSTextFieldCell"; title = "Some explanation about this option."; ObjectID = "sOa-Ea-zt9"; */
+"sOa-Ea-zt9.title" = "Some explanation about this option.";  // FIXME:
+
+
 /* Class = "NSTextFieldCell"; title = "When document is modified by another application:"; ObjectID = "x4n-2n-I3p"; */
 "x4n-2n-I3p.title" = "Wenn Dokument wird durch ein anderes Programm geändert:";
 

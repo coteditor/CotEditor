@@ -47,6 +47,15 @@
 "3299.title" = "CotEditor がアクティブになるとき";
 
 
+/* Class = "NSTextFieldCell"; title = "Auto Save documents:"; ObjectID = "Ki4-3Y-AZL"; */
+"Ki4-3Y-AZL.title" = "書類の自動保存：";
+
+/* Class = "NSButtonCell"; title = "Enable Auto Save and Versions"; ObjectID = "SGo-FL-Pax"; */
+"SGo-FL-Pax.title" = "自動保存とバージョンを有効にする";
+/* Class = "NSTextFieldCell"; title = "Some explanation about this option."; ObjectID = "sOa-Ea-zt9"; */
+"sOa-Ea-zt9.title" = "Some explanation about this option.";
+
+
 /* Class = "NSTextFieldCell"; title = "When document is modified by another application:"; ObjectID = "x4n-2n-I3p"; */
 "x4n-2n-I3p.title" = "書類がほかのアプリケーションによって変更されたとき：";
 
