@@ -2,7 +2,6 @@ PODS:
   - EDSemver (0.3.0)
   - LibYAML (0.1.4)
   - OgreKit (2.1.7.7)
-  - RegexKitLite (4.0)
   - Sparkle (1.10.0)
   - WFColorCode (1.1.3)
   - YAML-Framework (0.0.2):
@@ -11,7 +10,6 @@ PODS:
 DEPENDENCIES:
   - EDSemver
   - OgreKit (from `https://github.com/coteditor/OgreKit.git`, branch `coteditor-mod`)
-  - RegexKitLite
   - Sparkle
   - WFColorCode
   - YAML-Framework (from `https://github.com/coteditor/YAML.framework.git`, branch
@@ -37,7 +35,6 @@ SPEC CHECKSUMS:
   EDSemver: 124a90685873628ec30f42504b461a1a61757568
   LibYAML: 3af2c5adf3a40dff936d087aa6a77edc10036bc5
   OgreKit: 38a03d0162ee11035710dbfa0e1c0e7735ff084c
-  RegexKitLite: c0e4c12e6e7de0769f3a3ed679f0f61604170661
   Sparkle: c859bf5283b9f12aa45bceccf8e25ebb4c008eb2
   WFColorCode: 96a5a4b6d8267dae1915274b5bb964de09c30d07
   YAML-Framework: 6fe698e19d39d778829f5937e39d1e6bc12afd7b

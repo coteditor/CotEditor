@@ -357,7 +357,6 @@
 "End string" = "終了文字列";
 "RE string" = "正規表現";
 "multiple registered." = "重複して登録されています。";
-"Error “%@” in column %@: %@<<HERE>>%@" = "エラー “%@” (%@文字目) ：%@<<ここ>>%@";
 "Error: %@" = "エラー： %@";
 
 
