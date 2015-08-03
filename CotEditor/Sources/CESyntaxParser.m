@@ -407,7 +407,15 @@ static CGFloat kPerCompoIncrement;
     if ([[wholeString MD5] isEqualToString:[self cacheHash]]) {
         [self applyColorings:[self cacheColorings] range:range layoutManager:layoutManager temporal:isTemporal];
     } else {
-        [self colorString:[wholeString copy] range:range layoutManager:layoutManager temporal:isTemporal];
+        // make sure that string is immutable
+        NSString *safeImmutableString = [NSString stringWithString:wholeString];
+        // [Caution] DO NOT use [wholeString copy] here instead of `stringWithString:`.
+        //           It still returns a mutable object, NSBigMutableString,
+        //           and it can cause crash when the mutable string is given to NSRegularExpression instance.
+        //           (2015-08, with OS X 10.10 SDK)
+        
+        [self colorString:safeImmutableString
+                    range:range layoutManager:layoutManager temporal:isTemporal];
     }
 }
 
