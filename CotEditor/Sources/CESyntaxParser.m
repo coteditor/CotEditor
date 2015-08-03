@@ -792,8 +792,8 @@ static CGFloat kPerCompoIncrement;
 
 
 // ------------------------------------------------------
-/// 不可視文字表示時にカラーリング範囲配列を返す
-- (NSArray *)extractControlCharsFromString:(NSString *)string
+/// 不可視文字のカラーリング範囲配列を返す
+- (nonnull NSArray *)rangesOfControlCharsInString:(NSString *)string
 // ------------------------------------------------------
 {
     NSMutableArray *ranges = [NSMutableArray array];
@@ -935,7 +935,7 @@ static CGFloat kPerCompoIncrement;
     if ([indicator isCancelled]) { return nil; }
     
     // 不可視文字の追加
-    colorings[InvisiblesType] = [self extractControlCharsFromString:string];
+    colorings[InvisiblesType] = [self rangesOfControlCharsInString:string];
     
     return [colorings copy];
 }
