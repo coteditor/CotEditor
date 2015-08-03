@@ -34,7 +34,7 @@
 
 
 /* Class = "NSTextFieldCell"; title = "When document is modified by another application:"; ObjectID = "x4n-2n-I3p"; */
-"x4n-2n-I3p.title" = "書類が他のアプリケーションによって更新されたとき：";
+"x4n-2n-I3p.title" = "書類がほかのアプリケーションによって更新されたとき：";
 
 /* Class = "NSButtonCell"; title = "Ignore"; ObjectID = "DnS-XJ-7RI"; */
 "DnS-XJ-7RI.title" = "なにもしない";
