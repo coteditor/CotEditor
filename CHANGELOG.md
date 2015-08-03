@@ -16,6 +16,7 @@ develop
 
 - __Drop authopen support.__
 - Improve side inspector UI.
+- Optimize syntax highlighting performance (ca. 2.0x).
 - Move scripts folder location from `~/Library/Application Support/CotEditor/ScriptMenu/` to `~/Library/Application Scripts/com.coteditor.CotEditor/` because of the Sandbox requirement.
     - Users need to migrate their script to the new folder manually, since CotEditor doesn't have the write permisson to the new location.
 - Better file encoding handling on revert action.
