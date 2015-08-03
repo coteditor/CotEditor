@@ -817,7 +817,7 @@ static CGFloat kPerCompoIncrement;
 - (NSArray *)extractAllSyntaxFromString:(NSString *)string
 // ------------------------------------------------------
 {
-    NSMutableArray *colorings = [NSMutableArray array];  // ColorKey と RangeKey の dict配列
+    NSMutableArray *colorings = [NSMutableArray array];  // TypeKey と RangeKey の dict配列
     CEIndicatorSheetController *indicator = [self indicatorController];
     
     // Keywords > Commands > Types > Attributes > Variables > Values > Numbers > Strings > Characters > Comments
@@ -840,7 +840,7 @@ static CGFloat kPerCompoIncrement;
         
         NSMutableDictionary *simpleWordsDict = [NSMutableDictionary dictionaryWithCapacity:40];
         NSMutableDictionary *simpleICWordsDict = [NSMutableDictionary dictionaryWithCapacity:40];
-        NSMutableArray *targetRanges = [NSMutableArray arrayWithCapacity:10];
+        NSMutableArray *ranges = [NSMutableArray arrayWithCapacity:10];
         
         for (NSDictionary *strDict in strDicts) {
             @autoreleasepool {
@@ -852,20 +852,20 @@ static CGFloat kPerCompoIncrement;
                 
                 if ([strDict[CESyntaxRegularExpressionKey] boolValue]) {
                     if ([endStr length] > 0) {
-                        [targetRanges addObjectsFromArray:
+                        [ranges addObjectsFromArray:
                          [self rangesOfRegularExpressionBeginString:beginStr
                                                           endString:endStr
                                                          ignoreCase:ignoresCase
                                                              string:string]];
                     } else {
-                        [targetRanges addObjectsFromArray:
+                        [ranges addObjectsFromArray:
                          [self rangesOfRegularExpressionString:beginStr
                                                     ignoreCase:ignoresCase
                                                         string:string]];
                     }
                 } else {
                     if ([endStr length] > 0) {
-                        [targetRanges addObjectsFromArray:
+                        [ranges addObjectsFromArray:
                          [self rangesOfBeginString:beginStr
                                          endString:endStr
                                         ignoreCase:ignoresCase
@@ -893,14 +893,14 @@ static CGFloat kPerCompoIncrement;
         } // end-for (strDict)
         
         if ([simpleWordsDict count] > 0 || [simpleICWordsDict count] > 0) {
-            [targetRanges addObjectsFromArray:
+            [ranges addObjectsFromArray:
              [self rangesOfSimpleWords:simpleWordsDict
                        ignoreCaseWords:simpleICWordsDict
                                charSet:[self simpleWordsCharacterSets][syntaxKey]
                                 string:string]];
         }
         // カラーとrangeのペアを格納
-        for (NSValue *value in targetRanges) {
+        for (NSValue *value in ranges) {
             [colorings addObject:@{TypeKey: syntaxKey,
                                    RangeKey: value}];
         }
