@@ -38,8 +38,6 @@
 
 
 // local constants (QC might abbr of Quotes/Comment)
-static NSString *const TypeKey = @"TypeKey";
-static NSString *const RangeKey = @"RangeKey";
 static NSString *const InvisiblesType = @"invisibles";
 
 static NSString *const QCLocationKey = @"QCLocationKey";
@@ -65,7 +63,7 @@ typedef NS_ENUM(NSUInteger, QCStartEndType) {
 @property (nonatomic, nullable, copy) NSDictionary *coloringDictionary;
 @property (nonatomic, nullable, copy) NSDictionary *simpleWordsCharacterSets;
 @property (nonatomic, nullable, copy) NSDictionary *pairedQuoteTypes;  // dict for quote pair to extract with comment
-@property (nonatomic, nullable, copy) NSArray *cacheColorings;  // extracted results cache of the last whole string coloring
+@property (nonatomic, nullable, copy) NSDictionary *cacheColorings;  // extracted results cache of the last whole string coloring
 @property (nonatomic, nullable, copy) NSString *cacheHash;  // MD5 hash
 
 @property (atomic, nullable) CEIndicatorSheetController *indicatorController;
@@ -665,7 +663,7 @@ static CGFloat kPerCompoIncrement;
 
 // ------------------------------------------------------
 /// クオートで囲まれた文字列とともにコメントをカラーリング
-- (NSArray *)extractCommentsWithQuotesFromString:(NSString *)string
+- (NSDictionary *)extractCommentsWithQuotesFromString:(NSString *)string
 // ------------------------------------------------------
 {
     NSDictionary *quoteTypes = [self pairedQuoteTypes];
@@ -738,7 +736,7 @@ static CGFloat kPerCompoIncrement;
     [positions sortUsingDescriptors:@[positionSort, prioritySort]];
     
     // カラーリング範囲を走査
-    NSMutableArray *colorings = [NSMutableArray array];
+    NSMutableDictionary *colorings = [NSMutableDictionary dictionary];
     NSUInteger startLocation = 0;
     NSString *searchPairKind = nil;
     BOOL isContinued = NO;
@@ -764,8 +762,11 @@ static CGFloat kPerCompoIncrement;
             NSString *colorType = quoteTypes[searchPairKind] ? : CESyntaxCommentsKey;
             NSRange range = NSMakeRange(startLocation, endLocation - startLocation);
             
-            [colorings addObject:@{TypeKey: colorType,
-                                   RangeKey: [NSValue valueWithRange:range]}];
+            if (colorings[colorType]) {
+                [colorings[colorType] addObject:[NSValue valueWithRange:range]];
+            } else {
+                colorings[colorType] = [NSMutableArray arrayWithObject:[NSValue valueWithRange:range]];
+            }
             
             searchPairKind = nil;
             continue;
@@ -779,11 +780,14 @@ static CGFloat kPerCompoIncrement;
         NSString *colorType = quoteTypes[searchPairKind] ? : CESyntaxCommentsKey;
         NSRange range = NSMakeRange(startLocation, [string length] - startLocation);
         
-        [colorings addObject:@{TypeKey: colorType,
-                               RangeKey: [NSValue valueWithRange:range]}];
+        if (colorings[colorType]) {
+            [colorings[colorType] addObject:[NSValue valueWithRange:range]];
+        } else {
+            colorings[colorType] = [NSMutableArray arrayWithObject:[NSValue valueWithRange:range]];
+        }
     }
     
-    return colorings;
+    return [colorings copy];
 }
 
 
@@ -792,7 +796,7 @@ static CGFloat kPerCompoIncrement;
 - (NSArray *)extractControlCharsFromString:(NSString *)string
 // ------------------------------------------------------
 {
-    NSMutableArray *colorings = [NSMutableArray array];
+    NSMutableArray *ranges = [NSMutableArray array];
     NSCharacterSet *controlCharacterSet = [NSCharacterSet controlCharacterSet];
     NSScanner *scanner = [NSScanner scannerWithString:string];
 
@@ -803,21 +807,20 @@ static CGFloat kPerCompoIncrement;
         if ([scanner scanCharactersFromSet:controlCharacterSet intoString:&control]) {
             NSRange range = NSMakeRange(location, [control length]);
             
-            [colorings addObject:@{TypeKey: InvisiblesType,
-                                   RangeKey: [NSValue valueWithRange:range]}];
+            [ranges addObject:[NSValue valueWithRange:range]];
         }
     }
     
-    return colorings;
+    return ranges;
 }
 
 
 // ------------------------------------------------------
 /// 対象範囲の全てのカラーリング範囲配列を返す
-- (NSArray *)extractAllSyntaxFromString:(NSString *)string
+- (NSDictionary *)extractAllSyntaxFromString:(NSString *)string
 // ------------------------------------------------------
 {
-    NSMutableArray *colorings = [NSMutableArray array];  // TypeKey と RangeKey の dict配列
+    NSMutableDictionary *colorings = [NSMutableDictionary dictionary];  // key: coloring type value: range array
     CEIndicatorSheetController *indicator = [self indicatorController];
     
     // Keywords > Commands > Types > Attributes > Variables > Values > Numbers > Strings > Characters > Comments
@@ -899,11 +902,9 @@ static CGFloat kPerCompoIncrement;
                                charSet:[self simpleWordsCharacterSets][syntaxKey]
                                 string:string]];
         }
-        // カラーとrangeのペアを格納
-        for (NSValue *value in ranges) {
-            [colorings addObject:@{TypeKey: syntaxKey,
-                                   RangeKey: value}];
-        }
+        // store range array
+        colorings[syntaxKey] = ranges;
+        
     } // end-for (syntaxKey)
     
     if ([indicator isCancelled]) { return nil; }
@@ -915,15 +916,15 @@ static CGFloat kPerCompoIncrement;
                                            NSLocalizedString(@"comments and quoted texts", nil)]];
         });
     }
-    [colorings addObjectsFromArray:[self extractCommentsWithQuotesFromString:string]];
+    [colorings addEntriesFromDictionary:[self extractCommentsWithQuotesFromString:string]];
     [indicator progressIndicator:kPerCompoIncrement];
     
     if ([indicator isCancelled]) { return nil; }
     
     // 不可視文字の追加
-    [colorings addObjectsFromArray:[self extractControlCharsFromString:string]];
+    colorings[InvisiblesType] = [self extractControlCharsFromString:string];
     
-    return colorings;
+    return [colorings copy];
 }
 
 
@@ -936,7 +937,7 @@ static CGFloat kPerCompoIncrement;
     
     // カラーリング不要なら現在のカラーリングをクリアして戻る
     if (![self hasSyntaxHighlighting]) {
-        [self applyColorings:@[] range:coloringRange layoutManager:layoutManager temporal:isTemporal];
+        [self applyColorings:@{} range:coloringRange layoutManager:layoutManager temporal:isTemporal];
         return;
     }
     
@@ -959,7 +960,7 @@ static CGFloat kPerCompoIncrement;
         typeof(weakSelf) strongSelf = weakSelf;
         
         // カラー範囲を抽出する
-        NSArray *colorings = [strongSelf extractAllSyntaxFromString:coloringString];
+        NSDictionary *colorings = [strongSelf extractAllSyntaxFromString:coloringString];
         
         if ([colorings count] > 0) {
             // 全文を抽出した場合は抽出結果をキャッシュする
@@ -994,7 +995,7 @@ static CGFloat kPerCompoIncrement;
 
 // ------------------------------------------------------
 /// 抽出したカラー範囲配列を書類に適用する
-- (void)applyColorings:(NSArray *)colorings range:(NSRange)coloringRange layoutManager:(nonnull NSLayoutManager *)layoutManager temporal:(BOOL)isTemporal
+- (void)applyColorings:(NSDictionary *)colorings range:(NSRange)coloringRange layoutManager:(nonnull NSLayoutManager *)layoutManager temporal:(BOOL)isTemporal
 // ------------------------------------------------------
 {
     CETheme *theme = [(NSTextView<CETextViewProtocol> *)[layoutManager firstTextView] theme];
@@ -1008,48 +1009,57 @@ static CGFloat kPerCompoIncrement;
         [[layoutManager firstTextView] setTextColor:[theme textColor] range:coloringRange];
     }
     
+    // add invisible coloring if needed
+    NSArray *colorTypes = kSyntaxDictKeys;
+    if (showsInvisibles) {
+        colorTypes = [colorTypes arrayByAddingObject:InvisiblesType];
+    }
+    
     // カラーリング実行
-    for (NSDictionary *coloring in colorings) {
-        @autoreleasepool {
-            NSString *colorType = coloring[TypeKey];
-            
-            if (!showsInvisibles && [colorType isEqualToString:InvisiblesType]) { continue; }
-            
-            NSColor *color;
-            if ([colorType isEqualToString:InvisiblesType]) {
-                color = [theme invisiblesColor];
-            } else if ([colorType isEqualToString:CESyntaxKeywordsKey]) {
-                color = [theme keywordsColor];
-            } else if ([colorType isEqualToString:CESyntaxCommandsKey]) {
-                color = [theme commandsColor];
-            } else if ([colorType isEqualToString:CESyntaxTypesKey]) {
-                color = [theme typesColor];
-            } else if ([colorType isEqualToString:CESyntaxAttributesKey]) {
-                color = [theme attributesColor];
-            } else if ([colorType isEqualToString:CESyntaxVariablesKey]) {
-                color = [theme variablesColor];
-            } else if ([colorType isEqualToString:CESyntaxValuesKey]) {
-                color = [theme valuesColor];
-            } else if ([colorType isEqualToString:CESyntaxNumbersKey]) {
-                color = [theme numbersColor];
-            } else if ([colorType isEqualToString:CESyntaxStringsKey]) {
-                color = [theme stringsColor];
-            } else if ([colorType isEqualToString:CESyntaxCharactersKey]) {
-                color = [theme charactersColor];
-            } else if ([colorType isEqualToString:CESyntaxCommentsKey]) {
-                color = [theme commentsColor];
-            } else {
-                color = [theme textColor];
-            }
-            
-            NSRange range = [coloring[RangeKey] rangeValue];
-            range.location += coloringRange.location;
-            
-            if (isTemporal) {
-                [layoutManager addTemporaryAttribute:NSForegroundColorAttributeName
-                                               value:color forCharacterRange:range];
-            } else {
-                [[layoutManager firstTextView] setTextColor:color range:range];
+    for (NSString *colorType in colorTypes) {
+        NSArray *ranges = colorings[colorType];
+        
+        if ([ranges count] == 0) { continue; }
+        
+        // get color from theme
+        NSColor *color;
+        if ([colorType isEqualToString:InvisiblesType]) {
+            color = [theme invisiblesColor];
+        } else if ([colorType isEqualToString:CESyntaxKeywordsKey]) {
+            color = [theme keywordsColor];
+        } else if ([colorType isEqualToString:CESyntaxCommandsKey]) {
+            color = [theme commandsColor];
+        } else if ([colorType isEqualToString:CESyntaxTypesKey]) {
+            color = [theme typesColor];
+        } else if ([colorType isEqualToString:CESyntaxAttributesKey]) {
+            color = [theme attributesColor];
+        } else if ([colorType isEqualToString:CESyntaxVariablesKey]) {
+            color = [theme variablesColor];
+        } else if ([colorType isEqualToString:CESyntaxValuesKey]) {
+            color = [theme valuesColor];
+        } else if ([colorType isEqualToString:CESyntaxNumbersKey]) {
+            color = [theme numbersColor];
+        } else if ([colorType isEqualToString:CESyntaxStringsKey]) {
+            color = [theme stringsColor];
+        } else if ([colorType isEqualToString:CESyntaxCharactersKey]) {
+            color = [theme charactersColor];
+        } else if ([colorType isEqualToString:CESyntaxCommentsKey]) {
+            color = [theme commentsColor];
+        } else {
+            color = [theme textColor];
+        }
+        
+        for (NSValue *rangeValue in ranges) {
+            @autoreleasepool {
+                NSRange range = [rangeValue rangeValue];
+                range.location += coloringRange.location;
+                
+                if (isTemporal) {
+                    [layoutManager addTemporaryAttribute:NSForegroundColorAttributeName
+                                                   value:color forCharacterRange:range];
+                } else {
+                    [[layoutManager firstTextView] setTextColor:color range:range];
+                }
             }
         }
     }
