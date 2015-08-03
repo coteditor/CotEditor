@@ -844,13 +844,9 @@ static CGFloat kPerCompoIncrement;
         NSMutableDictionary *simpleICWordsDict = [NSMutableDictionary dictionaryWithCapacity:40];
         NSMutableArray *ranges = [NSMutableArray arrayWithCapacity:10];
         
-        __block BOOL isCancelled = NO;
         dispatch_apply([strDicts count], dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(size_t i) {
-            // キャンセルされたら現在実行中の抽出は破棄して戻る
-            if ([indicator isCancelled]) {
-                isCancelled = YES;
-                return;
-            }
+            // skip loop if cancelled
+            if ([indicator isCancelled]) { return; }
             
             @autoreleasepool {
                 NSDictionary *strDict = strDicts[i];
@@ -901,12 +897,12 @@ static CGFloat kPerCompoIncrement;
                 }
             }
             
-            // インジケータ更新
+            // progress indicator
             [indicator progressIndicator:indicatorDelta];
         });
         
         // キャンセルされたら現在実行中の抽出は破棄して戻る
-        if (isCancelled) { return nil; }
+        if ([indicator isCancelled]) { return nil; }
         
         if ([simpleWordsDict count] > 0 || [simpleICWordsDict count] > 0) {
             [ranges addObjectsFromArray:[self rangesOfSimpleWords:simpleWordsDict
