@@ -33,6 +33,7 @@
 @interface CEIndicatorSheetController ()
 
 @property (nonatomic, weak) IBOutlet NSProgressIndicator *indicator;
+@property (nonatomic) NSWindow *parentWindow;
 
 @property (nonatomic, nonnull, copy) NSString *message;
 @property NSModalSession modalSession;
@@ -89,6 +90,7 @@
 {
     if (NSAppKitVersionNumber >= NSAppKitVersionNumber10_9) { // on Mavericks or later
         [window beginSheet:[self window] completionHandler:nil];
+        [self setParentWindow:window];
         
     } else {
         [NSApp beginSheet:[self window] modalForWindow:window
@@ -104,7 +106,7 @@
 // ------------------------------------------------------
 {
     if (NSAppKitVersionNumber >= NSAppKitVersionNumber10_9) { // on Mavericks or later
-        [[[self window] parentWindow] endSheet:[self window] returnCode:NSModalResponseCancel];
+        [[self parentWindow] endSheet:[self window] returnCode:NSModalResponseCancel];
         
     } else {
         [NSApp abortModal];
