@@ -577,9 +577,9 @@ static CGFloat kPerCompoIncrement;
 - (NSArray *)rangesOfRegularExpressionString:(NSString *)regexStr ignoreCase:(BOOL)ignoreCase string:(NSString *)string
 // ------------------------------------------------------
 {
-    if ([regexStr length] == 0) { return nil; }
+    if ([regexStr length] == 0) { return @[]; }
     
-    __block NSMutableArray *ranges = [NSMutableArray array];
+    NSMutableArray *ranges = [NSMutableArray array];
     CEIndicatorSheetController *indicator = [self indicatorController];
     uint32_t options = RKLMultiline | (ignoreCase ? RKLCaseless : 0);
     NSError *error = nil;
@@ -606,7 +606,7 @@ static CGFloat kPerCompoIncrement;
     if (error && ![[error userInfo][RKLICURegexErrorNameErrorKey] isEqualToString:@"U_ZERO_ERROR"]) {
         // 何もしない
         NSLog(@"ERROR: %@", [error localizedDescription]);
-        return nil;
+        return @[];
     }
     
     return ranges;
@@ -618,7 +618,7 @@ static CGFloat kPerCompoIncrement;
 - (NSArray *)rangesOfRegularExpressionBeginString:(NSString *)beginString endString:(NSString *)endString ignoreCase:(BOOL)ignoreCase string:(NSString *)string
 // ------------------------------------------------------
 {
-    __block NSMutableArray *ranges = [NSMutableArray array];
+    NSMutableArray *ranges = [NSMutableArray array];
     CEIndicatorSheetController *indicator = [self indicatorController];
     uint32_t options = RKLMultiline | (ignoreCase ? RKLCaseless : 0);
     NSError *error = nil;
@@ -654,7 +654,7 @@ static CGFloat kPerCompoIncrement;
     if (error && ![[error userInfo][RKLICURegexErrorNameErrorKey] isEqualToString:@"U_ZERO_ERROR"]) {
         // 何もしない
         NSLog(@"ERROR: %@", [error localizedDescription]);
-        return nil;
+        return @[];
     }
     
     return ranges;
@@ -845,62 +845,75 @@ static CGFloat kPerCompoIncrement;
         NSMutableDictionary *simpleICWordsDict = [NSMutableDictionary dictionaryWithCapacity:40];
         NSMutableArray *ranges = [NSMutableArray arrayWithCapacity:10];
         
-        for (NSDictionary *strDict in strDicts) {
+        __block BOOL isCancelled = NO;
+        dispatch_apply([strDicts count], dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(size_t i) {
+            // キャンセルされたら現在実行中の抽出は破棄して戻る
+            if ([indicator isCancelled]) {
+                isCancelled = YES;
+                return;
+            }
+            
             @autoreleasepool {
+                NSDictionary *strDict = strDicts[i];
+                
                 NSString *beginStr = strDict[CESyntaxBeginStringKey];
                 NSString *endStr = strDict[CESyntaxEndStringKey];
                 BOOL ignoresCase = [strDict[CESyntaxIgnoreCaseKey] boolValue];
                 
-                if ([beginStr length] == 0) { continue; }
+                if ([beginStr length] == 0) { return; }  // continue
+                
+                NSArray *extractedRanges = @[];
                 
                 if ([strDict[CESyntaxRegularExpressionKey] boolValue]) {
                     if ([endStr length] > 0) {
-                        [ranges addObjectsFromArray:
-                         [self rangesOfRegularExpressionBeginString:beginStr
-                                                          endString:endStr
-                                                         ignoreCase:ignoresCase
-                                                             string:string]];
+                        extractedRanges = [self rangesOfRegularExpressionBeginString:beginStr
+                                                                           endString:endStr
+                                                                          ignoreCase:ignoresCase
+                                                                              string:string];
                     } else {
-                        [ranges addObjectsFromArray:
-                         [self rangesOfRegularExpressionString:beginStr
-                                                    ignoreCase:ignoresCase
-                                                        string:string]];
+                        extractedRanges = [self rangesOfRegularExpressionString:beginStr
+                                                                     ignoreCase:ignoresCase
+                                                                         string:string];
                     }
                 } else {
                     if ([endStr length] > 0) {
-                        [ranges addObjectsFromArray:
-                         [self rangesOfBeginString:beginStr
-                                         endString:endStr
-                                        ignoreCase:ignoresCase
-                                            string:string]];
+                        extractedRanges = [self rangesOfBeginString:beginStr
+                                                          endString:endStr
+                                                         ignoreCase:ignoresCase
+                                                             string:string];
                     } else {
                         NSNumber *len = @([beginStr length]);
-                        NSMutableDictionary *dict = ignoresCase ? simpleICWordsDict : simpleWordsDict;
-                        NSMutableArray *wordsArray = dict[len];
-                        if (wordsArray) {
-                            [wordsArray addObject:beginStr];
-                            
-                        } else {
-                            wordsArray = [NSMutableArray arrayWithObject:beginStr];
-                            dict[len] = wordsArray;
+                        @synchronized(simpleWordsDict) {
+                            NSMutableDictionary *dict = ignoresCase ? simpleICWordsDict : simpleWordsDict;
+                            NSMutableArray *wordsArray = dict[len];
+                            if (wordsArray) {
+                                [wordsArray addObject:beginStr];
+                                
+                            } else {
+                                wordsArray = [NSMutableArray arrayWithObject:beginStr];
+                                dict[len] = wordsArray;
+                            }
                         }
                     }
                 }
-                // キャンセルされたら現在実行中の抽出は破棄して戻る
-                [indicator progressIndicator:indicatorDelta];
                 
-                // インジケータ更新
-                if ([indicator isCancelled]) { return nil; }
-                
-            } // ==== end-autoreleasepool
-        } // end-for (strDict)
+                @synchronized(ranges) {
+                    [ranges addObjectsFromArray:extractedRanges];
+                }
+            }
+            
+            // インジケータ更新
+            [indicator progressIndicator:indicatorDelta];
+        });
+        
+        // キャンセルされたら現在実行中の抽出は破棄して戻る
+        if (isCancelled) { return nil; }
         
         if ([simpleWordsDict count] > 0 || [simpleICWordsDict count] > 0) {
-            [ranges addObjectsFromArray:
-             [self rangesOfSimpleWords:simpleWordsDict
-                       ignoreCaseWords:simpleICWordsDict
-                               charSet:[self simpleWordsCharacterSets][syntaxKey]
-                                string:string]];
+            [ranges addObjectsFromArray:[self rangesOfSimpleWords:simpleWordsDict
+                                                  ignoreCaseWords:simpleICWordsDict
+                                                          charSet:[self simpleWordsCharacterSets][syntaxKey]
+                                                           string:string]];
         }
         // store range array
         colorings[syntaxKey] = ranges;
