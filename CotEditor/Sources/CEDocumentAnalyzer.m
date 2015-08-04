@@ -154,8 +154,10 @@ NSString *__nonnull const CEAnalyzerDidUpdateEditorInfoNotification = @"CEAnalyz
     CEEditorWrapper *editor = [document editor];
     NSNumberFormatter *integerFormatter = [self integerFormatter];
     
+    if (![editor string]) { return; }
+    
     BOOL hasMarked = [[editor focusedTextView] hasMarkedText];
-    NSString *wholeString = ([document lineEnding] == CENewLineCRLF) ? [document stringForSave] : [[editor string] copy];
+    NSString *wholeString = ([document lineEnding] == CENewLineCRLF) ? [document stringForSave] : [NSString stringWithString:[editor string]];
     NSString *selectedString = hasMarked ? nil : [editor substringWithSelection];
     NSStringEncoding encoding = [document encoding];
     __block NSRange selectedRange = [editor selectedRange];

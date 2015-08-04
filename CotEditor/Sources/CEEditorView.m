@@ -333,12 +333,13 @@
 {
     [self stopUpdateOutlineMenuTimer];
     
-    NSString *wholeString = [[[self textView] string] copy];  // 解析中に参照元が変更されると困るのでコピーする
+    NSString *wholeString = [[self textView] string] ? : @"";
+    NSString *immutableWholeString = [NSString stringWithString:wholeString];  // 解析中に参照元が変更されると困るのでコピーする
     
     // 規定の文字数以上の場合にはインジケータを表示
     // （ただし、CEDefaultShowColoringIndicatorTextLengthKey が「0」の時は表示しない）
     NSUInteger indicatorThreshold = [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultShowColoringIndicatorTextLengthKey];
-    if (indicatorThreshold > 0 && indicatorThreshold < [wholeString length]) {
+    if (indicatorThreshold > 0 && indicatorThreshold < [immutableWholeString length]) {
         [[self navigationBar] showOutlineIndicator];
     }
     
@@ -346,7 +347,7 @@
     CESyntaxParser *syntaxParser = [self syntaxParser];
     CENavigationBarController *navigationBar = [self navigationBar];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSArray *outlineItems = [syntaxParser outlineItemsWithWholeString:wholeString];
+        NSArray *outlineItems = [syntaxParser outlineItemsWithWholeString:immutableWholeString];
         
         dispatch_sync(dispatch_get_main_queue(), ^{
             [navigationBar setOutlineItems:outlineItems];
