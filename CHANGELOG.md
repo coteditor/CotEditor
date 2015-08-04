@@ -27,6 +27,7 @@ develop
     - To restore also the last syntax style mode of unsaved documents.
 - Optimize saving process.
 - Improve compatibility with OS X 10.11 El Capitan.
+- Change source code license from the GNU General Public License version 2 to the Apache Lisence version 2.0.
 - [non-AppStore ver.] Add option to check pre-release versions.
 
 
