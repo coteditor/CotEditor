@@ -68,7 +68,7 @@
     
     if ([defaults boolForKey:CEDefaultShowInvisiblesKey]) {
         NSTextView *textView = [self firstTextView];
-        NSString *completeStr = [[self textStorage] string];
+        NSString *completeStr = [NSString stringWithString:[[self textStorage] string]];
         NSUInteger lengthToRedraw = NSMaxRange(glyphsToShow);
         NSSize inset = [textView textContainerInset];
         
