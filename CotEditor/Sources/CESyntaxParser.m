@@ -665,6 +665,30 @@ static CGFloat kPerCompoIncrement;
 
 
 // ------------------------------------------------------
+/// 不可視文字のカラーリング範囲配列を返す
+- (nonnull NSArray *)rangesOfControlCharsInString:(NSString *)string
+// ------------------------------------------------------
+{
+    NSMutableArray *ranges = [NSMutableArray array];
+    NSCharacterSet *controlCharacterSet = [NSCharacterSet controlCharacterSet];
+    NSScanner *scanner = [NSScanner scannerWithString:string];
+    
+    while (![scanner isAtEnd]) {
+        [scanner scanUpToCharactersFromSet:controlCharacterSet intoString:nil];
+        NSUInteger location = [scanner scanLocation];
+        NSString *control;
+        if ([scanner scanCharactersFromSet:controlCharacterSet intoString:&control]) {
+            NSRange range = NSMakeRange(location, [control length]);
+            
+            [ranges addObject:[NSValue valueWithRange:range]];
+        }
+    }
+    
+    return ranges;
+}
+
+
+// ------------------------------------------------------
 /// クオートで囲まれた文字列とともにコメントをカラーリング
 - (NSDictionary *)extractCommentsWithQuotesFromString:(NSString *)string
 // ------------------------------------------------------
@@ -791,30 +815,6 @@ static CGFloat kPerCompoIncrement;
     }
     
     return [colorings copy];
-}
-
-
-// ------------------------------------------------------
-/// 不可視文字のカラーリング範囲配列を返す
-- (nonnull NSArray *)rangesOfControlCharsInString:(NSString *)string
-// ------------------------------------------------------
-{
-    NSMutableArray *ranges = [NSMutableArray array];
-    NSCharacterSet *controlCharacterSet = [NSCharacterSet controlCharacterSet];
-    NSScanner *scanner = [NSScanner scannerWithString:string];
-
-    while (![scanner isAtEnd]) {
-        [scanner scanUpToCharactersFromSet:controlCharacterSet intoString:nil];
-        NSUInteger location = [scanner scanLocation];
-        NSString *control;
-        if ([scanner scanCharactersFromSet:controlCharacterSet intoString:&control]) {
-            NSRange range = NSMakeRange(location, [control length]);
-            
-            [ranges addObject:[NSValue valueWithRange:range]];
-        }
-    }
-    
-    return ranges;
 }
 
 
