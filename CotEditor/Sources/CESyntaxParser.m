@@ -599,12 +599,14 @@ static CGFloat kPerCompoIncrement;
     }
     
     [regex enumerateMatchesInString:string
-                            options:0
+                            options:NSMatchingReportProgress
                               range:NSMakeRange(0, [string length])
                          usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop)
      {
-         if ([indicator isCancelled]) {
-             *stop = YES;
+         if (flags & NSMatchingProgress) {
+             if ([indicator isCancelled]) {
+                 *stop = YES;
+             }
              return;
          }
          
@@ -637,12 +639,14 @@ static CGFloat kPerCompoIncrement;
     }
     
     [beginRegex enumerateMatchesInString:string
-                                 options:0
+                                 options:NSMatchingReportProgress
                                    range:NSMakeRange(0, [string length])
                               usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop)
      {
-         if ([indicator isCancelled]) {
-             *stop = YES;
+         if (flags & NSMatchingProgress) {
+             if ([indicator isCancelled]) {
+                 *stop = YES;
+             }
              return;
          }
          
