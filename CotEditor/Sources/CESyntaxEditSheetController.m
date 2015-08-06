@@ -303,7 +303,7 @@ typedef NS_ENUM(NSUInteger, CETabIndex) {
 - (void)endSheetWithReturnCode:(NSInteger)returnCode
 // ------------------------------------------------------
 {
-    if (floor(NSAppKitVersionNumber) > NSAppKitVersionNumber10_8) { // on Mavericks or later
+    if (NSAppKitVersionNumber >= NSAppKitVersionNumber10_9) { // on Mavericks or later
         [[[self window] sheetParent] endSheet:[self window] returnCode:returnCode];
     } else {
         [NSApp stopModal];
