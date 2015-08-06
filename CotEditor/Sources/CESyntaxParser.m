@@ -426,8 +426,11 @@ static CGFloat kPerCompoIncrement;
 {
     if ([wholeString length] == 0) { return; }
     
+    // make sure that string is immutable (see `colorAllString:layoutManager:temporal:` for details)
+    NSString *safeImmutableString = [NSString stringWithString:wholeString];
+    
     NSUInteger bufferLength = [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultColoringRangeBufferLengthKey];
-    NSRange wholeRange = NSMakeRange(0, [wholeString length]);
+    NSRange wholeRange = NSMakeRange(0, [safeImmutableString length]);
     NSRange coloringRange;
     
     // 文字列が十分小さい時は全文カラーリングをする
@@ -456,9 +459,9 @@ static CGFloat kPerCompoIncrement;
         coloringRange = NSMakeRange(start, end - start);
     }
     
-    coloringRange = [wholeString lineRangeForRange:coloringRange];
+    coloringRange = [safeImmutableString lineRangeForRange:coloringRange];
     
-    [self colorString:wholeString range:coloringRange layoutManager:layoutManager temporal:isTemporal];
+    [self colorString:safeImmutableString range:coloringRange layoutManager:layoutManager temporal:isTemporal];
 }
 
 
