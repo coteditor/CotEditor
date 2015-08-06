@@ -60,6 +60,7 @@ typedef NS_ENUM(NSUInteger, QCStartEndType) {
 @property (nonatomic, nullable, copy) NSDictionary *coloringDictionary;
 @property (nonatomic, nullable, copy) NSDictionary *simpleWordsCharacterSets;
 @property (nonatomic, nullable, copy) NSDictionary *pairedQuoteTypes;  // dict for quote pair to extract with comment
+
 @property (nonatomic, nullable, copy) NSDictionary *cacheColorings;  // extracted results cache of the last whole string coloring
 @property (nonatomic, nullable, copy) NSString *cacheHash;  // MD5 hash
 
@@ -425,26 +426,36 @@ static CGFloat kPerCompoIncrement;
 {
     if ([wholeString length] == 0) { return; }
     
+    NSUInteger bufferLength = [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultColoringRangeBufferLengthKey];
     NSRange wholeRange = NSMakeRange(0, [wholeString length]);
-    NSRange effectiveRange;
-    NSUInteger start = range.location;
-    NSUInteger end = NSMaxRange(range) - 1;
-
-    // 直前／直後が同色ならカラーリング範囲を拡大する
-    [layoutManager temporaryAttributesAtCharacterIndex:start
-                                 longestEffectiveRange:&effectiveRange
-                                               inRange:wholeRange];
-    start = effectiveRange.location;
+    NSRange coloringRange;
     
-    [layoutManager temporaryAttributesAtCharacterIndex:end
-                                 longestEffectiveRange:&effectiveRange
-                                               inRange:wholeRange];
-    end = NSMaxRange(effectiveRange);
+    // 文字列が十分小さい時は全文カラーリングをする
+    if (wholeRange.length <= bufferLength) {
+        coloringRange = wholeRange;
+        
+    } else {
+        NSUInteger start = range.location;
+        NSUInteger end = NSMaxRange(range) - 1;
+        
+        // 表示領域の前もある程度カラーリングの対象に含める
+        start -= MIN(start, bufferLength);
+        
+        // 直前／直後が同色ならカラーリング範囲を拡大する
+        NSRange effectiveRange;
+        [layoutManager temporaryAttributesAtCharacterIndex:start
+                                     longestEffectiveRange:&effectiveRange
+                                                   inRange:wholeRange];
+        start = effectiveRange.location;
+        
+        [layoutManager temporaryAttributesAtCharacterIndex:end
+                                     longestEffectiveRange:&effectiveRange
+                                                   inRange:wholeRange];
+        end = NSMaxRange(effectiveRange);
+        
+        coloringRange = NSMakeRange(start, end - start);
+    }
     
-    // 表示領域の前もある程度カラーリングの対象に含める
-    start -= MIN(start, [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultColoringRangeBufferLengthKey]);
-    
-    NSRange coloringRange = NSMakeRange(start, end - start);
     coloringRange = [wholeString lineRangeForRange:coloringRange];
     
     [self colorString:wholeString range:coloringRange layoutManager:layoutManager temporal:isTemporal];
