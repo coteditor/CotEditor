@@ -44,7 +44,7 @@
     [coordinator coordinateReadingItemAtURL:[self fileURL] options:NSFileCoordinatorReadingResolvesSymbolicLink
                                       error:nil byAccessor:^(NSURL *newURL)
      {
-         NSString *path = @([[newURL path] UTF8String]);
+         NSString *path = @([[newURL path] fileSystemRepresentation]);
          NSTask *task = [[NSTask alloc] init];
          
          [task setLaunchPath:@"/usr/libexec/authopen"];
@@ -82,7 +82,7 @@
                                       error:nil
                                  byAccessor:^(NSURL *newURL)
      {
-         NSString *path = @([[newURL path] UTF8String]);
+         NSString *path = @([[newURL path] fileSystemRepresentation]);
          NSTask *task = [[NSTask alloc] init];
          
          [task setLaunchPath:@"/usr/libexec/authopen"];

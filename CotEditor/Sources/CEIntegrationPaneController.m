@@ -196,7 +196,7 @@ static const NSURL *kPreferredLinkTargetURL;
     BOOL success;
     NSError *error = nil;
     
-    unlink([[[self linkURL] path] UTF8String]);
+    unlink([[[self linkURL] path] fileSystemRepresentation]);
     
     if (![[self linkURL] checkResourceIsReachableAndReturnError:nil]) {
         [self setInstalled:NO];
