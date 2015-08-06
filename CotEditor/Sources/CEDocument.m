@@ -529,8 +529,10 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     // restore last syntax style
     if ([coder containsValueForKey:CESyntaxStyleKey]) {
         NSString *syntaxStyle = [coder decodeObjectForKey:CESyntaxStyleKey];
-        [[self editor] setSyntaxStyleName:syntaxStyle recolorNow:NO];
-        [[[self windowController] toolbarController] setSelectedSyntaxWithName:syntaxStyle];
+        if (![syntaxStyle isEqualToString:[[self editor] syntaxStyleName]]) {  // avoid highlighting twice
+            [[self editor] setSyntaxStyleName:syntaxStyle recolorNow:YES];
+            [[[self windowController] toolbarController] setSelectedSyntaxWithName:syntaxStyle];
+        }
     }
     
     // not need to show unwritable alert on resume
@@ -731,14 +733,14 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
         [[self editor] setString:@""];
     }
     
+    // update syntax highlights and outline menu
+    [[self editor] updateColoringAndOutlineMenu];
+    
     // update line endings menu selection in toolbar
     [self applyLineEndingToView];
     
     // update encoding menu selection in toolbar, status bar and document inspector
     [self updateEncodingInToolbarAndInfo];
-    
-    // update syntax highlights and outline menu
-    [[self editor] updateColoringAndOutlineMenu];
     
     // show incompatible chars if needed
     [[self windowController] updateIncompatibleCharsIfNeeded];
