@@ -1,6 +1,6 @@
 /*
  
- NSURL+AppleTextEncoding.m
+ NSURL+Xattr.m
  
  CotEditor
  http://coteditor.com
@@ -25,7 +25,7 @@
  
  */
 
-#import "NSURL+AppleTextEncoding.h"
+#import "NSURL+Xattr.h"
 #import <sys/xattr.h>
 
 
@@ -33,22 +33,16 @@
 static char const XATTR_ENCODING_NAME[] = "com.apple.TextEncoding";
 
 
-@implementation NSURL (AppleTextEncoding)
+@implementation NSURL (Xattr)
 
 // ------------------------------------------------------
 /// read text encoding from `com.apple.TextEncoding` extended attribute of the file at URL
-- (NSStringEncoding)getAppleTextEncoding
+- (NSStringEncoding)getXattrEncoding
 // ------------------------------------------------------
 {
-    // check buffer size
-    const char *path = [[self path] UTF8String];
-    ssize_t bufferSize = getxattr(path, XATTR_ENCODING_NAME, NULL, 0, 0, XATTR_NOFOLLOW);
+    NSData *data = [self getXattrDataForName:XATTR_ENCODING_NAME];
     
-    if (bufferSize <= 0) { return NSNotFound; }
-    
-    // get xattr data
-    NSMutableData *data = [NSMutableData dataWithLength:bufferSize];
-    getxattr(path, XATTR_ENCODING_NAME, [data mutableBytes], [data length], 0, XATTR_NOFOLLOW);
+    if (!data) { return NSNotFound; }
     
     // parse value
     CFStringEncoding cfEncoding = kCFStringEncodingInvalidId;
@@ -70,20 +64,53 @@ static char const XATTR_ENCODING_NAME[] = "com.apple.TextEncoding";
 
 // ------------------------------------------------------
 /// write `com.apple.TextEncoding` extended attribute to the file at URL
-- (void)setAppleTextEncoding:(NSStringEncoding)encoding
+- (BOOL)setXattrEncoding:(NSStringEncoding)encoding
 // ------------------------------------------------------
 {
     CFStringEncoding cfEncoding = CFStringConvertNSStringEncodingToEncoding(encoding);
     
-    if (cfEncoding == kCFStringEncodingInvalidId) { return; }
+    if (cfEncoding == kCFStringEncodingInvalidId) { return NO; }
     
     NSString *IANACharSetName = (NSString *)CFStringConvertEncodingToIANACharSetName(cfEncoding);
     NSString *string = [NSString stringWithFormat:@"%@;%u", IANACharSetName, cfEncoding];
     NSData *data = [string dataUsingEncoding:NSUTF8StringEncoding];
     
-    if (!data) { return; }
+    if (!data) { return NO; }
     
-    setxattr([[self path] UTF8String], XATTR_ENCODING_NAME, [data bytes], [data length], 0, XATTR_NOFOLLOW);
+    return [self setXattrData:data name:XATTR_ENCODING_NAME];
+}
+
+
+
+#pragma mark Private Methods
+
+// ------------------------------------------------------
+/// get extended attribute for given name from the file at URL
+- (nullable NSData *)getXattrDataForName:(const char *)name
+// ------------------------------------------------------
+{
+    // check buffer size
+    const char *path = [[self path] fileSystemRepresentation];
+    ssize_t bufferSize = getxattr(path, name, NULL, 0, 0, XATTR_NOFOLLOW);
+    
+    if (bufferSize <= 0) { return nil; }
+    
+    // get xattr data
+    NSMutableData *data = [NSMutableData dataWithLength:bufferSize];
+    getxattr(path, name, [data mutableBytes], [data length], 0, XATTR_NOFOLLOW);
+    
+    return [data copy];
+}
+
+
+// ------------------------------------------------------
+/// set extended attribute for given name to the file at URL
+- (BOOL)setXattrData:(nonnull NSData *)data name:(const char *)name
+// ------------------------------------------------------
+{
+    int result = setxattr([[self path] fileSystemRepresentation], name, [data bytes], [data length], 0, XATTR_NOFOLLOW);
+    
+    return result == 0;
 }
 
 @end

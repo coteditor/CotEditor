@@ -1,6 +1,6 @@
 /*
  
- NSURL+AppleTextEncoding.h
+ NSURL+Xattr.h
  
  CotEditor
  http://coteditor.com
@@ -28,9 +28,9 @@
 @import Foundation;
 
 
-@interface NSURL (AppleTextEncoding)
+@interface NSURL (Xattr)
 
-- (NSStringEncoding)getAppleTextEncoding;
-- (void)setAppleTextEncoding:(NSStringEncoding)encoding;
+- (NSStringEncoding)getXattrEncoding;
+- (BOOL)setXattrEncoding:(NSStringEncoding)encoding;
 
 @end

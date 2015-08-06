@@ -34,7 +34,7 @@
 #import "CEODBEventSender.h"
 #import "CESyntaxManager.h"
 #import "CEUtils.h"
-#import "NSURL+AppleTextEncoding.h"
+#import "NSURL+Xattr.h"
 #import "NSData+MD5.h"
 #import "Constants.h"
 
@@ -195,7 +195,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     }
     
     // try reading the `com.apple.TextEncoding` extended attribute
-    NSStringEncoding xattrEncoding = [self fileURL] ? [[self fileURL] getAppleTextEncoding] : NSNotFound;
+    NSStringEncoding xattrEncoding = [self fileURL] ? [[self fileURL] getXattrEncoding] : NSNotFound;
     
     // don't save xattr if file doesn't have it in order to avoid saving wrong encoding (2015-01 by 1024jp).
     [self setShouldSaveXattr:(xattrEncoding != NSNotFound) || ([data length] == 0)];
@@ -326,7 +326,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     if (success) {
         // write encoding to the external file attributes (com.apple.TextEncoding)
         if ([self shouldSaveXattr]) {
-            [url setAppleTextEncoding:encoding];
+            [url setXattrEncoding:encoding];
         }
         
         if (saveOperation != NSAutosaveElsewhereOperation) {
