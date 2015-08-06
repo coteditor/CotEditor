@@ -213,7 +213,7 @@
                                CEDefaultTextContainerInsetWidthKey: @0.0f, 
                                CEDefaultTextContainerInsetHeightTopKey: @4.0f, 
                                CEDefaultTextContainerInsetHeightBottomKey: @16.0f, 
-                               CEDefaultShowColoringIndicatorTextLengthKey: @50000U,
+                               CEDefaultShowColoringIndicatorTextLengthKey: @75000U,
                                CEDefaultRunAppleScriptInLaunchingKey: @YES,
                                CEDefaultShowAlertForNotWritableKey: @YES, 
                                CEDefaultNotifyEditByAnotherKey: @YES,

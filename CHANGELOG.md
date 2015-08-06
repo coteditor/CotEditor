@@ -17,7 +17,7 @@ develop
 - __Drop authopen support.__
 - Improve side inspector UI.
 - Improve syntax highlighting:
-    - Optimize syntax highlighting performance (ca. 1.8x).
+    - Optimize general syntax highlighting performance (ca. 1.8x).
     - Optimize syntax highlighting on file opening.
     - Better coloring parsing while editing.
 - Move scripts folder location from `~/Library/Application Support/CotEditor/ScriptMenu/` to `~/Library/Application Scripts/com.coteditor.CotEditor/` because of the Sandbox requirement.
