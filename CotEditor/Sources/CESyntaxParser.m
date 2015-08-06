@@ -104,7 +104,7 @@ static CGFloat kPerCompoIncrement;
         kSyntaxDictKeys = [syntaxDictKeys copy];
         
         // カラーリングインジケータの上昇幅を決定する（+1 はコメント＋引用符抽出用）
-        kPerCompoIncrement = 98.0 / (kSizeOfAllColoringKeys + 1);
+        kPerCompoIncrement = 0.98 / (kSizeOfAllColoringKeys + 0.01);
     });
 }
 
@@ -986,7 +986,7 @@ static CGFloat kPerCompoIncrement;
                 [[NSRunLoop currentRunLoop] limitDateForMode:NSDefaultRunLoopMode];
             }
             
-            // do nothing if the indicator has already been put away
+            // do nothing if the indicator has already been put away (= coloring was finished)
             if (![self indicatorController]) { return; }
             
             // otherwise, attach the indicator as a sheet

@@ -31,8 +31,8 @@
 @interface CEIndicatorSheetController ()
 
 @property (nonatomic, weak) IBOutlet NSProgressIndicator *indicator;
-@property (atomic) double progress;
 
+@property (atomic) double progress;
 @property (nonatomic, nonnull, copy) NSString *message;
 @property NSModalSession modalSession;
 
