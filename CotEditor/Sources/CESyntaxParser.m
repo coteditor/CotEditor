@@ -64,7 +64,7 @@ typedef NS_ENUM(NSUInteger, QCStartEndType) {
 @property (nonatomic, nullable, copy) NSDictionary *cacheColorings;  // extracted results cache of the last whole string coloring
 @property (nonatomic, nullable, copy) NSString *cacheHash;  // MD5 hash
 
-@property (atomic, nullable) CEIndicatorSheetController *indicatorController;
+@property (nonatomic, nullable) CEIndicatorSheetController *indicatorController;
 
 
 // readonly
@@ -213,7 +213,7 @@ static CGFloat kPerCompoIncrement;
                         characterSets[key] = charSet;
                     }
                 }
-                _simpleWordsCharacterSets = characterSets;
+                _simpleWordsCharacterSets = [characterSets copy];
             }
             
             // 引用符のカラーリングはコメントと一緒に別途 extractCommentsWithQuotesFromString: で行なうので選り分けておく
@@ -467,7 +467,7 @@ static CGFloat kPerCompoIncrement;
 
 // ------------------------------------------------------
 /// 指定された文字列をそのまま検索し、位置を返す
-- (NSArray *)rangesOfSimpleWords:(NSDictionary *)wordsDict ignoreCaseWords:(NSDictionary *)icWordsDict charSet:(NSCharacterSet *)charSet string:(NSString *)string
+- (nonnull NSArray *)rangesOfSimpleWords:(nonnull NSDictionary *)wordsDict ignoreCaseWords:(nonnull NSDictionary *)icWordsDict charSet:(nonnull NSCharacterSet *)charSet string:(nonnull NSString *)string
 // ------------------------------------------------------
 {
     NSMutableArray *ranges = [NSMutableArray array];
@@ -477,7 +477,7 @@ static CGFloat kPerCompoIncrement;
     [scanner setCaseSensitive:YES];
     
     while (![scanner isAtEnd]) {
-        if ([indicator isCancelled]) { return nil; }
+        if ([indicator isCancelled]) { return @[]; }
         
         @autoreleasepool {
             NSString *scannedString = nil;
@@ -508,10 +508,10 @@ static CGFloat kPerCompoIncrement;
 
 // ------------------------------------------------------
 /// 指定された文字列を検索し、位置を返す
-- (NSArray *)rangesOfString:(NSString *)searchString ignoreCase:(BOOL)ignoreCase string:(NSString *)string
+- (nonnull NSArray *)rangesOfString:(nonnull NSString *)searchString ignoreCase:(BOOL)ignoreCase string:(nonnull NSString *)string
 // ------------------------------------------------------
 {
-    if ([searchString length] == 0) { return nil; }
+    if ([searchString length] == 0) { return @[]; }
     
     NSMutableArray *ranges = [NSMutableArray array];
     CEIndicatorSheetController *indicator = [self indicatorController];
@@ -522,7 +522,7 @@ static CGFloat kPerCompoIncrement;
     [scanner setCaseSensitive:!ignoreCase];
     
     while (![scanner isAtEnd]) {
-        if ([indicator isCancelled]) { return nil; }
+        if ([indicator isCancelled]) { return @[]; }
         
         @autoreleasepool {
             [scanner scanUpToString:searchString intoString:nil];
@@ -543,10 +543,10 @@ static CGFloat kPerCompoIncrement;
 
 // ------------------------------------------------------
 /// 指定された開始／終了ペアの文字列を検索し、位置を返す
-- (NSArray *)rangesOfBeginString:(NSString *)beginString endString:(NSString *)endString ignoreCase:(BOOL)ignoreCase string:(NSString *)string
+- (nonnull NSArray *)rangesOfBeginString:(nonnull NSString *)beginString endString:(nonnull NSString *)endString ignoreCase:(BOOL)ignoreCase string:(nonnull NSString *)string
 // ------------------------------------------------------
 {
-    if ([beginString length] == 0) { return nil; }
+    if ([beginString length] == 0) { return @[]; }
     
     NSMutableArray *ranges = [NSMutableArray array];
     CEIndicatorSheetController *indicator = [self indicatorController];
@@ -557,7 +557,7 @@ static CGFloat kPerCompoIncrement;
     [scanner setCaseSensitive:!ignoreCase];
     
     while (![scanner isAtEnd]) {
-        if ([indicator isCancelled]) { return nil; }
+        if ([indicator isCancelled]) { return @[]; }
         
         @autoreleasepool {
             [scanner scanUpToString:beginString intoString:nil];
@@ -590,7 +590,7 @@ static CGFloat kPerCompoIncrement;
 
 // ------------------------------------------------------
 /// 指定された文字列を正規表現として検索し、位置を返す
-- (NSArray *)rangesOfRegularExpressionString:(NSString *)regexStr ignoreCase:(BOOL)ignoreCase string:(NSString *)string
+- (nonnull NSArray *)rangesOfRegularExpressionString:(nonnull NSString *)regexStr ignoreCase:(BOOL)ignoreCase string:(nonnull NSString *)string
 // ------------------------------------------------------
 {
     if ([regexStr length] == 0) { return @[]; }
@@ -630,7 +630,7 @@ static CGFloat kPerCompoIncrement;
 
 // ------------------------------------------------------
 /// 指定された開始／終了文字列を正規表現として検索し、位置を返す
-- (NSArray *)rangesOfRegularExpressionBeginString:(NSString *)beginString endString:(NSString *)endString ignoreCase:(BOOL)ignoreCase string:(NSString *)string
+- (nonnull NSArray *)rangesOfRegularExpressionBeginString:(nonnull NSString *)beginString endString:(nonnull NSString *)endString ignoreCase:(BOOL)ignoreCase string:(nonnull NSString *)string
 // ------------------------------------------------------
 {
     NSMutableArray *ranges = [NSMutableArray array];
@@ -677,7 +677,7 @@ static CGFloat kPerCompoIncrement;
 
 // ------------------------------------------------------
 /// 不可視文字のカラーリング範囲配列を返す
-- (nonnull NSArray *)rangesOfControlCharsInString:(NSString *)string
+- (nonnull NSArray *)rangesOfControlCharsInString:(nonnull NSString *)string
 // ------------------------------------------------------
 {
     NSMutableArray *ranges = [NSMutableArray array];
@@ -701,7 +701,7 @@ static CGFloat kPerCompoIncrement;
 
 // ------------------------------------------------------
 /// クオートで囲まれた文字列とともにコメントをカラーリング
-- (NSDictionary *)extractCommentsWithQuotesFromString:(NSString *)string
+- (nonnull NSDictionary *)extractCommentsWithQuotesFromString:(nonnull NSString *)string
 // ------------------------------------------------------
 {
     NSDictionary *quoteTypes = [self pairedQuoteTypes];
@@ -766,7 +766,7 @@ static CGFloat kPerCompoIncrement;
     }
     
     // コメントもクォートもなければ、もどる
-    if ([positions count] == 0) { return nil; }
+    if ([positions count] == 0) { return @{}; }
     
     // 出現順にソート
     NSSortDescriptor *positionSort = [NSSortDescriptor sortDescriptorWithKey:QCLocationKey ascending:YES];
@@ -831,7 +831,7 @@ static CGFloat kPerCompoIncrement;
 
 // ------------------------------------------------------
 /// 対象範囲の全てのカラーリング範囲配列を返す
-- (NSDictionary *)extractAllSyntaxFromString:(NSString *)string
+- (nonnull NSDictionary *)extractAllSyntaxFromString:(nonnull NSString *)string
 // ------------------------------------------------------
 {
     NSMutableDictionary *colorings = [NSMutableDictionary dictionary];  // key: coloring type value: range array
@@ -917,7 +917,7 @@ static CGFloat kPerCompoIncrement;
         });
         
         // キャンセルされたら現在実行中の抽出は破棄して戻る
-        if ([indicator isCancelled]) { return nil; }
+        if ([indicator isCancelled]) { return @{}; }
         
         if ([simpleWordsDict count] > 0 || [simpleICWordsDict count] > 0) {
             [ranges addObjectsFromArray:[self rangesOfSimpleWords:simpleWordsDict
@@ -930,7 +930,7 @@ static CGFloat kPerCompoIncrement;
         
     } // end-for (syntaxKey)
     
-    if ([indicator isCancelled]) { return nil; }
+    if ([indicator isCancelled]) { return @{}; }
     
     // コメントと引用符
     if (indicator) {
@@ -942,7 +942,7 @@ static CGFloat kPerCompoIncrement;
     [colorings addEntriesFromDictionary:[self extractCommentsWithQuotesFromString:string]];
     [indicator progressIndicator:kPerCompoIncrement];
     
-    if ([indicator isCancelled]) { return nil; }
+    if ([indicator isCancelled]) { return @{}; }
     
     // 不可視文字の追加
     colorings[InvisiblesType] = [self rangesOfControlCharsInString:string];
@@ -953,7 +953,7 @@ static CGFloat kPerCompoIncrement;
 
 // ------------------------------------------------------
 /// カラーリングを実行
-- (void)colorString:(NSString *)wholeString range:(NSRange)coloringRange layoutManager:(nonnull NSLayoutManager *)layoutManager temporal:(BOOL)isTemporal
+- (void)colorString:(nonnull NSString *)wholeString range:(NSRange)coloringRange layoutManager:(nonnull NSLayoutManager *)layoutManager temporal:(BOOL)isTemporal
 // ------------------------------------------------------
 {
     if (coloringRange.length == 0) { return; }
