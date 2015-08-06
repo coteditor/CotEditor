@@ -31,7 +31,6 @@
 @interface CEIndicatorSheetController ()
 
 @property (nonatomic, weak) IBOutlet NSProgressIndicator *indicator;
-@property (nonatomic) NSWindow *parentWindow;
 
 @property (nonatomic, nonnull, copy) NSString *message;
 @property NSModalSession modalSession;
@@ -71,7 +70,7 @@
 {
     [super windowDidLoad];
     
-    // init indicator
+    // setup indicator
     [[self indicator] setIndeterminate:NO];
     [[self indicator] setDoubleValue:0];
     [[self indicator] setUsesThreadedAnimation:YES];
@@ -88,7 +87,6 @@
 {
     if (NSAppKitVersionNumber >= NSAppKitVersionNumber10_9) { // on Mavericks or later
         [window beginSheet:[self window] completionHandler:nil];
-        [self setParentWindow:window];
         
     } else {
         [NSApp beginSheet:[self window] modalForWindow:window
@@ -104,16 +102,15 @@
 // ------------------------------------------------------
 {
     if (NSAppKitVersionNumber >= NSAppKitVersionNumber10_9) { // on Mavericks or later
-        [[self parentWindow] endSheet:[self window] returnCode:NSModalResponseCancel];
+        [[[self window] sheetParent] endSheet:[self window] returnCode:NSModalResponseCancel];
         
     } else {
         [NSApp abortModal];
         [NSApp endModalSession:[self modalSession]];
         [self setModalSession:nil];
         [NSApp endSheet:[self window]];
+        [[self window] close];
     }
-    
-    [[self window] close];
 }
 
 
