@@ -55,7 +55,9 @@
     __weak typeof(self) weakSelf = self;
     [self setKeyDownMonitor:[NSEvent addLocalMonitorForEventsMatchingMask:NSKeyDownMask handler:^NSEvent *(NSEvent *event)
     {
-        typeof(weakSelf) strongSelf = weakSelf;
+        typeof(self) self = weakSelf;  // strong self
+        if (!self) { return nil; }
+        
         NSString *charsIgnoringModifiers = [event charactersIgnoringModifiers];
         NSEventModifierFlags modifierFlags = [event modifierFlags];
         
@@ -85,10 +87,10 @@
         NSString *keySpecChars = [CEKeyBindingManager keySpecCharsFromKeyEquivalent:charsIgnoringModifiers
                                                                       modifierFrags:modifierFlags];
         keySpecChars = [keySpecChars isEqualToString:@"\b"] ? @"" : keySpecChars;  // single NSDeleteCharacter should be deleted
-        [strongSelf setStringValue:keySpecChars];
+        [self setStringValue:keySpecChars];
         
         // end editing
-        [[strongSelf window] endEditingFor:nil];
+        [[self window] endEditingFor:nil];
         
         return nil;
     }]];

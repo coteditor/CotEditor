@@ -983,7 +983,8 @@ static CGFloat kPerCompoIncrement;
         // wait for window becomes visible
         __weak typeof(self) weakSelf = self;
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            typeof(weakSelf) self = weakSelf;  // strong self
+            typeof(self) self = weakSelf;  // strong self
+            if (!self) { return; }
             
             while (![documentWindow isVisible]) {
                 [[NSRunLoop currentRunLoop] limitDateForMode:NSDefaultRunLoopMode];
@@ -1001,16 +1002,17 @@ static CGFloat kPerCompoIncrement;
     
     __weak typeof(self) weakSelf = self;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        typeof(weakSelf) strongSelf = weakSelf;
+        typeof(self) self = weakSelf;  // strong self
+        if (!self) { return; }
         
         // カラー範囲を抽出する
-        NSDictionary *colorings = [strongSelf extractAllSyntaxFromString:coloringString];
+        NSDictionary *colorings = [self extractAllSyntaxFromString:coloringString];
         
         if ([colorings count] > 0) {
             // 全文を抽出した場合は抽出結果をキャッシュする
             if (coloringRange.length == [wholeString length]) {
-                [strongSelf setCacheColorings:colorings];
-                [strongSelf setCacheHash:[wholeString MD5]];
+                [self setCacheColorings:colorings];
+                [self setCacheHash:[wholeString MD5]];
             }
             
             // カラーを適用する（すでにエディタの文字列が解析した文字列から変化しているときは諦める）
@@ -1021,7 +1023,7 @@ static CGFloat kPerCompoIncrement;
                         [indicator setInformativeText:NSLocalizedString(@"Applying colors to text", nil)];
                     }
                     
-                    [strongSelf applyColorings:colorings range:coloringRange layoutManager:layoutManager temporal:isTemporal];
+                    [self applyColorings:colorings range:coloringRange layoutManager:layoutManager temporal:isTemporal];
                 });
             }
         }
@@ -1030,7 +1032,7 @@ static CGFloat kPerCompoIncrement;
         if (indicator) {
             dispatch_sync(dispatch_get_main_queue(), ^{
                 [indicator endSheet];
-                [strongSelf setIndicatorController:nil];
+                [self setIndicatorController:nil];
             });
         }
     });

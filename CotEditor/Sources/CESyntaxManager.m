@@ -299,9 +299,10 @@ NSString *const CESyntaxValidationMessageKey = @"MessageKey";
             [[self styleCaches] removeObjectForKey:styleName];
             __weak typeof(self) weakSelf = self;
             [self updateCacheWithCompletionHandler:^{
-                typeof(weakSelf) strongSelf = weakSelf;
+                typeof(self) self = weakSelf;  // strong self
+                
                 [[NSNotificationCenter defaultCenter] postNotificationName:CESyntaxDidUpdateNotification
-                                                                    object:strongSelf
+                                                                    object:self
                                                                   userInfo:@{CEOldNameKey: styleName,
                                                                              CENewNameKey: NSLocalizedString(@"None", nil)}];
             }];
@@ -420,11 +421,11 @@ NSString *const CESyntaxValidationMessageKey = @"MessageKey";
     // 内部で持っているキャッシュ用データを更新
     __weak typeof(self) weakSelf = self;
     [self updateCacheWithCompletionHandler:^{
-        typeof(weakSelf) strongSelf = weakSelf;
+        typeof(self) self = weakSelf;  // strong self
         
         // notify
         [[NSNotificationCenter defaultCenter] postNotificationName:CESyntaxDidUpdateNotification
-                                                            object:strongSelf
+                                                            object:self
                                                           userInfo:@{CEOldNameKey: oldName,
                                                                      CENewNameKey: name}];
     }];
@@ -654,14 +655,16 @@ NSString *const CESyntaxValidationMessageKey = @"MessageKey";
 {
     __weak typeof(self) weakSelf = self;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        typeof(weakSelf) strongSelf = weakSelf;
-        [strongSelf updateStyleTables];
-        [strongSelf setupExtensionAndSyntaxTable];
+        typeof(self) self = weakSelf;  // strong self
+        if (!self) { return; }
+        
+        [self updateStyleTables];
+        [self setupExtensionAndSyntaxTable];
         
         dispatch_sync(dispatch_get_main_queue(), ^{
             // Notificationを発行
             [[NSNotificationCenter defaultCenter] postNotificationName:CESyntaxListDidUpdateNotification
-                                                                object:strongSelf];
+                                                                object:self];
             
             if (completionHandler) {
                 completionHandler();

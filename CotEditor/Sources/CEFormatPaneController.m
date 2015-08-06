@@ -168,8 +168,9 @@
                                                 title:NSLocalizedString(@"Delete", nil)
                                               handler:^(NSTableViewRowAction *action, NSInteger row)
               {
-                  typeof(weakSelf) strongSelf = weakSelf;
-                  [strongSelf deleteSyntaxStyleWithName:swipedSyntaxName];
+                  typeof(self) self = weakSelf;  // strong self
+                  
+                  [self deleteSyntaxStyleWithName:swipedSyntaxName];
               }]];
 }
 #endif  // MAC_OS_X_VERSION_10_11
@@ -245,9 +246,10 @@
     
     __weak typeof(self) weakSelf = self;
     [openPanel beginSheetModalForWindow:[[self view] window] completionHandler:^(NSInteger result) {
-        typeof(weakSelf) strongSelf = weakSelf;
+        typeof(self) self = weakSelf;  // strong self
+        if (!self) { return; }
         
-        if (result == NSFileHandlingPanelCancelButton) return;
+        if (result == NSFileHandlingPanelCancelButton) { return; }
         
         NSURL *URL = [openPanel URL];
         NSString *styleName = [[URL lastPathComponent] stringByDeletingPathExtension];
@@ -255,8 +257,8 @@
         // 同名styleが既にあるときは、置換してもいいか確認
         if ([[[CESyntaxManager sharedManager] styleNames] containsObject:styleName]) {
             // オープンパネルを閉じる
-            [openPanel orderOut:strongSelf];
-            [[[strongSelf view] window] makeKeyAndOrderFront:strongSelf];
+            [openPanel orderOut:self];
+            [[[self view] window] makeKeyAndOrderFront:self];
             
             NSAlert *alert = [[NSAlert alloc] init];
             [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"The “%@” style already exists.", nil), styleName]];
@@ -265,12 +267,12 @@
             [alert addButtonWithTitle:NSLocalizedString(@"Replace", nil)];
             // 現行シート値を設定し、確認のためにセカンダリシートを開く
             NSBeep();
-            [alert beginSheetModalForWindow:[[strongSelf view] window] modalDelegate:strongSelf
+            [alert beginSheetModalForWindow:[[self view] window] modalDelegate:self
                              didEndSelector:@selector(secondarySheetDidEnd:returnCode:contextInfo:)
                                 contextInfo:(__bridge_retained void *)(URL)];
         } else {
             // 重複するファイル名がないとき、インポート実行
-            [strongSelf doImport:URL withCurrentSheetWindow:openPanel];
+            [self doImport:URL withCurrentSheetWindow:openPanel];
         }
     }];
 }

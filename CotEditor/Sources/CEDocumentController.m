@@ -146,9 +146,11 @@
     // run non-modal open panel
     __weak typeof(self) weakSelf = self;
     [super beginOpenPanel:openPanel forTypes:inTypes completionHandler:^(NSInteger result) {
+        typeof(self) self = weakSelf;  // strong self
+        
         // reset encoding menu if cancelled
         if (result == NSCancelButton) {
-            [weakSelf resetAccessorySelectedEncoding];
+            [self resetAccessorySelectedEncoding];
         }
         
         completionHandler(result);

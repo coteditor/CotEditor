@@ -611,9 +611,10 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
     
     __weak typeof(self) weakSelf = self;
     [task executeWithAppleEvent:nil completionHandler:^(NSAppleEventDescriptor *result, NSError *error) {
-        typeof(weakSelf) strongSelf = weakSelf;
+        typeof(self) self = weakSelf;  // strong self
+        
         if (error) {
-            [strongSelf showAlertWithMessage:[error localizedDescription]];
+            [self showAlertWithMessage:[error localizedDescription]];
         }
     }];
 }
@@ -687,14 +688,14 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
          
          if (cancelled) { return; }
          
-         typeof(weakSelf) strongSelf = weakSelf;
+         typeof(self) self = weakSelf;  // strong self
          NSData *data = [note userInfo][NSFileHandleNotificationDataItem];
          NSString *output = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
          if (output) {
              NSError *error;
              [CEScriptManager applyOutput:output document:document outputType:outputType error:&error];
              if (error) {
-                 [strongSelf showScriptError:[error localizedDescription] scriptName:scriptName];
+                 [self showScriptError:[error localizedDescription] scriptName:scriptName];
              }
          }
      }];
@@ -702,21 +703,22 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
     // execute
     [task executeWithArguments:arguments completionHandler:^(NSError *error)
      {
-        // on user cancel
-        if ([[error domain] isEqualToString:NSPOSIXErrorDomain] && [error code] == ENOTBLK) {
-            cancelled = YES;
-            return;
-        }
-        
-        NSData *errorData = [[errPipe fileHandleForReading] readDataToEndOfFile];
-        NSString *errorMsg = [[NSString alloc] initWithData:errorData encoding:NSUTF8StringEncoding];
-        if ([errorMsg length] > 0) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                typeof(weakSelf) strongSelf = weakSelf;
-                [strongSelf showScriptError:errorMsg scriptName:scriptName];
-            });
-        }
-    }];
+         typeof(self) self = weakSelf;  // strong self
+         
+         // on user cancel
+         if ([[error domain] isEqualToString:NSPOSIXErrorDomain] && [error code] == ENOTBLK) {
+             cancelled = YES;
+             return;
+         }
+         
+         NSData *errorData = [[errPipe fileHandleForReading] readDataToEndOfFile];
+         NSString *errorMsg = [[NSString alloc] initWithData:errorData encoding:NSUTF8StringEncoding];
+         if ([errorMsg length] > 0) {
+             dispatch_async(dispatch_get_main_queue(), ^{
+                 [self showScriptError:errorMsg scriptName:scriptName];
+             });
+         }
+     }];
 }
 
 

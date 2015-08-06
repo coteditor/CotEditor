@@ -247,8 +247,9 @@
         // make text field edit mode again if invalid
         __weak typeof(self) weakSelf = self;
         dispatch_async(dispatch_get_main_queue(), ^{
-            typeof(weakSelf) strongSelf = weakSelf;
-            [strongSelf performEditSelectedBindingKeyColumn];
+            typeof(self) self = weakSelf;  // strong self
+            
+            [self performEditSelectedBindingKeyColumn];
         });
     }
     

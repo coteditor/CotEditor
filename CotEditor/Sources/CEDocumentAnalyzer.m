@@ -170,7 +170,8 @@ NSString *__nonnull const CEAnalyzerDidUpdateEditorInfoNotification = @"CEAnalyz
     // calculate on background thread
     __weak typeof(self) weakSelf = self;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        typeof(weakSelf) strongSelf = weakSelf;
+        typeof(self) self = weakSelf;  // strong self
+        if (!self) { return; }
         
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         BOOL countsLineEnding = [defaults boolForKey:CEDefaultCountLineEndingAsCharKey];
@@ -258,18 +259,18 @@ NSString *__nonnull const CEAnalyzerDidUpdateEditorInfoNotification = @"CEAnalyz
         
         // apply to UI
         dispatch_async(dispatch_get_main_queue(), ^{
-            strongSelf.lines = [strongSelf formatCount:numberOfLines selected:numberOfSelectedLines];
-            strongSelf.length = [strongSelf formatCount:length selected:selectedRange.length];
-            strongSelf.chars = [strongSelf formatCount:numberOfChars selected:numberOfSelectedChars];
-            strongSelf.byteLength = [strongSelf formatCount:byteLength selected:selectedByteLength];
-            strongSelf.words = [strongSelf formatCount:numberOfWords selected:numberOfSelectedWords];
-            strongSelf.location = [integerFormatter stringFromNumber:@(location)];
-            strongSelf.line = [integerFormatter stringFromNumber:@(currentLine)];
-            strongSelf.column = [integerFormatter stringFromNumber:@(column)];
-            strongSelf.unicode = unicode;
+            self.lines = [self formatCount:numberOfLines selected:numberOfSelectedLines];
+            self.length = [self formatCount:length selected:selectedRange.length];
+            self.chars = [self formatCount:numberOfChars selected:numberOfSelectedChars];
+            self.byteLength = [self formatCount:byteLength selected:selectedByteLength];
+            self.words = [self formatCount:numberOfWords selected:numberOfSelectedWords];
+            self.location = [integerFormatter stringFromNumber:@(location)];
+            self.line = [integerFormatter stringFromNumber:@(currentLine)];
+            self.column = [integerFormatter stringFromNumber:@(column)];
+            self.unicode = unicode;
             
             [[NSNotificationCenter defaultCenter] postNotificationName:CEAnalyzerDidUpdateEditorInfoNotification
-                                                                object:strongSelf];
+                                                                object:self];
         });
     });
 }

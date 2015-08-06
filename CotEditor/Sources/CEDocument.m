@@ -289,20 +289,20 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
      {
          // [note] This completionHandler block will always be invoked on the main thread.
          
-         typeof(weakSelf) strongSelf = weakSelf;
+         typeof(self) self = weakSelf;  // strong self
          
          if (!error) {
              // apply syntax style that is inferred from the file name
              if (saveOperation == NSSaveAsOperation) {
-                 [strongSelf setSyntaxStyleWithFileName:[url lastPathComponent] coloring:YES];
+                 [self setSyntaxStyleWithFileName:[url lastPathComponent] coloring:YES];
              }
              
              if (saveOperation != NSAutosaveElsewhereOperation) {
                  // update file information
-                 [[strongSelf windowController] updateFileInfo];
+                 [[self windowController] updateFileInfo];
                  
                  // send file update notification for the external editor protocol (ODB Editor Suite)
-                 [[strongSelf ODBEventSender] sendModifiedEventWithURL:url operation:saveOperation];
+                 [[self ODBEventSender] sendModifiedEventWithURL:url operation:saveOperation];
              }
          }
          
@@ -621,7 +621,9 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     
     __weak typeof(self) weakSelf = self;
     dispatch_async(dispatch_get_main_queue(), ^{
-        [[weakSelf windowController] updateFileInfo];
+        typeof(self) self = weakSelf;  // strong self
+        
+        [[self windowController] updateFileInfo];
     });
 }
 
@@ -672,16 +674,16 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     // notify about external file update
     __weak typeof(self) weakSelf = self;
     dispatch_async(dispatch_get_main_queue(), ^{
-        typeof(weakSelf) strongSelf = weakSelf;
-        if (!strongSelf) { return; }
+        typeof(self) self = weakSelf;  // strong self
+        if (!self) { return; }
         
         if (option == CEDocumentConflictRevert) {
             // revert
-            [strongSelf revertToContentsOfURL:[strongSelf fileURL] ofType:[strongSelf fileType] error:nil];
+            [self revertToContentsOfURL:[self fileURL] ofType:[self fileType] error:nil];
             
         } else {
             // notify and show dialog later
-            [strongSelf notifyExternalFileUpdate];
+            [self notifyExternalFileUpdate];
         }
     });
 }
