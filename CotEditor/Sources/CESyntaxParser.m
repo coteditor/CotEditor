@@ -966,6 +966,7 @@ static CGFloat kPerCompoIncrement;
     
     // カラーリング対象の文字列
     NSString *coloringString = [wholeString substringWithRange:coloringRange];
+    BOOL didColor = NO;
     
     // 規定の文字数以上の場合にはカラーリングインジケータシートを表示
     // （ただし、CEDefaultShowColoringIndicatorTextLengthKey が「0」の時は表示しない）
@@ -975,7 +976,24 @@ static CGFloat kPerCompoIncrement;
         NSWindow *documentWindow = [[layoutManager firstTextView] window];
         indicator = [[CEIndicatorSheetController alloc] initWithMessage:NSLocalizedString(@"Coloring text…", nil)];
         [self setIndicatorController:indicator];
-        [[self indicatorController] beginSheetForWindow:documentWindow];
+        
+        // wait for window becomes visible
+        __weak typeof(self) weakSelf = self;
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            typeof(weakSelf) self = weakSelf;  // strong self
+            
+            while (![documentWindow isVisible]) {
+                [[NSRunLoop currentRunLoop] limitDateForMode:NSDefaultRunLoopMode];
+            }
+            
+            // do nothing if the indicator has already been put away
+            if (![self indicatorController]) { return; }
+            
+            // otherwise, attach the indicator as a sheet
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [[self indicatorController] beginSheetForWindow:documentWindow];
+            });
+        });
     }
     
     __weak typeof(self) weakSelf = self;

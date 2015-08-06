@@ -31,6 +31,7 @@
 @interface CEIndicatorSheetController ()
 
 @property (nonatomic, weak) IBOutlet NSProgressIndicator *indicator;
+@property (atomic) double progress;
 
 @property (nonatomic, nonnull, copy) NSString *message;
 @property NSModalSession modalSession;
@@ -93,6 +94,8 @@
             modalDelegate:self didEndSelector:NULL contextInfo:NULL];
         [self setModalSession:[NSApp beginModalSessionForWindow:[self window]]];
     }
+    
+    [[self indicator] setDoubleValue:[self progress]];
 }
 
 
@@ -119,6 +122,10 @@
 - (void)progressIndicator:(CGFloat)delta
 // ------------------------------------------------------
 {
+    @synchronized(self) {
+        self.progress += delta;
+    }
+    
     // set always on main thread
     NSProgressIndicator *indicator = [self indicator];
     dispatch_async(dispatch_get_main_queue(), ^{

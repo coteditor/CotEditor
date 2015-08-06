@@ -738,19 +738,9 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     [self updateEncodingInToolbarAndInfo];
     
     // update syntax highlights and outline menu
-    NSWindow *window = [[self windowController] window];
-    CEEditorWrapper *editor = [self editor];
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        // wait for window becomes visible, since a coloring indicator will be attached to the window if it may take time.
-        while (![window isVisible]) {
-            [[NSRunLoop currentRunLoop] limitDateForMode:NSDefaultRunLoopMode];
-        }
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [editor updateColoringAndOutlineMenu];
-        });
-    });
+    [[self editor] updateColoringAndOutlineMenu];
     
+    // show incompatible chars if needed
     [[self windowController] updateIncompatibleCharsIfNeeded];
 }
 
