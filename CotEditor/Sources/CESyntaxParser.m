@@ -982,11 +982,19 @@ static CGFloat kPerCompoIncrement;
         
         // wait for window becomes visible
         __weak typeof(self) weakSelf = self;
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
             typeof(self) self = weakSelf;  // strong self
             if (!self) { return; }
             
             while (![documentWindow isVisible]) {
+                [[NSRunLoop currentRunLoop] limitDateForMode:NSDefaultRunLoopMode];
+            }
+            
+            // progress the main thread run-loop in order to give a chance to show more important sheet
+            dispatch_sync(dispatch_get_main_queue(), ^{});
+            
+            // weit until attached window closes
+            while ([documentWindow attachedSheet]) {
                 [[NSRunLoop currentRunLoop] limitDateForMode:NSDefaultRunLoopMode];
             }
             
@@ -1015,20 +1023,22 @@ static CGFloat kPerCompoIncrement;
                 [self setCacheHash:[wholeString MD5]];
             }
             
-            // カラーを適用する（すでにエディタの文字列が解析した文字列から変化しているときは諦める）
+            // update indicator message
+            if (indicator) {
+                dispatch_sync(dispatch_get_main_queue(), ^{
+                    [indicator setInformativeText:NSLocalizedString(@"Applying colors to text", nil)];
+                });
+            }
+            
+            // apply color (or give up if the editor's string is changed from the analized string)
             if ([[[layoutManager textStorage] string] isEqualToString:wholeString]) {
                 dispatch_sync(dispatch_get_main_queue(), ^{
-                    // インジケータシートのメッセージを更新
-                    if (indicator) {
-                        [indicator setInformativeText:NSLocalizedString(@"Applying colors to text", nil)];
-                    }
-                    
                     [self applyColorings:colorings range:coloringRange layoutManager:layoutManager temporal:isTemporal];
                 });
             }
         }
         
-        // インジーケータシートを片づける
+        // clean up indicator sheet
         if (indicator) {
             dispatch_sync(dispatch_get_main_queue(), ^{
                 [indicator endSheet];
