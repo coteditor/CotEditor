@@ -733,11 +733,6 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     //   - Replace on Find Penel: (OgreKit) OgreTextViewPlainAdapter > replaceCharactersInRange:withOGString:
     
     if ([self fileContentString]) {
-        CENewLineType lineEnding = [[self fileContentString] detectNewLineType];
-        if (lineEnding != CENewLineNone) {  // keep default if no line endings are found
-            [self setLineEnding:lineEnding];
-        }
-        
         NSString *string = [[self fileContentString] stringByReplacingNewLineCharacersWith:CENewLineLF];
         
         [[self editor] setString:string];  // In this `setString:`, caret will be moved to the beginning.
@@ -1257,6 +1252,11 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     if (string) {
         [self setFileContentString:string];  // _fileContentString will be released in `setStringToEditor`
         [self doSetEncoding:usedEncoding updateDocument:NO askLossy:NO lossy:NO asActionName:nil];
+        
+        CENewLineType lineEnding = [string detectNewLineType];
+        if (lineEnding != CENewLineNone) {  // keep default if no line endings are found
+            [self setLineEnding:lineEnding];
+        }
         
         return YES;
     }
