@@ -978,7 +978,7 @@ static NSTimeInterval secondColoringDelay;
 
 // ------------------------------------------------------
 /// タイマーの設定時刻に到達、カラーリング実行
-- (void)doColoringWithTimer:(NSTimer *)timer
+- (void)doColoringWithTimer:(nonnull NSTimer *)timer
 // ------------------------------------------------------
 {
     [self stopColoringTimer];

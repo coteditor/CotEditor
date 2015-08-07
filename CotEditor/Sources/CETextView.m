@@ -1779,7 +1779,7 @@ static NSPoint kTextContainerOrigin;
 
 // ------------------------------------------------------
 /// 入力補完リストの表示
-- (void)completionWithTimer:(NSTimer *)timer
+- (void)completionWithTimer:(nonnull NSTimer *)timer
 // ------------------------------------------------------
 {
     [self stopCompletionTimer];
