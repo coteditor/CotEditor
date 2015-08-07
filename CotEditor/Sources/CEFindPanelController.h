@@ -41,17 +41,17 @@ typedef NS_ENUM(NSInteger, CETextFinderAction) {
 @interface CEFindPanelController : OgreFindPanelController
 
 // action messages
-- (IBAction)showFindPanel:(id)sender;
-- (IBAction)findNext:(id)sender;
-- (IBAction)findPrevious:(id)sender;
-- (IBAction)findSelectedText:(id)sender;
-- (IBAction)findAll:(id)sender;
-- (IBAction)useSelectionForFind:(id)sender;
-- (IBAction)useSelectionForReplace:(id)sender;
-- (IBAction)replace:(id)sender;
-- (IBAction)replaceAll:(id)sender;
-- (IBAction)replaceAndFind:(id)sender;
-- (IBAction)highlight:(id)sender;
-- (IBAction)unhighlight:(id)sender;
+- (IBAction)showFindPanel:(nullable id)sender;
+- (IBAction)findNext:(nullable id)sender;
+- (IBAction)findPrevious:(nullable id)sender;
+- (IBAction)findSelectedText:(nullable id)sender;
+- (IBAction)findAll:(nullable id)sender;
+- (IBAction)useSelectionForFind:(nullable id)sender;
+- (IBAction)useSelectionForReplace:(nullable id)sender;
+- (IBAction)replace:(nullable id)sender;
+- (IBAction)replaceAll:(nullable id)sender;
+- (IBAction)replaceAndFind:(nullable id)sender;
+- (IBAction)highlight:(nullable id)sender;
+- (IBAction)unhighlight:(nullable id)sender;
 
 @end

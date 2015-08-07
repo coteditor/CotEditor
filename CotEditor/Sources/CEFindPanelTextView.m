@@ -33,7 +33,7 @@
 
 @interface CEFindPanelTextView ()
 
-@property (nonatomic) IBOutlet CEFindPanelController *findPanelController;
+@property (nonatomic, nullable) IBOutlet CEFindPanelController *findPanelController;
 
 @end
 
@@ -48,7 +48,7 @@
 
 // ------------------------------------------------------
 /// initialize instance
-- (instancetype)initWithCoder:(NSCoder *)coder
+- (nullable instancetype)initWithCoder:(nonnull NSCoder *)coder
 // ------------------------------------------------------
 {
     self = [super initWithCoder:coder];
@@ -107,7 +107,7 @@
 
 // ------------------------------------------------------
 /// swap '¥' with '\' if needed
-- (void)insertText:(id)aString replacementRange:(NSRange)replacementRange
+- (void)insertText:(nonnull id)aString replacementRange:(NSRange)replacementRange
 // ------------------------------------------------------
 {
     NSString *string = ([aString isKindOfClass:[NSAttributedString class]]) ? [aString string] : aString;
@@ -129,7 +129,7 @@
 
 // ------------------------------------------------------
 /// jump to the next responder with tab key (standard NSTextField behavior)
-- (void)insertTab:(id)sender
+- (void)insertTab:(nullable id)sender
 // ------------------------------------------------------
 {
     [[self window] makeFirstResponder:[self nextKeyView]];
@@ -138,7 +138,7 @@
 
 // ------------------------------------------------------
 /// perform Find Next with return
-- (void)insertNewline:(id)sender
+- (void)insertNewline:(nullable id)sender
 // ------------------------------------------------------
 {
     // -> do nothing if no findpanelController is connected (standard NSTextField behavior)

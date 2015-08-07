@@ -68,7 +68,7 @@
 
 // ------------------------------------------------------
 /// initialize instance
-- (instancetype)initWithFrame:(NSRect)frameRect
+- (nonnull instancetype)initWithFrame:(NSRect)frameRect
 // ------------------------------------------------------
 {
     self = [super initWithFrame:frameRect];
@@ -366,8 +366,7 @@
 
 // ------------------------------------------------------
 ///  テキストが編集される
-- (BOOL)textView:(NSTextView *)aTextView shouldChangeTextInRange:(NSRange)affectedCharRange 
-        replacementString:(NSString *)replacementString
+- (BOOL)textView:(nonnull NSTextView *)textView shouldChangeTextInRange:(NSRange)affectedCharRange replacementString:(nullable NSString *)replacementString
 // ------------------------------------------------------
 {
     // standardize line endings to LF (Script, Key Typing)
@@ -384,9 +383,9 @@
     
     if (!replacementString ||  // = attributesのみの変更
         ([replacementString length] == 0) ||  // = 文章の削除
-        [(CETextView *)aTextView isSelfDrop] ||  // = 自己内ドラッグ&ドロップ
-        [(CETextView *)aTextView isReadingFromPboard] ||  // = ペーストまたはドロップ
-        [[aTextView undoManager] isUndoing] ||  // = アンドゥ中
+        [(CETextView *)textView isSelfDrop] ||  // = 自己内ドラッグ&ドロップ
+        [(CETextView *)textView isReadingFromPboard] ||  // = ペーストまたはドロップ
+        [[textView undoManager] isUndoing] ||  // = アンドゥ中
         [replacementString isEqualToString:@"\n"])
     {
         return YES;
@@ -399,10 +398,10 @@
         NSString *newString = [replacementString stringByReplacingNewLineCharacersWith:CENewLineLF];
         
         if (newString) {
-            [(CETextView *)aTextView replaceWithString:newString
-                                                 range:affectedCharRange
-                                         selectedRange:NSMakeRange(affectedCharRange.location + [newString length], 0)
-                                            actionName:nil];  // Action名は自動で付けられる？ので、指定しない
+            [(CETextView *)textView replaceWithString:newString
+                                                range:affectedCharRange
+                                        selectedRange:NSMakeRange(affectedCharRange.location + [newString length], 0)
+                                           actionName:nil];  // Action名は自動で付けられる？ので、指定しない
             
             return NO;
         }
@@ -414,8 +413,7 @@
 
 // ------------------------------------------------------
 /// 補完候補リストをセット
-- (NSArray *)textView:(NSTextView *)textView completions:(NSArray *)words 
-        forPartialWordRange:(NSRange)charRange indexOfSelectedItem:(NSInteger *)index
+- (nonnull NSArray *)textView:(nonnull NSTextView *)textView completions:(nonnull NSArray *)words forPartialWordRange:(NSRange)charRange indexOfSelectedItem:(nullable NSInteger *)index
 // ------------------------------------------------------
 {
     NSMutableOrderedSet *candidateWords = [NSMutableOrderedSet orderedSet];
@@ -468,7 +466,7 @@
 
 // ------------------------------------------------------
 /// text did edit.
-- (void)textDidChange:(NSNotification *)aNotification
+- (void)textDidChange:(nonnull NSNotification *)aNotification
 // ------------------------------------------------------
 {
     // カラーリング実行
@@ -488,7 +486,7 @@
 
 // ------------------------------------------------------
 /// the selection of main textView was changed.
-- (void)textViewDidChangeSelection:(NSNotification *)aNotification
+- (void)textViewDidChangeSelection:(nonnull NSNotification *)aNotification
 // ------------------------------------------------------
 {
     // カレント行をハイライト
@@ -563,7 +561,7 @@
 
 // ------------------------------------------------------
 /// font is changed
-- (void)textViewDidChangeTypingAttributes:(NSNotification *)notification
+- (void)textViewDidChangeTypingAttributes:(nonnull NSNotification *)notification
 // ------------------------------------------------------
 {
     [self highlightCurrentLine];
@@ -579,7 +577,7 @@
 
 // ------------------------------------------------------
 /// did Replace All
-- (void)textDidReplaceAll:(NSNotification *)aNotification
+- (void)textDidReplaceAll:(nonnull NSNotification *)aNotification
 // ------------------------------------------------------
 {
     // 文書情報更新（選択範囲・キャレット位置が変更されないまま全置換が実行された場合への対応）
@@ -599,7 +597,7 @@
 
 // ------------------------------------------------------
 /// テーマが更新された
-- (void)themeDidUpdate:(NSNotification *)notification
+- (void)themeDidUpdate:(nonnull NSNotification *)notification
 // ------------------------------------------------------
 {
     if ([[notification userInfo][CEOldNameKey] isEqualToString:[[[self textView] theme] name]]) {
@@ -630,7 +628,7 @@
 
 // ------------------------------------------------------
 /// 行番号更新
-- (void)updateLineNumberWithTimer:(NSTimer *)timer
+- (void)updateLineNumberWithTimer:(nonnull NSTimer *)timer
 // ------------------------------------------------------
 {
     [self stopUpdateLineNumberTimer];
@@ -640,7 +638,7 @@
 
 // ------------------------------------------------------
 /// アウトラインメニュー更新
-- (void)updateOutlineMenuWithTimer:(NSTimer *)timer
+- (void)updateOutlineMenuWithTimer:(nonnull NSTimer *)timer
 // ------------------------------------------------------
 {
     [self updateOutlineMenu]; // （updateOutlineMenu 内で stopUpdateOutlineMenuTimer を実行している）

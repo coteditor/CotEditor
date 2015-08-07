@@ -63,7 +63,7 @@ NSString *__nonnull const CETextFinderDidUnhighlightNotification = @"CETextFinde
 
 // ------------------------------------------------------
 /// specify custom find panel nib name
-- (NSString *)findPanelNibName
+- (nonnull NSString *)findPanelNibName
 // ------------------------------------------------------
 {
     return @"FindPanel";

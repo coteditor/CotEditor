@@ -13,7 +13,7 @@
 
 @implementation NSString (Sandboxing)
 
-+ (NSString *)homeDirectory
++ (nullable NSString *)homeDirectory
 {
     const struct passwd *passwd = getpwnam([NSUserName() UTF8String]);
     if (!passwd) {
@@ -25,7 +25,7 @@
 }
 
 
-- (NSString *)stringByAbbreviatingWithTildeInSandboxedPath
+- (nonnull NSString *)stringByAbbreviatingWithTildeInSandboxedPath
 {
     NSString *homeDir = [NSString homeDirectory];
     if (![self hasPrefix:homeDir]) {

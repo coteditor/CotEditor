@@ -95,10 +95,10 @@ static NSPoint kTextContainerOrigin;
 
 // ------------------------------------------------------
 /// initialize instance
-- (instancetype)initWithFrame:(NSRect)frameRect textContainer:(NSTextContainer *)aTextContainer
+- (nonnull instancetype)initWithFrame:(NSRect)frameRect textContainer:(nullable NSTextContainer *)container
 // ------------------------------------------------------
 {
-    self = [super initWithFrame:frameRect textContainer:aTextContainer];
+    self = [super initWithFrame:frameRect textContainer:container];
     if (self) {
         // set class identifier for window restoration
         [self setIdentifier:@"coreTextView"];
@@ -188,7 +188,7 @@ static NSPoint kTextContainerOrigin;
 
 // ------------------------------------------------------
 /// store UI state for the window restoration
-- (void)encodeRestorableStateWithCoder:(NSCoder *)coder
+- (void)encodeRestorableStateWithCoder:(nonnull NSCoder *)coder
 // ------------------------------------------------------
 {
     [super encodeRestorableStateWithCoder:coder];
@@ -201,7 +201,7 @@ static NSPoint kTextContainerOrigin;
 
 // ------------------------------------------------------
 /// restore UI state on the window restoration
-- (void)restoreStateWithCoder:(NSCoder *)coder
+- (void)restoreStateWithCoder:(nonnull NSCoder *)coder
 // ------------------------------------------------------
 {
     [super restoreStateWithCoder:coder];
@@ -259,7 +259,7 @@ static NSPoint kTextContainerOrigin;
 
 // ------------------------------------------------------
 /// キー押下を取得
-- (void)keyDown:(NSEvent *)theEvent
+- (void)keyDown:(nonnull NSEvent *)theEvent
 // ------------------------------------------------------
 {
     NSString *charIgnoringMod = [theEvent charactersIgnoringModifiers];
@@ -285,7 +285,7 @@ static NSPoint kTextContainerOrigin;
 
 // ------------------------------------------------------
 /// on inputting text (NSTextInputClient Protocol)
-- (void)insertText:(id)aString replacementRange:(NSRange)replacementRange
+- (void)insertText:(nonnull id)aString replacementRange:(NSRange)replacementRange
 // ------------------------------------------------------
 {
     // just insert text on programmatic insertion
@@ -372,7 +372,7 @@ static NSPoint kTextContainerOrigin;
 
 // ------------------------------------------------------
 /// タブ入力、タブを展開
-- (void)insertTab:(id)sender
+- (void)insertTab:(nullable id)sender
 // ------------------------------------------------------
 {
     if ([self isAutoTabExpandEnabled]) {
@@ -394,7 +394,7 @@ static NSPoint kTextContainerOrigin;
 
 // ------------------------------------------------------
 /// 改行コード入力、オートインデント実行
-- (void)insertNewline:(id)sender
+- (void)insertNewline:(nullable id)sender
 // ------------------------------------------------------
 {
     NSString *indent = @"";
@@ -456,7 +456,7 @@ static NSPoint kTextContainerOrigin;
 
 // ------------------------------------------------------
 /// デリート、タブを展開しているときのスペースを調整削除
-- (void)deleteBackward:(id)sender
+- (void)deleteBackward:(nullable id)sender
 // ------------------------------------------------------
 {
     NSRange selectedRange = [self selectedRange];
@@ -487,7 +487,7 @@ static NSPoint kTextContainerOrigin;
 
 // ------------------------------------------------------
 /// コンテキストメニューを返す
-- (NSMenu *)menuForEvent:(NSEvent *)theEvent
+- (nullable NSMenu *)menuForEvent:(nonnull NSEvent *)theEvent
 // ------------------------------------------------------
 {
     NSMenu *menu = [super menuForEvent:theEvent];
@@ -549,7 +549,7 @@ static NSPoint kTextContainerOrigin;
 
 // ------------------------------------------------------
 /// コピー実行。改行コードを書類に設定されたものに置換する。
-- (void)copy:(id)sender
+- (void)copy:(nullable id)sender
 // ------------------------------------------------------
 {
     // （このメソッドは cut: からも呼び出される）
@@ -560,7 +560,7 @@ static NSPoint kTextContainerOrigin;
 
 // ------------------------------------------------------
 /// フォント変更
-- (void)changeFont:(id)sender
+- (void)changeFont:(nullable id)sender
 // ------------------------------------------------------
 {
     // (引数"sender"はNSFontManegerのインスタンス)
@@ -574,7 +574,7 @@ static NSPoint kTextContainerOrigin;
 
 // ------------------------------------------------------
 /// フォントを設定
-- (void)setFont:(NSFont *)font
+- (void)setFont:(nullable NSFont *)font
 // ------------------------------------------------------
 {
 // 複合フォントで行間が等間隔でなくなる問題を回避するため、CELayoutManager にもフォントを持たせておく。
@@ -742,7 +742,7 @@ static NSPoint kTextContainerOrigin;
 
 // ------------------------------------------------------
 /// ドラッグする文字列の改行コードを書類に設定されたものに置換する
-- (NSDraggingSession *)beginDraggingSessionWithItems:(NSArray *)items event:(NSEvent *)event source:(id<NSDraggingSource>)source
+- (nonnull NSDraggingSession *)beginDraggingSessionWithItems:(nonnull NSArray *)items event:(nonnull NSEvent *)event source:(nonnull id<NSDraggingSource>)source
 // ------------------------------------------------------
 {
     NSDraggingSession *session = [super beginDraggingSessionWithItems:items event:event source:source];
@@ -755,7 +755,7 @@ static NSPoint kTextContainerOrigin;
 
 // ------------------------------------------------------
 /// ドロップ実行（同じ書類からドロップされた文字列の改行コードをLFへ置換するためにオーバーライド）
-- (BOOL)performDragOperation:(id<NSDraggingInfo>)sender
+- (BOOL)performDragOperation:(nonnull id<NSDraggingInfo>)sender
 // ------------------------------------------------------
 {
     // standardize line endings to LF (Drop from the same document)
@@ -799,7 +799,7 @@ static NSPoint kTextContainerOrigin;
 
 // ------------------------------------------------------
 /// ペーストまたはドロップされたアイテムに応じて挿入する文字列をNSPasteboardから読み込む
-- (BOOL)readSelectionFromPasteboard:(NSPasteboard *)pboard type:(NSString *)type
+- (BOOL)readSelectionFromPasteboard:(nonnull NSPasteboard *)pboard type:(nonnull NSString *)type
 // ------------------------------------------------------
 {
     // （このメソッドは、performDragOperation: 内で呼ばれる）
@@ -958,7 +958,7 @@ static NSPoint kTextContainerOrigin;
 
 // ------------------------------------------------------
 /// ユーザ設定の変更を反映する
--(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+- (void)observeValueForKeyPath:(nullable NSString *)keyPath ofObject:(nullable id)object change:(nullable NSDictionary *)change context:(nullable void *)context
 // ------------------------------------------------------
 {
     id newValue = change[NSKeyValueChangeNewKey];
@@ -987,7 +987,7 @@ static NSPoint kTextContainerOrigin;
 
 // ------------------------------------------------------
 /// メニューの有効／無効を制御
-- (BOOL)validateMenuItem:(NSMenuItem *)menuItem
+- (BOOL)validateMenuItem:(nonnull NSMenuItem *)menuItem
 // ------------------------------------------------------
 {
     if (([menuItem action] == @selector(exchangeFullwidthRoman:)) ||
@@ -1026,7 +1026,7 @@ static NSPoint kTextContainerOrigin;
 
 // ------------------------------------------------------
 /// ツールバーアイコンの有効／無効を制御
-- (BOOL)validateToolbarItem:(NSToolbarItem *)theItem
+- (BOOL)validateToolbarItem:(nonnull NSToolbarItem *)theItem
 // ------------------------------------------------------
 {
     if ([theItem action] == @selector(toggleComment:)) {
@@ -1041,8 +1041,8 @@ static NSPoint kTextContainerOrigin;
 #pragma mark Public Methods
 
 // ------------------------------------------------------
-- (void)insertString:(NSString *)string
 /// treat programmatic text insertion
+- (void)insertString:(NSString *)string
 // ------------------------------------------------------
 {
     // should not use insertText:replacementRange:` methods since they are generally for user typing.
@@ -1165,7 +1165,7 @@ static NSPoint kTextContainerOrigin;
 
 // ------------------------------------------------------
 /// フォントをリセット
-- (void)resetFont:(id)sender
+- (void)resetFont:(nullable id)sender
 // ------------------------------------------------------
 {
     NSString *name = [[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultFontNameKey];
@@ -1178,7 +1178,7 @@ static NSPoint kTextContainerOrigin;
 
 // ------------------------------------------------------
 /// increase indent level
-- (IBAction)shiftRight:(id)sender
+- (IBAction)shiftRight:(nullable id)sender
 // ------------------------------------------------------
 {
     if ([self tabWidth] < 1) { return; }
@@ -1231,7 +1231,7 @@ static NSPoint kTextContainerOrigin;
 
 // ------------------------------------------------------
 /// decrease indent level
-- (IBAction)shiftLeft:(id)sender
+- (IBAction)shiftLeft:(nullable id)sender
 // ------------------------------------------------------
 {
     if ([self tabWidth] < 1) { return; }
@@ -1305,7 +1305,7 @@ static NSPoint kTextContainerOrigin;
 
 // ------------------------------------------------------
 /// 選択範囲を含む行全体を選択する
-- (IBAction)selectLines:(id)sender
+- (IBAction)selectLines:(nullable id)sender
 // ------------------------------------------------------
 {
     [self setSelectedRange:[[self string] lineRangeForRange:[self selectedRange]]];
@@ -1314,7 +1314,7 @@ static NSPoint kTextContainerOrigin;
 
 // ------------------------------------------------------
 /// タブ幅を変更する
-- (IBAction)changeTabWidth:(id)sender
+- (IBAction)changeTabWidth:(nullable id)sender
 // ------------------------------------------------------
 {
     [self setTabWidth:[sender tag]];
@@ -1323,7 +1323,7 @@ static NSPoint kTextContainerOrigin;
 
 // ------------------------------------------------------
 /// 半角円マークを入力
-- (IBAction)inputYenMark:(id)sender
+- (IBAction)inputYenMark:(nullable id)sender
 // ------------------------------------------------------
 {
     [super insertText:[NSString stringWithCharacters:&kYenMark length:1]
@@ -1333,7 +1333,7 @@ static NSPoint kTextContainerOrigin;
 
 // ------------------------------------------------------
 /// バックスラッシュを入力
-- (IBAction)inputBackSlash:(id)sender
+- (IBAction)inputBackSlash:(nullable id)sender
 // ------------------------------------------------------
 {
     [super insertText:@"\\" replacementRange:[self selectedRange]];
@@ -1342,7 +1342,7 @@ static NSPoint kTextContainerOrigin;
 
 // ------------------------------------------------------
 /// アウトラインメニュー選択によるテキスト選択を実行
-- (IBAction)setSelectedRangeWithNSValue:(id)sender
+- (IBAction)setSelectedRangeWithNSValue:(nullable id)sender
 // ------------------------------------------------------
 {
     NSValue *value = [sender representedObject];
@@ -1360,7 +1360,7 @@ static NSPoint kTextContainerOrigin;
 
 // ------------------------------------------------------
 /// 行間設定を変更
-- (IBAction)changeLineHeight:(id)sender
+- (IBAction)changeLineHeight:(nullable id)sender
 // ------------------------------------------------------
 {
     [self setLineSpacingAndUpdate:(CGFloat)[[sender title] doubleValue] - 1.0];  // title is line height
@@ -1369,7 +1369,7 @@ static NSPoint kTextContainerOrigin;
 
 // ------------------------------------------------------
 /// グリフ情報をポップオーバーで表示
-- (IBAction)showSelectionInfo:(id)sender
+- (IBAction)showSelectionInfo:(nullable id)sender
 // ------------------------------------------------------
 {
     NSRange selectedRange = [self selectedRange];
@@ -1684,7 +1684,7 @@ static NSPoint kTextContainerOrigin;
 
 // ------------------------------------------------------
 /// 補完リストの表示、選択候補の入力
-- (void)insertCompletion:(NSString *)word forPartialWordRange:(NSRange)charRange movement:(NSInteger)movement isFinal:(BOOL)flag
+- (void)insertCompletion:(nonnull NSString *)word forPartialWordRange:(NSRange)charRange movement:(NSInteger)movement isFinal:(BOOL)flag
 // ------------------------------------------------------
 {
     NSEvent *event = [[self window] currentEvent];
@@ -1977,7 +1977,7 @@ static NSPoint kTextContainerOrigin;
 
 // ------------------------------------------------------
 /// change font size by pinch gesture
-- (void)magnifyWithEvent:(NSEvent *)event
+- (void)magnifyWithEvent:(nonnull NSEvent *)event
 // ------------------------------------------------------
 {
     BOOL isScalingDown = ([event magnification] < 0);
@@ -1996,7 +1996,7 @@ static NSPoint kTextContainerOrigin;
 
 // ------------------------------------------------------
 /// reset font size by two-finger double tap
-- (void)smartMagnifyWithEvent:(NSEvent *)event
+- (void)smartMagnifyWithEvent:(nonnull NSEvent *)event
 // ------------------------------------------------------
 {
     CGFloat defaultSize = (CGFloat)[[NSUserDefaults standardUserDefaults] floatForKey:CEDefaultFontSizeKey];
@@ -2061,7 +2061,7 @@ static NSPoint kTextContainerOrigin;
 
 // ------------------------------------------------------
 /// toggle comment state in selection
-- (IBAction)toggleComment:(id)sender
+- (IBAction)toggleComment:(nullable id)sender
 // ------------------------------------------------------
 {
     if ([self canUncommentRange:[self selectedRange]]) {
@@ -2074,7 +2074,7 @@ static NSPoint kTextContainerOrigin;
 
 // ------------------------------------------------------
 /// comment out selection appending comment delimiters
-- (IBAction)commentOut:(id)sender
+- (IBAction)commentOut:(nullable id)sender
 // ------------------------------------------------------
 {
     if (![self blockCommentDelimiters] && ![self inlineCommentDelimiter]) { return; }
@@ -2134,7 +2134,7 @@ static NSPoint kTextContainerOrigin;
 
 // ------------------------------------------------------
 /// uncomment selection removing comment delimiters
-- (IBAction)uncomment:(id)sender
+- (IBAction)uncomment:(nullable id)sender
 // ------------------------------------------------------
 {
     if (![self blockCommentDelimiters] && ![self inlineCommentDelimiter]) { return; }
@@ -2283,7 +2283,7 @@ static NSPoint kTextContainerOrigin;
 
 // ------------------------------------------------------
 /// transform half-width roman characters in selection to full-width
-- (IBAction)exchangeFullwidthRoman:(id)sender
+- (IBAction)exchangeFullwidthRoman:(nullable id)sender
 // ------------------------------------------------------
 {
     [self transformSelectionWithActionName:NSLocalizedString(@"To Fullwidth Roman", nil)
@@ -2296,7 +2296,7 @@ static NSPoint kTextContainerOrigin;
 
 // ------------------------------------------------------
 /// transform full-width roman characters in selection to half-width
-- (IBAction)exchangeHalfwidthRoman:(id)sender
+- (IBAction)exchangeHalfwidthRoman:(nullable id)sender
 // ------------------------------------------------------
 {
     [self transformSelectionWithActionName:NSLocalizedString(@"To Halfwidth Roman", nil)
@@ -2309,7 +2309,7 @@ static NSPoint kTextContainerOrigin;
 
 // ------------------------------------------------------
 /// transform Hiragana in selection to Katakana
-- (IBAction)exchangeKatakana:(id)sender
+- (IBAction)exchangeKatakana:(nullable id)sender
 // ------------------------------------------------------
 {
     [self transformSelectionWithActionName:NSLocalizedString(@"Hiragana to Katakana", nil)
@@ -2322,7 +2322,7 @@ static NSPoint kTextContainerOrigin;
 
 // ------------------------------------------------------
 /// transform Katakana in selection to Hiragana
-- (IBAction)exchangeHiragana:(id)sender
+- (IBAction)exchangeHiragana:(nullable id)sender
 // ------------------------------------------------------
 {
     [self transformSelectionWithActionName:NSLocalizedString(@"Katakana to Hiragana", nil)
@@ -2335,7 +2335,7 @@ static NSPoint kTextContainerOrigin;
 
 // ------------------------------------------------------
 /// Unicode normalization (NDF)
-- (IBAction)normalizeUnicodeWithNFD:(id)sender
+- (IBAction)normalizeUnicodeWithNFD:(nullable id)sender
 // ------------------------------------------------------
 {
     [self transformSelectionWithActionName:@"NFD"
@@ -2348,7 +2348,7 @@ static NSPoint kTextContainerOrigin;
 
 // ------------------------------------------------------
 /// Unicode normalization (NFC)
-- (IBAction)normalizeUnicodeWithNFC:(id)sender
+- (IBAction)normalizeUnicodeWithNFC:(nullable id)sender
 // ------------------------------------------------------
 {
     [self transformSelectionWithActionName:@"NFC"
@@ -2361,7 +2361,7 @@ static NSPoint kTextContainerOrigin;
 
 // ------------------------------------------------------
 /// Unicode normalization (NFKD)
-- (IBAction)normalizeUnicodeWithNFKD:(id)sender
+- (IBAction)normalizeUnicodeWithNFKD:(nullable id)sender
 // ------------------------------------------------------
 {
     [self transformSelectionWithActionName:@"NFKD"
@@ -2374,7 +2374,7 @@ static NSPoint kTextContainerOrigin;
 
 // ------------------------------------------------------
 /// Unicode normalization (NFKC)
-- (IBAction)normalizeUnicodeWithNFKC:(id)sender
+- (IBAction)normalizeUnicodeWithNFKC:(nullable id)sender
 // ------------------------------------------------------
 {
     [self transformSelectionWithActionName:@"NFKC"
@@ -2387,7 +2387,7 @@ static NSPoint kTextContainerOrigin;
 
 // ------------------------------------------------------
 /// tell selected string to color code panel
-- (IBAction)editColorCode:(id)sender
+- (IBAction)editColorCode:(nullable id)sender
 // ------------------------------------------------------
 {
     NSString *selectedString = [[self string] substringWithRange:[self selectedRange]];
@@ -2399,7 +2399,7 @@ static NSPoint kTextContainerOrigin;
 
 // ------------------------------------------------------
 /// avoid changeing text color by color panel
-- (IBAction)changeColor:(id)sender
+- (IBAction)changeColor:(nullable id)sender
 // ------------------------------------------------------
 {
     // do nothing.

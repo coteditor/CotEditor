@@ -48,7 +48,7 @@
 
 // ------------------------------------------------------
 /// initialize instance
-- (instancetype)init
+- (nonnull instancetype)init
 // ------------------------------------------------------
 {
     self = [super init];

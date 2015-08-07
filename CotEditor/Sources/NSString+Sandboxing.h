@@ -16,6 +16,6 @@
  * @abstract Returns a new string representing the receiver as a path with a tilde (~) substituted for the full path to the current user’s home directory.
  * @note This method should work in a sandboxed environment
  */
-- (NSString *)stringByAbbreviatingWithTildeInSandboxedPath;
+- (nonnull NSString *)stringByAbbreviatingWithTildeInSandboxedPath;
 
 @end

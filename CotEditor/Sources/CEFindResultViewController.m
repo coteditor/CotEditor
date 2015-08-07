@@ -53,13 +53,13 @@ static const int kMaxMatchedStringLength = 256;
 
 @interface CEFindResultViewController () <OgreTextFindResultDelegateProtocol>
 
-@property (nonatomic, copy) NSString *resultMessage;
-@property (nonatomic, copy) NSString *findString;
-@property (nonatomic, copy) NSString *documentName;
+@property (nonatomic, nullable, copy) NSString *resultMessage;
+@property (nonatomic, nullable, copy) NSString *findString;
+@property (nonatomic, nullable, copy) NSString *documentName;
 @property (nonatomic) NSUInteger count;
 @property (nonatomic) BOOL enableLiveUpdate;
 
-@property (nonatomic, weak) IBOutlet NSTableView *tableView;
+@property (nonatomic, nullable, weak) IBOutlet NSTableView *tableView;
 
 @end
 
@@ -108,7 +108,7 @@ static const int kMaxMatchedStringLength = 256;
 
 // ------------------------------------------------------
 /// return number of row (required)
-- (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView
+- (NSInteger)numberOfRowsInTableView:(nonnull NSTableView *)tableView
 // ------------------------------------------------------
 {
     // [note] This method `selectMatchedString` in fact just returns whether textView exists yet and do nothing else.
@@ -124,7 +124,7 @@ static const int kMaxMatchedStringLength = 256;
 
 // ------------------------------------------------------
 /// return value of cell (required)
-- (id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
+- (nullable id)tableView:(nonnull NSTableView *)tableView objectValueForTableColumn:(nullable NSTableColumn *)tableColumn row:(NSInteger)row
 // ------------------------------------------------------
 {
     if (![self result]) { return nil; }
@@ -149,7 +149,7 @@ static const int kMaxMatchedStringLength = 256;
 
 // ------------------------------------------------------
 /// select matched string in text view
-- (void)tableViewSelectionDidChange:(NSNotification *)notification
+- (void)tableViewSelectionDidChange:(nonnull NSNotification *)notification
 // ------------------------------------------------------
 {
     NSTableView *tableView = [notification object];

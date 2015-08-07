@@ -86,7 +86,7 @@ static NSTimeInterval secondColoringDelay;
 
 // ------------------------------------------------------
 /// initialize instance
-- (instancetype)init
+- (nonnull instancetype)init
 // ------------------------------------------------------
 {
     self = [super init];
@@ -143,7 +143,7 @@ static NSTimeInterval secondColoringDelay;
 
 // ------------------------------------------------------
 /// メニュー項目の有効・無効を制御
-- (BOOL)validateMenuItem:(NSMenuItem *)menuItem
+- (BOOL)validateMenuItem:(nonnull NSMenuItem *)menuItem
 // ------------------------------------------------------
 {
     NSInteger state = NSOffState;
@@ -601,7 +601,7 @@ static NSTimeInterval secondColoringDelay;
 
 // ------------------------------------------------------
 /// 行番号表示をトグルに切り替える
-- (IBAction)toggleLineNumber:(id)sender
+- (IBAction)toggleLineNumber:(nullable id)sender
 // ------------------------------------------------------
 {
     [self setShowsLineNum:![self showsLineNum]];
@@ -610,7 +610,7 @@ static NSTimeInterval secondColoringDelay;
 
 // ------------------------------------------------------
 /// ナビゲーションバーの表示をトグルに切り替える
-- (IBAction)toggleNavigationBar:(id)sender
+- (IBAction)toggleNavigationBar:(nullable id)sender
 // ------------------------------------------------------
 {
     [self setShowsNavigationBar:![self showsNavigationBar] animate:YES];
@@ -619,7 +619,7 @@ static NSTimeInterval secondColoringDelay;
 
 // ------------------------------------------------------
 /// ワードラップをトグルに切り替える
-- (IBAction)toggleLineWrap:(id)sender
+- (IBAction)toggleLineWrap:(nullable id)sender
 // ------------------------------------------------------
 {
     [self setWrapsLines:![self wrapsLines]];
@@ -628,7 +628,7 @@ static NSTimeInterval secondColoringDelay;
 
 // ------------------------------------------------------
 /// 横書き／縦書きを切り替える
-- (IBAction)toggleLayoutOrientation:(id)sender
+- (IBAction)toggleLayoutOrientation:(nullable id)sender
 // ------------------------------------------------------
 {
     [self setVerticalLayoutOrientation:![self isVerticalLayoutOrientation]];
@@ -637,7 +637,7 @@ static NSTimeInterval secondColoringDelay;
 
 // ------------------------------------------------------
 /// 文字にアンチエイリアスを使うかどうかをトグルに切り替える
-- (IBAction)toggleAntialias:(id)sender
+- (IBAction)toggleAntialias:(nullable id)sender
 // ------------------------------------------------------
 {
     BOOL usesAntialias = ![(CELayoutManager *)[[self focusedTextView] layoutManager] usesAntialias];
@@ -650,7 +650,7 @@ static NSTimeInterval secondColoringDelay;
 
 // ------------------------------------------------------
 /// 不可視文字表示をトグルに切り替える
-- (IBAction)toggleInvisibleChars:(id)sender
+- (IBAction)toggleInvisibleChars:(nullable id)sender
 // ------------------------------------------------------
 {
     BOOL showsInvisibles = ![(CELayoutManager *)[[self focusedTextView] layoutManager] showsInvisibles];
@@ -665,7 +665,7 @@ static NSTimeInterval secondColoringDelay;
 
 // ------------------------------------------------------
 /// ソフトタブの有効／無効をトグルに切り替える
-- (IBAction)toggleAutoTabExpand:(id)sender
+- (IBAction)toggleAutoTabExpand:(nullable id)sender
 // ------------------------------------------------------
 {
     BOOL isEnabled = ![[self focusedTextView] isAutoTabExpandEnabled];
@@ -680,7 +680,7 @@ static NSTimeInterval secondColoringDelay;
 
 // ------------------------------------------------------
 /// ページガイド表示をトグルに切り替える
-- (IBAction)togglePageGuide:(id)sender
+- (IBAction)togglePageGuide:(nullable id)sender
 // ------------------------------------------------------
 {
     [self setShowsPageGuide:![self showsPageGuide]];
@@ -689,7 +689,7 @@ static NSTimeInterval secondColoringDelay;
 
 // ------------------------------------------------------
 /// アウトラインメニューの前の項目を選択（メニューバーからのアクションを中継）
-- (IBAction)selectPrevItemOfOutlineMenu:(id)sender
+- (IBAction)selectPrevItemOfOutlineMenu:(nullable id)sender
 // ------------------------------------------------------
 {
     [[self navigationBar] selectPrevItem:sender];
@@ -698,7 +698,7 @@ static NSTimeInterval secondColoringDelay;
 
 // ------------------------------------------------------
 /// アウトラインメニューの次の項目を選択（メニューバーからのアクションを中継）
-- (IBAction)selectNextItemOfOutlineMenu:(id)sender
+- (IBAction)selectNextItemOfOutlineMenu:(nullable id)sender
 // ------------------------------------------------------
 {
     [[self navigationBar] selectNextItem:sender];
@@ -707,7 +707,7 @@ static NSTimeInterval secondColoringDelay;
 
 // ------------------------------------------------------
 /// テキストビュー分割を行う
-- (IBAction)openSplitTextView:(id)sender
+- (IBAction)openSplitTextView:(nullable id)sender
 // ------------------------------------------------------
 {
     CEEditorView *currentEditorView;
@@ -764,7 +764,7 @@ static NSTimeInterval secondColoringDelay;
 
 // ------------------------------------------------------
 //// 分割されたテキストビューを閉じる
-- (IBAction)closeSplitTextView:(id)sender
+- (IBAction)closeSplitTextView:(nullable id)sender
 // ------------------------------------------------------
 {
     CEEditorView *editorViewToClose;
@@ -806,7 +806,7 @@ static NSTimeInterval secondColoringDelay;
 
 // ------------------------------------------------------
 /// ドキュメント全体を再カラーリング
-- (IBAction)recolorAll:(id)sender
+- (IBAction)recolorAll:(nullable id)sender
 // ------------------------------------------------------
 {
     [self recolorAllString];
@@ -1010,7 +1010,7 @@ static NSTimeInterval secondColoringDelay;
 
 // ------------------------------------------------------
 /// show Go To sheet
-- (IBAction)gotoLocation:(id)sender
+- (IBAction)gotoLocation:(nullable id)sender
 // ------------------------------------------------------
 {
     CEGoToSheetController *sheetController = [[CEGoToSheetController alloc] init];
