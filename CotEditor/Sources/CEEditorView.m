@@ -300,9 +300,7 @@
 - (void)recolorAllTextViewString
 // ------------------------------------------------------
 {
-    [[self syntaxParser] colorAllString:[[self textView] string]
-                          layoutManager:[[self textView] layoutManager]
-                               temporal:YES];
+    [[self syntaxParser] colorWholeStringInTextStorage:[self textStorage] temporal:YES];
 }
 
 

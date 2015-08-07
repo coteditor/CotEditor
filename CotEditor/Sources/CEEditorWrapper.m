@@ -728,8 +728,9 @@ static NSTimeInterval secondColoringDelay;
     [[self class] endCurrentEditing];
     
     CEEditorView *newEditorView = [[CEEditorView alloc] initWithFrame:[currentEditorView frame]];
+    NSTextStorage *textStorage = [[currentEditorView textView] textStorage];
 
-    [newEditorView replaceTextStorage:[[currentEditorView textView] textStorage]];
+    [newEditorView replaceTextStorage:textStorage];
     [newEditorView setEditorWrapper:self];
     
     // instert new editorView just below the editorView that the pressed button belongs to or has focus
@@ -746,9 +747,7 @@ static NSTimeInterval secondColoringDelay;
     
     [newEditorView setSyntaxWithName:[[currentEditorView syntaxParser] styleName]];
     [newEditorView updateOutlineMenu];
-    [[newEditorView syntaxParser] colorAllString:[self string]
-                                   layoutManager:[[newEditorView textView] layoutManager]
-                                        temporal:YES];
+    [[newEditorView syntaxParser] colorWholeStringInTextStorage:textStorage temporal:YES];
     
     // move focus to the new editor
     [[self window] makeFirstResponder:[newEditorView textView]];
@@ -970,8 +969,7 @@ static NSTimeInterval secondColoringDelay;
     }
     
     [[self syntaxParser] colorRange:updateRange
-                        wholeString:[textView string]
-                      layoutManager:[textView layoutManager]
+                        textStorage:[textView textStorage]
                            temporal:YES];
 }
 

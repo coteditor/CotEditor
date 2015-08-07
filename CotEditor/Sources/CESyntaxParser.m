@@ -395,42 +395,44 @@ static CGFloat kPerCompoIncrement;
 
 // ------------------------------------------------------
 /// 全体をカラーリング
-- (void)colorAllString:(nullable NSString *)wholeString layoutManager:(nonnull NSLayoutManager *)layoutManager temporal:(BOOL)isTemporal
+- (void)colorWholeStringInTextStorage:(nonnull NSTextStorage *)textStorage temporal:(BOOL)isTemporal
 // ------------------------------------------------------
 {
-    if ([wholeString length] == 0) { return; }
+    if ([textStorage length] == 0) { return; }
     
-    NSRange range = NSMakeRange(0, [wholeString length]);
+    NSRange wholeRange = NSMakeRange(0, [textStorage length]);
     
     // 前回の全文カラーリングと内容が全く同じ場合はキャッシュを使う
-    if ([[wholeString MD5] isEqualToString:[self cacheHash]]) {
-        [self applyColorings:[self cacheColorings] range:range layoutManager:layoutManager temporal:isTemporal];
+    if ([[[textStorage string] MD5] isEqualToString:[self cacheHash]]) {
+        for (NSLayoutManager *layoutManager in [textStorage layoutManagers]) {
+            [self applyColorings:[self cacheColorings] range:wholeRange layoutManager:layoutManager temporal:isTemporal];
+        }
     } else {
         // make sure that string is immutable
-        NSString *safeImmutableString = [NSString stringWithString:wholeString];
         // [Caution] DO NOT use [wholeString copy] here instead of `stringWithString:`.
         //           It still returns a mutable object, NSBigMutableString,
         //           and it can cause crash when the mutable string is given to NSRegularExpression instance.
         //           (2015-08, with OS X 10.10 SDK)
+        NSString *safeImmutableString = [NSString stringWithString:[textStorage string]];
         
         [self colorString:safeImmutableString
-                    range:range layoutManager:layoutManager temporal:isTemporal];
+                    range:wholeRange textStorage:textStorage temporal:isTemporal];
     }
 }
 
 
 // ------------------------------------------------------
 /// 表示されている部分をカラーリング
-- (void)colorRange:(NSRange)range wholeString:(nullable NSString *)wholeString layoutManager:(nonnull NSLayoutManager *)layoutManager temporal:(BOOL)isTemporal
+- (void)colorRange:(NSRange)range textStorage:(nonnull NSTextStorage *)textStorage temporal:(BOOL)isTemporal
 // ------------------------------------------------------
 {
-    if ([wholeString length] == 0) { return; }
+    if ([textStorage length] == 0) { return; }
     
     // make sure that string is immutable (see `colorAllString:layoutManager:temporal:` for details)
-    NSString *safeImmutableString = [NSString stringWithString:wholeString];
+    NSString *string = [NSString stringWithString:[textStorage string]];
     
     NSUInteger bufferLength = [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultColoringRangeBufferLengthKey];
-    NSRange wholeRange = NSMakeRange(0, [safeImmutableString length]);
+    NSRange wholeRange = NSMakeRange(0, [string length]);
     NSRange coloringRange;
     
     // 文字列が十分小さい時は全文カラーリングをする
@@ -445,6 +447,7 @@ static CGFloat kPerCompoIncrement;
         start -= MIN(start, bufferLength);
         
         // 直前／直後が同色ならカラーリング範囲を拡大する
+        NSLayoutManager *layoutManager = [[textStorage layoutManagers] firstObject];
         NSRange effectiveRange;
         [layoutManager temporaryAttributesAtCharacterIndex:start
                                      longestEffectiveRange:&effectiveRange
@@ -457,11 +460,10 @@ static CGFloat kPerCompoIncrement;
         end = NSMaxRange(effectiveRange);
         
         coloringRange = NSMakeRange(start, end - start);
+        coloringRange = [string lineRangeForRange:coloringRange];
     }
     
-    coloringRange = [safeImmutableString lineRangeForRange:coloringRange];
-    
-    [self colorString:safeImmutableString range:coloringRange layoutManager:layoutManager temporal:isTemporal];
+    [self colorString:string range:coloringRange textStorage:textStorage temporal:isTemporal];
 }
 
 
@@ -967,14 +969,16 @@ static CGFloat kPerCompoIncrement;
 
 // ------------------------------------------------------
 /// カラーリングを実行
-- (void)colorString:(nonnull NSString *)wholeString range:(NSRange)coloringRange layoutManager:(nonnull NSLayoutManager *)layoutManager temporal:(BOOL)isTemporal
+- (void)colorString:(nonnull NSString *)wholeString range:(NSRange)coloringRange textStorage:(nonnull NSTextStorage *)textStorage temporal:(BOOL)isTemporal
 // ------------------------------------------------------
 {
     if (coloringRange.length == 0) { return; }
     
     // カラーリング不要なら現在のカラーリングをクリアして戻る
     if (![self hasSyntaxHighlighting]) {
-        [self applyColorings:@{} range:coloringRange layoutManager:layoutManager temporal:isTemporal];
+        for (NSLayoutManager *layoutManager in [textStorage layoutManagers]) {
+            [self applyColorings:@{} range:coloringRange layoutManager:layoutManager temporal:isTemporal];
+        }
         return;
     }
     
@@ -983,7 +987,7 @@ static CGFloat kPerCompoIncrement;
     CEIndicatorSheetController *indicator = nil;
     NSUInteger indicatorThreshold = [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultShowColoringIndicatorTextLengthKey];
     if ((indicatorThreshold > 0) && (coloringRange.length > indicatorThreshold)) {
-        NSWindow *documentWindow = [[layoutManager firstTextView] window];
+        NSWindow *documentWindow = [[[[textStorage layoutManagers] firstObject] firstTextView] window];
         indicator = [[CEIndicatorSheetController alloc] initWithMessage:NSLocalizedString(@"Coloring text…", nil)];
         [self setIndicatorController:indicator];
         
@@ -1037,9 +1041,11 @@ static CGFloat kPerCompoIncrement;
             }
             
             // apply color (or give up if the editor's string is changed from the analized string)
-            if ([[[layoutManager textStorage] string] isEqualToString:wholeString]) {
+            if ([[textStorage string] isEqualToString:wholeString]) {
                 dispatch_sync(dispatch_get_main_queue(), ^{
-                    [self applyColorings:colorings range:coloringRange layoutManager:layoutManager temporal:isTemporal];
+                    for (NSLayoutManager *layoutManager in [textStorage layoutManagers]) {
+                        [self applyColorings:colorings range:coloringRange layoutManager:layoutManager temporal:isTemporal];
+                    }
                 });
             }
         }
