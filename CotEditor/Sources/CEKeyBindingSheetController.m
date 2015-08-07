@@ -199,7 +199,7 @@
 
 
 // ------------------------------------------------------
-// テーブルセルが編集可能かを設定する
+/// テーブルセルが編集可能かを設定する
 - (void)outlineView:(nonnull NSOutlineView *)outlineView didAddRowView:(nonnull NSTableRowView *)rowView forRow:(NSInteger)row
 // ------------------------------------------------------
 {

@@ -589,7 +589,7 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
 
 
 // ------------------------------------------------------
-// 有効なテーマ名かチェックしてエラーメッセージを返す
+/// 有効なテーマ名かチェックしてエラーメッセージを返す
 - (BOOL)validateThemeName:(NSString *)themeName originalName:(NSString *)originalThemeName error:(NSError *__autoreleasing *)outError
 // ------------------------------------------------------
 {
