@@ -75,6 +75,8 @@ static const NSString *LineNumberFontName;
 {
     self = [super initWithScrollView:scrollView orientation:orientation];
     if (self) {
+        [self setClientView:[scrollView documentView]];
+        
         // update line number on scroll view resize for text wrapping change
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(invalidateLineNumber)
@@ -317,7 +319,7 @@ static const NSString *LineNumberFontName;
 - (nullable NSTextView<CETextViewProtocol> *)textView
 // ------------------------------------------------------
 {
-    return (NSTextView<CETextViewProtocol> *)[[self scrollView] documentView];
+    return (NSTextView<CETextViewProtocol> *)[self clientView];
 }
 
 
