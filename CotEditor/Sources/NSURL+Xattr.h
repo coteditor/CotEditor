@@ -28,9 +28,18 @@
 @import Foundation;
 
 
+// xattr names
+extern char const XATTR_VERTICAL_TEXT_NAME[];
+
+
 @interface NSURL (Xattr)
 
+// for com.apple.TextEncoding
 - (NSStringEncoding)getXattrEncoding;
 - (BOOL)setXattrEncoding:(NSStringEncoding)encoding;
+
+// for general bool values
+- (BOOL)getXattrBoolForName:(const char *)name;
+- (BOOL)setXattrBool:(BOOL)value forName:(const char *)name;
 
 @end

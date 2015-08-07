@@ -65,6 +65,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 @property (nonatomic) BOOL didAlertNotWritable;  // 文書が読み込み専用のときにその警告を表示したかどうか
 @property (nonatomic, copy) NSString *fileMD5;
 @property (nonatomic, copy) NSString *fileContentString;  // string that is read from the document file
+@property (nonatomic, getter=isVerticalText) BOOL verticalText;
 @property (nonatomic) CEODBEventSender *ODBEventSender;
 @property (nonatomic) BOOL shouldSaveXattr;
 @property (nonatomic, copy) NSString *autosaveIdentifier;
@@ -156,6 +157,11 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
         NSNumber *isWritable = nil;
         [url getResourceValue:&isWritable forKey:NSURLIsWritableKey error:nil];
         _writable = [isWritable boolValue];
+        
+        // check file meta data for text orientation
+        if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultSavesTextOrientationKey]) {
+            _verticalText = [url getXattrBoolForName:XATTR_VERTICAL_TEXT_NAME];
+        }
     }
     return self;
 }
@@ -318,8 +324,9 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 {
     // [caution] This method may be called from a background thread due to async-saving.
     
-    // store current encoding here, since the main thread will already be unblocked after `dataOfType:error:`
+    // store current state here, since the main thread will already be unblocked after `dataOfType:error:`
     NSStringEncoding encoding = [self encoding];
+    BOOL isVerticalText = [[self editor] isVerticalLayoutOrientation];
     
     BOOL success = [super writeToURL:url ofType:typeName forSaveOperation:saveOperation originalContentsURL:absoluteOriginalContentsURL error:outError];
 
@@ -327,6 +334,11 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
         // write encoding to the external file attributes (com.apple.TextEncoding)
         if ([self shouldSaveXattr]) {
             [url setXattrEncoding:encoding];
+        }
+        
+        // save text orientation state
+        if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultSavesTextOrientationKey]) {
+            [url setXattrBool:isVerticalText forName:XATTR_VERTICAL_TEXT_NAME];
         }
         
         if (saveOperation != NSAutosaveElsewhereOperation) {
@@ -740,6 +752,9 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     
     // update line endings menu selection in toolbar
     [self applyLineEndingToView];
+    
+    // apply text orientation
+    [[self editor] setVerticalLayoutOrientation:[self isVerticalText]];
     
     // update encoding menu selection in toolbar, status bar and document inspector
     [self updateEncodingInToolbarAndInfo];

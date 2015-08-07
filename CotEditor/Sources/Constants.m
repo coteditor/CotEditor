@@ -239,6 +239,7 @@ NSString *__nonnull const CEDefaultColoringRangeBufferLengthKey = @"coloringRang
 NSString *__nonnull const CEDefaultLargeFileAlertThresholdKey = @"largeFileAlertThreshold";
 NSString *__nonnull const CEDefaultAutosavingDelayKey = @"autosavingDelay";
 NSString *__nonnull const CEDefaultEnablesAutosaveInPlaceKey = @"enablesAutosaveInPlace";
+NSString *__nonnull const CEDefaultSavesTextOrientationKey = @"savesTextOrientation";
 
 
 

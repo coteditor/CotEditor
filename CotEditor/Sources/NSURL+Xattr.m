@@ -30,6 +30,10 @@
 
 
 // constants
+// public
+char const XATTR_VERTICAL_TEXT_NAME[] = "com.coteditor.VerticalText";
+
+// private
 static char const XATTR_ENCODING_NAME[] = "com.apple.TextEncoding";
 
 
@@ -77,7 +81,34 @@ static char const XATTR_ENCODING_NAME[] = "com.apple.TextEncoding";
     
     if (!data) { return NO; }
     
-    return [self setXattrData:data name:XATTR_ENCODING_NAME];
+    return [self setXattrData:data forName:XATTR_ENCODING_NAME];
+}
+
+
+
+// ------------------------------------------------------
+/// get boolean value of extended attribute for given name from the file at URL
+- (BOOL)getXattrBoolForName:(const char *)name
+// ------------------------------------------------------
+{
+    NSData *data = [self getXattrDataForName:name];
+    
+    return data != nil;  // just check the existance of the key
+}
+
+
+// ------------------------------------------------------
+/// set boolean value as extended attribute for given name to the file at URL
+- (BOOL)setXattrBool:(BOOL)value forName:(const char *)name
+// ------------------------------------------------------
+{
+    if (value) {
+        NSData *data = [NSData dataWithBytes:"1" length:1];
+        
+        return [self setXattrData:data forName:name];
+    } else {
+        return [self removeXattrDataForName:name];
+    }
 }
 
 
@@ -105,12 +136,21 @@ static char const XATTR_ENCODING_NAME[] = "com.apple.TextEncoding";
 
 // ------------------------------------------------------
 /// set extended attribute for given name to the file at URL
-- (BOOL)setXattrData:(nonnull NSData *)data name:(const char *)name
+- (BOOL)setXattrData:(nonnull NSData *)data forName:(const char *)name
 // ------------------------------------------------------
 {
     int result = setxattr([[self path] fileSystemRepresentation], name, [data bytes], [data length], 0, XATTR_NOFOLLOW);
     
     return result == 0;
+}
+
+
+// ------------------------------------------------------
+/// remove extended attribute for given name from the file at URL
+- (BOOL)removeXattrDataForName:(const char *)name
+// ------------------------------------------------------
+{
+    return removexattr([[self path] fileSystemRepresentation], name, XATTR_NOFOLLOW);
 }
 
 @end

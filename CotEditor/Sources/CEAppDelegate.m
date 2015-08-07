@@ -221,6 +221,7 @@
                                CEDefaultLargeFileAlertThresholdKey: @(100 * pow(1024, 2)),  // 100 MB
                                CEDefaultAutosavingDelayKey: @5.0,
                                CEDefaultEnablesAutosaveInPlaceKey: @NO,
+                               CEDefaultSavesTextOrientationKey: @YES,
                                };
     [[NSUserDefaults standardUserDefaults] registerDefaults:defaults];
     
