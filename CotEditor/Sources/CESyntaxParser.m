@@ -1060,14 +1060,13 @@ static CGFloat kPerCompoIncrement;
 - (void)applyColorings:(NSDictionary *)colorings range:(NSRange)coloringRange layoutManager:(nonnull NSLayoutManager *)layoutManager temporal:(BOOL)isTemporal
 // ------------------------------------------------------
 {
-    CETheme *theme = [(NSTextView<CETextViewProtocol> *)[layoutManager firstTextView] theme];
-    
     // 現在あるカラーリングを削除
     if (isTemporal) {
         [layoutManager removeTemporaryAttribute:NSForegroundColorAttributeName
                               forCharacterRange:coloringRange];
     } else {
-        [[layoutManager firstTextView] setTextColor:[theme textColor] range:coloringRange];
+        [[layoutManager textStorage] removeAttribute:NSForegroundColorAttributeName
+                                               range:coloringRange];
     }
     
     // add invisible coloring if needed
@@ -1077,6 +1076,7 @@ static CGFloat kPerCompoIncrement;
     }
     
     // カラーリング実行
+    CETheme *theme = [(NSTextView<CETextViewProtocol> *)[layoutManager firstTextView] theme];
     for (NSString *colorType in colorTypes) {
         NSArray *ranges = colorings[colorType];
         
@@ -1117,7 +1117,9 @@ static CGFloat kPerCompoIncrement;
                 [layoutManager addTemporaryAttribute:NSForegroundColorAttributeName
                                                value:color forCharacterRange:range];
             } else {
-                [[layoutManager firstTextView] setTextColor:color range:range];
+                [[layoutManager textStorage] addAttribute:NSForegroundColorAttributeName
+                                                    value:color
+                                                    range:coloringRange];
             }
         }
     }
