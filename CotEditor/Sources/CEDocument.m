@@ -206,7 +206,21 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     // don't save xattr if file doesn't have it in order to avoid saving wrong encoding (2015-01 by 1024jp).
     [self setShouldSaveXattr:(xattrEncoding != NSNotFound) || ([data length] == 0)];
     
-    return [self readStringFromData:data encoding:[self readingEncoding] xattrEncoding:xattrEncoding];
+    NSStringEncoding usedEncoding;
+    NSString *string = [self stringFromData:data encoding:[self readingEncoding] xattrEncoding:xattrEncoding usedEncoding:&usedEncoding error:outError];
+    
+    if (!string) { return NO; }
+    
+    // set read values
+    [self setFileContentString:string];  // _fileContentString will be released in `setStringToEditor`
+    [self setEncoding:usedEncoding];
+    
+    CENewLineType lineEnding = [string detectNewLineType];
+    if (lineEnding != CENewLineNone) {  // keep default if no line endings are found
+        [self setLineEnding:lineEnding];
+    }
+    
+    return YES;
 }
 
 
@@ -1221,15 +1235,14 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 
 //------------------------------------------------------
-/// データから指定エンコードで文字列を読み込み、成功したかどうかを返す
-- (BOOL)readStringFromData:(NSData *)data encoding:(NSStringEncoding)encoding xattrEncoding:(NSStringEncoding)xattrEncoding
+/// データから指定エンコードで文字列を読み込み返す
+- (nullable NSString *)stringFromData:(nonnull NSData *)data encoding:(NSStringEncoding)encoding xattrEncoding:(NSStringEncoding)xattrEncoding usedEncoding:(nonnull NSStringEncoding *)usedEncoding error:(NSError *__autoreleasing __nullable *)outError
 //------------------------------------------------------
 {
     NSString *string;
-    NSStringEncoding usedEncoding;
     
     if (encoding != CEAutoDetectEncoding) {  // interpret with specific encoding
-        usedEncoding = encoding;
+        *usedEncoding = encoding;
         string = ([data length] == 0) ? @"" : [[NSString alloc] initWithData:data encoding:encoding];
         
     } else {  // Auto-Detection
@@ -1239,35 +1252,23 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
             string = ([data length] == 0) ? @"" : [[NSString alloc] initWithData:data encoding:xattrEncoding];
             
             if (string) {
-                usedEncoding = xattrEncoding;
+                *usedEncoding = xattrEncoding;
             }
         }
         
         if (!string) {
             // detect encoding from data
-            string = [self stringFromData:data usedEncoding:&usedEncoding];
+            string = [self stringFromData:data usedEncoding:usedEncoding error:outError];
         }
     }
     
-    if (string) {
-        [self setFileContentString:string];  // _fileContentString will be released in `setStringToEditor`
-        [self doSetEncoding:usedEncoding updateDocument:NO askLossy:NO lossy:NO asActionName:nil];
-        
-        CENewLineType lineEnding = [string detectNewLineType];
-        if (lineEnding != CENewLineNone) {  // keep default if no line endings are found
-            [self setLineEnding:lineEnding];
-        }
-        
-        return YES;
-    }
-    
-    return NO;
+    return string;
 }
 
 
 //------------------------------------------------------
 /// データからエンコードを推測して文字列を得る
-- (NSString *)stringFromData:(NSData *)data usedEncoding:(NSStringEncoding *)usedEncoding
+- (nullable NSString *)stringFromData:(nonnull NSData *)data usedEncoding:(nonnull NSStringEncoding *)usedEncoding error:(NSError *__autoreleasing __nullable *)outError
 //------------------------------------------------------
 {
     BOOL shouldSkipISO2022JP = NO;
