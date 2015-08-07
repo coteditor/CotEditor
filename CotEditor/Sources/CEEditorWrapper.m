@@ -729,7 +729,7 @@ static NSTimeInterval secondColoringDelay;
     
     CEEditorView *newEditorView = [[CEEditorView alloc] initWithFrame:[currentEditorView frame]];
 
-    [newEditorView replaceTextStorage:[[self focusedTextView] textStorage]];
+    [newEditorView replaceTextStorage:[[currentEditorView textView] textStorage]];
     [newEditorView setEditorWrapper:self];
     
     // instert new editorView just below the editorView that the pressed button belongs to or has focus
@@ -744,7 +744,7 @@ static NSTimeInterval secondColoringDelay;
     [[newEditorView textView] setLineSpacing:[[currentEditorView textView] lineSpacing]];
     [[newEditorView textView] setSelectedRange:[[currentEditorView textView] selectedRange]];
     
-    [newEditorView setSyntaxWithName:[[self syntaxParser] styleName]];
+    [newEditorView setSyntaxWithName:[[currentEditorView syntaxParser] styleName]];
     [newEditorView updateOutlineMenu];
     [[newEditorView syntaxParser] colorAllString:[self string]
                                    layoutManager:[[newEditorView textView] layoutManager]
