@@ -556,7 +556,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     if ([coder containsValueForKey:CESyntaxStyleKey]) {
         NSString *syntaxStyle = [coder decodeObjectForKey:CESyntaxStyleKey];
         if (![syntaxStyle isEqualToString:[[self editor] syntaxStyleName]]) {  // avoid highlighting twice
-            [[self editor] setSyntaxStyleName:syntaxStyle recolorNow:YES];
+            [[self editor] setSyntaxStyleWithName:syntaxStyle coloring:YES];
             [[[self windowController] toolbarController] setSelectedSyntaxWithName:syntaxStyle];
         }
     }
@@ -966,7 +966,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 {
     if ([name length] == 0) { return; }
     
-    [[self editor] setSyntaxStyleName:name recolorNow:YES];
+    [[self editor] setSyntaxStyleWithName:name coloring:YES];
     [[[self windowController] toolbarController] setSelectedSyntaxWithName:name];
 }
 
@@ -1203,7 +1203,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     
     NSString *styleName = [[CESyntaxManager sharedManager] styleNameFromFileName:fileName];
     
-    [[self editor] setSyntaxStyleName:styleName recolorNow:doColoring];
+    [[self editor] setSyntaxStyleWithName:styleName coloring:doColoring];
     
     // ツールバーのカラーリングポップアップの表示を更新、再カラーリング
     [[[self windowController] toolbarController] setSelectedSyntaxWithName:styleName];

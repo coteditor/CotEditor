@@ -509,14 +509,14 @@ static NSTimeInterval secondColoringDelay;
 
 // ------------------------------------------------------
 /// シンタックススタイル名をセット
-- (void)setSyntaxStyleName:(NSString *)name recolorNow:(BOOL)recolorNow
+- (void)setSyntaxStyleWithName:(NSString *)name coloring:(BOOL)doColoring
 // ------------------------------------------------------
 {
     if (![self syntaxParser]) { return; }
     
     [[self splitViewController] enumerateEditorViewsUsingBlock:^(CEEditorView *editorView) {
         [editorView setSyntaxWithName:name];
-        if (recolorNow) {
+        if (doColoring) {
             [editorView recolorAllTextViewString];
             if ([[editorView navigationBar] isShown]) {
                 [editorView updateOutlineMenu];

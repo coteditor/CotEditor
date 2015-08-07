@@ -604,7 +604,7 @@ static NSTimeInterval infoUpdateInterval;
     if (![oldName isEqualToString:currentName]) { return; }
     
     if ([oldName isEqualToString:newName]) {
-        [[self editor] setSyntaxStyleName:newName recolorNow:NO];
+        [[self editor] setSyntaxStyleWithName:newName coloring:NO];
     }
     if (![newName isEqualToString:NSLocalizedString(@"None", nil)]) {
         if ([[self window] isKeyWindow]) {

@@ -88,7 +88,7 @@
 
 // syntax
 - (NSString *)syntaxStyleName;
-- (void)setSyntaxStyleName:(NSString *)inName recolorNow:(BOOL)recolorNow;
+- (void)setSyntaxStyleWithName:(NSString *)name coloring:(BOOL)doColoring;
 - (void)recolorAllString;
 - (void)updateColoringAndOutlineMenu;
 - (void)setupColoringTimer;
