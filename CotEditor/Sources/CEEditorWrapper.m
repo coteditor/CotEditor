@@ -44,9 +44,9 @@
 
 @interface CEEditorWrapper ()
 
-@property (nonatomic) NSTimer *coloringTimer;
+@property (nonatomic, nullable) NSTimer *coloringTimer;
 
-@property (nonatomic) IBOutlet CESplitViewController *splitViewController;
+@property (nonatomic, nullable) IBOutlet CESplitViewController *splitViewController;
 
 
 // readonly
@@ -185,7 +185,7 @@ static NSTimeInterval secondColoringDelay;
     } else if ([menuItem action] == @selector(toggleAutoTabExpand:)) {
         state = [[self focusedTextView] isAutoTabExpandEnabled] ? NSOnState : NSOffState;
         
-    } else if ([menuItem action] == @selector(selectPrevItemOfOutlineMenu:)) {
+    } else if ([menuItem action] == @selector(selectPrevItemOftimerMenu:)) {
         return ([[self navigationBar] canSelectPrevItem]);
     } else if ([menuItem action] == @selector(selectNextItemOfOutlineMenu:)) {
         return ([[self navigationBar] canSelectNextItem]);

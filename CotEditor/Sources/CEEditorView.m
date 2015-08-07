@@ -40,19 +40,19 @@
 
 @interface CEEditorView ()
 
-@property (nonatomic) CEEditorScrollView *scrollView;
-@property (nonatomic) NSTextStorage *textStorage;
+@property (nonatomic, nonnull) CEEditorScrollView *scrollView;
+@property (nonatomic, nonnull) NSTextStorage *textStorage;
 
-@property (nonatomic) NSTimer *lineNumUpdateTimer;
-@property (nonatomic) NSTimer *outlineMenuTimer;
+@property (nonatomic, nullable) NSTimer *lineNumUpdateTimer;
+@property (nonatomic, nullable) NSTimer *outlineMenuTimer;
 
 @property (nonatomic) BOOL highlightsCurrentLine;
 @property (nonatomic) NSInteger lastCursorLocation;
 
 
 // readonly
-@property (readwrite, nonatomic) CETextView *textView;
-@property (readwrite, nonatomic) CENavigationBarController *navigationBar;
+@property (readwrite, nonnull, nonatomic) CETextView *textView;
+@property (readwrite, nonnull, nonatomic) CENavigationBarController *navigationBar;
 
 @end
 
@@ -455,8 +455,11 @@
     // カラーリング実行
     [[self editorWrapper] setupColoringTimer];
 
-    // アウトラインメニュー項目、非互換文字リスト更新
-    [self updateInfo];
+    // アウトラインメニュー項目更新
+    [self setupOutlineMenuUpdateTimer];
+    
+    // 非互換文字リスト更新
+    [[[self window] windowController] updateIncompatibleCharsIfNeeded];
 
     // フラグが立っていたら、入力補完を再度実行する
     // （フラグは CETextView > insertCompletion:forPartialWordRange:movement:isFinal: で立てている）
@@ -566,8 +569,11 @@
     // 文書情報更新（選択範囲・キャレット位置が変更されないまま全置換が実行された場合への対応）
     [[[self window] windowController] setupEditorInfoUpdateTimer];
     
-    // アウトラインメニュー項目、非互換文字リスト更新
-    [self updateInfo];
+    // アウトラインメニュー項目更新
+    [self setupOutlineMenuUpdateTimer];
+    
+    // 非互換文字リスト更新
+    [[[self window] windowController] updateIncompatibleCharsIfNeeded];
     
     // 全テキストを再カラーリング
     [self recolorAllTextViewString];
@@ -717,14 +723,12 @@
 
 
 // ------------------------------------------------------
-/// アウトラインメニューなどを更新
-- (void)updateInfo
+/// アウトラインメニュー項目を更新
+- (void)setupOutlineMenuUpdateTimer
 // ------------------------------------------------------
 {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-
     // アウトラインメニュー項目更新
-    NSTimeInterval outlineMenuInterval = [defaults doubleForKey:CEDefaultOutlineMenuIntervalKey];
+    NSTimeInterval outlineMenuInterval = [[NSUserDefaults standardUserDefaults] doubleForKey:CEDefaultOutlineMenuIntervalKey];
     if ([self outlineMenuTimer]) {
         [[self outlineMenuTimer] setFireDate:[NSDate dateWithTimeIntervalSinceNow:outlineMenuInterval]];
     } else {
@@ -734,9 +738,6 @@
                                                                  userInfo:nil
                                                                   repeats:NO]];
     }
-
-    // 非互換文字リスト更新
-    [[[self window] windowController] updateIncompatibleCharsIfNeeded];
 }
 
 
