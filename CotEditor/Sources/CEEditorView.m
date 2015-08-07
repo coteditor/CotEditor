@@ -40,20 +40,18 @@
 
 @interface CEEditorView ()
 
-@property (nonatomic) CEEditorScrollView *scrollView;
-@property (nonatomic) NSTextStorage *textStorage;
+@property (nonatomic, nonnull) CEEditorScrollView *scrollView;
+@property (nonatomic, nonnull) NSTextStorage *textStorage;
 
-@property (nonatomic) NSTimer *lineNumUpdateTimer;
-@property (nonatomic) NSTimer *outlineMenuTimer;
+@property (nonatomic, nullable) NSTimer *lineNumUpdateTimer;
 
 @property (nonatomic) BOOL highlightsCurrentLine;
 @property (nonatomic) NSInteger lastCursorLocation;
 
 
 // readonly
-@property (readwrite, nonatomic) CETextView *textView;
-@property (readwrite, nonatomic) CENavigationBarController *navigationBar;
-@property (readwrite, nonatomic) CESyntaxParser *syntaxParser;
+@property (readwrite, nonnull, nonatomic) CETextView *textView;
+@property (readwrite, nonnull, nonatomic) CENavigationBarController *navigationBar;
 
 @end
 
@@ -110,11 +108,9 @@
         [layoutManager setUsesAntialias:[defaults boolForKey:CEDefaultShouldAntialiasKey]];
         [layoutManager setFixesLineHeight:[defaults boolForKey:CEDefaultFixLineHeightKey]];
 
-        // NSTextContainer と CESyntaxParser を生成
+        // NSTextContainer を生成
         NSTextContainer *container = [[NSTextContainer alloc] initWithContainerSize:NSMakeSize(CGFLOAT_MAX, CGFLOAT_MAX)];
         [layoutManager addTextContainer:container];
-
-        _syntaxParser = [[CESyntaxParser alloc] initWithStyleName:NSLocalizedString(@"None", nil)];
 
         // TextView 生成
         _textView = [[CETextView alloc] initWithFrame:NSZeroRect textContainer:container];
@@ -127,10 +123,6 @@
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(textDidReplaceAll:)
                                                      name:CETextFinderDidReplaceAllNotification
-                                                   object:_textView];
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(recolorAllTextViewString)
-                                                     name:CETextFinderDidUnhighlightNotification
                                                    object:_textView];
         
         // 置換の Undo/Redo 後に再カラーリングできるように Undo/Redo アクションをキャッチ
@@ -167,7 +159,6 @@
 // ------------------------------------------------------
 {
     [self stopUpdateLineNumberTimer];
-    [self stopUpdateOutlineMenuTimer];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     
     [_textStorage removeLayoutManager:[_textView layoutManager]];
@@ -203,9 +194,6 @@
 // ------------------------------------------------------
 {
     [[self navigationBar] setShown:showsNavigationBar animate:performAnimation];
-    if (![self outlineMenuTimer]) {
-        [self updateOutlineMenu];
-    }
 }
 
 
@@ -284,25 +272,12 @@
 
 // ------------------------------------------------------
 /// シンタックススタイルを設定
-- (void)setSyntaxWithName:(NSString *)styleName
+- (void)applySyntax:(CESyntaxParser *)syntaxParser
 // ------------------------------------------------------
 {
-    [self setSyntaxParser:[[CESyntaxParser alloc] initWithStyleName:styleName]];
-    
-    [[self textView] setInlineCommentDelimiter:[[self syntaxParser] inlineCommentDelimiter]];
-    [[self textView] setBlockCommentDelimiters:[[self syntaxParser] blockCommentDelimiters]];
-    [[self textView] setFirstCompletionCharacterSet:[[self syntaxParser] firstCompletionCharacterSet]];
-}
-
-
-// ------------------------------------------------------
-/// 全てを再カラーリング
-- (void)recolorAllTextViewString
-// ------------------------------------------------------
-{
-    [[self syntaxParser] colorAllString:[[self textView] string]
-                          layoutManager:[[self textView] layoutManager]
-                               temporal:YES];
+    [[self textView] setInlineCommentDelimiter:[syntaxParser inlineCommentDelimiter]];
+    [[self textView] setBlockCommentDelimiters:[syntaxParser blockCommentDelimiters]];
+    [[self textView] setFirstCompletionCharacterSet:[syntaxParser firstCompletionCharacterSet]];
 }
 
 
@@ -322,37 +297,6 @@
     if ([actionName isEqualToString:OgreTextFinderLocalizedString(@"Replace All")]) {
         [self textDidReplaceAll:aNotification];
     }
-}
-
-
-// ------------------------------------------------------
-/// アウトラインメニューを更新
-- (void)updateOutlineMenu
-// ------------------------------------------------------
-{
-    [self stopUpdateOutlineMenuTimer];
-    
-    NSString *wholeString = [[self textView] string] ? : @"";
-    NSString *immutableWholeString = [NSString stringWithString:wholeString];  // 解析中に参照元が変更されると困るのでコピーする
-    
-    // 規定の文字数以上の場合にはインジケータを表示
-    // （ただし、CEDefaultShowColoringIndicatorTextLengthKey が「0」の時は表示しない）
-    NSUInteger indicatorThreshold = [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultShowColoringIndicatorTextLengthKey];
-    if (indicatorThreshold > 0 && indicatorThreshold < [immutableWholeString length]) {
-        [[self navigationBar] showOutlineIndicator];
-    }
-    
-    // 別スレッドでアウトラインを抽出して、メインスレッドで navigationBar に渡す
-    CESyntaxParser *syntaxParser = [self syntaxParser];
-    CENavigationBarController *navigationBar = [self navigationBar];
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSArray *outlineItems = [syntaxParser outlineItemsWithWholeString:immutableWholeString];
-        
-        dispatch_sync(dispatch_get_main_queue(), ^{
-            [navigationBar setOutlineItems:outlineItems];
-            // （選択項目の更新も上記メソッド内で行われるので、updateOutlineMenuSelection は呼ぶ必要なし。 2008.05.16.）
-        });
-    });
 }
 
 
@@ -468,11 +412,14 @@
 - (void)textDidChange:(nonnull NSNotification *)aNotification
 // ------------------------------------------------------
 {
-    // カラーリング実行
+    // 全テキストを再カラーリング
     [[self editorWrapper] setupColoringTimer];
 
-    // アウトラインメニュー項目、非互換文字リスト更新
-    [self updateInfo];
+    // アウトラインメニュー項目更新
+    [[self editorWrapper] setupOutlineMenuUpdateTimer];
+    
+    // 非互換文字リスト更新
+    [[[self window] windowController] updateIncompatibleCharsIfNeeded];
 
     // フラグが立っていたら、入力補完を再度実行する
     // （フラグは CETextView > insertCompletion:forPartialWordRange:movement:isFinal: で立てている）
@@ -582,11 +529,14 @@
     // 文書情報更新（選択範囲・キャレット位置が変更されないまま全置換が実行された場合への対応）
     [[[self window] windowController] setupEditorInfoUpdateTimer];
     
-    // アウトラインメニュー項目、非互換文字リスト更新
-    [self updateInfo];
-    
     // 全テキストを再カラーリング
-    [self recolorAllTextViewString];
+    [[self editorWrapper] setupColoringTimer];
+    
+    // アウトラインメニュー項目更新
+    [[self editorWrapper] setupOutlineMenuUpdateTimer];
+    
+    // 非互換文字リスト更新
+    [[[self window] windowController] updateIncompatibleCharsIfNeeded];
 }
 
 
@@ -602,7 +552,7 @@
     if ([[notification userInfo][CEOldNameKey] isEqualToString:[[[self textView] theme] name]]) {
         [[self textView] setTheme:[CETheme themeWithName:[notification userInfo][CENewNameKey]]];
         [[self textView] setSelectedRanges:[[self textView] selectedRanges]];  // 現在行のハイライトカラーの更新するために選択し直す
-        [[self editorWrapper] recolorAllString];
+        [[self editorWrapper] invalidateSyntaxColoring];
     }
 }
 
@@ -611,7 +561,16 @@
 #pragma mark Private Mthods
 
 // ------------------------------------------------------
-// textStorage をセット
+/// return shared sytnaxParser
+- (CESyntaxParser *)syntaxParser
+// ------------------------------------------------------
+{
+    return [[self editorWrapper] syntaxParser];
+}
+
+
+// ------------------------------------------------------
+/// textStorage をセット
 - (void)setTextStorage:(NSTextStorage *)textStorage
 // ------------------------------------------------------
 {
@@ -626,21 +585,25 @@
 
 
 // ------------------------------------------------------
-/// 行番号更新
-- (void)updateLineNumberWithTimer:(nonnull NSTimer *)timer
+/// アウトラインメニューの選択項目を更新
+- (void)updateOutlineMenuSelection
 // ------------------------------------------------------
 {
-    [self stopUpdateLineNumberTimer];
-    [[self scrollView] invalidateLineNumber];
+    if ([[self textView] needsUpdateOutlineMenuItemSelection]) {
+        [[self navigationBar] selectOutlineMenuItemWithRange:[[self textView] selectedRange]];
+    } else {
+        [[self textView] setNeedsUpdateOutlineMenuItemSelection:YES];
+        [[self navigationBar] updatePrevNextButtonEnabled];
+    }
 }
 
 
 // ------------------------------------------------------
-/// アウトラインメニュー更新
-- (void)updateOutlineMenuWithTimer:(nonnull NSTimer *)timer
+/// テキストビュー分割削除ボタンの有効化／無効化を制御
+- (void)updateCloseSplitViewButton:(BOOL)isEnabled
 // ------------------------------------------------------
 {
-    [self updateOutlineMenu]; // （updateOutlineMenu 内で stopUpdateOutlineMenuTimer を実行している）
+    [[self navigationBar] setCloseSplitButtonEnabled:isEnabled];
 }
 
 
@@ -666,27 +629,12 @@
 
 
 // ------------------------------------------------------
-/// アウトラインメニューの選択項目を更新
-- (void)updateOutlineMenuSelection
+/// 行番号更新
+- (void)updateLineNumberWithTimer:(nonnull NSTimer *)timer
 // ------------------------------------------------------
 {
-    if ([self outlineMenuTimer]) { return; }
-    
-    if ([[self textView] needsUpdateOutlineMenuItemSelection]) {
-        [[self navigationBar] selectOutlineMenuItemWithRange:[[self textView] selectedRange]];
-    } else {
-        [[self textView] setNeedsUpdateOutlineMenuItemSelection:YES];
-        [[self navigationBar] updatePrevNextButtonEnabled];
-    }
-}
-
-
-// ------------------------------------------------------
-/// テキストビュー分割削除ボタンの有効化／無効化を制御
-- (void)updateCloseSplitViewButton:(BOOL)isEnabled
-// ------------------------------------------------------
-{
-    [[self navigationBar] setCloseSplitButtonEnabled:isEnabled];
+    [self stopUpdateLineNumberTimer];
+    [[self scrollView] invalidateLineNumber];
 }
 
 
@@ -699,42 +647,6 @@
         [[self lineNumUpdateTimer] invalidate];
         [self setLineNumUpdateTimer:nil];
     }
-}
-
-
-// ------------------------------------------------------
-/// アウトラインメニュー更新タイマーを停止
-- (void)stopUpdateOutlineMenuTimer
-// ------------------------------------------------------
-{
-    if ([self outlineMenuTimer]) {
-        [[self outlineMenuTimer] invalidate];
-        [self setOutlineMenuTimer:nil];
-    }
-}
-
-
-// ------------------------------------------------------
-/// アウトラインメニューなどを更新
-- (void)updateInfo
-// ------------------------------------------------------
-{
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-
-    // アウトラインメニュー項目更新
-    NSTimeInterval outlineMenuInterval = [defaults doubleForKey:CEDefaultOutlineMenuIntervalKey];
-    if ([self outlineMenuTimer]) {
-        [[self outlineMenuTimer] setFireDate:[NSDate dateWithTimeIntervalSinceNow:outlineMenuInterval]];
-    } else {
-        [self setOutlineMenuTimer:[NSTimer scheduledTimerWithTimeInterval:outlineMenuInterval
-                                                                   target:self
-                                                                 selector:@selector(updateOutlineMenuWithTimer:)
-                                                                 userInfo:nil
-                                                                  repeats:NO]];
-    }
-
-    // 非互換文字リスト更新
-    [[[self window] windowController] updateIncompatibleCharsIfNeeded];
 }
 
 

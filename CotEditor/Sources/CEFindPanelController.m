@@ -191,14 +191,6 @@ static NSString *const kEscapeCharacter = @"\\";
 - (BOOL)didEndHighlight:(id)anObject
 // ------------------------------------------------------
 {
-    NSTextView *target = [self target];
-    
-    // post notification
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [[NSNotificationCenter defaultCenter] postNotificationName:CETextFinderDidUnhighlightNotification
-                                                            object:target];
-    });
-    
     return [self closesIndicatorWhenDone];
 }
 

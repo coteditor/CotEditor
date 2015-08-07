@@ -314,7 +314,7 @@ typedef NS_ENUM(NSUInteger, CETabIndex) {
 
 
 // ------------------------------------------------------
-// 有効なスタイル名かチェックしてエラーメッセージを返す
+/// 有効なスタイル名かチェックしてエラーメッセージを返す
 - (nullable NSString *)validateStyleName:(nonnull NSString *)styleName;
 // ------------------------------------------------------
 {

@@ -37,6 +37,7 @@
 
 @class CETextView;
 @class CETheme;
+@class CESyntaxParser;
 
 
 @interface CEEditorWrapper : NSResponder
@@ -48,6 +49,7 @@
 @property (nonatomic, getter=isVerticalLayoutOrientation) BOOL verticalLayoutOrientation;
 @property (nonatomic) CETextView *focusedTextView;
 
+@property (readonly, nonatomic) CESyntaxParser *syntaxParser;
 @property (readonly, nonatomic) BOOL showsNavigationBar;
 @property (readonly, nonatomic) BOOL canActivateShowInvisibles;
 
@@ -89,9 +91,10 @@
 // syntax
 - (NSString *)syntaxStyleName;
 - (void)setSyntaxStyleWithName:(NSString *)name coloring:(BOOL)doColoring;
-- (void)recolorAllString;
-- (void)updateColoringAndOutlineMenu;
+- (void)invalidateSyntaxColoring;
+- (void)invalidateOutlineMenu;
 - (void)setupColoringTimer;
+- (void)setupOutlineMenuUpdateTimer;
 
 
 #pragma mark Action Messages

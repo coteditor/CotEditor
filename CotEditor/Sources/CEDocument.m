@@ -756,7 +756,8 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     }
     
     // update syntax highlights and outline menu
-    [[self editor] updateColoringAndOutlineMenu];
+    [[self editor] invalidateSyntaxColoring];
+    [[self editor] invalidateOutlineMenu];
     
     // update line endings menu selection in toolbar
     [self applyLineEndingToView];

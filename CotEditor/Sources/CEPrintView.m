@@ -396,9 +396,7 @@ static NSString *const PageNumberPlaceholder = @"PAGENUM";
         if (![self syntaxParser]) {
             [self setSyntaxParser:[[CESyntaxParser alloc] initWithStyleName:[self syntaxName]]];
         }
-        [[self syntaxParser] colorAllString:[self string]
-                              layoutManager:[self layoutManager]
-                                   temporal:NO];
+        [[self syntaxParser] colorWholeStringInTextStorage:[self textStorage] temporal:NO];
     }
     
     // ヘッダを設定
