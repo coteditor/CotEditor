@@ -617,7 +617,7 @@ static CGFloat kPerCompoIncrement;
     }
     
     [regex enumerateMatchesInString:string
-                            options:NSMatchingReportProgress
+                            options:NSMatchingReportProgress | NSMatchingWithTransparentBounds | NSMatchingWithoutAnchoringBounds
                               range:parseRange
                          usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop)
      {
@@ -657,7 +657,7 @@ static CGFloat kPerCompoIncrement;
     }
     
     [beginRegex enumerateMatchesInString:string
-                                 options:NSMatchingReportProgress
+                                 options:NSMatchingReportProgress | NSMatchingWithTransparentBounds | NSMatchingWithoutAnchoringBounds
                                    range:parseRange
                               usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop)
      {
@@ -669,7 +669,8 @@ static CGFloat kPerCompoIncrement;
          }
          
          NSRange beginRange = [result range];
-         NSRange endRange = [endRegex rangeOfFirstMatchInString:string options:0
+         NSRange endRange = [endRegex rangeOfFirstMatchInString:string
+                                                        options:NSMatchingWithTransparentBounds | NSMatchingWithoutAnchoringBounds
                                                           range:NSMakeRange(NSMaxRange(beginRange),
                                                                             [string length] - NSMaxRange(beginRange))];
          
@@ -1060,7 +1061,6 @@ static CGFloat kPerCompoIncrement;
 // ------------------------------------------------------
 {
     CETheme *theme = [(NSTextView<CETextViewProtocol> *)[layoutManager firstTextView] theme];
-    BOOL showsInvisibles = [layoutManager showsControlCharacters];
     
     // 現在あるカラーリングを削除
     if (isTemporal) {
@@ -1072,7 +1072,7 @@ static CGFloat kPerCompoIncrement;
     
     // add invisible coloring if needed
     NSArray *colorTypes = kSyntaxDictKeys;
-    if (showsInvisibles) {
+    if ([layoutManager showsControlCharacters]) {
         colorTypes = [colorTypes arrayByAddingObject:InvisiblesType];
     }
     
@@ -1111,15 +1111,13 @@ static CGFloat kPerCompoIncrement;
         }
         
         for (NSValue *rangeValue in ranges) {
-            @autoreleasepool {
-                NSRange range = [rangeValue rangeValue];
-                
-                if (isTemporal) {
-                    [layoutManager addTemporaryAttribute:NSForegroundColorAttributeName
-                                                   value:color forCharacterRange:range];
-                } else {
-                    [[layoutManager firstTextView] setTextColor:color range:range];
-                }
+            NSRange range = [rangeValue rangeValue];
+            
+            if (isTemporal) {
+                [layoutManager addTemporaryAttribute:NSForegroundColorAttributeName
+                                               value:color forCharacterRange:range];
+            } else {
+                [[layoutManager firstTextView] setTextColor:color range:range];
             }
         }
     }
