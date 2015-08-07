@@ -50,6 +50,7 @@
 
 
 // readonly
+@property (readwrite, nonatomic) CESyntaxParser *syntaxParser;
 @property (readwrite, nonatomic) BOOL canActivateShowInvisibles;
 
 @end
@@ -468,8 +469,9 @@ static NSTimeInterval secondColoringDelay;
     
     [[self splitViewController] enumerateEditorViewsUsingBlock:^(CEEditorView *editorView) {
         [[editorView textView] setTheme:theme];
-        [editorView recolorAllTextViewString];
     }];
+    
+    [[self syntaxParser] colorWholeStringInTextStorage:[self textStorage] temporal:YES];
 }
 
 
@@ -512,17 +514,11 @@ static NSTimeInterval secondColoringDelay;
 - (void)setSyntaxStyleWithName:(NSString *)name coloring:(BOOL)doColoring
 // ------------------------------------------------------
 {
-    if (![self syntaxParser]) { return; }
+    [self setSyntaxParser:[[CESyntaxParser alloc] initWithStyleName:name]];
     
-    [[self splitViewController] enumerateEditorViewsUsingBlock:^(CEEditorView *editorView) {
-        [editorView setSyntaxWithName:name];
-        if (doColoring) {
-            [editorView recolorAllTextViewString];
-            if ([[editorView navigationBar] isShown]) {
-                [editorView updateOutlineMenu];
-            }
-        }
-    }];
+    if (doColoring) {
+        [self updateColoringAndOutlineMenu];
+    }
 }
 
 
@@ -533,9 +529,7 @@ static NSTimeInterval secondColoringDelay;
 {
     [self stopColoringTimer];
     
-    [[self splitViewController] enumerateEditorViewsUsingBlock:^(CEEditorView *editorView) {
-        [editorView recolorAllTextViewString];
-    }];
+    [[self syntaxParser] colorWholeStringInTextStorage:[self textStorage] temporal:YES];
 }
 
 
@@ -546,9 +540,10 @@ static NSTimeInterval secondColoringDelay;
 {
     [self stopColoringTimer];
     
+    [[self syntaxParser] colorWholeStringInTextStorage:[self textStorage] temporal:YES];
+    
     [[self splitViewController] enumerateEditorViewsUsingBlock:^(CEEditorView *editorView) {
         [editorView updateOutlineMenu];
-        [editorView recolorAllTextViewString];
     }];
 }
 
@@ -728,9 +723,8 @@ static NSTimeInterval secondColoringDelay;
     [[self class] endCurrentEditing];
     
     CEEditorView *newEditorView = [[CEEditorView alloc] initWithFrame:[currentEditorView frame]];
-    NSTextStorage *textStorage = [[currentEditorView textView] textStorage];
 
-    [newEditorView replaceTextStorage:textStorage];
+    [newEditorView replaceTextStorage:[self textStorage]];
     [newEditorView setEditorWrapper:self];
     
     // instert new editorView just below the editorView that the pressed button belongs to or has focus
@@ -745,9 +739,9 @@ static NSTimeInterval secondColoringDelay;
     [[newEditorView textView] setLineSpacing:[[currentEditorView textView] lineSpacing]];
     [[newEditorView textView] setSelectedRange:[[currentEditorView textView] selectedRange]];
     
-    [newEditorView setSyntaxWithName:[[currentEditorView syntaxParser] styleName]];
+    [newEditorView applySyntax:[self syntaxParser]];
     [newEditorView updateOutlineMenu];
-    [[newEditorView syntaxParser] colorWholeStringInTextStorage:textStorage temporal:YES];
+    [[self syntaxParser] colorWholeStringInTextStorage:[self textStorage] temporal:YES];
     
     // move focus to the new editor
     [[self window] makeFirstResponder:[newEditorView textView]];
@@ -862,6 +856,15 @@ static NSTimeInterval secondColoringDelay;
 
 
 // ------------------------------------------------------
+/// text storage を返す
+- (NSTextStorage *)textStorage
+// ------------------------------------------------------
+{
+    return [[self focusedTextView] textStorage];
+}
+
+
+// ------------------------------------------------------
 /// windowControllerを返す
 - (CEWindowController *)windowController
 // ------------------------------------------------------
@@ -894,15 +897,6 @@ static NSTimeInterval secondColoringDelay;
 // ------------------------------------------------------
 {
     return [(CEEditorView *)[[self focusedTextView] delegate] navigationBar];
-}
-
-
-// ------------------------------------------------------
-/// syntaxオブジェクトを返す
-- (CESyntaxParser *)syntaxParser
-// ------------------------------------------------------
-{
-    return [(CEEditorView *)[[self focusedTextView] delegate] syntaxParser];
 }
 
 

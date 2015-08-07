@@ -42,7 +42,6 @@
 // readonly
 @property (readonly, nonatomic) CETextView *textView;
 @property (readonly, nonatomic) CENavigationBarController *navigationBar;
-@property (readonly, nonatomic) CESyntaxParser *syntaxParser;
 
 
 // Public method
@@ -54,8 +53,7 @@
 - (void)setUsesAntialias:(BOOL)usesAntialias;
 - (void)updateCloseSplitViewButton:(BOOL)isEnabled;
 - (void)setCaretToBeginning;
-- (void)setSyntaxWithName:(NSString *)styleName;
-- (void)recolorAllTextViewString;
+- (void)applySyntax:(CESyntaxParser *)syntaxParser;
 - (void)updateOutlineMenu;
 
 @end

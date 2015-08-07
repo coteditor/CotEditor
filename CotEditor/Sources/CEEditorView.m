@@ -53,7 +53,6 @@
 // readonly
 @property (readwrite, nonatomic) CETextView *textView;
 @property (readwrite, nonatomic) CENavigationBarController *navigationBar;
-@property (readwrite, nonatomic) CESyntaxParser *syntaxParser;
 
 @end
 
@@ -110,11 +109,9 @@
         [layoutManager setUsesAntialias:[defaults boolForKey:CEDefaultShouldAntialiasKey]];
         [layoutManager setFixesLineHeight:[defaults boolForKey:CEDefaultFixLineHeightKey]];
 
-        // NSTextContainer と CESyntaxParser を生成
+        // NSTextContainer を生成
         NSTextContainer *container = [[NSTextContainer alloc] initWithContainerSize:NSMakeSize(CGFLOAT_MAX, CGFLOAT_MAX)];
         [layoutManager addTextContainer:container];
-
-        _syntaxParser = [[CESyntaxParser alloc] initWithStyleName:NSLocalizedString(@"None", nil)];
 
         // TextView 生成
         _textView = [[CETextView alloc] initWithFrame:NSZeroRect textContainer:container];
@@ -284,23 +281,12 @@
 
 // ------------------------------------------------------
 /// シンタックススタイルを設定
-- (void)setSyntaxWithName:(NSString *)styleName
+- (void)applySyntax:(CESyntaxParser *)syntaxParser
 // ------------------------------------------------------
 {
-    [self setSyntaxParser:[[CESyntaxParser alloc] initWithStyleName:styleName]];
-    
-    [[self textView] setInlineCommentDelimiter:[[self syntaxParser] inlineCommentDelimiter]];
-    [[self textView] setBlockCommentDelimiters:[[self syntaxParser] blockCommentDelimiters]];
-    [[self textView] setFirstCompletionCharacterSet:[[self syntaxParser] firstCompletionCharacterSet]];
-}
-
-
-// ------------------------------------------------------
-/// 全てを再カラーリング
-- (void)recolorAllTextViewString
-// ------------------------------------------------------
-{
-    [[self syntaxParser] colorWholeStringInTextStorage:[self textStorage] temporal:YES];
+    [[self textView] setInlineCommentDelimiter:[syntaxParser inlineCommentDelimiter]];
+    [[self textView] setBlockCommentDelimiters:[syntaxParser blockCommentDelimiters]];
+    [[self textView] setFirstCompletionCharacterSet:[syntaxParser firstCompletionCharacterSet]];
 }
 
 
@@ -609,7 +595,16 @@
 #pragma mark Private Mthods
 
 // ------------------------------------------------------
-// textStorage をセット
+/// return shared sytnaxParser
+- (CESyntaxParser *)syntaxParser
+// ------------------------------------------------------
+{
+    return [[self editorWrapper] syntaxParser];
+}
+
+
+// ------------------------------------------------------
+/// textStorage をセット
 - (void)setTextStorage:(NSTextStorage *)textStorage
 // ------------------------------------------------------
 {
@@ -620,6 +615,15 @@
                                                object:textStorage];
     
     _textStorage = textStorage;
+}
+
+
+// ------------------------------------------------------
+/// 全てを再カラーリング
+- (void)recolorAllTextViewString
+// ------------------------------------------------------
+{
+    [[self syntaxParser] colorWholeStringInTextStorage:[self textStorage] temporal:YES];
 }
 
 
