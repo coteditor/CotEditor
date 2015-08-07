@@ -22,6 +22,7 @@ develop
     - Optimize general syntax highlighting performance (ca. 1.8x).
     - Optimize syntax highlighting on file opening.
     - Better coloring parsing while editing.
+    - Update all split editors while editing.
 - Move scripts folder location from `~/Library/Application Support/CotEditor/ScriptMenu/` to `~/Library/Application Scripts/com.coteditor.CotEditor/` because of the Sandbox requirement.
     - Users need to migrate their script to the new folder manually, since CotEditor doesn't have the write permisson to the new location.
 - Better file encoding handling on revert action.

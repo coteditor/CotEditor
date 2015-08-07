@@ -54,6 +54,5 @@
 - (void)updateCloseSplitViewButton:(BOOL)isEnabled;
 - (void)setCaretToBeginning;
 - (void)applySyntax:(CESyntaxParser *)syntaxParser;
-- (void)updateOutlineMenu;
 
 @end

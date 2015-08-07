@@ -30,7 +30,6 @@
 
 
 NSString *__nonnull const CETextFinderDidReplaceAllNotification = @"CETextFinderDidReplaceAllNotification";
-NSString *__nonnull const CETextFinderDidUnhighlightNotification = @"CETextFinderDidUnhighlightNotification";
 
 
 @implementation CETextFinder

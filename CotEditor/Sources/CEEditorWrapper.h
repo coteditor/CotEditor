@@ -91,9 +91,10 @@
 // syntax
 - (NSString *)syntaxStyleName;
 - (void)setSyntaxStyleWithName:(NSString *)name coloring:(BOOL)doColoring;
-- (void)recolorAllString;
-- (void)updateColoringAndOutlineMenu;
+- (void)invalidateSyntaxColoring;
+- (void)invalidateOutlineMenu;
 - (void)setupColoringTimer;
+- (void)setupOutlineMenuUpdateTimer;
 
 
 #pragma mark Action Messages

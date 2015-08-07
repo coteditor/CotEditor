@@ -45,6 +45,7 @@
 @interface CEEditorWrapper ()
 
 @property (nonatomic, nullable) NSTimer *coloringTimer;
+@property (nonatomic, nullable) NSTimer *outlineMenuTimer;
 
 @property (nonatomic, nullable) IBOutlet CESplitViewController *splitViewController;
 
@@ -110,6 +111,8 @@ static NSTimeInterval secondColoringDelay;
 // ------------------------------------------------------
 {
     [self stopColoringTimer];
+    [self stopUpdateOutlineMenuTimer];
+    
     _focusedTextView = nil;
 }
 
@@ -379,6 +382,10 @@ static NSTimeInterval secondColoringDelay;
     }];
     [[[self windowController] toolbarController] toggleItemWithTag:CEToolbarShowNavigationBarItemTag
                                                              setOn:showsNavigationBar];
+    
+    if (showsNavigationBar && ![self outlineMenuTimer]) {
+        [self invalidateOutlineMenu];
+    }
 }
 
 
@@ -517,14 +524,15 @@ static NSTimeInterval secondColoringDelay;
     [self setSyntaxParser:[[CESyntaxParser alloc] initWithStyleName:name]];
     
     if (doColoring) {
-        [self updateColoringAndOutlineMenu];
+        [self invalidateSyntaxColoring];
+        [self invalidateOutlineMenu];
     }
 }
 
 
 // ------------------------------------------------------
 /// 全テキストを再カラーリング
-- (void)recolorAllString
+- (void)invalidateSyntaxColoring
 // ------------------------------------------------------
 {
     [self stopColoringTimer];
@@ -534,17 +542,38 @@ static NSTimeInterval secondColoringDelay;
 
 
 // ------------------------------------------------------
-/// 全テキストを再カラーリング、アウトラインメニューを更新
-- (void)updateColoringAndOutlineMenu
+/// アウトラインメニューを更新
+- (void)invalidateOutlineMenu
 // ------------------------------------------------------
 {
-    [self stopColoringTimer];
+    [self stopUpdateOutlineMenuTimer];
     
-    [[self syntaxParser] colorWholeStringInTextStorage:[self textStorage] temporal:YES];
+    NSString *wholeString = [[self textStorage] string] ? : @"";
     
-    [[self splitViewController] enumerateEditorViewsUsingBlock:^(CEEditorView *editorView) {
-        [editorView updateOutlineMenu];
-    }];
+    // 規定の文字数以上の場合にはインジケータを表示
+    // （ただし、CEDefaultShowColoringIndicatorTextLengthKey が「0」の時は表示しない）
+    NSUInteger indicatorThreshold = [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultShowColoringIndicatorTextLengthKey];
+    if (indicatorThreshold > 0 && indicatorThreshold < [wholeString length]) {
+        [[self splitViewController] enumerateEditorViewsUsingBlock:^(CEEditorView *editorView) {
+            [[editorView navigationBar] showOutlineIndicator];
+        }];
+    }
+    
+    NSString *immutableWholeString = [NSString stringWithString:wholeString];  // 解析中に参照元が変更されると困るのでコピーする
+    
+    // 別スレッドでアウトラインを抽出して、メインスレッドで navigationBar に渡す
+    CESyntaxParser *syntaxParser = [self syntaxParser];
+    CESplitViewController *splitViewController = [self splitViewController];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSArray *outlineItems = [syntaxParser outlineItemsWithWholeString:immutableWholeString];
+        
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            [splitViewController enumerateEditorViewsUsingBlock:^(CEEditorView *editorView) {
+                [[editorView navigationBar] setOutlineItems:outlineItems];
+                // （選択項目の更新も上記メソッド内で行われるので、updateOutlineMenuSelection は呼ぶ必要なし。 2008.05.16.）
+            }];
+        });
+    });
 }
 
 
@@ -587,6 +616,25 @@ static NSTimeInterval secondColoringDelay;
                                                                 target:self
                                                               selector:@selector(doColoringWithTimer:)
                                                               userInfo:nil repeats:NO]];
+    }
+}
+
+
+// ------------------------------------------------------
+/// アウトラインメニュー項目を更新
+- (void)setupOutlineMenuUpdateTimer
+// ------------------------------------------------------
+{
+    // アウトラインメニュー項目更新
+    NSTimeInterval outlineMenuInterval = [[NSUserDefaults standardUserDefaults] doubleForKey:CEDefaultOutlineMenuIntervalKey];
+    if ([self outlineMenuTimer]) {
+        [[self outlineMenuTimer] setFireDate:[NSDate dateWithTimeIntervalSinceNow:outlineMenuInterval]];
+    } else {
+        [self setOutlineMenuTimer:[NSTimer scheduledTimerWithTimeInterval:outlineMenuInterval
+                                                                   target:self
+                                                                 selector:@selector(updateOutlineMenuWithTimer:)
+                                                                 userInfo:nil
+                                                                  repeats:NO]];
     }
 }
 
@@ -740,8 +788,8 @@ static NSTimeInterval secondColoringDelay;
     [[newEditorView textView] setSelectedRange:[[currentEditorView textView] selectedRange]];
     
     [newEditorView applySyntax:[self syntaxParser]];
-    [newEditorView updateOutlineMenu];
-    [[self syntaxParser] colorWholeStringInTextStorage:[self textStorage] temporal:YES];
+    [self invalidateSyntaxColoring];
+    [self invalidateOutlineMenu];
     
     // move focus to the new editor
     [[self window] makeFirstResponder:[newEditorView textView]];
@@ -802,7 +850,7 @@ static NSTimeInterval secondColoringDelay;
 - (IBAction)recolorAll:(nullable id)sender
 // ------------------------------------------------------
 {
-    [self recolorAllString];
+    [self invalidateSyntaxColoring];
 }
 
 
@@ -986,6 +1034,27 @@ static NSTimeInterval secondColoringDelay;
     if ([self coloringTimer]) {
         [[self coloringTimer] invalidate];
         [self setColoringTimer:nil];
+    }
+}
+
+
+// ------------------------------------------------------
+/// アウトラインメニュー更新
+- (void)updateOutlineMenuWithTimer:(nonnull NSTimer *)timer
+// ------------------------------------------------------
+{
+    [self invalidateOutlineMenu]; // （invalidateOutlineMenu 内で stopUpdateOutlineMenuTimer を実行している）
+}
+
+
+// ------------------------------------------------------
+/// アウトラインメニュー更新タイマーを停止
+- (void)stopUpdateOutlineMenuTimer
+// ------------------------------------------------------
+{
+    if ([self outlineMenuTimer]) {
+        [[self outlineMenuTimer] invalidate];
+        [self setOutlineMenuTimer:nil];
     }
 }
 
