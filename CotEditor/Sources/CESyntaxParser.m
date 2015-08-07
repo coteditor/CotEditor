@@ -470,7 +470,7 @@ static CGFloat kPerCompoIncrement;
 
 // ------------------------------------------------------
 /// 指定された文字列をそのまま検索し、位置を返す
-- (nonnull NSArray *)rangesOfSimpleWords:(nonnull NSDictionary *)wordsDict ignoreCaseWords:(nonnull NSDictionary *)icWordsDict charSet:(nonnull NSCharacterSet *)charSet string:(nonnull NSString *)string
+- (nonnull NSArray *)rangesOfSimpleWords:(nonnull NSDictionary *)wordsDict ignoreCaseWords:(nonnull NSDictionary *)icWordsDict charSet:(nonnull NSCharacterSet *)charSet string:(nonnull NSString *)string range:(NSRange)parseRange
 // ------------------------------------------------------
 {
     NSMutableArray *ranges = [NSMutableArray array];
@@ -478,8 +478,9 @@ static CGFloat kPerCompoIncrement;
     
     NSScanner *scanner = [NSScanner scannerWithString:string];
     [scanner setCaseSensitive:YES];
+    [scanner setScanLocation:parseRange.location];
     
-    while (![scanner isAtEnd]) {
+    while(![scanner isAtEnd] && ([scanner scanLocation] < NSMaxRange(parseRange))) {
         if ([indicator isCancelled]) { return @[]; }
         
         @autoreleasepool {
@@ -511,7 +512,7 @@ static CGFloat kPerCompoIncrement;
 
 // ------------------------------------------------------
 /// 指定された文字列を検索し、位置を返す
-- (nonnull NSArray *)rangesOfString:(nonnull NSString *)searchString ignoreCase:(BOOL)ignoreCase string:(nonnull NSString *)string
+- (nonnull NSArray *)rangesOfString:(nonnull NSString *)searchString ignoreCase:(BOOL)ignoreCase string:(nonnull NSString *)string range:(NSRange)parseRange
 // ------------------------------------------------------
 {
     if ([searchString length] == 0) { return @[]; }
@@ -523,8 +524,9 @@ static CGFloat kPerCompoIncrement;
     NSScanner *scanner = [NSScanner scannerWithString:string];
     [scanner setCharactersToBeSkipped:nil];
     [scanner setCaseSensitive:!ignoreCase];
+    [scanner setScanLocation:parseRange.location];
     
-    while (![scanner isAtEnd]) {
+    while(![scanner isAtEnd] && ([scanner scanLocation] < NSMaxRange(parseRange))) {
         if ([indicator isCancelled]) { return @[]; }
         
         @autoreleasepool {
@@ -546,7 +548,7 @@ static CGFloat kPerCompoIncrement;
 
 // ------------------------------------------------------
 /// 指定された開始／終了ペアの文字列を検索し、位置を返す
-- (nonnull NSArray *)rangesOfBeginString:(nonnull NSString *)beginString endString:(nonnull NSString *)endString ignoreCase:(BOOL)ignoreCase string:(nonnull NSString *)string
+- (nonnull NSArray *)rangesOfBeginString:(nonnull NSString *)beginString endString:(nonnull NSString *)endString ignoreCase:(BOOL)ignoreCase string:(nonnull NSString *)string range:(NSRange)parseRange
 // ------------------------------------------------------
 {
     if ([beginString length] == 0) { return @[]; }
@@ -558,8 +560,9 @@ static CGFloat kPerCompoIncrement;
     NSScanner *scanner = [NSScanner scannerWithString:string];
     [scanner setCharactersToBeSkipped:nil];
     [scanner setCaseSensitive:!ignoreCase];
+    [scanner setScanLocation:parseRange.location];
     
-    while (![scanner isAtEnd]) {
+    while(![scanner isAtEnd] && ([scanner scanLocation] < NSMaxRange(parseRange))) {
         if ([indicator isCancelled]) { return @[]; }
         
         @autoreleasepool {
@@ -571,7 +574,8 @@ static CGFloat kPerCompoIncrement;
             if (isCharacterEscaped(string, startLocation)) { continue; }
             
             // find end string
-            while (![scanner isAtEnd]) {
+            while(![scanner isAtEnd] && ([scanner scanLocation] < NSMaxRange(parseRange))) {
+                
                 [scanner scanUpToString:endString intoString:nil];
                 if (![scanner scanString:endString intoString:nil]) { break; }
                 
@@ -593,7 +597,7 @@ static CGFloat kPerCompoIncrement;
 
 // ------------------------------------------------------
 /// 指定された文字列を正規表現として検索し、位置を返す
-- (nonnull NSArray *)rangesOfRegularExpressionString:(nonnull NSString *)regexStr ignoreCase:(BOOL)ignoreCase string:(nonnull NSString *)string
+- (nonnull NSArray *)rangesOfRegularExpressionString:(nonnull NSString *)regexStr ignoreCase:(BOOL)ignoreCase string:(nonnull NSString *)string range:(NSRange)parseRange
 // ------------------------------------------------------
 {
     if ([regexStr length] == 0) { return @[]; }
@@ -614,7 +618,7 @@ static CGFloat kPerCompoIncrement;
     
     [regex enumerateMatchesInString:string
                             options:NSMatchingReportProgress
-                              range:NSMakeRange(0, [string length])
+                              range:parseRange
                          usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop)
      {
          if (flags & NSMatchingProgress) {
@@ -633,7 +637,7 @@ static CGFloat kPerCompoIncrement;
 
 // ------------------------------------------------------
 /// 指定された開始／終了文字列を正規表現として検索し、位置を返す
-- (nonnull NSArray *)rangesOfRegularExpressionBeginString:(nonnull NSString *)beginString endString:(nonnull NSString *)endString ignoreCase:(BOOL)ignoreCase string:(nonnull NSString *)string
+- (nonnull NSArray *)rangesOfRegularExpressionBeginString:(nonnull NSString *)beginString endString:(nonnull NSString *)endString ignoreCase:(BOOL)ignoreCase string:(nonnull NSString *)string range:(NSRange)parseRange
 // ------------------------------------------------------
 {
     NSMutableArray *ranges = [NSMutableArray array];
@@ -654,7 +658,7 @@ static CGFloat kPerCompoIncrement;
     
     [beginRegex enumerateMatchesInString:string
                                  options:NSMatchingReportProgress
-                                   range:NSMakeRange(0, [string length])
+                                   range:parseRange
                               usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop)
      {
          if (flags & NSMatchingProgress) {
@@ -680,14 +684,16 @@ static CGFloat kPerCompoIncrement;
 
 // ------------------------------------------------------
 /// 不可視文字のカラーリング範囲配列を返す
-- (nonnull NSArray *)rangesOfControlCharsInString:(nonnull NSString *)string
+- (nonnull NSArray *)rangesOfControlCharsInString:(nonnull NSString *)string range:(NSRange)parseRange
 // ------------------------------------------------------
 {
     NSMutableArray *ranges = [NSMutableArray array];
     NSCharacterSet *controlCharacterSet = [NSCharacterSet controlCharacterSet];
     NSScanner *scanner = [NSScanner scannerWithString:string];
     
-    while (![scanner isAtEnd]) {
+    [scanner setScanLocation:parseRange.location];
+    
+    while(![scanner isAtEnd] && ([scanner scanLocation] < NSMaxRange(parseRange))) {
         [scanner scanUpToCharactersFromSet:controlCharacterSet intoString:nil];
         NSUInteger location = [scanner scanLocation];
         NSString *control;
@@ -704,7 +710,7 @@ static CGFloat kPerCompoIncrement;
 
 // ------------------------------------------------------
 /// クオートで囲まれた文字列とともにコメントをカラーリング
-- (nonnull NSDictionary *)extractCommentsWithQuotesFromString:(nonnull NSString *)string
+- (nonnull NSDictionary *)extractCommentsWithQuotesFromString:(nonnull NSString *)string range:(NSRange)parseRange
 // ------------------------------------------------------
 {
     NSDictionary *quoteTypes = [self pairedQuoteTypes];
@@ -713,7 +719,7 @@ static CGFloat kPerCompoIncrement;
     // コメント定義の位置配列を生成
     if ([self blockCommentDelimiters]) {
         NSString *beginDelimiter = [self blockCommentDelimiters][CEBeginDelimiterKey];
-        NSArray *beginRanges = [self rangesOfString:beginDelimiter ignoreCase:NO string:string];
+        NSArray *beginRanges = [self rangesOfString:beginDelimiter ignoreCase:NO string:string range:parseRange];
         for (NSValue *rangeValue in beginRanges) {
             NSRange range = [rangeValue rangeValue];
             
@@ -724,7 +730,7 @@ static CGFloat kPerCompoIncrement;
         }
         
         NSString *endDelimiter = [self blockCommentDelimiters][CEEndDelimiterKey];
-        NSArray *endRanges = [self rangesOfString:endDelimiter ignoreCase:NO string:string];
+        NSArray *endRanges = [self rangesOfString:endDelimiter ignoreCase:NO string:string range:parseRange];
         for (NSValue *rangeValue in endRanges) {
             NSRange range = [rangeValue rangeValue];
             
@@ -737,7 +743,7 @@ static CGFloat kPerCompoIncrement;
     }
     if ([self inlineCommentDelimiter]) {
         NSString *delimiter = [self inlineCommentDelimiter];
-        NSArray *ranges = [self rangesOfString:delimiter ignoreCase:NO string:string];
+        NSArray *ranges = [self rangesOfString:delimiter ignoreCase:NO string:string range:parseRange];
         for (NSValue *rangeValue in ranges) {
             NSRange range = [rangeValue rangeValue];
             NSRange lineRange = [string lineRangeForRange:range];
@@ -757,7 +763,7 @@ static CGFloat kPerCompoIncrement;
     
     // クォート定義があれば位置配列を生成、マージ
     for (NSString *quote in quoteTypes) {
-        NSArray *ranges = [self rangesOfString:quote ignoreCase:NO string:string];
+        NSArray *ranges = [self rangesOfString:quote ignoreCase:NO string:string range:parseRange];
         for (NSValue *rangeValue in ranges) {
             NSRange range = [rangeValue rangeValue];
             
@@ -834,7 +840,7 @@ static CGFloat kPerCompoIncrement;
 
 // ------------------------------------------------------
 /// 対象範囲の全てのカラーリング範囲配列を返す
-- (nonnull NSDictionary *)extractAllSyntaxFromString:(nonnull NSString *)string
+- (nonnull NSDictionary *)extractAllSyntaxFromString:(nonnull NSString *)string range:(NSRange)parseRange
 // ------------------------------------------------------
 {
     NSMutableDictionary *colorings = [NSMutableDictionary dictionary];  // key: coloring type value: range array
@@ -882,18 +888,21 @@ static CGFloat kPerCompoIncrement;
                         extractedRanges = [self rangesOfRegularExpressionBeginString:beginStr
                                                                            endString:endStr
                                                                           ignoreCase:ignoresCase
-                                                                              string:string];
+                                                                              string:string
+                                                                               range:parseRange];
                     } else {
                         extractedRanges = [self rangesOfRegularExpressionString:beginStr
                                                                      ignoreCase:ignoresCase
-                                                                         string:string];
+                                                                         string:string
+                                                                          range:parseRange];
                     }
                 } else {
                     if ([endStr length] > 0) {
                         extractedRanges = [self rangesOfBeginString:beginStr
                                                           endString:endStr
                                                          ignoreCase:ignoresCase
-                                                             string:string];
+                                                             string:string
+                                                              range:parseRange];
                     } else {
                         NSNumber *len = @([beginStr length]);
                         @synchronized(simpleWordsDict) {
@@ -926,7 +935,8 @@ static CGFloat kPerCompoIncrement;
             [ranges addObjectsFromArray:[self rangesOfSimpleWords:simpleWordsDict
                                                   ignoreCaseWords:simpleICWordsDict
                                                           charSet:[self simpleWordsCharacterSets][syntaxKey]
-                                                           string:string]];
+                                                           string:string
+                                                            range:parseRange]];
         }
         // store range array
         colorings[syntaxKey] = ranges;
@@ -942,13 +952,13 @@ static CGFloat kPerCompoIncrement;
                                            NSLocalizedString(@"comments and quoted texts", nil)]];
         });
     }
-    [colorings addEntriesFromDictionary:[self extractCommentsWithQuotesFromString:string]];
+    [colorings addEntriesFromDictionary:[self extractCommentsWithQuotesFromString:string range:parseRange]];
     [indicator progressIndicator:kPerCompoIncrement];
     
     if ([indicator isCancelled]) { return @{}; }
     
     // 不可視文字の追加
-    colorings[InvisiblesType] = [self rangesOfControlCharsInString:string];
+    colorings[InvisiblesType] = [self rangesOfControlCharsInString:string range:parseRange];
     
     return [colorings copy];
 }
@@ -966,10 +976,6 @@ static CGFloat kPerCompoIncrement;
         [self applyColorings:@{} range:coloringRange layoutManager:layoutManager temporal:isTemporal];
         return;
     }
-    
-    // カラーリング対象の文字列
-    NSString *coloringString = [wholeString substringWithRange:coloringRange];
-    BOOL didColor = NO;
     
     // 規定の文字数以上の場合にはカラーリングインジケータシートを表示
     // （ただし、CEDefaultShowColoringIndicatorTextLengthKey が「0」の時は表示しない）
@@ -1012,9 +1018,8 @@ static CGFloat kPerCompoIncrement;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         typeof(self) self = weakSelf;  // strong self
         if (!self) { return; }
-        
         // カラー範囲を抽出する
-        NSDictionary *colorings = [self extractAllSyntaxFromString:coloringString];
+        NSDictionary *colorings = [self extractAllSyntaxFromString:wholeString range:coloringRange];
         
         if ([colorings count] > 0) {
             // 全文を抽出した場合は抽出結果をキャッシュする
@@ -1108,7 +1113,6 @@ static CGFloat kPerCompoIncrement;
         for (NSValue *rangeValue in ranges) {
             @autoreleasepool {
                 NSRange range = [rangeValue rangeValue];
-                range.location += coloringRange.location;
                 
                 if (isTemporal) {
                     [layoutManager addTemporaryAttribute:NSForegroundColorAttributeName
