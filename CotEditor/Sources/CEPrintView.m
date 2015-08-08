@@ -34,7 +34,7 @@
 
 
 // constants
-CGFloat const kVerticalPrintMargin = 64.0;    // default 90.0
+CGFloat const kVerticalPrintMargin = 58.0;    // default 90.0
 CGFloat const kHorizontalPrintMargin = 24.0;  // default 72.0
 
 static CGFloat const kHorizontalHeaderFooterMargin = 20.0;
@@ -167,23 +167,15 @@ static NSString *const PageNumberPlaceholder = @"PAGENUM";
     NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] init];
     
     if ([self headerOneString]) {
-        NSString *string = [self headerOneString];
-        if ([string isEqualToString:PageNumberPlaceholder]) {
-            string = [self currentPageNumber];
-        }
-        [attrString appendAttributedString:[[NSAttributedString alloc] initWithString:string
-                                                                           attributes:[self headerFooterAttributesForAlignment:[self headerOneAlignment]]]];
+        [attrString appendAttributedString:[self attributedHeaderFooterStringWithString:[self headerOneString]
+                                                                              alignment:[self headerOneAlignment]]];
     }
     if ([self headerOneString] && [self headerTwoString]) {
         [attrString appendAttributedString:[[NSAttributedString alloc] initWithString:@"\n"]];
     }
     if ([self headerTwoString]) {
-        NSString *string = [self headerTwoString];
-        if ([string isEqualToString:PageNumberPlaceholder]) {
-            string = [self currentPageNumber];
-        }
-        [attrString appendAttributedString:[[NSAttributedString alloc] initWithString:string
-                                                                           attributes:[self headerFooterAttributesForAlignment:[self headerTwoAlignment]]]];
+        [attrString appendAttributedString:[self attributedHeaderFooterStringWithString:[self headerTwoString]
+                                                                              alignment:[self headerTwoAlignment]]];
     }
     
     return attrString;
@@ -202,23 +194,15 @@ static NSString *const PageNumberPlaceholder = @"PAGENUM";
     NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] init];
     
     if ([self footerOneString]) {
-        NSString *string = [self footerOneString];
-        if ([string isEqualToString:PageNumberPlaceholder]) {
-            string = [self currentPageNumber];
-        }
-        [attrString appendAttributedString:[[NSAttributedString alloc] initWithString:string
-                                                                           attributes:[self headerFooterAttributesForAlignment:[self footerOneAlignment]]]];
+        [attrString appendAttributedString:[self attributedHeaderFooterStringWithString:[self footerOneString]
+                                                                              alignment:[self footerOneAlignment]]];
     }
     if ([self footerOneString] && [self footerTwoString]) {
         [attrString appendAttributedString:[[NSAttributedString alloc] initWithString:@"\n"]];
     }
     if ([self footerTwoString]) {
-        NSString *string = [self footerTwoString];
-        if ([string isEqualToString:PageNumberPlaceholder]) {
-            string = [self currentPageNumber];
-        }
-        [attrString appendAttributedString:[[NSAttributedString alloc] initWithString:string
-                                                                           attributes:[self headerFooterAttributesForAlignment:[self footerTwoAlignment]]]];
+        [attrString appendAttributedString:[self attributedHeaderFooterStringWithString:[self footerTwoString]
+                                                                              alignment:[self footerTwoAlignment]]];
     }
     
     return attrString;
@@ -250,12 +234,14 @@ static NSString *const PageNumberPlaceholder = @"PAGENUM";
 {
     // テキストビューのサイズをマージンに合わせて更新
     NSPrintInfo *printInfo = [[NSPrintOperation currentOperation] printInfo];
-    NSSize frameSize = NSMakeSize([printInfo paperSize].width - ([printInfo leftMargin] + [printInfo rightMargin]),
-                                  [self maxSize].height);
-    
+    CGFloat scale = [printInfo scalingFactor];
+    NSSize frameSize;
     if ([self layoutOrientation] == NSTextLayoutOrientationVertical) {
         frameSize = NSMakeSize([self maxSize].width,
                                [printInfo paperSize].height - ([printInfo leftMargin] + [printInfo rightMargin]));
+    } else {
+        frameSize = NSMakeSize([printInfo paperSize].width - ([printInfo leftMargin] + [printInfo rightMargin]),
+                               [self maxSize].height);
     }
     [self setFrameSize:frameSize];
     [self sizeToFit];
@@ -403,6 +389,19 @@ static NSString *const PageNumberPlaceholder = @"PAGENUM";
 }
 
 
+// ------------------------------------------------------
+/// return attributed string for given header/footer contents applying page numbers
+- (NSAttributedString *)attributedHeaderFooterStringWithString:(nonnull NSString *)string alignment:(CEAlignmentType)alignment
+// ------------------------------------------------------
+{
+    if ([string isEqualToString:PageNumberPlaceholder]) {
+        NSInteger pageNumber = [[NSPrintOperation currentOperation] currentPage];
+        string = [NSString stringWithFormat:@"%zd", pageNumber];
+    }
+    return [[NSAttributedString alloc] initWithString:string
+                                           attributes:[self headerFooterAttributesForAlignment:alignment]];
+}
+
 
 // ------------------------------------------------------
 /// return attributes for header/footer string
@@ -466,16 +465,6 @@ static NSString *const PageNumberPlaceholder = @"PAGENUM";
     }
     
     return nil;
-}
-
-
-// ------------------------------------------------------
-/// current page number as string
-- (nonnull NSString *)currentPageNumber
-// ------------------------------------------------------
-{
-    NSInteger pageNumber = [[NSPrintOperation currentOperation] currentPage];
-    return [NSString stringWithFormat:@"%zd", pageNumber];
 }
 
 @end
