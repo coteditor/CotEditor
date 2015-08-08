@@ -27,7 +27,6 @@
  */
 
 #import "CEPrintView.h"
-#import "CEPrintPanelAccessoryController.h"
 #import "CELayoutManager.h"
 #import "CESyntaxParser.h"
 #import "NSString+Sandboxing.h"
@@ -331,13 +330,13 @@ static NSString *const PageNumberPlaceholder = @"PAGENUM";
 - (void)setupPrint
 // ------------------------------------------------------
 {
-    CEPrintPanelAccessoryController *accessoryController = [self printPanelAccessoryController];
+    NSDictionary *settings = [[[NSPrintOperation currentOperation] printInfo] printSettings];
 
     // 行番号印字の有無をチェック
     if ([self layoutOrientation] == NSTextLayoutOrientationVertical) { // do not draw line number on vertical mode anyway
         [self setPrintsLineNum:NO];
     } else {
-        switch ([accessoryController lineNumberMode]) {
+        switch ((CELineNumberPrintMode)[settings[CEDefaultPrintLineNumIndexKey] unsignedIntegerValue]) {
             case CENoLinePrint:
                 [self setPrintsLineNum:NO];
                 break;
@@ -359,7 +358,7 @@ static NSString *const PageNumberPlaceholder = @"PAGENUM";
     
     // 不可視文字の扱いを取得
     BOOL showsInvisibles;
-    switch ([accessoryController invisibleCharsMode]) {
+    switch ((CEInvisibleCharsPrintMode)[settings[CEDefaultPrintInvisibleCharIndexKey] unsignedIntegerValue]) {
         case CENoInvisibleCharsPrint:
             showsInvisibles = NO;
             break;
@@ -374,12 +373,12 @@ static NSString *const PageNumberPlaceholder = @"PAGENUM";
     
     
     // カラーリングの設定
-    if ([[accessoryController theme] isEqualToString:NSLocalizedString(@"Black and White",  nil)]) {
+    if ([settings[CEDefaultPrintThemeKey] isEqualToString:NSLocalizedString(@"Black and White",  nil)]) {
         [self setTextColor:[NSColor blackColor]];
         [self setBackgroundColor:[NSColor whiteColor]];
         
     } else {
-        [self setTheme:[CETheme themeWithName:[accessoryController theme]]];
+        [self setTheme:[CETheme themeWithName:settings[CEDefaultPrintThemeKey]]];
         [self setTextColor:[[self theme] textColor]];
         [self setBackgroundColor:[[self theme] backgroundColor]];
         
@@ -391,16 +390,16 @@ static NSString *const PageNumberPlaceholder = @"PAGENUM";
     }
     
     // ヘッダ・フッタを設定
-    [self setPrintsHeader:[accessoryController printsHeader]];
-    [self setHeaderOneString:[self stringForPrintInfoType:[accessoryController headerOneInfoType]]];
-    [self setHeaderOneAlignment:[accessoryController headerOneAlignmentType]];
-    [self setHeaderTwoString:[self stringForPrintInfoType:[accessoryController headerTwoInfoType]]];
-    [self setHeaderTwoAlignment:[accessoryController headerTwoAlignmentType]];
-    [self setFooterOneString:[self stringForPrintInfoType:[accessoryController footerOneInfoType]]];
-    [self setFooterOneAlignment:[accessoryController footerOneAlignmentType]];
-    [self setFooterTwoString:[self stringForPrintInfoType:[accessoryController footerTwoInfoType]]];
-    [self setFooterTwoAlignment:[accessoryController footerTwoAlignmentType]];
-    [self setPrintsFooter:[accessoryController printsFooter]];
+    [self setPrintsHeader:[settings[CEDefaultPrintHeaderKey] boolValue]];
+    [self setHeaderOneString:[self stringForPrintInfoType:[settings[CEDefaultHeaderOneStringIndexKey] unsignedIntegerValue]]];
+    [self setHeaderOneAlignment:[settings[CEDefaultHeaderOneAlignIndexKey] unsignedIntegerValue]];
+    [self setHeaderTwoString:[self stringForPrintInfoType:[settings[CEDefaultHeaderTwoStringIndexKey] unsignedIntegerValue]]];
+    [self setHeaderTwoAlignment:[settings[CEDefaultHeaderTwoAlignIndexKey] unsignedIntegerValue]];
+    [self setPrintsFooter:[settings[CEDefaultPrintFooterKey] boolValue]];
+    [self setFooterOneString:[self stringForPrintInfoType:[settings[CEDefaultFooterOneStringIndexKey] unsignedIntegerValue]]];
+    [self setFooterOneAlignment:[settings[CEDefaultFooterOneAlignIndexKey] unsignedIntegerValue]];
+    [self setFooterTwoString:[self stringForPrintInfoType:[settings[CEDefaultFooterTwoStringIndexKey] unsignedIntegerValue]]];
+    [self setFooterTwoAlignment:[settings[CEDefaultFooterTwoAlignIndexKey] unsignedIntegerValue]];
 }
 
 

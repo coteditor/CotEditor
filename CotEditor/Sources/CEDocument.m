@@ -486,7 +486,6 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     [printView setDocumentName:[self displayName]];
     [printView setFilePath:[[self fileURL] path]];
     [printView setSyntaxName:[[self editor] syntaxStyleName]];
-    [printView setPrintPanelAccessoryController:[self printPanelAccessoryController]];
     [printView setDocumentShowsInvisibles:[[self editor] showsInvisibles]];
     [printView setDocumentShowsLineNum:[[self editor] showsLineNum]];
     [printView setLineSpacing:[[[self editor] focusedTextView] lineSpacing]];
@@ -510,7 +509,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     [printInfo setRightMargin:kHorizontalPrintMargin];
     [printInfo setTopMargin:kVerticalPrintMargin];
     [printInfo setBottomMargin:kVerticalPrintMargin];
-    [[printInfo dictionary] setObject:@YES forKey:NSPrintHeaderAndFooter];
+    [printInfo dictionary][NSPrintHeaderAndFooter] = @YES;
     
     // create print operation
     NSPrintOperation *printOperation = [NSPrintOperation printOperationWithView:printView printInfo:printInfo];

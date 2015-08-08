@@ -27,6 +27,7 @@
 
 #import "CEPrintPanelAccessoryController.h"
 #import "CEThemeManager.h"
+#import "Constants.h"
 
 
 @interface CEPrintPanelAccessoryController ()
@@ -34,21 +35,21 @@
 @property (nonatomic, nullable) IBOutlet NSPopUpButton *themePopup;
 
 
-@property (readwrite, nonatomic, nonnull) NSString *theme;
-@property (readwrite, nonatomic) CELineNumberPrintMode lineNumberMode;
-@property (readwrite, nonatomic) CEInvisibleCharsPrintMode invisibleCharsMode;
+@property (nonatomic, nullable) NSString *theme;
+@property (nonatomic) CELineNumberPrintMode lineNumberMode;
+@property (nonatomic) CEInvisibleCharsPrintMode invisibleCharsMode;
 
-@property (readwrite, nonatomic) BOOL printsHeader;
-@property (readwrite, nonatomic) CEPrintInfoType headerOneInfoType;
-@property (readwrite, nonatomic) CEAlignmentType headerOneAlignmentType;
-@property (readwrite, nonatomic) CEPrintInfoType headerTwoInfoType;
-@property (readwrite, nonatomic) CEAlignmentType headerTwoAlignmentType;
+@property (nonatomic) BOOL printsHeader;
+@property (nonatomic) CEPrintInfoType headerOneInfoType;
+@property (nonatomic) CEAlignmentType headerOneAlignmentType;
+@property (nonatomic) CEPrintInfoType headerTwoInfoType;
+@property (nonatomic) CEAlignmentType headerTwoAlignmentType;
 
-@property (readwrite, nonatomic) BOOL printsFooter;
-@property (readwrite, nonatomic) CEPrintInfoType footerOneInfoType;
-@property (readwrite, nonatomic) CEAlignmentType footerOneAlignmentType;
-@property (readwrite, nonatomic) CEPrintInfoType footerTwoInfoType;
-@property (readwrite, nonatomic) CEAlignmentType footerTwoAlignmentType;
+@property (nonatomic) BOOL printsFooter;
+@property (nonatomic) CEPrintInfoType footerOneInfoType;
+@property (nonatomic) CEAlignmentType footerOneAlignmentType;
+@property (nonatomic) CEPrintInfoType footerTwoInfoType;
+@property (nonatomic) CEAlignmentType footerTwoAlignmentType;
 
 @end
 
@@ -66,41 +67,7 @@
 - (instancetype)init
 // ------------------------------------------------------
 {
-    self = [super initWithNibName:@"PrintPanelAccessory" bundle:nil];
-    if (self) {
-        [self updateThemeList];
-        
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        
-        // （プリンタ専用フォント設定は含まない。プリンタ専用フォント設定変更は、プリンタダイアログでは実装しない 20060927）
-        _lineNumberMode = [defaults integerForKey:CEDefaultPrintLineNumIndexKey];
-        _invisibleCharsMode = [defaults integerForKey:CEDefaultPrintInvisibleCharIndexKey];
-        _printsHeader = [defaults boolForKey:CEDefaultPrintHeaderKey];
-        _headerOneInfoType = [defaults integerForKey:CEDefaultHeaderOneStringIndexKey];
-        _headerOneAlignmentType = [defaults integerForKey:CEDefaultHeaderOneAlignIndexKey];
-        _headerTwoInfoType = [defaults integerForKey:CEDefaultHeaderTwoStringIndexKey];
-        _headerTwoAlignmentType = [defaults integerForKey:CEDefaultHeaderTwoAlignIndexKey];
-        _printsFooter = [defaults boolForKey:CEDefaultPrintFooterKey];
-        _footerOneInfoType = [defaults integerForKey:CEDefaultFooterOneStringIndexKey];
-        _footerOneAlignmentType = [defaults integerForKey:CEDefaultFooterOneAlignIndexKey];
-        _footerTwoInfoType = [defaults integerForKey:CEDefaultFooterTwoStringIndexKey];
-        _footerTwoAlignmentType = [defaults integerForKey:CEDefaultFooterTwoAlignIndexKey];
-        
-        // テーマを使用する場合はセットしておく
-        switch ([defaults integerForKey:CEDefaultPrintColorIndexKey]) {
-            case CEBlackColorPrint:
-                _theme = NSLocalizedString(@"Black and White", nil);
-                break;
-            case CESameAsDocumentColorPrint:
-                _theme = [defaults stringForKey:CEDefaultThemeKey];
-                break;
-            default:
-                _theme = [defaults stringForKey:CEDefaultPrintThemeKey];
-        }
-        
-        [self updateThemeList];
-    }
-    return self;
+    return [super initWithNibName:@"PrintPanelAccessory" bundle:nil];
 }
 
 
@@ -110,6 +77,35 @@
 // ------------------------------------------------------
 {
     [super setRepresentedObject:representedObject];
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    // テーマを使用する場合はセットしておく
+    switch ([defaults integerForKey:CEDefaultPrintColorIndexKey]) {
+        case CEBlackColorPrint:
+            self.theme = NSLocalizedString(@"Black and White", nil);
+            break;
+        case CESameAsDocumentColorPrint:
+            self.theme = [defaults stringForKey:CEDefaultThemeKey];
+            break;
+        default:
+            self.theme = [defaults stringForKey:CEDefaultPrintThemeKey];
+    }
+    
+    self.lineNumberMode = [defaults integerForKey:CEDefaultPrintLineNumIndexKey];
+    self.invisibleCharsMode = [defaults integerForKey:CEDefaultPrintInvisibleCharIndexKey];
+    
+    self.printsHeader = [defaults boolForKey:CEDefaultPrintHeaderKey];
+    self.headerOneInfoType = [defaults integerForKey:CEDefaultHeaderOneStringIndexKey];
+    self.headerOneAlignmentType = [defaults integerForKey:CEDefaultHeaderOneAlignIndexKey];
+    self.headerTwoInfoType = [defaults integerForKey:CEDefaultHeaderTwoStringIndexKey];
+    self.headerTwoAlignmentType = [defaults integerForKey:CEDefaultHeaderTwoAlignIndexKey];
+    
+    self.printsFooter = [defaults boolForKey:CEDefaultPrintFooterKey];
+    self.footerOneInfoType = [defaults integerForKey:CEDefaultFooterOneStringIndexKey];
+    self.footerOneAlignmentType = [defaults integerForKey:CEDefaultFooterOneAlignIndexKey];
+    self.footerTwoInfoType = [defaults integerForKey:CEDefaultFooterTwoStringIndexKey];
+    self.footerTwoAlignmentType = [defaults integerForKey:CEDefaultFooterTwoAlignIndexKey];
     
     // 現在のテーマラインナップを反映させる
     [self updateThemeList];
@@ -132,17 +128,14 @@
                                  @"lineNumberMode",
                                  @"invisibleCharsMode",
                                  @"printsHeader",
-                                 @"headerOneAlignmentType",
-                                 @"headerTwoAlignmentType",
-                                 @"footerOneAlignmentType",
-                                 @"footerTwoAlignmentType",
-                                 
-                                 // key paths for valuse affecting margin
-                                 @"printsHeader",
                                  @"headerOneInfoType",
+                                 @"headerOneAlignmentType",
                                  @"headerTwoInfoType",
+                                 @"headerTwoAlignmentType",
                                  @"printsFooter",
+                                 @"footerOneAlignmentType",
                                  @"footerOneInfoType",
+                                 @"footerTwoAlignmentType",
                                  @"footerTwoInfoType",
                                  ]];
 }
@@ -153,10 +146,6 @@
 -(nonnull NSArray *)localizedSummaryItems
 // ------------------------------------------------------
 {
-    // 現時点ではこのアクセサリビューでの設定値はプリントパネルにあるプリセットに対応していない (2014-03-29 1024jp)
-    // (ただし、リストに表示はされる)
-    // プリセットにアプリケーション独自の設定を保存するためには、KVOに準拠しつつ[printInfo printSettings]で全ての値を管理する必要がある。
-    
     NSMutableArray *items = [NSMutableArray array];
     NSString *description = @"";
     
@@ -306,6 +295,226 @@
     } else {
         [[self themePopup] selectItemWithTitle:[self theme]];
     }
+}
+
+
+// ------------------------------------------------------
+/// return keyPath to the given setting key
+- (nonnull NSString *)settingsPathForKey:(nonnull NSString *)key;
+// ------------------------------------------------------
+{
+    return [NSString stringWithFormat:@"representedObject.printSettings.%@", key];
+}
+
+
+
+#pragma mark Setting Accessors
+
+// ------------------------------------------------------
+- (void)setTheme:(nullable NSString *)theme
+// ------------------------------------------------------
+{
+    [self setValue:theme forKeyPath:[self settingsPathForKey:CEDefaultPrintThemeKey]];
+}
+
+
+// ------------------------------------------------------
+- (nullable NSString *)theme
+// ------------------------------------------------------
+{
+    return [self valueForKeyPath:[self settingsPathForKey:CEDefaultPrintThemeKey]];
+}
+
+
+// ------------------------------------------------------
+- (void)setLineNumberMode:(CELineNumberPrintMode)lineNumberMode
+// ------------------------------------------------------
+{
+    [self setValue:@(lineNumberMode) forKeyPath:[self settingsPathForKey:CEDefaultPrintLineNumIndexKey]];
+}
+
+
+// ------------------------------------------------------
+- (CELineNumberPrintMode)lineNumberMode
+// ------------------------------------------------------
+{
+    return (CELineNumberPrintMode)[[self valueForKeyPath:[self settingsPathForKey:CEDefaultPrintLineNumIndexKey]] unsignedIntegerValue];
+}
+
+
+// ------------------------------------------------------
+- (void)setInvisibleCharsMode:(CEInvisibleCharsPrintMode)invisibleCharsMode
+// ------------------------------------------------------
+{
+    [self setValue:@(invisibleCharsMode) forKeyPath:[self settingsPathForKey:CEDefaultPrintInvisibleCharIndexKey]];
+}
+
+
+// ------------------------------------------------------
+- (CEInvisibleCharsPrintMode)invisibleCharsMode
+// ------------------------------------------------------
+{
+    return (CEInvisibleCharsPrintMode)[[self valueForKeyPath:[self settingsPathForKey:CEDefaultPrintInvisibleCharIndexKey]] unsignedIntegerValue];
+}
+
+
+// ------------------------------------------------------
+- (void)setPrintsHeader:(BOOL)printsHeader
+// ------------------------------------------------------
+{
+    [self setValue:@(printsHeader) forKeyPath:[self settingsPathForKey:CEDefaultPrintHeaderKey]];
+}
+
+
+// ------------------------------------------------------
+- (BOOL)printsHeader
+// ------------------------------------------------------
+{
+    return [[self valueForKeyPath:[self settingsPathForKey:CEDefaultPrintHeaderKey]] boolValue];
+}
+
+
+// ------------------------------------------------------
+- (void)setHeaderOneInfoType:(CEPrintInfoType)headerOneInfoType
+// ------------------------------------------------------
+{
+    [self setValue:@(headerOneInfoType) forKeyPath:[self settingsPathForKey:CEDefaultHeaderOneStringIndexKey]];
+}
+
+
+// ------------------------------------------------------
+- (CEPrintInfoType)headerOneInfoType
+// ------------------------------------------------------
+{
+    return (CEPrintInfoType)[[self valueForKeyPath:[self settingsPathForKey:CEDefaultHeaderOneStringIndexKey]] unsignedIntegerValue];
+}
+
+
+// ------------------------------------------------------
+- (void)setHeaderOneAlignmentType:(CEAlignmentType)headerOneAlignmentType
+// ------------------------------------------------------
+{
+    [self setValue:@(headerOneAlignmentType) forKeyPath:[self settingsPathForKey:CEDefaultHeaderOneAlignIndexKey]];
+}
+
+
+// ------------------------------------------------------
+- (CEAlignmentType)headerOneAlignmentType
+// ------------------------------------------------------
+{
+    return (CEAlignmentType)[[self valueForKeyPath:[self settingsPathForKey:CEDefaultHeaderOneAlignIndexKey]] unsignedIntegerValue];
+}
+
+
+// ------------------------------------------------------
+- (void)setHeaderTwoInfoType:(CEPrintInfoType)headerTwoInfoType
+// ------------------------------------------------------
+{
+    [self setValue:@(headerTwoInfoType) forKeyPath:[self settingsPathForKey:CEDefaultHeaderTwoStringIndexKey]];
+}
+
+
+// ------------------------------------------------------
+- (CEPrintInfoType)headerTwoInfoType
+// ------------------------------------------------------
+{
+    return (CEPrintInfoType)[[self valueForKeyPath:[self settingsPathForKey:CEDefaultHeaderTwoStringIndexKey]] unsignedIntegerValue];
+}
+
+
+// ------------------------------------------------------
+- (void)setHeaderTwoAlignmentType:(CEAlignmentType)headerTwoAlignmentType
+// ------------------------------------------------------
+{
+    [self setValue:@(headerTwoAlignmentType) forKeyPath:[self settingsPathForKey:CEDefaultHeaderTwoAlignIndexKey]];
+}
+
+
+// ------------------------------------------------------
+- (CEAlignmentType)headerTwoAlignmentType
+// ------------------------------------------------------
+{
+    return (CEAlignmentType)[[self valueForKeyPath:[self settingsPathForKey:CEDefaultHeaderTwoAlignIndexKey]] unsignedIntegerValue];
+}
+
+
+// ------------------------------------------------------
+- (void)setPrintsFooter:(BOOL)printsFooter
+// ------------------------------------------------------
+{
+    [self setValue:@(printsFooter) forKeyPath:[self settingsPathForKey:CEDefaultPrintFooterKey]];
+}
+
+
+// ------------------------------------------------------
+- (BOOL)printsFooter
+// ------------------------------------------------------
+{
+    return [[self valueForKeyPath:[self settingsPathForKey:CEDefaultPrintFooterKey]] boolValue];
+}
+
+
+// ------------------------------------------------------
+- (void)setFooterOneInfoType:(CEPrintInfoType)footerOneInfoType
+// ------------------------------------------------------
+{
+    [self setValue:@(footerOneInfoType) forKeyPath:[self settingsPathForKey:CEDefaultFooterOneStringIndexKey]];
+}
+
+
+// ------------------------------------------------------
+- (CEPrintInfoType)footerOneInfoType
+// ------------------------------------------------------
+{
+    return (CEPrintInfoType)[[self valueForKeyPath:[self settingsPathForKey:CEDefaultFooterOneStringIndexKey]] unsignedIntegerValue];
+}
+
+
+// ------------------------------------------------------
+- (void)setFooterOneAlignmentType:(CEAlignmentType)footerOneAlignmentType
+// ------------------------------------------------------
+{
+    [self setValue:@(footerOneAlignmentType) forKeyPath:[self settingsPathForKey:CEDefaultFooterOneAlignIndexKey]];
+}
+
+
+// ------------------------------------------------------
+- (CEAlignmentType)footerOneAlignmentType
+// ------------------------------------------------------
+{
+    return (CEAlignmentType)[[self valueForKeyPath:[self settingsPathForKey:CEDefaultFooterOneAlignIndexKey]] unsignedIntegerValue];
+}
+
+
+// ------------------------------------------------------
+- (void)setFooterTwoInfoType:(CEPrintInfoType)footerTwoInfoType
+// ------------------------------------------------------
+{
+    [self setValue:@(footerTwoInfoType) forKeyPath:[self settingsPathForKey:CEDefaultFooterTwoStringIndexKey]];
+}
+
+
+// ------------------------------------------------------
+- (CEPrintInfoType)footerTwoInfoType
+// ------------------------------------------------------
+{
+    return (CEPrintInfoType)[[self valueForKeyPath:[self settingsPathForKey:CEDefaultFooterTwoStringIndexKey]] unsignedIntegerValue];
+}
+
+
+// ------------------------------------------------------
+- (void)setFooterTwoAlignmentType:(CEAlignmentType)footerTwoAlignmentType
+// ------------------------------------------------------
+{
+    [self setValue:@(footerTwoAlignmentType) forKeyPath:[self settingsPathForKey:CEDefaultFooterTwoAlignIndexKey]];
+}
+
+
+// ------------------------------------------------------
+- (CEAlignmentType)footerTwoAlignmentType
+// ------------------------------------------------------
+{
+    return (CEAlignmentType)[[self valueForKeyPath:[self settingsPathForKey:CEDefaultFooterTwoAlignIndexKey]] unsignedIntegerValue];
 }
 
 @end

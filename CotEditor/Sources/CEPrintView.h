@@ -35,12 +35,7 @@ extern CGFloat const kVerticalPrintMargin;    // top/bottom margin
 extern CGFloat const kHorizontalPrintMargin;  // left/light margin
 
 
-@class CEPrintPanelAccessoryController;
-
-
 @interface CEPrintView : NSTextView <CETextViewProtocol>
-
-@property (nonatomic, nullable) CEPrintPanelAccessoryController *printPanelAccessoryController;
 
 @property (nonatomic, nullable, copy) NSString *filePath;
 @property (nonatomic, nullable, copy) NSString *documentName;
