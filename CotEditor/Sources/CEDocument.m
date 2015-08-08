@@ -481,6 +481,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     // create printView
     CEPrintView *printView = [[CEPrintView alloc] init];
     [printView setString:[[self editor] string]];
+    [printView setLayoutOrientation:[[[self editor] focusedTextView] layoutOrientation]];
     [printView setTheme:[[self editor] theme]];
     [printView setDocumentName:[self displayName]];
     [printView setFilePath:[[self fileURL] path]];

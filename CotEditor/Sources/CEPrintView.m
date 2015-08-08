@@ -38,7 +38,7 @@
 CGFloat const kHorizontalPrintMargin = 8.0;
 CGFloat const kVerticalPrintMargin = 56.0;
 
-static CGFloat const kHorizontalHeaderFooterMargin = 34.0;
+static CGFloat const kHorizontalHeaderFooterMargin = 24.0;
 
 static NSString *const PageNumberPlaceholder = @"PAGENUM";
 
@@ -100,15 +100,15 @@ static NSString *const PageNumberPlaceholder = @"PAGENUM";
 
 
 // ------------------------------------------------------
-/// プリント
+/// draw
 - (void)drawRect:(NSRect)dirtyRect
 // ------------------------------------------------------
 {
     [super drawRect:dirtyRect];
 
-    // 行番号を印字
+    // draw line numbers if needed
     if ([self printsLineNum]) {
-        // 行番号の文字属性辞書生成
+        // prepare text attributes for line numbers
         CGFloat masterFontSize = [[self font] pointSize];
         CGFloat fontSize = round(0.9 * masterFontSize);
         NSFont *font = [NSFont fontWithName:[[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultLineNumFontNameKey] size:fontSize] ? :
@@ -117,14 +117,12 @@ static NSString *const PageNumberPlaceholder = @"PAGENUM";
                                 NSForegroundColorAttributeName: [NSColor textColor]};
         
         //文字幅を計算しておく 等幅扱い
-        //いずれにしても等幅じゃないと奇麗に揃わないので等幅だということにしておく(hetima)
+        //いずれにしても等幅じゃないと奇麗に揃わないので等幅だということにしておく (hetima)
         CGFloat charWidth = [@"8" sizeWithAttributes:attrs].width;
         
         // setup the variables we need for the loop
         NSString *string = [self string];
-        NSLayoutManager *layoutManager = [self layoutManager]; // get owner's layout manager.
-        
-        NSUInteger numberOfGlyphs = [layoutManager numberOfGlyphs];
+        NSLayoutManager *layoutManager = [self layoutManager];
         
         // adjust values for line number drawing
         CGFloat xAdj = [self textContainerOrigin].x + kHorizontalHeaderFooterMargin - kLineNumPadding;
@@ -134,12 +132,13 @@ static NSString *const PageNumberPlaceholder = @"PAGENUM";
         NSUInteger lastLineNum = 0;
         NSUInteger lineNum = 1;
         NSUInteger glyphCount = 0;
-
-        for (NSUInteger glyphIndex = 0; glyphIndex < numberOfGlyphs; lineNum++) { // count "REAL" lines
+        NSUInteger numberOfGlyphs = [layoutManager numberOfGlyphs];
+        
+        for (NSUInteger glyphIndex = 0; glyphIndex < numberOfGlyphs; lineNum++) {  // count "REAL" lines
             NSUInteger charIndex = [layoutManager characterIndexForGlyphAtIndex:glyphIndex];
             glyphIndex = NSMaxRange([layoutManager glyphRangeForCharacterRange:[string lineRangeForRange:NSMakeRange(charIndex, 0)]
                                                           actualCharacterRange:NULL]);
-            while (glyphCount < glyphIndex) { // handle "DRAWN" (wrapped) lines
+            while (glyphCount < glyphIndex) {  // handle "DRAWN" (wrapped) lines
                 NSRange range;
                 NSRect numRect = [layoutManager lineFragmentRectForGlyphAtIndex:glyphCount effectiveRange:&range];
                 if (NSPointInRect(numRect.origin, dirtyRect)) {
@@ -147,7 +146,7 @@ static NSString *const PageNumberPlaceholder = @"PAGENUM";
                     CGFloat requiredWidth = charWidth * [numStr length];
                     NSPoint point = NSMakePoint(dirtyRect.origin.x - requiredWidth + xAdj,
                                            numRect.origin.y + yAdj);
-                    [numStr drawAtPoint:point withAttributes:attrs]; // draw the line number.
+                    [numStr drawAtPoint:point withAttributes:attrs];  // draw the line number
                     lastLineNum = lineNum;
                 }
                 glyphCount = NSMaxRange(range);
@@ -228,7 +227,7 @@ static NSString *const PageNumberPlaceholder = @"PAGENUM";
 
 
 // ------------------------------------------------------
-/// Y軸を逆転させる
+/// flip Y axis
 - (BOOL)isFlipped
 // ------------------------------------------------------
 {
@@ -253,7 +252,12 @@ static NSString *const PageNumberPlaceholder = @"PAGENUM";
     // テキストビューのサイズをマージンに合わせて更新
     NSPrintInfo *printInfo = [[NSPrintOperation currentOperation] printInfo];
     NSSize frameSize = NSMakeSize([printInfo paperSize].width - ([printInfo leftMargin] + [printInfo rightMargin]),
-                                  [printInfo paperSize].height - ([printInfo topMargin] + [printInfo bottomMargin]));
+                                  [self maxSize].height);
+    
+    if ([self layoutOrientation] == NSTextLayoutOrientationVertical) {
+        frameSize = NSMakeSize([self maxSize].width,
+                               [printInfo paperSize].height - ([printInfo leftMargin] + [printInfo rightMargin]));
+    }
     [self setFrameSize:frameSize];
     [self sizeToFit];
     
@@ -280,7 +284,7 @@ static NSString *const PageNumberPlaceholder = @"PAGENUM";
                                value:paragraphStyle
                                range:NSMakeRange(0, [[self textStorage] length])];
     
-    // layoutManagerにもフォントを設定する
+    // set font also to layout manager
     [(CELayoutManager *)[self layoutManager] setTextFont:font];
     
     [super setFont:font];
@@ -330,16 +334,20 @@ static NSString *const PageNumberPlaceholder = @"PAGENUM";
     CEPrintPanelAccessoryController *accessoryController = [self printPanelAccessoryController];
 
     // 行番号印字の有無をチェック
-    switch ([accessoryController lineNumberMode]) {
-        case CENoLinePrint:
-            [self setPrintsLineNum:NO];
-            break;
-        case CESameAsDocumentLinePrint:
-            [self setPrintsLineNum:[self documentShowsLineNum]];
-            break;
-        case CEDoLinePrint:
-            [self setPrintsLineNum:YES];
-            break;
+    if ([self layoutOrientation] == NSTextLayoutOrientationVertical) { // do not draw line number on vertical mode anyway
+        [self setPrintsLineNum:NO];
+    } else {
+        switch ([accessoryController lineNumberMode]) {
+            case CENoLinePrint:
+                [self setPrintsLineNum:NO];
+                break;
+            case CESameAsDocumentLinePrint:
+                [self setPrintsLineNum:[self documentShowsLineNum]];
+                break;
+            case CEDoLinePrint:
+                [self setPrintsLineNum:YES];
+                break;
+        }
     }
 
     // 行番号表示の有無によってパディングを調整
