@@ -395,7 +395,7 @@ static CGFloat kPerCompoIncrement;
 
 // ------------------------------------------------------
 /// 全体をカラーリング
-- (void)colorWholeStringInTextStorage:(nonnull NSTextStorage *)textStorage temporal:(BOOL)isTemporal
+- (void)colorWholeStringInTextStorage:(nonnull NSTextStorage *)textStorage
 // ------------------------------------------------------
 {
     if ([textStorage length] == 0) { return; }
@@ -405,7 +405,7 @@ static CGFloat kPerCompoIncrement;
     // 前回の全文カラーリングと内容が全く同じ場合はキャッシュを使う
     if ([[[textStorage string] MD5] isEqualToString:[self cacheHash]]) {
         for (NSLayoutManager *layoutManager in [textStorage layoutManagers]) {
-            [self applyColorings:[self cacheColorings] range:wholeRange layoutManager:layoutManager temporal:isTemporal];
+            [self applyColorings:[self cacheColorings] range:wholeRange layoutManager:layoutManager];
         }
     } else {
         // make sure that string is immutable
@@ -416,19 +416,19 @@ static CGFloat kPerCompoIncrement;
         NSString *safeImmutableString = [NSString stringWithString:[textStorage string]];
         
         [self colorString:safeImmutableString
-                    range:wholeRange textStorage:textStorage temporal:isTemporal];
+                    range:wholeRange textStorage:textStorage];
     }
 }
 
 
 // ------------------------------------------------------
 /// 表示されている部分をカラーリング
-- (void)colorRange:(NSRange)range textStorage:(nonnull NSTextStorage *)textStorage temporal:(BOOL)isTemporal
+- (void)colorRange:(NSRange)range textStorage:(nonnull NSTextStorage *)textStorage
 // ------------------------------------------------------
 {
     if ([textStorage length] == 0) { return; }
     
-    // make sure that string is immutable (see `colorAllString:layoutManager:temporal:` for details)
+    // make sure that string is immutable (see `colorAllString:layoutManager:` for details)
     NSString *string = [NSString stringWithString:[textStorage string]];
     
     NSUInteger bufferLength = [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultColoringRangeBufferLengthKey];
@@ -463,7 +463,7 @@ static CGFloat kPerCompoIncrement;
         coloringRange = [string lineRangeForRange:coloringRange];
     }
     
-    [self colorString:string range:coloringRange textStorage:textStorage temporal:isTemporal];
+    [self colorString:string range:coloringRange textStorage:textStorage];
 }
 
 
@@ -969,7 +969,7 @@ static CGFloat kPerCompoIncrement;
 
 // ------------------------------------------------------
 /// カラーリングを実行
-- (void)colorString:(nonnull NSString *)wholeString range:(NSRange)coloringRange textStorage:(nonnull NSTextStorage *)textStorage temporal:(BOOL)isTemporal
+- (void)colorString:(nonnull NSString *)wholeString range:(NSRange)coloringRange textStorage:(nonnull NSTextStorage *)textStorage
 // ------------------------------------------------------
 {
     if (coloringRange.length == 0) { return; }
@@ -977,7 +977,7 @@ static CGFloat kPerCompoIncrement;
     // カラーリング不要なら現在のカラーリングをクリアして戻る
     if (![self hasSyntaxHighlighting]) {
         for (NSLayoutManager *layoutManager in [textStorage layoutManagers]) {
-            [self applyColorings:@{} range:coloringRange layoutManager:layoutManager temporal:isTemporal];
+            [self applyColorings:@{} range:coloringRange layoutManager:layoutManager];
         }
         return;
     }
@@ -1044,7 +1044,7 @@ static CGFloat kPerCompoIncrement;
             if ([[textStorage string] isEqualToString:wholeString]) {
                 dispatch_sync(dispatch_get_main_queue(), ^{
                     for (NSLayoutManager *layoutManager in [textStorage layoutManagers]) {
-                        [self applyColorings:colorings range:coloringRange layoutManager:layoutManager temporal:isTemporal];
+                        [self applyColorings:colorings range:coloringRange layoutManager:layoutManager];
                     }
                 });
             }
@@ -1063,17 +1063,12 @@ static CGFloat kPerCompoIncrement;
 
 // ------------------------------------------------------
 /// 抽出したカラー範囲配列を書類に適用する
-- (void)applyColorings:(NSDictionary *)colorings range:(NSRange)coloringRange layoutManager:(nonnull NSLayoutManager *)layoutManager temporal:(BOOL)isTemporal
+- (void)applyColorings:(NSDictionary *)colorings range:(NSRange)coloringRange layoutManager:(nonnull NSLayoutManager *)layoutManager
 // ------------------------------------------------------
 {
     // 現在あるカラーリングを削除
-    if (isTemporal) {
-        [layoutManager removeTemporaryAttribute:NSForegroundColorAttributeName
-                              forCharacterRange:coloringRange];
-    } else {
-        [[layoutManager textStorage] removeAttribute:NSForegroundColorAttributeName
-                                               range:coloringRange];
-    }
+    [layoutManager removeTemporaryAttribute:NSForegroundColorAttributeName
+                          forCharacterRange:coloringRange];
     
     // add invisible coloring if needed
     NSArray *colorTypes = kSyntaxDictKeys;
@@ -1117,15 +1112,8 @@ static CGFloat kPerCompoIncrement;
         }
         
         for (NSValue *rangeValue in ranges) {
-            NSRange range = [rangeValue rangeValue];
-            
-            if (isTemporal) {
-                [layoutManager addTemporaryAttribute:NSForegroundColorAttributeName
-                                               value:color forCharacterRange:range];
-            } else {
-                [[layoutManager textStorage] addAttribute:NSForegroundColorAttributeName
-                                                    value:color range:range];
-            }
+            [layoutManager addTemporaryAttribute:NSForegroundColorAttributeName
+                                           value:color forCharacterRange:[rangeValue rangeValue]];
         }
     }
 }

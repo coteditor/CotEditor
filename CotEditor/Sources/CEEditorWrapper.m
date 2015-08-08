@@ -478,7 +478,7 @@ static NSTimeInterval secondColoringDelay;
         [[editorView textView] setTheme:theme];
     }];
     
-    [[self syntaxParser] colorWholeStringInTextStorage:[self textStorage] temporal:YES];
+    [[self syntaxParser] colorWholeStringInTextStorage:[self textStorage]];
 }
 
 
@@ -537,7 +537,7 @@ static NSTimeInterval secondColoringDelay;
 {
     [self stopColoringTimer];
     
-    [[self syntaxParser] colorWholeStringInTextStorage:[self textStorage] temporal:YES];
+    [[self syntaxParser] colorWholeStringInTextStorage:[self textStorage]];
 }
 
 
@@ -1011,8 +1011,7 @@ static NSTimeInterval secondColoringDelay;
     }
     
     [[self syntaxParser] colorRange:updateRange
-                        textStorage:[textView textStorage]
-                           temporal:YES];
+                        textStorage:[textView textStorage]];
 }
 
 

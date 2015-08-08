@@ -36,7 +36,7 @@
 static NSString *const PageNumberPlaceholder = @"PAGENUM";
 
 
-@interface CEPrintView ()
+@interface CEPrintView () <NSLayoutManagerDelegate>
 
 @property (nonatomic) NSAttributedString *headerOneString;
 @property (nonatomic) NSAttributedString *headerTwoString;
@@ -96,6 +96,7 @@ static NSString *const PageNumberPlaceholder = @"PAGENUM";
         
         // layoutManager を入れ替え
         CELayoutManager *layoutManager = [[CELayoutManager alloc] init];
+        [layoutManager setDelegate:self];
         [layoutManager setFixesLineHeight:NO];
         [layoutManager setPrinting:YES];
         [[self textContainer] replaceLayoutManager:layoutManager];
@@ -320,6 +321,23 @@ static NSString *const PageNumberPlaceholder = @"PAGENUM";
 
 
 
+#pragma mark LayoutManager Delegate
+
+// ------------------------------------------------------
+/// apply temporaly attributes for sytnax highlighting
+- (nullable NSDictionary *)layoutManager:(nonnull NSLayoutManager *)layoutManager shouldUseTemporaryAttributes:(nonnull NSDictionary *)attrs forDrawingToScreen:(BOOL)toScreen atCharacterIndex:(NSUInteger)charIndex effectiveRange:(NSRangePointer)effectiveCharRange
+// ------------------------------------------------------
+{
+    // apply syntax highlighting
+    if ([attrs dictionaryWithValuesForKeys:@[NSForegroundColorAttributeName]]) {
+        return attrs;
+    } else {
+        return nil;
+    }
+}
+
+
+
 #pragma mark Public Accessors
 
 // ------------------------------------------------------
@@ -396,7 +414,7 @@ static NSString *const PageNumberPlaceholder = @"PAGENUM";
         if (![self syntaxParser]) {
             [self setSyntaxParser:[[CESyntaxParser alloc] initWithStyleName:[self syntaxName]]];
         }
-        [[self syntaxParser] colorWholeStringInTextStorage:[self textStorage] temporal:NO];
+        [[self syntaxParser] colorWholeStringInTextStorage:[self textStorage]];
     }
     
     // ヘッダを設定

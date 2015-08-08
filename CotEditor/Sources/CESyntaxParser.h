@@ -57,7 +57,7 @@
 
 @interface CESyntaxParser (Highlighting)
 
-- (void)colorWholeStringInTextStorage:(nonnull NSTextStorage *)textStorage temporal:(BOOL)isTemporal;
-- (void)colorRange:(NSRange)range textStorage:(nonnull NSTextStorage *)textStorage temporal:(BOOL)isTemporal;
+- (void)colorWholeStringInTextStorage:(nonnull NSTextStorage *)textStorage;
+- (void)colorRange:(NSRange)range textStorage:(nonnull NSTextStorage *)textStorage;
 
 @end
