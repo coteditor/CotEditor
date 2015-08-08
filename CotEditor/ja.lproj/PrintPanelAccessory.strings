@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014 CotEditor Project
+ © 2014-2015 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -97,9 +97,6 @@
 "I4t-kQ-lvq.ibShadowedToolTips[1]" = "中央揃え";  /* Center */
 "I4t-kQ-lvq.ibShadowedToolTips[2]" = "右揃え";  /* Align Right */
 
-/* Class = "NSButtonCell"; title = "Print separator line at the bottom of header"; ObjectID = "705"; */
-"705.title" = "ヘッダの下に区切り線をプリント";
-
 
 
 /* Class = "NSButtonCell"; title = "Print footer"; ObjectID = "713"; */
@@ -147,6 +144,3 @@
 "xAm-2i-Sw1.ibShadowedToolTips[0]" = "左揃え";  /* Align Left */
 "xAm-2i-Sw1.ibShadowedToolTips[1]" = "中央揃え";  /* Center */
 "xAm-2i-Sw1.ibShadowedToolTips[2]" = "右揃え";  /* Align Right */
-
-/* Class = "NSButtonCell"; title = "Print separator line at the top of footer"; ObjectID = "710"; */
-"710.title" = "フッタの上に区切り線をプリント";

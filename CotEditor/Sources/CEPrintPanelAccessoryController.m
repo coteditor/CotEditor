@@ -43,14 +43,12 @@
 @property (readwrite, nonatomic) CEAlignmentType headerOneAlignmentType;
 @property (readwrite, nonatomic) CEPrintInfoType headerTwoInfoType;
 @property (readwrite, nonatomic) CEAlignmentType headerTwoAlignmentType;
-@property (readwrite, nonatomic) BOOL printsHeaderSeparator;
 
 @property (readwrite, nonatomic) BOOL printsFooter;
 @property (readwrite, nonatomic) CEPrintInfoType footerOneInfoType;
 @property (readwrite, nonatomic) CEAlignmentType footerOneAlignmentType;
 @property (readwrite, nonatomic) CEPrintInfoType footerTwoInfoType;
 @property (readwrite, nonatomic) CEAlignmentType footerTwoAlignmentType;
-@property (readwrite, nonatomic) BOOL printsFooterSeparator;
 
 @end
 
@@ -82,13 +80,11 @@
         _headerOneAlignmentType = [defaults integerForKey:CEDefaultHeaderOneAlignIndexKey];
         _headerTwoInfoType = [defaults integerForKey:CEDefaultHeaderTwoStringIndexKey];
         _headerTwoAlignmentType = [defaults integerForKey:CEDefaultHeaderTwoAlignIndexKey];
-        _printsHeaderSeparator = [defaults boolForKey:CEDefaultPrintHeaderSeparatorKey];
         _printsFooter = [defaults boolForKey:CEDefaultPrintFooterKey];
         _footerOneInfoType = [defaults integerForKey:CEDefaultFooterOneStringIndexKey];
         _footerOneAlignmentType = [defaults integerForKey:CEDefaultFooterOneAlignIndexKey];
         _footerTwoInfoType = [defaults integerForKey:CEDefaultFooterTwoStringIndexKey];
         _footerTwoAlignmentType = [defaults integerForKey:CEDefaultFooterTwoAlignIndexKey];
-        _printsFooterSeparator = [defaults boolForKey:CEDefaultPrintFooterSeparatorKey];
         
         // テーマを使用する場合はセットしておく
         switch ([defaults integerForKey:CEDefaultPrintColorIndexKey]) {
@@ -145,11 +141,9 @@
                                  @"printsHeader",
                                  @"headerOneInfoType",
                                  @"headerTwoInfoType",
-                                 @"printsHeaderSeparator",
                                  @"printsFooter",
                                  @"footerOneInfoType",
                                  @"footerTwoInfoType",
-                                 @"printsFooterSeparator",
                                  ]];
 }
 
@@ -210,8 +204,6 @@
         [items addObject:[self localizedSummaryItemWithName:@"Second Header Line Alignment"
                                                 description:[self alignmentDescription:[self headerTwoAlignmentType]]]];
     }
-    [items addObject:[self localizedSummaryItemWithName:@"Print Header Separator"
-                                            description:([self printsHeaderSeparator] ? @"On" : @"Off")]];
     
     [items addObject:[self localizedSummaryItemWithName:@"Print Footer"
                                             description:([self printsFooter] ? @"On" : @"Off")]];
@@ -225,8 +217,6 @@
         [items addObject:[self localizedSummaryItemWithName:@"Second Footer Line Alignment"
                                                 description:[self alignmentDescription:[self footerTwoAlignmentType]]]];
     }
-    [items addObject:[self localizedSummaryItemWithName:@"Print Footer Separator"
-                                            description:([self printsFooterSeparator] ? @"On" : @"Off")]];
     
     return items;
 }

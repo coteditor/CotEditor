@@ -117,13 +117,11 @@
 "First Header Line Alignment" = "页眉行 1 对齐";
 "Second Header Line" = "页眉行 2";
 "Second Header Line Alignment" = "页眉行 2 对齐";
-"Print Header Separator" = "打印页眉分隔线";
 "Print Footer" = "打印页脚";
 "First Footer Line" = "页脚行 1";
 "First Footer Line Alignment" = "页脚行 1 对齐";
 "Second Footer Line" = "页脚行 2";
 "Second Footer Line Alignment" = "页脚行 2 对齐";
-"Print Footer Separator" = "打印页脚分隔线";
 
 "On" = "开";
 "Off" = "关";

@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014 CotEditor Project
+ © 2014-2015 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -107,9 +107,6 @@
 "Jap-f3-ehL.ibShadowedToolTips[1]" = "居中";  /* Center */
 "Jap-f3-ehL.ibShadowedToolTips[2]" = "右对齐";  /* Align Right */
 
-/* Class = "NSButtonCell"; title = "在页眉下方打印分隔线"; ObjectID = "3371"; */
-"3371.title" = "在页眉下方打印分隔线";
-
 
 
 /* Class = "NSButtonCell"; title = "Print footer"; ObjectID = "3375"; */
@@ -157,7 +154,3 @@
 "Pjk-d8-E4v.ibShadowedToolTips[0]" = "左对齐";  /* Align Left */
 "Pjk-d8-E4v.ibShadowedToolTips[1]" = "居中";  /* Center */
 "Pjk-d8-E4v.ibShadowedToolTips[2]" = "右对齐";  /* Align Right */
-
-
-/* Class = "NSButtonCell"; title = "Print separator line at the top of footer"; ObjectID = "3374"; */
-"3374.title" = "在页脚上方打印分隔线";

@@ -40,13 +40,11 @@
 @property (readonly, nonatomic) CEAlignmentType headerOneAlignmentType;
 @property (readonly, nonatomic) CEPrintInfoType headerTwoInfoType;
 @property (readonly, nonatomic) CEAlignmentType headerTwoAlignmentType;
-@property (readonly, nonatomic) BOOL printsHeaderSeparator;
 
 @property (readonly, nonatomic) BOOL printsFooter;
 @property (readonly, nonatomic) CEPrintInfoType footerOneInfoType;
 @property (readonly, nonatomic) CEAlignmentType footerOneAlignmentType;
 @property (readonly, nonatomic) CEPrintInfoType footerTwoInfoType;
 @property (readonly, nonatomic) CEAlignmentType footerTwoAlignmentType;
-@property (readonly, nonatomic) BOOL printsFooterSeparator;
 
 @end
