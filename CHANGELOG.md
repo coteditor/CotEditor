@@ -25,6 +25,7 @@ develop
     - Update all split editors while editing.
 - Move scripts folder location from `~/Library/Application Support/CotEditor/ScriptMenu/` to `~/Library/Application Scripts/com.coteditor.CotEditor/` because of the Sandbox requirement.
     - Users need to migrate their script to the new folder manually, since CotEditor doesn't have the write permisson to the new location.
+- Add page setup options to print panel.
 - Better file encoding handling on revert action.
 - Set access-group `com.coteditor.CotEditor.edit` to CotEditor's script definition.
 - Change behavior to save `com.apple.TextEncoding` xattr on saving if the file had no content.

@@ -515,6 +515,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     [printOperation setJobTitle:[self displayName]];
     [printOperation setShowsProgressPanel:YES];
     [[printOperation printPanel] addAccessoryController:accessoryController];
+    [[printOperation printPanel] setOptions:NSPrintPanelShowsCopies | NSPrintPanelShowsPageRange | NSPrintPanelShowsPaperSize | NSPrintPanelShowsOrientation | NSPrintPanelShowsScaling | NSPrintPanelShowsPreview];
     
     return printOperation;
 }
