@@ -1124,8 +1124,7 @@ static CGFloat kPerCompoIncrement;
                                                value:color forCharacterRange:range];
             } else {
                 [[layoutManager textStorage] addAttribute:NSForegroundColorAttributeName
-                                                    value:color
-                                                    range:coloringRange];
+                                                    value:color range:range];
             }
         }
     }
