@@ -481,11 +481,11 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     // create printView
     CEPrintView *printView = [[CEPrintView alloc] init];
     [printView setString:[[self editor] string]];
+    [printView setLayoutOrientation:[[[self editor] focusedTextView] layoutOrientation]];
     [printView setTheme:[[self editor] theme]];
     [printView setDocumentName:[self displayName]];
     [printView setFilePath:[[self fileURL] path]];
     [printView setSyntaxName:[[self editor] syntaxStyleName]];
-    [printView setPrintPanelAccessoryController:[self printPanelAccessoryController]];
     [printView setDocumentShowsInvisibles:[[self editor] showsInvisibles]];
     [printView setDocumentShowsLineNum:[[self editor] showsLineNum]];
     [printView setLineSpacing:[[[self editor] focusedTextView] lineSpacing]];
@@ -505,10 +505,11 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     [printInfo setHorizontalPagination:NSFitPagination];
     [printInfo setHorizontallyCentered:NO];
     [printInfo setVerticallyCentered:NO];
-    [printInfo setLeftMargin:kPrintTextHorizontalMargin];
-    [printInfo setRightMargin:kPrintTextHorizontalMargin];
-    [printInfo setTopMargin:kPrintHFVerticalMargin];
-    [printInfo setBottomMargin:kPrintHFVerticalMargin];
+    [printInfo setLeftMargin:kHorizontalPrintMargin];
+    [printInfo setRightMargin:kHorizontalPrintMargin];
+    [printInfo setTopMargin:kVerticalPrintMargin];
+    [printInfo setBottomMargin:kVerticalPrintMargin];
+    [printInfo dictionary][NSPrintHeaderAndFooter] = @YES;
     
     // create print operation
     NSPrintOperation *printOperation = [NSPrintOperation printOperationWithView:printView printInfo:printInfo];

@@ -119,13 +119,11 @@
 "First Header Line Alignment" = "ヘッダ 1 行目の位置";
 "Second Header Line" = "ヘッダ 2 行目";
 "Second Header Line Alignment" = "ヘッダ 2 行目の位置";
-"Print Header Separator" = "ヘッダ区切り線をプリント";
 "Print Footer" = "フッタをプリント";
 "First Footer Line" = "フッタ 1 行目";
 "First Footer Line Alignment" = "フッタ 1 行目の位置";
 "Second Footer Line" = "フッタ 2 行目";
 "Second Footer Line Alignment" = "フッタ 2 行目の位置";
-"Print Footer Separator" = "フッタ区切り線をプリント";
 
 "On" = "オン";
 "Off" = "オフ";

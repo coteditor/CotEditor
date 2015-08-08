@@ -105,9 +105,6 @@
 "90p-SJ-bXq.ibShadowedToolTips[1]" = "中央揃え";  /* Center */
 "90p-SJ-bXq.ibShadowedToolTips[2]" = "右揃え";  /* Align Right */
 
-/* Class = "NSButtonCell"; title = "ヘッダの下に区切り線をプリント"; ObjectID = "3371"; */
-"3371.title" = "ヘッダの下に区切り線をプリント";
-
 
 
 /* Class = "NSButtonCell"; title = "Print footer"; ObjectID = "3375"; */
@@ -155,7 +152,3 @@
 "Pjk-d8-E4v.ibShadowedToolTips[0]" = "左揃え";  /* Align Left */
 "Pjk-d8-E4v.ibShadowedToolTips[1]" = "中央揃え";  /* Center */
 "Pjk-d8-E4v.ibShadowedToolTips[2]" = "右揃え";  /* Align Right */
-
-
-/* Class = "NSButtonCell"; title = "Print separator line at the top of footer"; ObjectID = "3374"; */
-"3374.title" = "フッタの上に区切り線をプリント";
