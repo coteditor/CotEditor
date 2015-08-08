@@ -225,8 +225,6 @@ extern NSString *__nonnull const CEDefaultLineNumUpdateIntervalKey;
 extern NSString *__nonnull const CEDefaultInfoUpdateIntervalKey;
 extern NSString *__nonnull const CEDefaultIncompatibleCharIntervalKey;
 extern NSString *__nonnull const CEDefaultOutlineMenuIntervalKey;
-extern NSString *__nonnull const CEDefaultHeaderFooterFontNameKey;
-extern NSString *__nonnull const CEDefaultHeaderFooterFontSizeKey;
 extern NSString *__nonnull const CEDefaultHeaderFooterDateFormatKey;
 extern NSString *__nonnull const CEDefaultHeaderFooterPathAbbreviatingWithTildeKey;
 extern NSString *__nonnull const CEDefaultTextContainerInsetWidthKey;

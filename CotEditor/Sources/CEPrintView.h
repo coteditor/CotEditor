@@ -31,9 +31,8 @@
 
 
 // constants
-extern CGFloat const kPrintTextHorizontalMargin;  // left/light margin for text
-extern CGFloat const kPrintHFHorizontalMargin;    // left/light margin for header/footer
-extern CGFloat const kPrintHFVerticalMargin;      // top/bottom margin for header/footer
+extern CGFloat const kHorizontalPrintMargin;  // left/light margin
+extern CGFloat const kVerticalPrintMargin;    // top/bottom margin
 
 
 @class CEPrintPanelAccessoryController;

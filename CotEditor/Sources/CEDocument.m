@@ -505,10 +505,11 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     [printInfo setHorizontalPagination:NSFitPagination];
     [printInfo setHorizontallyCentered:NO];
     [printInfo setVerticallyCentered:NO];
-    [printInfo setLeftMargin:kPrintTextHorizontalMargin];
-    [printInfo setRightMargin:kPrintTextHorizontalMargin];
-    [printInfo setTopMargin:kPrintHFVerticalMargin];
-    [printInfo setBottomMargin:kPrintHFVerticalMargin];
+    [printInfo setLeftMargin:kHorizontalPrintMargin];
+    [printInfo setRightMargin:kHorizontalPrintMargin];
+    [printInfo setTopMargin:kVerticalPrintMargin];
+    [printInfo setBottomMargin:kVerticalPrintMargin];
+    [[printInfo dictionary] setObject:@YES forKey:NSPrintHeaderAndFooter];
     
     // create print operation
     NSPrintOperation *printOperation = [NSPrintOperation printOperationWithView:printView printInfo:printInfo];
