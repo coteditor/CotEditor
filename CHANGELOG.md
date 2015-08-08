@@ -12,6 +12,7 @@ develop
 - Share button in toolbar (Customize toobar to use it).
 - Save text orientation state to the file and restore it when the file is opened.
     - __for advanced users__: In this feature, CotEditor saves an *extended attribute* which named `com.coteditor.VerticalText` to the file only when the editor's text orientation is vertical. You can even disable the feature running the command `defaults write com.coteditor.CotEditor savesTextOrientation -bool NO` in Terminal. 
+- Print with vertical text layout.
 
 
 ### Additions/Changes
@@ -25,7 +26,10 @@ develop
     - Update all split editors while editing.
 - Move scripts folder location from `~/Library/Application Support/CotEditor/ScriptMenu/` to `~/Library/Application Scripts/com.coteditor.CotEditor/` because of the Sandbox requirement.
     - Users need to migrate their script to the new folder manually, since CotEditor doesn't have the write permisson to the new location.
-- Add page setup options to print panel.
+- Improve print document:
+    - Update header/footer layout to conform to the standard system header/footer design.
+    - Add page setup options to the print panel.
+    - Print settings preset can be stored in the print panel.
 - Better file encoding handling on revert action.
 - Set access-group `com.coteditor.CotEditor.edit` to CotEditor's script definition.
 - Change behavior to save `com.apple.TextEncoding` xattr on saving if the file had no content.
