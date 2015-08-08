@@ -27,11 +27,21 @@
  */
 
 #import "CEPrintView.h"
+#import "CEPrintPanelAccessoryController.h"
 #import "CELayoutManager.h"
 #import "CESyntaxParser.h"
 #import "NSString+Sandboxing.h"
 #import "Constants.h"
 
+
+// constants
+CGFloat const kPrintTextHorizontalMargin = 8.0;
+CGFloat const kPrintHFHorizontalMargin = 34.0;
+CGFloat const kPrintHFVerticalMargin = 34.0;
+
+static CGFloat const kHeaderFooterLineHeight = 15.0;
+static CGFloat const kSeparatorPadding = 8.0;
+static CGFloat const kNoSeparatorPadding = 18.0;
 
 static NSString *const PageNumberPlaceholder = @"PAGENUM";
 
@@ -110,10 +120,13 @@ static NSString *const PageNumberPlaceholder = @"PAGENUM";
 -(BOOL)knowsPageRange:(NSRangePointer)aRange
 // ------------------------------------------------------
 {
+    [self invalidatePrintMargin];
+    
     // テキストビューのサイズをマージンに合わせて更新
     NSPrintInfo *printInfo = [[NSPrintOperation currentOperation] printInfo];
-    [self setFrameSize:NSMakeSize([printInfo paperSize].width - [printInfo leftMargin] - [printInfo rightMargin],
-                                  [printInfo paperSize].height - [printInfo topMargin] - [printInfo bottomMargin])];
+    NSSize frameSize = NSMakeSize([printInfo paperSize].width - ([printInfo leftMargin] + [printInfo rightMargin]),
+                                  [printInfo paperSize].height - ([printInfo topMargin] + [printInfo bottomMargin]));
+    [self setFrameSize:frameSize];
     [self sizeToFit];
     
     return [super knowsPageRange:aRange];
@@ -529,6 +542,73 @@ static NSString *const PageNumberPlaceholder = @"PAGENUM";
             return (borderWidth - [attrString size].width) - kPrintHFHorizontalMargin;
             break;
     }
+}
+
+
+// ------------------------------------------------------
+/// calculate preserved height for header
+- (CGFloat)headerHeight
+// ------------------------------------------------------
+{
+    CEPrintPanelAccessoryController *accessoryController = [self printPanelAccessoryController];
+    
+    CGFloat headerHeight = 0;
+    if ([accessoryController printsHeader]) {
+        if ([accessoryController headerOneInfoType] != CENoPrintInfo) {
+            headerHeight += kHeaderFooterLineHeight;
+        }
+        if ([accessoryController headerTwoInfoType] != CENoPrintInfo) {
+            headerHeight += kHeaderFooterLineHeight;
+        }
+    }
+    // ヘッダと本文との距離をセパレータも勘案して決定する（フッタは本文との間が開くことが多いため、入れない）
+    if (headerHeight > 0) {
+        headerHeight += (CGFloat)[[NSUserDefaults standardUserDefaults] doubleForKey:CEDefaultHeaderFooterFontSizeKey] - kHeaderFooterLineHeight;
+        
+        headerHeight += [accessoryController printsHeaderSeparator] ? kSeparatorPadding : kNoSeparatorPadding;
+    } else {
+        if ([accessoryController printsHeaderSeparator]) {
+            headerHeight += kSeparatorPadding;
+        }
+    }
+    
+    return headerHeight;
+}
+
+
+// ------------------------------------------------------
+/// calculate preserved height for footer
+- (CGFloat)footerHeight
+// ------------------------------------------------------
+{
+    CEPrintPanelAccessoryController *accessoryController = [self printPanelAccessoryController];
+    
+    CGFloat footerHeight = 0;
+    if ([accessoryController printsFooter]) {
+        if ([accessoryController footerOneInfoType] != CENoPrintInfo) {
+            footerHeight += kHeaderFooterLineHeight;
+        }
+        if ([accessoryController footerTwoInfoType] != CENoPrintInfo) {
+            footerHeight += kHeaderFooterLineHeight;
+        }
+    }
+    if ((footerHeight == 0) && [accessoryController printsFooterSeparator]) {
+        footerHeight += kSeparatorPadding;
+    }
+    
+    return footerHeight;
+}
+
+
+// ------------------------------------------------------
+/// マージンを再計算する
+- (void)invalidatePrintMargin
+// ------------------------------------------------------
+{
+    // printView が flip しているので入れ替えている
+    NSPrintInfo *printInfo = [[self printPanelAccessoryController] representedObject];
+    [printInfo setTopMargin:kPrintHFVerticalMargin + [self footerHeight]];
+    [printInfo setBottomMargin:kPrintHFVerticalMargin + [self headerHeight]];
 }
 
 @end

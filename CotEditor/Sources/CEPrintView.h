@@ -28,7 +28,15 @@
 
 @import Cocoa;
 #import "CETextViewProtocol.h"
-#import "CEPrintPanelAccessoryController.h"
+
+
+// constants
+extern CGFloat const kPrintTextHorizontalMargin;  // left/light margin for text
+extern CGFloat const kPrintHFHorizontalMargin;    // left/light margin for header/footer
+extern CGFloat const kPrintHFVerticalMargin;      // top/bottom margin for header/footer
+
+
+@class CEPrintPanelAccessoryController;
 
 
 @interface CEPrintView : NSTextView <CETextViewProtocol>

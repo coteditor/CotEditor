@@ -52,9 +52,6 @@
 @property (readwrite, nonatomic) CEAlignmentType footerTwoAlignmentType;
 @property (readwrite, nonatomic) BOOL printsFooterSeparator;
 
-/// printInfoのマージンが更新されたことを知らせるフラグ
-@property (nonatomic) BOOL readyToDraw;
-
 @end
 
 
@@ -105,25 +102,9 @@
                 _theme = [defaults stringForKey:CEDefaultPrintThemeKey];
         }
         
-        // マージンに関わるキー値を監視する
-        for (NSString *key in [self keyPathsForValuesAffectingMargin]) {
-            [self addObserver:self forKeyPath:key options:0 context:NULL];
-        }
-        
         [self updateThemeList];
     }
     return self;
-}
-
-
-// ------------------------------------------------------
-/// clean up
-- (void)dealloc
-// ------------------------------------------------------
-{
-    for (NSString *key in [self keyPathsForValuesAffectingMargin]) {
-        [self removeObserver:self forKeyPath:key];
-    }
 }
 
 
@@ -134,9 +115,6 @@
 {
     [super setRepresentedObject:representedObject];
     
-    // printInfoの値をヘッダ／フッタのマージンに反映させる
-    [self updateVerticalOffset];
-    
     // 現在のテーマラインナップを反映させる
     [self updateThemeList];
 }
@@ -144,21 +122,6 @@
 
 
 #pragma mark Protocol
-
-//=======================================================
-// NSKeyValueObserving Protocol
-//=======================================================
-
-// ------------------------------------------------------
-/// 監視しているキー値が変更された
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
-// ------------------------------------------------------
-{
-    if ([[self keyPathsForValuesAffectingMargin] containsObject:keyPath]) {
-        [self updateVerticalOffset];
-    }
-}
-
 
 //=======================================================
 // NSPrintPanelAccessorizing Protocol
@@ -178,9 +141,15 @@
                                  @"footerOneAlignmentType",
                                  @"footerTwoAlignmentType",
                                  
-                                 // ヘッダ／フッタの設定に合わせてprintInfoのマージンを書き換えるため、
-                                 // 直接設定の変更を監視するのではなくマージンの書き換え完了フラグを監視する
-                                 @"readyToDraw"
+                                 // key paths for valuse affecting margin
+                                 @"printsHeader",
+                                 @"headerOneInfoType",
+                                 @"headerTwoInfoType",
+                                 @"printsHeaderSeparator",
+                                 @"printsFooter",
+                                 @"footerOneInfoType",
+                                 @"footerTwoInfoType",
+                                 @"printsFooterSeparator",
                                  ]];
 }
 
@@ -277,56 +246,6 @@
 
 
 // ------------------------------------------------------
-/// マージンを再計算する
-- (void)updateVerticalOffset
-// ------------------------------------------------------
-{
-    // ヘッダの高さ（文書を印刷しない高さ）を得る
-    CGFloat headerHeight = 0;
-    if ([self printsHeader]) {
-        if ([self headerOneInfoType] != CENoPrintInfo) {
-            headerHeight += kHeaderFooterLineHeight;
-        }
-        if ([self headerTwoInfoType] != CENoPrintInfo) {
-            headerHeight += kHeaderFooterLineHeight;
-        }
-    }
-    // ヘッダと本文との距離をセパレータも勘案して決定する（フッタは本文との間が開くことが多いため、入れない）
-    if (headerHeight > 0) {
-        headerHeight += (CGFloat)[[NSUserDefaults standardUserDefaults] doubleForKey:CEDefaultHeaderFooterFontSizeKey] - kHeaderFooterLineHeight;
-        
-        headerHeight += [self printsHeaderSeparator] ? kSeparatorPadding : kNoSeparatorPadding;
-    } else {
-        if ([self printsHeaderSeparator]) {
-            headerHeight += kSeparatorPadding;
-        }
-    }
-    
-    // フッタの高さ（同）を得る
-    CGFloat footerHeight = 0;
-    if ([self printsFooter]) {
-        if ([self footerOneInfoType] != CENoPrintInfo) {
-            footerHeight += kHeaderFooterLineHeight;
-        }
-        if ([self footerTwoInfoType] != CENoPrintInfo) {
-            footerHeight += kHeaderFooterLineHeight;
-        }
-    }
-    if ((footerHeight == 0) && [self printsFooterSeparator]) {
-        footerHeight += kSeparatorPadding;
-    }
-    
-    // printView が flip しているので入れ替えている
-    NSPrintInfo *printInfo = [self representedObject];
-    [printInfo setTopMargin:kPrintHFVerticalMargin + footerHeight];
-    [printInfo setBottomMargin:kPrintHFVerticalMargin + headerHeight];
-    
-    // プレビューの更新を依頼
-    [self setReadyToDraw:YES];
-}
-
-
-// ------------------------------------------------------
 /// ヘッダー／フッターの表示情報タイプから文字列を返す
 - (nonnull NSString *)printInfoDescription:(CEPrintInfoType)type
 // ------------------------------------------------------
@@ -368,22 +287,6 @@
         case CEAlignRight:
             return @"Right";
     }
-}
-
-
-// ------------------------------------------------------
-/// マージンに影響するキーのセットを返す
-- (nonnull NSSet *)keyPathsForValuesAffectingMargin
-// ------------------------------------------------------
-{
-    return [NSSet setWithArray:@[@"printsHeader",
-                                 @"headerOneInfoType",
-                                 @"headerTwoInfoType",
-                                 @"printsHeaderSeparator",
-                                 @"printsFooter",
-                                 @"footerOneInfoType",
-                                 @"footerTwoInfoType",
-                                 @"printsFooterSeparator"]];
 }
 
 

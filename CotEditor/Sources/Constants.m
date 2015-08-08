@@ -388,21 +388,6 @@ CGFloat const kDefaultLineHeightMultiple = 1.19;
 
 
 
-#pragma mark Print
-
-// ------------------------------------------------------
-// Print
-// ------------------------------------------------------
-
-CGFloat const kPrintTextHorizontalMargin = 8.0;
-CGFloat const kPrintHFHorizontalMargin = 34.0;
-CGFloat const kPrintHFVerticalMargin = 34.0;
-CGFloat const kHeaderFooterLineHeight = 15.0;
-CGFloat const kSeparatorPadding = 8.0;
-CGFloat const kNoSeparatorPadding = 18.0;
-
-
-
 #pragma mark Encodings
 
 // ------------------------------------------------------

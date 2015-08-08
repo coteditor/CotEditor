@@ -447,21 +447,6 @@ extern CGFloat const kDefaultLineHeightMultiple;
 
 
 
-#pragma mark Print
-
-// ------------------------------------------------------
-// Print
-// ------------------------------------------------------
-
-extern CGFloat const kPrintTextHorizontalMargin;  // left/light margin for text
-extern CGFloat const kPrintHFHorizontalMargin;    // left/light margin for header/footer
-extern CGFloat const kPrintHFVerticalMargin;      // top/bottom margin for header/footer
-extern CGFloat const kHeaderFooterLineHeight;
-extern CGFloat const kSeparatorPadding;
-extern CGFloat const kNoSeparatorPadding;
-
-
-
 #pragma mark Encodings
 
 // ------------------------------------------------------
