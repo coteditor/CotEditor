@@ -35,10 +35,10 @@
 
 
 // constants
-CGFloat const kHorizontalPrintMargin = 8.0;
-CGFloat const kVerticalPrintMargin = 56.0;
+CGFloat const kVerticalPrintMargin = 64.0;    // default 90.0
+CGFloat const kHorizontalPrintMargin = 24.0;  // default 72.0
 
-static CGFloat const kHorizontalHeaderFooterMargin = 24.0;
+static CGFloat const kHorizontalHeaderFooterMargin = 20.0;
 
 static NSString *const PageNumberPlaceholder = @"PAGENUM";
 
