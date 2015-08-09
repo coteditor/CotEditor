@@ -27,6 +27,7 @@
  */
 
 #import "CEPrintView.h"
+#import "CEPrintPanelAccessoryController.h"
 #import "CELayoutManager.h"
 #import "CESyntaxParser.h"
 #import "NSString+Sandboxing.h"
@@ -52,8 +53,8 @@ static NSString *const PageNumberPlaceholder = @"PAGENUM";
 @property (nonatomic) CEAlignmentType headerTwoAlignment;
 @property (nonatomic) CEAlignmentType footerOneAlignment;
 @property (nonatomic) CEAlignmentType footerTwoAlignment;
-@property (nonatomic) BOOL printsHeader;  // ヘッダ印刷の有無
-@property (nonatomic) BOOL printsFooter;  // フッタ印刷の有無
+@property (nonatomic) BOOL printsHeader;
+@property (nonatomic) BOOL printsFooter;
 @property (nonatomic) BOOL printsLineNum;
 @property (nonatomic) CGFloat xOffset;
 @property (nonatomic, nullable) CESyntaxParser *syntaxParser;
@@ -77,9 +78,7 @@ static NSString *const PageNumberPlaceholder = @"PAGENUM";
 {
     self = [super initWithFrame:frameRect];
     if (self) {
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        
-        // 日時のフォーマットを生成、保持
+        // prepare date formatter
         NSString *dateFormat = [[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultHeaderFooterDateFormatKey];
         _dateFormatter = [[NSDateFormatter alloc] init];
         [_dateFormatter setDateFormat:dateFormat];
@@ -87,7 +86,7 @@ static NSString *const PageNumberPlaceholder = @"PAGENUM";
         // プリントビューのテキストコンテナのパディングを固定する（印刷中に変動させるとラップの関連で末尾が印字されないことがある）
         [[self textContainer] setLineFragmentPadding:kHorizontalHeaderFooterMargin];
         
-        // layoutManager を入れ替え
+        // replace layoutManager
         CELayoutManager *layoutManager = [[CELayoutManager alloc] init];
         [layoutManager setDelegate:self];
         [layoutManager setFixesLineHeight:NO];
@@ -115,7 +114,7 @@ static NSString *const PageNumberPlaceholder = @"PAGENUM";
         NSDictionary *attrs = @{NSFontAttributeName: font,
                                 NSForegroundColorAttributeName: [NSColor textColor]};
         
-        //文字幅を計算しておく 等幅扱い
+        // calculate character width as mono-space font
         //いずれにしても等幅じゃないと奇麗に揃わないので等幅だということにしておく (hetima)
         CGFloat charWidth = [@"8" sizeWithAttributes:attrs].width;
         
@@ -228,13 +227,12 @@ static NSString *const PageNumberPlaceholder = @"PAGENUM";
 
 
 // ------------------------------------------------------
-/// ページ分割を自前でやるかを返す
+/// return whether do paganation by itself
 -(BOOL)knowsPageRange:(NSRangePointer)aRange
 // ------------------------------------------------------
 {
-    // テキストビューのサイズをマージンに合わせて更新
+    // update text view size considering text orientation
     NSPrintInfo *printInfo = [[NSPrintOperation currentOperation] printInfo];
-    CGFloat scale = [printInfo scalingFactor];
     NSSize frameSize;
     if ([self layoutOrientation] == NSTextLayoutOrientationVertical) {
         frameSize = NSMakeSize([self maxSize].width,
@@ -297,11 +295,11 @@ static NSString *const PageNumberPlaceholder = @"PAGENUM";
 #pragma mark Public Accessors
 
 // ------------------------------------------------------
-/// 実際のドキュメントで不可視文字を表示しているかをセット
+/// set-accessor for invisibles setting on the real document
 - (void)setDocumentShowsInvisibles:(BOOL)showsInvisibles
 // ------------------------------------------------------
 {
-    // layoutManagerにも設定する
+    // set also to layoutManager
     [(CELayoutManager *)[self layoutManager] setShowsInvisibles:showsInvisibles];
     
     _documentShowsInvisibles = showsInvisibles;
@@ -312,17 +310,17 @@ static NSString *const PageNumberPlaceholder = @"PAGENUM";
 #pragma mark Private Methods
 
 // ------------------------------------------------------
-/// プリント開始の準備
+/// parse current print settings in printInfo
 - (void)setupPrint
 // ------------------------------------------------------
 {
-    NSDictionary *settings = [[[NSPrintOperation currentOperation] printInfo] printSettings];
+    NSDictionary *settings = [[[NSPrintOperation currentOperation] printInfo] dictionary];
 
-    // 行番号印字の有無をチェック
+    // check whether print line numbers
     if ([self layoutOrientation] == NSTextLayoutOrientationVertical) { // do not draw line number on vertical mode anyway
         [self setPrintsLineNum:NO];
     } else {
-        switch ((CELineNumberPrintMode)[settings[CEDefaultPrintLineNumIndexKey] unsignedIntegerValue]) {
+        switch ((CELineNumberPrintMode)[settings[CEPrintLineNumberKey] unsignedIntegerValue]) {
             case CENoLinePrint:
                 [self setPrintsLineNum:NO];
                 break;
@@ -335,16 +333,16 @@ static NSString *const PageNumberPlaceholder = @"PAGENUM";
         }
     }
 
-    // 行番号表示の有無によってパディングを調整
+    // adjust paddings considering the line numbers
     if ([self printsLineNum]) {
         [self setXOffset:kHorizontalHeaderFooterMargin];
     } else {
         [self setXOffset:0];
     }
     
-    // 不可視文字の扱いを取得
+    // check wheter print invisibles
     BOOL showsInvisibles;
-    switch ((CEInvisibleCharsPrintMode)[settings[CEDefaultPrintInvisibleCharIndexKey] unsignedIntegerValue]) {
+    switch ((CEInvisibleCharsPrintMode)[settings[CEPrintInvisiblesKey] unsignedIntegerValue]) {
         case CENoInvisibleCharsPrint:
             showsInvisibles = NO;
             break;
@@ -358,34 +356,34 @@ static NSString *const PageNumberPlaceholder = @"PAGENUM";
     [(CELayoutManager *)[self layoutManager] setShowsInvisibles:showsInvisibles];
     
     
-    // カラーリングの設定
-    if ([settings[CEDefaultPrintThemeKey] isEqualToString:NSLocalizedString(@"Black and White",  nil)]) {
+    // setup syntax highlighting with set theme
+    if ([settings[CEPrintThemeKey] isEqualToString:NSLocalizedString(@"Black and White",  nil)]) {
         [self setTextColor:[NSColor blackColor]];
         [self setBackgroundColor:[NSColor whiteColor]];
         
     } else {
-        [self setTheme:[CETheme themeWithName:settings[CEDefaultPrintThemeKey]]];
+        [self setTheme:[CETheme themeWithName:settings[CEPrintThemeKey]]];
         [self setTextColor:[[self theme] textColor]];
         [self setBackgroundColor:[[self theme] backgroundColor]];
         
-        // カラーリング実行オブジェクトを用意して実行
+        // perform coloring
         if (![self syntaxParser]) {
             [self setSyntaxParser:[[CESyntaxParser alloc] initWithStyleName:[self syntaxName]]];
         }
         [[self syntaxParser] colorWholeStringInTextStorage:[self textStorage]];
     }
     
-    // ヘッダ・フッタを設定
-    [self setPrintsHeader:[settings[CEDefaultPrintHeaderKey] boolValue]];
-    [self setHeaderOneString:[self stringForPrintInfoType:[settings[CEDefaultHeaderOneStringIndexKey] unsignedIntegerValue]]];
-    [self setHeaderOneAlignment:[settings[CEDefaultHeaderOneAlignIndexKey] unsignedIntegerValue]];
-    [self setHeaderTwoString:[self stringForPrintInfoType:[settings[CEDefaultHeaderTwoStringIndexKey] unsignedIntegerValue]]];
-    [self setHeaderTwoAlignment:[settings[CEDefaultHeaderTwoAlignIndexKey] unsignedIntegerValue]];
-    [self setPrintsFooter:[settings[CEDefaultPrintFooterKey] boolValue]];
-    [self setFooterOneString:[self stringForPrintInfoType:[settings[CEDefaultFooterOneStringIndexKey] unsignedIntegerValue]]];
-    [self setFooterOneAlignment:[settings[CEDefaultFooterOneAlignIndexKey] unsignedIntegerValue]];
-    [self setFooterTwoString:[self stringForPrintInfoType:[settings[CEDefaultFooterTwoStringIndexKey] unsignedIntegerValue]]];
-    [self setFooterTwoAlignment:[settings[CEDefaultFooterTwoAlignIndexKey] unsignedIntegerValue]];
+    // setup header/footer
+    [self setPrintsHeader:[settings[CEPrintHeaderKey] boolValue]];
+    [self setHeaderOneString:[self stringForPrintInfoType:[settings[CEPrimaryHeaderContentKey] unsignedIntegerValue]]];
+    [self setHeaderOneAlignment:[settings[CEPrimaryHeaderAlignmentKey] unsignedIntegerValue]];
+    [self setHeaderTwoString:[self stringForPrintInfoType:[settings[CESecondaryHeaderContentKey] unsignedIntegerValue]]];
+    [self setHeaderTwoAlignment:[settings[CESecondaryHeaderAlignmentKey] unsignedIntegerValue]];
+    [self setPrintsFooter:[settings[CEPrintFooterKey] boolValue]];
+    [self setFooterOneString:[self stringForPrintInfoType:[settings[CEPrimaryFooterContentKey] unsignedIntegerValue]]];
+    [self setFooterOneAlignment:[settings[CEPrimaryFooterAlignmentKey] unsignedIntegerValue]];
+    [self setFooterTwoString:[self stringForPrintInfoType:[settings[CESecondaryFooterContentKey] unsignedIntegerValue]]];
+    [self setFooterTwoAlignment:[settings[CESecondaryFooterAlignmentKey] unsignedIntegerValue]];
 }
 
 
@@ -431,7 +429,7 @@ static NSString *const PageNumberPlaceholder = @"PAGENUM";
 
 
 // ------------------------------------------------------
-/// ヘッダ／フッタに印字する文字列を生成し、返す
+/// create string for header/footer
 - (nullable NSString *)stringForPrintInfoType:(CEPrintInfoType)selectedTag
 // ------------------------------------------------------
 {
@@ -443,7 +441,7 @@ static NSString *const PageNumberPlaceholder = @"PAGENUM";
             return [self syntaxName];
             
         case CEFilePathPrintInfo:
-            if (![self filePath]) {  // パスがない場合は書類名をプリント
+            if (![self filePath]) {  // print document name instead if document doesn't have file path yet
                 return [self documentName];
             }
             

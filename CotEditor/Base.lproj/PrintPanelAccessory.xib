@@ -115,8 +115,8 @@
                         </menu>
                     </popUpButtonCell>
                     <connections>
-                        <binding destination="-2" name="selectedTag" keyPath="headerOneInfoType" id="3fO-Mv-0pJ"/>
                         <binding destination="-2" name="enabled" keyPath="printsHeader" id="Yrf-uD-ceK"/>
+                        <binding destination="-2" name="selectedTag" keyPath="primaryHeaderContent" id="aaV-1t-303"/>
                     </connections>
                 </popUpButton>
                 <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="256">
@@ -157,8 +157,8 @@
                         </menu>
                     </popUpButtonCell>
                     <connections>
-                        <binding destination="-2" name="selectedTag" keyPath="headerTwoInfoType" id="Vzl-V4-qBo"/>
                         <binding destination="-2" name="enabled" keyPath="printsHeader" id="OmC-ew-3w4"/>
+                        <binding destination="-2" name="selectedTag" keyPath="secondaryHeaderContent" id="OC1-l1-jaV"/>
                     </connections>
                 </popUpButton>
                 <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="257">
@@ -182,8 +182,8 @@
                         </segments>
                     </segmentedCell>
                     <connections>
-                        <binding destination="-2" name="selectedIndex" keyPath="headerOneAlignmentType" id="kFa-qk-CwK"/>
                         <binding destination="-2" name="enabled" keyPath="printsHeader" id="P6q-iK-XAR"/>
+                        <binding destination="-2" name="selectedIndex" keyPath="primaryHeaderAlignment" id="fjA-81-DWA"/>
                     </connections>
                 </segmentedControl>
                 <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ff5-dQ-geo">
@@ -199,8 +199,8 @@
                         </segments>
                     </segmentedCell>
                     <connections>
-                        <binding destination="-2" name="selectedIndex" keyPath="footerOneAlignmentType" id="lzL-ak-b4g"/>
                         <binding destination="-2" name="enabled" keyPath="printsFooter" id="vpb-1X-X1v"/>
+                        <binding destination="-2" name="selectedIndex" keyPath="primaryFooterAlignment" id="RPe-D1-hln"/>
                     </connections>
                 </segmentedControl>
                 <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8wl-aM-d8K">
@@ -216,8 +216,8 @@
                         </segments>
                     </segmentedCell>
                     <connections>
-                        <binding destination="-2" name="selectedIndex" keyPath="headerTwoAlignmentType" id="zfg-Bt-9oi"/>
                         <binding destination="-2" name="enabled" keyPath="printsHeader" id="uIW-VB-xZa"/>
+                        <binding destination="-2" name="selectedIndex" keyPath="secondaryHeaderAlignment" id="eR4-Jf-JBc"/>
                     </connections>
                 </segmentedControl>
                 <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="4T8-80-2uO">
@@ -233,8 +233,8 @@
                         </segments>
                     </segmentedCell>
                     <connections>
-                        <binding destination="-2" name="selectedIndex" keyPath="footerTwoAlignmentType" id="Lae-Jo-OvC"/>
                         <binding destination="-2" name="enabled" keyPath="printsFooter" id="vV0-JQ-TdN"/>
+                        <binding destination="-2" name="selectedIndex" keyPath="secondaryFooterAlignment" id="FeU-ej-Qw8"/>
                     </connections>
                 </segmentedControl>
                 <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="296">
@@ -268,8 +268,8 @@
                         </menu>
                     </popUpButtonCell>
                     <connections>
-                        <binding destination="-2" name="selectedTag" keyPath="footerTwoInfoType" id="sHz-En-cs5"/>
                         <binding destination="-2" name="enabled" keyPath="printsFooter" id="OnN-VH-8BV"/>
+                        <binding destination="-2" name="selectedTag" keyPath="secondaryFooterContent" id="raJ-1y-Hyw"/>
                     </connections>
                 </popUpButton>
                 <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="295">
@@ -313,8 +313,8 @@
                         </menu>
                     </popUpButtonCell>
                     <connections>
-                        <binding destination="-2" name="selectedTag" keyPath="footerOneInfoType" id="DYY-Yd-6d5"/>
                         <binding destination="-2" name="enabled" keyPath="printsFooter" id="eSk-6s-EvS"/>
+                        <binding destination="-2" name="selectedTag" keyPath="primaryFooterContent" id="F79-PX-Tg6"/>
                     </connections>
                 </popUpButton>
                 <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6jK-7i-UaO">

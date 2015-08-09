@@ -28,6 +28,22 @@
 @import Cocoa;
 
 
+// print setting keys
+extern NSString *__nonnull const CEPrintThemeKey;
+extern NSString *__nonnull const CEPrintLineNumberKey;
+extern NSString *__nonnull const CEPrintInvisiblesKey;
+extern NSString *__nonnull const CEPrintHeaderKey;
+extern NSString *__nonnull const CEPrimaryHeaderContentKey;
+extern NSString *__nonnull const CESecondaryHeaderContentKey;
+extern NSString *__nonnull const CEPrimaryHeaderAlignmentKey;
+extern NSString *__nonnull const CESecondaryHeaderAlignmentKey;
+extern NSString *__nonnull const CEPrintFooterKey;
+extern NSString *__nonnull const CEPrimaryFooterContentKey;
+extern NSString *__nonnull const CESecondaryFooterContentKey;
+extern NSString *__nonnull const CEPrimaryFooterAlignmentKey;
+extern NSString *__nonnull const CESecondaryFooterAlignmentKey;
+
+
 @interface CEPrintPanelAccessoryController : NSViewController <NSPrintPanelAccessorizing>
 
 @end
