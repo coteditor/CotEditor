@@ -112,8 +112,8 @@
 /* Class = "NSButtonCell"; title = "Print footer"; ObjectID = "3375"; */
 "3375.title" = "打印页脚";
 
-/* Class = "NSTextFieldCell"; title = "First Line:"; ObjectID = "3379"; */
-"3379.title" = "第一行:";
+/* Class = "NSTextFieldCell"; title = "Primary:"; ObjectID = "3379"; */
+"3379.title" = "Primary:";  // FIXME:
 
 /* Class = "NSMenuItem"; title = "None"; ObjectID = "941"; */
 "941.title" = "无";
@@ -134,8 +134,8 @@
 "Zgh-yF-xd2.ibShadowedToolTips[2]" = "右对齐";  /* Align Right */
 
 
-/* Class = "NSTextFieldCell"; title = "Second Line:"; ObjectID = "3377"; */
-"3377.title" = "第二行:";
+/* Class = "NSTextFieldCell"; title = "Primary:"; ObjectID = "3377"; */
+"3377.title" = "Primary:";  // FIXME:
 
 /* Class = "NSMenuItem"; title = "None"; ObjectID = "927"; */
 "927.title" = "无";

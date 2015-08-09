@@ -115,15 +115,15 @@
 "Line Number" = "行番号";
 "Invisible Characters" = "不可視文字";
 "Print Header" = "ヘッダをプリント";
-"First Header Line" = "ヘッダ 1 行目";
-"First Header Line Alignment" = "ヘッダ 1 行目の位置";
-"Second Header Line" = "ヘッダ 2 行目";
-"Second Header Line Alignment" = "ヘッダ 2 行目の位置";
+"Primary Header" = "主ヘッダ";
+"Primary Header Alignment" = "主ヘッダの位置";
+"Secondary Header" = "副ヘッダ";
+"Secondary Header Alignment" = "副ヘッダの位置";
 "Print Footer" = "フッタをプリント";
-"First Footer Line" = "フッタ 1 行目";
-"First Footer Line Alignment" = "フッタ 1 行目の位置";
-"Second Footer Line" = "フッタ 2 行目";
-"Second Footer Line Alignment" = "フッタ 2 行目の位置";
+"Primary Footer" = "主フッタ";
+"Primary Footer Alignment" = "主フッタの位置";
+"Secondary Footer" = "副フッタ";
+"Secondary Footer Alignment" = "副フッタの位置";
 
 "On" = "オン";
 "Off" = "オフ";

@@ -56,8 +56,8 @@
 /* Class = "NSButtonCell"; title = "Print header"; ObjectID = "708"; */
 "708.title" = "打印页眉";
 
-/* Class = "NSTextFieldCell"; title = "First line:"; ObjectID = "256"; */
-"706.title" = "第一行:";
+/* Class = "NSTextFieldCell"; title = "Primary:"; ObjectID = "256"; */
+"706.title" = "Primary:";  // FIXME:
 
 /* Class = "NSMenuItem"; title = "None"; ObjectID = "393"; */
 "393.title" = "无";
@@ -79,8 +79,8 @@
 
 
 
-/* Class = "NSTextFieldCell"; title = "Second line:"; ObjectID = "257"; */
-"712.title" = "第二行:";
+/* Class = "NSTextFieldCell"; title = "Secodnary:"; ObjectID = "257"; */
+"712.title" = "Secodnary:";  // FIXME:
 
 /* Class = "NSMenuItem"; title = "None"; ObjectID = "395"; */
 "395.title" = "无";
@@ -105,8 +105,8 @@
 /* Class = "NSButtonCell"; title = "Print footer"; ObjectID = "713"; */
 "713.title" = "打印页脚";
 
-/* Class = "NSTextFieldCell"; title = "First line:"; ObjectID = "295"; */
-"711.title" = "第一行:";
+/* Class = "NSTextFieldCell"; title = "Primary:"; ObjectID = "295"; */
+"711.title" = "Primary:";  // FIXME:
 
 /* Class = "NSMenuItem"; title = "None"; ObjectID = "397"; */
 "397.title" = "无";
@@ -127,8 +127,8 @@
 "njJ-Ab-dUQ.ibShadowedToolTips[2]" = "右对齐";  /* Align Right */
 
 
-/* Class = "NSTextFieldCell"; title = "Second line:"; ObjectID = "296"; */
-"707.title" = "第二行:";
+/* Class = "NSTextFieldCell"; title = "Secodnary:"; ObjectID = "296"; */
+"707.title" = "Secodnary:";  // FIXME:
 
 /* Class = "NSMenuItem"; title = "None"; ObjectID = "399"; */
 "399.title" = "无";

@@ -54,8 +54,8 @@
 /* Class = "NSButtonCell"; title = "Print header"; ObjectID = "708"; */
 "708.title" = "ヘッダをプリント";
 
-/* Class = "NSTextFieldCell"; title = "First line:"; ObjectID = "256"; */
-"256.title" = "1 行目：";
+/* Class = "NSTextFieldCell"; title = "Primary:"; ObjectID = "256"; */
+"256.title" = "主ヘッダ：";
 
 /* Class = "NSMenuItem"; title = "None"; ObjectID = "393"; */
 "393.title" = "なし";
@@ -76,8 +76,8 @@
 "Aru-Gd-J0D.ibShadowedToolTips[2]" = "右揃え";  /* Align Right */
 
 
-/* Class = "NSTextFieldCell"; title = "Second line:"; ObjectID = "257"; */
-"257.title" = "2 行目：";
+/* Class = "NSTextFieldCell"; title = "Secodnary:"; ObjectID = "257"; */
+"257.title" = "副ヘッダ：";
 
 /* Class = "NSMenuItem"; title = "None"; ObjectID = "395"; */
 "395.title" = "なし";
@@ -102,8 +102,8 @@
 /* Class = "NSButtonCell"; title = "Print footer"; ObjectID = "713"; */
 "713.title" = "フッタをプリント";
 
-/* Class = "NSTextFieldCell"; title = "First line:"; ObjectID = "295"; */
-"295.title" = "1 行目：";
+/* Class = "NSTextFieldCell"; title = "Primary:"; ObjectID = "295"; */
+"295.title" = "主フッタ：";
 
 /* Class = "NSMenuItem"; title = "None"; ObjectID = "397"; */
 "397.title" = "なし";
@@ -124,8 +124,8 @@
 "njJ-Ab-dUQ.ibShadowedToolTips[2]" = "右揃え";  /* Align Right */
 
 
-/* Class = "NSTextFieldCell"; title = "Second line:"; ObjectID = "296"; */
-"296.title" = "2 行目：";
+/* Class = "NSTextFieldCell"; title = "Secodnary:"; ObjectID = "296"; */
+"296.title" = "副フッタ：";
 
 /* Class = "NSMenuItem"; title = "None"; ObjectID = "399"; */
 "399.title" = "なし";

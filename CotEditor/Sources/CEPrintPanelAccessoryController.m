@@ -112,16 +112,16 @@ NSString *__nonnull const CESecondaryFooterAlignmentKey = @"CESecondaryFooterAli
     self.invisibleCharsMode = [defaults integerForKey:CEDefaultPrintInvisibleCharIndexKey];
     
     self.printsHeader = [defaults boolForKey:CEDefaultPrintHeaderKey];
-    self.primaryHeaderContent = [defaults integerForKey:CEDefaultHeaderOneStringIndexKey];
-    self.primaryHeaderAlignment = [defaults integerForKey:CEDefaultHeaderOneAlignIndexKey];
-    self.secondaryHeaderContent = [defaults integerForKey:CEDefaultHeaderTwoStringIndexKey];
-    self.secondaryHeaderAlignment = [defaults integerForKey:CEDefaultHeaderTwoAlignIndexKey];
+    self.primaryHeaderContent = [defaults integerForKey:CEDefaultPrimaryHeaderContentKey];
+    self.primaryHeaderAlignment = [defaults integerForKey:CEDefaultPrimaryHeaderAlignmentKey];
+    self.secondaryHeaderContent = [defaults integerForKey:CEDefaultSecondaryHeaderContentKey];
+    self.secondaryHeaderAlignment = [defaults integerForKey:CEDefaultSecondaryHeaderAlignmentKey];
     
     self.printsFooter = [defaults boolForKey:CEDefaultPrintFooterKey];
-    self.primaryFooterContent = [defaults integerForKey:CEDefaultFooterOneStringIndexKey];
-    self.primaryFooterAlignment = [defaults integerForKey:CEDefaultFooterOneAlignIndexKey];
-    self.secondaryFooterContent = [defaults integerForKey:CEDefaultFooterTwoStringIndexKey];
-    self.secondaryFooterAlignment = [defaults integerForKey:CEDefaultFooterTwoAlignIndexKey];
+    self.primaryFooterContent = [defaults integerForKey:CEDefaultPrimaryFooterContentKey];
+    self.primaryFooterAlignment = [defaults integerForKey:CEDefaultPrimaryFooterAlignmentKey];
+    self.secondaryFooterContent = [defaults integerForKey:CEDefaultSecondaryFooterContentKey];
+    self.secondaryFooterAlignment = [defaults integerForKey:CEDefaultSecondaryFooterAlignmentKey];
     
     // 現在のテーマラインナップを反映させる
     [self updateThemeList];
@@ -200,26 +200,26 @@ NSString *__nonnull const CESecondaryFooterAlignmentKey = @"CESecondaryFooterAli
                                             description:([self printsHeader] ? @"On" : @"Off")]];
     
     if ([self printsHeader]) {
-        [items addObject:[self localizedSummaryItemWithName:@"First Header Line"
+        [items addObject:[self localizedSummaryItemWithName:@"Primary Header"
                                                 description:[self printInfoDescription:[self primaryHeaderContent]]]];
-        [items addObject:[self localizedSummaryItemWithName:@"First Header Line Alignment"
+        [items addObject:[self localizedSummaryItemWithName:@"Primary Header Alignment"
                                                 description:[self alignmentDescription:[self primaryHeaderAlignment]]]];
-        [items addObject:[self localizedSummaryItemWithName:@"Second Header Line"
+        [items addObject:[self localizedSummaryItemWithName:@"Secondary Header"
                                                 description:[self printInfoDescription:[self secondaryHeaderContent]]]];
-        [items addObject:[self localizedSummaryItemWithName:@"Second Header Line Alignment"
+        [items addObject:[self localizedSummaryItemWithName:@"Secondary Header Alignment"
                                                 description:[self alignmentDescription:[self secondaryHeaderAlignment]]]];
     }
     
     [items addObject:[self localizedSummaryItemWithName:@"Print Footer"
                                             description:([self printsFooter] ? @"On" : @"Off")]];
     if ([self printsFooter]) {
-        [items addObject:[self localizedSummaryItemWithName:@"First Footer Line"
+        [items addObject:[self localizedSummaryItemWithName:@"Primary Footer"
                                                 description:[self printInfoDescription:[self primaryFooterContent]]]];
-        [items addObject:[self localizedSummaryItemWithName:@"First Footer Line Alignment"
+        [items addObject:[self localizedSummaryItemWithName:@"Primary Footer Alignment"
                                                 description:[self alignmentDescription:[self primaryFooterAlignment]]]];
-        [items addObject:[self localizedSummaryItemWithName:@"Second Footer Line"
+        [items addObject:[self localizedSummaryItemWithName:@"Secondary Footer"
                                                 description:[self printInfoDescription:[self secondaryFooterContent]]]];
-        [items addObject:[self localizedSummaryItemWithName:@"Second Footer Line Alignment"
+        [items addObject:[self localizedSummaryItemWithName:@"Secondary Footer Alignment"
                                                 description:[self alignmentDescription:[self secondaryFooterAlignment]]]];
     }
     

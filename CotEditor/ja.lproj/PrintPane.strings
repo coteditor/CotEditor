@@ -62,8 +62,8 @@
 /* Class = "NSButtonCell"; title = "Print header"; ObjectID = "3368"; */
 "3368.title" = "ヘッダをプリント";
 
-/* Class = "NSTextFieldCell"; title = "First Line:"; ObjectID = "3369"; */
-"3369.title" = "1 行目：";
+/* Class = "NSTextFieldCell"; title = "Primary:"; ObjectID = "3369"; */
+"3369.title" = "主ヘッダ：";
 
 /* Class = "NSMenuItem"; title = "None"; ObjectID = "895"; */
 "895.title" = "なし";
@@ -85,7 +85,7 @@
 
 
 /* Class = "NSTextFieldCell"; title = "Second Line:"; ObjectID = "3373"; */
-"3373.title" = "2 行目：";
+"3373.title" = "副ヘッダ：";
 
 /* Class = "NSMenuItem"; title = "None"; ObjectID = "906"; */
 "906.title" = "なし";
@@ -110,8 +110,8 @@
 /* Class = "NSButtonCell"; title = "Print footer"; ObjectID = "3375"; */
 "3375.title" = "フッタをプリント";
 
-/* Class = "NSTextFieldCell"; title = "First Line:"; ObjectID = "3379"; */
-"3379.title" = "1 行目：";
+/* Class = "NSTextFieldCell"; title = "Primary:"; ObjectID = "3379"; */
+"3379.title" = "主フッタ：";
 
 /* Class = "NSMenuItem"; title = "None"; ObjectID = "941"; */
 "941.title" = "なし";
@@ -132,8 +132,8 @@
 "Zgh-yF-xd2.ibShadowedToolTips[2]" = "右揃え";  /* Align Right */
 
 
-/* Class = "NSTextFieldCell"; title = "Second Line:"; ObjectID = "3377"; */
-"3377.title" = "2 行目：";
+/* Class = "NSTextFieldCell"; title = "Secondary:"; ObjectID = "3377"; */
+"3377.title" = "副フッタ：";
 
 /* Class = "NSMenuItem"; title = "None"; ObjectID = "927"; */
 "927.title" = "なし";

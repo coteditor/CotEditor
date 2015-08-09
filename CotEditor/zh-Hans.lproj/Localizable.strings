@@ -113,15 +113,15 @@
 "Line Number" = "行号";
 "Invisible Characters" = "不可见字符";
 "Print Header" = "打印页眉";
-"First Header Line" = "页眉行 1";
-"First Header Line Alignment" = "页眉行 1 对齐";
-"Second Header Line" = "页眉行 2";
-"Second Header Line Alignment" = "页眉行 2 对齐";
+"Primary Header" = "Primary Header";  // FIXME:
+"Primary Header Alignment" = "Primary Header Alignment";  // FIXME:
+"Secondary Header" = "Secondary Header";  // FIXME:
+"Secondary Header Alignment" = "Secondary Header Alignment";  // FIXME:
 "Print Footer" = "打印页脚";
-"First Footer Line" = "页脚行 1";
-"First Footer Line Alignment" = "页脚行 1 对齐";
-"Second Footer Line" = "页脚行 2";
-"Second Footer Line Alignment" = "页脚行 2 对齐";
+"Primary Footer" = "Primary Footer";  // FIXME:
+"Primary Footer Alignment" = "Primary Footer Alignment";  // FIXME:
+"Secondary Footer" = "Secondary Footer";  // FIXME:
+"Secondary Footer Alignment" = "Secondary Footer Alignment";  // FIXME:
 
 "On" = "开";
 "Off" = "关";

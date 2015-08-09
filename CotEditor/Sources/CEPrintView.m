@@ -400,35 +400,61 @@ static NSString *const PageNumberPlaceholder = @"PAGENUM";
                                            secondaryAlignment:(CEAlignmentType)secondaryAlignment
 // ------------------------------------------------------
 {
+    // apply current page number
+    primaryString = [self applyCurrentPageNumberToString:primaryString];
+    secondaryString = [self applyCurrentPageNumberToString:secondaryString];
+    
+    // case: empty
+    if (!primaryString && !secondaryString) {
+        return [[NSMutableAttributedString alloc] init];
+    }
+    
+    // case: single content
+    if (primaryString && !secondaryString) {
+        return [[NSAttributedString alloc] initWithString:primaryString
+                                               attributes:[self headerFooterAttributesForAlignment:primaryAlignment]];
+    }
+    if (!primaryString && secondaryString) {
+        return [[NSAttributedString alloc] initWithString:secondaryString
+                                               attributes:[self headerFooterAttributesForAlignment:secondaryAlignment]];
+    }
+    
+    // case: double-sided
+    if (primaryAlignment == CEAlignLeft && secondaryAlignment == CEAlignRight) {
+        return [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@\t\t%@", primaryString, secondaryString]
+                                               attributes:[self headerFooterAttributesForAlignment:CEAlignLeft]];
+    }
+    if (primaryAlignment == CEAlignRight && secondaryAlignment == CEAlignLeft) {
+        return [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@\t\t%@", secondaryString, primaryString]
+                                               attributes:[self headerFooterAttributesForAlignment:CEAlignLeft]];
+    }
+    
+    // case: two lines
     NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] init];
-    
     if (primaryString) {
-        [attrString appendAttributedString:[self attributedHeaderFooterStringWithString:primaryString
-                                                                              alignment:primaryAlignment]];
+        [attrString appendAttributedString:[[NSAttributedString alloc] initWithString:primaryString
+                                                                           attributes:[self headerFooterAttributesForAlignment:primaryAlignment]]];
     }
-    if (primaryString && secondaryString) {
-        [attrString appendAttributedString:[[NSAttributedString alloc] initWithString:@"\n"]];
-    }
+    [attrString appendAttributedString:[[NSAttributedString alloc] initWithString:@"\n"]];
     if (secondaryString) {
-        [attrString appendAttributedString:[self attributedHeaderFooterStringWithString:secondaryString
-                                                                              alignment:secondaryAlignment]];
+        [attrString appendAttributedString:[[NSAttributedString alloc] initWithString:secondaryString
+                                                                           attributes:[self headerFooterAttributesForAlignment:secondaryAlignment]]];
     }
-    
     return [attrString copy];
 }
 
 
 // ------------------------------------------------------
-/// return attributed string for given header/footer contents applying page numbers
-- (nonnull NSAttributedString *)attributedHeaderFooterStringWithString:(nonnull NSString *)string alignment:(CEAlignmentType)alignment
+/// return string for given header/footer contents applying page numbers
+- (nonnull NSString *)applyCurrentPageNumberToString:(nonnull NSString *)string
 // ------------------------------------------------------
 {
     if ([string isEqualToString:PageNumberPlaceholder]) {
         NSInteger pageNumber = [[NSPrintOperation currentOperation] currentPage];
         string = [NSString stringWithFormat:@"%zd", pageNumber];
     }
-    return [[NSAttributedString alloc] initWithString:string
-                                           attributes:[self headerFooterAttributesForAlignment:alignment]];
+    
+    return string;
 }
 
 
@@ -438,9 +464,8 @@ static NSString *const PageNumberPlaceholder = @"PAGENUM";
 // ------------------------------------------------------
 {
     NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
-    [paragraphStyle setLineBreakMode:NSLineBreakByTruncatingMiddle];
     
-    // alignment
+    // alignment for two lines
     NSTextAlignment alignment;
     switch (alignmentType) {
         case CEAlignLeft:
@@ -454,6 +479,15 @@ static NSString *const PageNumberPlaceholder = @"PAGENUM";
             break;
     }
     [paragraphStyle setAlignment:alignment];
+    
+    // tab stops for double-sided alignment (imitation of [super paperHeader])
+    NSPrintInfo *printInfo = [[NSPrintOperation currentOperation] printInfo];
+    CGFloat rightTabLocation = [printInfo paperSize].width - [printInfo leftMargin]  - 5;  // It's not clear where the 5 come from.
+    [paragraphStyle setTabStops:@[[[NSTextTab alloc] initWithType:NSCenterTabStopType location:rightTabLocation / 2],
+                                  [[NSTextTab alloc] initWithType:NSRightTabStopType location:rightTabLocation]]];
+    
+    // line break mode to truncate middle
+    [paragraphStyle setLineBreakMode:NSLineBreakByTruncatingMiddle];
     
     // font
     NSFont *font = [NSFont userFontOfSize:kHeaderFooterFontSize];
