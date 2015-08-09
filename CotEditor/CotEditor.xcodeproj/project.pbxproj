@@ -1076,7 +1076,7 @@
 				2A37F4AFFDCFA73011CA2CEA /* Other Sources */,
 				2A37F4B8FDCFA73011CA2CEA /* Resources */,
 				2A99FEE31B56D79800BF46CC /* Executables */,
-				2A37F4C3FDCFA73011CA2CEA /* Frameworks */,
+				2A37F4C3FDCFA73011CA2CEA /* Libraries */,
 				19C28FB0FE9D524F11CA2CBB /* Products */,
 				234A213E93629F3A79324102 /* Pods */,
 			);
@@ -1144,13 +1144,13 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
-		2A37F4C3FDCFA73011CA2CEA /* Frameworks */ = {
+		2A37F4C3FDCFA73011CA2CEA /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
 				F3504B3BB02D4DBA8EA50C0E /* libPods.a */,
 				DD42F3AFDE3081DC5D669D51 /* libPods-appstore.a */,
 			);
-			name = Frameworks;
+			name = Libraries;
 			sourceTree = "<group>";
 		};
 		2A42825218FCC1C100386899 /* Text View */ = {
