@@ -72,7 +72,6 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 @property (nonatomic) BOOL suppressesIANACharsetConflictAlert;
 
 // readonly
-@property (readwrite, nonatomic) NSTextStorage *textStorage;
 @property (readwrite, nonatomic) CEWindowController *windowController;
 @property (readwrite, nonatomic) CETextSelection *selection;
 @property (readwrite, nonatomic) NSStringEncoding encoding;
@@ -478,7 +477,6 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
         [self setPrintPanelAccessoryController:[[CEPrintPanelAccessoryController alloc] init]];
     }
     CEPrintPanelAccessoryController *accessoryController = [self printPanelAccessoryController];
-    [accessoryController setCanPrintLineNumber:([[[self editor] focusedTextView] layoutOrientation] != NSTextLayoutOrientationVertical)];
     
     // create printView
     CEPrintView *printView = [[CEPrintView alloc] init];

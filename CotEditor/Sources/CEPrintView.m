@@ -117,7 +117,7 @@ static NSString *const PageNumberPlaceholder = @"PAGENUM";
         
         // calculate character width as mono-space font
         //いずれにしても等幅じゃないと奇麗に揃わないので等幅だということにしておく (hetima)
-        CGFloat charWidth = [@"8" sizeWithAttributes:attrs].width;
+        NSSize charSize = [@"8" sizeWithAttributes:attrs];
         
         // setup the variables we need for the loop
         NSString *string = [self string];
@@ -126,6 +126,16 @@ static NSString *const PageNumberPlaceholder = @"PAGENUM";
         // adjust values for line number drawing
         CGFloat xAdj = [self textContainerOrigin].x + kHorizontalHeaderFooterMargin - kLineNumberPadding;
         CGFloat yAdj = (fontSize - masterFontSize);
+        
+        // vertical text
+        BOOL isVertical = [self layoutOrientation] == NSTextLayoutOrientationVertical;
+        CGContextRef context;
+        if (isVertical) {
+            // rotate axis
+            context = [[NSGraphicsContext currentContext] CGContext];
+            CGContextSaveGState(context);
+            CGContextConcatCTM(context, CGAffineTransformMakeRotation(-M_PI_2));
+        }
         
         // counters
         NSUInteger lastLineNumber = 0;
@@ -145,12 +155,29 @@ static NSString *const PageNumberPlaceholder = @"PAGENUM";
                 if (!NSPointInRect(numRect.origin, dirtyRect)) { continue; }
                 
                 NSString *numStr = (lastLineNumber != lineNumber) ? [NSString stringWithFormat:@"%tu", lineNumber] : @"-";
-                CGFloat requiredWidth = charWidth * [numStr length];
-                NSPoint point = NSMakePoint(dirtyRect.origin.x - requiredWidth + xAdj,
+                NSPoint point = NSMakePoint(dirtyRect.origin.x + xAdj,
                                             numRect.origin.y + yAdj);
-                [numStr drawAtPoint:point withAttributes:attrs];  // draw the line number
+                
+                // adjust position to draw
+                if (isVertical) {
+                    if (lastLineNumber == lineNumber) { continue; }
+                    numStr = (lineNumber == 1 || lineNumber % 5 == 0) ? numStr : @"·";  // draw real number only in every 5 times
+                    
+                    point = CGPointMake(-point.y - (charSize.width * [numStr length] + charSize.height) / 2,
+                                        point.x - charSize.height);
+                } else {
+                    point.x -= charSize.width * [numStr length];  // align right
+                }
+                
+                // draw number
+                [numStr drawAtPoint:point withAttributes:attrs];
+                
                 lastLineNumber = lineNumber;
             }
+        }
+        
+        if (isVertical) {
+            CGContextRestoreGState(context);
         }
     }
 }
@@ -320,22 +347,18 @@ static NSString *const PageNumberPlaceholder = @"PAGENUM";
     NSDictionary *settings = [[[NSPrintOperation currentOperation] printInfo] dictionary];
 
     // check whether print line numbers
-    if ([self layoutOrientation] == NSTextLayoutOrientationVertical) { // do not draw line number on vertical mode anyway
-        [self setPrintsLineNum:NO];
-    } else {
-        switch ((CELineNumberPrintMode)[settings[CEPrintLineNumberKey] unsignedIntegerValue]) {
-            case CENoLinePrint:
-                [self setPrintsLineNum:NO];
-                break;
-            case CESameAsDocumentLinePrint:
-                [self setPrintsLineNum:[self documentShowsLineNum]];
-                break;
-            case CEDoLinePrint:
-                [self setPrintsLineNum:YES];
-                break;
-        }
+    switch ((CELineNumberPrintMode)[settings[CEPrintLineNumberKey] unsignedIntegerValue]) {
+        case CENoLinePrint:
+            [self setPrintsLineNum:NO];
+            break;
+        case CESameAsDocumentLinePrint:
+            [self setPrintsLineNum:[self documentShowsLineNum]];
+            break;
+        case CEDoLinePrint:
+            [self setPrintsLineNum:YES];
+            break;
     }
-
+    
     // adjust paddings considering the line numbers
     if ([self printsLineNum]) {
         [self setXOffset:kHorizontalHeaderFooterMargin];
