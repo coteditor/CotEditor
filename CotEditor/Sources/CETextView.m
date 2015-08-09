@@ -953,7 +953,7 @@ static NSPoint kTextContainerOrigin;
 - (void)updateRuler
 // ------------------------------------------------------
 {
-    [[self scrollView] invalidateLineNumber];
+    [(CEEditorScrollView *)[self enclosingScrollView] invalidateLineNumber];
 }
 
 
@@ -1421,15 +1421,6 @@ static NSPoint kTextContainerOrigin;
 // ------------------------------------------------------
 {
     return @[NSPasteboardTypeString, (NSString *)kUTTypeUTF8PlainText];
-}
-
-
-// ------------------------------------------------------
-/// return enclosing scroll view after casting
-- (CEEditorScrollView *)scrollView
-// ------------------------------------------------------
-{
-    return (CEEditorScrollView *)[self enclosingScrollView];
 }
 
 

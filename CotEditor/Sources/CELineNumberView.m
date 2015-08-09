@@ -106,8 +106,17 @@ static const NSString *LineNumberFontName;
     
     // draw frame border (1px)
     [[textColor colorWithAlphaComponent:0.3] set];
-    [NSBezierPath strokeLineFromPoint:NSMakePoint(NSMaxX(dirtyRect) - 0.5, NSMaxY(dirtyRect))
-                              toPoint:NSMakePoint(NSMaxX(dirtyRect) - 0.5, NSMinY(dirtyRect))];
+    switch ([self orientation]) {
+        case NSVerticalRuler:
+            [NSBezierPath strokeLineFromPoint:NSMakePoint(NSMaxX(dirtyRect) - 0.5, NSMaxY(dirtyRect))
+                                      toPoint:NSMakePoint(NSMaxX(dirtyRect) - 0.5, NSMinY(dirtyRect))];
+            break;
+            
+        case NSHorizontalRuler:
+            [NSBezierPath strokeLineFromPoint:NSMakePoint(NSMinX(dirtyRect), NSMaxY(dirtyRect) - 0.5)
+                                      toPoint:NSMakePoint(NSMaxX(dirtyRect), NSMaxY(dirtyRect) - 0.5)];
+            break;
+    }
     
     [self drawHashMarksAndLabelsInRect:dirtyRect];
 }
