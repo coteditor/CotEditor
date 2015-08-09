@@ -34,6 +34,7 @@
 
 static const CGFloat kMinVerticalThickness = 32.0;
 static const NSUInteger kMinNumberOfDigits = 3;
+static CGFloat const kLineNumberPadding = 3.0;
 
 
 @interface CELineNumberView ()
@@ -173,7 +174,7 @@ static const NSString *LineNumberFontName;
     CGFloat ascent = CTFontGetAscent(font);
     CGAffineTransform transform = CGAffineTransformIdentity;
     transform = CGAffineTransformScale(transform, 1.0, -1.0);  // flip
-    transform = CGAffineTransformTranslate(transform, -kLineNumPadding, -relativePoint.y - inset.y - diff - ascent);
+    transform = CGAffineTransformTranslate(transform, -kLineNumberPadding, -relativePoint.y - inset.y - diff - ascent);
     CGContextSetTextMatrix(context, transform);
     CFRelease(font);
     
@@ -187,16 +188,16 @@ static const NSString *LineNumberFontName;
     
     // counters
     NSUInteger glyphCount = visibleGlyphRange.location;
-    NSUInteger lineNum = 1;
-    NSUInteger lastLineNum = 0;
+    NSUInteger lineNumber = 1;
+    NSUInteger lastLineNumber = 0;
     
     // count lines until visible
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"\n" options:0 error:nil];
-    lineNum += [regex numberOfMatchesInString:string options:0
+    lineNumber += [regex numberOfMatchesInString:string options:0
                                         range:NSMakeRange(0, [layoutManager characterIndexForGlyphAtIndex:visibleGlyphRange.location])];
     
     // draw visible line numbers
-    for (NSUInteger glyphIndex = visibleGlyphRange.location; glyphIndex < NSMaxRange(visibleGlyphRange); lineNum++) { // count "real" lines
+    for (NSUInteger glyphIndex = visibleGlyphRange.location; glyphIndex < NSMaxRange(visibleGlyphRange); lineNumber++) { // count "real" lines
         NSUInteger charIndex = [layoutManager characterIndexForGlyphAtIndex:glyphIndex];
         glyphIndex = NSMaxRange([layoutManager glyphRangeForCharacterRange:[string lineRangeForRange:NSMakeRange(charIndex, 0)]
                                                       actualCharacterRange:NULL]);
@@ -206,25 +207,25 @@ static const NSString *LineNumberFontName;
             NSRect lineRect = [layoutManager lineFragmentRectForGlyphAtIndex:glyphCount effectiveRange:&range withoutAdditionalLayout:YES];
             CGFloat y = -NSMinY(lineRect);
             
-            if (lastLineNum == lineNum) {  // wrapped line
+            if (lastLineNumber == lineNumber) {  // wrapped line
                 CGPoint position = CGPointMake(width - charWidth, y);
                 CGContextShowGlyphsAtPositions(context, &wrappedMarkGlyph, &position, 1);  // draw wrapped mark
                 
             } else {  // new line
-                NSUInteger digit = numberOfDigits(lineNum);
+                NSUInteger digit = numberOfDigits(lineNumber);
                 
                 // get glyphs and positions
                 CGGlyph glyphs[digit];
                 CGPoint positions[digit];
                 for (NSUInteger i = 0; i < digit; i++) {
-                    glyphs[i] = digitGlyphs[numberAt(i, lineNum)];
+                    glyphs[i] = digitGlyphs[numberAt(i, lineNumber)];
                     positions[i] = CGPointMake(width - (i + 1) * charWidth, y);
                 }
                 
                 CGContextShowGlyphsAtPositions(context, glyphs, positions, digit);  // draw line number
             }
             
-            lastLineNum = lineNum;
+            lastLineNumber = lineNumber;
             glyphCount = NSMaxRange(range);
         }
     }
@@ -234,13 +235,13 @@ static const NSString *LineNumberFontName;
         NSRect lineRect = [layoutManager extraLineFragmentUsedRect];
         CGFloat y = -NSMinY(lineRect);
         
-        NSUInteger digit = numberOfDigits(lineNum);
+        NSUInteger digit = numberOfDigits(lineNumber);
         
         // get glyphs and positions
         CGGlyph glyphs[digit];
         CGPoint positions[digit];
         for (NSUInteger i = 0; i < digit; i++) {
-            glyphs[i] = digitGlyphs[numberAt(i, lineNum)];
+            glyphs[i] = digitGlyphs[numberAt(i, lineNumber)];
             positions[i] = CGPointMake(width - (i + 1) * charWidth, y);
         }
         
@@ -250,8 +251,8 @@ static const NSString *LineNumberFontName;
     CGContextRestoreGState(context);
     
     // adjust thickness
-    NSUInteger length = MAX(numberOfDigits(lineNum), kMinNumberOfDigits);
-    CGFloat requiredWidth = MAX(length * charWidth + 3 * kLineNumPadding, kMinVerticalThickness);
+    NSUInteger length = MAX(numberOfDigits(lineNumber), kMinNumberOfDigits);
+    CGFloat requiredWidth = MAX(length * charWidth + 3 * kLineNumberPadding, kMinVerticalThickness);
     [self setRuleThickness:ceil(requiredWidth)];
 }
 

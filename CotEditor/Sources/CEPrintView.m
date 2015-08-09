@@ -39,6 +39,7 @@ CGFloat const kVerticalPrintMargin = 58.0;    // default 90.0
 CGFloat const kHorizontalPrintMargin = 24.0;  // default 72.0
 
 static CGFloat const kHorizontalHeaderFooterMargin = 20.0;
+static CGFloat const kLineNumberPadding = 10.0;
 
 static NSString *const PageNumberPlaceholder = @"PAGENUM";
 
@@ -123,31 +124,32 @@ static NSString *const PageNumberPlaceholder = @"PAGENUM";
         NSLayoutManager *layoutManager = [self layoutManager];
         
         // adjust values for line number drawing
-        CGFloat xAdj = [self textContainerOrigin].x + kHorizontalHeaderFooterMargin - kLineNumPadding;
+        CGFloat xAdj = [self textContainerOrigin].x + kHorizontalHeaderFooterMargin - kLineNumberPadding;
         CGFloat yAdj = (fontSize - masterFontSize);
         
         // counters
-        NSUInteger lastLineNum = 0;
-        NSUInteger lineNum = 1;
+        NSUInteger lastLineNumber = 0;
+        NSUInteger lineNumber = 1;
         NSUInteger glyphCount = 0;
         NSUInteger numberOfGlyphs = [layoutManager numberOfGlyphs];
         
-        for (NSUInteger glyphIndex = 0; glyphIndex < numberOfGlyphs; lineNum++) {  // count "REAL" lines
+        for (NSUInteger glyphIndex = 0; glyphIndex < numberOfGlyphs; lineNumber++) {  // count "REAL" lines
             NSUInteger charIndex = [layoutManager characterIndexForGlyphAtIndex:glyphIndex];
             glyphIndex = NSMaxRange([layoutManager glyphRangeForCharacterRange:[string lineRangeForRange:NSMakeRange(charIndex, 0)]
                                                           actualCharacterRange:NULL]);
             while (glyphCount < glyphIndex) {  // handle "DRAWN" (wrapped) lines
                 NSRange range;
                 NSRect numRect = [layoutManager lineFragmentRectForGlyphAtIndex:glyphCount effectiveRange:&range];
-                if (NSPointInRect(numRect.origin, dirtyRect)) {
-                    NSString *numStr = (lastLineNum != lineNum) ? [NSString stringWithFormat:@"%tu:", lineNum] : @"-:";
-                    CGFloat requiredWidth = charWidth * [numStr length];
-                    NSPoint point = NSMakePoint(dirtyRect.origin.x - requiredWidth + xAdj,
-                                           numRect.origin.y + yAdj);
-                    [numStr drawAtPoint:point withAttributes:attrs];  // draw the line number
-                    lastLineNum = lineNum;
-                }
                 glyphCount = NSMaxRange(range);
+                
+                if (!NSPointInRect(numRect.origin, dirtyRect)) { continue; }
+                
+                NSString *numStr = (lastLineNumber != lineNumber) ? [NSString stringWithFormat:@"%tu", lineNumber] : @"-";
+                CGFloat requiredWidth = charWidth * [numStr length];
+                NSPoint point = NSMakePoint(dirtyRect.origin.x - requiredWidth + xAdj,
+                                            numRect.origin.y + yAdj);
+                [numStr drawAtPoint:point withAttributes:attrs];  // draw the line number
+                lastLineNumber = lineNumber;
             }
         }
     }

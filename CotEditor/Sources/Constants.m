@@ -367,7 +367,6 @@ NSString *__nonnull const CEOutlineItemStyleItalicKey = @"outlineItemStyleItalic
 NSString *__nonnull const CEOutlineItemStyleUnderlineKey = @"outlineItemStyleUnderline";
 
 // layout constants
-CGFloat const kLineNumPadding = 3.0;
 NSString *__nonnull const kNavigationBarFontName = @"Helvetica";
 
 

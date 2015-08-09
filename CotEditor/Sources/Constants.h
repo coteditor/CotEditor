@@ -426,7 +426,6 @@ extern NSString *__nonnull const CEOutlineItemStyleItalicKey;
 extern NSString *__nonnull const CEOutlineItemStyleUnderlineKey;
 
 // layout constants
-extern CGFloat const kLineNumPadding;
 extern NSString *__nonnull const kNavigationBarFontName;
 
 
