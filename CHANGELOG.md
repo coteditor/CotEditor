@@ -247,7 +247,7 @@ a
 
 
 ### Additions/Changes
-a
+
 - Drop support for __OS X Lion.__
 - Migrate document drawer to sidebar style.
     - Add “show document inspector” option to preferences.

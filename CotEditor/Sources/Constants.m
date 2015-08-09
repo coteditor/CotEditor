@@ -218,7 +218,6 @@ NSString *__nonnull const CEDefaultBasicColoringDelayKey = @"basicColoringDelay"
 NSString *__nonnull const CEDefaultFirstColoringDelayKey = @"firstColoringDelay";
 NSString *__nonnull const CEDefaultSecondColoringDelayKey = @"secondColoringDelay";
 NSString *__nonnull const CEDefaultAutoCompletionDelayKey = @"autoCompletionDelay";
-NSString *__nonnull const CEDefaultLineNumUpdateIntervalKey = @"lineNumUpdateInterval";
 NSString *__nonnull const CEDefaultInfoUpdateIntervalKey = @"infoUpdateInterval";
 NSString *__nonnull const CEDefaultIncompatibleCharIntervalKey = @"incompatibleCharInterval";
 NSString *__nonnull const CEDefaultOutlineMenuIntervalKey = @"outlineMenuInterval";

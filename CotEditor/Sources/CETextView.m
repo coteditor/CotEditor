@@ -568,7 +568,6 @@ static NSPoint kTextContainerOrigin;
 
     [self setFont:newFont];
     [self setNeedsDisplayInRect:[self visibleRect] avoidAdditionalLayout:YES];  // 最下行以下のページガイドの描画が残るための措置 (2009-02-14)
-    [self updateLineNumberAndAdjustScroll];
 }
 
 
@@ -949,6 +948,15 @@ static NSPoint kTextContainerOrigin;
 }
 
 
+// ------------------------------------------------------
+/// let line number view update
+- (void)updateRuler
+// ------------------------------------------------------
+{
+    [[self scrollView] invalidateLineNumber];
+}
+
+
 
 #pragma mark Protocol
 
@@ -1118,7 +1126,12 @@ static NSPoint kTextContainerOrigin;
     // redraw
     NSRange range = NSMakeRange(0, [[self string] length]);
     [[self layoutManager] invalidateLayoutForCharacterRange:range actualCharacterRange:nil];
-    [self updateLineNumberAndAdjustScroll];
+    
+    // 行番号を強制的に更新（スクロール位置が調整されない時は再描画が行われないため）
+    [self updateRuler];
+    
+    // キャレット／選択範囲が見えるようにスクロール位置を調整
+    [self scrollRangeToVisible:[self selectedRange]];
 }
 
 
@@ -1172,7 +1185,9 @@ static NSPoint kTextContainerOrigin;
     CGFloat size = (CGFloat)[[NSUserDefaults standardUserDefaults] doubleForKey:CEDefaultFontSizeKey];
     
     [self setFont:[NSFont fontWithName:name size:size] ? : [NSFont systemFontOfSize:size]];
-    [self updateLineNumberAndAdjustScroll];
+    
+    // キャレット／選択範囲が見えるようにスクロール位置を調整
+    [self scrollRangeToVisible:[self selectedRange]];
 }
 
 
@@ -1526,19 +1541,6 @@ static NSPoint kTextContainerOrigin;
 {
     [[[self undoManager] prepareWithInvocationTarget:self]
      replaceWithStrings:strings ranges:ranges selectedRanges:selectedRanges actionName:actionName];
-}
-
-
-// ------------------------------------------------------
-/// 行番号更新、キャレット／選択範囲が見えるようスクロール位置を調整
-- (void)updateLineNumberAndAdjustScroll
-// ------------------------------------------------------
-{
-    // 行番号を強制的に更新（スクロール位置が調整されない時は再描画が行われないため）
-    [[self scrollView] invalidateLineNumber];
-    
-    // キャレット／選択範囲が見えるようにスクロール位置を調整
-    [self scrollRangeToVisible:[self selectedRange]];
 }
 
 
@@ -2043,9 +2045,6 @@ static NSPoint kTextContainerOrigin;
     if (isSelectionVisible) {
         [self scrollRangeToVisible:selectedRange];
     }
-    
-    // force redraw line number view
-    [[self scrollView] invalidateLineNumber];
 }
 
 @end

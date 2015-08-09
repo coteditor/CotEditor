@@ -200,7 +200,6 @@
                                CEDefaultFirstColoringDelayKey: @0.3f, 
                                CEDefaultSecondColoringDelayKey: @0.7f,
                                CEDefaultAutoCompletionDelayKey: @0.25,
-                               CEDefaultLineNumUpdateIntervalKey: @0.12f, 
                                CEDefaultInfoUpdateIntervalKey: @0.2f, 
                                CEDefaultIncompatibleCharIntervalKey: @0.42f, 
                                CEDefaultOutlineMenuIntervalKey: @0.37f,

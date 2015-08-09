@@ -76,12 +76,6 @@ static const NSString *LineNumberFontName;
     self = [super initWithScrollView:scrollView orientation:orientation];
     if (self) {
         [self setClientView:[scrollView documentView]];
-        
-        // update line number on scroll view resize for text wrapping change
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(invalidateLineNumber)
-                                                     name:NSViewFrameDidChangeNotification
-                                                   object:scrollView];
     }
     return self;
 }
@@ -95,15 +89,6 @@ static const NSString *LineNumberFontName;
     [super viewDidMoveToSuperview];
     
     [self setRuleThickness:kMinVerticalThickness];
-}
-
-
-// ------------------------------------------------------
-/// clean up
-- (void)dealloc
-// ------------------------------------------------------
-{
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 
@@ -320,15 +305,6 @@ static const NSString *LineNumberFontName;
 // ------------------------------------------------------
 {
     return (NSTextView<CETextViewProtocol> *)[self clientView];
-}
-
-
-// ------------------------------------------------------
-/// update line number
-- (void)invalidateLineNumber
-// ------------------------------------------------------
-{
-    [self setNeedsDisplay:YES];
 }
 
 

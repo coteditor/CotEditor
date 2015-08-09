@@ -219,7 +219,6 @@ extern NSString *__nonnull const CEDefaultBasicColoringDelayKey;
 extern NSString *__nonnull const CEDefaultFirstColoringDelayKey;
 extern NSString *__nonnull const CEDefaultSecondColoringDelayKey;
 extern NSString *__nonnull const CEDefaultAutoCompletionDelayKey;
-extern NSString *__nonnull const CEDefaultLineNumUpdateIntervalKey;
 extern NSString *__nonnull const CEDefaultInfoUpdateIntervalKey;
 extern NSString *__nonnull const CEDefaultIncompatibleCharIntervalKey;
 extern NSString *__nonnull const CEDefaultOutlineMenuIntervalKey;

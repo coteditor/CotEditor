@@ -43,8 +43,6 @@
 @property (nonatomic, nonnull) CEEditorScrollView *scrollView;
 @property (nonatomic, nonnull) NSTextStorage *textStorage;
 
-@property (nonatomic, nullable) NSTimer *lineNumUpdateTimer;
-
 @property (nonatomic) BOOL highlightsCurrentLine;
 @property (nonatomic) NSInteger lastCursorLocation;
 
@@ -158,7 +156,6 @@
 - (void)dealloc
 // ------------------------------------------------------
 {
-    [self stopUpdateLineNumberTimer];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     
     [_textStorage removeLayoutManager:[_textView layoutManager]];
@@ -224,8 +221,6 @@
     if (isVertical) {
         [textView setLayoutOrientation:NSTextLayoutOrientationVertical];
     }
-    
-    [[self scrollView] invalidateLineNumber];
 }
 
 
@@ -570,21 +565,6 @@
 
 
 // ------------------------------------------------------
-/// textStorage をセット
-- (void)setTextStorage:(NSTextStorage *)textStorage
-// ------------------------------------------------------
-{
-    // 行番号ビューのためにテキストの変更を監視する
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(updateLineNumber)
-                                                 name:NSTextStorageDidProcessEditingNotification
-                                               object:textStorage];
-    
-    _textStorage = textStorage;
-}
-
-
-// ------------------------------------------------------
 /// アウトラインメニューの選択項目を更新
 - (void)updateOutlineMenuSelection
 // ------------------------------------------------------
@@ -604,49 +584,6 @@
 // ------------------------------------------------------
 {
     [[self navigationBar] setCloseSplitButtonEnabled:isEnabled];
-}
-
-
-// ------------------------------------------------------
-/// 行番号表示を更新
-- (void)updateLineNumber
-// ------------------------------------------------------
-{
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    
-    // 行番号更新
-    NSTimeInterval lineNumUpdateInterval = [defaults doubleForKey:CEDefaultLineNumUpdateIntervalKey];
-    if ([self lineNumUpdateTimer]) {
-        [[self lineNumUpdateTimer] setFireDate:[NSDate dateWithTimeIntervalSinceNow:lineNumUpdateInterval]];
-    } else {
-        [self setLineNumUpdateTimer:[NSTimer scheduledTimerWithTimeInterval:lineNumUpdateInterval
-                                                                     target:self
-                                                                   selector:@selector(updateLineNumberWithTimer:)
-                                                                   userInfo:nil
-                                                                    repeats:NO]];
-    }
-}
-
-
-// ------------------------------------------------------
-/// 行番号更新
-- (void)updateLineNumberWithTimer:(nonnull NSTimer *)timer
-// ------------------------------------------------------
-{
-    [self stopUpdateLineNumberTimer];
-    [[self scrollView] invalidateLineNumber];
-}
-
-
-// ------------------------------------------------------
-/// 行番号更新タイマーを停止
-- (void)stopUpdateLineNumberTimer
-// ------------------------------------------------------
-{
-    if ([self lineNumUpdateTimer]) {
-        [[self lineNumUpdateTimer] invalidate];
-        [self setLineNumUpdateTimer:nil];
-    }
 }
 
 
