@@ -72,6 +72,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 @property (nonatomic) BOOL suppressesIANACharsetConflictAlert;
 
 // readonly
+@property (readwrite, nonatomic) NSTextStorage *textStorage;
 @property (readwrite, nonatomic) CEWindowController *windowController;
 @property (readwrite, nonatomic) CETextSelection *selection;
 @property (readwrite, nonatomic) NSStringEncoding encoding;
