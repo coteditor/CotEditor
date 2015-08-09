@@ -123,6 +123,11 @@ NSString *__nonnull const CESecondaryFooterAlignmentKey = @"CESecondaryFooterAli
     self.secondaryFooterContent = [defaults integerForKey:CEDefaultFooterTwoStringIndexKey];
     self.secondaryFooterAlignment = [defaults integerForKey:CEDefaultFooterTwoAlignIndexKey];
     
+    //
+    if (![self canPrintLineNumber]) {
+        self.lineNumberMode = CENoLinePrint;
+    }
+    
     // 現在のテーマラインナップを反映させる
     [self updateThemeList];
 }

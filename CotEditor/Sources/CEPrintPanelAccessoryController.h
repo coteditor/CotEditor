@@ -46,4 +46,6 @@ extern NSString *__nonnull const CESecondaryFooterAlignmentKey;
 
 @interface CEPrintPanelAccessoryController : NSViewController <NSPrintPanelAccessorizing>
 
+@property (nonatomic) BOOL canPrintLineNumber;
+
 @end

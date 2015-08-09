@@ -81,6 +81,7 @@
                         </menu>
                     </popUpButtonCell>
                     <connections>
+                        <binding destination="-2" name="enabled" keyPath="canPrintLineNumber" id="lzx-cm-p4O"/>
                         <binding destination="-2" name="selectedIndex" keyPath="lineNumberMode" id="T1v-IJ-jYl"/>
                     </connections>
                 </popUpButton>
