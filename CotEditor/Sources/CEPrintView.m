@@ -45,14 +45,14 @@ static NSString *const PageNumberPlaceholder = @"PAGENUM";
 
 @interface CEPrintView () <NSLayoutManagerDelegate>
 
-@property (nonatomic, nullable, copy) NSString *headerOneString;
-@property (nonatomic, nullable, copy) NSString *headerTwoString;
-@property (nonatomic, nullable, copy) NSString *footerOneString;
-@property (nonatomic, nullable, copy) NSString *footerTwoString;
-@property (nonatomic) CEAlignmentType headerOneAlignment;
-@property (nonatomic) CEAlignmentType headerTwoAlignment;
-@property (nonatomic) CEAlignmentType footerOneAlignment;
-@property (nonatomic) CEAlignmentType footerTwoAlignment;
+@property (nonatomic, nullable, copy) NSString *primaryHeaderString;
+@property (nonatomic, nullable, copy) NSString *secondaryHeaderString;
+@property (nonatomic, nullable, copy) NSString *primaryFooterString;
+@property (nonatomic, nullable, copy) NSString *secondaryFooterString;
+@property (nonatomic) CEAlignmentType primaryHeaderAlignment;
+@property (nonatomic) CEAlignmentType secondaryHeaderAlignment;
+@property (nonatomic) CEAlignmentType primaryFooterAlignment;
+@property (nonatomic) CEAlignmentType secondaryFooterAlignment;
 @property (nonatomic) BOOL printsHeader;
 @property (nonatomic) BOOL printsFooter;
 @property (nonatomic) BOOL printsLineNum;
@@ -165,16 +165,16 @@ static NSString *const PageNumberPlaceholder = @"PAGENUM";
     
     NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] init];
     
-    if ([self headerOneString]) {
-        [attrString appendAttributedString:[self attributedHeaderFooterStringWithString:[self headerOneString]
-                                                                              alignment:[self headerOneAlignment]]];
+    if ([self primaryHeaderString]) {
+        [attrString appendAttributedString:[self attributedHeaderFooterStringWithString:[self primaryHeaderString]
+                                                                              alignment:[self primaryHeaderAlignment]]];
     }
-    if ([self headerOneString] && [self headerTwoString]) {
+    if ([self primaryHeaderString] && [self secondaryHeaderString]) {
         [attrString appendAttributedString:[[NSAttributedString alloc] initWithString:@"\n"]];
     }
-    if ([self headerTwoString]) {
-        [attrString appendAttributedString:[self attributedHeaderFooterStringWithString:[self headerTwoString]
-                                                                              alignment:[self headerTwoAlignment]]];
+    if ([self secondaryHeaderString]) {
+        [attrString appendAttributedString:[self attributedHeaderFooterStringWithString:[self secondaryHeaderString]
+                                                                              alignment:[self secondaryHeaderAlignment]]];
     }
     
     return attrString;
@@ -192,16 +192,16 @@ static NSString *const PageNumberPlaceholder = @"PAGENUM";
     
     NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] init];
     
-    if ([self footerOneString]) {
-        [attrString appendAttributedString:[self attributedHeaderFooterStringWithString:[self footerOneString]
-                                                                              alignment:[self footerOneAlignment]]];
+    if ([self primaryFooterString]) {
+        [attrString appendAttributedString:[self attributedHeaderFooterStringWithString:[self primaryFooterString]
+                                                                              alignment:[self primaryFooterAlignment]]];
     }
-    if ([self footerOneString] && [self footerTwoString]) {
+    if ([self primaryFooterString] && [self secondaryFooterString]) {
         [attrString appendAttributedString:[[NSAttributedString alloc] initWithString:@"\n"]];
     }
-    if ([self footerTwoString]) {
-        [attrString appendAttributedString:[self attributedHeaderFooterStringWithString:[self footerTwoString]
-                                                                              alignment:[self footerTwoAlignment]]];
+    if ([self secondaryFooterString]) {
+        [attrString appendAttributedString:[self attributedHeaderFooterStringWithString:[self secondaryFooterString]
+                                                                              alignment:[self secondaryFooterAlignment]]];
     }
     
     return attrString;
@@ -375,15 +375,15 @@ static NSString *const PageNumberPlaceholder = @"PAGENUM";
     
     // setup header/footer
     [self setPrintsHeader:[settings[CEPrintHeaderKey] boolValue]];
-    [self setHeaderOneString:[self stringForPrintInfoType:[settings[CEPrimaryHeaderContentKey] unsignedIntegerValue]]];
-    [self setHeaderOneAlignment:[settings[CEPrimaryHeaderAlignmentKey] unsignedIntegerValue]];
-    [self setHeaderTwoString:[self stringForPrintInfoType:[settings[CESecondaryHeaderContentKey] unsignedIntegerValue]]];
-    [self setHeaderTwoAlignment:[settings[CESecondaryHeaderAlignmentKey] unsignedIntegerValue]];
+    [self setPrimaryHeaderString:[self stringForPrintInfoType:[settings[CEPrimaryHeaderContentKey] unsignedIntegerValue]]];
+    [self setPrimaryHeaderAlignment:[settings[CEPrimaryHeaderAlignmentKey] unsignedIntegerValue]];
+    [self setSecondaryHeaderString:[self stringForPrintInfoType:[settings[CESecondaryHeaderContentKey] unsignedIntegerValue]]];
+    [self setSecondaryHeaderAlignment:[settings[CESecondaryHeaderAlignmentKey] unsignedIntegerValue]];
     [self setPrintsFooter:[settings[CEPrintFooterKey] boolValue]];
-    [self setFooterOneString:[self stringForPrintInfoType:[settings[CEPrimaryFooterContentKey] unsignedIntegerValue]]];
-    [self setFooterOneAlignment:[settings[CEPrimaryFooterAlignmentKey] unsignedIntegerValue]];
-    [self setFooterTwoString:[self stringForPrintInfoType:[settings[CESecondaryFooterContentKey] unsignedIntegerValue]]];
-    [self setFooterTwoAlignment:[settings[CESecondaryFooterAlignmentKey] unsignedIntegerValue]];
+    [self setPrimaryFooterString:[self stringForPrintInfoType:[settings[CEPrimaryFooterContentKey] unsignedIntegerValue]]];
+    [self setPrimaryFooterAlignment:[settings[CEPrimaryFooterAlignmentKey] unsignedIntegerValue]];
+    [self setSecondaryFooterString:[self stringForPrintInfoType:[settings[CESecondaryFooterContentKey] unsignedIntegerValue]]];
+    [self setSecondaryFooterAlignment:[settings[CESecondaryFooterAlignmentKey] unsignedIntegerValue]];
 }
 
 
