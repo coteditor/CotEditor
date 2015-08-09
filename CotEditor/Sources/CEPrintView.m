@@ -40,6 +40,7 @@ CGFloat const kHorizontalPrintMargin = 24.0;  // default 72.0
 
 static CGFloat const kHorizontalHeaderFooterMargin = 20.0;
 static CGFloat const kLineNumberPadding = 10.0;
+static CGFloat const kHeaderFooterFontSize = 9.0;
 
 static NSString *const PageNumberPlaceholder = @"PAGENUM";
 
@@ -393,9 +394,9 @@ static NSString *const PageNumberPlaceholder = @"PAGENUM";
 
 // ------------------------------------------------------
 /// return attributed string for header/footer
-- (nonnull NSAttributedString *)headerFooterWithPrimaryString:(NSString *)primaryString
+- (nonnull NSAttributedString *)headerFooterWithPrimaryString:(nullable NSString *)primaryString
                                              primaryAlignment:(CEAlignmentType)primaryAlignment
-                                              secondaryString:(NSString *)secondaryString
+                                              secondaryString:(nullable NSString *)secondaryString
                                            secondaryAlignment:(CEAlignmentType)secondaryAlignment
 // ------------------------------------------------------
 {
@@ -419,7 +420,7 @@ static NSString *const PageNumberPlaceholder = @"PAGENUM";
 
 // ------------------------------------------------------
 /// return attributed string for given header/footer contents applying page numbers
-- (NSAttributedString *)attributedHeaderFooterStringWithString:(nonnull NSString *)string alignment:(CEAlignmentType)alignment
+- (nonnull NSAttributedString *)attributedHeaderFooterStringWithString:(nonnull NSString *)string alignment:(CEAlignmentType)alignment
 // ------------------------------------------------------
 {
     if ([string isEqualToString:PageNumberPlaceholder]) {
@@ -454,7 +455,11 @@ static NSString *const PageNumberPlaceholder = @"PAGENUM";
     }
     [paragraphStyle setAlignment:alignment];
     
-    return @{NSParagraphStyleAttributeName: paragraphStyle};
+    // font
+    NSFont *font = [NSFont userFontOfSize:kHeaderFooterFontSize];
+    
+    return @{NSParagraphStyleAttributeName: paragraphStyle,
+             NSFontAttributeName: font};
 }
 
 
