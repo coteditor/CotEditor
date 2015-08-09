@@ -233,12 +233,13 @@ static NSString *const PageNumberPlaceholder = @"PAGENUM";
 {
     // update text view size considering text orientation
     NSPrintInfo *printInfo = [[NSPrintOperation currentOperation] printInfo];
+    CGFloat scale = [printInfo scalingFactor];
     NSSize frameSize;
     if ([self layoutOrientation] == NSTextLayoutOrientationVertical) {
         frameSize = NSMakeSize([self maxSize].width,
-                               [printInfo paperSize].height - ([printInfo leftMargin] + [printInfo rightMargin]));
+                               ([printInfo paperSize].height - ([printInfo leftMargin] + [printInfo rightMargin])) / scale);
     } else {
-        frameSize = NSMakeSize([printInfo paperSize].width - ([printInfo leftMargin] + [printInfo rightMargin]),
+        frameSize = NSMakeSize(([printInfo paperSize].width - ([printInfo leftMargin] + [printInfo rightMargin])) / scale,
                                [self maxSize].height);
     }
     [self setFrameSize:frameSize];
