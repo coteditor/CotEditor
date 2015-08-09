@@ -192,21 +192,10 @@ static NSString *const PageNumberPlaceholder = @"PAGENUM";
     
     if (![self printsHeader]) { return [[NSAttributedString alloc] init]; }
     
-    NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] init];
-    
-    if ([self primaryHeaderString]) {
-        [attrString appendAttributedString:[self attributedHeaderFooterStringWithString:[self primaryHeaderString]
-                                                                              alignment:[self primaryHeaderAlignment]]];
-    }
-    if ([self primaryHeaderString] && [self secondaryHeaderString]) {
-        [attrString appendAttributedString:[[NSAttributedString alloc] initWithString:@"\n"]];
-    }
-    if ([self secondaryHeaderString]) {
-        [attrString appendAttributedString:[self attributedHeaderFooterStringWithString:[self secondaryHeaderString]
-                                                                              alignment:[self secondaryHeaderAlignment]]];
-    }
-    
-    return attrString;
+    return [self headerFooterWithPrimaryString:[self primaryHeaderString]
+                              primaryAlignment:[self primaryHeaderAlignment]
+                               secondaryString:[self secondaryHeaderString]
+                            secondaryAlignment:[self secondaryHeaderAlignment]];
 }
 
 
@@ -219,21 +208,10 @@ static NSString *const PageNumberPlaceholder = @"PAGENUM";
     
     if (![self printsFooter]) { return [[NSAttributedString alloc] init]; }
     
-    NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] init];
-    
-    if ([self primaryFooterString]) {
-        [attrString appendAttributedString:[self attributedHeaderFooterStringWithString:[self primaryFooterString]
-                                                                              alignment:[self primaryFooterAlignment]]];
-    }
-    if ([self primaryFooterString] && [self secondaryFooterString]) {
-        [attrString appendAttributedString:[[NSAttributedString alloc] initWithString:@"\n"]];
-    }
-    if ([self secondaryFooterString]) {
-        [attrString appendAttributedString:[self attributedHeaderFooterStringWithString:[self secondaryFooterString]
-                                                                              alignment:[self secondaryFooterAlignment]]];
-    }
-    
-    return attrString;
+    return [self headerFooterWithPrimaryString:[self primaryFooterString]
+                              primaryAlignment:[self primaryFooterAlignment]
+                               secondaryString:[self secondaryFooterString]
+                            secondaryAlignment:[self secondaryFooterAlignment]];
 }
 
 
@@ -410,6 +388,32 @@ static NSString *const PageNumberPlaceholder = @"PAGENUM";
     [self setPrimaryFooterAlignment:[settings[CEPrimaryFooterAlignmentKey] unsignedIntegerValue]];
     [self setSecondaryFooterString:[self stringForPrintInfoType:[settings[CESecondaryFooterContentKey] unsignedIntegerValue]]];
     [self setSecondaryFooterAlignment:[settings[CESecondaryFooterAlignmentKey] unsignedIntegerValue]];
+}
+
+
+// ------------------------------------------------------
+/// return attributed string for header/footer
+- (nonnull NSAttributedString *)headerFooterWithPrimaryString:(NSString *)primaryString
+                                             primaryAlignment:(CEAlignmentType)primaryAlignment
+                                              secondaryString:(NSString *)secondaryString
+                                           secondaryAlignment:(CEAlignmentType)secondaryAlignment
+// ------------------------------------------------------
+{
+    NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] init];
+    
+    if (primaryString) {
+        [attrString appendAttributedString:[self attributedHeaderFooterStringWithString:primaryString
+                                                                              alignment:primaryAlignment]];
+    }
+    if (primaryString && secondaryString) {
+        [attrString appendAttributedString:[[NSAttributedString alloc] initWithString:@"\n"]];
+    }
+    if (secondaryString) {
+        [attrString appendAttributedString:[self attributedHeaderFooterStringWithString:secondaryString
+                                                                              alignment:secondaryAlignment]];
+    }
+    
+    return [attrString copy];
 }
 
 
