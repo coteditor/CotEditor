@@ -33,8 +33,10 @@
 
 
 static const CGFloat kMinVerticalThickness = 32.0;
+static const CGFloat kHorizontalThickness = 20.0;
 static const NSUInteger kMinNumberOfDigits = 3;
-static CGFloat const kLineNumberPadding = 3.0;
+static const CGFloat  kLineNumberPadding = 3.0;
+static const CGFloat kTicksLength = 4.0;
 
 
 @interface CELineNumberView ()
@@ -89,7 +91,8 @@ static const NSString *LineNumberFontName;
 {
     [super viewDidMoveToSuperview];
     
-    [self setRuleThickness:kMinVerticalThickness];
+    CGFloat thickness = [self orientation] == NSHorizontalRuler ? kHorizontalThickness : kMinVerticalThickness;
+    [self setRuleThickness:thickness];
 }
 
 
@@ -179,12 +182,14 @@ static const NSString *LineNumberFontName;
     CFRelease(font);
     
     // add enough buffer to avoid broken drawing on Mountain Lion (10.8) with scroller (2015-07)
-    NSRect visibleRect = [[self textView] visibleRect];
+    NSRect visibleRect = [[self scrollView] documentVisibleRect];
     visibleRect.size.height += fontSize;
     
     // get glyph range which line number should be drawn
     NSRange visibleGlyphRange = [layoutManager glyphRangeForBoundingRect:visibleRect
                                                          inTextContainer:[[self textView] textContainer]];
+    
+    BOOL isVerticalText = [self orientation] == NSHorizontalRuler;
     
     // counters
     NSUInteger glyphCount = visibleGlyphRange.location;
@@ -208,21 +213,46 @@ static const NSString *LineNumberFontName;
             CGFloat y = -NSMinY(lineRect);
             
             if (lastLineNumber == lineNumber) {  // wrapped line
-                CGPoint position = CGPointMake(width - charWidth, y);
-                CGContextShowGlyphsAtPositions(context, &wrappedMarkGlyph, &position, 1);  // draw wrapped mark
-                
-            } else {  // new line
-                NSUInteger digit = numberOfDigits(lineNumber);
-                
-                // get glyphs and positions
-                CGGlyph glyphs[digit];
-                CGPoint positions[digit];
-                for (NSUInteger i = 0; i < digit; i++) {
-                    glyphs[i] = digitGlyphs[numberAt(i, lineNumber)];
-                    positions[i] = CGPointMake(width - (i + 1) * charWidth, y);
+                if (!isVerticalText) {
+                    CGPoint position = CGPointMake(width - charWidth, y);
+                    CGContextShowGlyphsAtPositions(context, &wrappedMarkGlyph, &position, 1);  // draw wrapped mark
                 }
                 
-                CGContextShowGlyphsAtPositions(context, glyphs, positions, digit);  // draw line number
+            } else {  // new line
+                // translate x position for vertical text
+                if (isVerticalText) {
+                    y = NSWidth([self bounds]) + (visibleRect.origin.y + y) - fontSize / 2;
+                }
+                // draw line number
+                if (!isVerticalText || lineNumber % 5 == 0 || lineNumber == 1) {
+                    NSUInteger digit = numberOfDigits(lineNumber);
+                    
+                    // calculate base position
+                    CGPoint position;
+                    if (isVerticalText) {
+                        position = CGPointMake(y + (charWidth * (digit - 1)) / 2, [self ruleThickness] + kTicksLength - 2);
+                    } else {
+                        position = CGPointMake(width, y);
+                    }
+                    
+                    // get glyphs and positions
+                    CGGlyph glyphs[digit];
+                    CGPoint positions[digit];
+                    for (NSUInteger i = 0; i < digit; i++) {
+                        position.x -= charWidth;
+                        
+                        positions[i] = position;
+                        glyphs[i] = digitGlyphs[numberAt(i, lineNumber)];
+                    }
+                    
+                    CGContextShowGlyphsAtPositions(context, glyphs, positions, digit);  // draw line number
+                }
+                
+                if (isVerticalText) {
+                    CGFloat x = floor(y - fontSize / 2) -0.5;
+                    CGContextMoveToPoint(context, x, self.ruleThickness);
+                    CGContextAddLineToPoint(context, x, self.ruleThickness - kTicksLength);
+                }
             }
             
             lastLineNumber = lineNumber;
@@ -246,14 +276,24 @@ static const NSString *LineNumberFontName;
         }
         
         CGContextShowGlyphsAtPositions(context, glyphs, positions, digit);  // draw line number
+        
+        if (isVerticalText) {
+            y = NSWidth([self bounds]) + (visibleRect.origin.y + y) - fontSize / 2;
+            CGFloat x = floor(y - fontSize / 2) -0.5;
+            CGContextMoveToPoint(context, x, self.ruleThickness);
+            CGContextAddLineToPoint(context, x, self.ruleThickness - kTicksLength);
+        }
     }
     
+    CGContextStrokePath(context);  // draw vertical text tics
     CGContextRestoreGState(context);
     
     // adjust thickness
-    NSUInteger length = MAX(numberOfDigits(lineNumber), kMinNumberOfDigits);
-    CGFloat requiredWidth = MAX(length * charWidth + 3 * kLineNumberPadding, kMinVerticalThickness);
-    [self setRuleThickness:ceil(requiredWidth)];
+    if (!isVerticalText) {
+        NSUInteger length = MAX(numberOfDigits(lineNumber), kMinNumberOfDigits);
+        CGFloat requiredWidth = MAX(length * charWidth + 3 * kLineNumberPadding, kMinVerticalThickness);
+        [self setRuleThickness:ceil(requiredWidth)];
+    }
 }
 
 
@@ -271,6 +311,9 @@ static const NSString *LineNumberFontName;
 - (CGFloat)requiredThickness
 // ------------------------------------------------------
 {
+    if ([self orientation] == NSHorizontalRuler) {
+        return [self ruleThickness];
+    }
     return MAX(kMinVerticalThickness, [self ruleThickness]);
 }
 
