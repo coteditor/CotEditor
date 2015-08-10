@@ -288,7 +288,12 @@ static const NSString *LineNumberFontName;
         draw_number(lineNumber, lastLineNumber, y, YES);
     }
     
-    CGContextStrokePath(context);  // draw vertical text tics
+    // draw vertical text tics
+    if (isVerticalText) {
+        CGContextSetStrokeColorWithColor(context, [[textColor colorWithAlphaComponent:0.6] CGColor]);
+        CGContextStrokePath(context);
+    }
+    
     CGContextRestoreGState(context);
     
     // adjust thickness
