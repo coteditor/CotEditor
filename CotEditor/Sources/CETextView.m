@@ -723,8 +723,6 @@ static NSPoint kTextContainerOrigin;
 // ------------------------------------------------------
 {
     if (theOrientation != [self layoutOrientation]) {
-        BOOL isVertical = (theOrientation == NSTextLayoutOrientationVertical);
-        
         // 折り返しを再セット
         if ([[self textContainer] containerSize].width != CGFLOAT_MAX) {
             [[self textContainer] setContainerSize:NSMakeSize(0, CGFLOAT_MAX)];
