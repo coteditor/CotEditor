@@ -201,6 +201,45 @@ static const NSString *LineNumberFontName;
     lineNumber += [regex numberOfMatchesInString:string options:0
                                         range:NSMakeRange(0, [layoutManager characterIndexForGlyphAtIndex:visibleGlyphRange.location])];
     
+    // draw line number block
+    CGGlyph *digitGlyphsPtr = digitGlyphs;
+    void (^draw_number)(NSUInteger, NSUInteger, CGFloat, BOOL) = ^(NSUInteger lineNumber, NSUInteger lastLineNumber, CGFloat y, BOOL drawsNumber){
+        // translate x position for vertical text
+        if (isVerticalText) {
+            y = NSWidth([self bounds]) + (visibleRect.origin.y + y) - fontSize / 2;
+        }
+        // draw line number
+        if (drawsNumber) {
+            NSUInteger digit = numberOfDigits(lineNumber);
+            
+            // calculate base position
+            CGPoint position;
+            if (isVerticalText) {
+                position = CGPointMake(y + (charWidth * (digit - 1)) / 2, [self ruleThickness] + kTicksLength - 2);
+            } else {
+                position = CGPointMake(width, y);
+            }
+            
+            // get glyphs and positions
+            CGGlyph glyphs[digit];
+            CGPoint positions[digit];
+            for (NSUInteger i = 0; i < digit; i++) {
+                position.x -= charWidth;
+                
+                positions[i] = position;
+                glyphs[i] = digitGlyphsPtr[numberAt(i, lineNumber)];
+            }
+            
+            CGContextShowGlyphsAtPositions(context, glyphs, positions, digit);  // draw line number
+        }
+        
+        if (isVerticalText) {
+            CGFloat x = floor(y - fontSize / 2) -0.5;
+            CGContextMoveToPoint(context, x, self.ruleThickness);
+            CGContextAddLineToPoint(context, x, self.ruleThickness - kTicksLength);
+        }
+    };
+    
     // draw visible line numbers
     for (NSUInteger glyphIndex = visibleGlyphRange.location; glyphIndex < NSMaxRange(visibleGlyphRange); lineNumber++) { // count "real" lines
         NSUInteger charIndex = [layoutManager characterIndexForGlyphAtIndex:glyphIndex];
@@ -219,44 +258,12 @@ static const NSString *LineNumberFontName;
                 }
                 
             } else {  // new line
-                // translate x position for vertical text
-                if (isVerticalText) {
-                    y = NSWidth([self bounds]) + (visibleRect.origin.y + y) - fontSize / 2;
-                }
-                // draw line number
-                if (!isVerticalText || lineNumber % 5 == 0 || lineNumber == 1) {
-                    NSUInteger digit = numberOfDigits(lineNumber);
-                    
-                    // calculate base position
-                    CGPoint position;
-                    if (isVerticalText) {
-                        position = CGPointMake(y + (charWidth * (digit - 1)) / 2, [self ruleThickness] + kTicksLength - 2);
-                    } else {
-                        position = CGPointMake(width, y);
-                    }
-                    
-                    // get glyphs and positions
-                    CGGlyph glyphs[digit];
-                    CGPoint positions[digit];
-                    for (NSUInteger i = 0; i < digit; i++) {
-                        position.x -= charWidth;
-                        
-                        positions[i] = position;
-                        glyphs[i] = digitGlyphs[numberAt(i, lineNumber)];
-                    }
-                    
-                    CGContextShowGlyphsAtPositions(context, glyphs, positions, digit);  // draw line number
-                }
-                
-                if (isVerticalText) {
-                    CGFloat x = floor(y - fontSize / 2) -0.5;
-                    CGContextMoveToPoint(context, x, self.ruleThickness);
-                    CGContextAddLineToPoint(context, x, self.ruleThickness - kTicksLength);
-                }
+                BOOL drawsNumber = (!isVerticalText || lineNumber % 5 == 0 || lineNumber == 1);
+                draw_number(lineNumber, lastLineNumber, y, drawsNumber);
             }
             
-            lastLineNumber = lineNumber;
             glyphCount = NSMaxRange(range);
+            lastLineNumber = lineNumber;
         }
     }
     
@@ -265,24 +272,7 @@ static const NSString *LineNumberFontName;
         NSRect lineRect = [layoutManager extraLineFragmentUsedRect];
         CGFloat y = -NSMinY(lineRect);
         
-        NSUInteger digit = numberOfDigits(lineNumber);
-        
-        // get glyphs and positions
-        CGGlyph glyphs[digit];
-        CGPoint positions[digit];
-        for (NSUInteger i = 0; i < digit; i++) {
-            glyphs[i] = digitGlyphs[numberAt(i, lineNumber)];
-            positions[i] = CGPointMake(width - (i + 1) * charWidth, y);
-        }
-        
-        CGContextShowGlyphsAtPositions(context, glyphs, positions, digit);  // draw line number
-        
-        if (isVerticalText) {
-            y = NSWidth([self bounds]) + (visibleRect.origin.y + y) - fontSize / 2;
-            CGFloat x = floor(y - fontSize / 2) -0.5;
-            CGContextMoveToPoint(context, x, self.ruleThickness);
-            CGContextAddLineToPoint(context, x, self.ruleThickness - kTicksLength);
-        }
+        draw_number(lineNumber, lastLineNumber, y, YES);
     }
     
     CGContextStrokePath(context);  // draw vertical text tics
