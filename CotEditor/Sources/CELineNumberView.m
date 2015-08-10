@@ -190,6 +190,7 @@ static const NSString *LineNumberFontName;
                                                          inTextContainer:[[self textView] textContainer]];
     
     BOOL isVerticalText = [self orientation] == NSHorizontalRuler;
+    NSUInteger tailGlyphIndex = [layoutManager glyphIndexForCharacterAtIndex:[string length]];
     
     // counters
     NSUInteger glyphCount = visibleGlyphRange.location;
@@ -263,6 +264,17 @@ static const NSString *LineNumberFontName;
             }
             
             glyphCount = NSMaxRange(range);
+            
+            // draw last line number anyway
+            if (isVerticalText &&  // vertical text
+                lastLineNumber != lineNumber &&  // new line
+                isVerticalText && lineNumber != 1 && lineNumber % 5 != 0 &&  // not yet drawn
+                tailGlyphIndex == glyphIndex &&  // last line
+                ![layoutManager extraLineFragmentTextContainer])  // no extra number
+            {
+                draw_number(lineNumber, lastLineNumber, y, YES);
+            }
+            
             lastLineNumber = lineNumber;
         }
     }
