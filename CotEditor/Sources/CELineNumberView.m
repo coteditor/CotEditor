@@ -226,7 +226,7 @@ static const NSString *LineNumberFontName;
             // calculate base position
             CGPoint position;
             if (isVerticalText) {
-                position = CGPointMake(round(y + (charWidth * (digit + 1)) / 2), ruleThickness + tickLength - 2);
+                position = CGPointMake(ceil(y + (charWidth * (digit + 1)) / 2), ruleThickness + tickLength - 2);
             } else {
                 position = CGPointMake(ruleThickness, y);
             }
