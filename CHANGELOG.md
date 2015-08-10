@@ -12,7 +12,8 @@ develop
 - Share button in toolbar (Customize toobar to use it).
 - Save text orientation state to the file and restore it when the file is opened.
     - __for advanced users__: In this feature, CotEditor saves an *extended attribute* which named `com.coteditor.VerticalText` to the file only when the editor's text orientation is vertical. You can even disable the feature running the command `defaults write com.coteditor.CotEditor savesTextOrientation -bool NO` in Terminal. 
-- Print with vertical text layout.
+- Line number view for vertical text orientation.
+- Print with vertical text orientation.
 
 
 ### Additions/Changes

@@ -56,6 +56,55 @@
 }
 
 
+// ------------------------------------------------------
+/// clean up
+- (void)dealloc
+// ------------------------------------------------------
+{
+    if ([[self documentView] isKindOfClass:[NSTextView class]]) {
+        [(NSTextView *)[self documentView] removeObserver:self forKeyPath:@"layoutOrientation"];
+    }
+}
+
+
+// ------------------------------------------------------
+/// set text view
+- (void)setDocumentView:(nullable id)documentView
+// ------------------------------------------------------
+{
+    // observe layout orientation change
+    if ([[self documentView] isKindOfClass:[NSTextView class]]) {
+        [(NSTextView *)documentView removeObserver:self forKeyPath:@"layoutOrientation"];
+    }
+    if ([documentView isKindOfClass:[NSTextView class]]) {
+        [(NSTextView *)documentView addObserver:self forKeyPath:@"layoutOrientation" options:NSKeyValueObservingOptionNew context:nil];
+    }
+    
+    [super setDocumentView:documentView];
+}
+
+
+// ------------------------------------------------------
+/// observed key value did update
+- (void)observeValueForKeyPath:(nullable NSString *)keyPath ofObject:(nullable id)object change:(nullable NSDictionary *)change context:(nullable void *)context
+// ------------------------------------------------------
+{
+    if ([keyPath isEqual:@"layoutOrientation"]) {
+        switch ([self layoutOrientation]) {
+            case NSTextLayoutOrientationHorizontal:
+                [self setHasVerticalRuler:YES];
+                [self setHasHorizontalRuler:NO];
+                break;
+                
+            case NSTextLayoutOrientationVertical:
+                [self setHasVerticalRuler:NO];
+                [self setHasHorizontalRuler:YES];
+                break;
+        };
+    }
+}
+
+
 
 #pragma mark Public Methods
 
@@ -72,11 +121,28 @@
 #pragma mark Private Methods
 
 // ------------------------------------------------------
+/// return layout orientation of document text view
+- (NSTextLayoutOrientation)layoutOrientation
+// ------------------------------------------------------
+{
+    if (![self documentView] || ![[self documentView] isKindOfClass:[NSTextView class]]) { return NSTextLayoutOrientationHorizontal; }  // documentView is "unsafe"
+    
+    return [(NSTextView *)[self documentView] layoutOrientation];
+}
+
+
+// ------------------------------------------------------
 /// return current line number veiw
 - (nullable NSRulerView *)lineNumberView
 // ------------------------------------------------------
 {
-    return [self verticalRulerView];
+    switch ([self layoutOrientation]) {
+        case NSTextLayoutOrientationHorizontal:
+            return [self verticalRulerView];
+            
+        case NSTextLayoutOrientationVertical:
+            return [self horizontalRulerView];
+    }
 }
 
 @end

@@ -723,16 +723,10 @@ static NSPoint kTextContainerOrigin;
 // ------------------------------------------------------
 {
     if (theOrientation != [self layoutOrientation]) {
-        BOOL isVertical = (theOrientation == NSTextLayoutOrientationVertical);
-        
         // 折り返しを再セット
         if ([[self textContainer] containerSize].width != CGFLOAT_MAX) {
             [[self textContainer] setContainerSize:NSMakeSize(0, CGFLOAT_MAX)];
         }
-        
-        // 縦書きのときは強制的に行番号ビューを非表示
-        BOOL showsLineNum = isVertical ? NO : [[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultShowLineNumbersKey];
-        [[self enclosingScrollView] setRulersVisible:showsLineNum];
     }
     
     [super setLayoutOrientation:theOrientation];
