@@ -32,11 +32,10 @@
 #import "Constants.h"
 
 
-static const CGFloat kMinVerticalThickness = 32.0;
-static const CGFloat kHorizontalThickness = 20.0;
 static const NSUInteger kMinNumberOfDigits = 3;
+static const CGFloat kMinVerticalThickness = 32.0;
+static const CGFloat kMinHorizontalThickness = 20.0;
 static const CGFloat  kLineNumberPadding = 3.0;
-static const CGFloat kTicksLength = 4.0;
 
 
 @interface CELineNumberView ()
@@ -91,7 +90,7 @@ static const NSString *LineNumberFontName;
 {
     [super viewDidMoveToSuperview];
     
-    CGFloat thickness = [self orientation] == NSHorizontalRuler ? kHorizontalThickness : kMinVerticalThickness;
+    CGFloat thickness = [self orientation] == NSHorizontalRuler ? kMinHorizontalThickness : kMinVerticalThickness;
     [self setRuleThickness:thickness];
 }
 
@@ -146,6 +145,8 @@ static const NSString *LineNumberFontName;
     CGFloat masterFontSize = [[[self textView] font] pointSize];
     CGFloat fontSize = round(0.9 * masterFontSize);
     CTFontRef font = CTFontCreateWithName((CFStringRef)LineNumberFontName, fontSize, nil);
+    
+    CGFloat tickLength = ceil(fontSize / 3);
     
     CGFontRef cgFont = CTFontCopyGraphicsFont(font, NULL);
     CGContextSetFont(context, cgFont);
@@ -205,11 +206,19 @@ static const NSString *LineNumberFontName;
     // draw line number block
     CGGlyph *digitGlyphsPtr = digitGlyphs;
     CGFloat width = NSWidth([self bounds]);
-    void (^draw_number)(NSUInteger, NSUInteger, CGFloat, BOOL) = ^(NSUInteger lineNumber, NSUInteger lastLineNumber, CGFloat y, BOOL drawsNumber){
-        // translate x position for vertical text
+    CGFloat padding = [[[self textView] textContainer] lineFragmentPadding];
+    void (^draw_number)(NSUInteger, NSUInteger, CGFloat, BOOL) = ^(NSUInteger lineNumber, NSUInteger lastLineNumber, CGFloat y, BOOL drawsNumber)
+    {
         if (isVerticalText) {
-            y = width + (visibleRect.origin.y + y) - fontSize / 2;
+            // translate y position to horizontal axis
+            y = width + NSMinY(visibleRect) + y - masterFontSize / 2 - padding;
+            
+            // draw ticks on vertical text
+            CGFloat x = round(y) - 0.5;
+            CGContextMoveToPoint(context, x, ruleThickness);
+            CGContextAddLineToPoint(context, x, ruleThickness - tickLength);
         }
+        
         // draw line number
         if (drawsNumber) {
             NSUInteger digit = numberOfDigits(lineNumber);
@@ -217,7 +226,7 @@ static const NSString *LineNumberFontName;
             // calculate base position
             CGPoint position;
             if (isVerticalText) {
-                position = CGPointMake(y + (charWidth * (digit - 1)) / 2, ruleThickness + kTicksLength - 2);
+                position = CGPointMake(round(y + (charWidth * (digit + 1)) / 2), ruleThickness + tickLength - 2);
             } else {
                 position = CGPointMake(ruleThickness, y);
             }
@@ -233,12 +242,6 @@ static const NSString *LineNumberFontName;
             }
             
             CGContextShowGlyphsAtPositions(context, glyphs, positions, digit);  // draw line number
-        }
-        
-        if (isVerticalText) {
-            CGFloat x = floor(y - fontSize / 2) -0.5;
-            CGContextMoveToPoint(context, x, ruleThickness);
-            CGContextAddLineToPoint(context, x, ruleThickness - kTicksLength);
         }
     };
     
@@ -297,11 +300,14 @@ static const NSString *LineNumberFontName;
     CGContextRestoreGState(context);
     
     // adjust thickness
-    if (!isVerticalText) {
+    CGFloat requiredThickness;
+    if (isVerticalText) {
+        requiredThickness = MAX(fontSize + tickLength + 2 * kLineNumberPadding, kMinHorizontalThickness);
+    } else {
         NSUInteger length = MAX(numberOfDigits(lineNumber), kMinNumberOfDigits);
-        CGFloat requiredWidth = MAX(length * charWidth + 3 * kLineNumberPadding, kMinVerticalThickness);
-        [self setRuleThickness:ceil(requiredWidth)];
+        requiredThickness = MAX(length * charWidth + 3 * kLineNumberPadding, kMinVerticalThickness);
     }
+    [self setRuleThickness:ceil(requiredThickness)];
 }
 
 
