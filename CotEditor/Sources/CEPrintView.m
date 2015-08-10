@@ -35,7 +35,7 @@
 
 
 // constants
-CGFloat const kVerticalPrintMargin = 58.0;    // default 90.0
+CGFloat const kVerticalPrintMargin = 56.0;    // default 90.0
 CGFloat const kHorizontalPrintMargin = 24.0;  // default 72.0
 
 static CGFloat const kHorizontalHeaderFooterMargin = 20.0;
@@ -482,7 +482,7 @@ static NSString *const PageNumberPlaceholder = @"PAGENUM";
     
     // tab stops for double-sided alignment (imitation of [super paperHeader])
     NSPrintInfo *printInfo = [[NSPrintOperation currentOperation] printInfo];
-    CGFloat rightTabLocation = [printInfo paperSize].width - [printInfo leftMargin]  - 5;  // It's not clear where the 5 come from.
+    CGFloat rightTabLocation = rightTabLocation = [printInfo paperSize].width - [printInfo topMargin] / 2;
     [paragraphStyle setTabStops:@[[[NSTextTab alloc] initWithType:NSCenterTabStopType location:rightTabLocation / 2],
                                   [[NSTextTab alloc] initWithType:NSRightTabStopType location:rightTabLocation]]];
     
