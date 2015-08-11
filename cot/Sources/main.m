@@ -151,7 +151,10 @@ int main(int argc, char *argv[])
         }
         
         // launch CotEditor
-        [[NSWorkspace sharedWorkspace] launchApplication:@"CotEditor"];
+        [[NSWorkspace sharedWorkspace] launchAppWithBundleIdentifier:kBundleIdentifier
+                                                             options:NSWorkspaceLaunchWithoutActivation
+                                      additionalEventParamDescriptor:nil
+                                                    launchIdentifier:nil];
         
         // create scriptable application object
         CotEditorApplication *CotEditor = [SBApplication applicationWithBundleIdentifier:kBundleIdentifier];
