@@ -171,7 +171,7 @@ static const NSString *LineNumberFontName;
     // prepare frame width
     CGFloat ruleThickness = [self ruleThickness];
     
-    // adjust drawing coordinate
+    // adjust text drawing coordinate
     NSPoint relativePoint = [self convertPoint:NSZeroPoint fromView:[self textView]];
     NSPoint inset = [[self textView] textContainerOrigin];
     CGFloat diff = masterFontSize - fontSize;
@@ -193,25 +193,13 @@ static const NSString *LineNumberFontName;
     BOOL isVerticalText = [self orientation] == NSHorizontalRuler;
     NSUInteger tailGlyphIndex = [layoutManager glyphIndexForCharacterAtIndex:[string length]];
     
-    // counters
-    NSUInteger glyphCount = visibleGlyphRange.location;
-    NSUInteger lineNumber = 1;
-    NSUInteger lastLineNumber = 0;
-    
-    // count lines until visible
-    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"\n" options:0 error:nil];
-    lineNumber += [regex numberOfMatchesInString:string options:0
-                                        range:NSMakeRange(0, [layoutManager characterIndexForGlyphAtIndex:visibleGlyphRange.location])];
-    
     // draw line number block
     CGGlyph *digitGlyphsPtr = digitGlyphs;
-    CGFloat width = NSWidth([self bounds]);
-    CGFloat padding = [[[self textView] textContainer] lineFragmentPadding];
     void (^draw_number)(NSUInteger, NSUInteger, CGFloat, BOOL) = ^(NSUInteger lineNumber, NSUInteger lastLineNumber, CGFloat y, BOOL drawsNumber)
     {
         if (isVerticalText) {
             // translate y position to horizontal axis
-            y = width + NSMinY(visibleRect) + y - masterFontSize / 2 - padding;
+            y += relativePoint.x - masterFontSize / 2 - inset.y;
             
             // draw ticks on vertical text
             CGFloat x = round(y) - 0.5;
@@ -226,7 +214,7 @@ static const NSString *LineNumberFontName;
             // calculate base position
             CGPoint position;
             if (isVerticalText) {
-                position = CGPointMake(ceil(y + (charWidth * (digit + 1)) / 2), ruleThickness + tickLength - 2);
+                position = CGPointMake(ceil(y + charWidth * (digit + 1) / 2), ruleThickness + tickLength - 2);
             } else {
                 position = CGPointMake(ruleThickness, y);
             }
@@ -244,6 +232,16 @@ static const NSString *LineNumberFontName;
             CGContextShowGlyphsAtPositions(context, glyphs, positions, digit);  // draw line number
         }
     };
+    
+    // counters
+    NSUInteger glyphCount = visibleGlyphRange.location;
+    NSUInteger lineNumber = 1;
+    NSUInteger lastLineNumber = 0;
+    
+    // count lines until visible
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"\n" options:0 error:nil];
+    lineNumber += [regex numberOfMatchesInString:string options:0
+                                           range:NSMakeRange(0, [layoutManager characterIndexForGlyphAtIndex:visibleGlyphRange.location])];
     
     // draw visible line numbers
     for (NSUInteger glyphIndex = visibleGlyphRange.location; glyphIndex < NSMaxRange(visibleGlyphRange); lineNumber++) { // count "real" lines

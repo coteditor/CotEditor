@@ -68,7 +68,7 @@
 - (void)drawLayer:(nonnull CALayer *)layer inContext:(nonnull CGContextRef)ctx
 // ------------------------------------------------------
 {
-    CGRect frame = [self frame];
+    NSRect frame = [self frame];
     const CGFloat strokeWidth = 1.0;
     
     CGContextSetStrokeColorWithColor(ctx, [[self borderColor] CGColor]);
