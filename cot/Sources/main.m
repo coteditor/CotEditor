@@ -166,6 +166,18 @@ int main(int argc, char *argv[])
         
         // launch CotEditor
         [CotEditor open:URLs];
+        
+        // Due to Sandboxing, the following `open:` method doesn't work.
+        //     [CotEditor open:URLs];
+        // So, we let AppleScript command run directly to open given file paths.
+        // I'm not sure it confirms to Apple's Mac App Store agreement, but at least it works... (2015-08 by 1024jp)
+        for (NSURL *URL in URLs) {
+            NSString *path = [[URL absoluteString] stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
+            NSString *source = [NSString stringWithFormat:@"tell app \"CotEditor\" to open POSIX file \"%@\"", path];
+            NSAppleScript *script = [[NSAppleScript alloc] initWithSource:source];
+            [script executeAndReturnError:nil];
+        }
+        
         if (!isBackground) {
             [CotEditor activate];
         }
