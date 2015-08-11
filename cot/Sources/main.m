@@ -164,9 +164,6 @@ int main(int argc, char *argv[])
             exit(EXIT_FAILURE);
         }
         
-        // launch CotEditor
-        [[NSWorkspace sharedWorkspace] launchApplication:kBundleIdentifier];
-        
         // Due to Sandboxing, the following `open:` method doesn't work.
         //     [CotEditor open:URLs];
         // So, we let AppleScript command run directly to open given file paths.
