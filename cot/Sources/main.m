@@ -150,14 +150,11 @@ int main(int argc, char *argv[])
             input = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
         }
         
+        // launch CotEditor
+        [[NSWorkspace sharedWorkspace] launchApplication:@"CotEditor"];
+        
         // create scriptable application object
-        NSURL *applicationURL = [[NSBundle mainBundle] bundleURL];  // CotEditor.app
-        CotEditorApplication *CotEditor;
-        if ([[applicationURL pathExtension] isEqualToString:@"app"]) {
-            CotEditor = [SBApplication applicationWithURL:applicationURL];
-        } else {
-            CotEditor = [SBApplication applicationWithBundleIdentifier:kBundleIdentifier];
-        }
+        CotEditorApplication *CotEditor = [SBApplication applicationWithBundleIdentifier:kBundleIdentifier];
         
         if (!CotEditor) {
             printf("Failed open CotEditor.\n");
@@ -165,7 +162,7 @@ int main(int argc, char *argv[])
         }
         
         // launch CotEditor
-        [CotEditor open:URLs];
+        [[NSWorkspace sharedWorkspace] launchApplication:kBundleIdentifier];
         
         // Due to Sandboxing, the following `open:` method doesn't work.
         //     [CotEditor open:URLs];

@@ -17,6 +17,7 @@
 	<key>com.apple.security.temporary-exception.apple-events</key>
 	<array>
 		<string>com.apple.ScriptEditor2</string>
+		<string>com.coteditor.CotEditor</string>
 	</array>
 </dict>
 </plist>
