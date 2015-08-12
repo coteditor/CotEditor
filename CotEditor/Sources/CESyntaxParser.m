@@ -828,7 +828,7 @@ static CGFloat kPerCompoIncrement;
     // 「終わり」がなければ最後までカラーリングする
     if (isContinued) {
         NSString *colorType = quoteTypes[searchPairKind] ? : CESyntaxCommentsKey;
-        NSRange range = NSMakeRange(startLocation, [string length] - startLocation);
+        NSRange range = NSMakeRange(startLocation, NSMaxRange(parseRange) - startLocation);
         
         if (colorings[colorType]) {
             [colorings[colorType] addObject:[NSValue valueWithRange:range]];
