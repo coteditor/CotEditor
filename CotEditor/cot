@@ -176,7 +176,7 @@ def main(args, stdin):
     
     # jump to location
     if args.line is not None or args.column is not None:
-        contents = app.tell_document('contents')  # do not use `contents`
+        contents = app.tell_document('contents')
         lines = contents.splitlines(True)
 
         # sanitize line number
