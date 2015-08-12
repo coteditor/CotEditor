@@ -75,10 +75,12 @@
 		2A51793A1A40A3B500A3F852 /* CEShortcutKeyField.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A5179391A40A3B500A3F852 /* CEShortcutKeyField.m */; };
 		2A5411C01983E5FA008B43DA /* CESplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A5411BF1983E5FA008B43DA /* CESplitViewController.m */; };
 		2A5411C319852C1C008B43DA /* NavigationBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A5411C119852C1C008B43DA /* NavigationBar.xib */; };
+		2A54E2C71B7B710600FF820A /* cot in Resources */ = {isa = PBXBuildFile; fileRef = 2A54E2C61B7B710600FF820A /* cot */; };
+		2A54E2C91B7B720700FF820A /* cot in Resources */ = {isa = PBXBuildFile; fileRef = 2A54E2C61B7B710600FF820A /* cot */; };
+		2A54E2CA1B7B723900FF820A /* cot in Copy Executables */ = {isa = PBXBuildFile; fileRef = 2A54E2C61B7B710600FF820A /* cot */; };
+		2A54E2CB1B7B724700FF820A /* cot in Copy Executables */ = {isa = PBXBuildFile; fileRef = 2A54E2C61B7B710600FF820A /* cot */; };
 		2A55335D1B556F2A0056FF3E /* CEGeneralPaneController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A55335C1B556F2A0056FF3E /* CEGeneralPaneController.m */; };
 		2A55335E1B556F2A0056FF3E /* CEGeneralPaneController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A55335C1B556F2A0056FF3E /* CEGeneralPaneController.m */; };
-		2A5533761B5649670056FF3E /* cot in Copy Executables */ = {isa = PBXBuildFile; fileRef = 2A5533751B56490A0056FF3E /* cot */; };
-		2A5533771B5665BA0056FF3E /* cot in Copy Executables */ = {isa = PBXBuildFile; fileRef = 2A5533751B56490A0056FF3E /* cot */; };
 		2A586A1619A4FA9D0053F5E3 /* CEKeyBindingSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A586A1519A4FA9D0053F5E3 /* CEKeyBindingSheetController.m */; };
 		2A5ABE761918615E009265DF /* CEUnicodeInputPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A5ABE751918615E009265DF /* CEUnicodeInputPanelController.m */; };
 		2A5ABE79191861E3009265DF /* UnicodePanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A5ABE77191861E3009265DF /* UnicodePanel.xib */; };
@@ -356,7 +358,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 6;
 			files = (
-				2A5533761B5649670056FF3E /* cot in Copy Executables */,
+				2A54E2CB1B7B724700FF820A /* cot in Copy Executables */,
 			);
 			name = "Copy Executables";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -367,7 +369,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 6;
 			files = (
-				2A5533771B5665BA0056FF3E /* cot in Copy Executables */,
+				2A54E2CA1B7B723900FF820A /* cot in Copy Executables */,
 			);
 			name = "Copy Executables";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -497,9 +499,9 @@
 		2A5179391A40A3B500A3F852 /* CEShortcutKeyField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEShortcutKeyField.m; sourceTree = "<group>"; };
 		2A5411BE1983E5FA008B43DA /* CESplitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CESplitViewController.h; sourceTree = "<group>"; };
 		2A5411BF1983E5FA008B43DA /* CESplitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CESplitViewController.m; sourceTree = "<group>"; };
+		2A54E2C61B7B710600FF820A /* cot */ = {isa = PBXFileReference; explicitFileType = text.script.python; fileEncoding = 4; path = cot; sourceTree = "<group>"; };
 		2A55335B1B556F2A0056FF3E /* CEGeneralPaneController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CEGeneralPaneController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		2A55335C1B556F2A0056FF3E /* CEGeneralPaneController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CEGeneralPaneController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		2A5533751B56490A0056FF3E /* cot */ = {isa = PBXFileReference; lastKnownFileType = text; path = cot; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A586A1419A4FA9D0053F5E3 /* CEKeyBindingSheetController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CEKeyBindingSheetController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		2A586A1519A4FA9D0053F5E3 /* CEKeyBindingSheetController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CEKeyBindingSheetController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		2A5ABE741918615E009265DF /* CEUnicodeInputPanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEUnicodeInputPanelController.h; sourceTree = "<group>"; };
@@ -1075,7 +1077,7 @@
 				2A37F4ABFDCFA73011CA2CEA /* Sources */,
 				2A37F4AFFDCFA73011CA2CEA /* Other Sources */,
 				2A37F4B8FDCFA73011CA2CEA /* Resources */,
-				2A99FEE31B56D79800BF46CC /* Executables */,
+				2A54E2C81B7B712600FF820A /* Command-Line Tool */,
 				2A37F4C3FDCFA73011CA2CEA /* Libraries */,
 				19C28FB0FE9D524F11CA2CBB /* Products */,
 				234A213E93629F3A79324102 /* Pods */,
@@ -1228,6 +1230,14 @@
 			name = "Document Window";
 			sourceTree = "<group>";
 		};
+		2A54E2C81B7B712600FF820A /* Command-Line Tool */ = {
+			isa = PBXGroup;
+			children = (
+				2A54E2C61B7B710600FF820A /* cot */,
+			);
+			name = "Command-Line Tool";
+			sourceTree = "<group>";
+		};
 		2A63122B19C2D2EA0088C5C6 /* Theme Edit */ = {
 			isa = PBXGroup;
 			children = (
@@ -1275,14 +1285,6 @@
 				2A961C4D18FC699E002076B6 /* ShellScript.rtf */,
 			);
 			name = Documents;
-			sourceTree = "<group>";
-		};
-		2A99FEE31B56D79800BF46CC /* Executables */ = {
-			isa = PBXGroup;
-			children = (
-				2A5533751B56490A0056FF3E /* cot */,
-			);
-			name = Executables;
 			sourceTree = "<group>";
 		};
 		2AAEA6A01A4342A800A930CA /* Document Accessories */ = {
@@ -1492,6 +1494,7 @@
 				2A6F0D721B5500E100C2D03C /* MigrationWindow.xib in Resources */,
 				2A6F0D731B5500E100C2D03C /* EditPane.xib in Resources */,
 				2A6F0D741B5500E100C2D03C /* LineHightPanel.xib in Resources */,
+				2A54E2C91B7B720700FF820A /* cot in Resources */,
 				2A6F0D751B5500E100C2D03C /* SyntaxMappingConflictSheet.xib in Resources */,
 				2A6F0D761B5500E100C2D03C /* WindowPane.xib in Resources */,
 				2A6F0D771B5500E100C2D03C /* NavigationBar.xib in Resources */,
@@ -1598,6 +1601,7 @@
 				2A42825518FCD47B00386899 /* Acknowledgements.rtf in Resources */,
 				8C081B4B07D0A85A0060191A /* GetInfo.tiff in Resources */,
 				8C98366708C0211D00746F92 /* IncompatibleChars.tiff in Resources */,
+				2A54E2C71B7B710600FF820A /* cot in Resources */,
 				8CA71BCE07D2A79100C146B0 /* BiggerFont.tiff in Resources */,
 				8CA71BCF07D2A79100C146B0 /* SmallerFont.tiff in Resources */,
 				2A45AB9C1960BDED0020E72B /* Comment.tiff in Resources */,
