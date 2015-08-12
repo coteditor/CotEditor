@@ -521,7 +521,11 @@ static NSTimeInterval secondColoringDelay;
 - (void)setSyntaxStyleWithName:(NSString *)name coloring:(BOOL)doColoring
 // ------------------------------------------------------
 {
-    [self setSyntaxParser:[[CESyntaxParser alloc] initWithStyleName:name]];
+    CESyntaxParser *syntaxParser = [[CESyntaxParser alloc] initWithStyleName:name];
+    [self setSyntaxParser:syntaxParser];
+    [[self splitViewController] enumerateEditorViewsUsingBlock:^(CEEditorView *editorView) {
+        [editorView applySyntax:syntaxParser];
+    }];
     
     if (doColoring) {
         [self invalidateSyntaxColoring];
