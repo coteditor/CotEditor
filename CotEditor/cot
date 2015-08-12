@@ -171,11 +171,11 @@ def main(args, stdin):
         # new blank document
         app.tell('make new document')
 
+    if app.tell('number of documents') is '0':
+        return
+    
     # jump to location
     if args.line is not None or args.column is not None:
-        if app.tell('number of documents') is '0':
-            pass
-
         contents = app.tell_document('contents')  # do not use `contents`
         lines = contents.splitlines(True)
 
