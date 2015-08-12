@@ -155,17 +155,18 @@ def main(args, stdin):
     else:
         app.tell('activate')
 
-    # open file
+    # create document
     if args.file:
+        # open file
         path = os.path.abspath(args.file.name)
         app.open(path)
 
-    # create new document
-    if stdin and not args.file:
+    elif stdin:
         # new document with piped text
         app.tell('make new document')
         app.tell_document('set contents to "{}"'.format(stdin))
         app.tell_document('set range of selection to {0, 0}')
+
     elif args.new:
         # new blank document
         app.tell('make new document')
