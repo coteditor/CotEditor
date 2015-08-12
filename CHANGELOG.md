@@ -9,7 +9,7 @@ develop
 
 - CotEditor is now __Sandboxed__.
 - New setting option for the behavior on document modification by external process (in Genearal pane).
-- Share button in toolbar (Customize toobar to use it).
+- Share button in toolbar (Customize toolbar to use it).
 - Save text orientation state to the file and restore it when the file is opened.
     - __for advanced users__: In this feature, CotEditor saves an *extended attribute* which named `com.coteditor.VerticalText` to the file only when the editor's text orientation is vertical. You can even disable the feature running the command `defaults write com.coteditor.CotEditor savesTextOrientation -bool NO` in Terminal. 
 - Line number view for vertical text orientation.
@@ -18,15 +18,15 @@ develop
 
 ### Additions/Changes
 
-- __Drop authopen support.__
+- Deprecate the feature opening/saving files that user doesn't have the permission, due to Sandbox requirement.
 - Improve side inspector UI.
 - Improve syntax highlighting:
     - Optimize general syntax highlighting performance (ca. 1.8x).
     - Optimize syntax highlighting on file opening.
     - Better coloring parsing while editing.
     - Update all split editors while editing.
-- Move scripts folder location from `~/Library/Application Support/CotEditor/ScriptMenu/` to `~/Library/Application Scripts/com.coteditor.CotEditor/` because of the Sandbox requirement.
-    - Users need to migrate their script to the new folder manually, since CotEditor doesn't have the write permisson to the new location.
+- Move scripts folder location from `~/Library/Application Support/CotEditor/ScriptMenu/` to `~/Library/Application Scripts/com.coteditor.CotEditor/` due of the Sandbox requirement.
+    - Users need to migrate their script to the new folder manually, since CotEditor doesn't have the write permission to the new location.
 - Improve print document:
     - Update header/footer layout to conform to the standard system header/footer design.
     - Add page setup options to the print panel.
