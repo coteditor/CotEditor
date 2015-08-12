@@ -8,9 +8,6 @@
       location = "group:CotEditor/CotEditor.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:cot/cot.xcodeproj">
-   </FileRef>
-   <FileRef
       location = "group:Pods/Pods.xcodeproj">
    </FileRef>
 </Workspace>

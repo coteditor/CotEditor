@@ -8,13 +8,13 @@
 	<true/>
 	<key>com.apple.security.print</key>
 	<true/>
-	<key>com.apple.security.temporary-exception.apple-events</key>
-	<array>
-		<string>com.apple.ScriptEditor2</string>
-	</array>
 	<key>com.apple.security.temporary-exception.files.absolute-path.read-write</key>
 	<array>
 		<string>/usr/local/bin/cot</string>
+	</array>
+	<key>com.apple.security.temporary-exception.apple-events</key>
+	<array>
+		<string>com.apple.ScriptEditor2</string>
 	</array>
 </dict>
 </plist>

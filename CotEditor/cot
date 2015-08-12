@@ -1,0 +1,221 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+"""
+cot
+
+CotEditor
+http://coteditor.com
+
+Created by 1024jp on 2015-08-12.
+
+------------------------------------------------------------------------------
+
+© 2015 1024jp
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+"""
+
+from __future__ import print_function
+
+import argparse
+import fcntl
+import os
+import sys
+from subprocess import Popen, PIPE
+
+
+# meta data
+__version__ = '2.2.0'
+__description__ = 'command-line utility for CotEditor.'
+
+
+# constants
+APPLICATION_NAME = 'CotEditor'
+
+
+# MARK: OSA Script
+
+def run_osascript(script):
+    """Run osascript.
+
+    Args:
+        script (str): Osascript.
+    Returns:
+        result (str): Return value of the script.
+    """
+    p = Popen(['osascript', '-'], stdin=PIPE, stdout=PIPE)
+    stdout, stderr = p.communicate(script)
+
+    return stdout.rstrip('\n')
+
+
+class ScriptableApplication(object):
+    """OSA-Scriptable OS X application object.
+    """
+
+    def __init__(self, name):
+        self.name = name
+
+    def tell(self, script):
+        """Tell OSA command to the application.
+
+        Args:
+            script (str): OSA command
+        Returns:
+            result (str): Return value of the script.
+        """
+        script = 'tell app "{}" to {}'.format(self.name, script)
+        return run_osascript(script)
+
+    def open(self, path):
+        """Open given file path in the application.
+
+        Args:
+            path (str): Path to file.
+        """
+        path = path.replace('"', '\\"')
+        self.tell('open POSIX file "{}"'.format(path))
+
+    def tell_document(self, script):
+        """Tell OSA command to the frontmost document of the application.
+
+        Args:
+            script (str): OSA command
+        Returns:
+            result (str): Return value of the script.
+        """
+        return self.tell('tell front document to {}'.format(script))
+
+
+# MARK: Args Parse
+
+def parse_args():
+    """Parse command line arguments.
+
+    Returns:
+        parsed args object.
+    """
+    # create parser instance
+    parser = argparse.ArgumentParser(description=__description__)
+
+    # set positional argument
+    parser.add_argument('file',
+                        type=argparse.FileType('rU'),
+                        metavar='FILE',
+                        nargs='?',
+                        help="Path to file to open."
+                        )
+
+    # set optional arguments
+    parser.add_argument('-v', '--version',
+                        action='version',
+                        version=__version__
+                        )
+    parser.add_argument('-g', '--background',
+                        action='store_true',
+                        default=False,
+                        help="Do not bring the application to the foreground."
+                        )
+    parser.add_argument('-n', '--new',
+                        action='store_true',
+                        default=False,
+                        help="Create a new blank document."
+                        )
+    parser.add_argument('-l', '--line',
+                        type=int,
+                        help="Jump to specific line in opened document."
+                        )
+    parser.add_argument('-c', '--column',
+                        type=int,
+                        help="Jump to specific column in opened document."
+                        )
+
+    return parser.parse_args()
+
+
+# MARK: - Main
+
+def main(args, stdin):
+    app = ScriptableApplication(APPLICATION_NAME)
+
+    # launch
+    if args.background:
+        app.tell('run')
+    else:
+        app.tell('activate')
+
+    # open file
+    if args.file:
+        path = os.path.abspath(args.file.name)
+        app.open(path)
+
+    # create new document
+    if stdin and not args.file:
+        # new document with piped text
+        app.tell('make new document')
+        app.tell_document('set contents to "{}"'.format(stdin))
+        app.tell_document('set range of selection to {0, 0}')
+    elif args.new:
+        # new blank document
+        app.tell('make new document')
+
+    # jump to location
+    if args.line is not None or args.column is not None:
+        if app.tell('number of documents') is '0':
+            pass
+
+        contents = app.tell_document('contents')  # do not use `contents`
+        lines = contents.splitlines(True)
+
+        # sanitize line number
+        line = 0
+        if args.line is not None:
+            line = args.line
+            line_count = len(lines)
+
+            if line == 0:
+                line = 1
+            elif line < 0:  # negative line number counts from the last line
+                line = max(1, line_count - abs(line) + 1)
+
+        # count location of line head
+        loc = 0
+        for a_line in lines[0:line - 1]:
+            loc += len(a_line)
+
+        # sanitize column number
+        if args.column is not None:
+            last_line = lines[line - 1]
+            column = min(args.column, len(last_line))
+            loc += column
+
+        # set selection range
+        app.tell_document('set range of selection to {{{}, 0}}'.format(loc))
+
+        # jump
+        app.tell_document('scroll to caret')
+
+
+if __name__ == "__main__":
+    # parse arguments
+    args = parse_args()
+
+    # read piped text if exists
+    fcntl.fcntl(sys.stdin.fileno(), fcntl.F_SETFL, os.O_NONBLOCK)  # non-block
+    try:
+        stdin = sys.stdin.read()
+    except:
+        stdin = None
+
+    main(args, stdin)
