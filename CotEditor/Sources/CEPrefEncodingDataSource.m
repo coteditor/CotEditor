@@ -234,12 +234,15 @@ static NSString *const CERowsPboardType = @"CERowsPboardType";
     if (encoding != kCFStringEncodingInvalidId) { return @[]; }
     
     // Delete
+    __weak typeof(self) weakSelf = self;
     return @[[NSTableViewRowAction rowActionWithStyle:NSTableViewRowActionStyleDestructive
                                                 title:NSLocalizedString(@"Delete", nil)
                                               handler:^(NSTableViewRowAction *action, NSInteger row)
               {
+                  typeof(weakSelf) self = weakSelf;
                   [tableView removeRowsAtIndexes:[NSIndexSet indexSetWithIndex:row] withAnimation:NSTableViewAnimationSlideLeft];
                   [[self encodings] removeObjectAtIndex:row];
+                  [self validateRestorebility];
               }]];
 }
 #endif  // MAC_OS_X_VERSION_10_11
