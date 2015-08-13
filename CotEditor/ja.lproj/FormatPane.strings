@@ -43,7 +43,7 @@
 /* Class = "NSTextFieldCell"; title = "Opening Files:"; ObjectID = "3277"; */
 "3277.title" = "ファイルを開くとき：";
 /* Class = "NSButtonCell"; title = "Edit List…"; ObjectID = "3275"; */
-"3275.title" = "リストを編集…";
+"3275.title" = "リストを編集...";
 /* Class = "NSButtonCell"; title = "Refer to encoding declaration"; ObjectID = "3280"; */
 "3280.title" = "エンコーディング宣言を参照";
 
@@ -71,6 +71,6 @@
 
 
 /* Class = "NSMenuItem"; title = "Import…"; ObjectID = "1lj-x8-ouD"; */
-"1lj-x8-ouD.title" = "読み込み…";
+"1lj-x8-ouD.title" = "読み込み...";
 /* Class = "NSMenuItem"; title = "Show File Mapping Conflicts…"; ObjectID = "hyN-4W-57i"; */
-"hyN-4W-57i.title" = "ファイル関連付けのコンフリクトを表示…";
+"hyN-4W-57i.title" = "ファイル関連付けのコンフリクトを表示...";

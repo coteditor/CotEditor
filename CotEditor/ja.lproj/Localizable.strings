@@ -27,7 +27,7 @@
  */
 
 // Menu item title for Sparkle
-"Check for Updates…" = "アップデートを確認…";
+"Check for Updates…" = "アップデートを確認...";
 
 /* MARK: CEAppDelegate */
 // File open accessory's menu item title
@@ -47,9 +47,9 @@
 "Bug Report" = "不具合レポート";
 
 // Migration from v1.x
-"Restorering menu key bindings settings…" = "メニューキーバインド設定をリセット中…";
-"Migrating coloring settings…" = "カラーリング設定を移行中…";
-"Migrating user syntax styles…" = "ユーザシンタックス定義を移行中…";
+"Restorering menu key bindings settings…" = "メニューキーバインド設定をリセット中...";
+"Migrating coloring settings…" = "カラーリング設定を移行中...";
+"Migrating user syntax styles…" = "ユーザシンタックス定義を移行中...";
 "Migration finished." = "設定の移行が終了しました。";
 "Close" = "閉じる";
 
@@ -286,8 +286,8 @@
 "The default “Auto-Detect” is recommended for most cases." = "ほとんどの場合、デフォルトの“自動認識”が推奨されます。";
 
 // Installed syntax styles action menu items
-"Duplicate “%@”…" = "“%@”を複製…";
-"Export “%@”…" = "“%@”を書き出し…";
+"Duplicate “%@”…" = "“%@”を複製...";
+"Export “%@”…" = "“%@”を書き出し...";
 "Reveal “%@” in Finder" = "“%@”を Finder で表示";
 
 
@@ -396,7 +396,7 @@
 // Menu items
 "Open Scripts Folder" = "スクリプトフォルダを開く";
 "Update Script Menu" = "スクリプトメニューを更新";
-"Copy Sample Scripts…" = "サンプルスクリプトをコピー…";
+"Copy Sample Scripts…" = "サンプルスクリプトをコピー...";
 "Copy Sample Scripts" = "サンプルスクリプトをコピー";
 "Scripts in “%@” will be listed in the script menu." = "“%@”にあるスクリプトがスクリプトメニューに表示されます。";
 "Copy bundled sample scripts to the scripts folder." = "バンドルされているサンプルスクリプトをスクリプトフォルダにコピーする。";

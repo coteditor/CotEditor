@@ -78,7 +78,7 @@
 /* Class = "NSTextFieldCell"; title = "height:"; ObjectID = "3343"; */
 "3343.title" = "高さ：";
 /* Class = "NSButtonCell"; title = "Get from Sample Window…"; ObjectID = "3346"; */
-"3346.title" = "ウインドウから取得…";
+"3346.title" = "ウインドウから取得...";
 
 /* Class = "NSTextFieldCell"; title = "View opacity:"; ObjectID = "gSx-LA-TPc"; */
 "gSx-LA-TPc.title" = "ビューの不透明度：";

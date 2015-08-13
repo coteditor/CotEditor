@@ -32,7 +32,7 @@
 /* Class = "NSTextFieldCell"; title = "This setting does not include script menu items."; ObjectID = "3362"; */
 "3362.title" = "スクリプトメニューはこの設定に含まれません。";
 /* Class = "NSButtonCell"; title = "Edit…"; ObjectID = "3360"; */
-"3360.title" = "編集…";
+"3360.title" = "編集...";
 
 /* Class = "NSTextFieldCell"; title = "Additional Text Key Bindings"; ObjectID = "3363"; */
 "3363.title" = "追加テキストキーバインド";
@@ -41,4 +41,4 @@
 /* Class = "NSTextFieldCell"; title = "This setting is not for the standard Cocoa key bindings\nbut for CotEditor's original function."; ObjectID = "3366"; */
 "3366.title" = "CotEditor の独自機能であり、Cocoa 標準のキーバインドを設定するものではありません。";
 /* Class = "NSButtonCell"; title = "Edit…"; ObjectID = "3365"; */
-"3365.title" = "編集…";
+"3365.title" = "編集...";

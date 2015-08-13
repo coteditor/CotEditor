@@ -30,7 +30,7 @@
 /* Class = "NSButtonCell"; title = "Same as document's setting"; ObjectID = "1012"; */
 "1012.title" = "書類の設定と同じ";
 /* Class = "NSButtonCell"; title = "Select…"; ObjectID = "3385"; */
-"3385.title" = "選択…";
+"3385.title" = "選択...";
 
 /* Class = "NSTextFieldCell"; title = "Color:"; ObjectID = "3388"; */
 "3388.title" = "カラー：";
