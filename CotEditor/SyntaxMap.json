@@ -5,6 +5,9 @@
     ],
     "filenames": [
       ".htaccess"
+    ],
+    "interpreters": [
+
     ]
   },
   "AppleScript": {
@@ -12,6 +15,9 @@
       "applescript"
     ],
     "filenames": [
+
+    ],
+    "interpreters": [
 
     ]
   },
@@ -21,6 +27,9 @@
     ],
     "filenames": [
 
+    ],
+    "interpreters": [
+
     ]
   },
   "C#": {
@@ -28,6 +37,9 @@
       "cs"
     ],
     "filenames": [
+
+    ],
+    "interpreters": [
 
     ]
   },
@@ -42,6 +54,9 @@
     ],
     "filenames": [
 
+    ],
+    "interpreters": [
+
     ]
   },
   "CSS": {
@@ -49,6 +64,9 @@
       "css"
     ],
     "filenames": [
+
+    ],
+    "interpreters": [
 
     ]
   },
@@ -58,6 +76,9 @@
     ],
     "filenames": [
 
+    ],
+    "interpreters": [
+
     ]
   },
   "DTD": {
@@ -66,6 +87,9 @@
     ],
     "filenames": [
 
+    ],
+    "interpreters": [
+
     ]
   },
   "Dart": {
@@ -73,6 +97,9 @@
       "dart"
     ],
     "filenames": [
+
+    ],
+    "interpreters": [
 
     ]
   },
@@ -84,6 +111,9 @@
     ],
     "filenames": [
 
+    ],
+    "interpreters": [
+
     ]
   },
   "Erlang": {
@@ -92,6 +122,9 @@
     ],
     "filenames": [
 
+    ],
+    "interpreters": [
+
     ]
   },
   "Go": {
@@ -99,6 +132,9 @@
       "go"
     ],
     "filenames": [
+
+    ],
+    "interpreters": [
 
     ]
   },
@@ -110,6 +146,9 @@
     ],
     "filenames": [
 
+    ],
+    "interpreters": [
+
     ]
   },
   "Haskell": {
@@ -119,6 +158,9 @@
     ],
     "filenames": [
 
+    ],
+    "interpreters": [
+
     ]
   },
   "INI": {
@@ -126,6 +168,9 @@
       "ini"
     ],
     "filenames": [
+
+    ],
+    "interpreters": [
 
     ]
   },
@@ -136,6 +181,9 @@
     ],
     "filenames": [
 
+    ],
+    "interpreters": [
+
     ]
   },
   "Java": {
@@ -143,6 +191,9 @@
       "java"
     ],
     "filenames": [
+
+    ],
+    "interpreters": [
 
     ]
   },
@@ -152,6 +203,9 @@
     ],
     "filenames": [
 
+    ],
+    "interpreters": [
+
     ]
   },
   "Julia": {
@@ -159,6 +213,9 @@
       "jl"
     ],
     "filenames": [
+
+    ],
+    "interpreters": [
 
     ]
   },
@@ -170,6 +227,9 @@
       "cls"
     ],
     "filenames": [
+
+    ],
+    "interpreters": [
 
     ]
   },
@@ -183,6 +243,9 @@
     ],
     "filenames": [
 
+    ],
+    "interpreters": [
+
     ]
   },
   "Lua": {
@@ -190,6 +253,9 @@
       "lua"
     ],
     "filenames": [
+
+    ],
+    "interpreters": [
 
     ]
   },
@@ -200,6 +266,9 @@
     "filenames": [
       "Makefile",
       "makefile"
+    ],
+    "interpreters": [
+
     ]
   },
   "Markdown": {
@@ -211,6 +280,9 @@
       "mkdn"
     ],
     "filenames": [
+
+    ],
+    "interpreters": [
 
     ]
   },
@@ -225,6 +297,9 @@
     ],
     "filenames": [
 
+    ],
+    "interpreters": [
+
     ]
   },
   "Perl": {
@@ -235,6 +310,9 @@
     ],
     "filenames": [
 
+    ],
+    "interpreters": [
+
     ]
   },
   "Plain Text": {
@@ -242,6 +320,9 @@
       "txt"
     ],
     "filenames": [
+
+    ],
+    "interpreters": [
 
     ]
   },
@@ -252,6 +333,9 @@
     ],
     "filenames": [
 
+    ],
+    "interpreters": [
+
     ]
   },
   "R": {
@@ -260,6 +344,9 @@
     ],
     "filenames": [
       ".Rprofile"
+    ],
+    "interpreters": [
+
     ]
   },
   "Ruby": {
@@ -267,6 +354,9 @@
       "rb"
     ],
     "filenames": [
+
+    ],
+    "interpreters": [
 
     ]
   },
@@ -276,6 +366,9 @@
       "rc"
     ],
     "filenames": [
+
+    ],
+    "interpreters": [
 
     ]
   },
@@ -287,6 +380,9 @@
     ],
     "filenames": [
 
+    ],
+    "interpreters": [
+
     ]
   },
   "SVG": {
@@ -294,6 +390,9 @@
       "svg"
     ],
     "filenames": [
+
+    ],
+    "interpreters": [
 
     ]
   },
@@ -303,6 +402,9 @@
     ],
     "filenames": [
 
+    ],
+    "interpreters": [
+
     ]
   },
   "Scheme": {
@@ -311,6 +413,9 @@
       "ss"
     ],
     "filenames": [
+
+    ],
+    "interpreters": [
 
     ]
   },
@@ -324,6 +429,9 @@
       ".bashrc",
       ".zshrc",
       ".zshenv"
+    ],
+    "interpreters": [
+
     ]
   },
   "Swift": {
@@ -331,6 +439,9 @@
       "swift"
     ],
     "filenames": [
+
+    ],
+    "interpreters": [
 
     ]
   },
@@ -340,6 +451,9 @@
     ],
     "filenames": [
 
+    ],
+    "interpreters": [
+
     ]
   },
   "Textile": {
@@ -347,6 +461,9 @@
       "textile"
     ],
     "filenames": [
+
+    ],
+    "interpreters": [
 
     ]
   },
@@ -381,6 +498,9 @@
     ],
     "filenames": [
 
+    ],
+    "interpreters": [
+
     ]
   },
   "YAML": {
@@ -390,6 +510,9 @@
     ],
     "filenames": [
 
+    ],
+    "interpreters": [
+
     ]
   },
   "reStructuredText": {
@@ -398,6 +521,9 @@
       "rst"
     ],
     "filenames": [
+
+    ],
+    "interpreters": [
 
     ]
   }
