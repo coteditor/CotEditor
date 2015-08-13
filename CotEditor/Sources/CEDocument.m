@@ -1331,7 +1331,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
         
         if (string) {
             // "charset=" や "encoding=" を読んでみて適正なエンコーディングが得られたら、そちらを優先
-            NSStringEncoding scannedEncoding = [self scanCharsetOrEncodingFromString:string];
+            NSStringEncoding scannedEncoding = [self scanEncodingDeclarationInString:string];
             
             if (scannedEncoding != NSNotFound && scannedEncoding != encoding) {
                 NSString *tmpString = [[NSString alloc] initWithData:data encoding:scannedEncoding];
@@ -1352,17 +1352,17 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 
 // ------------------------------------------------------
-/// "charset=" "encoding="タグからエンコーディング定義を読み取る
-- (NSStringEncoding)scanCharsetOrEncodingFromString:(NSString *)string
+/// "charset=" "encoding="タグなどからエンコーディング定義を読み取る
+- (NSStringEncoding)scanEncodingDeclarationInString:(NSString *)string
 // ------------------------------------------------------
 {
     // This method is based on Smultron's SMLTextPerformer.m by Peter Borg. (2005-08-10)
     // Smultron 2 was distributed on <http://smultron.sourceforge.net> under the terms of the BSD license.
     // Copyright (c) 2004-2006 Peter Borg
     
-    NSStringEncoding encoding = NSNotFound;
+    // 参照しない設定になっているか、含まれている余地が無ければ中断
     if (![[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultReferToEncodingTagKey] || ([string length] < 9)) {
-        return encoding; // 参照しない設定になっているか、含まれている余地が無ければ中断
+        return NSNotFound;
     }
     
     NSString *stringToScan = ([string length] > kMaxEncodingScanLength) ? [string substringToIndex:kMaxEncodingScanLength] : string;
@@ -1371,72 +1371,53 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     NSString *scannedStr = nil;
 
     [scanner setCharactersToBeSkipped:[NSCharacterSet characterSetWithCharactersInString:@"\"\' "]];
-    // "charset="を探す
-    while (![scanner isAtEnd]) {
-        [scanner scanUpToString:@"charset=" intoString:nil];
-        if ([scanner scanString:@"charset=" intoString:nil]) {
-            if ([scanner scanUpToCharactersFromSet:stopSet intoString:&scannedStr]) {
+    
+    // find encoding with tag in order
+    for (NSString *tag in @[@"charset=", @"encoding=", @"@charset"]) {
+        [scanner setScanLocation:0];
+        while (![scanner isAtEnd]) {
+            [scanner scanUpToString:tag intoString:nil];
+            if ([scanner scanString:tag intoString:nil]) {
+                if ([scanner scanUpToCharactersFromSet:stopSet intoString:&scannedStr]) {
+                    break;
+                }
+            }
+        }
+        
+        if (scannedStr) { break; }
+    }
+    
+    if (!scannedStr) { return NSNotFound; }
+    
+    // 見つかったら NSStringEncoding に変換して返す
+    CFStringEncoding cfEncoding = kCFStringEncodingInvalidId;
+    // "Shift_JIS"だったら、kCFStringEncodingShiftJIS と kCFStringEncodingShiftJIS_X0213 の
+    // 優先順位の高いものを取得する
+    if ([[scannedStr uppercaseString] isEqualToString:@"SHIFT_JIS"]) {
+        // （scannedStr をそのまま CFStringConvertIANACharSetNameToEncoding() で変換すると、大文字小文字を問わず
+        // 「日本語（Shift JIS）」になってしまうため。IANA では大文字小文字を区別しないとしているのでこれはいいのだが、
+        // CFStringConvertEncodingToIANACharSetName() では kCFStringEncodingShiftJIS と
+        // kCFStringEncodingShiftJIS_X0213 がそれぞれ「SHIFT_JIS」「shift_JIS」と変換されるため、可逆性を持たせる
+        // ための処理）
+        NSArray *encodings = [[NSUserDefaults standardUserDefaults] arrayForKey:CEDefaultEncodingListKey];
+        
+        for (NSNumber *encodingNumber in encodings) {
+            CFStringEncoding tmpCFEncoding = [encodingNumber unsignedLongValue];
+            if ((tmpCFEncoding == kCFStringEncodingShiftJIS) ||
+                (tmpCFEncoding == kCFStringEncodingShiftJIS_X0213))
+            {
+                cfEncoding = tmpCFEncoding;
                 break;
             }
         }
-    }
-    // "charset="が見つからなければ、"encoding="を探す
-    if (scannedStr == nil) {
-        [scanner setScanLocation:0];
-        while (![scanner isAtEnd]) {
-            [scanner scanUpToString:@"encoding=" intoString:nil];
-            if ([scanner scanString:@"encoding=" intoString:nil]) {
-                if ([scanner scanUpToCharactersFromSet:stopSet intoString:&scannedStr]) {
-                    break;
-                }
-            }
-        }
-    }
-    // 見つからなければ、"@charset"を探す
-    if (scannedStr == nil) {
-        [scanner setScanLocation:0];
-        while (![scanner isAtEnd]) {
-            [scanner scanUpToString:@"@charset" intoString:nil];
-            if ([scanner scanString:@"@charset" intoString:nil]) {
-                if ([scanner scanUpToCharactersFromSet:stopSet intoString:&scannedStr]) {
-                    break;
-                }
-            }
-        }
+    } else {
+        // "Shift_JIS" 以外はそのまま変換する
+        cfEncoding = CFStringConvertIANACharSetNameToEncoding((CFStringRef)scannedStr);
     }
     
-    // 見つかったら NSStringEncoding に変換して返す
-    if (scannedStr) {
-        CFStringEncoding cfEncoding = kCFStringEncodingInvalidId;
-        // "Shift_JIS"だったら、kCFStringEncodingShiftJIS と kCFStringEncodingShiftJIS_X0213 の
-        // 優先順位の高いものを取得する
-        if ([[scannedStr uppercaseString] isEqualToString:@"SHIFT_JIS"]) {
-            // （scannedStr をそのまま CFStringConvertIANACharSetNameToEncoding() で変換すると、大文字小文字を問わず
-            // 「日本語（Shift JIS）」になってしまうため。IANA では大文字小文字を区別しないとしているのでこれはいいのだが、
-            // CFStringConvertEncodingToIANACharSetName() では kCFStringEncodingShiftJIS と
-            // kCFStringEncodingShiftJIS_X0213 がそれぞれ「SHIFT_JIS」「shift_JIS」と変換されるため、可逆性を持たせる
-            // ための処理）
-            NSArray *encodings = [[NSUserDefaults standardUserDefaults] arrayForKey:CEDefaultEncodingListKey];
-
-            for (NSNumber *encodingNumber in encodings) {
-                CFStringEncoding tmpCFEncoding = [encodingNumber unsignedLongValue];
-                if ((tmpCFEncoding == kCFStringEncodingShiftJIS) ||
-                    (tmpCFEncoding == kCFStringEncodingShiftJIS_X0213))
-                {
-                    cfEncoding = tmpCFEncoding;
-                    break;
-                }
-            }
-        } else {
-            // "Shift_JIS" 以外はそのまま変換する
-            cfEncoding = CFStringConvertIANACharSetNameToEncoding((CFStringRef)scannedStr);
-        }
-        if (cfEncoding != kCFStringEncodingInvalidId) {
-            encoding = CFStringConvertEncodingToNSStringEncoding(cfEncoding);
-        }
-    }
+    if (cfEncoding == kCFStringEncodingInvalidId) { return NSNotFound; }
     
-    return encoding;
+    return CFStringConvertEncodingToNSStringEncoding(cfEncoding);
 }
 
 
@@ -1508,7 +1489,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 - (BOOL)checkSavingSafetyWithIANACharSetNameForString:(NSString *)string encoding:(NSStringEncoding)encoding error:(NSError *__autoreleasing *)outError
 // ------------------------------------------------------
 {
-    NSStringEncoding IANACharSetEncoding = [self scanCharsetOrEncodingFromString:string];
+    NSStringEncoding IANACharSetEncoding = [self scanEncodingDeclarationInString:string];
     
     const NSStringEncoding ShiftJIS = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingShiftJIS);
     const NSStringEncoding X0213 = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingShiftJIS_X0213);
