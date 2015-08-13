@@ -501,7 +501,8 @@
       "plist",
       "xib",
       "xmp",
-      "sdef"
+      "sdef",
+      "xcent"
     ],
     "filenames": [
 

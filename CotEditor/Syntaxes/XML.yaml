@@ -25,6 +25,7 @@ extensions:
 - keyString: "xib"
 - keyString: "xmp"
 - keyString: "sdef"
+- keyString: "xcent"
 outlineMenu: []
 completions: []
 commands:
@@ -38,9 +39,9 @@ attributes:
 metadata:
   author: "1024jp"
   distributionURL: "http://coteditor.com"
-  version: "1.2"
+  version: "1.3"
   license: "Same as CotEditor"
-  lastModified: "2014-09-24"
+  lastModified: "2015-08-14"
 characters:
 - beginString: "&\\S+?;"
   regularExpression: true
