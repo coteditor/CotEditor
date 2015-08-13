@@ -14,7 +14,7 @@ develop
     - __for advanced users__: In this feature, CotEditor saves an *extended attribute* which named `com.coteditor.VerticalText` to the file *only when* the editor's text orientation is vertical. You can even disable the feature running the command `defaults write com.coteditor.CotEditor savesTextOrientation -bool NO` in Terminal. 
 - Line number view for vertical text orientation.
 - Print with vertical text orientation.
-- Add interpreter name list to the syntax style definition to determine syntax style from the shebang in the file content in case when syntax style cannnot be determined from the file name.
+- Add interpreter name list to the syntax style definition to determine syntax style from the shebang in the file content for in case when syntax style cannnot be determined from the file name.
     - From this change, some of the bundled syntax styles are also updated.
 - Add `encoding:` and `coding:` to the encoding declaration keywords which will be used on encoding auto-detection (interpreting priorities are: `charset=` > `encoding=` > `@charset` > `encoding:` > `coding:`).
 
@@ -42,6 +42,7 @@ develop
     - To restore also the last syntax style mode of unsaved documents.
 - Completely rewrite `cot` command-line tool:
     - Faster launch.
+    - Make sure to launch CotEditor that invoked cot command includes.
 - Optimize saving process.
 - Improve compatibility with OS X 10.11 El Capitan.
 - Change source code license from the GNU General Public License version 2 to the Apache Lisence version 2.0.
