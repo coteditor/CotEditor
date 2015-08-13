@@ -53,6 +53,7 @@ NSString *const CESyntaxValidationMessageKey = @"MessageKey";
 
 @property (nonatomic, copy) NSDictionary *extensionToStyleTable;  // 拡張子<->styleファイルの変換テーブル辞書(key = 拡張子)
 @property (nonatomic, copy) NSDictionary *filenameToStyleTable;  // ファイル名<->styleファイルの変換テーブル辞書(key = ファイル名)
+@property (nonatomic, copy) NSDictionary *interpreterToStyleTable;  // インタープリタ<->styleファイルの変換テーブル辞書(key = インタープリタ名)
 
 
 // readonly
@@ -133,6 +134,15 @@ NSString *const CESyntaxValidationMessageKey = @"MessageKey";
     styleName = styleName ? : [self extensionToStyleTable][[fileName pathExtension]];
     
     return styleName;
+}
+
+
+// ------------------------------------------------------
+/// インタープリタに応じたstyle名を返す
+- (nullable NSString *)styleNameFromInterpreter:(nonnull NSString *)interpreter
+// ------------------------------------------------------
+{
+    return [self interpreterToStyleTable][interpreter];
 }
 
 
@@ -722,6 +732,7 @@ NSString *const CESyntaxValidationMessageKey = @"MessageKey";
     NSMutableDictionary *extensionConflicts = [NSMutableDictionary dictionary];
     NSMutableDictionary *filenameToStyleTable = [NSMutableDictionary dictionary];
     NSMutableDictionary *filenameConflicts = [NSMutableDictionary dictionary];
+    NSMutableDictionary *interpreterToStyleTable = [NSMutableDictionary dictionary];
     NSString *addedName = nil;
     
     // postpone bundled styles
@@ -760,11 +771,28 @@ NSString *const CESyntaxValidationMessageKey = @"MessageKey";
                 [filenameToStyleTable setValue:styleName forKey:filename];
             }
         }
+        
+        for (NSString *filename in [self map][styleName][CESyntaxInterpretersKey]) {
+            if ((addedName = interpreterToStyleTable[filename])) { // 同じファイル名を持つものがすでにあるとき
+//                NSMutableArray *errors = interpreterConflicts[filename];
+//                if (!errors) {
+//                    errors = [NSMutableArray array];
+//                    [interpreterConflicts setValue:errors forKey:filename];
+//                }
+//                if (![errors containsObject:addedName]) {
+//                    [errors addObject:addedName];
+//                }
+//                [errors addObject:styleName];
+            } else {
+                [interpreterToStyleTable setValue:styleName forKey:filename];
+            }
+        }
     }
     [self setExtensionToStyleTable:extensionToStyleTable];
     [self setExtensionConflicts:extensionConflicts];
     [self setFilenameToStyleTable:filenameToStyleTable];
     [self setFilenameConflicts:filenameConflicts];
+    [self setInterpreterToStyleTable:interpreterToStyleTable];
 }
 
 

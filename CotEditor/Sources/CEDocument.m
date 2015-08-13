@@ -737,6 +737,10 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 // ------------------------------------------------------
 {
     NSString *styleName = [[CESyntaxManager sharedManager] styleNameFromFileName:[[self fileURL] lastPathComponent]];
+    if (!styleName && [self fileContentString]) {
+        NSString *interpreter = [self scanLanguageFromShebangInString:[self fileContentString]];
+        styleName = [[CESyntaxManager sharedManager] styleNameFromInterpreter:interpreter];
+    }
     styleName = styleName ? : [[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultSyntaxStyleKey];
     [self setSyntaxStyleWithName:styleName coloring:NO];
     
@@ -1421,6 +1425,37 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     if (cfEncoding == kCFStringEncodingInvalidId) { return NSNotFound; }
     
     return CFStringConvertEncodingToNSStringEncoding(cfEncoding);
+}
+
+
+// ------------------------------------------------------
+/// try extracting used language from the shebang line
+- (nullable NSString *)scanLanguageFromShebangInString:(nonnull NSString *)string
+// ------------------------------------------------------
+{
+    // get first line
+    __block NSString *firstLine = nil;
+    [string enumerateLinesUsingBlock:^(NSString *line, BOOL *stop) {
+        firstLine = line;
+        *stop = YES;
+    }];
+    
+    // not found
+    if (![firstLine hasPrefix:@"#!"]) { return nil; }
+    
+    // remove #! symbol
+    firstLine = [firstLine stringByReplacingOccurrencesOfString:@"^#! *" withString:@"" options:NSRegularExpressionSearch range:NSMakeRange(0, [firstLine length])];
+    
+    // find interpreter
+    NSArray *components = [firstLine componentsSeparatedByString:@" "];
+    NSString * path = components[0];
+    NSString *interpreter = [[path componentsSeparatedByString:@"/"] lastObject];
+    // use first arg if the path targets env
+    if ([interpreter isEqualToString:@"env"]) {
+        interpreter = components[1];
+    }
+    
+    return interpreter;
 }
 
 

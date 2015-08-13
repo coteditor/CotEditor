@@ -307,6 +307,7 @@ extern NSString  *__nonnull const kAllAlphabetChars;
 extern NSString *__nonnull const CESyntaxMetadataKey;
 extern NSString *__nonnull const CESyntaxExtensionsKey;
 extern NSString *__nonnull const CESyntaxFileNamesKey;
+extern NSString *__nonnull const CESyntaxInterpretersKey;
 extern NSString *__nonnull const CESyntaxKeywordsKey;
 extern NSString *__nonnull const CESyntaxCommandsKey;
 extern NSString *__nonnull const CESyntaxTypesKey;

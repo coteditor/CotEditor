@@ -58,6 +58,7 @@ extern NSString *const CESyntaxValidationMessageKey;
 
 // public methods
 - (NSString *)styleNameFromFileName:(NSString *)fileName;
+- (NSString *)styleNameFromInterpreter:(NSString *)interpreter;
 - (NSArray *)extensionsForStyleName:(NSString *)styleName;
 - (NSDictionary *)styleWithStyleName:(NSString *)styleName;
 - (NSDictionary *)bundledStyleWithStyleName:(NSString *)styleName;
