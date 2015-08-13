@@ -50,16 +50,18 @@ def bundle_path():
     """Return application path if the script is bundled in a OS X application.
 
     Returns:
-        app_path (str): Return path to .app directory or None if not found.
+        path (str): Return path to .app directory or None if not found.
     """
     path = os.path.realpath(__file__)
-    app_path = os.path.dirname(os.path.dirname(os.path.dirname(path)))
-    filename, extension = os.path.splitext(app_path)
 
-    if extension == '.app':
-        return app_path
-    else:
-        return None
+    # find '.app' extension
+    while path is not '/':
+        path = os.path.dirname(path)
+        root, extension = os.path.splitext(path)
+        if extension == '.app':
+            return path
+
+    return None
 
 
 # MARK: OSA Script
