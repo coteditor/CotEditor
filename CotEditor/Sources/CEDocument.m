@@ -314,7 +314,10 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
          if (!error) {
              // apply syntax style that is inferred from the file name
              if (saveOperation == NSSaveAsOperation) {
-                 [self setSyntaxStyleWithFileName:[url lastPathComponent] coloring:YES];
+                 NSString *styleName = [[CESyntaxManager sharedManager] styleNameFromFileName:[url lastPathComponent]];
+                 if (styleName) {
+                     [self setSyntaxStyleWithName:styleName coloring:YES];
+                 }
              }
              
              if (saveOperation != NSAutosaveElsewhereOperation) {
@@ -733,7 +736,9 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 - (void)applyContentToEditor
 // ------------------------------------------------------
 {
-    [self setSyntaxStyleWithFileName:[[self fileURL] lastPathComponent] coloring:NO];
+    NSString *styleName = [[CESyntaxManager sharedManager] styleNameFromFileName:[[self fileURL] lastPathComponent]];
+    styleName = styleName ? : [[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultSyntaxStyleKey];
+    [self setSyntaxStyleWithName:styleName coloring:NO];
     
     // standardize line endings to LF (File Open)
     // (Line endings replacemement by other text modifications are processed in the following methods.)
@@ -1198,12 +1203,10 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 // ------------------------------------------------------
 /// editor を通じて syntax インスタンスをセット
-- (void)setSyntaxStyleWithFileName:(NSString *)fileName coloring:(BOOL)doColoring
+- (void)setSyntaxStyleWithName:(NSString *)styleName coloring:(BOOL)doColoring
 // ------------------------------------------------------
 {
     if (![[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultEnableSyntaxHighlightKey]) { return; }
-    
-    NSString *styleName = [[CESyntaxManager sharedManager] styleNameFromFileName:fileName];
     
     [[self editor] setSyntaxStyleWithName:styleName coloring:doColoring];
     

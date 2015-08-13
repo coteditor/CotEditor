@@ -125,13 +125,12 @@ NSString *const CESyntaxValidationMessageKey = @"MessageKey";
 
 // ------------------------------------------------------
 /// ファイル名に応じたstyle名を返す
-- (NSString *)styleNameFromFileName:(NSString *)fileName
+- (nullable NSString *)styleNameFromFileName:(nullable NSString *)fileName
 // ------------------------------------------------------
 {
     NSString *styleName = [self filenameToStyleTable][fileName];
     
     styleName = styleName ? : [self extensionToStyleTable][[fileName pathExtension]];
-    styleName = styleName ? : [[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultSyntaxStyleKey];
     
     return styleName;
 }
