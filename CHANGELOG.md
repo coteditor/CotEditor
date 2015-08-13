@@ -37,6 +37,8 @@ develop
 - Improve window restoration:
     - To restore also the last scroll position and cursor position.
     - To restore also the last syntax style mode of unsaved documents.
+- Completely rewrite `cot` command-line tool:
+    - Faster launch.
 - Optimize saving process.
 - Improve compatibility with OS X 10.11 El Capitan.
 - Change source code license from the GNU General Public License version 2 to the Apache Lisence version 2.0.
