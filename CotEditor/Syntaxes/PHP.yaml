@@ -5,6 +5,8 @@ extensions:
 - keyString: "php5"
 - keyString: "phps"
 - keyString: "phtml"
+interpreters:
+- keyString: "php"
 outlineMenu:
 - beginString: "^([\\t ]*)(((?:(?:final|static|public|protected|private)[\\t ]+)+)function)\\s*([^{;]*)(?=[{;])"
   keyString: "   $3: $4"
@@ -5642,10 +5644,10 @@ commands:
 metadata:
   author: "kaz"
   distributionURL: "http://coteditor.com"
-  version: "2.3"
+  version: "2.4"
   description: "Support PHP4 - PHP5.5.\n\nMaintained by 1024jp since 2013."
   license: "Same as CotEditor"
-  lastModified: "2014-09-24"
+  lastModified: "2015-08-13"
 characters:
 - beginString: "'"
   endString: "'"

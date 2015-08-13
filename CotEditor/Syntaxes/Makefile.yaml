@@ -2,6 +2,8 @@ extensions: []
 filenames:
 - keyString: "Makefile"
 - keyString: "makefile"
+interpreters:
+- keyString: "make"
 completions: []
 outlineMenu: []
 commands:
@@ -28,9 +30,9 @@ commands:
 metadata:
   author: "1024jp"
   distributionURL: "http://coteditor.com"
-  version: "1.1"
+  version: "1.2"
   license: "Same as CotEditor"
-  lastModified: "2014-09-24"
+  lastModified: "2015-08-13"
 characters: []
 comments: []
 values: []

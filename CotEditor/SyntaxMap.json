@@ -40,7 +40,7 @@
 
     ],
     "interpreters": [
-
+      "csharp"
     ]
   },
   "C, C++, Objective-C": {
@@ -78,7 +78,7 @@
 
     ],
     "interpreters": [
-
+      "coffee"
     ]
   },
   "DTD": {
@@ -100,7 +100,7 @@
 
     ],
     "interpreters": [
-
+      "dart"
     ]
   },
   "Diff": {
@@ -160,7 +160,7 @@
 
     ],
     "interpreters": [
-
+      "runhaskell"
     ]
   },
   "INI": {
@@ -216,7 +216,7 @@
 
     ],
     "interpreters": [
-
+      "julia"
     ]
   },
   "LaTeX": {
@@ -245,7 +245,7 @@
 
     ],
     "interpreters": [
-
+      "lua"
     ]
   },
   "Lua": {
@@ -268,7 +268,7 @@
       "makefile"
     ],
     "interpreters": [
-
+      "make"
     ]
   },
   "Markdown": {
@@ -299,7 +299,7 @@
 
     ],
     "interpreters": [
-
+      "php"
     ]
   },
   "Perl": {
@@ -312,7 +312,7 @@
 
     ],
     "interpreters": [
-
+      "perl"
     ]
   },
   "Plain Text": {
@@ -359,7 +359,7 @@
 
     ],
     "interpreters": [
-
+      "ruby"
     ]
   },
   "Rust": {
@@ -371,7 +371,7 @@
 
     ],
     "interpreters": [
-
+      "rustx"
     ]
   },
   "SQL": {
@@ -406,7 +406,7 @@
 
     ],
     "interpreters": [
-
+      "scala"
     ]
   },
   "Scheme": {
@@ -418,7 +418,7 @@
 
     ],
     "interpreters": [
-
+      "tclsh"
     ]
   },
   "Shell Script": {
@@ -433,7 +433,12 @@
       ".zshenv"
     ],
     "interpreters": [
-
+      "sh",
+      "bash",
+      "csh",
+      "ksh",
+      "tcsh",
+      "zsh"
     ]
   },
   "Swift": {

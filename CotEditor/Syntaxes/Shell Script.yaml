@@ -1,5 +1,12 @@
 extensions:
 - keyString: "sh"
+interpreters:
+- keyString: "sh"
+- keyString: "bash"
+- keyString: "csh"
+- keyString: "ksh"
+- keyString: "tcsh"
+- keyString: "zsh"
 filenames:
 - keyString: ".profile"
 - keyString: ".bash_profile"
@@ -45,10 +52,10 @@ commands:
 metadata:
   author: "nakamuxu"
   distributionURL: "http://coteditor.com"
-  version: "2.0"
+  version: "2.1"
   description: "Maintained by CotEditor Project."
   license: "Same as CotEditor"
-  lastModified: "2014-09-24"
+  lastModified: "2015-08-13"
 characters:
 - beginString: "'"
   endString: "'"

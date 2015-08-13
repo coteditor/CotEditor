@@ -1,6 +1,8 @@
 extensions:
 - keyString: "hs"
 - keyString: "lhs"
+interpreters:
+- keyString: "runhaskell"
 outlineMenu:
 - beginString: "^[\\t ]*([a-z][\\w_']*\\s*.+?)(?=\\s*=)"
 - beginString: "^[\\t ]*([a-z][\\w_']*\\s*::.+?$)"
@@ -25,9 +27,9 @@ metadata:
   distributionURL: "http://coteditor.com"
   author: "konn"
   license: "Same as CotEditor"
-  lastModified: "2014-10-27"
+  lastModified: "2015-08-13"
   description: "Maintained by CotEditor Project."
-  version: "2.0"
+  version: "2.1"
 numbers:
 - beginString: "\\b0o[0-7]+\\b"
   ignoreCase: true
