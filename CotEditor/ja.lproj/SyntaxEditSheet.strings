@@ -208,14 +208,20 @@
 "773.headerCell.title" = "入力補完";
 
 
-/* Class = "NSTextFieldCell"; title = "(without dots)"; ObjectID = "998"; */
-"998.title" = "（ドット不要）";
-/* Class = "NSTableColumn"; headerCell.title = "Extention"; ObjectID = "453"; */
-"453.headerCell.title" = "拡張子";
-/* Class = "NSTextFieldCell"; title = "Files that have exactly one of the following names are opened in this syntax style, even they don't have file extension."; ObjectID = "Sr3-Pj-HPi"; */
-"Sr3-Pj-HPi.title" = "下記のファイル名と一致するファイルは、拡張子がなくてもこのシンタックススタイルで開かれます。";
+/* Class = "NSTextFieldCell"; title = "Extensions"; ObjectID = "nwR-nY-QUm"; */
+"nwR-nY-QUm.title" = "拡張子";
+/* Class = "NSTableColumn"; headerCell.title = "Extention(without dots)"; ObjectID = "453"; */
+"453.headerCell.title" = "拡張子（ドット不要）";
+/* Class = "NSTextFieldCell"; title = "File Names"; ObjectID = "BSb-oh-u25"; */
+"BSb-oh-u25.title" = "ファイル名";
 /* Class = "NSTableColumn"; headerCell.title = "File Name"; ObjectID = "qKc-FZ-o2j"; */
 "qKc-FZ-o2j.headerCell.title" = "ファイル名";
+/* Class = "NSTextFieldCell"; title = "Interpreters"; ObjectID = "KrU-VL-02K"; */
+"KrU-VL-02K.title" = "インタープリタ";
+/* Class = "NSTableColumn"; headerCell.title = "Interpreter"; ObjectID = "CVP-M0-f2c"; */
+"Uql-aD-e6b.headerCell.title" = "インタープリタ";
+/* Class = "NSTextFieldCell"; title = "The interpreters are used to determine the syntax style from the shebang in the document."; ObjectID = "Sr3-Pj-HPi"; */
+"CVP-M0-f2c.title" = "このインタープリタは書類内のシェバンからシンタックスタイルを特定するときに使用されます。";
 
 
 /* Class = "NSTextFieldCell"; title = "Version:"; ObjectID = "PjU-cq-3px"; */

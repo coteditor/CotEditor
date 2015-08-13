@@ -2,6 +2,8 @@ extensions:
 - keyString: "pl"
 - keyString: "cgi"
 - keyString: "pm"
+interpreters:
+- keyString: "perl"
 outlineMenu:
 - beginString: "^([\\t ]*)(sub)[ ]*([a-z][a-z0-9_]*)[^{].*\\{"
   ignoreCase: true
@@ -219,10 +221,10 @@ commands:
 - beginString: "write"
 metadata:
   distributionURL: "http://coteditor.com"
-  version: "2.0"
+  version: "2.1"
   description: "Maintained by CotEditor Project."
   license: "Same as CotEditor"
-  lastModified: "2014-09-24"
+  lastModified: "2015-08-13"
 characters:
 - beginString: "'"
   endString: "'"

@@ -262,6 +262,7 @@ NSString  *__nonnull const kAllAlphabetChars = @"abcdefghijklmnopqrstuvwxyzABCDE
 NSString *__nonnull const CESyntaxMetadataKey = @"metadata";
 NSString *__nonnull const CESyntaxExtensionsKey = @"extensions";
 NSString *__nonnull const CESyntaxFileNamesKey = @"filenames";
+NSString *__nonnull const CESyntaxInterpretersKey = @"interpreters";
 NSString *__nonnull const CESyntaxKeywordsKey = @"keywords";
 NSString *__nonnull const CESyntaxCommandsKey = @"commands";
 NSString *__nonnull const CESyntaxTypesKey = @"types";
