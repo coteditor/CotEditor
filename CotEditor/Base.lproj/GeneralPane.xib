@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="7706" systemVersion="14F19a" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="7706" systemVersion="14F25a" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="7706"/>
@@ -170,18 +170,17 @@
                     </textFieldCell>
                 </textField>
                 <button hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0GW-6U-afs">
-                    <rect key="frame" x="195" y="54" width="259" height="18"/>
+                    <rect key="frame" x="170" y="50" width="259" height="18"/>
                     <buttonCell key="cell" type="check" title="Update to pre-releases when available" bezelStyle="regularSquare" imagePosition="left" inset="2" id="4aT-ka-sbv">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
                     <connections>
-                        <binding destination="-2" name="hidden" keyPath="hasUpdater" previousBinding="eMr-2r-Qgh" id="SzJ-jv-DQR">
+                        <binding destination="-2" name="hidden" keyPath="hasUpdater" id="16D-TE-78C">
                             <dictionary key="options">
                                 <string key="NSValueTransformerName">NSNegateBoolean</string>
                             </dictionary>
                         </binding>
-                        <binding destination="26" name="enabled" keyPath="values.SUEnableAutomaticChecks" id="eMr-2r-Qgh"/>
                         <binding destination="26" name="value" keyPath="values.checksUpdatesForBeta" id="aHI-e3-xkb"/>
                     </connections>
                 </button>
@@ -190,7 +189,7 @@
                 <constraint firstAttribute="trailing" secondItem="iBP-bG-qE5" secondAttribute="trailing" constant="20" symbolic="YES" id="2Qh-fm-o8R"/>
                 <constraint firstAttribute="trailing" secondItem="1832" secondAttribute="trailing" constant="20" symbolic="YES" id="4no-Le-Zal"/>
                 <constraint firstItem="jQj-mP-yhk" firstAttribute="baseline" secondItem="1036" secondAttribute="baseline" id="5SA-y4-4I5"/>
-                <constraint firstItem="0GW-6U-afs" firstAttribute="leading" secondItem="3422" secondAttribute="leading" constant="25" id="5Yj-FP-ehY"/>
+                <constraint firstItem="0GW-6U-afs" firstAttribute="leading" secondItem="3422" secondAttribute="leading" id="5Yj-FP-ehY"/>
                 <constraint firstItem="2739" firstAttribute="top" secondItem="1036" secondAttribute="bottom" constant="10" id="5hj-jV-79F"/>
                 <constraint firstItem="594" firstAttribute="leading" secondItem="bTW-FZ-qkl" secondAttribute="trailing" constant="8" symbolic="YES" id="8od-3Q-chH"/>
                 <constraint firstItem="o08-Ku-C4x" firstAttribute="leading" secondItem="743" secondAttribute="leading" constant="20" symbolic="YES" id="9GQ-Jt-y5u"/>
@@ -206,7 +205,7 @@
                 <constraint firstItem="iBP-bG-qE5" firstAttribute="top" secondItem="o08-Ku-C4x" secondAttribute="bottom" constant="4" id="Jsp-vC-mwk"/>
                 <constraint firstItem="3422" firstAttribute="leading" secondItem="m9P-m9-cpw" secondAttribute="trailing" constant="8" symbolic="YES" id="KeM-Td-IjG"/>
                 <constraint firstItem="m9P-m9-cpw" firstAttribute="baseline" secondItem="3422" secondAttribute="baseline" id="MJy-z5-MlA"/>
-                <constraint firstItem="0GW-6U-afs" firstAttribute="top" secondItem="3422" secondAttribute="bottom" constant="6" symbolic="YES" id="NAP-Kr-4wA"/>
+                <constraint firstItem="0GW-6U-afs" firstAttribute="top" secondItem="3422" secondAttribute="bottom" constant="10" id="NAP-Kr-4wA"/>
                 <constraint firstItem="106" firstAttribute="baseline" secondItem="bTW-FZ-qkl" secondAttribute="baseline" id="Nmv-s7-W6H"/>
                 <constraint firstAttribute="bottom" secondItem="1832" secondAttribute="bottom" constant="20" symbolic="YES" id="O8a-WJ-l1a"/>
                 <constraint firstItem="jQj-mP-yhk" firstAttribute="top" secondItem="743" secondAttribute="top" constant="20" symbolic="YES" id="SOf-tP-0qi"/>
