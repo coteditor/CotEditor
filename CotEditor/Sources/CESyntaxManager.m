@@ -382,6 +382,7 @@ NSString *const CESyntaxValidationMessageKey = @"MessageKey";
     // sanitize
     [(NSMutableArray *)style[CESyntaxExtensionsKey] removeObject:@{}];
     [(NSMutableArray *)style[CESyntaxFileNamesKey] removeObject:@{}];
+    [(NSMutableArray *)style[CESyntaxInterpretersKey] removeObject:@{}];
     
     // sort
     NSArray *descriptors = @[[NSSortDescriptor sortDescriptorWithKey:CESyntaxBeginStringKey
@@ -543,6 +544,7 @@ NSString *const CESyntaxValidationMessageKey = @"MessageKey";
     return @{CESyntaxMetadataKey: [NSMutableDictionary dictionary],
              CESyntaxExtensionsKey: [NSMutableArray array],
              CESyntaxFileNamesKey: [NSMutableArray array],
+             CESyntaxInterpretersKey: [NSMutableArray array],
              CESyntaxKeywordsKey: [NSMutableArray array],
              CESyntaxCommandsKey: [NSMutableArray array],
              CESyntaxTypesKey: [NSMutableArray array],
@@ -707,7 +709,8 @@ NSString *const CESyntaxValidationMessageKey = @"MessageKey";
             if (!style) { continue; }
             
             map[styleName] = @{CESyntaxExtensionsKey: [self keyStringsFromDicts:style[CESyntaxExtensionsKey]],
-                               CESyntaxFileNamesKey: [self keyStringsFromDicts:style[CESyntaxFileNamesKey]]};
+                               CESyntaxFileNamesKey: [self keyStringsFromDicts:style[CESyntaxFileNamesKey]],
+                               CESyntaxInterpretersKey: [self keyStringsFromDicts:style[CESyntaxInterpretersKey]]};
             
             // せっかく読み込んだのでキャッシュしておく
             [self styleCaches][styleName] = style;
