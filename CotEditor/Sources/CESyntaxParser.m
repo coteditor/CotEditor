@@ -822,7 +822,9 @@ static CGFloat kPerCompoIncrement;
             continue;
         }
         
-        isContinued = YES;
+        if (startLocation <= NSMaxRange(parseRange)) {
+            isContinued = YES;
+        }
     }
     
     // 「終わり」がなければ最後までカラーリングする
