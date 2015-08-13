@@ -75,8 +75,6 @@
 		2A51793A1A40A3B500A3F852 /* CEShortcutKeyField.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A5179391A40A3B500A3F852 /* CEShortcutKeyField.m */; };
 		2A5411C01983E5FA008B43DA /* CESplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A5411BF1983E5FA008B43DA /* CESplitViewController.m */; };
 		2A5411C319852C1C008B43DA /* NavigationBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A5411C119852C1C008B43DA /* NavigationBar.xib */; };
-		2A54E2C71B7B710600FF820A /* cot in Resources */ = {isa = PBXBuildFile; fileRef = 2A54E2C61B7B710600FF820A /* cot */; };
-		2A54E2C91B7B720700FF820A /* cot in Resources */ = {isa = PBXBuildFile; fileRef = 2A54E2C61B7B710600FF820A /* cot */; };
 		2A54E2CA1B7B723900FF820A /* cot in Copy Executables */ = {isa = PBXBuildFile; fileRef = 2A54E2C61B7B710600FF820A /* cot */; };
 		2A54E2CB1B7B724700FF820A /* cot in Copy Executables */ = {isa = PBXBuildFile; fileRef = 2A54E2C61B7B710600FF820A /* cot */; };
 		2A55335D1B556F2A0056FF3E /* CEGeneralPaneController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A55335C1B556F2A0056FF3E /* CEGeneralPaneController.m */; };
@@ -1494,7 +1492,6 @@
 				2A6F0D721B5500E100C2D03C /* MigrationWindow.xib in Resources */,
 				2A6F0D731B5500E100C2D03C /* EditPane.xib in Resources */,
 				2A6F0D741B5500E100C2D03C /* LineHightPanel.xib in Resources */,
-				2A54E2C91B7B720700FF820A /* cot in Resources */,
 				2A6F0D751B5500E100C2D03C /* SyntaxMappingConflictSheet.xib in Resources */,
 				2A6F0D761B5500E100C2D03C /* WindowPane.xib in Resources */,
 				2A6F0D771B5500E100C2D03C /* NavigationBar.xib in Resources */,
@@ -1601,7 +1598,6 @@
 				2A42825518FCD47B00386899 /* Acknowledgements.rtf in Resources */,
 				8C081B4B07D0A85A0060191A /* GetInfo.tiff in Resources */,
 				8C98366708C0211D00746F92 /* IncompatibleChars.tiff in Resources */,
-				2A54E2C71B7B710600FF820A /* cot in Resources */,
 				8CA71BCE07D2A79100C146B0 /* BiggerFont.tiff in Resources */,
 				8CA71BCF07D2A79100C146B0 /* SmallerFont.tiff in Resources */,
 				2A45AB9C1960BDED0020E72B /* Comment.tiff in Resources */,
