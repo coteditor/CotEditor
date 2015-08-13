@@ -1373,7 +1373,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     [scanner setCharactersToBeSkipped:[NSCharacterSet characterSetWithCharactersInString:@"\"\' "]];
     
     // find encoding with tag in order
-    for (NSString *tag in @[@"charset=", @"encoding=", @"@charset"]) {
+    for (NSString *tag in @[@"charset=", @"encoding=", @"@charset", @"encoding:", @"coding:"]) {
         [scanner setScanLocation:0];
         while (![scanner isAtEnd]) {
             [scanner scanUpToString:tag intoString:nil];
