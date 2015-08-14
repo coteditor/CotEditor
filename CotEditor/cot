@@ -188,8 +188,9 @@ def main(args, stdin):
 
     elif stdin:
         # new document with piped text
+        sanitized_stdin = stdin.replace('"', '\\"')
         app.tell('make new document')
-        app.tell_document('set contents to "{}"'.format(stdin))
+        app.tell_document('set contents to "{}"'.format(sanitized_stdin))
         app.tell_document('set range of selection to {0, 0}')
 
     elif args.new:
