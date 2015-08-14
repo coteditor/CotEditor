@@ -304,6 +304,10 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
         url = [[autosaveDirectoryURL URLByAppendingPathComponent:fileName] URLByAppendingPathExtension:[baseFileName pathExtension]];
     }
     
+    // store current state here, since the main thread will already be unblocked after `dataOfType:error:`
+    NSStringEncoding encoding = [self encoding];
+    BOOL isVerticalText = [[self editor] isVerticalLayoutOrientation];
+    
     __weak typeof(self) weakSelf = self;
     [super saveToURL:url ofType:typeName forSaveOperation:saveOperation completionHandler:^(NSError *error)
      {
@@ -312,6 +316,15 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
          typeof(self) self = weakSelf;  // strong self
          
          if (!error) {
+             // write encoding to the external file attributes (com.apple.TextEncoding)
+             if ([self shouldSaveXattr]) {
+                 [url setXattrEncoding:encoding];
+             }
+             // save text orientation state
+             if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultSavesTextOrientationKey]) {
+                 [url setXattrBool:isVerticalText forName:XATTR_VERTICAL_TEXT_NAME];
+             }
+             
              // apply syntax style that is inferred from the file name
              if (saveOperation == NSSaveAsOperation) {
                  NSString *styleName = [[CESyntaxManager sharedManager] styleNameFromFileName:[url lastPathComponent]];
@@ -343,21 +356,10 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     
     // store current state here, since the main thread will already be unblocked after `dataOfType:error:`
     NSStringEncoding encoding = [self encoding];
-    BOOL isVerticalText = [[self editor] isVerticalLayoutOrientation];
     
     BOOL success = [super writeToURL:url ofType:typeName forSaveOperation:saveOperation originalContentsURL:absoluteOriginalContentsURL error:outError];
 
     if (success) {
-        // write encoding to the external file attributes (com.apple.TextEncoding)
-        if ([self shouldSaveXattr]) {
-            [url setXattrEncoding:encoding];
-        }
-        
-        // save text orientation state
-        if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultSavesTextOrientationKey]) {
-            [url setXattrBool:isVerticalText forName:XATTR_VERTICAL_TEXT_NAME];
-        }
-        
         if (saveOperation != NSAutosaveElsewhereOperation) {
             // store file hash (MD5) in order to check the file content identity in `presentedItemDidChange`
             NSData *data = [NSData dataWithContentsOfURL:url];
