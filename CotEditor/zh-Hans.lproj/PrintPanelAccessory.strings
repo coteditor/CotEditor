@@ -57,7 +57,7 @@
 "708.title" = "打印页眉";
 
 /* Class = "NSTextFieldCell"; title = "Primary:"; ObjectID = "256"; */
-"706.title" = "Primary:";  // FIXME:
+"706.title" = "主:";
 
 /* Class = "NSMenuItem"; title = "None"; ObjectID = "393"; */
 "393.title" = "无";
@@ -80,7 +80,7 @@
 
 
 /* Class = "NSTextFieldCell"; title = "Secodnary:"; ObjectID = "257"; */
-"712.title" = "Secodnary:";  // FIXME:
+"712.title" = "次:";
 
 /* Class = "NSMenuItem"; title = "None"; ObjectID = "395"; */
 "395.title" = "无";
@@ -106,7 +106,7 @@
 "713.title" = "打印页脚";
 
 /* Class = "NSTextFieldCell"; title = "Primary:"; ObjectID = "295"; */
-"711.title" = "Primary:";  // FIXME:
+"711.title" = "主:";
 
 /* Class = "NSMenuItem"; title = "None"; ObjectID = "397"; */
 "397.title" = "无";
@@ -128,7 +128,7 @@
 
 
 /* Class = "NSTextFieldCell"; title = "Secodnary:"; ObjectID = "296"; */
-"707.title" = "Secodnary:";  // FIXME:
+"707.title" = "次:";
 
 /* Class = "NSMenuItem"; title = "None"; ObjectID = "399"; */
 "399.title" = "无";
