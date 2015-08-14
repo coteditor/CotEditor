@@ -129,7 +129,7 @@
                                CEDefaultReopenBlankWindowKey: @YES,
                                CEDefaultCheckSpellingAsTypeKey: @NO,
                                CEDefaultWindowWidthKey: @600.0f,
-                               CEDefaultWindowHeightKey: @450.0f,
+                               CEDefaultWindowHeightKey: @620.0f,
                                CEDefaultWindowAlphaKey: @1.0f,
                                CEDefaultAutoExpandTabKey: @NO,
                                CEDefaultTabWidthKey: @4U,
