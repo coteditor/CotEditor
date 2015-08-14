@@ -164,18 +164,22 @@ static const NSURL *kPreferredLinkTargetURL;
 - (void)performInstall
 // ------------------------------------------------------
 {
+    NSError *coordinationError = nil;
+    __block NSError *symLinkError = nil;
     __block BOOL success = NO;
-    __block NSError *error = nil;
-    
+
     NSFileCoordinator *coordinator = [[NSFileCoordinator alloc] init];
     [coordinator coordinateWritingItemAtURL:[self linkURL] options:0
-                                      error:&error
+                                      error:&coordinationError
                                  byAccessor:^(NSURL *newURL)
      {
+         // FIXME: This will be failed with NSCocoaErrorDomain + NSFileWriteNoPermissionError on El Capitan beta 5
          success = [[NSFileManager defaultManager] createSymbolicLinkAtURL:newURL
                                                         withDestinationURL:[self executableURL]
-                                                                     error:&error];
+                                                                     error:&symLinkError];
      }];
+    
+    NSError *error = symLinkError ? : coordinationError;
     
     if (success) {
         [self setInstalled:YES];
