@@ -397,50 +397,54 @@ static NSPoint kTextContainerOrigin;
 - (void)insertNewline:(nullable id)sender
 // ------------------------------------------------------
 {
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultAutoIndentKey]) {
+        return [super insertNewline:sender];
+    }
+    
+    NSRange selectedRange = [self selectedRange];
+    NSRange lineRange = [[self string] lineRangeForRange:selectedRange];
+    NSString *lineStr = [[self string] substringWithRange:NSMakeRange(lineRange.location,
+                                                                      NSMaxRange(selectedRange) - lineRange.location)];
+    NSRange indentRange = [lineStr rangeOfString:@"^[ \\t　]+" options:NSRegularExpressionSearch];
+    
+    // インデントを選択状態で改行入力した時は置換とみなしてオートインデントしない 2008-12-13
+    if (NSMaxRange(selectedRange) >= (selectedRange.location + NSMaxRange(indentRange))) {
+        return [super insertNewline:sender];
+    }
+    
     NSString *indent = @"";
     BOOL shouldIncreaseIndentLevel = NO;
     BOOL shouldExpandBlock = NO;
     
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultAutoIndentKey]) {
-        NSRange selectedRange = [self selectedRange];
-        NSRange lineRange = [[self string] lineRangeForRange:selectedRange];
-        NSString *lineStr = [[self string] substringWithRange:NSMakeRange(lineRange.location,
-                                                                          NSMaxRange(selectedRange) - lineRange.location)];
-        NSRange indentRange = [lineStr rangeOfString:@"^[ \\t　]+" options:NSRegularExpressionSearch];
-        
-        // インデントを選択状態で改行入力した時は置換とみなしてオートインデントしない 2008-12-13
-        if (NSMaxRange(selectedRange) >= (selectedRange.location + NSMaxRange(indentRange))) {
-            [super insertNewline:sender];
-            return;
+    if (indentRange.location != NSNotFound) {
+        indent = [lineStr substringWithRange:indentRange];
+    }
+    
+    // calculation for smart indent
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultEnableSmartIndentKey]) {
+        unichar lastChar = NULL;
+        unichar nextChar = NULL;
+        if (selectedRange.location > 0) {
+            lastChar = [[self string] characterAtIndex:selectedRange.location - 1];
         }
-            
-        if (indentRange.location != NSNotFound) {
-            indent = [lineStr substringWithRange:indentRange];
+        if (NSMaxRange(selectedRange) < [[self string] length]) {
+            nextChar = [[self string] characterAtIndex:NSMaxRange(selectedRange)];
         }
         
-        // smart indent
-        if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultEnableSmartIndentKey]) {
-            unichar lastChar = NULL;
-            unichar nextChar = NULL;
-            if (selectedRange.location > 0) {
-                lastChar = [[self string] characterAtIndex:selectedRange.location - 1];
-            }
-            if (NSMaxRange(selectedRange) < [[self string] length]) {
-                nextChar = [[self string] characterAtIndex:NSMaxRange(selectedRange)];
-            }
-            // `{}` の中で改行した場合はインデントを展開する
-            shouldExpandBlock = ((lastChar == '{') && (nextChar == '}'));
-            // 改行直前の文字が `:` か `{` の場合はインデントレベルを1つ上げる
-            shouldIncreaseIndentLevel = ((lastChar == ':') || (lastChar == '{'));
-        }
+        // `{}` の中で改行した場合はインデントを展開する
+        shouldExpandBlock = ((lastChar == '{') && (nextChar == '}'));
+        // 改行直前の文字が `:` か `{` の場合はインデントレベルを1つ上げる
+        shouldIncreaseIndentLevel = ((lastChar == ':') || (lastChar == '{'));
     }
     
     [super insertNewline:sender];
     
+    // auto indent
     if ([indent length] > 0) {
         [super insertText:indent replacementRange:[self selectedRange]];
     }
     
+    // smart indent
     if (shouldExpandBlock) {
         [self insertTab:sender];
         NSRange selection = [self selectedRange];
@@ -1435,7 +1439,7 @@ static NSPoint kTextContainerOrigin;
 
 // ------------------------------------------------------
 /// window's opacity did change
-- (void)didWindowOpacityChange:(NSNotification *)notification
+- (void)didWindowOpacityChange:(nonnull NSNotification *)notification
 // ------------------------------------------------------
 {
     BOOL isOpaque = [[self window] isOpaque];
@@ -1461,51 +1465,32 @@ static NSPoint kTextContainerOrigin;
 
 // ------------------------------------------------------
 /// perform multiple replacements
-- (void)replaceWithStrings:(NSArray *)strings ranges:(NSArray *)ranges selectedRanges:(NSArray *)selectedRanges actionName:(NSString *)actionName
+- (void)replaceWithStrings:(nonnull NSArray *)strings ranges:(nonnull NSArray *)ranges selectedRanges:(nonnull NSArray *)selectedRanges actionName:(nullable NSString *)actionName
 // ------------------------------------------------------
 {
-    NSUndoManager *undoManager = [self undoManager];
-    NSTextStorage *textStorage = [self textStorage];
-    NSDictionary *attributes = [self typingAttributes];
+    // register redo for text selection
+    [[[self undoManager] prepareWithInvocationTarget:self] setSelectedRangesWithUndo:[self selectedRanges]];
     
-    // register redo in undo
-    [[undoManager prepareWithInvocationTarget:self] redoReplaceWithStrings:strings ranges:ranges
-                                                            selectedRanges:selectedRanges
-                                                                actionName:actionName];
+    // tell textEditor about beginning of the text processing
+    if (![self shouldChangeTextInRanges:ranges replacementStrings:strings]) { return; }
     
-    // register undo
-    NSArray *currentSelectedRanges = [self selectedRanges];
-    [undoManager beginUndoGrouping];
-    [[undoManager prepareWithInvocationTarget:self] setSelectedRanges:currentSelectedRanges];
-    [[undoManager prepareWithInvocationTarget:self] didChangeText];  // post notification.
-    
-    __block NSInteger deltaLocation = 0;
-    [ranges enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop)
-     {
-         NSRange range = [obj rangeValue];
-         NSString *string = strings[idx];
-         NSAttributedString *currentString = [textStorage attributedSubstringFromRange:range];
-         NSRange newRange = NSMakeRange(range.location + deltaLocation, [string length]);  // replaced range after method.
-         
-         [[undoManager prepareWithInvocationTarget:textStorage]
-          replaceCharactersInRange:newRange withAttributedString:currentString];
-         
-         deltaLocation += newRange.length - range.length;
-     }];
-    [undoManager endUndoGrouping];
+    // set action name
     if (actionName) {
-        [undoManager setActionName:actionName];
+        [[self undoManager] setActionName:actionName];
     }
     
     // process text
+    NSTextStorage *textStorage = [self textStorage];
+    NSDictionary *attributes = [self typingAttributes];
+    
     [textStorage beginEditing];
     // use backwards enumeration to skip adjustment of applying location
     [ranges enumerateObjectsWithOptions:NSEnumerationReverse
                              usingBlock:^(id obj, NSUInteger idx, BOOL *stop)
      {
          NSRange range = [obj rangeValue];
-         NSAttributedString *attrString = [[NSAttributedString alloc] initWithString:strings[idx]
-                                                                          attributes:attributes];
+         NSString *string = strings[idx];
+         NSAttributedString *attrString = [[NSAttributedString alloc] initWithString:string attributes:attributes];
          
          [textStorage replaceCharactersInRange:range withAttributedString:attrString];
      }];
@@ -1515,17 +1500,18 @@ static NSPoint kTextContainerOrigin;
     [self didChangeText];
     
     // apply new selection ranges
-    [self setSelectedRanges:selectedRanges];
+    [self setSelectedRangesWithUndo:selectedRanges];
+    
 }
 
 
 // ------------------------------------------------------
-/// register Redo for string replacement
-- (void)redoReplaceWithStrings:(NSArray *)strings ranges:(NSArray *)ranges selectedRanges:(NSArray *)selectedRanges actionName:(NSString *)actionName
+/// undoable selection change
+- (void)setSelectedRangesWithUndo:(nonnull NSArray *)ranges;
 // ------------------------------------------------------
 {
-    [[[self undoManager] prepareWithInvocationTarget:self]
-     replaceWithStrings:strings ranges:ranges selectedRanges:selectedRanges actionName:actionName];
+    [self setSelectedRanges:ranges];
+    [[[self undoManager] prepareWithInvocationTarget:self] setSelectedRangesWithUndo:ranges];
 }
 
 
