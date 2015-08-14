@@ -27,7 +27,7 @@
  */
 
 /* Class = "NSTextFieldCell"; title = "Dofument File"; ObjectID = "5tP-OA-Ujw"; */
-"5tP-OA-Ujw.title" = "Dofument File";  // FIXME:
+"5tP-OA-Ujw.title" = "文档文件";
 
 /* Class = "NSTextFieldCell"; title = "Created"; ObjectID = "hgp-Cc-KHJ"; */
 "hgp-Cc-KHJ.title" = "创建于";
@@ -44,7 +44,7 @@
 
 
 /* Class = "NSTextFieldCell"; title = "Text Settings"; ObjectID = "8KW-Mc-cRX"; */
-"8KW-Mc-cRX.title" = "Text Settings";  // FIXME:
+"8KW-Mc-cRX.title" = "文本设定";
 
 /* Class = "NSTextFieldCell"; title = "Encoding"; ObjectID = "B5F-j1-X4E"; */
 "B5F-j1-X4E.title" = "编码";
@@ -55,7 +55,7 @@
 
 
 /* Class = "NSTextFieldCell"; title = "Count and Location"; ObjectID = "cbf-0f-9rd"; */
-"cbf-0f-9rd.title" = "Count and Location";  // FIXME:
+"cbf-0f-9rd.title" = "计数和位置";
 
 /* Class = "NSTextFieldCell"; title = "Lines"; ObjectID = "yRM-Y0-4Oq"; */
 "yRM-Y0-4Oq.title" = "行数";
@@ -74,7 +74,7 @@
 
 
 /* Class = "NSTextFieldCell"; title = "Character"; ObjectID = "H2Z-jU-biZ"; */
-"H2Z-jU-biZ.title" = "Character";  // FIXME:
+"H2Z-jU-biZ.title" = "字符";
 
 /* Class = "NSTextFieldCell"; title = "Unicode"; ObjectID = "kna-yU-liB"; */
 "kna-yU-liB.title" = "Unicode";

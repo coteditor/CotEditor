@@ -113,7 +113,7 @@
 "3375.title" = "打印页脚";
 
 /* Class = "NSTextFieldCell"; title = "Primary:"; ObjectID = "3379"; */
-"3379.title" = "Primary:";  // FIXME:
+"3379.title" = "主:";
 
 /* Class = "NSMenuItem"; title = "None"; ObjectID = "941"; */
 "941.title" = "无";
@@ -135,7 +135,7 @@
 
 
 /* Class = "NSTextFieldCell"; title = "Primary:"; ObjectID = "3377"; */
-"3377.title" = "Primary:";  // FIXME:
+"3377.title" = "主:";
 
 /* Class = "NSMenuItem"; title = "None"; ObjectID = "927"; */
 "927.title" = "无";

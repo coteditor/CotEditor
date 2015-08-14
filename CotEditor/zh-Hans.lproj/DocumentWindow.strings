@@ -42,9 +42,9 @@
 "6gO-UF-7QW.toolTip" = "改变语法风格";  /* Change syntax style */
 
 /* Class = "NSToolbarItem"; ObjectID = "tZT-2A-nIl"; */
-"tZT-2A-nIl.label" = "Share";  /* Share */  // FIXME:
-"tZT-2A-nIl.paletteLabel" = "Share";  /* Share */  // FIXME:
-"tZT-2A-nIl.toolTip" = "Share document file";  /* Share document file */  // FIXME:
+"tZT-2A-nIl.label" = "共享";  /* Share */
+"tZT-2A-nIl.paletteLabel" = "共享";  /* Share */
+"tZT-2A-nIl.toolTip" = "共享文档文件";  /* Share document file */
 
 /* Class = "NSToolbarItem"; ObjectID = "ogy-SR-Vqr"; */
 "ogy-SR-Vqr.label" = "显示简介";  /* Get Info */
@@ -138,4 +138,4 @@
 
 /* Class = "NSSegmentedCell"; ObjectID = "TPz-kb-PBa"; */
 "TPz-kb-PBa.ibShadowedLabels[0]" = "文稿";  /* Document */
-"TPz-kb-PBa.ibShadowedLabels[1]" = "Issues";  /* Issues */  // FIXME:
+"TPz-kb-PBa.ibShadowedLabels[1]" = "错误";  /* Issues */

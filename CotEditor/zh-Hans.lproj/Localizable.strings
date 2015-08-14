@@ -82,7 +82,7 @@
 "Continue Saving" = "继续保存";
 "The encoding is “%@”, but the IANA charset name in text is “%@”." = "编码为 “%@”，但是文本中的 IANA 字符集名字为 “%@”。";
 "Do you want to continue processing?" = "继续进行处理吗？";
-"Do not show this warning for this document again" = "不再显示此信息";  // FIXME:
+"Do not show this warning for this document again" = "对该文档不再显示此信息";
 
 "Discard Changes" = "放弃修改";
 "The file “%@” has unsaved changes." = "文件 “%@” 中有修改内容还没有保存";
@@ -113,15 +113,15 @@
 "Line Number" = "行号";
 "Invisible Characters" = "不可见字符";
 "Print Header" = "打印页眉";
-"Primary Header" = "Primary Header";  // FIXME:
-"Primary Header Alignment" = "Primary Header Alignment";  // FIXME:
-"Secondary Header" = "Secondary Header";  // FIXME:
-"Secondary Header Alignment" = "Secondary Header Alignment";  // FIXME:
+"Primary Header" = "主页眉";
+"Primary Header Alignment" = "主页眉对齐";
+"Secondary Header" = "次页眉";
+"Secondary Header Alignment" = "次页眉对齐";
 "Print Footer" = "打印页脚";
-"Primary Footer" = "Primary Footer";  // FIXME:
-"Primary Footer Alignment" = "Primary Footer Alignment";  // FIXME:
-"Secondary Footer" = "Secondary Footer";  // FIXME:
-"Secondary Footer Alignment" = "Secondary Footer Alignment";  // FIXME:
+"Primary Footer" = "主页脚";
+"Primary Footer Alignment" = "主页脚对齐";
+"Secondary Footer" = "次页脚";
+"Secondary Footer Alignment" = "次页脚对齐";
 
 "On" = "开";
 "Off" = "关";
@@ -395,9 +395,9 @@
 // Menu items
 "Open Scripts Folder" = "打开脚本文件夹";
 "Update Script Menu" = "更新脚本菜单";
-"Copy Sample Scripts…" = "Copy Sample Scripts…";  // FIXME:
-"Copy Sample Scripts" = "Copy Sample Scripts";  // FIXME:
-"Scripts in “%@” will be listed in the script menu." = "Scripts in “%@” will be listed in the script menu."; // FIXME:
+"Copy Sample Scripts…" = "复制示例脚本…";
+"Copy Sample Scripts" = "复制示例脚本";
+"Scripts in “%@” will be listed in the script menu." = "在 “%@” 中的脚本将在脚本菜单中列出";
 "Copy bundled sample scripts to the scripts folder." = "将内置的示例脚本复制到脚本文件夹";
 
 // Script menu item tooltips

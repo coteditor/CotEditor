@@ -218,11 +218,11 @@
 /* Class = "NSTableColumn"; headerCell.title = "File Name"; ObjectID = "qKc-FZ-o2j"; */
 "qKc-FZ-o2j.headerCell.title" = "文件名";
 /* Class = "NSTextFieldCell"; title = "Interpreters"; ObjectID = "KrU-VL-02K"; */
-"KrU-VL-02K.title" = "Interpreters";  // FIXME:
+"KrU-VL-02K.title" = "解释器";
 /* Class = "NSTableColumn"; headerCell.title = "Interpreter"; ObjectID = "CVP-M0-f2c"; */
-"Uql-aD-e6b.headerCell.title" = "Interpreter";  // FIXME:
+"Uql-aD-e6b.headerCell.title" = "解释器";
 /* Class = "NSTextFieldCell"; title = "The interpreters are used to determine the syntax style from the shebang in the document."; ObjectID = "Sr3-Pj-HPi"; */
-"CVP-M0-f2c.title" = "The interpreters are used to determine syntax style from the shebang in the document.";  // FIXME:
+"CVP-M0-f2c.title" = "解释器将根据文档整体来决定语法高亮样式。";
 
 
 /* Class = "NSTextFieldCell"; title = "Version:"; ObjectID = "PjU-cq-3px"; */
