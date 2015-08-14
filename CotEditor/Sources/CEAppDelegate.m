@@ -350,7 +350,7 @@
 #ifndef APPSTORE
 // ------------------------------------------------------
 /// setup Sparkle framework
-- (void)applicationWillFinishLaunching:(NSNotification *)notification
+- (void)applicationWillFinishLaunching:(nonnull NSNotification *)notification
 // ------------------------------------------------------
 {
     // setup updater

@@ -128,7 +128,7 @@ NSString *__nonnull const CEWindowOpacityDidChangeNotification = @"CEWindowOpaci
 
 // ------------------------------------------------------
 /// notify entering fullscreen
-- (void)willEnterFullscreen:(NSNotification *)notification
+- (void)willEnterFullscreen:(nonnull NSNotification *)notification
 // ------------------------------------------------------
 {
     [self setStoredBackgroundColor:[self backgroundColor]];
@@ -139,7 +139,7 @@ NSString *__nonnull const CEWindowOpacityDidChangeNotification = @"CEWindowOpaci
 
 // ------------------------------------------------------
 /// notify exit fullscreen
-- (void)willExitFullscreen:(NSNotification *)notification
+- (void)willExitFullscreen:(nonnull NSNotification *)notification
 // ------------------------------------------------------
 {
     [self setBackgroundColor:[self storedBackgroundColor]];

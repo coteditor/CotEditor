@@ -144,7 +144,7 @@
 
 // ------------------------------------------------------
 /// set state of toolbar item when it will be added
-- (void)toolbarWillAddItem:(NSNotification *)notification
+- (void)toolbarWillAddItem:(nonnull NSNotification *)notification
 // ------------------------------------------------------
 {
     NSToolbarItem *item = [notification userInfo][@"item"];

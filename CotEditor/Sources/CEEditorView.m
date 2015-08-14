@@ -278,7 +278,7 @@
 
 // ------------------------------------------------------
 /// Undo/Redo の後に全てを再カラーリング
-- (void)recolorAfterUndoAndRedo:(NSNotification *)aNotification
+- (void)recolorAfterUndoAndRedo:(nonnull NSNotification *)aNotification
 // ------------------------------------------------------
 {
     NSUndoManager *undoManager = [aNotification object];

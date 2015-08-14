@@ -101,7 +101,7 @@
 
 // ------------------------------------------------------
 /// end editing
-- (void)textDidEndEditing:(NSNotification *)notification
+- (void)textDidEndEditing:(nonnull NSNotification *)notification
 // ------------------------------------------------------
 {
     // end monitoring key down event

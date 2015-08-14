@@ -852,7 +852,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 // ------------------------------------------------------
 /// 指定されたエンコーディングでファイルを再解釈する
-- (BOOL)reinterpretWithEncoding:(NSStringEncoding)encoding error:(NSError *__autoreleasing *)outError
+- (BOOL)reinterpretWithEncoding:(NSStringEncoding)encoding error:(NSError *__autoreleasing __nullable *)outError
 // ------------------------------------------------------
 {
     BOOL success = NO;
@@ -993,7 +993,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 // ------------------------------------------------------
 /// 書類オープン処理が完了した
-- (void)documentDidFinishOpen:(NSNotification *)notification
+- (void)documentDidFinishOpen:(nonnull NSNotification *)notification
 // ------------------------------------------------------
 {
     if ([notification object] == [self windowController] && ![self isInViewingMode]) {
@@ -1526,7 +1526,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 // ------------------------------------------------------
 /// 書類内のIANA文字コード名と設定されたエンコーディングの矛盾をチェック
-- (BOOL)checkSavingSafetyWithIANACharSetNameForString:(NSString *)string encoding:(NSStringEncoding)encoding error:(NSError *__autoreleasing *)outError
+- (BOOL)checkSavingSafetyWithIANACharSetNameForString:(NSString *)string encoding:(NSStringEncoding)encoding error:(NSError *__autoreleasing __nullable *)outError
 // ------------------------------------------------------
 {
     NSStringEncoding IANACharSetEncoding = [self scanEncodingDeclarationInString:string];
@@ -1564,7 +1564,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 // ------------------------------------------------------
 /// ファイル保存前のエンコーディング変換チェック
-- (BOOL)checkSavingSafetyForConvertingString:(NSString *)string encoding:(NSStringEncoding)encoding error:(NSError *__autoreleasing *)outError
+- (BOOL)checkSavingSafetyForConvertingString:(NSString *)string encoding:(NSStringEncoding)encoding error:(NSError *__autoreleasing __nullable *)outError
 // ------------------------------------------------------
 {
     // エンコーディングを見て、半角円マークを変換しておく
@@ -1607,7 +1607,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 // ------------------------------------------------------
 /// エンコードを変更するアクションのRedo登録
-- (void)redoSetEncoding:(NSStringEncoding)encoding updateDocument:(BOOL)updateDocument askLossy:(BOOL)askLossy lossy:(BOOL)lossy asActionName:(NSString *)actionName
+- (void)redoSetEncoding:(NSStringEncoding)encoding updateDocument:(BOOL)updateDocument askLossy:(BOOL)askLossy lossy:(BOOL)lossy asActionName:(nullable NSString *)actionName
 // ------------------------------------------------------
 {
     [[[self undoManager] prepareWithInvocationTarget:self] doSetEncoding:encoding updateDocument:updateDocument

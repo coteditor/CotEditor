@@ -1048,7 +1048,7 @@ static NSPoint kTextContainerOrigin;
 
 // ------------------------------------------------------
 /// treat programmatic text insertion
-- (void)insertString:(NSString *)string
+- (void)insertString:(nullable NSString *)string
 // ------------------------------------------------------
 {
     // should not use insertText:replacementRange:` methods since they are generally for user typing.
@@ -1068,7 +1068,7 @@ static NSPoint kTextContainerOrigin;
 
 // ------------------------------------------------------
 /// insert given string just after current selection and select inserted range
-- (void)insertStringAfterSelection:(NSString *)string
+- (void)insertStringAfterSelection:(nullable NSString *)string
 // ------------------------------------------------------
 {
     if (!string) { return; }
@@ -1084,7 +1084,7 @@ static NSPoint kTextContainerOrigin;
 
 // ------------------------------------------------------
 /// swap whole current string with given string and select inserted range
-- (void)replaceAllStringWithString:(NSString *)string
+- (void)replaceAllStringWithString:(nullable NSString *)string
 // ------------------------------------------------------
 {
     if (!string) { return; }
@@ -1098,7 +1098,7 @@ static NSPoint kTextContainerOrigin;
 
 // ------------------------------------------------------
 /// append string at the end of the whole string and select inserted range
-- (void)appendString:(NSString *)string
+- (void)appendString:(nullable NSString *)string
 // ------------------------------------------------------
 {
     if (!string) { return; }
@@ -1135,7 +1135,7 @@ static NSPoint kTextContainerOrigin;
 
 // ------------------------------------------------------
 /// 置換を実行
-- (void)replaceWithString:(NSString *)string range:(NSRange)range selectedRange:(NSRange)selectedRange actionName:(NSString *)actionName
+- (void)replaceWithString:(nullable NSString *)string range:(NSRange)range selectedRange:(NSRange)selectedRange actionName:(nullable NSString *)actionName
 // ------------------------------------------------------
 {
     if (!string) { return; }
@@ -1149,7 +1149,7 @@ static NSPoint kTextContainerOrigin;
 
 // ------------------------------------------------------
 /// カラーリング設定を更新する
-- (void)setTheme:(CETheme *)theme;
+- (void)setTheme:(nullable CETheme *)theme;
 // ------------------------------------------------------
 {
     [[self window] setBackgroundColor:[theme backgroundColor]];
@@ -1403,7 +1403,7 @@ static NSPoint kTextContainerOrigin;
 
 // ------------------------------------------------------
 /// 変更を監視するデフォルトキー
-+ (NSArray *)observedDefaultKeys
++ (nonnull NSArray *)observedDefaultKeys
 // ------------------------------------------------------
 {
     return @[CEDefaultAutoExpandTabKey,
@@ -1415,7 +1415,7 @@ static NSPoint kTextContainerOrigin;
 
 // ------------------------------------------------------
 /// 改行コード置換のための Pasteboard タイプ
-+ (NSArray *)pasteboardTypesForString
++ (nonnull NSArray *)pasteboardTypesForString
 // ------------------------------------------------------
 {
     return @[NSPasteboardTypeString, (NSString *)kUTTypeUTF8PlainText];

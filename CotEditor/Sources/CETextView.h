@@ -45,11 +45,11 @@
 @property (nonatomic) NSUInteger tabWidth;  // タブ幅
 @property (nonatomic) NSRect highlightLineRect;  // ハイライト行の矩形
 @property (nonatomic, getter=isAutoTabExpandEnabled) BOOL autoTabExpandEnabled;  // タブを自動的にスペースに展開するか
-@property (nonatomic, copy) NSString *inlineCommentDelimiter;  // インラインコメント開始文字列
-@property (nonatomic, copy) NSDictionary *blockCommentDelimiters;  // ブロックコメント開始・終了文字列のペア
-@property (nonatomic, copy) NSCharacterSet *firstCompletionCharacterSet;  // 入力補完の最初の1文字のセット
+@property (nonatomic, nullable, copy) NSString *inlineCommentDelimiter;  // インラインコメント開始文字列
+@property (nonatomic, nullable, copy) NSDictionary *blockCommentDelimiters;  // ブロックコメント開始・終了文字列のペア
+@property (nonatomic, nullable, copy) NSCharacterSet *firstCompletionCharacterSet;  // 入力補完の最初の1文字のセット
 
-@property (nonatomic) CETheme *theme;
+@property (nonatomic, nullable) CETheme *theme;
 
 // readonly
 @property (readonly, nonatomic, getter=isSelfDrop) BOOL selfDrop;  // 自己内ドラッグ&ドロップなのか
@@ -57,25 +57,25 @@
 
 
 // Public method
-- (void)insertString:(NSString *)string;
-- (void)insertStringAfterSelection:(NSString *)string;
-- (void)replaceAllStringWithString:(NSString *)string;
-- (void)appendString:(NSString *)string;
+- (void)insertString:(nullable NSString *)string;
+- (void)insertStringAfterSelection:(nullable NSString *)string;
+- (void)replaceAllStringWithString:(nullable NSString *)string;
+- (void)appendString:(nullable NSString *)string;
 - (void)setLineSpacingAndUpdate:(CGFloat)lineSpacing;
-- (void)replaceWithString:(NSString *)string range:(NSRange)range
-            selectedRange:(NSRange)selectedRange actionName:(NSString *)actionName;
+- (void)replaceWithString:(nullable NSString *)string range:(NSRange)range
+            selectedRange:(NSRange)selectedRange actionName:(nullable NSString *)actionName;
 
 // Action Message
-- (IBAction)resetFont:(id)sender;
-- (IBAction)shiftRight:(id)sender;
-- (IBAction)shiftLeft:(id)sender;
-- (IBAction)selectLines:(id)sender;
-- (IBAction)changeTabWidth:(id)sender;
-- (IBAction)inputYenMark:(id)sender;
-- (IBAction)inputBackSlash:(id)sender;
-- (IBAction)setSelectedRangeWithNSValue:(id)sender;
-- (IBAction)changeLineHeight:(id)sender;
-- (IBAction)showSelectionInfo:(id)sender;
+- (IBAction)resetFont:(nullable id)sender;
+- (IBAction)shiftRight:(nullable id)sender;
+- (IBAction)shiftLeft:(nullable id)sender;
+- (IBAction)selectLines:(nullable id)sender;
+- (IBAction)changeTabWidth:(nullable id)sender;
+- (IBAction)inputYenMark:(nullable id)sender;
+- (IBAction)inputBackSlash:(nullable id)sender;
+- (IBAction)setSelectedRangeWithNSValue:(nullable id)sender;
+- (IBAction)changeLineHeight:(nullable id)sender;
+- (IBAction)showSelectionInfo:(nullable id)sender;
 
 @end
 
@@ -93,9 +93,9 @@
 
 @interface CETextView (Commenting)
 
-- (IBAction)toggleComment:(id)sender;
-- (IBAction)commentOut:(id)sender;
-- (IBAction)uncomment:(id)sender;
+- (IBAction)toggleComment:(nullable id)sender;
+- (IBAction)commentOut:(nullable id)sender;
+- (IBAction)uncomment:(nullable id)sender;
 
 // semi-private methods
 - (BOOL)canUncommentRange:(NSRange)range;
@@ -105,14 +105,14 @@
 
 @interface CETextView (UtilityMenu)
 
-- (IBAction)exchangeFullwidthRoman:(id)sender;
-- (IBAction)exchangeHalfwidthRoman:(id)sender;
-- (IBAction)exchangeKatakana:(id)sender;
-- (IBAction)exchangeHiragana:(id)sender;
-- (IBAction)normalizeUnicodeWithNFD:(id)sender;
-- (IBAction)normalizeUnicodeWithNFC:(id)sender;
-- (IBAction)normalizeUnicodeWithNFKD:(id)sender;
-- (IBAction)normalizeUnicodeWithNFKC:(id)sender;
-- (IBAction)editColorCode:(id)sender;
+- (IBAction)exchangeFullwidthRoman:(nullable id)sender;
+- (IBAction)exchangeHalfwidthRoman:(nullable id)sender;
+- (IBAction)exchangeKatakana:(nullable id)sender;
+- (IBAction)exchangeHiragana:(nullable id)sender;
+- (IBAction)normalizeUnicodeWithNFD:(nullable id)sender;
+- (IBAction)normalizeUnicodeWithNFC:(nullable id)sender;
+- (IBAction)normalizeUnicodeWithNFKD:(nullable id)sender;
+- (IBAction)normalizeUnicodeWithNFKC:(nullable id)sender;
+- (IBAction)editColorCode:(nullable id)sender;
 
 @end

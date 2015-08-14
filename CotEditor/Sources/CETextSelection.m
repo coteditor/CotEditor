@@ -85,7 +85,7 @@
 
 // ------------------------------------------------------
 /// text strage as AppleScript's return value did update
-- (void)textStorageDidProcessEditing:(NSNotification *)aNotification
+- (void)textStorageDidProcessEditing:(nonnull NSNotification *)aNotification
 // ------------------------------------------------------
 {
     NSTextStorage *storage = (NSTextStorage *)[aNotification object];
