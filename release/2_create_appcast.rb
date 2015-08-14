@@ -1,5 +1,8 @@
 #!/usr/bin/env ruby
 
+IS_SANDBOXED = true
+APPCAST_PATH = "./appcast.xml"
+
 app = "./CotEditor.app"
 
 unless Dir.exist?(app) then
@@ -17,10 +20,9 @@ unless File.exist?(dmg) then
 	exit
 end
 
-appcast = "./appcast.xml"
 
-if File.exist?(appcast) then
-	puts "Already exist : #{appcast}"
+if File.exist?(APPCAST_PATH) then
+	puts "Already exist : #{APPCAST_PATH}"
 	exit
 end
 
@@ -39,15 +41,23 @@ require 'time'
 date = File.mtime(dmg).rfc822
 length = File.size(dmg)
 
-# Output appcast
-open(appcast, "w") { |file|
-file.puts <<APPCAST
-<?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" xmlns:dc="http://purl.org/dc/elements/1.1/">
-	<channel>
-		<title>CotEditor update information</title>
-		<link>http://coteditor.com/releasenotes/appcast.xml</link>
-		<description>CotEditor update information</description>
+
+# craate last item code
+if IS_SANDBOXED then
+	latest_item = <<-APPCAST_ITEM
+		<item>
+			<title>CotEditor #{version}</title>
+			<sparkle:releaseNotesLink xml:lang="en">http://coteditor.com/releasenotes/#{version}.en.html</sparkle:releaseNotesLink>
+			<sparkle:releaseNotesLink xml:lang="ja">http://coteditor.com/releasenotes/#{version}.ja.html</sparkle:releaseNotesLink>
+			<pubDate>#{date}</pubDate>
+			<sparkle:minimumSystemVersion>10.8</sparkle:minimumSystemVersion>
+			<sparkle:version>#{version}</sparkle:version>
+            <link>http://coteditor.com/</link>
+		</item>
+	APPCAST_ITEM
+else
+	# normal appcast
+	latest_item = <<-APPCAST_ITEM
 		<item>
 			<title>CotEditor #{version}</title>
 			<sparkle:releaseNotesLink xml:lang="en">http://coteditor.com/releasenotes/#{version}.en.html</sparkle:releaseNotesLink>
@@ -58,8 +68,22 @@ file.puts <<APPCAST
 			           sparkle:version="#{version}"
 			           sparkle:dsaSignature="#{dsa}"
 			           length="#{length}"
-			           type="application/octet-stream" />
+			           type="application/octet-stream"/>
 		</item>
+	APPCAST_ITEM
+end
+
+
+# Output appcast
+open(APPCAST_PATH, "w") { |file|
+file.puts <<APPCAST
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" xmlns:dc="http://purl.org/dc/elements/1.1/">
+	<channel>
+		<title>CotEditor update information</title>
+		<link>http://coteditor.com/releasenotes/appcast.xml</link>
+		<description>CotEditor update information</description>
+#{latest_item}
 		<item>
 			<title>CotEditor 2.0.3</title>
 			<sparkle:releaseNotesLink xml:lang="en">http://coteditor.com/releasenotes/2.0.3.en.html</sparkle:releaseNotesLink>
@@ -70,7 +94,7 @@ file.puts <<APPCAST
 			           sparkle:version="2.0.3"
 			           sparkle:dsaSignature="MC0CFQC/u3nS+yqNHrr1+EghgQksnBlF2AIUfJ5SyL10uO1jSK01ZQgXM3xBE5s="
 			           length="14414610"
-			           type="application/octet-stream" />
+			           type="application/octet-stream"/>
 		</item>
 	</channel>
 </rss>
