@@ -58,11 +58,6 @@ NSString *const CEVisibleRectKey = @"visibleRect";
 
 @property (nonatomic) NSColor *highlightLineColor;  // カレント行ハイライト色
 
-
-// readonly
-@property (readwrite, nonatomic, getter=isSelfDrop) BOOL selfDrop;  // 自己内ドラッグ&ドロップなのか
-@property (readwrite, nonatomic, getter=isReadingFromPboard) BOOL readingFromPboard;  // ペーストまたはドロップ実行中なのか
-
 @end
 
 
@@ -743,93 +738,12 @@ static NSPoint kTextContainerOrigin;
 
 
 // ------------------------------------------------------
-/// ドロップ実行（同じ書類からドロップされた文字列の改行コードをLFへ置換するためにオーバーライド）
-- (BOOL)performDragOperation:(nonnull id<NSDraggingInfo>)sender
-// ------------------------------------------------------
-{
-    // standardize line endings to LF (Drop from the same document)
-    // (Line endings replacemement by other text modifications are processed in the following methods.)
-    //
-    // # Methods Standardizing Line Endings on Text Editing
-    //   - File Open: CEDocument > setStringToEditor
-    //   - Script: CEEditorView > textView:shouldChangeTextInRange:replacementString:
-    //   - Key Typing: CEEditorView > textView:shouldChangeTextInRange:replacementString:
-    //   - Paste: CETextView > readSelectionFromPasteboard:type:
-    //   - Drop (from other documents/apps): CETextView > readSelectionFromPasteboard:type:
-    //   - Drop (from the same document): CETextView > performDragOperation:
-    //   - Replace on Find Penel: (OgreKit) OgreTextViewPlainAdapter > replaceCharactersInRange:withOGString:
-    
-    // まず、自己内ドラッグかどうかのフラグを立てる
-    [self setSelfDrop:([sender draggingSource] == self)];
-    
-    if ([self isSelfDrop]) {
-        // （自己内ドラッグの場合には、改行コード置換を readSelectionFromPasteboard:type: 内で実行すると
-        // アンドゥの登録で文字列範囲の計算が面倒なので、ここでPasteboardを書き換えてしまう）
-        NSPasteboard *pboard = [sender draggingPasteboard];
-        NSString *pboardType = [pboard availableTypeFromArray:[CETextView pasteboardTypesForString]];
-        if (pboardType) {
-            NSString *string = [pboard stringForType:pboardType];
-            if (string) {
-                CENewLineType newlineChar = [string detectNewLineType];
-                if ((newlineChar != CENewLineNone) && (newlineChar != CENewLineLF)) {
-                    [pboard setString:[string stringByReplacingNewLineCharacersWith:CENewLineLF]
-                              forType:pboardType];
-                }
-            }
-        }
-    }
-    
-    BOOL success = [super performDragOperation:sender];
-    [self setSelfDrop:NO];
-    
-    return success;
-}
-
-
-// ------------------------------------------------------
-/// ペーストまたはドロップされたアイテムに応じて挿入する文字列をNSPasteboardから読み込む
+/// ペーストまたはドロップされたアイテムに応じて挿入する文字列をNSPasteboardから読み込む (involed in `performDragOperation:`)
 - (BOOL)readSelectionFromPasteboard:(nonnull NSPasteboard *)pboard type:(nonnull NSString *)type
 // ------------------------------------------------------
 {
-    // （このメソッドは、performDragOperation: 内で呼ばれる）
-    
-    BOOL success = NO;
-    
-    // 実行中フラグを立てる
-    [self setReadingFromPboard:YES];
-    
-    // ペーストされたか、他からテキストがドロップされた
-    if (![self isSelfDrop] && [type isEqualToString:NSStringPboardType]) {
-        // standardize line endings to LF (Paste, Drop from other documents/apps)
-        // (Line endings replacemement by other text modifications are processed in the following methods.)
-        //
-        // # Methods Standardizing Line Endings on Text Editing
-        //   - File Open: CEDocument > setStringToEditor
-        //   - Script: CEEditorView > textView:shouldChangeTextInRange:replacementString:
-        //   - Key Typing: CEEditorView > textView:shouldChangeTextInRange:replacementString:
-        //   - Paste: CETextView > readSelectionFromPasteboard:type:
-        //   - Drop (from other documents/apps): CETextView > readSelectionFromPasteboard:type:
-        //   - Drop (from the same document): CETextView > performDragOperation:
-        //   - Replace on Find Penel: (OgreKit) OgreTextViewPlainAdapter > replaceCharactersInRange:withOGString:
-        
-        NSString *pboardStr = [pboard stringForType:NSStringPboardType];
-        if (pboardStr) {
-            CENewLineType newlineChar = [pboardStr detectNewLineType];
-            if ((newlineChar != CENewLineNone) && (newlineChar != CENewLineLF)) {
-                NSString *replacedStr = [pboardStr stringByReplacingNewLineCharacersWith:CENewLineLF];
-                NSRange newRange = NSMakeRange([self selectedRange].location + [replacedStr length], 0);
-                
-                if ([self shouldChangeTextInRange:[self selectedRange] replacementString:replacedStr]) {
-                    [[self textStorage] replaceCharactersInRange:[self selectedRange] withString:replacedStr];
-                    [self didChangeText];
-                    [self setSelectedRange:newRange];
-                    success = YES;
-                }
-            }
-        }
-        
-    // ファイルがドロップされた
-    } else if ([type isEqualToString:NSFilenamesPboardType]) {
+    // on file drop
+    if ([type isEqualToString:NSFilenamesPboardType]) {
         NSArray *fileDropDefs = [[NSUserDefaults standardUserDefaults] arrayForKey:CEDefaultFileDropArrayKey];
         NSArray *files = [pboard propertyListForType:NSFilenamesPboardType];
         NSURL *documentURL = [[[[self window] windowController] document] fileURL];
@@ -837,97 +751,90 @@ static NSPoint kTextContainerOrigin;
         
         for (NSString *path in files) {
             NSURL *absoluteURL = [NSURL fileURLWithPath:path];
-            NSString *pathExtension = nil, *pathExtensionLower = nil, *pathExtensionUpper = nil;
+            NSString *pathExtension = [absoluteURL pathExtension];
             NSString *stringToDrop = nil;
             
+            // find matched template for path extension
             for (NSDictionary *definition in fileDropDefs) {
                 NSArray *extensions = [definition[CEFileDropExtensionsKey] componentsSeparatedByString:@", "];
-                pathExtension = [absoluteURL pathExtension];
-                pathExtensionLower = [pathExtension lowercaseString];
-                pathExtensionUpper = [pathExtension uppercaseString];
                 
-                if ([extensions containsObject:pathExtensionLower] ||
-                    [extensions containsObject:pathExtensionUpper])
+                if ([extensions containsObject:[pathExtension lowercaseString]] ||
+                    [extensions containsObject:[pathExtension uppercaseString]])
                 {
                     stringToDrop = definition[CEFileDropFormatStringKey];
                 }
             }
-            if ([stringToDrop length] > 0) {
-                NSString *relativePath;
-                if (documentURL && ![documentURL isEqual:absoluteURL]) {
-                    NSArray *docPathComponents = [documentURL pathComponents];
-                    NSArray *droppedPathComponents = [absoluteURL pathComponents];
-                    NSMutableArray *relativeComponents = [NSMutableArray array];
-                    NSUInteger sameCount = 0, count = 0;
-                    NSUInteger docCompnentsCount = [docPathComponents count];
-                    NSUInteger droppedCompnentsCount = [droppedPathComponents count];
-                    
-                    for (NSUInteger i = 0; i < docCompnentsCount; i++) {
-                        if (![docPathComponents[i] isEqualToString:droppedPathComponents[i]]) {
-                            sameCount = i;
-                            count = docCompnentsCount - sameCount - 1;
-                            break;
-                        }
+            
+            if ([stringToDrop length] == 0) { continue; }
+            
+            // build relative path
+            NSString *relativePath;
+            if (documentURL && ![documentURL isEqual:absoluteURL]) {
+                NSArray *docPathComponents = [documentURL pathComponents];
+                NSArray *droppedPathComponents = [absoluteURL pathComponents];
+                NSMutableArray *relativeComponents = [NSMutableArray array];
+                NSUInteger sameCount = 0, count = 0;
+                NSUInteger docCompnentsCount = [docPathComponents count];
+                NSUInteger droppedCompnentsCount = [droppedPathComponents count];
+                
+                for (NSUInteger i = 0; i < docCompnentsCount; i++) {
+                    if (![docPathComponents[i] isEqualToString:droppedPathComponents[i]]) {
+                        sameCount = i;
+                        count = docCompnentsCount - sameCount - 1;
+                        break;
                     }
-                    for (NSUInteger i = count; i > 0; i--) {
-                        [relativeComponents addObject:@".."];
-                    }
-                    for (NSUInteger i = sameCount; i < droppedCompnentsCount; i++) {
-                        [relativeComponents addObject:droppedPathComponents[i]];
-                    }
-                    relativePath = [[NSURL fileURLWithPathComponents:relativeComponents] relativePath];
-                } else {
-                    relativePath = [absoluteURL path];
                 }
-                
-                NSString *fileName = [absoluteURL lastPathComponent];
-                NSString *fileNoSuffix = [fileName stringByDeletingPathExtension];
-                NSString *dirName = [[absoluteURL URLByDeletingLastPathComponent] lastPathComponent];
-                
-                stringToDrop = [stringToDrop stringByReplacingOccurrencesOfString:CEFileDropAbsolutePathToken
-                                                                       withString:[absoluteURL path]];
-                stringToDrop = [stringToDrop stringByReplacingOccurrencesOfString:CEFileDropRelativePathToken
-                                                                       withString:relativePath];
-                stringToDrop = [stringToDrop stringByReplacingOccurrencesOfString:CEFileDropFilenameToken
-                                                                       withString:fileName];
-                stringToDrop = [stringToDrop stringByReplacingOccurrencesOfString:CEFileDropFilenameNosuffixToken
-                                                                       withString:fileNoSuffix];
-                stringToDrop = [stringToDrop stringByReplacingOccurrencesOfString:CEFileDropFileextensionToken
-                                                                       withString:pathExtension];
-                stringToDrop = [stringToDrop stringByReplacingOccurrencesOfString:CEFileDropFileextensionLowerToken
-                                                                       withString:pathExtensionLower];
-                stringToDrop = [stringToDrop stringByReplacingOccurrencesOfString:CEFileDropFileextensionUpperToken
-                                                                       withString:pathExtensionUpper];
-                stringToDrop = [stringToDrop stringByReplacingOccurrencesOfString:CEFileDropDirectoryToken
-                                                                       withString:dirName];
-                
-                NSImageRep *imageRep = [NSImageRep imageRepWithContentsOfURL:absoluteURL];
-                if (imageRep) {
-                    // NSImage の size では dpi をも考慮されたサイズが返ってきてしまうので NSImageRep を使う
-                    stringToDrop = [stringToDrop stringByReplacingOccurrencesOfString:CEFileDropImagewidthToken
-                                                                           withString:[NSString stringWithFormat:@"%zd",
-                                                                                       [imageRep pixelsWide]]];
-                    stringToDrop = [stringToDrop stringByReplacingOccurrencesOfString:CEFileDropImagehightToken
-                                                                           withString:[NSString stringWithFormat:@"%zd",
-                                                                                       [imageRep pixelsHigh]]];
+                for (NSUInteger i = count; i > 0; i--) {
+                    [relativeComponents addObject:@".."];
                 }
-                
-                [replacementString appendString:stringToDrop];
+                for (NSUInteger i = sameCount; i < droppedCompnentsCount; i++) {
+                    [relativeComponents addObject:droppedPathComponents[i]];
+                }
+                relativePath = [[NSURL fileURLWithPathComponents:relativeComponents] relativePath];
+            } else {
+                relativePath = [absoluteURL path];
             }
+            
+            // replace template
+            stringToDrop = [stringToDrop stringByReplacingOccurrencesOfString:CEFileDropAbsolutePathToken
+                                                                   withString:[absoluteURL path]];
+            stringToDrop = [stringToDrop stringByReplacingOccurrencesOfString:CEFileDropRelativePathToken
+                                                                   withString:relativePath];
+            stringToDrop = [stringToDrop stringByReplacingOccurrencesOfString:CEFileDropFilenameToken
+                                                                   withString:[absoluteURL lastPathComponent]];
+            stringToDrop = [stringToDrop stringByReplacingOccurrencesOfString:CEFileDropFilenameNosuffixToken
+                                                                   withString:[[absoluteURL lastPathComponent] stringByDeletingPathExtension]];
+            stringToDrop = [stringToDrop stringByReplacingOccurrencesOfString:CEFileDropFileextensionToken
+                                                                   withString:pathExtension];
+            stringToDrop = [stringToDrop stringByReplacingOccurrencesOfString:CEFileDropFileextensionLowerToken
+                                                                   withString:[pathExtension lowercaseString]];
+            stringToDrop = [stringToDrop stringByReplacingOccurrencesOfString:CEFileDropFileextensionUpperToken
+                                                                   withString:[pathExtension uppercaseString]];
+            stringToDrop = [stringToDrop stringByReplacingOccurrencesOfString:CEFileDropDirectoryToken
+                                                                   withString:[[absoluteURL URLByDeletingLastPathComponent] lastPathComponent]];
+            
+            // get image dimension if needed
+            NSImageRep *imageRep = [NSImageRep imageRepWithContentsOfURL:absoluteURL];
+            if (imageRep) {
+                // NSImage の size では dpi をも考慮されたサイズが返ってきてしまうので NSImageRep を使う
+                stringToDrop = [stringToDrop stringByReplacingOccurrencesOfString:CEFileDropImagewidthToken
+                                                                       withString:[NSString stringWithFormat:@"%zd", [imageRep pixelsWide]]];
+                stringToDrop = [stringToDrop stringByReplacingOccurrencesOfString:CEFileDropImagehightToken
+                                                                       withString:[NSString stringWithFormat:@"%zd", [imageRep pixelsHigh]]];
+            }
+            
+            [replacementString appendString:stringToDrop];
         }
         
+        // insert drop text to view
         if ([self shouldChangeTextInRange:[self selectedRange] replacementString:replacementString]) {
             [[self textStorage] replaceCharactersInRange:[self selectedRange] withString:replacementString];
             [self didChangeText];
-            success = YES;
+            return YES;
         }
     }
-    if (!success) {
-        success = [super readSelectionFromPasteboard:pboard type:type];
-    }
-    [self setReadingFromPboard:NO];
     
-    return success;
+    return [super readSelectionFromPasteboard:pboard type:type];
 }
 
 

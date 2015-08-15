@@ -750,13 +750,12 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     // (Line endings replacemement by other text modifications are processed in the following methods.)
     //
     // # Methods Standardizing Line Endings on Text Editing
-    //   - File Open: CEDocument > setStringToEditor
-    //   - Script: CEEditorView > textView:shouldChangeTextInRange:replacementString:
-    //   - Key Type: CEEditorView > textView:shouldChangeTextInRange:replacementString:
-    //   - Paste: CETextView > readSelectionFromPasteboard:type:
-    //   - Drop (from other documents/apps): CETextView > readSelectionFromPasteboard:type:
-    //   - Drop (from the same document): CETextView > performDragOperation:
-    //   - Replace on Find Penel: (OgreKit) OgreTextViewPlainAdapter > replaceCharactersInRange:withOGString:
+    //   - File Open:
+    //       - CEDocument > setStringToEditor
+    //   - Key Typing, Script, Paste, Drop:
+    //       - CEEditorView > textView:shouldChangeTextInRange:replacementString:
+    //   - Replace on Find Panel:
+    //       - (OgreKit) OgreTextViewPlainAdapter > replaceCharactersInRange:withOGString:
     
     if ([self fileContentString]) {
         NSString *string = [[self fileContentString] stringByReplacingNewLineCharacersWith:CENewLineLF];

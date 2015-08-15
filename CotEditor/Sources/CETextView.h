@@ -51,10 +51,6 @@
 
 @property (nonatomic, nullable) CETheme *theme;
 
-// readonly
-@property (readonly, nonatomic, getter=isSelfDrop) BOOL selfDrop;  // 自己内ドラッグ&ドロップなのか
-@property (readonly, nonatomic, getter=isReadingFromPboard) BOOL readingFromPboard;  // ペーストまたはドロップ実行中なのか
-
 
 // Public method
 - (void)insertString:(nullable NSString *)string;
