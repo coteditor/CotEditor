@@ -181,10 +181,13 @@
 // ------------------------------------------------------
 {
     NSString *title = [(NSMenuItem *)sender title];
+    NSTextView *textView = [self formatTextView];
     
-    [[[self view] window] makeFirstResponder:[self formatTextView]];
-    [[self formatTextView] insertText:title
-                     replacementRange:[[self formatTextView] selectedRange]];
+    [[[self view] window] makeFirstResponder:textView];
+    if ([textView shouldChangeTextInRange:[textView selectedRange] replacementString:title]) {
+        [[textView textStorage] replaceCharactersInRange:[textView selectedRange] withString:title];
+        [textView didChangeText];
+    }
 }
 
 

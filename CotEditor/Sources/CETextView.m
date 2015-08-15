@@ -288,15 +288,7 @@ static NSPoint kTextContainerOrigin;
 - (void)insertText:(nonnull id)aString replacementRange:(NSRange)replacementRange
 // ------------------------------------------------------
 {
-    // just insert text on programmatic insertion
-    // -> This `insertText:replacementRange:` should generally be invoked only on user typing.
-    //    However, in fact, CotEditor uses this method also on programmatic text insertion
-    //    because of its convenience.
-    //    Thus, we need to check whether it is the true typing insertion. (2015-01 by 1024jp)
-    NSEvent *event = [NSApp currentEvent];
-    if ([event type] != NSKeyDown && [NSEvent modifierFlags] == 0) {
-        return [super insertText:aString replacementRange:replacementRange];
-    }
+    // do not use this method for programmatical  insertion.
     
     // cast NSAttributedString to NSString in order to make sure input string is plain-text
     NSString *string = [aString isKindOfClass:[NSAttributedString class]] ? [aString string] : aString;
@@ -827,9 +819,12 @@ static NSPoint kTextContainerOrigin;
                 NSString *replacedStr = [pboardStr stringByReplacingNewLineCharacersWith:CENewLineLF];
                 NSRange newRange = NSMakeRange([self selectedRange].location + [replacedStr length], 0);
                 
-                [super insertText:replacedStr replacementRange:[self selectedRange]];
-                [self setSelectedRange:newRange];
-                success = YES;
+                if ([self shouldChangeTextInRange:[self selectedRange] replacementString:replacedStr]) {
+                    [[self textStorage] replaceCharactersInRange:[self selectedRange] withString:replacedStr];
+                    [self didChangeText];
+                    [self setSelectedRange:newRange];
+                    success = YES;
+                }
             }
         }
         
@@ -838,6 +833,7 @@ static NSPoint kTextContainerOrigin;
         NSArray *fileDropDefs = [[NSUserDefaults standardUserDefaults] arrayForKey:CEDefaultFileDropArrayKey];
         NSArray *files = [pboard propertyListForType:NSFilenamesPboardType];
         NSURL *documentURL = [[[[self window] windowController] document] fileURL];
+        NSMutableString *replacementString = [NSMutableString string];
         
         for (NSString *path in files) {
             NSURL *absoluteURL = [NSURL fileURLWithPath:path];
@@ -915,14 +911,15 @@ static NSPoint kTextContainerOrigin;
                                                                            withString:[NSString stringWithFormat:@"%zd",
                                                                                        [imageRep pixelsHigh]]];
                 }
-                // （ファイルをドロップしたときは、挿入文字列全体を選択状態にする）
-                NSRange newRange = NSMakeRange([self selectedRange].location, 0);
                 
-                [super insertText:stringToDrop replacementRange:[self selectedRange]];
-                [self setSelectedRange:newRange];
-                // 挿入後、選択範囲を移動させておかないと複数オブジェクトをドロップされた時に重ね書きしてしまう
-                success = YES;
+                [replacementString appendString:stringToDrop];
             }
+        }
+        
+        if ([self shouldChangeTextInRange:[self selectedRange] replacementString:replacementString]) {
+            [[self textStorage] replaceCharactersInRange:[self selectedRange] withString:replacementString];
+            [self didChangeText];
+            success = YES;
         }
     }
     if (!success) {
@@ -1051,18 +1048,19 @@ static NSPoint kTextContainerOrigin;
 - (void)insertString:(nullable NSString *)string
 // ------------------------------------------------------
 {
-    // should not use insertText:replacementRange:` methods since they are generally for user typing.
-    
     if (!string) { return; }
     
-    NSRange selectedRange = [self selectedRange];
+    NSRange replacementRange = [self selectedRange];
     
-    [super insertText:string replacementRange:selectedRange];
-    [self setSelectedRange:NSMakeRange(selectedRange.location, [string length])];
-    
-    NSString *actionName = (selectedRange.length > 0) ? @"Replace Text" : @"Insert Text";
-    
-    [[self undoManager] setActionName:NSLocalizedString(actionName, nil)];
+    if ([self shouldChangeTextInRange:replacementRange replacementString:string]) {
+        [[self textStorage] replaceCharactersInRange:replacementRange withString:string];
+        [self setSelectedRange:NSMakeRange(replacementRange.location, [string length])];
+        
+        NSString *actionName = (replacementRange.length > 0) ? @"Replace Text" : @"Insert Text";
+        [[self undoManager] setActionName:NSLocalizedString(actionName, nil)];
+        
+        [self didChangeText];
+    }
 }
 
 
@@ -1073,12 +1071,16 @@ static NSPoint kTextContainerOrigin;
 {
     if (!string) { return; }
     
-    NSUInteger location = NSMaxRange([self selectedRange]);
+    NSRange replacementRange = NSMakeRange(NSMaxRange([self selectedRange]), 0);
     
-    [super insertText:string replacementRange:NSMakeRange(location, 0)];
-    [self setSelectedRange:NSMakeRange(location, [string length])];
-    
-    [[self undoManager] setActionName:NSLocalizedString(@"Insert Text", nil)];
+    if ([self shouldChangeTextInRange:replacementRange replacementString:string]) {
+        [[self textStorage] replaceCharactersInRange:replacementRange withString:string];
+        [self setSelectedRange:NSMakeRange(replacementRange.location, [string length])];
+        
+        [[self undoManager] setActionName:NSLocalizedString(@"Insert Text", nil)];
+        
+        [self didChangeText];
+    }
 }
 
 
@@ -1089,10 +1091,16 @@ static NSPoint kTextContainerOrigin;
 {
     if (!string) { return; }
     
-    [super insertText:string replacementRange:NSMakeRange(0, [[self string] length])];
-    [self setSelectedRange:NSMakeRange(0, [string length])];
+    NSRange replacementRange = NSMakeRange(0, [[self string] length]);
     
-    [[self undoManager] setActionName:NSLocalizedString(@"Replace Text", nil)];
+    if ([self shouldChangeTextInRange:replacementRange replacementString:string]) {
+        [[self textStorage] replaceCharactersInRange:replacementRange withString:string];
+        [self setSelectedRange:NSMakeRange(replacementRange.location, [string length])];
+        
+        [[self undoManager] setActionName:NSLocalizedString(@"Replace Text", nil)];
+        
+        [self didChangeText];
+    }
 }
 
 
@@ -1103,12 +1111,16 @@ static NSPoint kTextContainerOrigin;
 {
     if (!string) { return; }
     
-    NSUInteger location = [[self string] length];
+    NSRange replacementRange = NSMakeRange([[self string] length], 0);
     
-    [super insertText:string replacementRange:NSMakeRange(location, 0)];
-    [self setSelectedRange:NSMakeRange(location, [string length])];
-    
-    [[self undoManager] setActionName:NSLocalizedString(@"Insert Text", nil)];
+    if ([self shouldChangeTextInRange:replacementRange replacementString:string]) {
+        [[self textStorage] replaceCharactersInRange:replacementRange withString:string];
+        [self setSelectedRange:NSMakeRange(replacementRange.location, [string length])];
+        
+        [[self undoManager] setActionName:NSLocalizedString(@"Insert Text", nil)];
+        
+        [self didChangeText];
+    }
 }
 
 
@@ -1548,10 +1560,15 @@ static NSPoint kTextContainerOrigin;
     if (patternNumber < [texts count]) {
         NSString *string = texts[patternNumber];
         
-        [super insertText:string replacementRange:[self selectedRange]];
-        [[self undoManager] setActionName:NSLocalizedString(@"Insert Custom Text", nil)];
-        
-        [self scrollRangeToVisible:[self selectedRange]];
+        if ([self shouldChangeTextInRange:[self selectedRange] replacementString:string]) {
+            [[self textStorage] replaceCharactersInRange:[self selectedRange] withString:string];
+            [[self undoManager] setActionName:NSLocalizedString(@"Insert Custom Text", nil)];
+            [self didChangeText];
+            [self scrollRangeToVisible:[self selectedRange]];
+            
+        } else {
+            NSBeep();
+        }
     }
 }
 

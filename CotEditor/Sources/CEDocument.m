@@ -1166,10 +1166,13 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 // ------------------------------------------------------
 {
     NSString *string = [self currentIANACharSetName];
-
-    if (string) {
-        NSTextView *textView = [[self editor] focusedTextView];
-        [textView insertText:string replacementRange:[textView selectedRange]];
+    
+    if (!string) { return; }
+    
+    NSTextView *textView = [[self editor] focusedTextView];
+    if ([textView shouldChangeTextInRange:[textView selectedRange] replacementString:string]) {
+        [[textView textStorage] replaceCharactersInRange:[textView selectedRange] withString:string];
+        [textView didChangeText];
     }
 }
 
@@ -1180,11 +1183,14 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 // ------------------------------------------------------
 {
     NSString *string = [self currentIANACharSetName];
-
-    if (string) {
-        NSTextView *textView = [[self editor] focusedTextView];
-        [textView insertText:[NSString stringWithFormat:@"charset=\"%@\"", string]
-            replacementRange:[textView selectedRange]];
+    
+    if (!string) { return; }
+    
+    NSString *insertionString = [NSString stringWithFormat:@"charset=\"%@\"", string];
+    NSTextView *textView = [[self editor] focusedTextView];
+    if ([textView shouldChangeTextInRange:[textView selectedRange] replacementString:insertionString]) {
+        [[textView textStorage] replaceCharactersInRange:[textView selectedRange] withString:insertionString];
+        [textView didChangeText];
     }
 }
 
@@ -1195,11 +1201,14 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 // ------------------------------------------------------
 {
     NSString *string = [self currentIANACharSetName];
-
-    if (string) {
-        NSTextView *textView = [[self editor] focusedTextView];
-        [textView insertText:[NSString stringWithFormat:@"encoding=\"%@\"", string]
-            replacementRange:[textView selectedRange]];
+    
+    if (!string) { return; }
+    
+    NSString *insertionString = [NSString stringWithFormat:@"encoding=\"%@\"", string];
+    NSTextView *textView = [[self editor] focusedTextView];
+    if ([textView shouldChangeTextInRange:[textView selectedRange] replacementString:insertionString]) {
+        [[textView textStorage] replaceCharactersInRange:[textView selectedRange] withString:insertionString];
+        [textView didChangeText];
     }
 }
 

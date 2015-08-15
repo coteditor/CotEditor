@@ -110,9 +110,14 @@ static const NSRegularExpression *unicodeRegex;
     NSUInteger length = CFStringGetSurrogatePairForLongCharacter(longChar, chars) ? 2 : 1;
     NSString *character = [[NSString alloc] initWithCharacters:chars length:length];
     
-    [textView insertText:character replacementRange:[textView selectedRange]];
-    [[self window] performClose:sender];
-    [self setUnicode:@""];
+    if ([textView shouldChangeTextInRange:[textView selectedRange] replacementString:character]) {
+        [[textView textStorage] replaceCharactersInRange:[textView selectedRange] withString:character];
+        [textView didChangeText];
+        [[self window] performClose:sender];
+        [self setUnicode:@""];
+    } else {
+        NSBeep();
+    }
 }
 
 @end
