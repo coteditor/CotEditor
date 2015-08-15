@@ -1332,15 +1332,6 @@ static NSPoint kTextContainerOrigin;
 
 
 // ------------------------------------------------------
-/// 改行コード置換のための Pasteboard タイプ
-+ (nonnull NSArray *)pasteboardTypesForString
-// ------------------------------------------------------
-{
-    return @[NSPasteboardTypeString, (NSString *)kUTTypeUTF8PlainText];
-}
-
-
-// ------------------------------------------------------
 /// キー入力時の文字修飾辞書をセット
 - (void)applyTypingAttributes
 // ------------------------------------------------------
