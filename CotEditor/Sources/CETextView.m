@@ -1501,7 +1501,6 @@ static NSPoint kTextContainerOrigin;
     
     // apply new selection ranges
     [self setSelectedRangesWithUndo:selectedRanges];
-    
 }
 
 
