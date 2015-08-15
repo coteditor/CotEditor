@@ -283,7 +283,7 @@ static NSPoint kTextContainerOrigin;
 - (void)insertText:(nonnull id)aString replacementRange:(NSRange)replacementRange
 // ------------------------------------------------------
 {
-    // do not use this method for programmatical  insertion.
+    // do not use this method for programmatical insertion.
     
     // cast NSAttributedString to NSString in order to make sure input string is plain-text
     NSString *string = [aString isKindOfClass:[NSAttributedString class]] ? [aString string] : aString;
@@ -539,17 +539,6 @@ static NSPoint kTextContainerOrigin;
 
 
 // ------------------------------------------------------
-/// コピー実行。改行コードを書類に設定されたものに置換する。
-- (void)copy:(nullable id)sender
-// ------------------------------------------------------
-{
-    // （このメソッドは cut: からも呼び出される）
-    [super copy:sender];
-    [self replaceLineEndingToDocCharInPboard:[NSPasteboard generalPasteboard]];
-}
-
-
-// ------------------------------------------------------
 /// フォント変更
 - (void)changeFont:(nullable id)sender
 // ------------------------------------------------------
@@ -725,15 +714,25 @@ static NSPoint kTextContainerOrigin;
 
 
 // ------------------------------------------------------
-/// ドラッグする文字列の改行コードを書類に設定されたものに置換する
-- (nonnull NSDraggingSession *)beginDraggingSessionWithItems:(nonnull NSArray *)items event:(nonnull NSEvent *)event source:(nonnull id<NSDraggingSource>)source
+/// Pasetboard内文字列の改行コードを書類に設定されたものに置換する
+- (BOOL)writeSelectionToPasteboard:(NSPasteboard *)pboard types:(NSArray *)types
 // ------------------------------------------------------
 {
-    NSDraggingSession *session = [super beginDraggingSessionWithItems:items event:event source:source];
+    BOOL success = [super writeSelectionToPasteboard:pboard types:types];
     
-    [self replaceLineEndingToDocCharInPboard:[session draggingPasteboard]];
+    CENewLineType newLineType = [[[[self window] windowController] document] lineEnding];
     
-    return session;
+    if (newLineType == CENewLineLF || newLineType == CENewLineNone) { return success; }
+    
+    for (NSString *type in types) {
+        NSString *string = [pboard stringForType:type];
+        if (string) {
+            [pboard setString:[string stringByReplacingNewLineCharacersWith:newLineType]
+                      forType:type];
+        }
+    }
+    
+    return success;
 }
 
 
@@ -1430,28 +1429,6 @@ static NSPoint kTextContainerOrigin;
 {
     [self setSelectedRanges:ranges];
     [[[self undoManager] prepareWithInvocationTarget:self] setSelectedRangesWithUndo:ranges];
-}
-
-
-// ------------------------------------------------------
-/// Pasetboard内文字列の改行コードを書類に設定されたものに置換する
-- (void)replaceLineEndingToDocCharInPboard:(NSPasteboard *)pboard
-// ------------------------------------------------------
-{
-    if (!pboard) { return; }
-
-    CENewLineType newLineType = [[[[self window] windowController] document] lineEnding];
-
-    if (newLineType == CENewLineLF) { return; }
-    NSString *pboardType = [pboard availableTypeFromArray:[CETextView pasteboardTypesForString]];
-    if (pboardType) {
-        NSString *string = [pboard stringForType:pboardType];
-        
-        if (string) {
-            [pboard setString:[string stringByReplacingNewLineCharacersWith:newLineType]
-                      forType:pboardType];
-        }
-    }
 }
 
 

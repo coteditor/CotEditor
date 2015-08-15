@@ -326,20 +326,18 @@
         return YES;
     }
     
-    CENewLineType replacementLineEndingType = [replacementString detectNewLineType];
     // 挿入／置換する文字列に改行コードが含まれていたら、LF に置換する
+    // （newStrが使用されるのはスクリプトからの入力時。キー入力は条件式を通過しない）
+    CENewLineType replacementLineEndingType = [replacementString detectNewLineType];
     if ((replacementLineEndingType != CENewLineNone) && (replacementLineEndingType != CENewLineLF)) {
-        // （newStrが使用されるのはスクリプトからの入力時。キー入力は条件式を通過しない）
         NSString *newString = [replacementString stringByReplacingNewLineCharacersWith:CENewLineLF];
         
-        if (newString) {
-            [(CETextView *)textView replaceWithString:newString
-                                                range:affectedCharRange
-                                        selectedRange:NSMakeRange(affectedCharRange.location + [newString length], 0)
-                                           actionName:nil];  // Action名は自動で付けられる？ので、指定しない
-            
-            return NO;
-        }
+        [(CETextView *)textView replaceWithString:newString
+                                            range:affectedCharRange
+                                    selectedRange:NSMakeRange(affectedCharRange.location + [newString length], 0)
+                                       actionName:nil];  // Action名は自動で付けられる？ので、指定しない
+        
+        return NO;
     }
     
     return YES;
