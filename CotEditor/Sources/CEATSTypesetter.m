@@ -89,7 +89,7 @@
     // 「文書の1文字目に1バイト文字（または2バイト文字）を入力してある状態で先頭に2バイト文字（または1バイト文字）を
     // 挿入すると行間がズレる」問題が生じる）
     CGFloat defaultLineHeight = [manager defaultLineHeightForTextFont];
-    fontSize = [manager textFontPointSize];
+    fontSize = [[manager textFont] pointSize];
 
     // 小数点以下を返すと選択範囲が分離することがあるため、丸める
     return floor(defaultLineHeight - rect.size.height + lineSpacing * fontSize + 0.5);
