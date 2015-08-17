@@ -21,6 +21,8 @@ develop
 
 ### Additions/Changes
 
+- [non-AppStore ver.] Disable auto-update feature.
+    - Since the Sparkle framework which is a software update framework we use doesn't support Sandboxed apps yet, the auto-update feature within CotEditor should be once disabled. The new behavior is: a nofitication window will be shown when a new release is available (as before), then you need to update CotEditor manually getting the new version from our web-site. Or, just migrate to the Mac App Store version when the stable CotEditor 2.2.0 is released.
 - Deprecate the feature opening/saving files that user doesn't have the permission, due to Sandbox requirement.
 - Improve side inspector UI.
 - Improve syntax highlighting:
