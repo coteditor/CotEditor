@@ -657,9 +657,6 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
         arguments = @[[[document fileURL] path]];
     }
     
-    __weak typeof(self) weakSelf = self;
-    __block BOOL cancelled = NO;  // user cancel state
-    
     // pipes
     NSPipe *inPipe = [NSPipe pipe];
     NSPipe *outPipe = [NSPipe pipe];
@@ -676,6 +673,9 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
             [handle closeFile];
         }];
     }
+    
+    __weak typeof(self) weakSelf = self;
+    __block BOOL cancelled = NO;  // user cancel state
     
     // read output asynchronously for safe with huge output
     [[outPipe fileHandleForReading] readToEndOfFileInBackgroundAndNotify];

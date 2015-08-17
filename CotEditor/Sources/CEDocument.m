@@ -651,11 +651,9 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 {
     [super presentedItemDidMoveToURL:newURL];
     
-    __weak typeof(self) weakSelf = self;
+    CEWindowController *windowController;
     dispatch_async(dispatch_get_main_queue(), ^{
-        typeof(self) self = weakSelf;  // strong self
-        
-        [[self windowController] updateFileInfo];
+        [windowController updateFileInfo];
     });
 }
 
