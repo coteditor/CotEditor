@@ -155,9 +155,6 @@ static NSTimeInterval secondColoringDelay;
     
     if ([menuItem action] == @selector(toggleLineNumber:)) {
         title = [self showsLineNum] ? @"Hide Line Numbers" : @"Show Line Numbers";
-        if ([self isVerticalLayoutOrientation]) {
-            return NO;
-        }
         
     } else if ([menuItem action] == @selector(toggleNavigationBar:)) {
         title = [self showsNavigationBar] ? @"Hide Navigation Bar" : @"Show Navigation Bar";
