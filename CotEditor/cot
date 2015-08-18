@@ -57,7 +57,7 @@ def bundle_path():
     # find '.app' extension
     while path is not '/':
         path = os.path.dirname(path)
-        root, extension = os.path.splitext(path)
+        _, extension = os.path.splitext(path)
         if extension == '.app':
             return path
 
@@ -203,22 +203,19 @@ def main(args, stdin):
         lines = contents.splitlines(True)
 
         # sanitize line number
-        line = 0
-        if args.line is not None:
-            line = args.line
+        line = args.line or 1  # line number starts with 1
+        if line == 0:
+            line = 1
+        elif line < 0:  # negative line number counts from the last line
             line_count = len(lines)
-
-            if line == 0:
-                line = 1
-            elif line < 0:  # negative line number counts from the last line
-                line = max(1, line_count - abs(line) + 1)
+            line = max(1, line_count - abs(line) + 1)
 
         # count location of line head
         loc = 0
         for a_line in lines[0:line - 1]:
             loc += len(a_line)
 
-        # sanitize column number
+        # sanitize and add column position
         if args.column is not None:
             last_line = lines[line - 1]
             column = min(args.column, len(last_line))
