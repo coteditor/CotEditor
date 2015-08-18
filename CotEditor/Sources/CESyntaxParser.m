@@ -443,7 +443,6 @@ static CGFloat kPerCompoIncrement;
         NSUInteger start = range.location;
         NSUInteger end = NSMaxRange(range) - 1;
         
-        
         // 直前／直後が同色ならカラーリング範囲を拡大する
         NSLayoutManager *layoutManager = [[textStorage layoutManagers] firstObject];
         NSRange effectiveRange;
