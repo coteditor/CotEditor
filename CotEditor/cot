@@ -47,10 +47,10 @@ APPLICATION_NAME = 'CotEditor'
 # MARK: Bundle
 
 def bundle_path():
-    """Return application path if this script is bundled in a OS X application.
+    """Return application path if this script is bundled in an OS X application.
 
     Returns:
-        path (str): Return path to .app directory or None if not found.
+        path (str): Path to .app directory or None if not found.
     """
     path = os.path.realpath(__file__)
 
@@ -107,16 +107,16 @@ class ScriptableApplication(object):
         path = path.replace('"', '\\"')
         self.tell('open POSIX file "{}"'.format(path))
 
-    def tell_document(self, script, number=1):
-        """Tell OSA command to the document of the application.
+    def tell_document(self, script, index=1):
+        """Tell OSA command to a document of the application.
 
         Args:
             script (str): OSA command
-            number (int): Number of the document to handle.
+            number (int): Index number of the document to handle.
         Returns:
             result (str): Return value of the script.
         """
-        return self.tell('tell document {} to {}'.format(number, script))
+        return self.tell('tell document {} to {}'.format(index, script))
 
 
 # MARK: Args Parse
@@ -125,7 +125,7 @@ def parse_args():
     """Parse command line arguments.
 
     Returns:
-        parsed args object.
+        Parsed args object.
     """
     # create parser instance
     parser = argparse.ArgumentParser(description=__description__)
