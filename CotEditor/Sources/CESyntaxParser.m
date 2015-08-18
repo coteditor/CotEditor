@@ -440,20 +440,23 @@ static CGFloat kPerCompoIncrement;
         coloringRange = wholeRange;
         
     } else {
-        // 表示領域の前もある程度カラーリングの対象に含める
-        coloringRange.location -= MIN(coloringRange.location, bufferLength);
-        coloringRange = [string lineRangeForRange:coloringRange];
+        NSUInteger start = range.location;
+        NSUInteger end = NSMaxRange(range) - 1;
         
-        NSUInteger start = coloringRange.location;
-        NSUInteger end = NSMaxRange(coloringRange) - 1;
         
         // 直前／直後が同色ならカラーリング範囲を拡大する
         NSLayoutManager *layoutManager = [[textStorage layoutManagers] firstObject];
         NSRange effectiveRange;
-        [layoutManager temporaryAttributesAtCharacterIndex:start
-                                     longestEffectiveRange:&effectiveRange
-                                                   inRange:wholeRange];
-        start = effectiveRange.location;
+        
+        // 表示領域の前があまり多くないときはファイル頭からカラーリングする
+        if (start <= bufferLength) {
+            start = 0;
+        } else {
+            [layoutManager temporaryAttributesAtCharacterIndex:start
+                                         longestEffectiveRange:&effectiveRange
+                                                       inRange:wholeRange];
+            start = effectiveRange.location;
+        }
         
         [layoutManager temporaryAttributesAtCharacterIndex:end
                                      longestEffectiveRange:&effectiveRange
