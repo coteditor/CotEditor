@@ -168,11 +168,8 @@ def parse_args():
 # MARK: - Main
 
 def main(args, stdin):
-    app_path = bundle_path()
-    if app_path:
-        app = ScriptableApplication(app_path)
-    else:
-        app = ScriptableApplication(APPLICATION_NAME)
+    app_identifier = bundle_path() or APPLICATION_NAME
+    app = ScriptableApplication(app_identifier)
 
     # launch
     if args.background:
