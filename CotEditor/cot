@@ -57,7 +57,7 @@ def bundle_path():
     # find '.app' extension
     while path is not '/':
         path = os.path.dirname(path)
-        root, extension = os.path.splitext(path)
+        _, extension = os.path.splitext(path)
         if extension == '.app':
             return path
 
