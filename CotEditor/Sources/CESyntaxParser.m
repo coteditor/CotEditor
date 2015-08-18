@@ -433,18 +433,19 @@ static CGFloat kPerCompoIncrement;
     
     NSUInteger bufferLength = [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultColoringRangeBufferLengthKey];
     NSRange wholeRange = NSMakeRange(0, [string length]);
-    NSRange coloringRange;
+    NSRange coloringRange = range;
     
     // 文字列が十分小さい時は全文カラーリングをする
     if (wholeRange.length <= bufferLength) {
         coloringRange = wholeRange;
         
     } else {
-        NSUInteger start = range.location;
-        NSUInteger end = NSMaxRange(range) - 1;
-        
         // 表示領域の前もある程度カラーリングの対象に含める
-        start -= MIN(start, bufferLength);
+        coloringRange.location -= MIN(coloringRange.location, bufferLength);
+        coloringRange = [string lineRangeForRange:coloringRange];
+        
+        NSUInteger start = coloringRange.location;
+        NSUInteger end = NSMaxRange(coloringRange) - 1;
         
         // 直前／直後が同色ならカラーリング範囲を拡大する
         NSLayoutManager *layoutManager = [[textStorage layoutManagers] firstObject];

@@ -200,7 +200,7 @@ def main(args, stdin):
     # jump to location
     if args.line is not None or args.column is not None:
         contents = app.tell_document('contents')
-        lines = contents.splitlines(True)
+        lines = contents.splitlines(keepends=True)
 
         # sanitize line number
         line = args.line or 1  # line number starts with 1
@@ -211,18 +211,19 @@ def main(args, stdin):
             line = max(1, line_count - abs(line) + 1)
 
         # count location of line head
-        loc = 0
+        location = 0
         for a_line in lines[0:line - 1]:
-            loc += len(a_line)
+            location += len(a_line)
 
         # sanitize and add column position
         if args.column is not None:
             last_line = lines[line - 1]
             column = min(args.column, len(last_line))
-            loc += column
+            location += column
 
         # set selection range
-        app.tell_document('set range of selection to {{{}, 0}}'.format(loc))
+        app.tell_document('set range of selection to {{{}, 0}}'.format(
+            location))
 
         # jump
         app.tell_document('scroll to caret')
