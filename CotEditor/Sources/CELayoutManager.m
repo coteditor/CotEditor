@@ -137,30 +137,6 @@ static BOOL usesTextFontForInvisibles;
 
 
 // ------------------------------------------------------
-/// グリフ位置を返す
-- (NSPoint)locationForGlyphAtIndex:(NSUInteger)glyphIndex
-// ------------------------------------------------------
-{
-    NSPoint point = [super locationForGlyphAtIndex:glyphIndex];
-    
-    // 複合フォントで描画位置Y座標が変わるのを防止する
-    if (![self isPrinting] && [self fixesLineHeight]) {
-        if ([[self firstTextView] layoutOrientation] != NSTextLayoutOrientationVertical) {
-            // フォントサイズは随時変更されるため、表示時に取得する
-            // 本来の値は[textFont ascender]か？
-            // [textFont pointSize]は通常、([textFont ascender] - [textFont descender])と一致する。例えばCourier 48ptだと、
-            // ascender　=　36.187500, descender = -11.812500 となっている。 2009.03.28
-            point.y = [[self textFont] pointSize];
-            
-            return point;
-        }
-    }
-
-    return point;
-}
-
-
-// ------------------------------------------------------
 /// 不可視文字の表示
 - (void)drawGlyphsForGlyphRange:(NSRange)glyphsToShow atPoint:(NSPoint)origin
 // ------------------------------------------------------
