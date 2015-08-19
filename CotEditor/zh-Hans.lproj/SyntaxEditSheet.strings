@@ -149,14 +149,14 @@
 
 /* Class = "NSTextFieldCell"; title = "Inline comment:"; ObjectID = "GCw-u2-Lau"; */
 "GCw-u2-Lau.title" = "行注释:";
-/* Class = "NSTextFieldCell"; title = "Begin width:"; ObjectID = "Nyf-L8-eh5"; */
+/* Class = "NSTextFieldCell"; title = "Begin with:"; ObjectID = "Nyf-L8-eh5"; */
 "Nyf-L8-eh5.title" = "以此开始:";
 /* Class = "NSTextFieldCell"; placeholderString = "Not defined"; ObjectID = "nI8-cM-hcS"; */
 "nI8-cM-hcS.placeholderString" = "未定义";
 
 /* Class = "NSTextFieldCell"; title = "Block comment:"; ObjectID = "Z5Q-Hy-1R7"; */
 "Z5Q-Hy-1R7.title" = "块注释:";
-/* Class = "NSTextFieldCell"; title = "Begin width:"; ObjectID = "OFV-ob-L5e"; */
+/* Class = "NSTextFieldCell"; title = "Begin with:"; ObjectID = "OFV-ob-L5e"; */
 "OFV-ob-L5e.title" = "以此开始:";
 /* Class = "NSTextFieldCell"; placeholderString = "Not defined"; ObjectID = "L2M-Fz-f48"; */
 "L2M-Fz-f48.placeholderString" = "未定义";
