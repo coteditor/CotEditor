@@ -28,10 +28,10 @@
 
 /* Class = "NSTextFieldCell"; title = "Behavior:"; ObjectID = "SqI-BC-ar9"; */
 "SqI-BC-ar9.title" = "行为:";
-/* Class = "NSButtonCell"; title = "Enable smart insert and delete"; ObjectID = "nA4-HY-d71"; */
-"nA4-HY-d71.title" = "启用智能引号和破折号";
-/* Class = "NSButtonCell"; title = "Enable smart quotes and dashes"; ObjectID = "3302"; */
+/* Class = "NSButtonCell"; title = "Enable smart insert and delete"; ObjectID = "3302"; */
 "3302.title" = "启用只能插入和删除";
+/* Class = "NSButtonCell"; title = "Enable smart quotes and dashes"; ObjectID = "nA4-HY-d71"; */
+"nA4-HY-d71.title" = "启用智能引号和破折号";
 /* Class = "NSButtonCell"; title = "Swap “¥” and “\\” keys"; ObjectID = "3303"; */
 "3303.title" = "转换 “¥” 和 “\\” 按键";
 /* Class = "NSButtonCell"; title = "Highlight matching braces “( )” “[ ]” “{ }”"; ObjectID = "3304"; */
