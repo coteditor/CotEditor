@@ -97,7 +97,7 @@
     }
     
     NSDictionary *defaults = @{CEDefaultDocumentConflictOptionKey: @(CEDocumentConflictRevert),
-                               CEDefaultChecksUpdatesForBetaKey: @NO,
+                               CEDefaultChecksUpdatesForBetaKey: @YES,
                                CEDefaultLayoutTextVerticalKey: @NO,
                                CEDefaultSplitViewVerticalKey: @NO,
                                CEDefaultShowLineNumbersKey: @YES,
