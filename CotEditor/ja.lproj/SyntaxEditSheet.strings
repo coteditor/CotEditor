@@ -231,7 +231,7 @@
 /* Class = "NSTextFieldCell"; title = "(‘YYYY-MM-DD’ format)"; ObjectID = "R2a-AA-hPB"; */
 "R2a-AA-hPB.title" = "(‘YYYY-MM-DD’ 形式)";
 /* Class = "NSTextFieldCell"; title = "Distribution URL:"; ObjectID = "RaI-42-gtJ"; */
-"RaI-42-gtJ.title" = "配付URL：";
+"RaI-42-gtJ.title" = "配付 URL：";
 /* Class = "NSTextFieldCell"; title = "Author:"; ObjectID = "h87-QY-CvE"; */
 "h87-QY-CvE.title" = "作者：";
 /* Class = "NSTextFieldCell"; title = "License:"; ObjectID = "4jZ-HS-mYE"; */

@@ -48,7 +48,7 @@ NSString *__nonnull const CEErrorDomain = @"com.coteditor.CotEditor.ErrorDomain"
 NSString *__nonnull const CEMetadataKey = @"metadata";
 NSString *__nonnull const CEAuthorKey = @"author";
 NSString *__nonnull const CEDistributionURLKey = @"distributionURL";
-NSString *__nonnull const CELisenceKey = @"lisence";
+NSString *__nonnull const CELicenseKey = @"license";
 NSString *__nonnull const CEDescriptionKey = @"description";
 
 

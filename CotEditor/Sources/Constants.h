@@ -63,7 +63,7 @@ typedef NS_ENUM(OSStatus, CEErrorCode) {
 extern NSString *__nonnull const CEMetadataKey;
 extern NSString *__nonnull const CEAuthorKey;
 extern NSString *__nonnull const CEDistributionURLKey;
-extern NSString *__nonnull const CELisenceKey;
+extern NSString *__nonnull const CELicenseKey;
 extern NSString *__nonnull const CEDescriptionKey;
 
 // Help anchors
