@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 IS_SANDBOXED = true
-APPCAST_PATH = "./appcast.xml"
+APPCAST_PATH = "./appcast-beta.xml"
 
 app = "./CotEditor.app"
 
