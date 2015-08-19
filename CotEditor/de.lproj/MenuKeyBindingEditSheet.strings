@@ -1,0 +1,44 @@
+/*
+ 
+ MenuKeyBindingEditSheet.strings (German)
+ 
+ CotEditor
+ http://coteditor.com
+ 
+ Created by 1024jp on 2015-08-19.
+ 
+ ------------------------------------------------------------------------------
+ 
+ © 2015 1024jp
+ 
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+ 
+ http://www.apache.org/licenses/LICENSE-2.0
+ 
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ 
+ */
+
+/* Class = "CEKeyBindingSheet"; title = "Menu Key Bindings"; ObjectID = "5"; */
+"5.title" = "Menü-Tastenbelegungen";
+
+/* Class = "NSTextFieldCell"; title = "To change a binding, select it, click the key column, and then type the keys.\nYou must include the Command key."; ObjectID = "144"; */
+"144.title" = "Zum Ändern einer Tastenbelegung wählen Sie ihn aus, klicken auf die Taste-Spalte und dann geben die Tasten ein. Sie müssen die Command-Taste einschließen.";
+
+/* Class = "NSTableColumn"; headerCell.title = "Title / Action"; ObjectID = "9"; */
+"9.headerCell.title" = "Titel / Aktion";
+/* Class = "NSTableColumn"; headerCell.title = "Key"; ObjectID = "10"; */
+"10.headerCell.title" = "Taste";
+
+/* Class = "NSButtonCell"; title = "Restore Defaults"; ObjectID = "140"; */
+"140.title" = "Auf Standard zurücksetzen";
+/* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "141"; */
+"141.title" = "Abbrechen";
+/* Class = "NSButtonCell"; title = "OK"; ObjectID = "142"; */
+"142.title" = "OK";

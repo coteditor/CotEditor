@@ -1,0 +1,95 @@
+/*
+ 
+ ThemeView.strings (German)
+ 
+ CotEditor
+ http://coteditor.com
+ 
+ Created by 1024jp on 2015-08-19.
+ 
+ ------------------------------------------------------------------------------
+ 
+ © 2015 1024jp
+ 
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+ 
+ http://www.apache.org/licenses/LICENSE-2.0
+ 
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ 
+ */
+
+/* Class = "NSTextFieldCell"; title = "Basic"; ObjectID = "Bb9-qh-gwK"; */
+"Bb9-qh-gwK.title" = "Basic";
+
+/* Class = "NSTextFieldCell"; title = "Text:"; ObjectID = "kvy-vf-yva"; */
+"kvy-vf-yva.title" = "Text:";
+/* Class = "NSTextFieldCell"; title = "Cursor:"; ObjectID = "Ljk-ky-fQH"; */
+"Ljk-ky-fQH.title" = "Cursor:";
+/* Class = "NSTextFieldCell"; title = "Invisibles:"; ObjectID = "IGx-p1-FHi"; */
+"IGx-p1-FHi.title" = "Unsichtbaren:";
+/* Class = "NSTextFieldCell"; title = "Background:"; ObjectID = "tvj-DS-DVt"; */
+"tvj-DS-DVt.title" = "Hintergrund:";
+/* Class = "NSTextFieldCell"; title = "Current Line:"; ObjectID = "yMW-lO-ILw"; */
+"yMW-lO-ILw.title" = "Aktuelle Zeile:";
+/* Class = "NSTextFieldCell"; title = "Selection:"; ObjectID = "PbY-c2-p4V"; */
+"PbY-c2-p4V.title" = "Auswahl:";
+/* Class = "NSButtonCell"; title = "Use system color"; ObjectID = "0ZP-Zp-oBu"; */
+"0ZP-Zp-oBu.title" = "Systemfarbe verwenden";
+
+
+/* Class = "NSTextFieldCell"; title = "Syntax"; ObjectID = "F64-8o-JYC"; */
+"F64-8o-JYC.title" = "Syntax";
+
+/* Class = "NSTextFieldCell"; title = "Keywords:"; ObjectID = "IU8-bd-gBv"; */
+"IU8-bd-gBv.title" = "Schlüsselwört.:";  // too long:  Schlüsselwörter
+/* Class = "NSTextFieldCell"; title = "Commands:"; ObjectID = "81x-je-JUf"; */
+"81x-je-JUf.title" = "Befehle:";
+/* Class = "NSTextFieldCell"; title = "Types:"; ObjectID = "ILi-Jt-MUc"; */
+"ILi-Jt-MUc.title" = "Typen:";
+/* Class = "NSTextFieldCell"; title = "Attributes:"; ObjectID = "RQL-fz-3aq"; */
+"RQL-fz-3aq.title" = "Attribute:";
+/* Class = "NSTextFieldCell"; title = "Variables:"; ObjectID = "ZIr-1E-qZJ"; */
+"ZIr-1E-qZJ.title" = "Variablen:";
+/* Class = "NSTextFieldCell"; title = "Values:"; ObjectID = "cVK-ET-QiD"; */
+"cVK-ET-QiD.title" = "Werte:";
+/* Class = "NSTextFieldCell"; title = "Numbers:"; ObjectID = "3wF-uc-Tfq"; */
+"3wF-uc-Tfq.title" = "Zahlen:";
+/* Class = "NSTextFieldCell"; title = "Strings:"; ObjectID = "n04-r3-95l"; */
+"n04-r3-95l.title" = "Zeichenketten:";
+/* Class = "NSTextFieldCell"; title = "Characters:"; ObjectID = "hbk-iX-4VK"; */
+"hbk-iX-4VK.title" = "Zeichen:";
+/* Class = "NSTextFieldCell"; title = "Comments:"; ObjectID = "AIG-rr-79V"; */
+"AIG-rr-79V.title" = "Kommentare:";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Show theme file info"; ObjectID = "8zj-4c-Hg4"; */
+"8zj-4c-Hg4.ibShadowedToolTip" = "Info der Themadatei einblenden";
+
+
+
+/* Class = "NSTextFieldCell"; title = "Author:"; ObjectID = "jbY-IC-CRS"; */
+"jbY-IC-CRS.title" = "Autor:";
+/* Class = "NSTextFieldCell"; title = "URL:"; ObjectID = "xyY-jQ-kpJ"; */
+"xyY-jQ-kpJ.title" = "URL:";
+/* Class = "NSTextFieldCell"; title = "License:"; ObjectID = "iy5-9x-zGF"; */
+"iy5-9x-zGF.title" = "Lizenz:";
+/* Class = "NSTextFieldCell"; title = "Description:"; ObjectID = "Inh-Ci-NGp"; */
+"Inh-Ci-NGp.title" = "Beschreibung:";
+
+/* Class = "IBBindingConnection"; ibShadowedIsNilPlaceholder = "Not defined"; ObjectID = "8ur-1G-I4N"; */
+"8ur-1G-I4N.ibShadowedIsNilPlaceholder" = "Nicht definiert";
+/* Class = "IBBindingConnection"; ibShadowedIsNilPlaceholder = "Not defined"; ObjectID = "wN3-ao-X42"; */
+"wN3-ao-X42.ibShadowedIsNilPlaceholder" = "Nicht definiert";
+/* Class = "IBBindingConnection"; ibShadowedIsNilPlaceholder = "Not defined"; ObjectID = "AVc-Ci-UnL"; */
+"AVc-Ci-UnL.ibShadowedIsNilPlaceholder" = "Nicht definiert";
+/* Class = "IBBindingConnection"; ibShadowedIsNilPlaceholder = "Not defined"; ObjectID = "r9S-sB-zfs"; */
+"r9S-sB-zfs.ibShadowedIsNilPlaceholder" = "Nicht definiert";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Jump to URL"; ObjectID = "Usu-Br-G0a"; */
+"Usu-Br-G0a.ibShadowedToolTip" = "Zur URL springen";

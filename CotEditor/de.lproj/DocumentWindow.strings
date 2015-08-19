@@ -1,0 +1,140 @@
+/*
+ 
+ DocumentWindow.strings (German)
+ 
+ CotEditor
+ http://coteditor.com
+ 
+ Created by 1024jp on 2015-08-19.
+ 
+ ------------------------------------------------------------------------------
+ 
+ © 2015 1024jp
+ 
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+ 
+ http://www.apache.org/licenses/LICENSE-2.0
+ 
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ 
+ */
+
+/* Class = "NSToolbarItem"; ObjectID = "fVR-to-zN3"; */
+"fVR-to-zN3.label" = "Zeilenenden";  /* Line Endings */
+"fVR-to-zN3.paletteLabel" = "Zeilenenden";  /* Line Endings */
+"fVR-to-zN3.toolTip" = "Zeilenenden ändern";  /* Change line endings */
+
+/* Class = "NSToolbarItem"; ObjectID = "d2p-GT-YXm"; */
+"d2p-GT-YXm.label" = "Codierung";  /* File Encoding */
+"d2p-GT-YXm.paletteLabel" = "Codierung";  /* File Encoding */
+"d2p-GT-YXm.toolTip" = "Codierung ändern";  /* Change file encoding */
+
+/* Class = "NSToolbarItem"; ObjectID = "6gO-UF-7QW"; */
+"6gO-UF-7QW.label" = "Syntaxstil";  /* Syntax Style */
+"6gO-UF-7QW.paletteLabel" = "Syntaxstil";  /* Syntax Style */
+"6gO-UF-7QW.toolTip" = "Syntaxstil ändern";  /* Change syntax style */
+
+/* Class = "NSToolbarItem"; ObjectID = "tZT-2A-nIl"; */
+"tZT-2A-nIl.label" = "Bereitstellen";  /* Share */
+"tZT-2A-nIl.paletteLabel" = "Bereitstellen";  /* Share */
+"tZT-2A-nIl.toolTip" = "Dokumentdatei bereitstellen";  /* Share document file */
+
+/* Class = "NSToolbarItem"; ObjectID = "ogy-SR-Vqr"; */
+"ogy-SR-Vqr.label" = "Informationen";  /* Get Info */
+"ogy-SR-Vqr.paletteLabel" = "Informationen";  /* Get Info */
+"ogy-SR-Vqr.toolTip" = "Dokumentinformationen einblenden";  /* Show document information */
+
+/* Class = "NSToolbarItem"; ObjectID = "LV0-t3-0jM"; */
+"LV0-t3-0jM.label" = "Inkompatible Zeichen";  /* Incompatible Chars */
+"LV0-t3-0jM.paletteLabel" = "Inkompatible Zeichen einblenden";  /* Show Incompatible Chars */
+"LV0-t3-0jM.toolTip" = "Inkompatible Zeichen für den ausgewählte Codierung ainblenden";  /* Show incompatible chars for selected encoding */
+
+/* Class = "NSToolbarItem"; ObjectID = "Ptr-aN-aSD"; */
+"Ptr-aN-aSD.label" = "Größer";  /* Bigger */
+"Ptr-aN-aSD.paletteLabel" = "Größere Schrift";  /* Bigger Font */
+"Ptr-aN-aSD.toolTip" = "Die Schriftgröße vergrößern";  /* Increase font size */
+
+/* Class = "NSToolbarItem"; ObjectID = "5nt-ud-Ewr"; */
+"5nt-ud-Ewr.label" = "Kleiner";  /* Smaller */
+"5nt-ud-Ewr.paletteLabel" = "Kleinere Schrift";  /* Smaller Font */
+"5nt-ud-Ewr.toolTip" = "Die Schriftgröße verkleinern";  /* Decrease font size */
+
+/* Class = "NSToolbarItem"; ObjectID = "77g-Yu-UgC"; */
+"77g-Yu-UgC.label" = "Ausrücken";  /* Shift Left */
+"77g-Yu-UgC.paletteLabel" = "Ausrücken";  /* Shift Left */
+"77g-Yu-UgC.toolTip" = "Zeilen nach Links verschieben";  /* Shift lines to left */
+
+/* Class = "NSToolbarItem"; ObjectID = "fa9-a4-ZUv"; */
+"fa9-a4-ZUv.label" = "Einrücken";  /* Shift Right */
+"fa9-a4-ZUv.paletteLabel" = "Einrücken";  /* Shift Right */
+"fa9-a4-ZUv.toolTip" = "Zeilen nach Rechts verschieben";  /* Shift lines to right */
+
+/* Class = "NSToolbarItem"; ObjectID = "cIM-Hx-SKX"; */
+"cIM-Hx-SKX.label" = "Kommentar";  /* Comment */
+"cIM-Hx-SKX.paletteLabel" = "Aus-/Unkommentieren";  /* Toggle Comment */
+"cIM-Hx-SKX.toolTip" = "Auswahl aus-/unkommentieren";  /* Comment-out or uncomment selection */
+
+/* Class = "NSToolbarItem"; ObjectID = "zry-bG-j2J"; */
+"zry-bG-j2J.label" = "Tab. Expandieren";  /* Expand Tabs */
+"zry-bG-j2J.paletteLabel" = "Auto-Tabulatorexpandierung ein/aus";  /* Toggle Auto Tab Expand */
+"zry-bG-j2J.toolTip" = "Auto-Tabulatorexpandierung ein/aus";  /* Toggle auto tab expand */
+
+/* Class = "NSToolbarItem"; ObjectID = "KpZ-NH-xEh"; */
+"KpZ-NH-xEh.label" = "Navigationleiste";  /* Navigation Bar */
+"KpZ-NH-xEh.paletteLabel" = "Navigationleiste ein-/ausblenden";  /* Show / Hide Navigation Bar */
+"KpZ-NH-xEh.toolTip" = "Navigationleiste ein-/ausblenden";  /* Show or hide navigation bar of window */
+
+/* Class = "NSToolbarItem"; ObjectID = "kfX-UD-siE"; */
+"kfX-UD-siE.label" = "Zeilennummern";  /* Line Number */
+"kfX-UD-siE.paletteLabel" = "Zeilennummern ein-/ausblenden";  /* Show / Hide Line Number */
+"kfX-UD-siE.toolTip" = "Zeilennummern des Textes ein-/ausblenden";  /* Show or hide line number of text */
+
+/* Class = "NSToolbarItem"; ObjectID = "moq-h9-h7t"; */
+"moq-h9-h7t.label" = "Statusleiste";  /* Status Bar */
+"moq-h9-h7t.paletteLabel" = "Statusleiste ein-/ausblenden";  /* Show / Hide Status Bar */
+"moq-h9-h7t.toolTip" = "Statusleiste ein-/ausblenden";  /* Show or hide status bar of window */
+
+/* Class = "NSToolbarItem"; ObjectID = "KtS-FH-3Py"; */
+"KtS-FH-3Py.label" = "Unsichtbare Zeichen";  /* Invisible Chars */
+"KtS-FH-3Py.paletteLabel" = "Unsichtbare Zeichen ein-/ausblenden";  /* Show / Hide Invisible Chars */
+"KtS-FH-3Py.toolTip" = "Unsichtbare Zeichen im Text ein-/ausblenden";  /* Show or hide invisible characters in text */
+
+/* Class = "NSToolbarItem"; ObjectID = "PES-f4-CAc"; */
+"PES-f4-CAc.label" = "Seitenhilfslinie";  /* Page Guide */
+"PES-f4-CAc.paletteLabel" = "Seitenhilfslinie ein-/ausblenden";  /* Show / Hide Page Guide */
+"PES-f4-CAc.toolTip" = "Seitenhilfslinie ein-/ausblenden";  /* Show or hide page guide line */
+
+/* Class = "NSToolbarItem"; ObjectID = "oJm-2d-4Yl"; */
+"oJm-2d-4Yl.label" = "Zeilen umbrechen";  /* Wrap Lines */
+"oJm-2d-4Yl.paletteLabel" = "Zeilenumbruch ein/aus";  /* Toggle Wrap Lines */
+"oJm-2d-4Yl.toolTip" = "Zeilenumbruch ein/aus";  /* Toggle wrap lines */
+
+/* Class = "NSToolbarItem"; ObjectID = "OJR-Lr-Joc"; */
+"OJR-Lr-Joc.label" = "Textausrichtung";  /* Orientation */
+"OJR-Lr-Joc.paletteLabel" = "Textausrichtung";  /* Toggle Text Orientation */
+"OJR-Lr-Joc.toolTip" = "Text vertikal/horizontal ausrichten";  /* Toggle text orientation */
+
+/* Class = "NSToolbarItem"; ObjectID = "77o-kx-gNj"; */
+"77o-kx-gNj.label" = "Farbcode";  /* Color Code */
+"77o-kx-gNj.paletteLabel" = "Farbcode bearbeiten";  /* Edit Color Code */
+"77o-kx-gNj.toolTip" = "Farbcode-Editor öffnen und die Auswahl als Farbcode einrichten";  /* Open Color Code Editor and set selection as color code */
+
+/* Class = "NSToolbarItem"; ObjectID = "qhr-mN-25W"; */
+"qhr-mN-25W.label" = "Umfärben";  /* Re-Color */
+"qhr-mN-25W.paletteLabel" = "Alles umfärben";  /* Re-Color All */
+"qhr-mN-25W.toolTip" = "Ganze Dokument umfärben";  /* Re-color whole document */
+
+
+/* Class = "NSImageView"; ibShadowedToolTip = "This document is read only."; ObjectID = "EP1-My-tQo"; */
+"EP1-My-tQo.ibShadowedToolTip" = "Diese Dokument ist nur zum Lesen.";
+
+
+/* Class = "NSSegmentedCell"; ObjectID = "TPz-kb-PBa"; */
+"TPz-kb-PBa.ibShadowedLabels[0]" = "Dokument";  /* Document */
+"TPz-kb-PBa.ibShadowedLabels[1]" = "Währungen";  /* Issues */
