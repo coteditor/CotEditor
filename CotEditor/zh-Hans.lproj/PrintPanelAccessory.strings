@@ -1,14 +1,29 @@
 /*
- PrintPanelAccessory.strings
+ 
+ PrintPanelAccessory.strings (Simplified Chinese)
  
  CotEditor
  http://coteditor.com
  
- Created on 2014-12-12 by 1024jp
+ Created by 1024jp on 2014-12-12.
  Localized by onevcat
- encoding="UTF-8"
  
- © 2014 CotEditor Project
+ ------------------------------------------------------------------------------
+ 
+ © 2014-2015 CotEditor Project
+ 
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+ 
+ http://www.apache.org/licenses/LICENSE-2.0
+ 
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ 
  */
 
 /* Class = "NSTextFieldCell"; title = "Color:"; ObjectID = "eXI-55-yQO"; */
@@ -41,8 +56,8 @@
 /* Class = "NSButtonCell"; title = "Print header"; ObjectID = "708"; */
 "708.title" = "打印页眉";
 
-/* Class = "NSTextFieldCell"; title = "First line:"; ObjectID = "256"; */
-"706.title" = "第一行:";
+/* Class = "NSTextFieldCell"; title = "Primary:"; ObjectID = "256"; */
+"706.title" = "主:";
 
 /* Class = "NSMenuItem"; title = "None"; ObjectID = "393"; */
 "393.title" = "无";
@@ -64,8 +79,8 @@
 
 
 
-/* Class = "NSTextFieldCell"; title = "Second line:"; ObjectID = "257"; */
-"712.title" = "第二行:";
+/* Class = "NSTextFieldCell"; title = "Secodnary:"; ObjectID = "257"; */
+"712.title" = "次:";
 
 /* Class = "NSMenuItem"; title = "None"; ObjectID = "395"; */
 "395.title" = "无";
@@ -85,16 +100,13 @@
 "I4t-kQ-lvq.ibShadowedToolTips[1]" = "居中";  /* Center */
 "I4t-kQ-lvq.ibShadowedToolTips[2]" = "右对齐";  /* Align Right */
 
-/* Class = "NSButtonCell"; title = "Print separator line at the bottom of header"; ObjectID = "705"; */
-"705.title" = "在页眉下方打印分隔线";
-
 
 
 /* Class = "NSButtonCell"; title = "Print footer"; ObjectID = "713"; */
 "713.title" = "打印页脚";
 
-/* Class = "NSTextFieldCell"; title = "First line:"; ObjectID = "295"; */
-"711.title" = "第一行:";
+/* Class = "NSTextFieldCell"; title = "Primary:"; ObjectID = "295"; */
+"711.title" = "主:";
 
 /* Class = "NSMenuItem"; title = "None"; ObjectID = "397"; */
 "397.title" = "无";
@@ -115,8 +127,8 @@
 "njJ-Ab-dUQ.ibShadowedToolTips[2]" = "右对齐";  /* Align Right */
 
 
-/* Class = "NSTextFieldCell"; title = "Second line:"; ObjectID = "296"; */
-"707.title" = "第二行:";
+/* Class = "NSTextFieldCell"; title = "Secodnary:"; ObjectID = "296"; */
+"707.title" = "次:";
 
 /* Class = "NSMenuItem"; title = "None"; ObjectID = "399"; */
 "399.title" = "无";
@@ -135,6 +147,3 @@
 "xAm-2i-Sw1.ibShadowedToolTips[0]" = "左对齐";  /* Align Left */
 "xAm-2i-Sw1.ibShadowedToolTips[1]" = "居中";  /* Center */
 "xAm-2i-Sw1.ibShadowedToolTips[2]" = "右对齐";  /* Align Right */
-
-/* Class = "NSButtonCell"; title = "Print separator line at the top of footer"; ObjectID = "710"; */
-"710.title" = "在页脚上方打印分隔线";

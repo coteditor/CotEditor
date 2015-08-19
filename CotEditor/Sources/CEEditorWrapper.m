@@ -1,36 +1,34 @@
 /*
- ==============================================================================
- CEEditorWrapper
+ 
+ CEEditorWrapper.m
  
  CotEditor
  http://coteditor.com
  
- Created on 2004-12-08 by nakamuxu
- encoding="UTF-8"
+ Created by nakamuxu on 2004-12-08.
  
  ------------
  This class is based on JSDTextView (written by James S. Derry – http://www.balthisar.com)
  JSDTextView is released as public domain.
  arranged by nakamuxu, Dec 2004.
+ 
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
  © 2014-2015 1024jp
  
- This program is free software; you can redistribute it and/or modify it under
- the terms of the GNU General Public License as published by the Free Software
- Foundation; either version 2 of the License, or (at your option) any later
- version.
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
  
- This program is distributed in the hope that it will be useful, but WITHOUT
- ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+ http://www.apache.org/licenses/LICENSE-2.0
  
- You should have received a copy of the GNU General Public License along with
- this program; if not, write to the Free Software Foundation, Inc., 59 Temple
- Place - Suite 330, Boston, MA  02111-1307, USA.
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
  
- ==============================================================================
  */
 
 #import "CEEditorWrapper.h"
@@ -41,17 +39,19 @@
 #import "CENavigationBarController.h"
 #import "CESyntaxParser.h"
 #import "CEGoToSheetController.h"
-#import "constants.h"
+#import "Constants.h"
 
 
 @interface CEEditorWrapper ()
 
-@property (nonatomic) NSTimer *coloringTimer;
+@property (nonatomic, nullable) NSTimer *coloringTimer;
+@property (nonatomic, nullable) NSTimer *outlineMenuTimer;
 
-@property (nonatomic) IBOutlet CESplitViewController *splitViewController;
+@property (nonatomic, nullable) IBOutlet CESplitViewController *splitViewController;
 
 
 // readonly
+@property (readwrite, nonatomic) CESyntaxParser *syntaxParser;
 @property (readwrite, nonatomic) BOOL canActivateShowInvisibles;
 
 @end
@@ -88,7 +88,7 @@ static NSTimeInterval secondColoringDelay;
 
 // ------------------------------------------------------
 /// initialize instance
-- (instancetype)init
+- (nonnull instancetype)init
 // ------------------------------------------------------
 {
     self = [super init];
@@ -111,6 +111,8 @@ static NSTimeInterval secondColoringDelay;
 // ------------------------------------------------------
 {
     [self stopColoringTimer];
+    [self stopUpdateOutlineMenuTimer];
+    
     _focusedTextView = nil;
 }
 
@@ -124,7 +126,7 @@ static NSTimeInterval secondColoringDelay;
     
     // Yosemite 未満の場合は手動で Responder Chain に入れる
     // （Yosemite 以降は自動的に追加されるためか以下の一行が入るとハングしてしまう）
-    if (floor(NSAppKitVersionNumber) <= NSAppKitVersionNumber10_9) {
+    if (NSAppKitVersionNumber < NSAppKitVersionNumber10_10) {
         [self setNextResponder:[self splitViewController]];
     }
     
@@ -145,7 +147,7 @@ static NSTimeInterval secondColoringDelay;
 
 // ------------------------------------------------------
 /// メニュー項目の有効・無効を制御
-- (BOOL)validateMenuItem:(NSMenuItem *)menuItem
+- (BOOL)validateMenuItem:(nonnull NSMenuItem *)menuItem
 // ------------------------------------------------------
 {
     NSInteger state = NSOffState;
@@ -153,9 +155,6 @@ static NSTimeInterval secondColoringDelay;
     
     if ([menuItem action] == @selector(toggleLineNumber:)) {
         title = [self showsLineNum] ? @"Hide Line Numbers" : @"Show Line Numbers";
-        if ([self isVerticalLayoutOrientation]) {
-            return NO;
-        }
         
     } else if ([menuItem action] == @selector(toggleNavigationBar:)) {
         title = [self showsNavigationBar] ? @"Hide Navigation Bar" : @"Show Navigation Bar";
@@ -186,7 +185,7 @@ static NSTimeInterval secondColoringDelay;
     } else if ([menuItem action] == @selector(toggleAutoTabExpand:)) {
         state = [[self focusedTextView] isAutoTabExpandEnabled] ? NSOnState : NSOffState;
         
-    } else if ([menuItem action] == @selector(selectPrevItemOfOutlineMenu:)) {
+    } else if ([menuItem action] == @selector(selectPrevItemOftimerMenu:)) {
         return ([[self navigationBar] canSelectPrevItem]);
     } else if ([menuItem action] == @selector(selectNextItemOfOutlineMenu:)) {
         return ([[self navigationBar] canSelectNextItem]);
@@ -380,6 +379,10 @@ static NSTimeInterval secondColoringDelay;
     }];
     [[[self windowController] toolbarController] toggleItemWithTag:CEToolbarShowNavigationBarItemTag
                                                              setOn:showsNavigationBar];
+    
+    if (showsNavigationBar && ![self outlineMenuTimer]) {
+        [self invalidateOutlineMenu];
+    }
 }
 
 
@@ -470,8 +473,9 @@ static NSTimeInterval secondColoringDelay;
     
     [[self splitViewController] enumerateEditorViewsUsingBlock:^(CEEditorView *editorView) {
         [[editorView textView] setTheme:theme];
-        [editorView recolorAllTextViewString];
     }];
+    
+    [[self syntaxParser] colorWholeStringInTextStorage:[self textStorage]];
 }
 
 
@@ -511,49 +515,65 @@ static NSTimeInterval secondColoringDelay;
 
 // ------------------------------------------------------
 /// シンタックススタイル名をセット
-- (void)setSyntaxStyleName:(NSString *)name recolorNow:(BOOL)recolorNow
+- (void)setSyntaxStyleWithName:(NSString *)name coloring:(BOOL)doColoring
 // ------------------------------------------------------
 {
-    if (![self syntaxParser]) { return; }
-    
+    CESyntaxParser *syntaxParser = [[CESyntaxParser alloc] initWithStyleName:name];
+    [self setSyntaxParser:syntaxParser];
     [[self splitViewController] enumerateEditorViewsUsingBlock:^(CEEditorView *editorView) {
-        [editorView setSyntaxWithName:name];
-        if (recolorNow) {
-            [editorView recolorAllTextViewString];
-            if ([[editorView navigationBar] isShown]) {
-                [editorView updateOutlineMenu];
-            }
-        }
+        [editorView applySyntax:syntaxParser];
     }];
+    
+    if (doColoring) {
+        [self invalidateSyntaxColoring];
+        [self invalidateOutlineMenu];
+    }
 }
 
 
 // ------------------------------------------------------
 /// 全テキストを再カラーリング
-- (void)recolorAllString
+- (void)invalidateSyntaxColoring
 // ------------------------------------------------------
 {
     [self stopColoringTimer];
     
-    [[self splitViewController] enumerateEditorViewsUsingBlock:^(CEEditorView *editorView) {
-        [editorView recolorAllTextViewString];
-    }];
+    [[self syntaxParser] colorWholeStringInTextStorage:[self textStorage]];
 }
 
 
 // ------------------------------------------------------
-/// ディレイをかけて、全テキストを再カラーリング、アウトラインメニューを更新
-- (void)updateColoringAndOutlineMenuWithDelay
+/// アウトラインメニューを更新
+- (void)invalidateOutlineMenu
 // ------------------------------------------------------
 {
-    [self stopColoringTimer];
+    [self stopUpdateOutlineMenuTimer];
     
-    CESplitViewController *splitViewController = [self splitViewController];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.03 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [splitViewController enumerateEditorViewsUsingBlock:^(CEEditorView *editorView) {
-            [editorView updateOutlineMenu];
-            [editorView recolorAllTextViewString];
+    NSString *wholeString = [[self textStorage] string] ? : @"";
+    
+    // 規定の文字数以上の場合にはインジケータを表示
+    // （ただし、CEDefaultShowColoringIndicatorTextLengthKey が「0」の時は表示しない）
+    NSUInteger indicatorThreshold = [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultShowColoringIndicatorTextLengthKey];
+    if (indicatorThreshold > 0 && indicatorThreshold < [wholeString length]) {
+        [[self splitViewController] enumerateEditorViewsUsingBlock:^(CEEditorView *editorView) {
+            [[editorView navigationBar] showOutlineIndicator];
         }];
+    }
+    
+    NSString *immutableWholeString = [NSString stringWithString:wholeString];  // 解析中に参照元が変更されると困るのでコピーする
+    
+    // 別スレッドでアウトラインを抽出して、メインスレッドで navigationBar に渡す
+    CESyntaxParser *syntaxParser = [self syntaxParser];
+    CESplitViewController *splitViewController = [self splitViewController];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSArray *outlineItems = [syntaxParser outlineItemsWithWholeString:immutableWholeString];
+        
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            [splitViewController enumerateEditorViewsUsingBlock:^(CEEditorView *editorView) {
+                [[editorView navigationBar] setOutlineItems:outlineItems];
+                // （選択項目の更新も上記メソッド内で行われるので、updateOutlineMenuSelection は呼ぶ必要なし。 2008.05.16.）
+            }];
+        });
     });
 }
 
@@ -601,12 +621,31 @@ static NSTimeInterval secondColoringDelay;
 }
 
 
+// ------------------------------------------------------
+/// アウトラインメニュー項目を更新
+- (void)setupOutlineMenuUpdateTimer
+// ------------------------------------------------------
+{
+    // アウトラインメニュー項目更新
+    NSTimeInterval outlineMenuInterval = [[NSUserDefaults standardUserDefaults] doubleForKey:CEDefaultOutlineMenuIntervalKey];
+    if ([self outlineMenuTimer]) {
+        [[self outlineMenuTimer] setFireDate:[NSDate dateWithTimeIntervalSinceNow:outlineMenuInterval]];
+    } else {
+        [self setOutlineMenuTimer:[NSTimer scheduledTimerWithTimeInterval:outlineMenuInterval
+                                                                   target:self
+                                                                 selector:@selector(updateOutlineMenuWithTimer:)
+                                                                 userInfo:nil
+                                                                  repeats:NO]];
+    }
+}
+
+
 
 #pragma mark Action Messages
 
 // ------------------------------------------------------
 /// 行番号表示をトグルに切り替える
-- (IBAction)toggleLineNumber:(id)sender
+- (IBAction)toggleLineNumber:(nullable id)sender
 // ------------------------------------------------------
 {
     [self setShowsLineNum:![self showsLineNum]];
@@ -615,7 +654,7 @@ static NSTimeInterval secondColoringDelay;
 
 // ------------------------------------------------------
 /// ナビゲーションバーの表示をトグルに切り替える
-- (IBAction)toggleNavigationBar:(id)sender
+- (IBAction)toggleNavigationBar:(nullable id)sender
 // ------------------------------------------------------
 {
     [self setShowsNavigationBar:![self showsNavigationBar] animate:YES];
@@ -624,7 +663,7 @@ static NSTimeInterval secondColoringDelay;
 
 // ------------------------------------------------------
 /// ワードラップをトグルに切り替える
-- (IBAction)toggleLineWrap:(id)sender
+- (IBAction)toggleLineWrap:(nullable id)sender
 // ------------------------------------------------------
 {
     [self setWrapsLines:![self wrapsLines]];
@@ -633,7 +672,7 @@ static NSTimeInterval secondColoringDelay;
 
 // ------------------------------------------------------
 /// 横書き／縦書きを切り替える
-- (IBAction)toggleLayoutOrientation:(id)sender
+- (IBAction)toggleLayoutOrientation:(nullable id)sender
 // ------------------------------------------------------
 {
     [self setVerticalLayoutOrientation:![self isVerticalLayoutOrientation]];
@@ -642,7 +681,7 @@ static NSTimeInterval secondColoringDelay;
 
 // ------------------------------------------------------
 /// 文字にアンチエイリアスを使うかどうかをトグルに切り替える
-- (IBAction)toggleAntialias:(id)sender
+- (IBAction)toggleAntialias:(nullable id)sender
 // ------------------------------------------------------
 {
     BOOL usesAntialias = ![(CELayoutManager *)[[self focusedTextView] layoutManager] usesAntialias];
@@ -655,7 +694,7 @@ static NSTimeInterval secondColoringDelay;
 
 // ------------------------------------------------------
 /// 不可視文字表示をトグルに切り替える
-- (IBAction)toggleInvisibleChars:(id)sender
+- (IBAction)toggleInvisibleChars:(nullable id)sender
 // ------------------------------------------------------
 {
     BOOL showsInvisibles = ![(CELayoutManager *)[[self focusedTextView] layoutManager] showsInvisibles];
@@ -670,7 +709,7 @@ static NSTimeInterval secondColoringDelay;
 
 // ------------------------------------------------------
 /// ソフトタブの有効／無効をトグルに切り替える
-- (IBAction)toggleAutoTabExpand:(id)sender
+- (IBAction)toggleAutoTabExpand:(nullable id)sender
 // ------------------------------------------------------
 {
     BOOL isEnabled = ![[self focusedTextView] isAutoTabExpandEnabled];
@@ -685,7 +724,7 @@ static NSTimeInterval secondColoringDelay;
 
 // ------------------------------------------------------
 /// ページガイド表示をトグルに切り替える
-- (IBAction)togglePageGuide:(id)sender
+- (IBAction)togglePageGuide:(nullable id)sender
 // ------------------------------------------------------
 {
     [self setShowsPageGuide:![self showsPageGuide]];
@@ -694,7 +733,7 @@ static NSTimeInterval secondColoringDelay;
 
 // ------------------------------------------------------
 /// アウトラインメニューの前の項目を選択（メニューバーからのアクションを中継）
-- (IBAction)selectPrevItemOfOutlineMenu:(id)sender
+- (IBAction)selectPrevItemOfOutlineMenu:(nullable id)sender
 // ------------------------------------------------------
 {
     [[self navigationBar] selectPrevItem:sender];
@@ -703,7 +742,7 @@ static NSTimeInterval secondColoringDelay;
 
 // ------------------------------------------------------
 /// アウトラインメニューの次の項目を選択（メニューバーからのアクションを中継）
-- (IBAction)selectNextItemOfOutlineMenu:(id)sender
+- (IBAction)selectNextItemOfOutlineMenu:(nullable id)sender
 // ------------------------------------------------------
 {
     [[self navigationBar] selectNextItem:sender];
@@ -712,7 +751,7 @@ static NSTimeInterval secondColoringDelay;
 
 // ------------------------------------------------------
 /// テキストビュー分割を行う
-- (IBAction)openSplitTextView:(id)sender
+- (IBAction)openSplitTextView:(nullable id)sender
 // ------------------------------------------------------
 {
     CEEditorView *currentEditorView;
@@ -734,7 +773,7 @@ static NSTimeInterval secondColoringDelay;
     
     CEEditorView *newEditorView = [[CEEditorView alloc] initWithFrame:[currentEditorView frame]];
 
-    [newEditorView replaceTextStorage:[[self focusedTextView] textStorage]];
+    [newEditorView replaceTextStorage:[self textStorage]];
     [newEditorView setEditorWrapper:self];
     
     // instert new editorView just below the editorView that the pressed button belongs to or has focus
@@ -749,9 +788,9 @@ static NSTimeInterval secondColoringDelay;
     [[newEditorView textView] setLineSpacing:[[currentEditorView textView] lineSpacing]];
     [[newEditorView textView] setSelectedRange:[[currentEditorView textView] selectedRange]];
     
-    [newEditorView setSyntaxWithName:[[self syntaxParser] styleName]];
-    [newEditorView updateOutlineMenu];
-    [[newEditorView syntaxParser] colorAllString:[self string]];
+    [newEditorView applySyntax:[self syntaxParser]];
+    [self invalidateSyntaxColoring];
+    [self invalidateOutlineMenu];
     
     // move focus to the new editor
     [[self window] makeFirstResponder:[newEditorView textView]];
@@ -767,7 +806,7 @@ static NSTimeInterval secondColoringDelay;
 
 // ------------------------------------------------------
 //// 分割されたテキストビューを閉じる
-- (IBAction)closeSplitTextView:(id)sender
+- (IBAction)closeSplitTextView:(nullable id)sender
 // ------------------------------------------------------
 {
     CEEditorView *editorViewToClose;
@@ -809,10 +848,10 @@ static NSTimeInterval secondColoringDelay;
 
 // ------------------------------------------------------
 /// ドキュメント全体を再カラーリング
-- (IBAction)recolorAll:(id)sender
+- (IBAction)recolorAll:(nullable id)sender
 // ------------------------------------------------------
 {
-    [self recolorAllString];
+    [self invalidateSyntaxColoring];
 }
 
 
@@ -866,6 +905,15 @@ static NSTimeInterval secondColoringDelay;
 
 
 // ------------------------------------------------------
+/// text storage を返す
+- (NSTextStorage *)textStorage
+// ------------------------------------------------------
+{
+    return [[self focusedTextView] textStorage];
+}
+
+
+// ------------------------------------------------------
 /// windowControllerを返す
 - (CEWindowController *)windowController
 // ------------------------------------------------------
@@ -898,15 +946,6 @@ static NSTimeInterval secondColoringDelay;
 // ------------------------------------------------------
 {
     return [(CEEditorView *)[[self focusedTextView] delegate] navigationBar];
-}
-
-
-// ------------------------------------------------------
-/// syntaxオブジェクトを返す
-- (CESyntaxParser *)syntaxParser
-// ------------------------------------------------------
-{
-    return [(CEEditorView *)[[self focusedTextView] delegate] syntaxParser];
 }
 
 
@@ -972,13 +1011,14 @@ static NSTimeInterval secondColoringDelay;
         updateRange = NSMakeRange(location, length);
     }
     
-    [[self syntaxParser] colorRange:updateRange wholeString:[self string]];
+    [[self syntaxParser] colorRange:updateRange
+                        textStorage:[textView textStorage]];
 }
 
 
 // ------------------------------------------------------
 /// タイマーの設定時刻に到達、カラーリング実行
-- (void)doColoringWithTimer:(NSTimer *)timer
+- (void)doColoringWithTimer:(nonnull NSTimer *)timer
 // ------------------------------------------------------
 {
     [self stopColoringTimer];
@@ -997,6 +1037,27 @@ static NSTimeInterval secondColoringDelay;
     }
 }
 
+
+// ------------------------------------------------------
+/// アウトラインメニュー更新
+- (void)updateOutlineMenuWithTimer:(nonnull NSTimer *)timer
+// ------------------------------------------------------
+{
+    [self invalidateOutlineMenu]; // （invalidateOutlineMenu 内で stopUpdateOutlineMenuTimer を実行している）
+}
+
+
+// ------------------------------------------------------
+/// アウトラインメニュー更新タイマーを停止
+- (void)stopUpdateOutlineMenuTimer
+// ------------------------------------------------------
+{
+    if ([self outlineMenuTimer]) {
+        [[self outlineMenuTimer] invalidate];
+        [self setOutlineMenuTimer:nil];
+    }
+}
+
 @end
 
 
@@ -1010,7 +1071,7 @@ static NSTimeInterval secondColoringDelay;
 
 // ------------------------------------------------------
 /// show Go To sheet
-- (IBAction)gotoLocation:(id)sender
+- (IBAction)gotoLocation:(nullable id)sender
 // ------------------------------------------------------
 {
     CEGoToSheetController *sheetController = [[CEGoToSheetController alloc] init];

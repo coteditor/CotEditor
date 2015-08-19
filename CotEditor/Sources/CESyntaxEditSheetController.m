@@ -1,36 +1,34 @@
 /*
- ==============================================================================
- CESyntaxEditSheetController
+ 
+ CESyntaxEditSheetController.m
  
  CotEditor
  http://coteditor.com
  
- Created on 2014-04-03 by 1024jp
- encoding="UTF-8"
+ Created by 1024jp on 2014-04-03.
+
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014 1024jp
+ © 2014-2015 1024jp
  
- This program is free software; you can redistribute it and/or modify it under
- the terms of the GNU General Public License as published by the Free Software
- Foundation; either version 2 of the License, or (at your option) any later
- version.
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
  
- This program is distributed in the hope that it will be useful, but WITHOUT
- ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+ http://www.apache.org/licenses/LICENSE-2.0
  
- You should have received a copy of the GNU General Public License along with
- this program; if not, write to the Free Software Foundation, Inc., 59 Temple
- Place - Suite 330, Boston, MA  02111-1307, USA.
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
  
- ==============================================================================
  */
 
 #import "CESyntaxEditSheetController.h"
 #import "CESyntaxManager.h"
-#import "constants.h"
+#import "Constants.h"
 
 
 typedef NS_ENUM(NSUInteger, CETabIndex) {
@@ -56,17 +54,17 @@ typedef NS_ENUM(NSUInteger, CETabIndex) {
 
 @interface CESyntaxEditSheetController () <NSTextFieldDelegate, NSTableViewDelegate>
 
-@property (nonatomic) NSMutableDictionary *style;  // スタイル定義（NSArrayControllerを通じて操作）
+@property (nonatomic, nonnull) NSMutableDictionary *style;  // スタイル定義（NSArrayControllerを通じて操作）
 @property (nonatomic) CESyntaxEditSheetMode mode;
-@property (nonatomic, copy) NSString *originalStyleName;   // シートを生成した際に指定したスタイル名
+@property (nonatomic, nonnull, copy) NSString *originalStyleName;   // シートを生成した際に指定したスタイル名
 @property (nonatomic, getter=isStyleNameValid) BOOL styleNameValid;
 @property (nonatomic, getter=isBundledStyle) BOOL bundledStyle;
 
-@property (nonatomic, weak) IBOutlet NSTableView *menuTableView;
-@property (nonatomic, weak) IBOutlet NSTextField *styleNameField;
-@property (nonatomic, weak) IBOutlet NSTextField *messageField;
-@property (nonatomic, weak) IBOutlet NSButton *factoryDefaultsButton;
-@property (nonatomic, strong) IBOutlet NSTextView *validationTextView;  // on 10.8 NSTextView cannot be weak
+@property (nonatomic, nullable, weak) IBOutlet NSTableView *menuTableView;
+@property (nonatomic, nullable, weak) IBOutlet NSTextField *styleNameField;
+@property (nonatomic, nullable, weak) IBOutlet NSTextField *messageField;
+@property (nonatomic, nullable, weak) IBOutlet NSButton *factoryDefaultsButton;
+@property (nonatomic, nullable, strong) IBOutlet NSTextView *validationTextView;  // on 10.8 NSTextView cannot be weak
 
 @property (nonatomic) NSUInteger selectedDetailTag; // Elementsタブでのポップアップメニュー選択用バインディング変数(#削除不可)
 
@@ -83,7 +81,7 @@ typedef NS_ENUM(NSUInteger, CETabIndex) {
 
 // ------------------------------------------------------
 /// initialize
-- (instancetype)initWithStyle:(NSString *)styleName mode:(CESyntaxEditSheetMode)mode
+- (nullable instancetype)initWithStyle:(nonnull NSString *)styleName mode:(CESyntaxEditSheetMode)mode
 // ------------------------------------------------------
 {
     self = [super initWithWindowNibName:@"SyntaxEditSheet"];
@@ -157,7 +155,7 @@ typedef NS_ENUM(NSUInteger, CETabIndex) {
 
 // ------------------------------------------------------
 /// スタイル名が変更された
-- (void)controlTextDidChange:(NSNotification *)aNotification
+- (void)controlTextDidChange:(nonnull NSNotification *)aNotification
 // ------------------------------------------------------
 {
     // 入力されたスタイル名の検証
@@ -175,7 +173,7 @@ typedef NS_ENUM(NSUInteger, CETabIndex) {
 
 // ------------------------------------------------------
 /// tableView の選択が変更された
-- (void)tableViewSelectionDidChange:(NSNotification *)notification
+- (void)tableViewSelectionDidChange:(nonnull NSNotification *)notification
 // ------------------------------------------------------
 {
     NSTableView *tableView = [notification object];
@@ -188,7 +186,7 @@ typedef NS_ENUM(NSUInteger, CETabIndex) {
 
 // ------------------------------------------------------
 /// 行を選択するべきかを返す
-- (BOOL)tableView:(NSTableView *)tableView shouldSelectRow:(NSInteger)row
+- (BOOL)tableView:(nonnull NSTableView *)tableView shouldSelectRow:(NSInteger)row
 // ------------------------------------------------------
 {
     // セパレータは選択不可
@@ -201,7 +199,7 @@ typedef NS_ENUM(NSUInteger, CETabIndex) {
 
 // ------------------------------------------------------
 /// スタイルの内容を出荷時設定に戻す
-- (IBAction)setToFactoryDefaults:(id)sender
+- (IBAction)setToFactoryDefaults:(nullable id)sender
 // ------------------------------------------------------
 {
     NSMutableDictionary *style = [[[CESyntaxManager sharedManager] bundledStyleWithStyleName:[self originalStyleName]] mutableCopy];
@@ -219,7 +217,7 @@ typedef NS_ENUM(NSUInteger, CETabIndex) {
 
 // ------------------------------------------------------
 /// カラーシンタックス編集シートの OK ボタンが押された
-- (IBAction)saveEdit:(id)sender
+- (IBAction)saveEdit:(nullable id)sender
 // ------------------------------------------------------
 {
     // フォーカスを移して入力中の値を確定
@@ -256,7 +254,7 @@ typedef NS_ENUM(NSUInteger, CETabIndex) {
 
 // ------------------------------------------------------
 /// カラーシンタックス編集シートの Cancel ボタンが押された
-- (IBAction)cancelEdit:(id)sender
+- (IBAction)cancelEdit:(nullable id)sender
 // ------------------------------------------------------
 {
     [self endSheetWithReturnCode:NSCancelButton];
@@ -265,7 +263,7 @@ typedef NS_ENUM(NSUInteger, CETabIndex) {
 
 // ------------------------------------------------------
 /// 構文チェックを開始
-- (IBAction)startValidation:(id)sender
+- (IBAction)startValidation:(nullable id)sender
 // ------------------------------------------------------
 {
     [self validate];
@@ -277,7 +275,7 @@ typedef NS_ENUM(NSUInteger, CETabIndex) {
 
 // ------------------------------------------------------
 /// メニュー項目を返す
-- (NSArray *)menuTitles
+- (nonnull NSArray *)menuTitles
 // ------------------------------------------------------
 {
     return @[NSLocalizedString(@"Keywords", nil),
@@ -305,7 +303,7 @@ typedef NS_ENUM(NSUInteger, CETabIndex) {
 - (void)endSheetWithReturnCode:(NSInteger)returnCode
 // ------------------------------------------------------
 {
-    if (floor(NSAppKitVersionNumber) > NSAppKitVersionNumber10_8) { // on Mavericks or later
+    if (NSAppKitVersionNumber >= NSAppKitVersionNumber10_9) { // on Mavericks or later
         [[[self window] sheetParent] endSheet:[self window] returnCode:returnCode];
     } else {
         [NSApp stopModal];
@@ -316,8 +314,8 @@ typedef NS_ENUM(NSUInteger, CETabIndex) {
 
 
 // ------------------------------------------------------
-// 有効なスタイル名かチェックしてエラーメッセージを返す
-- (NSString *)validateStyleName:(NSString *)styleName;
+/// 有効なスタイル名かチェックしてエラーメッセージを返す
+- (nullable NSString *)validateStyleName:(nonnull NSString *)styleName;
 // ------------------------------------------------------
 {
     if (([self mode] == CESyntaxEdit) && [[CESyntaxManager sharedManager] isBundledStyle:[self originalStyleName]]) {

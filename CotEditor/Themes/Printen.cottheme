@@ -51,7 +51,7 @@
   "metadata" : {
     "author" : "1024jp",
     "distributionURL" : "http://coteditor.com",
-    "lisence" : "Same as CotEditor (GPL2)",
+    "license" : "Same as CotEditor (Apache, ver.2)",
     "description" : "CotEditor bundled theme."
   }
 }

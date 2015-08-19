@@ -1,31 +1,29 @@
 /*
- ==============================================================================
- CEWindowController
+ 
+ CEWindowController.m
  
  CotEditor
  http://coteditor.com
  
- Created on 2004-12-13 by nakamuxu
- encoding="UTF-8"
+ Created by nakamuxu on 2004-12-13.
+
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2015 1024jp
+ © 2013-2015 1024jp
  
- This program is free software; you can redistribute it and/or modify it under
- the terms of the GNU General Public License as published by the Free Software
- Foundation; either version 2 of the License, or (at your option) any later
- version.
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
  
- This program is distributed in the hope that it will be useful, but WITHOUT
- ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+ http://www.apache.org/licenses/LICENSE-2.0
  
- You should have received a copy of the GNU General Public License along with
- this program; if not, write to the Free Software Foundation, Inc., 59 Temple
- Place - Suite 330, Boston, MA  02111-1307, USA.
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
  
- ==============================================================================
  */
 
 #import "CEWindowController.h"
@@ -37,7 +35,7 @@
 #import "CEEditorWrapper.h"
 #import "CESyntaxManager.h"
 #import "CEDocumentAnalyzer.h"
-#import "constants.h"
+#import "Constants.h"
 
 
 // sidebar mode
@@ -47,7 +45,7 @@ typedef NS_ENUM(NSUInteger, CESidebarTag) {
 };
 
 
-@interface CEWindowController () <OgreTextFindDataSource, NSSplitViewDelegate>
+@interface CEWindowController () <OgreTextFindDataSource, NSSplitViewDelegate, NSSharingServicePickerDelegate>
 
 @property (nonatomic) CESidebarTag selectedSidebarTag;
 @property (nonatomic) BOOL needsRecolorWithBecomeKey;  // flag to update sytnax highlight when window becomes key window
@@ -62,6 +60,7 @@ typedef NS_ENUM(NSUInteger, CESidebarTag) {
 @property (nonatomic, nullable, weak) IBOutlet NSSplitView *sidebarSplitView;
 @property (nonatomic, nullable, weak) IBOutlet NSView *sidebar;
 @property (nonatomic, nullable, weak) IBOutlet NSView *sidebarPlaceholderView;
+@property (nonatomic, nullable, weak) IBOutlet NSButton *shareButton;
 @property (nonatomic, nullable) IBOutlet CEDocumentAnalyzer *documentAnalyzer;
 
 // IBOutlets (readonly)
@@ -104,6 +103,10 @@ static NSTimeInterval infoUpdateInterval;
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:CEDefaultWindowAlphaKey];
     
+    // Need to set nil to NSSPlitView's delegate manually since it is not weak but just assign,
+    //     and may crash when closing split fullscreen window on El Capitan beta 5 (2015-07)
+    [_sidebarSplitView setDelegate:nil];
+    
     [self stopEditorInfoUpdateTimer];
 }
 
@@ -139,7 +142,7 @@ static NSTimeInterval infoUpdateInterval;
     
     // set CEEditorWrapper to document instance
     [[self document] setEditor:[self editor]];
-    [[self document] setStringToEditor];
+    [[self document] applyContentToEditor];
     
     // setup status bar
     [[self statusBarController] setShown:[defaults boolForKey:CEDefaultShowStatusBarKey] animate:NO];
@@ -149,6 +152,9 @@ static NSTimeInterval infoUpdateInterval;
     
     // move focus to text view
     [[self window] makeFirstResponder:[[self editor] focusedTextView]];
+    
+    // setup share button
+    [[self shareButton] sendActionOn:NSLeftMouseDownMask];
     
     // notify finish of the document open process (Here is probably the final point.)
     __weak typeof(self) weakSelf = self;
@@ -361,7 +367,6 @@ static NSTimeInterval infoUpdateInterval;
     [state encodeBool:[[self editor] showsLineNum] forKey:CEDefaultShowLineNumbersKey];
     [state encodeBool:[[self editor] showsPageGuide] forKey:CEDefaultShowPageGuideKey];
     [state encodeBool:[[self editor] showsInvisibles] forKey:CEDefaultShowInvisiblesKey];
-    [state encodeBool:[[self editor] isVerticalLayoutOrientation] forKey:CEDefaultLayoutTextVerticalKey];
     [state encodeBool:[self isSidebarShown] forKey:CEDefaultShowDocumentInspectorKey];
     [state encodeDouble:[self sidebarWidth] forKey:CEDefaultSidebarWidthKey];
 }
@@ -386,9 +391,6 @@ static NSTimeInterval infoUpdateInterval;
     }
     if ([state containsValueForKey:CEDefaultShowInvisiblesKey]) {
         [[self editor] setShowsInvisibles:[state decodeBoolForKey:CEDefaultShowInvisiblesKey]];
-    }
-    if ([state containsValueForKey:CEDefaultLayoutTextVerticalKey]) {
-        [[self editor] setVerticalLayoutOrientation:[state decodeBoolForKey:CEDefaultLayoutTextVerticalKey]];
     }
     if ([state containsValueForKey:CEDefaultShowDocumentInspectorKey]) {
         [self setSidebarWidth:[state decodeDoubleForKey:CEDefaultSidebarWidthKey]];
@@ -448,6 +450,21 @@ static NSTimeInterval infoUpdateInterval;
         [self setSelectedSidebarTag:CEDocumentInspectorTag];
         [self setSidebarShown:YES];
     }
+}
+
+
+// ------------------------------------------------------
+/// show Share Service menu
+- (IBAction)share:(nullable id)sender
+// ------------------------------------------------------
+{
+    NSURL *url = [[self document] fileURL];
+    NSArray *items = url ? @[url] : @[];
+    
+    NSSharingServicePicker *sharingServicePicker = [[NSSharingServicePicker alloc] initWithItems:items];
+    [sharingServicePicker showRelativeToRect:[sender bounds]
+                                      ofView:sender
+                               preferredEdge:NSMinYEdge];
 }
 
 
@@ -587,7 +604,7 @@ static NSTimeInterval infoUpdateInterval;
     if (![oldName isEqualToString:currentName]) { return; }
     
     if ([oldName isEqualToString:newName]) {
-        [[self editor] setSyntaxStyleName:newName recolorNow:NO];
+        [[self editor] setSyntaxStyleWithName:newName coloring:NO];
     }
     if (![newName isEqualToString:NSLocalizedString(@"None", nil)]) {
         if ([[self window] isKeyWindow]) {

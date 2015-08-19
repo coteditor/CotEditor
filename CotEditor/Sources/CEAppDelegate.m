@@ -1,31 +1,29 @@
 /*
- ==============================================================================
- CEAppDelegate
+ 
+ CEAppDelegate.m
  
  CotEditor
  http://coteditor.com
  
- Created on 2004-12-13 by nakamuxu
- encoding="UTF-8"
+ Created by nakamuxu on 2004-12-13.
+
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2015 1024jp
+ © 2013-2015 1024jp
  
- This program is free software; you can redistribute it and/or modify it under
- the terms of the GNU General Public License as published by the Free Software
- Foundation; either version 2 of the License, or (at your option) any later
- version.
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
  
- This program is distributed in the hope that it will be useful, but WITHOUT
- ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+ http://www.apache.org/licenses/LICENSE-2.0
  
- You should have received a copy of the GNU General Public License along with
- this program; if not, write to the Free Software Foundation, Inc., 59 Temple
- Place - Suite 330, Boston, MA  02111-1307, USA.
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
  
- ==============================================================================
  */
 
 #import "CEAppDelegate.h"
@@ -44,19 +42,24 @@
 #import "CEUnicodeInputPanelController.h"
 #import "CEMigrationWindowController.h"
 #import "CEDocument.h"
+#import "EDSemver.h"
+#import "Constants.h"
+
+#ifndef APPSTORE
 #import "CEUpdaterManager.h"
-#import "EDSemVer.h"
-#import "constants.h"
+#endif
 
 
 @interface CEAppDelegate ()
 
 @property (nonatomic) BOOL didFinishLaunching;
 
-@property (nonatomic) BOOL hasSetting;  // for migration check
 @property (nonatomic, nullable) CEMigrationWindowController *migrationWindowController;
 
+
+#ifndef APPSTORE
 @property (nonatomic, nullable) CEUpdaterManager *updaterDelegate;
+#endif
 
 
 // readonly
@@ -93,7 +96,9 @@
         [encodings addObject:@(kCFStringEncodingList[i])];
     }
     
-    NSDictionary *defaults = @{CEDefaultLayoutTextVerticalKey: @NO,
+    NSDictionary *defaults = @{CEDefaultDocumentConflictOptionKey: @(CEDocumentConflictRevert),
+                               CEDefaultChecksUpdatesForBetaKey: @YES,
+                               CEDefaultLayoutTextVerticalKey: @NO,
                                CEDefaultSplitViewVerticalKey: @NO,
                                CEDefaultShowLineNumbersKey: @YES,
                                CEDefaultShowDocumentInspectorKey: @NO,
@@ -124,7 +129,7 @@
                                CEDefaultReopenBlankWindowKey: @YES,
                                CEDefaultCheckSpellingAsTypeKey: @NO,
                                CEDefaultWindowWidthKey: @600.0f,
-                               CEDefaultWindowHeightKey: @450.0f,
+                               CEDefaultWindowHeightKey: @620.0f,
                                CEDefaultWindowAlphaKey: @1.0f,
                                CEDefaultAutoExpandTabKey: @NO,
                                CEDefaultTabWidthKey: @4U,
@@ -166,17 +171,15 @@
                                CEDefaultPrintFontNameKey: [[NSFont controlContentFontOfSize:[NSFont systemFontSize]] fontName],
                                CEDefaultPrintFontSizeKey: @([NSFont systemFontSize]),
                                CEDefaultPrintHeaderKey: @YES,
-                               CEDefaultHeaderOneStringIndexKey: @(CEFilePathPrintInfo),
-                               CEDefaultHeaderOneAlignIndexKey: @(CEAlignLeft),
-                               CEDefaultHeaderTwoStringIndexKey: @(CEPrintDatePrintInfo),
-                               CEDefaultHeaderTwoAlignIndexKey: @(CEAlignRight),
-                               CEDefaultPrintHeaderSeparatorKey: @YES,
+                               CEDefaultPrimaryHeaderContentKey: @(CEFilePathPrintInfo),
+                               CEDefaultPrimaryHeaderAlignmentKey: @(CEAlignLeft),
+                               CEDefaultSecondaryHeaderContentKey: @(CEPrintDatePrintInfo),
+                               CEDefaultSecondaryHeaderAlignmentKey: @(CEAlignRight),
                                CEDefaultPrintFooterKey: @YES,
-                               CEDefaultFooterOneStringIndexKey: @(CENoPrintInfo),
-                               CEDefaultFooterOneAlignIndexKey: @(CEAlignLeft),
-                               CEDefaultFooterTwoStringIndexKey: @(CEPageNumberPrintInfo),
-                               CEDefaultFooterTwoAlignIndexKey: @(CEAlignCenter),
-                               CEDefaultPrintFooterSeparatorKey: @YES,
+                               CEDefaultPrimaryFooterContentKey: @(CENoPrintInfo),
+                               CEDefaultPrimaryFooterAlignmentKey: @(CEAlignLeft),
+                               CEDefaultSecondaryFooterContentKey: @(CEPageNumberPrintInfo),
+                               CEDefaultSecondaryFooterAlignmentKey: @(CEAlignCenter),
                                CEDefaultPrintLineNumIndexKey: @(CENoLinePrint),
                                CEDefaultPrintInvisibleCharIndexKey: @(CENoInvisibleCharsPrint),
                                CEDefaultPrintColorIndexKey: @(CEBlackColorPrint),
@@ -197,24 +200,23 @@
                                CEDefaultFirstColoringDelayKey: @0.3f, 
                                CEDefaultSecondColoringDelayKey: @0.7f,
                                CEDefaultAutoCompletionDelayKey: @0.25,
-                               CEDefaultLineNumUpdateIntervalKey: @0.12f, 
                                CEDefaultInfoUpdateIntervalKey: @0.2f, 
                                CEDefaultIncompatibleCharIntervalKey: @0.42f, 
-                               CEDefaultOutlineMenuIntervalKey: @0.37f, 
-                               CEDefaultHeaderFooterFontNameKey: [[NSFont systemFontOfSize:[NSFont systemFontSize]] fontName], 
-                               CEDefaultHeaderFooterFontSizeKey: @10.0f, 
+                               CEDefaultOutlineMenuIntervalKey: @0.37f,
                                CEDefaultHeaderFooterDateFormatKey: @"YYYY-MM-dd HH:mm",
                                CEDefaultHeaderFooterPathAbbreviatingWithTildeKey: @YES, 
                                CEDefaultTextContainerInsetWidthKey: @0.0f, 
                                CEDefaultTextContainerInsetHeightTopKey: @4.0f, 
                                CEDefaultTextContainerInsetHeightBottomKey: @16.0f, 
-                               CEDefaultShowColoringIndicatorTextLengthKey: @50000U,
+                               CEDefaultShowColoringIndicatorTextLengthKey: @75000U,
                                CEDefaultRunAppleScriptInLaunchingKey: @YES,
                                CEDefaultShowAlertForNotWritableKey: @YES, 
                                CEDefaultNotifyEditByAnotherKey: @YES,
                                CEDefaultColoringRangeBufferLengthKey: @5000,
                                CEDefaultLargeFileAlertThresholdKey: @(100 * pow(1024, 2)),  // 100 MB
                                CEDefaultAutosavingDelayKey: @5.0,
+                               CEDefaultEnablesAutosaveInPlaceKey: @NO,
+                               CEDefaultSavesTextOrientationKey: @YES,
                                };
     [[NSUserDefaults standardUserDefaults] registerDefaults:defaults];
     
@@ -248,8 +250,6 @@
                                                                          create:NO
                                                                           error:nil]
                                 URLByAppendingPathComponent:@"CotEditor"];
-        
-        [self setupSupportDirectory];
     }
     return self;
 }
@@ -347,14 +347,16 @@
 }
 
 
+#ifndef APPSTORE
 // ------------------------------------------------------
 /// setup Sparkle framework
-- (void)applicationWillFinishLaunching:(NSNotification *)notification
+- (void)applicationWillFinishLaunching:(nonnull NSNotification *)notification
 // ------------------------------------------------------
 {
     // setup updater
     [[CEUpdaterManager sharedManager] setup];
 }
+#endif
 
 
 // ------------------------------------------------------
@@ -603,29 +605,6 @@
 #pragma mark Private Methods
 
 //------------------------------------------------------
-/// check existance of the support directory and create it if not exists
-- (void)setupSupportDirectory
-//------------------------------------------------------
-{
-    NSURL *URL = [self supportDirectoryURL];
-    NSNumber *isDirectory;
-    if (![URL getResourceValue:&isDirectory forKey:NSURLIsDirectoryKey error:nil]) {
-        BOOL success = [[NSFileManager defaultManager] createDirectoryAtURL:URL
-                                                withIntermediateDirectories:YES
-                                                                 attributes:nil
-                                                                      error:nil];
-        if (!success) {
-            NSLog(@"Failed to create support directory for CotEditor...");
-        }
-    } else if (![isDirectory boolValue]) {
-        NSLog(@"\"%@\" is not dir.", URL);
-    } else {
-        [self setHasSetting:YES];
-    }
-}
-
-
-//------------------------------------------------------
 /// build encoding menu in the main menu
 - (void)buildEncodingMenu
 //------------------------------------------------------
@@ -711,7 +690,6 @@
     NSString *selection = [pboard stringForType:NSPasteboardTypeString];
     
     if (document) {
-//    [document readFromData:[selection dataUsingEncoding:NSUTF8StringEncoding] ofType:nil error:nil];
         [[document editor] insertTextViewString:selection];
     } else {
         [[NSAlert alertWithError:err] runModal];
@@ -779,7 +757,7 @@ static NSString *__nonnull const kMigrationFlagKey = @"isMigratedToNewBundleIden
 {
     NSString *lastVersion = [[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultLastVersionKey];
     
-    if (!lastVersion && [self hasSetting]) {
+    if (!lastVersion && [[self supportDirectoryURL] checkResourceIsReachableAndReturnError:nil]) {
         [self migrateToVersion2];
     }
 }

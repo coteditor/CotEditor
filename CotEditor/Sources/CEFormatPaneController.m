@@ -1,31 +1,29 @@
 /*
- ==============================================================================
- CEFormatPaneController
+ 
+ CEFormatPaneController.m
  
  CotEditor
  http://coteditor.com
  
- Created on 2014-04-18 by 1024jp
- encoding="UTF-8"
+ Created by 1024jp on 2014-04-18.
+
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
  © 2014-2015 1024jp
  
- This program is free software; you can redistribute it and/or modify it under
- the terms of the GNU General Public License as published by the Free Software
- Foundation; either version 2 of the License, or (at your option) any later
- version.
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
  
- This program is distributed in the hope that it will be useful, but WITHOUT
- ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+ http://www.apache.org/licenses/LICENSE-2.0
  
- You should have received a copy of the GNU General Public License along with
- this program; if not, write to the Free Software Foundation, Inc., 59 Temple
- Place - Suite 330, Boston, MA  02111-1307, USA.
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
  
- ==============================================================================
  */
 
 @import AudioToolbox;
@@ -35,7 +33,7 @@
 #import "CESyntaxMappingConflictsSheetController.h"
 #import "CESyntaxEditSheetController.h"
 #import "CEEncodingListSheetController.h"
-#import "constants.h"
+#import "Constants.h"
 
 
 @interface CEFormatPaneController () <NSTableViewDelegate>
@@ -152,6 +150,32 @@
 }
 
 
+#if MAC_OS_X_VERSION_MAX_ALLOWED >= 101100
+// ------------------------------------------------------
+/// set action on swiping theme name (on El Capitan and leter)
+- (nonnull NSArray<NSTableViewRowAction *> *)tableView:(nonnull NSTableView *)tableView rowActionsForRow:(NSInteger)row edge:(NSTableRowActionEdge)edge
+// ------------------------------------------------------
+{
+    if (edge == NSTableRowActionEdgeLeading) { return @[]; }
+    
+    NSString *swipedSyntaxName = [[self stylesController] arrangedObjects][row];
+    BOOL isDeletable = ![[CESyntaxManager sharedManager] isBundledStyle:swipedSyntaxName];
+    
+    if (!isDeletable) { return @[]; }
+    
+    __weak typeof(self) weakSelf = self;
+    return @[[NSTableViewRowAction rowActionWithStyle:NSTableViewRowActionStyleDestructive
+                                                title:NSLocalizedString(@"Delete", nil)
+                                              handler:^(NSTableViewRowAction *action, NSInteger row)
+              {
+                  typeof(self) self = weakSelf;  // strong self
+                  
+                  [self deleteSyntaxStyleWithName:swipedSyntaxName];
+              }]];
+}
+#endif  // MAC_OS_X_VERSION_10_11
+
+
 
 #pragma mark Action Messages
 
@@ -184,7 +208,7 @@
     // (閉じる命令は CESyntaxEditSheetController の endSheetWithReturnCode: で)
     NSWindow *sheet = [sheetController window];
     
-    if (floor(NSAppKitVersionNumber) > NSAppKitVersionNumber10_8) { // on Mavericks or later
+    if (NSAppKitVersionNumber >= NSAppKitVersionNumber10_9) { // on Mavericks or later
         [[[self view] window] beginSheet:sheet completionHandler:^(NSModalResponse returnCode) {
             [sheetController close];
         }];
@@ -222,9 +246,10 @@
     
     __weak typeof(self) weakSelf = self;
     [openPanel beginSheetModalForWindow:[[self view] window] completionHandler:^(NSInteger result) {
-        typeof(weakSelf) strongSelf = weakSelf;
+        typeof(self) self = weakSelf;  // strong self
+        if (!self) { return; }
         
-        if (result == NSFileHandlingPanelCancelButton) return;
+        if (result == NSFileHandlingPanelCancelButton) { return; }
         
         NSURL *URL = [openPanel URL];
         NSString *styleName = [[URL lastPathComponent] stringByDeletingPathExtension];
@@ -232,8 +257,8 @@
         // 同名styleが既にあるときは、置換してもいいか確認
         if ([[[CESyntaxManager sharedManager] styleNames] containsObject:styleName]) {
             // オープンパネルを閉じる
-            [openPanel orderOut:strongSelf];
-            [[[strongSelf view] window] makeKeyAndOrderFront:strongSelf];
+            [openPanel orderOut:self];
+            [[[self view] window] makeKeyAndOrderFront:self];
             
             NSAlert *alert = [[NSAlert alloc] init];
             [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"The “%@” style already exists.", nil), styleName]];
@@ -242,12 +267,12 @@
             [alert addButtonWithTitle:NSLocalizedString(@"Replace", nil)];
             // 現行シート値を設定し、確認のためにセカンダリシートを開く
             NSBeep();
-            [alert beginSheetModalForWindow:[[strongSelf view] window] modalDelegate:strongSelf
+            [alert beginSheetModalForWindow:[[self view] window] modalDelegate:self
                              didEndSelector:@selector(secondarySheetDidEnd:returnCode:contextInfo:)
                                 contextInfo:(__bridge_retained void *)(URL)];
         } else {
             // 重複するファイル名がないとき、インポート実行
-            [strongSelf doImport:URL withCurrentSheetWindow:openPanel];
+            [self doImport:URL withCurrentSheetWindow:openPanel];
         }
     }];
 }

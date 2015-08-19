@@ -2,6 +2,65 @@
 Change Log
 ==========================
 
+2.2.0-beta
+--------------------------
+
+### New Features
+
+- CotEditor is now __Sandboxed__.
+- New setting option for the behavior on document modification by external process (in General pane).
+- Share button in toolbar (Customize toolbar to use it).
+- Save text orientation state to the file and restore it when the file is opened.
+    - __for advanced users__: In this feature, CotEditor saves an *extended attribute* which named `com.coteditor.VerticalText` to the file *only when* the editor's text orientation is vertical. You can even disable the feature running the command `defaults write com.coteditor.CotEditor savesTextOrientation -bool NO` in Terminal. 
+- Line number view for vertical text orientation.
+- Print with vertical text orientation.
+- Add interpreter name list to the syntax style definition to determine syntax style from the shebang in the file content for in case when syntax style cannot be determined from the file name.
+    - From this change, some of the bundled syntax styles are also updated.
+- Add `encoding:` and `coding:` to the encoding declaration keywords which will be used on encoding auto-detection (interpreting priorities are: `charset=` > `encoding=` > `@charset` > `encoding:` > `coding:`).
+
+
+### Additions/Changes
+
+- [non-AppStore ver.] Disable auto-update feature.
+    - Since the Sparkle framework which is a software update framework we use doesn't support Sandboxed apps yet, the auto-update feature within CotEditor should be once disabled. The new behavior is: a nofitication window will be shown when a new release is available (as before), then you need to update CotEditor manually getting the new version from our web-site. Or, just migrate to the Mac App Store version when the stable CotEditor 2.2.0 is released.
+- Deprecate the feature opening/saving files that user doesn't have the permission, due to Sandbox requirement.
+- Improve side inspector UI.
+- Improve syntax highlighting:
+    - Optimize general syntax highlighting performance (ca. 1.8x).
+    - Optimize syntax highlighting on file opening.
+    - Better coloring parsing while editing.
+    - Update all split editors while editing.
+- Move scripts folder location from `~/Library/Application Support/CotEditor/ScriptMenu/` to `~/Library/Application Scripts/com.coteditor.CotEditor/` due of the Sandbox requirement.
+    - Users need to migrate their script to the new folder manually, since CotEditor doesn't have the write permission to the new location.
+- Improve print document:
+    - Update header/footer layout to conform to the standard system header/footer design.
+    - Add page setup options to the print panel.
+    - Print settings preset can be stored in the print panel.
+- Better file encoding handling on revert action.
+- Set access-group `com.coteditor.CotEditor.edit` to CotEditor's script definition.
+- Change behavior to save `com.apple.TextEncoding` xattr on saving if the file had no content.
+- Improve window restoration:
+    - To restore also the last scroll position and cursor position.
+    - To restore also the last syntax style mode of unsaved documents.
+- Completely rewrite `cot` command-line tool:
+    - Faster launch.
+    - Make sure to launch CotEditor that invoked cot command includes.
+- Optimize saving process.
+- Improve compatibility with OS X 10.11 El Capitan.
+- Change source code license from the GNU General Public License version 2 to the Apache License version 2.0.
+- [non-AppStore ver.] Add option to check pre-release versions.
+
+
+### Fixes
+
+- Fix an issue where the full path display in the document inspector did not update after the document file moved.
+- Fix an issue where the find panel could not find matched strings when the find string includes CR or CR/LF line endings.
+- Fix an issue where line numbers were not drawn completely on OS X 10.8 when scroll bars are set as always shown.
+- Fix an issue where some legatured characters were drawn at a wrong position when the line height for composite font is fixed. 
+- Improve general stability.
+
+
+
 2.1.6
 --------------------------
 
@@ -38,7 +97,7 @@ Change Log
 - Improve word completion with words that exist in the document.
 - Modify layout of “General” pane in Preferences.
 - Add tooltip hint to controls in the find panel.
-- Optimize image resources size.
+- Optimize image resources size.
 - Update Sparkle framework to version 1.10.0.
 
 
@@ -104,7 +163,7 @@ Change Log
 - Fix an issue where application could hang up on text editing.
 - Improve general stability.
 
-
+a
 
 2.1.0
 --------------------------

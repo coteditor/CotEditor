@@ -5,6 +5,8 @@ extensions:
 - keyString: "clj"
 - keyString: "edn"
 filenames: []
+interpreters:
+- keyString: "lua"
 completions: []
 outlineMenu:
 - beginString: "([\\t ]*)\\(defmacro\\S+(\\S+)"
@@ -18,10 +20,10 @@ attributes:
 metadata:
   author: "1024jp"
   distributionURL: "http://coteditor.com"
-  version: "1.0"
+  version: "1.1"
   description: "general Lisp syntax style for common Lisp and other Lisp dialects"
   license: "Same as CotEditor"
-  lastModified: "2014-09-24"
+  lastModified: "2015-08-13"
 characters:
 - beginString: "#'"
   regularExpression: true

@@ -1,41 +1,41 @@
 /*
- ==============================================================================
- CELineNumberView
+ 
+ CELineNumberView.m
  
  CotEditor
  http://coteditor.com
  
- Created on 2005-03-30 by nakamuxu
- encoding="UTF-8"
+ Created by nakamuxu on 2005-03-30.
+ 
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
  © 2014-2015 1024jp
  
- This program is free software; you can redistribute it and/or modify it under
- the terms of the GNU General Public License as published by the Free Software
- Foundation; either version 2 of the License, or (at your option) any later
- version.
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
  
- This program is distributed in the hope that it will be useful, but WITHOUT
- ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+ http://www.apache.org/licenses/LICENSE-2.0
  
- You should have received a copy of the GNU General Public License along with
- this program; if not, write to the Free Software Foundation, Inc., 59 Temple
- Place - Suite 330, Boston, MA  02111-1307, USA.
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
  
- ==============================================================================
  */
 
 @import CoreText;
 #import "CELineNumberView.h"
 #import "CETextViewProtocol.h"
-#import "constants.h"
+#import "Constants.h"
 
 
-static const CGFloat kMinVerticalThickness = 32.0;
 static const NSUInteger kMinNumberOfDigits = 3;
+static const CGFloat kMinVerticalThickness = 32.0;
+static const CGFloat kMinHorizontalThickness = 20.0;
+static const CGFloat  kLineNumberPadding = 3.0;
 
 
 @interface CELineNumberView ()
@@ -77,11 +77,7 @@ static const NSString *LineNumberFontName;
 {
     self = [super initWithScrollView:scrollView orientation:orientation];
     if (self) {
-        // update line number on scroll view resize for text wrapping change
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(invalidateLineNumber)
-                                                     name:NSViewFrameDidChangeNotification
-                                                   object:scrollView];
+        [self setClientView:[scrollView documentView]];
     }
     return self;
 }
@@ -94,16 +90,8 @@ static const NSString *LineNumberFontName;
 {
     [super viewDidMoveToSuperview];
     
-    [self setRuleThickness:kMinVerticalThickness];
-}
-
-
-// ------------------------------------------------------
-/// clean up
-- (void)dealloc
-// ------------------------------------------------------
-{
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    CGFloat thickness = [self orientation] == NSHorizontalRuler ? kMinHorizontalThickness : kMinVerticalThickness;
+    [self setRuleThickness:thickness];
 }
 
 
@@ -121,8 +109,17 @@ static const NSString *LineNumberFontName;
     
     // draw frame border (1px)
     [[textColor colorWithAlphaComponent:0.3] set];
-    [NSBezierPath strokeLineFromPoint:NSMakePoint(NSMaxX(dirtyRect) - 0.5, NSMaxY(dirtyRect))
-                              toPoint:NSMakePoint(NSMaxX(dirtyRect) - 0.5, NSMinY(dirtyRect))];
+    switch ([self orientation]) {
+        case NSVerticalRuler:
+            [NSBezierPath strokeLineFromPoint:NSMakePoint(NSMaxX(dirtyRect) - 0.5, NSMaxY(dirtyRect))
+                                      toPoint:NSMakePoint(NSMaxX(dirtyRect) - 0.5, NSMinY(dirtyRect))];
+            break;
+            
+        case NSHorizontalRuler:
+            [NSBezierPath strokeLineFromPoint:NSMakePoint(NSMinX(dirtyRect), NSMaxY(dirtyRect) - 0.5)
+                                      toPoint:NSMakePoint(NSMaxX(dirtyRect), NSMaxY(dirtyRect) - 0.5)];
+            break;
+    }
     
     [self drawHashMarksAndLabelsInRect:dirtyRect];
 }
@@ -149,6 +146,8 @@ static const NSString *LineNumberFontName;
     CGFloat fontSize = round(0.9 * masterFontSize);
     CTFontRef font = CTFontCreateWithName((CFStringRef)LineNumberFontName, fontSize, nil);
     
+    CGFloat tickLength = ceil(fontSize / 3);
+    
     CGFontRef cgFont = CTFontCopyGraphicsFont(font, NULL);
     CGContextSetFont(context, cgFont);
     CGContextSetFontSize(context, fontSize);
@@ -170,35 +169,82 @@ static const NSString *LineNumberFontName;
     CGFloat charWidth = advance.width;
     
     // prepare frame width
-    CGFloat width = [self ruleThickness];
+    CGFloat ruleThickness = [self ruleThickness];
     
-    // adjust drawing coordinate
+    // adjust text drawing coordinate
     NSPoint relativePoint = [self convertPoint:NSZeroPoint fromView:[self textView]];
     NSPoint inset = [[self textView] textContainerOrigin];
     CGFloat diff = masterFontSize - fontSize;
     CGFloat ascent = CTFontGetAscent(font);
     CGAffineTransform transform = CGAffineTransformIdentity;
     transform = CGAffineTransformScale(transform, 1.0, -1.0);  // flip
-    transform = CGAffineTransformTranslate(transform, -kLineNumPadding, -relativePoint.y - inset.y - diff - ascent);
+    transform = CGAffineTransformTranslate(transform, -kLineNumberPadding, -relativePoint.y - inset.y - diff - ascent);
     CGContextSetTextMatrix(context, transform);
     CFRelease(font);
     
+    // add enough buffer to avoid broken drawing on Mountain Lion (10.8) with scroller (2015-07)
+    NSRect visibleRect = [[self scrollView] documentVisibleRect];
+    visibleRect.size.height += fontSize;
+    
     // get glyph range which line number should be drawn
-    NSRange visibleGlyphRange = [layoutManager glyphRangeForBoundingRect:[[self textView] visibleRect]
+    NSRange visibleGlyphRange = [layoutManager glyphRangeForBoundingRect:visibleRect
                                                          inTextContainer:[[self textView] textContainer]];
+    
+    BOOL isVerticalText = [self orientation] == NSHorizontalRuler;
+    NSUInteger tailGlyphIndex = [layoutManager glyphIndexForCharacterAtIndex:[string length]];
+    
+    // draw line number block
+    CGGlyph *digitGlyphsPtr = digitGlyphs;
+    void (^draw_number)(NSUInteger, NSUInteger, CGFloat, BOOL) = ^(NSUInteger lineNumber, NSUInteger lastLineNumber, CGFloat y, BOOL drawsNumber)
+    {
+        if (isVerticalText) {
+            // translate y position to horizontal axis
+            y += relativePoint.x - masterFontSize / 2 - inset.y;
+            
+            // draw ticks on vertical text
+            CGFloat x = round(y) - 0.5;
+            CGContextMoveToPoint(context, x, ruleThickness);
+            CGContextAddLineToPoint(context, x, ruleThickness - tickLength);
+        }
+        
+        // draw line number
+        if (drawsNumber) {
+            NSUInteger digit = numberOfDigits(lineNumber);
+            
+            // calculate base position
+            CGPoint position;
+            if (isVerticalText) {
+                position = CGPointMake(ceil(y + charWidth * (digit + 1) / 2), ruleThickness + tickLength - 2);
+            } else {
+                position = CGPointMake(ruleThickness, y);
+            }
+            
+            // get glyphs and positions
+            CGGlyph glyphs[digit];
+            CGPoint positions[digit];
+            for (NSUInteger i = 0; i < digit; i++) {
+                position.x -= charWidth;
+                
+                positions[i] = position;
+                glyphs[i] = digitGlyphsPtr[numberAt(i, lineNumber)];
+            }
+            
+            CGContextShowGlyphsAtPositions(context, glyphs, positions, digit);  // draw line number
+        }
+    };
     
     // counters
     NSUInteger glyphCount = visibleGlyphRange.location;
-    NSUInteger lineNum = 1;
-    NSUInteger lastLineNum = 0;
+    NSUInteger lineNumber = 1;
+    NSUInteger lastLineNumber = 0;
     
     // count lines until visible
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"\n" options:0 error:nil];
-    lineNum += [regex numberOfMatchesInString:string options:0
-                                        range:NSMakeRange(0, [layoutManager characterIndexForGlyphAtIndex:visibleGlyphRange.location])];
+    lineNumber += [regex numberOfMatchesInString:string options:0
+                                           range:NSMakeRange(0, [layoutManager characterIndexForGlyphAtIndex:visibleGlyphRange.location])];
     
     // draw visible line numbers
-    for (NSUInteger glyphIndex = visibleGlyphRange.location; glyphIndex < NSMaxRange(visibleGlyphRange); lineNum++) { // count "real" lines
+    for (NSUInteger glyphIndex = visibleGlyphRange.location; glyphIndex < NSMaxRange(visibleGlyphRange); lineNumber++) { // count "real" lines
         NSUInteger charIndex = [layoutManager characterIndexForGlyphAtIndex:glyphIndex];
         glyphIndex = NSMaxRange([layoutManager glyphRangeForCharacterRange:[string lineRangeForRange:NSMakeRange(charIndex, 0)]
                                                       actualCharacterRange:NULL]);
@@ -208,26 +254,30 @@ static const NSString *LineNumberFontName;
             NSRect lineRect = [layoutManager lineFragmentRectForGlyphAtIndex:glyphCount effectiveRange:&range withoutAdditionalLayout:YES];
             CGFloat y = -NSMinY(lineRect);
             
-            if (lastLineNum == lineNum) {  // wrapped line
-                CGPoint position = CGPointMake(width - charWidth, y);
-                CGContextShowGlyphsAtPositions(context, &wrappedMarkGlyph, &position, 1);  // draw wrapped mark
-                
-            } else {  // new line
-                NSUInteger digit = numberOfDigits(lineNum);
-                
-                // get glyphs and positions
-                CGGlyph glyphs[digit];
-                CGPoint positions[digit];
-                for (NSUInteger i = 0; i < digit; i++) {
-                    glyphs[i] = digitGlyphs[numberAt(i, lineNum)];
-                    positions[i] = CGPointMake(width - (i + 1) * charWidth, y);
+            if (lastLineNumber == lineNumber) {  // wrapped line
+                if (!isVerticalText) {
+                    CGPoint position = CGPointMake(ruleThickness - charWidth, y);
+                    CGContextShowGlyphsAtPositions(context, &wrappedMarkGlyph, &position, 1);  // draw wrapped mark
                 }
                 
-                CGContextShowGlyphsAtPositions(context, glyphs, positions, digit);  // draw line number
+            } else {  // new line
+                BOOL drawsNumber = (!isVerticalText || lineNumber % 5 == 0 || lineNumber == 1);
+                draw_number(lineNumber, lastLineNumber, y, drawsNumber);
             }
             
-            lastLineNum = lineNum;
             glyphCount = NSMaxRange(range);
+            
+            // draw last line number anyway
+            if (isVerticalText &&  // vertical text
+                lastLineNumber != lineNumber &&  // new line
+                isVerticalText && lineNumber != 1 && lineNumber % 5 != 0 &&  // not yet drawn
+                tailGlyphIndex == glyphIndex &&  // last line
+                ![layoutManager extraLineFragmentTextContainer])  // no extra number
+            {
+                draw_number(lineNumber, lastLineNumber, y, YES);
+            }
+            
+            lastLineNumber = lineNumber;
         }
     }
     
@@ -236,25 +286,26 @@ static const NSString *LineNumberFontName;
         NSRect lineRect = [layoutManager extraLineFragmentUsedRect];
         CGFloat y = -NSMinY(lineRect);
         
-        NSUInteger digit = numberOfDigits(lineNum);
-        
-        // get glyphs and positions
-        CGGlyph glyphs[digit];
-        CGPoint positions[digit];
-        for (NSUInteger i = 0; i < digit; i++) {
-            glyphs[i] = digitGlyphs[numberAt(i, lineNum)];
-            positions[i] = CGPointMake(width - (i + 1) * charWidth, y);
-        }
-        
-        CGContextShowGlyphsAtPositions(context, glyphs, positions, digit);  // draw line number
+        draw_number(lineNumber, lastLineNumber, y, YES);
+    }
+    
+    // draw vertical text tics
+    if (isVerticalText) {
+        CGContextSetStrokeColorWithColor(context, [[textColor colorWithAlphaComponent:0.6] CGColor]);
+        CGContextStrokePath(context);
     }
     
     CGContextRestoreGState(context);
     
     // adjust thickness
-    NSUInteger length = MAX(numberOfDigits(lineNum), kMinNumberOfDigits);
-    CGFloat requiredWidth = MAX(length * charWidth + 3 * kLineNumPadding, kMinVerticalThickness);
-    [self setRuleThickness:ceil(requiredWidth)];
+    CGFloat requiredThickness;
+    if (isVerticalText) {
+        requiredThickness = MAX(fontSize + tickLength + 2 * kLineNumberPadding, kMinHorizontalThickness);
+    } else {
+        NSUInteger length = MAX(numberOfDigits(lineNumber), kMinNumberOfDigits);
+        requiredThickness = MAX(length * charWidth + 3 * kLineNumberPadding, kMinVerticalThickness);
+    }
+    [self setRuleThickness:ceil(requiredThickness)];
 }
 
 
@@ -272,6 +323,9 @@ static const NSString *LineNumberFontName;
 - (CGFloat)requiredThickness
 // ------------------------------------------------------
 {
+    if ([self orientation] == NSHorizontalRuler) {
+        return [self ruleThickness];
+    }
     return MAX(kMinVerticalThickness, [self ruleThickness]);
 }
 
@@ -315,16 +369,7 @@ static const NSString *LineNumberFontName;
 - (nullable NSTextView<CETextViewProtocol> *)textView
 // ------------------------------------------------------
 {
-    return (NSTextView<CETextViewProtocol> *)[[self scrollView] documentView];
-}
-
-
-// ------------------------------------------------------
-/// update line number
-- (void)invalidateLineNumber
-// ------------------------------------------------------
-{
-    [self setNeedsDisplay:YES];
+    return (NSTextView<CETextViewProtocol> *)[self clientView];
 }
 
 

@@ -1,30 +1,28 @@
 /*
- ==============================================================================
- CEFindResultViewController
+ 
+ CEFindResultViewController.m
  
  CotEditor
  http://coteditor.com
  
- Created on 2015-01-04 by 1024jp
- encoding="UTF-8"
+ Created by 1024jp on 2015-01-04.
+
  ------------------------------------------------------------------------------
  
  © 2015 1024jp
  
- This program is free software; you can redistribute it and/or modify it under
- the terms of the GNU General Public License as published by the Free Software
- Foundation; either version 2 of the License, or (at your option) any later
- version.
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
  
- This program is distributed in the hope that it will be useful, but WITHOUT
- ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+ http://www.apache.org/licenses/LICENSE-2.0
  
- You should have received a copy of the GNU General Public License along with
- this program; if not, write to the Free Software Foundation, Inc., 59 Temple
- Place - Suite 330, Boston, MA  02111-1307, USA.
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
  
- ==============================================================================
  */
 
 #import <OgreKit/OgreKit.h>
@@ -55,13 +53,13 @@ static const int kMaxMatchedStringLength = 256;
 
 @interface CEFindResultViewController () <OgreTextFindResultDelegateProtocol>
 
-@property (nonatomic, copy) NSString *resultMessage;
-@property (nonatomic, copy) NSString *findString;
-@property (nonatomic, copy) NSString *documentName;
+@property (nonatomic, nullable, copy) NSString *resultMessage;
+@property (nonatomic, nullable, copy) NSString *findString;
+@property (nonatomic, nullable, copy) NSString *documentName;
 @property (nonatomic) NSUInteger count;
 @property (nonatomic) BOOL enableLiveUpdate;
 
-@property (nonatomic, weak) IBOutlet NSTableView *tableView;
+@property (nonatomic, nullable, weak) IBOutlet NSTableView *tableView;
 
 @end
 
@@ -110,7 +108,7 @@ static const int kMaxMatchedStringLength = 256;
 
 // ------------------------------------------------------
 /// return number of row (required)
-- (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView
+- (NSInteger)numberOfRowsInTableView:(nonnull NSTableView *)tableView
 // ------------------------------------------------------
 {
     // [note] This method `selectMatchedString` in fact just returns whether textView exists yet and do nothing else.
@@ -126,16 +124,16 @@ static const int kMaxMatchedStringLength = 256;
 
 // ------------------------------------------------------
 /// return value of cell (required)
-- (id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
+- (nullable id)tableView:(nonnull NSTableView *)tableView objectValueForTableColumn:(nullable NSTableColumn *)tableColumn row:(NSInteger)row
 // ------------------------------------------------------
 {
     if (![self result]) { return nil; }
     
     OgreFindResultBranch<OgreTextViewFindResultInterface> *textViewResult = [self textViewResult];
-    BOOL existsTarge = [textViewResult selectMatchedString];
+    BOOL existsTarget = [textViewResult selectMatchedString];
     
     if ([[tableColumn identifier] isEqualToString:@"line"]) {
-        return existsTarge ? [textViewResult lineOfMatchedStringAtIndex:row] : nil;
+        return existsTarget ? [textViewResult lineOfMatchedStringAtIndex:row] : nil;
     } else {
         return [textViewResult matchedStringAtIndex:row];
     }
@@ -151,7 +149,7 @@ static const int kMaxMatchedStringLength = 256;
 
 // ------------------------------------------------------
 /// select matched string in text view
-- (void)tableViewSelectionDidChange:(NSNotification *)notification
+- (void)tableViewSelectionDidChange:(nonnull NSNotification *)notification
 // ------------------------------------------------------
 {
     NSTableView *tableView = [notification object];

@@ -1,41 +1,39 @@
 /*
- ==============================================================================
- CEFindPanelTextView
+ 
+ CEFindPanelTextView.m
  
  CotEditor
  http://coteditor.com
  
- Created on 2015-03-04 by 1024jp
- encoding="UTF-8"
+ Created by 1024jp on 2015-03-04.
+
  ------------------------------------------------------------------------------
  
  © 2015 1024jp
  
- This program is free software; you can redistribute it and/or modify it under
- the terms of the GNU General Public License as published by the Free Software
- Foundation; either version 2 of the License, or (at your option) any later
- version.
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
  
- This program is distributed in the hope that it will be useful, but WITHOUT
- ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+ http://www.apache.org/licenses/LICENSE-2.0
  
- You should have received a copy of the GNU General Public License along with
- this program; if not, write to the Free Software Foundation, Inc., 59 Temple
- Place - Suite 330, Boston, MA  02111-1307, USA.
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
  
- ==============================================================================
  */
 
 #import "CEFindPanelTextView.h"
 #import "CEFindPanelLayoutManager.h"
 #import "CEFindPanelController.h"
-#import "constants.h"
+#import "Constants.h"
 
 
 @interface CEFindPanelTextView ()
 
-@property (nonatomic) IBOutlet CEFindPanelController *findPanelController;
+@property (nonatomic, nullable) IBOutlet CEFindPanelController *findPanelController;
 
 @end
 
@@ -50,7 +48,7 @@
 
 // ------------------------------------------------------
 /// initialize instance
-- (instancetype)initWithCoder:(NSCoder *)coder
+- (nullable instancetype)initWithCoder:(nonnull NSCoder *)coder
 // ------------------------------------------------------
 {
     self = [super initWithCoder:coder];
@@ -109,7 +107,7 @@
 
 // ------------------------------------------------------
 /// swap '¥' with '\' if needed
-- (void)insertText:(id)aString replacementRange:(NSRange)replacementRange
+- (void)insertText:(nonnull id)aString replacementRange:(NSRange)replacementRange
 // ------------------------------------------------------
 {
     NSString *string = ([aString isKindOfClass:[NSAttributedString class]]) ? [aString string] : aString;
@@ -131,7 +129,7 @@
 
 // ------------------------------------------------------
 /// jump to the next responder with tab key (standard NSTextField behavior)
-- (void)insertTab:(id)sender
+- (void)insertTab:(nullable id)sender
 // ------------------------------------------------------
 {
     [[self window] makeFirstResponder:[self nextKeyView]];
@@ -140,7 +138,7 @@
 
 // ------------------------------------------------------
 /// perform Find Next with return
-- (void)insertNewline:(id)sender
+- (void)insertNewline:(nullable id)sender
 // ------------------------------------------------------
 {
     // -> do nothing if no findpanelController is connected (standard NSTextField behavior)

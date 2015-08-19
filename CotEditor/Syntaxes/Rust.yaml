@@ -1,6 +1,8 @@
 extensions:
 - keyString: "rs"
 - keyString: "rc"
+interpreters:
+- keyString: "rustx"
 filenames: []
 comments: []
 outlineMenu:
@@ -14,13 +16,13 @@ outlineMenu:
   italic: true
 metadata:
   distributionURL: "http://coteditor.com"
-  lastModified: "2014-10-26"
+  lastModified: "2015-08-13"
   author: "1024jp"
   license: "Same as CotEditor"
   description: "based on Rust 0.12\n\nCommands -> Functions\nTypes -> primitive Types,
     Type Definitions, Structs\nAttuributes -> Macros\nValues -> boolean, Constants,
     Enums"
-  version: "1.0"
+  version: "1.1"
 numbers:
 - beginString: "\\b0b[01_]+([ui](8|16|32|64)?)?\\b"
   regularExpression: true

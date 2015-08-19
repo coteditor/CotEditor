@@ -1,31 +1,29 @@
 /*
- ==============================================================================
- CELayoutManager
+ 
+ CELayoutManager.m
  
  CotEditor
  http://coteditor.com
  
- Created on 2005-01-10 by nakamuxu
- encoding="UTF-8"
+ Created by nakamuxu on 2005-01-10.
+
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
  © 2014-2015 1024jp
  
- This program is free software; you can redistribute it and/or modify it under
- the terms of the GNU General Public License as published by the Free Software
- Foundation; either version 2 of the License, or (at your option) any later
- version.
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
  
- This program is distributed in the hope that it will be useful, but WITHOUT
- ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+ http://www.apache.org/licenses/LICENSE-2.0
  
- You should have received a copy of the GNU General Public License along with
- this program; if not, write to the Free Software Foundation, Inc., 59 Temple
- Place - Suite 330, Boston, MA  02111-1307, USA.
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
  
- ==============================================================================
  */
 
 @import CoreText;
@@ -33,12 +31,10 @@
 #import "CETextViewProtocol.h"
 #import "CEATSTypesetter.h"
 #import "CEUtils.h"
-#import "constants.h"
+#import "Constants.h"
 
 
 @interface CELayoutManager ()
-
-@property (nonatomic) CGFloat textFontGlyphY;  // 表示フォントグリフのY位置を返す
 
 @property (nonatomic) BOOL showsSpace;
 @property (nonatomic) BOOL showsTab;
@@ -52,7 +48,6 @@
 @property (nonatomic) unichar fullwidthSpaceChar;
 
 // readonly properties
-@property (readwrite, nonatomic) CGFloat textFontPointSize;
 @property (readwrite, nonatomic) CGFloat defaultLineHeightForTextFont;
 
 @end
@@ -142,27 +137,6 @@ static BOOL usesTextFontForInvisibles;
 
 
 // ------------------------------------------------------
-/// グリフ位置を返す
-- (NSPoint)locationForGlyphAtIndex:(NSUInteger)glyphIndex
-// ------------------------------------------------------
-{
-    if (![self isPrinting] && [self fixesLineHeight]) {
-        // 複合フォントで描画位置Y座標が変わるのを防止する
-        
-        if ([[self firstTextView] layoutOrientation] != NSTextLayoutOrientationVertical) {
-            // フォントサイズは随時変更されるため、表示時に取得する
-            NSPoint point = [super locationForGlyphAtIndex:glyphIndex];
-            point.y = [self textFontGlyphY];
-            
-            return point;
-        }
-    }
-
-    return [super locationForGlyphAtIndex:glyphIndex];
-}
-
-
-// ------------------------------------------------------
 /// 不可視文字の表示
 - (void)drawGlyphsForGlyphRange:(NSRange)glyphsToShow atPoint:(NSPoint)origin
 // ------------------------------------------------------
@@ -174,14 +148,13 @@ static BOOL usesTextFontForInvisibles;
     
     // draw invisibles
     if ([self showsInvisibles]) {
-        NSTextView<CETextViewProtocol> *textView = (NSTextView<CETextViewProtocol> *)[self firstTextView];
-        NSString *completeStr = [[self textStorage] string];
+        NSString *completeString = [[self textStorage] string];
         NSUInteger lengthToRedraw = NSMaxRange(glyphsToShow);
         
         // フォントサイズは随時変更されるため、表示時に取得する
-        CGFloat fontSize = [self textFontPointSize];
+        CGFloat fontSize = [[self textFont] pointSize];
         CTFontRef font = (__bridge CTFontRef)[self textFont];
-        NSColor *color = [[textView theme] invisiblesColor];
+        NSColor *color = [[(NSTextView<CETextViewProtocol> *)[self firstTextView] theme] invisiblesColor];
         
         // for other invisibles
         NSFont *replaceFont;
@@ -194,10 +167,9 @@ static BOOL usesTextFontForInvisibles;
         CGMutablePathRef paths = CGPathCreateMutable();
         
         // adjust drawing coordinate
-        NSPoint inset = [textView textContainerOrigin];
         CGAffineTransform transform = CGAffineTransformIdentity;
         transform = CGAffineTransformScale(transform, 1.0, -1.0);  // flip
-        transform = CGAffineTransformTranslate(transform, inset.x, - inset.y - CTFontGetAscent(font));
+        transform = CGAffineTransformTranslate(transform, origin.x, - origin.y - CTFontGetAscent(font));
         CGContextConcatCTM(context, transform);
         
         // prepare glyphs
@@ -218,7 +190,7 @@ static BOOL usesTextFontForInvisibles;
         // draw invisibles glyph by glyph
         for (NSUInteger glyphIndex = glyphsToShow.location; glyphIndex < lengthToRedraw; glyphIndex++) {
             NSUInteger charIndex = [self characterIndexForGlyphAtIndex:glyphIndex];
-            unichar character = [completeStr characterAtIndex:charIndex];
+            unichar character = [completeString characterAtIndex:charIndex];
 
             if (showsSpace && ((character == ' ') || (character == 0x00A0))) {
                 NSPoint point = [self pointToDrawGlyphAtIndex:glyphIndex];
@@ -235,7 +207,7 @@ static BOOL usesTextFontForInvisibles;
                 CGAffineTransform translate = CGAffineTransformMakeTranslation(point.x, point.y);
                 CGPathAddPath(paths, &translate, newLineGlyphPath);
 
-            } else if (showsFullwidthSpace && (character == 0x3000)) { // fullwidth-space (JP)
+            } else if (showsFullwidthSpace && (character == 0x3000)) {  // fullwidth-space (JP)
                 NSPoint point = [self pointToDrawGlyphAtIndex:glyphIndex];
                 CGAffineTransform translate = CGAffineTransformMakeTranslation(point.x, point.y);
                 CGPathAddPath(paths, &translate, fullWidthSpaceGlyphPath);
@@ -250,10 +222,10 @@ static BOOL usesTextFontForInvisibles;
                     replaceFont = [NSFont fontWithName:@"Lucida Grande" size:fontSize];
                     replaceGlyph = [replaceFont glyphWithName:@"replacement"];
                 }
-                NSUInteger charLength = CFStringIsSurrogateHighCharacter(character) ? 2 : 1;
-                NSRange charRange = NSMakeRange(charIndex, charLength);
-                NSString *baseStr = [completeStr substringWithRange:charRange];
-                NSGlyphInfo *glyphInfo = [NSGlyphInfo glyphInfoWithGlyph:replaceGlyph forFont:replaceFont baseString:baseStr];
+                
+                NSRange charRange = [self characterRangeForGlyphRange:NSMakeRange(glyphIndex, 1) actualGlyphRange:NULL];
+                NSString *baseString = [completeString substringWithRange:charRange];
+                NSGlyphInfo *glyphInfo = [NSGlyphInfo glyphInfoWithGlyph:replaceGlyph forFont:replaceFont baseString:baseString];
                 
                 if (glyphInfo) {
                     NSDictionary *replaceAttrs = @{NSGlyphInfoAttributeName: glyphInfo,
@@ -328,9 +300,9 @@ static BOOL usesTextFontForInvisibles;
 - (void)setTextFont:(nullable NSFont *)textFont
 // ------------------------------------------------------
 {
-// 複合フォントで行間が等間隔でなくなる問題を回避するため、自前でフォントを持っておく。
-// （[[self firstTextView] font] を使うと、「1バイトフォントを指定して日本語が入力されている」場合に
-// 日本語フォント名を返してくることがあるため、使わない）
+    // 複合フォントで行間が等間隔でなくなる問題を回避するため、自前でフォントを持っておく。
+    // （[[self firstTextView] font] を使うと、「1バイトフォントを指定して日本語が入力されている」場合に
+    // 日本語フォント名を返してくることがあるため、使わない）
 
     _textFont = textFont;
     [self setValuesForTextFont:textFont];
@@ -345,7 +317,7 @@ static BOOL usesTextFontForInvisibles;
     CGFloat lineSpacing = [(NSTextView<CETextViewProtocol> *)[self firstTextView] lineSpacing];
 
     // 小数点以下を返すと選択範囲が分離することがあるため、丸める
-    return round([self defaultLineHeightForTextFont] + lineSpacing * [self textFontPointSize]);
+    return round([self defaultLineHeightForTextFont] + lineSpacing * [[self textFont] pointSize]);
 }
 
 
@@ -359,18 +331,9 @@ static BOOL usesTextFontForInvisibles;
 {
     if (textFont) {
         [self setDefaultLineHeightForTextFont:[self defaultLineHeightForFont:textFont] * kDefaultLineHeightMultiple];
-        [self setTextFontPointSize:[textFont pointSize]];
-        [self setTextFontGlyphY:[textFont pointSize]];
-        // （textFontGlyphYは「複合フォントでも描画位置Y座標を固定」する時のみlocationForGlyphAtIndex:内で使われる。
-        // 本来の値は[textFont ascender]か？ 2009.03.28）
-        
-        // [textFont pointSize]は通常、([textFont ascender] - [textFont descender])と一致する。例えばCourier 48ptだと、
-        // ascender　=　36.187500, descender = -11.812500 となっている。 2009.03.28
         
     } else {
         [self setDefaultLineHeightForTextFont:0.0];
-        [self setTextFontPointSize:0.0];
-        [self setTextFontGlyphY:0.0];
     }
 }
 

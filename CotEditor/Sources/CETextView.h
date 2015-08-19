@@ -1,36 +1,34 @@
 /*
- ==============================================================================
- CETextView
+ 
+ CETextView.h
  
  CotEditor
  http://coteditor.com
  
- Created on 2005-03-30 by nakamuxu
- encoding="UTF-8"
+ Created by nakamuxu on 2005-03-30.
  
  ------------
  This class is based on JSDTextView (written by James S. Derry – http://www.balthisar.com)
  JSDTextView is released as public domain.
  arranged by nakamuxu, Dec 2004.
+ 
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
  © 2014-2015 1024jp
  
- This program is free software; you can redistribute it and/or modify it under
- the terms of the GNU General Public License as published by the Free Software
- Foundation; either version 2 of the License, or (at your option) any later
- version.
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
  
- This program is distributed in the hope that it will be useful, but WITHOUT
- ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+ http://www.apache.org/licenses/LICENSE-2.0
  
- You should have received a copy of the GNU General Public License along with
- this program; if not, write to the Free Software Foundation, Inc., 59 Temple
- Place - Suite 330, Boston, MA  02111-1307, USA.
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
  
- ==============================================================================
  */
 
 @import Cocoa;
@@ -47,37 +45,33 @@
 @property (nonatomic) NSUInteger tabWidth;  // タブ幅
 @property (nonatomic) NSRect highlightLineRect;  // ハイライト行の矩形
 @property (nonatomic, getter=isAutoTabExpandEnabled) BOOL autoTabExpandEnabled;  // タブを自動的にスペースに展開するか
-@property (nonatomic, copy) NSString *inlineCommentDelimiter;  // インラインコメント開始文字列
-@property (nonatomic, copy) NSDictionary *blockCommentDelimiters;  // ブロックコメント開始・終了文字列のペア
-@property (nonatomic, copy) NSCharacterSet *firstCompletionCharacterSet;  // 入力補完の最初の1文字のセット
+@property (nonatomic, nullable, copy) NSString *inlineCommentDelimiter;  // インラインコメント開始文字列
+@property (nonatomic, nullable, copy) NSDictionary *blockCommentDelimiters;  // ブロックコメント開始・終了文字列のペア
+@property (nonatomic, nullable, copy) NSCharacterSet *firstCompletionCharacterSet;  // 入力補完の最初の1文字のセット
 
-@property (nonatomic) CETheme *theme;
-
-// readonly
-@property (readonly, nonatomic, getter=isSelfDrop) BOOL selfDrop;  // 自己内ドラッグ&ドロップなのか
-@property (readonly, nonatomic, getter=isReadingFromPboard) BOOL readingFromPboard;  // ペーストまたはドロップ実行中なのか
+@property (nonatomic, nullable) CETheme *theme;
 
 
 // Public method
-- (void)insertString:(NSString *)string;
-- (void)insertStringAfterSelection:(NSString *)string;
-- (void)replaceAllStringWithString:(NSString *)string;
-- (void)appendString:(NSString *)string;
+- (void)insertString:(nullable NSString *)string;
+- (void)insertStringAfterSelection:(nullable NSString *)string;
+- (void)replaceAllStringWithString:(nullable NSString *)string;
+- (void)appendString:(nullable NSString *)string;
 - (void)setLineSpacingAndUpdate:(CGFloat)lineSpacing;
-- (void)replaceWithString:(NSString *)string range:(NSRange)range
-            selectedRange:(NSRange)selectedRange actionName:(NSString *)actionName;
+- (void)replaceWithString:(nullable NSString *)string range:(NSRange)range
+            selectedRange:(NSRange)selectedRange actionName:(nullable NSString *)actionName;
 
 // Action Message
-- (IBAction)resetFont:(id)sender;
-- (IBAction)shiftRight:(id)sender;
-- (IBAction)shiftLeft:(id)sender;
-- (IBAction)selectLines:(id)sender;
-- (IBAction)changeTabWidth:(id)sender;
-- (IBAction)inputYenMark:(id)sender;
-- (IBAction)inputBackSlash:(id)sender;
-- (IBAction)setSelectedRangeWithNSValue:(id)sender;
-- (IBAction)changeLineHeight:(id)sender;
-- (IBAction)showSelectionInfo:(id)sender;
+- (IBAction)resetFont:(nullable id)sender;
+- (IBAction)shiftRight:(nullable id)sender;
+- (IBAction)shiftLeft:(nullable id)sender;
+- (IBAction)selectLines:(nullable id)sender;
+- (IBAction)changeTabWidth:(nullable id)sender;
+- (IBAction)inputYenMark:(nullable id)sender;
+- (IBAction)inputBackSlash:(nullable id)sender;
+- (IBAction)setSelectedRangeWithNSValue:(nullable id)sender;
+- (IBAction)changeLineHeight:(nullable id)sender;
+- (IBAction)showSelectionInfo:(nullable id)sender;
 
 @end
 
@@ -95,9 +89,9 @@
 
 @interface CETextView (Commenting)
 
-- (IBAction)toggleComment:(id)sender;
-- (IBAction)commentOut:(id)sender;
-- (IBAction)uncomment:(id)sender;
+- (IBAction)toggleComment:(nullable id)sender;
+- (IBAction)commentOut:(nullable id)sender;
+- (IBAction)uncomment:(nullable id)sender;
 
 // semi-private methods
 - (BOOL)canUncommentRange:(NSRange)range;
@@ -107,14 +101,14 @@
 
 @interface CETextView (UtilityMenu)
 
-- (IBAction)exchangeFullwidthRoman:(id)sender;
-- (IBAction)exchangeHalfwidthRoman:(id)sender;
-- (IBAction)exchangeKatakana:(id)sender;
-- (IBAction)exchangeHiragana:(id)sender;
-- (IBAction)normalizeUnicodeWithNFD:(id)sender;
-- (IBAction)normalizeUnicodeWithNFC:(id)sender;
-- (IBAction)normalizeUnicodeWithNFKD:(id)sender;
-- (IBAction)normalizeUnicodeWithNFKC:(id)sender;
-- (IBAction)editColorCode:(id)sender;
+- (IBAction)exchangeFullwidthRoman:(nullable id)sender;
+- (IBAction)exchangeHalfwidthRoman:(nullable id)sender;
+- (IBAction)exchangeKatakana:(nullable id)sender;
+- (IBAction)exchangeHiragana:(nullable id)sender;
+- (IBAction)normalizeUnicodeWithNFD:(nullable id)sender;
+- (IBAction)normalizeUnicodeWithNFC:(nullable id)sender;
+- (IBAction)normalizeUnicodeWithNFKD:(nullable id)sender;
+- (IBAction)normalizeUnicodeWithNFKC:(nullable id)sender;
+- (IBAction)editColorCode:(nullable id)sender;
 
 @end

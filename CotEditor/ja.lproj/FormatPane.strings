@@ -1,20 +1,35 @@
 /*
- FormatPane.strings
+ 
+ FormatPane.strings (Japanese)
  
  CotEditor
  http://coteditor.com
  
- Created on 2014-11-04 by 1024jp
- encoding="UTF-8"
+ Created by 1024jp on 2014-11-04.
+ 
+ ------------------------------------------------------------------------------
  
  © 2014 CotEditor Project
+ 
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+ 
+ http://www.apache.org/licenses/LICENSE-2.0
+ 
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ 
  */
 
 /* Class = "NSTextFieldCell"; title = "Default line endings:"; ObjectID = "3273"; */
 "3273.title" = "改行コード：";
 /* Class = "NSMenuItem"; title = "OS X / Unix (LF)"; ObjectID = "15"; */
 "15.title" = "OS X / Unix (LF)";
-/* Class = "NSMenuItem"; title = "Clasic Mac OS (CR)"; ObjectID = "14"; */
+/* Class = "NSMenuItem"; title = "Classic Mac OS (CR)"; ObjectID = "14"; */
 "14.title" = "クラシック Mac OS (CR)";
 /* Class = "NSMenuItem"; title = "Windows (CR/LF)"; ObjectID = "12"; */
 "12.title" = "Windows (CR/LF)";
@@ -28,7 +43,7 @@
 /* Class = "NSTextFieldCell"; title = "Opening Files:"; ObjectID = "3277"; */
 "3277.title" = "ファイルを開くとき：";
 /* Class = "NSButtonCell"; title = "Edit List…"; ObjectID = "3275"; */
-"3275.title" = "リストを編集…";
+"3275.title" = "リストを編集...";
 /* Class = "NSButtonCell"; title = "Refer to encoding declaration"; ObjectID = "3280"; */
 "3280.title" = "エンコーディング宣言を参照";
 
@@ -56,6 +71,6 @@
 
 
 /* Class = "NSMenuItem"; title = "Import…"; ObjectID = "1lj-x8-ouD"; */
-"1lj-x8-ouD.title" = "読み込み…";
+"1lj-x8-ouD.title" = "読み込み...";
 /* Class = "NSMenuItem"; title = "Show File Mapping Conflicts…"; ObjectID = "hyN-4W-57i"; */
-"hyN-4W-57i.title" = "ファイル関連付けのコンフリクトを表示…";
+"hyN-4W-57i.title" = "ファイル関連付けのコンフリクトを表示...";

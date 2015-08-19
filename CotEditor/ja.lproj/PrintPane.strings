@@ -1,13 +1,28 @@
 /*
- PrintPane.strings
+ 
+ PrintPane.strings (Japanese)
  
  CotEditor
  http://coteditor.com
  
- Created on 2014-11-04 by 1024jp
- encoding="UTF-8"
+ Created by 1024jp on 2014-11-04.
+ 
+ ------------------------------------------------------------------------------
  
  © 2014 CotEditor Project
+ 
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+ 
+ http://www.apache.org/licenses/LICENSE-2.0
+ 
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ 
  */
 
 /* Class = "NSTextFieldCell"; title = "Font:"; ObjectID = "C9y-bs-mE1"; */
@@ -15,7 +30,7 @@
 /* Class = "NSButtonCell"; title = "Same as document's setting"; ObjectID = "1012"; */
 "1012.title" = "書類の設定と同じ";
 /* Class = "NSButtonCell"; title = "Select…"; ObjectID = "3385"; */
-"3385.title" = "選択…";
+"3385.title" = "選択...";
 
 /* Class = "NSTextFieldCell"; title = "Color:"; ObjectID = "3388"; */
 "3388.title" = "カラー：";
@@ -47,8 +62,8 @@
 /* Class = "NSButtonCell"; title = "Print header"; ObjectID = "3368"; */
 "3368.title" = "ヘッダをプリント";
 
-/* Class = "NSTextFieldCell"; title = "First Line:"; ObjectID = "3369"; */
-"3369.title" = "1 行目：";
+/* Class = "NSTextFieldCell"; title = "Primary:"; ObjectID = "3369"; */
+"3369.title" = "主ヘッダ：";
 
 /* Class = "NSMenuItem"; title = "None"; ObjectID = "895"; */
 "895.title" = "なし";
@@ -70,7 +85,7 @@
 
 
 /* Class = "NSTextFieldCell"; title = "Second Line:"; ObjectID = "3373"; */
-"3373.title" = "2 行目：";
+"3373.title" = "副ヘッダ：";
 
 /* Class = "NSMenuItem"; title = "None"; ObjectID = "906"; */
 "906.title" = "なし";
@@ -90,16 +105,13 @@
 "90p-SJ-bXq.ibShadowedToolTips[1]" = "中央揃え";  /* Center */
 "90p-SJ-bXq.ibShadowedToolTips[2]" = "右揃え";  /* Align Right */
 
-/* Class = "NSButtonCell"; title = "ヘッダの下に区切り線をプリント"; ObjectID = "3371"; */
-"3371.title" = "ヘッダの下に区切り線をプリント";
-
 
 
 /* Class = "NSButtonCell"; title = "Print footer"; ObjectID = "3375"; */
 "3375.title" = "フッタをプリント";
 
-/* Class = "NSTextFieldCell"; title = "First Line:"; ObjectID = "3379"; */
-"3379.title" = "1 行目：";
+/* Class = "NSTextFieldCell"; title = "Primary:"; ObjectID = "3379"; */
+"3379.title" = "主フッタ：";
 
 /* Class = "NSMenuItem"; title = "None"; ObjectID = "941"; */
 "941.title" = "なし";
@@ -120,8 +132,8 @@
 "Zgh-yF-xd2.ibShadowedToolTips[2]" = "右揃え";  /* Align Right */
 
 
-/* Class = "NSTextFieldCell"; title = "Second Line:"; ObjectID = "3377"; */
-"3377.title" = "2 行目：";
+/* Class = "NSTextFieldCell"; title = "Secondary:"; ObjectID = "3377"; */
+"3377.title" = "副フッタ：";
 
 /* Class = "NSMenuItem"; title = "None"; ObjectID = "927"; */
 "927.title" = "なし";
@@ -140,7 +152,3 @@
 "Pjk-d8-E4v.ibShadowedToolTips[0]" = "左揃え";  /* Align Left */
 "Pjk-d8-E4v.ibShadowedToolTips[1]" = "中央揃え";  /* Center */
 "Pjk-d8-E4v.ibShadowedToolTips[2]" = "右揃え";  /* Align Right */
-
-
-/* Class = "NSButtonCell"; title = "Print separator line at the top of footer"; ObjectID = "3374"; */
-"3374.title" = "フッタの上に区切り線をプリント";

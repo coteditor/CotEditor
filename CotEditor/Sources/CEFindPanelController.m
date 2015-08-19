@@ -1,37 +1,35 @@
 /*
- ==============================================================================
- CEFindPanelController
+ 
+ CEFindPanelController.m
  
  CotEditor
  http://coteditor.com
  
- Created on 2014-12-30 by 1024jp
- encoding="UTF-8"
+ Created by 1024jp on 2014-12-30.
+
  ------------------------------------------------------------------------------
  
  © 2014-2015 1024jp
  
- This program is free software; you can redistribute it and/or modify it under
- the terms of the GNU General Public License as published by the Free Software
- Foundation; either version 2 of the License, or (at your option) any later
- version.
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
  
- This program is distributed in the hope that it will be useful, but WITHOUT
- ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+ http://www.apache.org/licenses/LICENSE-2.0
  
- You should have received a copy of the GNU General Public License along with
- this program; if not, write to the Free Software Foundation, Inc., 59 Temple
- Place - Suite 330, Boston, MA  02111-1307, USA.
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
  
- ==============================================================================
  */
 
 #import <OgreKit/OgreKit.h>
 #import "CEFindPanelController.h"
 #import "CEFindResultViewController.h"
 #import "CETextFinder.h"
-#import "constants.h"
+#import "Constants.h"
 
 
 // constants
@@ -128,6 +126,8 @@ static NSString *const kEscapeCharacter = @"\\";
 // ------------------------------------------------------
 {
     [[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:CEDefaultFindNextAfterReplaceKey];
+    
+    [_splitView setDelegate:nil];  // NSSplitView's delegate is assign, not weak
 }
 
 
@@ -191,14 +191,6 @@ static NSString *const kEscapeCharacter = @"\\";
 - (BOOL)didEndHighlight:(id)anObject
 // ------------------------------------------------------
 {
-    NSTextView *target = [self target];
-    
-    // post notification
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [[NSNotificationCenter defaultCenter] postNotificationName:CETextFinderDidUnhighlightNotification
-                                                            object:target];
-    });
-    
     return [self closesIndicatorWhenDone];
 }
 
@@ -243,7 +235,7 @@ static NSString *const kEscapeCharacter = @"\\";
 
 // ------------------------------------------------------
 /// observed user defaults are changed
--(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+- (void)observeValueForKeyPath:(nullable NSString *)keyPath ofObject:(nullable id)object change:(nullable NSDictionary *)change context:(nullable void *)context
 // ------------------------------------------------------
 {
     if ([keyPath isEqualToString:CEDefaultFindNextAfterReplaceKey]) {
@@ -261,7 +253,7 @@ static NSString *const kEscapeCharacter = @"\\";
 
 // ------------------------------------------------------
 /// collapse result view by resizing window
-- (void)windowDidEndLiveResize:(NSNotification *)notification
+- (void)windowDidEndLiveResize:(nonnull NSNotification *)notification
 // ------------------------------------------------------
 {
     [self collapseResultViewIfNeeded];
@@ -274,7 +266,7 @@ static NSString *const kEscapeCharacter = @"\\";
 
 // ------------------------------------------------------
 /// collapse result view by dragging divider
-- (void)splitViewDidResizeSubviews:(NSNotification *)notification
+- (void)splitViewDidResizeSubviews:(nonnull NSNotification *)notification
 // ------------------------------------------------------
 {
     // ignore programmical resize
@@ -286,7 +278,7 @@ static NSString *const kEscapeCharacter = @"\\";
 
 // ------------------------------------------------------
 /// only result view can collapse
-- (BOOL)splitView:(NSSplitView *)splitView canCollapseSubview:(NSView *)subview
+- (BOOL)splitView:(nonnull NSSplitView *)splitView canCollapseSubview:(nonnull NSView *)subview
 // ------------------------------------------------------
 {
     return (subview == [[self resultViewController] view]);
@@ -295,7 +287,7 @@ static NSString *const kEscapeCharacter = @"\\";
 
 // ------------------------------------------------------
 /// hide divider when view collapsed
-- (BOOL)splitView:(NSSplitView *)splitView shouldHideDividerAtIndex:(NSInteger)dividerIndex
+- (BOOL)splitView:(nonnull NSSplitView *)splitView shouldHideDividerAtIndex:(NSInteger)dividerIndex
 // ------------------------------------------------------
 {
     return YES;
@@ -304,7 +296,7 @@ static NSString *const kEscapeCharacter = @"\\";
 
 // ------------------------------------------------------
 /// avoid showing draggable cursor when result view collapsed
-- (NSRect)splitView:(NSSplitView *)splitView effectiveRect:(NSRect)proposedEffectiveRect forDrawnRect:(NSRect)drawnRect ofDividerAtIndex:(NSInteger)dividerIndex
+- (NSRect)splitView:(nonnull NSSplitView *)splitView effectiveRect:(NSRect)proposedEffectiveRect forDrawnRect:(NSRect)drawnRect ofDividerAtIndex:(NSInteger)dividerIndex
 // ------------------------------------------------------
 {
     if ([splitView isSubviewCollapsed:[[self resultViewController] view]] || dividerIndex == 1) {
@@ -333,7 +325,7 @@ static NSString *const kEscapeCharacter = @"\\";
 
 // ------------------------------------------------------
 /// activate find panel
-- (IBAction)showFindPanel:(id)sender
+- (IBAction)showFindPanel:(nullable id)sender
 // ------------------------------------------------------
 {
     // close result view
@@ -362,7 +354,7 @@ static NSString *const kEscapeCharacter = @"\\";
 
 // ------------------------------------------------------
 /// find next matched string
-- (IBAction)findNext:(id)sender
+- (IBAction)findNext:(nullable id)sender
 // ------------------------------------------------------
 {
     if ([NSEvent modifierFlags] & NSShiftKeyMask) {
@@ -376,7 +368,7 @@ static NSString *const kEscapeCharacter = @"\\";
 
 // ------------------------------------------------------
 /// find previous matched string
-- (IBAction)findPrevious:(id)sender
+- (IBAction)findPrevious:(nullable id)sender
 // ------------------------------------------------------
 {
     [self findForward:NO];
@@ -385,7 +377,7 @@ static NSString *const kEscapeCharacter = @"\\";
 
 // ------------------------------------------------------
 /// perform find action with the selected string
-- (IBAction)findSelectedText:(id)sender
+- (IBAction)findSelectedText:(nullable id)sender
 // ------------------------------------------------------
 {
     [self useSelectionForFind:sender];
@@ -395,14 +387,14 @@ static NSString *const kEscapeCharacter = @"\\";
 
 // ------------------------------------------------------
 /// find all matched string in the target and show results in a table
-- (IBAction)findAll:(id)sender
+- (IBAction)findAll:(nullable id)sender
 // ------------------------------------------------------
 {
     if (![self checkIsReadyToFind]) { return; }
     
     [self invalidateSyntaxInTextFinder];
     
-    OgreTextFindResult *result = [[self textFinder] findAll:[self findString]
+    OgreTextFindResult *result = [[self textFinder] findAll:[self sanitizedFindString]
                                                       color:[self highlightColor]
                                                     options:[self options]
                                                 inSelection:[self inSelection]];
@@ -417,7 +409,7 @@ static NSString *const kEscapeCharacter = @"\\";
 
 // ------------------------------------------------------
 /// set selected string to find field
-- (IBAction)useSelectionForFind:(id)sender
+- (IBAction)useSelectionForFind:(nullable id)sender
 // ------------------------------------------------------
 {
     NSString *selectedString = [[self textFinder] selectedString];
@@ -432,7 +424,7 @@ static NSString *const kEscapeCharacter = @"\\";
 
 // ------------------------------------------------------
 /// set selected string to replace field
-- (IBAction)useSelectionForReplace:(id)sender
+- (IBAction)useSelectionForReplace:(nullable id)sender
 // ------------------------------------------------------
 {
     NSString *selectedString = [[self textFinder] selectedString];
@@ -447,7 +439,7 @@ static NSString *const kEscapeCharacter = @"\\";
 
 // ------------------------------------------------------
 /// replace next matched string with given string
-- (IBAction)replace:(id)sender
+- (IBAction)replace:(nullable id)sender
 // ------------------------------------------------------
 {
     // perform "Replace & Find" instead of "Replace"
@@ -460,7 +452,7 @@ static NSString *const kEscapeCharacter = @"\\";
     
     [self invalidateSyntaxInTextFinder];
     
-    OgreTextFindResult *result = [[self textFinder] replaceAndFind:[self findString]
+    OgreTextFindResult *result = [[self textFinder] replaceAndFind:[self sanitizedFindString]
                                                         withString:[self replacementString] ? : @""
                                                            options:[self options]
                                                      replacingOnly:YES
@@ -475,14 +467,14 @@ static NSString *const kEscapeCharacter = @"\\";
 
 // ------------------------------------------------------
 /// replace next matched string with given string and select the one after the next match
-- (IBAction)replaceAndFind:(id)sender
+- (IBAction)replaceAndFind:(nullable id)sender
 // ------------------------------------------------------
 {
     if (![self checkIsReadyToFind]) { return; }
     
     [self invalidateSyntaxInTextFinder];
     
-    OgreTextFindResult *result = [[self textFinder] replaceAndFind:[self findString]
+    OgreTextFindResult *result = [[self textFinder] replaceAndFind:[self sanitizedFindString]
                                                         withString:[self replacementString] ? : @""
                                                            options:[self options]
                                                      replacingOnly:NO
@@ -505,14 +497,14 @@ static NSString *const kEscapeCharacter = @"\\";
 
 // ------------------------------------------------------
 /// replace all matched strings with given string
-- (IBAction)replaceAll:(id)sender
+- (IBAction)replaceAll:(nullable id)sender
 // ------------------------------------------------------
 {
     if (![self checkIsReadyToFind]) { return; }
     
     [self invalidateSyntaxInTextFinder];
     
-    [[self textFinder] replaceAll:[self findString]
+    [[self textFinder] replaceAll:[self sanitizedFindString]
                        withString:[self replacementString] ? : @""
                           options:[self options]
                       inSelection:[self inSelection]];
@@ -524,14 +516,14 @@ static NSString *const kEscapeCharacter = @"\\";
 
 // ------------------------------------------------------
 /// highlight all matched strings
-- (IBAction)highlight:(id)sender
+- (IBAction)highlight:(nullable id)sender
 // ------------------------------------------------------
 {
     if (![self checkIsReadyToFind]) { return; }
     
     [self invalidateSyntaxInTextFinder];
     
-    [[self textFinder] hightlight:[self findString]
+    [[self textFinder] hightlight:[self sanitizedFindString]
                             color:[self highlightColor]
                           options:[self options]
                       inSelection:[self inSelection]];
@@ -542,7 +534,7 @@ static NSString *const kEscapeCharacter = @"\\";
 
 // ------------------------------------------------------
 /// remove all of current highlights
-- (IBAction)unhighlight:(id)sender
+- (IBAction)unhighlight:(nullable id)sender
 // ------------------------------------------------------
 {
     [[self textFinder] unhightlight];
@@ -554,7 +546,7 @@ static NSString *const kEscapeCharacter = @"\\";
 
 // ------------------------------------------------------
 /// perform segmented Find Next/Previous button
-- (IBAction)clickSegmentedFindButton:(NSSegmentedControl *)sender
+- (IBAction)clickSegmentedFindButton:(nonnull NSSegmentedControl *)sender
 // ------------------------------------------------------
 {
     switch ([sender selectedSegment]) {
@@ -572,7 +564,7 @@ static NSString *const kEscapeCharacter = @"\\";
 
 // ------------------------------------------------------
 /// set selected history string to find field
-- (IBAction)selectFindHistory:(id)sender
+- (IBAction)selectFindHistory:(nullable id)sender
 // ------------------------------------------------------
 {
     [self setFindString:[sender representedObject]];
@@ -581,7 +573,7 @@ static NSString *const kEscapeCharacter = @"\\";
 
 // ------------------------------------------------------
 /// set selected history string to replacement field
-- (IBAction)selectReplaceHistory:(id)sender
+- (IBAction)selectReplaceHistory:(nullable id)sender
 // ------------------------------------------------------
 {
     [self setReplacementString:[sender representedObject]];
@@ -590,7 +582,7 @@ static NSString *const kEscapeCharacter = @"\\";
 
 // ------------------------------------------------------
 /// restore find history via UI
-- (IBAction)clearFindHistory:(id)sender
+- (IBAction)clearFindHistory:(nullable id)sender
 // ------------------------------------------------------
 {
     [[self findPanel] makeKeyAndOrderFront:self];
@@ -602,7 +594,7 @@ static NSString *const kEscapeCharacter = @"\\";
 
 // ------------------------------------------------------
 /// restore replace history via UI
-- (IBAction)clearReplaceHistory:(id)sender
+- (IBAction)clearReplaceHistory:(nullable id)sender
 // ------------------------------------------------------
 {
     [[self findPanel] makeKeyAndOrderFront:self];
@@ -614,7 +606,7 @@ static NSString *const kEscapeCharacter = @"\\";
 
 // ------------------------------------------------------
 /// change regex syntax setting via menu item
-- (IBAction)changeSyntax:(id)sender
+- (IBAction)changeSyntax:(nullable id)sender
 // ------------------------------------------------------
 {
     [[NSUserDefaults standardUserDefaults] setInteger:[sender tag] forKey:CEDefaultFindRegexSyntaxKey];
@@ -623,20 +615,22 @@ static NSString *const kEscapeCharacter = @"\\";
 
 // ------------------------------------------------------
 /// option is toggled
-- (IBAction)toggleOption:(id)sender
+- (IBAction)toggleOption:(nullable id)sender
 // ------------------------------------------------------
 {
     __weak typeof(self) weakSelf = self;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        typeof(weakSelf) strongSelf = weakSelf;
-        [[NSUserDefaults standardUserDefaults] setInteger:[strongSelf options] forKey:CEDefaultFindOptionsKey];
+        typeof(self) self = weakSelf;  // strong self
+        if (!self) { return; }
+        
+        [[NSUserDefaults standardUserDefaults] setInteger:[self options] forKey:CEDefaultFindOptionsKey];
     });
 }
 
 
 // ------------------------------------------------------
 /// close opening find result view
-- (IBAction)closeResultView:(id)sender
+- (IBAction)closeResultView:(nullable id)sender
 // ------------------------------------------------------
 {
     [self setResultShown:NO animate:YES];
@@ -645,7 +639,7 @@ static NSString *const kEscapeCharacter = @"\\";
 
 // ------------------------------------------------------
 /// show regular expression reference as popover
-- (IBAction)showRegexHelp:(id)sender
+- (IBAction)showRegexHelp:(nullable id)sender
 // ------------------------------------------------------
 {
     if ([[self regexPopover] isShown]) {
@@ -658,6 +652,16 @@ static NSString *const kEscapeCharacter = @"\\";
 
 
 #pragma mark Private Methods
+
+// ------------------------------------------------------
+/// find string of which line endings are standardized to LF
+- (NSString *)sanitizedFindString
+// ------------------------------------------------------
+{
+    return [OGRegularExpression replaceNewlineCharactersInString:[self findString]
+                                                   withCharacter:OgreLfNewlineCharacter];
+}
+
 
 // ------------------------------------------------------
 /// update syntax (and regex enability) setting in textFinder
@@ -779,7 +783,7 @@ static NSString *const kEscapeCharacter = @"\\";
     
     [self invalidateSyntaxInTextFinder];
     
-    OgreTextFindResult *result = [[self textFinder] find:[self findString]
+    OgreTextFindResult *result = [[self textFinder] find:[self sanitizedFindString]
                                                  options:[self options]
                                                  fromTop:NO
                                                  forward:forward
@@ -818,7 +822,7 @@ static NSString *const kEscapeCharacter = @"\\";
     // check regex syntax of find string and alert if invalid
     if ([self usesRegularExpression]) {
         @try {
-            [OGRegularExpression regularExpressionWithString:[self findString]
+            [OGRegularExpression regularExpressionWithString:[self sanitizedFindString]
                                                      options:[self options]
                                                       syntax:[self syntax]
                                              escapeCharacter:kEscapeCharacter];

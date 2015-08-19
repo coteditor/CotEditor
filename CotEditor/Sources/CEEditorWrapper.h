@@ -1,36 +1,34 @@
 /*
- ==============================================================================
- CEEditorWrapper
+ 
+ CEEditorWrapper.h
  
  CotEditor
  http://coteditor.com
  
- Created on 2004-12-08 by nakamuxu
- encoding="UTF-8"
+ Created by nakamuxu on 2004-12-08.
  
  ------------
  This class is based on JSDTextView (written by James S. Derry – http://www.balthisar.com)
  JSDTextView is released as public domain.
  arranged by nakamuxu, Dec 2004.
+ 
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
  © 2014-2015 1024jp
  
- This program is free software; you can redistribute it and/or modify it under
- the terms of the GNU General Public License as published by the Free Software
- Foundation; either version 2 of the License, or (at your option) any later
- version.
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
  
- This program is distributed in the hope that it will be useful, but WITHOUT
- ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+ http://www.apache.org/licenses/LICENSE-2.0
  
- You should have received a copy of the GNU General Public License along with
- this program; if not, write to the Free Software Foundation, Inc., 59 Temple
- Place - Suite 330, Boston, MA  02111-1307, USA.
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
  
- ==============================================================================
  */
 
 @import Cocoa;
@@ -39,6 +37,7 @@
 
 @class CETextView;
 @class CETheme;
+@class CESyntaxParser;
 
 
 @interface CEEditorWrapper : NSResponder
@@ -50,6 +49,7 @@
 @property (nonatomic, getter=isVerticalLayoutOrientation) BOOL verticalLayoutOrientation;
 @property (nonatomic) CETextView *focusedTextView;
 
+@property (readonly, nonatomic) CESyntaxParser *syntaxParser;
 @property (readonly, nonatomic) BOOL showsNavigationBar;
 @property (readonly, nonatomic) BOOL canActivateShowInvisibles;
 
@@ -90,10 +90,11 @@
 
 // syntax
 - (NSString *)syntaxStyleName;
-- (void)setSyntaxStyleName:(NSString *)inName recolorNow:(BOOL)recolorNow;
-- (void)recolorAllString;
-- (void)updateColoringAndOutlineMenuWithDelay;
+- (void)setSyntaxStyleWithName:(NSString *)name coloring:(BOOL)doColoring;
+- (void)invalidateSyntaxColoring;
+- (void)invalidateOutlineMenu;
 - (void)setupColoringTimer;
+- (void)setupOutlineMenuUpdateTimer;
 
 
 #pragma mark Action Messages

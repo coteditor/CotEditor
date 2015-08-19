@@ -1,37 +1,35 @@
 /*
- ==============================================================================
- CEDocumentAnalyzer
+ 
+ CEDocumentAnalyzer.m
  
  CotEditor
  http://coteditor.com
  
- Created on 2014-12-18 by 1024jp
- encoding="UTF-8"
+ Created by 1024jp on 2014-12-18.
+
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
  © 2014-2015 1024jp
  
- This program is free software; you can redistribute it and/or modify it under
- the terms of the GNU General Public License as published by the Free Software
- Foundation; either version 2 of the License, or (at your option) any later
- version.
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
  
- This program is distributed in the hope that it will be useful, but WITHOUT
- ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+ http://www.apache.org/licenses/LICENSE-2.0
  
- You should have received a copy of the GNU General Public License along with
- this program; if not, write to the Free Software Foundation, Inc., 59 Temple
- Place - Suite 330, Boston, MA  02111-1307, USA.
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
  
- ==============================================================================
  */
 
 #import "CEDocumentAnalyzer.h"
 #import "CEDocument.h"
 #import "NSString+ComposedCharacter.h"
-#import "constants.h"
+#import "Constants.h"
 
 
 // notifications
@@ -156,8 +154,10 @@ NSString *__nonnull const CEAnalyzerDidUpdateEditorInfoNotification = @"CEAnalyz
     CEEditorWrapper *editor = [document editor];
     NSNumberFormatter *integerFormatter = [self integerFormatter];
     
+    if (![editor string]) { return; }
+    
     BOOL hasMarked = [[editor focusedTextView] hasMarkedText];
-    NSString *wholeString = ([document lineEnding] == CENewLineCRLF) ? [document stringForSave] : [[editor string] copy];
+    NSString *wholeString = ([document lineEnding] == CENewLineCRLF) ? [document stringForSave] : [NSString stringWithString:[editor string]];
     NSString *selectedString = hasMarked ? nil : [editor substringWithSelection];
     NSStringEncoding encoding = [document encoding];
     __block NSRange selectedRange = [editor selectedRange];
@@ -170,7 +170,8 @@ NSString *__nonnull const CEAnalyzerDidUpdateEditorInfoNotification = @"CEAnalyz
     // calculate on background thread
     __weak typeof(self) weakSelf = self;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        typeof(weakSelf) strongSelf = weakSelf;
+        typeof(self) self = weakSelf;  // strong self
+        if (!self) { return; }
         
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         BOOL countsLineEnding = [defaults boolForKey:CEDefaultCountLineEndingAsCharKey];
@@ -258,25 +259,25 @@ NSString *__nonnull const CEAnalyzerDidUpdateEditorInfoNotification = @"CEAnalyz
         
         // apply to UI
         dispatch_async(dispatch_get_main_queue(), ^{
-            strongSelf.lines = [strongSelf formatCount:numberOfLines selected:numberOfSelectedLines];
-            strongSelf.length = [strongSelf formatCount:length selected:selectedRange.length];
-            strongSelf.chars = [strongSelf formatCount:numberOfChars selected:numberOfSelectedChars];
-            strongSelf.byteLength = [strongSelf formatCount:byteLength selected:selectedByteLength];
-            strongSelf.words = [strongSelf formatCount:numberOfWords selected:numberOfSelectedWords];
-            strongSelf.location = [integerFormatter stringFromNumber:@(location)];
-            strongSelf.line = [integerFormatter stringFromNumber:@(currentLine)];
-            strongSelf.column = [integerFormatter stringFromNumber:@(column)];
-            strongSelf.unicode = unicode;
+            self.lines = [self formatCount:numberOfLines selected:numberOfSelectedLines];
+            self.length = [self formatCount:length selected:selectedRange.length];
+            self.chars = [self formatCount:numberOfChars selected:numberOfSelectedChars];
+            self.byteLength = [self formatCount:byteLength selected:selectedByteLength];
+            self.words = [self formatCount:numberOfWords selected:numberOfSelectedWords];
+            self.location = [integerFormatter stringFromNumber:@(location)];
+            self.line = [integerFormatter stringFromNumber:@(currentLine)];
+            self.column = [integerFormatter stringFromNumber:@(column)];
+            self.unicode = unicode;
             
             [[NSNotificationCenter defaultCenter] postNotificationName:CEAnalyzerDidUpdateEditorInfoNotification
-                                                                object:strongSelf];
+                                                                object:self];
         });
     });
 }
 
 
 
-#pragma mark Plivate methods
+#pragma mark Private methods
 
 // ------------------------------------------------------
 /// format count number with selection

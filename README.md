@@ -14,9 +14,10 @@ __Distribution Site__ : <http://coteditor.com>
 
 About Source Code
 -----------------------------
-[![Build Status](https://travis-ci.org/coteditor/CotEditor.png)](https://travis-ci.org/coteditor/CotEditor)
+[![Build Status](https://travis-ci.org/coteditor/CotEditor.svg?branch=develop)](https://travis-ci.org/coteditor/CotEditor)
+[![License](https://img.shields.io/badge/license-Apache2-lightgrey.svg?style=flat)](https://github.com/coteditor/CotEditor/blob/develop/LICENSE)
 
-The source code is written in Cocoa and Objective-C with ARC enabled.
+It's pure Cocoa document-based application. The source code is written in Objective-C with ARC enabled.
 
 
 ### Development Environment
@@ -38,7 +39,7 @@ License
 -----------------------------
 © 2005-2009 nakamuxu,
 © 2011, 2014 usami-k,
-© 2014-2015 1024jp.
+© 2013-2015 1024jp.
 All rights reserved.
 
-The source code is distributed under the terms of the GNU General Public License. See the bundled [LICENSE](LICENSE) for details.
+The source code is distributed under the terms of the __Apache License, Version 2.0__. See the bundled [LICENSE](LICENSE) for details.

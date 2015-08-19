@@ -1,14 +1,29 @@
 /*
- PrintPane.strings
+ 
+ PrintPane.strings (Simplified Chinese)
  
  CotEditor
  http://coteditor.com
  
- Created on 2014-12-12 by 1024jp
+ Created by 1024jp on 2014-12-12.
  Localized by onevcat
- encoding="UTF-8"
  
- © 2014 CotEditor Project
+ ------------------------------------------------------------------------------
+ 
+ © 2014-2015 CotEditor Project
+ 
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+ 
+ http://www.apache.org/licenses/LICENSE-2.0
+ 
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ 
  */
 
 /* Class = "NSTextFieldCell"; title = "字体:"; ObjectID = "C9y-bs-mE1"; */
@@ -92,16 +107,13 @@
 "Jap-f3-ehL.ibShadowedToolTips[1]" = "居中";  /* Center */
 "Jap-f3-ehL.ibShadowedToolTips[2]" = "右对齐";  /* Align Right */
 
-/* Class = "NSButtonCell"; title = "在页眉下方打印分隔线"; ObjectID = "3371"; */
-"3371.title" = "在页眉下方打印分隔线";
-
 
 
 /* Class = "NSButtonCell"; title = "Print footer"; ObjectID = "3375"; */
 "3375.title" = "打印页脚";
 
-/* Class = "NSTextFieldCell"; title = "First Line:"; ObjectID = "3379"; */
-"3379.title" = "第一行:";
+/* Class = "NSTextFieldCell"; title = "Primary:"; ObjectID = "3379"; */
+"3379.title" = "主:";
 
 /* Class = "NSMenuItem"; title = "None"; ObjectID = "941"; */
 "941.title" = "无";
@@ -122,8 +134,8 @@
 "Zgh-yF-xd2.ibShadowedToolTips[2]" = "右对齐";  /* Align Right */
 
 
-/* Class = "NSTextFieldCell"; title = "Second Line:"; ObjectID = "3377"; */
-"3377.title" = "第二行:";
+/* Class = "NSTextFieldCell"; title = "Primary:"; ObjectID = "3377"; */
+"3377.title" = "主:";
 
 /* Class = "NSMenuItem"; title = "None"; ObjectID = "927"; */
 "927.title" = "无";
@@ -142,7 +154,3 @@
 "Pjk-d8-E4v.ibShadowedToolTips[0]" = "左对齐";  /* Align Left */
 "Pjk-d8-E4v.ibShadowedToolTips[1]" = "居中";  /* Center */
 "Pjk-d8-E4v.ibShadowedToolTips[2]" = "右对齐";  /* Align Right */
-
-
-/* Class = "NSButtonCell"; title = "Print separator line at the top of footer"; ObjectID = "3374"; */
-"3374.title" = "在页脚上方打印分隔线";

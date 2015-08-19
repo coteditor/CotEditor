@@ -1,35 +1,33 @@
 /*
- ==============================================================================
- CEIntegrationPaneController
+ 
+ CEIntegrationPaneController.m
  
  CotEditor
  http://coteditor.com
  
- Created on 2014-12-20 by 1024jp
- encoding="UTF-8"
+ Created by 1024jp on 2014-12-20.
+
  ------------------------------------------------------------------------------
  
  © 2014-2015 1024jp
  
- This program is free software; you can redistribute it and/or modify it under
- the terms of the GNU General Public License as published by the Free Software
- Foundation; either version 2 of the License, or (at your option) any later
- version.
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
  
- This program is distributed in the hope that it will be useful, but WITHOUT
- ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+ http://www.apache.org/licenses/LICENSE-2.0
  
- You should have received a copy of the GNU General Public License along with
- this program; if not, write to the Free Software Foundation, Inc., 59 Temple
- Place - Suite 330, Boston, MA  02111-1307, USA.
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
  
- ==============================================================================
  */
 
 @import ObjectiveC.message;
 #import "CEIntegrationPaneController.h"
-#import "constants.h"
+#import "Constants.h"
 
 
 static NSString *const kSymbolicLinkPath = @"/usr/local/bin/cot";
@@ -166,18 +164,22 @@ static const NSURL *kPreferredLinkTargetURL;
 - (void)performInstall
 // ------------------------------------------------------
 {
+    NSError *coordinationError = nil;
+    __block NSError *symLinkError = nil;
     __block BOOL success = NO;
-    __block NSError *error = nil;
-    
+
     NSFileCoordinator *coordinator = [[NSFileCoordinator alloc] init];
     [coordinator coordinateWritingItemAtURL:[self linkURL] options:0
-                                      error:&error
+                                      error:&coordinationError
                                  byAccessor:^(NSURL *newURL)
      {
+         // FIXME: This will be failed with NSCocoaErrorDomain + NSFileWriteNoPermissionError on El Capitan beta 5
          success = [[NSFileManager defaultManager] createSymbolicLinkAtURL:newURL
                                                         withDestinationURL:[self executableURL]
-                                                                     error:&error];
+                                                                     error:&symLinkError];
      }];
+    
+    NSError *error = symLinkError ? : coordinationError;
     
     if (success) {
         [self setInstalled:YES];
@@ -198,7 +200,7 @@ static const NSURL *kPreferredLinkTargetURL;
     BOOL success;
     NSError *error = nil;
     
-    unlink([[[self linkURL] path] UTF8String]);
+    unlink([[[self linkURL] path] fileSystemRepresentation]);
     
     if (![[self linkURL] checkResourceIsReachableAndReturnError:nil]) {
         [self setInstalled:NO];
@@ -253,10 +255,10 @@ static const NSURL *kPreferredLinkTargetURL;
     // display warning for invalid link
     if ([linkDestinationURL checkResourceIsReachableAndReturnError:nil]) {
         // link destinaiton is not running CotEditor
-        [self setWarning:NSLocalizedString(@"The current 'cot' symbolic link doesn't target to the running CotEditor.", nil)];
+        [self setWarning:NSLocalizedString(@"The current 'cot' symbolic link doesn't target on the running CotEditor.", nil)];
     } else {
         // link destination is unreachable
-        [self setWarning:NSLocalizedString(@"The current 'cot' symbolic link may target to an invalid path.", nil)];
+        [self setWarning:NSLocalizedString(@"The current 'cot' symbolic link may target on an invalid path.", nil)];
     }
     
     return YES;
@@ -273,7 +275,7 @@ static const NSURL *kPreferredLinkTargetURL;
     
     // check current running app's location only on Yosemite and later (2015-02 by 1024jp)
     // (Just because `getRelation:~` is first available on Yosemite.)
-    if (floor(NSAppKitVersionNumber) > NSAppKitVersionNumber10_9) {
+    if (NSAppKitVersionNumber >= NSAppKitVersionNumber10_10) {
         NSURLRelationship relationship;
         [[NSFileManager defaultManager] getRelationship:&relationship
                                             ofDirectory:NSApplicationDirectory

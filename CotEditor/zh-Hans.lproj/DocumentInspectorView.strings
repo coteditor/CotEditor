@@ -1,53 +1,83 @@
 /*
- DocumentInfoView.strings
+ 
+ DocumentInfoView.strings (Simplified Chinese)
  
  CotEditor
  http://coteditor.com
  
- Created on 2014-12-18 by 1024jp
+ Created by 1024jp on 2014-12-18.
  Localized by onevcat
- encoding="UTF-8"
+ 
+ ------------------------------------------------------------------------------
  
  © 2014-2015 CotEditor Project
+ 
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+ 
+ http://www.apache.org/licenses/LICENSE-2.0
+ 
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ 
  */
 
+/* Class = "NSTextFieldCell"; title = "Document File"; ObjectID = "5tP-OA-Ujw"; */
+"5tP-OA-Ujw.title" = "文档文件";
 
-/* Class = "NSTextFieldCell"; title = "Created:"; ObjectID = "hgp-Cc-KHJ"; */
-"hgp-Cc-KHJ.title" = "创建于:";
-/* Class = "NSTextFieldCell"; title = "Modified:"; ObjectID = "BtZ-Pl-H7s"; */
-"BtZ-Pl-H7s.title" = "最后编辑:";
-/* Class = "NSTextFieldCell"; title = "File Size:"; ObjectID = "uZa-Q9-nHs"; */
-"uZa-Q9-nHs.title" = "文件尺寸:";
-/* Class = "NSTextFieldCell"; title = "Owner:"; ObjectID = "AjV-U0-lC7"; */
-"AjV-U0-lC7.title" = "拥有者:";
-/* Class = "NSTextFieldCell"; title = "Permission:"; ObjectID = "N0Y-nO-k3L"; */
-"N0Y-nO-k3L.title" = "权限:";
-/* Class = "NSTextFieldCell"; title = "Full Path:"; ObjectID = "zwU-xo-iZu"; */
-"zwU-xo-iZu.title" = "完整路径:";
+/* Class = "NSTextFieldCell"; title = "Created"; ObjectID = "hgp-Cc-KHJ"; */
+"hgp-Cc-KHJ.title" = "创建于";
+/* Class = "NSTextFieldCell"; title = "Modified"; ObjectID = "BtZ-Pl-H7s"; */
+"BtZ-Pl-H7s.title" = "最后编辑";
+/* Class = "NSTextFieldCell"; title = "File Size"; ObjectID = "uZa-Q9-nHs"; */
+"uZa-Q9-nHs.title" = "文件尺寸";
+/* Class = "NSTextFieldCell"; title = "Owner"; ObjectID = "AjV-U0-lC7"; */
+"AjV-U0-lC7.title" = "拥有者";
+/* Class = "NSTextFieldCell"; title = "Permission"; ObjectID = "N0Y-nO-k3L"; */
+"N0Y-nO-k3L.title" = "权限";
+/* Class = "NSTextFieldCell"; title = "Full Path"; ObjectID = "zwU-xo-iZu"; */
+"zwU-xo-iZu.title" = "完整路径";
 
-/* Class = "NSTextFieldCell"; title = "Encoding:"; ObjectID = "B5F-j1-X4E"; */
-"B5F-j1-X4E.title" = "编码:";
-/* Class = "NSTextFieldCell"; title = "Line Endings:"; ObjectID = "XBS-xa-s3p"; */
-"XBS-xa-s3p.title" = "行尾:";
-/* Class = "NSTextFieldCell"; title = "Byte Length:"; ObjectID = "aId-DL-y8T"; */
-"aId-DL-y8T.title" = "字节长度:";
 
-/* Class = "NSTextFieldCell"; title = "Lines:"; ObjectID = "yRM-Y0-4Oq"; */
-"yRM-Y0-4Oq.title" = "行数:";
-/* Class = "NSTextFieldCell"; title = "Characters:"; ObjectID = "e1m-Uo-4UK"; */
-"e1m-Uo-4UK.title" = "字符数:";
-/* Class = "NSTextFieldCell"; title = "Length:"; ObjectID = "H0d-Eg-DcW"; */
-"H0d-Eg-DcW.title" = "长度:";
-/* Class = "NSTextFieldCell"; title = "Words:"; ObjectID = "tZ6-05-eKf"; */
-"tZ6-05-eKf.title" = "字数:";
-/* Class = "NSTextFieldCell"; title = "Location:"; ObjectID = "ERr-yA-dIa"; */
-"ERr-yA-dIa.title" = "位置:";
-/* Class = "NSTextFieldCell"; title = "Current Line:"; ObjectID = "f9g-dQ-g3K"; */
-"f9g-dQ-g3K.title" = "当前行:";
-/* Class = "NSTextFieldCell"; title = "Column:"; ObjectID = "Wwr-gI-HPc"; */
-"Wwr-gI-HPc.title" = "列:";
-/* Class = "NSTextFieldCell"; title = "Unicode:"; ObjectID = "kna-yU-liB"; */
-"kna-yU-liB.title" = "Unicode:";
+/* Class = "NSTextFieldCell"; title = "Text Settings"; ObjectID = "8KW-Mc-cRX"; */
+"8KW-Mc-cRX.title" = "文本设定";
+
+/* Class = "NSTextFieldCell"; title = "Encoding"; ObjectID = "B5F-j1-X4E"; */
+"B5F-j1-X4E.title" = "编码";
+/* Class = "NSTextFieldCell"; title = "Line Endings"; ObjectID = "XBS-xa-s3p"; */
+"XBS-xa-s3p.title" = "行尾";
+/* Class = "NSTextFieldCell"; title = "Byte Length"; ObjectID = "aId-DL-y8T"; */
+"aId-DL-y8T.title" = "字节长度";
+
+
+/* Class = "NSTextFieldCell"; title = "Count and Location"; ObjectID = "cbf-0f-9rd"; */
+"cbf-0f-9rd.title" = "计数和位置";
+
+/* Class = "NSTextFieldCell"; title = "Lines"; ObjectID = "yRM-Y0-4Oq"; */
+"yRM-Y0-4Oq.title" = "行数";
+/* Class = "NSTextFieldCell"; title = "Characters"; ObjectID = "e1m-Uo-4UK"; */
+"e1m-Uo-4UK.title" = "字符数";
+/* Class = "NSTextFieldCell"; title = "Length"; ObjectID = "H0d-Eg-DcW"; */
+"H0d-Eg-DcW.title" = "长度";
+/* Class = "NSTextFieldCell"; title = "Words"; ObjectID = "tZ6-05-eKf"; */
+"tZ6-05-eKf.title" = "字数";
+/* Class = "NSTextFieldCell"; title = "Location"; ObjectID = "ERr-yA-dIa"; */
+"ERr-yA-dIa.title" = "位置";
+/* Class = "NSTextFieldCell"; title = "Current Line"; ObjectID = "f9g-dQ-g3K"; */
+"f9g-dQ-g3K.title" = "当前行";
+/* Class = "NSTextFieldCell"; title = "Column"; ObjectID = "Wwr-gI-HPc"; */
+"Wwr-gI-HPc.title" = "列";
+
+
+/* Class = "NSTextFieldCell"; title = "Character"; ObjectID = "H2Z-jU-biZ"; */
+"H2Z-jU-biZ.title" = "字符";
+
+/* Class = "NSTextFieldCell"; title = "Unicode"; ObjectID = "kna-yU-liB"; */
+"kna-yU-liB.title" = "Unicode";
 /* Class = "IBBindingConnection"; ibShadowedIsNilPlaceholder = "Not selected"; ObjectID = "786-4C-69e"; */
 "786-4C-69e.ibShadowedIsNilPlaceholder" = "未选中";
 /* Class = "NSTextField"; ibShadowedToolTip = "Select a single character to display unicode info."; ObjectID = "2ZU-Mi-aJz"; */

@@ -1,15 +1,29 @@
 /*
- Localizable.strings
+ 
+ Localizable.strings (Simplified Chinese)
  
  CotEditor
  http://coteditor.com
  
- Created on 2014-11-27 by onevcat
- encoding="UTF-8"
+ Created by onevcat on 2014-11-27.
+ 
+ ------------------------------------------------------------------------------
  
  © 2014-2015 CotEditor Project
+ 
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+ 
+ http://www.apache.org/licenses/LICENSE-2.0
+ 
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ 
  */
-
 
 // Menu item title for Sparkle
 "Check for Updates…" = "检查更新…";
@@ -68,10 +82,7 @@
 "Continue Saving" = "继续保存";
 "The encoding is “%@”, but the IANA charset name in text is “%@”." = "编码为 “%@”，但是文本中的 IANA 字符集名字为 “%@”。";
 "Do you want to continue processing?" = "继续进行处理吗？";
-"Do not show this warning for this document again" = "不再显示此信息";  // FIXME:
-
-"Finder's lock could not be released." = "Finder 锁定无法解除。";
-"You can use “Save As” to save a copy." = "你可以使用 “另存为” 来保存一份副本";
+"Do not show this warning for this document again" = "对该文档不再显示此信息";
 
 "Discard Changes" = "放弃修改";
 "The file “%@” has unsaved changes." = "文件 “%@” 中有修改内容还没有保存";
@@ -102,17 +113,15 @@
 "Line Number" = "行号";
 "Invisible Characters" = "不可见字符";
 "Print Header" = "打印页眉";
-"First Header Line" = "页眉行 1";
-"First Header Line Alignment" = "页眉行 1 对齐";
-"Second Header Line" = "页眉行 2";
-"Second Header Line Alignment" = "页眉行 2 对齐";
-"Print Header Separator" = "打印页眉分隔线";
+"Primary Header" = "主页眉";
+"Primary Header Alignment" = "主页眉对齐";
+"Secondary Header" = "次页眉";
+"Secondary Header Alignment" = "次页眉对齐";
 "Print Footer" = "打印页脚";
-"First Footer Line" = "页脚行 1";
-"First Footer Line Alignment" = "页脚行 1 对齐";
-"Second Footer Line" = "页脚行 2";
-"Second Footer Line Alignment" = "页脚行 2 对齐";
-"Print Footer Separator" = "打印页脚分隔线";
+"Primary Footer" = "主页脚";
+"Primary Footer Alignment" = "主页脚对齐";
+"Secondary Footer" = "次页脚";
+"Secondary Footer Alignment" = "次页脚对齐";
 
 "On" = "开";
 "Off" = "关";
@@ -200,10 +209,6 @@
 "Cancel" = "取消";
 "You may not be able to save your changes, but you will be able to save a copy somewhere else." = "无法保存更改，但是可以在其他路径保存一份拷贝。";
 
-"Finder's lock is On." = "Finder 处于锁定状态";
-"Don't Save, and Close" = "不保存，直接关闭";
-"Finder's lock could not be released. So, you can not save your changes on this file, but you will be able to save a copy somewhere else.\n\nDo you want to close?" = "无法解除 Finder 锁定，编辑内容无法保存至该文件中。可以使用 “另存为” 保存一份文件拷贝。\n\n是否关闭文件？";
-
 
 /* MARK: CESplitView */
 // Menu items
@@ -263,6 +268,10 @@
 "A new theme named “%@” will be installed, but a custom theme with the same name already exists." = "将要安装名为 “%@” 的新主题，但是已经存在同名的自定义主题";
 "Do you want to replace it?\nReplaced theme cannot be restored." = "要覆盖原主题吗？\n主题删除后将无法还原";
 
+// swipe to delete (also used in the Format pane)
+"Delete" = "删除";
+"Restore" = "还原";
+
 
 // Print pane
 "Theme" = "主题";
@@ -284,8 +293,8 @@
 // Integration Pane
 "Install" = "安装";
 "Uninstall" = "卸载";
-"The current 'cot' symbolic link doesn't target to the running CotEditor." = "当前的 'cot' 符号链接没有指向正在运行的 CotEditor。";
-"The current 'cot' symbolic link may target to an invalid path." = "当前的 'cot' 符号链接可能指向无效路径。";
+"The current 'cot' symbolic link doesn't target on the running CotEditor." = "当前的 'cot' 符号链接没有指向正在运行的 CotEditor。";
+"The current 'cot' symbolic link may target on an invalid path." = "当前的 'cot' 符号链接可能指向无效路径。";
 
 // alerts
 "The running CotEditor is not located in the Application directory." = "正在运行的 CotEditor 没有位于应用程序文件夹中。";
@@ -359,7 +368,6 @@
 "End string" = "结束字符串";
 "RE string" = "正则表达式";
 "multiple registered." = "重复注册";
-"Error “%@” in column %@: %@<<HERE>>%@" = "错误 “%@” (%@列) ：%@<<这里>>%@";
 "Error: %@" = "错误： %@";
 
 
@@ -387,7 +395,9 @@
 // Menu items
 "Open Scripts Folder" = "打开脚本文件夹";
 "Update Script Menu" = "更新脚本菜单";
-"Copy Sample to Scripts Folder" = "将示例文件复制到脚本文件夹";
+"Copy Sample Scripts…" = "复制示例脚本…";
+"Copy Sample Scripts" = "复制示例脚本";
+"Scripts in “%@” will be listed in the script menu." = "在 “%@” 中的脚本将在脚本菜单中列出";
 "Copy bundled sample scripts to the scripts folder." = "将内置的示例脚本复制到脚本文件夹";
 
 // Script menu item tooltips
@@ -399,8 +409,6 @@
 "Could not open the script file “%@”." = "无法打开脚本文件 “%@”";
 "Cannnot execute the script “%@”.\nShell script requires execute permission.\n\nCheck permission of the script file." = "无法执行脚本 “%@”。\nShell 脚本需要执行权限。\n\n请确认脚本文件访问权限";
 "Could not read the script “%@”." = "无法读取脚本 “%@”";
-"SampleScript folder exists already." = "SampleScript 文件夹已存在";
-"If you want to replace it with the new one, remove the existing folder at “%@” at first." = "如果需要使用新的进行覆盖，请先删除 “%@” 下已有的文件夹";
 
 
 /* MARK: CEFindPanelController */

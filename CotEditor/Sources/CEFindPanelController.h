@@ -1,30 +1,28 @@
 /*
- ==============================================================================
- CEFindPanelController
+ 
+ CEFindPanelController.h
  
  CotEditor
  http://coteditor.com
  
- Created on 2014-12-30 by 1024jp
- encoding="UTF-8"
+ Created by 1024jp on 2014-12-30.
+
  ------------------------------------------------------------------------------
  
  © 2014-2015 1024jp
  
- This program is free software; you can redistribute it and/or modify it under
- the terms of the GNU General Public License as published by the Free Software
- Foundation; either version 2 of the License, or (at your option) any later
- version.
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
  
- This program is distributed in the hope that it will be useful, but WITHOUT
- ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+ http://www.apache.org/licenses/LICENSE-2.0
  
- You should have received a copy of the GNU General Public License along with
- this program; if not, write to the Free Software Foundation, Inc., 59 Temple
- Place - Suite 330, Boston, MA  02111-1307, USA.
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
  
- ==============================================================================
  */
 
 @import Cocoa;
@@ -43,17 +41,17 @@ typedef NS_ENUM(NSInteger, CETextFinderAction) {
 @interface CEFindPanelController : OgreFindPanelController
 
 // action messages
-- (IBAction)showFindPanel:(id)sender;
-- (IBAction)findNext:(id)sender;
-- (IBAction)findPrevious:(id)sender;
-- (IBAction)findSelectedText:(id)sender;
-- (IBAction)findAll:(id)sender;
-- (IBAction)useSelectionForFind:(id)sender;
-- (IBAction)useSelectionForReplace:(id)sender;
-- (IBAction)replace:(id)sender;
-- (IBAction)replaceAll:(id)sender;
-- (IBAction)replaceAndFind:(id)sender;
-- (IBAction)highlight:(id)sender;
-- (IBAction)unhighlight:(id)sender;
+- (IBAction)showFindPanel:(nullable id)sender;
+- (IBAction)findNext:(nullable id)sender;
+- (IBAction)findPrevious:(nullable id)sender;
+- (IBAction)findSelectedText:(nullable id)sender;
+- (IBAction)findAll:(nullable id)sender;
+- (IBAction)useSelectionForFind:(nullable id)sender;
+- (IBAction)useSelectionForReplace:(nullable id)sender;
+- (IBAction)replace:(nullable id)sender;
+- (IBAction)replaceAll:(nullable id)sender;
+- (IBAction)replaceAndFind:(nullable id)sender;
+- (IBAction)highlight:(nullable id)sender;
+- (IBAction)unhighlight:(nullable id)sender;
 
 @end

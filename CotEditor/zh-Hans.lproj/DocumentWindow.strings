@@ -1,14 +1,29 @@
 /*
- DocumentWindow.strings
+ 
+ DocumentWindow.strings (Simplified Chinese)
  
  CotEditor
  http://coteditor.com
  
- Created on 2014-12-12 by 1024jp
+ Created by 1024jp on 2014-12-12.
  Localized by onevcat
- encoding="UTF-8"
  
- © 2014 CotEditor Project
+ ------------------------------------------------------------------------------
+ 
+ © 2014-2015 CotEditor Project
+ 
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+ 
+ http://www.apache.org/licenses/LICENSE-2.0
+ 
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ 
  */
 
 /* Class = "NSToolbarItem"; ObjectID = "fVR-to-zN3"; */
@@ -25,6 +40,11 @@
 "6gO-UF-7QW.label" = "语法风格";  /* Syntax Style */
 "6gO-UF-7QW.paletteLabel" = "语法风格";  /* Syntax Style */
 "6gO-UF-7QW.toolTip" = "改变语法风格";  /* Change syntax style */
+
+/* Class = "NSToolbarItem"; ObjectID = "tZT-2A-nIl"; */
+"tZT-2A-nIl.label" = "共享";  /* Share */
+"tZT-2A-nIl.paletteLabel" = "共享";  /* Share */
+"tZT-2A-nIl.toolTip" = "共享文档文件";  /* Share document file */
 
 /* Class = "NSToolbarItem"; ObjectID = "ogy-SR-Vqr"; */
 "ogy-SR-Vqr.label" = "显示简介";  /* Get Info */
@@ -116,7 +136,6 @@
 "EP1-My-tQo.ibShadowedToolTip" = "这是只读文档";
 
 
-/* Class = "NSMenuItem"; title = "Incompatible Chars"; ObjectID = "145"; */
-"145.title" = "不兼容字符";
-/* Class = "NSMenuItem"; title = "Document"; ObjectID = "144"; */
-"144.title" = "文稿信息";
+/* Class = "NSSegmentedCell"; ObjectID = "TPz-kb-PBa"; */
+"TPz-kb-PBa.ibShadowedLabels[0]" = "文稿";  /* Document */
+"TPz-kb-PBa.ibShadowedLabels[1]" = "错误";  /* Issues */

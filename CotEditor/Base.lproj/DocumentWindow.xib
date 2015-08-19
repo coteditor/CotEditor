@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="7706" systemVersion="14F6a" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="7706"/>
@@ -11,6 +11,7 @@
                 <outlet property="documentInspectorViewController" destination="zfS-u8-roN" id="oPb-Zq-odI"/>
                 <outlet property="editor" destination="Asc-bK-hKW" id="ihd-lk-fQz"/>
                 <outlet property="incompatibleCharsViewController" destination="PNV-ic-0G4" id="eFj-Ts-dkB"/>
+                <outlet property="shareButton" destination="b09-OH-vIj" id="lS2-qi-AN6"/>
                 <outlet property="sidebar" destination="34" id="2IU-Vj-94v"/>
                 <outlet property="sidebarPlaceholderView" destination="XSO-vY-vMP" id="9fk-c5-hjU"/>
                 <outlet property="sidebarSplitView" destination="jhv-dr-CH4" id="CIg-jJ-bnp"/>
@@ -69,40 +70,30 @@
                                             <constraint firstAttribute="bottom" secondItem="hnD-ep-tH0" secondAttribute="bottom" id="ln0-dD-YX5"/>
                                         </constraints>
                                     </customView>
-                                    <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="142">
-                                        <rect key="frame" x="35" y="496" width="160" height="25"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" priority="750" constant="160" id="oBe-RN-9uG"/>
-                                        </constraints>
-                                        <popUpButtonCell key="cell" type="roundTextured" title="Incompatible Chars" bezelStyle="texturedRounded" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" tag="2" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="145" id="700">
-                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="menu"/>
-                                            <menu key="menu" title="OtherViews" id="143">
-                                                <items>
-                                                    <menuItem title="Document" tag="1" id="144">
-                                                        <attributedString key="attributedTitle"/>
-                                                    </menuItem>
-                                                    <menuItem title="Incompatible Chars" state="on" tag="2" id="145">
-                                                        <attributedString key="attributedTitle"/>
-                                                    </menuItem>
-                                                </items>
-                                            </menu>
-                                        </popUpButtonCell>
+                                    <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="t7l-ac-OCh">
+                                        <rect key="frame" x="25" y="496" width="181" height="25"/>
+                                        <segmentedCell key="cell" borderStyle="border" alignment="left" style="texturedSquare" trackingMode="selectOne" id="TPz-kb-PBa">
+                                            <font key="font" metaFont="system"/>
+                                            <segments>
+                                                <segment label="Document" image="DocumentTemplate" selected="YES" tag="1"/>
+                                                <segment label="Issues" image="ConflictsTemplate" tag="2"/>
+                                            </segments>
+                                        </segmentedCell>
                                         <connections>
-                                            <binding destination="-2" name="selectedTag" keyPath="selectedSidebarTag" id="49V-fU-S9f"/>
+                                            <binding destination="-2" name="selectedTag" keyPath="selectedSidebarTag" id="DUp-me-UHO"/>
                                         </connections>
-                                    </popUpButton>
+                                    </segmentedControl>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="XSO-vY-vMP" secondAttribute="bottom" id="0Ar-5d-3z3"/>
-                                    <constraint firstItem="XSO-vY-vMP" firstAttribute="top" secondItem="142" secondAttribute="bottom" constant="8" id="4zM-q5-fqW"/>
-                                    <constraint firstAttribute="centerX" secondItem="142" secondAttribute="centerX" id="7gs-Rh-Cr0"/>
-                                    <constraint firstItem="142" firstAttribute="top" secondItem="34" secondAttribute="top" constant="10" id="8V2-uN-7IC"/>
-                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="142" secondAttribute="trailing" constant="8" id="Bs0-KO-jMt"/>
+                                    <constraint firstAttribute="centerX" secondItem="t7l-ac-OCh" secondAttribute="centerX" id="Dkt-7o-HrV"/>
+                                    <constraint firstItem="t7l-ac-OCh" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="34" secondAttribute="leading" priority="750" constant="8" id="DlY-u3-ygs"/>
                                     <constraint firstAttribute="trailing" secondItem="XSO-vY-vMP" secondAttribute="trailing" id="WJj-1f-h9z"/>
+                                    <constraint firstItem="t7l-ac-OCh" firstAttribute="top" secondItem="34" secondAttribute="top" constant="10" id="XJP-9U-f4P"/>
                                     <constraint firstItem="XSO-vY-vMP" firstAttribute="leading" secondItem="34" secondAttribute="leading" id="agM-Pc-Qcz"/>
                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="350" id="aly-Ib-BsD"/>
-                                    <constraint firstItem="142" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="34" secondAttribute="leading" constant="8" id="z1f-RB-gge"/>
+                                    <constraint firstItem="XSO-vY-vMP" firstAttribute="top" secondItem="t7l-ac-OCh" secondAttribute="bottom" constant="8" symbolic="YES" id="jch-cf-sdh"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="t7l-ac-OCh" secondAttribute="trailing" priority="750" constant="8" id="uhU-Df-kcw"/>
                                 </constraints>
                             </customView>
                         </subviews>
@@ -255,12 +246,34 @@
                             </popUpButtonCell>
                         </popUpButton>
                     </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="E6ABFF49-AA91-4122-802F-15AF6503F110" explicitItemIdentifier="searchFieldItemID" label="Get Info" paletteLabel="Get Info" toolTip="Show document information" tag="4" image="GetInfo" id="ogy-SR-Vqr">
+                    <toolbarItem implicitItemIdentifier="BBDC186D-4E5D-425D-B728-8CB0614989B6" explicitItemIdentifier="shareItemID" label="Share" paletteLabel="Share" toolTip="Share document file" image="NSShareTemplate" id="tZT-2A-nIl">
+                        <size key="minSize" width="48" height="32"/>
+                        <size key="maxSize" width="48" height="32"/>
+                        <button key="view" verticalHuggingPriority="750" id="b09-OH-vIj">
+                            <rect key="frame" x="0.0" y="14" width="48" height="32"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <buttonCell key="cell" type="push" bezelStyle="rounded" image="NSShareTemplate" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="mH9-PF-JoG">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                            <connections>
+                                <action selector="share:" target="-2" id="SUM-6X-NUT"/>
+                            </connections>
+                        </button>
+                        <connections>
+                            <binding destination="-2" name="enabled" keyPath="document.fileURL" id="hyc-4g-MCT">
+                                <dictionary key="options">
+                                    <string key="NSValueTransformerName">NSIsNotNil</string>
+                                </dictionary>
+                            </binding>
+                        </connections>
+                    </toolbarItem>
+                    <toolbarItem implicitItemIdentifier="82C1E76C-32C8-4656-AAFD-8B7BAFD847B7" explicitItemIdentifier="searchFieldItemID" label="Get Info" paletteLabel="Get Info" toolTip="Show document information" tag="4" image="GetInfo" id="ogy-SR-Vqr">
                         <connections>
                             <action selector="getInfo:" target="-1" id="xp5-7V-kLd"/>
                         </connections>
                     </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="F23A039F-1579-4832-B183-00159B59C4E0" explicitItemIdentifier="showIncompatibleCharItemID" label="Incompatible Chars" paletteLabel="Show Incompatible Chars" toolTip="Show incompatible chars for selected encoding" tag="5" image="IncompatibleChars" id="LV0-t3-0jM">
+                    <toolbarItem implicitItemIdentifier="313FDC8F-8862-4A70-9610-B4567CBBEE10" explicitItemIdentifier="showIncompatibleCharItemID" label="Incompatible Chars" paletteLabel="Show Incompatible Chars" toolTip="Show incompatible chars for selected encoding" tag="5" image="IncompatibleChars" id="LV0-t3-0jM">
                         <connections>
                             <action selector="toggleIncompatibleCharList:" target="-1" id="kT9-cS-eHR"/>
                         </connections>
@@ -396,12 +409,15 @@
         <image name="AutoTabExpand_On" width="32" height="32"/>
         <image name="BiggerFont" width="32" height="32"/>
         <image name="Comment" width="32" height="32"/>
+        <image name="ConflictsTemplate" width="13" height="13"/>
+        <image name="DocumentTemplate" width="13" height="13"/>
         <image name="EditColorCode" width="32" height="32"/>
         <image name="GetInfo" width="32" height="32"/>
         <image name="IncompatibleChars" width="32" height="32"/>
         <image name="InvisibleChars_Show" width="32" height="32"/>
         <image name="LineNumber_Show" width="32" height="32"/>
         <image name="LockedTemplate" width="16" height="16"/>
+        <image name="NSShareTemplate" width="11" height="16"/>
         <image name="NaviBar_Show" width="32" height="32"/>
         <image name="PageGuide_Show" width="32" height="32"/>
         <image name="RecolorAll" width="32" height="32"/>

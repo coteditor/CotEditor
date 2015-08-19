@@ -1,16 +1,30 @@
 /*
- GeneralPane.strings
+ 
+ GeneralPane.strings (Simplified Chinese)
  
  CotEditor
  http://coteditor.com
  
- Created on 2014-12-12 by 1024jp
+ Created by 1024jp on 2014-12-12.
  Localized by onevcat
- encoding="UTF-8"
+ 
+ ------------------------------------------------------------------------------
  
  © 2014-2015 CotEditor Project
+ 
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+ 
+ http://www.apache.org/licenses/LICENSE-2.0
+ 
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ 
  */
-
 
 /* Class = "NSTextFieldCell"; title = "Application:"; ObjectID = "lzy-Ei-xlT"; */
 "lzy-Ei-xlT.title" = "应用选项:";
@@ -34,8 +48,22 @@
 "3299.title" = "当 CotEditor 被激活时";
 
 
+/* Class = "NSTextFieldCell"; title = "When document is modified by another application:"; ObjectID = "x4n-2n-I3p"; */
+"x4n-2n-I3p.title" = "当文档被其他应用更改时:";
+
+/* Class = "NSButtonCell"; title = "Ignore"; ObjectID = "DnS-XJ-7RI"; */
+"DnS-XJ-7RI.title" = "忽略";
+/* Class = "NSButtonCell"; title = "Notify and ask how to resolve"; ObjectID = "1qS-Ay-sca"; */
+"1qS-Ay-sca.title" = "通知并让我决定如何更新";
+/* Class = "NSButtonCell"; title = "Update automatically"; ObjectID = "FWi-En-qeX"; */
+"FWi-En-qeX.title" = "自动更新";
+
+
 /* Class = "NSTextFieldCell"; title = "Software Updates:"; ObjectID = "geU-63-sAC"; */
 "geU-63-sAC.title" = "软件更新:";
 
 /* Class = "NSButtonCell"; title = "Automatically check for updates"; ObjectID = "3423"; */
 "3423.title" = "自动检查更新";
+
+/* Class = "NSButtonCell"; title = "Update to pre-releases when available"; ObjectID = "4aT-ka-sbv"; */
+"4aT-ka-sbv.title" = "当预发布版本可用即进行升级";

@@ -1,36 +1,34 @@
 /*
- ==============================================================================
- CESplitViewController
+ 
+ CESplitViewController.m
  
  CotEditor
  http://coteditor.com
  
- Created on 2006-03-26 by nakamuxu
- encoding="UTF-8"
+ Created by nakamuxu on 2006-03-26.
+ 
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
  © 2014-2015 1024jp
  
- This program is free software; you can redistribute it and/or modify it under
- the terms of the GNU General Public License as published by the Free Software
- Foundation; either version 2 of the License, or (at your option) any later
- version.
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
  
- This program is distributed in the hope that it will be useful, but WITHOUT
- ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+ http://www.apache.org/licenses/LICENSE-2.0
  
- You should have received a copy of the GNU General Public License along with
- this program; if not, write to the Free Software Foundation, Inc., 59 Temple
- Place - Suite 330, Boston, MA  02111-1307, USA.
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
  
- ==============================================================================
  */
 
 #import "CESplitViewController.h"
 #import "CEEditorView.h"
-#import "constants.h"
+#import "Constants.h"
 
 
 @implementation CESplitViewController
@@ -50,13 +48,23 @@
 
 
 // ------------------------------------------------------
+/// clean up
+- (void)dealloc
+// ------------------------------------------------------
+{
+    // Need to set nil to NSSPlitView's delegate manually since it is not weak but just assign,
+    //     and may crash when closing split fullscreen window on El Capitan beta 5 (2015-07)
+    [[self splitView] setDelegate:nil];
+}
+
+
+// ------------------------------------------------------
 /// 自身の view として NSSplitView を返す (NSSplitViewController のメソッド)
-- (NSSplitView *)splitView
+- (nonnull NSSplitView *)splitView
 // ------------------------------------------------------
 {
     return (NSSplitView *)[super view];
 }
-
 
 
 
@@ -68,7 +76,7 @@
 
 // ------------------------------------------------------
 /// メニューの有効化／無効化を制御
-- (BOOL)validateMenuItem:(NSMenuItem *)menuItem
+- (BOOL)validateMenuItem:(nonnull NSMenuItem *)menuItem
 // ------------------------------------------------------
 {
     if ([menuItem action] == @selector(toggleSplitOrientation:)) {
@@ -91,7 +99,7 @@
 
 // ------------------------------------------------------
 /// enumerate all subviews as CEEditorView
-- (void)enumerateEditorViewsUsingBlock:(void (^)(CEEditorView *))block
+- (void)enumerateEditorViewsUsingBlock:(void (^ __nonnull)(CEEditorView * __nonnull editorView))block;
 // ------------------------------------------------------
 {
     for (CEEditorView *subview in [[self view] subviews]) {
@@ -118,7 +126,7 @@
 
 // ------------------------------------------------------
 /// 分割位置を調整
-- (CGFloat)splitView:(NSSplitView *)splitView constrainSplitPosition:(CGFloat)proposedPosition ofSubviewAt:(NSInteger)dividerIndex
+- (CGFloat)splitView:(nonnull NSSplitView *)splitView constrainSplitPosition:(CGFloat)proposedPosition ofSubviewAt:(NSInteger)dividerIndex
 // ------------------------------------------------------
 {
     // 0.5pxの端数が出ないようにする
@@ -131,7 +139,7 @@
 
 // ------------------------------------------------------
 /// 分割方向を変更する
-- (IBAction)toggleSplitOrientation:(id)sender
+- (IBAction)toggleSplitOrientation:(nullable id)sender
 // ------------------------------------------------------
 {
     [[self splitView] setVertical:![[self splitView] isVertical]];
@@ -142,7 +150,7 @@
 
 // ------------------------------------------------------
 /// 次の分割されたテキストビューへフォーカス移動
-- (IBAction)focusNextSplitTextView:(id)sender
+- (IBAction)focusNextSplitTextView:(nullable id)sender
 // ------------------------------------------------------
 {
     [self focusSplitTextViewOnNext:YES];
@@ -151,7 +159,7 @@
 
 // ------------------------------------------------------
 /// 前の分割されたテキストビューへフォーカス移動
-- (IBAction)focusPrevSplitTextView:(id)sender
+- (IBAction)focusPrevSplitTextView:(nullable id)sender
 // ------------------------------------------------------
 {
     [self focusSplitTextViewOnNext:NO];
@@ -163,7 +171,7 @@
 
 // ------------------------------------------------------
 /// 現在フォーカスのある分割ビューを返す
-- (CEEditorView *)currentSubview
+- (nullable CEEditorView *)currentSubview
 // ------------------------------------------------------
 {
     return (CEEditorView *)[(NSTextView *)[[[self view] window] firstResponder] delegate];

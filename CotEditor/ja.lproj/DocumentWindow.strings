@@ -1,15 +1,29 @@
 /*
- DocumentWindow.strings
+ 
+ DocumentWindow.strings (Japanese)
  
  CotEditor
  http://coteditor.com
  
- Created on 2014-11-04 by 1024jp
- encoding="UTF-8"
+ Created by 1024jp on 2014-11-04.
  
- © 2014 CotEditor Project
+ ------------------------------------------------------------------------------
+ 
+ © 2014-2015 CotEditor Project
+ 
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+ 
+ http://www.apache.org/licenses/LICENSE-2.0
+ 
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ 
  */
-
 
 /* Class = "NSToolbarItem"; ObjectID = "fVR-to-zN3"; */
 "fVR-to-zN3.label" = "改行コード";  /* Line Endings */
@@ -25,6 +39,11 @@
 "6gO-UF-7QW.label" = "シンタックス";  /* Syntax Style */
 "6gO-UF-7QW.paletteLabel" = "シンタックス";  /* Syntax Style */
 "6gO-UF-7QW.toolTip" = "シンタックススタイルを変更";  /* Change syntax style */
+
+/* Class = "NSToolbarItem"; ObjectID = "tZT-2A-nIl"; */
+"tZT-2A-nIl.label" = "共有";  /* Share */
+"tZT-2A-nIl.paletteLabel" = "共有";  /* Share */
+"tZT-2A-nIl.toolTip" = "書類ファイルを共有";  /* Share document file */
 
 /* Class = "NSToolbarItem"; ObjectID = "ogy-SR-Vqr"; */
 "ogy-SR-Vqr.label" = "情報を見る";  /* Get Info */
@@ -116,7 +135,6 @@
 "EP1-My-tQo.ibShadowedToolTip" = "書類は書き込み不可です。";
 
 
-/* Class = "NSMenuItem"; title = "Incompatible Chars"; ObjectID = "145"; */
-"145.title" = "非互換文字";
-/* Class = "NSMenuItem"; title = "Document"; ObjectID = "144"; */
-"144.title" = "書類情報";
+/* Class = "NSSegmentedCell"; ObjectID = "TPz-kb-PBa"; */
+"TPz-kb-PBa.ibShadowedLabels[0]" = "書類";  /* Document */
+"TPz-kb-PBa.ibShadowedLabels[1]" = "エラー";  /* Issues */

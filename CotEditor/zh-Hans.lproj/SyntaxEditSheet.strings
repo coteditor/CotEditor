@@ -1,16 +1,30 @@
 /*
- SyntaxEditSheet.strings
+ 
+ SyntaxEditSheet.strings (Simplified Chinese)
  
  CotEditor
  http://coteditor.com
  
- Created on 2014-12-12 by 1024jp
+ Created by 1024jp on 2014-12-12.
  Localized by onevcat
- encoding="UTF-8"
+ 
+ ------------------------------------------------------------------------------
  
  © 2014-2015 CotEditor Project
+ 
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+ 
+ http://www.apache.org/licenses/LICENSE-2.0
+ 
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ 
  */
-
 
 /* Class = "NSTextFieldCell"; title = "Style Name:"; ObjectID = "987"; */
 "987.title" = "语法名:";
@@ -195,14 +209,20 @@
 "773.headerCell.title" = "补全";
 
 
-/* Class = "NSTextFieldCell"; title = "(without dots)"; ObjectID = "998"; */
-"998.title" = "(不包括点)";
-/* Class = "NSTableColumn"; headerCell.title = "Extention"; ObjectID = "453"; */
-"453.headerCell.title" = "扩展名";
-/* Class = "NSTextFieldCell"; title = "Files that have exactly one of the following names are opened in this syntax style, even they don't have file extension."; ObjectID = "Sr3-Pj-HPi"; */
-"Sr3-Pj-HPi.title" = "具有以下文件名的文件将使用该语法风格打开，即使它们不包含文件扩展名";
+/* Class = "NSTextFieldCell"; title = "Extensions"; ObjectID = "nwR-nY-QUm"; */
+"nwR-nY-QUm.title" = "扩展名";
+/* Class = "NSTableColumn"; headerCell.title = "Extention (without dots)"; ObjectID = "453"; */
+"453.headerCell.title" = "扩展名 (不包括点)";
+/* Class = "NSTextFieldCell"; title = "File Names"; ObjectID = "BSb-oh-u25"; */
+"BSb-oh-u25.title" = "文件名";
 /* Class = "NSTableColumn"; headerCell.title = "File Name"; ObjectID = "qKc-FZ-o2j"; */
 "qKc-FZ-o2j.headerCell.title" = "文件名";
+/* Class = "NSTextFieldCell"; title = "Interpreters"; ObjectID = "KrU-VL-02K"; */
+"KrU-VL-02K.title" = "解释器";
+/* Class = "NSTableColumn"; headerCell.title = "Interpreter"; ObjectID = "CVP-M0-f2c"; */
+"Uql-aD-e6b.headerCell.title" = "解释器";
+/* Class = "NSTextFieldCell"; title = "The interpreters are used to determine the syntax style from the shebang in the document."; ObjectID = "Sr3-Pj-HPi"; */
+"CVP-M0-f2c.title" = "解释器将根据文档整体来决定语法高亮样式。";
 
 
 /* Class = "NSTextFieldCell"; title = "Version:"; ObjectID = "PjU-cq-3px"; */

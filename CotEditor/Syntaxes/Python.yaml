@@ -1,6 +1,10 @@
 extensions:
 - keyString: "py"
 - keyString: "pyw"
+interpreters:
+- keyString: "python"
+- keyString: "python2"
+- keyString: "python3"
 outlineMenu:
 - beginString: "^([\\t ]*)class[\\t ]+(.+?):?[\\t]*$"
   keyString: "$1$2"

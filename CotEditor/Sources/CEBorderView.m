@@ -1,30 +1,28 @@
 /*
- ==============================================================================
- CEBorderView
+ 
+ CEBorderView.m
  
  CotEditor
  http://coteditor.com
  
- Created on 2015-01-09 by 1024jp
- encoding="UTF-8"
+ Created by 1024jp on 2015-01-09.
+ 
  ------------------------------------------------------------------------------
  
  © 2015 1024jp
  
- This program is free software; you can redistribute it and/or modify it under
- the terms of the GNU General Public License as published by the Free Software
- Foundation; either version 2 of the License, or (at your option) any later
- version.
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
  
- This program is distributed in the hope that it will be useful, but WITHOUT
- ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+ http://www.apache.org/licenses/LICENSE-2.0
  
- You should have received a copy of the GNU General Public License along with
- this program; if not, write to the Free Software Foundation, Inc., 59 Temple
- Place - Suite 330, Boston, MA  02111-1307, USA.
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
  
- ==============================================================================
  */
 
 #import "CEBorderView.h"
@@ -35,28 +33,21 @@
 #pragma mark Superclass Methods
 
 // ------------------------------------------------------
-/// draw background
-- (void)drawRect:(NSRect)dirtyRect
+/// setup layer
+- (void)awakeFromNib
 // ------------------------------------------------------
 {
-    // fill in background
-    [[self fillColor] set];
-    [NSBezierPath fillRect:dirtyRect];
+    // setup layer
+    CALayer *layer = [CALayer layer];
+    [layer setDelegate:self];
+    [layer setBackgroundColor:[[self fillColor] CGColor]];
+    [layer setNeedsDisplay];
+    [self setLayer:layer];
+    [self setWantsLayer:YES];
     
-    // draw borders
-    const CGFloat strokeWidth = 1.0;
-    NSRect frame = [self frame];
-    
-    [[self borderColor] set];
-    if ([self drawsTopBorder] > 0) {
-        [NSBezierPath strokeLineFromPoint:NSMakePoint(NSMinX(dirtyRect), NSMaxY(frame) - strokeWidth / 2)
-                                  toPoint:NSMakePoint(NSMaxX(dirtyRect), NSMaxY(frame) - strokeWidth / 2)];
-    }
-    
-    if ([self drawsBottomBorder]) {
-        [NSBezierPath strokeLineFromPoint:NSMakePoint(NSMinX(dirtyRect), strokeWidth / 2)
-                                  toPoint:NSMakePoint(NSMaxX(dirtyRect), strokeWidth / 2)];
-    }
+    // set layer drawing policies
+    [self setLayerContentsRedrawPolicy:NSViewLayerContentsRedrawNever];
+    [self setLayerContentsPlacement:NSViewLayerContentsPlacementScaleAxesIndependently];
 }
 
 
@@ -65,7 +56,31 @@
 - (BOOL)isOpaque
 // ------------------------------------------------------
 {
-    return ([[self fillColor] alphaComponent] == 1.0);
+    return YES;
+}
+
+
+
+#pragma mark CALayer Methods
+
+// ------------------------------------------------------
+/// draw borders
+- (void)drawLayer:(nonnull CALayer *)layer inContext:(nonnull CGContextRef)ctx
+// ------------------------------------------------------
+{
+    NSRect frame = [self frame];
+    const CGFloat strokeWidth = 1.0;
+    
+    CGContextSetStrokeColorWithColor(ctx, [[self borderColor] CGColor]);
+    if ([self drawsTopBorder]) {
+        CGContextMoveToPoint(ctx, NSMinX(frame), NSMaxY(frame) - strokeWidth / 2);
+        CGContextAddLineToPoint(ctx, NSMaxX(frame), NSMaxY(frame) - strokeWidth / 2);
+    }
+    if ([self drawsBottomBorder]) {
+        CGContextMoveToPoint(ctx ,NSMinX(frame), strokeWidth / 2);
+        CGContextAddLineToPoint(ctx, NSMaxX(frame), strokeWidth / 2);
+    }
+    CGContextStrokePath(ctx);
 }
 
 @end

@@ -5,6 +5,9 @@
     ],
     "filenames": [
       ".htaccess"
+    ],
+    "interpreters": [
+
     ]
   },
   "AppleScript": {
@@ -12,6 +15,9 @@
       "applescript"
     ],
     "filenames": [
+
+    ],
+    "interpreters": [
 
     ]
   },
@@ -21,6 +27,9 @@
     ],
     "filenames": [
 
+    ],
+    "interpreters": [
+
     ]
   },
   "C#": {
@@ -29,6 +38,9 @@
     ],
     "filenames": [
 
+    ],
+    "interpreters": [
+      "csharp"
     ]
   },
   "C, C++, Objective-C": {
@@ -42,6 +54,9 @@
     ],
     "filenames": [
 
+    ],
+    "interpreters": [
+
     ]
   },
   "CSS": {
@@ -49,6 +64,9 @@
       "css"
     ],
     "filenames": [
+
+    ],
+    "interpreters": [
 
     ]
   },
@@ -58,6 +76,9 @@
     ],
     "filenames": [
 
+    ],
+    "interpreters": [
+      "coffee"
     ]
   },
   "DTD": {
@@ -65,6 +86,9 @@
       "dtd"
     ],
     "filenames": [
+
+    ],
+    "interpreters": [
 
     ]
   },
@@ -74,6 +98,9 @@
     ],
     "filenames": [
 
+    ],
+    "interpreters": [
+      "dart"
     ]
   },
   "Diff": {
@@ -84,6 +111,9 @@
     ],
     "filenames": [
 
+    ],
+    "interpreters": [
+
     ]
   },
   "Erlang": {
@@ -92,6 +122,9 @@
     ],
     "filenames": [
 
+    ],
+    "interpreters": [
+
     ]
   },
   "Go": {
@@ -99,6 +132,9 @@
       "go"
     ],
     "filenames": [
+
+    ],
+    "interpreters": [
 
     ]
   },
@@ -110,6 +146,9 @@
     ],
     "filenames": [
 
+    ],
+    "interpreters": [
+
     ]
   },
   "Haskell": {
@@ -119,6 +158,9 @@
     ],
     "filenames": [
 
+    ],
+    "interpreters": [
+      "runhaskell"
     ]
   },
   "INI": {
@@ -126,6 +168,9 @@
       "ini"
     ],
     "filenames": [
+
+    ],
+    "interpreters": [
 
     ]
   },
@@ -136,6 +181,9 @@
     ],
     "filenames": [
 
+    ],
+    "interpreters": [
+
     ]
   },
   "Java": {
@@ -143,6 +191,9 @@
       "java"
     ],
     "filenames": [
+
+    ],
+    "interpreters": [
 
     ]
   },
@@ -152,6 +203,9 @@
     ],
     "filenames": [
 
+    ],
+    "interpreters": [
+
     ]
   },
   "Julia": {
@@ -160,6 +214,9 @@
     ],
     "filenames": [
 
+    ],
+    "interpreters": [
+      "julia"
     ]
   },
   "LaTeX": {
@@ -170,6 +227,9 @@
       "cls"
     ],
     "filenames": [
+
+    ],
+    "interpreters": [
 
     ]
   },
@@ -183,6 +243,9 @@
     ],
     "filenames": [
 
+    ],
+    "interpreters": [
+      "lua"
     ]
   },
   "Lua": {
@@ -190,6 +253,9 @@
       "lua"
     ],
     "filenames": [
+
+    ],
+    "interpreters": [
 
     ]
   },
@@ -200,6 +266,9 @@
     "filenames": [
       "Makefile",
       "makefile"
+    ],
+    "interpreters": [
+      "make"
     ]
   },
   "Markdown": {
@@ -211,6 +280,9 @@
       "mkdn"
     ],
     "filenames": [
+
+    ],
+    "interpreters": [
 
     ]
   },
@@ -225,6 +297,9 @@
     ],
     "filenames": [
 
+    ],
+    "interpreters": [
+      "php"
     ]
   },
   "Perl": {
@@ -235,6 +310,9 @@
     ],
     "filenames": [
 
+    ],
+    "interpreters": [
+      "perl"
     ]
   },
   "Plain Text": {
@@ -242,6 +320,9 @@
       "txt"
     ],
     "filenames": [
+
+    ],
+    "interpreters": [
 
     ]
   },
@@ -252,6 +333,11 @@
     ],
     "filenames": [
 
+    ],
+    "interpreters": [
+      "python",
+      "python2",
+      "python3"
     ]
   },
   "R": {
@@ -260,6 +346,9 @@
     ],
     "filenames": [
       ".Rprofile"
+    ],
+    "interpreters": [
+
     ]
   },
   "Ruby": {
@@ -268,6 +357,9 @@
     ],
     "filenames": [
 
+    ],
+    "interpreters": [
+      "ruby"
     ]
   },
   "Rust": {
@@ -277,6 +369,9 @@
     ],
     "filenames": [
 
+    ],
+    "interpreters": [
+      "rustx"
     ]
   },
   "SQL": {
@@ -287,6 +382,9 @@
     ],
     "filenames": [
 
+    ],
+    "interpreters": [
+
     ]
   },
   "SVG": {
@@ -294,6 +392,9 @@
       "svg"
     ],
     "filenames": [
+
+    ],
+    "interpreters": [
 
     ]
   },
@@ -303,6 +404,9 @@
     ],
     "filenames": [
 
+    ],
+    "interpreters": [
+      "scala"
     ]
   },
   "Scheme": {
@@ -312,6 +416,9 @@
     ],
     "filenames": [
 
+    ],
+    "interpreters": [
+      "tclsh"
     ]
   },
   "Shell Script": {
@@ -324,6 +431,14 @@
       ".bashrc",
       ".zshrc",
       ".zshenv"
+    ],
+    "interpreters": [
+      "sh",
+      "bash",
+      "csh",
+      "ksh",
+      "tcsh",
+      "zsh"
     ]
   },
   "Swift": {
@@ -331,6 +446,9 @@
       "swift"
     ],
     "filenames": [
+
+    ],
+    "interpreters": [
 
     ]
   },
@@ -340,6 +458,9 @@
     ],
     "filenames": [
 
+    ],
+    "interpreters": [
+
     ]
   },
   "Textile": {
@@ -347,6 +468,9 @@
       "textile"
     ],
     "filenames": [
+
+    ],
+    "interpreters": [
 
     ]
   },
@@ -377,9 +501,13 @@
       "plist",
       "xib",
       "xmp",
-      "sdef"
+      "sdef",
+      "xcent"
     ],
     "filenames": [
+
+    ],
+    "interpreters": [
 
     ]
   },
@@ -390,6 +518,9 @@
     ],
     "filenames": [
 
+    ],
+    "interpreters": [
+
     ]
   },
   "reStructuredText": {
@@ -398,6 +529,9 @@
       "rst"
     ],
     "filenames": [
+
+    ],
+    "interpreters": [
 
     ]
   }

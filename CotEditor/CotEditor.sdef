@@ -43,6 +43,7 @@
         
         <class-extension extends="window" description="A CotEditor window.">
             <cocoa class="NSWindow"/>
+            <access-group identifier="com.coteditor.CotEditor.edit" access="rw"/>
             <property name="view opacity" code="copc" type="real" access="rw" description="The opacity of the text view. (from ‘0.2’ to ‘1.0’)">
                 <cocoa key="viewOpacity"/>
             </property>
@@ -50,6 +51,7 @@
         
         <class-extension extends="document" description="A CotEditor document.">
             <cocoa class="CEDocument"/>
+            <access-group identifier="com.coteditor.CotEditor.edit" access="rw"/>
             <contents name="text" code="ctxt" type="attribute run" access="rw" description="The whole text of the document.">
                 <cocoa key="textStorage"/>
             </contents>
@@ -105,6 +107,7 @@
         
         <class name="text selection" plural="text selections" code="tSel" description="A way to refer to the state of the current selection.">
             <cocoa class="CETextSelection"/>
+            <access-group identifier="com.coteditor.CotEditor.edit" access="rw"/>
             <contents code="PCnt" type="attribute run" name="contents" access="rw" description="The contents of the selection."/>
             <property name="line range" code="lRng" access="rw" description="The range of lines of the selection. The format is “{location, length}”.">
                 <cocoa key="lineRange"/>
@@ -141,6 +144,7 @@
         
         
         <command name="change case" code="cEd1CGcs" description="Change the case of the selection.">
+            <access-group identifier="com.coteditor.CotEditor.edit" access="rw"/>
             <direct-parameter type="text selection" description="The selection to change case."/>
             <parameter name="to" code="cStp" type="case type" description="The case type to change.">
                 <cocoa key="caseType"/>
@@ -148,6 +152,7 @@
         </command>
         
         <command name="change kana" code="cEd1CKth" description="Change Japanese “Kana” mode of the selection.">
+            <access-group identifier="com.coteditor.CotEditor.edit" access="rw"/>
             <direct-parameter type="text selection" description="the selection to change Japanese character mode"/>
             <parameter name="to" code="cHrg" type="kana type" description="The Japanese character mode to change.">
                 <cocoa key="kanaType"/>
@@ -155,6 +160,7 @@
         </command>
         
         <command name="change roman width" code="cEd1GWrm" description="Change width of Japanese roman charactors in the selection.">
+            <access-group identifier="com.coteditor.CotEditor.edit" access="rw"/>
             <direct-parameter type="text selection" description="The selection to change width."/>
             <parameter name="to" code="rWtp" type="character width type" description="The text width to change.">
                 <cocoa key="widthType"/>
@@ -162,6 +168,7 @@
         </command>
         
         <command name="convert" code="cEd1CVrt" description="Convert the document text to new encoding.">
+            <access-group identifier="com.coteditor.CotEditor.edit" access="rw"/>
             <direct-parameter type="document" description="The document to convert encoding."/>
             <parameter name="lossy" code="lOsy" type="boolean" description="Allows lossy conversion?">
                 <cocoa key="lossy"/>
@@ -173,6 +180,7 @@
         </command>
         
         <command name="find" code="cEd1SRch" description="Search text.">
+            <access-group identifier="com.coteditor.CotEditor.edit" access="rw"/>
             <direct-parameter type="document" description="The document to search text."/>
             <parameter name="for" code="tRgt" type="text" description="The text to search.">
                 <cocoa key="targetString"/>
@@ -193,6 +201,7 @@
         </command>
         
         <command name="reinterpret" code="cEd1RIpt" description="Reinterpret the document text as new encoding.">
+            <access-group identifier="com.coteditor.CotEditor.edit" access="rw"/>
             <direct-parameter type="document" description="The document to reinterpret encoding."/>
             <parameter name="as" code="rEcd" type="text" description="The new encoding.">
                 <cocoa key="newEncoding"/>
@@ -201,6 +210,7 @@
         </command>
         
         <command name="replace" code="cEd1RPlc" description="Replace text.">
+            <access-group identifier="com.coteditor.CotEditor.edit" access="rw"/>
             <direct-parameter type="document" description="The document to replace text."/>
             <parameter name="for" code="tRgt" type="text" description="The text to be replaced.">
                 <cocoa key="targetString"/>
@@ -227,26 +237,32 @@
         </command>
         
         <command name="scroll to caret" code="cEd1SCrl" description="Scroll document to caret or selected text.">
+            <access-group identifier="com.coteditor.CotEditor.edit" access="rw"/>
             <direct-parameter type="document" description="The document to scroll its caret."/>
         </command>
         
         <command name="shift left" code="cEd1SLef" description="Shift selected lines to left.">
+            <access-group identifier="com.coteditor.CotEditor.edit" access="rw"/>
             <direct-parameter type="text selection" description="The selection to shift."/>
         </command>
         
         <command name="shift right" code="cEd1SRit" description="Shift selected lines to right.">
+            <access-group identifier="com.coteditor.CotEditor.edit" access="rw"/>
             <direct-parameter type="text selection" description="The selection to shift."/>
         </command>
         
         <command name="comment out" code="cEd1Cout" description="Append comment delimiters to selected text if possible.">
+            <access-group identifier="com.coteditor.CotEditor.edit" access="rw"/>
             <direct-parameter type="text selection" description="The selection to comment out"/>
         </command>
         
         <command name="uncomment" code="cEd1Uncm" description="Remove comment delimiters from selected text if possible.">
+            <access-group identifier="com.coteditor.CotEditor.edit" access="rw"/>
             <direct-parameter type="text selection" description="The selection to uncomment."/>
         </command>
         
         <command name="string" code="cEd1STrg" description="Get text in desired range.">
+            <access-group identifier="com.coteditor.CotEditor.edit" access="rw"/>
             <direct-parameter type="document" description="The document to get string."/>
             <parameter name="in" code="rAng" description="The range in the document. The format is “{location, length}”.">
                 <cocoa key="range"/>
@@ -256,6 +272,7 @@
         </command>
         
         <command name="normalize unicode" code="cEd1UNml" description="Normalize Unicode.">
+            <access-group identifier="com.coteditor.CotEditor.edit" access="rw"/>
             <direct-parameter type="text selection" description="The selection to normalize."/>
             <parameter name="to" code="uNft" type="UNF type" description="The normalized forms of Unicode text.">
                 <cocoa key="unfType"/>
@@ -266,6 +283,8 @@
     
     <!-- imported standard Text Suite -->
     <suite name="Text Suite" code="????" description="Common text classes for all applications.">
+        <access-group identifier="*"/>
+        
         <value-type name="RGB color" code="cRGB">
             <cocoa class="NSColor"/>
         </value-type>

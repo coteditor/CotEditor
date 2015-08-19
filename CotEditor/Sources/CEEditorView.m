@@ -1,31 +1,29 @@
 /*
- ==============================================================================
- CEEditorView
+ 
+ CEEditorView.m
  
  CotEditor
  http://coteditor.com
  
- Created on 2006-03-18 by nakamuxu
- encoding="UTF-8"
+ Created by nakamuxu on 2006-03-18.
+ 
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
  © 2014-2015 1024jp
  
- This program is free software; you can redistribute it and/or modify it under
- the terms of the GNU General Public License as published by the Free Software
- Foundation; either version 2 of the License, or (at your option) any later
- version.
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
  
- This program is distributed in the hope that it will be useful, but WITHOUT
- ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+ http://www.apache.org/licenses/LICENSE-2.0
  
- You should have received a copy of the GNU General Public License along with
- this program; if not, write to the Free Software Foundation, Inc., 59 Temple
- Place - Suite 330, Boston, MA  02111-1307, USA.
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
  
- ==============================================================================
  */
 
 #import "CEEditorView.h"
@@ -37,25 +35,21 @@
 #import "CEThemeManager.h"
 #import "CETextFinder.h"
 #import "NSString+CENewLine.h"
-#import "constants.h"
+#import "Constants.h"
 
 
 @interface CEEditorView ()
 
-@property (nonatomic) CEEditorScrollView *scrollView;
-@property (nonatomic) NSTextStorage *textStorage;
-
-@property (nonatomic) NSTimer *lineNumUpdateTimer;
-@property (nonatomic) NSTimer *outlineMenuTimer;
+@property (nonatomic, nonnull) CEEditorScrollView *scrollView;
+@property (nonatomic, nonnull) NSTextStorage *textStorage;
 
 @property (nonatomic) BOOL highlightsCurrentLine;
 @property (nonatomic) NSInteger lastCursorLocation;
 
 
 // readonly
-@property (readwrite, nonatomic) CETextView *textView;
-@property (readwrite, nonatomic) CENavigationBarController *navigationBar;
-@property (readwrite, nonatomic) CESyntaxParser *syntaxParser;
+@property (readwrite, nonnull, nonatomic) CETextView *textView;
+@property (readwrite, nonnull, nonatomic) CENavigationBarController *navigationBar;
 
 @end
 
@@ -70,7 +64,7 @@
 
 // ------------------------------------------------------
 /// initialize instance
-- (instancetype)initWithFrame:(NSRect)frameRect
+- (nonnull instancetype)initWithFrame:(NSRect)frameRect
 // ------------------------------------------------------
 {
     self = [super initWithFrame:frameRect];
@@ -112,12 +106,9 @@
         [layoutManager setUsesAntialias:[defaults boolForKey:CEDefaultShouldAntialiasKey]];
         [layoutManager setFixesLineHeight:[defaults boolForKey:CEDefaultFixLineHeightKey]];
 
-        // NSTextContainer と CESyntaxParser を生成
+        // NSTextContainer を生成
         NSTextContainer *container = [[NSTextContainer alloc] initWithContainerSize:NSMakeSize(CGFLOAT_MAX, CGFLOAT_MAX)];
         [layoutManager addTextContainer:container];
-
-        _syntaxParser = [[CESyntaxParser alloc] initWithStyleName:NSLocalizedString(@"None", @"")
-                                                    layoutManager:layoutManager];
 
         // TextView 生成
         _textView = [[CETextView alloc] initWithFrame:NSZeroRect textContainer:container];
@@ -130,10 +121,6 @@
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(textDidReplaceAll:)
                                                      name:CETextFinderDidReplaceAllNotification
-                                                   object:_textView];
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(recolorAllTextViewString)
-                                                     name:CETextFinderDidUnhighlightNotification
                                                    object:_textView];
         
         // 置換の Undo/Redo 後に再カラーリングできるように Undo/Redo アクションをキャッチ
@@ -169,8 +156,6 @@
 - (void)dealloc
 // ------------------------------------------------------
 {
-    [self stopUpdateLineNumberTimer];
-    [self stopUpdateOutlineMenuTimer];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     
     [_textStorage removeLayoutManager:[_textView layoutManager]];
@@ -186,8 +171,8 @@
 - (void)replaceTextStorage:(NSTextStorage *)textStorage
 // ------------------------------------------------------
 {
-    [self setTextStorage:textStorage];
     [[[self textView] layoutManager] replaceTextStorage:textStorage];
+    [self setTextStorage:textStorage];
 }
 
 
@@ -206,9 +191,6 @@
 // ------------------------------------------------------
 {
     [[self navigationBar] setShown:showsNavigationBar animate:performAnimation];
-    if (![self outlineMenuTimer]) {
-        [self updateOutlineMenu];
-    }
 }
 
 
@@ -239,8 +221,6 @@
     if (isVertical) {
         [textView setLayoutOrientation:NSTextLayoutOrientationVertical];
     }
-    
-    [[self scrollView] invalidateLineNumber];
 }
 
 
@@ -287,30 +267,18 @@
 
 // ------------------------------------------------------
 /// シンタックススタイルを設定
-- (void)setSyntaxWithName:(NSString *)styleName
+- (void)applySyntax:(CESyntaxParser *)syntaxParser
 // ------------------------------------------------------
 {
-    [self setSyntaxParser:[[CESyntaxParser alloc] initWithStyleName:styleName
-                                                      layoutManager:(CELayoutManager *)[[self textView] layoutManager]]];
-    
-    [[self textView] setInlineCommentDelimiter:[[self syntaxParser] inlineCommentDelimiter]];
-    [[self textView] setBlockCommentDelimiters:[[self syntaxParser] blockCommentDelimiters]];
-    [[self textView] setFirstCompletionCharacterSet:[[self syntaxParser] firstCompletionCharacterSet]];
-}
-
-
-// ------------------------------------------------------
-/// 全てを再カラーリング
-- (void)recolorAllTextViewString
-// ------------------------------------------------------
-{
-    [[self syntaxParser] colorAllString:[[self textView] string]];
+    [[self textView] setInlineCommentDelimiter:[syntaxParser inlineCommentDelimiter]];
+    [[self textView] setBlockCommentDelimiters:[syntaxParser blockCommentDelimiters]];
+    [[self textView] setFirstCompletionCharacterSet:[syntaxParser firstCompletionCharacterSet]];
 }
 
 
 // ------------------------------------------------------
 /// Undo/Redo の後に全てを再カラーリング
-- (void)recolorAfterUndoAndRedo:(NSNotification *)aNotification
+- (void)recolorAfterUndoAndRedo:(nonnull NSNotification *)aNotification
 // ------------------------------------------------------
 {
     NSUndoManager *undoManager = [aNotification object];
@@ -327,36 +295,6 @@
 }
 
 
-// ------------------------------------------------------
-/// アウトラインメニューを更新
-- (void)updateOutlineMenu
-// ------------------------------------------------------
-{
-    [self stopUpdateOutlineMenuTimer];
-    
-    NSString *wholeString = [[[self textView] string] copy];  // 解析中に参照元が変更されると困るのでコピーする
-    
-    // 規定の文字数以上の場合にはインジケータを表示
-    // （ただし、CEDefaultShowColoringIndicatorTextLengthKey が「0」の時は表示しない）
-    NSUInteger indicatorThreshold = [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultShowColoringIndicatorTextLengthKey];
-    if (indicatorThreshold > 0 && indicatorThreshold < [wholeString length]) {
-        [[self navigationBar] showOutlineIndicator];
-    }
-    
-    // 別スレッドでアウトラインを抽出して、メインスレッドで navigationBar に渡す
-    __weak typeof(self) weakSelf = self;
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        typeof(weakSelf) strongSelf = weakSelf;
-        NSArray *outlineMenuArray = [[strongSelf syntaxParser] outlineMenuArrayWithWholeString:wholeString];
-        
-        dispatch_sync(dispatch_get_main_queue(), ^{
-            [[strongSelf navigationBar] setOutlineMenuArray:outlineMenuArray];
-            // （選択項目の更新も上記メソッド内で行われるので、updateOutlineMenuSelection は呼ぶ必要なし。 2008.05.16.）
-        });
-    });
-}
-
-
 
 #pragma mark Delegate
 
@@ -365,47 +303,41 @@
 //=======================================================
 
 // ------------------------------------------------------
-///  テキストが編集される
-- (BOOL)textView:(NSTextView *)aTextView shouldChangeTextInRange:(NSRange)affectedCharRange 
-        replacementString:(NSString *)replacementString
+/// テキストが編集される
+- (BOOL)textView:(nonnull NSTextView *)textView shouldChangeTextInRange:(NSRange)affectedCharRange replacementString:(nullable NSString *)replacementString
 // ------------------------------------------------------
 {
     // standardize line endings to LF (Script, Key Typing)
     // (Line endings replacemement by other text modifications are processed in the following methods.)
     //
     // # Methods Standardizing Line Endings on Text Editing
-    //   - File Open: CEDocument > setStringToEditor
-    //   - Script: CEEditorView > textView:shouldChangeTextInRange:replacementString:
-    //   - Key Typing: CEEditorView > textView:shouldChangeTextInRange:replacementString:
-    //   - Paste: CETextView > readSelectionFromPasteboard:type:
-    //   - Drop (from other documents/apps): CETextView > readSelectionFromPasteboard:type:
-    //   - Drop (from the same document): CETextView > performDragOperation:
-    //   - Replace on Find Penel: (OgreKit) OgreTextViewPlainAdapter > replaceCharactersInRange:withOGString:
+    //   - File Open:
+    //       - CEDocument > setStringToEditor
+    //   - Key Typing, Script, Paste, Drop:
+    //       - CEEditorView > textView:shouldChangeTextInRange:replacementString:
+    //   - Replace on Find Panel:
+    //       - (OgreKit) OgreTextViewPlainAdapter > replaceCharactersInRange:withOGString:
     
     if (!replacementString ||  // = attributesのみの変更
         ([replacementString length] == 0) ||  // = 文章の削除
-        [(CETextView *)aTextView isSelfDrop] ||  // = 自己内ドラッグ&ドロップ
-        [(CETextView *)aTextView isReadingFromPboard] ||  // = ペーストまたはドロップ
-        [[aTextView undoManager] isUndoing] ||  // = アンドゥ中
+        [[textView undoManager] isUndoing] ||  // = アンドゥ中
         [replacementString isEqualToString:@"\n"])
     {
         return YES;
     }
     
-    CENewLineType replacementLineEndingType = [replacementString detectNewLineType];
     // 挿入／置換する文字列に改行コードが含まれていたら、LF に置換する
+    // （newStrが使用されるのはスクリプトからの入力時。キー入力は条件式を通過しない）
+    CENewLineType replacementLineEndingType = [replacementString detectNewLineType];
     if ((replacementLineEndingType != CENewLineNone) && (replacementLineEndingType != CENewLineLF)) {
-        // （newStrが使用されるのはスクリプトからの入力時。キー入力は条件式を通過しない）
         NSString *newString = [replacementString stringByReplacingNewLineCharacersWith:CENewLineLF];
         
-        if (newString) {
-            [(CETextView *)aTextView replaceWithString:newString
-                                                 range:affectedCharRange
-                                         selectedRange:NSMakeRange(affectedCharRange.location + [newString length], 0)
-                                            actionName:nil];  // Action名は自動で付けられる？ので、指定しない
-            
-            return NO;
-        }
+        [(CETextView *)textView replaceWithString:newString
+                                            range:affectedCharRange
+                                    selectedRange:NSMakeRange(affectedCharRange.location + [newString length], 0)
+                                       actionName:nil];  // Action名は自動で付けられる？ので、指定しない
+        
+        return NO;
     }
     
     return YES;
@@ -414,8 +346,7 @@
 
 // ------------------------------------------------------
 /// 補完候補リストをセット
-- (NSArray *)textView:(NSTextView *)textView completions:(NSArray *)words 
-        forPartialWordRange:(NSRange)charRange indexOfSelectedItem:(NSInteger *)index
+- (nonnull NSArray *)textView:(nonnull NSTextView *)textView completions:(nonnull NSArray *)words forPartialWordRange:(NSRange)charRange indexOfSelectedItem:(nullable NSInteger *)index
 // ------------------------------------------------------
 {
     NSMutableOrderedSet *candidateWords = [NSMutableOrderedSet orderedSet];
@@ -468,14 +399,17 @@
 
 // ------------------------------------------------------
 /// text did edit.
-- (void)textDidChange:(NSNotification *)aNotification
+- (void)textDidChange:(nonnull NSNotification *)aNotification
 // ------------------------------------------------------
 {
-    // カラーリング実行
+    // 全テキストを再カラーリング
     [[self editorWrapper] setupColoringTimer];
 
-    // アウトラインメニュー項目、非互換文字リスト更新
-    [self updateInfo];
+    // アウトラインメニュー項目更新
+    [[self editorWrapper] setupOutlineMenuUpdateTimer];
+    
+    // 非互換文字リスト更新
+    [[[self window] windowController] updateIncompatibleCharsIfNeeded];
 
     // フラグが立っていたら、入力補完を再度実行する
     // （フラグは CETextView > insertCompletion:forPartialWordRange:movement:isFinal: で立てている）
@@ -488,7 +422,7 @@
 
 // ------------------------------------------------------
 /// the selection of main textView was changed.
-- (void)textViewDidChangeSelection:(NSNotification *)aNotification
+- (void)textViewDidChangeSelection:(nonnull NSNotification *)aNotification
 // ------------------------------------------------------
 {
     // カレント行をハイライト
@@ -563,7 +497,7 @@
 
 // ------------------------------------------------------
 /// font is changed
-- (void)textViewDidChangeTypingAttributes:(NSNotification *)notification
+- (void)textViewDidChangeTypingAttributes:(nonnull NSNotification *)notification
 // ------------------------------------------------------
 {
     [self highlightCurrentLine];
@@ -579,17 +513,20 @@
 
 // ------------------------------------------------------
 /// did Replace All
-- (void)textDidReplaceAll:(NSNotification *)aNotification
+- (void)textDidReplaceAll:(nonnull NSNotification *)aNotification
 // ------------------------------------------------------
 {
     // 文書情報更新（選択範囲・キャレット位置が変更されないまま全置換が実行された場合への対応）
     [[[self window] windowController] setupEditorInfoUpdateTimer];
     
-    // アウトラインメニュー項目、非互換文字リスト更新
-    [self updateInfo];
-    
     // 全テキストを再カラーリング
-    [self recolorAllTextViewString];
+    [[self editorWrapper] setupColoringTimer];
+    
+    // アウトラインメニュー項目更新
+    [[self editorWrapper] setupOutlineMenuUpdateTimer];
+    
+    // 非互換文字リスト更新
+    [[[self window] windowController] updateIncompatibleCharsIfNeeded];
 }
 
 
@@ -599,13 +536,13 @@
 
 // ------------------------------------------------------
 /// テーマが更新された
-- (void)themeDidUpdate:(NSNotification *)notification
+- (void)themeDidUpdate:(nonnull NSNotification *)notification
 // ------------------------------------------------------
 {
     if ([[notification userInfo][CEOldNameKey] isEqualToString:[[[self textView] theme] name]]) {
         [[self textView] setTheme:[CETheme themeWithName:[notification userInfo][CENewNameKey]]];
         [[self textView] setSelectedRanges:[[self textView] selectedRanges]];  // 現在行のハイライトカラーの更新するために選択し直す
-        [[self editorWrapper] recolorAllString];
+        [[self editorWrapper] invalidateSyntaxColoring];
     }
 }
 
@@ -614,57 +551,11 @@
 #pragma mark Private Mthods
 
 // ------------------------------------------------------
-// textStorage をセット
-- (void)setTextStorage:(NSTextStorage *)textStorage
+/// return shared sytnaxParser
+- (CESyntaxParser *)syntaxParser
 // ------------------------------------------------------
 {
-    // 行番号ビューのためにテキストの変更を監視する
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(updateLineNumber)
-                                                 name:NSTextStorageDidProcessEditingNotification
-                                               object:textStorage];
-    
-    _textStorage = textStorage;
-}
-
-
-// ------------------------------------------------------
-/// 行番号更新
-- (void)updateLineNumberWithTimer:(NSTimer *)timer
-// ------------------------------------------------------
-{
-    [self stopUpdateLineNumberTimer];
-    [[self scrollView] invalidateLineNumber];
-}
-
-
-// ------------------------------------------------------
-/// アウトラインメニュー更新
-- (void)updateOutlineMenuWithTimer:(NSTimer *)timer
-// ------------------------------------------------------
-{
-    [self updateOutlineMenu]; // （updateOutlineMenu 内で stopUpdateOutlineMenuTimer を実行している）
-}
-
-
-// ------------------------------------------------------
-/// 行番号表示を更新
-- (void)updateLineNumber
-// ------------------------------------------------------
-{
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    
-    // 行番号更新
-    NSTimeInterval lineNumUpdateInterval = [defaults doubleForKey:CEDefaultLineNumUpdateIntervalKey];
-    if ([self lineNumUpdateTimer]) {
-        [[self lineNumUpdateTimer] setFireDate:[NSDate dateWithTimeIntervalSinceNow:lineNumUpdateInterval]];
-    } else {
-        [self setLineNumUpdateTimer:[NSTimer scheduledTimerWithTimeInterval:lineNumUpdateInterval
-                                                                     target:self
-                                                                   selector:@selector(updateLineNumberWithTimer:)
-                                                                   userInfo:nil
-                                                                    repeats:NO]];
-    }
+    return [[self editorWrapper] syntaxParser];
 }
 
 
@@ -673,8 +564,6 @@
 - (void)updateOutlineMenuSelection
 // ------------------------------------------------------
 {
-    if ([self outlineMenuTimer]) { return; }
-    
     if ([[self textView] needsUpdateOutlineMenuItemSelection]) {
         [[self navigationBar] selectOutlineMenuItemWithRange:[[self textView] selectedRange]];
     } else {
@@ -690,54 +579,6 @@
 // ------------------------------------------------------
 {
     [[self navigationBar] setCloseSplitButtonEnabled:isEnabled];
-}
-
-
-// ------------------------------------------------------
-/// 行番号更新タイマーを停止
-- (void)stopUpdateLineNumberTimer
-// ------------------------------------------------------
-{
-    if ([self lineNumUpdateTimer]) {
-        [[self lineNumUpdateTimer] invalidate];
-        [self setLineNumUpdateTimer:nil];
-    }
-}
-
-
-// ------------------------------------------------------
-/// アウトラインメニュー更新タイマーを停止
-- (void)stopUpdateOutlineMenuTimer
-// ------------------------------------------------------
-{
-    if ([self outlineMenuTimer]) {
-        [[self outlineMenuTimer] invalidate];
-        [self setOutlineMenuTimer:nil];
-    }
-}
-
-
-// ------------------------------------------------------
-/// アウトラインメニューなどを更新
-- (void)updateInfo
-// ------------------------------------------------------
-{
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-
-    // アウトラインメニュー項目更新
-    NSTimeInterval outlineMenuInterval = [defaults doubleForKey:CEDefaultOutlineMenuIntervalKey];
-    if ([self outlineMenuTimer]) {
-        [[self outlineMenuTimer] setFireDate:[NSDate dateWithTimeIntervalSinceNow:outlineMenuInterval]];
-    } else {
-        [self setOutlineMenuTimer:[NSTimer scheduledTimerWithTimeInterval:outlineMenuInterval
-                                                                   target:self
-                                                                 selector:@selector(updateOutlineMenuWithTimer:)
-                                                                 userInfo:nil
-                                                                  repeats:NO]];
-    }
-
-    // 非互換文字リスト更新
-    [[[self window] windowController] updateIncompatibleCharsIfNeeded];
 }
 
 

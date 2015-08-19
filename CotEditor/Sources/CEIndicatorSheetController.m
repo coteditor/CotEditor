@@ -1,30 +1,28 @@
 /*
- ==============================================================================
- CEIndicatorSheetController
+ 
+ CEIndicatorSheetController.m
  
  CotEditor
  http://coteditor.com
  
- Created on 2014-06-07 by 1024jp
- encoding="UTF-8"
+ Created by 1024jp on 2014-06-07.
+
  ------------------------------------------------------------------------------
  
  © 2014-2015 1024jp
  
- This program is free software; you can redistribute it and/or modify it under
- the terms of the GNU General Public License as published by the Free Software
- Foundation; either version 2 of the License, or (at your option) any later
- version.
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
  
- This program is distributed in the hope that it will be useful, but WITHOUT
- ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+ http://www.apache.org/licenses/LICENSE-2.0
  
- You should have received a copy of the GNU General Public License along with
- this program; if not, write to the Free Software Foundation, Inc., 59 Temple
- Place - Suite 330, Boston, MA  02111-1307, USA.
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
  
- ==============================================================================
  */
 
 #import "CEIndicatorSheetController.h"
@@ -32,14 +30,14 @@
 
 @interface CEIndicatorSheetController ()
 
-@property (weak) IBOutlet NSProgressIndicator *indicator;
-@property NSWindow *parentWindow;
+@property (nonatomic, weak) IBOutlet NSProgressIndicator *indicator;
 
-@property (nonnull, copy) NSString *message;
+@property (atomic) double progress;
+@property (nonatomic, nonnull, copy) NSString *message;
 @property NSModalSession modalSession;
 
 // readonly
-@property (readwrite, getter=isCancelled) BOOL cancelled;
+@property (readwrite, nonatomic, getter=isCancelled) BOOL cancelled;
 
 @end
 
@@ -73,7 +71,7 @@
 {
     [super windowDidLoad];
     
-    // init indicator
+    // setup indicator
     [[self indicator] setIndeterminate:NO];
     [[self indicator] setDoubleValue:0];
     [[self indicator] setUsesThreadedAnimation:YES];
@@ -84,38 +82,20 @@
 #pragma mark Public Methods
 
 // ------------------------------------------------------
-/// return indicator progress
-- (CGFloat)indicatorValue
-// ------------------------------------------------------
-{
-    return (CGFloat)[[self indicator] doubleValue];
-}
-
-
-// ------------------------------------------------------
-/// set indicator progress
-- (void)setIndicatorValue:(CGFloat)indicatorValue
-// ------------------------------------------------------
-{
-    [[self indicator] setDoubleValue:(double)indicatorValue];
-    [[self indicator] displayIfNeeded];
-}
-
-
-// ------------------------------------------------------
 /// show as sheet
 - (void)beginSheetForWindow:(nonnull NSWindow *)window
 // ------------------------------------------------------
 {
-    if (floor(NSAppKitVersionNumber) > NSAppKitVersionNumber10_8) { // on Mavericks or later
+    if (NSAppKitVersionNumber >= NSAppKitVersionNumber10_9) { // on Mavericks or later
         [window beginSheet:[self window] completionHandler:nil];
-        [self setParentWindow:window];
         
     } else {
         [NSApp beginSheet:[self window] modalForWindow:window
             modalDelegate:self didEndSelector:NULL contextInfo:NULL];
         [self setModalSession:[NSApp beginModalSessionForWindow:[self window]]];
     }
+    
+    [[self indicator] setDoubleValue:[self progress]];
 }
 
 
@@ -124,28 +104,32 @@
 - (void)endSheet
 // ------------------------------------------------------
 {
-    if (floor(NSAppKitVersionNumber) > NSAppKitVersionNumber10_8) { // on Mavericks or later
-        [[self parentWindow] endSheet:[self window] returnCode:NSModalResponseCancel];
+    if (NSAppKitVersionNumber >= NSAppKitVersionNumber10_9) { // on Mavericks or later
+        [[[self window] sheetParent] endSheet:[self window] returnCode:NSModalResponseCancel];
         
     } else {
         [NSApp abortModal];
         [NSApp endModalSession:[self modalSession]];
         [self setModalSession:nil];
         [NSApp endSheet:[self window]];
+        [[self window] close];
     }
-    
-    [[self window] close];
 }
+
 
 // ------------------------------------------------------
 /// increase indicator
 - (void)progressIndicator:(CGFloat)delta
 // ------------------------------------------------------
 {
+    @synchronized(self) {
+        self.progress += delta;
+    }
+    
     // set always on main thread
     NSProgressIndicator *indicator = [self indicator];
     dispatch_async(dispatch_get_main_queue(), ^{
-        [indicator setDoubleValue:[indicator doubleValue] + (double)delta];
+        [indicator incrementBy:(double)delta];
     });
 }
 

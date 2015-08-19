@@ -37,7 +37,7 @@ code {
 }
 
 body > h1 {
-    font-family: 'Helvetica Neue', sans-serif;
+	font-family: 'Helvetica Neue', 'Hiragino Sans w2', sans-serif;
 	font-size: 160%;
 	font-weight: 300;
 	margin: 0 0 1.5em;

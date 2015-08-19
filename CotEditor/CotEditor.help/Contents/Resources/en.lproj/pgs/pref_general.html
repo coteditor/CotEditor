@@ -50,11 +50,27 @@
 		<dd>With this option selected, a new blank document will be opened when you click CotEditor's icon in the Dock and you had no window already open.</dd>
 	</dl></dd>
 	
-	<dt>Software Updates</dt>
+	<dt>When document is modified by another application:</dt>
+	<dd>You can set the behavior when the document file was updated by another application while it is opened in CotEditor.</dd>
+	<dd><dl>
+		<dt>Ignore</dt>
+		<dd>Do nothing and keep CotEditor's version. CotEditor may ask whether overwrite the file that was modified by another application first when user saves the document.</dd>
+		
+		<dt>Notify and ask how to resolve</dt>
+		<dd>Display a dialog when the file was modified by another application so that user can choose between to keep CotEditor's edition or to revert to the latest file.</dd>
+		
+		<dt>Update automatically</dt>
+		<dd>Update editor's text to the latest version silently when the file was modified by another application. Take notice that the undo history will also be cleared after updating.</dd>
+	</dl></dd>
+	
+	<dt>Software Updates <span class="note">(only on non-AppStore ver.)</span></dt>
 	<dd>You can set software updater behavior.</dd>
 	<dd><dl>
 		<dt>Automatically check for updates</dt>
 		<dd>When this option is selected, CotEditor checks the existence of the new version via internet automatically on launch.  Then if the new one has been released, CotEditor notifies the information on the panel.</dd>
+		
+		<dt>Update to pre-releases when available</dt>
+		<dd>When this option is selected, the updater also check about release of pre-release versions (beta versions). Take notice that they could not stable.</dd>
 	</dl></dd>
 </dl>
 
