@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014 CotEditor Project
+ © 2014-2015 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -29,8 +29,8 @@
 /* Class = "NSTextFieldCell"; title = "Basic"; ObjectID = "Bb9-qh-gwK"; */
 "Bb9-qh-gwK.title" = "基本";
 
-/* Class = "NSTextFieldCell"; title = "Text:"; ObjectID = "hbk-iX-4VK"; */
-"hbk-iX-4VK.title" = "字符:";
+/* Class = "NSTextFieldCell"; title = "Characters:"; ObjectID = "kvy-vf-yva"; */
+"kvy-vf-yva.title" = "文本:";
 /* Class = "NSTextFieldCell"; title = "Cursor:"; ObjectID = "Ljk-ky-fQH"; */
 "Ljk-ky-fQH.title" = "光标:";
 /* Class = "NSTextFieldCell"; title = "Invisibles:"; ObjectID = "IGx-p1-FHi"; */
@@ -64,6 +64,8 @@
 "3wF-uc-Tfq.title" = "数字:";
 /* Class = "NSTextFieldCell"; title = "Strings:"; ObjectID = "n04-r3-95l"; */
 "n04-r3-95l.title" = "字符串:";
+/* Class = "NSTextFieldCell"; title = "Text:"; ObjectID = "hbk-iX-4VK"; */
+"hbk-iX-4VK.title" = "字符:";
 /* Class = "NSTextFieldCell"; title = "Characters:"; ObjectID = "kvy-vf-yva"; */
 "kvy-vf-yva.title" = "文本:";
 /* Class = "NSTextFieldCell"; title = "Comments:"; ObjectID = "AIG-rr-79V"; */
@@ -78,7 +80,7 @@
 "jbY-IC-CRS.title" = "作者:";
 /* Class = "NSTextFieldCell"; title = "URL:"; ObjectID = "xyY-jQ-kpJ"; */
 "xyY-jQ-kpJ.title" = "URL:";
-/* Class = "NSTextFieldCell"; title = "Lisence:"; ObjectID = "iy5-9x-zGF"; */
+/* Class = "NSTextFieldCell"; title = "License:"; ObjectID = "iy5-9x-zGF"; */
 "iy5-9x-zGF.title" = "许可证:";
 /* Class = "NSTextFieldCell"; title = "Description:"; ObjectID = "Inh-Ci-NGp"; */
 "Inh-Ci-NGp.title" = "描述:";
