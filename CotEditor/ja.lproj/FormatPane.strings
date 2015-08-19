@@ -29,7 +29,7 @@
 "3273.title" = "改行コード：";
 /* Class = "NSMenuItem"; title = "OS X / Unix (LF)"; ObjectID = "15"; */
 "15.title" = "OS X / Unix (LF)";
-/* Class = "NSMenuItem"; title = "Clasic Mac OS (CR)"; ObjectID = "14"; */
+/* Class = "NSMenuItem"; title = "Classic Mac OS (CR)"; ObjectID = "14"; */
 "14.title" = "クラシック Mac OS (CR)";
 /* Class = "NSMenuItem"; title = "Windows (CR/LF)"; ObjectID = "12"; */
 "12.title" = "Windows (CR/LF)";
