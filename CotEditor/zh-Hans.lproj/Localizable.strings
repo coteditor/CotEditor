@@ -205,7 +205,6 @@
 
 // Alert strings
 "The file is not writable." = "该文件不能写入";
-"Allow Editing" = "允许编辑";
 "Cancel" = "取消";
 "You may not be able to save your changes, but you will be able to save a copy somewhere else." = "无法保存更改，但是可以在其他路径保存一份拷贝。";
 

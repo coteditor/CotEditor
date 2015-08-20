@@ -206,7 +206,6 @@
 
 // Alert strings
 "The file is not writable." = "このファイルは書き込み不可です。";
-"Allow Editing" = "編集を許可";
 "Cancel" = "キャンセル";
 "You may not be able to save your changes, but you will be able to save a copy somewhere else." = "このファイルに加えられた変更は保存できない場合がありますが、コピーを別の場所に保存することができます。";
 
