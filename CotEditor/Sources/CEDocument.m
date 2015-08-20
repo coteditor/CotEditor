@@ -651,7 +651,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 {
     [super presentedItemDidMoveToURL:newURL];
     
-    CEWindowController *windowController;
+    CEWindowController *windowController = [self windowController];
     dispatch_async(dispatch_get_main_queue(), ^{
         [windowController updateFileInfo];
     });
