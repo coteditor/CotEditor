@@ -27,7 +27,7 @@ dmgwork = "./CotEditor_#{version}"
 require 'fileutils'
 FileUtils.rm_rf(dmgwork)
 FileUtils.mkdir(dmgwork)
-FileUtils.cp_r(app, dmgwork)
+FileUtils.mv(app, dmgwork)
 
 # Copy additional files
 files = "./files"
