@@ -30,6 +30,8 @@
 
 @interface CEUpdaterManager : NSObject
 
+@property (nonatomic, readonly, getter=isPrerelease) BOOL prerelease;
+
 // singleton
 + (nonnull instancetype)sharedManager;
 

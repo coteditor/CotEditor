@@ -91,6 +91,18 @@ static NSString *__nonnull const AppCastBetaURL = @"http://coteditor.com/appcast
 }
 
 
+// ------------------------------------------------------
+/// Is the running app a pre-release version?
+- (BOOL)isPrerelease
+// ------------------------------------------------------
+{
+    NSString *thisVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:(NSString *)kCFBundleVersionKey];
+    EDSemver *thisSemver = [EDSemver semverWithString:thisVersion];
+    
+    return [[thisSemver prerelease] length] > 0;
+}
+
+
 
 #pragma mark Delegate
 
@@ -112,8 +124,14 @@ static NSString *__nonnull const AppCastBetaURL = @"http://coteditor.com/appcast
 - (NSString *)feedURLStringForUpdater:(SUUpdater *)updater
 // ------------------------------------------------------
 {
-    BOOL checksBeta = [[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultChecksUpdatesForBetaKey];
-    
+    // force beta check if the current runnning one is a beta.
+    BOOL checksBeta;
+    if ([self isPrerelease]) {
+        checksBeta = YES;
+    } else {
+        checksBeta = [[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultChecksUpdatesForBetaKey];
+        
+    }
     return checksBeta ? AppCastBetaURL : AppCastURL;
 }
 

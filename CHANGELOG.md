@@ -8,6 +8,7 @@ develop
 ### Additions/Changes
 
 - [beta][non-AppStore ver.] Change to not check pre-release versions on default.
+    - New pre-releases are always subject of the update check no matter the user setting if the current runnning CotEditor is a pre-release version.
 
 
 
