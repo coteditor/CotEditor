@@ -31,7 +31,7 @@
 
 // ------------------------------------------------------------------------------
 // This category is Sandbox incompatible.
-// They had been used until CotEditor 2.1.4 (2015-07) which is the last non-sandbox version.
+// They had been used until CotEditor 2.1.6 (2015-07) which is the last non-Sandboxed version.
 // Currently not in use, and should not be used.
 // We keep this just for a record.
 // You can remove these if you feel it's really needless.
@@ -43,6 +43,6 @@
 - (nullable NSData *)forceReadDataFromURL:(nonnull NSURL *)url __attribute__((unavailable("Sandbox incompatible")));
 
 /// Try writing data to the URL using authopen (Sandobox incompatible)
-- (BOOL)forceWriteToURL:(nonnull NSURL *)url ofType:(nonnull NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation __attribute__((unavailable("Sandbox incompatible")));
+- (BOOL)forceWriteData:(nonnull NSData *)data URL:(nonnull NSURL *)url __attribute__((unavailable("Sandbox incompatible")));
 
 @end
