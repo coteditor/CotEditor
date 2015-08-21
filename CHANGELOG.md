@@ -2,6 +2,15 @@
 Change Log
 ==========================
 
+develop
+--------------------------
+
+### Additions/Changes
+
+- [beta][non-AppStore ver.] Change to not check pre-release versions on default.
+
+
+
 2.2.0-beta
 --------------------------
 
