@@ -98,6 +98,22 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
                                                                         create:YES
                                                                          error:nil];
         
+        // fallback directory creation for in case the app is not Sandboxed
+        if (!_scriptsDirectoryURL) {
+            NSString *bundleIdentifier = [[NSBundle mainBundle] bundleIdentifier];
+            NSURL *applicationSupport = [[NSFileManager defaultManager] URLForDirectory:NSLibraryDirectory
+                                                                          inDomain:NSUserDomainMask appropriateForURL:nil
+                                                                                 create:NO
+                                                                                  error:nil];
+            _scriptsDirectoryURL = [[applicationSupport URLByAppendingPathComponent:@"Application Scripts"]
+                                    URLByAppendingPathComponent:bundleIdentifier isDirectory:YES];
+            
+            if (![_scriptsDirectoryURL checkResourceIsReachableAndReturnError:nil]) {
+                [[NSFileManager defaultManager] createDirectoryAtURL:_scriptsDirectoryURL
+                                         withIntermediateDirectories:YES attributes:@{} error:nil];
+            }
+        }
+        
         [self buildScriptMenu:self];
         
         // run dummy AppleScript once for quick script launch
