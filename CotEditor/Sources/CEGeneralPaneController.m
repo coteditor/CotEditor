@@ -36,6 +36,7 @@
 
 @property (nonatomic) BOOL hasUpdater;
 @property (nonatomic, getter=isPrerelease) BOOL prerelease;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *updaterConstraint;
 
 @end
 
@@ -57,8 +58,11 @@
 #ifdef APPSTORE
     // cut down height for updater checkbox
     NSRect frame = [[self view] frame];
-    frame.size.height -= 73;
+    frame.size.height -= 82;
     [[self view] setFrame:frame];
+    
+    // cut down x-position of visible labels
+    [[self view] removeConstraint:[self updaterConstraint]];
 #else
     [self setHasUpdater:YES];
     

@@ -7,6 +7,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="CEGeneralPaneController">
             <connections>
+                <outlet property="updaterConstraint" destination="jUr-eF-2JP" id="I33-tq-BbT"/>
                 <outlet property="view" destination="743" id="NV1-KF-qM5"/>
             </connections>
         </customObject>
