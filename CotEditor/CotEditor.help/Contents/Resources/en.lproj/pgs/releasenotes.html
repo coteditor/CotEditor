@@ -25,6 +25,109 @@
 
 <article>
 <header>
+	<h1>CotEditor 2.2.0</h1>
+	<p>release: <time>2015-09</time></p>
+</header>
+
+
+<section>
+<h2>New Features</h2>
+
+<ul>
+	<li>CotEditor is now <strong>Sandboxed</strong>.</li>
+	<li>New setting option for the behavior on document modification by external process (in General pane).</li>
+	<li>Share button in toolbar (Customize toolbar to use it).</li>
+	<li>Save text orientation state to the file and restore it when the file is opened.
+	<ul>
+		<li><strong>for advanced users</strong>: In this feature, CotEditor saves an <em>extended attribute</em> which named <code>com.coteditor.VerticalText</code> to the file only when the editor's text orientation is vertical. You can even disable the feature running the command <code>defaults write com.coteditor.CotEditor savesTextOrientation -bool NO</code> in Terminal. </li>
+	</ul></li>
+	<li>Line number view for vertical text orientation.</li>
+	<li>Print with vertical text orientation.</li>
+	<li>Add interpreter name list to the syntax style definition to determine syntax style from the shebang in the file content for in case when syntax style cannot be determined from the file name.</li>
+	<ul>
+		<li>From this change, some of the bundled syntax styles are also updated.</li>
+	</ul>
+	<li>Add <code>encoding:</code> and <code>coding:</code> to the encoding declaration keywords which will be used on encoding auto-detection (interpreting priorities are: <code>charset=</code> &gt; <code>encoding=</code> &gt; <code>@charset</code> &gt; <code>encoding:</code> &gt; <code>coding:</code>).</li>
+</ul>
+</section>
+
+
+<section>
+<h2>Additions/Changes</h2>
+
+<ul>
+	<li>[non-AppStore ver.] Disable auto-update feature.
+	<ul>
+		<li>Since the Sparkle framework which is a software update framework we use doesn't support Sandboxed apps yet, the auto-update feature within CotEditor should be once disabled. The new behavior is: a nofitication window will be shown when a new release is available (as before), then you need to update CotEditor manually getting the new version from our web-site. Or, just migrate to the Mac App Store version when the stable CotEditor 2.2.0 is released.</li>
+	</ul></li>
+	<li>Deprecate the feature opening/saving files that user doesn't have the permission, due to Sandbox requirement.</li>
+	<li>Improve side inspector UI.</li>
+	<li>Improve syntax highlighting:
+	<ul>
+		<li>Optimize general syntax highlighting performance (ca. 1.8x).</li>
+		<li>Optimize syntax highlighting on file opening.</li>
+		<li>Better coloring parsing while editing.</li>
+		<li>Update all split editors while editing.</li>
+	</ul></li>
+	<li>Move scripts folder location from <code>~/Library/Application Support/CotEditor/ScriptMenu/</code> to <code>~/Library/Application Scripts/com.coteditor.CotEditor/</code> due of the Sandbox requirement.
+	<ul>
+		<li>Users need to migrate their script to the new folder manually, since CotEditor doesn't have the write permission to the new location.</li>
+	</ul></li>
+	<li>Improve print document:
+	<ul>
+		<li>Update header/footer layout to conform to the standard system header/footer design.</li>
+		<li>Add page setup options to the print panel.</li>
+		<li>Print settings preset can be stored in the print panel.</li>
+	</ul></li>
+	<li>Better file encoding handling on revert action.</li>
+	<li>Set access-group <code>com.coteditor.CotEditor.edit</code> to CotEditor's script definition.</li>
+	<li>Change behavior to save <code>com.apple.TextEncoding</code> xattr on saving if the file had no content.</li>
+	<li>Improve window restoration:
+	<ul>
+		<li>To restore also the last scroll position and cursor position.</li>
+		<li>To restore also the last syntax style mode of unsaved documents.</li>
+	</ul></li>
+	<li>Completely rewrite <code>cot</code> command-line tool:
+	<ul>
+		<li>Faster launch.</li>
+	</ul></li>
+	<li>Optimize saving process.</li>
+	<li>Improve compatibility with OS X 10.11 El Capitan.</li>
+	<li>Change source code license from the GNU General Public License version 2 to the Apache License version 2.0.</li>
+	<li>[non-AppStore ver.] Add option to check pre-release versions.
+	<ul>
+		<li>New pre-releases are always subject of the update check no matter the user setting if the current runnning CotEditor is a pre-release version.</li>
+	</ul></li>
+</ul>
+</section>
+
+
+<section>
+<h2>Fixes</h2>
+
+<ul>
+	<li>Fix an issue where the full path display in the document inspector did not update after the document file moved.</li>
+	<li>Fix an issue where the find panel could not find matched strings when the find string includes CR or CR/LF line endings.</li>
+	<li>Fix an issue where line numbers were not drawn completely on OS X 10.8 when scroll bars are set as always shown.</li>
+	<li>Fix an issue where some legatured characters were drawn at a wrong position when the line height for composite font is fixed.</li>
+	<li>Improve general stability.</li>
+</ul>
+</section>
+
+<section>
+<h2>Misc.</h2>
+
+<ul>
+	<li>First release in the Mac App Store.</li>
+	<li>A CotEditor plugin-script for <a href="https://kapeli.com/dash" rel="external" title="Dash for OS X - API Documentation Browser, Snippet Manager - Kapeli">Dash</a> API documentation browser has been released at <a href="https://github.com/coteditor/Dash-CotEditor-Plugin" rel="external" title="Dash CotEditor Plugin - GitHub">Dash CotEditor Plugin/GitHub</a>.</li>
+</ul>
+</section>
+</article>
+
+
+
+<article>
+<header>
 	<h1>CotEditor 2.1.6</h1>
 	<p>release: <time>2015-07-17</time></p>
 </header>
