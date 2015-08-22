@@ -27,10 +27,15 @@
 
 #import "CEGeneralPaneController.h"
 
+#ifndef APPSTORE
+#import "CEUpdaterManager.h"
+#endif
+
 
 @interface CEGeneralPaneController ()
 
 @property (nonatomic) BOOL hasUpdater;
+@property (nonatomic, getter=isPrerelease) BOOL prerelease;
 
 @end
 
@@ -52,10 +57,19 @@
 #ifdef APPSTORE
     // cut down height for updater checkbox
     NSRect frame = [[self view] frame];
-    frame.size.height -= 55;
+    frame.size.height -= 73;
     [[self view] setFrame:frame];
 #else
     [self setHasUpdater:YES];
+    
+    if ([[CEUpdaterManager sharedManager] isPrerelease]) {
+        [self setPrerelease:YES];
+    } else {
+        // cut down height for pre-release note
+        NSRect frame = [[self view] frame];
+        frame.size.height -= 18;
+        [[self view] setFrame:frame];
+    }
 #endif
 }
 
