@@ -462,8 +462,8 @@
 
 /* Class = "NSMenuItem"; title = "Release Notes"; ObjectID = "822"; */
 "822.title" = "发行说明";
-/* Class = "NSMenuItem"; title = "What's New in CotEditor 2.1"; ObjectID = "DCW-Ij-540"; */
-"DCW-Ij-540.title" = "CotEditor 2.1 新特性";
+/* Class = "NSMenuItem"; title = "What's New in CotEditor 2.2"; ObjectID = "DCW-Ij-540"; */
+"DCW-Ij-540.title" = "CotEditor 2.2 新特性";
 /* Class = "NSMenuItem"; title = "Acknowledgements"; ObjectID = "824"; */
 "824.title" = "致谢";
 
