@@ -260,7 +260,7 @@
 
 // Hint message for the completion list
 "Completion can be performed manually with: %@ or %@" = "入力補完候補リストの表示： %@ もしくは %@";
-"Select at least one item to perform completion." = "入力補完をするためには1つ以上の項目を選択する必要があります。";
+"Select at least one item to enable completion." = "入力補完を有効にするためには1つ以上の項目を選択する必要があります。";
 
 // Appearance pane
 "Duplicate “%@”" = "“%@”を複製";

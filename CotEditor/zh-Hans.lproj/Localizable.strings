@@ -259,7 +259,7 @@
 
 // Hint message for the completion list
 "Completion can be performed manually with: %@ or %@" = "Completion can be performed manually with: %@ or %@";  // FIXME: added
-"Select at least one item to perform completion." = "Select at least one item to perform completion.";  // FIXME: added
+"Select at least one item to enable completion." = "Select at least one item to enable completion.";  // FIXME: added
 
 // Appearance pane
 "Duplicate “%@”" = "拷贝 “%@”";

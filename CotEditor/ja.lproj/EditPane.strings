@@ -83,8 +83,6 @@
 
 /* Class = "NSTextFieldCell"; title = "Completion:"; ObjectID = "gDN-SU-sZH"; */
 "gDN-SU-sZH.title" = "入力補完：";
-/* Class = "NSButtonCell"; title = "Auto complete"; ObjectID = "J1B-wA-rdr"; */
-"J1B-wA-rdr.title" = "自動入力補完";
 
 /* Class = "NSTextFieldCell"; title = "Completion list includes:"; ObjectID = "dLj-Kh-KtX"; */
 "dLj-Kh-KtX.title" = "入力補完候補リストに含む単語：";
@@ -94,3 +92,6 @@
 "1v9-7i-9RL.title" = "シンタックススタイルで定義された単語";
 /* Class = "NSButtonCell"; title = "Standard words"; ObjectID = "c5j-0N-f2R"; */
 "c5j-0N-f2R.title" = "一般英単語";
+
+/* Class = "NSButtonCell"; title = "Auto complete"; ObjectID = "J1B-wA-rdr"; */
+"J1B-wA-rdr.title" = "自動入力補完";
