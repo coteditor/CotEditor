@@ -350,12 +350,11 @@
 // ------------------------------------------------------
 {
     NSMutableOrderedSet *candidateWords = [NSMutableOrderedSet orderedSet];
-    NSUInteger addingMode = [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultCompletionWordsKey];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *partialWord = [[textView string] substringWithRange:charRange];
 
-    
-    //"ファイル中の語彙" を検索して candidateWords に入れる
-    if (addingMode != 3) {
+    // extract words in document and set to candidateWords
+    if ([defaults boolForKey:CEDefaultCompletesDocumentWordsKey]) {
         if (charRange.length == 1 && ![[NSCharacterSet alphanumericCharacterSet] characterIsMember:[partialWord characterAtIndex:0]]) {
             // do nothing if the particle word is an symbol
             
@@ -373,8 +372,8 @@
         }
     }
     
-    //"カラーシンタックス辞書の語彙" をコピーする
-    if (addingMode >= 1) {
+    // copy words defined in syntax style
+    if ([defaults boolForKey:CEDefaultCompletesSyntaxWordsKey]) {
         NSArray *syntaxWords = [[self syntaxParser] completionWords];
         for (NSString *word in syntaxWords) {
             if ([word rangeOfString:partialWord options:NSCaseInsensitiveSearch|NSAnchoredSearch].location != NSNotFound) {
@@ -383,14 +382,14 @@
         }
     }
     
-    //デフォルトの候補から "一般英単語" をコピーする
-    if (addingMode == 2) {
+    // copy the standard words from default completion words
+    if ([defaults boolForKey:CEDefaultCompletesStandartWordsKey]) {
         [candidateWords addObjectsFromArray:words];
     }
     
-    // 入力済みの単語と同じ候補しかないときは表示しない
+    // provide nothing if there is only a candidate which is same as input word
     if ([candidateWords count] == 1 && [[candidateWords firstObject] caseInsensitiveCompare:partialWord] == NSOrderedSame) {
-        return nil;
+        return @[];
     }
 
     return [candidateWords array];

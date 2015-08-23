@@ -39,6 +39,7 @@
 @property (nonatomic, nonnull, copy) NSArray *invisibleTabs;
 @property (nonatomic, nonnull, copy) NSArray *invisibleNewLines;
 @property (nonatomic, nonnull, copy) NSArray *invisibleFullWidthSpaces;
+@property (nonatomic, nonnull, copy) NSString *completionHintMessage;
 
 @end
 
@@ -82,6 +83,8 @@
             [fullWidthSpaces addObject:[NSString stringWithFormat:@"%C", [CEUtils invisibleFullwidthSpaceChar:i]]];
         }
         _invisibleFullWidthSpaces = fullWidthSpaces;
+        
+        [self updateCompletionHintMessage];
     }
     return self;
 }
@@ -101,6 +104,41 @@
         [[self smartQuoteCheckButton] setTitle:[NSString stringWithFormat:@"%@%@", [[self smartQuoteCheckButton] title],
                                                 NSLocalizedString(@" (on Mavericks and later)", nil)]];
     }
+}
+
+
+
+#pragma mark Action Messages
+
+// ------------------------------------------------------
+///
+- (IBAction)updateCompletionListWords:(nullable id)sender
+// ------------------------------------------------------
+{
+    [self updateCompletionHintMessage];
+}
+
+
+
+#pragma mark Private Methods
+
+// ------------------------------------------------------
+- (void)updateCompletionHintMessage
+// ------------------------------------------------------
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *message;
+    
+    if (![defaults boolForKey:CEDefaultCompletesDocumentWordsKey] &&
+        ![defaults boolForKey:CEDefaultCompletesSyntaxWordsKey] &&
+        ![defaults boolForKey:CEDefaultCompletesStandartWordsKey])
+    {
+        message = [NSString stringWithFormat:@"⚠️ %@", NSLocalizedString(@"Select at least one item to perform completion.", nil)];
+    } else {
+        message = [NSString stringWithFormat:NSLocalizedString(@"Completion can be performed manually with: %@ or %@", nil), @"Esc", @"⌘."];
+    }
+    
+    [self setCompletionHintMessage:message];
 }
 
 @end

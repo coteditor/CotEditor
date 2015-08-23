@@ -70,46 +70,13 @@
                     </connections>
                 </button>
                 <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Dte-ly-fKQ">
-                    <rect key="frame" x="117" y="141" width="212" height="17"/>
-                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Completion list includes words in:" usesSingleLineMode="YES" id="dLj-Kh-KtX">
+                    <rect key="frame" x="117" y="141" width="156" height="17"/>
+                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Completion list includes:" usesSingleLineMode="YES" id="dLj-Kh-KtX">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <matrix verticalHuggingPriority="750" allowsEmptySelection="NO" translatesAutoresizingMaskIntoConstraints="NO" id="686">
-                    <rect key="frame" x="144" y="51" width="299" height="86"/>
-                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                    <size key="cellSize" width="299" height="20"/>
-                    <size key="intercellSpacing" width="4" height="2"/>
-                    <buttonCell key="prototype" type="radio" title="Syntax Style only" imagePosition="left" alignment="left" tag="3" inset="2" id="SU9-92-Q86">
-                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" metaFont="system"/>
-                    </buttonCell>
-                    <cells>
-                        <column>
-                            <buttonCell type="radio" title="Document only" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="689">
-                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                <font key="font" metaFont="system"/>
-                            </buttonCell>
-                            <buttonCell type="radio" title="Syntax Style only" bezelStyle="regularSquare" imagePosition="left" alignment="left" tag="3" inset="2" id="690">
-                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                <font key="font" metaFont="system"/>
-                            </buttonCell>
-                            <buttonCell type="radio" title="Document + Syntax Style" bezelStyle="regularSquare" imagePosition="left" alignment="left" tag="1" inset="2" id="691">
-                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                <font key="font" metaFont="system"/>
-                            </buttonCell>
-                            <buttonCell type="radio" title="Document + Syntax Style + Standard Words" imagePosition="left" alignment="left" tag="2" inset="2" id="r6f-b7-fJY">
-                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                <font key="font" metaFont="system"/>
-                            </buttonCell>
-                        </column>
-                    </cells>
-                    <connections>
-                        <binding destination="26" name="selectedTag" keyPath="values.completeAddStandardWords" id="j63-Mq-XMI"/>
-                    </connections>
-                </matrix>
                 <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="IXD-kJ-dvh">
                     <rect key="frame" x="50" y="580" width="63" height="17"/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Behavior:" usesSingleLineMode="YES" id="SqI-BC-ar9">
@@ -208,6 +175,28 @@
                     </buttonCell>
                     <connections>
                         <binding destination="26" name="value" keyPath="values.autoComplete" id="HrP-lE-CrB"/>
+                    </connections>
+                </button>
+                <button translatesAutoresizingMaskIntoConstraints="NO" id="lO2-uf-OLD">
+                    <rect key="frame" x="142" y="117" width="142" height="18"/>
+                    <buttonCell key="cell" type="check" title="Words in document" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="EJZ-N6-54G">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="updateCompletionListWords:" target="-2" id="e8v-4g-iBC"/>
+                        <binding destination="26" name="value" keyPath="values.completesDocumentWords" id="Ecf-pT-NXw"/>
+                    </connections>
+                </button>
+                <button translatesAutoresizingMaskIntoConstraints="NO" id="t0Y-p1-xOb">
+                    <rect key="frame" x="142" y="93" width="203" height="18"/>
+                    <buttonCell key="cell" type="check" title="Words defined in syntax style" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="1v9-7i-9RL">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="updateCompletionListWords:" target="-2" id="Mtc-IH-B2R"/>
+                        <binding destination="26" name="value" keyPath="values.completesSyntaxWords" id="fQq-LZ-Edi"/>
                     </connections>
                 </button>
                 <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="oXk-4y-elJ">
@@ -440,6 +429,28 @@
                         <action selector="openHelpAnchor:" target="-1" id="hyu-2z-avq"/>
                     </connections>
                 </button>
+                <button translatesAutoresizingMaskIntoConstraints="NO" id="w2P-Vr-ZDY">
+                    <rect key="frame" x="142" y="69" width="120" height="18"/>
+                    <buttonCell key="cell" type="check" title="Standard words" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="c5j-0N-f2R">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="updateCompletionListWords:" target="-2" id="IYB-au-5bs"/>
+                        <binding destination="26" name="value" keyPath="values.completesStandardWords" id="kjP-Da-g0b"/>
+                    </connections>
+                </button>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="btC-lZ-pQ7">
+                    <rect key="frame" x="117" y="49" width="405" height="14"/>
+                    <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Completion can be performed manually with: Esc or ⌘." id="dmb-pc-4M5">
+                        <font key="font" metaFont="smallSystem"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                    <connections>
+                        <binding destination="-2" name="value" keyPath="completionHintMessage" id="XIv-Zf-aQ7"/>
+                    </connections>
+                </textField>
             </subviews>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="z5v-7l-1C4" secondAttribute="bottom" constant="20" symbolic="YES" id="0Ke-Pr-SYk"/>
@@ -449,12 +460,14 @@
                 <constraint firstItem="282" firstAttribute="baseline" secondItem="283" secondAttribute="baseline" id="2eo-GD-Kfb"/>
                 <constraint firstItem="C2I-Ub-oUU" firstAttribute="leading" secondItem="644" secondAttribute="leading" id="3eN-aj-0ZB"/>
                 <constraint firstItem="844" firstAttribute="top" secondItem="mK4-4e-plf" secondAttribute="bottom" constant="10" id="53U-9L-xPq"/>
+                <constraint firstItem="t0Y-p1-xOb" firstAttribute="leading" secondItem="lO2-uf-OLD" secondAttribute="leading" id="5d4-UU-RBZ"/>
                 <constraint firstItem="224" firstAttribute="baseline" secondItem="221" secondAttribute="baseline" id="6ki-ac-drF"/>
                 <constraint firstItem="221" firstAttribute="leading" secondItem="249" secondAttribute="leading" id="7h3-GD-axK"/>
                 <constraint firstItem="aZf-lI-jGQ" firstAttribute="top" secondItem="283" secondAttribute="bottom" constant="20" id="7ve-Dq-5V1"/>
                 <constraint firstItem="235" firstAttribute="baseline" secondItem="221" secondAttribute="baseline" id="9lC-ZO-zFe"/>
+                <constraint firstItem="lO2-uf-OLD" firstAttribute="top" secondItem="Dte-ly-fKQ" secondAttribute="bottom" constant="8" symbolic="YES" id="Axl-g5-SRk"/>
                 <constraint firstItem="1Oj-wo-mCu" firstAttribute="top" secondItem="69" secondAttribute="bottom" constant="20" id="B5N-mq-gDa"/>
-                <constraint firstItem="686" firstAttribute="leading" secondItem="Dte-ly-fKQ" secondAttribute="leading" constant="25" id="Bxt-Lh-ZU5"/>
+                <constraint firstItem="Dte-ly-fKQ" firstAttribute="leading" secondItem="btC-lZ-pQ7" secondAttribute="leading" id="CyA-0F-v2g"/>
                 <constraint firstItem="r9C-0B-mga" firstAttribute="baseline" secondItem="1Oj-wo-mCu" secondAttribute="baseline" id="FG7-G9-euH"/>
                 <constraint firstItem="aZf-lI-jGQ" firstAttribute="leading" secondItem="VBo-Ii-1PR" secondAttribute="trailing" constant="8" symbolic="YES" id="Fhr-la-WI5"/>
                 <constraint firstItem="160" firstAttribute="top" secondItem="209" secondAttribute="bottom" constant="10" id="Frm-gK-yPu"/>
@@ -463,6 +476,8 @@
                 <constraint firstItem="283" firstAttribute="top" secondItem="160" secondAttribute="bottom" constant="10" id="IM6-11-CAa"/>
                 <constraint firstItem="644" firstAttribute="leading" secondItem="1Oj-wo-mCu" secondAttribute="leading" id="J6i-07-RCr"/>
                 <constraint firstItem="644" firstAttribute="leading" secondItem="IXD-kJ-dvh" secondAttribute="trailing" constant="8" symbolic="YES" id="Kcl-7N-AbQ"/>
+                <constraint firstItem="t0Y-p1-xOb" firstAttribute="leading" secondItem="w2P-Vr-ZDY" secondAttribute="leading" id="MaU-8f-QTA"/>
+                <constraint firstAttribute="trailing" secondItem="btC-lZ-pQ7" secondAttribute="trailing" constant="20" symbolic="YES" id="NeW-xi-Gzc"/>
                 <constraint firstItem="Dte-ly-fKQ" firstAttribute="top" secondItem="C2I-Ub-oUU" secondAttribute="bottom" constant="10" id="OMk-af-bir"/>
                 <constraint firstItem="247" firstAttribute="leading" secondItem="249" secondAttribute="trailing" constant="8" symbolic="YES" id="QB9-YF-TQu"/>
                 <constraint firstItem="282" firstAttribute="centerY" secondItem="iub-4d-NyY" secondAttribute="centerY" id="QWl-29-mP4"/>
@@ -478,15 +493,15 @@
                 <constraint firstItem="249" firstAttribute="baseline" secondItem="247" secondAttribute="baseline" id="abF-SR-IDN"/>
                 <constraint firstItem="243" firstAttribute="width" secondItem="247" secondAttribute="width" id="bJI-zN-7dz"/>
                 <constraint firstItem="870" firstAttribute="top" secondItem="867" secondAttribute="bottom" constant="10" id="bLh-rA-4nS"/>
-                <constraint firstItem="z5v-7l-1C4" firstAttribute="top" secondItem="686" secondAttribute="bottom" constant="10" id="cFs-dY-MCS"/>
                 <constraint firstItem="874" firstAttribute="leading" secondItem="244" secondAttribute="leading" id="cVK-e1-ToG"/>
                 <constraint firstItem="874" firstAttribute="leading" secondItem="235" secondAttribute="leading" id="cg2-af-4WR"/>
+                <constraint firstItem="btC-lZ-pQ7" firstAttribute="top" secondItem="w2P-Vr-ZDY" secondAttribute="bottom" constant="8" symbolic="YES" id="dKt-0g-uDe"/>
                 <constraint firstItem="244" firstAttribute="top" secondItem="235" secondAttribute="bottom" constant="10" id="dx8-My-4SK"/>
                 <constraint firstItem="69" firstAttribute="leading" secondItem="fR5-Ie-WnP" secondAttribute="trailing" constant="8" symbolic="YES" id="e18-6y-ozt"/>
+                <constraint firstItem="w2P-Vr-ZDY" firstAttribute="top" secondItem="t0Y-p1-xOb" secondAttribute="bottom" constant="10" id="e1S-pc-Nus"/>
                 <constraint firstItem="N9e-hF-BPy" firstAttribute="leading" secondItem="iub-4d-NyY" secondAttribute="trailing" constant="8" symbolic="YES" id="eJ7-3F-ASx"/>
                 <constraint firstItem="867" firstAttribute="top" secondItem="844" secondAttribute="bottom" constant="10" id="eN6-pI-vDL"/>
                 <constraint firstItem="oXk-4y-elJ" firstAttribute="baseline" secondItem="C2I-Ub-oUU" secondAttribute="baseline" id="ebU-SQ-ueL"/>
-                <constraint firstItem="686" firstAttribute="top" secondItem="Dte-ly-fKQ" secondAttribute="bottom" constant="4" id="exZ-lo-1E8"/>
                 <constraint firstItem="236" firstAttribute="leading" secondItem="243" secondAttribute="leading" id="fBh-m9-U8F"/>
                 <constraint firstItem="69" firstAttribute="top" secondItem="Vf0-M7-9ji" secondAttribute="bottom" constant="20" id="fgf-3E-dzG"/>
                 <constraint firstItem="IXD-kJ-dvh" firstAttribute="top" secondItem="s6I-DY-Ii0" secondAttribute="top" constant="20" symbolic="YES" id="gJQ-Aw-eFi"/>
@@ -505,7 +520,9 @@
                 <constraint firstItem="VBo-Ii-1PR" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="s6I-DY-Ii0" secondAttribute="leading" constant="20" symbolic="YES" id="o2w-sC-kkc"/>
                 <constraint firstItem="IXD-kJ-dvh" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="s6I-DY-Ii0" secondAttribute="leading" constant="20" symbolic="YES" id="ofc-c0-fEp"/>
                 <constraint firstItem="243" firstAttribute="width" secondItem="236" secondAttribute="width" id="q7A-SC-Ewq"/>
+                <constraint firstItem="Dte-ly-fKQ" firstAttribute="leading" secondItem="lO2-uf-OLD" secondAttribute="leading" constant="-25" id="q9d-qo-vO1"/>
                 <constraint firstItem="243" firstAttribute="width" secondItem="224" secondAttribute="width" id="rFX-pM-okS"/>
+                <constraint firstItem="t0Y-p1-xOb" firstAttribute="top" secondItem="lO2-uf-OLD" secondAttribute="bottom" constant="10" id="rHi-wD-6T9"/>
                 <constraint firstItem="644" firstAttribute="leading" secondItem="844" secondAttribute="leading" id="sce-Ba-PNP"/>
                 <constraint firstItem="C2I-Ub-oUU" firstAttribute="top" secondItem="874" secondAttribute="bottom" constant="20" id="skU-e7-gNm"/>
                 <constraint firstItem="iub-4d-NyY" firstAttribute="leading" secondItem="282" secondAttribute="trailing" constant="4" id="tek-TW-5hT"/>

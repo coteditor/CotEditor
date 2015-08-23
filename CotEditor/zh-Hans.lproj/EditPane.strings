@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014 CotEditor Project
+ © 2014-2015 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -87,13 +87,11 @@
 /* Class = "NSButtonCell"; title = "Auto complete"; ObjectID = "J1B-wA-rdr"; */
 "J1B-wA-rdr.title" = "自动补全";
 
-/* Class = "NSTextFieldCell"; title = "Completion list includes words in:"; ObjectID = "dLj-Kh-KtX"; */
-"dLj-Kh-KtX.title" = "补全列表包括的单词来源:";
-/* Class = "NSButtonCell"; title = "Document only"; ObjectID = "689"; */
-"689.title" = "仅文档";
-/* Class = "NSButtonCell"; title = "Syntax Style only"; ObjectID = "690"; */
-"690.title" = "仅语法风格";
-/* Class = "NSButtonCell"; title = "Document + Syntax Style"; ObjectID = "691"; */
-"691.title" = "文档 + 语法风格";
-/* Class = "NSButtonCell"; title = "Document + Syntax Style + Standard Words"; ObjectID = "r6f-b7-fJY"; */
-"r6f-b7-fJY.title" = "文档 + 语法风格 + 标准单词";
+/* Class = "NSTextFieldCell"; title = "Completion list includes:"; ObjectID = "dLj-Kh-KtX"; */
+"dLj-Kh-KtX.title" = "补全列表包括的单词来源:";  // FIXME: changed
+/* Class = "NSButtonCell"; title = "Words in document"; ObjectID = "EJZ-N6-54G"; */
+"EJZ-N6-54G.title" = "Words in document";  // FIXME: added
+/* Class = "NSButtonCell"; title = "Words defined in syntax style"; ObjectID = "1v9-7i-9RL"; */
+"1v9-7i-9RL.title" = "Words defined in syntax style";  // FIXME: added
+/* Class = "NSButtonCell"; title = "Standard words"; ObjectID = "c5j-0N-f2R"; */
+"c5j-0N-f2R.title" = "标准单词";

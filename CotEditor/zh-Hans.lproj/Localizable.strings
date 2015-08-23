@@ -259,6 +259,10 @@
 // Smart quotes/dashes
 " (on Mavericks and later)" = "（Mavericks 或更新版本）";
 
+// Hint message for the completion list
+"Completion can be performed manually with: %@ or %@" = "Completion can be performed manually with: %@ or %@";  // FIXME: added
+"Select at least one item to perform completion." = "Select at least one item to perform completion.";  // FIXME: added
+
 // Appearance pane
 "Duplicate “%@”" = "拷贝 “%@”";
 "Restore “%@”" = "还原 “%@”";

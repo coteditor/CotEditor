@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014 CotEditor Project
+ © 2014-2015 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -86,13 +86,11 @@
 /* Class = "NSButtonCell"; title = "Auto complete"; ObjectID = "J1B-wA-rdr"; */
 "J1B-wA-rdr.title" = "自動入力補完";
 
-/* Class = "NSTextFieldCell"; title = "Completion list includes words in:"; ObjectID = "dLj-Kh-KtX"; */
+/* Class = "NSTextFieldCell"; title = "Completion list includes:"; ObjectID = "dLj-Kh-KtX"; */
 "dLj-Kh-KtX.title" = "入力補完候補リストに含む単語：";
-/* Class = "NSButtonCell"; title = "Document only"; ObjectID = "689"; */
-"689.title" = "ファイル内からのみ";
-/* Class = "NSButtonCell"; title = "Syntax Style only"; ObjectID = "690"; */
-"690.title" = "シンタックススタイルからのみ";
-/* Class = "NSButtonCell"; title = "Document + Syntax Style"; ObjectID = "691"; */
-"691.title" = "ファイル + シンタックススタイルから";
-/* Class = "NSButtonCell"; title = "Document + Syntax Style + Standard Words"; ObjectID = "r6f-b7-fJY"; */
-"r6f-b7-fJY.title" = "ファイル + シンタックススタイル + 一般英単語から";
+/* Class = "NSButtonCell"; title = "Words in document"; ObjectID = "EJZ-N6-54G"; */
+"EJZ-N6-54G.title" = "書類に含まれる単語";
+/* Class = "NSButtonCell"; title = "Words defined in syntax style"; ObjectID = "1v9-7i-9RL"; */
+"1v9-7i-9RL.title" = "シンタックススタイルで定義された単語";
+/* Class = "NSButtonCell"; title = "Standard words"; ObjectID = "c5j-0N-f2R"; */
+"c5j-0N-f2R.title" = "一般英単語";
