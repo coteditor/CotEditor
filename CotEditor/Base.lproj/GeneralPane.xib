@@ -144,15 +144,15 @@
                     </buttonCell>
                     <cells>
                         <column>
-                            <buttonCell type="radio" title="Ignore" imagePosition="left" alignment="left" state="on" tag="1" inset="2" id="DnS-XJ-7RI">
+                            <buttonCell type="radio" title="Keep CotEditor's edition" imagePosition="left" alignment="left" state="on" tag="1" inset="2" id="DnS-XJ-7RI">
                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                 <font key="font" metaFont="system"/>
                             </buttonCell>
-                            <buttonCell type="radio" title="Notify and ask how to resolve" imagePosition="left" alignment="left" inset="2" id="1qS-Ay-sca">
+                            <buttonCell type="radio" title="Ask how to resolve" imagePosition="left" alignment="left" inset="2" id="1qS-Ay-sca">
                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                 <font key="font" metaFont="system"/>
                             </buttonCell>
-                            <buttonCell type="radio" title="Update automatically" imagePosition="left" alignment="left" inset="2" id="FWi-En-qeX">
+                            <buttonCell type="radio" title="Update to modified edition" imagePosition="left" alignment="left" inset="2" id="FWi-En-qeX">
                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                 <font key="font" metaFont="system"/>
                             </buttonCell>

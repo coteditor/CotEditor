@@ -51,12 +51,12 @@
 /* Class = "NSTextFieldCell"; title = "When document is modified by another application:"; ObjectID = "x4n-2n-I3p"; */
 "x4n-2n-I3p.title" = "当文档被其他应用更改时:";
 
-/* Class = "NSButtonCell"; title = "Ignore"; ObjectID = "DnS-XJ-7RI"; */
-"DnS-XJ-7RI.title" = "忽略";
-/* Class = "NSButtonCell"; title = "Notify and ask how to resolve"; ObjectID = "1qS-Ay-sca"; */
-"1qS-Ay-sca.title" = "通知并让我决定如何更新";
-/* Class = "NSButtonCell"; title = "Update automatically"; ObjectID = "FWi-En-qeX"; */
-"FWi-En-qeX.title" = "自动更新";
+/* Class = "NSButtonCell"; title = "Keep CotEditor's edition"; ObjectID = "DnS-XJ-7RI"; */
+"DnS-XJ-7RI.title" = "Keep CotEditor's edition";  // FIXME: changed
+/* Class = "NSButtonCell"; title = "Ask how to resolve"; ObjectID = "1qS-Ay-sca"; */
+"1qS-Ay-sca.title" = "通知并让我决定如何更新";  // FIXME: changed
+/* Class = "NSButtonCell"; title = "Update to modified edition"; ObjectID = "FWi-En-qeX"; */
+"FWi-En-qeX.title" = "Update to modified edition";  // FIXME: changed
 
 
 /* Class = "NSTextFieldCell"; title = "Software Updates:"; ObjectID = "geU-63-sAC"; */

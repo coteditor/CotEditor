@@ -100,13 +100,11 @@
 
 "Printed on %@" = "プリント：%@";
 
-"Keep CotEditor's Edition" = "CotEditor の編集内容を保持";
 "Update" = "更新";
-"The file has been modified by another process. There are also unsaved changes in CotEditor." = "ファイルは別のプロセスによって変更されました。CotEditor で加えた編集もまだ保存されていません。";
+"The file has been modified by another application. There are also unsaved changes in CotEditor." = "ファイルは別のアプリケーションによって変更されました。CotEditor で加えた編集もまだ保存されていません。";
 "Do you want to keep CotEditor's edition or update to the modified edition?" = "CotEditor での編集内容を保持しますか、それとも変更された内容に更新しますか？";
-"Keep Unchanged" = "未編集のままにする";
-"The file has been modified by another process." = "ファイルは別のプロセスによって変更されました。";
-"Do you want to keep unchanged or update to the modified edition?" = "未編集のままにしますか、それとも変更された内容に更新しますか？";
+"The file has been modified by another application." = "ファイルは別のアプリケーションによって変更されました。";
+"Keep CotEditor's Edition" = "CotEditor の編集内容を保持";
 
 
 /* MARK: CEPrintAccessoryViewController */

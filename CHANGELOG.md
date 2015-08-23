@@ -10,7 +10,7 @@ develop
 - [beta][non-AppStore ver.] Change to not check pre-release versions on default.
     - New pre-releases are always subject of the update check no matter the user setting if the current runnning CotEditor is a pre-release version.
 - Update word completion list setting in Edit pane in Preferences (The previous setting has been reset).
-- Tweak some Japanese localization.
+- Tweak some message terms.
 
 
 

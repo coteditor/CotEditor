@@ -99,13 +99,11 @@
 
 "Printed on %@" = "打印：%@";
 
-"Keep CotEditor's Edition" = "保留 CotEditor 编辑的内容";
 "Update" = "更新";
-"The file has been modified by another process. There are also unsaved changes in CotEditor." = "文件被其他进程更改，CotEditor 中进行的变更还没有进行保存。";
+"The file has been modified by another application. There are also unsaved changes in CotEditor." = "文件被其他进程更改，CotEditor 中进行的变更还没有进行保存。";  // FIXME: changed
 "Do you want to keep CotEditor's edition or update to the modified edition?" = "保留 CotEditor 的版本还是更新至被编辑过的版本？";
-"Keep Unchanged" = "保持不变";
-"The file has been modified by another process." = "文件在其他进程中被更改";
-"Do you want to keep unchanged or update to the modified edition?" = "保持不变还是更新到被更改后的版本？";
+"The file has been modified by another application." = "文件在其他进程中被更改";  // FIXME: changed
+"Keep CotEditor's Edition" = "保留 CotEditor 编辑的内容";
 
 
 /* MARK: CEPrintAccessoryViewController */

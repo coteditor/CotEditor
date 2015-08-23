@@ -48,14 +48,14 @@
 
 
 /* Class = "NSTextFieldCell"; title = "When document is modified by another application:"; ObjectID = "x4n-2n-I3p"; */
-"x4n-2n-I3p.title" = "書類がほかのアプリケーションによって更新されたとき：";
+"x4n-2n-I3p.title" = "書類がほかのアプリケーションによって変更されたとき：";
 
-/* Class = "NSButtonCell"; title = "Ignore"; ObjectID = "DnS-XJ-7RI"; */
-"DnS-XJ-7RI.title" = "なにもしない";
-/* Class = "NSButtonCell"; title = "Notify and ask how to resolve"; ObjectID = "1qS-Ay-sca"; */
-"1qS-Ay-sca.title" = "通知して解決方法を尋ねる";
-/* Class = "NSButtonCell"; title = "Update automatically"; ObjectID = "FWi-En-qeX"; */
-"FWi-En-qeX.title" = "更新";
+/* Class = "NSButtonCell"; title = "Keep CotEditor's edition"; ObjectID = "DnS-XJ-7RI"; */
+"DnS-XJ-7RI.title" = "CotEditor の編集内容を保持";
+/* Class = "NSButtonCell"; title = "Ask how to resolve"; ObjectID = "1qS-Ay-sca"; */
+"1qS-Ay-sca.title" = "解決方法を確認";
+/* Class = "NSButtonCell"; title = "Update to modified edition"; ObjectID = "FWi-En-qeX"; */
+"FWi-En-qeX.title" = "変更された内容に更新";
 
 
 /* Class = "NSTextFieldCell"; title = "Software Updates:"; ObjectID = "geU-63-sAC"; */

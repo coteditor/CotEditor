@@ -133,7 +133,7 @@
         ![defaults boolForKey:CEDefaultCompletesSyntaxWordsKey] &&
         ![defaults boolForKey:CEDefaultCompletesStandartWordsKey])
     {
-        message = [NSString stringWithFormat:@"⚠️ %@", NSLocalizedString(@"Select at least one item to perform completion.", nil)];
+        message = [NSString stringWithFormat:@"⚠️ %@", NSLocalizedString(@"Select at least one item to enable completion.", nil)];
     } else {
         message = [NSString stringWithFormat:NSLocalizedString(@"Completion can be performed manually with: %@ or %@", nil), @"Esc", @"⌘."];
     }

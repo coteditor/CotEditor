@@ -1677,22 +1677,18 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 {
     if (![self needsShowUpdateAlertWithBecomeKey]) { return; } // 表示フラグが立っていなければ、もどる
     
-    NSString *messageText, *informativeText, *defaultButton;
+    NSString *messageText;
     if ([self isDocumentEdited]) {
-        messageText = @"The file has been modified by another process. There are also unsaved changes in CotEditor.";
-        informativeText = @"Do you want to keep CotEditor's edition or update to the modified edition?";
-        defaultButton = @"Keep CotEditor's Edition";
+        messageText = @"The file has been modified by another application. There are also unsaved changes in CotEditor.";
     } else {
-        messageText = @"The file has been modified by another process.";
-        informativeText = @"Do you want to keep unchanged or update to the modified edition?";
-        defaultButton = @"Keep Unchanged";
+        messageText = @"The file has been modified by another application.";
         [self updateChangeCount:NSChangeDone]; // ダーティーフラグを立てる
     }
     
     NSAlert *alert = [[NSAlert alloc] init];
     [alert setMessageText:NSLocalizedString(messageText, nil)];
-    [alert setInformativeText:NSLocalizedString(informativeText, nil)];
-    [alert addButtonWithTitle:NSLocalizedString(defaultButton, nil)];
+    [alert setInformativeText:NSLocalizedString(@"Do you want to keep CotEditor's edition or update to the modified edition?", nil)];
+    [alert addButtonWithTitle:NSLocalizedString(@"Keep CotEditor's Edition", nil)];
     [alert addButtonWithTitle:NSLocalizedString(@"Update", nil)];
     
     // シートが表示中でなければ、表示
