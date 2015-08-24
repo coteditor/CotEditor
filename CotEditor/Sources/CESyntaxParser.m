@@ -433,7 +433,7 @@ static CGFloat kPerCompoIncrement;
     
     NSUInteger bufferLength = [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultColoringRangeBufferLengthKey];
     NSRange wholeRange = NSMakeRange(0, [string length]);
-    NSRange coloringRange = range;
+    NSRange coloringRange;
     
     // 文字列が十分小さい時は全文カラーリングをする
     if (wholeRange.length <= bufferLength) {
