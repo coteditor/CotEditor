@@ -5,6 +5,12 @@ Change Log
 develop
 --------------------------
 
+### New Features
+
+- Add new normalization form “NFKC Casefold” to the Unicode normalization action in Utility menu (Thanks to doraTeX!)
+    - It is also added to the AppleScript terms.
+
+
 ### Additions/Changes
 
 - [beta][non-AppStore ver.] Change to not check pre-release versions on default.
