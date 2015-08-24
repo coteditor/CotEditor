@@ -353,6 +353,9 @@
         case CENFKD:
             [textView normalizeUnicodeWithNFKD:command];
             break;
+        case CENFKCCF:
+            [textView normalizeUnicodeWithNFKCCF:command];
+            break;
     }
 }
 

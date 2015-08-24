@@ -53,6 +53,7 @@ typedef NS_ENUM(NSUInteger, CEUNFType) {
     CENFD = 'cNfd',
     CENFKC = 'cNkc',
     CENFKD = 'cNkd',
+    CENFKCCF = 'cNcf',
 };
 
 
