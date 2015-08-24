@@ -63,15 +63,21 @@ h3 {
 	line-height: 1.1;
 }
 
-:not(nav) > ol:not(.nostyle),
-:not(nav) > ul:not(.nostyle),
-:not(nav) > pre:not(.nostyle) {
+ol,
+ul,
+pre {
 	padding: 0.6em 2.5em 0.2em;
 	margin: 0.4em 0;
 	border: 1px solid hsl(213,25%,80%);
 	background-color: hsl(213,25%,96%);
 	border-radius: 3px;
 	clear: both;
+}
+ol.nostyle,
+ul.nostyle,
+pre.nostyle {
+	border: none;
+	background: none;
 }
 pre {
 	padding: 0.4em 1.0em;
