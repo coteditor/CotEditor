@@ -52,11 +52,11 @@
 "x4n-2n-I3p.title" = "当文档被其他应用更改时:";
 
 /* Class = "NSButtonCell"; title = "Keep CotEditor's edition"; ObjectID = "DnS-XJ-7RI"; */
-"DnS-XJ-7RI.title" = "Keep CotEditor's edition";  // FIXME: changed
+"DnS-XJ-7RI.title" = "保留 CotEditor 的版本";
 /* Class = "NSButtonCell"; title = "Ask how to resolve"; ObjectID = "1qS-Ay-sca"; */
-"1qS-Ay-sca.title" = "通知并让我决定如何更新";  // FIXME: changed
+"1qS-Ay-sca.title" = "询问如何更新";
 /* Class = "NSButtonCell"; title = "Update to modified edition"; ObjectID = "FWi-En-qeX"; */
-"FWi-En-qeX.title" = "Update to modified edition";  // FIXME: changed
+"FWi-En-qeX.title" = "更新到被更改的版本";
 
 
 /* Class = "NSTextFieldCell"; title = "Software Updates:"; ObjectID = "geU-63-sAC"; */
@@ -66,7 +66,7 @@
 "3423.title" = "自动检查更新";
 
 /* Class = "NSButtonCell"; title = "Include pre-releases"; ObjectID = "4aT-ka-sbv"; */
-"4aT-ka-sbv.title" = "当预发布版本可用即进行升级";  // FIXME: changed the term
+"4aT-ka-sbv.title" = "包含预发布版本";
 
 /* Class = "NSButtonCell"; title = "Regardless of this setting, new pre-releases are always included while using a pre-release."; ObjectID = "chR-VY-cuI"; */
-"chR-VY-cuI.title" = "Regardless of this setting, new pre-releases are always included while using a pre-release.";  // FIXME: added
+"chR-VY-cuI.title" = "在预发布版本中，无论该选项如何设定，总是会更新到新的预发布版本。";
