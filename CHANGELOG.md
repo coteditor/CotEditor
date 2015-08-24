@@ -14,6 +14,11 @@ develop
 - Update documents.
 
 
+### Fixes
+
+- [beta] Fix an issue the strings that were inserted via script or tools could be styled wrong.
+
+
 
 2.2.0-beta
 --------------------------

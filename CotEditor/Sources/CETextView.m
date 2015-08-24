@@ -827,7 +827,7 @@ static NSPoint kTextContainerOrigin;
         
         // insert drop text to view
         if ([self shouldChangeTextInRange:[self selectedRange] replacementString:replacementString]) {
-            [[self textStorage] replaceCharactersInRange:[self selectedRange] withString:replacementString];
+            [self replaceCharactersInRange:[self selectedRange] withString:replacementString];
             [self didChangeText];
             return YES;
         }
@@ -959,7 +959,7 @@ static NSPoint kTextContainerOrigin;
     NSRange replacementRange = [self selectedRange];
     
     if ([self shouldChangeTextInRange:replacementRange replacementString:string]) {
-        [[self textStorage] replaceCharactersInRange:replacementRange withString:string];
+        [self replaceCharactersInRange:replacementRange withString:string];
         [self setSelectedRange:NSMakeRange(replacementRange.location, [string length])];
         
         NSString *actionName = (replacementRange.length > 0) ? @"Replace Text" : @"Insert Text";
@@ -980,7 +980,7 @@ static NSPoint kTextContainerOrigin;
     NSRange replacementRange = NSMakeRange(NSMaxRange([self selectedRange]), 0);
     
     if ([self shouldChangeTextInRange:replacementRange replacementString:string]) {
-        [[self textStorage] replaceCharactersInRange:replacementRange withString:string];
+        [self replaceCharactersInRange:replacementRange withString:string];
         [self setSelectedRange:NSMakeRange(replacementRange.location, [string length])];
         
         [[self undoManager] setActionName:NSLocalizedString(@"Insert Text", nil)];
@@ -1000,7 +1000,7 @@ static NSPoint kTextContainerOrigin;
     NSRange replacementRange = NSMakeRange(0, [[self string] length]);
     
     if ([self shouldChangeTextInRange:replacementRange replacementString:string]) {
-        [[self textStorage] replaceCharactersInRange:replacementRange withString:string];
+        [self replaceCharactersInRange:replacementRange withString:string];
         [self setSelectedRange:NSMakeRange(replacementRange.location, [string length])];
         
         [[self undoManager] setActionName:NSLocalizedString(@"Replace Text", nil)];
@@ -1020,7 +1020,7 @@ static NSPoint kTextContainerOrigin;
     NSRange replacementRange = NSMakeRange([[self string] length], 0);
     
     if ([self shouldChangeTextInRange:replacementRange replacementString:string]) {
-        [[self textStorage] replaceCharactersInRange:replacementRange withString:string];
+        [self replaceCharactersInRange:replacementRange withString:string];
         [self setSelectedRange:NSMakeRange(replacementRange.location, [string length])];
         
         [[self undoManager] setActionName:NSLocalizedString(@"Insert Text", nil)];
@@ -1436,7 +1436,7 @@ static NSPoint kTextContainerOrigin;
         NSString *string = texts[patternNumber];
         
         if ([self shouldChangeTextInRange:[self selectedRange] replacementString:string]) {
-            [[self textStorage] replaceCharactersInRange:[self selectedRange] withString:string];
+            [self replaceCharactersInRange:[self selectedRange] withString:string];
             [[self undoManager] setActionName:NSLocalizedString(@"Insert Custom Text", nil)];
             [self didChangeText];
             [self scrollRangeToVisible:[self selectedRange]];

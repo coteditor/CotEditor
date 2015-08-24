@@ -111,7 +111,7 @@ static const NSRegularExpression *unicodeRegex;
     NSString *character = [[NSString alloc] initWithCharacters:chars length:length];
     
     if ([textView shouldChangeTextInRange:[textView selectedRange] replacementString:character]) {
-        [[textView textStorage] replaceCharactersInRange:[textView selectedRange] withString:character];
+        [textView replaceCharactersInRange:[textView selectedRange] withString:character];
         [textView didChangeText];
         [[self window] performClose:sender];
         [self setUnicode:@""];

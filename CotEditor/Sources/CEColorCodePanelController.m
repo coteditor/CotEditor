@@ -160,7 +160,7 @@
     NSTextView *textView = [[[self documentWindowController] editor] focusedTextView];
     
     if ([textView shouldChangeTextInRange:[textView selectedRange] replacementString:[self colorCode]]) {
-        [[textView textStorage] replaceCharactersInRange:[textView selectedRange] withString:[self colorCode]];
+        [textView replaceCharactersInRange:[textView selectedRange] withString:[self colorCode]];
         [[textView undoManager] setActionName:NSLocalizedString(@"Insert Color Code", nil)];
         [textView didChangeText];
         [textView scrollRangeToVisible:[textView selectedRange]];

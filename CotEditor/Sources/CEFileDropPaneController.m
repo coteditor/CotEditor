@@ -185,7 +185,7 @@
     
     [[[self view] window] makeFirstResponder:textView];
     if ([textView shouldChangeTextInRange:[textView selectedRange] replacementString:title]) {
-        [[textView textStorage] replaceCharactersInRange:[textView selectedRange] withString:title];
+        [textView replaceCharactersInRange:[textView selectedRange] withString:title];
         [textView didChangeText];
     }
 }
