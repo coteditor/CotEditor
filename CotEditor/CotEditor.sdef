@@ -33,7 +33,7 @@
             <enumerator name="NFD" code="cNfd"/>
             <enumerator name="NFKC" code="cNkc"/>
             <enumerator name="NFKD" code="cNkd"/>
-            <enumerator name="NFKC_Casefold" code="cNcf"/>
+            <enumerator name="NFKC Casefold" code="cNcf"/>
         </enumeration>
         
         <enumeration name="character width type" code="rWct">

@@ -157,7 +157,7 @@
 "NFC" = "NFC";
 "NFKD" = "NFKD";
 "NFKC" = "NFKC";
-"NFKC_Casefold" = "NFKC_Casefold";
+"NFKC Casefold" = "NFKC Casefold";
 "Inspect Character" = "文字情報を表示";
 
 // Menu items

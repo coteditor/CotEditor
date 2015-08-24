@@ -2253,7 +2253,7 @@ static NSPoint kTextContainerOrigin;
 - (IBAction)normalizeUnicodeWithNFKCCF:(nullable id)sender
 // ------------------------------------------------------
 {
-    [self transformSelectionWithActionName:@"NFKC_Casefold"
+    [self transformSelectionWithActionName:@"NFKC Casefold"
                           operationHandler:^NSString *(NSString *substring)
      {
          UErrorCode error = U_ZERO_ERROR;
