@@ -2451,29 +2451,6 @@
 				CODE_SIGN_ENTITLEMENTS = CotEditor.entitlements;
 				CODE_SIGN_IDENTITY = "Developer ID Application";
 				INFOPLIST_FILE = "CotEditor-Info.plist";
-				OTHER_CFLAGS = (
-					"-DHAVE_CONFIG_H",
-					"$(inherited)",
-					"-isystem",
-					"\"${PODS_ROOT}/Headers/Public\"",
-					"-isystem",
-					"\"${PODS_ROOT}/Headers/Public/EDSemver\"",
-					"-isystem",
-					"\"${PODS_ROOT}/Headers/Public/LibYAML\"",
-					"-isystem",
-					"\"${PODS_ROOT}/Headers/Public/OgreKit\"",
-					"-isystem",
-					"\"${PODS_ROOT}/Headers/Public/OgreKit/OgreKit\"",
-					"-isystem",
-					"\"${PODS_ROOT}/Headers/Public/Sparkle\"",
-					"-isystem",
-					"\"${PODS_ROOT}/Headers/Public/Sparkle/Sparkle\"",
-					"-isystem",
-					"\"${PODS_ROOT}/Headers/Public/WFColorCode\"",
-					"-isystem",
-					"\"${PODS_ROOT}/Headers/Public/YAML-Framework\"",
-					"-DU_DISABLE_RENAMING=1",
-				);
 				OTHER_CODE_SIGN_FLAGS = "--deep";
 				PRODUCT_BUNDLE_IDENTIFIER = com.coteditor.CotEditor;
 				PRODUCT_NAME = CotEditor;
@@ -2488,29 +2465,6 @@
 				CODE_SIGN_ENTITLEMENTS = CotEditor.entitlements;
 				CODE_SIGN_IDENTITY = "Developer ID Application";
 				INFOPLIST_FILE = "CotEditor-Info.plist";
-				OTHER_CFLAGS = (
-					"-DHAVE_CONFIG_H",
-					"$(inherited)",
-					"-isystem",
-					"\"${PODS_ROOT}/Headers/Public\"",
-					"-isystem",
-					"\"${PODS_ROOT}/Headers/Public/EDSemver\"",
-					"-isystem",
-					"\"${PODS_ROOT}/Headers/Public/LibYAML\"",
-					"-isystem",
-					"\"${PODS_ROOT}/Headers/Public/OgreKit\"",
-					"-isystem",
-					"\"${PODS_ROOT}/Headers/Public/OgreKit/OgreKit\"",
-					"-isystem",
-					"\"${PODS_ROOT}/Headers/Public/Sparkle\"",
-					"-isystem",
-					"\"${PODS_ROOT}/Headers/Public/Sparkle/Sparkle\"",
-					"-isystem",
-					"\"${PODS_ROOT}/Headers/Public/WFColorCode\"",
-					"-isystem",
-					"\"${PODS_ROOT}/Headers/Public/YAML-Framework\"",
-					"-DU_DISABLE_RENAMING=1",
-				);
 				OTHER_CODE_SIGN_FLAGS = "--deep";
 				PRODUCT_BUNDLE_IDENTIFIER = com.coteditor.CotEditor;
 				PRODUCT_NAME = CotEditor;
@@ -2533,6 +2487,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CFLAGS = "-DU_DISABLE_RENAMING=1";
 				SDKROOT = macosx;
 			};
 			name = Debug;
@@ -2551,6 +2506,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				OTHER_CFLAGS = "-DU_DISABLE_RENAMING=1";
 				SDKROOT = macosx;
 			};
 			name = Release;
