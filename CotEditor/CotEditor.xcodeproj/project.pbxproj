@@ -309,6 +309,8 @@
 		2AFFB71B18D7F18300118477 /* CEGoToSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AFFB71918D7F18300118477 /* CEGoToSheetController.m */; };
 		2AFFB71D18D7F22E00118477 /* GoToSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2AFFB71F18D7F22E00118477 /* GoToSheet.xib */; };
 		2AFFB72818D8C7DE00118477 /* OpenDocumentAccessory.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2AFFB72A18D8C7DE00118477 /* OpenDocumentAccessory.xib */; };
+		34D68F501B8B1158009CDA4A /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 34D68F4F1B8B1158009CDA4A /* libicucore.dylib */; };
+		34D68F511B8B1163009CDA4A /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 34D68F4F1B8B1158009CDA4A /* libicucore.dylib */; };
 		6C6DAE3E13833C0E007F2326 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 6C6DAE3D13833C0E007F2326 /* dsa_pub.pem */; };
 		8C081B4B07D0A85A0060191A /* GetInfo.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 8C081B4A07D0A85A0060191A /* GetInfo.tiff */; };
 		8C28CD2E081101A300733DA7 /* ConsolePanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C28CD2C081101A300733DA7 /* ConsolePanel.xib */; };
@@ -700,6 +702,26 @@
 		2AFFB71518D7DCC000118477 /* CEPanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEPanelController.m; sourceTree = "<group>"; };
 		2AFFB71818D7F18200118477 /* CEGoToSheetController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CEGoToSheetController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		2AFFB71918D7F18300118477 /* CEGoToSheetController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CEGoToSheetController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		34D68F3C1B8B1115009CDA4A /* localpointer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = localpointer.h; sourceTree = "<group>"; };
+		34D68F3D1B8B1115009CDA4A /* platform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = platform.h; sourceTree = "<group>"; };
+		34D68F3E1B8B1115009CDA4A /* ptypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ptypes.h; sourceTree = "<group>"; };
+		34D68F3F1B8B1115009CDA4A /* putil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = putil.h; sourceTree = "<group>"; };
+		34D68F401B8B1115009CDA4A /* uchar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = uchar.h; sourceTree = "<group>"; };
+		34D68F411B8B1115009CDA4A /* uconfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = uconfig.h; sourceTree = "<group>"; };
+		34D68F421B8B1115009CDA4A /* uiter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = uiter.h; sourceTree = "<group>"; };
+		34D68F431B8B1115009CDA4A /* umachine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = umachine.h; sourceTree = "<group>"; };
+		34D68F441B8B1115009CDA4A /* unorm2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = unorm2.h; sourceTree = "<group>"; };
+		34D68F451B8B1115009CDA4A /* urename.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = urename.h; sourceTree = "<group>"; };
+		34D68F461B8B1115009CDA4A /* uset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = uset.h; sourceTree = "<group>"; };
+		34D68F471B8B1115009CDA4A /* ustring.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ustring.h; sourceTree = "<group>"; };
+		34D68F481B8B1115009CDA4A /* utf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utf.h; sourceTree = "<group>"; };
+		34D68F491B8B1115009CDA4A /* utf16.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utf16.h; sourceTree = "<group>"; };
+		34D68F4A1B8B1115009CDA4A /* utf8.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utf8.h; sourceTree = "<group>"; };
+		34D68F4B1B8B1115009CDA4A /* utf_old.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utf_old.h; sourceTree = "<group>"; };
+		34D68F4C1B8B1115009CDA4A /* utypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utypes.h; sourceTree = "<group>"; };
+		34D68F4D1B8B1115009CDA4A /* uvernum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = uvernum.h; sourceTree = "<group>"; };
+		34D68F4E1B8B1115009CDA4A /* uversion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = uversion.h; sourceTree = "<group>"; };
+		34D68F4F1B8B1158009CDA4A /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		4B7998171A1F1BCD0088D167 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = "zh-Hans"; path = "zh-Hans.lproj/AppleScript.rtf"; sourceTree = "<group>"; };
 		4B7998181A1F1BCD0088D167 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = "zh-Hans"; path = "zh-Hans.lproj/ShellScript.rtf"; sourceTree = "<group>"; };
 		4B7998191A1F1BCD0088D167 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -763,6 +785,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				34D68F511B8B1163009CDA4A /* libicucore.dylib in Frameworks */,
 				D3F0D0D055B0931687B33C98 /* libPods-appstore.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -771,6 +794,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				34D68F501B8B1158009CDA4A /* libicucore.dylib in Frameworks */,
 				BED9FB377321352F7A748759 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1099,6 +1123,7 @@
 				2A0E160B18E7240C00AAD872 /* Print */,
 				2A15832C18E3A29A00601026 /* Views */,
 				2A15832B18E3A25C00601026 /* Utilities */,
+				34D68F3B1B8B1115009CDA4A /* ICU headers */,
 				25859E90076D88ED0020F779 /* Constants.h */,
 				2A149DD619033CBB00A9D6EF /* Constants.m */,
 			);
@@ -1148,6 +1173,7 @@
 		2A37F4C3FDCFA73011CA2CEA /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				34D68F4F1B8B1158009CDA4A /* libicucore.dylib */,
 				F3504B3BB02D4DBA8EA50C0E /* libPods.a */,
 				DD42F3AFDE3081DC5D669D51 /* libPods-appstore.a */,
 			);
@@ -1331,6 +1357,33 @@
 				2AFFB71918D7F18300118477 /* CEGoToSheetController.m */,
 			);
 			name = "Panel Controllers";
+			sourceTree = "<group>";
+		};
+		34D68F3B1B8B1115009CDA4A /* ICU headers */ = {
+			isa = PBXGroup;
+			children = (
+				34D68F3C1B8B1115009CDA4A /* localpointer.h */,
+				34D68F3D1B8B1115009CDA4A /* platform.h */,
+				34D68F3E1B8B1115009CDA4A /* ptypes.h */,
+				34D68F3F1B8B1115009CDA4A /* putil.h */,
+				34D68F401B8B1115009CDA4A /* uchar.h */,
+				34D68F411B8B1115009CDA4A /* uconfig.h */,
+				34D68F421B8B1115009CDA4A /* uiter.h */,
+				34D68F431B8B1115009CDA4A /* umachine.h */,
+				34D68F441B8B1115009CDA4A /* unorm2.h */,
+				34D68F451B8B1115009CDA4A /* urename.h */,
+				34D68F461B8B1115009CDA4A /* uset.h */,
+				34D68F471B8B1115009CDA4A /* ustring.h */,
+				34D68F481B8B1115009CDA4A /* utf.h */,
+				34D68F491B8B1115009CDA4A /* utf16.h */,
+				34D68F4A1B8B1115009CDA4A /* utf8.h */,
+				34D68F4B1B8B1115009CDA4A /* utf_old.h */,
+				34D68F4C1B8B1115009CDA4A /* utypes.h */,
+				34D68F4D1B8B1115009CDA4A /* uvernum.h */,
+				34D68F4E1B8B1115009CDA4A /* uversion.h */,
+			);
+			name = "ICU headers";
+			path = icu;
 			sourceTree = "<group>";
 		};
 		8CB0122007CA0CCD00221EDC /* Toolbar Icons */ = {
@@ -2434,6 +2487,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CFLAGS = "-DU_DISABLE_RENAMING=1";
 				SDKROOT = macosx;
 			};
 			name = Debug;
@@ -2452,6 +2506,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				OTHER_CFLAGS = "-DU_DISABLE_RENAMING=1";
 				SDKROOT = macosx;
 			};
 			name = Release;

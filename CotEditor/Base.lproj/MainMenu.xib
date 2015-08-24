@@ -844,6 +844,11 @@
                                                 <action selector="normalizeUnicodeWithNFKC:" target="-1" id="687"/>
                                             </connections>
                                         </menuItem>
+                                        <menuItem title="NFKC_Casefold" tag="4" id="zuR-3K-9fs">
+                                            <connections>
+                                                <action selector="normalizeUnicodeWithNFKCCF:" target="-1" id="LyD-Xf-gVC"/>
+                                            </connections>
+                                        </menuItem>
                                     </items>
                                 </menu>
                             </menuItem>

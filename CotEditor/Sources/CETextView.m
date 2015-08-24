@@ -40,6 +40,8 @@
 #import "CEScriptManager.h"
 #import "CEWindow.h"
 #import "NSString+JapaneseTransform.h"
+#import "unorm2.h"
+#import "ustring.h"
 #import "Constants.h"
 
 
@@ -906,7 +908,8 @@ static NSPoint kTextContainerOrigin;
         ([menuItem action] == @selector(normalizeUnicodeWithNFD:)) ||
         ([menuItem action] == @selector(normalizeUnicodeWithNFC:)) ||
         ([menuItem action] == @selector(normalizeUnicodeWithNFKD:)) ||
-        ([menuItem action] == @selector(normalizeUnicodeWithNFKC:)))
+        ([menuItem action] == @selector(normalizeUnicodeWithNFKC:)) ||
+        ([menuItem action] == @selector(normalizeUnicodeWithNFKCCF:)))
     {
         return ([self selectedRange].length > 0);
         // （カラーコード編集メニューは常に有効）
@@ -2242,6 +2245,61 @@ static NSPoint kTextContainerOrigin;
                           operationHandler:^NSString *(NSString *substring)
      {
          return [substring precomposedStringWithCompatibilityMapping];
+     }];
+}
+
+// ------------------------------------------------------
+/// Unicode normalization (NFKC_Casefold)
+- (IBAction)normalizeUnicodeWithNFKCCF:(nullable id)sender
+// ------------------------------------------------------
+{
+    [self transformSelectionWithActionName:@"NFKC_Casefold"
+                          operationHandler:^NSString *(NSString *substring)
+     {
+         UErrorCode e = U_ZERO_ERROR;
+         
+         const UNormalizer2 *normalizer = unorm2_getInstance(NULL, "nfkc_cf", UNORM2_COMPOSE, &e);
+         
+         if (U_FAILURE(e)) {
+             NSLog(@"unorm2_getInstance failed - %s", u_errorName(e));
+             return substring;
+         }
+         
+         const char *utf8_src = [substring UTF8String];
+         unsigned long length = strlen(utf8_src) * 256;
+         
+         UChar *utf16_src = (UChar*)malloc(sizeof(UChar) * length);
+         u_strFromUTF8(utf16_src, length, NULL, utf8_src, -1, &e);
+         
+         if (U_FAILURE(e)) {
+             NSLog(@"u_strFromUTF8 failed - %s", u_errorName(e));
+             free(utf16_src);
+             return substring;
+         }
+         
+         UChar *utf16_dest = (UChar*)malloc(sizeof(UChar) * length);
+         unorm2_normalize(normalizer, utf16_src, -1, utf16_dest, length, &e);
+         free(utf16_src);
+         
+         if (U_FAILURE(e)) {
+             NSLog(@"unorm2_normalize failed - %s", u_errorName(e));
+             free(utf16_dest);
+             return substring;
+         }
+         
+         char *utf8_dest = (char*)malloc(sizeof(char) * length);
+         u_strToUTF8(utf8_dest, length, NULL, utf16_dest, -1, &e);
+         free(utf16_dest);
+         
+         if (U_FAILURE(e)) {
+             NSLog(@"u_strToUTF8 failed - %s", u_errorName(e));
+             free(utf8_dest);
+             return substring;
+         }
+         
+         NSString *result = [NSString stringWithUTF8String:utf8_dest];
+         free(utf8_dest);
+         return result;
      }];
 }
 
