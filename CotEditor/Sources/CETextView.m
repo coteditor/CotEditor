@@ -40,8 +40,7 @@
 #import "CEScriptManager.h"
 #import "CEWindow.h"
 #import "NSString+JapaneseTransform.h"
-#import "icu/unorm2.h"
-#import "icu/ustring.h"
+#import "NSString+Normalization.h"
 #import "Constants.h"
 
 
@@ -2256,50 +2255,7 @@ static NSPoint kTextContainerOrigin;
     [self transformSelectionWithActionName:@"NFKC Casefold"
                           operationHandler:^NSString *(NSString *substring)
      {
-         UErrorCode error = U_ZERO_ERROR;
-         
-         const UNormalizer2 *normalizer = unorm2_getInstance(NULL, "nfkc_cf", UNORM2_COMPOSE, &error);
-         
-         if (U_FAILURE(error)) {
-             NSLog(@"unorm2_getInstance failed - %s", u_errorName(error));
-             return substring;
-         }
-         
-         const char *utf8_src = [substring UTF8String];
-         unsigned long length = strlen(utf8_src) * 256;
-         
-         UChar *utf16_src = (UChar*)malloc(sizeof(UChar) * length);
-         u_strFromUTF8(utf16_src, length, NULL, utf8_src, -1, &error);
-         
-         if (U_FAILURE(error)) {
-             NSLog(@"u_strFromUTF8 failed - %s", u_errorName(error));
-             free(utf16_src);
-             return substring;
-         }
-         
-         UChar *utf16_dest = (UChar*)malloc(sizeof(UChar) * length);
-         unorm2_normalize(normalizer, utf16_src, -1, utf16_dest, length, &error);
-         free(utf16_src);
-         
-         if (U_FAILURE(error)) {
-             NSLog(@"unorm2_normalize failed - %s", u_errorName(error));
-             free(utf16_dest);
-             return substring;
-         }
-         
-         char *utf8_dest = (char*)malloc(sizeof(char) * length);
-         u_strToUTF8(utf8_dest, length, NULL, utf16_dest, -1, &error);
-         free(utf16_dest);
-         
-         if (U_FAILURE(error)) {
-             NSLog(@"u_strToUTF8 failed - %s", u_errorName(error));
-             free(utf8_dest);
-             return substring;
-         }
-         
-         NSString *result = [NSString stringWithUTF8String:utf8_dest];
-         free(utf8_dest);
-         return result;
+         return [substring precomposedStringWithCompatibilityMappingWithCasefold];
      }];
 }
 

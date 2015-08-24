@@ -274,6 +274,8 @@
 		2A84C7C21A48F3150013EE83 /* CEPreferencesWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A84C7C11A48F3150013EE83 /* CEPreferencesWindow.m */; };
 		2A8663DD18C9F6B700A6F9CC /* NSData+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A8663DC18C9F6B700A6F9CC /* NSData+MD5.m */; };
 		2A8711681986DAEC009FA1C0 /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A8711671986DAEC009FA1C0 /* NSString+MD5.m */; };
+		2A88A7901B8B87C90055B9AE /* NSString+Normalization.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A88A78F1B8B87C90055B9AE /* NSString+Normalization.m */; };
+		2A88A7911B8B899F0055B9AE /* NSString+Normalization.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A88A78F1B8B87C90055B9AE /* NSString+Normalization.m */; };
 		2A94A45A18D08D52009FA90D /* NSWindow+ScriptingSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A94A45918D08D52009FA90D /* NSWindow+ScriptingSupport.m */; };
 		2A94A45E18D0B562009FA90D /* CEOpacityPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A94A45C18D0B562009FA90D /* CEOpacityPanelController.m */; };
 		2A961C5218FC699E002076B6 /* AppleScript.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A961C4718FC699E002076B6 /* AppleScript.rtf */; };
@@ -552,6 +554,8 @@
 		2A8663DC18C9F6B700A6F9CC /* NSData+MD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+MD5.m"; sourceTree = "<group>"; };
 		2A8711661986DAEC009FA1C0 /* NSString+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MD5.h"; sourceTree = "<group>"; };
 		2A8711671986DAEC009FA1C0 /* NSString+MD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MD5.m"; sourceTree = "<group>"; };
+		2A88A78E1B8B87C90055B9AE /* NSString+Normalization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Normalization.h"; sourceTree = "<group>"; };
+		2A88A78F1B8B87C90055B9AE /* NSString+Normalization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Normalization.m"; sourceTree = "<group>"; };
 		2A94A45818D08D51009FA90D /* NSWindow+ScriptingSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSWindow+ScriptingSupport.h"; sourceTree = "<group>"; };
 		2A94A45918D08D52009FA90D /* NSWindow+ScriptingSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSWindow+ScriptingSupport.m"; sourceTree = "<group>"; };
 		2A94A45B18D0B562009FA90D /* CEOpacityPanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEOpacityPanelController.h; sourceTree = "<group>"; };
@@ -994,6 +998,8 @@
 				2AB432731915D6AA00835004 /* NSString+ComposedCharacter.m */,
 				2A2BDF0B198A899E0029848B /* NSString+JapaneseTransform.h */,
 				2A2BDF0C198A899E0029848B /* NSString+JapaneseTransform.m */,
+				2A88A78E1B8B87C90055B9AE /* NSString+Normalization.h */,
+				2A88A78F1B8B87C90055B9AE /* NSString+Normalization.m */,
 				2AD9625D1B53496500D46C3A /* NSString+Sandboxing.h */,
 				2AD9625E1B53496500D46C3A /* NSString+Sandboxing.m */,
 				2A1068C11A745FCE001DB9AA /* NSURL+Xattr.h */,
@@ -1859,6 +1865,7 @@
 				2A6F0DF41B5500E100C2D03C /* CEUtils.m in Sources */,
 				2A6F0DF51B5500E100C2D03C /* NSWindow+ScriptingSupport.m in Sources */,
 				2A6F0DF61B5500E100C2D03C /* NSString+ComposedCharacter.m in Sources */,
+				2A88A7911B8B899F0055B9AE /* NSString+Normalization.m in Sources */,
 				2A6F0DF71B5500E100C2D03C /* NSString+JapaneseTransform.m in Sources */,
 				2A6F0DF81B5500E100C2D03C /* NSString+MD5.m in Sources */,
 				2A6F0DF91B5500E100C2D03C /* NSData+MD5.m in Sources */,
@@ -1909,6 +1916,7 @@
 				2A49861F1A67CC7100172797 /* CEEditorScrollView.m in Sources */,
 				2A84C7C21A48F3150013EE83 /* CEPreferencesWindow.m in Sources */,
 				2A94A45E18D0B562009FA90D /* CEOpacityPanelController.m in Sources */,
+				2A88A7901B8B87C90055B9AE /* NSString+Normalization.m in Sources */,
 				2A15833518E3B83F00601026 /* CEConsolePanelController.m in Sources */,
 				2A5B998718D61421009C2F4F /* CELineHightPanelController.m in Sources */,
 				2A586A1619A4FA9D0053F5E3 /* CEKeyBindingSheetController.m in Sources */,
