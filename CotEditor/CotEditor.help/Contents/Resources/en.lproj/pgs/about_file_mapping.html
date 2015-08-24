@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+<html lang="en" xml:lang="en">
+
+<head>
+	<meta charset="UTF-8"/>
+	<meta name="keywords" content="syntax style, file mapping, extension, shebang, interpreter"/>
+	<link rel="start" href="../CotEditorHelp.html"/>
+	<link rel="index" href="../xpgs/xall.html"/>
+	<link rel="stylesheet" href="../../Shared/sty/standard.css"/>
+	<title>Syntax Style File Mapping</title>
+</head>
+
+<body>
+<nav><ul>
+	<li><a href="../CotEditorHelp.html">CotEditor Help</a></li>
+</ul></nav>
+
+
+<h1>Syntax style file mapping</h1>
+
+<p>Opening files, CotEditor detects the document type and applies the corresponding syntax style automatically.</p>
+
+<p>The “File Mapping” definitions in each sytnax style are used for this detection.</p>
+
+<h2>Priority order of file mapping</h2>
+
+<p>CotEditor detects the corresponding syntax style in the following order:</p>
+
+<ol class="nostyle">
+	<li>File extension<ul>
+		<li>Try determining syntax style from the file extension.</li>
+		<li>e.g.: .html → HTML</li>
+		<li>e.g.: .py → Python</li>
+	</ul></li>
+	<li>File name<ul>
+		<li>When there is no syntax style in which the find file extension is defined or the file name doesn't have an extension, then try determining syntax style from the whole file name.</li>
+		<li>e.g.: .htaccess → Apache</li>
+		<li>e.g.: makefile → Makefile</li>
+	</ul></li>
+	<li>Shebang in the first line of the document<ul>
+		<li>When there is no corresponding syntax style for the extension and the file name, and if the first line of the document content is a shebang, then try determining syntax style from the shebang. In this trial, the interpreter names which is defined in the sytnax styles are used. The interpreter can be either the last part of the path jsut after <code>#!</code> or the next term to the path if the path targets <code>env</code>.</li>
+		<li>e.g.: <code>#!/usr/bin/perl</code> → Perl (interpreter: <code>perl</code>)</li>
+		<li>e.g.: <code>#!/usr/bin/env python3</code> → Python (interpreter: <code>python3</code>)</li>
+	</ul></li>
+</ol>
+
+<p>When there are multiple syntax styles in the same level like the file extension level or the file name level, user custom sytles are preffered than the bundled styles. And yet, if there are mulitple corresponding styles, the first found style will be applied automatically.</p>
+
+<h2>File Mapping Conflicts</h2>
+
+<p>There is no conflicts among the bundled syntax styles. However, if user added their custom styles or modified the bundled styles, file mapping can conflict. You can see whether the mapping conflict exists from the “Show File Mapping Conflict…” menu item in the Format pane in the Preferences. If the menu item is gray-out, it means: there is no conflict.</p>
+
+<p>You can just leave the file mapping conflicts as long as you can open files with your expected syntax style. There is no side issue.</p>
+
+
+
+<section id="cf">
+<h2>See also</h2>
+<ul>
+	<li><a href="../pgs/howto_customize_syntaxstyle.html">About syntax styles</a></li>
+	<li><a href="../pgs/pref_format.html">Format preferences</a></li>
+</ul>
+</section>
+
+</body>
+</html>
