@@ -14,7 +14,6 @@ def shared_pods
         :git => 'https://github.com/coteditor/YAML.framework.git',
         :branch => 'coteditor-mod'
     pod 'WFColorCode'
-    pod 'EDSemver'
 end
 
 # non-AppStore target
