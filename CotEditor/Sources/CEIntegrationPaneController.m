@@ -101,6 +101,17 @@ static const NSURL *kPreferredLinkTargetURL;
 }
 
 
+// ------------------------------------------------------
+/// update warnings before view appears
+- (void)viewWillAppear
+// ------------------------------------------------------
+{
+    [super viewWillAppear];
+    
+    [self validateSymlink];
+}
+
+
 
 #pragma mark Protocol
 
