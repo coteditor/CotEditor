@@ -257,7 +257,7 @@ static NSString *const kSymbolicLinkPath = @"/usr/local/bin/cot";
     // display warning for invalid link
     if ([linkDestinationURL checkResourceIsReachableAndReturnError:nil]) {
         // link destinaiton is not running CotEditor
-        [self setWarning:NSLocalizedString(@"The current 'cot' symbolic link doesn't target on the running CotEditor.", nil)];
+        [self setWarning:NSLocalizedString(@"The current 'cot' symbolic link doesn't target the running CotEditor.", nil)];
     } else {
         // link destination is unreachable
         [self setWarning:NSLocalizedString(@"The current 'cot' symbolic link may target on an invalid path.", nil)];
