@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="7706" systemVersion="14F19a" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="7706"/>
@@ -107,7 +107,7 @@
                     </connections>
                 </textField>
                 <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="616">
-                    <rect key="frame" x="137" y="78" width="204" height="25"/>
+                    <rect key="frame" x="137" y="76" width="204" height="27"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="200" id="lB5-0J-5jf"/>
                     </constraints>
@@ -120,7 +120,7 @@
                     </connections>
                 </slider>
                 <imageView translatesAutoresizingMaskIntoConstraints="NO" id="613">
-                    <rect key="frame" x="142" y="56" width="195" height="15"/>
+                    <rect key="frame" x="142" y="54" width="195" height="15"/>
                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="axesIndependently" image="OpacityGuide" id="3340"/>
                 </imageView>
                 <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6Rm-ix-3Ik">
@@ -142,7 +142,7 @@
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="623">
                     <rect key="frame" x="316" y="115" width="180" height="28"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="170" id="CvX-bJ-TEw"/>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="170" id="CvX-bJ-TEw"/>
                     </constraints>
                     <buttonCell key="cell" type="push" title="Get from Sample Window…" bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" inset="2" id="3346">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -379,7 +379,7 @@
                     </connections>
                 </matrix>
                 <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="IK7-nJ-RZ9">
-                    <rect key="frame" x="154" y="35" width="296" height="14"/>
+                    <rect key="frame" x="154" y="33" width="296" height="14"/>
                     <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Non-opaque view can slow down on a huge document." usesSingleLineMode="YES" id="gdC-8B-U5B">
                         <font key="font" metaFont="smallSystem"/>
                         <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
@@ -390,7 +390,7 @@
                     </connections>
                 </textField>
                 <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dco-7P-YD6">
-                    <rect key="frame" x="139" y="35" width="13" height="13"/>
+                    <rect key="frame" x="139" y="33" width="13" height="13"/>
                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="CautionTemplate" id="y30-9L-giB"/>
                     <connections>
                         <binding destination="-2" name="hidden" keyPath="viewOpaque" id="px1-Sz-QpG"/>

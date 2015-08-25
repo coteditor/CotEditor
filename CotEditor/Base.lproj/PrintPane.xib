@@ -101,9 +101,9 @@
                     </textFieldCell>
                 </textField>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1008">
-                    <rect key="frame" x="402" y="339" width="90" height="32"/>
+                    <rect key="frame" x="402" y="339" width="93" height="32"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="78" id="7Gp-iZ-mz7"/>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="78" id="7Gp-iZ-mz7"/>
                     </constraints>
                     <buttonCell key="cell" type="push" title="Select…" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="3385">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
