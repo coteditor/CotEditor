@@ -18,6 +18,7 @@ develop
 - Update word completion list setting in Edit pane in Preferences (The previous setting has been reset).
 - Tweak some message terms.
 - Update documents.
+- [non-AppStore ver.] Update Sparkle framework to version 1.11.0.
 
 
 ### Fixes
