@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014 CotEditor Project
+ © 2014-2015 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -26,8 +26,8 @@
  
  */
 
-/* Class = "NSPanel"; title = "Window Opacity"; ObjectID = "jtp-g5-bGX"; */
-"jtp-g5-bGX.title" = "窗口透明度";
+/* Class = "NSPanel"; title = "View Opacity"; ObjectID = "jtp-g5-bGX"; */
+"jtp-g5-bGX.title" = "视图透明度";
 
 /* Class = "NSButtonCell"; title = "Set as Default"; ObjectID = "QFp-iC-k4v"; */
 "QFp-iC-k4v.title" = "设置为默认";
