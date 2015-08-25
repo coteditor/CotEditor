@@ -139,7 +139,7 @@
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnReordering="NO" columnSelection="YES" autosaveColumns="NO" rowSizeStyle="automatic" headerView="1044" viewBased="YES" id="415">
-                                                        <rect key="frame" x="0.0" y="0.0" width="400" height="0.0"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="362" height="0.0"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <size key="intercellSpacing" width="3" height="2"/>
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -3756,11 +3756,11 @@
                             </tabViewItem>
                             <tabViewItem label="16" identifier="Validation" id="469" userLabel="Validation Tab">
                                 <view key="view" id="376">
-                                    <rect key="frame" x="10" y="7" width="418" height="313"/>
+                                    <rect key="frame" x="10" y="7" width="380" height="313"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="470">
-                                            <rect key="frame" x="8" y="5" width="402" height="272"/>
+                                            <rect key="frame" x="8" y="5" width="364" height="272"/>
                                             <clipView key="contentView" id="kNs-tC-daf">
                                                 <rect key="frame" x="1" y="1" width="400" height="260"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -3769,10 +3769,10 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="400" height="270"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        <size key="minSize" width="400" height="270"/>
+                                                        <size key="minSize" width="362" height="270"/>
                                                         <size key="maxSize" width="426" height="10000000"/>
                                                         <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                        <size key="minSize" width="400" height="270"/>
+                                                        <size key="minSize" width="362" height="270"/>
                                                         <size key="maxSize" width="426" height="10000000"/>
                                                     </textView>
                                                 </subviews>
@@ -3790,7 +3790,7 @@
                                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="424">
                                             <rect key="frame" x="3" y="279" width="110" height="28"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="100" id="mmy-je-xPp"/>
+                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="mmy-je-xPp"/>
                                             </constraints>
                                             <buttonCell key="cell" type="push" title="Start Validation" bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" inset="2" id="1005">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>

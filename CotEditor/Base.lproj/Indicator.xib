@@ -47,10 +47,10 @@
                             <binding destination="-2" name="value" keyPath="informativeText" id="BsF-sc-8zS"/>
                         </connections>
                     </textField>
-                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="58">
+                    <button horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="58">
                         <rect key="frame" x="288" y="13" width="118" height="32"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="106" id="H7e-yY-CVY"/>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="106" id="H7e-yY-CVY"/>
                         </constraints>
                         <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="76">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>

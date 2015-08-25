@@ -38,10 +38,10 @@
                         <binding destination="cQz-RM-t7A" name="selectedTag" keyPath="values.colorCodeType" id="0DD-1t-1CF"/>
                     </connections>
                 </popUpButton>
-                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JQf-sU-hcC">
+                <button horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="JQf-sU-hcC">
                     <rect key="frame" x="141" y="10" width="80" height="28"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="70" id="dgW-gF-5K1"/>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="70" id="dgW-gF-5K1"/>
                     </constraints>
                     <buttonCell key="cell" type="push" title="Insert" bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="HMC-PY-Ngy">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
