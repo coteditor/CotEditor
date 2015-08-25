@@ -42,7 +42,6 @@
 #import "CEUnicodeInputPanelController.h"
 #import "CEMigrationWindowController.h"
 #import "CEDocument.h"
-#import "EDSemver.h"
 #import "Constants.h"
 
 #ifndef APPSTORE
@@ -376,11 +375,13 @@
     [self migrateIfNeeded];
     
     // store latest version
+    //     The bundle version (build number) format was changed on CotEditor 2.2.0. due to the iTunes Connect versioning rule.
+    //      < 2.2.0 : The Semantic Versioning
+    //     >= 2.2.0 : Single Integer
     NSString *lastVersion = [[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultLastVersionKey];
     NSString *thisVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:(NSString *)kCFBundleVersionKey];
-    EDSemver *lastSemver = lastVersion ? [EDSemver semverWithString:lastVersion] : nil;
-    EDSemver *thisSemver = [EDSemver semverWithString:thisVersion];
-    if (!lastSemver || [lastSemver isLessThan:thisSemver]) {
+    BOOL isDigit = lastVersion && [lastVersion rangeOfString:@"^[\\d]+$" options:NSRegularExpressionSearch].location != NSNotFound;
+    if (isDigit && [thisVersion integerValue] > [lastVersion integerValue]) {
         [[NSUserDefaults standardUserDefaults] setObject:thisVersion forKey:CEDefaultLastVersionKey];
     }
     
