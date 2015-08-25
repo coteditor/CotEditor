@@ -35,6 +35,7 @@ static NSString *const kSymbolicLinkPath = @"/usr/local/bin/cot";
 
 @interface CEIntegrationPaneController ()
 
+@property (nonatomic, nonnull) NSURL *preferredLinkTargetURL;
 @property (nonatomic, nonnull) NSURL *linkURL;
 @property (nonatomic, nonnull) NSURL *executableURL;
 @property (nonatomic, getter=isUninstallable) BOOL uninstallable;
@@ -52,26 +53,7 @@ static NSString *const kSymbolicLinkPath = @"/usr/local/bin/cot";
 
 @implementation CEIntegrationPaneController
 
-static const NSURL *kPreferredLinkTargetURL;
-
-
 #pragma mark Superclass Methods
-
-// ------------------------------------------------------
-/// initialize class
-+ (void)initialize
-// ------------------------------------------------------
-{
-    NSString *appName = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleName"];
-    NSURL *applicationDirURL = [[NSFileManager defaultManager] URLForDirectory:NSApplicationDirectory
-                                                                      inDomain:NSLocalDomainMask
-                                                             appropriateForURL:nil
-                                                                        create:NO
-                                                                         error:nil];
-    kPreferredLinkTargetURL = [[[applicationDirURL URLByAppendingPathComponent:appName] URLByAppendingPathExtension:@"app"]
-                               URLByAppendingPathComponent:@"Contents/MacOS/cot"];
-}
-
 
 // ------------------------------------------------------
 /// initialize instance
@@ -80,6 +62,15 @@ static const NSURL *kPreferredLinkTargetURL;
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+        NSString *appName = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleName"];
+        NSURL *applicationDirURL = [[NSFileManager defaultManager] URLForDirectory:NSApplicationDirectory
+                                                                          inDomain:NSLocalDomainMask
+                                                                 appropriateForURL:nil
+                                                                            create:NO
+                                                                             error:nil];
+        _preferredLinkTargetURL = [[[applicationDirURL URLByAppendingPathComponent:appName] URLByAppendingPathExtension:@"app"]
+                                   URLByAppendingPathComponent:@"Contents/MacOS/cot"];
+        
         _linkURL = [NSURL fileURLWithPath:kSymbolicLinkPath];
         _executableURL = [[NSBundle mainBundle] URLForAuxiliaryExecutable:@"cot"];
         _uninstallable = YES;
@@ -257,7 +248,7 @@ static const NSURL *kPreferredLinkTargetURL;
     }
     
     if ([linkDestinationURL isEqual:[[self executableURL] URLByStandardizingPath]] ||
-        [linkDestinationURL isEqual:kPreferredLinkTargetURL])  // link to '/Applications/CotEditor.app' is always valid
+        [linkDestinationURL isEqual:[self preferredLinkTargetURL]])  // link to '/Applications/CotEditor.app' is always valid
     {
         // totaly valid link
         return YES;

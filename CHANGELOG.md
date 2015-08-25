@@ -23,7 +23,8 @@ develop
 
 ### Fixes
 
-- [beta] Fix an issue the strings that were inserted via script or tools could be styled wrong.
+- Fix an issue where the command-line tool could rarely not be installed from Integration pane.
+- [beta] Fix an issue where the strings that were inserted via script or tools could be styled wrong.
 
 
 
