@@ -4,7 +4,7 @@
 
 <head>
 	<meta charset="UTF-8"/>
-	<meta name="keywords" content="migration, specification change,sandbox"/>
+	<meta name="keywords" content="migration, specification change, sandbox"/>
 	<title>Specification Changes on CotEditor 2.2</title>
 	<link rel="start" href="../CotEditorHelp.html"/>
 	<link rel="index" href="../xpgs/xall.html"/>
@@ -19,11 +19,15 @@
 
 <h1>Specification Changes on CotEditor 2.2</h1>
 
-<p>CotEditor 2.2 includes some specification changes from the previous versions in order to conform to the Sandbox rules. If you've used the legacy version before, you may need some manual migrations.</p>
+<p>CotEditor has been Sandboxed since version 2.2.0. It includes some specification changes from the previous versions in order to conform to the Sandbox rules. If you've used the legacy version before, you may need some manual migrations.</p>
+
+
+<h2>Uer Settings Location</h2>
+<p>The location of the general CotEditor settings moved from <code>~/Library/Application Support/CotEditor/</code> to <code>~/Library/Containers/com.coteditor.CotEditor/Data/Library/Application Support/CotEditor/</code>. This migration will be automatically done on the first launch of CotEditor 2.2.0.</p>
 
 
 <h2>Scripts Folder Location</h2>
-<p>Due to the Sandbox requirements, the scripts folder location moved from <code>~/Library/Application Support/CotEditor/ScriptMenu/</code> to <code>~/Library/Application Scripts/com.coteditor.CotEditor/</code>. Users need to migrate their script to the new folder manually, since CotEditor doesn't have the write permission to the new location.</p>
+<p>The location of the scripts folder moved from <code>~/Library/Application Support/CotEditor/ScriptMenu/</code> to <code>~/Library/Application Scripts/com.coteditor.CotEditor/</code>. <strong>Users need to migrate their script to the new folder manually</strong>, since CotEditor doesn't have the write permission to the new location.</p>
 
 
 <section id="cf">

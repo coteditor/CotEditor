@@ -4,7 +4,7 @@
 
 <head>
 	<meta charset="UTF-8"/>
-	<meta name="keywords" content="仕様変更,スクリプトフォルダ"/>
+	<meta name="keywords" content="仕様変更,スクリプトフォルダ,サンドボックス,Sandbox"/>
 	<title>CotEditor 2.2 での仕様変更</title>
 	<link rel="start" href="../CotEditorHelp.html"/>
 	<link rel="index" href="../xpgs/xall.html"/>
@@ -20,11 +20,16 @@
 <a name="specification_changes"></a>
 <h1>CotEditor 2.2 での仕様変更</h1>
 
-<p>CotEditor 2.2 では Sandbox のルールに適合するために仕様が一部変更されました。そのため、以前のバージョンを使っていたユーザは手動による移行処理が必要になる場合があります。</p>
+<p>CotEditor はバージョン 2.2.0 からサンドボックス化されました。バージョン 2.2.0 では Sandbox のルールに適合するために仕様が一部変更されています。そのため、以前のバージョンを使っていたユーザは手動による移行処理が必要になる場合があります。</p>
+
+
+<h2>ユーザ設定の保存場所</h2>
+<p>CotEditor のユーザ設定全般の保存場所が <code>~/Library/Application Support/CotEditor/</code> から <code>~/Library/Containers/com.coteditor.CotEditor/Data/Library/Application Support/CotEditor/</code> に変更されました。この移行は CotEditor 2.2.0 初回起動時に自動で行われます。</p>
 
 
 <h2>スクリプトフォルダの場所</h2>
-<p>Sandbox の要求により、スクリプトフォルダの位置が <code>~/Library/Application Support/CotEditor/ScriptMenu/</code> から <code>~/Library/Application Scripts/com.coteditor.CotEditor/</code> に変更されました。この移行は自動で行われないため、ユーザはすでにあるスクリプトを手動で移動する必要があります。</p>
+<p>スクリプトフォルダの位置が <code>~/Library/Application Support/CotEditor/ScriptMenu/</code> から <code>~/Library/Application Scripts/com.coteditor.CotEditor/</code> に変更されました。この移行は自動で行われないため、<strong>ユーザはすでにあるスクリプトを手動で移動する必要があります</strong>。</p>
+
 
 
 <section id="cf">
