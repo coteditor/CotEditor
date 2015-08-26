@@ -538,7 +538,7 @@ NSString *const CESyntaxValidationMessageKey = @"MessageKey";
 
 //------------------------------------------------------
 /// 空の新規styleを返す
-- (NSDictionary *)emptyStyle
+- (nonnull NSDictionary *)emptyStyle
 //------------------------------------------------------
 {
     return @{CESyntaxMetadataKey: [NSMutableDictionary dictionary],

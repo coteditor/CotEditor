@@ -453,7 +453,7 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
 
 //------------------------------------------------------
 /// Application Support内のテーマファイル保存ディレクトリ
-- (NSURL *)userThemeDirectoryURL
+- (nonnull NSURL *)userThemeDirectoryURL
 //------------------------------------------------------
 {
     return [[(CEAppDelegate *)[NSApp delegate] supportDirectoryURL] URLByAppendingPathComponent:@"Themes"];
@@ -630,7 +630,7 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
 
 //------------------------------------------------------
 /// 新規作成時のベースとなる何もないテーマ
-- (NSDictionary *)plainTheme
+- (nonnull NSDictionary *)plainTheme
 //------------------------------------------------------
 {
     return [self themeDictWithURL:[self URLForBundledTheme:@"_Plain"]];
@@ -704,7 +704,7 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
 
 //------------------------------------------------------
 /// CotEditor 1.5までで使用されていたデフォルトテーマに新たなキーワードを加えたもの
-- (NSMutableDictionary *)classicTheme
+- (nonnull NSMutableDictionary *)classicTheme
 //------------------------------------------------------
 {
     NSMutableDictionary *theme = [self themeDictWithURL:[self URLForBundledTheme:@"Classic"]];
@@ -718,7 +718,7 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
 
 //------------------------------------------------------
 /// CotEditor 1.5までで使用されていたカラーリング設定のUserDefaultsキーとテーマファイルで使用しているキーの対応テーブル
-- (NSDictionary *)classicThemeKeyTable
+- (nonnull NSDictionary *)classicThemeKeyTable
 //------------------------------------------------------
 {
     return @{@"textColor": CEThemeTextKey,
