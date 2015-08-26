@@ -46,7 +46,7 @@
 "Bug Report" = "错误报告";
 
 // Migration from v1.x
-"Restorering menu key bindings settings…" = "正在恢复菜单按键绑定…";
+"Restoring menu key bindings settings…" = "正在恢复菜单按键绑定…";
 "Migrating coloring settings…" = "迁移颜色设置…";
 "Migrating user syntax styles…" = "迁移用户语法风格…";
 "Migration finished." = "迁移完成";
@@ -86,7 +86,7 @@
 
 "Discard Changes" = "放弃修改";
 "The file “%@” has unsaved changes." = "文件 “%@” 中有修改内容还没有保存";
-"Do you want to discard the changes and reset the file encodidng?" = "确定要放弃修改内容并且重置文件编码吗？";
+"Do you want to discard the changes and reset the file encoding?" = "确定要放弃修改内容并且重置文件编码吗？";
 
 "Can not reinterpret" = "无法再次解释";
 "The file “%@” could not be reinterpreted using the new encoding “%@”." = "文件 “%@” 无法使用 “%@” 编码再次解释";
@@ -299,8 +299,8 @@
 "The current 'cot' symbolic link may target on an invalid path." = "当前的 'cot' 符号链接可能指向无效路径。";
 
 // alerts
-"The running CotEditor is not located in the Application directory." = "正在运行的 CotEditor 没有位于应用程序文件夹中。";
-"Do you really want to install the command-line tool for CotEditor at “%@”?\n\nWe recommend to move CotEditor.app to the Application directory at first." = "确定要为位于 “%@” 的 CotEditor 安装命令行工具吗？\n\n建议先将 CotEditor.app 移动到应用程序文件夹中。";
+"The running CotEditor is not located in the Application folder." = "正在运行的 CotEditor 没有位于应用程序文件夹中。";
+"Do you really want to install the command-line tool for CotEditor at “%@”?\n\nWe recommend to move CotEditor.app to the Application folder at first." = "确定要为位于 “%@” 的 CotEditor 安装命令行工具吗？\n\n建议先将 CotEditor.app 移动到应用程序文件夹中。";
 
 "The name of the running CotEditor is modified." = "正在运行的 CotEditor 的名字被改变了。";
 "Do you really want to install the command-line tool for “%@”?" = "确定要为 “%@” 安装命令行工具吗？";
@@ -357,7 +357,7 @@
 // Importing same name style alert info
 "Do you want to replace it?\nReplaced style cannot be restored." = "要替换样式吗？\n被替换的样式无法将恢复";
 // Imported error
-"Error occured." = "发生了错误";
+"Error occurred." = "发生了错误";
 "Sorry, could not import “%@”." = "“%@” 无法导入";
 // Export syntax coloring style file savePanel label
 "Export As:" = "导出为：";
@@ -381,7 +381,7 @@
 "Theme name cannot begin with “.”." = "主题名称不能含有“.”";
 "Input another name." = "请输入其他名称";
 
-"Auto-generated theme that is mgrated from user's coloring setting on CotEditor 1.x" = "由 CotEditor 1.x 的用户颜色设置中自动生成的主题";
+"Auto-generated theme that is migrated from user's coloring setting on CotEditor 1.x" = "由 CotEditor 1.x 的用户颜色设置中自动生成的主题";
 
 
 /* MARK: CEKeyBindingManager */
@@ -409,7 +409,7 @@
 "The script “%@” does not exist.\n\nCheck it and do “Update Script Menu”." = "脚本 “%@” 不存在。\n\n请确认文件是否存在，并使用 “更新脚本菜单” 进行更新";
 "%@\nErrorNumber: %i" = "%@\n错误号：%i";
 "Could not open the script file “%@”." = "无法打开脚本文件 “%@”";
-"Cannnot execute the script “%@”.\nShell script requires execute permission.\n\nCheck permission of the script file." = "无法执行脚本 “%@”。\nShell 脚本需要执行权限。\n\n请确认脚本文件访问权限";
+"Cannot execute the script “%@”.\nShell script requires execute permission.\n\nCheck permission of the script file." = "无法执行脚本 “%@”。\nShell 脚本需要执行权限。\n\n请确认脚本文件访问权限";
 "Could not read the script “%@”." = "无法读取脚本 “%@”";
 
 

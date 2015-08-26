@@ -250,7 +250,7 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
         NSNumber *isExecutable;
         [URL getResourceValue:&isExecutable forKey:NSURLIsExecutableKey error:nil];
         if (![isExecutable boolValue]) {
-            [self showAlertWithMessage:[NSString stringWithFormat:NSLocalizedString(@"Cannnot execute the script “%@”.\nShell script requires execute permission.\n\nCheck permission of the script file.", nil), URL]];
+            [self showAlertWithMessage:[NSString stringWithFormat:NSLocalizedString(@"Cannot execute the script “%@”.\nShell script requires execute permission.\n\nCheck permission of the script file.", nil), URL]];
             return;
         }
         

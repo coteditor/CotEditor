@@ -1102,7 +1102,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
         if ([self isDocumentEdited]) {
             NSAlert *alert = [[NSAlert alloc] init];
             [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"The file “%@” has unsaved changes.", nil), [[self fileURL] path]]];
-             [alert setInformativeText:NSLocalizedString(@"Do you want to discard the changes and reset the file encodidng?", nil)];
+             [alert setInformativeText:NSLocalizedString(@"Do you want to discard the changes and reset the file encoding?", nil)];
              [alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
              [alert addButtonWithTitle:NSLocalizedString(@"Discard Changes", nil)];
 

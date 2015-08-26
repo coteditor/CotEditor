@@ -58,7 +58,7 @@
 /* Class = "NSTextFieldCell"; title = "The format for syntax style files has been changed from plist to YAML."; ObjectID = "2tb-Wh-X18"; */
 "2tb-Wh-X18.title" = "语法风格文件已经从 plist 迁移到 YAML 格式";
 
-/* Class = "NSTextFieldCell"; title = "In some cases, user needs aditonal manual migrations."; ObjectID = "X8Q-Ji-HKU"; */
+/* Class = "NSTextFieldCell"; title = "In some cases, user needs additional manual migrations."; ObjectID = "X8Q-Ji-HKU"; */
 "X8Q-Ji-HKU.title" = "某些情况下，用户需要手动进行额外的迁移";
 /* Class = "NSButton"; ibShadowedToolTip = "See “Specification Changes on CotEditor 2.0” on Help"; ObjectID = "qdh-QQ-qcp"; */
 "qdh-QQ-qcp.ibShadowedToolTip" = "在帮助中查看 “CotEditor 2.0 特性变更”";

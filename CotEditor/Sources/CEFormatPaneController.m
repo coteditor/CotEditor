@@ -474,7 +474,7 @@
         [window orderOut:self];
         [[[self view] window] makeKeyAndOrderFront:self];
         NSAlert *alert = [[NSAlert alloc] init];
-        [alert setMessageText:NSLocalizedString(@"Error occured.", nil)];
+        [alert setMessageText:NSLocalizedString(@"Error occurred.", nil)];
         [alert setInformativeText:[NSString stringWithFormat:NSLocalizedString(@"Sorry, could not import “%@”.", nil), [fileURL lastPathComponent]]];
         
         NSBeep();
@@ -501,7 +501,7 @@
         [[alert window] orderOut:self];
         [[[self view] window] makeKeyAndOrderFront:self];
         NSAlert *alert = [[NSAlert alloc] init];
-        [alert setMessageText:NSLocalizedString(@"Error occured.", nil)];
+        [alert setMessageText:NSLocalizedString(@"Error occurred.", nil)];
         [alert setInformativeText:[NSString stringWithFormat:NSLocalizedString(@"Sorry, could not delete “%@”.", nil), styleName]];
         NSBeep();
         [alert beginSheetModalForWindow:[[self view] window] modalDelegate:self didEndSelector:NULL contextInfo:NULL];

@@ -287,8 +287,8 @@ static NSString *const kSymbolicLinkPath = @"/usr/local/bin/cot";
         
         if (relationship != NSURLRelationshipContains) {
             if (outError) {
-                NSDictionary *userInfo = @{NSLocalizedDescriptionKey: NSLocalizedString(@"The running CotEditor is not located in the Application directory.", nil),
-                                           NSLocalizedRecoverySuggestionErrorKey: [NSString stringWithFormat:NSLocalizedString(@"Do you really want to install the command-line tool for CotEditor at “%@”?\n\nWe recommend to move CotEditor.app to the Application directory at first.", nil),
+                NSDictionary *userInfo = @{NSLocalizedDescriptionKey: NSLocalizedString(@"The running CotEditor is not located in the Application folder.", nil),
+                                           NSLocalizedRecoverySuggestionErrorKey: [NSString stringWithFormat:NSLocalizedString(@"Do you really want to install the command-line tool for CotEditor at “%@”?\n\nWe recommend to move CotEditor.app to the Application folder at first.", nil),
                                                                                    [[[NSBundle mainBundle] bundleURL] path]],
                                            NSLocalizedRecoveryOptionsErrorKey: @[NSLocalizedString(@"Install", nil),
                                                                                  NSLocalizedString(@"Cancel", nil)],

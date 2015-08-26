@@ -780,7 +780,7 @@ static NSString *__nonnull const kMigrationFlagKey = @"isMigratedToNewBundleIden
     [windowController showWindow:self];
     
     // reset menu keybindings setting
-    [windowController setInformative:@"Restorering menu key bindings settings…"];
+    [windowController setInformative:@"Restoring menu key bindings settings…"];
     [[CEKeyBindingManager sharedManager] resetMenuKeyBindings];
     [windowController progressIndicator];
     [windowController setDidResetKeyBindings:YES];

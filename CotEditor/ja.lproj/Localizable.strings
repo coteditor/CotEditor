@@ -47,7 +47,7 @@
 "Bug Report" = "不具合レポート";
 
 // Migration from v1.x
-"Restorering menu key bindings settings…" = "メニューキーバインド設定をリセット中...";
+"Restoring menu key bindings settings…" = "メニューキーバインド設定をリセット中...";
 "Migrating coloring settings…" = "カラーリング設定を移行中...";
 "Migrating user syntax styles…" = "ユーザシンタックス定義を移行中...";
 "Migration finished." = "設定の移行が終了しました。";
@@ -87,7 +87,7 @@
 
 "Discard Changes" = "変更内容を破棄";
 "The file “%@” has unsaved changes." = "ファイル“%@”の変更内容は保存されていません。";
-"Do you want to discard the changes and reset the file encodidng?" = "変更内容を破棄してエンコードをリセットしてもよろしいですか？";
+"Do you want to discard the changes and reset the file encoding?" = "変更内容を破棄してエンコードをリセットしてもよろしいですか？";
 
 "Can not reinterpret" = "再解釈できません。";
 "The file “%@” could not be reinterpreted using the new encoding “%@”." = "ファイル“%@”はエンコード“%@”で再解釈できませんでした。";
@@ -300,8 +300,8 @@
 "The current 'cot' symbolic link may target on an invalid path." = "現在の 'cot' シンボリックリンクは無効なパスに向けられています。";
 
 // alerts
-"The running CotEditor is not located in the Application directory." = "現在起動している CotEditor はアプリケーションフォルダ外にあります。";
-"Do you really want to install the command-line tool for CotEditor at “%@”?\n\nWe recommend to move CotEditor.app to the Application directory at first." = "本当に“%@”のためのコマンドラインツールをインストールしますか？\n\n先に CotEditor.app をアプリケーションフォルダに移動することをおすすめします。";
+"The running CotEditor is not located in the Application folder." = "現在起動している CotEditor はアプリケーションフォルダ外にあります。";
+"Do you really want to install the command-line tool for CotEditor at “%@”?\n\nWe recommend to move CotEditor.app to the Application folder at first." = "本当に“%@”のためのコマンドラインツールをインストールしますか？\n\n先に CotEditor.app をアプリケーションフォルダに移動することをおすすめします。";
 
 "The name of the running CotEditor is modified." = "現在起動している CotEditor は名前が変更されています。";
 "Do you really want to install the command-line tool for “%@”?" = "本当に“%@”のためのコマンドラインツールをインストールしますか？";
@@ -358,7 +358,7 @@
 // Importing same name style alert info
 "Do you want to replace it?\nReplaced style cannot be restored." = "スタイルを置き換えますか？\n置き換えたスタイルは元に戻せません。";
 // Imported error
-"Error occured." = "エラーが起きました。";
+"Error occurred." = "エラーが起きました。";
 "Sorry, could not import “%@”." = "“%@”を読み込めませんでした。";
 // Export syntax coloring style file savePanel label
 "Export As:" = "書き出し：";
@@ -382,7 +382,7 @@
 "Theme name cannot begin with “.”." = "テーマ名を“.”から始めることはできません。";
 "Input another name." = "ほかの名前を入力してください。";
 
-"Auto-generated theme that is mgrated from user's coloring setting on CotEditor 1.x" = "CotEditor 1.x でのユーザカラーリング設定から自動生成されたテーマ";
+"Auto-generated theme that is migrated from user's coloring setting on CotEditor 1.x" = "CotEditor 1.x でのユーザカラーリング設定から自動生成されたテーマ";
 
 
 /* MARK: CEKeyBindingManager */
@@ -409,7 +409,7 @@
 // Alert messages
 "The script “%@” does not exist.\n\nCheck it and do “Update Script Menu”." = "スクリプト“%@”は存在しません。\n\nファイルを確認し、“スクリプトメニューを更新”してください。";
 "Could not open the script file “%@”." = "スクリプトファイル“%@”を開けませんでした。";
-"Cannnot execute the script “%@”.\nShell script requires execute permission.\n\nCheck permission of the script file." = "スクリプト“%@”を実行できません。\nシェルスクリプトの場合は実行権が必要です。\n\nアクセス権を確認してください。";
+"Cannot execute the script “%@”.\nShell script requires execute permission.\n\nCheck permission of the script file." = "スクリプト“%@”を実行できません。\nシェルスクリプトの場合は実行権が必要です。\n\nアクセス権を確認してください。";
 "Could not read the script “%@”." = "スクリプト“%@”を読み込めませんでした。";
 
 
