@@ -58,7 +58,7 @@
 #ifdef APPSTORE
     // cut down height for updater checkbox
     NSRect frame = [[self view] frame];
-    frame.size.height -= 82;
+    frame.size.height -= 96;
     [[self view] setFrame:frame];
     
     // cut down x-position of visible labels
@@ -71,7 +71,7 @@
     } else {
         // cut down height for pre-release note
         NSRect frame = [[self view] frame];
-        frame.size.height -= 18;
+        frame.size.height -= 32;
         [[self view] setFrame:frame];
     }
 #endif

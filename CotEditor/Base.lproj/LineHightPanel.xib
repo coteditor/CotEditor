@@ -46,10 +46,10 @@
                             </binding>
                         </connections>
                     </textField>
-                    <button verticalHuggingPriority="750" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="21" translatesAutoresizingMaskIntoConstraints="NO" id="EWf-Ij-TwQ">
+                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="EWf-Ij-TwQ">
                         <rect key="frame" x="134" y="13" width="92" height="32"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="80" id="dTT-rc-lbI"/>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="dTT-rc-lbI"/>
                         </constraints>
                         <buttonCell key="cell" type="push" title="OK" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="KXU-GK-Xcv">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -62,10 +62,10 @@ DQ
                             <action selector="apply:" target="-2" id="JQa-fv-2PU"/>
                         </connections>
                     </button>
-                    <button verticalHuggingPriority="750" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="21" translatesAutoresizingMaskIntoConstraints="NO" id="xfT-8b-5Y4">
+                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xfT-8b-5Y4">
                         <rect key="frame" x="42" y="13" width="92" height="32"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="80" id="1cw-xA-OL0"/>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="1cw-xA-OL0"/>
                         </constraints>
                         <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="0fI-Qj-jW1">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>

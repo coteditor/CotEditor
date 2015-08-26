@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="7706" systemVersion="14F25a" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="7706"/>
@@ -56,7 +56,7 @@
                         <binding destination="-2" name="selectedIndex" keyPath="invisibleCharsMode" id="UkP-Ba-QDG"/>
                     </connections>
                 </popUpButton>
-                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="423">
+                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="423">
                     <rect key="frame" x="47" y="203" width="65" height="17"/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Invisibles:" usesSingleLineMode="YES" id="718">
                         <font key="font" metaFont="system"/>
@@ -84,7 +84,7 @@
                         <binding destination="-2" name="selectedIndex" keyPath="lineNumberMode" id="T1v-IJ-jYl"/>
                     </connections>
                 </popUpButton>
-                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="415">
+                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="415">
                     <rect key="frame" x="18" y="234" width="94" height="17"/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Line Numbers:" usesSingleLineMode="YES" id="716">
                         <font key="font" metaFont="system"/>
@@ -317,7 +317,7 @@
                         <binding destination="-2" name="enabled" keyPath="printsFooter" id="eSk-6s-EvS"/>
                     </connections>
                 </popUpButton>
-                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6jK-7i-UaO">
+                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6jK-7i-UaO">
                     <rect key="frame" x="70" y="266" width="42" height="17"/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Color:" usesSingleLineMode="YES" id="eXI-55-yQO">
                         <font key="font" metaFont="system"/>
@@ -327,6 +327,7 @@
                 </textField>
             </subviews>
             <constraints>
+                <constraint firstItem="423" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="196" secondAttribute="leading" constant="20" symbolic="YES" id="6fw-3B-Mqw"/>
                 <constraint firstItem="423" firstAttribute="trailing" secondItem="257" secondAttribute="trailing" id="74O-xm-e3g"/>
                 <constraint firstItem="8wl-aM-d8K" firstAttribute="centerY" secondItem="257" secondAttribute="centerY" id="8r2-bi-5x5"/>
                 <constraint firstItem="303" firstAttribute="leading" secondItem="196" secondAttribute="leading" constant="20" symbolic="YES" id="9mq-sZ-rxb"/>
@@ -338,7 +339,7 @@
                 <constraint firstItem="8wl-aM-d8K" firstAttribute="centerY" secondItem="305" secondAttribute="centerY" id="H1z-kp-hhI"/>
                 <constraint firstItem="321" firstAttribute="leading" secondItem="296" secondAttribute="trailing" constant="8" symbolic="YES" id="Kl0-Q7-Dgr"/>
                 <constraint firstItem="313" firstAttribute="centerY" secondItem="ff5-dQ-geo" secondAttribute="centerY" id="M3y-5l-LG0"/>
-                <constraint firstItem="415" firstAttribute="leading" secondItem="196" secondAttribute="leading" constant="20" symbolic="YES" id="MKj-9x-PWP"/>
+                <constraint firstItem="415" firstAttribute="leading" secondItem="196" secondAttribute="leading" priority="750" constant="20" symbolic="YES" id="MKj-9x-PWP"/>
                 <constraint firstItem="585" firstAttribute="baseline" secondItem="6jK-7i-UaO" secondAttribute="baseline" id="MLb-XP-yQc"/>
                 <constraint firstItem="ErI-yf-OgH" firstAttribute="leading" secondItem="198" secondAttribute="trailing" constant="8" symbolic="YES" id="NCN-Zb-A0L"/>
                 <constraint firstItem="305" firstAttribute="top" secondItem="198" secondAttribute="bottom" constant="10" symbolic="YES" id="PRA-Wf-g9H"/>
@@ -347,6 +348,7 @@
                 <constraint firstItem="313" firstAttribute="centerY" secondItem="295" secondAttribute="centerY" id="THZ-8C-rvC"/>
                 <constraint firstItem="305" firstAttribute="width" secondItem="198" secondAttribute="width" id="Tbu-Bb-8SV"/>
                 <constraint firstItem="305" firstAttribute="width" secondItem="313" secondAttribute="width" id="XsD-IU-YaB"/>
+                <constraint firstItem="6jK-7i-UaO" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="196" secondAttribute="leading" constant="20" symbolic="YES" id="a3k-5V-adI"/>
                 <constraint firstItem="256" firstAttribute="centerY" secondItem="198" secondAttribute="centerY" id="bC2-7Q-elr"/>
                 <constraint firstItem="295" firstAttribute="top" secondItem="304" secondAttribute="bottom" constant="8" symbolic="YES" id="cAH-jN-Wut"/>
                 <constraint firstItem="423" firstAttribute="trailing" secondItem="256" secondAttribute="trailing" id="chF-nn-ONk"/>

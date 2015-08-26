@@ -32,8 +32,11 @@
                         <rect key="frame" x="23" y="49" width="195" height="15"/>
                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="OpacityGuide" id="dfu-e3-y0k"/>
                     </imageView>
-                    <button verticalHuggingPriority="750" placeholderIntrinsicWidth="120" placeholderIntrinsicHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="QKv-NS-b74" userLabel="Apply Button">
+                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QKv-NS-b74" userLabel="Apply Button">
                         <rect key="frame" x="95" y="14" width="130" height="28"/>
+                        <constraints>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="O0t-iJ-mgN"/>
+                        </constraints>
                         <buttonCell key="cell" type="push" title="Set as Default" bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="QFp-iC-k4v">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="smallSystem"/>

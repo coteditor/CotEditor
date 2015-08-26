@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="7706" systemVersion="14F19a" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="7706"/>
@@ -480,6 +480,7 @@
                             <constraint firstItem="agR-rr-ESl" firstAttribute="leading" secondItem="ZBi-EJ-Lzu" secondAttribute="leading" constant="12" id="6zf-Tp-wlW"/>
                             <constraint firstItem="HX1-lW-KZj" firstAttribute="leading" secondItem="ZBi-EJ-Lzu" secondAttribute="leading" constant="8" id="77O-Jm-oKC"/>
                             <constraint firstItem="pho-Pk-A5q" firstAttribute="trailing" secondItem="mSH-7o-XWe" secondAttribute="trailing" id="8OW-iW-FfY"/>
+                            <constraint firstItem="WuM-BH-qGJ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ZBi-EJ-Lzu" secondAttribute="leading" constant="12" id="8vp-bm-vpM"/>
                             <constraint firstItem="alZ-aH-yTj" firstAttribute="top" secondItem="m5u-NY-ZWA" secondAttribute="bottom" constant="4" id="9iA-L7-2p0"/>
                             <constraint firstItem="wTX-Dy-Att" firstAttribute="top" secondItem="1HX-hx-Kjq" secondAttribute="bottom" constant="6" id="B2O-BC-yHY"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="V35-jz-vW5" secondAttribute="trailing" constant="8" id="BMw-nf-QNT"/>
@@ -489,10 +490,12 @@
                             <constraint firstItem="c3K-vK-uPf" firstAttribute="leading" secondItem="7Fd-u2-ZLc" secondAttribute="trailing" constant="8" symbolic="YES" id="Emq-Zy-Mpd"/>
                             <constraint firstItem="HPb-13-RfP" firstAttribute="top" secondItem="mka-w0-T2n" secondAttribute="bottom" constant="6" id="Eyx-nY-pPQ"/>
                             <constraint firstItem="OCj-Md-duY" firstAttribute="top" secondItem="UmS-5X-1Cm" secondAttribute="bottom" constant="6" id="Hs5-Vz-h92"/>
+                            <constraint firstItem="mka-w0-T2n" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ZBi-EJ-Lzu" secondAttribute="leading" constant="12" id="IFW-FL-sUU"/>
                             <constraint firstItem="HS1-NO-xbQ" firstAttribute="top" secondItem="wTX-Dy-Att" secondAttribute="bottom" constant="6" id="IKx-nj-mrP"/>
                             <constraint firstItem="26O-Xv-RC8" firstAttribute="top" secondItem="wTX-Dy-Att" secondAttribute="top" id="Igu-e4-nXa"/>
                             <constraint firstItem="pho-Pk-A5q" firstAttribute="trailing" secondItem="mka-w0-T2n" secondAttribute="trailing" id="Iip-dF-b3p"/>
                             <constraint firstItem="HS1-NO-xbQ" firstAttribute="baseline" secondItem="Xne-Da-H6h" secondAttribute="baseline" id="IvM-oW-TsZ"/>
+                            <constraint firstItem="l0D-jC-n40" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ZBi-EJ-Lzu" secondAttribute="leading" constant="12" id="JL0-g1-LmN"/>
                             <constraint firstItem="2ZU-Mi-aJz" firstAttribute="baseline" secondItem="mSH-7o-XWe" secondAttribute="baseline" id="K1C-pW-ErJ"/>
                             <constraint firstItem="OCj-Md-duY" firstAttribute="leading" secondItem="ZBi-EJ-Lzu" secondAttribute="leading" constant="12" id="K6D-xj-4wK"/>
                             <constraint firstItem="2ZU-Mi-aJz" firstAttribute="leading" secondItem="mSH-7o-XWe" secondAttribute="trailing" constant="8" symbolic="YES" id="KVY-7R-TQb"/>

@@ -25,8 +25,8 @@
  
  */
 
-/* Class = "NSTextFieldCell"; title = "Color:"; ObjectID = "721"; */
-"721.title" = "カラー：";
+/* Class = "NSTextFieldCell"; title = "Color:"; ObjectID = "eXI-55-yQO"; */
+"eXI-55-yQO.title" = "カラー：";
 /* Class = "NSMenuItem"; title = "Black and White"; ObjectID = "590"; */
 "590.title" = "白黒";
 /* Class = "NSMenuItem"; title = "Same as document's setting"; ObjectID = "589"; */
@@ -54,8 +54,8 @@
 /* Class = "NSButtonCell"; title = "Print header"; ObjectID = "708"; */
 "708.title" = "ヘッダをプリント";
 
-/* Class = "NSTextFieldCell"; title = "Primary:"; ObjectID = "256"; */
-"256.title" = "主ヘッダ：";
+/* Class = "NSTextFieldCell"; title = "Primary:"; ObjectID = "706"; */
+"706.title" = "主ヘッダ：";
 
 /* Class = "NSMenuItem"; title = "None"; ObjectID = "393"; */
 "393.title" = "なし";
@@ -76,8 +76,8 @@
 "Aru-Gd-J0D.ibShadowedToolTips[2]" = "右揃え";  /* Align Right */
 
 
-/* Class = "NSTextFieldCell"; title = "Secodnary:"; ObjectID = "257"; */
-"257.title" = "副ヘッダ：";
+/* Class = "NSTextFieldCell"; title = "Secodnary:"; ObjectID = "707"; */
+"707.title" = "副ヘッダ：";
 
 /* Class = "NSMenuItem"; title = "None"; ObjectID = "395"; */
 "395.title" = "なし";
@@ -102,8 +102,8 @@
 /* Class = "NSButtonCell"; title = "Print footer"; ObjectID = "713"; */
 "713.title" = "フッタをプリント";
 
-/* Class = "NSTextFieldCell"; title = "Primary:"; ObjectID = "295"; */
-"295.title" = "主フッタ：";
+/* Class = "NSTextFieldCell"; title = "Primary:"; ObjectID = "711"; */
+"711.title" = "主フッタ：";
 
 /* Class = "NSMenuItem"; title = "None"; ObjectID = "397"; */
 "397.title" = "なし";
@@ -124,8 +124,8 @@
 "njJ-Ab-dUQ.ibShadowedToolTips[2]" = "右揃え";  /* Align Right */
 
 
-/* Class = "NSTextFieldCell"; title = "Secodnary:"; ObjectID = "296"; */
-"296.title" = "副フッタ：";
+/* Class = "NSTextFieldCell"; title = "Secodnary:"; ObjectID = "712"; */
+"712.title" = "副フッタ：";
 
 /* Class = "NSMenuItem"; title = "None"; ObjectID = "399"; */
 "399.title" = "なし";
