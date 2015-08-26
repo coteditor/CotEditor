@@ -27,7 +27,6 @@
 
 @import Sparkle;
 #import "CEUpdaterManager.h"
-#import "EDSemver.h"
 #import "Constants.h"
 
 
@@ -36,7 +35,7 @@ static NSString *__nonnull const AppCastURL = @"http://coteditor.com/appcast.xml
 static NSString *__nonnull const AppCastBetaURL = @"http://coteditor.com/appcast-beta.xml";
 
 
-@interface CEUpdaterManager () <SUUpdaterDelegate, SUVersionComparison>
+@interface CEUpdaterManager () <SUUpdaterDelegate>
 
 @end
 
@@ -96,10 +95,11 @@ static NSString *__nonnull const AppCastBetaURL = @"http://coteditor.com/appcast
 - (BOOL)isPrerelease
 // ------------------------------------------------------
 {
-    NSString *thisVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:(NSString *)kCFBundleVersionKey];
-    EDSemver *thisSemver = [EDSemver semverWithString:thisVersion];
+    NSString *version = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
+    NSCharacterSet *digitSet = [NSCharacterSet characterSetWithCharactersInString:@"0123456789."];
     
-    return [[thisSemver prerelease] length] > 0;
+    // pre-releases contain non-digit letter
+    return [version rangeOfCharacterFromSet:[digitSet invertedSet]].location != NSNotFound;
 }
 
 
@@ -109,15 +109,6 @@ static NSString *__nonnull const AppCastBetaURL = @"http://coteditor.com/appcast
 //=======================================================
 // SUUpdaterDelegate
 //=======================================================
-
-// ------------------------------------------------------
-/// compare updater versions by myself
-- (id <SUVersionComparison>)versionComparatorForUpdater:(SUUpdater *)updater
-// ------------------------------------------------------
-{
-    return self;
-}
-
 
 // ------------------------------------------------------
 /// return AppCast file URL dinamically
@@ -133,42 +124,6 @@ static NSString *__nonnull const AppCastBetaURL = @"http://coteditor.com/appcast
         
     }
     return checksBeta ? AppCastBetaURL : AppCastURL;
-}
-
-
-// ------------------------------------------------------
-/// force displaying release notes to nofity App Store migration
-- (void)updater:(SUUpdater *)updater didFindValidUpdate:(SUAppcastItem *)update
-// ------------------------------------------------------
-{
-    // !!!: This method should be removed after updating CotEditor to the first Mac App Store version.
-    NSString *thisVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:(NSString *)kCFBundleVersionKey];
-    EDSemver *thisSemver = [EDSemver semverWithString:thisVersion];
-    EDSemver *newSemver = [EDSemver semverWithString:[update versionString]];
-    EDSemver *appStoreSemver = [EDSemver semverWithString:@"2.2.0"];
-    
-    if (([newSemver isEqualTo:appStoreSemver] || [newSemver isGreaterThan:appStoreSemver])
-        && [thisSemver isLessThan:appStoreSemver])
-    {
-        // once reset the silent updating on Sparkle in order to announce the release of Mac App Store version to everyone.
-        [[NSUserDefaults standardUserDefaults] setBool:@YES forKey:@"SUShowReleaseNotes"];
-    }
-}
-
-
-//=======================================================
-// SUVersionComparison Protocol
-//=======================================================
-
-// ------------------------------------------------------
-/// compare versions using the Semantic Versioning 2.0
-- (NSComparisonResult)compareVersion:(NSString *)versionA toVersion:(NSString *)versionB
-// ------------------------------------------------------
-{
-    EDSemver *semverA = [EDSemver semverWithString:versionA];
-    EDSemver *semverB = [EDSemver semverWithString:versionB];
-    
-    return [semverA compare:semverB];
 }
 
 @end
