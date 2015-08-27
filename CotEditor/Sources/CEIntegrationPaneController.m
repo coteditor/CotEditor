@@ -37,7 +37,7 @@ static NSString *const kSymbolicLinkPath = @"/usr/local/bin/cot";
 
 @property (nonatomic, nonnull) NSURL *preferredLinkTargetURL;
 @property (nonatomic, nonnull) NSURL *linkURL;
-@property (nonatomic, nonnull) NSURL *executableURL;
+@property (nonatomic, nonnull) NSURL *commandURL;
 @property (nonatomic, getter=isUninstallable) BOOL uninstallable;
 @property (nonatomic, getter=isInstalled) BOOL installed;
 @property (nonatomic, nullable, copy) NSString *warning;
@@ -69,10 +69,10 @@ static NSString *const kSymbolicLinkPath = @"/usr/local/bin/cot";
                                                                             create:NO
                                                                              error:nil];
         _preferredLinkTargetURL = [[[applicationDirURL URLByAppendingPathComponent:appName] URLByAppendingPathExtension:@"app"]
-                                   URLByAppendingPathComponent:@"Contents/MacOS/cot"];
+                                   URLByAppendingPathComponent:@"Contents/SharedSupport/bin/cot"];
         
         _linkURL = [NSURL fileURLWithPath:kSymbolicLinkPath];
-        _executableURL = [[NSBundle mainBundle] URLForAuxiliaryExecutable:@"cot"];
+        _commandURL = [[[NSBundle mainBundle] sharedSupportURL] URLByAppendingPathComponent:@"bin/cot"];
         _uninstallable = YES;
         
         _installed = [self validateSymlink];
@@ -162,7 +162,7 @@ static NSString *const kSymbolicLinkPath = @"/usr/local/bin/cot";
 #pragma mark Private Methods
 
 // ------------------------------------------------------
-/// create symlink to `cot` executable in bundle
+/// create symlink to `cot` command in bundle
 - (void)performInstall
 // ------------------------------------------------------
 {
@@ -177,7 +177,7 @@ static NSString *const kSymbolicLinkPath = @"/usr/local/bin/cot";
      {
          // FIXME: This will be failed with NSCocoaErrorDomain + NSFileWriteNoPermissionError on El Capitan beta 5
          success = [[NSFileManager defaultManager] createSymbolicLinkAtURL:newURL
-                                                        withDestinationURL:[self executableURL]
+                                                        withDestinationURL:[self commandURL]
                                                                      error:&symLinkError];
      }];
     
@@ -247,7 +247,7 @@ static NSString *const kSymbolicLinkPath = @"/usr/local/bin/cot";
         return YES;
     }
     
-    if ([linkDestinationURL isEqual:[[self executableURL] URLByStandardizingPath]] ||
+    if ([linkDestinationURL isEqual:[[self commandURL] URLByStandardizingPath]] ||
         [linkDestinationURL isEqual:[self preferredLinkTargetURL]])  // link to '/Applications/CotEditor.app' is always valid
     {
         // totaly valid link
