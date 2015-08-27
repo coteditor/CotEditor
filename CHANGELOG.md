@@ -27,6 +27,7 @@ develop
 
 - Fix an issue where the command-line tool could rarely not be installed from Integration pane.
 - Fix an issue where application crashed by clicking header of empty table in syntax editor sheet.
+- Fix an issue where warning on Integration pane didn't dissapear even after the problem resolved.
 - Add some missing localized strings in Japanese.
 - [beta] Fix an issue where the strings that were inserted via script or tools could be styled wrong.
 - [beta] Fix an issue where the bug report template was not syntax highlighted.

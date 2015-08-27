@@ -186,6 +186,7 @@ static NSString *const kSymbolicLinkPath = @"/usr/local/bin/cot";
     if (success) {
         [self setInstalled:YES];
         [self toggleInstallButtonState:YES];
+        [self validateSymlink];
         
     } else if (error) {
         [[self view] presentError:error modalForWindow:[[self view] window]
@@ -207,6 +208,7 @@ static NSString *const kSymbolicLinkPath = @"/usr/local/bin/cot";
     if (![[self linkURL] checkResourceIsReachableAndReturnError:nil]) {
         [self setInstalled:NO];
         [self toggleInstallButtonState:NO];
+        [self validateSymlink];
     }
 }
 
