@@ -29,17 +29,19 @@
 	<p>リリース: <time>2015-09</time></p>
 </header>
 
+<p class="important">このバージョンは、ユーザによる移行処理が必要な仕様変更を含んでいます。詳細は<a href="specification_changes_on_2.2.html">CotEditor 2.2 での仕様変更</a>を参照してください。</p>
+
 
 <section>
 <h2>新機能</h2>
 
 <ul>
-	<li>サンドボックス化</li>
+	<li><strong>サンドボックス化</strong></li>
 	<li>外部プロセスによる書類更新時の挙動を変更できる設定項目を追加（環境設定の一般ペイン）</li>
 	<li>ツールバーに共有ボタンを追加（使用するためにはツールバーをカスタマイズしてください）</li>
 	<li>縦書きの状態をファイル自身に保存し、ファイルオープン時にそれを復帰
 	<ul>
-		<li><strong>上級ユーザ向け</strong>: この機能は、エディタが縦書きのときに <em>のみ</em> ファイルの <em>extended atribute</em> に <code>com.coteditor.VerticalText</code> というキー名のメタデータを埋め込みます。ターミナルから <code>defaults write com.coteditor.CotEditor savesTextOrientation -bool NO</code> を実行することで、CotEditor のこの機能自体を無効にすることもできます。</li>
+		<li><strong>上級ユーザ向け</strong>: この機能は、エディタが縦書きのときに<strong>のみ</strong>ファイルの <i>extended atribute</i> に <code>com.coteditor.VerticalText</code> というキー名のメタデータを埋め込みます。ターミナルから <code>defaults write com.coteditor.CotEditor savesTextOrientation -bool NO</code> を実行することで、CotEditor のこの機能自体を無効にすることもできます。</li>
 	</ul></li>
 	<li>縦書き時の行番号表示</li>
 	<li>縦書き印刷</li>
@@ -47,7 +49,7 @@
 	<ul>
 		<li>これにともない、いくつかのバンドルされているシンタックス定義を更新</li>
 	</ul></li>
-	<li>新しい Unicode 正規化形式「NFKC Casefold」をユーティリティメニューの Unicode 正規化アクションに追加しました (doraTeX さんに感謝!)
+	<li>新しい Unicode 正規化形式「NFKC Casefold」をユーティリティメニューの 「Unicode 正規化」に追加 (doraTeX さんに感謝!)
 	<ul>
 		<li>AppleScript 辞書にもこの NFKC Casefold は追加されれています。</li>
 	</ul></li>
@@ -61,7 +63,7 @@
 
 <ul>
 	<li>サンドボックス化にともない、ユーザにパーミッションがないファイルでもオープン／上書きができる機能 (authopen) を廃止</li>
-	<li>サイドインスペクタのユーザインターフェイスを改善</li>
+	<li>サイドインスペクタのユーザインターフェイスを改良</li>
 	<li>シンタックスハイライトの改善：
 	<ul>
 	<li>シンタックスハイライトの処理時間を短縮（約1.8倍）</li>
@@ -89,21 +91,21 @@
 	</ul></li>
 	<li><code>cot</code> コマンドラインツールを全面書き直し：
 	<ul>
-	<li>より早い起動</li>
+	<li>起動時間の短縮</li>
 	</ul></li>
 	<li>OS X 10.11 El Capitan 対応の強化</li>
 	<li>表記の調整</li>
 	<li>ドキュメントの更新</li>
 	<li>ソースコードのライセンスを GNU General Public License version 2 から Apache Lisence version 2.0 に変更</li>
-	<li>[非 AppStore 版のみ] 自動更新機能の廃止
+	<li><span class="label">非 AppStore 版のみ</span>: 自動更新機能の廃止
 	<ul>
-		<li>CotEditor の自動更新に使われている Sparkle というフレームワークがまだサンドボックスに対応していないため、CotEditor 内での自動更新機能は一旦廃止されました。今後は：（以前と同様に）新しいバージョンがリリースされたときは通知ウインドウが表示されるので、その後サイトから新しいバージョンをダウンロードして手動でアップデートを行ってください。もしくは、Mac App Store 版に切り替えてください。</li>
+		<li>CotEditor の自動更新に使われている <a href="http://sparkle-project.org" rel="external">Sparkle</a> というフレームワークがまだサンドボックスに対応していないため、CotEditor 内での自動更新機能は一旦廃止されました。今後は、新しいバージョンがリリースされたときは（以前と同様に）通知ウインドウが表示されるので、その後サイトから新しいバージョンをダウンロードして手動でアップデートを行ってください。もしくは、<a href="http://appstore.com/mac/CotEditor">Mac App Store 版</a>に切り替えてください。</li>
 	</ul></li>
-	<li>[非 AppStore 版のみ] プレリリース版を更新対象に含めるオプションを追加
+	<li><span class="label">非 AppStore 版のみ</span>: プレリリース版を更新対象に含めるオプションを追加
 	<ul>
-		<li>プレリリース版使用中は、設定に関わらず新しいプレリリース版が対象に含まれようになります。</li>
+		<li>なお、プレリリース版使用中は、設定に関わらず新しいプレリリース版が対象に含まれようになります。</li>
 	</ul></li>
-	<li>[非 AppStore 版のみ] Sparkle framework を 1.11.0 に更新</li>
+	<li><span class="label">非 AppStore 版のみ</span>: Sparkle framework を 1.11.0 に更新</li>
 </ul>
 </section>
 
@@ -575,6 +577,8 @@
 	<h1>CotEditor 2.0.0</h1>
 	<p>リリース: <time>2014-11-13</time></p>
 </header>
+
+<p class="important">このバージョンは、ユーザによる移行処理が必要な仕様変更を含んでいます。詳細は<a href="specification_changes_on.html">CotEditor 2.0 での仕様変更</a>を参照してください。</p>
 
 <section>
 <h2>新機能</h2>

@@ -29,6 +29,8 @@
 	<p>release: <time>2015-09</time></p>
 </header>
 
+<p class="important">This version contains some specific changes that may require manuall migration by users. See <a href="specification_changes_on_2.2.html">Specification Changes on CotEditor 2.2</a> for details.</p>
+
 
 <section>
 <h2>New Features</h2>
@@ -39,7 +41,7 @@
 	<li>Share button in toolbar (Customize toolbar to use it).</li>
 	<li>Save text orientation state to the file and restore it when the file is opened.
 	<ul>
-		<li><strong>for advanced users</strong>: In this feature, CotEditor saves an <em>extended attribute</em> which named <code>com.coteditor.VerticalText</code> to the file only when the editor's text orientation is vertical. You can even disable the feature running the command <code>defaults write com.coteditor.CotEditor savesTextOrientation -bool NO</code> in Terminal. </li>
+		<li><strong>for advanced users</strong>: In this feature, CotEditor saves an <i>extended attribute</i> which named <code>com.coteditor.VerticalText</code> to the file <strong>only when</strong> the editor's text orientation is vertical. You can even disable the feature running the command <code>defaults write com.coteditor.CotEditor savesTextOrientation -bool NO</code> in Terminal. </li>
 	</ul></li>
 	<li>Line number view for vertical text orientation.</li>
 	<li>Print with vertical text orientation.</li>
@@ -97,15 +99,15 @@
 	<li>Tweak message terms.</li>
 	<li>Update documents.</li>
 	<li>Change source code license from the GNU General Public License version 2 to the Apache License version 2.0.</li>
-	<li>[non-AppStore ver.] Disable auto-update feature.
+	<li><span class="label">non-AppStore ver.</span>: Disable auto-update feature.
 	<ul>
-		<li>Since the Sparkle framework which is a software update framework we use doesn't support Sandboxed apps yet, the auto-update feature within CotEditor should be once disabled. The new behavior is: a nofitication window will be shown when a new release is available (as before), then you need to update CotEditor manually getting the new version from our web-site. Or, just migrate to the Mac App Store version.</li>
+		<li>Since the <a href="http://sparkle-project.org" rel="external">Sparkle</a> framework which is a software update framework we use doesn't support Sandboxed apps yet, the auto-update feature within CotEditor should be once disabled. The new behavior is: a nofitication window will be shown when a new release is available (as before), then you need to update CotEditor manually getting the new version from our web-site. Or, just migrate to the <a href="http://appstore.com/mac/CotEditor">Mac App Store version</a>.</li>
 	</ul></li>
-	<li>[non-AppStore ver.] Add option to check pre-release versions.
+	<li><span class="label">non-AppStore ver.</span>: Add option to check pre-release versions.
 	<ul>
 		<li>New pre-releases are always subject of the update check no matter the user setting if the current runnning CotEditor is a pre-release version.</li>
 	</ul></li>
-	<li>[non-AppStore ver.] Update Sparkle framework to version 1.11.0.</li>
+	<li><span class="label">non-AppStore ver.</span>: Update Sparkle framework to version 1.11.0.</li>
 </ul>
 </section>
 
@@ -581,6 +583,8 @@
 	<h1>CotEditor 2.0.0</h1>
 	<p>release: <time>2014-11-13</time></p>
 </header>
+
+<p class="important">This version contains some specific changes that may require manuall migration by users. See <a href="specification_changes.html">Specification Changes on CotEditor 2.0</a> for details.</p>
 
 <section>
 <h2>New Features</h2>
