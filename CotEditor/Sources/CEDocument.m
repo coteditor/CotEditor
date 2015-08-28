@@ -401,47 +401,15 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     [savePanel setExtensionHidden:NO];
     [savePanel setCanSelectHiddenExtension:NO];
     
-    return [super prepareSavePanel:savePanel];
-}
-
-
-// ------------------------------------------------------
-/// セーブパネルを表示
-- (void)runModalSavePanelForSaveOperation:(NSSaveOperationType)saveOperation delegate:(nullable id)delegate didSaveSelector:(nullable SEL)didSaveSelector contextInfo:(nullable void *)contextInfo
-// ------------------------------------------------------
-{
-    [super runModalSavePanelForSaveOperation:saveOperation delegate:delegate
-                             didSaveSelector:didSaveSelector contextInfo:contextInfo];
-    
-    // 以下、拡張子を付与もしくは保持してるように見せつつも NSSavePanel には拡張子ではないと判断させるための小細工
-    
-    // find file name field
-    NSSavePanel *savePanel = (NSSavePanel *)[[self windowForSheet] attachedSheet];
-    NSText *text;
-    for (id view in [[savePanel contentView] subviews]) {
-        if ([view isKindOfClass:[NSTextField class]]) {
-            text = [savePanel fieldEditor:NO forObject:view];
-            break;
-        }
-    }
-    
-    if (!text) { return; }
-    
-    NSString *fileName = [self displayName];
-    
-    // 新規保存の場合は現在のシンタックスに対応したものを追加する
+    // append file extension as a part of the file name, if it is the first save.
     if (![self fileURL]) {
-        NSString *styleName = [[self editor] syntaxStyleName];
-        NSArray *extensions = [[CESyntaxManager sharedManager] extensionsForStyleName:styleName];
-        
-        if ([extensions count] > 0) {
-            fileName = [fileName stringByAppendingPathExtension:[extensions firstObject]];
+        NSString *extension = [self preferredExtension];
+        if (extension) {
+            [savePanel setNameFieldStringValue:[[savePanel nameFieldStringValue] stringByAppendingPathExtension:extension]];
         }
     }
     
-    // あたらめてファイル名をセットし、拡張子をのぞいた部分を選択状態にする
-    [text setString:fileName];
-    [text setSelectedRange:NSMakeRange(0, [[fileName stringByDeletingPathExtension] length])];
+    return [super prepareSavePanel:savePanel];
 }
 
 
@@ -1212,6 +1180,23 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 
 #pragma mark Private Methods
+
+// ------------------------------------------------------
+/// return preferred file extension corresponding the current syntax style
+- (NSString *)preferredExtension
+// ------------------------------------------------------
+{
+    if ([self fileURL]) {
+        return [[self fileURL] pathExtension];
+        
+    } else {
+        NSString *styleName = [[self editor] syntaxStyleName];
+        NSArray *extensions = [[CESyntaxManager sharedManager] extensionsForStyleName:styleName];
+        
+        return [extensions firstObject];
+    }
+}
+
 
 // ------------------------------------------------------
 /// editor を通じて syntax インスタンスをセット

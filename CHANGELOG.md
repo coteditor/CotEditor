@@ -30,6 +30,7 @@ develop
 - Fix an issue where warning on Integration pane didn't dissapear even after the problem resolved.
 - Add some missing localized strings in Japanese.
 - [beta] Fix an issue where the strings that were inserted via script or tools could be styled wrong.
+- [beta] Fix an issue where no preffered extension was appended on the document save panel.
 - [beta] Fix an issue where the bug report template was not syntax highlighted.
 
 
