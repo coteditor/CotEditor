@@ -99,7 +99,7 @@ static NSString *const kEscapeCharacter = @"\\";
     if (self) {
         _findString = @"";
         _replacementString = @"";
-        _highlightColor = [NSColor yellowColor];
+        _highlightColor = [NSColor colorWithCalibratedHue:0.24 saturation:0.8 brightness:0.8 alpha:0.4];
         // Highlight color is currently not customizable. (2015-01-04)
         // It might better when it can be set in theme also for incompatible chars highlight.
         // Just because I'm lazy.
