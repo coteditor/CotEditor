@@ -14,21 +14,21 @@ develop
 ### Additions/Changes
 
 - Change the location where `cot` command-line tool is bundled from `CotEditor.app/Contents/MacOS/` to `CotEditor.app/Contents/SharedSupport/bin/`, due to Sandbox requirement.
-    - Uses who have already installed `cot` command need re-install it manually. Go to “Itegration” pane in the Preferences and just press “Uninstall/Install” button twice.
+    - Uses who have already installed `cot` command need re-install it manually. Go to “Integration” pane in the Preferences and just press “Uninstall/Install” button twice.
 - Update word completion list setting in Edit pane in Preferences (The previous setting has been reset).
 - Adjust highlight color for find panel.
 - Tweak some message terms.
 - Update documents.
 - [non-AppStore ver.] Update Sparkle framework to version 1.11.0.
 - [beta][non-AppStore ver.] Change to not check pre-release versions on default.
-    - New pre-releases are always subject of the update check no matter the user setting if the current runnning CotEditor is a pre-release version.
+    - New pre-releases are always subject of the update check no matter the user setting if the current running CotEditor is a pre-release version.
 
 
 ### Fixes
 
 - Fix an issue where the command-line tool could rarely not be installed from Integration pane.
 - Fix an issue where application crashed by clicking header of empty table in syntax editor sheet.
-- Fix an issue where warning on Integration pane didn't dissapear even after the problem resolved.
+- Fix an issue where warning on Integration pane didn't disappear even after the problem resolved.
 - Add some missing localized strings in Japanese.
 - [beta] Fix an issue where the strings that were inserted via script or tools could be styled wrong.
 - [beta] Fix an issue where no preffered extension was appended on the document save panel.
@@ -90,7 +90,7 @@ develop
 - Fix an issue where the full path display in the document inspector did not update after the document file moved.
 - Fix an issue where the find panel could not find matched strings when the find string includes CR or CR/LF line endings.
 - Fix an issue where line numbers were not drawn completely on OS X 10.8 when scroll bars are set as always shown.
-- Fix an issue where some legatured characters were drawn at a wrong position when the line height for composite font is fixed. 
+- Fix an issue where some ligatured characters were drawn at a wrong position when the line height for composite font is fixed. 
 - Improve general stability.
 
 
@@ -127,7 +127,7 @@ develop
 - Support Automatic Termination (Now, CotEditor can be terminated automatically if it has no window).
 - Display invisible vertical tab (`U+000B`) with `␋` symbol if “Show other invisible characters” turns on.
 - Add fancy animations to encoding list edit sheet in preferences.
-- Add suppression button to the IANA charset name conflict alret.
+- Add suppression button to the IANA charset name conflict alert.
 - Improve word completion with words that exist in the document.
 - Modify layout of “General” pane in Preferences.
 - Add tooltip hint to controls in the find panel.
@@ -193,7 +193,7 @@ develop
 
 ### Fixes
 
-- Fix an issue where octal file permisson in the document inspector was wrong.
+- Fix an issue where octal file permission in the document inspector was wrong.
 - Fix an issue where application could hang up on text editing.
 - Improve general stability.
 
@@ -227,7 +227,7 @@ a
 
 ### New Features
 
-- Now your documents are automatically backuped while editing and will be resumed at the next session, even after force quitting.
+- Now your documents are automatically backed-up while editing and will be resumed at the next session, even after force quitting.
     - This feature doesn't modify your actual files. You still need to perform “Save” manually to apply changes to your files.
 
 
@@ -372,7 +372,7 @@ a
 - Update “JSON” syntax style:
     - Improve highlighting performance.
 - Improve find panel behavior with Spaces.
-- Disable rech text in find panel.
+- Disable rich text in find panel.
 
 
 ### Fixes
