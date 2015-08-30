@@ -14,7 +14,7 @@ develop
 ### Additions/Changes
 
 - Change the location where `cot` command-line tool is bundled from `CotEditor.app/Contents/MacOS/` to `CotEditor.app/Contents/SharedSupport/bin/`, due to Sandbox requirement.
-    - Uses who have already installed `cot` command need re-install it manually. Go to “Integration” pane in the Preferences and just press “Uninstall/Install” button twice.
+    - The migration will be done at the first launch automatically.
 - Update word completion list setting in Edit pane in Preferences (The previous setting has been reset).
 - Adjust highlight color for find panel.
 - Tweak some message terms.

@@ -767,6 +767,38 @@ static NSString *__nonnull const kMigrationFlagKey = @"isMigratedToNewBundleIden
     if (!lastVersion && [[self supportDirectoryURL] checkResourceIsReachableAndReturnError:nil]) {
         [self migrateToVersion2];
     }
+    
+    if (lastVersion && [lastVersion containsString:@"."]) {
+        [self migrateCotCommand];
+    }
+}
+
+
+//------------------------------------------------------
+/// migrate cot symlink destination
+- (void)migrateCotCommand
+//------------------------------------------------------
+{
+    NSURL *cotURL = [NSURL fileURLWithPath:@"/usr/local/bin/cot"];
+    NSURL *linkDestinationURL = [NSURL fileURLWithPath:[[NSFileManager defaultManager]
+                                                        destinationOfSymbolicLinkAtPath:[cotURL path] error:nil]];
+    NSURL *legacyBundleURL = [[[[NSBundle mainBundle] executableURL] URLByDeletingLastPathComponent] URLByAppendingPathComponent:@"cot"];
+    
+    if ([linkDestinationURL isEqual:legacyBundleURL]) {
+        NSURL *newBundleURL = [[[NSBundle mainBundle] sharedSupportURL] URLByAppendingPathComponent:@"bin/cot"];
+        NSFileCoordinator *coordinator = [[NSFileCoordinator alloc] init];
+        [coordinator coordinateWritingItemAtURL:cotURL options:0
+                                          error:nil
+                                     byAccessor:^(NSURL *newURL)
+         {
+             unlink([[cotURL path] fileSystemRepresentation]);
+             [[NSFileManager defaultManager] createSymbolicLinkAtURL:newURL
+                                                            withDestinationURL:newBundleURL
+                                                                         error:nil];
+         }];
+    } else {
+    }
+    
 }
 
 
