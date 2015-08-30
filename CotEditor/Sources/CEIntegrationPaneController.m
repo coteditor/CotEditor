@@ -74,8 +74,6 @@ static NSString *const kSymbolicLinkPath = @"/usr/local/bin/cot";
         _linkURL = [NSURL fileURLWithPath:kSymbolicLinkPath];
         _commandURL = [[[NSBundle mainBundle] sharedSupportURL] URLByAppendingPathComponent:@"bin/cot"];
         _uninstallable = YES;
-        
-        _installed = [self validateSymlink];
     }
     return self;
 }
@@ -88,18 +86,20 @@ static NSString *const kSymbolicLinkPath = @"/usr/local/bin/cot";
 {
     [super loadView];
     
+    [self setInstalled:[self validateSymlink]];
     [self toggleInstallButtonState:[self isInstalled]];
 }
 
 
 // ------------------------------------------------------
-/// update warnings before view appears
+/// update warnings before view appears (only on OS X 10.10 and later)
 - (void)viewWillAppear
 // ------------------------------------------------------
 {
     [super viewWillAppear];
     
-    [self validateSymlink];
+    [self setInstalled:[self validateSymlink]];
+    [self toggleInstallButtonState:[self isInstalled]];
 }
 
 
@@ -242,8 +242,12 @@ static NSString *const kSymbolicLinkPath = @"/usr/local/bin/cot";
         return NO;
     }
     
-    NSURL *linkDestinationURL = [[self linkURL] URLByResolvingSymlinksInPath];
+    // ???: `URLByResolvingSymlinksInPath` doesn't work correctly on OS X 10.10 SDK, so I use a legacy way (2015-08).
+//    NSURL *linkDestinationURL = [[self linkURL] URLByResolvingSymlinksInPath];
+    NSURL *linkDestinationURL = [NSURL fileURLWithPath:[[NSFileManager defaultManager]
+                                                        destinationOfSymbolicLinkAtPath:[[self linkURL] path] error:nil]];
     
+    // if it is not a symlink
     if ([linkDestinationURL isEqual:[self linkURL]]) {
         [self setUninstallable:NO];  // treat as "installed"
         return YES;
