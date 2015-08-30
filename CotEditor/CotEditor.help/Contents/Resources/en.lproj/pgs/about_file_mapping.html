@@ -22,7 +22,7 @@
 
 <p>Opening files, CotEditor detects the document type and applies the corresponding syntax style automatically.</p>
 
-<p>The “File Mapping” definitions in each sytnax style are used for this detection.</p>
+<p>The “File Mapping” definitions in each syntax style are used for this detection.</p>
 
 <h2>Priority order of file mapping</h2>
 
@@ -40,13 +40,13 @@
 		<li>e.g.: makefile → Makefile</li>
 	</ul></li>
 	<li>Shebang in the first line of the document<ul>
-		<li>When there is no corresponding syntax style for the extension and the file name, and if the first line of the document content is a shebang, then try determining syntax style from the shebang. In this trial, the interpreter names which is defined in the sytnax styles are used. The interpreter can be either the last part of the path jsut after <code>#!</code> or the next term to the path if the path targets <code>env</code>.</li>
+		<li>When there is no corresponding syntax style for the extension and the file name, and if the first line of the document content is a shebang, then try determining syntax style from the shebang. In this trial, the interpreter names which is defined in the syntax styles are used. The interpreter can be either the last part of the path just after <code>#!</code> or the next term to the path if the path targets <code>env</code>.</li>
 		<li>e.g.: <code>#!/usr/bin/perl</code> → Perl (interpreter: <code>perl</code>)</li>
 		<li>e.g.: <code>#!/usr/bin/env python3</code> → Python (interpreter: <code>python3</code>)</li>
 	</ul></li>
 </ol>
 
-<p>When there are multiple syntax styles in the same level like the file extension level or the file name level, user custom sytles are preffered than the bundled styles. And yet, if there are mulitple corresponding styles, the first found style will be applied automatically.</p>
+<p>When there are multiple syntax styles in the same level like the file extension level or the file name level, user custom styles are preferred than the bundled styles. And yet, if there are multiple corresponding styles, the first found style will be applied automatically.</p>
 
 <h2>File Mapping Conflicts</h2>
 

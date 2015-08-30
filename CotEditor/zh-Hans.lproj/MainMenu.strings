@@ -176,7 +176,7 @@
 "QKD-ue-EQp.title" = "智能拷贝/粘贴";
 /* Class = "NSMenuItem"; title = "Smart Quotes"; ObjectID = "sza-9T-f4h"; */
 "sza-9T-f4h.title" = "智能引号";
-/* Class = "NSMenuItem"; title = "Samrt Dashes"; ObjectID = "cIp-rb-QPk"; */
+/* Class = "NSMenuItem"; title = "Smart Dashes"; ObjectID = "cIp-rb-QPk"; */
 "cIp-rb-QPk.title" = "智能破折号";
 /* Class = "NSMenuItem"; title = "Text Replacement"; ObjectID = "PSn-PG-o9k"; */
 "PSn-PG-o9k.title" = "文本替换";

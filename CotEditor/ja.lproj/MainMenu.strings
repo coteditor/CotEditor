@@ -175,7 +175,7 @@
 "QKD-ue-EQp.title" = "スマートコピー／ペースト";
 /* Class = "NSMenuItem"; title = "Smart Quotes"; ObjectID = "sza-9T-f4h"; */
 "sza-9T-f4h.title" = "スマート引用符";
-/* Class = "NSMenuItem"; title = "Samrt Dashes"; ObjectID = "cIp-rb-QPk"; */
+/* Class = "NSMenuItem"; title = "Smart Dashes"; ObjectID = "cIp-rb-QPk"; */
 "cIp-rb-QPk.title" = "スマートダッシュ記号";
 /* Class = "NSMenuItem"; title = "Text Replacement"; ObjectID = "PSn-PG-o9k"; */
 "PSn-PG-o9k.title" = "テキストを置換";

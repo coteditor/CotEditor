@@ -84,7 +84,7 @@
 "Jap-f3-ehL.ibShadowedToolTips[2]" = "右揃え";  /* Align Right */
 
 
-/* Class = "NSTextFieldCell"; title = "Second Line:"; ObjectID = "3373"; */
+/* Class = "NSTextFieldCell"; title = "Secondary:"; ObjectID = "3373"; */
 "3373.title" = "副ヘッダ：";
 
 /* Class = "NSMenuItem"; title = "None"; ObjectID = "906"; */

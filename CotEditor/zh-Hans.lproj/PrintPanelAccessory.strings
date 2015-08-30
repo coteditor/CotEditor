@@ -79,7 +79,7 @@
 
 
 
-/* Class = "NSTextFieldCell"; title = "Secodnary:"; ObjectID = "707"; */
+/* Class = "NSTextFieldCell"; title = "Secondary:"; ObjectID = "707"; */
 "707.title" = "次:";
 
 /* Class = "NSMenuItem"; title = "None"; ObjectID = "395"; */
@@ -127,7 +127,7 @@
 "njJ-Ab-dUQ.ibShadowedToolTips[2]" = "右对齐";  /* Align Right */
 
 
-/* Class = "NSTextFieldCell"; title = "Secodnary:"; ObjectID = "712"; */
+/* Class = "NSTextFieldCell"; title = "Secondary:"; ObjectID = "712"; */
 "712.title" = "次:";
 
 /* Class = "NSMenuItem"; title = "None"; ObjectID = "399"; */
