@@ -15,8 +15,9 @@ unless system "spctl -a -v #{app}" then
 	exit
 end
 
-version = `/usr/libexec/PlistBuddy -c "Print :CFBundleVersion" #{app}/Contents/Info.plist`.chomp
-puts "Version #{version}"
+version = `/usr/libexec/PlistBuddy -c "Print :CFBundleShortVersionString" #{app}/Contents/Info.plist`.chomp
+build_number = `/usr/libexec/PlistBuddy -c "Print :CFBundleVersion" #{app}/Contents/Info.plist`.chomp
+puts "Version #{version} : Build #{build_number}"
 
 dmg = "./CotEditor_#{version}.dmg"
 
@@ -75,7 +76,7 @@ if IS_SANDBOXED then
 			<sparkle:releaseNotesLink xml:lang="ja">http://coteditor.com/releasenotes/#{version}.ja.html</sparkle:releaseNotesLink>
 			<pubDate>#{date}</pubDate>
 			<sparkle:minimumSystemVersion>10.8</sparkle:minimumSystemVersion>
-			<sparkle:version>#{version}</sparkle:version>
+			<sparkle:version>#{build_number}</sparkle:version>
             <link>http://coteditor.com/</link>
 		</item>
 	APPCAST_ITEM
@@ -89,7 +90,7 @@ else
 			<pubDate>#{date}</pubDate>
 			<sparkle:minimumSystemVersion>10.8</sparkle:minimumSystemVersion>
 			<enclosure url="https://github.com/coteditor/CotEditor/releases/download/#{version}/CotEditor_#{version}.dmg"
-			           sparkle:version="#{version}"
+			           sparkle:version="#{build_number}"
 			           sparkle:dsaSignature="#{dsa}"
 			           length="#{length}"
 			           type="application/octet-stream"/>
