@@ -60,6 +60,7 @@
 - (void)setLineSpacingAndUpdate:(CGFloat)lineSpacing;
 - (void)replaceWithString:(nullable NSString *)string range:(NSRange)range
             selectedRange:(NSRange)selectedRange actionName:(nullable NSString *)actionName;
+- (void)invalidateIndentInRange:(NSRange)range;
 
 // Action Message
 - (IBAction)resetFont:(nullable id)sender;
