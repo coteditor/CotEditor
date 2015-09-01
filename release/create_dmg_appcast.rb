@@ -10,15 +10,40 @@ unless Dir.exist?(app) then
 	exit
 end
 
-version = `/usr/libexec/PlistBuddy -c "Print :CFBundleVersion" #{app}/Contents/Info.plist`.chomp
-puts "Version #{version}"
+unless system "spctl -a -v #{app}" then
+	puts "Code sign error : #{app}"
+	exit
+end
+
+version = `/usr/libexec/PlistBuddy -c "Print :CFBundleShortVersionString" #{app}/Contents/Info.plist`.chomp
+build_number = `/usr/libexec/PlistBuddy -c "Print :CFBundleVersion" #{app}/Contents/Info.plist`.chomp
+puts "Version #{version} : Build #{build_number}"
 
 dmg = "./CotEditor_#{version}.dmg"
 
-unless File.exist?(dmg) then
-	puts "File not found : #{dmg}"
+if File.exist?(dmg) then
+	puts "Already exist : #{dmg}"
 	exit
 end
+
+# Create work directory
+dmgwork = "./CotEditor_#{version}"
+require 'fileutils'
+FileUtils.rm_rf(dmgwork)
+FileUtils.mkdir(dmgwork)
+FileUtils.mv(app, dmgwork)
+
+# Copy additional files
+files = "./files"
+if Dir.exist?(files) then
+	FileUtils.cp_r("#{files}/.", dmgwork)
+end
+
+# Create dmg
+system "hdiutil create -format UDBZ -srcfolder #{dmgwork} #{dmg}"
+FileUtils.rm_rf(dmgwork)
+
+puts "Created dmg for #{version}."
 
 
 if File.exist?(APPCAST_PATH) then
@@ -51,7 +76,7 @@ if IS_SANDBOXED then
 			<sparkle:releaseNotesLink xml:lang="ja">http://coteditor.com/releasenotes/#{version}.ja.html</sparkle:releaseNotesLink>
 			<pubDate>#{date}</pubDate>
 			<sparkle:minimumSystemVersion>10.8</sparkle:minimumSystemVersion>
-			<sparkle:version>#{version}</sparkle:version>
+			<sparkle:version>#{build_number}</sparkle:version>
             <link>http://coteditor.com/</link>
 		</item>
 	APPCAST_ITEM
@@ -65,7 +90,7 @@ else
 			<pubDate>#{date}</pubDate>
 			<sparkle:minimumSystemVersion>10.8</sparkle:minimumSystemVersion>
 			<enclosure url="https://github.com/coteditor/CotEditor/releases/download/#{version}/CotEditor_#{version}.dmg"
-			           sparkle:version="#{version}"
+			           sparkle:version="#{build_number}"
 			           sparkle:dsaSignature="#{dsa}"
 			           length="#{length}"
 			           type="application/octet-stream"/>
