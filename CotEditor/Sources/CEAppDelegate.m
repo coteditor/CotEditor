@@ -134,7 +134,7 @@
                                CEDefaultTabWidthKey: @4U,
                                CEDefaultAutoIndentKey: @YES,
                                CEDefaultEnablesHangingIndentKey: @YES,
-                               CEDefaultHangingIndentWidthKey: @4U,
+                               CEDefaultHangingIndentWidthKey: @0U,
                                CEDefaultShowInvisiblesKey: @YES,
                                CEDefaultShowInvisibleSpaceKey: @NO,
                                CEDefaultInvisibleSpaceKey: @0U,

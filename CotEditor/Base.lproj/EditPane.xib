@@ -468,7 +468,7 @@
                     </constraints>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="right" title="4" drawsBackground="YES" id="814-Pp-DH8">
                         <numberFormatter key="formatter" formatterBehavior="default10_4" localizesFormat="NO" numberStyle="decimal" usesGroupingSeparator="NO" groupingSize="0" minimumIntegerDigits="0" maximumIntegerDigits="42" id="1AS-mZ-hrU">
-                            <decimal key="minimum" value="1"/>
+                            <real key="minimum" value="0.0"/>
                             <decimal key="maximum" value="99"/>
                         </numberFormatter>
                         <font key="font" metaFont="system"/>
@@ -485,7 +485,7 @@
                 </textField>
                 <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="W1V-E2-PcB">
                     <rect key="frame" x="338" y="306" width="19" height="27"/>
-                    <stepperCell key="cell" continuous="YES" alignment="left" minValue="1" maxValue="99" doubleValue="1" id="t0g-87-hqB"/>
+                    <stepperCell key="cell" continuous="YES" alignment="left" maxValue="99" doubleValue="1" id="t0g-87-hqB"/>
                     <connections>
                         <binding destination="26" name="enabled" keyPath="values.enableHangingIndent" id="FBg-tb-ygI"/>
                         <binding destination="26" name="value" keyPath="values.hangingIndentWidth" id="VHo-5F-VIh"/>
