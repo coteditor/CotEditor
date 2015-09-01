@@ -139,12 +139,6 @@
                                                      name:CEThemeDidUpdateNotification
                                                    object:nil];
         
-        // observe textStorage to get edited range
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(textStorageDidProcessEditing:)
-                                                     name:NSTextStorageDidProcessEditingNotification
-                                                   object:_textStorage];
-        
         // リサイズに現在行ハイライトを追従
         if (_highlightsCurrentLine) {
             [[NSNotificationCenter defaultCenter] addObserver:self
@@ -177,16 +171,6 @@
 - (void)replaceTextStorage:(NSTextStorage *)textStorage
 // ------------------------------------------------------
 {
-    // update observation
-    [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:NSTextStorageDidProcessEditingNotification
-                                                  object:[self textStorage]];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(textStorageDidProcessEditing:)
-                                                 name:NSTextStorageDidProcessEditingNotification
-                                               object:textStorage];
-    
-    // replace
     [[[self textView] layoutManager] replaceTextStorage:textStorage];
     [self setTextStorage:textStorage];
 }
@@ -521,30 +505,6 @@
 
 
 #pragma mark Notifications
-
-//=======================================================
-// Notification  < NSTextStorage
-//=======================================================
-
-// ------------------------------------------------------
-/// sent inside `processEditing` right before notifying layout managers to get edited range
-- (void)textStorageDidProcessEditing:(nonnull NSNotification *)notification
-// ------------------------------------------------------
-{
-    NSTextStorage *textStorage = [notification object];
-    
-    // don't care about pure attributes change
-    if (([textStorage editedMask] & NSTextStorageEditedCharacters) == 0) { return; }
-    
-    // invalidate in the next run-loop to let layoutManager layout the new text first,
-    //     otherwise the calculation of tab character width can be wrong.
-    NSRange editedRange = [textStorage editedRange];
-    CETextView *textView = [self textView];
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [textView invalidateIndentInRange:editedRange];
-    });
-}
-
 
 //=======================================================
 // Notification  < CETextFinder

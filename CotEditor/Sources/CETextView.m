@@ -892,7 +892,7 @@ static NSPoint kTextContainerOrigin;
             [paragraphStyle setHeadIndent:0];
             [[self textStorage] addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:wholeRange];
         } else {
-            [self invalidateIndentInRange:wholeRange];
+            [(CELayoutManager *)[self layoutManager] invalidateIndentInRange:wholeRange];
         }
     
     } else if ([keyPath isEqualToString:CEDefaultEnableSmartQuotesKey]) {
@@ -1077,55 +1077,6 @@ static NSPoint kTextContainerOrigin;
                       ranges:@[[NSValue valueWithRange:range]]
               selectedRanges:@[[NSValue valueWithRange:selectedRange]]
                   actionName:actionName];
-}
-
-
-// ------------------------------------------------------
-/// invalidate indent of wrapped lines
-- (void)invalidateIndentInRange:(NSRange)range
-// ------------------------------------------------------
-{
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultEnablesHangingIndentKey]) {
-        NSUInteger hangingIndentWidth = [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultHangingIndentWidthKey];
-        NSUInteger tabWidth = [self tabWidth];
-        
-        NSTextStorage *textStorage = [self textStorage];
-        NSLayoutManager *layoutManager = [self layoutManager];
-        NSTextContainer *textContainer = [self textContainer];
-        
-        // invalidate line by line
-        NSRange lineRange = [[self string] lineRangeForRange:range];
-        [[self string] enumerateSubstringsInRange:lineRange
-                                          options:NSStringEnumerationByLines
-                                       usingBlock:^(NSString *substring,
-                                                    NSRange substringRange,
-                                                    NSRange enclosingRange,
-                                                    BOOL *stop)
-         {
-             CGFloat indent = 0;
-             NSParagraphStyle *paragraphStyle = [textStorage attribute:NSParagraphStyleAttributeName
-                                                               atIndex:substringRange.location
-                                                        effectiveRange:NULL];
-             
-             // calculate indent
-             NSRange indentRange = [substring rangeOfString:@"^[ \\t]+" options:NSRegularExpressionSearch];
-             if (indentRange.location != NSNotFound) {
-                 indentRange.location += substringRange.location;
-                 NSRange glyphRange = [layoutManager glyphRangeForCharacterRange:indentRange actualCharacterRange:NULL];
-                 NSRect indentRect = [layoutManager boundingRectForGlyphRange:glyphRange inTextContainer:textContainer];
-                 indent = NSWidth(indentRect);
-                 
-                 indent += hangingIndentWidth * [paragraphStyle defaultTabInterval] / tabWidth;
-             }
-             
-             // apply new indent only if needed
-             if (indent != [paragraphStyle headIndent]) {
-                 NSMutableParagraphStyle *mutableParagraphStyle = [paragraphStyle mutableCopy];
-                 [mutableParagraphStyle setHeadIndent:indent];
-                 [textStorage addAttribute:NSParagraphStyleAttributeName value:[mutableParagraphStyle copy] range:substringRange];
-             }
-         }];
-    }
 }
 
 
