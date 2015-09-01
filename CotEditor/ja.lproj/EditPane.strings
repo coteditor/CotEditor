@@ -63,6 +63,10 @@
 "P1I-gs-RgX.title" = "折り返し：";
 /* Class = "NSButtonCell"; title = "Soft wrap lines"; ObjectID = "3274"; */
 "3274.title" = "行を折り返す";
+/* Class = "NSButtonCell"; title = "Indent wrapped lines by:"; ObjectID = "mCq-92-2sT"; */
+"mCq-92-2sT.title" = "折り返した行をインデント：";
+/* Class = "NSTextFieldCell"; title = "spaces"; ObjectID = "P9V-pV-PAX"; */
+"P9V-pV-PAX.title" = "スペース";
 
 
 /* Class = "NSTextFieldCell"; title = "Invisibles:"; ObjectID = "pjW-HE-ngH"; */
