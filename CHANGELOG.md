@@ -5,6 +5,20 @@ Change Log
 develop
 --------------------------
 
+### Additions/Changes
+
+- Make Color Code Editor resizable.
+
+
+### Fixes
+
+- Fix an issue where color code view did not display on El capitan.
+
+
+
+2.2.0 (67)
+--------------------------
+
 ### New Features
 
 - Add new normalization form “NFKC Casefold” to the Unicode normalization action in Utility menu (Thanks to doraTeX!)

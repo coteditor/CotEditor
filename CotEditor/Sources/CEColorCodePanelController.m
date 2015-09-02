@@ -137,12 +137,17 @@
     NSColorPanel *colorPanel = [NSColorPanel sharedColorPanel];
     [colorPanel setAccessoryView:[self accessoryView]];
     [colorPanel setShowsAlpha:YES];
-    [colorPanel setStyleMask:[colorPanel styleMask] & ~NSResizableWindowMask];
     [colorPanel setRestorable:NO];
     
     [colorPanel setDelegate:self];
     [colorPanel setAction:@selector(selectColor:)];
     [colorPanel setTarget:self];
+    
+    // make positoin of accessory view center
+    [[[colorPanel accessoryView] superview] addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|[accessory]|"
+                                                                                                   options:0
+                                                                                                   metrics:@{}
+                                                                                                     views:@{@"accessory": [colorPanel accessoryView]}]];
     
     [self setWindow:colorPanel];
     [self setColor:[colorPanel color]];
