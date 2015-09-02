@@ -796,9 +796,7 @@ static NSString *__nonnull const kMigrationFlagKey = @"isMigratedToNewBundleIden
                                                             withDestinationURL:newBundleURL
                                                                          error:nil];
          }];
-    } else {
     }
-    
 }
 
 
