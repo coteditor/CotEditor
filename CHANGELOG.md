@@ -12,7 +12,8 @@ develop
 
 ### Fixes
 
-- Fix an issue where color code view did not display on El capitan.
+- Fix an issue where app could crash after when closing multiple split views.
+- Fix an issue where color code view did not display on El Capitan.
 
 
 
