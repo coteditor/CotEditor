@@ -14,6 +14,7 @@ develop
 
 - Fix an issue where app could crash after when closing multiple split views.
 - Fix an issue where color code view did not display on El Capitan.
+- [2.2.0] Fix an issue where `cot` command failed when Python3 is the default environment.
 
 
 
