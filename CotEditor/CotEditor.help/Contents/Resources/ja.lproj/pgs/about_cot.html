@@ -17,14 +17,19 @@
 </ul></nav>
 
 
+<a name="about_cot"></a>
 <h1><code>cot</code> コマンド</h1>
 
 <p>CotEditor にはコマンドラインからの操作を可能にする <code>cot</code> コマンドラインツールがあります。<code>cot</code> コマンドを使うためには、まずインストールをしてください。</p>
 
 <h2>インストール</h2>
-<p>'<code>cot</code>' コマンドラインツールは CotEditor 環境設定の<a href="../pgs/pref_integration.html">連携</a>から、簡単に '/usr/local/bin/cot' にインストールできます。</p>
+<p><code>cot</code> コマンドラインツールは CotEditor 環境設定の<a href="../pgs/pref_integration.html">連携</a>から、簡単に '/usr/local/bin/cot' にインストールできます。<code>cot</code> 本体は CotEditor.app 内の '<code>Contents/SharedSupport/bin/cot</code>' にバンドルされています。</p>
 <p>Terminal からシンボリックリンクを作成して、任意の箇所にインストールすることも可能です。</p>
 <pre><code>ln -s /Applications/CotEditor.app/Contents/SharedSupport/bin/cot ~/bin/cot</code></pre>
+
+<h3>El Capitan でのインストール</h3>
+<p>OS X 10.11 El Capitan<small>（および、おそらくそれ以降）</small>では、サンドボックス化されたアプリケーションに '<code>/usr/local/bin/</code>' にシンボリックリンクを作成する権限がないため、連携ペインからの <code>cot</code> コマンドのインストールができません。しかしながら、ターミナルからユーザ自身がコマンドをインストールすることはできます。'<code>/usr/local/bin/</code>' にシンボリックリンクを作成するには <code>sudo</code> が必要であることに留意してください。</p>
+<pre><code><strong>sudo</strong> ln -s /Applications/CotEditor.app/Contents/SharedSupport/bin/cot /usr/local/bin/cot</code></pre>
 
 <h2>オプション</h2>
 <p><code>cot</code> コマンドは以下のオプションが使用できます。</p>

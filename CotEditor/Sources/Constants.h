@@ -57,6 +57,7 @@ typedef NS_ENUM(OSStatus, CEErrorCode) {
     // for command-line tool
     CEApplicationNotInApplicationDirectoryError,
     CEApplicationNameIsModifiedError,
+    CESymlinkCreationDeniedError,
 };
 
 // Metadata dict keys

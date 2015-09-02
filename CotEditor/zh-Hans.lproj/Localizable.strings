@@ -305,6 +305,11 @@
 "The name of the running CotEditor is modified." = "正在运行的 CotEditor 的名字被改变了。";
 "Do you really want to install the command-line tool for “%@”?" = "确定要为 “%@” 安装命令行工具吗？";
 
+"Creating symbolic link at “%@” by 3rd party applications is denied on OS X %@." = "Creating symbolic link at “%@” by 3rd party applications is denied on OS X %@.";  // FIXME: added
+"You can install cot command running the following command on Terminal manually:" = "You can install cot command running the following command on Terminal manually:";  // FIXME: added
+"Modifying files at “%@” by 3rd party applications is denied on OS X %@." = "Modifying files at “%@” by 3rd party applications is denied on OS X %@.";  // FIXME: added
+"You can uninstall cot command running the following command on Terminal manually:" = "You can uninstall cot command running the following command on Terminal manually:";  // FIXME: added
+
 
 /* MARK: CESyntaxEditSheetController */
 // Menu items
