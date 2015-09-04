@@ -33,6 +33,7 @@
 
 @interface CEColorCodePanelController ()
 
+@property (nonatomic, nonnull) NSColorList *stylesheetColorList;
 @property (nonatomic, nullable) IBOutlet NSView *accessoryView;
 @property (nonatomic, nullable) NSColor *color;
 @property (nonatomic, nullable) NSString *colorCode;
@@ -75,6 +76,15 @@
     self = [super init];
     if (self) {
         [[NSBundle mainBundle] loadNibNamed:@"ColorCodePanelAccessory" owner:self topLevelObjects:nil];
+        
+        // setup stylesheet color list
+        NSDictionary *keywordColors = [NSColor stylesheetKeywordColors];
+        NSColorList *colorList = [[NSColorList alloc] initWithName:NSLocalizedString(@"Stylesheet Keywords", nil)];
+        for (NSString *keyword in keywordColors) {
+            NSColor *color = keywordColors[keyword];
+            [colorList setColor:color forKey:keyword];
+        }
+        _stylesheetColorList = colorList;
     }
     return self;
 }
@@ -121,6 +131,7 @@
     NSColorPanel *colorPanel = (NSColorPanel *)[self window];
     [[self window] setDelegate:nil];
     [colorPanel setAccessoryView:nil];
+    [colorPanel detachColorList:[self stylesheetColorList]];
     [colorPanel setShowsAlpha:NO];
 }
 
@@ -148,6 +159,8 @@
                                                                                                    options:0
                                                                                                    metrics:@{}
                                                                                                      views:@{@"accessory": [colorPanel accessoryView]}]];
+    
+    [colorPanel attachColorList:[self stylesheetColorList]];
     
     [self setWindow:colorPanel];
     [self setColor:[colorPanel color]];

@@ -7,7 +7,9 @@ develop
 
 ### Additions/Changes
 
-- Make Color Code Editor resizable.
+- Improve Color Code Editor:
+    - Add stylesheet keyword color list to editor panel. 
+    - Make editor panel resizable.
 
 
 ### Fixes
