@@ -49,9 +49,9 @@
 "544.ibShadowedToolTip" = "ドロップ元ファイルの絶対パス";
 /* Class = "NSMenuItem"; ibShadowedToolTip = "The relative path between dropped file and the document."; ObjectID = "546"; */
 "546.ibShadowedToolTip" = "ドロップ先ファイルからドロップ元ファイルへの相対パス";
-/* Class = "NSMenuItem"; ibShadowedToolTip = "The dropped file name include extension (if exists)."; ObjectID = "542"; */
+/* Class = "NSMenuItem"; ibShadowedToolTip = "The dropped file's name include extension (if exists)."; ObjectID = "542"; */
 "542.ibShadowedToolTip" = "ドロップ元ファイルの、拡張子を含むファイル名";
-/* Class = "NSMenuItem"; ibShadowedToolTip = "The dropped file name without extension."; ObjectID = "538"; */
+/* Class = "NSMenuItem"; ibShadowedToolTip = "The dropped file's name without extension."; ObjectID = "538"; */
 "538.ibShadowedToolTip" = "ドロップ元ファイルの名前から拡張子を削除した文字列";
 /* Class = "NSMenuItem"; ibShadowedToolTip = "The dropped file's extension."; ObjectID = "694"; */
 "694.ibShadowedToolTip" = "ドロップ元ファイルの拡張子";

@@ -107,7 +107,7 @@
 "Oqm-Wt-G7B.title" = "折り返す";
 /* Class = "NSMenuItem"; title = "Select Next Match after Replace"; ObjectID = "RfX-XI-iRH"; */
 "RfX-XI-iRH.title" = "置換後に次のマッチを選択";
-/* Class = "NSMenuItem"; title = "Auto-Close Progress Sheet"; ObjectID = "ONX-V4-H0w"; */
+/* Class = "NSMenuItem"; title = "Auto-Close Progress Dialog"; ObjectID = "ONX-V4-H0w"; */
 "ONX-V4-H0w.title" = "完了後自動的に進捗表示を閉じる";
 
 /* Class = "NSMenuItem"; title = "Textual Search Options"; ObjectID = "hX3-jg-Uqc"; */

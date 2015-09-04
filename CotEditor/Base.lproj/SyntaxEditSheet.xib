@@ -3226,8 +3226,8 @@
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                         <tableColumns>
-                                                            <tableColumn identifier="extensions" width="201" minWidth="40" maxWidth="1000" id="qKc-FZ-o2j">
-                                                                <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="File Name">
+                                                            <tableColumn identifier="extensions" width="203" minWidth="40" maxWidth="1000" id="qKc-FZ-o2j">
+                                                                <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Filename">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                                     <color key="backgroundColor" white="0.33333299" alpha="1" colorSpace="calibratedWhite"/>
@@ -3241,11 +3241,11 @@
                                                                 <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                 <prototypeCellViews>
                                                                     <tableCellView id="et3-jd-MVq">
-                                                                        <rect key="frame" x="1" y="1" width="201" height="17"/>
+                                                                        <rect key="frame" x="1" y="1" width="203" height="17"/>
                                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                         <subviews>
                                                                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="L5j-6M-UDA">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="201" height="17"/>
+                                                                                <rect key="frame" x="0.0" y="0.0" width="203" height="17"/>
                                                                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title=".hiddenFile" usesSingleLineMode="YES" id="qwE-nW-LNZ">
                                                                                     <font key="font" metaFont="system"/>
                                                                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -3283,7 +3283,7 @@
                                             <constraints>
                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="180" id="fpe-Zb-7vw"/>
                                             </constraints>
-                                            <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" controlSize="small" horizontal="YES" id="fy6-cu-MSq">
+                                            <scroller key="horizontalScroller" verticalHuggingPriority="750" controlSize="small" horizontal="YES" id="fy6-cu-MSq">
                                                 <rect key="frame" x="1" y="110" width="228" height="14"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
@@ -3355,8 +3355,8 @@
                                             </textFieldCell>
                                         </textField>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eHZ-Ie-Gpu">
-                                            <rect key="frame" x="164" y="288" width="73" height="17"/>
-                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="File Names" id="BSb-oh-u25">
+                                            <rect key="frame" x="164" y="288" width="67" height="17"/>
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Filenames" id="BSb-oh-u25">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -4091,7 +4091,7 @@ DQ
                 <binding destination="qhW-MU-UWm" name="contentArray" keyPath="selection.extensions" id="qgF-lb-Nim"/>
             </connections>
         </arrayController>
-        <arrayController clearsFilterPredicateOnInsertion="NO" id="jqJ-Ce-QDb" userLabel="File Names Controller">
+        <arrayController clearsFilterPredicateOnInsertion="NO" id="jqJ-Ce-QDb" userLabel="Filenames Controller">
             <declaredKeys>
                 <string>keyString</string>
             </declaredKeys>

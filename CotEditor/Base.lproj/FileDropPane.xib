@@ -131,12 +131,12 @@ The parent directory name of the dropped file.
                                         <action selector="insertToken:" target="-2" id="556"/>
                                     </connections>
                                 </menuItem>
-                                <menuItem title="&lt;&lt;&lt;FILENAME&gt;&gt;&gt;" toolTip="The dropped file name include extension (if exists)." id="542">
+                                <menuItem title="&lt;&lt;&lt;FILENAME&gt;&gt;&gt;" toolTip="The dropped file's name include extension (if exists)." id="542">
                                     <connections>
                                         <action selector="insertToken:" target="-2" id="557"/>
                                     </connections>
                                 </menuItem>
-                                <menuItem title="&lt;&lt;&lt;FILENAME-NOSUFFIX&gt;&gt;&gt;" toolTip="The dropped file name without extension." id="538">
+                                <menuItem title="&lt;&lt;&lt;FILENAME-NOSUFFIX&gt;&gt;&gt;" toolTip="The dropped file's name without extension." id="538">
                                     <connections>
                                         <action selector="insertToken:" target="-2" id="558"/>
                                     </connections>

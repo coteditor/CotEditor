@@ -33,7 +33,7 @@
                         <constraint firstAttribute="width" constant="220" id="76s-Ny-Xgv"/>
                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="KIj-uM-yBR"/>
                     </constraints>
-                    <popUpButtonCell key="cell" type="push" title="Same as document's setting" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="1354" id="3387">
+                    <popUpButtonCell key="cell" type="push" title="Same as Document's Setting" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="1354" id="3387">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menu"/>
                         <menu key="menu" title="OtherViews" id="1352">
@@ -41,7 +41,7 @@
                                 <menuItem title="Black and White" id="1353">
                                     <attributedString key="attributedTitle"/>
                                 </menuItem>
-                                <menuItem title="Same as document's setting" state="on" id="1354"/>
+                                <menuItem title="Same as Document's Setting" state="on" id="1354"/>
                             </items>
                         </menu>
                     </popUpButtonCell>
@@ -52,13 +52,13 @@
                 </popUpButton>
                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="950">
                     <rect key="frame" x="138" y="235" width="225" height="26"/>
-                    <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="3383">
+                    <popUpButtonCell key="cell" type="push" title="Same as Document's Setting" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="953" id="3383">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menu"/>
                         <menu key="menu" title="OtherViews" id="951">
                             <items>
                                 <menuItem title="Don't Print" id="952"/>
-                                <menuItem title="Same as document's setting" id="953"/>
+                                <menuItem title="Same as Document's Setting" state="on" id="953"/>
                                 <menuItem title="Print All" id="954"/>
                             </items>
                         </menu>
@@ -77,14 +77,14 @@
                 </textField>
                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="944">
                     <rect key="frame" x="138" y="266" width="225" height="26"/>
-                    <popUpButtonCell key="cell" type="push" title="Print" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="948" id="3381">
+                    <popUpButtonCell key="cell" type="push" title="Same as Document's Setting" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="947" id="3381">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menu"/>
                         <menu key="menu" title="OtherViews" id="945">
                             <items>
                                 <menuItem title="Don't Print" id="946"/>
-                                <menuItem title="Same as document's setting" id="947"/>
-                                <menuItem title="Print" state="on" id="948"/>
+                                <menuItem title="Same as Document's Setting" state="on" id="947"/>
+                                <menuItem title="Print" id="948"/>
                             </items>
                         </menu>
                     </popUpButtonCell>

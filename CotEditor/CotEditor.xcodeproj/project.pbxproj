@@ -529,6 +529,7 @@
 		2A68F93418F9995500673440 /* CEThemeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEThemeManager.m; sourceTree = "<group>"; };
 		2A68F93618FB04F300673440 /* CEMenuItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEMenuItemCell.h; sourceTree = "<group>"; };
 		2A68F93718FB04F300673440 /* CEMenuItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEMenuItemCell.m; sourceTree = "<group>"; };
+		2A6A29681B9751CB002F434C /* icu */ = {isa = PBXFileReference; lastKnownFileType = folder; name = icu; path = Sources/icu; sourceTree = "<group>"; };
 		2A6E3F3C19B5218300A63E97 /* CotEditor.help */ = {isa = PBXFileReference; lastKnownFileType = folder; path = CotEditor.help; sourceTree = "<group>"; };
 		2A6F0E071B5500E100C2D03C /* CotEditor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CotEditor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A6F0E081B5500E100C2D03C /* CotEditor (AppStore)-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CotEditor (AppStore)-Info.plist"; sourceTree = "<group>"; };
@@ -706,25 +707,6 @@
 		2AFFB71518D7DCC000118477 /* CEPanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEPanelController.m; sourceTree = "<group>"; };
 		2AFFB71818D7F18200118477 /* CEGoToSheetController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CEGoToSheetController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		2AFFB71918D7F18300118477 /* CEGoToSheetController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CEGoToSheetController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		34D68F3C1B8B1115009CDA4A /* localpointer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = localpointer.h; sourceTree = "<group>"; };
-		34D68F3D1B8B1115009CDA4A /* platform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = platform.h; sourceTree = "<group>"; };
-		34D68F3E1B8B1115009CDA4A /* ptypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ptypes.h; sourceTree = "<group>"; };
-		34D68F3F1B8B1115009CDA4A /* putil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = putil.h; sourceTree = "<group>"; };
-		34D68F401B8B1115009CDA4A /* uchar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = uchar.h; sourceTree = "<group>"; };
-		34D68F411B8B1115009CDA4A /* uconfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = uconfig.h; sourceTree = "<group>"; };
-		34D68F421B8B1115009CDA4A /* uiter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = uiter.h; sourceTree = "<group>"; };
-		34D68F431B8B1115009CDA4A /* umachine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = umachine.h; sourceTree = "<group>"; };
-		34D68F441B8B1115009CDA4A /* unorm2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = unorm2.h; sourceTree = "<group>"; };
-		34D68F451B8B1115009CDA4A /* urename.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = urename.h; sourceTree = "<group>"; };
-		34D68F461B8B1115009CDA4A /* uset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = uset.h; sourceTree = "<group>"; };
-		34D68F471B8B1115009CDA4A /* ustring.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ustring.h; sourceTree = "<group>"; };
-		34D68F481B8B1115009CDA4A /* utf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utf.h; sourceTree = "<group>"; };
-		34D68F491B8B1115009CDA4A /* utf16.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utf16.h; sourceTree = "<group>"; };
-		34D68F4A1B8B1115009CDA4A /* utf8.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utf8.h; sourceTree = "<group>"; };
-		34D68F4B1B8B1115009CDA4A /* utf_old.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utf_old.h; sourceTree = "<group>"; };
-		34D68F4C1B8B1115009CDA4A /* utypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utypes.h; sourceTree = "<group>"; };
-		34D68F4D1B8B1115009CDA4A /* uvernum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = uvernum.h; sourceTree = "<group>"; };
-		34D68F4E1B8B1115009CDA4A /* uversion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = uversion.h; sourceTree = "<group>"; };
 		34D68F4F1B8B1158009CDA4A /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		4B7998171A1F1BCD0088D167 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = "zh-Hans"; path = "zh-Hans.lproj/AppleScript.rtf"; sourceTree = "<group>"; };
 		4B7998181A1F1BCD0088D167 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = "zh-Hans"; path = "zh-Hans.lproj/ShellScript.rtf"; sourceTree = "<group>"; };
@@ -1129,7 +1111,6 @@
 				2A0E160B18E7240C00AAD872 /* Print */,
 				2A15832C18E3A29A00601026 /* Views */,
 				2A15832B18E3A25C00601026 /* Utilities */,
-				34D68F3B1B8B1115009CDA4A /* ICU Headers */,
 				25859E90076D88ED0020F779 /* Constants.h */,
 				2A149DD619033CBB00A9D6EF /* Constants.m */,
 			);
@@ -1142,6 +1123,7 @@
 				2A37F4B0FDCFA73011CA2CEA /* main.m */,
 				8C7F74EB091C738C005C7598 /* ODBEditorSuite.h */,
 				2A2179ED1A07011C002C4AB1 /* makeSyntaxMap.rb */,
+				2A6A29681B9751CB002F434C /* icu */,
 			);
 			name = "Other Sources";
 			sourceTree = "<group>";
@@ -1363,33 +1345,6 @@
 				2AFFB71918D7F18300118477 /* CEGoToSheetController.m */,
 			);
 			name = "Panel Controllers";
-			sourceTree = "<group>";
-		};
-		34D68F3B1B8B1115009CDA4A /* ICU Headers */ = {
-			isa = PBXGroup;
-			children = (
-				34D68F3C1B8B1115009CDA4A /* localpointer.h */,
-				34D68F3D1B8B1115009CDA4A /* platform.h */,
-				34D68F3E1B8B1115009CDA4A /* ptypes.h */,
-				34D68F3F1B8B1115009CDA4A /* putil.h */,
-				34D68F401B8B1115009CDA4A /* uchar.h */,
-				34D68F411B8B1115009CDA4A /* uconfig.h */,
-				34D68F421B8B1115009CDA4A /* uiter.h */,
-				34D68F431B8B1115009CDA4A /* umachine.h */,
-				34D68F441B8B1115009CDA4A /* unorm2.h */,
-				34D68F451B8B1115009CDA4A /* urename.h */,
-				34D68F461B8B1115009CDA4A /* uset.h */,
-				34D68F471B8B1115009CDA4A /* ustring.h */,
-				34D68F481B8B1115009CDA4A /* utf.h */,
-				34D68F491B8B1115009CDA4A /* utf16.h */,
-				34D68F4A1B8B1115009CDA4A /* utf8.h */,
-				34D68F4B1B8B1115009CDA4A /* utf_old.h */,
-				34D68F4C1B8B1115009CDA4A /* utypes.h */,
-				34D68F4D1B8B1115009CDA4A /* uvernum.h */,
-				34D68F4E1B8B1115009CDA4A /* uversion.h */,
-			);
-			name = "ICU Headers";
-			path = icu;
 			sourceTree = "<group>";
 		};
 		8CB0122007CA0CCD00221EDC /* Toolbar Icons */ = {

@@ -56,7 +56,7 @@ DQ
                     </textField>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="SrJ-wc-JiF">
                         <rect key="frame" x="18" y="173" width="364" height="14"/>
-                        <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="The following file names are registered in multiple styles." id="4AH-1o-au2">
+                        <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="The following filenames are registered in multiple styles." id="4AH-1o-au2">
                             <font key="font" metaFont="smallSystem"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -245,8 +245,8 @@ DQ
                                     <tableViewGridLines key="gridStyleMask" horizontal="YES"/>
                                     <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                     <tableColumns>
-                                        <tableColumn editable="NO" width="80" minWidth="40" maxWidth="1000" id="YGO-sx-UT0">
-                                            <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="File Name">
+                                        <tableColumn editable="NO" width="82" minWidth="40" maxWidth="1000" id="YGO-sx-UT0">
+                                            <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Filename">
                                                 <font key="font" metaFont="smallSystem"/>
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" white="0.33333298560000002" alpha="1" colorSpace="calibratedWhite"/>
@@ -260,11 +260,11 @@ DQ
                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                             <prototypeCellViews>
                                                 <tableCellView id="fUB-vH-wtp">
-                                                    <rect key="frame" x="2" y="1" width="80" height="17"/>
+                                                    <rect key="frame" x="2" y="1" width="82" height="17"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
                                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="zTf-uE-5Zg">
-                                                            <rect key="frame" x="0.0" y="0.0" width="80" height="17"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="82" height="17"/>
                                                             <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title=".htaccess" id="RCt-nS-qMc">
                                                                 <font key="font" metaFont="system"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -380,7 +380,7 @@ DQ
                             </subviews>
                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </clipView>
-                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="pfv-Dj-1yD">
+                        <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="pfv-Dj-1yD">
                             <rect key="frame" x="1" y="100" width="226" height="16"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
@@ -401,8 +401,8 @@ DQ
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="g7t-aj-KCT">
-                        <rect key="frame" x="18" y="191" width="68" height="17"/>
-                        <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="File name:" usesSingleLineMode="YES" id="Msi-ee-MNF">
+                        <rect key="frame" x="18" y="191" width="64" height="17"/>
+                        <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Filename:" usesSingleLineMode="YES" id="Msi-ee-MNF">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>

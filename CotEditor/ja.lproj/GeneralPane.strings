@@ -30,7 +30,7 @@
 
 /* Class = "NSButtonCell"; title = "Share find text with other applications"; ObjectID = "3307"; */
 "3307.title" = "検索文字列をほかのアプリケーションと共有";
-/* Class = "NSButtonCell"; title = "Inline script menu items into context menu"; ObjectID = "3309"; */
+/* Class = "NSButtonCell"; title = "Inline script menu items into contextual menu"; ObjectID = "3309"; */
 "3309.title" = "コンテキストメニューのスクリプトメニューを展開";
 /* Class = "NSButtonCell"; title = "Count each line ending as one character"; ObjectID = "3306"; */
 "3306.title" = "改行コードを文字としてカウント";

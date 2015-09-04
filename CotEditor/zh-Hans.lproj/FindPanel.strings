@@ -108,7 +108,7 @@
 "Oqm-Wt-G7B.title" = "折行查找";
 /* Class = "NSMenuItem"; title = "Select Next Match after Replace"; ObjectID = "RfX-XI-iRH"; */
 "RfX-XI-iRH.title" = "替换后选择下一个匹配";
-/* Class = "NSMenuItem"; title = "Auto-Close Progress Sheet"; ObjectID = "ONX-V4-H0w"; */
+/* Class = "NSMenuItem"; title = "Auto-Close Progress Dialog"; ObjectID = "ONX-V4-H0w"; */
 "ONX-V4-H0w.title" = "自动关闭进度表";
 
 /* Class = "NSMenuItem"; title = "Textual Search Options"; ObjectID = "hX3-jg-Uqc"; */

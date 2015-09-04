@@ -253,6 +253,7 @@
 /* MARK: CEColorCodePanelController */
 // Undo action name
 "Insert Color Code" = "カラーコードを挿入";
+"Stylesheet Keywords" = "スタイルシートキーワード";
 
 
 /* MARK: CEPreferencesWindowController */
@@ -301,7 +302,7 @@
 
 // alerts
 "The running CotEditor is not located in the Application folder." = "現在起動している CotEditor はアプリケーションフォルダ外にあります。";
-"Do you really want to install the command-line tool for CotEditor at “%@”?\n\nWe recommend to move CotEditor.app to the Application folder at first." = "本当に“%@”のためのコマンドラインツールをインストールしますか？\n\n先に CotEditor.app をアプリケーションフォルダに移動することをおすすめします。";
+"Do you really want to install the command-line tool for CotEditor at “%@”?\n\nThe command will be invalid if the location of CotEditor is moved." = "本当に“%@”にある CotEditor のためのコマンドラインツールをインストールしますか？\n\nCotEditor.app の場所が移動されるとコマンドは無効になります。";
 
 "The name of the running CotEditor is modified." = "現在起動している CotEditor は名前が変更されています。";
 "Do you really want to install the command-line tool for “%@”?" = "本当に“%@”のためのコマンドラインツールをインストールしますか？";
@@ -418,7 +419,7 @@
 
 
 /* MARK: CEFindResultViewController */
-// Find result (“%@” is file name)
+// Find result (“%@” is filename)
 "No strings found in “%@”." = "“%@”内に見つかりませんでした。";
 "Found one string in “%@”." = "“%@”内に1件見つかりました。";
 "Found %li strings in “%@”." = "“%2$@”内に%1$li件見つかりました。";
