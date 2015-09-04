@@ -175,6 +175,8 @@
 - (IBAction)insertCodeToDocument:(nullable id)sender
 // ------------------------------------------------------
 {
+    if (![self colorCode]) { return; }
+    
     NSTextView *textView = [[[self documentWindowController] editor] focusedTextView];
     
     if ([textView shouldChangeTextInRange:[textView selectedRange] replacementString:[self colorCode]]) {
@@ -211,7 +213,11 @@
 // ------------------------------------------------------
 {
     WFColorCodeType codeType = [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultColorCodeTypeKey];
-    NSString *code = [[[self color] colorUsingColorSpaceName:NSCalibratedRGBColorSpace] colorCodeWithType:codeType];
+    NSColor *color = [self color];
+    if (![@[NSCalibratedRGBColorSpace, NSDeviceRGBColorSpace] containsObject:[color colorSpaceName]]) {
+        color = [color colorUsingColorSpaceName:NSCalibratedRGBColorSpace];
+    }
+    NSString *code = [color colorCodeWithType:codeType];
     
     // keep lettercase if current Hex code is uppercase
     if ((codeType == WFColorCodeHex || codeType == WFColorCodeShortHex) &&

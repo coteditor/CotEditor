@@ -8,6 +8,7 @@ develop
 ### Additions/Changes
 
 - Improve Color Code Editor:
+    - Add stylesheet keyword to color code type.
     - Add stylesheet keyword color list to editor panel. 
     - Make editor panel resizable.
 
