@@ -9,14 +9,6 @@ develop
 
 - Hanging indentation that enables inserting extra indent to wrapped lines.
     - You can change the bahavior in Preferences > Edit.
-
-
-
-develop
---------------------------
-
-### New Features
-
 - Add new normalization form “NFKC Casefold” to the Unicode normalization action in Utility menu (Thanks to doraTeX!)
     - It is also added to the AppleScript terms.
 
