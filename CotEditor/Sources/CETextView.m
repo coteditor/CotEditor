@@ -882,6 +882,19 @@ static NSPoint kTextContainerOrigin;
     } else if ([keyPath isEqualToString:CEDefaultCheckSpellingAsTypeKey]) {
         [self setContinuousSpellCheckingEnabled:[newValue boolValue]];
         
+    } else if ([keyPath isEqualToString:CEDefaultEnablesHangingIndentKey] ||
+               [keyPath isEqualToString:CEDefaultHangingIndentWidthKey])
+    {
+        NSRange wholeRange = NSMakeRange(0, [[self string] length]);
+        if ([keyPath isEqualToString:CEDefaultEnablesHangingIndentKey] && ![newValue boolValue]) {
+            // reset all headIndent
+            NSMutableParagraphStyle *paragraphStyle = [[self typingAttributes][NSParagraphStyleAttributeName] mutableCopy];
+            [paragraphStyle setHeadIndent:0];
+            [[self textStorage] addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:wholeRange];
+        } else {
+            [(CELayoutManager *)[self layoutManager] invalidateIndentInRange:wholeRange];
+        }
+    
     } else if ([keyPath isEqualToString:CEDefaultEnableSmartQuotesKey]) {
         if ([self respondsToSelector:@selector(setAutomaticQuoteSubstitutionEnabled:)]) {  // only on OS X 10.9 and later
             [self setAutomaticQuoteSubstitutionEnabled:[newValue boolValue]];
@@ -1329,7 +1342,9 @@ static NSPoint kTextContainerOrigin;
     return @[CEDefaultAutoExpandTabKey,
              CEDefaultSmartInsertAndDeleteKey,
              CEDefaultCheckSpellingAsTypeKey,
-             CEDefaultEnableSmartQuotesKey];
+             CEDefaultEnableSmartQuotesKey,
+             CEDefaultHangingIndentWidthKey,
+             CEDefaultEnablesHangingIndentKey];
 }
 
 

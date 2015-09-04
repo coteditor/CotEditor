@@ -47,6 +47,8 @@
 @property (nonatomic) unichar newLineChar;
 @property (nonatomic) unichar fullwidthSpaceChar;
 
+@property (nonatomic) CGFloat spaceWidth;
+
 // readonly properties
 @property (readwrite, nonatomic) CGFloat defaultLineHeightForTextFont;
 
@@ -256,6 +258,22 @@ static BOOL usesTextFontForInvisibles;
 }
 
 
+// ------------------------------------------------------
+/// textStorage did update
+- (void)textStorage:(NSTextStorage *)str edited:(NSTextStorageEditedOptions)editedMask range:(NSRange)newCharRange changeInLength:(NSInteger)delta invalidatedRange:(NSRange)invalidatedCharRange
+// ------------------------------------------------------
+{
+    // invalidate wrapping line indent in editRange if needed
+    if (editedMask & NSTextStorageEditedCharacters &&
+        [[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultEnablesHangingIndentKey])
+    {
+        [self invalidateIndentInRange:newCharRange];
+    }
+    
+    [super textStorage:str edited:editedMask range:newCharRange changeInLength:delta invalidatedRange:invalidatedCharRange];
+}
+
+
 
 #pragma mark Public Methods
 
@@ -306,6 +324,10 @@ static BOOL usesTextFontForInvisibles;
 
     _textFont = textFont;
     [self setValuesForTextFont:textFont];
+    
+    // store width of space char for indent width calculation
+    NSFont *screenFont = [textFont screenFont] ? : textFont;
+    [self setSpaceWidth:[screenFont advancementForGlyph:(NSGlyph)' '].width];
 }
 
 
@@ -318,6 +340,49 @@ static BOOL usesTextFontForInvisibles;
 
     // 小数点以下を返すと選択範囲が分離することがあるため、丸める
     return round([self defaultLineHeightForTextFont] + lineSpacing * [[self textFont] pointSize]);
+}
+
+
+// ------------------------------------------------------
+/// invalidate indent of wrapped lines
+- (void)invalidateIndentInRange:(NSRange)range
+// ------------------------------------------------------
+{
+    NSUInteger hangingIndent = [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultHangingIndentWidthKey] * [self spaceWidth];
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"^[ \\t]+" options:0 error:nil];
+    
+    NSTextStorage *textStorage = [self textStorage];
+    
+    // invalidate line by line
+    NSRange lineRange = [[textStorage string] lineRangeForRange:range];
+    [textStorage beginEditing];
+    [[textStorage string] enumerateSubstringsInRange:lineRange
+                                             options:NSStringEnumerationByLines | NSStringEnumerationSubstringNotRequired
+                                          usingBlock:^(NSString *substring,
+                                                       NSRange substringRange,
+                                                       NSRange enclosingRange,
+                                                       BOOL *stop)
+     {
+         CGFloat indent = hangingIndent;
+         
+         // add base indent
+         NSRange baseIndentRange = [regex rangeOfFirstMatchInString:[textStorage string] options:0 range:substringRange];
+         if (baseIndentRange.location != NSNotFound) {
+             NSAttributedString *attrBaseIndent = [textStorage attributedSubstringFromRange:baseIndentRange];
+             indent += [attrBaseIndent size].width;
+         }
+         
+         // apply new indent only if needed
+         NSParagraphStyle *paragraphStyle = [textStorage attribute:NSParagraphStyleAttributeName
+                                                           atIndex:substringRange.location
+                                                    effectiveRange:NULL];
+         if (indent != [paragraphStyle headIndent]) {
+             NSMutableParagraphStyle *mutableParagraphStyle = [paragraphStyle mutableCopy];
+             [mutableParagraphStyle setHeadIndent:indent];
+             [textStorage addAttribute:NSParagraphStyleAttributeName value:[mutableParagraphStyle copy] range:substringRange];
+         }
+     }];
+    [textStorage endEditing];
 }
 
 

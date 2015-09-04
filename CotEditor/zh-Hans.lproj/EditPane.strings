@@ -64,6 +64,10 @@
 "P1I-gs-RgX.title" = "换行:";
 /* Class = "NSButtonCell"; title = "Soft wrap lines"; ObjectID = "3274"; */
 "3274.title" = "自动换行";
+/* Class = "NSButtonCell"; title = "Indent wrapped lines by:"; ObjectID = "mCq-92-2sT"; */
+"mCq-92-2sT.title" = "Indent wrapped lines by:";  // FIXME: added
+/* Class = "NSTextFieldCell"; title = "spaces"; ObjectID = "P9V-pV-PAX"; */
+"P9V-pV-PAX.title" = "个空格缩进";
 
 
 /* Class = "NSTextFieldCell"; title = "Invisibles:"; ObjectID = "pjW-HE-ngH"; */
