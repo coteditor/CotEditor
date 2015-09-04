@@ -27,7 +27,7 @@
 
 /* Class = "NSTextFieldCell"; title = "Font:"; ObjectID = "C9y-bs-mE1"; */
 "C9y-bs-mE1.title" = "フォント：";
-/* Class = "NSButtonCell"; title = "Same as document's setting"; ObjectID = "1012"; */
+/* Class = "NSButtonCell"; title = "Same as Document's Setting"; ObjectID = "1012"; */
 "1012.title" = "書類の設定と同じ";
 /* Class = "NSButtonCell"; title = "Select…"; ObjectID = "3385"; */
 "3385.title" = "選択...";
@@ -36,14 +36,14 @@
 "3388.title" = "カラー：";
 /* Class = "NSMenuItem"; title = "Black and White"; ObjectID = "1353"; */
 "1353.title" = "白黒";
-/* Class = "NSMenuItem"; title = "Same as document's setting"; ObjectID = "1354"; */
+/* Class = "NSMenuItem"; title = "Same as Document's Setting"; ObjectID = "1354"; */
 "1354.title" = "書類の設定と同じ";
 
 /* Class = "NSTextFieldCell"; title = "Line numbers:"; ObjectID = "3380"; */
 "3380.title" = "行番号：";
 /* Class = "NSMenuItem"; title = "Don't Print"; ObjectID = "946"; */
 "946.title" = "プリントしない";
-/* Class = "NSMenuItem"; title = "Same as document's setting"; ObjectID = "947"; */
+/* Class = "NSMenuItem"; title = "Same as Document's Setting"; ObjectID = "947"; */
 "947.title" = "書類の設定と同じ";
 /* Class = "NSMenuItem"; title = "Print"; ObjectID = "948"; */
 "948.title" = "プリント";
@@ -52,7 +52,7 @@
 "3382.title" = "不可視文字：";
 /* Class = "NSMenuItem"; title = "Don't Print"; ObjectID = "952"; */
 "952.title" = "プリントしない";
-/* Class = "NSMenuItem"; title = "Same as document's setting"; ObjectID = "953"; */
+/* Class = "NSMenuItem"; title = "Same as Document's Setting"; ObjectID = "953"; */
 "953.title" = "書類の設定と同じ";
 /* Class = "NSMenuItem"; title = "Print All"; ObjectID = "954"; */
 "954.title" = "すべてプリント";
