@@ -213,9 +213,9 @@
 "nwR-nY-QUm.title" = "扩展名";
 /* Class = "NSTableColumn"; headerCell.title = "Extention (without dots)"; ObjectID = "453"; */
 "453.headerCell.title" = "扩展名 (不包括点)";
-/* Class = "NSTextFieldCell"; title = "File Names"; ObjectID = "BSb-oh-u25"; */
+/* Class = "NSTextFieldCell"; title = "Filenames"; ObjectID = "BSb-oh-u25"; */
 "BSb-oh-u25.title" = "文件名";
-/* Class = "NSTableColumn"; headerCell.title = "File Name"; ObjectID = "qKc-FZ-o2j"; */
+/* Class = "NSTableColumn"; headerCell.title = "Filename"; ObjectID = "qKc-FZ-o2j"; */
 "qKc-FZ-o2j.headerCell.title" = "文件名";
 /* Class = "NSTextFieldCell"; title = "Interpreters"; ObjectID = "KrU-VL-02K"; */
 "KrU-VL-02K.title" = "解释器";
