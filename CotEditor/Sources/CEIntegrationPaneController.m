@@ -117,7 +117,9 @@ static NSString *const kSymbolicLinkPath = @"/usr/local/bin/cot";
 {
     BOOL success = NO;
     
-    if ([[error domain] isEqualToString:CEErrorDomain]) {
+    if ([[error domain] isEqualToString:CEErrorDomain] &&
+        ([error code] == CEApplicationNameIsModifiedError || [error code] == CEApplicationNotInApplicationDirectoryError))
+    {
         if (recoveryOptionIndex == 0) {  // Install
             [self performInstall];
         }
@@ -175,7 +177,7 @@ static NSString *const kSymbolicLinkPath = @"/usr/local/bin/cot";
                                       error:&coordinationError
                                  byAccessor:^(NSURL *newURL)
      {
-         // FIXME: This will be failed with NSCocoaErrorDomain + NSFileWriteNoPermissionError on El Capitan beta 5
+         // FIXME: This will be failed with NSCocoaErrorDomain + NSFileWriteNoPermissionError on El Capitan beta 8
          success = [[NSFileManager defaultManager] createSymbolicLinkAtURL:newURL
                                                         withDestinationURL:[self commandURL]
                                                                      error:&symLinkError];
@@ -189,6 +191,23 @@ static NSString *const kSymbolicLinkPath = @"/usr/local/bin/cot";
         [self validateSymlink];
         
     } else if (error) {
+        if ([[error domain] isEqualToString:NSCocoaErrorDomain] && [error code] == NSFileWriteNoPermissionError &&
+            floor(NSAppKitVersionNumber) > NSAppKitVersionNumber10_10)  // OS X 10.11 El Capitan and later
+        {
+            // modify error message
+            NSString *command = [NSString stringWithFormat:@"sudo ln -s \"%@\" %@", [[self commandURL] path], [[self linkURL] path]];
+            NSString *description = [NSString stringWithFormat:NSLocalizedString(@"Creating symbolic link at “%@” by 3rd party applications is denied on OS X %@.", nil), [[[self linkURL] URLByDeletingLastPathComponent] path], systemVersion()];
+            NSString *suggestion = [NSString stringWithFormat:@"%@\n\n\t%@", NSLocalizedString(@"You can install cot command running the following command on Terminal manually:", nil), command];
+            
+            error = [NSError errorWithDomain:CEErrorDomain
+                                        code:CESymlinkCreationDeniedError
+                                    userInfo:@{NSUnderlyingErrorKey: error,
+                                               NSLocalizedDescriptionKey: description,
+                                               NSLocalizedRecoverySuggestionErrorKey: suggestion,
+                                               NSURLErrorKey: [self linkURL],
+                                               NSHelpAnchorErrorKey: @"about_cot"}];
+        }
+        
         [[self view] presentError:error modalForWindow:[[self view] window]
                          delegate:nil didPresentSelector:NULL contextInfo:NULL];
     }
@@ -209,6 +228,20 @@ static NSString *const kSymbolicLinkPath = @"/usr/local/bin/cot";
         [self setInstalled:NO];
         [self toggleInstallButtonState:NO];
         [self validateSymlink];
+        
+    } else if (floor(NSAppKitVersionNumber) > NSAppKitVersionNumber10_10) {  // OS X 10.11 El Capitan and later
+        NSString *command = [NSString stringWithFormat:@"sudo unlink %@", [[self linkURL] path]];
+        NSString *description = [NSString stringWithFormat:NSLocalizedString(@"Modifying files at “%@” by 3rd party applications is denied on OS X %@.", nil), [[[self linkURL] URLByDeletingLastPathComponent] path], systemVersion()];
+        NSString *suggestion = [NSString stringWithFormat:@"%@\n\n\t%@", NSLocalizedString(@"You can uninstall cot command running the following command on Terminal manually:", nil), command];
+        
+        NSError *error = [NSError errorWithDomain:CEErrorDomain
+                                             code:CESymlinkCreationDeniedError
+                                         userInfo:@{NSLocalizedDescriptionKey: description,
+                                                    NSLocalizedRecoverySuggestionErrorKey: suggestion,
+                                                    NSURLErrorKey: [self linkURL]}];
+        
+        [[self view] presentError:error modalForWindow:[[self view] window]
+                         delegate:nil didPresentSelector:NULL contextInfo:NULL];
     }
 }
 
@@ -323,6 +356,16 @@ static NSString *const kSymbolicLinkPath = @"/usr/local/bin/cot";
     }
     
     return YES;
+}
+
+
+//------------------------------------------------------
+/// return running system version as NSString
+NSString *systemVersion()
+//------------------------------------------------------
+{
+    NSDictionary * systemVersion = [NSDictionary dictionaryWithContentsOfFile:@"/System/Library/CoreServices/SystemVersion.plist"];
+    return [systemVersion objectForKey:@"ProductVersion"];
 }
 
 @end
