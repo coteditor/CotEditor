@@ -31,7 +31,7 @@
 
 /* Class = "NSButtonCell"; title = "Share find text with other applications"; ObjectID = "3307"; */
 "3307.title" = "与其他应用共享查找字符串";
-/* Class = "NSButtonCell"; title = "Inline script menu items into context menu"; ObjectID = "3309"; */
+/* Class = "NSButtonCell"; title = "Inline script menu items into contextual menu"; ObjectID = "3309"; */
 "3309.title" = "将脚本菜单集成至上下文菜单中";
 /* Class = "NSButtonCell"; title = "Count each line ending as one character"; ObjectID = "3306"; */
 "3306.title" = "统计行尾为一个字符";
