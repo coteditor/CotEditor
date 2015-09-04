@@ -301,7 +301,7 @@
 
 // alerts
 "The running CotEditor is not located in the Application folder." = "正在运行的 CotEditor 没有位于应用程序文件夹中。";
-"Do you really want to install the command-line tool for CotEditor at “%@”?\n\nWe recommend to move CotEditor.app to the Application folder at first." = "确定要为位于 “%@” 的 CotEditor 安装命令行工具吗？\n\n建议先将 CotEditor.app 移动到应用程序文件夹中。";
+"Do you really want to install the command-line tool for CotEditor at “%@”?\n\nThe command will be invalid if the location of CotEditor is moved." = "确定要为位于 “%@” 的 CotEditor 安装命令行工具吗？\n\n建议先将 CotEditor.app 移动到应用程序文件夹中。";  // FIXME: changed
 
 "The name of the running CotEditor is modified." = "正在运行的 CotEditor 的名字被改变了。";
 "Do you really want to install the command-line tool for “%@”?" = "确定要为 “%@” 安装命令行工具吗？";
