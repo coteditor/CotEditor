@@ -238,7 +238,7 @@ DQ
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <tableView focusRingType="none" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="5fu-w7-rdO" viewBased="YES" id="ITE-aT-FaA">
-                                    <rect key="frame" x="0.0" y="0.0" width="358" height="0.0"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="360" height="0.0"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <size key="intercellSpacing" width="5" height="2"/>
                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -329,7 +329,7 @@ DQ
                                                 </tableCellView>
                                             </prototypeCellViews>
                                         </tableColumn>
-                                        <tableColumn editable="NO" width="163" minWidth="40" maxWidth="1000" id="zSH-kc-yV3">
+                                        <tableColumn editable="NO" width="161" minWidth="40" maxWidth="1000" id="zSH-kc-yV3">
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Duplicated Styles">
                                                 <font key="font" metaFont="smallSystem"/>
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -348,7 +348,7 @@ DQ
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
                                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Enr-IH-mGd">
-                                                            <rect key="frame" x="0.0" y="0.0" width="163" height="17"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="161" height="17"/>
                                                             <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Customized Apache" id="FbS-0R-rYM">
                                                                 <font key="font" metaFont="system"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -380,7 +380,7 @@ DQ
                             </subviews>
                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </clipView>
-                        <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="pfv-Dj-1yD">
+                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="pfv-Dj-1yD">
                             <rect key="frame" x="1" y="100" width="226" height="16"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
