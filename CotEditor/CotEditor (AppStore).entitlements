@@ -12,9 +12,5 @@
 	<array>
 		<string>/usr/local/bin/cot</string>
 	</array>
-	<key>com.apple.security.temporary-exception.apple-events</key>
-	<array>
-		<string>com.apple.ScriptEditor2</string>
-	</array>
 </dict>
 </plist>

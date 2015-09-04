@@ -63,7 +63,6 @@
 		2A3A759119E77D4F001DAB88 /* MigrationWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A3A758F19E77D4F001DAB88 /* MigrationWindow.xib */; };
 		2A3A759419E77D66001DAB88 /* CEMigrationWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A3A759319E77D66001DAB88 /* CEMigrationWindowController.m */; };
 		2A3FB2AD18ECEFF200D9CB2C /* CESyntaxEditSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A3FB2AC18ECEFF200D9CB2C /* CESyntaxEditSheetController.m */; };
-		2A40D7CD1A23FBE200721EB4 /* openDictionary.applescript in Sources */ = {isa = PBXBuildFile; fileRef = 2585914B080F503A0038F387 /* openDictionary.applescript */; };
 		2A42825518FCD47B00386899 /* Acknowledgements.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A961C4518FC699E002076B6 /* Acknowledgements.rtf */; };
 		2A436DCD1A4243D500275FD4 /* DocumentInspectorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A436DCB1A4243D500275FD4 /* DocumentInspectorView.xib */; };
 		2A436DD01A4249CB00275FD4 /* IncompatibleCharsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A436DCE1A4249CB00275FD4 /* IncompatibleCharsView.xib */; };
@@ -262,7 +261,6 @@
 		2A6F0DF91B5500E100C2D03C /* NSData+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A8663DC18C9F6B700A6F9CC /* NSData+MD5.m */; };
 		2A6F0DFA1B5500E100C2D03C /* NSString+CENewLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AC75C071A2AF47F00C7DB0A /* NSString+CENewLine.m */; };
 		2A6F0DFB1B5500E100C2D03C /* NSURL+Xattr.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A1068C21A745FCE001DB9AA /* NSURL+Xattr.m */; };
-		2A6F0DFC1B5500E100C2D03C /* openDictionary.applescript in Sources */ = {isa = PBXBuildFile; fileRef = 2585914B080F503A0038F387 /* openDictionary.applescript */; };
 		2A6F0E031B5500E100C2D03C /* SampleScripts in Copy Shared Supports */ = {isa = PBXBuildFile; fileRef = 6CA3B36012E3B59B0019AB2E /* SampleScripts */; };
 		2A712CA218EFB716001FEC33 /* AutoTabExpand_Off.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 2A712CA018EFB716001FEC33 /* AutoTabExpand_Off.tiff */; };
 		2A712CA318EFB716001FEC33 /* AutoTabExpand_On.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 2A712CA118EFB716001FEC33 /* AutoTabExpand_On.tiff */; };
@@ -404,7 +402,6 @@
 /* Begin PBXFileReference section */
 		258225FE07794C2A00A0F8D3 /* CESyntaxParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CESyntaxParser.h; sourceTree = "<group>"; };
 		258225FF07794C2A00A0F8D3 /* CESyntaxParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CESyntaxParser.m; sourceTree = "<group>"; };
-		2585914B080F503A0038F387 /* openDictionary.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = openDictionary.applescript; sourceTree = "<group>"; };
 		25859DB1076D65310020F779 /* CEAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CEAppDelegate.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		25859DB2076D65310020F779 /* CEAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CEAppDelegate.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		25859DEB076D75BC0020F779 /* CEWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEWindowController.h; sourceTree = "<group>"; };
@@ -808,15 +805,6 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		259B181207E530DA00C5FD26 /* Internal Script */ = {
-			isa = PBXGroup;
-			children = (
-				2585914B080F503A0038F387 /* openDictionary.applescript */,
-			);
-			name = "Internal Script";
-			path = InternalScript;
-			sourceTree = "<group>";
-		};
 		2A009ADB1A5AB96F00C3D542 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -1153,7 +1141,6 @@
 				2A3A758D19E77C84001DAB88 /* Syntaxes */,
 				2A7846DA18FE035E006BDF00 /* Themes */,
 				6CA3B36012E3B59B0019AB2E /* SampleScripts */,
-				259B181207E530DA00C5FD26 /* Internal Script */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1826,7 +1813,6 @@
 				2A6F0DF91B5500E100C2D03C /* NSData+MD5.m in Sources */,
 				2A6F0DFA1B5500E100C2D03C /* NSString+CENewLine.m in Sources */,
 				2A6F0DFB1B5500E100C2D03C /* NSURL+Xattr.m in Sources */,
-				2A6F0DFC1B5500E100C2D03C /* openDictionary.applescript in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1925,7 +1911,6 @@
 				2A8663DD18C9F6B700A6F9CC /* NSData+MD5.m in Sources */,
 				2AC75C081A2AF47F00C7DB0A /* NSString+CENewLine.m in Sources */,
 				2A1068C31A745FCE001DB9AA /* NSURL+Xattr.m in Sources */,
-				2A40D7CD1A23FBE200721EB4 /* openDictionary.applescript in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

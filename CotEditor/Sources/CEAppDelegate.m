@@ -534,9 +534,11 @@
 - (IBAction)openAppleScriptDictionary:(nullable id)sender
 // ------------------------------------------------------
 {
-    NSURL *URL = [[NSBundle mainBundle] URLForResource:@"openDictionary" withExtension:@"scpt"];
-    NSAppleScript *AppleScript = [[NSAppleScript alloc] initWithContentsOfURL:URL error:nil];
-    [AppleScript executeAndReturnError:nil];
+    NSURL *appURL = [[NSBundle mainBundle] bundleURL];
+    NSString *scriptEditorIdentifier = @"com.apple.ScriptEditor2";
+    
+    [[NSWorkspace sharedWorkspace] openURLs:@[appURL] withAppBundleIdentifier:scriptEditorIdentifier
+                                    options:0 additionalEventParamDescriptor:nil launchIdentifiers:nil];
 }
 
 
