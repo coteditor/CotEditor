@@ -5,26 +5,6 @@ Change Log
 develop
 --------------------------
 
-### Additions/Changes
-
-- Improve Color Code Editor:
-    - Add stylesheet keyword to color code type.
-    - Add stylesheet keyword color list to editor panel. 
-    - Make editor panel resizable.
-- Tweak some terms.
-
-
-### Fixes
-
-- Fix an issue where app could crash after when closing multiple split views.
-- Fix an issue where color code view did not display on El Capitan.
-- [2.2.0] Fix an issue where `cot` command failed when Python3 is the default environment for Python.
-
-
-
-2.2.0 (67)
---------------------------
-
 ### New Features
 
 - Add new normalization form “NFKC Casefold” to the Unicode normalization action in Utility menu (Thanks to doraTeX!)
@@ -35,6 +15,10 @@ develop
 
 - Change the location where `cot` command-line tool is bundled from `CotEditor.app/Contents/MacOS/` to `CotEditor.app/Contents/SharedSupport/bin/`, due to Sandbox requirement.
     - The migration will be done at the first launch automatically.
+- Improve Color Code Editor:
+    - Add stylesheet keyword to color code type.
+    - Add stylesheet keyword color list to editor panel. 
+    - Make editor panel resizable.
 - Update word completion list setting in Edit pane in Preferences (The previous setting has been reset).
 - Adjust highlight color for find panel.
 - Tweak some message terms.
@@ -47,8 +31,10 @@ develop
 ### Fixes
 
 - Fix an issue where the command-line tool could rarely not be installed from Integration pane.
+- Fix an issue where app could crash after when closing multiple split views.
 - Fix an issue where application crashed by clicking header of empty table in syntax editor sheet.
 - Fix an issue where warning on Integration pane didn't disappear even after the problem resolved.
+- Fix an issue where color code view did not display on El Capitan.
 - Add some missing localized strings in Japanese.
 - [beta] Fix an issue where the strings that were inserted via script or tools could be styled wrong.
 - [beta] Fix an issue where no preffered extension was appended on the document save panel.
