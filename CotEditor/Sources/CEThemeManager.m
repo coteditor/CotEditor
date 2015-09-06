@@ -321,7 +321,7 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
         if (isDuplicated) {
             if (outError) {
                 NSDictionary *userInfo = @{NSLocalizedDescriptionKey: [NSString stringWithFormat:NSLocalizedString(@"A new theme named “%@” will be installed, but a custom theme with the same name already exists.", nil), themeName],
-                                           NSLocalizedRecoverySuggestionErrorKey: NSLocalizedString(@"Do you want to replace it?\nReplaced theme cannot be restored.", nil),
+                                           NSLocalizedRecoverySuggestionErrorKey: NSLocalizedString(@"Do you want to replace it?\nReplaced theme can’t be restored.", nil),
                                            NSLocalizedRecoveryOptionsErrorKey: @[NSLocalizedString(@"Cancel", nil),
                                                                                  NSLocalizedString(@"Replace", nil)],
                                            NSURLErrorKey: URL};
@@ -608,20 +608,20 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
     };
     
     if ([themeName length] < 1) {  // 空は不可
-        description = NSLocalizedString(@"Theme name cannot be empty.", nil);
+        description = NSLocalizedString(@"Theme name can’t be empty.", nil);
     } else if ([themeName rangeOfString:@"/"].location != NSNotFound) {  // ファイル名としても使われるので、"/" が含まれる名前は不可
-        description = NSLocalizedString(@"Theme name cannot contain “/”.", nil);
+        description = NSLocalizedString(@"You can’t use a theme name that contains “/”.", nil);
     } else if ([themeName hasPrefix:@"."]) {  // ファイル名としても使われるので、"." から始まる名前は不可
-        description = NSLocalizedString(@"Theme name cannot begin with “.”.", nil);
+        description = NSLocalizedString(@"You can’t use a theme name that begins with a dot “.”.", nil);
     } else if ([[self themeNames] indexOfObjectPassingTest:caseInsensitiveContains] != NSNotFound) {  // 既にある名前は不可
-        description = [NSString stringWithFormat:NSLocalizedString(@"“%@” is already exist.", nil), duplicatedThemeName];
+        description = [NSString stringWithFormat:NSLocalizedString(@"The theme name “%@” is already taken.", nil), duplicatedThemeName];
     }
     
     if (outError && description) {
         *outError = [NSError errorWithDomain:CEErrorDomain
                                         code:CEInvalidNameError
                                     userInfo:@{NSLocalizedDescriptionKey: description,
-                                               NSLocalizedRecoverySuggestionErrorKey: NSLocalizedString(@"Input another name.", nil)}];
+                                               NSLocalizedRecoverySuggestionErrorKey: NSLocalizedString(@"Please choose another name.", nil)}];
     }
     
     return (!description);

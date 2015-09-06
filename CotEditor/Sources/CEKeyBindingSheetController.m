@@ -363,7 +363,7 @@
         
     } else if (![keySpec isEqualToString:oldSpec] && [[self registeredKeySpecCharsList] containsObject:keySpec]) {
         // duplication check
-        warning = NSLocalizedString(@"“%@” has already been used. Edit it again.", nil);
+        warning = NSLocalizedString(@"“%@” is already taken. Please choose another key.", nil);
         
     } else {
         // command key existance check
@@ -371,10 +371,10 @@
         
         // command key and mode matching check
         if (([self mode] == CEMenuKeyBindingsType) && !containsCmd) {
-            warning = NSLocalizedString(@"“%@” does NOT include Command key. Edit it again.", nil);
+            warning = NSLocalizedString(@"“%@” does not include the Command key. Please choose another key.", nil);
             
         } else if (([self mode] == CETextKeyBindingsType) && containsCmd) {
-            warning = NSLocalizedString(@"“%@” includes Command key. Edit it again.", nil);
+            warning = NSLocalizedString(@"“%@” includes the Command key. Please choose another key.", nil);
         }
     }
     

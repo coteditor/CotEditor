@@ -292,8 +292,8 @@
     NSString *extension = item ? item[CEFileDropExtensionsKey] : @"";
     
     NSAlert *alert = [[NSAlert alloc] init];
-    [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"Delete the File Drop setting for “%@”?", nil), extension]];
-    [alert setInformativeText:NSLocalizedString(@"Deleted setting cannot be restored.", nil)];
+    [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"Are you sure you want to delete the file drop setting for “%@”?", nil), extension]];
+    [alert setInformativeText:NSLocalizedString(@"Deleted setting can’t be restored.", nil)];
     [alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
     [alert addButtonWithTitle:NSLocalizedString(@"Delete", nil)];
     

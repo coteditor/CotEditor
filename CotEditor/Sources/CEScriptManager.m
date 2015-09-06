@@ -211,7 +211,7 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 
     // display alert and endup if file not exists
     if (![URL checkResourceIsReachableAndReturnError:nil]) {
-        [self showAlertWithMessage:[NSString stringWithFormat:NSLocalizedString(@"The script “%@” does not exist.\n\nCheck it and do “Update Script Menu”.", @""), URL]];
+        [self showAlertWithMessage:[NSString stringWithFormat:NSLocalizedString(@"The script “%@” does not exist.\n\nCheck it and select “Update Script Menu”.", @""), URL]];
         return;
     }
     
@@ -230,7 +230,7 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
         
         // display alert if cannot open/select the script file
         if (!success) {
-            NSString *message = [NSString stringWithFormat:NSLocalizedString(@"Could not open the script file “%@”.", nil), URL];
+            NSString *message = [NSString stringWithFormat:NSLocalizedString(@"The script file “%@” couldn’t be opened.", nil), URL];
             [self showAlertWithMessage:message];
         }
         return;
@@ -250,7 +250,7 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
         NSNumber *isExecutable;
         [URL getResourceValue:&isExecutable forKey:NSURLIsExecutableKey error:nil];
         if (![isExecutable boolValue]) {
-            [self showAlertWithMessage:[NSString stringWithFormat:NSLocalizedString(@"Cannot execute the script “%@”.\nShell script requires execute permission.\n\nCheck permission of the script file.", nil), URL]];
+            [self showAlertWithMessage:[NSString stringWithFormat:NSLocalizedString(@"The script “%@” can’t be executed because you don’t have the execute permission.\n\nCheck permission of the script file.", nil), URL]];
             return;
         }
         
@@ -648,7 +648,7 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 
     // show an alert and endup if script file cannot read
     if (!task || [script length] == 0) {
-        [self showAlertWithMessage:[NSString stringWithFormat:NSLocalizedString(@"Could not read the script “%@”.", nil), URL]];
+        [self showAlertWithMessage:[NSString stringWithFormat:NSLocalizedString(@"The script “%@” couldn’t be read.", nil), URL]];
         return;
     }
     

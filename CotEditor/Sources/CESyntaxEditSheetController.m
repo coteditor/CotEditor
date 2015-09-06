@@ -137,7 +137,7 @@ typedef NS_ENUM(NSUInteger, CETabIndex) {
     if (isDefaultSyntax) {
         BOOL isEqual = [[CESyntaxManager sharedManager] isEqualToBundledStyle:[self style] name:styleName];
         [[self styleNameField] setBordered:YES];
-        [[self messageField] setStringValue:NSLocalizedString(@"Name of the bundled style cannot be changed.", nil)];
+        [[self messageField] setStringValue:NSLocalizedString(@"Bundled styles can’t be renamed.", nil)];
         [[self factoryDefaultsButton] setEnabled:!isEqual];
     } else {
         [[self messageField] setStringValue:@""];
@@ -338,11 +338,11 @@ typedef NS_ENUM(NSUInteger, CETabIndex) {
         if ([styleName length] < 1) {  // 空は不可
             message = NSLocalizedString(@"Input style name.", nil);
         } else if ([styleName rangeOfString:@"/"].location != NSNotFound) {  // ファイル名としても使われるので、"/" が含まれる名前は不可
-            message = NSLocalizedString(@"Style name cannot contain “/”. Input another name.", nil);
+            message = NSLocalizedString(@"You can’t use a style name that contains “/”. Please choose another name.", nil);
         } else if ([styleName hasPrefix:@"."]) {  // ファイル名としても使われるので、"." から始まる名前は不可
-            message = NSLocalizedString(@"Style name cannot begin with “.”. Input another name.", nil);
+            message = NSLocalizedString(@"You can’t use a style name that begins with a dot “.”. Please choose another name.", nil);
         } else if ([[[CESyntaxManager sharedManager] styleNames] indexOfObjectPassingTest:caseInsensitiveContains] != NSNotFound) {  // 既にある名前は不可
-            message = [NSString stringWithFormat:NSLocalizedString(@"“%@” is already exist. Input another name.", nil), duplicatedStyleName];
+            message = [NSString stringWithFormat:NSLocalizedString(@"“%@” is already taken. Please choose another name.", nil), duplicatedStyleName];
         }
     }
     

@@ -36,7 +36,7 @@ Do NOT include the Command key.</string>
                     </textField>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="63">
                         <rect key="frame" x="18" y="296" width="414" height="14"/>
-                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="'Foo' includes Command Key. Edit it again." id="149">
+                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="'Foo' includes the Command key. Please choose another key." id="149">
                             <font key="font" metaFont="smallSystem"/>
                             <color key="textColor" red="0.86335355039999995" green="0.0" blue="0.021221207450000001" alpha="1" colorSpace="calibratedRGB"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>

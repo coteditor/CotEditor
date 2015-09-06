@@ -88,7 +88,7 @@
 "The file “%@” has unsaved changes." = "文件 “%@” 中有修改内容还没有保存";
 "Do you want to discard the changes and reset the file encoding?" = "确定要放弃修改内容并且重置文件编码吗？";
 
-"Can not reinterpret" = "无法再次解释";
+"Can not reinterpret." = "无法再次解释";
 "The file “%@” could not be reinterpreted using the new encoding “%@”." = "文件 “%@” 无法使用 “%@” 编码再次解释";
 
 "new encoding" = "新编码";
@@ -266,10 +266,10 @@
 // Appearance pane
 "Duplicate “%@”" = "拷贝 “%@”";
 "Restore “%@”" = "还原 “%@”";
-"Delete the theme “%@”?" = "删除 “%@” 主题？";
-"Deleted theme cannot be restored." = "删除后的主题将无法还原";
+"Are you sure you want to delete “%@” theme?" = "删除 “%@” 主题？"; // FIXME: tweaked
+"Deleted theme can’t be restored." = "删除后的主题将无法还原";
 "A new theme named “%@” will be installed, but a custom theme with the same name already exists." = "将要安装名为 “%@” 的新主题，但是已经存在同名的自定义主题";
-"Do you want to replace it?\nReplaced theme cannot be restored." = "要覆盖原主题吗？\n主题删除后将无法还原";
+"Do you want to replace it?\nReplaced theme can’t be restored." = "要覆盖原主题吗？\n主题删除后将无法还原";
 
 // swipe to delete (also used in the Format pane)
 "Delete" = "删除";
@@ -296,7 +296,7 @@
 // Integration Pane
 "Install" = "安装";
 "Uninstall" = "卸载";
-"The current 'cot' symbolic link doesn't target the running CotEditor." = "当前的 'cot' 符号链接没有指向正在运行的 CotEditor。";
+"The current 'cot' symbolic link doesn’t target the running CotEditor." = "当前的 'cot' 符号链接没有指向正在运行的 CotEditor。";
 "The current 'cot' symbolic link may target on an invalid path." = "当前的 'cot' 符号链接可能指向无效路径。";
 
 // alerts
@@ -339,37 +339,37 @@
 /* MARK: CESyntaxManager */
 // Syntax coloring style name errors
 "Input style name." = "请输入样式名称";
-"“%@” is already exist. Input another name." = "“%@” 已经在使用中，请输入其他名称";
-"Style name cannot contain “/”. Input another name." = "样式名称中不能含有“/”，请输入其他名称";
-"Style name cannot begin with “.”. Input another name." = "样式名称中不能含有“.”，请输入其他名称";
+"“%@” is already taken. Please choose another name." = "“%@” 已经在使用中，请输入其他名称";
+"You can’t use a style name that contains “/”. Please choose another name." = "样式名称中不能含有“/”，请输入其他名称";
+"You can’t use a style name that begins with a dot “.”. Please choose another name." = "样式名称中不能含有“.”，请输入其他名称";
 // Selected syntax coloring style name was original
-"Name of the bundled style cannot be changed." = "内置样式的名称不能改变";
+"Bundled styles can’t be renamed." = "内置样式的名称不能改变";
 // Suffix of copied syntax coloring style
 " copy" = " 拷贝";
 // Delete syntax coloring style alert message
-"Delete the Syntax style “%@”?" = "确定删除语法样式 “%@”？";
+"Are you sure you want to delete “%@” syntax style?" = "确定删除语法样式 “%@”？";
 // Syntax coloring style alert button titles
 "Cancel" = "取消";
 "Delete" = "删除";
 "Replace" = "替换";
 // Delete syntax coloring style alert information
-"Deleted style cannot be restored." = "样式删除后无法恢复";
+"Deleted style can’t be restored." = "样式删除后无法恢复";
 // Deleted error
-"Sorry, could not delete “%@”." = "“%@” 无法删除";
+"The style “%@” couldn’t be deleted." = "“%@” 无法删除";
 // Import syntax coloring style file choose openPanel button
 "Import" = "导入";
 // Importing same name style alert title
 "The “%@” style already exists." = "样式 “%@” 已经存在";
 // Importing same name style alert info
-"Do you want to replace it?\nReplaced style cannot be restored." = "要替换样式吗？\n被替换的样式无法将恢复";
+"Do you want to replace it?\nReplaced style can’t be restored." = "要替换样式吗？\n被替换的样式无法将恢复";
 // Imported error
-"Error occurred." = "发生了错误";
-"Sorry, could not import “%@”." = "“%@” 无法导入";
+"An error occurred." = "发生了错误";
+"The style “%@” couldn’t be imported." = "“%@” 无法导入";
 // Export syntax coloring style file savePanel label
 "Export As:" = "导出为：";
 // File Drop setting deletion alert
-"Delete the File Drop setting for “%@”?" = "删除文件拖拽设置 “%@”？";
-"Deleted setting cannot be restored." = "设置删除后无法恢复";
+"Are you sure you want to delete the file drop setting for “%@”?" = "确定删除文件拖拽设置 “%@”？";
+"Deleted setting can’t be restored." = "设置删除后无法恢复";
 // Syntax validation
 "Block comment needs both begin delimiter and end delimiter." = "块注释需要同时有起始符号和终止符号";
 "Begin string" = "开始字符串";
@@ -382,10 +382,11 @@
 /* MARK: CEThemeManager */
 "Untitled" = "未命名";
 "Customized Theme" = "自定义主题";
-"Theme name cannot be empty." = "主题名称不能为空";
-"Theme name cannot contain “/”." = "主题名称不能含有“/”";
-"Theme name cannot begin with “.”." = "主题名称不能含有“.”";
-"Input another name." = "请输入其他名称";
+"The theme name “%@” is already taken." = "主题名称 “%@” 已在使用中，";
+"Theme name can’t be empty." = "主题名称不能为空";
+"You can’t use a theme name that contains “/”." = "主题名称不能含有“/”";
+"You can’t use a theme name that begins with a dot “.”." = "主题名称不能含有“.”";
+"Please choose another name." = "请输入其他名称";
 
 "Auto-generated theme that is migrated from user's coloring setting on CotEditor 1.x" = "由 CotEditor 1.x 的用户颜色设置中自动生成的主题";
 
@@ -394,9 +395,9 @@
 // label for text menu keybindings action
 "Insert Text %@" = "插入文本 %@";
 // Warning messages
-"“%@” has already been used. Edit it again." = "“%@” 已在使用中，请重新设置";
-"“%@” does NOT include Command key. Edit it again." = "“%@” 中没有包含 Command 键，请重新设置";
-"“%@” includes Command key. Edit it again." = "“%@” 包含了 Command 键，请重新设置";
+"“%@” is already taken. Please choose another key." = "“%@” 已在使用中，请重新设置";  // FIXME: tweaked
+"“%@” does not include the Command key. Please choose another key." = "“%@” 中没有包含 Command 键，请重新设置";  // FIXME: tweaked
+"“%@” includes the Command key. Please choose another key." = "“%@” 包含了 Command 键，请重新设置";  // FIXME: tweaked
 
 
 /* MARK: CEScriptManager */
@@ -412,11 +413,11 @@
 "“Opt + click” to open in Script Editor." = "使用 “Opt + 单击” 打开脚本编辑器";
 
 // Alert messages
-"The script “%@” does not exist.\n\nCheck it and do “Update Script Menu”." = "脚本 “%@” 不存在。\n\n请确认文件是否存在，并使用 “更新脚本菜单” 进行更新";
+"The script “%@” does not exist.\n\nCheck it and select “Update Script Menu”." = "脚本 “%@” 不存在。\n\n请确认文件是否存在，并使用 “更新脚本菜单” 进行更新";
 "%@\nErrorNumber: %i" = "%@\n错误号：%i";
-"Could not open the script file “%@”." = "无法打开脚本文件 “%@”";
-"Cannot execute the script “%@”.\nShell script requires execute permission.\n\nCheck permission of the script file." = "无法执行脚本 “%@”。\nShell 脚本需要执行权限。\n\n请确认脚本文件访问权限";
-"Could not read the script “%@”." = "无法读取脚本 “%@”";
+"The script file “%@” couldn’t be opened." = "无法打开脚本文件 “%@”";
+"The script “%@” can’t be executed because you don’t have the execute permission.\n\nCheck permission of the script file." = "无法执行脚本 “%@”。\nShell 脚本需要执行权限。\n\n请确认脚本文件访问权限";  // FIXME: tweaked
+"The script “%@” couldn’t be read." = "无法读取脚本 “%@”";
 
 
 /* MARK: CEFindPanelController */

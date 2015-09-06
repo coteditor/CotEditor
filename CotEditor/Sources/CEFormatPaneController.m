@@ -262,7 +262,7 @@
             
             NSAlert *alert = [[NSAlert alloc] init];
             [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"The “%@” style already exists.", nil), styleName]];
-            [alert setInformativeText:NSLocalizedString(@"Do you want to replace it?\nReplaced style cannot be restored.", nil)];
+            [alert setInformativeText:NSLocalizedString(@"Do you want to replace it?\nReplaced style can’t be restored.", nil)];
             [alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
             [alert addButtonWithTitle:NSLocalizedString(@"Replace", nil)];
             // 現行シート値を設定し、確認のためにセカンダリシートを開く
@@ -440,8 +440,8 @@
     if (![[CESyntaxManager sharedManager] URLForUserStyle:styleName]) { return; }
     
     NSAlert *alert = [[NSAlert alloc] init];
-    [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"Delete the syntax style “%@”?", nil), styleName]];
-    [alert setInformativeText:NSLocalizedString(@"Deleted style cannot be restored.", nil)];
+    [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"Are you sure you want to delete “%@” syntax style?", nil), styleName]];
+    [alert setInformativeText:NSLocalizedString(@"Deleted style can’t be restored.", nil)];
     [alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
     [alert addButtonWithTitle:NSLocalizedString(@"Delete", nil)];
     
@@ -474,8 +474,8 @@
         [window orderOut:self];
         [[[self view] window] makeKeyAndOrderFront:self];
         NSAlert *alert = [[NSAlert alloc] init];
-        [alert setMessageText:NSLocalizedString(@"Error occurred.", nil)];
-        [alert setInformativeText:[NSString stringWithFormat:NSLocalizedString(@"Sorry, could not import “%@”.", nil), [fileURL lastPathComponent]]];
+        [alert setMessageText:NSLocalizedString(@"An error occurred.", nil)];
+        [alert setInformativeText:[NSString stringWithFormat:NSLocalizedString(@"The style “%@” couldn’t be imported.", nil), [fileURL lastPathComponent]]];
         
         NSBeep();
         [alert beginSheetModalForWindow:[[self view] window] modalDelegate:self didEndSelector:NULL contextInfo:NULL];
@@ -501,8 +501,8 @@
         [[alert window] orderOut:self];
         [[[self view] window] makeKeyAndOrderFront:self];
         NSAlert *alert = [[NSAlert alloc] init];
-        [alert setMessageText:NSLocalizedString(@"Error occurred.", nil)];
-        [alert setInformativeText:[NSString stringWithFormat:NSLocalizedString(@"Sorry, could not delete “%@”.", nil), styleName]];
+        [alert setMessageText:NSLocalizedString(@"An error occurred.", nil)];
+        [alert setInformativeText:[NSString stringWithFormat:NSLocalizedString(@"The style “%@” couldn’t be deleted.", nil), styleName]];
         NSBeep();
         [alert beginSheetModalForWindow:[[self view] window] modalDelegate:self didEndSelector:NULL contextInfo:NULL];
     }

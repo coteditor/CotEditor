@@ -27,14 +27,14 @@
                         <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="left" id="144">
                             <font key="font" metaFont="smallSystem"/>
                             <string key="title">To change a binding, select it, click the key column, and then type the keys.
-You MUST include the Command key.</string>
+You must include the Command key.</string>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="25">
                         <rect key="frame" x="18" y="296" width="414" height="14"/>
-                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="'Foo' doesn't include Command Key. Edit it again." id="145">
+                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="'Foo' doesn't include Command Key. Please choose another key." id="145">
                             <font key="font" metaFont="smallSystem"/>
                             <color key="textColor" red="0.86335355043411255" green="0.0" blue="0.021221207454800606" alpha="1" colorSpace="calibratedRGB"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
