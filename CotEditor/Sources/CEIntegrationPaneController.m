@@ -343,7 +343,7 @@ static NSString *const kSymbolicLinkPath = @"/usr/local/bin/cot";
     if (![[[appURL lastPathComponent] stringByDeletingPathExtension] isEqualToString:preferredAppName]) {
         if (outError) {
             NSDictionary *userInfo = @{NSLocalizedDescriptionKey: NSLocalizedString(@"The name of the running CotEditor is modified.", nil),
-                                       NSLocalizedRecoverySuggestionErrorKey: [NSString stringWithFormat:NSLocalizedString(@"Do you really want to install the command-line tool for “%@”?", nil),
+                                       NSLocalizedRecoverySuggestionErrorKey: [NSString stringWithFormat:NSLocalizedString(@"Do you really want to install the command-line tool for “%@”?\n\nThe command will be invalid if CotEditor is renamed.", nil),
                                                                                [appURL lastPathComponent]],
                                        NSLocalizedRecoveryOptionsErrorKey: @[NSLocalizedString(@"Install", nil),
                                                                              NSLocalizedString(@"Cancel", nil)],

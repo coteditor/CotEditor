@@ -305,7 +305,7 @@
 "Do you really want to install the command-line tool for CotEditor at “%@”?\n\nThe command will be invalid if the location of CotEditor is moved." = "本当に“%@”にある CotEditor のためのコマンドラインツールをインストールしますか？\n\nCotEditor.app の場所が移動されるとコマンドは無効になります。";
 
 "The name of the running CotEditor is modified." = "現在起動している CotEditor は名前が変更されています。";
-"Do you really want to install the command-line tool for “%@”?" = "本当に“%@”のためのコマンドラインツールをインストールしますか？";
+"Do you really want to install the command-line tool for “%@”?\n\nThe command will be invalid if CotEditor is renamed." = "本当に“%@”のためのコマンドラインツールをインストールしますか？\n\n\nCotEditor の名前が変更されるとコマンドは無効になります。";
 
 "Creating symbolic link at “%@” by 3rd party applications is denied on OS X %@." = "OS X %2$@ では、サードパーティアプリケーションが“%1$@”にシンボリックリンクを作成することが禁じられています。";
 "You can install cot command running the following command on Terminal manually:" = "ユーザ自身がターミナルから以下のコマンドを実行することで cot コマンドをインストールすることができます：";
