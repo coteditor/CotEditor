@@ -301,7 +301,7 @@
 "The current 'cot' symbolic link may target on an invalid path." = "現在の 'cot' シンボリックリンクは無効なパスに向けられています。";
 
 // alerts
-"The running CotEditor is not located in the Application folder." = "現在起動している CotEditor はアプリケーションフォルダ外にあります。";
+"The running CotEditor is not located in the Applications folder." = "現在起動している CotEditor はアプリケーションフォルダ外にあります。";
 "Do you really want to install the command-line tool for CotEditor at “%@”?\n\nThe command will be invalid if the location of CotEditor is moved." = "本当に“%@”にある CotEditor のためのコマンドラインツールをインストールしますか？\n\nCotEditor.app の場所が移動されるとコマンドは無効になります。";
 
 "The name of the running CotEditor is modified." = "現在起動している CotEditor は名前が変更されています。";
