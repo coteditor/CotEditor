@@ -1,0 +1,44 @@
+/*
+ 
+ KeyBindingsPane.strings (German)
+ 
+ CotEditor
+ http://coteditor.com
+ 
+ Created by 1024jp on 2015-08-19.
+ 
+ ------------------------------------------------------------------------------
+ 
+ © 2015 1024jp
+ 
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+ 
+ http://www.apache.org/licenses/LICENSE-2.0
+ 
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ 
+ */
+
+/* Class = "NSTextFieldCell"; title = "Menu Key Bindings"; ObjectID = "3359"; */
+"3359.title" = "Menü-Tastenbelegungen";
+/* Class = "NSTextFieldCell"; title = "Shortcuts for menu items."; ObjectID = "3361"; */
+"3361.title" = "Kurzbefehls für Menüeinträge.";
+/* Class = "NSTextFieldCell"; title = "This setting does not include script menu items."; ObjectID = "3362"; */
+"3362.title" = "Diese Einstellung enthaltet keine Einträge für das Skripte-Menü.";
+/* Class = "NSButtonCell"; title = "Edit…"; ObjectID = "3360"; */
+"3360.title" = "Bearbeiten …";
+
+/* Class = "NSTextFieldCell"; title = "Additional Text Key Bindings"; ObjectID = "3363"; */
+"3363.title" = "Zusätzliche Text-Tastenbelegungen";
+/* Class = "NSTextFieldCell"; title = "Shortcuts to insert preset text."; ObjectID = "3364"; */
+"3364.title" = "Kurzbefehls, voreingestellten Text hinzuzufügen";
+/* Class = "NSTextFieldCell"; title = "This setting is not for the standard Cocoa key bindings\nbut for CotEditor's original function."; ObjectID = "3366"; */
+"3366.title" = "Diese Einstellung ist nicht die Standard-Cocoa-Tastenbelegungen sondern eine originale Funktion CotEditors.";
+/* Class = "NSButtonCell"; title = "Edit…"; ObjectID = "3365"; */
+"3365.title" = "Bearbeiten …";

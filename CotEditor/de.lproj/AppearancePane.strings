@@ -1,0 +1,53 @@
+/*
+ 
+ AppearancePane.strings (German)
+ 
+ CotEditor
+ http://coteditor.com
+ 
+ Created by 1024jp on 2015-08-19.
+ 
+ ------------------------------------------------------------------------------
+ 
+ © 2015 1024jp
+ 
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+ 
+ http://www.apache.org/licenses/LICENSE-2.0
+ 
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ 
+ */
+
+/* Class = "NSTextFieldCell"; title = "Font:"; ObjectID = "Z85-S9-uID"; */
+"Z85-S9-uID.title" = "Schrift:";
+/* Class = "NSButtonCell"; title = "Select…"; ObjectID = "3289"; */
+"3289.title" = "Auswählen …";
+/* Class = "NSButtonCell"; title = "Anti-Aliasing"; ObjectID = "3290"; */
+"3290.title" = "Text glätten";
+
+/* Class = "NSTextFieldCell"; title = "Line height:"; ObjectID = "r1c-v3-qW1"; */
+"r1c-v3-qW1.title" = "Zeilenhöhe";
+/* Class = "NSTextFieldCell"; title = "times"; ObjectID = "VLD-jj-zzl"; */
+"VLD-jj-zzl.title" = "-fach";
+/* Class = "NSButtonCell"; title = "Fix line height with composite font"; ObjectID = "3296"; */
+"3296.title" = "Zeilenhöhe beim Composite-Schrift festsetzen";
+
+/* Class = "NSTextFieldCell"; title = "Current line:"; ObjectID = "oKu-Fu-hRU"; */
+"oKu-Fu-hRU.title" = "Aktuelle Zeile:";
+/* Class = "NSButtonCell"; title = "Change background color"; ObjectID = "ba7-dE-zXz"; */
+"ba7-dE-zXz.title" = "Hintergrundfarbe ändern";
+
+
+/* Class = "NSTableColumn"; headerCell.title = "Theme"; ObjectID = "Avf-y8-wXG"; */
+"Avf-y8-wXG.headerCell.title" = "Thema";
+/* Class = "NSMenuItem"; title = "Import…"; ObjectID = "gcs-B8-kPL"; */
+"gcs-B8-kPL.title" = "Importieren …";
+/* Class = "NSMenuItem"; title = "Export…"; ObjectID = "4B4-mq-8Fs"; */
+"4B4-mq-8Fs.title" = "Exportieren …";

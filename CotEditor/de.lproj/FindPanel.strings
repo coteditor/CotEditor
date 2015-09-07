@@ -1,0 +1,188 @@
+/*
+ 
+ FindPanel.strings (German)
+ 
+ CotEditor
+ http://coteditor.com
+ 
+ Created by 1024jp on 2015-08-19.
+ 
+ ------------------------------------------------------------------------------
+ 
+ © 2015 1024jp
+ 
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+ 
+ http://www.apache.org/licenses/LICENSE-2.0
+ 
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ 
+ */
+
+// Find Panel
+
+/* Class = "NSPanel"; title = "Find & Replace"; ObjectID = "Wal-Sg-6d6"; */
+"Wal-Sg-6d6.title" = "Suchen & Ersetzen";
+
+/* Class = "IBBindingConnection"; ibShadowedIsNilPlaceholder = "Find"; ObjectID = "oNs-q5-oCH"; */
+"oNs-q5-oCH.ibShadowedIsNilPlaceholder" = "Suchen";
+/* Class = "NSScrollView"; ibShadowedToolTip = "Type the text to search for."; ObjectID = "hxw-DS-gxQ"; */
+"hxw-DS-gxQ.ibShadowedToolTip" = "Geben Sie den Suchbegriff ein.";
+
+/* Class = "IBBindingConnection"; ibShadowedIsNilPlaceholder = "Replace"; ObjectID = "zd8-iN-ws4"; */
+"zd8-iN-ws4.ibShadowedIsNilPlaceholder" = "Ersetzen";
+/* Class = "NSScrollView"; ibShadowedToolTip = "Type the text to replace the found text."; ObjectID = "qiQ-tb-XCa"; */
+"qiQ-tb-XCa.ibShadowedToolTip" = "Ersetzungstext für den gefundenen Suchbegriff eingeben.";
+
+/* Class = "NSButtonCell"; title = "Regular Expression"; ObjectID = "brT-HP-GVL"; */
+"brT-HP-GVL.title" = "Regulärer Ausdruck";
+/* Class = "NSButton"; ibShadowedToolTip = "Select to search with regular expression."; ObjectID = "8My-G5-daT"; */
+"8My-G5-daT.ibShadowedToolTip" = "Wählen Sie, um mit regulärem Ausdruck zu suchen.";
+
+/* Class = "NSButtonCell"; title = "Ignore Case"; ObjectID = "4wg-Cz-ozb"; */
+"4wg-Cz-ozb.title" = "Groß-/Kleinschreibung ignorieren";
+/* Class = "NSButton"; ibShadowedToolTip = "Select to ignore character case on search."; ObjectID = "GvT-tD-Cbk"; */
+"GvT-tD-Cbk.ibShadowedToolTip" = "Wählen Sie, um beim Suchen Groß-/Kleinschreibung zu ignorieren.";
+
+/* Class = "NSButtonCell"; title = "In Selection"; ObjectID = "9bc-9Q-fhd"; */
+"9bc-9Q-fhd.title" = "In der Auswahl";
+/* Class = "NSButton"; ibShadowedToolTip = "Select to search text only from selection."; ObjectID = "tu7-IT-dA3"; */
+"tu7-IT-dA3.ibShadowedToolTip" = "Wählen Sie, um nur in der Auswahl zu suchen.";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Show quick reference for regular expression syntax."; ObjectID = "i2l-7Z-Zmf"; */
+"i2l-7Z-Zmf.ibShadowedToolTip" = "Kurzreferenz des regulären Ausdrucks anzeigen.";
+
+
+// Buttons
+
+/* Class = "NSButtonCell"; title = "Highlight"; ObjectID = "zHg-Yd-nG3"; */
+"zHg-Yd-nG3.title" = "Hervorheben";
+/* Class = "NSButton"; ibShadowedToolTip = "Highlight all matches."; ObjectID = "j1n-jm-66v"; */
+"j1n-jm-66v.ibShadowedToolTip" = "Alle Übereinstimmung hervorheben.";
+
+/* Class = "NSButtonCell"; title = "Find All"; ObjectID = "XLZ-92-VVF"; */
+"XLZ-92-VVF.title" = "Alles suchen";
+/* Class = "NSButton"; ibShadowedToolTip = "List all matches."; ObjectID = "OCv-Y5-8XR"; */
+"OCv-Y5-8XR.ibShadowedToolTip" = "Alle Übereinstimmungen listen.";
+
+/* Class = "NSButtonCell"; title = "Replace All"; ObjectID = "5gU-5y-iLn"; */
+"5gU-5y-iLn.title" = "Alles ersetzen";
+/* Class = "NSButton"; ibShadowedToolTip = "Replace all matches with the replacement text."; ObjectID = "RR6-rj-B8P"; */
+"RR6-rj-B8P.ibShadowedToolTip" = "Alle Übereinstimmung durch den Ersetzungstext ersetzen.";
+
+/* Class = "NSButtonCell"; title = "Replace"; ObjectID = "W4Z-S2-wvv"; */
+"W4Z-S2-wvv.title" = "Ersetzen";
+// Note: The tooltip for "Replace button is set the in CEFindPanelController.
+
+/* Class = "NSSegmentedCell"; ObjectID = "u6p-Hz-aK5"; */
+"u6p-Hz-aK5.ibShadowedToolTips[0]" = "Vorherige Übereinstimmung suchen.";  /* "Find previous match." */
+"u6p-Hz-aK5.ibShadowedToolTips[1]" = "Nächste Übereinstimmung suchen.";  /* "Find next match." */
+
+/* Class = "NSMenuItem"; title = "Recent Searches"; ObjectID = "cdV-rY-hCN"; */
+"cdV-rY-hCN.title" = "Zuletzt gesucht";
+/* Class = "NSMenuItem"; title = "Clear Recent Searches"; ObjectID = "vE8-oK-xlC"; */
+"vE8-oK-xlC.title" = "Letzte Suchabflagen löschen";
+
+/* Class = "NSMenuItem"; title = "Recent Replacements"; ObjectID = "7cw-iQ-0LM"; */
+"7cw-iQ-0LM.title" = "Zuletzt eingesetzt";
+/* Class = "NSMenuItem"; title = "Clear Recent Replacements"; ObjectID = "vfK-an-Qnl"; */
+"vfK-an-Qnl.title" = "Letzte Ersetzungen löschen";
+
+
+// Advanced Options
+
+/* Class = "NSPopUpButton"; ibShadowedToolTip = "Set advanced options"; ObjectID = "EY8-gj-fQb"; */
+"EY8-gj-fQb.ibShadowedToolTip" = "Erweitere Optionen einstellen";
+
+/* Class = "NSMenuItem"; title = "Advanced Options"; ObjectID = "SsS-EF-JyP"; */
+"SsS-EF-JyP.title" = "Erweitere Optionen";
+
+/* Class = "NSMenuItem"; title = "Wrap Around"; ObjectID = "Oqm-Wt-G7B"; */
+"Oqm-Wt-G7B.title" = "Gesamtes Dokument";
+/* Class = "NSMenuItem"; title = "Select Next Match after Replace"; ObjectID = "RfX-XI-iRH"; */
+"RfX-XI-iRH.title" = "Nach der Ersetzung nächste Übereinstimmung auswählen";
+/* Class = "NSMenuItem"; title = "Auto-Close Progress Dialog"; ObjectID = "ONX-V4-H0w"; */
+"ONX-V4-H0w.title" = "Verlaufsanzeige automatisch schließen";
+
+/* Class = "NSMenuItem"; title = "Textual Search Options"; ObjectID = "hX3-jg-Uqc"; */
+"hX3-jg-Uqc.title" = "Optionen für textuelles Suchen";
+/* Class = "NSMenuItem"; title = "Delimit by Whitespace"; ObjectID = "4Pf-nh-75E"; */
+"4Pf-nh-75E.title" = "Mit Leerzeichen trennen";
+
+/* Class = "NSMenuItem"; title = "Regular Expression Options"; ObjectID = "UZ5-oK-DED"; */
+"UZ5-oK-DED.title" = "Optionen für regulären Ausdruck";
+
+/* Class = "NSMenuItem"; title = "Syntax"; ObjectID = "Uhr-hw-nIf"; */
+"Uhr-hw-nIf.title" = "Syntax";
+/* Class = "NSMenu"; title = "Syntax"; ObjectID = "bs2-Tz-po4"; */
+"bs2-Tz-po4.title" = "Syntax";
+/* Class = "NSMenuItem"; title = "POSIX Basic"; ObjectID = "y7k-yn-gy6"; */
+"y7k-yn-gy6.title" = "POSIX Basic";
+/* Class = "NSMenuItem"; title = "POSIX Extended"; ObjectID = "QfE-cX-d9h"; */
+"QfE-cX-d9h.title" = "POSIX Erweitert";
+/* Class = "NSMenuItem"; title = "Emacs"; ObjectID = "IKR-qF-Nqu"; */
+"IKR-qF-Nqu.title" = "Emacs";
+/* Class = "NSMenuItem"; title = "Grep"; ObjectID = "Nbe-7c-AnJ"; */
+"Nbe-7c-AnJ.title" = "Grep";
+/* Class = "NSMenuItem"; title = "GNU Regex"; ObjectID = "sgn-JJ-gas"; */
+"sgn-JJ-gas.title" = "GNU Regex";
+/* Class = "NSMenuItem"; title = "Java"; ObjectID = "heJ-on-iUB"; */
+"heJ-on-iUB.title" = "Java";
+/* Class = "NSMenuItem"; title = "Perl"; ObjectID = "mdl-TK-1fB"; */
+"mdl-TK-1fB.title" = "Perl";
+/* Class = "NSMenuItem"; title = "Ruby"; ObjectID = "NPK-8x-xDg"; */
+"NPK-8x-xDg.title" = "Ruby";
+
+/* Class = "NSMenuItem"; title = "Single Line"; ObjectID = "UQ6-Up-xWI"; */
+"UQ6-Up-xWI.title" = "Eine Zeile";
+/* Class = "NSMenuItem"; title = "Multiline"; ObjectID = "kPN-Hy-ym0"; */
+"kPN-Hy-ym0.title" = "Mehrere Zeilen";
+/* Class = "NSMenuItem"; title = "Extend"; ObjectID = "14O-E6-7lS"; */
+"14O-E6-7lS.title" = "Erweitern";
+/* Class = "NSMenuItem"; title = "Find Longest"; ObjectID = "xBb-Le-i3R"; */
+"xBb-Le-i3R.title" = "Längstes suchen";
+/* Class = "NSMenuItem"; title = "Find Empty"; ObjectID = "amg-LN-hui"; */
+"amg-LN-hui.title" = "Leere Suche";
+/* Class = "NSMenuItem"; title = "Find Not Empty"; ObjectID = "3D5-4J-V4l"; */
+"3D5-4J-V4l.title" = "Suche nicht leer";
+/* Class = "NSMenuItem"; title = "Negate Single Line"; ObjectID = "Sdf-5P-GP1"; */
+"Sdf-5P-GP1.title" = "Eine Zeile ablehnen";
+/* Class = "NSMenuItem"; title = "Capture Group"; ObjectID = "LiY-vD-U6B"; */
+"LiY-vD-U6B.title" = "In Gruppe sichern";
+/* Class = "NSMenuItem"; title = "Don't Capture Group"; ObjectID = "fQl-sZ-bjK"; */
+"fQl-sZ-bjK.title" = "Kein Sichern in Gruppe";
+/* Class = "NSMenuItem"; title = "Not Begin of Line"; ObjectID = "AFF-AC-IR9"; */
+"AFF-AC-IR9.title" = "Nicht Zeilenanfang";
+/* Class = "NSMenuItem"; title = "Not End of Line"; ObjectID = "kCx-M9-GDk"; */
+"kCx-M9-GDk.title" = "Nicht Zeilenende";
+
+
+// Find Result
+
+/* Class = "NSButton"; UeN.ibShadowedToolTip = "Close find result."; ObjectID = "oC1-bN-UeN"; */
+"oC1-bN-UeN.ibShadowedToolTip" = "Suchresultat schließen.";
+
+/* Class = "IBBindingConnection"; ibShadowedDisplayPattern = "Find String: %{value1}@"; ObjectID = "2MH-SD-x1y"; */
+"2MH-SD-x1y.ibShadowedDisplayPattern" = "Suchbegriff: %{value1}@";
+
+/* Class = "NSTableColumn"; headerCell.title = "Line"; ObjectID = "CPd-0W-bKv"; */
+"CPd-0W-bKv.headerCell.title" = "Zeile";
+/* Class = "NSTableColumn"; headerCell.title = "Found String"; ObjectID = "PJ8-wp-pdK"; */
+"PJ8-wp-pdK.headerCell.title" = "Gefundener Suchbegriff";
+
+/* Class = "NSButtonCell"; title = "Live Update"; ObjectID = "pqE-XD-1Fq"; */
+"pqE-XD-1Fq.title" = "Autom. aktualisieren";
+/* Class = "NSButton"; ibShadowedToolTip = "Select to update find result when document is edited."; ObjectID = "PEV-3w-HeQ"; */
+"PEV-3w-HeQ.ibShadowedToolTip" = "Wählen Sie, um das Suchergebnis bei der Dokumentbearbeitung zu aktualisieren.";
+
+
+// Regex Quick Reference
+
+/* Class = "IBNSViewController"; title = "Quick Reference of Regular Expression"; ObjectID = "uMF-F8-Wjs"; */
+"uMF-F8-Wjs.title" = "Kurzreferenz des regulären Ausdrucks";

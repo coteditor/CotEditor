@@ -1,0 +1,70 @@
+/*
+ 
+ FileDropPane.strings (German)
+ 
+ CotEditor
+ http://coteditor.com
+ 
+ Created by 1024jp on 2015-08-19.
+ 
+ ------------------------------------------------------------------------------
+ 
+ © 2015 1024jp
+ 
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+ 
+ http://www.apache.org/licenses/LICENSE-2.0
+ 
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ 
+ */
+
+/* Class = "NSTextFieldCell"; title = "Extensions:"; ObjectID = "3331"; */
+"3331.title" = "Suffixe:";
+/* Class = "NSTextFieldCell"; title = "(comma separated, no dots)"; ObjectID = "3335"; */
+"3335.title" = "(Komma getrennte, ohne Punkte)";
+
+/* Class = "NSTextFieldCell"; title = "Glossary:"; ObjectID = "3337"; */
+"3337.title" = "Glossar:";
+
+/* Class = "NSButtonCell"; ibShadowedToolTip = "Add"; ObjectID = "3333"; */
+"3333.ibShadowedToolTip" = "Addieren";
+/* Class = "NSButtonCell"; ibShadowedToolTip = "Delete"; ObjectID = "3334"; */
+"3334.ibShadowedToolTip" = "Löschen";
+
+
+/* Class = "NSTextFieldCell"; title = "Insertion Format:"; ObjectID = "3332"; */
+"3332.title" = "Format des Einführungstexts:";
+
+/* Class = "NSMenuItem"; title = "Insert Pre-Formatted String"; ObjectID = "541"; */
+"541.title" = "Vorformatierte Zeichenkette hinzufügen";
+
+/* Class = "NSMenuItem"; ibShadowedToolTip = "The dropped file absolute path."; ObjectID = "544"; */
+"544.ibShadowedToolTip" = "Der Absolute Pfad der abgelegten Datei.";
+/* Class = "NSMenuItem"; ibShadowedToolTip = "The relative path between dropped file and the document."; ObjectID = "546"; */
+"546.ibShadowedToolTip" = "Der Relative Pfad zwischen der abgelegten Datei und der Dokument.";
+/* Class = "NSMenuItem"; ibShadowedToolTip = "The dropped file's name include extension (if exists)."; ObjectID = "542"; */
+"542.ibShadowedToolTip" = "Der Name der abgelegten Datei Suffix inklusive (falls es existiert).";
+/* Class = "NSMenuItem"; ibShadowedToolTip = "The dropped file's name without extension."; ObjectID = "538"; */
+"538.ibShadowedToolTip" = "Der Name der abgelegten Datei ohne Suffix.";
+/* Class = "NSMenuItem"; ibShadowedToolTip = "The dropped file's extension."; ObjectID = "694"; */
+"694.ibShadowedToolTip" = "Das Suffix der abgelegten Datei.";
+/* Class = "NSMenuItem"; ibShadowedToolTip = "The dropped file's extension (converted to lowercase)."; ObjectID = "695"; */
+"695.ibShadowedToolTip" = "Das Suffix der abgelegten Datei (in Kleinbuchstaben umgewandelt).";
+/* Class = "NSMenuItem"; ibShadowedToolTip = "The dropped file's extension (converted to uppercase)."; ObjectID = "696"; */
+"696.ibShadowedToolTip" = "Das Suffix der abgelegten Datei (in Großbuchstaben umgewandelt).";
+/* Class = "NSMenuItem"; ibShadowedToolTip = "The parent directory name of dropped file."; ObjectID = "539"; */
+"539.ibShadowedToolTip" = "Der Übergeordnete Ordnername der abgelegten Datei.";
+/* Class = "NSMenuItem"; ibShadowedToolTip = "(if the dropped file is Image) image width."; ObjectID = "540"; */
+"540.ibShadowedToolTip" = "Die Bildbreite (Gültig, nur wenn die abgelegte Datei ein Bild ist).";
+/* Class = "NSMenuItem"; ibShadowedToolTip = "(if the dropped file is Image) image height."; ObjectID = "537"; */
+"537.ibShadowedToolTip" = "Die Bildhöhe (Gültig, nur wenn die abgelegte Datei ein Bild ist).";
+
+/* Class = "IBBindingConnection"; ibShadowedNoSelectionPlaceholder = "No extension is selected."; ObjectID = "ib2-Zw-Ucy"; */
+"ib2-Zw-Ucy.ibShadowedNoSelectionPlaceholder" = "Keine Suffix wurde ausgewählt.";

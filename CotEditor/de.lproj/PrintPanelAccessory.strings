@@ -1,0 +1,146 @@
+/*
+ 
+ PrintPanelAccessory.strings (German)
+ 
+ CotEditor
+ http://coteditor.com
+ 
+ Created by 1024jp on 2015-08-19.
+ 
+ ------------------------------------------------------------------------------
+ 
+ © 2015 1024jp
+ 
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+ 
+ http://www.apache.org/licenses/LICENSE-2.0
+ 
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ 
+ */
+
+/* Class = "NSTextFieldCell"; title = "Color:"; ObjectID = "eXI-55-yQO"; */
+"eXI-55-yQO.title" = "Farbe:";
+/* Class = "NSMenuItem"; title = "Black and White"; ObjectID = "590"; */
+"590.title" = "Schwarz-Weiß";
+/* Class = "NSMenuItem"; title = "Same as Document's Setting"; ObjectID = "589"; */
+"589.title" = "Gleich der Dokument";
+
+/* Class = "NSTextFieldCell"; title = "Line Numbers:"; ObjectID = "716"; */
+"716.title" = "Zeilennummern:";
+/* Class = "NSMenuItem"; title = "Don't Print"; ObjectID = "420"; */
+"420.title" = "Nicht drucken";
+/* Class = "NSMenuItem"; title = "Same as Document's Setting"; ObjectID = "419"; */
+"419.title" = "Gleich der Dokument";
+/* Class = "NSMenuItem"; title = "Print"; ObjectID = "418"; */
+"418.title" = "Drucken";
+
+/* Class = "NSTextFieldCell"; title = "Invisibles:"; ObjectID = "718"; */
+"718.title" = "Unsichtbaren:";
+/* Class = "NSMenuItem"; title = "Same as Document's Setting"; ObjectID = "427"; */
+"427.title" = "Gleich der Dokument";
+/* Class = "NSMenuItem"; title = "Don't Print"; ObjectID = "428"; */
+"428.title" = "Nicht drucken";
+/* Class = "NSMenuItem"; title = "Print all"; ObjectID = "426"; */
+"426.title" = "Alles drucken";
+
+
+/* Class = "NSButtonCell"; title = "Print header"; ObjectID = "708"; */
+"708.title" = "Kopfzeilen drucken";
+
+/* Class = "NSTextFieldCell"; title = "Primary:"; ObjectID = "706"; */
+"706.title" = "Primäre:";
+
+/* Class = "NSMenuItem"; title = "None"; ObjectID = "393"; */
+"393.title" = "Ohne";
+/* Class = "NSMenuItem"; title = "Syntax Name"; ObjectID = "UJ5-ki-qHL"; */
+"UJ5-ki-qHL.title" = "Syntaxname";
+/* Class = "NSMenuItem"; title = "Document Name"; ObjectID = "202"; */
+"202.title" = "Dokumentname";
+/* Class = "NSMenuItem"; title = "File Path"; ObjectID = "203"; */
+"203.title" = "Dateipfad";
+/* Class = "NSMenuItem"; title = "Print Date"; ObjectID = "206"; */
+"206.title" = "Druckdatum";
+/* Class = "NSMenuItem"; title = "Page Number"; ObjectID = "200"; */
+"200.title" = "Seitenzahl";
+
+/* Class = "NSSegmentedCell"; ObjectID = "Aru-Gd-J0D"; */
+"Aru-Gd-J0D.ibShadowedToolTips[0]" = "Linksbündig einrichten";  /* Align Left */
+"Aru-Gd-J0D.ibShadowedToolTips[1]" = "Zentrieren";  /* Center */
+"Aru-Gd-J0D.ibShadowedToolTips[2]" = "Rechtsbündig einrichten";  /* Align Right */
+
+
+/* Class = "NSTextFieldCell"; title = "Secondary:"; ObjectID = "707"; */
+"707.title" = "Sekundäre:";
+
+/* Class = "NSMenuItem"; title = "None"; ObjectID = "395"; */
+"395.title" = "Ohne";
+/* Class = "NSMenuItem"; title = "Syntax Name"; ObjectID = "6RR-gp-tKJ"; */
+"6RR-gp-tKJ.title" = "Syntaxname";
+/* Class = "NSMenuItem"; title = "Document Name"; ObjectID = "312"; */
+"312.title" = "Dokumentname";
+/* Class = "NSMenuItem"; title = "File Path"; ObjectID = "307"; */
+"307.title" = "Dateipfad";
+/* Class = "NSMenuItem"; title = "Print Date"; ObjectID = "311"; */
+"311.title" = "Druckdatum";
+/* Class = "NSMenuItem"; title = "Page Number"; ObjectID = "310"; */
+"310.title" = "Seitenzahl";
+
+/* Class = "NSSegmentedCell"; ObjectID = "I4t-kQ-lvq"; */
+"I4t-kQ-lvq.ibShadowedToolTips[0]" = "Linksbündig einrichten";  /* Align Left */
+"I4t-kQ-lvq.ibShadowedToolTips[1]" = "Zentrieren";  /* Center */
+"I4t-kQ-lvq.ibShadowedToolTips[2]" = "Rechtsbündig einrichten";  /* Align Right */
+
+
+
+/* Class = "NSButtonCell"; title = "Print footer"; ObjectID = "713"; */
+"713.title" = "Fußzeilen drucken";
+
+/* Class = "NSTextFieldCell"; title = "Primary:"; ObjectID = "711"; */
+"711.title" = "Primäre:";
+
+/* Class = "NSMenuItem"; title = "None"; ObjectID = "397"; */
+"397.title" = "Ohne";
+/* Class = "NSMenuItem"; title = "Syntax Name"; ObjectID = "Ro5-rK-S7p"; */
+"Ro5-rK-S7p.title" = "Syntaxname";
+/* Class = "NSMenuItem"; title = "Document Name"; ObjectID = "320"; */
+"320.title" = "Dokumentname";
+/* Class = "NSMenuItem"; title = "File Path"; ObjectID = "315"; */
+"315.title" = "Dateipfad";
+/* Class = "NSMenuItem"; title = "Print Date"; ObjectID = "319"; */
+"319.title" = "Druckdatum";
+/* Class = "NSMenuItem"; title = "Page Number"; ObjectID = "318"; */
+"318.title" = "Seitenzahl";
+
+/* Class = "NSSegmentedCell"; ObjectID = "njJ-Ab-dUQ"; */
+"njJ-Ab-dUQ.ibShadowedToolTips[0]" = "Linksbündig einrichten";  /* Align Left */
+"njJ-Ab-dUQ.ibShadowedToolTips[1]" = "Zentrieren";  /* Center */
+"njJ-Ab-dUQ.ibShadowedToolTips[2]" = "Rechtsbündig einrichten";  /* Align Right */
+
+
+/* Class = "NSTextFieldCell"; title = "Secondary:"; ObjectID = "712"; */
+"712.title" = "Sekundäre:";
+
+/* Class = "NSMenuItem"; title = "None"; ObjectID = "399"; */
+"399.title" = "Ohne";
+/* Class = "NSMenuItem"; title = "Syntax Name"; ObjectID = "i9p-3e-KNC"; */
+"i9p-3e-KNC.title" = "Syntaxname";
+/* Class = "NSMenuItem"; title = "Document Name"; ObjectID = "328"; */
+"328.title" = "Dokumentname";
+/* Class = "NSMenuItem"; title = "File Path"; ObjectID = "323"; */
+"323.title" = "Dateipfad";
+/* Class = "NSMenuItem"; title = "Print Date"; ObjectID = "327"; */
+"327.title" = "Druckdatum";
+/* Class = "NSMenuItem"; title = "Page Number"; ObjectID = "326"; */
+"326.title" = "Seitenzahl";
+
+/* Class = "NSSegmentedCell"; ObjectID = "xAm-2i-Sw1"; */
+"xAm-2i-Sw1.ibShadowedToolTips[0]" = "Linksbündig einrichten";  /* Align Left */
+"xAm-2i-Sw1.ibShadowedToolTips[1]" = "Zentrieren";  /* Center */
+"xAm-2i-Sw1.ibShadowedToolTips[2]" = "Rechtsbündig einrichten";  /* Align Right */

@@ -1,0 +1,62 @@
+/*
+ 
+ MigrationWindow.strings (German)
+ 
+ CotEditor
+ http://coteditor.com
+ 
+ Created by 1024jp on 2015-08-19.
+ 
+ ------------------------------------------------------------------------------
+ 
+ © 2015 1024jp
+ 
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+ 
+ http://www.apache.org/licenses/LICENSE-2.0
+ 
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ 
+ */
+
+/* Class = "NSTextFieldCell"; title = "Migrating user syntax styles…"; ObjectID = "vqy-cz-YAI"; */
+"vqy-cz-YAI.title" = "Benutzer-Syntaxstile migrieren …";
+
+/* Class = "NSButtonCell"; title = "Next"; ObjectID = "uPQ-1j-6Gc"; */
+"uPQ-1j-6Gc.title" = "Weiter";
+
+
+/* Class = "NSTextFieldCell"; title = "The following migrations have been successfully completed."; ObjectID = "cTg-d4-zlT"; */
+"cTg-d4-zlT.title" = "Die folgenden Migrationen wurden erfolgreich abgeschlossen.";
+
+/* Class = "NSTextFieldCell"; title = "Reset menu key bindings setting."; ObjectID = "BA1-Y2-S7m"; */
+"BA1-Y2-S7m.title" = "Einstellung der Menü-Tastenbelegungen zurückgesetzt";
+/* Class = "NSTextFieldCell"; title = "The settings for menu key bindings have been once restored."; ObjectID = "hk3-rs-RMV"; */
+"hk3-rs-RMV.title" = "Die Einstellungen für die Menü-Tastenbelegungen wurden einmal zurückgesetzt.";
+
+
+/* Class = "NSTextFieldCell"; title = "Migrate coloring settings."; ObjectID = "6hO-yA-SXq"; */
+"6hO-yA-SXq.title" = "Färbungseinstellungen migriert";
+/* Class = "NSTextFieldCell"; title = "An custom theme has been created from the previous user setting."; ObjectID = "wdy-J5-ddL"; */
+"wdy-J5-ddL.title" = "Ein benutzerdefiniretes Thema hat aus der vorherigen Einstellung erstellt.";
+
+/* Class = "NSTextFieldCell"; title = "Migrate user syntax styles."; ObjectID = "D4s-ma-Iiu"; */
+"D4s-ma-Iiu.title" = "Benutzer-Syntaxstile migriert";
+/* Class = "NSTextFieldCell"; title = "The format for syntax style files has been changed from plist to YAML."; ObjectID = "2tb-Wh-X18"; */
+"2tb-Wh-X18.title" = "Das Format für die Syntaxstil-Dateien wurde von plist zu YAML geändert.";
+
+/* Class = "NSTextFieldCell"; title = "In some cases, user needs additonal manual migrations."; ObjectID = "X8Q-Ji-HKU"; */
+"X8Q-Ji-HKU.title" = "In einigen Fällen muss Benutzer zusätzliche Migrationen manuell durchführen.";
+/* Class = "NSButton"; ibShadowedToolTip = "See “Specification Changes on CotEditor 2.0” on Help"; ObjectID = "qdh-QQ-qcp"; */
+"qdh-QQ-qcp.ibShadowedToolTip" = "Siehe „Technische Änderungen an CotEditor 2.0“ in der Hilfe";
+
+/* Class = "NSTextFieldCell"; title = "Learn new features on CotEditor 2.0."; ObjectID = "8u8-rr-so0"; */
+"8u8-rr-so0.title" = "Nene Features von CotEditor 2.0 lernen.";
+/* Class = "NSButton"; ibShadowedToolTip = "See “What's New in CotEditor 2.0” on Help"; ObjectID = "hGz-yb-qTP"; */
+"hGz-yb-qTP.ibShadowedToolTip" = "Siehe „Was ist neu in CotEditor 2.0“ in der Hilfe";
