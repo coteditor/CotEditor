@@ -235,6 +235,9 @@ static BOOL usesTextFontForInvisibles;
                                                    NSForegroundColorAttributeName: color};
                     NSDictionary *attrs = [[self textStorage] attributesAtIndex:charIndex effectiveRange:NULL];
                     if (attrs[NSGlyphInfoAttributeName] == nil) {
+                        // !!!: The following line can cause crash by binary document.
+                        //      It's actually dangerous and to be detoured to modify textStorage here.
+                        //      (2015-09 by 1024jp)
                         [[self textStorage] addAttributes:replaceAttrs range:charRange];
                     }
                 }
@@ -267,7 +270,11 @@ static BOOL usesTextFontForInvisibles;
     if (editedMask & NSTextStorageEditedCharacters &&
         [[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultEnablesHangingIndentKey])
     {
-        [self invalidateIndentInRange:newCharRange];
+        // invoke after processEditing so that textStorage can be modified safety
+        __weak typeof(self) weakSelf = self;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [weakSelf invalidateIndentInRange:newCharRange];
+        });
     }
     
     [super textStorage:str edited:editedMask range:newCharRange changeInLength:delta invalidatedRange:invalidatedCharRange];
