@@ -253,6 +253,7 @@
 /* MARK: CEColorCodePanelController */
 // Undo action name
 "Insert Color Code" = "カラーコードを挿入";
+// color list name
 "Stylesheet Keywords" = "スタイルシートキーワード";
 
 

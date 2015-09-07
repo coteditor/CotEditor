@@ -252,7 +252,8 @@
 /* MARK: CEColorCodePanelController */
 // Undo action name
 "Insert Color Code" = "插入颜色代码";
-"Stylesheet Keywords" = "Stylesheet Keywords";  // FIXME: addes
+// color list name
+"Stylesheet Keywords" = "Stylesheet Keywords";  // FIXME: added
 
 
 /* MARK: CEPreferencesWindowController */
