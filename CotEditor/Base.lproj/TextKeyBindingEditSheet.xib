@@ -29,7 +29,7 @@
                         <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="left" id="150">
                             <font key="font" metaFont="smallSystem"/>
                             <string key="title">To change a binding, select it, click the key column, and then type the keys.
-Do NOT include the Command key.</string>
+Do not include the Command key.</string>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
