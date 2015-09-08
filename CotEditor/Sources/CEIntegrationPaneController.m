@@ -159,6 +159,13 @@ static NSString *const kSymbolicLinkPath = @"/usr/local/bin/cot";
 - (IBAction)uninstall:(nullable id)sender
 // ------------------------------------------------------
 {
+    // just turn off the button if command is already uninstalled
+    if (![[self linkURL] checkResourceIsReachableAndReturnError:nil]) {
+        [self setInstalled:[self validateSymlink]];
+        [self toggleInstallButtonState:NO];
+        return;
+    }
+    
     [self performUninstall];
 }
 
