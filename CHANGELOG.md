@@ -38,6 +38,7 @@ develop
 - Fix an issue where application crashed by clicking header of empty table in syntax editor sheet.
 - Fix an issue where warning on Integration pane didn't disappear even after the problem resolved.
 - Fix an issue where color code view did not display on El Capitan.
+- Fix an issue where unwanted invisible chracter mark were dwawn when tab drawing is turned off and other invisibles drawing is truned on. 
 - Add some missing localized strings in Japanese.
 - [beta] Fix an issue where the strings that were inserted via script or tools could be styled wrong.
 - [beta] Fix an issue where no preffered extension was appended on the document save panel.

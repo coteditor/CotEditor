@@ -108,8 +108,7 @@ static BOOL usesTextFontForInvisibles;
 
 // ------------------------------------------------------
 /// 行描画矩形をセット
-- (void)setLineFragmentRect:(NSRect)fragmentRect 
-        forGlyphRange:(NSRange)glyphRange usedRect:(NSRect)usedRect
+- (void)setLineFragmentRect:(NSRect)fragmentRect forGlyphRange:(NSRange)glyphRange usedRect:(NSRect)usedRect
 // ------------------------------------------------------
 {
     if (![self isPrinting] && [self fixesLineHeight]) {
@@ -127,8 +126,7 @@ static BOOL usesTextFontForInvisibles;
 
 // ------------------------------------------------------
 /// 最終行描画矩形をセット
-- (void)setExtraLineFragmentRect:(NSRect)aRect
-        usedRect:(NSRect)usedRect textContainer:(nonnull NSTextContainer *)aTextContainer
+- (void)setExtraLineFragmentRect:(NSRect)aRect usedRect:(NSRect)usedRect textContainer:(nonnull NSTextContainer *)aTextContainer
 // ------------------------------------------------------
 {
     // 複合フォントで行の高さがばらつくのを防止するために一般の行の高さを変更しているので、それにあわせる
@@ -154,13 +152,11 @@ static BOOL usesTextFontForInvisibles;
         NSUInteger lengthToRedraw = NSMaxRange(glyphsToShow);
         
         // フォントサイズは随時変更されるため、表示時に取得する
-        CGFloat fontSize = [[self textFont] pointSize];
         CTFontRef font = (__bridge CTFontRef)[self textFont];
         NSColor *color = [[(NSTextView<CETextViewProtocol> *)[self firstTextView] theme] invisiblesColor];
         
         // for other invisibles
-        NSFont *replaceFont;
-        NSGlyph replaceGlyph;
+        NSFont *replaceFont;  // delay creating font till it's really needed
         
         // set graphics context
         CGContextRef context = (CGContextRef)[[NSGraphicsContext currentContext] graphicsPort];
@@ -193,55 +189,64 @@ static BOOL usesTextFontForInvisibles;
         for (NSUInteger glyphIndex = glyphsToShow.location; glyphIndex < lengthToRedraw; glyphIndex++) {
             NSUInteger charIndex = [self characterIndexForGlyphAtIndex:glyphIndex];
             unichar character = [completeString characterAtIndex:charIndex];
-
-            if (showsSpace && ((character == ' ') || (character == 0x00A0))) {
-                NSPoint point = [self pointToDrawGlyphAtIndex:glyphIndex];
-                CGAffineTransform translate = CGAffineTransformMakeTranslation(point.x, point.y);
-                CGPathAddPath(paths, &translate, spaceGlyphPath);
-
-            } else if (showsTab && (character == '\t')) {
-                NSPoint point = [self pointToDrawGlyphAtIndex:glyphIndex];
-                CGAffineTransform translate = CGAffineTransformMakeTranslation(point.x, point.y);
-                CGPathAddPath(paths, &translate, tabGlyphPath);
-                
-            } else if (showsNewLine && (character == '\n')) {
-                NSPoint point = [self pointToDrawGlyphAtIndex:glyphIndex];
-                CGAffineTransform translate = CGAffineTransformMakeTranslation(point.x, point.y);
-                CGPathAddPath(paths, &translate, newLineGlyphPath);
-
-            } else if (showsFullwidthSpace && (character == 0x3000)) {  // fullwidth-space (JP)
-                NSPoint point = [self pointToDrawGlyphAtIndex:glyphIndex];
-                CGAffineTransform translate = CGAffineTransformMakeTranslation(point.x, point.y);
-                CGPathAddPath(paths, &translate, fullWidthSpaceGlyphPath);
-                
-            } else if (showsVerticalTab && (character == '\v')) {
-                NSPoint point = [self pointToDrawGlyphAtIndex:glyphIndex];
-                CGAffineTransform translate = CGAffineTransformMakeTranslation(point.x, point.y);
-                CGPathAddPath(paths, &translate, verticalTabGlyphPath);
-
-            } else if (showsOtherInvisibles && ([self glyphAtIndex:glyphIndex isValidIndex:NULL] == NSControlGlyph)) {
-                if (!replaceFont) {  // delay creating font/glyph till they are really needed
-                    replaceFont = [NSFont fontWithName:@"Lucida Grande" size:fontSize];
-                    replaceGlyph = [replaceFont glyphWithName:@"replacement"];
-                }
-                
-                NSRange charRange = [self characterRangeForGlyphRange:NSMakeRange(glyphIndex, 1) actualGlyphRange:NULL];
-                NSString *baseString = [completeString substringWithRange:charRange];
-                NSGlyphInfo *glyphInfo = [NSGlyphInfo glyphInfoWithGlyph:replaceGlyph forFont:replaceFont baseString:baseString];
-                
-                if (glyphInfo) {
-                    NSDictionary *replaceAttrs = @{NSGlyphInfoAttributeName: glyphInfo,
-                                                   NSFontAttributeName: replaceFont,
-                                                   NSForegroundColorAttributeName: color};
-                    NSDictionary *attrs = [[self textStorage] attributesAtIndex:charIndex effectiveRange:NULL];
-                    if (attrs[NSGlyphInfoAttributeName] == nil) {
-                        // !!!: The following line can cause crash by binary document.
-                        //      It's actually dangerous and to be detoured to modify textStorage here.
-                        //      (2015-09 by 1024jp)
-                        [[self textStorage] addAttributes:replaceAttrs range:charRange];
+            
+            CGPathRef glyphPath;
+            switch (character) {
+                case ' ':
+                case 0x00A0:
+                    if (!showsSpace) { continue; }
+                    glyphPath = spaceGlyphPath;
+                    break;
+                    
+                case '\t':
+                    if (!showsTab) { continue; }
+                    glyphPath = tabGlyphPath;
+                    break;
+                    
+                case '\n':
+                    if (!showsNewLine) { continue; }
+                    glyphPath = newLineGlyphPath;
+                    break;
+                    
+                case 0x3000:  // fullwidth-space (JP)
+                    if (!showsFullwidthSpace) { continue; }
+                    glyphPath = fullWidthSpaceGlyphPath;
+                    break;
+                    
+                case '\v':
+                    if (!showsVerticalTab) { continue; }
+                    glyphPath = verticalTabGlyphPath;
+                    break;
+                    
+                default:
+                    if (showsOtherInvisibles && ([self glyphAtIndex:glyphIndex isValidIndex:NULL] == NSControlGlyph)) {
+                        NSGlyphInfo *currentGlyphInfo = [[self textStorage] attribute:NSGlyphInfoAttributeName atIndex:charIndex effectiveRange:NULL];
+                        
+                        if (currentGlyphInfo) { continue; }
+                        
+                        replaceFont = replaceFont ?: [NSFont fontWithName:@"Lucida Grande" size:[[self textFont] pointSize]];
+                        
+                        NSRange charRange = [self characterRangeForGlyphRange:NSMakeRange(glyphIndex, 1) actualGlyphRange:NULL];
+                        NSString *baseString = [completeString substringWithRange:charRange];
+                        NSGlyphInfo *glyphInfo = [NSGlyphInfo glyphInfoWithGlyphName:@"replacement" forFont:replaceFont baseString:baseString];
+                        
+                        if (glyphInfo) {
+                            // !!!: The following line can cause crash by binary document.
+                            //      It's actually dangerous and to be detoured to modify textStorage while drawing.
+                            //      (2015-09 by 1024jp)
+                            [[self textStorage] addAttributes:@{NSGlyphInfoAttributeName: glyphInfo,
+                                                                NSFontAttributeName: replaceFont,
+                                                                NSForegroundColorAttributeName: color}
+                                                        range:charRange];
+                        }
                     }
-                }
+                    continue;
             }
+            
+            // add invisible char path
+            NSPoint point = [self pointToDrawGlyphAtIndex:glyphIndex];
+            CGAffineTransform translate = CGAffineTransformMakeTranslation(point.x, point.y);
+            CGPathAddPath(paths, &translate, glyphPath);
         }
         
         // draw invisible glyphs (excl. other invisibles)
