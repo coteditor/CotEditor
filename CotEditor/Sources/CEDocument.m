@@ -708,6 +708,11 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     if (!styleName && [self fileContentString]) {
         NSString *interpreter = [self scanLanguageFromShebangInString:[self fileContentString]];
         styleName = [[CESyntaxManager sharedManager] styleNameFromInterpreter:interpreter];
+        
+        // check XML declaration
+        if (!styleName && [[self fileContentString] hasPrefix:@"<?xml "]) {
+            styleName = @"XML";
+        }
     }
     styleName = styleName ? : [[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultSyntaxStyleKey];
     [self setSyntaxStyleWithName:styleName coloring:NO];

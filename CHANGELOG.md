@@ -27,6 +27,7 @@ develop
     - Add stylesheet keyword to color code type.
     - Add stylesheet keyword color list to editor panel. 
     - Make editor panel resizable.
+- Now syntax style is automatically set to “XML” on file opening if no appropriate style can be found but the file content starts with a XML declaration.
 - Update word completion list setting in Edit pane in Preferences (The previous setting has been reset).
 - Adjust highlight color for find panel.
 - Tweak some message terms.
