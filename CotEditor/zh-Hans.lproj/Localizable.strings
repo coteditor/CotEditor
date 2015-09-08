@@ -299,7 +299,6 @@
 "Uninstall" = "卸载";
 "Command:" = "Command Name:";  // FIXME: added
 "Select “Install” to install the command-line tool at the following location." = "Select “Install” to install the command-line tool at the following location.";  // FIXME: added
-"Select “Uninstall” to uninstall the command-line tool at the following location." = "Select “Uninstall” to uninstall the command-line tool at the following location.";  // FIXME: added
 "The current 'cot' symbolic link doesn’t target the running CotEditor." = "当前的 'cot' 符号链接没有指向正在运行的 CotEditor。";
 "The current 'cot' symbolic link may target on an invalid path." = "当前的 'cot' 符号链接可能指向无效路径。";
 
@@ -310,6 +309,7 @@
 "The name of the running CotEditor is modified." = "正在运行的 CotEditor 的名字被改变了。";
 "Do you really want to install the command-line tool for “%@”?\n\nThe command will be invalid if CotEditor is renamed." = "确定要为 “%@” 安装命令行工具吗？";  // FIXME: added the 2nd sentence
 
+"Uninstallation was denied by the system." = "Uninstallation was denied by the system.";  // FIXME: added
 "Creating symbolic link at “%@” by 3rd party applications is denied on OS X %@." = "Creating symbolic link at “%@” by 3rd party applications is denied on OS X %@.";  // FIXME: added
 "You can install cot command manually running the following command on Terminal:" = "You can install cot command manually running the following command on Terminal:";  // FIXME: added
 "Modifying files at “%@” by 3rd party applications is denied on OS X %@." = "Modifying files at “%@” by 3rd party applications is denied on OS X %@.";  // FIXME: added

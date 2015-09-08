@@ -186,6 +186,8 @@ static NSString *const kPreferredSymbolicLinkPath = @"/usr/local/bin/cot";
                                      relativeToURL:nil
                                bookmarkDataIsStale:NO
                                              error:&error];
+    NSLog(@"resolved url: %@", url);
+    NSLog(@"error: %@", error);
     
     return url;
 }
@@ -235,25 +237,24 @@ static NSString *const kPreferredSymbolicLinkPath = @"/usr/local/bin/cot";
     }
     
     __weak typeof(self) weakSelf = self;
-    NSSavePanel *savePanel = [NSSavePanel savePanel];
-    [savePanel setShowsTagField:NO];
-    [savePanel setDirectoryURL:[[self preferredLinkURL] URLByDeletingLastPathComponent]];
-    [savePanel setNameFieldStringValue:[[self preferredLinkURL] lastPathComponent]];
-    [savePanel setNameFieldLabel:NSLocalizedString(@"Command:", nil)];
-    [savePanel setMessage:NSLocalizedString(@"Select “Install” to install the command-line tool at the following location.", nil)];
-    [savePanel setPrompt:NSLocalizedString(@"Install", nil)];
+    NSOpenPanel *openPanel = [NSOpenPanel openPanel];
+    [openPanel setDirectoryURL:[[self preferredLinkURL] URLByDeletingLastPathComponent]];
+    [openPanel setCanChooseFiles:NO];
+    [openPanel setCanChooseDirectories:YES];
+    [openPanel setMessage:NSLocalizedString(@"Select “Install” to install the command-line tool at the following location.", nil)];
+    [openPanel setPrompt:NSLocalizedString(@"Install", nil)];
     
-    [savePanel beginSheetModalForWindow:[[self view] window]
+    [openPanel beginSheetModalForWindow:[[self view] window]
                       completionHandler:^(NSInteger returnCode)
      {
          if (returnCode == NSFileHandlingPanelCancelButton) { return; }
          
          typeof(weakSelf) self = weakSelf;  // strong self
          
-         NSURL *URL = [savePanel URL];
+         NSURL *URL = [openPanel URL];
          NSError *error = nil;
          
-         BOOL success = [[NSFileManager defaultManager] createSymbolicLinkAtURL:URL
+         BOOL success = [[NSFileManager defaultManager] createSymbolicLinkAtURL:[URL URLByAppendingPathComponent:@"cot"]
                                                              withDestinationURL:[self commandURL]
                                                                           error:&error];
          
@@ -295,29 +296,14 @@ static NSString *const kPreferredSymbolicLinkPath = @"/usr/local/bin/cot";
     
     // uninstall cot command at the bookmarked Location
     if (url) {
-        [self uninsatllCommandAt:url securityScoped:YES];
+        [url startAccessingSecurityScopedResource];
+        [self uninsatllCommandAt:[url URLByAppendingPathComponent:@"cot"] securityScoped:YES];
+        [url stopAccessingSecurityScopedResource];
         return;
     }
     
-    // let user select the symlink if no bookmarked URL was found
-    NSOpenPanel *openPanel = [NSOpenPanel openPanel];
-    [openPanel setResolvesAliases:NO];
-    [openPanel setCanChooseDirectories:NO];
-    [openPanel setDirectoryURL:[[self linkURL] URLByDeletingLastPathComponent]];
-    [openPanel setAllowedFileTypes:@[(NSString *)kUTTypeSymLink]];
-    [openPanel setMessage:NSLocalizedString(@"Select “Uninstall” to uninstall the command-line tool at the following location.", nil)];
-    [openPanel setPrompt:NSLocalizedString(@"Uninstall", nil)];
-    
-    __weak typeof(self) weakSelf = self;
-    [openPanel beginSheetModalForWindow:[[self view] window]
-                      completionHandler:^(NSInteger returnCode)
-     {
-         if (returnCode == NSFileHandlingPanelCancelButton) { return; }
-         
-         typeof(weakSelf) self = weakSelf;  // strong self
-         
-         [self uninsatllCommandAt:[openPanel URL] securityScoped:NO];
-     }];
+    // just show an uninstallation guide as a sheet
+    [self showUninsatllGuideWithSudo:NO description:NSLocalizedString(@"Uninstallation was denied by the system.", nil)];
 }
 
 
@@ -412,6 +398,11 @@ static NSString *const kPreferredSymbolicLinkPath = @"/usr/local/bin/cot";
     
     // use bookmarked link to display and to uninstall if it's valid
     NSURL *bookmarkedURL = [self bookmarkedURL];
+    if (bookmarkedURL) {
+        [bookmarkedURL startAccessingSecurityScopedResource];
+        bookmarkedURL = [bookmarkedURL URLByAppendingPathComponent:@"cot"];
+        [bookmarkedURL stopAccessingSecurityScopedResource];
+    }
     if ([bookmarkedURL checkResourceIsReachableAndReturnError:nil]) {
         [self setLinkURL:bookmarkedURL];
     } else {

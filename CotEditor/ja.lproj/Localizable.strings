@@ -300,7 +300,6 @@
 "Uninstall" = "アンインストール";
 "Command:" = "コマンド名：";
 "Select “Install” to install the command-line tool at the following location." = "以下の場所にコマンドラインツールをインストールするために、“インストール”を選択してください。";
-"Select “Uninstall” to uninstall the command-line tool at the following location." = "以下の場所のコマンドラインツールをアンインストールするために、“アンインストール”を選択してください。";
 "The current 'cot' symbolic link doesn’t target the running CotEditor." = "現在の 'cot' シンボリックリンクはこの CotEditor 以外に向けられています。";
 "The current 'cot' symbolic link may target on an invalid path." = "現在の 'cot' シンボリックリンクは無効なパスに向けられています。";
 
@@ -311,6 +310,7 @@
 "The name of the running CotEditor is modified." = "現在起動している CotEditor は名前が変更されています。";
 "Do you really want to install the command-line tool for “%@”?\n\nThe command will be invalid if CotEditor is renamed." = "本当に“%@”のためのコマンドラインツールをインストールしますか？\n\n\nCotEditor の名前が変更されるとコマンドは無効になります。";
 
+"Uninstallation was denied by the system." = "アンインストールがシステムに拒否されました。";
 "Creating symbolic link at “%@” by 3rd party applications is denied on OS X %@." = "OS X %2$@ では、サードパーティアプリケーションが“%1$@”にシンボリックリンクを作成することが禁じられています。";
 "You can install cot command manually running the following command on Terminal:" = "ユーザ自身がターミナルから以下のコマンドを実行することで cot コマンドをインストールすることができます：";
 "Modifying files at “%@” by 3rd party applications is denied on OS X %@." = "OS X %2$@ では、サードパーティアプリケーションが“%1$@”のファイルを操作することが禁じられています。";
