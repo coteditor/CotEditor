@@ -186,8 +186,6 @@ static NSString *const kPreferredSymbolicLinkPath = @"/usr/local/bin/cot";
                                      relativeToURL:nil
                                bookmarkDataIsStale:NO
                                              error:&error];
-    NSLog(@"resolved url: %@", url);
-    NSLog(@"error: %@", error);
     
     return url;
 }
