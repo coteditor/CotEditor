@@ -8,7 +8,7 @@ develop
 ### New Features
 
 - Hanging indentation that enables inserting extra indent to wrapped lines.
-    - You can change the bahavior in Preferences > Edit.
+    - You can change the behavior in Preferences > Edit.
 - Add new normalization form “NFKC Casefold” to the Unicode normalization action in Utility menu (Thanks to doraTeX!)
     - It is also added to the AppleScript terms.
 - Add German localization.
@@ -18,7 +18,7 @@ develop
 
 - Change the location where `cot` command-line tool is bundled from `CotEditor.app/Contents/MacOS/` to `CotEditor.app/Contents/SharedSupport/bin/`, due to Sandbox requirement.
     - Users who have already installed `cot` command need re-install it manually.
-      You can re-install it running the command below on Therminal:
+      You can re-install it running the command below on Terminal:
 
           unlink /usr/local/bin/cot; ln -s /usr/local/bin/cot /Applications/CotEditor.app/Contents/SharedSupport/bin/cot
 
@@ -39,14 +39,14 @@ develop
 ### Fixes
 
 - Fix an issue where the command-line tool could rarely not be installed from Integration pane.
-- Fix an issue where app could crash after when closing multiple split views.
+- Fix an issue where application could crash after when closing multiple split views.
 - Fix an issue where application crashed by clicking header of empty table in syntax editor sheet.
 - Fix an issue where warning on Integration pane didn't disappear even after the problem resolved.
-- Fix an issue where color code view did not display on El Capitan.
-- Fix an issue where unwanted invisible chracter mark were dwawn when tab drawing is turned off and other invisibles drawing is truned on. 
+- Fix an issue where unwanted invisible character mark were drawn when tab drawing is turned off and other invisibles drawing is truned on. 
 - Add some missing localized strings in Japanese.
+- [El Capitan] Fix an issue where color code view did not display on El Capitan.
 - [beta] Fix an issue where the strings that were inserted via script or tools could be styled wrong.
-- [beta] Fix an issue where no preffered extension was appended on the document save panel.
+- [beta] Fix an issue where no preferred extension was appended on the document save panel.
 - [beta] Fix an issue where the bug report template was not syntax highlighted.
 
 
