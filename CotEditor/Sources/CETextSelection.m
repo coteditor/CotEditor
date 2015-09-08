@@ -126,13 +126,6 @@
     NSString *string = [[[self document] editor] substringWithSelectionForSave];
     NSTextStorage *storage = [[NSTextStorage alloc] initWithString:string];
 
-    [storage setDelegate:self];
-    
-    // disconnect the delegate after 0.5 sec. (otherwise app may crash)
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [storage setDelegate:nil];
-    });
-
     return storage;
 }
 
