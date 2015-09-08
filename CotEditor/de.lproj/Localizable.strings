@@ -299,7 +299,7 @@
 "Install" = "Installieren";
 "Uninstall" = "Deinstallieren";
 "Command:" = "Befehl:";
-"Select “Install” to install the command-line tool at the following location." = "Wählen Sie „Installieren“, das Kommandozeilenwerkzeug in die folgende Lage zu installieren.";
+"Select “Install” to install the command-line tool at the following location.\nThe default location is: %@" = "Wählen Sie „Installieren“, das Kommandozeilenwerkzeug in den folgenden Ort zu installieren.\nDer Standard-Ort ist: %@";
 "The current 'cot' symbolic link doesn’t target on the running CotEditor." = "Das aktuelle 'cot' symbolische Link zielt nicht auf den laufenden CotEditor.";
 "The current 'cot' symbolic link may target on an invalid path." = "Das aktuelle 'cot' symbolische Link kann auf einen ungültigen Pfad zielen.";
 

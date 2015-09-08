@@ -299,7 +299,7 @@
 "Install" = "インストール";
 "Uninstall" = "アンインストール";
 "Command:" = "コマンド名：";
-"Select “Install” to install the command-line tool at the following location." = "以下の場所にコマンドラインツールをインストールするために、“インストール”を選択してください。";
+"Select “Install” to install the command-line tool at the following location.\nThe default location is: %@" = "以下の場所にコマンドラインツールをインストールするために、“インストール”を選択してください。\nデフォルトインストール場所：%@";
 "The current 'cot' symbolic link doesn’t target the running CotEditor." = "現在の 'cot' シンボリックリンクはこの CotEditor 以外に向けられています。";
 "The current 'cot' symbolic link may target on an invalid path." = "現在の 'cot' シンボリックリンクは無効なパスに向けられています。";
 

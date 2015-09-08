@@ -239,7 +239,7 @@ static NSString *const kPreferredSymbolicLinkPath = @"/usr/local/bin/cot";
     [openPanel setDirectoryURL:[[self preferredLinkURL] URLByDeletingLastPathComponent]];
     [openPanel setCanChooseFiles:NO];
     [openPanel setCanChooseDirectories:YES];
-    [openPanel setMessage:NSLocalizedString(@"Select “Install” to install the command-line tool at the following location.", nil)];
+    [openPanel setMessage:[NSString stringWithFormat:NSLocalizedString(@"Select “Install” to install the command-line tool at the following location.\nThe default location is: %@", nil), [[self preferredLinkURL] path]]];
     [openPanel setPrompt:NSLocalizedString(@"Install", nil)];
     
     [openPanel beginSheetModalForWindow:[[self view] window]
