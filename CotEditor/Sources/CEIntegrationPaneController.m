@@ -252,9 +252,9 @@ static NSString *const kPreferredSymbolicLinkPath = @"/usr/local/bin/cot";
          NSURL *URL = [openPanel URL];
          NSError *error = nil;
          
-         BOOL success = [[NSFileManager defaultManager] createSymbolicLinkAtURL:[URL URLByAppendingPathComponent:@"cot"]
-                                                             withDestinationURL:[self commandURL]
-                                                                          error:&error];
+         [[NSFileManager defaultManager] createSymbolicLinkAtURL:[URL URLByAppendingPathComponent:@"cot"]
+                                              withDestinationURL:[self commandURL]
+                                                           error:&error];
          
          if (error) {
              NSBeep();
