@@ -68,9 +68,9 @@
 
 <ul>
 	<li>サンドボックス化にともない、ユーザにパーミッションがないファイルでもオープン／上書きができる機能 (authopen) を廃止</li>
-	<li>サンドボックス化にともない、<code>cot</code> コマンドラインツールのバンドル場所を <code>CotEditor.app/Contents/MacOS/</code> から <code>CotEditor.app/Contents/SharedSupport/bin/</code> に変更。
+	<li>サンドボックス化にともない、cot コマンドラインツールのバンドル場所を <code>CotEditor.app/Contents/MacOS/</code> から <code>CotEditor.app/Contents/SharedSupport/bin/</code> に変更。
 	<ul>
-		<li><code>cot</code> コマンドをすでにインストールしているユーザは、手動で再インストールを行う必要があります。ターミナルから以下のコマンドを実行することで、コマンドを再インストールすることができます。<br/>
+		<li>cot コマンドをすでにインストールしているユーザは、手動で再インストールを行う必要があります。ターミナルから以下のコマンドを実行することで、コマンドを再インストールすることができます。<br/>
           <code>unlink /usr/local/bin/cot; ln -s /usr/local/bin/cot /Applications/CotEditor.app/Contents/SharedSupport/bin/cot</code><br/>
           CotEditor/cot をインストールしている場所に合わせて、再インストールコマンドのパスは適宜変更してください。</li>
 	</ul></li>
@@ -106,7 +106,7 @@
 	<li>スクロール位置とカーソル位置も復帰の対象に</li>
 	<li>未保存書類のシンタックススタイルも復帰可能に</li>
 	</ul></li>
-	<li><code>cot</code> コマンドラインツールを全面書き直し：
+	<li>cot コマンドラインツールを全面書き直し：
 	<ul>
 	<li>起動時間の短縮</li>
 	</ul></li>
