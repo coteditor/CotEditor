@@ -309,9 +309,9 @@
 "Do you really want to install the command-line tool for “%@”?\n\nThe command will be invalid if CotEditor is renamed." = "本当に“%@”のためのコマンドラインツールをインストールしますか？\n\n\nCotEditor の名前が変更されるとコマンドは無効になります。";
 
 "Creating symbolic link at “%@” by 3rd party applications is denied on OS X %@." = "OS X %2$@ では、サードパーティアプリケーションが“%1$@”にシンボリックリンクを作成することが禁じられています。";
-"You can install cot command running the following command on Terminal manually:" = "ユーザ自身がターミナルから以下のコマンドを実行することで cot コマンドをインストールすることができます：";
+"You can install cot command manually running the following command on Terminal:" = "ユーザ自身がターミナルから以下のコマンドを実行することで cot コマンドをインストールすることができます：";
 "Modifying files at “%@” by 3rd party applications is denied on OS X %@." = "OS X %2$@ では、サードパーティアプリケーションが“%1$@”のファイルを操作することが禁じられています。";
-"You can uninstall cot command running the following command on Terminal manually:" = "ユーザ自身がターミナルから以下のコマンドを実行することで cot コマンドをアンインストールすることができます：";
+"You can uninstall cot command manually running the following command on Terminal:" = "ユーザ自身がターミナルから以下のコマンドを実行することで cot コマンドをアンインストールすることができます：";
 
 
 /* MARK: CESyntaxEditSheetController */

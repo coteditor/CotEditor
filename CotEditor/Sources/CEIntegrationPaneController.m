@@ -30,6 +30,9 @@
 #import "Constants.h"
 
 
+// for OS X 10.10 SDK
+#define CEAppKitVersionNumber10_11 1404
+
 static NSString *const kSymbolicLinkPath = @"/usr/local/bin/cot";
 
 
@@ -164,6 +167,37 @@ static NSString *const kSymbolicLinkPath = @"/usr/local/bin/cot";
 #pragma mark Private Methods
 
 // ------------------------------------------------------
+/// build install command
+- (NSString *)installCommandWithSudo:(BOOL)withSudo
+// ------------------------------------------------------
+{
+    NSString *command = [NSString stringWithFormat:@"ln -s \"%s\" \"%s\"",
+                         [[[self commandURL] path] fileSystemRepresentation],
+                         [[[self linkURL] path] fileSystemRepresentation]];
+    
+    if (withSudo) {
+        command = [@"sudo " stringByAppendingString:command];
+    }
+    return command;
+}
+
+
+// ------------------------------------------------------
+/// build uninstall command
+- (NSString *)uninstallCommandWithSudo:(BOOL)withSudo
+// ------------------------------------------------------
+{
+    NSString *command = [NSString stringWithFormat:@"unlink \"%s\"",
+                         [[[self linkURL] path] fileSystemRepresentation]];
+    
+    if (withSudo) {
+        command = [@"sudo " stringByAppendingString:command];
+    }
+    return command;
+}
+
+
+// ------------------------------------------------------
 /// create symlink to `cot` command in bundle
 - (void)performInstall
 // ------------------------------------------------------
@@ -192,12 +226,11 @@ static NSString *const kSymbolicLinkPath = @"/usr/local/bin/cot";
         
     } else if (error) {
         if ([[error domain] isEqualToString:NSCocoaErrorDomain] && [error code] == NSFileWriteNoPermissionError &&
-            floor(NSAppKitVersionNumber) > NSAppKitVersionNumber10_10)  // OS X 10.11 El Capitan and later
+            NSAppKitVersionNumber >= CEAppKitVersionNumber10_11)  // OS X 10.11 El Capitan and later
         {
             // modify error message
-            NSString *command = [NSString stringWithFormat:@"sudo ln -s \"%@\" %@", [[self commandURL] path], [[self linkURL] path]];
             NSString *description = [NSString stringWithFormat:NSLocalizedString(@"Creating symbolic link at “%@” by 3rd party applications is denied on OS X %@.", nil), [[[self linkURL] URLByDeletingLastPathComponent] path], systemVersion()];
-            NSString *suggestion = [NSString stringWithFormat:@"%@\n\n\t%@", NSLocalizedString(@"You can install cot command running the following command on Terminal manually:", nil), command];
+            NSString *suggestion = [NSString stringWithFormat:@"%@\n\n\t%@", NSLocalizedString(@"You can install cot command manually running the following command on Terminal:", nil), [self installCommandWithSudo:YES]];
             
             error = [NSError errorWithDomain:CEErrorDomain
                                         code:CESymlinkCreationDeniedError
@@ -229,10 +262,9 @@ static NSString *const kSymbolicLinkPath = @"/usr/local/bin/cot";
         [self toggleInstallButtonState:NO];
         [self validateSymlink];
         
-    } else if (floor(NSAppKitVersionNumber) > NSAppKitVersionNumber10_10) {  // OS X 10.11 El Capitan and later
-        NSString *command = [NSString stringWithFormat:@"sudo unlink %@", [[self linkURL] path]];
+    } else if (NSAppKitVersionNumber >= CEAppKitVersionNumber10_11) {  // OS X 10.11 El Capitan and later
         NSString *description = [NSString stringWithFormat:NSLocalizedString(@"Modifying files at “%@” by 3rd party applications is denied on OS X %@.", nil), [[[self linkURL] URLByDeletingLastPathComponent] path], systemVersion()];
-        NSString *suggestion = [NSString stringWithFormat:@"%@\n\n\t%@", NSLocalizedString(@"You can uninstall cot command running the following command on Terminal manually:", nil), command];
+        NSString *suggestion = [NSString stringWithFormat:@"%@\n\n\t%@", NSLocalizedString(@"You can uninstall cot command manually running the following command on Terminal:", nil), [self uninstallCommandWithSudo:YES]];
         
         NSError *error = [NSError errorWithDomain:CEErrorDomain
                                              code:CESymlinkCreationDeniedError
