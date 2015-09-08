@@ -17,7 +17,12 @@ develop
 ### Additions/Changes
 
 - Change the location where `cot` command-line tool is bundled from `CotEditor.app/Contents/MacOS/` to `CotEditor.app/Contents/SharedSupport/bin/`, due to Sandbox requirement.
-    - Uses who have already installed `cot` command need re-install it manually. Go to “Integration” pane in the Preferences and just press “Uninstall/Install” button twice.
+    - Users who have already installed `cot` command need re-install it manually.
+      You can re-install it running the command below on Therminal:
+
+          unlink /usr/local/bin/cot; ln -s /usr/local/bin/cot /Applications/CotEditor.app/Contents/SharedSupport/bin/cot
+
+      You may need to modify paths in this command depending on where you've installed CotEditor/cot.
 - Improve Color Code Editor:
     - Add stylesheet keyword to color code type.
     - Add stylesheet keyword color list to editor panel. 

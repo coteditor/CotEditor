@@ -70,7 +70,11 @@
 	<li>Deprecate the feature opening/saving files that user doesn't have the permission, due to Sandbox requirement.</li>
 	<li>Change the location where <code>cot</code> command-line tool is bundled from <code>CotEditor.app/Contents/MacOS/</code> to <code>CotEditor.app/Contents/SharedSupport/bin/</code>, due to Sandbox requirement.
 	<ul>
-		<li>Uses who have already installed <code>cot</code> command need re-install it manually. Go to “Integration” pane in the Preferences and just press “Uninstall/Install” button twice.</li>
+		<li>Users who have already installed `cot` command need re-install it manually. You can re-install it running the command below on Therminal:<br/>
+
+          <code>unlink /usr/local/bin/cot; ln -s /usr/local/bin/cot /Applications/CotEditor.app/Contents/SharedSupport/bin/cot</code><br/>
+
+      You may need to modify paths in this command depending on where you've installed CotEditor/cot.</li>
 	</ul></li>
 	<li>Improve side inspector UI.</li>
 	<li>Improve syntax highlighting:

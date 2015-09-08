@@ -24,7 +24,9 @@
 
 
 <h2>ユーザ設定の保存場所</h2>
-<p>CotEditor のユーザ設定全般の保存場所が <code>~/Library/Application Support/CotEditor/</code> から <code>~/Library/Containers/com.coteditor.CotEditor/Data/Library/Application Support/CotEditor/</code> に変更されました。この移行は CotEditor 2.2.0 初回起動時に自動で行われます。</p>
+<p>CotEditor のユーザ設定全般の保存場所が <code>~/Library/Application Support/CotEditor/</code> から <code>~/Library/Containers/com.coteditor.CotEditor/Data/Library/Application Support/CotEditor/</code> に変更されました。<code>cot</code> コマンドをすでにインストールしているユーザは、手動で再インストールを行う必要があります。ターミナルから以下のコマンドを実行することで、コマンドを再インストールすることができます。<br/>
+          <code>unlink /usr/local/bin/cot; ln -s /usr/local/bin/cot /Applications/CotEditor.app/Contents/SharedSupport/bin/cot</code><br/>
+          CotEditor/cot をインストールしている場所に合わせて、再インストールコマンドのパスは適宜変更してください。</p>
 
 
 <h2>スクリプトフォルダの場所</h2>
