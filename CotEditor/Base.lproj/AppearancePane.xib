@@ -17,11 +17,11 @@
         <customObject id="-3" customClass="NSObject"/>
         <userDefaultsController representsSharedInstance="YES" id="26" userLabel="Shared User Defaults Controller"/>
         <customView horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" id="744" userLabel="Appearance Pane">
-            <rect key="frame" x="0.0" y="0.0" width="540" height="535"/>
+            <rect key="frame" x="0.0" y="0.0" width="550" height="535"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <button horizontalHuggingPriority="750" verticalHuggingPriority="750" tag="3" translatesAutoresizingMaskIntoConstraints="NO" id="2154">
-                    <rect key="frame" x="497" y="17" width="25" height="25"/>
+                    <rect key="frame" x="507" y="17" width="25" height="25"/>
                     <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" inset="2" id="3271">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
@@ -238,9 +238,9 @@
                     </popUpButtonCell>
                 </popUpButton>
                 <box autoresizesSubviews="NO" title="Box" boxType="custom" borderType="line" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="htB-OO-KPY">
-                    <rect key="frame" x="188" y="53" width="332" height="308"/>
+                    <rect key="frame" x="188" y="53" width="342" height="308"/>
                     <view key="contentView">
-                        <rect key="frame" x="1" y="1" width="330" height="306"/>
+                        <rect key="frame" x="1" y="1" width="340" height="306"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     </view>
                     <color key="borderColor" name="scrollBarColor" catalog="System" colorSpace="catalog"/>

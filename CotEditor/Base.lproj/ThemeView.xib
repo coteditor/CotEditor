@@ -19,7 +19,7 @@
             </connections>
         </objectController>
         <customView id="8Mv-NZ-wYH" userLabel="Theme View">
-            <rect key="frame" x="0.0" y="0.0" width="332" height="310"/>
+            <rect key="frame" x="0.0" y="0.0" width="342" height="310"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="X1h-s1-vOe">
@@ -55,7 +55,7 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="Xjv-GT-ZUL">
-                    <rect key="frame" x="202" y="114" width="64" height="17"/>
+                    <rect key="frame" x="212" y="114" width="64" height="17"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Numbers:" id="3wF-uc-Tfq">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -63,7 +63,7 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="8yb-9K-ShW">
-                    <rect key="frame" x="190" y="60" width="76" height="17"/>
+                    <rect key="frame" x="200" y="60" width="76" height="17"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Characters:" id="hbk-iX-4VK">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -71,7 +71,7 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="IR6-vs-wd8">
-                    <rect key="frame" x="191" y="33" width="75" height="17"/>
+                    <rect key="frame" x="201" y="33" width="75" height="17"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Comments:" id="AIG-rr-79V">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -148,7 +148,7 @@
                     </connections>
                 </colorWell>
                 <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="Mh4-u1-6ML">
-                    <rect key="frame" x="272" y="259" width="44" height="23"/>
+                    <rect key="frame" x="282" y="259" width="44" height="23"/>
                     <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
                         <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.background.color" id="VOW-gT-kig">
@@ -159,7 +159,7 @@
                     </connections>
                 </colorWell>
                 <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="u73-Ob-J8v">
-                    <rect key="frame" x="272" y="232" width="44" height="23"/>
+                    <rect key="frame" x="282" y="232" width="44" height="23"/>
                     <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
                         <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.lineHighlight.color" id="ICi-MS-957">
@@ -170,7 +170,7 @@
                     </connections>
                 </colorWell>
                 <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="Y4q-YH-jrD">
-                    <rect key="frame" x="272" y="205" width="44" height="23"/>
+                    <rect key="frame" x="282" y="205" width="44" height="23"/>
                     <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
                         <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.selection.color" id="j0D-XA-Nos">
@@ -186,7 +186,7 @@
                     </connections>
                 </colorWell>
                 <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="BcY-Zf-mza">
-                    <rect key="frame" x="183" y="262" width="83" height="17"/>
+                    <rect key="frame" x="193" y="262" width="83" height="17"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Background:" id="tvj-DS-DVt">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -194,7 +194,7 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="arh-qx-kON">
-                    <rect key="frame" x="182" y="235" width="84" height="17"/>
+                    <rect key="frame" x="192" y="235" width="84" height="17"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Current Line:" id="yMW-lO-ILw">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -202,7 +202,7 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="f4v-zr-M1o">
-                    <rect key="frame" x="200" y="208" width="66" height="17"/>
+                    <rect key="frame" x="210" y="208" width="66" height="17"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Selection:" id="PbY-c2-p4V">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -218,7 +218,7 @@
                     </textFieldCell>
                 </textField>
                 <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="rn5-5c-jI6">
-                    <rect key="frame" x="272" y="111" width="44" height="23"/>
+                    <rect key="frame" x="282" y="111" width="44" height="23"/>
                     <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
                         <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.numbers.color" id="llu-6g-zfy">
@@ -229,7 +229,7 @@
                     </connections>
                 </colorWell>
                 <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="i3Z-85-3qp">
-                    <rect key="frame" x="272" y="57" width="44" height="23"/>
+                    <rect key="frame" x="282" y="57" width="44" height="23"/>
                     <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
                         <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.characters.color" id="Q1I-qE-gnE">
@@ -240,7 +240,7 @@
                     </connections>
                 </colorWell>
                 <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="snC-SX-rEl">
-                    <rect key="frame" x="214" y="87" width="52" height="17"/>
+                    <rect key="frame" x="224" y="87" width="52" height="17"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Strings:" id="n04-r3-95l">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -248,7 +248,7 @@
                     </textFieldCell>
                 </textField>
                 <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="joc-k5-xEa">
-                    <rect key="frame" x="272" y="84" width="44" height="23"/>
+                    <rect key="frame" x="282" y="84" width="44" height="23"/>
                     <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
                         <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.strings.color" id="jhb-EJ-SsH">
@@ -259,7 +259,7 @@
                     </connections>
                 </colorWell>
                 <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="QGS-SR-oFV">
-                    <rect key="frame" x="272" y="30" width="44" height="23"/>
+                    <rect key="frame" x="282" y="30" width="44" height="23"/>
                     <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
                         <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.comments.color" id="K0W-hU-8xJ">
@@ -333,7 +333,7 @@
                     </connections>
                 </colorWell>
                 <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="89v-hc-bub">
-                    <rect key="frame" x="218" y="141" width="48" height="17"/>
+                    <rect key="frame" x="228" y="141" width="48" height="17"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Values:" id="cVK-ET-QiD">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -341,7 +341,7 @@
                     </textFieldCell>
                 </textField>
                 <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="vgC-hV-Bju">
-                    <rect key="frame" x="272" y="138" width="44" height="23"/>
+                    <rect key="frame" x="282" y="138" width="44" height="23"/>
                     <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
                         <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.values.color" id="Y8q-JG-2Ug">
@@ -352,7 +352,7 @@
                     </connections>
                 </colorWell>
                 <button horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="38b-e6-B7J">
-                    <rect key="frame" x="200" y="185" width="114" height="18"/>
+                    <rect key="frame" x="210" y="185" width="114" height="18"/>
                     <buttonCell key="cell" type="check" title="Use system color" bezelStyle="regularSquare" imagePosition="left" controlSize="small" state="on" inset="2" id="0ZP-Zp-oBu">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="smallSystem"/>
@@ -363,7 +363,7 @@
                     </connections>
                 </button>
                 <button toolTip="Show theme file info" translatesAutoresizingMaskIntoConstraints="NO" id="Xab-bx-K4A">
-                    <rect key="frame" x="296" y="5" width="16" height="16"/>
+                    <rect key="frame" x="306" y="5" width="16" height="16"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="16" id="Wed-fM-cwd"/>
                         <constraint firstAttribute="width" constant="16" id="iVd-7P-CWd"/>

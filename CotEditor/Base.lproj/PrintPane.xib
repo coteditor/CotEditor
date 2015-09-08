@@ -16,7 +16,7 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <userDefaultsController representsSharedInstance="YES" id="26" userLabel="Shared User Defaults Controller"/>
         <customView horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" id="882" userLabel="Print Pane">
-            <rect key="frame" x="0.0" y="0.0" width="540" height="410"/>
+            <rect key="frame" x="0.0" y="0.0" width="550" height="410"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1356">
@@ -52,13 +52,13 @@
                 </popUpButton>
                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="950">
                     <rect key="frame" x="138" y="235" width="225" height="26"/>
-                    <popUpButtonCell key="cell" type="push" title="Same as Document's Setting" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="953" id="3383">
+                    <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="3383">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menu"/>
                         <menu key="menu" title="OtherViews" id="951">
                             <items>
                                 <menuItem title="Don't Print" id="952"/>
-                                <menuItem title="Same as Document's Setting" state="on" id="953"/>
+                                <menuItem title="Same as Document's Setting" id="953"/>
                                 <menuItem title="Print All" id="954"/>
                             </items>
                         </menu>
@@ -415,7 +415,7 @@
                     </connections>
                 </segmentedControl>
                 <button horizontalHuggingPriority="750" verticalHuggingPriority="750" tag="8" translatesAutoresizingMaskIntoConstraints="NO" id="2359">
-                    <rect key="frame" x="497" y="17" width="25" height="25"/>
+                    <rect key="frame" x="507" y="17" width="25" height="25"/>
                     <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" inset="2" id="3389">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>

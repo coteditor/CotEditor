@@ -14,7 +14,7 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <userDefaultsController representsSharedInstance="YES" id="26" userLabel="Shared User Defaults Controller"/>
         <customView horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" id="741" userLabel="Window Pane">
-            <rect key="frame" x="0.0" y="0.0" width="540" height="420"/>
+            <rect key="frame" x="0.0" y="0.0" width="550" height="420"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="626">
@@ -202,19 +202,19 @@
                     </connections>
                 </textField>
                 <box verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="h76-8K-zux">
-                    <rect key="frame" x="20" y="154" width="500" height="5"/>
+                    <rect key="frame" x="20" y="154" width="510" height="5"/>
                     <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <font key="titleFont" metaFont="system"/>
                 </box>
                 <box verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="ybD-hb-S7E">
-                    <rect key="frame" x="20" y="319" width="500" height="5"/>
+                    <rect key="frame" x="20" y="319" width="510" height="5"/>
                     <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <font key="titleFont" metaFont="system"/>
                 </box>
                 <box verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="EiB-gC-O39">
-                    <rect key="frame" x="20" y="203" width="500" height="5"/>
+                    <rect key="frame" x="20" y="203" width="510" height="5"/>
                     <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <font key="titleFont" metaFont="system"/>
@@ -352,7 +352,7 @@
                     </textFieldCell>
                 </textField>
                 <matrix verticalHuggingPriority="750" allowsEmptySelection="NO" autosizesCells="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EOQ-xJ-3Sk">
-                    <rect key="frame" x="139" y="173" width="202" height="18"/>
+                    <rect key="frame" x="139" y="173" width="211" height="18"/>
                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     <size key="cellSize" width="99" height="18"/>
                     <size key="intercellSpacing" width="4" height="2"/>
@@ -397,7 +397,7 @@
                     </connections>
                 </imageView>
                 <button horizontalHuggingPriority="750" verticalHuggingPriority="750" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="2151">
-                    <rect key="frame" x="497" y="17" width="25" height="25"/>
+                    <rect key="frame" x="507" y="17" width="25" height="25"/>
                     <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" state="on" borderStyle="border" inset="2" id="3358">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>

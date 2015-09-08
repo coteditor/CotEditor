@@ -14,11 +14,11 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <userDefaultsController representsSharedInstance="YES" id="26" userLabel="Shared User Defaults Controller"/>
         <customView horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" id="748" userLabel="Key Bindings Pane">
-            <rect key="frame" x="0.0" y="0.0" width="540" height="333"/>
+            <rect key="frame" x="0.0" y="0.0" width="550" height="333"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <button horizontalHuggingPriority="750" verticalHuggingPriority="750" tag="7" translatesAutoresizingMaskIntoConstraints="NO" id="2356">
-                    <rect key="frame" x="497" y="17" width="25" height="25"/>
+                    <rect key="frame" x="507" y="17" width="25" height="25"/>
                     <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" inset="2" id="3367">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
@@ -28,9 +28,9 @@
                     </connections>
                 </button>
                 <box titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="718">
-                    <rect key="frame" x="17" y="49" width="506" height="126"/>
+                    <rect key="frame" x="17" y="49" width="516" height="126"/>
                     <view key="contentView">
-                        <rect key="frame" x="2" y="2" width="502" height="122"/>
+                        <rect key="frame" x="2" y="2" width="512" height="122"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="720">
@@ -42,7 +42,7 @@
                                 </textFieldCell>
                             </textField>
                             <button horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="722">
-                                <rect key="frame" x="387" y="53" width="100" height="32"/>
+                                <rect key="frame" x="397" y="53" width="100" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="88" id="Jiu-hk-nks"/>
                                 </constraints>
@@ -63,7 +63,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="726">
-                                <rect key="frame" x="14" y="35" width="373" height="28"/>
+                                <rect key="frame" x="14" y="35" width="383" height="28"/>
                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="3366">
                                     <font key="font" metaFont="smallSystem"/>
                                     <string key="title">This setting is not for the standard Cocoa key bindings
@@ -90,13 +90,13 @@ but for CotEditor's original function.</string>
                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </box>
                 <box titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="716">
-                    <rect key="frame" x="17" y="189" width="506" height="126"/>
+                    <rect key="frame" x="17" y="189" width="516" height="126"/>
                     <view key="contentView">
-                        <rect key="frame" x="2" y="2" width="502" height="122"/>
+                        <rect key="frame" x="2" y="2" width="512" height="122"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="714">
-                                <rect key="frame" x="387" y="53" width="100" height="32"/>
+                                <rect key="frame" x="397" y="53" width="100" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="88" id="Ft6-A5-Vzh"/>
                                 </constraints>
@@ -125,7 +125,7 @@ but for CotEditor's original function.</string>
                                 </textFieldCell>
                             </textField>
                             <textField horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="835">
-                                <rect key="frame" x="14" y="49" width="373" height="14"/>
+                                <rect key="frame" x="14" y="49" width="383" height="14"/>
                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="This setting does not include script menu items." id="3362">
                                     <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>

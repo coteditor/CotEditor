@@ -48,7 +48,7 @@
 "F64-8o-JYC.title" = "Syntax";
 
 /* Class = "NSTextFieldCell"; title = "Keywords:"; ObjectID = "IU8-bd-gBv"; */
-"IU8-bd-gBv.title" = "Schlüsselwört.:";  // too long:  Schlüsselwörter
+"IU8-bd-gBv.title" = "Schlüsselwörter:";
 /* Class = "NSTextFieldCell"; title = "Commands:"; ObjectID = "81x-je-JUf"; */
 "81x-je-JUf.title" = "Befehle:";
 /* Class = "NSTextFieldCell"; title = "Types:"; ObjectID = "ILi-Jt-MUc"; */
