@@ -241,6 +241,7 @@ extern NSString *__nonnull const CEDefaultLargeFileAlertThresholdKey;
 extern NSString *__nonnull const CEDefaultAutosavingDelayKey;
 extern NSString *__nonnull const CEDefaultEnablesAutosaveInPlaceKey;
 extern NSString *__nonnull const CEDefaultSavesTextOrientationKey;
+extern NSString *__nonnull const CEDefaultCotCommandBookmarkKey;
 
 
 
