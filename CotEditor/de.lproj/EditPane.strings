@@ -78,7 +78,7 @@
 /* Class = "NSButtonCell"; title = "Tab"; ObjectID = "3260"; */
 "3260.title" = "Tabulator";
 /* Class = "NSButtonCell"; title = "Line Ending"; ObjectID = "3255"; */
-"3255.title" = "Zeichenumbruch";
+"3255.title" = "Zeilenumbruch";
 /* Class = "NSButtonCell"; title = "Fullwidth-Space"; ObjectID = "3262"; */
 "3262.title" = "Vollbreite-Leerz.";  // Vollbreite-Leerzeichen
 /* Class = "NSButtonCell"; title = "Other Invisible Characters"; ObjectID = "3263"; */
