@@ -28,7 +28,7 @@
 /* Class = "CEKeyBindingSheet"; title = "Text Key Bindings"; ObjectID = "54"; */
 "54.title" = "Text-Tastenbelegungen";
 
-/* Class = "NSTextFieldCell"; title = "To change a binding, select it, click the key column, and then type the keys.\nDo Do not include the Command key."; ObjectID = "150"; */
+/* Class = "NSTextFieldCell"; title = "To change a binding, select it, click the key column, and then type the keys.\nDo not include the Command key."; ObjectID = "150"; */
 "150.title" = "Zum Ändern einer Tastenbelegung wählen Sie ihn aus, klicken auf die Taste-Spalte und dann geben die Tasten ein. Kein Command-Taste darf einschließen.";
 
 /* Class = "NSTableColumn"; headerCell.title = "Action"; ObjectID = "88"; */

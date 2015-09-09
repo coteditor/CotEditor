@@ -34,5 +34,5 @@
 /* Class = "IBBindingConnection"; ibShadowedDisplayPattern = "installed at %{value1}@"; ObjectID = "e2G-16-MxZ"; */
 "e2G-16-MxZ.ibShadowedDisplayPattern" = "bei %{value1}@ installiert";
 
-/* Class = "NSTextFieldCell"; title = "The cot command-line tool allows you to launch CotEditor and let it open files from the command line."; ObjectID = "c48-xK-Ag1"; */
-"c48-xK-Ag1.title" = "Das „cot“-Kommandozeilenwerkzeug zulässt Sie, von der Kommandozeile CotEditor zu aktivieren und es Dateien öffnen zu lassen.";
+/* Class = "NSTextFieldCell"; title = "With the 'cot' command-line tool, you can launch CotEditor and let it open files from the command line."; ObjectID = "c48-xK-Ag1"; */
+"c48-xK-Ag1.title" = "Mit dem „cot“-Kommandozeilenwerkzeug können Sie von der Kommandozeile CotEditor aktivieren und es Dateien öffnen lassen.";

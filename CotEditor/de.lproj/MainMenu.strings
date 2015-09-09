@@ -471,5 +471,5 @@
 "iHn-Ed-A8u.title" = "Fehlerbericht erstellen …";
 /* Class = "NSMenuItem"; title = "Report Bug"; ObjectID = "Bk3-xx-uft"; */
 "Bk3-xx-uft.title" = "Fehler berichten";
-/* Class = "NSMenuItem"; title = "CotEditor Web Site"; ObjectID = "g34-YV-E6o"; */
+/* Class = "NSMenuItem"; title = "CotEditor Website"; ObjectID = "g34-YV-E6o"; */
 "g34-YV-E6o.title" = "CotEditor-Webseite";

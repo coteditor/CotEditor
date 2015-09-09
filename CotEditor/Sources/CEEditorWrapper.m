@@ -177,7 +177,7 @@ static NSTimeInterval secondColoringDelay;
         [menuItem setTitle:NSLocalizedString(title, nil)];
         
         if (![self canActivateShowInvisibles]) {
-            [menuItem setToolTip:NSLocalizedString(@"To display invisible characters, set them in Preferences and re-open the document.", nil)];
+            [menuItem setToolTip:NSLocalizedString(@"To show invisible characters, set them in Preferences and re-open the document.", nil)];
         }
         
         return [self canActivateShowInvisibles];

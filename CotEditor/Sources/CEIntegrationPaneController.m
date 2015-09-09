@@ -230,7 +230,7 @@ static NSString *const kPreferredSymbolicLinkPath = @"/usr/local/bin/cot";
     // since the installation will be failed with NSCocoaErrorDomain + NSFileWriteNoPermissionError on El Capitan
     if (NSAppKitVersionNumber >= CEAppKitVersionNumber10_11) {  // OS X 10.11 El Capitan and later
         [self showInstallGuideWithSudo:YES
-                           description:[NSString stringWithFormat:NSLocalizedString(@"Creating symbolic link at “%@” by 3rd party applications is denied on OS X %@.", nil), [[[self preferredLinkURL] URLByDeletingLastPathComponent] path], systemVersion()]];
+                           description:[NSString stringWithFormat:NSLocalizedString(@"Creating symbolic link at “%@” by third-party applications is denied on OS X %@.", nil), [[[self preferredLinkURL] URLByDeletingLastPathComponent] path], systemVersion()]];
         return;
     }
     
@@ -285,7 +285,7 @@ static NSString *const kPreferredSymbolicLinkPath = @"/usr/local/bin/cot";
     // just show an uninstallation guide as a sheet,
     // since the uninstallation will be failed with NSCocoaErrorDomain + NSFileWriteNoPermissionError on El Capitan
     if (NSAppKitVersionNumber >= CEAppKitVersionNumber10_11) { // OS X 10.11 El Capitan and later
-        [self showUninsatllGuideWithSudo:YES description:[NSString stringWithFormat:NSLocalizedString(@"Modifying files at “%@” by 3rd party applications is denied on OS X %@.", nil), [[[self linkURL] URLByDeletingLastPathComponent] path], systemVersion()]];
+        [self showUninsatllGuideWithSudo:YES description:[NSString stringWithFormat:NSLocalizedString(@"Modifying files at “%@” by third-party applications is denied on OS X %@.", nil), [[[self linkURL] URLByDeletingLastPathComponent] path], systemVersion()]];
         return;
     }
     

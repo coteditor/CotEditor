@@ -200,11 +200,10 @@
 
 // Show invisible char menu item tooltip
 "Show or hide invisible characters in document" = "Unsichtbare Zeichen im Text ein-/ausblenden";
-"To display invisible characters, set them in Preferences and re-open the document" = "Um unsichtbare Zeichen anzuzeigen, setzen Sie sie in den Einstellungen und öffnen Sie das Dokument wieder";
+"To show invisible characters, set them in Preferences and re-open the document" = "Um unsichtbare Zeichen anzuzeigen, setzen Sie sie in den Einstellungen und öffnen Sie das Dokument wieder";
 
 // Alert strings
 "The file is not writable." = "Die Datei ist nicht schreibbar.";
-"Allow Editing" = "Bearbeitung zulassen";
 "Cancel" = "Abbrechen";
 "You may not be able to save your changes, but you will be able to save a copy somewhere else." = "Sie können möglicherweise die Änderungen nicht speichern doch eine Kopie an anderer Stelle speichern.";
 
@@ -311,9 +310,9 @@
 "Do you really want to install the command-line tool for “%@”?\n\nThe command will be invalid if CotEditor is renamed." = "Möchten Sie das Kommandozeilenwerkzeug für „%@“ wirklich installieren?\n\nDer Befehl wird ungültig, wenn CotEditor umbenannt wird.";
 
 "Uninstallation was denied by the system." = "Deinstallieren wurde vom System verweigert.";
-"Creating symbolic link at “%@” by 3rd party applications is denied on OS X %@." = "Symbolischen Link nach „%@“ durch Drittanbieter-Programme zu erstellen, wird unter OS X %@ verweigert.";
+"Creating symbolic link at “%@” by third-party applications is denied on OS X %@." = "Symbolischen Link nach „%@“ durch Drittanbieter-Programme zu erstellen, wird unter OS X %@ verweigert.";
 "You can install cot command manually running the following command on Terminal:" = "Sie können den „cot“-Befehl manuell installieren, indem den folgenden Befehl im Terminal auszuführen:";
-"Modifying files at “%@” by 3rd party applications is denied on OS X %@." = "Dateien in „%@“ durch Drittanbieter-Programme zu ändern, wird unter OS X %@ verweigert.";
+"Modifying files at “%@” by third-party applications is denied on OS X %@." = "Dateien in „%@“ durch Drittanbieter-Programme zu ändern, wird unter OS X %@ verweigert.";
 "You can uninstall cot command manually running the following command on Terminal:" = "Sie können den „cot“-Befehl manuell deinstallieren, indem den folgenden Befehl im Terminal auszuführen:";
 
 

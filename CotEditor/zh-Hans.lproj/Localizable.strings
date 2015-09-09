@@ -199,7 +199,7 @@
 
 // Show invisible char menu item tooltip
 "Show or hide invisible characters in document" = "显示或隐藏文档中的不可见字符";
-"To display invisible characters, set them in Preferences and re-open the document" = "要显示不可见字符，请在偏好设置中进行设定，然后重新打开文档";
+"To show invisible characters, set them in Preferences and re-open the document" = "要显示不可见字符，请在偏好设置中进行设定，然后重新打开文档";
 
 
 // Alert strings
@@ -310,9 +310,9 @@
 "Do you really want to install the command-line tool for “%@”?\n\nThe command will be invalid if CotEditor is renamed." = "确定要为 “%@” 安装命令行工具吗？";  // FIXME: added the 2nd sentence
 
 "Uninstallation was denied by the system." = "Uninstallation was denied by the system.";  // FIXME: added
-"Creating symbolic link at “%@” by 3rd party applications is denied on OS X %@." = "Creating symbolic link at “%@” by 3rd party applications is denied on OS X %@.";  // FIXME: added
+"Creating symbolic link at “%@” by third-party applications is denied on OS X %@." = "Creating symbolic link at “%@” by third-party applications is denied on OS X %@.";  // FIXME: added
 "You can install cot command manually running the following command on Terminal:" = "You can install cot command manually running the following command on Terminal:";  // FIXME: added
-"Modifying files at “%@” by 3rd party applications is denied on OS X %@." = "Modifying files at “%@” by 3rd party applications is denied on OS X %@.";  // FIXME: added
+"Modifying files at “%@” by third-party applications is denied on OS X %@." = "Modifying files at “%@” by third-party applications is denied on OS X %@.";  // FIXME: added
 "You can uninstall cot command manually running the following command on Terminal:" = "You can uninstall cot command manually running the following command on Terminal:";  // FIXME: added
 
 

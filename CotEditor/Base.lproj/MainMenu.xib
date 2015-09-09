@@ -987,7 +987,7 @@
                                     <action selector="reportBug:" target="290" id="KOP-ne-blB"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="CotEditor Web Site" id="g34-YV-E6o">
+                            <menuItem title="CotEditor Website" id="g34-YV-E6o">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="openWebSite:" target="290" id="04s-Jk-LhF"/>

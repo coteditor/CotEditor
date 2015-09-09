@@ -14,7 +14,7 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" id="743" userLabel="General Pane">
-            <rect key="frame" x="0.0" y="0.0" width="550" height="413"/>
+            <rect key="frame" x="0.0" y="0.0" width="540" height="413"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="2739">
@@ -83,8 +83,8 @@
                     </connections>
                 </button>
                 <textField hidden="YES" horizontalHuggingPriority="750" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="m9P-m9-cpw">
-                    <rect key="frame" x="47" y="107" width="119" height="17"/>
-                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Software Updates:" usesSingleLineMode="YES" id="geU-63-sAC">
+                    <rect key="frame" x="54" y="107" width="112" height="17"/>
+                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Software Update:" usesSingleLineMode="YES" id="geU-63-sAC">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>

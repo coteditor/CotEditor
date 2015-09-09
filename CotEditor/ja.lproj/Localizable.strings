@@ -201,7 +201,7 @@
 
 // Show invisible char menu item tooltip
 "Show or hide invisible characters in document" = "書類中の不可視文字を表示／隠す";
-"To display invisible characters, set them in Preferences and re-open the document" = "不可視文字を表示させるには、環境設定を変更し書類を開き直してください";
+"To show invisible characters, set them in Preferences and re-open the document" = "不可視文字を表示させるには、環境設定を変更し書類を開き直してください";
 
 // Alert strings
 "The file is not writable." = "このファイルは書き込み不可です。";
@@ -311,9 +311,9 @@
 "Do you really want to install the command-line tool for “%@”?\n\nThe command will be invalid if CotEditor is renamed." = "本当に“%@”のためのコマンドラインツールをインストールしますか？\n\n\nCotEditor の名前が変更されるとコマンドは無効になります。";
 
 "Uninstallation was denied by the system." = "アンインストールがシステムに拒否されました。";
-"Creating symbolic link at “%@” by 3rd party applications is denied on OS X %@." = "OS X %2$@ では、サードパーティアプリケーションが“%1$@”にシンボリックリンクを作成することが禁じられています。";
+"Creating symbolic link at “%@” by third-party applications is denied on OS X %@." = "OS X %2$@ では、サードパーティアプリケーションが“%1$@”にシンボリックリンクを作成することが禁じられています。";
 "You can install cot command manually running the following command on Terminal:" = "ユーザ自身がターミナルから以下のコマンドを実行することで cot コマンドをインストールすることができます：";
-"Modifying files at “%@” by 3rd party applications is denied on OS X %@." = "OS X %2$@ では、サードパーティアプリケーションが“%1$@”のファイルを操作することが禁じられています。";
+"Modifying files at “%@” by third-party applications is denied on OS X %@." = "OS X %2$@ では、サードパーティアプリケーションが“%1$@”のファイルを操作することが禁じられています。";
 "You can uninstall cot command manually running the following command on Terminal:" = "ユーザ自身がターミナルから以下のコマンドを実行することで cot コマンドをアンインストールすることができます：";
 
 

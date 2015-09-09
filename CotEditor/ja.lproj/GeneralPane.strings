@@ -58,7 +58,7 @@
 "FWi-En-qeX.title" = "変更された内容に更新";
 
 
-/* Class = "NSTextFieldCell"; title = "Software Updates:"; ObjectID = "geU-63-sAC"; */
+/* Class = "NSTextFieldCell"; title = "Software Update:"; ObjectID = "geU-63-sAC"; */
 "geU-63-sAC.title" = "ソフトウェアアップデート：";
 
 /* Class = "NSButtonCell"; title = "Automatically check for updates"; ObjectID = "3423"; */
