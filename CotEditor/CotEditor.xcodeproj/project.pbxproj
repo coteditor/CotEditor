@@ -526,7 +526,6 @@
 		2A68F93418F9995500673440 /* CEThemeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEThemeManager.m; sourceTree = "<group>"; };
 		2A68F93618FB04F300673440 /* CEMenuItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEMenuItemCell.h; sourceTree = "<group>"; };
 		2A68F93718FB04F300673440 /* CEMenuItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEMenuItemCell.m; sourceTree = "<group>"; };
-		2A6A29681B9751CB002F434C /* icu */ = {isa = PBXFileReference; lastKnownFileType = folder; name = icu; path = Sources/icu; sourceTree = "<group>"; };
 		2A6907591B8443AA00D0F3A2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/MigrationWindow.strings; sourceTree = "<group>"; };
 		2A69075A1B8443AA00D0F3A2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/FindPanel.strings; sourceTree = "<group>"; };
 		2A69075B1B8443AA00D0F3A2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/RegexReferencePopover.strings; sourceTree = "<group>"; };
@@ -566,6 +565,7 @@
 		2A69077D1B8443AB00D0F3A2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text; name = de; path = de.lproj/FileDropGlossary.txt; sourceTree = "<group>"; };
 		2A69077E1B8443AB00D0F3A2 /* de */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = de; path = de.lproj/ReportTemplate.md; sourceTree = "<group>"; };
 		2A69077F1B8443AB00D0F3A2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/MainMenu.strings; sourceTree = "<group>"; };
+		2A6A29681B9751CB002F434C /* icu */ = {isa = PBXFileReference; lastKnownFileType = folder; name = icu; path = Sources/icu; sourceTree = "<group>"; };
 		2A6E3F3C19B5218300A63E97 /* CotEditor.help */ = {isa = PBXFileReference; lastKnownFileType = folder; path = CotEditor.help; sourceTree = "<group>"; };
 		2A6F0E071B5500E100C2D03C /* CotEditor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CotEditor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A6F0E081B5500E100C2D03C /* CotEditor (AppStore)-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CotEditor (AppStore)-Info.plist"; sourceTree = "<group>"; };
@@ -1463,7 +1463,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
 				CLASSPREFIX = CE;
-				LastUpgradeCheck = 0600;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "CotEditor Project";
 				TargetAttributes = {
 					8D15AC270486D014006FF6A4 = {
@@ -2506,6 +2506,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_TESTABILITY = YES;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;

@@ -23,7 +23,7 @@ It's pure Cocoa document-based application. The source code is written in Object
 
 ### Development Environment
 - OS X Yosemite
-- Xcode 6.4
+- Xcode 7
 
 
 
