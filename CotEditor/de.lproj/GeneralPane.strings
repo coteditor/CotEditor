@@ -33,7 +33,7 @@
 /* Class = "NSButtonCell"; title = "Inline script menu items into contextual menu"; ObjectID = "3309"; */
 "3309.title" = "Einträge des Skripte-Menüs ins Kontextmenü entfalten";
 /* Class = "NSButtonCell"; title = "Count each line ending as one character"; ObjectID = "3306"; */
-"3306.title" = "Zeichenumbruch als Zeichen zählen";
+"3306.title" = "Zeilenumbruch als Zeichen zählen";
 /* Class = "NSButtonCell"; title = "Check spelling as you type"; ObjectID = "3300"; */
 "3300.title" = "Rechtschreibung während der Texteingabe prüfen";
 
