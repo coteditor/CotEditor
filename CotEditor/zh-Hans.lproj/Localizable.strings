@@ -253,12 +253,12 @@
 // Undo action name
 "Insert Color Code" = "插入颜色代码";
 // color list name
-"Stylesheet Keywords" = "Stylesheet Keywords";  // FIXME: added
+"Stylesheet Keywords" = "样式表关键字";
 
 
 /* MARK: CEPreferencesWindowController */
 // Smart quotes/dashes
-" (on Mavericks and later)" = "（Mavericks 或更新版本）";
+" (on Mavericks and later)" = "（Mavericks 及以后）";
 
 // Hint message for the completion list
 "Completion can be performed manually with: %@ or %@" = "补全可以通过 %@ 或 %@ 手动完成";
@@ -267,7 +267,7 @@
 // Appearance pane
 "Duplicate “%@”" = "拷贝 “%@”";
 "Restore “%@”" = "还原 “%@”";
-"Are you sure you want to delete “%@” theme?" = "删除 “%@” 主题？"; // FIXME: tweaked
+"Are you sure you want to delete “%@” theme?" = "确认删除 “%@” 主题？";
 "Deleted theme can’t be restored." = "删除后的主题将无法还原";
 "A new theme named “%@” will be installed, but a custom theme with the same name already exists." = "将要安装名为 “%@” 的新主题，但是已经存在同名的自定义主题";
 "Do you want to replace it?\nReplaced theme can’t be restored." = "要覆盖原主题吗？\n主题删除后将无法还原";
@@ -297,23 +297,23 @@
 // Integration Pane
 "Install" = "安装";
 "Uninstall" = "卸载";
-"Command:" = "Command Name:";  // FIXME: added
-"Select “Install” to install the command-line tool at the following location.\nThe default location is: %@" = "Select “Install” to install the command-line tool at the following location.\nThe default location is: %@";  // FIXME: added
+"Command:" = "命令名:";
+"Select “Install” to install the command-line tool at the following location.\nThe default location is: %@" = "选择 “安装” 来将命令行工具安装在以下位置。\n默认位置是: %@";
 "The current 'cot' symbolic link doesn’t target the running CotEditor." = "当前的 'cot' 符号链接没有指向正在运行的 CotEditor。";
 "The current 'cot' symbolic link may target on an invalid path." = "当前的 'cot' 符号链接可能指向无效路径。";
 
 // alerts
 "The running CotEditor is not located in the Applications folder." = "正在运行的 CotEditor 没有位于应用程序文件夹中。";
-"Do you really want to install the command-line tool for CotEditor at “%@”?\n\nThe command will be invalid if the location of CotEditor is moved." = "确定要为位于 “%@” 的 CotEditor 安装命令行工具吗？\n\n建议先将 CotEditor.app 移动到应用程序文件夹中。";  // FIXME: changed
+"Do you really want to install the command-line tool for CotEditor at “%@”?\n\nThe command will be invalid if the location of CotEditor is moved." = "确定要为位于 “%@” 的 CotEditor 安装命令行工具吗？\n\n如果 CotEditor 的位置被移动的话，命令行工具将失效。";
 
 "The name of the running CotEditor is modified." = "正在运行的 CotEditor 的名字被改变了。";
-"Do you really want to install the command-line tool for “%@”?\n\nThe command will be invalid if CotEditor is renamed." = "确定要为 “%@” 安装命令行工具吗？";  // FIXME: added the 2nd sentence
+"Do you really want to install the command-line tool for “%@”?\n\nThe command will be invalid if CotEditor is renamed." = "确定要为 “%@” 安装命令行工具吗？\n\n如果 CotEditor 被重命名，命令行工具将失效。";
 
-"Uninstallation was denied by the system." = "Uninstallation was denied by the system.";  // FIXME: added
-"Creating symbolic link at “%@” by third-party applications is denied on OS X %@." = "Creating symbolic link at “%@” by third-party applications is denied on OS X %@.";  // FIXME: added
-"You can install cot command manually running the following command on Terminal:" = "You can install cot command manually running the following command on Terminal:";  // FIXME: added
-"Modifying files at “%@” by third-party applications is denied on OS X %@." = "Modifying files at “%@” by third-party applications is denied on OS X %@.";  // FIXME: added
-"You can uninstall cot command manually running the following command on Terminal:" = "You can uninstall cot command manually running the following command on Terminal:";  // FIXME: added
+"Uninstallation was denied by the system." = "系统不允许卸载操作。";
+"Creating symbolic link at “%@” by third-party applications is denied on OS X %@." = "系统不允许在 OS X %@ 上由第三方应用创建位于 “%@” 的符号链接。";
+"You can install cot command manually running the following command on Terminal:" = "你可以手动在终端运行以下命令以创建 cot 命令：";
+"Modifying files at “%@” by third-party applications is denied on OS X %@." = "系统不允许在 OS X %@ 上由第三方应用更改位于 “%@” 的文件。";
+"You can uninstall cot command manually running the following command on Terminal:" = "可以手动在终端运行以下命令以卸载 cot 命令：";
 
 
 /* MARK: CESyntaxEditSheetController */
@@ -399,9 +399,9 @@
 // label for text menu keybindings action
 "Insert Text %@" = "插入文本 %@";
 // Warning messages
-"“%@” is already taken. Please choose another key." = "“%@” 已在使用中，请重新设置";  // FIXME: tweaked
-"“%@” does not include the Command key. Please choose another key." = "“%@” 中没有包含 Command 键，请重新设置";  // FIXME: tweaked
-"“%@” includes the Command key. Please choose another key." = "“%@” 包含了 Command 键，请重新设置";  // FIXME: tweaked
+"“%@” is already taken. Please choose another key." = "“%@” 已在使用中，请选择其他按键";
+"“%@” does not include the Command key. Please choose another key." = "“%@” 中没有包含 Command 键，请选择其他按键";
+"“%@” includes the Command key. Please choose another key." = "“%@” 包含了 Command 键，请选择其他按键";
 
 
 /* MARK: CEScriptManager */
@@ -420,7 +420,7 @@
 "The script “%@” does not exist.\n\nCheck it and select “Update Script Menu”." = "脚本 “%@” 不存在。\n\n请确认文件是否存在，并使用 “更新脚本菜单” 进行更新";
 "%@\nErrorNumber: %i" = "%@\n错误号：%i";
 "The script file “%@” couldn’t be opened." = "无法打开脚本文件 “%@”";
-"The script “%@” can’t be executed because you don’t have the execute permission.\n\nCheck permission of the script file." = "无法执行脚本 “%@”。\nShell 脚本需要执行权限。\n\n请确认脚本文件访问权限";  // FIXME: tweaked
+"The script “%@” can’t be executed because you don’t have the execute permission.\n\nCheck permission of the script file." = "由于没有执行权限，无法执行脚本 “%@”。\n\n请确认脚本文件的权限。";
 "The script “%@” couldn’t be read." = "无法读取脚本 “%@”";
 
 
