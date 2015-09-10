@@ -50,6 +50,7 @@ develop
 - [beta] Fix an issue where the strings that were inserted via script or tools could be styled wrong.
 - [beta] Fix an issue where no preferred extension was appended on the document save panel.
 - [beta] Fix an issue where the bug report template was not syntax highlighted.
+- [beta] Fix some trivial drawing issues on El Capitan.
 
 
 

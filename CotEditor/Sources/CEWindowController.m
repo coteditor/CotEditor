@@ -130,6 +130,11 @@ static NSTimeInterval infoUpdateInterval;
     [[self documentAnalyzer] setDocument:[self document]];
     [[self documentInspectorViewController] setRepresentedObject:[self documentAnalyzer]];
     
+    // ???: needs to set contentView's layer to mask rounded window corners
+    if (floor(NSAppKitVersionNumber > NSAppKitVersionNumber10_10_Max)) {
+        [[[self window] contentView] setWantsLayer:YES];
+    }
+    
     // setup sidebar
     [[[self sidebar] layer] setBackgroundColor:[[NSColor colorWithCalibratedWhite:0.94 alpha:1.0] CGColor]];
     // The following line is required for NSSplitView with Autolayout on OS X 10.8 (2015-02-10 by 1024jp)
