@@ -121,7 +121,7 @@ static const NSTimeInterval kDuration = 0.25;
 
 // ------------------------------------------------------
 /// build outline menu from given array
-- (void)setOutlineItems:(nonnull NSArray *)outlineItems
+- (void)setOutlineItems:(nonnull NSArray<NSDictionary<NSString *, id> *> *)outlineItems
 // ------------------------------------------------------
 {
     // stop outline extracting indicator
@@ -150,13 +150,13 @@ static const NSTimeInterval kDuration = 0.25;
     [[menu itemAtIndex:0] setRepresentedObject:[NSValue valueWithRange:NSMakeRange(0, 0)]];
     
     // add outline items
-    for (NSDictionary *outlineItem in outlineItems) {
+    for (NSDictionary<NSString *, id> *outlineItem in outlineItems) {
         if ([outlineItem[CEOutlineItemTitleKey] isEqualToString:CESeparatorString]) {
             [menu addItem:[NSMenuItem separatorItem]];
             continue;
         }
         
-        NSMutableDictionary *attrs = [NSMutableDictionary dictionary];
+        NSMutableDictionary<NSString *, id> *attrs = [NSMutableDictionary dictionary];
         
         NSFontTraitMask fontTrait = [outlineItem[CEOutlineItemStyleBoldKey] boolValue] ? NSBoldFontMask : 0;
         fontTrait |= [outlineItem[CEOutlineItemStyleItalicKey] boolValue] ? NSItalicFontMask : 0;

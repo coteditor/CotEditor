@@ -45,16 +45,16 @@ NSString *__nonnull const CETextFinderDidReplaceAllNotification = @"CETextFinder
     
     // register defaults for find panel here
     // sicne CEFindPanelController can be initialized before registering user defaults in CEAppDelegate. (2015-01 by 1024jp)
-    NSDictionary *defaults = @{CEDefaultFindHistoryKey: @[],
-                               CEDefaultReplaceHistoryKey: @[],
-                               CEDefaultFindRegexSyntaxKey: @([OGRegularExpression defaultSyntax]),
-                               CEDefaultFindOptionsKey: @(OgreCaptureGroupOption),
-                               CEDefaultFindUsesRegularExpressionKey: @NO,
-                               CEDefaultFindInSelectionKey: @NO,
-                               CEDefaultFindIsWrapKey: @YES,
-                               CEDefaultFindNextAfterReplaceKey: @YES,
-                               CEDefaultFindClosesIndicatorWhenDoneKey: @YES,
-                               };
+    NSDictionary<NSString *, id> *defaults = @{CEDefaultFindHistoryKey: @[],
+                                               CEDefaultReplaceHistoryKey: @[],
+                                               CEDefaultFindRegexSyntaxKey: @([OGRegularExpression defaultSyntax]),
+                                               CEDefaultFindOptionsKey: @(OgreCaptureGroupOption),
+                                               CEDefaultFindUsesRegularExpressionKey: @NO,
+                                               CEDefaultFindInSelectionKey: @NO,
+                                               CEDefaultFindIsWrapKey: @YES,
+                                               CEDefaultFindNextAfterReplaceKey: @YES,
+                                               CEDefaultFindClosesIndicatorWhenDoneKey: @YES,
+                                               };
     
     [[NSUserDefaults standardUserDefaults] registerDefaults:defaults];
 }

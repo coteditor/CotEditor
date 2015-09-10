@@ -64,11 +64,11 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
 
 @interface CEThemeManager ()
 
-@property (nonatomic, copy) NSDictionary *archivedThemes;
-@property (nonatomic, copy) NSArray *bundledThemeNames;
+@property (nonatomic, copy) NSDictionary<NSString *, NSDictionary *> *archivedThemes;
+@property (nonatomic, copy) NSArray<NSString *> *bundledThemeNames;
 
 // readonly
-@property (readwrite, nonatomic, copy) NSArray *themeNames;
+@property (readwrite, nonatomic, copy) NSArray<NSString *> *themeNames;
 
 @end
 
@@ -107,8 +107,8 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
     self = [super init];
     if (self) {
         // バンドルされているテーマの名前を読み込んでおく
-        NSArray *URLs = [[NSBundle mainBundle] URLsForResourcesWithExtension:CEThemeExtension subdirectory:@"Themes"];
-        NSMutableArray *themeNames = [NSMutableArray array];
+        NSArray<NSURL *> *URLs = [[NSBundle mainBundle] URLsForResourcesWithExtension:CEThemeExtension subdirectory:@"Themes"];
+        NSMutableArray<NSString *> *themeNames = [NSMutableArray array];
         for (NSURL *URL in URLs) {
             if ([[URL lastPathComponent] hasPrefix:@"_"]) { continue; }
             
@@ -134,7 +134,7 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
 
 //------------------------------------------------------
 /// テーマ名からProperty list形式のテーマ定義を返す
-- (NSMutableDictionary *)archivedTheme:(NSString *)themeName isBundled:(BOOL *)isBundled
+- (NSMutableDictionary<NSString *, NSMutableDictionary<NSString *, id> *> *)archivedTheme:(NSString *)themeName isBundled:(BOOL *)isBundled
 //------------------------------------------------------
 {
     if (isBundled) {
@@ -161,7 +161,7 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
 
 //------------------------------------------------------
 /// テーマを保存する
-- (BOOL)saveTheme:(NSDictionary *)theme name:(NSString *)themeName completionHandler:(void (^)(NSError *))completionHandler
+- (BOOL)saveTheme:(NSDictionary<NSString *, NSDictionary<NSString *, id> *> *)theme name:(NSString *)themeName completionHandler:(void (^)(NSError *))completionHandler
 //------------------------------------------------------
 {
     NSError *error = nil;
@@ -320,12 +320,13 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
         }
         if (isDuplicated) {
             if (outError) {
-                NSDictionary *userInfo = @{NSLocalizedDescriptionKey: [NSString stringWithFormat:NSLocalizedString(@"A new theme named “%@” will be installed, but a custom theme with the same name already exists.", nil), themeName],
-                                           NSLocalizedRecoverySuggestionErrorKey: NSLocalizedString(@"Do you want to replace it?\nReplaced theme can’t be restored.", nil),
-                                           NSLocalizedRecoveryOptionsErrorKey: @[NSLocalizedString(@"Cancel", nil),
-                                                                                 NSLocalizedString(@"Replace", nil)],
-                                           NSURLErrorKey: URL};
-                *outError = [NSError errorWithDomain:CEErrorDomain code:CEThemeFileDuplicationError userInfo:userInfo];
+                *outError = [NSError errorWithDomain:CEErrorDomain
+                                                code:CEThemeFileDuplicationError
+                                            userInfo:@{NSLocalizedDescriptionKey: [NSString stringWithFormat:NSLocalizedString(@"A new theme named “%@” will be installed, but a custom theme with the same name already exists.", nil), themeName],
+                                                       NSLocalizedRecoverySuggestionErrorKey: NSLocalizedString(@"Do you want to replace it?\nReplaced theme can’t be restored.", nil),
+                                                       NSLocalizedRecoveryOptionsErrorKey: @[NSLocalizedString(@"Cancel", nil),
+                                                                                             NSLocalizedString(@"Replace", nil)],
+                                                       NSURLErrorKey: URL}];
             }
             return NO;
         }
@@ -520,7 +521,7 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
 
 //------------------------------------------------------
 /// URLからテーマ辞書を返す
-- (NSMutableDictionary *)themeDictWithURL:(NSURL *)URL
+- (NSMutableDictionary<NSString *, NSMutableDictionary<NSString *, id> *> *)themeDictWithURL:(NSURL *)URL
 //------------------------------------------------------
 {
     return [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfURL:URL]
@@ -540,14 +541,14 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
         
         NSURL *userDirURL = [self userThemeDirectoryURL];
         
-        NSMutableOrderedSet *themeNameSet = [NSMutableOrderedSet orderedSetWithArray:[self bundledThemeNames]];
+        NSMutableOrderedSet<NSString *> *themeNameSet = [NSMutableOrderedSet orderedSetWithArray:[self bundledThemeNames]];
         
         // ユーザ定義用ディレクトリが存在する場合は読み込む
         if ([userDirURL checkResourceIsReachableAndReturnError:nil]) {
-            NSArray *URLs = [[NSFileManager defaultManager] contentsOfDirectoryAtURL:userDirURL
-                                                          includingPropertiesForKeys:nil
-                                                                             options:NSDirectoryEnumerationSkipsSubdirectoryDescendants | NSDirectoryEnumerationSkipsHiddenFiles
-                                                                               error:nil];
+            NSArray<NSURL *> *URLs = [[NSFileManager defaultManager] contentsOfDirectoryAtURL:userDirURL
+                                                                   includingPropertiesForKeys:nil
+                                                                                      options:NSDirectoryEnumerationSkipsSubdirectoryDescendants | NSDirectoryEnumerationSkipsHiddenFiles
+                                                                                        error:nil];
             
             for (NSURL *URL in URLs) {
                 if (![[URL pathExtension] isEqualToString:CEThemeExtension]) { continue; }
@@ -561,7 +562,7 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
         [self setThemeNames:[themeNameSet array]];
         
         // 定義をキャッシュする
-        NSMutableDictionary *themes = [NSMutableDictionary dictionary];
+        NSMutableDictionary<NSString *, NSMutableDictionary *> *themes = [NSMutableDictionary dictionary];
         for (NSString *name in themeNameSet) {
             themes[name] = [self themeDictWithURL:[self URLForUsedTheme:name]];
         }
@@ -630,7 +631,7 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
 
 //------------------------------------------------------
 /// 新規作成時のベースとなる何もないテーマ
-- (nonnull NSDictionary *)plainTheme
+- (nonnull NSDictionary<NSString *, NSDictionary<NSString *, id> *> *)plainTheme
 //------------------------------------------------------
 {
     return [self themeDictWithURL:[self URLForBundledTheme:@"_Plain"]];
@@ -659,7 +660,7 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
     }
     
     // UserDefaultsからデフォルトから変更されているテーマカラーを探す
-    NSMutableDictionary *theme = [[self classicTheme] mutableCopy];
+    NSMutableDictionary<NSString *, NSMutableDictionary<NSString *, id> *> *theme = [[self classicTheme] mutableCopy];
     BOOL isCustomized = NO;
     for (NSString *classicKey in [self classicThemeKeyTable]) {
         NSString *modernKey = [self classicThemeKeyTable][classicKey];
@@ -704,10 +705,10 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
 
 //------------------------------------------------------
 /// CotEditor 1.5までで使用されていたデフォルトテーマに新たなキーワードを加えたもの
-- (nonnull NSMutableDictionary *)classicTheme
+- (nonnull NSMutableDictionary<NSString *, NSMutableDictionary<NSString *, id> *> *)classicTheme
 //------------------------------------------------------
 {
-    NSMutableDictionary *theme = [self themeDictWithURL:[self URLForBundledTheme:@"Classic"]];
+    NSMutableDictionary<NSString *, NSMutableDictionary<NSString *, id> *> *theme = [self themeDictWithURL:[self URLForBundledTheme:@"Classic"]];
     
     theme[CEMetadataKey] = [@{CEDescriptionKey: NSLocalizedString(@"Auto-generated theme that is migrated from user's coloring setting on CotEditor 1.x", nil)}
                           mutableCopy];
@@ -718,7 +719,7 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
 
 //------------------------------------------------------
 /// CotEditor 1.5までで使用されていたカラーリング設定のUserDefaultsキーとテーマファイルで使用しているキーの対応テーブル
-- (nonnull NSDictionary *)classicThemeKeyTable
+- (nonnull NSDictionary<NSString *, NSString *> *)classicThemeKeyTable
 //------------------------------------------------------
 {
     return @{@"textColor": CEThemeTextKey,

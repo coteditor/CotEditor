@@ -71,7 +71,7 @@
 - (NSRange)selectedRange;  // line ending applied
 - (void)setSelectedRange:(NSRange)charRange;  // line ending applied
 
-- (void)markupRanges:(NSArray *)ranges;
+- (void)markupRanges:(NSArray<NSValue *> *)ranges;
 - (void)clearAllMarkup;
 
 - (BOOL)isAutoTabExpandEnabled;

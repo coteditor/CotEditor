@@ -78,7 +78,7 @@
         [[NSBundle mainBundle] loadNibNamed:@"ColorCodePanelAccessory" owner:self topLevelObjects:nil];
         
         // setup stylesheet color list
-        NSDictionary *keywordColors = [NSColor stylesheetKeywordColors];
+        NSDictionary<NSString *, NSColor *> *keywordColors = [NSColor stylesheetKeywordColors];
         NSColorList *colorList = [[NSColorList alloc] initWithName:NSLocalizedString(@"Stylesheet Keywords", nil)];
         for (NSString *keyword in keywordColors) {
             NSColor *color = keywordColors[keyword];

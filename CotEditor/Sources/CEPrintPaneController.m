@@ -144,7 +144,7 @@
 {
     NSUInteger index = [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultPrintColorIndexKey];
     NSString *themeName = [[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultPrintThemeKey];
-    NSArray *themeNames = [[CEThemeManager sharedManager] themeNames];
+    NSArray<NSString *> *themeNames = [[CEThemeManager sharedManager] themeNames];
     
     [[self colorPopupButton] removeAllItems];
     

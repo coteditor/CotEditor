@@ -244,9 +244,9 @@
     // 起動時に読み込み、変更完了／終了時に下記戻す処理を行う。
     // http://www.hmdt-web.net/bbs/bbs.cgi?bbsname=mkino&mode=res&no=203&oyano=203&line=0
     
-    NSArray *settings = [[NSUserDefaults standardUserDefaults] arrayForKey:CEDefaultFileDropArrayKey];
+    NSArray<NSDictionary<NSString *, NSString *> *> *settings = [[NSUserDefaults standardUserDefaults] arrayForKey:CEDefaultFileDropArrayKey];
     
-    NSMutableArray *content = [NSMutableArray array];
+    NSMutableArray<NSMutableDictionary<NSString *, NSString *> *> *content = [NSMutableArray array];
     for (NSDictionary *dict in settings) {
         [content addObject:[dict mutableCopy]];
     }
@@ -263,8 +263,8 @@
     if (![extensionsString isKindOfClass:[NSString class]]) { return nil; }
     
     NSCharacterSet *trimSet = [NSCharacterSet characterSetWithCharactersInString:@"./ \t\r\n"];
-    NSArray *extensions = [extensionsString componentsSeparatedByString:@","];
-    NSMutableArray *sanitizedExtensions = [NSMutableArray array];
+    NSArray<NSString *> *extensions = [extensionsString componentsSeparatedByString:@","];
+    NSMutableArray<NSString *> *sanitizedExtensions = [NSMutableArray array];
     
     for (NSString *extension in extensions) {
         NSString *sanitizedExtension = [extension stringByTrimmingCharactersInSet:trimSet];
@@ -288,7 +288,7 @@
     // フラグがたっていなければ（既に controlTextDidEndEditing: で自動削除されていれば）何もしない
     if (![self isDeletingFileDrop]) { return; }
     
-    NSDictionary *item = [[self fileDropController] arrangedObjects][rowIndex];
+    NSDictionary<NSString *, NSString *> *item = [[self fileDropController] arrangedObjects][rowIndex];
     NSString *extension = item ? item[CEFileDropExtensionsKey] : @"";
     
     NSAlert *alert = [[NSAlert alloc] init];

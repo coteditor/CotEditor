@@ -45,21 +45,21 @@ NSString *const CESyntaxValidationMessageKey = @"MessageKey";
 
 @interface CESyntaxManager ()
 
-@property (nonatomic) NSMutableDictionary *styleCaches;  // カラーリング定義のキャッシュ (values are NSMutableDictonary)
-@property (nonatomic, copy) NSDictionary *map;  // style名と拡張子/ファイル名の対応テーブル
+@property (nonatomic) NSMutableDictionary<NSString *, NSMutableDictionary *> *styleCaches;  // カラーリング定義のキャッシュ
+@property (nonatomic, copy) NSDictionary<NSString *, NSDictionary<NSString *, NSArray *> *> *map;  // style名と拡張子/ファイル名の対応テーブル
 
-@property (nonatomic, copy) NSArray *bundledStyleNames;  // バンドルされているシンタックススタイル名の配列
-@property (nonatomic, copy) NSDictionary *bundledMap;
+@property (nonatomic, copy) NSArray<NSString *> *bundledStyleNames;  // バンドルされているシンタックススタイル名の配列
+@property (nonatomic, copy) NSDictionary<NSString *, NSDictionary<NSString *, NSArray *> *> *bundledMap;
 
-@property (nonatomic, copy) NSDictionary *extensionToStyleTable;  // 拡張子<->styleファイルの変換テーブル辞書(key = 拡張子)
-@property (nonatomic, copy) NSDictionary *filenameToStyleTable;  // ファイル名<->styleファイルの変換テーブル辞書(key = ファイル名)
-@property (nonatomic, copy) NSDictionary *interpreterToStyleTable;  // インタープリタ<->styleファイルの変換テーブル辞書(key = インタープリタ名)
+@property (nonatomic, copy) NSDictionary<NSString *, NSString *> *extensionToStyleTable;  // 拡張子<->styleファイルの変換テーブル辞書(key = 拡張子)
+@property (nonatomic, copy) NSDictionary<NSString *, NSString *> *filenameToStyleTable;  // ファイル名<->styleファイルの変換テーブル辞書(key = ファイル名)
+@property (nonatomic, copy) NSDictionary<NSString *, NSString *> *interpreterToStyleTable;  // インタープリタ<->styleファイルの変換テーブル辞書(key = インタープリタ名)
 
 
 // readonly
-@property (readwrite, nonatomic, copy) NSArray *styleNames;
-@property (readwrite, nonatomic, copy) NSDictionary *extensionConflicts;
-@property (readwrite, nonatomic, copy) NSDictionary *filenameConflicts;
+@property (readwrite, nonatomic, copy) NSArray<NSString *> *styleNames;
+@property (readwrite, nonatomic, copy) NSDictionary<NSString *, NSMutableArray<NSString *> *> *extensionConflicts;
+@property (readwrite, nonatomic, copy) NSDictionary<NSString *, NSMutableArray<NSString *> *> *filenameConflicts;
 
 @end
 
@@ -148,10 +148,10 @@ NSString *const CESyntaxValidationMessageKey = @"MessageKey";
 
 // ------------------------------------------------------
 /// style名に応じた拡張子リストを返す
-- (NSArray *)extensionsForStyleName:(NSString *)styleName
+- (NSArray<NSString *> *)extensionsForStyleName:(NSString *)styleName
 // ------------------------------------------------------
 {
-    NSArray *extensions = [self map][styleName][CESyntaxExtensionsKey];
+    NSArray<NSString *> *extensions = [self map][styleName][CESyntaxExtensionsKey];
     
     return ([extensions count] > 0) ? extensions : nil;
 }
@@ -159,10 +159,10 @@ NSString *const CESyntaxValidationMessageKey = @"MessageKey";
 
 // ------------------------------------------------------
 /// style名に応じたstyle辞書を返す
-- (NSDictionary *)styleWithStyleName:(NSString *)styleName
+- (NSDictionary<NSString *, id> *)styleWithStyleName:(NSString *)styleName
 // ------------------------------------------------------
 {
-    NSDictionary *style;
+    NSMutableDictionary<NSString *, id> *style;
     
     if (![styleName isEqualToString:@""] && ![styleName isEqualToString:NSLocalizedString(@"None", nil)]) {
         style = [self styleCaches][styleName] ? : [self styleDictWithURL:[self URLForUsedStyle:styleName]];
@@ -179,7 +179,7 @@ NSString *const CESyntaxValidationMessageKey = @"MessageKey";
 
 // ------------------------------------------------------
 /// style名に応じたバンドル版のstyle辞書を返す（ない場合はnil）
-- (NSDictionary *)bundledStyleWithStyleName:(NSString *)styleName
+- (NSDictionary<NSString *, id> *)bundledStyleWithStyleName:(NSString *)styleName
 // ------------------------------------------------------
 {
     return [self styleDictWithURL:[self URLForBundledStyle:styleName available:NO]];
@@ -206,14 +206,14 @@ NSString *const CESyntaxValidationMessageKey = @"MessageKey";
 
 // ------------------------------------------------------
 /// スタイルがバンドル版スタイルと同じ内容かどうかを返す
-- (BOOL)isEqualToBundledStyle:(NSDictionary *)style name:(NSString *)styleName
+- (BOOL)isEqualToBundledStyle:(NSDictionary<NSString *, id> *)style name:(NSString *)styleName
 // ------------------------------------------------------
 {
     if (![self isBundledStyle:styleName]) { return NO; }
     
     // numOfObjInArray などが混入しないようにスタイル定義部分だけを比較する
-    NSArray *keys = [[self emptyStyle] allKeys];
-    NSDictionary *bundledStyle = [[self bundledStyleWithStyleName:styleName] dictionaryWithValuesForKeys:keys];
+    NSArray<NSString *> *keys = [[self emptyStyle] allKeys];
+    NSDictionary<NSString *, id> *bundledStyle = [[self bundledStyleWithStyleName:styleName] dictionaryWithValuesForKeys:keys];
     
     return [[style dictionaryWithValuesForKeys:keys] isEqualToDictionary:bundledStyle];
 }
@@ -374,25 +374,25 @@ NSString *const CESyntaxValidationMessageKey = @"MessageKey";
 
 //------------------------------------------------------
 /// styleのファイルへの保存
-- (void)saveStyle:(NSMutableDictionary *)style name:(NSString *)name oldName:(NSString *)oldName
+- (void)saveStyle:(NSMutableDictionary<NSString *, id> *)style name:(NSString *)name oldName:(NSString *)oldName
 //------------------------------------------------------
 {
     if ([name length] == 0) { return; }
     
     // sanitize
-    [(NSMutableArray *)style[CESyntaxExtensionsKey] removeObject:@{}];
-    [(NSMutableArray *)style[CESyntaxFileNamesKey] removeObject:@{}];
-    [(NSMutableArray *)style[CESyntaxInterpretersKey] removeObject:@{}];
+    [(NSMutableArray<NSDictionary *> *)style[CESyntaxExtensionsKey] removeObject:@{}];
+    [(NSMutableArray<NSDictionary *> *)style[CESyntaxFileNamesKey] removeObject:@{}];
+    [(NSMutableArray<NSDictionary *> *)style[CESyntaxInterpretersKey] removeObject:@{}];
     
     // sort
-    NSArray *descriptors = @[[NSSortDescriptor sortDescriptorWithKey:CESyntaxBeginStringKey
-                                                           ascending:YES
-                                                            selector:@selector(caseInsensitiveCompare:)],
-                             [NSSortDescriptor sortDescriptorWithKey:CESyntaxKeyStringKey
-                                                           ascending:YES
-                                                            selector:@selector(caseInsensitiveCompare:)]];
+    NSArray<NSSortDescriptor *> *descriptors = @[[NSSortDescriptor sortDescriptorWithKey:CESyntaxBeginStringKey
+                                                                               ascending:YES
+                                                                                selector:@selector(caseInsensitiveCompare:)],
+                                                 [NSSortDescriptor sortDescriptorWithKey:CESyntaxKeyStringKey
+                                                                               ascending:YES
+                                                                                selector:@selector(caseInsensitiveCompare:)]];
     
-    NSMutableArray *syntaxDictKeys = [NSMutableArray array];
+    NSMutableArray<NSString *> *syntaxDictKeys = [NSMutableArray array];
     for (NSUInteger i = 0; i < kSizeOfAllColoringKeys; i++) {
         [syntaxDictKeys addObject:kAllColoringKeys[i]];
     }
@@ -444,21 +444,21 @@ NSString *const CESyntaxValidationMessageKey = @"MessageKey";
 
 // ------------------------------------------------------
 /// 正規表現構文と重複のチェック実行をしてエラーメッセージ(NSDictionary)のArrayを返す
-- (NSArray *)validateSyntax:(NSDictionary *)style
+- (NSArray<NSDictionary<NSString *, NSString *> *> *)validateSyntax:(NSDictionary *)style
 // ------------------------------------------------------
 {
-    NSMutableArray *results = [NSMutableArray array];
+    NSMutableArray<NSDictionary<NSString *, NSString *> *> *results = [NSMutableArray array];
     NSString *tmpBeginStr = nil, *tmpEndStr = nil;
     NSError *error = nil;
     
-    NSMutableArray *syntaxDictKeys = [[NSMutableArray alloc] initWithCapacity:(kSizeOfAllColoringKeys + 1)];
+    NSMutableArray<NSString *> *syntaxDictKeys = [[NSMutableArray alloc] initWithCapacity:(kSizeOfAllColoringKeys + 1)];
     for (NSUInteger i = 0; i < kSizeOfAllColoringKeys; i++) {
         [syntaxDictKeys addObject:kAllColoringKeys[i]];
     }
     [syntaxDictKeys addObject:CESyntaxOutlineMenuKey];
     
     for (NSString *key in syntaxDictKeys) {
-        NSMutableArray *dicts = [style[key] mutableCopy];
+        NSMutableArray<NSDictionary<NSString *, id> *> *dicts = [style[key] mutableCopy];
         
         // sort for duplication check
         [dicts sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
@@ -469,7 +469,7 @@ NSString *const CESyntaxValidationMessageKey = @"MessageKey";
             return result;
         }];
         
-        for (NSDictionary *dict in dicts) {
+        for (NSDictionary<NSString *, id> *dict in dicts) {
             NSString *beginStr = dict[CESyntaxBeginStringKey];
             NSString *endStr = dict[CESyntaxEndStringKey];
             
@@ -538,7 +538,7 @@ NSString *const CESyntaxValidationMessageKey = @"MessageKey";
 
 //------------------------------------------------------
 /// 空の新規styleを返す
-- (nonnull NSDictionary *)emptyStyle
+- (nonnull NSDictionary<NSString *, id> *)emptyStyle
 //------------------------------------------------------
 {
     return @{CESyntaxMetadataKey: [NSMutableDictionary dictionary],
@@ -647,8 +647,8 @@ NSString *const CESyntaxValidationMessageKey = @"MessageKey";
 
 
 //------------------------------------------------------
-/// URLからテーマ辞書を返す
-- (NSMutableDictionary *)styleDictWithURL:(NSURL *)URL
+/// URLからスタイル辞書を返す
+- (NSMutableDictionary<NSString *, id> *)styleDictWithURL:(NSURL *)URL
 //------------------------------------------------------
 {
     NSData *yamlData = [NSData dataWithContentsOfURL:URL];
@@ -691,19 +691,19 @@ NSString *const CESyntaxValidationMessageKey = @"MessageKey";
 //------------------------------------------------------
 {
     NSURL *dirURL = [self userStyleDirectoryURL]; // ユーザディレクトリパス取得
-    NSMutableDictionary *map = [[self bundledMap] mutableCopy];
+    NSMutableDictionary<NSString *, NSDictionary<NSString *, NSArray *> *> *map = [[self bundledMap] mutableCopy];
     
     // ユーザ定義用ディレクトリが存在する場合は読み込む
     if ([dirURL checkResourceIsReachableAndReturnError:nil]) {
-        NSArray *URLs = [[NSFileManager defaultManager] contentsOfDirectoryAtURL:dirURL
-                                                      includingPropertiesForKeys:nil
-                                                                         options:NSDirectoryEnumerationSkipsSubdirectoryDescendants | NSDirectoryEnumerationSkipsHiddenFiles
-                                                                           error:nil];
+        NSArray<NSURL *> *URLs = [[NSFileManager defaultManager] contentsOfDirectoryAtURL:dirURL
+                                                               includingPropertiesForKeys:nil
+                                                                                  options:NSDirectoryEnumerationSkipsSubdirectoryDescendants | NSDirectoryEnumerationSkipsHiddenFiles
+                                                                                    error:nil];
         for (NSURL *URL in URLs) {
             if (![@[@"yaml", @"yml"] containsObject:[URL pathExtension]]) { continue; }
             
             NSString *styleName = [self styleNameFromURL:URL];
-            NSDictionary *style = [self styleDictWithURL:URL];
+            NSMutableDictionary<NSString *, id> *style = [self styleDictWithURL:URL];
             
             // URLが無効だった場合などに、dictがnilになる場合がある
             if (!style) { continue; }
@@ -719,7 +719,7 @@ NSString *const CESyntaxValidationMessageKey = @"MessageKey";
     [self setMap:map];
     
     // 定義をアルファベット順にソートする
-    NSMutableArray *styleNames = [[map allKeys] mutableCopy];
+    NSMutableArray<NSString *> *styleNames = [[map allKeys] mutableCopy];
     [styleNames sortUsingSelector:@selector(caseInsensitiveCompare:)];
     [self setStyleNames:styleNames];
 }
@@ -730,12 +730,12 @@ NSString *const CESyntaxValidationMessageKey = @"MessageKey";
 - (void)setupExtensionAndSyntaxTable
 // ------------------------------------------------------
 {
-    NSMutableOrderedSet *styleNames = [NSMutableOrderedSet orderedSetWithArray:[self styleNames]];
-    NSMutableDictionary *extensionToStyleTable = [NSMutableDictionary dictionary];
-    NSMutableDictionary *extensionConflicts = [NSMutableDictionary dictionary];
-    NSMutableDictionary *filenameToStyleTable = [NSMutableDictionary dictionary];
-    NSMutableDictionary *filenameConflicts = [NSMutableDictionary dictionary];
-    NSMutableDictionary *interpreterToStyleTable = [NSMutableDictionary dictionary];
+    NSMutableOrderedSet<NSString *> *styleNames = [NSMutableOrderedSet orderedSetWithArray:[self styleNames]];
+    NSMutableDictionary<NSString *, NSString *> *extensionToStyleTable = [NSMutableDictionary dictionary];
+    NSMutableDictionary<NSString *, NSMutableArray<NSString *> *> *extensionConflicts = [NSMutableDictionary dictionary];
+    NSMutableDictionary<NSString *, NSString *> *filenameToStyleTable = [NSMutableDictionary dictionary];
+    NSMutableDictionary<NSString *, NSMutableArray<NSString *> *> *filenameConflicts = [NSMutableDictionary dictionary];
+    NSMutableDictionary<NSString *, NSString *> *interpreterToStyleTable = [NSMutableDictionary dictionary];
     NSString *addedName = nil;
     
     // postpone bundled styles
@@ -745,7 +745,7 @@ NSString *const CESyntaxValidationMessageKey = @"MessageKey";
     for (NSString *styleName in styleNames) {
         for (NSString *extension in [self map][styleName][CESyntaxExtensionsKey]) {
             if ((addedName = extensionToStyleTable[extension])) { // 同じ拡張子を持つものがすでにあるとき
-                NSMutableArray *errors = extensionConflicts[extension];
+                NSMutableArray<NSString *> *errors = extensionConflicts[extension];
                 if (!errors) {
                     errors = [NSMutableArray array];
                     [extensionConflicts setValue:errors forKey:extension];
@@ -761,7 +761,7 @@ NSString *const CESyntaxValidationMessageKey = @"MessageKey";
         
         for (NSString *filename in [self map][styleName][CESyntaxFileNamesKey]) {
             if ((addedName = filenameToStyleTable[filename])) { // 同じファイル名を持つものがすでにあるとき
-                NSMutableArray *errors = filenameConflicts[filename];
+                NSMutableArray<NSString *> *errors = filenameConflicts[filename];
                 if (!errors) {
                     errors = [NSMutableArray array];
                     [filenameConflicts setValue:errors forKey:filename];
@@ -777,7 +777,7 @@ NSString *const CESyntaxValidationMessageKey = @"MessageKey";
         
         for (NSString *filename in [self map][styleName][CESyntaxInterpretersKey]) {
             if ((addedName = interpreterToStyleTable[filename])) { // 同じファイル名を持つものがすでにあるとき
-//                NSMutableArray *errors = interpreterConflicts[filename];
+//                NSMutableArray<NSString *> *errors = interpreterConflicts[filename];
 //                if (!errors) {
 //                    errors = [NSMutableArray array];
 //                    [interpreterConflicts setValue:errors forKey:filename];
@@ -801,10 +801,10 @@ NSString *const CESyntaxValidationMessageKey = @"MessageKey";
 
 // ------------------------------------------------------
 /// 辞書の array から keyString をキーに持つ string を集めて返す
-- (NSArray *)keyStringsFromDicts:(NSArray *)dicts
+- (NSArray<NSString *> *)keyStringsFromDicts:(NSArray *)dicts
 // ------------------------------------------------------
 {
-    NSMutableArray *strings = [NSMutableArray array];
+    NSMutableArray<NSString *> *strings = [NSMutableArray array];
     
     for (NSDictionary *dict in dicts) {
         [strings addObject:dict[CESyntaxKeyStringKey]];
@@ -840,10 +840,10 @@ NSString *const CESyntaxValidationMessageKey = @"MessageKey";
     
     [self prepareUserStyleDirectory];
     
-    NSArray *URLs = [[NSFileManager defaultManager] contentsOfDirectoryAtURL:oldDirURL
-                                                  includingPropertiesForKeys:nil
-                                                                     options:NSDirectoryEnumerationSkipsSubdirectoryDescendants | NSDirectoryEnumerationSkipsHiddenFiles
-                                                                       error:nil];
+    NSArray<NSURL *> *URLs = [[NSFileManager defaultManager] contentsOfDirectoryAtURL:oldDirURL
+                                                           includingPropertiesForKeys:nil
+                                                                              options:NSDirectoryEnumerationSkipsSubdirectoryDescendants | NSDirectoryEnumerationSkipsHiddenFiles
+                                                                                error:nil];
     
     for (NSURL *URL in URLs) {
         if ([self importLegacyStyleFromURL:URL]) {
@@ -877,11 +877,11 @@ NSString *const CESyntaxValidationMessageKey = @"MessageKey";
                            writingItemAtURL:destURL options:NULL
                                       error:nil byAccessor:^(NSURL *newReadingURL, NSURL *newWritingURL)
      {
-         NSDictionary *style = [NSDictionary dictionaryWithContentsOfURL:fileURL];
+         NSDictionary<NSString *, id> *style = [NSDictionary dictionaryWithContentsOfURL:fileURL];
          
          if (!style) { return; }
          
-         NSMutableDictionary *newStyle = [NSMutableDictionary dictionary];
+         NSMutableDictionary<NSString *, id> *newStyle = [NSMutableDictionary dictionary];
          
          // format migration
          for (NSString *key in style) {

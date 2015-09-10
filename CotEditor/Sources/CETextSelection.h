@@ -73,10 +73,10 @@ typedef NS_ENUM(NSUInteger, CEUNFType) {
 // AppleScript accessor
 - (NSTextStorage *)contents;
 - (void)setContents:(id)contentsObject;
-- (NSArray *)range;
-- (void)setRange:(NSArray *)rangeArray;
-- (NSArray *)lineRange;
-- (void)setLineRange:(NSArray *)RangeArray;
+- (NSArray<NSNumber *> *)range;
+- (void)setRange:(NSArray<NSNumber *> *)rangeArray;
+- (NSArray<NSNumber *> *)lineRange;
+- (void)setLineRange:(NSArray<NSNumber *> *)RangeArray;
 
 // AppleScript handler
 - (void)handleShiftRightScriptCommand:(NSScriptCommand *)command;

@@ -110,7 +110,7 @@ NSString *__nonnull const CEAnalyzerDidUpdateEditorInfoNotification = @"CEAnalyz
 // ------------------------------------------------------
 {
     CEDocument *document = [self document];
-    NSDictionary *attrs = [document fileAttributes];
+    NSDictionary<NSString *, id> *attrs = [document fileAttributes];
     NSDateFormatter *dateFormatter = [self dateFormatter];
     NSByteCountFormatter *byteFormatter = [self byteCountFormatter];
     
@@ -300,7 +300,7 @@ NSString *__nonnull const CEAnalyzerDidUpdateEditorInfoNotification = @"CEAnalyz
 NSString *humanReadablePermission(NSUInteger permission)
 // ------------------------------------------------------
 {
-    NSArray *units = @[@"---", @"--x", @"-w-", @"-wx", @"r--", @"r-x", @"rw-", @"rwx"];
+    NSArray<NSString *> *units = @[@"---", @"--x", @"-w-", @"-wx", @"r--", @"r-x", @"rw-", @"rwx"];
     NSMutableString *result = [NSMutableString stringWithString:@"-"];  // Document is always file.
     
     for (NSInteger i = 2; i >= 0; i--) {

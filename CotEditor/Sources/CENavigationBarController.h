@@ -39,7 +39,7 @@
 // Public method
 - (void)setShown:(BOOL)shown animate:(BOOL)performAnimation;
 
-- (void)setOutlineItems:(nonnull NSArray *)outlineItems;
+- (void)setOutlineItems:(nonnull NSArray<NSDictionary<NSString *, id> *> *)outlineItems;
 - (void)selectOutlineMenuItemWithRange:(NSRange)range;
 - (void)updatePrevNextButtonEnabled;
 - (BOOL)canSelectPrevItem;

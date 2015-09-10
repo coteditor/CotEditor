@@ -46,7 +46,7 @@
 @property (nonatomic) NSRect highlightLineRect;  // ハイライト行の矩形
 @property (nonatomic, getter=isAutoTabExpandEnabled) BOOL autoTabExpandEnabled;  // タブを自動的にスペースに展開するか
 @property (nonatomic, nullable, copy) NSString *inlineCommentDelimiter;  // インラインコメント開始文字列
-@property (nonatomic, nullable, copy) NSDictionary *blockCommentDelimiters;  // ブロックコメント開始・終了文字列のペア
+@property (nonatomic, nullable, copy) NSDictionary<NSString *, NSString *> *blockCommentDelimiters;  // ブロックコメント開始・終了文字列のペア
 @property (nonatomic, nullable, copy) NSCharacterSet *firstCompletionCharacterSet;  // 入力補完の最初の1文字のセット
 
 @property (nonatomic, nullable) CETheme *theme;

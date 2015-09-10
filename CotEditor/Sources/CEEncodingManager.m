@@ -36,7 +36,7 @@ NSString *__nonnull const CEEncodingListDidUpdateNotification = @"CESyntaxListDi
 @interface CEEncodingManager ()
 
 // readonly
-@property (readwrite, nonatomic, nonnull, copy) NSArray *encodingMenuItems;
+@property (readwrite, nonatomic, nonnull, copy) NSArray<NSMenuItem *> *encodingMenuItems;
 
 @end
 
@@ -97,7 +97,7 @@ NSString *__nonnull const CEEncodingListDidUpdateNotification = @"CESyntaxListDi
 
 // ------------------------------------------------------
 /// observed key value did update
--(void)observeValueForKeyPath:(nullable NSString *)keyPath ofObject:(nullable id)object change:(nullable NSDictionary *)change context:(nullable void *)context
+-(void)observeValueForKeyPath:(nullable NSString *)keyPath ofObject:(nullable id)object change:(nullable NSDictionary<NSString *, id> *)change context:(nullable void *)context
 // ------------------------------------------------------
 {
     if ([keyPath isEqualToString:CEDefaultEncodingListKey]) {
@@ -111,7 +111,7 @@ NSString *__nonnull const CEEncodingListDidUpdateNotification = @"CESyntaxListDi
 
 //------------------------------------------------------
 /// return copied menu items
-- (nonnull NSArray *)encodingMenuItems
+- (nonnull NSArray<NSMenuItem *> *)encodingMenuItems
 //------------------------------------------------------
 {
     return [[NSArray alloc] initWithArray:_encodingMenuItems copyItems:YES];
@@ -126,8 +126,8 @@ NSString *__nonnull const CEEncodingListDidUpdateNotification = @"CESyntaxListDi
 - (void)buildEncodingMenuItems
 //------------------------------------------------------
 {
-    NSArray *encodings = [[NSUserDefaults standardUserDefaults] arrayForKey:CEDefaultEncodingListKey];
-    NSMutableArray *items = [[NSMutableArray alloc] initWithCapacity:[encodings count]];
+    NSArray<NSString *> *encodings = [[NSUserDefaults standardUserDefaults] arrayForKey:CEDefaultEncodingListKey];
+    NSMutableArray<NSMenuItem *> *items = [[NSMutableArray alloc] initWithCapacity:[encodings count]];
     
     for (NSNumber *encodingNumber in encodings) {
         CFStringEncoding cfEncoding = [encodingNumber unsignedLongValue];

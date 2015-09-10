@@ -54,7 +54,7 @@ static NSString *__nonnull const CEObjectsType = @"CEObjectsType";
     [pboard setPropertyList:[NSKeyedArchiver archivedDataWithRootObject:rowIndexes] forType:CERowsType];
     
     // store objects to drag to pasteboard
-    NSArray *objects = [[self arrangedObjects] objectsAtIndexes:rowIndexes];
+    NSArray<id> *objects = [[self arrangedObjects] objectsAtIndexes:rowIndexes];
     [pboard setPropertyList:objects forType:CEObjectsType];
     
     return YES;
@@ -90,7 +90,7 @@ static NSString *__nonnull const CEObjectsType = @"CEObjectsType";
     }
     
     NSIndexSet *originalRows = [NSKeyedUnarchiver unarchiveObjectWithData:[[info draggingPasteboard] propertyListForType:CERowsType]];
-    NSArray *draggingItems = [[info draggingPasteboard] propertyListForType:CEObjectsType];
+    NSArray<id> *draggingItems = [[info draggingPasteboard] propertyListForType:CEObjectsType];
     NSUInteger newRow = row - [originalRows countOfIndexesInRange:NSMakeRange(0, row)];  // real insertion point after removing items to move
     NSIndexSet *insertRows = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(newRow, [draggingItems count])];
     

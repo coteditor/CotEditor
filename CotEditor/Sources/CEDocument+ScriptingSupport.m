@@ -276,7 +276,7 @@
 - (NSNumber *)handleConvertScriptCommand:(NSScriptCommand *)command
 // ------------------------------------------------------
 {
-    NSDictionary *arguments = [command evaluatedArguments];
+    NSDictionary<NSString *, id> *arguments = [command evaluatedArguments];
     NSString *encodingName = arguments[@"newEncoding"];
     NSStringEncoding encoding = [CEUtils encodingFromName:encodingName];
     BOOL success = NO;
@@ -302,7 +302,7 @@
 - (NSNumber *)handleReinterpretScriptCommand:(NSScriptCommand *)command
 // ------------------------------------------------------
 {
-    NSDictionary *arguments = [command evaluatedArguments];
+    NSDictionary<NSString *, id> *arguments = [command evaluatedArguments];
     NSString *encodingName = arguments[@"newEncoding"];
     NSStringEncoding encoding = [CEUtils encodingFromName:encodingName];
     
@@ -317,7 +317,7 @@
 - (NSNumber *)handleFindScriptCommand:(NSScriptCommand *)command
 // ------------------------------------------------------
 {
-    NSDictionary *arguments = [command evaluatedArguments];
+    NSDictionary<NSString *, id> *arguments = [command evaluatedArguments];
     NSString *searchStr = arguments[@"targetString"];
     if ([searchStr length] == 0) { return @NO; }
     BOOL isRegex = [arguments[@"regularExpression"] boolValue];
@@ -359,7 +359,7 @@
 - (NSNumber *)handleReplaceScriptCommand:(NSScriptCommand *)command
 // ------------------------------------------------------
 {
-    NSDictionary *arguments = [command evaluatedArguments];
+    NSDictionary<NSString *, id> *arguments = [command evaluatedArguments];
     NSString *searchStr = arguments[@"targetString"];
     if ([searchStr length] == 0) { return @NO; }
     BOOL isRegex = [arguments[@"regularExpression"] boolValue];
@@ -441,8 +441,8 @@
 - (NSString *)handleStringScriptCommand:(NSScriptCommand *)command
 // ------------------------------------------------------
 {
-    NSDictionary *arguments = [command evaluatedArguments];
-    NSArray *rangeArray = arguments[@"range"];
+    NSDictionary<NSString *, id> *arguments = [command evaluatedArguments];
+    NSArray<NSNumber *> *rangeArray = arguments[@"range"];
 
     if ([rangeArray count] == 0) { return [NSString string]; }
     NSInteger location = [rangeArray[0] integerValue];

@@ -32,7 +32,7 @@
 
 @implementation CEUtils
 
-static const NSArray *invalidYenEncodings;
+static const NSArray<NSNumber *> *invalidYenEncodings;
 
 
 #pragma mark Superclass Methods
@@ -44,7 +44,7 @@ static const NSArray *invalidYenEncodings;
 {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        NSMutableArray *encodings = [NSMutableArray arrayWithCapacity:kSizeOfCFStringEncodingInvalidYenList];
+        NSMutableArray<NSNumber *> *encodings = [NSMutableArray arrayWithCapacity:kSizeOfCFStringEncodingInvalidYenList];
         for (NSUInteger i = 0; i < kSizeOfCFStringEncodingInvalidYenList; i++) {
             NSStringEncoding encoding = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingInvalidYenList[i]);
             [encodings addObject:@(encoding)];
@@ -111,7 +111,7 @@ static const NSArray *invalidYenEncodings;
 + (NSStringEncoding)encodingFromName:(nonnull NSString *)encodingName
 // ------------------------------------------------------
 {
-    NSArray *encodings = [[NSUserDefaults standardUserDefaults] arrayForKey:CEDefaultEncodingListKey];
+    NSArray<NSNumber *> *encodings = [[NSUserDefaults standardUserDefaults] arrayForKey:CEDefaultEncodingListKey];
     NSStringEncoding encoding;
     BOOL isValid = NO;
     

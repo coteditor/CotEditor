@@ -46,10 +46,10 @@ extern NSString *const CESyntaxValidationMessageKey;
 @interface CESyntaxManager : NSObject
 
 // readonly
-@property (readonly, nonatomic, copy) NSArray *styleNames;
+@property (readonly, nonatomic, copy) NSArray<NSString *> *styleNames;
 /// conflict error dicts
-@property (readonly, nonatomic, copy) NSDictionary *extensionConflicts;
-@property (readonly, nonatomic, copy) NSDictionary *filenameConflicts;
+@property (readonly, nonatomic, copy) NSDictionary<NSString *, NSMutableArray<NSString *> *> *extensionConflicts;
+@property (readonly, nonatomic, copy) NSDictionary<NSString *, NSMutableArray<NSString *> *> *filenameConflicts;
 
 
 // singleton
@@ -59,20 +59,20 @@ extern NSString *const CESyntaxValidationMessageKey;
 // public methods
 - (NSString *)styleNameFromFileName:(NSString *)fileName;
 - (NSString *)styleNameFromInterpreter:(NSString *)interpreter;
-- (NSArray *)extensionsForStyleName:(NSString *)styleName;
-- (NSDictionary *)styleWithStyleName:(NSString *)styleName;
-- (NSDictionary *)bundledStyleWithStyleName:(NSString *)styleName;
-- (NSDictionary *)emptyStyle;
+- (NSArray<NSString *> *)extensionsForStyleName:(NSString *)styleName;
+- (NSDictionary<NSString *, id> *)styleWithStyleName:(NSString *)styleName;
+- (NSDictionary<NSString *, id> *)bundledStyleWithStyleName:(NSString *)styleName;
+- (NSDictionary<NSString *, id> *)emptyStyle;
 - (NSURL *)URLForUserStyle:(NSString *)styleName;  // returns nil if file is not available
 - (BOOL)isBundledStyle:(NSString *)styleName;  // check only the name
-- (BOOL)isEqualToBundledStyle:(NSDictionary *)style name:(NSString *)styleName;
+- (BOOL)isEqualToBundledStyle:(NSDictionary<NSString *, id> *)style name:(NSString *)styleName;
 - (BOOL)importStyleFromURL:(NSURL *)fileURL;
 - (BOOL)exportStyle:(NSString *)styleName toURL:(NSURL *)fileURL;
 - (BOOL)removeStyleFileWithStyleName:(NSString *)styleName;
 - (BOOL)existsMappingConflict;
 - (NSString *)copiedStyleName:(NSString *)originalName;
-- (void)saveStyle:(NSMutableDictionary *)style name:(NSString *)name oldName:(NSString *)oldName;
-- (NSArray *)validateSyntax:(NSDictionary *)style;
+- (void)saveStyle:(NSMutableDictionary<NSString *, id> *)style name:(NSString *)name oldName:(NSString *)oldName;
+- (NSArray<NSDictionary<NSString *, NSString *> *> *)validateSyntax:(NSDictionary *)style;
 
 @end
 

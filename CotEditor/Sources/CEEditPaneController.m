@@ -35,10 +35,10 @@
 
 @property (nonatomic, nullable, weak) IBOutlet NSButton *smartQuoteCheckButton;
 
-@property (nonatomic, nonnull, copy) NSArray *invisibleSpaces;
-@property (nonatomic, nonnull, copy) NSArray *invisibleTabs;
-@property (nonatomic, nonnull, copy) NSArray *invisibleNewLines;
-@property (nonatomic, nonnull, copy) NSArray *invisibleFullWidthSpaces;
+@property (nonatomic, nonnull, copy) NSArray<NSString *> *invisibleSpaces;
+@property (nonatomic, nonnull, copy) NSArray<NSString *> *invisibleTabs;
+@property (nonatomic, nonnull, copy) NSArray<NSString *> *invisibleNewLines;
+@property (nonatomic, nonnull, copy) NSArray<NSString *> *invisibleFullWidthSpaces;
 @property (nonatomic, nonnull, copy) NSString *completionHintMessage;
 
 @end
@@ -60,25 +60,25 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // setup popup menu items for invisible characters
-        NSMutableArray *spaces = [NSMutableArray arrayWithCapacity:kSizeOfInvisibleSpaceCharList];
+        NSMutableArray<NSString *> *spaces = [NSMutableArray arrayWithCapacity:kSizeOfInvisibleSpaceCharList];
         for (NSUInteger i = 0; i < kSizeOfInvisibleSpaceCharList; i++) {
             [spaces addObject:[NSString stringWithFormat:@"%C", [CEUtils invisibleSpaceChar:i]]];
         }
         _invisibleSpaces = spaces;
         
-        NSMutableArray *tabs = [NSMutableArray arrayWithCapacity:kSizeOfInvisibleTabCharList];
+        NSMutableArray<NSString *> *tabs = [NSMutableArray arrayWithCapacity:kSizeOfInvisibleTabCharList];
         for (NSUInteger i = 0; i < kSizeOfInvisibleTabCharList; i++) {
             [tabs addObject:[NSString stringWithFormat:@"%C", [CEUtils invisibleTabChar:i]]];
         }
         _invisibleTabs = tabs;
         
-        NSMutableArray *newLines = [NSMutableArray arrayWithCapacity:kSizeOfInvisibleNewLineCharList];
+        NSMutableArray<NSString *> *newLines = [NSMutableArray arrayWithCapacity:kSizeOfInvisibleNewLineCharList];
         for (NSUInteger i = 0; i < kSizeOfInvisibleNewLineCharList; i++) {
             [newLines addObject:[NSString stringWithFormat:@"%C", [CEUtils invisibleNewLineChar:i]]];
         }
         _invisibleNewLines = newLines;
         
-        NSMutableArray *fullWidthSpaces = [NSMutableArray arrayWithCapacity:kSizeOfInvisibleFullwidthSpaceCharList];
+        NSMutableArray<NSString *> *fullWidthSpaces = [NSMutableArray arrayWithCapacity:kSizeOfInvisibleFullwidthSpaceCharList];
         for (NSUInteger i = 0; i < kSizeOfInvisibleFullwidthSpaceCharList; i++) {
             [fullWidthSpaces addObject:[NSString stringWithFormat:@"%C", [CEUtils invisibleFullwidthSpaceChar:i]]];
         }

@@ -137,7 +137,7 @@ NSString *__nonnull const CESecondaryFooterAlignmentKey = @"CESecondaryFooterAli
 
 // ------------------------------------------------------
 /// プレビューに影響するキーのセットを返す
-- (nonnull NSSet *)keyPathsForValuesAffectingPreview
+- (nonnull NSSet<NSString *> *)keyPathsForValuesAffectingPreview
 // ------------------------------------------------------
 {
     return [NSSet setWithArray:@[@"theme",
@@ -159,7 +159,7 @@ NSString *__nonnull const CESecondaryFooterAlignmentKey = @"CESecondaryFooterAli
 
 // ------------------------------------------------------
 /// ローカライズ済みの設定説明を返す
--(nonnull NSArray *)localizedSummaryItems
+-(nonnull NSArray<NSDictionary<NSString *, NSString *> *> *)localizedSummaryItems
 // ------------------------------------------------------
 {
     NSMutableArray *items = [NSMutableArray array];
@@ -232,7 +232,7 @@ NSString *__nonnull const CESecondaryFooterAlignmentKey = @"CESecondaryFooterAli
 
 // ------------------------------------------------------
 /// localizedSummaryItems で返す辞書を生成
-- (nonnull NSDictionary *)localizedSummaryItemWithName:(nonnull NSString *)name description:(nonnull NSString *)description
+- (nonnull NSDictionary<NSString *, NSString *> *)localizedSummaryItemWithName:(nonnull NSString *)name description:(nonnull NSString *)description
 // ------------------------------------------------------
 {
     return @{NSPrintPanelAccessorySummaryItemNameKey: NSLocalizedString(name, nil),
@@ -299,7 +299,7 @@ NSString *__nonnull const CESecondaryFooterAlignmentKey = @"CESecondaryFooterAli
     [[self themePopup] addItemWithTitle:NSLocalizedString(@"Theme", nil)];
     [[[self themePopup] itemWithTitle:NSLocalizedString(@"Theme", nil)] setAction:nil];
     
-    NSArray *themeNames = [[CEThemeManager sharedManager] themeNames];
+    NSArray<NSString *> *themeNames = [[CEThemeManager sharedManager] themeNames];
     for (NSString *themeName in themeNames) {
         [[self themePopup] addItemWithTitle:themeName];
         [[[self themePopup] lastItem] setIndentationLevel:1];

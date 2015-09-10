@@ -204,7 +204,7 @@ static NSTimeInterval infoUpdateInterval;
 
 // ------------------------------------------------------
 /// apply user defaults change
--(void)observeValueForKeyPath:(nullable NSString *)keyPath ofObject:(nullable id)object change:(nullable NSDictionary *)change context:(nullable void *)context
+-(void)observeValueForKeyPath:(nullable NSString *)keyPath ofObject:(nullable id)object change:(nullable NSDictionary<NSString *, id> *)change context:(nullable void *)context
 // ------------------------------------------------------
 {
     if ([keyPath isEqualToString:CEDefaultWindowAlphaKey]) {
@@ -459,7 +459,7 @@ static NSTimeInterval infoUpdateInterval;
 // ------------------------------------------------------
 {
     NSURL *url = [[self document] fileURL];
-    NSArray *items = url ? @[url] : @[];
+    NSArray<NSURL *> *items = url ? @[url] : @[];
     
     NSSharingServicePicker *sharingServicePicker = [[NSSharingServicePicker alloc] initWithItems:items];
     [sharingServicePicker showRelativeToRect:[sender bounds]
@@ -586,7 +586,7 @@ static NSTimeInterval infoUpdateInterval;
     [[placeholder animator] replaceSubview:currentView with:newView];
     
     // update autolayout constrains
-    NSDictionary *views = NSDictionaryOfVariableBindings(newView);
+    NSDictionary<NSString *, id> *views = NSDictionaryOfVariableBindings(newView);
     [placeholder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[newView]|" options:0 metrics:nil views:views]];
     [placeholder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[newView]|" options:0 metrics:nil views:views]];
 }
