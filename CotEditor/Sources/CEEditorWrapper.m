@@ -250,7 +250,7 @@ static NSTimeInterval secondColoringDelay;
 {
     // UTF-16 でないものを UTF-16 で表示した時など当該フォントで表示できない文字が表示されてしまった後だと、
     // 設定されたフォントでないもので表示されることがあるため、リセットする
-    NSDictionary *attributes = [[self focusedTextView] typingAttributes];
+    NSDictionary<NSString *, id> *attributes = [[self focusedTextView] typingAttributes];
     NSAttributedString *attrString = [[NSAttributedString alloc] initWithString:string attributes:attributes];
     
     [[[self focusedTextView] textStorage] setAttributedString:attrString];
@@ -320,11 +320,11 @@ static NSTimeInterval secondColoringDelay;
 
 // ------------------------------------------------------
 /// 現在のエンコードにコンバートできない文字列をマークアップ
-- (void)markupRanges:(NSArray *)ranges
+- (void)markupRanges:(NSArray<NSValue *> *)ranges
 // ------------------------------------------------------
 {
     NSColor *color = [[[self focusedTextView] theme] markupColor];
-    NSArray *layoutManagers = [self layoutManagers];
+    NSArray<NSLayoutManager *> *layoutManagers = [self layoutManagers];
     
     for (NSValue *rangeValue in ranges) {
         NSRange documentRange = [rangeValue rangeValue];
@@ -343,7 +343,7 @@ static NSTimeInterval secondColoringDelay;
 - (void)clearAllMarkup
 // ------------------------------------------------------
 {
-    NSArray *managers = [self layoutManagers];
+    NSArray<NSLayoutManager *> *managers = [self layoutManagers];
     
     for (NSLayoutManager *manager in managers) {
         [manager removeTemporaryAttribute:NSBackgroundColorAttributeName
@@ -566,7 +566,7 @@ static NSTimeInterval secondColoringDelay;
     CESyntaxParser *syntaxParser = [self syntaxParser];
     CESplitViewController *splitViewController = [self splitViewController];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSArray *outlineItems = [syntaxParser outlineItemsWithWholeString:immutableWholeString];
+        NSArray<NSDictionary<NSString *, id> *> *outlineItems = [syntaxParser outlineItemsWithWholeString:immutableWholeString];
         
         dispatch_sync(dispatch_get_main_queue(), ^{
             [splitViewController enumerateEditorViewsUsingBlock:^(CEEditorView *editorView) {
@@ -828,7 +828,7 @@ static NSTimeInterval secondColoringDelay;
     
     // move focus to the next text view if the view to close has a focus
     if ([[self window] firstResponder] == [editorViewToClose textView]) {
-        NSArray *subViews = [[[self splitViewController] view] subviews];
+        NSArray<__kindof NSView *> *subViews = [[[self splitViewController] view] subviews];
         NSUInteger count = [subViews count];
         NSUInteger deleteIndex = [subViews indexOfObject:editorViewToClose];
         NSUInteger index = deleteIndex + 1;
@@ -924,7 +924,7 @@ static NSTimeInterval secondColoringDelay;
 
 // ------------------------------------------------------
 /// return all layoutManagers
-- (NSArray *)layoutManagers
+- (NSArray<NSLayoutManager *> *)layoutManagers
 // ------------------------------------------------------
 {
     return [[[self focusedTextView] textStorage] layoutManagers];
@@ -1131,8 +1131,8 @@ static NSTimeInterval secondColoringDelay;
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"^"
                                                                            options:NSRegularExpressionAnchorsMatchLines
                                                                              error:nil];
-    NSArray *matches = [regex matchesInString:[textView string] options:0
-                                        range:NSMakeRange(0, wholeLength)];
+    NSArray<NSTextCheckingResult *> *matches = [regex matchesInString:[textView string] options:0
+                                                                range:NSMakeRange(0, wholeLength)];
     NSInteger count = [matches count];
     
     if (count == 0) { return; }

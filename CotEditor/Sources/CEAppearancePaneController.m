@@ -40,7 +40,7 @@
 @property (nonatomic, nullable, weak) IBOutlet NSBox *box;
 
 @property (nonatomic, nullable) CEThemeViewController *themeViewController;
-@property (nonatomic, nullable, copy) NSArray *themeNames;
+@property (nonatomic, nullable, copy) NSArray<NSString *> *themeNames;
 @property (nonatomic, getter=isBundled) BOOL bundled;
 
 @end
@@ -78,7 +78,7 @@
     [[self themeTableView] registerForDraggedTypes:@[(NSString *)kUTTypeFileURL]];
     
     // デフォルトテーマを選択
-    NSArray *themeNames = [[self themeNames] copy];
+    NSArray<NSString *> *themeNames = [[self themeNames] copy];
     NSInteger row = [themeNames indexOfObject:[[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultThemeKey]];
     [[self themeTableView] selectRowIndexes:[NSIndexSet indexSetWithIndex:row] byExtendingSelection:NO];
     [[self themeTableView] setAllowsEmptySelection:NO];
@@ -154,9 +154,9 @@
 {
     // get file URLs from pasteboard
     NSPasteboard *pboard = [info draggingPasteboard];
-    NSArray *URLs = [pboard readObjectsForClasses:@[[NSURL class]]
-                                          options:@{NSPasteboardURLReadingFileURLsOnlyKey: @YES,
-                                                    NSPasteboardURLReadingContentsConformToTypesKey: @[CEUTTypeTheme]}];
+    NSArray<NSURL *> *URLs = [pboard readObjectsForClasses:@[[NSURL class]]
+                                                   options:@{NSPasteboardURLReadingFileURLsOnlyKey: @YES,
+                                                             NSPasteboardURLReadingContentsConformToTypesKey: @[CEUTTypeTheme]}];
     
     if ([URLs count] == 0) { return NSDragOperationNone; }
     
@@ -198,7 +198,7 @@
 
 // ------------------------------------------------------
 /// テーマが編集された
-- (void)didUpdateTheme:(NSMutableDictionary *)theme
+- (void)didUpdateTheme:(NSMutableDictionary<NSString *, NSMutableDictionary<NSString *, id> *> *)theme
 // ------------------------------------------------------
 {
     // save
@@ -217,7 +217,7 @@
 {
     if ([notification object] == [self themeTableView]) {
         BOOL isBundled;
-        NSMutableDictionary *themeDict = [[CEThemeManager sharedManager] archivedTheme:[self selectedTheme] isBundled:&isBundled];
+        NSMutableDictionary<NSString *, NSMutableDictionary<NSString *, id> *> *themeDict = [[CEThemeManager sharedManager] archivedTheme:[self selectedTheme] isBundled:&isBundled];
         
         // デフォルトテーマ設定の更新（初回の選択変更はまだ設定が反映されていない時点で呼び出されるので保存しない）
         if ([self themeViewController]) {
@@ -363,7 +363,7 @@
 {
     NSTableView *tableView = [self themeTableView];
     [[CEThemeManager sharedManager] createUntitledThemeWithCompletionHandler:^(NSString *themeName, NSError *error) {
-        NSArray *themeNames = [[CEThemeManager sharedManager] themeNames];
+        NSArray<NSString *> *themeNames = [[CEThemeManager sharedManager] themeNames];
         NSInteger row = [themeNames indexOfObject:themeName];
         [tableView selectRowIndexes:[NSIndexSet indexSetWithIndex:row] byExtendingSelection:NO];
     }];
@@ -495,7 +495,7 @@
     [[CEThemeManager sharedManager] restoreTheme:themeName completionHandler:^(NSError *error) {
         // refresh theme view if current displayed theme was restored
         if (!error && [themeName isEqualToString:[self selectedTheme]]) {
-            NSMutableDictionary *bundledTheme = [[CEThemeManager sharedManager] archivedTheme:themeName isBundled:nil];
+            NSMutableDictionary<NSString *, NSMutableDictionary<NSString *, id> *>  *bundledTheme = [[CEThemeManager sharedManager] archivedTheme:themeName isBundled:nil];
             
             [[self themeViewController] setRepresentedObject:bundledTheme];
         }

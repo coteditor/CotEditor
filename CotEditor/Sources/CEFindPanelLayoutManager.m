@@ -81,11 +81,11 @@
         
         NSFont *font = [[self firstTextView] font];
         font = [font screenFont] ? : font;
-        NSDictionary *attributes = @{NSFontAttributeName: font,
-                                     NSForegroundColorAttributeName: color};
+        NSDictionary<NSString *, id> *attributes = @{NSFontAttributeName: font,
+                                                     NSForegroundColorAttributeName: color};
         NSFont *fullwidthFont = [[NSFont fontWithName:@"HiraKakuProN-W3" size:[font pointSize]] screenFont] ? : font;
-        NSDictionary *fullwidthAttributes = @{NSFontAttributeName: fullwidthFont,
-                                              NSForegroundColorAttributeName: color};
+        NSDictionary<NSString *, id> *fullwidthAttributes = @{NSFontAttributeName: fullwidthFont,
+                                                              NSForegroundColorAttributeName: color};
         
         BOOL showsSpace = [defaults boolForKey:CEDefaultShowInvisibleSpaceKey];
         BOOL showsTab = [defaults boolForKey:CEDefaultShowInvisibleTabKey];
@@ -146,10 +146,10 @@
                 NSGlyphInfo *glyphInfo = [NSGlyphInfo glyphInfoWithGlyph:replaceGlyph forFont:replaceFont baseString:baseStr];
                 
                 if (glyphInfo) {
-                    NSDictionary *replaceAttrs = @{NSGlyphInfoAttributeName: glyphInfo,
-                                                   NSFontAttributeName: replaceFont,
-                                                   NSForegroundColorAttributeName: color};
-                    NSDictionary *attrs = [[self textStorage] attributesAtIndex:charIndex effectiveRange:NULL];
+                    NSDictionary<NSString *, id> *replaceAttrs = @{NSGlyphInfoAttributeName: glyphInfo,
+                                                                   NSFontAttributeName: replaceFont,
+                                                                   NSForegroundColorAttributeName: color};
+                    NSDictionary<NSString *, id> *attrs = [[self textStorage] attributesAtIndex:charIndex effectiveRange:NULL];
                     if (attrs[NSGlyphInfoAttributeName] == nil) {
                         [[self textStorage] addAttributes:replaceAttrs range:charRange];
                     }

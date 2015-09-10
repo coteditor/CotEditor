@@ -447,7 +447,7 @@ CGPathRef glyphPathWithCharacter(unichar character, CTFontRef font, bool prefers
     // - All invisible characters of choices can be covered with the following two fonts.
     // - Monaco for vertical tab
     CGPathRef path = NULL;
-    NSArray *fallbackFontNames = prefersFullWidth ? @[@"HiraKakuProN-W3", @"LucidaGrande", @"Monaco"] : @[@"LucidaGrande", @"HiraKakuProN-W3", @"Monaco"];
+    NSArray<NSString *> *fallbackFontNames = prefersFullWidth ? @[@"HiraKakuProN-W3", @"LucidaGrande", @"Monaco"] : @[@"LucidaGrande", @"HiraKakuProN-W3", @"Monaco"];
     
     for (NSString *fontName in fallbackFontNames) {
         CTFontRef fallbackFont = CTFontCreateWithName((CFStringRef)fontName, fontSize, 0);

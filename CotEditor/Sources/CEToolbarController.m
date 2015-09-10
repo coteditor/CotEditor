@@ -235,7 +235,7 @@
 - (void)buildEncodingPopupButton
 // ------------------------------------------------------
 {
-    NSArray *items = [[CEEncodingManager sharedManager] encodingMenuItems];
+    NSArray<NSMenuItem *> *items = [[CEEncodingManager sharedManager] encodingMenuItems];
     NSStringEncoding encoding = [[[self encodingPopupButton] selectedItem] tag];
     
     [[self encodingPopupButton] removeAllItems];
@@ -254,7 +254,7 @@
 - (void)buildSyntaxPopupButton
 // ------------------------------------------------------
 {
-    NSArray *styleNames = [[CESyntaxManager sharedManager] styleNames];
+    NSArray<NSString *> *styleNames = [[CESyntaxManager sharedManager] styleNames];
     NSString *title = [[self syntaxPopupButton] titleOfSelectedItem];
     
     [[self syntaxPopupButton] removeAllItems];

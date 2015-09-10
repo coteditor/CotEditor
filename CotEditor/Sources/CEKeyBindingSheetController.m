@@ -34,7 +34,7 @@
 
 @property (nonatomic) CEKeyBindingType mode;
 @property (nonatomic, nonnull) NSMutableArray *outlineData;
-@property (nonatomic, nonnull) NSMutableArray *registeredKeySpecCharsList;  // for duplication check
+@property (nonatomic, nonnull) NSMutableArray<NSString *> *registeredKeySpecCharsList;  // for duplication check
 @property (nonatomic, nullable, copy) NSString *warningMessage;  // for binding
 @property (nonatomic, getter=isRestoreble) BOOL restoreble;  // for binding
 
@@ -98,8 +98,8 @@
             
         case CETextKeyBindingsType:
         {
-            NSArray *insertTexts = [[NSUserDefaults standardUserDefaults] stringArrayForKey:CEDefaultInsertCustomTextArrayKey];
-            NSMutableArray *content = [NSMutableArray array];
+            NSArray<NSString *> *insertTexts = [[NSUserDefaults standardUserDefaults] stringArrayForKey:CEDefaultInsertCustomTextArrayKey];
+            NSMutableArray<NSMutableDictionary<NSString *, NSString *> *> *content = [NSMutableArray array];
             
             for (NSString *text in insertTexts) {
                 [content addObject:[@{CEDefaultInsertCustomTextKey: text} mutableCopy]];
@@ -274,14 +274,14 @@
             
         case CETextKeyBindingsType:
         {
-            NSMutableArray *contents = [NSMutableArray array];
-            NSArray *defaultInsertTexts = [[[NSUserDefaults alloc] init] volatileDomainForName:NSRegistrationDomain][CEDefaultInsertCustomTextArrayKey];
+            NSMutableArray<NSMutableDictionary<NSString *, id> *> *content = [NSMutableArray array];
+            NSArray<NSString *> *defaultInsertTexts = [[[NSUserDefaults alloc] init] volatileDomainForName:NSRegistrationDomain][CEDefaultInsertCustomTextArrayKey];
             
             for (id object in defaultInsertTexts) {
-                [contents addObject:[@{CEDefaultInsertCustomTextKey: object} mutableCopy]];
+                [content addObject:[@{CEDefaultInsertCustomTextKey: object} mutableCopy]];
             }
             [self setOutlineData:[[CEKeyBindingManager sharedManager] textKeySpecCharArrayForOutlineDataWithFactoryDefaults:YES]];
-            [[self snippetArrayController] setContent:contents];
+            [[self snippetArrayController] setContent:content];
             [[self snippetArrayController] setSelectionIndex:NSNotFound];
         }
             break;
@@ -345,7 +345,7 @@
 
 // ------------------------------------------------------
 /// 子アイテムを返す
-- (nonnull NSArray *)childrenOfItem:(id)item
+- (nonnull NSArray<id> *)childrenOfItem:(id)item
 // ------------------------------------------------------
 {
     return item ? item[CEKeyBindingChildrenKey] : [self outlineData];
@@ -424,7 +424,7 @@
 
 //------------------------------------------------------
 /// 重複チェック用配列を生成
-- (nonnull NSMutableArray *)keySpecCharsListFromOutlineData:(nonnull NSArray *)outlineArray
+- (nonnull NSMutableArray<NSString *> *)keySpecCharsListFromOutlineData:(nonnull NSArray<NSDictionary *> *)outlineArray
 //------------------------------------------------------
 {
     NSMutableArray *keySpecCharsList = [NSMutableArray array];
@@ -432,7 +432,7 @@
     for (NSDictionary *item in outlineArray) {
         NSArray *children = item[CEKeyBindingChildrenKey];
         if (children) {
-            NSArray *childList = [self keySpecCharsListFromOutlineData:children];
+            NSArray<NSString *> *childList = [self keySpecCharsListFromOutlineData:children];
             [keySpecCharsList addObjectsFromArray:childList];
         }
         NSString *keySpecChars = item[CEKeyBindingKeySpecCharsKey];

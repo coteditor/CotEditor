@@ -308,7 +308,7 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 
 // ------------------------------------------------------
 /// file extensions for UNIX scripts
-- (nonnull NSArray *)scriptExtensions
+- (nonnull NSArray<NSString *> *)scriptExtensions
 // ------------------------------------------------------
 {
     return @[@"sh", @"pl", @"php", @"rb", @"py", @"js"];
@@ -317,7 +317,7 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 
 // ------------------------------------------------------
 /// file extensions for AppleScript
-- (nonnull NSArray *)AppleScriptExtensions
+- (nonnull NSArray<NSString *> *)AppleScriptExtensions
 // ------------------------------------------------------
 {
     return @[@"applescript", @"scpt"];
@@ -495,10 +495,10 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 - (void)addChildFileItemTo:(nonnull NSMenu *)menu fromDir:(nonnull NSURL *)directoryURL
 //------------------------------------------------------
 {
-    NSArray *URLs = [[NSFileManager defaultManager] contentsOfDirectoryAtURL:directoryURL
-                                                  includingPropertiesForKeys:@[NSURLFileResourceTypeKey]
-                                                                     options:NSDirectoryEnumerationSkipsPackageDescendants | NSDirectoryEnumerationSkipsHiddenFiles
-                                                                       error:nil];
+    NSArray<NSURL *> *URLs = [[NSFileManager defaultManager] contentsOfDirectoryAtURL:directoryURL
+                                                           includingPropertiesForKeys:@[NSURLFileResourceTypeKey]
+                                                                              options:NSDirectoryEnumerationSkipsPackageDescendants | NSDirectoryEnumerationSkipsHiddenFiles
+                                                                                error:nil];
     
     for (NSURL *URL in URLs) {
         // ignore files/folders of which name starts with "_"
@@ -603,7 +603,7 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
     
     if ([data length] == 0) { return nil; }
     
-    NSArray *encodings = [[NSUserDefaults standardUserDefaults] arrayForKey:CEDefaultEncodingListKey];
+    NSArray<NSNumber *> *encodings = [[NSUserDefaults standardUserDefaults] arrayForKey:CEDefaultEncodingListKey];
     
     for (NSNumber *encodingNumber in encodings) {
         NSStringEncoding encoding = CFStringConvertEncodingToNSStringEncoding([encodingNumber unsignedLongValue]);
@@ -668,7 +668,7 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
     CEScriptOutputType outputType = [[self class] scanOutputType:script];
     
     // prepare file path as argument if available
-    NSArray *arguments;
+    NSArray<NSString *> *arguments;
     if ([document fileURL]) {
         arguments = @[[[document fileURL] path]];
     }

@@ -109,7 +109,7 @@ static const CGFloat kDarkThemeThreshold = 0.5;
 {
     self = [super init];
     if (self) {
-        NSDictionary *themeDict = [[CEThemeManager sharedManager] archivedTheme:themeName isBundled:NULL];
+        NSDictionary<NSString *, NSDictionary<NSString *, NSString *> *> *themeDict = [[CEThemeManager sharedManager] archivedTheme:themeName isBundled:NULL];
         
         if (!themeDict) { return nil; }
         
@@ -200,7 +200,7 @@ static const CGFloat kDarkThemeThreshold = 0.5;
 
 //------------------------------------------------------
 /// テーマファイルで色が格納されているキー
-+ (nonnull NSArray *)colorKeys
++ (nonnull NSArray<NSString *> *)colorKeys
 //------------------------------------------------------
 {
     return @[CEThemeTextKey,

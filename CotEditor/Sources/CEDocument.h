@@ -53,7 +53,7 @@ extern NSString *const CEIncompatibleConvertedCharKey;
 @property (readonly, nonatomic) CETextSelection *selection;
 @property (readonly, nonatomic) NSStringEncoding encoding;
 @property (readonly, nonatomic) CENewLineType lineEnding;
-@property (readonly, nonatomic, copy) NSDictionary *fileAttributes;
+@property (readonly, nonatomic, copy) NSDictionary<NSString *, id> *fileAttributes;
 @property (readonly, nonatomic, getter=isWritable) BOOL writable;
 
 
@@ -66,7 +66,7 @@ extern NSString *const CEIncompatibleConvertedCharKey;
 
 // string encoding
 - (NSString *)currentIANACharSetName;
-- (NSArray *)findCharsIncompatibleWithEncoding:(NSStringEncoding)encoding;
+- (NSArray<NSDictionary<NSString *, NSValue *> *> *)findCharsIncompatibleWithEncoding:(NSStringEncoding)encoding;
 - (BOOL)reinterpretWithEncoding:(NSStringEncoding)encoding error:(NSError **)outError;
 - (BOOL)doSetEncoding:(NSStringEncoding)encoding updateDocument:(BOOL)updateDocument askLossy:(BOOL)askLossy lossy:(BOOL)lossy asActionName:(NSString *)actionName;
 

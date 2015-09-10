@@ -76,7 +76,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 @property (readwrite, nonatomic) CETextSelection *selection;
 @property (readwrite, nonatomic) NSStringEncoding encoding;
 @property (readwrite, nonatomic) CENewLineType lineEnding;
-@property (readwrite, nonatomic, copy) NSDictionary *fileAttributes;
+@property (readwrite, nonatomic, copy) NSDictionary<NSString *, id> *fileAttributes;
 @property (readwrite, nonatomic, getter=isWritable) BOOL writable;
 
 @end
@@ -196,7 +196,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     
     // read file attributes
     if ([self fileURL]) {
-        NSDictionary *attributes = [[NSFileManager defaultManager] attributesOfItemAtPath:[[self fileURL] path] error:outError];
+        NSDictionary<NSString *, id> *attributes = [[NSFileManager defaultManager] attributesOfItemAtPath:[[self fileURL] path] error:outError];
         [self setFileAttributes:attributes];
     }
     
@@ -369,7 +369,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
             [self setReadingEncoding:encoding];
             
             // store file attributes
-            NSDictionary *attributes = [[NSFileManager defaultManager] attributesOfItemAtPath:[url path] error:nil];
+            NSDictionary<NSString *, id> *attributes = [[NSFileManager defaultManager] attributesOfItemAtPath:[url path] error:nil];
             [self setFileAttributes:attributes];
         }
     }
@@ -443,7 +443,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 // ------------------------------------------------------
 /// プリントパネルを含むプリント用設定を生成して返す
-- (nullable NSPrintOperation *)printOperationWithSettings:(nonnull NSDictionary *)printSettings error:(NSError * __nullable __autoreleasing * __nullable)outError
+- (nullable NSPrintOperation *)printOperationWithSettings:(nonnull NSDictionary<NSString *, id> *)printSettings error:(NSError * __nullable __autoreleasing * __nullable)outError
 // ------------------------------------------------------
 {
     if (![self printPanelAccessoryController]) {
@@ -647,7 +647,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     [coordinator coordinateReadingItemAtURL:[self fileURL] options:NSFileCoordinatorReadingWithoutChanges
                                       error:nil byAccessor:^(NSURL *newURL)
      {
-         NSDictionary *fileAttrs = [[NSFileManager defaultManager] attributesOfItemAtPath:[newURL path] error:nil];
+         NSDictionary<NSString *, id> *fileAttrs = [[NSFileManager defaultManager] attributesOfItemAtPath:[newURL path] error:nil];
          fileModificationDate = [fileAttrs fileModificationDate];
      }];
     if ([fileModificationDate isEqualTo:[self fileModificationDate]]) { return; }
@@ -771,10 +771,10 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 // ------------------------------------------------------
 /// 指定されたエンコードにコンバートできない文字列をリストアップし配列を返す
-- (NSArray *)findCharsIncompatibleWithEncoding:(NSStringEncoding)encoding
+- (NSArray<NSDictionary<NSString *, NSValue *> *> *)findCharsIncompatibleWithEncoding:(NSStringEncoding)encoding
 // ------------------------------------------------------
 {
-    NSMutableArray *incompatibleChars = [NSMutableArray array];
+    NSMutableArray<NSDictionary<NSString *, NSValue *> *> *incompatibleChars = [NSMutableArray array];
     NSString *currentString = [self stringForSave];
     NSUInteger currentLength = [currentString length];
     NSData *data = [currentString dataUsingEncoding:encoding allowLossyConversion:YES];
@@ -845,12 +845,14 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     // set outError
     if (!success && outError) {
         NSString *encodingName = [NSString localizedNameOfStringEncoding:encoding];
-        NSDictionary *userInfo = @{NSLocalizedDescriptionKey: NSLocalizedString(@"Can not reinterpret", nil),
-                                   NSLocalizedRecoverySuggestionErrorKey: [NSString stringWithFormat:NSLocalizedString(@"The file “%@” could not be reinterpreted using the new encoding “%@”.", nil), [[self fileURL] path], encodingName],
-                                   NSStringEncodingErrorKey: @(encoding),
-                                   NSURLErrorKey: [self fileURL],
-                                   };
-        *outError = [NSError errorWithDomain:CEErrorDomain code:CEReinterpretationFailedError userInfo:userInfo];
+        
+        *outError = [NSError errorWithDomain:CEErrorDomain
+                                        code:CEReinterpretationFailedError
+                                    userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"Can not reinterpret", nil),
+                                               NSLocalizedRecoverySuggestionErrorKey: [NSString stringWithFormat:NSLocalizedString(@"The file “%@” could not be reinterpreted using the new encoding “%@”.", nil), [[self fileURL] path], encodingName],
+                                               NSStringEncodingErrorKey: @(encoding),
+                                               NSURLErrorKey: [self fileURL],
+                                               }];
     }
     
     return success;
@@ -1196,7 +1198,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
         
     } else {
         NSString *styleName = [[self editor] syntaxStyleName];
-        NSArray *extensions = [[CESyntaxManager sharedManager] extensionsForStyleName:styleName];
+        NSArray<NSString *> *extensions = [[CESyntaxManager sharedManager] extensionsForStyleName:styleName];
         
         return [extensions firstObject];
     }
@@ -1320,7 +1322,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     }
     
     // try encodings in order from the top of the encoding list
-    NSArray *encodings = [[NSUserDefaults standardUserDefaults] arrayForKey:CEDefaultEncodingListKey];
+    NSArray<NSNumber *> *encodings = [[NSUserDefaults standardUserDefaults] arrayForKey:CEDefaultEncodingListKey];
     
     for (NSNumber *encodingNumber in encodings) {
         NSStringEncoding encoding = CFStringConvertEncodingToNSStringEncoding([encodingNumber unsignedIntegerValue]);
@@ -1404,7 +1406,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
         // CFStringConvertEncodingToIANACharSetName() では kCFStringEncodingShiftJIS と
         // kCFStringEncodingShiftJIS_X0213 がそれぞれ「SHIFT_JIS」「shift_JIS」と変換されるため、可逆性を持たせる
         // ための処理）
-        NSArray *encodings = [[NSUserDefaults standardUserDefaults] arrayForKey:CEDefaultEncodingListKey];
+        NSArray<NSNumber *> *encodings = [[NSUserDefaults standardUserDefaults] arrayForKey:CEDefaultEncodingListKey];
         
         for (NSNumber *encodingNumber in encodings) {
             CFStringEncoding tmpCFEncoding = [encodingNumber unsignedLongValue];
@@ -1445,7 +1447,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     firstLine = [firstLine stringByReplacingOccurrencesOfString:@"^#! *" withString:@"" options:NSRegularExpressionSearch range:NSMakeRange(0, [firstLine length])];
     
     // find interpreter
-    NSArray *components = [firstLine componentsSeparatedByString:@" "];
+    NSArray<NSString *> *components = [firstLine componentsSeparatedByString:@" "];
     NSString * path = components[0];
     NSString *interpreter = [[path componentsSeparatedByString:@"/"] lastObject];
     // use first arg if the path targets env
@@ -1541,14 +1543,14 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
             NSString *encodingName = [NSString localizedNameOfStringEncoding:encoding];
             NSString *IANAName = [NSString localizedNameOfStringEncoding:IANACharSetEncoding];
             
-            NSDictionary *userInfo = @{NSLocalizedDescriptionKey: [NSString stringWithFormat:NSLocalizedString(@"The encoding is “%@”, but the IANA charset name in text is “%@”.", nil), encodingName, IANAName],
-                                       NSLocalizedRecoverySuggestionErrorKey: NSLocalizedString(@"Do you want to continue processing?", nil),
-                                       NSLocalizedRecoveryOptionsErrorKey: @[NSLocalizedString(@"Cancel", nil),
-                                                                             NSLocalizedString(@"Continue Saving", nil)],
-                                       NSStringEncodingErrorKey: @(encoding),
-                                       };
-            
-            *outError = [NSError errorWithDomain:CEErrorDomain code:CEIANACharsetNameConflictError userInfo:userInfo];
+            *outError = [NSError errorWithDomain:CEErrorDomain
+                                            code:CEIANACharsetNameConflictError
+                                        userInfo:@{NSLocalizedDescriptionKey: [NSString stringWithFormat:NSLocalizedString(@"The encoding is “%@”, but the IANA charset name in text is “%@”.", nil), encodingName, IANAName],
+                                                   NSLocalizedRecoverySuggestionErrorKey: NSLocalizedString(@"Do you want to continue processing?", nil),
+                                                   NSLocalizedRecoveryOptionsErrorKey: @[NSLocalizedString(@"Cancel", nil),
+                                                                                         NSLocalizedString(@"Continue Saving", nil)],
+                                                   NSStringEncodingErrorKey: @(encoding),
+                                                   }];
         }
         
         return NO;
@@ -1570,14 +1572,15 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
         if (outError) {
             NSString *encodingName = [NSString localizedNameOfStringEncoding:encoding];
             
-            NSDictionary *userInfo = @{NSLocalizedDescriptionKey: [NSString stringWithFormat:NSLocalizedString(@"The characters would have to be changed or deleted in saving as “%@”.", nil), encodingName],
-                                       NSLocalizedRecoverySuggestionErrorKey: NSLocalizedString(@"Do you want to continue processing?", nil),
-                                       NSLocalizedRecoveryOptionsErrorKey: @[NSLocalizedString(@"Show Incompatible Chars", nil),
-                                                                             NSLocalizedString(@"Save Available Strings", nil),
-                                                                             NSLocalizedString(@"Cancel", nil)],
-                                       NSStringEncodingErrorKey: @(encoding),
-                                       };
-            *outError = [NSError errorWithDomain:CEErrorDomain code:CEUnconvertibleCharactersError userInfo:userInfo];
+            *outError = [NSError errorWithDomain:CEErrorDomain
+                                            code:CEUnconvertibleCharactersError
+                                        userInfo:@{NSLocalizedDescriptionKey: [NSString stringWithFormat:NSLocalizedString(@"The characters would have to be changed or deleted in saving as “%@”.", nil), encodingName],
+                                                   NSLocalizedRecoverySuggestionErrorKey: NSLocalizedString(@"Do you want to continue processing?", nil),
+                                                   NSLocalizedRecoveryOptionsErrorKey: @[NSLocalizedString(@"Show Incompatible Chars", nil),
+                                                                                         NSLocalizedString(@"Save Available Strings", nil),
+                                                                                         NSLocalizedString(@"Cancel", nil)],
+                                                   NSStringEncodingErrorKey: @(encoding),
+                                                   }];
         }
         
         return NO;

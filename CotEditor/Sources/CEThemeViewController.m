@@ -76,7 +76,7 @@
     [self endObservingTheme];
     
     // observe input theme
-    NSDictionary *theme = representedObject;
+    NSDictionary<NSString *, NSMutableDictionary<NSString *, id> *> *theme = representedObject;
     [self observeTheme:theme];
     
     [super setRepresentedObject:theme];
@@ -92,7 +92,7 @@
 
 // ------------------------------------------------------
 /// theme is modified
-- (void)observeValueForKeyPath:(nullable NSString *)keyPath ofObject:(nullable id)object change:(nullable NSDictionary *)change context:(nullable void *)context
+- (void)observeValueForKeyPath:(nullable NSString *)keyPath ofObject:(nullable id)object change:(nullable NSDictionary<NSString *, id> *)change context:(nullable void *)context
 // ------------------------------------------------------
 {
     if (object == [self representedObject]) {
@@ -171,7 +171,7 @@
 
 // ------------------------------------------------------
 /// start observing theme change
-- (void)observeTheme:(nonnull NSDictionary *)theme
+- (void)observeTheme:(nonnull NSDictionary<NSString *, NSMutableDictionary<NSString *, id> *> *)theme
 // ------------------------------------------------------
 {
     for (NSString *key in [theme allKeys]) {
@@ -191,7 +191,7 @@
 - (void)endObservingTheme
 // ------------------------------------------------------
 {
-    NSDictionary *theme = [self representedObject];
+    NSDictionary<NSString *, NSMutableDictionary<NSString *, id> *> *theme = [self representedObject];
     
     if (!theme) { return; }
     

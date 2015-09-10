@@ -362,7 +362,7 @@
 - (void)setupEncodingMenus
 // ------------------------------------------------------
 {
-    NSArray *menuItems = [[CEEncodingManager sharedManager] encodingMenuItems];
+    NSArray<NSMenuItem *> *menuItems = [[CEEncodingManager sharedManager] encodingMenuItems];
     
     [[self encodingMenuInOpen] removeAllItems];
     [[self encodingMenuInNew] removeAllItems];
@@ -390,7 +390,7 @@
 - (void)setupSyntaxStyleMenus
 // ------------------------------------------------------
 {
-    NSArray *styleNames = [[CESyntaxManager sharedManager] styleNames];
+    NSArray<NSString *> *styleNames = [[CESyntaxManager sharedManager] styleNames];
     NSString *noneStyle = NSLocalizedString(@"None", nil);
     
     // インストール済みスタイルリストの更新

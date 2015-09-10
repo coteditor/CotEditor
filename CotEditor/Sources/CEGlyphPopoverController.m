@@ -72,7 +72,7 @@ static const UTF32Char kType6EmojiModifierChar = 0x1F3FF;  // Emoji Modifier Fit
         NSUInteger length = [character length];
         
         // unicode hex
-        NSMutableArray *unicodes = [NSMutableArray array];
+        NSMutableArray<NSString *> *unicodes = [NSMutableArray array];
         for (NSUInteger i = 0; i < length; i++) {
             unichar theChar = [character characterAtIndex:i];
             unichar nextChar = (length > i + 1) ? [character characterAtIndex:i + 1] : 0;

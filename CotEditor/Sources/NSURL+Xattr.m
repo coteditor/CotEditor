@@ -51,7 +51,7 @@ static char const XATTR_ENCODING_NAME[] = "com.apple.TextEncoding";
     // parse value
     CFStringEncoding cfEncoding = kCFStringEncodingInvalidId;
     NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    NSArray *strings = [string componentsSeparatedByString:@";"];
+    NSArray<NSString *> *strings = [string componentsSeparatedByString:@";"];
     
     if ([strings count] >= 2) {
         cfEncoding = [strings[1] integerValue];

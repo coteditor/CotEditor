@@ -463,15 +463,15 @@ static NSString *const kPreferredSymbolicLinkPath = @"/usr/local/bin/cot";
         
         if (relationship != NSURLRelationshipContains) {
             if (outError) {
-                NSDictionary *userInfo = @{NSLocalizedDescriptionKey: NSLocalizedString(@"The running CotEditor is not located in the Applications folder.", nil),
-                                           NSLocalizedRecoverySuggestionErrorKey: [NSString stringWithFormat:NSLocalizedString(@"Do you really want to install the command-line tool for CotEditor at “%@”?\n\nThe command will be invalid if the location of CotEditor is moved.", nil),
-                                                                                   [[[NSBundle mainBundle] bundleURL] path]],
-                                           NSLocalizedRecoveryOptionsErrorKey: @[NSLocalizedString(@"Install", nil),
-                                                                                 NSLocalizedString(@"Cancel", nil)],
-                                           NSRecoveryAttempterErrorKey: self,
-                                           NSURLErrorKey: appURL};
-                
-                *outError = [NSError errorWithDomain:CEErrorDomain code:CEApplicationNotInApplicationDirectoryError userInfo:userInfo];
+                *outError = [NSError errorWithDomain:CEErrorDomain
+                                                code:CEApplicationNotInApplicationDirectoryError
+                                            userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"The running CotEditor is not located in the Applications folder.", nil),
+                                                       NSLocalizedRecoverySuggestionErrorKey: [NSString stringWithFormat:NSLocalizedString(@"Do you really want to install the command-line tool for CotEditor at “%@”?\n\nThe command will be invalid if the location of CotEditor is moved.", nil),
+                                                                                               [[[NSBundle mainBundle] bundleURL] path]],
+                                                       NSLocalizedRecoveryOptionsErrorKey: @[NSLocalizedString(@"Install", nil),
+                                                                                             NSLocalizedString(@"Cancel", nil)],
+                                                       NSRecoveryAttempterErrorKey: self,
+                                                       NSURLErrorKey: appURL}];
             }
             return NO;
         }
@@ -479,15 +479,15 @@ static NSString *const kPreferredSymbolicLinkPath = @"/usr/local/bin/cot";
     
     if (![[[appURL lastPathComponent] stringByDeletingPathExtension] isEqualToString:preferredAppName]) {
         if (outError) {
-            NSDictionary *userInfo = @{NSLocalizedDescriptionKey: NSLocalizedString(@"The name of the running CotEditor is modified.", nil),
-                                       NSLocalizedRecoverySuggestionErrorKey: [NSString stringWithFormat:NSLocalizedString(@"Do you really want to install the command-line tool for “%@”?\n\nThe command will be invalid if CotEditor is renamed.", nil),
-                                                                               [appURL lastPathComponent]],
-                                       NSLocalizedRecoveryOptionsErrorKey: @[NSLocalizedString(@"Install", nil),
-                                                                             NSLocalizedString(@"Cancel", nil)],
-                                       NSRecoveryAttempterErrorKey: self,
-                                       NSURLErrorKey: appURL};
-            
-            *outError = [NSError errorWithDomain:CEErrorDomain code:CEApplicationNameIsModifiedError userInfo:userInfo];
+            *outError = [NSError errorWithDomain:CEErrorDomain
+                                            code:CEApplicationNameIsModifiedError
+                                        userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"The name of the running CotEditor is modified.", nil),
+                                                   NSLocalizedRecoverySuggestionErrorKey: [NSString stringWithFormat:NSLocalizedString(@"Do you really want to install the command-line tool for “%@”?\n\nThe command will be invalid if CotEditor is renamed.", nil),
+                                                                                           [appURL lastPathComponent]],
+                                                   NSLocalizedRecoveryOptionsErrorKey: @[NSLocalizedString(@"Install", nil),
+                                                                                         NSLocalizedString(@"Cancel", nil)],
+                                                   NSRecoveryAttempterErrorKey: self,
+                                                   NSURLErrorKey: appURL}];
         }
         return NO;
     }
@@ -501,7 +501,7 @@ static NSString *const kPreferredSymbolicLinkPath = @"/usr/local/bin/cot";
 NSString *systemVersion()
 //------------------------------------------------------
 {
-    NSDictionary * systemVersion = [NSDictionary dictionaryWithContentsOfFile:@"/System/Library/CoreServices/SystemVersion.plist"];
+    NSDictionary<NSString *, id> * systemVersion = [NSDictionary dictionaryWithContentsOfFile:@"/System/Library/CoreServices/SystemVersion.plist"];
     return [systemVersion objectForKey:@"ProductVersion"];
 }
 

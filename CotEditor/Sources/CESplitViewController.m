@@ -187,7 +187,7 @@
     
     if (count < 2) { return; }
     
-    NSArray *subviews = [[self view] subviews];
+    NSArray<__kindof NSView *> *subviews = [[self view] subviews];
     NSInteger index = [subviews indexOfObject:[self currentSubview]];
     
     if (onNext) {

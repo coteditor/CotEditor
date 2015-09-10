@@ -88,8 +88,8 @@
         [self addSubview:_scrollView];
         
         // setup autolayout
-        NSDictionary *views = @{@"navBar": [_navigationBar view],
-                                @"scrollView": _scrollView};
+        NSDictionary<NSString *, __kindof NSView *> *views = @{@"navBar": [_navigationBar view],
+                                                      @"scrollView": _scrollView};
         [[_navigationBar view] setTranslatesAutoresizingMaskIntoConstraints:NO];
         [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[navBar]|"
                                                                      options:0 metrics:nil views:views]];
@@ -346,10 +346,10 @@
 
 // ------------------------------------------------------
 /// 補完候補リストをセット
-- (nonnull NSArray *)textView:(nonnull NSTextView *)textView completions:(nonnull NSArray *)words forPartialWordRange:(NSRange)charRange indexOfSelectedItem:(nullable NSInteger *)index
+- (nonnull NSArray<NSString *> *)textView:(nonnull NSTextView *)textView completions:(nonnull NSArray<NSString *> *)words forPartialWordRange:(NSRange)charRange indexOfSelectedItem:(nullable NSInteger *)index
 // ------------------------------------------------------
 {
-    NSMutableOrderedSet *candidateWords = [NSMutableOrderedSet orderedSet];
+    NSMutableOrderedSet<NSString *> *candidateWords = [NSMutableOrderedSet orderedSet];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *partialWord = [[textView string] substringWithRange:charRange];
 
@@ -374,7 +374,7 @@
     
     // copy words defined in syntax style
     if ([defaults boolForKey:CEDefaultCompletesSyntaxWordsKey]) {
-        NSArray *syntaxWords = [[self syntaxParser] completionWords];
+        NSArray<NSString *> *syntaxWords = [[self syntaxParser] completionWords];
         for (NSString *word in syntaxWords) {
             if ([word rangeOfString:partialWord options:NSCaseInsensitiveSearch|NSAnchoredSearch].location != NSNotFound) {
                 [candidateWords addObject:word];

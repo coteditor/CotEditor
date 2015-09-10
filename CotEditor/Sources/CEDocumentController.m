@@ -128,7 +128,7 @@
 
 // ------------------------------------------------------
 /// add encoding menu to open panel
-- (void)beginOpenPanel:(nonnull NSOpenPanel *)openPanel forTypes:(nullable NSArray *)inTypes completionHandler:(void (^ __nonnull)(NSInteger))completionHandler
+- (void)beginOpenPanel:(nonnull NSOpenPanel *)openPanel forTypes:(nullable NSArray<NSString *> *)inTypes completionHandler:(void (^ __nonnull)(NSInteger))completionHandler
 // ------------------------------------------------------
 {
     // initialize encoding menu and set the accessory view
@@ -180,7 +180,7 @@
 - (void)buildEncodingPopupButton
 // ------------------------------------------------------
 {
-    NSArray *items = [[CEEncodingManager sharedManager] encodingMenuItems];
+    NSArray<NSMenuItem *> *items = [[CEEncodingManager sharedManager] encodingMenuItems];
     NSMenu *menu = [[self accessoryEncodingMenu] menu];
     
     [menu removeAllItems];

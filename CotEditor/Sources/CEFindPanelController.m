@@ -235,7 +235,7 @@ static NSString *const kEscapeCharacter = @"\\";
 
 // ------------------------------------------------------
 /// observed user defaults are changed
-- (void)observeValueForKeyPath:(nullable NSString *)keyPath ofObject:(nullable id)object change:(nullable NSDictionary *)change context:(nullable void *)context
+- (void)observeValueForKeyPath:(nullable NSString *)keyPath ofObject:(nullable id)object change:(nullable NSDictionary<NSString *, id> *)change context:(nullable void *)context
 // ------------------------------------------------------
 {
     if ([keyPath isEqualToString:CEDefaultFindNextAfterReplaceKey]) {
@@ -884,7 +884,7 @@ static NSString *const kEscapeCharacter = @"\\";
 - (void)buildHistoryMenu:(NSMenu *)menu defautsKey:(NSString *)key selector:(SEL)selector
 // ------------------------------------------------------
 {
-    NSArray *history = [[NSUserDefaults standardUserDefaults] stringArrayForKey:key];
+    NSArray<NSString *> *history = [[NSUserDefaults standardUserDefaults] stringArrayForKey:key];
     
     // clear current history items
     for (NSMenuItem *item in [menu itemArray]) {
@@ -925,7 +925,7 @@ static NSString *const kEscapeCharacter = @"\\";
     }
     
     // append new string to history
-    NSMutableArray *history = [NSMutableArray arrayWithArray:[defaults stringArrayForKey:CEDefaultFindHistoryKey]];
+    NSMutableArray<NSString *> *history = [NSMutableArray arrayWithArray:[defaults stringArrayForKey:CEDefaultFindHistoryKey]];
     [history removeObject:string];  // remove duplicated item
     [history addObject:string];
     if ([history count] > kMaxHistorySize) {  // remove overflow
@@ -948,7 +948,7 @@ static NSString *const kEscapeCharacter = @"\\";
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
     // append new string to history
-    NSMutableArray *history = [NSMutableArray arrayWithArray:[defaults stringArrayForKey:CEDefaultReplaceHistoryKey]];
+    NSMutableArray<NSString *> *history = [NSMutableArray arrayWithArray:[defaults stringArrayForKey:CEDefaultReplaceHistoryKey]];
     [history removeObject:string];  // remove duplicated item
     [history addObject:string];
     if ([history count] > kMaxHistorySize) {  // remove overflow

@@ -26,7 +26,7 @@
  
  */
 
-@import Foundation;
+@import Cocoa;
 
 
 // notifications
@@ -36,7 +36,7 @@ extern NSString *__nonnull const CEEncodingListDidUpdateNotification;
 
 @interface CEEncodingManager : NSObject
 
-@property (readonly, nonatomic, nonnull, copy) NSArray *encodingMenuItems;
+@property (readonly, nonatomic, nonnull, copy) NSArray<NSMenuItem *> *encodingMenuItems;
 
 
 // singleton
