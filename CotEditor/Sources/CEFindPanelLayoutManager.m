@@ -141,6 +141,11 @@
                     glyphString = fullwidthSpace;
                     break;
                     
+                case '\v':
+                    if (!showsVerticalTab) { continue; }
+                    glyphString = verticalTab;
+                    break;
+                    
                 default:
                     if (showsOtherInvisibles && ([self glyphAtIndex:glyphIndex isValidIndex:NULL] == NSControlGlyph)) {
                         NSGlyphInfo *currentGlyphInfo = [[self textStorage] attribute:NSGlyphInfoAttributeName atIndex:charIndex effectiveRange:NULL];
