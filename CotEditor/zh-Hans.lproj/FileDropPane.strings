@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014 CotEditor Project
+ © 2014-2015 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -27,12 +27,12 @@
  */
 
 /* Class = "NSTextFieldCell"; title = "Extensions:"; ObjectID = "3331"; */
-"3331.title" = "扩展名:";
+"3331.title" = "扩展名：";
 /* Class = "NSTextFieldCell"; title = "(comma separated, no dots)"; ObjectID = "3335"; */
 "3335.title" = "(逗号分隔, 不要带点)";
 
 /* Class = "NSTextFieldCell"; title = "Glossary:"; ObjectID = "3337"; */
-"3337.title" = "用法说明:";
+"3337.title" = "用法说明：";
 
 /* Class = "NSButtonCell"; ibShadowedToolTip = "Add"; ObjectID = "3333"; */
 "3333.ibShadowedToolTip" = "添加";
@@ -41,7 +41,7 @@
 
 
 /* Class = "NSTextFieldCell"; title = "Insertion Format:"; ObjectID = "3332"; */
-"3332.title" = "按格式插入:";
+"3332.title" = "按格式插入：";
 /* Class = "NSMenuItem"; title = "Insert Pre-Formatted String"; ObjectID = "541"; */
 "541.title" = "插入预先定义的字符串";
 

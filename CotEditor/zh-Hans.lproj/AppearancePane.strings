@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014 CotEditor Project
+ © 2014-2015 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -27,21 +27,21 @@
  */
 
 /* Class = "NSTextFieldCell"; title = "Font:"; ObjectID = "Z85-S9-uID"; */
-"Z85-S9-uID.title" = "字体:";
+"Z85-S9-uID.title" = "字体：";
 /* Class = "NSButtonCell"; title = "Select…"; ObjectID = "3289"; */
 "3289.title" = "选择…";
 /* Class = "NSButtonCell"; title = "Anti-Aliasing"; ObjectID = "3290"; */
 "3290.title" = "抗锯齿";
 
 /* Class = "NSTextFieldCell"; title = "Line height:"; ObjectID = "r1c-v3-qW1"; */
-"r1c-v3-qW1.title" = "行高:";
+"r1c-v3-qW1.title" = "行高：";
 /* Class = "NSTextFieldCell"; title = "times"; ObjectID = "VLD-jj-zzl"; */
 "VLD-jj-zzl.title" = "倍";
 /* Class = "NSButtonCell"; title = "Fix line height with composite font"; ObjectID = "3296"; */
 "3296.title" = "多种字体时仍固定行高";
 
 /* Class = "NSTextFieldCell"; title = "Current line:"; ObjectID = "oKu-Fu-hRU"; */
-"oKu-Fu-hRU.title" = "当前行:";
+"oKu-Fu-hRU.title" = "当前行：";
 /* Class = "NSButtonCell"; title = "Change background color"; ObjectID = "ba7-dE-zXz"; */
 "ba7-dE-zXz.title" = "改变背景颜色";
 

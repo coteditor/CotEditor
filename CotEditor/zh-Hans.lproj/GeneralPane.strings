@@ -27,7 +27,7 @@
  */
 
 /* Class = "NSTextFieldCell"; title = "Application:"; ObjectID = "lzy-Ei-xlT"; */
-"lzy-Ei-xlT.title" = "应用选项:";
+"lzy-Ei-xlT.title" = "应用选项：";
 
 /* Class = "NSButtonCell"; title = "Share find text with other applications"; ObjectID = "3307"; */
 "3307.title" = "与其他应用共享查找字符串";
@@ -40,7 +40,7 @@
 
 
 /* Class = "NSTextFieldCell"; title = "Open a new document:"; ObjectID = "zDW-aW-9G8"; */
-"zDW-aW-9G8.title" = "打开新文档:";
+"zDW-aW-9G8.title" = "打开新文档：";
 
 /* Class = "NSButtonCell"; title = "On launch"; ObjectID = "3298"; */
 "3298.title" = "启动时";
@@ -49,7 +49,7 @@
 
 
 /* Class = "NSTextFieldCell"; title = "When document is modified by another application:"; ObjectID = "x4n-2n-I3p"; */
-"x4n-2n-I3p.title" = "当文档被其他应用更改时:";
+"x4n-2n-I3p.title" = "当文档被其他应用更改时：";
 
 /* Class = "NSButtonCell"; title = "Keep CotEditor’s edition"; ObjectID = "DnS-XJ-7RI"; */
 "DnS-XJ-7RI.title" = "保留 CotEditor 的版本";
@@ -60,7 +60,7 @@
 
 
 /* Class = "NSTextFieldCell"; title = "Software Update:"; ObjectID = "geU-63-sAC"; */
-"geU-63-sAC.title" = "软件更新:";
+"geU-63-sAC.title" = "软件更新：";
 
 /* Class = "NSButtonCell"; title = "Automatically check for updates"; ObjectID = "3423"; */
 "3423.title" = "自动检查更新";

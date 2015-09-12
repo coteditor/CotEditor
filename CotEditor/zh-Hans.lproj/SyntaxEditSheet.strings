@@ -27,7 +27,7 @@
  */
 
 /* Class = "NSTextFieldCell"; title = "Style Name:"; ObjectID = "987"; */
-"987.title" = "语法名:";
+"987.title" = "语法名：";
 /* Class = "NSTextFieldCell"; placeholderString = "Style Name"; ObjectID = "988"; */
 "988.placeholderString" = "语法名";
 
@@ -148,20 +148,20 @@
 
 
 /* Class = "NSTextFieldCell"; title = "Inline comment:"; ObjectID = "GCw-u2-Lau"; */
-"GCw-u2-Lau.title" = "行注释:";
+"GCw-u2-Lau.title" = "行注释：";
 /* Class = "NSTextFieldCell"; title = "Begin with:"; ObjectID = "Nyf-L8-eh5"; */
-"Nyf-L8-eh5.title" = "以此开始:";
+"Nyf-L8-eh5.title" = "以此开始：";
 /* Class = "NSTextFieldCell"; placeholderString = "Not defined"; ObjectID = "nI8-cM-hcS"; */
 "nI8-cM-hcS.placeholderString" = "未定义";
 
 /* Class = "NSTextFieldCell"; title = "Block comment:"; ObjectID = "Z5Q-Hy-1R7"; */
-"Z5Q-Hy-1R7.title" = "块注释:";
+"Z5Q-Hy-1R7.title" = "块注释：";
 /* Class = "NSTextFieldCell"; title = "Begin with:"; ObjectID = "OFV-ob-L5e"; */
-"OFV-ob-L5e.title" = "以此开始:";
+"OFV-ob-L5e.title" = "以此开始：";
 /* Class = "NSTextFieldCell"; placeholderString = "Not defined"; ObjectID = "L2M-Fz-f48"; */
 "L2M-Fz-f48.placeholderString" = "未定义";
 /* Class = "NSTextFieldCell"; title = "End width:"; ObjectID = "QJO-6I-TfV"; */
-"QJO-6I-TfV.title" = "以此结束:";
+"QJO-6I-TfV.title" = "以此结束：";
 /* Class = "NSTextFieldCell"; placeholderString = "Not defined"; ObjectID = "1rj-Dy-279"; */
 "1rj-Dy-279.placeholderString" = "未定义";
 
@@ -226,19 +226,19 @@
 
 
 /* Class = "NSTextFieldCell"; title = "Version:"; ObjectID = "PjU-cq-3px"; */
-"PjU-cq-3px.title" = "版本:";
+"PjU-cq-3px.title" = "版本：";
 /* Class = "NSTextFieldCell"; title = "Last modified:"; ObjectID = "lEv-Gr-9nX"; */
-"lEv-Gr-9nX.title" = "最后更新:";
+"lEv-Gr-9nX.title" = "最后更新：";
 /* Class = "NSTextFieldCell"; title = "(‘YYYY-MM-DD’ format)"; ObjectID = "8qs-tv-hFC"; */
 "8qs-tv-hFC.title" = "(格式 ‘YYYY-MM-DD’)";
 /* Class = "NSTextFieldCell"; title = "Distribution URL:"; ObjectID = "RaI-42-gtJ"; */
-"RaI-42-gtJ.title" = "发布 URL:";
+"RaI-42-gtJ.title" = "发布 URL：";
 /* Class = "NSTextFieldCell"; title = "Author:"; ObjectID = "h87-QY-CvE"; */
-"h87-QY-CvE.title" = "作者:";
+"h87-QY-CvE.title" = "作者：";
 /* Class = "NSTextFieldCell"; title = "License:"; ObjectID = "4jZ-HS-mYE"; */
-"4jZ-HS-mYE.title" = "许可证:";
+"4jZ-HS-mYE.title" = "许可证：";
 /* Class = "NSTextFieldCell"; title = "Description:"; ObjectID = "DVt-gz-R2Z"; */
-"DVt-gz-R2Z.title" = "描述:";
+"DVt-gz-R2Z.title" = "描述：";
 /* Class = "NSTextFieldCell"; title = "Duplicate style to modify meta information of bundled syntax style."; ObjectID = "v3a-UB-E0t"; */
 "v3a-UB-E0t.title" = "创建内置语法风格的副本来更改信息";
 

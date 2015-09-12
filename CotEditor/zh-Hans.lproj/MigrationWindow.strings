@@ -40,7 +40,7 @@
 
 
 /* Class = "NSTextFieldCell"; title = "The following migrations have been successfully completed."; ObjectID = "cTg-d4-zlT"; */
-"cTg-d4-zlT.title" = "以下迁移成功完成:";
+"cTg-d4-zlT.title" = "以下迁移成功完成：";
 
 /* Class = "NSTextFieldCell"; title = "Reset menu key bindings setting."; ObjectID = "BA1-Y2-S7m"; */
 "BA1-Y2-S7m.title" = "重置菜单按键绑定";

@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014 CotEditor Project
+ © 2014-2015 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -27,7 +27,7 @@
  */
 
 /* Class = "NSTextFieldCell"; title = "Default line endings:"; ObjectID = "3273"; */
-"3273.title" = "默认行尾:";
+"3273.title" = "默认行尾：";
 /* Class = "NSMenuItem"; title = "OS X / Unix (LF)"; ObjectID = "15"; */
 "15.title" = "OS X / Unix (LF)";
 /* Class = "NSMenuItem"; title = "Classic Mac OS (CR)"; ObjectID = "14"; */
@@ -37,12 +37,12 @@
 
 
 /* Class = "NSTextFieldCell"; title = "Default text encoding:"; ObjectID = "3278"; */
-"3278.title" = "默认文本编码:";
+"3278.title" = "默认文本编码：";
 /* Class = "NSButtonCell"; title = "Save UTF-8 files with a BOM  (not recommended)"; ObjectID = "3281"; */
 "3281.title" = "以带有 BOM 的方式保存 UTF-8 文件 (不推荐)";
 
 /* Class = "NSTextFieldCell"; title = "Opening Files:"; ObjectID = "3277"; */
-"3277.title" = "打开文件:";
+"3277.title" = "打开文件：";
 /* Class = "NSButtonCell"; title = "Edit List…"; ObjectID = "3275"; */
 "3275.title" = "编辑列表…";
 /* Class = "NSButtonCell"; title = "Refer to encoding declaration"; ObjectID = "3280"; */
@@ -59,10 +59,10 @@
 "3327.title" = "延时渲染";
 
 /* Class = "NSTextFieldCell"; title = "Default syntax style:"; ObjectID = "3329"; */
-"3329.title" = "默认语法风格:";
+"3329.title" = "默认语法风格：";
 
 /* Class = "NSTextFieldCell"; title = "Installed syntax styles:"; ObjectID = "vlw-Tc-sLl"; */
-"vlw-Tc-sLl.title" = "已安装的语法风格:";
+"vlw-Tc-sLl.title" = "已安装的语法风格：";
 
 /* Class = "NSButton"; ibShadowedToolTip = "Remove selected style"; ObjectID = "dI1-Dk-Mce"; */
 "dI1-Dk-Mce.ibShadowedToolTip" = "移除选中的风格";

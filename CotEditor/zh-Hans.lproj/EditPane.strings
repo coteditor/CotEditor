@@ -27,7 +27,7 @@
  */
 
 /* Class = "NSTextFieldCell"; title = "Behavior:"; ObjectID = "SqI-BC-ar9"; */
-"SqI-BC-ar9.title" = "行为:";
+"SqI-BC-ar9.title" = "行为：";
 /* Class = "NSButtonCell"; title = "Enable smart insert and delete"; ObjectID = "3302"; */
 "3302.title" = "启用只能插入和删除";
 /* Class = "NSButtonCell"; title = "Enable smart quotes and dashes"; ObjectID = "nA4-HY-d71"; */
@@ -41,7 +41,7 @@
 
 
 /* Class = "NSTextFieldCell"; title = "Indentation:"; ObjectID = "9bX-ei-1x8"; */
-"9bX-ei-1x8.title" = "缩进:";
+"9bX-ei-1x8.title" = "缩进：";
 /* Class = "NSButtonCell"; title = "Auto indent"; ObjectID = "3285"; */
 "3285.title" = "自动缩进";
 /* Class = "NSButtonCell"; title = "Expand tabs to spaces"; ObjectID = "3283"; */
@@ -53,7 +53,7 @@
 
 
 /* Class = "NSTextFieldCell"; title = "Comment:"; ObjectID = "EDl-AJ-1dK"; */
-"EDl-AJ-1dK.title" = "注释:";
+"EDl-AJ-1dK.title" = "注释：";
 /* Class = "NSButtonCell"; title = "Append a space to comment delimiter"; ObjectID = "6Dw-5M-Gv0"; */
 "6Dw-5M-Gv0.title" = "在注释符号后追加空格";
 /* Class = "NSButtonCell"; title = "Always from line head"; ObjectID = "Byi-E9-owf"; */
@@ -61,17 +61,17 @@
 
 
 /* Class = "NSTextFieldCell"; title = "Line wrapping:"; ObjectID = "P1I-gs-RgX"; */
-"P1I-gs-RgX.title" = "换行:";
+"P1I-gs-RgX.title" = "换行：";
 /* Class = "NSButtonCell"; title = "Soft wrap lines"; ObjectID = "3274"; */
 "3274.title" = "自动换行";
 /* Class = "NSButtonCell"; title = "Indent wrapped lines by:"; ObjectID = "mCq-92-2sT"; */
-"mCq-92-2sT.title" = "自动换行缩进字符数:";
+"mCq-92-2sT.title" = "自动换行缩进字符数：";
 /* Class = "NSTextFieldCell"; title = "spaces"; ObjectID = "P9V-pV-PAX"; */
 "P9V-pV-PAX.title" = "个空格";
 
 
 /* Class = "NSTextFieldCell"; title = "Invisibles:"; ObjectID = "pjW-HE-ngH"; */
-"pjW-HE-ngH.title" = "不可见字符:";
+"pjW-HE-ngH.title" = "不可见字符：";
 /* Class = "NSButtonCell"; title = "Show invisibles"; ObjectID = "CyH-q4-SWY"; */
 "CyH-q4-SWY.title" = "显示不可见文字";
 /* Class = "NSButtonCell"; title = "Space"; ObjectID = "3257"; */
@@ -87,10 +87,10 @@
 
 
 /* Class = "NSTextFieldCell"; title = "Completion:"; ObjectID = "gDN-SU-sZH"; */
-"gDN-SU-sZH.title" = "补全:";
+"gDN-SU-sZH.title" = "补全：";
 
 /* Class = "NSTextFieldCell"; title = "Completion list includes:"; ObjectID = "dLj-Kh-KtX"; */
-"dLj-Kh-KtX.title" = "补全列表包括:";
+"dLj-Kh-KtX.title" = "补全列表包括：";
 /* Class = "NSButtonCell"; title = "Words in document"; ObjectID = "EJZ-N6-54G"; */
 "EJZ-N6-54G.title" = "文档中的单词";
 /* Class = "NSButtonCell"; title = "Words defined in syntax style"; ObjectID = "1v9-7i-9RL"; */

@@ -38,7 +38,7 @@
 "87.headerCell.title" = "按键";
 
 /* Class = "NSTextFieldCell"; title = "Text to insert:"; ObjectID = "152"; */
-"152.title" = "插入文本:";
+"152.title" = "插入文本：";
 /* Class = "IBBindingConnection"; ibShadowedNoSelectionPlaceholder = "Select action."; ObjectID = "jTj-QW-dQw"; */
 "jTj-QW-dQw.ibShadowedNoSelectionPlaceholder" = "选择动作";
 

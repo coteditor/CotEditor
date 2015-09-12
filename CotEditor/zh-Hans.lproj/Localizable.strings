@@ -297,8 +297,8 @@
 // Integration Pane
 "Install" = "安装";
 "Uninstall" = "卸载";
-"Command:" = "命令名:";
-"Select “Install” to install the command-line tool at the following location.\nThe default location is: %@" = "选择 “安装” 来将命令行工具安装在以下位置。\n默认位置是: %@";
+"Command:" = "命令名：";
+"Select “Install” to install the command-line tool at the following location.\nThe default location is: %@" = "选择 “安装” 来将命令行工具安装在以下位置。\n默认位置是：%@";
 "The current 'cot' symbolic link doesn’t target the running CotEditor." = "当前的 'cot' 符号链接没有指向正在运行的 CotEditor。";
 "The current 'cot' symbolic link may target on an invalid path." = "当前的 'cot' 符号链接可能指向无效路径。";
 

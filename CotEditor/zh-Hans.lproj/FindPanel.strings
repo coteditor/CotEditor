@@ -170,7 +170,7 @@
 "oC1-bN-UeN.ibShadowedToolTip" = "关闭查找结果";
 
 /* Class = "IBBindingConnection"; ibShadowedDisplayPattern = "Find String: %{value1}@"; ObjectID = "2MH-SD-x1y"; */
-"2MH-SD-x1y.ibShadowedDisplayPattern" = "查找字符串: %{value1}@";
+"2MH-SD-x1y.ibShadowedDisplayPattern" = "查找字符串：%{value1}@";
 
 /* Class = "NSTableColumn"; headerCell.title = "Line"; ObjectID = "CPd-0W-bKv"; */
 "CPd-0W-bKv.headerCell.title" = "行";

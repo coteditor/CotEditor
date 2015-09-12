@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014 CotEditor Project
+ © 2014-2015 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -34,7 +34,7 @@
 
 
 /* Class = "NSTextFieldCell"; title = "Extension:"; ObjectID = "31z-NP-PkW"; */
-"31z-NP-PkW.title" = "扩展名:";
+"31z-NP-PkW.title" = "扩展名：";
 /* Class = "NSTextFieldCell"; title = "The following extensions are registered in multiple styles."; ObjectID = "XdB-k6-qyy"; */
 "XdB-k6-qyy.title" = "以下扩展名被注册给了多种语法";
 
@@ -47,7 +47,7 @@
 
 
 /* Class = "NSTextFieldCell"; title = "Filename:"; ObjectID = "Msi-ee-MNF"; */
-"Msi-ee-MNF.title" = "文件名:";
+"Msi-ee-MNF.title" = "文件名：";
 /* Class = "NSTextFieldCell"; title = "The following filenames are registered in multiple styles."; ObjectID = "4AH-1o-au2"; */
 "4AH-1o-au2.title" = "以下文件名被注册给了多种语法风格";
 
