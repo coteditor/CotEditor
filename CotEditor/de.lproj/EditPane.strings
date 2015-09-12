@@ -48,7 +48,7 @@
 /* Class = "NSTextFieldCell"; title = "Indent width:"; ObjectID = "3287"; */
 "3287.title" = "Einzugsweite:";
 /* Class = "NSTextFieldCell"; title = "spaces"; ObjectID = "as9-us-CuG"; */
-"as9-us-CuG.title" = "Leerzeichen";
+"as9-us-CuG.title" = "Leerraum";
 
 
 /* Class = "NSTextFieldCell"; title = "Comment:"; ObjectID = "EDl-AJ-1dK"; */
@@ -60,13 +60,13 @@
 
 
 /* Class = "NSTextFieldCell"; title = "Line wrapping:"; ObjectID = "P1I-gs-RgX"; */
-"P1I-gs-RgX.title" = "Zeilenende:";
+"P1I-gs-RgX.title" = "Zeilenumbruch:";
 /* Class = "NSButtonCell"; title = "Soft wrap lines"; ObjectID = "3274"; */
 "3274.title" = "Zeilen weich umbrechen";
 /* Class = "NSButtonCell"; title = "Indent wrapped lines by:"; ObjectID = "mCq-92-2sT"; */
-"mCq-92-2sT.title" = " Umgebrochenen Zeilen einrücken:";
+"mCq-92-2sT.title" = " Umgebrochene Zeilen einrücken um:";
 /* Class = "NSTextFieldCell"; title = "spaces"; ObjectID = "P9V-pV-PAX"; */
-"P9V-pV-PAX.title" = "Leerzeichen";
+"P9V-pV-PAX.title" = "Leerraum";
 
 
 /* Class = "NSTextFieldCell"; title = "Invisibles:"; ObjectID = "pjW-HE-ngH"; */
@@ -97,5 +97,5 @@
 /* Class = "NSButtonCell"; title = "Standard words"; ObjectID = "c5j-0N-f2R"; */
 "c5j-0N-f2R.title" = "Normalen Wörter";
 
-/* Class = "NSButtonCell"; title = "Auto complete"; ObjectID = "J1B-wA-rdr"; */
-"J1B-wA-rdr.title" = "Autovervollständigung";
+/* Class = "NSButtonCell"; title = "Suggest completions while typing"; ObjectID = "J1B-wA-rdr"; */
+"J1B-wA-rdr.title" = "Während der Texteingabe Vervollständigungen vroschlagen";

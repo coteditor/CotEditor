@@ -65,7 +65,7 @@
 /* Class = "NSButtonCell"; title = "Soft wrap lines"; ObjectID = "3274"; */
 "3274.title" = "自动换行";
 /* Class = "NSButtonCell"; title = "Indent wrapped lines by:"; ObjectID = "mCq-92-2sT"; */
-"mCq-92-2sT.title" = "换行缩进:";
+"mCq-92-2sT.title" = "自动换行缩进字符数:";
 /* Class = "NSTextFieldCell"; title = "spaces"; ObjectID = "P9V-pV-PAX"; */
 "P9V-pV-PAX.title" = "个空格";
 
@@ -98,5 +98,5 @@
 /* Class = "NSButtonCell"; title = "Standard words"; ObjectID = "c5j-0N-f2R"; */
 "c5j-0N-f2R.title" = "标准单词";
 
-/* Class = "NSButtonCell"; title = "Auto complete"; ObjectID = "J1B-wA-rdr"; */
-"J1B-wA-rdr.title" = "自动补全";
+/* Class = "NSButtonCell"; title = "Suggest completions while typing"; ObjectID = "J1B-wA-rdr"; */
+"J1B-wA-rdr.title" = "自动补全";  // FIXME: tweaked (Please just copy the line in "Edit" pane of Script Editor.app on El Capitan. There is the exactly same setting option.)

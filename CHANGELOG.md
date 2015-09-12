@@ -7,7 +7,7 @@ develop
 
 ### Additions/Changes
 
-- Tweak a menu item title.
+- Tweak some terms.
 
 
 

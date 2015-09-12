@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014 CotEditor Project
+ © 2014-2015 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -30,8 +30,8 @@
 "6.title" = "Preferences";
 
 /* Class = "NSToolbarItem"; ObjectID = "HlR-fr-Hwd"; */
-"HlR-fr-Hwd.label" = "一般";  /* General */
-"HlR-fr-Hwd.paletteLabel" = "一般";  /* General */
+"HlR-fr-Hwd.label" = "通用";  /* General */
+"HlR-fr-Hwd.paletteLabel" = "通用";  /* General */
 
 /* Class = "NSToolbarItem"; ObjectID = "agm-iM-Y3j"; */
 "agm-iM-Y3j.label" = "窗口";  /* Window */
