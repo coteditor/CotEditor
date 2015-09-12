@@ -27,9 +27,9 @@
 <p>Terminal からシンボリックリンクを作成して、任意の箇所にインストールすることも可能です。</p>
 <pre><code>ln -s /Applications/CotEditor.app/Contents/SharedSupport/bin/cot ~/bin/cot</code></pre>
 
-<h3>El Capitan でのインストール</h3>
-<p>OS X 10.11 El Capitan<small>（および、おそらくそれ以降）</small>では、サンドボックス化されたアプリケーションに '<code>/usr/local/bin/</code>' にシンボリックリンクを作成する権限がないため、連携ペインからの <code>cot</code> コマンドのインストールができません。しかしながら、ターミナルからユーザ自身がコマンドをインストールすることはできます。'<code>/usr/local/bin/</code>' にシンボリックリンクを作成するには <code>sudo</code> が必要であることに留意してください。</p>
-<pre><code><strong>sudo</strong> ln -s /Applications/CotEditor.app/Contents/SharedSupport/bin/cot /usr/local/bin/cot</code></pre>
+<p>そして、Terminal からアンインストールする場合は以下のようにします。</p>
+<pre><code>unlink /user/local/bin/cot</code></pre>
+
 
 <h2>オプション</h2>
 <p><code>cot</code> コマンドは以下のオプションが使用できます。</p>

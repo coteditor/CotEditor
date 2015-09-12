@@ -191,33 +191,23 @@ static NSString *const kPreferredSymbolicLinkPath = @"/usr/local/bin/cot";
 }
 
 // ------------------------------------------------------
-/// build install command
-- (nonnull NSString *)installCommandWithSudo:(BOOL)withSudo
+/// build install command (this is actually not used...)
+- (nonnull NSString *)installCommandString
 // ------------------------------------------------------
 {
-    NSString *command = [NSString stringWithFormat:@"ln -s \"%s\" \"%s\"",
+    return [NSString stringWithFormat:@"ln -s \"%s\" \"%s\"",
                          [[[self commandURL] path] fileSystemRepresentation],
                          [[[self preferredLinkURL] path] fileSystemRepresentation]];
-    
-    if (withSudo) {
-        command = [@"sudo " stringByAppendingString:command];
-    }
-    return command;
 }
 
 
 // ------------------------------------------------------
 /// build uninstall command
-- (nonnull NSString *)uninstallCommandWithSudo:(BOOL)withSudo
+- (nonnull NSString *)uninstallCommandString
 // ------------------------------------------------------
 {
-    NSString *command = [NSString stringWithFormat:@"unlink \"%s\"",
+    return [NSString stringWithFormat:@"unlink \"%s\"",
                          [[[self linkURL] path] fileSystemRepresentation]];
-    
-    if (withSudo) {
-        command = [@"sudo " stringByAppendingString:command];
-    }
-    return command;
 }
 
 
@@ -226,14 +216,6 @@ static NSString *const kPreferredSymbolicLinkPath = @"/usr/local/bin/cot";
 - (void)performInstall
 // ------------------------------------------------------
 {
-    // just show an installation guide as a sheet,
-    // since the installation will be failed with NSCocoaErrorDomain + NSFileWriteNoPermissionError on El Capitan
-    if (NSAppKitVersionNumber >= CEAppKitVersionNumber10_11) {  // OS X 10.11 El Capitan and later
-        [self showInstallGuideWithSudo:YES
-                           description:[NSString stringWithFormat:NSLocalizedString(@"Creating symbolic link at “%@” by third-party applications is denied on OS X %@.", nil), [[[self preferredLinkURL] URLByDeletingLastPathComponent] path], systemVersion()]];
-        return;
-    }
-    
     __weak typeof(self) weakSelf = self;
     NSOpenPanel *openPanel = [NSOpenPanel openPanel];
     [openPanel setDirectoryURL:[[self preferredLinkURL] URLByDeletingLastPathComponent]];
@@ -282,13 +264,6 @@ static NSString *const kPreferredSymbolicLinkPath = @"/usr/local/bin/cot";
 - (void)performUninstall
 // ------------------------------------------------------
 {
-    // just show an uninstallation guide as a sheet,
-    // since the uninstallation will be failed with NSCocoaErrorDomain + NSFileWriteNoPermissionError on El Capitan
-    if (NSAppKitVersionNumber >= CEAppKitVersionNumber10_11) { // OS X 10.11 El Capitan and later
-        [self showUninsatllGuideWithSudo:YES description:[NSString stringWithFormat:NSLocalizedString(@"Modifying files at “%@” by third-party applications is denied on OS X %@.", nil), [[[self linkURL] URLByDeletingLastPathComponent] path], systemVersion()]];
-        return;
-    }
-    
     // read stored cot command URL
     NSURL *url = [self bookmarkedURL];
     
@@ -301,7 +276,7 @@ static NSString *const kPreferredSymbolicLinkPath = @"/usr/local/bin/cot";
     }
     
     // just show an uninstallation guide as a sheet
-    [self showUninsatllGuideWithSudo:NO description:NSLocalizedString(@"Uninstallation was denied by the system.", nil)];
+    [self showUninsatllGuideWithDescription:NSLocalizedString(@"Uninstallation was denied by the system.", nil)];
 }
 
 
@@ -334,10 +309,10 @@ static NSString *const kPreferredSymbolicLinkPath = @"/usr/local/bin/cot";
 
 // ------------------------------------------------------
 /// display command install guide in Terminal.app as a sheet
-- (void)showInstallGuideWithSudo:(BOOL)withSudo description:(nonnull NSString *)description
+- (void)showInstallGuideWithDescription:(nonnull NSString *)description
 // ------------------------------------------------------
 {
-    NSString *suggestion = [NSString stringWithFormat:@"%@\n\n\t%@", NSLocalizedString(@"You can install cot command manually running the following command on Terminal:", nil), [self installCommandWithSudo:withSudo]];
+    NSString *suggestion = [NSString stringWithFormat:@"%@\n\n\t%@", NSLocalizedString(@"You can install cot command manually running the following command on Terminal:", nil), [self installCommandString]];
     
     NSError *error = [NSError errorWithDomain:CEErrorDomain
                                          code:CESymlinkCreationDeniedError
@@ -353,10 +328,10 @@ static NSString *const kPreferredSymbolicLinkPath = @"/usr/local/bin/cot";
 
 // ------------------------------------------------------
 /// display command uninstall guide in Terminal.app as a sheet
-- (void)showUninsatllGuideWithSudo:(BOOL)withSudo description:(nonnull NSString *)description
+- (void)showUninsatllGuideWithDescription:(nonnull NSString *)description
 // ------------------------------------------------------
 {
-    NSString *suggestion = [NSString stringWithFormat:@"%@\n\n\t%@", NSLocalizedString(@"You can uninstall cot command manually running the following command on Terminal:", nil), [self uninstallCommandWithSudo:withSudo]];
+    NSString *suggestion = [NSString stringWithFormat:@"%@\n\n\t%@", NSLocalizedString(@"You can uninstall cot command manually running the following command on Terminal:", nil), [self uninstallCommandString]];
     
     NSError *error = [NSError errorWithDomain:CEErrorDomain
                                          code:CESymlinkCreationDeniedError

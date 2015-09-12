@@ -27,9 +27,8 @@
 <p>You can also install it to a desired location creating a symbolic link via Terminal. The <code>cot</code> substance is bundled at '<code>Contents/SharedSupport/bin/cot</code>' in CotEditor.app.</p>
 <pre><code>ln -s /Applications/CotEditor.app/Contents/SharedSupport/bin/cot ~/bin/cot</code></pre>
 
-<h3>Installing on El Capitan</h3>
-<p>On OS X 10.11 El Capitan (and probably later), Installing <code>cot</code> command via Integration pane is no more available sinse Sandboxed applications cannot create a symbolic link at '<code>/usr/local/bin/</code>'. You can, however, install the command on Terminal.app manually. Note that you need to use <code>sudo</code> to create a symbolic link at '<code>/usr/local/bin/</code>'.</p>
-<pre><code><strong>sudo</strong> ln -s /Applications/CotEditor.app/Contents/SharedSupport/bin/cot /usr/local/bin/cot</code></pre>
+<p>And uninstallation via Terminal is like the following:</p>
+<pre><code>unlink /user/local/bin/cot</code></pre>
 
 <h2>Options</h2>
 <p>The following options can be used on <code>cot</code> command.</p>

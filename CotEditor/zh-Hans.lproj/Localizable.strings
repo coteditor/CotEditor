@@ -310,9 +310,7 @@
 "Do you really want to install the command-line tool for “%@”?\n\nThe command will be invalid if CotEditor is renamed." = "确定要为“%@”安装命令行工具吗？\n\n如果 CotEditor 被重命名，命令行工具将失效。";
 
 "Uninstallation was denied by the system." = "系统不允许卸载操作。";
-"Creating symbolic link at “%@” by third-party applications is denied on OS X %@." = "系统不允许在 OS X %@ 上由第三方应用创建位于“%@”的符号链接。";
 "You can install cot command manually running the following command on Terminal:" = "你可以手动在终端运行以下命令以创建 cot 命令：";
-"Modifying files at “%@” by third-party applications is denied on OS X %@." = "系统不允许在 OS X %@ 上由第三方应用更改位于“%@”的文件。";
 "You can uninstall cot command manually running the following command on Terminal:" = "可以手动在终端运行以下命令以卸载 cot 命令：";
 
 

@@ -310,9 +310,7 @@
 "Do you really want to install the command-line tool for “%@”?\n\nThe command will be invalid if CotEditor is renamed." = "Möchten Sie das Kommandozeilenwerkzeug für „%@“ wirklich installieren?\n\nDer Befehl wird ungültig, wenn CotEditor umbenannt wird.";
 
 "Uninstallation was denied by the system." = "Deinstallieren wurde vom System verweigert.";
-"Creating symbolic link at “%@” by third-party applications is denied on OS X %@." = "Symbolischen Link nach „%@“ durch Drittanbieter-Programme zu erstellen, wird unter OS X %@ verweigert.";
 "You can install cot command manually running the following command on Terminal:" = "Sie können den „cot“-Befehl manuell installieren, indem den folgenden Befehl im Terminal auszuführen:";
-"Modifying files at “%@” by third-party applications is denied on OS X %@." = "Dateien in „%@“ durch Drittanbieter-Programme zu ändern, wird unter OS X %@ verweigert.";
 "You can uninstall cot command manually running the following command on Terminal:" = "Sie können den „cot“-Befehl manuell deinstallieren, indem den folgenden Befehl im Terminal auszuführen:";
 
 
