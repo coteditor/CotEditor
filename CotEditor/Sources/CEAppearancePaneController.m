@@ -38,6 +38,7 @@
 @property (nonatomic, nullable, weak) IBOutlet NSTextField *fontField;
 @property (nonatomic, nullable, weak) IBOutlet NSTableView *themeTableView;
 @property (nonatomic, nullable, weak) IBOutlet NSBox *box;
+@property (nonatomic, nullable, weak) IBOutlet NSMenu *themeTableMenu;
 
 @property (nonatomic, nullable) CEThemeViewController *themeViewController;
 @property (nonatomic, nullable, copy) NSArray<NSString *> *themeNames;
@@ -103,19 +104,57 @@
 - (BOOL)validateMenuItem:(nonnull NSMenuItem *)menuItem
 // ------------------------------------------------------
 {
-    BOOL isCustomized;
-    BOOL isBundled = [[CEThemeManager sharedManager] isBundledTheme:[self selectedTheme] cutomized:&isCustomized];
+    BOOL isContextualMenu = ([menuItem menu] == [self themeTableMenu]);
     
-    if ([menuItem action] == @selector(exportTheme:)) {
-        [menuItem setTitle:[NSString stringWithFormat:NSLocalizedString(@"Export “%@”…", nil), [self selectedTheme]]];
+    NSString *representedTheme = [self selectedTheme];
+    if (isContextualMenu) {
+        NSInteger clickedrow = [[self themeTableView] clickedRow];
+        
+        if (clickedrow == -1) {  // clicked blank area
+            representedTheme = nil;
+        } else {
+            representedTheme = [self themeNames][clickedrow];
+        }
+    }
+    [menuItem setRepresentedObject:representedTheme];
+    
+    BOOL isCustomized;
+    BOOL isBundled = [[CEThemeManager sharedManager] isBundledTheme:representedTheme cutomized:&isCustomized];
+    
+    if (([menuItem action] == @selector(addTheme:)) ||
+        ([menuItem action] == @selector(importTheme:)))
+    {
+        [menuItem setHidden:(isContextualMenu && representedTheme)];
+        
+    } else if ([menuItem action] == @selector(exportTheme:)) {
+        if (!isContextualMenu) {
+            [menuItem setTitle:[NSString stringWithFormat:NSLocalizedString(@"Export “%@”…", nil), representedTheme]];
+        }
+        [menuItem setHidden:!representedTheme];
         return (!isBundled || isCustomized);
         
+    } else if ([menuItem action] == @selector(renameTheme:)) {
+        if (!isContextualMenu) {
+            [menuItem setTitle:[NSString stringWithFormat:NSLocalizedString(@"Rename “%@”", nil), representedTheme]];
+        }
+        [menuItem setHidden:!representedTheme];
+        return !isBundled;
+        
     } else if ([menuItem action] == @selector(duplicateTheme:)) {
-        [menuItem setTitle:[NSString stringWithFormat:NSLocalizedString(@"Duplicate “%@”", nil), [self selectedTheme]]];
+        if (!isContextualMenu) {
+            [menuItem setTitle:[NSString stringWithFormat:NSLocalizedString(@"Duplicate “%@”", nil), representedTheme]];
+        }
+        [menuItem setHidden:!representedTheme];
+        
     } else if ([menuItem action] == @selector(restoreTheme:)) {
-        [menuItem setTitle:[NSString stringWithFormat:NSLocalizedString(@"Restore “%@”", nil), [self selectedTheme]]];
-        [menuItem setHidden:!isBundled];
+        if (!isContextualMenu) {
+            [menuItem setTitle:[NSString stringWithFormat:NSLocalizedString(@"Restore “%@”", nil), representedTheme]];
+        }
+        [menuItem setHidden:(!isBundled || !representedTheme)];
         return isCustomized;
+        
+    } else if ([menuItem action] == @selector(deleteTheme:)) {
+        [menuItem setHidden:(isBundled || !representedTheme)];
     }
     
     return YES;
@@ -373,7 +412,9 @@
 - (IBAction)deleteTheme:(nullable id)sender
 //------------------------------------------------------
 {
-    [self deleteThemeWithName:[self selectedTheme]];
+    NSString *themeName = ([sender isKindOfClass:[NSMenuItem class]]) ? [sender representedObject] : [self selectedTheme];
+    
+    [self deleteThemeWithName:themeName];
 }
 
 
@@ -382,7 +423,9 @@
 - (IBAction)duplicateTheme:(nullable id)sender
 //------------------------------------------------------
 {
-    [[CEThemeManager sharedManager] duplicateTheme:[self selectedTheme] error:nil];
+    NSString *themeName = ([sender isKindOfClass:[NSMenuItem class]]) ? [sender representedObject] : [self selectedTheme];
+    
+    [[CEThemeManager sharedManager] duplicateTheme:themeName error:nil];
 }
 
 
@@ -391,19 +434,19 @@
 - (IBAction)exportTheme:(nullable id)sender
 //------------------------------------------------------
 {
-    NSString *selectedThemeName = [self selectedTheme];
+    NSString *themeName = ([sender isKindOfClass:[NSMenuItem class]]) ? [sender representedObject] : [self selectedTheme];
     
     NSSavePanel *savePanel = [NSSavePanel savePanel];
     [savePanel setCanCreateDirectories:YES];
     [savePanel setCanSelectHiddenExtension:YES];
     [savePanel setNameFieldLabel:NSLocalizedString(@"Export As:", nil)];
-    [savePanel setNameFieldStringValue:selectedThemeName];
+    [savePanel setNameFieldStringValue:themeName];
     [savePanel setAllowedFileTypes:@[CEThemeExtension]];
     
     [savePanel beginSheetModalForWindow:[[self view] window] completionHandler:^(NSInteger result) {
         if (result == NSFileHandlingPanelCancelButton) { return; }
         
-        [[CEThemeManager sharedManager] exportTheme:selectedThemeName toURL:[savePanel URL] error:nil];
+        [[CEThemeManager sharedManager] exportTheme:themeName toURL:[savePanel URL] error:nil];
     }];
 }
 
@@ -436,7 +479,21 @@
 - (IBAction)restoreTheme:(nullable id)sender
 // ------------------------------------------------------
 {
-    [self restoreThemeWithName:[self selectedTheme]];
+    NSString *themeName = ([sender isKindOfClass:[NSMenuItem class]]) ? [sender representedObject] : [self selectedTheme];
+    
+    [self restoreThemeWithName:themeName];
+}
+
+
+// ------------------------------------------------------
+/// カスタマイズされたバンドル版テーマをオリジナルに戻す
+- (IBAction)renameTheme:(nullable id)sender
+// ------------------------------------------------------
+{
+    NSString *themeName = ([sender isKindOfClass:[NSMenuItem class]]) ? [sender representedObject] : [self selectedTheme];
+    NSUInteger row = [[self themeNames] indexOfObject:themeName];
+    
+    [[self themeTableView] editColumn:0 row:row withEvent:nil select:NO];
 }
 
 

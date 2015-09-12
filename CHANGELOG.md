@@ -29,7 +29,8 @@ develop
     - Make editor panel resizable.
 - Now syntax style is automatically set to “XML” on file opening if no appropriate style can be found but the file content starts with a XML declaration.
 - Update word completion list setting in Edit pane in Preferences (The previous setting has been reset).
-- Support “swipe to delete” for some tables in Preferences on El Capitan. 
+- Support “swipe to delete” for some tables in Preferences on El Capitan.
+- Improve contexutal menu for theme list on preferences.
 - Adjust highlight color for find panel.
 - Tweak some message terms.
 - Update documents.

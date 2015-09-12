@@ -265,6 +265,7 @@
 "Select at least one item to enable completion." = "Wählen Sie mindestens ein Element die Vervollständigung zu aktivieren.";
 
 // Appearance pane
+"Rename “%@”" = "“%@” umbenennen";
 "Duplicate “%@”" = "„%@“ duplizieren";
 "Restore “%@”" = "„%@“ zurücksetzen";
 "Are you sure you want to delete “%@” theme?" = "Möchten Sie das Thema „%@“ wirklich löschen?";
