@@ -79,9 +79,9 @@
 /* Class = "NSMenuItem"; title = "Open Hidden…"; ObjectID = "688"; */
 "688.title" = "打开隐藏文件…";
 /* Class = "NSMenuItem"; title = "Open Recent"; ObjectID = "124"; */
-"124.title" = "打开最近使用的";
+"124.title" = "打开最近使用";
 /* Class = "NSMenu"; title = "Open Recent"; ObjectID = "125"; */
-"125.title" = "打开最近使用的";
+"125.title" = "打开最近使用";
 
 /* Class = "NSMenuItem"; title = "Get Info"; ObjectID = "564"; */
 "564.title" = "显示简介";
@@ -125,7 +125,7 @@
 "171.title" = "粘贴";
 /* Class = "NSMenuItem"; title = "Delete"; ObjectID = "164"; */
 "164.title" = "删除";
-/* Class = "NSMenuItem"; title = "Select All选"; ObjectID = "172"; */
+/* Class = "NSMenuItem"; title = "Select All"; ObjectID = "172"; */
 "172.title" = "全选";
 /* Class = "NSMenuItem"; title = "Select Line"; ObjectID = "Cwp-ys-LJc"; */
 "Cwp-ys-LJc.title" = "选择行";
@@ -260,9 +260,9 @@
 /* Class = "NSMenuItem"; title = "Show Fonts"; ObjectID = "424"; */
 "424.title" = "显示字体";
 /* Class = "NSMenuItem"; title = "Bigger"; ObjectID = "405"; */
-"405.title" = "放大";
+"405.title" = "较大";
 /* Class = "NSMenuItem"; title = "Smaller"; ObjectID = "404"; */
-"404.title" = "缩小";
+"404.title" = "较小";
 /* Class = "NSMenuItem"; title = "Reset to Default"; ObjectID = "574"; */
 "574.title" = "重置";
 /* Class = "NSMenuItem"; title = "Anti-aliasing"; ObjectID = "745"; */
@@ -343,11 +343,11 @@
 "HgR-ke-6gq.title" = "查找全部";
 
 /* Class = "NSMenuItem"; title = "Use Selection for Find"; ObjectID = "hTx-ef-3T2"; */
-"hTx-ef-3T2.title" = "使用选择查找";
+"hTx-ef-3T2.title" = "查找所选内容";
 /* Class = "NSMenuItem"; title = "Use Selection for Replace"; ObjectID = "kwa-lu-0Fz"; */
-"kwa-lu-0Fz.title" = "使用选择替换";
+"kwa-lu-0Fz.title" = "替换所选内容";
 /* Class = "NSMenuItem"; title = "Jump to Selection"; ObjectID = "p4A-mE-Ve3"; */
-"p4A-mE-Ve3.title" = "跳转到选择";
+"p4A-mE-Ve3.title" = "跳到所选内容";
 
 /* Class = "NSMenuItem"; title = "Replace"; ObjectID = "bnD-BP-sPi"; */
 "bnD-BP-sPi.title" = "替换";
