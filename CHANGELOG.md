@@ -5,6 +5,15 @@ Change Log
 develop
 --------------------------
 
+### Additions/Changes
+
+- Tweak a menu item title.
+
+
+
+2.2.0-rc (69)
+--------------------------
+
 ### New Features
 
 - Hanging indentation that enables inserting extra indent to wrapped lines.

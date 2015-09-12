@@ -230,7 +230,7 @@
 "793.title" = "分栏显示";
 /* Class = "NSMenuItem"; title = "Focus on Next Split View"; ObjectID = "794"; */
 "794.title" = "焦点下一个分栏视图";
-/* Class = "NSMenuItem"; title = "Focus on Prev Split View"; ObjectID = "795"; */
+/* Class = "NSMenuItem"; title = "Focus on Previous Split View"; ObjectID = "795"; */
 "795.title" = "焦点前一个分栏视图";
 /* Class = "NSMenuItem"; title = "Stack Views Vertically"; ObjectID = "u46-te-4c4"; */
 "u46-te-4c4.title" = "纵向分栏显示";

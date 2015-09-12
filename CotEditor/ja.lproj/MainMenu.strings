@@ -230,7 +230,7 @@
 "793.title" = "エディタを分割";
 /* Class = "NSMenuItem"; title = "Focus on Next Split View"; ObjectID = "794"; */
 "794.title" = "フォーカスを次の分割エディタへ";
-/* Class = "NSMenuItem"; title = "Focus on Prev Split View"; ObjectID = "795"; */
+/* Class = "NSMenuItem"; title = "Focus on Previous Split View"; ObjectID = "795"; */
 "795.title" = "フォーカスを前の分割エディタへ";
 /* Class = "NSMenuItem"; title = "Stack Views Vertically"; ObjectID = "u46-te-4c4"; */
 "u46-te-4c4.title" = "分割エディタを縦に配置";
