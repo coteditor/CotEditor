@@ -144,9 +144,9 @@
 /* Class = "NSMenuItem"; title = "as IANA Charset"; ObjectID = "663"; */
 "663.title" = "以 IANA 字符集";
 /* Class = "NSMenuItem"; title = "with “charset=”"; ObjectID = "665"; */
-"665.title" = "以 “charset=”";
+"665.title" = "以“charset=”";
 /* Class = "NSMenuItem"; title = "with “encoding=”"; ObjectID = "667"; */
-"667.title" = "以 “encoding=”";
+"667.title" = "以“encoding=”";
 
 /* Class = "NSMenuItem"; title = "Inspect Character"; ObjectID = "ToR-yH-ahH"; */
 "ToR-yH-ahH.title" = "检视文字";

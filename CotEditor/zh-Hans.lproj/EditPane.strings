@@ -33,11 +33,11 @@
 /* Class = "NSButtonCell"; title = "Enable smart quotes and dashes"; ObjectID = "nA4-HY-d71"; */
 "nA4-HY-d71.title" = "启用智能引号和破折号";
 /* Class = "NSButtonCell"; title = "Swap “¥” and “\\” keys"; ObjectID = "3303"; */
-"3303.title" = "转换 “¥” 和 “\\” 按键";
+"3303.title" = "转换“¥”和“\\”按键";
 /* Class = "NSButtonCell"; title = "Highlight matching braces “( )” “[ ]” “{ }”"; ObjectID = "3304"; */
-"3304.title" = "高亮配对括号 “( )” “[ ]” “{ }”";
+"3304.title" = "高亮配对括号“( )” “[ ]” “{ }”";
 /* Class = "NSButtonCell"; title = "Highlight “< >”"; ObjectID = "3305"; */
-"3305.title" = "高亮 “< >”";
+"3305.title" = "高亮“< >”";
 
 
 /* Class = "NSTextFieldCell"; title = "Indentation:"; ObjectID = "9bX-ei-1x8"; */
