@@ -39,7 +39,7 @@
 /* Class = "NSTextFieldCell"; title = "Default text encoding:"; ObjectID = "3278"; */
 "3278.title" = "默认文本编码：";
 /* Class = "NSButtonCell"; title = "Save UTF-8 files with a BOM  (not recommended)"; ObjectID = "3281"; */
-"3281.title" = "以带有 BOM 的方式保存 UTF-8 文件 (不推荐)";
+"3281.title" = "以带有 BOM 的方式保存 UTF-8 文件（不推荐）";
 
 /* Class = "NSTextFieldCell"; title = "Opening Files:"; ObjectID = "3277"; */
 "3277.title" = "打开文件：";
@@ -53,7 +53,7 @@
 /* Class = "NSButtonCell"; title = "Enable syntax highlighting"; ObjectID = "3326"; */
 "3326.title" = "启用语法高亮";
 /* Class = "NSTextFieldCell"; title = "(Including Outline Menu)"; ObjectID = "3325"; */
-"3325.title" = "(包括大纲菜单)";
+"3325.title" = "（包括大纲菜单）";
 
 /* Class = "NSButtonCell"; title = "Delay coloring"; ObjectID = "3327"; */
 "3327.title" = "延时渲染";

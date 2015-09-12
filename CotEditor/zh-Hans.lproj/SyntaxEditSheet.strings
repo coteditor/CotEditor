@@ -187,7 +187,7 @@
 /* Class = "NSTextFieldCell"; title = "Regular expressions to extract outline menu items"; ObjectID = "1010"; */
 "1010.title" = "用于提取大纲菜单项的正则表达式";
 /* Class = "NSTextFieldCell"; title = "Menu title pattern (blank matches the whole string)"; ObjectID = "1011"; */
-"1011.title" = "菜单标题样式 (留空匹配整个字符串)";
+"1011.title" = "菜单标题样式（留空匹配整个字符串）";
 
 /* Class = "NSTableColumn"; headerCell.title = "RE String"; ObjectID = "720"; */
 "720.headerCell.title" = "正则表达式";
@@ -212,7 +212,7 @@
 /* Class = "NSTextFieldCell"; title = "Extensions"; ObjectID = "nwR-nY-QUm"; */
 "nwR-nY-QUm.title" = "扩展名";
 /* Class = "NSTableColumn"; headerCell.title = "Extention (without dots)"; ObjectID = "453"; */
-"453.headerCell.title" = "扩展名 (不包括点)";
+"453.headerCell.title" = "扩展名（不包括点）";
 /* Class = "NSTextFieldCell"; title = "Filenames"; ObjectID = "BSb-oh-u25"; */
 "BSb-oh-u25.title" = "文件名";
 /* Class = "NSTableColumn"; headerCell.title = "Filename"; ObjectID = "qKc-FZ-o2j"; */
@@ -230,7 +230,7 @@
 /* Class = "NSTextFieldCell"; title = "Last modified:"; ObjectID = "lEv-Gr-9nX"; */
 "lEv-Gr-9nX.title" = "最后更新：";
 /* Class = "NSTextFieldCell"; title = "(‘YYYY-MM-DD’ format)"; ObjectID = "8qs-tv-hFC"; */
-"8qs-tv-hFC.title" = "(格式 ‘YYYY-MM-DD’)";
+"8qs-tv-hFC.title" = "（格式 ‘YYYY-MM-DD’）";
 /* Class = "NSTextFieldCell"; title = "Distribution URL:"; ObjectID = "RaI-42-gtJ"; */
 "RaI-42-gtJ.title" = "发布 URL：";
 /* Class = "NSTextFieldCell"; title = "Author:"; ObjectID = "h87-QY-CvE"; */
