@@ -266,6 +266,7 @@
 "Select at least one item to enable completion." = "入力補完を有効にするためには1つ以上の項目を選択する必要があります。";
 
 // Appearance pane
+"Rename “%@”" = "“%@”を名称変更";
 "Duplicate “%@”" = "“%@”を複製";
 "Restore “%@”" = "“%@”を元に戻す";
 "Are you sure you want to delete “%@” theme?" = "“%@”テーマを削除してもよろしいですか？";

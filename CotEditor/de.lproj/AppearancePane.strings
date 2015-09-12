@@ -56,6 +56,8 @@
 /* contextual menu */
 /* Class = "NSMenuItem"; title = "New Theme"; ObjectID = "sJb-7g-2FN"; */
 "sJb-7g-2FN.title" = "Neues Thema";
+/* Class = "NSMenuItem"; title = "Rename"; ObjectID = "nWy-OL-CGi"; */
+"nWy-OL-CGi.title" = "Umbenennen";
 /* Class = "NSMenuItem"; title = "Duplicate"; ObjectID = "9LW-xw-HBP"; */
 "9LW-xw-HBP.title" = "Duplizieren";
 /* Class = "NSMenuItem"; title = "Restore"; ObjectID = "vTP-Fc-iBF"; */

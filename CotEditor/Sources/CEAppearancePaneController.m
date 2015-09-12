@@ -121,12 +121,24 @@
     BOOL isCustomized;
     BOOL isBundled = [[CEThemeManager sharedManager] isBundledTheme:representedTheme cutomized:&isCustomized];
     
-    if ([menuItem action] == @selector(exportTheme:)) {
+    if (([menuItem action] == @selector(addTheme:)) ||
+        ([menuItem action] == @selector(importTheme:)))
+    {
+        [menuItem setHidden:(isContextualMenu && representedTheme)];
+        
+    } else if ([menuItem action] == @selector(exportTheme:)) {
         if (!isContextualMenu) {
             [menuItem setTitle:[NSString stringWithFormat:NSLocalizedString(@"Export “%@”…", nil), representedTheme]];
         }
         [menuItem setHidden:!representedTheme];
         return (!isBundled || isCustomized);
+        
+    } else if ([menuItem action] == @selector(renameTheme:)) {
+        if (!isContextualMenu) {
+            [menuItem setTitle:[NSString stringWithFormat:NSLocalizedString(@"Rename “%@”", nil), representedTheme]];
+        }
+        [menuItem setHidden:!representedTheme];
+        return !isBundled;
         
     } else if ([menuItem action] == @selector(duplicateTheme:)) {
         if (!isContextualMenu) {
@@ -470,6 +482,18 @@
     NSString *themeName = ([sender isKindOfClass:[NSMenuItem class]]) ? [sender representedObject] : [self selectedTheme];
     
     [self restoreThemeWithName:themeName];
+}
+
+
+// ------------------------------------------------------
+/// カスタマイズされたバンドル版テーマをオリジナルに戻す
+- (IBAction)renameTheme:(nullable id)sender
+// ------------------------------------------------------
+{
+    NSString *themeName = ([sender isKindOfClass:[NSMenuItem class]]) ? [sender representedObject] : [self selectedTheme];
+    NSUInteger row = [[self themeNames] indexOfObject:themeName];
+    
+    [[self themeTableView] editColumn:0 row:row withEvent:nil select:NO];
 }
 
 

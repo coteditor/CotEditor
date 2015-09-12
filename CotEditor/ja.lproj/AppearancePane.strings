@@ -56,6 +56,8 @@
 /* contextual menu */
 /* Class = "NSMenuItem"; title = "New Theme"; ObjectID = "sJb-7g-2FN"; */
 "sJb-7g-2FN.title" = "新規テーマ";
+/* Class = "NSMenuItem"; title = "Rename"; ObjectID = "nWy-OL-CGi"; */
+"nWy-OL-CGi.title" = "名前を変更";
 /* Class = "NSMenuItem"; title = "Duplicate"; ObjectID = "9LW-xw-HBP"; */
 "9LW-xw-HBP.title" = "複製";
 /* Class = "NSMenuItem"; title = "Restore"; ObjectID = "vTP-Fc-iBF"; */

@@ -234,6 +234,11 @@
                         <menu key="menu" title="OtherViews" id="Q9U-FY-9AJ">
                             <items>
                                 <menuItem title="Theme Action" state="on" image="NSActionTemplate" hidden="YES" id="L9I-Yv-kY0"/>
+                                <menuItem title="Rename" id="OKX-yw-l2O">
+                                    <connections>
+                                        <action selector="renameTheme:" target="-2" id="ZkK-vQ-5ea"/>
+                                    </connections>
+                                </menuItem>
                                 <menuItem title="Duplicate" id="y0w-cO-gQS">
                                     <connections>
                                         <action selector="duplicateTheme:" target="-2" id="9wl-0G-GB2"/>
@@ -249,6 +254,7 @@
                                         <action selector="exportTheme:" target="-2" id="MFX-9x-4Ss"/>
                                     </connections>
                                 </menuItem>
+                                <menuItem isSeparatorItem="YES" id="UAd-WS-R1U"/>
                                 <menuItem title="Import…" id="gcs-B8-kPL">
                                     <connections>
                                         <action selector="importTheme:" target="-2" id="TQA-PC-EEL"/>
@@ -396,6 +402,12 @@
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="restoreTheme:" target="-2" id="dsY-Sw-hqX"/>
+                    </connections>
+                </menuItem>
+                <menuItem title="Rename" id="nWy-OL-CGi">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="renameTheme:" target="-2" id="jQm-TR-Iea"/>
                     </connections>
                 </menuItem>
                 <menuItem title="Delete" id="WNG-Ai-RdG">

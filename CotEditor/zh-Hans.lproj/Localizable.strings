@@ -265,6 +265,7 @@
 "Select at least one item to enable completion." = "至少选择一个条目来激活补全";
 
 // Appearance pane
+"Rename “%@”" = "给“%@”重新命名";
 "Duplicate “%@”" = "拷贝“%@”";
 "Restore “%@”" = "还原“%@”";
 "Are you sure you want to delete “%@” theme?" = "确认删除“%@”主题？";
