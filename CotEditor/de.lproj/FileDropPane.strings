@@ -49,15 +49,15 @@
 "544.ibShadowedToolTip" = "Der Absolute Pfad der abgelegten Datei.";
 /* Class = "NSMenuItem"; ibShadowedToolTip = "The relative path between dropped file and the document."; ObjectID = "546"; */
 "546.ibShadowedToolTip" = "Der Relative Pfad zwischen der abgelegten Datei und der Dokument.";
-/* Class = "NSMenuItem"; ibShadowedToolTip = "The dropped file's name include extension (if exists)."; ObjectID = "542"; */
+/* Class = "NSMenuItem"; ibShadowedToolTip = "The dropped file’s name include extension (if exists)."; ObjectID = "542"; */
 "542.ibShadowedToolTip" = "Der Name der abgelegten Datei Suffix inklusive (falls es existiert).";
-/* Class = "NSMenuItem"; ibShadowedToolTip = "The dropped file's name without extension."; ObjectID = "538"; */
+/* Class = "NSMenuItem"; ibShadowedToolTip = "The dropped file’s name without extension."; ObjectID = "538"; */
 "538.ibShadowedToolTip" = "Der Name der abgelegten Datei ohne Suffix.";
-/* Class = "NSMenuItem"; ibShadowedToolTip = "The dropped file's extension."; ObjectID = "694"; */
+/* Class = "NSMenuItem"; ibShadowedToolTip = "The dropped file’s extension."; ObjectID = "694"; */
 "694.ibShadowedToolTip" = "Das Suffix der abgelegten Datei.";
-/* Class = "NSMenuItem"; ibShadowedToolTip = "The dropped file's extension (converted to lowercase)."; ObjectID = "695"; */
+/* Class = "NSMenuItem"; ibShadowedToolTip = "The dropped file’s extension (converted to lowercase)."; ObjectID = "695"; */
 "695.ibShadowedToolTip" = "Das Suffix der abgelegten Datei (in Kleinbuchstaben umgewandelt).";
-/* Class = "NSMenuItem"; ibShadowedToolTip = "The dropped file's extension (converted to uppercase)."; ObjectID = "696"; */
+/* Class = "NSMenuItem"; ibShadowedToolTip = "The dropped file’s extension (converted to uppercase)."; ObjectID = "696"; */
 "696.ibShadowedToolTip" = "Das Suffix der abgelegten Datei (in Großbuchstaben umgewandelt).";
 /* Class = "NSMenuItem"; ibShadowedToolTip = "The parent directory name of dropped file."; ObjectID = "539"; */
 "539.ibShadowedToolTip" = "Der Übergeordnete Ordnername der abgelegten Datei.";

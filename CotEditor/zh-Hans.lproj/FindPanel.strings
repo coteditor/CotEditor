@@ -156,7 +156,7 @@
 "Sdf-5P-GP1.title" = "单行无效";
 /* Class = "NSMenuItem"; title = "Capture Group"; ObjectID = "LiY-vD-U6B"; */
 "LiY-vD-U6B.title" = "按组匹配";
-/* Class = "NSMenuItem"; title = "Don't Capture Group"; ObjectID = "fQl-sZ-bjK"; */
+/* Class = "NSMenuItem"; title = "Don’t Capture Group"; ObjectID = "fQl-sZ-bjK"; */
 "fQl-sZ-bjK.title" = "不匹配组";
 /* Class = "NSMenuItem"; title = "Not Begin of Line"; ObjectID = "AFF-AC-IR9"; */
 "AFF-AC-IR9.title" = "不匹配行初";

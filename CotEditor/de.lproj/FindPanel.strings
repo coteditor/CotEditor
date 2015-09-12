@@ -155,7 +155,7 @@
 "Sdf-5P-GP1.title" = "Eine Zeile ablehnen";
 /* Class = "NSMenuItem"; title = "Capture Group"; ObjectID = "LiY-vD-U6B"; */
 "LiY-vD-U6B.title" = "In Gruppe sichern";
-/* Class = "NSMenuItem"; title = "Don't Capture Group"; ObjectID = "fQl-sZ-bjK"; */
+/* Class = "NSMenuItem"; title = "Don’t Capture Group"; ObjectID = "fQl-sZ-bjK"; */
 "fQl-sZ-bjK.title" = "Kein Sichern in Gruppe";
 /* Class = "NSMenuItem"; title = "Not Begin of Line"; ObjectID = "AFF-AC-IR9"; */
 "AFF-AC-IR9.title" = "Nicht Zeilenanfang";

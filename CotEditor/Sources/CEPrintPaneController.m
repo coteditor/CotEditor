@@ -150,7 +150,7 @@
     
     // setup popup menu
     [[self colorPopupButton] addItemWithTitle:NSLocalizedString(@"Black and White", nil)];
-    [[self colorPopupButton] addItemWithTitle:NSLocalizedString(@"Same as Document's Setting", nil)];
+    [[self colorPopupButton] addItemWithTitle:NSLocalizedString(@"Same as Document’s Setting", nil)];
     [[[self colorPopupButton] menu] addItem:[NSMenuItem separatorItem]];
     [[self colorPopupButton] addItemWithTitle:NSLocalizedString(@"Theme", nil)];
     [[[self colorPopupButton] lastItem] setAction:nil];

@@ -29,23 +29,23 @@
 "eXI-55-yQO.title" = "カラー：";
 /* Class = "NSMenuItem"; title = "Black and White"; ObjectID = "590"; */
 "590.title" = "白黒";
-/* Class = "NSMenuItem"; title = "Same as Document's Setting"; ObjectID = "589"; */
+/* Class = "NSMenuItem"; title = "Same as Document’s Setting"; ObjectID = "589"; */
 "589.title" = "書類の設定と同じ";
 
 /* Class = "NSTextFieldCell"; title = "Line Numbers:"; ObjectID = "716"; */
 "716.title" = "行番号：";
-/* Class = "NSMenuItem"; title = "Don't Print"; ObjectID = "420"; */
+/* Class = "NSMenuItem"; title = "Don’t Print"; ObjectID = "420"; */
 "420.title" = "プリントしない";
-/* Class = "NSMenuItem"; title = "Same as Document's Setting"; ObjectID = "419"; */
+/* Class = "NSMenuItem"; title = "Same as Document’s Setting"; ObjectID = "419"; */
 "419.title" = "書類の設定と同じ";
 /* Class = "NSMenuItem"; title = "Print"; ObjectID = "418"; */
 "418.title" = "プリント";
 
 /* Class = "NSTextFieldCell"; title = "Invisibles:"; ObjectID = "718"; */
 "718.title" = "不可視文字：";
-/* Class = "NSMenuItem"; title = "Same as Document's Setting"; ObjectID = "427"; */
+/* Class = "NSMenuItem"; title = "Same as Document’s Setting"; ObjectID = "427"; */
 "427.title" = "書類の設定と同じ";
-/* Class = "NSMenuItem"; title = "Don't Print"; ObjectID = "428"; */
+/* Class = "NSMenuItem"; title = "Don’t Print"; ObjectID = "428"; */
 "428.title" = "プリントしない";
 /* Class = "NSMenuItem"; title = "Print All"; ObjectID = "426"; */
 "426.title" = "すべてプリント";

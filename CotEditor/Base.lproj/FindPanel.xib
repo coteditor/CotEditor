@@ -327,7 +327,7 @@
                                                             <binding destination="qZS-yd-wpm" name="value" keyPath="captureGroupOption" id="wHN-03-p8w"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem title="Don't Capture Group" tag="1" indentationLevel="1" id="fQl-sZ-bjK">
+                                                    <menuItem title="Don’t Capture Group" tag="1" indentationLevel="1" id="fQl-sZ-bjK">
                                                         <connections>
                                                             <action selector="toggleOption:" target="qZS-yd-wpm" id="ZiP-bJ-vvp"/>
                                                             <binding destination="qZS-yd-wpm" name="value" keyPath="dontCaptureGroupOption" id="V4U-34-L08"/>

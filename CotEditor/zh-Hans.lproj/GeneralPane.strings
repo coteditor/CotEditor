@@ -51,7 +51,7 @@
 /* Class = "NSTextFieldCell"; title = "When document is modified by another application:"; ObjectID = "x4n-2n-I3p"; */
 "x4n-2n-I3p.title" = "当文档被其他应用更改时:";
 
-/* Class = "NSButtonCell"; title = "Keep CotEditor's edition"; ObjectID = "DnS-XJ-7RI"; */
+/* Class = "NSButtonCell"; title = "Keep CotEditor’s edition"; ObjectID = "DnS-XJ-7RI"; */
 "DnS-XJ-7RI.title" = "保留 CotEditor 的版本";
 /* Class = "NSButtonCell"; title = "Ask how to resolve"; ObjectID = "1qS-Ay-sca"; */
 "1qS-Ay-sca.title" = "询问如何更新";

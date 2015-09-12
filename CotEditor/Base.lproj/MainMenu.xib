@@ -451,7 +451,7 @@
                             <menuItem isSeparatorItem="YES" id="748">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
-                            <menuItem title="Set View's Opacity…" keyEquivalent="T" id="367">
+                            <menuItem title="Set View’s Opacity…" keyEquivalent="T" id="367">
                                 <connections>
                                     <action selector="showOpacityPanel:" target="290" id="vZR-68-5AC"/>
                                 </connections>
@@ -962,7 +962,7 @@
                                     <action selector="openHelpAnchor:" target="290" id="ooo-Mu-EKH"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="What's New in CotEditor 2.2" tag="9" id="DCW-Ij-540">
+                            <menuItem title="What’s New in CotEditor 2.2" tag="9" id="DCW-Ij-540">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="openHelpAnchor:" target="290" id="jUU-Pz-dYo"/>

@@ -28,7 +28,7 @@
                         <menu key="menu" title="OtherViews" id="587">
                             <items>
                                 <menuItem title="Black and White" id="590"/>
-                                <menuItem title="Same as Document's Setting" id="589"/>
+                                <menuItem title="Same as Document’s Setting" id="589"/>
                             </items>
                         </menu>
                     </popUpButtonCell>
@@ -46,8 +46,8 @@
                         <font key="font" metaFont="menu"/>
                         <menu key="menu" title="OtherViews" id="425">
                             <items>
-                                <menuItem title="Don't Print" id="428"/>
-                                <menuItem title="Same as Document's Setting" id="427"/>
+                                <menuItem title="Don’t Print" id="428"/>
+                                <menuItem title="Same as Document’s Setting" id="427"/>
                                 <menuItem title="Print All" id="426"/>
                             </items>
                         </menu>
@@ -74,8 +74,8 @@
                         <font key="font" metaFont="menu"/>
                         <menu key="menu" title="OtherViews" id="417">
                             <items>
-                                <menuItem title="Don't Print" id="420"/>
-                                <menuItem title="Same as Document's Setting" id="419"/>
+                                <menuItem title="Don’t Print" id="420"/>
+                                <menuItem title="Same as Document’s Setting" id="419"/>
                                 <menuItem title="Print" id="418"/>
                             </items>
                         </menu>

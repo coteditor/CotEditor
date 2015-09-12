@@ -101,9 +101,9 @@
 
 "Update" = "Aktualisieren";
 "The file has been modified by another application. There are also unsaved changes in CotEditor." = "Die Datei wurde durch ein anderes Programm geändert. Es gibt auch ungespeicherte Änderungen in CotEditor.";
-"Do you want to keep CotEditor's edition or update to the modified edition?" = "Möchten Sie die Auflage CotEditors erhalten oder zur geänderten Auflage aktualisieren?";
+"Do you want to keep CotEditor’s edition or update to the modified edition?" = "Möchten Sie die Auflage CotEditors erhalten oder zur geänderten Auflage aktualisieren?";
 "The file has been modified by another application." = "Die Datei wurde durch ein anderes Programm geändert.";
-"Keep CotEditor's Edition" = "Auflage CotEditors erhalten";
+"Keep CotEditor’s Edition" = "Auflage CotEditors erhalten";
 
 
 /* MARK: CEPrintAccessoryViewController */
@@ -124,8 +124,8 @@
 
 "On" = "Ein";
 "Off" = "Aus";
-"Don't Print" = "Nicht drucken";
-"Same as Document's Setting" = "Gleich der Dokument";
+"Don’t Print" = "Nicht drucken";
+"Same as Document’s Setting" = "Gleich der Dokument";
 "Black and White" = "Schwarz-Weiß";
 "Print" = "Drucken";
 "Print All" = "Alles drucken";
@@ -392,7 +392,7 @@
 "You can’t use a theme name that begins with a dot “.”." = "Themanamen dürfen nicht mit einem Punkt „.“ beginnen.";
 "Please choose another name." = "Bitte wählen Sie einen anderen Namen.";
 
-"Auto-generated theme that is migrated from user's coloring setting on CotEditor 1.x" = "Aus der vorherigen Einstellung in CotEditor 1.x automatisch migriertes Thema";
+"Auto-generated theme that is migrated from user’s coloring setting on CotEditor 1.x" = "Aus der vorherigen Einstellung in CotEditor 1.x automatisch migriertes Thema";
 
 
 /* MARK: CEKeyBindingManager */

@@ -50,7 +50,7 @@
 /* Class = "NSTextFieldCell"; title = "When document is modified by another application:"; ObjectID = "x4n-2n-I3p"; */
 "x4n-2n-I3p.title" = "Wenn Dokument wird durch ein anderes Programm geändert:";
 
-/* Class = "NSButtonCell"; title = "Keep CotEditor's edition"; ObjectID = "DnS-XJ-7RI"; */
+/* Class = "NSButtonCell"; title = "Keep CotEditor’s edition"; ObjectID = "DnS-XJ-7RI"; */
 "DnS-XJ-7RI.title" = "Auflage CotEditors erhalten";
 /* Class = "NSButtonCell"; title = "Ask how to resolve"; ObjectID = "1qS-Ay-sca"; */
 "1qS-Ay-sca.title" = "Erfragen, wie zu lösen";

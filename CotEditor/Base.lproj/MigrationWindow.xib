@@ -299,7 +299,7 @@ DQ
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <button toolTip="See “What's New in CotEditor 2.0” on Help" horizontalHuggingPriority="750" verticalHuggingPriority="750" tag="9" translatesAutoresizingMaskIntoConstraints="NO" id="hGz-yb-qTP">
+                <button toolTip="See “What’s New in CotEditor 2.0” on Help" horizontalHuggingPriority="750" verticalHuggingPriority="750" tag="9" translatesAutoresizingMaskIntoConstraints="NO" id="hGz-yb-qTP">
                     <rect key="frame" x="18" y="13" width="22" height="22"/>
                     <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" controlSize="small" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Xzi-xX-1br">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>

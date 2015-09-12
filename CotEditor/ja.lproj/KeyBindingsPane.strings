@@ -38,7 +38,7 @@
 "3363.title" = "追加テキストキーバインド";
 /* Class = "NSTextFieldCell"; title = "Shortcuts to insert preset text."; ObjectID = "3364"; */
 "3364.title" = "プリセットしたテキストを挿入するショートカット";
-/* Class = "NSTextFieldCell"; title = "This setting is not for the standard Cocoa key bindings\nbut for CotEditor's original function."; ObjectID = "3366"; */
+/* Class = "NSTextFieldCell"; title = "This setting is not for the standard Cocoa key bindings\nbut for CotEditor’s original function."; ObjectID = "3366"; */
 "3366.title" = "CotEditor の独自機能であり、Cocoa 標準のキーバインドを設定するものではありません。";
 /* Class = "NSButtonCell"; title = "Edit…"; ObjectID = "3365"; */
 "3365.title" = "編集...";

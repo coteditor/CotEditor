@@ -101,9 +101,9 @@
 
 "Update" = "更新";
 "The file has been modified by another application. There are also unsaved changes in CotEditor." = "文件被其他应用更改，CotEditor 中还有未保存的变更。";
-"Do you want to keep CotEditor's edition or update to the modified edition?" = "保留 CotEditor 的版本还是更新至被编辑过的版本？";
+"Do you want to keep CotEditor’s edition or update to the modified edition?" = "保留 CotEditor 的版本还是更新至被编辑过的版本？";
 "The file has been modified by another application." = "文件被其他应用更改";
-"Keep CotEditor's Edition" = "保留 CotEditor 编辑的内容";
+"Keep CotEditor’s Edition" = "保留 CotEditor 编辑的内容";
 
 
 /* MARK: CEPrintAccessoryViewController */
@@ -123,8 +123,8 @@
 
 "On" = "开";
 "Off" = "关";
-"Don't Print" = "不打印";
-"Same as Document's Setting" = "同文档设置一致";
+"Don’t Print" = "不打印";
+"Same as Document’s Setting" = "同文档设置一致";
 "Black and White" = "黑白";
 "Print" = "打印";
 "Print All" = "全部打印";
@@ -392,7 +392,7 @@
 "You can’t use a theme name that begins with a dot “.”." = "主题名称不能含有“.”";
 "Please choose another name." = "请输入其他名称";
 
-"Auto-generated theme that is migrated from user's coloring setting on CotEditor 1.x" = "由 CotEditor 1.x 的用户颜色设置中自动生成的主题";
+"Auto-generated theme that is migrated from user’s coloring setting on CotEditor 1.x" = "由 CotEditor 1.x 的用户颜色设置中自动生成的主题";
 
 
 /* MARK: CEKeyBindingManager */

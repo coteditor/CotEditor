@@ -59,25 +59,25 @@
                                 <attributedString key="textStorage">
                                     <fragment>
                                         <mutableString key="content">&lt;&lt;&lt;ABSOLUTE-PATH&gt;&gt;&gt;
-The dropped file's absolute path.
+The dropped file’s absolute path.
 
 &lt;&lt;&lt;RELATIVE-PATH&gt;&gt;&gt;
 The relative path between the dropped file and the document.
 
 &lt;&lt;&lt;FILENAME&gt;&gt;&gt;
-The dropped file's name with extension (if exists).
+The dropped file’s name with extension (if exists).
 
 &lt;&lt;&lt;FILENAME-NOSUFFIX&gt;&gt;&gt;
-The dropped file's name without extension.
+The dropped file’s name without extension.
 
 &lt;&lt;&lt;FILEEXTENSION&gt;&gt;&gt;
-The dropped file's extension.
+The dropped file’s extension.
 
 &lt;&lt;&lt;FILEEXTENSION-LOWER&gt;&gt;&gt;
-The dropped file's extension (converted to lowercase).
+The dropped file’s extension (converted to lowercase).
 
 &lt;&lt;&lt;FILEEXTENSION-UPPER&gt;&gt;&gt;
-The dropped file's extension (converted to uppercase).
+The dropped file’s extension (converted to uppercase).
 
 &lt;&lt;&lt;DIRECTORY&gt;&gt;&gt;
 The parent directory name of the dropped file.
@@ -131,27 +131,27 @@ The parent directory name of the dropped file.
                                         <action selector="insertToken:" target="-2" id="556"/>
                                     </connections>
                                 </menuItem>
-                                <menuItem title="&lt;&lt;&lt;FILENAME&gt;&gt;&gt;" toolTip="The dropped file's name include extension (if exists)." id="542">
+                                <menuItem title="&lt;&lt;&lt;FILENAME&gt;&gt;&gt;" toolTip="The dropped file’s name include extension (if exists)." id="542">
                                     <connections>
                                         <action selector="insertToken:" target="-2" id="557"/>
                                     </connections>
                                 </menuItem>
-                                <menuItem title="&lt;&lt;&lt;FILENAME-NOSUFFIX&gt;&gt;&gt;" toolTip="The dropped file's name without extension." id="538">
+                                <menuItem title="&lt;&lt;&lt;FILENAME-NOSUFFIX&gt;&gt;&gt;" toolTip="The dropped file’s name without extension." id="538">
                                     <connections>
                                         <action selector="insertToken:" target="-2" id="558"/>
                                     </connections>
                                 </menuItem>
-                                <menuItem title="&lt;&lt;&lt;FILEEXTENSION&gt;&gt;&gt;" toolTip="The dropped file's extension." id="694">
+                                <menuItem title="&lt;&lt;&lt;FILEEXTENSION&gt;&gt;&gt;" toolTip="The dropped file’s extension." id="694">
                                     <connections>
                                         <action selector="insertToken:" target="-2" id="699"/>
                                     </connections>
                                 </menuItem>
-                                <menuItem title="&lt;&lt;&lt;FILEEXTENSION-LOWER&gt;&gt;&gt;" toolTip="The dropped file's extension (converted to lowercase)." id="695">
+                                <menuItem title="&lt;&lt;&lt;FILEEXTENSION-LOWER&gt;&gt;&gt;" toolTip="The dropped file’s extension (converted to lowercase)." id="695">
                                     <connections>
                                         <action selector="insertToken:" target="-2" id="698"/>
                                     </connections>
                                 </menuItem>
-                                <menuItem title="&lt;&lt;&lt;FILEEXTENSION-UPPER&gt;&gt;&gt;" toolTip="The dropped file's extension (converted to uppercase)." id="696">
+                                <menuItem title="&lt;&lt;&lt;FILEEXTENSION-UPPER&gt;&gt;&gt;" toolTip="The dropped file’s extension (converted to uppercase)." id="696">
                                     <connections>
                                         <action selector="insertToken:" target="-2" id="697"/>
                                     </connections>

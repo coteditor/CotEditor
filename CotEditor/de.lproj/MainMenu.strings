@@ -237,7 +237,7 @@
 /* Class = "NSMenuItem"; title = "Close Split View"; ObjectID = "796"; */
 "796.title" = "Geteilte Ansicht schließen";
 
-/* Class = "NSMenuItem"; title = "Set View's Opacity…"; ObjectID = "367"; */
+/* Class = "NSMenuItem"; title = "Set View’s Opacity…"; ObjectID = "367"; */
 "367.title" = "Deckkraft der Ansicht einstellen …";
 
 /* Class = "NSMenuItem"; title = "Enter Full Screen"; ObjectID = "4mh-0E-3RJ"; */
@@ -462,7 +462,7 @@
 
 /* Class = "NSMenuItem"; title = "Release Notes"; ObjectID = "822"; */
 "822.title" = "Veröffentlichungshinweise";
-/* Class = "NSMenuItem"; title = "What's New in CotEditor 2.1"; ObjectID = "DCW-Ij-540"; */
+/* Class = "NSMenuItem"; title = "What’s New in CotEditor 2.1"; ObjectID = "DCW-Ij-540"; */
 "DCW-Ij-540.title" = "Was iss neu in CotEditor 2.1";
 /* Class = "NSMenuItem"; title = "Acknowledgements"; ObjectID = "824"; */
 "824.title" = "Anerkennungen";

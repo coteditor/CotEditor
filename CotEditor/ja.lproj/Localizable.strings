@@ -102,9 +102,9 @@
 
 "Update" = "更新";
 "The file has been modified by another application. There are also unsaved changes in CotEditor." = "ファイルは別のアプリケーションによって変更されました。CotEditor で加えた編集もまだ保存されていません。";
-"Do you want to keep CotEditor's edition or update to the modified edition?" = "CotEditor での編集内容を保持しますか、それとも変更された内容に更新しますか？";
+"Do you want to keep CotEditor’s edition or update to the modified edition?" = "CotEditor での編集内容を保持しますか、それとも変更された内容に更新しますか？";
 "The file has been modified by another application." = "ファイルは別のアプリケーションによって変更されました。";
-"Keep CotEditor's Edition" = "CotEditor の編集内容を保持";
+"Keep CotEditor’s Edition" = "CotEditor の編集内容を保持";
 
 
 /* MARK: CEPrintAccessoryViewController */
@@ -125,8 +125,8 @@
 
 "On" = "オン";
 "Off" = "オフ";
-"Don't Print" = "プリントしない";
-"Same as Document's Setting" = "書類の設定と同じ";
+"Don’t Print" = "プリントしない";
+"Same as Document’s Setting" = "書類の設定と同じ";
 "Black and White" = "白黒";
 "Print" = "プリント";
 "Print All" = "すべてプリント";
@@ -393,7 +393,7 @@
 "You can’t use a theme name that begins with a dot “.”." = "テーマ名を“.”から始めることはできません。";
 "Please choose another name." = "別の名前を指定してください。";
 
-"Auto-generated theme that is migrated from user's coloring setting on CotEditor 1.x" = "CotEditor 1.x でのユーザカラーリング設定から自動生成されたテーマ";
+"Auto-generated theme that is migrated from user’s coloring setting on CotEditor 1.x" = "CotEditor 1.x でのユーザカラーリング設定から自動生成されたテーマ";
 
 
 /* MARK: CEKeyBindingManager */

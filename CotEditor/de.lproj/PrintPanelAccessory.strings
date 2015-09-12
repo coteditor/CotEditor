@@ -29,23 +29,23 @@
 "eXI-55-yQO.title" = "Farbe:";
 /* Class = "NSMenuItem"; title = "Black and White"; ObjectID = "590"; */
 "590.title" = "Schwarz-Weiß";
-/* Class = "NSMenuItem"; title = "Same as Document's Setting"; ObjectID = "589"; */
+/* Class = "NSMenuItem"; title = "Same as Document’s Setting"; ObjectID = "589"; */
 "589.title" = "Gleich der Dokument";
 
 /* Class = "NSTextFieldCell"; title = "Line Numbers:"; ObjectID = "716"; */
 "716.title" = "Zeilennummern:";
-/* Class = "NSMenuItem"; title = "Don't Print"; ObjectID = "420"; */
+/* Class = "NSMenuItem"; title = "Don’t Print"; ObjectID = "420"; */
 "420.title" = "Nicht drucken";
-/* Class = "NSMenuItem"; title = "Same as Document's Setting"; ObjectID = "419"; */
+/* Class = "NSMenuItem"; title = "Same as Document’s Setting"; ObjectID = "419"; */
 "419.title" = "Gleich der Dokument";
 /* Class = "NSMenuItem"; title = "Print"; ObjectID = "418"; */
 "418.title" = "Drucken";
 
 /* Class = "NSTextFieldCell"; title = "Invisibles:"; ObjectID = "718"; */
 "718.title" = "Unsichtbaren:";
-/* Class = "NSMenuItem"; title = "Same as Document's Setting"; ObjectID = "427"; */
+/* Class = "NSMenuItem"; title = "Same as Document’s Setting"; ObjectID = "427"; */
 "427.title" = "Gleich der Dokument";
-/* Class = "NSMenuItem"; title = "Don't Print"; ObjectID = "428"; */
+/* Class = "NSMenuItem"; title = "Don’t Print"; ObjectID = "428"; */
 "428.title" = "Nicht drucken";
 /* Class = "NSMenuItem"; title = "Print all"; ObjectID = "426"; */
 "426.title" = "Alles drucken";

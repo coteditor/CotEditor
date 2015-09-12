@@ -170,10 +170,10 @@ NSString *__nonnull const CESecondaryFooterAlignmentKey = @"CESecondaryFooterAli
     
     switch ([self lineNumberMode]) {
         case CENoLinePrint:
-            description = @"Don't Print";
+            description = @"Don’t Print";
             break;
         case CESameAsDocumentLinePrint:
-            description = @"Same as Document's Setting";
+            description = @"Same as Document’s Setting";
             break;
         case CEDoLinePrint:
             description = @"Print";
@@ -184,10 +184,10 @@ NSString *__nonnull const CESecondaryFooterAlignmentKey = @"CESecondaryFooterAli
     
     switch ([self invisibleCharsMode]) {
         case CENoInvisibleCharsPrint:
-            description = @"Don't Print";
+            description = @"Don’t Print";
             break;
         case CESameAsDocumentInvisibleCharsPrint:
-            description = @"Same as Document's Setting";
+            description = @"Same as Document’s Setting";
             break;
         case CEAllInvisibleCharsPrint:
             description = @"Print All";

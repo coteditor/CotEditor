@@ -1680,8 +1680,8 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     
     NSAlert *alert = [[NSAlert alloc] init];
     [alert setMessageText:NSLocalizedString(messageText, nil)];
-    [alert setInformativeText:NSLocalizedString(@"Do you want to keep CotEditor's edition or update to the modified edition?", nil)];
-    [alert addButtonWithTitle:NSLocalizedString(@"Keep CotEditor's Edition", nil)];
+    [alert setInformativeText:NSLocalizedString(@"Do you want to keep CotEditor’s edition or update to the modified edition?", nil)];
+    [alert addButtonWithTitle:NSLocalizedString(@"Keep CotEditor’s Edition", nil)];
     [alert addButtonWithTitle:NSLocalizedString(@"Update", nil)];
     
     // シートが表示中でなければ、表示

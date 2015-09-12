@@ -58,5 +58,5 @@
 
 /* Class = "NSTextFieldCell"; title = "Learn new features on CotEditor 2.0."; ObjectID = "8u8-rr-so0"; */
 "8u8-rr-so0.title" = "CotEditor 2.0 の新機能を知る";
-/* Class = "NSButton"; ibShadowedToolTip = "See “What's New in CotEditor 2.0” on Help"; ObjectID = "hGz-yb-qTP"; */
+/* Class = "NSButton"; ibShadowedToolTip = "See “What’s New in CotEditor 2.0” on Help"; ObjectID = "hGz-yb-qTP"; */
 "hGz-yb-qTP.ibShadowedToolTip" = "ヘルプ項目“CotEditor 2.0 の新機能”を見る。";

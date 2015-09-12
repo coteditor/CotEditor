@@ -155,7 +155,7 @@
 "Sdf-5P-GP1.title" = "“単一行”を無効にする";
 /* Class = "NSMenuItem"; title = "Capture Group"; ObjectID = "LiY-vD-U6B"; */
 "LiY-vD-U6B.title" = "つねに無名グループを捕獲";
-/* Class = "NSMenuItem"; title = "Don't Capture Group"; ObjectID = "fQl-sZ-bjK"; */
+/* Class = "NSMenuItem"; title = "Don’t Capture Group"; ObjectID = "fQl-sZ-bjK"; */
 "fQl-sZ-bjK.title" = "無名グループを捕獲しない";
 /* Class = "NSMenuItem"; title = "Not Begin of Line"; ObjectID = "AFF-AC-IR9"; */
 "AFF-AC-IR9.title" = "先頭を行頭とみなさない";

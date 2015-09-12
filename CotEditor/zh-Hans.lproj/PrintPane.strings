@@ -28,7 +28,7 @@
 
 /* Class = "NSTextFieldCell"; title = "字体:"; ObjectID = "C9y-bs-mE1"; */
 "C9y-bs-mE1.title" = "字体:";
-/* Class = "NSButtonCell"; title = "Same as Document's Setting"; ObjectID = "1012"; */
+/* Class = "NSButtonCell"; title = "Same as Document’s Setting"; ObjectID = "1012"; */
 "1012.title" = "与文档字体一致";
 /* Class = "NSButtonCell"; title = "Select…"; ObjectID = "3385"; */
 "3385.title" = "选择…";
@@ -37,24 +37,24 @@
 "3388.title" = "颜色:";
 /* Class = "NSMenuItem"; title = "Black and White"; ObjectID = "1353"; */
 "1353.title" = "黑白";
-/* Class = "NSMenuItem"; title = "Same as Document's Setting"; ObjectID = "1354"; */
+/* Class = "NSMenuItem"; title = "Same as Document’s Setting"; ObjectID = "1354"; */
 "1354.title" = "与文档设置一致";
 
 
 /* Class = "NSTextFieldCell"; title = "Line numbers:"; ObjectID = "3380"; */
 "3380.title" = "行号:";
-/* Class = "NSMenuItem"; title = "Don't Print"; ObjectID = "946"; */
+/* Class = "NSMenuItem"; title = "Don’t Print"; ObjectID = "946"; */
 "946.title" = "不打印";
-/* Class = "NSMenuItem"; title = "Same as Document's Setting"; ObjectID = "947"; */
+/* Class = "NSMenuItem"; title = "Same as Document’s Setting"; ObjectID = "947"; */
 "947.title" = "与文档设置一致";
 /* Class = "NSMenuItem"; title = "Print"; ObjectID = "948"; */
 "948.title" = "打印";
 
 /* Class = "NSTextFieldCell"; title = "Invisibles:"; ObjectID = "3382"; */
 "3382.title" = "不可见字符:";
-/* Class = "NSMenuItem"; title = "Don't Print"; ObjectID = "952"; */
+/* Class = "NSMenuItem"; title = "Don’t Print"; ObjectID = "952"; */
 "952.title" = "不打印";
-/* Class = "NSMenuItem"; title = "Same as Document's Setting"; ObjectID = "953"; */
+/* Class = "NSMenuItem"; title = "Same as Document’s Setting"; ObjectID = "953"; */
 "953.title" = "与文档设置一致";
 /* Class = "NSMenuItem"; title = "Print All"; ObjectID = "954"; */
 "954.title" = "全部打印";

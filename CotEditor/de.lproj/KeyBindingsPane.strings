@@ -38,7 +38,7 @@
 "3363.title" = "Zusätzliche Text-Tastenbelegungen";
 /* Class = "NSTextFieldCell"; title = "Shortcuts to insert preset text."; ObjectID = "3364"; */
 "3364.title" = "Kurzbefehls, voreingestellten Text hinzuzufügen";
-/* Class = "NSTextFieldCell"; title = "This setting is not for the standard Cocoa key bindings\nbut for CotEditor's original function."; ObjectID = "3366"; */
+/* Class = "NSTextFieldCell"; title = "This setting is not for the standard Cocoa key bindings\nbut for CotEditor’s original function."; ObjectID = "3366"; */
 "3366.title" = "Diese Einstellung ist nicht die Standard-Cocoa-Tastenbelegungen sondern eine originale Funktion CotEditors.";
 /* Class = "NSButtonCell"; title = "Edit…"; ObjectID = "3365"; */
 "3365.title" = "Bearbeiten …";

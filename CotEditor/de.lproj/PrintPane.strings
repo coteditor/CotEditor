@@ -27,7 +27,7 @@
 
 /* Class = "NSTextFieldCell"; title = "Font:"; ObjectID = "C9y-bs-mE1"; */
 "C9y-bs-mE1.title" = "Schrift:";
-/* Class = "NSButtonCell"; title = "Same as document's setting"; ObjectID = "1012"; */
+/* Class = "NSButtonCell"; title = "Same as document’s setting"; ObjectID = "1012"; */
 "1012.title" = "Gleich der Dokument";
 /* Class = "NSButtonCell"; title = "Select…"; ObjectID = "3385"; */
 "3385.title" = "Auswählen …";
@@ -36,23 +36,23 @@
 "3388.title" = "Farbe:";
 /* Class = "NSMenuItem"; title = "Black and White"; ObjectID = "1353"; */
 "1353.title" = "Schwarz-Weiß";
-/* Class = "NSMenuItem"; title = "Same as Document's Setting"; ObjectID = "1354"; */
+/* Class = "NSMenuItem"; title = "Same as Document’s Setting"; ObjectID = "1354"; */
 "1354.title" = "Gleich der Dokument";
 
 /* Class = "NSTextFieldCell"; title = "Line numbers:"; ObjectID = "3380"; */
 "3380.title" = "Zeilennummern:";
-/* Class = "NSMenuItem"; title = "Don't Print"; ObjectID = "946"; */
+/* Class = "NSMenuItem"; title = "Don’t Print"; ObjectID = "946"; */
 "946.title" = "Nicht drucken";
-/* Class = "NSMenuItem"; title = "Same as Document's Setting"; ObjectID = "947"; */
+/* Class = "NSMenuItem"; title = "Same as Document’s Setting"; ObjectID = "947"; */
 "947.title" = "Gleich der Dokument";
 /* Class = "NSMenuItem"; title = "Print"; ObjectID = "948"; */
 "948.title" = "Drucken";
 
 /* Class = "NSTextFieldCell"; title = "Invisibles:"; ObjectID = "3382"; */
 "3382.title" = "Unsichtbaren:";
-/* Class = "NSMenuItem"; title = "Don't Print"; ObjectID = "952"; */
+/* Class = "NSMenuItem"; title = "Don’t Print"; ObjectID = "952"; */
 "952.title" = "Nicht drucken";
-/* Class = "NSMenuItem"; title = "Same as Document's Setting"; ObjectID = "953"; */
+/* Class = "NSMenuItem"; title = "Same as Document’s Setting"; ObjectID = "953"; */
 "953.title" = "Gleich der Dokument";
 /* Class = "NSMenuItem"; title = "Print All"; ObjectID = "954"; */
 "954.title" = "Alles drucken";

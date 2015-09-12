@@ -49,15 +49,15 @@
 "544.ibShadowedToolTip" = "ドロップ元ファイルの絶対パス";
 /* Class = "NSMenuItem"; ibShadowedToolTip = "The relative path between dropped file and the document."; ObjectID = "546"; */
 "546.ibShadowedToolTip" = "ドロップ先ファイルからドロップ元ファイルへの相対パス";
-/* Class = "NSMenuItem"; ibShadowedToolTip = "The dropped file's name include extension (if exists)."; ObjectID = "542"; */
+/* Class = "NSMenuItem"; ibShadowedToolTip = "The dropped file’s name include extension (if exists)."; ObjectID = "542"; */
 "542.ibShadowedToolTip" = "ドロップ元ファイルの、拡張子を含むファイル名";
-/* Class = "NSMenuItem"; ibShadowedToolTip = "The dropped file's name without extension."; ObjectID = "538"; */
+/* Class = "NSMenuItem"; ibShadowedToolTip = "The dropped file’s name without extension."; ObjectID = "538"; */
 "538.ibShadowedToolTip" = "ドロップ元ファイルの名前から拡張子を削除した文字列";
-/* Class = "NSMenuItem"; ibShadowedToolTip = "The dropped file's extension."; ObjectID = "694"; */
+/* Class = "NSMenuItem"; ibShadowedToolTip = "The dropped file’s extension."; ObjectID = "694"; */
 "694.ibShadowedToolTip" = "ドロップ元ファイルの拡張子";
-/* Class = "NSMenuItem"; ibShadowedToolTip = "The dropped file's extension (converted to lowercase)."; ObjectID = "695"; */
+/* Class = "NSMenuItem"; ibShadowedToolTip = "The dropped file’s extension (converted to lowercase)."; ObjectID = "695"; */
 "695.ibShadowedToolTip" = "ドロップ元ファイルの拡張子（小文字）";
-/* Class = "NSMenuItem"; ibShadowedToolTip = "The dropped file's extension (converted to uppercase)."; ObjectID = "696"; */
+/* Class = "NSMenuItem"; ibShadowedToolTip = "The dropped file’s extension (converted to uppercase)."; ObjectID = "696"; */
 "696.ibShadowedToolTip" = "ドロップ元ファイルの拡張子（大文字）";
 /* Class = "NSMenuItem"; ibShadowedToolTip = "The parent directory name of dropped file."; ObjectID = "539"; */
 "539.ibShadowedToolTip" = "ドロップ元ファイルのあるディレクトリ名";
