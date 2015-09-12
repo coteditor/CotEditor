@@ -5,15 +5,6 @@ Change Log
 develop
 --------------------------
 
-### Additions/Changes
-
-- Tweak some terms.
-
-
-
-2.2.0-rc (69)
---------------------------
-
 ### New Features
 
 - Hanging indentation that enables inserting extra indent to wrapped lines.
@@ -42,6 +33,7 @@ develop
 - Adjust highlight color for find panel.
 - Tweak some message terms.
 - Update documents.
+- Update build environment to OS X El Capitan +  Xcode 7 (SDK 10.11).
 - [non-AppStore ver.] Update Sparkle framework to version 1.11.0.
 - [beta][non-AppStore ver.] Change to not check pre-release versions on default.
     - New pre-releases are always subject of the update check no matter the user setting if the current running CotEditor is a pre-release version.
