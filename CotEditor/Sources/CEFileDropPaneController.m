@@ -136,7 +136,6 @@
 }
 
 
-#if MAC_OS_X_VERSION_MAX_ALLOWED >= 101100
 // ------------------------------------------------------
 /// set action on swiping theme name (on El Capitan and leter)
 - (nonnull NSArray<NSTableViewRowAction *> *)tableView:(nonnull NSTableView *)tableView rowActionsForRow:(NSInteger)row edge:(NSTableRowActionEdge)edge
@@ -153,7 +152,6 @@
                   [self deleteSettingAtIndex:row];
               }]];
 }
-#endif  // MAC_OS_X_VERSION_10_11
 
 
 //=======================================================
