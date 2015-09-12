@@ -72,7 +72,7 @@
 	<li>サンドボックス化にともない、cot コマンドラインツールのバンドル場所を <code>CotEditor.app/Contents/MacOS/</code> から <code>CotEditor.app/Contents/SharedSupport/bin/</code> に変更。
 	<ul>
 		<li>cot コマンドをすでにインストールしているユーザは、手動で再インストールを行う必要があります。ターミナルから以下のコマンドを実行することで、コマンドを再インストールすることができます。<br/>
-          <code>unlink /usr/local/bin/cot; ln -s /usr/local/bin/cot /Applications/CotEditor.app/Contents/SharedSupport/bin/cot</code><br/>
+          <code>unlink /usr/local/bin/cot; ln -s /Applications/CotEditor.app/Contents/SharedSupport/bin/cot /usr/local/bin/cot</code><br/>
           CotEditor/cot をインストールしている場所に合わせて、再インストールコマンドのパスは適宜変更してください。</li>
 	</ul></li>
 	<li>サイドインスペクタのユーザインターフェイスを改良</li>
