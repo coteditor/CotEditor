@@ -20,7 +20,7 @@ develop
     - Users who have already installed `cot` command need re-install it manually.
       You can re-install it running the command below on Terminal:
 
-          unlink /usr/local/bin/cot; ln -s /usr/local/bin/cot /Applications/CotEditor.app/Contents/SharedSupport/bin/cot
+          unlink /usr/local/bin/cot; ln -s /Applications/CotEditor.app/Contents/SharedSupport/bin/cot /usr/local/bin/cot
 
       You may need to modify paths in this command depending on where you've installed CotEditor/cot.
 - Improve Color Code Editor:
