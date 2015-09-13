@@ -5,6 +5,15 @@ Change Log
 develop
 --------------------------
 
+### Additions/Changes
+
+- Improve contexutal menu for syntax style list on preferences.
+
+
+
+2.2.0-rc (71)
+--------------------------
+
 ### New Features
 
 - Hanging indentation that enables inserting extra indent to wrapped lines.

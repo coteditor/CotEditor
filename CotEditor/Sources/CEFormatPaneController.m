@@ -43,6 +43,7 @@
 
 @property (nonatomic, nullable) IBOutlet NSArrayController *stylesController;
 @property (nonatomic, nullable, weak) IBOutlet NSTableView *syntaxTableView;
+@property (nonatomic, nullable) IBOutlet NSMenu *syntaxTableMenu;
 @property (nonatomic, nullable, weak) IBOutlet NSPopUpButton *syntaxStylesDefaultPopup;
 @property (nonatomic, nullable, weak) IBOutlet NSButton *syntaxStyleDeleteButton;
 
@@ -113,19 +114,41 @@
     // 拡張子重複エラー表示メニューの有効化を制御
     if ([menuItem action] == @selector(openSyntaxMappingConflictSheet:)) {
         return [[CESyntaxManager sharedManager] existsMappingConflict];
+    }
+    
+    BOOL isContextualMenu = ([menuItem menu] == [self syntaxTableMenu]);
+    
+    NSString *representedStyleName = [self selectedStyleName];
+    if (isContextualMenu) {
+        NSInteger clickedrow = [[self syntaxTableView] clickedRow];
         
-    // 書き出し/複製メニュー項目に現在選択されているスタイル名を追加
-    } if ([menuItem action] == @selector(exportSyntaxStyle:)) {
-        [menuItem setTitle:[NSString stringWithFormat:NSLocalizedString(@"Export “%@”…", nil), [self selectedStyleName]]];
-        
-    } if ([menuItem action] == @selector(openSyntaxEditSheet:) && [menuItem tag] == CECopySyntaxEdit) {
-        [menuItem setTitle:[NSString stringWithFormat:NSLocalizedString(@"Duplicate “%@”…", nil), [self selectedStyleName]]];
-        
-    } if ([menuItem action] == @selector(revealSyntaxStyleInFinder:)) {
-        [menuItem setTitle:[NSString stringWithFormat:NSLocalizedString(@"Reveal “%@” in Finder", nil), [self selectedStyleName]]];
-        if (![[CESyntaxManager sharedManager] URLForUserStyle:[self selectedStyleName]]) {
-            return NO;
+        if (clickedrow == -1) {  // clicked blank area
+            representedStyleName = nil;
+        } else {
+            representedStyleName = [[self stylesController] arrangedObjects][clickedrow];
         }
+    }
+    [menuItem setRepresentedObject:representedStyleName];
+    
+    // 書き出し/複製メニュー項目に現在選択されているスタイル名を追加
+    if ([menuItem action] == @selector(exportSyntaxStyle:)) {
+        if (!isContextualMenu) {
+            [menuItem setTitle:[NSString stringWithFormat:NSLocalizedString(@"Export “%@”…", nil), representedStyleName]];
+        }
+        
+    } else if ([menuItem action] == @selector(openSyntaxEditSheet:) && [menuItem tag] == CECopySyntaxEdit) {
+        if (!isContextualMenu) {
+            [menuItem setTitle:[NSString stringWithFormat:NSLocalizedString(@"Duplicate “%@”…", nil), representedStyleName]];
+        }
+        
+    } else if ([menuItem action] == @selector(revealSyntaxStyleInFinder:)) {
+        if (!isContextualMenu) {
+            [menuItem setTitle:[NSString stringWithFormat:NSLocalizedString(@"Reveal “%@” in Finder", nil), representedStyleName]];
+        }
+        return ([[CESyntaxManager sharedManager] URLForUserStyle:representedStyleName] != nil);
+        
+    } else if ([menuItem action] == @selector(deleteSyntaxStyle:)) {
+        return ![[CESyntaxManager sharedManager] isBundledStyle:representedStyleName];
     }
     
     return YES;
@@ -196,7 +219,9 @@
 - (IBAction)openSyntaxEditSheet:(nullable id)sender
 // ------------------------------------------------------
 {
-    CESyntaxEditSheetController *sheetController = [[CESyntaxEditSheetController alloc] initWithStyle:[self selectedStyleName]
+    NSString *styleName = ([sender isKindOfClass:[NSMenuItem class]]) ? [sender representedObject] : [self selectedStyleName];
+    
+    CESyntaxEditSheetController *sheetController = [[CESyntaxEditSheetController alloc] initWithStyle:styleName
                                                                                                  mode:[sender tag]];
     if (!sheetController) {
         return;
@@ -224,7 +249,9 @@
 - (IBAction)deleteSyntaxStyle:(nullable id)sender
 // ------------------------------------------------------
 {
-    [self deleteSyntaxStyleWithName:[self selectedStyleName]];
+    NSString *styleName = ([sender isKindOfClass:[NSMenuItem class]]) ? [sender representedObject] : [self selectedStyleName];
+    
+    [self deleteSyntaxStyleWithName:styleName];
 }
 
 
@@ -282,19 +309,20 @@
 - (IBAction)exportSyntaxStyle:(nullable id)sender
 // ------------------------------------------------------
 {
-    NSString *selectedStyle = [self selectedStyleName];
+    NSString *styleName = ([sender isKindOfClass:[NSMenuItem class]]) ? [sender representedObject] : [self selectedStyleName];
+    
     NSSavePanel *savePanel = [NSSavePanel savePanel];
     
     // SavePanelをセットアップ(既定値を含む)、シートとして開く
     [savePanel setCanCreateDirectories:YES];
     [savePanel setCanSelectHiddenExtension:YES];
     [savePanel setNameFieldLabel:NSLocalizedString(@"Export As:", nil)];
-    [savePanel setNameFieldStringValue:selectedStyle];
+    [savePanel setNameFieldStringValue:styleName];
     [savePanel setAllowedFileTypes:@[@"yaml"]];
     
     [savePanel beginSheetModalForWindow:[[self view] window] completionHandler:^(NSInteger result) {
         if (result == NSFileHandlingPanelOKButton) {
-            [[CESyntaxManager sharedManager] exportStyle:selectedStyle toURL:[savePanel URL]];
+            [[CESyntaxManager sharedManager] exportStyle:styleName toURL:[savePanel URL]];
         }
     }];
 }
@@ -305,7 +333,9 @@
 - (IBAction)revealSyntaxStyleInFinder:(nullable id)sender
 // ------------------------------------------------------
 {
-    NSURL *URL = [[CESyntaxManager sharedManager] URLForUserStyle:[self selectedStyleName]];
+    NSString *styleName = ([sender isKindOfClass:[NSMenuItem class]]) ? [sender representedObject] : [self selectedStyleName];
+    
+    NSURL *URL = [[CESyntaxManager sharedManager] URLForUserStyle:styleName];
     
     if (URL) {
         [[NSWorkspace sharedWorkspace] activateFileViewerSelectingURLs:@[URL]];
