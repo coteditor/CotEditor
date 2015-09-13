@@ -57,26 +57,26 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 @interface CEDocument ()
 
-@property (nonatomic) CEPrintPanelAccessoryController *printPanelAccessoryController;
+@property (nonatomic, nullable) CEPrintPanelAccessoryController *printPanelAccessoryController;
 
 @property (nonatomic) NSStringEncoding readingEncoding;  // encoding to read document file
 @property (nonatomic) BOOL needsShowUpdateAlertWithBecomeKey;
 @property (nonatomic, getter=isRevertingForExternalFileUpdate) BOOL revertingForExternalFileUpdate;
 @property (nonatomic) BOOL didAlertNotWritable;  // 文書が読み込み専用のときにその警告を表示したかどうか
-@property (nonatomic, copy) NSString *fileMD5;
-@property (nonatomic, copy) NSString *fileContentString;  // string that is read from the document file
+@property (nonatomic, nullable, copy) NSString *fileMD5;
+@property (nonatomic, nullable, copy) NSString *fileContentString;  // string that is read from the document file
 @property (nonatomic, getter=isVerticalText) BOOL verticalText;
-@property (nonatomic) CEODBEventSender *ODBEventSender;
+@property (nonatomic, nullable) CEODBEventSender *ODBEventSender;
 @property (nonatomic) BOOL shouldSaveXattr;
-@property (nonatomic, copy) NSString *autosaveIdentifier;
+@property (nonatomic, nonnull, copy) NSString *autosaveIdentifier;
 @property (nonatomic) BOOL suppressesIANACharsetConflictAlert;
 
 // readonly
-@property (readwrite, nonatomic) CEWindowController *windowController;
-@property (readwrite, nonatomic) CETextSelection *selection;
+@property (readwrite, nonatomic, nullable) CEWindowController *windowController;
+@property (readwrite, nonatomic, nonnull) CETextSelection *selection;
 @property (readwrite, nonatomic) NSStringEncoding encoding;
 @property (readwrite, nonatomic) CENewLineType lineEnding;
-@property (readwrite, nonatomic, copy) NSDictionary<NSString *, id> *fileAttributes;
+@property (readwrite, nonatomic, nullable, copy) NSDictionary<NSString *, id> *fileAttributes;
 @property (readwrite, nonatomic, getter=isWritable) BOOL writable;
 
 @end
@@ -692,10 +692,10 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 // ------------------------------------------------------
 /// 改行コードを指定のものに置換したメイン textView の文字列を返す
-- (NSString *)stringForSave
+- (nonnull NSString *)stringForSave
 // ------------------------------------------------------
 {
-    return [[[self editor] string] stringByReplacingNewLineCharacersWith:[self lineEnding]];
+    return [[[self editor] string] stringByReplacingNewLineCharacersWith:[self lineEnding]] ?: @"";
 }
 
 
@@ -758,7 +758,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 // ------------------------------------------------------
 /// 設定されたエンコーディングの IANA Charset 名を返す
-- (NSString *)currentIANACharSetName
+- (nonnull NSString *)currentIANACharSetName
 // ------------------------------------------------------
 {
     CFStringEncoding cfEncoding = CFStringConvertNSStringEncodingToEncoding([self encoding]);
@@ -771,7 +771,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 // ------------------------------------------------------
 /// 指定されたエンコードにコンバートできない文字列をリストアップし配列を返す
-- (NSArray<NSDictionary<NSString *, NSValue *> *> *)findCharsIncompatibleWithEncoding:(NSStringEncoding)encoding
+- (nullable NSArray<NSDictionary<NSString *, NSValue *> *> *)findCharsIncompatibleWithEncoding:(NSStringEncoding)encoding
 // ------------------------------------------------------
 {
     NSMutableArray<NSDictionary<NSString *, NSValue *> *> *incompatibleChars = [NSMutableArray array];
@@ -822,7 +822,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 // ------------------------------------------------------
 /// 指定されたエンコーディングでファイルを再解釈する
-- (BOOL)reinterpretWithEncoding:(NSStringEncoding)encoding error:(NSError *__autoreleasing __nullable *)outError
+- (BOOL)reinterpretWithEncoding:(NSStringEncoding)encoding error:(NSError * __nullable __autoreleasing * __nullable)outError
 // ------------------------------------------------------
 {
     BOOL success = NO;
@@ -861,7 +861,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 // ------------------------------------------------------
 /// 新規エンコーディングをセット
-- (BOOL)doSetEncoding:(NSStringEncoding)encoding updateDocument:(BOOL)updateDocument askLossy:(BOOL)askLossy lossy:(BOOL)lossy asActionName:(NSString *)actionName
+- (BOOL)doSetEncoding:(NSStringEncoding)encoding updateDocument:(BOOL)updateDocument askLossy:(BOOL)askLossy lossy:(BOOL)lossy asActionName:(nullable NSString *)actionName
 // ------------------------------------------------------
 {
     if (encoding == [self encoding]) {
@@ -946,7 +946,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 // ------------------------------------------------------
 /// 新しいシンタックスカラーリングスタイルを適用
-- (void)doSetSyntaxStyle:(NSString *)name
+- (void)doSetSyntaxStyle:(nullable NSString *)name
 // ------------------------------------------------------
 {
     if ([name length] == 0) { return; }
@@ -1190,7 +1190,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 // ------------------------------------------------------
 /// return preferred file extension corresponding the current syntax style
-- (NSString *)preferredExtension
+- (nullable NSString *)preferredExtension
 // ------------------------------------------------------
 {
     if ([self fileURL]) {
@@ -1207,7 +1207,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 // ------------------------------------------------------
 /// editor を通じて syntax インスタンスをセット
-- (void)setSyntaxStyleWithName:(NSString *)styleName coloring:(BOOL)doColoring
+- (void)setSyntaxStyleWithName:(nonnull NSString *)styleName coloring:(BOOL)doColoring
 // ------------------------------------------------------
 {
     if (![[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultEnableSyntaxHighlightKey]) { return; }
@@ -1360,7 +1360,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 // ------------------------------------------------------
 /// "charset=" "encoding="タグなどからエンコーディング定義を読み取る
-- (NSStringEncoding)scanEncodingDeclarationInString:(NSString *)string
+- (NSStringEncoding)scanEncodingDeclarationInString:(nonnull NSString *)string
 // ------------------------------------------------------
 {
     // This method is based on Smultron's SMLTextPerformer.m by Peter Borg. (2005-08-10)
@@ -1524,7 +1524,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 // ------------------------------------------------------
 /// 書類内のIANA文字コード名と設定されたエンコーディングの矛盾をチェック
-- (BOOL)checkSavingSafetyWithIANACharSetNameForString:(NSString *)string encoding:(NSStringEncoding)encoding error:(NSError *__autoreleasing __nullable *)outError
+- (BOOL)checkSavingSafetyWithIANACharSetNameForString:(nonnull NSString *)string encoding:(NSStringEncoding)encoding error:(NSError *__autoreleasing __nullable *)outError
 // ------------------------------------------------------
 {
     NSStringEncoding IANACharSetEncoding = [self scanEncodingDeclarationInString:string];
@@ -1562,7 +1562,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 // ------------------------------------------------------
 /// ファイル保存前のエンコーディング変換チェック
-- (BOOL)checkSavingSafetyForConvertingString:(NSString *)string encoding:(NSStringEncoding)encoding error:(NSError *__autoreleasing __nullable *)outError
+- (BOOL)checkSavingSafetyForConvertingString:(nonnull NSString *)string encoding:(NSStringEncoding)encoding error:(NSError *__autoreleasing __nullable *)outError
 // ------------------------------------------------------
 {
     // エンコーディングを見て、半角円マークを変換しておく
@@ -1592,7 +1592,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 // ------------------------------------------------------
 /// 半角円マークを使えないエンコードの時はバックスラッシュに変換した文字列を返す
-- (NSString *)convertCharacterString:(NSString *)string encoding:(NSStringEncoding)encoding
+- (nonnull NSString *)convertCharacterString:(nonnull NSString *)string encoding:(NSStringEncoding)encoding
 // ------------------------------------------------------
 {
     if (([string length] > 0) && [CEUtils isInvalidYenEncoding:encoding]) {
@@ -1708,7 +1708,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 // ------------------------------------------------------
 /// 外部プロセスによる変更の通知アラートが閉じた
-- (void)alertForModByAnotherProcessDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
+- (void)alertForModByAnotherProcessDidEnd:(nonnull NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(nullable void *)contextInfo
 // ------------------------------------------------------
 {
     if (returnCode == NSAlertSecondButtonReturn) { // == Revert
