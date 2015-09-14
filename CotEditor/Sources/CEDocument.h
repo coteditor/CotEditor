@@ -65,7 +65,7 @@ extern NSString *__nonnull const CEIncompatibleConvertedCharKey;
 - (void)applyContentToEditor;
 
 // string encoding
-- (nonnull NSString *)currentIANACharSetName;
+- (nullable NSString *)IANACharSetName;
 - (nullable NSArray<NSDictionary<NSString *, NSValue *> *> *)findCharsIncompatibleWithEncoding:(NSStringEncoding)encoding;
 - (BOOL)reinterpretWithEncoding:(NSStringEncoding)encoding error:(NSError * __nullable __autoreleasing * __nullable)outError;
 - (BOOL)doSetEncoding:(NSStringEncoding)encoding updateDocument:(BOOL)updateDocument askLossy:(BOOL)askLossy lossy:(BOOL)lossy asActionName:(nullable NSString *)actionName;

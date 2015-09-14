@@ -137,7 +137,7 @@ NSString *__nonnull const CEAnalyzerDidUpdateEditorInfoNotification = @"CEAnalyz
     CEDocument *document = [self document];
     
     self.encoding = [NSString localizedNameOfStringEncoding:[document encoding]];
-    self.charsetName = [document currentIANACharSetName];
+    self.charsetName = [document IANACharSetName];
     self.lineEndings = [NSString newLineNameWithType:[document lineEnding]];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:CEAnalyzerDidUpdateModeInfoNotification

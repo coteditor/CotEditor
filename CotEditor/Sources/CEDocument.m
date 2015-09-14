@@ -757,13 +757,11 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 
 // ------------------------------------------------------
-/// 設定されたエンコーディングの IANA Charset 名を返す
-- (nonnull NSString *)currentIANACharSetName
+/// return IANA charset string of the current encoding
+- (nullable NSString *)IANACharSetName
 // ------------------------------------------------------
 {
     CFStringEncoding cfEncoding = CFStringConvertNSStringEncodingToEncoding([self encoding]);
-    
-    if (cfEncoding == kCFStringEncodingInvalidId) { return nil; }
     
     return (NSString *)CFStringConvertEncodingToIANACharSetName(cfEncoding);
 }
@@ -1137,7 +1135,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 - (IBAction)insertIANACharSetName:(nullable id)sender
 // ------------------------------------------------------
 {
-    NSString *string = [self currentIANACharSetName];
+    NSString *string = [self IANACharSetName];
     
     if (!string) { return; }
     
@@ -1154,7 +1152,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 - (IBAction)insertIANACharSetNameWithCharset:(nullable id)sender
 // ------------------------------------------------------
 {
-    NSString *string = [self currentIANACharSetName];
+    NSString *string = [self IANACharSetName];
     
     if (!string) { return; }
     
@@ -1172,7 +1170,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 - (IBAction)insertIANACharSetNameWithEncoding:(nullable id)sender
 // ------------------------------------------------------
 {
-    NSString *string = [self currentIANACharSetName];
+    NSString *string = [self IANACharSetName];
     
     if (!string) { return; }
     
