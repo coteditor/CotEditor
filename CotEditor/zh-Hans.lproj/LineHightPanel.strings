@@ -27,7 +27,7 @@
  */
 
 /* Class = "NSPanel"; title = "Line Height (Custom)"; ObjectID = "7Wu-ph-Az1"; */
-"7Wu-ph-Az1.title" = "行高 (自定义)";
+"7Wu-ph-Az1.title" = "行高（自定义）";
 
 /* Class = "NSTextFieldCell"; title = "lines"; ObjectID = "dyL-SO-rch"; */
 "dyL-SO-rch.title" = "行";

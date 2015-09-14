@@ -31,8 +31,8 @@
 
 @interface CESyntaxMappingConflictsSheetController ()
 
-@property (nonatomic, nonnull, copy) NSArray *extensionConflicts;
-@property (nonatomic, nonnull, copy) NSArray *filenameConflicts;
+@property (nonatomic, nonnull, copy) NSArray<NSDictionary<NSString *, NSString *> *> *extensionConflicts;
+@property (nonatomic, nonnull, copy) NSArray<NSDictionary<NSString *, NSString *> *> *filenameConflicts;
 
 @end
 
@@ -78,7 +78,7 @@
 
 // ------------------------------------------------------
 /// convert conflictDict data for table
-+ (nonnull NSArray *)parseConflictDict:(nonnull NSDictionary *)conflictDict
++ (nonnull NSArray<NSDictionary<NSString *, NSString *> *> *)parseConflictDict:(nonnull NSDictionary *)conflictDict
 // ------------------------------------------------------
 {
     NSMutableArray *conflicts = [NSMutableArray array];

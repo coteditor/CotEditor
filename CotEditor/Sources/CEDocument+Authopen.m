@@ -36,31 +36,25 @@
 - (nullable NSData *)forceReadDataFromURL:(nonnull NSURL *)url
 // ------------------------------------------------------
 {
-    __block BOOL success = NO;
-    __block NSData *data = nil;
+    NSData *data = nil;
     
     // read data using `authopen` command
-    NSFileCoordinator *coordinator = [[NSFileCoordinator alloc] initWithFilePresenter:self];
-    [coordinator coordinateReadingItemAtURL:[self fileURL] options:NSFileCoordinatorReadingResolvesSymbolicLink
-                                      error:nil byAccessor:^(NSURL *newURL)
-     {
-         NSString *path = @([[newURL path] fileSystemRepresentation]);
-         NSTask *task = [[NSTask alloc] init];
-         
-         [task setLaunchPath:@"/usr/libexec/authopen"];
-         [task setArguments:@[path]];
-         [task setStandardOutput:[NSPipe pipe]];
-         
-         [task launch];
-         data = [NSData dataWithData:[[[task standardOutput] fileHandleForReading] readDataToEndOfFile]];
-         
-         while ([task isRunning]) {
-             usleep(200);
-         }
-         
-         int status = [task terminationStatus];
-         success = (status == 0);
-     }];
+    NSString *path = @([[url path] fileSystemRepresentation]);
+    NSTask *task = [[NSTask alloc] init];
+    
+    [task setLaunchPath:@"/usr/libexec/authopen"];
+    [task setArguments:@[path]];
+    [task setStandardOutput:[NSPipe pipe]];
+    
+    [task launch];
+    data = [NSData dataWithData:[[[task standardOutput] fileHandleForReading] readDataToEndOfFile]];
+    
+    while ([task isRunning]) {
+        usleep(200);
+    }
+    
+    int status = [task terminationStatus];
+    BOOL success = (status == 0);
     
     return success ? data : nil;
 }
@@ -68,41 +62,29 @@
 
 // ------------------------------------------------------
 /// Try writing data to the URL using authopen (Sandobox incompatible)
-- (BOOL)forceWriteToURL:(nonnull NSURL *)url ofType:(nonnull NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation
+- (BOOL)forceWriteData:(nonnull NSData *)data URL:(nonnull NSURL *)url
 // ------------------------------------------------------
 {
-    __block BOOL success = NO;
-    NSData *data = [self dataOfType:typeName error:nil];
-    
-    if (!data) { return NO; }
-    
     // save data using `authopen` command
-    NSFileCoordinator *coordinator = [[NSFileCoordinator alloc] initWithFilePresenter:self];
-    [coordinator coordinateWritingItemAtURL:url options:0
-                                      error:nil
-                                 byAccessor:^(NSURL *newURL)
-     {
-         NSString *path = @([[newURL path] fileSystemRepresentation]);
-         NSTask *task = [[NSTask alloc] init];
-         
-         [task setLaunchPath:@"/usr/libexec/authopen"];
-         [task setArguments:@[@"-c", @"-w", path]];
-         [task setStandardInput:[NSPipe pipe]];
-         
-         [task launch];
-         [[[task standardInput] fileHandleForWriting] writeData:data];
-         [[[task standardInput] fileHandleForWriting] closeFile];
-         
-         // [caution] Do not use `[task waitUntilExit]` here,
-         //           since it passes through the run-loop and other file access can interrupt.
-         while ([task isRunning]) {
-             usleep(200);
-         }
-         
-         
-         int status = [task terminationStatus];
-         success = (status == 0);
-     }];
+    NSString *path = @([[url path] fileSystemRepresentation]);
+    NSTask *task = [[NSTask alloc] init];
+    
+    [task setLaunchPath:@"/usr/libexec/authopen"];
+    [task setArguments:@[@"-c", @"-w", path]];
+    [task setStandardInput:[NSPipe pipe]];
+    
+    [task launch];
+    [[[task standardInput] fileHandleForWriting] writeData:data];
+    [[[task standardInput] fileHandleForWriting] closeFile];
+    
+    // [caution] Do not use `[task waitUntilExit]` here,
+    //           since it passes through the run-loop and other file access can interrupt.
+    while ([task isRunning]) {
+        usleep(200);
+    }
+    
+    int status = [task terminationStatus];
+    BOOL success = (status == 0);
     
     return success;
 }

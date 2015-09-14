@@ -47,7 +47,7 @@
 "Bug Report" = "不具合レポート";
 
 // Migration from v1.x
-"Restorering menu key bindings settings…" = "メニューキーバインド設定をリセット中...";
+"Restoring menu key bindings settings…" = "メニューキーバインド設定をリセット中...";
 "Migrating coloring settings…" = "カラーリング設定を移行中...";
 "Migrating user syntax styles…" = "ユーザシンタックス定義を移行中...";
 "Migration finished." = "設定の移行が終了しました。";
@@ -87,9 +87,9 @@
 
 "Discard Changes" = "変更内容を破棄";
 "The file “%@” has unsaved changes." = "ファイル“%@”の変更内容は保存されていません。";
-"Do you want to discard the changes and reset the file encodidng?" = "変更内容を破棄してエンコードをリセットしてもよろしいですか？";
+"Do you want to discard the changes and reset the file encoding?" = "変更内容を破棄してエンコードをリセットしてもよろしいですか？";
 
-"Can not reinterpret" = "再解釈できません。";
+"Can not reinterpret." = "再解釈できません。";
 "The file “%@” could not be reinterpreted using the new encoding “%@”." = "ファイル“%@”はエンコード“%@”で再解釈できませんでした。";
 
 "new encoding" = "新しいエンコーディング";
@@ -100,13 +100,11 @@
 
 "Printed on %@" = "プリント：%@";
 
-"Keep CotEditor's Edition" = "CotEditor の編集内容を保持";
 "Update" = "更新";
-"The file has been modified by another process. There are also unsaved changes in CotEditor." = "ファイルは別のプロセスによって変更されました。CotEditor で加えた編集もまだ保存されていません。";
-"Do you want to keep CotEditor's edition or update to the modified edition?" = "CotEditor での編集内容を保持しますか、それとも変更された内容に更新しますか？";
-"Keep Unchanged" = "未編集のままにする";
-"The file has been modified by another process." = "ファイルは別のプロセスによって変更されました。";
-"Do you want to keep unchanged or update to the modified edition?" = "未編集のままにしますか、それとも変更された内容に更新しますか？";
+"The file has been modified by another application. There are also unsaved changes in CotEditor." = "ファイルは別のアプリケーションによって変更されました。CotEditor で加えた編集もまだ保存されていません。";
+"Do you want to keep CotEditor’s edition or update to the modified edition?" = "CotEditor での編集内容を保持しますか、それとも変更された内容に更新しますか？";
+"The file has been modified by another application." = "ファイルは別のアプリケーションによって変更されました。";
+"Keep CotEditor’s Edition" = "CotEditor の編集内容を保持";
 
 
 /* MARK: CEPrintAccessoryViewController */
@@ -127,8 +125,8 @@
 
 "On" = "オン";
 "Off" = "オフ";
-"Don't Print" = "プリントしない";
-"Same as Document's Setting" = "書類の設定と同じ";
+"Don’t Print" = "プリントしない";
+"Same as Document’s Setting" = "書類の設定と同じ";
 "Black and White" = "白黒";
 "Print" = "プリント";
 "Print All" = "すべてプリント";
@@ -159,6 +157,7 @@
 "NFC" = "NFC";
 "NFKD" = "NFKD";
 "NFKC" = "NFKC";
+"NFKC Casefold" = "NFKC Casefold";
 "Inspect Character" = "文字情報を表示";
 
 // Menu items
@@ -202,11 +201,10 @@
 
 // Show invisible char menu item tooltip
 "Show or hide invisible characters in document" = "書類中の不可視文字を表示／隠す";
-"To display invisible characters, set them in Preferences and re-open the document" = "不可視文字を表示させるには、環境設定を変更し書類を開き直してください";
+"To show invisible characters, set them in Preferences and re-open the document" = "不可視文字を表示させるには、環境設定を変更し書類を開き直してください";
 
 // Alert strings
 "The file is not writable." = "このファイルは書き込み不可です。";
-"Allow Editing" = "編集を許可";
 "Cancel" = "キャンセル";
 "You may not be able to save your changes, but you will be able to save a copy somewhere else." = "このファイルに加えられた変更は保存できない場合がありますが、コピーを別の場所に保存することができます。";
 
@@ -255,19 +253,26 @@
 /* MARK: CEColorCodePanelController */
 // Undo action name
 "Insert Color Code" = "カラーコードを挿入";
+// color list name
+"Stylesheet Keywords" = "スタイルシートキーワード";
 
 
 /* MARK: CEPreferencesWindowController */
 // Smart quotes/dashes
 " (on Mavericks and later)" = "（Mavericks 以上）";
 
+// Hint message for the completion list
+"Completion can be performed manually with: %@ or %@" = "入力補完候補リストの表示： %@ もしくは %@";
+"Select at least one item to enable completion." = "入力補完を有効にするためには1つ以上の項目を選択する必要があります。";
+
 // Appearance pane
+"Rename “%@”" = "“%@”を名称変更";
 "Duplicate “%@”" = "“%@”を複製";
 "Restore “%@”" = "“%@”を元に戻す";
-"Delete the theme “%@”?" = "“%@”テーマを削除してもよいですか？";
-"Deleted theme cannot be restored." = "削除したテーマは元に戻せません。";
+"Are you sure you want to delete “%@” theme?" = "“%@”テーマを削除してもよろしいですか？";
+"Deleted theme can’t be restored." = "削除したテーマは元に戻せません。";
 "A new theme named “%@” will be installed, but a custom theme with the same name already exists." = "新しいテーマ“%@”のインストールを試みましたが、同名のカスタムテーマがすでに存在しています。";
-"Do you want to replace it?\nReplaced theme cannot be restored." = "テーマを置き換えますか？\n削除したテーマは元に戻せません。";
+"Do you want to replace it?\nReplaced theme can’t be restored." = "テーマを置き換えますか？\n削除したテーマは元に戻せません。";
 
 // swipe to delete (also used in the Format pane)
 "Delete" = "削除";
@@ -294,15 +299,21 @@
 // Integration Pane
 "Install" = "インストール";
 "Uninstall" = "アンインストール";
-"The current 'cot' symbolic link doesn't target on the running CotEditor." = "現在の 'cot'　シンボリックはこの CotEditor 以外に向けられています。";
+"Command:" = "コマンド名：";
+"Select “Install” to install the command-line tool at the following location.\nThe default location is: %@" = "以下の場所にコマンドラインツールをインストールするために、“インストール”を選択してください。\nデフォルトインストール場所：%@";
+"The current 'cot' symbolic link doesn’t target the running CotEditor." = "現在の 'cot' シンボリックリンクはこの CotEditor 以外に向けられています。";
 "The current 'cot' symbolic link may target on an invalid path." = "現在の 'cot' シンボリックリンクは無効なパスに向けられています。";
 
 // alerts
-"The running CotEditor is not located in the Application directory." = "現在起動している CotEditor はアプリケーションフォルダ外にあります。";
-"Do you really want to install the command-line tool for CotEditor at “%@”?\n\nWe recommend to move CotEditor.app to the Application directory at first." = "本当に“%@”のためのコマンドラインツールをインストールしますか？\n\n先に CotEditor.app をアプリケーションフォルダに移動することをおすすめします。";
+"The running CotEditor is not located in the Applications folder." = "現在起動している CotEditor はアプリケーションフォルダ外にあります。";
+"Do you really want to install the command-line tool for CotEditor at “%@”?\n\nThe command will be invalid if the location of CotEditor is moved." = "本当に“%@”にある CotEditor のためのコマンドラインツールをインストールしますか？\n\nCotEditor.app の場所が移動されるとコマンドは無効になります。";
 
 "The name of the running CotEditor is modified." = "現在起動している CotEditor は名前が変更されています。";
-"Do you really want to install the command-line tool for “%@”?" = "本当に“%@”のためのコマンドラインツールをインストールしますか？";
+"Do you really want to install the command-line tool for “%@”?\n\nThe command will be invalid if CotEditor is renamed." = "本当に“%@”のためのコマンドラインツールをインストールしますか？\n\n\nCotEditor の名前が変更されるとコマンドは無効になります。";
+
+"Uninstallation was denied by the system." = "アンインストールがシステムに拒否されました。";
+"You can install cot command manually running the following command on Terminal:" = "ユーザ自身がターミナルから以下のコマンドを実行することで cot コマンドをインストールすることができます：";
+"You can uninstall cot command manually running the following command on Terminal:" = "ユーザ自身がターミナルから以下のコマンドを実行することで cot コマンドをアンインストールすることができます：";
 
 
 /* MARK: CESyntaxEditSheetController */
@@ -332,37 +343,37 @@
 /* MARK: CESyntaxManager */
 // Syntax coloring style name errors
 "Input style name." = "スタイル名を入力してください。";
-"“%@” is already exist. Input another name." = "“%@”は既に使われています。ほかの名前を入力してください。";
-"Style name cannot contain “/”. Input another name." = "スタイル名に“/”を含むことはできません。ほかの名前を入力してください。";
-"Style name cannot begin with “.”. Input another name." = "スタイル名を“.”から始めることはできません。ほかの名前を入力してください。";
+"“%@” is already taken. Please choose another name." = "“%@”はすでに使用されています。別の名前を指定してください。";
+"You can’t use a style name that contains “/”. Please choose another name." = "スタイル名に“/”を含むことはできません。別の名前を指定してください。";
+"You can’t use a style name that begins with a dot “.”. Please choose another name." = "スタイル名を“.”から始めることはできません。別の名前を指定してください。";
 // Selected syntax coloring style name was original
-"Name of the bundled style cannot be changed." = "バンドルされているスタイルの名前は変更できません。";
+"Bundled styles can’t be renamed." = "バンドルされているスタイルの名前は変更できません。";
 // Suffix of copied syntax coloring style
 " copy" = " コピー";
 // Delete syntax coloring style alert message
-"Delete the Syntax style “%@”?" = "シンタックススタイル“%@”を削除してもよろしいですか？";
+"Are you sure you want to delete “%@” syntax style?" = "シンタックススタイル“%@”を削除してもよろしいですか？";
 // Syntax coloring style alert button titles
 "Cancel" = "キャンセル";
 "Delete" = "削除";
 "Replace" = "置換";
 // Delete syntax coloring style alert information
-"Deleted style cannot be restored." = "削除したスタイルは元に戻せません。";
+"Deleted style can’t be restored." = "削除したスタイルは元に戻せません。";
 // Deleted error
-"Sorry, could not delete “%@”." = "“%@”を削除できませんでした。";
+"The style “%@” couldn’t be deleted." = "スタイル““%@”を削除できませんでした。";
 // Import syntax coloring style file choose openPanel button
 "Import" = "読み込み";
 // Importing same name style alert title
-"The “%@” style already exists." = "スタイル“%@”は既に存在しています。";
+"The “%@” style already exists." = "スタイル“%@”はすでに存在しています。";
 // Importing same name style alert info
-"Do you want to replace it?\nReplaced style cannot be restored." = "スタイルを置き換えますか？\n置き換えたスタイルは元に戻せません。";
+"Do you want to replace it?\nReplaced style can’t be restored." = "スタイルを置き換えますか？\n置き換えたスタイルは元に戻せません。";
 // Imported error
-"Error occured." = "エラーが起きました。";
-"Sorry, could not import “%@”." = "“%@”を読み込めませんでした。";
+"An error occurred." = "エラーが起きました。";
+"The style “%@” couldn’t be imported." = "スタイル“%@”を読み込めませんでした。";
 // Export syntax coloring style file savePanel label
 "Export As:" = "書き出し：";
 // File Drop setting deletion alert
-"Delete the File Drop setting for “%@”?" = "ファイルドロップ設定“%@”を削除してもよろしいですか？";
-"Deleted setting cannot be restored." = "削除した設定は元に戻せません。";
+"Are you sure you want to delete the file drop setting for “%@”?" = "ファイルドロップ設定“%@”を削除してもよろしいですか？";
+"Deleted setting can’t be restored." = "削除した設定は元に戻せません。";
 // Syntax validation
 "Block comment needs both begin delimiter and end delimiter." = "ブロックコメントは開始文字と終了文字の両方を必要とします。";
 "Begin string" = "開始文字列";
@@ -375,21 +386,22 @@
 /* MARK: CEThemeManager */
 "Untitled" = "名称未設定";
 "Customized Theme" = "カスタムテーマ";
-"Theme name cannot be empty." = "テーマ名は空にできません。";
-"Theme name cannot contain “/”." = "テーマ名に“/”を含むことはできません。";
-"Theme name cannot begin with “.”." = "テーマ名を“.”から始めることはできません。";
-"Input another name." = "ほかの名前を入力してください。";
+"The theme name “%@” is already taken." = "テーマ名“%@”はすでに使用されています。";
+"Theme name can’t be empty." = "テーマ名は空にできません。";
+"You can’t use a theme name that contains “/”." = "テーマ名に“/”を含むことはできません。";
+"You can’t use a theme name that begins with a dot “.”." = "テーマ名を“.”から始めることはできません。";
+"Please choose another name." = "別の名前を指定してください。";
 
-"Auto-generated theme that is mgrated from user's coloring setting on CotEditor 1.x" = "CotEditor 1.x でのユーザカラーリング設定から自動生成されたテーマ";
+"Auto-generated theme that is migrated from user’s coloring setting on CotEditor 1.x" = "CotEditor 1.x でのユーザカラーリング設定から自動生成されたテーマ";
 
 
 /* MARK: CEKeyBindingManager */
 // label for text menu keybindings action
 "Insert Text %@" = "テキストを挿入 %@";
 // Warning messages
-"“%@” has already been used. Edit it again." = "“%@”は既に使われています。再編集してください。";
-"“%@” does NOT include Command key. Edit it again." = "“%@”にはコマンドキーが含まれていません。再編集してください。";
-"“%@” includes Command key. Edit it again." = "“%@”はコマンドキーを含んでいます。再編集してください。";
+"“%@” is already taken. Please choose another key." = "“%@”はすでに使用されています。再編集してください。";
+"“%@” does not include the Command key. Please choose another key." = "“%@”にはコマンドキーが含まれていません。再編集してください。";
+"“%@” includes the Command key. Please choose another key." = "“%@”はコマンドキーを含んでいます。再編集してください。";
 
 
 /* MARK: CEScriptManager */
@@ -405,10 +417,10 @@
 "“Opt + click” to open in Script Editor." = "スクリプトエディタで開くには、“Opt + クリック”します。";
 
 // Alert messages
-"The script “%@” does not exist.\n\nCheck it and do “Update Script Menu”." = "スクリプト“%@”は存在しません。\n\nファイルを確認し、“スクリプトメニューを更新”してください。";
-"Could not open the script file “%@”." = "スクリプトファイル“%@”を開けませんでした。";
-"Cannnot execute the script “%@”.\nShell script requires execute permission.\n\nCheck permission of the script file." = "スクリプト“%@”を実行できません。\nシェルスクリプトの場合は実行権が必要です。\n\nアクセス権を確認してください。";
-"Could not read the script “%@”." = "スクリプト“%@”を読み込めませんでした。";
+"The script “%@” does not exist.\n\nCheck it and select “Update Script Menu”." = "スクリプト“%@”は存在しません。\n\nファイルを確認し、“スクリプトメニューを更新”してください。";
+"The script file “%@” couldn’t be opened." = "スクリプトファイル“%@”を開けませんでした。";
+"The script “%@” can’t be executed because you don’t have the execute permission.\n\nCheck permission of the script file." = "実行権がないため、スクリプト„%@“を実行できません。\n\nスクリプトファイルのアクセス権を確認してください。";
+"The script “%@” couldn’t be read." = "スクリプト“%@”を読み込めませんでした。";
 
 
 /* MARK: CEFindPanelController */
@@ -416,7 +428,7 @@
 
 
 /* MARK: CEFindResultViewController */
-// Find result (“%@” is file name)
+// Find result (“%@” is filename)
 "No strings found in “%@”." = "“%@”内に見つかりませんでした。";
 "Found one string in “%@”." = "“%@”内に1件見つかりました。";
 "Found %li strings in “%@”." = "“%2$@”内に%1$li件見つかりました。";

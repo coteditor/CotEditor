@@ -33,21 +33,20 @@
 
 @implementation CEDocument (ScriptingSupport)
 
-#pragma mark Delegate
-
-//=======================================================
-// NSTextStorageDelegate  <- selection
-//=======================================================
+#pragma mark Notification
 
 // ------------------------------------------------------
 /// text strage as AppleScript's return value did update
 - (void)textStorageDidProcessEditing:(nonnull NSNotification *)notification
 // ------------------------------------------------------
 {
-    NSTextStorage *storage = (NSTextStorage *)[notification object];
+    NSTextStorage *textStorage = (NSTextStorage *)[notification object];
 
-    [[self editor] replaceTextViewAllStringWithString:[storage string]];
-    [storage setDelegate:nil];
+    [[self editor] replaceTextViewAllStringWithString:[textStorage string]];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:NSTextStorageDidProcessEditingNotification
+                                                  object:textStorage];
 }
 
 
@@ -56,25 +55,31 @@
 
 // ------------------------------------------------------
 /// return whole document string (text type)
-- (NSTextStorage *)textStorage
+- (NSTextStorage *)scriptTextStorage
 // ------------------------------------------------------
 {
-    NSTextStorage *storage = [[NSTextStorage alloc] initWithString:[self stringForSave]];
+    NSTextStorage *textStorage = [[NSTextStorage alloc] initWithString:[self stringForSave]];
 
-    [storage setDelegate:self];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(textStorageDidProcessEditing:)
+                                                 name:NSTextStorageDidProcessEditingNotification
+                                               object:textStorage];
     
     // disconnect the delegate after 0.5 sec. (otherwise app may crash)
+    __weak typeof(self) weakSelf = self;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [storage setDelegate:nil];
+        [[NSNotificationCenter defaultCenter] removeObserver:weakSelf
+                                                        name:NSTextStorageDidProcessEditingNotification
+                                                      object:textStorage];
     });
-
-    return storage;
+    
+    return textStorage;
 }
 
 
 // ------------------------------------------------------
 /// replase whole document string
-- (void)setTextStorage:(id)object;
+- (void)setScriptTextStorage:(id)object;
 // ------------------------------------------------------
 {
     if ([object isKindOfClass:[NSTextStorage class]]) {
@@ -90,7 +95,7 @@
 - (NSTextStorage *)contents
 // ------------------------------------------------------
 {
-    return [self textStorage];
+    return [self scriptTextStorage];
 }
 
 
@@ -99,7 +104,7 @@
 - (void)setContents:(id)object
 // ------------------------------------------------------
 {
-    [self setTextStorage:object];
+    [self setScriptTextStorage:object];
 }
 
 
@@ -271,7 +276,7 @@
 - (NSNumber *)handleConvertScriptCommand:(NSScriptCommand *)command
 // ------------------------------------------------------
 {
-    NSDictionary *arguments = [command evaluatedArguments];
+    NSDictionary<NSString *, id> *arguments = [command evaluatedArguments];
     NSString *encodingName = arguments[@"newEncoding"];
     NSStringEncoding encoding = [CEUtils encodingFromName:encodingName];
     BOOL success = NO;
@@ -297,7 +302,7 @@
 - (NSNumber *)handleReinterpretScriptCommand:(NSScriptCommand *)command
 // ------------------------------------------------------
 {
-    NSDictionary *arguments = [command evaluatedArguments];
+    NSDictionary<NSString *, id> *arguments = [command evaluatedArguments];
     NSString *encodingName = arguments[@"newEncoding"];
     NSStringEncoding encoding = [CEUtils encodingFromName:encodingName];
     
@@ -312,7 +317,7 @@
 - (NSNumber *)handleFindScriptCommand:(NSScriptCommand *)command
 // ------------------------------------------------------
 {
-    NSDictionary *arguments = [command evaluatedArguments];
+    NSDictionary<NSString *, id> *arguments = [command evaluatedArguments];
     NSString *searchStr = arguments[@"targetString"];
     if ([searchStr length] == 0) { return @NO; }
     BOOL isRegex = [arguments[@"regularExpression"] boolValue];
@@ -354,7 +359,7 @@
 - (NSNumber *)handleReplaceScriptCommand:(NSScriptCommand *)command
 // ------------------------------------------------------
 {
-    NSDictionary *arguments = [command evaluatedArguments];
+    NSDictionary<NSString *, id> *arguments = [command evaluatedArguments];
     NSString *searchStr = arguments[@"targetString"];
     if ([searchStr length] == 0) { return @NO; }
     BOOL isRegex = [arguments[@"regularExpression"] boolValue];
@@ -436,8 +441,8 @@
 - (NSString *)handleStringScriptCommand:(NSScriptCommand *)command
 // ------------------------------------------------------
 {
-    NSDictionary *arguments = [command evaluatedArguments];
-    NSArray *rangeArray = arguments[@"range"];
+    NSDictionary<NSString *, id> *arguments = [command evaluatedArguments];
+    NSArray<NSNumber *> *rangeArray = arguments[@"range"];
 
     if ([rangeArray count] == 0) { return [NSString string]; }
     NSInteger location = [rangeArray[0] integerValue];

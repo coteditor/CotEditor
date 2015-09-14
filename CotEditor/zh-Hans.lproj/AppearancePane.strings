@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014 CotEditor Project
+ © 2014-2015 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -27,28 +27,45 @@
  */
 
 /* Class = "NSTextFieldCell"; title = "Font:"; ObjectID = "Z85-S9-uID"; */
-"Z85-S9-uID.title" = "字体:";
+"Z85-S9-uID.title" = "字体：";
 /* Class = "NSButtonCell"; title = "Select…"; ObjectID = "3289"; */
 "3289.title" = "选择…";
 /* Class = "NSButtonCell"; title = "Anti-Aliasing"; ObjectID = "3290"; */
 "3290.title" = "抗锯齿";
 
 /* Class = "NSTextFieldCell"; title = "Line height:"; ObjectID = "r1c-v3-qW1"; */
-"r1c-v3-qW1.title" = "行高:";
+"r1c-v3-qW1.title" = "行高：";
 /* Class = "NSTextFieldCell"; title = "times"; ObjectID = "VLD-jj-zzl"; */
 "VLD-jj-zzl.title" = "倍";
 /* Class = "NSButtonCell"; title = "Fix line height with composite font"; ObjectID = "3296"; */
 "3296.title" = "多种字体时仍固定行高";
 
 /* Class = "NSTextFieldCell"; title = "Current line:"; ObjectID = "oKu-Fu-hRU"; */
-"oKu-Fu-hRU.title" = "当前行:";
+"oKu-Fu-hRU.title" = "当前行：";
 /* Class = "NSButtonCell"; title = "Change background color"; ObjectID = "ba7-dE-zXz"; */
 "ba7-dE-zXz.title" = "改变背景颜色";
 
 
 /* Class = "NSTableColumn"; headerCell.title = "Theme"; ObjectID = "Avf-y8-wXG"; */
 "Avf-y8-wXG.headerCell.title" = "主题";
-/* Class = "NSMenuItem"; title = "Export…"; ObjectID = "4B4-mq-8Fs"; */
-"4B4-mq-8Fs.title" = "导出…";
 /* Class = "NSMenuItem"; title = "Import…"; ObjectID = "gcs-B8-kPL"; */
 "gcs-B8-kPL.title" = "导入…";
+/* Class = "NSMenuItem"; title = "Export…"; ObjectID = "4B4-mq-8Fs"; */
+"4B4-mq-8Fs.title" = "导出…";
+
+
+/* contextual menu */
+/* Class = "NSMenuItem"; title = "New Theme"; ObjectID = "sJb-7g-2FN"; */
+"sJb-7g-2FN.title" = "新建主题";
+/* Class = "NSMenuItem"; title = "Rename"; ObjectID = "nWy-OL-CGi"; */
+"nWy-OL-CGi.title" = "重新命名";
+/* Class = "NSMenuItem"; title = "Duplicate"; ObjectID = "9LW-xw-HBP"; */
+"9LW-xw-HBP.title" = "拷贝";
+/* Class = "NSMenuItem"; title = "Restore"; ObjectID = "vTP-Fc-iBF"; */
+"vTP-Fc-iBF.title" = "还原";
+/* Class = "NSMenuItem"; title = "Delete"; ObjectID = "WNG-Ai-RdG"; */
+"WNG-Ai-RdG.title" = "删除";
+/* Class = "NSMenuItem"; title = "Export…"; ObjectID = "ueG-D7-DSV"; */
+"ueG-D7-DSV.title" = "导入…";
+/* Class = "NSMenuItem"; title = "Import…"; ObjectID = "52n-xG-4ZL"; */
+"52n-xG-4ZL.title" = "导出…";

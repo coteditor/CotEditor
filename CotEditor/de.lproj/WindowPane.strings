@@ -1,0 +1,86 @@
+/*
+ 
+ WindowPane.strings (German)
+ 
+ CotEditor
+ http://coteditor.com
+ 
+ Created by 1024jp on 2015-08-19.
+ 
+ ------------------------------------------------------------------------------
+ 
+ © 2015 1024jp
+ 
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+ 
+ http://www.apache.org/licenses/LICENSE-2.0
+ 
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ 
+ */
+
+/* Class = "NSTextFieldCell"; title = "Show:"; ObjectID = "iw9-Ba-eD2"; */
+"iw9-Ba-eD2.title" = "Anzeigen:";
+/* Class = "NSButtonCell"; title = "Navigation Bar"; ObjectID = "3351"; */
+"3351.title" = "Navigationleiste";
+/* Class = "NSButtonCell"; title = "Document Inspector"; ObjectID = "3348"; */
+"3348.title" = "Dokumentinformationen";
+/* Class = "NSButtonCell"; title = "Status Bar"; ObjectID = "3349"; */
+"3349.title" = "Statusleiste";
+/* Class = "NSButtonCell"; title = "Line Numbers"; ObjectID = "A9U-Sx-or3"; */
+"A9U-Sx-or3.title" = "Zeilennummern";
+/* Class = "NSButtonCell"; title = "Page Guide"; ObjectID = "3352"; */
+"3352.title" = "Seitenhilfslinie";
+/* Class = "NSTextFieldCell"; title = "Display at column:"; ObjectID = "3353"; */
+"3353.title" = "Bei Spalte:";
+
+
+/* Class = "NSTextFieldCell"; title = "Status bar shows:"; ObjectID = "kjP-FS-fyd"; */
+"kjP-FS-fyd.title" = "Statusleiste-Anzeige:";
+/* Class = "NSButtonCell"; title = "Line Count"; ObjectID = "6jK-xX-8AH"; */
+"6jK-xX-8AH.title" = "Zeilenanzahl";
+/* Class = "NSButtonCell"; title = "Char Count"; ObjectID = "sHZ-kO-Wvu"; */
+"sHZ-kO-Wvu.title" = "Zeichenanzahl";
+/* Class = "NSButtonCell"; title = "Length"; ObjectID = "YE8-hr-UbT"; */
+"YE8-hr-UbT.title" = "Länge";
+/* Class = "NSButtonCell"; title = "Word Count"; ObjectID = "hRw-gK-ONt"; */
+"hRw-gK-ONt.title" = "Wörteranzahl";
+/* Class = "NSButtonCell"; title = "Location"; ObjectID = "ctl-Ps-V8Z"; */
+"ctl-Ps-V8Z.title" = "Ort";
+/* Class = "NSButtonCell"; title = "Current Line"; ObjectID = "JbR-gR-aiA"; */
+"JbR-gR-aiA.title" = "Aktuelle Zeile";
+/* Class = "NSButtonCell"; title = "Column"; ObjectID = "SR0-Bx-Nh6"; */
+"SR0-Bx-Nh6.title" = "Aktuelle Spalte";
+/* Class = "NSButtonCell"; title = "Encoding"; ObjectID = "8m3-5I-Moe"; */
+"8m3-5I-Moe.title" = "Codierung";
+/* Class = "NSButtonCell"; title = "Line Endings"; ObjectID = "Ief-Dy-mPR"; */
+"Ief-Dy-mPR.title" = "Zeilenenden";
+/* Class = "NSButtonCell"; title = "File Size"; ObjectID = "ikB-dS-c4S"; */
+"ikB-dS-c4S.title" = "Dateigröße";
+
+
+/* Class = "NSTextFieldCell"; title = "Split view:"; ObjectID = "dug-hV-7hj"; */
+"dug-hV-7hj.title" = "Ansicht teilen:";
+/* Class = "NSButtonCell"; title = "Horizontal"; ObjectID = "kON-YK-TIu"; */
+"kON-YK-TIu.title" = "Horizontal";
+/* Class = "NSButtonCell"; title = "Vertical"; ObjectID = "vUQ-Z9-lPm"; */
+"vUQ-Z9-lPm.title" = "Vertikal";
+
+
+/* Class = "NSTextFieldCell"; title = "Window width:"; ObjectID = "zIR-1y-lBC"; */
+"zIR-1y-lBC.title" = "Fensterbreite:";
+/* Class = "NSTextFieldCell"; title = "height:"; ObjectID = "3343"; */
+"3343.title" = "-höhe:";
+/* Class = "NSButtonCell"; title = "Get from Sample Window…"; ObjectID = "3346"; */
+"3346.title" = "Von Probefenster erhalten …";
+
+/* Class = "NSTextFieldCell"; title = "View opacity:"; ObjectID = "gSx-LA-TPc"; */
+"gSx-LA-TPc.title" = "Ansichtdeckkraft:";
+/* Class = "NSTextFieldCell"; title = "Non-opaque view can slow down on a huge document."; ObjectID = "gdC-8B-U5B"; */
+"gdC-8B-U5B.title" = "Nichtopaker Ansicht kann sich beim riesigen Dokument verlangsamen.";

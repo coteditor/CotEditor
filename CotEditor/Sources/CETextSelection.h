@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014 1024jp
+ © 2014-2015 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -53,10 +53,11 @@ typedef NS_ENUM(NSUInteger, CEUNFType) {
     CENFD = 'cNfd',
     CENFKC = 'cNkc',
     CENFKD = 'cNkd',
+    CENFKCCF = 'cNcf',
 };
 
 
-@interface CETextSelection : NSObject <NSTextStorageDelegate>
+@interface CETextSelection : NSObject
 
 // Public method
 - (instancetype)initWithDocument:(CEDocument *)document NS_DESIGNATED_INITIALIZER;
@@ -72,10 +73,10 @@ typedef NS_ENUM(NSUInteger, CEUNFType) {
 // AppleScript accessor
 - (NSTextStorage *)contents;
 - (void)setContents:(id)contentsObject;
-- (NSArray *)range;
-- (void)setRange:(NSArray *)rangeArray;
-- (NSArray *)lineRange;
-- (void)setLineRange:(NSArray *)RangeArray;
+- (NSArray<NSNumber *> *)range;
+- (void)setRange:(NSArray<NSNumber *> *)rangeArray;
+- (NSArray<NSNumber *> *)lineRange;
+- (void)setLineRange:(NSArray<NSNumber *> *)RangeArray;
 
 // AppleScript handler
 - (void)handleShiftRightScriptCommand:(NSScriptCommand *)command;

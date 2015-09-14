@@ -57,6 +57,7 @@ typedef NS_ENUM(OSStatus, CEErrorCode) {
     // for command-line tool
     CEApplicationNotInApplicationDirectoryError,
     CEApplicationNameIsModifiedError,
+    CESymlinkCreationDeniedError,
 };
 
 // Metadata dict keys
@@ -142,6 +143,8 @@ extern NSString *__nonnull const CEDefaultWindowAlphaKey;
 extern NSString *__nonnull const CEDefaultAutoExpandTabKey;
 extern NSString *__nonnull const CEDefaultTabWidthKey;
 extern NSString *__nonnull const CEDefaultAutoIndentKey;
+extern NSString *__nonnull const CEDefaultEnablesHangingIndentKey;
+extern NSString *__nonnull const CEDefaultHangingIndentWidthKey;
 extern NSString *__nonnull const CEDefaultShowInvisiblesKey;
 extern NSString *__nonnull const CEDefaultShowInvisibleSpaceKey;
 extern NSString *__nonnull const CEDefaultInvisibleSpaceKey;
@@ -161,7 +164,9 @@ extern NSString *__nonnull const CEDefaultFileDropArrayKey;
 extern NSString *__nonnull const CEDefaultSmartInsertAndDeleteKey;
 extern NSString *__nonnull const CEDefaultShouldAntialiasKey;
 extern NSString *__nonnull const CEDefaultAutoCompleteKey;
-extern NSString *__nonnull const CEDefaultCompletionWordsKey;
+extern NSString *__nonnull const CEDefaultCompletesDocumentWordsKey;
+extern NSString *__nonnull const CEDefaultCompletesSyntaxWordsKey;
+extern NSString *__nonnull const CEDefaultCompletesStandartWordsKey;
 extern NSString *__nonnull const CEDefaultShowPageGuideKey;
 extern NSString *__nonnull const CEDefaultPageGuideColumnKey;
 extern NSString *__nonnull const CEDefaultLineSpacingKey;
@@ -236,6 +241,7 @@ extern NSString *__nonnull const CEDefaultLargeFileAlertThresholdKey;
 extern NSString *__nonnull const CEDefaultAutosavingDelayKey;
 extern NSString *__nonnull const CEDefaultEnablesAutosaveInPlaceKey;
 extern NSString *__nonnull const CEDefaultSavesTextOrientationKey;
+extern NSString *__nonnull const CEDefaultCotCommandBookmarkKey;
 
 
 

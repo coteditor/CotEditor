@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6254"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="7706"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="CEFormatPaneController">
@@ -21,7 +21,7 @@
         <userDefaultsController representsSharedInstance="YES" id="26" userLabel="Shared User Defaults Controller"/>
         <arrayController objectClassName="NSString" id="Qfx-DD-EBP" userLabel="Styles Controller"/>
         <customView horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" id="745" userLabel="Format Pane">
-            <rect key="frame" x="0.0" y="0.0" width="540" height="425"/>
+            <rect key="frame" x="0.0" y="0.0" width="550" height="425"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <button horizontalHuggingPriority="750" verticalHuggingPriority="750" tag="5" translatesAutoresizingMaskIntoConstraints="NO" id="2157">
@@ -63,9 +63,9 @@
                     </connections>
                 </popUpButton>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="44">
-                    <rect key="frame" x="385" y="270" width="106" height="28"/>
+                    <rect key="frame" x="395" y="270" width="106" height="28"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="96" id="iGy-QY-Sx5"/>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="96" id="iGy-QY-Sx5"/>
                     </constraints>
                     <buttonCell key="cell" type="push" title="Edit List…" bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" inset="2" id="3275">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -76,7 +76,7 @@
                     </connections>
                 </button>
                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="76">
-                    <rect key="frame" x="166" y="272" width="215" height="26"/>
+                    <rect key="frame" x="166" y="272" width="225" height="26"/>
                     <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="3276">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menu"/>
@@ -107,9 +107,9 @@
                     </textFieldCell>
                 </textField>
                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="80">
-                    <rect key="frame" x="166" y="329" width="215" height="26"/>
+                    <rect key="frame" x="166" y="329" width="225" height="26"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="210" id="7pp-Cr-TTw"/>
+                        <constraint firstAttribute="width" constant="220" id="7pp-Cr-TTw"/>
                     </constraints>
                     <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="3279">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -145,18 +145,19 @@
                     </connections>
                 </button>
                 <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gmu-7H-gv5">
-                    <rect key="frame" x="168" y="82" width="260" height="80"/>
+                    <rect key="frame" x="168" y="82" width="280" height="80"/>
                     <clipView key="contentView" id="tYa-xS-9xx">
                         <rect key="frame" x="1" y="1" width="258" height="78"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnReordering="NO" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" viewBased="YES" id="i9j-3p-xYF">
+                                <rect key="frame" x="0.0" y="0.0" width="258" height="0.0"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <size key="intercellSpacing" width="3" height="2"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                 <tableColumns>
-                                    <tableColumn editable="NO" width="255" minWidth="40" maxWidth="1000" id="ss2-bM-hH4">
+                                    <tableColumn editable="NO" width="275" minWidth="40" maxWidth="1000" id="ss2-bM-hH4">
                                         <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Style Name">
                                             <font key="font" metaFont="smallSystem"/>
                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -170,11 +171,11 @@
                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                         <prototypeCellViews>
                                             <tableCellView id="zzT-SQ-Hgy">
-                                                <rect key="frame" x="1" y="1" width="255" height="17"/>
+                                                <rect key="frame" x="1" y="1" width="275" height="17"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
-                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rkb-Ee-Z1t">
-                                                        <rect key="frame" x="0.0" y="0.0" width="255" height="17"/>
+                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Rkb-Ee-Z1t">
+                                                        <rect key="frame" x="0.0" y="0.0" width="275" height="17"/>
                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="sir-ug-cpV">
                                                             <font key="font" metaFont="system"/>
                                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -185,6 +186,12 @@
                                                         </connections>
                                                     </textField>
                                                 </subviews>
+                                                <constraints>
+                                                    <constraint firstItem="Rkb-Ee-Z1t" firstAttribute="top" secondItem="zzT-SQ-Hgy" secondAttribute="top" id="CbX-rx-04b"/>
+                                                    <constraint firstAttribute="bottom" secondItem="Rkb-Ee-Z1t" secondAttribute="bottom" id="UXv-No-wku"/>
+                                                    <constraint firstAttribute="trailing" secondItem="Rkb-Ee-Z1t" secondAttribute="trailing" constant="2" id="bIi-Pc-Qea"/>
+                                                    <constraint firstItem="Rkb-Ee-Z1t" firstAttribute="leading" secondItem="zzT-SQ-Hgy" secondAttribute="leading" constant="2" id="oAX-JK-3Cd"/>
+                                                </constraints>
                                                 <connections>
                                                     <outlet property="textField" destination="Rkb-Ee-Z1t" id="d9o-cS-Ubp"/>
                                                 </connections>
@@ -203,7 +210,7 @@
                     </clipView>
                     <constraints>
                         <constraint firstAttribute="height" constant="80" id="AZ7-Fe-3Vq"/>
-                        <constraint firstAttribute="width" constant="260" id="LVm-Np-QAF"/>
+                        <constraint firstAttribute="width" constant="280" id="LVm-Np-QAF"/>
                     </constraints>
                     <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" controlSize="small" horizontal="YES" id="uuG-1x-3ZZ">
                         <rect key="frame" x="1" y="63" width="258" height="16"/>
@@ -226,7 +233,7 @@
                     </connections>
                 </textField>
                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="727">
-                    <rect key="frame" x="166" y="171" width="265" height="26"/>
+                    <rect key="frame" x="166" y="171" width="285" height="26"/>
                     <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="3328">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menu"/>
@@ -311,7 +318,7 @@
                     </connections>
                 </button>
                 <button toolTip="Edit selected style" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Q0c-oI-um3">
-                    <rect key="frame" x="400" y="52" width="28" height="23"/>
+                    <rect key="frame" x="420" y="52" width="28" height="23"/>
                     <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="EditTemplate" imagePosition="overlaps" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="dY5-OA-5Z4">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
@@ -326,7 +333,7 @@
                         <constraint firstAttribute="width" constant="35" id="C2H-ho-Lhl"/>
                         <constraint firstAttribute="height" constant="21" id="U66-bm-gzy"/>
                     </constraints>
-                    <popUpButtonCell key="cell" type="smallSquare" title="Syntax Action" bezelStyle="smallSquare" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" pullsDown="YES" selectedItem="vJ2-Tx-VZB" id="DWa-4z-345">
+                    <popUpButtonCell key="cell" type="smallSquare" title="Syntax Action" bezelStyle="smallSquare" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" pullsDown="YES" selectedItem="hyN-4W-57i" id="DWa-4z-345">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menu"/>
                         <menu key="menu" title="OtherViews" id="9gA-X5-Prh">
@@ -400,7 +407,7 @@
                 <constraint firstItem="76" firstAttribute="leading" secondItem="877" secondAttribute="leading" id="Rro-td-IxJ"/>
                 <constraint firstItem="76" firstAttribute="baseline" secondItem="77" secondAttribute="baseline" id="SG1-jN-DZG"/>
                 <constraint firstItem="lnk-dB-keR" firstAttribute="top" secondItem="13" secondAttribute="bottom" constant="16" id="SfE-nc-j89"/>
-                <constraint firstAttribute="trailing" secondItem="2157" secondAttribute="trailing" constant="20" symbolic="YES" id="Tos-Ab-4cZ"/>
+                <constraint firstAttribute="trailing" secondItem="2157" secondAttribute="trailing" constant="30" id="Tos-Ab-4cZ"/>
                 <constraint firstItem="727" firstAttribute="baseline" secondItem="734" secondAttribute="baseline" id="UWt-QS-Zye"/>
                 <constraint firstItem="76" firstAttribute="leading" secondItem="77" secondAttribute="trailing" constant="8" symbolic="YES" id="Uwh-0a-hXH"/>
                 <constraint firstItem="13" firstAttribute="leading" secondItem="17" secondAttribute="trailing" constant="8" symbolic="YES" id="VAd-6a-K7f"/>
@@ -421,8 +428,8 @@
                 <constraint firstItem="77" firstAttribute="baseline" secondItem="44" secondAttribute="baseline" id="r46-Uo-ajg"/>
                 <constraint firstItem="Q0c-oI-um3" firstAttribute="trailing" secondItem="Gmu-7H-gv5" secondAttribute="trailing" id="rPT-EM-bI7"/>
                 <constraint firstItem="3248" firstAttribute="leading" secondItem="80" secondAttribute="leading" id="sVQ-Zi-KPR"/>
-                <constraint firstAttribute="trailing" secondItem="lnk-dB-keR" secondAttribute="trailing" constant="20" symbolic="YES" id="sr3-RZ-lke"/>
-                <constraint firstAttribute="trailing" secondItem="eoL-rv-xwG" secondAttribute="trailing" constant="20" symbolic="YES" id="tDE-tc-SUo"/>
+                <constraint firstAttribute="trailing" secondItem="lnk-dB-keR" secondAttribute="trailing" constant="30" id="sr3-RZ-lke"/>
+                <constraint firstAttribute="trailing" secondItem="eoL-rv-xwG" secondAttribute="trailing" constant="30" id="tDE-tc-SUo"/>
                 <constraint firstItem="430" firstAttribute="baseline" secondItem="703" secondAttribute="baseline" id="tdc-VO-aPr"/>
                 <constraint firstItem="Q0c-oI-um3" firstAttribute="height" secondItem="Hma-8v-2gu" secondAttribute="height" id="txp-xU-QdK"/>
                 <constraint firstItem="727" firstAttribute="width" secondItem="Gmu-7H-gv5" secondAttribute="width" id="urH-iw-Qrk"/>

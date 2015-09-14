@@ -57,9 +57,9 @@ typedef NS_ENUM(NSUInteger, QCStartEndType) {
 @interface CESyntaxParser ()
 
 @property (nonatomic) BOOL hasSyntaxHighlighting;
-@property (nonatomic, nullable, copy) NSDictionary *coloringDictionary;
-@property (nonatomic, nullable, copy) NSDictionary *simpleWordsCharacterSets;
-@property (nonatomic, nullable, copy) NSDictionary *pairedQuoteTypes;  // dict for quote pair to extract with comment
+@property (nonatomic, nullable, copy) NSDictionary<NSString *, id> *coloringDictionary;
+@property (nonatomic, nullable, copy) NSDictionary<NSString *, NSCharacterSet *> *simpleWordsCharacterSets;
+@property (nonatomic, nullable, copy) NSDictionary<NSString *, NSString *> *pairedQuoteTypes;  // dict for quote pair to extract with comment
 
 @property (nonatomic, nullable, copy) NSDictionary *cacheColorings;  // extracted results cache of the last whole string coloring
 @property (nonatomic, nullable, copy) NSString *cacheHash;  // MD5 hash
@@ -69,10 +69,10 @@ typedef NS_ENUM(NSUInteger, QCStartEndType) {
 
 // readonly
 @property (readwrite, nonatomic, nonnull, copy) NSString *styleName;
-@property (readwrite, nonatomic, nullable, copy) NSArray *completionWords;
+@property (readwrite, nonatomic, nullable, copy) NSArray<NSString *> *completionWords;
 @property (readwrite, nonatomic, nullable, copy) NSCharacterSet *firstCompletionCharacterSet;
 @property (readwrite, nonatomic, nullable, copy) NSString *inlineCommentDelimiter;
-@property (readwrite, nonatomic, nullable, copy) NSDictionary *blockCommentDelimiters;
+@property (readwrite, nonatomic, nullable, copy) NSDictionary<NSString *, NSString *> *blockCommentDelimiters;
 @property (readwrite, nonatomic, getter=isNone) BOOL none;
 
 @end
@@ -84,7 +84,7 @@ typedef NS_ENUM(NSUInteger, QCStartEndType) {
 
 @implementation CESyntaxParser
 
-static NSArray *kSyntaxDictKeys;
+static NSArray<NSString *> *kSyntaxDictKeys;
 static CGFloat kPerCompoIncrement;
 
 
@@ -97,7 +97,7 @@ static CGFloat kPerCompoIncrement;
 {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        NSMutableArray *syntaxDictKeys = [NSMutableArray arrayWithCapacity:kSizeOfAllColoringKeys];
+        NSMutableArray<NSString *> *syntaxDictKeys = [NSMutableArray arrayWithCapacity:kSizeOfAllColoringKeys];
         for (NSUInteger i = 0; i < kSizeOfAllColoringKeys; i++) {
             [syntaxDictKeys addObject:kAllColoringKeys[i]];
         }
@@ -133,10 +133,10 @@ static CGFloat kPerCompoIncrement;
             _styleName = NSLocalizedString(@"None", nil);
             
         } else if ([[[CESyntaxManager sharedManager] styleNames] containsObject:styleName]) {
-            NSMutableDictionary *coloringDictionary = [[[CESyntaxManager sharedManager] styleWithStyleName:styleName] mutableCopy];
+            NSMutableDictionary<NSString *, id> *coloringDictionary = [[[CESyntaxManager sharedManager] styleWithStyleName:styleName] mutableCopy];
             
             // コメントデリミッタを設定
-            NSDictionary *delimiters = coloringDictionary[CESyntaxCommentDelimitersKey];
+            NSDictionary<NSString *, NSString *> *delimiters = coloringDictionary[CESyntaxCommentDelimitersKey];
             if ([delimiters[CESyntaxInlineCommentKey] length] > 0) {
                 _inlineCommentDelimiter = delimiters[CESyntaxInlineCommentKey];
             }
@@ -147,12 +147,12 @@ static CGFloat kPerCompoIncrement;
             
             // カラーリング辞書から補完文字列配列を生成
             {
-                NSMutableArray *completionWords = [NSMutableArray array];
+                NSMutableArray<NSString *> *completionWords = [NSMutableArray array];
                 NSMutableString *firstCharsString = [NSMutableString string];
-                NSArray *completionDicts = coloringDictionary[CESyntaxCompletionsKey];
+                NSArray<NSString *> *completionDicts = coloringDictionary[CESyntaxCompletionsKey];
                 
                 if ([completionDicts count] > 0) {
-                    for (NSDictionary *dict in completionDicts) {
+                    for (NSDictionary<NSString *, id> *dict in completionDicts) {
                         NSString *word = dict[CESyntaxKeyStringKey];
                         [completionWords addObject:word];
                         [firstCharsString appendString:[word substringToIndex:1]];
@@ -161,7 +161,7 @@ static CGFloat kPerCompoIncrement;
                     NSCharacterSet *trimCharSet = [NSCharacterSet whitespaceAndNewlineCharacterSet];
                     for (NSString *key in kSyntaxDictKeys) {
                         @autoreleasepool {
-                            for (NSDictionary *wordDict in coloringDictionary[key]) {
+                            for (NSDictionary<NSString *, id> *wordDict in coloringDictionary[key]) {
                                 NSString *begin = [wordDict[CESyntaxBeginStringKey] stringByTrimmingCharactersInSet:trimCharSet];
                                 NSString *end = [wordDict[CESyntaxEndStringKey] stringByTrimmingCharactersInSet:trimCharSet];
                                 BOOL isRegEx = [wordDict[CESyntaxRegularExpressionKey] boolValue];
@@ -187,14 +187,14 @@ static CGFloat kPerCompoIncrement;
             
             // カラーリング辞書から単純文字列検索のときに使う characterSet の辞書を生成
             {
-                NSMutableDictionary *characterSets = [NSMutableDictionary dictionary];
+                NSMutableDictionary<NSString *, NSCharacterSet *> *characterSets = [NSMutableDictionary dictionary];
                 NSCharacterSet *trimCharSet = [NSCharacterSet whitespaceAndNewlineCharacterSet];
                 
                 for (NSString *key in kSyntaxDictKeys) {
                     @autoreleasepool {
                         NSMutableCharacterSet *charSet = [NSMutableCharacterSet characterSetWithCharactersInString:kAllAlphabetChars];
                         
-                        for (NSDictionary *wordDict in coloringDictionary[key]) {
+                        for (NSDictionary<NSString *, id> *wordDict in coloringDictionary[key]) {
                             NSString *begin = [wordDict[CESyntaxBeginStringKey] stringByTrimmingCharactersInSet:trimCharSet];
                             NSString *end = [wordDict[CESyntaxEndStringKey] stringByTrimmingCharactersInSet:trimCharSet];
                             BOOL isRegex = [wordDict[CESyntaxRegularExpressionKey] boolValue];
@@ -210,7 +210,7 @@ static CGFloat kPerCompoIncrement;
                         }
                         [charSet removeCharactersInString:@"\n\t "];  // 改行、タブ、スペースは無視
                         
-                        characterSets[key] = charSet;
+                        characterSets[key] = [charSet copy];
                     }
                 }
                 _simpleWordsCharacterSets = [characterSets copy];
@@ -220,13 +220,13 @@ static CGFloat kPerCompoIncrement;
             // そもそもカラーリング用の定義があるのかもここでチェック
             {
                 NSUInteger count = 0;
-                NSMutableDictionary *quoteTypes = [NSMutableDictionary dictionary];
+                NSMutableDictionary<NSString *, NSString *> *quoteTypes = [NSMutableDictionary dictionary];
                 
                 for (NSString *key in kSyntaxDictKeys) {
-                    NSMutableArray *wordDicts = [coloringDictionary[key] mutableCopy];
+                    NSMutableArray<NSDictionary<NSString *, id> *> *wordDicts = [coloringDictionary[key] mutableCopy];
                     count += [wordDicts count];
                     
-                    for (NSDictionary *wordDict in coloringDictionary[key]) {
+                    for (NSDictionary<NSString *, id> *wordDict in coloringDictionary[key]) {
                         NSString *begin = wordDict[CESyntaxBeginStringKey];
                         NSString *end = wordDict[CESyntaxEndStringKey];
                         
@@ -274,15 +274,15 @@ static CGFloat kPerCompoIncrement;
 
 // ------------------------------------------------------
 /// アウトラインメニュー用の配列を生成し、返す
-- (nonnull NSArray *)outlineItemsWithWholeString:(nullable NSString *)wholeString
+- (nonnull NSArray<NSDictionary<NSString *, id> *> *)outlineItemsWithWholeString:(nullable NSString *)wholeString
 // ------------------------------------------------------
 {
     if (([wholeString length] == 0) || [self isNone]) { return @[]; }
     
-    NSMutableArray *outlineItems = [NSMutableArray array];
+    NSMutableArray<NSDictionary<NSString *, id> *> *outlineItems = [NSMutableArray array];
     NSArray *definitions = [self coloringDictionary][CESyntaxOutlineMenuKey];
     
-    for (NSDictionary *definition in definitions) {
+    for (NSDictionary<NSString *, id> *definition in definitions) {
         NSRegularExpressionOptions options = NSRegularExpressionAnchorsMatchLines;
         if ([definition[CESyntaxIgnoreCaseKey] boolValue]) {
             options |= NSRegularExpressionCaseInsensitive;
@@ -433,7 +433,7 @@ static CGFloat kPerCompoIncrement;
     
     NSUInteger bufferLength = [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultColoringRangeBufferLengthKey];
     NSRange wholeRange = NSMakeRange(0, [string length]);
-    NSRange coloringRange = range;
+    NSRange coloringRange;
     
     // 文字列が十分小さい時は全文カラーリングをする
     if (wholeRange.length <= bufferLength) {
@@ -475,7 +475,7 @@ static CGFloat kPerCompoIncrement;
 
 // ------------------------------------------------------
 /// 指定された文字列をそのまま検索し、位置を返す
-- (nonnull NSArray *)rangesOfSimpleWords:(nonnull NSDictionary *)wordsDict ignoreCaseWords:(nonnull NSDictionary *)icWordsDict charSet:(nonnull NSCharacterSet *)charSet string:(nonnull NSString *)string range:(NSRange)parseRange
+- (nonnull NSArray<NSValue *> *)rangesOfSimpleWords:(nonnull NSDictionary *)wordsDict ignoreCaseWords:(nonnull NSDictionary *)icWordsDict charSet:(nonnull NSCharacterSet *)charSet string:(nonnull NSString *)string range:(NSRange)parseRange
 // ------------------------------------------------------
 {
     NSMutableArray *ranges = [NSMutableArray array];
@@ -517,12 +517,12 @@ static CGFloat kPerCompoIncrement;
 
 // ------------------------------------------------------
 /// 指定された文字列を検索し、位置を返す
-- (nonnull NSArray *)rangesOfString:(nonnull NSString *)searchString ignoreCase:(BOOL)ignoreCase string:(nonnull NSString *)string range:(NSRange)parseRange
+- (nonnull NSArray<NSValue *> *)rangesOfString:(nonnull NSString *)searchString ignoreCase:(BOOL)ignoreCase string:(nonnull NSString *)string range:(NSRange)parseRange
 // ------------------------------------------------------
 {
     if ([searchString length] == 0) { return @[]; }
     
-    NSMutableArray *ranges = [NSMutableArray array];
+    NSMutableArray<NSValue *> *ranges = [NSMutableArray array];
     CEIndicatorSheetController *indicator = [self indicatorController];
     NSUInteger length = [searchString length];
     
@@ -553,12 +553,12 @@ static CGFloat kPerCompoIncrement;
 
 // ------------------------------------------------------
 /// 指定された開始／終了ペアの文字列を検索し、位置を返す
-- (nonnull NSArray *)rangesOfBeginString:(nonnull NSString *)beginString endString:(nonnull NSString *)endString ignoreCase:(BOOL)ignoreCase string:(nonnull NSString *)string range:(NSRange)parseRange
+- (nonnull NSArray<NSValue *> *)rangesOfBeginString:(nonnull NSString *)beginString endString:(nonnull NSString *)endString ignoreCase:(BOOL)ignoreCase string:(nonnull NSString *)string range:(NSRange)parseRange
 // ------------------------------------------------------
 {
     if ([beginString length] == 0) { return @[]; }
     
-    NSMutableArray *ranges = [NSMutableArray array];
+    NSMutableArray<NSValue *> *ranges = [NSMutableArray array];
     CEIndicatorSheetController *indicator = [self indicatorController];
     NSUInteger endLength = [endString length];
     
@@ -602,12 +602,12 @@ static CGFloat kPerCompoIncrement;
 
 // ------------------------------------------------------
 /// 指定された文字列を正規表現として検索し、位置を返す
-- (nonnull NSArray *)rangesOfRegularExpressionString:(nonnull NSString *)regexStr ignoreCase:(BOOL)ignoreCase string:(nonnull NSString *)string range:(NSRange)parseRange
+- (nonnull NSArray<NSValue *> *)rangesOfRegularExpressionString:(nonnull NSString *)regexStr ignoreCase:(BOOL)ignoreCase string:(nonnull NSString *)string range:(NSRange)parseRange
 // ------------------------------------------------------
 {
     if ([regexStr length] == 0) { return @[]; }
     
-    NSMutableArray *ranges = [NSMutableArray array];
+    NSMutableArray<NSValue *> *ranges = [NSMutableArray array];
     CEIndicatorSheetController *indicator = [self indicatorController];
     NSRegularExpressionOptions options = NSRegularExpressionAnchorsMatchLines;
     if (ignoreCase) {
@@ -642,10 +642,10 @@ static CGFloat kPerCompoIncrement;
 
 // ------------------------------------------------------
 /// 指定された開始／終了文字列を正規表現として検索し、位置を返す
-- (nonnull NSArray *)rangesOfRegularExpressionBeginString:(nonnull NSString *)beginString endString:(nonnull NSString *)endString ignoreCase:(BOOL)ignoreCase string:(nonnull NSString *)string range:(NSRange)parseRange
+- (nonnull NSArray<NSValue *> *)rangesOfRegularExpressionBeginString:(nonnull NSString *)beginString endString:(nonnull NSString *)endString ignoreCase:(BOOL)ignoreCase string:(nonnull NSString *)string range:(NSRange)parseRange
 // ------------------------------------------------------
 {
-    NSMutableArray *ranges = [NSMutableArray array];
+    NSMutableArray<NSValue *> *ranges = [NSMutableArray array];
     CEIndicatorSheetController *indicator = [self indicatorController];
     NSRegularExpressionOptions options = NSRegularExpressionAnchorsMatchLines;
     if (ignoreCase) {
@@ -690,10 +690,10 @@ static CGFloat kPerCompoIncrement;
 
 // ------------------------------------------------------
 /// 不可視文字のカラーリング範囲配列を返す
-- (nonnull NSArray *)rangesOfControlCharsInString:(nonnull NSString *)string range:(NSRange)parseRange
+- (nonnull NSArray<NSValue *> *)rangesOfControlCharsInString:(nonnull NSString *)string range:(NSRange)parseRange
 // ------------------------------------------------------
 {
-    NSMutableArray *ranges = [NSMutableArray array];
+    NSMutableArray<NSValue *> *ranges = [NSMutableArray array];
     NSCharacterSet *controlCharacterSet = [NSCharacterSet controlCharacterSet];
     NSScanner *scanner = [NSScanner scannerWithString:string];
     
@@ -716,16 +716,16 @@ static CGFloat kPerCompoIncrement;
 
 // ------------------------------------------------------
 /// クオートで囲まれた文字列とともにコメントをカラーリング
-- (nonnull NSDictionary *)extractCommentsWithQuotesFromString:(nonnull NSString *)string range:(NSRange)parseRange
+- (nonnull NSDictionary<NSString *, NSArray<NSValue *> *> *)extractCommentsWithQuotesFromString:(nonnull NSString *)string range:(NSRange)parseRange
 // ------------------------------------------------------
 {
-    NSDictionary *quoteTypes = [self pairedQuoteTypes];
-    NSMutableArray *positions = [NSMutableArray array];
+    NSDictionary<NSString *, NSString *> *quoteTypes = [self pairedQuoteTypes];
+    NSMutableArray<NSDictionary<NSString *, id> *> *positions = [NSMutableArray array];
     
     // コメント定義の位置配列を生成
     if ([self blockCommentDelimiters]) {
         NSString *beginDelimiter = [self blockCommentDelimiters][CEBeginDelimiterKey];
-        NSArray *beginRanges = [self rangesOfString:beginDelimiter ignoreCase:NO string:string range:parseRange];
+        NSArray<NSValue *> *beginRanges = [self rangesOfString:beginDelimiter ignoreCase:NO string:string range:parseRange];
         for (NSValue *rangeValue in beginRanges) {
             NSRange range = [rangeValue rangeValue];
             
@@ -736,7 +736,7 @@ static CGFloat kPerCompoIncrement;
         }
         
         NSString *endDelimiter = [self blockCommentDelimiters][CEEndDelimiterKey];
-        NSArray *endRanges = [self rangesOfString:endDelimiter ignoreCase:NO string:string range:parseRange];
+        NSArray<NSValue *> *endRanges = [self rangesOfString:endDelimiter ignoreCase:NO string:string range:parseRange];
         for (NSValue *rangeValue in endRanges) {
             NSRange range = [rangeValue rangeValue];
             
@@ -749,7 +749,7 @@ static CGFloat kPerCompoIncrement;
     }
     if ([self inlineCommentDelimiter]) {
         NSString *delimiter = [self inlineCommentDelimiter];
-        NSArray *ranges = [self rangesOfString:delimiter ignoreCase:NO string:string range:parseRange];
+        NSArray<NSValue *> *ranges = [self rangesOfString:delimiter ignoreCase:NO string:string range:parseRange];
         for (NSValue *rangeValue in ranges) {
             NSRange range = [rangeValue rangeValue];
             NSRange lineRange = [string lineRangeForRange:range];
@@ -769,7 +769,7 @@ static CGFloat kPerCompoIncrement;
     
     // クォート定義があれば位置配列を生成、マージ
     for (NSString *quote in quoteTypes) {
-        NSArray *ranges = [self rangesOfString:quote ignoreCase:NO string:string range:parseRange];
+        NSArray<NSValue *> *ranges = [self rangesOfString:quote ignoreCase:NO string:string range:parseRange];
         for (NSValue *rangeValue in ranges) {
             NSRange range = [rangeValue rangeValue];
             
@@ -789,12 +789,12 @@ static CGFloat kPerCompoIncrement;
     [positions sortUsingDescriptors:@[positionSort, prioritySort]];
     
     // カラーリング範囲を走査
-    NSMutableDictionary *colorings = [NSMutableDictionary dictionary];
+    NSMutableDictionary<NSString *, NSMutableArray<NSValue *> *> *colorings = [NSMutableDictionary dictionary];
     NSUInteger startLocation = 0;
     NSString *searchPairKind = nil;
     BOOL isContinued = NO;
     
-    for (NSDictionary *position in positions) {
+    for (NSDictionary<NSString *, id> *position in positions) {
         QCStartEndType startEnd = [position[QCStartEndKey] unsignedIntegerValue];
         isContinued = NO;
         
@@ -848,10 +848,10 @@ static CGFloat kPerCompoIncrement;
 
 // ------------------------------------------------------
 /// 対象範囲の全てのカラーリング範囲配列を返す
-- (nonnull NSDictionary *)extractAllSyntaxFromString:(nonnull NSString *)string range:(NSRange)parseRange
+- (nonnull NSDictionary<NSString *, NSArray<NSValue *> *> *)extractAllSyntaxFromString:(nonnull NSString *)string range:(NSRange)parseRange
 // ------------------------------------------------------
 {
-    NSMutableDictionary *colorings = [NSMutableDictionary dictionary];  // key: coloring type value: range array
+    NSMutableDictionary<NSString *, NSArray<NSValue *> *> *colorings = [NSMutableDictionary dictionary];  // key: coloring type
     CEIndicatorSheetController *indicator = [self indicatorController];
     
     // Keywords > Commands > Types > Attributes > Variables > Values > Numbers > Strings > Characters > Comments
@@ -864,7 +864,7 @@ static CGFloat kPerCompoIncrement;
             });
         }
         
-        NSArray *strDicts = [self coloringDictionary][syntaxKey];
+        NSArray<NSDictionary<NSString *, id> *> *strDicts = [self coloringDictionary][syntaxKey];
         if ([strDicts count] == 0) {
             [indicator progressIndicator:kPerCompoIncrement];
             continue;
@@ -872,16 +872,16 @@ static CGFloat kPerCompoIncrement;
         
         CGFloat indicatorDelta = kPerCompoIncrement / [strDicts count];
         
-        NSMutableDictionary *simpleWordsDict = [NSMutableDictionary dictionaryWithCapacity:40];
-        NSMutableDictionary *simpleICWordsDict = [NSMutableDictionary dictionaryWithCapacity:40];
-        NSMutableArray *ranges = [NSMutableArray arrayWithCapacity:10];
+        NSMutableDictionary<NSNumber *, NSMutableArray<NSString *> *> *simpleWordsDict = [NSMutableDictionary dictionaryWithCapacity:40];
+        NSMutableDictionary<NSNumber *, NSMutableArray<NSString *> *> *simpleICWordsDict = [NSMutableDictionary dictionaryWithCapacity:40];
+        NSMutableArray<NSValue *> *ranges = [NSMutableArray arrayWithCapacity:10];
         
         dispatch_apply([strDicts count], dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(size_t i) {
             // skip loop if cancelled
             if ([indicator isCancelled]) { return; }
             
             @autoreleasepool {
-                NSDictionary *strDict = strDicts[i];
+                NSDictionary<NSString *, id> *strDict = strDicts[i];
                 
                 NSString *beginStr = strDict[CESyntaxBeginStringKey];
                 NSString *endStr = strDict[CESyntaxEndStringKey];
@@ -889,7 +889,7 @@ static CGFloat kPerCompoIncrement;
                 
                 if ([beginStr length] == 0) { return; }  // continue
                 
-                NSArray *extractedRanges = @[];
+                NSArray<NSValue *> *extractedRanges = @[];
                 
                 if ([strDict[CESyntaxRegularExpressionKey] boolValue]) {
                     if ([endStr length] > 0) {
@@ -914,8 +914,8 @@ static CGFloat kPerCompoIncrement;
                     } else {
                         NSNumber *len = @([beginStr length]);
                         @synchronized(simpleWordsDict) {
-                            NSMutableDictionary *dict = ignoresCase ? simpleICWordsDict : simpleWordsDict;
-                            NSMutableArray *wordsArray = dict[len];
+                            NSMutableDictionary<NSNumber *, NSMutableArray<NSString *> *> *dict = ignoresCase ? simpleICWordsDict : simpleWordsDict;
+                            NSMutableArray<NSString *> *wordsArray = dict[len];
                             if (wordsArray) {
                                 [wordsArray addObject:beginStr];
                                 
@@ -1029,7 +1029,7 @@ static CGFloat kPerCompoIncrement;
         typeof(self) self = weakSelf;  // strong self
         if (!self) { return; }
         // カラー範囲を抽出する
-        NSDictionary *colorings = [self extractAllSyntaxFromString:wholeString range:coloringRange];
+        NSDictionary<NSString *, NSArray<NSValue *> *> *colorings = [self extractAllSyntaxFromString:wholeString range:coloringRange];
         
         if ([colorings count] > 0) {
             // 全文を抽出した場合は抽出結果をキャッシュする
@@ -1068,7 +1068,7 @@ static CGFloat kPerCompoIncrement;
 
 // ------------------------------------------------------
 /// 抽出したカラー範囲配列を書類に適用する
-- (void)applyColorings:(NSDictionary *)colorings range:(NSRange)coloringRange layoutManager:(nonnull NSLayoutManager *)layoutManager
+- (void)applyColorings:(NSDictionary<NSString *, NSArray<NSValue *> *> *)colorings range:(NSRange)coloringRange layoutManager:(nonnull NSLayoutManager *)layoutManager
 // ------------------------------------------------------
 {
     // 現在あるカラーリングを削除
@@ -1076,7 +1076,7 @@ static CGFloat kPerCompoIncrement;
                           forCharacterRange:coloringRange];
     
     // add invisible coloring if needed
-    NSArray *colorTypes = kSyntaxDictKeys;
+    NSArray<NSString *> *colorTypes = kSyntaxDictKeys;
     if ([layoutManager showsControlCharacters]) {
         colorTypes = [colorTypes arrayByAddingObject:InvisiblesType];
     }
@@ -1084,7 +1084,7 @@ static CGFloat kPerCompoIncrement;
     // カラーリング実行
     CETheme *theme = [(NSTextView<CETextViewProtocol> *)[layoutManager firstTextView] theme];
     for (NSString *colorType in colorTypes) {
-        NSArray *ranges = colorings[colorType];
+        NSArray<NSValue *> *ranges = colorings[colorType];
         
         if ([ranges count] == 0) { continue; }
         

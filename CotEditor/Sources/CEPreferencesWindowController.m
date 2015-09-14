@@ -39,7 +39,7 @@
 
 @interface CEPreferencesWindowController ()
 
-@property (nonatomic, nonnull, copy) NSArray *viewControllers;
+@property (nonatomic, nonnull, copy) NSArray<__kindof NSViewController *> *viewControllers;
 
 @end
 

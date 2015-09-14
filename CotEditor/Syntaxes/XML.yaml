@@ -4,28 +4,7 @@ extensions:
 - keyString: "xslt"
 - keyString: "xsd"
 - keyString: "rlx"
-- keyString: "rng"
-- keyString: "trex"
-- keyString: "fo"
-- keyString: "fob"
-- keyString: "mml"
-- keyString: "gml"
-- keyString: "cml"
-- keyString: "opf"
-- keyString: "ncx"
-- keyString: "xul"
-- keyString: "zul"
-- keyString: "smil"
-- keyString: "smi"
-- keyString: "mxml"
-- keyString: "rss"
 - keyString: "rdf"
-- keyString: "atom"
-- keyString: "plist"
-- keyString: "xib"
-- keyString: "xmp"
-- keyString: "sdef"
-- keyString: "xcent"
 outlineMenu: []
 completions: []
 commands:
@@ -41,7 +20,7 @@ metadata:
   distributionURL: "http://coteditor.com"
   version: "1.3"
   license: "Same as CotEditor"
-  lastModified: "2015-08-14"
+  lastModified: "2015-09-09"
 characters:
 - beginString: "&\\S+?;"
   regularExpression: true

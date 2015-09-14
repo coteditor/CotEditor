@@ -41,5 +41,6 @@
 
 
 - (CGFloat)lineHeight;
+- (void)invalidateIndentInRange:(NSRange)range;
 
 @end

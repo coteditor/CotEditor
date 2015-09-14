@@ -30,7 +30,7 @@
 
 /* Class = "NSButtonCell"; title = "Share find text with other applications"; ObjectID = "3307"; */
 "3307.title" = "検索文字列をほかのアプリケーションと共有";
-/* Class = "NSButtonCell"; title = "Inline script menu items into context menu"; ObjectID = "3309"; */
+/* Class = "NSButtonCell"; title = "Inline script menu items into contextual menu"; ObjectID = "3309"; */
 "3309.title" = "コンテキストメニューのスクリプトメニューを展開";
 /* Class = "NSButtonCell"; title = "Count each line ending as one character"; ObjectID = "3306"; */
 "3306.title" = "改行コードを文字としてカウント";
@@ -48,21 +48,24 @@
 
 
 /* Class = "NSTextFieldCell"; title = "When document is modified by another application:"; ObjectID = "x4n-2n-I3p"; */
-"x4n-2n-I3p.title" = "書類がほかのアプリケーションによって更新されたとき：";
+"x4n-2n-I3p.title" = "書類がほかのアプリケーションによって変更されたとき：";
 
-/* Class = "NSButtonCell"; title = "Ignore"; ObjectID = "DnS-XJ-7RI"; */
-"DnS-XJ-7RI.title" = "なにもしない";
-/* Class = "NSButtonCell"; title = "Notify and ask how to resolve"; ObjectID = "1qS-Ay-sca"; */
-"1qS-Ay-sca.title" = "通知して解決方法を尋ねる";
-/* Class = "NSButtonCell"; title = "Update automatically"; ObjectID = "FWi-En-qeX"; */
-"FWi-En-qeX.title" = "更新";
+/* Class = "NSButtonCell"; title = "Keep CotEditor’s edition"; ObjectID = "DnS-XJ-7RI"; */
+"DnS-XJ-7RI.title" = "CotEditor の編集内容を保持";
+/* Class = "NSButtonCell"; title = "Ask how to resolve"; ObjectID = "1qS-Ay-sca"; */
+"1qS-Ay-sca.title" = "解決方法を確認";
+/* Class = "NSButtonCell"; title = "Update to modified edition"; ObjectID = "FWi-En-qeX"; */
+"FWi-En-qeX.title" = "変更された内容に更新";
 
 
-/* Class = "NSTextFieldCell"; title = "Software Updates:"; ObjectID = "geU-63-sAC"; */
+/* Class = "NSTextFieldCell"; title = "Software Update:"; ObjectID = "geU-63-sAC"; */
 "geU-63-sAC.title" = "ソフトウェアアップデート：";
 
 /* Class = "NSButtonCell"; title = "Automatically check for updates"; ObjectID = "3423"; */
 "3423.title" = "自動的にアップデートを確認";
 
-/* Class = "NSButtonCell"; title = "Update to pre-releases when available"; ObjectID = "4aT-ka-sbv"; */
+/* Class = "NSButtonCell"; title = "Include pre-releases"; ObjectID = "4aT-ka-sbv"; */
 "4aT-ka-sbv.title" = "プレリリース版を対象に含める";
+
+/* Class = "NSButtonCell"; title = "Regardless of this setting, new pre-releases are always included while using a pre-release."; ObjectID = "chR-VY-cuI"; */
+"chR-VY-cuI.title" = "この設定に関わらず、プレリリース版の使用中は必ず新しい\nプレリリースもアップデート対象に含まれます。";

@@ -52,11 +52,11 @@ extern NSString *__nonnull const CEKeyBindingSelectorStringKey;
 
 - (BOOL)usesDefaultMenuKeyBindings;
 - (BOOL)usesDefaultTextKeyBindings;
-- (nonnull NSMutableArray *)textKeySpecCharArrayForOutlineDataWithFactoryDefaults:(BOOL)usesFactoryDefaults;
-- (nonnull NSMutableArray *)mainMenuArrayForOutlineData:(nonnull NSMenu *)menu;
+- (nonnull NSMutableArray<NSMutableDictionary<NSString *, NSString *> *> *)textKeySpecCharArrayForOutlineDataWithFactoryDefaults:(BOOL)usesFactoryDefaults;
+- (nonnull NSMutableArray<NSDictionary<NSString *, id> *> *)mainMenuArrayForOutlineData:(nonnull NSMenu *)menu;
 - (nonnull NSString *)keySpecCharsInDefaultDictionaryFromSelectorString:(nonnull NSString *)selectorString;
-- (BOOL)saveMenuKeyBindings:(nonnull NSArray *)outlineViewData;
-- (BOOL)saveTextKeyBindings:(nonnull NSArray *)outlineViewData texts:(nullable NSArray *)texts;
+- (BOOL)saveMenuKeyBindings:(nonnull NSArray<NSDictionary<NSString *, NSString *> *> *)outlineViewData;
+- (BOOL)saveTextKeyBindings:(nonnull NSArray<NSDictionary<NSString *, NSString *> *> *)outlineViewData texts:(nullable NSArray<NSString *> *)texts;
 
 @end
 

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6254"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="7706"/>
     </dependencies>
     <objects>
         <customObject id="-2" customClass="CEKeyBindingSheetController">
@@ -19,7 +19,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="309" y="245" width="450" height="360"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
             <view key="contentView" id="55">
                 <rect key="frame" x="0.0" y="0.0" width="450" height="360"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -29,14 +29,14 @@
                         <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="left" id="150">
                             <font key="font" metaFont="smallSystem"/>
                             <string key="title">To change a binding, select it, click the key column, and then type the keys.
-Do NOT include the Command key.</string>
+Do not include the Command key.</string>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="63">
                         <rect key="frame" x="18" y="296" width="414" height="14"/>
-                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="'Foo' includes Command Key. Edit it again." id="149">
+                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="'Foo' includes the Command key. Please choose another key." id="149">
                             <font key="font" metaFont="smallSystem"/>
                             <color key="textColor" red="0.86335355039999995" green="0.0" blue="0.021221207450000001" alpha="1" colorSpace="calibratedRGB"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -787,9 +787,9 @@ Do NOT include the Command key.</string>
                         </scroller>
                     </scrollView>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="67">
-                        <rect key="frame" x="14" y="13" width="142" height="32"/>
+                        <rect key="frame" x="14" y="13" width="143" height="32"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="130" id="BZq-A1-FBO"/>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="130" id="BZq-A1-FBO"/>
                         </constraints>
                         <buttonCell key="cell" type="push" title="Restore Defaults" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" inset="2" id="153">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -803,7 +803,7 @@ Do NOT include the Command key.</string>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="70">
                         <rect key="frame" x="236" y="13" width="100" height="32"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="88" id="I8t-TU-dCH"/>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="88" id="I8t-TU-dCH"/>
                         </constraints>
                         <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="156">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -819,7 +819,7 @@ Gw
                     <button verticalHuggingPriority="750" tag="100" translatesAutoresizingMaskIntoConstraints="NO" id="68">
                         <rect key="frame" x="336" y="13" width="100" height="32"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="88" id="N2d-XJ-rpq"/>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="88" id="N2d-XJ-rpq"/>
                         </constraints>
                         <buttonCell key="cell" type="push" title="OK" bezelStyle="rounded" alignment="center" borderStyle="border" tag="100" inset="2" id="154">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -834,14 +834,15 @@ DQ
                     </button>
                     <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="85">
                         <rect key="frame" x="20" y="147" width="410" height="141"/>
-                        <clipView key="contentView" misplaced="YES" id="hSR-kT-PyY">
+                        <clipView key="contentView" id="hSR-kT-PyY">
                             <rect key="frame" x="1" y="17" width="428" height="130"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <outlineView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="firstColumnOnly" columnReordering="NO" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="167" viewBased="YES" indentationPerLevel="16" outlineTableColumn="88" id="86">
+                                    <rect key="frame" x="0.0" y="0.0" width="408" height="0.0"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <size key="intercellSpacing" width="3" height="2"/>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                     <tableColumns>
                                         <tableColumn identifier="title" editable="NO" width="290" minWidth="16" maxWidth="1000" id="88">

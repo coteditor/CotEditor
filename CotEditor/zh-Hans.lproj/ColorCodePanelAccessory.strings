@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014 CotEditor Project
+ © 2014-2015 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -36,7 +36,7 @@
 /* Class = "NSMenuItem"; title = "Hex"; ObjectID = "vF1-in-Dlv"; */
 "vF1-in-Dlv.title" = "Hex";
 /* Class = "NSMenuItem"; title = "Hex (Short)"; ObjectID = "wEc-KD-y7s"; */
-"wEc-KD-y7s.title" = "Hex (短)";
+"wEc-KD-y7s.title" = "Hex（短）";
 /* Class = "NSMenuItem"; title = "CSS RGB"; ObjectID = "6bH-jm-mNR"; */
 "6bH-jm-mNR.title" = "CSS RGB";
 /* Class = "NSMenuItem"; title = "CSS RGBa"; ObjectID = "cxo-sm-Sx5"; */
@@ -45,3 +45,5 @@
 "TnX-U4-Fkz.title" = "CSS HSL";
 /* Class = "NSMenuItem"; title = "CSS HSLa"; ObjectID = "k4U-AQ-5ws"; */
 "k4U-AQ-5ws.title" = "CSS HSLa";
+/* Class = "NSMenuItem"; title = "CSS Keyword"; ObjectID = "dY5-ZH-n6l"; */
+"dY5-ZH-n6l.title" = "CSS 关键字";

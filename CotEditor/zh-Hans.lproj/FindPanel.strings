@@ -108,7 +108,7 @@
 "Oqm-Wt-G7B.title" = "折行查找";
 /* Class = "NSMenuItem"; title = "Select Next Match after Replace"; ObjectID = "RfX-XI-iRH"; */
 "RfX-XI-iRH.title" = "替换后选择下一个匹配";
-/* Class = "NSMenuItem"; title = "Auto-Close Progress Sheet"; ObjectID = "ONX-V4-H0w"; */
+/* Class = "NSMenuItem"; title = "Auto-Close Progress Dialog"; ObjectID = "ONX-V4-H0w"; */
 "ONX-V4-H0w.title" = "自动关闭进度表";
 
 /* Class = "NSMenuItem"; title = "Textual Search Options"; ObjectID = "hX3-jg-Uqc"; */
@@ -156,7 +156,7 @@
 "Sdf-5P-GP1.title" = "单行无效";
 /* Class = "NSMenuItem"; title = "Capture Group"; ObjectID = "LiY-vD-U6B"; */
 "LiY-vD-U6B.title" = "按组匹配";
-/* Class = "NSMenuItem"; title = "Don't Capture Group"; ObjectID = "fQl-sZ-bjK"; */
+/* Class = "NSMenuItem"; title = "Don’t Capture Group"; ObjectID = "fQl-sZ-bjK"; */
 "fQl-sZ-bjK.title" = "不匹配组";
 /* Class = "NSMenuItem"; title = "Not Begin of Line"; ObjectID = "AFF-AC-IR9"; */
 "AFF-AC-IR9.title" = "不匹配行初";
@@ -170,7 +170,7 @@
 "oC1-bN-UeN.ibShadowedToolTip" = "关闭查找结果";
 
 /* Class = "IBBindingConnection"; ibShadowedDisplayPattern = "Find String: %{value1}@"; ObjectID = "2MH-SD-x1y"; */
-"2MH-SD-x1y.ibShadowedDisplayPattern" = "查找字符串: %{value1}@";
+"2MH-SD-x1y.ibShadowedDisplayPattern" = "查找字符串：%{value1}@";
 
 /* Class = "NSTableColumn"; headerCell.title = "Line"; ObjectID = "CPd-0W-bKv"; */
 "CPd-0W-bKv.headerCell.title" = "行";

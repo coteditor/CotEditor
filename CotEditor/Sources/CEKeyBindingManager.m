@@ -41,10 +41,10 @@ NSString *__nonnull const CEKeyBindingSelectorStringKey = @"selectorString";
 
 @interface CEKeyBindingManager ()
 
-@property (nonatomic, nonnull, copy) NSDictionary *defaultMenuKeyBindingDict;
-@property (nonatomic, nonnull, copy) NSDictionary *defaultTextKeyBindingDict;
-@property (nonatomic, nonnull, copy) NSDictionary *menuKeyBindingDict;
-@property (nonatomic, nonnull, copy) NSDictionary *textKeyBindingDict;
+@property (nonatomic, nonnull, copy) NSDictionary<NSString *, NSString *> *defaultMenuKeyBindingDict;
+@property (nonatomic, nonnull, copy) NSDictionary<NSString *, NSString *> *defaultTextKeyBindingDict;
+@property (nonatomic, nonnull, copy) NSDictionary<NSString *, NSString *> *menuKeyBindingDict;
+@property (nonatomic, nonnull, copy) NSDictionary<NSString *, NSString *> *textKeyBindingDict;
 
 @end
 
@@ -55,7 +55,7 @@ NSString *__nonnull const CEKeyBindingSelectorStringKey = @"selectorString";
 
 @implementation CEKeyBindingManager
 
-static NSDictionary *kUnprintableKeyTable;
+static NSDictionary<NSString *, NSString *> *kUnprintableKeyTable;
 
 
 #pragma mark Singleton
@@ -206,8 +206,8 @@ static NSDictionary *kUnprintableKeyTable;
 - (BOOL)usesDefaultTextKeyBindings
 // ------------------------------------------------------
 {
-    NSArray *factoryDefault = [[[NSUserDefaults alloc] init] volatileDomainForName:NSRegistrationDomain][CEDefaultInsertCustomTextArrayKey];
-    NSArray *insertTextArray = [[NSUserDefaults standardUserDefaults] stringArrayForKey:CEDefaultInsertCustomTextArrayKey];
+    NSArray<NSString *> *factoryDefault = [[[NSUserDefaults alloc] init] volatileDomainForName:NSRegistrationDomain][CEDefaultInsertCustomTextArrayKey];
+    NSArray<NSString *> *insertTextArray = [[NSUserDefaults standardUserDefaults] stringArrayForKey:CEDefaultInsertCustomTextArrayKey];
     
     return [insertTextArray isEqualToArray:factoryDefault] && [[self textKeyBindingDict] isEqualToDictionary:[self defaultTextKeyBindingDict]];
 }
@@ -215,13 +215,13 @@ static NSDictionary *kUnprintableKeyTable;
 
 //------------------------------------------------------
 /// テキストキーバインディングの現在の保持データから設定を読み込み編集用アウトラインビューデータ配列を返す
-- (nonnull NSMutableArray *)textKeySpecCharArrayForOutlineDataWithFactoryDefaults:(BOOL)usesFactoryDefaults
+- (nonnull NSMutableArray<NSMutableDictionary<NSString *, NSString *> *> *)textKeySpecCharArrayForOutlineDataWithFactoryDefaults:(BOOL)usesFactoryDefaults
 //------------------------------------------------------
 {
     // usesFactoryDefaults == YES で標準設定を返す。NO なら現在の設定を返す。
     
-    NSMutableArray *textKeySpecCharArray = [NSMutableArray array];
-    NSDictionary *dict = usesFactoryDefaults ? [self defaultTextKeyBindingDict] : [self textKeyBindingDict];
+    NSMutableArray<NSMutableDictionary<NSString *, NSString *> *> *textKeySpecCharArray = [NSMutableArray array];
+    NSDictionary<NSString *, NSString *> *dict = usesFactoryDefaults ? [self defaultTextKeyBindingDict] : [self textKeyBindingDict];
     const NSRange actionIndexRange = NSMakeRange(17, 2);  // range of numbers in "insertCustomText_00:"
     
     for (NSString *selector in [CEKeyBindingManager textKeyBindingSelectorStrArray]) {
@@ -241,10 +241,10 @@ static NSDictionary *kUnprintableKeyTable;
 
 //------------------------------------------------------
 /// 現在のメニューからショートカットキー設定を読み込み編集用アウトラインビューデータ配列を返す
-- (nonnull NSMutableArray *)mainMenuArrayForOutlineData:(nonnull NSMenu *)menu
+- (nonnull NSMutableArray<NSDictionary<NSString *, id> *> *)mainMenuArrayForOutlineData:(nonnull NSMenu *)menu
 //------------------------------------------------------
 {
-    NSMutableArray *outlineData = [NSMutableArray array];
+    NSMutableArray<NSDictionary<NSString *, id> *> *outlineData = [NSMutableArray array];
     
     for (NSMenuItem *item in [menu itemArray]) {
         if ([item isSeparatorItem] || [item isAlternate] || ([[item title] length] == 0) ||
@@ -254,9 +254,9 @@ static NSDictionary *kUnprintableKeyTable;
             continue;
         }
         
-        NSDictionary *row;
+        NSDictionary<NSString *, id> *row;
         if ([item hasSubmenu]) {
-            NSMutableArray *subArray = [self mainMenuArrayForOutlineData:[item submenu]];
+            NSMutableArray<NSDictionary<NSString *, id> *> *subArray = [self mainMenuArrayForOutlineData:[item submenu]];
             row = @{CEKeyBindingTitleKey: [item title],
                     CEKeyBindingChildrenKey: subArray};
             
@@ -287,7 +287,7 @@ static NSDictionary *kUnprintableKeyTable;
 - (nonnull NSString *)keySpecCharsInDefaultDictionaryFromSelectorString:(nonnull NSString *)selectorString
 //------------------------------------------------------
 {
-    NSArray *keys = [[self defaultMenuKeyBindingDict] allKeysForObject:selectorString];
+    NSArray<NSString *> *keys = [[self defaultMenuKeyBindingDict] allKeysForObject:selectorString];
     
     return [keys firstObject] ? : @"";
 }
@@ -298,7 +298,7 @@ static NSDictionary *kUnprintableKeyTable;
 - (BOOL)saveMenuKeyBindings:(NSArray *)outlineViewData
 //------------------------------------------------------
 {
-    NSDictionary *dictToSave = [self keyBindingDictionaryFromOutlineViewDataArray:outlineViewData];
+    NSDictionary<NSString *, id> *dictToSave = [self keyBindingDictionaryFromOutlineViewDataArray:outlineViewData];
     NSURL *fileURL = [self menuKeyBindingSettingFileURL];
     BOOL success = NO;
     
@@ -327,17 +327,17 @@ static NSDictionary *kUnprintableKeyTable;
 
 //------------------------------------------------------
 /// テキストキーバインディング設定を保存
-- (BOOL)saveTextKeyBindings:(NSArray *)outlineViewData texts:(nullable NSArray *)texts
+- (BOOL)saveTextKeyBindings:(NSArray *)outlineViewData texts:(nullable NSArray<NSString *> *)texts
 //------------------------------------------------------
 {
-    NSDictionary *dictToSave = [self keyBindingDictionaryFromOutlineViewDataArray:outlineViewData];
+    NSDictionary<NSString *, id> *dictToSave = [self keyBindingDictionaryFromOutlineViewDataArray:outlineViewData];
     NSURL *fileURL = [self textKeyBindingSettingFileURL];
     BOOL success = NO;
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSArray *defaultInsertTexts = [[[NSUserDefaults alloc] init] volatileDomainForName:NSRegistrationDomain][CEDefaultInsertCustomTextArrayKey];
+    NSArray<NSString *> *defaultInsertTexts = [[[NSUserDefaults alloc] init] volatileDomainForName:NSRegistrationDomain][CEDefaultInsertCustomTextArrayKey];
     
-    NSMutableArray *insertTexts = [NSMutableArray array];
-    for (NSDictionary *dict in texts) {
+    NSMutableArray<NSString *> *insertTexts = [NSMutableArray array];
+    for (NSDictionary<NSString *, NSString *> *dict in texts) {
         NSString *insertText = dict[CEDefaultInsertCustomTextKey] ? : @"";
         [insertTexts addObject:insertText];
     }
@@ -512,15 +512,15 @@ static NSDictionary *kUnprintableKeyTable;
 
 //------------------------------------------------------
 /// アウトラインビューデータから保存用辞書を生成
-- (NSMutableDictionary *)keyBindingDictionaryFromOutlineViewDataArray:(NSArray *)array
+- (NSMutableDictionary<NSString *, id> *)keyBindingDictionaryFromOutlineViewDataArray:(NSArray<id> *)array
 //------------------------------------------------------
 {
-    NSMutableDictionary *keyBindingDict = [NSMutableDictionary dictionary];
+    NSMutableDictionary<NSString *, id> *keyBindingDict = [NSMutableDictionary dictionary];
 
     for (id item in array) {
-        NSArray *children = item[CEKeyBindingChildrenKey];
+        NSArray<id> *children = item[CEKeyBindingChildrenKey];
         if (children) {
-            NSDictionary *childDict = [self keyBindingDictionaryFromOutlineViewDataArray:children];
+            NSDictionary<NSString *, id> *childDict = [self keyBindingDictionaryFromOutlineViewDataArray:children];
             [keyBindingDict addEntriesFromDictionary:childDict];
         }
         NSString *keySpecChars = item[CEKeyBindingKeySpecCharsKey];
@@ -538,7 +538,7 @@ static NSDictionary *kUnprintableKeyTable;
 - (NSString *)keySpecCharsInDictionaryFromSelectorString:(NSString *)selectorString
 //------------------------------------------------------
 {
-    NSArray *keys = [[self menuKeyBindingDict] allKeysForObject:selectorString];
+    NSArray<NSString *> *keys = [[self menuKeyBindingDict] allKeysForObject:selectorString];
     
     return [keys firstObject] ? : @"";
 }
@@ -590,50 +590,50 @@ static NSDictionary *kUnprintableKeyTable;
 
 //------------------------------------------------------
 /// そのまま表示できないキーバインディング定義文字列の変換辞書を返す
-+ (NSDictionary *)unprintableKeyDictionary
++ (NSDictionary<NSString *, NSString *> *)unprintableKeyDictionary
 //------------------------------------------------------
 {
     // 下記の情報を参考にさせていただきました (2005.09.05)
     // http://www.cocoabuilder.com/archive/message/2004/3/19/102023
-    NSArray *printableChars = @[[NSString stringWithFormat:@"%C", (unichar)0x2191], // "↑" NSUpArrowFunctionKey,
-                                [NSString stringWithFormat:@"%C", (unichar)0x2193], // "↓" NSDownArrowFunctionKey,
-                                [NSString stringWithFormat:@"%C", (unichar)0x2190], // "←" NSLeftArrowFunctionKey,
-                                [NSString stringWithFormat:@"%C", (unichar)0x2192], // "→" NSRightArrowFunctionKey,
-                                @"F1", // NSF1FunctionKey,
-                                @"F2", // NSF2FunctionKey,
-                                @"F3", // NSF3FunctionKey,
-                                @"F4", // NSF4FunctionKey,
-                                @"F5", // NSF5FunctionKey,
-                                @"F6", // NSF6FunctionKey,
-                                @"F7", // NSF7FunctionKey,
-                                @"F8", // NSF8FunctionKey,
-                                @"F9", // NSF9FunctionKey,
-                                @"F10", // NSF10FunctionKey,
-                                @"F11", // NSF11FunctionKey,
-                                @"F12", // NSF12FunctionKey,
-                                @"F13", // NSF13FunctionKey,
-                                @"F14", // NSF14FunctionKey,
-                                @"F15", // NSF15FunctionKey,
-                                @"F16", // NSF16FunctionKey,
-                                [NSString stringWithFormat:@"%C", (unichar)0x2326], // NSDeleteCharacter = "Delete forward"
-                                [NSString stringWithFormat:@"%C", (unichar)0x2196], // "↖" NSHomeFunctionKey,
-                                [NSString stringWithFormat:@"%C", (unichar)0x2198], // "↘" NSEndFunctionKey,
-                                [NSString stringWithFormat:@"%C", (unichar)0x21DE], // "⇞" NSPageUpFunctionKey,
-                                [NSString stringWithFormat:@"%C", (unichar)0x21DF], // "⇟" NSPageDownFunctionKey,
-                                [NSString stringWithFormat:@"%C", (unichar)0x2327], // "⌧" NSClearLineFunctionKey,
-                                @"Help", // NSHelpFunctionKey,
-                                @"Space", // "Space",
-                                [NSString stringWithFormat:@"%C", (unichar)0x21E5], // "Tab"
-                                [NSString stringWithFormat:@"%C", (unichar)0x21A9], // "Return"
-                                [NSString stringWithFormat:@"%C", (unichar)0x232B], // "⌫" "Backspace"
-                                [NSString stringWithFormat:@"%C", (unichar)0x2305], // "Enter"
-                                [NSString stringWithFormat:@"%C", (unichar)0x21E4], // "Backtab"
-                                [NSString stringWithFormat:@"%C", (unichar)0x238B]];
+    NSArray<NSString *> *printableChars = @[[NSString stringWithFormat:@"%C", (unichar)0x2191], // "↑" NSUpArrowFunctionKey,
+                                            [NSString stringWithFormat:@"%C", (unichar)0x2193], // "↓" NSDownArrowFunctionKey,
+                                            [NSString stringWithFormat:@"%C", (unichar)0x2190], // "←" NSLeftArrowFunctionKey,
+                                            [NSString stringWithFormat:@"%C", (unichar)0x2192], // "→" NSRightArrowFunctionKey,
+                                            @"F1", // NSF1FunctionKey,
+                                            @"F2", // NSF2FunctionKey,
+                                            @"F3", // NSF3FunctionKey,
+                                            @"F4", // NSF4FunctionKey,
+                                            @"F5", // NSF5FunctionKey,
+                                            @"F6", // NSF6FunctionKey,
+                                            @"F7", // NSF7FunctionKey,
+                                            @"F8", // NSF8FunctionKey,
+                                            @"F9", // NSF9FunctionKey,
+                                            @"F10", // NSF10FunctionKey,
+                                            @"F11", // NSF11FunctionKey,
+                                            @"F12", // NSF12FunctionKey,
+                                            @"F13", // NSF13FunctionKey,
+                                            @"F14", // NSF14FunctionKey,
+                                            @"F15", // NSF15FunctionKey,
+                                            @"F16", // NSF16FunctionKey,
+                                            [NSString stringWithFormat:@"%C", (unichar)0x2326], // NSDeleteCharacter = "Delete forward"
+                                            [NSString stringWithFormat:@"%C", (unichar)0x2196], // "↖" NSHomeFunctionKey,
+                                            [NSString stringWithFormat:@"%C", (unichar)0x2198], // "↘" NSEndFunctionKey,
+                                            [NSString stringWithFormat:@"%C", (unichar)0x21DE], // "⇞" NSPageUpFunctionKey,
+                                            [NSString stringWithFormat:@"%C", (unichar)0x21DF], // "⇟" NSPageDownFunctionKey,
+                                            [NSString stringWithFormat:@"%C", (unichar)0x2327], // "⌧" NSClearLineFunctionKey,
+                                            @"Help", // NSHelpFunctionKey,
+                                            @"Space", // "Space",
+                                            [NSString stringWithFormat:@"%C", (unichar)0x21E5], // "Tab"
+                                            [NSString stringWithFormat:@"%C", (unichar)0x21A9], // "Return"
+                                            [NSString stringWithFormat:@"%C", (unichar)0x232B], // "⌫" "Backspace"
+                                            [NSString stringWithFormat:@"%C", (unichar)0x2305], // "Enter"
+                                            [NSString stringWithFormat:@"%C", (unichar)0x21E4], // "Backtab"
+                                            [NSString stringWithFormat:@"%C", (unichar)0x238B]];
     
     NSAssert(kSizeOfUnprintableKeyList == [printableChars count],
              @"Internal data error! Sizes of 'kUnprintableKeyList' and 'printableChars' are different.");
     
-    NSMutableArray *keys = [NSMutableArray arrayWithCapacity:kSizeOfUnprintableKeyList];
+    NSMutableArray<NSString *> *keys = [NSMutableArray arrayWithCapacity:kSizeOfUnprintableKeyList];
     for (NSInteger i = 0; i < kSizeOfUnprintableKeyList; i++) {
         [keys addObject:[NSString stringWithFormat:@"%C", kUnprintableKeyList[i]]];
     }
@@ -644,7 +644,7 @@ static NSDictionary *kUnprintableKeyTable;
 
 //------------------------------------------------------
 /// 独自定義のセレクタ名配列を返す
-+ (NSArray *)textKeyBindingSelectorStrArray
++ (NSArray<NSString *> *)textKeyBindingSelectorStrArray
 //------------------------------------------------------
 {
     return @[@"insertCustomText_00:",
@@ -683,7 +683,7 @@ static NSDictionary *kUnprintableKeyTable;
 
 //------------------------------------------------------
 /// 変更しない項目のセレクタ名配列を返す
-+ (NSArray *)selectorStringsToIgnore
++ (NSArray<NSString *> *)selectorStringsToIgnore
 //------------------------------------------------------
 {
     return @[@"modifyFont:",

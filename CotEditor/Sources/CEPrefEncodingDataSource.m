@@ -36,8 +36,8 @@ static NSString *const CERowsPboardType = @"CERowsPboardType";
 
 @interface CEPrefEncodingDataSource ()
 
-@property (nonatomic, nonnull, copy) NSArray *defaultEncodings;
-@property (nonatomic, nonnull) NSMutableArray *encodings;
+@property (nonatomic, nonnull, copy) NSArray<NSNumber *> *defaultEncodings;
+@property (nonatomic, nonnull) NSMutableArray<NSNumber *> *encodings;
 @property (nonatomic) BOOL canRestore;  // enability of "Restore Default" button
 
 @property (nonatomic, nullable, weak) IBOutlet NSTableView *tableView;
@@ -173,7 +173,7 @@ static NSString *const CERowsPboardType = @"CERowsPboardType";
     }
     
     NSIndexSet *originalRows = [NSKeyedUnarchiver unarchiveObjectWithData:[[info draggingPasteboard] propertyListForType:CERowsPboardType]];
-    NSArray *draggingItems = [[self encodings] objectsAtIndexes:originalRows];
+    NSArray<NSNumber *> *draggingItems = [[self encodings] objectsAtIndexes:originalRows];
     NSUInteger newRow = row - [originalRows countOfIndexesInRange:NSMakeRange(0, row)];  // real insertion point after removing items to move
     NSIndexSet *insertRows = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(newRow, [draggingItems count])];
 
@@ -220,7 +220,6 @@ static NSString *const CERowsPboardType = @"CERowsPboardType";
 }
 
 
-#if MAC_OS_X_VERSION_MAX_ALLOWED >= 101100
 // ------------------------------------------------------
 /// set action on swiping theme name (on El Capitan and leter)
 - (nonnull NSArray<NSTableViewRowAction *> *)tableView:(nonnull NSTableView *)tableView rowActionsForRow:(NSInteger)row edge:(NSTableRowActionEdge)edge
@@ -245,7 +244,6 @@ static NSString *const CERowsPboardType = @"CERowsPboardType";
                   [self validateRestorebility];
               }]];
 }
-#endif  // MAC_OS_X_VERSION_10_11
 
 
 
@@ -321,7 +319,7 @@ static NSString *const CERowsPboardType = @"CERowsPboardType";
     NSMutableIndexSet *toDeleteIndexes = [NSMutableIndexSet indexSet];
     
     // pick only separators up
-    NSArray *encodings = [self encodings];
+    NSArray<NSNumber *> *encodings = [self encodings];
     [rowIndexes enumerateIndexesUsingBlock:^(NSUInteger idx, BOOL *stop) {
         CFStringEncoding encoding = [encodings[idx] unsignedLongLongValue];
         

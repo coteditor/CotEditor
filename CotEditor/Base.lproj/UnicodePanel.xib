@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6254"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="7706"/>
     </dependencies>
     <objects>
         <customObject id="-2" customClass="CEUnicodeInputPanelController">
@@ -15,7 +15,7 @@
         <window title="Input Unicode" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="inputUnicode" animationBehavior="default" id="Y41-ro-Xeo" customClass="NSPanel">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" utility="YES"/>
             <rect key="contentRect" x="167" y="107" width="240" height="62"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
             <view key="contentView" id="rG5-Vo-Df3">
                 <rect key="frame" x="0.0" y="0.0" width="240" height="62"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -44,7 +44,7 @@
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="FdN-Wj-h7S">
                         <rect key="frame" x="134" y="14" width="92" height="32"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="80" id="G9s-p0-ZHn"/>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="G9s-p0-ZHn"/>
                         </constraints>
                         <buttonCell key="cell" type="push" title="Input" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="rfS-Rp-Al4">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>

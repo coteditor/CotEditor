@@ -36,17 +36,17 @@
 "Re-Color All" = "全部重新着色";
 
 // Importing theme
-"“%@” is a CotEditor theme file." = "“%@” 是 CotEditor 主题文件";
+"“%@” is a CotEditor theme file." = "“%@”是 CotEditor 主题文件";
 "Do you want to install this theme?" = "是否安装主题？";
 "Install" = "安装";
 "Open as Text File" = "以文本方式打开";
-"A new theme named “%@” has been successfully installed." = "新主题 “%@” 安装完成";
+"A new theme named “%@” has been successfully installed." = "新主题“%@”安装完成";
 
 // Window title of bug report
 "Bug Report" = "错误报告";
 
 // Migration from v1.x
-"Restorering menu key bindings settings…" = "正在恢复菜单按键绑定…";
+"Restoring menu key bindings settings…" = "正在恢复菜单按键绑定…";
 "Migrating coloring settings…" = "迁移颜色设置…";
 "Migrating user syntax styles…" = "迁移用户语法风格…";
 "Migration finished." = "迁移完成";
@@ -60,52 +60,50 @@
 
 /* MARK: CEDocumentController */
 // Large file alert
-"The file “%@” has a size of %@." = "“%@” 文件尺寸为 %@ 。";
+"The file “%@” has a size of %@." = "“%@”文件尺寸为 %@。";
 "Opening such a large file can make the application slow or unresponsive.\n\nDo you really want to open the file?" = "打开大型文件可能导致应用速度变慢。\n\n确定要打开该文件？";
 "Open" = "打开";
 
 
 /* MARK: CEDocument */
 // Undo action names
-"Encoding to “%@”" = "编码变更为 “%@”";
-"Line Endings to “%@”" = "行尾变更为 “%@”";
+"Encoding to “%@”" = "编码变更为“%@”";
+"Line Endings to “%@”" = "行尾变更为“%@”";
 // convert or reinterpret alert
 "File encoding" = "文件编码";
 "Convert" = "转换";
 "Reinterpret" = "再次解释";
 "Cancel" = "取消";
-"Do you want to convert or reinterpret it using “%@”?" = "要使用 “%@” 进行转换或者再次解释吗？";
+"Do you want to convert or reinterpret it using “%@”?" = "要使用“%@”进行转换或者再次解释吗？";
 
 "Save Available Strings" = "保存有效字符串";
 "Show Incompatible Chars" = "显示不兼容字符";
 
 "Continue Saving" = "继续保存";
-"The encoding is “%@”, but the IANA charset name in text is “%@”." = "编码为 “%@”，但是文本中的 IANA 字符集名字为 “%@”。";
+"The encoding is “%@”, but the IANA charset name in text is “%@”." = "编码为“%@”，但是文本中的 IANA 字符集名字为“%@”。";
 "Do you want to continue processing?" = "继续进行处理吗？";
 "Do not show this warning for this document again" = "对该文档不再显示此信息";
 
 "Discard Changes" = "放弃修改";
-"The file “%@” has unsaved changes." = "文件 “%@” 中有修改内容还没有保存";
-"Do you want to discard the changes and reset the file encodidng?" = "确定要放弃修改内容并且重置文件编码吗？";
+"The file “%@” has unsaved changes." = "文件“%@”中有修改内容还没有保存";
+"Do you want to discard the changes and reset the file encoding?" = "确定要放弃修改内容并且重置文件编码吗？";
 
-"Can not reinterpret" = "无法再次解释";
-"The file “%@” could not be reinterpreted using the new encoding “%@”." = "文件 “%@” 无法使用 “%@” 编码再次解释";
+"Can not reinterpret." = "无法再次解释";
+"The file “%@” could not be reinterpreted using the new encoding “%@”." = "文件“%@”无法使用“%@”编码再次解释";
 
 "new encoding" = "新编码";
 "Change Encoding" = "更改编码";
-"The characters would have to be changed or deleted in saving as “%@”." = "保存为 “%@” 时一些字符可能需要被更改或者删除。";
+"The characters would have to be changed or deleted in saving as “%@”." = "保存为“%@”时一些字符可能需要被更改或者删除。";
 "Do you want to continue processing?" = "继续进行处理吗？";
 "Do you want to change encoding and show incompatible characters?" = "改变编码并显示不兼容字符吗？";
 
 "Printed on %@" = "打印：%@";
 
-"Keep CotEditor's Edition" = "保留 CotEditor 编辑的内容";
 "Update" = "更新";
-"The file has been modified by another process. There are also unsaved changes in CotEditor." = "文件被其他进程更改，CotEditor 中进行的变更还没有进行保存。";
-"Do you want to keep CotEditor's edition or update to the modified edition?" = "保留 CotEditor 的版本还是更新至被编辑过的版本？";
-"Keep Unchanged" = "保持不变";
-"The file has been modified by another process." = "文件在其他进程中被更改";
-"Do you want to keep unchanged or update to the modified edition?" = "保持不变还是更新到被更改后的版本？";
+"The file has been modified by another application. There are also unsaved changes in CotEditor." = "文件被其他应用更改，CotEditor 中还有未保存的变更。";
+"Do you want to keep CotEditor’s edition or update to the modified edition?" = "保留 CotEditor 的版本还是更新至被编辑过的版本？";
+"The file has been modified by another application." = "文件被其他应用更改";
+"Keep CotEditor’s Edition" = "保留 CotEditor 编辑的内容";
 
 
 /* MARK: CEPrintAccessoryViewController */
@@ -125,8 +123,8 @@
 
 "On" = "开";
 "Off" = "关";
-"Don't Print" = "不打印";
-"Same as Document's Setting" = "同文档设置一致";
+"Don’t Print" = "不打印";
+"Same as Document’s Setting" = "同文档设置一致";
 "Black and White" = "黑白";
 "Print" = "打印";
 "Print All" = "全部打印";
@@ -157,6 +155,7 @@
 "NFC" = "NFC";
 "NFKD" = "NFKD";
 "NFKC" = "NFKC";
+"NFKC Casefold" = "NFKC Casefold";
 "Inspect Character" = "显示字符";
 
 // Menu items
@@ -200,12 +199,11 @@
 
 // Show invisible char menu item tooltip
 "Show or hide invisible characters in document" = "显示或隐藏文档中的不可见字符";
-"To display invisible characters, set them in Preferences and re-open the document" = "要显示不可见字符，请在偏好设置中进行设定，然后重新打开文档";
+"To show invisible characters, set them in Preferences and re-open the document" = "要显示不可见字符，请在偏好设置中进行设定，然后重新打开文档";
 
 
 // Alert strings
 "The file is not writable." = "该文件不能写入";
-"Allow Editing" = "允许编辑";
 "Cancel" = "取消";
 "You may not be able to save your changes, but you will be able to save a copy somewhere else." = "无法保存更改，但是可以在其他路径保存一份拷贝。";
 
@@ -254,19 +252,26 @@
 /* MARK: CEColorCodePanelController */
 // Undo action name
 "Insert Color Code" = "插入颜色代码";
+// color list name
+"Stylesheet Keywords" = "样式表关键字";
 
 
 /* MARK: CEPreferencesWindowController */
 // Smart quotes/dashes
-" (on Mavericks and later)" = "（Mavericks 或更新版本）";
+" (on Mavericks and later)" = "（Mavericks 及以后）";
+
+// Hint message for the completion list
+"Completion can be performed manually with: %@ or %@" = "补全可以通过 %@ 或 %@ 手动完成";
+"Select at least one item to enable completion." = "至少选择一个条目来激活补全";
 
 // Appearance pane
-"Duplicate “%@”" = "拷贝 “%@”";
-"Restore “%@”" = "还原 “%@”";
-"Delete the theme “%@”?" = "删除 “%@” 主题？";
-"Deleted theme cannot be restored." = "删除后的主题将无法还原";
-"A new theme named “%@” will be installed, but a custom theme with the same name already exists." = "将要安装名为 “%@” 的新主题，但是已经存在同名的自定义主题";
-"Do you want to replace it?\nReplaced theme cannot be restored." = "要覆盖原主题吗？\n主题删除后将无法还原";
+"Rename “%@”" = "给“%@”重新命名";
+"Duplicate “%@”" = "拷贝“%@”";
+"Restore “%@”" = "还原“%@”";
+"Are you sure you want to delete “%@” theme?" = "确认删除“%@”主题？";
+"Deleted theme can’t be restored." = "删除后的主题将无法还原";
+"A new theme named “%@” will be installed, but a custom theme with the same name already exists." = "将要安装名为“%@”的新主题，但是已经存在同名的自定义主题";
+"Do you want to replace it?\nReplaced theme can’t be restored." = "要覆盖原主题吗？\n主题删除后将无法还原";
 
 // swipe to delete (also used in the Format pane)
 "Delete" = "删除";
@@ -279,29 +284,35 @@
 
 // Format pane
 // encoding menu alert sheet
-"Are you sure you want to change to “%@”?" = "确定要变更至 “%@” 吗？";
-"Change to “%@”" = "“变更至 %@”";
+"Are you sure you want to change to “%@”?" = "确定要变更至“%@”吗？";
+"Change to “%@”" = "“变更至%@”";
 "Revert to “Auto-Detect”" = "还原回“自动检测”";
 "The default “Auto-Detect” is recommended for most cases." = "在绝大多数情况下，推荐使用默认的“自动检测”";
 
 // Installed syntax styles action menu items
 "Duplicate “%@”…" = "拷贝“%@”…";
 "Export “%@”…" = "导出“%@”…";
-"Reveal “%@” in Finder" = "在 Finder 中显示 “%@”";
+"Reveal “%@” in Finder" = "在 Finder 中显示“%@”";
 
 
 // Integration Pane
 "Install" = "安装";
 "Uninstall" = "卸载";
-"The current 'cot' symbolic link doesn't target on the running CotEditor." = "当前的 'cot' 符号链接没有指向正在运行的 CotEditor。";
+"Command:" = "命令名：";
+"Select “Install” to install the command-line tool at the following location.\nThe default location is: %@" = "选择“安装”来将命令行工具安装在以下位置。\n默认位置是：%@";
+"The current 'cot' symbolic link doesn’t target the running CotEditor." = "当前的 'cot' 符号链接没有指向正在运行的 CotEditor。";
 "The current 'cot' symbolic link may target on an invalid path." = "当前的 'cot' 符号链接可能指向无效路径。";
 
 // alerts
-"The running CotEditor is not located in the Application directory." = "正在运行的 CotEditor 没有位于应用程序文件夹中。";
-"Do you really want to install the command-line tool for CotEditor at “%@”?\n\nWe recommend to move CotEditor.app to the Application directory at first." = "确定要为位于 “%@” 的 CotEditor 安装命令行工具吗？\n\n建议先将 CotEditor.app 移动到应用程序文件夹中。";
+"The running CotEditor is not located in the Applications folder." = "正在运行的 CotEditor 没有位于应用程序文件夹中。";
+"Do you really want to install the command-line tool for CotEditor at “%@”?\n\nThe command will be invalid if the location of CotEditor is moved." = "确定要为位于“%@”的 CotEditor 安装命令行工具吗？\n\n如果 CotEditor 的位置被移动的话，命令行工具将失效。";
 
 "The name of the running CotEditor is modified." = "正在运行的 CotEditor 的名字被改变了。";
-"Do you really want to install the command-line tool for “%@”?" = "确定要为 “%@” 安装命令行工具吗？";
+"Do you really want to install the command-line tool for “%@”?\n\nThe command will be invalid if CotEditor is renamed." = "确定要为“%@”安装命令行工具吗？\n\n如果 CotEditor 被重命名，命令行工具将失效。";
+
+"Uninstallation was denied by the system." = "系统不允许卸载操作。";
+"You can install cot command manually running the following command on Terminal:" = "你可以手动在终端运行以下命令以创建 cot 命令：";
+"You can uninstall cot command manually running the following command on Terminal:" = "可以手动在终端运行以下命令以卸载 cot 命令：";
 
 
 /* MARK: CESyntaxEditSheetController */
@@ -331,37 +342,37 @@
 /* MARK: CESyntaxManager */
 // Syntax coloring style name errors
 "Input style name." = "请输入样式名称";
-"“%@” is already exist. Input another name." = "“%@” 已经在使用中，请输入其他名称";
-"Style name cannot contain “/”. Input another name." = "样式名称中不能含有“/”，请输入其他名称";
-"Style name cannot begin with “.”. Input another name." = "样式名称中不能含有“.”，请输入其他名称";
+"“%@” is already taken. Please choose another name." = "“%@”已经在使用中，请输入其他名称";
+"You can’t use a style name that contains “/”. Please choose another name." = "样式名称中不能含有“/”，请输入其他名称";
+"You can’t use a style name that begins with a dot “.”. Please choose another name." = "样式名称中不能含有“.”，请输入其他名称";
 // Selected syntax coloring style name was original
-"Name of the bundled style cannot be changed." = "内置样式的名称不能改变";
+"Bundled styles can’t be renamed." = "内置样式的名称不能改变";
 // Suffix of copied syntax coloring style
 " copy" = " 拷贝";
 // Delete syntax coloring style alert message
-"Delete the Syntax style “%@”?" = "确定删除语法样式 “%@”？";
+"Are you sure you want to delete “%@” syntax style?" = "确定删除语法样式“%@”？";
 // Syntax coloring style alert button titles
 "Cancel" = "取消";
 "Delete" = "删除";
 "Replace" = "替换";
 // Delete syntax coloring style alert information
-"Deleted style cannot be restored." = "样式删除后无法恢复";
+"Deleted style can’t be restored." = "样式删除后无法恢复";
 // Deleted error
-"Sorry, could not delete “%@”." = "“%@” 无法删除";
+"The style “%@” couldn’t be deleted." = "“%@”无法删除";
 // Import syntax coloring style file choose openPanel button
 "Import" = "导入";
 // Importing same name style alert title
-"The “%@” style already exists." = "样式 “%@” 已经存在";
+"The “%@” style already exists." = "样式“%@”已经存在";
 // Importing same name style alert info
-"Do you want to replace it?\nReplaced style cannot be restored." = "要替换样式吗？\n被替换的样式无法将恢复";
+"Do you want to replace it?\nReplaced style can’t be restored." = "要替换样式吗？\n被替换的样式无法将恢复";
 // Imported error
-"Error occured." = "发生了错误";
-"Sorry, could not import “%@”." = "“%@” 无法导入";
+"An error occurred." = "发生了错误";
+"The style “%@” couldn’t be imported." = "“%@”无法导入";
 // Export syntax coloring style file savePanel label
 "Export As:" = "导出为：";
 // File Drop setting deletion alert
-"Delete the File Drop setting for “%@”?" = "删除文件拖拽设置 “%@”？";
-"Deleted setting cannot be restored." = "设置删除后无法恢复";
+"Are you sure you want to delete the file drop setting for “%@”?" = "确定删除文件拖拽设置“%@”？";
+"Deleted setting can’t be restored." = "设置删除后无法恢复";
 // Syntax validation
 "Block comment needs both begin delimiter and end delimiter." = "块注释需要同时有起始符号和终止符号";
 "Begin string" = "开始字符串";
@@ -374,21 +385,22 @@
 /* MARK: CEThemeManager */
 "Untitled" = "未命名";
 "Customized Theme" = "自定义主题";
-"Theme name cannot be empty." = "主题名称不能为空";
-"Theme name cannot contain “/”." = "主题名称不能含有“/”";
-"Theme name cannot begin with “.”." = "主题名称不能含有“.”";
-"Input another name." = "请输入其他名称";
+"The theme name “%@” is already taken." = "主题名称“%@”已在使用中，";
+"Theme name can’t be empty." = "主题名称不能为空";
+"You can’t use a theme name that contains “/”." = "主题名称不能含有“/”";
+"You can’t use a theme name that begins with a dot “.”." = "主题名称不能含有“.”";
+"Please choose another name." = "请输入其他名称";
 
-"Auto-generated theme that is mgrated from user's coloring setting on CotEditor 1.x" = "由 CotEditor 1.x 的用户颜色设置中自动生成的主题";
+"Auto-generated theme that is migrated from user’s coloring setting on CotEditor 1.x" = "由 CotEditor 1.x 的用户颜色设置中自动生成的主题";
 
 
 /* MARK: CEKeyBindingManager */
 // label for text menu keybindings action
 "Insert Text %@" = "插入文本 %@";
 // Warning messages
-"“%@” has already been used. Edit it again." = "“%@” 已在使用中，请重新设置";
-"“%@” does NOT include Command key. Edit it again." = "“%@” 中没有包含 Command 键，请重新设置";
-"“%@” includes Command key. Edit it again." = "“%@” 包含了 Command 键，请重新设置";
+"“%@” is already taken. Please choose another key." = "“%@”已在使用中，请选择其他按键";
+"“%@” does not include the Command key. Please choose another key." = "“%@”中没有包含 Command 键，请选择其他按键";
+"“%@” includes the Command key. Please choose another key." = "“%@”包含了 Command 键，请选择其他按键";
 
 
 /* MARK: CEScriptManager */
@@ -397,18 +409,18 @@
 "Update Script Menu" = "更新脚本菜单";
 "Copy Sample Scripts…" = "复制示例脚本…";
 "Copy Sample Scripts" = "复制示例脚本";
-"Scripts in “%@” will be listed in the script menu." = "在 “%@” 中的脚本将在脚本菜单中列出";
+"Scripts in “%@” will be listed in the script menu." = "在“%@”中的脚本将在脚本菜单中列出";
 "Copy bundled sample scripts to the scripts folder." = "将内置的示例脚本复制到脚本文件夹";
 
 // Script menu item tooltips
-"“Opt + click” to open in Script Editor." = "使用 “Opt + 单击” 打开脚本编辑器";
+"“Opt + click” to open in Script Editor." = "使用“Opt + 单击”打开脚本编辑器";
 
 // Alert messages
-"The script “%@” does not exist.\n\nCheck it and do “Update Script Menu”." = "脚本 “%@” 不存在。\n\n请确认文件是否存在，并使用 “更新脚本菜单” 进行更新";
+"The script “%@” does not exist.\n\nCheck it and select “Update Script Menu”." = "脚本“%@”不存在。\n\n请确认文件是否存在，并使用“更新脚本菜单”进行更新";
 "%@\nErrorNumber: %i" = "%@\n错误号：%i";
-"Could not open the script file “%@”." = "无法打开脚本文件 “%@”";
-"Cannnot execute the script “%@”.\nShell script requires execute permission.\n\nCheck permission of the script file." = "无法执行脚本 “%@”。\nShell 脚本需要执行权限。\n\n请确认脚本文件访问权限";
-"Could not read the script “%@”." = "无法读取脚本 “%@”";
+"The script file “%@” couldn’t be opened." = "无法打开脚本文件“%@”";
+"The script “%@” can’t be executed because you don’t have the execute permission.\n\nCheck permission of the script file." = "由于没有执行权限，无法执行脚本“%@”。\n\n请确认脚本文件的权限。";
+"The script “%@” couldn’t be read." = "无法读取脚本“%@”";
 
 
 /* MARK: CEFindPanelController */
@@ -416,7 +428,7 @@
 
 
 /* MARK: CEFindResultViewController */
-// Find result (“%@” is file name)
-"No strings found in “%@”." = "在 “%@” 中没有找到字符串";
-"Found one string in “%@”." = "在 “%@” 中找到一个字符串";
-"Found %li strings in “%@”." = "%li 个字符串在 “%@” 中被找到";
+// Find result (“%@” is filename)
+"No strings found in “%@”." = "在“%@”中没有找到字符串";
+"Found one string in “%@”." = "在“%@”中找到一个字符串";
+"Found %li strings in “%@”." = "%li 个字符串在“%@”中被找到";

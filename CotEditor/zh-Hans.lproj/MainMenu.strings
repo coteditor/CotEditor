@@ -79,9 +79,9 @@
 /* Class = "NSMenuItem"; title = "Open Hidden…"; ObjectID = "688"; */
 "688.title" = "打开隐藏文件…";
 /* Class = "NSMenuItem"; title = "Open Recent"; ObjectID = "124"; */
-"124.title" = "打开最近使用的";
+"124.title" = "打开最近使用";
 /* Class = "NSMenu"; title = "Open Recent"; ObjectID = "125"; */
-"125.title" = "打开最近使用的";
+"125.title" = "打开最近使用";
 
 /* Class = "NSMenuItem"; title = "Get Info"; ObjectID = "564"; */
 "564.title" = "显示简介";
@@ -125,7 +125,7 @@
 "171.title" = "粘贴";
 /* Class = "NSMenuItem"; title = "Delete"; ObjectID = "164"; */
 "164.title" = "删除";
-/* Class = "NSMenuItem"; title = "Select All选"; ObjectID = "172"; */
+/* Class = "NSMenuItem"; title = "Select All"; ObjectID = "172"; */
 "172.title" = "全选";
 /* Class = "NSMenuItem"; title = "Select Line"; ObjectID = "Cwp-ys-LJc"; */
 "Cwp-ys-LJc.title" = "选择行";
@@ -144,9 +144,9 @@
 /* Class = "NSMenuItem"; title = "as IANA Charset"; ObjectID = "663"; */
 "663.title" = "以 IANA 字符集";
 /* Class = "NSMenuItem"; title = "with “charset=”"; ObjectID = "665"; */
-"665.title" = "以 “charset=”";
+"665.title" = "以“charset=”";
 /* Class = "NSMenuItem"; title = "with “encoding=”"; ObjectID = "667"; */
-"667.title" = "以 “encoding=”";
+"667.title" = "以“encoding=”";
 
 /* Class = "NSMenuItem"; title = "Inspect Character"; ObjectID = "ToR-yH-ahH"; */
 "ToR-yH-ahH.title" = "检视文字";
@@ -176,7 +176,7 @@
 "QKD-ue-EQp.title" = "智能拷贝/粘贴";
 /* Class = "NSMenuItem"; title = "Smart Quotes"; ObjectID = "sza-9T-f4h"; */
 "sza-9T-f4h.title" = "智能引号";
-/* Class = "NSMenuItem"; title = "Samrt Dashes"; ObjectID = "cIp-rb-QPk"; */
+/* Class = "NSMenuItem"; title = "Smart Dashes"; ObjectID = "cIp-rb-QPk"; */
 "cIp-rb-QPk.title" = "智能破折号";
 /* Class = "NSMenuItem"; title = "Text Replacement"; ObjectID = "PSn-PG-o9k"; */
 "PSn-PG-o9k.title" = "文本替换";
@@ -230,14 +230,14 @@
 "793.title" = "分栏显示";
 /* Class = "NSMenuItem"; title = "Focus on Next Split View"; ObjectID = "794"; */
 "794.title" = "焦点下一个分栏视图";
-/* Class = "NSMenuItem"; title = "Focus on Prev Split View"; ObjectID = "795"; */
+/* Class = "NSMenuItem"; title = "Focus on Previous Split View"; ObjectID = "795"; */
 "795.title" = "焦点前一个分栏视图";
 /* Class = "NSMenuItem"; title = "Stack Views Vertically"; ObjectID = "u46-te-4c4"; */
 "u46-te-4c4.title" = "纵向分栏显示";
 /* Class = "NSMenuItem"; title = "Close Split View"; ObjectID = "796"; */
 "796.title" = "关闭分栏显示";
 
-/* Class = "NSMenuItem"; title = "Set View's Opacity…"; ObjectID = "367"; */
+/* Class = "NSMenuItem"; title = "Set View’s Opacity…"; ObjectID = "367"; */
 "367.title" = "设置视图透明度…";
 
 /* Class = "NSMenuItem"; title = "Enter Full Screen"; ObjectID = "4mh-0E-3RJ"; */
@@ -260,9 +260,9 @@
 /* Class = "NSMenuItem"; title = "Show Fonts"; ObjectID = "424"; */
 "424.title" = "显示字体";
 /* Class = "NSMenuItem"; title = "Bigger"; ObjectID = "405"; */
-"405.title" = "放大";
+"405.title" = "较大";
 /* Class = "NSMenuItem"; title = "Smaller"; ObjectID = "404"; */
-"404.title" = "缩小";
+"404.title" = "较小";
 /* Class = "NSMenuItem"; title = "Reset to Default"; ObjectID = "574"; */
 "574.title" = "重置";
 /* Class = "NSMenuItem"; title = "Anti-aliasing"; ObjectID = "745"; */
@@ -343,11 +343,11 @@
 "HgR-ke-6gq.title" = "查找全部";
 
 /* Class = "NSMenuItem"; title = "Use Selection for Find"; ObjectID = "hTx-ef-3T2"; */
-"hTx-ef-3T2.title" = "使用选择查找";
+"hTx-ef-3T2.title" = "查找所选内容";
 /* Class = "NSMenuItem"; title = "Use Selection for Replace"; ObjectID = "kwa-lu-0Fz"; */
-"kwa-lu-0Fz.title" = "使用选择替换";
+"kwa-lu-0Fz.title" = "替换所选内容";
 /* Class = "NSMenuItem"; title = "Jump to Selection"; ObjectID = "p4A-mE-Ve3"; */
-"p4A-mE-Ve3.title" = "跳转到选择";
+"p4A-mE-Ve3.title" = "跳到所选内容";
 
 /* Class = "NSMenuItem"; title = "Replace"; ObjectID = "bnD-BP-sPi"; */
 "bnD-BP-sPi.title" = "替换";
@@ -462,8 +462,8 @@
 
 /* Class = "NSMenuItem"; title = "Release Notes"; ObjectID = "822"; */
 "822.title" = "发行说明";
-/* Class = "NSMenuItem"; title = "What's New in CotEditor 2.1"; ObjectID = "DCW-Ij-540"; */
-"DCW-Ij-540.title" = "CotEditor 2.1 新特性";
+/* Class = "NSMenuItem"; title = "What’s New in CotEditor 2.2"; ObjectID = "DCW-Ij-540"; */
+"DCW-Ij-540.title" = "CotEditor 2.2 新特性";
 /* Class = "NSMenuItem"; title = "Acknowledgements"; ObjectID = "824"; */
 "824.title" = "致谢";
 
@@ -471,5 +471,5 @@
 "iHn-Ed-A8u.title" = "创建错误报告…";
 /* Class = "NSMenuItem"; title = "Report Bug"; ObjectID = "Bk3-xx-uft"; */
 "Bk3-xx-uft.title" = "报告错误";
-/* Class = "NSMenuItem"; title = "CotEditor Web Site"; ObjectID = "g34-YV-E6o"; */
+/* Class = "NSMenuItem"; title = "CotEditor Website"; ObjectID = "g34-YV-E6o"; */
 "g34-YV-E6o.title" = "CotEditor 网站";

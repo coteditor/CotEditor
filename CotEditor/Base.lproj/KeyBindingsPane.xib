@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6254"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="8191"/>
+        <capability name="box content view" minToolsVersion="7.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="CEKeyBindingsPaneController">
@@ -14,11 +15,11 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <userDefaultsController representsSharedInstance="YES" id="26" userLabel="Shared User Defaults Controller"/>
         <customView horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" id="748" userLabel="Key Bindings Pane">
-            <rect key="frame" x="0.0" y="0.0" width="540" height="333"/>
+            <rect key="frame" x="0.0" y="0.0" width="550" height="333"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <button horizontalHuggingPriority="750" verticalHuggingPriority="750" tag="7" translatesAutoresizingMaskIntoConstraints="NO" id="2356">
-                    <rect key="frame" x="497" y="17" width="25" height="25"/>
+                    <rect key="frame" x="507" y="17" width="25" height="25"/>
                     <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" inset="2" id="3367">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
@@ -28,9 +29,9 @@
                     </connections>
                 </button>
                 <box titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="718">
-                    <rect key="frame" x="17" y="49" width="506" height="126"/>
-                    <view key="contentView">
-                        <rect key="frame" x="2" y="2" width="502" height="122"/>
+                    <rect key="frame" x="17" y="49" width="516" height="126"/>
+                    <view key="contentView" id="Evc-Kv-mKV">
+                        <rect key="frame" x="2" y="2" width="512" height="122"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="720">
@@ -41,10 +42,10 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <button verticalHuggingPriority="750" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="722">
-                                <rect key="frame" x="387" y="53" width="100" height="32"/>
+                            <button horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="722">
+                                <rect key="frame" x="397" y="53" width="100" height="32"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="88" id="Jiu-hk-nks"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="88" id="Jiu-hk-nks"/>
                                 </constraints>
                                 <buttonCell key="cell" type="push" title="Edit…" bezelStyle="rounded" alignment="center" borderStyle="border" tag="1" inset="2" id="3365">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -62,12 +63,12 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="726">
-                                <rect key="frame" x="14" y="35" width="373" height="28"/>
+                            <textField horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="726">
+                                <rect key="frame" x="14" y="35" width="383" height="28"/>
                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="3366">
                                     <font key="font" metaFont="smallSystem"/>
                                     <string key="title">This setting is not for the standard Cocoa key bindings
-but for CotEditor's original function.</string>
+but for CotEditor’s original function.</string>
                                     <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -75,30 +76,30 @@ but for CotEditor's original function.</string>
                         </subviews>
                     </view>
                     <constraints>
-                        <constraint firstItem="721" firstAttribute="leading" secondItem="726" secondAttribute="leading" id="1ws-Ow-sos"/>
+                        <constraint firstItem="722" firstAttribute="leading" secondItem="726" secondAttribute="trailing" constant="8" symbolic="YES" id="0Ft-eb-IWH"/>
+                        <constraint firstItem="720" firstAttribute="leading" secondItem="718" secondAttribute="leading" constant="15" id="1MK-OP-nOr"/>
                         <constraint firstAttribute="height" constant="120" id="5qt-dH-p56"/>
-                        <constraint firstItem="720" firstAttribute="top" secondItem="718" secondAttribute="top" constant="12" id="5tH-bg-67n"/>
-                        <constraint firstItem="721" firstAttribute="top" secondItem="722" secondAttribute="top" id="KtW-Pq-9Qa"/>
-                        <constraint firstItem="721" firstAttribute="leading" secondItem="720" secondAttribute="leading" id="Ui1-s8-v8M"/>
-                        <constraint firstItem="720" firstAttribute="leading" secondItem="718" secondAttribute="leading" constant="15" id="b2E-yE-fas"/>
-                        <constraint firstItem="722" firstAttribute="leading" secondItem="726" secondAttribute="trailing" constant="8" symbolic="YES" id="fKa-0n-ydy"/>
-                        <constraint firstItem="721" firstAttribute="top" secondItem="720" secondAttribute="bottom" constant="12" id="gcQ-vN-VdX"/>
-                        <constraint firstItem="726" firstAttribute="top" secondItem="721" secondAttribute="bottom" constant="4" id="jee-Qh-JFK"/>
-                        <constraint firstAttribute="trailing" secondItem="722" secondAttribute="trailing" constant="20" id="nLT-NR-Ox0"/>
+                        <constraint firstAttribute="trailing" secondItem="722" secondAttribute="trailing" constant="20" id="D6L-Ym-0Ie"/>
+                        <constraint firstItem="720" firstAttribute="top" secondItem="718" secondAttribute="top" constant="12" id="IEU-hg-LER"/>
+                        <constraint firstItem="726" firstAttribute="top" secondItem="721" secondAttribute="bottom" constant="4" id="KQ0-ui-Ue8"/>
+                        <constraint firstItem="721" firstAttribute="leading" secondItem="726" secondAttribute="leading" id="OzT-77-hvX"/>
+                        <constraint firstItem="721" firstAttribute="leading" secondItem="720" secondAttribute="leading" id="XqB-bO-uap"/>
+                        <constraint firstItem="721" firstAttribute="top" secondItem="720" secondAttribute="bottom" constant="12" id="glU-2m-kYH"/>
+                        <constraint firstItem="721" firstAttribute="top" secondItem="722" secondAttribute="top" id="nBM-xM-15d"/>
                     </constraints>
                     <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </box>
                 <box titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="716">
-                    <rect key="frame" x="17" y="189" width="506" height="126"/>
-                    <view key="contentView">
-                        <rect key="frame" x="2" y="2" width="502" height="122"/>
+                    <rect key="frame" x="17" y="189" width="516" height="126"/>
+                    <view key="contentView" id="xbq-pV-wVf">
+                        <rect key="frame" x="2" y="2" width="512" height="122"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="714">
-                                <rect key="frame" x="387" y="53" width="100" height="32"/>
+                            <button horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="714">
+                                <rect key="frame" x="397" y="53" width="100" height="32"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="88" id="Ft6-A5-Vzh"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="88" id="Ft6-A5-Vzh"/>
                                 </constraints>
                                 <buttonCell key="cell" type="push" title="Edit…" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="3360">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -124,8 +125,8 @@ but for CotEditor's original function.</string>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="835">
-                                <rect key="frame" x="14" y="49" width="373" height="14"/>
+                            <textField horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="835">
+                                <rect key="frame" x="14" y="49" width="383" height="14"/>
                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="This setting does not include script menu items." id="3362">
                                     <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
@@ -135,16 +136,16 @@ but for CotEditor's original function.</string>
                         </subviews>
                     </view>
                     <constraints>
-                        <constraint firstItem="714" firstAttribute="leading" secondItem="835" secondAttribute="trailing" constant="8" symbolic="YES" id="3Mo-be-HsI"/>
-                        <constraint firstItem="713" firstAttribute="top" secondItem="716" secondAttribute="top" constant="12" id="5Gc-0a-ayo"/>
-                        <constraint firstItem="713" firstAttribute="leading" secondItem="716" secondAttribute="leading" constant="15" id="DkP-HA-TWm"/>
+                        <constraint firstItem="715" firstAttribute="top" secondItem="713" secondAttribute="bottom" constant="12" id="0GN-eE-TAg"/>
+                        <constraint firstItem="835" firstAttribute="leading" secondItem="715" secondAttribute="leading" id="NPj-fP-RLb"/>
                         <constraint firstAttribute="height" constant="120" id="QEE-Jl-zgK"/>
-                        <constraint firstItem="835" firstAttribute="top" secondItem="715" secondAttribute="bottom" constant="4" id="atq-Nx-aVY"/>
-                        <constraint firstItem="835" firstAttribute="leading" secondItem="715" secondAttribute="leading" id="cee-W5-92c"/>
-                        <constraint firstItem="835" firstAttribute="leading" secondItem="713" secondAttribute="leading" id="mcN-6F-S6h"/>
-                        <constraint firstAttribute="trailing" secondItem="714" secondAttribute="trailing" constant="20" id="wv2-Lh-hqi"/>
-                        <constraint firstItem="714" firstAttribute="top" secondItem="715" secondAttribute="top" id="yI3-wg-uLP"/>
-                        <constraint firstItem="715" firstAttribute="top" secondItem="713" secondAttribute="bottom" constant="12" id="yVv-CC-fYD"/>
+                        <constraint firstItem="713" firstAttribute="top" secondItem="716" secondAttribute="top" constant="12" id="RX5-Ve-Ihd"/>
+                        <constraint firstItem="714" firstAttribute="leading" secondItem="835" secondAttribute="trailing" constant="8" symbolic="YES" id="YBD-cv-ugX"/>
+                        <constraint firstItem="714" firstAttribute="top" secondItem="715" secondAttribute="top" id="f6U-gt-3Sw"/>
+                        <constraint firstItem="713" firstAttribute="leading" secondItem="716" secondAttribute="leading" constant="15" id="hgd-3H-iTw"/>
+                        <constraint firstItem="835" firstAttribute="leading" secondItem="713" secondAttribute="leading" id="uMn-AI-HzB"/>
+                        <constraint firstAttribute="trailing" secondItem="714" secondAttribute="trailing" constant="20" id="vbC-8L-jOb"/>
+                        <constraint firstItem="835" firstAttribute="top" secondItem="715" secondAttribute="bottom" constant="4" id="wRs-mJ-dku"/>
                     </constraints>
                     <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>

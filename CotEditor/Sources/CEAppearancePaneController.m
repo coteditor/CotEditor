@@ -38,9 +38,10 @@
 @property (nonatomic, nullable, weak) IBOutlet NSTextField *fontField;
 @property (nonatomic, nullable, weak) IBOutlet NSTableView *themeTableView;
 @property (nonatomic, nullable, weak) IBOutlet NSBox *box;
+@property (nonatomic, nullable, weak) IBOutlet NSMenu *themeTableMenu;
 
 @property (nonatomic, nullable) CEThemeViewController *themeViewController;
-@property (nonatomic, nullable, copy) NSArray *themeNames;
+@property (nonatomic, nullable, copy) NSArray<NSString *> *themeNames;
 @property (nonatomic, getter=isBundled) BOOL bundled;
 
 @end
@@ -78,7 +79,7 @@
     [[self themeTableView] registerForDraggedTypes:@[(NSString *)kUTTypeFileURL]];
     
     // デフォルトテーマを選択
-    NSArray *themeNames = [[self themeNames] copy];
+    NSArray<NSString *> *themeNames = [[self themeNames] copy];
     NSInteger row = [themeNames indexOfObject:[[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultThemeKey]];
     [[self themeTableView] selectRowIndexes:[NSIndexSet indexSetWithIndex:row] byExtendingSelection:NO];
     [[self themeTableView] setAllowsEmptySelection:NO];
@@ -103,19 +104,57 @@
 - (BOOL)validateMenuItem:(nonnull NSMenuItem *)menuItem
 // ------------------------------------------------------
 {
-    BOOL isCustomized;
-    BOOL isBundled = [[CEThemeManager sharedManager] isBundledTheme:[self selectedTheme] cutomized:&isCustomized];
+    BOOL isContextualMenu = ([menuItem menu] == [self themeTableMenu]);
     
-    if ([menuItem action] == @selector(exportTheme:)) {
-        [menuItem setTitle:[NSString stringWithFormat:NSLocalizedString(@"Export “%@”…", nil), [self selectedTheme]]];
+    NSString *representedTheme = [self selectedTheme];
+    if (isContextualMenu) {
+        NSInteger clickedrow = [[self themeTableView] clickedRow];
+        
+        if (clickedrow == -1) {  // clicked blank area
+            representedTheme = nil;
+        } else {
+            representedTheme = [self themeNames][clickedrow];
+        }
+    }
+    [menuItem setRepresentedObject:representedTheme];
+    
+    BOOL isCustomized;
+    BOOL isBundled = [[CEThemeManager sharedManager] isBundledTheme:representedTheme cutomized:&isCustomized];
+    
+    if (([menuItem action] == @selector(addTheme:)) ||
+        ([menuItem action] == @selector(importTheme:)))
+    {
+        [menuItem setHidden:(isContextualMenu && representedTheme)];
+        
+    } else if ([menuItem action] == @selector(exportTheme:)) {
+        if (!isContextualMenu) {
+            [menuItem setTitle:[NSString stringWithFormat:NSLocalizedString(@"Export “%@”…", nil), representedTheme]];
+        }
+        [menuItem setHidden:!representedTheme];
         return (!isBundled || isCustomized);
         
+    } else if ([menuItem action] == @selector(renameTheme:)) {
+        if (!isContextualMenu) {
+            [menuItem setTitle:[NSString stringWithFormat:NSLocalizedString(@"Rename “%@”", nil), representedTheme]];
+        }
+        [menuItem setHidden:!representedTheme];
+        return !isBundled;
+        
     } else if ([menuItem action] == @selector(duplicateTheme:)) {
-        [menuItem setTitle:[NSString stringWithFormat:NSLocalizedString(@"Duplicate “%@”", nil), [self selectedTheme]]];
+        if (!isContextualMenu) {
+            [menuItem setTitle:[NSString stringWithFormat:NSLocalizedString(@"Duplicate “%@”", nil), representedTheme]];
+        }
+        [menuItem setHidden:!representedTheme];
+        
     } else if ([menuItem action] == @selector(restoreTheme:)) {
-        [menuItem setTitle:[NSString stringWithFormat:NSLocalizedString(@"Restore “%@”", nil), [self selectedTheme]]];
-        [menuItem setHidden:!isBundled];
+        if (!isContextualMenu) {
+            [menuItem setTitle:[NSString stringWithFormat:NSLocalizedString(@"Restore “%@”", nil), representedTheme]];
+        }
+        [menuItem setHidden:(!isBundled || !representedTheme)];
         return isCustomized;
+        
+    } else if ([menuItem action] == @selector(deleteTheme:)) {
+        [menuItem setHidden:(isBundled || !representedTheme)];
     }
     
     return YES;
@@ -154,9 +193,9 @@
 {
     // get file URLs from pasteboard
     NSPasteboard *pboard = [info draggingPasteboard];
-    NSArray *URLs = [pboard readObjectsForClasses:@[[NSURL class]]
-                                          options:@{NSPasteboardURLReadingFileURLsOnlyKey: @YES,
-                                                    NSPasteboardURLReadingContentsConformToTypesKey: @[CEUTTypeTheme]}];
+    NSArray<NSURL *> *URLs = [pboard readObjectsForClasses:@[[NSURL class]]
+                                                   options:@{NSPasteboardURLReadingFileURLsOnlyKey: @YES,
+                                                             NSPasteboardURLReadingContentsConformToTypesKey: @[CEUTTypeTheme]}];
     
     if ([URLs count] == 0) { return NSDragOperationNone; }
     
@@ -198,7 +237,7 @@
 
 // ------------------------------------------------------
 /// テーマが編集された
-- (void)didUpdateTheme:(NSMutableDictionary *)theme
+- (void)didUpdateTheme:(NSMutableDictionary<NSString *, NSMutableDictionary<NSString *, id> *> *)theme
 // ------------------------------------------------------
 {
     // save
@@ -217,7 +256,7 @@
 {
     if ([notification object] == [self themeTableView]) {
         BOOL isBundled;
-        NSMutableDictionary *themeDict = [[CEThemeManager sharedManager] archivedTheme:[self selectedTheme] isBundled:&isBundled];
+        NSMutableDictionary<NSString *, NSMutableDictionary<NSString *, id> *> *themeDict = [[CEThemeManager sharedManager] archivedTheme:[self selectedTheme] isBundled:&isBundled];
         
         // デフォルトテーマ設定の更新（初回の選択変更はまだ設定が反映されていない時点で呼び出されるので保存しない）
         if ([self themeViewController]) {
@@ -284,7 +323,6 @@
 }
 
 
-#if MAC_OS_X_VERSION_MAX_ALLOWED >= 101100
 // ------------------------------------------------------
 /// set action on swiping theme name (on El Capitan and leter)
 - (nonnull NSArray<NSTableViewRowAction *> *)tableView:(nonnull NSTableView *)tableView rowActionsForRow:(NSInteger)row edge:(NSTableRowActionEdge)edge
@@ -322,7 +360,6 @@
                   }]];
     }
 }
-#endif  // MAC_OS_X_VERSION_10_11
 
 
 
@@ -363,7 +400,7 @@
 {
     NSTableView *tableView = [self themeTableView];
     [[CEThemeManager sharedManager] createUntitledThemeWithCompletionHandler:^(NSString *themeName, NSError *error) {
-        NSArray *themeNames = [[CEThemeManager sharedManager] themeNames];
+        NSArray<NSString *> *themeNames = [[CEThemeManager sharedManager] themeNames];
         NSInteger row = [themeNames indexOfObject:themeName];
         [tableView selectRowIndexes:[NSIndexSet indexSetWithIndex:row] byExtendingSelection:NO];
     }];
@@ -375,7 +412,9 @@
 - (IBAction)deleteTheme:(nullable id)sender
 //------------------------------------------------------
 {
-    [self deleteThemeWithName:[self selectedTheme]];
+    NSString *themeName = ([sender isKindOfClass:[NSMenuItem class]]) ? [sender representedObject] : [self selectedTheme];
+    
+    [self deleteThemeWithName:themeName];
 }
 
 
@@ -384,7 +423,9 @@
 - (IBAction)duplicateTheme:(nullable id)sender
 //------------------------------------------------------
 {
-    [[CEThemeManager sharedManager] duplicateTheme:[self selectedTheme] error:nil];
+    NSString *themeName = ([sender isKindOfClass:[NSMenuItem class]]) ? [sender representedObject] : [self selectedTheme];
+    
+    [[CEThemeManager sharedManager] duplicateTheme:themeName error:nil];
 }
 
 
@@ -393,19 +434,19 @@
 - (IBAction)exportTheme:(nullable id)sender
 //------------------------------------------------------
 {
-    NSString *selectedThemeName = [self selectedTheme];
+    NSString *themeName = ([sender isKindOfClass:[NSMenuItem class]]) ? [sender representedObject] : [self selectedTheme];
     
     NSSavePanel *savePanel = [NSSavePanel savePanel];
     [savePanel setCanCreateDirectories:YES];
     [savePanel setCanSelectHiddenExtension:YES];
     [savePanel setNameFieldLabel:NSLocalizedString(@"Export As:", nil)];
-    [savePanel setNameFieldStringValue:selectedThemeName];
+    [savePanel setNameFieldStringValue:themeName];
     [savePanel setAllowedFileTypes:@[CEThemeExtension]];
     
     [savePanel beginSheetModalForWindow:[[self view] window] completionHandler:^(NSInteger result) {
         if (result == NSFileHandlingPanelCancelButton) { return; }
         
-        [[CEThemeManager sharedManager] exportTheme:selectedThemeName toURL:[savePanel URL] error:nil];
+        [[CEThemeManager sharedManager] exportTheme:themeName toURL:[savePanel URL] error:nil];
     }];
 }
 
@@ -438,7 +479,21 @@
 - (IBAction)restoreTheme:(nullable id)sender
 // ------------------------------------------------------
 {
-    [self restoreThemeWithName:[self selectedTheme]];
+    NSString *themeName = ([sender isKindOfClass:[NSMenuItem class]]) ? [sender representedObject] : [self selectedTheme];
+    
+    [self restoreThemeWithName:themeName];
+}
+
+
+// ------------------------------------------------------
+/// カスタマイズされたバンドル版テーマをオリジナルに戻す
+- (IBAction)renameTheme:(nullable id)sender
+// ------------------------------------------------------
+{
+    NSString *themeName = ([sender isKindOfClass:[NSMenuItem class]]) ? [sender representedObject] : [self selectedTheme];
+    NSUInteger row = [[self themeNames] indexOfObject:themeName];
+    
+    [[self themeTableView] editColumn:0 row:row withEvent:nil select:NO];
 }
 
 
@@ -474,8 +529,8 @@
 //------------------------------------------------------
 {
     NSAlert *alert = [[NSAlert alloc] init];
-    [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"Delete the theme “%@”?", nil), themeName]];
-    [alert setInformativeText:NSLocalizedString(@"Deleted theme cannot be restored.", nil)];
+    [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"Are you sure you want to delete “%@” theme?", nil), themeName]];
+    [alert setInformativeText:NSLocalizedString(@"Deleted theme can’t be restored.", nil)];
     [alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
     [alert addButtonWithTitle:NSLocalizedString(@"Delete", nil)];
     
@@ -495,7 +550,7 @@
     [[CEThemeManager sharedManager] restoreTheme:themeName completionHandler:^(NSError *error) {
         // refresh theme view if current displayed theme was restored
         if (!error && [themeName isEqualToString:[self selectedTheme]]) {
-            NSMutableDictionary *bundledTheme = [[CEThemeManager sharedManager] archivedTheme:themeName isBundled:nil];
+            NSMutableDictionary<NSString *, NSMutableDictionary<NSString *, id> *>  *bundledTheme = [[CEThemeManager sharedManager] archivedTheme:themeName isBundled:nil];
             
             [[self themeViewController] setRepresentedObject:bundledTheme];
         }

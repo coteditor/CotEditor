@@ -25,11 +25,5 @@
  
  */
 
-/* Class = "NSTextFieldCell"; title = "Coloring text…"; ObjectID = "50"; */
-"50.title" = "テキストのカラーリング中…";
-
-/* Class = "NSTextFieldCell"; title = "Please wait for a while."; ObjectID = "51"; */
-"51.title" = "しばらくお待ちください...";
-
 /* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "58"; */
 "58.title" = "キャンセル";

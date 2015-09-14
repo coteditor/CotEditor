@@ -68,7 +68,8 @@ NSString *__nonnull const kHelpAnchors[] = {
     @"about_script_name",
     @"about_applescript",
     @"about_unixscript",
-    @"pref_integration"
+    @"pref_integration",
+    @"about_file_mapping"
 };
 
 
@@ -141,6 +142,8 @@ NSString *__nonnull const CEDefaultWindowAlphaKey = @"windowAlpha";
 NSString *__nonnull const CEDefaultAutoExpandTabKey = @"autoExpandTab";
 NSString *__nonnull const CEDefaultTabWidthKey = @"tabWidth";
 NSString *__nonnull const CEDefaultAutoIndentKey = @"autoIndent";
+NSString *__nonnull const CEDefaultEnablesHangingIndentKey = @"enableHangingIndent";
+NSString *__nonnull const CEDefaultHangingIndentWidthKey = @"hangingIndentWidth";
 NSString *__nonnull const CEDefaultShowInvisiblesKey = @"showInvisibles";
 NSString *__nonnull const CEDefaultShowInvisibleSpaceKey = @"showInvisibleSpace";
 NSString *__nonnull const CEDefaultInvisibleSpaceKey = @"invisibleSpace";
@@ -160,7 +163,9 @@ NSString *__nonnull const CEDefaultFileDropArrayKey = @"fileDropArray";
 NSString *__nonnull const CEDefaultSmartInsertAndDeleteKey = @"smartInsertAndDelete";
 NSString *__nonnull const CEDefaultShouldAntialiasKey = @"shouldAntialias";
 NSString *__nonnull const CEDefaultAutoCompleteKey = @"autoComplete";
-NSString *__nonnull const CEDefaultCompletionWordsKey = @"completeAddStandardWords";
+NSString *__nonnull const CEDefaultCompletesDocumentWordsKey = @"completesDocumentWords";
+NSString *__nonnull const CEDefaultCompletesSyntaxWordsKey = @"completesSyntaxWords";
+NSString *__nonnull const CEDefaultCompletesStandartWordsKey = @"completesStandardWords";
 NSString *__nonnull const CEDefaultShowPageGuideKey = @"showPageGuide";
 NSString *__nonnull const CEDefaultPageGuideColumnKey = @"pageGuideColumn";
 NSString *__nonnull const CEDefaultLineSpacingKey = @"lineSpacing";
@@ -235,6 +240,7 @@ NSString *__nonnull const CEDefaultLargeFileAlertThresholdKey = @"largeFileAlert
 NSString *__nonnull const CEDefaultAutosavingDelayKey = @"autosavingDelay";
 NSString *__nonnull const CEDefaultEnablesAutosaveInPlaceKey = @"enablesAutosaveInPlace";
 NSString *__nonnull const CEDefaultSavesTextOrientationKey = @"savesTextOrientation";
+NSString *__nonnull const CEDefaultCotCommandBookmarkKey = @"cotCommandBookmarkKey";
 
 
 

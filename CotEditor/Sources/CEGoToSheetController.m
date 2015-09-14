@@ -80,7 +80,7 @@
 - (IBAction)apply:(nullable id)sender
 // ------------------------------------------------------
 {
-    NSArray *locLen = [[self location] componentsSeparatedByString:@":"];
+    NSArray<NSString *> *locLen = [[self location] componentsSeparatedByString:@":"];
     
     if ([locLen count] > 0) {
         NSInteger location = [locLen[0] integerValue];

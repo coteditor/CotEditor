@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+<html lang="ja" xml:lang="ja">
+
+<head>
+	<meta charset="UTF-8"/>
+	<meta name="keywords" content="仕様変更,スクリプトフォルダ,サンドボックス,Sandbox"/>
+	<title>CotEditor 2.2 での仕様変更</title>
+	<link rel="start" href="../CotEditorHelp.html"/>
+	<link rel="index" href="../xpgs/xall.html"/>
+	<link rel="stylesheet" href="../../Shared/sty/standard.css"/>
+</head>
+
+<body>
+<nav><ul>
+	<li><a href="../CotEditorHelp.html">CotEditor ヘルプ</a></li>
+</ul></nav>
+
+
+<a name="specification_changes"></a>
+<h1>CotEditor 2.2 での仕様変更</h1>
+
+<p>CotEditor はバージョン 2.2.0 からサンドボックス化されました。バージョン 2.2.0 では Sandbox のルールに適合するために仕様が一部変更されています。そのため、以前のバージョンを使っていたユーザは手動による移行処理が必要になる場合があります。</p>
+
+
+<h2>ユーザ設定の保存場所</h2>
+<p>CotEditor のユーザ設定全般の保存場所が <code>~/Library/Application Support/CotEditor/</code> から <code>~/Library/Containers/com.coteditor.CotEditor/Data/Library/Application Support/CotEditor/</code> に変更されました。<code>cot</code> コマンドをすでにインストールしているユーザは、手動で再インストールを行う必要があります。ターミナルから以下のコマンドを実行することで、コマンドを再インストールすることができます。<br/>
+          <code>unlink /usr/local/bin/cot; ln -s /Applications/CotEditor.app/Contents/SharedSupport/bin/cot /usr/local/bin/cot</code><br/>
+          CotEditor/cot をインストールしている場所に合わせて、再インストールコマンドのパスは適宜変更してください。</p>
+
+
+<h2>スクリプトフォルダの場所</h2>
+<p>スクリプトフォルダの位置が <code>~/Library/Application Support/CotEditor/ScriptMenu/</code> から <code>~/Library/Application Scripts/com.coteditor.CotEditor/</code> に変更されました。この移行は自動で行われないため、<strong>ユーザはすでにあるスクリプトを手動で移動する必要があります</strong>。</p>
+
+
+<h2>コマンドラインツールのバンドル場所</h2>
+<p><code>cot</code> コマンドラインツールのバンドル位置が <code>CotEditor.app/Contents/MacOS/</code> から <code>CotEditor.app/Contents/SharedSupport/bin/</code> に変更されました。<strong><code>cot</code> コマンドをすでにインストールしているユーザは、手動で再インストールを行う必要があります</strong>。環境設定の連携ペインで、「アンインストール/インストール」ボタンを2回押してください。</p>
+
+
+
+<section id="cf">
+<h2>See also</h2>
+<ul>
+	<li><a href="../pgs/whats_new_in_2.2.html">CotEditor 2.2 の新機能</a></li>
+	<li><a href="../pgs/specification_changes.html">CotEditor 2.0 での仕様変更</a></li>
+	<li><a href="../pgs/releasenotes.html">リリースノート</a></li>
+</ul>
+</section>
+
+</body>
+</html>

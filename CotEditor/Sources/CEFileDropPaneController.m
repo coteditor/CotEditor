@@ -136,7 +136,6 @@
 }
 
 
-#if MAC_OS_X_VERSION_MAX_ALLOWED >= 101100
 // ------------------------------------------------------
 /// set action on swiping theme name (on El Capitan and leter)
 - (nonnull NSArray<NSTableViewRowAction *> *)tableView:(nonnull NSTableView *)tableView rowActionsForRow:(NSInteger)row edge:(NSTableRowActionEdge)edge
@@ -153,7 +152,6 @@
                   [self deleteSettingAtIndex:row];
               }]];
 }
-#endif  // MAC_OS_X_VERSION_10_11
 
 
 //=======================================================
@@ -185,7 +183,7 @@
     
     [[[self view] window] makeFirstResponder:textView];
     if ([textView shouldChangeTextInRange:[textView selectedRange] replacementString:title]) {
-        [[textView textStorage] replaceCharactersInRange:[textView selectedRange] withString:title];
+        [textView replaceCharactersInRange:[textView selectedRange] withString:title];
         [textView didChangeText];
     }
 }
@@ -244,9 +242,9 @@
     // 起動時に読み込み、変更完了／終了時に下記戻す処理を行う。
     // http://www.hmdt-web.net/bbs/bbs.cgi?bbsname=mkino&mode=res&no=203&oyano=203&line=0
     
-    NSArray *settings = [[NSUserDefaults standardUserDefaults] arrayForKey:CEDefaultFileDropArrayKey];
+    NSArray<NSDictionary<NSString *, NSString *> *> *settings = [[NSUserDefaults standardUserDefaults] arrayForKey:CEDefaultFileDropArrayKey];
     
-    NSMutableArray *content = [NSMutableArray array];
+    NSMutableArray<NSMutableDictionary<NSString *, NSString *> *> *content = [NSMutableArray array];
     for (NSDictionary *dict in settings) {
         [content addObject:[dict mutableCopy]];
     }
@@ -263,8 +261,8 @@
     if (![extensionsString isKindOfClass:[NSString class]]) { return nil; }
     
     NSCharacterSet *trimSet = [NSCharacterSet characterSetWithCharactersInString:@"./ \t\r\n"];
-    NSArray *extensions = [extensionsString componentsSeparatedByString:@","];
-    NSMutableArray *sanitizedExtensions = [NSMutableArray array];
+    NSArray<NSString *> *extensions = [extensionsString componentsSeparatedByString:@","];
+    NSMutableArray<NSString *> *sanitizedExtensions = [NSMutableArray array];
     
     for (NSString *extension in extensions) {
         NSString *sanitizedExtension = [extension stringByTrimmingCharactersInSet:trimSet];
@@ -288,12 +286,12 @@
     // フラグがたっていなければ（既に controlTextDidEndEditing: で自動削除されていれば）何もしない
     if (![self isDeletingFileDrop]) { return; }
     
-    NSDictionary *item = [[self fileDropController] arrangedObjects][rowIndex];
+    NSDictionary<NSString *, NSString *> *item = [[self fileDropController] arrangedObjects][rowIndex];
     NSString *extension = item ? item[CEFileDropExtensionsKey] : @"";
     
     NSAlert *alert = [[NSAlert alloc] init];
-    [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"Delete the File Drop setting for “%@”?", nil), extension]];
-    [alert setInformativeText:NSLocalizedString(@"Deleted setting cannot be restored.", nil)];
+    [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"Are you sure you want to delete the file drop setting for “%@”?", nil), extension]];
+    [alert setInformativeText:NSLocalizedString(@"Deleted setting can’t be restored.", nil)];
     [alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
     [alert addButtonWithTitle:NSLocalizedString(@"Delete", nil)];
     

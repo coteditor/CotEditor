@@ -41,6 +41,8 @@
     NSTableView *tableView = [notification object];
     NSInteger row = [tableView selectedRow];
     
+    if (row == -1) { return; }
+    
     // the last row is selected
     if ((row + 1) == [tableView numberOfRows]) {
         [tableView scrollRowToVisible:row];

@@ -8,7 +8,7 @@
  
  Created on 2014 by 1024jp
  
- © 2014 CotEditor Project
+ © 2014-2015 CotEditor Project
 */
 
 
@@ -77,6 +77,21 @@ article h2 {
 
 .none {
 	color: hsl(0,0%,50%);
+}
+
+.label {
+	color: hsl(198,40%,45%);
+	border: 1px solid;
+	border-radius: 3px;
+	padding: 0 0.2em;
+}
+p.important {
+	display: inline-block;
+	color: hsl(203,30%,30%);
+	background: hsl(203,50%,98%);
+	border: 1px solid hsl(203,20%,70%);
+	border-radius: 3px;
+	padding: 0.1em 0.5em;
 }
 
 /* highlights */

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6254"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="7706"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
@@ -22,7 +22,7 @@
         <window title="Welcome to CotEditor 2.0" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="QvC-M9-y7g" userLabel="Welcome to CotEditor 2.1">
             <windowStyleMask key="styleMask" closable="YES"/>
             <rect key="contentRect" x="196" y="240" width="460" height="310"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1280" height="777"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
             <view key="contentView" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" id="EiT-Mj-1SZ">
                 <rect key="frame" x="0.0" y="0.0" width="460" height="310"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -102,10 +102,10 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCLAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <button hidden="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="GtV-JW-xjR">
+                    <button hidden="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="GtV-JW-xjR">
                         <rect key="frame" x="365" y="10" width="80" height="28"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="70" id="lhT-LE-JEl"/>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="70" id="lhT-LE-JEl"/>
                         </constraints>
                         <buttonCell key="cell" type="push" title="Next" bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="uPQ-1j-6Gc">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -144,11 +144,11 @@ DQ
             </connections>
             <point key="canvasLocation" x="151" y="221"/>
         </window>
-        <customView id="TDz-KL-JnO" userLabel="Finished View">
+        <customView verticalHuggingPriority="750" id="TDz-KL-JnO" userLabel="Finished View">
             <rect key="frame" x="0.0" y="0.0" width="460" height="240"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="vA6-9n-tty">
+                <textField horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="vA6-9n-tty">
                     <rect key="frame" x="42" y="182" width="209" height="17"/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Reset menu key bindings setting." usesSingleLineMode="YES" id="BA1-Y2-S7m">
                         <font key="font" metaFont="system"/>
@@ -171,7 +171,7 @@ DQ
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Z67-Bl-Qme">
+                <textField horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Z67-Bl-Qme">
                     <rect key="frame" x="42" y="141" width="161" height="17"/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Migrate coloring settings." usesSingleLineMode="YES" id="6hO-yA-SXq">
                         <font key="font" metaFont="system"/>
@@ -201,7 +201,7 @@ DQ
                         </binding>
                     </connections>
                 </textField>
-                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="uTv-Qx-FQU">
+                <textField horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="uTv-Qx-FQU">
                     <rect key="frame" x="42" y="100" width="169" height="17"/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Migrate user syntax styles." usesSingleLineMode="YES" id="D4s-ma-Iiu">
                         <font key="font" metaFont="system"/>
@@ -291,15 +291,15 @@ DQ
                         </binding>
                     </connections>
                 </textField>
-                <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jWg-4Q-d5T">
-                    <rect key="frame" x="18" y="56" width="295" height="14"/>
-                    <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="In some cases, user needs aditonal manual migrations." allowsEditingTextAttributes="YES" usesSingleLineMode="YES" id="X8Q-Ji-HKU">
+                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="jWg-4Q-d5T">
+                    <rect key="frame" x="18" y="56" width="302" height="14"/>
+                    <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="In some cases, user needs additonal manual migrations." allowsEditingTextAttributes="YES" usesSingleLineMode="YES" id="X8Q-Ji-HKU">
                         <font key="font" metaFont="smallSystem"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <button toolTip="See “What's New in CotEditor 2.0” on Help" horizontalHuggingPriority="750" verticalHuggingPriority="750" tag="9" translatesAutoresizingMaskIntoConstraints="NO" id="hGz-yb-qTP">
+                <button toolTip="See “What’s New in CotEditor 2.0” on Help" horizontalHuggingPriority="750" verticalHuggingPriority="750" tag="9" translatesAutoresizingMaskIntoConstraints="NO" id="hGz-yb-qTP">
                     <rect key="frame" x="18" y="13" width="22" height="22"/>
                     <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" controlSize="small" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Xzi-xX-1br">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -307,16 +307,6 @@ DQ
                     </buttonCell>
                     <connections>
                         <action selector="openHelpAnchor:" target="-2" id="AiG-on-ane"/>
-                    </connections>
-                </button>
-                <button toolTip="See “Specification Changes on CotEditor 2.0” on Help" horizontalHuggingPriority="750" verticalHuggingPriority="750" tag="10" translatesAutoresizingMaskIntoConstraints="NO" id="qdh-QQ-qcp">
-                    <rect key="frame" x="314" y="54" width="19" height="19"/>
-                    <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" controlSize="mini" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Z6i-Dy-waO">
-                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="miniSystem"/>
-                    </buttonCell>
-                    <connections>
-                        <action selector="openHelpAnchor:" target="-2" id="Bfi-ok-fKv"/>
                     </connections>
                 </button>
                 <box verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="mNu-OY-rmz">
@@ -333,11 +323,22 @@ DQ
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
+                <button toolTip="See “Specification Changes on CotEditor 2.0” on Help" horizontalHuggingPriority="750" verticalHuggingPriority="750" tag="10" translatesAutoresizingMaskIntoConstraints="NO" id="qdh-QQ-qcp">
+                    <rect key="frame" x="321" y="54" width="19" height="19"/>
+                    <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" controlSize="mini" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Z6i-Dy-waO">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="miniSystem"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="openHelpAnchor:" target="-2" id="Bfi-ok-fKv"/>
+                    </connections>
+                </button>
             </subviews>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="W15-Nc-3r0" secondAttribute="trailing" constant="20" symbolic="YES" id="0TT-dd-twP"/>
                 <constraint firstAttribute="bottom" secondItem="pCc-IH-tYo" secondAttribute="bottom" constant="16" id="38j-G0-JaI"/>
                 <constraint firstItem="vA6-9n-tty" firstAttribute="centerY" secondItem="4x8-xv-gxa" secondAttribute="centerY" id="5gg-cU-adO"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="qdh-QQ-qcp" secondAttribute="trailing" constant="20" symbolic="YES" id="84e-uc-IC0"/>
                 <constraint firstItem="uTv-Qx-FQU" firstAttribute="leading" secondItem="W15-Nc-3r0" secondAttribute="leading" id="8mB-9I-VFP"/>
                 <constraint firstItem="mNu-OY-rmz" firstAttribute="leading" secondItem="TDz-KL-JnO" secondAttribute="leading" constant="20" symbolic="YES" id="8nR-K5-J7x"/>
                 <constraint firstItem="vA6-9n-tty" firstAttribute="leading" secondItem="Bf0-Or-heZ" secondAttribute="leading" id="A5h-gZ-2fh"/>

@@ -46,7 +46,7 @@
     [self setWantsLayer:YES];
     
     // set layer drawing policies
-    [self setLayerContentsRedrawPolicy:NSViewLayerContentsRedrawNever];
+    [self setLayerContentsRedrawPolicy:NSViewLayerContentsRedrawBeforeViewResize];
     [self setLayerContentsPlacement:NSViewLayerContentsPlacementScaleAxesIndependently];
 }
 

@@ -62,7 +62,7 @@ extern NSString *const CEThemeDidUpdateNotification;
 
 @interface CEThemeManager : NSObject
 
-@property (readonly, nonatomic, copy) NSArray *themeNames;
+@property (readonly, nonatomic, copy) NSArray<NSString *> *themeNames;
 
 
 // singleton
@@ -71,13 +71,13 @@ extern NSString *const CEThemeDidUpdateNotification;
 
 // public methods
 /// Theme dict in which objects are property list ready.
-- (NSMutableDictionary *)archivedTheme:(NSString *)themeName isBundled:(BOOL *)isBundled;
+- (NSMutableDictionary<NSString *, NSMutableDictionary<NSString *, id> *> *)archivedTheme:(NSString *)themeName isBundled:(BOOL *)isBundled;
 
 /// Return whether the theme that has the given name is bundled with the app.
 - (BOOL)isBundledTheme:(NSString *)themeName cutomized:(BOOL *)isCustomized;
 
 // manage themes
-- (BOOL)saveTheme:(NSDictionary *)theme name:(NSString *)themeName completionHandler:(void (^)(NSError *error))completionHandler;
+- (BOOL)saveTheme:(NSDictionary<NSString *, NSDictionary<NSString *, id> *> *)theme name:(NSString *)themeName completionHandler:(void (^)(NSError *error))completionHandler;
 - (BOOL)renameTheme:(NSString *)themeName toName:(NSString *)newThemeName error:(NSError **)outError;
 - (BOOL)removeTheme:(NSString *)themeName error:(NSError **)outError;
 - (BOOL)restoreTheme:(NSString *)themeName completionHandler:(void (^)(NSError *error))completionHandler;

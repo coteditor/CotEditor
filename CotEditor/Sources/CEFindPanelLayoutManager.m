@@ -68,7 +68,7 @@
     
     if ([defaults boolForKey:CEDefaultShowInvisiblesKey]) {
         NSTextView *textView = [self firstTextView];
-        NSString *completeStr = [NSString stringWithString:[[self textStorage] string]];
+        NSString *completeString = [NSString stringWithString:[[self textStorage] string]];
         NSUInteger lengthToRedraw = NSMaxRange(glyphsToShow);
         NSSize inset = [textView textContainerInset];
         
@@ -81,11 +81,12 @@
         
         NSFont *font = [[self firstTextView] font];
         font = [font screenFont] ? : font;
-        NSDictionary *attributes = @{NSFontAttributeName: font,
-                                     NSForegroundColorAttributeName: color};
+        NSDictionary<NSString *, id> *attributes = @{NSFontAttributeName: font,
+                                                     NSForegroundColorAttributeName: color};
         NSFont *fullwidthFont = [[NSFont fontWithName:@"HiraKakuProN-W3" size:[font pointSize]] screenFont] ? : font;
-        NSDictionary *fullwidthAttributes = @{NSFontAttributeName: fullwidthFont,
-                                              NSForegroundColorAttributeName: color};
+        NSDictionary<NSString *, id> *fullwidthAttributes = @{NSFontAttributeName: fullwidthFont,
+                                                              NSForegroundColorAttributeName: color};
+        NSFont *replaceFont;
         
         BOOL showsSpace = [defaults boolForKey:CEDefaultShowInvisibleSpaceKey];
         BOOL showsTab = [defaults boolForKey:CEDefaultShowInvisibleTabKey];
@@ -115,46 +116,63 @@
         
         for (NSUInteger glyphIndex = glyphsToShow.location; glyphIndex < lengthToRedraw; glyphIndex++) {
             NSUInteger charIndex = [self characterIndexForGlyphAtIndex:glyphIndex];
-            unichar character = [completeStr characterAtIndex:charIndex];
+            unichar character = [completeString characterAtIndex:charIndex];
             
-            if (showsSpace && ((character == ' ') || (character == 0x00A0))) {
-                NSPoint pointToDraw = [self pointToDrawGlyphAtIndex:glyphIndex adjust:inset];
-                [space drawAtPoint:pointToDraw];
-                
-            } else if (showsTab && (character == '\t')) {
-                NSPoint pointToDraw = [self pointToDrawGlyphAtIndex:glyphIndex adjust:inset];
-                [tab drawAtPoint:pointToDraw];
-                
-            } else if (showsNewLine && (character == '\n')) {
-                NSPoint pointToDraw = [self pointToDrawGlyphAtIndex:glyphIndex adjust:inset];
-                [newLine drawAtPoint:pointToDraw];
-                
-            } else if (showsFullwidthSpace && (character == 0x3000)) { // fullwidth-space (JP)
-                NSPoint pointToDraw = [self pointToDrawGlyphAtIndex:glyphIndex adjust:inset];
-                [fullwidthSpace drawAtPoint:pointToDraw];
-                
-            } else if (showsVerticalTab && (character == '\v')) {
-                NSPoint pointToDraw = [self pointToDrawGlyphAtIndex:glyphIndex adjust:inset];
-                [verticalTab drawAtPoint:pointToDraw];
-                
-            } else if (showsOtherInvisibles && ([self glyphAtIndex:glyphIndex] == NSControlGlyph)) {
-                NSFont *replaceFont = [NSFont fontWithName:@"Lucida Grande" size:[font pointSize]];
-                NSGlyph replaceGlyph = [replaceFont glyphWithName:@"replacement"];
-                NSUInteger charLength = CFStringIsSurrogateHighCharacter(character) ? 2 : 1;
-                NSRange charRange = NSMakeRange(charIndex, charLength);
-                NSString *baseStr = [completeStr substringWithRange:charRange];
-                NSGlyphInfo *glyphInfo = [NSGlyphInfo glyphInfoWithGlyph:replaceGlyph forFont:replaceFont baseString:baseStr];
-                
-                if (glyphInfo) {
-                    NSDictionary *replaceAttrs = @{NSGlyphInfoAttributeName: glyphInfo,
-                                                   NSFontAttributeName: replaceFont,
-                                                   NSForegroundColorAttributeName: color};
-                    NSDictionary *attrs = [[self textStorage] attributesAtIndex:charIndex effectiveRange:NULL];
-                    if (attrs[NSGlyphInfoAttributeName] == nil) {
-                        [[self textStorage] addAttributes:replaceAttrs range:charRange];
+            NSAttributedString *glyphString = nil;
+            switch (character) {
+                case ' ':
+                case 0x00A0:
+                    if (!showsSpace) { continue; }
+                    glyphString = space;
+                    break;
+                    
+                case '\t':
+                    if (!showsTab) { continue; }
+                    glyphString = tab;
+                    break;
+                    
+                case '\n':
+                    if (!showsNewLine) { continue; }
+                    glyphString = newLine;
+                    break;
+                    
+                case 0x3000:  // fullwidth-space (JP)
+                    if (!showsFullwidthSpace) { continue; }
+                    glyphString = fullwidthSpace;
+                    break;
+                    
+                case '\v':
+                    if (!showsVerticalTab) { continue; }
+                    glyphString = verticalTab;
+                    break;
+                    
+                default:
+                    if (showsOtherInvisibles && ([self glyphAtIndex:glyphIndex isValidIndex:NULL] == NSControlGlyph)) {
+                        NSGlyphInfo *currentGlyphInfo = [[self textStorage] attribute:NSGlyphInfoAttributeName atIndex:charIndex effectiveRange:NULL];
+                        
+                        if (currentGlyphInfo) { continue; }
+                        
+                        replaceFont = replaceFont ?: [NSFont fontWithName:@"Lucida Grande" size:[font pointSize]];
+                        
+                        NSRange charRange = [self characterRangeForGlyphRange:NSMakeRange(glyphIndex, 1) actualGlyphRange:NULL];
+                        NSString *baseString = [completeString substringWithRange:charRange];
+                        NSGlyphInfo *glyphInfo = [NSGlyphInfo glyphInfoWithGlyphName:@"replacement" forFont:replaceFont baseString:baseString];
+                        
+                        if (glyphInfo) {
+                            // !!!: The following line can cause crash by binary document.
+                            //      It's actually dangerous and to be detoured to modify textStorage while drawing.
+                            //      (2015-09 by 1024jp)
+                            [[self textStorage] addAttributes:@{NSGlyphInfoAttributeName: glyphInfo,
+                                                                NSFontAttributeName: replaceFont,
+                                                                NSForegroundColorAttributeName: color}
+                                                        range:charRange];
+                        }
                     }
-                }
+                    continue;
             }
+            
+            NSPoint pointToDraw = [self pointToDrawGlyphAtIndex:glyphIndex adjust:inset];
+            [glyphString drawAtPoint:pointToDraw];
         }
     }
     

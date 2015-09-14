@@ -1,15 +1,15 @@
-(*
+/*
  
- openDictionary.applescript
+ NSString+Normalization.h
  
  CotEditor
  http://coteditor.com
  
- Created by 1024jp on 2014-12-02.
+ Created by 1024jp on 2015-08-25.
  
  ------------------------------------------------------------------------------
  
- © 2014 1024jp
+ © 2015 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -23,11 +23,13 @@
  See the License for the specific language governing permissions and
  limitations under the License.
  
- *)
- 
- set theApp to frontmost application
- 
- tell application id "com.apple.ScriptEditor2"
-     activate
-     open (path to theApp)
- end tell
+ */
+
+@import Foundation;
+
+
+@interface NSString (Normalization)
+
+/// return normalized string using NFKC_Casefold
+- (nonnull NSString *)precomposedStringWithCompatibilityMappingWithCasefold;
+@end

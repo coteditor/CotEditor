@@ -75,9 +75,9 @@ def run_osascript(script):
         result (str): Return value of the script.
     """
     p = Popen(['osascript', '-'], stdin=PIPE, stdout=PIPE)
-    stdout, stderr = p.communicate(script)
+    stdout, _ = p.communicate(script.encode())
 
-    return stdout.rstrip('\n')
+    return stdout.decode().rstrip('\n')
 
 
 class ScriptableApplication(object):

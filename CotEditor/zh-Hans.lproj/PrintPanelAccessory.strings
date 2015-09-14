@@ -27,28 +27,28 @@
  */
 
 /* Class = "NSTextFieldCell"; title = "Color:"; ObjectID = "eXI-55-yQO"; */
-"eXI-55-yQO.title" = "颜色:";
+"eXI-55-yQO.title" = "颜色：";
 /* Class = "NSMenuItem"; title = "Black and White"; ObjectID = "590"; */
 "590.title" = "黑白";
-/* Class = "NSMenuItem"; title = "Same as document's setting"; ObjectID = "589"; */
+/* Class = "NSMenuItem"; title = "Same as Document’s Setting"; ObjectID = "589"; */
 "589.title" = "与文档设置一致";
 
 /* Class = "NSTextFieldCell"; title = "Line Numbers:"; ObjectID = "716"; */
-"716.title" = "行号:";
-/* Class = "NSMenuItem"; title = "Don't Print"; ObjectID = "420"; */
+"716.title" = "行号：";
+/* Class = "NSMenuItem"; title = "Don’t Print"; ObjectID = "420"; */
 "420.title" = "不打印";
-/* Class = "NSMenuItem"; title = "Same as document's setting"; ObjectID = "419"; */
+/* Class = "NSMenuItem"; title = "Same as Document’s Setting"; ObjectID = "419"; */
 "419.title" = "与文档设置一致";
 /* Class = "NSMenuItem"; title = "Print"; ObjectID = "418"; */
 "418.title" = "打印";
 
 /* Class = "NSTextFieldCell"; title = "Invisibles:"; ObjectID = "718"; */
-"718.title" = "不可见字符:";
-/* Class = "NSMenuItem"; title = "Same as document's setting"; ObjectID = "427"; */
+"718.title" = "不可见字符：";
+/* Class = "NSMenuItem"; title = "Same as Document’s Setting"; ObjectID = "427"; */
 "427.title" = "与文档设置一致";
-/* Class = "NSMenuItem"; title = "Don't Print"; ObjectID = "428"; */
+/* Class = "NSMenuItem"; title = "Don’t Print"; ObjectID = "428"; */
 "428.title" = "不打印";
-/* Class = "NSMenuItem"; title = "Print all"; ObjectID = "426"; */
+/* Class = "NSMenuItem"; title = "Print All"; ObjectID = "426"; */
 "426.title" = "全部打印";
 
 
@@ -56,8 +56,8 @@
 /* Class = "NSButtonCell"; title = "Print header"; ObjectID = "708"; */
 "708.title" = "打印页眉";
 
-/* Class = "NSTextFieldCell"; title = "Primary:"; ObjectID = "256"; */
-"706.title" = "主:";
+/* Class = "NSTextFieldCell"; title = "Primary:"; ObjectID = "706"; */
+"706.title" = "主：";
 
 /* Class = "NSMenuItem"; title = "None"; ObjectID = "393"; */
 "393.title" = "无";
@@ -79,8 +79,8 @@
 
 
 
-/* Class = "NSTextFieldCell"; title = "Secodnary:"; ObjectID = "257"; */
-"712.title" = "次:";
+/* Class = "NSTextFieldCell"; title = "Secondary:"; ObjectID = "707"; */
+"707.title" = "次：";
 
 /* Class = "NSMenuItem"; title = "None"; ObjectID = "395"; */
 "395.title" = "无";
@@ -105,8 +105,8 @@
 /* Class = "NSButtonCell"; title = "Print footer"; ObjectID = "713"; */
 "713.title" = "打印页脚";
 
-/* Class = "NSTextFieldCell"; title = "Primary:"; ObjectID = "295"; */
-"711.title" = "主:";
+/* Class = "NSTextFieldCell"; title = "Primary:"; ObjectID = "711"; */
+"711.title" = "主：";
 
 /* Class = "NSMenuItem"; title = "None"; ObjectID = "397"; */
 "397.title" = "无";
@@ -127,8 +127,8 @@
 "njJ-Ab-dUQ.ibShadowedToolTips[2]" = "右对齐";  /* Align Right */
 
 
-/* Class = "NSTextFieldCell"; title = "Secodnary:"; ObjectID = "296"; */
-"707.title" = "次:";
+/* Class = "NSTextFieldCell"; title = "Secondary:"; ObjectID = "712"; */
+"712.title" = "次：";
 
 /* Class = "NSMenuItem"; title = "None"; ObjectID = "399"; */
 "399.title" = "无";

@@ -33,6 +33,7 @@
             <enumerator name="NFD" code="cNfd"/>
             <enumerator name="NFKC" code="cNkc"/>
             <enumerator name="NFKD" code="cNkd"/>
+            <enumerator name="NFKC Casefold" code="cNcf"/>
         </enumeration>
         
         <enumeration name="character width type" code="rWct">
@@ -53,7 +54,7 @@
             <cocoa class="CEDocument"/>
             <access-group identifier="com.coteditor.CotEditor.edit" access="rw"/>
             <contents name="text" code="ctxt" type="attribute run" access="rw" description="The whole text of the document.">
-                <cocoa key="textStorage"/>
+                <cocoa key="scriptTextStorage"/>
             </contents>
             <property name="coloring style" code="cclr" type="text" access="rw" description="The current syntax style name.">
                 <cocoa key="coloringStyle"/>

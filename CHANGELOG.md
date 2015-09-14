@@ -2,6 +2,60 @@
 Change Log
 ==========================
 
+develop
+--------------------------
+
+### New Features
+
+- Hanging indentation that enables inserting extra indent to wrapped lines.
+    - You can change the behavior in Preferences > Edit.
+- Add new normalization form “NFKC Casefold” to the Unicode normalization action in Utility menu (Thanks to doraTeX!)
+    - It is also added to the AppleScript terms.
+- Add German localization.
+
+
+### Additions/Changes
+
+- Change the location where `cot` command-line tool is bundled from `CotEditor.app/Contents/MacOS/` to `CotEditor.app/Contents/SharedSupport/bin/`, due to Sandbox requirement.
+    - Users who have already installed `cot` command need re-install it manually.
+      You can re-install it running the command below on Terminal:
+
+          unlink /usr/local/bin/cot; ln -s /usr/local/bin/cot /Applications/CotEditor.app/Contents/SharedSupport/bin/cot
+
+      You may need to modify paths in this command depending on where you've installed CotEditor/cot.
+- Improve Color Code Editor:
+    - Add stylesheet keyword to color code type.
+    - Add stylesheet keyword color list to editor panel. 
+    - Make editor panel resizable.
+- Now syntax style is automatically set to “XML” on file opening if no appropriate style can be found but the file content starts with a XML declaration.
+- Update word completion list setting in Edit pane in Preferences (The previous setting has been reset).
+- Support “swipe to delete” for some tables in Preferences on El Capitan.
+- Improve contexutal menu for theme list on preferences.
+- Adjust highlight color for find panel.
+- Tweak some message terms.
+- Update documents.
+- Update build environment to OS X El Capitan +  Xcode 7 (SDK 10.11).
+- [non-AppStore ver.] Update Sparkle framework to version 1.11.0.
+- [beta][non-AppStore ver.] Change to not check pre-release versions on default.
+    - New pre-releases are always subject of the update check no matter the user setting if the current running CotEditor is a pre-release version.
+
+
+### Fixes
+
+- Fix an issue where the command-line tool could rarely not be installed from Integration pane.
+- Fix an issue where application could crash after when closing multiple split views.
+- Fix an issue where application crashed by clicking header of empty table in syntax editor sheet.
+- Fix an issue where warning on Integration pane didn't disappear even after the problem resolved.
+- Fix an issue where unwanted invisible character mark were drawn when tab drawing is turned off and other invisibles drawing is truned on. 
+- Add some missing localized strings in Japanese.
+- [El Capitan] Fix an issue where color code view did not display on El Capitan.
+- [beta] Fix an issue where the strings that were inserted via script or tools could be styled wrong.
+- [beta] Fix an issue where no preferred extension was appended on the document save panel.
+- [beta] Fix an issue where the bug report template was not syntax highlighted.
+- [beta] Fix some trivial drawing issues on El Capitan.
+
+
+
 2.2.0-beta
 --------------------------
 
@@ -56,7 +110,7 @@ Change Log
 - Fix an issue where the full path display in the document inspector did not update after the document file moved.
 - Fix an issue where the find panel could not find matched strings when the find string includes CR or CR/LF line endings.
 - Fix an issue where line numbers were not drawn completely on OS X 10.8 when scroll bars are set as always shown.
-- Fix an issue where some legatured characters were drawn at a wrong position when the line height for composite font is fixed. 
+- Fix an issue where some ligatured characters were drawn at a wrong position when the line height for composite font is fixed. 
 - Improve general stability.
 
 
@@ -93,7 +147,7 @@ Change Log
 - Support Automatic Termination (Now, CotEditor can be terminated automatically if it has no window).
 - Display invisible vertical tab (`U+000B`) with `␋` symbol if “Show other invisible characters” turns on.
 - Add fancy animations to encoding list edit sheet in preferences.
-- Add suppression button to the IANA charset name conflict alret.
+- Add suppression button to the IANA charset name conflict alert.
 - Improve word completion with words that exist in the document.
 - Modify layout of “General” pane in Preferences.
 - Add tooltip hint to controls in the find panel.
@@ -159,7 +213,7 @@ Change Log
 
 ### Fixes
 
-- Fix an issue where octal file permisson in the document inspector was wrong.
+- Fix an issue where octal file permission in the document inspector was wrong.
 - Fix an issue where application could hang up on text editing.
 - Improve general stability.
 
@@ -193,7 +247,7 @@ a
 
 ### New Features
 
-- Now your documents are automatically backuped while editing and will be resumed at the next session, even after force quitting.
+- Now your documents are automatically backed-up while editing and will be resumed at the next session, even after force quitting.
     - This feature doesn't modify your actual files. You still need to perform “Save” manually to apply changes to your files.
 
 
@@ -338,7 +392,7 @@ a
 - Update “JSON” syntax style:
     - Improve highlighting performance.
 - Improve find panel behavior with Spaces.
-- Disable rech text in find panel.
+- Disable rich text in find panel.
 
 
 ### Fixes

@@ -144,13 +144,13 @@
 {
     NSUInteger index = [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultPrintColorIndexKey];
     NSString *themeName = [[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultPrintThemeKey];
-    NSArray *themeNames = [[CEThemeManager sharedManager] themeNames];
+    NSArray<NSString *> *themeNames = [[CEThemeManager sharedManager] themeNames];
     
     [[self colorPopupButton] removeAllItems];
     
     // setup popup menu
     [[self colorPopupButton] addItemWithTitle:NSLocalizedString(@"Black and White", nil)];
-    [[self colorPopupButton] addItemWithTitle:NSLocalizedString(@"Same as Document's Setting", nil)];
+    [[self colorPopupButton] addItemWithTitle:NSLocalizedString(@"Same as Document’s Setting", nil)];
     [[[self colorPopupButton] menu] addItem:[NSMenuItem separatorItem]];
     [[self colorPopupButton] addItemWithTitle:NSLocalizedString(@"Theme", nil)];
     [[[self colorPopupButton] lastItem] setAction:nil];

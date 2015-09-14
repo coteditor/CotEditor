@@ -107,7 +107,7 @@
 "Oqm-Wt-G7B.title" = "折り返す";
 /* Class = "NSMenuItem"; title = "Select Next Match after Replace"; ObjectID = "RfX-XI-iRH"; */
 "RfX-XI-iRH.title" = "置換後に次のマッチを選択";
-/* Class = "NSMenuItem"; title = "Auto-Close Progress Sheet"; ObjectID = "ONX-V4-H0w"; */
+/* Class = "NSMenuItem"; title = "Auto-Close Progress Dialog"; ObjectID = "ONX-V4-H0w"; */
 "ONX-V4-H0w.title" = "完了後自動的に進捗表示を閉じる";
 
 /* Class = "NSMenuItem"; title = "Textual Search Options"; ObjectID = "hX3-jg-Uqc"; */
@@ -155,7 +155,7 @@
 "Sdf-5P-GP1.title" = "“単一行”を無効にする";
 /* Class = "NSMenuItem"; title = "Capture Group"; ObjectID = "LiY-vD-U6B"; */
 "LiY-vD-U6B.title" = "つねに無名グループを捕獲";
-/* Class = "NSMenuItem"; title = "Don't Capture Group"; ObjectID = "fQl-sZ-bjK"; */
+/* Class = "NSMenuItem"; title = "Don’t Capture Group"; ObjectID = "fQl-sZ-bjK"; */
 "fQl-sZ-bjK.title" = "無名グループを捕獲しない";
 /* Class = "NSMenuItem"; title = "Not Begin of Line"; ObjectID = "AFF-AC-IR9"; */
 "AFF-AC-IR9.title" = "先頭を行頭とみなさない";

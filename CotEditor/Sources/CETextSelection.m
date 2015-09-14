@@ -126,13 +126,6 @@
     NSString *string = [[[self document] editor] substringWithSelectionForSave];
     NSTextStorage *storage = [[NSTextStorage alloc] initWithString:string];
 
-    [storage setDelegate:self];
-    
-    // disconnect the delegate after 0.5 sec. (otherwise app may crash)
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [storage setDelegate:nil];
-    });
-
     return storage;
 }
 
@@ -158,7 +151,7 @@
 
 // ------------------------------------------------------
 /// return character range (location and length) of the selection (list type)
-- (NSArray *)range
+- (NSArray<NSNumber *> *)range
 // ------------------------------------------------------
 {
     NSRange range = [[[self document] editor] selectedRange];
@@ -170,7 +163,7 @@
 
 // ------------------------------------------------------
 /// set character range (location and length) of the selection
-- (void)setRange:(NSArray *)rangeArray
+- (void)setRange:(NSArray<NSNumber *> *)rangeArray
 // ------------------------------------------------------
 {
     if ([rangeArray count] != 2) { return; }
@@ -183,7 +176,7 @@
 
 // ------------------------------------------------------
 /// return line range (location and length) of the selection (list type)
-- (NSArray *)lineRange
+- (NSArray<NSNumber *> *)lineRange
 // ------------------------------------------------------
 {
     NSRange selectedRange = [[[self document] editor] selectedRange];
@@ -209,7 +202,7 @@
 
 // ------------------------------------------------------
 /// set line range (location and length) of the selection
-- (void)setLineRange:(NSArray *)rangeArray
+- (void)setLineRange:(NSArray<NSNumber *> *)rangeArray
 // ------------------------------------------------------
 {
     NSInteger location;
@@ -273,7 +266,7 @@
 - (void)handleChangeCaseScriptCommand:(NSScriptCommand *)command
 // ------------------------------------------------------
 {
-    NSDictionary *arguments = [command evaluatedArguments];
+    NSDictionary<NSString *, id> *arguments = [command evaluatedArguments];
     CECaseType caseType = [arguments[@"caseType"] unsignedIntegerValue];
     NSTextView *textView = [[[self document] editor] focusedTextView];
 
@@ -296,7 +289,7 @@
 - (void)handleChangeWidthRomanScriptCommand:(NSScriptCommand *)command
 // ------------------------------------------------------
 {
-    NSDictionary *arguments = [command evaluatedArguments];
+    NSDictionary<NSString *, id> *arguments = [command evaluatedArguments];
     CEWidthType widthType = [arguments[@"widthType"] unsignedIntegerValue];
     CETextView *textView = [[[self document] editor] focusedTextView];
 
@@ -316,7 +309,7 @@
 - (void)handleChangeKanaScriptCommand:(NSScriptCommand *)command
 // ------------------------------------------------------
 {
-    NSDictionary *arguments = [command evaluatedArguments];
+    NSDictionary<NSString *, id> *arguments = [command evaluatedArguments];
     CEChangeKanaType changeKanaType = [arguments[@"kanaType"] unsignedIntegerValue];
     CETextView *textView = [[[self document] editor] focusedTextView];
     
@@ -336,7 +329,7 @@
 - (void)handleNormalizeUnicodeScriptCommand:(NSScriptCommand *)command
 // ------------------------------------------------------
 {
-    NSDictionary *arguments = [command evaluatedArguments];
+    NSDictionary<NSString *, id> *arguments = [command evaluatedArguments];
     CEUNFType UNFType = [arguments[@"unfType"] unsignedIntegerValue];
     CETextView *textView = [[[self document] editor] focusedTextView];
     
@@ -352,6 +345,9 @@
             break;
         case CENFKD:
             [textView normalizeUnicodeWithNFKD:command];
+            break;
+        case CENFKCCF:
+            [textView normalizeUnicodeWithNFKCCF:command];
             break;
     }
 }

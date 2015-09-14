@@ -33,10 +33,10 @@
 
 // readonly
 @property (readonly, nonatomic, nonnull, copy) NSString *styleName;
-@property (readonly, nonatomic, nullable, copy) NSArray *completionWords;  // 入力補完文字列配列
+@property (readonly, nonatomic, nullable, copy) NSArray<NSString *> *completionWords;  // 入力補完文字列配列
 @property (readonly, nonatomic, nullable, copy) NSCharacterSet *firstCompletionCharacterSet;  // 入力補完の最初の1文字のセット
 @property (readonly, nonatomic, nullable, copy) NSString *inlineCommentDelimiter;
-@property (readonly, nonatomic, nullable, copy) NSDictionary *blockCommentDelimiters;
+@property (readonly, nonatomic, nullable, copy) NSDictionary<NSString *, NSString *> *blockCommentDelimiters;
 @property (readonly, nonatomic, getter=isNone) BOOL none;
 
 
@@ -49,7 +49,7 @@
 
 @interface CESyntaxParser (Outline)
 
-- (nonnull NSArray *)outlineItemsWithWholeString:(nullable NSString *)wholeString;
+- (nonnull NSArray<NSDictionary<NSString *, id> *> *)outlineItemsWithWholeString:(nullable NSString *)wholeString;
 
 @end
 

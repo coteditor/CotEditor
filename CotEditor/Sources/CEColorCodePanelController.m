@@ -33,6 +33,7 @@
 
 @interface CEColorCodePanelController ()
 
+@property (nonatomic, nonnull) NSColorList *stylesheetColorList;
 @property (nonatomic, nullable) IBOutlet NSView *accessoryView;
 @property (nonatomic, nullable) NSColor *color;
 @property (nonatomic, nullable) NSString *colorCode;
@@ -75,6 +76,15 @@
     self = [super init];
     if (self) {
         [[NSBundle mainBundle] loadNibNamed:@"ColorCodePanelAccessory" owner:self topLevelObjects:nil];
+        
+        // setup stylesheet color list
+        NSDictionary<NSString *, NSColor *> *keywordColors = [NSColor stylesheetKeywordColors];
+        NSColorList *colorList = [[NSColorList alloc] initWithName:NSLocalizedString(@"Stylesheet Keywords", nil)];
+        for (NSString *keyword in keywordColors) {
+            NSColor *color = keywordColors[keyword];
+            [colorList setColor:color forKey:keyword];
+        }
+        _stylesheetColorList = colorList;
     }
     return self;
 }
@@ -121,6 +131,7 @@
     NSColorPanel *colorPanel = (NSColorPanel *)[self window];
     [[self window] setDelegate:nil];
     [colorPanel setAccessoryView:nil];
+    [colorPanel detachColorList:[self stylesheetColorList]];
     [colorPanel setShowsAlpha:NO];
 }
 
@@ -137,12 +148,19 @@
     NSColorPanel *colorPanel = [NSColorPanel sharedColorPanel];
     [colorPanel setAccessoryView:[self accessoryView]];
     [colorPanel setShowsAlpha:YES];
-    [colorPanel setStyleMask:[colorPanel styleMask] & ~NSResizableWindowMask];
     [colorPanel setRestorable:NO];
     
     [colorPanel setDelegate:self];
     [colorPanel setAction:@selector(selectColor:)];
     [colorPanel setTarget:self];
+    
+    // make positoin of accessory view center
+    [[[colorPanel accessoryView] superview] addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|[accessory]|"
+                                                                                                   options:0
+                                                                                                   metrics:@{}
+                                                                                                     views:@{@"accessory": [colorPanel accessoryView]}]];
+    
+    [colorPanel attachColorList:[self stylesheetColorList]];
     
     [self setWindow:colorPanel];
     [self setColor:[colorPanel color]];
@@ -157,10 +175,12 @@
 - (IBAction)insertCodeToDocument:(nullable id)sender
 // ------------------------------------------------------
 {
+    if (![self colorCode]) { return; }
+    
     NSTextView *textView = [[[self documentWindowController] editor] focusedTextView];
     
     if ([textView shouldChangeTextInRange:[textView selectedRange] replacementString:[self colorCode]]) {
-        [[textView textStorage] replaceCharactersInRange:[textView selectedRange] withString:[self colorCode]];
+        [textView replaceCharactersInRange:[textView selectedRange] withString:[self colorCode]];
         [[textView undoManager] setActionName:NSLocalizedString(@"Insert Color Code", nil)];
         [textView didChangeText];
         [textView scrollRangeToVisible:[textView selectedRange]];
@@ -193,7 +213,11 @@
 // ------------------------------------------------------
 {
     WFColorCodeType codeType = [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultColorCodeTypeKey];
-    NSString *code = [[[self color] colorUsingColorSpaceName:NSCalibratedRGBColorSpace] colorCodeWithType:codeType];
+    NSColor *color = [self color];
+    if (![@[NSCalibratedRGBColorSpace, NSDeviceRGBColorSpace] containsObject:[color colorSpaceName]]) {
+        color = [color colorUsingColorSpaceName:NSCalibratedRGBColorSpace];
+    }
+    NSString *code = [color colorCodeWithType:codeType];
     
     // keep lettercase if current Hex code is uppercase
     if ((codeType == WFColorCodeHex || codeType == WFColorCodeShortHex) &&

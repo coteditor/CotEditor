@@ -27,11 +27,8 @@
  */
 
 @import Cocoa;
-#import "CELayoutManager.h"
+
 
 @interface CEATSTypesetter : NSATSTypesetter
-
-// singleton
-+ (nonnull instancetype)sharedSystemTypesetter;
 
 @end

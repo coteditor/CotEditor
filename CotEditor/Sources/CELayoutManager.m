@@ -47,6 +47,8 @@
 @property (nonatomic) unichar newLineChar;
 @property (nonatomic) unichar fullwidthSpaceChar;
 
+@property (nonatomic) CGFloat spaceWidth;
+
 // readonly properties
 @property (readwrite, nonatomic) CGFloat defaultLineHeightForTextFont;
 
@@ -98,7 +100,7 @@ static BOOL usesTextFontForInvisibles;
         
         [self setUsesScreenFonts:YES];
         [self setShowsControlCharacters:_showsOtherInvisibles];
-        [self setTypesetter:[CEATSTypesetter sharedSystemTypesetter]];
+        [self setTypesetter:[[CEATSTypesetter alloc] init]];
     }
     return self;
 }
@@ -106,8 +108,7 @@ static BOOL usesTextFontForInvisibles;
 
 // ------------------------------------------------------
 /// 行描画矩形をセット
-- (void)setLineFragmentRect:(NSRect)fragmentRect 
-        forGlyphRange:(NSRange)glyphRange usedRect:(NSRect)usedRect
+- (void)setLineFragmentRect:(NSRect)fragmentRect forGlyphRange:(NSRange)glyphRange usedRect:(NSRect)usedRect
 // ------------------------------------------------------
 {
     if (![self isPrinting] && [self fixesLineHeight]) {
@@ -125,8 +126,7 @@ static BOOL usesTextFontForInvisibles;
 
 // ------------------------------------------------------
 /// 最終行描画矩形をセット
-- (void)setExtraLineFragmentRect:(NSRect)aRect
-        usedRect:(NSRect)usedRect textContainer:(nonnull NSTextContainer *)aTextContainer
+- (void)setExtraLineFragmentRect:(NSRect)aRect usedRect:(NSRect)usedRect textContainer:(nonnull NSTextContainer *)aTextContainer
 // ------------------------------------------------------
 {
     // 複合フォントで行の高さがばらつくのを防止するために一般の行の高さを変更しているので、それにあわせる
@@ -152,13 +152,11 @@ static BOOL usesTextFontForInvisibles;
         NSUInteger lengthToRedraw = NSMaxRange(glyphsToShow);
         
         // フォントサイズは随時変更されるため、表示時に取得する
-        CGFloat fontSize = [[self textFont] pointSize];
         CTFontRef font = (__bridge CTFontRef)[self textFont];
         NSColor *color = [[(NSTextView<CETextViewProtocol> *)[self firstTextView] theme] invisiblesColor];
         
         // for other invisibles
-        NSFont *replaceFont;
-        NSGlyph replaceGlyph;
+        NSFont *replaceFont;  // delay creating font till it's really needed
         
         // set graphics context
         CGContextRef context = (CGContextRef)[[NSGraphicsContext currentContext] graphicsPort];
@@ -191,52 +189,64 @@ static BOOL usesTextFontForInvisibles;
         for (NSUInteger glyphIndex = glyphsToShow.location; glyphIndex < lengthToRedraw; glyphIndex++) {
             NSUInteger charIndex = [self characterIndexForGlyphAtIndex:glyphIndex];
             unichar character = [completeString characterAtIndex:charIndex];
-
-            if (showsSpace && ((character == ' ') || (character == 0x00A0))) {
-                NSPoint point = [self pointToDrawGlyphAtIndex:glyphIndex];
-                CGAffineTransform translate = CGAffineTransformMakeTranslation(point.x, point.y);
-                CGPathAddPath(paths, &translate, spaceGlyphPath);
-
-            } else if (showsTab && (character == '\t')) {
-                NSPoint point = [self pointToDrawGlyphAtIndex:glyphIndex];
-                CGAffineTransform translate = CGAffineTransformMakeTranslation(point.x, point.y);
-                CGPathAddPath(paths, &translate, tabGlyphPath);
-                
-            } else if (showsNewLine && (character == '\n')) {
-                NSPoint point = [self pointToDrawGlyphAtIndex:glyphIndex];
-                CGAffineTransform translate = CGAffineTransformMakeTranslation(point.x, point.y);
-                CGPathAddPath(paths, &translate, newLineGlyphPath);
-
-            } else if (showsFullwidthSpace && (character == 0x3000)) {  // fullwidth-space (JP)
-                NSPoint point = [self pointToDrawGlyphAtIndex:glyphIndex];
-                CGAffineTransform translate = CGAffineTransformMakeTranslation(point.x, point.y);
-                CGPathAddPath(paths, &translate, fullWidthSpaceGlyphPath);
-                
-            } else if (showsVerticalTab && (character == '\v')) {
-                NSPoint point = [self pointToDrawGlyphAtIndex:glyphIndex];
-                CGAffineTransform translate = CGAffineTransformMakeTranslation(point.x, point.y);
-                CGPathAddPath(paths, &translate, verticalTabGlyphPath);
-
-            } else if (showsOtherInvisibles && ([self glyphAtIndex:glyphIndex isValidIndex:NULL] == NSControlGlyph)) {
-                if (!replaceFont) {  // delay creating font/glyph till they are really needed
-                    replaceFont = [NSFont fontWithName:@"Lucida Grande" size:fontSize];
-                    replaceGlyph = [replaceFont glyphWithName:@"replacement"];
-                }
-                
-                NSRange charRange = [self characterRangeForGlyphRange:NSMakeRange(glyphIndex, 1) actualGlyphRange:NULL];
-                NSString *baseString = [completeString substringWithRange:charRange];
-                NSGlyphInfo *glyphInfo = [NSGlyphInfo glyphInfoWithGlyph:replaceGlyph forFont:replaceFont baseString:baseString];
-                
-                if (glyphInfo) {
-                    NSDictionary *replaceAttrs = @{NSGlyphInfoAttributeName: glyphInfo,
-                                                   NSFontAttributeName: replaceFont,
-                                                   NSForegroundColorAttributeName: color};
-                    NSDictionary *attrs = [[self textStorage] attributesAtIndex:charIndex effectiveRange:NULL];
-                    if (attrs[NSGlyphInfoAttributeName] == nil) {
-                        [[self textStorage] addAttributes:replaceAttrs range:charRange];
+            
+            CGPathRef glyphPath;
+            switch (character) {
+                case ' ':
+                case 0x00A0:
+                    if (!showsSpace) { continue; }
+                    glyphPath = spaceGlyphPath;
+                    break;
+                    
+                case '\t':
+                    if (!showsTab) { continue; }
+                    glyphPath = tabGlyphPath;
+                    break;
+                    
+                case '\n':
+                    if (!showsNewLine) { continue; }
+                    glyphPath = newLineGlyphPath;
+                    break;
+                    
+                case 0x3000:  // fullwidth-space (JP)
+                    if (!showsFullwidthSpace) { continue; }
+                    glyphPath = fullWidthSpaceGlyphPath;
+                    break;
+                    
+                case '\v':
+                    if (!showsVerticalTab) { continue; }
+                    glyphPath = verticalTabGlyphPath;
+                    break;
+                    
+                default:
+                    if (showsOtherInvisibles && ([self glyphAtIndex:glyphIndex isValidIndex:NULL] == NSControlGlyph)) {
+                        NSGlyphInfo *currentGlyphInfo = [[self textStorage] attribute:NSGlyphInfoAttributeName atIndex:charIndex effectiveRange:NULL];
+                        
+                        if (currentGlyphInfo) { continue; }
+                        
+                        replaceFont = replaceFont ?: [NSFont fontWithName:@"Lucida Grande" size:[[self textFont] pointSize]];
+                        
+                        NSRange charRange = [self characterRangeForGlyphRange:NSMakeRange(glyphIndex, 1) actualGlyphRange:NULL];
+                        NSString *baseString = [completeString substringWithRange:charRange];
+                        NSGlyphInfo *glyphInfo = [NSGlyphInfo glyphInfoWithGlyphName:@"replacement" forFont:replaceFont baseString:baseString];
+                        
+                        if (glyphInfo) {
+                            // !!!: The following line can cause crash by binary document.
+                            //      It's actually dangerous and to be detoured to modify textStorage while drawing.
+                            //      (2015-09 by 1024jp)
+                            [[self textStorage] addAttributes:@{NSGlyphInfoAttributeName: glyphInfo,
+                                                                NSFontAttributeName: replaceFont,
+                                                                NSForegroundColorAttributeName: color}
+                                                        range:charRange];
+                        }
                     }
-                }
+                    continue;
             }
+            
+            // add invisible char path
+            NSPoint point = [self pointToDrawGlyphAtIndex:glyphIndex];
+            CGAffineTransform translate = CGAffineTransformMakeTranslation(point.x, point.y);
+            CGPathAddPath(paths, &translate, glyphPath);
         }
         
         // draw invisible glyphs (excl. other invisibles)
@@ -253,6 +263,26 @@ static BOOL usesTextFontForInvisibles;
     }
     
     [super drawGlyphsForGlyphRange:glyphsToShow atPoint:origin];
+}
+
+
+// ------------------------------------------------------
+/// textStorage did update
+- (void)textStorage:(NSTextStorage *)str edited:(NSTextStorageEditedOptions)editedMask range:(NSRange)newCharRange changeInLength:(NSInteger)delta invalidatedRange:(NSRange)invalidatedCharRange
+// ------------------------------------------------------
+{
+    // invalidate wrapping line indent in editRange if needed
+    if (editedMask & NSTextStorageEditedCharacters &&
+        [[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultEnablesHangingIndentKey])
+    {
+        // invoke after processEditing so that textStorage can be modified safety
+        __weak typeof(self) weakSelf = self;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [weakSelf invalidateIndentInRange:newCharRange];
+        });
+    }
+    
+    [super textStorage:str edited:editedMask range:newCharRange changeInLength:delta invalidatedRange:invalidatedCharRange];
 }
 
 
@@ -306,6 +336,10 @@ static BOOL usesTextFontForInvisibles;
 
     _textFont = textFont;
     [self setValuesForTextFont:textFont];
+    
+    // store width of space char for indent width calculation
+    NSFont *screenFont = [textFont screenFont] ? : textFont;
+    [self setSpaceWidth:[screenFont advancementForGlyph:(NSGlyph)' '].width];
 }
 
 
@@ -318,6 +352,49 @@ static BOOL usesTextFontForInvisibles;
 
     // 小数点以下を返すと選択範囲が分離することがあるため、丸める
     return round([self defaultLineHeightForTextFont] + lineSpacing * [[self textFont] pointSize]);
+}
+
+
+// ------------------------------------------------------
+/// invalidate indent of wrapped lines
+- (void)invalidateIndentInRange:(NSRange)range
+// ------------------------------------------------------
+{
+    NSUInteger hangingIndent = [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultHangingIndentWidthKey] * [self spaceWidth];
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"^[ \\t]+" options:0 error:nil];
+    
+    NSTextStorage *textStorage = [self textStorage];
+    
+    // invalidate line by line
+    NSRange lineRange = [[textStorage string] lineRangeForRange:range];
+    [textStorage beginEditing];
+    [[textStorage string] enumerateSubstringsInRange:lineRange
+                                             options:NSStringEnumerationByLines | NSStringEnumerationSubstringNotRequired
+                                          usingBlock:^(NSString *substring,
+                                                       NSRange substringRange,
+                                                       NSRange enclosingRange,
+                                                       BOOL *stop)
+     {
+         CGFloat indent = hangingIndent;
+         
+         // add base indent
+         NSRange baseIndentRange = [regex rangeOfFirstMatchInString:[textStorage string] options:0 range:substringRange];
+         if (baseIndentRange.location != NSNotFound) {
+             NSAttributedString *attrBaseIndent = [textStorage attributedSubstringFromRange:baseIndentRange];
+             indent += [attrBaseIndent size].width;
+         }
+         
+         // apply new indent only if needed
+         NSParagraphStyle *paragraphStyle = [textStorage attribute:NSParagraphStyleAttributeName
+                                                           atIndex:substringRange.location
+                                                    effectiveRange:NULL];
+         if (indent != [paragraphStyle headIndent]) {
+             NSMutableParagraphStyle *mutableParagraphStyle = [paragraphStyle mutableCopy];
+             [mutableParagraphStyle setHeadIndent:indent];
+             [textStorage addAttribute:NSParagraphStyleAttributeName value:[mutableParagraphStyle copy] range:substringRange];
+         }
+     }];
+    [textStorage endEditing];
 }
 
 
@@ -370,7 +447,7 @@ CGPathRef glyphPathWithCharacter(unichar character, CTFontRef font, bool prefers
     // - All invisible characters of choices can be covered with the following two fonts.
     // - Monaco for vertical tab
     CGPathRef path = NULL;
-    NSArray *fallbackFontNames = prefersFullWidth ? @[@"HiraKakuProN-W3", @"LucidaGrande", @"Monaco"] : @[@"LucidaGrande", @"HiraKakuProN-W3", @"Monaco"];
+    NSArray<NSString *> *fallbackFontNames = prefersFullWidth ? @[@"HiraKakuProN-W3", @"LucidaGrande", @"Monaco"] : @[@"LucidaGrande", @"HiraKakuProN-W3", @"Monaco"];
     
     for (NSString *fontName in fallbackFontNames) {
         CTFontRef fallbackFont = CTFontCreateWithName((CFStringRef)fontName, fontSize, 0);

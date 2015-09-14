@@ -1,0 +1,433 @@
+/*
+ 
+ Localizable.strings (German)
+ 
+ CotEditor
+ http://coteditor.com
+ 
+ Created by 1024jp on 2015-08-19.
+ 
+ ------------------------------------------------------------------------------
+ 
+ © 2015 1024jp
+ 
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+ 
+ http://www.apache.org/licenses/LICENSE-2.0
+ 
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ 
+ */
+
+// Menu item title for Sparkle
+"Check for Updates…" = "Nach Aktualisierungen suchen …";
+
+/* MARK: CEAppDelegate */
+// File open accessory's menu item title
+"Auto-Detect" = "Auto-Erkennung";
+// Format - Syntax coloring menu item title
+"None" = "Ohne";
+"Re-Color All" = "Alles umfärben";
+
+// Importing theme
+"“%@” is a CotEditor theme file." = "„%@“ ist eine CotEditor-Themadatei.";
+"Do you want to install this theme?" = "Möchten Sie das Thema installieren?";
+"Install" = "Installieren";
+"Open as Text File" = "Als Textdatei öffnen";
+"A new theme named “%@” has been successfully installed." = "Ein neues Thema, das “%@” heißt, wurde erfolgreich installiert.";
+
+// Window title of bug report
+"Bug Report" = "Fehlerbericht";
+
+// Migration from v1.x
+"Restoring menu key bindings settings…" = "Die Einstellungen für die Menü-Tastenbelegungen zurücksetzen …";
+"Migrating coloring settings…" = "Farbeinstellungen migrieren …";
+"Migrating user syntax styles…" = "Benutzer-Syntaxstile migrieren …";
+"Migration finished." = "Migration abgeschlossen.";
+"Close" = "Schließen";
+
+
+/* MARK: CEFindPanelController */
+"Replace the current selection with the replacement text, then find the next match." = "Die aktuelle Auswahl durch den Ersetzungstext ersetzen, dann die nächste Übereinstimmung suchen.";
+"Replace the current selection with the replacement text." = "Die aktuelle Auswahl durch den Ersetzungstext ersetzen.";
+
+
+/* MARK: CEDocumentController */
+// Large file alert
+"The file “%@” has a size of %@." = "Die Datei „%@“ hat die Größe von %@.";
+"Opening such a large file can make the application slow or unresponsive.\n\nDo you really want to open the file?" = "Wenn eine solche große Datei geöffnet wird, kann das Programm langsam werden oder nicht mehr reagieren.\n\nMöchten Sie die Datei wirklich öffnen?";
+"Open" = "Öffnen";
+
+
+/* MARK: CEDocument */
+// Undo action names
+"Encoding to “%@”" = "Codierung zu „%@“";
+"Line Endings to “%@”" = "Zeilenenden zu „%@“";
+// convert or reinterpret alert
+"File encoding" = "Codierung";
+"Convert" = "Umwandeln";
+"Reinterpret" = "Wiederinterpretieren";
+"Cancel" = "Abbrechen";
+"Do you want to convert or reinterpret it using “%@”?" = "Möchten Sie mit „%@“ es umwandeln oder wiederinterpretieren?";
+
+"Save Available Strings" = " Verfügbare Zeichenkette speichern";
+"Show Incompatible Chars" = "Inkompatible Zeichen einblenden";
+
+"Continue Saving" = "Speicherung fortsetzen";
+"The encoding is “%@”, but the IANA charset name in text is “%@”." = "Die Codierung ist „%@“, doch der IANA Charset-Name ist „%@“.";
+"Do you want to continue processing?" = "Möchten Sie mit der Bearbeitung fortfahren?";
+"Do not show this warning for this document again" = "Diese Warnung für diese Dokument nicht wieder anzeigen";
+
+"Discard Changes" = "Änderungen verwerfen";
+"The file “%@” has unsaved changes." = "Die Datei „%@“ hat ungespeicherte Änderungen.";
+"Do you want to discard the changes and reset the file encoding?" = "Möchten Sie die Änderungen verwerfen und die Dateicodierung zurücksetzen?";
+
+"Can not reinterpret." = "konnte nicht wiederinterpretieren.";
+"The file “%@” could not be reinterpreted using the new encoding “%@”." = "Die Datei „%@“ konnte mit der neuen Codierung “%@” nicht wiederinterpretiert werden.";
+
+"new encoding" = "Neue Codierung";
+"Change Encoding" = "Codierung wechseln";
+"The characters would have to be changed or deleted in saving as “%@”." = "Beim Speichern in „%@“ müssen die Zeichen möglicherweise geändert oder gelöscht werden.";
+"Do you want to continue processing?" = "Möchten Sie mit der Bearbeitung fortfahren?";
+"Do you want to change encoding and show incompatible characters?" = "Möchten Sie die Codierung ändern und die Inkompatible Zeichen zeigen?";
+
+"Printed on %@" = "Gedruckt am %@";
+
+"Update" = "Aktualisieren";
+"The file has been modified by another application. There are also unsaved changes in CotEditor." = "Die Datei wurde durch ein anderes Programm geändert. Es gibt auch ungespeicherte Änderungen in CotEditor.";
+"Do you want to keep CotEditor’s edition or update to the modified edition?" = "Möchten Sie die Auflage CotEditors erhalten oder zur geänderten Auflage aktualisieren?";
+"The file has been modified by another application." = "Die Datei wurde durch ein anderes Programm geändert.";
+"Keep CotEditor’s Edition" = "Auflage CotEditors erhalten";
+
+
+/* MARK: CEPrintAccessoryViewController */
+/// Summary item names
+"Color" = "Farbe";
+"Line Number" = "Zeilennummern";
+"Invisible Characters" = "Unsichtbare Zeichen";
+"Print Header" = "Kopfzeilen drucken";
+"Primary Header" = "Primäre Kopfzeile";
+"Primary Header Alignment" = "Ausrichtung der primären Kopfzeile";
+"Secondary Header" = "Sekundäre Kopfzeile";
+"Secondary Header Alignment" = "Ausrichtung der sekundären Kopfzeile";
+"Print Footer" = "Fußzeilen drucken";
+"Primary Footer" = "Primäre Fußzeile";
+"Primary Footer Alignment" = "Ausrichtung der primären Fußzeile";
+"Secondary Footer" = "Sekundäre Fußzeile";
+"Secondary Footer Alignment" = "Ausrichtung der sekundären Fußzeile";
+
+"On" = "Ein";
+"Off" = "Aus";
+"Don’t Print" = "Nicht drucken";
+"Same as Document’s Setting" = "Gleich der Dokument";
+"Black and White" = "Schwarz-Weiß";
+"Print" = "Drucken";
+"Print All" = "Alles drucken";
+"Syntax Name" = "Syntaxname";
+"Document Name" = "Dokumentname";
+"File Path" = "Dateipfad";
+"Print Date" = "Druckdatum";
+"Page Number" = "Seitenzahl";
+"Left" = "Linksbündig einrichten";
+"Center" = "Zentrieren";
+"Right" = "Rechtsbündig einrichten";
+
+
+/* MARK: CETextView */
+// Undo action names
+"Replace Text" = "Text ersetzen";
+"Insert Text" = "Text hinzufügen";
+"Insert Custom Text" = "Benutzerdefinierten Text hinzufügen";
+"Shift Right" = "Einrücken";
+"Shift Left" = "Ausrücken";
+"Comment Out" = "Auskommentieren";
+"Uncomment" = "Unkommentieren";
+"To Fullwidth Roman" = "Zu vollbreiten Zeichen";
+"To Halfwidth Roman" = "Zu halbbreiten Zeichen";
+"Hiragana to Katakana" = "Hiragana zu Katakana";
+"Katakana to Hiragana" = "Katakana zu Hiragana";
+"NFD" = "NFD";
+"NFC" = "NFC";
+"NFKD" = "NFKD";
+"NFKC" = "NFKC";
+"NFKC Casefold" = "NFKC Casefold";
+"Inspect Character" = "Zeichen-Info einblenden";
+
+// Menu items
+"Comment Selection" = "Auswahl auskommentieren";
+"Uncomment Selection" = "Auswahl unkommentieren";
+
+// Contextual menu items
+"Font" = "Schrift";
+"Utility" = "Utility";
+"Select All" = "Alles auswählen";
+
+
+/* MARK: CharacterPopover */
+"<a letter consisting of %d characters>" = "<ein aus %d Zeichen bestehender Buchstabe>";
+"Emoji Style" = "Emoji-Stil";
+"Text Style" = "Text-Stil";
+"Skin Tone I-II" = "Hautfarbe I-II";
+"Skin Tone III" = "Hautfarbe III";
+"Skin Tone IV" = "Hautfarbe IV";
+"Skin Tone V" = "Hautfarbe V";
+"Skin Tone VI" = "Hautfarbe VI";
+"Variant" = "Variante";
+
+
+/* MARK: CEEditorWrapper */
+// Menu items
+"Hide Line Numbers" = "Zeilennummern ausblenden";
+"Show Line Numbers" = "Zeilennummern einblenden";
+"Hide Status Bar" = "Statusleiste ausblenden";
+"Show Status Bar" = "Statusleiste einblenden";
+"Hide Navigation Bar" = "Navigationleiste ausblenden";
+"Show Navigation Bar" = "Navigationleiste einblenden";
+"Hide Invisible Characters" = "Unsichtbare Zeichen ausblenden";
+"Show Invisible Characters" = "Unsichtbare Zeichen einblenden";
+"Hide Page Guide" = "Seitenhilfslinie ausblenden";
+"Show Page Guide" = "Seitenhilfslinie einblenden";
+"Unwrap Lines" = "Zeilen nicht umbrechen";
+"Wrap Lines" = "Zeilen umbrechen";
+"Use Vertical Orientation" = "Vertikal Orientierung verwenden";
+"Use Horizontal Orientation" = "Horizontal Orientierung verwenden";
+
+// Show invisible char menu item tooltip
+"Show or hide invisible characters in document" = "Unsichtbare Zeichen im Text ein-/ausblenden";
+"To show invisible characters, set them in Preferences and re-open the document" = "Um unsichtbare Zeichen anzuzeigen, setzen Sie sie in den Einstellungen und öffnen Sie das Dokument wieder";
+
+// Alert strings
+"The file is not writable." = "Die Datei ist nicht schreibbar.";
+"Cancel" = "Abbrechen";
+"You may not be able to save your changes, but you will be able to save a copy somewhere else." = "Sie können möglicherweise die Änderungen nicht speichern doch eine Kopie an anderer Stelle speichern.";
+
+
+/* MARK: CESplitView */
+// Menu items
+"Stack Views Horizontally" = "Ansichten horizontal stapeln";
+"Stack Views Vertically" = "Ansichten vertikal stapeln";
+
+
+/* MARK: CEStatusBarView */
+"%@: " = "%@: ";
+"Lines" = "Zeilen";
+"Chars" = "Zeichen";
+"Length" = "Länge";
+"Words" = "Wörter";
+"Location" = "Ort";
+"Line" = "Zeile";
+"Column" = "Spalte";
+
+
+/* MARK: CENavigationBarController */
+// Outline menu title
+"<Outline Menu>" = "<Gliederungsmenü>";
+
+
+/* MARK: CESyntaxParser */
+// Coloring indicator
+"Coloring text…" = "Text färben …";
+"Please wait for a while." = "Bitte etwas Geduld.";
+"Extracting %@…" = "%@ ausziehen …";
+"Applying colors to text" = "Farben auf den Text verwenden";
+"keywords" = "Schlüsselwörter";
+"commands" = "Befehle";
+"types" = "Typen";
+"attributes" = "Attribute";
+"variables" = "Variablen";
+"values" = "Werte";
+"numbers" = "Zahlen";
+"strings" = "Zeichenketten";
+"characters" = "Zeichen";
+"comments" = "Kommentare";
+"comments and quoted texts" = "Kommentare und zitierte Texte";
+
+
+/* MARK: CEColorCodePanelController */
+// Undo action name
+"Insert Color Code" = "Farbcode Hinzufügen";
+// color list name
+"Stylesheet Keywords" = "CSS-Schlüsselwörter";
+
+
+/* MARK: CEPreferencesWindowController */
+// Smart quotes/dashes
+" (on Mavericks and later)" = "(auf Mavericks und später)";
+
+// Hint message for the completion list
+"Completion can be performed manually with: %@ or %@" = "Vervollständigung manuell durchführen mit: %@ oder %@";
+"Select at least one item to enable completion." = "Wählen Sie mindestens ein Element die Vervollständigung zu aktivieren.";
+
+// Appearance pane
+"Rename “%@”" = "“%@” umbenennen";
+"Duplicate “%@”" = "„%@“ duplizieren";
+"Restore “%@”" = "„%@“ zurücksetzen";
+"Are you sure you want to delete “%@” theme?" = "Möchten Sie das Thema „%@“ wirklich löschen?";
+"Deleted theme can’t be restored." = "Gelöschte Thema kann nicht wiederhergestellt werden.";
+"A new theme named “%@” will be installed, but a custom theme with the same name already exists." = "Ein neues Thema mit dem Namen „%@“ wird installiert, doch ein benutzerdefinierter Stil mit demselben Namen existiert bereits.";
+"Do you want to replace it?\nReplaced theme can’t be restored." = "Möchten Sie es ersetzen?\nErsetzte Thema kann nicht wiederhergestellt werden.";
+
+// swipe to delete (also used in the Format pane)
+"Delete" = "Löschen";
+"Restore" = "Zurücksetzen";
+
+
+// Print pane
+"Theme" = "Thema";
+
+
+// Format pane
+// encoding menu alert sheet
+"Are you sure you want to change to “%@”?" = "Möchten Sie zu „%@“ wirklich wechseln?";
+"Change to “%@”" = "Zu „%@“ Wechseln";
+"Revert to “Auto-Detect”" = "Auf „Auto-Erkennung“ zurücksetzen";
+"The default “Auto-Detect” is recommended for most cases." = "Die normale „Auto-Erkennung“ wird für die meisten Fälle empfohlen.";
+
+// Installed syntax styles action menu items
+"Duplicate “%@”…" = "„%@“ duplizieren …";
+"Export “%@”…" = "„%@“ exportieren …";
+"Reveal “%@” in Finder" = "„%@“ im Finder anzeigen";
+
+
+// Integration Pane
+"Install" = "Installieren";
+"Uninstall" = "Deinstallieren";
+"Command:" = "Befehl:";
+"Select “Install” to install the command-line tool at the following location.\nThe default location is: %@" = "Wählen Sie „Installieren“, das Kommandozeilenwerkzeug in den folgenden Ort zu installieren.\nDer Standard-Ort ist: %@";
+"The current 'cot' symbolic link doesn’t target on the running CotEditor." = "Das aktuelle 'cot' symbolische Link zielt nicht auf den laufenden CotEditor.";
+"The current 'cot' symbolic link may target on an invalid path." = "Das aktuelle 'cot' symbolische Link kann auf einen ungültigen Pfad zielen.";
+
+// alerts
+"The running CotEditor is not located in the Applications folder." = "Der laufende CotEditor liegt nicht im Programme-Ordner.";
+"Do you really want to install the command-line tool for CotEditor at “%@”?\n\nThe command will be invalid if the location of CotEditor is moved." = "Möchten Sie das Kommandozeilenwerkzeug für „%@“ wirklich installieren?\n\nDer Befehl wird ungültig, wenn die Lage von CotEditor geändert wird.";
+
+"The name of the running CotEditor is modified." = "Der Name des laufenden CotEditors ist modifiziert.";
+"Do you really want to install the command-line tool for “%@”?\n\nThe command will be invalid if CotEditor is renamed." = "Möchten Sie das Kommandozeilenwerkzeug für „%@“ wirklich installieren?\n\nDer Befehl wird ungültig, wenn CotEditor umbenannt wird.";
+
+"Uninstallation was denied by the system." = "Deinstallieren wurde vom System verweigert.";
+"You can install cot command manually running the following command on Terminal:" = "Sie können den „cot“-Befehl manuell installieren, indem den folgenden Befehl im Terminal auszuführen:";
+"You can uninstall cot command manually running the following command on Terminal:" = "Sie können den „cot“-Befehl manuell deinstallieren, indem den folgenden Befehl im Terminal auszuführen:";
+
+
+/* MARK: CESyntaxEditSheetController */
+// Menu items
+"Keywords" = "Schlüsselwörter";
+"Commands" = "Befehle";
+"Types" = "Typen";
+"Attributes" = "Attribute";
+"Variables" = "Variablen";
+"Values" = "Werte";
+"Numbers" = "Zahlen";
+"Strings" = "Zeichenketten";
+"Characters" = "Zeichen";
+"Comments" = "Kommentare";
+"Outline Menu" = "Gliederungsmenü";
+"Completion List" = "Vervollständigung";
+"File Mapping" = "Dateizuordnung";
+"Style Info" = "Stil-Info";
+"Syntax Validation" = "Syntaxvalidierung";
+
+// Syntax style validation results
+"No error was found." = "Kein Fehler wurde gefunden.";
+"An error was found!" = "Ein Fehler wurde gefunden.";
+"%i errors were found!" = "%i Fehler wurden gefunden.";
+
+
+/* MARK: CESyntaxManager */
+// Syntax coloring style name errors
+"Input style name." = "Geben Sie einen Stilnamen ein.";
+"“%@” is already taken. Please choose another name." = "„%@“ wird bereits verwendet. Bitte wählen Sie einen anderen Namen.";
+"You can’t use a style name that contains “/”. Please choose another name." = "Stilnamen dürfen nicht „/“ enthalten. Bitte wählen Sie einen anderen Namen.";
+"You can’t use a style name that begins with a dot “.”. Please choose another name." = "Stilnamen dürfen nicht mit einem Punkt „.“ beginnen. Bitte wählen Sie einen anderen Namen.";
+// Selected syntax coloring style name was original
+"Bundled styles can’t be renamed." = "Gebündelten Stile können nicht umbenannt werden.";
+// Suffix of copied syntax coloring style
+" copy" = " Kopie";
+// Delete syntax coloring style alert message
+"Are you sure you want to delete “%@” syntax style?" = "Möchten Sie den Syntaxstil „%@“ wirklich löschen?";
+// Syntax coloring style alert button titles
+"Cancel" = "Abbrechen";
+"Delete" = "Löschen";
+"Replace" = "Ersetzen";
+// Delete syntax coloring style alert information
+"Deleted style can’t be restored." = "Gelöschter Stil kann nicht wiederhergestellt werden.";
+// Deleted error
+"The style “%@” couldn’t be deleted." = "Der Stil „%@“ konnte nicht gelöscht werden.";
+// Import syntax coloring style file choose openPanel button
+"Import" = "Importieren";
+// Importing same name style alert title
+"The “%@” style already exists." = "Der Stil „%@“ existiert bereits.";
+// Importing same name style alert info
+"Do you want to replace it?\nReplaced style can’t be restored." = "Möchten Sie ihn ersetzen?\n\nErsetzter Stil kann nicht wiederhergestellt werden.";
+// Imported error
+"An error occurred." = "Ein Fehler aufgetreten.";
+"The style “%@” couldn’t be imported." = "Der Stil „%@“ konnte nicht importiert werden.";
+// Export syntax coloring style file savePanel label
+"Export As:" = "Exportieren Als:";
+// File Drop setting deletion alert
+"Are you sure you want to delete the file drop setting for “%@”?" = "Möchten Sie die Einstellung von Datei-Drop für „%@“ wirklich löschen?";
+"Deleted setting can’t be restored." = "Gelöschte Einstellung kann nicht wiederhergestellt werden.";
+// Syntax validation
+"Block comment needs both begin delimiter and end delimiter." = "Block-Kommentare brauchen die beide Anfang- und Endezeichenkette.";
+"Begin string" = "Anfangszeichenkette";
+"End string" = "Endzeichenkette";
+"RE string" = "Regulärer Ausdruck";
+"multiple registered." = "Multiple registriert.";
+"Error: %@" = "Fehler: %@";
+
+
+/* MARK: CEThemeManager */
+"Untitled" = "Ohne Title";
+"Customized Theme" = "Benutzerdefiniertes Thema";
+"The theme name “%@” is already taken." = "Der Themaname “%@” wird bereits verwendet.";
+"Theme name can’t be empty." = "Themanamen dürfen nicht leer sein.";
+"You can’t use a theme name that contains “/”." = "Themanamen dürfen nicht „/“ enthalten.";
+"You can’t use a theme name that begins with a dot “.”." = "Themanamen dürfen nicht mit einem Punkt „.“ beginnen.";
+"Please choose another name." = "Bitte wählen Sie einen anderen Namen.";
+
+"Auto-generated theme that is migrated from user’s coloring setting on CotEditor 1.x" = "Aus der vorherigen Einstellung in CotEditor 1.x automatisch migriertes Thema";
+
+
+/* MARK: CEKeyBindingManager */
+// label for text menu keybindings action
+"Insert Text %@" = "Text hinzufügen %@";
+// Warning messages
+"“%@” is already taken. Please choose another key." = "„%@“ wird bereits verwendet. Bitte wählen Sie eine andere Taste.";
+"“%@” does not include the Command key. Please choose another key." = "„%@“ enthaltet die Command-Taste nicht. Bitte wählen Sie eine andere Taste.";
+"“%@” includes the Command key. Please choose another key." = "„%@“ enthaltet die Command-Taste. Bitte wählen Sie eine andere Taste.";
+
+
+/* MARK: CEScriptManager */
+// Menu items
+"Open Scripts Folder" = "Skripte-Ordner öffnen";
+"Update Script Menu" = "Skripte-Menü aktualisieren";
+"Copy Sample Scripts…" = "Beispielskripts kopieren …";
+"Copy Sample Scripts" = "Beispielskripts kopieren";
+"Scripts in “%@” will be listed in the script menu." = "Skripte in „%@“ werden in das Skripte-Menü aufgeführt.";
+"Copy bundled sample scripts to the scripts folder." = "Gebündelte Beispielskripte in den Skripte-Ordner kopieren";
+
+// Script menu item tooltips
+"“Opt + click” to open in Script Editor." = "“Opt + Klicken”, um in Skript-Editor öffnen.";
+
+// Alert messages
+"The script “%@” does not exist.\n\nCheck it and select “Update Script Menu”." = "Das Skript „%@“ existiert nicht.\n\nPrüfen Sie es und wählen Sie „Skripte-Menü aktualisieren”.";
+"The script file “%@” couldn’t be opened." = "Die Skriptdatei „%@“ konnte nicht geöffnet werden.";
+"The script “%@” can’t be executed because you don’t have the execute permission.\n\nCheck permission of the script file." = "Das Skript „%@“ kann nicht ausgeführt werden, da Sie nicht den Ausführrecht haben.\n\nPrüfen Sie die Zugriffsrechte der Skriptdatei.";
+"The script “%@” couldn’t be read." = "Das Skript „%@“ konnte nicht gelesen werden.";
+
+
+/* MARK: CEFindPanelController */
+"Invalid regular expression" =  "Ungültiger regulärer Ausdruck";
+
+
+/* MARK: CEFindResultViewController */
+// Find result (“%@” is filename)
+"No strings found in “%@”." = "Keine Zeichenketten in „%@“ gefunden.";
+"Found one string in “%@”." = "Eine Zeichenkette in „%@“ gefunden.";
+"Found %li strings in “%@”." = "%li Zeichenketten “%@” in gefunden.";

@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014 1024jp
+ © 2014-2015 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -30,7 +30,7 @@
 #import "CEDocument.h"
 
 
-@interface CEDocument (ScriptingSupport) <NSTextStorageDelegate>
+@interface CEDocument (ScriptingSupport)
 
 // AppleScript enum
 typedef NS_ENUM(NSUInteger, CEOSALineEnding) {
@@ -40,8 +40,8 @@ typedef NS_ENUM(NSUInteger, CEOSALineEnding) {
 };
 
 // AppleScript accessor
-- (NSTextStorage *)textStorage;
-- (void)setTextStorage:(id)object;
+- (NSTextStorage *)scriptTextStorage;
+- (void)setScriptTextStorage:(id)object;
 - (NSTextStorage *)contents;
 - (void)setContents:(id)object;
 - (NSNumber *)length;

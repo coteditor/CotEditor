@@ -25,6 +25,146 @@
 
 <article>
 <header>
+	<h1>CotEditor 2.2.0</h1>
+	<p>リリース: <time>2015-09</time></p>
+</header>
+
+<p class="important">このバージョンは、ユーザによる移行処理が必要な仕様変更を含んでいます。詳細は<a href="specification_changes_on_2.2.html">CotEditor 2.2 での仕様変更</a>を参照してください。</p>
+
+
+<section>
+<h2>新機能</h2>
+
+<ul>
+	<li><strong>サンドボックス化</strong></li>
+	<li>折り返し行のインデント
+	<ul>
+		<li>環境設定の編集ペインで振る舞いを設定できます</li>
+	</ul></li>
+	<li>外部プロセスによる書類更新時の挙動を変更できる設定項目を追加（環境設定の一般ペイン）</li>
+	<li>ツールバーに共有ボタンを追加（使用するためにはツールバーをカスタマイズしてください）</li>
+	<li>縦書きの状態をファイル自身に保存し、ファイルオープン時にそれを復帰
+	<ul>
+		<li><strong>上級ユーザ向け</strong>: この機能は、エディタが縦書きのときに<strong>のみ</strong>ファイルの <i>extended atribute</i> に <code>com.coteditor.VerticalText</code> というキー名のメタデータを埋め込みます。ターミナルから <code>defaults write com.coteditor.CotEditor savesTextOrientation -bool NO</code> を実行することで、CotEditor のこの機能自体を無効にすることもできます。</li>
+	</ul></li>
+	<li>縦書き時の行番号表示</li>
+	<li>縦書き印刷</li>
+	<li>インタープリタ名リストをシンタックス定義に追加し、ファイル名からシンタックス名が推定できないときにファイル内のシェバンからもシンタックスを決定できるように
+	<ul>
+		<li>これにともない、いくつかのバンドルされているシンタックス定義を更新</li>
+	</ul></li>
+	<li>新しい Unicode 正規化形式「NFKC Casefold」をユーティリティメニューの 「Unicode 正規化」に追加 (doraTeX さんに感謝!)
+	<ul>
+		<li>AppleScript 辞書にもこの NFKC Casefold は追加されれています。</li>
+	</ul></li>
+	<li>文字エンコーディングの自動認識で参照するエンコーディング宣言に <code>encoding:</code> と <code>coding:</code> を追加 (解釈は <code>charset=</code> &gt; <code>encoding=</code> &gt; <code>@charset</code> &gt; <code>encoding:</code> &gt; <code>coding:</code> の順で行われます)</li>
+	<li>ドイツ語ローカライズを追加</li>
+</ul>
+</section>
+
+
+<section>
+<h2>機能改善／仕様変更</h2>
+
+<ul>
+	<li>OS X 10.11 El Capitan に対応</li>
+	<li>サンドボックス化にともない、ユーザにパーミッションがないファイルでもオープン／上書きができる機能 (authopen) を廃止</li>
+	<li>サンドボックス化にともない、cot コマンドラインツールのバンドル場所を <code>CotEditor.app/Contents/MacOS/</code> から <code>CotEditor.app/Contents/SharedSupport/bin/</code> に変更。
+	<ul>
+		<li>cot コマンドをすでにインストールしているユーザは、手動で再インストールを行う必要があります。ターミナルから以下のコマンドを実行することで、コマンドを再インストールすることができます。<br/>
+          <code>unlink /usr/local/bin/cot; ln -s /Applications/CotEditor.app/Contents/SharedSupport/bin/cot /usr/local/bin/cot</code><br/>
+          CotEditor/cot をインストールしている場所に合わせて、再インストールコマンドのパスは適宜変更してください。</li>
+	</ul></li>
+	<li>サイドインスペクタのユーザインターフェイスを改良</li>
+	<li>シンタックスハイライトの改善：
+	<ul>
+		<li>シンタックスハイライトの処理時間を短縮（約1.8倍）</li>
+		<li>ファイルオープン時のシンタックスハイライト処理時間を最適化</li>
+		<li>編集中のシンタックス解析精度を向上</li>
+		<li>編集中にフォーカスのない分割ビューのカラーリングも更新</li>
+	</ul></li>
+	<li>サンドボックス化にともない、スクリプトフォルダの場所を  <code>~/Library/Application Support/CotEditor/ScriptMenu/</code> から <code>~/Library/Application Scripts/com.coteditor.CotEditor/</code> に変更
+	<ul>
+	<li>ユーザはすでにあるスクリプトを手動で移動する必要があります。</li>
+	</ul></li>
+	<li>印刷機能の改良：
+	<ul>
+		<li>ヘッダ／フッタのレイアウトをシステム標準のものに揃えた</li>
+		<li>ページ設定項目を印刷パネルに追加</li>
+		<li>印刷設定のプリセットに CotEditor 独自の設定も保存されるように</li>
+	</ul></li>
+	<li>カラーコードエディタの改良：
+	<ul>
+		<li>スタイルシートのキーワードをカラーコードタイプに追加</li>
+		<li>スタイルシートのキーワードのカラーリストをエディタパネルに追加</li>
+		<li>パネルをリサイズ可能に</li>
+	</ul></li>
+	<li>ファイルオープン時、適切なシンタックススタイルが見つからなかったけどファイル内容が XML 宣言から始まっていた場合、自動的に “XML” がシンタックススタイルに設定されるように改良</li>
+	<li>書類復帰時の文字エンコーディングの扱いを改善</li>
+	<li>入力補完候補リストの設定インターフェイスの刷新（以前の設定はリセットされます）</li>
+	<li>CotEditor のスクリプト定義に アクセスグループ (access-group) <code>com.coteditor.CotEditor.edit</code> を追加</li>
+	<li>ウインドウ復帰に関する改善：
+	<ul>
+		<li>スクロール位置とカーソル位置も復帰の対象に</li>
+		<li>未保存書類のシンタックススタイルも復帰可能に</li>
+	</ul></li>
+	<li>cot コマンドラインツールを全面書き直し：
+	<ul>
+		<li>起動時間の短縮</li>
+	</ul></li>
+	<li>El Capitan のスワイプして削除を環境設定上のいくつかの表／リストで対応</li>
+	<li>環境設定内のテーマリストのコンテクストメニューを改良</li>
+	<li>検索時のハイライト色の調整</li>
+	<li>表記の調整</li>
+	<li>ドキュメントの更新</li>
+	<li>ビルド環境を OS X El Capitan + Xcode 7 (SDK 10.11) に変更</li>
+	<li>ソースコードのライセンスを GNU General Public License version 2 から Apache Lisence version 2.0 に変更</li>
+	<li><span class="label">非 AppStore 版のみ</span>: 自動更新機能の廃止
+	<ul>
+		<li>CotEditor の自動更新に使われている <a href="http://sparkle-project.org" rel="external">Sparkle</a> というフレームワークがまだサンドボックスに対応していないため、CotEditor 内での自動更新機能は一旦廃止されました。今後は、新しいバージョンがリリースされたときは（以前と同様に）通知ウインドウが表示されるので、その後サイトから新しいバージョンをダウンロードして手動でアップデートを行ってください。もしくは、<a href="http://appstore.com/mac/CotEditor">Mac App Store 版</a>に切り替えてください。</li>
+	</ul></li>
+	<li><span class="label">非 AppStore 版のみ</span>: プレリリース版を更新対象に含めるオプションを追加
+	<ul>
+		<li>なお、プレリリース版使用中は、設定に関わらず新しいプレリリース版が対象に含まれようになります。</li>
+	</ul></li>
+	<li><span class="label">非 AppStore 版のみ</span>: Sparkle framework を 1.11.0 に更新</li>
+</ul>
+</section>
+
+
+<section>
+<h2>バグフィックス</h2>
+
+<ul>
+	<li>書類ファイルが移動されたときに書類情報のフルパス表示が更新されなかった不具合を修正</li>
+	<li>検索文字列に CR および CR/LF の改行コードが含まれるとき検索ができなかった不具合を修正</li>
+	<li>連携ペインの警告が、問題解決後も消えなかった不具合を修正</li>
+	<li>シンタックス編集シートで、空の表のヘッダをクリックするとアプリケーションがクラッシュした不具合を修正</li>
+	<li>OS X 10.8 で、スクロールバーを常に表示する設定にしているときに行番号表示が乱れることがあった不具合を修正</li>
+	<li>連携ペインでのコマンドラインツールのインストールが稀にできないことがあった不具合を修正</li>
+	<li>複数の分割エディタを閉じた後にアプリケーションがクラッシュすることがあった不具合を修正</li>
+	<li>行高を固定しているとき、リガチャ文字が誤った場所に描画されることがあった不具合を修正</li>
+	<li>不可視文字の表示で「タブ」がオフで「その他の不可視文字」がオンのとき、不要な不可視文字マークが表示されていた不具合を修正</li>
+	<li>日本語のローカライズが一部抜けていた不具合を修正</li>
+	<li>全般的な安定性を向上</li>
+</ul>
+</section>
+
+
+<section>
+<h2>その他</h2>
+
+<ul>
+	<li>Mac App Store でリリースされるようになりました。</li>
+	<li><a href="https://kapeli.com/dash" rel="external" title="Dash for OS X - API Documentation Browser, Snippet Manager - Kapeli">Dash</a> API ドキュメントブラウザとの連携のための CotEditor スクリプトがリリースされました: <a href="https://github.com/coteditor/Dash-CotEditor-Plugin" rel="external" title="Dash CotEditor Plugin - GitHub">Dash CotEditor Plugin/GitHub</a>.</li>
+</ul>
+</section>
+</article>
+
+
+
+<article>
+<header>
 	<h1>CotEditor 2.1.6</h1>
 	<p>リリース: <time>2015-07-17</time></p>
 </header>
@@ -462,6 +602,8 @@
 	<h1>CotEditor 2.0.0</h1>
 	<p>リリース: <time>2014-11-13</time></p>
 </header>
+
+<p class="important">このバージョンは、ユーザによる移行処理が必要な仕様変更を含んでいます。詳細は<a href="specification_changes_on.html">CotEditor 2.0 での仕様変更</a>を参照してください。</p>
 
 <section>
 <h2>新機能</h2>

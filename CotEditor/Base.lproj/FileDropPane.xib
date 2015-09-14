@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="7706"/>
@@ -23,11 +23,11 @@
             </declaredKeys>
         </arrayController>
         <customView horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" id="747" userLabel="File Drop Pane">
-            <rect key="frame" x="0.0" y="0.0" width="540" height="378"/>
+            <rect key="frame" x="0.0" y="0.0" width="550" height="378"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <button horizontalHuggingPriority="750" verticalHuggingPriority="750" tag="6" translatesAutoresizingMaskIntoConstraints="NO" id="2351">
-                    <rect key="frame" x="497" y="17" width="25" height="25"/>
+                    <rect key="frame" x="507" y="17" width="25" height="25"/>
                     <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" inset="2" id="3338">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
@@ -45,7 +45,7 @@
                     </textFieldCell>
                 </textField>
                 <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="587">
-                    <rect key="frame" x="270" y="196" width="250" height="139"/>
+                    <rect key="frame" x="270" y="196" width="260" height="139"/>
                     <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="PI9-s6-0DE">
                         <rect key="frame" x="1" y="1" width="248" height="137"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -54,30 +54,30 @@
                                 <rect key="frame" x="0.0" y="0.0" width="248" height="276"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" name="windowBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                <size key="minSize" width="248" height="137"/>
+                                <size key="minSize" width="258" height="137"/>
                                 <size key="maxSize" width="586" height="10000000"/>
                                 <attributedString key="textStorage">
                                     <fragment>
                                         <mutableString key="content">&lt;&lt;&lt;ABSOLUTE-PATH&gt;&gt;&gt;
-The dropped file's absolute path.
+The dropped file’s absolute path.
 
 &lt;&lt;&lt;RELATIVE-PATH&gt;&gt;&gt;
 The relative path between the dropped file and the document.
 
 &lt;&lt;&lt;FILENAME&gt;&gt;&gt;
-The dropped file's name with extension (if exists).
+The dropped file’s name with extension (if exists).
 
 &lt;&lt;&lt;FILENAME-NOSUFFIX&gt;&gt;&gt;
-The dropped file's name without extension.
+The dropped file’s name without extension.
 
 &lt;&lt;&lt;FILEEXTENSION&gt;&gt;&gt;
-The dropped file's extension.
+The dropped file’s extension.
 
 &lt;&lt;&lt;FILEEXTENSION-LOWER&gt;&gt;&gt;
-The dropped file's extension (converted to lowercase).
+The dropped file’s extension (converted to lowercase).
 
 &lt;&lt;&lt;FILEEXTENSION-UPPER&gt;&gt;&gt;
-The dropped file's extension (converted to uppercase).
+The dropped file’s extension (converted to uppercase).
 
 &lt;&lt;&lt;DIRECTORY&gt;&gt;&gt;
 The parent directory name of the dropped file.
@@ -95,7 +95,7 @@ The parent directory name of the dropped file.
                                     </fragment>
                                 </attributedString>
                                 <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                <size key="minSize" width="248" height="137"/>
+                                <size key="minSize" width="258" height="137"/>
                                 <size key="maxSize" width="586" height="10000000"/>
                             </textView>
                         </subviews>
@@ -111,9 +111,9 @@ The parent directory name of the dropped file.
                     </scroller>
                 </scrollView>
                 <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="536">
-                    <rect key="frame" x="327" y="156" width="196" height="22"/>
+                    <rect key="frame" x="337" y="156" width="196" height="22"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="190" id="XCP-jV-qFG"/>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="190" id="XCP-jV-qFG"/>
                     </constraints>
                     <popUpButtonCell key="cell" type="push" title="Insert Pre-Formatted String" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="clipping" borderStyle="border" inset="2" pullsDown="YES" preferredEdge="maxY" id="3336">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -131,27 +131,27 @@ The parent directory name of the dropped file.
                                         <action selector="insertToken:" target="-2" id="556"/>
                                     </connections>
                                 </menuItem>
-                                <menuItem title="&lt;&lt;&lt;FILENAME&gt;&gt;&gt;" toolTip="The dropped file name include extension (if exists)." id="542">
+                                <menuItem title="&lt;&lt;&lt;FILENAME&gt;&gt;&gt;" toolTip="The dropped file’s name include extension (if exists)." id="542">
                                     <connections>
                                         <action selector="insertToken:" target="-2" id="557"/>
                                     </connections>
                                 </menuItem>
-                                <menuItem title="&lt;&lt;&lt;FILENAME-NOSUFFIX&gt;&gt;&gt;" toolTip="The dropped file name without extension." id="538">
+                                <menuItem title="&lt;&lt;&lt;FILENAME-NOSUFFIX&gt;&gt;&gt;" toolTip="The dropped file’s name without extension." id="538">
                                     <connections>
                                         <action selector="insertToken:" target="-2" id="558"/>
                                     </connections>
                                 </menuItem>
-                                <menuItem title="&lt;&lt;&lt;FILEEXTENSION&gt;&gt;&gt;" toolTip="The dropped file's extension." id="694">
+                                <menuItem title="&lt;&lt;&lt;FILEEXTENSION&gt;&gt;&gt;" toolTip="The dropped file’s extension." id="694">
                                     <connections>
                                         <action selector="insertToken:" target="-2" id="699"/>
                                     </connections>
                                 </menuItem>
-                                <menuItem title="&lt;&lt;&lt;FILEEXTENSION-LOWER&gt;&gt;&gt;" toolTip="The dropped file's extension (converted to lowercase)." id="695">
+                                <menuItem title="&lt;&lt;&lt;FILEEXTENSION-LOWER&gt;&gt;&gt;" toolTip="The dropped file’s extension (converted to lowercase)." id="695">
                                     <connections>
                                         <action selector="insertToken:" target="-2" id="698"/>
                                     </connections>
                                 </menuItem>
-                                <menuItem title="&lt;&lt;&lt;FILEEXTENSION-UPPER&gt;&gt;&gt;" toolTip="The dropped file's extension (converted to uppercase)." id="696">
+                                <menuItem title="&lt;&lt;&lt;FILEEXTENSION-UPPER&gt;&gt;&gt;" toolTip="The dropped file’s extension (converted to uppercase)." id="696">
                                     <connections>
                                         <action selector="insertToken:" target="-2" id="697"/>
                                     </connections>
@@ -179,7 +179,7 @@ The parent directory name of the dropped file.
                     </popUpButtonCell>
                 </popUpButton>
                 <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="531">
-                    <rect key="frame" x="20" y="53" width="500" height="100"/>
+                    <rect key="frame" x="20" y="53" width="510" height="100"/>
                     <clipView key="contentView" id="ybU-5v-A28">
                         <rect key="frame" x="1" y="1" width="498" height="98"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -188,10 +188,10 @@ The parent directory name of the dropped file.
                                 <rect key="frame" x="0.0" y="0.0" width="498" height="98"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <size key="minSize" width="498" height="98"/>
+                                <size key="minSize" width="508" height="98"/>
                                 <size key="maxSize" width="600" height="10000000"/>
                                 <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                <size key="minSize" width="498" height="98"/>
+                                <size key="minSize" width="508" height="98"/>
                                 <size key="maxSize" width="600" height="10000000"/>
                                 <connections>
                                     <binding destination="451" name="value" keyPath="selection.formatString" id="ib2-Zw-Ucy">

@@ -30,13 +30,18 @@
 #import "Constants.h"
 
 
-static NSString *const kSymbolicLinkPath = @"/usr/local/bin/cot";
+// for OS X 10.10 SDK
+#define CEAppKitVersionNumber10_11 1404
+
+static NSString *const kPreferredSymbolicLinkPath = @"/usr/local/bin/cot";
 
 
 @interface CEIntegrationPaneController ()
 
+@property (nonatomic, nonnull) NSURL *preferredLinkTargetURL;
+@property (nonatomic, nonnull) NSURL *preferredLinkURL;
 @property (nonatomic, nonnull) NSURL *linkURL;
-@property (nonatomic, nonnull) NSURL *executableURL;
+@property (nonatomic, nonnull) NSURL *commandURL;
 @property (nonatomic, getter=isUninstallable) BOOL uninstallable;
 @property (nonatomic, getter=isInstalled) BOOL installed;
 @property (nonatomic, nullable, copy) NSString *warning;
@@ -52,26 +57,7 @@ static NSString *const kSymbolicLinkPath = @"/usr/local/bin/cot";
 
 @implementation CEIntegrationPaneController
 
-static const NSURL *kPreferredLinkTargetURL;
-
-
 #pragma mark Superclass Methods
-
-// ------------------------------------------------------
-/// initialize class
-+ (void)initialize
-// ------------------------------------------------------
-{
-    NSString *appName = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleName"];
-    NSURL *applicationDirURL = [[NSFileManager defaultManager] URLForDirectory:NSApplicationDirectory
-                                                                      inDomain:NSLocalDomainMask
-                                                             appropriateForURL:nil
-                                                                        create:NO
-                                                                         error:nil];
-    kPreferredLinkTargetURL = [[[applicationDirURL URLByAppendingPathComponent:appName] URLByAppendingPathExtension:@"app"]
-                               URLByAppendingPathComponent:@"Contents/MacOS/cot"];
-}
-
 
 // ------------------------------------------------------
 /// initialize instance
@@ -80,11 +66,18 @@ static const NSURL *kPreferredLinkTargetURL;
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        _linkURL = [NSURL fileURLWithPath:kSymbolicLinkPath];
-        _executableURL = [[NSBundle mainBundle] URLForAuxiliaryExecutable:@"cot"];
-        _uninstallable = YES;
+        NSString *appName = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleName"];
+        NSURL *applicationDirURL = [[NSFileManager defaultManager] URLForDirectory:NSApplicationDirectory
+                                                                          inDomain:NSLocalDomainMask
+                                                                 appropriateForURL:nil
+                                                                            create:NO
+                                                                             error:nil];
+        _preferredLinkTargetURL = [[[applicationDirURL URLByAppendingPathComponent:appName] URLByAppendingPathExtension:@"app"]
+                                   URLByAppendingPathComponent:@"Contents/SharedSupport/bin/cot"];
         
-        _installed = [self validateSymlink];
+        _preferredLinkURL = [NSURL fileURLWithPath:kPreferredSymbolicLinkPath];
+        _commandURL = [[[NSBundle mainBundle] sharedSupportURL] URLByAppendingPathComponent:@"bin/cot"];
+        _uninstallable = YES;
     }
     return self;
 }
@@ -97,6 +90,19 @@ static const NSURL *kPreferredLinkTargetURL;
 {
     [super loadView];
     
+    [self setInstalled:[self validateSymlink]];
+    [self toggleInstallButtonState:[self isInstalled]];
+}
+
+
+// ------------------------------------------------------
+/// update warnings before view appears (only on OS X 10.10 and later)
+- (void)viewWillAppear
+// ------------------------------------------------------
+{
+    [super viewWillAppear];
+    
+    [self setInstalled:[self validateSymlink]];
     [self toggleInstallButtonState:[self isInstalled]];
 }
 
@@ -115,7 +121,9 @@ static const NSURL *kPreferredLinkTargetURL;
 {
     BOOL success = NO;
     
-    if ([[error domain] isEqualToString:CEErrorDomain]) {
+    if ([[error domain] isEqualToString:CEErrorDomain] &&
+        ([error code] == CEApplicationNameIsModifiedError || [error code] == CEApplicationNotInApplicationDirectoryError))
+    {
         if (recoveryOptionIndex == 0) {  // Install
             [self performInstall];
         }
@@ -152,6 +160,13 @@ static const NSURL *kPreferredLinkTargetURL;
 - (IBAction)uninstall:(nullable id)sender
 // ------------------------------------------------------
 {
+    // just turn off the button if command is already uninstalled
+    if (![[self linkURL] checkResourceIsReachableAndReturnError:nil]) {
+        [self setInstalled:[self validateSymlink]];
+        [self toggleInstallButtonState:NO];
+        return;
+    }
+    
     [self performUninstall];
 }
 
@@ -160,35 +175,87 @@ static const NSURL *kPreferredLinkTargetURL;
 #pragma mark Private Methods
 
 // ------------------------------------------------------
-/// create symlink to `cot` executable in bundle
+/// return stored installed location if available
+- (nullable NSURL *)bookmarkedURL
+// ------------------------------------------------------
+{
+    NSData *bookmarkData = [[NSUserDefaults standardUserDefaults] objectForKey:CEDefaultCotCommandBookmarkKey];
+    NSError *error = nil;
+    NSURL *url = [NSURL URLByResolvingBookmarkData:bookmarkData
+                                           options:NSURLBookmarkResolutionWithSecurityScope
+                                     relativeToURL:nil
+                               bookmarkDataIsStale:NO
+                                             error:&error];
+    
+    return url;
+}
+
+// ------------------------------------------------------
+/// build install command (this is actually not used...)
+- (nonnull NSString *)installCommandString
+// ------------------------------------------------------
+{
+    return [NSString stringWithFormat:@"ln -s \"%s\" \"%s\"",
+                         [[[self commandURL] path] fileSystemRepresentation],
+                         [[[self preferredLinkURL] path] fileSystemRepresentation]];
+}
+
+
+// ------------------------------------------------------
+/// build uninstall command
+- (nonnull NSString *)uninstallCommandString
+// ------------------------------------------------------
+{
+    return [NSString stringWithFormat:@"unlink \"%s\"",
+                         [[[self linkURL] path] fileSystemRepresentation]];
+}
+
+
+// ------------------------------------------------------
+/// create symlink to `cot` command in bundle
 - (void)performInstall
 // ------------------------------------------------------
 {
-    NSError *coordinationError = nil;
-    __block NSError *symLinkError = nil;
-    __block BOOL success = NO;
-
-    NSFileCoordinator *coordinator = [[NSFileCoordinator alloc] init];
-    [coordinator coordinateWritingItemAtURL:[self linkURL] options:0
-                                      error:&coordinationError
-                                 byAccessor:^(NSURL *newURL)
+    __weak typeof(self) weakSelf = self;
+    NSOpenPanel *openPanel = [NSOpenPanel openPanel];
+    [openPanel setDirectoryURL:[[self preferredLinkURL] URLByDeletingLastPathComponent]];
+    [openPanel setCanChooseFiles:NO];
+    [openPanel setCanChooseDirectories:YES];
+    [openPanel setMessage:[NSString stringWithFormat:NSLocalizedString(@"Select “Install” to install the command-line tool at the following location.\nThe default location is: %@", nil), [[self preferredLinkURL] path]]];
+    [openPanel setPrompt:NSLocalizedString(@"Install", nil)];
+    
+    [openPanel beginSheetModalForWindow:[[self view] window]
+                      completionHandler:^(NSInteger returnCode)
      {
-         // FIXME: This will be failed with NSCocoaErrorDomain + NSFileWriteNoPermissionError on El Capitan beta 5
-         success = [[NSFileManager defaultManager] createSymbolicLinkAtURL:newURL
-                                                        withDestinationURL:[self executableURL]
-                                                                     error:&symLinkError];
+         if (returnCode == NSFileHandlingPanelCancelButton) { return; }
+         
+         typeof(weakSelf) self = weakSelf;  // strong self
+         
+         NSURL *URL = [openPanel URL];
+         NSError *error = nil;
+         
+         [[NSFileManager defaultManager] createSymbolicLinkAtURL:[URL URLByAppendingPathComponent:@"cot"]
+                                              withDestinationURL:[self commandURL]
+                                                           error:&error];
+         
+         if (error) {
+             NSBeep();
+             [[self view] presentError:error modalForWindow:[[self view] window]
+                              delegate:nil didPresentSelector:NULL contextInfo:NULL];
+             return;
+         }
+         
+         // store installed URL for future use under Sandboxed environment
+         NSData *bookmarkData = [URL bookmarkDataWithOptions:NSURLBookmarkCreationWithSecurityScope
+                              includingResourceValuesForKeys:@[]
+                                               relativeToURL:nil
+                                                       error:&error];
+         [[NSUserDefaults standardUserDefaults] setObject:bookmarkData forKey:CEDefaultCotCommandBookmarkKey];
+         
+         [self setInstalled:YES];
+         [self toggleInstallButtonState:YES];
+         [self validateSymlink];
      }];
-    
-    NSError *error = symLinkError ? : coordinationError;
-    
-    if (success) {
-        [self setInstalled:YES];
-        [self toggleInstallButtonState:YES];
-        
-    } else if (error) {
-        [[self view] presentError:error modalForWindow:[[self view] window]
-                         delegate:nil didPresentSelector:NULL contextInfo:NULL];
-    }
 }
 
 
@@ -197,15 +264,84 @@ static const NSURL *kPreferredLinkTargetURL;
 - (void)performUninstall
 // ------------------------------------------------------
 {
-    BOOL success;
-    NSError *error = nil;
+    // read stored cot command URL
+    NSURL *url = [self bookmarkedURL];
     
-    unlink([[[self linkURL] path] fileSystemRepresentation]);
+    // uninstall cot command at the bookmarked Location
+    if (url) {
+        [url startAccessingSecurityScopedResource];
+        [self uninsatllCommandAt:[url URLByAppendingPathComponent:@"cot"] securityScoped:YES];
+        [url stopAccessingSecurityScopedResource];
+        return;
+    }
     
-    if (![[self linkURL] checkResourceIsReachableAndReturnError:nil]) {
+    // just show an uninstallation guide as a sheet
+    [self showUninsatllGuideWithDescription:NSLocalizedString(@"Uninstallation was denied by the system.", nil)];
+}
+
+
+// ------------------------------------------------------
+/// unlink symbolic link at given URL
+- (void)uninsatllCommandAt:(nonnull NSURL *)URL securityScoped:(BOOL)isSecurityScoped
+// ------------------------------------------------------
+{
+    if (isSecurityScoped) {
+        [URL startAccessingSecurityScopedResource];
+    }
+    
+    int status = unlink([[URL path] fileSystemRepresentation]);
+    
+    if (isSecurityScoped) {
+        [URL stopAccessingSecurityScopedResource];
+    }
+    
+    if (status >= 0) {
+        if (isSecurityScoped) {
+            [[NSUserDefaults standardUserDefaults] removeObjectForKey:CEDefaultCotCommandBookmarkKey];
+        }
+        
         [self setInstalled:NO];
         [self toggleInstallButtonState:NO];
+        [self validateSymlink];
     }
+}
+
+
+// ------------------------------------------------------
+/// display command install guide in Terminal.app as a sheet
+- (void)showInstallGuideWithDescription:(nonnull NSString *)description
+// ------------------------------------------------------
+{
+    NSString *suggestion = [NSString stringWithFormat:@"%@\n\n\t%@", NSLocalizedString(@"You can install cot command manually running the following command on Terminal:", nil), [self installCommandString]];
+    
+    NSError *error = [NSError errorWithDomain:CEErrorDomain
+                                         code:CESymlinkCreationDeniedError
+                                     userInfo:@{NSLocalizedDescriptionKey: description,
+                                                NSLocalizedRecoverySuggestionErrorKey: suggestion,
+                                                NSURLErrorKey: [self preferredLinkURL],
+                                                NSHelpAnchorErrorKey: @"about_cot"}];
+    
+    [[self view] presentError:error modalForWindow:[[self view] window]
+                     delegate:nil didPresentSelector:NULL contextInfo:NULL];
+}
+
+
+// ------------------------------------------------------
+/// display command uninstall guide in Terminal.app as a sheet
+- (void)showUninsatllGuideWithDescription:(nonnull NSString *)description
+// ------------------------------------------------------
+{
+    NSString *suggestion = [NSString stringWithFormat:@"%@\n\n\t%@", NSLocalizedString(@"You can uninstall cot command manually running the following command on Terminal:", nil), [self uninstallCommandString]];
+    
+    NSError *error = [NSError errorWithDomain:CEErrorDomain
+                                         code:CESymlinkCreationDeniedError
+                                     userInfo:@{NSLocalizedDescriptionKey: description,
+                                                NSLocalizedRecoverySuggestionErrorKey: suggestion,
+                                                NSURLErrorKey: [self linkURL],
+                                                NSHelpAnchorErrorKey: @"about_cot"}];
+    
+    [[self view] presentError:error modalForWindow:[[self view] window]
+                     delegate:nil didPresentSelector:NULL contextInfo:NULL];
 }
 
 
@@ -233,20 +369,37 @@ static const NSURL *kPreferredLinkTargetURL;
     [self setUninstallable:YES];
     [self setWarning:nil];
     
+    // use bookmarked link to display and to uninstall if it's valid
+    NSURL *bookmarkedURL = [self bookmarkedURL];
+    if (bookmarkedURL) {
+        [bookmarkedURL startAccessingSecurityScopedResource];
+        bookmarkedURL = [bookmarkedURL URLByAppendingPathComponent:@"cot"];
+        [bookmarkedURL stopAccessingSecurityScopedResource];
+    }
+    if ([bookmarkedURL checkResourceIsReachableAndReturnError:nil]) {
+        [self setLinkURL:bookmarkedURL];
+    } else {
+        [self setLinkURL:[self preferredLinkURL]];
+    }
+    
     // not installed yet (= can install)
     if (![[self linkURL] checkResourceIsReachableAndReturnError:nil]) {
         return NO;
     }
     
-    NSURL *linkDestinationURL = [[self linkURL] URLByResolvingSymlinksInPath];
+    // ???: `URLByResolvingSymlinksInPath` doesn't work correctly on OS X 10.10 SDK, so I use a legacy way (2015-08).
+//    NSURL *linkDestinationURL = [[self linkURL] URLByResolvingSymlinksInPath];
+    NSURL *linkDestinationURL = [NSURL fileURLWithPath:[[NSFileManager defaultManager]
+                                                        destinationOfSymbolicLinkAtPath:[[self linkURL] path] error:nil]];
     
+    // if it is not a symlink
     if ([linkDestinationURL isEqual:[self linkURL]]) {
         [self setUninstallable:NO];  // treat as "installed"
         return YES;
     }
     
-    if ([linkDestinationURL isEqual:[[self executableURL] URLByStandardizingPath]] ||
-        [linkDestinationURL isEqual:kPreferredLinkTargetURL])  // link to '/Applications/CotEditor.app' is always valid
+    if ([linkDestinationURL isEqual:[[self commandURL] URLByStandardizingPath]] ||
+        [linkDestinationURL isEqual:[self preferredLinkTargetURL]])  // link to '/Applications/CotEditor.app' is always valid
     {
         // totaly valid link
         return YES;
@@ -255,7 +408,7 @@ static const NSURL *kPreferredLinkTargetURL;
     // display warning for invalid link
     if ([linkDestinationURL checkResourceIsReachableAndReturnError:nil]) {
         // link destinaiton is not running CotEditor
-        [self setWarning:NSLocalizedString(@"The current 'cot' symbolic link doesn't target on the running CotEditor.", nil)];
+        [self setWarning:NSLocalizedString(@"The current 'cot' symbolic link doesn’t target the running CotEditor.", nil)];
     } else {
         // link destination is unreachable
         [self setWarning:NSLocalizedString(@"The current 'cot' symbolic link may target on an invalid path.", nil)];
@@ -285,15 +438,15 @@ static const NSURL *kPreferredLinkTargetURL;
         
         if (relationship != NSURLRelationshipContains) {
             if (outError) {
-                NSDictionary *userInfo = @{NSLocalizedDescriptionKey: NSLocalizedString(@"The running CotEditor is not located in the Application directory.", nil),
-                                           NSLocalizedRecoverySuggestionErrorKey: [NSString stringWithFormat:NSLocalizedString(@"Do you really want to install the command-line tool for CotEditor at “%@”?\n\nWe recommend to move CotEditor.app to the Application directory at first.", nil),
-                                                                                   [[[NSBundle mainBundle] bundleURL] path]],
-                                           NSLocalizedRecoveryOptionsErrorKey: @[NSLocalizedString(@"Install", nil),
-                                                                                 NSLocalizedString(@"Cancel", nil)],
-                                           NSRecoveryAttempterErrorKey: self,
-                                           NSURLErrorKey: appURL};
-                
-                *outError = [NSError errorWithDomain:CEErrorDomain code:CEApplicationNotInApplicationDirectoryError userInfo:userInfo];
+                *outError = [NSError errorWithDomain:CEErrorDomain
+                                                code:CEApplicationNotInApplicationDirectoryError
+                                            userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"The running CotEditor is not located in the Applications folder.", nil),
+                                                       NSLocalizedRecoverySuggestionErrorKey: [NSString stringWithFormat:NSLocalizedString(@"Do you really want to install the command-line tool for CotEditor at “%@”?\n\nThe command will be invalid if the location of CotEditor is moved.", nil),
+                                                                                               [[[NSBundle mainBundle] bundleURL] path]],
+                                                       NSLocalizedRecoveryOptionsErrorKey: @[NSLocalizedString(@"Install", nil),
+                                                                                             NSLocalizedString(@"Cancel", nil)],
+                                                       NSRecoveryAttempterErrorKey: self,
+                                                       NSURLErrorKey: appURL}];
             }
             return NO;
         }
@@ -301,20 +454,30 @@ static const NSURL *kPreferredLinkTargetURL;
     
     if (![[[appURL lastPathComponent] stringByDeletingPathExtension] isEqualToString:preferredAppName]) {
         if (outError) {
-            NSDictionary *userInfo = @{NSLocalizedDescriptionKey: NSLocalizedString(@"The name of the running CotEditor is modified.", nil),
-                                       NSLocalizedRecoverySuggestionErrorKey: [NSString stringWithFormat:NSLocalizedString(@"Do you really want to install the command-line tool for “%@”?", nil),
-                                                                               [appURL lastPathComponent]],
-                                       NSLocalizedRecoveryOptionsErrorKey: @[NSLocalizedString(@"Install", nil),
-                                                                             NSLocalizedString(@"Cancel", nil)],
-                                       NSRecoveryAttempterErrorKey: self,
-                                       NSURLErrorKey: appURL};
-            
-            *outError = [NSError errorWithDomain:CEErrorDomain code:CEApplicationNameIsModifiedError userInfo:userInfo];
+            *outError = [NSError errorWithDomain:CEErrorDomain
+                                            code:CEApplicationNameIsModifiedError
+                                        userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"The name of the running CotEditor is modified.", nil),
+                                                   NSLocalizedRecoverySuggestionErrorKey: [NSString stringWithFormat:NSLocalizedString(@"Do you really want to install the command-line tool for “%@”?\n\nThe command will be invalid if CotEditor is renamed.", nil),
+                                                                                           [appURL lastPathComponent]],
+                                                   NSLocalizedRecoveryOptionsErrorKey: @[NSLocalizedString(@"Install", nil),
+                                                                                         NSLocalizedString(@"Cancel", nil)],
+                                                   NSRecoveryAttempterErrorKey: self,
+                                                   NSURLErrorKey: appURL}];
         }
         return NO;
     }
     
     return YES;
+}
+
+
+//------------------------------------------------------
+/// return running system version as NSString
+NSString *systemVersion()
+//------------------------------------------------------
+{
+    NSDictionary<NSString *, id> * systemVersion = [NSDictionary dictionaryWithContentsOfFile:@"/System/Library/CoreServices/SystemVersion.plist"];
+    return [systemVersion objectForKey:@"ProductVersion"];
 }
 
 @end

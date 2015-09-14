@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014 CotEditor Project
+ © 2014-2015 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -27,21 +27,21 @@
  */
 
 /* Class = "NSTextFieldCell"; title = "Behavior:"; ObjectID = "SqI-BC-ar9"; */
-"SqI-BC-ar9.title" = "行为:";
+"SqI-BC-ar9.title" = "行为：";
 /* Class = "NSButtonCell"; title = "Enable smart insert and delete"; ObjectID = "3302"; */
 "3302.title" = "启用只能插入和删除";
 /* Class = "NSButtonCell"; title = "Enable smart quotes and dashes"; ObjectID = "nA4-HY-d71"; */
 "nA4-HY-d71.title" = "启用智能引号和破折号";
 /* Class = "NSButtonCell"; title = "Swap “¥” and “\\” keys"; ObjectID = "3303"; */
-"3303.title" = "转换 “¥” 和 “\\” 按键";
+"3303.title" = "转换“¥”和“\\”按键";
 /* Class = "NSButtonCell"; title = "Highlight matching braces “( )” “[ ]” “{ }”"; ObjectID = "3304"; */
-"3304.title" = "高亮配对括号 “( )” “[ ]” “{ }”";
+"3304.title" = "高亮配对括号“( )” “[ ]” “{ }”";
 /* Class = "NSButtonCell"; title = "Highlight “< >”"; ObjectID = "3305"; */
-"3305.title" = "高亮 “< >”";
+"3305.title" = "高亮“< >”";
 
 
 /* Class = "NSTextFieldCell"; title = "Indentation:"; ObjectID = "9bX-ei-1x8"; */
-"9bX-ei-1x8.title" = "缩进:";
+"9bX-ei-1x8.title" = "缩进：";
 /* Class = "NSButtonCell"; title = "Auto indent"; ObjectID = "3285"; */
 "3285.title" = "自动缩进";
 /* Class = "NSButtonCell"; title = "Expand tabs to spaces"; ObjectID = "3283"; */
@@ -53,7 +53,7 @@
 
 
 /* Class = "NSTextFieldCell"; title = "Comment:"; ObjectID = "EDl-AJ-1dK"; */
-"EDl-AJ-1dK.title" = "注释:";
+"EDl-AJ-1dK.title" = "注释：";
 /* Class = "NSButtonCell"; title = "Append a space to comment delimiter"; ObjectID = "6Dw-5M-Gv0"; */
 "6Dw-5M-Gv0.title" = "在注释符号后追加空格";
 /* Class = "NSButtonCell"; title = "Always from line head"; ObjectID = "Byi-E9-owf"; */
@@ -61,13 +61,17 @@
 
 
 /* Class = "NSTextFieldCell"; title = "Line wrapping:"; ObjectID = "P1I-gs-RgX"; */
-"P1I-gs-RgX.title" = "换行:";
+"P1I-gs-RgX.title" = "换行：";
 /* Class = "NSButtonCell"; title = "Soft wrap lines"; ObjectID = "3274"; */
 "3274.title" = "自动换行";
+/* Class = "NSButtonCell"; title = "Indent wrapped lines by:"; ObjectID = "mCq-92-2sT"; */
+"mCq-92-2sT.title" = "自动换行缩进字符数：";
+/* Class = "NSTextFieldCell"; title = "spaces"; ObjectID = "P9V-pV-PAX"; */
+"P9V-pV-PAX.title" = "个空格";
 
 
 /* Class = "NSTextFieldCell"; title = "Invisibles:"; ObjectID = "pjW-HE-ngH"; */
-"pjW-HE-ngH.title" = "不可见字符:";
+"pjW-HE-ngH.title" = "不可见字符：";
 /* Class = "NSButtonCell"; title = "Show invisibles"; ObjectID = "CyH-q4-SWY"; */
 "CyH-q4-SWY.title" = "显示不可见文字";
 /* Class = "NSButtonCell"; title = "Space"; ObjectID = "3257"; */
@@ -83,17 +87,16 @@
 
 
 /* Class = "NSTextFieldCell"; title = "Completion:"; ObjectID = "gDN-SU-sZH"; */
-"gDN-SU-sZH.title" = "补全:";
-/* Class = "NSButtonCell"; title = "Auto complete"; ObjectID = "J1B-wA-rdr"; */
-"J1B-wA-rdr.title" = "自动补全";
+"gDN-SU-sZH.title" = "补全：";
 
-/* Class = "NSTextFieldCell"; title = "Completion list includes words in:"; ObjectID = "dLj-Kh-KtX"; */
-"dLj-Kh-KtX.title" = "补全列表包括的单词来源:";
-/* Class = "NSButtonCell"; title = "Document only"; ObjectID = "689"; */
-"689.title" = "仅文档";
-/* Class = "NSButtonCell"; title = "Syntax Style only"; ObjectID = "690"; */
-"690.title" = "仅语法风格";
-/* Class = "NSButtonCell"; title = "Document + Syntax Style"; ObjectID = "691"; */
-"691.title" = "文档 + 语法风格";
-/* Class = "NSButtonCell"; title = "Document + Syntax Style + Standard Words"; ObjectID = "r6f-b7-fJY"; */
-"r6f-b7-fJY.title" = "文档 + 语法风格 + 标准单词";
+/* Class = "NSTextFieldCell"; title = "Completion list includes:"; ObjectID = "dLj-Kh-KtX"; */
+"dLj-Kh-KtX.title" = "补全列表包括：";
+/* Class = "NSButtonCell"; title = "Words in document"; ObjectID = "EJZ-N6-54G"; */
+"EJZ-N6-54G.title" = "文档中的单词";
+/* Class = "NSButtonCell"; title = "Words defined in syntax style"; ObjectID = "1v9-7i-9RL"; */
+"1v9-7i-9RL.title" = "语法风格中包含的单词";
+/* Class = "NSButtonCell"; title = "Standard words"; ObjectID = "c5j-0N-f2R"; */
+"c5j-0N-f2R.title" = "标准单词";
+
+/* Class = "NSButtonCell"; title = "Suggest completions while typing"; ObjectID = "J1B-wA-rdr"; */
+"J1B-wA-rdr.title" = "忽略字符串中的制表符和换行符";

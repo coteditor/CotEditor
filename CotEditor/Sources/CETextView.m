@@ -40,6 +40,7 @@
 #import "CEScriptManager.h"
 #import "CEWindow.h"
 #import "NSString+JapaneseTransform.h"
+#import "NSString+Normalization.h"
 #import "Constants.h"
 
 
@@ -207,12 +208,12 @@ static NSPoint kTextContainerOrigin;
     
     if ([coder containsValueForKey:CEVisibleRectKey]) {
         NSRect visibleRect = [coder decodeRectForKey:CEVisibleRectKey];
-        NSArray *selectedRanges = [coder decodeObjectForKey:CESelectedRangesKey];
+        NSArray<NSValue *> *selectedRanges = [coder decodeObjectForKey:CESelectedRangesKey];
         
         [self setSelectedRanges:selectedRanges];
         
         // perform scroll on the next run-loop
-        __unsafe_unretained typeof(self) weakSelf = self;  // NSTextView cannnot be weak
+        __unsafe_unretained typeof(self) weakSelf = self;  // NSTextView cannot be weak
         dispatch_async(dispatch_get_main_queue(), ^{
             typeof(self) self = weakSelf;  // strong self
             if (!self) { return; }
@@ -715,7 +716,7 @@ static NSPoint kTextContainerOrigin;
 
 // ------------------------------------------------------
 /// Pasetboard内文字列の改行コードを書類に設定されたものに置換する
-- (BOOL)writeSelectionToPasteboard:(NSPasteboard *)pboard types:(NSArray *)types
+- (BOOL)writeSelectionToPasteboard:(NSPasteboard *)pboard types:(NSArray<NSString *> *)types
 // ------------------------------------------------------
 {
     BOOL success = [super writeSelectionToPasteboard:pboard types:types];
@@ -743,8 +744,8 @@ static NSPoint kTextContainerOrigin;
 {
     // on file drop
     if ([type isEqualToString:NSFilenamesPboardType]) {
-        NSArray *fileDropDefs = [[NSUserDefaults standardUserDefaults] arrayForKey:CEDefaultFileDropArrayKey];
-        NSArray *files = [pboard propertyListForType:NSFilenamesPboardType];
+        NSArray<NSDictionary<NSString *, NSString *> *> *fileDropDefs = [[NSUserDefaults standardUserDefaults] arrayForKey:CEDefaultFileDropArrayKey];
+        NSArray<NSString *> *files = [pboard propertyListForType:NSFilenamesPboardType];
         NSURL *documentURL = [[[[self window] windowController] document] fileURL];
         NSMutableString *replacementString = [NSMutableString string];
         
@@ -754,8 +755,8 @@ static NSPoint kTextContainerOrigin;
             NSString *stringToDrop = nil;
             
             // find matched template for path extension
-            for (NSDictionary *definition in fileDropDefs) {
-                NSArray *extensions = [definition[CEFileDropExtensionsKey] componentsSeparatedByString:@", "];
+            for (NSDictionary<NSString *, NSString *> *definition in fileDropDefs) {
+                NSArray<NSString *> *extensions = [definition[CEFileDropExtensionsKey] componentsSeparatedByString:@", "];
                 
                 if ([extensions containsObject:[pathExtension lowercaseString]] ||
                     [extensions containsObject:[pathExtension uppercaseString]])
@@ -769,9 +770,9 @@ static NSPoint kTextContainerOrigin;
             // build relative path
             NSString *relativePath;
             if (documentURL && ![documentURL isEqual:absoluteURL]) {
-                NSArray *docPathComponents = [documentURL pathComponents];
-                NSArray *droppedPathComponents = [absoluteURL pathComponents];
-                NSMutableArray *relativeComponents = [NSMutableArray array];
+                NSArray<NSString *> *docPathComponents = [documentURL pathComponents];
+                NSArray<NSString *> *droppedPathComponents = [absoluteURL pathComponents];
+                NSMutableArray<NSString *> *relativeComponents = [NSMutableArray array];
                 NSUInteger sameCount = 0, count = 0;
                 NSUInteger docCompnentsCount = [docPathComponents count];
                 NSUInteger droppedCompnentsCount = [droppedPathComponents count];
@@ -827,7 +828,7 @@ static NSPoint kTextContainerOrigin;
         
         // insert drop text to view
         if ([self shouldChangeTextInRange:[self selectedRange] replacementString:replacementString]) {
-            [[self textStorage] replaceCharactersInRange:[self selectedRange] withString:replacementString];
+            [self replaceCharactersInRange:[self selectedRange] withString:replacementString];
             [self didChangeText];
             return YES;
         }
@@ -867,7 +868,7 @@ static NSPoint kTextContainerOrigin;
 
 // ------------------------------------------------------
 /// ユーザ設定の変更を反映する
-- (void)observeValueForKeyPath:(nullable NSString *)keyPath ofObject:(nullable id)object change:(nullable NSDictionary *)change context:(nullable void *)context
+- (void)observeValueForKeyPath:(nullable NSString *)keyPath ofObject:(nullable id)object change:(nullable NSDictionary<NSString *, id> *)change context:(nullable void *)context
 // ------------------------------------------------------
 {
     id newValue = change[NSKeyValueChangeNewKey];
@@ -881,6 +882,19 @@ static NSPoint kTextContainerOrigin;
     } else if ([keyPath isEqualToString:CEDefaultCheckSpellingAsTypeKey]) {
         [self setContinuousSpellCheckingEnabled:[newValue boolValue]];
         
+    } else if ([keyPath isEqualToString:CEDefaultEnablesHangingIndentKey] ||
+               [keyPath isEqualToString:CEDefaultHangingIndentWidthKey])
+    {
+        NSRange wholeRange = NSMakeRange(0, [[self string] length]);
+        if ([keyPath isEqualToString:CEDefaultEnablesHangingIndentKey] && ![newValue boolValue]) {
+            // reset all headIndent
+            NSMutableParagraphStyle *paragraphStyle = [[self typingAttributes][NSParagraphStyleAttributeName] mutableCopy];
+            [paragraphStyle setHeadIndent:0];
+            [[self textStorage] addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:wholeRange];
+        } else {
+            [(CELayoutManager *)[self layoutManager] invalidateIndentInRange:wholeRange];
+        }
+    
     } else if ([keyPath isEqualToString:CEDefaultEnableSmartQuotesKey]) {
         if ([self respondsToSelector:@selector(setAutomaticQuoteSubstitutionEnabled:)]) {  // only on OS X 10.9 and later
             [self setAutomaticQuoteSubstitutionEnabled:[newValue boolValue]];
@@ -906,7 +920,8 @@ static NSPoint kTextContainerOrigin;
         ([menuItem action] == @selector(normalizeUnicodeWithNFD:)) ||
         ([menuItem action] == @selector(normalizeUnicodeWithNFC:)) ||
         ([menuItem action] == @selector(normalizeUnicodeWithNFKD:)) ||
-        ([menuItem action] == @selector(normalizeUnicodeWithNFKC:)))
+        ([menuItem action] == @selector(normalizeUnicodeWithNFKC:)) ||
+        ([menuItem action] == @selector(normalizeUnicodeWithNFKCCF:)))
     {
         return ([self selectedRange].length > 0);
         // （カラーコード編集メニューは常に有効）
@@ -959,7 +974,7 @@ static NSPoint kTextContainerOrigin;
     NSRange replacementRange = [self selectedRange];
     
     if ([self shouldChangeTextInRange:replacementRange replacementString:string]) {
-        [[self textStorage] replaceCharactersInRange:replacementRange withString:string];
+        [self replaceCharactersInRange:replacementRange withString:string];
         [self setSelectedRange:NSMakeRange(replacementRange.location, [string length])];
         
         NSString *actionName = (replacementRange.length > 0) ? @"Replace Text" : @"Insert Text";
@@ -980,7 +995,7 @@ static NSPoint kTextContainerOrigin;
     NSRange replacementRange = NSMakeRange(NSMaxRange([self selectedRange]), 0);
     
     if ([self shouldChangeTextInRange:replacementRange replacementString:string]) {
-        [[self textStorage] replaceCharactersInRange:replacementRange withString:string];
+        [self replaceCharactersInRange:replacementRange withString:string];
         [self setSelectedRange:NSMakeRange(replacementRange.location, [string length])];
         
         [[self undoManager] setActionName:NSLocalizedString(@"Insert Text", nil)];
@@ -1000,7 +1015,7 @@ static NSPoint kTextContainerOrigin;
     NSRange replacementRange = NSMakeRange(0, [[self string] length]);
     
     if ([self shouldChangeTextInRange:replacementRange replacementString:string]) {
-        [[self textStorage] replaceCharactersInRange:replacementRange withString:string];
+        [self replaceCharactersInRange:replacementRange withString:string];
         [self setSelectedRange:NSMakeRange(replacementRange.location, [string length])];
         
         [[self undoManager] setActionName:NSLocalizedString(@"Replace Text", nil)];
@@ -1020,7 +1035,7 @@ static NSPoint kTextContainerOrigin;
     NSRange replacementRange = NSMakeRange([[self string] length], 0);
     
     if ([self shouldChangeTextInRange:replacementRange replacementString:string]) {
-        [[self textStorage] replaceCharactersInRange:replacementRange withString:string];
+        [self replaceCharactersInRange:replacementRange withString:string];
         [self setSelectedRange:NSMakeRange(replacementRange.location, [string length])];
         
         [[self undoManager] setActionName:NSLocalizedString(@"Insert Text", nil)];
@@ -1179,7 +1194,7 @@ static NSPoint kTextContainerOrigin;
     }
 
     // create shifted string
-    NSMutableArray *newLines = [NSMutableArray array];
+    NSMutableArray<NSString *> *newLines = [NSMutableArray array];
     NSInteger tabWidth = [self tabWidth];
     __block NSRange newSelectedRange = selectedRange;
     __block BOOL didShift = NO;
@@ -1321,13 +1336,15 @@ static NSPoint kTextContainerOrigin;
 
 // ------------------------------------------------------
 /// 変更を監視するデフォルトキー
-+ (nonnull NSArray *)observedDefaultKeys
++ (nonnull NSArray<NSString *> *)observedDefaultKeys
 // ------------------------------------------------------
 {
     return @[CEDefaultAutoExpandTabKey,
              CEDefaultSmartInsertAndDeleteKey,
              CEDefaultCheckSpellingAsTypeKey,
-             CEDefaultEnableSmartQuotesKey];
+             CEDefaultEnableSmartQuotesKey,
+             CEDefaultHangingIndentWidthKey,
+             CEDefaultEnablesHangingIndentKey];
 }
 
 
@@ -1374,7 +1391,7 @@ static NSPoint kTextContainerOrigin;
 
 // ------------------------------------------------------
 /// perform multiple replacements
-- (void)replaceWithStrings:(nonnull NSArray *)strings ranges:(nonnull NSArray *)ranges selectedRanges:(nonnull NSArray *)selectedRanges actionName:(nullable NSString *)actionName
+- (void)replaceWithStrings:(nonnull NSArray<NSString *> *)strings ranges:(nonnull NSArray<NSValue *> *)ranges selectedRanges:(nonnull NSArray<NSValue *> *)selectedRanges actionName:(nullable NSString *)actionName
 // ------------------------------------------------------
 {
     // register redo for text selection
@@ -1390,7 +1407,7 @@ static NSPoint kTextContainerOrigin;
     
     // process text
     NSTextStorage *textStorage = [self textStorage];
-    NSDictionary *attributes = [self typingAttributes];
+    NSDictionary<NSString *, id> *attributes = [self typingAttributes];
     
     [textStorage beginEditing];
     // use backwards enumeration to skip adjustment of applying location
@@ -1415,7 +1432,7 @@ static NSPoint kTextContainerOrigin;
 
 // ------------------------------------------------------
 /// undoable selection change
-- (void)setSelectedRangesWithUndo:(nonnull NSArray *)ranges;
+- (void)setSelectedRangesWithUndo:(nonnull NSArray<NSValue *> *)ranges;
 // ------------------------------------------------------
 {
     [self setSelectedRanges:ranges];
@@ -1430,13 +1447,13 @@ static NSPoint kTextContainerOrigin;
 {
     if (patternNumber < 0) { return; }
     
-    NSArray *texts = [[NSUserDefaults standardUserDefaults] stringArrayForKey:CEDefaultInsertCustomTextArrayKey];
+    NSArray<NSString *> *texts = [[NSUserDefaults standardUserDefaults] stringArrayForKey:CEDefaultInsertCustomTextArrayKey];
     
     if (patternNumber < [texts count]) {
         NSString *string = texts[patternNumber];
         
         if ([self shouldChangeTextInRange:[self selectedRange] replacementString:string]) {
-            [[self textStorage] replaceCharactersInRange:[self selectedRange] withString:string];
+            [self replaceCharactersInRange:[self selectedRange] withString:string];
             [[self undoManager] setActionName:NSLocalizedString(@"Insert Custom Text", nil)];
             [self didChangeText];
             [self scrollRangeToVisible:[self selectedRange]];
@@ -1868,7 +1885,7 @@ static NSPoint kTextContainerOrigin;
     
     if (size == defaultSize) {
         // pseudo-animation
-        __unsafe_unretained typeof(self) weakSelf = self;  // NSTextView cannnot be weak
+        __unsafe_unretained typeof(self) weakSelf = self;  // NSTextView cannot be weak
         for (CGFloat factor = 1, interval = 0; factor <= 1.5; factor += 0.05, interval += 0.01) {
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(interval * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 typeof(self) self = weakSelf;  // strong self
@@ -2049,8 +2066,8 @@ static NSPoint kTextContainerOrigin;
     if (!hasUncommented && beginDelimiter) {
         
         // remove comment delimiters
-        NSArray *lines = [target componentsSeparatedByString:@"\n"];
-        NSMutableArray *newLines = [NSMutableArray array];
+        NSArray<NSString *> *lines = [target componentsSeparatedByString:@"\n"];
+        NSMutableArray<NSString *> *newLines = [NSMutableArray array];
         for (NSString *line in lines) {
             NSString *newLine = [line copy];
             if ([line hasPrefix:beginDelimiter]) {
@@ -2117,7 +2134,7 @@ static NSPoint kTextContainerOrigin;
     }
     
     if ([self inlineCommentDelimiter]) {
-        NSArray *lines = [target componentsSeparatedByString:@"\n"];
+        NSArray<NSString *> *lines = [target componentsSeparatedByString:@"\n"];
         NSUInteger commentLineCount = 0;
         for (NSString *line in lines) {
             if ([line hasPrefix:[self inlineCommentDelimiter]]) {
@@ -2245,6 +2262,18 @@ static NSPoint kTextContainerOrigin;
      }];
 }
 
+// ------------------------------------------------------
+/// Unicode normalization (NFKC_Casefold)
+- (IBAction)normalizeUnicodeWithNFKCCF:(nullable id)sender
+// ------------------------------------------------------
+{
+    [self transformSelectionWithActionName:@"NFKC Casefold"
+                          operationHandler:^NSString *(NSString *substring)
+     {
+         return [substring precomposedStringWithCompatibilityMappingWithCasefold];
+     }];
+}
+
 
 // ------------------------------------------------------
 /// tell selected string to color code panel
@@ -2275,10 +2304,10 @@ static NSPoint kTextContainerOrigin;
 - (void)transformSelectionWithActionName:(NSString *)actionName operationHandler:(NSString *(^)(NSString *substring))operationHandler
 // ------------------------------------------------------
 {
-    NSArray *selectedRanges = [self selectedRanges];
-    NSMutableArray *appliedRanges = [NSMutableArray array];
-    NSMutableArray *strings = [NSMutableArray array];
-    NSMutableArray *newSelectedRanges = [NSMutableArray array];
+    NSArray<NSValue *> *selectedRanges = [self selectedRanges];
+    NSMutableArray<NSValue *> *appliedRanges = [NSMutableArray array];
+    NSMutableArray<NSString *> *strings = [NSMutableArray array];
+    NSMutableArray<NSValue *> *newSelectedRanges = [NSMutableArray array];
     BOOL success = NO;
     NSInteger deltaLocation = 0;
     

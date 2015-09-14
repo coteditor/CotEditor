@@ -25,8 +25,8 @@
  
  */
 
-/* Class = "NSPanel"; title = "Window Opacity"; ObjectID = "jtp-g5-bGX"; */
-"jtp-g5-bGX.title" = "ウインドウの不透明度";
+/* Class = "NSPanel"; title = "View Opacity"; ObjectID = "jtp-g5-bGX"; */
+"jtp-g5-bGX.title" = "ビューの不透明度";
 
 /* Class = "NSButtonCell"; title = "Set as Default"; ObjectID = "QFp-iC-k4v"; */
 "QFp-iC-k4v.title" = "デフォルトに設定";

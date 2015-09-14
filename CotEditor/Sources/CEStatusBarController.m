@@ -178,7 +178,7 @@ static NSColor *kLabelColor;
 {
     if (![self isShown]) { return; }
     
-    NSMutableArray *status = [NSMutableArray array];
+    NSMutableArray<NSString *> *status = [NSMutableArray array];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     CEDocumentAnalyzer *info = [self documentAnalyzer];
     

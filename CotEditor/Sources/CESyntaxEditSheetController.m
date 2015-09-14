@@ -54,7 +54,7 @@ typedef NS_ENUM(NSUInteger, CETabIndex) {
 
 @interface CESyntaxEditSheetController () <NSTextFieldDelegate, NSTableViewDelegate>
 
-@property (nonatomic, nonnull) NSMutableDictionary *style;  // スタイル定義（NSArrayControllerを通じて操作）
+@property (nonatomic, nonnull) NSMutableDictionary<NSString *, id> *style;  // スタイル定義（NSArrayControllerを通じて操作）
 @property (nonatomic) CESyntaxEditSheetMode mode;
 @property (nonatomic, nonnull, copy) NSString *originalStyleName;   // シートを生成した際に指定したスタイル名
 @property (nonatomic, getter=isStyleNameValid) BOOL styleNameValid;
@@ -86,7 +86,7 @@ typedef NS_ENUM(NSUInteger, CETabIndex) {
 {
     self = [super initWithWindowNibName:@"SyntaxEditSheet"];
     if (self) {
-        NSMutableDictionary *style;
+        NSMutableDictionary<NSString *, id> *style;
         NSString *name;
         
         switch (mode) {
@@ -137,7 +137,7 @@ typedef NS_ENUM(NSUInteger, CETabIndex) {
     if (isDefaultSyntax) {
         BOOL isEqual = [[CESyntaxManager sharedManager] isEqualToBundledStyle:[self style] name:styleName];
         [[self styleNameField] setBordered:YES];
-        [[self messageField] setStringValue:NSLocalizedString(@"Name of the bundled style cannot be changed.", nil)];
+        [[self messageField] setStringValue:NSLocalizedString(@"Bundled styles can’t be renamed.", nil)];
         [[self factoryDefaultsButton] setEnabled:!isEqual];
     } else {
         [[self messageField] setStringValue:@""];
@@ -202,7 +202,7 @@ typedef NS_ENUM(NSUInteger, CETabIndex) {
 - (IBAction)setToFactoryDefaults:(nullable id)sender
 // ------------------------------------------------------
 {
-    NSMutableDictionary *style = [[[CESyntaxManager sharedManager] bundledStyleWithStyleName:[self originalStyleName]] mutableCopy];
+    NSMutableDictionary<NSString *, id> *style = [[[CESyntaxManager sharedManager] bundledStyleWithStyleName:[self originalStyleName]] mutableCopy];
     
     if (!style) { return; }
     
@@ -275,7 +275,7 @@ typedef NS_ENUM(NSUInteger, CETabIndex) {
 
 // ------------------------------------------------------
 /// メニュー項目を返す
-- (nonnull NSArray *)menuTitles
+- (nonnull NSArray<NSString *> *)menuTitles
 // ------------------------------------------------------
 {
     return @[NSLocalizedString(@"Keywords", nil),
@@ -338,11 +338,11 @@ typedef NS_ENUM(NSUInteger, CETabIndex) {
         if ([styleName length] < 1) {  // 空は不可
             message = NSLocalizedString(@"Input style name.", nil);
         } else if ([styleName rangeOfString:@"/"].location != NSNotFound) {  // ファイル名としても使われるので、"/" が含まれる名前は不可
-            message = NSLocalizedString(@"Style name cannot contain “/”. Input another name.", nil);
+            message = NSLocalizedString(@"You can’t use a style name that contains “/”. Please choose another name.", nil);
         } else if ([styleName hasPrefix:@"."]) {  // ファイル名としても使われるので、"." から始まる名前は不可
-            message = NSLocalizedString(@"Style name cannot begin with “.”. Input another name.", nil);
+            message = NSLocalizedString(@"You can’t use a style name that begins with a dot “.”. Please choose another name.", nil);
         } else if ([[[CESyntaxManager sharedManager] styleNames] indexOfObjectPassingTest:caseInsensitiveContains] != NSNotFound) {  // 既にある名前は不可
-            message = [NSString stringWithFormat:NSLocalizedString(@"“%@” is already exist. Input another name.", nil), duplicatedStyleName];
+            message = [NSString stringWithFormat:NSLocalizedString(@"“%@” is already taken. Please choose another name.", nil), duplicatedStyleName];
         }
     }
     
@@ -358,7 +358,7 @@ typedef NS_ENUM(NSUInteger, CETabIndex) {
 - (NSUInteger)validate
 // ------------------------------------------------------
 {
-    NSArray *results = [[CESyntaxManager sharedManager] validateSyntax:[self style]];
+    NSArray<NSDictionary<NSString*, NSString *> *> *results = [[CESyntaxManager sharedManager] validateSyntax:[self style]];
     NSUInteger numberOfErrors = [results count];
     NSMutableString *message = [NSMutableString string];
     
@@ -370,7 +370,7 @@ typedef NS_ENUM(NSUInteger, CETabIndex) {
         [message appendFormat:NSLocalizedString(@"%i errors were found!", nil), numberOfErrors];
     }
     
-    for (NSDictionary *result in results) {
+    for (NSDictionary<NSString*, NSString *> *result in results) {
         [message appendFormat:@"\n\n%@: [%@] %@\n\t> %@",
          result[CESyntaxValidationTypeKey],
          result[CESyntaxValidationRoleKey],

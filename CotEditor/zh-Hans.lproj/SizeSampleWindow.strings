@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014 CotEditor Project
+ © 2014-2015 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -33,9 +33,9 @@
 "3399.title" = "缩放这个窗口\n这个窗口的尺寸将被设置为默认值";
 
 /* Class = "NSTextFieldCell"; title = "Width:"; ObjectID = "3402"; */
-"3402.title" = "宽度:";
+"3402.title" = "宽度：";
 /* Class = "NSTextFieldCell"; title = "Height:"; ObjectID = "3403"; */
-"3403.title" = "高度:";
+"3403.title" = "高度：";
 
 /* Class = "NSButtonCell"; title = "Set to Default"; ObjectID = "3397"; */
 "3397.title" = "设为默认值";

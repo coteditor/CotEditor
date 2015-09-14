@@ -150,7 +150,6 @@
 }
 
 
-#if MAC_OS_X_VERSION_MAX_ALLOWED >= 101100
 // ------------------------------------------------------
 /// set action on swiping theme name (on El Capitan and leter)
 - (nonnull NSArray<NSTableViewRowAction *> *)tableView:(nonnull NSTableView *)tableView rowActionsForRow:(NSInteger)row edge:(NSTableRowActionEdge)edge
@@ -173,7 +172,6 @@
                   [self deleteSyntaxStyleWithName:swipedSyntaxName];
               }]];
 }
-#endif  // MAC_OS_X_VERSION_10_11
 
 
 
@@ -262,7 +260,7 @@
             
             NSAlert *alert = [[NSAlert alloc] init];
             [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"The “%@” style already exists.", nil), styleName]];
-            [alert setInformativeText:NSLocalizedString(@"Do you want to replace it?\nReplaced style cannot be restored.", nil)];
+            [alert setInformativeText:NSLocalizedString(@"Do you want to replace it?\nReplaced style can’t be restored.", nil)];
             [alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
             [alert addButtonWithTitle:NSLocalizedString(@"Replace", nil)];
             // 現行シート値を設定し、確認のためにセカンダリシートを開く
@@ -362,7 +360,7 @@
 - (void)setupEncodingMenus
 // ------------------------------------------------------
 {
-    NSArray *menuItems = [[CEEncodingManager sharedManager] encodingMenuItems];
+    NSArray<NSMenuItem *> *menuItems = [[CEEncodingManager sharedManager] encodingMenuItems];
     
     [[self encodingMenuInOpen] removeAllItems];
     [[self encodingMenuInNew] removeAllItems];
@@ -390,7 +388,7 @@
 - (void)setupSyntaxStyleMenus
 // ------------------------------------------------------
 {
-    NSArray *styleNames = [[CESyntaxManager sharedManager] styleNames];
+    NSArray<NSString *> *styleNames = [[CESyntaxManager sharedManager] styleNames];
     NSString *noneStyle = NSLocalizedString(@"None", nil);
     
     // インストール済みスタイルリストの更新
@@ -440,8 +438,8 @@
     if (![[CESyntaxManager sharedManager] URLForUserStyle:styleName]) { return; }
     
     NSAlert *alert = [[NSAlert alloc] init];
-    [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"Delete the syntax style “%@”?", nil), styleName]];
-    [alert setInformativeText:NSLocalizedString(@"Deleted style cannot be restored.", nil)];
+    [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"Are you sure you want to delete “%@” syntax style?", nil), styleName]];
+    [alert setInformativeText:NSLocalizedString(@"Deleted style can’t be restored.", nil)];
     [alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
     [alert addButtonWithTitle:NSLocalizedString(@"Delete", nil)];
     
@@ -474,8 +472,8 @@
         [window orderOut:self];
         [[[self view] window] makeKeyAndOrderFront:self];
         NSAlert *alert = [[NSAlert alloc] init];
-        [alert setMessageText:NSLocalizedString(@"Error occured.", nil)];
-        [alert setInformativeText:[NSString stringWithFormat:NSLocalizedString(@"Sorry, could not import “%@”.", nil), [fileURL lastPathComponent]]];
+        [alert setMessageText:NSLocalizedString(@"An error occurred.", nil)];
+        [alert setInformativeText:[NSString stringWithFormat:NSLocalizedString(@"The style “%@” couldn’t be imported.", nil), [fileURL lastPathComponent]]];
         
         NSBeep();
         [alert beginSheetModalForWindow:[[self view] window] modalDelegate:self didEndSelector:NULL contextInfo:NULL];
@@ -501,8 +499,8 @@
         [[alert window] orderOut:self];
         [[[self view] window] makeKeyAndOrderFront:self];
         NSAlert *alert = [[NSAlert alloc] init];
-        [alert setMessageText:NSLocalizedString(@"Error occured.", nil)];
-        [alert setInformativeText:[NSString stringWithFormat:NSLocalizedString(@"Sorry, could not delete “%@”.", nil), styleName]];
+        [alert setMessageText:NSLocalizedString(@"An error occurred.", nil)];
+        [alert setInformativeText:[NSString stringWithFormat:NSLocalizedString(@"The style “%@” couldn’t be deleted.", nil), styleName]];
         NSBeep();
         [alert beginSheetModalForWindow:[[self view] window] modalDelegate:self didEndSelector:NULL contextInfo:NULL];
     }

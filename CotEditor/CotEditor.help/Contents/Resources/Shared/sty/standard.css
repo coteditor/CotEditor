@@ -73,6 +73,12 @@ pre {
 	border-radius: 3px;
 	clear: both;
 }
+ol.nostyle,
+ul.nostyle,
+pre.nostyle {
+	border: none;
+	background: none;
+}
 pre {
 	padding: 0.4em 1.0em;
 }

@@ -43,7 +43,7 @@
 
 @implementation CEPanelController
 
-static NSMutableDictionary *instances;
+static NSMutableDictionary<NSString *, __kindof CEPanelController *> *instances;
 
 
 #pragma mark Singleton
