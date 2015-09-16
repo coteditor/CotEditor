@@ -8,6 +8,7 @@ develop
 ### Additions/Changes
 
 - Improve contexutal menu for syntax style list on preferences.
+- Tweak sytnax style edit sheet layout.
 
 
 ### Fixes
