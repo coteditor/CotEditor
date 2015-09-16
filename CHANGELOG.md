@@ -10,6 +10,11 @@ develop
 - Improve contexutal menu for syntax style list on preferences.
 
 
+### Fixes
+
+- Fix help contents layout.
+
+
 
 2.2.0-rc (71)
 --------------------------

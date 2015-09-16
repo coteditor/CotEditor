@@ -43,13 +43,14 @@ body > h1 {
 	margin: 0 0 1.5em;
 }
 body > h1::before {
-	content: url(../gfx/icon_32x32@2x.png);
-	-webkit-transform: scale(0.5);
+	content: '';
+	background: url('../gfx/icon_32x32@2x.png');
+	background-size: contain;
 	display: inline-block;
-	width: 16px;
-	height: 16px;
-	vertical-align: 12px;
-	margin-right: 26px;
+	width: 32px;
+	height: 32px;
+	vertical-align: -6px;
+	margin-right: 12px;
 }
 h2 {
 	font-size: 110%;
@@ -221,6 +222,7 @@ body > nav {
 	top: 0;
 	left: 0;
 	right: 0;
+	z-index: 10;
 }
 body > nav a {
 	color: hsl(0,0%,40%);
