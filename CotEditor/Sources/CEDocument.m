@@ -496,6 +496,27 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 
 // ------------------------------------------------------
+/// setup duplicated document
+- (__kindof NSDocument *)duplicateAndReturnError:(NSError * _Nullable __autoreleasing *)outError
+// ------------------------------------------------------
+{
+    CEDocument *document = (CEDocument *)[super duplicateAndReturnError:outError];
+    
+    [document doSetSyntaxStyle:[[self editor] syntaxStyleName]];
+    [document doSetLineEnding:[self lineEnding]];
+    [document doSetEncoding:[self encoding] updateDocument:NO askLossy:NO lossy:NO asActionName:nil];
+    
+    // apply text orientation
+    CEEditorWrapper *editor = [self editor];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[document editor] setVerticalLayoutOrientation:[editor isVerticalLayoutOrientation]];
+    });
+    
+    return document;
+}
+
+
+// ------------------------------------------------------
 /// store internal document state
 - (void)encodeRestorableStateWithCoder:(nonnull NSCoder *)coder
 // ------------------------------------------------------
