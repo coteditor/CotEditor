@@ -31,7 +31,7 @@
 
 @interface CEMigrationWindowController ()
 
-@property (nonatomic, nonnull) NSString *appName;
+@property (nonatomic, nonnull, copy) NSString *appName;
 
 @property (nonatomic, nullable) IBOutlet NSView *finishedView;
 @property (nonatomic, nullable) IBOutlet NSView *initialView;

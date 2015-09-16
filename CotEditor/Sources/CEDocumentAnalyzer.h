@@ -42,29 +42,29 @@ extern NSString *_Nonnull const CEAnalyzerDidUpdateEditorInfoNotification;
 @property (nonatomic, nullable, weak) CEDocument *document;
 
 // file info
-@property (readonly, nonatomic, nullable) NSString *creationDate;
-@property (readonly, nonatomic, nullable) NSString *modificationDate;
-@property (readonly, nonatomic, nullable) NSString *fileSize;
-@property (readonly, nonatomic, nullable) NSString *filePath;
-@property (readonly, nonatomic, nullable) NSString *owner;
-@property (readonly, nonatomic, nullable) NSString *permission;
+@property (readonly, nonatomic, nullable, copy) NSString *creationDate;
+@property (readonly, nonatomic, nullable, copy) NSString *modificationDate;
+@property (readonly, nonatomic, nullable, copy) NSString *fileSize;
+@property (readonly, nonatomic, nullable, copy) NSString *filePath;
+@property (readonly, nonatomic, nullable, copy) NSString *owner;
+@property (readonly, nonatomic, nullable, copy) NSString *permission;
 @property (readonly, nonatomic, getter=isWritable) BOOL writable;
 
 // mode info
-@property (readonly, nonatomic, nullable) NSString *encoding;
-@property (readonly, nonatomic, nullable) NSString *charsetName;
-@property (readonly, nonatomic, nullable) NSString *lineEndings;
+@property (readonly, nonatomic, nullable, copy) NSString *encoding;
+@property (readonly, nonatomic, nullable, copy) NSString *charsetName;
+@property (readonly, nonatomic, nullable, copy) NSString *lineEndings;
 
 // editor info
-@property (readonly, nonatomic, nullable) NSString *lines;
-@property (readonly, nonatomic, nullable) NSString *chars;
-@property (readonly, nonatomic, nullable) NSString *words;
-@property (readonly, nonatomic, nullable) NSString *length;
-@property (readonly, nonatomic, nullable) NSString *byteLength;
-@property (readonly, nonatomic, nullable) NSString *location;  // caret location from the beginning of document
-@property (readonly, nonatomic, nullable) NSString *line;      // current line
-@property (readonly, nonatomic, nullable) NSString *column;    // caret location from the beginning of line
-@property (readonly, nonatomic, nullable) NSString *unicode;   // Unicode of selected single character (or surrogate-pair)
+@property (readonly, nonatomic, nullable, copy) NSString *lines;
+@property (readonly, nonatomic, nullable, copy) NSString *chars;
+@property (readonly, nonatomic, nullable, copy) NSString *words;
+@property (readonly, nonatomic, nullable, copy) NSString *length;
+@property (readonly, nonatomic, nullable, copy) NSString *byteLength;
+@property (readonly, nonatomic, nullable, copy) NSString *location;  // caret location from the beginning of document
+@property (readonly, nonatomic, nullable, copy) NSString *line;      // current line
+@property (readonly, nonatomic, nullable, copy) NSString *column;    // caret location from the beginning of line
+@property (readonly, nonatomic, nullable, copy) NSString *unicode;   // Unicode of selected single character (or surrogate-pair)
 
 
 // Public Methods

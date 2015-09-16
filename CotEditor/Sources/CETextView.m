@@ -54,7 +54,7 @@ NSString *const CEVisibleRectKey = @"visibleRect";
 @interface CETextView ()
 
 @property (nonatomic) NSTimer *completionTimer;
-@property (nonatomic) NSString *particalCompletionWord;  // ユーザが実際に入力した補完の元になる文字列
+@property (nonatomic, copy) NSString *particalCompletionWord;  // ユーザが実際に入力した補完の元になる文字列
 
 @property (nonatomic) NSColor *highlightLineColor;  // カレント行ハイライト色
 

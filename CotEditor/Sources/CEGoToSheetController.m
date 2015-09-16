@@ -32,7 +32,7 @@
 
 @property (nonatomic, nullable, weak) CEEditorWrapper *editor;
 
-@property (nonatomic, nullable) NSString *location;
+@property (nonatomic, nullable, copy) NSString *location;
 @property (nonatomic) CEGoToType gotoType;
 
 @end

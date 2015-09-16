@@ -51,7 +51,7 @@ NSString *_Nonnull const CESecondaryFooterAlignmentKey = @"CESecondaryFooterAlig
 @property (nonatomic, nullable) IBOutlet NSPopUpButton *themePopup;
 
 
-@property (nonatomic, nullable) NSString *theme;
+@property (nonatomic, nullable, copy) NSString *theme;
 @property (nonatomic) CELineNumberPrintMode lineNumberMode;
 @property (nonatomic) CEInvisibleCharsPrintMode invisibleCharsMode;
 
