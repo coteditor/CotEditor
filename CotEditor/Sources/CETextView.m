@@ -47,7 +47,6 @@
 // constant
 const NSInteger kNoMenuItem = -1;
 
-NSString *const CELayoutOrientationKey = @"layoutOrientation";
 NSString *const CESelectedRangesKey = @"selectedRange";
 NSString *const CEVisibleRectKey = @"visibleRect";
 
@@ -189,7 +188,6 @@ static NSPoint kTextContainerOrigin;
 {
     [super encodeRestorableStateWithCoder:coder];
     
-    [coder encodeInteger:[self layoutOrientation] forKey:CELayoutOrientationKey];
     [coder encodeObject:[self selectedRanges] forKey:CESelectedRangesKey];
     [coder encodeRect:[self visibleRect] forKey:CEVisibleRectKey];
 }
@@ -201,10 +199,6 @@ static NSPoint kTextContainerOrigin;
 // ------------------------------------------------------
 {
     [super restoreStateWithCoder:coder];
-    
-    if ([coder containsValueForKey:CELayoutOrientationKey]) {
-        [self setLayoutOrientation:[coder decodeIntegerForKey:CELayoutOrientationKey]];
-    }
     
     if ([coder containsValueForKey:CEVisibleRectKey]) {
         NSRect visibleRect = [coder decodeRectForKey:CEVisibleRectKey];

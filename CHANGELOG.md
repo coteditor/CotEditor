@@ -14,6 +14,7 @@ develop
 ### Fixes
 
 - Fix an issue where application could possibly crash on window restoration.
+- Fix an issue where the toolbar button state of the text orientation was not updated on window restoration.
 - Fix help contents layout.
 
 
