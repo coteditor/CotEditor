@@ -13,6 +13,7 @@ develop
 
 ### Fixes
 
+- Fix an issue where application could possibly crash on window restoration.
 - Fix help contents layout.
 
 

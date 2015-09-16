@@ -210,7 +210,17 @@ static NSPoint kTextContainerOrigin;
         NSRect visibleRect = [coder decodeRectForKey:CEVisibleRectKey];
         NSArray<NSValue *> *selectedRanges = [coder decodeObjectForKey:CESelectedRangesKey];
         
-        [self setSelectedRanges:selectedRanges];
+        // filter to avoid crash if the stored selected range is an invalid range
+        if ([selectedRanges count] > 0) {
+            NSUInteger length = [[self textStorage] length];
+            selectedRanges = [selectedRanges filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id  _Nonnull evaluatedObject, NSDictionary<NSString *,id> * _Nullable bindings) {
+                NSRange range = [evaluatedObject rangeValue];
+                
+                return NSMaxRange(range) <= length;
+            }]];
+            
+            [self setSelectedRanges:selectedRanges];
+        }
         
         // perform scroll on the next run-loop
         __unsafe_unretained typeof(self) weakSelf = self;  // NSTextView cannot be weak
