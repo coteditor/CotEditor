@@ -31,7 +31,7 @@
 
 
 // constants
-static NSString *const CERowsPboardType = @"CERowsPboardType";
+static NSString *_Nonnull const CERowsPboardType = @"CERowsPboardType";
 
 
 @interface CEPrefEncodingDataSource ()

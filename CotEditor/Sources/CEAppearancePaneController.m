@@ -237,7 +237,7 @@
 
 // ------------------------------------------------------
 /// テーマが編集された
-- (void)didUpdateTheme:(NSMutableDictionary<NSString *, NSMutableDictionary<NSString *, id> *> *)theme
+- (void)didUpdateTheme:(nonnull NSDictionary<NSString *, NSMutableDictionary<NSString *, id> *> *)theme
 // ------------------------------------------------------
 {
     // save

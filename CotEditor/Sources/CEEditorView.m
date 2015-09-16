@@ -168,7 +168,7 @@
 
 // ------------------------------------------------------
 /// TextStorage を置換
-- (void)replaceTextStorage:(NSTextStorage *)textStorage
+- (void)replaceTextStorage:(nonnull NSTextStorage *)textStorage
 // ------------------------------------------------------
 {
     [[[self textView] layoutManager] replaceTextStorage:textStorage];
@@ -267,7 +267,7 @@
 
 // ------------------------------------------------------
 /// シンタックススタイルを設定
-- (void)applySyntax:(CESyntaxParser *)syntaxParser
+- (void)applySyntax:(nonnull CESyntaxParser *)syntaxParser
 // ------------------------------------------------------
 {
     [[self textView] setInlineCommentDelimiter:[syntaxParser inlineCommentDelimiter]];
@@ -551,7 +551,7 @@
 
 // ------------------------------------------------------
 /// return shared sytnaxParser
-- (CESyntaxParser *)syntaxParser
+- (nullable CESyntaxParser *)syntaxParser
 // ------------------------------------------------------
 {
     return [[self editorWrapper] syntaxParser];

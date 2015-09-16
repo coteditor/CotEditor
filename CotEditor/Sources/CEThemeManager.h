@@ -29,62 +29,62 @@
 
 
 // extension for theme file
-extern NSString *const CEThemeExtension;
+extern NSString *_Nonnull const CEThemeExtension;
 
 // keys for theme dict
-extern NSString *const CEThemeTextKey;
-extern NSString *const CEThemeBackgroundKey;
-extern NSString *const CEThemeInvisiblesKey;
-extern NSString *const CEThemeSelectionKey;
-extern NSString *const CEThemeInsertionPointKey;
-extern NSString *const CEThemeLineHighlightKey;
+extern NSString *_Nonnull const CEThemeTextKey;
+extern NSString *_Nonnull const CEThemeBackgroundKey;
+extern NSString *_Nonnull const CEThemeInvisiblesKey;
+extern NSString *_Nonnull const CEThemeSelectionKey;
+extern NSString *_Nonnull const CEThemeInsertionPointKey;
+extern NSString *_Nonnull const CEThemeLineHighlightKey;
 
-extern NSString *const CEThemeKeywordsKey;
-extern NSString *const CEThemeCommandsKey;
-extern NSString *const CEThemeTypesKey;
-extern NSString *const CEThemeAttributesKey;
-extern NSString *const CEThemeVariablesKey;
-extern NSString *const CEThemeValuesKey;
-extern NSString *const CEThemeNumbersKey;
-extern NSString *const CEThemeStringsKey;
-extern NSString *const CEThemeCharactersKey;
-extern NSString *const CEThemeCommentsKey;
+extern NSString *_Nonnull const CEThemeKeywordsKey;
+extern NSString *_Nonnull const CEThemeCommandsKey;
+extern NSString *_Nonnull const CEThemeTypesKey;
+extern NSString *_Nonnull const CEThemeAttributesKey;
+extern NSString *_Nonnull const CEThemeVariablesKey;
+extern NSString *_Nonnull const CEThemeValuesKey;
+extern NSString *_Nonnull const CEThemeNumbersKey;
+extern NSString *_Nonnull const CEThemeStringsKey;
+extern NSString *_Nonnull const CEThemeCharactersKey;
+extern NSString *_Nonnull const CEThemeCommentsKey;
 
-extern NSString *const CEThemeColorKey;
-extern NSString *const CEThemeUsesSystemSettingKey;
+extern NSString *_Nonnull const CEThemeColorKey;
+extern NSString *_Nonnull const CEThemeUsesSystemSettingKey;
 
 
 // notifications
-extern NSString *const CEThemeListDidUpdateNotification;
-extern NSString *const CEThemeDidUpdateNotification;
+extern NSString *_Nonnull const CEThemeListDidUpdateNotification;
+extern NSString *_Nonnull const CEThemeDidUpdateNotification;
 
 
 
 @interface CEThemeManager : NSObject
 
-@property (readonly, nonatomic, copy) NSArray<NSString *> *themeNames;
+@property (readonly, nonatomic, nonnull, copy) NSArray<NSString *> *themeNames;
 
 
 // singleton
-+ (instancetype)sharedManager;
++ (nonnull instancetype)sharedManager;
 
 
 // public methods
 /// Theme dict in which objects are property list ready.
-- (NSMutableDictionary<NSString *, NSMutableDictionary<NSString *, id> *> *)archivedTheme:(NSString *)themeName isBundled:(BOOL *)isBundled;
+- (nullable NSMutableDictionary<NSString *, NSMutableDictionary<NSString *, id> *> *)archivedTheme:(nonnull NSString *)themeName isBundled:(nullable BOOL *)isBundled;
 
 /// Return whether the theme that has the given name is bundled with the app.
-- (BOOL)isBundledTheme:(NSString *)themeName cutomized:(BOOL *)isCustomized;
+- (BOOL)isBundledTheme:(nonnull NSString *)themeName cutomized:(nullable BOOL *)isCustomized;
 
 // manage themes
-- (BOOL)saveTheme:(NSDictionary<NSString *, NSDictionary<NSString *, id> *> *)theme name:(NSString *)themeName completionHandler:(void (^)(NSError *error))completionHandler;
-- (BOOL)renameTheme:(NSString *)themeName toName:(NSString *)newThemeName error:(NSError * __autoreleasing *)outError;
-- (BOOL)removeTheme:(NSString *)themeName error:(NSError * __autoreleasing *)outError;
-- (BOOL)restoreTheme:(NSString *)themeName completionHandler:(void (^)(NSError *error))completionHandler;
-- (BOOL)duplicateTheme:(NSString *)themeName error:(NSError * __autoreleasing *)outError;
-- (BOOL)exportTheme:(NSString *)themeName toURL:(NSURL *)URL error:(NSError * __autoreleasing *)outError;
-- (BOOL)importTheme:(NSURL *)URL replace:(BOOL)doReplace error:(NSError * __autoreleasing *)outError;
-- (BOOL)createUntitledThemeWithCompletionHandler:(void (^)(NSString *themeName, NSError *error))completionHandler;
+- (BOOL)saveTheme:(nonnull NSDictionary<NSString *, NSDictionary<NSString *, id> *> *)theme name:(nonnull NSString *)themeName completionHandler:(nullable void (^)(NSError *_Nullable error))completionHandler;
+- (BOOL)renameTheme:(nonnull NSString *)themeName toName:(nonnull NSString *)newThemeName error:(NSError * _Nullable __autoreleasing * _Nullable)outError;
+- (BOOL)removeTheme:(nonnull NSString *)themeName error:(NSError * _Nullable __autoreleasing * _Nullable)outError;
+- (BOOL)restoreTheme:(nonnull NSString *)themeName completionHandler:(nullable void (^)(NSError *_Nullable error))completionHandler;
+- (BOOL)duplicateTheme:(nonnull NSString *)themeName error:(NSError * _Nullable __autoreleasing * _Nullable)outError;
+- (BOOL)exportTheme:(nonnull NSString *)themeName toURL:(nonnull NSURL *)URL error:(NSError * _Nullable __autoreleasing * _Nullable)outError;
+- (BOOL)importTheme:(nonnull NSURL *)URL replace:(BOOL)doReplace error:(NSError * _Nullable __autoreleasing * _Nullable)outError;
+- (BOOL)createUntitledThemeWithCompletionHandler:(nullable void (^)(NSString *_Nonnull themeName, NSError *_Nullable error))completionHandler;
 
 @end
 

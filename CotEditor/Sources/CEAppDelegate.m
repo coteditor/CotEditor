@@ -700,7 +700,7 @@
     CEDocument *document = [[NSDocumentController sharedDocumentController] openUntitledDocumentAndDisplay:YES error:&err];
     NSString *selection = [pboard stringForType:NSPasteboardTypeString];
     
-    if (document) {
+    if (document && selection) {
         [[document editor] insertTextViewString:selection];
     } else {
         [[NSAlert alertWithError:err] runModal];

@@ -43,16 +43,16 @@
 static char const UTF8_BOM[] = {0xef, 0xbb, 0xbf};
 
 NSUInteger const CEUniqueFileIDLength = 8;
-NSString *const CEWritablilityKey = @"writability";
-NSString *const CEReadingEncodingKey = @"readingEncoding";
-NSString *const CESyntaxStyleKey = @"syntaxStyle";
-NSString *const CEAutosaveIdentierKey = @"autosaveIdentifier";
+NSString *_Nonnull const CEWritablilityKey = @"writability";
+NSString *_Nonnull const CEReadingEncodingKey = @"readingEncoding";
+NSString *_Nonnull const CESyntaxStyleKey = @"syntaxStyle";
+NSString *_Nonnull const CEAutosaveIdentierKey = @"autosaveIdentifier";
 
 // incompatible chars dictionary keys
-NSString *const CEIncompatibleLineNumberKey = @"lineNumber";
-NSString *const CEIncompatibleRangeKey = @"incompatibleRange";
-NSString *const CEIncompatibleCharKey = @"incompatibleChar";
-NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
+NSString *_Nonnull const CEIncompatibleLineNumberKey = @"lineNumber";
+NSString *_Nonnull const CEIncompatibleRangeKey = @"incompatibleRange";
+NSString *_Nonnull const CEIncompatibleCharKey = @"incompatibleChar";
+NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 
 @interface CEDocument ()

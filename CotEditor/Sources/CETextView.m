@@ -47,8 +47,8 @@
 // constant
 const NSInteger kNoMenuItem = -1;
 
-NSString *const CESelectedRangesKey = @"selectedRange";
-NSString *const CEVisibleRectKey = @"visibleRect";
+NSString *_Nonnull const CESelectedRangesKey = @"selectedRange";
+NSString *_Nonnull const CEVisibleRectKey = @"visibleRect";
 
 
 @interface CETextView ()
@@ -970,11 +970,9 @@ static NSPoint kTextContainerOrigin;
 
 // ------------------------------------------------------
 /// treat programmatic text insertion
-- (void)insertString:(nullable NSString *)string
+- (void)insertString:(nonnull NSString *)string
 // ------------------------------------------------------
 {
-    if (!string) { return; }
-    
     NSRange replacementRange = [self selectedRange];
     
     if ([self shouldChangeTextInRange:replacementRange replacementString:string]) {
@@ -991,11 +989,9 @@ static NSPoint kTextContainerOrigin;
 
 // ------------------------------------------------------
 /// insert given string just after current selection and select inserted range
-- (void)insertStringAfterSelection:(nullable NSString *)string
+- (void)insertStringAfterSelection:(nonnull NSString *)string
 // ------------------------------------------------------
 {
-    if (!string) { return; }
-    
     NSRange replacementRange = NSMakeRange(NSMaxRange([self selectedRange]), 0);
     
     if ([self shouldChangeTextInRange:replacementRange replacementString:string]) {
@@ -1011,11 +1007,9 @@ static NSPoint kTextContainerOrigin;
 
 // ------------------------------------------------------
 /// swap whole current string with given string and select inserted range
-- (void)replaceAllStringWithString:(nullable NSString *)string
+- (void)replaceAllStringWithString:(nonnull NSString *)string
 // ------------------------------------------------------
 {
-    if (!string) { return; }
-    
     NSRange replacementRange = NSMakeRange(0, [[self string] length]);
     
     if ([self shouldChangeTextInRange:replacementRange replacementString:string]) {
@@ -1031,11 +1025,9 @@ static NSPoint kTextContainerOrigin;
 
 // ------------------------------------------------------
 /// append string at the end of the whole string and select inserted range
-- (void)appendString:(nullable NSString *)string
+- (void)appendString:(nonnull NSString *)string
 // ------------------------------------------------------
 {
-    if (!string) { return; }
-    
     NSRange replacementRange = NSMakeRange([[self string] length], 0);
     
     if ([self shouldChangeTextInRange:replacementRange replacementString:string]) {

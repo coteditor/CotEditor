@@ -35,15 +35,15 @@
 
 
 // local constants (QC might abbr of Quotes/Comment)
-static NSString *const InvisiblesType = @"invisibles";
+static NSString *_Nonnull const InvisiblesType = @"invisibles";
 
-static NSString *const QCLocationKey = @"QCLocationKey";
-static NSString *const QCPairKindKey = @"QCPairKindKey";
-static NSString *const QCStartEndKey = @"QCStartEndKey";
-static NSString *const QCLengthKey = @"QCLengthKey";
+static NSString *_Nonnull const QCLocationKey = @"QCLocationKey";
+static NSString *_Nonnull const QCPairKindKey = @"QCPairKindKey";
+static NSString *_Nonnull const QCStartEndKey = @"QCStartEndKey";
+static NSString *_Nonnull const QCLengthKey = @"QCLengthKey";
 
-static NSString *const QCInlineCommentKind = @"QCInlineCommentKind";  // for pairKind
-static NSString *const QCBlockCommentKind = @"QCBlockCommentKind";  // for pairKind
+static NSString *_Nonnull const QCInlineCommentKind = @"QCInlineCommentKind";  // for pairKind
+static NSString *_Nonnull const QCBlockCommentKind = @"QCBlockCommentKind";  // for pairKind
 
 typedef NS_ENUM(NSUInteger, QCStartEndType) {
     QCEnd,

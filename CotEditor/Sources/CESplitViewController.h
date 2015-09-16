@@ -36,7 +36,7 @@
 
 - (nonnull NSSplitView *)splitView;
 
-- (void)enumerateEditorViewsUsingBlock:(void (^ _Nonnull)(CEEditorView * _Nonnull editorView))block;
+- (void)enumerateEditorViewsUsingBlock:(nonnull void (^)(CEEditorView * _Nonnull editorView))block;
 
 - (void)updateCloseSplitViewButton;
 

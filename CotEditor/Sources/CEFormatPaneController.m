@@ -454,7 +454,7 @@
 - (void)validateRemoveSyntaxStyleButton
 // ------------------------------------------------------
 {
-    BOOL isDeletable = ![[CESyntaxManager sharedManager] isBundledStyle:[self selectedStyleName]];
+    BOOL isDeletable = [self selectedStyleName] ? ![[CESyntaxManager sharedManager] isBundledStyle:[self selectedStyleName]] : NO;
     
     [[self syntaxStyleDeleteButton] setEnabled:isDeletable];
 }

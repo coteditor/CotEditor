@@ -31,48 +31,48 @@
 
 // notifications
 /// Posted when the line-up of syntax styles is updated.  This will be used for syntax style menus.
-extern NSString *const CESyntaxListDidUpdateNotification;
+extern NSString *_Nonnull const CESyntaxListDidUpdateNotification;
 
 /// Posted when a syntax style is updated.  Information about new/previous style name is in userInfo.
-extern NSString *const CESyntaxDidUpdateNotification;
+extern NSString *_Nonnull const CESyntaxDidUpdateNotification;
 
 // keys for validation result
-extern NSString *const CESyntaxValidationTypeKey;
-extern NSString *const CESyntaxValidationRoleKey;
-extern NSString *const CESyntaxValidationStringKey;
-extern NSString *const CESyntaxValidationMessageKey;
+extern NSString *_Nonnull const CESyntaxValidationTypeKey;
+extern NSString *_Nonnull const CESyntaxValidationRoleKey;
+extern NSString *_Nonnull const CESyntaxValidationStringKey;
+extern NSString *_Nonnull const CESyntaxValidationMessageKey;
 
 
 @interface CESyntaxManager : NSObject
 
 // readonly
-@property (readonly, nonatomic, copy) NSArray<NSString *> *styleNames;
+@property (readonly, nonatomic, nonnull, copy) NSArray<NSString *> *styleNames;
 /// conflict error dicts
-@property (readonly, nonatomic, copy) NSDictionary<NSString *, NSMutableArray<NSString *> *> *extensionConflicts;
-@property (readonly, nonatomic, copy) NSDictionary<NSString *, NSMutableArray<NSString *> *> *filenameConflicts;
+@property (readonly, nonatomic, nonnull, copy) NSDictionary<NSString *, NSMutableArray<NSString *> *> *extensionConflicts;
+@property (readonly, nonatomic, nonnull, copy) NSDictionary<NSString *, NSMutableArray<NSString *> *> *filenameConflicts;
 
 
 // singleton
-+ (instancetype)sharedManager;
++ (nonnull instancetype)sharedManager;
 
 
 // public methods
-- (NSString *)styleNameFromFileName:(NSString *)fileName;
-- (NSString *)styleNameFromInterpreter:(NSString *)interpreter;
-- (NSArray<NSString *> *)extensionsForStyleName:(NSString *)styleName;
-- (NSDictionary<NSString *, id> *)styleWithStyleName:(NSString *)styleName;
-- (NSDictionary<NSString *, id> *)bundledStyleWithStyleName:(NSString *)styleName;
-- (NSDictionary<NSString *, id> *)emptyStyle;
-- (NSURL *)URLForUserStyle:(NSString *)styleName;  // returns nil if file is not available
-- (BOOL)isBundledStyle:(NSString *)styleName;  // check only the name
-- (BOOL)isEqualToBundledStyle:(NSDictionary<NSString *, id> *)style name:(NSString *)styleName;
-- (BOOL)importStyleFromURL:(NSURL *)fileURL;
-- (BOOL)exportStyle:(NSString *)styleName toURL:(NSURL *)fileURL;
-- (BOOL)removeStyleFileWithStyleName:(NSString *)styleName;
+- (nullable NSString *)styleNameFromFileName:(nullable NSString *)fileName;
+- (nullable NSString *)styleNameFromInterpreter:(nonnull NSString *)interpreter;
+- (nonnull NSArray<NSString *> *)extensionsForStyleName:(nonnull NSString *)styleName;
+- (nonnull NSDictionary<NSString *, id> *)styleWithStyleName:(nonnull NSString *)styleName;
+- (nullable NSDictionary<NSString *, id> *)bundledStyleWithStyleName:(nonnull NSString *)styleName;
+- (nonnull NSDictionary<NSString *, id> *)emptyStyle;
+- (nullable NSURL *)URLForUserStyle:(nonnull NSString *)styleName;  // returns nil if file is not available
+- (BOOL)isBundledStyle:(nonnull NSString *)styleName;  // check only the name
+- (BOOL)isEqualToBundledStyle:(nonnull NSDictionary<NSString *, id> *)style name:(nonnull NSString *)styleName;
+- (BOOL)importStyleFromURL:(nonnull NSURL *)fileURL;
+- (BOOL)exportStyle:(nonnull NSString *)styleName toURL:(nonnull NSURL *)fileURL;
+- (BOOL)removeStyleFileWithStyleName:(nonnull NSString *)styleName;
 - (BOOL)existsMappingConflict;
-- (NSString *)copiedStyleName:(NSString *)originalName;
-- (void)saveStyle:(NSMutableDictionary<NSString *, id> *)style name:(NSString *)name oldName:(NSString *)oldName;
-- (NSArray<NSDictionary<NSString *, NSString *> *> *)validateSyntax:(NSDictionary *)style;
+- (nonnull NSString *)copiedStyleName:(nonnull NSString *)originalName;
+- (void)saveStyle:(nonnull NSMutableDictionary<NSString *, id> *)style name:(nonnull NSString *)name oldName:(nonnull NSString *)oldName;
+- (nonnull NSArray<NSDictionary<NSString *, NSString *> *> *)validateSyntax:(nonnull NSDictionary *)style;
 
 @end
 
@@ -82,7 +82,7 @@ extern NSString *const CESyntaxValidationMessageKey;
 // It can be removed when the most of users have been already migrated in the future.
 @interface CESyntaxManager (Migration)
 
-- (void)migrateStylesWithCompletionHandler:(void (^)(BOOL success))completionHandler;
-- (BOOL)importLegacyStyleFromURL:(NSURL *)fileURL;
+- (void)migrateStylesWithCompletionHandler:(nullable void (^)(BOOL success))completionHandler;
+- (BOOL)importLegacyStyleFromURL:(nonnull NSURL *)fileURL;
 
 @end
