@@ -420,7 +420,7 @@ static NSString *const kPreferredSymbolicLinkPath = @"/usr/local/bin/cot";
 
 // ------------------------------------------------------
 /// check whether current running CotEditor is located in the /Application directory
-- (BOOL)checkApplicationLocationAndReturnError:(NSError *__autoreleasing __nullable *)outError
+- (BOOL)checkApplicationLocationAndReturnError:(NSError * _Nullable __autoreleasing * _Nullable)outError
 // ------------------------------------------------------
 {
     NSString *preferredAppName = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleName"];

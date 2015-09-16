@@ -88,7 +88,7 @@
 
 // ------------------------------------------------------
 /// check file before creating a new document instance
-- (nullable id)makeDocumentWithContentsOfURL:(nonnull NSURL *)url ofType:(nonnull NSString *)typeName error:(NSError *__autoreleasing __nullable *)outError
+- (nullable id)makeDocumentWithContentsOfURL:(nonnull NSURL *)url ofType:(nonnull NSString *)typeName error:(NSError * _Nullable __autoreleasing * _Nullable)outError
 // ------------------------------------------------------
 {
     // display alert if file is enorm large
@@ -110,7 +110,9 @@
             
             // cancel operation
             if ([alert runModal] == NSAlertSecondButtonReturn) {
-                *outError = [NSError errorWithDomain:NSCocoaErrorDomain code:NSUserCancelledError userInfo:nil];
+                if (outError) {
+                    *outError = [NSError errorWithDomain:NSCocoaErrorDomain code:NSUserCancelledError userInfo:nil];
+                }
                 return nil;
             }
         }
@@ -128,7 +130,7 @@
 
 // ------------------------------------------------------
 /// add encoding menu to open panel
-- (void)beginOpenPanel:(nonnull NSOpenPanel *)openPanel forTypes:(nullable NSArray<NSString *> *)inTypes completionHandler:(void (^ __nonnull)(NSInteger))completionHandler
+- (void)beginOpenPanel:(nonnull NSOpenPanel *)openPanel forTypes:(nullable NSArray<NSString *> *)inTypes completionHandler:(void (^ _Nonnull)(NSInteger))completionHandler
 // ------------------------------------------------------
 {
     // initialize encoding menu and set the accessory view

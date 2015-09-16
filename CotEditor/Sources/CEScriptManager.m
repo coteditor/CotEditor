@@ -393,7 +393,7 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 
 // ------------------------------------------------------
 /// return document content conforming to the input type
-+ (nullable NSString *)inputStringWithType:(CEScriptInputType)inputType document:(nullable CEDocument *)document error:(NSError *__autoreleasing __nullable *)outError
++ (nullable NSString *)inputStringWithType:(CEScriptInputType)inputType document:(nullable CEDocument *)document error:(NSError * _Nullable __autoreleasing * _Nullable)outError
 // ------------------------------------------------------
 {
     CEEditorWrapper *editor = [document editor];
@@ -433,7 +433,7 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 
 // ------------------------------------------------------
 /// apply results conforming to the output type to the frontmost document
-+ (BOOL)applyOutput:(nonnull NSString *)output document:(nullable CEDocument *)document outputType:(CEScriptOutputType)outputType error:(NSError *__autoreleasing __nullable *)outError
++ (BOOL)applyOutput:(nonnull NSString *)output document:(nullable CEDocument *)document outputType:(CEScriptOutputType)outputType error:(NSError * _Nullable __autoreleasing * _Nullable)outError
 // ------------------------------------------------------
 {
     CEEditorWrapper *editor = [document editor];

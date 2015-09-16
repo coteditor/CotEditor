@@ -29,9 +29,9 @@
 
 
 // notifications
-extern NSString *__nonnull const CEAnalyzerDidUpdateFileInfoNotification;
-extern NSString *__nonnull const CEAnalyzerDidUpdateModeInfoNotification;
-extern NSString *__nonnull const CEAnalyzerDidUpdateEditorInfoNotification;
+extern NSString *_Nonnull const CEAnalyzerDidUpdateFileInfoNotification;
+extern NSString *_Nonnull const CEAnalyzerDidUpdateModeInfoNotification;
+extern NSString *_Nonnull const CEAnalyzerDidUpdateEditorInfoNotification;
 
 
 @class CEDocument;

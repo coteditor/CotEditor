@@ -78,12 +78,12 @@ extern NSString *const CEThemeDidUpdateNotification;
 
 // manage themes
 - (BOOL)saveTheme:(NSDictionary<NSString *, NSDictionary<NSString *, id> *> *)theme name:(NSString *)themeName completionHandler:(void (^)(NSError *error))completionHandler;
-- (BOOL)renameTheme:(NSString *)themeName toName:(NSString *)newThemeName error:(NSError **)outError;
-- (BOOL)removeTheme:(NSString *)themeName error:(NSError **)outError;
+- (BOOL)renameTheme:(NSString *)themeName toName:(NSString *)newThemeName error:(NSError * __autoreleasing *)outError;
+- (BOOL)removeTheme:(NSString *)themeName error:(NSError * __autoreleasing *)outError;
 - (BOOL)restoreTheme:(NSString *)themeName completionHandler:(void (^)(NSError *error))completionHandler;
-- (BOOL)duplicateTheme:(NSString *)themeName error:(NSError **)outError;
-- (BOOL)exportTheme:(NSString *)themeName toURL:(NSURL *)URL error:(NSError **)outError;
-- (BOOL)importTheme:(NSURL *)URL replace:(BOOL)doReplace error:(NSError **)outError;
+- (BOOL)duplicateTheme:(NSString *)themeName error:(NSError * __autoreleasing *)outError;
+- (BOOL)exportTheme:(NSString *)themeName toURL:(NSURL *)URL error:(NSError * __autoreleasing *)outError;
+- (BOOL)importTheme:(NSURL *)URL replace:(BOOL)doReplace error:(NSError * __autoreleasing *)outError;
 - (BOOL)createUntitledThemeWithCompletionHandler:(void (^)(NSString *themeName, NSError *error))completionHandler;
 
 @end

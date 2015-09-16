@@ -30,7 +30,7 @@
 #import "Constants.h"
 
 
-NSString *__nonnull const CEEncodingListDidUpdateNotification = @"CESyntaxListDidUpdateNotification";
+NSString *_Nonnull const CEEncodingListDidUpdateNotification = @"CESyntaxListDidUpdateNotification";
 
 
 @interface CEEncodingManager ()

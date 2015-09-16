@@ -39,7 +39,7 @@ extern char const XATTR_VERTICAL_TEXT_NAME[];
 - (BOOL)setXattrEncoding:(NSStringEncoding)encoding;
 
 // for general bool values
-- (BOOL)getXattrBoolForName:(const char *)name;
-- (BOOL)setXattrBool:(BOOL)value forName:(const char *)name;
+- (BOOL)getXattrBoolForName:(const char * _Nonnull)name;
+- (BOOL)setXattrBool:(BOOL)value forName:(const char * _Nonnull)name;
 
 @end

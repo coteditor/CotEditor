@@ -33,9 +33,9 @@
 
 
 // notifications
-NSString *__nonnull const CEAnalyzerDidUpdateFileInfoNotification = @"CEAnalyzerDidUpdateFileInfoNotification";
-NSString *__nonnull const CEAnalyzerDidUpdateModeInfoNotification = @"CEAnalyzerDidUpdateModeInfoNotification";
-NSString *__nonnull const CEAnalyzerDidUpdateEditorInfoNotification = @"CEAnalyzerDidUpdateEditorInfoNotification";
+NSString *_Nonnull const CEAnalyzerDidUpdateFileInfoNotification = @"CEAnalyzerDidUpdateFileInfoNotification";
+NSString *_Nonnull const CEAnalyzerDidUpdateModeInfoNotification = @"CEAnalyzerDidUpdateModeInfoNotification";
+NSString *_Nonnull const CEAnalyzerDidUpdateEditorInfoNotification = @"CEAnalyzerDidUpdateEditorInfoNotification";
 
 
 @interface CEDocumentAnalyzer ()

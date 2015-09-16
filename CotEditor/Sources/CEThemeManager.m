@@ -199,7 +199,7 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
 
 //------------------------------------------------------
 /// テーマ名を変更する
-- (BOOL)renameTheme:(NSString *)themeName toName:(NSString *)newThemeName error:(NSError *__autoreleasing __nullable *)outError
+- (BOOL)renameTheme:(NSString *)themeName toName:(NSString *)newThemeName error:(NSError * _Nullable __autoreleasing * _Nullable)outError
 //------------------------------------------------------
 {
     BOOL success = NO;
@@ -235,7 +235,7 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
 
 //------------------------------------------------------
 /// テーマ名に応じたテーマファイルを削除する
-- (BOOL)removeTheme:(NSString *)themeName error:(NSError *__autoreleasing __nullable *)outError
+- (BOOL)removeTheme:(NSString *)themeName error:(NSError * _Nullable __autoreleasing * _Nullable)outError
 //------------------------------------------------------
 {
     BOOL success = NO;
@@ -301,7 +301,7 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
 
 //------------------------------------------------------
 /// 外部テーマファイルをユーザ領域にコピーする
-- (BOOL)importTheme:(NSURL *)URL replace:(BOOL)doReplace error:(NSError *__autoreleasing __nullable *)outError
+- (BOOL)importTheme:(NSURL *)URL replace:(BOOL)doReplace error:(NSError * _Nullable __autoreleasing * _Nullable)outError
 //------------------------------------------------------
 {
     __block BOOL success = NO;
@@ -360,7 +360,7 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
 
 //------------------------------------------------------
 /// テーマファイルを指定のURLにコピーする
-- (BOOL)exportTheme:(NSString *)themeName toURL:(NSURL *)URL error:(NSError *__autoreleasing __nullable *)outError
+- (BOOL)exportTheme:(NSString *)themeName toURL:(NSURL *)URL error:(NSError * _Nullable __autoreleasing * _Nullable)outError
 //------------------------------------------------------
 {
     __block BOOL success = NO;
@@ -383,7 +383,7 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
 
 //------------------------------------------------------
 /// テーマを複製する
-- (BOOL)duplicateTheme:(NSString *)themeName error:(NSError *__autoreleasing __nullable *)outError
+- (BOOL)duplicateTheme:(NSString *)themeName error:(NSError * _Nullable __autoreleasing * _Nullable)outError
 //------------------------------------------------------
 {
     BOOL success = NO;
@@ -591,7 +591,7 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
 
 // ------------------------------------------------------
 /// 有効なテーマ名かチェックしてエラーメッセージを返す
-- (BOOL)validateThemeName:(NSString *)themeName originalName:(NSString *)originalThemeName error:(NSError *__autoreleasing __nullable *)outError
+- (BOOL)validateThemeName:(NSString *)themeName originalName:(NSString *)originalThemeName error:(NSError * _Nullable __autoreleasing * _Nullable)outError
 // ------------------------------------------------------
 {
     // 元の名前とのケース違いはOK

@@ -38,10 +38,10 @@
 
 
 // Incompatible chars listController key
-extern NSString *__nonnull const CEIncompatibleLineNumberKey;
-extern NSString *__nonnull const CEIncompatibleRangeKey;
-extern NSString *__nonnull const CEIncompatibleCharKey;
-extern NSString *__nonnull const CEIncompatibleConvertedCharKey;
+extern NSString *_Nonnull const CEIncompatibleLineNumberKey;
+extern NSString *_Nonnull const CEIncompatibleRangeKey;
+extern NSString *_Nonnull const CEIncompatibleCharKey;
+extern NSString *_Nonnull const CEIncompatibleConvertedCharKey;
 
 
 @interface CEDocument : NSDocument
@@ -67,7 +67,7 @@ extern NSString *__nonnull const CEIncompatibleConvertedCharKey;
 // string encoding
 - (nullable NSString *)IANACharSetName;
 - (nullable NSArray<NSDictionary<NSString *, NSValue *> *> *)findCharsIncompatibleWithEncoding:(NSStringEncoding)encoding;
-- (BOOL)reinterpretWithEncoding:(NSStringEncoding)encoding error:(NSError * __nullable __autoreleasing * __nullable)outError;
+- (BOOL)reinterpretWithEncoding:(NSStringEncoding)encoding error:(NSError * _Nullable __autoreleasing * _Nullable)outError;
 - (BOOL)doSetEncoding:(NSStringEncoding)encoding updateDocument:(BOOL)updateDocument askLossy:(BOOL)askLossy lossy:(BOOL)lossy asActionName:(nullable NSString *)actionName;
 
 // line ending

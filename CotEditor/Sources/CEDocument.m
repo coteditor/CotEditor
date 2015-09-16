@@ -143,7 +143,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 // ------------------------------------------------------
 /// initialize instance with existing file
-- (nullable instancetype)initWithContentsOfURL:(nonnull NSURL *)url ofType:(nonnull NSString *)typeName error:(NSError * __nullable __autoreleasing * __nullable)outError
+- (nullable instancetype)initWithContentsOfURL:(nonnull NSURL *)url ofType:(nonnull NSString *)typeName error:(NSError * _Nullable __autoreleasing * _Nullable)outError
 // ------------------------------------------------------
 {
     // This method won't be invoked on Resume. (2015-01-26)
@@ -188,7 +188,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 // ------------------------------------------------------
 /// load document from file and return whether it succeeded
-- (BOOL)readFromData:(nonnull NSData *)data ofType:(nonnull NSString *)typeName error:(NSError * __nullable __autoreleasing * __nullable)outError
+- (BOOL)readFromData:(nonnull NSData *)data ofType:(nonnull NSString *)typeName error:(NSError * _Nullable __autoreleasing * _Nullable)outError
 // ------------------------------------------------------
 {
     // store file hash (MD5) in order to check the file content identity in `presentedItemDidChange`
@@ -226,7 +226,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 // ------------------------------------------------------
 /// revert to saved file contents
-- (BOOL)revertToContentsOfURL:(nonnull NSURL *)url ofType:(nonnull NSString *)typeName error:(NSError * __nullable __autoreleasing * __nullable)outError
+- (BOOL)revertToContentsOfURL:(nonnull NSURL *)url ofType:(nonnull NSString *)typeName error:(NSError * _Nullable __autoreleasing * _Nullable)outError
 // ------------------------------------------------------
 {
     BOOL success = [super revertToContentsOfURL:url ofType:typeName error:outError];
@@ -243,7 +243,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 // ------------------------------------------------------
 /// create NSData object to save
-- (nullable NSData *)dataOfType:(nonnull NSString *)typeName error:(NSError * __nullable __autoreleasing * __nullable)outError
+- (nullable NSData *)dataOfType:(nonnull NSString *)typeName error:(NSError * _Nullable __autoreleasing * _Nullable)outError
 // ------------------------------------------------------
 {
     NSStringEncoding encoding = [self encoding];
@@ -282,7 +282,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 // ------------------------------------------------------
 /// save or autosave the document contents to a file
-- (void)saveToURL:(nonnull NSURL *)url ofType:(nonnull NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation completionHandler:(nonnull void (^)(NSError * __nullable))completionHandler
+- (void)saveToURL:(nonnull NSURL *)url ofType:(nonnull NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation completionHandler:(nonnull void (^)(NSError * _Nullable))completionHandler
 // ------------------------------------------------------
 {
     // break undo grouping
@@ -349,7 +349,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 // ------------------------------------------------------
 /// ファイルの保存(保存処理で包括的に呼ばれる)
-- (BOOL)writeToURL:(nonnull NSURL *)url ofType:(nonnull NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation originalContentsURL:(nullable NSURL *)absoluteOriginalContentsURL error:(NSError * __nullable __autoreleasing * __nullable)outError
+- (BOOL)writeToURL:(nonnull NSURL *)url ofType:(nonnull NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation originalContentsURL:(nullable NSURL *)absoluteOriginalContentsURL error:(NSError * _Nullable __autoreleasing * _Nullable)outError
 // ------------------------------------------------------
 {
     // [caution] This method may be called from a background thread due to async-saving.
@@ -443,7 +443,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 // ------------------------------------------------------
 /// プリントパネルを含むプリント用設定を生成して返す
-- (nullable NSPrintOperation *)printOperationWithSettings:(nonnull NSDictionary<NSString *, id> *)printSettings error:(NSError * __nullable __autoreleasing * __nullable)outError
+- (nullable NSPrintOperation *)printOperationWithSettings:(nonnull NSDictionary<NSString *, id> *)printSettings error:(NSError * _Nullable __autoreleasing * _Nullable)outError
 // ------------------------------------------------------
 {
     if (![self printPanelAccessoryController]) {
@@ -497,7 +497,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 // ------------------------------------------------------
 /// setup duplicated document
-- (__kindof NSDocument *)duplicateAndReturnError:(NSError * _Nullable __autoreleasing *)outError
+- (__kindof NSDocument *)duplicateAndReturnError:(NSError * _Nullable __autoreleasing * _Nullable)outError
 // ------------------------------------------------------
 {
     CEDocument *document = (CEDocument *)[super duplicateAndReturnError:outError];
@@ -841,7 +841,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 // ------------------------------------------------------
 /// 指定されたエンコーディングでファイルを再解釈する
-- (BOOL)reinterpretWithEncoding:(NSStringEncoding)encoding error:(NSError * __nullable __autoreleasing * __nullable)outError
+- (BOOL)reinterpretWithEncoding:(NSStringEncoding)encoding error:(NSError * _Nullable __autoreleasing * _Nullable)outError
 // ------------------------------------------------------
 {
     BOOL success = NO;
@@ -1264,7 +1264,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 //------------------------------------------------------
 /// データから指定エンコードで文字列を読み込み返す
-- (nullable NSString *)stringFromData:(nonnull NSData *)data encoding:(NSStringEncoding)encoding xattrEncoding:(NSStringEncoding)xattrEncoding usedEncoding:(nonnull NSStringEncoding *)usedEncoding error:(NSError *__autoreleasing __nullable *)outError
+- (nullable NSString *)stringFromData:(nonnull NSData *)data encoding:(NSStringEncoding)encoding xattrEncoding:(NSStringEncoding)xattrEncoding usedEncoding:(nonnull NSStringEncoding *)usedEncoding error:(NSError * _Nullable __autoreleasing * _Nullable)outError
 //------------------------------------------------------
 {
     NSString *string;
@@ -1296,7 +1296,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 //------------------------------------------------------
 /// データからエンコードを推測して文字列を得る
-- (nullable NSString *)stringFromData:(nonnull NSData *)data usedEncoding:(nonnull NSStringEncoding *)usedEncoding error:(NSError *__autoreleasing __nullable *)outError
+- (nullable NSString *)stringFromData:(nonnull NSData *)data usedEncoding:(nonnull NSStringEncoding *)usedEncoding error:(NSError * _Nullable __autoreleasing * _Nullable)outError
 //------------------------------------------------------
 {
     BOOL shouldSkipISO2022JP = NO;
@@ -1543,7 +1543,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 // ------------------------------------------------------
 /// 書類内のIANA文字コード名と設定されたエンコーディングの矛盾をチェック
-- (BOOL)checkSavingSafetyWithIANACharSetNameForString:(nonnull NSString *)string encoding:(NSStringEncoding)encoding error:(NSError *__autoreleasing __nullable *)outError
+- (BOOL)checkSavingSafetyWithIANACharSetNameForString:(nonnull NSString *)string encoding:(NSStringEncoding)encoding error:(NSError * _Nullable __autoreleasing *  _Nullable)outError
 // ------------------------------------------------------
 {
     NSStringEncoding IANACharSetEncoding = [self scanEncodingDeclarationInString:string];
@@ -1581,7 +1581,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 // ------------------------------------------------------
 /// ファイル保存前のエンコーディング変換チェック
-- (BOOL)checkSavingSafetyForConvertingString:(nonnull NSString *)string encoding:(NSStringEncoding)encoding error:(NSError *__autoreleasing __nullable *)outError
+- (BOOL)checkSavingSafetyForConvertingString:(nonnull NSString *)string encoding:(NSStringEncoding)encoding error:(NSError * _Nullable __autoreleasing *  _Nullable)outError
 // ------------------------------------------------------
 {
     // エンコーディングを見て、半角円マークを変換しておく

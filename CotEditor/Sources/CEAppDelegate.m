@@ -693,7 +693,7 @@
 
 // ------------------------------------------------------
 /// open new document with string via Services
-- (void)openSelection:(nonnull NSPasteboard *)pboard userData:(nonnull NSString *)userData error:(NSString * __nullable * __nullable)error
+- (void)openSelection:(nonnull NSPasteboard *)pboard userData:(nonnull NSString *)userData error:(NSString * _Nullable * _Nullable)error
 // ------------------------------------------------------
 {
     NSError *err = nil;
@@ -710,7 +710,7 @@
 
 // ------------------------------------------------------
 /// open files via Services
-- (void)openFile:(nonnull NSPasteboard *)pboard userData:(nonnull NSString *)userData error:(NSString * __nullable * __nullable)error
+- (void)openFile:(nonnull NSPasteboard *)pboard userData:(nonnull NSString *)userData error:(NSString * _Nullable * _Nullable)error
 // ------------------------------------------------------
 {
     for (NSPasteboardItem *item in [pboard pasteboardItems]) {
@@ -757,8 +757,8 @@
 
 @implementation CEAppDelegate (Migration)
 
-static NSString *__nonnull const kOldIdentifier = @"com.aynimac.CotEditor";
-static NSString *__nonnull const kMigrationFlagKey = @"isMigratedToNewBundleIdentifier";
+static NSString *_Nonnull const kOldIdentifier = @"com.aynimac.CotEditor";
+static NSString *_Nonnull const kMigrationFlagKey = @"isMigratedToNewBundleIdentifier";
 
 
 //------------------------------------------------------

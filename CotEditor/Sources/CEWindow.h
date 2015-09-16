@@ -28,7 +28,7 @@
 @import Cocoa;
 
 // notifications
-extern NSString *__nonnull const CEWindowOpacityDidChangeNotification;
+extern NSString *_Nonnull const CEWindowOpacityDidChangeNotification;
 
 
 @interface CEWindow : NSWindow
