@@ -137,5 +137,5 @@
 
 
 /* Class = "NSSegmentedCell"; ObjectID = "TPz-kb-PBa"; */
-"TPz-kb-PBa.ibShadowedLabels[0]" = "文稿";  /* Document */
-"TPz-kb-PBa.ibShadowedLabels[1]" = "错误";  /* Issues */
+"TPz-kb-PBa.ibShadowedToolTips[0]" = "文稿信息";  /* Document Inspector */
+"TPz-kb-PBa.ibShadowedToolTips[1]" = "不兼容字符";  /* Incompatible Characters */
