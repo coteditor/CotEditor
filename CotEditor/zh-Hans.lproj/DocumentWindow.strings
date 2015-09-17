@@ -133,7 +133,7 @@
 
 
 /* Class = "NSImageView"; ibShadowedToolTip = "This document is read only."; ObjectID = "EP1-My-tQo"; */
-"EP1-My-tQo.ibShadowedToolTip" = "这是只读文档";
+"EP1-My-tQo.ibShadowedToolTip" = "这是只读文档。";
 
 
 /* Class = "NSSegmentedCell"; ObjectID = "TPz-kb-PBa"; */

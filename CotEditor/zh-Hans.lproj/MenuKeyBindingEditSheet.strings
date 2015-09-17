@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014 CotEditor Project
+ © 2014-2015 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -30,7 +30,7 @@
 "5.title" = "菜单按键绑定";
 
 /* Class = "NSTextFieldCell"; title = "To change a binding, select it, click the key column, and then type the keys.\nYou must include the Command key."; ObjectID = "144"; */
-"144.title" = "选中要绑定的项目并单击按键列来改变绑定\n绑定的快捷键中必须包含 Command 键";
+"144.title" = "选中要绑定的项目并单击按键列来改变绑定\n绑定的快捷键中必须包含 Command 键。";
 
 /* Class = "NSTableColumn"; headerCell.title = "Title / Action"; ObjectID = "9"; */
 "9.headerCell.title" = "标题 / 动作";
