@@ -530,7 +530,7 @@
 {
     NSAlert *alert = [[NSAlert alloc] init];
     [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"Are you sure you want to delete “%@” theme?", nil), themeName]];
-    [alert setInformativeText:NSLocalizedString(@"Deleted theme can’t be restored.", nil)];
+    [alert setInformativeText:NSLocalizedString(@"This action cannot be undone.", nil)];
     [alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
     [alert addButtonWithTitle:NSLocalizedString(@"Delete", nil)];
     

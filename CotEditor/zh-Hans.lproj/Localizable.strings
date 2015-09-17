@@ -269,7 +269,7 @@
 "Duplicate “%@”" = "拷贝“%@”";
 "Restore “%@”" = "还原“%@”";
 "Are you sure you want to delete “%@” theme?" = "确认删除“%@”主题？";
-"Deleted theme can’t be restored." = "删除后的主题将无法还原";
+"This action cannot be undone." = "此操作不能撤销。";
 "A new theme named “%@” will be installed, but a custom theme with the same name already exists." = "将要安装名为“%@”的新主题，但是已经存在同名的自定义主题";
 "Do you want to replace it?\nReplaced theme can’t be restored." = "要覆盖原主题吗？\n主题删除后将无法还原";
 
@@ -349,14 +349,14 @@
 "Bundled styles can’t be renamed." = "内置样式的名称不能改变";
 // Suffix of copied syntax coloring style
 " copy" = " 拷贝";
-// Delete syntax coloring style alert message
+// Delete syntax style alert message
 "Are you sure you want to delete “%@” syntax style?" = "确定删除语法样式“%@”？";
-// Syntax coloring style alert button titles
+// Delete syntax style alert information
+"This action cannot be undone." = "此操作不能撤销。";
+// Syntax style alert button titles
 "Cancel" = "取消";
 "Delete" = "删除";
 "Replace" = "替换";
-// Delete syntax coloring style alert information
-"Deleted style can’t be restored." = "样式删除后无法恢复";
 // Deleted error
 "The style “%@” couldn’t be deleted." = "“%@”无法删除";
 // Import syntax coloring style file choose openPanel button

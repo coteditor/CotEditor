@@ -270,7 +270,7 @@
 "Duplicate “%@”" = "“%@”を複製";
 "Restore “%@”" = "“%@”を元に戻す";
 "Are you sure you want to delete “%@” theme?" = "“%@”テーマを削除してもよろしいですか？";
-"Deleted theme can’t be restored." = "削除したテーマは元に戻せません。";
+"Deleted style can’t be restored." = "この操作は取り消せません。";
 "A new theme named “%@” will be installed, but a custom theme with the same name already exists." = "新しいテーマ“%@”のインストールを試みましたが、同名のカスタムテーマがすでに存在しています。";
 "Do you want to replace it?\nReplaced theme can’t be restored." = "テーマを置き換えますか？\n削除したテーマは元に戻せません。";
 
@@ -309,7 +309,7 @@
 "Do you really want to install the command-line tool for CotEditor at “%@”?\n\nThe command will be invalid if the location of CotEditor is moved." = "本当に“%@”にある CotEditor のためのコマンドラインツールをインストールしますか？\n\nCotEditor.app の場所が移動されるとコマンドは無効になります。";
 
 "The name of the running CotEditor is modified." = "現在起動している CotEditor は名前が変更されています。";
-"Do you really want to install the command-line tool for “%@”?\n\nThe command will be invalid if CotEditor is renamed." = "本当に“%@”のためのコマンドラインツールをインストールしますか？\n\n\nCotEditor の名前が変更されるとコマンドは無効になります。";
+"Do you really want to install the command-line tool for “%@”?\n\nThe command will be invalid if CotEditor is renamed." = "本当に“%@”のためのコマンドラインツールをインストールしますか？\n\nCotEditor の名前が変更されるとコマンドは無効になります。";
 
 "Uninstallation was denied by the system." = "アンインストールがシステムに拒否されました。";
 "You can install cot command manually running the following command on Terminal:" = "ユーザ自身がターミナルから以下のコマンドを実行することで cot コマンドをインストールすることができます：";
@@ -350,14 +350,14 @@
 "Bundled styles can’t be renamed." = "バンドルされているスタイルの名前は変更できません。";
 // Suffix of copied syntax coloring style
 " copy" = " コピー";
-// Delete syntax coloring style alert message
+// Delete syntax style alert message
 "Are you sure you want to delete “%@” syntax style?" = "シンタックススタイル“%@”を削除してもよろしいですか？";
-// Syntax coloring style alert button titles
+// Delete syntax style alert information
+"Deleted style can’t be restored." = "この操作は取り消せません。";
+// Syntax style alert button titles
 "Cancel" = "キャンセル";
 "Delete" = "削除";
 "Replace" = "置換";
-// Delete syntax coloring style alert information
-"Deleted style can’t be restored." = "削除したスタイルは元に戻せません。";
 // Deleted error
 "The style “%@” couldn’t be deleted." = "スタイル““%@”を削除できませんでした。";
 // Import syntax coloring style file choose openPanel button

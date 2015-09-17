@@ -469,7 +469,7 @@
     
     NSAlert *alert = [[NSAlert alloc] init];
     [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"Are you sure you want to delete “%@” syntax style?", nil), styleName]];
-    [alert setInformativeText:NSLocalizedString(@"Deleted style can’t be restored.", nil)];
+    [alert setInformativeText:NSLocalizedString(@"This action cannot be undone.", nil)];
     [alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
     [alert addButtonWithTitle:NSLocalizedString(@"Delete", nil)];
     

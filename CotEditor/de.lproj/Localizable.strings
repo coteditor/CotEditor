@@ -269,7 +269,7 @@
 "Duplicate “%@”" = "„%@“ duplizieren";
 "Restore “%@”" = "„%@“ zurücksetzen";
 "Are you sure you want to delete “%@” theme?" = "Möchten Sie das Thema „%@“ wirklich löschen?";
-"Deleted theme can’t be restored." = "Gelöschte Thema kann nicht wiederhergestellt werden.";
+"This action cannot be undone." = "Diese Aktion kann nicht widerrufen werden.";
 "A new theme named “%@” will be installed, but a custom theme with the same name already exists." = "Ein neues Thema mit dem Namen „%@“ wird installiert, doch ein benutzerdefinierter Stil mit demselben Namen existiert bereits.";
 "Do you want to replace it?\nReplaced theme can’t be restored." = "Möchten Sie es ersetzen?\nErsetzte Thema kann nicht wiederhergestellt werden.";
 
@@ -349,14 +349,14 @@
 "Bundled styles can’t be renamed." = "Gebündelten Stile können nicht umbenannt werden.";
 // Suffix of copied syntax coloring style
 " copy" = " Kopie";
-// Delete syntax coloring style alert message
+// Delete syntax style alert message
 "Are you sure you want to delete “%@” syntax style?" = "Möchten Sie den Syntaxstil „%@“ wirklich löschen?";
-// Syntax coloring style alert button titles
+// Delete syntax style alert information
+"This action cannot be undone." = "Diese Aktion kann nicht widerrufen werden.";
+// Syntax style alert button titles
 "Cancel" = "Abbrechen";
 "Delete" = "Löschen";
 "Replace" = "Ersetzen";
-// Delete syntax coloring style alert information
-"Deleted style can’t be restored." = "Gelöschter Stil kann nicht wiederhergestellt werden.";
 // Deleted error
 "The style “%@” couldn’t be deleted." = "Der Stil „%@“ konnte nicht gelöscht werden.";
 // Import syntax coloring style file choose openPanel button
