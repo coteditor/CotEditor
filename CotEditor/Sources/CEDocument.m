@@ -867,7 +867,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
         
         *outError = [NSError errorWithDomain:CEErrorDomain
                                         code:CEReinterpretationFailedError
-                                    userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"Can not reinterpret", nil),
+                                    userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"Can not reinterpret.", nil),
                                                NSLocalizedRecoverySuggestionErrorKey: [NSString stringWithFormat:NSLocalizedString(@"The file “%@” could not be reinterpreted using the new encoding “%@”.", nil), [[self fileURL] path], encodingName],
                                                NSStringEncodingErrorKey: @(encoding),
                                                NSURLErrorKey: [self fileURL],
