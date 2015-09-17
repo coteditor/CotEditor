@@ -17,6 +17,7 @@ develop
 - Fix an issue where application could possibly crash on window restoration.
 - Fix an issue where the toolbar button state of the text orientation was not updated on window restoration.
 - Fix help contents layout.
+- [Non-AppStore ver]: Fix an issue where updater settting in the General pane did not displayed on OS X Mountan Lion and Mavericks.
 
 
 
