@@ -33,10 +33,10 @@
 
 
 // outlineView data key, column identifier
-NSString *__nonnull const CEKeyBindingTitleKey = @"title";
-NSString *__nonnull const CEKeyBindingChildrenKey = @"children";
-NSString *__nonnull const CEKeyBindingKeySpecCharsKey = @"keyBindingKey";
-NSString *__nonnull const CEKeyBindingSelectorStringKey = @"selectorString";
+NSString *_Nonnull const CEKeyBindingTitleKey = @"title";
+NSString *_Nonnull const CEKeyBindingChildrenKey = @"children";
+NSString *_Nonnull const CEKeyBindingKeySpecCharsKey = @"keyBindingKey";
+NSString *_Nonnull const CEKeyBindingSelectorStringKey = @"selectorString";
 
 
 @interface CEKeyBindingManager ()

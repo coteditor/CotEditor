@@ -75,3 +75,16 @@
 "1lj-x8-ouD.title" = "导入…";
 /* Class = "NSMenuItem"; title = "Show File Mapping Conflicts…"; ObjectID = "hyN-4W-57i"; */
 "hyN-4W-57i.title" = "显示文件映射冲突…";
+
+
+/* contextual menu */
+/* Class = "NSMenuItem"; title = "Edit…"; ObjectID = "371-P0-KPK"; */
+"371-P0-KPK.title" = "编辑…";
+/* Class = "NSMenuItem"; title = "Duplicate…"; ObjectID = "5oN-VC-ot9"; */
+"5oN-VC-ot9.title" = "拷贝…";
+/* Class = "NSMenuItem"; title = "Delete"; ObjectID = "NDE-r5-xAF"; */
+"NDE-r5-xAF.title" = "删除";
+/* Class = "NSMenuItem"; title = "Export…"; ObjectID = "Qwp-u8-Urf"; */
+"Qwp-u8-Urf.title" = "导出…";
+/* Class = "NSMenuItem"; title = "Reveal in Finder"; ObjectID = "AkE-0P-0FC"; */
+"AkE-0P-0FC.title" = "在 Finder 中显示";

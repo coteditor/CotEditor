@@ -53,10 +53,10 @@
 
 
 // Public method
-- (void)insertString:(nullable NSString *)string;
-- (void)insertStringAfterSelection:(nullable NSString *)string;
-- (void)replaceAllStringWithString:(nullable NSString *)string;
-- (void)appendString:(nullable NSString *)string;
+- (void)insertString:(nonnull NSString *)string;
+- (void)insertStringAfterSelection:(nonnull NSString *)string;
+- (void)replaceAllStringWithString:(nonnull NSString *)string;
+- (void)appendString:(nonnull NSString *)string;
 - (void)setLineSpacingAndUpdate:(CGFloat)lineSpacing;
 - (void)replaceWithString:(nullable NSString *)string range:(NSRange)range
             selectedRange:(NSRange)selectedRange actionName:(nullable NSString *)actionName;

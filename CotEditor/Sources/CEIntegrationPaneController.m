@@ -33,7 +33,7 @@
 // for OS X 10.10 SDK
 #define CEAppKitVersionNumber10_11 1404
 
-static NSString *const kPreferredSymbolicLinkPath = @"/usr/local/bin/cot";
+static NSString *_Nonnull const kPreferredSymbolicLinkPath = @"/usr/local/bin/cot";
 
 
 @interface CEIntegrationPaneController ()
@@ -420,7 +420,7 @@ static NSString *const kPreferredSymbolicLinkPath = @"/usr/local/bin/cot";
 
 // ------------------------------------------------------
 /// check whether current running CotEditor is located in the /Application directory
-- (BOOL)checkApplicationLocationAndReturnError:(NSError *__autoreleasing __nullable *)outError
+- (BOOL)checkApplicationLocationAndReturnError:(NSError * _Nullable __autoreleasing * _Nullable)outError
 // ------------------------------------------------------
 {
     NSString *preferredAppName = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleName"];

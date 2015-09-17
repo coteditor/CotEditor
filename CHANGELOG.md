@@ -5,6 +5,25 @@ Change Log
 develop
 --------------------------
 
+### Additions/Changes
+
+- Improve side inspector switcher. 
+- Improve contextual menu for syntax style list on preferences.
+- Tweak sytnax style edit sheet layout.
+
+
+### Fixes
+
+- Fix an issue where application could possibly crash on window restoration.
+- Fix an issue where the toolbar button state of the text orientation was not updated on window restoration.
+- Fix help contents layout.
+- [Non-AppStore ver]: Fix an issue where updater settting in the General pane did not displayed on OS X Mountan Lion and Mavericks.
+
+
+
+2.2.0-rc (71)
+--------------------------
+
 ### New Features
 
 - Hanging indentation that enables inserting extra indent to wrapped lines.
@@ -20,7 +39,7 @@ develop
     - Users who have already installed `cot` command need re-install it manually.
       You can re-install it running the command below on Terminal:
 
-          unlink /usr/local/bin/cot; ln -s /usr/local/bin/cot /Applications/CotEditor.app/Contents/SharedSupport/bin/cot
+          unlink /usr/local/bin/cot; ln -s /Applications/CotEditor.app/Contents/SharedSupport/bin/cot /usr/local/bin/cot
 
       You may need to modify paths in this command depending on where you've installed CotEditor/cot.
 - Improve Color Code Editor:
@@ -30,7 +49,7 @@ develop
 - Now syntax style is automatically set to “XML” on file opening if no appropriate style can be found but the file content starts with a XML declaration.
 - Update word completion list setting in Edit pane in Preferences (The previous setting has been reset).
 - Support “swipe to delete” for some tables in Preferences on El Capitan.
-- Improve contexutal menu for theme list on preferences.
+- Improve contextual menu for theme list on preferences.
 - Adjust highlight color for find panel.
 - Tweak some message terms.
 - Update documents.

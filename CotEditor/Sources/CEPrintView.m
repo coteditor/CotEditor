@@ -42,7 +42,7 @@ static CGFloat const kHorizontalHeaderFooterMargin = 20.0;
 static CGFloat const kLineNumberPadding = 10.0;
 static CGFloat const kHeaderFooterFontSize = 9.0;
 
-static NSString *const PageNumberPlaceholder = @"PAGENUM";
+static NSString *_Nonnull const PageNumberPlaceholder = @"PAGENUM";
 
 
 @interface CEPrintView () <NSLayoutManagerDelegate>

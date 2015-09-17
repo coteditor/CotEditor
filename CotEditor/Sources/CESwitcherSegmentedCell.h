@@ -1,16 +1,15 @@
 /*
  
- CEEncodingManager.h
+ CESwitcherSegmentedCell.h
  
  CotEditor
  http://coteditor.com
  
- Created by 1024jp on 2014-09-24.
-
+ Created by 1024jp on 2015-09-17.
+ 
  ------------------------------------------------------------------------------
  
- © 2004-2007 nakamuxu
- © 2014-2015 1024jp
+ © 2015 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -29,17 +28,6 @@
 @import Cocoa;
 
 
-// notifications
-/// Posted when current encoding list menu items is ready to build
-extern NSString *_Nonnull const CEEncodingListDidUpdateNotification;
-
-
-@interface CEEncodingManager : NSObject
-
-@property (readonly, nonatomic, nonnull, copy) NSArray<NSMenuItem *> *encodingMenuItems;
-
-
-// singleton
-+ (nonnull instancetype)sharedManager;
+@interface CESwitcherSegmentedCell : NSSegmentedCell
 
 @end

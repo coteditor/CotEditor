@@ -31,7 +31,7 @@
 @protocol CEThemeViewControllerDelegate<NSObject>
 
 @required
-- (void)didUpdateTheme:(nonnull NSMutableDictionary<NSString *, NSDictionary<NSString *, id> *> *)theme;
+- (void)didUpdateTheme:(nonnull NSDictionary<NSString *, NSDictionary<NSString *, id> *> *)theme;
 
 @end
 

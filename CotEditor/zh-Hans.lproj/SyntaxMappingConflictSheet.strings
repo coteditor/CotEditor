@@ -30,13 +30,13 @@
 "1022.title" = "语法风格映射冲突";
 
 /* Class = "NSTextFieldCell"; title = "CotEditor uses the first style automatically. To resolve conflicts, edit each syntax style."; ObjectID = "gnp-H7-p1W"; */
-"gnp-H7-p1W.title" = "CotEditor 将自动使用第一种风格。编译下面的语法风格来解决冲突";
+"gnp-H7-p1W.title" = "CotEditor 将自动使用第一种风格。编译下面的语法风格来解决冲突。";
 
 
 /* Class = "NSTextFieldCell"; title = "Extension:"; ObjectID = "31z-NP-PkW"; */
 "31z-NP-PkW.title" = "扩展名：";
 /* Class = "NSTextFieldCell"; title = "The following extensions are registered in multiple styles."; ObjectID = "XdB-k6-qyy"; */
-"XdB-k6-qyy.title" = "以下扩展名被注册给了多种语法";
+"XdB-k6-qyy.title" = "以下扩展名被注册给了多种语法。";
 
 /* Class = "NSTableColumn"; headerCell.title = "Extension"; ObjectID = "qkj-mf-TAf"; */
 "qkj-mf-TAf.headerCell.title" = "扩展名";
@@ -49,7 +49,7 @@
 /* Class = "NSTextFieldCell"; title = "Filename:"; ObjectID = "Msi-ee-MNF"; */
 "Msi-ee-MNF.title" = "文件名：";
 /* Class = "NSTextFieldCell"; title = "The following filenames are registered in multiple styles."; ObjectID = "4AH-1o-au2"; */
-"4AH-1o-au2.title" = "以下文件名被注册给了多种语法风格";
+"4AH-1o-au2.title" = "以下文件名被注册给了多种语法风格。";
 
 /* Class = "NSTableColumn"; headerCell.title = "Filename"; ObjectID = "YGO-sx-UT0"; */
 "YGO-sx-UT0.headerCell.title" = "文件名";

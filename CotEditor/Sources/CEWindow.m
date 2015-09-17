@@ -29,7 +29,7 @@
 
 
 // notifications
-NSString *__nonnull const CEWindowOpacityDidChangeNotification = @"CEWindowOpacityDidChangeNotification";
+NSString *_Nonnull const CEWindowOpacityDidChangeNotification = @"CEWindowOpacityDidChangeNotification";
 
 
 @interface CEWindow ()

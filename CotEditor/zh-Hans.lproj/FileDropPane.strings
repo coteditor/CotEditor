@@ -67,4 +67,4 @@
 "537.ibShadowedToolTip" = "图片高度（如果拖拽文件是图像）";
 
 /* Class = "IBBindingConnection"; ibShadowedNoSelectionPlaceholder = "No extension is selected."; ObjectID = "ib2-Zw-Ucy"; */
-"ib2-Zw-Ucy.ibShadowedNoSelectionPlaceholder" = "没有选中扩展名";
+"ib2-Zw-Ucy.ibShadowedNoSelectionPlaceholder" = "没有选中扩展名。";

@@ -31,19 +31,19 @@
 
 
 // print setting keys
-NSString *__nonnull const CEPrintThemeKey = @"CEThemeName";
-NSString *__nonnull const CEPrintLineNumberKey = @"CEPrintLineNumber";
-NSString *__nonnull const CEPrintInvisiblesKey = @"CEPrintInvisibles";
-NSString *__nonnull const CEPrintHeaderKey = @"CEPrintHeader";
-NSString *__nonnull const CEPrimaryHeaderContentKey = @"CEPrimaryHeaderContent";
-NSString *__nonnull const CESecondaryHeaderContentKey = @"CESecondaryHeaderContent";
-NSString *__nonnull const CEPrimaryHeaderAlignmentKey = @"CEPrimaryHeaderAlignment";
-NSString *__nonnull const CESecondaryHeaderAlignmentKey = @"CESecondaryHeaderAlignment";
-NSString *__nonnull const CEPrintFooterKey = @"CEPrintFooter";
-NSString *__nonnull const CEPrimaryFooterContentKey = @"CEPrimaryFooterContent";
-NSString *__nonnull const CESecondaryFooterContentKey = @"CESecondaryFooterContent";
-NSString *__nonnull const CEPrimaryFooterAlignmentKey = @"CEPrimaryFooterAlignment";
-NSString *__nonnull const CESecondaryFooterAlignmentKey = @"CESecondaryFooterAlignment";
+NSString *_Nonnull const CEPrintThemeKey = @"CEThemeName";
+NSString *_Nonnull const CEPrintLineNumberKey = @"CEPrintLineNumber";
+NSString *_Nonnull const CEPrintInvisiblesKey = @"CEPrintInvisibles";
+NSString *_Nonnull const CEPrintHeaderKey = @"CEPrintHeader";
+NSString *_Nonnull const CEPrimaryHeaderContentKey = @"CEPrimaryHeaderContent";
+NSString *_Nonnull const CESecondaryHeaderContentKey = @"CESecondaryHeaderContent";
+NSString *_Nonnull const CEPrimaryHeaderAlignmentKey = @"CEPrimaryHeaderAlignment";
+NSString *_Nonnull const CESecondaryHeaderAlignmentKey = @"CESecondaryHeaderAlignment";
+NSString *_Nonnull const CEPrintFooterKey = @"CEPrintFooter";
+NSString *_Nonnull const CEPrimaryFooterContentKey = @"CEPrimaryFooterContent";
+NSString *_Nonnull const CESecondaryFooterContentKey = @"CESecondaryFooterContent";
+NSString *_Nonnull const CEPrimaryFooterAlignmentKey = @"CEPrimaryFooterAlignment";
+NSString *_Nonnull const CESecondaryFooterAlignmentKey = @"CESecondaryFooterAlignment";
 
 
 @interface CEPrintPanelAccessoryController ()
@@ -51,7 +51,7 @@ NSString *__nonnull const CESecondaryFooterAlignmentKey = @"CESecondaryFooterAli
 @property (nonatomic, nullable) IBOutlet NSPopUpButton *themePopup;
 
 
-@property (nonatomic, nullable) NSString *theme;
+@property (nonatomic, nullable, copy) NSString *theme;
 @property (nonatomic) CELineNumberPrintMode lineNumberMode;
 @property (nonatomic) CEInvisibleCharsPrintMode invisibleCharsMode;
 

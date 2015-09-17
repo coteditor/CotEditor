@@ -29,7 +29,7 @@
 #import "Constants.h"
 
 
-NSString *__nonnull const CETextFinderDidReplaceAllNotification = @"CETextFinderDidReplaceAllNotification";
+NSString *_Nonnull const CETextFinderDidReplaceAllNotification = @"CETextFinderDidReplaceAllNotification";
 
 
 @implementation CETextFinder

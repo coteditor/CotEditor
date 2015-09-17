@@ -28,8 +28,8 @@
 #import "CEDraggableArrayController.h"
 
 
-static NSString *__nonnull const CERowsType = @"CERowsType";
-static NSString *__nonnull const CEObjectsType = @"CEObjectsType";
+static NSString *_Nonnull const CERowsType = @"CERowsType";
+static NSString *_Nonnull const CEObjectsType = @"CEObjectsType";
 
 
 @implementation CEDraggableArrayController

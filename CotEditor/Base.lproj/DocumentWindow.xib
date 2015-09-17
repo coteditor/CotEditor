@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="7706" systemVersion="14F6a" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="8191" systemVersion="15A282b" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="7706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="8191"/>
+        <capability name="box content view" minToolsVersion="7.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" customClass="CEWindowController">
@@ -31,7 +32,7 @@
             <value key="minSize" type="size" width="400" height="200"/>
             <view key="contentView" id="6" userLabel="Content View">
                 <rect key="frame" x="0.0" y="0.0" width="600" height="550"/>
-                <autoresizingMask key="autoresizingMask"/>
+                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
                     <splitView identifier="documentSidebar" dividerStyle="thin" vertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jhv-dr-CH4" userLabel="Sidebar Split View">
                         <rect key="frame" x="0.0" y="20" width="600" height="530"/>
@@ -43,8 +44,10 @@
                                     <customView fixedFrame="YES" id="xVz-uL-qne" customClass="CEEditorView">
                                         <rect key="frame" x="0.0" y="0.0" width="369" height="530"/>
                                         <autoresizingMask key="autoresizingMask"/>
+                                        <animations/>
                                     </customView>
                                 </subviews>
+                                <animations/>
                                 <holdingPriorities>
                                     <real value="250"/>
                                 </holdingPriorities>
@@ -56,11 +59,55 @@
                                 <rect key="frame" x="370" y="0.0" width="230" height="530"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
+                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="0Gu-Ck-2Ro">
+                                        <rect key="frame" x="0.0" y="502" width="230" height="28"/>
+                                        <subviews>
+                                            <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="t7l-ac-OCh">
+                                                <rect key="frame" x="82" y="1" width="65" height="25"/>
+                                                <animations/>
+                                                <segmentedCell key="cell" borderStyle="border" alignment="left" style="texturedSquare" trackingMode="selectOne" id="TPz-kb-PBa" customClass="CESwitcherSegmentedCell">
+                                                    <font key="font" metaFont="system"/>
+                                                    <segments>
+                                                        <segment toolTip="Document Inspector" image="DocumentTemplate" selected="YES" tag="1">
+                                                            <nil key="label"/>
+                                                        </segment>
+                                                        <segment toolTip="Incompatible Characters" image="ConflictsTemplate" tag="2">
+                                                            <nil key="label"/>
+                                                        </segment>
+                                                    </segments>
+                                                </segmentedCell>
+                                                <connections>
+                                                    <binding destination="-2" name="selectedTag" keyPath="selectedSidebarTag" id="DUp-me-UHO"/>
+                                                </connections>
+                                            </segmentedControl>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="t7l-ac-OCh" firstAttribute="centerX" secondItem="0Gu-Ck-2Ro" secondAttribute="centerX" id="DtN-Sj-2PD"/>
+                                            <constraint firstAttribute="height" constant="28" id="Zoq-vk-07I"/>
+                                            <constraint firstItem="t7l-ac-OCh" firstAttribute="centerY" secondItem="0Gu-Ck-2Ro" secondAttribute="centerY" id="dGb-Rv-BoW"/>
+                                        </constraints>
+                                        <animations/>
+                                    </customView>
+                                    <box title="Horizontal Line" boxType="custom" borderType="none" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="m6c-JX-V3M">
+                                        <rect key="frame" x="0.0" y="501" width="230" height="1"/>
+                                        <view key="contentView" id="JLD-1e-nAg">
+                                            <rect key="frame" x="0.0" y="0.0" width="230" height="1"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <animations/>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="1" id="wVU-gc-0zA"/>
+                                        </constraints>
+                                        <animations/>
+                                        <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
+                                        <color key="fillColor" name="gridColor" catalog="System" colorSpace="catalog"/>
+                                    </box>
                                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="XSO-vY-vMP" userLabel="Placeholder View">
-                                        <rect key="frame" x="0.0" y="0.0" width="230" height="490"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="230" height="501"/>
                                         <subviews>
                                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="hnD-ep-tH0" userLabel="Dummy View">
-                                                <rect key="frame" x="0.0" y="0.0" width="230" height="490"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="230" height="501"/>
+                                                <animations/>
                                             </customView>
                                         </subviews>
                                         <constraints>
@@ -69,34 +116,26 @@
                                             <constraint firstAttribute="trailing" secondItem="hnD-ep-tH0" secondAttribute="trailing" id="Liy-Fp-KMM"/>
                                             <constraint firstAttribute="bottom" secondItem="hnD-ep-tH0" secondAttribute="bottom" id="ln0-dD-YX5"/>
                                         </constraints>
+                                        <animations/>
                                     </customView>
-                                    <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="t7l-ac-OCh">
-                                        <rect key="frame" x="25" y="496" width="181" height="25"/>
-                                        <segmentedCell key="cell" borderStyle="border" alignment="left" style="texturedSquare" trackingMode="selectOne" id="TPz-kb-PBa">
-                                            <font key="font" metaFont="system"/>
-                                            <segments>
-                                                <segment label="Document" image="DocumentTemplate" selected="YES" tag="1"/>
-                                                <segment label="Issues" image="ConflictsTemplate" tag="2"/>
-                                            </segments>
-                                        </segmentedCell>
-                                        <connections>
-                                            <binding destination="-2" name="selectedTag" keyPath="selectedSidebarTag" id="DUp-me-UHO"/>
-                                        </connections>
-                                    </segmentedControl>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="XSO-vY-vMP" secondAttribute="bottom" id="0Ar-5d-3z3"/>
-                                    <constraint firstAttribute="centerX" secondItem="t7l-ac-OCh" secondAttribute="centerX" id="Dkt-7o-HrV"/>
-                                    <constraint firstItem="t7l-ac-OCh" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="34" secondAttribute="leading" priority="750" constant="8" id="DlY-u3-ygs"/>
+                                    <constraint firstAttribute="trailing" secondItem="0Gu-Ck-2Ro" secondAttribute="trailing" id="0l0-MR-Szl"/>
+                                    <constraint firstItem="XSO-vY-vMP" firstAttribute="top" secondItem="m6c-JX-V3M" secondAttribute="bottom" id="C1w-yf-Sb2"/>
+                                    <constraint firstItem="0Gu-Ck-2Ro" firstAttribute="leading" secondItem="34" secondAttribute="leading" id="KWU-bY-KG8"/>
                                     <constraint firstAttribute="trailing" secondItem="XSO-vY-vMP" secondAttribute="trailing" id="WJj-1f-h9z"/>
-                                    <constraint firstItem="t7l-ac-OCh" firstAttribute="top" secondItem="34" secondAttribute="top" constant="10" id="XJP-9U-f4P"/>
                                     <constraint firstItem="XSO-vY-vMP" firstAttribute="leading" secondItem="34" secondAttribute="leading" id="agM-Pc-Qcz"/>
                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="350" id="aly-Ib-BsD"/>
-                                    <constraint firstItem="XSO-vY-vMP" firstAttribute="top" secondItem="t7l-ac-OCh" secondAttribute="bottom" constant="8" symbolic="YES" id="jch-cf-sdh"/>
-                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="t7l-ac-OCh" secondAttribute="trailing" priority="750" constant="8" id="uhU-Df-kcw"/>
+                                    <constraint firstItem="m6c-JX-V3M" firstAttribute="top" secondItem="0Gu-Ck-2Ro" secondAttribute="bottom" id="b9u-0F-fwz"/>
+                                    <constraint firstAttribute="trailing" secondItem="m6c-JX-V3M" secondAttribute="trailing" id="jQu-zp-Fip"/>
+                                    <constraint firstItem="m6c-JX-V3M" firstAttribute="leading" secondItem="34" secondAttribute="leading" id="lY8-fD-aZA"/>
+                                    <constraint firstItem="0Gu-Ck-2Ro" firstAttribute="top" secondItem="34" secondAttribute="top" id="mrt-ia-dn3"/>
                                 </constraints>
+                                <animations/>
                             </customView>
                         </subviews>
+                        <animations/>
                         <holdingPriorities>
                             <real value="250"/>
                             <real value="251"/>
@@ -115,6 +154,7 @@
                         <subviews>
                             <imageView hidden="YES" toolTip="This document is read only." horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EP1-My-tQo">
                                 <rect key="frame" x="8" y="2" width="16" height="16"/>
+                                <animations/>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="LockedTemplate" id="2Vs-vL-w3p"/>
                                 <connections>
                                     <binding destination="ZaC-Gi-qyq" name="hidden" keyPath="showsReadOnly" id="1zI-EA-6Kx">
@@ -126,6 +166,7 @@
                             </imageView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="G7a-2k-nOK">
                                 <rect key="frame" x="34" y="3" width="33" height="14"/>
+                                <animations/>
                                 <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" title="Label" id="b1b-Kr-R8m">
                                     <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -137,6 +178,7 @@
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QO1-yr-imY">
                                 <rect key="frame" x="559" y="3" width="33" height="14"/>
+                                <animations/>
                                 <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" allowsUndo="NO" sendsActionOnEndEditing="YES" title="Label" id="W4S-dh-6hG">
                                     <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -157,6 +199,7 @@
                             <constraint firstAttribute="centerY" secondItem="QO1-yr-imY" secondAttribute="centerY" id="tYP-eB-pNq"/>
                             <constraint firstAttribute="centerY" secondItem="G7a-2k-nOK" secondAttribute="centerY" id="wwt-6v-1Di"/>
                         </constraints>
+                        <animations/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                 <color key="value" name="windowFrameColor" catalog="System" colorSpace="catalog"/>
@@ -178,6 +221,7 @@
                     <constraint firstItem="jhv-dr-CH4" firstAttribute="top" secondItem="6" secondAttribute="top" id="ocL-uJ-ACf"/>
                     <constraint firstAttribute="trailing" secondItem="Rjm-Sf-4Mf" secondAttribute="trailing" id="vUa-vZ-EE4"/>
                 </constraints>
+                <animations/>
             </view>
             <toolbar key="toolbar" implicitIdentifier="CED05FB8-D6FA-4FDC-A1D9-8D33CCA40BE5" explicitIdentifier="docWindowToolbarID" displayMode="iconAndLabel" sizeMode="regular" id="olV-v9-4mJ">
                 <allowedToolbarItems>
@@ -185,8 +229,9 @@
                         <size key="minSize" width="70" height="22"/>
                         <size key="maxSize" width="70" height="22"/>
                         <popUpButton key="view" verticalHuggingPriority="750" tag="1" id="77">
-                            <rect key="frame" x="6" y="14" width="70" height="22"/>
+                            <rect key="frame" x="2" y="14" width="70" height="22"/>
                             <autoresizingMask key="autoresizingMask"/>
+                            <animations/>
                             <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="clipping" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="701">
                                 <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                 <font key="font" metaFont="smallSystem"/>
@@ -218,6 +263,7 @@
                         <popUpButton key="view" verticalHuggingPriority="750" tag="2" id="90">
                             <rect key="frame" x="0.0" y="14" width="140" height="22"/>
                             <autoresizingMask key="autoresizingMask"/>
+                            <animations/>
                             <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="clipping" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="702">
                                 <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                 <font key="font" metaFont="smallSystem"/>
@@ -235,6 +281,7 @@
                         <popUpButton key="view" verticalHuggingPriority="750" tag="3" id="96">
                             <rect key="frame" x="0.0" y="14" width="120" height="22"/>
                             <autoresizingMask key="autoresizingMask"/>
+                            <animations/>
                             <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="clipping" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="703">
                                 <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                 <font key="font" metaFont="smallSystem"/>
@@ -252,6 +299,7 @@
                         <button key="view" verticalHuggingPriority="750" id="b09-OH-vIj">
                             <rect key="frame" x="0.0" y="14" width="48" height="32"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <animations/>
                             <buttonCell key="cell" type="push" bezelStyle="rounded" image="NSShareTemplate" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="mH9-PF-JoG">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                 <font key="font" metaFont="system"/>
@@ -409,8 +457,8 @@
         <image name="AutoTabExpand_On" width="32" height="32"/>
         <image name="BiggerFont" width="32" height="32"/>
         <image name="Comment" width="32" height="32"/>
-        <image name="ConflictsTemplate" width="13" height="13"/>
-        <image name="DocumentTemplate" width="13" height="13"/>
+        <image name="ConflictsTemplate" width="15" height="15"/>
+        <image name="DocumentTemplate" width="15" height="15"/>
         <image name="EditColorCode" width="32" height="32"/>
         <image name="GetInfo" width="32" height="32"/>
         <image name="IncompatibleChars" width="32" height="32"/>

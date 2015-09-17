@@ -51,7 +51,7 @@
 
 /// returns string form keyEquivalent (keyboard shortcut) for menu item
 + (nonnull NSString *)keyEquivalentAndModifierMask:(nonnull NSUInteger *)modifierMask
-                                fromString:(nonnull NSString *)string
-                       includingCommandKey:(BOOL)needsIncludingCommandKey;
+                                        fromString:(nonnull NSString *)string
+                               includingCommandKey:(BOOL)needsIncludingCommandKey;
 
 @end

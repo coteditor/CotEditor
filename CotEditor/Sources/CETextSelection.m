@@ -123,7 +123,11 @@
 - (NSTextStorage *)contents
 // ------------------------------------------------------
 {
-    NSString *string = [[[self document] editor] substringWithSelectionForSave];
+    NSString *string = [[[self document] editor] substringWithSelection];
+    
+    // apply line endings
+    string = [string stringByReplacingNewLineCharacersWith:[[self document] lineEnding]];
+    
     NSTextStorage *storage = [[NSTextStorage alloc] initWithString:string];
 
     return storage;

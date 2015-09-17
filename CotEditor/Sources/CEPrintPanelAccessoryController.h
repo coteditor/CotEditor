@@ -29,19 +29,19 @@
 
 
 // print setting keys
-extern NSString *__nonnull const CEPrintThemeKey;
-extern NSString *__nonnull const CEPrintLineNumberKey;
-extern NSString *__nonnull const CEPrintInvisiblesKey;
-extern NSString *__nonnull const CEPrintHeaderKey;
-extern NSString *__nonnull const CEPrimaryHeaderContentKey;
-extern NSString *__nonnull const CESecondaryHeaderContentKey;
-extern NSString *__nonnull const CEPrimaryHeaderAlignmentKey;
-extern NSString *__nonnull const CESecondaryHeaderAlignmentKey;
-extern NSString *__nonnull const CEPrintFooterKey;
-extern NSString *__nonnull const CEPrimaryFooterContentKey;
-extern NSString *__nonnull const CESecondaryFooterContentKey;
-extern NSString *__nonnull const CEPrimaryFooterAlignmentKey;
-extern NSString *__nonnull const CESecondaryFooterAlignmentKey;
+extern NSString *_Nonnull const CEPrintThemeKey;
+extern NSString *_Nonnull const CEPrintLineNumberKey;
+extern NSString *_Nonnull const CEPrintInvisiblesKey;
+extern NSString *_Nonnull const CEPrintHeaderKey;
+extern NSString *_Nonnull const CEPrimaryHeaderContentKey;
+extern NSString *_Nonnull const CESecondaryHeaderContentKey;
+extern NSString *_Nonnull const CEPrimaryHeaderAlignmentKey;
+extern NSString *_Nonnull const CESecondaryHeaderAlignmentKey;
+extern NSString *_Nonnull const CEPrintFooterKey;
+extern NSString *_Nonnull const CEPrimaryFooterContentKey;
+extern NSString *_Nonnull const CESecondaryFooterContentKey;
+extern NSString *_Nonnull const CEPrimaryFooterAlignmentKey;
+extern NSString *_Nonnull const CESecondaryFooterAlignmentKey;
 
 
 @interface CEPrintPanelAccessoryController : NSViewController <NSPrintPanelAccessorizing>

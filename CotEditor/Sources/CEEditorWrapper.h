@@ -47,9 +47,9 @@
 @property (nonatomic) BOOL showsPageGuide;
 @property (nonatomic) BOOL showsInvisibles;
 @property (nonatomic, getter=isVerticalLayoutOrientation) BOOL verticalLayoutOrientation;
-@property (nonatomic) CETextView *focusedTextView;
+@property (nonatomic, nullable) CETextView *focusedTextView;
 
-@property (readonly, nonatomic) CESyntaxParser *syntaxParser;
+@property (readonly, nonatomic, nullable) CESyntaxParser *syntaxParser;
 @property (readonly, nonatomic) BOOL showsNavigationBar;
 @property (readonly, nonatomic) BOOL canActivateShowInvisibles;
 
@@ -57,21 +57,20 @@
 #pragma mark Public Methods
 
 // text processing
-- (NSString *)string;
-- (NSString *)substringWithRange:(NSRange)range;
-- (NSString *)substringWithSelection;
-- (NSString *)substringWithSelectionForSave;  // line ending applied
-- (void)setString:(NSString *)string;
+- (nonnull NSString *)string;
+- (nonnull NSString *)substringWithRange:(NSRange)range;
+- (nonnull NSString *)substringWithSelection;
+- (void)setString:(nonnull NSString *)string;
 
-- (void)insertTextViewString:(NSString *)inString;
-- (void)insertTextViewStringAfterSelection:(NSString *)string;
-- (void)replaceTextViewAllStringWithString:(NSString *)string;
-- (void)appendTextViewString:(NSString *)string;
+- (void)insertTextViewString:(nonnull NSString *)inString;
+- (void)insertTextViewStringAfterSelection:(nonnull NSString *)string;
+- (void)replaceTextViewAllStringWithString:(nonnull NSString *)string;
+- (void)appendTextViewString:(nonnull NSString *)string;
 
 - (NSRange)selectedRange;  // line ending applied
 - (void)setSelectedRange:(NSRange)charRange;  // line ending applied
 
-- (void)markupRanges:(NSArray<NSValue *> *)ranges;
+- (void)markupRanges:(nonnull NSArray<NSValue *> *)ranges;
 - (void)clearAllMarkup;
 
 - (BOOL)isAutoTabExpandEnabled;
@@ -80,17 +79,16 @@
 - (void)setShowsNavigationBar:(BOOL)showsNavigationBar animate:(BOOL)performAnimation;
 
 // font
-- (NSFont *)font;
-- (void)setFont:(NSFont *)font;
+- (nullable NSFont *)font;
 - (BOOL)usesAntialias;
 
 // theme
-- (void)setThemeWithName:(NSString *)themeName;
-- (CETheme *)theme;
+- (void)setThemeWithName:(nonnull NSString *)themeName;
+- (nullable CETheme *)theme;
 
 // syntax
-- (NSString *)syntaxStyleName;
-- (void)setSyntaxStyleWithName:(NSString *)name coloring:(BOOL)doColoring;
+- (nullable NSString *)syntaxStyleName;
+- (void)setSyntaxStyleWithName:(nonnull NSString *)name coloring:(BOOL)doColoring;
 - (void)invalidateSyntaxColoring;
 - (void)invalidateOutlineMenu;
 - (void)setupColoringTimer;
@@ -99,19 +97,19 @@
 
 #pragma mark Action Messages
 
-- (IBAction)toggleLineNumber:(id)sender;
-- (IBAction)toggleNavigationBar:(id)sender;
-- (IBAction)toggleLineWrap:(id)sender;
-- (IBAction)toggleLayoutOrientation:(id)sender;
-- (IBAction)toggleAntialias:(id)sender;
-- (IBAction)toggleInvisibleChars:(id)sender;
-- (IBAction)togglePageGuide:(id)sender;
-- (IBAction)toggleAutoTabExpand:(id)sender;
-- (IBAction)selectPrevItemOfOutlineMenu:(id)sender;
-- (IBAction)selectNextItemOfOutlineMenu:(id)sender;
-- (IBAction)openSplitTextView:(id)sender;
-- (IBAction)closeSplitTextView:(id)sender;
-- (IBAction)recolorAll:(id)sender;
+- (IBAction)toggleLineNumber:(nullable id)sender;
+- (IBAction)toggleNavigationBar:(nullable id)sender;
+- (IBAction)toggleLineWrap:(nullable id)sender;
+- (IBAction)toggleLayoutOrientation:(nullable id)sender;
+- (IBAction)toggleAntialias:(nullable id)sender;
+- (IBAction)toggleInvisibleChars:(nullable id)sender;
+- (IBAction)togglePageGuide:(nullable id)sender;
+- (IBAction)toggleAutoTabExpand:(nullable id)sender;
+- (IBAction)selectPrevItemOfOutlineMenu:(nullable id)sender;
+- (IBAction)selectNextItemOfOutlineMenu:(nullable id)sender;
+- (IBAction)openSplitTextView:(nullable id)sender;
+- (IBAction)closeSplitTextView:(nullable id)sender;
+- (IBAction)recolorAll:(nullable id)sender;
 
 @end
 
@@ -127,9 +125,9 @@ typedef NS_ENUM(NSUInteger, CEGoToType) {
 
 @interface CEEditorWrapper (Locating)
 
-- (NSRange)rangeWithLocation:(NSInteger)location length:(NSInteger)length;
-- (void)setSelectedCharacterRangeWithLocation:(NSInteger)location length:(NSInteger)length;
-- (void)setSelectedLineRangeWithLocation:(NSInteger)location length:(NSInteger)length;
-- (void)gotoLocation:(NSInteger)location length:(NSInteger)length type:(CEGoToType)type;
+- (NSRange)rangeWithLocation:(NSInteger)location length:(NSInteger)length;  // line ending applied
+- (void)setSelectedCharacterRangeWithLocation:(NSInteger)location length:(NSInteger)length;  // line ending applied
+- (void)setSelectedLineRangeWithLocation:(NSInteger)location length:(NSInteger)length;  // line ending applied
+- (void)gotoLocation:(NSInteger)location length:(NSInteger)length type:(CEGoToType)type;  // line ending applied
 
 @end

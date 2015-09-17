@@ -44,7 +44,7 @@
 
 @interface CEAppDelegate (Services)
 
-- (void)openSelection:(nonnull NSPasteboard *)pboard userData:(nonnull NSString *)userData error:( NSString * __nullable * __nullable)error;
-- (void)openFile:(nonnull NSPasteboard *)pboard userData:(nonnull NSString *)userData error:( NSString * __nullable * __nullable)error;
+- (void)openSelection:(nonnull NSPasteboard *)pboard userData:(nonnull NSString *)userData error:(NSString * _Nullable * _Nullable)error;
+- (void)openFile:(nonnull NSPasteboard *)pboard userData:(nonnull NSString *)userData error:(NSString * _Nullable * _Nullable)error;
 
 @end
