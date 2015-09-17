@@ -7,6 +7,7 @@ develop
 
 ### Additions/Changes
 
+- Improve side inspector switcher. 
 - Improve contexutal menu for syntax style list on preferences.
 - Tweak sytnax style edit sheet layout.
 

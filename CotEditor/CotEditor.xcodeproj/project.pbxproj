@@ -306,6 +306,8 @@
 		2AF4E0D7196F7958008E9EF7 /* CEStatusBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AF4E0D6196F7958008E9EF7 /* CEStatusBarController.m */; };
 		2AF5C3B91A5481C600C972B5 /* SampleScripts in Copy Shared Supports */ = {isa = PBXBuildFile; fileRef = 6CA3B36012E3B59B0019AB2E /* SampleScripts */; };
 		2AF5C3BE1A55072E00C972B5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2AF5C3BC1A55072E00C972B5 /* InfoPlist.strings */; };
+		2AFF21821BA9F69A008A41CD /* CESwitcherSegmentedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AFF21811BA9F69A008A41CD /* CESwitcherSegmentedCell.m */; settings = {ASSET_TAGS = (); }; };
+		2AFF21831BA9F69A008A41CD /* CESwitcherSegmentedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AFF21811BA9F69A008A41CD /* CESwitcherSegmentedCell.m */; settings = {ASSET_TAGS = (); }; };
 		2AFFB70718D7BC9300118477 /* OpacityPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2AFFB70518D7BC9300118477 /* OpacityPanel.xib */; };
 		2AFFB71618D7DCC000118477 /* CEPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AFFB71518D7DCC000118477 /* CEPanelController.m */; };
 		2AFFB71B18D7F18300118477 /* CEGoToSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AFFB71918D7F18300118477 /* CEGoToSheetController.m */; };
@@ -740,6 +742,8 @@
 		2AFB50521B556B2C00DE5FE1 /* Pods.release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "../Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		2AFB50551B556BD500DE5FE1 /* Pods-appstore.debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = "Pods-appstore.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-appstore/Pods-appstore.debug.xcconfig"; sourceTree = "<group>"; };
 		2AFB50561B556BD500DE5FE1 /* Pods-appstore.release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = "Pods-appstore.release.xcconfig"; path = "../Pods/Target Support Files/Pods-appstore/Pods-appstore.release.xcconfig"; sourceTree = "<group>"; };
+		2AFF21801BA9F69A008A41CD /* CESwitcherSegmentedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CESwitcherSegmentedCell.h; sourceTree = "<group>"; };
+		2AFF21811BA9F69A008A41CD /* CESwitcherSegmentedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CESwitcherSegmentedCell.m; sourceTree = "<group>"; };
 		2AFFB71418D7DCC000118477 /* CEPanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEPanelController.h; sourceTree = "<group>"; };
 		2AFFB71518D7DCC000118477 /* CEPanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEPanelController.m; sourceTree = "<group>"; };
 		2AFFB71818D7F18200118477 /* CEGoToSheetController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CEGoToSheetController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -1034,6 +1038,8 @@
 				2AAC90001A4E12D10074E076 /* CEWrappingTextField.m */,
 				2AE356441A86D32500E29FEF /* CEClipView.h */,
 				2AE356451A86D32500E29FEF /* CEClipView.m */,
+				2AFF21801BA9F69A008A41CD /* CESwitcherSegmentedCell.h */,
+				2AFF21811BA9F69A008A41CD /* CESwitcherSegmentedCell.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -1837,6 +1843,7 @@
 				2A6F0DE91B5500E100C2D03C /* CEKeyBindingManager.m in Sources */,
 				2A6F0DEB1B5500E100C2D03C /* CEPrintView.m in Sources */,
 				2A6F0DEC1B5500E100C2D03C /* CEATSTypesetter.m in Sources */,
+				2AFF21831BA9F69A008A41CD /* CESwitcherSegmentedCell.m in Sources */,
 				2A6F0DED1B5500E100C2D03C /* CEEditorView.m in Sources */,
 				2A6F0DEE1B5500E100C2D03C /* CEFileDropPaneController.m in Sources */,
 				2A6F0DEF1B5500E100C2D03C /* CEWrappingTextField.m in Sources */,
@@ -1897,6 +1904,7 @@
 				2A49861F1A67CC7100172797 /* CEEditorScrollView.m in Sources */,
 				2A84C7C21A48F3150013EE83 /* CEPreferencesWindow.m in Sources */,
 				2A94A45E18D0B562009FA90D /* CEOpacityPanelController.m in Sources */,
+				2AFF21821BA9F69A008A41CD /* CESwitcherSegmentedCell.m in Sources */,
 				2A88A7901B8B87C90055B9AE /* NSString+Normalization.m in Sources */,
 				2A15833518E3B83F00601026 /* CEConsolePanelController.m in Sources */,
 				2A5B998718D61421009C2F4F /* CELineHightPanelController.m in Sources */,
