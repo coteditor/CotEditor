@@ -5,6 +5,15 @@ Change Log
 develop
 --------------------------
 
+### Fixes
+
+- Fix an issue where calculation of hanging indent width was sometime incorrect.
+
+
+
+2.2.0-rc.2 (72)
+--------------------------
+
 ### Additions/Changes
 
 - Improve side inspector switcher. 

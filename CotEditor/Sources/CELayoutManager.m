@@ -361,13 +361,15 @@ static BOOL usesTextFontForInvisibles;
 // ------------------------------------------------------
 {
     CGFloat hangingIndent = [self spaceWidth] * [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultHangingIndentWidthKey];
+    CGFloat linePadding = [[[self firstTextView] textContainer] lineFragmentPadding];
+    NSTextStorage *textStorage = [self textStorage];
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"^[ \\t]+(?!$)" options:0 error:nil];
     
-    NSTextStorage *textStorage = [self textStorage];
+    NSMutableArray<NSDictionary<NSString *, id> *> *newIndents = [NSMutableArray array];
     
     // invalidate line by line
     NSRange lineRange = [[textStorage string] lineRangeForRange:range];
-    [textStorage beginEditing];
+    __weak typeof(self) weakSelf = self;
     [[textStorage string] enumerateSubstringsInRange:lineRange
                                              options:NSStringEnumerationByLines | NSStringEnumerationSubstringNotRequired
                                           usingBlock:^(NSString *substring,
@@ -375,13 +377,22 @@ static BOOL usesTextFontForInvisibles;
                                                        NSRange enclosingRange,
                                                        BOOL *stop)
      {
+         typeof(weakSelf) self = weakSelf;
+         if (!self) {
+             *stop = YES;
+             return;
+         }
+         
          CGFloat indent = hangingIndent;
          
          // add base indent
          NSRange baseIndentRange = [regex rangeOfFirstMatchInString:[textStorage string] options:0 range:substringRange];
          if (baseIndentRange.location != NSNotFound) {
-             NSAttributedString *attrBaseIndent = [textStorage attributedSubstringFromRange:baseIndentRange];
-             indent += ceil([attrBaseIndent size].width);
+             // getting the start line of the character jsut after the last indent character
+             //   -> This is actually better in terms of performance than getting whole bounding rect using `boundingRectForGlyphRange:inTextContainer:`
+             NSUInteger firstGlyphIndex = [self glyphIndexForCharacterAtIndex:NSMaxRange(baseIndentRange)];
+             NSPoint firstGlyphLocation = [self locationForGlyphAtIndex:firstGlyphIndex];
+             indent += firstGlyphLocation.x - linePadding;
          }
          
          // apply new indent only if needed
@@ -391,9 +402,23 @@ static BOOL usesTextFontForInvisibles;
          if (indent != [paragraphStyle headIndent]) {
              NSMutableParagraphStyle *mutableParagraphStyle = [paragraphStyle mutableCopy];
              [mutableParagraphStyle setHeadIndent:indent];
-             [textStorage addAttribute:NSParagraphStyleAttributeName value:[mutableParagraphStyle copy] range:substringRange];
+             
+             // store the result
+             //   -> Don't apply to the textStorage at this moment.
+             [newIndents addObject:@{@"paragraphStyle": [mutableParagraphStyle copy],
+                                     @"range": [NSValue valueWithRange:substringRange]}];
          }
      }];
+    
+    // apply new paragraph styles at once
+    //   -> This avoids letting layoutManager calculate glyph location each time.
+    [textStorage beginEditing];
+    for (NSDictionary<NSString *, id> *indent in newIndents) {
+        NSRange range = [indent[@"range"] rangeValue];
+        NSParagraphStyle *paragraphStyle = indent[@"paragraphStyle"];
+        
+        [textStorage addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:range];
+    }
     [textStorage endEditing];
 }
 
