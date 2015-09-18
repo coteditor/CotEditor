@@ -360,8 +360,8 @@ static BOOL usesTextFontForInvisibles;
 - (void)invalidateIndentInRange:(NSRange)range
 // ------------------------------------------------------
 {
-    NSUInteger hangingIndent = [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultHangingIndentWidthKey] * [self spaceWidth];
-    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"^[ \\t]+" options:0 error:nil];
+    CGFloat hangingIndent = [self spaceWidth] * [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultHangingIndentWidthKey];
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"^[ \\t]+(?!$)" options:0 error:nil];
     
     NSTextStorage *textStorage = [self textStorage];
     
@@ -381,7 +381,7 @@ static BOOL usesTextFontForInvisibles;
          NSRange baseIndentRange = [regex rangeOfFirstMatchInString:[textStorage string] options:0 range:substringRange];
          if (baseIndentRange.location != NSNotFound) {
              NSAttributedString *attrBaseIndent = [textStorage attributedSubstringFromRange:baseIndentRange];
-             indent += [attrBaseIndent size].width;
+             indent += ceil([attrBaseIndent size].width);
          }
          
          // apply new indent only if needed
