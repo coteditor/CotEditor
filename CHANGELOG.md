@@ -8,6 +8,7 @@ develop
 ### Fixes
 
 - Fix an issue where calculation of hanging indent width was sometime incorrect.
+- Fix an issue on El Capitan where page guide was drawn at the wrong column.
 
 
 
