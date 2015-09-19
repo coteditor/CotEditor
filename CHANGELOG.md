@@ -12,8 +12,9 @@ develop
 
 ### Fixes
 
-- Fix an issue where calculation of hanging indent width was sometime incorrect.
+- [rc] Fix an issue where calculation of hanging indent width was sometime incorrect.
 - Fix an issue on El Capitan where page guide was drawn at the wrong column.
+- Fix an issue where application crashed when type a part of surrogate pair character.
 
 
 

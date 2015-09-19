@@ -40,7 +40,7 @@
 - (nonnull NSString *)MD5
 {
     // Create pointer to the string as UTF8
-    const char *ptr = [self UTF8String];
+    const char *ptr = [self cStringUsingEncoding:NSUTF16StringEncoding];
     
     // Create byte array of unsigned chars
     unsigned char md5Buffer[CC_MD5_DIGEST_LENGTH];
