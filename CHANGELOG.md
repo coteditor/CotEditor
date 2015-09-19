@@ -5,6 +5,11 @@ Change Log
 develop
 --------------------------
 
+### Additions/Changes
+
+- Improve saving error dialog to display more detailed error reason.
+
+
 ### Fixes
 
 - Fix an issue where calculation of hanging indent width was sometime incorrect.

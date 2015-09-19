@@ -257,6 +257,14 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     // get data from string to save
     NSData *data = [string dataUsingEncoding:encoding allowLossyConversion:YES];
     
+    // show encoding error if encoding failed
+    if (!data && outError) {
+        *outError = [NSError errorWithDomain:NSCocoaErrorDomain
+                                        code:NSFileWriteInapplicableStringEncodingError
+                                    userInfo:@{NSStringEncodingErrorKey: @(encoding)}];
+        return data;
+    }
+    
     // add UTF-8 BOM if needed
     if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultSaveUTF8BOMKey] &&
         (encoding == NSUTF8StringEncoding))
