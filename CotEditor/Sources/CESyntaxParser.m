@@ -695,19 +695,14 @@ static CGFloat kPerCompoIncrement;
 {
     NSMutableArray<NSValue *> *ranges = [NSMutableArray array];
     NSCharacterSet *controlCharacterSet = [NSCharacterSet controlCharacterSet];
-    NSScanner *scanner = [NSScanner scannerWithString:string];
     
-    [scanner setScanLocation:parseRange.location];
-    
-    while(![scanner isAtEnd] && ([scanner scanLocation] < NSMaxRange(parseRange))) {
-        [scanner scanUpToCharactersFromSet:controlCharacterSet intoString:nil];
-        NSUInteger location = [scanner scanLocation];
-        NSString *control;
-        if ([scanner scanCharactersFromSet:controlCharacterSet intoString:&control]) {
-            NSRange range = NSMakeRange(location, [control length]);
-            
-            [ranges addObject:[NSValue valueWithRange:range]];
-        }
+    NSRange parsingRange = parseRange;
+    NSRange range;
+    while ((range = [string rangeOfCharacterFromSet:controlCharacterSet options:0 range:parsingRange]).location != NSNotFound) {
+        [ranges addObject:[NSValue valueWithRange:range]];
+        
+        parsingRange.location += range.length;
+        parsingRange.length -= range.length;
     }
     
     return ranges;
