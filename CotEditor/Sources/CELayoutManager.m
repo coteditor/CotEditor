@@ -61,6 +61,7 @@
 
 @implementation CELayoutManager
 
+static CGGlyph ReplacementGlyph;
 static BOOL usesTextFontForInvisibles;
 
 
@@ -73,6 +74,9 @@ static BOOL usesTextFontForInvisibles;
 {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
+        NSFont *lucidaGrande = [NSFont fontWithName:@"Lucida Grande" size:0];
+        ReplacementGlyph = [lucidaGrande glyphWithName:@"replacement"];  // U+FFFD
+        
         usesTextFontForInvisibles = [[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultUsesTextFontForInvisiblesKey];
     });
 }
@@ -156,7 +160,7 @@ static BOOL usesTextFontForInvisibles;
         NSColor *color = [[(NSTextView<CETextViewProtocol> *)[self firstTextView] theme] invisiblesColor];
         
         // for other invisibles
-        NSFont *replaceFont;  // delay creating font till it's really needed
+        NSFont *replacementFont;  // delay creating font till it's really needed
         
         // set graphics context
         CGContextRef context = (CGContextRef)[[NSGraphicsContext currentContext] graphicsPort];
@@ -224,18 +228,18 @@ static BOOL usesTextFontForInvisibles;
                         
                         if (currentGlyphInfo) { continue; }
                         
-                        replaceFont = replaceFont ?: [NSFont fontWithName:@"Lucida Grande" size:[[self textFont] pointSize]];
+                        replacementFont = replacementFont ?: [NSFont fontWithName:@"Lucida Grande" size:[[self textFont] pointSize]];
                         
                         NSRange charRange = [self characterRangeForGlyphRange:NSMakeRange(glyphIndex, 1) actualGlyphRange:NULL];
                         NSString *baseString = [completeString substringWithRange:charRange];
-                        NSGlyphInfo *glyphInfo = [NSGlyphInfo glyphInfoWithGlyphName:@"replacement" forFont:replaceFont baseString:baseString];
+                        NSGlyphInfo *glyphInfo = [NSGlyphInfo glyphInfoWithGlyph:ReplacementGlyph forFont:replacementFont baseString:baseString];
                         
                         if (glyphInfo) {
                             // !!!: The following line can cause crash by binary document.
                             //      It's actually dangerous and to be detoured to modify textStorage while drawing.
                             //      (2015-09 by 1024jp)
                             [[self textStorage] addAttributes:@{NSGlyphInfoAttributeName: glyphInfo,
-                                                                NSFontAttributeName: replaceFont,
+                                                                NSFontAttributeName: replacementFont,
                                                                 NSForegroundColorAttributeName: color}
                                                         range:charRange];
                         }
