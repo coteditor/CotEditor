@@ -228,9 +228,17 @@ static BOOL usesTextFontForInvisibles;
                         
                         if (currentGlyphInfo) { continue; }
                         
+                        NSRange charRange = NSMakeRange(charIndex, 1);
+                        if (CFStringIsSurrogateHighCharacter(character)) {
+                            if ((charIndex + 1 <= [completeString length]) &&
+                                CFStringIsSurrogateLowCharacter([completeString characterAtIndex:charIndex + 1]))
+                            {
+                                charRange.length = 2;
+                            }
+                        }
+                        
                         replacementFont = replacementFont ?: [NSFont fontWithName:@"Lucida Grande" size:[[self textFont] pointSize]];
                         
-                        NSRange charRange = [self characterRangeForGlyphRange:NSMakeRange(glyphIndex, 1) actualGlyphRange:NULL];
                         NSString *baseString = [completeString substringWithRange:charRange];
                         NSGlyphInfo *glyphInfo = [NSGlyphInfo glyphInfoWithGlyph:ReplacementGlyph forFont:replacementFont baseString:baseString];
                         

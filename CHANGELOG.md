@@ -15,6 +15,7 @@ develop
 - [rc] Fix an issue where calculation of hanging indent width was sometime incorrect.
 - Fix an issue on El Capitan where page guide was drawn at the wrong column.
 - Fix an issue where application crashed when type a part of surrogate pair character.
+- Fix an issue where invisibles which are a suroggate pair occasionally did not display.
 
 
 
@@ -33,7 +34,7 @@ develop
 - Fix an issue where application could possibly crash on window restoration.
 - Fix an issue where the toolbar button state of the text orientation was not updated on window restoration.
 - Fix help contents layout.
-- [Non-AppStore ver]: Fix an issue where updater settting in the General pane did not displayed on OS X Mountan Lion and Mavericks.
+- [Non-AppStore ver]: Fix an issue where updater setting in the General pane did not displayed on OS X Mountan Lion and Mavericks.
 
 
 
