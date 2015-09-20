@@ -1,52 +1,52 @@
 {
   "text" : {
-    "color" : "#000000"
+    "color" : "#313131"
   },
   "insertionPoint" : {
-    "color" : "#000000"
+    "color" : "#6c6c6c"
   },
   "invisibles" : {
-    "color" : "#b9b9b9"
+    "color" : "#999999"
   },
   "background" : {
-    "color" : "#ffffff"
+    "color" : "#f5f5f5"
   },
   "lineHighlight" : {
-    "color" : "#f0f0f0"
+    "color" : "#f6f6f6"
   },
   "selection" : {
     "color" : "#a7caff",
     "usesSystemSetting" : true
   },
   "keywords" : {
-    "color" : "#005493"
+    "color" : "#1b556b"
   },
   "commands" : {
-    "color" : "#bf4a26"
+    "color" : "#947231"
   },
   "types" : {
-    "color" : "#b07e00"
+    "color" : "#ae3d16"
   },
   "attributes" : {
-    "color" : "#577c03"
+    "color" : "#862753"
   },
   "variables" : {
-    "color" : "#348986"
+    "color" : "#217b79"
   },
   "values" : {
-    "color" : "#177368"
+    "color" : "#b22729"
   },
   "numbers" : {
-    "color" : "#631a95"
+    "color" : "#683a91"
   },
   "strings" : {
-    "color" : "#5a676c"
+    "color" : "#526e2a"
   },
   "characters" : {
-    "color" : "#4d810a"
+    "color" : "#639808"
   },
   "comments" : {
-    "color" : "#991a22"
+    "color" : "#66747a"
   },
   "metadata" : {
     "author" : "1024jp",

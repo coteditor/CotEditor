@@ -5,6 +5,11 @@ Change Log
 develop
 --------------------------
 
+### New Features
+
+- Add new theme “Anura”.
+
+
 ### Additions/Changes
 
 - Improve saving error dialog to display more detailed error reason.
