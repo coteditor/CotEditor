@@ -7,7 +7,7 @@ develop
 
 ### New Features
 
-- Add new theme “Anura”.
+- Add new themes “Anura” and “Note”.
 
 
 ### Additions/Changes
