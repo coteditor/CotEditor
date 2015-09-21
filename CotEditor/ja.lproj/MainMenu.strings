@@ -129,6 +129,15 @@
 /* Class = "NSMenuItem"; title = "Select Line"; ObjectID = "Cwp-ys-LJc"; */
 "Cwp-ys-LJc.title" = "行を選択";
 
+/* Class = "NSMenuItem"; title = "Lines"; ObjectID = "Kb8-QD-tYZ"; */
+"Kb8-QD-tYZ.title" = "行";
+/* Class = "NSMenu"; title = "Lines"; ObjectID = "BSD-be-CV9"; */
+"BSD-be-CV9.title" = "行";
+/* Class = "NSMenuItem"; title = "Move Up"; ObjectID = "4t7-IA-1r3"; */
+"4t7-IA-1r3.title" = "上へ移動";
+/* Class = "NSMenuItem"; title = "Move Down"; ObjectID = "J59-OR-kzC"; */
+"J59-OR-kzC.title" = "下へ移動";
+
 /* Class = "NSMenuItem"; title = "Input Backslash"; ObjectID = "631"; */
 "631.title" = "バックスラッシュを入力";
 /* Class = "NSMenuItem"; title = "Input Yen Mark"; ObjectID = "633"; */

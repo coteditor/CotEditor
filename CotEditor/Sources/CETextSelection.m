@@ -248,6 +248,24 @@
 
 
 // ------------------------------------------------------
+/// swap selected lines with the line just above
+- (void)handleMoveLineUpScriptCommand:(NSScriptCommand *)command
+// ------------------------------------------------------
+{
+    [[[[self document] editor] focusedTextView] moveLineUp:command];
+}
+
+
+// ------------------------------------------------------
+/// swap selected lines with the line just below
+- (void)handleMoveLineDownScriptCommand:(NSScriptCommand *)command
+// ------------------------------------------------------
+{
+    [[[[self document] editor] focusedTextView] moveLineDown:command];
+}
+
+
+// ------------------------------------------------------
 /// comment-out the selection
 - (void)handleCommentOutScriptCommand:(NSScriptCommand *)command
 // ------------------------------------------------------

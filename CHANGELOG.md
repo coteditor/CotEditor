@@ -52,6 +52,8 @@ develop
 ### New Features
 
 - Add new themes “Anura” and “Note”.
+- Add new actions “Move Line Up” and “Move Line Down”.
+    - They are also added to the AppleScript terms.
 
 
 ### Additions/Changes

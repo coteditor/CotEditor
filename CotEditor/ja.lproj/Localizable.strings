@@ -184,6 +184,7 @@
 "NFKC Casefold" = "NFKC Casefold";
 "Modified NFD" = "修正 NFD";
 "Inspect Character" = "文字情報を表示";
+"Move Line" = "行を移動";
 
 // Menu items
 "Comment Selection" = "選択範囲をコメントアウト";

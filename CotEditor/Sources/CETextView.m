@@ -2346,3 +2346,159 @@ static NSPoint kTextContainerOrigin;
 }
 
 @end
+
+
+
+
+#pragma mark -
+
+@implementation CETextView (LineProcessing)
+
+#pragma mark Private Methods
+
+// ------------------------------------------------------
+/// move selected line up
+- (IBAction)moveLineUp:(nullable id)sender
+// ------------------------------------------------------
+{
+    NSArray<NSValue *> *selectedRanges = [self selectedRanges];
+    NSMutableOrderedSet<NSValue *> *lineRanges = [NSMutableOrderedSet orderedSet];
+    NSTextStorage *textStorage = [self textStorage];
+    
+    // get line ranges to process
+    for (NSValue *rangeValue in selectedRanges) {
+        NSRange selectedRange = [rangeValue rangeValue];
+        
+        NSRange linesRange = [[textStorage string] lineRangeForRange:selectedRange];
+        
+        // cannot perform Move Line Up if one of the selections is already in the first line
+        if (linesRange.location == 0) {
+            NSBeep();
+            return;
+        }
+        
+        // store each line to process
+        [[textStorage string] enumerateSubstringsInRange:linesRange
+                                                 options:NSStringEnumerationByLines | NSStringEnumerationSubstringNotRequired
+                                              usingBlock:^(NSString * _Nullable substring,
+                                                           NSRange substringRange,
+                                                           NSRange enclosingRange,
+                                                           BOOL * _Nonnull stop)
+         {
+             [lineRanges addObject:[NSValue valueWithRange:enclosingRange]];
+        }];
+    }
+    
+    // register redo for text selection
+    [[[self undoManager] prepareWithInvocationTarget:self] setSelectedRangesWithUndo:[self selectedRanges]];
+    
+    NSMutableArray<NSValue *> *newSelectedRanges = [NSMutableArray arrayWithCapacity:[selectedRanges count]];
+    
+    // swap lines
+    [textStorage beginEditing];
+    for (NSValue *lineRangeValue in lineRanges) {
+        NSRange lineRange = [lineRangeValue rangeValue];
+        NSRange upperLineRange = [[textStorage string] lineRangeForRange:NSMakeRange(lineRange.location - 1, 0)];
+        NSString *lineString = [[textStorage string] substringWithRange:lineRange];
+        NSString *upperLineString = [[textStorage string] substringWithRange:upperLineRange];
+        
+        NSString *replacementString = [NSString stringWithFormat:@"%@%@", lineString, upperLineString];
+        NSRange editRange = NSMakeRange(upperLineRange.location, [replacementString length]);
+        
+        // swap
+        if ([self shouldChangeTextInRange:editRange replacementString:replacementString]) {
+            [[textStorage mutableString] replaceCharactersInRange:editRange withString:replacementString];
+            [self didChangeText];
+        
+            // move selected ranges in the line to move
+            for (NSValue *selectedRangeValue in selectedRanges) {
+                NSRange selectedRange = [selectedRangeValue rangeValue];
+                
+                if (NSLocationInRange(selectedRange.location, lineRange)) {
+                    selectedRange.location -= upperLineRange.length;
+                    [newSelectedRanges addObject:[NSValue valueWithRange:selectedRange]];
+                }
+            }
+        }
+    }
+    [textStorage endEditing];
+    
+    [self setSelectedRangesWithUndo:newSelectedRanges];
+    
+    [[self undoManager] setActionName:NSLocalizedString(@"Move Line", @"action name")];
+}
+
+
+// ------------------------------------------------------
+/// move selected line down
+- (IBAction)moveLineDown:(nullable id)sender
+// ------------------------------------------------------
+{
+    NSArray<NSValue *> *selectedRanges = [self selectedRanges];
+    NSMutableOrderedSet<NSValue *> *lineRanges = [NSMutableOrderedSet orderedSet];
+    NSTextStorage *textStorage = [self textStorage];
+    
+    // get line ranges to process
+    for (NSValue *rangeValue in selectedRanges) {
+        NSRange selectedRange = [rangeValue rangeValue];
+        
+        NSRange linesRange = [[textStorage string] lineRangeForRange:selectedRange];
+        
+        // cannot perform Move Line Down if one of the selections is already in the last line
+        if (NSMaxRange(linesRange) == [textStorage length]) {
+            NSBeep();
+            return;
+        }
+        
+        // store each line to process
+        [[textStorage string] enumerateSubstringsInRange:linesRange
+                                                 options:NSStringEnumerationByLines | NSStringEnumerationSubstringNotRequired
+                                              usingBlock:^(NSString * _Nullable substring,
+                                                           NSRange substringRange,
+                                                           NSRange enclosingRange,
+                                                           BOOL * _Nonnull stop)
+         {
+             [lineRanges addObject:[NSValue valueWithRange:enclosingRange]];
+         }];
+    }
+    
+    // register redo for text selection
+    [[[self undoManager] prepareWithInvocationTarget:self] setSelectedRangesWithUndo:[self selectedRanges]];
+    
+    NSMutableArray<NSValue *> *newSelectedRanges = [NSMutableArray arrayWithCapacity:[selectedRanges count]];
+    
+    // swap lines
+    [textStorage beginEditing];
+    for (NSValue *lineRangeValue in [lineRanges reversedOrderedSet]) {  // reverse order
+        NSRange lineRange = [lineRangeValue rangeValue];
+        NSRange lowerLineRange = [[textStorage string] lineRangeForRange:NSMakeRange(NSMaxRange(lineRange), 0)];
+        NSString *lineString = [[textStorage string] substringWithRange:lineRange];
+        NSString *lowerLineString = [[textStorage string] substringWithRange:lowerLineRange];
+        
+        NSString *replacementString = [NSString stringWithFormat:@"%@%@", lowerLineString, lineString];
+        NSRange editRange = NSMakeRange(lineRange.location, [replacementString length]);
+        
+        // swap
+        if ([self shouldChangeTextInRange:editRange replacementString:replacementString]) {
+            [[textStorage mutableString] replaceCharactersInRange:editRange withString:replacementString];
+            [self didChangeText];
+            
+            // move selected ranges in the line to move
+            for (NSValue *selectedRangeValue in selectedRanges) {
+                NSRange selectedRange = [selectedRangeValue rangeValue];
+                
+                if (NSLocationInRange(selectedRange.location, lineRange)) {
+                    selectedRange.location += lowerLineRange.length;
+                    [newSelectedRanges addObject:[NSValue valueWithRange:selectedRange]];
+                }
+            }
+        }
+    }
+    [textStorage endEditing];
+    
+    [self setSelectedRangesWithUndo:newSelectedRanges];
+    
+    [[self undoManager] setActionName:NSLocalizedString(@"Move Line", @"action name")];
+}
+
+@end

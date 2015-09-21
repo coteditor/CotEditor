@@ -182,6 +182,7 @@
 "NFKC Casefold" = "NFKC Casefold";
 "Modified NFD" = "Modifizierte NFD";
 "Inspect Character" = "Zeichen-Info einblenden";
+"Move Line" = "Zeile verschieben";
 
 // Menu items
 "Comment Selection" = "Auswahl auskommentieren";

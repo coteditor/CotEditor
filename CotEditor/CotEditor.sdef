@@ -133,6 +133,12 @@
             <responds-to command="shift right">
                 <cocoa method="handleShiftRightScriptCommand:"/>
             </responds-to>
+            <responds-to command="move line up">
+                <cocoa method="handleMoveLineUpScriptCommand:"/>
+            </responds-to>
+            <responds-to command="move line down">
+                <cocoa method="handleMoveLineDownScriptCommand:"/>
+            </responds-to>
             <responds-to command="comment out">
                 <cocoa method="handleCommentOutScriptCommand:"/>
             </responds-to>
@@ -251,6 +257,16 @@
         <command name="shift right" code="cEd1SRit" description="Shift selected lines to right.">
             <access-group identifier="com.coteditor.CotEditor.edit" access="rw"/>
             <direct-parameter type="text selection" description="The selection to shift."/>
+        </command>
+        
+        <command name="move line up" code="cEd1SLup" description="Swap selected lines with the line just above.">
+            <access-group identifier="com.coteditor.CotEditor.edit" access="rw"/>
+            <direct-parameter type="text selection" description="The selection to move"/>
+        </command>
+        
+        <command name="move line down" code="cEd1SLdw" description="Swap selected lines with the line just below">
+            <access-group identifier="com.coteditor.CotEditor.edit" access="rw"/>
+            <direct-parameter type="text selection" description="The selection to move"/>
         </command>
         
         <command name="comment out" code="cEd1Cout" description="Append comment delimiters to selected text if possible.">

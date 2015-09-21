@@ -114,3 +114,11 @@
 - (IBAction)editColorCode:(nullable id)sender;
 
 @end
+
+
+@interface CETextView (LineProcessing)
+
+- (IBAction)moveLineUp:(nullable id)sender;
+- (IBAction)moveLineDown:(nullable id)sender;
+
+@end

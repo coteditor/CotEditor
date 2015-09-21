@@ -94,6 +94,10 @@
 	<string>toggleFullScreen:</string>
 	<key>^@h</key>
 	<string>editColorCode:</string>
+	<key>^@</key>
+	<string>moveLineUp:</string>
+	<key>^@</key>
+	<string>moveLineDown:</string>
 	<key>^~@</key>
 	<string>focusPrevSplitTextView:</string>
 	<key>^~@</key>

@@ -198,6 +198,25 @@
                                     <action selector="selectLines:" target="-1" id="MP0-H8-6bm"/>
                                 </connections>
                             </menuItem>
+                            <menuItem title="Lines" id="Kb8-QD-tYZ">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="Lines" id="BSD-be-CV9">
+                                    <items>
+                                        <menuItem title="Move Up" keyEquivalent="" id="4t7-IA-1r3">
+                                            <modifierMask key="keyEquivalentModifierMask" control="YES" command="YES"/>
+                                            <connections>
+                                                <action selector="moveLineUp:" target="-1" id="vQh-9K-uKp"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Move Down" keyEquivalent="" id="J59-OR-kzC">
+                                            <modifierMask key="keyEquivalentModifierMask" control="YES" command="YES"/>
+                                            <connections>
+                                                <action selector="moveLineDown:" target="-1" id="Nfe-x0-39D"/>
+                                            </connections>
+                                        </menuItem>
+                                    </items>
+                                </menu>
+                            </menuItem>
                             <menuItem isSeparatorItem="YES" id="630">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
