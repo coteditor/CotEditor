@@ -137,6 +137,8 @@
 "4t7-IA-1r3.title" = "Nach oben verschieben";
 /* Class = "NSMenuItem"; title = "Move Down"; ObjectID = "J59-OR-kzC"; */
 "J59-OR-kzC.title" = "Nach unten verschieben";
+/* Class = "NSMenuItem"; title = "Delete Line"; ObjectID = "sFn-3j-pY5"; */
+"sFn-3j-pY5.title" = "Zeile löschen";
 
 /* Class = "NSMenuItem"; title = "Input Backslash"; ObjectID = "631"; */
 "631.title" = "Backslash eingeben";

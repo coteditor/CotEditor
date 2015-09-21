@@ -120,5 +120,6 @@
 
 - (IBAction)moveLineUp:(nullable id)sender;
 - (IBAction)moveLineDown:(nullable id)sender;
+- (IBAction)deleteLine:(nullable id)sender;
 
 @end

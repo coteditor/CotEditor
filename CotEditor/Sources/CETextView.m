@@ -2361,33 +2361,17 @@ static NSPoint kTextContainerOrigin;
 - (IBAction)moveLineUp:(nullable id)sender
 // ------------------------------------------------------
 {
-    NSArray<NSValue *> *selectedRanges = [self selectedRanges];
-    NSMutableOrderedSet<NSValue *> *lineRanges = [NSMutableOrderedSet orderedSet];
-    NSTextStorage *textStorage = [self textStorage];
-    
     // get line ranges to process
-    for (NSValue *rangeValue in selectedRanges) {
-        NSRange selectedRange = [rangeValue rangeValue];
-        
-        NSRange linesRange = [[textStorage string] lineRangeForRange:selectedRange];
-        
-        // cannot perform Move Line Up if one of the selections is already in the first line
-        if (linesRange.location == 0) {
-            NSBeep();
-            return;
-        }
-        
-        // store each line to process
-        [[textStorage string] enumerateSubstringsInRange:linesRange
-                                                 options:NSStringEnumerationByLines | NSStringEnumerationSubstringNotRequired
-                                              usingBlock:^(NSString * _Nullable substring,
-                                                           NSRange substringRange,
-                                                           NSRange enclosingRange,
-                                                           BOOL * _Nonnull stop)
-         {
-             [lineRanges addObject:[NSValue valueWithRange:enclosingRange]];
-        }];
+    NSArray<NSValue *> *lineRanges = [self selectedLineRanges];
+    
+    // cannot perform Move Line Up if one of the selections is already in the first line
+    if ([[lineRanges firstObject] rangeValue].location == 0) {
+        NSBeep();
+        return;
     }
+    
+    NSArray<NSValue *> *selectedRanges = [self selectedRanges];
+    NSTextStorage *textStorage = [self textStorage];
     
     // register redo for text selection
     [[[self undoManager] prepareWithInvocationTarget:self] setSelectedRangesWithUndo:[self selectedRanges]];
@@ -2434,33 +2418,17 @@ static NSPoint kTextContainerOrigin;
 - (IBAction)moveLineDown:(nullable id)sender
 // ------------------------------------------------------
 {
-    NSArray<NSValue *> *selectedRanges = [self selectedRanges];
-    NSMutableOrderedSet<NSValue *> *lineRanges = [NSMutableOrderedSet orderedSet];
-    NSTextStorage *textStorage = [self textStorage];
-    
     // get line ranges to process
-    for (NSValue *rangeValue in selectedRanges) {
-        NSRange selectedRange = [rangeValue rangeValue];
-        
-        NSRange linesRange = [[textStorage string] lineRangeForRange:selectedRange];
-        
-        // cannot perform Move Line Down if one of the selections is already in the last line
-        if (NSMaxRange(linesRange) == [textStorage length]) {
-            NSBeep();
-            return;
-        }
-        
-        // store each line to process
-        [[textStorage string] enumerateSubstringsInRange:linesRange
-                                                 options:NSStringEnumerationByLines | NSStringEnumerationSubstringNotRequired
-                                              usingBlock:^(NSString * _Nullable substring,
-                                                           NSRange substringRange,
-                                                           NSRange enclosingRange,
-                                                           BOOL * _Nonnull stop)
-         {
-             [lineRanges addObject:[NSValue valueWithRange:enclosingRange]];
-         }];
+    NSArray<NSValue *> *lineRanges = [self selectedLineRanges];
+    
+    // cannot perform Move Line Down if one of the selections is already in the last line
+    if (NSMaxRange([[lineRanges lastObject] rangeValue]) == [[self string] length]) {
+        NSBeep();
+        return;
     }
+    
+    NSArray<NSValue *> *selectedRanges = [self selectedRanges];
+    NSTextStorage *textStorage = [self textStorage];
     
     // register redo for text selection
     [[[self undoManager] prepareWithInvocationTarget:self] setSelectedRangesWithUndo:[self selectedRanges]];
@@ -2469,7 +2437,7 @@ static NSPoint kTextContainerOrigin;
     
     // swap lines
     [textStorage beginEditing];
-    for (NSValue *lineRangeValue in [lineRanges reversedOrderedSet]) {  // reverse order
+    for (NSValue *lineRangeValue in [lineRanges reverseObjectEnumerator]) {  // reverse order
         NSRange lineRange = [lineRangeValue rangeValue];
         NSRange lowerLineRange = [[textStorage string] lineRangeForRange:NSMakeRange(NSMaxRange(lineRange), 0)];
         NSString *lineString = [[textStorage string] substringWithRange:lineRange];
@@ -2499,6 +2467,68 @@ static NSPoint kTextContainerOrigin;
     [self setSelectedRangesWithUndo:newSelectedRanges];
     
     [[self undoManager] setActionName:NSLocalizedString(@"Move Line", @"action name")];
+}
+
+
+// ------------------------------------------------------
+/// move selected line down
+- (IBAction)deleteLine:(nullable id)sender
+// ------------------------------------------------------
+{
+    NSArray<NSValue *> *replacementRanges = [self selectedLineRanges];
+    NSMutableArray<NSString *> *replacementStrings = [NSMutableArray arrayWithCapacity:[replacementRanges count]];
+    
+    for (NSValue *_ in replacementRanges) {
+        [replacementStrings addObject:@""];
+    }
+    
+    if (![self shouldChangeTextInRanges:replacementRanges replacementStrings:replacementStrings]) { return; }
+    
+    // delete lines
+    [[self textStorage] beginEditing];
+    for (NSValue *rangeValue in [replacementRanges reverseObjectEnumerator]) {
+        NSRange lineRange = [rangeValue rangeValue];
+        
+        [[self textStorage] replaceCharactersInRange:lineRange withString:@""];
+    }
+    [[self textStorage] endEditing];
+    
+    [self didChangeText];
+    
+    [[self undoManager] setActionName:NSLocalizedString(@"Delete Line", @"action name")];
+}
+
+
+
+#pragma mark Private Methods
+
+// ------------------------------------------------------
+/// extract line by line line ranges which selected ranges include
+- (nonnull NSArray<NSValue *> *)selectedLineRanges
+// ------------------------------------------------------
+{
+    NSMutableOrderedSet<NSValue *> *lineRanges = [NSMutableOrderedSet orderedSet];
+    NSString *string = [self string];
+    
+    // get line ranges to process
+    for (NSValue *rangeValue in [self selectedRanges]) {
+        NSRange selectedRange = [rangeValue rangeValue];
+        
+        NSRange linesRange = [string lineRangeForRange:selectedRange];
+        
+        // store each line to process
+        [string enumerateSubstringsInRange:linesRange
+                                   options:NSStringEnumerationByLines | NSStringEnumerationSubstringNotRequired
+                                usingBlock:^(NSString * _Nullable substring,
+                                             NSRange substringRange,
+                                             NSRange enclosingRange,
+                                             BOOL * _Nonnull stop)
+         {
+             [lineRanges addObject:[NSValue valueWithRange:enclosingRange]];
+         }];
+    }
+    
+    return [lineRanges array];
 }
 
 @end

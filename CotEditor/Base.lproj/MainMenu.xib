@@ -214,6 +214,16 @@
                                                 <action selector="moveLineDown:" target="-1" id="Nfe-x0-39D"/>
                                             </connections>
                                         </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="hVD-Co-9NR"/>
+                                        <menuItem title="Delete Line" id="sFn-3j-pY5">
+                                            <string key="keyEquivalent" base64-UTF8="YES">
+CA
+</string>
+                                            <modifierMask key="keyEquivalentModifierMask" shift="YES" command="YES"/>
+                                            <connections>
+                                                <action selector="deleteLine:" target="-1" id="FJR-BG-Nyi"/>
+                                            </connections>
+                                        </menuItem>
                                     </items>
                                 </menu>
                             </menuItem>
