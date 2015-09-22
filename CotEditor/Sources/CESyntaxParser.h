@@ -57,7 +57,7 @@
 
 @interface CESyntaxParser (Highlighting)
 
-- (void)colorWholeStringInTextStorage:(nonnull NSTextStorage *)textStorage;
+- (void)colorWholeStringInTextStorage:(nonnull NSTextStorage *)textStorage completionHandler:(nullable void (^)())completionHandler;
 - (void)colorRange:(NSRange)range textStorage:(nonnull NSTextStorage *)textStorage;
 
 @end

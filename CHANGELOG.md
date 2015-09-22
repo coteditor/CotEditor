@@ -20,6 +20,7 @@ develop
 
 - [beta] Fix an issue where an unwanted migration window was displayed on the first launch even when there is nothing to be migrated.
 - [rc] Fix an issue where calculation of hanging indent width was sometime incorrect.
+- Fix an issue where theme color was occasionally not applied to the preview in the print panel.
 - Fix an issue on El Capitan where page guide was drawn at the wrong column.
 - Fix an issue where application crashed when type a part of surrogate pair character.
 - Fix an issue where invisibles which are a suroggate pair occasionally did not display.

@@ -464,7 +464,7 @@ static NSTimeInterval secondColoringDelay;
         [[editorView textView] setTheme:theme];
     }];
     
-    [[self syntaxParser] colorWholeStringInTextStorage:[self textStorage]];
+    [[self syntaxParser] colorWholeStringInTextStorage:[self textStorage] completionHandler:nil];
 }
 
 
@@ -527,7 +527,7 @@ static NSTimeInterval secondColoringDelay;
 {
     [self stopColoringTimer];
     
-    [[self syntaxParser] colorWholeStringInTextStorage:[self textStorage]];
+    [[self syntaxParser] colorWholeStringInTextStorage:[self textStorage] completionHandler:nil];
 }
 
 
