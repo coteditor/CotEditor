@@ -1760,39 +1760,38 @@ static NSPoint kTextContainerOrigin;
             endBrace = '>';
             break;
             
-        default: {
+        default:
             return wordRange;
-        }
     }
     
     NSUInteger lengthOfString = [completeString length];
     NSInteger originalLocation = location;
-    NSUInteger skipMatchingBrace = 0;
+    NSUInteger skippedBraceCount = 0;
     
     if (isEndBrace) {
         while (location--) {
-            unichar characterToCheck = [completeString characterAtIndex:location];
-            if (characterToCheck == beginBrace) {
-                if (!skipMatchingBrace) {
+            unichar character = [completeString characterAtIndex:location];
+            if (character == beginBrace) {
+                if (!skippedBraceCount) {
                     return NSMakeRange(location, originalLocation - location + 1);
                 } else {
-                    skipMatchingBrace--;
+                    skippedBraceCount--;
                 }
-            } else if (characterToCheck == endBrace) {
-                skipMatchingBrace++;
+            } else if (character == endBrace) {
+                skippedBraceCount++;
             }
         }
     } else {
         while (++location < lengthOfString) {
-            unichar characterToCheck = [completeString characterAtIndex:location];
-            if (characterToCheck == endBrace) {
-                if (!skipMatchingBrace) {
+            unichar character = [completeString characterAtIndex:location];
+            if (character == endBrace) {
+                if (!skippedBraceCount) {
                     return NSMakeRange(originalLocation, location - originalLocation + 1);
                 } else {
-                    skipMatchingBrace--;
+                    skippedBraceCount--;
                 }
-            } else if (characterToCheck == beginBrace) {
-                skipMatchingBrace++;
+            } else if (character == beginBrace) {
+                skippedBraceCount++;
             }
         }
     }
