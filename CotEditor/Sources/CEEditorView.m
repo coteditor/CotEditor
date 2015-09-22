@@ -500,7 +500,11 @@
         }
     }
     
-    NSBeep();
+    // do not beep when the typed brace is `>`
+    //  -> Since `>` (and `<`) can often be used alone unlike other braces.
+    if (endBrace != '>') {
+        NSBeep();
+    }
 }
 
 

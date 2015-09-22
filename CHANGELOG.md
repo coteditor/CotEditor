@@ -13,6 +13,7 @@ develop
 ### Additions/Changes
 
 - Improve saving error dialog to display more detailed error reason.
+- Avoid beeping on typing single `>` even if `<>` brace highlighting turned on.
 
 
 ### Fixes
