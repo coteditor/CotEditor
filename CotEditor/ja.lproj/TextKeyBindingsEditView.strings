@@ -1,15 +1,15 @@
 /*
  
- TextKeyBindingEditSheet.strings (German)
+ TextKeyBindingEditSheet.strings (Japanese)
  
  CotEditor
  http://coteditor.com
  
- Created by 1024jp on 2015-08-19.
+ Created by 1024jp on 2014-11-04.
  
  ------------------------------------------------------------------------------
  
- © 2015 1024jp
+ © 2014-2015 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -25,25 +25,24 @@
  
  */
 
-/* Class = "CEKeyBindingSheet"; title = "Text Key Bindings"; ObjectID = "54"; */
-"54.title" = "Text-Tastenbelegungen";
+/* Class = "NSTextFieldCell"; title = "Shortcuts for preset text insertion"; ObjectID = "s4R-ch-kDY"; */
+"s4R-ch-kDY.title" = "プリセットしたテキストを挿入するショートカット";
 
-/* Class = "NSTextFieldCell"; title = "To change a binding, select it, click the key column, and then type the keys.\nDo not include the Command key."; ObjectID = "150"; */
-"150.title" = "Zum Ändern einer Tastenbelegung wählen Sie ihn aus, klicken auf die Taste-Spalte und dann geben die Tasten ein. Kein Command-Taste darf einschließen.";
+/* Class = "NSTextFieldCell"; title = "To change a binding, select it, click the key column, and then type the keys."; ObjectID = "150"; */
+"150.title" = "アクションを選択し、キー列をクリックして編集状態にしてから、新しいキーを入力してください。";
+
+/* Class = "NSTextFieldCell"; title = "The keys here must exclude the Command key."; ObjectID = "s9U-jR-zQQ"; */
+"s9U-jR-zQQ.title" = "これらのキーにコマンドキーを含めることはできません。";
 
 /* Class = "NSTableColumn"; headerCell.title = "Action"; ObjectID = "88"; */
-"88.headerCell.title" = "Aktion";
+"88.headerCell.title" = "アクション";
 /* Class = "NSTableColumn"; headerCell.title = "Key"; ObjectID = "87"; */
-"87.headerCell.title" = "Taste";
+"87.headerCell.title" = "キー";
 
 /* Class = "NSTextFieldCell"; title = "Text to insert:"; ObjectID = "152"; */
-"152.title" = "Hinzuzufügender Text:";
+"152.title" = "挿入文字列：";
 /* Class = "IBBindingConnection"; ibShadowedNoSelectionPlaceholder = "Select action."; ObjectID = "jTj-QW-dQw"; */
-"jTj-QW-dQw.ibShadowedNoSelectionPlaceholder" = "Wählen Sie eine Aktion.";
+"jTj-QW-dQw.ibShadowedNoSelectionPlaceholder" = "アクションを選択してください。";
 
 /* Class = "NSButtonCell"; title = "Restore Defaults"; ObjectID = "153"; */
-"153.title" = "Auf Standard zurücksetzen";
-/* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "156"; */
-"156.title" = "Abbrechen";
-/* Class = "NSButtonCell"; title = "OK"; ObjectID = "154"; */
-"154.title" = "OK";
+"153.title" = "デフォルトに戻す";

@@ -25,18 +25,9 @@
  
  */
 
-/* Class = "NSTextFieldCell"; title = "Menu Key Bindings"; ObjectID = "3359"; */
-"3359.title" = "Menü-Tastenbelegungen";
-/* Class = "NSTextFieldCell"; title = "Shortcuts for menu items."; ObjectID = "3361"; */
-"3361.title" = "Kurzbefehls für Menüeinträge.";
-/* Class = "NSTextFieldCell"; title = "This setting does not include script menu items."; ObjectID = "3362"; */
-"3362.title" = "Diese Einstellung enthaltet keine Einträge für das Skripte-Menü.";
-/* Class = "NSButtonCell"; title = "Edit…"; ObjectID = "3360"; */
-"3360.title" = "Bearbeiten …";
 
-/* Class = "NSTextFieldCell"; title = "Additional Text Key Bindings"; ObjectID = "3363"; */
-"3363.title" = "Zusätzliche Text-Tastenbelegungen";
-/* Class = "NSTextFieldCell"; title = "Shortcuts to insert preset text."; ObjectID = "3364"; */
-"3364.title" = "Kurzbefehls, voreingestellten Text hinzuzufügen";
-/* Class = "NSButtonCell"; title = "Edit…"; ObjectID = "3365"; */
-"3365.title" = "Bearbeiten …";
+/* Class = "NSTabViewItem"; label = "Menu Items"; ObjectID = "QZO-GE-ra1"; */
+"QZO-GE-ra1.label" = "Menüeinträge";
+
+/* Class = "NSTabViewItem"; label = "Snippets"; ObjectID = "VfI-7K-2Nb"; */
+"VfI-7K-2Nb.label" = "Snippets";

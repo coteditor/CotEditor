@@ -51,7 +51,7 @@
 		2A15831A18E368CE00601026 /* CEEncodingListSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A15831918E368CE00601026 /* CEEncodingListSheetController.m */; };
 		2A15832118E3814200601026 /* SizeSampleWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A15831F18E3814200601026 /* SizeSampleWindow.xib */; };
 		2A15832418E383C300601026 /* CESizeSampleWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A15832318E383C300601026 /* CESizeSampleWindowController.m */; };
-		2A15832818E39B7400601026 /* TextKeyBindingEditSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A15832618E39B7400601026 /* TextKeyBindingEditSheet.xib */; };
+		2A15832818E39B7400601026 /* TextKeyBindingsEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A15832618E39B7400601026 /* TextKeyBindingsEditView.xib */; };
 		2A15833518E3B83F00601026 /* CEConsolePanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A15833418E3B83F00601026 /* CEConsolePanelController.m */; };
 		2A162FEA1AF395A400E97285 /* CEUpdaterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A162FE91AF395A400E97285 /* CEUpdaterManager.m */; };
 		2A1EB5C419AD469500C1E37E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A1EB5C319AD469500C1E37E /* Images.xcassets */; };
@@ -77,7 +77,7 @@
 		2A5411C319852C1C008B43DA /* NavigationBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A5411C119852C1C008B43DA /* NavigationBar.xib */; };
 		2A55335D1B556F2A0056FF3E /* CEGeneralPaneController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A55335C1B556F2A0056FF3E /* CEGeneralPaneController.m */; };
 		2A55335E1B556F2A0056FF3E /* CEGeneralPaneController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A55335C1B556F2A0056FF3E /* CEGeneralPaneController.m */; };
-		2A586A1619A4FA9D0053F5E3 /* CEKeyBindingsSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A586A1519A4FA9D0053F5E3 /* CEKeyBindingsSheetController.m */; };
+		2A586A1619A4FA9D0053F5E3 /* CEKeyBindingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A586A1519A4FA9D0053F5E3 /* CEKeyBindingsViewController.m */; };
 		2A5ABE761918615E009265DF /* CEUnicodeInputPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A5ABE751918615E009265DF /* CEUnicodeInputPanelController.m */; };
 		2A5ABE79191861E3009265DF /* UnicodePanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A5ABE77191861E3009265DF /* UnicodePanel.xib */; };
 		2A5B0AF5190723AC00B6A51C /* EditColorCode.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 2A5B0AF4190723AC00B6A51C /* EditColorCode.tiff */; };
@@ -112,7 +112,7 @@
 		2A6F0D641B5500E100C2D03C /* SyntaxEditSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 258EF2F8077FEDD000011E52 /* SyntaxEditSheet.xib */; };
 		2A6F0D651B5500E100C2D03C /* Indicator.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2588E9CC07C4851C0060021D /* Indicator.xib */; };
 		2A6F0D661B5500E100C2D03C /* ConsolePanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C28CD2C081101A300733DA7 /* ConsolePanel.xib */; };
-		2A6F0D671B5500E100C2D03C /* MenuKeyBindingEditSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C7400A208C6D93900683672 /* MenuKeyBindingEditSheet.xib */; };
+		2A6F0D671B5500E100C2D03C /* MenuKeyBindingsEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C7400A208C6D93900683672 /* MenuKeyBindingsEditView.xib */; };
 		2A6F0D681B5500E100C2D03C /* AppearancePane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A149D9619016ABB00A9D6EF /* AppearancePane.xib */; };
 		2A6F0D691B5500E100C2D03C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2AF5C3BC1A55072E00C972B5 /* InfoPlist.strings */; };
 		2A6F0D6A1B5500E100C2D03C /* PrintPane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A149DA219016ABB00A9D6EF /* PrintPane.xib */; };
@@ -134,7 +134,7 @@
 		2A6F0D7A1B5500E100C2D03C /* FormatPane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A149D9C19016ABB00A9D6EF /* FormatPane.xib */; };
 		2A6F0D7B1B5500E100C2D03C /* DocumentInspectorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A436DCB1A4243D500275FD4 /* DocumentInspectorView.xib */; };
 		2A6F0D7C1B5500E100C2D03C /* UnicodePanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A5ABE77191861E3009265DF /* UnicodePanel.xib */; };
-		2A6F0D7D1B5500E100C2D03C /* TextKeyBindingEditSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A15832618E39B7400601026 /* TextKeyBindingEditSheet.xib */; };
+		2A6F0D7D1B5500E100C2D03C /* TextKeyBindingsEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A15832618E39B7400601026 /* TextKeyBindingsEditView.xib */; };
 		2A6F0D7E1B5500E100C2D03C /* EncodingListSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A15831518E3688300601026 /* EncodingListSheet.xib */; };
 		2A6F0D7F1B5500E100C2D03C /* GoToSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2AFFB71F18D7F22E00118477 /* GoToSheet.xib */; };
 		2A6F0D801B5500E100C2D03C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 259C2316077678DE00BA61C5 /* Localizable.strings */; };
@@ -211,7 +211,7 @@
 		2A6F0DC81B5500E100C2D03C /* CEOpacityPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A94A45C18D0B562009FA90D /* CEOpacityPanelController.m */; };
 		2A6F0DC91B5500E100C2D03C /* CEConsolePanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A15833418E3B83F00601026 /* CEConsolePanelController.m */; };
 		2A6F0DCA1B5500E100C2D03C /* CELineHightPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A5B998518D61421009C2F4F /* CELineHightPanelController.m */; };
-		2A6F0DCB1B5500E100C2D03C /* CEKeyBindingsSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A586A1519A4FA9D0053F5E3 /* CEKeyBindingsSheetController.m */; };
+		2A6F0DCB1B5500E100C2D03C /* CEKeyBindingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A586A1519A4FA9D0053F5E3 /* CEKeyBindingsViewController.m */; };
 		2A6F0DCC1B5500E100C2D03C /* CEFindResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A009AD01A58ED1D00C3D542 /* CEFindResultViewController.m */; };
 		2A6F0DCD1B5500E100C2D03C /* CEPrintPanelAccessoryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A07202A18E0E1C2006F3A43 /* CEPrintPanelAccessoryController.m */; };
 		2A6F0DCE1B5500E100C2D03C /* CEMigrationWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A3A759319E77D66001DAB88 /* CEMigrationWindowController.m */; };
@@ -322,7 +322,7 @@
 		8C3E2D620808E210009894D1 /* WrapLines_On.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 8C3E2D5D0808E210009894D1 /* WrapLines_On.tiff */; };
 		8C52080A0880BAAF005734F2 /* RecolorAll.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 8C5208090880BAAF005734F2 /* RecolorAll.tiff */; };
 		8C65C0E807927D0F0028D94A /* CELayoutManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C65C0E607927D0F0028D94A /* CELayoutManager.m */; };
-		8C7400A408C6D93900683672 /* MenuKeyBindingEditSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C7400A208C6D93900683672 /* MenuKeyBindingEditSheet.xib */; };
+		8C7400A408C6D93900683672 /* MenuKeyBindingsEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C7400A208C6D93900683672 /* MenuKeyBindingsEditView.xib */; };
 		8C7400A908C6D96D00683672 /* CEKeyBindingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C7400A708C6D96D00683672 /* CEKeyBindingManager.m */; };
 		8C83A48309485F27004E48A8 /* CEATSTypesetter.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C83A48109485F27004E48A8 /* CEATSTypesetter.m */; };
 		8C8CCCB109D6803400A008E5 /* CESplitView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C8CCCAF09D6803400A008E5 /* CESplitView.m */; };
@@ -452,8 +452,8 @@
 		2A5411BF1983E5FA008B43DA /* CESplitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CESplitViewController.m; sourceTree = "<group>"; };
 		2A55335B1B556F2A0056FF3E /* CEGeneralPaneController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CEGeneralPaneController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		2A55335C1B556F2A0056FF3E /* CEGeneralPaneController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CEGeneralPaneController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		2A586A1419A4FA9D0053F5E3 /* CEKeyBindingsSheetController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CEKeyBindingsSheetController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		2A586A1519A4FA9D0053F5E3 /* CEKeyBindingsSheetController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CEKeyBindingsSheetController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		2A586A1419A4FA9D0053F5E3 /* CEKeyBindingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CEKeyBindingsViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		2A586A1519A4FA9D0053F5E3 /* CEKeyBindingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CEKeyBindingsViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		2A5ABE741918615E009265DF /* CEUnicodeInputPanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEUnicodeInputPanelController.h; sourceTree = "<group>"; };
 		2A5ABE751918615E009265DF /* CEUnicodeInputPanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEUnicodeInputPanelController.m; sourceTree = "<group>"; };
 		2A5B0AF4190723AC00B6A51C /* EditColorCode.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = EditColorCode.tiff; sourceTree = "<group>"; };
@@ -499,8 +499,8 @@
 		2A69076D1B8443AA00D0F3A2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/SyntaxEditSheet.strings; sourceTree = "<group>"; };
 		2A69076E1B8443AB00D0F3A2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/SyntaxMappingConflictSheet.strings; sourceTree = "<group>"; };
 		2A69076F1B8443AB00D0F3A2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/EncodingListSheet.strings; sourceTree = "<group>"; };
-		2A6907701B8443AB00D0F3A2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/MenuKeyBindingEditSheet.strings; sourceTree = "<group>"; };
-		2A6907711B8443AB00D0F3A2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/TextKeyBindingEditSheet.strings; sourceTree = "<group>"; };
+		2A6907701B8443AB00D0F3A2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/MenuKeyBindingsEditView.strings; sourceTree = "<group>"; };
+		2A6907711B8443AB00D0F3A2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/TextKeyBindingsEditView.strings; sourceTree = "<group>"; };
 		2A6907721B8443AB00D0F3A2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/SizeSampleWindow.strings; sourceTree = "<group>"; };
 		2A6907731B8443AB00D0F3A2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/ThemeView.strings; sourceTree = "<group>"; };
 		2A6907741B8443AB00D0F3A2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/OpacityPanel.strings; sourceTree = "<group>"; };
@@ -575,8 +575,8 @@
 		2AA0AC681A2877040063ED1B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/OpacityPanel.strings"; sourceTree = "<group>"; };
 		2AA0AC691A28770D0063ED1B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/ThemeView.strings"; sourceTree = "<group>"; };
 		2AA0AC6A1A2877130063ED1B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/SizeSampleWindow.strings"; sourceTree = "<group>"; };
-		2AA0AC6B1A28771C0063ED1B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/TextKeyBindingEditSheet.strings"; sourceTree = "<group>"; };
-		2AA0AC6C1A2877260063ED1B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/MenuKeyBindingEditSheet.strings"; sourceTree = "<group>"; };
+		2AA0AC6B1A28771C0063ED1B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/TextKeyBindingsEditView.strings"; sourceTree = "<group>"; };
+		2AA0AC6C1A2877260063ED1B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/MenuKeyBindingsEditView.strings"; sourceTree = "<group>"; };
 		2AA0AC6D1A2877310063ED1B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/EncodingListSheet.strings"; sourceTree = "<group>"; };
 		2AA0AC6E1A28773C0063ED1B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/SyntaxMappingConflictSheet.strings"; sourceTree = "<group>"; };
 		2AA0AC6F1A28774D0063ED1B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/SyntaxEditSheet.strings"; sourceTree = "<group>"; };
@@ -624,8 +624,8 @@
 		2AD488491A07FF1C00B795CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SyntaxEditSheet.xib; sourceTree = "<group>"; };
 		2AD4884A1A07FF1C00B795CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SyntaxMappingConflictSheet.xib; sourceTree = "<group>"; };
 		2AD4884B1A07FF1C00B795CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/EncodingListSheet.xib; sourceTree = "<group>"; };
-		2AD4884C1A07FF1C00B795CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MenuKeyBindingEditSheet.xib; sourceTree = "<group>"; };
-		2AD4884D1A07FF1C00B795CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/TextKeyBindingEditSheet.xib; sourceTree = "<group>"; };
+		2AD4884C1A07FF1C00B795CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MenuKeyBindingsEditView.xib; sourceTree = "<group>"; };
+		2AD4884D1A07FF1C00B795CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/TextKeyBindingsEditView.xib; sourceTree = "<group>"; };
 		2AD4884E1A07FF1C00B795CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SizeSampleWindow.xib; sourceTree = "<group>"; };
 		2AD4884F1A07FF1C00B795CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ThemeView.xib; sourceTree = "<group>"; };
 		2AD488501A07FF1C00B795CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/OpacityPanel.xib; sourceTree = "<group>"; };
@@ -650,8 +650,8 @@
 		2AD488631A08169500B795CB /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/SizeSampleWindow.strings; sourceTree = "<group>"; };
 		2AD488641A08173B00B795CB /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/ThemeView.strings; sourceTree = "<group>"; };
 		2AD488651A081C6100B795CB /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/EncodingListSheet.strings; sourceTree = "<group>"; };
-		2AD488661A081CC800B795CB /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/MenuKeyBindingEditSheet.strings; sourceTree = "<group>"; };
-		2AD488671A081D2300B795CB /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/TextKeyBindingEditSheet.strings; sourceTree = "<group>"; };
+		2AD488661A081CC800B795CB /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/MenuKeyBindingsEditView.strings; sourceTree = "<group>"; };
+		2AD488671A081D2300B795CB /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/TextKeyBindingsEditView.strings; sourceTree = "<group>"; };
 		2AD488681A081DEE00B795CB /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/SyntaxMappingConflictSheet.strings; sourceTree = "<group>"; };
 		2AD488691A081F1500B795CB /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/GeneralPane.strings; sourceTree = "<group>"; };
 		2AD4886A1A08205900B795CB /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/WindowPane.strings; sourceTree = "<group>"; };
@@ -851,8 +851,8 @@
 				258EF2F8077FEDD000011E52 /* SyntaxEditSheet.xib */,
 				2A5D2B9218E1ED420020AA1F /* SyntaxMappingConflictSheet.xib */,
 				2A15831518E3688300601026 /* EncodingListSheet.xib */,
-				8C7400A208C6D93900683672 /* MenuKeyBindingEditSheet.xib */,
-				2A15832618E39B7400601026 /* TextKeyBindingEditSheet.xib */,
+				8C7400A208C6D93900683672 /* MenuKeyBindingsEditView.xib */,
+				2A15832618E39B7400601026 /* TextKeyBindingsEditView.xib */,
 			);
 			name = Sheets;
 			sourceTree = "<group>";
@@ -999,7 +999,7 @@
 				2A149DC719019CC400A9D6EF /* Encoding List Sheet */,
 				2A2E03471A4BF808006ABE9F /* Syntax Edit Sheet */,
 				2A2E034C1A4C021C006ABE9F /* Syntax Mapping Conflicts Sheet */,
-				2A2E03481A4BF820006ABE9F /* Keybindings Edit Sheet */,
+				2A2E03481A4BF820006ABE9F /* Keybindings Edit Pane */,
 				2A63122B19C2D2EA0088C5C6 /* Theme Edit */,
 				2A15832218E383C300601026 /* CESizeSampleWindowController.h */,
 				2A15832318E383C300601026 /* CESizeSampleWindowController.m */,
@@ -1042,15 +1042,15 @@
 			name = "Syntax Edit Sheet";
 			sourceTree = "<group>";
 		};
-		2A2E03481A4BF820006ABE9F /* Keybindings Edit Sheet */ = {
+		2A2E03481A4BF820006ABE9F /* Keybindings Edit Pane */ = {
 			isa = PBXGroup;
 			children = (
-				2A586A1419A4FA9D0053F5E3 /* CEKeyBindingsSheetController.h */,
-				2A586A1519A4FA9D0053F5E3 /* CEKeyBindingsSheetController.m */,
+				2A586A1419A4FA9D0053F5E3 /* CEKeyBindingsViewController.h */,
+				2A586A1519A4FA9D0053F5E3 /* CEKeyBindingsViewController.m */,
 				2A5179381A40A3B500A3F852 /* CEShortcutKeyField.h */,
 				2A5179391A40A3B500A3F852 /* CEShortcutKeyField.m */,
 			);
-			name = "Keybindings Edit Sheet";
+			name = "Keybindings Edit Pane";
 			sourceTree = "<group>";
 		};
 		2A2E034C1A4C021C006ABE9F /* Syntax Mapping Conflicts Sheet */ = {
@@ -1459,7 +1459,7 @@
 				2A6F0D641B5500E100C2D03C /* SyntaxEditSheet.xib in Resources */,
 				2A6F0D651B5500E100C2D03C /* Indicator.xib in Resources */,
 				2A6F0D661B5500E100C2D03C /* ConsolePanel.xib in Resources */,
-				2A6F0D671B5500E100C2D03C /* MenuKeyBindingEditSheet.xib in Resources */,
+				2A6F0D671B5500E100C2D03C /* MenuKeyBindingsEditView.xib in Resources */,
 				2A6F0D681B5500E100C2D03C /* AppearancePane.xib in Resources */,
 				2A6F0D691B5500E100C2D03C /* InfoPlist.strings in Resources */,
 				2A6F0D6A1B5500E100C2D03C /* PrintPane.xib in Resources */,
@@ -1481,7 +1481,7 @@
 				2A6F0D7A1B5500E100C2D03C /* FormatPane.xib in Resources */,
 				2A6F0D7B1B5500E100C2D03C /* DocumentInspectorView.xib in Resources */,
 				2A6F0D7C1B5500E100C2D03C /* UnicodePanel.xib in Resources */,
-				2A6F0D7D1B5500E100C2D03C /* TextKeyBindingEditSheet.xib in Resources */,
+				2A6F0D7D1B5500E100C2D03C /* TextKeyBindingsEditView.xib in Resources */,
 				2A6F0D7E1B5500E100C2D03C /* EncodingListSheet.xib in Resources */,
 				2A6F0D7F1B5500E100C2D03C /* GoToSheet.xib in Resources */,
 				2A6F0D801B5500E100C2D03C /* Localizable.strings in Resources */,
@@ -1544,7 +1544,7 @@
 				258EF2FA077FEDD000011E52 /* SyntaxEditSheet.xib in Resources */,
 				2588E9CE07C4851C0060021D /* Indicator.xib in Resources */,
 				8C28CD2E081101A300733DA7 /* ConsolePanel.xib in Resources */,
-				8C7400A408C6D93900683672 /* MenuKeyBindingEditSheet.xib in Resources */,
+				8C7400A408C6D93900683672 /* MenuKeyBindingsEditView.xib in Resources */,
 				2A149DA619016ABB00A9D6EF /* AppearancePane.xib in Resources */,
 				2AF5C3BE1A55072E00C972B5 /* InfoPlist.strings in Resources */,
 				2A149DAC19016ABB00A9D6EF /* PrintPane.xib in Resources */,
@@ -1566,7 +1566,7 @@
 				2A149DA919016ABB00A9D6EF /* FormatPane.xib in Resources */,
 				2A436DCD1A4243D500275FD4 /* DocumentInspectorView.xib in Resources */,
 				2A5ABE79191861E3009265DF /* UnicodePanel.xib in Resources */,
-				2A15832818E39B7400601026 /* TextKeyBindingEditSheet.xib in Resources */,
+				2A15832818E39B7400601026 /* TextKeyBindingsEditView.xib in Resources */,
 				2A15831718E3688300601026 /* EncodingListSheet.xib in Resources */,
 				2AFFB71D18D7F22E00118477 /* GoToSheet.xib in Resources */,
 				259C2318077678DE00BA61C5 /* Localizable.strings in Resources */,
@@ -1742,7 +1742,7 @@
 				2A6F0DC81B5500E100C2D03C /* CEOpacityPanelController.m in Sources */,
 				2A6F0DC91B5500E100C2D03C /* CEConsolePanelController.m in Sources */,
 				2A6F0DCA1B5500E100C2D03C /* CELineHightPanelController.m in Sources */,
-				2A6F0DCB1B5500E100C2D03C /* CEKeyBindingsSheetController.m in Sources */,
+				2A6F0DCB1B5500E100C2D03C /* CEKeyBindingsViewController.m in Sources */,
 				2A6F0DCC1B5500E100C2D03C /* CEFindResultViewController.m in Sources */,
 				2A6F0DCD1B5500E100C2D03C /* CEPrintPanelAccessoryController.m in Sources */,
 				2A6F0DCE1B5500E100C2D03C /* CEMigrationWindowController.m in Sources */,
@@ -1841,7 +1841,7 @@
 				2A88A7901B8B87C90055B9AE /* NSString+Normalization.m in Sources */,
 				2A15833518E3B83F00601026 /* CEConsolePanelController.m in Sources */,
 				2A5B998718D61421009C2F4F /* CELineHightPanelController.m in Sources */,
-				2A586A1619A4FA9D0053F5E3 /* CEKeyBindingsSheetController.m in Sources */,
+				2A586A1619A4FA9D0053F5E3 /* CEKeyBindingsViewController.m in Sources */,
 				2A009AD11A58ED1D00C3D542 /* CEFindResultViewController.m in Sources */,
 				2A07202B18E0E1C2006F3A43 /* CEPrintPanelAccessoryController.m in Sources */,
 				2A55335D1B556F2A0056FF3E /* CEGeneralPaneController.m in Sources */,
@@ -2062,7 +2062,7 @@
 			name = SizeSampleWindow.xib;
 			sourceTree = "<group>";
 		};
-		2A15832618E39B7400601026 /* TextKeyBindingEditSheet.xib */ = {
+		2A15832618E39B7400601026 /* TextKeyBindingsEditView.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				2AD4884D1A07FF1C00B795CB /* Base */,
@@ -2070,7 +2070,7 @@
 				2AA0AC6B1A28771C0063ED1B /* zh-Hans */,
 				2A6907711B8443AB00D0F3A2 /* de */,
 			);
-			name = TextKeyBindingEditSheet.xib;
+			name = TextKeyBindingsEditView.xib;
 			sourceTree = "<group>";
 		};
 		2A2D6C171A602D2C002451FF /* RegexReferencePopover.xib */ = {
@@ -2361,7 +2361,7 @@
 			name = ConsolePanel.xib;
 			sourceTree = "<group>";
 		};
-		8C7400A208C6D93900683672 /* MenuKeyBindingEditSheet.xib */ = {
+		8C7400A208C6D93900683672 /* MenuKeyBindingsEditView.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				2AD4884C1A07FF1C00B795CB /* Base */,
@@ -2369,7 +2369,7 @@
 				2AA0AC6C1A2877260063ED1B /* zh-Hans */,
 				2A6907701B8443AB00D0F3A2 /* de */,
 			);
-			name = MenuKeyBindingEditSheet.xib;
+			name = MenuKeyBindingsEditView.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -2419,7 +2419,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = CotEditor.entitlements;
-				CODE_SIGN_IDENTITY = "Developer ID Application";
 				INFOPLIST_FILE = "CotEditor-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				OTHER_CODE_SIGN_FLAGS = "--deep";
@@ -2434,7 +2433,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = CotEditor.entitlements;
-				CODE_SIGN_IDENTITY = "Developer ID Application";
 				INFOPLIST_FILE = "CotEditor-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				OTHER_CODE_SIGN_FLAGS = "--deep";

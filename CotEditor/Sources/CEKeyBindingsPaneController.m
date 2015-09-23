@@ -27,7 +27,17 @@
  */
 
 #import "CEKeyBindingsPaneController.h"
-#import "CEKeyBindingsSheetController.h"
+#import "CEKeyBindingsViewController.h"
+
+
+@interface CEKeyBindingsPaneController ()
+
+@property (nonatomic, nullable) CEKeyBindingsViewController *menuViewController;
+@property (nonatomic, nullable) CEKeyBindingsViewController *textViewController;
+
+@property (nonatomic, nullable) IBOutlet NSTabView *tabView;
+
+@end
 
 
 @implementation CEKeyBindingsPaneController
@@ -36,25 +46,14 @@
 
 // ------------------------------------------------------
 /// open key bindng edit sheet
-- (IBAction)openKeyBindingEditSheet:(nullable id)sender
+- (void)viewDidLoad
 // ------------------------------------------------------
 {
-    // display sheet and start modal loop
-    // (will end on CEKeyBindingSheetController's `closeSheet:`)
-    CEKeyBindingsSheetController *sheetController = [[CEKeyBindingsSheetController alloc] initWithMode:[sender tag]];
-    NSWindow *sheet = [sheetController window];
+    [self setMenuViewController:[[CEKeyBindingsViewController alloc] initWithMode:CEMenuKeyBindingsType]];
+    [self setTextViewController:[[CEKeyBindingsViewController alloc] initWithMode:CETextKeyBindingsType]];
     
-    [NSApp beginSheet:sheet
-       modalForWindow:[[self view] window]
-        modalDelegate:self
-       didEndSelector:NULL
-          contextInfo:NULL];
-    [NSApp runModalForWindow:sheet];
-    
-    // close sheet
-    [NSApp endSheet:sheet];
-    [sheet orderOut:self];
-    [[[self view] window] makeKeyAndOrderFront:self];
+    [[[self tabView] tabViewItemAtIndex:0] setView:[[self menuViewController] view]];
+    [[[self tabView] tabViewItemAtIndex:1] setView:[[self textViewController] view]];
 }
 
 @end

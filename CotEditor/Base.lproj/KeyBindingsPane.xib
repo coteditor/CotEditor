@@ -1,168 +1,66 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="8191" systemVersion="15A282b" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="8191"/>
-        <capability name="box content view" minToolsVersion="7.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="CEKeyBindingsPaneController">
             <connections>
-                <outlet property="view" destination="748" id="2qO-XK-wiQ"/>
+                <outlet property="tabView" destination="N7z-Dh-pT6" id="QRu-vY-5Mg"/>
+                <outlet property="view" destination="biP-EO-9yC" id="aD8-wi-veO"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <userDefaultsController representsSharedInstance="YES" id="26" userLabel="Shared User Defaults Controller"/>
-        <customView horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" id="748" userLabel="Key Bindings Pane">
-            <rect key="frame" x="0.0" y="0.0" width="550" height="333"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+        <customView id="biP-EO-9yC" userLabel="Key Bindings Pane">
+            <rect key="frame" x="0.0" y="0.0" width="550" height="410"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <button horizontalHuggingPriority="750" verticalHuggingPriority="750" tag="7" translatesAutoresizingMaskIntoConstraints="NO" id="2356">
+                <button horizontalHuggingPriority="750" verticalHuggingPriority="750" tag="7" translatesAutoresizingMaskIntoConstraints="NO" id="nfV-RQ-dc3">
                     <rect key="frame" x="507" y="17" width="25" height="25"/>
                     <animations/>
-                    <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" inset="2" id="3367">
+                    <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" inset="2" id="xXK-KU-zgD">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
                     <connections>
-                        <action selector="openHelpAnchor:" target="-1" id="dJS-lg-oq8"/>
+                        <action selector="openHelpAnchor:" target="-1" id="ieE-ay-3iX"/>
                     </connections>
                 </button>
-                <box titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="718">
-                    <rect key="frame" x="17" y="49" width="516" height="126"/>
-                    <view key="contentView" id="Evc-Kv-mKV">
-                        <rect key="frame" x="2" y="2" width="512" height="122"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="720">
-                                <rect key="frame" x="14" y="93" width="179" height="17"/>
-                                <animations/>
-                                <textFieldCell key="cell" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" title="Additional Text Key Bindings " usesSingleLineMode="YES" id="3363">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <button horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="722">
-                                <rect key="frame" x="397" y="53" width="100" height="32"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="88" id="Jiu-hk-nks"/>
-                                </constraints>
-                                <animations/>
-                                <buttonCell key="cell" type="push" title="Edit…" bezelStyle="rounded" alignment="center" borderStyle="border" tag="1" inset="2" id="3365">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="openKeyBindingEditSheet:" target="-2" id="725"/>
-                                </connections>
-                            </button>
-                            <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="721">
-                                <rect key="frame" x="14" y="67" width="166" height="14"/>
-                                <animations/>
-                                <textFieldCell key="cell" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" title="Shortcuts to insert preset text." usesSingleLineMode="YES" id="3364">
-                                    <font key="font" metaFont="smallSystem"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                        </subviews>
-                        <animations/>
-                    </view>
-                    <constraints>
-                        <constraint firstItem="720" firstAttribute="leading" secondItem="718" secondAttribute="leading" constant="15" id="1MK-OP-nOr"/>
-                        <constraint firstAttribute="height" constant="120" id="5qt-dH-p56"/>
-                        <constraint firstAttribute="trailing" secondItem="722" secondAttribute="trailing" constant="20" id="D6L-Ym-0Ie"/>
-                        <constraint firstItem="720" firstAttribute="top" secondItem="718" secondAttribute="top" constant="12" id="IEU-hg-LER"/>
-                        <constraint firstItem="721" firstAttribute="leading" secondItem="720" secondAttribute="leading" id="XqB-bO-uap"/>
-                        <constraint firstItem="721" firstAttribute="top" secondItem="720" secondAttribute="bottom" constant="12" id="glU-2m-kYH"/>
-                        <constraint firstItem="721" firstAttribute="top" secondItem="722" secondAttribute="top" id="nBM-xM-15d"/>
-                    </constraints>
+                <tabView translatesAutoresizingMaskIntoConstraints="NO" id="N7z-Dh-pT6">
+                    <rect key="frame" x="13" y="43" width="524" height="361"/>
                     <animations/>
-                    <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
-                    <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                </box>
-                <box titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="716">
-                    <rect key="frame" x="17" y="189" width="516" height="126"/>
-                    <view key="contentView" id="xbq-pV-wVf">
-                        <rect key="frame" x="2" y="2" width="512" height="122"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="714">
-                                <rect key="frame" x="397" y="53" width="100" height="32"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="88" id="Ft6-A5-Vzh"/>
-                                </constraints>
+                    <font key="font" metaFont="system"/>
+                    <tabViewItems>
+                        <tabViewItem label="Menu Items" identifier="1" id="QZO-GE-ra1">
+                            <view key="view" id="oxx-eJ-Jef">
+                                <rect key="frame" x="10" y="33" width="504" height="315"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <animations/>
-                                <buttonCell key="cell" type="push" title="Edit…" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="3360">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="openKeyBindingEditSheet:" target="-2" id="723"/>
-                                </connections>
-                            </button>
-                            <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="715">
-                                <rect key="frame" x="14" y="67" width="141" height="14"/>
+                            </view>
+                        </tabViewItem>
+                        <tabViewItem label="Snippets" identifier="2" id="VfI-7K-2Nb">
+                            <view key="view" id="Hws-mk-aYY">
+                                <rect key="frame" x="10" y="33" width="504" height="305"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <animations/>
-                                <textFieldCell key="cell" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" title="Shortcuts for menu items." usesSingleLineMode="YES" id="3361">
-                                    <font key="font" metaFont="smallSystem"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="713">
-                                <rect key="frame" x="14" y="93" width="120" height="17"/>
-                                <animations/>
-                                <textFieldCell key="cell" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" title="Menu Key Bindings" usesSingleLineMode="YES" id="3359">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <textField horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="835">
-                                <rect key="frame" x="14" y="49" width="383" height="14"/>
-                                <animations/>
-                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="This setting does not include script menu items." id="3362">
-                                    <font key="font" metaFont="smallSystem"/>
-                                    <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                        </subviews>
-                        <animations/>
-                    </view>
-                    <constraints>
-                        <constraint firstItem="715" firstAttribute="top" secondItem="713" secondAttribute="bottom" constant="12" id="0GN-eE-TAg"/>
-                        <constraint firstItem="835" firstAttribute="leading" secondItem="715" secondAttribute="leading" id="NPj-fP-RLb"/>
-                        <constraint firstAttribute="height" constant="120" id="QEE-Jl-zgK"/>
-                        <constraint firstItem="713" firstAttribute="top" secondItem="716" secondAttribute="top" constant="12" id="RX5-Ve-Ihd"/>
-                        <constraint firstItem="714" firstAttribute="leading" secondItem="835" secondAttribute="trailing" constant="8" symbolic="YES" id="YBD-cv-ugX"/>
-                        <constraint firstItem="714" firstAttribute="top" secondItem="715" secondAttribute="top" id="f6U-gt-3Sw"/>
-                        <constraint firstItem="713" firstAttribute="leading" secondItem="716" secondAttribute="leading" constant="15" id="hgd-3H-iTw"/>
-                        <constraint firstItem="835" firstAttribute="leading" secondItem="713" secondAttribute="leading" id="uMn-AI-HzB"/>
-                        <constraint firstAttribute="trailing" secondItem="714" secondAttribute="trailing" constant="20" id="vbC-8L-jOb"/>
-                        <constraint firstItem="835" firstAttribute="top" secondItem="715" secondAttribute="bottom" constant="4" id="wRs-mJ-dku"/>
-                    </constraints>
-                    <animations/>
-                    <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
-                    <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                </box>
+                            </view>
+                        </tabViewItem>
+                    </tabViewItems>
+                </tabView>
             </subviews>
             <constraints>
-                <constraint firstItem="716" firstAttribute="top" secondItem="748" secondAttribute="top" constant="20" symbolic="YES" id="5Jq-bs-DFN"/>
-                <constraint firstAttribute="trailing" secondItem="718" secondAttribute="trailing" constant="20" symbolic="YES" id="78p-5E-N5t"/>
-                <constraint firstItem="718" firstAttribute="top" secondItem="716" secondAttribute="bottom" constant="20" id="9Yg-jZ-dT5"/>
-                <constraint firstAttribute="bottom" secondItem="2356" secondAttribute="bottom" constant="20" symbolic="YES" id="GyS-OX-S6C"/>
-                <constraint firstAttribute="trailing" secondItem="2356" secondAttribute="trailing" constant="20" symbolic="YES" id="Mck-Fv-9Xz"/>
-                <constraint firstItem="716" firstAttribute="leading" secondItem="748" secondAttribute="leading" constant="20" symbolic="YES" id="cEL-PO-psC"/>
-                <constraint firstItem="2356" firstAttribute="top" secondItem="718" secondAttribute="bottom" constant="12" symbolic="YES" id="dzy-ni-y9U"/>
-                <constraint firstAttribute="trailing" secondItem="716" secondAttribute="trailing" constant="20" symbolic="YES" id="mKP-VT-4Cq"/>
-                <constraint firstItem="718" firstAttribute="leading" secondItem="748" secondAttribute="leading" constant="20" symbolic="YES" id="wEI-r5-3Rn"/>
+                <constraint firstAttribute="trailing" secondItem="nfV-RQ-dc3" secondAttribute="trailing" constant="20" symbolic="YES" id="2bI-HX-1eS"/>
+                <constraint firstAttribute="bottom" secondItem="nfV-RQ-dc3" secondAttribute="bottom" constant="20" symbolic="YES" id="GXC-IC-nnU"/>
+                <constraint firstItem="nfV-RQ-dc3" firstAttribute="top" secondItem="N7z-Dh-pT6" secondAttribute="bottom" constant="12" symbolic="YES" id="TBJ-NQ-X5z"/>
+                <constraint firstItem="N7z-Dh-pT6" firstAttribute="leading" secondItem="biP-EO-9yC" secondAttribute="leading" constant="20" symbolic="YES" id="Ztd-9P-EED"/>
+                <constraint firstAttribute="trailing" secondItem="N7z-Dh-pT6" secondAttribute="trailing" constant="20" symbolic="YES" id="kX9-AE-afa"/>
+                <constraint firstItem="N7z-Dh-pT6" firstAttribute="top" secondItem="biP-EO-9yC" secondAttribute="top" constant="12" symbolic="YES" id="vsM-zb-DQK"/>
             </constraints>
             <animations/>
-            <point key="canvasLocation" x="349" y="238.5"/>
+            <point key="canvasLocation" x="567" y="158"/>
         </customView>
     </objects>
 </document>

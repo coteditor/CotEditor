@@ -1,11 +1,12 @@
 /*
  
- TextKeyBindingEditSheet.strings (Japanese)
+ TextKeyBindingEditSheet.strings (Simplified Chinese)
  
  CotEditor
  http://coteditor.com
  
- Created by 1024jp on 2014-11-04.
+ Created by 1024jp on 2014-12-12.
+ Localized by onevcat
  
  ------------------------------------------------------------------------------
  
@@ -25,25 +26,24 @@
  
  */
 
-/* Class = "CEKeyBindingSheet"; title = "Text Key Bindings"; ObjectID = "54"; */
-"54.title" = "テキストキーバインド";
+/* Class = "NSTextFieldCell"; title = "Shortcuts for preset text insertion"; ObjectID = "s4R-ch-kDY"; */
+"s4R-ch-kDY.title" = "插入预定义文本的快捷按键";
 
-/* Class = "NSTextFieldCell"; title = "To change a binding, select it, click the key column, and then type the keys.\nDo not include the Command key."; ObjectID = "150"; */
-"150.title" = "アクションを選択し、キー列をクリックして編集状態にしてから、新しいキーを入力してください。\nコマンドキーを含めることはできません。";
+/* Class = "NSTextFieldCell"; title = "To change a binding, select it, click the key column, and then type the keys."; ObjectID = "150"; */
+"150.title" = "选中要绑定的项目并单击按键列来改变绑定";
+
+/* Class = "NSTextFieldCell"; title = "The keys here must exclude the Command key."; ObjectID = "s9U-jR-zQQ"; */
+"s9U-jR-zQQ.title" = "绑定的快捷键中不能包含 Command 键。";  // FIXME: modified
 
 /* Class = "NSTableColumn"; headerCell.title = "Action"; ObjectID = "88"; */
-"88.headerCell.title" = "アクション";
+"88.headerCell.title" = "动作";
 /* Class = "NSTableColumn"; headerCell.title = "Key"; ObjectID = "87"; */
-"87.headerCell.title" = "キー";
+"87.headerCell.title" = "按键";
 
 /* Class = "NSTextFieldCell"; title = "Text to insert:"; ObjectID = "152"; */
-"152.title" = "挿入文字列：";
+"152.title" = "插入文本：";
 /* Class = "IBBindingConnection"; ibShadowedNoSelectionPlaceholder = "Select action."; ObjectID = "jTj-QW-dQw"; */
-"jTj-QW-dQw.ibShadowedNoSelectionPlaceholder" = "アクションを選択してください。";
+"jTj-QW-dQw.ibShadowedNoSelectionPlaceholder" = "选择动作。";
 
 /* Class = "NSButtonCell"; title = "Restore Defaults"; ObjectID = "153"; */
-"153.title" = "デフォルトに戻す";
-/* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "156"; */
-"156.title" = "キャンセル";
-/* Class = "NSButtonCell"; title = "OK"; ObjectID = "154"; */
-"154.title" = "OK";
+"153.title" = "恢复默认";
