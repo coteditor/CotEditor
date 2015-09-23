@@ -139,6 +139,9 @@
             <responds-to command="move line down">
                 <cocoa method="handleMoveLineDownScriptCommand:"/>
             </responds-to>
+            <responds-to command="sort lines">
+                <cocoa method="handleSortLinesAscendingScriptCommand:"/>
+            </responds-to>
             <responds-to command="comment out">
                 <cocoa method="handleCommentOutScriptCommand:"/>
             </responds-to>
@@ -267,6 +270,11 @@
         <command name="move line down" code="cEd1SLdw" description="Swap selected lines with the line just below">
             <access-group identifier="com.coteditor.CotEditor.edit" access="rw"/>
             <direct-parameter type="text selection" description="The selection to move"/>
+        </command>
+        
+        <command name="sort lines" code="cEd1Sort" description="Sort selected lines ascending">
+            <access-group identifier="com.coteditor.CotEditor.edit" access="rw"/>
+            <direct-parameter type="text selection" description="The selection to sort"/>
         </command>
         
         <command name="comment out" code="cEd1Cout" description="Append comment delimiters to selected text if possible.">

@@ -266,6 +266,15 @@
 
 
 // ------------------------------------------------------
+/// swap selected lines with the line just below
+- (void)handleSortLinesAscendingScriptCommand:(NSScriptCommand *)command
+// ------------------------------------------------------
+{
+    [[[[self document] editor] focusedTextView] sortLinesAscending:command];
+}
+
+
+// ------------------------------------------------------
 /// comment-out the selection
 - (void)handleCommentOutScriptCommand:(NSScriptCommand *)command
 // ------------------------------------------------------

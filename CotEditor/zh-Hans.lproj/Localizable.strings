@@ -182,6 +182,7 @@
 "Modified NFD" = "修改 NFD";
 "Inspect Character" = "显示字符";
 "Move Line" = "Move Line";  // FIXME: added
+"Sort Lines" = "Sort Lines";  // FIXME: added
 "Delete Line" = "Delete Line";  // FIXME: added
 
 // Menu items

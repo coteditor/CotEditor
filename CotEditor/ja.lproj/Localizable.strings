@@ -185,6 +185,7 @@
 "Modified NFD" = "修正 NFD";
 "Inspect Character" = "文字情報を表示";
 "Move Line" = "行を移動";
+"Sort Lines" = "行をソート";
 "Delete Line" = "行を削除";
 
 // Menu items

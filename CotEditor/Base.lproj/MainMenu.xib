@@ -215,6 +215,12 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="hVD-Co-9NR"/>
+                                        <menuItem title="Sort" id="OQl-Uo-yfn">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="sortLinesAscending:" target="-1" id="B7y-tD-zyu"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem title="Delete Line" id="sFn-3j-pY5">
                                             <string key="keyEquivalent" base64-UTF8="YES">
 CA
