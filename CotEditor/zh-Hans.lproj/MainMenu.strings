@@ -140,6 +140,8 @@
 "J59-OR-kzC.title" = "Move Down";  // FIXME: added
 /* Class = "NSMenuItem"; title = "Sort"; ObjectID = "OQl-Uo-yfn"; */
 "OQl-Uo-yfn.title" = "Sort";  // FIXME: added
+/* Class = "NSMenuItem"; title = "Reverse"; ObjectID = "xhf-NR-D2Q"; */
+"xhf-NR-D2Q.title" = "Reverse";  // FIXME: added
 /* Class = "NSMenuItem"; title = "Delete Line"; ObjectID = "sFn-3j-pY5"; */
 "sFn-3j-pY5.title" = "Delete Line";  // FIXME: added
 

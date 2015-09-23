@@ -2476,6 +2476,10 @@ static NSPoint kTextContainerOrigin;
 // ------------------------------------------------------
 {
     NSRange lineRange = [[self string] lineRangeForRange:[self selectedRange]];
+    
+    if (lineRange.length == 0) { return; }
+    
+    BOOL endsWithNewline = ([[self string] characterAtIndex:NSMaxRange(lineRange) - 1] == '\n');
     NSMutableArray<NSString *> *lines = [NSMutableArray array];
     
     [[self string] enumerateSubstringsInRange:lineRange
@@ -2495,6 +2499,9 @@ static NSPoint kTextContainerOrigin;
     [lines sortUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
     
     NSString *newString = [lines componentsJoinedByString:@"\n"];
+    if (endsWithNewline) {
+        newString = [newString stringByAppendingString:@"\n"];
+    }
     
     if (![self shouldChangeTextInRange:lineRange replacementString:newString]) { return; }
     
@@ -2503,6 +2510,47 @@ static NSPoint kTextContainerOrigin;
     [self didChangeText];
     
     [[self undoManager] setActionName:NSLocalizedString(@"Sort Lines", @"action name")];
+}
+
+
+// ------------------------------------------------------
+/// reverse selected lines (only in the first selection)
+- (IBAction)reverseLines:(nullable id)sender
+// ------------------------------------------------------
+{
+    NSRange lineRange = [[self string] lineRangeForRange:[self selectedRange]];
+    
+    if (lineRange.length == 0) { return; }
+    
+    BOOL endsWithNewline = ([[self string] characterAtIndex:NSMaxRange(lineRange) - 1] == '\n');
+    NSMutableArray<NSString *> *lines = [NSMutableArray array];
+    
+    [[self string] enumerateSubstringsInRange:lineRange
+                                      options:NSStringEnumerationByLines | NSStringEnumerationReverse
+                                   usingBlock:^(NSString * _Nullable substring,
+                                                NSRange substringRange,
+                                                NSRange enclosingRange,
+                                                BOOL * _Nonnull stop)
+     {
+         [lines addObject:substring];
+     }];
+    
+    // do nothing with single line
+    if ([lines count] < 2) { return; }
+    
+    // make new string
+    NSString *newString = [lines componentsJoinedByString:@"\n"];
+    if (endsWithNewline) {
+        newString = [newString stringByAppendingString:@"\n"];
+    }
+    
+    if (![self shouldChangeTextInRange:lineRange replacementString:newString]) { return; }
+    
+    [[self textStorage] replaceCharactersInRange:lineRange withString:newString];
+    
+    [self didChangeText];
+    
+    [[self undoManager] setActionName:NSLocalizedString(@"Reverse Lines", @"action name")];
 }
 
 

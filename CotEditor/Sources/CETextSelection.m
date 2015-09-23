@@ -275,6 +275,15 @@
 
 
 // ------------------------------------------------------
+/// swap selected lines with the line just below
+- (void)handleReverseLinesScriptCommand:(NSScriptCommand *)command
+// ------------------------------------------------------
+{
+    [[[[self document] editor] focusedTextView] reverseLines:command];
+}
+
+
+// ------------------------------------------------------
 /// comment-out the selection
 - (void)handleCommentOutScriptCommand:(NSScriptCommand *)command
 // ------------------------------------------------------

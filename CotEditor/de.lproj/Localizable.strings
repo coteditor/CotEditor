@@ -184,6 +184,7 @@
 "Inspect Character" = "Zeichen-Info einblenden";
 "Move Line" = "Zeile verschieben";
 "Sort Lines" = "Zeilen sortieren";
+"Reverse Lines" = "Zeilen umdrehen";
 "Delete Line" = "Zeile löschen";
 
 // Menu items

@@ -139,6 +139,8 @@
 "J59-OR-kzC.title" = "Nach unten verschieben";
 /* Class = "NSMenuItem"; title = "Sort"; ObjectID = "OQl-Uo-yfn"; */
 "OQl-Uo-yfn.title" = "Sortieren";
+/* Class = "NSMenuItem"; title = "Reverse"; ObjectID = "xhf-NR-D2Q"; */
+"xhf-NR-D2Q.title" = "Umdrehen";
 /* Class = "NSMenuItem"; title = "Delete Line"; ObjectID = "sFn-3j-pY5"; */
 "sFn-3j-pY5.title" = "Zeile löschen";
 

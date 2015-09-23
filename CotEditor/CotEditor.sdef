@@ -142,6 +142,9 @@
             <responds-to command="sort lines">
                 <cocoa method="handleSortLinesAscendingScriptCommand:"/>
             </responds-to>
+            <responds-to command="reverse lines">
+                <cocoa method="handleReverseLinesScriptCommand:"/>
+            </responds-to>
             <responds-to command="comment out">
                 <cocoa method="handleCommentOutScriptCommand:"/>
             </responds-to>
@@ -275,6 +278,11 @@
         <command name="sort lines" code="cEd1Sort" description="Sort selected lines ascending">
             <access-group identifier="com.coteditor.CotEditor.edit" access="rw"/>
             <direct-parameter type="text selection" description="The selection to sort"/>
+        </command>
+        
+        <command name="reverse lines" code="cEd1Revl" description="Reverse selected lines">
+            <access-group identifier="com.coteditor.CotEditor.edit" access="rw"/>
+            <direct-parameter type="text selection" description="The selection to reverse"/>
         </command>
         
         <command name="comment out" code="cEd1Cout" description="Append comment delimiters to selected text if possible.">

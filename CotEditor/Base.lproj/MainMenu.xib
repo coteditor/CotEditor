@@ -221,6 +221,13 @@
                                                 <action selector="sortLinesAscending:" target="-1" id="B7y-tD-zyu"/>
                                             </connections>
                                         </menuItem>
+                                        <menuItem title="Reverse" id="xhf-NR-D2Q">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="reverseLines:" target="-1" id="LXU-WT-T6K"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="Dpo-h5-IyY"/>
                                         <menuItem title="Delete Line" id="sFn-3j-pY5">
                                             <string key="keyEquivalent" base64-UTF8="YES">
 CA

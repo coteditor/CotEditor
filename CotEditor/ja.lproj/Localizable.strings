@@ -186,6 +186,7 @@
 "Inspect Character" = "文字情報を表示";
 "Move Line" = "行を移動";
 "Sort Lines" = "行をソート";
+"Reverse Lines" = "行を反転";
 "Delete Line" = "行を削除";
 
 // Menu items
