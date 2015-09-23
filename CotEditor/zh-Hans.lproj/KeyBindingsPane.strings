@@ -39,7 +39,5 @@
 "3363.title" = "额外的文本按键绑定";
 /* Class = "NSTextFieldCell"; title = "Shortcuts to insert preset text."; ObjectID = "3364"; */
 "3364.title" = "插入预定义文本的快捷按键。";
-/* Class = "NSTextFieldCell"; title = "This setting is not for the standard Cocoa key bindings\nbut for CotEditor’s original function."; ObjectID = "3366"; */
-"3366.title" = "这些设定不是针对标准的 Cocoa 快捷按键的，\n而是对 CotEditor 中的功能有效。";
 /* Class = "NSButtonCell"; title = "Edit…"; ObjectID = "3365"; */
 "3365.title" = "编辑…";
