@@ -34,7 +34,6 @@
 
 @property (nonatomic) CEKeyBindingType mode;
 @property (nonatomic, nonnull) NSMutableArray *outlineData;
-@property (nonatomic, nonnull) NSMutableArray<NSString *> *registeredKeySpecCharsList;  // for duplication check
 @property (nonatomic, nullable, copy) NSString *warningMessage;  // for binding
 @property (nonatomic, getter=isRestoreble) BOOL restoreble;  // for binding
 
@@ -52,6 +51,8 @@
 #pragma mark -
 
 @implementation CEKeyBindingSheetController
+
+#pragma mark Window Controller Methods
 
 // ------------------------------------------------------
 /// initialize
@@ -75,8 +76,6 @@
                 _restoreble = ![[CEKeyBindingManager sharedManager] usesDefaultTextKeyBindings];
                 break;
         }
-        
-        _registeredKeySpecCharsList = [self keySpecCharsListFromOutlineData:_outlineData];
     }
     return self;
 }
@@ -93,11 +92,9 @@
         case CEMenuKeyBindingsType:
             // toggle item expand by double-clicking
             [[self outlineView] setDoubleAction:@selector(toggleOutlineItemExpand:)];
-            [[self outlineView] setTarget:self];
             break;
             
-        case CETextKeyBindingsType:
-        {
+        case CETextKeyBindingsType: {
             NSArray<NSString *> *insertTexts = [[NSUserDefaults standardUserDefaults] stringArrayForKey:CEDefaultInsertCustomTextArrayKey];
             NSMutableArray<NSMutableDictionary<NSString *, NSString *> *> *content = [NSMutableArray array];
             
@@ -105,8 +102,7 @@
                 [content addObject:[@{CEDefaultInsertCustomTextKey: text} mutableCopy]];
             }
             [[self snippetArrayController] setContent:content];
-        }
-            break;
+        } break;
     }
 }
 
@@ -226,7 +222,6 @@
     NSOutlineView *outlineView = [self outlineView];
     NSTextField *textField = (NSTextField *)[obj object];
     NSInteger row = [outlineView rowForView:textField];
-    NSInteger column = [outlineView columnWithIdentifier:CEKeyBindingKeySpecCharsKey];
     NSTableColumn *tableColumn = [outlineView tableColumnWithIdentifier:CEKeyBindingKeySpecCharsKey];
     id item = [outlineView itemAtRow:row];
     NSString *keySpecChars = [textField stringValue];
@@ -254,6 +249,7 @@
     }
     
     // reload row to apply printed form of key spec
+    NSInteger column = [outlineView columnForView:textField];
     [outlineView reloadDataForRowIndexes:[NSIndexSet indexSetWithIndex:row]
                            columnIndexes:[NSIndexSet indexSetWithIndex:column]];
 }
@@ -272,8 +268,7 @@
             [self resetKeySpecCharsToFactoryDefaults:[self outlineData]];
             break;
             
-        case CETextKeyBindingsType:
-        {
+        case CETextKeyBindingsType: {
             NSMutableArray<NSMutableDictionary<NSString *, id> *> *content = [NSMutableArray array];
             NSArray<NSString *> *defaultInsertTexts = [[[NSUserDefaults alloc] init] volatileDomainForName:NSRegistrationDomain][CEDefaultInsertCustomTextArrayKey];
             
@@ -283,11 +278,9 @@
             [self setOutlineData:[[CEKeyBindingManager sharedManager] textKeySpecCharArrayForOutlineDataWithFactoryDefaults:YES]];
             [[self snippetArrayController] setContent:content];
             [[self snippetArrayController] setSelectionIndex:NSNotFound];
-        }
-            break;
+        } break;
     }
     
-    [self setRegisteredKeySpecCharsList:[self keySpecCharsListFromOutlineData:[self outlineData]]];
     [self setRestoreble:NO];
     [[self outlineView] deselectAll:nil];
     [[self outlineView] reloadData];
@@ -303,16 +296,7 @@
     [[self window] makeFirstResponder:sender];
     
     if (sender == [self OKButton]) { // save with OK button
-        switch ([self mode]) {
-            case CEMenuKeyBindingsType:
-                [[CEKeyBindingManager sharedManager] saveMenuKeyBindings:[self outlineData]];
-                break;
-                
-            case CETextKeyBindingsType:
-                [[CEKeyBindingManager sharedManager] saveTextKeyBindings:[self outlineData]
-                                                                   texts:[[self snippetArrayController] content]];
-                break;
-        }
+        [self saveSettings];
     }
     
     // close sheet
@@ -344,6 +328,24 @@
 #pragma mark Private Mthods
 
 // ------------------------------------------------------
+/// save current settings
+- (void)saveSettings
+// ------------------------------------------------------
+{
+    switch ([self mode]) {
+        case CEMenuKeyBindingsType:
+            [[CEKeyBindingManager sharedManager] saveMenuKeyBindings:[self outlineData]];
+            break;
+            
+        case CETextKeyBindingsType:
+            [[CEKeyBindingManager sharedManager] saveTextKeyBindings:[self outlineData]
+                                                               texts:[[self snippetArrayController] content]];
+            break;
+    }
+}
+
+
+// ------------------------------------------------------
 /// 子アイテムを返す
 - (nonnull NSArray<id> *)childrenOfItem:(id)item
 // ------------------------------------------------------
@@ -357,11 +359,17 @@
 - (BOOL)validateKeySpecChars:(nonnull NSString *)keySpec oldChars:(nonnull NSString *)oldSpec
 //------------------------------------------------------
 {
+    // clear error
+    [self setWarningMessage:nil];
+    [[self OKButton] setEnabled:YES];
+    
+    // blank key is always valid
+    if ([keySpec length] == 0) { return YES; }
+    
     NSString *warning = nil;
-    if ([keySpec length] == 0) {
-        // blank key is always valid
-        
-    } else if (![keySpec isEqualToString:oldSpec] && [[self registeredKeySpecCharsList] containsObject:keySpec]) {
+    NSArray<NSString *> *registeredKeySpecChars = [self keySpecCharsListFromOutlineData:[self outlineData]];
+    
+    if (![keySpec isEqualToString:oldSpec] && [registeredKeySpecChars containsObject:keySpec]) {
         // duplication check
         warning = NSLocalizedString(@"“%@” is already taken. Please choose another key.", nil);
         
@@ -387,20 +395,6 @@
         
         NSBeep();
         return NO;
-    }
-    
-    // clear error
-    [self setWarningMessage:nil];
-    [[self OKButton] setEnabled:YES];
-    
-    // update key spec array for dupliation check
-    if (![keySpec isEqualToString:oldSpec]) {
-        if ([oldSpec length] > 0) {
-            [[self registeredKeySpecCharsList] removeObject:oldSpec];
-        }
-        if ([keySpec length] > 0) {
-            [[self registeredKeySpecCharsList] addObject:keySpec];
-        }
     }
 
     return YES;
@@ -454,8 +448,9 @@
         if (children) {
             [self resetKeySpecCharsToFactoryDefaults:children];
         }
-        NSString *selectorStr = item[CEKeyBindingSelectorStringKey];
-        NSString *keySpecChars = [[CEKeyBindingManager sharedManager] keySpecCharsInDefaultDictionaryFromSelectorString:selectorStr];
+        
+        NSString *selector = item[CEKeyBindingSelectorStringKey];
+        NSString *keySpecChars = [[CEKeyBindingManager sharedManager] keySpecCharsInDefaultDictionaryFromSelectorString:selector];
         item[CEKeyBindingKeySpecCharsKey] = keySpecChars;
     }
 }

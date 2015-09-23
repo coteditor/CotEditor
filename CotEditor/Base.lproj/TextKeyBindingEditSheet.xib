@@ -979,9 +979,6 @@ DQ
                     <constraint firstItem="68" firstAttribute="top" secondItem="56" secondAttribute="bottom" constant="20" symbolic="YES" id="z1F-n1-fGN"/>
                 </constraints>
             </view>
-            <connections>
-                <outlet property="delegate" destination="-2" id="Bvv-wn-fJO"/>
-            </connections>
         </window>
         <arrayController objectClassName="NSString" avoidsEmptySelection="NO" id="98" userLabel="Snippet Array Controller">
             <declaredKeys>
