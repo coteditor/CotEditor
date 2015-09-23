@@ -14,6 +14,8 @@ develop
 
 - Improve saving error dialog to display more detailed error reason.
 - Avoid beeping on typing single `>` even if `<>` brace highlighting turned on.
+- Update “Swift” syntax style:
+    - Add new terms available in Swift 2.0.
 
 
 ### Fixes
