@@ -32,7 +32,7 @@ develop
 - [rc] Fix an issue where calculation of hanging indent width was sometime incorrect.
 - [beta] Fix an issue where an unwanted migration window was displayed on the first launch even when there is nothing to be migrated.
 - [beta] Fix an issue where application could possibly crash on window restoration.
-- [Non-AppStore ver] Fix an issue where updater setting in the General pane did not displayed on OS X Mountain Lion and Mavericks.
+- [Non-AppStore ver.] Fix an issue where updater setting in the General pane did not displayed on OS X Mountain Lion and Mavericks.
 
 
 

@@ -30,9 +30,6 @@
 #import "Constants.h"
 
 
-// for OS X 10.10 SDK
-#define CEAppKitVersionNumber10_11 1404
-
 static NSString *_Nonnull const kPreferredSymbolicLinkPath = @"/usr/local/bin/cot";
 
 
