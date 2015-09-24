@@ -27,7 +27,7 @@
  */
 
 #import "CEKeyBindingsPaneController.h"
-#import "CEKeyBindingSheetController.h"
+#import "CEKeyBindingsSheetController.h"
 
 
 @implementation CEKeyBindingsPaneController
@@ -41,7 +41,7 @@
 {
     // display sheet and start modal loop
     // (will end on CEKeyBindingSheetController's `closeSheet:`)
-    CEKeyBindingSheetController *sheetController = [[CEKeyBindingSheetController alloc] initWithMode:[sender tag]];
+    CEKeyBindingsSheetController *sheetController = [[CEKeyBindingsSheetController alloc] initWithMode:[sender tag]];
     NSWindow *sheet = [sheetController window];
     
     [NSApp beginSheet:sheet

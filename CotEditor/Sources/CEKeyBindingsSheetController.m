@@ -1,6 +1,6 @@
 /*
  
- CEKeyBindingSheetController.m
+ CEKeyBindingsSheetController.m
  
  CotEditor
  http://coteditor.com
@@ -25,12 +25,12 @@
  
  */
 
-#import "CEKeyBindingSheetController.h"
+#import "CEKeyBindingsSheetController.h"
 #import "CEKeyBindingManager.h"
 #import "Constants.h"
 
 
-@interface CEKeyBindingSheetController () <NSOutlineViewDataSource, NSOutlineViewDelegate, NSTextFieldDelegate>
+@interface CEKeyBindingsSheetController () <NSOutlineViewDataSource, NSOutlineViewDelegate, NSTextFieldDelegate>
 
 @property (nonatomic) CEKeyBindingType mode;
 @property (nonatomic, nonnull) NSMutableArray *outlineData;
@@ -50,7 +50,7 @@
 
 #pragma mark -
 
-@implementation CEKeyBindingSheetController
+@implementation CEKeyBindingsSheetController
 
 #pragma mark Window Controller Methods
 

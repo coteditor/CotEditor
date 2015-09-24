@@ -5,7 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="7706"/>
     </dependencies>
     <objects>
-        <customObject id="-2" customClass="CEKeyBindingSheetController">
+        <customObject id="-2" customClass="CEKeyBindingsSheetController">
             <connections>
                 <outlet property="OKButton" destination="13" id="1yx-3j-qB2"/>
                 <outlet property="outlineView" destination="8" id="87F-fg-biJ"/>
