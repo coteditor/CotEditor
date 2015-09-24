@@ -16,7 +16,7 @@ develop
 - Avoid beeping on typing an unmatched `>` even if `<>` brace highlighting turned on.
 - Update “Swift” syntax style:
     - Add new terms available in Swift 2.0.
-- Improve contextual menu for syntax style list on preferences.
+- Improve contextual menu for theme/syntax style list on preferences.
 - Tweak syntax style edit sheet layout.
 - [beta] Improve side inspector switcher. 
 

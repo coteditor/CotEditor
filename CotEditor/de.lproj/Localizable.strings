@@ -299,6 +299,7 @@
 "Rename “%@”" = "“%@” umbenennen";
 "Duplicate “%@”" = "„%@“ duplizieren";
 "Restore “%@”" = "„%@“ zurücksetzen";
+"Reveal “%@” in Finder" = "„%@“ im Finder anzeigen";
 // Theme delete alert
 "Are you sure you want to delete “%@” theme?" = "Möchten Sie das Thema „%@“ wirklich löschen?";
 "This action cannot be undone." = "Diese Aktion kann nicht widerrufen werden.";

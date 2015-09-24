@@ -301,6 +301,7 @@
 "Rename “%@”" = "“%@”を名称変更";
 "Duplicate “%@”" = "“%@”を複製";
 "Restore “%@”" = "“%@”を元に戻す";
+"Reveal “%@” in Finder" = "“%@”を Finder で表示";
 // Theme deletion alert
 "Are you sure you want to delete “%@” theme?" = "“%@”テーマを削除してもよろしいですか？";
 "This action cannot be undone." = "この操作は取り消せません。";

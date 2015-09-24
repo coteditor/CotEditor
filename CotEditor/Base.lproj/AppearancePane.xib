@@ -253,6 +253,12 @@
                                         <action selector="exportTheme:" target="-2" id="MFX-9x-4Ss"/>
                                     </connections>
                                 </menuItem>
+                                <menuItem title="Reveal in Finder" alternate="YES" id="8yR-99-h6Q">
+                                    <modifierMask key="keyEquivalentModifierMask" option="YES"/>
+                                    <connections>
+                                        <action selector="revealThemeInFinder:" target="-2" id="mg5-s4-Sb1"/>
+                                    </connections>
+                                </menuItem>
                                 <menuItem isSeparatorItem="YES" id="UAd-WS-R1U"/>
                                 <menuItem title="Import…" id="gcs-B8-kPL">
                                     <connections>
@@ -419,6 +425,12 @@
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="exportTheme:" target="-2" id="b1M-qs-Ggf"/>
+                    </connections>
+                </menuItem>
+                <menuItem title="Reveal in Finder" alternate="YES" id="UMs-gY-YHE">
+                    <modifierMask key="keyEquivalentModifierMask" option="YES"/>
+                    <connections>
+                        <action selector="revealThemeInFinder:" target="-2" id="tMT-yK-6Qm"/>
                     </connections>
                 </menuItem>
                 <menuItem title="Import…" id="52n-xG-4ZL">
