@@ -43,12 +43,13 @@
 	</ul></li>
 	<li>New setting option for the behavior on document modification by external process (in General pane).</li>
 	<li>Share button in toolbar (Customize toolbar to use it).</li>
+	<li>Add new themes “Anura” and “Note”.</li>
+	<li>Line number view for vertical text orientation.</li>
+	<li>Print with vertical text orientation.</li>
 	<li>Save text orientation state to the file and restore it when the file is opened.
 	<ul>
 		<li><strong>for advanced users</strong>: In this feature, CotEditor saves an <i>extended attribute</i> which named <code>com.coteditor.VerticalText</code> to the file <strong>only when</strong> the editor's text orientation is vertical. You can even disable the feature running the command <code>defaults write com.coteditor.CotEditor savesTextOrientation -bool NO</code> in Terminal. </li>
 	</ul></li>
-	<li>Line number view for vertical text orientation.</li>
-	<li>Print with vertical text orientation.</li>
 	<li>Add interpreter name list to the syntax style definition to determine syntax style from the shebang in the file content for in case when syntax style cannot be determined from the file name.</li>
 	<ul>
 		<li>From this change, some of the bundled syntax styles are also updated.</li>
@@ -102,6 +103,10 @@
 		<li>Make editor panel resizable.</li>
 	</ul></li>
 	<li>Now syntax style is automatically set to “XML” on file opening if no appropriate style can be found but the file content starts with a XML declaration.</li>
+	<li>Update “Swift” syntax style:
+	<ul>
+		<li>Add new terms available in Swift 2.0.</li>
+	</ul></li>
 	<li>Better file encoding handling on revert action.</li>
 	<li>Update word completion list setting in Edit pane in Preferences (The previous setting has been reset).</li>
 	<li>Set access-group <code>com.coteditor.CotEditor.edit</code> to CotEditor's script definition.</li>
@@ -116,7 +121,9 @@
 		<li>Faster launch.</li>
 	</ul></li>
 	<li>Support “swipe to delete” for some tables in Preferences on El Capitan.</li>
-	<li>Improve contextual menu for theme/sytnax style list on preferences.</li>
+	<li>Improve contextual menu for theme/syntax style list on preferences.</li>
+	<li>Avoid beeping on typing an unmatched <code>&gt;</code> even if <code>&lt;</code><code>&gt;</code> brace highlighting turned on.</li>
+	<li>Improve saving error dialog to display more detailed error reason.</li>
 	<li>Optimize saving process.</li>
 	<li>Adjust highlight color for find panel.</li>
 	<li>Tweak message terms.</li>
@@ -140,6 +147,9 @@
 <h2>Fixes</h2>
 
 <ul>
+	<li>Fix an issue where theme color was occasionally not applied to the preview in the print panel.</li>
+	<li>Fix an issue where application crashed when type a part of surrogate pair character.</li>
+	<li>Fix an issue where invisibles which are a surrogate pair occasionally did not display.</li>
 	<li>Fix an issue where the full path display in the document inspector did not update after the document file moved.</li>
 	<li>Fix an issue where the find panel could not find matched strings when the find string includes CR or CR/LF line endings.</li>
 	<li>Fix an issue where warning on Integration pane didn't disappear even after the problem resolved.</li>

@@ -13,38 +13,25 @@ develop
 ### Additions/Changes
 
 - Improve saving error dialog to display more detailed error reason.
-- Avoid beeping on typing single `>` even if `<>` brace highlighting turned on.
+- Avoid beeping on typing an unmatched `>` even if `<>` brace highlighting turned on.
 - Update “Swift” syntax style:
     - Add new terms available in Swift 2.0.
+- Improve contextual menu for syntax style list on preferences.
+- Tweak syntax style edit sheet layout.
+- [beta] Improve side inspector switcher. 
 
 
 ### Fixes
-
-- [beta] Fix an issue where an unwanted migration window was displayed on the first launch even when there is nothing to be migrated.
-- [rc] Fix an issue where calculation of hanging indent width was sometime incorrect.
 - Fix an issue where theme color was occasionally not applied to the preview in the print panel.
 - Fix an issue on El Capitan where page guide was drawn at the wrong column.
 - Fix an issue where application crashed when type a part of surrogate pair character.
-- Fix an issue where invisibles which are a suroggate pair occasionally did not display.
-
-
-
-2.2.0-rc.2 (72)
---------------------------
-
-### Additions/Changes
-
-- Improve side inspector switcher. 
-- Improve contextual menu for syntax style list on preferences.
-- Tweak sytnax style edit sheet layout.
-
-
-### Fixes
-
-- [beta] Fix an issue where application could possibly crash on window restoration.
+- Fix an issue where invisibles which are a surrogate pair occasionally did not display.
 - Fix an issue where the toolbar button state of the text orientation was not updated on window restoration.
 - Fix help contents layout.
-- [Non-AppStore ver] Fix an issue where updater setting in the General pane did not displayed on OS X Mountan Lion and Mavericks.
+- [rc] Fix an issue where calculation of hanging indent width was sometime incorrect.
+- [beta] Fix an issue where an unwanted migration window was displayed on the first launch even when there is nothing to be migrated.
+- [beta] Fix an issue where application could possibly crash on window restoration.
+- [Non-AppStore ver] Fix an issue where updater setting in the General pane did not displayed on OS X Mountain Lion and Mavericks.
 
 
 
