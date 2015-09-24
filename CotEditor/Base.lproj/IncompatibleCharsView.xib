@@ -19,11 +19,11 @@
                 <scrollView horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1fA-a5-pHs">
                     <rect key="frame" x="12" y="12" width="196" height="404"/>
                     <clipView key="contentView" id="BWW-Dc-ntm">
-                        <rect key="frame" x="1" y="0.0" width="194" height="403"/>
+                        <rect key="frame" x="1" y="17" width="194" height="386"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="Ahl-dV-yoI" viewBased="YES" id="li6-OR-dHs">
-                                <rect key="frame" x="0.0" y="0.0" width="194" height="380"/>
+                            <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="HfI-cu-l74" viewBased="YES" id="li6-OR-dHs">
+                                <rect key="frame" x="0.0" y="0.0" width="194" height="386"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <animations/>
                                 <size key="intercellSpacing" width="3" height="2"/>
@@ -181,14 +181,13 @@
                         <animations/>
                     </scroller>
                     <scroller key="verticalScroller" verticalHuggingPriority="750" controlSize="small" horizontal="NO" id="8rp-CT-wEL">
-                        <rect key="frame" x="181" y="23" width="14" height="380"/>
+                        <rect key="frame" x="181" y="17" width="14" height="386"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <animations/>
                     </scroller>
-                    <tableHeaderView key="headerView" id="Ahl-dV-yoI">
-                        <rect key="frame" x="0.0" y="0.0" width="194" height="23"/>
+                    <tableHeaderView key="headerView" id="HfI-cu-l74">
+                        <rect key="frame" x="0.0" y="0.0" width="194" height="17"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <animations/>
                     </tableHeaderView>
                 </scrollView>
                 <textField verticalHuggingPriority="1000" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="iOD-RT-n3c" customClass="CEWrappingTextField">

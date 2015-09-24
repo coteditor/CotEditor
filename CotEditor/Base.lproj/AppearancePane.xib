@@ -33,7 +33,7 @@
                         <action selector="openHelpAnchor:" target="-1" id="RdO-wW-H7B"/>
                     </connections>
                 </button>
-                <textField verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="385">
+                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="385">
                     <rect key="frame" x="104" y="493" width="260" height="22"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="22" id="4zH-Fv-QUF"/>
@@ -49,7 +49,7 @@
                         <binding destination="26" name="fontFamilyName" keyPath="values.fontName" id="KzD-eX-p4k"/>
                     </connections>
                 </textField>
-                <button misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="809">
+                <button translatesAutoresizingMaskIntoConstraints="NO" id="809">
                     <rect key="frame" x="102" y="469" width="100" height="18"/>
                     <animations/>
                     <buttonCell key="cell" type="check" title="Anti-Aliasing" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3290">
@@ -60,7 +60,7 @@
                         <binding destination="26" name="value" keyPath="values.shouldAntialias" id="811"/>
                     </connections>
                 </button>
-                <button verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="387">
+                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="387">
                     <rect key="frame" x="366" y="487" width="93" height="32"/>
                     <constraints>
                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="78" id="8cj-Zi-DRd"/>
@@ -74,7 +74,7 @@
                         <action selector="showFonts:" target="-2" id="389"/>
                     </connections>
                 </button>
-                <textField horizontalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cM2-sa-5cF">
+                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="cM2-sa-5cF">
                     <rect key="frame" x="62" y="496" width="36" height="17"/>
                     <animations/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Font:" usesSingleLineMode="YES" id="Z85-S9-uID">
@@ -83,7 +83,7 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <button misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="860">
+                <button translatesAutoresizingMaskIntoConstraints="NO" id="860">
                     <rect key="frame" x="102" y="408" width="234" height="18"/>
                     <animations/>
                     <buttonCell key="cell" type="check" title="Fix line height with composite font" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3296">
@@ -94,7 +94,7 @@
                         <binding destination="26" name="value" keyPath="values.fixLineHeight" id="862"/>
                     </connections>
                 </button>
-                <textField horizontalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DSq-u9-gbq">
+                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="DSq-u9-gbq">
                     <rect key="frame" x="22" y="436" width="76" height="17"/>
                     <animations/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Line height:" usesSingleLineMode="YES" id="r1c-v3-qW1">
@@ -106,11 +106,11 @@
                 <scrollView autohidesScrollers="YES" horizontalLineScroll="21" horizontalPageScroll="10" verticalLineScroll="21" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ICn-lI-aHs">
                     <rect key="frame" x="20" y="53" width="160" height="308"/>
                     <clipView key="contentView" id="I0F-fo-Lco">
-                        <rect key="frame" x="1" y="0.0" width="158" height="307"/>
+                        <rect key="frame" x="1" y="17" width="158" height="290"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView focusRingType="none" verticalHuggingPriority="750" allowsExpansionToolTips="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="hjg-N0-yXL" viewBased="YES" id="YME-hT-ryc">
-                                <rect key="frame" x="0.0" y="0.0" width="158" height="284"/>
+                            <tableView focusRingType="none" verticalHuggingPriority="750" allowsExpansionToolTips="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="Pqo-DS-No8" viewBased="YES" id="YME-hT-ryc">
+                                <rect key="frame" x="0.0" y="0.0" width="158" height="290"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <animations/>
                                 <size key="intercellSpacing" width="3" height="4"/>
@@ -185,10 +185,9 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <animations/>
                     </scroller>
-                    <tableHeaderView key="headerView" id="hjg-N0-yXL">
-                        <rect key="frame" x="0.0" y="0.0" width="158" height="23"/>
+                    <tableHeaderView key="headerView" id="Pqo-DS-No8">
+                        <rect key="frame" x="0.0" y="0.0" width="158" height="17"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <animations/>
                     </tableHeaderView>
                 </scrollView>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="AAx-kd-1PD">
@@ -275,7 +274,7 @@
                     <color key="borderColor" name="scrollBarColor" catalog="System" colorSpace="catalog"/>
                     <color key="fillColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                 </box>
-                <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XpC-pt-aaH">
+                <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="XpC-pt-aaH">
                     <rect key="frame" x="153" y="431" width="19" height="27"/>
                     <animations/>
                     <stepperCell key="cell" continuous="YES" alignment="left" increment="0.10000000000000001" maxValue="10" doubleValue="1" id="mv9-Cu-Cfr"/>
@@ -283,7 +282,7 @@
                         <binding destination="26" name="value" keyPath="values.lineSpacing" id="kPV-Sp-fwX"/>
                     </connections>
                 </stepper>
-                <textField verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nOa-Ha-LsB">
+                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="nOa-Ha-LsB">
                     <rect key="frame" x="104" y="434" width="48" height="22"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="48" id="She-Ie-Rji"/>
@@ -309,7 +308,7 @@
                         </binding>
                     </connections>
                 </textField>
-                <textField horizontalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3FS-mR-rbr">
+                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3FS-mR-rbr">
                     <rect key="frame" x="175" y="436" width="38" height="17"/>
                     <animations/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="times" usesSingleLineMode="YES" id="VLD-jj-zzl">
@@ -318,7 +317,7 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <button misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uBk-sz-rYS">
+                <button translatesAutoresizingMaskIntoConstraints="NO" id="uBk-sz-rYS">
                     <rect key="frame" x="102" y="379" width="182" height="18"/>
                     <animations/>
                     <buttonCell key="cell" type="check" title="Change background color" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="ba7-dE-zXz">
@@ -329,7 +328,7 @@
                         <binding destination="26" name="value" keyPath="values.highlightCurrentLine" id="05q-Gk-6ct"/>
                     </connections>
                 </button>
-                <textField horizontalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7x6-jB-Clt">
+                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="7x6-jB-Clt">
                     <rect key="frame" x="18" y="380" width="80" height="17"/>
                     <animations/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Current line:" usesSingleLineMode="YES" id="oKu-Fu-hRU">

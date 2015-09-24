@@ -28,6 +28,7 @@ develop
 - Fix an issue where invisibles which are a surrogate pair occasionally did not display.
 - Fix an issue where the toolbar button state of the text orientation was not updated on window restoration.
 - Fix help contents layout.
+- [rc] Fix an issue where table headers had sometime unwanted space around them on Yosemite and ealier.
 - [rc] Fix an issue where calculation of hanging indent width was sometime incorrect.
 - [beta] Fix an issue where an unwanted migration window was displayed on the first launch even when there is nothing to be migrated.
 - [beta] Fix an issue where application could possibly crash on window restoration.
