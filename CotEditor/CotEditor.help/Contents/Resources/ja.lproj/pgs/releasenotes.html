@@ -70,6 +70,10 @@
 <ul>
 	<li>OS X 10.11 El Capitan に対応</li>
 	<li>サンドボックス化にともない、ユーザにパーミッションがないファイルでもオープン／上書きができる機能 (authopen) を廃止</li>
+	<li>Mac App Store ガイドラインに沿うため、<code>cot</code> コマンドラインツールの同梱の廃止
+	<ul>
+		<li>CotEditor 2.2.0 およびそれ以降で <code>cot</code> コマンドを使うためには、新しいコマンドラインツールを <a href="http://coteditor.com/cot">http://coteditor.com/cot</a> からダウンロードして、手動でインストールを行ってください。過去のコマンドラインツールは CotEditor 2.2.0 に対応していません。</li>
+	</ul></li>
 	<li>サンドボックス化にともない、cot コマンドラインツールのバンドル場所を <code>CotEditor.app/Contents/MacOS/</code> から <code>CotEditor.app/Contents/SharedSupport/bin/</code> に変更。
 	<ul>
 		<li>cot コマンドをすでにインストールしているユーザは、手動で再インストールを行う必要があります。ターミナルから以下のコマンドを実行することで、コマンドを再インストールすることができます。<br/>
@@ -112,10 +116,6 @@
 	<ul>
 		<li>スクロール位置とカーソル位置も復帰の対象に</li>
 		<li>未保存書類のシンタックススタイルも復帰可能に</li>
-	</ul></li>
-	<li>cot コマンドラインツールを全面書き直し：
-	<ul>
-		<li>起動時間の短縮</li>
 	</ul></li>
 	<li>El Capitan のスワイプして削除を環境設定上のいくつかの表／リストで対応</li>
 	<li>環境設定内のテーマとシンタックススタイルリストのコンテキストメニューを改良</li>

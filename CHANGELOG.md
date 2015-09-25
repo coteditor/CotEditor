@@ -12,6 +12,8 @@ develop
 
 ### Additions/Changes
 
+- Remove bundled `cot` command-line tool, due to the Mac App Store guidelines.
+    - To use `cot` command with CotEditor 2.2.0 and later, download it from <http://coteditor.com/cot> and install manually. You cannnot use the previous one with CotEditor 2.2.0.
 - Improve saving error dialog to display more detailed error reason.
 - Avoid beeping on typing an unmatched `>` even if `<>` brace highlighting turned on.
 - Update “Swift” syntax style:
@@ -20,6 +22,7 @@ develop
 - Tweak syntax style edit sheet layout.
 - Remove sample scripts.
     - You can get them online on [Archives](http://coteditor.com/archives) page.
+- Update documents.
 - [beta] Improve side inspector switcher. 
 
 

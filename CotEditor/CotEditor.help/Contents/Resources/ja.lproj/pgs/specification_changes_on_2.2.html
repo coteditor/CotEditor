@@ -20,21 +20,19 @@
 <a name="specification_changes"></a>
 <h1>CotEditor 2.2 での仕様変更</h1>
 
-<p>CotEditor はバージョン 2.2.0 からサンドボックス化されました。バージョン 2.2.0 では Sandbox のルールに適合するために仕様が一部変更されています。そのため、以前のバージョンを使っていたユーザは手動による移行処理が必要になる場合があります。</p>
+<p>CotEditor はバージョン 2.2.0 からサンドボックス化されました。バージョン 2.2.0 では Sandbox および Mac App Store のルールに適合するために仕様が一部変更されています。そのため、以前のバージョンを使っていたユーザは手動による移行処理が必要になる場合があります。</p>
 
 
 <h2>ユーザ設定の保存場所</h2>
-<p>CotEditor のユーザ設定全般の保存場所が <code>~/Library/Application Support/CotEditor/</code> から <code>~/Library/Containers/com.coteditor.CotEditor/Data/Library/Application Support/CotEditor/</code> に変更されました。<code>cot</code> コマンドをすでにインストールしているユーザは、手動で再インストールを行う必要があります。ターミナルから以下のコマンドを実行することで、コマンドを再インストールすることができます。<br/>
-          <code>unlink /usr/local/bin/cot; ln -s /Applications/CotEditor.app/Contents/SharedSupport/bin/cot /usr/local/bin/cot</code><br/>
-          CotEditor/cot をインストールしている場所に合わせて、再インストールコマンドのパスは適宜変更してください。</p>
+<p>CotEditor のユーザ設定全般の保存場所が <code>~/Library/Application Support/CotEditor/</code> から <code>~/Library/Containers/com.coteditor.CotEditor/Data/Library/Application Support/CotEditor/</code> に変更されました。この移行は CotEditor 2.2.0 初回起動時に自動で行われます。</p>
 
 
 <h2>スクリプトフォルダの場所</h2>
 <p>スクリプトフォルダの位置が <code>~/Library/Application Support/CotEditor/ScriptMenu/</code> から <code>~/Library/Application Scripts/com.coteditor.CotEditor/</code> に変更されました。この移行は自動で行われないため、<strong>ユーザはすでにあるスクリプトを手動で移動する必要があります</strong>。</p>
 
 
-<h2>コマンドラインツールのバンドル場所</h2>
-<p><code>cot</code> コマンドラインツールのバンドル位置が <code>CotEditor.app/Contents/MacOS/</code> から <code>CotEditor.app/Contents/SharedSupport/bin/</code> に変更されました。<strong><code>cot</code> コマンドをすでにインストールしているユーザは、手動で再インストールを行う必要があります</strong>。環境設定の連携ペインで、「アンインストール/インストール」ボタンを2回押してください。</p>
+<h2><code>cot</code> コマンドラインツール</h2>
+<p>CotEditor 2.2.0 から、<code>cot</code> コマンドラインツールは CotEditor.app に同梱されるのではなく、ウェブサイトから別途提供されるようになりました。新しいバージョンを <a href="http://coteditor.com/cot">http://coteditor.com/cot</a> からダウンロードして手動でインストールを行ってください。過去のバージョンは CotEditor 2.2.0 に対応していません。</p>
 
 
 
