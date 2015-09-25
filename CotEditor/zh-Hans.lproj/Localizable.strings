@@ -464,9 +464,6 @@
 "Open Scripts Folder" = "打开脚本文件夹";
 "Update Script Menu" = "更新脚本菜单";
 
-// Message on save panel by sample script copying
-"Scripts in “%@” will be listed in the script menu." = "在“%@”中的脚本将在脚本菜单中列出。";
-
 // Script menu item tooltips
 "“Opt + click” to open in Script Editor." = "使用“Opt + 单击”打开脚本编辑器。";
 
