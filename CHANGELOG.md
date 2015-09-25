@@ -19,6 +19,7 @@ develop
 - Improve contextual menu for theme/syntax style list on preferences.
 - Tweak syntax style edit sheet layout.
 - Remove sample scripts.
+    - You can get them online on [Archives](http://coteditor.com/archives) page.
 - [beta] Improve side inspector switcher. 
 
 
