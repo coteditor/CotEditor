@@ -46,4 +46,6 @@ extern NSString *_Nonnull const CESecondaryFooterAlignmentKey;
 
 @interface CEPrintPanelAccessoryController : NSViewController <NSPrintPanelAccessorizing>
 
+@property (nonatomic) BOOL needsPreview;  // dummy property for syntax highlighting update
+
 @end

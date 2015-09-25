@@ -55,9 +55,9 @@
         NSString *iconName = [[self imageForSegment:segment] name];
         NSImage *selectedIcon = [NSImage imageNamed:[@"Selected" stringByAppendingString:iconName]];
         
-        // get area to draw
+        // calculate area to draw
         NSRect imageRect = [self imageRectForBounds:frame];
-        imageRect.origin.y += (imageRect.size.height - [selectedIcon size].height) / 2;
+        imageRect.origin.y += floor((imageRect.size.height - [selectedIcon size].height) / 2);
         imageRect.size = [selectedIcon size];
         
         // draw icon template

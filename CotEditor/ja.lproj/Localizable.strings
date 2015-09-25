@@ -301,6 +301,7 @@
 "Rename “%@”" = "“%@”を名称変更";
 "Duplicate “%@”" = "“%@”を複製";
 "Restore “%@”" = "“%@”を元に戻す";
+"Reveal “%@” in Finder" = "“%@”を Finder で表示";
 // Theme deletion alert
 "Are you sure you want to delete “%@” theme?" = "“%@”テーマを削除してもよろしいですか？";
 "This action cannot be undone." = "この操作は取り消せません。";
@@ -337,28 +338,9 @@
 
 
 // Integration Pane
-"Install" = "インストール";
-"Uninstall" = "アンインストール";
-// Save panel field label
-"Command:" = "コマンド名：";
 // Warnings on Integration pane
-"Select “Install” to install the command-line tool at the following location.\nThe default location is: %@" = "以下の場所にコマンドラインツールをインストールするために、“インストール”を選択してください。\nデフォルトインストール場所：%@";
 "The current 'cot' symbolic link doesn’t target the running CotEditor." = "現在の 'cot' シンボリックリンクはこの CotEditor 以外に向けられています。";
 "The current 'cot' symbolic link may target on an invalid path." = "現在の 'cot' シンボリックリンクは無効なパスに向けられています。";
-
-// Application location alert
-"The running CotEditor is not located in the Applications folder." = "現在起動している CotEditor はアプリケーションフォルダ外にあります。";
-"Do you really want to install the command-line tool for CotEditor at “%@”?\n\nThe command will be invalid if the location of CotEditor is moved." = "本当に“%@”にある CotEditor のためのコマンドラインツールをインストールしますか？\n\nCotEditor.app の場所が移動されるとコマンドは無効になります。";
-
-// Application name alert
-"The name of the running CotEditor is modified." = "現在起動している CotEditor は名前が変更されています。";
-"Do you really want to install the command-line tool for “%@”?\n\nThe command will be invalid if CotEditor is renamed." = "本当に“%@”のためのコマンドラインツールをインストールしますか？\n\nCotEditor の名前が変更されるとコマンドは無効になります。";
-
-// Command uninstallation alert
-"Uninstallation was denied by the system." = "アンインストールがシステムに拒否されました。";
-"You can install cot command manually running the following command on Terminal:" = "ユーザ自身がターミナルから以下のコマンドを実行することで cot コマンドをインストールすることができます：";
-// Command installation alert
-"You can uninstall cot command manually running the following command on Terminal:" = "ユーザ自身がターミナルから以下のコマンドを実行することで cot コマンドをアンインストールすることができます：";
 
 
 
@@ -464,16 +446,8 @@
 // Menu items
 "Open Scripts Folder" = "スクリプトフォルダを開く";
 "Update Script Menu" = "スクリプトメニューを更新";
-"Copy Sample Scripts…" = "サンプルスクリプトをコピー...";
-
-// title of save panel by sample script copying
-"Copy Sample Scripts" = "サンプルスクリプトをコピー";
-
-// Message on save panel by sample script copying
-"Scripts in “%@” will be listed in the script menu." = "“%@”にあるスクリプトがスクリプトメニューに表示されます。";
 
 // Script menu item tooltips
-"Copy bundled sample scripts to the scripts folder." = "バンドルされているサンプルスクリプトをスクリプトフォルダにコピーする。";
 "“Opt + click” to open in Script Editor." = "スクリプトエディタで開くには、“Opt + クリック”します。";
 
 // Script error alert message

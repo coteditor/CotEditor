@@ -153,6 +153,7 @@ NSString *_Nonnull const CESecondaryFooterAlignmentKey = @"CESecondaryFooterAlig
                                  @"primaryFooterContent",
                                  @"secondaryFooterAlignment",
                                  @"secondaryFooterContent",
+                                 @"needsPreview",
                                  ]];
 }
 

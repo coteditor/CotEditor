@@ -1,11 +1,11 @@
 /*
  
- CEKeyBindingSheetController.h
+ CECharacterPopoverController.h
  
  CotEditor
  http://coteditor.com
  
- Created by 1024jp on 2014-08-20.
+ Created by 1024jp on 2014-05-01.
 
  ------------------------------------------------------------------------------
  
@@ -26,19 +26,15 @@
  */
 
 @import Cocoa;
+#import "NSString+ComposedCharacter.h"
 
 
-typedef NS_ENUM(NSUInteger, CEKeyBindingType) {
-    CEMenuKeyBindingsType,
-    CETextKeyBindingsType,
-};
+@interface CECharacterPopoverController : NSViewController
 
+/// default initializer (singleString must be a single character (or a surrogate-pair). If not, return nil.)
+- (nullable instancetype)initWithCharacter:(nonnull NSString *)singleString;
 
-@class CEKeyBindingSheet;
-
-
-@interface CEKeyBindingSheetController : NSWindowController <NSWindowDelegate>
-
-- (nonnull instancetype)initWithMode:(CEKeyBindingType)mode;
+/// show popover
+- (void)showPopoverRelativeToRect:(NSRect)positioningRect ofView:(nonnull NSView *)parentView;
 
 @end

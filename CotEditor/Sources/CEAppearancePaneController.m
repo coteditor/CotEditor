@@ -133,6 +133,12 @@
         [menuItem setHidden:!representedTheme];
         return (!isBundled || isCustomized);
         
+    } else if ([menuItem action] == @selector(revealThemeInFinder:)) {
+        if (!isContextualMenu) {
+            [menuItem setTitle:[NSString stringWithFormat:NSLocalizedString(@"Reveal “%@” in Finder", nil), representedTheme]];
+        }
+        return (!isBundled || isCustomized);
+        
     } else if ([menuItem action] == @selector(renameTheme:)) {
         if (!isContextualMenu) {
             [menuItem setTitle:[NSString stringWithFormat:NSLocalizedString(@"Rename “%@”", nil), representedTheme]];
@@ -448,6 +454,21 @@
         
         [[CEThemeManager sharedManager] exportTheme:themeName toURL:[savePanel URL] error:nil];
     }];
+}
+
+
+// ------------------------------------------------------
+/// テーマファイルをFinderで開く
+- (IBAction)revealThemeInFinder:(nullable id)sender
+// ------------------------------------------------------
+{
+    NSString *themeName = ([sender isKindOfClass:[NSMenuItem class]]) ? [sender representedObject] : [self selectedTheme];
+    
+    NSURL *URL = [[CEThemeManager sharedManager] URLForUserTheme:themeName];
+    
+    if (URL) {
+        [[NSWorkspace sharedWorkspace] activateFileViewerSelectingURLs:@[URL]];
+    }
 }
 
 

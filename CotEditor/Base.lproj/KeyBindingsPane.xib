@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="8191" systemVersion="15A282b" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="8191"/>
@@ -20,6 +20,7 @@
             <subviews>
                 <button horizontalHuggingPriority="750" verticalHuggingPriority="750" tag="7" translatesAutoresizingMaskIntoConstraints="NO" id="2356">
                     <rect key="frame" x="507" y="17" width="25" height="25"/>
+                    <animations/>
                     <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" inset="2" id="3367">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
@@ -35,7 +36,8 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="720">
-                                <rect key="frame" x="14" y="93" width="184" height="17"/>
+                                <rect key="frame" x="14" y="93" width="179" height="17"/>
+                                <animations/>
                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" title="Additional Text Key Bindings " usesSingleLineMode="YES" id="3363">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -47,6 +49,7 @@
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="88" id="Jiu-hk-nks"/>
                                 </constraints>
+                                <animations/>
                                 <buttonCell key="cell" type="push" title="Edit…" bezelStyle="rounded" alignment="center" borderStyle="border" tag="1" inset="2" id="3365">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -57,36 +60,26 @@
                             </button>
                             <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="721">
                                 <rect key="frame" x="14" y="67" width="166" height="14"/>
+                                <animations/>
                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" title="Shortcuts to insert preset text." usesSingleLineMode="YES" id="3364">
                                     <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="726">
-                                <rect key="frame" x="14" y="35" width="383" height="28"/>
-                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="3366">
-                                    <font key="font" metaFont="smallSystem"/>
-                                    <string key="title">This setting is not for the standard Cocoa key bindings
-but for CotEditor’s original function.</string>
-                                    <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
                         </subviews>
+                        <animations/>
                     </view>
                     <constraints>
-                        <constraint firstItem="722" firstAttribute="leading" secondItem="726" secondAttribute="trailing" constant="8" symbolic="YES" id="0Ft-eb-IWH"/>
                         <constraint firstItem="720" firstAttribute="leading" secondItem="718" secondAttribute="leading" constant="15" id="1MK-OP-nOr"/>
                         <constraint firstAttribute="height" constant="120" id="5qt-dH-p56"/>
                         <constraint firstAttribute="trailing" secondItem="722" secondAttribute="trailing" constant="20" id="D6L-Ym-0Ie"/>
                         <constraint firstItem="720" firstAttribute="top" secondItem="718" secondAttribute="top" constant="12" id="IEU-hg-LER"/>
-                        <constraint firstItem="726" firstAttribute="top" secondItem="721" secondAttribute="bottom" constant="4" id="KQ0-ui-Ue8"/>
-                        <constraint firstItem="721" firstAttribute="leading" secondItem="726" secondAttribute="leading" id="OzT-77-hvX"/>
                         <constraint firstItem="721" firstAttribute="leading" secondItem="720" secondAttribute="leading" id="XqB-bO-uap"/>
                         <constraint firstItem="721" firstAttribute="top" secondItem="720" secondAttribute="bottom" constant="12" id="glU-2m-kYH"/>
                         <constraint firstItem="721" firstAttribute="top" secondItem="722" secondAttribute="top" id="nBM-xM-15d"/>
                     </constraints>
+                    <animations/>
                     <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </box>
@@ -101,6 +94,7 @@ but for CotEditor’s original function.</string>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="88" id="Ft6-A5-Vzh"/>
                                 </constraints>
+                                <animations/>
                                 <buttonCell key="cell" type="push" title="Edit…" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="3360">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -111,6 +105,7 @@ but for CotEditor’s original function.</string>
                             </button>
                             <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="715">
                                 <rect key="frame" x="14" y="67" width="141" height="14"/>
+                                <animations/>
                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" title="Shortcuts for menu items." usesSingleLineMode="YES" id="3361">
                                     <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -118,7 +113,8 @@ but for CotEditor’s original function.</string>
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="713">
-                                <rect key="frame" x="14" y="93" width="124" height="17"/>
+                                <rect key="frame" x="14" y="93" width="120" height="17"/>
+                                <animations/>
                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" title="Menu Key Bindings" usesSingleLineMode="YES" id="3359">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -127,6 +123,7 @@ but for CotEditor’s original function.</string>
                             </textField>
                             <textField horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="835">
                                 <rect key="frame" x="14" y="49" width="383" height="14"/>
+                                <animations/>
                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="This setting does not include script menu items." id="3362">
                                     <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
@@ -134,6 +131,7 @@ but for CotEditor’s original function.</string>
                                 </textFieldCell>
                             </textField>
                         </subviews>
+                        <animations/>
                     </view>
                     <constraints>
                         <constraint firstItem="715" firstAttribute="top" secondItem="713" secondAttribute="bottom" constant="12" id="0GN-eE-TAg"/>
@@ -147,6 +145,7 @@ but for CotEditor’s original function.</string>
                         <constraint firstAttribute="trailing" secondItem="714" secondAttribute="trailing" constant="20" id="vbC-8L-jOb"/>
                         <constraint firstItem="835" firstAttribute="top" secondItem="715" secondAttribute="bottom" constant="4" id="wRs-mJ-dku"/>
                     </constraints>
+                    <animations/>
                     <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </box>
@@ -162,6 +161,7 @@ but for CotEditor’s original function.</string>
                 <constraint firstAttribute="trailing" secondItem="716" secondAttribute="trailing" constant="20" symbolic="YES" id="mKP-VT-4Cq"/>
                 <constraint firstItem="718" firstAttribute="leading" secondItem="748" secondAttribute="leading" constant="20" symbolic="YES" id="wEI-r5-3Rn"/>
             </constraints>
+            <animations/>
             <point key="canvasLocation" x="349" y="238.5"/>
         </customView>
     </objects>

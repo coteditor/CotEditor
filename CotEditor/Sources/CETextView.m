@@ -33,7 +33,7 @@
 
 #import "CETextView.h"
 #import "CEColorCodePanelController.h"
-#import "CEGlyphPopoverController.h"
+#import "CECharacterPopoverController.h"
 #import "CEEditorScrollView.h"
 #import "CEDocument.h"
 #import "CEKeyBindingManager.h"
@@ -632,11 +632,11 @@ static NSPoint kTextContainerOrigin;
         
         NSFont *font = [(CELayoutManager *)[self layoutManager] textFont];
         font = [font screenFont] ? : font;
-        column *= [@"M" sizeWithAttributes:@{NSFontAttributeName: font}].width;
+        CGFloat charWidth = [font advancementForGlyph:(NSGlyph)' '].width;
         
         CGFloat inset = [self textContainerOrigin].x;
         CGFloat linePadding = [[self textContainer] lineFragmentPadding];
-        CGFloat x = floor(column + inset + linePadding) + 2.5;  // +2px for adjustment
+        CGFloat x = floor(charWidth * column + inset + linePadding) + 2.5;  // +2px for adjustment
         
         [[[self textColor] colorWithAlphaComponent:0.2] set];
         [NSBezierPath strokeLineFromPoint:NSMakePoint(x, NSMinY(dirtyRect))
@@ -1316,7 +1316,7 @@ static NSPoint kTextContainerOrigin;
 {
     NSRange selectedRange = [self selectedRange];
     NSString *selectedString = [[self string] substringWithRange:selectedRange];
-    CEGlyphPopoverController *popoverController = [[CEGlyphPopoverController alloc] initWithCharacter:selectedString];
+    CECharacterPopoverController *popoverController = [[CECharacterPopoverController alloc] initWithCharacter:selectedString];
     
     if (!popoverController) { return; }
     
@@ -1760,39 +1760,38 @@ static NSPoint kTextContainerOrigin;
             endBrace = '>';
             break;
             
-        default: {
+        default:
             return wordRange;
-        }
     }
     
     NSUInteger lengthOfString = [completeString length];
     NSInteger originalLocation = location;
-    NSUInteger skipMatchingBrace = 0;
+    NSUInteger skippedBraceCount = 0;
     
     if (isEndBrace) {
         while (location--) {
-            unichar characterToCheck = [completeString characterAtIndex:location];
-            if (characterToCheck == beginBrace) {
-                if (!skipMatchingBrace) {
+            unichar character = [completeString characterAtIndex:location];
+            if (character == beginBrace) {
+                if (!skippedBraceCount) {
                     return NSMakeRange(location, originalLocation - location + 1);
                 } else {
-                    skipMatchingBrace--;
+                    skippedBraceCount--;
                 }
-            } else if (characterToCheck == endBrace) {
-                skipMatchingBrace++;
+            } else if (character == endBrace) {
+                skippedBraceCount++;
             }
         }
     } else {
         while (++location < lengthOfString) {
-            unichar characterToCheck = [completeString characterAtIndex:location];
-            if (characterToCheck == endBrace) {
-                if (!skipMatchingBrace) {
+            unichar character = [completeString characterAtIndex:location];
+            if (character == endBrace) {
+                if (!skippedBraceCount) {
                     return NSMakeRange(originalLocation, location - originalLocation + 1);
                 } else {
-                    skipMatchingBrace--;
+                    skippedBraceCount--;
                 }
-            } else if (characterToCheck == beginBrace) {
-                skipMatchingBrace++;
+            } else if (character == beginBrace) {
+                skippedBraceCount++;
             }
         }
     }

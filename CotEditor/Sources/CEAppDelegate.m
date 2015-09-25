@@ -767,8 +767,9 @@ static NSString *_Nonnull const kMigrationFlagKey = @"isMigratedToNewBundleIdent
 //------------------------------------------------------
 {
     NSString *lastVersion = [[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultLastVersionKey];
+    NSURL *keybindingURL = [[self supportDirectoryURL] URLByAppendingPathComponent:@"KeyBindings"];  // KeyBindings dir was invariably made on the previous versions.
     
-    if (!lastVersion && [[self supportDirectoryURL] checkResourceIsReachableAndReturnError:nil]) {
+    if (!lastVersion && [keybindingURL checkResourceIsReachableAndReturnError:nil]) {
         [self migrateToVersion2];
     }
 }

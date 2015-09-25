@@ -1,0 +1,57 @@
+{
+  "text" : {
+    "color" : "#1d1d1d"
+  },
+  "insertionPoint" : {
+    "color" : "#6c5e14"
+  },
+  "invisibles" : {
+    "color" : "#b2aa73"
+  },
+  "background" : {
+    "color" : "#f2f0d4"
+  },
+  "lineHighlight" : {
+    "color" : "#ece4a8"
+  },
+  "selection" : {
+    "color" : "#ebd74e",
+    "usesSystemSetting" : false
+  },
+  "keywords" : {
+    "color" : "#176f10"
+  },
+  "commands" : {
+    "color" : "#2c329d"
+  },
+  "types" : {
+    "color" : "#5c7f03"
+  },
+  "attributes" : {
+    "color" : "#9a0080"
+  },
+  "variables" : {
+    "color" : "#0e608d"
+  },
+  "values" : {
+    "color" : "#db5300"
+  },
+  "numbers" : {
+    "color" : "#b18205"
+  },
+  "strings" : {
+    "color" : "#a2222a"
+  },
+  "characters" : {
+    "color" : "#815903"
+  },
+  "comments" : {
+    "color" : "#878054"
+  },
+  "metadata" : {
+    "author" : "1024jp",
+    "distributionURL" : "http://coteditor.com",
+    "license" : "Same as CotEditor (Apache, ver.2)",
+    "description" : "CotEditor bundled theme."
+  }
+}

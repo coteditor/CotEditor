@@ -76,6 +76,8 @@ extern NSString *_Nonnull const CEThemeDidUpdateNotification;
 /// Return whether the theme that has the given name is bundled with the app.
 - (BOOL)isBundledTheme:(nonnull NSString *)themeName cutomized:(nullable BOOL *)isCustomized;
 
+- (nullable NSURL *)URLForUserTheme:(nonnull NSString *)themeName;  // returns nil if file is not available
+
 // manage themes
 - (BOOL)saveTheme:(nonnull NSDictionary<NSString *, NSDictionary<NSString *, id> *> *)theme name:(nonnull NSString *)themeName completionHandler:(nullable void (^)(NSError *_Nullable error))completionHandler;
 - (BOOL)renameTheme:(nonnull NSString *)themeName toName:(nonnull NSString *)newThemeName error:(NSError * _Nullable __autoreleasing * _Nullable)outError;

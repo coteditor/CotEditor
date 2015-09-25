@@ -142,18 +142,6 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 
     [self addChildFileItemTo:menu fromDir:[self scriptsDirectoryURL]];
     
-    BOOL isEmpty = [menu numberOfItems] == 0;
-    
-    NSMenuItem *copySampleMenuItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Copy Sample Scripts…", nil)
-                                                                action:@selector(copySampleScriptToUserDomain:)
-                                                         keyEquivalent:@""];
-    [copySampleMenuItem setTarget:self];
-    [copySampleMenuItem setToolTip:NSLocalizedString(@"Copy bundled sample scripts to the scripts folder.", nil)];
-    [copySampleMenuItem setTag:CEDefaultScriptMenuItemTag];
-    if (isEmpty) {
-        [menu addItem:copySampleMenuItem];
-    }
-    
     NSMenuItem *separatorItem = [NSMenuItem separatorItem];
     [separatorItem setTag:CEDefaultScriptMenuItemTag];
     [menu addItem:separatorItem];
@@ -164,12 +152,6 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
     [openMenuItem setTarget:self];
     [openMenuItem setTag:CEDefaultScriptMenuItemTag];
     [menu addItem:openMenuItem];
-    
-    if (!isEmpty) {
-        [copySampleMenuItem setAlternate:YES];
-        [copySampleMenuItem setKeyEquivalentModifierMask:NSAlternateKeyMask];
-        [menu addItem:copySampleMenuItem];
-    }
     
     NSMenuItem *updateMenuItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Update Script Menu", nil)
                                                 action:@selector(buildScriptMenu:)
@@ -265,41 +247,6 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 // ------------------------------------------------------
 {
     [[NSWorkspace sharedWorkspace] activateFileViewerSelectingURLs:@[[self scriptsDirectoryURL]]];
-}
-
-
-// ------------------------------------------------------
-/// copy sample scripts to user domain
-- (IBAction)copySampleScriptToUserDomain:(nullable id)sender
-// ------------------------------------------------------
-{
-    // ask location to copy sample scripts
-    NSSavePanel *savePanel = [NSSavePanel savePanel];
-    [savePanel setDirectoryURL:[self scriptsDirectoryURL]];
-    [savePanel setNameFieldStringValue:@"Sample Scripts"];
-    [savePanel setTitle:NSLocalizedString(@"Copy Sample Scripts", nil)];
-    [savePanel setAllowedFileTypes:@[(NSString *)kUTTypeFolder]];
-    [savePanel setShowsTagField:NO];
-    [savePanel setMessage:[NSString stringWithFormat:NSLocalizedString(@"Scripts in “%@” will be listed in the script menu.", nil),
-                           [[[self scriptsDirectoryURL] path] stringByAbbreviatingWithTildeInSandboxedPath]]];
-    
-    // run save panel
-    NSInteger result = [savePanel runModal];
-    if (result == NSFileHandlingPanelCancelButton) { return; }
-    
-    NSURL *destURL = [savePanel URL];
-    NSURL *sourceURL = [[[NSBundle mainBundle] sharedSupportURL] URLByAppendingPathComponent:@"SampleScripts"];
-    
-    // copy
-    NSError *error;
-    [[NSFileManager defaultManager] removeItemAtURL:destURL error:&error];
-    BOOL success = [[NSFileManager defaultManager] copyItemAtURL:sourceURL toURL:destURL error:&error];
-    
-    if (success) {
-        [self buildScriptMenu:self];
-    } else {
-        NSLog(@"Error on %s: %@", __func__, [error localizedDescription]);
-    }
 }
 
 
