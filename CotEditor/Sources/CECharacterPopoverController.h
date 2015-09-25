@@ -1,6 +1,6 @@
 /*
  
- CEGlyphPopoverController.h
+ CECharacterPopoverController.h
  
  CotEditor
  http://coteditor.com
@@ -29,7 +29,7 @@
 #import "NSString+ComposedCharacter.h"
 
 
-@interface CEGlyphPopoverController : NSViewController
+@interface CECharacterPopoverController : NSViewController
 
 /// default initializer (singleString must be a single character (or a surrogate-pair). If not, return nil.)
 - (nullable instancetype)initWithCharacter:(nonnull NSString *)singleString;

@@ -1,6 +1,6 @@
 /*
  
- CEGlyphPopoverController.m
+ CECharacterPopoverController.m
  
  CotEditor
  http://coteditor.com
@@ -25,7 +25,7 @@
  
  */
 
-#import "CEGlyphPopoverController.h"
+#import "CECharacterPopoverController.h"
 
 
 // variation selectors
@@ -41,7 +41,7 @@ static const UTF32Char kType6EmojiModifierChar = 0x1F3FF;  // Emoji Modifier Fit
 
 
 
-@interface CEGlyphPopoverController () <NSPopoverDelegate>
+@interface CECharacterPopoverController () <NSPopoverDelegate>
 
 @property (nonatomic, nonnull, copy) NSString *glyph;
 @property (nonatomic, nonnull, copy) NSString *unicodeName;
@@ -54,7 +54,7 @@ static const UTF32Char kType6EmojiModifierChar = 0x1F3FF;  // Emoji Modifier Fit
 
 #pragma mark -
 
-@implementation CEGlyphPopoverController
+@implementation CECharacterPopoverController
 
 #pragma mark Public Methods
 
@@ -65,7 +65,7 @@ static const UTF32Char kType6EmojiModifierChar = 0x1F3FF;  // Emoji Modifier Fit
 {
     if ([character numberOfComposedCharacters] != 1) { return nil; }
     
-    self = [super initWithNibName:@"GlyphPopover" bundle:nil];
+    self = [super initWithNibName:@"CharacterPopover" bundle:nil];
     if (self) {
         _glyph = character;
         

@@ -33,7 +33,7 @@
 
 #import "CETextView.h"
 #import "CEColorCodePanelController.h"
-#import "CEGlyphPopoverController.h"
+#import "CECharacterPopoverController.h"
 #import "CEEditorScrollView.h"
 #import "CEDocument.h"
 #import "CEKeyBindingManager.h"
@@ -1316,7 +1316,7 @@ static NSPoint kTextContainerOrigin;
 {
     NSRange selectedRange = [self selectedRange];
     NSString *selectedString = [[self string] substringWithRange:selectedRange];
-    CEGlyphPopoverController *popoverController = [[CEGlyphPopoverController alloc] initWithCharacter:selectedString];
+    CECharacterPopoverController *popoverController = [[CECharacterPopoverController alloc] initWithCharacter:selectedString];
     
     if (!popoverController) { return; }
     
