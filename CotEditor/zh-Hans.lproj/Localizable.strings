@@ -336,28 +336,9 @@
 
 
 // Integration Pane
-"Install" = "安装";
-"Uninstall" = "卸载";
-// Save panel field label
-"Command:" = "命令名：";
 // Warnings on Integration pane
-"Select “Install” to install the command-line tool at the following location.\nThe default location is: %@" = "选择“安装”来将命令行工具安装在以下位置。\n默认位置是：%@";
 "The current 'cot' symbolic link doesn’t target the running CotEditor." = "当前的 'cot' 符号链接没有指向正在运行的 CotEditor。";
 "The current 'cot' symbolic link may target on an invalid path." = "当前的 'cot' 符号链接可能指向无效路径。";
-
-// Application location alert
-"The running CotEditor is not located in the Applications folder." = "正在运行的 CotEditor 没有位于应用程序文件夹中。";
-"Do you really want to install the command-line tool for CotEditor at “%@”?\n\nThe command will be invalid if the location of CotEditor is moved." = "确定要为位于“%@”的 CotEditor 安装命令行工具吗？\n\n如果 CotEditor 的位置被移动的话，命令行工具将失效。";
-
-// Application name alert
-"The name of the running CotEditor is modified." = "正在运行的 CotEditor 的名字被改变了。";
-"Do you really want to install the command-line tool for “%@”?\n\nThe command will be invalid if CotEditor is renamed." = "确定要为“%@”安装命令行工具吗？\n\n如果 CotEditor 被重命名，命令行工具将失效。";
-
-// Command uninstallation alert
-"Uninstallation was denied by the system." = "系统不允许卸载操作。";
-"You can install cot command manually running the following command on Terminal:" = "你可以手动在终端运行以下命令以创建 cot 命令：";
-// Command installation alert
-"You can uninstall cot command manually running the following command on Terminal:" = "可以手动在终端运行以下命令以卸载 cot 命令：";
 
 
 
