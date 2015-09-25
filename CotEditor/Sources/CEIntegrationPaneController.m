@@ -467,14 +467,4 @@ static NSString *_Nonnull const kPreferredSymbolicLinkPath = @"/usr/local/bin/co
     return YES;
 }
 
-
-//------------------------------------------------------
-/// return running system version as NSString
-NSString *systemVersion()
-//------------------------------------------------------
-{
-    NSDictionary<NSString *, id> * systemVersion = [NSDictionary dictionaryWithContentsOfFile:@"/System/Library/CoreServices/SystemVersion.plist"];
-    return [systemVersion objectForKey:@"ProductVersion"];
-}
-
 @end
