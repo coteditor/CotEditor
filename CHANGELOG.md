@@ -18,10 +18,12 @@ develop
     - Add new terms available in Swift 2.0.
 - Improve contextual menu for theme/syntax style list on preferences.
 - Tweak syntax style edit sheet layout.
+- Remove sample scripts.
 - [beta] Improve side inspector switcher. 
 
 
 ### Fixes
+
 - Fix an issue where theme color was occasionally not applied to the preview in the print panel.
 - Fix an issue on El Capitan where page guide was drawn at the wrong column.
 - Fix an issue where application crashed when type a part of surrogate pair character.

@@ -463,16 +463,11 @@
 // Menu items
 "Open Scripts Folder" = "Skripte-Ordner öffnen";
 "Update Script Menu" = "Skripte-Menü aktualisieren";
-"Copy Sample Scripts…" = "Beispielskripts kopieren …";
-
-// title of save panel by sample script copying
-"Copy Sample Scripts" = "Beispielskripts kopieren";
 
 // Message on save panel by sample script copying
 "Scripts in “%@” will be listed in the script menu." = "Skripte in „%@“ werden in das Skripte-Menü aufgeführt.";
 
 // Script menu item tooltips
-"Copy bundled sample scripts to the scripts folder." = "Gebündelte Beispielskripte in den Skripte-Ordner kopieren";
 "“Opt + click” to open in Script Editor." = "“Opt + Klicken”, um in Skript-Editor öffnen.";
 
 // Script error alert message

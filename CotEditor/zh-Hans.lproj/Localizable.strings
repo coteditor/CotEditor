@@ -463,16 +463,11 @@
 // Menu items
 "Open Scripts Folder" = "打开脚本文件夹";
 "Update Script Menu" = "更新脚本菜单";
-"Copy Sample Scripts…" = "复制示例脚本…";
-
-// title of save panel by sample script copying
-"Copy Sample Scripts" = "复制示例脚本";
 
 // Message on save panel by sample script copying
 "Scripts in “%@” will be listed in the script menu." = "在“%@”中的脚本将在脚本菜单中列出。";
 
 // Script menu item tooltips
-"Copy bundled sample scripts to the scripts folder." = "将内置的示例脚本复制到脚本文件夹。";
 "“Opt + click” to open in Script Editor." = "使用“Opt + 单击”打开脚本编辑器。";
 
 // Script error alert message

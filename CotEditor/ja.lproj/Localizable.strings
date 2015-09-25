@@ -465,16 +465,11 @@
 // Menu items
 "Open Scripts Folder" = "スクリプトフォルダを開く";
 "Update Script Menu" = "スクリプトメニューを更新";
-"Copy Sample Scripts…" = "サンプルスクリプトをコピー...";
-
-// title of save panel by sample script copying
-"Copy Sample Scripts" = "サンプルスクリプトをコピー";
 
 // Message on save panel by sample script copying
 "Scripts in “%@” will be listed in the script menu." = "“%@”にあるスクリプトがスクリプトメニューに表示されます。";
 
 // Script menu item tooltips
-"Copy bundled sample scripts to the scripts folder." = "バンドルされているサンプルスクリプトをスクリプトフォルダにコピーする。";
 "“Opt + click” to open in Script Editor." = "スクリプトエディタで開くには、“Opt + クリック”します。";
 
 // Script error alert message
