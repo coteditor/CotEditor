@@ -70,13 +70,9 @@
 <ul>
 	<li>Support OS X 10.11 El Capitan.</li>
 	<li>Deprecate the feature opening/saving files that user doesn't have the permission, due to Sandbox requirement.</li>
-	<li>Change the location where <code>cot</code> command-line tool is bundled from <code>CotEditor.app/Contents/MacOS/</code> to <code>CotEditor.app/Contents/SharedSupport/bin/</code>, due to Sandbox requirement.
+	<li>Remove bundled <code>cot</code> command-line tool, due to the Mac App Store guidelines.
 	<ul>
-		<li>Users who have already installed `cot` command need re-install it manually. You can re-install it running the command below on Terminal:<br/>
-
-          <code>unlink /usr/local/bin/cot; ln -s /Applications/CotEditor.app/Contents/SharedSupport/bin/cot /usr/local/bin/cot</code><br/>
-
-      You may need to modify paths in this command depending on where you've installed CotEditor/cot.</li>
+		<li>To use <code>cot</code> command with CotEditor 2.2.0 and later, download the new command-line tool from <a href="http://coteditor.com/cot">http://coteditor.com/cot</a> and install manually. You cannnot use the previous one with CotEditor 2.2.0.</li>
 	</ul></li>
 	<li>Improve side inspector UI.</li>
 	<li>Improve syntax highlighting:
@@ -115,10 +111,6 @@
 	<ul>
 		<li>To restore also the last scroll position and cursor position.</li>
 		<li>To restore also the last syntax style mode of unsaved documents.</li>
-	</ul></li>
-	<li>Completely rewrite <code>cot</code> command-line tool:
-	<ul>
-		<li>Faster launch.</li>
 	</ul></li>
 	<li>Support “swipe to delete” for some tables in Preferences on El Capitan.</li>
 	<li>Improve contextual menu for theme/syntax style list on preferences.</li>

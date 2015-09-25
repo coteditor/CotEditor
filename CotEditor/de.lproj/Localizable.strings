@@ -336,28 +336,9 @@
 
 
 // Integration Pane
-"Install" = "Installieren";
-"Uninstall" = "Deinstallieren";
-// Save panel field label
-"Command:" = "Befehl:";
 // Warnings on Integration pane
-"Select “Install” to install the command-line tool at the following location.\nThe default location is: %@" = "Wählen Sie „Installieren“, das Kommandozeilenwerkzeug in den folgenden Ort zu installieren.\nDer Standard-Ort ist: %@";
 "The current 'cot' symbolic link doesn’t target on the running CotEditor." = "Das aktuelle 'cot' symbolische Link zielt nicht auf den laufenden CotEditor.";
 "The current 'cot' symbolic link may target on an invalid path." = "Das aktuelle 'cot' symbolische Link kann auf einen ungültigen Pfad zielen.";
-
-// Application location alert
-"The running CotEditor is not located in the Applications folder." = "Der laufende CotEditor liegt nicht im Programme-Ordner.";
-"Do you really want to install the command-line tool for CotEditor at “%@”?\n\nThe command will be invalid if the location of CotEditor is moved." = "Möchten Sie das Kommandozeilenwerkzeug für „%@“ wirklich installieren?\n\nDer Befehl wird ungültig, wenn die Lage von CotEditor geändert wird.";
-
-// Application name alert
-"The name of the running CotEditor is modified." = "Der Name des laufenden CotEditors ist modifiziert.";
-"Do you really want to install the command-line tool for “%@”?\n\nThe command will be invalid if CotEditor is renamed." = "Möchten Sie das Kommandozeilenwerkzeug für „%@“ wirklich installieren?\n\nDer Befehl wird ungültig, wenn CotEditor umbenannt wird.";
-
-// Command uninstallation alert
-"Uninstallation was denied by the system." = "Deinstallieren wurde vom System verweigert.";
-"You can install cot command manually running the following command on Terminal:" = "Sie können den „cot“-Befehl manuell installieren, indem den folgenden Befehl im Terminal auszuführen:";
-// Command installation alert
-"You can uninstall cot command manually running the following command on Terminal:" = "Sie können den „cot“-Befehl manuell deinstallieren, indem den folgenden Befehl im Terminal auszuführen:";
 
 
 
