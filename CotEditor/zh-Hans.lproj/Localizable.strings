@@ -335,12 +335,6 @@
 "Theme" = "主题";
 
 
-// Integration Pane
-// Warnings on Integration pane
-"The current 'cot' symbolic link doesn’t target the running CotEditor." = "当前的 'cot' 符号链接没有指向正在运行的 CotEditor。";
-"The current 'cot' symbolic link may target on an invalid path." = "当前的 'cot' 符号链接可能指向无效路径。";
-
-
 
 /* MARK: CESyntaxEditSheetController */
 // Menu items

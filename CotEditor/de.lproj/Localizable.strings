@@ -335,12 +335,6 @@
 "Theme" = "Thema";
 
 
-// Integration Pane
-// Warnings on Integration pane
-"The current 'cot' symbolic link doesn’t target on the running CotEditor." = "Das aktuelle 'cot' symbolische Link zielt nicht auf den laufenden CotEditor.";
-"The current 'cot' symbolic link may target on an invalid path." = "Das aktuelle 'cot' symbolische Link kann auf einen ungültigen Pfad zielen.";
-
-
 
 /* MARK: CESyntaxEditSheetController */
 // Menu items
