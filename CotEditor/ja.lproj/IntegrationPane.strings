@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014 CotEditor Project
+ © 2014-2015 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -28,8 +28,8 @@
 /* Class = "NSTextFieldCell"; title = "Command-line tool:"; ObjectID = "kQn-Uu-cqG"; */
 "kQn-Uu-cqG.title" = "コマンドラインツール：";
 
-/* Class = "NSButtonCell"; title = "Install"; ObjectID = "ltN-wn-m8M"; */
-"ltN-wn-m8M.title" = "インストール";
+/* Class = "NSButtonCell"; title = "Learn More…"; ObjectID = "ltN-wn-m8M"; */
+"ltN-wn-m8M.title" = "詳細情報...";
 
 /* Class = "IBBindingConnection"; ibShadowedDisplayPattern = "installed at %{value1}@"; ObjectID = "e2G-16-MxZ"; */
 "e2G-16-MxZ.ibShadowedDisplayPattern" = "%{value1}@ にインストール済み";

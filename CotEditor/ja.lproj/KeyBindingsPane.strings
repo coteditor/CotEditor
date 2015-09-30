@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014 CotEditor Project
+ © 2014-2015 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -38,7 +38,5 @@
 "3363.title" = "追加テキストキーバインド";
 /* Class = "NSTextFieldCell"; title = "Shortcuts to insert preset text."; ObjectID = "3364"; */
 "3364.title" = "プリセットしたテキストを挿入するショートカット";
-/* Class = "NSTextFieldCell"; title = "This setting is not for the standard Cocoa key bindings\nbut for CotEditor’s original function."; ObjectID = "3366"; */
-"3366.title" = "CotEditor の独自機能であり、Cocoa 標準のキーバインドを設定するものではありません。";
 /* Class = "NSButtonCell"; title = "Edit…"; ObjectID = "3365"; */
 "3365.title" = "編集...";

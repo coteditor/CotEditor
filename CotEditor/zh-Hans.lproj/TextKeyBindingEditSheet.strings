@@ -30,7 +30,7 @@
 "54.title" = "文本按键绑定";
 
 /* Class = "NSTextFieldCell"; title = "To change a binding, select it, click the key column, and then type the keys.\nDo not include the Command key."; ObjectID = "150"; */
-"150.title" = "选中要绑定的项目并单击按键列来改变绑定\n绑定的快捷键中不能包含 Command 键";
+"150.title" = "选中要绑定的项目并单击按键列来改变绑定\n绑定的快捷键中不能包含 Command 键。";
 
 /* Class = "NSTableColumn"; headerCell.title = "Action"; ObjectID = "88"; */
 "88.headerCell.title" = "动作";
@@ -40,7 +40,7 @@
 /* Class = "NSTextFieldCell"; title = "Text to insert:"; ObjectID = "152"; */
 "152.title" = "插入文本：";
 /* Class = "IBBindingConnection"; ibShadowedNoSelectionPlaceholder = "Select action."; ObjectID = "jTj-QW-dQw"; */
-"jTj-QW-dQw.ibShadowedNoSelectionPlaceholder" = "选择动作";
+"jTj-QW-dQw.ibShadowedNoSelectionPlaceholder" = "选择动作。";
 
 /* Class = "NSButtonCell"; title = "Restore Defaults"; ObjectID = "153"; */
 "153.title" = "恢复默认";

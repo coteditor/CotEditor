@@ -66,5 +66,7 @@
 "WNG-Ai-RdG.title" = "Löschen";
 /* Class = "NSMenuItem"; title = "Export…"; ObjectID = "ueG-D7-DSV"; */
 "ueG-D7-DSV.title" = "Exportieren …";
+/* Class = "NSMenuItem"; title = "Reveal in Finder"; ObjectID = "UMs-gY-YHE"; */
+"UMs-gY-YHE.title" = "Im Finder anzeigen";
 /* Class = "NSMenuItem"; title = "Import…"; ObjectID = "52n-xG-4ZL"; */
 "52n-xG-4ZL.title" = "Importieren …";

@@ -36,7 +36,7 @@
 @property (nonatomic, nonnull) NSColorList *stylesheetColorList;
 @property (nonatomic, nullable) IBOutlet NSView *accessoryView;
 @property (nonatomic, nullable) NSColor *color;
-@property (nonatomic, nullable) NSString *colorCode;
+@property (nonatomic, nullable, copy) NSString *colorCode;
 
 @end
 

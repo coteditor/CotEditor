@@ -30,10 +30,10 @@
 
 
 // outlineView data key, column identifier
-extern NSString *__nonnull const CEKeyBindingTitleKey;
-extern NSString *__nonnull const CEKeyBindingChildrenKey;
-extern NSString *__nonnull const CEKeyBindingKeySpecCharsKey;
-extern NSString *__nonnull const CEKeyBindingSelectorStringKey;
+extern NSString *_Nonnull const CEKeyBindingTitleKey;
+extern NSString *_Nonnull const CEKeyBindingChildrenKey;
+extern NSString *_Nonnull const CEKeyBindingKeySpecCharsKey;
+extern NSString *_Nonnull const CEKeyBindingSelectorStringKey;
 
 
 @interface CEKeyBindingManager : NSObject

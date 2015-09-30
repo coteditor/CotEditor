@@ -133,6 +133,12 @@
         [menuItem setHidden:!representedTheme];
         return (!isBundled || isCustomized);
         
+    } else if ([menuItem action] == @selector(revealThemeInFinder:)) {
+        if (!isContextualMenu) {
+            [menuItem setTitle:[NSString stringWithFormat:NSLocalizedString(@"Reveal “%@” in Finder", nil), representedTheme]];
+        }
+        return (!isBundled || isCustomized);
+        
     } else if ([menuItem action] == @selector(renameTheme:)) {
         if (!isContextualMenu) {
             [menuItem setTitle:[NSString stringWithFormat:NSLocalizedString(@"Rename “%@”", nil), representedTheme]];
@@ -237,7 +243,7 @@
 
 // ------------------------------------------------------
 /// テーマが編集された
-- (void)didUpdateTheme:(NSMutableDictionary<NSString *, NSMutableDictionary<NSString *, id> *> *)theme
+- (void)didUpdateTheme:(nonnull NSDictionary<NSString *, NSMutableDictionary<NSString *, id> *> *)theme
 // ------------------------------------------------------
 {
     // save
@@ -451,6 +457,21 @@
 }
 
 
+// ------------------------------------------------------
+/// テーマファイルをFinderで開く
+- (IBAction)revealThemeInFinder:(nullable id)sender
+// ------------------------------------------------------
+{
+    NSString *themeName = ([sender isKindOfClass:[NSMenuItem class]]) ? [sender representedObject] : [self selectedTheme];
+    
+    NSURL *URL = [[CEThemeManager sharedManager] URLForUserTheme:themeName];
+    
+    if (URL) {
+        [[NSWorkspace sharedWorkspace] activateFileViewerSelectingURLs:@[URL]];
+    }
+}
+
+
 //------------------------------------------------------
 /// テーマを読み込み
 - (IBAction)importTheme:(nullable id)sender
@@ -530,7 +551,7 @@
 {
     NSAlert *alert = [[NSAlert alloc] init];
     [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"Are you sure you want to delete “%@” theme?", nil), themeName]];
-    [alert setInformativeText:NSLocalizedString(@"Deleted theme can’t be restored.", nil)];
+    [alert setInformativeText:NSLocalizedString(@"This action cannot be undone.", nil)];
     [alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
     [alert addButtonWithTitle:NSLocalizedString(@"Delete", nil)];
     

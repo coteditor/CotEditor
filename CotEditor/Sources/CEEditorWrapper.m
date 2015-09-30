@@ -51,7 +51,7 @@
 
 
 // readonly
-@property (readwrite, nonatomic) CESyntaxParser *syntaxParser;
+@property (readwrite, nonatomic, nullable) CESyntaxParser *syntaxParser;
 @property (readwrite, nonatomic) BOOL canActivateShowInvisibles;
 
 @end
@@ -208,17 +208,17 @@ static NSTimeInterval secondColoringDelay;
 #pragma mark Public Methods
 
 // ------------------------------------------------------
-/// メインtextViewの文字列を返す（改行コードはLF固定）
-- (NSString *)string
+/// textView の文字列を返す（改行コードはLF固定）
+- (nonnull NSString *)string
 // ------------------------------------------------------
 {
-    return [[self focusedTextView] string];
+    return [[self textStorage] string] ?: @"";
 }
 
 
 // ------------------------------------------------------
-/// メインtextViewの指定された範囲の文字列を返す
-- (NSString *)substringWithRange:(NSRange)range
+/// 指定された範囲の textView の文字列を返す
+- (nonnull NSString *)substringWithRange:(NSRange)range
 // ------------------------------------------------------
 {
     return [[self string] substringWithRange:range];
@@ -226,8 +226,8 @@ static NSTimeInterval secondColoringDelay;
 
 
 // ------------------------------------------------------
-/// メインtextViewの選択された文字列を返す
-- (NSString *)substringWithSelection
+/// メイン textView で選択された文字列を返す
+- (nonnull NSString *)substringWithSelection
 // ------------------------------------------------------
 {
     return [[self string] substringWithRange:[[self focusedTextView] selectedRange]];
@@ -235,17 +235,8 @@ static NSTimeInterval secondColoringDelay;
 
 
 // ------------------------------------------------------
-/// メインtextViewの選択された文字列を、改行コードを指定のものに置換して返す
-- (NSString *)substringWithSelectionForSave
-// ------------------------------------------------------
-{
-    return [[self substringWithSelection] stringByReplacingNewLineCharacersWith:[[self document] lineEnding]];
-}
-
-
-// ------------------------------------------------------
 /// メインtextViewに文字列をセット
-- (void)setString:(NSString *)string
+- (void)setString:(nonnull NSString *)string
 // ------------------------------------------------------
 {
     // UTF-16 でないものを UTF-16 で表示した時など当該フォントで表示できない文字が表示されてしまった後だと、
@@ -266,7 +257,7 @@ static NSTimeInterval secondColoringDelay;
 
 // ------------------------------------------------------
 /// 選択文字列を置換する
-- (void)insertTextViewString:(NSString *)string
+- (void)insertTextViewString:(nonnull NSString *)string
 // ------------------------------------------------------
 {
     [[self focusedTextView] insertString:string];
@@ -275,7 +266,7 @@ static NSTimeInterval secondColoringDelay;
 
 // ------------------------------------------------------
 /// 選択範囲の直後に文字列を挿入
-- (void)insertTextViewStringAfterSelection:(NSString *)string
+- (void)insertTextViewStringAfterSelection:(nonnull NSString *)string
 // ------------------------------------------------------
 {
     [[self focusedTextView] insertStringAfterSelection:string];
@@ -284,7 +275,7 @@ static NSTimeInterval secondColoringDelay;
 
 // ------------------------------------------------------
 /// 全文字列を置換
-- (void)replaceTextViewAllStringWithString:(NSString *)string
+- (void)replaceTextViewAllStringWithString:(nonnull NSString *)string
 // ------------------------------------------------------
 {
     [[self focusedTextView] replaceAllStringWithString:string];
@@ -293,7 +284,7 @@ static NSTimeInterval secondColoringDelay;
 
 // ------------------------------------------------------
 /// 文字列の最後に新たな文字列を追加
-- (void)appendTextViewString:(NSString *)string
+- (void)appendTextViewString:(nonnull NSString *)string
 // ------------------------------------------------------
 {
     [[self focusedTextView] appendString:string];
@@ -320,7 +311,7 @@ static NSTimeInterval secondColoringDelay;
 
 // ------------------------------------------------------
 /// 現在のエンコードにコンバートできない文字列をマークアップ
-- (void)markupRanges:(NSArray<NSValue *> *)ranges
+- (void)markupRanges:(nonnull NSArray<NSValue *> *)ranges
 // ------------------------------------------------------
 {
     NSColor *color = [[[self focusedTextView] theme] markupColor];
@@ -435,7 +426,7 @@ static NSTimeInterval secondColoringDelay;
 
 // ------------------------------------------------------
 /// フォントを返す
-- (NSFont *)font
+- (nullable NSFont *)font
 // ------------------------------------------------------
 {
     return [[self focusedTextView] font];
@@ -464,24 +455,22 @@ static NSTimeInterval secondColoringDelay;
 
 // ------------------------------------------------------
 /// テーマを適用する
-- (void)setThemeWithName:(NSString *)themeName
+- (void)setThemeWithName:(nonnull NSString *)themeName
 // ------------------------------------------------------
 {
-    if ([themeName length] == 0) { return; }
-    
     CETheme *theme = [CETheme themeWithName:themeName];
     
     [[self splitViewController] enumerateEditorViewsUsingBlock:^(CEEditorView *editorView) {
         [[editorView textView] setTheme:theme];
     }];
     
-    [[self syntaxParser] colorWholeStringInTextStorage:[self textStorage]];
+    [[self syntaxParser] colorWholeStringInTextStorage:[self textStorage] completionHandler:nil];
 }
 
 
 // ------------------------------------------------------
 /// 現在のテーマを返す
-- (CETheme *)theme
+- (nullable CETheme *)theme
 // ------------------------------------------------------
 {
     return [[self focusedTextView] theme];
@@ -506,7 +495,7 @@ static NSTimeInterval secondColoringDelay;
 
 // ------------------------------------------------------
 /// シンタックススタイル名を返す
-- (NSString *)syntaxStyleName
+- (nullable NSString *)syntaxStyleName
 // ------------------------------------------------------
 {
     return [[self syntaxParser] styleName];
@@ -515,7 +504,7 @@ static NSTimeInterval secondColoringDelay;
 
 // ------------------------------------------------------
 /// シンタックススタイル名をセット
-- (void)setSyntaxStyleWithName:(NSString *)name coloring:(BOOL)doColoring
+- (void)setSyntaxStyleWithName:(nonnull NSString *)name coloring:(BOOL)doColoring
 // ------------------------------------------------------
 {
     CESyntaxParser *syntaxParser = [[CESyntaxParser alloc] initWithStyleName:name];
@@ -538,7 +527,7 @@ static NSTimeInterval secondColoringDelay;
 {
     [self stopColoringTimer];
     
-    [[self syntaxParser] colorWholeStringInTextStorage:[self textStorage]];
+    [[self syntaxParser] colorWholeStringInTextStorage:[self textStorage] completionHandler:nil];
 }
 
 

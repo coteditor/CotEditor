@@ -31,8 +31,8 @@
 
 
 // constants
-static NSString *__nonnull const AppCastURL = @"http://coteditor.com/appcast.xml";
-static NSString *__nonnull const AppCastBetaURL = @"http://coteditor.com/appcast-beta.xml";
+static NSString *_Nonnull const AppCastURL = @"http://coteditor.com/appcast.xml";
+static NSString *_Nonnull const AppCastBetaURL = @"http://coteditor.com/appcast-beta.xml";
 
 
 @interface CEUpdaterManager () <SUUpdaterDelegate>

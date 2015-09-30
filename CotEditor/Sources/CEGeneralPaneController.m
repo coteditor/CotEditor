@@ -49,10 +49,10 @@
 
 // ------------------------------------------------------
 /// setup UI
-- (void)viewDidLoad
+- (void)awakeFromNib
 // ------------------------------------------------------
 {
-    [super viewDidLoad];
+    [super awakeFromNib];
     
     // remove updater option on AppStore ver.
 #ifdef APPSTORE

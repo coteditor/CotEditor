@@ -43,6 +43,5 @@
 // Action Message
 - (IBAction)launchScript:(nullable id)sender;
 - (IBAction)openScriptFolder:(nullable id)sender;
-- (IBAction)copySampleScriptToUserDomain:(nullable id)sender;
 
 @end

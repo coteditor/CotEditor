@@ -88,7 +88,7 @@ static char const XATTR_ENCODING_NAME[] = "com.apple.TextEncoding";
 
 // ------------------------------------------------------
 /// get boolean value of extended attribute for given name from the file at URL
-- (BOOL)getXattrBoolForName:(const char *)name
+- (BOOL)getXattrBoolForName:(const char * _Nonnull)name
 // ------------------------------------------------------
 {
     NSData *data = [self getXattrDataForName:name];
@@ -99,7 +99,7 @@ static char const XATTR_ENCODING_NAME[] = "com.apple.TextEncoding";
 
 // ------------------------------------------------------
 /// set boolean value as extended attribute for given name to the file at URL
-- (BOOL)setXattrBool:(BOOL)value forName:(const char *)name
+- (BOOL)setXattrBool:(BOOL)value forName:(const char * _Nonnull)name
 // ------------------------------------------------------
 {
     if (value) {
@@ -117,7 +117,7 @@ static char const XATTR_ENCODING_NAME[] = "com.apple.TextEncoding";
 
 // ------------------------------------------------------
 /// get extended attribute for given name from the file at URL
-- (nullable NSData *)getXattrDataForName:(const char *)name
+- (nullable NSData *)getXattrDataForName:(const char * _Nonnull)name
 // ------------------------------------------------------
 {
     // check buffer size
@@ -136,7 +136,7 @@ static char const XATTR_ENCODING_NAME[] = "com.apple.TextEncoding";
 
 // ------------------------------------------------------
 /// set extended attribute for given name to the file at URL
-- (BOOL)setXattrData:(nonnull NSData *)data forName:(const char *)name
+- (BOOL)setXattrData:(nonnull NSData *)data forName:(const char * _Nonnull)name
 // ------------------------------------------------------
 {
     int result = setxattr([[self path] fileSystemRepresentation], name, [data bytes], [data length], 0, XATTR_NOFOLLOW);
@@ -147,7 +147,7 @@ static char const XATTR_ENCODING_NAME[] = "com.apple.TextEncoding";
 
 // ------------------------------------------------------
 /// remove extended attribute for given name from the file at URL
-- (BOOL)removeXattrDataForName:(const char *)name
+- (BOOL)removeXattrDataForName:(const char * _Nonnull)name
 // ------------------------------------------------------
 {
     return removexattr([[self path] fileSystemRepresentation], name, XATTR_NOFOLLOW);

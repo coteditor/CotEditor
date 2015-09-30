@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="8191" systemVersion="15A282b" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="7706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="8191"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="CEIntegrationPaneController">
             <connections>
-                <outlet property="installButton" destination="eEc-Sx-LJN" id="Ope-oJ-jYB"/>
                 <outlet property="view" destination="c22-O7-iKe" id="mxI-ay-v2T"/>
             </connections>
         </customObject>
@@ -18,21 +17,22 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eEc-Sx-LJN">
-                    <rect key="frame" x="144" y="93" width="102" height="32"/>
+                    <rect key="frame" x="142" y="93" width="109" height="32"/>
                     <constraints>
                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="90" id="QR6-gE-nsb"/>
                     </constraints>
-                    <buttonCell key="cell" type="push" title="Install" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ltN-wn-m8M">
+                    <animations/>
+                    <buttonCell key="cell" type="push" title="Learn More" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ltN-wn-m8M">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
                     <connections>
-                        <action selector="install:" target="-2" id="yKR-QI-Kj8"/>
-                        <binding destination="-2" name="enabled" keyPath="uninstallable" id="45o-bF-VPT"/>
+                        <action selector="learnMore:" target="-2" id="gvA-NR-hm4"/>
                     </connections>
                 </button>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="DkP-oI-RXs">
-                    <rect key="frame" x="18" y="103" width="126" height="17"/>
+                    <rect key="frame" x="18" y="103" width="124" height="17"/>
+                    <animations/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Command-line tool:" id="kQn-Uu-cqG">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -40,9 +40,10 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="nVs-Jw-E1L">
-                    <rect key="frame" x="246" y="103" width="156" height="14"/>
-                    <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Installed at /usr/local/bin/cot" id="UOI-xf-lPZ">
-                        <font key="font" metaFont="smallSystem"/>
+                    <rect key="frame" x="251" y="103" width="177" height="17"/>
+                    <animations/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Installed at /usr/local/bin/cot" id="UOI-xf-lPZ">
+                        <font key="font" metaFont="system"/>
                         <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
@@ -61,6 +62,7 @@
                 </textField>
                 <button horizontalHuggingPriority="750" verticalHuggingPriority="750" tag="14" translatesAutoresizingMaskIntoConstraints="NO" id="T0F-Mz-b1C">
                     <rect key="frame" x="507" y="17" width="25" height="25"/>
+                    <animations/>
                     <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="UdG-G4-xvN">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
@@ -70,7 +72,8 @@
                     </connections>
                 </button>
                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Pev-gA-jbT">
-                    <rect key="frame" x="148" y="64" width="384" height="28"/>
+                    <rect key="frame" x="146" y="64" width="386" height="28"/>
+                    <animations/>
                     <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="With the 'cot' command-line tool, you can launch CotEditor and let it open files from the command line." id="c48-xK-Ag1">
                         <font key="font" metaFont="smallSystem"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -78,7 +81,8 @@
                     </textFieldCell>
                 </textField>
                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="otc-Q5-SoO" customClass="CEWrappingTextField">
-                    <rect key="frame" x="167" y="42" width="365" height="14"/>
+                    <rect key="frame" x="165" y="42" width="367" height="14"/>
+                    <animations/>
                     <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="Warning will be displayed here." id="boy-gV-Bda">
                         <font key="font" metaFont="smallSystem"/>
                         <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
@@ -89,7 +93,8 @@
                     </connections>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JKU-4Q-966">
-                    <rect key="frame" x="148" y="42" width="19" height="14"/>
+                    <rect key="frame" x="146" y="42" width="19" height="14"/>
+                    <animations/>
                     <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="⚠️" id="3Xr-TU-lZh">
                         <font key="font" metaFont="smallSystem"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -122,6 +127,7 @@
                 <constraint firstItem="Pev-gA-jbT" firstAttribute="top" secondItem="eEc-Sx-LJN" secondAttribute="bottom" constant="8" id="uxc-zn-0Ad"/>
                 <constraint firstItem="otc-Q5-SoO" firstAttribute="top" secondItem="JKU-4Q-966" secondAttribute="top" id="zYV-ji-QGa"/>
             </constraints>
+            <animations/>
             <point key="canvasLocation" x="374" y="455"/>
         </customView>
     </objects>

@@ -33,9 +33,9 @@
 
 
 // notifications
-NSString *__nonnull const CEAnalyzerDidUpdateFileInfoNotification = @"CEAnalyzerDidUpdateFileInfoNotification";
-NSString *__nonnull const CEAnalyzerDidUpdateModeInfoNotification = @"CEAnalyzerDidUpdateModeInfoNotification";
-NSString *__nonnull const CEAnalyzerDidUpdateEditorInfoNotification = @"CEAnalyzerDidUpdateEditorInfoNotification";
+NSString *_Nonnull const CEAnalyzerDidUpdateFileInfoNotification = @"CEAnalyzerDidUpdateFileInfoNotification";
+NSString *_Nonnull const CEAnalyzerDidUpdateModeInfoNotification = @"CEAnalyzerDidUpdateModeInfoNotification";
+NSString *_Nonnull const CEAnalyzerDidUpdateEditorInfoNotification = @"CEAnalyzerDidUpdateEditorInfoNotification";
 
 
 @interface CEDocumentAnalyzer ()
@@ -137,7 +137,7 @@ NSString *__nonnull const CEAnalyzerDidUpdateEditorInfoNotification = @"CEAnalyz
     CEDocument *document = [self document];
     
     self.encoding = [NSString localizedNameOfStringEncoding:[document encoding]];
-    self.charsetName = [document currentIANACharSetName];
+    self.charsetName = [document IANACharSetName];
     self.lineEndings = [NSString newLineNameWithType:[document lineEnding]];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:CEAnalyzerDidUpdateModeInfoNotification

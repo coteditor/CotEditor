@@ -33,7 +33,7 @@
 
 #import "CETextView.h"
 #import "CEColorCodePanelController.h"
-#import "CEGlyphPopoverController.h"
+#import "CECharacterPopoverController.h"
 #import "CEEditorScrollView.h"
 #import "CEDocument.h"
 #import "CEKeyBindingManager.h"
@@ -47,15 +47,14 @@
 // constant
 const NSInteger kNoMenuItem = -1;
 
-NSString *const CELayoutOrientationKey = @"layoutOrientation";
-NSString *const CESelectedRangesKey = @"selectedRange";
-NSString *const CEVisibleRectKey = @"visibleRect";
+NSString *_Nonnull const CESelectedRangesKey = @"selectedRange";
+NSString *_Nonnull const CEVisibleRectKey = @"visibleRect";
 
 
 @interface CETextView ()
 
 @property (nonatomic) NSTimer *completionTimer;
-@property (nonatomic) NSString *particalCompletionWord;  // ユーザが実際に入力した補完の元になる文字列
+@property (nonatomic, copy) NSString *particalCompletionWord;  // ユーザが実際に入力した補完の元になる文字列
 
 @property (nonatomic) NSColor *highlightLineColor;  // カレント行ハイライト色
 
@@ -189,7 +188,6 @@ static NSPoint kTextContainerOrigin;
 {
     [super encodeRestorableStateWithCoder:coder];
     
-    [coder encodeInteger:[self layoutOrientation] forKey:CELayoutOrientationKey];
     [coder encodeObject:[self selectedRanges] forKey:CESelectedRangesKey];
     [coder encodeRect:[self visibleRect] forKey:CEVisibleRectKey];
 }
@@ -202,15 +200,21 @@ static NSPoint kTextContainerOrigin;
 {
     [super restoreStateWithCoder:coder];
     
-    if ([coder containsValueForKey:CELayoutOrientationKey]) {
-        [self setLayoutOrientation:[coder decodeIntegerForKey:CELayoutOrientationKey]];
-    }
-    
     if ([coder containsValueForKey:CEVisibleRectKey]) {
         NSRect visibleRect = [coder decodeRectForKey:CEVisibleRectKey];
         NSArray<NSValue *> *selectedRanges = [coder decodeObjectForKey:CESelectedRangesKey];
         
-        [self setSelectedRanges:selectedRanges];
+        // filter to avoid crash if the stored selected range is an invalid range
+        if ([selectedRanges count] > 0) {
+            NSUInteger length = [[self textStorage] length];
+            selectedRanges = [selectedRanges filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id  _Nonnull evaluatedObject, NSDictionary<NSString *,id> * _Nullable bindings) {
+                NSRange range = [evaluatedObject rangeValue];
+                
+                return NSMaxRange(range) <= length;
+            }]];
+            
+            [self setSelectedRanges:selectedRanges];
+        }
         
         // perform scroll on the next run-loop
         __unsafe_unretained typeof(self) weakSelf = self;  // NSTextView cannot be weak
@@ -628,11 +632,11 @@ static NSPoint kTextContainerOrigin;
         
         NSFont *font = [(CELayoutManager *)[self layoutManager] textFont];
         font = [font screenFont] ? : font;
-        column *= [@"M" sizeWithAttributes:@{NSFontAttributeName: font}].width;
+        CGFloat charWidth = [font advancementForGlyph:(NSGlyph)' '].width;
         
         CGFloat inset = [self textContainerOrigin].x;
         CGFloat linePadding = [[self textContainer] lineFragmentPadding];
-        CGFloat x = floor(column + inset + linePadding) + 2.5;  // +2px for adjustment
+        CGFloat x = floor(charWidth * column + inset + linePadding) + 2.5;  // +2px for adjustment
         
         [[[self textColor] colorWithAlphaComponent:0.2] set];
         [NSBezierPath strokeLineFromPoint:NSMakePoint(x, NSMinY(dirtyRect))
@@ -966,11 +970,9 @@ static NSPoint kTextContainerOrigin;
 
 // ------------------------------------------------------
 /// treat programmatic text insertion
-- (void)insertString:(nullable NSString *)string
+- (void)insertString:(nonnull NSString *)string
 // ------------------------------------------------------
 {
-    if (!string) { return; }
-    
     NSRange replacementRange = [self selectedRange];
     
     if ([self shouldChangeTextInRange:replacementRange replacementString:string]) {
@@ -987,11 +989,9 @@ static NSPoint kTextContainerOrigin;
 
 // ------------------------------------------------------
 /// insert given string just after current selection and select inserted range
-- (void)insertStringAfterSelection:(nullable NSString *)string
+- (void)insertStringAfterSelection:(nonnull NSString *)string
 // ------------------------------------------------------
 {
-    if (!string) { return; }
-    
     NSRange replacementRange = NSMakeRange(NSMaxRange([self selectedRange]), 0);
     
     if ([self shouldChangeTextInRange:replacementRange replacementString:string]) {
@@ -1007,11 +1007,9 @@ static NSPoint kTextContainerOrigin;
 
 // ------------------------------------------------------
 /// swap whole current string with given string and select inserted range
-- (void)replaceAllStringWithString:(nullable NSString *)string
+- (void)replaceAllStringWithString:(nonnull NSString *)string
 // ------------------------------------------------------
 {
-    if (!string) { return; }
-    
     NSRange replacementRange = NSMakeRange(0, [[self string] length]);
     
     if ([self shouldChangeTextInRange:replacementRange replacementString:string]) {
@@ -1027,11 +1025,9 @@ static NSPoint kTextContainerOrigin;
 
 // ------------------------------------------------------
 /// append string at the end of the whole string and select inserted range
-- (void)appendString:(nullable NSString *)string
+- (void)appendString:(nonnull NSString *)string
 // ------------------------------------------------------
 {
-    if (!string) { return; }
-    
     NSRange replacementRange = NSMakeRange([[self string] length], 0);
     
     if ([self shouldChangeTextInRange:replacementRange replacementString:string]) {
@@ -1320,7 +1316,7 @@ static NSPoint kTextContainerOrigin;
 {
     NSRange selectedRange = [self selectedRange];
     NSString *selectedString = [[self string] substringWithRange:selectedRange];
-    CEGlyphPopoverController *popoverController = [[CEGlyphPopoverController alloc] initWithCharacter:selectedString];
+    CECharacterPopoverController *popoverController = [[CECharacterPopoverController alloc] initWithCharacter:selectedString];
     
     if (!popoverController) { return; }
     
@@ -1764,39 +1760,38 @@ static NSPoint kTextContainerOrigin;
             endBrace = '>';
             break;
             
-        default: {
+        default:
             return wordRange;
-        }
     }
     
     NSUInteger lengthOfString = [completeString length];
     NSInteger originalLocation = location;
-    NSUInteger skipMatchingBrace = 0;
+    NSUInteger skippedBraceCount = 0;
     
     if (isEndBrace) {
         while (location--) {
-            unichar characterToCheck = [completeString characterAtIndex:location];
-            if (characterToCheck == beginBrace) {
-                if (!skipMatchingBrace) {
+            unichar character = [completeString characterAtIndex:location];
+            if (character == beginBrace) {
+                if (!skippedBraceCount) {
                     return NSMakeRange(location, originalLocation - location + 1);
                 } else {
-                    skipMatchingBrace--;
+                    skippedBraceCount--;
                 }
-            } else if (characterToCheck == endBrace) {
-                skipMatchingBrace++;
+            } else if (character == endBrace) {
+                skippedBraceCount++;
             }
         }
     } else {
         while (++location < lengthOfString) {
-            unichar characterToCheck = [completeString characterAtIndex:location];
-            if (characterToCheck == endBrace) {
-                if (!skipMatchingBrace) {
+            unichar character = [completeString characterAtIndex:location];
+            if (character == endBrace) {
+                if (!skippedBraceCount) {
                     return NSMakeRange(originalLocation, location - originalLocation + 1);
                 } else {
-                    skipMatchingBrace--;
+                    skippedBraceCount--;
                 }
-            } else if (characterToCheck == beginBrace) {
-                skipMatchingBrace++;
+            } else if (character == beginBrace) {
+                skippedBraceCount++;
             }
         }
     }

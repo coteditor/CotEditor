@@ -168,15 +168,6 @@
 
 
 // ------------------------------------------------------
-/// return IANA Charset name of encoding (Unicode text type)
-- (NSString *)IANACharSetName
-// ------------------------------------------------------
-{
-    return [self currentIANACharSetName] ? : @"";  // retuns blank string if cannot get
-}
-
-
-// ------------------------------------------------------
 /// return syntax style name (Unicode text type)
 - (NSString *)coloringStyle
 // ------------------------------------------------------

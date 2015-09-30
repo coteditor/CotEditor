@@ -35,16 +35,16 @@
 // constants
 static const CGFloat kDefaultResultViewHeight = 200.0;
 static const NSUInteger kMaxHistorySize = 20;
-static NSString *const kEscapeCharacter = @"\\";
+static NSString *_Nonnull const kEscapeCharacter = @"\\";
 
 
 @interface CEFindPanelController () <NSWindowDelegate, NSSplitViewDelegate, NSPopoverDelegate>
 
-@property (nonatomic, copy) NSString *findString;
-@property (nonatomic, copy) NSString *replacementString;
+@property (nonatomic, nonnull, copy) NSString *findString;
+@property (nonatomic, nonnull, copy) NSString *replacementString;
 
-@property (nonatomic) NSColor *highlightColor;
-@property (nonatomic) NSLayoutConstraint *resultHeightConstraint;  // for autolayout on OS X 10.8
+@property (nonatomic, nonnull) NSColor *highlightColor;
+@property (nonatomic, nullable) NSLayoutConstraint *resultHeightConstraint;  // for autolayout on OS X 10.8
 
 #pragma mark Settings
 @property (readonly, nonatomic) BOOL usesRegularExpression;
@@ -71,11 +71,11 @@ static NSString *const kEscapeCharacter = @"\\";
 #pragma mark Outlets
 @property (nonatomic) IBOutlet CEFindResultViewController *resultViewController;
 @property (nonatomic) IBOutlet NSPopover *regexPopover;
-@property (nonatomic, weak) IBOutlet NSSplitView *splitView;
-@property (nonatomic, weak) IBOutlet NSButton *disclosureButton;
-@property (nonatomic, weak) IBOutlet NSMenu *findHistoryMenu;
-@property (nonatomic, weak) IBOutlet NSMenu *replaceHistoryMenu;
-@property (nonatomic, weak) IBOutlet NSButton *replaceButton;
+@property (nonatomic, nullable, weak) IBOutlet NSSplitView *splitView;
+@property (nonatomic, nullable, weak) IBOutlet NSButton *disclosureButton;
+@property (nonatomic, nullable, weak) IBOutlet NSMenu *findHistoryMenu;
+@property (nonatomic, nullable, weak) IBOutlet NSMenu *replaceHistoryMenu;
+@property (nonatomic, nullable, weak) IBOutlet NSButton *replaceButton;
 
 @end
 
@@ -90,7 +90,7 @@ static NSString *const kEscapeCharacter = @"\\";
 
 // ------------------------------------------------------
 /// initialize instance
-- (instancetype)init
+- (nonnull instancetype)init
 // ------------------------------------------------------
 {
     // [attention] This method can be invoked before initializing user defaults in CEAppDelegate.
@@ -197,7 +197,7 @@ static NSString *const kEscapeCharacter = @"\\";
 
 // ------------------------------------------------------
 /// add check mark to selectable menus
-- (BOOL)validateMenuItem:(NSMenuItem *)menuItem
+- (BOOL)validateMenuItem:(nonnull NSMenuItem *)menuItem
 // ------------------------------------------------------
 {
     if ([menuItem action] == @selector(findNext:) ||
@@ -313,7 +313,7 @@ static NSString *const kEscapeCharacter = @"\\";
 
 // ------------------------------------------------------
 /// make popover detachable (on Yosemite and later)
-- (BOOL)popoverShouldDetach:(NSPopover *)popover
+- (BOOL)popoverShouldDetach:(nonnull NSPopover *)popover
 // ------------------------------------------------------
 {
     return YES;
@@ -767,7 +767,7 @@ static NSString *const kEscapeCharacter = @"\\";
 
 // ------------------------------------------------------
 /// return current target textView
-- (NSTextView *)target
+- (nullable NSTextView *)target
 // ------------------------------------------------------
 {
     return [[self textFinder] targetToFindIn];
@@ -844,7 +844,7 @@ static NSString *const kEscapeCharacter = @"\\";
 
 // ------------------------------------------------------
 /// show error message by OgreKit as alert
-- (void)showAlertWithMessage:(NSString*)message informative:(NSString*)informative
+- (void)showAlertWithMessage:(nonnull NSString *)message informative:(nonnull NSString *)informative
 // ------------------------------------------------------
 {
     NSAlert *alert = [[NSAlert alloc] init];
@@ -881,7 +881,7 @@ static NSString *const kEscapeCharacter = @"\\";
 
 // ------------------------------------------------------
 /// apply history to UI
-- (void)buildHistoryMenu:(NSMenu *)menu defautsKey:(NSString *)key selector:(SEL)selector
+- (void)buildHistoryMenu:(nonnull NSMenu *)menu defautsKey:(nonnull NSString *)key selector:(SEL)selector
 // ------------------------------------------------------
 {
     NSArray<NSString *> *history = [[NSUserDefaults standardUserDefaults] stringArrayForKey:key];
@@ -912,7 +912,7 @@ static NSString *const kEscapeCharacter = @"\\";
 
 // ------------------------------------------------------
 /// append given string to find history
-- (void)appendFindHistory:(NSString *)string
+- (void)appendFindHistory:(nonnull NSString *)string
 // ------------------------------------------------------
 {
     if ([string length] == 0) { return; }
@@ -940,7 +940,7 @@ static NSString *const kEscapeCharacter = @"\\";
 
 // ------------------------------------------------------
 /// append given string to replace history
-- (void)appendReplaceHistory:(NSString *)string
+- (void)appendReplaceHistory:(nonnull NSString *)string
 // ------------------------------------------------------
 {
     if ([string length] == 0) { return; }
@@ -974,7 +974,7 @@ static NSString *const kEscapeCharacter = @"\\";
 
 // ------------------------------------------------------
 /// put local find string to global domain
-- (void)setFindStringToPasteboard:(NSString *)string
+- (void)setFindStringToPasteboard:(nonnull NSString *)string
 // ------------------------------------------------------
 {
     if ([string length] == 0) { return; }

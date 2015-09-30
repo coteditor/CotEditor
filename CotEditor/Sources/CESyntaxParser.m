@@ -35,15 +35,15 @@
 
 
 // local constants (QC might abbr of Quotes/Comment)
-static NSString *const InvisiblesType = @"invisibles";
+static NSString *_Nonnull const InvisiblesType = @"invisibles";
 
-static NSString *const QCLocationKey = @"QCLocationKey";
-static NSString *const QCPairKindKey = @"QCPairKindKey";
-static NSString *const QCStartEndKey = @"QCStartEndKey";
-static NSString *const QCLengthKey = @"QCLengthKey";
+static NSString *_Nonnull const QCLocationKey = @"QCLocationKey";
+static NSString *_Nonnull const QCPairKindKey = @"QCPairKindKey";
+static NSString *_Nonnull const QCStartEndKey = @"QCStartEndKey";
+static NSString *_Nonnull const QCLengthKey = @"QCLengthKey";
 
-static NSString *const QCInlineCommentKind = @"QCInlineCommentKind";  // for pairKind
-static NSString *const QCBlockCommentKind = @"QCBlockCommentKind";  // for pairKind
+static NSString *_Nonnull const QCInlineCommentKind = @"QCInlineCommentKind";  // for pairKind
+static NSString *_Nonnull const QCBlockCommentKind = @"QCBlockCommentKind";  // for pairKind
 
 typedef NS_ENUM(NSUInteger, QCStartEndType) {
     QCEnd,
@@ -395,7 +395,7 @@ static CGFloat kPerCompoIncrement;
 
 // ------------------------------------------------------
 /// 全体をカラーリング
-- (void)colorWholeStringInTextStorage:(nonnull NSTextStorage *)textStorage
+- (void)colorWholeStringInTextStorage:(nonnull NSTextStorage *)textStorage completionHandler:(nullable void (^)())completionHandler
 // ------------------------------------------------------
 {
     if ([textStorage length] == 0) { return; }
@@ -407,6 +407,10 @@ static CGFloat kPerCompoIncrement;
         for (NSLayoutManager *layoutManager in [textStorage layoutManagers]) {
             [self applyColorings:[self cacheColorings] range:wholeRange layoutManager:layoutManager];
         }
+        if (completionHandler) {
+            completionHandler();
+        }
+        
     } else {
         // make sure that string is immutable
         // [Caution] DO NOT use [wholeString copy] here instead of `stringWithString:`.
@@ -416,7 +420,7 @@ static CGFloat kPerCompoIncrement;
         NSString *safeImmutableString = [NSString stringWithString:[textStorage string]];
         
         [self colorString:safeImmutableString
-                    range:wholeRange textStorage:textStorage];
+                    range:wholeRange textStorage:textStorage completionHandler:completionHandler];
     }
 }
 
@@ -466,7 +470,7 @@ static CGFloat kPerCompoIncrement;
         coloringRange = [string lineRangeForRange:coloringRange];
     }
     
-    [self colorString:string range:coloringRange textStorage:textStorage];
+    [self colorString:string range:coloringRange textStorage:textStorage completionHandler:nil];
 }
 
 
@@ -695,19 +699,14 @@ static CGFloat kPerCompoIncrement;
 {
     NSMutableArray<NSValue *> *ranges = [NSMutableArray array];
     NSCharacterSet *controlCharacterSet = [NSCharacterSet controlCharacterSet];
-    NSScanner *scanner = [NSScanner scannerWithString:string];
     
-    [scanner setScanLocation:parseRange.location];
-    
-    while(![scanner isAtEnd] && ([scanner scanLocation] < NSMaxRange(parseRange))) {
-        [scanner scanUpToCharactersFromSet:controlCharacterSet intoString:nil];
-        NSUInteger location = [scanner scanLocation];
-        NSString *control;
-        if ([scanner scanCharactersFromSet:controlCharacterSet intoString:&control]) {
-            NSRange range = NSMakeRange(location, [control length]);
-            
-            [ranges addObject:[NSValue valueWithRange:range]];
-        }
+    NSRange parsingRange = parseRange;
+    NSRange range;
+    while ((range = [string rangeOfCharacterFromSet:controlCharacterSet options:0 range:parsingRange]).location != NSNotFound) {
+        [ranges addObject:[NSValue valueWithRange:range]];
+        
+        parsingRange.location += range.length;
+        parsingRange.length -= range.length;
     }
     
     return ranges;
@@ -974,7 +973,7 @@ static CGFloat kPerCompoIncrement;
 
 // ------------------------------------------------------
 /// カラーリングを実行
-- (void)colorString:(nonnull NSString *)wholeString range:(NSRange)coloringRange textStorage:(nonnull NSTextStorage *)textStorage
+- (void)colorString:(nonnull NSString *)wholeString range:(NSRange)coloringRange textStorage:(nonnull NSTextStorage *)textStorage completionHandler:(nullable void (^)())completionHandler
 // ------------------------------------------------------
 {
     if (coloringRange.length == 0) { return; }
@@ -983,6 +982,9 @@ static CGFloat kPerCompoIncrement;
     if (![self hasSyntaxHighlighting]) {
         for (NSLayoutManager *layoutManager in [textStorage layoutManagers]) {
             [self applyColorings:@{} range:coloringRange layoutManager:layoutManager];
+        }
+        if (completionHandler) {
+            completionHandler();
         }
         return;
     }
@@ -1028,6 +1030,7 @@ static CGFloat kPerCompoIncrement;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         typeof(self) self = weakSelf;  // strong self
         if (!self) { return; }
+        
         // カラー範囲を抽出する
         NSDictionary<NSString *, NSArray<NSValue *> *> *colorings = [self extractAllSyntaxFromString:wholeString range:coloringRange];
         
@@ -1060,6 +1063,13 @@ static CGFloat kPerCompoIncrement;
             dispatch_sync(dispatch_get_main_queue(), ^{
                 [indicator endSheet];
                 [self setIndicatorController:nil];
+            });
+        }
+        
+        // do the rest things
+        if (completionHandler) {
+            dispatch_sync(dispatch_get_main_queue(), ^{
+                completionHandler();
             });
         }
     });

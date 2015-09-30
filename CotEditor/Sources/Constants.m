@@ -36,24 +36,24 @@
 // ------------------------------------------------------
 
 // separator
-NSString *__nonnull const CESeparatorString = @"-";
+NSString *_Nonnull const CESeparatorString = @"-";
 
 // Exported UTI
-NSString *__nonnull const CEUTTypeTheme = @"com.coteditor.CotEditor.theme";
+NSString *_Nonnull const CEUTTypeTheme = @"com.coteditor.CotEditor.theme";
 
 // Error domain
-NSString *__nonnull const CEErrorDomain = @"com.coteditor.CotEditor.ErrorDomain";
+NSString *_Nonnull const CEErrorDomain = @"com.coteditor.CotEditor.ErrorDomain";
 
 // Metadata dict keys for themes and syntax styles
-NSString *__nonnull const CEMetadataKey = @"metadata";
-NSString *__nonnull const CEAuthorKey = @"author";
-NSString *__nonnull const CEDistributionURLKey = @"distributionURL";
-NSString *__nonnull const CELicenseKey = @"license";
-NSString *__nonnull const CEDescriptionKey = @"description";
+NSString *_Nonnull const CEMetadataKey = @"metadata";
+NSString *_Nonnull const CEAuthorKey = @"author";
+NSString *_Nonnull const CEDistributionURLKey = @"distributionURL";
+NSString *_Nonnull const CELicenseKey = @"license";
+NSString *_Nonnull const CEDescriptionKey = @"description";
 
 
 // Help anchors
-NSString *__nonnull const kHelpAnchors[] = {
+NSString *_Nonnull const kHelpAnchors[] = {
     @"releasenotes",
     @"pref_general",
     @"pref_window",
@@ -89,11 +89,11 @@ BOOL CEIsAlmostEqualCGFloats(CGFloat float1, CGFloat float2) {
 // ------------------------------------------------------
 
 // Notification name
-NSString *__nonnull const CEDocumentDidFinishOpenNotification = @"CEDocumentDidFinishOpenNotification";
+NSString *_Nonnull const CEDocumentDidFinishOpenNotification = @"CEDocumentDidFinishOpenNotification";
 
 // General notification's userInfo keys
-NSString *__nonnull const CEOldNameKey = @"CEOldNameKey";
-NSString *__nonnull const CENewNameKey = @"CENewNameKey";
+NSString *_Nonnull const CEOldNameKey = @"CEOldNameKey";
+NSString *_Nonnull const CENewNameKey = @"CENewNameKey";
 
 
 
@@ -104,143 +104,142 @@ NSString *__nonnull const CENewNameKey = @"CENewNameKey";
 // ------------------------------------------------------
 
 // general settings
-NSString *__nonnull const CEDefaultLastVersionKey = @"lastVersion";
-NSString *__nonnull const CEDefaultDocumentConflictOptionKey = @"documentConflictOption";
-NSString *__nonnull const CEDefaultLayoutTextVerticalKey = @"layoutTextVertical";
-NSString *__nonnull const CEDefaultSplitViewVerticalKey = @"splitViewVertical";
-NSString *__nonnull const CEDefaultShowLineNumbersKey = @"showLineNumbers";
-NSString *__nonnull const CEDefaultShowDocumentInspectorKey = @"showDocumentInspector";
-NSString *__nonnull const CEDefaultShowStatusBarKey = @"showStatusArea";
-NSString *__nonnull const CEDefaultShowStatusBarLinesKey = @"showStatusBarLines";
-NSString *__nonnull const CEDefaultShowStatusBarLengthKey = @"showStatusBarLength";
-NSString *__nonnull const CEDefaultShowStatusBarCharsKey = @"showStatusBarChars";
-NSString *__nonnull const CEDefaultShowStatusBarWordsKey = @"showStatusBarWords";
-NSString *__nonnull const CEDefaultShowStatusBarLocationKey = @"showStatusBarLocation";
-NSString *__nonnull const CEDefaultShowStatusBarLineKey = @"showStatusBarLine";
-NSString *__nonnull const CEDefaultShowStatusBarColumnKey = @"showStatusBarColumn";
-NSString *__nonnull const CEDefaultShowStatusBarEncodingKey = @"showStatusBarEncoding";
-NSString *__nonnull const CEDefaultShowStatusBarLineEndingsKey = @"showStatusBarLineEndings";
-NSString *__nonnull const CEDefaultShowStatusBarFileSizeKey = @"showStatusBarFileSize";
-NSString *__nonnull const CEDefaultShowNavigationBarKey = @"showNavigationBar";
-NSString *__nonnull const CEDefaultCountLineEndingAsCharKey = @"countLineEndingAsChar";
-NSString *__nonnull const CEDefaultSyncFindPboardKey = @"syncFindPboard";
-NSString *__nonnull const CEDefaultInlineContextualScriptMenuKey = @"inlineContextualScriptMenu";
-NSString *__nonnull const CEDefaultWrapLinesKey = @"wrapLines";
-NSString *__nonnull const CEDefaultLineEndCharCodeKey = @"defaultLineEndCharCode";
-NSString *__nonnull const CEDefaultEncodingListKey = @"encodingList";
-NSString *__nonnull const CEDefaultFontNameKey = @"fontName";
-NSString *__nonnull const CEDefaultFontSizeKey = @"fontSize";
-NSString *__nonnull const CEDefaultEncodingInOpenKey = @"encodingInOpen";
-NSString *__nonnull const CEDefaultEncodingInNewKey = @"encodingInNew";
-NSString *__nonnull const CEDefaultReferToEncodingTagKey = @"referToEncodingTag";
-NSString *__nonnull const CEDefaultCreateNewAtStartupKey = @"createNewAtStartup";
-NSString *__nonnull const CEDefaultReopenBlankWindowKey = @"reopenBlankWindow";
-NSString *__nonnull const CEDefaultCheckSpellingAsTypeKey = @"checkSpellingAsType";
-NSString *__nonnull const CEDefaultWindowWidthKey = @"windowWidth";
-NSString *__nonnull const CEDefaultWindowHeightKey = @"windowHeight";
-NSString *__nonnull const CEDefaultWindowAlphaKey = @"windowAlpha";
-NSString *__nonnull const CEDefaultAutoExpandTabKey = @"autoExpandTab";
-NSString *__nonnull const CEDefaultTabWidthKey = @"tabWidth";
-NSString *__nonnull const CEDefaultAutoIndentKey = @"autoIndent";
-NSString *__nonnull const CEDefaultEnablesHangingIndentKey = @"enableHangingIndent";
-NSString *__nonnull const CEDefaultHangingIndentWidthKey = @"hangingIndentWidth";
-NSString *__nonnull const CEDefaultShowInvisiblesKey = @"showInvisibles";
-NSString *__nonnull const CEDefaultShowInvisibleSpaceKey = @"showInvisibleSpace";
-NSString *__nonnull const CEDefaultInvisibleSpaceKey = @"invisibleSpace";
-NSString *__nonnull const CEDefaultShowInvisibleTabKey = @"showInvisibleTab";
-NSString *__nonnull const CEDefaultInvisibleTabKey = @"invisibleTab";
-NSString *__nonnull const CEDefaultShowInvisibleNewLineKey = @"showInvisibleNewLine";
-NSString *__nonnull const CEDefaultInvisibleNewLineKey = @"invisibleNewLine";
-NSString *__nonnull const CEDefaultShowInvisibleFullwidthSpaceKey = @"showInvisibleZenkakuSpace";
-NSString *__nonnull const CEDefaultInvisibleFullwidthSpaceKey = @"invisibleZenkakuSpace";
-NSString *__nonnull const CEDefaultShowOtherInvisibleCharsKey = @"showOtherInvisibleChars";
-NSString *__nonnull const CEDefaultHighlightCurrentLineKey = @"highlightCurrentLine";
-NSString *__nonnull const CEDefaultEnableSyntaxHighlightKey = @"doSyntaxColoring";
-NSString *__nonnull const CEDefaultSyntaxStyleKey = @"defaultColoringStyleName";
-NSString *__nonnull const CEDefaultThemeKey = @"defaultTheme";
-NSString *__nonnull const CEDefaultDelayColoringKey = @"delayColoring";
-NSString *__nonnull const CEDefaultFileDropArrayKey = @"fileDropArray";
-NSString *__nonnull const CEDefaultSmartInsertAndDeleteKey = @"smartInsertAndDelete";
-NSString *__nonnull const CEDefaultShouldAntialiasKey = @"shouldAntialias";
-NSString *__nonnull const CEDefaultAutoCompleteKey = @"autoComplete";
-NSString *__nonnull const CEDefaultCompletesDocumentWordsKey = @"completesDocumentWords";
-NSString *__nonnull const CEDefaultCompletesSyntaxWordsKey = @"completesSyntaxWords";
-NSString *__nonnull const CEDefaultCompletesStandartWordsKey = @"completesStandardWords";
-NSString *__nonnull const CEDefaultShowPageGuideKey = @"showPageGuide";
-NSString *__nonnull const CEDefaultPageGuideColumnKey = @"pageGuideColumn";
-NSString *__nonnull const CEDefaultLineSpacingKey = @"lineSpacing";
-NSString *__nonnull const CEDefaultSwapYenAndBackSlashKey = @"swapYenAndBackSlashKey";
-NSString *__nonnull const CEDefaultFixLineHeightKey = @"fixLineHeight";
-NSString *__nonnull const CEDefaultHighlightBracesKey = @"highlightBraces";
-NSString *__nonnull const CEDefaultHighlightLtGtKey = @"highlightLtGt";
-NSString *__nonnull const CEDefaultSaveUTF8BOMKey = @"saveUTF8BOM";
-NSString *__nonnull const CEDefaultEnableSmartQuotesKey = @"enableSmartQuotes";
-NSString *__nonnull const CEDefaultEnableSmartIndentKey = @"enableSmartIndent";
-NSString *__nonnull const CEDefaultAppendsCommentSpacerKey = @"appendsCommentSpacer";
-NSString *__nonnull const CEDefaultCommentsAtLineHeadKey = @"commentsAtLineHead";
-NSString *__nonnull const CEDefaultChecksUpdatesForBetaKey = @"checksUpdatesForBeta";
+NSString *_Nonnull const CEDefaultLastVersionKey = @"lastVersion";
+NSString *_Nonnull const CEDefaultDocumentConflictOptionKey = @"documentConflictOption";
+NSString *_Nonnull const CEDefaultLayoutTextVerticalKey = @"layoutTextVertical";
+NSString *_Nonnull const CEDefaultSplitViewVerticalKey = @"splitViewVertical";
+NSString *_Nonnull const CEDefaultShowLineNumbersKey = @"showLineNumbers";
+NSString *_Nonnull const CEDefaultShowDocumentInspectorKey = @"showDocumentInspector";
+NSString *_Nonnull const CEDefaultShowStatusBarKey = @"showStatusArea";
+NSString *_Nonnull const CEDefaultShowStatusBarLinesKey = @"showStatusBarLines";
+NSString *_Nonnull const CEDefaultShowStatusBarLengthKey = @"showStatusBarLength";
+NSString *_Nonnull const CEDefaultShowStatusBarCharsKey = @"showStatusBarChars";
+NSString *_Nonnull const CEDefaultShowStatusBarWordsKey = @"showStatusBarWords";
+NSString *_Nonnull const CEDefaultShowStatusBarLocationKey = @"showStatusBarLocation";
+NSString *_Nonnull const CEDefaultShowStatusBarLineKey = @"showStatusBarLine";
+NSString *_Nonnull const CEDefaultShowStatusBarColumnKey = @"showStatusBarColumn";
+NSString *_Nonnull const CEDefaultShowStatusBarEncodingKey = @"showStatusBarEncoding";
+NSString *_Nonnull const CEDefaultShowStatusBarLineEndingsKey = @"showStatusBarLineEndings";
+NSString *_Nonnull const CEDefaultShowStatusBarFileSizeKey = @"showStatusBarFileSize";
+NSString *_Nonnull const CEDefaultShowNavigationBarKey = @"showNavigationBar";
+NSString *_Nonnull const CEDefaultCountLineEndingAsCharKey = @"countLineEndingAsChar";
+NSString *_Nonnull const CEDefaultSyncFindPboardKey = @"syncFindPboard";
+NSString *_Nonnull const CEDefaultInlineContextualScriptMenuKey = @"inlineContextualScriptMenu";
+NSString *_Nonnull const CEDefaultWrapLinesKey = @"wrapLines";
+NSString *_Nonnull const CEDefaultLineEndCharCodeKey = @"defaultLineEndCharCode";
+NSString *_Nonnull const CEDefaultEncodingListKey = @"encodingList";
+NSString *_Nonnull const CEDefaultFontNameKey = @"fontName";
+NSString *_Nonnull const CEDefaultFontSizeKey = @"fontSize";
+NSString *_Nonnull const CEDefaultEncodingInOpenKey = @"encodingInOpen";
+NSString *_Nonnull const CEDefaultEncodingInNewKey = @"encodingInNew";
+NSString *_Nonnull const CEDefaultReferToEncodingTagKey = @"referToEncodingTag";
+NSString *_Nonnull const CEDefaultCreateNewAtStartupKey = @"createNewAtStartup";
+NSString *_Nonnull const CEDefaultReopenBlankWindowKey = @"reopenBlankWindow";
+NSString *_Nonnull const CEDefaultCheckSpellingAsTypeKey = @"checkSpellingAsType";
+NSString *_Nonnull const CEDefaultWindowWidthKey = @"windowWidth";
+NSString *_Nonnull const CEDefaultWindowHeightKey = @"windowHeight";
+NSString *_Nonnull const CEDefaultWindowAlphaKey = @"windowAlpha";
+NSString *_Nonnull const CEDefaultAutoExpandTabKey = @"autoExpandTab";
+NSString *_Nonnull const CEDefaultTabWidthKey = @"tabWidth";
+NSString *_Nonnull const CEDefaultAutoIndentKey = @"autoIndent";
+NSString *_Nonnull const CEDefaultEnablesHangingIndentKey = @"enableHangingIndent";
+NSString *_Nonnull const CEDefaultHangingIndentWidthKey = @"hangingIndentWidth";
+NSString *_Nonnull const CEDefaultShowInvisiblesKey = @"showInvisibles";
+NSString *_Nonnull const CEDefaultShowInvisibleSpaceKey = @"showInvisibleSpace";
+NSString *_Nonnull const CEDefaultInvisibleSpaceKey = @"invisibleSpace";
+NSString *_Nonnull const CEDefaultShowInvisibleTabKey = @"showInvisibleTab";
+NSString *_Nonnull const CEDefaultInvisibleTabKey = @"invisibleTab";
+NSString *_Nonnull const CEDefaultShowInvisibleNewLineKey = @"showInvisibleNewLine";
+NSString *_Nonnull const CEDefaultInvisibleNewLineKey = @"invisibleNewLine";
+NSString *_Nonnull const CEDefaultShowInvisibleFullwidthSpaceKey = @"showInvisibleZenkakuSpace";
+NSString *_Nonnull const CEDefaultInvisibleFullwidthSpaceKey = @"invisibleZenkakuSpace";
+NSString *_Nonnull const CEDefaultShowOtherInvisibleCharsKey = @"showOtherInvisibleChars";
+NSString *_Nonnull const CEDefaultHighlightCurrentLineKey = @"highlightCurrentLine";
+NSString *_Nonnull const CEDefaultEnableSyntaxHighlightKey = @"doSyntaxColoring";
+NSString *_Nonnull const CEDefaultSyntaxStyleKey = @"defaultColoringStyleName";
+NSString *_Nonnull const CEDefaultThemeKey = @"defaultTheme";
+NSString *_Nonnull const CEDefaultDelayColoringKey = @"delayColoring";
+NSString *_Nonnull const CEDefaultFileDropArrayKey = @"fileDropArray";
+NSString *_Nonnull const CEDefaultSmartInsertAndDeleteKey = @"smartInsertAndDelete";
+NSString *_Nonnull const CEDefaultShouldAntialiasKey = @"shouldAntialias";
+NSString *_Nonnull const CEDefaultAutoCompleteKey = @"autoComplete";
+NSString *_Nonnull const CEDefaultCompletesDocumentWordsKey = @"completesDocumentWords";
+NSString *_Nonnull const CEDefaultCompletesSyntaxWordsKey = @"completesSyntaxWords";
+NSString *_Nonnull const CEDefaultCompletesStandartWordsKey = @"completesStandardWords";
+NSString *_Nonnull const CEDefaultShowPageGuideKey = @"showPageGuide";
+NSString *_Nonnull const CEDefaultPageGuideColumnKey = @"pageGuideColumn";
+NSString *_Nonnull const CEDefaultLineSpacingKey = @"lineSpacing";
+NSString *_Nonnull const CEDefaultSwapYenAndBackSlashKey = @"swapYenAndBackSlashKey";
+NSString *_Nonnull const CEDefaultFixLineHeightKey = @"fixLineHeight";
+NSString *_Nonnull const CEDefaultHighlightBracesKey = @"highlightBraces";
+NSString *_Nonnull const CEDefaultHighlightLtGtKey = @"highlightLtGt";
+NSString *_Nonnull const CEDefaultSaveUTF8BOMKey = @"saveUTF8BOM";
+NSString *_Nonnull const CEDefaultEnableSmartQuotesKey = @"enableSmartQuotes";
+NSString *_Nonnull const CEDefaultEnableSmartIndentKey = @"enableSmartIndent";
+NSString *_Nonnull const CEDefaultAppendsCommentSpacerKey = @"appendsCommentSpacer";
+NSString *_Nonnull const CEDefaultCommentsAtLineHeadKey = @"commentsAtLineHead";
+NSString *_Nonnull const CEDefaultChecksUpdatesForBetaKey = @"checksUpdatesForBeta";
 
 // print settings
-NSString *__nonnull const CEDefaultSetPrintFontKey = @"setPrintFont";
-NSString *__nonnull const CEDefaultPrintFontNameKey = @"printFontName";
-NSString *__nonnull const CEDefaultPrintFontSizeKey = @"printFontSize";
-NSString *__nonnull const CEDefaultPrintThemeKey = @"printTheme";
-NSString *__nonnull const CEDefaultPrintHeaderKey = @"printHeader";
-NSString *__nonnull const CEDefaultPrimaryHeaderContentKey = @"headerOneStringIndex";
-NSString *__nonnull const CEDefaultPrimaryHeaderAlignmentKey = @"headerOneAlignIndex";
-NSString *__nonnull const CEDefaultSecondaryHeaderContentKey = @"headerTwoStringIndex";
-NSString *__nonnull const CEDefaultSecondaryHeaderAlignmentKey = @"headerTwoAlignIndex";
-NSString *__nonnull const CEDefaultPrintFooterKey = @"printFooter";
-NSString *__nonnull const CEDefaultPrimaryFooterContentKey = @"footerOneStringIndex";
-NSString *__nonnull const CEDefaultPrimaryFooterAlignmentKey = @"footerOneAlignIndex";
-NSString *__nonnull const CEDefaultSecondaryFooterContentKey = @"footerTwoStringIndex";
-NSString *__nonnull const CEDefaultSecondaryFooterAlignmentKey = @"footerTwoAlignIndex";
-NSString *__nonnull const CEDefaultPrintLineNumIndexKey = @"printLineNumIndex";
-NSString *__nonnull const CEDefaultPrintInvisibleCharIndexKey = @"printInvisibleCharIndex";
-NSString *__nonnull const CEDefaultPrintColorIndexKey = @"printColorIndex";
+NSString *_Nonnull const CEDefaultSetPrintFontKey = @"setPrintFont";
+NSString *_Nonnull const CEDefaultPrintFontNameKey = @"printFontName";
+NSString *_Nonnull const CEDefaultPrintFontSizeKey = @"printFontSize";
+NSString *_Nonnull const CEDefaultPrintThemeKey = @"printTheme";
+NSString *_Nonnull const CEDefaultPrintHeaderKey = @"printHeader";
+NSString *_Nonnull const CEDefaultPrimaryHeaderContentKey = @"headerOneStringIndex";
+NSString *_Nonnull const CEDefaultPrimaryHeaderAlignmentKey = @"headerOneAlignIndex";
+NSString *_Nonnull const CEDefaultSecondaryHeaderContentKey = @"headerTwoStringIndex";
+NSString *_Nonnull const CEDefaultSecondaryHeaderAlignmentKey = @"headerTwoAlignIndex";
+NSString *_Nonnull const CEDefaultPrintFooterKey = @"printFooter";
+NSString *_Nonnull const CEDefaultPrimaryFooterContentKey = @"footerOneStringIndex";
+NSString *_Nonnull const CEDefaultPrimaryFooterAlignmentKey = @"footerOneAlignIndex";
+NSString *_Nonnull const CEDefaultSecondaryFooterContentKey = @"footerTwoStringIndex";
+NSString *_Nonnull const CEDefaultSecondaryFooterAlignmentKey = @"footerTwoAlignIndex";
+NSString *_Nonnull const CEDefaultPrintLineNumIndexKey = @"printLineNumIndex";
+NSString *_Nonnull const CEDefaultPrintInvisibleCharIndexKey = @"printInvisibleCharIndex";
+NSString *_Nonnull const CEDefaultPrintColorIndexKey = @"printColorIndex";
 
 // find panel
-NSString *__nonnull const CEDefaultFindHistoryKey = @"findHistory";
-NSString *__nonnull const CEDefaultReplaceHistoryKey = @"replaceHistory";
-NSString *__nonnull const CEDefaultFindRegexSyntaxKey = @"findRegexSynatx";
-NSString *__nonnull const CEDefaultFindUsesRegularExpressionKey = @"findUsesRegularExpression";
-NSString *__nonnull const CEDefaultFindInSelectionKey = @"findInSelection";
-NSString *__nonnull const CEDefaultFindIsWrapKey = @"findIsWrap";
-NSString *__nonnull const CEDefaultFindNextAfterReplaceKey = @"findsNextAfterReplace";
-NSString *__nonnull const CEDefaultFindOptionsKey = @"findOptions";
-NSString *__nonnull const CEDefaultFindClosesIndicatorWhenDoneKey = @"findClosesIndicatorWhenDone";
+NSString *_Nonnull const CEDefaultFindHistoryKey = @"findHistory";
+NSString *_Nonnull const CEDefaultReplaceHistoryKey = @"replaceHistory";
+NSString *_Nonnull const CEDefaultFindRegexSyntaxKey = @"findRegexSynatx";
+NSString *_Nonnull const CEDefaultFindUsesRegularExpressionKey = @"findUsesRegularExpression";
+NSString *_Nonnull const CEDefaultFindInSelectionKey = @"findInSelection";
+NSString *_Nonnull const CEDefaultFindIsWrapKey = @"findIsWrap";
+NSString *_Nonnull const CEDefaultFindNextAfterReplaceKey = @"findsNextAfterReplace";
+NSString *_Nonnull const CEDefaultFindOptionsKey = @"findOptions";
+NSString *_Nonnull const CEDefaultFindClosesIndicatorWhenDoneKey = @"findClosesIndicatorWhenDone";
 
 // settings that are not in preferences
-NSString *__nonnull const CEDefaultInsertCustomTextArrayKey = @"insertCustomTextArray";
-NSString *__nonnull const CEDefaultInsertCustomTextKey = @"insertCustomText";
-NSString *__nonnull const CEDefaultColorCodeTypeKey = @"colorCodeType";
-NSString *__nonnull const CEDefaultSidebarWidthKey = @"sidebarWidth";
+NSString *_Nonnull const CEDefaultInsertCustomTextArrayKey = @"insertCustomTextArray";
+NSString *_Nonnull const CEDefaultInsertCustomTextKey = @"insertCustomText";
+NSString *_Nonnull const CEDefaultColorCodeTypeKey = @"colorCodeType";
+NSString *_Nonnull const CEDefaultSidebarWidthKey = @"sidebarWidth";
 
 // hidden settings
-NSString *__nonnull const CEDefaultUsesTextFontForInvisiblesKey = @"usesTextFontForInvisibles";
-NSString *__nonnull const CEDefaultLineNumFontNameKey = @"lineNumFontName";
-NSString *__nonnull const CEDefaultBasicColoringDelayKey = @"basicColoringDelay";
-NSString *__nonnull const CEDefaultFirstColoringDelayKey = @"firstColoringDelay";
-NSString *__nonnull const CEDefaultSecondColoringDelayKey = @"secondColoringDelay";
-NSString *__nonnull const CEDefaultAutoCompletionDelayKey = @"autoCompletionDelay";
-NSString *__nonnull const CEDefaultInfoUpdateIntervalKey = @"infoUpdateInterval";
-NSString *__nonnull const CEDefaultIncompatibleCharIntervalKey = @"incompatibleCharInterval";
-NSString *__nonnull const CEDefaultOutlineMenuIntervalKey = @"outlineMenuInterval";
-NSString *__nonnull const CEDefaultHeaderFooterDateFormatKey = @"headerFooterDateFormat";
-NSString *__nonnull const CEDefaultHeaderFooterPathAbbreviatingWithTildeKey = @"headerFooterPathAbbreviatingWithTilde";
-NSString *__nonnull const CEDefaultTextContainerInsetWidthKey = @"textContainerInsetWidth";
-NSString *__nonnull const CEDefaultTextContainerInsetHeightTopKey = @"textContainerInsetHeightTop";
-NSString *__nonnull const CEDefaultTextContainerInsetHeightBottomKey = @"textContainerInsetHeightBottom";
-NSString *__nonnull const CEDefaultShowColoringIndicatorTextLengthKey = @"showColoringIndicatorTextLength";
-NSString *__nonnull const CEDefaultRunAppleScriptInLaunchingKey = @"runAppleScriptInLaunching";
-NSString *__nonnull const CEDefaultShowAlertForNotWritableKey = @"showAlertForNotWritable";
-NSString *__nonnull const CEDefaultNotifyEditByAnotherKey = @"notifyEditByAnother";
-NSString *__nonnull const CEDefaultColoringRangeBufferLengthKey = @"coloringRangeBufferLength";
-NSString *__nonnull const CEDefaultLargeFileAlertThresholdKey = @"largeFileAlertThreshold";
-NSString *__nonnull const CEDefaultAutosavingDelayKey = @"autosavingDelay";
-NSString *__nonnull const CEDefaultEnablesAutosaveInPlaceKey = @"enablesAutosaveInPlace";
-NSString *__nonnull const CEDefaultSavesTextOrientationKey = @"savesTextOrientation";
-NSString *__nonnull const CEDefaultCotCommandBookmarkKey = @"cotCommandBookmarkKey";
+NSString *_Nonnull const CEDefaultUsesTextFontForInvisiblesKey = @"usesTextFontForInvisibles";
+NSString *_Nonnull const CEDefaultLineNumFontNameKey = @"lineNumFontName";
+NSString *_Nonnull const CEDefaultBasicColoringDelayKey = @"basicColoringDelay";
+NSString *_Nonnull const CEDefaultFirstColoringDelayKey = @"firstColoringDelay";
+NSString *_Nonnull const CEDefaultSecondColoringDelayKey = @"secondColoringDelay";
+NSString *_Nonnull const CEDefaultAutoCompletionDelayKey = @"autoCompletionDelay";
+NSString *_Nonnull const CEDefaultInfoUpdateIntervalKey = @"infoUpdateInterval";
+NSString *_Nonnull const CEDefaultIncompatibleCharIntervalKey = @"incompatibleCharInterval";
+NSString *_Nonnull const CEDefaultOutlineMenuIntervalKey = @"outlineMenuInterval";
+NSString *_Nonnull const CEDefaultHeaderFooterDateFormatKey = @"headerFooterDateFormat";
+NSString *_Nonnull const CEDefaultHeaderFooterPathAbbreviatingWithTildeKey = @"headerFooterPathAbbreviatingWithTilde";
+NSString *_Nonnull const CEDefaultTextContainerInsetWidthKey = @"textContainerInsetWidth";
+NSString *_Nonnull const CEDefaultTextContainerInsetHeightTopKey = @"textContainerInsetHeightTop";
+NSString *_Nonnull const CEDefaultTextContainerInsetHeightBottomKey = @"textContainerInsetHeightBottom";
+NSString *_Nonnull const CEDefaultShowColoringIndicatorTextLengthKey = @"showColoringIndicatorTextLength";
+NSString *_Nonnull const CEDefaultRunAppleScriptInLaunchingKey = @"runAppleScriptInLaunching";
+NSString *_Nonnull const CEDefaultShowAlertForNotWritableKey = @"showAlertForNotWritable";
+NSString *_Nonnull const CEDefaultNotifyEditByAnotherKey = @"notifyEditByAnother";
+NSString *_Nonnull const CEDefaultColoringRangeBufferLengthKey = @"coloringRangeBufferLength";
+NSString *_Nonnull const CEDefaultLargeFileAlertThresholdKey = @"largeFileAlertThreshold";
+NSString *_Nonnull const CEDefaultAutosavingDelayKey = @"autosavingDelay";
+NSString *_Nonnull const CEDefaultEnablesAutosaveInPlaceKey = @"enablesAutosaveInPlace";
+NSString *_Nonnull const CEDefaultSavesTextOrientationKey = @"savesTextOrientation";
 
 
 
@@ -262,27 +261,27 @@ NSUInteger const kMaxPageGuideColumn = 1000;
 
 // syntax coloring
 NSUInteger const kMaxEscapesCheckLength = 16;
-NSString  *__nonnull const kAllAlphabetChars = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+NSString *_Nonnull const kAllAlphabetChars = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
 
 // syntax style keys
-NSString *__nonnull const CESyntaxMetadataKey = @"metadata";
-NSString *__nonnull const CESyntaxExtensionsKey = @"extensions";
-NSString *__nonnull const CESyntaxFileNamesKey = @"filenames";
-NSString *__nonnull const CESyntaxInterpretersKey = @"interpreters";
-NSString *__nonnull const CESyntaxKeywordsKey = @"keywords";
-NSString *__nonnull const CESyntaxCommandsKey = @"commands";
-NSString *__nonnull const CESyntaxTypesKey = @"types";
-NSString *__nonnull const CESyntaxAttributesKey = @"attributes";
-NSString *__nonnull const CESyntaxVariablesKey = @"variables";
-NSString *__nonnull const CESyntaxValuesKey = @"values";
-NSString *__nonnull const CESyntaxNumbersKey = @"numbers";
-NSString *__nonnull const CESyntaxStringsKey = @"strings";
-NSString *__nonnull const CESyntaxCharactersKey = @"characters";
-NSString *__nonnull const CESyntaxCommentsKey = @"comments";
-NSString *__nonnull const CESyntaxCommentDelimitersKey = @"commentDelimiters";
-NSString *__nonnull const CESyntaxOutlineMenuKey = @"outlineMenu";
-NSString *__nonnull const CESyntaxCompletionsKey = @"completions";
-NSString *__nonnull const kAllColoringKeys[] = {
+NSString *_Nonnull const CESyntaxMetadataKey = @"metadata";
+NSString *_Nonnull const CESyntaxExtensionsKey = @"extensions";
+NSString *_Nonnull const CESyntaxFileNamesKey = @"filenames";
+NSString *_Nonnull const CESyntaxInterpretersKey = @"interpreters";
+NSString *_Nonnull const CESyntaxKeywordsKey = @"keywords";
+NSString *_Nonnull const CESyntaxCommandsKey = @"commands";
+NSString *_Nonnull const CESyntaxTypesKey = @"types";
+NSString *_Nonnull const CESyntaxAttributesKey = @"attributes";
+NSString *_Nonnull const CESyntaxVariablesKey = @"variables";
+NSString *_Nonnull const CESyntaxValuesKey = @"values";
+NSString *_Nonnull const CESyntaxNumbersKey = @"numbers";
+NSString *_Nonnull const CESyntaxStringsKey = @"strings";
+NSString *_Nonnull const CESyntaxCharactersKey = @"characters";
+NSString *_Nonnull const CESyntaxCommentsKey = @"comments";
+NSString *_Nonnull const CESyntaxCommentDelimitersKey = @"commentDelimiters";
+NSString *_Nonnull const CESyntaxOutlineMenuKey = @"outlineMenu";
+NSString *_Nonnull const CESyntaxCompletionsKey = @"completions";
+NSString *_Nonnull const kAllColoringKeys[] = {
     @"keywords",
     @"commands",
     @"types",
@@ -296,23 +295,23 @@ NSString *__nonnull const kAllColoringKeys[] = {
 };
 NSUInteger const kSizeOfAllColoringKeys = sizeof(kAllColoringKeys)/sizeof(kAllColoringKeys[0]);
 
-NSString *__nonnull const CESyntaxKeyStringKey = @"keyString";
-NSString *__nonnull const CESyntaxBeginStringKey = @"beginString";
-NSString *__nonnull const CESyntaxEndStringKey = @"endString";
-NSString *__nonnull const CESyntaxIgnoreCaseKey = @"ignoreCase";
-NSString *__nonnull const CESyntaxRegularExpressionKey = @"regularExpression";
+NSString *_Nonnull const CESyntaxKeyStringKey = @"keyString";
+NSString *_Nonnull const CESyntaxBeginStringKey = @"beginString";
+NSString *_Nonnull const CESyntaxEndStringKey = @"endString";
+NSString *_Nonnull const CESyntaxIgnoreCaseKey = @"ignoreCase";
+NSString *_Nonnull const CESyntaxRegularExpressionKey = @"regularExpression";
 
-NSString *__nonnull const CESyntaxInlineCommentKey = @"inlineDelimiter";
-NSString *__nonnull const CESyntaxBeginCommentKey = @"beginDelimiter";
-NSString *__nonnull const CESyntaxEndCommentKey = @"endDelimiter";
+NSString *_Nonnull const CESyntaxInlineCommentKey = @"inlineDelimiter";
+NSString *_Nonnull const CESyntaxBeginCommentKey = @"beginDelimiter";
+NSString *_Nonnull const CESyntaxEndCommentKey = @"endDelimiter";
 
-NSString *__nonnull const CESyntaxBoldKey = @"bold";
-NSString *__nonnull const CESyntaxUnderlineKey = @"underline";
-NSString *__nonnull const CESyntaxItalicKey = @"italic";
+NSString *_Nonnull const CESyntaxBoldKey = @"bold";
+NSString *_Nonnull const CESyntaxUnderlineKey = @"underline";
+NSString *_Nonnull const CESyntaxItalicKey = @"italic";
 
 // comment delimiter keys
-NSString *__nonnull const CEBeginDelimiterKey = @"beginDelimiter";
-NSString *__nonnull const CEEndDelimiterKey = @"endDelimiter";
+NSString *_Nonnull const CEBeginDelimiterKey = @"beginDelimiter";
+NSString *_Nonnull const CEEndDelimiterKey = @"endDelimiter";
 
 
 
@@ -323,20 +322,20 @@ NSString *__nonnull const CEEndDelimiterKey = @"endDelimiter";
 // ------------------------------------------------------
 
 // keys for dicts in CEDefaultFileDropArrayKey
-NSString *__nonnull const CEFileDropExtensionsKey = @"extensions";
-NSString *__nonnull const CEFileDropFormatStringKey = @"formatString";
+NSString *_Nonnull const CEFileDropExtensionsKey = @"extensions";
+NSString *_Nonnull const CEFileDropFormatStringKey = @"formatString";
 
 // tokens
-NSString *__nonnull const CEFileDropAbsolutePathToken = @"<<<ABSOLUTE-PATH>>>";
-NSString *__nonnull const CEFileDropRelativePathToken = @"<<<RELATIVE-PATH>>>";
-NSString *__nonnull const CEFileDropFilenameToken = @"<<<FILENAME>>>";
-NSString *__nonnull const CEFileDropFilenameNosuffixToken = @"<<<FILENAME-NOSUFFIX>>>";
-NSString *__nonnull const CEFileDropFileextensionToken = @"<<<FILEEXTENSION>>>";
-NSString *__nonnull const CEFileDropFileextensionLowerToken = @"<<<FILEEXTENSION-LOWER>>>";
-NSString *__nonnull const CEFileDropFileextensionUpperToken = @"<<<FILEEXTENSION-UPPER>>>";
-NSString *__nonnull const CEFileDropDirectoryToken = @"<<<DIRECTORY>>>";
-NSString *__nonnull const CEFileDropImagewidthToken = @"<<<IMAGEWIDTH>>>";
-NSString *__nonnull const CEFileDropImagehightToken = @"<<<IMAGEHEIGHT>>>";
+NSString *_Nonnull const CEFileDropAbsolutePathToken = @"<<<ABSOLUTE-PATH>>>";
+NSString *_Nonnull const CEFileDropRelativePathToken = @"<<<RELATIVE-PATH>>>";
+NSString *_Nonnull const CEFileDropFilenameToken = @"<<<FILENAME>>>";
+NSString *_Nonnull const CEFileDropFilenameNosuffixToken = @"<<<FILENAME-NOSUFFIX>>>";
+NSString *_Nonnull const CEFileDropFileextensionToken = @"<<<FILEEXTENSION>>>";
+NSString *_Nonnull const CEFileDropFileextensionLowerToken = @"<<<FILEEXTENSION-LOWER>>>";
+NSString *_Nonnull const CEFileDropFileextensionUpperToken = @"<<<FILEEXTENSION-UPPER>>>";
+NSString *_Nonnull const CEFileDropDirectoryToken = @"<<<DIRECTORY>>>";
+NSString *_Nonnull const CEFileDropImagewidthToken = @"<<<IMAGEWIDTH>>>";
+NSString *_Nonnull const CEFileDropImagehightToken = @"<<<IMAGEHEIGHT>>>";
 
 
 
@@ -347,7 +346,7 @@ NSString *__nonnull const CEFileDropImagehightToken = @"<<<IMAGEHEIGHT>>>";
 // ------------------------------------------------------
 
 // Help document file names table
-NSString *__nonnull const kBundledDocumentFileNames[] = {
+NSString *_Nonnull const kBundledDocumentFileNames[] = {
     @"Acknowledgements",
     @"ScriptMenu Folder",
     @"AppleScript",
@@ -355,8 +354,8 @@ NSString *__nonnull const kBundledDocumentFileNames[] = {
 };
 
 // Online URLs
-NSString *__nonnull const kWebSiteURL = @"http://coteditor.com";
-NSString *__nonnull const kIssueTrackerURL = @"https://github.com/coteditor/CotEditor/issues";
+NSString *_Nonnull const kWebSiteURL = @"http://coteditor.com";
+NSString *_Nonnull const kIssueTrackerURL = @"https://github.com/coteditor/CotEditor/issues";
 
 
 
@@ -367,14 +366,14 @@ NSString *__nonnull const kIssueTrackerURL = @"https://github.com/coteditor/CotE
 // ------------------------------------------------------
 
 // Outline item dict keys
-NSString *__nonnull const CEOutlineItemTitleKey = @"outlineItemTitle";
-NSString *__nonnull const CEOutlineItemRangeKey = @"outlineItemRange";
-NSString *__nonnull const CEOutlineItemStyleBoldKey = @"outlineItemStyleBold";
-NSString *__nonnull const CEOutlineItemStyleItalicKey = @"outlineItemStyleItalic";
-NSString *__nonnull const CEOutlineItemStyleUnderlineKey = @"outlineItemStyleUnderline";
+NSString *_Nonnull const CEOutlineItemTitleKey = @"outlineItemTitle";
+NSString *_Nonnull const CEOutlineItemRangeKey = @"outlineItemRange";
+NSString *_Nonnull const CEOutlineItemStyleBoldKey = @"outlineItemStyleBold";
+NSString *_Nonnull const CEOutlineItemStyleItalicKey = @"outlineItemStyleItalic";
+NSString *_Nonnull const CEOutlineItemStyleUnderlineKey = @"outlineItemStyleUnderline";
 
 // layout constants
-NSString *__nonnull const kNavigationBarFontName = @"Helvetica";
+NSString *_Nonnull const kNavigationBarFontName = @"Helvetica";
 
 
 

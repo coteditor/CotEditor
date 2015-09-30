@@ -28,8 +28,8 @@
 /* Class = "NSTextFieldCell"; title = "Command-line tool:"; ObjectID = "kQn-Uu-cqG"; */
 "kQn-Uu-cqG.title" = "命令行工具：";
 
-/* Class = "NSButtonCell"; title = "Install"; ObjectID = "ltN-wn-m8M"; */
-"ltN-wn-m8M.title" = "安装";
+/* Class = "NSButtonCell"; title = "Learn More…"; ObjectID = "ltN-wn-m8M"; */
+"ltN-wn-m8M.title" = "了解更多…";
 
 /* Class = "IBBindingConnection"; ibShadowedDisplayPattern = "Installed at %{value1}@"; ObjectID = "e2G-16-MxZ"; */
 "e2G-16-MxZ.ibShadowedDisplayPattern" = "已安装于 %{value1}@";

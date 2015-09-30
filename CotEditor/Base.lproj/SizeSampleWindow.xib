@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="8191" systemVersion="15A282b" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="7706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="8191"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="CESizeSampleWindowController">
@@ -27,6 +27,7 @@
                         <constraints>
                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="mkJ-zn-ehk"/>
                         </constraints>
+                        <animations/>
                         <buttonCell key="cell" type="push" title="Set to Default" bezelStyle="rounded" alignment="center" borderStyle="border" tag="100" inset="2" id="3397">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -43,6 +44,7 @@ DQ
                         <constraints>
                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="88" id="4gH-Yw-JG8"/>
                         </constraints>
+                        <animations/>
                         <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="3398">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -56,6 +58,7 @@ Gw
                     </button>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="130">
                         <rect key="frame" x="18" y="306" width="444" height="34"/>
+                        <animations/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" id="3399">
                             <font key="font" metaFont="system"/>
                             <string key="title">Resize this window.
@@ -65,10 +68,11 @@ The size of this window will be set as default.</string>
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="136">
-                        <rect key="frame" x="63" y="267" width="80" height="19"/>
+                        <rect key="frame" x="68" y="267" width="80" height="19"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="80" id="xWN-LC-Lew"/>
                         </constraints>
+                        <animations/>
                         <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="right" drawsBackground="YES" id="3400">
                             <font key="font" metaFont="smallSystem"/>
                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -85,10 +89,11 @@ The size of this window will be set as default.</string>
                         </connections>
                     </textField>
                     <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="138">
-                        <rect key="frame" x="209" y="267" width="80" height="19"/>
+                        <rect key="frame" x="220" y="267" width="80" height="19"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="80" id="dMw-Jt-sFh"/>
                         </constraints>
+                        <animations/>
                         <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="right" drawsBackground="YES" id="3401">
                             <font key="font" metaFont="smallSystem"/>
                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -103,17 +108,19 @@ The size of this window will be set as default.</string>
                         </connections>
                     </textField>
                     <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="140">
-                        <rect key="frame" x="18" y="269" width="39" height="14"/>
+                        <rect key="frame" x="18" y="268" width="44" height="17"/>
+                        <animations/>
                         <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Width:" usesSingleLineMode="YES" id="3402">
-                            <font key="font" metaFont="smallSystem"/>
+                            <font key="font" metaFont="system"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="141">
-                        <rect key="frame" x="161" y="269" width="42" height="14"/>
+                        <rect key="frame" x="166" y="268" width="48" height="17"/>
+                        <animations/>
                         <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Height:" usesSingleLineMode="YES" id="3403">
-                            <font key="font" metaFont="smallSystem"/>
+                            <font key="font" metaFont="system"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
@@ -136,6 +143,7 @@ The size of this window will be set as default.</string>
                     <constraint firstAttribute="trailing" secondItem="128" secondAttribute="trailing" constant="20" symbolic="YES" id="ndw-4v-aTg"/>
                     <constraint firstItem="141" firstAttribute="leading" secondItem="136" secondAttribute="trailing" constant="20" id="uFn-TV-GEa"/>
                 </constraints>
+                <animations/>
             </view>
             <connections>
                 <binding destination="3I1-SB-fO2" name="contentHeight" keyPath="values.windowHeight" id="CbL-oU-KBz"/>
@@ -145,10 +153,6 @@ The size of this window will be set as default.</string>
             <point key="canvasLocation" x="321" y="231"/>
         </window>
         <userDefaultsController appliesImmediately="NO" id="3I1-SB-fO2"/>
-        <numberFormatter formatterBehavior="custom10_4" localizesFormat="NO" numberStyle="decimal" allowsFloats="NO" usesGroupingSeparator="NO" paddingPosition="beforeSuffix" minimumIntegerDigits="1" maximumIntegerDigits="309" maximumFractionDigits="3" id="6fa-a9-iGI">
-            <metadata>
-                <real key="inspectorSampleValue" value="1"/>
-            </metadata>
-        </numberFormatter>
+        <numberFormatter formatterBehavior="custom10_4" localizesFormat="NO" numberStyle="decimal" allowsFloats="NO" usesGroupingSeparator="NO" paddingPosition="beforeSuffix" minimumIntegerDigits="1" maximumIntegerDigits="309" maximumFractionDigits="3" id="6fa-a9-iGI"/>
     </objects>
 </document>

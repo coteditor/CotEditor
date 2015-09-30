@@ -32,43 +32,43 @@
 
 
 // extension for theme file
-NSString *const CEThemeExtension = @"cottheme";
+NSString *_Nonnull const CEThemeExtension = @"cottheme";
 
 // keys for theme dict
-NSString *const CEThemeTextKey = @"text";
-NSString *const CEThemeBackgroundKey = @"background";
-NSString *const CEThemeInvisiblesKey = @"invisibles";
-NSString *const CEThemeSelectionKey = @"selection";
-NSString *const CEThemeInsertionPointKey = @"insertionPoint";
-NSString *const CEThemeLineHighlightKey = @"lineHighlight";
+NSString *_Nonnull const CEThemeTextKey = @"text";
+NSString *_Nonnull const CEThemeBackgroundKey = @"background";
+NSString *_Nonnull const CEThemeInvisiblesKey = @"invisibles";
+NSString *_Nonnull const CEThemeSelectionKey = @"selection";
+NSString *_Nonnull const CEThemeInsertionPointKey = @"insertionPoint";
+NSString *_Nonnull const CEThemeLineHighlightKey = @"lineHighlight";
 
-NSString *const CEThemeKeywordsKey = @"keywords";
-NSString *const CEThemeCommandsKey = @"commands";
-NSString *const CEThemeTypesKey = @"types";
-NSString *const CEThemeAttributesKey = @"attributes";
-NSString *const CEThemeVariablesKey = @"variables";
-NSString *const CEThemeValuesKey = @"values";
-NSString *const CEThemeNumbersKey = @"numbers";
-NSString *const CEThemeStringsKey = @"strings";
-NSString *const CEThemeCharactersKey = @"characters";
-NSString *const CEThemeCommentsKey = @"comments";
+NSString *_Nonnull const CEThemeKeywordsKey = @"keywords";
+NSString *_Nonnull const CEThemeCommandsKey = @"commands";
+NSString *_Nonnull const CEThemeTypesKey = @"types";
+NSString *_Nonnull const CEThemeAttributesKey = @"attributes";
+NSString *_Nonnull const CEThemeVariablesKey = @"variables";
+NSString *_Nonnull const CEThemeValuesKey = @"values";
+NSString *_Nonnull const CEThemeNumbersKey = @"numbers";
+NSString *_Nonnull const CEThemeStringsKey = @"strings";
+NSString *_Nonnull const CEThemeCharactersKey = @"characters";
+NSString *_Nonnull const CEThemeCommentsKey = @"comments";
 
-NSString *const CEThemeColorKey = @"color";
-NSString *const CEThemeUsesSystemSettingKey = @"usesSystemSetting";
+NSString *_Nonnull const CEThemeColorKey = @"color";
+NSString *_Nonnull const CEThemeUsesSystemSettingKey = @"usesSystemSetting";
 
 // notifications
-NSString *const CEThemeListDidUpdateNotification = @"CEThemeListDidUpdateNotification";
-NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
+NSString *_Nonnull const CEThemeListDidUpdateNotification = @"CEThemeListDidUpdateNotification";
+NSString *_Nonnull const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
 
 
 
 @interface CEThemeManager ()
 
-@property (nonatomic, copy) NSDictionary<NSString *, NSDictionary *> *archivedThemes;
-@property (nonatomic, copy) NSArray<NSString *> *bundledThemeNames;
+@property (nonatomic, nonnull, copy) NSDictionary<NSString *, NSDictionary *> *archivedThemes;
+@property (nonatomic, nonnull, copy) NSArray<NSString *> *bundledThemeNames;
 
 // readonly
-@property (readwrite, nonatomic, copy) NSArray<NSString *> *themeNames;
+@property (readwrite, nonatomic, nonnull, copy) NSArray<NSString *> *themeNames;
 
 @end
 
@@ -82,7 +82,7 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
 
 // ------------------------------------------------------
 /// return singleton instance
-+ (instancetype)sharedManager
++ (nonnull instancetype)sharedManager
 // ------------------------------------------------------
 {
     static dispatch_once_t onceToken;
@@ -101,7 +101,7 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
 
 // ------------------------------------------------------
 /// initialize
-- (instancetype)init
+- (nonnull instancetype)init
 // ------------------------------------------------------
 {
     self = [super init];
@@ -133,8 +133,8 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
 #pragma mark Public Methods
 
 //------------------------------------------------------
-/// テーマ名からProperty list形式のテーマ定義を返す
-- (NSMutableDictionary<NSString *, NSMutableDictionary<NSString *, id> *> *)archivedTheme:(NSString *)themeName isBundled:(BOOL *)isBundled
+/// テーマ名から Property list 形式のテーマ定義を返す
+- (nullable NSMutableDictionary<NSString *, NSMutableDictionary<NSString *, id> *> *)archivedTheme:(nonnull NSString *)themeName isBundled:(nullable BOOL *)isBundled
 //------------------------------------------------------
 {
     if (isBundled) {
@@ -146,13 +146,13 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
 
 //------------------------------------------------------
 /// テーマ名と同名のバンドルテーマが存在するかを返す
-- (BOOL)isBundledTheme:(NSString *)themeName cutomized:(BOOL *)isCustomized
+- (BOOL)isBundledTheme:(nonnull NSString *)themeName cutomized:(nullable BOOL *)isCustomized
 //------------------------------------------------------
 {
     BOOL isBundled = [[self bundledThemeNames] containsObject:themeName];
     
     if (isBundled && isCustomized) {
-        *isCustomized = [[self URLForUserTheme:themeName] checkResourceIsReachableAndReturnError:nil];
+        *isCustomized = ([self URLForUserTheme:themeName available:YES]);
     }
     
     return isBundled;
@@ -160,8 +160,17 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
 
 
 //------------------------------------------------------
+/// テーマ名からユーザ領域のテーマ定義ファイルのURLを返す（ない場合はnil）
+- (nullable NSURL *)URLForUserTheme:(nonnull NSString *)themeName
+//------------------------------------------------------
+{
+    return [[[self userThemeDirectoryURL] URLByAppendingPathComponent:themeName] URLByAppendingPathExtension:CEThemeExtension];
+}
+
+
+//------------------------------------------------------
 /// テーマを保存する
-- (BOOL)saveTheme:(NSDictionary<NSString *, NSDictionary<NSString *, id> *> *)theme name:(NSString *)themeName completionHandler:(void (^)(NSError *))completionHandler
+- (BOOL)saveTheme:(nonnull NSDictionary<NSString *, NSDictionary<NSString *, id> *> *)theme name:(nonnull NSString *)themeName completionHandler:(nullable void (^)(NSError *_Nullable))completionHandler
 //------------------------------------------------------
 {
     NSError *error = nil;
@@ -172,7 +181,7 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
     
     [self prepareUserThemeDirectory];
     
-    BOOL success = [jsonData writeToURL:[self URLForUserTheme:themeName] options:NSDataWritingAtomic error:&error];
+    BOOL success = [jsonData writeToURL:[self URLForUserTheme:themeName available:NO] options:NSDataWritingAtomic error:&error];
     
     if (success) {
         __weak typeof(self) weakSelf = self;
@@ -199,7 +208,7 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
 
 //------------------------------------------------------
 /// テーマ名を変更する
-- (BOOL)renameTheme:(NSString *)themeName toName:(NSString *)newThemeName error:(NSError *__autoreleasing __nullable *)outError
+- (BOOL)renameTheme:(nonnull NSString *)themeName toName:(nonnull NSString *)newThemeName error:(NSError * _Nullable __autoreleasing * _Nullable)outError
 //------------------------------------------------------
 {
     BOOL success = NO;
@@ -210,8 +219,8 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
         return NO;
     }
     
-    success = [[NSFileManager defaultManager] moveItemAtURL:[self URLForUserTheme:themeName]
-                                                      toURL:[self URLForUserTheme:newThemeName] error:nil];
+    success = [[NSFileManager defaultManager] moveItemAtURL:[self URLForUserTheme:themeName available:NO]
+                                                      toURL:[self URLForUserTheme:newThemeName available:NO] error:nil];
     
     if (success) {
         if ([[[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultThemeKey] isEqualToString:themeName]) {
@@ -235,15 +244,14 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
 
 //------------------------------------------------------
 /// テーマ名に応じたテーマファイルを削除する
-- (BOOL)removeTheme:(NSString *)themeName error:(NSError *__autoreleasing __nullable *)outError
+- (BOOL)removeTheme:(nonnull NSString *)themeName error:(NSError * _Nullable __autoreleasing * _Nullable)outError
 //------------------------------------------------------
 {
-    BOOL success = NO;
-    NSURL *URL = [self URLForUserTheme:themeName];
+    NSURL *URL = [self URLForUserTheme:themeName available:YES];
     
-    if ([URL checkResourceIsReachableAndReturnError:nil]) {
-        success = [[NSFileManager defaultManager] trashItemAtURL:URL resultingItemURL:nil error:nil];
-    }
+    if (!URL) { return NO; }
+    
+    BOOL success = [[NSFileManager defaultManager] trashItemAtURL:URL resultingItemURL:nil error:nil];
     
     if (success) {
         __weak typeof(self) weakSelf = self;
@@ -266,14 +274,14 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
 
 //------------------------------------------------------
 /// カスタマイズされたバンドルテーマをオリジナルに戻す
-- (BOOL)restoreTheme:(NSString *)themeName completionHandler:(void (^)(NSError *))completionHandler
+- (BOOL)restoreTheme:(nonnull NSString *)themeName completionHandler:(nullable void (^)(NSError *_Nullable))completionHandler
 //------------------------------------------------------
 {
     // バンドルテーマでないものはそもそもリストアできない
     if (![self isBundledTheme:themeName cutomized:nil]) { return NO; }
 
     NSError *error = nil;
-    BOOL success = [[NSFileManager defaultManager] removeItemAtURL:[self URLForUserTheme:themeName] error:&error];
+    BOOL success = [[NSFileManager defaultManager] removeItemAtURL:[self URLForUserTheme:themeName available:NO] error:&error];
     
     if (success) {
         __weak typeof(self) weakSelf = self;
@@ -301,7 +309,7 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
 
 //------------------------------------------------------
 /// 外部テーマファイルをユーザ領域にコピーする
-- (BOOL)importTheme:(NSURL *)URL replace:(BOOL)doReplace error:(NSError *__autoreleasing __nullable *)outError
+- (BOOL)importTheme:(nonnull NSURL *)URL replace:(BOOL)doReplace error:(NSError * _Nullable __autoreleasing * _Nullable)outError
 //------------------------------------------------------
 {
     __block BOOL success = NO;
@@ -340,7 +348,7 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
     // ファイルをコピー
     NSFileCoordinator *coordinator = [[NSFileCoordinator alloc] initWithFilePresenter:nil];
     [coordinator coordinateReadingItemAtURL:URL options:NSFileCoordinatorReadingWithoutChanges | NSFileCoordinatorReadingResolvesSymbolicLink
-                           writingItemAtURL:[self URLForUserTheme:themeName] options:NSFileCoordinatorWritingForReplacing
+                           writingItemAtURL:[self URLForUserTheme:themeName available:NO] options:NSFileCoordinatorWritingForReplacing
                                       error:outError byAccessor:^(NSURL *newReadingURL, NSURL *newWritingURL)
      {
          if ([newWritingURL checkResourceIsReachableAndReturnError:nil]) {
@@ -360,13 +368,13 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
 
 //------------------------------------------------------
 /// テーマファイルを指定のURLにコピーする
-- (BOOL)exportTheme:(NSString *)themeName toURL:(NSURL *)URL error:(NSError *__autoreleasing __nullable *)outError
+- (BOOL)exportTheme:(nonnull NSString *)themeName toURL:(nonnull NSURL *)URL error:(NSError * _Nullable __autoreleasing * _Nullable)outError
 //------------------------------------------------------
 {
     __block BOOL success = NO;
     
     NSFileCoordinator *coordinator = [[NSFileCoordinator alloc] initWithFilePresenter:nil];
-    [coordinator coordinateReadingItemAtURL:[self URLForUserTheme:themeName] options:NSFileCoordinatorReadingWithoutChanges
+    [coordinator coordinateReadingItemAtURL:[self URLForUserTheme:themeName available:NO] options:NSFileCoordinatorReadingWithoutChanges
                            writingItemAtURL:URL options:NSFileCoordinatorWritingForMoving
                                       error:outError byAccessor:^(NSURL *newReadingURL, NSURL *newWritingURL)
      {
@@ -383,7 +391,7 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
 
 //------------------------------------------------------
 /// テーマを複製する
-- (BOOL)duplicateTheme:(NSString *)themeName error:(NSError *__autoreleasing __nullable *)outError
+- (BOOL)duplicateTheme:(nonnull NSString *)themeName error:(NSError * _Nullable __autoreleasing * _Nullable)outError
 //------------------------------------------------------
 {
     BOOL success = NO;
@@ -397,13 +405,13 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
 
     // すでに同名のファイルが存在したら数字を追加する
     NSUInteger counter = 2;
-    while ([[self URLForUserTheme:newThemeName] checkResourceIsReachableAndReturnError:nil]) {
+    while ([self URLForUserTheme:newThemeName available:YES]) {
         newThemeName = [nameBase stringByAppendingFormat:@" %tu", counter];
         counter++;
     }
     
     success = [[NSFileManager defaultManager] copyItemAtURL:[self URLForUsedTheme:themeName]
-                                                      toURL:[self URLForUserTheme:newThemeName]
+                                                      toURL:[self URLForUserTheme:newThemeName available:NO]
                                                       error:outError];
     
     if (success) {
@@ -416,7 +424,7 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
 
 //------------------------------------------------------
 /// 新規テーマを作成
-- (BOOL)createUntitledThemeWithCompletionHandler:(void (^)(NSString *, NSError *))completionHandler
+- (BOOL)createUntitledThemeWithCompletionHandler:(nullable void (^)(NSString *_Nonnull, NSError *_Nullable))completionHandler
 //------------------------------------------------------
 {
     BOOL success = NO;
@@ -425,7 +433,7 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
     
     // すでに同名のファイルが存在したら数字を追加する
     NSUInteger counter = 2;
-    while ([[self URLForUserTheme:newThemeName] checkResourceIsReachableAndReturnError:nil]) {
+    while ([self URLForUserTheme:newThemeName available:YES]) {
         newThemeName = [nameBase stringByAppendingFormat:@" %tu", counter];
         counter++;
     }
@@ -445,7 +453,7 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
 
 //------------------------------------------------------
 /// テーマファイルの URL からスタイル名を返す
-- (NSString *)themeNameFromURL:(NSURL *)fileURL
+- (nonnull NSString *)themeNameFromURL:(nonnull NSURL *)fileURL
 //------------------------------------------------------
 {
     return [[fileURL lastPathComponent] stringByDeletingPathExtension];
@@ -488,31 +496,33 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
 
 //------------------------------------------------------
 /// テーマ名から有効なテーマ定義ファイルのURLを返す
-- (NSURL *)URLForUsedTheme:(NSString *)themeName
+- (nullable NSURL *)URLForUsedTheme:(nonnull NSString *)themeName
 //------------------------------------------------------
 {
-    NSURL *URL = [self URLForUserTheme:themeName];
-    
-    if (![URL checkResourceIsReachableAndReturnError:nil]) {
-        URL = [self URLForBundledTheme:themeName];
-    }
+    NSURL *URL = [self URLForUserTheme:themeName available:YES] ? : [self URLForBundledTheme:themeName];
     
     return [URL checkResourceIsReachableAndReturnError:nil] ? URL : nil;
 }
 
 
 //------------------------------------------------------
-/// テーマ名からユーザ領域のテーマ定義ファイルのURLを返す
-- (NSURL *)URLForUserTheme:(NSString *)themeName
+/// テーマ名からユーザ領域のテーマファイルのURLを返す (availableがYESの場合はファイルが実際に存在するときだけ返す)
+- (nullable NSURL *)URLForUserTheme:(NSString *)themeName available:(BOOL)available
 //------------------------------------------------------
 {
-    return [[[self userThemeDirectoryURL] URLByAppendingPathComponent:themeName] URLByAppendingPathExtension:CEThemeExtension];
+    NSURL *URL = [[[self userThemeDirectoryURL] URLByAppendingPathComponent:themeName] URLByAppendingPathExtension:CEThemeExtension];
+    
+    if (available) {
+        return [URL checkResourceIsReachableAndReturnError:nil] ? URL : nil;
+    } else {
+        return URL;
+    }
 }
 
 
 //------------------------------------------------------
 /// テーマ名からユーザ領域のテーマ定義ファイルのURLを返す
-- (NSURL *)URLForBundledTheme:(NSString *)themeName
+- (nullable NSURL *)URLForBundledTheme:(nonnull NSString *)themeName
 //------------------------------------------------------
 {
     return [[NSBundle mainBundle] URLForResource:themeName withExtension:CEThemeExtension subdirectory:@"Themes"];
@@ -521,7 +531,7 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
 
 //------------------------------------------------------
 /// URLからテーマ辞書を返す
-- (NSMutableDictionary<NSString *, NSMutableDictionary<NSString *, id> *> *)themeDictWithURL:(NSURL *)URL
+- (nullable NSMutableDictionary<NSString *, NSMutableDictionary<NSString *, id> *> *)themeDictWithURL:(nonnull NSURL *)URL
 //------------------------------------------------------
 {
     return [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfURL:URL]
@@ -532,7 +542,7 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
 
 //------------------------------------------------------
 /// 内部で持っているキャッシュ用データを更新
-- (void)updateCacheWithCompletionHandler:(void (^)())completionHandler
+- (void)updateCacheWithCompletionHandler:(nullable void (^)())completionHandler
 //------------------------------------------------------
 {
     __weak typeof(self) weakSelf = self;
@@ -591,7 +601,7 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
 
 // ------------------------------------------------------
 /// 有効なテーマ名かチェックしてエラーメッセージを返す
-- (BOOL)validateThemeName:(NSString *)themeName originalName:(NSString *)originalThemeName error:(NSError *__autoreleasing __nullable *)outError
+- (BOOL)validateThemeName:(nonnull NSString *)themeName originalName:(nonnull NSString *)originalThemeName error:(NSError * _Nullable __autoreleasing * _Nullable)outError
 // ------------------------------------------------------
 {
     // 元の名前とのケース違いはOK
@@ -655,7 +665,7 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
     NSString *themeName = NSLocalizedString(@"Customized Theme", nil);
     
     // カスタムテーマファイルがある場合は移行処理の必要なし（上書きを避けるため）
-    if ([[self URLForUserTheme:themeName] checkResourceIsReachableAndReturnError:nil]) {
+    if (![self URLForUserTheme:themeName available:YES]) {
         return NO;
     }
     

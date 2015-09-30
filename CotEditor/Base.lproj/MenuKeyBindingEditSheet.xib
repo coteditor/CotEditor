@@ -5,7 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="7706"/>
     </dependencies>
     <objects>
-        <customObject id="-2" customClass="CEKeyBindingSheetController">
+        <customObject id="-2" customClass="CEKeyBindingsSheetController">
             <connections>
                 <outlet property="OKButton" destination="13" id="1yx-3j-qB2"/>
                 <outlet property="outlineView" destination="8" id="87F-fg-biJ"/>
@@ -229,9 +229,6 @@ DQ
                     <constraint firstItem="15" firstAttribute="leading" secondItem="6" secondAttribute="leading" constant="20" symbolic="YES" id="z4S-qY-zgV"/>
                 </constraints>
             </view>
-            <connections>
-                <outlet property="delegate" destination="-2" id="G6m-7G-33c"/>
-            </connections>
             <point key="canvasLocation" x="74" y="103"/>
         </window>
     </objects>

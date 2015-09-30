@@ -37,15 +37,15 @@
 
 @interface CEEditorView : NSView <NSTextViewDelegate>
 
-@property (nonatomic, weak) CEEditorWrapper *editorWrapper;
+@property (nonatomic, nullable, weak) CEEditorWrapper *editorWrapper;
 
 // readonly
-@property (readonly, nonatomic) CETextView *textView;
-@property (readonly, nonatomic) CENavigationBarController *navigationBar;
+@property (readonly, nonatomic, nonnull) CETextView *textView;
+@property (readonly, nonatomic, nonnull) CENavigationBarController *navigationBar;
 
 
 // Public method
-- (void)replaceTextStorage:(NSTextStorage *)textStorage;
+- (void)replaceTextStorage:(nonnull NSTextStorage *)textStorage;
 - (void)setShowsLineNum:(BOOL)showsLineNum;
 - (void)setShowsNavigationBar:(BOOL)showsNavigationBar animate:(BOOL)performAnimation;
 - (void)setWrapsLines:(BOOL)wrapsLines;
@@ -53,6 +53,6 @@
 - (void)setUsesAntialias:(BOOL)usesAntialias;
 - (void)updateCloseSplitViewButton:(BOOL)isEnabled;
 - (void)setCaretToBeginning;
-- (void)applySyntax:(CESyntaxParser *)syntaxParser;
+- (void)applySyntax:(nonnull CESyntaxParser *)syntaxParser;
 
 @end

@@ -31,7 +31,7 @@
 
 // notifications
 /// Posted when current encoding list menu items is ready to build
-extern NSString *__nonnull const CEEncodingListDidUpdateNotification;
+extern NSString *_Nonnull const CEEncodingListDidUpdateNotification;
 
 
 @interface CEEncodingManager : NSObject

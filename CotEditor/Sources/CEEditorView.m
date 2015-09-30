@@ -44,7 +44,7 @@
 @property (nonatomic, nonnull) NSTextStorage *textStorage;
 
 @property (nonatomic) BOOL highlightsCurrentLine;
-@property (nonatomic) NSInteger lastCursorLocation;
+@property (nonatomic) NSUInteger lastCursorLocation;
 
 
 // readonly
@@ -168,7 +168,7 @@
 
 // ------------------------------------------------------
 /// TextStorage を置換
-- (void)replaceTextStorage:(NSTextStorage *)textStorage
+- (void)replaceTextStorage:(nonnull NSTextStorage *)textStorage
 // ------------------------------------------------------
 {
     [[[self textView] layoutManager] replaceTextStorage:textStorage];
@@ -267,7 +267,7 @@
 
 // ------------------------------------------------------
 /// シンタックススタイルを設定
-- (void)applySyntax:(CESyntaxParser *)syntaxParser
+- (void)applySyntax:(nonnull CESyntaxParser *)syntaxParser
 // ------------------------------------------------------
 {
     [[self textView] setInlineCommentDelimiter:[syntaxParser inlineCommentDelimiter]];
@@ -424,16 +424,16 @@
 - (void)textViewDidChangeSelection:(nonnull NSNotification *)aNotification
 // ------------------------------------------------------
 {
-    // カレント行をハイライト
+    // highlight the current line
     [self highlightCurrentLine];
 
-    // 文書情報更新
+    // update document information
     [[[self window] windowController] setupEditorInfoUpdateTimer];
 
-    // アウトラインメニュー選択項目更新
+    // update selected item of the outline menu
     [self updateOutlineMenuSelection];
 
-    // 対応するカッコをハイライト表示
+    // highlight matching brace
     
     // The following part is based on Smultron's SMLTextView.m by Peter Borg. (2006-09-09)
     // Smultron 2 was distributed on <http://smultron.sourceforge.net> under the terms of the BSD license.
@@ -441,56 +441,70 @@
 
     if (![[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultHighlightBracesKey]) { return; }
     
-    NSString *string = [[self textView] string];
-    if ([string length] == 0) { return; }
-    NSRange selectedRange = [[self textView] selectedRange];
-    NSInteger location = selectedRange.location;
+    NSString *completeString = [[self textView] string];
+    if ([completeString length] == 0) { return; }
+    
+    NSInteger location = [[self textView] selectedRange].location;
     NSInteger difference = location - [self lastCursorLocation];
     [self setLastCursorLocation:location];
 
-    // Smultron では「if (difference != 1 && difference != -1)」の条件を使ってキャレットを前方に動かした時も強調表示させているが、CotEditor では Xcode 同様、入力時またはキャレットを後方に動かした時だけに限定した（2006-09-10）
+    // The brace will be highlighted only when the cursor moves forward, just like on Xcode. (2006-09-10)
     if (difference != 1) {
-        return; // If the difference is more than one, they've moved the cursor with the mouse or it has been moved by resetSelectedRange below and we shouldn't check for matching braces then
+        return; // If the difference is more than one, they've moved the cursor with the mouse or it has been moved by resetSelectedRange below and we shouldn't check for matching braces then.
     }
     
-    if (difference == 1) { // Check if the cursor has moved forward
-        location--;
-    }
-
-    if (location == [string length]) {
-        return;
+    // check the caracter just before the cursor
+    location--;
+    
+    unichar beginBrace, endBrace;
+    switch ([completeString characterAtIndex:location]) {
+        case ')':
+            beginBrace = '(';
+            endBrace = ')';
+            break;
+            
+        case '}':
+            beginBrace = '{';
+            endBrace = '}';
+            break;
+            
+        case ']':
+            beginBrace = '[';
+            endBrace = ']';
+            break;
+            
+        case '>':
+            if (![[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultHighlightLtGtKey]) { return; }
+            beginBrace = '<';
+            endBrace = '>';
+            break;
+            
+        default:
+            return;
     }
     
-    unichar theUnichar = [string characterAtIndex:location];
-    unichar curChar, braceChar;
-    if (theUnichar == ')') {
-        braceChar = '(';
-    } else if (theUnichar == ']') {
-        braceChar = '[';
-    } else if (theUnichar == '}') {
-        braceChar = '{';
-    } else if ((theUnichar == '>') && [[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultHighlightLtGtKey]) {
-        braceChar = '<';
-    } else {
-        return;
-    }
-    NSUInteger skipMatchingBrace = 0;
-    curChar = theUnichar;
+    NSUInteger skippedBraceCount = 0;
 
     while (location--) {
-        theUnichar = [string characterAtIndex:location];
-        if (theUnichar == braceChar) {
-            if (!skipMatchingBrace) {
+        unichar character = [completeString characterAtIndex:location];
+        if (character == beginBrace) {
+            if (!skippedBraceCount) {
+                // highlight the matching brace
                 [[self textView] showFindIndicatorForRange:NSMakeRange(location, 1)];
                 return;
             } else {
-                skipMatchingBrace--;
+                skippedBraceCount--;
             }
-        } else if (theUnichar == curChar) {
-            skipMatchingBrace++;
+        } else if (character == endBrace) {
+            skippedBraceCount++;
         }
     }
-    NSBeep();
+    
+    // do not beep when the typed brace is `>`
+    //  -> Since `>` (and `<`) can often be used alone unlike other braces.
+    if (endBrace != '>') {
+        NSBeep();
+    }
 }
 
 
@@ -551,7 +565,7 @@
 
 // ------------------------------------------------------
 /// return shared sytnaxParser
-- (CESyntaxParser *)syntaxParser
+- (nullable CESyntaxParser *)syntaxParser
 // ------------------------------------------------------
 {
     return [[self editorWrapper] syntaxParser];
