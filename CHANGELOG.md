@@ -5,6 +5,15 @@ Change Log
 develop
 --------------------------
 
+### Fixes
+
+- [non-AppStore ver.] Fix an issue where update check failed on El Capitan.
+
+
+
+2.2.0-rc.2 (74)
+--------------------------
+
 ### New Features
 
 - Add new themes “Anura” and “Note”.
