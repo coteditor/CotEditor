@@ -2,7 +2,16 @@
 Change Log
 ==========================
 
-develop
+2.2.0-rc.3 (74rc3)
+--------------------------
+
+### Fixes
+
+- [non-AppStore ver.] Fix an issue where update check failed on El Capitan.
+
+
+
+2.2.0-rc.2 (74b)
 --------------------------
 
 ### New Features
