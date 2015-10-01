@@ -275,7 +275,7 @@ develop
 - Fix an issue where application could hang up on text editing.
 - Improve general stability.
 
-a
+
 
 2.1.0
 --------------------------
