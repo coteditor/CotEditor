@@ -372,6 +372,18 @@ static BOOL usesTextFontForInvisibles;
 - (void)invalidateIndentInRange:(NSRange)range
 // ------------------------------------------------------
 {
+    // !!!: quick fix avoiding crash on typing Japanese text (2015-10)
+    //  -> text length can be changed while passing run-loop
+    if (NSMaxRange(range) > [[self textStorage] length]) {
+        NSUInteger overflow = NSMaxRange(range) - [[self textStorage] length];
+        if (range.length >= overflow) {
+            range.length -= overflow;
+        } else {
+            // nothing to do about hanging indentation if changed range has already been completely removed
+            return;
+        }
+    }
+    
     CGFloat hangingIndent = [self spaceWidth] * [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultHangingIndentWidthKey];
     CGFloat linePadding = [[[self firstTextView] textContainer] lineFragmentPadding];
     NSTextStorage *textStorage = [self textStorage];
@@ -421,6 +433,8 @@ static BOOL usesTextFontForInvisibles;
                                      @"range": [NSValue valueWithRange:substringRange]}];
          }
      }];
+    
+    if ([newIndents count] == 0) { return; }
     
     // apply new paragraph styles at once
     //   -> This avoids letting layoutManager calculate glyph location each time.

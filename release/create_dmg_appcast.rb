@@ -72,8 +72,8 @@ if IS_SANDBOXED then
 	latest_item = <<-APPCAST_ITEM
 		<item>
 			<title>CotEditor #{version}</title>
-			<sparkle:releaseNotesLink xml:lang="en">http://coteditor.com/releasenotes/#{version}.en.html</sparkle:releaseNotesLink>
-			<sparkle:releaseNotesLink xml:lang="ja">http://coteditor.com/releasenotes/#{version}.ja.html</sparkle:releaseNotesLink>
+			<sparkle:releaseNotesLink xml:lang="en">https://coteditor.com/releasenotes/#{version}.en.html</sparkle:releaseNotesLink>
+			<sparkle:releaseNotesLink xml:lang="ja">https://coteditor.com/releasenotes/#{version}.ja.html</sparkle:releaseNotesLink>
 			<pubDate>#{date}</pubDate>
 			<sparkle:minimumSystemVersion>10.8</sparkle:minimumSystemVersion>
 			<sparkle:version>#{build_number}</sparkle:version>
@@ -85,8 +85,8 @@ else
 	latest_item = <<-APPCAST_ITEM
 		<item>
 			<title>CotEditor #{version}</title>
-			<sparkle:releaseNotesLink xml:lang="en">http://coteditor.com/releasenotes/#{version}.en.html</sparkle:releaseNotesLink>
-			<sparkle:releaseNotesLink xml:lang="ja">http://coteditor.com/releasenotes/#{version}.ja.html</sparkle:releaseNotesLink>
+			<sparkle:releaseNotesLink xml:lang="en">https://coteditor.com/releasenotes/#{version}.en.html</sparkle:releaseNotesLink>
+			<sparkle:releaseNotesLink xml:lang="ja">https://coteditor.com/releasenotes/#{version}.ja.html</sparkle:releaseNotesLink>
 			<pubDate>#{date}</pubDate>
 			<sparkle:minimumSystemVersion>10.8</sparkle:minimumSystemVersion>
 			<enclosure url="https://github.com/coteditor/CotEditor/releases/download/#{version}/CotEditor_#{version}.dmg"
@@ -111,8 +111,8 @@ file.puts <<APPCAST
 #{latest_item}
 		<item>
 			<title>CotEditor 2.0.3</title>
-			<sparkle:releaseNotesLink xml:lang="en">http://coteditor.com/releasenotes/2.0.3.en.html</sparkle:releaseNotesLink>
-			<sparkle:releaseNotesLink xml:lang="ja">http://coteditor.com/releasenotes/2.0.3.ja.html</sparkle:releaseNotesLink>
+			<sparkle:releaseNotesLink xml:lang="en">https://coteditor.com/releasenotes/2.0.3.en.html</sparkle:releaseNotesLink>
+			<sparkle:releaseNotesLink xml:lang="ja">https://coteditor.com/releasenotes/2.0.3.ja.html</sparkle:releaseNotesLink>
 			<pubDate>Sun, 14 Dec 2014 21:19:19 +0900</pubDate>
 			<sparkle:minimumSystemVersion>10.7</sparkle:minimumSystemVersion>
 			<enclosure url="https://github.com/coteditor/CotEditor/releases/download/2.0.3/CotEditor_2.0.3.dmg"
