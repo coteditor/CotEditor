@@ -375,13 +375,12 @@ static BOOL usesTextFontForInvisibles;
     // !!!: quick fix avoiding crash on typing Japanese text (2015-10)
     //  -> text length can be changed while passing run-loop
     if (NSMaxRange(range) > [[self textStorage] length]) {
-        NSUInteger diff = NSMaxRange(range) - [[self textStorage] length];
-        if (range.length >= diff) {
-            range.length -= diff;
+        NSUInteger overflow = NSMaxRange(range) - [[self textStorage] length];
+        if (range.length >= overflow) {
+            range.length -= overflow;
         } else {
-            diff -= range.length;
-            range.length = 0;
-            range.location -= diff;
+            // nothing to do about hanging indentation if changed range has already been completely removed
+            return;
         }
     }
     
