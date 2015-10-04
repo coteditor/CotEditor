@@ -2,7 +2,16 @@
 Change Log
 ==========================
 
-2.2.0-rc.3 (74rc3)
+2.2.1 (75)
+--------------------------
+
+### Fixes
+
+- Fix an issue where application could crash on typing Japanese text if hanging indentation is enabled.
+
+
+
+2.2.0 (74)
 --------------------------
 
 ### Fixes
@@ -266,7 +275,7 @@ Change Log
 - Fix an issue where application could hang up on text editing.
 - Improve general stability.
 
-a
+
 
 2.1.0
 --------------------------
