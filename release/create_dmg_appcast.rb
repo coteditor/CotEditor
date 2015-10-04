@@ -76,6 +76,7 @@ if IS_SANDBOXED then
 			<sparkle:releaseNotesLink xml:lang="ja">https://coteditor.com/releasenotes/#{version}.ja.html</sparkle:releaseNotesLink>
 			<pubDate>#{date}</pubDate>
 			<sparkle:minimumSystemVersion>10.8</sparkle:minimumSystemVersion>
+			<sparkle:shortVersionString>#{version}</sparkle:shortVersionString>
 			<sparkle:version>#{build_number}</sparkle:version>
             <link>http://coteditor.com/</link>
 		</item>
@@ -90,6 +91,7 @@ else
 			<pubDate>#{date}</pubDate>
 			<sparkle:minimumSystemVersion>10.8</sparkle:minimumSystemVersion>
 			<enclosure url="https://github.com/coteditor/CotEditor/releases/download/#{version}/CotEditor_#{version}.dmg"
+			           sparkle:shortVersionString="#{version}"
 			           sparkle:version="#{build_number}"
 			           sparkle:dsaSignature="#{dsa}"
 			           length="#{length}"
