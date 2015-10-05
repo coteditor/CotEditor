@@ -2,6 +2,16 @@
 Change Log
 ==========================
 
+develop
+--------------------------
+
+### Additions/Changes
+
+- Update “JSON” syntax style:
+    - Add “geojson” to extension list. 
+
+
+
 2.2.1 (75)
 --------------------------
 

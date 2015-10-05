@@ -177,6 +177,7 @@
   "JSON": {
     "extensions": [
       "json",
+      "geojson",
       "cottheme"
     ],
     "filenames": [
