@@ -2387,6 +2387,7 @@
 					"APPSTORE=1",
 				);
 				INFOPLIST_FILE = "CotEditor (AppStore)-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				OTHER_CODE_SIGN_FLAGS = "--deep";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.coteditor.$(PRODUCT_NAME)";
 				PRODUCT_NAME = CotEditor;
@@ -2405,6 +2406,7 @@
 					"APPSTORE=1",
 				);
 				INFOPLIST_FILE = "CotEditor (AppStore)-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				OTHER_CODE_SIGN_FLAGS = "--deep";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.coteditor.$(PRODUCT_NAME)";
 				PRODUCT_NAME = CotEditor;
@@ -2419,6 +2421,7 @@
 				CODE_SIGN_ENTITLEMENTS = CotEditor.entitlements;
 				CODE_SIGN_IDENTITY = "Developer ID Application";
 				INFOPLIST_FILE = "CotEditor-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				OTHER_CODE_SIGN_FLAGS = "--deep";
 				PRODUCT_BUNDLE_IDENTIFIER = com.coteditor.CotEditor;
 				PRODUCT_NAME = CotEditor;
@@ -2433,6 +2436,7 @@
 				CODE_SIGN_ENTITLEMENTS = CotEditor.entitlements;
 				CODE_SIGN_IDENTITY = "Developer ID Application";
 				INFOPLIST_FILE = "CotEditor-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				OTHER_CODE_SIGN_FLAGS = "--deep";
 				PRODUCT_BUNDLE_IDENTIFIER = com.coteditor.CotEditor;
 				PRODUCT_NAME = CotEditor;
