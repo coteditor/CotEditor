@@ -11,6 +11,11 @@ develop
     - Add “geojson” to extension list. 
 
 
+### Fixes
+
+- Fix an issue under the specific conditions where the migration window showed up every time on launch.
+
+
 
 2.2.1 (75)
 --------------------------

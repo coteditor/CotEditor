@@ -382,8 +382,15 @@
     //     >= 2.2.0 : Single Integer
     NSString *lastVersion = [[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultLastVersionKey];
     NSString *thisVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:(NSString *)kCFBundleVersionKey];
+    
     BOOL isDigit = lastVersion && [lastVersion rangeOfString:@"^[\\d]+$" options:NSRegularExpressionSearch].location != NSNotFound;
-    if (isDigit && [thisVersion integerValue] > [lastVersion integerValue]) {
+    BOOL isPreRelease = lastVersion && [lastVersion rangeOfString:@"^[\\d]+[a-z]+[\\d]?$" options:NSRegularExpressionSearch].location != NSNotFound;
+    //  -> [@"100b3" integerValue] is 100
+    
+    if ((!lastVersion) ||  // first launch
+        (!isDigit && !isPreRelease) ||  // probably semver (semver must be older than 2.2.0)
+        ((isDigit || isPreRelease) && ([thisVersion integerValue] > [lastVersion integerValue])))  // normal integer or Sparkle-style pre-release
+    {
         [[NSUserDefaults standardUserDefaults] setObject:thisVersion forKey:CEDefaultLastVersionKey];
     }
     
