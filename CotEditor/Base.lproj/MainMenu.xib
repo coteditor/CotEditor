@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="8191"/>
@@ -847,6 +847,11 @@
                                         <menuItem title="NFKC Casefold" tag="4" id="zuR-3K-9fs">
                                             <connections>
                                                 <action selector="normalizeUnicodeWithNFKCCF:" target="-1" id="LyD-Xf-gVC"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Apple Modified NFD" tag="4" id="NU7-EI-1Ct">
+                                            <connections>
+                                                <action selector="normalizeUnicodeWithAppleModifiedNFD:" target="-1" id="Xwe-I5-MAZ"/>
                                             </connections>
                                         </menuItem>
                                     </items>

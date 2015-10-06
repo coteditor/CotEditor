@@ -7,6 +7,9 @@ develop
 
 ### Additions/Changes
 
+- Add new normalization form “Apple Modified NFD” to the Unicode normalization action in Utility menu (Thanks to doraTeX!)
+    - cf. <http://tama-san.com/hfsplus_normalize/> (in Japanese)
+    - It is also added to the AppleScript terms.
 - Update “JSON” syntax style:
     - Add “geojson” to extension list. 
 

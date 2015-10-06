@@ -34,6 +34,7 @@
             <enumerator name="NFKC" code="cNkc"/>
             <enumerator name="NFKD" code="cNkd"/>
             <enumerator name="NFKC Casefold" code="cNcf"/>
+            <enumerator name="Apple Modified NFD" code="cNfa"/>
         </enumeration>
         
         <enumeration name="character width type" code="rWct">
