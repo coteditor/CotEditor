@@ -17,6 +17,7 @@ develop
 ### Fixes
 
 - Fix an issue where the baseline of invisible characters were wrong by some fonts.
+- Fix an issue where application could crash after modifying theme name on El Capitan.
 - Fix an issue under the specific conditions where the migration window showed up every time on launch.
 
 
