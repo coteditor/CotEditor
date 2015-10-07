@@ -180,7 +180,7 @@
 "NFKD" = "NFKD";
 "NFKC" = "NFKC";
 "NFKC Casefold" = "NFKC Casefold";
-"Apple Modified NFD" = "Apple Modifizierte NFD";
+"Modified NFD" = "Modifizierte NFD";
 "Inspect Character" = "Zeichen-Info einblenden";
 
 // Menu items

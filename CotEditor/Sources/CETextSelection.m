@@ -353,8 +353,8 @@
         case CENFKCCF:
             [textView normalizeUnicodeWithNFKCCF:command];
             break;
-        case CEAppleModifiedNFD:
-            [textView normalizeUnicodeWithAppleModifiedNFD:command];
+        case CEModifiedNFD:
+            [textView normalizeUnicodeWithModifiedNFD:command];
             break;
     }
 }

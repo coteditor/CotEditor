@@ -182,7 +182,7 @@
 "NFKD" = "NFKD";
 "NFKC" = "NFKC";
 "NFKC Casefold" = "NFKC Casefold";
-"Apple Modified NFD" = "Apple Modified NFD";
+"Modified NFD" = "修正 NFD";
 "Inspect Character" = "文字情報を表示";
 
 // Menu items

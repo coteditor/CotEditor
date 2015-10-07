@@ -849,9 +849,9 @@
                                                 <action selector="normalizeUnicodeWithNFKCCF:" target="-1" id="LyD-Xf-gVC"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Apple Modified NFD" tag="4" id="NU7-EI-1Ct">
+                                        <menuItem title="Modified NFD (HFS+)" tag="4" id="NU7-EI-1Ct">
                                             <connections>
-                                                <action selector="normalizeUnicodeWithAppleModifiedNFD:" target="-1" id="Xwe-I5-MAZ"/>
+                                                <action selector="normalizeUnicodeWithModifiedNFD:" target="-1" id="XtM-Si-id6"/>
                                             </connections>
                                         </menuItem>
                                     </items>

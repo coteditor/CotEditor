@@ -396,6 +396,19 @@
 /* Class = "NSMenuItem"; title = "Unicode Normalization"; ObjectID = "599"; */
 "599.title" = "Unicode 标准化";
 
+/* Class = "NSMenuItem"; title = "NFD"; ObjectID = "601"; */
+"601.title" = "NFD";
+/* Class = "NSMenuItem"; title = "NFC"; ObjectID = "602"; */
+"602.title" = "NFC";
+/* Class = "NSMenuItem"; title = "NFKD"; ObjectID = "603"; */
+"603.title" = "NFKD";
+/* Class = "NSMenuItem"; title = "NFKC"; ObjectID = "598"; */
+"598.title" = "NFKC";
+/* Class = "NSMenuItem"; title = "NFKC Casefold"; ObjectID = "zuR-3K-9fs"; */
+"zuR-3K-9fs.title" = "NFKC Casefold";
+/* Class = "NSMenuItem"; title = "Modified NFD (HFS+)"; ObjectID = "NU7-EI-1Ct"; */
+"NU7-EI-1Ct.title" = "Modified NFD (HFS+)";  // FIXME: added (name of an Unicode normalization)
+
 /* Class = "NSMenuItem"; title = "Edit Color Code…"; ObjectID = "641"; */
 "641.title" = "编辑颜色代码…";
 

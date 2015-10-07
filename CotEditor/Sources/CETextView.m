@@ -926,7 +926,7 @@ static NSPoint kTextContainerOrigin;
         ([menuItem action] == @selector(normalizeUnicodeWithNFKD:)) ||
         ([menuItem action] == @selector(normalizeUnicodeWithNFKC:)) ||
         ([menuItem action] == @selector(normalizeUnicodeWithNFKCCF:)) ||
-        ([menuItem action] == @selector(normalizeUnicodeWithAppleModifiedNFD:)))
+        ([menuItem action] == @selector(normalizeUnicodeWithModifiedNFD:)))
     {
         return ([self selectedRange].length > 0);
         // （カラーコード編集メニューは常に有効）
@@ -2271,11 +2271,11 @@ static NSPoint kTextContainerOrigin;
 }
 
 // ------------------------------------------------------
-/// Unicode normalization (Apple Modified NFD)
-- (IBAction)normalizeUnicodeWithAppleModifiedNFD:(nullable id)sender
+/// Unicode normalization (Modified NFD)
+- (IBAction)normalizeUnicodeWithModifiedNFD:(nullable id)sender
 // ------------------------------------------------------
 {
-    [self transformSelectionWithActionName:NSLocalizedString( @"Apple Modified NFD", @"name of an Uniocode normalization type")
+    [self transformSelectionWithActionName:NSLocalizedString( @"Modified NFD", @"name of an Uniocode normalization type")
                           operationHandler:^NSString *(NSString *substring)
      {
          return [substring decomposedStringWithHFSPlusMapping];
