@@ -286,7 +286,7 @@ static NSDictionary<NSString *, NSString *> *kUnprintableKeyTable;
 
 //------------------------------------------------------
 /// メニューキーバインディング設定を保存
-- (BOOL)saveMenuKeyBindings:(NSArray<NSDictionary<NSString *, id> *> *)outlineViewData
+- (BOOL)saveMenuKeyBindings:(nonnull NSArray<NSDictionary<NSString *, id> *> *)outlineViewData
 //------------------------------------------------------
 {
     NSDictionary<NSString *, id> *dictToSave = [self keyBindingDictionaryFromOutlineViewDataArray:outlineViewData];
@@ -318,7 +318,7 @@ static NSDictionary<NSString *, NSString *> *kUnprintableKeyTable;
 
 //------------------------------------------------------
 /// テキストキーバインディング設定を保存
-- (BOOL)saveTextKeyBindings:(NSArray<NSDictionary<NSString *, NSString *> *> *)outlineViewData texts:(nullable NSArray<NSString *> *)texts
+- (BOOL)saveTextKeyBindings:(nonnull NSArray<NSDictionary<NSString *, NSString *> *> *)outlineViewData texts:(nullable NSArray<NSString *> *)texts
 //------------------------------------------------------
 {
     NSDictionary<NSString *, id> *dictToSave = [self keyBindingDictionaryFromOutlineViewDataArray:outlineViewData];
@@ -364,7 +364,7 @@ static NSDictionary<NSString *, NSString *> *kUnprintableKeyTable;
 
 //------------------------------------------------------
 /// キーバインディング設定ファイル保存用ディレクトリのURLを返す
-- (NSURL *)userSettingDirecotryURL
+- (nonnull NSURL *)userSettingDirecotryURL
 //------------------------------------------------------
 {
     return [[(CEAppDelegate *)[NSApp delegate] supportDirectoryURL] URLByAppendingPathComponent:@"KeyBindings"];
@@ -373,7 +373,7 @@ static NSDictionary<NSString *, NSString *> *kUnprintableKeyTable;
 
 //------------------------------------------------------
 /// メニューキーバインディング設定ファイル保存用ファイルのURLを返す
-- (NSURL *)menuKeyBindingSettingFileURL
+- (nonnull NSURL *)menuKeyBindingSettingFileURL
 //------------------------------------------------------
 {
     return [[[self userSettingDirecotryURL] URLByAppendingPathComponent:@"MenuKeyBindings"]
@@ -383,7 +383,7 @@ static NSDictionary<NSString *, NSString *> *kUnprintableKeyTable;
 
 //------------------------------------------------------
 /// メニューキーバインディング設定ファイル保存用ファイルのURLを返す
-- (NSURL *)textKeyBindingSettingFileURL
+- (nonnull NSURL *)textKeyBindingSettingFileURL
 //------------------------------------------------------
 {
     return [[[self userSettingDirecotryURL] URLByAppendingPathComponent:@"TextKeyBindings"]
@@ -448,7 +448,7 @@ static NSDictionary<NSString *, NSString *> *kUnprintableKeyTable;
 
 //------------------------------------------------------
 /// メニューのキーボードショートカットをクリアする
-- (void)clearMenuKeyBindingRecurrently:(NSMenu *)menu
+- (void)clearMenuKeyBindingRecurrently:(nonnull NSMenu *)menu
 //------------------------------------------------------
 {
     for (NSMenuItem *item in [menu itemArray]) {
@@ -466,7 +466,7 @@ static NSDictionary<NSString *, NSString *> *kUnprintableKeyTable;
 
 //------------------------------------------------------
 /// メニューにキーボードショートカットを設定する
-- (void)applyMenuKeyBindingRecurrently:(NSMenu *)menu
+- (void)applyMenuKeyBindingRecurrently:(nonnull NSMenu *)menu
 //------------------------------------------------------
 {
     BOOL isJapaneseResource = [[[[NSBundle mainBundle] preferredLocalizations] firstObject] isEqualToString:@"ja"];
@@ -507,13 +507,13 @@ static NSDictionary<NSString *, NSString *> *kUnprintableKeyTable;
 
 //------------------------------------------------------
 /// アウトラインビューデータから保存用辞書を生成
-- (NSMutableDictionary<NSString *, id> *)keyBindingDictionaryFromOutlineViewDataArray:(NSArray<id> *)array
+- (nonnull NSMutableDictionary<NSString *, id> *)keyBindingDictionaryFromOutlineViewDataArray:(NSArray<NSDictionary<NSString *, id> *> *)array
 //------------------------------------------------------
 {
     NSMutableDictionary<NSString *, id> *keyBindingDict = [NSMutableDictionary dictionary];
 
-    for (id item in array) {
-        NSArray<id> *children = item[CEKeyBindingChildrenKey];
+    for (NSDictionary<NSString *, id> *item in array) {
+        NSArray<NSDictionary<NSString *, id> *> *children = item[CEKeyBindingChildrenKey];
         if (children) {
             NSDictionary<NSString *, id> *childDict = [self keyBindingDictionaryFromOutlineViewDataArray:children];
             [keyBindingDict addEntriesFromDictionary:childDict];
@@ -532,7 +532,7 @@ static NSDictionary<NSString *, NSString *> *kUnprintableKeyTable;
 
 //------------------------------------------------------
 /// セレクタ名を定義しているキーバインディング文字列（キー）を得る
-- (NSString *)keySpecCharsInDictionaryFromSelector:(SEL)selector
+- (nonnull NSString *)keySpecCharsInDictionaryFromSelector:(SEL)selector
 //------------------------------------------------------
 {
     NSString *selectorString = NSStringFromSelector(selector);
@@ -544,7 +544,7 @@ static NSDictionary<NSString *, NSString *> *kUnprintableKeyTable;
 
 //------------------------------------------------------
 /// メニューのキーボードショートカットから表示用文字列を返す
-+ (NSString *)printableKeyStringsFromKeyEquivalent:(NSString *)string
++ (nonnull NSString *)printableKeyStringsFromKeyEquivalent:(nonnull NSString *)string
 //------------------------------------------------------
 {
     if ([string length] < 1) { return @""; }
@@ -560,7 +560,7 @@ static NSDictionary<NSString *, NSString *> *kUnprintableKeyTable;
 
 //------------------------------------------------------
 /// キーバインディング定義文字列から表示用モディファイアキー文字列を生成し、返す
-+ (NSString *)printableKeyStringFromModKeySpecChars:(NSString *)modString withShiftKey:(BOOL)drawsShiftKey
++ (nonnull NSString *)printableKeyStringFromModKeySpecChars:(nonnull NSString *)modString withShiftKey:(BOOL)drawsShiftKey
 //------------------------------------------------------
 {
     NSCharacterSet *modStringSet = [NSCharacterSet characterSetWithCharactersInString:modString];
@@ -579,7 +579,7 @@ static NSDictionary<NSString *, NSString *> *kUnprintableKeyTable;
 
 //------------------------------------------------------
 /// キーバインディング定義文字列またはキーボードショートカットキーからキー表示用文字列を生成し、返す
-+ (NSString *)printableCharFromIgnoringModChar:(NSString *)modCharString
++ (nonnull NSString *)printableCharFromIgnoringModChar:(nonnull NSString *)modCharString
 //------------------------------------------------------
 {
     return kUnprintableKeyTable[modCharString] ? : modCharString;
@@ -588,7 +588,7 @@ static NSDictionary<NSString *, NSString *> *kUnprintableKeyTable;
 
 //------------------------------------------------------
 /// そのまま表示できないキーバインディング定義文字列の変換辞書を返す
-+ (NSDictionary<NSString *, NSString *> *)unprintableKeyDictionary
++ (nonnull NSDictionary<NSString *, NSString *> *)unprintableKeyDictionary
 //------------------------------------------------------
 {
     // 下記の情報を参考にさせていただきました (2005.09.05)
@@ -643,7 +643,7 @@ static NSDictionary<NSString *, NSString *> *kUnprintableKeyTable;
 
 //------------------------------------------------------
 /// 独自定義のセレクタ名配列を返す
-+ (NSArray<NSString *> *)textKeyBindingSelectorStrings
++ (nonnull NSArray<NSString *> *)textKeyBindingSelectorStrings
 //------------------------------------------------------
 {
     return @[@"insertCustomText_00:",
@@ -682,7 +682,7 @@ static NSDictionary<NSString *, NSString *> *kUnprintableKeyTable;
 
 //------------------------------------------------------
 /// 変更しない項目のセレクタ名配列を返す
-+ (NSArray<NSString *> *)selectorStringsToIgnore
++ (nonnull NSArray<NSString *> *)selectorStringsToIgnore
 //------------------------------------------------------
 {
     return @[@"modifyFont:",
