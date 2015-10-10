@@ -128,7 +128,7 @@
 - (BOOL)outlineView:(nonnull NSOutlineView *)outlineView isItemExpandable:(nonnull id)item
 // ------------------------------------------------------
 {
-    return ([self childrenOfItem:item]);
+    return [[self childrenOfItem:item] count] > 0;
 }
 
 
