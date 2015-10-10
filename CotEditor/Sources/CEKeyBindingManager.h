@@ -43,22 +43,22 @@ extern NSString *_Nonnull const CEKeyBindingChildrenKey;
 
 
 // Public methods
-+ (nonnull NSString *)printableKeyStringFromKeySpecChars:(nonnull NSString *)string;
-+ (nonnull NSString *)keySpecCharsFromKeyEquivalent:(nonnull NSString *)string modifierFrags:(NSEventModifierFlags)modifierFlags;
++ (nonnull NSString *)printableKeyStringFromKeySpecChars:(nonnull NSString *)keySpecChars;
++ (nonnull NSString *)keySpecCharsFromKeyEquivalent:(nonnull NSString *)keyEquivalent modifierFrags:(NSEventModifierFlags)modifierFlags;
 
 - (void)applyKeyBindingsToMainMenu;
 
-- (nonnull NSString *)selectorStringWithKeyEquivalent:(nonnull NSString *)string modifierFrags:(NSEventModifierFlags)modifierFlags;
-- (nonnull NSString *)keySpecCharsInDefaultDictionaryFromSelectorString:(nonnull NSString *)selectorString;
+- (nonnull NSMutableArray<NSString *> *)keySpecCharsListFromOutlineData:(nonnull NSArray<NSDictionary<NSString *, id> *> *)outlineData;
+- (nonnull NSString *)selectorStringWithKeyEquivalent:(nonnull NSString *)keyEquivalent modifierFrags:(NSEventModifierFlags)modifierFlags;
 
 - (BOOL)usesDefaultMenuKeyBindings;
 - (BOOL)usesDefaultTextKeyBindings;
 
-- (nonnull NSMutableArray<NSMutableDictionary<NSString *, id> *> *)mainMenuArrayForOutlineData:(nonnull NSMenu *)menu;
-- (nonnull NSMutableArray<NSMutableDictionary<NSString *, NSString *> *> *)textKeySpecCharArrayForOutlineDataWithFactoryDefaults:(BOOL)usesFactoryDefaults;
+- (nonnull NSMutableArray<NSMutableDictionary<NSString *, id> *> *)menuKeySpecCharsArrayForOutlineDataWithFactoryDefaults:(BOOL)usesFactoryDefaults;
+- (nonnull NSMutableArray<NSMutableDictionary<NSString *, NSString *> *> *)textKeySpecCharsArrayForOutlineDataWithFactoryDefaults:(BOOL)usesFactoryDefaults;
 
-- (BOOL)saveMenuKeyBindings:(nonnull NSArray<NSDictionary<NSString *, id> *> *)outlineViewData;
-- (BOOL)saveTextKeyBindings:(nonnull NSArray<NSDictionary<NSString *, NSString *> *> *)outlineViewData texts:(nullable NSArray<NSString *> *)texts;
+- (BOOL)saveMenuKeyBindings:(nonnull NSArray<NSDictionary<NSString *, id> *> *)outlineData;
+- (BOOL)saveTextKeyBindings:(nonnull NSArray<NSDictionary<NSString *, NSString *> *> *)outlineData texts:(nullable NSArray<NSString *> *)texts;
 
 @end
 
