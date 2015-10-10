@@ -597,15 +597,15 @@ static NSDictionary<NSString *, NSString *> *kUnprintableKeyTable;
                                             [NSString stringWithFormat:@"%C", (unichar)0x2193], // "↓" NSDownArrowFunctionKey,
                                             [NSString stringWithFormat:@"%C", (unichar)0x2190], // "←" NSLeftArrowFunctionKey,
                                             [NSString stringWithFormat:@"%C", (unichar)0x2192], // "→" NSRightArrowFunctionKey,
-                                            @"F1", // NSF1FunctionKey,
-                                            @"F2", // NSF2FunctionKey,
-                                            @"F3", // NSF3FunctionKey,
-                                            @"F4", // NSF4FunctionKey,
-                                            @"F5", // NSF5FunctionKey,
-                                            @"F6", // NSF6FunctionKey,
-                                            @"F7", // NSF7FunctionKey,
-                                            @"F8", // NSF8FunctionKey,
-                                            @"F9", // NSF9FunctionKey,
+                                            @"F1",  // NSF1FunctionKey,
+                                            @"F2",  // NSF2FunctionKey,
+                                            @"F3",  // NSF3FunctionKey,
+                                            @"F4",  // NSF4FunctionKey,
+                                            @"F5",  // NSF5FunctionKey,
+                                            @"F6",  // NSF6FunctionKey,
+                                            @"F7",  // NSF7FunctionKey,
+                                            @"F8",  // NSF8FunctionKey,
+                                            @"F9",  // NSF9FunctionKey,
                                             @"F10", // NSF10FunctionKey,
                                             @"F11", // NSF11FunctionKey,
                                             @"F12", // NSF12FunctionKey,
@@ -613,20 +613,21 @@ static NSDictionary<NSString *, NSString *> *kUnprintableKeyTable;
                                             @"F14", // NSF14FunctionKey,
                                             @"F15", // NSF15FunctionKey,
                                             @"F16", // NSF16FunctionKey,
-                                            [NSString stringWithFormat:@"%C", (unichar)0x2326], // NSDeleteCharacter = "Delete forward"
+                                            [NSString stringWithFormat:@"%C", (unichar)0x2326], // "⌦" NSDeleteCharacter = "Delete forward"
                                             [NSString stringWithFormat:@"%C", (unichar)0x2196], // "↖" NSHomeFunctionKey,
                                             [NSString stringWithFormat:@"%C", (unichar)0x2198], // "↘" NSEndFunctionKey,
                                             [NSString stringWithFormat:@"%C", (unichar)0x21DE], // "⇞" NSPageUpFunctionKey,
                                             [NSString stringWithFormat:@"%C", (unichar)0x21DF], // "⇟" NSPageDownFunctionKey,
                                             [NSString stringWithFormat:@"%C", (unichar)0x2327], // "⌧" NSClearLineFunctionKey,
                                             @"Help", // NSHelpFunctionKey,
-                                            @"Space", // "Space",
-                                            [NSString stringWithFormat:@"%C", (unichar)0x21E5], // "Tab"
-                                            [NSString stringWithFormat:@"%C", (unichar)0x21A9], // "Return"
+                                            NSLocalizedString(@"Space", @"keybord key name"), // "Space"
+                                            [NSString stringWithFormat:@"%C", (unichar)0x21E5], // "⇥" "Tab"
+                                            [NSString stringWithFormat:@"%C", (unichar)0x21A9], // "↩" "Return"
                                             [NSString stringWithFormat:@"%C", (unichar)0x232B], // "⌫" "Backspace"
-                                            [NSString stringWithFormat:@"%C", (unichar)0x2305], // "Enter"
-                                            [NSString stringWithFormat:@"%C", (unichar)0x21E4], // "Backtab"
-                                            [NSString stringWithFormat:@"%C", (unichar)0x238B]];
+                                            [NSString stringWithFormat:@"%C", (unichar)0x2305], // "⌅" "Enter"
+                                            [NSString stringWithFormat:@"%C", (unichar)0x21E4], // "⇤" "Backtab"
+                                            [NSString stringWithFormat:@"%C", (unichar)0x238B], // "⎋" "Escape"
+                                            ];
     
     NSAssert(kSizeOfUnprintableKeyList == [printableChars count],
              @"Internal data error! Sizes of 'kUnprintableKeyList' and 'printableChars' are different.");

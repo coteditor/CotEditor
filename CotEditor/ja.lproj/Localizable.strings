@@ -430,6 +430,9 @@
 // label for text menu keybindings action
 "Insert Text %@" = "テキストを挿入 %@";
 
+// keybord key name
+"Space" = "スペース";
+
 // Warning messages
 "“%@” is already taken. Please choose another key." = "“%@”はすでに使用されています。再編集してください。";
 "“%@” does not include the Command key. Please choose another key." = "“%@”にはコマンドキーが含まれていません。再編集してください。";

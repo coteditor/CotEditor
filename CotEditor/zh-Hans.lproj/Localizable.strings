@@ -428,6 +428,9 @@
 // label for text menu keybindings action
 "Insert Text %@" = "插入文本 %@";
 
+// keybord key name
+"Space" = "空格键";
+
 // Warning messages
 "“%@” is already taken. Please choose another key." = "“%@”已在使用中，请选择其他按键。";
 "“%@” does not include the Command key. Please choose another key." = "“%@”中没有包含 Command 键，请选择其他按键。";

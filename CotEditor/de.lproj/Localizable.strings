@@ -428,6 +428,9 @@
 // label for text menu keybindings action
 "Insert Text %@" = "Text hinzufügen %@";
 
+// keybord key name
+"Space" = "Leertaste";
+
 // Warning messages
 "“%@” is already taken. Please choose another key." = "„%@“ wird bereits verwendet. Bitte wählen Sie eine andere Taste.";
 "“%@” does not include the Command key. Please choose another key." = "„%@“ enthaltet die Command-Taste nicht. Bitte wählen Sie eine andere Taste.";
