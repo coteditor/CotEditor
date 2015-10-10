@@ -179,7 +179,7 @@
 "NFKD" = "NFKD";
 "NFKC" = "NFKC";
 "NFKC Casefold" = "NFKC Casefold";
-"Modified NFD" = "Modified NFD";  // FIXME: added (name of an Unicode normalization)
+"Modified NFD" = "修改 NFD";
 "Inspect Character" = "显示字符";
 
 // Menu items
@@ -447,7 +447,7 @@
 "“Opt + click” to open in Script Editor." = "使用“Opt + 单击”打开脚本编辑器。";
 
 // Script error alert message
-"Script Error" = "Script Error";  // FIXME: Added
+"Script Error" = "脚本错误";
 
 // Script error alert informatives
 "The script “%@” does not exist.\n\nCheck it and select “Update Script Menu”." = "脚本“%@”不存在。\n\n请确认文件是否存在，并使用“更新脚本菜单”进行更新。";

@@ -407,7 +407,7 @@
 /* Class = "NSMenuItem"; title = "NFKC Casefold"; ObjectID = "zuR-3K-9fs"; */
 "zuR-3K-9fs.title" = "NFKC Casefold";
 /* Class = "NSMenuItem"; title = "Modified NFD (HFS+)"; ObjectID = "NU7-EI-1Ct"; */
-"NU7-EI-1Ct.title" = "Modified NFD (HFS+)";  // FIXME: added (name of an Unicode normalization)
+"NU7-EI-1Ct.title" = "修改 NFD (HFS+)";
 
 /* Class = "NSMenuItem"; title = "Edit Color Code…"; ObjectID = "641"; */
 "641.title" = "编辑颜色代码…";
