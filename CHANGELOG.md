@@ -23,6 +23,7 @@ Change Log
 - Fix an issue where the baseline of invisible characters were wrong by some fonts.
 - Fix an issue where application could crash after modifying theme name on El Capitan.
 - Fix an issue where submenu disclosure arrows in the menu key binding editor did occasionally disappear.
+- Fix timing to update search string to system-wide shared find string.
 - Fix an issue under the specific conditions where the migration window showed up every time on launch.
 
 

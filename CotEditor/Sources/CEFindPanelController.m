@@ -115,6 +115,12 @@ static NSString *_Nonnull const kEscapeCharacter = @"\\";
                                                 forKeyPath:CEDefaultFindNextAfterReplaceKey
                                                    options:NSKeyValueObservingOptionNew
                                                    context:NULL];
+        
+        // observe application activation
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(applicationDidBecomeActive:)
+                                                     name:NSApplicationDidBecomeActiveNotification
+                                                   object:nil];
     }
     return self;
 }
@@ -126,6 +132,7 @@ static NSString *_Nonnull const kEscapeCharacter = @"\\";
 // ------------------------------------------------------
 {
     [[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:CEDefaultFindNextAfterReplaceKey];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     
     [_splitView setDelegate:nil];  // NSSplitView's delegate is assign, not weak
 }
@@ -320,6 +327,19 @@ static NSString *_Nonnull const kEscapeCharacter = @"\\";
 }
 
 
+#pragma mark Notification
+
+// ------------------------------------------------------
+/// sync search string on activating application
+- (void)applicationDidBecomeActive:(nonnull NSNotification *)notification
+// ------------------------------------------------------
+{
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultSyncFindPboardKey]) {
+        [self setFindString:[self findStringFromPasteboard]];
+    }
+}
+
+
 
 #pragma mark Public Action Messages
 
@@ -331,13 +351,6 @@ static NSString *_Nonnull const kEscapeCharacter = @"\\";
     // close result view
     if (![[self findPanel] isVisible]) {
         [self setResultShown:NO animate:NO];
-    }
-    
-    // sync search string
-    if (![[self findPanel] isVisible] &&
-        [[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultSyncFindPboardKey])
-    {
-        [self setFindString:[self findStringFromPasteboard]];
     }
     
     // select text in find text field
