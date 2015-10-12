@@ -52,6 +52,8 @@ Change Log
 ### New Features
 
 - Add new themes “Anura” and “Note”.
+- Add new actions “Move Line Up”, “Move Line Down”, “Sort Lines”, “Reverse Lines” and “Delete Line”.
+    - They are also added to the AppleScript terms.
 
 
 ### Additions/Changes

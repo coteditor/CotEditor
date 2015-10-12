@@ -198,6 +198,48 @@
                                     <action selector="selectLines:" target="-1" id="MP0-H8-6bm"/>
                                 </connections>
                             </menuItem>
+                            <menuItem title="Lines" id="Kb8-QD-tYZ">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="Lines" id="BSD-be-CV9">
+                                    <items>
+                                        <menuItem title="Move Up" keyEquivalent="" id="4t7-IA-1r3">
+                                            <modifierMask key="keyEquivalentModifierMask" control="YES" command="YES"/>
+                                            <connections>
+                                                <action selector="moveLineUp:" target="-1" id="vQh-9K-uKp"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Move Down" keyEquivalent="" id="J59-OR-kzC">
+                                            <modifierMask key="keyEquivalentModifierMask" control="YES" command="YES"/>
+                                            <connections>
+                                                <action selector="moveLineDown:" target="-1" id="Nfe-x0-39D"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="hVD-Co-9NR"/>
+                                        <menuItem title="Sort" id="OQl-Uo-yfn">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="sortLinesAscending:" target="-1" id="B7y-tD-zyu"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Reverse" id="xhf-NR-D2Q">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="reverseLines:" target="-1" id="LXU-WT-T6K"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="Dpo-h5-IyY"/>
+                                        <menuItem title="Delete Line" id="sFn-3j-pY5">
+                                            <string key="keyEquivalent" base64-UTF8="YES">
+CA
+</string>
+                                            <modifierMask key="keyEquivalentModifierMask" shift="YES" command="YES"/>
+                                            <connections>
+                                                <action selector="deleteLine:" target="-1" id="FJR-BG-Nyi"/>
+                                            </connections>
+                                        </menuItem>
+                                    </items>
+                                </menu>
+                            </menuItem>
                             <menuItem isSeparatorItem="YES" id="630">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
