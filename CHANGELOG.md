@@ -2,6 +2,21 @@
 Change Log
 ==========================
 
+develop
+--------------------------
+
+### New Features
+
+- Add new “Move Line Up”, “Move Line Down”, “Sort Lines”, “Reverse Lines” and “Delete Line” actions to Edit menu.
+    - They are also added to the AppleScript terms.
+
+
+### Additions/Changes
+
+- Embed key bindings editor to Key Bindings pane.
+
+
+
 2.2.2 (78)
 --------------------------
 
@@ -52,8 +67,6 @@ Change Log
 ### New Features
 
 - Add new themes “Anura” and “Note”.
-- Add new actions “Move Line Up”, “Move Line Down”, “Sort Lines”, “Reverse Lines” and “Delete Line”.
-    - They are also added to the AppleScript terms.
 
 
 ### Additions/Changes
