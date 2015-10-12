@@ -26,6 +26,8 @@
  */
 
 #import "CEGeneralPaneController.h"
+#import "CEDocument.h"
+#import "Constants.h"
 
 #ifndef APPSTORE
 #import "CEUpdaterManager.h"
@@ -46,6 +48,8 @@
 #pragma mark -
 
 @implementation CEGeneralPaneController
+
+#pragma mark View Controller Methods
 
 // ------------------------------------------------------
 /// setup UI
@@ -75,6 +79,64 @@
         [[self view] setFrame:frame];
     }
 #endif
+}
+
+
+
+#pragma mark Action Messages
+
+// ------------------------------------------------------
+/// "Enable Auto Save and Versions" checkbox was clicked
+- (IBAction)updateAutosaveSetting:(nullable id)sender
+// ------------------------------------------------------
+{
+    BOOL currentSetting = [CEDocument autosavesInPlace];
+    BOOL newSetting = [[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultEnablesAutosaveInPlaceKey];
+    
+    // do nothing if the setting returned to the current one.
+    if (currentSetting == newSetting) { return; }
+    
+    NSAlert *alert = [[NSAlert alloc] init];
+    [alert setMessageText:NSLocalizedString(@"The change will be applied first at the next launch.", nil)];
+    [alert setInformativeText:NSLocalizedString(@"Do you want to restart CotEditor now?", nil)];
+    [alert addButtonWithTitle:NSLocalizedString(@"Restart Now", nil)];
+    [alert addButtonWithTitle:NSLocalizedString(@"Later", nil)];
+    
+    [alert beginSheetModalForWindow:[[self view] window]
+                      modalDelegate:self
+                     didEndSelector:@selector(autosaveSettingAlertDidEnd:returnCode:contextInfo:)
+                        contextInfo:NULL];
+}
+
+
+
+#pragma mark Private Methods
+
+// ------------------------------------------------------
+/// autosaving alart did end
+- (void)autosaveSettingAlertDidEnd:(nonnull NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(nullable void *)contextInfo
+// ------------------------------------------------------
+{
+    if (returnCode == NSAlertFirstButtonReturn) {  // Restart Now
+        [self relaunchApplication];
+    }
+}
+
+
+// ------------------------------------------------------
+/// relaunch application itself with delay
+- (void)relaunchApplication
+// ------------------------------------------------------
+{
+    static const float delay = 3.0;  // in seconds
+    
+    NSTask *task = [[NSTask alloc] init];
+    NSString *command = [NSString stringWithFormat:@"sleep %f; open \"%@\"", delay, [[NSBundle mainBundle] bundlePath]];
+    [task setLaunchPath:@"/bin/sh"];
+    [task setArguments:@[@"-c", command]];
+    [task launch];
+    
+    [NSApp terminate:self];
 }
 
 @end

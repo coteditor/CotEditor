@@ -301,6 +301,15 @@
 "Completion can be performed manually with: %@ or %@" = "入力補完候補リストの表示： %@ もしくは %@";
 "Select at least one item to enable completion." = "入力補完を有効にするためには1つ以上の項目を選択する必要があります。";
 
+
+// Genearal pane
+// Autosave setting update alert
+"The change will be applied first at the next launch." = "この変更は次回アプリケーション起動時に適用されます。";
+"Do you want to restart CotEditor now?" = "CotEditor を再起動しますか？";
+"Restart Now" = "今すぐ再起動";
+"Later" = "あとで";
+
+
 // Appearance pane
 // Contextual menu items
 "Rename “%@”" = "“%@”を名称変更";

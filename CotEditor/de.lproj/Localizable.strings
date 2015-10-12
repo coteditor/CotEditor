@@ -299,6 +299,15 @@
 "Completion can be performed manually with: %@ or %@" = "Vervollständigung manuell durchführen mit: %@ oder %@";
 "Select at least one item to enable completion." = "Wählen Sie mindestens ein Element die Vervollständigung zu aktivieren.";
 
+
+// Genearal pane
+// Autosave setting update alert
+"The change will be applied first at the next launch." = "Die Änderung wird erst beim nächsten Start angewendet.";
+"Do you want to restart CotEditor now?" = "Möchten Sie CotEditor jetzt neustarten?";
+"Restart Now" = "Jetzt neustarten";
+"Later" = "Später";
+
+
 // Appearance pane
 // Contextual menu items
 "Rename “%@”" = "“%@” umbenennen";

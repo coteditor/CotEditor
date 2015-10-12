@@ -69,6 +69,7 @@
                         <font key="font" metaFont="system"/>
                     </buttonCell>
                     <connections>
+                        <action selector="updateAutosaveSetting:" target="-2" id="0Kw-EZ-Yb6"/>
                         <binding destination="26" name="value" keyPath="values.enablesAutosaveInPlace" id="p0A-ek-Th1"/>
                     </connections>
                 </button>
