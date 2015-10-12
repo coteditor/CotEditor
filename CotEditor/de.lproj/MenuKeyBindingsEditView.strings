@@ -25,11 +25,17 @@
  
  */
 
-/* Class = "CEKeyBindingSheet"; title = "Menu Key Bindings"; ObjectID = "5"; */
-"5.title" = "Menü-Tastenbelegungen";
+/* Class = "NSTextFieldCell"; title = "Shortcuts for menu items"; ObjectID = "RbS-WH-Pvx"; */
+"RbS-WH-Pvx.title" = "Kurzbefehls für Menüeinträge";
 
-/* Class = "NSTextFieldCell"; title = "To change a binding, select it, click the key column, and then type the keys.\nYou must include the Command key."; ObjectID = "144"; */
-"144.title" = "Zum Ändern einer Tastenbelegung wählen Sie ihn aus, klicken auf die Taste-Spalte und dann geben die Tasten ein. Sie müssen die Command-Taste einschließen.";
+/* Class = "NSTextFieldCell"; title = "(excl. Script menu)"; ObjectID = "ZDf-YZ-208"; */
+"ZDf-YZ-208.title" = "(exkl. Skripte-Menü)";
+
+/* Class = "NSTextFieldCell"; title = "To change a binding, select it, click the key column, and then type the keys."; ObjectID = "144"; */
+"144.title" = "Zum Ändern einer Tastenbelegung wählen Sie ihn aus, klicken auf die Taste-Spalte und dann geben die Tasten ein.";
+
+/* Class = "NSTextFieldCell"; title = "The keys here must include the Command key."; ObjectID = "G0x-RZ-DT4"; */
+"G0x-RZ-DT4.title" = "Die Tasten hier müssen die Command-Taste umfassen.";
 
 /* Class = "NSTableColumn"; headerCell.title = "Title / Action"; ObjectID = "9"; */
 "9.headerCell.title" = "Titel / Aktion";
@@ -38,7 +44,3 @@
 
 /* Class = "NSButtonCell"; title = "Restore Defaults"; ObjectID = "140"; */
 "140.title" = "Auf Standard zurücksetzen";
-/* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "141"; */
-"141.title" = "Abbrechen";
-/* Class = "NSButtonCell"; title = "OK"; ObjectID = "142"; */
-"142.title" = "OK";

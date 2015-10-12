@@ -1,6 +1,6 @@
 /*
  
- CEKeyBindingsSheetController.m
+ CEKeyBindingsViewController.m
  
  CotEditor
  http://coteditor.com
@@ -25,12 +25,12 @@
  
  */
 
-#import "CEKeyBindingsSheetController.h"
+#import "CEKeyBindingsViewController.h"
 #import "CEKeyBindingManager.h"
 #import "Constants.h"
 
 
-@interface CEKeyBindingsSheetController () <NSOutlineViewDataSource, NSOutlineViewDelegate, NSTextFieldDelegate>
+@interface CEKeyBindingsViewController () <NSOutlineViewDataSource, NSOutlineViewDelegate, NSTextFieldDelegate, NSTextViewDelegate>
 
 @property (nonatomic) CEKeyBindingType mode;
 @property (nonatomic, nonnull) NSMutableArray *outlineData;
@@ -38,7 +38,6 @@
 @property (nonatomic, getter=isRestoreble) BOOL restoreble;  // for binding
 
 @property (nonatomic, nullable, weak) IBOutlet NSOutlineView *outlineView;
-@property (nonatomic, nullable, weak) IBOutlet NSButton *OKButton;
 
 // only in text key bindings edit sheet
 @property (nonatomic, nullable) IBOutlet NSArrayController *snippetArrayController;
@@ -50,7 +49,7 @@
 
 #pragma mark -
 
-@implementation CEKeyBindingsSheetController
+@implementation CEKeyBindingsViewController
 
 #pragma mark Window Controller Methods
 
@@ -59,9 +58,9 @@
 - (nonnull instancetype)initWithMode:(CEKeyBindingType)mode
 // ------------------------------------------------------
 {
-    NSString *nibName = (mode == CEMenuKeyBindingsType) ? @"MenuKeyBindingEditSheet" : @"TextKeyBindingEditSheet";
+    NSString *nibName = (mode == CEMenuKeyBindingsType) ? @"MenuKeyBindingsEditView" : @"TextKeyBindingsEditView";
     
-    self = [super initWithWindowNibName:nibName];
+    self = [super initWithNibName:nibName bundle:nil];
     if (self) {
         _mode = mode;
         
@@ -83,10 +82,10 @@
 
 // ------------------------------------------------------
 /// setup UI
-- (void)windowDidLoad
+- (void)viewDidLoad
 // ------------------------------------------------------
 {
-    [super windowDidLoad];
+    [super viewDidLoad];
     
     switch ([self mode]) {
         case CEMenuKeyBindingsType:
@@ -221,9 +220,6 @@
     id item = [outlineView itemAtRow:row];
     NSString *keySpecChars = [textField stringValue];
     NSString *oldChars = item[CEKeyBindingKeySpecCharsKey];
-    
-    // comapre with current text field value (do nothing if it's not modified)
-    if ([keySpecChars isEqualToString:[self outlineView:outlineView objectValueForTableColumn:tableColumn byItem:item]]) { return; }
         
     // validate input value
     if ([keySpecChars isEqualToString:@"\e"]) {
@@ -232,6 +228,9 @@
     } else if ([self validateKeySpecChars:keySpecChars oldChars:oldChars]) {
         // update data
         item[CEKeyBindingKeySpecCharsKey] = keySpecChars;
+        
+        // save settings
+        [self saveSettings];
         
     } else {
         // make text field edit mode again if invalid
@@ -247,6 +246,21 @@
     NSInteger column = [outlineView columnForView:textField];
     [outlineView reloadDataForRowIndexes:[NSIndexSet indexSetWithIndex:row]
                            columnIndexes:[NSIndexSet indexSetWithIndex:column]];
+}
+
+
+//=======================================================
+// NSTextViewDelegate  < insertion text view
+//=======================================================
+
+// ------------------------------------------------------
+/// insertion text did update
+- (void)textDidEndEditing:(NSNotification *)notification
+// ------------------------------------------------------
+{
+    if ([[notification object] isKindOfClass:[NSTextView class]]) {
+        [self saveSettings];
+    }
 }
 
 
@@ -271,26 +285,11 @@
         } break;
     }
     
-    [self setRestoreble:NO];
+    [self saveSettings];
+    
     [[self outlineView] deselectAll:nil];
     [[self outlineView] reloadData];
-}
-
-
-// ------------------------------------------------------
-/// キーバインディング編集シートの OK / Cancel ボタンが押された
-- (IBAction)closeSheet:(nullable id)sender
-// ------------------------------------------------------
-{
-    // end current editing progress
-    [[self window] makeFirstResponder:sender];
-    
-    if (sender == [self OKButton]) { // save with OK button
-        [self saveSettings];
-    }
-    
-    // close sheet
-    [NSApp stopModal];
+    [self setWarningMessage:nil];
 }
 
 
@@ -325,11 +324,13 @@
     switch ([self mode]) {
         case CEMenuKeyBindingsType:
             [[CEKeyBindingManager sharedManager] saveMenuKeyBindings:[self outlineData]];
+            [self setRestoreble:![[CEKeyBindingManager sharedManager] usesDefaultMenuKeyBindings]];
             break;
             
         case CETextKeyBindingsType:
             [[CEKeyBindingManager sharedManager] saveTextKeyBindings:[self outlineData]
                                                                texts:[[self snippetArrayController] content]];
+            [self setRestoreble:![[CEKeyBindingManager sharedManager] usesDefaultTextKeyBindings]];
             break;
     }
 }
@@ -366,7 +367,6 @@
 {
     // clear error
     [self setWarningMessage:nil];
-    [[self OKButton] setEnabled:YES];
     
     // blank key is always valid
     if ([keySpec length] == 0) { return YES; }
@@ -398,7 +398,6 @@
         NSString *printableKey = [CEKeyBindingManager printableKeyStringFromKeySpecChars:keySpec];
         
         [self setWarningMessage:[NSString stringWithFormat:warning, printableKey]];
-        [[self OKButton] setEnabled:NO];
         
         NSBeep();
         return NO;
