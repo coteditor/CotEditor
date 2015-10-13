@@ -2386,6 +2386,12 @@ static NSPoint kTextContainerOrigin;
         NSString *lineString = [[textStorage string] substringWithRange:lineRange];
         NSString *upperLineString = [[textStorage string] substringWithRange:upperLineRange];
         
+        // last line
+        if (![lineString hasSuffix:@"\n"]) {
+            lineString = [lineString stringByAppendingString:@"\n"];
+            upperLineString = [upperLineString substringToIndex:upperLineRange.length - 1];
+        }
+        
         NSString *replacementString = [NSString stringWithFormat:@"%@%@", lineString, upperLineString];
         NSRange editRange = NSMakeRange(upperLineRange.location, [replacementString length]);
         
@@ -2398,7 +2404,9 @@ static NSPoint kTextContainerOrigin;
             for (NSValue *selectedRangeValue in selectedRanges) {
                 NSRange selectedRange = [selectedRangeValue rangeValue];
                 
-                if (NSLocationInRange(selectedRange.location, lineRange)) {
+                if ((selectedRange.location > lineRange.location) ||
+                    (selectedRange.location <= NSMaxRange(lineRange)))
+                {
                     selectedRange.location -= upperLineRange.length;
                     [newSelectedRanges addObject:[NSValue valueWithRange:selectedRange]];
                 }
@@ -2443,6 +2451,13 @@ static NSPoint kTextContainerOrigin;
         NSString *lineString = [[textStorage string] substringWithRange:lineRange];
         NSString *lowerLineString = [[textStorage string] substringWithRange:lowerLineRange];
         
+        // last line
+        if (![lowerLineString hasSuffix:@"\n"]) {
+            lineString = [lineString substringToIndex:lineRange.length - 1];
+            lowerLineString = [lowerLineString stringByAppendingString:@"\n"];
+            lowerLineRange.length += 1;
+        }
+        
         NSString *replacementString = [NSString stringWithFormat:@"%@%@", lowerLineString, lineString];
         NSRange editRange = NSMakeRange(lineRange.location, [replacementString length]);
         
@@ -2455,7 +2470,9 @@ static NSPoint kTextContainerOrigin;
             for (NSValue *selectedRangeValue in selectedRanges) {
                 NSRange selectedRange = [selectedRangeValue rangeValue];
                 
-                if (NSLocationInRange(selectedRange.location, lineRange)) {
+                if ((selectedRange.location > lineRange.location) ||
+                    (selectedRange.location <= NSMaxRange(lineRange)))
+                {
                     selectedRange.location += lowerLineRange.length;
                     [newSelectedRanges addObject:[NSValue valueWithRange:selectedRange]];
                 }
@@ -2560,6 +2577,10 @@ static NSPoint kTextContainerOrigin;
 // ------------------------------------------------------
 {
     NSArray<NSValue *> *replacementRanges = [self selectedLineRanges];
+    
+    // on empty last line
+    if ([replacementRanges count] == 0) { return; }
+    
     NSMutableArray<NSString *> *replacementStrings = [NSMutableArray arrayWithCapacity:[replacementRanges count]];
     
     for (NSValue *_ in replacementRanges) {
