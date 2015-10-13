@@ -299,6 +299,15 @@
 "Completion can be performed manually with: %@ or %@" = "补全可以通过 %@ 或 %@ 手动完成";
 "Select at least one item to enable completion." = "至少选择一个条目来激活补全。";
 
+
+// Genearal pane
+// Autosave setting update alert
+"The change will be applied first at the next launch." = "The change will be applied first at the next launch.";  // FIXME: added
+"Do you want to restart CotEditor now?" = "Do you want to restart CotEditor now?";  // FIXME: added
+"Restart Now" = "Restart Now";  // FIXME: added
+"Later" = "Later";  // FIXME: added
+
+
 // Appearance pane
 // Contextual menu items
 "Rename “%@”" = "给“%@”重新命名";
