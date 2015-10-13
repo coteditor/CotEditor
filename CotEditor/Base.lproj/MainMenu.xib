@@ -198,48 +198,6 @@
                                     <action selector="selectLines:" target="-1" id="MP0-H8-6bm"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Lines" id="Kb8-QD-tYZ">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="Lines" id="BSD-be-CV9">
-                                    <items>
-                                        <menuItem title="Move Up" keyEquivalent="" id="4t7-IA-1r3">
-                                            <modifierMask key="keyEquivalentModifierMask" control="YES" command="YES"/>
-                                            <connections>
-                                                <action selector="moveLineUp:" target="-1" id="vQh-9K-uKp"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Move Down" keyEquivalent="" id="J59-OR-kzC">
-                                            <modifierMask key="keyEquivalentModifierMask" control="YES" command="YES"/>
-                                            <connections>
-                                                <action selector="moveLineDown:" target="-1" id="Nfe-x0-39D"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem isSeparatorItem="YES" id="hVD-Co-9NR"/>
-                                        <menuItem title="Sort" id="OQl-Uo-yfn">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="sortLinesAscending:" target="-1" id="B7y-tD-zyu"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Reverse" id="xhf-NR-D2Q">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="reverseLines:" target="-1" id="LXU-WT-T6K"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem isSeparatorItem="YES" id="Dpo-h5-IyY"/>
-                                        <menuItem title="Delete Line" id="sFn-3j-pY5">
-                                            <string key="keyEquivalent" base64-UTF8="YES">
-CA
-</string>
-                                            <modifierMask key="keyEquivalentModifierMask" shift="YES" command="YES"/>
-                                            <connections>
-                                                <action selector="deleteLine:" target="-1" id="FJR-BG-Nyi"/>
-                                            </connections>
-                                        </menuItem>
-                                    </items>
-                                </menu>
-                            </menuItem>
                             <menuItem isSeparatorItem="YES" id="630">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
@@ -262,40 +220,6 @@ CA
                             <menuItem isSeparatorItem="YES" id="660">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
-                            <menuItem title="Insert Encoding Name" id="661">
-                                <menu key="submenu" title="Insert Encoding Name" id="662">
-                                    <items>
-                                        <menuItem title="as IANA Charset" id="663">
-                                            <connections>
-                                                <action selector="insertIANACharSetName:" target="-1" id="666"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem isSeparatorItem="YES" id="664">
-                                            <modifierMask key="keyEquivalentModifierMask" command="YES"/>
-                                        </menuItem>
-                                        <menuItem title="with “charset=”" id="665">
-                                            <connections>
-                                                <action selector="insertIANACharSetNameWithCharset:" target="-1" id="668"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="with “encoding=”" id="667">
-                                            <connections>
-                                                <action selector="insertIANACharSetNameWithEncoding:" target="-1" id="669"/>
-                                            </connections>
-                                        </menuItem>
-                                    </items>
-                                </menu>
-                            </menuItem>
-                            <menuItem isSeparatorItem="YES" id="174">
-                                <modifierMask key="keyEquivalentModifierMask" command="YES"/>
-                            </menuItem>
-                            <menuItem title="Inspect Character" keyEquivalent="i" id="ToR-yH-ahH">
-                                <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
-                                <connections>
-                                    <action selector="showSelectionInfo:" target="-1" id="W48-su-Cpd"/>
-                                </connections>
-                            </menuItem>
-                            <menuItem isSeparatorItem="YES" id="vE9-qd-dp1"/>
                             <menuItem title="Spelling and Grammar" id="2QI-XD-7pJ">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Spelling" id="rKZ-vK-0OH">
@@ -449,11 +373,6 @@ CA
                             <menuItem isSeparatorItem="YES" id="366">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
-                            <menuItem title="Show Invisible Characters" id="788">
-                                <connections>
-                                    <action selector="toggleInvisibleChars:" target="-1" id="mXA-a0-o4w"/>
-                                </connections>
-                            </menuItem>
                             <menuItem title="Show Page Guide" id="749">
                                 <connections>
                                     <action selector="togglePageGuide:" target="-1" id="obH-4S-DZg"/>
@@ -513,6 +432,44 @@ CA
                 <menuItem title="Format" id="247">
                     <menu key="submenu" title="Format" id="246">
                         <items>
+                            <menuItem title="Line Endings" tag="100" id="294">
+                                <menu key="submenu" title="Line Endings" id="296">
+                                    <items>
+                                        <menuItem title="OS X / Unix (LF)" id="295">
+                                            <connections>
+                                                <action selector="changeLineEndingToLF:" target="-1" id="608"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Classic Mac OS (CR)" tag="1" id="297">
+                                            <connections>
+                                                <action selector="changeLineEndingToCR:" target="-1" id="683"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Windows (CR/LF)" tag="2" id="298">
+                                            <connections>
+                                                <action selector="changeLineEndingToCRLF:" target="-1" id="684"/>
+                                            </connections>
+                                        </menuItem>
+                                    </items>
+                                </menu>
+                            </menuItem>
+                            <menuItem title="File Encoding" tag="4001" id="299">
+                                <menu key="submenu" title="File Encoding" id="300">
+                                    <items>
+                                        <menuItem title="Item" id="301"/>
+                                    </items>
+                                </menu>
+                            </menuItem>
+                            <menuItem title="Syntax Style" tag="4002" id="302">
+                                <menu key="submenu" title="Syntax Style" id="304">
+                                    <items>
+                                        <menuItem title="Item" id="458"/>
+                                    </items>
+                                </menu>
+                            </menuItem>
+                            <menuItem isSeparatorItem="YES" id="453">
+                                <modifierMask key="keyEquivalentModifierMask" command="YES"/>
+                            </menuItem>
                             <menuItem title="Font" id="410">
                                 <menu key="submenu" title="Font" systemMenu="font" id="418">
                                     <items>
@@ -548,63 +505,6 @@ CA
                                         <menuItem title="Anti-aliasing" id="745">
                                             <connections>
                                                 <action selector="toggleAntialias:" target="-1" id="50s-UC-1x5"/>
-                                            </connections>
-                                        </menuItem>
-                                    </items>
-                                </menu>
-                            </menuItem>
-                            <menuItem isSeparatorItem="YES" id="397">
-                                <modifierMask key="keyEquivalentModifierMask" command="YES"/>
-                            </menuItem>
-                            <menuItem title="Wrap Lines" id="286">
-                                <connections>
-                                    <action selector="toggleLineWrap:" target="-1" id="hSl-Yk-C3H"/>
-                                </connections>
-                            </menuItem>
-                            <menuItem title="Use Vertical Orientation" id="bTd-nG-jjc">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                                <connections>
-                                    <action selector="toggleLayoutOrientation:" target="-1" id="IgY-EE-SlR"/>
-                                </connections>
-                            </menuItem>
-                            <menuItem title="Tab Width" id="djM-fI-MkN">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="Tab Width" id="xAm-b4-9CY">
-                                    <items>
-                                        <menuItem title="2" tag="2" id="qs3-we-YzU">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="changeTabWidth:" target="-1" id="wPL-yl-LsJ"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="3" tag="3" id="8hL-SQ-WlX">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="changeTabWidth:" target="-1" id="05y-4Z-6qJ"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="4" tag="4" id="fwb-zD-hBp">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="changeTabWidth:" target="-1" id="hg6-NQ-03T"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="6" tag="6" id="HOF-KZ-dXD">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="changeTabWidth:" target="-1" id="FNx-Jn-DIE"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="8" tag="8" id="9e0-Q5-Oqh">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="changeTabWidth:" target="-1" id="ZaW-Kv-sxL"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem isSeparatorItem="YES" id="wXY-o5-uVy"/>
-                                        <menuItem title="Auto Expand Tabs" id="hsG-8k-OKX">
-                                            <connections>
-                                                <action selector="toggleAutoTabExpand:" target="-1" id="Zjj-9f-F0n"/>
                                             </connections>
                                         </menuItem>
                                     </items>
@@ -659,38 +559,46 @@ CA
                                     </items>
                                 </menu>
                             </menuItem>
-                            <menuItem title="Line Endings" tag="100" id="294">
-                                <menu key="submenu" title="Line Endings" id="296">
+                            <menuItem title="Tab Width" id="djM-fI-MkN">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="Tab Width" id="xAm-b4-9CY">
                                     <items>
-                                        <menuItem title="OS X / Unix (LF)" id="295">
+                                        <menuItem title="2" tag="2" id="qs3-we-YzU">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
-                                                <action selector="changeLineEndingToLF:" target="-1" id="608"/>
+                                                <action selector="changeTabWidth:" target="-1" id="wPL-yl-LsJ"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Classic Mac OS (CR)" tag="1" id="297">
+                                        <menuItem title="3" tag="3" id="8hL-SQ-WlX">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
-                                                <action selector="changeLineEndingToCR:" target="-1" id="683"/>
+                                                <action selector="changeTabWidth:" target="-1" id="05y-4Z-6qJ"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Windows (CR/LF)" tag="2" id="298">
+                                        <menuItem title="4" tag="4" id="fwb-zD-hBp">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
-                                                <action selector="changeLineEndingToCRLF:" target="-1" id="684"/>
+                                                <action selector="changeTabWidth:" target="-1" id="hg6-NQ-03T"/>
                                             </connections>
                                         </menuItem>
-                                    </items>
-                                </menu>
-                            </menuItem>
-                            <menuItem title="File Encoding" tag="4001" id="299">
-                                <menu key="submenu" title="File Encoding" id="300">
-                                    <items>
-                                        <menuItem title="Item" id="301"/>
-                                    </items>
-                                </menu>
-                            </menuItem>
-                            <menuItem title="Syntax Style" tag="4002" id="302">
-                                <menu key="submenu" title="Syntax Style" id="304">
-                                    <items>
-                                        <menuItem title="Item" id="458"/>
+                                        <menuItem title="6" tag="6" id="HOF-KZ-dXD">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="changeTabWidth:" target="-1" id="FNx-Jn-DIE"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="8" tag="8" id="9e0-Q5-Oqh">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="changeTabWidth:" target="-1" id="ZaW-Kv-sxL"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="wXY-o5-uVy"/>
+                                        <menuItem title="Auto Expand Tabs" id="hsG-8k-OKX">
+                                            <connections>
+                                                <action selector="toggleAutoTabExpand:" target="-1" id="Zjj-9f-F0n"/>
+                                            </connections>
+                                        </menuItem>
                                     </items>
                                 </menu>
                             </menuItem>
@@ -701,14 +609,32 @@ CA
                                     </items>
                                 </menu>
                             </menuItem>
-                            <menuItem isSeparatorItem="YES" id="453">
-                                <modifierMask key="keyEquivalentModifierMask" command="YES"/>
-                            </menuItem>
-                            <menuItem title="Comment Selection" keyEquivalent="/" id="LLy-Yx-tXI">
+                            <menuItem title="Show Invisible Characters" id="788">
                                 <connections>
-                                    <action selector="toggleComment:" target="-1" id="NSz-mr-8wt"/>
+                                    <action selector="toggleInvisibleChars:" target="-1" id="mXA-a0-o4w"/>
                                 </connections>
                             </menuItem>
+                            <menuItem isSeparatorItem="YES" id="397">
+                                <modifierMask key="keyEquivalentModifierMask" command="YES"/>
+                            </menuItem>
+                            <menuItem title="Wrap Lines" id="286">
+                                <connections>
+                                    <action selector="toggleLineWrap:" target="-1" id="hSl-Yk-C3H"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Use Vertical Orientation" id="bTd-nG-jjc">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="toggleLayoutOrientation:" target="-1" id="IgY-EE-SlR"/>
+                                </connections>
+                            </menuItem>
+                        </items>
+                    </menu>
+                </menuItem>
+                <menuItem title="Text" id="579">
+                    <attributedString key="attributedTitle"/>
+                    <menu key="submenu" title="Text" id="578">
+                        <items>
                             <menuItem title="Shift Right" keyEquivalent="]" id="454">
                                 <connections>
                                     <action selector="shiftRight:" target="-1" id="456"/>
@@ -717,6 +643,172 @@ CA
                             <menuItem title="Shift Left" keyEquivalent="[" id="455">
                                 <connections>
                                     <action selector="shiftLeft:" target="-1" id="457"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Comment Selection" keyEquivalent="/" id="LLy-Yx-tXI">
+                                <connections>
+                                    <action selector="toggleComment:" target="-1" id="NSz-mr-8wt"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem isSeparatorItem="YES" id="174">
+                                <modifierMask key="keyEquivalentModifierMask" command="YES"/>
+                            </menuItem>
+                            <menuItem title="Lines" id="Kb8-QD-tYZ">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="Lines" id="BSD-be-CV9">
+                                    <items>
+                                        <menuItem title="Move Up" keyEquivalent="" id="4t7-IA-1r3">
+                                            <modifierMask key="keyEquivalentModifierMask" control="YES" command="YES"/>
+                                            <connections>
+                                                <action selector="moveLineUp:" target="-1" id="vQh-9K-uKp"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Move Down" keyEquivalent="" id="J59-OR-kzC">
+                                            <modifierMask key="keyEquivalentModifierMask" control="YES" command="YES"/>
+                                            <connections>
+                                                <action selector="moveLineDown:" target="-1" id="Nfe-x0-39D"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="hVD-Co-9NR"/>
+                                        <menuItem title="Sort" id="OQl-Uo-yfn">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="sortLinesAscending:" target="-1" id="B7y-tD-zyu"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Reverse" id="xhf-NR-D2Q">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="reverseLines:" target="-1" id="LXU-WT-T6K"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="Dpo-h5-IyY"/>
+                                        <menuItem title="Delete Line" id="sFn-3j-pY5">
+                                            <string key="keyEquivalent" base64-UTF8="YES">
+CA
+</string>
+                                            <modifierMask key="keyEquivalentModifierMask" shift="YES" command="YES"/>
+                                            <connections>
+                                                <action selector="deleteLine:" target="-1" id="FJR-BG-Nyi"/>
+                                            </connections>
+                                        </menuItem>
+                                    </items>
+                                </menu>
+                            </menuItem>
+                            <menuItem isSeparatorItem="YES" id="591">
+                                <modifierMask key="keyEquivalentModifierMask" command="YES"/>
+                            </menuItem>
+                            <menuItem title="Transformations" id="GXo-ds-ygp" userLabel="Transformations">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="Transformations" id="b36-nH-7po">
+                                    <items>
+                                        <menuItem title="ASCII to Fullwidth ASCII" id="586">
+                                            <attributedString key="attributedTitle"/>
+                                            <connections>
+                                                <action selector="exchangeFullwidthRoman:" target="-1" id="587"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Fullwidth ASCII to ASCII" id="588">
+                                            <attributedString key="attributedTitle"/>
+                                            <connections>
+                                                <action selector="exchangeHalfwidthRoman:" target="-1" id="590"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="evb-xT-L0u">
+                                            <modifierMask key="keyEquivalentModifierMask" command="YES"/>
+                                        </menuItem>
+                                        <menuItem title="Japanese Text" enabled="NO" id="XWV-by-mnw">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                        </menuItem>
+                                        <menuItem title="Hiragana to Katakana" indentationLevel="1" id="592">
+                                            <connections>
+                                                <action selector="exchangeKatakana:" target="-1" id="593"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Katakana to Hiragana" indentationLevel="1" id="594">
+                                            <connections>
+                                                <action selector="exchangeHiragana:" target="-1" id="596"/>
+                                            </connections>
+                                        </menuItem>
+                                    </items>
+                                </menu>
+                            </menuItem>
+                            <menuItem title="Unicode Normalization" id="599">
+                                <menu key="submenu" title="Unicode Normalization" id="600">
+                                    <items>
+                                        <menuItem title="NFD" id="601">
+                                            <connections>
+                                                <action selector="normalizeUnicodeWithNFD:" target="-1" id="604"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="NFC" tag="1" id="602">
+                                            <connections>
+                                                <action selector="normalizeUnicodeWithNFC:" target="-1" id="685"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="NFKD" tag="2" id="603">
+                                            <connections>
+                                                <action selector="normalizeUnicodeWithNFKD:" target="-1" id="686"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="NFKC" tag="3" id="598">
+                                            <connections>
+                                                <action selector="normalizeUnicodeWithNFKC:" target="-1" id="687"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="NFKC Casefold" tag="4" id="zuR-3K-9fs">
+                                            <connections>
+                                                <action selector="normalizeUnicodeWithNFKCCF:" target="-1" id="LyD-Xf-gVC"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Modified NFD (HFS+)" tag="4" id="NU7-EI-1Ct">
+                                            <connections>
+                                                <action selector="normalizeUnicodeWithModifiedNFD:" target="-1" id="XtM-Si-id6"/>
+                                            </connections>
+                                        </menuItem>
+                                    </items>
+                                </menu>
+                            </menuItem>
+                            <menuItem isSeparatorItem="YES" id="597">
+                                <modifierMask key="keyEquivalentModifierMask" command="YES"/>
+                            </menuItem>
+                            <menuItem title="Insert Encoding Name" id="661">
+                                <menu key="submenu" title="Insert Encoding Name" id="662">
+                                    <items>
+                                        <menuItem title="as IANA Charset" id="663">
+                                            <connections>
+                                                <action selector="insertIANACharSetName:" target="-1" id="666"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="664">
+                                            <modifierMask key="keyEquivalentModifierMask" command="YES"/>
+                                        </menuItem>
+                                        <menuItem title="with “charset=”" id="665">
+                                            <connections>
+                                                <action selector="insertIANACharSetNameWithCharset:" target="-1" id="668"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="with “encoding=”" id="667">
+                                            <connections>
+                                                <action selector="insertIANACharSetNameWithEncoding:" target="-1" id="669"/>
+                                            </connections>
+                                        </menuItem>
+                                    </items>
+                                </menu>
+                            </menuItem>
+                            <menuItem isSeparatorItem="YES" id="640">
+                                <modifierMask key="keyEquivalentModifierMask" command="YES"/>
+                            </menuItem>
+                            <menuItem title="Inspect Character" keyEquivalent="i" id="ToR-yH-ahH">
+                                <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
+                                <connections>
+                                    <action selector="showSelectionInfo:" target="-1" id="W48-su-Cpd"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Edit Color Code…" keyEquivalent="h" id="641">
+                                <modifierMask key="keyEquivalentModifierMask" control="YES" command="YES"/>
+                                <connections>
+                                    <action selector="editColorCode:" target="-1" id="sjl-cK-OVZ"/>
                                 </connections>
                             </menuItem>
                         </items>
@@ -823,89 +915,6 @@ CA
                             <menuItem title="Go To…" keyEquivalent="l" id="eIc-Sj-2mO">
                                 <connections>
                                     <action selector="gotoLocation:" target="-1" id="wIK-1A-nKw"/>
-                                </connections>
-                            </menuItem>
-                        </items>
-                    </menu>
-                </menuItem>
-                <menuItem title="Utility" id="579">
-                    <attributedString key="attributedTitle"/>
-                    <menu key="submenu" title="Utility" id="578">
-                        <items>
-                            <menuItem title="ASCII to Fullwidth ASCII" id="586">
-                                <attributedString key="attributedTitle"/>
-                                <connections>
-                                    <action selector="exchangeFullwidthRoman:" target="-1" id="587"/>
-                                </connections>
-                            </menuItem>
-                            <menuItem title="Fullwidth ASCII to ASCII" id="588">
-                                <attributedString key="attributedTitle"/>
-                                <connections>
-                                    <action selector="exchangeHalfwidthRoman:" target="-1" id="590"/>
-                                </connections>
-                            </menuItem>
-                            <menuItem isSeparatorItem="YES" id="591">
-                                <modifierMask key="keyEquivalentModifierMask" command="YES"/>
-                            </menuItem>
-                            <menuItem title="Japanese Text" enabled="NO" id="XWV-by-mnw">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                            </menuItem>
-                            <menuItem title="Hiragana to Katakana" indentationLevel="1" id="592">
-                                <connections>
-                                    <action selector="exchangeKatakana:" target="-1" id="593"/>
-                                </connections>
-                            </menuItem>
-                            <menuItem title="Katakana to Hiragana" indentationLevel="1" id="594">
-                                <connections>
-                                    <action selector="exchangeHiragana:" target="-1" id="596"/>
-                                </connections>
-                            </menuItem>
-                            <menuItem isSeparatorItem="YES" id="597">
-                                <modifierMask key="keyEquivalentModifierMask" command="YES"/>
-                            </menuItem>
-                            <menuItem title="Unicode Normalization" id="599">
-                                <menu key="submenu" title="Unicode Normalization" id="600">
-                                    <items>
-                                        <menuItem title="NFD" id="601">
-                                            <connections>
-                                                <action selector="normalizeUnicodeWithNFD:" target="-1" id="604"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="NFC" tag="1" id="602">
-                                            <connections>
-                                                <action selector="normalizeUnicodeWithNFC:" target="-1" id="685"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="NFKD" tag="2" id="603">
-                                            <connections>
-                                                <action selector="normalizeUnicodeWithNFKD:" target="-1" id="686"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="NFKC" tag="3" id="598">
-                                            <connections>
-                                                <action selector="normalizeUnicodeWithNFKC:" target="-1" id="687"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="NFKC Casefold" tag="4" id="zuR-3K-9fs">
-                                            <connections>
-                                                <action selector="normalizeUnicodeWithNFKCCF:" target="-1" id="LyD-Xf-gVC"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Modified NFD (HFS+)" tag="4" id="NU7-EI-1Ct">
-                                            <connections>
-                                                <action selector="normalizeUnicodeWithModifiedNFD:" target="-1" id="XtM-Si-id6"/>
-                                            </connections>
-                                        </menuItem>
-                                    </items>
-                                </menu>
-                            </menuItem>
-                            <menuItem isSeparatorItem="YES" id="640">
-                                <modifierMask key="keyEquivalentModifierMask" command="YES"/>
-                            </menuItem>
-                            <menuItem title="Edit Color Code…" keyEquivalent="h" id="641">
-                                <modifierMask key="keyEquivalentModifierMask" control="YES" command="YES"/>
-                                <connections>
-                                    <action selector="editColorCode:" target="-1" id="sjl-cK-OVZ"/>
                                 </connections>
                             </menuItem>
                         </items>
