@@ -216,7 +216,6 @@
     NSOutlineView *outlineView = [self outlineView];
     NSTextField *textField = (NSTextField *)[obj object];
     NSInteger row = [outlineView rowForView:textField];
-    NSTableColumn *tableColumn = [outlineView tableColumnWithIdentifier:CEKeyBindingKeySpecCharsKey];
     id item = [outlineView itemAtRow:row];
     NSString *keySpecChars = [textField stringValue];
     NSString *oldChars = item[CEKeyBindingKeySpecCharsKey];
