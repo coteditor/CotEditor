@@ -58,13 +58,22 @@ NSString *_Nonnull const CEWindowOpacityDidChangeNotification = @"CEWindowOpacit
         
         // observe toggling fullscreen
         [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(willEnterFullscreen:)
+                                                 selector:@selector(willEnterOpaqueMode:)
                                                      name:NSWindowWillEnterFullScreenNotification
                                                    object:self];
-        
         [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(willExitFullscreen:)
+                                                 selector:@selector(willExitOpaqueMode:)
                                                      name:NSWindowWillExitFullScreenNotification
+                                                   object:self];
+        
+        // observe toggling Versions browsing
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(willEnterOpaqueMode:)
+                                                     name:NSWindowWillEnterVersionBrowserNotification
+                                                   object:self];
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(willExitOpaqueMode:)
+                                                     name:NSWindowWillExitVersionBrowserNotification
                                                    object:self];
     }
     return self;
@@ -112,6 +121,11 @@ NSString *_Nonnull const CEWindowOpacityDidChangeNotification = @"CEWindowOpacit
 {
     CGFloat sanitizedAlpha = backgroundAlpha;
     
+    // window should be opaque on version browsing
+    if ([[[self windowController] document] isInViewingMode]) {
+        sanitizedAlpha = 1.0;
+    }
+    
     sanitizedAlpha = MAX(sanitizedAlpha, 0.2);
     sanitizedAlpha = MIN(sanitizedAlpha, 1.0);
     
@@ -127,8 +141,8 @@ NSString *_Nonnull const CEWindowOpacityDidChangeNotification = @"CEWindowOpacit
 #pragma mark Notifications
 
 // ------------------------------------------------------
-/// notify entering fullscreen
-- (void)willEnterFullscreen:(nonnull NSNotification *)notification
+/// notify entering fullscreen or Versions
+- (void)willEnterOpaqueMode:(nonnull NSNotification *)notification
 // ------------------------------------------------------
 {
     [self setStoredBackgroundColor:[self backgroundColor]];
@@ -138,8 +152,8 @@ NSString *_Nonnull const CEWindowOpacityDidChangeNotification = @"CEWindowOpacit
 
 
 // ------------------------------------------------------
-/// notify exit fullscreen
-- (void)willExitFullscreen:(nonnull NSNotification *)notification
+/// notify exit fullscreen or Versions
+- (void)willExitOpaqueMode:(nonnull NSNotification *)notification
 // ------------------------------------------------------
 {
     [self setBackgroundColor:[self storedBackgroundColor]];

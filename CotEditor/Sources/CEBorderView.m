@@ -40,14 +40,12 @@
     // setup layer
     CALayer *layer = [CALayer layer];
     [layer setDelegate:self];
-    [layer setBackgroundColor:[[self fillColor] CGColor]];
     [layer setNeedsDisplay];
     [self setLayer:layer];
     [self setWantsLayer:YES];
     
     // set layer drawing policies
-    [self setLayerContentsRedrawPolicy:NSViewLayerContentsRedrawBeforeViewResize];
-    [self setLayerContentsPlacement:NSViewLayerContentsPlacementScaleAxesIndependently];
+    [self setLayerContentsRedrawPolicy:NSViewLayerContentsRedrawNever];
 }
 
 
@@ -68,17 +66,22 @@
 - (void)drawLayer:(nonnull CALayer *)layer inContext:(nonnull CGContextRef)ctx
 // ------------------------------------------------------
 {
-    NSRect frame = [self frame];
+    CGRect bounds = [layer bounds];
     const CGFloat strokeWidth = 1.0;
     
+    // draw background
+    CGContextSetFillColorWithColor(ctx, [[self fillColor] CGColor]);
+    CGContextFillRect(ctx, bounds);
+    
+    // draw border
     CGContextSetStrokeColorWithColor(ctx, [[self borderColor] CGColor]);
     if ([self drawsTopBorder]) {
-        CGContextMoveToPoint(ctx, NSMinX(frame), NSMaxY(frame) - strokeWidth / 2);
-        CGContextAddLineToPoint(ctx, NSMaxX(frame), NSMaxY(frame) - strokeWidth / 2);
+        CGContextMoveToPoint(ctx, CGRectGetMinX(bounds), CGRectGetMaxY(bounds) - strokeWidth / 2);
+        CGContextAddLineToPoint(ctx, CGRectGetMaxX(bounds), CGRectGetMaxY(bounds) - strokeWidth / 2);
     }
     if ([self drawsBottomBorder]) {
-        CGContextMoveToPoint(ctx ,NSMinX(frame), strokeWidth / 2);
-        CGContextAddLineToPoint(ctx, NSMaxX(frame), strokeWidth / 2);
+        CGContextMoveToPoint(ctx ,CGRectGetMinX(bounds), strokeWidth / 2);
+        CGContextAddLineToPoint(ctx, CGRectGetMaxX(bounds), strokeWidth / 2);
     }
     CGContextStrokePath(ctx);
 }
