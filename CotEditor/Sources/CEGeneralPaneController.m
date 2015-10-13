@@ -101,6 +101,7 @@
     [alert setInformativeText:NSLocalizedString(@"Do you want to restart CotEditor now?", nil)];
     [alert addButtonWithTitle:NSLocalizedString(@"Restart Now", nil)];
     [alert addButtonWithTitle:NSLocalizedString(@"Later", nil)];
+    [alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
     
     [alert beginSheetModalForWindow:[[self view] window]
                       modalDelegate:self
@@ -117,8 +118,19 @@
 - (void)autosaveSettingAlertDidEnd:(nonnull NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(nullable void *)contextInfo
 // ------------------------------------------------------
 {
-    if (returnCode == NSAlertFirstButtonReturn) {  // Restart Now
-        [self relaunchApplication];
+    switch (returnCode) {
+        case NSAlertFirstButtonReturn:  // Restart Now
+            [self relaunchApplication];
+            break;
+            
+        case NSAlertSecondButtonReturn:  // Later
+            // do nothing
+            break;
+            
+        case NSAlertThirdButtonReturn:  // Cancel
+            [[NSUserDefaults standardUserDefaults] setBool:![[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultEnablesAutosaveInPlaceKey]
+                                                    forKey:CEDefaultEnablesAutosaveInPlaceKey];
+            break;
     }
 }
 
