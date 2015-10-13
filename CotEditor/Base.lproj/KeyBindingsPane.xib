@@ -29,7 +29,7 @@
                         <action selector="openHelpAnchor:" target="-1" id="ieE-ay-3iX"/>
                     </connections>
                 </button>
-                <tabView translatesAutoresizingMaskIntoConstraints="NO" id="N7z-Dh-pT6">
+                <tabView initialItem="QZO-GE-ra1" translatesAutoresizingMaskIntoConstraints="NO" id="N7z-Dh-pT6">
                     <rect key="frame" x="13" y="43" width="524" height="361"/>
                     <animations/>
                     <font key="font" metaFont="system"/>
@@ -43,7 +43,7 @@
                         </tabViewItem>
                         <tabViewItem label="Snippets" identifier="2" id="VfI-7K-2Nb">
                             <view key="view" id="Hws-mk-aYY">
-                                <rect key="frame" x="10" y="33" width="504" height="305"/>
+                                <rect key="frame" x="10" y="33" width="504" height="315"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <animations/>
                             </view>
