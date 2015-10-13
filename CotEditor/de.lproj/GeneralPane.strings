@@ -50,10 +50,10 @@
 /* Class = "NSTextFieldCell"; title = "Auto Save documents:"; ObjectID = "Ki4-3Y-AZL"; */
 "Ki4-3Y-AZL.title" = "Automatisch sichern:";
 
-/* Class = "NSButtonCell"; title = "Enable Auto Save and Versions"; ObjectID = "SGo-FL-Pax"; */
-"SGo-FL-Pax.title" = "Automatische Sicherung und Versionen aktivieren";
-/* Class = "NSTextFieldCell"; title = "Some explanation about this option."; ObjectID = "sOa-Ea-zt9"; */
-"sOa-Ea-zt9.title" = "Some explanation about this option.";  // FIXME:
+/* Class = "NSButtonCell"; title = "Enable Auto Save with Versions"; ObjectID = "SGo-FL-Pax"; */
+"SGo-FL-Pax.title" = "Automatische Sicherung mit Versionen aktivieren";
+/* Class = "NSTextFieldCell"; title = "A system feature that automatically overwrites your files while editing. Even if it disabled, CotEditor creates backup covertly for unexpected crash."; ObjectID = "sOa-Ea-zt9"; */
+"sOa-Ea-zt9.title" = "Eine Funktion des Systems, die Ihre Dateien während der Bearbeitung automatisch überschreibt. Selbst wenn es nicht aktiviert, erstellt CotEditor Backups heimlich für den unerwarteten Absturz.";
 
 
 /* Class = "NSTextFieldCell"; title = "When document is modified by another application:"; ObjectID = "x4n-2n-I3p"; */

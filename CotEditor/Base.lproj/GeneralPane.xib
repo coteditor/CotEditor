@@ -14,11 +14,11 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" id="743" userLabel="General Pane">
-            <rect key="frame" x="0.0" y="0.0" width="550" height="462"/>
+            <rect key="frame" x="0.0" y="0.0" width="550" height="490"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="2739">
-                    <rect key="frame" x="167" y="400" width="297" height="18"/>
+                    <rect key="frame" x="167" y="428" width="297" height="18"/>
                     <animations/>
                     <buttonCell key="cell" type="check" title="Inline script menu items into contextual menu" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3309">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -29,7 +29,7 @@
                     </connections>
                 </button>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="1036">
-                    <rect key="frame" x="167" y="424" width="252" height="18"/>
+                    <rect key="frame" x="167" y="452" width="252" height="18"/>
                     <animations/>
                     <buttonCell key="cell" type="check" title="Share find text with other applications" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3307">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -40,7 +40,7 @@
                     </connections>
                 </button>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="1030">
-                    <rect key="frame" x="167" y="376" width="267" height="18"/>
+                    <rect key="frame" x="167" y="404" width="267" height="18"/>
                     <animations/>
                     <buttonCell key="cell" type="check" title="Count each line ending as one character" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3306">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -51,7 +51,7 @@
                     </connections>
                 </button>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="594">
-                    <rect key="frame" x="167" y="294" width="217" height="18"/>
+                    <rect key="frame" x="167" y="322" width="217" height="18"/>
                     <animations/>
                     <buttonCell key="cell" type="check" title="When CotEditor becomes active" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3299">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -62,9 +62,9 @@
                     </connections>
                 </button>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="JLc-Rx-CzI">
-                    <rect key="frame" x="167" y="260" width="209" height="18"/>
+                    <rect key="frame" x="167" y="288" width="212" height="18"/>
                     <animations/>
-                    <buttonCell key="cell" type="check" title="Enable Auto Save and Versions" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="SGo-FL-Pax">
+                    <buttonCell key="cell" type="check" title="Enable Auto Save with Versions" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="SGo-FL-Pax">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
@@ -74,7 +74,7 @@
                     </connections>
                 </button>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="106">
-                    <rect key="frame" x="167" y="318" width="84" height="18"/>
+                    <rect key="frame" x="167" y="346" width="84" height="18"/>
                     <animations/>
                     <buttonCell key="cell" type="check" title="On launch" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3298">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -117,7 +117,7 @@
                     </connections>
                 </textField>
                 <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="bTW-FZ-qkl">
-                    <rect key="frame" x="18" y="319" width="145" height="17"/>
+                    <rect key="frame" x="18" y="347" width="145" height="17"/>
                     <animations/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Open a new document:" usesSingleLineMode="YES" id="zDW-aW-9G8">
                         <font key="font" metaFont="system"/>
@@ -126,7 +126,7 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="mNl-A3-oZJ">
-                    <rect key="frame" x="23" y="261" width="140" height="17"/>
+                    <rect key="frame" x="23" y="289" width="140" height="17"/>
                     <animations/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Auto Save documents:" usesSingleLineMode="YES" id="Ki4-3Y-AZL">
                         <font key="font" metaFont="system"/>
@@ -135,7 +135,7 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="jQj-mP-yhk">
-                    <rect key="frame" x="87" y="425" width="76" height="17"/>
+                    <rect key="frame" x="87" y="453" width="76" height="17"/>
                     <animations/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Application:" usesSingleLineMode="YES" id="lzy-Ei-xlT">
                         <font key="font" metaFont="system"/>
@@ -144,7 +144,7 @@
                     </textFieldCell>
                 </textField>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="596">
-                    <rect key="frame" x="167" y="352" width="185" height="18"/>
+                    <rect key="frame" x="167" y="380" width="185" height="18"/>
                     <animations/>
                     <buttonCell key="cell" type="check" title="Check spelling as you type" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3300">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -211,10 +211,11 @@
                     </connections>
                 </button>
                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="74H-Nx-1dR">
-                    <rect key="frame" x="185" y="244" width="347" height="14"/>
+                    <rect key="frame" x="185" y="244" width="347" height="42"/>
                     <animations/>
-                    <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="Some explanation about this option." id="sOa-Ea-zt9">
+                    <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" id="sOa-Ea-zt9">
                         <font key="font" metaFont="smallSystem"/>
+                        <string key="title">A system feature that automatically overwrites your files while editing. Even if it disabled, CotEditor creates backup covertly for unexpected crash.</string>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
