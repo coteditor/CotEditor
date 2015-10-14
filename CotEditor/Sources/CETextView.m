@@ -2269,32 +2269,11 @@ static NSPoint kTextContainerOrigin;
 - (IBAction)normalizeUnicodeWithModifiedNFD:(nullable id)sender
 // ------------------------------------------------------
 {
-    [self transformSelectionWithActionName:NSLocalizedString( @"Modified NFD", @"name of an Uniocode normalization type")
+    [self transformSelectionWithActionName:NSLocalizedString(@"Modified NFD", @"name of an Uniocode normalization type")
                           operationHandler:^NSString *(NSString *substring)
      {
          return [substring decomposedStringWithHFSPlusMapping];
      }];
-}
-
-
-// ------------------------------------------------------
-/// tell selected string to color code panel
-- (IBAction)editColorCode:(nullable id)sender
-// ------------------------------------------------------
-{
-    NSString *selectedString = [[self string] substringWithRange:[self selectedRange]];
-    
-    [[CEColorCodePanelController sharedController] showWindow:sender];
-    [[CEColorCodePanelController sharedController] setColorWithCode:selectedString];
-}
-
-
-// ------------------------------------------------------
-/// avoid changeing text color by color panel
-- (IBAction)changeColor:(nullable id)sender
-// ------------------------------------------------------
-{
-    // do nothing.
 }
 
 
@@ -2337,6 +2316,37 @@ static NSPoint kTextContainerOrigin;
     [self replaceWithStrings:strings ranges:appliedRanges selectedRanges:newSelectedRanges actionName:actionName];
     
     [self scrollRangeToVisible:[self selectedRange]];
+}
+
+@end
+
+
+
+
+#pragma mark -
+
+@implementation CETextView (ColorCode)
+
+#pragma mark Action Messages
+
+// ------------------------------------------------------
+/// tell selected string to color code panel
+- (IBAction)editColorCode:(nullable id)sender
+// ------------------------------------------------------
+{
+    NSString *selectedString = [[self string] substringWithRange:[self selectedRange]];
+    
+    [[CEColorCodePanelController sharedController] showWindow:sender];
+    [[CEColorCodePanelController sharedController] setColorWithCode:selectedString];
+}
+
+
+// ------------------------------------------------------
+/// avoid changeing text color by color panel
+- (IBAction)changeColor:(nullable id)sender
+// ------------------------------------------------------
+{
+    // do nothing.
 }
 
 @end

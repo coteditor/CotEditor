@@ -111,6 +111,12 @@
 - (IBAction)normalizeUnicodeWithNFKC:(nullable id)sender;
 - (IBAction)normalizeUnicodeWithNFKCCF:(nullable id)sender;
 - (IBAction)normalizeUnicodeWithModifiedNFD:(nullable id)sender;
+
+@end
+
+
+@interface CETextView (ColorCode)
+
 - (IBAction)editColorCode:(nullable id)sender;
 
 @end
