@@ -8,7 +8,7 @@ develop
 ### New Features
 
 - Introduce Auto Save and Versions as an option (in General pane).
-- Add new “Move Line Up”, “Move Line Down”, “Sort Lines”, “Reverse Lines” and “Delete Line” actions to Edit menu.
+- Add new “Move Line Up”, “Move Line Down”, “Sort Lines”, “Reverse Lines” and “Delete Line” actions to new Text menu.
     - They are also added to the AppleScript terms.
 
 
