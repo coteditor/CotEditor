@@ -12,6 +12,7 @@ develop
     - They are also added to the AppleScript terms.
 - Add “Spell Check” button to toolbar icon choices.
     - Customize toolbar to add it to your toolbar.
+- Update Onigmo regular expression engine to 5.15.0.
 
 
 ### Additions/Changes
