@@ -352,6 +352,17 @@
 
     ]
   },
+  "Rich Text": {
+    "extensions": [
+      "rtf"
+    ],
+    "filenames": [
+
+    ],
+    "interpreters": [
+
+    ]
+  },
   "Ruby": {
     "extensions": [
       "rb"

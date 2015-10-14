@@ -12,13 +12,14 @@ develop
     - They are also added to the AppleScript terms.
 - Add “Spell Check” button to toolbar icon choices.
     - Customize toolbar to add it to your toolbar.
-- Update Onigmo regular expression engine to 5.15.0.
+- Add syntax style for “Rich Text”.
 
 
 ### Additions/Changes
 
 - Reconstitute main menu.
 - Embed key bindings editor to Key Bindings pane.
+- Update Onigmo regular expression engine to 5.15.0.
 
 
 
