@@ -298,6 +298,8 @@
 		2AD84CAA1966314100DE49BD /* CEODBEventSender.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD84CA91966314100DE49BD /* CEODBEventSender.m */; };
 		2AD9039B1BCE86A3004F2B8A /* SpellCheck.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 2AD9039A1BCE86A3004F2B8A /* SpellCheck.tiff */; settings = {ASSET_TAGS = (); }; };
 		2AD9039C1BCE86A3004F2B8A /* SpellCheck.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 2AD9039A1BCE86A3004F2B8A /* SpellCheck.tiff */; settings = {ASSET_TAGS = (); }; };
+		2AD9039F1BCEE174004F2B8A /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2AD9039D1BCEE174004F2B8A /* Credits.rtf */; settings = {ASSET_TAGS = (); }; };
+		2AD903A01BCEE174004F2B8A /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2AD9039D1BCEE174004F2B8A /* Credits.rtf */; settings = {ASSET_TAGS = (); }; };
 		2AD9625F1B53496500D46C3A /* NSString+Sandboxing.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD9625E1B53496500D46C3A /* NSString+Sandboxing.m */; };
 		2AE2E9D519D2CF00000D66A9 /* CEEncodingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AE2E9D419D2CF00000D66A9 /* CEEncodingManager.m */; };
 		2AE356461A86D32500E29FEF /* CEClipView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AE356451A86D32500E29FEF /* CEClipView.m */; };
@@ -676,6 +678,7 @@
 		2AD84CA81966314100DE49BD /* CEODBEventSender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEODBEventSender.h; sourceTree = "<group>"; };
 		2AD84CA91966314100DE49BD /* CEODBEventSender.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEODBEventSender.m; sourceTree = "<group>"; };
 		2AD9039A1BCE86A3004F2B8A /* SpellCheck.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = SpellCheck.tiff; sourceTree = "<group>"; };
+		2AD9039E1BCEE174004F2B8A /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = Base; path = Base.lproj/Credits.rtf; sourceTree = "<group>"; };
 		2AD9625D1B53496500D46C3A /* NSString+Sandboxing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Sandboxing.h"; sourceTree = "<group>"; };
 		2AD9625E1B53496500D46C3A /* NSString+Sandboxing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Sandboxing.m"; sourceTree = "<group>"; };
 		2AE2E9D319D2CF00000D66A9 /* CEEncodingManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CEEncodingManager.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -1126,6 +1129,7 @@
 				259C2316077678DE00BA61C5 /* Localizable.strings */,
 				2AF5C3BC1A55072E00C972B5 /* InfoPlist.strings */,
 				2A5E4D7A1A44F0D50072013F /* ServicesMenu.strings */,
+				2AD9039D1BCEE174004F2B8A /* Credits.rtf */,
 				2AEB8B7A19AF73980098D557 /* FileDropGlossary.txt */,
 				2A456C421A1EDCFC00395158 /* ReportTemplate.md */,
 				2A75ACCA19E86DDB00444894 /* CotEditor.sdef */,
@@ -1459,6 +1463,7 @@
 				2A6F0D601B5500E100C2D03C /* FindPanel.xib in Resources */,
 				2A6F0D611B5500E100C2D03C /* SizeSampleWindow.xib in Resources */,
 				2A6F0D621B5500E100C2D03C /* IncompatibleCharsView.xib in Resources */,
+				2AD903A01BCEE174004F2B8A /* Credits.rtf in Resources */,
 				2A6F0D631B5500E100C2D03C /* PreferencesWindow.xib in Resources */,
 				2A6F0D641B5500E100C2D03C /* SyntaxEditSheet.xib in Resources */,
 				2A6F0D651B5500E100C2D03C /* Indicator.xib in Resources */,
@@ -1564,6 +1569,7 @@
 				2A3A759119E77D4F001DAB88 /* MigrationWindow.xib in Resources */,
 				2A149DA719016ABB00A9D6EF /* EditPane.xib in Resources */,
 				2A5B998918D61443009C2F4F /* LineHightPanel.xib in Resources */,
+				2AD9039F1BCEE174004F2B8A /* Credits.rtf in Resources */,
 				2A5D2B9418E1ED420020AA1F /* SyntaxMappingConflictSheet.xib in Resources */,
 				2A149DAD19016ABB00A9D6EF /* WindowPane.xib in Resources */,
 				2A5411C319852C1C008B43DA /* NavigationBar.xib in Resources */,
@@ -2300,6 +2306,14 @@
 				2A69076C1B8443AA00D0F3A2 /* de */,
 			);
 			name = IntegrationPane.xib;
+			sourceTree = "<group>";
+		};
+		2AD9039D1BCEE174004F2B8A /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2AD9039E1BCEE174004F2B8A /* Base */,
+			);
+			name = Credits.rtf;
 			sourceTree = "<group>";
 		};
 		2AEB8B7A19AF73980098D557 /* FileDropGlossary.txt */ = {
