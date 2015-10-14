@@ -99,7 +99,7 @@
 @end
 
 
-@interface CETextView (UtilityMenu)
+@interface CETextView (Transformation)
 
 - (IBAction)exchangeFullwidthRoman:(nullable id)sender;
 - (IBAction)exchangeHalfwidthRoman:(nullable id)sender;

@@ -130,41 +130,12 @@
 /* Class = "NSMenuItem"; title = "Select Line"; ObjectID = "Cwp-ys-LJc"; */
 "Cwp-ys-LJc.title" = "选择行";
 
-/* Class = "NSMenuItem"; title = "Lines"; ObjectID = "Kb8-QD-tYZ"; */
-"Kb8-QD-tYZ.title" = "Lines";  // FIXME: added
-/* Class = "NSMenu"; title = "Lines"; ObjectID = "BSD-be-CV9"; */
-"BSD-be-CV9.title" = "Lines";  // FIXME: added
-/* Class = "NSMenuItem"; title = "Move Up"; ObjectID = "4t7-IA-1r3"; */
-"4t7-IA-1r3.title" = "Move Up";  // FIXME: added
-/* Class = "NSMenuItem"; title = "Move Down"; ObjectID = "J59-OR-kzC"; */
-"J59-OR-kzC.title" = "Move Down";  // FIXME: added
-/* Class = "NSMenuItem"; title = "Sort"; ObjectID = "OQl-Uo-yfn"; */
-"OQl-Uo-yfn.title" = "Sort";  // FIXME: added
-/* Class = "NSMenuItem"; title = "Reverse"; ObjectID = "xhf-NR-D2Q"; */
-"xhf-NR-D2Q.title" = "Reverse";  // FIXME: added
-/* Class = "NSMenuItem"; title = "Delete Line"; ObjectID = "sFn-3j-pY5"; */
-"sFn-3j-pY5.title" = "Delete Line";  // FIXME: added
-
 /* Class = "NSMenuItem"; title = "Input Backslash"; ObjectID = "631"; */
 "631.title" = "输入反斜杠";
 /* Class = "NSMenuItem"; title = "Input Yen Mark"; ObjectID = "633"; */
 "633.title" = "输入日元符号";
 /* Class = "NSMenuItem"; title = "Input Char in Unicode Hex…"; ObjectID = "tWx-pj-3PL"; */
 "tWx-pj-3PL.title" = "用 Unicode 输入字符…";
-
-/* Class = "NSMenuItem"; title = "Insert Encoding Name"; ObjectID = "661"; */
-"661.title" = "插入编码名字";
-/* Class = "NSMenu"; title = "Insert Encoding Name"; ObjectID = "662"; */
-"662.title" = "插入编码名字";
-/* Class = "NSMenuItem"; title = "as IANA Charset"; ObjectID = "663"; */
-"663.title" = "以 IANA 字符集";
-/* Class = "NSMenuItem"; title = "with “charset=”"; ObjectID = "665"; */
-"665.title" = "以“charset=”";
-/* Class = "NSMenuItem"; title = "with “encoding=”"; ObjectID = "667"; */
-"667.title" = "以“encoding=”";
-
-/* Class = "NSMenuItem"; title = "Inspect Character"; ObjectID = "ToR-yH-ahH"; */
-"ToR-yH-ahH.title" = "检视文字";
 
 /* Class = "NSMenuItem"; title = "Spelling and Grammar"; ObjectID = "2QI-XD-7pJ"; */
 "2QI-XD-7pJ.title" = "拼写和语法";
@@ -236,8 +207,6 @@
 /* Class = "NSMenuItem"; title = "Show Status Bar"; ObjectID = "325"; */
 "325.title" = "显示状态栏";
 
-/* Class = "NSMenuItem"; title = "Show Invisible Characters"; ObjectID = "788"; */
-"788.title" = "显示不可见字符";
 /* Class = "NSMenuItem"; title = "Show Page Guide"; ObjectID = "749"; */
 "749.title" = "显示页面指示";
 
@@ -267,43 +236,6 @@
 /* Class = "NSMenu"; title = "Format"; ObjectID = "246"; */
 "246.title" = "格式";
 
-/* Class = "NSMenuItem"; title = "Font"; ObjectID = "410"; */
-"410.title" = "字体";
-/* Class = "NSMenu"; title = "Font"; ObjectID = "418"; */
-"418.title" = "字体";
-
-/* Class = "NSMenuItem"; title = "Show Fonts"; ObjectID = "424"; */
-"424.title" = "显示字体";
-/* Class = "NSMenuItem"; title = "Bigger"; ObjectID = "405"; */
-"405.title" = "较大";
-/* Class = "NSMenuItem"; title = "Smaller"; ObjectID = "404"; */
-"404.title" = "较小";
-/* Class = "NSMenuItem"; title = "Reset to Default"; ObjectID = "574"; */
-"574.title" = "重置";
-/* Class = "NSMenuItem"; title = "Anti-aliasing"; ObjectID = "745"; */
-"745.title" = "抗锯齿";
-
-/* Class = "NSMenuItem"; title = "Wrap Lines"; ObjectID = "286"; */
-"286.title" = "换行";
-/* Class = "NSMenuItem"; title = "Use Vertical Orientation"; ObjectID = "bTd-nG-jjc"; */
-"bTd-nG-jjc.title" = "使用垂直方向";
-
-
-/* Class = "NSMenuItem"; title = "Tab Width"; ObjectID = "djM-fI-MkN"; */
-"djM-fI-MkN.title" = "Tab 宽度";
-/* Class = "NSMenu"; title = "Tab Width"; ObjectID = "xAm-b4-9CY"; */
-"xAm-b4-9CY.title" = "Tab 宽度";
-/* Class = "NSMenuItem"; title = "Auto Expand Tabs"; ObjectID = "hsG-8k-OKX"; */
-"hsG-8k-OKX.title" = "Tab 转为空格";
-
-/* Class = "NSMenuItem"; title = "Line Height"; ObjectID = "751"; */
-"751.title" = "行高";
-/* Class = "NSMenu"; title = "Line Height"; ObjectID = "752"; */
-"752.title" = "行高";
-/* Class = "NSMenuItem"; title = "Custom…"; ObjectID = "772"; */
-"772.title" = "自定义…";
-
-
 /* Class = "NSMenuItem"; title = "Line Endings"; ObjectID = "294"; */
 "294.title" = "行尾";
 /* Class = "NSMenu"; title = "Line Endings"; ObjectID = "296"; */
@@ -325,17 +257,130 @@
 /* Class = "NSMenu"; title = "Syntax Style"; ObjectID = "304"; */
 "304.title" = "语法风格";
 
+/* Class = "NSMenuItem"; title = "Font"; ObjectID = "410"; */
+"410.title" = "字体";
+/* Class = "NSMenu"; title = "Font"; ObjectID = "418"; */
+"418.title" = "字体";
+
+/* Class = "NSMenuItem"; title = "Show Fonts"; ObjectID = "424"; */
+"424.title" = "显示字体";
+/* Class = "NSMenuItem"; title = "Bigger"; ObjectID = "405"; */
+"405.title" = "较大";
+/* Class = "NSMenuItem"; title = "Smaller"; ObjectID = "404"; */
+"404.title" = "较小";
+/* Class = "NSMenuItem"; title = "Reset to Default"; ObjectID = "574"; */
+"574.title" = "重置";
+/* Class = "NSMenuItem"; title = "Anti-aliasing"; ObjectID = "745"; */
+"745.title" = "抗锯齿";
+
+/* Class = "NSMenuItem"; title = "Line Height"; ObjectID = "751"; */
+"751.title" = "行高";
+/* Class = "NSMenu"; title = "Line Height"; ObjectID = "752"; */
+"752.title" = "行高";
+/* Class = "NSMenuItem"; title = "Custom…"; ObjectID = "772"; */
+"772.title" = "自定义…";
+
+/* Class = "NSMenuItem"; title = "Tab Width"; ObjectID = "djM-fI-MkN"; */
+"djM-fI-MkN.title" = "Tab 宽度";
+/* Class = "NSMenu"; title = "Tab Width"; ObjectID = "xAm-b4-9CY"; */
+"xAm-b4-9CY.title" = "Tab 宽度";
+/* Class = "NSMenuItem"; title = "Auto Expand Tabs"; ObjectID = "hsG-8k-OKX"; */
+"hsG-8k-OKX.title" = "Tab 转为空格";
+
+/* Class = "NSMenuItem"; title = "Show Invisible Characters"; ObjectID = "788"; */
+"788.title" = "显示不可见字符";
+
+/* Class = "NSMenuItem"; title = "Wrap Lines"; ObjectID = "286"; */
+"286.title" = "换行";
+/* Class = "NSMenuItem"; title = "Use Vertical Orientation"; ObjectID = "bTd-nG-jjc"; */
+"bTd-nG-jjc.title" = "使用垂直方向";
+
 /* Class = "NSMenuItem"; title = "Theme"; ObjectID = "8z7-Jc-agP"; */
 "8z7-Jc-agP.title" = "主题";
 /* Class = "NSMenu"; title = "Theme"; ObjectID = "165-HJ-Xty"; */
 "165-HJ-Xty.title" = "主题";
 
-/* Class = "NSMenuItem"; title = "omment Selection"; ObjectID = "LLy-Yx-tXI"; */
-"LLy-Yx-tXI.title" = "注释选中内容";
+
+
+// MARK: Text
+
+/* Class = "NSMenu"; title = "Text"; ObjectID = "578"; */
+"578.title" = "文本";
+/* Class = "NSMenuItem"; title = "Text"; ObjectID = "579"; */
+"579.title" = "文本";
+
 /* Class = "NSMenuItem"; title = "Shift Right"; ObjectID = "454"; */
 "454.title" = "右移";
 /* Class = "NSMenuItem"; title = "Shift Left"; ObjectID = "455"; */
 "455.title" = "左移";
+/* Class = "NSMenuItem"; title = "omment Selection"; ObjectID = "LLy-Yx-tXI"; */
+"LLy-Yx-tXI.title" = "注释选中内容";
+
+/* Class = "NSMenuItem"; title = "Lines"; ObjectID = "Kb8-QD-tYZ"; */
+"Kb8-QD-tYZ.title" = "Lines";  // FIXME: added
+/* Class = "NSMenu"; title = "Lines"; ObjectID = "BSD-be-CV9"; */
+"BSD-be-CV9.title" = "Lines";  // FIXME: added
+/* Class = "NSMenuItem"; title = "Move Up"; ObjectID = "4t7-IA-1r3"; */
+"4t7-IA-1r3.title" = "Move Up";  // FIXME: added
+/* Class = "NSMenuItem"; title = "Move Down"; ObjectID = "J59-OR-kzC"; */
+"J59-OR-kzC.title" = "Move Down";  // FIXME: added
+/* Class = "NSMenuItem"; title = "Sort"; ObjectID = "OQl-Uo-yfn"; */
+"OQl-Uo-yfn.title" = "Sort";  // FIXME: added
+/* Class = "NSMenuItem"; title = "Reverse"; ObjectID = "xhf-NR-D2Q"; */
+"xhf-NR-D2Q.title" = "Reverse";  // FIXME: added
+/* Class = "NSMenuItem"; title = "Delete Line"; ObjectID = "sFn-3j-pY5"; */
+"sFn-3j-pY5.title" = "Delete Line";  // FIXME: added
+
+/* Class = "NSMenuItem"; title = "Transformations"; ObjectID = "GXo-ds-ygp"; */
+"GXo-ds-ygp.title" = "转换";
+/* Class = "NSMenu"; title = "Transformations"; ObjectID = "b36-nH-7po"; */
+"b36-nH-7po.title" = "转换";
+
+/* Class = "NSMenuItem"; title = "ASCII to Fullwidth ASCII"; ObjectID = "586"; */
+"586.title" = "ASCII 到全宽 ASCII";
+/* Class = "NSMenuItem"; title = "Fullwidth ASCII to ASCII"; ObjectID = "588"; */
+"588.title" = "全宽 ASCII 到 ASCII";
+
+/* Class = "NSMenuItem"; title = "Japanese Text"; ObjectID = "XWV-by-mnw"; */
+"XWV-by-mnw.title" = "日文文本";
+/* Class = "NSMenuItem"; title = "Hiragana to Katakana"; ObjectID = "592"; */
+"592.title" = "平假名到片假名";
+/* Class = "NSMenuItem"; title = "Katakana to Hiragana"; ObjectID = "594"; */
+"594.title" = "片假名到平假名";
+
+/* Class = "NSMenu"; title = "Unicode Normalization"; ObjectID = "600"; */
+"600.title" = "Unicode 标准化";
+/* Class = "NSMenuItem"; title = "Unicode Normalization"; ObjectID = "599"; */
+"599.title" = "Unicode 标准化";
+
+/* Class = "NSMenuItem"; title = "NFD"; ObjectID = "601"; */
+"601.title" = "NFD";
+/* Class = "NSMenuItem"; title = "NFC"; ObjectID = "602"; */
+"602.title" = "NFC";
+/* Class = "NSMenuItem"; title = "NFKD"; ObjectID = "603"; */
+"603.title" = "NFKD";
+/* Class = "NSMenuItem"; title = "NFKC"; ObjectID = "598"; */
+"598.title" = "NFKC";
+/* Class = "NSMenuItem"; title = "NFKC Casefold"; ObjectID = "zuR-3K-9fs"; */
+"zuR-3K-9fs.title" = "NFKC Casefold";
+/* Class = "NSMenuItem"; title = "Modified NFD (HFS+)"; ObjectID = "NU7-EI-1Ct"; */
+"NU7-EI-1Ct.title" = "修改 NFD (HFS+)";
+
+/* Class = "NSMenuItem"; title = "Insert Encoding Name"; ObjectID = "661"; */
+"661.title" = "插入编码名字";
+/* Class = "NSMenu"; title = "Insert Encoding Name"; ObjectID = "662"; */
+"662.title" = "插入编码名字";
+/* Class = "NSMenuItem"; title = "as IANA Charset"; ObjectID = "663"; */
+"663.title" = "以 IANA 字符集";
+/* Class = "NSMenuItem"; title = "with “charset=”"; ObjectID = "665"; */
+"665.title" = "以“charset=”";
+/* Class = "NSMenuItem"; title = "with “encoding=”"; ObjectID = "667"; */
+"667.title" = "以“encoding=”";
+
+/* Class = "NSMenuItem"; title = "Inspect Character"; ObjectID = "ToR-yH-ahH"; */
+"ToR-yH-ahH.title" = "检视文字";
+/* Class = "NSMenuItem"; title = "Edit Color Code…"; ObjectID = "641"; */
+"641.title" = "编辑颜色代码…";
 
 
 
@@ -384,48 +429,6 @@
 
 /* Class = "NSMenuItem"; title = "Go To…"; ObjectID = "eIc-Sj-2mO"; */
 "eIc-Sj-2mO.title" = "跳转…";
-
-
-
-// MARK: Utility
-
-/* Class = "NSMenu"; title = "Utility"; ObjectID = "578"; */
-"578.title" = "工具";
-/* Class = "NSMenuItem"; title = "Utility"; ObjectID = "579"; */
-"579.title" = "工具";
-
-/* Class = "NSMenuItem"; title = "ASCII to Fullwidth ASCII"; ObjectID = "586"; */
-"586.title" = "ASCII 到全宽 ASCII";
-/* Class = "NSMenuItem"; title = "Fullwidth ASCII to ASCII"; ObjectID = "588"; */
-"588.title" = "全宽 ASCII 到 ASCII";
-
-/* Class = "NSMenuItem"; title = "Japanese Text"; ObjectID = "XWV-by-mnw"; */
-"XWV-by-mnw.title" = "日文文本";
-/* Class = "NSMenuItem"; title = "Hiragana to Katakana"; ObjectID = "592"; */
-"592.title" = "平假名到片假名";
-/* Class = "NSMenuItem"; title = "Katakana to Hiragana"; ObjectID = "594"; */
-"594.title" = "片假名到平假名";
-
-/* Class = "NSMenu"; title = "Unicode Normalization"; ObjectID = "600"; */
-"600.title" = "Unicode 标准化";
-/* Class = "NSMenuItem"; title = "Unicode Normalization"; ObjectID = "599"; */
-"599.title" = "Unicode 标准化";
-
-/* Class = "NSMenuItem"; title = "NFD"; ObjectID = "601"; */
-"601.title" = "NFD";
-/* Class = "NSMenuItem"; title = "NFC"; ObjectID = "602"; */
-"602.title" = "NFC";
-/* Class = "NSMenuItem"; title = "NFKD"; ObjectID = "603"; */
-"603.title" = "NFKD";
-/* Class = "NSMenuItem"; title = "NFKC"; ObjectID = "598"; */
-"598.title" = "NFKC";
-/* Class = "NSMenuItem"; title = "NFKC Casefold"; ObjectID = "zuR-3K-9fs"; */
-"zuR-3K-9fs.title" = "NFKC Casefold";
-/* Class = "NSMenuItem"; title = "Modified NFD (HFS+)"; ObjectID = "NU7-EI-1Ct"; */
-"NU7-EI-1Ct.title" = "修改 NFD (HFS+)";
-
-/* Class = "NSMenuItem"; title = "Edit Color Code…"; ObjectID = "641"; */
-"641.title" = "编辑颜色代码…";
 
 
 

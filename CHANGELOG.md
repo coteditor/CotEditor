@@ -14,6 +14,7 @@ develop
 
 ### Additions/Changes
 
+- Reconstitute main menu.
 - Embed key bindings editor to Key Bindings pane.
 
 

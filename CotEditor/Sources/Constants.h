@@ -386,8 +386,8 @@ typedef NS_ENUM(NSUInteger, CEMainMenuIndex) {
     CEEditMenuIndex,
     CEViewMenuIndex,
     CEFormatMenuIndex,
+    CETextMenuIndex,
     CEFindMenuIndex,
-    CEUtilityMenuIndex,
     CEWindowMenuIndex,
     CEScriptMenuIndex,
 };

@@ -510,12 +510,6 @@ static NSPoint kTextContainerOrigin;
     // append a separator
     [menu addItem:[NSMenuItem separatorItem]];
     
-    // append Utility menu
-    NSMenuItem *utilityMenuItem = [[NSApp mainMenu] itemAtIndex:CEUtilityMenuIndex];
-    if (utilityMenuItem) {
-        [menu addItem:[utilityMenuItem copy]];
-    }
-    
     // append Script menu
     NSMenu *scriptMenu = [[CEScriptManager sharedManager] contexualMenu];
     if (scriptMenu) {
@@ -2151,7 +2145,7 @@ static NSPoint kTextContainerOrigin;
 
 #pragma mark -
 
-@implementation CETextView (UtilityMenu)
+@implementation CETextView (Transformation)
 
 #pragma mark Action Messages
 
