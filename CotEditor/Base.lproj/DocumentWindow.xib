@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="8191" systemVersion="15A282b" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="8191"/>
@@ -293,10 +293,10 @@
                             </popUpButtonCell>
                         </popUpButton>
                     </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="BBDC186D-4E5D-425D-B728-8CB0614989B6" explicitItemIdentifier="shareItemID" label="Share" paletteLabel="Share" toolTip="Share document file" image="NSShareTemplate" id="tZT-2A-nIl">
+                    <toolbarItem implicitItemIdentifier="BBDC186D-4E5D-425D-B728-8CB0614989B6" explicitItemIdentifier="shareItemID" label="Share" paletteLabel="Share" toolTip="Share document file" tag="23" image="NSShareTemplate" id="tZT-2A-nIl">
                         <size key="minSize" width="48" height="32"/>
                         <size key="maxSize" width="48" height="32"/>
-                        <button key="view" verticalHuggingPriority="750" id="b09-OH-vIj">
+                        <button key="view" verticalHuggingPriority="750" tag="23" id="b09-OH-vIj">
                             <rect key="frame" x="0.0" y="14" width="48" height="32"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <animations/>
@@ -393,6 +393,11 @@
                             <action selector="toggleLayoutOrientation:" target="-1" id="7Tf-cM-6rK"/>
                         </connections>
                     </toolbarItem>
+                    <toolbarItem implicitItemIdentifier="4251B6EB-CC94-4B12-A5BF-180C960C6F34" explicitItemIdentifier="spellCheckItemID" label="Spell Check" paletteLabel="Spell Check" toolTip="Show spelling and grammer panel" tag="24" image="SpellCheck" id="Ypa-xH-pVN">
+                        <connections>
+                            <action selector="showGuessPanel:" target="-1" id="fmq-oA-o9X"/>
+                        </connections>
+                    </toolbarItem>
                     <toolbarItem implicitItemIdentifier="CFB65E98-C6E9-477E-9BC5-8826E0A730E6" explicitItemIdentifier="editColorCodeItemID" label="Color Code" paletteLabel="Edit Color Code" toolTip="Open Color Code Editor and set selection as color code" tag="21" image="EditColorCode" id="77o-kx-gNj">
                         <connections>
                             <action selector="editColorCode:" target="-1" id="KTA-7D-1Fm"/>
@@ -472,6 +477,7 @@
         <image name="ShiftLeft" width="32" height="32"/>
         <image name="ShiftRight" width="32" height="32"/>
         <image name="SmallerFont" width="32" height="32"/>
+        <image name="SpellCheck" width="32" height="32"/>
         <image name="StatusBar_Show" width="32" height="32"/>
         <image name="VerticalOrientation_On" width="32" height="32"/>
         <image name="WrapLines_On" width="32" height="32"/>

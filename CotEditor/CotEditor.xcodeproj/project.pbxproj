@@ -296,6 +296,8 @@
 		2AD67C2A1AA75E7F0078BB95 /* CEFindPanelTextClipView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD67C291AA75E7F0078BB95 /* CEFindPanelTextClipView.m */; };
 		2AD67C2F1AA7651B0078BB95 /* CEFindPanelLayoutManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD67C2E1AA7651B0078BB95 /* CEFindPanelLayoutManager.m */; };
 		2AD84CAA1966314100DE49BD /* CEODBEventSender.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD84CA91966314100DE49BD /* CEODBEventSender.m */; };
+		2AD9039B1BCE86A3004F2B8A /* SpellCheck.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 2AD9039A1BCE86A3004F2B8A /* SpellCheck.tiff */; settings = {ASSET_TAGS = (); }; };
+		2AD9039C1BCE86A3004F2B8A /* SpellCheck.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 2AD9039A1BCE86A3004F2B8A /* SpellCheck.tiff */; settings = {ASSET_TAGS = (); }; };
 		2AD9625F1B53496500D46C3A /* NSString+Sandboxing.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD9625E1B53496500D46C3A /* NSString+Sandboxing.m */; };
 		2AE2E9D519D2CF00000D66A9 /* CEEncodingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AE2E9D419D2CF00000D66A9 /* CEEncodingManager.m */; };
 		2AE356461A86D32500E29FEF /* CEClipView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AE356451A86D32500E29FEF /* CEClipView.m */; };
@@ -673,6 +675,7 @@
 		2AD67C2E1AA7651B0078BB95 /* CEFindPanelLayoutManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CEFindPanelLayoutManager.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		2AD84CA81966314100DE49BD /* CEODBEventSender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEODBEventSender.h; sourceTree = "<group>"; };
 		2AD84CA91966314100DE49BD /* CEODBEventSender.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEODBEventSender.m; sourceTree = "<group>"; };
+		2AD9039A1BCE86A3004F2B8A /* SpellCheck.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = SpellCheck.tiff; sourceTree = "<group>"; };
 		2AD9625D1B53496500D46C3A /* NSString+Sandboxing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Sandboxing.h"; sourceTree = "<group>"; };
 		2AD9625E1B53496500D46C3A /* NSString+Sandboxing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Sandboxing.m"; sourceTree = "<group>"; };
 		2AE2E9D319D2CF00000D66A9 /* CEEncodingManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CEEncodingManager.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -1342,6 +1345,7 @@
 				8C3E2D5D0808E210009894D1 /* WrapLines_On.tiff */,
 				2AC2C1D619881543007968CB /* VerticalOrientation_Off.tiff */,
 				2AC2C1D719881543007968CB /* VerticalOrientation_On.tiff */,
+				2AD9039A1BCE86A3004F2B8A /* SpellCheck.tiff */,
 				2A5B0AF4190723AC00B6A51C /* EditColorCode.tiff */,
 				8C5208090880BAAF005734F2 /* RecolorAll.tiff */,
 			);
@@ -1476,6 +1480,7 @@
 				2A6F0D751B5500E100C2D03C /* SyntaxMappingConflictSheet.xib in Resources */,
 				2A6F0D761B5500E100C2D03C /* WindowPane.xib in Resources */,
 				2A6F0D771B5500E100C2D03C /* NavigationBar.xib in Resources */,
+				2AD9039C1BCE86A3004F2B8A /* SpellCheck.tiff in Resources */,
 				2A6F0D781B5500E100C2D03C /* ColorCodePanelAccessory.xib in Resources */,
 				2A6F0D791B5500E100C2D03C /* FileDropPane.xib in Resources */,
 				2A6F0D7A1B5500E100C2D03C /* FormatPane.xib in Resources */,
@@ -1527,6 +1532,7 @@
 				2A1EB5C419AD469500C1E37E /* Images.xcassets in Resources */,
 				2A3A758E19E77C84001DAB88 /* Syntaxes in Resources */,
 				2ABC76241909BF5200D2B592 /* Themes in Resources */,
+				2AD9039B1BCE86A3004F2B8A /* SpellCheck.tiff in Resources */,
 				2A9871A919AEABDB0081BADB /* KeyBindings in Resources */,
 				2A75ACCB19E86DDB00444894 /* CotEditor.sdef in Resources */,
 				2A6E3F3D19B5218300A63E97 /* CotEditor.help in Resources */,
