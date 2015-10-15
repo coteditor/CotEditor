@@ -242,7 +242,7 @@
 			<key>CFBundleTypeIconFile</key>
 			<string>C#Icon</string>
 			<key>CFBundleTypeName</key>
-			<string>C# Source</string>
+			<string>C# source</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>LSTypeIsPackage</key>
@@ -289,6 +289,22 @@
 			<array>
 				<string>public.css</string>
 			</array>
+			<key>LSTypeIsPackage</key>
+			<integer>0</integer>
+			<key>NSDocumentClass</key>
+			<string>CEDocument</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>d</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>DIcon</string>
+			<key>CFBundleTypeName</key>
+			<string>D source</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>

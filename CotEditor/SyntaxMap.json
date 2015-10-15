@@ -81,6 +81,17 @@
       "coffee"
     ]
   },
+  "D": {
+    "extensions": [
+      "d"
+    ],
+    "filenames": [
+
+    ],
+    "interpreters": [
+      "rdmd"
+    ]
+  },
   "DTD": {
     "extensions": [
       "dtd"
