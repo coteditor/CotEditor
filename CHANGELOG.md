@@ -19,6 +19,8 @@ develop
 
 - Reconstitute main menu.
 - Embed key bindings editor to Key Bindings pane.
+- Update “Shell Script” syntax style:
+    - Completely rewrite.
 - Temporary hide the “Live Update” checkbox in the find panel since this feature by OgreKit framework has actually not worked correctly in the latest versions.
 - Update Onigmo regular expression engine to 5.15.0.
 
