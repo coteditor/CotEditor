@@ -12,7 +12,7 @@ develop
     - They are also added to the AppleScript terms.
 - Add “Spell Check” button to toolbar icon choices.
     - Customize toolbar to add it to your toolbar.
-- Add syntax style for “Rich Text”.
+- Add syntax style for “Rich Text Format”.
 
 
 ### Additions/Changes

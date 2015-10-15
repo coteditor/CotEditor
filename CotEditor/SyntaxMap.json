@@ -352,7 +352,7 @@
 
     ]
   },
-  "Rich Text": {
+  "Rich Text Format": {
     "extensions": [
       "rtf"
     ],
