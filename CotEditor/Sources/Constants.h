@@ -146,6 +146,7 @@ extern NSString *_Nonnull const CEDefaultTabWidthKey;
 extern NSString *_Nonnull const CEDefaultAutoIndentKey;
 extern NSString *_Nonnull const CEDefaultEnablesHangingIndentKey;
 extern NSString *_Nonnull const CEDefaultHangingIndentWidthKey;
+extern NSString *_Nonnull const CEDefaultDetectsIndentStyleKey;
 extern NSString *_Nonnull const CEDefaultShowInvisiblesKey;
 extern NSString *_Nonnull const CEDefaultShowInvisibleSpaceKey;
 extern NSString *_Nonnull const CEDefaultInvisibleSpaceKey;

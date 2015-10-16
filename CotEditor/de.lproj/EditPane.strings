@@ -49,6 +49,8 @@
 "3287.title" = "Einzugsweite:";
 /* Class = "NSTextFieldCell"; title = "spaces"; ObjectID = "as9-us-CuG"; */
 "as9-us-CuG.title" = "Leerraum";
+/* Class = "NSButtonCell"; title = "Detect indent style on document opening"; ObjectID = "Cte-hW-0M3"; */
+"Cte-hW-0M3.title" = "Einzugstil beim Dokumentöffnen detektieren";
 
 
 /* Class = "NSTextFieldCell"; title = "Comment:"; ObjectID = "EDl-AJ-1dK"; */

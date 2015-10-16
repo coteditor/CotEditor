@@ -145,6 +145,7 @@ NSString *_Nonnull const CEDefaultTabWidthKey = @"tabWidth";
 NSString *_Nonnull const CEDefaultAutoIndentKey = @"autoIndent";
 NSString *_Nonnull const CEDefaultEnablesHangingIndentKey = @"enableHangingIndent";
 NSString *_Nonnull const CEDefaultHangingIndentWidthKey = @"hangingIndentWidth";
+NSString *_Nonnull const CEDefaultDetectsIndentStyleKey = @"detectsIndentStyle";
 NSString *_Nonnull const CEDefaultShowInvisiblesKey = @"showInvisibles";
 NSString *_Nonnull const CEDefaultShowInvisibleSpaceKey = @"showInvisibleSpace";
 NSString *_Nonnull const CEDefaultInvisibleSpaceKey = @"invisibleSpace";

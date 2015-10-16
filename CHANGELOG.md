@@ -10,6 +10,7 @@ develop
 - Introduce Auto Save and Versions as an option (in General pane).
 - Add new actions handling selected lines to the new Text menu > Lines.
     - They are also added to the AppleScript terms.
+- Detect indent style on file opening and set tab expand automatically.
 - Add “Spell Check” button to toolbar icon choices.
     - Customize toolbar to add it to your toolbar.
 - Add syntax styles for “D” and “Rich Text Format”.
