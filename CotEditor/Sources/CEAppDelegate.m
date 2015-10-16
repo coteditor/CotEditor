@@ -136,6 +136,7 @@
                                                CEDefaultAutoIndentKey: @YES,
                                                CEDefaultEnablesHangingIndentKey: @YES,
                                                CEDefaultHangingIndentWidthKey: @0U,
+                                               CEDefaultDetectsIndentStyleKey: @YES,
                                                CEDefaultShowInvisiblesKey: @YES,
                                                CEDefaultShowInvisibleSpaceKey: @NO,
                                                CEDefaultInvisibleSpaceKey: @0U,
