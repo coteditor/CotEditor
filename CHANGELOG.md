@@ -28,6 +28,7 @@ develop
 ### Fixes
 
 - Fix an issue where application could crash on window restoration.
+- Fix some typos in syntax styles “Julia” and “SQL”.
 
 
 
