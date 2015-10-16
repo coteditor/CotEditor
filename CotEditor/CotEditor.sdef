@@ -145,6 +145,9 @@
             <responds-to command="reverse lines">
                 <cocoa method="handleReverseLinesScriptCommand:"/>
             </responds-to>
+            <responds-to command="delete duplicate line">
+                <cocoa method="handleDeleteDuplicateLineScriptCommand:"/>
+            </responds-to>
             <responds-to command="comment out">
                 <cocoa method="handleCommentOutScriptCommand:"/>
             </responds-to>
@@ -283,6 +286,11 @@
         <command name="reverse lines" code="cEd1Revl" description="Reverse selected lines">
             <access-group identifier="com.coteditor.CotEditor.edit" access="rw"/>
             <direct-parameter type="text selection" description="The selection to reverse"/>
+        </command>
+        
+        <command name="delete duplicate line" code="cEd1Dldp" description="Delete duplicate lines in selection">
+            <access-group identifier="com.coteditor.CotEditor.edit" access="rw"/>
+            <direct-parameter type="text selection" description="The selection to check duplication"/>
         </command>
         
         <command name="comment out" code="cEd1Cout" description="Append comment delimiters to selected text if possible.">

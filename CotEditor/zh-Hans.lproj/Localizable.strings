@@ -184,6 +184,7 @@
 "Move Line" = "Move Line";  // FIXME: added
 "Sort Lines" = "Sort Lines";  // FIXME: added
 "Reverse Lines" = "Reverse Lines";  // FIXME: added
+"Remove Duplicate Lines" = "Remove Duplicate Lines";  // FIXME: added
 "Delete Line" = "Delete Line";  // FIXME: added
 
 // Menu items

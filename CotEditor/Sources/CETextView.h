@@ -128,6 +128,7 @@
 - (IBAction)moveLineDown:(nullable id)sender;
 - (IBAction)sortLinesAscending:(nullable id)sender;
 - (IBAction)reverseLines:(nullable id)sender;
+- (IBAction)deleteDuplicateLine:(nullable id)sender;
 - (IBAction)deleteLine:(nullable id)sender;
 
 @end

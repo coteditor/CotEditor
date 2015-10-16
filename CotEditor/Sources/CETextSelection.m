@@ -266,7 +266,7 @@
 
 
 // ------------------------------------------------------
-/// swap selected lines with the line just below
+/// sort selected lines ascending
 - (void)handleSortLinesAscendingScriptCommand:(NSScriptCommand *)command
 // ------------------------------------------------------
 {
@@ -275,11 +275,20 @@
 
 
 // ------------------------------------------------------
-/// swap selected lines with the line just below
+/// reverse selected lines
 - (void)handleReverseLinesScriptCommand:(NSScriptCommand *)command
 // ------------------------------------------------------
 {
     [[[[self document] editor] focusedTextView] reverseLines:command];
+}
+
+
+// ------------------------------------------------------
+/// delete duplicate lines in selection
+- (void)handleDeleteDuplicateLineScriptCommand:(NSScriptCommand *)command
+// ------------------------------------------------------
+{
+    [[[[self document] editor] focusedTextView] deleteDuplicateLine:command];
 }
 
 

@@ -185,6 +185,7 @@
 "Move Line" = "Zeile verschieben";
 "Sort Lines" = "Zeilen sortieren";
 "Reverse Lines" = "Zeilen umdrehen";
+"Remove Duplicate Lines" = "Doppelte Zeilen löschen";
 "Delete Line" = "Zeile löschen";
 
 // Menu items

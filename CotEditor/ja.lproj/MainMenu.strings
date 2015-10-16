@@ -327,6 +327,8 @@
 "OQl-Uo-yfn.title" = "ソート";
 /* Class = "NSMenuItem"; title = "Reverse"; ObjectID = "xhf-NR-D2Q"; */
 "xhf-NR-D2Q.title" = "反転";
+/* Class = "NSMenuItem"; title = "Delete Duplicates"; ObjectID = "bjv-m0-tZq"; */
+"bjv-m0-tZq.title" = "重複を削除";
 /* Class = "NSMenuItem"; title = "Delete Line"; ObjectID = "sFn-3j-pY5"; */
 "sFn-3j-pY5.title" = "行を削除";
 

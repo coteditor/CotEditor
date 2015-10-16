@@ -2578,6 +2578,65 @@ static NSPoint kTextContainerOrigin;
 
 
 // ------------------------------------------------------
+/// remove duplicate lines in selection
+- (IBAction)deleteDuplicateLine:(nullable id)sender
+// ------------------------------------------------------
+{
+    if ([self selectedRange].length == 0) { return; }
+    
+    NSMutableArray<NSValue *> *replacementRanges = [NSMutableArray array];
+    NSMutableArray<NSString *> *replacementStrings = [NSMutableArray array];
+    NSMutableOrderedSet<NSString *> *uniqueLines = [NSMutableOrderedSet orderedSet];
+    NSUInteger processedCount = 0;
+    
+    // collect duplicate lines
+    for (NSValue *rangeValue in [self selectedRanges]) {
+        NSRange range = [rangeValue rangeValue];
+        NSRange lineRange = [[self string] lineRangeForRange:range];
+        NSString *targetString = [[self string] substringWithRange:lineRange];
+        NSArray<NSString *> *lines = [targetString componentsSeparatedByString:@"\n"];
+        
+        // filter duplicate lines
+        [uniqueLines addObjectsFromArray:lines];
+        
+        NSRange targetLinesRange = NSMakeRange(processedCount, [uniqueLines count] - processedCount);
+        processedCount += targetLinesRange.length;
+        
+        // do nothing if no duplicate line exists
+        if (targetLinesRange.length == [lines count]) { continue; }
+        
+        NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:targetLinesRange];
+        NSString *replacementString = [[uniqueLines objectsAtIndexes:indexSet] componentsJoinedByString:@"\n"];
+        
+        // append last new line only if the original selected lineRange has a new line at the end
+        if ([targetString hasSuffix:@"\n"]) {
+            replacementString = [replacementString stringByAppendingString:@"\n"];
+        }
+        
+        [replacementStrings addObject:replacementString];
+        [replacementRanges addObject:[NSValue valueWithRange:lineRange]];
+    }
+    
+    // return if no line to be removed
+    if ([replacementRanges count] == 0) { return; }
+    if (![self shouldChangeTextInRanges:replacementRanges replacementStrings:replacementStrings]) { return; }
+    
+    // delete duplicate lines
+    NSTextStorage *textStorage = [self textStorage];
+    [replacementStrings enumerateObjectsWithOptions:NSEnumerationReverse
+                                         usingBlock:^(NSString *_Nonnull replacementString, NSUInteger idx, BOOL * _Nonnull stop)
+     {
+         NSRange replacementRange = [replacementRanges[idx] rangeValue];
+         [textStorage replaceCharactersInRange:replacementRange withString:replacementString];
+     }];
+    [self didChangeText];
+    
+    [[self undoManager] setActionName:NSLocalizedString(@"Delete Duplicate Lines", @"action name")];
+}
+
+
+
+// ------------------------------------------------------
 /// remove selected lines
 - (IBAction)deleteLine:(nullable id)sender
 // ------------------------------------------------------

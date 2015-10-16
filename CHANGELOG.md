@@ -8,7 +8,7 @@ develop
 ### New Features
 
 - Introduce Auto Save and Versions as an option (in General pane).
-- Add new “Move Line Up”, “Move Line Down”, “Sort Lines”, “Reverse Lines” and “Delete Line” actions to new Text menu.
+- Add new actions handling selected lines to the new Text menu > Lines.
     - They are also added to the AppleScript terms.
 - Add “Spell Check” button to toolbar icon choices.
     - Customize toolbar to add it to your toolbar.

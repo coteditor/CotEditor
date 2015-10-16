@@ -328,6 +328,8 @@
 "OQl-Uo-yfn.title" = "Sort";  // FIXME: added
 /* Class = "NSMenuItem"; title = "Reverse"; ObjectID = "xhf-NR-D2Q"; */
 "xhf-NR-D2Q.title" = "Reverse";  // FIXME: added
+/* Class = "NSMenuItem"; title = "Delete Duplicates"; ObjectID = "bjv-m0-tZq"; */
+"bjv-m0-tZq.title" = "Delete Duplicates";  // FIXME: added
 /* Class = "NSMenuItem"; title = "Delete Line"; ObjectID = "sFn-3j-pY5"; */
 "sFn-3j-pY5.title" = "Delete Line";  // FIXME: added
 

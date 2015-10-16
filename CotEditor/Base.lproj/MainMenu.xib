@@ -682,6 +682,12 @@
                                                 <action selector="reverseLines:" target="-1" id="LXU-WT-T6K"/>
                                             </connections>
                                         </menuItem>
+                                        <menuItem title="Delete Duplicates" id="bjv-m0-tZq">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="deleteDuplicateLine:" target="-1" id="ldW-5W-PtK"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem isSeparatorItem="YES" id="Dpo-h5-IyY"/>
                                         <menuItem title="Delete Line" id="sFn-3j-pY5">
                                             <string key="keyEquivalent" base64-UTF8="YES">
