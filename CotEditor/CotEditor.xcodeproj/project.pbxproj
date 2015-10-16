@@ -92,6 +92,8 @@
 		2A63122A19C25CF80088C5C6 /* CEHexColorTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A63122919C25CF80088C5C6 /* CEHexColorTransformer.m */; };
 		2A63122E19C2D30C0088C5C6 /* CEThemeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A63122D19C2D30C0088C5C6 /* CEThemeViewController.m */; };
 		2A63123119C2D3B60088C5C6 /* ThemeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A63122F19C2D3B60088C5C6 /* ThemeView.xib */; };
+		2A6415941BD10EF40080358E /* NSString+Indentation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A6415931BD10EF30080358E /* NSString+Indentation.m */; settings = {ASSET_TAGS = (); }; };
+		2A6415951BD10EFA0080358E /* NSString+Indentation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A6415931BD10EF30080358E /* NSString+Indentation.m */; settings = {ASSET_TAGS = (); }; };
 		2A68F93518F9995500673440 /* CEThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A68F93418F9995500673440 /* CEThemeManager.m */; };
 		2A68F93818FB04F400673440 /* CEMenuItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A68F93718FB04F300673440 /* CEMenuItemCell.m */; };
 		2A6E3F3D19B5218300A63E97 /* CotEditor.help in Resources */ = {isa = PBXBuildFile; fileRef = 2A6E3F3C19B5218300A63E97 /* CotEditor.help */; };
@@ -476,6 +478,8 @@
 		2A63122919C25CF80088C5C6 /* CEHexColorTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CEHexColorTransformer.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		2A63122C19C2D30C0088C5C6 /* CEThemeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEThemeViewController.h; sourceTree = "<group>"; };
 		2A63122D19C2D30C0088C5C6 /* CEThemeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEThemeViewController.m; sourceTree = "<group>"; };
+		2A6415921BD10EF30080358E /* NSString+Indentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Indentation.h"; sourceTree = "<group>"; };
+		2A6415931BD10EF30080358E /* NSString+Indentation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Indentation.m"; sourceTree = "<group>"; };
 		2A68F93318F9995500673440 /* CEThemeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEThemeManager.h; sourceTree = "<group>"; };
 		2A68F93418F9995500673440 /* CEThemeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEThemeManager.m; sourceTree = "<group>"; };
 		2A68F93618FB04F300673440 /* CEMenuItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEMenuItemCell.h; sourceTree = "<group>"; };
@@ -966,6 +970,8 @@
 				2A2BDF0C198A899E0029848B /* NSString+JapaneseTransform.m */,
 				2A88A78E1B8B87C90055B9AE /* NSString+Normalization.h */,
 				2A88A78F1B8B87C90055B9AE /* NSString+Normalization.m */,
+				2A6415921BD10EF30080358E /* NSString+Indentation.h */,
+				2A6415931BD10EF30080358E /* NSString+Indentation.m */,
 				2AD9625D1B53496500D46C3A /* NSString+Sandboxing.h */,
 				2AD9625E1B53496500D46C3A /* NSString+Sandboxing.m */,
 				2A1068C11A745FCE001DB9AA /* NSURL+Xattr.h */,
@@ -1760,6 +1766,7 @@
 				2A6F0DCE1B5500E100C2D03C /* CEMigrationWindowController.m in Sources */,
 				2A6F0DCF1B5500E100C2D03C /* CEShortcutKeyField.m in Sources */,
 				2A6F0DD01B5500E100C2D03C /* CEFindPanelTextClipView.m in Sources */,
+				2A6415951BD10EFA0080358E /* NSString+Indentation.m in Sources */,
 				2A6F0DD11B5500E100C2D03C /* CEFindPanelLayoutManager.m in Sources */,
 				2A6F0DD21B5500E100C2D03C /* CETheme.m in Sources */,
 				2A6F0DD31B5500E100C2D03C /* CEMenuItemCell.m in Sources */,
@@ -1868,6 +1875,7 @@
 				2AE356461A86D32500E29FEF /* CEClipView.m in Sources */,
 				2AFFB71B18D7F18300118477 /* CEGoToSheetController.m in Sources */,
 				2A3FB2AD18ECEFF200D9CB2C /* CESyntaxEditSheetController.m in Sources */,
+				2A6415941BD10EF40080358E /* NSString+Indentation.m in Sources */,
 				25B2C23707FA667400F4EFC7 /* CELineNumberView.m in Sources */,
 				2AD5322A19779FD000A925CA /* CELineHeightTransformer.m in Sources */,
 				2A149DB91901788000A9D6EF /* CEPrintPaneController.m in Sources */,
