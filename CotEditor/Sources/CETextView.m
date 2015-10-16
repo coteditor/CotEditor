@@ -213,7 +213,9 @@ static NSPoint kTextContainerOrigin;
                 return NSMaxRange(range) <= length;
             }]];
             
-            [self setSelectedRanges:selectedRanges];
+            if ([selectedRanges count] > 0) {
+                [self setSelectedRanges:selectedRanges];
+            }
         }
         
         // perform scroll on the next run-loop
@@ -2576,7 +2578,7 @@ static NSPoint kTextContainerOrigin;
 
 
 // ------------------------------------------------------
-/// move selected line down
+/// remove selected lines
 - (IBAction)deleteLine:(nullable id)sender
 // ------------------------------------------------------
 {

@@ -25,6 +25,11 @@ develop
 - Update Onigmo regular expression engine to 5.15.0.
 
 
+### Fixes
+
+- Fix an issue where application could crash on window restoration.
+
+
 
 2.2.2 (78)
 --------------------------
