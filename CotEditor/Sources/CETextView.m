@@ -765,7 +765,7 @@ static NSPoint kTextContainerOrigin;
                 }
             }
             
-            // add jsut absolute path if no specific setting for the file type found
+            // jsut insert the absolute path if no specific setting for the file type was found
             if ([stringToDrop length] == 0) {
                 [replacementString appendString:[absoluteURL path]];
                 
