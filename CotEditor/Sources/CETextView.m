@@ -765,7 +765,12 @@ static NSPoint kTextContainerOrigin;
                 }
             }
             
-            if ([stringToDrop length] == 0) { continue; }
+            // add jsut absolute path if no specific setting for the file type found
+            if ([stringToDrop length] == 0) {
+                [replacementString appendString:[absoluteURL path]];
+                
+                continue;
+            }
             
             // build relative path
             NSString *relativePath;
