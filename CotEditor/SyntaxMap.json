@@ -176,7 +176,8 @@
   },
   "INI": {
     "extensions": [
-      "ini"
+      "ini",
+      "url"
     ],
     "filenames": [
 
