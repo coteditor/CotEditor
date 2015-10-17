@@ -46,9 +46,11 @@
 
 // ------------------------------------------------------
 /// open key bindng edit sheet
-- (void)awakeFromNib
+- (void)loadView
 // ------------------------------------------------------
 {
+    [super loadView];
+    
     [self setMenuViewController:[[CEKeyBindingsViewController alloc] initWithMode:CEMenuKeyBindingsType]];
     [self setTextViewController:[[CEKeyBindingsViewController alloc] initWithMode:CETextKeyBindingsType]];
     
