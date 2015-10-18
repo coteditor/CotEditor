@@ -317,21 +317,21 @@
 "LLy-Yx-tXI.title" = "注释选中内容";
 
 /* Class = "NSMenuItem"; title = "Lines"; ObjectID = "Kb8-QD-tYZ"; */
-"Kb8-QD-tYZ.title" = "Lines";  // FIXME: added
+"Kb8-QD-tYZ.title" = "行";
 /* Class = "NSMenu"; title = "Lines"; ObjectID = "BSD-be-CV9"; */
-"BSD-be-CV9.title" = "Lines";  // FIXME: added
+"BSD-be-CV9.title" = "行";
 /* Class = "NSMenuItem"; title = "Move Up"; ObjectID = "4t7-IA-1r3"; */
-"4t7-IA-1r3.title" = "Move Up";  // FIXME: added
+"4t7-IA-1r3.title" = "上移";
 /* Class = "NSMenuItem"; title = "Move Down"; ObjectID = "J59-OR-kzC"; */
-"J59-OR-kzC.title" = "Move Down";  // FIXME: added
+"J59-OR-kzC.title" = "下移";
 /* Class = "NSMenuItem"; title = "Sort"; ObjectID = "OQl-Uo-yfn"; */
-"OQl-Uo-yfn.title" = "Sort";  // FIXME: added
+"OQl-Uo-yfn.title" = "排序";
 /* Class = "NSMenuItem"; title = "Reverse"; ObjectID = "xhf-NR-D2Q"; */
-"xhf-NR-D2Q.title" = "Reverse";  // FIXME: added
+"xhf-NR-D2Q.title" = "逆向排序";
 /* Class = "NSMenuItem"; title = "Delete Duplicates"; ObjectID = "bjv-m0-tZq"; */
-"bjv-m0-tZq.title" = "Delete Duplicates";  // FIXME: added
+"bjv-m0-tZq.title" = "删除重复";
 /* Class = "NSMenuItem"; title = "Delete Line"; ObjectID = "sFn-3j-pY5"; */
-"sFn-3j-pY5.title" = "Delete Line";  // FIXME: added
+"sFn-3j-pY5.title" = "删除行";
 
 /* Class = "NSMenuItem"; title = "Transformations"; ObjectID = "GXo-ds-ygp"; */
 "GXo-ds-ygp.title" = "转换";
