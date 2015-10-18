@@ -33,7 +33,7 @@
 "150.title" = "选中要绑定的项目并单击按键列来改变绑定";
 
 /* Class = "NSTextFieldCell"; title = "The keys here must exclude the Command key."; ObjectID = "s9U-jR-zQQ"; */
-"s9U-jR-zQQ.title" = "绑定的快捷键中不能包含 Command 键。";  // FIXME: modified
+"s9U-jR-zQQ.title" = "快捷键中不能包含 Command 键。";
 
 /* Class = "NSTableColumn"; headerCell.title = "Action"; ObjectID = "88"; */
 "88.headerCell.title" = "动作";

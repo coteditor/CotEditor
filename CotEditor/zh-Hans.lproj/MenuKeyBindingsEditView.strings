@@ -30,13 +30,13 @@
 "RbS-WH-Pvx.title" = "菜单项目的快捷按键";
 
 /* Class = "NSTextFieldCell"; title = "(excl. Script menu)"; ObjectID = "ZDf-YZ-208"; */
-"ZDf-YZ-208.title" = "(excl. Script menu)";  // FIXME:
+"ZDf-YZ-208.title" = "(不包括. 脚本菜单)";
 
 /* Class = "NSTextFieldCell"; title = "To change a binding, select it, click the key column, and then type the keys."; ObjectID = "144"; */
 "144.title" = "选中要绑定的项目并单击按键列来改变绑定";
 
 /* Class = "NSTextFieldCell"; title = "The keys here must include the Command key."; ObjectID = "G0x-RZ-DT4"; */
-"G0x-RZ-DT4.title" = "绑定的快捷键中必须包含 Command 键。";  // FIXME: modified
+"G0x-RZ-DT4.title" = "快捷键中必须包含 Command 键。";
 
 /* Class = "NSTableColumn"; headerCell.title = "Title / Action"; ObjectID = "9"; */
 "9.headerCell.title" = "标题 / 动作";

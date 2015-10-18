@@ -28,7 +28,7 @@
 
 
 /* Class = "NSTabViewItem"; label = "Menu Items"; ObjectID = "QZO-GE-ra1"; */
-"QZO-GE-ra1.label" = "Menu Items";  // FIXME: added
+"QZO-GE-ra1.label" = "菜单项";
 
 /* Class = "NSTabViewItem"; label = "Snippets"; ObjectID = "VfI-7K-2Nb"; */
-"VfI-7K-2Nb.label" = "Snippets";  // FIXME: added
+"VfI-7K-2Nb.label" = "代码片段";
