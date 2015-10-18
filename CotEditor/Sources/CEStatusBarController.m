@@ -83,10 +83,10 @@ static NSColor *kLabelColor;
 
 // ------------------------------------------------------
 /// awake from nib
-- (void)loadView
+- (void)awakeFromNib
 // ------------------------------------------------------
 {
-    [super loadView];
+    [super awakeFromNib];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(updateEditorStatus)
