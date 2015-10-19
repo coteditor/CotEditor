@@ -92,6 +92,8 @@ NSString *_Nonnull const CEEncodingListDidUpdateNotification = @"CESyntaxListDid
 // ------------------------------------------------------
 {
     [[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:CEDefaultEncodingListKey];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+
 }
 
 

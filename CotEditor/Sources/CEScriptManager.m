@@ -129,6 +129,14 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 }
 
 
+// ------------------------------------------------------
+/// clean-up
+- (void)dealloc
+// ------------------------------------------------------
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 
 #pragma mark Public Methods
 
