@@ -128,14 +128,6 @@ NSString *_Nonnull const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotifi
     return self;
 }
 
-// ------------------------------------------------------
-/// clean-up
-- (void)dealloc
-// ------------------------------------------------------
-{
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
 
 
 #pragma mark Public Methods
