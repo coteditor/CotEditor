@@ -31,6 +31,6 @@
 @interface CESyntaxMappingConflictsSheetController : NSWindowController <NSWindowDelegate>
 
 // default initializer
-- (nonnull instancetype)init NS_DESIGNATED_INITIALIZER;
+- (nonnull instancetype)init;
 
 @end
