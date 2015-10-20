@@ -180,6 +180,7 @@
 "NFKD" = "NFKD";
 "NFKC" = "NFKC";
 "NFKC Casefold" = "NFKC Casefold";
+"Modified NFD" = "Modifizierte NFD";
 "Inspect Character" = "Zeichen-Info einblenden";
 
 // Menu items
@@ -426,6 +427,9 @@
 /* MARK: CEKeyBindingManager */
 // label for text menu keybindings action
 "Insert Text %@" = "Text hinzufügen %@";
+
+// keybord key name
+"Space" = "Leertaste";
 
 // Warning messages
 "“%@” is already taken. Please choose another key." = "„%@“ wird bereits verwendet. Bitte wählen Sie eine andere Taste.";

@@ -95,7 +95,7 @@ else
 			           sparkle:version="#{build_number}"
 			           sparkle:dsaSignature="#{dsa}"
 			           length="#{length}"
-			           type="application/octet-stream"/>
+			           type="application/octet-stream" />
 		</item>
 	APPCAST_ITEM
 end
@@ -121,7 +121,7 @@ file.puts <<APPCAST
 			           sparkle:version="2.0.3"
 			           sparkle:dsaSignature="MC0CFQC/u3nS+yqNHrr1+EghgQksnBlF2AIUfJ5SyL10uO1jSK01ZQgXM3xBE5s="
 			           length="14414610"
-			           type="application/octet-stream"/>
+			           type="application/octet-stream" />
 		</item>
 	</channel>
 </rss>

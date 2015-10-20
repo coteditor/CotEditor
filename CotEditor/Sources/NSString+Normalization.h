@@ -32,4 +32,8 @@
 
 /// return normalized string using NFKC_Casefold
 - (nonnull NSString *)precomposedStringWithCompatibilityMappingWithCasefold;
+
+/// return normalized string using HFS+, a.k.a. Apple Modified NFD
+- (nonnull NSString *)decomposedStringWithHFSPlusMapping;
+
 @end

@@ -436,13 +436,13 @@ extern NSString *_Nonnull const kNavigationBarFontName;
 
 
 
-#pragma mark CEATSTypeSetter
+#pragma mark CELayoutManager
 
 // ------------------------------------------------------
-// CEATSTypeSetter
+// CELayoutManager
 // ------------------------------------------------------
 
-// CEATSTypeSetter (Layouting)
+// CELayoutManager (Layouting)
 extern CGFloat const kDefaultLineHeightMultiple;
 
 

@@ -25,8 +25,53 @@
 
 <article>
 <header>
+	<h1>CotEditor 2.2.2</h1>
+	<p>release: <time>2015-10</time></p>
+</header>
+
+
+<section>
+<h2>新機能</h2>
+
+<ul>
+	<li>新しい Unicode 正規化形式「修正 NFD」（NFS+ で使用されている非公式の正規化方式）をユーティリティメニューの 「Unicode 正規化」に追加 (doraTeX さんに感謝!)<ul>
+		<li>AppleScript 辞書にもこの Modified NFD は追加されています。</li>
+	</ul></li>
+</ul>
+</section>
+
+
+<section>
+<h2>機能改善／仕様変更</h2>
+
+<ul>
+	<li>“JSON”シンタックス定義を更新
+	<ul>
+		<li>拡張子に “geojson” を追加</li>
+	</ul></li>
+</ul>
+</section>
+
+
+<section>
+<h2>バグフィックス</h2>
+
+<ul>
+	<li>設定フォントによっては、不可視文字のベースラインが誤って描画されることがあった不具合を修正</li>
+	<li>El Capitan でテーマ名を編集した時にアプリケーションがクラッシュすることがあった不具合を修正</li>
+	<li>メニューキーバインド設定のサブメニューの展開矢印が表示されないことがあった不具合を修正</li>
+	<li>システム共有の検索文字列を取り込むタイミングを修正</li>
+	<li>まれに移行ウインドウが毎回されることがあった不具合を修正</li>
+</ul>
+</section>
+</article>
+
+
+
+<article>
+<header>
 	<h1>CotEditor 2.2.1</h1>
-	<p>リリース: <time>2015-10</time></p>
+	<p>リリース: <time>2015-10-04</time></p>
 </header>
 
 
@@ -74,7 +119,7 @@
 	</ul></li>
 	<li>新しい Unicode 正規化形式「NFKC Casefold」をユーティリティメニューの 「Unicode 正規化」に追加 (doraTeX さんに感謝!)
 	<ul>
-		<li>AppleScript 辞書にもこの NFKC Casefold は追加されれています。</li>
+		<li>AppleScript 辞書にもこの NFKC Casefold は追加されています。</li>
 	</ul></li>
 	<li>文字エンコーディングの自動認識で参照するエンコーディング宣言に <code>encoding:</code> と <code>coding:</code> を追加 (解釈は <code>charset=</code> &gt; <code>encoding=</code> &gt; <code>@charset</code> &gt; <code>encoding:</code> &gt; <code>coding:</code> の順で行われます)</li>
 	<li>ドイツ語ローカライズを追加</li>
@@ -91,12 +136,6 @@
 	<li>Mac App Store ガイドラインに沿うため、<code>cot</code> コマンドラインツールの同梱の廃止
 	<ul>
 		<li>CotEditor 2.2.0 およびそれ以降で <code>cot</code> コマンドを使うためには、新しいコマンドラインツールを <a href="http://coteditor.com/cot">http://coteditor.com/cot</a> からダウンロードして、手動でインストールを行ってください。過去のコマンドラインツールは CotEditor 2.2.0 に対応していません。</li>
-	</ul></li>
-	<li>サンドボックス化にともない、cot コマンドラインツールのバンドル場所を <code>CotEditor.app/Contents/MacOS/</code> から <code>CotEditor.app/Contents/SharedSupport/bin/</code> に変更。
-	<ul>
-		<li>cot コマンドをすでにインストールしているユーザは、手動で再インストールを行う必要があります。ターミナルから以下のコマンドを実行することで、コマンドを再インストールすることができます。<br/>
-          <code>unlink /usr/local/bin/cot; ln -s /Applications/CotEditor.app/Contents/SharedSupport/bin/cot /usr/local/bin/cot</code><br/>
-          CotEditor/cot をインストールしている場所に合わせて、再インストールコマンドのパスは適宜変更してください。</li>
 	</ul></li>
 	<li>サイドインスペクタのユーザインターフェイスを改良</li>
 	<li>シンタックスハイライトの改善：
@@ -636,7 +675,7 @@
 	<p>リリース: <time>2014-11-13</time></p>
 </header>
 
-<p class="important">このバージョンは、ユーザによる移行処理が必要な仕様変更を含んでいます。詳細は<a href="specification_changes_on.html">CotEditor 2.0 での仕様変更</a>を参照してください。</p>
+<p class="important">このバージョンは、ユーザによる移行処理が必要な仕様変更を含んでいます。詳細は<a href="specification_changes.html">CotEditor 2.0 での仕様変更</a>を参照してください。</p>
 
 <section>
 <h2>新機能</h2>

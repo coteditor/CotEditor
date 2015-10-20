@@ -377,13 +377,13 @@ NSString *_Nonnull const kNavigationBarFontName = @"Helvetica";
 
 
 
-#pragma mark CEATSTypeSetter
+#pragma mark CELayoutManager
 
 // ------------------------------------------------------
-// CEATSTypeSetter
+// CELayoutManager
 // ------------------------------------------------------
 
-// CEATSTypeSetter (Layouting)
+// CELayoutManager (Layouting)
 CGFloat const kDefaultLineHeightMultiple = 1.19;
 
 

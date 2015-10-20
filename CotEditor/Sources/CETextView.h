@@ -110,6 +110,7 @@
 - (IBAction)normalizeUnicodeWithNFKD:(nullable id)sender;
 - (IBAction)normalizeUnicodeWithNFKC:(nullable id)sender;
 - (IBAction)normalizeUnicodeWithNFKCCF:(nullable id)sender;
+- (IBAction)normalizeUnicodeWithModifiedNFD:(nullable id)sender;
 - (IBAction)editColorCode:(nullable id)sender;
 
 @end

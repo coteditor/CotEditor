@@ -182,6 +182,7 @@
 "NFKD" = "NFKD";
 "NFKC" = "NFKC";
 "NFKC Casefold" = "NFKC Casefold";
+"Modified NFD" = "修正 NFD";
 "Inspect Character" = "文字情報を表示";
 
 // Menu items
@@ -428,6 +429,9 @@
 /* MARK: CEKeyBindingManager */
 // label for text menu keybindings action
 "Insert Text %@" = "テキストを挿入 %@";
+
+// keybord key name
+"Space" = "スペース";
 
 // Warning messages
 "“%@” is already taken. Please choose another key." = "“%@”はすでに使用されています。再編集してください。";

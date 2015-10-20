@@ -553,7 +553,11 @@
 // ------------------------------------------------------
 {
     if ([[notification userInfo][CEOldNameKey] isEqualToString:[[[self textView] theme] name]]) {
-        [[self textView] setTheme:[CETheme themeWithName:[notification userInfo][CENewNameKey]]];
+        CETheme *theme = [CETheme themeWithName:[notification userInfo][CENewNameKey]];
+        
+        if (!theme) { return; }
+        
+        [[self textView] setTheme:theme];
         [[self textView] setSelectedRanges:[[self textView] selectedRanges]];  // 現在行のハイライトカラーの更新するために選択し直す
         [[self editorWrapper] invalidateSyntaxColoring];
     }

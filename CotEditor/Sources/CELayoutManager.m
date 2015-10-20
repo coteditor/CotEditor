@@ -171,7 +171,7 @@ static BOOL usesTextFontForInvisibles;
         // adjust drawing coordinate
         CGAffineTransform transform = CGAffineTransformIdentity;
         transform = CGAffineTransformScale(transform, 1.0, -1.0);  // flip
-        transform = CGAffineTransformTranslate(transform, origin.x, - origin.y - CTFontGetAscent(font));
+        transform = CGAffineTransformTranslate(transform, origin.x, - origin.y);
         CGContextConcatCTM(context, transform);
         
         // prepare glyphs
@@ -257,7 +257,7 @@ static BOOL usesTextFontForInvisibles;
             
             // add invisible char path
             NSPoint point = [self pointToDrawGlyphAtIndex:glyphIndex];
-            CGAffineTransform translate = CGAffineTransformMakeTranslation(point.x, point.y);
+            CGAffineTransform translate = CGAffineTransformMakeTranslation(point.x, -point.y);
             CGPathAddPath(paths, &translate, glyphPath);
         }
         
@@ -472,11 +472,13 @@ static BOOL usesTextFontForInvisibles;
 //------------------------------------------------------
 {
     NSPoint drawPoint = [self locationForGlyphAtIndex:glyphIndex];
-    NSPoint glyphPoint = [self lineFragmentRectForGlyphAtIndex:glyphIndex
+    NSPoint lineOrigin = [self lineFragmentRectForGlyphAtIndex:glyphIndex
                                                 effectiveRange:NULL
                                        withoutAdditionalLayout:YES].origin;
     
-    return NSMakePoint(drawPoint.x, -glyphPoint.y);
+    drawPoint.y += lineOrigin.y;
+    
+    return drawPoint;
 }
 
 

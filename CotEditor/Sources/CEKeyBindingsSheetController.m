@@ -67,12 +67,12 @@
         
         switch (mode) {
             case CEMenuKeyBindingsType:
-                _outlineData = [[CEKeyBindingManager sharedManager] mainMenuArrayForOutlineData:[NSApp mainMenu]];
+                _outlineData = [[CEKeyBindingManager sharedManager] menuKeySpecCharsArrayForOutlineDataWithFactoryDefaults:NO];
                 _restoreble = ![[CEKeyBindingManager sharedManager] usesDefaultMenuKeyBindings];
                 break;
                 
             case CETextKeyBindingsType:
-                _outlineData = [[CEKeyBindingManager sharedManager] textKeySpecCharArrayForOutlineDataWithFactoryDefaults:NO];
+                _outlineData = [[CEKeyBindingManager sharedManager] textKeySpecCharsArrayForOutlineDataWithFactoryDefaults:NO];
                 _restoreble = ![[CEKeyBindingManager sharedManager] usesDefaultTextKeyBindings];
                 break;
         }
@@ -95,13 +95,8 @@
             break;
             
         case CETextKeyBindingsType: {
-            NSArray<NSString *> *insertTexts = [[NSUserDefaults standardUserDefaults] stringArrayForKey:CEDefaultInsertCustomTextArrayKey];
-            NSMutableArray<NSMutableDictionary<NSString *, NSString *> *> *content = [NSMutableArray array];
-            
-            for (NSString *text in insertTexts) {
-                [content addObject:[@{CEDefaultInsertCustomTextKey: text} mutableCopy]];
-            }
-            [[self snippetArrayController] setContent:content];
+            NSArray<NSString *> *customTexts = [[NSUserDefaults standardUserDefaults] stringArrayForKey:CEDefaultInsertCustomTextArrayKey];
+            [self setupCustomTexts:customTexts];
         } break;
     }
 }
@@ -128,7 +123,7 @@
 - (BOOL)outlineView:(nonnull NSOutlineView *)outlineView isItemExpandable:(nonnull id)item
 // ------------------------------------------------------
 {
-    return ([self childrenOfItem:item]);
+    return [[self childrenOfItem:item] count] > 0;
 }
 
 
@@ -265,19 +260,14 @@
 {
     switch ([self mode]) {
         case CEMenuKeyBindingsType:
-            [self resetKeySpecCharsToFactoryDefaults:[self outlineData]];
+            [self setOutlineData:[[CEKeyBindingManager sharedManager] menuKeySpecCharsArrayForOutlineDataWithFactoryDefaults:YES]];
             break;
             
         case CETextKeyBindingsType: {
-            NSMutableArray<NSMutableDictionary<NSString *, id> *> *content = [NSMutableArray array];
-            NSArray<NSString *> *defaultInsertTexts = [[[NSUserDefaults alloc] init] volatileDomainForName:NSRegistrationDomain][CEDefaultInsertCustomTextArrayKey];
+            [self setOutlineData:[[CEKeyBindingManager sharedManager] textKeySpecCharsArrayForOutlineDataWithFactoryDefaults:YES]];
             
-            for (id object in defaultInsertTexts) {
-                [content addObject:[@{CEDefaultInsertCustomTextKey: object} mutableCopy]];
-            }
-            [self setOutlineData:[[CEKeyBindingManager sharedManager] textKeySpecCharArrayForOutlineDataWithFactoryDefaults:YES]];
-            [[self snippetArrayController] setContent:content];
-            [[self snippetArrayController] setSelectionIndex:NSNotFound];
+            NSArray<NSString *> *defaultCustomTexts = [[[NSUserDefaults alloc] init] volatileDomainForName:NSRegistrationDomain][CEDefaultInsertCustomTextArrayKey];
+            [self setupCustomTexts:defaultCustomTexts];
         } break;
     }
     
@@ -354,6 +344,21 @@
 }
 
 
+// ------------------------------------------------------
+/// カスタムテキスト設定を arrayController にセットする
+- (void)setupCustomTexts:(NSArray<NSString *> *)customTexts
+// ------------------------------------------------------
+{
+    NSMutableArray<NSMutableDictionary<NSString *, NSString *> *> *content = [NSMutableArray array];
+    
+    for (NSString *text in customTexts) {
+        [content addObject:[@{CEDefaultInsertCustomTextKey: text} mutableCopy]];
+    }
+    [[self snippetArrayController] setContent:content];
+    [[self snippetArrayController] setSelectionIndex:NSNotFound];
+}
+
+
 //------------------------------------------------------
 /// 重複などの警告メッセージを表示
 - (BOOL)validateKeySpecChars:(nonnull NSString *)keySpec oldChars:(nonnull NSString *)oldSpec
@@ -367,7 +372,9 @@
     if ([keySpec length] == 0) { return YES; }
     
     NSString *warning = nil;
-    NSArray<NSString *> *registeredKeySpecChars = [self keySpecCharsListFromOutlineData:[self outlineData]];
+    
+    // 重複チェック用配列を生成
+    NSArray<NSString *> *registeredKeySpecChars = [[CEKeyBindingManager sharedManager] keySpecCharsListFromOutlineData:[self outlineData]];
     
     if (![keySpec isEqualToString:oldSpec] && [registeredKeySpecChars containsObject:keySpec]) {
         // duplication check
@@ -413,46 +420,6 @@
     NSInteger *column = [[self outlineView] columnWithIdentifier:CEKeyBindingKeySpecCharsKey];
     
     [[self outlineView] editColumn:column row:selectedRow withEvent:nil select:YES];
-}
-
-
-//------------------------------------------------------
-/// 重複チェック用配列を生成
-- (nonnull NSMutableArray<NSString *> *)keySpecCharsListFromOutlineData:(nonnull NSArray<NSDictionary *> *)outlineArray
-//------------------------------------------------------
-{
-    NSMutableArray *keySpecCharsList = [NSMutableArray array];
-    
-    for (NSDictionary *item in outlineArray) {
-        NSArray *children = item[CEKeyBindingChildrenKey];
-        if (children) {
-            NSArray<NSString *> *childList = [self keySpecCharsListFromOutlineData:children];
-            [keySpecCharsList addObjectsFromArray:childList];
-        }
-        NSString *keySpecChars = item[CEKeyBindingKeySpecCharsKey];
-        if (([keySpecChars length] > 0) && ![keySpecCharsList containsObject:keySpecChars]) {
-            [keySpecCharsList addObject:keySpecChars];
-        }
-    }
-    return keySpecCharsList;
-}
-
-
-//------------------------------------------------------
-/// 配列中のキーバインディング設定文字列をデフォルトに戻す
-- (void)resetKeySpecCharsToFactoryDefaults:(nonnull NSMutableArray *)outlineArray
-//------------------------------------------------------
-{
-    for (NSMutableDictionary *item in outlineArray) {
-        NSMutableArray *children = item[CEKeyBindingChildrenKey];
-        if (children) {
-            [self resetKeySpecCharsToFactoryDefaults:children];
-        }
-        
-        NSString *selector = item[CEKeyBindingSelectorStringKey];
-        NSString *keySpecChars = [[CEKeyBindingManager sharedManager] keySpecCharsInDefaultDictionaryFromSelectorString:selector];
-        item[CEKeyBindingKeySpecCharsKey] = keySpecChars;
-    }
 }
 
 @end

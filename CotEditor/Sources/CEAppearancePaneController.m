@@ -261,20 +261,22 @@
 // ------------------------------------------------------
 {
     if ([notification object] == [self themeTableView]) {
+        NSString *themeName = [self selectedTheme];
         BOOL isBundled;
-        NSMutableDictionary<NSString *, NSMutableDictionary<NSString *, id> *> *themeDict = [[CEThemeManager sharedManager] archivedTheme:[self selectedTheme] isBundled:&isBundled];
+        NSMutableDictionary<NSString *, NSMutableDictionary<NSString *, id> *> *themeDict = [[CEThemeManager sharedManager] archivedTheme:themeName isBundled:&isBundled];
         
         // デフォルトテーマ設定の更新（初回の選択変更はまだ設定が反映されていない時点で呼び出されるので保存しない）
         if ([self themeViewController]) {
             NSString *oldThemeName = [[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultThemeKey];
             
-            [[NSUserDefaults standardUserDefaults] setObject:[self selectedTheme] forKey:CEDefaultThemeKey];
+            [[NSUserDefaults standardUserDefaults] setObject:themeName forKey:CEDefaultThemeKey];
             
-            // 現在開いているウインドウのテーマも変更
+            // update theme of the current document windows
+            //   -> [caution] The theme list of the theme manager can not be updated yet at this point.
             [[NSNotificationCenter defaultCenter] postNotificationName:CEThemeDidUpdateNotification
                                                                 object:self
                                                               userInfo:@{CEOldNameKey: oldThemeName,
-                                                                         CENewNameKey: [self selectedTheme]}];
+                                                                         CENewNameKey: themeName}];
         }
         
         [self setThemeViewController:[[CEThemeViewController alloc] init]];
@@ -507,7 +509,7 @@
 
 
 // ------------------------------------------------------
-/// カスタマイズされたバンドル版テーマをオリジナルに戻す
+/// start renaming theme
 - (IBAction)renameTheme:(nullable id)sender
 // ------------------------------------------------------
 {

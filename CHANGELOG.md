@@ -2,6 +2,32 @@
 Change Log
 ==========================
 
+2.2.2 (78)
+--------------------------
+
+### New Features
+
+- Add new normalization form “Modified NFD” (unofficial normalization form adopted by HFS+) to the Unicode normalization action in Utility menu (Thanks to doraTeX!)
+    - cf. <http://tama-san.com/hfsplus_normalize/> (in Japanese)
+    - It is also added to the AppleScript terms.
+
+
+### Additions/Changes
+
+- Update “JSON” syntax style:
+    - Add “geojson” to extension list. 
+
+
+### Fixes
+
+- Fix an issue where the baseline of invisible characters were wrong by some fonts.
+- Fix an issue where application could crash after modifying theme name on El Capitan.
+- Fix an issue where submenu disclosure arrows in the menu key binding editor did occasionally disappear.
+- Fix timing to update search string to system-wide shared find string.
+- Fix an issue under the specific conditions where the migration window showed up every time on launch.
+
+
+
 2.2.1 (75)
 --------------------------
 
