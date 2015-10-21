@@ -218,7 +218,7 @@
                                                CEDefaultShowAlertForNotWritableKey: @YES, 
                                                CEDefaultNotifyEditByAnotherKey: @YES,
                                                CEDefaultColoringRangeBufferLengthKey: @5000,
-                                               CEDefaultLargeFileAlertThresholdKey: @(100 * pow(1024, 2)),  // 100 MB
+                                               CEDefaultLargeFileAlertThresholdKey: @(50 * pow(1024, 2)),  // 50 MB
                                                CEDefaultAutosavingDelayKey: @5.0,
                                                CEDefaultSavesTextOrientationKey: @YES,
                                                };
