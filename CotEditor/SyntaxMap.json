@@ -526,6 +526,18 @@
 
     ]
   },
+  "iCalendar": {
+    "extensions": [
+      "ics",
+      "ifb"
+    ],
+    "filenames": [
+
+    ],
+    "interpreters": [
+
+    ]
+  },
   "reStructuredText": {
     "extensions": [
       "rest",

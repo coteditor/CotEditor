@@ -13,7 +13,7 @@ develop
 - Detect indent style on file opening and set tab expand automatically.
 - Add “Spell Check” button to toolbar icon choices.
     - Customize toolbar to add it to your toolbar.
-- Add syntax styles for “D” and “Rich Text Format”.
+- Add syntax styles for “D”, “iCalendar” and “Rich Text Format”.
 
 
 ### Additions/Changes
