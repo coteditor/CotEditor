@@ -645,6 +645,8 @@ attributes:
   regularExpression: true
 - beginString: "(?<=\\.)y\\b"
   regularExpression: true
+- beginString: "(?<=\\.)z\\b"
+  regularExpression: true
 - beginString: "__noSuchMethod__"
 - beginString: "__proto__"
 - beginString: "accessKey"
@@ -1003,9 +1005,9 @@ attributes:
 metadata:
   author: "1024jp"
   distributionURL: "http://coteditor.com"
-  version: "2.0.1"
+  version: "2.0.2"
   license: "Same as CotEditor"
-  lastModified: "2014-11-22"
+  lastModified: "2015-10-22"
 characters:
 - beginString: "/\\S+/[gimy]*"
   regularExpression: true
