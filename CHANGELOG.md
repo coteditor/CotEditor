@@ -33,6 +33,7 @@ Change Log
 ### Fixes
 
 - Fix an issue where no file path was inserted if file type of the dropped file was not registered to the file drop setting.
+- Address syntax highlighiting issue with multiple lines.
 - Fix an issue where text view drawing was distorted while resizing window.
 - Fix an issue where application could crash on window restoration.
 - Fix some typos in syntax styles “Julia” and “SQL”.
