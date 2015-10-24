@@ -25,11 +25,14 @@
  
  */
 
-/* Class = "CEKeyBindingSheet"; title = "Text Key Bindings"; ObjectID = "54"; */
-"54.title" = "テキストキーバインド";
+/* Class = "NSTextFieldCell"; title = "Shortcuts for preset text insertion"; ObjectID = "s4R-ch-kDY"; */
+"s4R-ch-kDY.title" = "プリセットしたテキストを挿入するショートカット";
 
-/* Class = "NSTextFieldCell"; title = "To change a binding, select it, click the key column, and then type the keys.\nDo not include the Command key."; ObjectID = "150"; */
-"150.title" = "アクションを選択し、キー列をクリックして編集状態にしてから、新しいキーを入力してください。\nコマンドキーを含めることはできません。";
+/* Class = "NSTextFieldCell"; title = "To change a binding, select it, click the key column, and then type the keys."; ObjectID = "150"; */
+"150.title" = "アクションを選択し、キー列をクリックして編集状態にしてから、新しいキーを入力してください。";
+
+/* Class = "NSTextFieldCell"; title = "The keys here must exclude the Command key."; ObjectID = "s9U-jR-zQQ"; */
+"s9U-jR-zQQ.title" = "これらのキーにコマンドキーを含めることはできません。";
 
 /* Class = "NSTableColumn"; headerCell.title = "Action"; ObjectID = "88"; */
 "88.headerCell.title" = "アクション";
@@ -43,7 +46,3 @@
 
 /* Class = "NSButtonCell"; title = "Restore Defaults"; ObjectID = "153"; */
 "153.title" = "デフォルトに戻す";
-/* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "156"; */
-"156.title" = "キャンセル";
-/* Class = "NSButtonCell"; title = "OK"; ObjectID = "154"; */
-"154.title" = "OK";

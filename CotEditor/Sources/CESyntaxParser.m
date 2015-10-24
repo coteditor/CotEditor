@@ -824,7 +824,7 @@ static CGFloat kPerCompoIncrement;
             continue;
         }
         
-        if (startLocation <= NSMaxRange(parseRange)) {
+        if (startLocation < NSMaxRange(parseRange)) {
             isContinued = YES;
         }
     }

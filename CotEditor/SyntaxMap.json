@@ -81,6 +81,17 @@
       "coffee"
     ]
   },
+  "D": {
+    "extensions": [
+      "d"
+    ],
+    "filenames": [
+
+    ],
+    "interpreters": [
+      "rdmd"
+    ]
+  },
   "DTD": {
     "extensions": [
       "dtd"
@@ -165,7 +176,8 @@
   },
   "INI": {
     "extensions": [
-      "ini"
+      "ini",
+      "url"
     ],
     "filenames": [
 
@@ -352,6 +364,17 @@
 
     ]
   },
+  "Rich Text Format": {
+    "extensions": [
+      "rtf"
+    ],
+    "filenames": [
+
+    ],
+    "interpreters": [
+
+    ]
+  },
   "Ruby": {
     "extensions": [
       "rb"
@@ -495,6 +518,18 @@
     "extensions": [
       "yaml",
       "yml"
+    ],
+    "filenames": [
+
+    ],
+    "interpreters": [
+
+    ]
+  },
+  "iCalendar": {
+    "extensions": [
+      "ics",
+      "ifb"
     ],
     "filenames": [
 

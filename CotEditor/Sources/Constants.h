@@ -106,6 +106,7 @@ extern NSString *_Nonnull const CENewNameKey;
 
 // general settings
 extern NSString *_Nonnull const CEDefaultLastVersionKey;
+extern NSString *_Nonnull const CEDefaultEnablesAutosaveInPlaceKey;
 extern NSString *_Nonnull const CEDefaultDocumentConflictOptionKey;
 extern NSString *_Nonnull const CEDefaultLayoutTextVerticalKey;
 extern NSString *_Nonnull const CEDefaultSplitViewVerticalKey;
@@ -145,6 +146,7 @@ extern NSString *_Nonnull const CEDefaultTabWidthKey;
 extern NSString *_Nonnull const CEDefaultAutoIndentKey;
 extern NSString *_Nonnull const CEDefaultEnablesHangingIndentKey;
 extern NSString *_Nonnull const CEDefaultHangingIndentWidthKey;
+extern NSString *_Nonnull const CEDefaultDetectsIndentStyleKey;
 extern NSString *_Nonnull const CEDefaultShowInvisiblesKey;
 extern NSString *_Nonnull const CEDefaultShowInvisibleSpaceKey;
 extern NSString *_Nonnull const CEDefaultInvisibleSpaceKey;
@@ -239,7 +241,6 @@ extern NSString *_Nonnull const CEDefaultNotifyEditByAnotherKey;
 extern NSString *_Nonnull const CEDefaultColoringRangeBufferLengthKey;
 extern NSString *_Nonnull const CEDefaultLargeFileAlertThresholdKey;
 extern NSString *_Nonnull const CEDefaultAutosavingDelayKey;
-extern NSString *_Nonnull const CEDefaultEnablesAutosaveInPlaceKey;
 extern NSString *_Nonnull const CEDefaultSavesTextOrientationKey;
 
 
@@ -386,8 +387,8 @@ typedef NS_ENUM(NSUInteger, CEMainMenuIndex) {
     CEEditMenuIndex,
     CEViewMenuIndex,
     CEFormatMenuIndex,
+    CETextMenuIndex,
     CEFindMenuIndex,
-    CEUtilityMenuIndex,
     CEWindowMenuIndex,
     CEScriptMenuIndex,
 };

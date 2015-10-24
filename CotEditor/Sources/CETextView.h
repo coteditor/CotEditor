@@ -99,7 +99,7 @@
 @end
 
 
-@interface CETextView (UtilityMenu)
+@interface CETextView (Transformation)
 
 - (IBAction)exchangeFullwidthRoman:(nullable id)sender;
 - (IBAction)exchangeHalfwidthRoman:(nullable id)sender;
@@ -111,6 +111,24 @@
 - (IBAction)normalizeUnicodeWithNFKC:(nullable id)sender;
 - (IBAction)normalizeUnicodeWithNFKCCF:(nullable id)sender;
 - (IBAction)normalizeUnicodeWithModifiedNFD:(nullable id)sender;
+
+@end
+
+
+@interface CETextView (ColorCode)
+
 - (IBAction)editColorCode:(nullable id)sender;
+
+@end
+
+
+@interface CETextView (LineProcessing)
+
+- (IBAction)moveLineUp:(nullable id)sender;
+- (IBAction)moveLineDown:(nullable id)sender;
+- (IBAction)sortLinesAscending:(nullable id)sender;
+- (IBAction)reverseLines:(nullable id)sender;
+- (IBAction)deleteDuplicateLine:(nullable id)sender;
+- (IBAction)deleteLine:(nullable id)sender;
 
 @end

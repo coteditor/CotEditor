@@ -22,6 +22,8 @@
 	<string>showOpacityPanel:</string>
 	<key>$@Z</key>
 	<string>redo:</string>
+	<key>$@</key>
+	<string>deleteLine:</string>
 	<key>@&quot;</key>
 	<string>openSplitTextView:</string>
 	<key>@&apos;</key>
@@ -94,6 +96,10 @@
 	<string>toggleFullScreen:</string>
 	<key>^@h</key>
 	<string>editColorCode:</string>
+	<key>^@</key>
+	<string>moveLineUp:</string>
+	<key>^@</key>
+	<string>moveLineDown:</string>
 	<key>^~@</key>
 	<string>focusPrevSplitTextView:</string>
 	<key>^~@</key>

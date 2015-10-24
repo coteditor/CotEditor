@@ -2,6 +2,44 @@
 Change Log
 ==========================
 
+2.3.0-beta (80)
+--------------------------
+
+### New Features
+
+- Introduce Auto Save and Versions as an option (in General pane).
+- Add new actions handling selected lines to the new Text menu > Lines.
+    - They are also added to the AppleScript terms.
+- Detect indent style on file opening and set tab expand automatically.
+- Add “Spell Check” button to toolbar icon choices.
+    - Customize toolbar to add it to your toolbar.
+- Add syntax styles for “D”, “iCalendar” and “Rich Text Format”.
+
+
+### Additions/Changes
+
+- Reconstitute main menu.
+- Embed key bindings editor to Key Bindings pane.
+- Update “Shell Script” syntax style:
+    - Completely rewrite.
+- Update “INI” syntax style:
+    - Add “url” to extension list.
+- Update “JavaScript” syntax style:
+    - Add “z” to attributes. 
+- Temporary hide the “Live Update” checkbox in the find panel since this feature by OgreKit framework has actually not worked correctly in the latest versions.
+- Update Onigmo regular expression engine to 5.15.0.
+
+
+### Fixes
+
+- Fix an issue where no file path was inserted if file type of the dropped file was not registered to the file drop setting.
+- Address syntax highlighiting issue with multiple lines.
+- Fix an issue where text view drawing was distorted while resizing window.
+- Fix an issue where application could crash on window restoration.
+- Fix some typos in syntax styles “Julia” and “SQL”.
+
+
+
 2.2.2 (78)
 --------------------------
 

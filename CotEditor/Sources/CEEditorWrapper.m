@@ -359,6 +359,19 @@ static NSTimeInterval secondColoringDelay;
 
 
 // ------------------------------------------------------
+/// ソフトタブの有効／無効をセット
+- (void)setAutoTabExpandEnabled:(BOOL)enabled
+// ------------------------------------------------------
+{
+    [[self splitViewController] enumerateEditorViewsUsingBlock:^(CEEditorView *editorView) {
+        [[editorView textView] setAutoTabExpandEnabled:enabled];
+    }];
+    [[[self windowController] toolbarController] toggleItemWithTag:CEToolbarAutoTabExpandItemTag
+                                                             setOn:enabled];
+}
+
+
+// ------------------------------------------------------
 /// ナビゲーションバーを表示する／しないをセット
 - (void)setShowsNavigationBar:(BOOL)showsNavigationBar animate:(BOOL)performAnimation
 // ------------------------------------------------------
@@ -701,13 +714,9 @@ static NSTimeInterval secondColoringDelay;
 - (IBAction)toggleAutoTabExpand:(nullable id)sender
 // ------------------------------------------------------
 {
-    BOOL isEnabled = ![[self focusedTextView] isAutoTabExpandEnabled];
+    BOOL isEnabled = [[self focusedTextView] isAutoTabExpandEnabled];
     
-    [[self splitViewController] enumerateEditorViewsUsingBlock:^(CEEditorView *editorView) {
-        [[editorView textView] setAutoTabExpandEnabled:isEnabled];
-    }];
-    [[[self windowController] toolbarController] toggleItemWithTag:CEToolbarAutoTabExpandItemTag
-                                                             setOn:isEnabled];
+    [self setAutoTabExpandEnabled:!isEnabled];
 }
 
 

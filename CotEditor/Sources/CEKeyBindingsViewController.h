@@ -1,6 +1,6 @@
 /*
  
- CEKeyBindingsSheetController.h
+ CEKeyBindingsViewController.h
  
  CotEditor
  http://coteditor.com
@@ -34,7 +34,7 @@ typedef NS_ENUM(NSUInteger, CEKeyBindingType) {
 };
 
 
-@interface CEKeyBindingsSheetController : NSWindowController
+@interface CEKeyBindingsViewController : NSViewController
 
 - (nonnull instancetype)initWithMode:(CEKeyBindingType)mode;
 

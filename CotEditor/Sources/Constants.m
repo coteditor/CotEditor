@@ -105,6 +105,7 @@ NSString *_Nonnull const CENewNameKey = @"CENewNameKey";
 
 // general settings
 NSString *_Nonnull const CEDefaultLastVersionKey = @"lastVersion";
+NSString *_Nonnull const CEDefaultEnablesAutosaveInPlaceKey = @"enablesAutosaveInPlace";
 NSString *_Nonnull const CEDefaultDocumentConflictOptionKey = @"documentConflictOption";
 NSString *_Nonnull const CEDefaultLayoutTextVerticalKey = @"layoutTextVertical";
 NSString *_Nonnull const CEDefaultSplitViewVerticalKey = @"splitViewVertical";
@@ -144,6 +145,7 @@ NSString *_Nonnull const CEDefaultTabWidthKey = @"tabWidth";
 NSString *_Nonnull const CEDefaultAutoIndentKey = @"autoIndent";
 NSString *_Nonnull const CEDefaultEnablesHangingIndentKey = @"enableHangingIndent";
 NSString *_Nonnull const CEDefaultHangingIndentWidthKey = @"hangingIndentWidth";
+NSString *_Nonnull const CEDefaultDetectsIndentStyleKey = @"detectsIndentStyle";
 NSString *_Nonnull const CEDefaultShowInvisiblesKey = @"showInvisibles";
 NSString *_Nonnull const CEDefaultShowInvisibleSpaceKey = @"showInvisibleSpace";
 NSString *_Nonnull const CEDefaultInvisibleSpaceKey = @"invisibleSpace";
@@ -238,7 +240,6 @@ NSString *_Nonnull const CEDefaultNotifyEditByAnotherKey = @"notifyEditByAnother
 NSString *_Nonnull const CEDefaultColoringRangeBufferLengthKey = @"coloringRangeBufferLength";
 NSString *_Nonnull const CEDefaultLargeFileAlertThresholdKey = @"largeFileAlertThreshold";
 NSString *_Nonnull const CEDefaultAutosavingDelayKey = @"autosavingDelay";
-NSString *_Nonnull const CEDefaultEnablesAutosaveInPlaceKey = @"enablesAutosaveInPlace";
 NSString *_Nonnull const CEDefaultSavesTextOrientationKey = @"savesTextOrientation";
 
 

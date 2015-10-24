@@ -25,18 +25,9 @@
  
  */
 
-/* Class = "NSTextFieldCell"; title = "Menu Key Bindings"; ObjectID = "3359"; */
-"3359.title" = "メニューキーバインド";
-/* Class = "NSTextFieldCell"; title = "Shortcuts for menu items."; ObjectID = "3361"; */
-"3361.title" = "メニュー項目へのショートカット";
-/* Class = "NSTextFieldCell"; title = "This setting does not include script menu items."; ObjectID = "3362"; */
-"3362.title" = "スクリプトメニューはこの設定に含まれません。";
-/* Class = "NSButtonCell"; title = "Edit…"; ObjectID = "3360"; */
-"3360.title" = "編集...";
 
-/* Class = "NSTextFieldCell"; title = "Additional Text Key Bindings"; ObjectID = "3363"; */
-"3363.title" = "追加テキストキーバインド";
-/* Class = "NSTextFieldCell"; title = "Shortcuts to insert preset text."; ObjectID = "3364"; */
-"3364.title" = "プリセットしたテキストを挿入するショートカット";
-/* Class = "NSButtonCell"; title = "Edit…"; ObjectID = "3365"; */
-"3365.title" = "編集...";
+/* Class = "NSTabViewItem"; label = "Menu Items"; ObjectID = "QZO-GE-ra1"; */
+"QZO-GE-ra1.label" = "メニュー項目";
+
+/* Class = "NSTabViewItem"; label = "Snippets"; ObjectID = "VfI-7K-2Nb"; */
+"VfI-7K-2Nb.label" = "スニペット";

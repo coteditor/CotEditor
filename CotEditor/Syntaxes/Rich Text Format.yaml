@@ -1,0 +1,68 @@
+extensions:
+- keyString: "rtf"
+filenames: []
+interpreters: []
+metadata:
+  version: "1.0.0"
+  lastModified: "2015-10-15"
+  author: "1024jp"
+  license: "Same as CotEditor"
+  distributionURL: "http://coteditor.com"
+numbers:
+- beginString: "(?<=\\\\[a-zA-Z]{1,16})-?[0-9]+"
+  regularExpression: true
+commands: []
+values: []
+keywords:
+- beginString: "(?<!\\\\);"
+  regularExpression: true
+- beginString: "(?<!\\\\)\\{"
+  regularExpression: true
+- beginString: "(?<!\\\\)\\}"
+  regularExpression: true
+- beginString: "\\\\"
+  regularExpression: true
+- beginString: "{\\*"
+attributes:
+- beginString: "(?<=\\\\)[a-z0-9]+"
+  ignoreCase: true
+  regularExpression: true
+strings:
+- beginString: "(?<=HYPERLINK )\""
+  regularExpression: true
+  endString: "\""
+types:
+- beginString: "(?<=\\\\fldinst[ {]) *[A-Z][A-Z0-9]*"
+  regularExpression: true
+variables: []
+characters:
+- beginString: "\\\\'[0-9a-f]{2}"
+  regularExpression: true
+- beginString: "\\\\-"
+  regularExpression: true
+- beginString: "\\\\\\\\"
+  regularExpression: true
+- beginString: "\\\\_"
+  regularExpression: true
+- beginString: "\\\\u[0-9]+"
+  regularExpression: true
+- beginString: "\\\\uc[0-9]+"
+  regularExpression: true
+- beginString: "\\\\~"
+  regularExpression: true
+- beginString: "\\bullet"
+- beginString: "\\emdash"
+- beginString: "\\emspace"
+- beginString: "\\endash"
+- beginString: "\\enspace"
+- beginString: "\\ldblquote"
+- beginString: "\\lquote"
+- beginString: "\\rdblquote"
+- beginString: "\\rquote"
+- beginString: "\\tab"
+commentDelimiters:
+  beginDelimiter: "{\\comment"
+  endDelimiter: "}"
+comments: []
+outlineMenu: []
+completions: []

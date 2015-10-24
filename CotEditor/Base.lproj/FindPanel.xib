@@ -555,7 +555,7 @@
                                             </binding>
                                         </connections>
                                     </textField>
-                                    <button toolTip="Select to update find result when document is edited." horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="PEV-3w-HeQ">
+                                    <button hidden="YES" toolTip="Select to update find result when document is edited." horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="PEV-3w-HeQ">
                                         <rect key="frame" x="436" y="134" width="86" height="18"/>
                                         <buttonCell key="cell" type="check" title="Live Update" bezelStyle="regularSquare" imagePosition="left" controlSize="small" state="on" inset="2" id="pqE-XD-1Fq">
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>

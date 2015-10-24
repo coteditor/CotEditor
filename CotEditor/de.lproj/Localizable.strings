@@ -182,6 +182,11 @@
 "NFKC Casefold" = "NFKC Casefold";
 "Modified NFD" = "Modifizierte NFD";
 "Inspect Character" = "Zeichen-Info einblenden";
+"Move Line" = "Zeile verschieben";
+"Sort Lines" = "Zeilen sortieren";
+"Reverse Lines" = "Zeilen umdrehen";
+"Remove Duplicate Lines" = "Doppelte Zeilen löschen";
+"Delete Line" = "Zeile löschen";
 
 // Menu items
 "Comment Selection" = "Auswahl auskommentieren";
@@ -189,7 +194,7 @@
 
 // Contextual menu items
 "Font" = "Schrift";
-"Utility" = "Utility";
+"Text" = "Text";
 "Select All" = "Alles auswählen";
 
 
@@ -294,6 +299,15 @@
 // Hint message for the completion list
 "Completion can be performed manually with: %@ or %@" = "Vervollständigung manuell durchführen mit: %@ oder %@";
 "Select at least one item to enable completion." = "Wählen Sie mindestens ein Element die Vervollständigung zu aktivieren.";
+
+
+// Genearal pane
+// Autosave setting update alert
+"The change will be applied first at the next launch." = "Die Änderung wird erst beim nächsten Start angewendet.";
+"Do you want to restart CotEditor now?" = "Möchten Sie CotEditor jetzt neustarten?";
+"Restart Now" = "Jetzt neustarten";
+"Later" = "Später";
+
 
 // Appearance pane
 // Contextual menu items

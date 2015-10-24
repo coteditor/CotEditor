@@ -181,6 +181,11 @@
 "NFKC Casefold" = "NFKC Casefold";
 "Modified NFD" = "修改 NFD";
 "Inspect Character" = "显示字符";
+"Move Line" = "移动行";
+"Sort Lines" = "排序行";
+"Reverse Lines" = "逆序行";
+"Remove Duplicate Lines" = "移除重复行";
+"Delete Line" = "删除行";
 
 // Menu items
 "Comment Selection" = "注释选中内容";
@@ -188,7 +193,7 @@
 
 // Contextual menu items
 "Font" = "字体";
-"Utility" = "实用工具";
+"Text" = "文本";
 "Select All" = "全部选择";
 
 
@@ -294,6 +299,15 @@
 // Hint message for the completion list
 "Completion can be performed manually with: %@ or %@" = "补全可以通过 %@ 或 %@ 手动完成";
 "Select at least one item to enable completion." = "至少选择一个条目来激活补全。";
+
+
+// Genearal pane
+// Autosave setting update alert
+"The change will be applied first at the next launch." = "变更将在下次启动时生效。";
+"Do you want to restart CotEditor now?" = "现在就重启 CotEditor 吗？";
+"Restart Now" = "现在重启";
+"Later" = "稍后";
+
 
 // Appearance pane
 // Contextual menu items

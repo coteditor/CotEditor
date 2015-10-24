@@ -120,6 +120,11 @@
 "OJR-Lr-Joc.paletteLabel" = "Textausrichtung";  /* Toggle Text Orientation */
 "OJR-Lr-Joc.toolTip" = "Text vertikal/horizontal ausrichten";  /* Toggle text orientation */
 
+/* Class = "NSToolbarItem"; ObjectID = "Ypa-xH-pVN"; */
+"Ypa-xH-pVN.label" = "Rechtschreibprüfung";  /* Spell Check */
+"Ypa-xH-pVN.paletteLabel" = "Rechtschreibprüfung";  /* Spell Check */
+"Ypa-xH-pVN.toolTip" = "Rechtschreibung und Grammatik einblenden";  /* Show spelling and grammer panel */
+
 /* Class = "NSToolbarItem"; ObjectID = "77o-kx-gNj"; */
 "77o-kx-gNj.label" = "Farbcode";  /* Color Code */
 "77o-kx-gNj.paletteLabel" = "Farbcode bearbeiten";  /* Edit Color Code */

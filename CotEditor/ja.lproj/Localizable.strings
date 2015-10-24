@@ -184,6 +184,11 @@
 "NFKC Casefold" = "NFKC Casefold";
 "Modified NFD" = "修正 NFD";
 "Inspect Character" = "文字情報を表示";
+"Move Line" = "行を移動";
+"Sort Lines" = "行をソート";
+"Reverse Lines" = "行を反転";
+"Remove Duplicate Lines" = "重複行を削除";
+"Delete Line" = "行を削除";
 
 // Menu items
 "Comment Selection" = "選択範囲をコメントアウト";
@@ -191,7 +196,7 @@
 
 // Contextual menu items
 "Font" = "フォント";
-"Utility" = "ユーティリティ";
+"Text" = "テキスト";
 "Select All" = "すべてを選択";
 
 
@@ -296,6 +301,15 @@
 // Hint message for the completion list
 "Completion can be performed manually with: %@ or %@" = "入力補完候補リストの表示： %@ もしくは %@";
 "Select at least one item to enable completion." = "入力補完を有効にするためには1つ以上の項目を選択する必要があります。";
+
+
+// Genearal pane
+// Autosave setting update alert
+"The change will be applied first at the next launch." = "この変更は次回アプリケーション起動時に適用されます。";
+"Do you want to restart CotEditor now?" = "CotEditor を今すぐ再起動しますか？";
+"Restart Now" = "今すぐ再起動";
+"Later" = "あとで";
+
 
 // Appearance pane
 // Contextual menu items

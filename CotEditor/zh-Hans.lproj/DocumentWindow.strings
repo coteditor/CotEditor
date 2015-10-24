@@ -121,6 +121,11 @@
 "OJR-Lr-Joc.paletteLabel" = "切换文字方向";  /* Toggle text orientation */
 "OJR-Lr-Joc.toolTip" = "切换文字方向";  /* Toggle text orientation */
 
+/* Class = "NSToolbarItem"; ObjectID = "Ypa-xH-pVN"; */
+"Ypa-xH-pVN.label" = "拼写检查";  /* Spell Check */
+"Ypa-xH-pVN.paletteLabel" = "拼写检查";  /* Spell Check */
+"Ypa-xH-pVN.toolTip" = "显示拼写和语法面板";  /* Show spelling and grammer panel */
+
 /* Class = "NSToolbarItem"; ObjectID = "77o-kx-gNj"; */
 "77o-kx-gNj.label" = "颜色代码";  /* Color Code */
 "77o-kx-gNj.paletteLabel" = "编辑颜色代码";  /* Edit Color Code */

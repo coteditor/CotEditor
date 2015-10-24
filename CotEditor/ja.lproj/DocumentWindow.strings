@@ -120,6 +120,11 @@
 "OJR-Lr-Joc.paletteLabel" = "縦書き／横書きを切替";  /* Toggle Text Orientation */
 "OJR-Lr-Joc.toolTip" = "縦書き／横書きを切替";  /* Toggle text orientation */
 
+/* Class = "NSToolbarItem"; ObjectID = "Ypa-xH-pVN"; */
+"Ypa-xH-pVN.label" = "スペルチェック";  /* Spell Check */
+"Ypa-xH-pVN.paletteLabel" = "スペルチェック";  /* Spell Check */
+"Ypa-xH-pVN.toolTip" = "スペルと文法パネルを表示";  /* Show spelling and grammer panel */
+
 /* Class = "NSToolbarItem"; ObjectID = "77o-kx-gNj"; */
 "77o-kx-gNj.label" = "カラーコード";  /* Color Code */
 "77o-kx-gNj.paletteLabel" = "カラーコードを編集";  /* Edit Color Code */

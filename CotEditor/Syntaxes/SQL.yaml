@@ -340,11 +340,11 @@ keywords:
   ignoreCase: true
 - beginString: "loop"
   ignoreCase: true
-- beginString: "marge"
-  ignoreCase: true
 - beginString: "match"
   ignoreCase: true
 - beginString: "member"
+  ignoreCase: true
+- beginString: "merge"
   ignoreCase: true
 - beginString: "method"
   ignoreCase: true

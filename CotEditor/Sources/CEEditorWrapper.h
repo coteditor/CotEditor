@@ -74,6 +74,7 @@
 - (void)clearAllMarkup;
 
 - (BOOL)isAutoTabExpandEnabled;
+- (void)setAutoTabExpandEnabled:(BOOL)autoTabExpandEnabled;
 
 // navigation bar
 - (void)setShowsNavigationBar:(BOOL)showsNavigationBar animate:(BOOL)performAnimation;

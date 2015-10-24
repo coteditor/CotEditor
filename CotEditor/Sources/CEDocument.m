@@ -36,6 +36,7 @@
 #import "CEUtils.h"
 #import "NSURL+Xattr.h"
 #import "NSData+MD5.h"
+#import "NSString+Indentation.h"
 #import "Constants.h"
 
 
@@ -761,6 +762,21 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
         NSString *string = [[self fileContentString] stringByReplacingNewLineCharacersWith:CENewLineLF];
         
         [[self editor] setString:string];  // In this `setString:`, caret will be moved to the beginning.
+        
+        // detect indent style
+        if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultDetectsIndentStyleKey]) {
+            switch ([string detectIndentStyle]) {
+                case CEIndentStyleTab:
+                    [[self editor] setAutoTabExpandEnabled:NO];
+                    break;
+                case CEIndentStyleSpace:
+                    [[self editor] setAutoTabExpandEnabled:YES];
+                    break;
+                case CEIndentStyleNotFound:
+                    break;
+            }
+        }
+        
         [self setFileContentString:nil];  // release
         
     } else {
