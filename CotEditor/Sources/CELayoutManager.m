@@ -157,7 +157,7 @@ static BOOL usesTextFontForInvisibles;
         
         // フォントサイズは随時変更されるため、表示時に取得する
         CTFontRef font = (__bridge CTFontRef)[self textFont];
-        NSColor *color = [[(NSTextView<CETextViewProtocol> *)[self firstTextView] theme] invisiblesColor];
+        NSColor *color = [[self theme] invisiblesColor];
         
         // for other invisibles
         NSFont *replacementFont;  // delay creating font till it's really needed
@@ -288,7 +288,7 @@ static BOOL usesTextFontForInvisibles;
     //      So, it shoud be re-colored here.
     BOOL isControlGlyph = (attributes[NSGlyphInfoAttributeName]);
     if (isControlGlyph && [self showsControlCharacters]) {
-        NSColor *invisibleColor = [[(NSTextView<CETextViewProtocol> *)[self firstTextView] theme] invisiblesColor];
+        NSColor *invisibleColor = [[self theme] invisiblesColor];
         [graphicsContext saveGraphicsState];
         [invisibleColor set];
     }
@@ -475,6 +475,15 @@ static BOOL usesTextFontForInvisibles;
 
 
 #pragma mark Private Methods
+
+// ------------------------------------------------------
+/// current theme
+- (CETheme *)theme
+// ------------------------------------------------------
+{
+    return [(NSTextView<CETextViewProtocol> *)[self firstTextView] theme];
+}
+
 
 // ------------------------------------------------------
 /// 表示フォントの各種値をキャッシュする
