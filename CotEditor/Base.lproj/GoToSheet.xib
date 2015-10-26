@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="7706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9059"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="CEGoToSheetController">
@@ -26,6 +26,7 @@
                         <constraints>
                             <constraint firstAttribute="width" constant="96" id="3zu-tW-wMH"/>
                         </constraints>
+                        <animations/>
                         <popUpButtonCell key="cell" type="push" bezelStyle="rounded" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="Jaf-xK-LUw">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="menu"/>
@@ -42,6 +43,7 @@
                     </popUpButton>
                     <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0pu-o7-QNV">
                         <rect key="frame" x="124" y="49" width="106" height="22"/>
+                        <animations/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="jFO-Jw-hpY">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -64,6 +66,7 @@
                         <constraints>
                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="88" id="gnX-vU-ORK"/>
                         </constraints>
+                        <animations/>
                         <buttonCell key="cell" type="push" title="Go" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="zet-GK-4z4">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -77,6 +80,7 @@ DQ
                     </button>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1Pi-N7-0z1">
                         <rect key="frame" x="36" y="13" width="100" height="32"/>
+                        <animations/>
                         <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="iQf-7n-OD6">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -102,6 +106,7 @@ Gw
                     <constraint firstItem="1Pi-N7-0z1" firstAttribute="baseline" secondItem="Aef-Xm-gkb" secondAttribute="baseline" id="ykc-Tu-gFM"/>
                     <constraint firstItem="Aef-Xm-gkb" firstAttribute="leading" secondItem="1Pi-N7-0z1" secondAttribute="trailing" constant="12" symbolic="YES" id="zZs-Eu-tct"/>
                 </constraints>
+                <animations/>
             </view>
             <connections>
                 <outlet property="delegate" destination="-2" id="ag5-F5-24a"/>

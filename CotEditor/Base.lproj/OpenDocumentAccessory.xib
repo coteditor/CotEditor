@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6254"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9059"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="CEDocumentController">
@@ -18,7 +18,8 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bt1-Nu-etX">
-                    <rect key="frame" x="98" y="12" width="66" height="17"/>
+                    <rect key="frame" x="99" y="12" width="65" height="17"/>
+                    <animations/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" userInterfaceLayoutDirection="rightToLeft" title="Encoding:" usesSingleLineMode="YES" id="voE-Mi-XZu">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -30,6 +31,7 @@
                     <constraints>
                         <constraint firstAttribute="width" constant="230" id="awo-hX-lev"/>
                     </constraints>
+                    <animations/>
                     <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="40m-Pt-YBr">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menu"/>
@@ -52,6 +54,7 @@
                 <constraint firstAttribute="trailing" secondItem="oFH-0B-ozp" secondAttribute="trailing" constant="20" symbolic="YES" id="XZN-dU-Gph"/>
                 <constraint firstItem="oFH-0B-ozp" firstAttribute="leading" secondItem="bt1-Nu-etX" secondAttribute="trailing" constant="8" symbolic="YES" id="kH9-lI-myi"/>
             </constraints>
+            <animations/>
         </customView>
     </objects>
 </document>

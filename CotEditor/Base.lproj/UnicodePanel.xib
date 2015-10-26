@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="7706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9059"/>
     </dependencies>
     <objects>
         <customObject id="-2" customClass="CEUnicodeInputPanelController">
@@ -22,6 +22,7 @@
                 <subviews>
                     <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="yRX-Lf-Qnd">
                         <rect key="frame" x="20" y="20" width="112" height="22"/>
+                        <animations/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" borderStyle="bezel" placeholderString="U+1F600" drawsBackground="YES" usesSingleLineMode="YES" id="n75-u3-Rt4">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -46,6 +47,7 @@
                         <constraints>
                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="G9s-p0-ZHn"/>
                         </constraints>
+                        <animations/>
                         <buttonCell key="cell" type="push" title="Input" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="rfS-Rp-Al4">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -67,6 +69,7 @@ DQ
                     <constraint firstItem="yRX-Lf-Qnd" firstAttribute="leading" secondItem="rG5-Vo-Df3" secondAttribute="leading" constant="20" symbolic="YES" id="eTh-gL-mvb"/>
                     <constraint firstAttribute="centerY" secondItem="FdN-Wj-h7S" secondAttribute="centerY" id="yOo-rd-WLb"/>
                 </constraints>
+                <animations/>
             </view>
             <connections>
                 <outlet property="delegate" destination="-2" id="3EJ-ju-Wzb"/>

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="7706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9059"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="CEPreferencesWindowController">
@@ -22,7 +22,8 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="smZ-W1-fqS">
-                        <rect key="frame" x="205" y="152" width="140" height="17"/>
+                        <rect key="frame" x="207" y="152" width="136" height="17"/>
+                        <animations/>
                         <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="No Pane is Selected." usesSingleLineMode="YES" id="iXM-53-nYK">
                             <font key="font" metaFont="systemBold"/>
                             <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
@@ -34,6 +35,7 @@
                     <constraint firstAttribute="centerY" secondItem="smZ-W1-fqS" secondAttribute="centerY" id="AqI-ac-2sQ"/>
                     <constraint firstAttribute="centerX" secondItem="smZ-W1-fqS" secondAttribute="centerX" id="deZ-dL-IY8"/>
                 </constraints>
+                <animations/>
             </view>
             <toolbar key="toolbar" implicitIdentifier="5EEA7197-971A-4C0B-ACF0-25FF246C03E2" autosavesConfiguration="NO" allowsUserCustomization="NO" displayMode="iconAndLabel" sizeMode="regular" id="e4w-yq-scj">
                 <allowedToolbarItems>

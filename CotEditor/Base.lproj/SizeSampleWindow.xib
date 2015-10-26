@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="8191" systemVersion="15A282b" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="8191"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9059"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="CESizeSampleWindowController">
@@ -56,7 +56,7 @@ Gw
                             <action selector="cancel:" target="-2" id="Owb-pY-bYW"/>
                         </connections>
                     </button>
-                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="130">
+                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="130">
                         <rect key="frame" x="18" y="306" width="444" height="34"/>
                         <animations/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" id="3399">
@@ -107,19 +107,19 @@ The size of this window will be set as default.</string>
                             <outlet property="formatter" destination="6fa-a9-iGI" id="0hn-rM-Qsa"/>
                         </connections>
                     </textField>
-                    <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="140">
+                    <textField horizontalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="140">
                         <rect key="frame" x="18" y="268" width="44" height="17"/>
                         <animations/>
-                        <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Width:" usesSingleLineMode="YES" id="3402">
+                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Width:" usesSingleLineMode="YES" id="3402">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="141">
+                    <textField horizontalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="141">
                         <rect key="frame" x="166" y="268" width="48" height="17"/>
                         <animations/>
-                        <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Height:" usesSingleLineMode="YES" id="3403">
+                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Height:" usesSingleLineMode="YES" id="3403">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
