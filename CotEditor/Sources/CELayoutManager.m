@@ -279,6 +279,30 @@ static BOOL usesTextFontForInvisibles;
 
 
 // ------------------------------------------------------
+/// color glyphs
+- (void)showCGGlyphs:(const CGGlyph *)glyphs positions:(const NSPoint *)positions count:(NSUInteger)glyphCount font:(NSFont *)font matrix:(NSAffineTransform *)textMatrix attributes:(NSDictionary<NSString *,id> *)attributes inContext:(NSGraphicsContext *)graphicsContext
+// ------------------------------------------------------
+{
+    // overcort control glyphs
+    //   -> Control color will occasionally be colored in sytnax style color after `drawGlyphsForGlyphRange:atPoint:`.
+    //      So, it shoud be re-colored here.
+    BOOL isControlGlyph = (attributes[NSGlyphInfoAttributeName]);
+    if (isControlGlyph && [self showsControlCharacters]) {
+        NSColor *invisibleColor = [[(NSTextView<CETextViewProtocol> *)[self firstTextView] theme] invisiblesColor];
+        [graphicsContext saveGraphicsState];
+        [invisibleColor set];
+    }
+    
+    [super showCGGlyphs:glyphs positions:positions count:glyphCount font:font matrix:textMatrix attributes:attributes inContext:graphicsContext];
+    
+    // restore context
+    if (isControlGlyph) {
+        [graphicsContext restoreGraphicsState];
+    }
+}
+
+
+// ------------------------------------------------------
 /// textStorage did update
 - (void)textStorage:(NSTextStorage *)str edited:(NSTextStorageEditedOptions)editedMask range:(NSRange)newCharRange changeInLength:(NSInteger)delta invalidatedRange:(NSRange)invalidatedCharRange
 // ------------------------------------------------------

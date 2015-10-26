@@ -2,6 +2,20 @@
 Change Log
 ==========================
 
+develop
+--------------------------
+
+### Additions/Changes
+
+- Tweak UI text.
+
+
+### Fixes
+
+- Fix an issue where syntax highlighted control character was sometime not colored in the invisible color.
+
+
+
 2.3.0-beta (80)
 --------------------------
 
