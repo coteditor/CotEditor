@@ -27,7 +27,7 @@ It's a pure document-based Cocoa application. The source code is written in Obje
 ### Development Environment
 
 - OS X 10.11 El Capitan
-- Xcode 7
+- Xcode 7.1
 
 
 
@@ -36,7 +36,7 @@ How to Build
 
 0. Install [CocoaPods](http://cocoapods.org) if you don't have it.
 1. On terminal, move to the project root directory and run `pod install`.
-2. Open CotEditor.xcworkspace on Xcode.
+2. Open CotEditor.xcworkspace in Xcode.
 3. build.
 
 
