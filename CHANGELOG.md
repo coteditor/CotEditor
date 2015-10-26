@@ -13,6 +13,7 @@ develop
 ### Fixes
 
 - Fix an issue where syntax highlighted control character was sometime not colored in the invisible color.
+- [beta] Address syntax highlighiting issue with multiple lines.
 
 
 

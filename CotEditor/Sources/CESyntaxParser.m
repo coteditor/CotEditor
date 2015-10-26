@@ -453,15 +453,17 @@ static CGFloat kPerCompoIncrement;
         if (start <= bufferLength) {
             start = 0;
         } else {
-            [layoutManager temporaryAttributesAtCharacterIndex:start
-                                         longestEffectiveRange:&effectiveRange
-                                                       inRange:wholeRange];
+            [layoutManager temporaryAttribute:NSForegroundColorAttributeName
+                             atCharacterIndex:start
+                        longestEffectiveRange:&effectiveRange
+                                      inRange:wholeRange];
             start = effectiveRange.location;
         }
         
-        [layoutManager temporaryAttributesAtCharacterIndex:end
-                                     longestEffectiveRange:&effectiveRange
-                                                   inRange:wholeRange];
+        [layoutManager temporaryAttribute:NSForegroundColorAttributeName
+                         atCharacterIndex:end
+                    longestEffectiveRange:&effectiveRange
+                                  inRange:wholeRange];
         end = NSMaxRange(effectiveRange);
         
         coloringRange = NSMakeRange(start, end - start);
