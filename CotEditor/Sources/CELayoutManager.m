@@ -292,7 +292,7 @@ static BOOL usesTextFontForInvisibles;
         [graphicsContext saveGraphicsState];
         [invisibleColor set];
         
-        // remove existing coloring attribute for save
+        // remove existing coloring attribute for safe
         NSMutableDictionary *mutableAttributes = [attributes mutableCopy];
         [mutableAttributes removeObjectForKey:NSForegroundColorAttributeName];
         attributes = [mutableAttributes copy];
