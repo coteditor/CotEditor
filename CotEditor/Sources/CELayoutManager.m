@@ -291,6 +291,11 @@ static BOOL usesTextFontForInvisibles;
         NSColor *invisibleColor = [[self theme] invisiblesColor];
         [graphicsContext saveGraphicsState];
         [invisibleColor set];
+        
+        // remove existing coloring attribute for save
+        NSMutableDictionary *mutableAttributes = [attributes mutableCopy];
+        [mutableAttributes removeObjectForKey:NSForegroundColorAttributeName];
+        attributes = [mutableAttributes copy];
     }
     
     [super showCGGlyphs:glyphs positions:positions count:glyphCount font:font matrix:textMatrix attributes:attributes inContext:graphicsContext];
