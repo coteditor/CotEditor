@@ -13,8 +13,8 @@ develop
 ### Fixes
 
 - Fix an issue where the baseline of new line invisible characters was wrong if line is empty.
-- Fix an issue where syntax highlighted control character was sometime not colored in the invisible color.
-- [beta] Address syntax highlighiting issue with multiple lines.
+- Address an issue where syntax highlighted control character was sometime not colored in the invisible color.
+- [beta] Fix syntax highlighiting issue with multiple lines.
 
 
 
