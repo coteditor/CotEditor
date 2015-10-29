@@ -51,6 +51,7 @@ develop
 - Address syntax highlighiting issue with multiple lines.
 - Fix an issue where text view drawing was distorted while resizing window.
 - Fix an issue where application could crash on window restoration.
+- Fix an issue where the baseline of new line invisible characters was wrong if line is empty.
 - Fix some typos in syntax styles “Julia” and “SQL”.
 
 
