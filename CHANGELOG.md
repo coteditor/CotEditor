@@ -2,7 +2,7 @@
 Change Log
 ==========================
 
-develop
+2.3.0 (82)
 --------------------------
 
 ### New Features
@@ -22,7 +22,7 @@ develop
 - Fix an issue where application could be launched on unsupported system versions.
 - Fix an issue where the baseline of new line invisible characters was wrong if line is empty.
 - Address an issue where syntax highlighted control character was sometime not colored in the invisible color.
-- [beta] Fix syntax highlighiting issue with multiple lines.
+- [beta] Fix syntax highlighting issue with multiple lines.
 
 
 
@@ -57,7 +57,7 @@ develop
 ### Fixes
 
 - Fix an issue where no file path was inserted if file type of the dropped file was not registered to the file drop setting.
-- Address syntax highlighiting issue with multiple lines.
+- Address syntax highlighting issue with multiple lines.
 - Fix an issue where text view drawing was distorted while resizing window.
 - Fix an issue where application could crash on window restoration.
 - Fix some typos in syntax styles “Julia” and “SQL”.
