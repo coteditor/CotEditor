@@ -7,6 +7,8 @@ develop
 
 ### Additions/Changes
 
+- Update “R” syntax style:
+    - Add “Rscript” to interpreters.
 - Tweak UI text.
 
 
