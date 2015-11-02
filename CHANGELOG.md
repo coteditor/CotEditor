@@ -5,6 +5,11 @@ Change Log
 develop
 --------------------------
 
+### New Features
+
+- Add “Copy with Style” action.
+
+
 ### Additions/Changes
 
 - Update “R” syntax style:

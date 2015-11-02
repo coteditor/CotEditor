@@ -119,6 +119,8 @@
 "160.title" = "カット";
 /* Class = "NSMenuItem"; title = "Copy"; ObjectID = "157"; */
 "157.title" = "コピー";
+/* Class = "NSMenuItem"; title = "Copy with Style"; ObjectID = "j3t-7l-xSy"; */
+"j3t-7l-xSy.title" = "スタイル付きコピー";
 /* Class = "NSMenuItem"; title = "Paste"; ObjectID = "171"; */
 "171.title" = "ペースト";
 /* Class = "NSMenuItem"; title = "Delete"; ObjectID = "164"; */

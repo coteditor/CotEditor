@@ -1106,6 +1106,75 @@ static NSPoint kTextContainerOrigin;
 #pragma mark Action Messages
 
 // ------------------------------------------------------
+/// copy selection with syntax highlight and font style
+- (void)copyWithStyle:(id)sender
+// ------------------------------------------------------
+{
+    if ([self selectedRange].length == 0) { return; }
+    
+    NSMutableArray<NSAttributedString *> *selections = [NSMutableArray arrayWithCapacity:[[self selectedRanges] count]];
+    NSMutableArray<NSNumber *> *propertyList = [NSMutableArray arrayWithCapacity:[[self selectedRanges] count]];
+    CENewLineType newLineType = [[[[self window] windowController] document] lineEnding];
+    NSString *newLine = [NSString newLineStringWithType:newLineType];
+
+    // substring all selected attributed strings
+    for (NSValue *rangeValue in [self selectedRanges]) {
+        NSRange selectedRange = [rangeValue rangeValue];
+        NSString *plainText = [[self string] substringWithRange:selectedRange];
+        NSMutableAttributedString *styledText = [[NSMutableAttributedString alloc] initWithString:plainText
+                                                                                       attributes:[self typingAttributes]];
+        
+        // apply syntax highlight that is set as temporary attributes in layout manager to attributed string
+        for (NSUInteger charIndex = selectedRange.location; charIndex < NSMaxRange(selectedRange); charIndex++) {
+            NSRange effectiveRange;
+            NSColor *color = [[self layoutManager] temporaryAttribute:NSForegroundColorAttributeName atCharacterIndex:charIndex
+                                                longestEffectiveRange:&effectiveRange inRange:selectedRange];
+            
+            if (!color) { continue; }
+            
+            NSRange localRange = NSMakeRange(effectiveRange.location - selectedRange.location, effectiveRange.length);
+            [styledText addAttribute:NSForegroundColorAttributeName value:color range:localRange];
+            
+            charIndex = NSMaxRange(effectiveRange);
+        }
+        
+        // apply document's line ending
+        if (newLineType != CENewLineLF) {
+            for (NSInteger charIndex = [plainText length] - 1; charIndex >= 0; charIndex--) {  // process backwards
+                if ([plainText characterAtIndex:charIndex] == '\n') {
+                    [styledText replaceCharactersInRange:NSMakeRange(charIndex, 1) withString:newLine];
+                }
+            }
+        }
+        
+        [selections addObject:styledText];
+        [propertyList addObject:@([[plainText componentsSeparatedByString:@"\n"] count])];
+    }
+    
+    NSMutableAttributedString *pasteboardString = [[NSMutableAttributedString alloc] init];
+    
+    // join attributed strings
+    NSAttributedString *attrNewLine = [[NSMutableAttributedString alloc] initWithString:newLine];
+    for (NSAttributedString *selection in selections) {
+        // join with newline string
+        if ([pasteboardString length] > 0) {
+            [pasteboardString appendAttributedString:attrNewLine];
+        }
+        [pasteboardString appendAttributedString:selection];
+    }
+    
+    // set to paste board
+    NSPasteboard *pboard = [NSPasteboard generalPasteboard];
+    [pboard clearContents];
+    [pboard declareTypes:[self writablePasteboardTypes] owner:nil];
+    if ([pboard canReadItemWithDataConformingToTypes:@[NSPasteboardTypeMultipleTextSelection]]) {
+        [pboard setPropertyList:propertyList forType:NSPasteboardTypeMultipleTextSelection];
+    }
+    [pboard writeObjects:@[pasteboardString]];
+}
+
+
+// ------------------------------------------------------
 /// フォントをリセット
 - (void)resetFont:(nullable id)sender
 // ------------------------------------------------------

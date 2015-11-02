@@ -4,6 +4,8 @@
 <dict>
 	<key>$@A</key>
 	<string>selectLines:</string>
+	<key>$@C</key>
+	<string>copyWithStyle:</string>
 	<key>$@E</key>
 	<string>useSelectionForReplace:</string>
 	<key>$@F</key>
