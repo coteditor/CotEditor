@@ -361,7 +361,7 @@
       ".Rprofile"
     ],
     "interpreters": [
-
+      "Rscript"
     ]
   },
   "Rich Text Format": {

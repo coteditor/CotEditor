@@ -2,6 +2,14 @@ extensions:
 - keyString: "r"
 filenames:
 - keyString: ".Rprofile"
+interpreters:
+- keyString: "Rscript"
+metadata:
+  author: "1024jp"
+  distributionURL: "http://coteditor.com"
+  version: "1.1.0"
+  license: "Same as CotEditor"
+  lastModified: "2015-11-02"
 outlineMenu:
 - beginString: "^[\\t ]*(\\S+)[\\t ]*<-[\\t ]*function"
   keyString: "function: $1"
@@ -980,12 +988,6 @@ commands:
 - beginString: "xtfrm.Surv"
 - beginString: "xzfile"
 - beginString: "zapsmall"
-metadata:
-  author: "1024jp"
-  distributionURL: "http://coteditor.com"
-  version: "1.0.1"
-  license: "Same as CotEditor"
-  lastModified: "2014-11-21"
 characters: []
 comments: []
 values:
