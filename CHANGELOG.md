@@ -12,6 +12,7 @@ develop
 
 ### Fixes
 
+- Fix an issue where application could be launched on unsupported system versions.
 - Fix an issue where the baseline of new line invisible characters was wrong if line is empty.
 - Address an issue where syntax highlighted control character was sometime not colored in the invisible color.
 - [beta] Fix syntax highlighiting issue with multiple lines.
