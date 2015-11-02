@@ -7,7 +7,7 @@ develop
 
 ### New Features
 
-- Add “Copy with Style” action.
+- Add “Copy with Style” action to the Edit menu.
 
 
 ### Additions/Changes
