@@ -177,7 +177,7 @@
                                     <action selector="copy:" target="-1" id="181"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Copy with Style" keyEquivalent="C" id="j3t-7l-xSy">
+                            <menuItem title="Copy as Rich Text" keyEquivalent="C" id="j3t-7l-xSy">
                                 <connections>
                                     <action selector="copyWithStyle:" target="-1" id="J0c-Sa-ygf"/>
                                 </connections>

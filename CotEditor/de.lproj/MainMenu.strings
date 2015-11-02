@@ -119,8 +119,8 @@
 "160.title" = "Ausschneiden";
 /* Class = "NSMenuItem"; title = "Copy"; ObjectID = "157"; */
 "157.title" = "Kopieren";
-/* Class = "NSMenuItem"; title = "Copy with Style"; ObjectID = "j3t-7l-xSy"; */
-"j3t-7l-xSy.title" = "Mit Stil Kopieren";
+/* Class = "NSMenuItem"; title = "Copy as Rich Text"; ObjectID = "j3t-7l-xSy"; */
+"j3t-7l-xSy.title" = "Als formatierten Text Kopieren";
 /* Class = "NSMenuItem"; title = "Paste"; ObjectID = "171"; */
 "171.title" = "Einsetzen";
 /* Class = "NSMenuItem"; title = "Delete"; ObjectID = "164"; */

@@ -121,8 +121,8 @@
 "160.title" = "剪切";
 /* Class = "NSMenuItem"; title = "Copy"; ObjectID = "157"; */
 "157.title" = "拷贝";
-/* Class = "NSMenuItem"; title = "Copy with Style"; ObjectID = "j3t-7l-xSy"; */
-"j3t-7l-xSy.title" = "Copy with Style";  // FIXME: added
+/* Class = "NSMenuItem"; title = "Copy as Rich Text"; ObjectID = "j3t-7l-xSy"; */
+"j3t-7l-xSy.title" = "Copy as Rich Text";  // FIXME: added
 /* Class = "NSMenuItem"; title = "Paste"; ObjectID = "171"; */
 "171.title" = "粘贴";
 /* Class = "NSMenuItem"; title = "Delete"; ObjectID = "164"; */
