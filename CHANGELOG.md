@@ -9,6 +9,8 @@ develop
 
 - Update “Python” syntax style:
     - Add terms added in Python 3.4 and 3.5.
+- Update “R” syntax style:
+    - Fix boolean values were not highlighted correctly.
 
 
 ### Fixes
