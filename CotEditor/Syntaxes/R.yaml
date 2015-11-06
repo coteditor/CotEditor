@@ -7,9 +7,9 @@ interpreters:
 metadata:
   author: "1024jp"
   distributionURL: "http://coteditor.com"
-  version: "1.1.0"
+  version: "1.1.1"
   license: "Same as CotEditor"
-  lastModified: "2015-11-02"
+  lastModified: "2015-11-05"
 outlineMenu:
 - beginString: "^[\\t ]*(\\S+)[\\t ]*<-[\\t ]*function"
   keyString: "function: $1"
@@ -992,9 +992,7 @@ characters: []
 comments: []
 values:
 - beginString: "F"
-  ignoreCase: true
 - beginString: "FALSE"
-  ignoreCase: true
 - beginString: "Inf"
 - beginString: "LETTERS"
   ignoreCase: true
@@ -1010,9 +1008,7 @@ values:
 - beginString: "pi"
 - beginString: "R.version.string"
 - beginString: "T"
-  ignoreCase: true
 - beginString: "TRUE"
-  ignoreCase: true
 types:
 - beginString: "array"
 - beginString: "category"

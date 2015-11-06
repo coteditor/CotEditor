@@ -5,6 +5,14 @@ Change Log
 develop
 --------------------------
 
+### Additions/Changes
+
+- Update “Python” syntax style:
+    - Add terms added in Python 3.4 and 3.5.
+- Update “R” syntax style:
+    - Fix boolean values were not highlighted correctly.
+
+
 ### Fixes
 
 - Fix an issue where some type of script files cannot be opened by “unidentified developer” even it was made on CotEditor.

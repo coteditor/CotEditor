@@ -302,11 +302,11 @@ attributes:
 metadata:
   author: "nanasiya"
   distributionURL: "http://coteditor.com"
-  version: "2.1.1"
-  description: "Support both Python2 and Python3.\n\nMaintained by 1024jp since
+  version: "2.2.0"
+  description: "Support both Python2 and Python3 (<= 3.5).\n\nMaintained by 1024jp since
     2013."
   license: "Same as CotEditor"
-  lastModified: "2014-11-21"
+  lastModified: "2015-11-03"
 characters: []
 comments: []
 values:
@@ -379,7 +379,9 @@ strings:
 keywords:
 - beginString: "and"
 - beginString: "as"
+- beginString: "async"
 - beginString: "assert"
+- beginString: "await"
 - beginString: "break"
 - beginString: "class"
 - beginString: "continue"
