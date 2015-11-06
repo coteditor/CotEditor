@@ -5,6 +5,15 @@ Change Log
 develop
 --------------------------
 
+### Fixes
+
+- Fix an issue where some type of script files cannot be opened by “unidentified developer” even it was made on CotEditor.
+
+
+
+2.3.0? (82)
+--------------------------
+
 ### New Features
 
 - Add “Copy with Style” action to the Edit menu.
