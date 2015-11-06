@@ -447,7 +447,8 @@
   },
   "Shell Script": {
     "extensions": [
-      "sh"
+      "sh",
+      "command"
     ],
     "filenames": [
       ".profile",

@@ -11,6 +11,8 @@ develop
     - Add terms added in Python 3.4 and 3.5.
 - Update “R” syntax style:
     - Fix boolean values were not highlighted correctly.
+- Update “Shell Script” syntax style:
+    - Add “command” to extension list. 
 
 
 ### Fixes
