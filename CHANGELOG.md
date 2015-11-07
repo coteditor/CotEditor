@@ -14,6 +14,7 @@ Change Log
 
 - Update “R” syntax style:
     - Add “Rscript” to interpreters.
+- Bundle cot command to `CotEditor.app/Contents/SharedSupport/bin/` again.
 - Tweak UI text.
 
 
