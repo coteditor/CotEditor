@@ -17,7 +17,7 @@ develop
 
 ### Fixes
 
-- Fix an issue where some type of script files cannot be opened by “unidentified developer” even it was made on CotEditor.
+- Fix an issue where some type of script file cannot be opened because of “unidentified developer” alert even it was made on CotEditor.
 
 
 
