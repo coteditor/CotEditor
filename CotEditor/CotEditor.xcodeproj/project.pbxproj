@@ -277,6 +277,8 @@
 		2A88A7911B8B899F0055B9AE /* NSString+Normalization.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A88A78F1B8B87C90055B9AE /* NSString+Normalization.m */; };
 		2A94A45A18D08D52009FA90D /* NSWindow+ScriptingSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A94A45918D08D52009FA90D /* NSWindow+ScriptingSupport.m */; };
 		2A94A45E18D0B562009FA90D /* CEOpacityPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A94A45C18D0B562009FA90D /* CEOpacityPanelController.m */; };
+		2A94FC791BE225A200B454A8 /* cot in Copy Command-Line Tools */ = {isa = PBXBuildFile; fileRef = 2A94FC781BE2256F00B454A8 /* cot */; };
+		2A94FC7B1BE225F000B454A8 /* cot in Copy Command-Line Tools */ = {isa = PBXBuildFile; fileRef = 2A94FC781BE2256F00B454A8 /* cot */; };
 		2A961C5218FC699E002076B6 /* AppleScript.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A961C4718FC699E002076B6 /* AppleScript.rtf */; };
 		2A961C5418FC699E002076B6 /* ScriptMenu Folder.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A961C4B18FC699E002076B6 /* ScriptMenu Folder.rtf */; };
 		2A961C5518FC699E002076B6 /* ShellScript.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A961C4D18FC699E002076B6 /* ShellScript.rtf */; };
@@ -355,6 +357,31 @@
 		BED9FB377321352F7A748759 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F3504B3BB02D4DBA8EA50C0E /* libPods.a */; };
 		D3F0D0D055B0931687B33C98 /* libPods-appstore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DD42F3AFDE3081DC5D669D51 /* libPods-appstore.a */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		2A94FC771BE2253500B454A8 /* Copy Command-Line Tools */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = bin;
+			dstSubfolderSpec = 12;
+			files = (
+				2A94FC791BE225A200B454A8 /* cot in Copy Command-Line Tools */,
+			);
+			name = "Copy Command-Line Tools";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2A94FC7A1BE225E900B454A8 /* Copy Command-Line Tools */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = bin;
+			dstSubfolderSpec = 12;
+			files = (
+				2A94FC7B1BE225F000B454A8 /* cot in Copy Command-Line Tools */,
+			);
+			name = "Copy Command-Line Tools";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		258225FE07794C2A00A0F8D3 /* CESyntaxParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CESyntaxParser.h; sourceTree = "<group>"; };
@@ -556,6 +583,7 @@
 		2A94A45918D08D52009FA90D /* NSWindow+ScriptingSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSWindow+ScriptingSupport.m"; sourceTree = "<group>"; };
 		2A94A45B18D0B562009FA90D /* CEOpacityPanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEOpacityPanelController.h; sourceTree = "<group>"; };
 		2A94A45C18D0B562009FA90D /* CEOpacityPanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEOpacityPanelController.m; sourceTree = "<group>"; };
+		2A94FC781BE2256F00B454A8 /* cot */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = cot; sourceTree = "<group>"; };
 		2A961C4618FC699E002076B6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Acknowledgements.rtf; sourceTree = "<group>"; };
 		2A961C4818FC699E002076B6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/AppleScript.rtf; sourceTree = "<group>"; };
 		2A961C4C18FC699E002076B6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = "en.lproj/ScriptMenu Folder.rtf"; sourceTree = "<group>"; };
@@ -1143,6 +1171,7 @@
 				2A75ACCA19E86DDB00444894 /* CotEditor.sdef */,
 				2A6E3F3C19B5218300A63E97 /* CotEditor.help */,
 				2A2179F51A07093B002C4AB1 /* SyntaxMap.json */,
+				2A94FC781BE2256F00B454A8 /* cot */,
 				2A9871A819AEABDB0081BADB /* KeyBindings */,
 				2A3A758D19E77C84001DAB88 /* Syntaxes */,
 				2A7846DA18FE035E006BDF00 /* Themes */,
@@ -1375,6 +1404,7 @@
 				2A6F0D531B5500E100C2D03C /* Check Pods Manifest.lock */,
 				2A5DBE5F1B5D30A500F8CB13 /* Build Syntax Map */,
 				2A6F0D541B5500E100C2D03C /* Resources */,
+				2A94FC7A1BE225E900B454A8 /* Copy Command-Line Tools */,
 				2A6F0DA31B5500E100C2D03C /* Sources */,
 				2A6F0DFD1B5500E100C2D03C /* Frameworks */,
 				DCACFAE3957B360DC925F673 /* Embed Pods Frameworks */,
@@ -1396,6 +1426,7 @@
 				360866EE86A144AF8F8698E8 /* Check Pods Manifest.lock */,
 				2A5DBE5E1B5D2E1300F8CB13 /* Build Syntax Map */,
 				8D15AC2B0486D014006FF6A4 /* Resources */,
+				2A94FC771BE2253500B454A8 /* Copy Command-Line Tools */,
 				8D15AC300486D014006FF6A4 /* Sources */,
 				8D15AC330486D014006FF6A4 /* Frameworks */,
 				C40FF196FC931BDEC94F689E /* Embed Pods Frameworks */,
