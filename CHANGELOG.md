@@ -18,6 +18,7 @@ Change Log
 ### Fixes
 
 - Fix an issue where some type of script file cannot be opened because of “unidentified developer” alert even it was made on CotEditor.
+- Fix an issue where unwanted completion list was displayed by auto-completion when after typing a symbol character.
 
 
 
