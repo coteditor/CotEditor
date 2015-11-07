@@ -2,7 +2,7 @@
 Change Log
 ==========================
 
-2.3.0 (82)
+develop
 --------------------------
 
 ### Additions/Changes
@@ -19,6 +19,7 @@ Change Log
 
 - Fix an issue where some type of script file cannot be opened because of “unidentified developer” alert even it was made on CotEditor.
 - Fix an issue where unwanted completion list was displayed by auto-completion when after typing a symbol character.
+- Fix an issue where application could crash if the width of line number view will change.
 
 
 
