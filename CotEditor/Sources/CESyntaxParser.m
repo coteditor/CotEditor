@@ -35,8 +35,6 @@
 
 
 // local constants (QC might abbr of Quotes/Comment)
-static NSString *_Nonnull const InvisiblesType = @"invisibles";
-
 static NSString *_Nonnull const QCLocationKey = @"QCLocationKey";
 static NSString *_Nonnull const QCPairKindKey = @"QCPairKindKey";
 static NSString *_Nonnull const QCStartEndKey = @"QCStartEndKey";
@@ -455,15 +453,17 @@ static CGFloat kPerCompoIncrement;
         if (start <= bufferLength) {
             start = 0;
         } else {
-            [layoutManager temporaryAttributesAtCharacterIndex:start
-                                         longestEffectiveRange:&effectiveRange
-                                                       inRange:wholeRange];
+            [layoutManager temporaryAttribute:NSForegroundColorAttributeName
+                             atCharacterIndex:start
+                        longestEffectiveRange:&effectiveRange
+                                      inRange:wholeRange];
             start = effectiveRange.location;
         }
         
-        [layoutManager temporaryAttributesAtCharacterIndex:end
-                                     longestEffectiveRange:&effectiveRange
-                                                   inRange:wholeRange];
+        [layoutManager temporaryAttribute:NSForegroundColorAttributeName
+                         atCharacterIndex:end
+                    longestEffectiveRange:&effectiveRange
+                                  inRange:wholeRange];
         end = NSMaxRange(effectiveRange);
         
         coloringRange = NSMakeRange(start, end - start);
@@ -687,27 +687,6 @@ static CGFloat kPerCompoIncrement;
              [ranges addObject:[NSValue valueWithRange:NSUnionRange(beginRange, endRange)]];
          }
      }];
-    
-    return ranges;
-}
-
-
-// ------------------------------------------------------
-/// 不可視文字のカラーリング範囲配列を返す
-- (nonnull NSArray<NSValue *> *)rangesOfControlCharsInString:(nonnull NSString *)string range:(NSRange)parseRange
-// ------------------------------------------------------
-{
-    NSMutableArray<NSValue *> *ranges = [NSMutableArray array];
-    NSCharacterSet *controlCharacterSet = [NSCharacterSet controlCharacterSet];
-    
-    NSRange parsingRange = parseRange;
-    NSRange range;
-    while ((range = [string rangeOfCharacterFromSet:controlCharacterSet options:0 range:parsingRange]).location != NSNotFound) {
-        [ranges addObject:[NSValue valueWithRange:range]];
-        
-        parsingRange.location += range.length;
-        parsingRange.length -= range.length;
-    }
     
     return ranges;
 }
@@ -964,9 +943,6 @@ static CGFloat kPerCompoIncrement;
     
     if ([indicator isCancelled]) { return @{}; }
     
-    // 不可視文字の追加
-    colorings[InvisiblesType] = [self rangesOfControlCharsInString:string range:parseRange];
-    
     return [colorings copy];
 }
 
@@ -1085,24 +1061,16 @@ static CGFloat kPerCompoIncrement;
     [layoutManager removeTemporaryAttribute:NSForegroundColorAttributeName
                           forCharacterRange:coloringRange];
     
-    // add invisible coloring if needed
-    NSArray<NSString *> *colorTypes = kSyntaxDictKeys;
-    if ([layoutManager showsControlCharacters]) {
-        colorTypes = [colorTypes arrayByAddingObject:InvisiblesType];
-    }
-    
     // カラーリング実行
     CETheme *theme = [(NSTextView<CETextViewProtocol> *)[layoutManager firstTextView] theme];
-    for (NSString *colorType in colorTypes) {
+    for (NSString *colorType in kSyntaxDictKeys) {
         NSArray<NSValue *> *ranges = colorings[colorType];
         
         if ([ranges count] == 0) { continue; }
         
         // get color from theme
         NSColor *color;
-        if ([colorType isEqualToString:InvisiblesType]) {
-            color = [theme invisiblesColor];
-        } else if ([colorType isEqualToString:CESyntaxKeywordsKey]) {
+        if ([colorType isEqualToString:CESyntaxKeywordsKey]) {
             color = [theme keywordsColor];
         } else if ([colorType isEqualToString:CESyntaxCommandsKey]) {
             color = [theme commandsColor];

@@ -62,6 +62,7 @@
             selectedRange:(NSRange)selectedRange actionName:(nullable NSString *)actionName;
 
 // Action Message
+- (IBAction)copyWithStyle:(nullable id)sender;
 - (IBAction)resetFont:(nullable id)sender;
 - (IBAction)shiftRight:(nullable id)sender;
 - (IBAction)shiftLeft:(nullable id)sender;

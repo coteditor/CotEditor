@@ -157,7 +157,8 @@ static BOOL usesTextFontForInvisibles;
         
         // フォントサイズは随時変更されるため、表示時に取得する
         CTFontRef font = (__bridge CTFontRef)[self textFont];
-        NSColor *color = [[(NSTextView<CETextViewProtocol> *)[self firstTextView] theme] invisiblesColor];
+        NSColor *color = [[self theme] invisiblesColor];
+        CGFloat baselineOffset = [self defaultBaselineOffsetForFont:[self textFont]];
         
         // for other invisibles
         NSFont *replacementFont;  // delay creating font till it's really needed
@@ -256,7 +257,7 @@ static BOOL usesTextFontForInvisibles;
             }
             
             // add invisible char path
-            NSPoint point = [self pointToDrawGlyphAtIndex:glyphIndex];
+            NSPoint point = [self pointToDrawGlyphAtIndex:glyphIndex verticalOffset:baselineOffset];
             CGAffineTransform translate = CGAffineTransformMakeTranslation(point.x, -point.y);
             CGPathAddPath(paths, &translate, glyphPath);
         }
@@ -275,6 +276,35 @@ static BOOL usesTextFontForInvisibles;
     }
     
     [super drawGlyphsForGlyphRange:glyphsToShow atPoint:origin];
+}
+
+
+// ------------------------------------------------------
+/// color glyphs
+- (void)showCGGlyphs:(const CGGlyph *)glyphs positions:(const NSPoint *)positions count:(NSUInteger)glyphCount font:(NSFont *)font matrix:(NSAffineTransform *)textMatrix attributes:(NSDictionary<NSString *,id> *)attributes inContext:(NSGraphicsContext *)graphicsContext
+// ------------------------------------------------------
+{
+    // overcort control glyphs
+    //   -> Control color will occasionally be colored in sytnax style color after `drawGlyphsForGlyphRange:atPoint:`.
+    //      So, it shoud be re-colored here.
+    BOOL isControlGlyph = (attributes[NSGlyphInfoAttributeName]);
+    if (isControlGlyph && [self showsControlCharacters]) {
+        NSColor *invisibleColor = [[self theme] invisiblesColor];
+        [graphicsContext saveGraphicsState];
+        [invisibleColor set];
+        
+        // remove existing coloring attribute for safe
+        NSMutableDictionary *mutableAttributes = [attributes mutableCopy];
+        [mutableAttributes removeObjectForKey:NSForegroundColorAttributeName];
+        attributes = [mutableAttributes copy];
+    }
+    
+    [super showCGGlyphs:glyphs positions:positions count:glyphCount font:font matrix:textMatrix attributes:attributes inContext:graphicsContext];
+    
+    // restore context
+    if (isControlGlyph) {
+        [graphicsContext restoreGraphicsState];
+    }
 }
 
 
@@ -453,6 +483,15 @@ static BOOL usesTextFontForInvisibles;
 #pragma mark Private Methods
 
 // ------------------------------------------------------
+/// current theme
+- (CETheme *)theme
+// ------------------------------------------------------
+{
+    return [(NSTextView<CETextViewProtocol> *)[self firstTextView] theme];
+}
+
+
+// ------------------------------------------------------
 /// 表示フォントの各種値をキャッシュする
 - (void)setValuesForTextFont:(nullable NSFont *)textFont
 // ------------------------------------------------------
@@ -468,17 +507,18 @@ static BOOL usesTextFontForInvisibles;
 
 //------------------------------------------------------
 /// グリフを描画する位置を返す
-- (NSPoint)pointToDrawGlyphAtIndex:(NSUInteger)glyphIndex
+- (NSPoint)pointToDrawGlyphAtIndex:(NSUInteger)glyphIndex verticalOffset:(CGFloat)offset
 //------------------------------------------------------
 {
-    NSPoint drawPoint = [self locationForGlyphAtIndex:glyphIndex];
-    NSPoint lineOrigin = [self lineFragmentRectForGlyphAtIndex:glyphIndex
-                                                effectiveRange:NULL
-                                       withoutAdditionalLayout:YES].origin;
+    NSPoint origin = [self lineFragmentRectForGlyphAtIndex:glyphIndex
+                                            effectiveRange:NULL
+                                   withoutAdditionalLayout:YES].origin;
+    NSPoint glyphLocation = [self locationForGlyphAtIndex:glyphIndex];
     
-    drawPoint.y += lineOrigin.y;
+    origin.x += glyphLocation.x;
+    origin.y += offset;
     
-    return drawPoint;
+    return origin;
 }
 
 
