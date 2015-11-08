@@ -1,0 +1,3 @@
+[submodule "cot"]
+	path = cot
+	url = git@github.com:coteditor/cot.git
