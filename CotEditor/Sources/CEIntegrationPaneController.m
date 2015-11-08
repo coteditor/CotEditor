@@ -29,7 +29,6 @@
 
 
 static NSString *_Nonnull const kPreferredSymbolicLinkPath = @"/usr/local/bin/cot";
-static NSString *_Nonnull const kLearnMorePath = @"http://coteditor.com/cot";
 
 
 @interface CEIntegrationPaneController ()
@@ -83,18 +82,6 @@ static NSString *_Nonnull const kLearnMorePath = @"http://coteditor.com/cot";
     [super viewWillAppear];
     
     [self setInstalled:[self validateSymlink]];
-}
-
-
-
-#pragma mark Action Messages
-
-// ------------------------------------------------------
-///  "Learn More" button is clicked
-- (IBAction)learnMore:(nullable id)sender
-// ------------------------------------------------------
-{
-    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:kLearnMorePath]];
 }
 
 
