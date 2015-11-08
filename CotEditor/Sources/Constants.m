@@ -69,7 +69,8 @@ NSString *_Nonnull const kHelpAnchors[] = {
     @"about_applescript",
     @"about_unixscript",
     @"pref_integration",
-    @"about_file_mapping"
+    @"about_file_mapping",
+    @"about_cot",
 };
 
 
