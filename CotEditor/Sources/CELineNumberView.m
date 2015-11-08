@@ -302,6 +302,17 @@ static const NSString *LineNumberFontName;
     if (isVerticalText) {
         requiredThickness = MAX(fontSize + tickLength + 2 * kLineNumberPadding, kMinHorizontalThickness);
     } else {
+        // count rest invisible lines
+        // -> The view width depends on the number of digits of the total line numbers.
+        //    As it's quite dengerous to change width of line number view on scrolling dynamically.
+        NSUInteger charIndex = [layoutManager characterIndexForGlyphAtIndex:NSMaxRange(visibleGlyphRange)];
+        if ([string length] > charIndex) {
+            lineNumber += [regex numberOfMatchesInString:string options:0
+                                                   range:NSMakeRange(charIndex,
+                                                                     [string length] - charIndex)];
+            // -> This number can be one greater than the true line number. But it's not a problem.
+        }
+        
         NSUInteger length = MAX(numberOfDigits(lineNumber), kMinNumberOfDigits);
         requiredThickness = MAX(length * charWidth + 3 * kLineNumberPadding, kMinVerticalThickness);
     }
