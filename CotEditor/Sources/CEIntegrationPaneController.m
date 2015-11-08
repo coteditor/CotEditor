@@ -33,8 +33,10 @@ static NSString *_Nonnull const kPreferredSymbolicLinkPath = @"/usr/local/bin/co
 
 @interface CEIntegrationPaneController ()
 
+@property (nonatomic, nonnull) NSURL *preferredLinkTargetURL;
 @property (nonatomic, nonnull) NSURL *preferredLinkURL;
 @property (nonatomic, nonnull) NSURL *linkURL;  // binding
+@property (nonatomic, nonnull) NSURL *commandURL;
 @property (nonatomic, getter=isInstalled) BOOL installed;
 @property (nonatomic, nullable, copy) NSString *warning;
 
@@ -56,8 +58,17 @@ static NSString *_Nonnull const kPreferredSymbolicLinkPath = @"/usr/local/bin/co
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+        NSString *appName = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleName"];
+        NSURL *applicationDirURL = [[NSFileManager defaultManager] URLForDirectory:NSApplicationDirectory
+                                                                          inDomain:NSLocalDomainMask
+                                                                 appropriateForURL:nil
+                                                                            create:NO
+                                                                             error:nil];
+        _preferredLinkTargetURL = [[[applicationDirURL URLByAppendingPathComponent:appName] URLByAppendingPathExtension:@"app"]
+                                   URLByAppendingPathComponent:@"Contents/SharedSupport/bin/cot"];
+        
         _preferredLinkURL = [NSURL fileURLWithPath:kPreferredSymbolicLinkPath];
-        _linkURL = _preferredLinkURL;
+        _commandURL = [[[NSBundle mainBundle] sharedSupportURL] URLByAppendingPathComponent:@"bin/cot"];
     }
     return self;
 }
@@ -96,6 +107,9 @@ static NSString *_Nonnull const kPreferredSymbolicLinkPath = @"/usr/local/bin/co
     // reset once
     [self setWarning:nil];
     
+    // check only preferred link location
+    [self setLinkURL:[self preferredLinkURL]];
+    
     // not installed yet (= can install)
     if (![[self linkURL] checkResourceIsReachableAndReturnError:nil]) {
         return NO;
@@ -106,12 +120,28 @@ static NSString *_Nonnull const kPreferredSymbolicLinkPath = @"/usr/local/bin/co
     NSURL *linkDestinationURL = [NSURL fileURLWithPath:[[NSFileManager defaultManager]
                                                         destinationOfSymbolicLinkAtPath:[[self linkURL] path] error:nil]];
     
-    // if it is not a symlink (treat as "installed")
+    // if it is not a symlink
     if ([linkDestinationURL isEqual:[self linkURL]]) {
+        // treat as "installed"
         return YES;
     }
     
-    // FIXME: just treat as installed when a symlink exists
+    if ([linkDestinationURL isEqual:[[self commandURL] URLByStandardizingPath]] ||
+        [linkDestinationURL isEqual:[self preferredLinkTargetURL]])  // link to '/Applications/CotEditor.app' is always valid
+    {
+        // totaly valid link
+        return YES;
+    }
+    
+    // display warning for invalid link
+    if ([linkDestinationURL checkResourceIsReachableAndReturnError:nil]) {
+        // link destinaiton is not running CotEditor
+        [self setWarning:NSLocalizedString(@"The current 'cot' symbolic link doesn’t target the running CotEditor.", nil)];
+    } else {
+        // link destination is unreachable
+        [self setWarning:NSLocalizedString(@"The current 'cot' symbolic link may target on an invalid path.", nil)];
+    }
+    
     return YES;
 }
 
