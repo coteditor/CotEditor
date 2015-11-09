@@ -2,8 +2,13 @@
 Change Log
 ==========================
 
-develop
+2.3.1 (85)
 --------------------------
+
+### New Features
+
+- Add “Duplicate Line” action to Text > Lines menu.
+
 
 ### Additions/Changes
 
