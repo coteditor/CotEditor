@@ -185,6 +185,7 @@
 "Sort Lines" = "排序行";
 "Reverse Lines" = "逆序行";
 "Remove Duplicate Lines" = "移除重复行";
+"Duplicate Line" = "复制行";
 "Delete Line" = "删除行";
 
 // Menu items

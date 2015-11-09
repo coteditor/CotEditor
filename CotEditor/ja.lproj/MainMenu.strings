@@ -331,6 +331,8 @@
 "xhf-NR-D2Q.title" = "反転";
 /* Class = "NSMenuItem"; title = "Delete Duplicates"; ObjectID = "bjv-m0-tZq"; */
 "bjv-m0-tZq.title" = "重複を削除";
+/* Class = "NSMenuItem"; title = "Duplicate Line"; ObjectID = "m48-5E-yia"; */
+"m48-5E-yia.title" = "行を複製";
 /* Class = "NSMenuItem"; title = "Delete Line"; ObjectID = "sFn-3j-pY5"; */
 "sFn-3j-pY5.title" = "行を削除";
 

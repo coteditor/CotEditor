@@ -2711,6 +2711,47 @@ static NSPoint kTextContainerOrigin;
 
 
 // ------------------------------------------------------
+/// duplicate selected lines below
+- (IBAction)duplicateLine:(nullable id)sender
+// ------------------------------------------------------
+{
+    NSMutableArray<NSValue *> *replacementRanges = [NSMutableArray array];
+    NSMutableArray<NSString *> *replacementStrings = [NSMutableArray array];
+    
+    // get lines to process
+    for (NSValue *rangeValue in [self selectedRanges]) {
+        NSRange range = [rangeValue rangeValue];
+        NSRange lineRange = [[self string] lineRangeForRange:range];
+        NSRange replacementRange = NSMakeRange(lineRange.location, 0);
+        NSString *lineString = [[self string] substringWithRange:lineRange];
+        
+        // add line break if it's the last line
+        if (![lineString hasSuffix:@"\n"]) {
+            lineString = [lineString stringByAppendingString:@"\n"];
+        }
+        
+        [replacementRanges addObject:[NSValue valueWithRange:replacementRange]];
+        [replacementStrings addObject:lineString];
+    }
+    
+    if (![self shouldChangeTextInRanges:replacementRanges replacementStrings:replacementStrings]) { return; }
+    
+    // duplicate lines
+    NSTextStorage *textStorage = [self textStorage];
+    [replacementStrings enumerateObjectsWithOptions:NSEnumerationReverse
+                                         usingBlock:^(NSString *_Nonnull replacementString, NSUInteger idx, BOOL * _Nonnull stop)
+     {
+         NSRange replacementRange = [replacementRanges[idx] rangeValue];
+         [textStorage replaceCharactersInRange:replacementRange withString:replacementString];
+     }];
+    [self didChangeText];
+    
+    [[self undoManager] setActionName:NSLocalizedString(@"Duplicate Line", @"action name")];
+}
+
+
+
+// ------------------------------------------------------
 /// remove selected lines
 - (IBAction)deleteLine:(nullable id)sender
 // ------------------------------------------------------
