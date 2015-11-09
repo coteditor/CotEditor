@@ -292,7 +292,12 @@
 		2ABC76241909BF5200D2B592 /* Themes in Resources */ = {isa = PBXBuildFile; fileRef = 2A7846DA18FE035E006BDF00 /* Themes */; };
 		2AC2C1D819881543007968CB /* VerticalOrientation_Off.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 2AC2C1D619881543007968CB /* VerticalOrientation_Off.tiff */; };
 		2AC2C1D919881543007968CB /* VerticalOrientation_On.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 2AC2C1D719881543007968CB /* VerticalOrientation_On.tiff */; };
-		2AC71DE21BF0BDBC002E1434 /* CotEditorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC71DE11BF0BDBC002E1434 /* CotEditorTests.swift */; };
+		2AC71DE21BF0BDBC002E1434 /* StringExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC71DE11BF0BDBC002E1434 /* StringExtensionsTests.swift */; };
+		2AC71DED1BF0C5B5002E1434 /* NSString+ComposedCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AB432731915D6AA00835004 /* NSString+ComposedCharacter.m */; };
+		2AC71DEE1BF0C6DD002E1434 /* NSString+CENewLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AC75C071A2AF47F00C7DB0A /* NSString+CENewLine.m */; };
+		2AC71DEF1BF0C7A9002E1434 /* NSString+JapaneseTransform.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A2BDF0C198A899E0029848B /* NSString+JapaneseTransform.m */; };
+		2AC71DF01BF0CDD8002E1434 /* NSString+Normalization.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A88A78F1B8B87C90055B9AE /* NSString+Normalization.m */; };
+		2AC71DF11BF0CFA3002E1434 /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A83E2391BA1E65A0069CDFE /* libicucore.tbd */; };
 		2AC75C081A2AF47F00C7DB0A /* NSString+CENewLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AC75C071A2AF47F00C7DB0A /* NSString+CENewLine.m */; };
 		2AD318C01A462A10001B8112 /* IntegrationPane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2AD318BE1A462A10001B8112 /* IntegrationPane.xib */; };
 		2AD318C31A462C30001B8112 /* CEIntegrationPaneController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD318C21A462C30001B8112 /* CEIntegrationPaneController.m */; };
@@ -647,8 +652,9 @@
 		2AC2C1D619881543007968CB /* VerticalOrientation_Off.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = VerticalOrientation_Off.tiff; sourceTree = "<group>"; };
 		2AC2C1D719881543007968CB /* VerticalOrientation_On.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = VerticalOrientation_On.tiff; sourceTree = "<group>"; };
 		2AC71DDF1BF0BDBC002E1434 /* CotEditor Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "CotEditor Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		2AC71DE11BF0BDBC002E1434 /* CotEditorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CotEditorTests.swift; sourceTree = "<group>"; };
+		2AC71DE11BF0BDBC002E1434 /* StringExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensionsTests.swift; sourceTree = "<group>"; };
 		2AC71DE31BF0BDBC002E1434 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2AC71DE91BF0C57A002E1434 /* CotEditorTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CotEditorTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		2AC75C061A2AF47E00C7DB0A /* NSString+CENewLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+CENewLine.h"; sourceTree = "<group>"; };
 		2AC75C071A2AF47F00C7DB0A /* NSString+CENewLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+CENewLine.m"; sourceTree = "<group>"; };
 		2AD318BF1A462A10001B8112 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/IntegrationPane.xib; sourceTree = "<group>"; };
@@ -821,6 +827,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2AC71DF11BF0CFA3002E1434 /* libicucore.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1350,7 +1357,8 @@
 		2AC71DE01BF0BDBC002E1434 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				2AC71DE11BF0BDBC002E1434 /* CotEditorTests.swift */,
+				2AC71DE91BF0C57A002E1434 /* CotEditorTests-Bridging-Header.h */,
+				2AC71DE11BF0BDBC002E1434 /* StringExtensionsTests.swift */,
 				2AC71DE31BF0BDBC002E1434 /* Info.plist */,
 			);
 			name = Tests;
@@ -1916,7 +1924,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2AC71DE21BF0BDBC002E1434 /* CotEditorTests.swift in Sources */,
+				2AC71DEE1BF0C6DD002E1434 /* NSString+CENewLine.m in Sources */,
+				2AC71DEF1BF0C7A9002E1434 /* NSString+JapaneseTransform.m in Sources */,
+				2AC71DE21BF0BDBC002E1434 /* StringExtensionsTests.swift in Sources */,
+				2AC71DF01BF0CDD8002E1434 /* NSString+Normalization.m in Sources */,
+				2AC71DED1BF0C5B5002E1434 /* NSString+ComposedCharacter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2563,6 +2575,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
@@ -2592,6 +2605,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.coteditor.CotEditorTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "../Tests/CotEditorTests-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CotEditor.app/Contents/MacOS/CotEditor";
 			};
@@ -2604,6 +2618,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
@@ -2631,6 +2646,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.coteditor.CotEditorTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "../Tests/CotEditorTests-Bridging-Header.h";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CotEditor.app/Contents/MacOS/CotEditor";
 			};
 			name = Release;
@@ -2725,6 +2741,7 @@
 				2AC71DE71BF0BDBC002E1434 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8C71D95308640EDF00C9C0BD /* Build configuration list for PBXNativeTarget "CotEditor" */ = {
 			isa = XCConfigurationList;
