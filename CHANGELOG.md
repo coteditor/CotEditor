@@ -7,7 +7,7 @@ Change Log
 
 ### New Features
 
-- Add “Duplicate” action to Text > Lines menu.
+- Add “Duplicate Line” action to Text > Lines menu.
 
 
 ### Additions/Changes
