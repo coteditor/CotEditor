@@ -5,6 +5,15 @@ Change Log
 develop
 --------------------------
 
+### New Features
+
+- Add “Duplicate” action to Text > Lines menu.
+
+
+
+2.3.1 (84)
+--------------------------
+
 ### Additions/Changes
 
 - Update Python syntax style:
