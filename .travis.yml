@@ -1,17 +1,13 @@
+# ref. http://docs.travis-ci.com/user/languages/objective-c/
+
 language: objective-c
 osx_image: xcode7.1
 xcode_workspace: CotEditor.xcworkspace
 xcode_scheme:
   - CotEditor
   - CotEditor (AppStore)
-script: xctool -workspace CotEditor.xcworkspace -scheme "CotEditor (AppStore)" build CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
-before_install:
-  - gem install cocoapods
-
-# test
-script:
-  - xctool -workspace CotEditor.xcworkspace -scheme CotEditor test
+script: xctool -workspace "$TRAVIS_XCODE_WORKSPACE" -scheme "$TRAVIS_XCODE_SCHEME" build test CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
 
 # enable container-based infrastructure
 sudo: false
-cache: bundler
+cache: cocoapods
