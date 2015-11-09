@@ -8,6 +8,10 @@ script: xctool -workspace CotEditor.xcworkspace -scheme "CotEditor (AppStore)" b
 before_install:
   - gem install cocoapods
 
+# test
+script:
+  - xctool -workspace CotEditor.xcworkspace -scheme CotEditor test
+
 # enable container-based infrastructure
 sudo: false
 cache: bundler
