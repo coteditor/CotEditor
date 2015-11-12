@@ -5,6 +5,13 @@ interpreters:
 - keyString: "python"
 - keyString: "python2"
 - keyString: "python3"
+metadata:
+  author: "nanasiya"
+  distributionURL: "http://coteditor.com"
+  version: "2.3.0"
+  description: "Support both Python2 and Python3 (<= 3.5).\n\nMaintained by 1024jp since 2013."
+  license: "Same as CotEditor"
+  lastModified: "2015-11-12"
 outlineMenu:
 - beginString: "^([\\t ]*)class[\\t ]+(.+?):?[\\t]*$"
   keyString: "$1$2"
@@ -20,6 +27,8 @@ commands:
 - beginString: "__coerce__"
 - beginString: "__complex__"
 - beginString: "__contains__"
+- beginString: "__copy__"
+- beginString: "__deepcopy__"
 - beginString: "__del__"
 - beginString: "__delattr__"
 - beginString: "__delete__"
@@ -299,14 +308,6 @@ attributes:
 - beginString: "@classmethod"
 - beginString: "@property"
 - beginString: "@staticmethod"
-metadata:
-  author: "nanasiya"
-  distributionURL: "http://coteditor.com"
-  version: "2.2.0"
-  description: "Support both Python2 and Python3 (<= 3.5).\n\nMaintained by 1024jp since
-    2013."
-  license: "Same as CotEditor"
-  lastModified: "2015-11-03"
 characters: []
 comments: []
 values:

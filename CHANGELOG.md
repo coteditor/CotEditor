@@ -2,6 +2,16 @@
 Change Log
 ==========================
 
+develop
+--------------------------
+
+### Additions/Changes
+
+- Update Python syntax style:
+    - Add `__copy__` and `__deepcopy__` to commands.
+
+
+
 2.3.1 (85)
 --------------------------
 
