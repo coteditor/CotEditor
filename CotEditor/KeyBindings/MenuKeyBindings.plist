@@ -6,6 +6,8 @@
 	<string>selectLines:</string>
 	<key>$@C</key>
 	<string>copyWithStyle:</string>
+	<key>$@D</key>
+	<string>duplicateLine:</string>
 	<key>$@E</key>
 	<string>useSelectionForReplace:</string>
 	<key>$@F</key>

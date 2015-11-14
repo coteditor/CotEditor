@@ -188,6 +188,7 @@
 "Sort Lines" = "行をソート";
 "Reverse Lines" = "行を反転";
 "Remove Duplicate Lines" = "重複行を削除";
+"Duplicate Line" = "行を複製";
 "Delete Line" = "行を削除";
 
 // Menu items
@@ -350,6 +351,12 @@
 
 // Print pane
 "Theme" = "テーマ";
+
+
+// Integration pane
+// Warnings on Integration pane
+"The current 'cot' symbolic link doesn’t target the running CotEditor." = "現在の 'cot' シンボリックリンクはこの CotEditor 以外に向けられています。";
+"The current 'cot' symbolic link may target on an invalid path." = "現在の 'cot' シンボリックリンクは無効なパスに向けられています。";
 
 
 

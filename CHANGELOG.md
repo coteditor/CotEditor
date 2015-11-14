@@ -2,6 +2,32 @@
 Change Log
 ==========================
 
+2.3.1 (85)
+--------------------------
+
+### New Features
+
+- Add “Duplicate Line” action to Text > Lines menu.
+
+
+### Additions/Changes
+
+- Update Python syntax style:
+    - Add terms added in Python 3.5.
+- Update R syntax style:
+    - Fix boolean values were not highlighted correctly.
+- Update Shell Script syntax style:
+    - Add “command” to extension list.
+
+
+### Fixes
+
+- Fix an issue where some type of script file cannot be opened because of “unidentified developer” alert even it was made on CotEditor.
+- Fix an issue where unwanted completion list was displayed by auto-completion when after typing a symbol character.
+- Fix an issue where application could crash if the width of line number view will change.
+
+
+
 2.3.0 (82)
 --------------------------
 

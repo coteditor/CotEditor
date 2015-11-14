@@ -186,6 +186,7 @@
 "Sort Lines" = "Zeilen sortieren";
 "Reverse Lines" = "Zeilen umdrehen";
 "Remove Duplicate Lines" = "Doppelte Zeilen löschen";
+"Duplicate Line" = "Zeile duplizieren";
 "Delete Line" = "Zeile löschen";
 
 // Menu items
@@ -348,6 +349,12 @@
 
 // Print pane
 "Theme" = "Thema";
+
+
+// Integration pane
+// Warnings on Integration pane
+"The current 'cot' symbolic link doesn’t target on the running CotEditor." = "Das aktuelle 'cot' symbolische Link zielt nicht auf den laufenden CotEditor.";
+"The current 'cot' symbolic link may target on an invalid path." = "Das aktuelle 'cot' symbolische Link kann auf einen ungültigen Pfad zielen.";
 
 
 

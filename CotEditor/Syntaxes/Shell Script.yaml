@@ -1,5 +1,6 @@
 extensions:
 - keyString: "sh"
+- keyString: "command"
 filenames:
 - keyString: ".profile"
 - keyString: ".bash_profile"
@@ -16,9 +17,9 @@ interpreters:
 metadata:
   author: "1024jp"
   distributionURL: "http://coteditor.com"
-  version: "3.0.0"
+  version: "3.1.0"
   license: "Same as CotEditor"
-  lastModified: "2015-10-15"
+  lastModified: "2015-11-07"
 keywords:
 - beginString: "break"
 - beginString: "breaksw"

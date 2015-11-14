@@ -349,6 +349,9 @@
 - (nonnull NSArray<NSString *> *)textView:(nonnull NSTextView *)textView completions:(nonnull NSArray<NSString *> *)words forPartialWordRange:(NSRange)charRange indexOfSelectedItem:(nullable NSInteger *)index
 // ------------------------------------------------------
 {
+    // do nothing if completion is not suggested from the typed characters
+    if (charRange.length == 0) { return @[]; }
+    
     NSMutableOrderedSet<NSString *> *candidateWords = [NSMutableOrderedSet orderedSet];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *partialWord = [[textView string] substringWithRange:charRange];
