@@ -125,7 +125,7 @@ static NSPoint kTextContainerOrigin;
         [self setTheme:[CETheme themeWithName:[defaults stringForKey:CEDefaultThemeKey]]];
         
         // set layer drawing policies
-        [self setLayerContentsRedrawPolicy:NSViewLayerContentsRedrawOnSetNeedsDisplay];
+        [self setLayerContentsRedrawPolicy:NSViewLayerContentsRedrawBeforeViewResize];
         [self setLayerContentsPlacement:NSViewLayerContentsPlacementScaleAxesIndependently];
         
         // set values

@@ -11,6 +11,11 @@ develop
     - Add `__copy__` and `__deepcopy__` to commands.
 
 
+### Fixes
+
+- Fix an issue where text view drawing was distorted while resizing window.
+
+
 
 2.3.1 (85)
 --------------------------
