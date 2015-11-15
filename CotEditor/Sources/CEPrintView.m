@@ -376,7 +376,7 @@ static NSString *_Nonnull const PageNumberPlaceholder = @"PAGENUM";
             [self setSyntaxParser:[[CESyntaxParser alloc] initWithStyleName:[self syntaxName]]];
         }
         CEPrintPanelAccessoryController *controller = [[[[NSPrintOperation currentOperation] printPanel] accessoryControllers] firstObject];
-        [[self syntaxParser] colorWholeStringInTextStorage:[self textStorage] completionHandler:^ {
+        [[self syntaxParser] highlightWholeStringInTextStorage:[self textStorage] completionHandler:^ {
             [controller setNeedsPreview:YES];
         }];
     }

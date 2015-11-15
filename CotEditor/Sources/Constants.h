@@ -327,8 +327,8 @@ extern NSString *_Nonnull const CESyntaxCommentsKey;
 extern NSString *_Nonnull const CESyntaxCommentDelimitersKey;
 extern NSString *_Nonnull const CESyntaxOutlineMenuKey;
 extern NSString *_Nonnull const CESyntaxCompletionsKey;
-extern NSString *_Nonnull const kAllColoringKeys[];
-extern NSUInteger const kSizeOfAllColoringKeys;
+extern NSString *_Nonnull const kAllSyntaxKeys[];
+extern NSUInteger const kSizeOfAllSyntaxKeys;
 
 extern NSString *_Nonnull const CESyntaxKeyStringKey;
 extern NSString *_Nonnull const CESyntaxBeginStringKey;

@@ -387,8 +387,8 @@ NSString *_Nonnull const CESyntaxValidationMessageKey = @"MessageKey";
                                                                                 selector:@selector(caseInsensitiveCompare:)]];
     
     NSMutableArray<NSString *> *syntaxDictKeys = [NSMutableArray array];
-    for (NSUInteger i = 0; i < kSizeOfAllColoringKeys; i++) {
-        [syntaxDictKeys addObject:kAllColoringKeys[i]];
+    for (NSUInteger i = 0; i < kSizeOfAllSyntaxKeys; i++) {
+        [syntaxDictKeys addObject:kAllSyntaxKeys[i]];
     }
     [syntaxDictKeys addObjectsFromArray:@[CESyntaxOutlineMenuKey,
                                           CESyntaxCompletionsKey]];
@@ -445,9 +445,9 @@ NSString *_Nonnull const CESyntaxValidationMessageKey = @"MessageKey";
     NSString *tmpBeginStr = nil, *tmpEndStr = nil;
     NSError *error = nil;
     
-    NSMutableArray<NSString *> *syntaxDictKeys = [[NSMutableArray alloc] initWithCapacity:(kSizeOfAllColoringKeys + 1)];
-    for (NSUInteger i = 0; i < kSizeOfAllColoringKeys; i++) {
-        [syntaxDictKeys addObject:kAllColoringKeys[i]];
+    NSMutableArray<NSString *> *syntaxDictKeys = [[NSMutableArray alloc] initWithCapacity:(kSizeOfAllSyntaxKeys + 1)];
+    for (NSUInteger i = 0; i < kSizeOfAllSyntaxKeys; i++) {
+        [syntaxDictKeys addObject:kAllSyntaxKeys[i]];
     }
     [syntaxDictKeys addObject:CESyntaxOutlineMenuKey];
     
