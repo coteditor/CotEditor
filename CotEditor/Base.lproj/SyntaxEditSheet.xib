@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9059" systemVersion="15C27e" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9060" systemVersion="15C40a" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9059"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9060"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="CESyntaxEditSheetController">
@@ -2671,8 +2671,8 @@
                                                 <binding destination="34" name="enabled" keyPath="canRemove" id="559"/>
                                             </connections>
                                         </button>
-                                        <textField horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" placeholderIntrinsicWidth="108" placeholderIntrinsicHeight="17" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EWX-v0-oak">
-                                            <rect key="frame" x="6" y="284" width="112" height="17"/>
+                                        <textField horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" preferredMaxLayoutWidth="200" translatesAutoresizingMaskIntoConstraints="NO" id="EWX-v0-oak">
+                                            <rect key="frame" x="6" y="284" width="108" height="17"/>
                                             <animations/>
                                             <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Inline comment:" id="GCw-u2-Lau">
                                                 <font key="font" metaFont="systemBold"/>
@@ -2681,7 +2681,7 @@
                                             </textFieldCell>
                                         </textField>
                                         <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bFk-sd-ygd">
-                                            <rect key="frame" x="86" y="257" width="98" height="22"/>
+                                            <rect key="frame" x="84" y="257" width="100" height="22"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="25" id="b7e-fo-MIO"/>
                                             </constraints>
@@ -2700,7 +2700,7 @@
                                             </connections>
                                         </textField>
                                         <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="TIg-sm-rkS">
-                                            <rect key="frame" x="292" y="256" width="98" height="22"/>
+                                            <rect key="frame" x="290" y="256" width="100" height="22"/>
                                             <animations/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Not defined" drawsBackground="YES" id="L2M-Fz-f48">
                                                 <font key="font" metaFont="system"/>
@@ -2716,7 +2716,7 @@
                                             </connections>
                                         </textField>
                                         <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="R6o-3b-d9H">
-                                            <rect key="frame" x="292" y="224" width="98" height="22"/>
+                                            <rect key="frame" x="290" y="224" width="100" height="22"/>
                                             <animations/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Not defined" drawsBackground="YES" id="1rj-Dy-279">
                                                 <font key="font" metaFont="system"/>
@@ -2731,8 +2731,8 @@
                                                 </binding>
                                             </connections>
                                         </textField>
-                                        <textField horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" placeholderIntrinsicWidth="106" placeholderIntrinsicHeight="17" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tu6-5K-poW">
-                                            <rect key="frame" x="212" y="284" width="110" height="17"/>
+                                        <textField horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" preferredMaxLayoutWidth="200" translatesAutoresizingMaskIntoConstraints="NO" id="Tu6-5K-poW">
+                                            <rect key="frame" x="212" y="284" width="109" height="17"/>
                                             <animations/>
                                             <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Block comment:" id="Z5Q-Hy-1R7">
                                                 <font key="font" metaFont="systemBold"/>
@@ -2740,8 +2740,8 @@
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <textField horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" placeholderIntrinsicWidth="70" placeholderIntrinsicHeight="17" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xYx-pP-FgD">
-                                            <rect key="frame" x="212" y="259" width="74" height="17"/>
+                                        <textField horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" preferredMaxLayoutWidth="80" translatesAutoresizingMaskIntoConstraints="NO" id="xYx-pP-FgD">
+                                            <rect key="frame" x="212" y="259" width="72" height="17"/>
                                             <animations/>
                                             <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Begin with:" id="OFV-ob-L5e">
                                                 <font key="font" metaFont="system"/>
@@ -2749,8 +2749,8 @@
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <textField horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" placeholderIntrinsicWidth="70" placeholderIntrinsicHeight="17" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="W4y-af-ifa">
-                                            <rect key="frame" x="6" y="259" width="74" height="17"/>
+                                        <textField horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" preferredMaxLayoutWidth="80" translatesAutoresizingMaskIntoConstraints="NO" id="W4y-af-ifa">
+                                            <rect key="frame" x="6" y="259" width="72" height="17"/>
                                             <animations/>
                                             <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Begin with:" id="Nyf-L8-eh5">
                                                 <font key="font" metaFont="system"/>
@@ -2758,8 +2758,8 @@
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <textField horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" placeholderIntrinsicWidth="59" placeholderIntrinsicHeight="17" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7aJ-Ao-6B9">
-                                            <rect key="frame" x="223" y="227" width="63" height="17"/>
+                                        <textField horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" preferredMaxLayoutWidth="80" translatesAutoresizingMaskIntoConstraints="NO" id="7aJ-Ao-6B9">
+                                            <rect key="frame" x="224" y="227" width="60" height="17"/>
                                             <animations/>
                                             <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="End with:" id="QJO-6I-TfV">
                                                 <font key="font" metaFont="system"/>

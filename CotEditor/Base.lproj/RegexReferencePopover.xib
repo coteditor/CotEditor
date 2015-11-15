@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9060" systemVersion="15C40a" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9059"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9060"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSViewController">
@@ -34,7 +34,7 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kTe-xb-74B">
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" preferredMaxLayoutWidth="200" translatesAutoresizingMaskIntoConstraints="NO" id="kTe-xb-74B">
                     <rect key="frame" x="255" y="219" width="61" height="14"/>
                     <animations/>
                     <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="Quantifier" id="nVK-6t-0P3">
@@ -43,7 +43,7 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wHQ-0k-wMH">
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" preferredMaxLayoutWidth="200" translatesAutoresizingMaskIntoConstraints="NO" id="wHQ-0k-wMH">
                     <rect key="frame" x="14" y="219" width="66" height="14"/>
                     <animations/>
                     <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="Characters" id="3AR-qs-5m4">
@@ -52,7 +52,7 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rAn-Wk-YlD">
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" preferredMaxLayoutWidth="200" translatesAutoresizingMaskIntoConstraints="NO" id="rAn-Wk-YlD">
                     <rect key="frame" x="14" y="61" width="51" height="14"/>
                     <animations/>
                     <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="Anchors" id="8WL-Ap-X8c">
@@ -61,7 +61,7 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZLi-nM-1cs">
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" preferredMaxLayoutWidth="200" translatesAutoresizingMaskIntoConstraints="NO" id="ZLi-nM-1cs">
                     <rect key="frame" x="255" y="91" width="101" height="14"/>
                     <animations/>
                     <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="Extended Groups" id="RAi-kK-gW5">
@@ -70,7 +70,7 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="q4d-ej-ITi">
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" preferredMaxLayoutWidth="200" translatesAutoresizingMaskIntoConstraints="NO" id="q4d-ej-ITi">
                     <rect key="frame" x="255" y="38" width="92" height="14"/>
                     <animations/>
                     <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="Back Reference" id="EwZ-Li-jaY">
@@ -446,7 +446,7 @@
                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <font key="titleFont" metaFont="system"/>
                 </box>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QmK-vf-p2Q">
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" preferredMaxLayoutWidth="460" translatesAutoresizingMaskIntoConstraints="NO" id="QmK-vf-p2Q">
                     <rect key="frame" x="14" y="241" width="205" height="19"/>
                     <animations/>
                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Basic Regular Expression Syntax" id="QgQ-JJ-6Nx">
