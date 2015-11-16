@@ -10,7 +10,10 @@ develop
 - Update Python syntax style:
     - Add `__copy__` and `__deepcopy__` to commands.
 - Update Perl syntax style:
-    - Add some keywords.
+    - Add some terms.
+- Update PHP syntax style:
+    - Add terms added on PHP 5.6.
+    - Highlight uppercase `TRUE`, `FALSE`, `AND` and `OR`.
 - Update Haskell syntax style:
     - Add some keywords.
 
