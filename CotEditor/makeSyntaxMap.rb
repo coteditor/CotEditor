@@ -47,17 +47,17 @@ end
 
 map = {}
 
-Find.find('Syntaxes') {|f|
-    next unless (File.extname(f) == '.yaml')  # skip if not YAML
+Find.find('Syntaxes') do |path|
+    next unless (File.extname(path) == '.yaml')  # skip if not YAML
     
-    style = YAML.load_file(f)
-    name = File.basename(f, '.yaml')
+    style = YAML.load_file(path)
+    name = File.basename(path, '.yaml')
     
     map[name] = {
-        'extensions' => get_strings(style, 'extensions'),
-        'filenames' => get_strings(style, 'filenames'),
-        'interpreters' => get_strings(style, 'interpreters'),
+        extensions: get_strings(style, 'extensions'),
+        filenames: get_strings(style, 'filenames'),
+        interpreters: get_strings(style, 'interpreters'),
     }
-}
+end
 
 File.write('SyntaxMap.json', JSON.pretty_generate(map))
