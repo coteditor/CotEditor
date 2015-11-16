@@ -7,6 +7,7 @@ develop
 
 ### Additions/Changes
 
+- Tweak style of popup menus in toolbar.
 - Update Python syntax style:
     - Add `__copy__` and `__deepcopy__` to commands.
 - Update Perl syntax style:
