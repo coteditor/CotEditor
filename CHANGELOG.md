@@ -9,6 +9,8 @@ develop
 
 - Update Python syntax style:
     - Add `__copy__` and `__deepcopy__` to commands.
+- Update Haskell syntax style:
+    - Add some keywords.
 
 
 ### Fixes
