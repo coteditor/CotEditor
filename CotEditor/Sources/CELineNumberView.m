@@ -402,11 +402,12 @@ static const NSString *LineNumberFontName;
     }
     
     // select lines
-    NSUInteger currentIndex = [textView characterIndexForPoint:point];
-    NSUInteger clickedIndex = timer ? [[timer userInfo] unsignedIntegerValue] : currentIndex;
-    NSRange range = [[textView string] lineRangeForRange:NSMakeRange(MIN(currentIndex, clickedIndex),
-                                                                     currentIndex - clickedIndex)];
-    [textView setSelectedRange:range];
+    NSInteger currentIndex = [textView characterIndexForPoint:point];
+    NSInteger clickedIndex = timer ? [[timer userInfo] unsignedIntegerValue] : currentIndex;
+    NSRange range = NSMakeRange(MIN(currentIndex, clickedIndex), ABS(currentIndex - clickedIndex));
+    NSRange lineRange = [[textView string] lineRangeForRange:range];
+    
+    [textView setSelectedRange:lineRange];
 }
 
 
