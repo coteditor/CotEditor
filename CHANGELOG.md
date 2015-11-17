@@ -5,7 +5,7 @@ Change Log
 develop
 --------------------------
 
-### Additions/Changes
+### Improvements
 
 - Tweak style of popup menus in toolbar.
 - Update Python syntax style:
@@ -33,7 +33,7 @@ develop
 - Add “Duplicate Line” action to Text > Lines menu.
 
 
-### Additions/Changes
+### Improvements
 
 - Update Python syntax style:
     - Add terms added in Python 3.5.
@@ -59,7 +59,7 @@ develop
 - Add “Copy with Style” action to the Edit menu.
 
 
-### Additions/Changes
+### Improvements
 
 - Update “R” syntax style:
     - Add “Rscript” to interpreters.
@@ -90,7 +90,7 @@ develop
 - Add syntax styles for “D”, “iCalendar” and “Rich Text Format”.
 
 
-### Additions/Changes
+### Improvements
 
 - Reconstitute main menu.
 - Embed key bindings editor to Key Bindings pane.
@@ -124,7 +124,7 @@ develop
     - It is also added to the AppleScript terms.
 
 
-### Additions/Changes
+### Improvements
 
 - Update “JSON” syntax style:
     - Add “geojson” to extension list. 
@@ -166,7 +166,7 @@ develop
 - Add new themes “Anura” and “Note”.
 
 
-### Additions/Changes
+### Improvements
 
 - Remove bundled `cot` command-line tool, due to the Mac App Store guidelines.
     - To use `cot` command with CotEditor 2.2.0 and later, download it from <http://coteditor.com/cot> and install manually. You cannnot use the previous one with CotEditor 2.2.0.
@@ -210,7 +210,7 @@ develop
 - Add German localization.
 
 
-### Additions/Changes
+### Improvements
 
 - Change the location where `cot` command-line tool is bundled from `CotEditor.app/Contents/MacOS/` to `CotEditor.app/Contents/SharedSupport/bin/`, due to Sandbox requirement.
     - Users who have already installed `cot` command need re-install it manually.
@@ -269,7 +269,7 @@ develop
 - Add `encoding:` and `coding:` to the encoding declaration keywords which will be used on encoding auto-detection (interpreting priorities are: `charset=` > `encoding=` > `@charset` > `encoding:` > `coding:`).
 
 
-### Additions/Changes
+### Improvements
 
 - [non-AppStore ver.] Disable auto-update feature.
     - Since the Sparkle framework which is a software update framework we use doesn't support Sandboxed apps yet, the auto-update feature within CotEditor should be once disabled. The new behavior is: a nofitication window will be shown when a new release is available (as before), then you need to update CotEditor manually getting the new version from our web-site. Or, just migrate to the Mac App Store version when the stable CotEditor 2.2.0 is released.
@@ -337,7 +337,7 @@ develop
 - Importing theme files via drag-and-drop to theme list in preferences.
 
 
-### Additions/Changes
+### Improvements
 
 - Support displaying skin tone variations of Unicode 8.0 on the character inspector.
 - Support Automatic Termination (Now, CotEditor can be terminated automatically if it has no window).
@@ -369,7 +369,7 @@ develop
 2.1.3
 --------------------------
 
-### Additions/Changes
+### Improvements
 
 - Revert find panel behavior to select always whole text in find field when the panel is called.
 
@@ -385,7 +385,7 @@ develop
 2.1.2
 --------------------------
 
-### Additions/Changes
+### Improvements
 
 - Change place to create backup files (Now, backup files are always created in `~/Library/Autosave Information/`).
 - Improve find panel:
@@ -418,7 +418,7 @@ develop
 2.1.0
 --------------------------
 
-### Additions/Changes
+### Improvements
 
 - [beta] Add `--new` option to `cot` command-line tool.
 - Update help contents.
@@ -447,7 +447,7 @@ develop
     - This feature doesn't modify your actual files. You still need to perform “Save” manually to apply changes to your files.
 
 
-### Additions/Changes
+### Improvements
 
 - [beta] add a missing localization in simplified Chinese. (Thanks to Wei Wang!)
 
@@ -456,7 +456,7 @@ develop
 2.1.0-rc
 --------------------------
 
-### Additions/Changes
+### Improvements
 
 - Update Sparkle framework to version 1.9.0.
 - [beta] close popover on clicking regex help button if it's already shown.
@@ -475,7 +475,7 @@ develop
 2.1.0-beta.2
 --------------------------
 
-### Additions/Changes
+### Improvements
 
 - Make key bindings for panel windows customizable.
 - [beta] Enhance Find & Replace panel:
@@ -506,7 +506,7 @@ develop
 - Add syntax styles for “Erlang” and “Julia”.
 
 
-### Additions/Changes
+### Improvements
 
 - Drop support for __OS X Lion.__
 - Migrate document drawer to sidebar style.
@@ -573,7 +573,7 @@ develop
 - Add feature to scale font size up by pinch gesture.
 
 
-### Additions/Changes
+### Improvements
 
 - Add “Traditional Chinese (Big 5 HKSCS)”, “Traditional Chinese (Big 5-E)” and “Traditional Chinese (Big 5)” to encoding list.
 - Add “show invisible characters” option to set visibility of all invisible character types at once.
@@ -627,7 +627,7 @@ develop
 - Add syntax style for “BibTeX”.
 
 
-### Additions/Changes
+### Improvements
 
 - Display an alert if the opening file is larger than 100 MB.
 - Change default value for “Comment always from line head” option to enable.
@@ -667,7 +667,7 @@ develop
 2.0.0
 --------------------------
 
-### Additions/Changes
+### Improvements
 
 - 「編集」メニューの項目「スペル」を「スペルと文法」に変更し、さらに「自動変換」と「変換」機能を追加
     - これにともない、「ユーティリティ」メニュー内の「大文字に」、「小文字に」、「先頭の文字を大文字に」を削除
@@ -701,7 +701,7 @@ develop
 - “Rust”, “Tcl” シンタックス定義を追加
 
 
-### Additions/Changes
+### Improvements
 
 - 行番号ビューの色がテーマカラーを反映したものになるように改良
 - アプリケーション識別子 (bundle identifier) を `com.aynimac.CotEditor` から `com.coteditor.CotEditor` へ変更
@@ -746,7 +746,7 @@ develop
 2.0.0-beta.2
 --------------------------
 
-### Additions/Changes
+### Improvements
 
 - プリント設定のラベルを一部変更
 - [beta] “AppleScript” シンタックス定義の更新
@@ -787,7 +787,7 @@ develop
 - 自動補完機能を追加（実験的実装, デフォルトはオフ）
 
 
-### Additions/Changes
+### Improvements
 
 - OS X Yosemite に対応
 - Yosemite スタイルの新しいアプリケーションアイコン
