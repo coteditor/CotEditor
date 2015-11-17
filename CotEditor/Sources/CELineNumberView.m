@@ -402,12 +402,31 @@ static const NSString *LineNumberFontName;
     }
     
     // select lines
-    NSInteger currentIndex = [textView characterIndexForPoint:point];
-    NSInteger clickedIndex = timer ? [[timer userInfo] unsignedIntegerValue] : currentIndex;
-    NSRange range = NSMakeRange(MIN(currentIndex, clickedIndex), ABS(currentIndex - clickedIndex));
-    NSRange lineRange = [[textView string] lineRangeForRange:range];
+    NSUInteger currentIndex = [textView characterIndexForPoint:point];
+    NSUInteger clickedIndex = timer ? [[timer userInfo] unsignedIntegerValue] : currentIndex;
+    NSRange currentLineRange = [[textView string] lineRangeForRange:NSMakeRange(currentIndex, 0)];
+    NSRange clickedLineRange = [[textView string] lineRangeForRange:NSMakeRange(clickedIndex, 0)];
+    NSRange range = NSUnionRange(currentLineRange, clickedLineRange);
     
-    [textView setSelectedRange:lineRange];
+    // with Shift key
+    if ([NSEvent modifierFlags] & NSShiftKeyMask) {
+        NSRange selectedRange = [textView selectedRange];
+        if (NSLocationInRange(currentIndex, selectedRange)) {  // reduce
+            BOOL inUpperSection = (currentIndex - selectedRange.location) < selectedRange.length / 2;
+            if (inUpperSection) {  // clicked upper half section of selected range
+                range = NSMakeRange(currentIndex, NSMaxRange(selectedRange) - currentIndex);
+                
+            } else {
+                range = selectedRange;
+                range.length -= NSMaxRange(selectedRange) - NSMaxRange(currentLineRange);
+            }
+            
+        } else {  // expand
+            range = NSUnionRange(range, selectedRange);
+        }
+    }
+    
+    [textView setSelectedRange:range];
 }
 
 
