@@ -82,11 +82,11 @@ static const CGFloat kDarkThemeThreshold = 0.5;
 #pragma mark Superclass Methods
 
 //------------------------------------------------------
-/// override designated initializer
+/// disable superclass's designated initializer
 - (nullable instancetype)init
 //------------------------------------------------------
 {
-    return [self initWithName:@"None"];  // Actually, this might return nil.
+    @throw nil;
 }
 
 

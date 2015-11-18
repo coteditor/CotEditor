@@ -47,16 +47,11 @@
 #pragma mark Superclass Methods
 
 //------------------------------------------------------
-/// override designated initializer
+/// disable superclass's designated initializer
 - (nullable instancetype)init
 //------------------------------------------------------
 {
-    [NSException raise:NSGenericException
-                format:@"Disabled. Use +[[%@ alloc] %@] instead.",
-     NSStringFromClass([self class]),
-     NSStringFromSelector(@selector(initWithDocument:))];
-    
-    return nil;
+    @throw nil;
 }
 
 
