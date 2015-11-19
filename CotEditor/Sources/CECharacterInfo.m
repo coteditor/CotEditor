@@ -47,8 +47,8 @@ static const UTF32Char kType6EmojiModifierChar = 0x1F3FF;  // Emoji Modifier Fit
 @property (nonatomic, readwrite, nonnull, copy) NSString *string;
 @property (nonatomic, readwrite, nonnull, copy) NSString *unicode;
 @property (nonatomic, readwrite, nonnull, copy) NSString *unicodeName;
-@property (nonatomic, readwrite, nullable, copy) NSString *unicodeGroupName;
-@property (nonatomic, readwrite, nullable, copy) NSString *localizedUnicodeGroupName;
+@property (nonatomic, readwrite, nullable, copy) NSString *unicodeBlockName;
+@property (nonatomic, readwrite, nullable, copy) NSString *localizedUnicodeBlockName;
 
 @end
 
@@ -168,8 +168,8 @@ static const UTF32Char kType6EmojiModifierChar = 0x1F3FF;  // Emoji Modifier Fit
                                 NSLocalizedString(variationSelectorAdditional, nil)];
             }
             
-            _unicodeGroupName = [CECharacterInfo getUnicodeGroup:string];
-            _localizedUnicodeGroupName = NSLocalizedStringFromTable(_unicodeGroupName, @"UnicodeBlocks", nil);
+            _unicodeBlockName = [CECharacterInfo getUnicodeGroup:string];
+            _localizedUnicodeBlockName = NSLocalizedStringFromTable(_unicodeBlockName, @"UnicodeBlocks", nil);
         }
     }
     return self;

@@ -33,11 +33,11 @@
 
 @property (nonatomic, nonnull, copy) NSString *glyph;
 @property (nonatomic, nonnull, copy) NSString *unicodeName;
-@property (nonatomic, nullable, copy) NSString *unicodeGroupName;
+@property (nonatomic, nullable, copy) NSString *unicodeBlockName;
 @property (nonatomic, nonnull, copy) NSString *unicode;
 
 
-@property (nonatomic, nullable, weak) IBOutlet NSTextField *unicodeGroupNameField;
+@property (nonatomic, nullable, weak) IBOutlet NSTextField *unicodeBlockNameField;
 
 @end
 
@@ -64,7 +64,7 @@
         _glyph = [characterInfo string];
         _unicode = [[characterInfo unicodes] componentsJoinedByString:@"  "];
         _unicodeName = [characterInfo unicodeName];
-        _unicodeGroupName = [characterInfo localizedUnicodeGroupName];
+        _unicodeBlockName = [characterInfo localizedUnicodeBlockName];
     }
     return self;
 }
@@ -78,8 +78,8 @@
     [super viewDidAppear];
     
     // remove group name field if not exists
-    if (![self unicodeGroupName]) {
-        [[self unicodeGroupNameField] removeFromSuperviewWithoutNeedingDisplay];
+    if (![self unicodeBlockName]) {
+        [[self unicodeBlockNameField] removeFromSuperviewWithoutNeedingDisplay];
     }
 }
 

@@ -8,7 +8,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="CECharacterPopoverController">
             <connections>
-                <outlet property="unicodeGroupNameField" destination="V7B-LW-D7y" id="WTj-Ek-JUZ"/>
+                <outlet property="unicodeBlockNameField" destination="V7B-LW-D7y" id="IIt-3x-3bO"/>
                 <outlet property="view" destination="c22-O7-iKe" id="tsm-eO-5VC"/>
             </connections>
         </customObject>
@@ -66,7 +66,7 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                     <connections>
-                        <binding destination="-2" name="value" keyPath="unicodeGroupName" id="PBd-ii-tAk"/>
+                        <binding destination="-2" name="value" keyPath="unicodeBlockName" id="GWn-J1-VN6"/>
                     </connections>
                 </textField>
             </subviews>

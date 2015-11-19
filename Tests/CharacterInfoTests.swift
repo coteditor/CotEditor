@@ -39,16 +39,16 @@ class CharacterInfoTests: XCTestCase {
         let charInfo = CECharacterInfo(string: "☺︎")
         
         XCTAssertEqual(charInfo!.unicodes, ["U+263A", "U+FE0E"])
-        XCTAssertEqual(charInfo!.unicodeGroupName, "Miscellaneous Symbols")
+        XCTAssertEqual(charInfo!.unicodeBlockName, "Miscellaneous Symbols")
     }
     
     
-    func testUnicodeGroupNameWithHyphen() {
+    func testUnicodeBlockNameWithHyphen() {
         let charInfo = CECharacterInfo(string: "﷽")
         
         XCTAssertEqual(charInfo!.unicodes, ["U+FDFD"])
         XCTAssertEqual(charInfo!.unicodeName, "ARABIC LIGATURE BISMILLAH AR-RAHMAN AR-RAHEEM")
-        XCTAssertEqual(charInfo!.unicodeGroupName, "Arabic Presentation Forms-A")
+        XCTAssertEqual(charInfo!.unicodeBlockName, "Arabic Presentation Forms-A")
     }
     
     
@@ -57,7 +57,7 @@ class CharacterInfoTests: XCTestCase {
         
         XCTAssertEqual(charInfo!.unicodes, ["U+1F600 (U+D83D U+DE00)"])
         XCTAssertEqual(charInfo!.unicodeName, "GRINNING FACE")
-        XCTAssertEqual(charInfo!.unicodeGroupName, "Emoticons")
+        XCTAssertEqual(charInfo!.unicodeBlockName, "Emoticons")
     }
     
     
@@ -66,7 +66,7 @@ class CharacterInfoTests: XCTestCase {
         
         XCTAssertEqual(charInfo!.unicodes, ["U+0031", "U+FE0F", "U+20E3"])
         XCTAssertEqual(charInfo!.unicodeName, "<a letter consisting of 3 characters>")
-        XCTAssertNil(charInfo!.unicodeGroupName)
+        XCTAssertNil(charInfo!.unicodeBlockName)
     }
     
     
