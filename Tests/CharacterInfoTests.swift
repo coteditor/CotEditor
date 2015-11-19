@@ -43,6 +43,15 @@ class CharacterInfoTests: XCTestCase {
     }
     
     
+    func testUnicodeGroupNameWithHyphen() {
+        let charInfo = CECharacterInfo(string: "﷽")
+        
+        XCTAssertEqual(charInfo!.unicodes, ["U+FDFD"])
+        XCTAssertEqual(charInfo!.unicodeName, "ARABIC LIGATURE BISMILLAH AR-RAHMAN AR-RAHEEM")
+        XCTAssertEqual(charInfo!.unicodeGroupName, "Arabic Presentation Forms-A")
+    }
+    
+    
     func testSurrogateEmoji() {
         let charInfo = CECharacterInfo(string: "😀")
         

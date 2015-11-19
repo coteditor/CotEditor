@@ -1,0 +1,237 @@
+/*
+ 
+ UnicodeBlocks.strings (German)
+ 
+ CotEditor
+ http://coteditor.com
+ 
+ Created by 1024jp on 2015-11-19.
+ 
+ ------------------------------------------------------------------------------
+ 
+ © 2015 1024jp
+ 
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+ 
+ http://www.apache.org/licenses/LICENSE-2.0
+ 
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ 
+ */
+
+
+// auto-generated from CharacterPaletteIM.lg in Apple's glossaries
+
+"Cuneiform" = "Keilschrift";
+"Variation Selectors" = "Variationsselektoren";
+"Latin Extended-B" = "Lateinisch Erweitert-B";
+"Brahmi" = "Brahmi";
+"Enclosed Alphanumerics" = "Umkreiste Zeichen";
+"Linear B Syllabary" = "Linear B Silbenlaute";
+"Ugaritic" = "Ugaritisch";
+"Bamum Supplement" = "Ergänzungen zu Bamum";
+"Alphabetic Presentation Forms" = "Alphabetische Darstellungsformen";
+"Mongolian" = "Mongolische Zeichen";
+"CJK Radicals Supplement" = "Ergänzungen zu CJK Radikale";
+"Arabic" = "Arabische Zeichen";
+"Control Pictures" = "Steuerbilder";
+"Inscriptional Parthian" = "Inschrift-Parthisch";
+"Phaistos Disc" = "Diskos von Phaistos";
+"Geometric Shapes" = "Geometrische Symbole";
+"CJK Unified Ideographs" = "CJK Ideografen (Unified)";
+"Greek and Coptic" = "Griechische/Koptische Zeichen";
+"Ancient Greek Musical Notation" = "Altgriechische Noten";
+"Basic Latin" = "Lateinische Zeichen";
+"Inscriptional Pahlavi" = "Inschrift-Pahlavi";
+"Braille Patterns" = "Blindenschrift";
+"Javanese" = "Javanisch";
+"Old South Arabian" = "Alt-Südarabisch";
+"Hebrew" = "Hebräisch";
+"Specials" = "Spezielles";
+"Variation Selectors Supplement" = "Ergänzungen zu Variationsselektoren";
+"Miscellaneous Technical" = "Verschiedenes aus der Technik";
+"Aegean Numbers" = "Ägäische Zahlen";
+"General Punctuation" = "Allgemeine Satzzeichen";
+"Latin Extended-D" = "Lateinisch Erweitert-D";
+"CJK Compatibility Ideographs" = "CJK Kompat. Ideografen";
+"Bopomofo" = "Bopomofo";
+"Canadian Aboriginal Syllabics" = "Silbenlaute kanadischer Indianerstämme";
+"Buhid" = "Buhid";
+"Bengali" = "Bengalisch";
+"New Tai Lue" = "Tai Lü";
+"Linear B Ideograms" = "Linear B Ideogramme";
+"Supp. Private Use Area-A" = "Supplement Privat nutzbarer Bereich-A";
+"Ethiopic" = "Äthiopisch";
+"Vertical Forms" = "Vertikale Formen";
+"Block Elements" = "Blocksymbole";
+"Currency Symbols" = "Währungen";
+"Bamum" = "Bamum";
+"Superscripts and Subscripts" = "Hoch- und Tiefgestellt";
+"Arabic Presentation Forms-A" = "Arabische Darstellungsformen-A";
+"Shavian" = "Shavian";
+"CJK Unified Ideographs Ext. B" = "CJK Ideografen (Unified Ext. B)";
+"Enclosed Ideographic Supplement" = "Umkreiste ideografische Ergänzung";
+"Ancient Symbols" = "Alte Symbole";
+"Cyrillic Extended-B" = "Kyrillisch Erweitert-B";
+"Saurashtra" = "Saurashtra";
+"Vedic Extensions" = "Vedisch Erweiterungen";
+"Cyrillic" = "Kyrillisch";
+"Arrows" = "Pfeile";
+"Thai" = "Thailändisch";
+"Supplemental Arrows-B" = "Ergänzende Pfeile-B";
+"Ancient Greek Numbers" = "Altgriechische Zahlen";
+"Cham" = "Cham";
+"Tai Tham" = "Tai Tham";
+"Bopomofo Extended" = "Bopomofo (Erweitert)";
+"Phonetic Extensions Supplement" = "Ergänzungen zu Phonetische Erweiterungen";
+"Ol Chiki" = "Ol Chiki";
+"Cuneiform Numbers and Punctuation" = "Zahlen und Zeichen der Keilschrift";
+"Phags-pa" = "Phagspa-Schrift";
+"Devanagari Extended" = "Devanagari Erweitert";
+"Devanagari" = "Devanagari";
+"Greek Extended" = "Griechisch (Erweitert)";
+"Thaana" = "Thaana";
+"Telugu" = "Telugu";
+"Hiragana" = "Hiragana";
+"CJK Compatibility Ideographs Supp." = "Ergänzung zu CJK Kompat. Ideografen";
+"Katakana" = "Katakana";
+"Mathematical Operators" = "Mathematische Symbole";
+"Mahjong Tiles" = "Mahjongsteine";
+"Batak" = "Batak";
+"Vai" = "Vai";
+"Phonetic Extensions" = "Phonetische Erweiterungen";
+"Malayalam" = "Malajalam";
+"Optical Character Recognition" = "Optische Zeichenerkennung";
+"Hangul Jamo Extended-A" = "Hangul Jamo Erweitert-A";
+"Supplemental Math Operators" = "Ergänzende mathematische Symbole";
+"Common Indic Number Forms" = "Allgemeine indische Ziffern";
+"Enclosed Alphanumeric Supplement" = "Umkreiste alphanumerische Ergänzung";
+"Kaithi" = "Kaithi";
+"Imperial Aramaic" = "Imperiales Aramäisch";
+"Modifier Tone Letters" = "Modifizierende Tonverlaufsbuchstaben";
+"Kayah Li" = "Kayah Li";
+"Tamil" = "Tamilisch";
+"Small Form Variants" = "Kleine Formvarianten";
+"CJK Unified Ideographs Ext. D" = "CJK Ideografen (Unified Ext. D)";
+"Tifinagh" = "Tifinagh-Schrift";
+"Miscellaneous Symbols And Pictographs" = "Verschiedene Symbole und Piktogramme";
+"Miscellaneous Math Symbols-B" = "Verschiedene Mathemat. Symbole-B";
+"Yi Radicals" = "Yi Radikale";
+"Lydian" = "Lydisch";
+"Unified Canadian Aboriginal Syllabics Extended" = "Vereinheitlichte Silbenlaute kanadischer Indianerstämme (Erweitert)";
+"Private Use Area" = "Privat nutzbarer Bereich";
+"Glagolitic" = "Glagolitische Schrift";
+"Osmanya" = "Osmanya";
+"Yijing Hexagram Symbols" = "Yijing Hexagrammsymbole";
+"Latin Extended-A" = "Lateinisch Erweitert-A";
+"Cyrillic Supplement" = "Ergänzungen zu Kyrillisch";
+"Box Drawing" = "Rahmensymbole";
+"Letterlike Symbols" = "Buchstaben-ähnliche Zeichen";
+"Sinhala" = "Sinhala";
+"Supplemental Punctuation" = "Ergänzende Satzzeichen";
+"Math Alphanumeric Symbols" = "Mathemat. Alphanumerische Symbole";
+"Cypriot Syllabary" = "Zypriotische Silbenlaute";
+"Gurmukhi" = "Gurmukhi";
+"Gothic" = "Gotisch";
+"Cherokee" = "Cherokee";
+"CJK Compatibility Forms" = "CJK Kompatibilitätsformen";
+"Latin Extended-C" = "Lateinisch Erweitert-C";
+"Old Turkic" = "Alt-Türkisch";
+"Domino Tiles" = "Dominosteine";
+"Khmer Symbols" = "Khmer Symbole";
+"Khmer" = "Khmer";
+"Syloti Nagri" = "Syloti Nagri";
+"Runic" = "Runisch";
+"Enclosed CJK Letters and Months" = "Geklammerte CJK Zeichen und Monate";
+"Byzantine Musical Symbols" = "Byzantinische musikalische Symbole";
+"CJK Strokes" = "Striche für CJK";
+"Miscellaneous Symbols" = "Verschiedene Symbole";
+"Tai Le" = "Tai Le";
+"Katakana Phonetic Extensions" = "Katakana Phonetische Erweiterungen";
+"Tagalog" = "Tagalog";
+"Kharoshthi" = "Kharosthi-Schrift";
+"Dingbats" = "Dingbats";
+"Sundanese" = "Sundanesisch";
+"Samaritan" = "Samaritanisch";
+"Old Italic" = "Altitalienisch";
+"CJK Symbols and Punctuation" = "CJK Symbole und Satzzeichen";
+"Half-width and Full-width Forms" = "ASCII-Zeichen";
+"Kangxi Radicals" = "Kangxi Radikale";
+"Buginese" = "Buginesisch";
+"Phoenician" = "Phönizisch";
+"Tagbanwa" = "Tagbanwa";
+"Ethiopic Supplement" = "Ergänzungen zu Äthiopisch";
+"Lisu" = "Lisu";
+"IPA Extensions" = "IPA-Erweiterung";
+"Yi Syllables" = "Yi Syllabische Zeichen";
+"Kannada" = "Kannada";
+"Egyptian Hieroglyphs" = "Ägyptische Hieroglyphen";
+"Myanmar Extended-A" = "Myanmar Erweitert-A";
+"Rumi Numeral Symbols" = "Rumi Ziffernsymbole";
+"Hangul Jamo" = "Hangul Jamo";
+"Lepcha" = "Lepcha";
+"Meetei Mayek" = "Meetei Mayek";
+"Hangul Syllables" = "Hangul Silbenlaute";
+"Arabic Supplement" = "Ergänzungen zu Arabisch";
+"Kanbun" = "Kanbun";
+"Variation Selectors Supp." = "Variationsselektoren Supp.";
+"Supp. Private Use Area-B" = "Supplement Privat nutzbarer Bereich-B";
+"Combining Diacritical Marks" = "Diakritische Zeichen";
+"Latin-1 Supplement" = "Ergänzungen zu Lateinisch-1";
+"Deseret" = "Deseret";
+"Hangul Compatibility Jamo" = "Hangul Kompatibilitäts-Jamo";
+"N'Ko" = "N'Ko";
+"Arabic Presentation Forms-B" = "Arabische Darstellungsformen-B";
+"Combining Marks for Symbols" = "Kombinierende Zeichen für Symbole";
+"CJK Unified Ideographs Ext. A" = "CJK Ideografen (Unified Ext. A)";
+"Cyrillic Extended-A" = "Kyrillisch Erweitert-A";
+"Armenian" = "Armenisch";
+"Ethiopic Extended" = "Erweitertes Äthiopisch";
+"Lycian" = "Lykisch";
+"Syriac" = "Syrisch";
+"Coptic" = "Koptisch";
+"Limbu" = "Limbu";
+"Avestan" = "Avestisch";
+"Old Persian" = "Persische Keilschrift";
+"Ogham" = "Ogham";
+"Supplemental Arrows-A" = "Ergänzende Pfeile-A";
+"CJK Unified Ideographs Ext. C" = "CJK Ideografen (Unified Ext. C)";
+"Ideographic Desc. Characters" = "Ideografische Beschr. Zeichen";
+"Rejang" = "Rejang";
+"Alchemical Symbols" = "Alchemistische Symbole";
+"Tags" = "Attribute";
+"Emoticons" = "Emoticons";
+"Balinese" = "Balinesisch";
+"Myanmar" = "Myanmar";
+"Musical Symbols" = "Musikalische Symbole";
+"Ethiopic Extended-A" = "Äthiopisch Erweitert-A";
+"Mandaic" = "Mandäisch";
+"Spacing Modifier Letters" = "Abstandssteuerungszeichen";
+"Carian" = "Karisch";
+"Number Forms" = "Zahlen";
+"CJK Compatibility" = "CJK Kompatibilität";
+"Playing Cards" = "Spielkarten";
+"Miscellaneous Symbols and Arrows" = "Verschiedene Symbole und Pfeile";
+"Transport And Map Symbols" = "Transport- und Kartensymbole";
+"Lao" = "Lao";
+"Hangul Jamo Extended-B" = "Hangul Jamo Erweitert-B";
+"Tibetan" = "Tibetisch";
+"Georgian Supplement" = "Ergänzungen zu Georgisch";
+"Tai Viet" = "Tai Viet";
+"Combining Diacritical Marks Supplement" = "Ergänzungen zu Diakritische Zeichen";
+"Hanunoo" = "Hanunoo";
+"Oriya" = "Oriya";
+"Latin Extended Additional" = "Lateinisch Erweitert Zusatz";
+"Georgian" = "Georgisch";
+"Miscellaneous Math Symbols-A" = "Verschiedene Mathemat. Symbole-A";
+"Combining Half Marks" = "Kombinierende Halbmarkierungen";
+"Counting Rod Numerals" = "Alte chinesische Zahlen";
+"Gujarati" = "Gujarati";
+"Tai Xuan Jing Symbols" = "Tai Xuan Jing Symbole";
+"Kana Supplement" = "Ergänzungen zu Kana";

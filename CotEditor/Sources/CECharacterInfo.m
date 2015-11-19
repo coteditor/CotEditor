@@ -48,6 +48,7 @@ static const UTF32Char kType6EmojiModifierChar = 0x1F3FF;  // Emoji Modifier Fit
 @property (nonatomic, readwrite, nonnull, copy) NSString *unicode;
 @property (nonatomic, readwrite, nonnull, copy) NSString *unicodeName;
 @property (nonatomic, readwrite, nullable, copy) NSString *unicodeGroupName;
+@property (nonatomic, readwrite, nullable, copy) NSString *localizedUnicodeGroupName;
 
 @end
 
@@ -91,7 +92,7 @@ static const UTF32Char kType6EmojiModifierChar = 0x1F3FF;  // Emoji Modifier Fit
     self = [super init];
     if (self) {
         _string = string;
-        _unicodes = [self decomposeIntoHexCodes:string];
+        _unicodes = [CECharacterInfo decomposeIntoHexCodes:string];
         
         BOOL isMultipleChars = NO;
         
@@ -167,8 +168,8 @@ static const UTF32Char kType6EmojiModifierChar = 0x1F3FF;  // Emoji Modifier Fit
                                 NSLocalizedString(variationSelectorAdditional, nil)];
             }
             
-            const char *groupName = getUnicodeGroup(string);
-            _unicodeGroupName = [[NSString stringWithUTF8String:groupName] stringByReplacingOccurrencesOfString:@"_" withString:@" "];
+            _unicodeGroupName = [CECharacterInfo getUnicodeGroup:string];
+            _localizedUnicodeGroupName = NSLocalizedStringFromTable(_unicodeGroupName, @"UnicodeBlocks", nil);
         }
     }
     return self;
@@ -180,7 +181,7 @@ static const UTF32Char kType6EmojiModifierChar = 0x1F3FF;  // Emoji Modifier Fit
 
 // ------------------------------------------------------
 /// unicode hex numbers
-- (nonnull NSArray<NSString *> *)decomposeIntoHexCodes:(nonnull NSString *)string
++ (nonnull NSArray<NSString *> *)decomposeIntoHexCodes:(nonnull NSString *)string
 // ------------------------------------------------------
 {
     NSMutableArray<NSString *> *unicodes = [NSMutableArray array];
@@ -209,7 +210,7 @@ static const UTF32Char kType6EmojiModifierChar = 0x1F3FF;  // Emoji Modifier Fit
 
 // ------------------------------------------------------
 /// get Unicode group the given character belong to
-const char *getUnicodeGroup(NSString *string)
++ (nonnull NSString *)getUnicodeGroup:(nonnull NSString *)string
 // ------------------------------------------------------
 {
     // get UTF32 form
@@ -220,7 +221,19 @@ const char *getUnicodeGroup(NSString *string)
     
     // get Unicode group
     int32_t prop = u_getIntPropertyValue(utf32, UCHAR_BLOCK);
-    return u_getPropertyValueName(UCHAR_BLOCK, prop, U_LONG_PROPERTY_NAME);
+    const char *groupNameChars = u_getPropertyValueName(UCHAR_BLOCK, prop, U_LONG_PROPERTY_NAME);
+    
+    // sanitize
+    // -> This is actually a dirty workaround to make the group name we've gotten the same to Apple's group naming rule.
+    //    Otherwise, we cannot localize group name correctly. (2015-11 by 1024jp)
+    NSString *groupName = [NSString stringWithUTF8String:groupNameChars];
+    groupName = [groupName stringByReplacingOccurrencesOfString:@"_" withString:@" "];
+    groupName = [groupName stringByReplacingOccurrencesOfString:@" ([A-Z])$" withString:@"-$1"
+                                                        options:NSRegularExpressionSearch range:NSMakeRange(0, [groupName length])];
+    groupName = [groupName stringByReplacingOccurrencesOfString:@"Extension-" withString:@"Ext. "
+                                                        options:NSRegularExpressionSearch range:NSMakeRange(0, [groupName length])];
+    
+    return groupName;
 }
 
 @end

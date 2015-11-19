@@ -288,6 +288,8 @@
 		2AA2E00C1BFDD3A60087BDD6 /* CECharacterInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AA2E00A1BFDD3A60087BDD6 /* CECharacterInfo.m */; };
 		2AA2E00E1BFDDFEA0087BDD6 /* CECharacterInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AA2E00A1BFDD3A60087BDD6 /* CECharacterInfo.m */; };
 		2AA2E0101BFDE0190087BDD6 /* CharacterInfoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA2E00F1BFDE0190087BDD6 /* CharacterInfoTests.swift */; };
+		2AA2E0131BFE12620087BDD6 /* UnicodeBlocks.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2AA2E0111BFE12620087BDD6 /* UnicodeBlocks.strings */; };
+		2AA2E0141BFE12620087BDD6 /* UnicodeBlocks.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2AA2E0111BFE12620087BDD6 /* UnicodeBlocks.strings */; };
 		2AAC90011A4E12D10074E076 /* CEWrappingTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AAC90001A4E12D10074E076 /* CEWrappingTextField.m */; };
 		2AACC9591942A82900E3FF63 /* CEIndicatorSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AACC9581942A82900E3FF63 /* CEIndicatorSheetController.m */; };
 		2AB4326E1912ADAC00835004 /* CharacterPopover.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2AB4326C1912ADAC00835004 /* CharacterPopover.xib */; };
@@ -649,6 +651,9 @@
 		2AA2E0091BFDD3A60087BDD6 /* CECharacterInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CECharacterInfo.h; sourceTree = "<group>"; };
 		2AA2E00A1BFDD3A60087BDD6 /* CECharacterInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CECharacterInfo.m; sourceTree = "<group>"; };
 		2AA2E00F1BFDE0190087BDD6 /* CharacterInfoTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterInfoTests.swift; sourceTree = "<group>"; };
+		2AA2E0121BFE12620087BDD6 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/UnicodeBlocks.strings; sourceTree = "<group>"; };
+		2AA2E0151BFE14310087BDD6 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/UnicodeBlocks.strings"; sourceTree = "<group>"; };
+		2AA2E0161BFE14320087BDD6 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/UnicodeBlocks.strings; sourceTree = "<group>"; };
 		2AAC8FFF1A4E12D10074E076 /* CEWrappingTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEWrappingTextField.h; sourceTree = "<group>"; };
 		2AAC90001A4E12D10074E076 /* CEWrappingTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEWrappingTextField.m; sourceTree = "<group>"; };
 		2AACC9571942A82900E3FF63 /* CEIndicatorSheetController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CEIndicatorSheetController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -1203,6 +1208,7 @@
 				259C2316077678DE00BA61C5 /* Localizable.strings */,
 				2AF5C3BC1A55072E00C972B5 /* InfoPlist.strings */,
 				2A5E4D7A1A44F0D50072013F /* ServicesMenu.strings */,
+				2AA2E0111BFE12620087BDD6 /* UnicodeBlocks.strings */,
 				2AD9039D1BCEE174004F2B8A /* Credits.rtf */,
 				2AEB8B7A19AF73980098D557 /* FileDropGlossary.txt */,
 				2A456C421A1EDCFC00395158 /* ReportTemplate.md */,
@@ -1620,6 +1626,7 @@
 				2A6F0D811B5500E100C2D03C /* ServicesMenu.strings in Resources */,
 				2A6F0D821B5500E100C2D03C /* IntegrationPane.xib in Resources */,
 				2A6F0D831B5500E100C2D03C /* RegexReferencePopover.xib in Resources */,
+				2AA2E0141BFE12620087BDD6 /* UnicodeBlocks.strings in Resources */,
 				2A6F0D851B5500E100C2D03C /* ShellScript.rtf in Resources */,
 				2A6F0D861B5500E100C2D03C /* ScriptMenu Folder.rtf in Resources */,
 				2A6F0D871B5500E100C2D03C /* AppleScript.rtf in Resources */,
@@ -1714,6 +1721,7 @@
 				2A5E4D7C1A44F0D50072013F /* ServicesMenu.strings in Resources */,
 				2AD318C01A462A10001B8112 /* IntegrationPane.xib in Resources */,
 				2A2D6C191A602D2C002451FF /* RegexReferencePopover.xib in Resources */,
+				2AA2E0131BFE12620087BDD6 /* UnicodeBlocks.strings in Resources */,
 				2A961C5518FC699E002076B6 /* ShellScript.rtf in Resources */,
 				2A961C5418FC699E002076B6 /* ScriptMenu Folder.rtf in Resources */,
 				2A961C5218FC699E002076B6 /* AppleScript.rtf in Resources */,
@@ -2442,6 +2450,16 @@
 				4B7998181A1F1BCD0088D167 /* zh-Hans */,
 			);
 			name = ShellScript.rtf;
+			sourceTree = "<group>";
+		};
+		2AA2E0111BFE12620087BDD6 /* UnicodeBlocks.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2AA2E0121BFE12620087BDD6 /* ja */,
+				2AA2E0151BFE14310087BDD6 /* zh-Hans */,
+				2AA2E0161BFE14320087BDD6 /* de */,
+			);
+			name = UnicodeBlocks.strings;
 			sourceTree = "<group>";
 		};
 		2AB4326C1912ADAC00835004 /* CharacterPopover.xib */ = {

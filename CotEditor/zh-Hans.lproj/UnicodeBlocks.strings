@@ -1,0 +1,237 @@
+/*
+ 
+ UnicodeBlocks.strings (Simplified Chinese)
+ 
+ CotEditor
+ http://coteditor.com
+ 
+ Created by 1024jp on 2015-11-19.
+ 
+ ------------------------------------------------------------------------------
+ 
+ © 2015 1024jp
+ 
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+ 
+ http://www.apache.org/licenses/LICENSE-2.0
+ 
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ 
+ */
+
+
+// auto-generated from CharacterPaletteIM.lg in Apple's glossaries
+
+"Cuneiform" = "楔形文字";
+"Variation Selectors" = "变体选择器";
+"Latin Extended-B" = "拉丁文扩展-B";
+"Brahmi" = "波罗米文";
+"Enclosed Alphanumerics" = "圆圈中的字母数字";
+"Linear B Syllabary" = "线性 B 音节文字";
+"Ugaritic" = "乌加里特文";
+"Bamum Supplement" = "巴姆穆文补充";
+"Alphabetic Presentation Forms" = "字母表示形式";
+"Mongolian" = "蒙古文";
+"CJK Radicals Supplement" = "CJK 字根补充";
+"Arabic" = "阿拉伯文";
+"Control Pictures" = "控制图片";
+"Inscriptional Parthian" = "帕提亚碑铭体";
+"Phaistos Disc" = "菲斯通盘文";
+"Geometric Shapes" = "几何形状";
+"CJK Unified Ideographs" = "CJK 统一表意文字";
+"Greek and Coptic" = "希腊文和科普特文";
+"Ancient Greek Musical Notation" = "古希腊音符";
+"Basic Latin" = "基础拉丁文";
+"Inscriptional Pahlavi" = "巴拉维碑铭体";
+"Braille Patterns" = "盲文图案";
+"Javanese" = "爪哇文";
+"Old South Arabian" = "古代南方阿拉伯文";
+"Hebrew" = "希伯来文";
+"Specials" = "专用文字";
+"Variation Selectors Supplement" = "变体选择器补充";
+"Miscellaneous Technical" = "其他技术符号";
+"Aegean Numbers" = "爱琴海数字";
+"General Punctuation" = "一般标点符号";
+"Latin Extended-D" = "拉丁文扩展-D";
+"CJK Compatibility Ideographs" = "CJK 兼容表意文字";
+"Bopomofo" = "注音符号";
+"Canadian Aboriginal Syllabics" = "加拿大土著音节文字";
+"Buhid" = "布西德文";
+"Bengali" = "孟加拉文";
+"New Tai Lue" = "新傣文";
+"Linear B Ideograms" = "线性 B 象形文字";
+"Supp. Private Use Area-A" = "补充专用区域-A";
+"Ethiopic" = "埃塞俄比亚文";
+"Vertical Forms" = "竖排形式";
+"Block Elements" = "块元素";
+"Currency Symbols" = "货币符号";
+"Bamum" = "巴姆穆文";
+"Superscripts and Subscripts" = "上标和下标";
+"Arabic Presentation Forms-A" = "阿拉伯表示形式-A";
+"Shavian" = "萧伯纳风格";
+"CJK Unified Ideographs Ext. B" = "CJK 统一表意文字扩展 B 区";
+"Enclosed Ideographic Supplement" = "圆圈中的表意文字补充";
+"Ancient Symbols" = "古代符号";
+"Cyrillic Extended-B" = "西里尔文扩展-B";
+"Saurashtra" = "索拉什特拉文";
+"Vedic Extensions" = "吠陀文扩展";
+"Cyrillic" = "圣西里尔文";
+"Arrows" = "箭头";
+"Thai" = "泰文";
+"Supplemental Arrows-B" = "补充箭头-B";
+"Ancient Greek Numbers" = "古希腊数字";
+"Cham" = "卡姆";
+"Tai Tham" = "傣坦文";
+"Bopomofo Extended" = "注音符号扩展";
+"Phonetic Extensions Supplement" = "音标扩展补充";
+"Ol Chiki" = "桑塔利文";
+"Cuneiform Numbers and Punctuation" = "楔形文字数字和标点符号";
+"Phags-pa" = "八思巴文";
+"Devanagari Extended" = "天城文扩展";
+"Devanagari" = "天城文";
+"Greek Extended" = "希腊文扩展";
+"Thaana" = "塔纳文";
+"Telugu" = "泰卢固文";
+"Hiragana" = "平假名";
+"CJK Compatibility Ideographs Supp." = "CJK 兼容表意文字补充";
+"Katakana" = "片假名";
+"Mathematical Operators" = "数学运算符";
+"Mahjong Tiles" = "麻将拼图";
+"Batak" = "巴塔克文";
+"Vai" = "瓦伊文";
+"Phonetic Extensions" = "音标扩展";
+"Malayalam" = "马拉雅拉姆文";
+"Optical Character Recognition" = "光学字符识别";
+"Hangul Jamo Extended-A" = "韩文字母扩展-A";
+"Supplemental Math Operators" = "补充数学运算符";
+"Common Indic Number Forms" = "通用印度文数字形式";
+"Enclosed Alphanumeric Supplement" = "圆圈中的字母数字补充";
+"Kaithi" = "凯提文";
+"Imperial Aramaic" = "皇室阿拉姆文";
+"Modifier Tone Letters" = "修饰声调字母";
+"Kayah Li" = "克耶李文";
+"Tamil" = "泰米尔文";
+"Small Form Variants" = "小写变体";
+"CJK Unified Ideographs Ext. D" = "CJK 统一表意文字扩展 D 区";
+"Tifinagh" = "提非纳文";
+"Miscellaneous Symbols And Pictographs" = "其他符号与象形文字";
+"Miscellaneous Math Symbols-B" = "其他数学符号-B";
+"Yi Radicals" = "彝文字根";
+"Lydian" = "吕底亚文";
+"Unified Canadian Aboriginal Syllabics Extended" = "统一加拿大土著音节文字扩展";
+"Private Use Area" = "专用区域";
+"Glagolitic" = "格拉哥里字母";
+"Osmanya" = "奥斯曼亚文";
+"Yijing Hexagram Symbols" = "易经六形符号";
+"Latin Extended-A" = "拉丁文扩展-A";
+"Cyrillic Supplement" = "圣西里尔文字补充";
+"Box Drawing" = "画框";
+"Letterlike Symbols" = "类似字母的符号";
+"Sinhala" = "僧伽罗文";
+"Supplemental Punctuation" = "补充标点符号";
+"Math Alphanumeric Symbols" = "数学字母数字符号";
+"Cypriot Syllabary" = "塞浦路斯音节文字";
+"Gurmukhi" = "古木基文";
+"Gothic" = "哥特文";
+"Cherokee" = "切罗基文";
+"CJK Compatibility Forms" = "CJK 兼容形式";
+"Latin Extended-C" = "拉丁文扩展-C";
+"Old Turkic" = "古代突厥文";
+"Domino Tiles" = "多米诺拼图";
+"Khmer Symbols" = "高棉文符号";
+"Khmer" = "高棉文";
+"Syloti Nagri" = "辛哈拉文";
+"Runic" = "古代北欧文字";
+"Enclosed CJK Letters and Months" = "圆圈中的 CJK 字母和月份";
+"Byzantine Musical Symbols" = "拜占庭音乐符号";
+"CJK Strokes" = "CJK 笔画";
+"Miscellaneous Symbols" = "其他符号";
+"Tai Le" = "台乐文";
+"Katakana Phonetic Extensions" = "片假名音标扩展";
+"Tagalog" = "塔加路文";
+"Kharoshthi" = "法卢文";
+"Dingbats" = "花饰";
+"Sundanese" = "巽他文";
+"Samaritan" = "撒马利亚文";
+"Old Italic" = "旧斜体";
+"CJK Symbols and Punctuation" = "CJK 符号和标点符号";
+"Half-width and Full-width Forms" = "半形和全形";
+"Kangxi Radicals" = "康熙字根";
+"Buginese" = "布吉文";
+"Phoenician" = "腓尼基文";
+"Tagbanwa" = "塔格班瓦文";
+"Ethiopic Supplement" = "埃塞俄比亚文补充";
+"Lisu" = "傈僳文";
+"IPA Extensions" = "IPA 扩展";
+"Yi Syllables" = "彝文音节";
+"Kannada" = "卡纳达文";
+"Egyptian Hieroglyphs" = "埃及象形文字";
+"Myanmar Extended-A" = "缅甸文扩展-A";
+"Rumi Numeral Symbols" = "鲁米数字符号";
+"Hangul Jamo" = "韩文字母";
+"Lepcha" = "雷布查文";
+"Meetei Mayek" = "曼尼普尔文";
+"Hangul Syllables" = "韩文音节";
+"Arabic Supplement" = "阿拉伯文补充";
+"Kanbun" = "宽文";
+"Variation Selectors Supp." = "变体选择器补充";
+"Supp. Private Use Area-B" = "补充专用区域-B";
+"Combining Diacritical Marks" = "组合音标";
+"Latin-1 Supplement" = "拉丁文-1 补充";
+"Deseret" = "德塞莱特文";
+"Hangul Compatibility Jamo" = "韩文兼容字母";
+"N'Ko" = "尼日尔-科尔多凡语系";
+"Arabic Presentation Forms-B" = "阿拉伯表示形式-B";
+"Combining Marks for Symbols" = "符号的组合标记";
+"CJK Unified Ideographs Ext. A" = "CJK 统一表意文字扩展 A 区";
+"Cyrillic Extended-A" = "西里尔文扩展-A";
+"Armenian" = "亚美尼亚文";
+"Ethiopic Extended" = "埃塞俄比亚文扩展";
+"Lycian" = "吕西亚文";
+"Syriac" = "叙利亚文";
+"Coptic" = "科普特文";
+"Limbu" = "林布文";
+"Avestan" = "阿维斯陀文";
+"Old Persian" = "古波斯文";
+"Ogham" = "欧甘文字";
+"Supplemental Arrows-A" = "补充箭头-A";
+"CJK Unified Ideographs Ext. C" = "CJK 统一表意文字扩展 C 区";
+"Ideographic Desc. Characters" = "表意文字描述字符";
+"Rejang" = "拉让文";
+"Alchemical Symbols" = "炼金术符号";
+"Tags" = "标记";
+"Emoticons" = "表情符号";
+"Balinese" = "巴厘文";
+"Myanmar" = "缅甸文";
+"Musical Symbols" = "音乐符号";
+"Ethiopic Extended-A" = "埃塞俄比亚文扩展-A";
+"Mandaic" = "曼代克文";
+"Spacing Modifier Letters" = "空格修饰字母";
+"Carian" = "卡里亚文";
+"Number Forms" = "数字形式";
+"CJK Compatibility" = "CJK 兼容";
+"Playing Cards" = "扑克牌";
+"Miscellaneous Symbols and Arrows" = "其他符号和箭头";
+"Transport And Map Symbols" = "交通与地图符号";
+"Lao" = "老挝文";
+"Hangul Jamo Extended-B" = "韩文字母扩展-B";
+"Tibetan" = "西藏文";
+"Georgian Supplement" = "格鲁吉亚文补充";
+"Tai Viet" = "越南傣文";
+"Combining Diacritical Marks Supplement" = "组合变音符补充";
+"Hanunoo" = "哈鲁喏文";
+"Oriya" = "奥里亚文";
+"Latin Extended Additional" = "拉丁文扩展附加";
+"Georgian" = "格鲁吉亚文";
+"Miscellaneous Math Symbols-A" = "其他数学符号-A";
+"Combining Half Marks" = "组合半形标记";
+"Counting Rod Numerals" = "算筹数";
+"Gujarati" = "古吉拉特文";
+"Tai Xuan Jing Symbols" = "太玄经符号";
+"Kana Supplement" = "假名补充";

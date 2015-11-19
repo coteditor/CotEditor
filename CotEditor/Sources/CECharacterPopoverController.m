@@ -64,7 +64,7 @@
         _glyph = [characterInfo string];
         _unicode = [[characterInfo unicodes] componentsJoinedByString:@"  "];
         _unicodeName = [characterInfo unicodeName];
-        _unicodeGroupName = [characterInfo unicodeGroupName];
+        _unicodeGroupName = [characterInfo localizedUnicodeGroupName];
     }
     return self;
 }

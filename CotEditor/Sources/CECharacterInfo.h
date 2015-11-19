@@ -34,6 +34,7 @@
 @property (nonatomic, readonly, nonnull, copy) NSArray<NSString *> *unicodes;
 @property (nonatomic, readonly, nonnull, copy) NSString *unicodeName;
 @property (nonatomic, readonly, nullable, copy) NSString *unicodeGroupName;
+@property (nonatomic, readonly, nullable, copy) NSString *localizedUnicodeGroupName;
 
 
 + (nullable CECharacterInfo *)characterInfoWithString:(nonnull NSString *)string;
