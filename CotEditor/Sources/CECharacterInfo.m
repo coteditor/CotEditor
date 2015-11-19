@@ -168,7 +168,7 @@ static const UTF32Char kType6EmojiModifierChar = 0x1F3FF;  // Emoji Modifier Fit
                                 NSLocalizedString(variationSelectorAdditional, nil)];
             }
             
-            _unicodeBlockName = [CECharacterInfo getUnicodeGroup:string];
+            _unicodeBlockName = [CECharacterInfo getUnicodeBlockName:string];
             _localizedUnicodeBlockName = NSLocalizedStringFromTable(_unicodeBlockName, @"UnicodeBlocks", nil);
         }
     }
@@ -209,8 +209,8 @@ static const UTF32Char kType6EmojiModifierChar = 0x1F3FF;  // Emoji Modifier Fit
 
 
 // ------------------------------------------------------
-/// get Unicode group the given character belong to
-+ (nonnull NSString *)getUnicodeGroup:(nonnull NSString *)string
+/// get Unicode block name the given character belong to
++ (nonnull NSString *)getUnicodeBlockName:(nonnull NSString *)string
 // ------------------------------------------------------
 {
     // get UTF32 form
@@ -219,21 +219,21 @@ static const UTF32Char kType6EmojiModifierChar = 0x1F3FF;  // Emoji Modifier Fit
         utf32 = NSSwapLittleIntToHost(utf32);
     }
     
-    // get Unicode group
+    // get Unicode block
     int32_t prop = u_getIntPropertyValue(utf32, UCHAR_BLOCK);
-    const char *groupNameChars = u_getPropertyValueName(UCHAR_BLOCK, prop, U_LONG_PROPERTY_NAME);
+    const char *blockNameChars = u_getPropertyValueName(UCHAR_BLOCK, prop, U_LONG_PROPERTY_NAME);
     
     // sanitize
-    // -> This is actually a dirty workaround to make the group name we've gotten the same to Apple's group naming rule.
-    //    Otherwise, we cannot localize group name correctly. (2015-11 by 1024jp)
-    NSString *groupName = [NSString stringWithUTF8String:groupNameChars];
-    groupName = [groupName stringByReplacingOccurrencesOfString:@"_" withString:@" "];
-    groupName = [groupName stringByReplacingOccurrencesOfString:@" ([A-Z])$" withString:@"-$1"
-                                                        options:NSRegularExpressionSearch range:NSMakeRange(0, [groupName length])];
-    groupName = [groupName stringByReplacingOccurrencesOfString:@"Extension-" withString:@"Ext. "
-                                                        options:NSRegularExpressionSearch range:NSMakeRange(0, [groupName length])];
+    // -> This is actually a dirty workaround to make the block name the same as the Apple's block naming rule.
+    //    Otherwise, we cannot localize block name correctly. (2015-11 by 1024jp)
+    NSString *blockName = [NSString stringWithUTF8String:blockNameChars];
+    blockName = [blockName stringByReplacingOccurrencesOfString:@"_" withString:@" "];
+    blockName = [blockName stringByReplacingOccurrencesOfString:@" ([A-Z])$" withString:@"-$1"
+                                                        options:NSRegularExpressionSearch range:NSMakeRange(0, [blockName length])];
+    blockName = [blockName stringByReplacingOccurrencesOfString:@"Extension-" withString:@"Ext. "
+                                                        options:NSRegularExpressionSearch range:NSMakeRange(0, [blockName length])];
     
-    return groupName;
+    return blockName;
 }
 
 @end
