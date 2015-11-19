@@ -55,7 +55,7 @@
 - (nullable instancetype)initWithCharacter:(nonnull NSString *)singleString
 // ------------------------------------------------------
 {
-    CECharacterInfo *characterInfo = [CECharacterInfo characterWithString:singleString];
+    CECharacterInfo *characterInfo = [CECharacterInfo characterInfoWithString:singleString];
     
     if (!characterInfo) { return nil; }
     

@@ -36,7 +36,7 @@
 @property (nonatomic, readonly, nullable, copy) NSString *unicodeGroupName;
 
 
-+ (nullable CECharacterInfo *)characterWithString:(nonnull NSString *)string;
++ (nullable CECharacterInfo *)characterInfoWithString:(nonnull NSString *)string;
 
 /// designated initializer
 - (nullable instancetype)initWithString:(nonnull NSString *)string NS_DESIGNATED_INITIALIZER;

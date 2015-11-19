@@ -74,7 +74,7 @@ static const UTF32Char kType6EmojiModifierChar = 0x1F3FF;  // Emoji Modifier Fit
 
 //------------------------------------------------------
 /// convenience constractor
-+ (nullable CECharacterInfo *)characterWithString:(nonnull NSString *)string
++ (nullable CECharacterInfo *)characterInfoWithString:(nonnull NSString *)string
 //------------------------------------------------------
 {
     return [[CECharacterInfo alloc] initWithString:string];
