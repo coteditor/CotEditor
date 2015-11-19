@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9060" systemVersion="15C47a" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9059"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9060"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="CECharacterPopoverController">
             <connections>
+                <outlet property="unicodeGroupNameField" destination="V7B-LW-D7y" id="WTj-Ek-JUZ"/>
                 <outlet property="view" destination="c22-O7-iKe" id="tsm-eO-5VC"/>
             </connections>
         </customObject>
@@ -34,7 +35,7 @@
                     </connections>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" placeholderIntrinsicWidth="46" placeholderIntrinsicHeight="14" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5tD-mh-lm6">
-                    <rect key="frame" x="70" y="32" width="266" height="14"/>
+                    <rect key="frame" x="70" y="15" width="266" height="14"/>
                     <animations/>
                     <textFieldCell key="cell" controlSize="small" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="left" title="U+86D9" id="Atm-wm-Ocl">
                         <font key="font" metaFont="smallSystem"/>
@@ -49,7 +50,7 @@
                     <rect key="frame" x="70" y="50" width="266" height="14"/>
                     <animations/>
                     <textFieldCell key="cell" controlSize="small" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="left" title="CJK UNIFIED IDEOGRAPH-86D9" id="H6i-fn-bnL">
-                        <font key="font" metaFont="smallSystem"/>
+                        <font key="font" metaFont="system" size="12"/>
                         <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
@@ -57,13 +58,29 @@
                         <binding destination="-2" name="value" keyPath="unicodeName" id="bJ0-A8-8ap"/>
                     </connections>
                 </textField>
+                <textField horizontalHuggingPriority="750" verticalHuggingPriority="750" placeholderIntrinsicWidth="262" placeholderIntrinsicHeight="14" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="V7B-LW-D7y">
+                    <rect key="frame" x="70" y="33" width="266" height="14"/>
+                    <animations/>
+                    <textFieldCell key="cell" controlSize="small" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="left" title="CJK Unified Ideographs" id="h7A-Kh-GoY">
+                        <font key="font" metaFont="smallSystem"/>
+                        <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                    <connections>
+                        <binding destination="-2" name="value" keyPath="unicodeGroupName" id="PBd-ii-tAk"/>
+                    </connections>
+                </textField>
             </subviews>
             <constraints>
+                <constraint firstItem="5tD-mh-lm6" firstAttribute="top" secondItem="V7B-LW-D7y" secondAttribute="bottom" constant="4" id="4Nz-VM-PAT"/>
+                <constraint firstItem="5tD-mh-lm6" firstAttribute="top" secondItem="cvP-MD-1SF" secondAttribute="bottom" priority="250" constant="4" id="B75-bi-dvz"/>
                 <constraint firstAttribute="trailing" secondItem="cvP-MD-1SF" secondAttribute="trailing" constant="10" id="GfY-bt-3uf"/>
-                <constraint firstItem="5tD-mh-lm6" firstAttribute="top" secondItem="cvP-MD-1SF" secondAttribute="bottom" constant="4" id="P3H-zM-bFt"/>
+                <constraint firstAttribute="trailing" secondItem="V7B-LW-D7y" secondAttribute="trailing" constant="10" id="HVL-ke-sJa"/>
+                <constraint firstItem="V7B-LW-D7y" firstAttribute="leading" secondItem="Lnp-OL-NAu" secondAttribute="trailing" constant="8" symbolic="YES" id="JzA-kM-gRT"/>
                 <constraint firstItem="5tD-mh-lm6" firstAttribute="leading" secondItem="Lnp-OL-NAu" secondAttribute="trailing" constant="8" symbolic="YES" id="TEN-2w-O09"/>
                 <constraint firstItem="Lnp-OL-NAu" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="10" id="Vj2-pk-Yi8"/>
                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Lnp-OL-NAu" secondAttribute="bottom" constant="10" id="ZP1-LR-aaH"/>
+                <constraint firstItem="V7B-LW-D7y" firstAttribute="top" secondItem="cvP-MD-1SF" secondAttribute="bottom" constant="3" id="cW3-TS-n9I"/>
                 <constraint firstAttribute="trailing" secondItem="5tD-mh-lm6" secondAttribute="trailing" constant="10" id="e7L-Ya-1fM"/>
                 <constraint firstItem="cvP-MD-1SF" firstAttribute="leading" secondItem="Lnp-OL-NAu" secondAttribute="trailing" constant="8" symbolic="YES" id="e8Y-ow-6K9"/>
                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="5tD-mh-lm6" secondAttribute="bottom" constant="10" id="ggB-LH-qfa"/>

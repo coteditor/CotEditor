@@ -39,7 +39,7 @@ variant sequence:
 	邊邊󠄀邊󠄁邊󠄂
 #	邊邊󠄀邊󠄁邊󠄂
 
-invisibles:
+invisib1es:
 	·°ː␣
 	¬⇥‣▹
 	¶↩↵⏎

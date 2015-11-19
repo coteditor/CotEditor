@@ -33,7 +33,11 @@
 
 @property (nonatomic, nonnull, copy) NSString *glyph;
 @property (nonatomic, nonnull, copy) NSString *unicodeName;
+@property (nonatomic, nullable, copy) NSString *unicodeGroupName;
 @property (nonatomic, nonnull, copy) NSString *unicode;
+
+
+@property (nonatomic, nullable, weak) IBOutlet NSTextField *unicodeGroupNameField;
 
 @end
 
@@ -60,8 +64,23 @@
         _glyph = [characterInfo string];
         _unicode = [[characterInfo unicodes] componentsJoinedByString:@"  "];
         _unicodeName = [characterInfo unicodeName];
+        _unicodeGroupName = [characterInfo unicodeGroupName];
     }
     return self;
+}
+
+
+// ------------------------------------------------------
+/// modify xib items
+- (void)viewDidAppear
+// ------------------------------------------------------
+{
+    [super viewDidAppear];
+    
+    // remove group name field if not exists
+    if (![self unicodeGroupName]) {
+        [[self unicodeGroupNameField] removeFromSuperviewWithoutNeedingDisplay];
+    }
 }
 
 
