@@ -8,6 +8,7 @@ develop
 ### Improvements
 
 - Improve text selection by clicking line numbers view.
+- Improve character info popover to show also Unicode group if selected letter consists of one character.
 - Tweak style of popup menus in toolbar.
 - Update Python syntax style:
     - Add `__copy__` and `__deepcopy__` to commands.
