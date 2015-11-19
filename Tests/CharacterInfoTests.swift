@@ -39,7 +39,7 @@ class CharacterInfoTests: XCTestCase {
         let charInfo = CECharacterInfo(string: "☺︎")
         
         XCTAssertEqual(charInfo!.unicodes, ["U+263A", "U+FE0E"])
-        XCTAssertEqual(charInfo!.unicodeGroupName, "Miscellaneous_Symbols")
+        XCTAssertEqual(charInfo!.unicodeGroupName, "Miscellaneous Symbols")
     }
     
     

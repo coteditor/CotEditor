@@ -167,7 +167,8 @@ static const UTF32Char kType6EmojiModifierChar = 0x1F3FF;  // Emoji Modifier Fit
                                 NSLocalizedString(variationSelectorAdditional, nil)];
             }
             
-            _unicodeGroupName = [NSString stringWithUTF8String:getUnicodeGroup(string)];
+            const char *groupName = getUnicodeGroup(string);
+            _unicodeGroupName = [[NSString stringWithUTF8String:groupName] stringByReplacingOccurrencesOfString:@"_" withString:@" "];
         }
     }
     return self;
