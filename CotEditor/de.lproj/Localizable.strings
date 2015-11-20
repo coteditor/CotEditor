@@ -200,19 +200,6 @@
 
 
 
-/* MARK: CharacterPopover */
-"<a letter consisting of %d characters>" = "<ein aus %d Zeichen bestehender Buchstabe>";
-"Emoji Style" = "Emoji-Stil";
-"Text Style" = "Text-Stil";
-"Skin Tone I-II" = "Hautfarbe I-II";
-"Skin Tone III" = "Hautfarbe III";
-"Skin Tone IV" = "Hautfarbe IV";
-"Skin Tone V" = "Hautfarbe V";
-"Skin Tone VI" = "Hautfarbe VI";
-"Variant" = "Variante";
-
-
-
 /* MARK: CEEditorWrapper */
 // Menu items
 "Hide Line Numbers" = "Zeilennummern ausblenden";

@@ -167,7 +167,7 @@ static const UTF32Char kType6EmojiModifierChar = 0x1F3FF;  // Emoji Modifier Fit
 {
     // number of characters message
     if ([self isComplexChar]) {
-        return [NSString stringWithFormat:NSLocalizedString(@"<a letter consisting of %d characters>", nil),
+        return [NSString stringWithFormat:NSLocalizedStringFromTable(@"<a letter consisting of %d characters>", @"Unicode", nil),
                 [[self unicodes] count]];
     }
     
@@ -175,7 +175,7 @@ static const UTF32Char kType6EmojiModifierChar = 0x1F3FF;  // Emoji Modifier Fit
     NSString *unicodeName = [self unicodeName];
     if ([self variationSelectorAdditional]) {
         unicodeName = [NSString stringWithFormat:@"%@ (%@)", [self unicodeName],
-                       NSLocalizedString([self variationSelectorAdditional], nil)];
+                       NSLocalizedStringFromTable([self variationSelectorAdditional], @"Unicode", nil)];
     }
     
     return unicodeName;
@@ -221,7 +221,7 @@ static const UTF32Char kType6EmojiModifierChar = 0x1F3FF;  // Emoji Modifier Fit
 {
     if (![self unicodeBlockName]) { return nil; }
     
-    return NSLocalizedStringFromTable([self unicodeBlockName], @"UnicodeBlocks", nil);
+    return NSLocalizedStringFromTable([self unicodeBlockName], @"Unicode", nil);
 }
 
 

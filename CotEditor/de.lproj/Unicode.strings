@@ -26,8 +26,22 @@
  */
 
 
-// auto-generated from CharacterPaletteIM.lg in Apple's glossaries
+"<a letter consisting of %d characters>" = "<ein aus %d Zeichen bestehender Buchstabe>";
 
+
+// Variation selectors
+"Emoji Style" = "Emoji-Stil";
+"Text Style" = "Text-Stil";
+"Skin Tone I-II" = "Hautfarbe I-II";
+"Skin Tone III" = "Hautfarbe III";
+"Skin Tone IV" = "Hautfarbe IV";
+"Skin Tone V" = "Hautfarbe V";
+"Skin Tone VI" = "Hautfarbe VI";
+"Variant" = "Variante";
+
+
+// Unicode block names
+// -> auto-generated from CharacterPaletteIM.lg in Apple's glossaries
 "Cuneiform" = "Keilschrift";
 "Variation Selectors" = "Variationsselektoren";
 "Latin Extended-B" = "Lateinisch Erweitert-B";

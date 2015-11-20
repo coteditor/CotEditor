@@ -65,7 +65,8 @@ class CharacterInfoTests: XCTestCase {
         let charInfo = CECharacterInfo(string: "1️⃣")
         
         XCTAssertEqual(charInfo!.unicodes, ["U+0031", "U+FE0F", "U+20E3"])
-        XCTAssertEqual(charInfo!.unicodeName, "<a letter consisting of 3 characters>")
+        XCTAssertEqual(charInfo!.prettyDescription, "<a letter consisting of 3 characters>")
+        XCTAssertNil(charInfo!.unicodeName)
         XCTAssertNil(charInfo!.unicodeBlockName)
     }
     

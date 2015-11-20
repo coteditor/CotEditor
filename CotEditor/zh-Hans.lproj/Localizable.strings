@@ -199,19 +199,6 @@
 
 
 
-/* MARK: CharacterPopover */
-"<a letter consisting of %d characters>" = "<包含有 %d 个字符>";
-"Emoji Style" = "表情文字格式";
-"Text Style" = "文本文字格式";
-"Skin Tone I-II" = "色调 I-II";
-"Skin Tone III" = "色调 III";
-"Skin Tone IV" = "色调 IV";
-"Skin Tone V" = "色调 V";
-"Skin Tone VI" = "色调 VI";
-"Variant" = "异体字";
-
-
-
 /* MARK: CEEditorWrapper */
 // Menu items
 "Hide Line Numbers" = "隐藏行号";
