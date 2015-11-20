@@ -296,14 +296,17 @@ static const UTF32Char kType6EmojiModifierChar = 0x1F3FF;  // Emoji Modifier Fit
     const char *blockNameChars = u_getPropertyValueName(UCHAR_BLOCK, prop, U_LONG_PROPERTY_NAME);
     
     // sanitize
-    // -> This is actually a dirty workaround to make the block name the same as the Apple's block naming rule.
-    //    Otherwise, we cannot localize block name correctly. (2015-11 by 1024jp)
     NSString *blockName = [NSString stringWithUTF8String:blockNameChars];
     blockName = [blockName stringByReplacingOccurrencesOfString:@"_" withString:@" "];
+    
+    // sanitize for localization
+    // -> This is actually a dirty workaround to make the block name the same as the Apple's block naming rule.
+    //    Otherwise, we cannot localize block name correctly. (2015-11 by 1024jp)
     blockName = [blockName stringByReplacingOccurrencesOfString:@" ([A-Z])$" withString:@"-$1"
                                                         options:NSRegularExpressionSearch range:NSMakeRange(0, [blockName length])];
-    blockName = [blockName stringByReplacingOccurrencesOfString:@"Extension-" withString:@"Ext. "
-                                                        options:NSRegularExpressionSearch range:NSMakeRange(0, [blockName length])];
+    blockName = [blockName stringByReplacingOccurrencesOfString:@"Extension-" withString:@"Ext. "];
+    blockName = [blockName stringByReplacingOccurrencesOfString:@" And " withString:@" and "];
+    blockName = [blockName stringByReplacingOccurrencesOfString:@"Latin 1" withString:@"Latin-1"];  // only for "Latin-1 Supplement"
     
     return blockName;
 }
