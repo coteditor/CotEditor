@@ -34,6 +34,13 @@
 static const unichar  kTextSequenceChar = 0xFE0E;
 static const unichar kEmojiSequenceChar = 0xFE0F;
 
+Boolean CEStringIsVariantSelector(UniChar character) {
+    return (character >= 0x180B && character <= 0x180D) || (character >= 0xFE00 && character <= 0xFE0F);
+}
+Boolean CEStringIsSurrogatePairedVariantSelector(UTF32Char character) {
+    return (character >= 0xE0100 && character <= 0xE01EF);
+}
+
 // emoji modifiers
 static const UTF32Char kType12EmojiModifierChar = 0x1F3FB; // Emoji Modifier Fitzpatrick type-1-2
 static const UTF32Char kType3EmojiModifierChar = 0x1F3FC;  // Emoji Modifier Fitzpatrick type-3
@@ -44,11 +51,15 @@ static const UTF32Char kType6EmojiModifierChar = 0x1F3FF;  // Emoji Modifier Fit
 
 @interface CECharacterInfo ()
 
+@property (nonatomic, getter=isComplexChar) BOOL complexChar;
+@property (nonatomic, nullable, copy) NSString *variationSelectorAdditional;
+
+
+// readonly
 @property (nonatomic, readwrite, nonnull, copy) NSString *string;
 @property (nonatomic, readwrite, nonnull, copy) NSString *unicode;
-@property (nonatomic, readwrite, nonnull, copy) NSString *unicodeName;
+@property (nonatomic, readwrite, nullable, copy) NSString *unicodeName;
 @property (nonatomic, readwrite, nullable, copy) NSString *unicodeBlockName;
-@property (nonatomic, readwrite, nullable, copy) NSString *localizedUnicodeBlockName;
 
 @end
 
@@ -94,21 +105,16 @@ static const UTF32Char kType6EmojiModifierChar = 0x1F3FF;  // Emoji Modifier Fit
         _string = string;
         _unicodes = [CECharacterInfo decomposeIntoHexCodes:string];
         
-        BOOL isMultipleChars = NO;
-        
         // check variation selector
         NSUInteger length = [string length];
-        NSString *variationSelectorAdditional;
         if ([_unicodes count] == 2) {
             unichar lastChar = [string characterAtIndex:(length - 1)];
             if (lastChar == kEmojiSequenceChar) {
-                variationSelectorAdditional = @"Emoji Style";
+                _variationSelectorAdditional = @"Emoji Style";
             } else if (lastChar == kTextSequenceChar) {
-                variationSelectorAdditional = @"Text Style";
-            } else if ((lastChar >= 0x180B && lastChar <= 0x180D) ||
-                       (lastChar >= 0xFE00 && lastChar <= 0xFE0D))
-            {
-                variationSelectorAdditional = @"Variant";
+                _variationSelectorAdditional = @"Text Style";
+            } else if (CEStringIsVariantSelector(lastChar)) {
+                _variationSelectorAdditional = @"Variant";
             } else {
                 unichar highSurrogate = [string characterAtIndex:(length - 2)];
                 unichar lowSurrogate = [string characterAtIndex:(length - 1)];
@@ -119,60 +125,103 @@ static const UTF32Char kType6EmojiModifierChar = 0x1F3FF;  // Emoji Modifier Fit
                     
                     switch (pair) {
                         case kType12EmojiModifierChar:
-                            variationSelectorAdditional = @"Skin Tone I-II";  // Light Skin Tone
+                            _variationSelectorAdditional = @"Skin Tone I-II";  // Light Skin Tone
                             break;
                         case kType3EmojiModifierChar:
-                            variationSelectorAdditional = @"Skin Tone III";  // Medium Light Skin Tone
+                            _variationSelectorAdditional = @"Skin Tone III";  // Medium Light Skin Tone
                             break;
                         case kType4EmojiModifierChar:
-                            variationSelectorAdditional = @"Skin Tone IV";  // Medium Skin Tone
+                            _variationSelectorAdditional = @"Skin Tone IV";  // Medium Skin Tone
                             break;
                         case kType5EmojiModifierChar:
-                            variationSelectorAdditional = @"Skin Tone V";  // Medium Dark Skin Tone
+                            _variationSelectorAdditional = @"Skin Tone V";  // Medium Dark Skin Tone
                             break;
                         case kType6EmojiModifierChar:
-                            variationSelectorAdditional = @"Skin Tone VI";  // Dark Skin Tone
+                            _variationSelectorAdditional = @"Skin Tone VI";  // Dark Skin Tone
                             break;
                         default:
-                            if (pair >= 0xE0100 && pair <= 0xE01EF) {
-                                variationSelectorAdditional = @"Variant";
+                            if (CEStringIsSurrogatePairedVariantSelector(pair)) {
+                                _variationSelectorAdditional = @"Variant";
                             } else {
-                                isMultipleChars = YES;
+                                _complexChar = YES;
                             }
                             break;
                     }
                 }
             }
         } else if ([_unicodes count] > 2) {
-            isMultipleChars = YES;
-        }
-        
-        if (isMultipleChars) {
-            // number of characters message
-            _unicodeName = [NSString stringWithFormat:NSLocalizedString(@"<a letter consisting of %d characters>", nil), [_unicodes count]];
-            
-        } else {
-            // unicode character name
-            NSMutableString *unicodeName = [string mutableCopy];
-            // You can't use kCFStringTransformToUnicodeName instead of `Any-Name` here,
-            // because some characters (e.g. normal `a`) don't return their name when use this constant.
-            CFStringTransform((__bridge CFMutableStringRef)unicodeName, NULL, CFSTR("Any-Name"), NO);
-            
-            NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"\\{(.+?)\\}" options:0 error:nil];
-            NSTextCheckingResult *firstMatch = [regex firstMatchInString:unicodeName options:0
-                                                                   range:NSMakeRange(0, [unicodeName length])];
-            _unicodeName = [unicodeName substringWithRange:[firstMatch rangeAtIndex:1]];
-            
-            if (variationSelectorAdditional) {
-                _unicodeName = [NSString stringWithFormat:@"%@ (%@)", _unicodeName,
-                                NSLocalizedString(variationSelectorAdditional, nil)];
-            }
-            
-            _unicodeBlockName = [CECharacterInfo getUnicodeBlockName:string];
-            _localizedUnicodeBlockName = NSLocalizedStringFromTable(_unicodeBlockName, @"UnicodeBlocks", nil);
+            _complexChar = YES;
         }
     }
     return self;
+}
+
+
+
+#pragma mark Public Accessors
+
+// ------------------------------------------------------
+/// create human-readable description
+- (nonnull NSString *)prettyDescription
+// ------------------------------------------------------
+{
+    // number of characters message
+    if ([self isComplexChar]) {
+        return [NSString stringWithFormat:NSLocalizedString(@"<a letter consisting of %d characters>", nil),
+                [[self unicodes] count]];
+    }
+    
+    // unicode character name
+    NSString *unicodeName = [self unicodeName];
+    if ([self variationSelectorAdditional]) {
+        unicodeName = [NSString stringWithFormat:@"%@ (%@)", [self unicodeName],
+                       NSLocalizedString([self variationSelectorAdditional], nil)];
+    }
+    
+    return unicodeName;
+}
+
+
+// ------------------------------------------------------
+/// getter of unicode name
+- (nullable NSString *)unicodeName
+// ------------------------------------------------------
+{
+    if ([self isComplexChar]) { return nil; }
+    
+    // defer init
+    if (!_unicodeName) {
+        _unicodeName = [CECharacterInfo getUnicodeName:[self string]];
+    }
+    
+    return _unicodeName;
+}
+
+
+// ------------------------------------------------------
+/// getter of unicode block name
+- (nullable NSString *)unicodeBlockName
+// ------------------------------------------------------
+{
+    if ([self isComplexChar]) { return nil; }
+    
+    // defer init
+    if (!_unicodeBlockName) {
+        _unicodeBlockName = [CECharacterInfo getUnicodeBlockName:[self string]];
+    }
+    
+    return _unicodeBlockName;
+}
+
+
+// ------------------------------------------------------
+/// getter of localized unicode block name
+- (nullable NSString *)localizedUnicodeBlockName
+// ------------------------------------------------------
+{
+    if (![self unicodeBlockName]) { return nil; }
+    
+    return NSLocalizedStringFromTable([self unicodeBlockName], @"UnicodeBlocks", nil);
 }
 
 
@@ -205,6 +254,25 @@ static const UTF32Char kType6EmojiModifierChar = 0x1F3FF;  // Emoji Modifier Fit
     }
     
     return [unicodes copy];
+}
+
+
+// ------------------------------------------------------
+/// get Unicode name of the given character
++ (nonnull NSString *)getUnicodeName:(nonnull NSString *)string
+// ------------------------------------------------------
+{
+    NSMutableString *unicodeName = [string mutableCopy];
+    
+    // You can't use kCFStringTransformToUnicodeName instead of `Any-Name` here,
+    // because some characters (e.g. normal `a`) don't return their name when use this constant.
+    CFStringTransform((__bridge CFMutableStringRef)unicodeName, NULL, CFSTR("Any-Name"), NO);
+    
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"\\{(.+?)\\}" options:0 error:nil];
+    NSTextCheckingResult *firstMatch = [regex firstMatchInString:unicodeName options:0
+                                                           range:NSMakeRange(0, [unicodeName length])];
+    
+    return [unicodeName substringWithRange:[firstMatch rangeAtIndex:1]];
 }
 
 

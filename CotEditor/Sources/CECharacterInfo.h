@@ -32,7 +32,9 @@
 
 @property (nonatomic, readonly, nonnull, copy) NSString *string;
 @property (nonatomic, readonly, nonnull, copy) NSArray<NSString *> *unicodes;
-@property (nonatomic, readonly, nonnull, copy) NSString *unicodeName;
+@property (nonatomic, readonly, nonnull, copy) NSString *prettyDescription;
+
+@property (nonatomic, readonly, nullable, copy) NSString *unicodeName;
 @property (nonatomic, readonly, nullable, copy) NSString *unicodeBlockName;
 @property (nonatomic, readonly, nullable, copy) NSString *localizedUnicodeBlockName;
 

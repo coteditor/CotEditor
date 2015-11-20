@@ -63,7 +63,7 @@
     if (self) {
         _glyph = [characterInfo string];
         _unicode = [[characterInfo unicodes] componentsJoinedByString:@"  "];
-        _unicodeName = [characterInfo unicodeName];
+        _unicodeName = [characterInfo prettyDescription];
         _unicodeBlockName = [characterInfo localizedUnicodeBlockName];
     }
     return self;
