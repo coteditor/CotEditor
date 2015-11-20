@@ -34,11 +34,10 @@
 static const unichar  kTextSequenceChar = 0xFE0E;
 static const unichar kEmojiSequenceChar = 0xFE0F;
 
-Boolean CEStringIsVariantSelector(UniChar character) {
-    return (character >= 0x180B && character <= 0x180D) || (character >= 0xFE00 && character <= 0xFE0F);
-}
-Boolean CEStringIsSurrogatePairedVariantSelector(UTF32Char character) {
-    return (character >= 0xE0100 && character <= 0xE01EF);
+Boolean CEStringIsVariantSelector(UTF32Char character) {
+    return ((character >= 0x180B && character <= 0x180D) ||
+            (character >= 0xFE00 && character <= 0xFE0F) ||
+            (character >= 0xE0100 && character <= 0xE01EF));
 }
 
 // emoji modifiers
@@ -51,6 +50,7 @@ static const UTF32Char kType6EmojiModifierChar = 0x1F3FF;  // Emoji Modifier Fit
 
 @interface CECharacterInfo ()
 
+@property (nonatomic, nonnull, copy) NSArray<NSNumber *> *utf32Chars;
 @property (nonatomic, getter=isComplexChar) BOOL complexChar;
 @property (nonatomic, nullable, copy) NSString *variationSelectorAdditional;
 
@@ -103,53 +103,51 @@ static const UTF32Char kType6EmojiModifierChar = 0x1F3FF;  // Emoji Modifier Fit
     self = [super init];
     if (self) {
         _string = string;
-        _unicodes = [CECharacterInfo decomposeIntoHexCodes:string];
+        _utf32Chars = [CECharacterInfo decomposeIntoUTF32Chars:string];
+        
+        // hex codes
+        NSMutableArray<NSString *> *unicodes = [NSMutableArray arrayWithCapacity:[_utf32Chars count]];
+        for (NSNumber *number in _utf32Chars) {
+            UTF32Char character = toUTF32Char(number);
+            [unicodes addObject:[CECharacterInfo getHexCodeString:character]];
+        }
+        _unicodes = [unicodes copy];
         
         // check variation selector
-        NSUInteger length = [string length];
-        if ([_unicodes count] == 2) {
-            unichar lastChar = [string characterAtIndex:(length - 1)];
-            if (lastChar == kEmojiSequenceChar) {
-                _variationSelectorAdditional = @"Emoji Style";
-            } else if (lastChar == kTextSequenceChar) {
-                _variationSelectorAdditional = @"Text Style";
-            } else if (CEStringIsVariantSelector(lastChar)) {
-                _variationSelectorAdditional = @"Variant";
-            } else {
-                unichar highSurrogate = [string characterAtIndex:(length - 2)];
-                unichar lowSurrogate = [string characterAtIndex:(length - 1)];
-                if (CFStringIsSurrogateHighCharacter(highSurrogate) &&
-                    CFStringIsSurrogateLowCharacter(lowSurrogate))
-                {
-                    UTF32Char pair = CFStringGetLongCharacterForSurrogatePair(highSurrogate, lowSurrogate);
+        if ([_utf32Chars count] == 2) {
+            UTF32Char character = toUTF32Char([_utf32Chars lastObject]);
+            
+            switch (character) {
+                case kEmojiSequenceChar:
+                    _variationSelectorAdditional = @"Emoji Style";
+                    break;
+                case kTextSequenceChar:
+                    _variationSelectorAdditional = @"Text Style";
+                    break;
                     
-                    switch (pair) {
-                        case kType12EmojiModifierChar:
-                            _variationSelectorAdditional = @"Skin Tone I-II";  // Light Skin Tone
-                            break;
-                        case kType3EmojiModifierChar:
-                            _variationSelectorAdditional = @"Skin Tone III";  // Medium Light Skin Tone
-                            break;
-                        case kType4EmojiModifierChar:
-                            _variationSelectorAdditional = @"Skin Tone IV";  // Medium Skin Tone
-                            break;
-                        case kType5EmojiModifierChar:
-                            _variationSelectorAdditional = @"Skin Tone V";  // Medium Dark Skin Tone
-                            break;
-                        case kType6EmojiModifierChar:
-                            _variationSelectorAdditional = @"Skin Tone VI";  // Dark Skin Tone
-                            break;
-                        default:
-                            if (CEStringIsSurrogatePairedVariantSelector(pair)) {
-                                _variationSelectorAdditional = @"Variant";
-                            } else {
-                                _complexChar = YES;
-                            }
-                            break;
+                case kType12EmojiModifierChar:
+                    _variationSelectorAdditional = @"Skin Tone I-II";  // Light Skin Tone
+                    break;
+                case kType3EmojiModifierChar:
+                    _variationSelectorAdditional = @"Skin Tone III";  // Medium Light Skin Tone
+                    break;
+                case kType4EmojiModifierChar:
+                    _variationSelectorAdditional = @"Skin Tone IV";  // Medium Skin Tone
+                    break;
+                case kType5EmojiModifierChar:
+                    _variationSelectorAdditional = @"Skin Tone V";  // Medium Dark Skin Tone
+                    break;
+                case kType6EmojiModifierChar:
+                    _variationSelectorAdditional = @"Skin Tone VI";  // Dark Skin Tone
+                    break;
+                default:
+                    if (CEStringIsVariantSelector(character)) {
+                        _variationSelectorAdditional = @"Variant";
+                    } else {
+                        _complexChar = YES;
                     }
-                }
             }
-        } else if ([_unicodes count] > 2) {
+        } else if ([_utf32Chars count] > 2) {
             _complexChar = YES;
         }
     }
@@ -207,7 +205,7 @@ static const UTF32Char kType6EmojiModifierChar = 0x1F3FF;  // Emoji Modifier Fit
     
     // defer init
     if (!_unicodeBlockName) {
-        _unicodeBlockName = [CECharacterInfo getUnicodeBlockName:[self string]];
+        _unicodeBlockName = [CECharacterInfo getUnicodeBlockName:toUTF32Char([[self utf32Chars] firstObject])];
     }
     
     return _unicodeBlockName;
@@ -229,31 +227,43 @@ static const UTF32Char kType6EmojiModifierChar = 0x1F3FF;  // Emoji Modifier Fit
 #pragma mark Private Methods
 
 // ------------------------------------------------------
-/// unicode hex numbers
-+ (nonnull NSArray<NSString *> *)decomposeIntoHexCodes:(nonnull NSString *)string
+///
++ (nonnull NSArray<NSNumber *> *)decomposeIntoUTF32Chars:(nonnull NSString *)string
 // ------------------------------------------------------
 {
-    NSMutableArray<NSString *> *unicodes = [NSMutableArray array];
+    NSMutableArray<NSNumber *> *utf32Chars = [NSMutableArray array];
     NSUInteger length = [string length];
     
     for (NSUInteger i = 0; i < length; i++) {
         unichar theChar = [string characterAtIndex:i];
         unichar nextChar = (length > i + 1) ? [string characterAtIndex:i + 1] : 0;
-        NSString *unicode;
+        UTF32Char utf32Char;
         
         if (CFStringIsSurrogateHighCharacter(theChar) && CFStringIsSurrogateLowCharacter(nextChar)) {
-            UTF32Char pair = CFStringGetLongCharacterForSurrogatePair(theChar, nextChar);
-            unicode = [NSString stringWithFormat:@"U+%04tX (U+%04X U+%04X)", pair, theChar, nextChar];
+            utf32Char = CFStringGetLongCharacterForSurrogatePair(theChar, nextChar);
             i++;
-            
         } else {
-            unicode = [NSString stringWithFormat:@"U+%04X", theChar];
+            utf32Char = theChar;
         }
         
-        [unicodes addObject:unicode];
+        [utf32Chars addObject:@(utf32Char)];
     }
     
-    return [unicodes copy];
+    return [utf32Chars copy];
+}
+
+
+// ------------------------------------------------------
+/// unicode hex numbers
++ (nonnull NSString *)getHexCodeString:(UTF32Char)charater
+// ------------------------------------------------------
+{
+    UniChar surrogates[2];
+    if (CFStringGetSurrogatePairForLongCharacter(charater, surrogates)) {
+        return [NSString stringWithFormat:@"U+%04tX (U+%04X U+%04X)", charater, surrogates[0], surrogates[1]];
+    } else {
+        return [NSString stringWithFormat:@"U+%04X", charater];
+    }
 }
 
 
@@ -278,17 +288,11 @@ static const UTF32Char kType6EmojiModifierChar = 0x1F3FF;  // Emoji Modifier Fit
 
 // ------------------------------------------------------
 /// get Unicode block name the given character belong to
-+ (nonnull NSString *)getUnicodeBlockName:(nonnull NSString *)string
++ (nonnull NSString *)getUnicodeBlockName:(UTF32Char)character
 // ------------------------------------------------------
 {
-    // get UTF32 form
-    UTF32Char utf32;
-    if ([string getBytes:&utf32 maxLength:4 usedLength:NULL encoding:NSUTF32LittleEndianStringEncoding options:0 range:NSMakeRange(0, 2) remainingRange:NULL]) {
-        utf32 = NSSwapLittleIntToHost(utf32);
-    }
-    
     // get Unicode block
-    int32_t prop = u_getIntPropertyValue(utf32, UCHAR_BLOCK);
+    int32_t prop = u_getIntPropertyValue(character, UCHAR_BLOCK);
     const char *blockNameChars = u_getPropertyValueName(UCHAR_BLOCK, prop, U_LONG_PROPERTY_NAME);
     
     // sanitize
@@ -303,5 +307,9 @@ static const UTF32Char kType6EmojiModifierChar = 0x1F3FF;  // Emoji Modifier Fit
     
     return blockName;
 }
+
+
+/// cast NSNumber to UTF32Char
+UTF32Char toUTF32Char(NSNumber *number) { return (UTF32Char)[number unsignedIntValue]; }
 
 @end

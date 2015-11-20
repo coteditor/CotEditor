@@ -35,6 +35,15 @@ class CharacterInfoTests: XCTestCase {
     }
     
     
+    func testSingleChar() {
+        let charInfo = CECharacterInfo(string: "あ")
+        
+        XCTAssertEqual(charInfo!.unicodes, ["U+3042"])
+        XCTAssertEqual(charInfo!.unicodeName, "HIRAGANA LETTER A")
+        XCTAssertEqual(charInfo!.unicodeBlockName, "Hiragana")
+    }
+    
+    
     func testSingleCharWithVS() {
         let charInfo = CECharacterInfo(string: "☺︎")
         
