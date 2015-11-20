@@ -342,7 +342,8 @@
   "Python": {
     "extensions": [
       "py",
-      "pyw"
+      "pyw",
+      "pyi"
     ],
     "filenames": [
 

@@ -1,6 +1,7 @@
 extensions:
 - keyString: "py"
 - keyString: "pyw"
+- keyString: "pyi"
 interpreters:
 - keyString: "python"
 - keyString: "python2"
@@ -11,7 +12,7 @@ metadata:
   version: "2.3.0"
   description: "Support both Python2 and Python3 (<= 3.5).\n\nMaintained by 1024jp since 2013."
   license: "Same as CotEditor"
-  lastModified: "2015-11-12"
+  lastModified: "2015-11-20"
 outlineMenu:
 - beginString: "^([\\t ]*)class[\\t ]+(.+?):?[\\t]*$"
   keyString: "$1$2"
