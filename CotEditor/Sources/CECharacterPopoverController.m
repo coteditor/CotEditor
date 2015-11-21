@@ -62,9 +62,20 @@
     self = [super initWithNibName:@"CharacterPopover" bundle:nil];
     if (self) {
         _glyph = [characterInfo string];
-        _unicode = [[characterInfo unicodes] componentsJoinedByString:@"  "];
         _unicodeName = [characterInfo prettyDescription];
-        _unicodeBlockName = [characterInfo localizedUnicodeBlockName];
+        _unicodeBlockName = [characterInfo isComplexChar] ? nil : [[[characterInfo unicodes] firstObject] localizedBlockName];
+        
+        NSMutableString *unicode = [NSMutableString string];
+        for (CEUnicodeCharacter *character in [characterInfo unicodes]) {
+            if ([unicode length] != 0) {
+                [unicode appendString:@"  "];
+            }
+            [unicode appendString:[character unicode]];
+            if ([character isSurrogatePair]) {
+                [unicode appendFormat:@" (%@)", [[character surrogateUnicodes] componentsJoinedByString:@" "]];
+            }
+        }
+        _unicode = [unicode copy];
     }
     return self;
 }

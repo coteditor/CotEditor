@@ -241,7 +241,7 @@ NSString *_Nonnull const CEAnalyzerDidUpdateEditorInfoNotification = @"CEAnalyze
                 // unicode
                 CECharacterInfo *characterInfo = [CECharacterInfo characterInfoWithString:selectedString];
                 if ([[characterInfo unicodes] count] == 1) {
-                    unicode = [[characterInfo unicodes] firstObject];
+                    unicode = [[[characterInfo unicodes] firstObject] unicode];
                 }
                 
                 // count byte length
