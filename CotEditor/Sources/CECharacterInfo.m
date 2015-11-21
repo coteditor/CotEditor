@@ -262,7 +262,7 @@ static const UTF32Char kType6EmojiModifierChar = 0x1F3FF;  // Emoji Modifier Fit
     if (CFStringGetSurrogatePairForLongCharacter(charater, surrogates)) {
         return [NSString stringWithFormat:@"U+%04tX (U+%04X U+%04X)", charater, surrogates[0], surrogates[1]];
     } else {
-        return [NSString stringWithFormat:@"U+%04X", charater];
+        return [NSString stringWithFormat:@"U+%04tX", charater];
     }
 }
 
