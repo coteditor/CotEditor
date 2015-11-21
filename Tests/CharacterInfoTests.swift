@@ -67,7 +67,7 @@ class CharacterInfoTests: XCTestCase {
         
         XCTAssertEqual(character.unicode, "U+FDFD")
         XCTAssertEqual(character.name, "ARABIC LIGATURE BISMILLAH AR-RAHMAN AR-RAHEEM")
-        XCTAssertEqual(character.blockName, "Arabic Presentation Forms-A")
+        XCTAssertEqual(character.localizedBlockName, "Arabic Presentation Forms-A")
     }
     
     
