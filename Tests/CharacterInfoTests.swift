@@ -36,11 +36,50 @@ class CharacterInfoTests: XCTestCase {
     
     
     func testSingleChar() {
+        let character = CEUnicodeCharacter(character: UTF32Char("あ"))
+        
+        XCTAssertEqual(character.unicode, "U+3042")
+        XCTAssertEqual(character.string, "あ")
+        XCTAssertFalse(character.surrogatePair)
+        XCTAssertNil(character.surrogateUnicodes)
+        XCTAssertEqual(character.name, "HIRAGANA LETTER A")
+        XCTAssertEqual(character.categoryName, "Other Letter")
+        XCTAssertEqual(character.blockName, "Hiragana")
+        XCTAssertNotNil(character.localizedBlockName)
+    }
+    
+    
+    func testSingleCharInfo() {
         let charInfo = CECharacterInfo(string: "あ")
         
         XCTAssertEqual(charInfo!.unicodes, ["U+3042"])
         XCTAssertEqual(charInfo!.unicodeName, "HIRAGANA LETTER A")
         XCTAssertEqual(charInfo!.unicodeBlockName, "Hiragana")
+        XCTAssertNotNil(charInfo!.localizedUnicodeBlockName)
+    }
+    
+    
+    func testSurrogateEmoji() {
+        let character = CEUnicodeCharacter(character: UTF32Char("😀"))
+        
+        XCTAssertEqual(character.unicode, "U+1F600")
+        XCTAssertEqual(character.string, "😀")
+        XCTAssertTrue(character.surrogatePair)
+        XCTAssertEqual(character.surrogateUnicodes!, ["U+D83D", "U+DE00"])
+        XCTAssertEqual(character.name, "GRINNING FACE")
+        XCTAssertEqual(character.categoryName, "Other Symbol")
+        XCTAssertEqual(character.blockName, "Emoticons")
+        XCTAssertNotNil(character.localizedBlockName)
+    }
+    
+    
+    func testSurrogateEmojiInfo() {
+        let charInfo = CECharacterInfo(string: "😀")
+        
+        XCTAssertEqual(charInfo!.unicodes, ["U+1F600 (U+D83D U+DE00)"])
+        XCTAssertEqual(charInfo!.unicodeName, "GRINNING FACE")
+        XCTAssertEqual(charInfo!.unicodeBlockName, "Emoticons")
+        XCTAssertNotNil(charInfo!.localizedUnicodeBlockName)
     }
     
     
@@ -58,15 +97,6 @@ class CharacterInfoTests: XCTestCase {
         XCTAssertEqual(charInfo!.unicodes, ["U+FDFD"])
         XCTAssertEqual(charInfo!.unicodeName, "ARABIC LIGATURE BISMILLAH AR-RAHMAN AR-RAHEEM")
         XCTAssertEqual(charInfo!.unicodeBlockName, "Arabic Presentation Forms-A")
-    }
-    
-    
-    func testSurrogateEmoji() {
-        let charInfo = CECharacterInfo(string: "😀")
-        
-        XCTAssertEqual(charInfo!.unicodes, ["U+1F600 (U+D83D U+DE00)"])
-        XCTAssertEqual(charInfo!.unicodeName, "GRINNING FACE")
-        XCTAssertEqual(charInfo!.unicodeBlockName, "Emoticons")
     }
     
     
