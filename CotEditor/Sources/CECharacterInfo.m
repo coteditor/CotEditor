@@ -27,7 +27,6 @@
 
 #import "CECharacterInfo.h"
 #import "NSString+ComposedCharacter.h"
-#import "icu/uchar.h"
 
 
 // variation selectors
@@ -50,16 +49,14 @@ static const UTF32Char kType6EmojiModifierChar = 0x1F3FF;  // Emoji Modifier Fit
 
 @interface CECharacterInfo ()
 
-@property (nonatomic, nonnull, copy) NSArray<NSNumber *> *utf32Chars;
-@property (nonatomic, getter=isComplexChar) BOOL complexChar;
 @property (nonatomic, nullable, copy) NSString *variationSelectorAdditional;
 
 
 // readonly
 @property (nonatomic, readwrite, nonnull, copy) NSString *string;
+@property (nonatomic, readwrite, nonnull, copy) NSArray<CEUnicodeCharacter *> *unicodes;
 @property (nonatomic, readwrite, nonnull, copy) NSString *unicode;
-@property (nonatomic, readwrite, nullable, copy) NSString *unicodeName;
-@property (nonatomic, readwrite, nullable, copy) NSString *unicodeBlockName;
+@property (nonatomic, readwrite, getter=isComplexChar) BOOL complexChar;
 
 @end
 
@@ -103,19 +100,11 @@ static const UTF32Char kType6EmojiModifierChar = 0x1F3FF;  // Emoji Modifier Fit
     self = [super init];
     if (self) {
         _string = string;
-        _utf32Chars = [CECharacterInfo decomposeIntoUTF32Chars:string];
-        
-        // hex codes
-        NSMutableArray<NSString *> *unicodes = [NSMutableArray arrayWithCapacity:[_utf32Chars count]];
-        for (NSNumber *number in _utf32Chars) {
-            UTF32Char character = toUTF32Char(number);
-            [unicodes addObject:[CECharacterInfo getHexCodeString:character]];
-        }
-        _unicodes = [unicodes copy];
+        _unicodes = [CECharacterInfo decomposeIntoUnicodes:string];
         
         // check variation selector
-        if ([_utf32Chars count] == 2) {
-            UTF32Char character = toUTF32Char([_utf32Chars lastObject]);
+        if ([_unicodes count] == 2) {
+            UTF32Char character = [[_unicodes lastObject] character];
             
             switch (character) {
                 case kEmojiSequenceChar:
@@ -147,7 +136,7 @@ static const UTF32Char kType6EmojiModifierChar = 0x1F3FF;  // Emoji Modifier Fit
                         _complexChar = YES;
                     }
             }
-        } else if ([_utf32Chars count] > 2) {
+        } else if ([_unicodes count] > 2) {
             _complexChar = YES;
         }
     }
@@ -170,9 +159,9 @@ static const UTF32Char kType6EmojiModifierChar = 0x1F3FF;  // Emoji Modifier Fit
     }
     
     // unicode character name
-    NSString *unicodeName = [self unicodeName];
+    NSString *unicodeName = [[[self unicodes] firstObject] name];
     if ([self variationSelectorAdditional]) {
-        unicodeName = [NSString stringWithFormat:@"%@ (%@)", [self unicodeName],
+        unicodeName = [NSString stringWithFormat:@"%@ (%@)", unicodeName,
                        NSLocalizedStringFromTable([self variationSelectorAdditional], @"Unicode", nil)];
     }
     
@@ -180,58 +169,15 @@ static const UTF32Char kType6EmojiModifierChar = 0x1F3FF;  // Emoji Modifier Fit
 }
 
 
-// ------------------------------------------------------
-/// getter of unicode name
-- (nullable NSString *)unicodeName
-// ------------------------------------------------------
-{
-    if ([self isComplexChar]) { return nil; }
-    
-    // defer init
-    if (!_unicodeName) {
-        _unicodeName = [CECharacterInfo getUnicodeName:[self string]];
-    }
-    
-    return _unicodeName;
-}
-
-
-// ------------------------------------------------------
-/// getter of unicode block name
-- (nullable NSString *)unicodeBlockName
-// ------------------------------------------------------
-{
-    if ([self isComplexChar]) { return nil; }
-    
-    // defer init
-    if (!_unicodeBlockName) {
-        _unicodeBlockName = [CECharacterInfo getUnicodeBlockName:toUTF32Char([[self utf32Chars] firstObject])];
-    }
-    
-    return _unicodeBlockName;
-}
-
-
-// ------------------------------------------------------
-/// getter of localized unicode block name
-- (nullable NSString *)localizedUnicodeBlockName
-// ------------------------------------------------------
-{
-    if (![self unicodeBlockName]) { return nil; }
-    
-    return NSLocalizedStringFromTable([self unicodeBlockName], @"Unicode", nil);
-}
-
-
 
 #pragma mark Private Methods
 
 // ------------------------------------------------------
-///
-+ (nonnull NSArray<NSNumber *> *)decomposeIntoUTF32Chars:(nonnull NSString *)string
+/// devide given string into CEUnicodeCharacter objects
++ (nonnull NSArray<CEUnicodeCharacter *> *)decomposeIntoUnicodes:(nonnull NSString *)string
 // ------------------------------------------------------
 {
-    NSMutableArray<NSNumber *> *utf32Chars = [NSMutableArray array];
+    NSMutableArray<CEUnicodeCharacter *> *unicodes = [NSMutableArray array];
     NSUInteger length = [string length];
     
     for (NSUInteger i = 0; i < length; i++) {
@@ -246,73 +192,10 @@ static const UTF32Char kType6EmojiModifierChar = 0x1F3FF;  // Emoji Modifier Fit
             utf32Char = theChar;
         }
         
-        [utf32Chars addObject:@(utf32Char)];
+        [unicodes addObject:[CEUnicodeCharacter unicodeCharacterWithCharacter:utf32Char]];
     }
     
-    return [utf32Chars copy];
+    return [unicodes copy];
 }
-
-
-// ------------------------------------------------------
-/// unicode hex numbers
-+ (nonnull NSString *)getHexCodeString:(UTF32Char)charater
-// ------------------------------------------------------
-{
-    UniChar surrogates[2];
-    if (CFStringGetSurrogatePairForLongCharacter(charater, surrogates)) {
-        return [NSString stringWithFormat:@"U+%04tX (U+%04X U+%04X)", charater, surrogates[0], surrogates[1]];
-    } else {
-        return [NSString stringWithFormat:@"U+%04tX", charater];
-    }
-}
-
-
-// ------------------------------------------------------
-/// get Unicode name of the given character
-+ (nonnull NSString *)getUnicodeName:(nonnull NSString *)string
-// ------------------------------------------------------
-{
-    NSMutableString *unicodeName = [string mutableCopy];
-    
-    // You can't use kCFStringTransformToUnicodeName instead of `Any-Name` here,
-    // because some characters (e.g. normal `a`) don't return their name when use this constant.
-    CFStringTransform((__bridge CFMutableStringRef)unicodeName, NULL, CFSTR("Any-Name"), NO);
-    
-    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"\\{(.+?)\\}" options:0 error:nil];
-    NSTextCheckingResult *firstMatch = [regex firstMatchInString:unicodeName options:0
-                                                           range:NSMakeRange(0, [unicodeName length])];
-    
-    return [unicodeName substringWithRange:[firstMatch rangeAtIndex:1]];
-}
-
-
-// ------------------------------------------------------
-/// get Unicode block name the given character belong to
-+ (nonnull NSString *)getUnicodeBlockName:(UTF32Char)character
-// ------------------------------------------------------
-{
-    // get Unicode block
-    int32_t prop = u_getIntPropertyValue(character, UCHAR_BLOCK);
-    const char *blockNameChars = u_getPropertyValueName(UCHAR_BLOCK, prop, U_LONG_PROPERTY_NAME);
-    
-    // sanitize
-    NSString *blockName = [NSString stringWithUTF8String:blockNameChars];
-    blockName = [blockName stringByReplacingOccurrencesOfString:@"_" withString:@" "];
-    
-    // sanitize for localization
-    // -> This is actually a dirty workaround to make the block name the same as the Apple's block naming rule.
-    //    Otherwise, we cannot localize block name correctly. (2015-11 by 1024jp)
-    blockName = [blockName stringByReplacingOccurrencesOfString:@" ([A-Z])$" withString:@"-$1"
-                                                        options:NSRegularExpressionSearch range:NSMakeRange(0, [blockName length])];
-    blockName = [blockName stringByReplacingOccurrencesOfString:@"Extension-" withString:@"Ext. "];
-    blockName = [blockName stringByReplacingOccurrencesOfString:@" And " withString:@" and "];
-    blockName = [blockName stringByReplacingOccurrencesOfString:@"Latin 1" withString:@"Latin-1"];  // only for "Latin-1 Supplement"
-    
-    return blockName;
-}
-
-
-/// cast NSNumber to UTF32Char
-UTF32Char toUTF32Char(NSNumber *number) { return (UTF32Char)[number unsignedIntValue]; }
 
 @end

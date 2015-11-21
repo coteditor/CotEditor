@@ -1,11 +1,11 @@
 /*
  
- CECharacterInfo.h
+ CEUnicodeCharacter.h
  
  CotEditor
  http://coteditor.com
  
- Created by 1024jp on 2015-11-19.
+ Created by 1024jp on 2015-11-21.
  
  ------------------------------------------------------------------------------
  
@@ -26,21 +26,25 @@
  */
 
 @import Foundation;
-#import "CEUnicodeCharacter.h"
 
 
-@interface CECharacterInfo : NSObject
+@interface CEUnicodeCharacter : NSObject
 
-@property (nonatomic, readonly, getter=isComplexChar) BOOL complexChar;
+@property (nonatomic, readonly) UTF32Char character;
+@property (nonatomic, readonly, nonnull, copy) NSString *unicode;
 @property (nonatomic, readonly, nonnull, copy) NSString *string;
-@property (nonatomic, readonly, nonnull, copy) NSArray<CEUnicodeCharacter *> *unicodes;
-@property (nonatomic, readonly, nonnull, copy) NSString *prettyDescription;
+@property (nonatomic, readonly, getter=isSurrogatePair) BOOL surrogatePair;
+@property (nonatomic, readonly, nullable, copy) NSArray<NSString *> *surrogateUnicodes;
+@property (nonatomic, readonly, nonnull, copy) NSString *name;
+@property (nonatomic, readonly, nonnull, copy) NSString *categoryName;
+@property (nonatomic, readonly, nonnull, copy) NSString *blockName;
+@property (nonatomic, readonly, nonnull, copy) NSString *localizedBlockName;
 
 
-+ (nullable CECharacterInfo *)characterInfoWithString:(nonnull NSString *)string;
++ (nonnull CEUnicodeCharacter *)unicodeCharacterWithCharacter:(UTF32Char)character;
 
 /// designated initializer
-- (nullable instancetype)initWithString:(nonnull NSString *)string NS_DESIGNATED_INITIALIZER;
+- (nonnull instancetype)initWithCharacter:(UTF32Char)character NS_DESIGNATED_INITIALIZER;
 - (nullable instancetype)init NS_UNAVAILABLE;
 
 @end
