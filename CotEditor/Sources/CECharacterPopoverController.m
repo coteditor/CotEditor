@@ -65,14 +65,20 @@
         _unicodeName = [characterInfo prettyDescription];
         _unicodeBlockName = [characterInfo isComplexChar] ? nil : [[[characterInfo unicodes] firstObject] localizedBlockName];
         
+        // build Unicode code point string
         NSMutableString *unicode = [NSMutableString string];
         for (CEUnicodeCharacter *character in [characterInfo unicodes]) {
             if ([unicode length] != 0) {
-                [unicode appendString:@"  "];
+                [unicode appendString:@"\n"];
             }
             [unicode appendString:[character unicode]];
             if ([character isSurrogatePair]) {
                 [unicode appendFormat:@" (%@)", [[character surrogateUnicodes] componentsJoinedByString:@" "]];
+            }
+            
+            // append Unicode name
+            if ([[characterInfo unicodes] count] > 1) {
+                [unicode appendFormat:@"\t%@", [character name]];
             }
         }
         _unicode = [unicode copy];
