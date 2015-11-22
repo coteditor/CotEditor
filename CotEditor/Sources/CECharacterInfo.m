@@ -100,7 +100,7 @@ static const UTF32Char kType6EmojiModifierChar = 0x1F3FF;  // Emoji Modifier Fit
     self = [super init];
     if (self) {
         _string = string;
-        _unicodes = [CECharacterInfo decomposeIntoUnicodes:string];
+        _unicodes = [CECharacterInfo divideIntoUnicodes:string];
         
         // check variation selector
         if ([_unicodes count] == 2) {
@@ -174,7 +174,7 @@ static const UTF32Char kType6EmojiModifierChar = 0x1F3FF;  // Emoji Modifier Fit
 
 // ------------------------------------------------------
 /// devide given string into CEUnicodeCharacter objects
-+ (nonnull NSArray<CEUnicodeCharacter *> *)decomposeIntoUnicodes:(nonnull NSString *)string
++ (nonnull NSArray<CEUnicodeCharacter *> *)divideIntoUnicodes:(nonnull NSString *)string
 // ------------------------------------------------------
 {
     NSMutableArray<CEUnicodeCharacter *> *unicodes = [NSMutableArray array];

@@ -169,19 +169,55 @@
     if (!_localizedBlockName) {
         NSString *blockName = [self blockName];
         
-        // sanitize for localization
-        // -> This is actually a dirty workaround to make the block name the same as the Apple's block naming rule.
-        //    Otherwise, we cannot localize block name correctly. (2015-11 by 1024jp)
-        blockName = [blockName stringByReplacingOccurrencesOfString:@" ([A-Z])$" withString:@"-$1"
-                                                            options:NSRegularExpressionSearch range:NSMakeRange(0, [blockName length])];
-        blockName = [blockName stringByReplacingOccurrencesOfString:@"Extension-" withString:@"Ext. "];
-        blockName = [blockName stringByReplacingOccurrencesOfString:@" And " withString:@" and "];
-        blockName = [blockName stringByReplacingOccurrencesOfString:@"Latin 1" withString:@"Latin-1"];  // only for "Latin-1 Supplement"
+        blockName = [CEUnicodeCharacter sanitizeBlockName:blockName];
         
         _localizedBlockName = NSLocalizedStringFromTable(blockName, @"Unicode", nil);
         
     }
     return _localizedBlockName;
+}
+
+
+#pragma mark Private Methods
+
+// ------------------------------------------------------
+/// sanitize block name for localization
++ (nonnull NSString *)sanitizeBlockName:(nonnull NSString *)blockName
+// ------------------------------------------------------
+{
+    // -> This is actually a dirty workaround to make the block name the same as the Apple's block naming rule.
+    //    Otherwise, we cannot localize block name correctly. (2015-11 by 1024jp)
+    blockName = [blockName stringByReplacingOccurrencesOfString:@" ([A-Z])$" withString:@"-$1"
+                                                        options:NSRegularExpressionSearch range:NSMakeRange(0, [blockName length])];
+    blockName = [blockName stringByReplacingOccurrencesOfString:@"Extension-" withString:@"Ext. "];
+    blockName = [blockName stringByReplacingOccurrencesOfString:@" And " withString:@" and "];
+    blockName = [blockName stringByReplacingOccurrencesOfString:@" For " withString:@" for "];
+    blockName = [blockName stringByReplacingOccurrencesOfString:@" Mathematical " withString:@" Math "];
+    blockName = [blockName stringByReplacingOccurrencesOfString:@"Latin 1" withString:@"Latin-1"];  // only for "Latin-1
+    
+    return blockName;
+}
+
+
+// ------------------------------------------------------
+/// check which block names will be lozalized (only for test use)
++ (void)testUnicodeBlockNameLocalizationForLanguage:(NSString *)language
+// ------------------------------------------------------
+{
+    NSURL *bundleURL = [[NSBundle mainBundle] URLForResource:language withExtension:@"lproj"];
+    NSBundle *bundle = [NSBundle bundleWithURL:bundleURL];
+    
+    for (NSUInteger i = 0; i < UBLOCK_COUNT; i++) {
+        const char *blockNameChars = u_getPropertyValueName(UCHAR_BLOCK, i, U_LONG_PROPERTY_NAME);
+        
+        NSString *blockName = [[NSString stringWithUTF8String:blockNameChars]
+                               stringByReplacingOccurrencesOfString:@"_" withString:@" "];  // sanitize
+        blockName = [CEUnicodeCharacter sanitizeBlockName:blockName];
+        
+        NSString *localizedBlockName = [bundle localizedStringForKey:blockName value:nil table:@"Unicode"];
+        
+        NSLog(@"%@ %@ %@", [localizedBlockName isEqualToString:blockName] ? @"⚠️" : @"  ", blockName, localizedBlockName);
+    }
 }
 
 @end

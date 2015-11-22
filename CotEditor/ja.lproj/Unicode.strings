@@ -58,6 +58,7 @@
 "Inscriptional Parthian" = "碑文のパルティア文字";
 "Phaistos Disc" = "ファイストス円盤文字";
 "Geometric Shapes" = "幾何学的な図形";
+"Geometric Shapes Extended" = "幾何学的な図形拡張";  // added based on "Geometric Shapes"
 "CJK Unified Ideographs" = "CJK 統合漢字";
 "Greek and Coptic" = "ギリシャ文字とコプト文字";
 "Ancient Greek Musical Notation" = "古代ギリシャ記譜法";
@@ -73,6 +74,7 @@
 "Aegean Numbers" = "エーゲ文明数字";
 "General Punctuation" = "一般的な句読点";
 "Latin Extended-D" = "ラテン文字拡張 D";
+"Latin Extended-E" = "ラテン文字拡張 E";  // added based on "Latin Extended-D"
 "CJK Compatibility Ideographs" = "CJK 互換漢字";
 "Bopomofo" = "注音字母";
 "Canadian Aboriginal Syllabics" = "カナダ先住民音節";
@@ -99,6 +101,7 @@
 "Arrows" = "矢印";
 "Thai" = "タイ文字";
 "Supplemental Arrows-B" = "矢印追加 B";
+"Supplemental Arrows-C" = "矢印追加 C";  // added
 "Ancient Greek Numbers" = "古代ギリシャ数字";
 "Cham" = "チャム文字";
 "Tai Tham" = "タイ・タム文字";
@@ -113,7 +116,7 @@
 "Thaana" = "ターナ文字";
 "Telugu" = "テルグ文字";
 "Hiragana" = "ひらがな";
-"CJK Compatibility Ideographs Supp." = "CJK 互換漢字追加";
+"CJK Compatibility Ideographs Supplement" = "CJK 互換漢字追加";  // Supp. -> Supplement
 "Katakana" = "カタカナ";
 "Mathematical Operators" = "数学演算子";
 "Mahjong Tiles" = "麻雀牌";
@@ -134,10 +137,11 @@
 "Small Form Variants" = "小字形";
 "CJK Unified Ideographs Ext. D" = "CJK 統合漢字拡張 D";
 "Tifinagh" = "ティフナグ文字";
-"Miscellaneous Symbols And Pictographs" = "そのほかの記号と象形文字";
+"Miscellaneous Symbols and Pictographs" = "そのほかの記号と象形文字";  // And -> and
 "Miscellaneous Math Symbols-B" = "そのほかの数学記号 B";
 "Yi Radicals" = "彝（イ）文字部首";
 "Lydian" = "リディア文字";
+"Unified Canadian Aboriginal Syllabics" = "統合カナダ先住民音節";  // added based on "Unified Canadian Aboriginal Syllabics Extended"
 "Unified Canadian Aboriginal Syllabics Extended" = "統合カナダ先住民音節拡張";
 "Private Use Area" = "私用領域";
 "Glagolitic" = "グラゴール文字";
@@ -149,7 +153,7 @@
 "Letterlike Symbols" = "文字様記号";
 "Sinhala" = "シンハラ文字";
 "Supplemental Punctuation" = "追加句読点";
-"Math Alphanumeric Symbols" = "数学用の英数字記号";
+"Mathematical Alphanumeric Symbols" = "数学用の英数字記号";  // Math -> Mathematical
 "Cypriot Syllabary" = "キプロスの表音文字";
 "Gurmukhi" = "グルムキー文字";
 "Gothic" = "ゴート文字";
@@ -197,6 +201,7 @@
 "Variation Selectors Supp." = "異体字選択符号追加";
 "Supp. Private Use Area-B" = "私用領域追加 B";
 "Combining Diacritical Marks" = "合成可能な発音区別記号";
+"Combining Diacritical Marks for Symbols" = "記号用の合成可能な発音区別記号";  // added based on "Combining Diacritical Marks"
 "Latin-1 Supplement" = "ラテン 1 補助";
 "Deseret" = "デザレット文字";
 "Hangul Compatibility Jamo" = "ハングル互換字母";
@@ -216,7 +221,7 @@
 "Ogham" = "オガム文字";
 "Supplemental Arrows-A" = "矢印追加 A";
 "CJK Unified Ideographs Ext. C" = "CJK 統合漢字拡張 C";
-"Ideographic Desc. Characters" = "漢字構成記述文字";
+"Ideographic Description Characters" = "漢字構成記述文字";  // Desc. -> Description
 "Rejang" = "ルジャン文字";
 "Alchemical Symbols" = "錬金術記号";
 "Tags" = "タグ";
@@ -232,7 +237,7 @@
 "CJK Compatibility" = "CJK 互換用文字";
 "Playing Cards" = "トランプ";
 "Miscellaneous Symbols and Arrows" = "そのほかの記号と矢印";
-"Transport And Map Symbols" = "交通記号と地図記号";
+"Transport and Map Symbols" = "交通記号と地図記号";  // And -> and
 "Lao" = "ラオ文字";
 "Hangul Jamo Extended-B" = "ハングル字母拡張 B";
 "Tibetan" = "チベット文字";

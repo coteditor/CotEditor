@@ -58,6 +58,7 @@
 "Inscriptional Parthian" = "Inschrift-Parthisch";
 "Phaistos Disc" = "Diskos von Phaistos";
 "Geometric Shapes" = "Geometrische Symbole";
+"Geometric Shapes Extended" = "Geometrische Symbole (Erweitert)";  // from "Geometric Shapes"
 "CJK Unified Ideographs" = "CJK Ideografen (Unified)";
 "Greek and Coptic" = "Griechische/Koptische Zeichen";
 "Ancient Greek Musical Notation" = "Altgriechische Noten";
@@ -73,6 +74,7 @@
 "Aegean Numbers" = "Ägäische Zahlen";
 "General Punctuation" = "Allgemeine Satzzeichen";
 "Latin Extended-D" = "Lateinisch Erweitert-D";
+"Latin Extended-E" = "Lateinisch Erweitert-E";
 "CJK Compatibility Ideographs" = "CJK Kompat. Ideografen";
 "Bopomofo" = "Bopomofo";
 "Canadian Aboriginal Syllabics" = "Silbenlaute kanadischer Indianerstämme";
@@ -99,6 +101,7 @@
 "Arrows" = "Pfeile";
 "Thai" = "Thailändisch";
 "Supplemental Arrows-B" = "Ergänzende Pfeile-B";
+"Supplemental Arrows-C" = "Ergänzende Pfeile-C";  // added
 "Ancient Greek Numbers" = "Altgriechische Zahlen";
 "Cham" = "Cham";
 "Tai Tham" = "Tai Tham";
@@ -113,7 +116,7 @@
 "Thaana" = "Thaana";
 "Telugu" = "Telugu";
 "Hiragana" = "Hiragana";
-"CJK Compatibility Ideographs Supp." = "Ergänzung zu CJK Kompat. Ideografen";
+"CJK Compatibility Ideographs Supplement" = "Ergänzung zu CJK Kompat. Ideografen";  // Supp. -> Supplement
 "Katakana" = "Katakana";
 "Mathematical Operators" = "Mathematische Symbole";
 "Mahjong Tiles" = "Mahjongsteine";
@@ -134,10 +137,11 @@
 "Small Form Variants" = "Kleine Formvarianten";
 "CJK Unified Ideographs Ext. D" = "CJK Ideografen (Unified Ext. D)";
 "Tifinagh" = "Tifinagh-Schrift";
-"Miscellaneous Symbols And Pictographs" = "Verschiedene Symbole und Piktogramme";
+"Miscellaneous Symbols and Pictographs" = "Verschiedene Symbole und Piktogramme";  // And -> and
 "Miscellaneous Math Symbols-B" = "Verschiedene Mathemat. Symbole-B";
 "Yi Radicals" = "Yi Radikale";
 "Lydian" = "Lydisch";
+"Unified Canadian Aboriginal Syllabics" = "Vereinheitlichte Silbenlaute kanadischer Indianerstämme";  // added based on "Unified Canadian Aboriginal Syllabics Extended"
 "Unified Canadian Aboriginal Syllabics Extended" = "Vereinheitlichte Silbenlaute kanadischer Indianerstämme (Erweitert)";
 "Private Use Area" = "Privat nutzbarer Bereich";
 "Glagolitic" = "Glagolitische Schrift";
@@ -149,7 +153,7 @@
 "Letterlike Symbols" = "Buchstaben-ähnliche Zeichen";
 "Sinhala" = "Sinhala";
 "Supplemental Punctuation" = "Ergänzende Satzzeichen";
-"Math Alphanumeric Symbols" = "Mathemat. Alphanumerische Symbole";
+"Mathematical Alphanumeric Symbols" = "Mathemat. Alphanumerische Symbole";  // Math -> Mathematical
 "Cypriot Syllabary" = "Zypriotische Silbenlaute";
 "Gurmukhi" = "Gurmukhi";
 "Gothic" = "Gotisch";
@@ -197,6 +201,7 @@
 "Variation Selectors Supp." = "Variationsselektoren Supp.";
 "Supp. Private Use Area-B" = "Supplement Privat nutzbarer Bereich-B";
 "Combining Diacritical Marks" = "Diakritische Zeichen";
+"Combining Diacritical Marks for Symbols" = "Diakritische Zeichen für Symbole";  // added based on "Combining Diacritical Marks"
 "Latin-1 Supplement" = "Ergänzungen zu Lateinisch-1";
 "Deseret" = "Deseret";
 "Hangul Compatibility Jamo" = "Hangul Kompatibilitäts-Jamo";
@@ -216,7 +221,7 @@
 "Ogham" = "Ogham";
 "Supplemental Arrows-A" = "Ergänzende Pfeile-A";
 "CJK Unified Ideographs Ext. C" = "CJK Ideografen (Unified Ext. C)";
-"Ideographic Desc. Characters" = "Ideografische Beschr. Zeichen";
+"Ideographic Description Characters" = "Ideografische Beschr. Zeichen";  // Desc. -> Description
 "Rejang" = "Rejang";
 "Alchemical Symbols" = "Alchemistische Symbole";
 "Tags" = "Attribute";
@@ -232,7 +237,7 @@
 "CJK Compatibility" = "CJK Kompatibilität";
 "Playing Cards" = "Spielkarten";
 "Miscellaneous Symbols and Arrows" = "Verschiedene Symbole und Pfeile";
-"Transport And Map Symbols" = "Transport- und Kartensymbole";
+"Transport and Map Symbols" = "Transport- und Kartensymbole";  // And -> and
 "Lao" = "Lao";
 "Hangul Jamo Extended-B" = "Hangul Jamo Erweitert-B";
 "Tibetan" = "Tibetisch";

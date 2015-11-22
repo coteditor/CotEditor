@@ -58,6 +58,7 @@
 "Inscriptional Parthian" = "帕提亚碑铭体";
 "Phaistos Disc" = "菲斯通盘文";
 "Geometric Shapes" = "几何形状";
+"Geometric Shapes Extended" = "几何形状扩展";  // added based on "Geometric Shapes"
 "CJK Unified Ideographs" = "CJK 统一表意文字";
 "Greek and Coptic" = "希腊文和科普特文";
 "Ancient Greek Musical Notation" = "古希腊音符";
@@ -73,6 +74,7 @@
 "Aegean Numbers" = "爱琴海数字";
 "General Punctuation" = "一般标点符号";
 "Latin Extended-D" = "拉丁文扩展-D";
+"Latin Extended-E" = "拉丁文扩展-E";  // added
 "CJK Compatibility Ideographs" = "CJK 兼容表意文字";
 "Bopomofo" = "注音符号";
 "Canadian Aboriginal Syllabics" = "加拿大土著音节文字";
@@ -99,6 +101,7 @@
 "Arrows" = "箭头";
 "Thai" = "泰文";
 "Supplemental Arrows-B" = "补充箭头-B";
+"Supplemental Arrows-C" = "补充箭头-C";  // added
 "Ancient Greek Numbers" = "古希腊数字";
 "Cham" = "卡姆";
 "Tai Tham" = "傣坦文";
@@ -113,7 +116,7 @@
 "Thaana" = "塔纳文";
 "Telugu" = "泰卢固文";
 "Hiragana" = "平假名";
-"CJK Compatibility Ideographs Supp." = "CJK 兼容表意文字补充";
+"CJK Compatibility Ideographs Supplement" = "CJK 兼容表意文字补充";  // Supp. -> Supplement
 "Katakana" = "片假名";
 "Mathematical Operators" = "数学运算符";
 "Mahjong Tiles" = "麻将拼图";
@@ -134,10 +137,11 @@
 "Small Form Variants" = "小写变体";
 "CJK Unified Ideographs Ext. D" = "CJK 统一表意文字扩展 D 区";
 "Tifinagh" = "提非纳文";
-"Miscellaneous Symbols And Pictographs" = "其他符号与象形文字";
+"Miscellaneous Symbols and Pictographs" = "其他符号与象形文字";  // And -> and
 "Miscellaneous Math Symbols-B" = "其他数学符号-B";
 "Yi Radicals" = "彝文字根";
 "Lydian" = "吕底亚文";
+"Unified Canadian Aboriginal Syllabics" = "统一加拿大土著音节文字";  // added based on "Unified Canadian Aboriginal Syllabics Extended"
 "Unified Canadian Aboriginal Syllabics Extended" = "统一加拿大土著音节文字扩展";
 "Private Use Area" = "专用区域";
 "Glagolitic" = "格拉哥里字母";
@@ -149,7 +153,7 @@
 "Letterlike Symbols" = "类似字母的符号";
 "Sinhala" = "僧伽罗文";
 "Supplemental Punctuation" = "补充标点符号";
-"Math Alphanumeric Symbols" = "数学字母数字符号";
+"Mathematical Alphanumeric Symbols" = "数学字母数字符号";  // Math -> Mathematical
 "Cypriot Syllabary" = "塞浦路斯音节文字";
 "Gurmukhi" = "古木基文";
 "Gothic" = "哥特文";
@@ -197,6 +201,7 @@
 "Variation Selectors Supp." = "变体选择器补充";
 "Supp. Private Use Area-B" = "补充专用区域-B";
 "Combining Diacritical Marks" = "组合音标";
+"Combining Diacritical Marks for Symbolss" = "符号的组合音标";  // added based on "Combining Diacritical Marks"
 "Latin-1 Supplement" = "拉丁文-1 补充";
 "Deseret" = "德塞莱特文";
 "Hangul Compatibility Jamo" = "韩文兼容字母";
@@ -216,7 +221,7 @@
 "Ogham" = "欧甘文字";
 "Supplemental Arrows-A" = "补充箭头-A";
 "CJK Unified Ideographs Ext. C" = "CJK 统一表意文字扩展 C 区";
-"Ideographic Desc. Characters" = "表意文字描述字符";
+"Ideographic Description Characters" = "表意文字描述字符";  // Desc. -> Description
 "Rejang" = "拉让文";
 "Alchemical Symbols" = "炼金术符号";
 "Tags" = "标记";
@@ -232,7 +237,7 @@
 "CJK Compatibility" = "CJK 兼容";
 "Playing Cards" = "扑克牌";
 "Miscellaneous Symbols and Arrows" = "其他符号和箭头";
-"Transport And Map Symbols" = "交通与地图符号";
+"Transport and Map Symbols" = "交通与地图符号";  // And -> and
 "Lao" = "老挝文";
 "Hangul Jamo Extended-B" = "韩文字母扩展-B";
 "Tibetan" = "西藏文";
