@@ -16,6 +16,7 @@ develop
     - Display also Unicode block if selected letter consists of one character.
     - Display unicode names of each character if selected letter consist of multiple characters.
     - Fix drawing area of zoomed character view.
+    - Fix some other trivial issues.
 - Improve text selection by clicking line numbers view.
 - Tweak style of popup menus in toolbar.
 - Update Python syntax style:
