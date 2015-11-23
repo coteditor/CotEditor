@@ -27,6 +27,10 @@ combining character:
 national indicators:
 	🇯🇵 U+1F1EF (U+D83C U+DDEF)  U+1F1F5 (U+D83C U+DDF5)
 
+sound mark:
+	が U+304C
+	が U+304B (か) + U+3099 ( ゙)
+
 composite font:
 	日本語
 	Alphabet
@@ -37,7 +41,7 @@ ligatures:
 
 variant sequence:
 	邊邊󠄀邊󠄁邊󠄂
-#	邊邊󠄀邊󠄁邊󠄂
+>	邊邊󠄀邊󠄁邊󠄂
 
 invisib1es:
 	·°ː␣
