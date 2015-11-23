@@ -5,6 +5,11 @@ Change Log
 develop
 --------------------------
 
+### New Features
+
+- Add syntax styles for “METAFONT” (Thanks to M.Daimon!).
+
+
 ### Improvements
 
 - Improve character inspector:
