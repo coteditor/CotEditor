@@ -18,7 +18,7 @@ develop
     - Display unicode names of each character if selected letter consist of multiple characters.
     - Fix drawing area of zoomed character view.
     - Fix some other trivial issues.
-- Add option to surpress “not writable document” alert.
+- Add option to suppress “not writable document” alert.
 - Improve text selection by clicking line numbers view.
 - Tweak style of popup menus in toolbar.
 - Update Python syntax style:
