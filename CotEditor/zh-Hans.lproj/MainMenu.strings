@@ -311,12 +311,21 @@
 /* Class = "NSMenuItem"; title = "Text"; ObjectID = "579"; */
 "579.title" = "文本";
 
+/* Class = "NSMenuItem"; title = "omment Selection"; ObjectID = "LLy-Yx-tXI"; */
+"LLy-Yx-tXI.title" = "注释选中内容";
+
+/* Class = "NSMenuItem"; title = "Indentation"; ObjectID = "4h9-iu-ehP"; */
+"4h9-iu-ehP.title" = "Indentation";  // FIXME: added
+/* Class = "NSMenu"; title = "Indentation"; ObjectID = "YOd-Hk-eIa"; */
+"YOd-Hk-eIa.title" = "Indentation";  // FIXME: added
 /* Class = "NSMenuItem"; title = "Shift Right"; ObjectID = "454"; */
 "454.title" = "右移";
 /* Class = "NSMenuItem"; title = "Shift Left"; ObjectID = "455"; */
 "455.title" = "左移";
-/* Class = "NSMenuItem"; title = "omment Selection"; ObjectID = "LLy-Yx-tXI"; */
-"LLy-Yx-tXI.title" = "注释选中内容";
+/* Class = "NSMenuItem"; title = "Convert Indentation to Spaces"; ObjectID = "EOT-3u-f0a"; */
+"EOT-3u-f0a.title" = "Convert Indentation to Spaces";  // FIXME: added
+/* Class = "NSMenuItem"; title = "Convert Indentation to Tabs"; ObjectID = "q32-Jm-eR3"; */
+"q32-Jm-eR3.title" = "Convert Indentation to Tabs";  // FIXME: added
 
 /* Class = "NSMenuItem"; title = "Lines"; ObjectID = "Kb8-QD-tYZ"; */
 "Kb8-QD-tYZ.title" = "行";

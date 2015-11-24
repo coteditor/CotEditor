@@ -41,6 +41,7 @@
 #import "CEWindow.h"
 #import "NSString+JapaneseTransform.h"
 #import "NSString+Normalization.h"
+#import "NSString+Indentation.h"
 #import "Constants.h"
 
 
@@ -2423,6 +2424,72 @@ static NSPoint kTextContainerOrigin;
 // ------------------------------------------------------
 {
     // do nothing.
+}
+
+@end
+
+
+
+
+#pragma mark -
+
+@implementation CETextView (Indentation)
+
+#pragma mark Action Messages
+
+// ------------------------------------------------------
+/// standardize inentation in selection to spaces
+- (IBAction)convertIndentationToSpaces:(nullable id)sender
+// ------------------------------------------------------
+{
+    if ([self selectedRange].length == 0) { return; }
+    
+    [self convertIndentation:CEIndentStyleSpace inRanges:[self selectedRanges]];
+    
+    [[self undoManager] setActionName:NSLocalizedString(@"Convert Indentation", @"action name")];
+}
+
+
+// ------------------------------------------------------
+/// standardize inentation in selection to tabs
+- (IBAction)convertIndentationToTabs:(nullable id)sender
+// ------------------------------------------------------
+{
+    if ([self selectedRange].length == 0) { return; }
+    
+    [self convertIndentation:CEIndentStyleTab inRanges:[self selectedRanges]];
+   
+    [[self undoManager] setActionName:NSLocalizedString(@"Convert Indentation", @"action name")];
+}
+
+
+
+#pragma mark Private Methods
+
+// ------------------------------------------------------
+/// standardize inentation of given ranges
+- (void)convertIndentation:(CEIndentStyle)indentStyle inRanges:(NSArray<NSValue *> *)ranges
+// ------------------------------------------------------
+{
+    NSMutableArray<NSString *> *replacementStrings = [NSMutableArray arrayWithCapacity:[ranges count]];
+    
+    for (NSValue *rangeValue in ranges) {
+        NSRange range = [rangeValue rangeValue];
+        NSString *selectedString = [[self string] substringWithRange:range];
+        
+        [replacementStrings addObject:[selectedString stringByStandardizingIndentStyleTo:indentStyle
+                                                                                tabWidth:[self tabWidth]]];
+    }
+    if (![self shouldChangeTextInRanges:ranges replacementStrings:replacementStrings]) { return; }
+    
+    NSTextStorage *textStorage = [self textStorage];
+    [replacementStrings enumerateObjectsWithOptions:NSEnumerationReverse
+                                         usingBlock:^(NSString *_Nonnull replacementString, NSUInteger idx, BOOL * _Nonnull stop)
+     {
+         NSRange replacementRange = [ranges[idx] rangeValue];
+         [textStorage replaceCharactersInRange:replacementRange withString:replacementString];
+     }];
+    [self didChangeText];
 }
 
 @end

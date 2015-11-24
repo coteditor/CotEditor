@@ -10,3 +10,6 @@
 
 // CharacterInfoTests
 #import "CECharacterInfo.h"
+
+// IndentationTests
+#import "NSString+Indentation.h"

@@ -7,6 +7,7 @@ develop
 
 ### New Features
 
+- Add “Convert Indentation to Spaces/Tabs” actions to Text > Indentation menu.
 - Add syntax styles for “METAFONT” (Thanks to M.Daimon!).
 
 
