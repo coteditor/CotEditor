@@ -207,7 +207,7 @@
     NSURL *bundleURL = [[NSBundle mainBundle] URLForResource:language withExtension:@"lproj"];
     NSBundle *bundle = [NSBundle bundleWithURL:bundleURL];
     
-    for (NSUInteger i = 0; i < UBLOCK_COUNT; i++) {
+    for (int i = 0; i < UBLOCK_COUNT; i++) {
         const char *blockNameChars = u_getPropertyValueName(UCHAR_BLOCK, i, U_LONG_PROPERTY_NAME);
         
         NSString *blockName = [[NSString stringWithUTF8String:blockNameChars]
