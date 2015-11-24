@@ -168,6 +168,7 @@
 "Insert Custom Text" = "插入自定义文本";
 "Shift Right" = "右移";
 "Shift Left" = "左移";
+"Convert Indentation" = "Convert Indentation";  // FIXME: added
 "Comment Out" = "注释";
 "Uncomment" = "取消注释";
 "To Fullwidth Roman" = "转为全角";

@@ -171,6 +171,7 @@
 "Insert Custom Text" = "カスタムテキストを挿入";
 "Shift Right" = "右へシフト";
 "Shift Left" = "左へシフト";
+"Convert Indentation" = "インデントを変換";
 "Comment Out" = "コメントアウト";
 "Uncomment" = "コメント解除";
 "To Fullwidth Roman" = "全角英数に";

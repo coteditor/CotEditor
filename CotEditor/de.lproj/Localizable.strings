@@ -169,6 +169,7 @@
 "Insert Custom Text" = "Benutzerdefinierten Text hinzufügen";
 "Shift Right" = "Einrücken";
 "Shift Left" = "Ausrücken";
+"Convert Indentation" = "Einzug konvertieren";
 "Comment Out" = "Auskommentieren";
 "Uncomment" = "Unkommentieren";
 "To Fullwidth Roman" = "Zu vollbreiten Zeichen";
