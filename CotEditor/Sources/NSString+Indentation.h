@@ -40,4 +40,7 @@ typedef NS_ENUM(NSUInteger, CEIndentStyle) {
 /// detect indent style
 - (CEIndentStyle)detectIndentStyle;
 
+/// standardize indent style
+- (nonnull NSString *)stringByStandardizingIndentStyleTo:(CEIndentStyle)indentStyle tabWidth:(NSUInteger)tabWidth;
+
 @end

@@ -82,4 +82,34 @@ static const NSUInteger MAX_DETECTION_LINES = 100;
     return CEIndentStyleNotFound;
 }
 
+
+// ------------------------------------------------------
+/// standardize indent style
+- (nonnull NSString *)stringByStandardizingIndentStyleTo:(CEIndentStyle)indentStyle tabWidth:(NSUInteger)tabWidth
+// ------------------------------------------------------
+{
+    NSString *regexPattern;
+    NSString *template;
+    switch (indentStyle) {
+        case CEIndentStyleSpace:
+            regexPattern = @"(^|\\G)\t";
+            template =[@"" stringByPaddingToLength:tabWidth withString:@" " startingAtIndex:0];  // repeat space chars
+            break;
+            
+        case CEIndentStyleTab:
+            regexPattern = [NSString stringWithFormat:@"(^|\\G) {%li}", tabWidth];
+            template = @"\t";
+            break;
+            
+        default:
+            return [self copy];  // do nothing
+    }
+    
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:regexPattern options:NSRegularExpressionAnchorsMatchLines error:nil];
+    
+    return [regex stringByReplacingMatchesInString:self options:0
+                                             range:NSMakeRange(0, [self length])
+                                      withTemplate:template];
+}
+
 @end
