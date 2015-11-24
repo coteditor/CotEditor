@@ -1,6 +1,9 @@
 extensions:
 - keyString: "ini"
 - keyString: "url"
+filenames:
+- keyString: ".gitconfig"
+- keyString: ".gitmodules"
 outlineMenu:
 - beginString: "^\\[(.+)\\]"
   keyString: "$1"
