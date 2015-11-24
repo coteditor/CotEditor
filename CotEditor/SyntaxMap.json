@@ -540,6 +540,17 @@
 
     ]
   },
+  "gitignore": {
+    "extensions": [
+
+    ],
+    "filenames": [
+      ".gitignore"
+    ],
+    "interpreters": [
+
+    ]
+  },
   "iCalendar": {
     "extensions": [
       "ics",

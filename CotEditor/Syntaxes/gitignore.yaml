@@ -1,0 +1,23 @@
+extensions: []
+filenames:
+- keyString: ".gitignore"
+metadata:
+  distributionURL: "http://coteditor.com"
+  author: "1024jp"
+  lastModified: "2015-11-25"
+  license: "Same as CotEditor"
+  version: "1.0.0"
+numbers: []
+commands: []
+values: []
+keywords: []
+attributes: []
+strings: []
+types: []
+variables: []
+commentDelimiters:
+  inlineDelimiter: "#"
+characters: []
+completions: []
+outlineMenu: []
+comments: []
