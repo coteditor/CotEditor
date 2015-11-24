@@ -1677,10 +1677,11 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
         NSAlert *alert = [[NSAlert alloc] init];
         [alert setMessageText:NSLocalizedString(@"The file is not writable.", nil)];
         [alert setInformativeText:NSLocalizedString(@"You may not be able to save your changes, but you will be able to save a copy somewhere else.", nil)];
+        [alert setShowsSuppressionButton:YES];
         
         [alert beginSheetModalForWindow:[self windowForSheet]
                           modalDelegate:self
-                         didEndSelector:NULL
+                         didEndSelector:@selector(alertForNotWritableDidEnd:returnCode:contextInfo:)
                             contextInfo:NULL];
     }
     [self setDidAlertNotWritable:YES];
@@ -1759,6 +1760,17 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     }
     [self setRevertingForExternalFileUpdate:NO];
     [self setNeedsShowUpdateAlertWithBecomeKey:NO];
+}
+
+
+// ------------------------------------------------------
+/// 書き込み禁止アラートが閉じた
+- (void)alertForNotWritableDidEnd:(nonnull NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(nullable void *)contextInfo
+// ------------------------------------------------------
+{
+    if ([[alert suppressionButton] state] == NSOnState) {
+        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:CEDefaultShowAlertForNotWritableKey];
+    }
 }
 
 @end
