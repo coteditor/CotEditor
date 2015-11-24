@@ -79,30 +79,39 @@ class CharacterInfoTests: XCTestCase {
     
     
     func testSingleCharWithVSInfo() {
-        let charInfo = CECharacterInfo(string: "☺︎")
+        guard let charInfo = CECharacterInfo(string: "☺︎") else {
+            XCTFail()
+            return
+        }
         
-        XCTAssertEqual(charInfo!.string, "☺︎")
-        XCTAssertFalse(charInfo!.complexChar)
-        XCTAssertEqual(charInfo!.unicodes.map{$0.unicode}, ["U+263A", "U+FE0E"])
-        XCTAssertEqual(charInfo!.unicodes.map{$0.name}, ["WHITE SMILING FACE", "VARIATION SELECTOR-15"])
-        XCTAssertEqual(charInfo!.prettyDescription, "WHITE SMILING FACE (Text Style)")
+        XCTAssertEqual(charInfo.string, "☺︎")
+        XCTAssertFalse(charInfo.complexChar)
+        XCTAssertEqual(charInfo.unicodes.map{$0.unicode}, ["U+263A", "U+FE0E"])
+        XCTAssertEqual(charInfo.unicodes.map{$0.name}, ["WHITE SMILING FACE", "VARIATION SELECTOR-15"])
+        XCTAssertEqual(charInfo.prettyDescription, "WHITE SMILING FACE (Text Style)")
     }
     
     
     func testCombiningCharacterInfo() {
-        let charInfo = CECharacterInfo(string: "1️⃣")
+        guard let charInfo = CECharacterInfo(string: "1️⃣") else {
+            XCTFail()
+            return
+        }
         
-        XCTAssertTrue(charInfo!.complexChar)
-        XCTAssertEqual(charInfo!.unicodes.map{$0.unicode}, ["U+0031", "U+FE0F", "U+20E3"])
-        XCTAssertEqual(charInfo!.prettyDescription, "<a letter consisting of 3 characters>")
+        XCTAssertTrue(charInfo.complexChar)
+        XCTAssertEqual(charInfo.unicodes.map{$0.unicode}, ["U+0031", "U+FE0F", "U+20E3"])
+        XCTAssertEqual(charInfo.prettyDescription, "<a letter consisting of 3 characters>")
     }
 
     
     func testNationalIndicatorInfo() {
-        let charInfo = CECharacterInfo(string: "🇯🇵")
+        guard let charInfo = CECharacterInfo(string: "🇯🇵") else {
+            XCTFail()
+            return
+        }
         
-        XCTAssertTrue(charInfo!.complexChar)
-        XCTAssertEqual(charInfo!.unicodes.map{$0.unicode}, ["U+1F1EF", "U+1F1F5"])
+        XCTAssertTrue(charInfo.complexChar)
+        XCTAssertEqual(charInfo.unicodes.map{$0.unicode}, ["U+1F1EF", "U+1F1F5"])
     }
 
 }
