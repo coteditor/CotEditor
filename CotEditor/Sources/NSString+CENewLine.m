@@ -93,7 +93,7 @@ unichar const kNewLineChars[] = {
     CENewLineType type = CENewLineNone;
     NSUInteger length = [self length];
     
-    if ([self length] == 0) { return CENewLineNone; }
+    if (length == 0) { return CENewLineNone; }
     
     // We don't use [NSCharacterSet newlineCharacterSet] because it contains more characters than we need.
     NSString *newLineSetString = [NSString stringWithCharacters:kNewLineChars
