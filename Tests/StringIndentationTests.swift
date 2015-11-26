@@ -56,8 +56,8 @@ class StringIndentationTests: XCTestCase {
     func testIndentStyleStandardizationToSpace() {
         let string = "\t\tfoo\tbar"
         
-        XCTAssertEqual(string.stringByStandardizingIndentStyleTo(CEIndentStyle.Space, tabWidth: 2), "    foo\tbar")
-        XCTAssertEqual(string.stringByStandardizingIndentStyleTo(CEIndentStyle.Tab, tabWidth: 2), string)
+        XCTAssertEqual(string.stringByStandardizingIndentStyleTo(.Space, tabWidth: 2), "    foo\tbar")
+        XCTAssertEqual(string.stringByStandardizingIndentStyleTo(.Tab, tabWidth: 2), string)
     }
 
 }
