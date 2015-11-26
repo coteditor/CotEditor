@@ -68,9 +68,14 @@ class StringExtensionsTests: XCTestCase {
         XCTAssertEqual(NSString.newLineNameWithType(.ParagraphSeparator), "PS")
         
         // new line detection
+        XCTAssertEqual("".detectNewLineType(), CENewLineType.None)
+        XCTAssertEqual("a".detectNewLineType(), CENewLineType.None)
+        XCTAssertEqual("\n".detectNewLineType(), CENewLineType.LF)
+        XCTAssertEqual("\r".detectNewLineType(), CENewLineType.CR)
+        XCTAssertEqual("\r\n".detectNewLineType(), CENewLineType.CRLF)
         XCTAssertEqual("foo\r\nbar\nbuz\u{2029}moin".detectNewLineType(), CENewLineType.CRLF)  // just check the first new line
         
-        // new line replacement
+        // new line replacementc
         XCTAssertEqual("foo\nbar".stringByDeletingNewLineCharacters(), "foobar")
         XCTAssertEqual("foo\r\nbar".stringByReplacingNewLineCharacersWith(.CR), "foo\rbar")
     }

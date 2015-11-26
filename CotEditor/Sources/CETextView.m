@@ -1389,7 +1389,7 @@ static NSPoint kTextContainerOrigin;
     NSString *selectedString = [[self string] substringWithRange:selectedRange];
     
     // apply document's line ending
-    if ([self documentNewLineType] != CENewLineLF && [selectedString isEqualToString:@"\n"]) {
+    if ([self documentNewLineType] != CENewLineLF && [selectedString detectNewLineType] == CENewLineLF) {
         selectedString = [selectedString stringByReplacingNewLineCharacersWith:[self documentNewLineType]];
     }
     

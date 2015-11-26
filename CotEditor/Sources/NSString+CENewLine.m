@@ -93,19 +93,15 @@ unichar const kNewLineChars[] = {
     CENewLineType type = CENewLineNone;
     NSUInteger length = [self length];
     
-    if (length == 0) { return type; }
-    
-    NSScanner *scanner = [NSScanner scannerWithString:self];
+    if ([self length] == 0) { return CENewLineNone; }
     
     // We don't use [NSCharacterSet newlineCharacterSet] because it contains more characters than we need.
     NSString *newLineSetString = [NSString stringWithCharacters:kNewLineChars
                                                          length:sizeof(kNewLineChars) / sizeof(unichar)];
     NSCharacterSet *newLineSet = [NSCharacterSet characterSetWithCharactersInString:newLineSetString];
     
-    [scanner scanUpToCharactersFromSet:newLineSet intoString:NULL];
-    if (![scanner isAtEnd]) {
-        NSUInteger location = [scanner scanLocation];
-        
+    NSUInteger location = [self rangeOfCharacterFromSet:newLineSet].location;
+    if (location != NSNotFound) {
         switch ([self characterAtIndex:location]) {
             case NSNewlineCharacter:
                 type = CENewLineLF;
