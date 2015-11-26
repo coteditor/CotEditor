@@ -2,23 +2,58 @@ extensions:
 - keyString: "py"
 - keyString: "pyw"
 - keyString: "pyi"
+filenames: []
 interpreters:
 - keyString: "python"
 - keyString: "python2"
 - keyString: "python3"
 metadata:
-  author: "nanasiya"
-  distributionURL: "http://coteditor.com"
   version: "2.3.0"
-  description: "Support both Python2 and Python3 (<= 3.5).\n\nMaintained by 1024jp since 2013."
-  license: "Same as CotEditor"
   lastModified: "2015-11-25"
+  distributionURL: "http://coteditor.com"
+  author: "nanasiya"
+  license: "Same as CotEditor"
+  description: "Support both Python2 and Python3 (<= 3.5).\n\nMaintained by 1024jp since 2013."
 outlineMenu:
 - beginString: "^([\\t ]*)class[\\t ]+(.+?):?[\\t]*$"
   keyString: "$1$2"
   bold: true
 - beginString: "^([\\t ]*)def[\\t ]+(.+?):?[\\t]*$"
   keyString: "$1$2"
+keywords:
+- beginString: "and"
+- beginString: "as"
+- beginString: "async"
+- beginString: "assert"
+- beginString: "await"
+- beginString: "break"
+- beginString: "class"
+- beginString: "continue"
+- beginString: "def"
+- beginString: "del"
+- beginString: "elif"
+- beginString: "else"
+- beginString: "except"
+- beginString: "finally"
+- beginString: "for"
+- beginString: "from"
+- beginString: "global"
+- beginString: "if"
+- beginString: "import"
+- beginString: "in"
+- beginString: "is"
+- beginString: "lambda"
+- beginString: "nonlocal"
+- beginString: "not"
+- beginString: "or"
+- beginString: "pass"
+- beginString: "print"
+- beginString: "raise"
+- beginString: "return"
+- beginString: "try"
+- beginString: "while"
+- beginString: "with"
+- beginString: "yield"
 commands:
 - beginString: "__abs__"
 - beginString: "__add__"
@@ -324,6 +359,7 @@ commands:
 - beginString: "xreadlines"
 - beginString: "zfill"
 - beginString: "zip"
+types: []
 attributes:
 - beginString: "@(?:\\w|\\.)+"
   regularExpression: true
@@ -331,8 +367,9 @@ attributes:
 - beginString: "@classmethod"
 - beginString: "@property"
 - beginString: "@staticmethod"
-characters: []
-comments: []
+variables:
+- beginString: "cls"
+- beginString: "self"
 values:
 - beginString: "__all__"
 - beginString: "__bases__"
@@ -371,9 +408,6 @@ values:
 - beginString: "NotImplemented"
 - beginString: "softspace"
 - beginString: "True"
-variables:
-- beginString: "cls"
-- beginString: "self"
 numbers:
 - beginString: "((?<!\\w)|[-+])(?:\\.\\d+|\\d+\\.|\\d+\\.\\d+|\\d+)(e[+-]?\\d+)?[jl]?"
   ignoreCase: true
@@ -401,39 +435,7 @@ strings:
   regularExpression: true
 - beginString: "`"
   endString: "`"
-keywords:
-- beginString: "and"
-- beginString: "as"
-- beginString: "async"
-- beginString: "assert"
-- beginString: "await"
-- beginString: "break"
-- beginString: "class"
-- beginString: "continue"
-- beginString: "def"
-- beginString: "del"
-- beginString: "elif"
-- beginString: "else"
-- beginString: "except"
-- beginString: "finally"
-- beginString: "for"
-- beginString: "from"
-- beginString: "global"
-- beginString: "if"
-- beginString: "import"
-- beginString: "in"
-- beginString: "is"
-- beginString: "lambda"
-- beginString: "nonlocal"
-- beginString: "not"
-- beginString: "or"
-- beginString: "pass"
-- beginString: "print"
-- beginString: "raise"
-- beginString: "return"
-- beginString: "try"
-- beginString: "while"
-- beginString: "with"
-- beginString: "yield"
+characters: []
+comments: []
 commentDelimiters:
   inlineDelimiter: "#"

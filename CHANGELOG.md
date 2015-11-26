@@ -22,7 +22,7 @@ develop
 - Improve text selection by clicking line numbers view.
 - Tweak style of popup menus in toolbar.
 - Update Python syntax style:
-    - Add several commands that are in `__foo__` form.
+    - Add several commands and variables that are in `__foo__` form.
     - Add `pyi` extension.
 - Update Perl syntax style:
     - Add some terms.
