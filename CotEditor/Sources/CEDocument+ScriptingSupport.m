@@ -277,8 +277,9 @@
         return @YES;
     }
     
-    NSString *actionName = @"TEST";  // ???: test?
     BOOL lossy = [arguments[@"Lossy"] boolValue];
+    NSString *actionName = [NSString stringWithFormat:NSLocalizedString(@"Encoding to “%@”", nil),
+                            [NSString localizedNameOfStringEncoding:encoding]];
     
     BOOL success = [self doSetEncoding:encoding updateDocument:YES askLossy:NO lossy:lossy asActionName:actionName];
     

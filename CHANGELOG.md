@@ -38,6 +38,7 @@ develop
 ### Fixes
 
 - Fix an issue where text view drawing was distorted while resizing window.
+- Fix wrong undo action name on encoding conversion via script.
 
 
 
