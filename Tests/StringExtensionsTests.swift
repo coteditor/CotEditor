@@ -75,7 +75,7 @@ class StringExtensionsTests: XCTestCase {
         XCTAssertEqual("\r\n".detectNewLineType(), CENewLineType.CRLF)
         XCTAssertEqual("foo\r\nbar\nbuz\u{2029}moin".detectNewLineType(), CENewLineType.CRLF)  // just check the first new line
         
-        // new line replacementc
+        // new line replacement
         XCTAssertEqual("foo\nbar".stringByDeletingNewLineCharacters(), "foobar")
         XCTAssertEqual("foo\r\nbar".stringByReplacingNewLineCharacersWith(.CR), "foo\rbar")
     }
