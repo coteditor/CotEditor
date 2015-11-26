@@ -722,7 +722,7 @@ static NSPoint kTextContainerOrigin;
 {
     BOOL success = [super writeSelectionToPasteboard:pboard types:types];
     
-    CENewLineType newLineType = [[[[self window] windowController] document] lineEnding];
+    CENewLineType newLineType = [self documentNewLineType];
     
     if (newLineType == CENewLineLF || newLineType == CENewLineNone) { return success; }
     
@@ -1115,8 +1115,7 @@ static NSPoint kTextContainerOrigin;
     
     NSMutableArray<NSAttributedString *> *selections = [NSMutableArray arrayWithCapacity:[[self selectedRanges] count]];
     NSMutableArray<NSNumber *> *propertyList = [NSMutableArray arrayWithCapacity:[[self selectedRanges] count]];
-    CENewLineType newLineType = [[[[self window] windowController] document] lineEnding];
-    NSString *newLine = [NSString newLineStringWithType:newLineType];
+    NSString *newLine = [NSString newLineStringWithType:[self documentNewLineType]];
 
     // substring all selected attributed strings
     for (NSValue *rangeValue in [self selectedRanges]) {
@@ -1140,7 +1139,7 @@ static NSPoint kTextContainerOrigin;
         }
         
         // apply document's line ending
-        if (newLineType != CENewLineLF) {
+        if ([self documentNewLineType] != CENewLineLF) {
             for (NSInteger charIndex = [plainText length] - 1; charIndex >= 0; charIndex--) {  // process backwards
                 if ([plainText characterAtIndex:charIndex] == '\n') {
                     [styledText replaceCharactersInRange:NSMakeRange(charIndex, 1) withString:newLine];
@@ -1413,6 +1412,15 @@ static NSPoint kTextContainerOrigin;
              CEDefaultEnableSmartQuotesKey,
              CEDefaultHangingIndentWidthKey,
              CEDefaultEnablesHangingIndentKey];
+}
+
+
+// ------------------------------------------------------
+/// true new line type of document
+- (CENewLineType)documentNewLineType
+// ------------------------------------------------------
+{
+    return [[[[self window] windowController] document] lineEnding];
 }
 
 
