@@ -1608,7 +1608,6 @@
 				2A6F0D601B5500E100C2D03C /* FindPanel.xib in Resources */,
 				2A6F0D611B5500E100C2D03C /* SizeSampleWindow.xib in Resources */,
 				2A6F0D621B5500E100C2D03C /* IncompatibleCharsView.xib in Resources */,
-				2AD903A01BCEE174004F2B8A /* Credits.rtf in Resources */,
 				2A6F0D631B5500E100C2D03C /* PreferencesWindow.xib in Resources */,
 				2A6F0D641B5500E100C2D03C /* SyntaxEditSheet.xib in Resources */,
 				2A6F0D651B5500E100C2D03C /* Indicator.xib in Resources */,
@@ -1630,7 +1629,6 @@
 				2A6F0D751B5500E100C2D03C /* SyntaxMappingConflictSheet.xib in Resources */,
 				2A6F0D761B5500E100C2D03C /* WindowPane.xib in Resources */,
 				2A6F0D771B5500E100C2D03C /* NavigationBar.xib in Resources */,
-				2AD9039C1BCE86A3004F2B8A /* SpellCheck.tiff in Resources */,
 				2A6F0D781B5500E100C2D03C /* ColorCodePanelAccessory.xib in Resources */,
 				2A6F0D791B5500E100C2D03C /* FileDropPane.xib in Resources */,
 				2A6F0D7A1B5500E100C2D03C /* FormatPane.xib in Resources */,
@@ -1639,11 +1637,12 @@
 				2A6F0D7D1B5500E100C2D03C /* TextKeyBindingsEditView.xib in Resources */,
 				2A6F0D7E1B5500E100C2D03C /* EncodingListSheet.xib in Resources */,
 				2A6F0D7F1B5500E100C2D03C /* GoToSheet.xib in Resources */,
-				2A6F0D801B5500E100C2D03C /* Localizable.strings in Resources */,
-				2A6F0D811B5500E100C2D03C /* ServicesMenu.strings in Resources */,
 				2A6F0D821B5500E100C2D03C /* IntegrationPane.xib in Resources */,
 				2A6F0D831B5500E100C2D03C /* RegexReferencePopover.xib in Resources */,
+				2A6F0D801B5500E100C2D03C /* Localizable.strings in Resources */,
+				2A6F0D811B5500E100C2D03C /* ServicesMenu.strings in Resources */,
 				2AA2E0141BFE12620087BDD6 /* Unicode.strings in Resources */,
+				2AD903A01BCEE174004F2B8A /* Credits.rtf in Resources */,
 				2A6F0D851B5500E100C2D03C /* ShellScript.rtf in Resources */,
 				2A6F0D861B5500E100C2D03C /* ScriptMenu Folder.rtf in Resources */,
 				2A6F0D871B5500E100C2D03C /* AppleScript.rtf in Resources */,
@@ -1671,6 +1670,7 @@
 				2A6F0D9E1B5500E100C2D03C /* WrapLines_On.tiff in Resources */,
 				2A6F0D9F1B5500E100C2D03C /* VerticalOrientation_Off.tiff in Resources */,
 				2A6F0DA01B5500E100C2D03C /* VerticalOrientation_On.tiff in Resources */,
+				2AD9039C1BCE86A3004F2B8A /* SpellCheck.tiff in Resources */,
 				2A6F0DA11B5500E100C2D03C /* EditColorCode.tiff in Resources */,
 				2A6F0DA21B5500E100C2D03C /* RecolorAll.tiff in Resources */,
 			);
@@ -1690,7 +1690,6 @@
 				2A1EB5C419AD469500C1E37E /* Images.xcassets in Resources */,
 				2A3A758E19E77C84001DAB88 /* Syntaxes in Resources */,
 				2ABC76241909BF5200D2B592 /* Themes in Resources */,
-				2AD9039B1BCE86A3004F2B8A /* SpellCheck.tiff in Resources */,
 				2A9871A919AEABDB0081BADB /* KeyBindings in Resources */,
 				2A75ACCB19E86DDB00444894 /* CotEditor.sdef in Resources */,
 				2A6E3F3D19B5218300A63E97 /* CotEditor.help in Resources */,
@@ -1722,7 +1721,6 @@
 				2A3A759119E77D4F001DAB88 /* MigrationWindow.xib in Resources */,
 				2A149DA719016ABB00A9D6EF /* EditPane.xib in Resources */,
 				2A5B998918D61443009C2F4F /* LineHightPanel.xib in Resources */,
-				2AD9039F1BCEE174004F2B8A /* Credits.rtf in Resources */,
 				2A5D2B9418E1ED420020AA1F /* SyntaxMappingConflictSheet.xib in Resources */,
 				2A149DAD19016ABB00A9D6EF /* WindowPane.xib in Resources */,
 				2A5411C319852C1C008B43DA /* NavigationBar.xib in Resources */,
@@ -1734,11 +1732,12 @@
 				2A15832818E39B7400601026 /* TextKeyBindingsEditView.xib in Resources */,
 				2A15831718E3688300601026 /* EncodingListSheet.xib in Resources */,
 				2AFFB71D18D7F22E00118477 /* GoToSheet.xib in Resources */,
-				259C2318077678DE00BA61C5 /* Localizable.strings in Resources */,
-				2A5E4D7C1A44F0D50072013F /* ServicesMenu.strings in Resources */,
 				2AD318C01A462A10001B8112 /* IntegrationPane.xib in Resources */,
 				2A2D6C191A602D2C002451FF /* RegexReferencePopover.xib in Resources */,
+				259C2318077678DE00BA61C5 /* Localizable.strings in Resources */,
+				2A5E4D7C1A44F0D50072013F /* ServicesMenu.strings in Resources */,
 				2AA2E0131BFE12620087BDD6 /* Unicode.strings in Resources */,
+				2AD9039F1BCEE174004F2B8A /* Credits.rtf in Resources */,
 				2A961C5518FC699E002076B6 /* ShellScript.rtf in Resources */,
 				2A961C5418FC699E002076B6 /* ScriptMenu Folder.rtf in Resources */,
 				2A961C5218FC699E002076B6 /* AppleScript.rtf in Resources */,
@@ -1766,6 +1765,7 @@
 				8C3E2D620808E210009894D1 /* WrapLines_On.tiff in Resources */,
 				2AC2C1D819881543007968CB /* VerticalOrientation_Off.tiff in Resources */,
 				2AC2C1D919881543007968CB /* VerticalOrientation_On.tiff in Resources */,
+				2AD9039B1BCE86A3004F2B8A /* SpellCheck.tiff in Resources */,
 				2A5B0AF5190723AC00B6A51C /* EditColorCode.tiff in Resources */,
 				8C52080A0880BAAF005734F2 /* RecolorAll.tiff in Resources */,
 			);
@@ -2606,7 +2606,6 @@
 					"APPSTORE=1",
 				);
 				INFOPLIST_FILE = "CotEditor (AppStore)-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				OTHER_CODE_SIGN_FLAGS = "--deep";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.coteditor.$(PRODUCT_NAME)";
 				PRODUCT_NAME = CotEditor;
@@ -2625,7 +2624,6 @@
 					"APPSTORE=1",
 				);
 				INFOPLIST_FILE = "CotEditor (AppStore)-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				OTHER_CODE_SIGN_FLAGS = "--deep";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.coteditor.$(PRODUCT_NAME)";
 				PRODUCT_NAME = CotEditor;
@@ -2723,7 +2721,6 @@
 				CODE_SIGN_ENTITLEMENTS = CotEditor.entitlements;
 				CODE_SIGN_IDENTITY = "Developer ID Application";
 				INFOPLIST_FILE = "CotEditor-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				OTHER_CODE_SIGN_FLAGS = "--deep";
 				PRODUCT_BUNDLE_IDENTIFIER = com.coteditor.CotEditor;
 				PRODUCT_NAME = CotEditor;
@@ -2738,7 +2735,6 @@
 				CODE_SIGN_ENTITLEMENTS = CotEditor.entitlements;
 				CODE_SIGN_IDENTITY = "Developer ID Application";
 				INFOPLIST_FILE = "CotEditor-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				OTHER_CODE_SIGN_FLAGS = "--deep";
 				PRODUCT_BUNDLE_IDENTIFIER = com.coteditor.CotEditor;
 				PRODUCT_NAME = CotEditor;
