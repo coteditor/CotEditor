@@ -310,7 +310,8 @@
 // ------------------------------------------------------
 {
     if (([menuItem action] == @selector(showLineHeightPanel:)) ||
-        ([menuItem action] == @selector(showUnicodeInputPanel:))) {
+        ([menuItem action] == @selector(showUnicodeInputPanel:)))
+    {
         return ([[NSDocumentController sharedDocumentController] currentDocument] != nil);
     }
     
