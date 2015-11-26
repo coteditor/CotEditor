@@ -95,7 +95,11 @@ static const UTF32Char kType6EmojiModifierChar = 0x1F3FF;  // Emoji Modifier Fit
 - (nullable instancetype)initWithString:(nonnull NSString *)string
 //------------------------------------------------------
 {
-    if ([string numberOfComposedCharacters] != 1) { return nil; }
+    if ([string numberOfComposedCharacters] != 1 &&
+        ![string isEqualToString:@"\r\n"])  // allow CR/LF
+    {
+        return nil;
+    }
     
     self = [super init];
     if (self) {

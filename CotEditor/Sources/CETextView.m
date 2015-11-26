@@ -1387,6 +1387,12 @@ static NSPoint kTextContainerOrigin;
 {
     NSRange selectedRange = [self selectedRange];
     NSString *selectedString = [[self string] substringWithRange:selectedRange];
+    
+    // apply document's line ending
+    if ([self documentNewLineType] != CENewLineLF && [selectedString isEqualToString:@"\n"]) {
+        selectedString = [selectedString stringByReplacingNewLineCharacersWith:[self documentNewLineType]];
+    }
+    
     CECharacterPopoverController *popoverController = [[CECharacterPopoverController alloc] initWithCharacter:selectedString];
     
     if (!popoverController) { return; }

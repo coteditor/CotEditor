@@ -38,6 +38,7 @@ develop
 ### Fixes
 
 - Fix an issue where text view drawing was distorted while resizing window.
+- Fix an issue where character inspector returned always `U+000A` (LF) for line ending even the actual line ending of the document is not LF.
 - Fix wrong undo action name on encoding conversion via script.
 
 
