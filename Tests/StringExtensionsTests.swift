@@ -30,19 +30,12 @@ import XCTest
 
 class StringExtensionsTests: XCTestCase {
     
-    override func setUp() {
-        super.setUp()
-    }
-    
-    
-    override func tearDown() {
-        super.tearDown()
-    }
-    
-    
     func testComposedCharactersCount() {
         XCTAssertEqual("foo".numberOfComposedCharacters(), 3)
-        XCTAssertEqual("😀🇯🇵".numberOfComposedCharacters(), 2)
+        XCTAssertEqual("😀🇯🇵a".numberOfComposedCharacters(), 3)
+        
+        // single regional indicator
+        XCTAssertEqual("🇦 ".numberOfComposedCharacters(), 2)
     }
     
     

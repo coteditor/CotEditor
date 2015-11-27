@@ -26,6 +26,8 @@ combining character:
 
 national indicators:
 	🇯🇵 U+1F1EF (U+D83C U+DDEF)  U+1F1F5 (U+D83C U+DDF5)
+	🇯 U+1F1EF (U+D83C U+DDEF)
+	🇦🇦 U+1F1E6 (U+D83C U+DDE6)  U+1F1E6 (U+D83C U+DDE6)
 
 sound mark:
 	が U+304C
