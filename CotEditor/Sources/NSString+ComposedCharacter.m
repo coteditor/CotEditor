@@ -50,7 +50,7 @@
      {
          // detect regional indicator surrogate pair.
          BOOL isRegionalIndicator = ((substringRange.length == 2) &&
-                                     NSLocationInRange([string characterAtIndex:substringRange.location], regionalIndicatorRange) &&
+                                     [string characterAtIndex:substringRange.location] == 0xD83C &&
                                      NSLocationInRange([string characterAtIndex:substringRange.location + 1], regionalIndicatorRange));
          
          // skip if the last composed character was a regional indicator surrogate-pair
