@@ -13,17 +13,17 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView id="Hz6-mo-xeY">
-            <rect key="frame" x="0.0" y="0.0" width="420" height="340"/>
+            <rect key="frame" x="0.0" y="0.0" width="450" height="340"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="szY-Yp-KrM">
-                    <rect key="frame" x="12" y="40" width="396" height="181"/>
+                    <rect key="frame" x="12" y="40" width="426" height="181"/>
                     <clipView key="contentView" id="oan-uw-mqe">
-                        <rect key="frame" x="1" y="0.0" width="394" height="180"/>
+                        <rect key="frame" x="1" y="0.0" width="424" height="180"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnReordering="NO" columnSelection="YES" autosaveColumns="NO" rowSizeStyle="automatic" headerView="uOT-Vg-FZh" viewBased="YES" id="ace-Sg-2RE">
-                                <rect key="frame" x="0.0" y="0.0" width="397" height="157"/>
+                                <rect key="frame" x="0.0" y="0.0" width="427" height="157"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <animations/>
                                 <size key="intercellSpacing" width="3" height="2"/>
@@ -194,7 +194,7 @@
                                             </tableCellView>
                                         </prototypeCellViews>
                                     </tableColumn>
-                                    <tableColumn identifier="" width="38" minWidth="10" maxWidth="1000" id="Bla-xg-t6E">
+                                    <tableColumn identifier="" width="68" minWidth="10" maxWidth="1000" id="Bla-xg-t6E">
                                         <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Description">
                                             <font key="font" metaFont="smallSystem"/>
                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -209,11 +209,11 @@
                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                         <prototypeCellViews>
                                             <tableCellView id="Wgn-aa-28Y">
-                                                <rect key="frame" x="357" y="1" width="38" height="17"/>
+                                                <rect key="frame" x="357" y="1" width="68" height="17"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="0iQ-u5-KRq">
-                                                        <rect key="frame" x="0.0" y="0.0" width="38" height="17"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="68" height="17"/>
                                                         <animations/>
                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="note" id="CWN-H0-LVV">
                                                             <font key="font" metaFont="system"/>
@@ -261,7 +261,7 @@
                         <animations/>
                     </scroller>
                     <tableHeaderView key="headerView" id="uOT-Vg-FZh">
-                        <rect key="frame" x="0.0" y="0.0" width="397" height="17"/>
+                        <rect key="frame" x="0.0" y="0.0" width="427" height="17"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <animations/>
                     </tableHeaderView>
@@ -304,7 +304,7 @@
                     </textFieldCell>
                 </textField>
                 <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1xs-RY-0ID">
-                    <rect key="frame" x="88" y="284" width="107" height="22"/>
+                    <rect key="frame" x="88" y="284" width="122" height="22"/>
                     <constraints>
                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="25" id="5i3-Rl-N6f"/>
                     </constraints>
@@ -323,7 +323,7 @@
                     </connections>
                 </textField>
                 <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ska-c0-sx2">
-                    <rect key="frame" x="301" y="283" width="107" height="22"/>
+                    <rect key="frame" x="316" y="283" width="122" height="22"/>
                     <animations/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Not defined" drawsBackground="YES" id="4qu-tU-wgL">
                         <font key="font" metaFont="system"/>
@@ -339,7 +339,7 @@
                     </connections>
                 </textField>
                 <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="teO-CT-cDt">
-                    <rect key="frame" x="301" y="251" width="107" height="22"/>
+                    <rect key="frame" x="316" y="251" width="122" height="22"/>
                     <animations/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Not defined" drawsBackground="YES" id="lMx-HP-1U1">
                         <font key="font" metaFont="system"/>
@@ -355,7 +355,7 @@
                     </connections>
                 </textField>
                 <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="K52-O0-Gy1">
-                    <rect key="frame" x="223" y="311" width="109" height="17"/>
+                    <rect key="frame" x="238" y="311" width="109" height="17"/>
                     <animations/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Block comment:" usesSingleLineMode="YES" id="bUT-iW-c0x">
                         <font key="font" metaFont="systemBold"/>
@@ -364,7 +364,7 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="WDn-Vx-yAe">
-                    <rect key="frame" x="223" y="286" width="72" height="17"/>
+                    <rect key="frame" x="238" y="286" width="72" height="17"/>
                     <animations/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Begin with:" usesSingleLineMode="YES" id="xWF-yX-yz5">
                         <font key="font" metaFont="system"/>
@@ -382,7 +382,7 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gGr-AE-CgQ">
-                    <rect key="frame" x="235" y="254" width="60" height="17"/>
+                    <rect key="frame" x="250" y="254" width="60" height="17"/>
                     <animations/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="End with:" usesSingleLineMode="YES" id="5bm-Fa-IZj">
                         <font key="font" metaFont="system"/>

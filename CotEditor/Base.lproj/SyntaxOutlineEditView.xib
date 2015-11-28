@@ -13,24 +13,24 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView id="Hz6-mo-xeY">
-            <rect key="frame" x="0.0" y="0.0" width="420" height="340"/>
+            <rect key="frame" x="0.0" y="0.0" width="450" height="340"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZGp-6x-e5X">
-                    <rect key="frame" x="12" y="60" width="358" height="246"/>
+                    <rect key="frame" x="12" y="60" width="388" height="246"/>
                     <clipView key="contentView" id="kWo-dQ-dd2">
-                        <rect key="frame" x="1" y="0.0" width="356" height="245"/>
+                        <rect key="frame" x="1" y="0.0" width="386" height="245"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="Ekv-v1-FdT" viewBased="YES" id="2bp-d9-mTT">
-                                <rect key="frame" x="0.0" y="0.0" width="356" height="222"/>
+                                <rect key="frame" x="0.0" y="0.0" width="386" height="222"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <animations/>
                                 <size key="intercellSpacing" width="3" height="2"/>
                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                 <tableColumns>
-                                    <tableColumn width="323" minWidth="40" maxWidth="1000" id="vRg-cd-Ib2">
+                                    <tableColumn width="353" minWidth="40" maxWidth="1000" id="vRg-cd-Ib2">
                                         <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="RE String">
                                             <font key="font" metaFont="smallSystem"/>
                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -44,11 +44,11 @@
                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                         <prototypeCellViews>
                                             <tableCellView id="MDh-Ha-Hyc">
-                                                <rect key="frame" x="1" y="1" width="323" height="17"/>
+                                                <rect key="frame" x="1" y="1" width="353" height="17"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="8NB-AU-ecw">
-                                                        <rect key="frame" x="0.0" y="0.0" width="323" height="17"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="353" height="17"/>
                                                         <animations/>
                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="regular expression string" usesSingleLineMode="YES" id="RCz-qR-02w">
                                                             <font key="font" metaFont="system"/>
@@ -85,7 +85,7 @@
                                         </buttonCell>
                                         <prototypeCellViews>
                                             <tableCellView id="bKk-ZD-1pf">
-                                                <rect key="frame" x="333" y="1" width="27" height="17"/>
+                                                <rect key="frame" x="357" y="1" width="27" height="17"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <button identifier="ignoreCase" translatesAutoresizingMaskIntoConstraints="NO" id="5AQ-mF-Gqr">
@@ -134,13 +134,13 @@
                         <animations/>
                     </scroller>
                     <tableHeaderView key="headerView" id="Ekv-v1-FdT">
-                        <rect key="frame" x="0.0" y="0.0" width="356" height="17"/>
+                        <rect key="frame" x="0.0" y="0.0" width="386" height="17"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <animations/>
                     </tableHeaderView>
                 </scrollView>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fiO-0i-ClJ">
-                    <rect key="frame" x="378" y="285" width="30" height="22"/>
+                    <rect key="frame" x="408" y="285" width="30" height="22"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="30" id="0TS-E7-cbt"/>
                         <constraint firstAttribute="height" constant="20" id="arb-wd-fX8"/>
@@ -156,7 +156,7 @@
                     </connections>
                 </button>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="keq-g7-p76">
-                    <rect key="frame" x="378" y="257" width="30" height="22"/>
+                    <rect key="frame" x="408" y="257" width="30" height="22"/>
                     <animations/>
                     <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSRemoveTemplate" imagePosition="only" alignment="center" controlSize="mini" borderStyle="border" inset="2" id="in5-c6-yDg">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -168,7 +168,7 @@
                     </connections>
                 </button>
                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" placeholderIntrinsicWidth="398" placeholderIntrinsicHeight="14" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CHs-4y-PqE" customClass="CEWrappingTextField">
-                    <rect key="frame" x="10" y="314" width="400" height="14"/>
+                    <rect key="frame" x="10" y="314" width="430" height="14"/>
                     <animations/>
                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Regular expressions to extract outline menu items" id="cBA-MO-VzQ">
                         <font key="font" metaFont="smallSystem"/>
@@ -177,7 +177,7 @@
                     </textFieldCell>
                 </textField>
                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" placeholderIntrinsicWidth="362" placeholderIntrinsicHeight="14" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QHn-ch-mKE">
-                    <rect key="frame" x="10" y="38" width="362" height="14"/>
+                    <rect key="frame" x="10" y="38" width="392" height="14"/>
                     <animations/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Menu title pattern (blank matches the whole string)" usesSingleLineMode="YES" id="nnO-qN-dYF">
                         <font key="font" metaFont="smallSystem"/>
@@ -186,7 +186,7 @@
                     </textFieldCell>
                 </textField>
                 <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="w6W-sD-KWD">
-                    <rect key="frame" x="12" y="12" width="358" height="22"/>
+                    <rect key="frame" x="12" y="12" width="388" height="22"/>
                     <animations/>
                     <textFieldCell key="cell" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="dtm-Tz-oCa">
                         <font key="font" metaFont="system"/>
@@ -198,7 +198,7 @@
                     </connections>
                 </textField>
                 <button toolTip="Bold" translatesAutoresizingMaskIntoConstraints="NO" id="eX8-7L-AYT">
-                    <rect key="frame" x="374" y="41" width="29" height="18"/>
+                    <rect key="frame" x="404" y="41" width="29" height="18"/>
                     <animations/>
                     <buttonCell key="cell" type="check" title="B" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="mini" inset="2" id="iub-mE-wGf">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -209,7 +209,7 @@
                     </connections>
                 </button>
                 <button toolTip="Italic" translatesAutoresizingMaskIntoConstraints="NO" id="5fG-BP-ynf">
-                    <rect key="frame" x="374" y="9" width="29" height="18"/>
+                    <rect key="frame" x="404" y="9" width="29" height="18"/>
                     <animations/>
                     <buttonCell key="cell" type="check" title="I" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="mini" inset="2" id="fUz-0u-0D4">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -220,7 +220,7 @@
                     </connections>
                 </button>
                 <button toolTip="Underline" translatesAutoresizingMaskIntoConstraints="NO" id="rFv-YW-Uea">
-                    <rect key="frame" x="374" y="25" width="29" height="18"/>
+                    <rect key="frame" x="404" y="25" width="29" height="18"/>
                     <animations/>
                     <buttonCell key="cell" type="check" title="U" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="mini" inset="2" id="00X-sB-42F">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>

@@ -20,10 +20,10 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <window title="Syntax" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" visibleAtLaunch="NO" animationBehavior="default" id="6" userLabel="Edit Sheet">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
-            <rect key="contentRect" x="20" y="120" width="620" height="450"/>
+            <rect key="contentRect" x="20" y="120" width="650" height="450"/>
             <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
             <view key="contentView" id="5">
-                <rect key="frame" x="0.0" y="0.0" width="620" height="450"/>
+                <rect key="frame" x="0.0" y="0.0" width="650" height="450"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="214">
@@ -63,7 +63,7 @@
                         </connections>
                     </imageView>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" placeholderIntrinsicWidth="46" placeholderIntrinsicHeight="14" translatesAutoresizingMaskIntoConstraints="NO" id="265">
-                        <rect key="frame" x="166" y="392" width="436" height="14"/>
+                        <rect key="frame" x="166" y="392" width="466" height="14"/>
                         <animations/>
                         <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="left" title="message" id="989">
                             <font key="font" metaFont="smallSystem"/>
@@ -147,9 +147,9 @@
                         </scroller>
                     </scrollView>
                     <box autoresizesSubviews="NO" title="Box" borderType="line" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="DIK-L4-eWJ">
-                        <rect key="frame" x="165" y="49" width="438" height="333"/>
+                        <rect key="frame" x="165" y="49" width="468" height="333"/>
                         <view key="contentView" id="HO9-B7-8ih">
-                            <rect key="frame" x="1" y="1" width="436" height="331"/>
+                            <rect key="frame" x="1" y="1" width="466" height="331"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <animations/>
                         </view>
@@ -172,7 +172,7 @@
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="92">
-                        <rect key="frame" x="406" y="13" width="100" height="32"/>
+                        <rect key="frame" x="436" y="13" width="100" height="32"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="88" id="x0S-8Z-Pds"/>
                         </constraints>
@@ -189,7 +189,7 @@ Gw
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" tag="100" translatesAutoresizingMaskIntoConstraints="NO" id="91">
-                        <rect key="frame" x="506" y="13" width="100" height="32"/>
+                        <rect key="frame" x="536" y="13" width="100" height="32"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="88" id="G4m-eb-Ixf"/>
                         </constraints>

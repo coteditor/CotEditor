@@ -13,7 +13,7 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView id="Hz6-mo-xeY">
-            <rect key="frame" x="0.0" y="0.0" width="420" height="340"/>
+            <rect key="frame" x="0.0" y="0.0" width="450" height="340"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="LkV-qO-uNb">
@@ -80,7 +80,7 @@
                     </textFieldCell>
                 </textField>
                 <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="BI9-H4-gcs">
-                    <rect key="frame" x="123" y="242" width="285" height="22"/>
+                    <rect key="frame" x="123" y="242" width="315" height="22"/>
                     <animations/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" usesSingleLineMode="YES" id="6qB-ld-faJ">
                         <font key="font" metaFont="system"/>
@@ -101,7 +101,7 @@
                     </textFieldCell>
                 </textField>
                 <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="93A-h6-vCG">
-                    <rect key="frame" x="123" y="210" width="285" height="22"/>
+                    <rect key="frame" x="123" y="210" width="315" height="22"/>
                     <animations/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" usesSingleLineMode="YES" id="98i-Ri-u4C">
                         <font key="font" metaFont="system"/>
@@ -122,7 +122,7 @@
                     </textFieldCell>
                 </textField>
                 <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="o0U-5A-8FS">
-                    <rect key="frame" x="123" y="178" width="285" height="22"/>
+                    <rect key="frame" x="123" y="178" width="315" height="22"/>
                     <animations/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" usesSingleLineMode="YES" id="AIV-PE-1n6">
                         <font key="font" metaFont="system"/>
@@ -146,7 +146,7 @@
                     </textFieldCell>
                 </textField>
                 <textField translatesAutoresizingMaskIntoConstraints="NO" id="sNf-iG-xYO">
-                    <rect key="frame" x="123" y="12" width="285" height="156"/>
+                    <rect key="frame" x="123" y="12" width="315" height="156"/>
                     <animations/>
                     <textFieldCell key="cell" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="bnJ-UO-5HV">
                         <font key="font" metaFont="system"/>
