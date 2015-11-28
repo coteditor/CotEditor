@@ -29,7 +29,7 @@
 /* Class = "NSTextFieldCell"; title = "Regular expressions to extract outline menu items"; ObjectID = "cBA-MO-VzQ"; */
 "cBA-MO-VzQ.title" = "Regulärer Ausdruck um Gliederungsmenü auszuziehen";
 
-/* Class = "NSTableColumn"; headerCell.title = "RE String"; ObjectID = "vRg-cd-Ib2"; */
+/* Class = "NSTableColumn"; headerCell.title = "Regular Expression String"; ObjectID = "vRg-cd-Ib2"; */
 "vRg-cd-Ib2.headerCell.title" = "Regulärer Ausdruck";
 /* Class = "NSTableColumn"; headerCell.title = "IC"; ObjectID = "1tC-mo-cEL"; */
 "1tC-mo-cEL.headerCell.title" = "IC";  /* IC */

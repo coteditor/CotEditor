@@ -8,14 +8,14 @@
  Localized by onevcat
  encoding="UTF-8"
  
- © 2014 CotEditor Project
+ © 2014-2015 CotEditor Project
  */
 
 
 /* Class = "NSTextFieldCell"; title = "Regular expressions to extract outline menu items"; ObjectID = "cBA-MO-VzQ"; */
 "cBA-MO-VzQ.title" = "用于提取大纲菜单项的正则表达式";
 
-/* Class = "NSTableColumn"; headerCell.title = "RE String"; ObjectID = "vRg-cd-Ib2"; */
+/* Class = "NSTableColumn"; headerCell.title = "Regular Expression String"; ObjectID = "vRg-cd-Ib2"; */
 "vRg-cd-Ib2.headerCell.title" = "正则表达式";
 /* Class = "NSTableColumn"; headerCell.title = "IC"; ObjectID = "1tC-mo-cEL"; */
 "1tC-mo-cEL.headerCell.title" = "IC";  /* IC */

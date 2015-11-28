@@ -23,15 +23,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="Ekv-v1-FdT" viewBased="YES" id="2bp-d9-mTT">
-                                <rect key="frame" x="0.0" y="0.0" width="386" height="222"/>
+                                <rect key="frame" x="0.0" y="0.0" width="388" height="222"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <animations/>
                                 <size key="intercellSpacing" width="3" height="2"/>
                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                 <tableColumns>
-                                    <tableColumn width="353" minWidth="40" maxWidth="1000" id="vRg-cd-Ib2">
-                                        <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="RE String">
+                                    <tableColumn width="355" minWidth="40" maxWidth="1000" id="vRg-cd-Ib2">
+                                        <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Regular Expression String">
                                             <font key="font" metaFont="smallSystem"/>
                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" white="0.33333299" alpha="1" colorSpace="calibratedWhite"/>
@@ -44,10 +44,10 @@
                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                         <prototypeCellViews>
                                             <tableCellView id="MDh-Ha-Hyc">
-                                                <rect key="frame" x="1" y="1" width="353" height="17"/>
+                                                <rect key="frame" x="1" y="1" width="355" height="17"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
-                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="8NB-AU-ecw">
+                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8NB-AU-ecw">
                                                         <rect key="frame" x="0.0" y="0.0" width="353" height="17"/>
                                                         <animations/>
                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="regular expression string" usesSingleLineMode="YES" id="RCz-qR-02w">
@@ -85,7 +85,7 @@
                                         </buttonCell>
                                         <prototypeCellViews>
                                             <tableCellView id="bKk-ZD-1pf">
-                                                <rect key="frame" x="357" y="1" width="27" height="17"/>
+                                                <rect key="frame" x="359" y="1" width="27" height="17"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <button identifier="ignoreCase" translatesAutoresizingMaskIntoConstraints="NO" id="5AQ-mF-Gqr">
