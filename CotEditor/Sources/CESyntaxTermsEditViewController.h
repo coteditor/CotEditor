@@ -1,15 +1,15 @@
 /*
  
- SyntaxEditSheet.strings (Japanese)
+ CESyntaxTermsEditViewController.h
  
  CotEditor
  http://coteditor.com
  
- Created by 1024jp on 2014-11-04.
+ Created by 1024jp on 2015-11-28.
  
  ------------------------------------------------------------------------------
  
- © 2014-2015 CotEditor Project
+ © 2015 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -25,14 +25,11 @@
  
  */
 
-/* Class = "NSTextFieldCell"; title = "Style Name:"; ObjectID = "987"; */
-"987.title" = "スタイル名：";
-/* Class = "NSTextFieldCell"; placeholderString = "Style Name"; ObjectID = "988"; */
-"988.placeholderString" = "スタイル名";
+@import Cocoa;
 
-/* Class = "NSButtonCell"; title = "Restore Defaults"; ObjectID = "1020"; */
-"1020.title" = "デフォルトに戻す";
-/* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "986"; */
-"986.title" = "キャンセル";
-/* Class = "NSButtonCell"; title = "OK"; ObjectID = "985"; */
-"985.title" = "OK";
+
+@interface CESyntaxTermsEditViewController : NSViewController
+
+- (nullable instancetype)initWithStynaxType:(nonnull NSString *)syntaxType;
+
+@end
