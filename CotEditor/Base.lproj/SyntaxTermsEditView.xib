@@ -5,8 +5,9 @@
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9060"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="NSViewController">
+        <customObject id="-2" userLabel="File's Owner" customClass="CESyntaxTermsEditViewController">
             <connections>
+                <outlet property="termsController" destination="SKZ-Xe-n9z" id="Dzr-yK-OTp"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
             </connections>
         </customObject>
@@ -273,9 +274,6 @@
                 <string>regularExpression</string>
                 <string>ignoreCase</string>
             </declaredKeys>
-            <connections>
-                <binding destination="-2" name="contentArray" keyPath="representedObject" id="iEd-Qy-dgR"/>
-            </connections>
         </arrayController>
         <customObject id="Dlt-nc-ate" customClass="CESyntaxEditTableViewDelegate"/>
     </objects>

@@ -54,6 +54,8 @@
 		2A15832818E39B7400601026 /* TextKeyBindingsEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A15832618E39B7400601026 /* TextKeyBindingsEditView.xib */; };
 		2A15833518E3B83F00601026 /* CEConsolePanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A15833418E3B83F00601026 /* CEConsolePanelController.m */; };
 		2A162FEA1AF395A400E97285 /* CEUpdaterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A162FE91AF395A400E97285 /* CEUpdaterManager.m */; };
+		2A1A3E4F1C099A21007FEA7A /* CESyntaxTermsEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A1A3E4D1C099A21007FEA7A /* CESyntaxTermsEditViewController.m */; };
+		2A1A3E501C099A21007FEA7A /* CESyntaxTermsEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A1A3E4D1C099A21007FEA7A /* CESyntaxTermsEditViewController.m */; };
 		2A1EB5C419AD469500C1E37E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A1EB5C319AD469500C1E37E /* Images.xcassets */; };
 		2A2179F61A07093B002C4AB1 /* SyntaxMap.json in Resources */ = {isa = PBXBuildFile; fileRef = 2A2179F51A07093B002C4AB1 /* SyntaxMap.json */; };
 		2A2BDF0D198A899E0029848B /* NSString+JapaneseTransform.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A2BDF0C198A899E0029848B /* NSString+JapaneseTransform.m */; };
@@ -489,6 +491,8 @@
 		2A15833418E3B83F00601026 /* CEConsolePanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CEConsolePanelController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		2A162FE81AF395A400E97285 /* CEUpdaterManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEUpdaterManager.h; sourceTree = "<group>"; };
 		2A162FE91AF395A400E97285 /* CEUpdaterManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEUpdaterManager.m; sourceTree = "<group>"; };
+		2A1A3E4C1C099A21007FEA7A /* CESyntaxTermsEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CESyntaxTermsEditViewController.h; sourceTree = "<group>"; };
+		2A1A3E4D1C099A21007FEA7A /* CESyntaxTermsEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CESyntaxTermsEditViewController.m; sourceTree = "<group>"; };
 		2A1EB5C319AD469500C1E37E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		2A2179ED1A07011C002C4AB1 /* makeSyntaxMap.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = makeSyntaxMap.rb; sourceTree = "<group>"; };
 		2A2179F51A07093B002C4AB1 /* SyntaxMap.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SyntaxMap.json; sourceTree = "<group>"; };
@@ -1175,6 +1179,8 @@
 			children = (
 				2A3FB2AB18ECEFF200D9CB2C /* CESyntaxEditSheetController.h */,
 				2A3FB2AC18ECEFF200D9CB2C /* CESyntaxEditSheetController.m */,
+				2A1A3E4C1C099A21007FEA7A /* CESyntaxTermsEditViewController.h */,
+				2A1A3E4D1C099A21007FEA7A /* CESyntaxTermsEditViewController.m */,
 				2A3A75B119E77F32001DAB88 /* CESyntaxValidationViewController.h */,
 				2A3A75B219E77F32001DAB88 /* CESyntaxValidationViewController.m */,
 				2A2E03491A4BF842006ABE9F /* CESyntaxEditTableViewDelegate.h */,
@@ -1995,6 +2001,7 @@
 				2A6F0DD01B5500E100C2D03C /* CEFindPanelTextClipView.m in Sources */,
 				2A6415951BD10EFA0080358E /* NSString+Indentation.m in Sources */,
 				2A6F0DD11B5500E100C2D03C /* CEFindPanelLayoutManager.m in Sources */,
+				2A1A3E501C099A21007FEA7A /* CESyntaxTermsEditViewController.m in Sources */,
 				2A6F0DD21B5500E100C2D03C /* CETheme.m in Sources */,
 				2A6F0DD31B5500E100C2D03C /* CEMenuItemCell.m in Sources */,
 				2A6F0DD41B5500E100C2D03C /* CECharacterPopoverController.m in Sources */,
@@ -2076,6 +2083,7 @@
 				2A436DDF1A4288AC00275FD4 /* CEDocumentAnalyzer.m in Sources */,
 				25859EC1076D92D60020F779 /* CEPreferencesWindowController.m in Sources */,
 				259BFDCE076EBF7E00A5A6D0 /* CEDocumentController.m in Sources */,
+				2A1A3E4F1C099A21007FEA7A /* CESyntaxTermsEditViewController.m in Sources */,
 				2A2E034B1A4BF842006ABE9F /* CESyntaxEditTableViewDelegate.m in Sources */,
 				25AC091C077190EB00B0C91C /* CEPrefEncodingDataSource.m in Sources */,
 				2A149DBF1901828600A9D6EF /* CEFormatPaneController.m in Sources */,

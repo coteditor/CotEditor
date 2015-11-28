@@ -27,6 +27,7 @@
  */
 
 #import "CESyntaxEditSheetController.h"
+#import "CESyntaxTermsEditViewController.h"
 #import "CESyntaxValidationViewController.h"
 #import "CESyntaxManager.h"
 #import "Constants.h"
@@ -153,13 +154,8 @@ typedef NS_ENUM(NSUInteger, CESyntaxEditViewIndex) {
     // setup keywords views (until Characters tab)
     for (NSUInteger i = 0; i <= CharactersTab; i++) {
         NSString *key = kAllSyntaxKeys[i];
-        viewControllers[i] = [[NSViewController alloc] initWithNibName:@"SyntaxTermsEditView" bundle:nil];
-        [viewControllers[i] bind:@"representedObject"
-                        toObject:[self style]
-                     withKeyPath:key
-                         options:@{NSNullPlaceholderBindingOption: [NSMutableArray array]}];
+        viewControllers[i] = [[CESyntaxTermsEditViewController alloc] initWithStynaxType:key];
     }
-    
     viewControllers[CommentsTab] = [[NSViewController alloc] initWithNibName:@"SyntaxCommentsEditView" bundle:nil];
     
     [viewControllers addObject:[NSNull null]];  // separator
@@ -174,7 +170,7 @@ typedef NS_ENUM(NSUInteger, CESyntaxEditViewIndex) {
     viewControllers[ValidationTab] = [[CESyntaxValidationViewController alloc] initWithNibName:@"SyntaxValidationView" bundle:nil];
     
     for (__kindof NSViewController *viewController in viewControllers) {
-        if ([viewController isKindOfClass:[NSNull class]] || [viewController representedObject] != nil) { continue; }
+        if ([viewController isKindOfClass:[NSNull class]]) { continue; }
         [viewController setRepresentedObject:[self style]];
     }
     
