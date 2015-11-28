@@ -62,3 +62,5 @@
 /* Class = "NSTableColumn"; headerCell.title = "IC"; ObjectID = "oI5-31-pDw"; */
 "oI5-31-pDw.headerCell.title" = "IC";  /* IC */
 "oI5-31-pDw.headerToolTip" = "Groß-/Kleinschreibung ignorieren";  /* Ignore Case (case-insensitive) */
+/* Class = "NSTableColumn"; headerCell.title = "Description"; ObjectID = "Bla-xg-t6E"; */
+"Bla-xg-t6E.headerCell.title" = "Beschreibung";

@@ -21,6 +21,7 @@ develop
 - Add option to suppress “not writable document” alert.
 - Improve text selection by clicking line numbers view.
 - Tweak style of popup menus in toolbar.
+- Add “description” field that doesn't affect to highlighting but for commenting for each term to the syntax style and syntax style editor.
 - Update Python syntax style:
     - Add several commands and variables that are in `__foo__` form.
     - Add `pyi` extension.
