@@ -34,6 +34,7 @@ develop
     - Add some keywords.
 - Update INI syntax style:
     - Add `.gitconfig` and `.gitmodules` filenames.
+- Update Markdown syntax style.
 
 
 ### Fixes
