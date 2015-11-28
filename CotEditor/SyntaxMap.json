@@ -1,4 +1,15 @@
 {
+  "AWK": {
+    "extensions": [
+      "awk"
+    ],
+    "filenames": [
+
+    ],
+    "interpreters": [
+      "awk"
+    ]
+  },
   "Apache": {
     "extensions": [
       "conf"

@@ -1,0 +1,97 @@
+extensions:
+- keyString: "awk"
+filenames: []
+interpreters:
+- keyString: "awk"
+metadata:
+  version: "1.0.0"
+  author: "1024jp"
+  lastModified: "2015-11-29"
+  license: "Same as CotEditor"
+  description: "posix-awk"
+  distributionURL: "http://coteditor.com"
+keywords:
+- beginString: "BEGIN"
+- beginString: "break"
+- beginString: "continue"
+- beginString: "delete"
+- beginString: "do"
+- beginString: "else"
+- beginString: "END"
+- beginString: "exit"
+- beginString: "for"
+- beginString: "function"
+- beginString: "if"
+- beginString: "in"
+- beginString: "next"
+- beginString: "nextfile"
+- beginString: "print"
+- beginString: "printf"
+- beginString: "return"
+- beginString: "while"
+commands:
+- beginString: "atan2"
+- beginString: "close"
+- beginString: "cos"
+- beginString: "exp"
+- beginString: "getline"
+- beginString: "gsub"
+- beginString: "index"
+- beginString: "int"
+- beginString: "length"
+- beginString: "log"
+- beginString: "match"
+- beginString: "print"
+- beginString: "rand"
+- beginString: "sin"
+- beginString: "split"
+- beginString: "sprintf"
+- beginString: "sqrt"
+- beginString: "srand"
+- beginString: "sub"
+- beginString: "substr"
+- beginString: "system"
+- beginString: "tolower"
+- beginString: "toupper"
+types: []
+attributes: []
+variables:
+- beginString: "\\$\\d\\b"
+  regularExpression: true
+- beginString: "ARGC"
+- beginString: "ARGV"
+- beginString: "CONVFMT"
+- beginString: "ENVIRON"
+- beginString: "FILENAME"
+- beginString: "FNR"
+- beginString: "FS"
+- beginString: "NF"
+- beginString: "NR"
+- beginString: "OFMT"
+- beginString: "OFS"
+- beginString: "ORS"
+- beginString: "RLENGTH"
+- beginString: "RS"
+- beginString: "RSTART"
+- beginString: "SUBSEP"
+values: []
+numbers:
+- beginString: "(?<!\\$)[+-]?\\d+(\\.\\d*)?(e[+-]?\\d+)?"
+  ignoreCase: true
+  regularExpression: true
+strings:
+- beginString: "\""
+  endString: "\""
+characters:
+- beginString: "/"
+  endString: "/"
+  description: "regular expression"
+comments: []
+commentDelimiters:
+  inlineDelimiter: "#"
+outlineMenu:
+- beginString: "BEGIN"
+- beginString: "END"
+- beginString: "function[ \\t]+(\\w+)[ \\t]*\\(([^\\)]*)\\)"
+  keyString: "$1 ($2)"
+completions: []
