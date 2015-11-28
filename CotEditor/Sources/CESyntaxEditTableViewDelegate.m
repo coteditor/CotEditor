@@ -70,7 +70,7 @@
 // ------------------------------------------------------
 {
     // To perform this action,
-    // checkbox (NSBUtton) and column (NSTableColumn) must have the same identifier as the style dict key
+    // checkbox (NSButton) and column (NSTableColumn) must have the same identifier as the style dict key
     
     NSButton *checkbox = (NSButton *)sender;
     BOOL isChecked = ([checkbox state] == NSOnState);
