@@ -30,6 +30,82 @@
                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                 <tableColumns>
+                                    <tableColumn identifier="ignoreCase" editable="NO" width="27" minWidth="27" maxWidth="27" headerToolTip="Ignore Case (case-insensitive)" id="oI5-31-pDw">
+                                        <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="IC">
+                                            <font key="font" metaFont="smallSystem"/>
+                                            <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
+                                        </tableHeaderCell>
+                                        <buttonCell key="dataCell" type="check" bezelStyle="regularSquare" imagePosition="only" alignment="left" controlSize="small" inset="2" id="bG0-wz-WPX">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="titleBar" size="12"/>
+                                        </buttonCell>
+                                        <prototypeCellViews>
+                                            <tableCellView id="ZG7-d6-16m">
+                                                <rect key="frame" x="1" y="1" width="27" height="17"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                <subviews>
+                                                    <button identifier="ignoreCase" translatesAutoresizingMaskIntoConstraints="NO" id="qti-b2-hHN">
+                                                        <rect key="frame" x="-1" y="-3" width="28" height="23"/>
+                                                        <animations/>
+                                                        <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="overlaps" controlSize="small" inset="2" id="rR5-Ur-PbO">
+                                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                            <font key="font" metaFont="smallSystem"/>
+                                                        </buttonCell>
+                                                        <connections>
+                                                            <action selector="didCheckboxClicked:" target="Mps-4k-Noo" id="Yn4-EH-jVH"/>
+                                                            <binding destination="ZG7-d6-16m" name="value" keyPath="objectValue.ignoreCase" id="rpS-X9-EZ5"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstItem="qti-b2-hHN" firstAttribute="top" secondItem="ZG7-d6-16m" secondAttribute="top" id="5G9-sJ-pgb"/>
+                                                    <constraint firstAttribute="trailing" secondItem="qti-b2-hHN" secondAttribute="trailing" constant="2" id="L3M-wJ-79l"/>
+                                                    <constraint firstItem="qti-b2-hHN" firstAttribute="leading" secondItem="ZG7-d6-16m" secondAttribute="leading" constant="2" id="PMF-Bb-IES"/>
+                                                    <constraint firstAttribute="bottom" secondItem="qti-b2-hHN" secondAttribute="bottom" id="Z4S-Eo-hpk"/>
+                                                </constraints>
+                                                <animations/>
+                                            </tableCellView>
+                                        </prototypeCellViews>
+                                    </tableColumn>
+                                    <tableColumn identifier="regularExpression" width="27" minWidth="27" maxWidth="27" headerToolTip="Regular Expression" id="XJj-U2-0se">
+                                        <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="RE">
+                                            <font key="font" metaFont="smallSystem"/>
+                                            <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
+                                        </tableHeaderCell>
+                                        <buttonCell key="dataCell" type="check" bezelStyle="regularSquare" imagePosition="only" alignment="left" controlSize="small" inset="2" id="dZp-ZN-oe0">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="titleBar" size="12"/>
+                                        </buttonCell>
+                                        <prototypeCellViews>
+                                            <tableCellView id="zGq-eu-YtT">
+                                                <rect key="frame" x="31" y="1" width="27" height="17"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                <subviews>
+                                                    <button identifier="regularExpression" translatesAutoresizingMaskIntoConstraints="NO" id="Sp3-PD-epD">
+                                                        <rect key="frame" x="-1" y="-3" width="28" height="23"/>
+                                                        <animations/>
+                                                        <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="overlaps" controlSize="small" inset="2" id="hSF-jh-DGb">
+                                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                            <font key="font" metaFont="smallSystem"/>
+                                                        </buttonCell>
+                                                        <connections>
+                                                            <action selector="didCheckboxClicked:" target="Mps-4k-Noo" id="M1d-ft-MpL"/>
+                                                            <binding destination="zGq-eu-YtT" name="value" keyPath="objectValue.regularExpression" id="I41-2h-RhE"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstAttribute="bottom" secondItem="Sp3-PD-epD" secondAttribute="bottom" id="aro-Pf-R9j"/>
+                                                    <constraint firstAttribute="trailing" secondItem="Sp3-PD-epD" secondAttribute="trailing" constant="2" id="ayR-6X-kTW"/>
+                                                    <constraint firstItem="Sp3-PD-epD" firstAttribute="top" secondItem="zGq-eu-YtT" secondAttribute="top" id="kOZ-Zq-tp9"/>
+                                                    <constraint firstItem="Sp3-PD-epD" firstAttribute="leading" secondItem="zGq-eu-YtT" secondAttribute="leading" constant="2" id="uMt-DF-dNB"/>
+                                                </constraints>
+                                                <animations/>
+                                            </tableCellView>
+                                        </prototypeCellViews>
+                                    </tableColumn>
                                     <tableColumn identifier="beginComments" width="190" minWidth="40" maxWidth="1000" id="1an-HZ-pD7">
                                         <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Begin String">
                                             <font key="font" metaFont="smallSystem"/>
@@ -45,7 +121,7 @@
                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                         <prototypeCellViews>
                                             <tableCellView id="cLR-ml-bO2">
-                                                <rect key="frame" x="1" y="1" width="190" height="17"/>
+                                                <rect key="frame" x="61" y="1" width="190" height="17"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="SxV-uo-Z0U">
@@ -89,7 +165,7 @@
                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                         <prototypeCellViews>
                                             <tableCellView id="rSM-J9-VwA">
-                                                <rect key="frame" x="194" y="1" width="100" height="17"/>
+                                                <rect key="frame" x="254" y="1" width="100" height="17"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="xfd-UI-asU">
@@ -115,82 +191,6 @@
                                                 <connections>
                                                     <outlet property="textField" destination="xfd-UI-asU" id="l0o-cc-GgN"/>
                                                 </connections>
-                                            </tableCellView>
-                                        </prototypeCellViews>
-                                    </tableColumn>
-                                    <tableColumn identifier="regularExpression" width="27" minWidth="27" maxWidth="27" headerToolTip="Regular Expression" id="XJj-U2-0se">
-                                        <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="RE">
-                                            <font key="font" metaFont="smallSystem"/>
-                                            <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
-                                        </tableHeaderCell>
-                                        <buttonCell key="dataCell" type="check" bezelStyle="regularSquare" imagePosition="only" alignment="left" controlSize="small" inset="2" id="dZp-ZN-oe0">
-                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                            <font key="font" metaFont="titleBar" size="12"/>
-                                        </buttonCell>
-                                        <prototypeCellViews>
-                                            <tableCellView id="zGq-eu-YtT">
-                                                <rect key="frame" x="297" y="1" width="27" height="17"/>
-                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                <subviews>
-                                                    <button identifier="regularExpression" translatesAutoresizingMaskIntoConstraints="NO" id="Sp3-PD-epD">
-                                                        <rect key="frame" x="-1" y="-3" width="28" height="23"/>
-                                                        <animations/>
-                                                        <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="overlaps" controlSize="small" inset="2" id="hSF-jh-DGb">
-                                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                            <font key="font" metaFont="smallSystem"/>
-                                                        </buttonCell>
-                                                        <connections>
-                                                            <action selector="didCheckboxClicked:" target="Mps-4k-Noo" id="M1d-ft-MpL"/>
-                                                            <binding destination="zGq-eu-YtT" name="value" keyPath="objectValue.regularExpression" id="I41-2h-RhE"/>
-                                                        </connections>
-                                                    </button>
-                                                </subviews>
-                                                <constraints>
-                                                    <constraint firstAttribute="bottom" secondItem="Sp3-PD-epD" secondAttribute="bottom" id="aro-Pf-R9j"/>
-                                                    <constraint firstAttribute="trailing" secondItem="Sp3-PD-epD" secondAttribute="trailing" constant="2" id="ayR-6X-kTW"/>
-                                                    <constraint firstItem="Sp3-PD-epD" firstAttribute="top" secondItem="zGq-eu-YtT" secondAttribute="top" id="kOZ-Zq-tp9"/>
-                                                    <constraint firstItem="Sp3-PD-epD" firstAttribute="leading" secondItem="zGq-eu-YtT" secondAttribute="leading" constant="2" id="uMt-DF-dNB"/>
-                                                </constraints>
-                                                <animations/>
-                                            </tableCellView>
-                                        </prototypeCellViews>
-                                    </tableColumn>
-                                    <tableColumn identifier="ignoreCase" editable="NO" width="27" minWidth="27" maxWidth="27" headerToolTip="Ignore Case (case-insensitive)" id="oI5-31-pDw">
-                                        <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="IC">
-                                            <font key="font" metaFont="smallSystem"/>
-                                            <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
-                                        </tableHeaderCell>
-                                        <buttonCell key="dataCell" type="check" bezelStyle="regularSquare" imagePosition="only" alignment="left" controlSize="small" inset="2" id="bG0-wz-WPX">
-                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                            <font key="font" metaFont="titleBar" size="12"/>
-                                        </buttonCell>
-                                        <prototypeCellViews>
-                                            <tableCellView id="ZG7-d6-16m">
-                                                <rect key="frame" x="327" y="1" width="27" height="17"/>
-                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                <subviews>
-                                                    <button identifier="ignoreCase" translatesAutoresizingMaskIntoConstraints="NO" id="qti-b2-hHN">
-                                                        <rect key="frame" x="-1" y="-3" width="28" height="23"/>
-                                                        <animations/>
-                                                        <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="overlaps" controlSize="small" inset="2" id="rR5-Ur-PbO">
-                                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                            <font key="font" metaFont="smallSystem"/>
-                                                        </buttonCell>
-                                                        <connections>
-                                                            <action selector="didCheckboxClicked:" target="Mps-4k-Noo" id="Yn4-EH-jVH"/>
-                                                            <binding destination="ZG7-d6-16m" name="value" keyPath="objectValue.ignoreCase" id="rpS-X9-EZ5"/>
-                                                        </connections>
-                                                    </button>
-                                                </subviews>
-                                                <constraints>
-                                                    <constraint firstItem="qti-b2-hHN" firstAttribute="top" secondItem="ZG7-d6-16m" secondAttribute="top" id="5G9-sJ-pgb"/>
-                                                    <constraint firstAttribute="trailing" secondItem="qti-b2-hHN" secondAttribute="trailing" constant="2" id="L3M-wJ-79l"/>
-                                                    <constraint firstItem="qti-b2-hHN" firstAttribute="leading" secondItem="ZG7-d6-16m" secondAttribute="leading" constant="2" id="PMF-Bb-IES"/>
-                                                    <constraint firstAttribute="bottom" secondItem="qti-b2-hHN" secondAttribute="bottom" id="Z4S-Eo-hpk"/>
-                                                </constraints>
-                                                <animations/>
                                             </tableCellView>
                                         </prototypeCellViews>
                                     </tableColumn>
