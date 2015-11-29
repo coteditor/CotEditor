@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9060"/>
+        <capability name="box content view" minToolsVersion="7.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSViewController">
@@ -230,9 +231,25 @@
                         <binding destination="SKZ-Xe-n9z" name="value" keyPath="selection.underline" id="e91-xE-cUI"/>
                     </connections>
                 </button>
+                <box title="Box" boxType="custom" borderType="none" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="SWD-Hc-Qt1">
+                    <rect key="frame" x="421" y="27" width="6" height="1"/>
+                    <view key="contentView" id="5Ai-MU-ivP">
+                        <rect key="frame" x="0.0" y="0.0" width="6" height="1"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
+                    </view>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="6" id="77v-3N-j5B"/>
+                        <constraint firstAttribute="height" constant="1" id="LlT-Ii-3C6"/>
+                    </constraints>
+                    <animations/>
+                    <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
+                    <color key="fillColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                </box>
             </subviews>
             <constraints>
                 <constraint firstItem="ZGp-6x-e5X" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="12" id="1sX-8J-KzE"/>
+                <constraint firstItem="rFv-YW-Uea" firstAttribute="bottom" secondItem="SWD-Hc-Qt1" secondAttribute="bottom" constant="-1" id="2PH-7U-S1j"/>
                 <constraint firstItem="ZGp-6x-e5X" firstAttribute="width" secondItem="w6W-sD-KWD" secondAttribute="width" id="3fc-J6-U9I"/>
                 <constraint firstItem="keq-g7-p76" firstAttribute="top" secondItem="fiO-0i-ClJ" secondAttribute="bottom" constant="8" symbolic="YES" id="3if-H5-GCR"/>
                 <constraint firstItem="eX8-7L-AYT" firstAttribute="leading" secondItem="rFv-YW-Uea" secondAttribute="leading" id="7Ed-5z-xRr"/>
@@ -259,6 +276,7 @@
                 <constraint firstItem="QHn-ch-mKE" firstAttribute="top" secondItem="ZGp-6x-e5X" secondAttribute="bottom" constant="8" symbolic="YES" id="rce-Ea-Q7H"/>
                 <constraint firstItem="ZGp-6x-e5X" firstAttribute="leading" secondItem="w6W-sD-KWD" secondAttribute="leading" id="skW-cW-G4t"/>
                 <constraint firstItem="CHs-4y-PqE" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="12" id="uot-yR-qT7"/>
+                <constraint firstItem="rFv-YW-Uea" firstAttribute="trailing" secondItem="SWD-Hc-Qt1" secondAttribute="trailing" constant="4" id="vdX-oX-Hrs"/>
             </constraints>
             <animations/>
             <point key="canvasLocation" x="140" y="187"/>
