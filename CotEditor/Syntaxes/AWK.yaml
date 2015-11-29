@@ -76,7 +76,7 @@ variables:
 - beginString: "SUBSEP"
 values: []
 numbers:
-- beginString: "(?<!\\$)[+-]?\\d+(\\.\\d*)?(e[+-]?\\d+)?"
+- beginString: "(?<!\\$|\\w)[+-]?\\d+(\\.\\d*)?(e[+-]?\\d+)?"
   ignoreCase: true
   regularExpression: true
 strings:
