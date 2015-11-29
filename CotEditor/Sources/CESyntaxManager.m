@@ -603,7 +603,7 @@ NSString *_Nonnull const CESyntaxValidationMessageKey = @"MessageKey";
 
 //------------------------------------------------------
 /// style名から有効なstyle定義ファイルのURLを返す
-- (NSURL *)URLForUsedStyle:(NSString *)styleName
+- (nullable NSURL *)URLForUsedStyle:(nonnull NSString *)styleName
 //------------------------------------------------------
 {
     return [self URLForUserStyle:styleName available:YES] ?: [self URLForBundledStyle:styleName available:YES];
@@ -612,7 +612,7 @@ NSString *_Nonnull const CESyntaxValidationMessageKey = @"MessageKey";
 
 //------------------------------------------------------
 /// style名からバンドル領域のstyle定義ファイルのURLを返す (availableがYESの場合はファイルが実際に存在するときだけ返す)
-- (nullable NSURL *)URLForBundledStyle:(NSString *)styleName available:(BOOL)available
+- (nullable NSURL *)URLForBundledStyle:(nonnull NSString *)styleName available:(BOOL)available
 //------------------------------------------------------
 {
     NSURL *URL = [[NSBundle mainBundle] URLForResource:styleName withExtension:@"yaml" subdirectory:@"Syntaxes"];
@@ -627,7 +627,7 @@ NSString *_Nonnull const CESyntaxValidationMessageKey = @"MessageKey";
 
 //------------------------------------------------------
 /// style名からユーザ領域のstyle定義ファイルのURLを返す (availableがYESの場合はファイルが実際に存在するときだけ返す)
-- (nullable NSURL *)URLForUserStyle:(NSString *)styleName available:(BOOL)available
+- (nullable NSURL *)URLForUserStyle:(nonnull NSString *)styleName available:(BOOL)available
 //------------------------------------------------------
 {
     NSURL *URL = [[[self userStyleDirectoryURL] URLByAppendingPathComponent:styleName] URLByAppendingPathExtension:@"yaml"];

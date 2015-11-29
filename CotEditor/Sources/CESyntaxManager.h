@@ -72,7 +72,7 @@ extern NSString *_Nonnull const CESyntaxValidationMessageKey;
 - (BOOL)existsMappingConflict;
 - (nonnull NSString *)copiedStyleName:(nonnull NSString *)originalName;
 - (void)saveStyle:(nonnull NSMutableDictionary<NSString *, id> *)style name:(nonnull NSString *)name oldName:(nonnull NSString *)oldName;
-- (nonnull NSArray<NSDictionary<NSString *, NSString *> *> *)validateSyntax:(nonnull NSDictionary *)style;
+- (nonnull NSArray<NSDictionary<NSString *, NSString *> *> *)validateSyntax:(nonnull NSDictionary<NSString *, id> *)style;
 
 @end
 
