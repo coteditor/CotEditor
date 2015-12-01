@@ -24,6 +24,76 @@
 
 <article>
 <header>
+	<h1>CotEditor 2.3.2</h1>
+	<p>release: <time>2015-12</time></p>
+</header>
+
+
+<section>
+<h2>New Features</h2>
+
+<ul>
+	<li>Add “Convert Indentation to Spaces/Tabs” actions to Text > Indentation menu.</li>
+	<li>Add syntax styles for “METAFONT” (Thanks to M.Daimon!), “AWK”, “Git Config” and “Git Ignore”.</li>
+</ul>
+</section>
+
+
+<section>
+<h2>Improvements</h2>
+
+<ul>
+	<li>Improve character inspector:
+	<ul>
+		<li>Display also Unicode block if selected letter consists of one character.</li>
+		<li>Display unicode names of each character if selected letter consist of multiple characters.</li>
+		<li>Fix drawing area of zoomed character view.</li>
+		<li>Fix some other trivial issues.</li>
+	</ul></li>
+	<li>Add option to suppress “not writable document” alert.</li>
+	<li>Improve text selection by clicking line numbers view.</li>
+	<li>Tweak style of popup menus in toolbar.</li>
+	<li>Add “description” field that doesn't affect to highlighting but for commenting for each term to the syntax style and syntax style editor.</li>
+	<li>Update Python syntax style:
+	<ul>
+		<li>Add several commands and variables that are in <code>__foo__</code> form.</li>
+		<li>Add <code>pyi</code> extension.</li>
+	</ul></li>
+	<li>Update Perl syntax style:
+	<ul>
+		<li>Add some terms.</li>
+	</ul></li>
+	<li>Update PHP syntax style:
+	<ul>
+		<li>Add terms added on PHP 5.6.</li>
+		<li>Highlight uppercase <code>TRUE</code>, <code>FALSE</code>, <code>AND</code> and <code>OR</code>.</li>
+	</ul></li>
+	<li>Update Haskell syntax style:
+	<ul>
+		<li>Add some keywords.</li>
+	</ul></li>
+	<li>Update DTD, Markdown, reStructuredText and Textile syntax styles to move comments to the description field.</li>
+</ul>
+</section>
+
+
+<section>
+<h2>Fixes</h2>
+
+<ul>
+	<li>Fix an issue where text view drawing was distorted while resizing window.</li>
+	<li>Fix an issue where line endings of a document that has a line ending character at the beginning of the file cannot be interpreted its line ending type correctly.</li>
+	<li>Fix an issue where character inspector returned always <code>U+000A</code> (LF) for line ending even the actual line ending of the document is not LF.</li>
+	<li>Fix character count with a single regional indicator symbol.</li>
+	<li>Fix wrong undo action name on encoding conversion via script.</li>
+</ul>
+</section>
+</article>
+
+
+
+<article>
+<header>
 	<h1>CotEditor 2.3.1</h1>
 	<p>release: <time>2015-11-14</time></p>
 </header>
@@ -65,6 +135,7 @@
 </ul>
 </section>
 </article>
+
 
 
 <article>
