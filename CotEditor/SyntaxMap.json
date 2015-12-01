@@ -149,6 +149,19 @@
 
     ]
   },
+  "Git Config": {
+    "extensions": [
+
+    ],
+    "filenames": [
+      ".gitconfig",
+      ".gitmodules",
+      "gitconfig"
+    ],
+    "interpreters": [
+
+    ]
+  },
   "Go": {
     "extensions": [
       "go"
