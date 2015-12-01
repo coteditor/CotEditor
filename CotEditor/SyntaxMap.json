@@ -162,6 +162,17 @@
 
     ]
   },
+  "Git Ignore": {
+    "extensions": [
+
+    ],
+    "filenames": [
+      ".gitignore"
+    ],
+    "interpreters": [
+
+    ]
+  },
   "Go": {
     "extensions": [
       "go"
@@ -558,17 +569,6 @@
     ],
     "filenames": [
 
-    ],
-    "interpreters": [
-
-    ]
-  },
-  "gitignore": {
-    "extensions": [
-
-    ],
-    "filenames": [
-      ".gitignore"
     ],
     "interpreters": [
 

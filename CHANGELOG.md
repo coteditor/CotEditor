@@ -8,7 +8,7 @@ develop
 ### New Features
 
 - Add “Convert Indentation to Spaces/Tabs” actions to Text > Indentation menu.
-- Add syntax styles for “METAFONT” (Thanks to M.Daimon!), “AWK”, “Git Config” and “gitignore”.
+- Add syntax styles for “METAFONT” (Thanks to M.Daimon!), “AWK”, “Git Config” and “Git Ignore”.
 
 
 ### Improvements
