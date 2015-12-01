@@ -32,8 +32,6 @@ develop
     - Highlight uppercase `TRUE`, `FALSE`, `AND` and `OR`.
 - Update Haskell syntax style:
     - Add some keywords.
-- Update INI syntax style:
-    - Add `.gitconfig` and `.gitmodules` filenames.
 - Update DTD, Markdown, reStructuredText and Textile syntax styles to move comments to the description field.
 
 
