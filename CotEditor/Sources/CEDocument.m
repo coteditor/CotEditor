@@ -1354,6 +1354,18 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
                 return string;
             }
             
+        // UTF-32 判定
+        } else if ((memchr([data bytes], 0xfffe0000, 4) != NULL) ||
+                   (memchr([data bytes], 0x0000feff, 4) != NULL))
+        {
+            NSStringEncoding encoding = NSUTF32StringEncoding;
+            [triedEncodings addObject:@(encoding)];
+            NSString *string = [[NSString alloc] initWithData:data encoding:encoding];
+            if (string) {
+                *usedEncoding = encoding;
+                return string;
+            }
+            
         // UTF-16 判定
         } else if ((memchr([data bytes], 0xfffe, 2) != NULL) ||
                    (memchr([data bytes], 0xfeff, 2) != NULL))
