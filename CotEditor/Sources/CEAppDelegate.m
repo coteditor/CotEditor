@@ -96,7 +96,7 @@
 // ------------------------------------------------------
 {
     // Encoding list
-    NSMutableArray<NSNumber *> *encodings = [[NSMutableArray alloc] initWithCapacity:kSizeOfCFStringEncodingList];
+    NSMutableArray<NSNumber *> *encodings = [NSMutableArray arrayWithCapacity:kSizeOfCFStringEncodingList];
     for (NSUInteger i = 0; i < kSizeOfCFStringEncodingList; i++) {
         [encodings addObject:@(kCFStringEncodingList[i])];
     }
