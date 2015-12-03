@@ -218,7 +218,7 @@ static NSDictionary<NSString *, NSString *> *kUnprintableKeyTable;
 - (BOOL)usesDefaultMenuKeyBindings
 // ------------------------------------------------------
 {
-    return ![[self menuKeyBindingSettingFileURL] checkResourceIsReachableAndReturnError:nil];
+    return [[self menuKeyBindingDict] isEqualToDictionary:[self defaultMenuKeyBindingDict]];
 }
 
 
@@ -227,10 +227,10 @@ static NSDictionary<NSString *, NSString *> *kUnprintableKeyTable;
 - (BOOL)usesDefaultTextKeyBindings
 // ------------------------------------------------------
 {
-    NSArray<NSString *> *factoryDefault = [[[NSUserDefaults alloc] init] volatileDomainForName:NSRegistrationDomain][CEDefaultInsertCustomTextArrayKey];
-    NSArray<NSString *> *insertTextArray = [[NSUserDefaults standardUserDefaults] stringArrayForKey:CEDefaultInsertCustomTextArrayKey];
+    NSArray<NSString *> *defaultInsertTexts = [[[NSUserDefaults alloc] init] volatileDomainForName:NSRegistrationDomain][CEDefaultInsertCustomTextArrayKey];
+    NSArray<NSString *> *insertTexts = [[NSUserDefaults standardUserDefaults] stringArrayForKey:CEDefaultInsertCustomTextArrayKey];
     
-    return [insertTextArray isEqualToArray:factoryDefault] && [[self textKeyBindingDict] isEqualToDictionary:[self defaultTextKeyBindingDict]];
+    return [insertTexts isEqualToArray:defaultInsertTexts] && [[self textKeyBindingDict] isEqualToDictionary:[self defaultTextKeyBindingDict]];
 }
 
 
