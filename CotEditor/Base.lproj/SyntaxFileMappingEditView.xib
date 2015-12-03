@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9060" systemVersion="15C47a" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9060" systemVersion="15C48a" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9060"/>
@@ -81,7 +81,7 @@
                                     <binding destination="4o4-Do-zNT" name="selectionIndexes" keyPath="selectionIndexes" previousBinding="bbM-l4-fcf" id="fTD-do-F13"/>
                                     <binding destination="4o4-Do-zNT" name="sortDescriptors" keyPath="sortDescriptors" previousBinding="fTD-do-F13" id="XQK-i3-I2j"/>
                                     <outlet property="dataSource" destination="4o4-Do-zNT" id="5Gc-bx-obL"/>
-                                    <outlet property="delegate" destination="d7s-my-ran" id="8Bh-ea-kik"/>
+                                    <outlet property="delegate" destination="d7s-my-ran" id="pCF-45-45s"/>
                                 </connections>
                             </tableView>
                         </subviews>
@@ -165,7 +165,7 @@
                                     <binding destination="GNq-TE-e6o" name="selectionIndexes" keyPath="selectionIndexes" previousBinding="Ucq-UV-FuQ" id="M0K-Be-rce"/>
                                     <binding destination="GNq-TE-e6o" name="sortDescriptors" keyPath="sortDescriptors" previousBinding="M0K-Be-rce" id="1sB-bq-dyH"/>
                                     <outlet property="dataSource" destination="GNq-TE-e6o" id="Ega-x4-USD"/>
-                                    <outlet property="delegate" destination="d7s-my-ran" id="Jhr-ME-zyZ"/>
+                                    <outlet property="delegate" destination="A1s-0g-450" id="H5P-nb-f9e"/>
                                 </connections>
                             </tableView>
                         </subviews>
@@ -275,7 +275,7 @@
                                     <binding destination="b1i-d7-DoG" name="selectionIndexes" keyPath="selectionIndexes" previousBinding="iAr-Kc-eUO" id="I5G-Fk-P0B"/>
                                     <binding destination="b1i-d7-DoG" name="sortDescriptors" keyPath="sortDescriptors" previousBinding="I5G-Fk-P0B" id="bcr-JC-C2G"/>
                                     <outlet property="dataSource" destination="b1i-d7-DoG" id="YJP-EB-9Nw"/>
-                                    <outlet property="delegate" destination="d7s-my-ran" id="jkZ-n0-LTV"/>
+                                    <outlet property="delegate" destination="T80-vh-snI" id="k3P-3y-16Q"/>
                                 </connections>
                             </tableView>
                         </subviews>
@@ -490,7 +490,21 @@
                 <binding destination="x4x-57-b26" name="contentArray" keyPath="selection.interpreters" id="oBh-2N-vcl"/>
             </connections>
         </arrayController>
-        <customObject id="d7s-my-ran" customClass="CESyntaxEditTableViewDelegate"/>
+        <customObject id="d7s-my-ran" customClass="CESyntaxEditTableViewDelegate">
+            <connections>
+                <outlet property="arrayController" destination="4o4-Do-zNT" id="3Se-9O-qZt"/>
+            </connections>
+        </customObject>
+        <customObject id="A1s-0g-450" customClass="CESyntaxEditTableViewDelegate">
+            <connections>
+                <outlet property="arrayController" destination="GNq-TE-e6o" id="IYP-VP-dWx"/>
+            </connections>
+        </customObject>
+        <customObject id="T80-vh-snI" customClass="CESyntaxEditTableViewDelegate">
+            <connections>
+                <outlet property="arrayController" destination="b1i-d7-DoG" id="TRE-Uh-zQr"/>
+            </connections>
+        </customObject>
     </objects>
     <resources>
         <image name="NSAddTemplate" width="11" height="11"/>

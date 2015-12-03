@@ -39,7 +39,7 @@ extern NSString *_Nonnull const CEKeyBindingChildrenKey;
 @interface CEKeyBindingManager : NSObject
 
 // singleton
-+ (nonnull instancetype)sharedManager;
++ (nonnull CEKeyBindingManager *)sharedManager;
 
 
 // Public methods

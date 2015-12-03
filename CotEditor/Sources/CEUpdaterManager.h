@@ -33,7 +33,7 @@
 @property (nonatomic, readonly, getter=isPrerelease) BOOL prerelease;
 
 // singleton
-+ (nonnull instancetype)sharedManager;
++ (nonnull CEUpdaterManager *)sharedManager;
 
 
 // Public Methods

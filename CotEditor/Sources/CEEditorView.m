@@ -27,15 +27,18 @@
  */
 
 #import "CEEditorView.h"
-#import <OgreKit/OgreTextFinder.h>
 #import "CEWindowController.h"
+#import "CENavigationBarController.h"
 #import "CEEditorWrapper.h"
 #import "CEEditorScrollView.h"
 #import "CESyntaxParser.h"
 #import "CEThemeManager.h"
+#import "CELayoutManager.h"
 #import "CETextFinder.h"
 #import "NSString+CENewLine.h"
 #import "Constants.h"
+
+#import <OgreKit/OgreTextFinder.h>
 
 
 @interface CEEditorView ()

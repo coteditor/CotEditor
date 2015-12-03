@@ -22,6 +22,7 @@ Change Log
 - Improve text selection by clicking line numbers view.
 - Tweak style of popup menus in toolbar.
 - Add “description” field that doesn't affect to highlighting but for commenting for each term to the syntax style and syntax style editor.
+- Add Swite to Delete action on El Capitan to tables in syntax style editor.
 - Improve text encoding detection for UTF-32.
 - Update Python syntax style:
     - Add several commands and variables that are in `__foo__` form.

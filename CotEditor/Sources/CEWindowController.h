@@ -27,10 +27,10 @@
  */
 
 @import Cocoa;
-#import "CEToolbarController.h"
 
 
 @class CEEditorWrapper;
+@class CEToolbarController;
 
 
 @interface CEWindowController : NSWindowController <NSWindowDelegate>

@@ -27,8 +27,11 @@
  */
 
 #import "CEDocument+ScriptingSupport.h"
-#import <OgreKit/OgreKit.h>
+#import "CETextSelection.h"
+#import "CEEditorWrapper.h"
 #import "CEUtils.h"
+
+#import <OgreKit/OgreKit.h>
 
 
 @implementation CEDocument (ScriptingSupport)

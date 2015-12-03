@@ -40,6 +40,6 @@ extern NSString *_Nonnull const CEEncodingListDidUpdateNotification;
 
 
 // singleton
-+ (nonnull instancetype)sharedManager;
++ (nonnull CEEncodingManager *)sharedManager;
 
 @end

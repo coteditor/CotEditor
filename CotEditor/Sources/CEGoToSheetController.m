@@ -26,6 +26,7 @@
  */
 
 #import "CEGoToSheetController.h"
+#import "CEEditorWrapper.h"
 
 
 @interface CEGoToSheetController ()

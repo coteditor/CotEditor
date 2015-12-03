@@ -27,14 +27,12 @@
  */
 
 @import Cocoa;
-#import "CEWindowController.h"
-#import "CETextSelection.h"
-#import "CEEditorWrapper.h"
 #import "NSString+CENewLine.h"
 
 
 @class CEEditorWrapper;
 @class CEWindowController;
+@class CETextSelection;
 
 
 // Incompatible chars listController key

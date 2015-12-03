@@ -53,7 +53,7 @@ extern NSString *_Nonnull const CESyntaxValidationMessageKey;
 
 
 // singleton
-+ (nonnull instancetype)sharedManager;
++ (nonnull CESyntaxManager *)sharedManager;
 
 
 // public methods

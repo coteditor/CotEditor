@@ -28,6 +28,7 @@
  */
 
 #import "CEPanelController.h"
+#import "CEWindowController.h"
 
 
 @interface CEPanelController ()
@@ -50,7 +51,7 @@ static NSMutableDictionary<NSString *, __kindof CEPanelController *> *instances;
 
 // ------------------------------------------------------
 /// return shared instance (inheritable)
-+ (nonnull instancetype) sharedController
++ (nonnull instancetype)sharedController
 // ------------------------------------------------------
 {
     // This method is based on the following article:

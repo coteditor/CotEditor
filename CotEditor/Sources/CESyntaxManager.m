@@ -26,10 +26,11 @@
  
  */
 
-#import <YAML-Framework/YAMLSerialization.h>
 #import "CESyntaxManager.h"
 #import "CEAppDelegate.h"
 #import "Constants.h"
+
+#import <YAML-Framework/YAMLSerialization.h>
 
 
 // notifications
@@ -74,7 +75,7 @@ NSString *_Nonnull const CESyntaxValidationMessageKey = @"MessageKey";
 
 // ------------------------------------------------------
 /// return singleton instance
-+ (nonnull instancetype)sharedManager
++ (nonnull CESyntaxManager *)sharedManager
 // ------------------------------------------------------
 {
     static dispatch_once_t onceToken;

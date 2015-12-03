@@ -66,7 +66,7 @@ extern NSString *_Nonnull const CEThemeDidUpdateNotification;
 
 
 // singleton
-+ (nonnull instancetype)sharedManager;
++ (nonnull CEThemeManager *)sharedManager;
 
 
 // public methods

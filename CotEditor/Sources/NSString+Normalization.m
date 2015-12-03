@@ -79,7 +79,7 @@
         return [self copy];
     }
     
-    NSString *result = [NSString stringWithUTF8String:utf8_dest];
+    NSString *result = @(utf8_dest);
     free(utf8_dest);
     
     return result;
@@ -96,7 +96,7 @@
     char *destStr = (char *)malloc(length);
     
     Boolean success = CFStringGetFileSystemRepresentation(sourceStr, destStr, length);
-    NSString *result = success ? [NSString stringWithUTF8String:destStr] : self;
+    NSString *result = success ? @(destStr) : self;
     free(destStr);
     
     return result;

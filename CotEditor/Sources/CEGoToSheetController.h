@@ -26,7 +26,9 @@
  */
 
 @import AppKit;
-#import "CEEditorWrapper.h"
+
+
+@class CEEditorWrapper;
 
 
 @interface CEGoToSheetController : NSWindowController <NSWindowDelegate>

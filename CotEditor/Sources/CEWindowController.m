@@ -27,15 +27,17 @@
  */
 
 #import "CEWindowController.h"
-#import <OgreKit/OgreTextFinder.h>
 #import "CEWindow.h"
 #import "CEDocument.h"
+#import "CEToolbarController.h"
 #import "CEStatusBarController.h"
 #import "CEIncompatibleCharsViewController.h"
 #import "CEEditorWrapper.h"
 #import "CESyntaxManager.h"
 #import "CEDocumentAnalyzer.h"
 #import "Constants.h"
+
+#import <OgreKit/OgreTextFinder.h>
 
 
 // sidebar mode
