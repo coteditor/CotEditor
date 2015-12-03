@@ -32,30 +32,6 @@
 
 @implementation CEUtils
 
-static const NSArray<NSNumber *> *invalidYenEncodings;
-
-
-#pragma mark Superclass Methods
-
-// ------------------------------------------------------
-/// initialize class
-+ (void)initialize
-// ------------------------------------------------------
-{
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        NSMutableArray<NSNumber *> *encodings = [NSMutableArray arrayWithCapacity:kSizeOfCFStringEncodingInvalidYenList];
-        for (NSUInteger i = 0; i < kSizeOfCFStringEncodingInvalidYenList; i++) {
-            NSStringEncoding encoding = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingInvalidYenList[i]);
-            [encodings addObject:@(encoding)];
-        }
-        
-        invalidYenEncodings = [encodings copy];
-    });
-}
-
-
-
 #pragma mark Public Methods
 
 // ------------------------------------------------------
@@ -111,21 +87,18 @@ static const NSArray<NSNumber *> *invalidYenEncodings;
 + (NSStringEncoding)encodingFromName:(nonnull NSString *)encodingName
 // ------------------------------------------------------
 {
-    NSArray<NSNumber *> *encodings = [[NSUserDefaults standardUserDefaults] arrayForKey:CEDefaultEncodingListKey];
-    NSStringEncoding encoding;
-    BOOL isValid = NO;
-    
-    for (NSNumber __strong *encodingNumber in encodings) {
-        CFStringEncoding cfEncoding = [encodingNumber unsignedLongValue];
-        if (cfEncoding != kCFStringEncodingInvalidId) { // = separator
-            encoding = CFStringConvertEncodingToNSStringEncoding(cfEncoding);
-            if ([encodingName isEqualToString:[NSString localizedNameOfStringEncoding:encoding]]) {
-                isValid = YES;
-                break;
-            }
+    for (NSUInteger i = 0; i < kSizeOfCFStringEncodingList; i++) {
+        CFStringEncoding cfEncoding = kCFStringEncodingList[i];
+        
+        if (cfEncoding == kCFStringEncodingInvalidId) { continue; }  // = separator
+        
+        NSStringEncoding encoding = CFStringConvertEncodingToNSStringEncoding(cfEncoding);
+        if ([encodingName isEqualToString:[NSString localizedNameOfStringEncoding:encoding]]) {
+            return encoding;
         }
     }
-    return (isValid) ? encoding : NSNotFound;
+    
+    return NSNotFound;
 }
 
 
@@ -134,6 +107,19 @@ static const NSArray<NSNumber *> *invalidYenEncodings;
 + (BOOL)isInvalidYenEncoding:(NSStringEncoding)encoding
 // ------------------------------------------------------
 {
+    static NSArray<NSNumber *> *invalidYenEncodings;
+    
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        NSMutableArray<NSNumber *> *encodings = [NSMutableArray arrayWithCapacity:kSizeOfCFStringEncodingInvalidYenList];
+        for (NSUInteger i = 0; i < kSizeOfCFStringEncodingInvalidYenList; i++) {
+            NSStringEncoding encoding = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingInvalidYenList[i]);
+            [encodings addObject:@(encoding)];
+        }
+        
+        invalidYenEncodings = [encodings copy];
+    });
+    
     return [invalidYenEncodings containsObject:@(encoding)];
 }
 
