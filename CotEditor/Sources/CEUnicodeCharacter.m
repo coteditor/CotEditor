@@ -134,8 +134,7 @@
         int32_t prop = u_getIntPropertyValue([self character], UCHAR_GENERAL_CATEGORY);
         const char *categoryNameChars = u_getPropertyValueName(UCHAR_GENERAL_CATEGORY, prop, U_LONG_PROPERTY_NAME);
         
-        _categoryName = [[NSString stringWithUTF8String:categoryNameChars]
-                         stringByReplacingOccurrencesOfString:@"_" withString:@" "];  // sanitize
+        _categoryName = [@(categoryNameChars) stringByReplacingOccurrencesOfString:@"_" withString:@" "];  // sanitize
     }
     
     return _categoryName;
@@ -152,8 +151,7 @@
         int32_t prop = u_getIntPropertyValue([self character], UCHAR_BLOCK);
         const char *blockNameChars = u_getPropertyValueName(UCHAR_BLOCK, prop, U_LONG_PROPERTY_NAME);
         
-        _blockName = [[NSString stringWithUTF8String:blockNameChars]
-                      stringByReplacingOccurrencesOfString:@"_" withString:@" "];  // sanitize
+        _blockName = [@(blockNameChars) stringByReplacingOccurrencesOfString:@"_" withString:@" "];  // sanitize
     }
     
     return _blockName;
@@ -210,8 +208,7 @@
     for (int i = 0; i < UBLOCK_COUNT; i++) {
         const char *blockNameChars = u_getPropertyValueName(UCHAR_BLOCK, i, U_LONG_PROPERTY_NAME);
         
-        NSString *blockName = [[NSString stringWithUTF8String:blockNameChars]
-                               stringByReplacingOccurrencesOfString:@"_" withString:@" "];  // sanitize
+        NSString *blockName = [@(blockNameChars) stringByReplacingOccurrencesOfString:@"_" withString:@" "];  // sanitize
         blockName = [CEUnicodeCharacter sanitizeBlockName:blockName];
         
         NSString *localizedBlockName = [bundle localizedStringForKey:blockName value:nil table:@"Unicode"];
