@@ -29,6 +29,13 @@
 #import "CESyntaxEditTableViewDelegate.h"
 
 
+@interface CESyntaxEditTableViewDelegate ()
+
+@property (nonatomic, nullable, weak) IBOutlet NSArrayController *arrayController;
+
+@end
+
+
 @implementation CESyntaxEditTableViewDelegate
 
 #pragma mark Delegate
@@ -67,6 +74,27 @@
             }
         });
     }
+}
+
+
+// ------------------------------------------------------
+/// set action on swiping theme name (on El Capitan and leter)
+- (nonnull NSArray<NSTableViewRowAction *> *)tableView:(nonnull NSTableView *)tableView rowActionsForRow:(NSInteger)row edge:(NSTableRowActionEdge)edge
+// ------------------------------------------------------
+{
+    NSArrayController *arrayController = [self arrayController];
+    
+    if (!arrayController || edge == NSTableRowActionEdgeLeading) { return @[]; }
+    
+    // Delete
+    return @[[NSTableViewRowAction rowActionWithStyle:NSTableViewRowActionStyleDestructive
+                                                title:NSLocalizedString(@"Delete", nil)
+                                              handler:^(NSTableViewRowAction *action, NSInteger row)
+              {
+                  NSIndexSet *indexes = [NSIndexSet indexSetWithIndex:row];
+                  [tableView removeRowsAtIndexes:indexes withAnimation:NSTableViewAnimationSlideLeft];
+                  [arrayController removeObjectsAtArrangedObjectIndexes:indexes];
+              }]];
 }
 
 
