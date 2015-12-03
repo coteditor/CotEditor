@@ -25,8 +25,9 @@
  
  */
 
-#import <OgreKit/OgreKit.h>
 #import "CEFindResultViewController.h"
+
+#import <OgreKit/OgreKit.h>
 
 /// the maximum number of characters to add to the left of the matched string
 static const int kMaxLeftMargin = 64;

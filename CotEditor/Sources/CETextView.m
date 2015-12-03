@@ -32,6 +32,9 @@
  */
 
 #import "CETextView.h"
+#import "CELayoutManager.h"
+#import "CEWindowController.h"
+#import "CEEditorWrapper.h"
 #import "CEColorCodePanelController.h"
 #import "CECharacterPopoverController.h"
 #import "CEEditorScrollView.h"
@@ -39,6 +42,7 @@
 #import "CEKeyBindingManager.h"
 #import "CEScriptManager.h"
 #import "CEWindow.h"
+#import "NSString+ComposedCharacter.h"
 #import "NSString+JapaneseTransform.h"
 #import "NSString+Normalization.h"
 #import "NSString+Indentation.h"

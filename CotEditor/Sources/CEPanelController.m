@@ -28,6 +28,7 @@
  */
 
 #import "CEPanelController.h"
+#import "CEWindowController.h"
 
 
 @interface CEPanelController ()

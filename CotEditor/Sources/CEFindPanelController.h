@@ -26,7 +26,8 @@
  */
 
 @import Cocoa;
-#import <OgreKit/OgreKit.h>
+
+#import <OgreKit/OgreFindPanelController.h>
 
 
 typedef NS_ENUM(NSInteger, CETextFinderAction) {

@@ -26,10 +26,11 @@
  
  */
 
-#import <YAML-Framework/YAMLSerialization.h>
 #import "CESyntaxManager.h"
 #import "CEAppDelegate.h"
 #import "Constants.h"
+
+#import <YAML-Framework/YAMLSerialization.h>
 
 
 // notifications

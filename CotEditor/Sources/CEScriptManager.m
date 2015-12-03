@@ -29,6 +29,7 @@
 #import "CEScriptManager.h"
 #import "CEConsolePanelController.h"
 #import "CEDocument.h"
+#import "CEEditorWrapper.h"
 #import "CEUtils.h"
 #import "NSString+Sandboxing.h"
 #import "Constants.h"

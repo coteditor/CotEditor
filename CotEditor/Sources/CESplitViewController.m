@@ -28,6 +28,7 @@
 
 #import "CESplitViewController.h"
 #import "CEEditorView.h"
+#import "CENavigationBarController.h"
 #import "Constants.h"
 
 

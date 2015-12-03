@@ -33,7 +33,6 @@
 
 @import Cocoa;
 #import "CETextViewProtocol.h"
-#import "CELayoutManager.h"
 
 
 @interface CETextView : NSTextView <NSTextInputClient, CETextViewProtocol>

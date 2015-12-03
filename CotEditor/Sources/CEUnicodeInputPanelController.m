@@ -26,6 +26,7 @@
  */
 
 #import "CEUnicodeInputPanelController.h"
+#import "CEWindowController.h"
 #import "CEEditorWrapper.h"
 
 

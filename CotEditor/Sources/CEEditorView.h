@@ -27,10 +27,10 @@
  */
 
 @import Cocoa;
-#import "CENavigationBarController.h"
 #import "CETextView.h"
 
 
+@class CENavigationBarController;
 @class CEEditorWrapper;
 @class CESyntaxParser;
 
