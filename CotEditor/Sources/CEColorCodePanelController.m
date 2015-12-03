@@ -51,7 +51,7 @@
 
 // ------------------------------------------------------
 /// return singleton instance
-+ (nonnull instancetype)sharedController
++ (nonnull CEColorCodePanelController *)sharedController
 // ------------------------------------------------------
 {
     static dispatch_once_t onceToken;

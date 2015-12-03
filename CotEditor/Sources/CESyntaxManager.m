@@ -74,7 +74,7 @@ NSString *_Nonnull const CESyntaxValidationMessageKey = @"MessageKey";
 
 // ------------------------------------------------------
 /// return singleton instance
-+ (nonnull instancetype)sharedManager
++ (nonnull CESyntaxManager *)sharedManager
 // ------------------------------------------------------
 {
     static dispatch_once_t onceToken;

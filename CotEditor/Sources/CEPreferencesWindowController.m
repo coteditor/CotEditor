@@ -54,7 +54,7 @@
 
 // ------------------------------------------------------
 /// return singleton instance
-+ (nonnull instancetype)sharedController
++ (nonnull CEPreferencesWindowController *)sharedController
 // ------------------------------------------------------
 {
     static dispatch_once_t onceToken;

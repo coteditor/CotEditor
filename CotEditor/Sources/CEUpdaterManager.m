@@ -50,7 +50,7 @@ static NSString *_Nonnull const AppCastBetaURL = @"https://coteditor.com/appcast
 
 // ------------------------------------------------------
 /// return singleton instance
-+ (nonnull instancetype)sharedManager
++ (nonnull CEUpdaterManager *)sharedManager
 // ------------------------------------------------------
 {
     static dispatch_once_t onceToken;

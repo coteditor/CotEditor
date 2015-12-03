@@ -1108,7 +1108,7 @@ static NSPoint kTextContainerOrigin;
 
 // ------------------------------------------------------
 /// copy selection with syntax highlight and font style
-- (void)copyWithStyle:(id)sender
+- (void)copyWithStyle:(nullable id)sender
 // ------------------------------------------------------
 {
     if ([self selectedRange].length == 0) { return; }

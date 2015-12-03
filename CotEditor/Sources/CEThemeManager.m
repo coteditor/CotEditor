@@ -82,7 +82,7 @@ NSString *_Nonnull const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotifi
 
 // ------------------------------------------------------
 /// return singleton instance
-+ (nonnull instancetype)sharedManager
++ (nonnull CEThemeManager *)sharedManager
 // ------------------------------------------------------
 {
     static dispatch_once_t onceToken;

@@ -67,7 +67,7 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 
 // ------------------------------------------------------
 /// return singleton instance
-+ (nonnull instancetype)sharedManager
++ (nonnull CEScriptManager *)sharedManager
 // ------------------------------------------------------
 {
     static dispatch_once_t onceToken;

@@ -32,7 +32,7 @@
 @interface CEScriptManager : NSObject
 
 // singleton
-+ (nonnull instancetype)sharedManager;
++ (nonnull CEScriptManager *)sharedManager;
 
 
 // Public method

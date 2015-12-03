@@ -62,7 +62,7 @@ static NSDictionary<NSString *, NSString *> *kUnprintableKeyTable;
 
 // ------------------------------------------------------
 /// return singleton instance
-+ (instancetype)sharedManager
++ (nonnull CEKeyBindingManager *)sharedManager
 // ------------------------------------------------------
 {
     static dispatch_once_t onceToken;
