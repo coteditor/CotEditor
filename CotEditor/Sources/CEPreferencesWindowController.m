@@ -133,7 +133,7 @@
     
     // remove current view from the main view
     for (NSView *view in [[[self window] contentView] subviews]) {
-        [view removeFromSuperview];
+        [view removeFromSuperviewWithoutNeedingDisplay];
     }
     
     // set window title

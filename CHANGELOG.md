@@ -5,6 +5,15 @@ Change Log
 develop
 --------------------------
 
+### Fixes
+
+- Fix layout of character popup on Yosemite and earlier.
+
+
+
+2.3.2 (89)
+--------------------------
+
 ### New Features
 
 - Add “Convert Indentation to Spaces/Tabs” actions to Text > Indentation menu.
