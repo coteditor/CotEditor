@@ -8,6 +8,7 @@ develop
 ### Fixes
 
 - Fix layout of character popup on Yosemite and earlier.
+- Improve general stability.
 
 
 

@@ -207,7 +207,7 @@ NSString *_Nonnull const CEAnalyzerDidUpdateEditorInfoNotification = @"CEAnalyze
             
             // count words
             if (needsAll || [defaults boolForKey:CEDefaultShowStatusBarWordsKey]) {
-                NSSpellChecker *spellChecker = [NSSpellChecker sharedSpellChecker];
+                NSSpellChecker *spellChecker = [[NSSpellChecker alloc] init];
                 numberOfWords = [spellChecker countWordsInString:wholeString language:nil];
                 if (hasSelection) {
                     numberOfSelectedWords = [spellChecker countWordsInString:selectedString language:nil];
