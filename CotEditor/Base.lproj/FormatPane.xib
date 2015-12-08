@@ -506,6 +506,11 @@
                         <action selector="openSyntaxEditSheet:" target="-2" id="aiu-wT-HcQ"/>
                     </connections>
                 </menuItem>
+                <menuItem title="Restore" tag="1" id="Zox-Ve-mru">
+                    <connections>
+                        <action selector="restoreSyntaxStyle:" target="-2" id="5R2-Hy-DC0"/>
+                    </connections>
+                </menuItem>
                 <menuItem title="Delete" tag="1" id="NDE-r5-xAF">
                     <connections>
                         <action selector="deleteSyntaxStyle:" target="-2" id="moN-Rf-KMC"/>

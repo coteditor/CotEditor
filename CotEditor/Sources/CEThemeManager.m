@@ -152,7 +152,7 @@ NSString *_Nonnull const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotifi
     BOOL isBundled = [[self bundledThemeNames] containsObject:themeName];
     
     if (isBundled && isCustomized) {
-        *isCustomized = ([self URLForUserTheme:themeName available:YES]);
+        *isCustomized = ([self URLForUserTheme:themeName available:YES] != nil);
     }
     
     return isBundled;

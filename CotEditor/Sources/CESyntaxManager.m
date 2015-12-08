@@ -199,7 +199,7 @@ NSString *_Nonnull const CESyntaxValidationMessageKey = @"MessageKey";
     BOOL isBundled = [[self bundledStyleNames] containsObject:styleName];
     
     if (isBundled && isCustomized) {
-        *isCustomized = ([self URLForUserStyle:styleName available:YES]);
+        *isCustomized = ([self URLForUserStyle:styleName available:YES] != nil);
     }
     return isBundled;
 }

@@ -153,7 +153,14 @@ NSString *_Nonnull const StyleStateKey = @"state";
         return ([[CESyntaxManager sharedManager] URLForUserStyle:representedStyleName] != nil);
         
     } else if ([menuItem action] == @selector(deleteSyntaxStyle:)) {
-        return ![[CESyntaxManager sharedManager] isBundledStyle:representedStyleName cutomized:nil];
+        BOOL isBundled = [[CESyntaxManager sharedManager] isBundledStyle:representedStyleName cutomized:nil];
+        [menuItem setHidden:(isBundled || !representedStyleName)];
+        
+    } else if ([menuItem action] == @selector(restoreSyntaxStyle:)) {
+        BOOL isCustomized;
+        BOOL isBundled = [[CESyntaxManager sharedManager] isBundledStyle:representedStyleName cutomized:&isCustomized];
+        [menuItem setHidden:(!isBundled || !representedStyleName)];
+        return isCustomized;
     }
     
     return YES;
@@ -270,6 +277,17 @@ NSString *_Nonnull const StyleStateKey = @"state";
     NSString *styleName = ([sender isKindOfClass:[NSMenuItem class]]) ? [sender representedObject] : [self selectedStyleName];
     
     [self deleteSyntaxStyleWithName:styleName];
+}
+
+
+// ------------------------------------------------------
+/// シンタックススタイルリストアボタンが押された
+- (IBAction)restoreSyntaxStyle:(nullable id)sender
+// ------------------------------------------------------
+{
+    NSString *styleName = ([sender isKindOfClass:[NSMenuItem class]]) ? [sender representedObject] : [self selectedStyleName];
+    
+    [self restoreSyntaxStyleWithName:styleName];
 }
 
 
