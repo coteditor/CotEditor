@@ -36,6 +36,10 @@
 @end
 
 
+
+
+#pragma mark -
+
 @implementation CESyntaxEditTableViewDelegate
 
 #pragma mark Delegate
