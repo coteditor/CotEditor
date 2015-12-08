@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9060" systemVersion="15C48a" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9059"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9060"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="CEFormatPaneController">
@@ -20,7 +21,12 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <userDefaultsController representsSharedInstance="YES" id="26" userLabel="Shared User Defaults Controller"/>
-        <arrayController objectClassName="NSString" id="Qfx-DD-EBP" userLabel="Styles Controller"/>
+        <arrayController objectClassName="NSDictionary" id="Qfx-DD-EBP" userLabel="Styles Controller">
+            <declaredKeys>
+                <string>name</string>
+                <string>state</string>
+            </declaredKeys>
+        </arrayController>
         <customView horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" id="745" userLabel="Format Pane">
             <rect key="frame" x="0.0" y="0.0" width="550" height="425"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -186,8 +192,24 @@
                                                 <rect key="frame" x="1" y="1" width="275" height="17"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
+                                                    <imageView toolTip="This style is customized." horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cbJ-XK-bnG" customClass="CEDotView">
+                                                        <rect key="frame" x="5" y="5" width="4" height="4"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" secondItem="cbJ-XK-bnG" secondAttribute="height" multiplier="1:1" id="AEz-Hi-Fyq"/>
+                                                            <constraint firstAttribute="height" constant="4" id="BmJ-bA-x9Q"/>
+                                                        </constraints>
+                                                        <animations/>
+                                                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSStatusNone" id="UKK-28-4kt"/>
+                                                        <connections>
+                                                            <binding destination="zzT-SQ-Hgy" name="hidden" keyPath="objectValue.state" id="bvH-G5-qSA">
+                                                                <dictionary key="options">
+                                                                    <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                                                </dictionary>
+                                                            </binding>
+                                                        </connections>
+                                                    </imageView>
                                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Rkb-Ee-Z1t">
-                                                        <rect key="frame" x="0.0" y="0.0" width="275" height="17"/>
+                                                        <rect key="frame" x="12" y="0.0" width="263" height="17"/>
                                                         <animations/>
                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="sir-ug-cpV">
                                                             <font key="font" metaFont="system"/>
@@ -195,7 +217,7 @@
                                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                         </textFieldCell>
                                                         <connections>
-                                                            <binding destination="zzT-SQ-Hgy" name="value" keyPath="objectValue" id="zbw-jc-r2q"/>
+                                                            <binding destination="zzT-SQ-Hgy" name="value" keyPath="objectValue.name" id="Sbz-Tu-dwN"/>
                                                         </connections>
                                                     </textField>
                                                 </subviews>
@@ -203,10 +225,13 @@
                                                     <constraint firstItem="Rkb-Ee-Z1t" firstAttribute="top" secondItem="zzT-SQ-Hgy" secondAttribute="top" id="CbX-rx-04b"/>
                                                     <constraint firstAttribute="bottom" secondItem="Rkb-Ee-Z1t" secondAttribute="bottom" id="UXv-No-wku"/>
                                                     <constraint firstAttribute="trailing" secondItem="Rkb-Ee-Z1t" secondAttribute="trailing" constant="2" id="bIi-Pc-Qea"/>
-                                                    <constraint firstItem="Rkb-Ee-Z1t" firstAttribute="leading" secondItem="zzT-SQ-Hgy" secondAttribute="leading" constant="2" id="oAX-JK-3Cd"/>
+                                                    <constraint firstItem="Rkb-Ee-Z1t" firstAttribute="centerY" secondItem="cbJ-XK-bnG" secondAttribute="centerY" constant="-2" id="n2u-CK-8WQ"/>
+                                                    <constraint firstItem="cbJ-XK-bnG" firstAttribute="leading" secondItem="zzT-SQ-Hgy" secondAttribute="leading" constant="5" id="w5s-Ei-mNd"/>
+                                                    <constraint firstItem="Rkb-Ee-Z1t" firstAttribute="leading" secondItem="cbJ-XK-bnG" secondAttribute="trailing" constant="5" id="zhl-MZ-1e8"/>
                                                 </constraints>
                                                 <animations/>
                                                 <connections>
+                                                    <outlet property="imageView" destination="cbJ-XK-bnG" id="gTW-2C-SaE"/>
                                                     <outlet property="textField" destination="Rkb-Ee-Z1t" id="d9o-cS-Ubp"/>
                                                 </connections>
                                             </tableCellView>
@@ -505,5 +530,6 @@
         <image name="NSActionTemplate" width="14" height="14"/>
         <image name="NSAddTemplate" width="11" height="11"/>
         <image name="NSRemoveTemplate" width="11" height="11"/>
+        <image name="NSStatusNone" width="16" height="16"/>
     </resources>
 </document>

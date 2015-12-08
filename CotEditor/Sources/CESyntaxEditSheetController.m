@@ -114,7 +114,7 @@ typedef NS_ENUM(NSUInteger, CESyntaxEditViewIndex) {
         _originalStyleName = name;
         _style = [style mutableCopy];
         _styleNameValid = YES;
-        _bundledStyle = [syntaxManager isBundledStyle:name];
+        _bundledStyle = [syntaxManager isBundledStyle:name cutomized:nil];
     }
     
     return self;

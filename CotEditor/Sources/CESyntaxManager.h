@@ -64,7 +64,7 @@ extern NSString *_Nonnull const CESyntaxValidationMessageKey;
 - (nullable NSDictionary<NSString *, id> *)bundledStyleWithStyleName:(nonnull NSString *)styleName;
 - (nonnull NSDictionary<NSString *, id> *)emptyStyle;
 - (nullable NSURL *)URLForUserStyle:(nonnull NSString *)styleName;  // returns nil if file is not available
-- (BOOL)isBundledStyle:(nonnull NSString *)styleName;  // check only the name
+- (BOOL)isBundledStyle:(nonnull NSString *)styleName cutomized:(nullable BOOL *)isCustomized;;  // check only the name
 - (BOOL)isEqualToBundledStyle:(nonnull NSDictionary<NSString *, id> *)style name:(nonnull NSString *)styleName;
 - (BOOL)importStyleFromURL:(nonnull NSURL *)fileURL;
 - (BOOL)exportStyle:(nonnull NSString *)styleName toURL:(nonnull NSURL *)fileURL;

@@ -36,6 +36,11 @@
 #import "Constants.h"
 
 
+// constants
+NSString *_Nonnull const StyleNameKey = @"name";
+NSString *_Nonnull const StyleStateKey = @"state";
+
+
 @interface CEFormatPaneController () <NSTableViewDelegate>
 
 @property (nonatomic, nullable, weak) IBOutlet NSPopUpButton *encodingMenuInOpen;
@@ -125,7 +130,7 @@
         if (clickedrow == -1) {  // clicked blank area
             representedStyleName = nil;
         } else {
-            representedStyleName = [[self stylesController] arrangedObjects][clickedrow];
+            representedStyleName = [[self stylesController] arrangedObjects][clickedrow][StyleNameKey];
         }
     }
     [menuItem setRepresentedObject:representedStyleName];
@@ -148,7 +153,7 @@
         return ([[CESyntaxManager sharedManager] URLForUserStyle:representedStyleName] != nil);
         
     } else if ([menuItem action] == @selector(deleteSyntaxStyle:)) {
-        return ![[CESyntaxManager sharedManager] isBundledStyle:representedStyleName];
+        return ![[CESyntaxManager sharedManager] isBundledStyle:representedStyleName cutomized:nil];
     }
     
     return YES;
@@ -180,8 +185,8 @@
 {
     if (edge == NSTableRowActionEdgeLeading) { return @[]; }
     
-    NSString *swipedSyntaxName = [[self stylesController] arrangedObjects][row];
-    BOOL isDeletable = ![[CESyntaxManager sharedManager] isBundledStyle:swipedSyntaxName];
+    NSString *swipedSyntaxName = [[self stylesController] arrangedObjects][row][StyleNameKey];
+    BOOL isDeletable = ![[CESyntaxManager sharedManager] isBundledStyle:swipedSyntaxName cutomized:nil];
     
     if (!isDeletable) { return @[]; }
     
@@ -421,8 +426,17 @@
     NSArray<NSString *> *styleNames = [[CESyntaxManager sharedManager] styleNames];
     NSString *noneStyle = NSLocalizedString(@"None", nil);
     
+    NSMutableArray<NSDictionary *> *hoge = [NSMutableArray array];
+    for (NSString *styleName in styleNames) {
+        BOOL isCutomized;
+        BOOL isBundled = [[CESyntaxManager sharedManager] isBundledStyle:styleName cutomized:&isCutomized];
+        
+        [hoge addObject:@{StyleNameKey: styleName,
+                          StyleStateKey: @(!isBundled || isCutomized)}];
+    }
+    
     // インストール済みスタイルリストの更新
-    [[self stylesController] setContent:styleNames];
+    [[self stylesController] setContent:hoge];
     [self validateRemoveSyntaxStyleButton];
     
     // デフォルトスタイルメニューの更新
@@ -445,7 +459,7 @@
 - (nullable NSString *)selectedStyleName
 // ------------------------------------------------------
 {
-    return [[[self stylesController] selectedObjects] firstObject];
+    return [[[self stylesController] selectedObjects] firstObject][StyleNameKey];
 }
 
 
@@ -454,7 +468,7 @@
 - (void)validateRemoveSyntaxStyleButton
 // ------------------------------------------------------
 {
-    BOOL isDeletable = [self selectedStyleName] ? ![[CESyntaxManager sharedManager] isBundledStyle:[self selectedStyleName]] : NO;
+    BOOL isDeletable = [self selectedStyleName] ? ![[CESyntaxManager sharedManager] isBundledStyle:[self selectedStyleName] cutomized:nil] : NO;
     
     [[self syntaxStyleDeleteButton] setEnabled:isDeletable];
 }

@@ -62,6 +62,9 @@
 /* Class = "NSTextFieldCell"; title = "Installed syntax styles:"; ObjectID = "vlw-Tc-sLl"; */
 "vlw-Tc-sLl.title" = "インストール済みスタイル：";
 
+/* Class = "NSImageView"; ibShadowedToolTip = "This style is customized."; ObjectID = "cbJ-XK-bnG"; */
+"cbJ-XK-bnG.ibShadowedToolTip" = "このスタイルはカスタマイズされています。";
+
 /* Class = "NSButton"; ibShadowedToolTip = "Remove selected style"; ObjectID = "dI1-Dk-Mce"; */
 "dI1-Dk-Mce.ibShadowedToolTip" = "選択したスタイルを削除";
 /* Class = "NSButton"; ibShadowedToolTip = "Add empty style"; ObjectID = "Hma-8v-2gu"; */

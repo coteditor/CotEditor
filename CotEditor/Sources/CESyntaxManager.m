@@ -193,10 +193,15 @@ NSString *_Nonnull const CESyntaxValidationMessageKey = @"MessageKey";
 
 // ------------------------------------------------------
 /// あるスタイルネームがデフォルトで用意されているものかどうかを返す
-- (BOOL)isBundledStyle:(nonnull NSString *)styleName
+- (BOOL)isBundledStyle:(nonnull NSString *)styleName cutomized:(nullable BOOL *)isCustomized;
 // ------------------------------------------------------
 {
-    return [[self bundledStyleNames] containsObject:styleName];
+    BOOL isBundled = [[self bundledStyleNames] containsObject:styleName];
+    
+    if (isBundled && isCustomized) {
+        *isCustomized = ([self URLForUserStyle:styleName available:YES]);
+    }
+    return isBundled;
 }
 
 
@@ -205,7 +210,7 @@ NSString *_Nonnull const CESyntaxValidationMessageKey = @"MessageKey";
 - (BOOL)isEqualToBundledStyle:(nonnull NSDictionary<NSString *, id> *)style name:(nonnull NSString *)styleName
 // ------------------------------------------------------
 {
-    if (![self isBundledStyle:styleName]) { return NO; }
+    if (![self isBundledStyle:styleName cutomized:nil]) { return NO; }
     
     // numOfObjInArray などが混入しないようにスタイル定義部分だけを比較する
     NSArray<NSString *> *keys = [[self emptyStyle] allKeys];
