@@ -438,6 +438,7 @@ NSString *_Nonnull const StyleStateKey = @"state";
     // インストール済みスタイルリストの更新
     [[self stylesController] setContent:hoge];
     [self validateRemoveSyntaxStyleButton];
+    [[self syntaxTableView] reloadData];
     
     // デフォルトスタイルメニューの更新
     [[self syntaxStylesDefaultPopup] removeAllItems];
