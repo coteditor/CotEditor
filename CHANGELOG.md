@@ -7,8 +7,9 @@ develop
 
 ### Improvements
 
-- Tweak preferences layout.
 - Add dot mark to installed syntax style list in preferences to represent the state if style is customized.
+- Keep text selection after inserting color code from the color code panel.
+- Tweak preferences layout.
 
 
 ### Fixes

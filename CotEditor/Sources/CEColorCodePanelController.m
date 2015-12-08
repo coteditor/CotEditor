@@ -180,11 +180,13 @@
     if (![self colorCode]) { return; }
     
     NSTextView *textView = [[[self documentWindowController] editor] focusedTextView];
+    NSRange selectedRange = [textView selectedRange];
     
-    if ([textView shouldChangeTextInRange:[textView selectedRange] replacementString:[self colorCode]]) {
-        [textView replaceCharactersInRange:[textView selectedRange] withString:[self colorCode]];
+    if ([textView shouldChangeTextInRange:selectedRange replacementString:[self colorCode]]) {
+        [textView replaceCharactersInRange:selectedRange withString:[self colorCode]];
         [[textView undoManager] setActionName:NSLocalizedString(@"Insert Color Code", nil)];
         [textView didChangeText];
+        [textView setSelectedRange:NSMakeRange(selectedRange.location, [[self colorCode] length])];
         [textView scrollRangeToVisible:[textView selectedRange]];
     }
 }
