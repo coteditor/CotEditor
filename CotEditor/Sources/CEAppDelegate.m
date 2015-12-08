@@ -165,6 +165,7 @@
                                                CEDefaultSmartInsertAndDeleteKey: @NO,
                                                CEDefaultEnableSmartQuotesKey: @NO,
                                                CEDefaultEnableSmartIndentKey: @YES,
+                                               CEDefaultAutoLinkDetectionKey: @NO,
                                                CEDefaultAppendsCommentSpacerKey: @YES,
                                                CEDefaultCommentsAtLineHeadKey: @YES,
                                                CEDefaultShouldAntialiasKey: @YES,

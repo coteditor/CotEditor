@@ -142,6 +142,11 @@ static NSPoint kTextContainerOrigin;
         [self setLayerContentsRedrawPolicy:NSViewLayerContentsRedrawBeforeViewResize];
         [self setLayerContentsPlacement:NSViewLayerContentsPlacementScaleAxesIndependently];
         
+        // set link detection
+        [self setAutomaticLinkDetectionEnabled:[defaults boolForKey:CEDefaultAutoLinkDetectionKey]];
+        [self setLinkTextAttributes:@{NSCursorAttributeName: [NSCursor pointingHandCursor],
+                                      NSUnderlineStyleAttributeName: @(NSUnderlineStyleSingle)}];
+        
         // set values
         _autoTabExpandEnabled = [defaults boolForKey:CEDefaultAutoExpandTabKey];
         [self setSmartInsertDeleteEnabled:[defaults boolForKey:CEDefaultSmartInsertAndDeleteKey]];
@@ -930,6 +935,9 @@ static NSPoint kTextContainerOrigin;
             [self setAutomaticQuoteSubstitutionEnabled:[newValue boolValue]];
             [self setAutomaticDashSubstitutionEnabled:[newValue boolValue]];
         }
+        
+    } else if ([keyPath isEqualToString:CEDefaultAutoLinkDetectionKey]) {
+        [self setAutomaticLinkDetectionEnabled:[newValue boolValue]];
     }
 }
 
@@ -1037,6 +1045,24 @@ static NSPoint kTextContainerOrigin;
     
     // redraw selection
     [self setNeedsDisplayInRect:[self visibleRect] avoidAdditionalLayout:YES];
+}
+
+
+// ------------------------------------------------------
+/// make link-like text clickable
+- (void)detectLinkIfNeeded
+// ------------------------------------------------------
+{
+    if (![self isAutomaticLinkDetectionEnabled]) { return; }
+    
+    // The following code looks suitable, but actually doesn't work. (2015-12)
+//    NSRange range = NSMakeRange(0, [[self string] length]);
+//    [self checkTextInRange:range types:NSTextCheckingTypeLink options:@{}];
+    
+    NSTextCheckingTypes currentCheckingType = [self enabledTextCheckingTypes];
+    [self setEnabledTextCheckingTypes:NSTextCheckingTypeLink];
+    [self checkTextInDocument:nil];
+    [self setEnabledTextCheckingTypes:currentCheckingType];
 }
 
 
@@ -1233,7 +1259,8 @@ static NSPoint kTextContainerOrigin;
              CEDefaultCheckSpellingAsTypeKey,
              CEDefaultEnableSmartQuotesKey,
              CEDefaultHangingIndentWidthKey,
-             CEDefaultEnablesHangingIndentKey];
+             CEDefaultEnablesHangingIndentKey,
+             CEDefaultAutoLinkDetectionKey];
 }
 
 

@@ -108,6 +108,7 @@ NSString *_Nonnull const CEDefaultHighlightLtGtKey = @"highlightLtGt";
 NSString *_Nonnull const CEDefaultSaveUTF8BOMKey = @"saveUTF8BOM";
 NSString *_Nonnull const CEDefaultEnableSmartQuotesKey = @"enableSmartQuotes";
 NSString *_Nonnull const CEDefaultEnableSmartIndentKey = @"enableSmartIndent";
+NSString *_Nonnull const CEDefaultAutoLinkDetectionKey = @"autoLinkDetectionKey";
 NSString *_Nonnull const CEDefaultAppendsCommentSpacerKey = @"appendsCommentSpacer";
 NSString *_Nonnull const CEDefaultCommentsAtLineHeadKey = @"commentsAtLineHead";
 NSString *_Nonnull const CEDefaultChecksUpdatesForBetaKey = @"checksUpdatesForBeta";
