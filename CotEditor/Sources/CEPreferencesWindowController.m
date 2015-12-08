@@ -137,7 +137,7 @@
     }
     
     // set window title
-    [[self window] setTitle:[sender label]];
+    [[self window] setTitle:[sender paletteLabel]];
     
     // resize window to fit to new view
     NSRect frame = [[self window] frame];
