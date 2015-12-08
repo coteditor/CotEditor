@@ -69,6 +69,7 @@ extern NSString *_Nonnull const CESyntaxValidationMessageKey;
 - (BOOL)importStyleFromURL:(nonnull NSURL *)fileURL;
 - (BOOL)exportStyle:(nonnull NSString *)styleName toURL:(nonnull NSURL *)fileURL;
 - (BOOL)removeStyleFileWithStyleName:(nonnull NSString *)styleName;
+- (BOOL)restoreStyleFileWithStyleName:(nonnull NSString *)styleName;
 - (BOOL)existsMappingConflict;
 - (nonnull NSString *)copiedStyleName:(nonnull NSString *)originalName;
 - (void)saveStyle:(nonnull NSMutableDictionary<NSString *, id> *)style name:(nonnull NSString *)name oldName:(nonnull NSString *)oldName;

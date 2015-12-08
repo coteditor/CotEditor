@@ -186,19 +186,32 @@ NSString *_Nonnull const StyleStateKey = @"state";
     if (edge == NSTableRowActionEdgeLeading) { return @[]; }
     
     NSString *swipedSyntaxName = [[self stylesController] arrangedObjects][row][StyleNameKey];
-    BOOL isDeletable = ![[CESyntaxManager sharedManager] isBundledStyle:swipedSyntaxName cutomized:nil];
+    BOOL isCustomized;
+    BOOL isBundled = [[CESyntaxManager sharedManager] isBundledStyle:swipedSyntaxName cutomized:&isCustomized];
     
-    if (!isDeletable) { return @[]; }
+    // do nothing on undeletable style
+    if (isBundled && !isCustomized) { return @[]; }
     
-    __weak typeof(self) weakSelf = self;
-    return @[[NSTableViewRowAction rowActionWithStyle:NSTableViewRowActionStyleDestructive
-                                                title:NSLocalizedString(@"Delete", nil)
-                                              handler:^(NSTableViewRowAction *action, NSInteger row)
-              {
-                  typeof(self) self = weakSelf;  // strong self
-                  
-                  [self deleteSyntaxStyleWithName:swipedSyntaxName];
-              }]];
+    if (isCustomized) {
+        // Restore
+        return @[[NSTableViewRowAction rowActionWithStyle:NSTableViewRowActionStyleRegular
+                                                    title:NSLocalizedString(@"Restore", nil)
+                                                  handler:^(NSTableViewRowAction *action, NSInteger row)
+                  {
+                      [self restoreSyntaxStyleWithName:swipedSyntaxName];
+                      
+                      // finish swiped mode anyway
+                      [[self syntaxTableView] setRowActionsVisible:NO];
+                  }]];
+    } else {
+        // Delete
+        return @[[NSTableViewRowAction rowActionWithStyle:NSTableViewRowActionStyleDestructive
+                                                    title:NSLocalizedString(@"Delete", nil)
+                                                  handler:^(NSTableViewRowAction *action, NSInteger row)
+                  {
+                      [self deleteSyntaxStyleWithName:swipedSyntaxName];
+                  }]];
+    }
 }
 
 
@@ -492,6 +505,17 @@ NSString *_Nonnull const StyleStateKey = @"state";
                       modalDelegate:self
                      didEndSelector:@selector(deleteStyleAlertDidEnd:returnCode:contextInfo:)
                         contextInfo:(__bridge_retained void *)styleName];
+}
+
+
+// ------------------------------------------------------
+/// try to delete given syntax style
+- (void)restoreSyntaxStyleWithName:(nonnull NSString *)styleName
+// ------------------------------------------------------
+{
+    if (![[CESyntaxManager sharedManager] URLForUserStyle:styleName]) { return; }
+    
+    [[CESyntaxManager sharedManager] restoreStyleFileWithStyleName:styleName];
 }
 
 

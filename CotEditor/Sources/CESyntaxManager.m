@@ -326,6 +326,39 @@ NSString *_Nonnull const CESyntaxValidationMessageKey = @"MessageKey";
 
 
 //------------------------------------------------------
+/// style名に応じたstyleファイルをリストアする
+- (BOOL)restoreStyleFileWithStyleName:(nonnull NSString *)styleName
+//------------------------------------------------------
+{
+    BOOL success = NO;
+    NSURL *URL = [self URLForUserStyle:styleName available:NO];
+    
+    if ([URL checkResourceIsReachableAndReturnError:nil]) {
+        success = [[NSFileManager defaultManager] trashItemAtURL:URL resultingItemURL:nil error:nil];
+        
+        if (success) {
+            // 内部で持っているキャッシュ用データを更新
+            [self styleCaches][styleName] = [[self bundledStyleWithStyleName:styleName] mutableCopy];
+            __weak typeof(self) weakSelf = self;
+            [self updateCacheWithCompletionHandler:^{
+                typeof(self) self = weakSelf;  // strong self
+                
+                [[NSNotificationCenter defaultCenter] postNotificationName:CESyntaxDidUpdateNotification
+                                                                    object:self
+                                                                  userInfo:@{CEOldNameKey: styleName,
+                                                                             CENewNameKey: styleName}];
+            }];
+        } else {
+            NSLog(@"Error. Could not restore \"%@\".", URL);
+        }
+    } else {
+        NSLog(@"Error. Could not be restore \"%@\" for restore.", URL);
+    }
+    return success;
+}
+
+
+//------------------------------------------------------
 /// マッピング重複エラーがあるかどうかを返す
 - (BOOL)existsMappingConflict
 //------------------------------------------------------
