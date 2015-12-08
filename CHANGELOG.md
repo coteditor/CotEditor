@@ -5,6 +5,11 @@ Change Log
 develop
 --------------------------
 
+### Improvements
+
+- Tweak preferences layout.
+
+
 ### Fixes
 
 - Fix layout of character popup on Yosemite and earlier.
