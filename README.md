@@ -27,7 +27,7 @@ It's a pure document-based Cocoa application. The source code is written in Obje
 ### Development Environment
 
 - OS X 10.11 El Capitan
-- Xcode 7.1
+- Xcode 7.2
 
 
 
