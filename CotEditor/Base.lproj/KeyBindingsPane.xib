@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9059"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9531"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="CEKeyBindingsPaneController">
@@ -20,7 +20,6 @@
             <subviews>
                 <button horizontalHuggingPriority="750" verticalHuggingPriority="750" tag="7" translatesAutoresizingMaskIntoConstraints="NO" id="nfV-RQ-dc3">
                     <rect key="frame" x="507" y="17" width="25" height="25"/>
-                    <animations/>
                     <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" inset="2" id="xXK-KU-zgD">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
@@ -31,21 +30,18 @@
                 </button>
                 <tabView initialItem="QZO-GE-ra1" translatesAutoresizingMaskIntoConstraints="NO" id="N7z-Dh-pT6">
                     <rect key="frame" x="13" y="43" width="524" height="361"/>
-                    <animations/>
                     <font key="font" metaFont="system"/>
                     <tabViewItems>
                         <tabViewItem label="Menu Items" identifier="1" id="QZO-GE-ra1">
                             <view key="view" id="oxx-eJ-Jef">
                                 <rect key="frame" x="10" y="33" width="504" height="315"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <animations/>
                             </view>
                         </tabViewItem>
                         <tabViewItem label="Snippets" identifier="2" id="VfI-7K-2Nb">
                             <view key="view" id="Hws-mk-aYY">
                                 <rect key="frame" x="10" y="33" width="504" height="315"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <animations/>
                             </view>
                         </tabViewItem>
                     </tabViewItems>
@@ -59,7 +55,6 @@
                 <constraint firstAttribute="trailing" secondItem="N7z-Dh-pT6" secondAttribute="trailing" constant="20" symbolic="YES" id="kX9-AE-afa"/>
                 <constraint firstItem="N7z-Dh-pT6" firstAttribute="top" secondItem="biP-EO-9yC" secondAttribute="top" constant="12" symbolic="YES" id="vsM-zb-DQK"/>
             </constraints>
-            <animations/>
             <point key="canvasLocation" x="567" y="158"/>
         </customView>
     </objects>

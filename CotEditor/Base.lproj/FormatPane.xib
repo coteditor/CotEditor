@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9060" systemVersion="15C48a" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9060"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9531"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
@@ -33,7 +33,6 @@
             <subviews>
                 <button horizontalHuggingPriority="750" verticalHuggingPriority="750" tag="5" translatesAutoresizingMaskIntoConstraints="NO" id="2157">
                     <rect key="frame" x="497" y="17" width="25" height="25"/>
-                    <animations/>
                     <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" inset="2" id="3297">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
@@ -44,7 +43,6 @@
                 </button>
                 <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="17">
                     <rect key="frame" x="32" y="388" width="128" height="17"/>
-                    <animations/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="left" title="Default line endings:" usesSingleLineMode="YES" id="3273">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -56,7 +54,6 @@
                     <constraints>
                         <constraint firstAttribute="width" constant="220" id="D2Q-g5-p9Z"/>
                     </constraints>
-                    <animations/>
                     <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="3272">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menu"/>
@@ -77,7 +74,6 @@
                     <constraints>
                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="96" id="iGy-QY-Sx5"/>
                     </constraints>
-                    <animations/>
                     <buttonCell key="cell" type="push" title="Edit List…" bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" inset="2" id="3275">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="smallSystem"/>
@@ -88,7 +84,6 @@
                 </button>
                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="76">
                     <rect key="frame" x="164" y="272" width="225" height="26"/>
-                    <animations/>
                     <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="3276">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menu"/>
@@ -104,7 +99,6 @@
                 </popUpButton>
                 <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="77">
                     <rect key="frame" x="69" y="278" width="91" height="17"/>
-                    <animations/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Opening Files:" usesSingleLineMode="YES" id="3277">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -113,7 +107,6 @@
                 </textField>
                 <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="79">
                     <rect key="frame" x="22" y="335" width="138" height="17"/>
-                    <animations/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Default text encoding:" usesSingleLineMode="YES" id="3278">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -125,7 +118,6 @@
                     <constraints>
                         <constraint firstAttribute="width" constant="220" id="7pp-Cr-TTw"/>
                     </constraints>
-                    <animations/>
                     <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="3279">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menu"/>
@@ -141,7 +133,6 @@
                 </popUpButton>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="877">
                     <rect key="frame" x="164" y="251" width="201" height="18"/>
-                    <animations/>
                     <buttonCell key="cell" type="check" title="Refer to encoding declaration" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3280">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
@@ -152,7 +143,6 @@
                 </button>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="3248">
                     <rect key="frame" x="163" y="309" width="283" height="18"/>
-                    <animations/>
                     <buttonCell key="cell" type="check" title="Save UTF-8 files with a BOM  (not recommended)" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" inset="2" id="3281">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="smallSystem"/>
@@ -170,7 +160,6 @@
                             <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnReordering="NO" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" viewBased="YES" id="i9j-3p-xYF">
                                 <rect key="frame" x="0.0" y="0.0" width="278" height="0.0"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <animations/>
                                 <size key="intercellSpacing" width="3" height="2"/>
                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
@@ -198,7 +187,6 @@
                                                             <constraint firstAttribute="width" secondItem="cbJ-XK-bnG" secondAttribute="height" multiplier="1:1" id="AEz-Hi-Fyq"/>
                                                             <constraint firstAttribute="height" constant="4" id="BmJ-bA-x9Q"/>
                                                         </constraints>
-                                                        <animations/>
                                                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSStatusNone" id="UKK-28-4kt"/>
                                                         <connections>
                                                             <binding destination="zzT-SQ-Hgy" name="hidden" keyPath="objectValue.state" id="bvH-G5-qSA">
@@ -210,7 +198,6 @@
                                                     </imageView>
                                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Rkb-Ee-Z1t">
                                                         <rect key="frame" x="12" y="0.0" width="263" height="17"/>
-                                                        <animations/>
                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="sir-ug-cpV">
                                                             <font key="font" metaFont="system"/>
                                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -229,7 +216,6 @@
                                                     <constraint firstItem="cbJ-XK-bnG" firstAttribute="leading" secondItem="zzT-SQ-Hgy" secondAttribute="leading" constant="5" id="w5s-Ei-mNd"/>
                                                     <constraint firstItem="Rkb-Ee-Z1t" firstAttribute="leading" secondItem="cbJ-XK-bnG" secondAttribute="trailing" constant="5" id="zhl-MZ-1e8"/>
                                                 </constraints>
-                                                <animations/>
                                                 <connections>
                                                     <outlet property="imageView" destination="cbJ-XK-bnG" id="gTW-2C-SaE"/>
                                                     <outlet property="textField" destination="Rkb-Ee-Z1t" id="d9o-cS-Ubp"/>
@@ -246,28 +232,23 @@
                                 </connections>
                             </tableView>
                         </subviews>
-                        <animations/>
                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </clipView>
                     <constraints>
                         <constraint firstAttribute="height" constant="80" id="AZ7-Fe-3Vq"/>
                         <constraint firstAttribute="width" constant="280" id="LVm-Np-QAF"/>
                     </constraints>
-                    <animations/>
                     <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" controlSize="small" horizontal="YES" id="uuG-1x-3ZZ">
                         <rect key="frame" x="1" y="63" width="258" height="16"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <animations/>
                     </scroller>
                     <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" controlSize="small" horizontal="NO" id="yU5-Am-AsM">
                         <rect key="frame" x="224" y="17" width="15" height="102"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <animations/>
                     </scroller>
                 </scrollView>
                 <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="734">
                     <rect key="frame" x="33" y="177" width="127" height="17"/>
-                    <animations/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Default syntax style:" usesSingleLineMode="YES" id="3329">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -279,7 +260,6 @@
                 </textField>
                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="727">
                     <rect key="frame" x="164" y="171" width="285" height="26"/>
-                    <animations/>
                     <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="3328">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menu"/>
@@ -295,7 +275,6 @@
                 </popUpButton>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="703">
                     <rect key="frame" x="339" y="203" width="97" height="18"/>
-                    <animations/>
                     <buttonCell key="cell" type="check" title="Delay coloring" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" inset="2" id="3327">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="smallSystem"/>
@@ -307,7 +286,6 @@
                 </button>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="430">
                     <rect key="frame" x="18" y="204" width="181" height="18"/>
-                    <animations/>
                     <buttonCell key="cell" type="check" title="Enable syntax highlighting" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3326">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
@@ -318,7 +296,6 @@
                 </button>
                 <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="710">
                     <rect key="frame" x="203" y="205" width="133" height="14"/>
-                    <animations/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="(Including Outline Menu)" usesSingleLineMode="YES" id="3325">
                         <font key="font" metaFont="smallSystem"/>
                         <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
@@ -327,14 +304,12 @@
                 </textField>
                 <box verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="eoL-rv-xwG">
                     <rect key="frame" x="20" y="234" width="500" height="5"/>
-                    <animations/>
                     <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <font key="titleFont" metaFont="system"/>
                 </box>
                 <box verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="lnk-dB-keR">
                     <rect key="frame" x="20" y="366" width="500" height="5"/>
-                    <animations/>
                     <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <font key="titleFont" metaFont="system"/>
@@ -347,7 +322,6 @@
                         <constraint firstAttribute="height" constant="21" id="QiU-BM-w6s"/>
                         <constraint firstAttribute="height" relation="lessThanOrEqual" constant="21" id="RSp-xw-hqJ"/>
                     </constraints>
-                    <animations/>
                     <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSAddTemplate" imagePosition="overlaps" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="DYP-pZ-gci">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
@@ -361,7 +335,6 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="iZv-za-r30"/>
                     </constraints>
-                    <animations/>
                     <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSRemoveTemplate" imagePosition="overlaps" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="iLY-Rl-USQ">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
@@ -372,7 +345,6 @@
                 </button>
                 <button toolTip="Edit selected style" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Q0c-oI-um3">
                     <rect key="frame" x="418" y="52" width="28" height="23"/>
-                    <animations/>
                     <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="EditTemplate" imagePosition="overlaps" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="dY5-OA-5Z4">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
@@ -387,7 +359,6 @@
                         <constraint firstAttribute="width" constant="35" id="C2H-ho-Lhl"/>
                         <constraint firstAttribute="height" constant="21" id="U66-bm-gzy"/>
                     </constraints>
-                    <animations/>
                     <popUpButtonCell key="cell" type="smallSquare" title="Syntax Action" bezelStyle="smallSquare" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" pullsDown="YES" id="DWa-4z-345">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menu"/>
@@ -427,7 +398,6 @@
                 </popUpButton>
                 <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="XBA-8h-9hb">
                     <rect key="frame" x="18" y="145" width="142" height="17"/>
-                    <animations/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Installed syntax styles:" usesSingleLineMode="YES" id="vlw-Tc-sLl">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -492,7 +462,6 @@
                 <constraint firstItem="79" firstAttribute="top" secondItem="lnk-dB-keR" secondAttribute="bottom" constant="16" id="y2A-X7-eie"/>
                 <constraint firstItem="Q0c-oI-um3" firstAttribute="top" secondItem="Hma-8v-2gu" secondAttribute="top" id="y3x-5k-9sf"/>
             </constraints>
-            <animations/>
         </customView>
         <menu title="OtherViews" id="5W0-Hh-qFr">
             <items>

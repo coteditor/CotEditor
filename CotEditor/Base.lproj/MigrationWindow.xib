@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9059"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9531"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
@@ -35,7 +35,6 @@
                                 <subviews>
                                     <textField horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4tE-FT-D5Q">
                                         <rect key="frame" x="134" y="25" width="192" height="39"/>
-                                        <animations/>
                                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="CotEditor 2.3" id="s49-9c-WyQ">
                                             <font key="font" size="32" name="HelveticaNeue-Light"/>
                                             <color key="textColor" white="0.33000000000000002" alpha="1" colorSpace="calibratedWhite"/>
@@ -47,7 +46,6 @@
                                     </textField>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="r5K-qD-t3c">
                                         <rect key="frame" x="136" y="64" width="71" height="20"/>
-                                        <animations/>
                                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Welcome to" id="aBa-Xm-ATa">
                                             <font key="font" size="13" name="HelveticaNeue-Light"/>
                                             <color key="textColor" white="0.33000000000000002" alpha="1" colorSpace="calibratedWhite"/>
@@ -60,7 +58,6 @@
                                             <constraint firstAttribute="width" secondItem="a6j-Ka-Roa" secondAttribute="height" multiplier="1:1" id="OeL-8g-bLt"/>
                                             <constraint firstAttribute="height" constant="128" id="ani-KQ-dkr"/>
                                         </constraints>
-                                        <animations/>
                                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSApplicationIcon" id="nmD-Xa-bwe"/>
                                     </imageView>
                                 </subviews>
@@ -72,7 +69,6 @@
                                     <constraint firstItem="4tE-FT-D5Q" firstAttribute="top" secondItem="r5K-qD-t3c" secondAttribute="bottom" id="jc3-aM-KtS"/>
                                     <constraint firstItem="4tE-FT-D5Q" firstAttribute="leading" secondItem="r5K-qD-t3c" secondAttribute="leading" constant="-2" id="otJ-ls-y3w"/>
                                 </constraints>
-                                <animations/>
                             </customView>
                         </subviews>
                         <constraints>
@@ -97,11 +93,9 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCLAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
                     </customView>
                     <progressIndicator maxValue="100" controlSize="small" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="ufs-NL-pEW">
                         <rect key="frame" x="20" y="42" width="420" height="12"/>
-                        <animations/>
                     </progressIndicator>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bN7-nW-UJk">
                         <rect key="frame" x="18" y="20" width="346" height="14"/>
-                        <animations/>
                         <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="Migrating user syntax styles…" id="vqy-cz-YAI">
                             <font key="font" metaFont="smallSystem"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -113,7 +107,6 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCLAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
                         <constraints>
                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="70" id="lhT-LE-JEl"/>
                         </constraints>
-                        <animations/>
                         <buttonCell key="cell" type="push" title="Next" bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="uPQ-1j-6Gc">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="smallSystem"/>
@@ -140,7 +133,6 @@ DQ
                     <constraint firstItem="Cqi-He-haH" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" id="lwD-ld-esm"/>
                     <constraint firstItem="GtV-JW-xjR" firstAttribute="leading" secondItem="bN7-nW-UJk" secondAttribute="trailing" constant="8" symbolic="YES" id="t5c-c9-Sbt"/>
                 </constraints>
-                <animations/>
             </view>
             <userDefinedRuntimeAttributes>
                 <userDefinedRuntimeAttribute type="color" keyPath="backgroundColor">
@@ -158,7 +150,6 @@ DQ
             <subviews>
                 <textField horizontalHuggingPriority="750" verticalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vA6-9n-tty">
                     <rect key="frame" x="42" y="182" width="205" height="17"/>
-                    <animations/>
                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Reset menu key bindings setting." usesSingleLineMode="YES" id="BA1-Y2-S7m">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -174,7 +165,6 @@ DQ
                 </textField>
                 <textField verticalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sKS-uj-Tsy">
                     <rect key="frame" x="18" y="207" width="424" height="17"/>
-                    <animations/>
                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="The following migrations have been successfully completed." id="cTg-d4-zlT">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -183,7 +173,6 @@ DQ
                 </textField>
                 <textField horizontalHuggingPriority="750" verticalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Z67-Bl-Qme">
                     <rect key="frame" x="42" y="141" width="159" height="17"/>
-                    <animations/>
                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Migrate coloring settings." usesSingleLineMode="YES" id="6hO-yA-SXq">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -199,7 +188,6 @@ DQ
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hKA-5b-UTn">
                     <rect key="frame" x="42" y="125" width="400" height="14"/>
-                    <animations/>
                     <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="An custom theme has been created from the previous user setting." id="wdy-J5-ddL">
                         <font key="font" metaFont="smallSystem"/>
                         <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
@@ -215,7 +203,6 @@ DQ
                 </textField>
                 <textField horizontalHuggingPriority="750" verticalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uTv-Qx-FQU">
                     <rect key="frame" x="42" y="100" width="167" height="17"/>
-                    <animations/>
                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Migrate user syntax styles." usesSingleLineMode="YES" id="D4s-ma-Iiu">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -235,7 +222,6 @@ DQ
                         <constraint firstAttribute="width" secondItem="4x8-xv-gxa" secondAttribute="height" multiplier="1:1" id="FFF-no-sMx"/>
                         <constraint firstAttribute="width" constant="16" id="a4C-gJ-47S"/>
                     </constraints>
-                    <animations/>
                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSMenuOnStateTemplate" id="sRl-p7-VIh"/>
                     <connections>
                         <binding destination="-2" name="hidden" keyPath="didResetKeyBindings" id="S3S-fs-c39">
@@ -251,7 +237,6 @@ DQ
                         <constraint firstAttribute="width" secondItem="b6m-dG-Sbw" secondAttribute="height" multiplier="1:1" id="dPx-Qa-jdo"/>
                         <constraint firstAttribute="width" constant="16" id="rh2-Bd-CNE"/>
                     </constraints>
-                    <animations/>
                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSMenuOnStateTemplate" id="XvN-T1-0pC"/>
                     <connections>
                         <binding destination="-2" name="hidden" keyPath="didMigrateTheme" id="IZg-Ef-OlA">
@@ -267,7 +252,6 @@ DQ
                         <constraint firstAttribute="width" secondItem="wGr-MH-7rW" secondAttribute="height" multiplier="1:1" id="GfD-xW-RFq"/>
                         <constraint firstAttribute="width" constant="16" id="mrU-t1-HBK"/>
                     </constraints>
-                    <animations/>
                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSMenuOnStateTemplate" id="RTC-1V-JPz"/>
                     <connections>
                         <binding destination="-2" name="hidden" keyPath="didMigrateSyntaxStyles" id="hYj-Ej-bPd">
@@ -279,7 +263,6 @@ DQ
                 </imageView>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bf0-Or-heZ">
                     <rect key="frame" x="42" y="166" width="400" height="14"/>
-                    <animations/>
                     <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="The settings for menu key bindings have been once restored." id="hk3-rs-RMV">
                         <font key="font" metaFont="smallSystem"/>
                         <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
@@ -295,7 +278,6 @@ DQ
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="W15-Nc-3r0">
                     <rect key="frame" x="42" y="84" width="400" height="14"/>
-                    <animations/>
                     <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="The format for syntax style files has been changed from plist to YAML." id="2tb-Wh-X18">
                         <font key="font" metaFont="smallSystem"/>
                         <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
@@ -311,7 +293,6 @@ DQ
                 </textField>
                 <textField horizontalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jWg-4Q-d5T">
                     <rect key="frame" x="18" y="56" width="298" height="14"/>
-                    <animations/>
                     <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="In some cases, user needs additonal manual migrations." allowsEditingTextAttributes="YES" usesSingleLineMode="YES" id="X8Q-Ji-HKU">
                         <font key="font" metaFont="smallSystem"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -320,7 +301,6 @@ DQ
                 </textField>
                 <button toolTip="See “What’s New in CotEditor 2.0” on Help" horizontalHuggingPriority="750" verticalHuggingPriority="750" tag="9" translatesAutoresizingMaskIntoConstraints="NO" id="hGz-yb-qTP">
                     <rect key="frame" x="18" y="13" width="22" height="22"/>
-                    <animations/>
                     <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" controlSize="small" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Xzi-xX-1br">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="smallSystem"/>
@@ -331,14 +311,12 @@ DQ
                 </button>
                 <box verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="mNu-OY-rmz">
                     <rect key="frame" x="20" y="45" width="420" height="5"/>
-                    <animations/>
                     <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <font key="titleFont" metaFont="system"/>
                 </box>
                 <textField horizontalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pCc-IH-tYo">
                     <rect key="frame" x="44" y="16" width="226" height="17"/>
-                    <animations/>
                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Learn new features on CotEditor 2.0." usesSingleLineMode="YES" id="8u8-rr-so0">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -347,7 +325,6 @@ DQ
                 </textField>
                 <button toolTip="See “Specification Changes on CotEditor 2.0” on Help" horizontalHuggingPriority="750" verticalHuggingPriority="750" tag="10" translatesAutoresizingMaskIntoConstraints="NO" id="qdh-QQ-qcp">
                     <rect key="frame" x="317" y="54" width="19" height="19"/>
-                    <animations/>
                     <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" controlSize="mini" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Z6i-Dy-waO">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="miniSystem"/>
@@ -398,7 +375,6 @@ DQ
                 <constraint firstItem="qdh-QQ-qcp" firstAttribute="leading" secondItem="jWg-4Q-d5T" secondAttribute="trailing" constant="4" id="wxE-oZ-pfO"/>
                 <constraint firstItem="vA6-9n-tty" firstAttribute="leading" secondItem="4x8-xv-gxa" secondAttribute="trailing" constant="8" symbolic="YES" id="xy1-z8-hdq"/>
             </constraints>
-            <animations/>
             <point key="canvasLocation" x="151" y="562"/>
         </customView>
     </objects>

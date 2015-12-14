@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9060" systemVersion="15C40a" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9060"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9531"/>
     </dependencies>
     <objects>
         <customObject id="-2" customClass="CEKeyBindingsViewController">
@@ -20,7 +20,6 @@
             <subviews>
                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="64">
                     <rect key="frame" x="18" y="321" width="468" height="14"/>
-                    <animations/>
                     <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="left" title="To change a binding, select it, click the key column, and then type the keys." id="150">
                         <font key="font" metaFont="smallSystem"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -29,7 +28,6 @@
                 </textField>
                 <textField horizontalHuggingPriority="750" preferredMaxLayoutWidth="460" translatesAutoresizingMaskIntoConstraints="NO" id="66">
                     <rect key="frame" x="18" y="117" width="88" height="17"/>
-                    <animations/>
                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Text to insert:" usesSingleLineMode="YES" id="152">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -45,7 +43,6 @@
                             <textView importsGraphics="NO" richText="NO" allowsUndo="YES" verticallyResizable="YES" smartInsertDelete="YES" id="57">
                                 <rect key="frame" x="0.0" y="0.0" width="462" height="58"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <size key="minSize" width="462" height="58"/>
                                 <size key="maxSize" width="464" height="10000000"/>
@@ -758,21 +755,17 @@
                                 </connections>
                             </textView>
                         </subviews>
-                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </clipView>
                     <constraints>
                         <constraint firstAttribute="height" constant="60" id="Zzt-WR-qya"/>
                     </constraints>
-                    <animations/>
                     <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" controlSize="small" horizontal="YES" id="164">
                         <rect key="frame" x="-100" y="-100" width="87" height="18"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <animations/>
                     </scroller>
                     <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" controlSize="small" horizontal="NO" id="165">
                         <autoresizingMask key="autoresizingMask"/>
-                        <animations/>
                     </scroller>
                 </scrollView>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="67">
@@ -780,7 +773,6 @@
                     <constraints>
                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="130" id="BZq-A1-FBO"/>
                     </constraints>
-                    <animations/>
                     <buttonCell key="cell" type="push" title="Restore Defaults" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" inset="2" id="153">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
@@ -799,7 +791,6 @@
                             <outlineView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="firstColumnOnly" columnReordering="NO" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="167" viewBased="YES" indentationPerLevel="16" outlineTableColumn="88" id="86">
                                 <rect key="frame" x="0.0" y="0.0" width="462" height="131"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <animations/>
                                 <size key="intercellSpacing" width="3" height="2"/>
                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
@@ -823,7 +814,6 @@
                                                 <subviews>
                                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="TVx-g4-ERo">
                                                         <rect key="frame" x="0.0" y="0.0" width="344" height="17"/>
-                                                        <animations/>
                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Insert Text 0" id="nuy-Xq-RWa">
                                                             <font key="font" metaFont="system"/>
                                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -840,7 +830,6 @@
                                                     <constraint firstAttribute="bottom" secondItem="TVx-g4-ERo" secondAttribute="bottom" id="wU9-tc-nMH"/>
                                                     <constraint firstAttribute="trailing" secondItem="TVx-g4-ERo" secondAttribute="trailing" constant="2" id="wYT-0d-P1h"/>
                                                 </constraints>
-                                                <animations/>
                                                 <connections>
                                                     <outlet property="textField" destination="TVx-g4-ERo" id="Kne-21-HTc"/>
                                                 </connections>
@@ -866,7 +855,6 @@
                                                 <subviews>
                                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="SmM-E6-XQB" customClass="CEShortcutKeyField">
                                                         <rect key="frame" x="0.0" y="0.0" width="112" height="17"/>
-                                                        <animations/>
                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="⇧↩" id="7wq-d4-P1R">
                                                             <font key="font" metaFont="system"/>
                                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -887,7 +875,6 @@
                                                     <constraint firstAttribute="trailing" secondItem="SmM-E6-XQB" secondAttribute="trailing" constant="2" id="B3p-FY-AZD"/>
                                                     <constraint firstItem="SmM-E6-XQB" firstAttribute="leading" secondItem="W8o-sc-r43" secondAttribute="leading" constant="2" id="DaT-wu-zze"/>
                                                 </constraints>
-                                                <animations/>
                                                 <connections>
                                                     <outlet property="textField" destination="SmM-E6-XQB" id="ERC-f0-UC1"/>
                                                 </connections>
@@ -901,29 +888,23 @@
                                 </connections>
                             </outlineView>
                         </subviews>
-                        <animations/>
                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </clipView>
-                    <animations/>
                     <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="166">
                         <rect key="frame" x="1" y="131" width="428" height="16"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <animations/>
                     </scroller>
                     <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="168">
                         <rect key="frame" x="414" y="17" width="15" height="130"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <animations/>
                     </scroller>
                     <tableHeaderView key="headerView" id="167">
-                        <rect key="frame" x="0.0" y="0.0" width="462" height="17"/>
+                        <rect key="frame" x="0.0" y="0.0" width="462" height="23"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <animations/>
                     </tableHeaderView>
                 </scrollView>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" preferredMaxLayoutWidth="460" translatesAutoresizingMaskIntoConstraints="NO" id="d4z-hn-ieA">
                     <rect key="frame" x="18" y="339" width="225" height="17"/>
-                    <animations/>
                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Shortcuts for preset text insertion" id="s4R-ch-kDY">
                         <font key="font" metaFont="systemBold"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -932,7 +913,6 @@
                 </textField>
                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8d0-e7-yYF">
                     <rect key="frame" x="18" y="305" width="468" height="14"/>
-                    <animations/>
                     <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="The keys here must exclude the Command key." id="s9U-jR-zQQ">
                         <font key="font" metaFont="smallSystem"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -941,7 +921,6 @@
                 </textField>
                 <textField horizontalHuggingPriority="249" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="63">
                     <rect key="frame" x="18" y="31" width="330" height="14"/>
-                    <animations/>
                     <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="left" title="'Foo' includes the Command key. Please choose another key." id="149">
                         <font key="font" metaFont="smallSystem"/>
                         <color key="textColor" red="0.86335355039999995" green="0.0" blue="0.021221207450000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -976,7 +955,6 @@
                 <constraint firstAttribute="trailing" secondItem="8d0-e7-yYF" secondAttribute="trailing" constant="20" symbolic="YES" id="sED-hL-cEM"/>
                 <constraint firstItem="63" firstAttribute="top" secondItem="56" secondAttribute="bottom" constant="8" symbolic="YES" id="sUU-aa-YPD"/>
             </constraints>
-            <animations/>
         </view>
         <arrayController objectClassName="NSString" avoidsEmptySelection="NO" id="98" userLabel="Snippet Array Controller">
             <declaredKeys>
