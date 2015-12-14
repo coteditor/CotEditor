@@ -11,6 +11,7 @@ develop
     - Add dot mark to syntax names in the list to represent the state if style is customized.
     - Enable restoring modified syntax style directly from the list without opening the style editor.
 - Keep text selection after inserting color code from the color code panel.
+- Update default fonts.
 - Tweak preferences layout.
 
 

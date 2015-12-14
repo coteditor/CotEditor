@@ -97,7 +97,7 @@
 // ------------------------------------------------------
 {
     NSFontManager *fontManager = (NSFontManager *)sender;
-    NSFont *newFont = [fontManager convertFont:[NSFont systemFontOfSize:0]];
+    NSFont *newFont = [fontManager convertFont:[NSFont userFontOfSize:0]];
     
     [[NSUserDefaults standardUserDefaults] setObject:[newFont fontName] forKey:CEDefaultPrintFontNameKey];
     [[NSUserDefaults standardUserDefaults] setDouble:[newFont pointSize] forKey:CEDefaultPrintFontSizeKey];

@@ -115,7 +115,7 @@ static NSPoint kTextContainerOrigin;
         CGFloat fontSize = (CGFloat)[defaults doubleForKey:CEDefaultFontSizeKey];
         NSFont *font = [NSFont fontWithName:[defaults stringForKey:CEDefaultFontNameKey] size:fontSize];
         if (!font) {
-            font = [NSFont systemFontOfSize:fontSize];
+            font = [NSFont userFontOfSize:fontSize];
         }
 
         NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
@@ -1186,7 +1186,7 @@ static NSPoint kTextContainerOrigin;
     NSString *name = [[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultFontNameKey];
     CGFloat size = (CGFloat)[[NSUserDefaults standardUserDefaults] doubleForKey:CEDefaultFontSizeKey];
     
-    [self setFont:[NSFont fontWithName:name size:size] ? : [NSFont systemFontOfSize:size]];
+    [self setFont:[NSFont fontWithName:name size:size] ? : [NSFont userFontOfSize:size]];
     
     // キャレット／選択範囲が見えるようにスクロール位置を調整
     [self scrollRangeToVisible:[self selectedRange]];
