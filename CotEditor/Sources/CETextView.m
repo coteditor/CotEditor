@@ -771,7 +771,11 @@ static NSPoint kTextContainerOrigin;
             }
             
             // jsut insert the absolute path if no specific setting for the file type was found
+            // -> This is the default behavior of NSTextView by file dropping.
             if ([stringToDrop length] == 0) {
+                if ([replacementString length] > 0) {
+                    [replacementString appendString:@"\n"];
+                }
                 [replacementString appendString:[absoluteURL path]];
                 
                 continue;

@@ -17,6 +17,7 @@ develop
 
 ### Fixes
 
+- Fix an issue where line breaks between paths of dropped files were msssing. 
 - Fix layout of character popup on Yosemite and earlier.
 - Improve general stability.
 
