@@ -36,8 +36,9 @@
 
 
 // Share menu
-"Save the document to share" = "Save the document to share";  // FIXME: added
 "No document" = "无文稿";
+"File" = "文件";
+"Text" = "文本";
 
 
 

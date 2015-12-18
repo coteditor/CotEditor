@@ -26,10 +26,16 @@
  */
 
 #import "CEShareMenu.h"
+#import "CEDocument.h"
 
 
+// keys
 NSString *_Nonnull const ServiceKey = @"service";
 NSString *_Nonnull const ItemsKey = @"items";
+
+// undefined service names
+NSString *_Nonnull const SharingServiceNameAddToNotes = @"com.apple.Notes.SharingExtension";
+NSString *_Nonnull const SharingServiceNameAddToRemainder = @"com.apple.reminders.RemindersShareExtension";
 
 
 @interface CEShareMenu () <NSMenuDelegate>
@@ -64,20 +70,72 @@ NSString *_Nonnull const ItemsKey = @"items";
     
     NSDocument *document = [[NSDocumentController sharedDocumentController] currentDocument];
     
-    if (![document fileURL]) {
-        NSString *message = (document != nil) ? @"Save the document to share": @"No document";
-        NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(message, nil)
+    if (!document) {
+        NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"No document", nil)
                                                       action:nil keyEquivalent:@""];
         [item setEnabled:NO];
         [self addItem:item];
         return;
     }
     
-    NSArray<id> *items = @[[document fileURL]];
-    NSArray<NSSharingService *> *sharingServices = [NSSharingService sharingServicesForItems:items];
-    for (NSSharingService *service in sharingServices) {
+    if ([document fileURL]) {
+        [self addSharingItems:@[[document fileURL]]
+                  displayName:[document displayName]
+                        label:NSLocalizedString(@"File", nil)
+            excludingSercives:@[SharingServiceNameAddToNotes]];
+        [self addItem:[NSMenuItem separatorItem]];
+    }
+    
+    [self addSharingItems:@[[(CEDocument *)document string]]
+              displayName:[document displayName]
+                    label:NSLocalizedString(@"Text", nil)
+        excludingSercives:@[NSSharingServiceNamePostOnTwitter,
+                            NSSharingServiceNameComposeMessage,
+                            SharingServiceNameAddToRemainder]];
+}
+
+
+
+#pragma mark Private Methods
+
+// ------------------------------------------------------
+/// perform share
+- (IBAction)shareFromService:(nullable id)sender
+// ------------------------------------------------------
+{
+    if (![[sender representedObject] isKindOfClass:[NSDictionary class]]) { return; }
+    
+    NSSharingService *sharingService = [sender representedObject][ServiceKey];
+    NSArray<id> *items = [sender representedObject][ItemsKey];
+    
+    [sharingService performWithItems:items];
+}
+
+
+// ------------------------------------------------------
+/// append sharing menu items
+- (void)addSharingItems:(nonnull NSArray<id> *)items displayName:(nullable NSString *)displayName label:(nonnull NSString *)label excludingSercives:(nonnull NSArray<NSString *> *)excludingServiceNames
+// ------------------------------------------------------
+{
+    NSMenuItem *labelItem = [[NSMenuItem alloc] initWithTitle:label action:nil keyEquivalent:@""];
+    [labelItem setEnabled:NO];
+    [self addItem:labelItem];
+    
+    // create service to skip
+    NSMutableArray<NSSharingService *> *excludingServices = [NSMutableArray arrayWithCapacity:[excludingServiceNames count]];
+    for (NSString *serviceName in excludingServiceNames) {
+        NSSharingService *service = [NSSharingService sharingServiceNamed:serviceName];
+        if (service) {
+            [excludingServices addObject:service];
+        }
+    }
+    
+    // add menu items dynamically
+    for (NSSharingService *service in [NSSharingService sharingServicesForItems:items]) {
+        if ([excludingServices containsObject:service]) { continue; }
+        
         if (NSAppKitVersionNumber >= NSAppKitVersionNumber10_9) {
-            [service setSubject:[document displayName]];
+            [service setSubject:displayName];
         }
         
         NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:[service title]
@@ -90,23 +148,6 @@ NSString *_Nonnull const ItemsKey = @"items";
         
         [self addItem:item];
     }
-    
-}
-
-
-
-#pragma mark Private Action Message
-
-// ------------------------------------------------------
-/// perform share
-- (IBAction)shareFromService:(nullable id)sender
-// ------------------------------------------------------
-{
-    if (![[sender representedObject] isKindOfClass:[NSDictionary class]]) { return; }
-    
-    NSSharingService *sharingService = [sender representedObject][ServiceKey];
-    NSArray<id> *items = [sender representedObject][ItemsKey];
-    
 }
 
 @end

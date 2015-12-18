@@ -36,8 +36,9 @@
 
 
 // Share menu
-"Save the document to share" = "Sichern das dokument, um bereitzustellen";
 "No document" = "Kein Dokument";
+"File" = "Datei";
+"Text" = "Text";
 
 
 

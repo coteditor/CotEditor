@@ -37,8 +37,9 @@
 
 
 // Share menu
-"Save the document to share" = "共有するには書類を保存してください";
 "No document" = "書類なし";
+"File" = "ファイル";
+"Text" = "テキスト";
 
 
 
