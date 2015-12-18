@@ -254,7 +254,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     NSStringEncoding encoding = [self encoding];
     
     // convert Yen sign in consideration of the current encoding
-    NSString *string = [self convertCharacterString:[self stringForSave] encoding:encoding];
+    NSString *string = [self convertCharacterString:[self string] encoding:encoding];
     
     // unblock the user interface, since fetching current document satte has been done here
     [self unblockUserInteraction];
@@ -726,7 +726,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 // ------------------------------------------------------
 /// 改行コードを指定のものに置換したメイン textView の文字列を返す
-- (nonnull NSString *)stringForSave
+- (nonnull NSString *)string
 // ------------------------------------------------------
 {
     return [[[self editor] string] stringByReplacingNewLineCharacersWith:[self lineEnding]] ?: @"";
@@ -822,7 +822,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 // ------------------------------------------------------
 {
     NSMutableArray<NSDictionary<NSString *, NSValue *> *> *incompatibleChars = [NSMutableArray array];
-    NSString *currentString = [self stringForSave];
+    NSString *currentString = [self string];
     NSUInteger currentLength = [currentString length];
     NSData *data = [currentString dataUsingEncoding:encoding allowLossyConversion:YES];
     NSString *convertedString = [[NSString alloc] initWithData:data encoding:encoding];
@@ -918,7 +918,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     BOOL shouldShowList = NO;
     
     if (updateDocument) {
-        NSString *curString = [self stringForSave];
+        NSString *curString = [self string];
         BOOL allowsLossy = NO;
 
         if (askLossy) {
@@ -1525,7 +1525,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     if ([self suppressesIANACharsetConflictAlert]) { return YES; }
     
     NSError *error;
-    [self checkSavingSafetyWithIANACharSetNameForString:[self stringForSave] encoding:[self encoding] error:&error];
+    [self checkSavingSafetyWithIANACharSetNameForString:[self string] encoding:[self encoding] error:&error];
     
     if (error) {
         NSAlert *alert = [NSAlert alertWithError:error];
@@ -1557,7 +1557,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 // ------------------------------------------------------
 {
     NSError *error;
-    [self checkSavingSafetyForConvertingString:[self stringForSave] encoding:[self encoding] error:&error];
+    [self checkSavingSafetyForConvertingString:[self string] encoding:[self encoding] error:&error];
     
     if (error) {
         NSAlert *alert = [NSAlert alertWithError:error];

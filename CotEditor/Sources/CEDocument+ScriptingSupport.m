@@ -61,7 +61,7 @@
 - (NSTextStorage *)scriptTextStorage
 // ------------------------------------------------------
 {
-    NSTextStorage *textStorage = [[NSTextStorage alloc] initWithString:[self stringForSave]];
+    NSTextStorage *textStorage = [[NSTextStorage alloc] initWithString:[self string]];
 
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(textStorageDidProcessEditing:)
@@ -116,7 +116,7 @@
 - (NSNumber *)length
 // ------------------------------------------------------
 {
-    return @([[self stringForSave] length]);
+    return @([[self string] length]);
 }
 
 
@@ -320,7 +320,7 @@
     BOOL isBackwards = [arguments[@"backwardsSearch"] boolValue];
     BOOL isWrapSearch = [arguments[@"wrapSearch"] boolValue];
     
-    NSString *wholeString = [self stringForSave];
+    NSString *wholeString = [self string];
     NSInteger wholeLength = [wholeString length];
     
     if (wholeLength == 0) { return @NO; }
@@ -371,7 +371,7 @@
     BOOL isBackwards = [arguments[@"backwardsSearch"] boolValue];
     BOOL isWrapSearch = [arguments[@"wrapSearch"] boolValue];
     
-    NSString *wholeString = [self stringForSave];
+    NSString *wholeString = [self string];
     NSInteger wholeLength = [wholeString length];
     
     if (wholeLength == 0) { return @NO; }

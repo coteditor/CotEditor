@@ -959,8 +959,8 @@ static NSTimeInterval secondColoringDelay;
     }
     
     // sanitize for CR/LF
-    NSString *tmpLocStr = [[[self document] stringForSave] substringToIndex:range.location];
-    NSString *tmpLenStr = [[[self document] stringForSave] substringWithRange:range];
+    NSString *tmpLocStr = [[[self document] string] substringToIndex:range.location];
+    NSString *tmpLenStr = [[[self document] string] substringWithRange:range];
     NSString *locStr = [tmpLocStr stringByReplacingNewLineCharacersWith:CENewLineLF];
     NSString *lenStr = [tmpLenStr stringByReplacingNewLineCharacersWith:CENewLineLF];
     

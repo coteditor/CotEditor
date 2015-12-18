@@ -159,7 +159,7 @@ NSString *_Nonnull const CEAnalyzerDidUpdateEditorInfoNotification = @"CEAnalyze
     if (![editor string]) { return; }
     
     BOOL hasMarked = [[editor focusedTextView] hasMarkedText];
-    NSString *wholeString = ([document lineEnding] == CENewLineCRLF) ? [document stringForSave] : [NSString stringWithString:[editor string]];
+    NSString *wholeString = ([document lineEnding] == CENewLineCRLF) ? [document string] : [NSString stringWithString:[editor string]];
     NSString *selectedString = hasMarked ? nil : [editor substringWithSelection];
     NSStringEncoding encoding = [document encoding];
     __block NSRange selectedRange = [editor selectedRange];
