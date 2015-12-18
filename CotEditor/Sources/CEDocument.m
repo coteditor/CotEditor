@@ -1050,6 +1050,21 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 
 // ------------------------------------------------------
+/// show Share Service menu
+- (IBAction)share:(nullable id)sender
+// ------------------------------------------------------
+{
+    NSURL *url = [self fileURL];
+    NSArray<NSURL *> *items = url ? @[url] : @[];
+    
+    NSSharingServicePicker *sharingServicePicker = [[NSSharingServicePicker alloc] initWithItems:items];
+    [sharingServicePicker showRelativeToRect:[sender bounds]
+                                      ofView:sender
+                               preferredEdge:NSMinYEdge];
+}
+
+
+// ------------------------------------------------------
 /// ドキュメントに新しい改行コードをセットする
 - (IBAction)changeLineEndingToLF:(nullable id)sender
 // ------------------------------------------------------
