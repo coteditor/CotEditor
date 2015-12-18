@@ -1065,6 +1065,17 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 
 // ------------------------------------------------------
+/// share document
+- (IBAction)shareFromService:(nullable id)sender
+// ------------------------------------------------------
+{
+    if ([[sender representedObject] isKindOfClass:[NSSharingService class]]) {
+        [(NSSharingService *)[sender representedObject] performWithItems:@[[self fileURL]]];
+    }
+}
+
+
+// ------------------------------------------------------
 /// ドキュメントに新しい改行コードをセットする
 - (IBAction)changeLineEndingToLF:(nullable id)sender
 // ------------------------------------------------------

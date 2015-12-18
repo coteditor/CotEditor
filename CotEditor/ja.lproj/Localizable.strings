@@ -36,6 +36,11 @@
 "Check for Updates…" = "アップデートを確認...";
 
 
+// Share menu
+"Save the document to share" = "共有するには書類を保存してください";
+"No document" = "書類なし";
+
+
 
 /* MARK: CEAppDelegate */
 // File open accessory's menu item title

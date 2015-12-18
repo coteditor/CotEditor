@@ -400,6 +400,7 @@ typedef NS_ENUM(NSInteger, CEMenuItemTag) {
     CESyntaxMenuItemTag         = 4002,
     CEThemeMenuItemTag          = 4003,
     CEServicesMenuItemTag       =  999,  // const to not list up in "Menu Key Bindings" setting
+    CESharingServiceMenuItemTag = 1999,
     CEScriptMenuDirectoryTag    = 8999,  // const to not list up in "Menu Key Bindings" setting
     
     // in script menu

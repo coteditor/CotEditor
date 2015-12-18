@@ -5,6 +5,11 @@ Change Log
 develop
 --------------------------
 
+### New Features
+
+- Add “Share” menu to File menu.
+
+
 ### Improvements
 
 - Improve the installed syntax style list in preferences:

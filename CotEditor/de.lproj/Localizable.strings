@@ -35,6 +35,11 @@
 "Check for Updates…" = "Nach Aktualisierungen suchen …";
 
 
+// Share menu
+"Save the document to share" = "Sichern das dokument, um bereitzustellen";
+"No document" = "Kein Dokument";
+
+
 
 /* MARK: CEAppDelegate */
 // File open accessory's menu item title
