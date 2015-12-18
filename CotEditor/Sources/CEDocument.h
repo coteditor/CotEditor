@@ -77,6 +77,7 @@ extern NSString *_Nonnull const CEIncompatibleConvertedCharKey;
 
 #pragma mark Action Messages
 
+- (IBAction)share:(nullable id)sender;
 - (IBAction)changeLineEndingToLF:(nullable id)sender;
 - (IBAction)changeLineEndingToCR:(nullable id)sender;
 - (IBAction)changeLineEndingToCRLF:(nullable id)sender;

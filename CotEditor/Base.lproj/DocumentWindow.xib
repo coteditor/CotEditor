@@ -286,7 +286,7 @@
                                 <font key="font" metaFont="system"/>
                             </buttonCell>
                             <connections>
-                                <action selector="share:" target="-2" id="SUM-6X-NUT"/>
+                                <action selector="share:" target="-1" id="hZf-Cq-9Yb"/>
                             </connections>
                         </button>
                         <connections>

@@ -465,21 +465,6 @@ static NSTimeInterval infoUpdateInterval;
 
 
 // ------------------------------------------------------
-/// show Share Service menu
-- (IBAction)share:(nullable id)sender
-// ------------------------------------------------------
-{
-    NSURL *url = [[self document] fileURL];
-    NSArray<NSURL *> *items = url ? @[url] : @[];
-    
-    NSSharingServicePicker *sharingServicePicker = [[NSSharingServicePicker alloc] initWithItems:items];
-    [sharingServicePicker showRelativeToRect:[sender bounds]
-                                      ofView:sender
-                               preferredEdge:NSMinYEdge];
-}
-
-
-// ------------------------------------------------------
 /// toggle visibility of incompatible chars list view
 - (IBAction)toggleIncompatibleCharList:(nullable id)sender
 // ------------------------------------------------------

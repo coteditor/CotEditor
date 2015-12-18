@@ -95,6 +95,8 @@
 "80.title" = "別名で保存...";
 /* Class = "NSMenuItem"; title = "Revert"; ObjectID = "112"; */
 "112.title" = "元に戻す";
+/* Class = "NSMenuItem"; title = "Share"; ObjectID = "U5u-O7-0EX"; */
+"U5u-O7-0EX.title" = "共有";
 
 /* Class = "NSMenuItem"; title = "Page Setup…"; ObjectID = "77"; */
 "77.title" = "ページ設定...";

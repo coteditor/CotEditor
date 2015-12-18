@@ -35,6 +35,12 @@
 "Check for Updates…" = "检查更新…";
 
 
+// Share menu
+"No document" = "无文稿";
+"File" = "文件";
+"Text" = "文本";
+
+
 
 /* MARK: CEAppDelegate */
 // File open accessory's menu item title

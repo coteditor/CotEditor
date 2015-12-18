@@ -35,6 +35,12 @@
 "Check for Updates…" = "Nach Aktualisierungen suchen …";
 
 
+// Share menu
+"No document" = "Kein Dokument";
+"File" = "Datei";
+"Text" = "Text";
+
+
 
 /* MARK: CEAppDelegate */
 // File open accessory's menu item title

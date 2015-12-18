@@ -414,6 +414,7 @@ static NSDictionary<NSString *, NSString *> *kUnprintableKeyTable;
     
     // specific tags
     if ([menuItem tag] == CEServicesMenuItemTag ||
+        [menuItem tag] == CESharingServiceMenuItemTag ||
         [menuItem tag] == CEScriptMenuDirectoryTag)
     {
         return YES;
