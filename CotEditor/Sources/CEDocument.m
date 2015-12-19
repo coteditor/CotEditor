@@ -1367,7 +1367,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 //------------------------------------------------------
 {
     // detect enoding from so-called "magic numbers"
-    NSMutableArray<NSNumber *> *triedEncodings = [NSMutableArray array];
+    NSStringEncoding triedEncoding;
     if ([data length] > 0) {
         // ISO 2022-JP / UTF-8 / UTF-16の判定は、「藤棚工房別棟 −徒然−」の
         // 「Cocoaで文字エンコーディングの自動判別プログラムを書いてみました」で公開されている
@@ -1377,7 +1377,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
         // BOM 付き UTF-8 判定
         if (memchr([data bytes], *UTF8_BOM, 3) != NULL) {
             NSStringEncoding encoding = NSUTF8StringEncoding;
-            [triedEncodings addObject:@(encoding)];
+            triedEncoding = encoding;
             NSString *string = [[NSString alloc] initWithData:data encoding:encoding];
             if (string) {
                 *usedEncoding = encoding;
@@ -1389,7 +1389,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
                    (memchr([data bytes], 0x0000feff, 4) != NULL))
         {
             NSStringEncoding encoding = NSUTF32StringEncoding;
-            [triedEncodings addObject:@(encoding)];
+            triedEncoding = encoding;
             NSString *string = [[NSString alloc] initWithData:data encoding:encoding];
             if (string) {
                 *usedEncoding = encoding;
@@ -1401,7 +1401,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
                    (memchr([data bytes], 0xfeff, 2) != NULL))
         {
             NSStringEncoding encoding = NSUTF16StringEncoding;
-            [triedEncodings addObject:@(encoding)];
+            triedEncoding = encoding;
             NSString *string = [[NSString alloc] initWithData:data encoding:encoding];
             if (string) {
                 *usedEncoding = encoding;
@@ -1411,7 +1411,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
         // ISO-2022-JP 判定
         } else if (memchr([data bytes], 0x1b, [data length]) != NULL) {
             NSStringEncoding encoding = NSISO2022JPStringEncoding;
-            [triedEncodings addObject:@(encoding)];
+            triedEncoding = encoding;
             NSString *string = [[NSString alloc] initWithData:data encoding:encoding];
             if (string) {
                 *usedEncoding = encoding;
@@ -1427,7 +1427,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
         NSStringEncoding encoding = CFStringConvertEncodingToNSStringEncoding([encodingNumber unsignedIntegerValue]);
         
         // skip encoding already tried
-        if ([triedEncodings containsObject:@(encoding)]) { continue; }
+        if (triedEncoding == encoding) { continue; }
         
         NSString *string = [[NSString alloc] initWithData:data encoding:encoding];
         
