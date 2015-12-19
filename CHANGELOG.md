@@ -2,6 +2,51 @@
 Change Log
 ==========================
 
+2.3.2 (89)
+--------------------------
+
+### New Features
+
+- Add “Convert Indentation to Spaces/Tabs” actions to Text > Indentation menu.
+- Add syntax styles for “METAFONT” (Thanks to M.Daimon!), “AWK”, “Git Config” and “Git Ignore”.
+
+
+### Improvements
+
+- Improve character inspector:
+    - Display also Unicode block if selected letter consists of one character.
+    - Display unicode names of each character if selected letter consist of multiple characters.
+    - Fix drawing area of zoomed character view.
+    - Fix some other trivial issues.
+- Add option to suppress “not writable document” alert.
+- Improve text selection by clicking line numbers view.
+- Tweak style of popup menus in toolbar.
+- Add “description” field that doesn't affect to highlighting but for commenting for each term to the syntax style and syntax style editor.
+- Add Swite to Delete action on El Capitan to tables in syntax style editor.
+- Improve text encoding detection for UTF-32.
+- Update Python syntax style:
+    - Add several commands and variables that are in `__foo__` form.
+    - Add `pyi` extension.
+- Update Perl syntax style:
+    - Add some terms.
+- Update PHP syntax style:
+    - Add terms added on PHP 5.6.
+    - Highlight uppercase `TRUE`, `FALSE`, `AND` and `OR`.
+- Update Haskell syntax style:
+    - Add some keywords.
+- Update DTD, Markdown, reStructuredText and Textile syntax styles to move comments to the description field.
+
+
+### Fixes
+
+- Fix an issue where text view drawing was distorted while resizing window.
+- Fix an issue where line endings of a document that has a line ending character at the beginning of the file cannot be interpreted its line ending type correctly.
+- Fix an issue where character inspector returned always `U+000A` (LF) for line ending even the actual line ending of the document is not LF.
+- Fix character count with a single regional indicator symbol.
+- Fix wrong undo action name on encoding conversion via script.
+
+
+
 2.3.1 (85)
 --------------------------
 
@@ -10,7 +55,7 @@ Change Log
 - Add “Duplicate Line” action to Text > Lines menu.
 
 
-### Additions/Changes
+### Improvements
 
 - Update Python syntax style:
     - Add terms added in Python 3.5.
@@ -36,7 +81,7 @@ Change Log
 - Add “Copy with Style” action to the Edit menu.
 
 
-### Additions/Changes
+### Improvements
 
 - Update “R” syntax style:
     - Add “Rscript” to interpreters.
@@ -67,7 +112,7 @@ Change Log
 - Add syntax styles for “D”, “iCalendar” and “Rich Text Format”.
 
 
-### Additions/Changes
+### Improvements
 
 - Reconstitute main menu.
 - Embed key bindings editor to Key Bindings pane.
@@ -101,7 +146,7 @@ Change Log
     - It is also added to the AppleScript terms.
 
 
-### Additions/Changes
+### Improvements
 
 - Update “JSON” syntax style:
     - Add “geojson” to extension list. 
@@ -143,7 +188,7 @@ Change Log
 - Add new themes “Anura” and “Note”.
 
 
-### Additions/Changes
+### Improvements
 
 - Remove bundled `cot` command-line tool, due to the Mac App Store guidelines.
     - To use `cot` command with CotEditor 2.2.0 and later, download it from <http://coteditor.com/cot> and install manually. You cannnot use the previous one with CotEditor 2.2.0.
@@ -187,7 +232,7 @@ Change Log
 - Add German localization.
 
 
-### Additions/Changes
+### Improvements
 
 - Change the location where `cot` command-line tool is bundled from `CotEditor.app/Contents/MacOS/` to `CotEditor.app/Contents/SharedSupport/bin/`, due to Sandbox requirement.
     - Users who have already installed `cot` command need re-install it manually.
@@ -246,7 +291,7 @@ Change Log
 - Add `encoding:` and `coding:` to the encoding declaration keywords which will be used on encoding auto-detection (interpreting priorities are: `charset=` > `encoding=` > `@charset` > `encoding:` > `coding:`).
 
 
-### Additions/Changes
+### Improvements
 
 - [non-AppStore ver.] Disable auto-update feature.
     - Since the Sparkle framework which is a software update framework we use doesn't support Sandboxed apps yet, the auto-update feature within CotEditor should be once disabled. The new behavior is: a nofitication window will be shown when a new release is available (as before), then you need to update CotEditor manually getting the new version from our web-site. Or, just migrate to the Mac App Store version when the stable CotEditor 2.2.0 is released.
@@ -314,7 +359,7 @@ Change Log
 - Importing theme files via drag-and-drop to theme list in preferences.
 
 
-### Additions/Changes
+### Improvements
 
 - Support displaying skin tone variations of Unicode 8.0 on the character inspector.
 - Support Automatic Termination (Now, CotEditor can be terminated automatically if it has no window).
@@ -346,7 +391,7 @@ Change Log
 2.1.3
 --------------------------
 
-### Additions/Changes
+### Improvements
 
 - Revert find panel behavior to select always whole text in find field when the panel is called.
 
@@ -362,7 +407,7 @@ Change Log
 2.1.2
 --------------------------
 
-### Additions/Changes
+### Improvements
 
 - Change place to create backup files (Now, backup files are always created in `~/Library/Autosave Information/`).
 - Improve find panel:
@@ -395,7 +440,7 @@ Change Log
 2.1.0
 --------------------------
 
-### Additions/Changes
+### Improvements
 
 - [beta] Add `--new` option to `cot` command-line tool.
 - Update help contents.
@@ -424,7 +469,7 @@ Change Log
     - This feature doesn't modify your actual files. You still need to perform “Save” manually to apply changes to your files.
 
 
-### Additions/Changes
+### Improvements
 
 - [beta] add a missing localization in simplified Chinese. (Thanks to Wei Wang!)
 
@@ -433,7 +478,7 @@ Change Log
 2.1.0-rc
 --------------------------
 
-### Additions/Changes
+### Improvements
 
 - Update Sparkle framework to version 1.9.0.
 - [beta] close popover on clicking regex help button if it's already shown.
@@ -452,7 +497,7 @@ Change Log
 2.1.0-beta.2
 --------------------------
 
-### Additions/Changes
+### Improvements
 
 - Make key bindings for panel windows customizable.
 - [beta] Enhance Find & Replace panel:
@@ -483,7 +528,7 @@ Change Log
 - Add syntax styles for “Erlang” and “Julia”.
 
 
-### Additions/Changes
+### Improvements
 
 - Drop support for __OS X Lion.__
 - Migrate document drawer to sidebar style.
@@ -550,7 +595,7 @@ Change Log
 - Add feature to scale font size up by pinch gesture.
 
 
-### Additions/Changes
+### Improvements
 
 - Add “Traditional Chinese (Big 5 HKSCS)”, “Traditional Chinese (Big 5-E)” and “Traditional Chinese (Big 5)” to encoding list.
 - Add “show invisible characters” option to set visibility of all invisible character types at once.
@@ -604,7 +649,7 @@ Change Log
 - Add syntax style for “BibTeX”.
 
 
-### Additions/Changes
+### Improvements
 
 - Display an alert if the opening file is larger than 100 MB.
 - Change default value for “Comment always from line head” option to enable.
@@ -644,7 +689,7 @@ Change Log
 2.0.0
 --------------------------
 
-### Additions/Changes
+### Improvements
 
 - 「編集」メニューの項目「スペル」を「スペルと文法」に変更し、さらに「自動変換」と「変換」機能を追加
     - これにともない、「ユーティリティ」メニュー内の「大文字に」、「小文字に」、「先頭の文字を大文字に」を削除
@@ -678,7 +723,7 @@ Change Log
 - “Rust”, “Tcl” シンタックス定義を追加
 
 
-### Additions/Changes
+### Improvements
 
 - 行番号ビューの色がテーマカラーを反映したものになるように改良
 - アプリケーション識別子 (bundle identifier) を `com.aynimac.CotEditor` から `com.coteditor.CotEditor` へ変更
@@ -723,7 +768,7 @@ Change Log
 2.0.0-beta.2
 --------------------------
 
-### Additions/Changes
+### Improvements
 
 - プリント設定のラベルを一部変更
 - [beta] “AppleScript” シンタックス定義の更新
@@ -764,7 +809,7 @@ Change Log
 - 自動補完機能を追加（実験的実装, デフォルトはオフ）
 
 
-### Additions/Changes
+### Improvements
 
 - OS X Yosemite に対応
 - Yosemite スタイルの新しいアプリケーションアイコン

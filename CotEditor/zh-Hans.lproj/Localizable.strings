@@ -168,6 +168,7 @@
 "Insert Custom Text" = "插入自定义文本";
 "Shift Right" = "右移";
 "Shift Left" = "左移";
+"Convert Indentation" = "转换缩进";
 "Comment Out" = "注释";
 "Uncomment" = "取消注释";
 "To Fullwidth Roman" = "转为全角";
@@ -196,19 +197,6 @@
 "Font" = "字体";
 "Text" = "文本";
 "Select All" = "全部选择";
-
-
-
-/* MARK: CharacterPopover */
-"<a letter consisting of %d characters>" = "<包含有 %d 个字符>";
-"Emoji Style" = "表情文字格式";
-"Text Style" = "文本文字格式";
-"Skin Tone I-II" = "色调 I-II";
-"Skin Tone III" = "色调 III";
-"Skin Tone IV" = "色调 IV";
-"Skin Tone V" = "色调 V";
-"Skin Tone VI" = "色调 VI";
-"Variant" = "异体字";
 
 
 

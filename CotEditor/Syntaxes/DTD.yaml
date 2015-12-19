@@ -13,9 +13,9 @@ attributes:
 metadata:
   author: "1024jp"
   distributionURL: "http://coteditor.com"
-  version: "1.0"
+  version: "1.0.1"
   license: "Same as CotEditor"
-  lastModified: "2014-09-24"
+  lastModified: "2015-11-29"
 characters:
 - beginString: "%[^&%\"]+;(?=[^<>]*[\\[>])"
   regularExpression: true
@@ -24,10 +24,12 @@ characters:
 - beginString: "<![CDATA["
   endString: "]]>"
 comments:
-- beginString: "(?#for SGML DTD)--(?:-[^-]|[^-])*--(?=[^<>]*>)"
+- beginString: "--(?:-[^-]|[^-])*--(?=[^<>]*>)"
+  description: "for SGML DTD"
   regularExpression: true
 values:
-- beginString: "(?#for SGML DTD)(?<=\\s)(?:SDATA|RCDATA|NAME|NUMBER|#CONREF|#SUBDOC)(?=[^<>]*>)"
+- beginString: "(?<=\\s)(?:SDATA|RCDATA|NAME|NUMBER|#CONREF|#SUBDOC)(?=[^<>]*>)"
+  description: "for SGML DTD"
   regularExpression: true
 - beginString: "(?<=[(|])#PCDATA(?=\\b)"
   regularExpression: true
@@ -70,7 +72,8 @@ keywords:
 - beginString: "(?<=[\\n\\t (|,])[[:alnum:]_\\-.:%]+(?=[\\n\\t )|,]?[^<>\\[]*[>\\[])"
   regularExpression: true
 variables:
-- beginString: "(?#for SGML DTD)(?<!ATTLIST)\\s+[O\\-]\\s+[O\\-](?=\\s[^<>]*>)"
+- beginString: "(?<!ATTLIST)\\s+[O\\-]\\s+[O\\-](?=\\s[^<>]*>)"
+  description: "for SGML DTD"
   regularExpression: true
 - beginString: "(?<=</?)[[:alnum:]_\\-.]+:(?=\\w)"
   regularExpression: true

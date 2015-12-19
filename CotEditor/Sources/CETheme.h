@@ -67,8 +67,6 @@
 
 /// designated initializer
 - (nullable instancetype)initWithName:(nonnull NSString *)themeName NS_DESIGNATED_INITIALIZER;
-
-// unavailable initializer
-- (nullable instancetype)init __attribute__((unavailable("use -initWithName: instead")));
+- (nullable instancetype)init NS_UNAVAILABLE;
 
 @end

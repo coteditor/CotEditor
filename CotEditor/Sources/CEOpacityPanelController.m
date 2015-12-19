@@ -27,6 +27,7 @@
 
 #import "CEOpacityPanelController.h"
 #import "CEWindow.h"
+#import "CEWindowController.h"
 #import "Constants.h"
 
 

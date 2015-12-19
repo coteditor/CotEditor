@@ -169,6 +169,7 @@
 "Insert Custom Text" = "Benutzerdefinierten Text hinzufügen";
 "Shift Right" = "Einrücken";
 "Shift Left" = "Ausrücken";
+"Convert Indentation" = "Einzug konvertieren";
 "Comment Out" = "Auskommentieren";
 "Uncomment" = "Unkommentieren";
 "To Fullwidth Roman" = "Zu vollbreiten Zeichen";
@@ -197,19 +198,6 @@
 "Font" = "Schrift";
 "Text" = "Text";
 "Select All" = "Alles auswählen";
-
-
-
-/* MARK: CharacterPopover */
-"<a letter consisting of %d characters>" = "<ein aus %d Zeichen bestehender Buchstabe>";
-"Emoji Style" = "Emoji-Stil";
-"Text Style" = "Text-Stil";
-"Skin Tone I-II" = "Hautfarbe I-II";
-"Skin Tone III" = "Hautfarbe III";
-"Skin Tone IV" = "Hautfarbe IV";
-"Skin Tone V" = "Hautfarbe V";
-"Skin Tone VI" = "Hautfarbe VI";
-"Variant" = "Variante";
 
 
 

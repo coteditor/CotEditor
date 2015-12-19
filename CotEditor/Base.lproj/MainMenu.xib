@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9059" systemVersion="15C31f" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9060" systemVersion="15C47a" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9059"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9060"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -640,16 +640,6 @@
                     <attributedString key="attributedTitle"/>
                     <menu key="submenu" title="Text" id="578">
                         <items>
-                            <menuItem title="Shift Right" keyEquivalent="]" id="454">
-                                <connections>
-                                    <action selector="shiftRight:" target="-1" id="456"/>
-                                </connections>
-                            </menuItem>
-                            <menuItem title="Shift Left" keyEquivalent="[" id="455">
-                                <connections>
-                                    <action selector="shiftLeft:" target="-1" id="457"/>
-                                </connections>
-                            </menuItem>
                             <menuItem title="Comment Selection" keyEquivalent="/" id="LLy-Yx-tXI">
                                 <connections>
                                     <action selector="toggleComment:" target="-1" id="NSz-mr-8wt"/>
@@ -706,6 +696,36 @@ CA
                                             <modifierMask key="keyEquivalentModifierMask" shift="YES" command="YES"/>
                                             <connections>
                                                 <action selector="deleteLine:" target="-1" id="FJR-BG-Nyi"/>
+                                            </connections>
+                                        </menuItem>
+                                    </items>
+                                </menu>
+                            </menuItem>
+                            <menuItem title="Indentation" id="4h9-iu-ehP">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="Indentation" id="YOd-Hk-eIa">
+                                    <items>
+                                        <menuItem title="Shift Right" keyEquivalent="]" id="454">
+                                            <connections>
+                                                <action selector="shiftRight:" target="-1" id="456"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Shift Left" keyEquivalent="[" id="455">
+                                            <connections>
+                                                <action selector="shiftLeft:" target="-1" id="457"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="G27-U6-C9J"/>
+                                        <menuItem title="Convert Indentation to Spaces" id="EOT-3u-f0a">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="convertIndentationToSpaces:" target="-1" id="e5L-op-3YU"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Convert Indentation to Tabs" id="q32-Jm-eR3">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="convertIndentationToTabs:" target="-1" id="ZCi-S5-kLE"/>
                                             </connections>
                                         </menuItem>
                                     </items>

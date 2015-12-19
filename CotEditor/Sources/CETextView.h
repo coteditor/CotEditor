@@ -33,7 +33,6 @@
 
 @import Cocoa;
 #import "CETextViewProtocol.h"
-#import "CELayoutManager.h"
 
 
 @interface CETextView : NSTextView <NSTextInputClient, CETextViewProtocol>
@@ -119,6 +118,14 @@
 @interface CETextView (ColorCode)
 
 - (IBAction)editColorCode:(nullable id)sender;
+
+@end
+
+
+@interface CETextView (Indentation)
+
+- (IBAction)convertIndentationToSpaces:(nullable id)sender;
+- (IBAction)convertIndentationToTabs:(nullable id)sender;
 
 @end
 

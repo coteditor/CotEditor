@@ -1,0 +1,44 @@
+extensions: []
+filenames:
+- keyString: ".gitconfig"
+- keyString: ".gitmodules"
+- keyString: "gitconfig"
+interpreters: []
+metadata:
+  version: "1.0.0"
+  lastModified: "2015-12-01"
+  distributionURL: "http://coteditor.com"
+  author: "1024jp"
+  license: "Same as CotEditor"
+keywords:
+- beginString: "^[\\t ]*\\w+[\\t ]*(?<=)"
+  regularExpression: true
+commands: []
+types:
+- beginString: "^\\["
+  endString: "\\]"
+  regularExpression: true
+attributes: []
+variables: []
+values:
+- beginString: "false"
+- beginString: "true"
+numbers:
+- beginString: "(?<!\\w)[0-9.][0-9.]*(e-?[0-9.]+)?\\b"
+  regularExpression: true
+strings:
+- beginString: "\""
+  endString: "\""
+- beginString: "'"
+  endString: "'"
+characters: []
+comments:
+- beginString: ";.*"
+  regularExpression: true
+commentDelimiters:
+  inlineDelimiter: "#"
+outlineMenu:
+- beginString: "^\\[(.+)\\]"
+  keyString: "$1"
+  bold: true
+completions: []

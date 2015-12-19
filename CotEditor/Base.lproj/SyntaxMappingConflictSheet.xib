@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9059" systemVersion="15C27e" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9060" systemVersion="15C40a" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9059"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9060"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
@@ -40,7 +40,7 @@ DQ
                             <action selector="closeSheet:" target="-2" id="vsf-7A-9uH"/>
                         </connections>
                     </button>
-                    <textField horizontalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="283">
+                    <textField horizontalHuggingPriority="750" preferredMaxLayoutWidth="300" translatesAutoresizingMaskIntoConstraints="NO" id="283">
                         <rect key="frame" x="18" y="465" width="207" height="17"/>
                         <animations/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Syntax Style Mapping Conflicts" usesSingleLineMode="YES" id="1022">
@@ -234,8 +234,8 @@ DQ
                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </clipView>
                         <animations/>
-                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="fhe-rV-nGM">
-                            <rect key="frame" x="1" y="131" width="358" height="16"/>
+                        <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="fhe-rV-nGM">
+                            <rect key="frame" x="1" y="132" width="358" height="16"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <animations/>
                         </scroller>
@@ -323,7 +323,7 @@ DQ
                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                             <prototypeCellViews>
                                                 <tableCellView id="aFH-Wd-ljw">
-                                                    <rect key="frame" x="87" y="1" width="100" height="17"/>
+                                                    <rect key="frame" x="89" y="1" width="100" height="17"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
                                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Mg0-Tx-34z">
@@ -367,7 +367,7 @@ DQ
                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                             <prototypeCellViews>
                                                 <tableCellView id="I5Q-JC-dF8">
-                                                    <rect key="frame" x="192" y="1" width="163" height="17"/>
+                                                    <rect key="frame" x="194" y="1" width="161" height="17"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
                                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Enr-IH-mGd">
@@ -407,8 +407,8 @@ DQ
                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </clipView>
                         <animations/>
-                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="pfv-Dj-1yD">
-                            <rect key="frame" x="1" y="100" width="226" height="16"/>
+                        <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="pfv-Dj-1yD">
+                            <rect key="frame" x="1" y="103" width="358" height="16"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <animations/>
                         </scroller>
@@ -422,7 +422,7 @@ DQ
                             <animations/>
                         </tableHeaderView>
                     </scrollView>
-                    <textField horizontalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PVg-8D-w5u">
+                    <textField horizontalHuggingPriority="750" preferredMaxLayoutWidth="300" translatesAutoresizingMaskIntoConstraints="NO" id="PVg-8D-w5u">
                         <rect key="frame" x="18" y="400" width="67" height="17"/>
                         <animations/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Extension:" usesSingleLineMode="YES" id="31z-NP-PkW">
@@ -431,7 +431,7 @@ DQ
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <textField horizontalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g7t-aj-KCT">
+                    <textField horizontalHuggingPriority="750" preferredMaxLayoutWidth="300" translatesAutoresizingMaskIntoConstraints="NO" id="g7t-aj-KCT">
                         <rect key="frame" x="18" y="192" width="63" height="17"/>
                         <animations/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Filename:" usesSingleLineMode="YES" id="Msi-ee-MNF">

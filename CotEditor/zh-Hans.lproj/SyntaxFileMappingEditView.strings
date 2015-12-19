@@ -1,0 +1,41 @@
+/*
+ 
+ SyntaxFileMappingEditView.strings (Simplified Chinese)
+ 
+ CotEditor
+ http://coteditor.com
+ 
+ Created by 1024jp on 2014-12-14.
+ Localized by onevcat.
+ 
+ ------------------------------------------------------------------------------
+ 
+ © 2014-2015 CotEditor Project
+ 
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+ 
+ http://www.apache.org/licenses/LICENSE-2.0
+ 
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ 
+ */
+
+
+/* Class = "NSTextFieldCell"; title = "Extensions"; ObjectID = "E1f-Zh-9Ne"; */
+"E1f-Zh-9Ne.title" = "扩展名";
+/* Class = "NSTextFieldCell"; title = "(without dots)"; ObjectID = "7eZ-XF-dxf"; */
+"7eZ-XF-dxf.title" = "（不包括点）";
+
+/* Class = "NSTextFieldCell"; title = "Filenames"; ObjectID = "IAe-3F-qcV"; */
+"IAe-3F-qcV.title" = "文件名";
+
+/* Class = "NSTextFieldCell"; title = "Interpreters"; ObjectID = "Axx-Oq-E9U"; */
+"Axx-Oq-E9U.title" = "解释器";
+/* Class = "NSTextFieldCell"; title = "The interpreters are used to determine the syntax style from the shebang in the document."; ObjectID = "dIj-Z5-J2j"; */
+"dIj-Z5-J2j.title" = "解释器将根据文档整体来决定语法高亮样式。";

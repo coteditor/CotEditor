@@ -26,7 +26,6 @@
  */
 
 @import Cocoa;
-#import "NSString+ComposedCharacter.h"
 
 
 @interface CECharacterPopoverController : NSViewController

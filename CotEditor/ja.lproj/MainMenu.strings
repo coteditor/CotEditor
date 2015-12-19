@@ -309,13 +309,21 @@
 "578.title" = "テキスト";
 /* Class = "NSMenuItem"; title = "Text"; ObjectID = "579"; */
 "579.title" = "テキスト";
+/* Class = "NSMenuItem"; title = "Comment Selection"; ObjectID = "LLy-Yx-tXI"; */
+"LLy-Yx-tXI.title" = "選択範囲をコメントアウト";
 
+/* Class = "NSMenuItem"; title = "Indentation"; ObjectID = "4h9-iu-ehP"; */
+"4h9-iu-ehP.title" = "インデント";
+/* Class = "NSMenu"; title = "Indentation"; ObjectID = "YOd-Hk-eIa"; */
+"YOd-Hk-eIa.title" = "インデント";
 /* Class = "NSMenuItem"; title = "Shift Right"; ObjectID = "454"; */
 "454.title" = "右へシフト";
 /* Class = "NSMenuItem"; title = "Shift Left"; ObjectID = "455"; */
 "455.title" = "左へシフト";
-/* Class = "NSMenuItem"; title = "Comment Selection"; ObjectID = "LLy-Yx-tXI"; */
-"LLy-Yx-tXI.title" = "選択範囲をコメントアウト";
+/* Class = "NSMenuItem"; title = "Convert Indentation to Spaces"; ObjectID = "EOT-3u-f0a"; */
+"EOT-3u-f0a.title" = "インデントをスペースに変換";
+/* Class = "NSMenuItem"; title = "Convert Indentation to Tabs"; ObjectID = "q32-Jm-eR3"; */
+"q32-Jm-eR3.title" = "インデントをタブに変換";
 
 /* Class = "NSMenuItem"; title = "Lines"; ObjectID = "Kb8-QD-tYZ"; */
 "Kb8-QD-tYZ.title" = "行";

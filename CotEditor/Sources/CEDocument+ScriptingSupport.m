@@ -27,8 +27,11 @@
  */
 
 #import "CEDocument+ScriptingSupport.h"
-#import <OgreKit/OgreKit.h>
+#import "CETextSelection.h"
+#import "CEEditorWrapper.h"
 #import "CEUtils.h"
+
+#import <OgreKit/OgreKit.h>
 
 
 @implementation CEDocument (ScriptingSupport)
@@ -270,20 +273,19 @@
     NSDictionary<NSString *, id> *arguments = [command evaluatedArguments];
     NSString *encodingName = arguments[@"newEncoding"];
     NSStringEncoding encoding = [CEUtils encodingFromName:encodingName];
-    BOOL success = NO;
-
+    
     if (encoding == NSNotFound) {
-        success = NO;
+        return @NO;
     } else if (encoding == [self encoding]) {
-        success = YES;
-    } else {
-        NSString *actionName = @"TEST";
-        BOOL lossy = NO;
-
-        lossy = [arguments[@"Lossy"] boolValue];
-        success = [self doSetEncoding:encoding updateDocument:YES askLossy:NO lossy:lossy asActionName:actionName];
+        return @YES;
     }
-
+    
+    BOOL lossy = [arguments[@"Lossy"] boolValue];
+    NSString *actionName = [NSString stringWithFormat:NSLocalizedString(@"Encoding to “%@”", nil),
+                            [NSString localizedNameOfStringEncoding:encoding]];
+    
+    BOOL success = [self doSetEncoding:encoding updateDocument:YES askLossy:NO lossy:lossy asActionName:actionName];
+    
     return @(success);
 }
 
@@ -309,36 +311,44 @@
 // ------------------------------------------------------
 {
     NSDictionary<NSString *, id> *arguments = [command evaluatedArguments];
-    NSString *searchStr = arguments[@"targetString"];
-    if ([searchStr length] == 0) { return @NO; }
+    NSString *searchString = arguments[@"targetString"];
+    
+    if ([searchString length] == 0) { return @NO; }
+    
     BOOL isRegex = [arguments[@"regularExpression"] boolValue];
     BOOL ignoresCase = [arguments[@"ignoreCase"] boolValue];
     BOOL isBackwards = [arguments[@"backwardsSearch"] boolValue];
     BOOL isWrapSearch = [arguments[@"wrapSearch"] boolValue];
-    NSString *wholeStr = [self stringForSave];
-    NSInteger wholeLength = [wholeStr length];
+    
+    NSString *wholeString = [self stringForSave];
+    NSInteger wholeLength = [wholeString length];
+    
     if (wholeLength == 0) { return @NO; }
-    NSRange selectionRange = [[self editor] selectedRange];
+    
+    // set target range
     NSRange targetRange;
-
+    NSRange selectedRange = [[self editor] selectedRange];
     if (isBackwards) {
-        targetRange = NSMakeRange(0, selectionRange.location);
+        targetRange = NSMakeRange(0, selectedRange.location);
     } else {
-        targetRange = NSMakeRange(NSMaxRange(selectionRange),
-                                  wholeLength - NSMaxRange(selectionRange));
+        targetRange = NSMakeRange(NSMaxRange(selectedRange),
+                                  wholeLength - NSMaxRange(selectedRange));
     }
-    NSUInteger mask = 0;
+    
+    // set option
+    NSUInteger option = 0;
     if (ignoresCase) {
-        mask |= isRegex ? OgreIgnoreCaseOption : NSCaseInsensitiveSearch;
+        option |= isRegex ? OgreIgnoreCaseOption : NSCaseInsensitiveSearch;
     }
     if (isBackwards) {
-        mask |= NSBackwardsSearch;
+        option |= NSBackwardsSearch;
     }
-
-    BOOL success = [self doFind:searchStr range:targetRange option:mask withRegularExpression:isRegex];
+    
+    // perform find
+    BOOL success = [self doFind:searchString range:targetRange option:option withRegularExpression:isRegex];
     if (!success && isWrapSearch) {
         targetRange = NSMakeRange(0, wholeLength);
-        success = [self doFind:searchStr range:targetRange option:mask withRegularExpression:isRegex];
+        success = [self doFind:searchString range:targetRange option:option withRegularExpression:isRegex];
     }
     
     return @(success);
@@ -351,69 +361,77 @@
 // ------------------------------------------------------
 {
     NSDictionary<NSString *, id> *arguments = [command evaluatedArguments];
-    NSString *searchStr = arguments[@"targetString"];
-    if ([searchStr length] == 0) { return @NO; }
+    NSString *searchString = arguments[@"targetString"];
+    
+    if ([searchString length] == 0) { return @NO; }
+    
     BOOL isRegex = [arguments[@"regularExpression"] boolValue];
     BOOL ignoresCase = [arguments[@"ignoreCase"] boolValue];
     BOOL isAll = [arguments[@"all"] boolValue];
     BOOL isBackwards = [arguments[@"backwardsSearch"] boolValue];
     BOOL isWrapSearch = [arguments[@"wrapSearch"] boolValue];
-    NSString *wholeStr = [self stringForSave];
-    NSInteger wholeLength = [wholeStr length];
+    
+    NSString *wholeString = [self stringForSave];
+    NSInteger wholeLength = [wholeString length];
+    
     if (wholeLength == 0) { return @NO; }
-    NSString *newString = arguments[@"newString"];
-    if ([searchStr isEqualToString:newString]) { return @NO; }
-    if (!newString) { newString = @""; }
-    NSRange selectionRange, targetRange;
-
+    
+    NSString *replacementString = arguments[@"newString"] ?: @"";
+    
+    if (!isRegex && [searchString isEqualToString:replacementString]) { return @NO; }
+    
+    // set target range
+    NSRange targetRange;
     if (isAll) {
         targetRange = NSMakeRange(0, wholeLength);
     } else {
-        selectionRange = [[self editor] selectedRange];
+        NSRange selectedRange = [[self editor] selectedRange];
         if (isBackwards) {
-            targetRange = NSMakeRange(0, selectionRange.location);
+            targetRange = NSMakeRange(0, selectedRange.location);
         } else {
-            targetRange = NSMakeRange(NSMaxRange(selectionRange),
-                                      wholeLength - NSMaxRange(selectionRange));
+            targetRange = NSMakeRange(NSMaxRange(selectedRange),
+                                      wholeLength - NSMaxRange(selectedRange));
         }
     }
-    NSUInteger mask = 0;
+    
+    // set option
+    NSUInteger option = 0;
     if (ignoresCase) {
-        mask |= (isRegex) ? OgreIgnoreCaseOption : NSCaseInsensitiveSearch;
+        option |= isRegex ? OgreIgnoreCaseOption : NSCaseInsensitiveSearch;
     }
     if (isBackwards) {
-        mask |= NSBackwardsSearch;
+        option |= NSBackwardsSearch;
     }
-
-    BOOL success = NO;
-    NSInteger result = 0;
+    
+    // perform replacement
+    NSInteger numberOfReplacements = 0;
     if (isAll) {
-        NSMutableString *tmpStr = [wholeStr mutableCopy];
+        NSMutableString *newWholeString = [wholeString mutableCopy];
         if (isRegex) {
-            result = [tmpStr replaceOccurrencesOfRegularExpressionString:searchStr
-                                                              withString:newString options:mask range:targetRange];
+            numberOfReplacements = [newWholeString replaceOccurrencesOfRegularExpressionString:searchString
+                                                                                    withString:replacementString options:option range:targetRange];
         } else {
-            result = [tmpStr replaceOccurrencesOfString:searchStr
-                                             withString:newString options:mask range:targetRange];
+            numberOfReplacements = [newWholeString replaceOccurrencesOfString:searchString
+                                                                   withString:replacementString options:option range:targetRange];
         }
-        if (result > 0) {
-            [[self editor] replaceTextViewAllStringWithString:tmpStr];
+        if (numberOfReplacements > 0) {
+            [[self editor] replaceTextViewAllStringWithString:newWholeString];
             [[self editor] setSelectedRange:NSMakeRange(0, 0)];
         }
-
+        
     } else {
-        success = [self doFind:searchStr range:targetRange option:mask withRegularExpression:isRegex];
+        BOOL success = [self doFind:searchString range:targetRange option:option withRegularExpression:isRegex];
         if (!success && isWrapSearch) {
             targetRange = NSMakeRange(0, wholeLength);
-            success = [self doFind:searchStr range:targetRange option:mask withRegularExpression:isRegex];
+            success = [self doFind:searchString range:targetRange option:option withRegularExpression:isRegex];
         }
         if (success) {
-            [[self selection] setContents:newString];  // CETextSelection's `setContents:` accepts also NSString for its argument
-            result = 1;
+            [[self selection] setContents:replacementString];  // CETextSelection's `setContents:` accepts also NSString for its argument
+            numberOfReplacements = 1;
         }
     }
-
-    return @(result);
+    
+    return @(numberOfReplacements);
 }
 
 
@@ -434,15 +452,15 @@
 {
     NSDictionary<NSString *, id> *arguments = [command evaluatedArguments];
     NSArray<NSNumber *> *rangeArray = arguments[@"range"];
-
+    
     if ([rangeArray count] == 0) { return [NSString string]; }
+    
     NSInteger location = [rangeArray[0] integerValue];
     NSInteger length = ([rangeArray count] > 1) ? [rangeArray[1] integerValue] : 1;
     NSRange range = [[self editor] rangeWithLocation:location length:length];
-
-    if (NSEqualRanges(NSMakeRange(0, 0), range)) {
-        return @"";
-    }
+    
+    if (NSEqualRanges(NSMakeRange(0, 0), range)) { return @""; }
+    
     return [[[[self editor] focusedTextView] string] substringWithRange:range];
 }
 
@@ -455,13 +473,13 @@
 - (BOOL)doFind:(NSString *)searchString range:(NSRange)range option:(unsigned)option withRegularExpression:(BOOL)isRegex
 // ------------------------------------------------------
 {
-    NSString *wholeStr = [[self editor] string];
+    NSString *wholeString = [[self editor] string];
     NSRange searchedRange;
 
     if (isRegex) {
-        searchedRange = [wholeStr rangeOfRegularExpressionString:searchString options:option range:range];
+        searchedRange = [wholeString rangeOfRegularExpressionString:searchString options:option range:range];
     } else {
-        searchedRange = [wholeStr rangeOfString:searchString options:option range:range];
+        searchedRange = [wholeString rangeOfString:searchString options:option range:range];
     }
     if (searchedRange.location != NSNotFound) {
         [[self editor] setSelectedRange:searchedRange];

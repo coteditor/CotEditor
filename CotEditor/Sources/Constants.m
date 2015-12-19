@@ -283,7 +283,7 @@ NSString *_Nonnull const CESyntaxCommentsKey = @"comments";
 NSString *_Nonnull const CESyntaxCommentDelimitersKey = @"commentDelimiters";
 NSString *_Nonnull const CESyntaxOutlineMenuKey = @"outlineMenu";
 NSString *_Nonnull const CESyntaxCompletionsKey = @"completions";
-NSString *_Nonnull const kAllColoringKeys[] = {
+NSString *_Nonnull const kAllSyntaxKeys[] = {
     @"keywords",
     @"commands",
     @"types",
@@ -295,7 +295,7 @@ NSString *_Nonnull const kAllColoringKeys[] = {
     @"characters",
     @"comments"
 };
-NSUInteger const kSizeOfAllColoringKeys = sizeof(kAllColoringKeys)/sizeof(kAllColoringKeys[0]);
+NSUInteger const kSizeOfAllSyntaxKeys = sizeof(kAllSyntaxKeys)/sizeof(kAllSyntaxKeys[0]);
 
 NSString *_Nonnull const CESyntaxKeyStringKey = @"keyString";
 NSString *_Nonnull const CESyntaxBeginStringKey = @"beginString";

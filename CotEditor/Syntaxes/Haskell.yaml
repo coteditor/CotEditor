@@ -27,9 +27,9 @@ metadata:
   distributionURL: "http://coteditor.com"
   author: "konn"
   license: "Same as CotEditor"
-  lastModified: "2015-08-13"
+  lastModified: "2015-11-16"
   description: "Maintained by CotEditor Project."
-  version: "2.1"
+  version: "2.2.0"
 numbers:
 - beginString: "\\b0o[0-7]+\\b"
   ignoreCase: true
@@ -225,6 +225,7 @@ values:
 - beginString: "True"
 keywords:
 - beginString: "_"
+- beginString: "as"
 - beginString: "case"
 - beginString: "class"
 - beginString: "data"
@@ -232,6 +233,7 @@ keywords:
 - beginString: "deriving"
 - beginString: "do"
 - beginString: "else"
+- beginString: "forall"
 - beginString: "foreign"
 - beginString: "hiding"
 - beginString: "if"
@@ -242,11 +244,17 @@ keywords:
 - beginString: "infixr"
 - beginString: "instance"
 - beginString: "let"
+- beginString: "mdo"
 - beginString: "module"
 - beginString: "newtype"
 - beginString: "of"
+- beginString: "proc"
+- beginString: "qualified"
+- beginString: "rec"
+- beginString: "safe"
 - beginString: "then"
 - beginString: "type"
+- beginString: "unsafe"
 - beginString: "where"
 attributes: []
 strings:

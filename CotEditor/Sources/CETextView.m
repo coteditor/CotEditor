@@ -32,6 +32,9 @@
  */
 
 #import "CETextView.h"
+#import "CELayoutManager.h"
+#import "CEWindowController.h"
+#import "CEEditorWrapper.h"
 #import "CEColorCodePanelController.h"
 #import "CECharacterPopoverController.h"
 #import "CEEditorScrollView.h"
@@ -39,8 +42,10 @@
 #import "CEKeyBindingManager.h"
 #import "CEScriptManager.h"
 #import "CEWindow.h"
+#import "NSString+ComposedCharacter.h"
 #import "NSString+JapaneseTransform.h"
 #import "NSString+Normalization.h"
+#import "NSString+Indentation.h"
 #import "Constants.h"
 
 
@@ -125,7 +130,7 @@ static NSPoint kTextContainerOrigin;
         [self setTheme:[CETheme themeWithName:[defaults stringForKey:CEDefaultThemeKey]]];
         
         // set layer drawing policies
-        [self setLayerContentsRedrawPolicy:NSViewLayerContentsRedrawOnSetNeedsDisplay];
+        [self setLayerContentsRedrawPolicy:NSViewLayerContentsRedrawBeforeViewResize];
         [self setLayerContentsPlacement:NSViewLayerContentsPlacementScaleAxesIndependently];
         
         // set values
@@ -721,7 +726,7 @@ static NSPoint kTextContainerOrigin;
 {
     BOOL success = [super writeSelectionToPasteboard:pboard types:types];
     
-    CENewLineType newLineType = [[[[self window] windowController] document] lineEnding];
+    CENewLineType newLineType = [self documentNewLineType];
     
     if (newLineType == CENewLineLF || newLineType == CENewLineNone) { return success; }
     
@@ -1107,15 +1112,14 @@ static NSPoint kTextContainerOrigin;
 
 // ------------------------------------------------------
 /// copy selection with syntax highlight and font style
-- (void)copyWithStyle:(id)sender
+- (void)copyWithStyle:(nullable id)sender
 // ------------------------------------------------------
 {
     if ([self selectedRange].length == 0) { return; }
     
     NSMutableArray<NSAttributedString *> *selections = [NSMutableArray arrayWithCapacity:[[self selectedRanges] count]];
     NSMutableArray<NSNumber *> *propertyList = [NSMutableArray arrayWithCapacity:[[self selectedRanges] count]];
-    CENewLineType newLineType = [[[[self window] windowController] document] lineEnding];
-    NSString *newLine = [NSString newLineStringWithType:newLineType];
+    NSString *newLine = [NSString newLineStringWithType:[self documentNewLineType]];
 
     // substring all selected attributed strings
     for (NSValue *rangeValue in [self selectedRanges]) {
@@ -1139,7 +1143,7 @@ static NSPoint kTextContainerOrigin;
         }
         
         // apply document's line ending
-        if (newLineType != CENewLineLF) {
+        if ([self documentNewLineType] != CENewLineLF) {
             for (NSInteger charIndex = [plainText length] - 1; charIndex >= 0; charIndex--) {  // process backwards
                 if ([plainText characterAtIndex:charIndex] == '\n') {
                     [styledText replaceCharactersInRange:NSMakeRange(charIndex, 1) withString:newLine];
@@ -1387,6 +1391,12 @@ static NSPoint kTextContainerOrigin;
 {
     NSRange selectedRange = [self selectedRange];
     NSString *selectedString = [[self string] substringWithRange:selectedRange];
+    
+    // apply document's line ending
+    if ([self documentNewLineType] != CENewLineLF && [selectedString detectNewLineType] == CENewLineLF) {
+        selectedString = [selectedString stringByReplacingNewLineCharacersWith:[self documentNewLineType]];
+    }
+    
     CECharacterPopoverController *popoverController = [[CECharacterPopoverController alloc] initWithCharacter:selectedString];
     
     if (!popoverController) { return; }
@@ -1412,6 +1422,15 @@ static NSPoint kTextContainerOrigin;
              CEDefaultEnableSmartQuotesKey,
              CEDefaultHangingIndentWidthKey,
              CEDefaultEnablesHangingIndentKey];
+}
+
+
+// ------------------------------------------------------
+/// true new line type of document
+- (CENewLineType)documentNewLineType
+// ------------------------------------------------------
+{
+    return [[[[self window] windowController] document] lineEnding];
 }
 
 
@@ -2423,6 +2442,72 @@ static NSPoint kTextContainerOrigin;
 // ------------------------------------------------------
 {
     // do nothing.
+}
+
+@end
+
+
+
+
+#pragma mark -
+
+@implementation CETextView (Indentation)
+
+#pragma mark Action Messages
+
+// ------------------------------------------------------
+/// standardize inentation in selection to spaces
+- (IBAction)convertIndentationToSpaces:(nullable id)sender
+// ------------------------------------------------------
+{
+    if ([self selectedRange].length == 0) { return; }
+    
+    [self convertIndentation:CEIndentStyleSpace inRanges:[self selectedRanges]];
+    
+    [[self undoManager] setActionName:NSLocalizedString(@"Convert Indentation", @"action name")];
+}
+
+
+// ------------------------------------------------------
+/// standardize inentation in selection to tabs
+- (IBAction)convertIndentationToTabs:(nullable id)sender
+// ------------------------------------------------------
+{
+    if ([self selectedRange].length == 0) { return; }
+    
+    [self convertIndentation:CEIndentStyleTab inRanges:[self selectedRanges]];
+   
+    [[self undoManager] setActionName:NSLocalizedString(@"Convert Indentation", @"action name")];
+}
+
+
+
+#pragma mark Private Methods
+
+// ------------------------------------------------------
+/// standardize inentation of given ranges
+- (void)convertIndentation:(CEIndentStyle)indentStyle inRanges:(NSArray<NSValue *> *)ranges
+// ------------------------------------------------------
+{
+    NSMutableArray<NSString *> *replacementStrings = [NSMutableArray arrayWithCapacity:[ranges count]];
+    
+    for (NSValue *rangeValue in ranges) {
+        NSRange range = [rangeValue rangeValue];
+        NSString *selectedString = [[self string] substringWithRange:range];
+        
+        [replacementStrings addObject:[selectedString stringByStandardizingIndentStyleTo:indentStyle
+                                                                                tabWidth:[self tabWidth]]];
+    }
+    if (![self shouldChangeTextInRanges:ranges replacementStrings:replacementStrings]) { return; }
+    
+    NSTextStorage *textStorage = [self textStorage];
+    [replacementStrings enumerateObjectsWithOptions:NSEnumerationReverse
+                                         usingBlock:^(NSString *_Nonnull replacementString, NSUInteger idx, BOOL * _Nonnull stop)
+     {
+         NSRange replacementRange = [ranges[idx] rangeValue];
+         [textStorage replaceCharactersInRange:replacementRange withString:replacementString];
+     }];
+    [self didChangeText];
 }
 
 @end

@@ -98,10 +98,10 @@ NSString *_Nonnull const CESecondaryFooterAlignmentKey = @"CESecondaryFooterAlig
     
     // テーマを使用する場合はセットしておく
     switch ([defaults integerForKey:CEDefaultPrintColorIndexKey]) {
-        case CEBlackColorPrint:
+        case CEPrintColorBlackWhite:
             self.theme = NSLocalizedString(@"Black and White", nil);
             break;
-        case CESameAsDocumentColorPrint:
+        case CEPrintColorSameAsDocument:
             self.theme = [defaults stringForKey:CEDefaultThemeKey];
             break;
         default:
@@ -170,13 +170,13 @@ NSString *_Nonnull const CESecondaryFooterAlignmentKey = @"CESecondaryFooterAlig
                                             description:[self theme]]];
     
     switch ([self lineNumberMode]) {
-        case CENoLinePrint:
+        case CELinePrintNo:
             description = @"Don’t Print";
             break;
-        case CESameAsDocumentLinePrint:
+        case CELinePrintSameAsDocument:
             description = @"Same as Document’s Setting";
             break;
-        case CEDoLinePrint:
+        case CELinePrintYes:
             description = @"Print";
             break;
     }
@@ -184,13 +184,13 @@ NSString *_Nonnull const CESecondaryFooterAlignmentKey = @"CESecondaryFooterAlig
                                             description:description]];
     
     switch ([self invisibleCharsMode]) {
-        case CENoInvisibleCharsPrint:
+        case CEInvisibleCharsPrintNo:
             description = @"Don’t Print";
             break;
-        case CESameAsDocumentInvisibleCharsPrint:
+        case CEInvisibleCharsPrintSameAsDocument:
             description = @"Same as Document’s Setting";
             break;
-        case CEAllInvisibleCharsPrint:
+        case CEInvisibleCharsPrintAll:
             description = @"Print All";
             break;
     }
@@ -247,22 +247,22 @@ NSString *_Nonnull const CESecondaryFooterAlignmentKey = @"CESecondaryFooterAlig
 // ------------------------------------------------------
 {
     switch (type) {
-        case CENoPrintInfo:
+        case CEPrintInfoNone:
             return @"None";
         
-        case CESyntaxNamePrintInfo:
+        case CEPrintInfoSyntaxName:
             return @"Syntax Name";
             
-        case CEDocumentNamePrintInfo:
+        case CEPrintInfoDocumentName:
             return @"Document Name";
             
-        case CEFilePathPrintInfo:
+        case CEPrintInfoFilePath:
             return @"File Path";
             
-        case CEPrintDatePrintInfo:
+        case CEPrintInfoPrintDate:
             return @"Print Date";
             
-        case CEPageNumberPrintInfo:
+        case CEPrintInfoPageNumber:
             return @"Page Number";
     }
 }

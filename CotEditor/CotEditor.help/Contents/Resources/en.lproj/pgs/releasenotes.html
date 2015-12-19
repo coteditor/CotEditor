@@ -24,8 +24,80 @@
 
 <article>
 <header>
+	<h1>CotEditor 2.3.2</h1>
+	<p>release: <time>2015-12</time></p>
+</header>
+
+
+<section>
+<h2>New Features</h2>
+
+<ul>
+	<li>Add “Convert Indentation to Spaces/Tabs” actions to Text > Indentation menu.</li>
+	<li>Add syntax styles for “METAFONT” (Thanks to M.Daimon!), “AWK”, “Git Config” and “Git Ignore”.</li>
+</ul>
+</section>
+
+
+<section>
+<h2>Improvements</h2>
+
+<ul>
+	<li>Improve character inspector:
+	<ul>
+		<li>Display also Unicode block if selected letter consists of one character.</li>
+		<li>Display unicode names of each character if selected letter consist of multiple characters.</li>
+		<li>Fix drawing area of zoomed character view.</li>
+		<li>Fix some other trivial issues.</li>
+	</ul></li>
+	<li>Add option to suppress “not writable document” alert.</li>
+	<li>Improve text selection by clicking line numbers view.</li>
+	<li>Tweak style of popup menus in toolbar.</li>
+	<li>Improve text encoding detection for UTF-32.</li>
+	<li>Add “description” field that doesn't affect to highlighting but for commenting for each term to the syntax style and syntax style editor.</li>
+	<li>Add Swite to Delete action on El Capitan to tables in syntax style editor.</li>
+	<li>Update Python syntax style:
+	<ul>
+		<li>Add several commands and variables that are in <code>__foo__</code> form.</li>
+		<li>Add <code>pyi</code> extension.</li>
+	</ul></li>
+	<li>Update Perl syntax style:
+	<ul>
+		<li>Add some terms.</li>
+	</ul></li>
+	<li>Update PHP syntax style:
+	<ul>
+		<li>Add terms added on PHP 5.6.</li>
+		<li>Highlight uppercase <code>TRUE</code>, <code>FALSE</code>, <code>AND</code> and <code>OR</code>.</li>
+	</ul></li>
+	<li>Update Haskell syntax style:
+	<ul>
+		<li>Add some keywords.</li>
+	</ul></li>
+	<li>Update DTD, Markdown, reStructuredText and Textile syntax styles to move comments to the description field.</li>
+</ul>
+</section>
+
+
+<section>
+<h2>Fixes</h2>
+
+<ul>
+	<li>Fix an issue where text view drawing was distorted while resizing window.</li>
+	<li>Fix an issue where line endings of a document that has a line ending character at the beginning of the file cannot be interpreted its line ending type correctly.</li>
+	<li>Fix an issue where character inspector returned always <code>U+000A</code> (LF) for line ending even the actual line ending of the document is not LF.</li>
+	<li>Fix character count with a single regional indicator symbol.</li>
+	<li>Fix wrong undo action name on encoding conversion via script.</li>
+</ul>
+</section>
+</article>
+
+
+
+<article>
+<header>
 	<h1>CotEditor 2.3.1</h1>
-	<p>release: <time>2015-11</time></p>
+	<p>release: <time>2015-11-14</time></p>
 </header>
 
 
@@ -39,7 +111,7 @@
 
 
 <section>
-<h2>Additions/Changes</h2>
+<h2>Improvements</h2>
 
 <ul>
 	<li>Update Python syntax style:<ul>
@@ -65,6 +137,7 @@
 </ul>
 </section>
 </article>
+
 
 
 <article>
@@ -95,7 +168,7 @@
 
 
 <section>
-<h2>Additions/Changes</h2>
+<h2>Improvements</h2>
 
 <ul>
 	<li>Reconstitute main menu.</li>
@@ -157,7 +230,7 @@
 
 
 <section>
-<h2>Additions/Changes</h2>
+<h2>Improvements</h2>
 
 <ul>
 	<li>Update “JSON” syntax style:<ul>
@@ -242,7 +315,7 @@
 
 
 <section>
-<h2>Additions/Changes</h2>
+<h2>Improvements</h2>
 
 <ul>
 	<li>Support OS X 10.11 El Capitan.</li>
@@ -402,7 +475,7 @@
 
 
 <section>
-<h2>Additions/Changes</h2>
+<h2>Improvements</h2>
 
 <ul>
 	<li>Support displaying skin tone variations of Unicode 8.0 on the character inspector.</li>
@@ -446,7 +519,7 @@
 
 
 <section>
-<h2>Additions/Changes</h2>
+<h2>Improvements</h2>
 
 <ul>
 	<li>Revert find panel behavior to select always whole text in find field when the panel is called.</li>
@@ -475,7 +548,7 @@
 
 
 <section>
-<h2>Additions/Changes</h2>
+<h2>Improvements</h2>
 
 <ul>
 	<li>Change place to create backup files (Now, backup files are always created in <code>~/Library/Autosave Information/</code>).</li>
@@ -549,7 +622,7 @@
 
 
 <section>
-<h2>Additions/Changes</h2>
+<h2>Improvements</h2>
 
 <ul>
 	<li>Drop support for <strong>OS X Lion.</strong></li>
@@ -647,7 +720,7 @@
 
 
 <section>
-<h2>Additions/Changes</h2>
+<h2>Improvements</h2>
 
 <ul>
 	<li>Add “Traditional Chinese (Big 5 HKSCS)”, “Traditional Chinese (Big 5-E)” and “Traditional Chinese (Big 5)” to encoding list.</li>
@@ -736,7 +809,7 @@
 
 
 <section>
-<h2>Additions/Changes</h2>
+<h2>Improvements</h2>
 
 <ul>
 	<li>Display an alert if the opening file is larger than 100 MB.</li>
@@ -826,7 +899,7 @@
 </section>
 
 <section>
-<h2>Additions/Changes</h2>
+<h2>Improvements</h2>
 
 <ul>
 	<li>Support OS X Yosemite.</li>
@@ -1066,7 +1139,7 @@
 </header>
 
 <section>
-<h2>Additions/Changes</h2>
+<h2>Improvements</h2>
 <ul>
 	<li>Adjust preferences window layout.</li>
 	<li>Reduce scope of syntax coloring on typing.</li>
@@ -1098,7 +1171,7 @@
 </header>
 
 <section>
-<h2>Additions/Changes</h2>
+<h2>Improvements</h2>
 <ul>
 	<li>Modify some menu and setting labels. (thanks to zom-san)</li>
 	<li>Now more setting changes are applied also to current document windows.</li>
@@ -1167,7 +1240,7 @@
 </section>
 
 <section>
-<h2>Additions/Changes</h2>
+<h2>Improvements</h2>
 
 <ul>
 	<li>Add “Western (ASCII)” and “Chinese (GB 18030)” to encoding list.</li>
@@ -1323,7 +1396,7 @@
 
 
 <section>
-<h2>Additions/Changes</h2>
+<h2>Improvements</h2>
 <ul>
 	<li>Disabled smart dash/quotes feature of Mavericks as default.
 	<ul>
@@ -1351,7 +1424,7 @@
 
 
 <section>
-<h2>Additions/Changes</h2>
+<h2>Improvements</h2>
 <ul>
 	<li>Change support OS: OS X 10.7 and later.</li>
 	<li>Support 64-bit.</li>
@@ -1451,7 +1524,7 @@
 </section>
 
 <section>
-<h2>Additions/Changes</h2>
+<h2>Improvements</h2>
 <ul>
 	<li>On Find Panel,  don't close panel when you press return key. (If you'd like to close panel, press shift+return key.) (thanks to akinull-san)</li>
 	<li>Add binary for 10.7. (build separately for 10.4/10.5/10.6 and for 10.7)</li>
@@ -1476,7 +1549,7 @@
 </section>
 
 <section>
-<h2>Additions/Changes</h2>
+<h2>Improvements</h2>
 <ul>
 	<li>Change the application icon. (thanks to 1024jp-san)</li>
 	<li>Updated 'About The ScriptMenu Folder' document.</li>
@@ -1518,7 +1591,7 @@
 </header>
 
 <section>
-<h2>Additions/Changes</h2>
+<h2>Improvements</h2>
 <ul>
 	<li>Include documents to application, and open it by help menu.</li>
 	<li>Include sample scripts to application, and copy it to script folder at first.</li>
@@ -1549,7 +1622,7 @@
 
 
 <section>
-<h2>Additions/Changes</h2>
+<h2>Improvements</h2>
 <ul>
 	<li>Adjusted vertical character display position in a line.</li>
 	<li>Modified some Utility menu items' names (English).</li>
@@ -1577,7 +1650,7 @@
 
 
 <section>
-<h2>Additions/Changes</h2>
+<h2>Improvements</h2>
 <ul>
 	<li>Updated development environment to 10.5.6 + Xcode 3.1.2.</li>
 </ul>
@@ -1609,7 +1682,7 @@
 </section>
 
 <section>
-<h2>Additions/Changes</h2>
+<h2>Improvements</h2>
 <ul>
 	<li>Removed the “A colon (:) is considered as a delimiter when you select a word by double-clicking” feature added on version 0.9.5 (this made expanding the selection with SHIFT-click impossible).</li>
 	<li>Improved syntax coloring accuracy on 10.5.x.</li>
@@ -1651,7 +1724,7 @@
 </section>
 
 <section>
-<h2>Additions/Changes</h2>
+<h2>Improvements</h2>
 <ul>
 	<li>Revised coloring process on 10.4 or later and adopted RegexKitLite for regular expression search of the syntax coloring function, which made coloring speed about 1.5-4.0 times faster compared to version 0.9.3. (Note that there are slight differences between the new and old regular expression syntax. The default coloring rules are not affected by the differences. See “ReadMe-en.rtf” for more details.)</li>
 	<li>When opening a read-only document, the warning message is now displayed immediately (used to be displayed when making a change).</li>
@@ -1717,7 +1790,7 @@
 </section>
 
 <section>
-<h2>Additions/Changes</h2>
+<h2>Improvements</h2>
 <ul>
 	<li>Bundled utility scripts written in Ruby.</li>
 	<li>The Go To panel now automatically closes after the operation.</li>
@@ -1768,7 +1841,7 @@
 </section>
 
 <section>
-<h2>Additions/Changes</h2>
+<h2>Improvements</h2>
 <ul>
 	<li>Added syntax style files for Haskell and Python.</li>
 	<li>Revised English localization.</li>
@@ -1815,7 +1888,7 @@
 </section>
 
 <section>
-<h2>Additions/Changes</h2>
+<h2>Improvements</h2>
 
 <ul>
 	<li>When switching between Find/Replace fields using the Tab key in the Find panel, text already in the field (if any) is now all selected.</li>
@@ -1863,7 +1936,7 @@
 </section>
 
 <section>
-<h2>Additions/Changes</h2>
+<h2>Improvements</h2>
 
 <ul>
 	<li>Added syntax style files for eRuby and Java.</li>
@@ -1915,7 +1988,7 @@
 </section>
 
 <section>
-<h2>Additions/Changes</h2>
+<h2>Improvements</h2>
 
 <ul>
 	<li>CotEditor is now Universal Binary.</li>
@@ -1968,7 +2041,7 @@
 </section>
 
 <section>
-<h2>Additions/Changes</h2>
+<h2>Improvements</h2>
 
 <ul>
 	<li>Reworked the Completion List setting in the Preferences, and the pop-up list now shows completions in the following order: words in the file, words generated from coloring style, standard words.</li>
@@ -2018,7 +2091,7 @@
 </section>
 
 <section>
-<h2>Additions/Changes</h2>
+<h2>Improvements</h2>
 
 <ul>
 	<li>Improved the speed of syntax coloring.</li>
@@ -2064,7 +2137,7 @@
 </section>
 
 <section>
-<h2>Additions/Changes</h2>
+<h2>Improvements</h2>
 
 <ul>
 	<li>Updated some Preferences icons.</li>
@@ -2110,7 +2183,7 @@
 </section>
 
 <section>
-<h2>Additions/Changes</h2>
+<h2>Improvements</h2>
 
 <ul>
 	<li>The Preferences panes now have icons.</li>
@@ -2185,7 +2258,7 @@
 </section>
 
 <section>
-<h2>Additions/Changes</h2>
+<h2>Improvements</h2>
 
 <ul>
 	<li>Improved  performance for inputting text and changing the selection range.</li>
@@ -2226,7 +2299,7 @@
 </section>
 
 <section>
-<h2>Additions/Changes</h2>
+<h2>Improvements</h2>
 
 <ul>
 	<li>Added syntax style files for C, C++, Objective-C.</li>
@@ -2296,7 +2369,7 @@
 </section>
 
 <section>
-<h2>Additions/Changes</h2>
+<h2>Improvements</h2>
 
 <ul>
 	<li>Enhanced the function of line number displaying, modified the color of line numbers.</li>
@@ -2332,7 +2405,7 @@
 
 
 <section>
-<h2>Additions/Changes</h2>
+<h2>Improvements</h2>
 
 <ul>
 	<li>Updated the default style file for PHP.</li>
@@ -2377,7 +2450,7 @@
 </section>
 
 <section>
-<h2>Additions/Changes</h2>
+<h2>Improvements</h2>
 
 <ul>
 	<li>Updated application icon.</li>
@@ -2427,7 +2500,7 @@
 </section>
 
 <section>
-<h2>Additions/Changes</h2>
+<h2>Improvements</h2>
 
 <ul>
 	<li>Under an encoding that doesn't support half-width yen signs, they are now forcibly replaced with backslashes.</li>
@@ -2491,7 +2564,7 @@
 </section>
 
 <section>
-<h2>Additions/Changes</h2>
+<h2>Improvements</h2>
 
 <ul>
 	<li>Disabled displaying “Open Recent” in the Dock menu on Mac OS X 10.4.x.</li>
@@ -2531,7 +2604,7 @@
 </section>
 
 <section>
-<h2>Additions/Changes</h2>
+<h2>Improvements</h2>
 
 <ul>
 	<li>When a new window that CotEditor automatically opens is staying unmodified, the next window will be opened at the same position.</li>
@@ -2575,7 +2648,7 @@
 </section>
 
 <section>
-<h2>Additions/Changes</h2>
+<h2>Improvements</h2>
 
 <ul>
 	<li>Slightly increased the process speed of opening a document.</li>
@@ -2614,7 +2687,7 @@
 </section>
 
 <section>
-<h2>Additions/Changes</h2>
+<h2>Improvements</h2>
 
 <ul>
 	<li>Updated the syntax style file for CSS (double/single quotation, comment, etc.).</li>
@@ -2658,7 +2731,7 @@
 </section>
 
 <section>
-<h2>Additions/Changes</h2>
+<h2>Improvements</h2>
 
 <ul>
 	<li>Changing the line ending style to the style already using is now ignored.</li>

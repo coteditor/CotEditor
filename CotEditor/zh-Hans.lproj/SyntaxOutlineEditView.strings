@@ -1,0 +1,32 @@
+/*
+ SyntaxOutlineEditView.strings
+ 
+ CotEditor
+ http://coteditor.com
+ 
+ Created on 2014-12-14 by 1024jp
+ Localized by onevcat
+ encoding="UTF-8"
+ 
+ © 2014-2015 CotEditor Project
+ */
+
+
+/* Class = "NSTextFieldCell"; title = "Regular expressions to extract outline menu items"; ObjectID = "cBA-MO-VzQ"; */
+"cBA-MO-VzQ.title" = "用于提取大纲菜单项的正则表达式";
+
+/* Class = "NSTableColumn"; headerCell.title = "Regular Expression String"; ObjectID = "vRg-cd-Ib2"; */
+"vRg-cd-Ib2.headerCell.title" = "正则表达式";
+/* Class = "NSTableColumn"; headerCell.title = "IC"; ObjectID = "1tC-mo-cEL"; */
+"1tC-mo-cEL.headerCell.title" = "IC";  /* IC */
+"1tC-mo-cEL.headerToolTip" = "忽略大小写";  /* Ignore Case (case-insensitive) */
+
+/* Class = "NSTextFieldCell"; title = "Menu title pattern (blank matches the whole string)"; ObjectID = "nnO-qN-dYF"; */
+"nnO-qN-dYF.title" = "菜单标题样式（留空匹配整个字符串）";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Bold"; ObjectID = "eX8-7L-AYT"; */
+"eX8-7L-AYT.ibShadowedToolTip" = "Bold";
+/* Class = "NSButton"; ibShadowedToolTip = "Underline"; ObjectID = "rFv-YW-Uea"; */
+"rFv-YW-Uea.ibShadowedToolTip" = "Underline";
+/* Class = "NSButton"; ibShadowedToolTip = "Italic"; ObjectID = "5fG-BP-ynf"; */
+"5fG-BP-ynf.ibShadowedToolTip" = "Italic";

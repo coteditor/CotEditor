@@ -29,6 +29,13 @@
 #import "CESyntaxEditTableViewDelegate.h"
 
 
+@interface CESyntaxEditTableViewDelegate ()
+
+@property (nonatomic, nullable, weak) IBOutlet NSArrayController *arrayController;
+
+@end
+
+
 @implementation CESyntaxEditTableViewDelegate
 
 #pragma mark Delegate
@@ -47,17 +54,47 @@
     if ((row + 1) == [tableView numberOfRows]) {
         [tableView scrollRowToVisible:row];
         
+        // find the leftmost text field column
+        NSTableRowView *rowView = [tableView rowViewAtRow:row makeIfNecessary:NO];
+        NSInteger column = -1;
+        for (NSUInteger i = 0; i < [rowView numberOfColumns]; i++) {
+            if ([[rowView viewAtColumn:i] textField] != nil) {
+                column = i;
+                break;
+            }
+        }
+        if (column < 0) { return; }  // no text field found
+        
         // proceed on the next run loop
-        // (since the string of the selected cell cannot be read at this point)
+        //   -> Since the string of the selected cell cannot be read at this point.
         dispatch_async(dispatch_get_main_queue(), ^{
-            NSTableCellView *cellView = [[tableView rowViewAtRow:row makeIfNecessary:NO] viewAtColumn:0];
-            
             // start editing automatically if the leftmost cell of the added row is blank
-            if ([[[cellView textField] stringValue] isEqualToString:@""]) {
-                [tableView editColumn:0 row:row withEvent:nil select:YES];
+            if ([[[[rowView viewAtColumn:column] textField] stringValue] isEqualToString:@""]) {
+                [tableView editColumn:column row:row withEvent:nil select:YES];
             }
         });
     }
+}
+
+
+// ------------------------------------------------------
+/// set action on swiping theme name (on El Capitan and leter)
+- (nonnull NSArray<NSTableViewRowAction *> *)tableView:(nonnull NSTableView *)tableView rowActionsForRow:(NSInteger)row edge:(NSTableRowActionEdge)edge
+// ------------------------------------------------------
+{
+    NSArrayController *arrayController = [self arrayController];
+    
+    if (!arrayController || edge == NSTableRowActionEdgeLeading) { return @[]; }
+    
+    // Delete
+    return @[[NSTableViewRowAction rowActionWithStyle:NSTableViewRowActionStyleDestructive
+                                                title:NSLocalizedString(@"Delete", nil)
+                                              handler:^(NSTableViewRowAction *action, NSInteger row)
+              {
+                  NSIndexSet *indexes = [NSIndexSet indexSetWithIndex:row];
+                  [tableView removeRowsAtIndexes:indexes withAnimation:NSTableViewAnimationSlideLeft];
+                  [arrayController removeObjectsAtArrangedObjectIndexes:indexes];
+              }]];
 }
 
 
@@ -70,7 +107,7 @@
 // ------------------------------------------------------
 {
     // To perform this action,
-    // checkbox (NSBUtton) and column (NSTableColumn) must have the same identifier as the style dict key
+    // checkbox (NSButton) and column (NSTableColumn) must have the same identifier as the style dict key
     
     NSButton *checkbox = (NSButton *)sender;
     BOOL isChecked = ([checkbox state] == NSOnState);

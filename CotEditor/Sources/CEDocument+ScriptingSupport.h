@@ -26,7 +26,6 @@
  
  */
 
-@import Cocoa;
 #import "CEDocument.h"
 
 

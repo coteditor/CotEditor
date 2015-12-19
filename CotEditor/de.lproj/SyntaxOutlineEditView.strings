@@ -1,0 +1,46 @@
+/*
+ 
+ SyntaxOutlineEditView.strings (German)
+ 
+ CotEditor
+ http://coteditor.com
+ 
+ Created by 1024jp on 2015-09-07.
+ 
+ ------------------------------------------------------------------------------
+ 
+ © 2015 1024jp
+ 
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+ 
+ http://www.apache.org/licenses/LICENSE-2.0
+ 
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ 
+ */
+
+
+/* Class = "NSTextFieldCell"; title = "Regular expressions to extract outline menu items"; ObjectID = "cBA-MO-VzQ"; */
+"cBA-MO-VzQ.title" = "Regulärer Ausdruck um Gliederungsmenü auszuziehen";
+
+/* Class = "NSTableColumn"; headerCell.title = "Regular Expression String"; ObjectID = "vRg-cd-Ib2"; */
+"vRg-cd-Ib2.headerCell.title" = "Regulärer Ausdruck";
+/* Class = "NSTableColumn"; headerCell.title = "IC"; ObjectID = "1tC-mo-cEL"; */
+"1tC-mo-cEL.headerCell.title" = "IC";  /* IC */
+"1tC-mo-cEL.headerToolTip" = "Groß-/Kleinschreibung ignorieren";  /* Ignore Case (case-insensitive) */
+
+/* Class = "NSTextFieldCell"; title = "Menu title pattern (blank matches the whole string)"; ObjectID = "nnO-qN-dYF"; */
+"nnO-qN-dYF.title" = "Muster des Menütitles (Leer passt die ganze Zeichenkette)";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Bold"; ObjectID = "eX8-7L-AYT"; */
+"eX8-7L-AYT.ibShadowedToolTip" = "Fett";
+/* Class = "NSButton"; ibShadowedToolTip = "Underline"; ObjectID = "rFv-YW-Uea"; */
+"rFv-YW-Uea.ibShadowedToolTip" = "unterstrichen";
+/* Class = "NSButton"; ibShadowedToolTip = "Italic"; ObjectID = "5fG-BP-ynf"; */
+"5fG-BP-ynf.ibShadowedToolTip" = "Kursiv";

@@ -249,30 +249,30 @@ extern NSString *_Nonnull const CEDefaultSavesTextOrientationKey;
 // User Defaults Values
 // ------------------------------------------------------
 
-typedef NS_ENUM(NSUInteger, CEColorPrintMode) {
-    CEBlackColorPrint,
-    CESameAsDocumentColorPrint
+typedef NS_ENUM(NSUInteger, CEPrintColorMode) {
+    CEPrintColorBlackWhite,
+    CEPrintColorSameAsDocument,
 };
 
 typedef NS_ENUM(NSUInteger, CELineNumberPrintMode) {
-    CENoLinePrint,
-    CESameAsDocumentLinePrint,
-    CEDoLinePrint
+    CELinePrintNo,
+    CELinePrintSameAsDocument,
+    CELinePrintYes,
 };
 
 typedef NS_ENUM(NSUInteger, CEInvisibleCharsPrintMode) {
-    CENoInvisibleCharsPrint,
-    CESameAsDocumentInvisibleCharsPrint,
-    CEAllInvisibleCharsPrint
+    CEInvisibleCharsPrintNo,
+    CEInvisibleCharsPrintSameAsDocument,
+    CEInvisibleCharsPrintAll,
 };
 
 typedef NS_ENUM(NSUInteger, CEPrintInfoType) {
-    CENoPrintInfo,
-    CESyntaxNamePrintInfo,
-    CEDocumentNamePrintInfo,
-    CEFilePathPrintInfo,
-    CEPrintDatePrintInfo,
-    CEPageNumberPrintInfo
+    CEPrintInfoNone,
+    CEPrintInfoSyntaxName,
+    CEPrintInfoDocumentName,
+    CEPrintInfoFilePath,
+    CEPrintInfoPrintDate,
+    CEPrintInfoPageNumber,
 };
 
 typedef NS_ENUM(NSUInteger, CEAlignmentType) {
@@ -327,8 +327,8 @@ extern NSString *_Nonnull const CESyntaxCommentsKey;
 extern NSString *_Nonnull const CESyntaxCommentDelimitersKey;
 extern NSString *_Nonnull const CESyntaxOutlineMenuKey;
 extern NSString *_Nonnull const CESyntaxCompletionsKey;
-extern NSString *_Nonnull const kAllColoringKeys[];
-extern NSUInteger const kSizeOfAllColoringKeys;
+extern NSString *_Nonnull const kAllSyntaxKeys[];
+extern NSUInteger const kSizeOfAllSyntaxKeys;
 
 extern NSString *_Nonnull const CESyntaxKeyStringKey;
 extern NSString *_Nonnull const CESyntaxBeginStringKey;

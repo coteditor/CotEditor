@@ -1,4 +1,15 @@
 {
+  "AWK": {
+    "extensions": [
+      "awk"
+    ],
+    "filenames": [
+
+    ],
+    "interpreters": [
+      "awk"
+    ]
+  },
   "Apache": {
     "extensions": [
       "conf"
@@ -138,6 +149,30 @@
 
     ]
   },
+  "Git Config": {
+    "extensions": [
+
+    ],
+    "filenames": [
+      ".gitconfig",
+      ".gitmodules",
+      "gitconfig"
+    ],
+    "interpreters": [
+
+    ]
+  },
+  "Git Ignore": {
+    "extensions": [
+
+    ],
+    "filenames": [
+      ".gitignore"
+    ],
+    "interpreters": [
+
+    ]
+  },
   "Go": {
     "extensions": [
       "go"
@@ -272,6 +307,17 @@
 
     ]
   },
+  "METAFONT": {
+    "extensions": [
+      "mf"
+    ],
+    "filenames": [
+
+    ],
+    "interpreters": [
+
+    ]
+  },
   "Makefile": {
     "extensions": [
 
@@ -342,7 +388,8 @@
   "Python": {
     "extensions": [
       "py",
-      "pyw"
+      "pyw",
+      "pyi"
     ],
     "filenames": [
 

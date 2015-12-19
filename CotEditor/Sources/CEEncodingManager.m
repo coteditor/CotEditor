@@ -51,7 +51,7 @@ NSString *_Nonnull const CEEncodingListDidUpdateNotification = @"CESyntaxListDid
 
 // ------------------------------------------------------
 /// return singleton instance
-+ (nonnull instancetype)sharedManager
++ (nonnull CEEncodingManager *)sharedManager
 // ------------------------------------------------------
 {
     static dispatch_once_t onceToken;

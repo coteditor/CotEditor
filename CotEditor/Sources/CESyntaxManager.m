@@ -26,10 +26,11 @@
  
  */
 
-#import <YAML-Framework/YAMLSerialization.h>
 #import "CESyntaxManager.h"
 #import "CEAppDelegate.h"
 #import "Constants.h"
+
+#import <YAML-Framework/YAMLSerialization.h>
 
 
 // notifications
@@ -74,7 +75,7 @@ NSString *_Nonnull const CESyntaxValidationMessageKey = @"MessageKey";
 
 // ------------------------------------------------------
 /// return singleton instance
-+ (nonnull instancetype)sharedManager
++ (nonnull CESyntaxManager *)sharedManager
 // ------------------------------------------------------
 {
     static dispatch_once_t onceToken;
@@ -387,8 +388,8 @@ NSString *_Nonnull const CESyntaxValidationMessageKey = @"MessageKey";
                                                                                 selector:@selector(caseInsensitiveCompare:)]];
     
     NSMutableArray<NSString *> *syntaxDictKeys = [NSMutableArray array];
-    for (NSUInteger i = 0; i < kSizeOfAllColoringKeys; i++) {
-        [syntaxDictKeys addObject:kAllColoringKeys[i]];
+    for (NSUInteger i = 0; i < kSizeOfAllSyntaxKeys; i++) {
+        [syntaxDictKeys addObject:kAllSyntaxKeys[i]];
     }
     [syntaxDictKeys addObjectsFromArray:@[CESyntaxOutlineMenuKey,
                                           CESyntaxCompletionsKey]];
@@ -445,9 +446,9 @@ NSString *_Nonnull const CESyntaxValidationMessageKey = @"MessageKey";
     NSString *tmpBeginStr = nil, *tmpEndStr = nil;
     NSError *error = nil;
     
-    NSMutableArray<NSString *> *syntaxDictKeys = [[NSMutableArray alloc] initWithCapacity:(kSizeOfAllColoringKeys + 1)];
-    for (NSUInteger i = 0; i < kSizeOfAllColoringKeys; i++) {
-        [syntaxDictKeys addObject:kAllColoringKeys[i]];
+    NSMutableArray<NSString *> *syntaxDictKeys = [[NSMutableArray alloc] initWithCapacity:(kSizeOfAllSyntaxKeys + 1)];
+    for (NSUInteger i = 0; i < kSizeOfAllSyntaxKeys; i++) {
+        [syntaxDictKeys addObject:kAllSyntaxKeys[i]];
     }
     [syntaxDictKeys addObject:CESyntaxOutlineMenuKey];
     
@@ -603,7 +604,7 @@ NSString *_Nonnull const CESyntaxValidationMessageKey = @"MessageKey";
 
 //------------------------------------------------------
 /// style名から有効なstyle定義ファイルのURLを返す
-- (NSURL *)URLForUsedStyle:(NSString *)styleName
+- (nullable NSURL *)URLForUsedStyle:(nonnull NSString *)styleName
 //------------------------------------------------------
 {
     return [self URLForUserStyle:styleName available:YES] ?: [self URLForBundledStyle:styleName available:YES];
@@ -612,7 +613,7 @@ NSString *_Nonnull const CESyntaxValidationMessageKey = @"MessageKey";
 
 //------------------------------------------------------
 /// style名からバンドル領域のstyle定義ファイルのURLを返す (availableがYESの場合はファイルが実際に存在するときだけ返す)
-- (nullable NSURL *)URLForBundledStyle:(NSString *)styleName available:(BOOL)available
+- (nullable NSURL *)URLForBundledStyle:(nonnull NSString *)styleName available:(BOOL)available
 //------------------------------------------------------
 {
     NSURL *URL = [[NSBundle mainBundle] URLForResource:styleName withExtension:@"yaml" subdirectory:@"Syntaxes"];
@@ -627,7 +628,7 @@ NSString *_Nonnull const CESyntaxValidationMessageKey = @"MessageKey";
 
 //------------------------------------------------------
 /// style名からユーザ領域のstyle定義ファイルのURLを返す (availableがYESの場合はファイルが実際に存在するときだけ返す)
-- (nullable NSURL *)URLForUserStyle:(NSString *)styleName available:(BOOL)available
+- (nullable NSURL *)URLForUserStyle:(nonnull NSString *)styleName available:(BOOL)available
 //------------------------------------------------------
 {
     NSURL *URL = [[[self userStyleDirectoryURL] URLByAppendingPathComponent:styleName] URLByAppendingPathExtension:@"yaml"];

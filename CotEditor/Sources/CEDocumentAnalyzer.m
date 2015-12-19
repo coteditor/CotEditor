@@ -28,6 +28,8 @@
 
 #import "CEDocumentAnalyzer.h"
 #import "CEDocument.h"
+#import "CEEditorWrapper.h"
+#import "CECharacterInfo.h"
 #import "NSString+ComposedCharacter.h"
 #import "Constants.h"
 
@@ -238,17 +240,9 @@ NSString *_Nonnull const CEAnalyzerDidUpdateEditorInfoNotification = @"CEAnalyze
             
             if (needsAll) {
                 // unicode
-                if (selectedRange.length == 2) {
-                    unichar firstChar = [wholeString characterAtIndex:selectedRange.location];
-                    unichar secondChar = [wholeString characterAtIndex:selectedRange.location + 1];
-                    if (CFStringIsSurrogateHighCharacter(firstChar) && CFStringIsSurrogateLowCharacter(secondChar)) {
-                        UTF32Char pair = CFStringGetLongCharacterForSurrogatePair(firstChar, secondChar);
-                        unicode = [NSString stringWithFormat:@"U+%04tX", pair];
-                    }
-                }
-                if (selectedRange.length == 1) {
-                    unichar character = [wholeString characterAtIndex:selectedRange.location];
-                    unicode = [NSString stringWithFormat:@"U+%.4X", character];
+                CECharacterInfo *characterInfo = [CECharacterInfo characterInfoWithString:selectedString];
+                if ([[characterInfo unicodes] count] == 1) {
+                    unicode = [[[characterInfo unicodes] firstObject] unicode];
                 }
                 
                 // count byte length

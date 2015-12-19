@@ -28,7 +28,9 @@
  */
 
 @import Cocoa;
-#import "CEWindowController.h"
+
+
+@class CEWindowController;
 
 
 @interface CEPanelController : NSWindowController <NSWindowDelegate>

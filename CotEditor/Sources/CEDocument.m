@@ -31,8 +31,12 @@
 #import "CEDocumentController.h"
 #import "CEPrintPanelAccessoryController.h"
 #import "CEPrintView.h"
+#import "CETextSelection.h"
 #import "CEODBEventSender.h"
 #import "CESyntaxManager.h"
+#import "CEWindowController.h"
+#import "CEToolbarController.h"
+#import "CEEditorWrapper.h"
 #import "CEUtils.h"
 #import "NSURL+Xattr.h"
 #import "NSData+MD5.h"
@@ -1310,7 +1314,20 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
         
         if (!string) {
             // detect encoding from data
-            string = [self stringFromData:data usedEncoding:usedEncoding error:outError];
+            string = [CEDocument stringFromData:data usedEncoding:usedEncoding error:outError];
+            
+            if (string) {
+                // "charset=" や "encoding=" を読んでみて適正なエンコーディングが得られたら、そちらを優先
+                NSStringEncoding scannedEncoding = [self scanEncodingDeclarationInString:string];
+                if (scannedEncoding != NSNotFound && scannedEncoding != encoding) {
+                    NSString *tmpString = [[NSString alloc] initWithData:data encoding:scannedEncoding];
+                    if (tmpString) {
+                        *usedEncoding = scannedEncoding;
+                        return tmpString;
+                    }
+                }
+            }
+            
         }
     }
     
@@ -1320,13 +1337,11 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 //------------------------------------------------------
 /// データからエンコードを推測して文字列を得る
-- (nullable NSString *)stringFromData:(nonnull NSData *)data usedEncoding:(nonnull NSStringEncoding *)usedEncoding error:(NSError * _Nullable __autoreleasing * _Nullable)outError
++ (nullable NSString *)stringFromData:(nonnull NSData *)data usedEncoding:(nonnull NSStringEncoding *)usedEncoding error:(NSError * _Nullable __autoreleasing * _Nullable)outError
 //------------------------------------------------------
 {
-    BOOL shouldSkipISO2022JP = NO;
-    BOOL shouldSkipUTF8 = NO;
-    BOOL shouldSkipUTF16 = NO;
-    
+    // detect enoding from so-called "magic numbers"
+    NSMutableArray<NSNumber *> *triedEncodings = [NSMutableArray array];
     if ([data length] > 0) {
         // ISO 2022-JP / UTF-8 / UTF-16の判定は、「藤棚工房別棟 −徒然−」の
         // 「Cocoaで文字エンコーディングの自動判別プログラムを書いてみました」で公開されている
@@ -1335,10 +1350,23 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
         
         // BOM 付き UTF-8 判定
         if (memchr([data bytes], *UTF8_BOM, 3) != NULL) {
-            shouldSkipUTF8 = YES;
-            NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+            NSStringEncoding encoding = NSUTF8StringEncoding;
+            [triedEncodings addObject:@(encoding)];
+            NSString *string = [[NSString alloc] initWithData:data encoding:encoding];
             if (string) {
-                *usedEncoding = NSUTF8StringEncoding;
+                *usedEncoding = encoding;
+                return string;
+            }
+            
+        // UTF-32 判定
+        } else if ((memchr([data bytes], 0xfffe0000, 4) != NULL) ||
+                   (memchr([data bytes], 0x0000feff, 4) != NULL))
+        {
+            NSStringEncoding encoding = NSUTF32StringEncoding;
+            [triedEncodings addObject:@(encoding)];
+            NSString *string = [[NSString alloc] initWithData:data encoding:encoding];
+            if (string) {
+                *usedEncoding = encoding;
                 return string;
             }
             
@@ -1346,19 +1374,21 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
         } else if ((memchr([data bytes], 0xfffe, 2) != NULL) ||
                    (memchr([data bytes], 0xfeff, 2) != NULL))
         {
-            shouldSkipUTF16 = YES;
-            NSString *string = [[NSString alloc] initWithData:data encoding:NSUnicodeStringEncoding];
+            NSStringEncoding encoding = NSUTF16StringEncoding;
+            [triedEncodings addObject:@(encoding)];
+            NSString *string = [[NSString alloc] initWithData:data encoding:encoding];
             if (string) {
-                *usedEncoding = NSUnicodeStringEncoding;
+                *usedEncoding = encoding;
                 return string;
             }
             
-        // ISO 2022-JP 判定
+        // ISO-2022-JP 判定
         } else if (memchr([data bytes], 0x1b, [data length]) != NULL) {
-            shouldSkipISO2022JP = YES;
-            NSString *string = [[NSString alloc] initWithData:data encoding:NSISO2022JPStringEncoding];
+            NSStringEncoding encoding = NSISO2022JPStringEncoding;
+            [triedEncodings addObject:@(encoding)];
+            NSString *string = [[NSString alloc] initWithData:data encoding:encoding];
             if (string) {
-                *usedEncoding = NSISO2022JPStringEncoding;
+                *usedEncoding = encoding;
                 return string;
             }
         }
@@ -1370,27 +1400,12 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     for (NSNumber *encodingNumber in encodings) {
         NSStringEncoding encoding = CFStringConvertEncodingToNSStringEncoding([encodingNumber unsignedIntegerValue]);
         
-        if (((encoding == NSISO2022JPStringEncoding) && shouldSkipISO2022JP) ||
-            ((encoding == NSUTF8StringEncoding) && shouldSkipUTF8) ||
-            ((encoding == NSUnicodeStringEncoding) && shouldSkipUTF16))
-        {
-            continue;
-        }
+        // skip encoding already tried
+        if ([triedEncodings containsObject:@(encoding)]) { continue; }
         
         NSString *string = [[NSString alloc] initWithData:data encoding:encoding];
         
         if (string) {
-            // "charset=" や "encoding=" を読んでみて適正なエンコーディングが得られたら、そちらを優先
-            NSStringEncoding scannedEncoding = [self scanEncodingDeclarationInString:string];
-            
-            if (scannedEncoding != NSNotFound && scannedEncoding != encoding) {
-                NSString *tmpString = [[NSString alloc] initWithData:data encoding:scannedEncoding];
-                if (tmpString) {
-                    *usedEncoding = scannedEncoding;
-                    return tmpString;
-                }
-            }
-            
             *usedEncoding = encoding;
             return string;
         }
@@ -1677,10 +1692,11 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
         NSAlert *alert = [[NSAlert alloc] init];
         [alert setMessageText:NSLocalizedString(@"The file is not writable.", nil)];
         [alert setInformativeText:NSLocalizedString(@"You may not be able to save your changes, but you will be able to save a copy somewhere else.", nil)];
+        [alert setShowsSuppressionButton:YES];
         
         [alert beginSheetModalForWindow:[self windowForSheet]
                           modalDelegate:self
-                         didEndSelector:NULL
+                         didEndSelector:@selector(alertForNotWritableDidEnd:returnCode:contextInfo:)
                             contextInfo:NULL];
     }
     [self setDidAlertNotWritable:YES];
@@ -1759,6 +1775,17 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     }
     [self setRevertingForExternalFileUpdate:NO];
     [self setNeedsShowUpdateAlertWithBecomeKey:NO];
+}
+
+
+// ------------------------------------------------------
+/// 書き込み禁止アラートが閉じた
+- (void)alertForNotWritableDidEnd:(nonnull NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(nullable void *)contextInfo
+// ------------------------------------------------------
+{
+    if ([[alert suppressionButton] state] == NSOnState) {
+        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:CEDefaultShowAlertForNotWritableKey];
+    }
 }
 
 @end

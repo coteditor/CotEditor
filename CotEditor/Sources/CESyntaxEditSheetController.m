@@ -27,11 +27,13 @@
  */
 
 #import "CESyntaxEditSheetController.h"
+#import "CESyntaxTermsEditViewController.h"
+#import "CESyntaxValidationViewController.h"
 #import "CESyntaxManager.h"
 #import "Constants.h"
 
 
-typedef NS_ENUM(NSUInteger, CETabIndex) {
+typedef NS_ENUM(NSUInteger, CESyntaxEditViewIndex) {
     KeywordsTab,
     CommandsTab,
     TypesTab,
@@ -54,19 +56,19 @@ typedef NS_ENUM(NSUInteger, CETabIndex) {
 
 @interface CESyntaxEditSheetController () <NSTextFieldDelegate, NSTableViewDelegate>
 
-@property (nonatomic, nonnull) NSMutableDictionary<NSString *, id> *style;  // スタイル定義（NSArrayControllerを通じて操作）
+@property (nonatomic, nonnull) NSMutableDictionary<NSString *, id> *style;
 @property (nonatomic) CESyntaxEditSheetMode mode;
 @property (nonatomic, nonnull, copy) NSString *originalStyleName;   // シートを生成した際に指定したスタイル名
 @property (nonatomic, getter=isStyleNameValid) BOOL styleNameValid;
 @property (nonatomic, getter=isBundledStyle) BOOL bundledStyle;
 
+@property (nonatomic, nullable, copy) NSArray<__kindof NSViewController *> *viewControllers;
+
+@property (nonatomic, nullable, weak) IBOutlet NSBox *box;
 @property (nonatomic, nullable, weak) IBOutlet NSTableView *menuTableView;
 @property (nonatomic, nullable, weak) IBOutlet NSTextField *styleNameField;
 @property (nonatomic, nullable, weak) IBOutlet NSTextField *messageField;
-@property (nonatomic, nullable, weak) IBOutlet NSButton *factoryDefaultsButton;
-@property (nonatomic, nullable, strong) IBOutlet NSTextView *validationTextView;  // on 10.8 NSTextView cannot be weak
-
-@property (nonatomic) NSUInteger selectedDetailTag; // Elementsタブでのポップアップメニュー選択用バインディング変数(#削除不可)
+@property (nonatomic, nullable, weak) IBOutlet NSButton *restoreButton;
 
 @end
 
@@ -86,32 +88,33 @@ typedef NS_ENUM(NSUInteger, CETabIndex) {
 {
     self = [super initWithWindowNibName:@"SyntaxEditSheet"];
     if (self) {
-        NSMutableDictionary<NSString *, id> *style;
+        CESyntaxManager *syntaxManager = [CESyntaxManager sharedManager];
         NSString *name;
+        NSDictionary<NSString *, id> *style;
         
         switch (mode) {
             case CECopySyntaxEdit:
-                style = [[[CESyntaxManager sharedManager] styleWithStyleName:styleName] mutableCopy];
-                name = [[CESyntaxManager sharedManager] copiedStyleName:styleName];
+                name = [syntaxManager copiedStyleName:styleName];
+                style = [syntaxManager styleWithStyleName:styleName];
                 break;
                 
             case CENewSyntaxEdit:
-                style = [[[CESyntaxManager sharedManager] emptyStyle] mutableCopy];
                 name = @"";
+                style = [syntaxManager emptyStyle];
                 break;
                 
             case CESyntaxEdit:
-                style = [[[CESyntaxManager sharedManager] styleWithStyleName:styleName] mutableCopy];
                 name = styleName;
+                style = [syntaxManager styleWithStyleName:styleName];
                 break;
         }
         if (!name) { return nil; }
         
         _mode = mode;
         _originalStyleName = name;
-        _style = style;
+        _style = [style mutableCopy];
         _styleNameValid = YES;
-        _bundledStyle = [[CESyntaxManager sharedManager] isBundledStyle:name];
+        _bundledStyle = [syntaxManager isBundledStyle:name];
     }
     
     return self;
@@ -125,24 +128,54 @@ typedef NS_ENUM(NSUInteger, CETabIndex) {
 {
     [super windowDidLoad];
     
-    NSString *styleName = [self originalStyleName];
-    BOOL isDefaultSyntax = [[CESyntaxManager sharedManager] isBundledStyle:styleName];
+    // setup style name field and restore button
+    [[self styleNameField] setStringValue:[self originalStyleName]];
     
-    [[self styleNameField] setStringValue:styleName];
-    [[self styleNameField] setDrawsBackground:!isDefaultSyntax];
-    [[self styleNameField] setBezeled:!isDefaultSyntax];
-    [[self styleNameField] setSelectable:!isDefaultSyntax];
-    [[self styleNameField] setEditable:!isDefaultSyntax];
-    
-    if (isDefaultSyntax) {
-        BOOL isEqual = [[CESyntaxManager sharedManager] isEqualToBundledStyle:[self style] name:styleName];
+    if ([self isBundledStyle]) {
+        BOOL isEqual = [[CESyntaxManager sharedManager] isEqualToBundledStyle:[self style]
+                                                                         name:[self originalStyleName]];
+        
+        [[self styleNameField] setDrawsBackground:NO];
+        [[self styleNameField] setBezeled:NO];
+        [[self styleNameField] setSelectable:NO];
+        [[self styleNameField] setEditable:NO];
         [[self styleNameField] setBordered:YES];
         [[self messageField] setStringValue:NSLocalizedString(@"Bundled styles can’t be renamed.", nil)];
-        [[self factoryDefaultsButton] setEnabled:!isEqual];
+        [[self restoreButton] setEnabled:!isEqual];
+        
     } else {
         [[self messageField] setStringValue:@""];
-        [[self factoryDefaultsButton] setEnabled:NO];
+        [[self restoreButton] setEnabled:NO];
     }
+    
+    // setup views
+    NSMutableArray<id> *viewControllers = [NSMutableArray array];
+    
+    // setup keywords views (until Characters tab)
+    for (NSUInteger i = 0; i <= CharactersTab; i++) {
+        NSString *key = kAllSyntaxKeys[i];
+        viewControllers[i] = [[CESyntaxTermsEditViewController alloc] initWithStynaxType:key];
+    }
+    viewControllers[CommentsTab] = [[NSViewController alloc] initWithNibName:@"SyntaxCommentsEditView" bundle:nil];
+    
+    [viewControllers addObject:[NSNull null]];  // separator
+    
+    viewControllers[OutlineTab] = [[NSViewController alloc] initWithNibName:@"SyntaxOutlineEditView" bundle:nil];
+    viewControllers[CompletionTab] = [[NSViewController alloc] initWithNibName:@"SyntaxCompletionsEditView" bundle:nil];
+    viewControllers[FileMappingTab] = [[NSViewController alloc] initWithNibName:@"SyntaxFileMappingEditView" bundle:nil];
+    
+    [viewControllers addObject:[NSNull null]];  // separator
+    
+    viewControllers[StyleInfoTab] = [[NSViewController alloc] initWithNibName:@"SyntaxInfoEditView" bundle:nil];
+    viewControllers[ValidationTab] = [[CESyntaxValidationViewController alloc] initWithNibName:@"SyntaxValidationView" bundle:nil];
+    
+    for (__kindof NSViewController *viewController in viewControllers) {
+        if ([viewController isKindOfClass:[NSNull class]]) { continue; }
+        [viewController setRepresentedObject:[self style]];
+    }
+    
+    [self setViewControllers:[viewControllers copy]];
+    [self swapViewWithIndex:0];
 }
 
 
@@ -180,7 +213,7 @@ typedef NS_ENUM(NSUInteger, CETabIndex) {
     NSInteger row = [tableView selectedRow];
     
     // switch view
-    [self setSelectedDetailTag:row];
+    [self swapViewWithIndex:row];
 }
 
 
@@ -209,9 +242,9 @@ typedef NS_ENUM(NSUInteger, CETabIndex) {
     // フォーカスを移しておく
     [[sender window] makeFirstResponder:[sender window]];
     // 内容をセット
-    [self setStyle:style];
+    [[self style] setDictionary:style];
     // デフォルト設定に戻すボタンを無効化
-    [[self factoryDefaultsButton] setEnabled:NO];
+    [[self restoreButton] setEnabled:NO];
 }
 
 
@@ -230,15 +263,15 @@ typedef NS_ENUM(NSUInteger, CETabIndex) {
     [[self styleNameField] setStringValue:styleName];
     
     // style名のチェック
-    NSString *errorMessage = [self validateStyleName:styleName];
-    if (errorMessage) {
+    if ([self validateStyleName:styleName]) {
+        [[self window] makeFirstResponder:[self styleNameField]];
         NSBeep();
-        [[[self styleNameField] window] makeFirstResponder:[self styleNameField]];
         return;
     }
     
     // エラー未チェックかつエラーがあれば、表示（エラーを表示していてOKボタンを押下したら、そのまま確定）
-    if ([[[self validationTextView] string] isEqualToString:@""] && ([self validate] > 0)) {
+    CESyntaxValidationViewController *validationController = [self viewControllers][ValidationTab];
+    if (![validationController didValidate] && ([validationController validate] > 0)) {
         // 「構文要素チェック」を選択
         // （selectItemAtIndex: だとバインディングが実行されないので、メニューを取得して選択している）
         NSBeep();
@@ -246,7 +279,9 @@ typedef NS_ENUM(NSUInteger, CETabIndex) {
         return;
     }
     
-    [[CESyntaxManager sharedManager] saveStyle:[self style] name:styleName oldName:[self originalStyleName]];
+    [[CESyntaxManager sharedManager] saveStyle:[self style]
+                                          name:styleName
+                                       oldName:[self originalStyleName]];
     
     [self endSheetWithReturnCode:NSOKButton];
 }
@@ -258,15 +293,6 @@ typedef NS_ENUM(NSUInteger, CETabIndex) {
 // ------------------------------------------------------
 {
     [self endSheetWithReturnCode:NSCancelButton];
-}
-
-
-// ------------------------------------------------------
-/// 構文チェックを開始
-- (IBAction)startValidation:(nullable id)sender
-// ------------------------------------------------------
-{
-    [self validate];
 }
 
 
@@ -299,6 +325,19 @@ typedef NS_ENUM(NSUInteger, CETabIndex) {
 
 
 // ------------------------------------------------------
+/// ビューを切り替える
+- (void)swapViewWithIndex:(CESyntaxEditViewIndex)index
+// ------------------------------------------------------
+{
+    // finish current edit
+    [[self window] makeFirstResponder:[self menuTableView]];
+    
+    // swap view
+    [[self box] setContentView:[[self viewControllers][index] view]];
+}
+
+
+// ------------------------------------------------------
 /// シートを終わる
 - (void)endSheetWithReturnCode:(NSInteger)returnCode
 // ------------------------------------------------------
@@ -318,14 +357,14 @@ typedef NS_ENUM(NSUInteger, CETabIndex) {
 - (nullable NSString *)validateStyleName:(nonnull NSString *)styleName;
 // ------------------------------------------------------
 {
-    if (([self mode] == CESyntaxEdit) && [[CESyntaxManager sharedManager] isBundledStyle:[self originalStyleName]]) {
+    if (([self mode] == CESyntaxEdit) && [self isBundledStyle]) {
         return nil;
     }
     
     NSString *message = nil;
     
-    if (([self mode] == CECopySyntaxEdit) || ([self mode] == CENewSyntaxEdit) ||
-        (([self mode] == CESyntaxEdit) && ([styleName caseInsensitiveCompare:[self originalStyleName]] != NSOrderedSame)))
+    if (!(([self mode] == CESyntaxEdit) &&
+          ([styleName caseInsensitiveCompare:[self originalStyleName]] == NSOrderedSame)))
     {
         // NSArray を case insensitive に検索するブロック
         __block NSString *duplicatedStyleName;
@@ -350,37 +389,6 @@ typedef NS_ENUM(NSUInteger, CETabIndex) {
     [[self messageField] setStringValue:message ? : @""];
     
     return message;
-}
-
-
-// ------------------------------------------------------
-/// 構文チェックを実行しその結果をテキストビューに挿入（戻り値はエラー数）
-- (NSUInteger)validate
-// ------------------------------------------------------
-{
-    NSArray<NSDictionary<NSString*, NSString *> *> *results = [[CESyntaxManager sharedManager] validateSyntax:[self style]];
-    NSUInteger numberOfErrors = [results count];
-    NSMutableString *message = [NSMutableString string];
-    
-    if (numberOfErrors == 0) {
-        [message appendString:NSLocalizedString(@"No error was found.", nil)];
-    } else if (numberOfErrors == 1) {
-        [message appendString:NSLocalizedString(@"An error was found!", nil)];
-    } else {
-        [message appendFormat:NSLocalizedString(@"%i errors were found!", nil), numberOfErrors];
-    }
-    
-    for (NSDictionary<NSString*, NSString *> *result in results) {
-        [message appendFormat:@"\n\n%@: [%@] %@\n\t> %@",
-         result[CESyntaxValidationTypeKey],
-         result[CESyntaxValidationRoleKey],
-         result[CESyntaxValidationStringKey],
-         result[CESyntaxValidationMessageKey]];
-    }
-    
-    [[self validationTextView] setString:message];
-    
-    return numberOfErrors;
 }
 
 @end

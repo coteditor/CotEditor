@@ -327,13 +327,13 @@ static NSString *_Nonnull const PageNumberPlaceholder = @"PAGENUM";
 
     // check whether print line numbers
     switch ((CELineNumberPrintMode)[settings[CEPrintLineNumberKey] unsignedIntegerValue]) {
-        case CENoLinePrint:
+        case CELinePrintNo:
             [self setPrintsLineNum:NO];
             break;
-        case CESameAsDocumentLinePrint:
+        case CELinePrintSameAsDocument:
             [self setPrintsLineNum:[self documentShowsLineNum]];
             break;
-        case CEDoLinePrint:
+        case CELinePrintYes:
             [self setPrintsLineNum:YES];
             break;
     }
@@ -348,13 +348,13 @@ static NSString *_Nonnull const PageNumberPlaceholder = @"PAGENUM";
     // check wheter print invisibles
     BOOL showsInvisibles;
     switch ((CEInvisibleCharsPrintMode)[settings[CEPrintInvisiblesKey] unsignedIntegerValue]) {
-        case CENoInvisibleCharsPrint:
+        case CEInvisibleCharsPrintNo:
             showsInvisibles = NO;
             break;
-        case CESameAsDocumentInvisibleCharsPrint:
+        case CEInvisibleCharsPrintSameAsDocument:
             showsInvisibles = [self documentShowsInvisibles];
             break;
-        case CEAllInvisibleCharsPrint:
+        case CEInvisibleCharsPrintAll:
             showsInvisibles = YES;
             break;
     }
@@ -376,7 +376,7 @@ static NSString *_Nonnull const PageNumberPlaceholder = @"PAGENUM";
             [self setSyntaxParser:[[CESyntaxParser alloc] initWithStyleName:[self syntaxName]]];
         }
         CEPrintPanelAccessoryController *controller = [[[[NSPrintOperation currentOperation] printPanel] accessoryControllers] firstObject];
-        [[self syntaxParser] colorWholeStringInTextStorage:[self textStorage] completionHandler:^ {
+        [[self syntaxParser] highlightWholeStringInTextStorage:[self textStorage] completionHandler:^ {
             [controller setNeedsPreview:YES];
         }];
     }
@@ -506,13 +506,13 @@ static NSString *_Nonnull const PageNumberPlaceholder = @"PAGENUM";
 // ------------------------------------------------------
 {
     switch (selectedTag) {
-        case CEDocumentNamePrintInfo:
+        case CEPrintInfoDocumentName:
             return [self documentName];
             
-        case CESyntaxNamePrintInfo:
+        case CEPrintInfoSyntaxName:
             return [self syntaxName];
             
-        case CEFilePathPrintInfo:
+        case CEPrintInfoFilePath:
             if (![self filePath]) {  // print document name instead if document doesn't have file path yet
                 return [self documentName];
             }
@@ -523,14 +523,14 @@ static NSString *_Nonnull const PageNumberPlaceholder = @"PAGENUM";
                 return [self filePath];
             }
             
-        case CEPrintDatePrintInfo:
+        case CEPrintInfoPrintDate:
             return [NSString stringWithFormat:NSLocalizedString(@"Printed on %@", nil),
                     [[self dateFormatter] stringFromDate:[NSDate date]]];
             
-        case CEPageNumberPrintInfo:
+        case CEPrintInfoPageNumber:
             return PageNumberPlaceholder;
             
-        case CENoPrintInfo:
+        case CEPrintInfoNone:
             return nil;
     }
     

@@ -54,6 +54,8 @@
 		2A15832818E39B7400601026 /* TextKeyBindingsEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A15832618E39B7400601026 /* TextKeyBindingsEditView.xib */; };
 		2A15833518E3B83F00601026 /* CEConsolePanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A15833418E3B83F00601026 /* CEConsolePanelController.m */; };
 		2A162FEA1AF395A400E97285 /* CEUpdaterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A162FE91AF395A400E97285 /* CEUpdaterManager.m */; };
+		2A1A3E4F1C099A21007FEA7A /* CESyntaxTermsEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A1A3E4D1C099A21007FEA7A /* CESyntaxTermsEditViewController.m */; };
+		2A1A3E501C099A21007FEA7A /* CESyntaxTermsEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A1A3E4D1C099A21007FEA7A /* CESyntaxTermsEditViewController.m */; };
 		2A1EB5C419AD469500C1E37E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A1EB5C319AD469500C1E37E /* Images.xcassets */; };
 		2A2179F61A07093B002C4AB1 /* SyntaxMap.json in Resources */ = {isa = PBXBuildFile; fileRef = 2A2179F51A07093B002C4AB1 /* SyntaxMap.json */; };
 		2A2BDF0D198A899E0029848B /* NSString+JapaneseTransform.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A2BDF0C198A899E0029848B /* NSString+JapaneseTransform.m */; };
@@ -62,6 +64,14 @@
 		2A3A758E19E77C84001DAB88 /* Syntaxes in Resources */ = {isa = PBXBuildFile; fileRef = 2A3A758D19E77C84001DAB88 /* Syntaxes */; };
 		2A3A759119E77D4F001DAB88 /* MigrationWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A3A758F19E77D4F001DAB88 /* MigrationWindow.xib */; };
 		2A3A759419E77D66001DAB88 /* CEMigrationWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A3A759319E77D66001DAB88 /* CEMigrationWindowController.m */; };
+		2A3A75A619E77E87001DAB88 /* SyntaxCommentsEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A3A759819E77E87001DAB88 /* SyntaxCommentsEditView.xib */; };
+		2A3A75A719E77E87001DAB88 /* SyntaxCompletionsEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A3A759A19E77E87001DAB88 /* SyntaxCompletionsEditView.xib */; };
+		2A3A75A819E77E87001DAB88 /* SyntaxFileMappingEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A3A759C19E77E87001DAB88 /* SyntaxFileMappingEditView.xib */; };
+		2A3A75A919E77E87001DAB88 /* SyntaxInfoEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A3A759E19E77E87001DAB88 /* SyntaxInfoEditView.xib */; };
+		2A3A75AA19E77E87001DAB88 /* SyntaxTermsEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A3A75A019E77E87001DAB88 /* SyntaxTermsEditView.xib */; };
+		2A3A75AB19E77E87001DAB88 /* SyntaxOutlineEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A3A75A219E77E87001DAB88 /* SyntaxOutlineEditView.xib */; };
+		2A3A75AC19E77E87001DAB88 /* SyntaxValidationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A3A75A419E77E87001DAB88 /* SyntaxValidationView.xib */; };
+		2A3A75B319E77F32001DAB88 /* CESyntaxValidationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A3A75B219E77F32001DAB88 /* CESyntaxValidationViewController.m */; };
 		2A3FB2AD18ECEFF200D9CB2C /* CESyntaxEditSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A3FB2AC18ECEFF200D9CB2C /* CESyntaxEditSheetController.m */; };
 		2A42825518FCD47B00386899 /* Acknowledgements.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A961C4518FC699E002076B6 /* Acknowledgements.rtf */; };
 		2A436DCD1A4243D500275FD4 /* DocumentInspectorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A436DCB1A4243D500275FD4 /* DocumentInspectorView.xib */; };
@@ -85,6 +95,13 @@
 		2A5B998918D61443009C2F4F /* LineHightPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A5B998B18D61443009C2F4F /* LineHightPanel.xib */; };
 		2A5D2B9118E1EC790020AA1F /* CESyntaxMappingConflictsSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D2B9018E1EC790020AA1F /* CESyntaxMappingConflictsSheetController.m */; };
 		2A5D2B9418E1ED420020AA1F /* SyntaxMappingConflictSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A5D2B9218E1ED420020AA1F /* SyntaxMappingConflictSheet.xib */; };
+		2A5DBE571B5D2DAD00F8CB13 /* SyntaxTermsEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A3A75A019E77E87001DAB88 /* SyntaxTermsEditView.xib */; };
+		2A5DBE581B5D2DB000F8CB13 /* SyntaxCommentsEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A3A759819E77E87001DAB88 /* SyntaxCommentsEditView.xib */; };
+		2A5DBE591B5D2DB400F8CB13 /* SyntaxOutlineEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A3A75A219E77E87001DAB88 /* SyntaxOutlineEditView.xib */; };
+		2A5DBE5A1B5D2DB700F8CB13 /* SyntaxFileMappingEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A3A759C19E77E87001DAB88 /* SyntaxFileMappingEditView.xib */; };
+		2A5DBE5B1B5D2DBA00F8CB13 /* SyntaxCompletionsEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A3A759A19E77E87001DAB88 /* SyntaxCompletionsEditView.xib */; };
+		2A5DBE5C1B5D2DBD00F8CB13 /* SyntaxInfoEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A3A759E19E77E87001DAB88 /* SyntaxInfoEditView.xib */; };
+		2A5DBE5D1B5D2DC000F8CB13 /* SyntaxValidationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A3A75A419E77E87001DAB88 /* SyntaxValidationView.xib */; };
 		2A5E4D7C1A44F0D50072013F /* ServicesMenu.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2A5E4D7A1A44F0D50072013F /* ServicesMenu.strings */; };
 		2A607B0D1905EB5500F3A991 /* CEColorCodePanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A607B0C1905EB5500F3A991 /* CEColorCodePanelController.m */; };
 		2A607B101905F02F00F3A991 /* ColorCodePanelAccessory.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A607B0E1905F02F00F3A991 /* ColorCodePanelAccessory.xib */; };
@@ -284,6 +301,19 @@
 		2A961C5518FC699E002076B6 /* ShellScript.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A961C4D18FC699E002076B6 /* ShellScript.rtf */; };
 		2A9871A919AEABDB0081BADB /* KeyBindings in Resources */ = {isa = PBXBuildFile; fileRef = 2A9871A819AEABDB0081BADB /* KeyBindings */; };
 		2AA0AC7A1A29D8CB0063ED1B /* CEPopUpToolbarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AA0AC791A29D8CB0063ED1B /* CEPopUpToolbarItem.m */; };
+		2AA2E00B1BFDD3A60087BDD6 /* CECharacterInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AA2E00A1BFDD3A60087BDD6 /* CECharacterInfo.m */; };
+		2AA2E00C1BFDD3A60087BDD6 /* CECharacterInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AA2E00A1BFDD3A60087BDD6 /* CECharacterInfo.m */; };
+		2AA2E00E1BFDDFEA0087BDD6 /* CECharacterInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AA2E00A1BFDD3A60087BDD6 /* CECharacterInfo.m */; };
+		2AA2E0101BFDE0190087BDD6 /* CharacterInfoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA2E00F1BFDE0190087BDD6 /* CharacterInfoTests.swift */; };
+		2AA2E0131BFE12620087BDD6 /* Unicode.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2AA2E0111BFE12620087BDD6 /* Unicode.strings */; };
+		2AA2E0141BFE12620087BDD6 /* Unicode.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2AA2E0111BFE12620087BDD6 /* Unicode.strings */; };
+		2AA2E01A1BFF9AEE0087BDD6 /* CEUnicodeCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AA2E0191BFF9AEE0087BDD6 /* CEUnicodeCharacter.m */; };
+		2AA2E01B1BFF9AEE0087BDD6 /* CEUnicodeCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AA2E0191BFF9AEE0087BDD6 /* CEUnicodeCharacter.m */; };
+		2AA2E01C1BFFA22B0087BDD6 /* CEUnicodeCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AA2E0191BFF9AEE0087BDD6 /* CEUnicodeCharacter.m */; };
+		2AA2E01F1C007C690087BDD6 /* CECharacterField.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AA2E01E1C007C690087BDD6 /* CECharacterField.m */; };
+		2AA2E0201C007C690087BDD6 /* CECharacterField.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AA2E01E1C007C690087BDD6 /* CECharacterField.m */; };
+		2AA2E0261C0454730087BDD6 /* StringIndentationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA2E0251C0454730087BDD6 /* StringIndentationTests.swift */; };
+		2AA2E0271C0455180087BDD6 /* NSString+Indentation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A6415931BD10EF30080358E /* NSString+Indentation.m */; };
 		2AAC90011A4E12D10074E076 /* CEWrappingTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AAC90001A4E12D10074E076 /* CEWrappingTextField.m */; };
 		2AACC9591942A82900E3FF63 /* CEIndicatorSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AACC9581942A82900E3FF63 /* CEIndicatorSheetController.m */; };
 		2AB4326E1912ADAC00835004 /* CharacterPopover.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2AB4326C1912ADAC00835004 /* CharacterPopover.xib */; };
@@ -292,6 +322,12 @@
 		2ABC76241909BF5200D2B592 /* Themes in Resources */ = {isa = PBXBuildFile; fileRef = 2A7846DA18FE035E006BDF00 /* Themes */; };
 		2AC2C1D819881543007968CB /* VerticalOrientation_Off.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 2AC2C1D619881543007968CB /* VerticalOrientation_Off.tiff */; };
 		2AC2C1D919881543007968CB /* VerticalOrientation_On.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 2AC2C1D719881543007968CB /* VerticalOrientation_On.tiff */; };
+		2AC71DE21BF0BDBC002E1434 /* StringExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC71DE11BF0BDBC002E1434 /* StringExtensionsTests.swift */; };
+		2AC71DED1BF0C5B5002E1434 /* NSString+ComposedCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AB432731915D6AA00835004 /* NSString+ComposedCharacter.m */; };
+		2AC71DEE1BF0C6DD002E1434 /* NSString+CENewLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AC75C071A2AF47F00C7DB0A /* NSString+CENewLine.m */; };
+		2AC71DEF1BF0C7A9002E1434 /* NSString+JapaneseTransform.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A2BDF0C198A899E0029848B /* NSString+JapaneseTransform.m */; };
+		2AC71DF01BF0CDD8002E1434 /* NSString+Normalization.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A88A78F1B8B87C90055B9AE /* NSString+Normalization.m */; };
+		2AC71DF11BF0CFA3002E1434 /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A83E2391BA1E65A0069CDFE /* libicucore.tbd */; };
 		2AC75C081A2AF47F00C7DB0A /* NSString+CENewLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AC75C071A2AF47F00C7DB0A /* NSString+CENewLine.m */; };
 		2AD318C01A462A10001B8112 /* IntegrationPane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2AD318BE1A462A10001B8112 /* IntegrationPane.xib */; };
 		2AD318C31A462C30001B8112 /* CEIntegrationPaneController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD318C21A462C30001B8112 /* CEIntegrationPaneController.m */; };
@@ -312,6 +348,7 @@
 		2AF5C3BE1A55072E00C972B5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2AF5C3BC1A55072E00C972B5 /* InfoPlist.strings */; };
 		2AFF21821BA9F69A008A41CD /* CESwitcherSegmentedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AFF21811BA9F69A008A41CD /* CESwitcherSegmentedCell.m */; };
 		2AFF21831BA9F69A008A41CD /* CESwitcherSegmentedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AFF21811BA9F69A008A41CD /* CESwitcherSegmentedCell.m */; };
+		2AFFA5771B674E9300A5AD8F /* CESyntaxValidationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A3A75B219E77F32001DAB88 /* CESyntaxValidationViewController.m */; };
 		2AFFB70718D7BC9300118477 /* OpacityPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2AFFB70518D7BC9300118477 /* OpacityPanel.xib */; };
 		2AFFB71618D7DCC000118477 /* CEPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AFFB71518D7DCC000118477 /* CEPanelController.m */; };
 		2AFFB71B18D7F18300118477 /* CEGoToSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AFFB71918D7F18300118477 /* CEGoToSheetController.m */; };
@@ -357,6 +394,16 @@
 		BED9FB377321352F7A748759 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F3504B3BB02D4DBA8EA50C0E /* libPods.a */; };
 		D3F0D0D055B0931687B33C98 /* libPods-appstore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DD42F3AFDE3081DC5D669D51 /* libPods-appstore.a */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		2AC71DE41BF0BDBC002E1434 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2A37F4A9FDCFA73011CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8D15AC270486D014006FF6A4;
+			remoteInfo = CotEditor;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		2A94FC771BE2253500B454A8 /* Copy Command-Line Tools */ = {
@@ -444,6 +491,8 @@
 		2A15833418E3B83F00601026 /* CEConsolePanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CEConsolePanelController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		2A162FE81AF395A400E97285 /* CEUpdaterManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEUpdaterManager.h; sourceTree = "<group>"; };
 		2A162FE91AF395A400E97285 /* CEUpdaterManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEUpdaterManager.m; sourceTree = "<group>"; };
+		2A1A3E4C1C099A21007FEA7A /* CESyntaxTermsEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CESyntaxTermsEditViewController.h; sourceTree = "<group>"; };
+		2A1A3E4D1C099A21007FEA7A /* CESyntaxTermsEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CESyntaxTermsEditViewController.m; sourceTree = "<group>"; };
 		2A1EB5C319AD469500C1E37E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		2A2179ED1A07011C002C4AB1 /* makeSyntaxMap.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = makeSyntaxMap.rb; sourceTree = "<group>"; };
 		2A2179F51A07093B002C4AB1 /* SyntaxMap.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SyntaxMap.json; sourceTree = "<group>"; };
@@ -460,8 +509,17 @@
 		2A3A758D19E77C84001DAB88 /* Syntaxes */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Syntaxes; sourceTree = "<group>"; };
 		2A3A759219E77D66001DAB88 /* CEMigrationWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEMigrationWindowController.h; sourceTree = "<group>"; };
 		2A3A759319E77D66001DAB88 /* CEMigrationWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEMigrationWindowController.m; sourceTree = "<group>"; };
+		2A3A75B119E77F32001DAB88 /* CESyntaxValidationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CESyntaxValidationViewController.h; sourceTree = "<group>"; };
+		2A3A75B219E77F32001DAB88 /* CESyntaxValidationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CESyntaxValidationViewController.m; sourceTree = "<group>"; };
 		2A3FB2AB18ECEFF200D9CB2C /* CESyntaxEditSheetController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CESyntaxEditSheetController.h; sourceTree = "<group>"; };
 		2A3FB2AC18ECEFF200D9CB2C /* CESyntaxEditSheetController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CESyntaxEditSheetController.m; sourceTree = "<group>"; };
+		2A4063FA1B9DA6080032AC7F /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/SyntaxValidationView.strings; sourceTree = "<group>"; };
+		2A4063FC1B9DA6490032AC7F /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/SyntaxInfoEditView.strings; sourceTree = "<group>"; };
+		2A4063FE1B9DA6A80032AC7F /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/SyntaxFileMappingEditView.strings; sourceTree = "<group>"; };
+		2A4064001B9DA7720032AC7F /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/SyntaxCompletionsEditView.strings; sourceTree = "<group>"; };
+		2A4064021B9DA7C60032AC7F /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/SyntaxOutlineEditView.strings; sourceTree = "<group>"; };
+		2A4064041B9DA8BE0032AC7F /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/SyntaxCommentsEditView.strings; sourceTree = "<group>"; };
+		2A4064061B9DAA4E0032AC7F /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/SyntaxTermsEditView.strings; sourceTree = "<group>"; };
 		2A436DCC1A4243D500275FD4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/DocumentInspectorView.xib; sourceTree = "<group>"; };
 		2A436DCF1A4249CB00275FD4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/IncompatibleCharsView.xib; sourceTree = "<group>"; };
 		2A436DD21A42516900275FD4 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/DocumentInspectorView.strings; sourceTree = "<group>"; };
@@ -626,6 +684,17 @@
 		2AA0AC771A2877970063ED1B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/PrintPane.strings"; sourceTree = "<group>"; };
 		2AA0AC781A29D8CB0063ED1B /* CEPopUpToolbarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEPopUpToolbarItem.h; sourceTree = "<group>"; };
 		2AA0AC791A29D8CB0063ED1B /* CEPopUpToolbarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEPopUpToolbarItem.m; sourceTree = "<group>"; };
+		2AA2E0091BFDD3A60087BDD6 /* CECharacterInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CECharacterInfo.h; sourceTree = "<group>"; };
+		2AA2E00A1BFDD3A60087BDD6 /* CECharacterInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CECharacterInfo.m; sourceTree = "<group>"; };
+		2AA2E00F1BFDE0190087BDD6 /* CharacterInfoTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterInfoTests.swift; sourceTree = "<group>"; };
+		2AA2E0121BFE12620087BDD6 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Unicode.strings; sourceTree = "<group>"; };
+		2AA2E0151BFE14310087BDD6 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Unicode.strings"; sourceTree = "<group>"; };
+		2AA2E0161BFE14320087BDD6 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Unicode.strings; sourceTree = "<group>"; };
+		2AA2E0181BFF9AEE0087BDD6 /* CEUnicodeCharacter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEUnicodeCharacter.h; sourceTree = "<group>"; };
+		2AA2E0191BFF9AEE0087BDD6 /* CEUnicodeCharacter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEUnicodeCharacter.m; sourceTree = "<group>"; };
+		2AA2E01D1C007C690087BDD6 /* CECharacterField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CECharacterField.h; sourceTree = "<group>"; };
+		2AA2E01E1C007C690087BDD6 /* CECharacterField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CECharacterField.m; sourceTree = "<group>"; };
+		2AA2E0251C0454730087BDD6 /* StringIndentationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringIndentationTests.swift; sourceTree = "<group>"; };
 		2AAC8FFF1A4E12D10074E076 /* CEWrappingTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEWrappingTextField.h; sourceTree = "<group>"; };
 		2AAC90001A4E12D10074E076 /* CEWrappingTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEWrappingTextField.m; sourceTree = "<group>"; };
 		2AACC9571942A82900E3FF63 /* CEIndicatorSheetController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CEIndicatorSheetController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -633,10 +702,35 @@
 		2AB4326F1912AF7200835004 /* CECharacterPopoverController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CECharacterPopoverController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		2AB432701912AF7200835004 /* CECharacterPopoverController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CECharacterPopoverController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		2AB432731915D6AA00835004 /* NSString+ComposedCharacter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+ComposedCharacter.m"; sourceTree = "<group>"; };
+		2ABD9F6D1A3E0A1300BF9003 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SyntaxInfoEditView.xib; sourceTree = "<group>"; };
+		2ABD9F6E1A3E0A2000BF9003 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SyntaxFileMappingEditView.xib; sourceTree = "<group>"; };
+		2ABD9F6F1A3E0A2D00BF9003 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SyntaxCompletionsEditView.xib; sourceTree = "<group>"; };
+		2ABD9F701A3E0A3900BF9003 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SyntaxCommentsEditView.xib; sourceTree = "<group>"; };
 		2AC2C1D619881543007968CB /* VerticalOrientation_Off.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = VerticalOrientation_Off.tiff; sourceTree = "<group>"; };
 		2AC2C1D719881543007968CB /* VerticalOrientation_On.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = VerticalOrientation_On.tiff; sourceTree = "<group>"; };
+		2AC71DDF1BF0BDBC002E1434 /* CotEditor Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "CotEditor Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2AC71DE11BF0BDBC002E1434 /* StringExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensionsTests.swift; sourceTree = "<group>"; };
+		2AC71DE31BF0BDBC002E1434 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2AC71DE91BF0C57A002E1434 /* CotEditorTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CotEditorTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		2AC75C061A2AF47E00C7DB0A /* NSString+CENewLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+CENewLine.h"; sourceTree = "<group>"; };
 		2AC75C071A2AF47F00C7DB0A /* NSString+CENewLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+CENewLine.m"; sourceTree = "<group>"; };
+		2ACB538D1A3DFC170040F19F /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/SyntaxTermsEditView.strings; sourceTree = "<group>"; };
+		2ACB538F1A3DFC9E0040F19F /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/SyntaxTermsEditView.strings"; sourceTree = "<group>"; };
+		2ACB53911A3DFD390040F19F /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/SyntaxCommentsEditView.strings; sourceTree = "<group>"; };
+		2ACB53951A3DFEA60040F19F /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/SyntaxCommentsEditView.strings"; sourceTree = "<group>"; };
+		2ACB53971A3DFF500040F19F /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/SyntaxValidationView.strings; sourceTree = "<group>"; };
+		2ACB53991A3DFF700040F19F /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/SyntaxValidationView.strings"; sourceTree = "<group>"; };
+		2ACB539B1A3DFFA30040F19F /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/SyntaxCompletionsEditView.strings; sourceTree = "<group>"; };
+		2ACB539D1A3DFFE30040F19F /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/SyntaxCompletionsEditView.strings"; sourceTree = "<group>"; };
+		2ACB539F1A3E00180040F19F /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/SyntaxOutlineEditView.strings; sourceTree = "<group>"; };
+		2ACB53A11A3E00F20040F19F /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/SyntaxOutlineEditView.strings"; sourceTree = "<group>"; };
+		2ACB53A31A3E013E0040F19F /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/SyntaxFileMappingEditView.strings; sourceTree = "<group>"; };
+		2ACB53A51A3E018A0040F19F /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/SyntaxFileMappingEditView.strings"; sourceTree = "<group>"; };
+		2ACB53A71A3E01CF0040F19F /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/SyntaxInfoEditView.strings; sourceTree = "<group>"; };
+		2ACB53A91A3E02560040F19F /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/SyntaxInfoEditView.strings"; sourceTree = "<group>"; };
+		2ACB53AA1A3E03C50040F19F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SyntaxOutlineEditView.xib; sourceTree = "<group>"; };
+		2ACB53AC1A3E04010040F19F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SyntaxTermsEditView.xib; sourceTree = "<group>"; };
+		2ACB53AD1A3E043E0040F19F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SyntaxValidationView.xib; sourceTree = "<group>"; };
 		2AD318BF1A462A10001B8112 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/IntegrationPane.xib; sourceTree = "<group>"; };
 		2AD318C11A462C30001B8112 /* CEIntegrationPaneController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CEIntegrationPaneController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		2AD318C21A462C30001B8112 /* CEIntegrationPaneController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CEIntegrationPaneController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
@@ -803,6 +897,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		2AC71DDC1BF0BDBC002E1434 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2AC71DF11BF0CFA3002E1434 /* libicucore.tbd in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8D15AC330486D014006FF6A4 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -820,6 +922,7 @@
 			children = (
 				8D15AC370486D014006FF6A4 /* CotEditor.app */,
 				2A6F0E071B5500E100C2D03C /* CotEditor.app */,
+				2AC71DDF1BF0BDBC002E1434 /* CotEditor Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -862,6 +965,7 @@
 			children = (
 				25859EA5076D8EE80020F779 /* PreferencesWindow.xib */,
 				2A149DAF19016AD800A9D6EF /* Panes */,
+				2A3A759719E77E4C001DAB88 /* Syntax Edit Sheet */,
 				2A149DB019016DE200A9D6EF /* Sheets */,
 				2A15831F18E3814200601026 /* SizeSampleWindow.xib */,
 				2A63122F19C2D3B60088C5C6 /* ThemeView.xib */,
@@ -888,7 +992,6 @@
 		2A149DB019016DE200A9D6EF /* Sheets */ = {
 			isa = PBXGroup;
 			children = (
-				258EF2F8077FEDD000011E52 /* SyntaxEditSheet.xib */,
 				2A5D2B9218E1ED420020AA1F /* SyntaxMappingConflictSheet.xib */,
 				2A15831518E3688300601026 /* EncodingListSheet.xib */,
 				8C7400A208C6D93900683672 /* MenuKeyBindingsEditView.xib */,
@@ -1076,6 +1179,10 @@
 			children = (
 				2A3FB2AB18ECEFF200D9CB2C /* CESyntaxEditSheetController.h */,
 				2A3FB2AC18ECEFF200D9CB2C /* CESyntaxEditSheetController.m */,
+				2A1A3E4C1C099A21007FEA7A /* CESyntaxTermsEditViewController.h */,
+				2A1A3E4D1C099A21007FEA7A /* CESyntaxTermsEditViewController.m */,
+				2A3A75B119E77F32001DAB88 /* CESyntaxValidationViewController.h */,
+				2A3A75B219E77F32001DAB88 /* CESyntaxValidationViewController.m */,
 				2A2E03491A4BF842006ABE9F /* CESyntaxEditTableViewDelegate.h */,
 				2A2E034A1A4BF842006ABE9F /* CESyntaxEditTableViewDelegate.m */,
 				2A4DB13B19A265BA005A4F7C /* CEDraggableArrayController.h */,
@@ -1111,6 +1218,7 @@
 				2A37F4AFFDCFA73011CA2CEA /* Other Sources */,
 				2A37F4B8FDCFA73011CA2CEA /* Resources */,
 				2A37F4C3FDCFA73011CA2CEA /* Libraries */,
+				2AC71DE01BF0BDBC002E1434 /* Tests */,
 				19C28FB0FE9D524F11CA2CBB /* Products */,
 				234A213E93629F3A79324102 /* Pods */,
 			);
@@ -1130,6 +1238,7 @@
 				2AD2861919856F3100C9342F /* Editor Controllers */,
 				2A42825218FCC1C100386899 /* Text View */,
 				2A0E160B18E7240C00AAD872 /* Print */,
+				2AA2E00D1BFDD3AE0087BDD6 /* Character */,
 				2A15832C18E3A29A00601026 /* Views */,
 				2A15832B18E3A25C00601026 /* Utilities */,
 				25859E90076D88ED0020F779 /* Constants.h */,
@@ -1165,6 +1274,7 @@
 				259C2316077678DE00BA61C5 /* Localizable.strings */,
 				2AF5C3BC1A55072E00C972B5 /* InfoPlist.strings */,
 				2A5E4D7A1A44F0D50072013F /* ServicesMenu.strings */,
+				2AA2E0111BFE12620087BDD6 /* Unicode.strings */,
 				2AD9039D1BCEE174004F2B8A /* Credits.rtf */,
 				2AEB8B7A19AF73980098D557 /* FileDropGlossary.txt */,
 				2A456C421A1EDCFC00395158 /* ReportTemplate.md */,
@@ -1189,6 +1299,21 @@
 			name = Libraries;
 			sourceTree = "<group>";
 		};
+		2A3A759719E77E4C001DAB88 /* Syntax Edit Sheet */ = {
+			isa = PBXGroup;
+			children = (
+				258EF2F8077FEDD000011E52 /* SyntaxEditSheet.xib */,
+				2A3A75A019E77E87001DAB88 /* SyntaxTermsEditView.xib */,
+				2A3A759819E77E87001DAB88 /* SyntaxCommentsEditView.xib */,
+				2A3A75A219E77E87001DAB88 /* SyntaxOutlineEditView.xib */,
+				2A3A759A19E77E87001DAB88 /* SyntaxCompletionsEditView.xib */,
+				2A3A759C19E77E87001DAB88 /* SyntaxFileMappingEditView.xib */,
+				2A3A759E19E77E87001DAB88 /* SyntaxInfoEditView.xib */,
+				2A3A75A419E77E87001DAB88 /* SyntaxValidationView.xib */,
+			);
+			name = "Syntax Edit Sheet";
+			sourceTree = "<group>";
+		};
 		2A42825218FCC1C100386899 /* Text View */ = {
 			isa = PBXGroup;
 			children = (
@@ -1203,8 +1328,6 @@
 				258225FF07794C2A00A0F8D3 /* CESyntaxParser.m */,
 				2A7846DC18FE0C0C006BDF00 /* CETheme.h */,
 				2A7846DD18FE0C0C006BDF00 /* CETheme.m */,
-				2AB4326F1912AF7200835004 /* CECharacterPopoverController.h */,
-				2AB432701912AF7200835004 /* CECharacterPopoverController.m */,
 				2AACC9571942A82900E3FF63 /* CEIndicatorSheetController.h */,
 				2AACC9581942A82900E3FF63 /* CEIndicatorSheetController.m */,
 			);
@@ -1313,6 +1436,21 @@
 			name = Documents;
 			sourceTree = "<group>";
 		};
+		2AA2E00D1BFDD3AE0087BDD6 /* Character */ = {
+			isa = PBXGroup;
+			children = (
+				2AA2E0091BFDD3A60087BDD6 /* CECharacterInfo.h */,
+				2AA2E00A1BFDD3A60087BDD6 /* CECharacterInfo.m */,
+				2AA2E0181BFF9AEE0087BDD6 /* CEUnicodeCharacter.h */,
+				2AA2E0191BFF9AEE0087BDD6 /* CEUnicodeCharacter.m */,
+				2AB4326F1912AF7200835004 /* CECharacterPopoverController.h */,
+				2AB432701912AF7200835004 /* CECharacterPopoverController.m */,
+				2AA2E01D1C007C690087BDD6 /* CECharacterField.h */,
+				2AA2E01E1C007C690087BDD6 /* CECharacterField.m */,
+			);
+			name = Character;
+			sourceTree = "<group>";
+		};
 		2AAEA6A01A4342A800A930CA /* Document Accessories */ = {
 			isa = PBXGroup;
 			children = (
@@ -1323,6 +1461,19 @@
 			);
 			name = "Document Accessories";
 			sourceTree = "<group>";
+		};
+		2AC71DE01BF0BDBC002E1434 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				2AC71DE91BF0C57A002E1434 /* CotEditorTests-Bridging-Header.h */,
+				2AC71DE11BF0BDBC002E1434 /* StringExtensionsTests.swift */,
+				2AA2E0251C0454730087BDD6 /* StringIndentationTests.swift */,
+				2AA2E00F1BFDE0190087BDD6 /* CharacterInfoTests.swift */,
+				2AC71DE31BF0BDBC002E1434 /* Info.plist */,
+			);
+			name = Tests;
+			path = ../Tests;
+			sourceTree = SOURCE_ROOT;
 		};
 		2AD2861919856F3100C9342F /* Editor Controllers */ = {
 			isa = PBXGroup;
@@ -1419,6 +1570,24 @@
 			productReference = 2A6F0E071B5500E100C2D03C /* CotEditor.app */;
 			productType = "com.apple.product-type.application";
 		};
+		2AC71DDE1BF0BDBC002E1434 /* CotEditor Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2AC71DE81BF0BDBC002E1434 /* Build configuration list for PBXNativeTarget "CotEditor Tests" */;
+			buildPhases = (
+				2AC71DDB1BF0BDBC002E1434 /* Sources */,
+				2AC71DDC1BF0BDBC002E1434 /* Frameworks */,
+				2AC71DDD1BF0BDBC002E1434 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2AC71DE51BF0BDBC002E1434 /* PBXTargetDependency */,
+			);
+			name = "CotEditor Tests";
+			productName = CotEditorTests;
+			productReference = 2AC71DDF1BF0BDBC002E1434 /* CotEditor Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		8D15AC270486D014006FF6A4 /* CotEditor */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8C71D95308640EDF00C9C0BD /* Build configuration list for PBXNativeTarget "CotEditor" */;
@@ -1449,9 +1618,14 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
 				CLASSPREFIX = CE;
+				LastSwiftUpdateCheck = 0710;
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "CotEditor Project";
 				TargetAttributes = {
+					2AC71DDE1BF0BDBC002E1434 = {
+						CreatedOnToolsVersion = 7.1;
+						TestTargetID = 8D15AC270486D014006FF6A4;
+					};
 					8D15AC270486D014006FF6A4 = {
 						SystemCapabilities = {
 							com.apple.Sandbox = {
@@ -1478,6 +1652,7 @@
 			targets = (
 				8D15AC270486D014006FF6A4 /* CotEditor */,
 				2A6F0D4E1B5500E100C2D03C /* CotEditor (AppStore) */,
+				2AC71DDE1BF0BDBC002E1434 /* CotEditor Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -1502,7 +1677,6 @@
 				2A6F0D601B5500E100C2D03C /* FindPanel.xib in Resources */,
 				2A6F0D611B5500E100C2D03C /* SizeSampleWindow.xib in Resources */,
 				2A6F0D621B5500E100C2D03C /* IncompatibleCharsView.xib in Resources */,
-				2AD903A01BCEE174004F2B8A /* Credits.rtf in Resources */,
 				2A6F0D631B5500E100C2D03C /* PreferencesWindow.xib in Resources */,
 				2A6F0D641B5500E100C2D03C /* SyntaxEditSheet.xib in Resources */,
 				2A6F0D651B5500E100C2D03C /* Indicator.xib in Resources */,
@@ -1516,6 +1690,7 @@
 				2A6F0D6D1B5500E100C2D03C /* CharacterPopover.xib in Resources */,
 				2A6F0D6E1B5500E100C2D03C /* PrintPanelAccessory.xib in Resources */,
 				2A6F0D6F1B5500E100C2D03C /* ThemeView.xib in Resources */,
+				2A5DBE571B5D2DAD00F8CB13 /* SyntaxTermsEditView.xib in Resources */,
 				2A6F0D701B5500E100C2D03C /* KeyBindingsPane.xib in Resources */,
 				2A6F0D711B5500E100C2D03C /* GeneralPane.xib in Resources */,
 				2A6F0D721B5500E100C2D03C /* MigrationWindow.xib in Resources */,
@@ -1524,19 +1699,24 @@
 				2A6F0D751B5500E100C2D03C /* SyntaxMappingConflictSheet.xib in Resources */,
 				2A6F0D761B5500E100C2D03C /* WindowPane.xib in Resources */,
 				2A6F0D771B5500E100C2D03C /* NavigationBar.xib in Resources */,
-				2AD9039C1BCE86A3004F2B8A /* SpellCheck.tiff in Resources */,
 				2A6F0D781B5500E100C2D03C /* ColorCodePanelAccessory.xib in Resources */,
 				2A6F0D791B5500E100C2D03C /* FileDropPane.xib in Resources */,
 				2A6F0D7A1B5500E100C2D03C /* FormatPane.xib in Resources */,
 				2A6F0D7B1B5500E100C2D03C /* DocumentInspectorView.xib in Resources */,
 				2A6F0D7C1B5500E100C2D03C /* UnicodePanel.xib in Resources */,
 				2A6F0D7D1B5500E100C2D03C /* TextKeyBindingsEditView.xib in Resources */,
+				2A5DBE5C1B5D2DBD00F8CB13 /* SyntaxInfoEditView.xib in Resources */,
 				2A6F0D7E1B5500E100C2D03C /* EncodingListSheet.xib in Resources */,
 				2A6F0D7F1B5500E100C2D03C /* GoToSheet.xib in Resources */,
-				2A6F0D801B5500E100C2D03C /* Localizable.strings in Resources */,
-				2A6F0D811B5500E100C2D03C /* ServicesMenu.strings in Resources */,
 				2A6F0D821B5500E100C2D03C /* IntegrationPane.xib in Resources */,
 				2A6F0D831B5500E100C2D03C /* RegexReferencePopover.xib in Resources */,
+				2A6F0D801B5500E100C2D03C /* Localizable.strings in Resources */,
+				2A6F0D811B5500E100C2D03C /* ServicesMenu.strings in Resources */,
+				2AA2E0141BFE12620087BDD6 /* Unicode.strings in Resources */,
+				2AD903A01BCEE174004F2B8A /* Credits.rtf in Resources */,
+				2A5DBE5A1B5D2DB700F8CB13 /* SyntaxFileMappingEditView.xib in Resources */,
+				2A5DBE5D1B5D2DC000F8CB13 /* SyntaxValidationView.xib in Resources */,
+				2A5DBE5B1B5D2DBA00F8CB13 /* SyntaxCompletionsEditView.xib in Resources */,
 				2A6F0D851B5500E100C2D03C /* ShellScript.rtf in Resources */,
 				2A6F0D861B5500E100C2D03C /* ScriptMenu Folder.rtf in Resources */,
 				2A6F0D871B5500E100C2D03C /* AppleScript.rtf in Resources */,
@@ -1550,10 +1730,12 @@
 				2A6F0D8F1B5500E100C2D03C /* ShiftRight.tiff in Resources */,
 				2A6F0D901B5500E100C2D03C /* AutoTabExpand_On.tiff in Resources */,
 				2A6F0D911B5500E100C2D03C /* AutoTabExpand_Off.tiff in Resources */,
+				2A5DBE581B5D2DB000F8CB13 /* SyntaxCommentsEditView.xib in Resources */,
 				2A6F0D921B5500E100C2D03C /* NaviBar_Hide.tiff in Resources */,
 				2A6F0D931B5500E100C2D03C /* NaviBar_Show.tiff in Resources */,
 				2A6F0D941B5500E100C2D03C /* LineNumber_Hide.tiff in Resources */,
 				2A6F0D951B5500E100C2D03C /* LineNumber_Show.tiff in Resources */,
+				2A5DBE591B5D2DB400F8CB13 /* SyntaxOutlineEditView.xib in Resources */,
 				2A6F0D961B5500E100C2D03C /* StatusBar_Hide.tiff in Resources */,
 				2A6F0D971B5500E100C2D03C /* StatusBar_Show.tiff in Resources */,
 				2A6F0D991B5500E100C2D03C /* InvisibleChars_Hide.tiff in Resources */,
@@ -1564,8 +1746,16 @@
 				2A6F0D9E1B5500E100C2D03C /* WrapLines_On.tiff in Resources */,
 				2A6F0D9F1B5500E100C2D03C /* VerticalOrientation_Off.tiff in Resources */,
 				2A6F0DA01B5500E100C2D03C /* VerticalOrientation_On.tiff in Resources */,
+				2AD9039C1BCE86A3004F2B8A /* SpellCheck.tiff in Resources */,
 				2A6F0DA11B5500E100C2D03C /* EditColorCode.tiff in Resources */,
 				2A6F0DA21B5500E100C2D03C /* RecolorAll.tiff in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2AC71DDD1BF0BDBC002E1434 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1576,7 +1766,6 @@
 				2A1EB5C419AD469500C1E37E /* Images.xcassets in Resources */,
 				2A3A758E19E77C84001DAB88 /* Syntaxes in Resources */,
 				2ABC76241909BF5200D2B592 /* Themes in Resources */,
-				2AD9039B1BCE86A3004F2B8A /* SpellCheck.tiff in Resources */,
 				2A9871A919AEABDB0081BADB /* KeyBindings in Resources */,
 				2A75ACCB19E86DDB00444894 /* CotEditor.sdef in Resources */,
 				2A6E3F3D19B5218300A63E97 /* CotEditor.help in Resources */,
@@ -1592,6 +1781,13 @@
 				2A436DD01A4249CB00275FD4 /* IncompatibleCharsView.xib in Resources */,
 				25859EA7076D8EE80020F779 /* PreferencesWindow.xib in Resources */,
 				258EF2FA077FEDD000011E52 /* SyntaxEditSheet.xib in Resources */,
+				2A3A75AA19E77E87001DAB88 /* SyntaxTermsEditView.xib in Resources */,
+				2A3A75A619E77E87001DAB88 /* SyntaxCommentsEditView.xib in Resources */,
+				2A3A75AB19E77E87001DAB88 /* SyntaxOutlineEditView.xib in Resources */,
+				2A3A75A719E77E87001DAB88 /* SyntaxCompletionsEditView.xib in Resources */,
+				2A3A75A819E77E87001DAB88 /* SyntaxFileMappingEditView.xib in Resources */,
+				2A3A75A919E77E87001DAB88 /* SyntaxInfoEditView.xib in Resources */,
+				2A3A75AC19E77E87001DAB88 /* SyntaxValidationView.xib in Resources */,
 				2588E9CE07C4851C0060021D /* Indicator.xib in Resources */,
 				8C28CD2E081101A300733DA7 /* ConsolePanel.xib in Resources */,
 				8C7400A408C6D93900683672 /* MenuKeyBindingsEditView.xib in Resources */,
@@ -1608,7 +1804,6 @@
 				2A3A759119E77D4F001DAB88 /* MigrationWindow.xib in Resources */,
 				2A149DA719016ABB00A9D6EF /* EditPane.xib in Resources */,
 				2A5B998918D61443009C2F4F /* LineHightPanel.xib in Resources */,
-				2AD9039F1BCEE174004F2B8A /* Credits.rtf in Resources */,
 				2A5D2B9418E1ED420020AA1F /* SyntaxMappingConflictSheet.xib in Resources */,
 				2A149DAD19016ABB00A9D6EF /* WindowPane.xib in Resources */,
 				2A5411C319852C1C008B43DA /* NavigationBar.xib in Resources */,
@@ -1620,10 +1815,12 @@
 				2A15832818E39B7400601026 /* TextKeyBindingsEditView.xib in Resources */,
 				2A15831718E3688300601026 /* EncodingListSheet.xib in Resources */,
 				2AFFB71D18D7F22E00118477 /* GoToSheet.xib in Resources */,
-				259C2318077678DE00BA61C5 /* Localizable.strings in Resources */,
-				2A5E4D7C1A44F0D50072013F /* ServicesMenu.strings in Resources */,
 				2AD318C01A462A10001B8112 /* IntegrationPane.xib in Resources */,
 				2A2D6C191A602D2C002451FF /* RegexReferencePopover.xib in Resources */,
+				259C2318077678DE00BA61C5 /* Localizable.strings in Resources */,
+				2A5E4D7C1A44F0D50072013F /* ServicesMenu.strings in Resources */,
+				2AA2E0131BFE12620087BDD6 /* Unicode.strings in Resources */,
+				2AD9039F1BCEE174004F2B8A /* Credits.rtf in Resources */,
 				2A961C5518FC699E002076B6 /* ShellScript.rtf in Resources */,
 				2A961C5418FC699E002076B6 /* ScriptMenu Folder.rtf in Resources */,
 				2A961C5218FC699E002076B6 /* AppleScript.rtf in Resources */,
@@ -1651,6 +1848,7 @@
 				8C3E2D620808E210009894D1 /* WrapLines_On.tiff in Resources */,
 				2AC2C1D819881543007968CB /* VerticalOrientation_Off.tiff in Resources */,
 				2AC2C1D919881543007968CB /* VerticalOrientation_On.tiff in Resources */,
+				2AD9039B1BCE86A3004F2B8A /* SpellCheck.tiff in Resources */,
 				2A5B0AF5190723AC00B6A51C /* EditColorCode.tiff in Resources */,
 				8C52080A0880BAAF005734F2 /* RecolorAll.tiff in Resources */,
 			);
@@ -1764,6 +1962,7 @@
 				2A6F0DAB1B5500E100C2D03C /* CEWindowController.m in Sources */,
 				2A6F0DAC1B5500E100C2D03C /* CEDocumentAnalyzer.m in Sources */,
 				2A6F0DAD1B5500E100C2D03C /* CEPreferencesWindowController.m in Sources */,
+				2AFFA5771B674E9300A5AD8F /* CESyntaxValidationViewController.m in Sources */,
 				2A6F0DAE1B5500E100C2D03C /* CEDocumentController.m in Sources */,
 				2A6F0DAF1B5500E100C2D03C /* CESyntaxEditTableViewDelegate.m in Sources */,
 				2A6F0DB01B5500E100C2D03C /* CEPrefEncodingDataSource.m in Sources */,
@@ -1794,6 +1993,7 @@
 				2A6F0DC91B5500E100C2D03C /* CEConsolePanelController.m in Sources */,
 				2A6F0DCA1B5500E100C2D03C /* CELineHightPanelController.m in Sources */,
 				2A6F0DCB1B5500E100C2D03C /* CEKeyBindingsViewController.m in Sources */,
+				2AA2E0201C007C690087BDD6 /* CECharacterField.m in Sources */,
 				2A6F0DCC1B5500E100C2D03C /* CEFindResultViewController.m in Sources */,
 				2A6F0DCD1B5500E100C2D03C /* CEPrintPanelAccessoryController.m in Sources */,
 				2A6F0DCE1B5500E100C2D03C /* CEMigrationWindowController.m in Sources */,
@@ -1801,9 +2001,11 @@
 				2A6F0DD01B5500E100C2D03C /* CEFindPanelTextClipView.m in Sources */,
 				2A6415951BD10EFA0080358E /* NSString+Indentation.m in Sources */,
 				2A6F0DD11B5500E100C2D03C /* CEFindPanelLayoutManager.m in Sources */,
+				2A1A3E501C099A21007FEA7A /* CESyntaxTermsEditViewController.m in Sources */,
 				2A6F0DD21B5500E100C2D03C /* CETheme.m in Sources */,
 				2A6F0DD31B5500E100C2D03C /* CEMenuItemCell.m in Sources */,
 				2A6F0DD41B5500E100C2D03C /* CECharacterPopoverController.m in Sources */,
+				2AA2E01B1BFF9AEE0087BDD6 /* CEUnicodeCharacter.m in Sources */,
 				2A6F0DD51B5500E100C2D03C /* CEClipView.m in Sources */,
 				2A6F0DD61B5500E100C2D03C /* CEGoToSheetController.m in Sources */,
 				2A6F0DD71B5500E100C2D03C /* CESyntaxEditSheetController.m in Sources */,
@@ -1827,6 +2029,7 @@
 				2A6F0DE81B5500E100C2D03C /* CEODBEventSender.m in Sources */,
 				2A6F0DE91B5500E100C2D03C /* CEKeyBindingManager.m in Sources */,
 				2A6F0DEB1B5500E100C2D03C /* CEPrintView.m in Sources */,
+				2AA2E00C1BFDD3A60087BDD6 /* CECharacterInfo.m in Sources */,
 				2A6F0DEC1B5500E100C2D03C /* CEATSTypesetter.m in Sources */,
 				2AFF21831BA9F69A008A41CD /* CESwitcherSegmentedCell.m in Sources */,
 				2A6F0DED1B5500E100C2D03C /* CEEditorView.m in Sources */,
@@ -1848,6 +2051,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		2AC71DDB1BF0BDBC002E1434 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2AC71DEE1BF0C6DD002E1434 /* NSString+CENewLine.m in Sources */,
+				2AA2E0101BFDE0190087BDD6 /* CharacterInfoTests.swift in Sources */,
+				2AA2E00E1BFDDFEA0087BDD6 /* CECharacterInfo.m in Sources */,
+				2AA2E01C1BFFA22B0087BDD6 /* CEUnicodeCharacter.m in Sources */,
+				2AA2E0261C0454730087BDD6 /* StringIndentationTests.swift in Sources */,
+				2AA2E0271C0455180087BDD6 /* NSString+Indentation.m in Sources */,
+				2AC71DEF1BF0C7A9002E1434 /* NSString+JapaneseTransform.m in Sources */,
+				2AC71DE21BF0BDBC002E1434 /* StringExtensionsTests.swift in Sources */,
+				2AC71DF01BF0CDD8002E1434 /* NSString+Normalization.m in Sources */,
+				2AC71DED1BF0C5B5002E1434 /* NSString+ComposedCharacter.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8D15AC300486D014006FF6A4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1863,6 +2083,7 @@
 				2A436DDF1A4288AC00275FD4 /* CEDocumentAnalyzer.m in Sources */,
 				25859EC1076D92D60020F779 /* CEPreferencesWindowController.m in Sources */,
 				259BFDCE076EBF7E00A5A6D0 /* CEDocumentController.m in Sources */,
+				2A1A3E4F1C099A21007FEA7A /* CESyntaxTermsEditViewController.m in Sources */,
 				2A2E034B1A4BF842006ABE9F /* CESyntaxEditTableViewDelegate.m in Sources */,
 				25AC091C077190EB00B0C91C /* CEPrefEncodingDataSource.m in Sources */,
 				2A149DBF1901828600A9D6EF /* CEFormatPaneController.m in Sources */,
@@ -1882,6 +2103,7 @@
 				2A63122E19C2D30C0088C5C6 /* CEThemeViewController.m in Sources */,
 				8CC1961D07E2E54E00B54AE4 /* CEScriptManager.m in Sources */,
 				2AACC9591942A82900E3FF63 /* CEIndicatorSheetController.m in Sources */,
+				2AA2E01A1BFF9AEE0087BDD6 /* CEUnicodeCharacter.m in Sources */,
 				2A7CF2431A5747EC00D09249 /* CEFindPanelController.m in Sources */,
 				2A009ADA1A5AAE8000C3D542 /* CEFindPanelSplitView.m in Sources */,
 				2A149DB31901740600A9D6EF /* CEWindowPaneController.m in Sources */,
@@ -1889,12 +2111,14 @@
 				2A49861F1A67CC7100172797 /* CEEditorScrollView.m in Sources */,
 				2A84C7C21A48F3150013EE83 /* CEPreferencesWindow.m in Sources */,
 				2A94A45E18D0B562009FA90D /* CEOpacityPanelController.m in Sources */,
+				2AA2E01F1C007C690087BDD6 /* CECharacterField.m in Sources */,
 				2AFF21821BA9F69A008A41CD /* CESwitcherSegmentedCell.m in Sources */,
 				2A88A7901B8B87C90055B9AE /* NSString+Normalization.m in Sources */,
 				2A15833518E3B83F00601026 /* CEConsolePanelController.m in Sources */,
 				2A5B998718D61421009C2F4F /* CELineHightPanelController.m in Sources */,
 				2A586A1619A4FA9D0053F5E3 /* CEKeyBindingsViewController.m in Sources */,
 				2A009AD11A58ED1D00C3D542 /* CEFindResultViewController.m in Sources */,
+				2AA2E00B1BFDD3A60087BDD6 /* CECharacterInfo.m in Sources */,
 				2A07202B18E0E1C2006F3A43 /* CEPrintPanelAccessoryController.m in Sources */,
 				2A55335D1B556F2A0056FF3E /* CEGeneralPaneController.m in Sources */,
 				2A3A759419E77D66001DAB88 /* CEMigrationWindowController.m in Sources */,
@@ -1920,6 +2144,7 @@
 				2A5D2B9118E1EC790020AA1F /* CESyntaxMappingConflictsSheetController.m in Sources */,
 				8CF02E1608B9B9F8004044EB /* CENavigationBarController.m in Sources */,
 				2AD9625F1B53496500D46C3A /* NSString+Sandboxing.m in Sources */,
+				2A3A75B319E77F32001DAB88 /* CESyntaxValidationViewController.m in Sources */,
 				2AF4E0D7196F7958008E9EF7 /* CEStatusBarController.m in Sources */,
 				2AE2E9D519D2CF00000D66A9 /* CEEncodingManager.m in Sources */,
 				2A009ACB1A57BA8B00C3D542 /* CETextFinder.m in Sources */,
@@ -1949,6 +2174,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2AC71DE51BF0BDBC002E1434 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8D15AC270486D014006FF6A4 /* CotEditor */;
+			targetProxy = 2AC71DE41BF0BDBC002E1434 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		25859EA5076D8EE80020F779 /* PreferencesWindow.xib */ = {
@@ -2170,6 +2403,83 @@
 			name = MigrationWindow.xib;
 			sourceTree = "<group>";
 		};
+		2A3A759819E77E87001DAB88 /* SyntaxCommentsEditView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2ABD9F701A3E0A3900BF9003 /* Base */,
+				2ACB53911A3DFD390040F19F /* ja */,
+				2ACB53951A3DFEA60040F19F /* zh-Hans */,
+				2A4064041B9DA8BE0032AC7F /* de */,
+			);
+			name = SyntaxCommentsEditView.xib;
+			sourceTree = "<group>";
+		};
+		2A3A759A19E77E87001DAB88 /* SyntaxCompletionsEditView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2ABD9F6F1A3E0A2D00BF9003 /* Base */,
+				2ACB539B1A3DFFA30040F19F /* ja */,
+				2ACB539D1A3DFFE30040F19F /* zh-Hans */,
+				2A4064001B9DA7720032AC7F /* de */,
+			);
+			name = SyntaxCompletionsEditView.xib;
+			sourceTree = "<group>";
+		};
+		2A3A759C19E77E87001DAB88 /* SyntaxFileMappingEditView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2ABD9F6E1A3E0A2000BF9003 /* Base */,
+				2ACB53A31A3E013E0040F19F /* ja */,
+				2ACB53A51A3E018A0040F19F /* zh-Hans */,
+				2A4063FE1B9DA6A80032AC7F /* de */,
+			);
+			name = SyntaxFileMappingEditView.xib;
+			sourceTree = "<group>";
+		};
+		2A3A759E19E77E87001DAB88 /* SyntaxInfoEditView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2ABD9F6D1A3E0A1300BF9003 /* Base */,
+				2ACB53A71A3E01CF0040F19F /* ja */,
+				2ACB53A91A3E02560040F19F /* zh-Hans */,
+				2A4063FC1B9DA6490032AC7F /* de */,
+			);
+			name = SyntaxInfoEditView.xib;
+			sourceTree = "<group>";
+		};
+		2A3A75A019E77E87001DAB88 /* SyntaxTermsEditView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2ACB53AC1A3E04010040F19F /* Base */,
+				2ACB538D1A3DFC170040F19F /* ja */,
+				2ACB538F1A3DFC9E0040F19F /* zh-Hans */,
+				2A4064061B9DAA4E0032AC7F /* de */,
+			);
+			name = SyntaxTermsEditView.xib;
+			sourceTree = "<group>";
+		};
+		2A3A75A219E77E87001DAB88 /* SyntaxOutlineEditView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2ACB53AA1A3E03C50040F19F /* Base */,
+				2ACB539F1A3E00180040F19F /* ja */,
+				2ACB53A11A3E00F20040F19F /* zh-Hans */,
+				2A4064021B9DA7C60032AC7F /* de */,
+			);
+			name = SyntaxOutlineEditView.xib;
+			sourceTree = "<group>";
+		};
+		2A3A75A419E77E87001DAB88 /* SyntaxValidationView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2ACB53AD1A3E043E0040F19F /* Base */,
+				2ACB53971A3DFF500040F19F /* ja */,
+				2ACB53991A3DFF700040F19F /* zh-Hans */,
+				2A4063FA1B9DA6080032AC7F /* de */,
+			);
+			name = SyntaxValidationView.xib;
+			sourceTree = "<group>";
+		};
 		2A436DCB1A4243D500275FD4 /* DocumentInspectorView.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -2330,6 +2640,16 @@
 			name = ShellScript.rtf;
 			sourceTree = "<group>";
 		};
+		2AA2E0111BFE12620087BDD6 /* Unicode.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2AA2E0121BFE12620087BDD6 /* ja */,
+				2AA2E0151BFE14310087BDD6 /* zh-Hans */,
+				2AA2E0161BFE14320087BDD6 /* de */,
+			);
+			name = Unicode.strings;
+			sourceTree = "<group>";
+		};
 		2AB4326C1912ADAC00835004 /* CharacterPopover.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -2450,7 +2770,6 @@
 					"APPSTORE=1",
 				);
 				INFOPLIST_FILE = "CotEditor (AppStore)-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				OTHER_CODE_SIGN_FLAGS = "--deep";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.coteditor.$(PRODUCT_NAME)";
 				PRODUCT_NAME = CotEditor;
@@ -2469,10 +2788,92 @@
 					"APPSTORE=1",
 				);
 				INFOPLIST_FILE = "CotEditor (AppStore)-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				OTHER_CODE_SIGN_FLAGS = "--deep";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.coteditor.$(PRODUCT_NAME)";
 				PRODUCT_NAME = CotEditor;
+			};
+			name = Release;
+		};
+		2AC71DE61BF0BDBC002E1434 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = ../Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.coteditor.CotEditorTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "../Tests/CotEditorTests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CotEditor.app/Contents/MacOS/CotEditor";
+			};
+			name = Debug;
+		};
+		2AC71DE71BF0BDBC002E1434 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = ../Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = com.coteditor.CotEditorTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "../Tests/CotEditorTests-Bridging-Header.h";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CotEditor.app/Contents/MacOS/CotEditor";
 			};
 			name = Release;
 		};
@@ -2484,7 +2885,6 @@
 				CODE_SIGN_ENTITLEMENTS = CotEditor.entitlements;
 				CODE_SIGN_IDENTITY = "Developer ID Application";
 				INFOPLIST_FILE = "CotEditor-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				OTHER_CODE_SIGN_FLAGS = "--deep";
 				PRODUCT_BUNDLE_IDENTIFIER = com.coteditor.CotEditor;
 				PRODUCT_NAME = CotEditor;
@@ -2499,7 +2899,6 @@
 				CODE_SIGN_ENTITLEMENTS = CotEditor.entitlements;
 				CODE_SIGN_IDENTITY = "Developer ID Application";
 				INFOPLIST_FILE = "CotEditor-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				OTHER_CODE_SIGN_FLAGS = "--deep";
 				PRODUCT_BUNDLE_IDENTIFIER = com.coteditor.CotEditor;
 				PRODUCT_NAME = CotEditor;
@@ -2555,6 +2954,15 @@
 			buildConfigurations = (
 				2A6F0E051B5500E100C2D03C /* Debug */,
 				2A6F0E061B5500E100C2D03C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2AC71DE81BF0BDBC002E1434 /* Build configuration list for PBXNativeTarget "CotEditor Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2AC71DE61BF0BDBC002E1434 /* Debug */,
+				2AC71DE71BF0BDBC002E1434 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -27,13 +27,16 @@
  */
 
 #import "CEAppDelegate.h"
+
 #import "CESyntaxManager.h"
 #import "CEEncodingManager.h"
 #import "CEKeyBindingManager.h"
 #import "CEScriptManager.h"
 #import "CEThemeManager.h"
+
 #import "CEHexColorTransformer.h"
 #import "CELineHeightTransformer.h"
+
 #import "CEPreferencesWindowController.h"
 #import "CEOpacityPanelController.h"
 #import "CELineHightPanelController.h"
@@ -41,7 +44,10 @@
 #import "CEConsolePanelController.h"
 #import "CEUnicodeInputPanelController.h"
 #import "CEMigrationWindowController.h"
+
 #import "CEDocument.h"
+#import "CEEditorWrapper.h"
+
 #import "Constants.h"
 
 #ifndef APPSTORE
@@ -90,7 +96,7 @@
 // ------------------------------------------------------
 {
     // Encoding list
-    NSMutableArray<NSNumber *> *encodings = [[NSMutableArray alloc] initWithCapacity:kSizeOfCFStringEncodingList];
+    NSMutableArray<NSNumber *> *encodings = [NSMutableArray arrayWithCapacity:kSizeOfCFStringEncodingList];
     for (NSUInteger i = 0; i < kSizeOfCFStringEncodingList; i++) {
         [encodings addObject:@(kCFStringEncodingList[i])];
     }
@@ -176,18 +182,18 @@
                                                CEDefaultPrintFontNameKey: [[NSFont controlContentFontOfSize:[NSFont systemFontSize]] fontName],
                                                CEDefaultPrintFontSizeKey: @([NSFont systemFontSize]),
                                                CEDefaultPrintHeaderKey: @YES,
-                                               CEDefaultPrimaryHeaderContentKey: @(CEFilePathPrintInfo),
+                                               CEDefaultPrimaryHeaderContentKey: @(CEPrintInfoFilePath),
                                                CEDefaultPrimaryHeaderAlignmentKey: @(CEAlignLeft),
-                                               CEDefaultSecondaryHeaderContentKey: @(CEPrintDatePrintInfo),
+                                               CEDefaultSecondaryHeaderContentKey: @(CEPrintInfoPrintDate),
                                                CEDefaultSecondaryHeaderAlignmentKey: @(CEAlignRight),
                                                CEDefaultPrintFooterKey: @YES,
-                                               CEDefaultPrimaryFooterContentKey: @(CENoPrintInfo),
+                                               CEDefaultPrimaryFooterContentKey: @(CEPrintInfoNone),
                                                CEDefaultPrimaryFooterAlignmentKey: @(CEAlignLeft),
-                                               CEDefaultSecondaryFooterContentKey: @(CEPageNumberPrintInfo),
+                                               CEDefaultSecondaryFooterContentKey: @(CEPrintInfoPageNumber),
                                                CEDefaultSecondaryFooterAlignmentKey: @(CEAlignCenter),
-                                               CEDefaultPrintLineNumIndexKey: @(CENoLinePrint),
-                                               CEDefaultPrintInvisibleCharIndexKey: @(CENoInvisibleCharsPrint),
-                                               CEDefaultPrintColorIndexKey: @(CEBlackColorPrint),
+                                               CEDefaultPrintLineNumIndexKey: @(CELinePrintNo),
+                                               CEDefaultPrintInvisibleCharIndexKey: @(CEInvisibleCharsPrintNo),
+                                               CEDefaultPrintColorIndexKey: @(CEPrintColorBlackWhite),
                                                
                                                /* -------- settings not in preferences window -------- */
                                                CEDefaultInsertCustomTextArrayKey: @[@"<br />\n", @"", @"", @"", @"", @"", @"", @"", @"", @"", @"",
@@ -310,7 +316,8 @@
 // ------------------------------------------------------
 {
     if (([menuItem action] == @selector(showLineHeightPanel:)) ||
-        ([menuItem action] == @selector(showUnicodeInputPanel:))) {
+        ([menuItem action] == @selector(showUnicodeInputPanel:)))
+    {
         return ([[NSDocumentController sharedDocumentController] currentDocument] != nil);
     }
     
@@ -609,14 +616,12 @@
     template = [template stringByReplacingOccurrencesOfString:@"%SYSTEM_VERSION%"
                                                    withString:[[NSProcessInfo processInfo] operatingSystemVersionString]];
     
-    CEDocument *document = [[NSDocumentController sharedDocumentController] openUntitledDocumentAndDisplay:YES error:nil];
+    CEDocument *document = [[NSDocumentController sharedDocumentController] openUntitledDocumentAndDisplay:NO error:nil];
+    [document setDisplayName:NSLocalizedString(@"Bug Report", nil)];
+    [document makeWindowControllers];
+    [document showWindows];
     [[document editor] setString:template];
-    [[[document windowController] window] setTitle:NSLocalizedString(@"Bug Report", nil)];
-    
-    // color with delay
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [document doSetSyntaxStyle:@"Markdown"];
-    });
+    [document doSetSyntaxStyle:@"Markdown"];
 }
 
 

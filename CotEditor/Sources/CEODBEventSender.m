@@ -109,8 +109,6 @@
 - (void)sendODBEventWithType:(AEEventID)eventType URL:(nonnull NSURL *)fileURL
 // ------------------------------------------------------
 {
-    if (!fileURL) { return; }
-    
     OSType creatorCode = [[self fileSender] typeCodeValue];
     if (creatorCode == 0) { return; }
     
