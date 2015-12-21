@@ -23,6 +23,7 @@ develop
 ### Fixes
 
 - Fix an issue where line breaks between paths of dropped files were msssing. 
+- Fix an issue where snippet key bindings could not be customized on Mavericks and earlier.
 - Fix layout of character popup on Yosemite and earlier.
 - Improve general stability.
 
