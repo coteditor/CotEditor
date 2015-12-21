@@ -68,11 +68,20 @@ static const NSRegularExpression *unicodeRegex;
 - (nonnull instancetype)init
 // ------------------------------------------------------
 {
-    self = [super initWithWindowNibName:@"UnicodePanel"];
+    self = [super init];
     if (self) {
         _unicode = @"";
     }
     return self;
+}
+
+
+// ------------------------------------------------------
+/// nib name
+- (nullable NSString *)windowNibName
+// ------------------------------------------------------
+{
+    return @"UnicodePanel";
 }
 
 

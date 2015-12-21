@@ -48,11 +48,20 @@
 - (nullable instancetype)initWithStynaxType:(NSString *)syntaxType
 // ------------------------------------------------------
 {
-    self = [super initWithNibName:@"SyntaxTermsEditView" bundle:nil];
+    self = [super init];
     if (self) {
         _syntaxType = syntaxType;
     }
     return self;
+}
+
+
+// ------------------------------------------------------
+/// nib name
+- (nullable NSString *)nibName
+// ------------------------------------------------------
+{
+    return @"SyntaxTermsEditView";
 }
 
 
@@ -67,10 +76,10 @@
 
 // ------------------------------------------------------
 /// setup binding with desired key
-- (void)awakeFromNib
+- (void)loadView
 // ------------------------------------------------------
 {
-    [super awakeFromNib];
+    [super loadView];
     
     // bind
     [[self termsController] bind:NSContentArrayBinding

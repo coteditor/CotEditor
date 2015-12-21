@@ -50,12 +50,21 @@
 - (nonnull instancetype)init
 // ------------------------------------------------------
 {
-    self = [super initWithWindowNibName:@"SyntaxMappingConflictSheet"];
+    self = [super init];
     if (self) {
         _extensionConflicts = [[self class] parseConflictDict:[[CESyntaxManager sharedManager] extensionConflicts]];
         _filenameConflicts = [[self class] parseConflictDict:[[CESyntaxManager sharedManager] filenameConflicts]];
     }
     return self;
+}
+
+
+// ------------------------------------------------------
+/// nib name
+- (nullable NSString *)windowNibName
+// ------------------------------------------------------
+{
+    return @"SyntaxMappingConflictSheet";
 }
 
 

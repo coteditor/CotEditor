@@ -47,13 +47,11 @@
 #pragma mark Superclass Methods
 
 // ------------------------------------------------------
-/// initializer of panelController
-- (nonnull instancetype)init
+/// nib name
+- (nullable NSString *)windowNibName
 // ------------------------------------------------------
 {
-    self = [super initWithWindowNibName:@"OpacityPanel"];
-    
-    return self;
+    return @"OpacityPanel";
 }
 
 

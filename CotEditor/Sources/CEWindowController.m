@@ -114,6 +114,15 @@ static NSTimeInterval infoUpdateInterval;
 
 
 // ------------------------------------------------------
+/// nib name
+- (nullable NSString *)windowNibName
+// ------------------------------------------------------
+{
+    return @"DocumentWindow";
+}
+
+
+// ------------------------------------------------------
 /// prepare window and other UI
 - (void)windowDidLoad
 // ------------------------------------------------------

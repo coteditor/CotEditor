@@ -45,11 +45,11 @@
 #pragma mark Superclass Methods
 
 // ------------------------------------------------------
-/// initialize
-- (nonnull instancetype)init
+/// nib name
+- (nullable NSString *)windowNibName
 // ------------------------------------------------------
 {
-    return [super initWithWindowNibName:@"EncodingListSheet"];
+    return @"EncodingListSheet";
 }
 
 

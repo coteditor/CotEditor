@@ -86,7 +86,7 @@ typedef NS_ENUM(NSUInteger, CESyntaxEditViewIndex) {
 - (nullable instancetype)initWithStyle:(nonnull NSString *)styleName mode:(CESyntaxEditSheetMode)mode
 // ------------------------------------------------------
 {
-    self = [super initWithWindowNibName:@"SyntaxEditSheet"];
+    self = [super init];
     if (self) {
         CESyntaxManager *syntaxManager = [CESyntaxManager sharedManager];
         NSString *name;
@@ -118,6 +118,15 @@ typedef NS_ENUM(NSUInteger, CESyntaxEditViewIndex) {
     }
     
     return self;
+}
+
+
+// ------------------------------------------------------
+/// nib name
+- (nullable NSString *)windowNibName
+// ------------------------------------------------------
+{
+    return @"SyntaxEditSheet";
 }
 
 
@@ -167,7 +176,7 @@ typedef NS_ENUM(NSUInteger, CESyntaxEditViewIndex) {
     [viewControllers addObject:[NSNull null]];  // separator
     
     viewControllers[StyleInfoTab] = [[NSViewController alloc] initWithNibName:@"SyntaxInfoEditView" bundle:nil];
-    viewControllers[ValidationTab] = [[CESyntaxValidationViewController alloc] initWithNibName:@"SyntaxValidationView" bundle:nil];
+    viewControllers[ValidationTab] = [[CESyntaxValidationViewController alloc] init];
     
     for (__kindof NSViewController *viewController in viewControllers) {
         if ([viewController isKindOfClass:[NSNull class]]) { continue; }

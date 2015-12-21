@@ -61,20 +61,20 @@ static const NSTimeInterval kDuration = 0.25;
 #pragma mark Superclass Methods
 
 // ------------------------------------------------------
-/// designated initializer
-- (instancetype)init
-// ------------------------------------------------------
-{
-    return [super initWithNibName:@"NavigationBar" bundle:nil];
-}
-
-
-// ------------------------------------------------------
 /// clean up
 - (void)dealloc
 // ------------------------------------------------------
 {
     _textView = nil;
+}
+
+
+// ------------------------------------------------------
+/// nib name
+- (nullable NSString *)nibName
+// ------------------------------------------------------
+{
+    return @"NavigationBar";
 }
 
 

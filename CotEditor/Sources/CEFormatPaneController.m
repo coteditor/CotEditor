@@ -64,6 +64,15 @@ NSString *_Nonnull const StyleStateKey = @"state";
 #pragma mark Superclass Methods
 
 // ------------------------------------------------------
+/// nib name
+- (nullable NSString *)nibName
+// ------------------------------------------------------
+{
+    return @"FormatPane";
+}
+
+
+// ------------------------------------------------------
 /// clean up
 - (void)dealloc
 // ------------------------------------------------------

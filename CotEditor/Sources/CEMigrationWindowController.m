@@ -55,7 +55,7 @@
 - (instancetype)init
 // ------------------------------------------------------
 {
-    self = [super initWithWindowNibName:@"MigrationWindow"];
+    self = [super init];
     if (self) {
         NSString *appName = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleName"];
         NSString *appVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
@@ -63,6 +63,15 @@
         _appName = [NSString stringWithFormat:@"%@ %@", appName, appVersion];
     }
     return self;
+}
+
+
+// ------------------------------------------------------
+/// nib name
+- (nullable NSString *)windowNibName
+// ------------------------------------------------------
+{
+    return @"MigrationWindow";
 }
 
 // ------------------------------------------------------

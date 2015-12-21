@@ -55,7 +55,7 @@ const CGFloat kFontSize = 11;
 - (nonnull instancetype)init
 // ------------------------------------------------------
 {
-    self = [super initWithWindowNibName:@"ConsolePanel"];
+    self = [super init];
     if (self) {
         _dateFormatter = [[NSDateFormatter alloc] init];
         [_dateFormatter setDateFormat:@"YYYY-MM-DD HH:MM:SS"];
@@ -67,6 +67,15 @@ const CGFloat kFontSize = 11;
         _messageParagraphStyle = [paragraphStyle copy];
     }
     return self;
+}
+
+
+// ------------------------------------------------------
+/// nib name
+- (nullable NSString *)windowNibName
+// ------------------------------------------------------
+{
+    return @"ConsolePanel";
 }
 
 

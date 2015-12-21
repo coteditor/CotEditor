@@ -79,11 +79,11 @@ NSString *_Nonnull const CESecondaryFooterAlignmentKey = @"CESecondaryFooterAlig
 #pragma mark Superclass Methods
 
 // ------------------------------------------------------
-/// initialize
-- (instancetype)init
+/// nib name
+- (nullable NSString *)nibName
 // ------------------------------------------------------
 {
-    return [super initWithNibName:@"PrintPanelAccessory" bundle:nil];
+    return @"PrintPanelAccessory";
 }
 
 

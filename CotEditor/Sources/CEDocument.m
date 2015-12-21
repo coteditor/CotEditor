@@ -186,7 +186,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 - (void)makeWindowControllers
 // ------------------------------------------------------
 {
-    [self setWindowController:[[CEWindowController alloc] initWithWindowNibName:@"DocumentWindow"]];
+    [self setWindowController:[[CEWindowController alloc] init]];
     [self addWindowController:[self windowController]];
 }
 

@@ -60,7 +60,7 @@
     
     if (!characterInfo) { return nil; }
     
-    self = [super initWithNibName:@"CharacterPopover" bundle:nil];
+    self = [super initWithNibName:[self nibName] bundle:nil];
     if (self) {
         _glyph = [characterInfo string];
         _unicodeName = [characterInfo prettyDescription];
@@ -85,6 +85,14 @@
         _unicode = [unicode copy];
     }
     return self;
+}
+
+// ------------------------------------------------------
+/// nib name
+- (nullable NSString *)nibName
+// ------------------------------------------------------
+{
+    return @"CharacterPopover";
 }
 
 
