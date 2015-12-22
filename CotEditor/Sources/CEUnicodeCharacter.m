@@ -80,10 +80,6 @@
         _character = character;
         _unicode = [NSString stringWithFormat:@"U+%04tX", character];
         
-        // UTF32Char to NSString
-        UTF32Char littleEdian = NSSwapHostIntToLittle(character);
-        _string = [[NSString alloc] initWithBytes:&littleEdian length:4 encoding:NSUTF32LittleEndianStringEncoding];
-        
         // surrogate pair check
         UniChar surrogates[2];
         _surrogatePair = CFStringGetSurrogatePairForLongCharacter(character, surrogates);
@@ -91,6 +87,17 @@
             _surrogateUnicodes = @[[NSString stringWithFormat:@"U+%04X", surrogates[0]],
                                    [NSString stringWithFormat:@"U+%04X", surrogates[1]]];
         }
+        
+        // UTF32Char to NSString
+        BOOL isSingleSurrogate = CFStringIsSurrogateHighCharacter(character) || CFStringIsSurrogateLowCharacter(character);
+        if (isSingleSurrogate) {
+            unichar singleChar = character;  // downcast
+            _string = [[NSString alloc] initWithCharacters:&singleChar length:1];
+        } else {
+            UTF32Char littleEdian = NSSwapHostIntToLittle(character);
+            _string = [[NSString alloc] initWithBytes:&littleEdian length:4 encoding:NSUTF32LittleEndianStringEncoding];
+        }
+        NSAssert(_string != nil, @"Failed to covnert UTF32Char U+%04tX into NSString.", character);
     }
     return self;
 }

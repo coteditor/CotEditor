@@ -47,6 +47,16 @@ class CharacterInfoTests: XCTestCase {
     }
     
     
+    func testSingleSurrogate() {
+        let character = CEUnicodeCharacter(character: UTF32Char(0xD83D))
+        
+        XCTAssertEqual(character.unicode, "U+D83D")
+        XCTAssertEqual(character.name, "<lead surrogate-D83D>")
+        XCTAssertEqual(character.categoryName, "Surrogate")
+        XCTAssertEqual(character.blockName, "High Surrogates")
+    }
+    
+    
     func testSurrogateEmoji() {
         let character = CEUnicodeCharacter(character: UTF32Char("😀"))
         

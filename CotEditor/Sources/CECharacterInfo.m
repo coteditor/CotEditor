@@ -193,7 +193,7 @@ static const UTF32Char kType6EmojiModifierChar = 0x1F3FF;  // Emoji Modifier Fit
             utf32Char = CFStringGetLongCharacterForSurrogatePair(theChar, nextChar);
             i++;
         } else {
-            utf32Char = theChar;
+            utf32Char = (UTF32Char)theChar;
         }
         
         [unicodes addObject:[CEUnicodeCharacter unicodeCharacterWithCharacter:utf32Char]];
