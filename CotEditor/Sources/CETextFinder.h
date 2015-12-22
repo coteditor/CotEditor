@@ -28,11 +28,6 @@
 #import <OgreKit/OgreTextFinder.h>
 
 
-// notifications
-/// Posted when text finder performed "Replace All." Object is target text view.
-extern NSString *_Nonnull const CETextFinderDidReplaceAllNotification;
-
-
 @interface CETextFinder : OgreTextFinder
 
 @end

@@ -19,6 +19,7 @@ develop
 - Update default fonts.
 - Add jump to URL button to the style info in the syntax style editor.
 - Improve drawing of “Other” invisible characters.
+- Improve behavior on Replace/Replace All actions.
 - Tweak preferences layout.
 
 

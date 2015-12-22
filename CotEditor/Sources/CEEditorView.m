@@ -34,7 +34,6 @@
 #import "CESyntaxParser.h"
 #import "CEThemeManager.h"
 #import "CELayoutManager.h"
-#import "CETextFinder.h"
 #import "NSString+CENewLine.h"
 #import "Constants.h"
 
@@ -119,12 +118,6 @@
         
         [_navigationBar setTextView:_textView];
         [_scrollView setDocumentView:_textView];
-        
-        // すべて置換アクションをキャッチ
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(textDidReplaceAll:)
-                                                     name:CETextFinderDidReplaceAllNotification
-                                                   object:_textView];
         
         // 置換の Undo/Redo 後に再カラーリングできるように Undo/Redo アクションをキャッチ
         [[NSNotificationCenter defaultCenter] addObserver:self
@@ -288,13 +281,13 @@
     
     if (undoManager != [[self textView] undoManager]) { return; }
     
-    // OgreKit からの置換の Undo/Redo の後のみ再カラーリングを実行
+    // OgreKit からのすべて置換の Undo/Redo の後のみ再カラーリングを実行
     // 置換の Undo を判別するために OgreKit 側で登録された actionName を使用 (2014-04 by 1024jp)
-    // [Note] OgreKit側の問題として、すべてのUndoに対して "Replace All" という名前を付けているようだ。なので現在「すべて」以外の置換も対象となっている (2014-12 by 1024jp)
     NSString *actionName = [undoManager isUndoing] ? [undoManager redoActionName] : [undoManager undoActionName];
-    if ([actionName isEqualToString:OgreTextFinderLocalizedString(@"Replace All")]) {
-        [self textDidReplaceAll:aNotification];
-    }
+    if (![actionName isEqualToString:OgreTextFinderLocalizedString(@"Replace All")]) { return; }
+    
+    // 全テキストを再カラーリング
+    [[self editorWrapper] setupColoringTimer];
 }
 
 
@@ -407,6 +400,9 @@
 - (void)textDidChange:(nonnull NSNotification *)aNotification
 // ------------------------------------------------------
 {
+    // 文書情報更新（選択範囲・キャレット位置が変更されないまま全置換が実行された場合への対応）
+    [[[self window] windowController] setupEditorInfoUpdateTimer];
+    
     // 全テキストを再カラーリング
     [[self editorWrapper] setupColoringTimer];
 
@@ -525,29 +521,6 @@
 
 
 #pragma mark Notifications
-
-//=======================================================
-// Notification  < CETextFinder
-//=======================================================
-
-// ------------------------------------------------------
-/// did Replace All
-- (void)textDidReplaceAll:(nonnull NSNotification *)aNotification
-// ------------------------------------------------------
-{
-    // 文書情報更新（選択範囲・キャレット位置が変更されないまま全置換が実行された場合への対応）
-    [[[self window] windowController] setupEditorInfoUpdateTimer];
-    
-    // 全テキストを再カラーリング
-    [[self editorWrapper] setupColoringTimer];
-    
-    // アウトラインメニュー項目更新
-    [[self editorWrapper] setupOutlineMenuUpdateTimer];
-    
-    // 非互換文字リスト更新
-    [[[self window] windowController] updateIncompatibleCharsIfNeeded];
-}
-
 
 //=======================================================
 // Notification  < CEThemeManager

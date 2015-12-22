@@ -182,14 +182,6 @@ static NSString *_Nonnull const kEscapeCharacter = @"\\";
 - (BOOL)didEndReplaceAll:(id)anObject
 // ------------------------------------------------------
 {
-    NSTextView *target = [self target];
-    
-    // post notification
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [[NSNotificationCenter defaultCenter] postNotificationName:CETextFinderDidReplaceAllNotification
-                                                            object:target];
-    });
-    
     return [self closesIndicatorWhenDone];
 }
 
