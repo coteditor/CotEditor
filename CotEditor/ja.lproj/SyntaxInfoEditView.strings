@@ -38,3 +38,6 @@
 "qBg-TV-NzD.title" = "ライセンス：";
 /* Class = "NSTextFieldCell"; title = "Description:"; ObjectID = "4bM-8L-klg"; */
 "4bM-8L-klg.title" = "説明：";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Jump to URL"; ObjectID = "KlI-NS-4x6"; */
+"KlI-NS-4x6.ibShadowedToolTip" = "URL にジャンプ";

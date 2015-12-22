@@ -258,6 +258,22 @@ typedef NS_ENUM(NSUInteger, CESyntaxEditViewIndex) {
 
 
 // ------------------------------------------------------
+/// jump to style's destribution URL
+- (IBAction)jumpToURL:(nullable id)sender
+// ------------------------------------------------------
+{
+    NSURL *URL = [NSURL URLWithString:[self style][CEMetadataKey][CEDistributionURLKey]];
+    
+    if (!URL) {
+        NSBeep();
+        return;
+    }
+    
+    [[NSWorkspace sharedWorkspace] openURL:URL];
+}
+
+
+// ------------------------------------------------------
 /// カラーシンタックス編集シートの OK ボタンが押された
 - (IBAction)saveEdit:(nullable id)sender
 // ------------------------------------------------------

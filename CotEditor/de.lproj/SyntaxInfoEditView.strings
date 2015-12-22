@@ -38,3 +38,6 @@
 "vOw-3n-nuT.title" = "Verteilung-URL:";
 /* Class = "NSTextFieldCell"; title = "Last modified:"; ObjectID = "wrI-z3-8T0"; */
 "wrI-z3-8T0.title" = "Zuletzt geändert:";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Jump to URL"; ObjectID = "KlI-NS-4x6"; */
+"KlI-NS-4x6.ibShadowedToolTip" = "Zur URL springen";

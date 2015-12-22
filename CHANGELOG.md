@@ -17,6 +17,7 @@ develop
     - Enable restoring modified syntax style directly from the list without opening the style editor.
 - Keep text selection after inserting color code from the color code panel.
 - Update default fonts.
+- Add jump to URL button to the style info in the syntax style editor.
 - Improve drawing of “Other” invisible characters.
 - Tweak preferences layout.
 
