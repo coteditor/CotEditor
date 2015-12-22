@@ -1367,7 +1367,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 //------------------------------------------------------
 {
     // detect enoding from so-called "magic numbers"
-    NSStringEncoding triedEncoding;
+    NSStringEncoding triedEncoding = NSNotFound;
     if ([data length] > 0) {
         // ISO 2022-JP / UTF-8 / UTF-16の判定は、「藤棚工房別棟 −徒然−」の
         // 「Cocoaで文字エンコーディングの自動判別プログラムを書いてみました」で公開されている
