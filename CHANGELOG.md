@@ -17,11 +17,13 @@ develop
     - Enable restoring modified syntax style directly from the list without opening the style editor.
 - Keep text selection after inserting color code from the color code panel.
 - Update default fonts.
+- Improve drawing of “Other” invisible characters.
 - Tweak preferences layout.
 
 
 ### Fixes
 
+- Fix an issue where the application tended to crash by trying opening binary file.
 - Fix an issue where line breaks between paths of dropped files were msssing.
 - Fix an issue where the application crasched when a single character that is a part of surrogate pair is inspected.
 - Fix an issue where snippet key bindings could not be customized on Mavericks and earlier.

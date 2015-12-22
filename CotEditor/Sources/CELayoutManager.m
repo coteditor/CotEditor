@@ -61,7 +61,6 @@
 
 @implementation CELayoutManager
 
-static CGGlyph ReplacementGlyph;
 static BOOL usesTextFontForInvisibles;
 
 
@@ -74,9 +73,6 @@ static BOOL usesTextFontForInvisibles;
 {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        NSFont *lucidaGrande = [NSFont fontWithName:@"Lucida Grande" size:0];
-        ReplacementGlyph = [lucidaGrande glyphWithName:@"replacement"];  // U+FFFD
-        
         usesTextFontForInvisibles = [[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultUsesTextFontForInvisiblesKey];
     });
 }
@@ -160,9 +156,6 @@ static BOOL usesTextFontForInvisibles;
         NSColor *color = [[self theme] invisiblesColor];
         CGFloat baselineOffset = [self defaultBaselineOffsetForFont:[self textFont]];
         
-        // for other invisibles
-        NSFont *replacementFont;  // delay creating font till it's really needed
-        
         // set graphics context
         CGContextRef context = (CGContextRef)[[NSGraphicsContext currentContext] graphicsPort];
         CGContextSaveGState(context);
@@ -181,6 +174,7 @@ static BOOL usesTextFontForInvisibles;
         CGPathRef newLineGlyphPath = glyphPathWithCharacter([self newLineChar], font, false);
         CGPathRef fullWidthSpaceGlyphPath = glyphPathWithCharacter([self fullwidthSpaceChar], font, true);
         CGPathRef verticalTabGlyphPath = glyphPathWithCharacter(kVerticalTabChar, font, true);
+        CGPathRef replacementGlyphPath = glyphPathWithCharacter(kReplacementChar, font, true);
         
         // store value to avoid accessing properties each time  (2014-07 by 1024jp)
         BOOL showsSpace = [self showsSpace];
@@ -224,36 +218,14 @@ static BOOL usesTextFontForInvisibles;
                     break;
                     
                 default:
-                    if (showsOtherInvisibles && ([self glyphAtIndex:glyphIndex isValidIndex:NULL] == NSControlGlyph)) {
-                        NSGlyphInfo *currentGlyphInfo = [[self textStorage] attribute:NSGlyphInfoAttributeName atIndex:charIndex effectiveRange:NULL];
-                        
-                        if (currentGlyphInfo) { continue; }
-                        
-                        NSRange charRange = NSMakeRange(charIndex, 1);
-                        if (CFStringIsSurrogateHighCharacter(character)) {
-                            if ((charIndex + 1 <= [completeString length]) &&
-                                CFStringIsSurrogateLowCharacter([completeString characterAtIndex:charIndex + 1]))
-                            {
-                                charRange.length = 2;
-                            }
-                        }
-                        
-                        replacementFont = replacementFont ?: [NSFont fontWithName:@"Lucida Grande" size:[[self textFont] pointSize]];
-                        
-                        NSString *baseString = [completeString substringWithRange:charRange];
-                        NSGlyphInfo *glyphInfo = [NSGlyphInfo glyphInfoWithGlyph:ReplacementGlyph forFont:replacementFont baseString:baseString];
-                        
-                        if (glyphInfo) {
-                            // !!!: The following line can cause crash by binary document.
-                            //      It's actually dangerous and to be detoured to modify textStorage while drawing.
-                            //      (2015-09 by 1024jp)
-                            [[self textStorage] addAttributes:@{NSGlyphInfoAttributeName: glyphInfo,
-                                                                NSFontAttributeName: replacementFont,
-                                                                NSForegroundColorAttributeName: color}
-                                                        range:charRange];
-                        }
+                    if (!showsOtherInvisibles || ([self glyphAtIndex:glyphIndex isValidIndex:NULL] != NSControlGlyph)) { continue; }
+                    // Skip the second glyph if character is a surrogate-pair
+                    if (CFStringIsSurrogateLowCharacter(character) &&
+                        ((charIndex > 0) && CFStringIsSurrogateHighCharacter([completeString characterAtIndex:charIndex - 1])))
+                    {
+                        continue;
                     }
-                    continue;
+                    glyphPath = replacementGlyphPath;
             }
             
             // add invisible char path
@@ -276,35 +248,6 @@ static BOOL usesTextFontForInvisibles;
     }
     
     [super drawGlyphsForGlyphRange:glyphsToShow atPoint:origin];
-}
-
-
-// ------------------------------------------------------
-/// color glyphs
-- (void)showCGGlyphs:(const CGGlyph *)glyphs positions:(const NSPoint *)positions count:(NSUInteger)glyphCount font:(NSFont *)font matrix:(NSAffineTransform *)textMatrix attributes:(NSDictionary<NSString *,id> *)attributes inContext:(NSGraphicsContext *)graphicsContext
-// ------------------------------------------------------
-{
-    // overcort control glyphs
-    //   -> Control color will occasionally be colored in sytnax style color after `drawGlyphsForGlyphRange:atPoint:`.
-    //      So, it shoud be re-colored here.
-    BOOL isControlGlyph = (attributes[NSGlyphInfoAttributeName]);
-    if (isControlGlyph && [self showsControlCharacters]) {
-        NSColor *invisibleColor = [[self theme] invisiblesColor];
-        [graphicsContext saveGraphicsState];
-        [invisibleColor set];
-        
-        // remove existing coloring attribute for safe
-        NSMutableDictionary *mutableAttributes = [attributes mutableCopy];
-        [mutableAttributes removeObjectForKey:NSForegroundColorAttributeName];
-        attributes = [mutableAttributes copy];
-    }
-    
-    [super showCGGlyphs:glyphs positions:positions count:glyphCount font:font matrix:textMatrix attributes:attributes inContext:graphicsContext];
-    
-    // restore context
-    if (isControlGlyph) {
-        [graphicsContext restoreGraphicsState];
-    }
 }
 
 

@@ -517,6 +517,7 @@ unichar     const kInvisibleFullwidthSpaceCharList[] = {0x25A1, 0x22A0, 0x25A0, 
 NSUInteger  const kSizeOfInvisibleFullwidthSpaceCharList = sizeof(kInvisibleFullwidthSpaceCharList) / sizeof(unichar);
 
 unichar const kVerticalTabChar = 0x240B;  // symbol for vertical tablation
+unichar const kReplacementChar = 0xFFFD;  // symbol for "Other Invisibles" (NSControlGlyph) 
 
 
 

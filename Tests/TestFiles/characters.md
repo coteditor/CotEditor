@@ -45,8 +45,11 @@ Test File for Special Caracters
 - 邊邊󠄀邊󠄁邊󠄂
 > 邊邊󠄀邊󠄁邊󠄂
 
-## invisib1es
+## invisibes
+-  　	
+### replacement characters
 - ·°ː␣
 - ¬⇥‣▹
 - ¶↩↵⏎
 - □⊠■•
+- ␋�

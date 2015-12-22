@@ -492,6 +492,7 @@ extern unichar    const kInvisibleFullwidthSpaceCharList[];
 extern NSUInteger const kSizeOfInvisibleFullwidthSpaceCharList;
 
 extern unichar const kVerticalTabChar;
+extern unichar const kReplacementChar;
 
 
 
