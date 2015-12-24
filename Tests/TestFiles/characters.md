@@ -47,6 +47,13 @@ Test File for Special Caracters
 
 ## invisibes
 -  　	
+
+### control glyph replacement
+- ︎ U+FE0E
+- � U+FFFD
+-   U+0020
+
+
 ### replacement characters
 - ·°ː␣
 - ¬⇥‣▹
