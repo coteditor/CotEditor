@@ -12,12 +12,12 @@
         </customObject>
         <customObject id="-1" customClass="FirstResponder"/>
         <customObject id="-3" customClass="NSObject"/>
-        <window title="Input Unicode" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="inputUnicode" animationBehavior="default" id="Y41-ro-Xeo" customClass="NSPanel">
+        <window title="Input Unicode" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="utilityWindow" frameAutosaveName="inputUnicode" id="Y41-ro-Xeo" customClass="NSPanel">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" utility="YES"/>
-            <rect key="contentRect" x="167" y="107" width="240" height="62"/>
+            <rect key="contentRect" x="167" y="107" width="240" height="78"/>
             <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
             <view key="contentView" id="rG5-Vo-Df3">
-                <rect key="frame" x="0.0" y="0.0" width="240" height="62"/>
+                <rect key="frame" x="0.0" y="0.0" width="240" height="78"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="yRX-Lf-Qnd">
@@ -42,7 +42,7 @@
                         </connections>
                     </textField>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="FdN-Wj-h7S">
-                        <rect key="frame" x="134" y="14" width="92" height="32"/>
+                        <rect key="frame" x="134" y="13" width="92" height="32"/>
                         <constraints>
                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="G9s-p0-ZHn"/>
                         </constraints>
@@ -58,20 +58,60 @@ DQ
                             <binding destination="-2" name="enabled" keyPath="valid" id="XcT-s6-szS"/>
                         </connections>
                     </button>
+                    <textField horizontalHuggingPriority="249" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="751" preferredMaxLayoutWidth="180" translatesAutoresizingMaskIntoConstraints="NO" id="gA5-1J-lea" customClass="CEWrappingTextField">
+                        <rect key="frame" x="43" y="50" width="179" height="14"/>
+                        <textFieldCell key="cell" controlSize="small" selectable="YES" sendsActionOnEndEditing="YES" title="GRINNING FACE" id="uTL-Ct-HCw">
+                            <font key="font" metaFont="smallSystem"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                        <connections>
+                            <binding destination="-2" name="value" keyPath="character.name" id="rz0-Df-N9T">
+                                <dictionary key="options">
+                                    <string key="NSNullPlaceholder">Invalid code</string>
+                                </dictionary>
+                            </binding>
+                            <binding destination="-2" name="hidden" keyPath="unicode.length" id="VP2-7w-0rq">
+                                <dictionary key="options">
+                                    <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                </dictionary>
+                            </binding>
+                        </connections>
+                    </textField>
+                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="iYt-Yd-KXc">
+                        <rect key="frame" x="18" y="49" width="21" height="17"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" title="😀" id="Jmp-rG-pGZ">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                        <connections>
+                            <binding destination="-2" name="value" keyPath="character.string" id="HAg-qi-yxV">
+                                <dictionary key="options">
+                                    <string key="NSNullPlaceholder">⬚</string>
+                                </dictionary>
+                            </binding>
+                        </connections>
+                    </textField>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="yRX-Lf-Qnd" firstAttribute="top" secondItem="rG5-Vo-Df3" secondAttribute="top" constant="20" symbolic="YES" id="04Z-UY-RNd"/>
+                    <constraint firstAttribute="trailing" secondItem="gA5-1J-lea" secondAttribute="trailing" constant="20" symbolic="YES" id="0DL-Rv-VIU"/>
                     <constraint firstItem="FdN-Wj-h7S" firstAttribute="leading" secondItem="yRX-Lf-Qnd" secondAttribute="trailing" constant="8" symbolic="YES" id="3dF-E5-zRL"/>
-                    <constraint firstAttribute="bottom" secondItem="yRX-Lf-Qnd" secondAttribute="bottom" constant="20" symbolic="YES" id="L0D-93-Vyi"/>
+                    <constraint firstItem="gA5-1J-lea" firstAttribute="top" secondItem="rG5-Vo-Df3" secondAttribute="top" constant="14" id="Sr0-If-Ws4"/>
                     <constraint firstAttribute="trailing" secondItem="FdN-Wj-h7S" secondAttribute="trailing" constant="20" symbolic="YES" id="eBa-7Y-Ovu"/>
                     <constraint firstItem="yRX-Lf-Qnd" firstAttribute="leading" secondItem="rG5-Vo-Df3" secondAttribute="leading" constant="20" symbolic="YES" id="eTh-gL-mvb"/>
-                    <constraint firstAttribute="centerY" secondItem="FdN-Wj-h7S" secondAttribute="centerY" id="yOo-rd-WLb"/>
+                    <constraint firstItem="iYt-Yd-KXc" firstAttribute="leading" secondItem="rG5-Vo-Df3" secondAttribute="leading" constant="20" symbolic="YES" id="iiS-Ji-Z7g"/>
+                    <constraint firstAttribute="bottom" secondItem="FdN-Wj-h7S" secondAttribute="bottom" constant="20" symbolic="YES" id="mAn-j7-XWa"/>
+                    <constraint firstItem="yRX-Lf-Qnd" firstAttribute="top" secondItem="gA5-1J-lea" secondAttribute="bottom" constant="8" symbolic="YES" id="pS0-V1-3fh"/>
+                    <constraint firstItem="FdN-Wj-h7S" firstAttribute="baseline" secondItem="yRX-Lf-Qnd" secondAttribute="baseline" id="pjk-wp-qiK"/>
+                    <constraint firstItem="gA5-1J-lea" firstAttribute="centerY" secondItem="iYt-Yd-KXc" secondAttribute="centerY" id="rZa-db-Y2A"/>
+                    <constraint firstItem="gA5-1J-lea" firstAttribute="leading" secondItem="iYt-Yd-KXc" secondAttribute="trailing" constant="8" symbolic="YES" id="z5c-jb-0eI"/>
                 </constraints>
             </view>
             <connections>
                 <outlet property="delegate" destination="-2" id="3EJ-ju-Wzb"/>
             </connections>
-            <point key="canvasLocation" x="448" y="548.5"/>
+            <point key="canvasLocation" x="448" y="556"/>
         </window>
     </objects>
 </document>

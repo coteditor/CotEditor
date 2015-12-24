@@ -26,6 +26,7 @@
  */
 
 #import "CEUnicodeInputPanelController.h"
+#import "CEUnicodeCharacter.h"
 #import "CEWindowController.h"
 #import "CEEditorWrapper.h"
 
@@ -34,6 +35,8 @@
 
 @property (nonatomic, nonnull, copy) NSString *unicode;
 @property (nonatomic, getter=isValid) BOOL valid;
+
+@property (nonatomic, nullable) CEUnicodeCharacter *character;
 
 @end
 
@@ -99,6 +102,7 @@ static const NSRegularExpression *unicodeRegex;
                                                               range:NSMakeRange(0, [input length])];
     
     [self setValid:(result != nil)];
+    [self setCharacter:([self isValid] ? [[CEUnicodeCharacter alloc] initWithCharacter:[self longChar]] : nil)];
 }
 
 
@@ -110,24 +114,38 @@ static const NSRegularExpression *unicodeRegex;
 - (IBAction)insertToDocument:(nullable id)sender
 // ------------------------------------------------------
 {
-    unsigned int longChar;
-    NSScanner *scanner = [NSScanner scannerWithString:[self unicode]];
-    [scanner setCharactersToBeSkipped:[NSCharacterSet characterSetWithCharactersInString:@"uU+\\"]];
-    [scanner scanHexInt:&longChar];
-    
-    NSTextView *textView = [[[self documentWindowController] editor] focusedTextView];
+    UTF32Char longChar = [self longChar];
     UniChar chars[2];
     NSUInteger length = CFStringGetSurrogatePairForLongCharacter(longChar, chars) ? 2 : 1;
     NSString *character = [[NSString alloc] initWithCharacters:chars length:length];
     
+    NSTextView *textView = [[[self documentWindowController] editor] focusedTextView];
     if ([textView shouldChangeTextInRange:[textView selectedRange] replacementString:character]) {
         [textView replaceCharactersInRange:[textView selectedRange] withString:character];
         [textView didChangeText];
         [[self window] performClose:sender];
         [self setUnicode:@""];
+        [self setCharacter:nil];
     } else {
         NSBeep();
     }
+}
+
+
+
+#pragma mark Private Methods
+
+// ------------------------------------------------------
+/// UTF32Char form of current input unicode
+- (UTF32Char)longChar
+// ------------------------------------------------------
+{
+    UTF32Char longChar;
+    NSScanner *scanner = [NSScanner scannerWithString:[self unicode]];
+    [scanner setCharactersToBeSkipped:[NSCharacterSet characterSetWithCharactersInString:@"uU+\\"]];
+    [scanner scanHexInt:&longChar];
+    
+    return longChar;
 }
 
 @end

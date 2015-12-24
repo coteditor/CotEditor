@@ -37,7 +37,6 @@
 @property (nonatomic, nullable, copy) NSString *unicodeBlockName;
 @property (nonatomic, nonnull, copy) NSString *unicode;
 
-
 @property (nonatomic, nullable, weak) IBOutlet NSTextField *unicodeBlockNameField;
 
 @end
