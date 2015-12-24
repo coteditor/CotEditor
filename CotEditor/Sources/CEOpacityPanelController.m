@@ -72,12 +72,8 @@
 - (IBAction)applyAsDefault:(nullable id)sender
 // ------------------------------------------------------
 {
-    // apply to all windows
-    for (id document in [NSApp orderedDocuments]) {
-        [(CEWindow *)[[self documentWindowController] window] setBackgroundAlpha:[self opacity]];
-    }
-    
     // set as default
+    //   -> The new value will automatically be applied to all windows as they observe userDefault value.
     [[NSUserDefaults standardUserDefaults] setValue:@([self opacity]) forKey:CEDefaultWindowAlphaKey];
 }
 
