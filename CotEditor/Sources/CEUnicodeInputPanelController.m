@@ -114,15 +114,13 @@ static const NSRegularExpression *unicodeRegex;
 - (IBAction)insertToDocument:(nullable id)sender
 // ------------------------------------------------------
 {
-    UTF32Char longChar = [self longChar];
-    UniChar chars[2];
-    NSUInteger length = CFStringGetSurrogatePairForLongCharacter(longChar, chars) ? 2 : 1;
-    NSString *character = [[NSString alloc] initWithCharacters:chars length:length];
-    
+    NSString *character = [[self character] string];
     NSTextView *textView = [[[self documentWindowController] editor] focusedTextView];
+    
     if ([textView shouldChangeTextInRange:[textView selectedRange] replacementString:character]) {
         [textView replaceCharactersInRange:[textView selectedRange] withString:character];
         [textView didChangeText];
+        
         [[self window] performClose:sender];
         [self setUnicode:@""];
         [self setCharacter:nil];
