@@ -88,6 +88,15 @@ static const NSRegularExpression *unicodeRegex;
 }
 
 
+// ------------------------------------------------------
+/// auto close window if all document windows were closed
+- (BOOL)autoCloses
+// ------------------------------------------------------
+{
+    return YES;
+}
+
+
 
 #pragma mark Delegate
 

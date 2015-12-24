@@ -60,7 +60,15 @@
 // ------------------------------------------------------
 {
     [self setLineSpacing:[[self textView] lineSpacing]];
-    
+}
+
+
+// ------------------------------------------------------
+/// auto close window if all document windows were closed
+- (BOOL)autoCloses
+// ------------------------------------------------------
+{
+    return YES;
 }
 
 

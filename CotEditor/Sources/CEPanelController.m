@@ -102,12 +102,16 @@ static NSMutableDictionary<NSString *, __kindof CEPanelController *> *instances;
     if (self) {
         // observe key window change
         [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(windowDidBecomeMain:)
+                                                 selector:@selector(mainWindowDidChange:)
                                                      name:NSWindowDidBecomeMainNotification
+                                                   object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(mainWindowDidChange:)
+                                                     name:NSWindowDidResignMainNotification
                                                    object:nil];
         // apply current window
         NSNotification *notification = [NSNotification notificationWithName:NSWindowDidBecomeMainNotification object:window];
-        [self windowDidBecomeMain:notification];
+        [self mainWindowDidChange:notification];
     }
     return self;
 }
@@ -131,15 +135,28 @@ static NSMutableDictionary<NSString *, __kindof CEPanelController *> *instances;
 
 // ------------------------------------------------------
 /// notification about main window change
-- (void)windowDidBecomeMain:(nonnull NSNotification *)notification
+- (void)mainWindowDidChange:(nonnull NSNotification *)notification
 // ------------------------------------------------------
 {
     // update properties if the new main window is a document window
     if ([[[NSApp mainWindow] windowController] isKindOfClass:[CEWindowController class]]) {
         [self setDocumentWindowController:(CEWindowController *)[[NSApp mainWindow] windowController]];
-        
-        [self keyDocumentDidChange];
+    } else {
+        [self setDocumentWindowController:nil];
     }
+    
+    // auto close panel if needed
+    if ([self autoCloses]) {
+        __weak typeof(self) weakSelf = self;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            typeof(self) self = weakSelf;
+            if (![self documentWindowController]) {
+                [[self window] performClose:self];
+            }
+        });
+    }
+    
+    [self keyDocumentDidChange];
 }
 
 
@@ -152,6 +169,15 @@ static NSMutableDictionary<NSString *, __kindof CEPanelController *> *instances;
 // ------------------------------------------------------
 {
     // override in subclass
+}
+
+
+// ------------------------------------------------------
+/// return YES if panel shoud close if all document widows were closed (default == NO)
+- (BOOL)autoCloses
+// ------------------------------------------------------
+{
+    return NO;
 }
 
 @end

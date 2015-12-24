@@ -45,4 +45,7 @@
 // (abstract) invoke when frontmost document window changed
 - (void)keyDocumentDidChange;
 
+// return YES if panel shoud close if all document widows were closed (default == NO)
+- (BOOL)autoCloses;
+
 @end
