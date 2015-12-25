@@ -87,14 +87,6 @@
 - (void)setThemeWithName:(nonnull NSString *)themeName;
 - (nullable CETheme *)theme;
 
-// syntax
-- (nullable NSString *)syntaxStyleName;
-- (void)setSyntaxStyleWithName:(nonnull NSString *)name coloring:(BOOL)doColoring;
-- (void)invalidateSyntaxColoring;
-- (void)invalidateOutlineMenu;
-- (void)setupColoringTimer;
-- (void)setupOutlineMenuUpdateTimer;
-
 
 #pragma mark Action Messages
 
@@ -110,7 +102,24 @@
 - (IBAction)selectNextItemOfOutlineMenu:(nullable id)sender;
 - (IBAction)openSplitTextView:(nullable id)sender;
 - (IBAction)closeSplitTextView:(nullable id)sender;
+
+@end
+
+
+
+
+#pragma mark -
+
+@interface CEEditorWrapper (SyntaxParsing)
+
 - (IBAction)recolorAll:(nullable id)sender;
+
+- (nullable NSString *)syntaxStyleName;
+- (void)setSyntaxStyleWithName:(nonnull NSString *)name coloring:(BOOL)doColoring;
+- (void)invalidateSyntaxColoring;
+- (void)invalidateOutlineMenu;
+- (void)setupColoringTimer;
+- (void)setupOutlineMenuUpdateTimer;
 
 @end
 

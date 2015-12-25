@@ -66,29 +66,6 @@
 
 @implementation CEEditorWrapper
 
-static NSTimeInterval basicColoringDelay;
-static NSTimeInterval firstColoringDelay;
-static NSTimeInterval secondColoringDelay;
-
-
-#pragma mark Sperclass Methods
-
-// ------------------------------------------------------
-/// initialize class
-+ (void)initialize
-// ------------------------------------------------------
-{
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        
-        basicColoringDelay = [defaults doubleForKey:CEDefaultBasicColoringDelayKey];
-        firstColoringDelay = [defaults doubleForKey:CEDefaultFirstColoringDelayKey];
-        secondColoringDelay = [defaults doubleForKey:CEDefaultSecondColoringDelayKey];
-    });
-}
-
-
 // ------------------------------------------------------
 /// initialize instance
 - (nonnull instancetype)init
@@ -113,8 +90,8 @@ static NSTimeInterval secondColoringDelay;
 - (void)dealloc
 // ------------------------------------------------------
 {
-    [self stopColoringTimer];
-    [self stopUpdateOutlineMenuTimer];
+    [_coloringTimer invalidate];
+    [_outlineMenuTimer invalidate];
     
     _focusedTextView = nil;
 }
@@ -510,80 +487,6 @@ static NSTimeInterval secondColoringDelay;
 
 
 // ------------------------------------------------------
-/// シンタックススタイル名を返す
-- (nullable NSString *)syntaxStyleName
-// ------------------------------------------------------
-{
-    return [[self syntaxParser] styleName];
-}
-
-
-// ------------------------------------------------------
-/// シンタックススタイル名をセット
-- (void)setSyntaxStyleWithName:(nonnull NSString *)name coloring:(BOOL)doColoring
-// ------------------------------------------------------
-{
-    CESyntaxParser *syntaxParser = [[CESyntaxParser alloc] initWithStyleName:name];
-    [self setSyntaxParser:syntaxParser];
-    [[self splitViewController] enumerateEditorViewsUsingBlock:^(CEEditorView * _Nonnull editorView) {
-        [editorView applySyntax:syntaxParser];
-    }];
-    
-    if (doColoring) {
-        [self invalidateSyntaxColoring];
-        [self invalidateOutlineMenu];
-    }
-}
-
-
-// ------------------------------------------------------
-/// 全テキストを再カラーリング
-- (void)invalidateSyntaxColoring
-// ------------------------------------------------------
-{
-    [self stopColoringTimer];
-    
-    [[self syntaxParser] highlightWholeStringInTextStorage:[self textStorage] completionHandler:nil];
-}
-
-
-// ------------------------------------------------------
-/// アウトラインメニューを更新
-- (void)invalidateOutlineMenu
-// ------------------------------------------------------
-{
-    [self stopUpdateOutlineMenuTimer];
-    
-    NSString *wholeString = [[self textStorage] string] ? : @"";
-    
-    // 規定の文字数以上の場合にはインジケータを表示
-    // （ただし、CEDefaultShowColoringIndicatorTextLengthKey が「0」の時は表示しない）
-    NSUInteger indicatorThreshold = [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultShowColoringIndicatorTextLengthKey];
-    if (indicatorThreshold > 0 && indicatorThreshold < [wholeString length]) {
-        [[self splitViewController] enumerateEditorViewsUsingBlock:^(CEEditorView * _Nonnull editorView) {
-            [[editorView navigationBarController] showOutlineIndicator];
-        }];
-    }
-    
-    NSString *immutableWholeString = [NSString stringWithString:wholeString];  // 解析中に参照元が変更されると困るのでコピーする
-    
-    // 別スレッドでアウトラインを抽出して、メインスレッドで navigationBar に渡す
-    CESyntaxParser *syntaxParser = [self syntaxParser];
-    CESplitViewController *splitViewController = [self splitViewController];
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSArray<NSDictionary<NSString *, id> *> *outlineItems = [syntaxParser outlineItemsWithWholeString:immutableWholeString];
-        
-        dispatch_sync(dispatch_get_main_queue(), ^{
-            [splitViewController enumerateEditorViewsUsingBlock:^(CEEditorView * _Nonnull editorView) {
-                [[editorView navigationBarController] setOutlineItems:outlineItems];
-                // （選択項目の更新も上記メソッド内で行われるので、updateOutlineMenuSelection は呼ぶ必要なし。 2008.05.16.）
-            }];
-        });
-    });
-}
-
-
-// ------------------------------------------------------
 /// 不可視文字の表示／非表示を返す
 - (BOOL)showsInvisibles
 // ------------------------------------------------------
@@ -600,48 +503,6 @@ static NSTimeInterval secondColoringDelay;
     [[self splitViewController] enumerateEditorViewsUsingBlock:^(CEEditorView * _Nonnull editorView) {
         [editorView setShowsInvisibles:showsInvisibles];
     }];
-}
-
-
-// ------------------------------------------------------
-/// カラーリングタイマーのファイヤーデイトを設定時間後にセット
-- (void)setupColoringTimer
-// ------------------------------------------------------
-{
-    if ([[self syntaxParser] isNone]) { return; }
-    
-    BOOL delay = [[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultDelayColoringKey];
-    
-    if ([self coloringTimer]) {
-        NSTimeInterval interval = delay ? secondColoringDelay : basicColoringDelay;
-        [[self coloringTimer] setFireDate:[NSDate dateWithTimeIntervalSinceNow:interval]];
-        
-    } else {
-        NSTimeInterval interval = delay ? firstColoringDelay : basicColoringDelay;
-        [self setColoringTimer:[NSTimer scheduledTimerWithTimeInterval:interval
-                                                                target:self
-                                                              selector:@selector(doColoringWithTimer:)
-                                                              userInfo:nil repeats:NO]];
-    }
-}
-
-
-// ------------------------------------------------------
-/// アウトラインメニュー項目を更新
-- (void)setupOutlineMenuUpdateTimer
-// ------------------------------------------------------
-{
-    // アウトラインメニュー項目更新
-    NSTimeInterval outlineMenuInterval = [[NSUserDefaults standardUserDefaults] doubleForKey:CEDefaultOutlineMenuIntervalKey];
-    if ([self outlineMenuTimer]) {
-        [[self outlineMenuTimer] setFireDate:[NSDate dateWithTimeIntervalSinceNow:outlineMenuInterval]];
-    } else {
-        [self setOutlineMenuTimer:[NSTimer scheduledTimerWithTimeInterval:outlineMenuInterval
-                                                                   target:self
-                                                                 selector:@selector(updateOutlineMenuWithTimer:)
-                                                                 userInfo:nil
-                                                                  repeats:NO]];
-    }
 }
 
 
@@ -839,15 +700,6 @@ static NSTimeInterval secondColoringDelay;
 }
 
 
-// ------------------------------------------------------
-/// ドキュメント全体を再カラーリング
-- (IBAction)recolorAll:(nullable id)sender
-// ------------------------------------------------------
-{
-    [self invalidateSyntaxColoring];
-}
-
-
 
 #pragma mark Private Methods
 
@@ -979,6 +831,146 @@ static NSTimeInterval secondColoringDelay;
     return NSMakeRange([locStr length], [lenStr length]);
 }
 
+@end
+
+
+
+
+#pragma mark -
+
+@implementation CEEditorWrapper (SyntaxParsing)
+
+#pragma mark Public Methods
+
+// ------------------------------------------------------
+/// シンタックススタイル名を返す
+- (nullable NSString *)syntaxStyleName
+// ------------------------------------------------------
+{
+    return [[self syntaxParser] styleName];
+}
+
+
+// ------------------------------------------------------
+/// シンタックススタイル名をセット
+- (void)setSyntaxStyleWithName:(nonnull NSString *)name coloring:(BOOL)doColoring
+// ------------------------------------------------------
+{
+    CESyntaxParser *syntaxParser = [[CESyntaxParser alloc] initWithStyleName:name];
+    [self setSyntaxParser:syntaxParser];
+    [[self splitViewController] enumerateEditorViewsUsingBlock:^(CEEditorView * _Nonnull editorView) {
+        [editorView applySyntax:syntaxParser];
+    }];
+    
+    if (doColoring) {
+        [self invalidateSyntaxColoring];
+        [self invalidateOutlineMenu];
+    }
+}
+
+
+// ------------------------------------------------------
+/// 全テキストを再カラーリング
+- (void)invalidateSyntaxColoring
+// ------------------------------------------------------
+{
+    [self stopColoringTimer];
+    
+    [[self syntaxParser] highlightWholeStringInTextStorage:[self textStorage] completionHandler:nil];
+}
+
+
+// ------------------------------------------------------
+/// アウトラインメニューを更新
+- (void)invalidateOutlineMenu
+// ------------------------------------------------------
+{
+    [self stopOutlineMenuTimer];
+    
+    NSString *wholeString = [[self textStorage] string] ? : @"";
+    
+    // 規定の文字数以上の場合にはインジケータを表示
+    // （ただし、CEDefaultShowColoringIndicatorTextLengthKey が「0」の時は表示しない）
+    NSUInteger indicatorThreshold = [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultShowColoringIndicatorTextLengthKey];
+    if (indicatorThreshold > 0 && indicatorThreshold < [wholeString length]) {
+        [[self splitViewController] enumerateEditorViewsUsingBlock:^(CEEditorView * _Nonnull editorView) {
+            [[editorView navigationBarController] showOutlineIndicator];
+        }];
+    }
+    
+    NSString *immutableWholeString = [NSString stringWithString:wholeString];  // 解析中に参照元が変更されると困るのでコピーする
+    
+    // 別スレッドでアウトラインを抽出して、メインスレッドで navigationBar に渡す
+    CESyntaxParser *syntaxParser = [self syntaxParser];
+    CESplitViewController *splitViewController = [self splitViewController];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSArray<NSDictionary<NSString *, id> *> *outlineItems = [syntaxParser outlineItemsWithWholeString:immutableWholeString];
+        
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            [splitViewController enumerateEditorViewsUsingBlock:^(CEEditorView * _Nonnull editorView) {
+                [[editorView navigationBarController] setOutlineItems:outlineItems];
+                // （選択項目の更新も上記メソッド内で行われるので、updateOutlineMenuSelection は呼ぶ必要なし。 2008.05.16.）
+            }];
+        });
+    });
+}
+
+
+// ------------------------------------------------------
+/// カラーリングタイマーのファイヤーデイトを設定時間後にセット
+- (void)setupColoringTimer
+// ------------------------------------------------------
+{
+    if ([[self syntaxParser] isNone]) { return; }
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    BOOL delay = [defaults boolForKey:CEDefaultDelayColoringKey];
+    
+    if ([self coloringTimer]) {
+        NSTimeInterval interval = (delay ? [defaults doubleForKey:CEDefaultSecondColoringDelayKey] : [defaults doubleForKey:CEDefaultBasicColoringDelayKey]);
+        [[self coloringTimer] setFireDate:[NSDate dateWithTimeIntervalSinceNow:interval]];
+        
+    } else {
+        NSTimeInterval interval = delay ? [defaults doubleForKey:CEDefaultFirstColoringDelayKey] : [defaults doubleForKey:CEDefaultBasicColoringDelayKey];
+        [self setColoringTimer:[NSTimer scheduledTimerWithTimeInterval:interval
+                                                                target:self
+                                                              selector:@selector(doColoringWithTimer:)
+                                                              userInfo:nil repeats:NO]];
+    }
+}
+
+
+// ------------------------------------------------------
+/// アウトラインメニュー項目を更新
+- (void)setupOutlineMenuUpdateTimer
+// ------------------------------------------------------
+{
+    // アウトラインメニュー項目更新
+    NSTimeInterval outlineMenuInterval = [[NSUserDefaults standardUserDefaults] doubleForKey:CEDefaultOutlineMenuIntervalKey];
+    if ([self outlineMenuTimer]) {
+        [[self outlineMenuTimer] setFireDate:[NSDate dateWithTimeIntervalSinceNow:outlineMenuInterval]];
+    } else {
+        [self setOutlineMenuTimer:[NSTimer scheduledTimerWithTimeInterval:outlineMenuInterval
+                                                                   target:self
+                                                                 selector:@selector(updateOutlineMenuWithTimer:)
+                                                                 userInfo:nil
+                                                                  repeats:NO]];
+    }
+}
+
+
+#pragma mark Action Messages
+
+// ------------------------------------------------------
+/// ドキュメント全体を再カラーリング
+- (IBAction)recolorAll:(nullable id)sender
+// ------------------------------------------------------
+{
+    [self invalidateSyntaxColoring];
+}
+
+
+#pragma mark Private Methods
 
 // ------------------------------------------------------
 /// カラーリング実行
@@ -1036,13 +1028,13 @@ static NSTimeInterval secondColoringDelay;
 - (void)updateOutlineMenuWithTimer:(nonnull NSTimer *)timer
 // ------------------------------------------------------
 {
-    [self invalidateOutlineMenu]; // （invalidateOutlineMenu 内で stopUpdateOutlineMenuTimer を実行している）
+    [self invalidateOutlineMenu]; // （invalidateOutlineMenu 内で stopOutlineMenuTimer を実行している）
 }
 
 
 // ------------------------------------------------------
 /// アウトラインメニュー更新タイマーを停止
-- (void)stopUpdateOutlineMenuTimer
+- (void)stopOutlineMenuTimer
 // ------------------------------------------------------
 {
     if ([self outlineMenuTimer]) {
