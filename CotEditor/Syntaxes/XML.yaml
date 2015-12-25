@@ -40,6 +40,7 @@ strings:
 keywords:
 - beginString: "(?<=</?)[[:alnum:]_\\-.:]+(?=[\\n\\t />])"
   regularExpression: true
+  description: "element"
 variables:
 - beginString: "(?<=</?)[[:alnum:]_\\-.]+:(?=\\w)"
   regularExpression: true

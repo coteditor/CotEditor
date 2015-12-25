@@ -3,26 +3,31 @@ extensions:
 - keyString: "TEX"
 - keyString: "sty"
 - keyString: "cls"
-outlineMenu:
-- beginString: "[\\\\¥]chapter\\*?\\{(.*)\\}"
-  keyString: "$1"
-- beginString: "[\\\\¥]part\\*?\\{(.*)\\}"
-  keyString: "$1"
-  bold: true
-- beginString: "[\\\\¥]section\\*?\\{(.*)\\}"
-  keyString: "    $1"
-- beginString: "[\\\\¥]subsection\\*?\\{(.*)\\}"
-  keyString: "        $1"
-- beginString: "[\\\\¥]subsubsection\\*?\\{(.*)\\}"
-  keyString: "            $1"
-comments: []
 metadata:
   distributionURL: "http://coteditor.com"
   author: "Yuhei Kuratomi"
   license: "Same as CotEditor"
-  lastModified: "2014-10-27"
+  lastModified: "2015-12-25"
   description: "Maintained by CotEditor Project."
-  version: "2.0"
+  version: "2.0.1"
+outlineMenu:
+- beginString: "[\\\\¥]chapter\\*?\\{(.*)\\}"
+  description: "chapter"
+  keyString: "$1"
+- beginString: "[\\\\¥]part\\*?\\{(.*)\\}"
+  description: "part"
+  keyString: "$1"
+  bold: true
+- beginString: "[\\\\¥]section\\*?\\{(.*)\\}"
+  description: "section"
+  keyString: "    $1"
+- beginString: "[\\\\¥]subsection\\*?\\{(.*)\\}"
+  description: "subsection"
+  keyString: "        $1"
+- beginString: "[\\\\¥]subsubsection\\*?\\{(.*)\\}"
+  description: "subsubsection"
+  keyString: "            $1"
+comments: []
 numbers:
 - beginString: "[\\\\¥]frac\\{[^}]+\\}\\{[^}]"
   endString: "\\}"

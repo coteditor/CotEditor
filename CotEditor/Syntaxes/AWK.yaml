@@ -4,9 +4,9 @@ filenames: []
 interpreters:
 - keyString: "awk"
 metadata:
-  version: "1.0.0"
+  version: "1.0.1"
   author: "1024jp"
-  lastModified: "2015-11-29"
+  lastModified: "2015-12-25"
   license: "Same as CotEditor"
   description: "posix-awk"
   distributionURL: "http://coteditor.com"
@@ -93,5 +93,6 @@ outlineMenu:
 - beginString: "BEGIN"
 - beginString: "END"
 - beginString: "function[ \\t]+(\\w+)[ \\t]*\\(([^\\)]*)\\)"
+  description: "function"
   keyString: "$1 ($2)"
 completions: []

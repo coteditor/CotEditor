@@ -1,20 +1,22 @@
 extensions:
 - keyString: "jl"
+filenames: []
 interpreters:
 - keyString: "julia"
-filenames: []
-comments: []
-outlineMenu:
-- beginString: "\\bfunction\\s+\\w+\\(.*\\)"
-- beginString: "\\bmacro\\s+\\w+\\(.+\\)"
-  italic: true
 metadata:
-  version: "1.1"
-  lastModified: "2015-08-13"
+  version: "1.1.1"
+  lastModified: "2015-12-25"
   author: "1024jp"
   license: "Same as CotEditor"
   description: "Based on Julia 0.3.5"
   distributionURL: "http://coteditor.com"
+comments: []
+outlineMenu:
+- beginString: "\\bfunction\\s+\\w+\\(.*\\)"
+  description: "function"
+- beginString: "\\bmacro\\s+\\w+\\(.+\\)"
+  description: "macro"
+  italic: true
 numbers:
 - beginString: "-Inf"
 - beginString: "-Inf16"

@@ -1,36 +1,44 @@
 extensions:
 - keyString: "tcl"
 filenames: []
+metadata:
+  distributionURL: "http://coteditor.com"
+  lastModified: "2015-12-25"
+  author: "1024jp"
+  license: "Same as CotEditor"
+  description: "Support Tcl 8.6 / incl. Tcl and Tk commands"
+  version: "1.0.1"
 comments: []
 outlineMenu:
 - beginString: "^([\\t ]*)(constructor|destructor)"
   keyString: "$1$2"
+  description: "constructor/deconstructor"
 - beginString: "^([\\t ]*)method\\s+(\\w+)"
   keyString: "$1$2"
+  description: "method"
 - beginString: "^([\\t ]*)proc\\s+(\\S+)"
   keyString: "$1$2"
+  description: "procedure"
 - beginString: "class\\s+create\\s+(\\w+)"
   keyString: "$1"
+  description: "class"
   bold: true
 - beginString: "package\\s+provide\\s+(\\w+)"
+  keyString: "$1"
+  description: "package"
   bold: true
   underline: true
-  keyString: "$1"
-metadata:
-  distributionURL: "http://coteditor.com"
-  lastModified: "2014-10-25"
-  author: "1024jp"
-  license: "Same as CotEditor"
-  description: "Support Tcl 8.6 / incl. Tcl and Tk commands"
-  version: "1.0"
 numbers:
 - beginString: "(?<![-_.[:alnum:]])\\-?\\d+(\\.\\d+)?\\b"
   regularExpression: true
+  description: "decimal"
 - beginString: "\\b0[0-7]+\\b"
   regularExpression: true
-- ignoreCase: true
-  beginString: "\\b0x[0-9a-f]+\\b"
+  description: "octal"
+- beginString: "\\b0x[0-9a-f]+\\b"
+  ignoreCase: true
   regularExpression: true
+  description: "hexadecimal"
 commands:
 - beginString: "(?<=slave) +alias\\b"
   regularExpression: true

@@ -2,10 +2,10 @@ extensions:
 - keyString: "rest"
 - keyString: "rst"
 metadata:
-  version: "1.1.1"
+  version: "1.1.2"
   author: "1024jp"
   license: "Same as CotEditor"
-  lastModified: "2015-11-29"
+  lastModified: "2015-12-25"
   distributionURL: "http://coteditor.com"
 keywords:
 - beginString: "(?<![\\\\*)\\]'\"’‘”“`}>›»]|\\w)\\*[^* \\t\\n)\\]'\"’‘”“`}>›»](?:(?!\\n\\n)(?:[^*]|\\n))*?(?<![\\\\
@@ -130,6 +130,8 @@ completions: []
 outlineMenu:
 - beginString: "(?<![-=`:.'\"~^_*+#]{2}\\n)^(.+)(?=\\n([-=`:.'\"~^_*+#])\\2{2,}$)"
   keyString: "$1"
+  description: "section"
 - beginString: "(?<=[-=`:.'\"~^_*+#]{3}\\n)(.+)(?=\\n([-=`:.'\"~^_*+#])\\2{2,}+$)"
   keyString: "$1"
+  description: "section"
   bold: true

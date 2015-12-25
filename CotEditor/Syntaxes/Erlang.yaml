@@ -1,16 +1,17 @@
 extensions:
 - keyString: "erl"
 filenames: []
+metadata:
+  version: "1.0.1"
+  author: "1024jp"
+  lastModified: "2015-12-25"
+  license: "Same as CotEditor"
+  distributionURL: "http://coteditor.com"
 outlineMenu:
 - beginString: "^([\\t ]*)(\\w+)\\s*\\(.*\\)\\s+->"
   keyString: "$1$2"
+  description: "function"
 comments: []
-metadata:
-  version: "1.0"
-  author: "1024jp"
-  lastModified: "2015-01-10"
-  license: "Same as CotEditor"
-  distributionURL: "http://coteditor.com"
 numbers:
 - beginString: "\\b(\\d{1,2}#)?\\d+\\b"
   regularExpression: true

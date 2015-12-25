@@ -1,30 +1,46 @@
 extensions:
 - keyString: "swift"
+metadata:
+  author: "1024jp"
+  distributionURL: "http://coteditor.com"
+  version: "2.0.1"
+  description: "Based on Swift 2.0."
+  license: "Same as CotEditor"
+  lastModified: "2015-12-25"
 outlineMenu:
 - beginString: "//[ \\t]*(MARK:|TODO:|FIXME)[ \\t](.+)"
   keyString: "$2"
+  description: "MARK/TODO/FIXME"
   bold: true
 - beginString: "^([ \\t]*)(@IBAction )?(override )?((?:public|internal|private)
     )?(class )?func[ \\t]*(\\w*)\\((.*)\\)"
   keyString: "$1$2$3$4$5func $6($7)"
+  description: "function"
 - beginString: "^([ \\t]*)(final )?class[ \\t]+(\\w+)(?=[\\s:][^\\w])"
   keyString: "$1$2class $3"
+  description: "class"
   bold: true
 - beginString: "^([ \\t]*)(override )?(class )?var[ \\t]*(\\w*)(?=[ \\t]*:[ \\t]*\\w*\\s*\\{)"
   keyString: "$1$2$3var $4"
+  description: "var"
 - beginString: "^([ \\t]*)(override )?init[\\t ]*\\((.*)\\)"
   keyString: "$1$2init($3)"
+  description: "initializer"
 - beginString: "^([ \\t]*)enum[ \\t]+(\\w+)"
   keyString: "$1enum $2"
+  description: "enum"
 - beginString: "^([ \\t]*)extension[ \\t]+(\\w+)"
   keyString: "$1extension $2"
+  description: "extension"
   bold: true
   italic: true
 - beginString: "^([ \\t]*)protocol[ \\t]+(\\w+)"
   keyString: "$1protocol $2"
+  description: "protocol"
   italic: true
 - beginString: "^([ \\t]*)struct[ \\t]+(\\w+)"
   keyString: "$1struct $2"
+  description: "struct"
 completions: []
 attributes:
 - beginString: "@autoclosure"
@@ -50,13 +66,6 @@ attributes:
 - beginString: "@UIApplicationMain"
 - beginString: "@warn_unqualified_access"
 - beginString: "@warn_unused_result"
-metadata:
-  author: "1024jp"
-  distributionURL: "http://coteditor.com"
-  version: "2.0"
-  description: "Based on Swift 2.0."
-  license: "Same as CotEditor"
-  lastModified: "2015-09-23"
 characters:
 - beginString: "'"
   endString: "'"

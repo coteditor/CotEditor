@@ -2,26 +2,30 @@ extensions:
 - keyString: "scala"
 interpreters:
 - keyString: "scala"
-outlineMenu:
-- beginString: "^([\\t ]*)(?:(final|protected|private|override)\\s+)*(def)\\s+(\\w+(?:\\(.*\\))?)"
-  keyString: "$1$4"
-- beginString: "^([\\t ]*)(?:(final|protected|private|sealed|case)\\s+)*(class|object|trait)\\s+(\\w+)"
-  keyString: "$1$3 $4"
-  bold: true
-- beginString: "^([\\t ]*)(?:abstract\\s+)(?:(final|protected|private)\\s+)*(def)\\s+(\\w+(?:\\(.*\\))?)"
-  keyString: "$1$4"
-  italic: true
-- beginString: "^([\\t ]*)(?:abstract\\s+)(?:(final|protected|private|sealed|case)\\s+)*(class|object|trait)\\s+(\\w+)"
-  keyString: "$1$3 $4"
-  bold: true
-  italic: true
-completions: []
 metadata:
   author: "1024jp"
   distributionURL: "http://coteditor.com"
-  version: "1.2"
+  version: "1.2.1"
   license: "Same as CotEditor"
-  lastModified: "2015-08-13"
+  lastModified: "2015-12-25"
+outlineMenu:
+- beginString: "^([\\t ]*)(?:(final|protected|private|override)\\s+)*(def)\\s+(\\w+(?:\\(.*\\))?)"
+  keyString: "$1$4"
+  description: "method"
+- beginString: "^([\\t ]*)(?:(final|protected|private|sealed|case)\\s+)*(class|object|trait)\\s+(\\w+)"
+  keyString: "$1$3 $4"
+  description: "class/obj/trait"
+  bold: true
+- beginString: "^([\\t ]*)(?:abstract\\s+)(?:(final|protected|private)\\s+)*(def)\\s+(\\w+(?:\\(.*\\))?)"
+  keyString: "$1$4"
+  description: "abstract method"
+  italic: true
+- beginString: "^([\\t ]*)(?:abstract\\s+)(?:(final|protected|private|sealed|case)\\s+)*(class|object|trait)\\s+(\\w+)"
+  keyString: "$1$3 $4"
+  description: "abstract class/obj/trait"
+  bold: true
+  italic: true
+completions: []
 characters:
 - beginString: "'"
   endString: "'"
@@ -46,12 +50,15 @@ numbers:
 - beginString: "((?<!\\w)|[-+])(?:\\.\\d+|\\d+\\.|\\d+\\.\\d+|\\d+)(e[+-]?\\d+)?[fd]?"
   ignoreCase: true
   regularExpression: true
+  description: "float"
 - beginString: "\\b0x[0-9a-f]+l?\\b"
   ignoreCase: true
   regularExpression: true
+  description: "hexadecimal"
 - beginString: "\\b\\d+l?\\b"
   ignoreCase: true
   regularExpression: true
+  description: "integer"
 strings:
 - beginString: "\""
   endString: "\""

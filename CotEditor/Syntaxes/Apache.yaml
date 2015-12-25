@@ -2,22 +2,26 @@ extensions:
 - keyString: "conf"
 filenames:
 - keyString: ".htaccess"
+metadata:
+  version: "2.0.1"
+  author: "1024jp"
+  license: "Same as CotEditor"
+  lastModified: "2015-12-25"
+  distributionURL: "http://coteditor.com"
 outlineMenu:
 - beginString: "^([\\t ]*)<Directory(?:Match)?[\\t ]+\"?(.*?)\"?>"
   keyString: "$1Directory:  $2"
+  description: "directory"
 - beginString: "^([\\t ]*)<Files(?:Match)?[\\t ]+\"?(.*?)\"?>"
   keyString: "$1Files:  $2"
+  description: "files"
 - beginString: "^([\\t ]*)<Location(?:Match)[\\t ]+\"?(.*?)\"?>"
   keyString: "$1Location:  $2"
+  description: "location"
 - beginString: "^([\\t ]*)<VirtualHost[\\t ]+\"?(.*?)\"?>"
   keyString: "$1VirtualHost:  $2"
+  description: "virtualHost"
 comments: []
-metadata:
-  version: "2.0"
-  author: "1024jp"
-  license: "Same as CotEditor"
-  lastModified: "2014-11-07"
-  distributionURL: "http://coteditor.com"
 numbers: []
 commands:
 - beginString: "^\\s*AcceptFilter\\s"

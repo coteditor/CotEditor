@@ -1,15 +1,24 @@
 extensions:
 - keyString: "go"
 filenames: []
+metadata:
+  author: "1024jp"
+  distributionURL: "http://coteditor.com"
+  version: "1.0.1"
+  license: "Same as CotEditor"
+  lastModified: "2015-12-25"
 completions: []
 outlineMenu:
 - beginString: "([\\t ]*)type[\\t ]+(\\w+)[\\t ]+interface"
+  description: "interface"
   keyString: "$1interface $2"
   italic: true
 - beginString: "([\\t ]*)type[\\t ]+(\\w+)[\\t ]+struct"
+  description: "struct"
   keyString: "$1struct $2"
   bold: true
 - beginString: "[\\t ]*func +\\w+\\(.*?\\)"
+  description: "function"
 commands:
 - beginString: "append"
 - beginString: "cap"
@@ -27,12 +36,6 @@ commands:
 - beginString: "real"
 - beginString: "recover"
 attributes: []
-metadata:
-  author: "1024jp"
-  distributionURL: "http://coteditor.com"
-  version: "1.0"
-  license: "Same as CotEditor"
-  lastModified: "2014-09-24"
 characters:
 - beginString: "'"
   endString: "'"

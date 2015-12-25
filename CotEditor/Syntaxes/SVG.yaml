@@ -1,11 +1,20 @@
 extensions:
 - keyString: "svg"
+metadata:
+  author: "1024jp"
+  distributionURL: "http://coteditor.com"
+  version: "1.2.1"
+  description: "Based on SVG 1.1 (Second Edition)"
+  license: "Same as CotEditor"
+  lastModified: "2015-12-25"
 outlineMenu:
 - beginString: " id=\"(.+?)\""
+  description: "id"
   ignoreCase: true
   keyString: "#$1"
   italic: true
 - beginString: "<title[^>]*>([^<]*)</title[^>]*>"
+  description: "title"
   ignoreCase: true
   keyString: "$1"
   bold: true
@@ -858,13 +867,6 @@ attributes:
   regularExpression: true
 - beginString: "\\szoomAndPan\\b(?=[^<>]*>)"
   regularExpression: true
-metadata:
-  author: "1024jp"
-  distributionURL: "http://coteditor.com"
-  version: "1.2"
-  description: "Based on SVG 1.1 (Second Edition)"
-  license: "Same as CotEditor"
-  lastModified: "2014-09-24"
 characters:
 - beginString: "&#[0-9]+;"
   regularExpression: true

@@ -2,23 +2,25 @@ extensions:
 - keyString: "dart"
 interpreters:
 - keyString: "dart"
+metadata:
+  author: "1024jp"
+  distributionURL: "http://coteditor.com"
+  version: "1.2.1"
+  license: "Same as CotEditor"
+  lastModified: "2015-12-25"
 outlineMenu:
 - beginString: "^([\\t ]*)([a-zA-Z]+) (\\w+[\\t ]*\\(.*\\))\\s\\{"
   keyString: "$1$2 $3"
+  description: "function"
 - beginString: "^([\\t ]*)class (.+)\\s\\{"
   keyString: "$1class $2"
+  description: "class"
   bold: true
 completions: []
 commands: []
 attributes:
 - beginString: "@\\w+"
   regularExpression: true
-metadata:
-  author: "1024jp"
-  distributionURL: "http://coteditor.com"
-  version: "1.2"
-  license: "Same as CotEditor"
-  lastModified: "2015-08-13"
 characters: []
 comments: []
 values:
@@ -32,9 +34,11 @@ numbers:
 - beginString: "((?<!\\w)|[-+])(?:\\.\\d+|\\d+\\.|\\d+\\.\\d+|\\d+)(e[+-]?\\d+)?[jl]?"
   ignoreCase: true
   regularExpression: true
+  description: "decimal"
 - beginString: "\\b-?(0x)[0-9a-f]+\\b"
   ignoreCase: true
   regularExpression: true
+  description: "hexadecimal"
 strings:
 - beginString: "\""
   endString: "\""

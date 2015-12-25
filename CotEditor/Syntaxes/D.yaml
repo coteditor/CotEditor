@@ -1,11 +1,21 @@
 extensions:
 - keyString: "d"
 filenames: []
+interpreters:
+- keyString: "rdmd"
+metadata:
+  version: "1.0.0"
+  author: "1024jp"
+  license: "Same as CotEditor"
+  lastModified: "2015-10-15"
+  distributionURL: "http://coteditor.com"
 outlineMenu:
 - ignoreCase: true
   beginString: "^([\\t ]*)((const|immutable|shared|static) )?struct +([a-z][a-z0-9_]*)"
+  description: "struct"
   keyString: "$1$2struct $4"
 - beginString: "^([\\t ]*)((scope|final) )?class +([a-z][a-z0-9_]*)"
+  description: "class"
   bold: true
   ignoreCase: true
   keyString: "$1$2class $4"
@@ -15,22 +25,19 @@ comments:
 characters:
 - beginString: "'"
   endString: "'"
-metadata:
-  version: "1.0.0"
-  author: "1024jp"
-  license: "Same as CotEditor"
-  lastModified: "2015-10-15"
-  distributionURL: "http://coteditor.com"
 numbers:
 - beginString: "\\b0x[0-9a-f][0-9a-f_]*(\\.[0-9a-f][0-9a-f_]*)?(p[-+]?[0-9]+)?[flu]{0,2}\\b"
   ignoreCase: true
   regularExpression: true
+  description: "hexadecimal"
 - beginString: "\\b[0-9][0-9_]*(\\.[0-9][0-9_]*)?(e[-+]?[0-9][0-9_]*)?[fliu]{0,2}\\b"
   ignoreCase: true
   regularExpression: true
+  description: "float"
 - beginString: "\\b[0-9][0-9_]*[lu]{0,2}\\b"
   ignoreCase: true
   regularExpression: true
+  description: "integer"
 commands:
 - beginString: "_d_array_bounds"
 - beginString: "_d_arraybounds"
@@ -838,8 +845,6 @@ commentDelimiters:
   endDelimiter: "*/"
   beginDelimiter: "/*"
   inlineDelimiter: "//"
-interpreters:
-- keyString: "rdmd"
 types:
 - beginString: "alias"
 - beginString: "auto"

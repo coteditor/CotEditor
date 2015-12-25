@@ -1,19 +1,21 @@
 extensions:
 - keyString: "applescript"
 filenames: []
-outlineMenu:
-- beginString: "^([\\t ]*)on[\\t ]+(\\S+\\(.*\\))"
-  keyString: "$1on $2"
-- beginString: "^([\\t ]*)script[\\t ]+(\\S+)"
-  keyString: "$1script $2"
-  bold: true
-comments: []
 metadata:
   distributionURL: "http://coteditor.com"
   author: "1024jp"
   license: "Same as CotEditor"
-  lastModified: "2014-10-22"
-  version: "1.0"
+  lastModified: "2015-12-25"
+  version: "1.0.1"
+outlineMenu:
+- beginString: "^([\\t ]*)on[\\t ]+(\\S+\\(.*\\))"
+  description: "handler"
+  keyString: "$1on $2"
+- beginString: "^([\\t ]*)script[\\t ]+(\\S+)"
+  description: "script"
+  keyString: "$1script $2"
+  bold: true
+comments: []
 numbers:
 - beginString: "\\b\\d+(\\.\\d*)?\\b"
   regularExpression: true

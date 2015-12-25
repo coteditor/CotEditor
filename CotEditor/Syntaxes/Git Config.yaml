@@ -5,8 +5,8 @@ filenames:
 - keyString: "gitconfig"
 interpreters: []
 metadata:
-  version: "1.0.0"
-  lastModified: "2015-12-01"
+  version: "1.0.1"
+  lastModified: "2015-12-25"
   distributionURL: "http://coteditor.com"
   author: "1024jp"
   license: "Same as CotEditor"
@@ -40,5 +40,6 @@ commentDelimiters:
 outlineMenu:
 - beginString: "^\\[(.+)\\]"
   keyString: "$1"
+  description: "section"
   bold: true
 completions: []

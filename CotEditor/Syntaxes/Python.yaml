@@ -8,8 +8,8 @@ interpreters:
 - keyString: "python2"
 - keyString: "python3"
 metadata:
-  version: "2.3.0"
-  lastModified: "2015-11-25"
+  version: "2.3.1"
+  lastModified: "2015-12-25"
   distributionURL: "http://coteditor.com"
   author: "nanasiya"
   license: "Same as CotEditor"
@@ -17,9 +17,11 @@ metadata:
 outlineMenu:
 - beginString: "^([\\t ]*)class[\\t ]+(.+?):?[\\t]*$"
   keyString: "$1$2"
+  description: "class"
   bold: true
 - beginString: "^([\\t ]*)def[\\t ]+(.+?):?[\\t]*$"
   keyString: "$1$2"
+  description: "function"
 keywords:
 - beginString: "and"
 - beginString: "as"
@@ -437,15 +439,19 @@ numbers:
 - beginString: "((?<!\\w)|[-+])(?:\\.\\d+|\\d+\\.|\\d+\\.\\d+|\\d+)(e[+-]?\\d+)?[jl]?"
   ignoreCase: true
   regularExpression: true
+  description: "decimal"
 - beginString: "\\b0b[01]+l?"
   ignoreCase: true
   regularExpression: true
+  description: "binary"
 - beginString: "\\b0o[0-7]+l?"
   ignoreCase: true
   regularExpression: true
+  description: "octal"
 - beginString: "\\b0x[0-9a-f]+l?"
   ignoreCase: true
   regularExpression: true
+  description: "hexadecimal"
 strings:
 - beginString: "\""
   endString: "\""

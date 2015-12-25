@@ -1,11 +1,19 @@
 extensions:
 - keyString: "yaml"
 - keyString: "yml"
+metadata:
+  author: "1024jp"
+  distributionURL: "http://coteditor.com"
+  version: "1.1.1"
+  license: "Same as CotEditor"
+  lastModified: "2015-12-25"
 outlineMenu:
 - beginString: "^([^ -].*?):"
   keyString: "$1:"
+  description: "top level element"
 - beginString: "^---"
   keyString: "-"
+  description: "block"
 completions: []
 commands:
 - beginString: "%TAG"
@@ -16,12 +24,6 @@ commands:
 - beginString: "^\\.\\.\\.$"
   regularExpression: true
 attributes: []
-metadata:
-  author: "1024jp"
-  distributionURL: "http://coteditor.com"
-  version: "1.1"
-  license: "Same as CotEditor"
-  lastModified: "2014-09-24"
 characters:
 - beginString: "\\b\\d{4}-\\d{2}-\\d{2}( \\d{2}:\\d{2}:\\d{2}( [-+]\\d{2}:\\d{2})?)?\\b"
   regularExpression: true
