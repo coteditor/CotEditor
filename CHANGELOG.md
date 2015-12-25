@@ -24,6 +24,7 @@ develop
 - Improve drawing of “Other” invisible characters.
 - Improve behavior on Replace/Replace All actions.
 - Tweak preferences layout.
+- Tweak Chinese localization.
 
 
 ### Fixes
