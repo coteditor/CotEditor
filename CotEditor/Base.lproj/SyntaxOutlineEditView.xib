@@ -66,7 +66,7 @@
                                             </tableCellView>
                                         </prototypeCellViews>
                                     </tableColumn>
-                                    <tableColumn width="353" minWidth="40" maxWidth="1000" id="vRg-cd-Ib2">
+                                    <tableColumn width="253" minWidth="40" maxWidth="1000" id="vRg-cd-Ib2">
                                         <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Regular Expression String">
                                             <font key="font" metaFont="smallSystem"/>
                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -80,11 +80,11 @@
                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                         <prototypeCellViews>
                                             <tableCellView id="MDh-Ha-Hyc">
-                                                <rect key="frame" x="31" y="1" width="353" height="17"/>
+                                                <rect key="frame" x="31" y="1" width="253" height="17"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="8NB-AU-ecw">
-                                                        <rect key="frame" x="0.0" y="0.0" width="353" height="17"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="253" height="17"/>
                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="regular expression string" usesSingleLineMode="YES" id="RCz-qR-02w">
                                                             <font key="font" metaFont="system"/>
                                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -103,6 +103,47 @@
                                                 </constraints>
                                                 <connections>
                                                     <outlet property="textField" destination="8NB-AU-ecw" id="aJe-Ey-y7x"/>
+                                                </connections>
+                                            </tableCellView>
+                                        </prototypeCellViews>
+                                    </tableColumn>
+                                    <tableColumn identifier="" width="97" minWidth="10" maxWidth="1000" id="6hB-wJ-niI">
+                                        <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Description">
+                                            <font key="font" metaFont="smallSystem"/>
+                                            <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </tableHeaderCell>
+                                        <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" alignment="left" title="Text Cell" id="Jyv-nG-ZJJ">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                        <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
+                                        <prototypeCellViews>
+                                            <tableCellView id="gL1-K8-zYn">
+                                                <rect key="frame" x="287" y="1" width="97" height="17"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                <subviews>
+                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="e1M-tw-2hv">
+                                                        <rect key="frame" x="0.0" y="0.0" width="97" height="17"/>
+                                                        <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="note" usesSingleLineMode="YES" id="NIK-yi-b5J">
+                                                            <font key="font" metaFont="system"/>
+                                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                        </textFieldCell>
+                                                        <connections>
+                                                            <binding destination="gL1-K8-zYn" name="value" keyPath="objectValue.description" id="SUr-QK-tji"/>
+                                                        </connections>
+                                                    </textField>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstItem="e1M-tw-2hv" firstAttribute="top" secondItem="gL1-K8-zYn" secondAttribute="top" id="CSA-By-AVn"/>
+                                                    <constraint firstAttribute="trailing" secondItem="e1M-tw-2hv" secondAttribute="trailing" constant="2" id="RMO-NH-19F"/>
+                                                    <constraint firstAttribute="bottom" secondItem="e1M-tw-2hv" secondAttribute="bottom" id="UKk-3T-Yx6"/>
+                                                    <constraint firstItem="e1M-tw-2hv" firstAttribute="leading" secondItem="gL1-K8-zYn" secondAttribute="leading" constant="2" id="lVc-A6-KUt"/>
+                                                </constraints>
+                                                <connections>
+                                                    <outlet property="textField" destination="e1M-tw-2hv" id="9ki-g1-z9s"/>
                                                 </connections>
                                             </tableCellView>
                                         </prototypeCellViews>
@@ -267,6 +308,7 @@
                 <string>bold</string>
                 <string>underline</string>
                 <string>italic</string>
+                <string>description</string>
             </declaredKeys>
             <connections>
                 <binding destination="-2" name="contentArray" keyPath="representedObject.outlineMenu" id="i8s-Rl-rXC"/>
