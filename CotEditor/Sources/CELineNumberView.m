@@ -40,7 +40,7 @@ static const CGFloat  kLineNumberPadding = 3.0;
 
 @interface CELineNumberView ()
 
-@property (nonatomic, nullable) NSTimer *draggingTimer;
+@property (nonatomic, nullable, weak) NSTimer *draggingTimer;
 
 @end
 

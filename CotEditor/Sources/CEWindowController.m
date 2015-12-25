@@ -51,7 +51,7 @@ typedef NS_ENUM(NSUInteger, CESidebarTag) {
 
 @property (nonatomic) CESidebarTag selectedSidebarTag;
 @property (nonatomic) BOOL needsRecolorWithBecomeKey;  // flag to update sytnax highlight when window becomes key window
-@property (nonatomic, nullable) NSTimer *editorInfoUpdateTimer;
+@property (nonatomic, nullable, weak) NSTimer *editorInfoUpdateTimer;
 @property (nonatomic) CGFloat sidebarWidth;
 
 
@@ -109,7 +109,7 @@ static NSTimeInterval infoUpdateInterval;
     //     and may crash when closing split fullscreen window on El Capitan beta 5 (2015-07)
     [_sidebarSplitView setDelegate:nil];
     
-    [self stopEditorInfoUpdateTimer];
+    [_editorInfoUpdateTimer invalidate];
 }
 
 
@@ -307,7 +307,7 @@ static NSTimeInterval infoUpdateInterval;
 - (void)setupEditorInfoUpdateTimer
 // ------------------------------------------------------
 {
-    if ([self editorInfoUpdateTimer]) {
+    if ([[self editorInfoUpdateTimer] isValid]) {
         [[self editorInfoUpdateTimer] setFireDate:[NSDate dateWithTimeIntervalSinceNow:infoUpdateInterval]];
     } else {
         [self setEditorInfoUpdateTimer:[NSTimer scheduledTimerWithTimeInterval:infoUpdateInterval
@@ -626,20 +626,8 @@ static NSTimeInterval infoUpdateInterval;
 - (void)updateEditorInfoWithTimer:(nonnull NSTimer *)timer
 // ------------------------------------------------------
 {
-    [self stopEditorInfoUpdateTimer];
+    [[self editorInfoUpdateTimer] invalidate];
     [self updateEditorInfoIfNeeded];
-}
-
-
-// ------------------------------------------------------
-/// stop editor info update timer
-- (void)stopEditorInfoUpdateTimer
-// ------------------------------------------------------
-{
-    if ([self editorInfoUpdateTimer]) {
-        [[self editorInfoUpdateTimer] invalidate];
-        [self setEditorInfoUpdateTimer:nil];
-    }
 }
 
 @end

@@ -47,8 +47,8 @@
 
 @interface CEEditorWrapper ()
 
-@property (nonatomic, nullable) NSTimer *coloringTimer;
-@property (nonatomic, nullable) NSTimer *outlineMenuTimer;
+@property (nonatomic, nullable, weak) NSTimer *coloringTimer;
+@property (nonatomic, nullable, weak) NSTimer *outlineMenuTimer;
 
 @property (nonatomic, nullable) IBOutlet CESplitViewController *splitViewController;
 
@@ -364,7 +364,7 @@
     [[[self windowController] toolbarController] toggleItemWithTag:CEToolbarShowNavigationBarItemTag
                                                              setOn:showsNavigationBar];
     
-    if (showsNavigationBar && ![self outlineMenuTimer]) {
+    if (showsNavigationBar && ![[self outlineMenuTimer] isValid]) {
         [self invalidateOutlineMenu];
     }
 }
@@ -874,7 +874,7 @@
 - (void)invalidateSyntaxColoring
 // ------------------------------------------------------
 {
-    [self stopColoringTimer];
+    [[self coloringTimer] invalidate];
     
     [[self syntaxParser] highlightWholeStringInTextStorage:[self textStorage] completionHandler:nil];
 }
@@ -885,7 +885,7 @@
 - (void)invalidateOutlineMenu
 // ------------------------------------------------------
 {
-    [self stopOutlineMenuTimer];
+    [[self outlineMenuTimer] invalidate];
     
     NSString *wholeString = [[self textStorage] string] ? : @"";
     
@@ -926,8 +926,8 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     BOOL delay = [defaults boolForKey:CEDefaultDelayColoringKey];
     
-    if ([self coloringTimer]) {
-        NSTimeInterval interval = (delay ? [defaults doubleForKey:CEDefaultSecondColoringDelayKey] : [defaults doubleForKey:CEDefaultBasicColoringDelayKey]);
+    if ([[self coloringTimer] isValid]) {
+        NSTimeInterval interval = delay ? [defaults doubleForKey:CEDefaultSecondColoringDelayKey] : [defaults doubleForKey:CEDefaultBasicColoringDelayKey];
         [[self coloringTimer] setFireDate:[NSDate dateWithTimeIntervalSinceNow:interval]];
         
     } else {
@@ -947,7 +947,7 @@
 {
     // アウトラインメニュー項目更新
     NSTimeInterval outlineMenuInterval = [[NSUserDefaults standardUserDefaults] doubleForKey:CEDefaultOutlineMenuIntervalKey];
-    if ([self outlineMenuTimer]) {
+    if ([[self outlineMenuTimer] isValid]) {
         [[self outlineMenuTimer] setFireDate:[NSDate dateWithTimeIntervalSinceNow:outlineMenuInterval]];
     } else {
         [self setOutlineMenuTimer:[NSTimer scheduledTimerWithTimeInterval:outlineMenuInterval
@@ -977,7 +977,7 @@
 - (void)doColoringNow
 // ------------------------------------------------------
 {
-    if ([self coloringTimer]) { return; }
+    if ([[self coloringTimer] isValid]) { return; }
     
     NSTextView *textView = [self focusedTextView];
     NSRange glyphRange = [[textView layoutManager] glyphRangeForBoundingRect:[textView visibleRect]
@@ -1006,20 +1006,8 @@
 - (void)doColoringWithTimer:(nonnull NSTimer *)timer
 // ------------------------------------------------------
 {
-    [self stopColoringTimer];
+    [[self coloringTimer] invalidate];
     [self doColoringNow];
-}
-
-
-// ------------------------------------------------------
-/// カラーリング更新タイマーを停止
-- (void)stopColoringTimer
-// ------------------------------------------------------
-{
-    if ([self coloringTimer]) {
-        [[self coloringTimer] invalidate];
-        [self setColoringTimer:nil];
-    }
 }
 
 
@@ -1028,19 +1016,7 @@
 - (void)updateOutlineMenuWithTimer:(nonnull NSTimer *)timer
 // ------------------------------------------------------
 {
-    [self invalidateOutlineMenu]; // （invalidateOutlineMenu 内で stopOutlineMenuTimer を実行している）
-}
-
-
-// ------------------------------------------------------
-/// アウトラインメニュー更新タイマーを停止
-- (void)stopOutlineMenuTimer
-// ------------------------------------------------------
-{
-    if ([self outlineMenuTimer]) {
-        [[self outlineMenuTimer] invalidate];
-        [self setOutlineMenuTimer:nil];
-    }
+    [self invalidateOutlineMenu]; // (The outlineMenuTimer will be invalidated in this invalidateOutlineMenu method.)
 }
 
 @end

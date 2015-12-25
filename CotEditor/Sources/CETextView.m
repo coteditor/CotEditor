@@ -58,7 +58,7 @@ NSString *_Nonnull const CEVisibleRectKey = @"visibleRect";
 
 @interface CETextView ()
 
-@property (nonatomic) NSTimer *completionTimer;
+@property (nonatomic, weak) NSTimer *completionTimer;
 @property (nonatomic, copy) NSString *particalCompletionWord;  // ユーザが実際に入力した補完の元になる文字列
 
 @property (nonatomic) NSColor *highlightLineColor;  // カレント行ハイライト色
@@ -182,7 +182,8 @@ static NSPoint kTextContainerOrigin;
         [[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:key];
     }
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [self stopCompletionTimer];
+    
+    [_completionTimer invalidate];
 }
 
 
@@ -1661,7 +1662,7 @@ static NSPoint kTextContainerOrigin;
     NSEvent *event = [[self window] currentEvent];
     BOOL didComplete = NO;
     
-    [self stopCompletionTimer];
+    [[self completionTimer] invalidate];
     
     // 補完の元になる文字列を保存する
     if (![self particalCompletionWord]) {
@@ -1720,7 +1721,7 @@ static NSPoint kTextContainerOrigin;
 - (void)completeAfterDelay:(NSTimeInterval)delay
 // ------------------------------------------------------
 {
-    if ([self completionTimer]) {
+    if ([[self completionTimer] isValid]) {
         [[self completionTimer] setFireDate:[NSDate dateWithTimeIntervalSinceNow:delay]];
     } else {
         [self setCompletionTimer:[NSTimer scheduledTimerWithTimeInterval:delay
@@ -1733,19 +1734,6 @@ static NSPoint kTextContainerOrigin;
 
 
 
-#pragma mark Semi-Private Methods
-
-// ------------------------------------------------------
-/// 入力補完タイマーを停止
-- (void)stopCompletionTimer
-// ------------------------------------------------------
-{
-    [[self completionTimer] invalidate];
-    [self setCompletionTimer:nil];
-}
-
-
-
 #pragma mark Private Methods
 
 // ------------------------------------------------------
@@ -1753,7 +1741,7 @@ static NSPoint kTextContainerOrigin;
 - (void)completionWithTimer:(nonnull NSTimer *)timer
 // ------------------------------------------------------
 {
-    [self stopCompletionTimer];
+    [[self completionTimer] invalidate];
     
     // abord if input is not specified (for Japanese input)
     if ([self hasMarkedText]) { return; }
