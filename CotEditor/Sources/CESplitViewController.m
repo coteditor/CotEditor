@@ -116,7 +116,7 @@
 {
     BOOL isEnabled = ([[[self view] subviews] count] > 1);
     
-    [self enumerateEditorViewsUsingBlock:^(CEEditorView *editorView) {
+    [self enumerateEditorViewsUsingBlock:^(CEEditorView * _Nonnull editorView) {
         [editorView updateCloseSplitViewButton:isEnabled];
     }];
 }
@@ -217,7 +217,7 @@
 {
     BOOL isVertical = [[self splitView] isVertical];
     
-    [self enumerateEditorViewsUsingBlock:^(CEEditorView *editorView) {
+    [self enumerateEditorViewsUsingBlock:^(CEEditorView * _Nonnull editorView) {
         [[editorView navigationBarController] setSplitOrientationVertical:isVertical];
     }];
 }
