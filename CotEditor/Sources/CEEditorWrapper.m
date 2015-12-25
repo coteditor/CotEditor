@@ -777,9 +777,7 @@ static NSTimeInterval secondColoringDelay;
     [newEditorView setEditorWrapper:self];
     
     // instert new editorView just below the editorView that the pressed button belongs to or has focus
-    [[[self splitViewController] view] addSubview:newEditorView
-                                       positioned:NSWindowAbove
-                                       relativeTo:currentEditorView];
+    [[self splitViewController] addEditorView:newEditorView relativeTo:currentEditorView];
     
     // apply current status to the new editorView
     [self setupViewParamsOnInit:NO];
@@ -798,9 +796,6 @@ static NSTimeInterval secondColoringDelay;
     // adjust visible areas
     [[currentEditorView textView] centerSelectionInVisibleArea:self];
     [[newEditorView textView] centerSelectionInVisibleArea:self];
-    
-    // update split buttons state
-    [[self splitViewController] updateCloseSplitViewButton];
 }
 
 
@@ -839,10 +834,7 @@ static NSTimeInterval secondColoringDelay;
     }
     
     // close
-    [editorViewToClose removeFromSuperview];
-    
-    // update split buttons state
-    [[self splitViewController] updateCloseSplitViewButton];
+    [[self splitViewController] removeEditorView:editorViewToClose];
 }
 
 

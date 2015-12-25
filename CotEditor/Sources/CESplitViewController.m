@@ -110,15 +110,24 @@
 
 
 // ------------------------------------------------------
-/// テキストビュー分割削除ボタンの有効／無効を更新
-- (void)updateCloseSplitViewButton
+
+- (void)addEditorView:(nonnull CEEditorView *)editorView relativeTo:(nullable CEEditorView *)otherEditorView
 // ------------------------------------------------------
 {
-    BOOL isEnabled = ([[[self view] subviews] count] > 1);
+    [[self splitView] addSubview:editorView positioned:NSWindowAbove relativeTo:otherEditorView];
     
-    [self enumerateEditorViewsUsingBlock:^(CEEditorView * _Nonnull editorView) {
-        [editorView updateCloseSplitViewButton:isEnabled];
-    }];
+    [self updateCloseSplitViewButton];
+}
+
+
+// ------------------------------------------------------
+
+- (void)removeEditorView:(nonnull CEEditorView *)view
+// ------------------------------------------------------
+{
+    [view removeFromSuperview];
+    
+    [self updateCloseSplitViewButton];
 }
 
 
@@ -219,6 +228,19 @@
     
     [self enumerateEditorViewsUsingBlock:^(CEEditorView * _Nonnull editorView) {
         [[editorView navigationBarController] setSplitOrientationVertical:isVertical];
+    }];
+}
+
+
+// ------------------------------------------------------
+/// テキストビュー分割削除ボタンの有効／無効を更新
+- (void)updateCloseSplitViewButton
+// ------------------------------------------------------
+{
+    BOOL isEnabled = ([[[self view] subviews] count] > 1);
+    
+    [self enumerateEditorViewsUsingBlock:^(CEEditorView * _Nonnull editorView) {
+        [editorView updateCloseSplitViewButton:isEnabled];
     }];
 }
 
