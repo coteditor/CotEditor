@@ -207,7 +207,7 @@
                                                /* -------- hidden settings -------- */
                                                CEDefaultUsesTextFontForInvisiblesKey: @NO,
                                                CEDefaultLineNumFontNameKey: @"ArialNarrow",
-                                               CEDefaultBasicColoringDelayKey: @0.001f,
+                                               CEDefaultBasicColoringDelayKey: @0.01f,
                                                CEDefaultFirstColoringDelayKey: @0.3f, 
                                                CEDefaultSecondColoringDelayKey: @0.7f,
                                                CEDefaultAutoCompletionDelayKey: @0.25,
