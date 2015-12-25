@@ -1321,39 +1321,37 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 - (nullable NSString *)stringFromData:(nonnull NSData *)data encoding:(NSStringEncoding)encoding xattrEncoding:(NSStringEncoding)xattrEncoding usedEncoding:(nonnull NSStringEncoding *)usedEncoding error:(NSError * _Nullable __autoreleasing * _Nullable)outError
 //------------------------------------------------------
 {
-    NSString *string;
-    
     if (encoding != CEAutoDetectEncoding) {  // interpret with specific encoding
         *usedEncoding = encoding;
-        string = ([data length] == 0) ? @"" : [[NSString alloc] initWithData:data encoding:encoding];
+        return ([data length] > 0) ? [[NSString alloc] initWithData:data encoding:encoding] : @"";
+    }
+    
+    // Auto-Detection
+    NSString *string;
+    
+    // try interpreting with xattr encoding
+    if (xattrEncoding != NSNotFound) {
+        // just trust xattr encoding if content is empty
+        string = ([data length] > 0) ? [[NSString alloc] initWithData:data encoding:xattrEncoding] : @"";
         
-    } else {  // Auto-Detection
-        // try interpreting with xattr encoding
-        if (xattrEncoding != NSNotFound) {
-            // just trust xattr encoding if content is empty
-            string = ([data length] == 0) ? @"" : [[NSString alloc] initWithData:data encoding:xattrEncoding];
-            
-            if (string) {
-                *usedEncoding = xattrEncoding;
-            }
+        if (string) {
+            *usedEncoding = xattrEncoding;
+            return string;
         }
-        
-        if (!string) {
-            // detect encoding from data
-            string = [CEDocument stringFromData:data usedEncoding:usedEncoding error:outError];
-            
-            if (string) {
-                // "charset=" や "encoding=" を読んでみて適正なエンコーディングが得られたら、そちらを優先
-                NSStringEncoding scannedEncoding = [self scanEncodingDeclarationInString:string];
-                if (scannedEncoding != NSNotFound && scannedEncoding != encoding) {
-                    NSString *tmpString = [[NSString alloc] initWithData:data encoding:scannedEncoding];
-                    if (tmpString) {
-                        *usedEncoding = scannedEncoding;
-                        return tmpString;
-                    }
-                }
+    }
+    
+    // detect encoding from data
+    string = [CEDocument stringFromData:data usedEncoding:usedEncoding error:outError];
+    
+    if (string) {
+        // "charset=" や "encoding=" を読んでみて適正なエンコーディングが得られたら、そちらを優先
+        NSStringEncoding scannedEncoding = [self scanEncodingDeclarationInString:string];
+        if (scannedEncoding != NSNotFound && scannedEncoding != encoding) {
+            NSString *tmpString = [[NSString alloc] initWithData:data encoding:scannedEncoding];
+            if (tmpString) {
+                *usedEncoding = scannedEncoding;
+                return tmpString;
             }
-            
         }
     }
     
