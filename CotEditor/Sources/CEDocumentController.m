@@ -55,6 +55,18 @@
 #pragma mark Superclass Methods
 
 // ------------------------------------------------------
+/// ask if provide a window restoration
++ (void)restoreWindowWithIdentifier:(nonnull NSString *)identifier state:(nonnull NSCoder *)state completionHandler:(void (^)(NSWindow * _Nullable, NSError * _Nullable))completionHandler
+// ------------------------------------------------------
+{
+    // do not restore document windows if Shift key is pressed. 
+    if ([NSEvent modifierFlags] & NSShiftKeyMask) { return; }
+    
+    [super restoreWindowWithIdentifier:identifier state:state completionHandler:completionHandler];
+}
+
+
+// ------------------------------------------------------
 /// inizialize instance
 - (nonnull instancetype)init
 // ------------------------------------------------------
