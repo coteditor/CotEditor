@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9531"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <customObject id="-2" customClass="CENavigationBarController">
@@ -93,8 +92,7 @@
                 <progressIndicator horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="dmz-oV-5PB">
                     <rect key="frame" x="60" y="0.0" width="16" height="16"/>
                     <constraints>
-                        <constraint firstAttribute="width" secondItem="dmz-oV-5PB" secondAttribute="height" multiplier="1:1" id="IwX-Ed-6Q8"/>
-                        <constraint firstAttribute="width" constant="16" id="qxQ-FS-c4T"/>
+                        <constraint firstAttribute="height" constant="16" id="qxQ-FS-c4T"/>
                     </constraints>
                 </progressIndicator>
                 <textField hidden="YES" horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="aUE-uy-XLQ">
