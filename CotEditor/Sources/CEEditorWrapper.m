@@ -41,6 +41,7 @@
 #import "CENavigationBarController.h"
 #import "CESyntaxParser.h"
 #import "CEGoToSheetController.h"
+#import "NSString+CERange.h"
 #import "Constants.h"
 
 
@@ -1079,26 +1080,9 @@ static NSTimeInterval secondColoringDelay;
 - (NSRange)rangeWithLocation:(NSInteger)location length:(NSInteger)length
 // ------------------------------------------------------
 {
-    NSTextView *textView = [self focusedTextView];
-    NSUInteger wholeLength = [[textView string] length];
-    NSRange range = NSMakeRange(0, 0);
+    NSString *documentString = [[self string] stringByReplacingNewLineCharacersWith:[[self document] lineEnding]];
     
-    NSInteger newLocation = (location < 0) ? (wholeLength + location) : location;
-    NSInteger newLength = (length < 0) ? (wholeLength - newLocation + length) : length;
-    if ((newLocation < wholeLength) && ((newLocation + newLength) > wholeLength)) {
-        newLength = wholeLength - newLocation;
-    }
-    if ((length < 0) && (newLength < 0)) {
-        newLength = 0;
-    }
-    if ((newLocation < 0) || (newLength < 0)) {
-        return range;
-    }
-    range = NSMakeRange(newLocation, newLength);
-    if (wholeLength >= NSMaxRange(range)) {
-        return range;
-    }
-    return range;
+    return [documentString rangeForLocation:location length:length];
 }
 
 
@@ -1107,9 +1091,11 @@ static NSTimeInterval secondColoringDelay;
 - (void)setSelectedCharacterRangeWithLocation:(NSInteger)location length:(NSInteger)length
 // ------------------------------------------------------
 {
-    NSRange selectionRange = [self rangeWithLocation:location length:length];
+    NSRange range = [self rangeWithLocation:location length:length];
     
-    [self setSelectedRange:selectionRange];
+    if (range.location == NSNotFound) { return; }
+    
+    [self setSelectedRange:range];
 }
 
 
@@ -1118,58 +1104,14 @@ static NSTimeInterval secondColoringDelay;
 - (void)setSelectedLineRangeWithLocation:(NSInteger)location length:(NSInteger)length
 // ------------------------------------------------------
 {
+    // you can ignore actuall line ending type and directly comunicate with textView, as this handle just lines
     NSTextView *textView = [self focusedTextView];
-    NSUInteger wholeLength = [[textView string] length];
-    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"^"
-                                                                           options:NSRegularExpressionAnchorsMatchLines
-                                                                             error:nil];
-    NSArray<NSTextCheckingResult *> *matches = [regex matchesInString:[textView string] options:0
-                                                                range:NSMakeRange(0, wholeLength)];
-    NSInteger count = [matches count];
     
-    if (count == 0) { return; }
+    NSRange range = [[textView string] rangeForLineLocation:location length:length];
     
-    if (location == 0) {
-        [textView setSelectedRange:NSMakeRange(0, 0)];
-        
-    } else if (location > count) {
-        [textView setSelectedRange:NSMakeRange(wholeLength, 0)];
-        
-    } else {
-        NSInteger newLocation, newLength;
-        
-        newLocation = (location < 0) ? (count + location + 1) : location;
-        if (length < 0) {
-            newLength = count - newLocation + length + 1;
-        } else if (length == 0) {
-            newLength = 1;
-        } else {
-            newLength = length;
-        }
-        if ((newLocation < count) && ((newLocation + newLength - 1) > count)) {
-            newLength = count - newLocation + 1;
-        }
-        if ((length < 0) && (newLength < 0)) {
-            newLength = 1;
-        }
-        if ((newLocation <= 0) || (newLength <= 0)) { return; }
-        
-        NSTextCheckingResult *match = matches[(newLocation - 1)];
-        NSRange range = [match range];
-        NSRange tmpRange = range;
-        
-        for (NSInteger i = 0; i < newLength; i++) {
-            if (NSMaxRange(tmpRange) > wholeLength) {
-                break;
-            }
-            range = [[textView string] lineRangeForRange:tmpRange];
-            tmpRange.length = range.length + 1;
-        }
-        if (wholeLength < NSMaxRange(range)) {
-            range.length = wholeLength - range.location;
-        }
-        [textView setSelectedRange:range];
-    }
+    if (range.location == NSNotFound) { return; }
+    
+    [textView setSelectedRange:range];
 }
 
 
