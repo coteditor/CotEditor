@@ -37,9 +37,9 @@
 "d2p-GT-YXm.toolTip" = "改变文件编码";  /* Change file encoding */
 
 /* Class = "NSToolbarItem"; ObjectID = "6gO-UF-7QW"; */
-"6gO-UF-7QW.label" = "语法风格";  /* Syntax Style */
-"6gO-UF-7QW.paletteLabel" = "语法风格";  /* Syntax Style */
-"6gO-UF-7QW.toolTip" = "改变语法风格";  /* Change syntax style */
+"6gO-UF-7QW.label" = "语法样式";  /* Syntax Style */
+"6gO-UF-7QW.paletteLabel" = "语法样式";  /* Syntax Style */
+"6gO-UF-7QW.toolTip" = "改变语法样式";  /* Change syntax style */
 
 /* Class = "NSToolbarItem"; ObjectID = "tZT-2A-nIl"; */
 "tZT-2A-nIl.label" = "共享";  /* Share */

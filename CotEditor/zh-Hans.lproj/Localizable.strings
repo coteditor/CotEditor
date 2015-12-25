@@ -62,7 +62,7 @@
 // Migration from v1.x
 "Restoring menu key bindings settings…" = "正在恢复菜单按键绑定…";
 "Migrating coloring settings…" = "迁移颜色设置…";
-"Migrating user syntax styles…" = "迁移用户语法风格…";
+"Migrating user syntax styles…" = "迁移用户语法样式…";
 "Migration finished." = "迁移完成";
 "Close" = "关闭";
 
