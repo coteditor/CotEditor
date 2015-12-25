@@ -188,9 +188,9 @@ static NSTimeInterval secondColoringDelay;
         state = [[self focusedTextView] isAutoTabExpandEnabled] ? NSOnState : NSOffState;
         
     } else if ([menuItem action] == @selector(selectPrevItemOftimerMenu:)) {
-        return ([[self navigationBar] canSelectPrevItem]);
+        return ([[self navigationBarController] canSelectPrevItem]);
     } else if ([menuItem action] == @selector(selectNextItemOfOutlineMenu:)) {
-        return ([[self navigationBar] canSelectNextItem]);
+        return ([[self navigationBarController] canSelectNextItem]);
         
     } else if ([menuItem action] == @selector(closeSplitTextView:)) {
         return ([[[[self splitViewController] view] subviews] count] > 1);
@@ -560,7 +560,7 @@ static NSTimeInterval secondColoringDelay;
     NSUInteger indicatorThreshold = [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultShowColoringIndicatorTextLengthKey];
     if (indicatorThreshold > 0 && indicatorThreshold < [wholeString length]) {
         [[self splitViewController] enumerateEditorViewsUsingBlock:^(CEEditorView *editorView) {
-            [[editorView navigationBar] showOutlineIndicator];
+            [[editorView navigationBarController] showOutlineIndicator];
         }];
     }
     
@@ -574,7 +574,7 @@ static NSTimeInterval secondColoringDelay;
         
         dispatch_sync(dispatch_get_main_queue(), ^{
             [splitViewController enumerateEditorViewsUsingBlock:^(CEEditorView *editorView) {
-                [[editorView navigationBar] setOutlineItems:outlineItems];
+                [[editorView navigationBarController] setOutlineItems:outlineItems];
                 // （選択項目の更新も上記メソッド内で行われるので、updateOutlineMenuSelection は呼ぶ必要なし。 2008.05.16.）
             }];
         });
@@ -736,7 +736,7 @@ static NSTimeInterval secondColoringDelay;
 - (IBAction)selectPrevItemOfOutlineMenu:(nullable id)sender
 // ------------------------------------------------------
 {
-    [[self navigationBar] selectPrevItem:sender];
+    [[self navigationBarController] selectPrevItem:sender];
 }
 
 
@@ -745,7 +745,7 @@ static NSTimeInterval secondColoringDelay;
 - (IBAction)selectNextItemOfOutlineMenu:(nullable id)sender
 // ------------------------------------------------------
 {
-    [[self navigationBar] selectNextItem:sender];
+    [[self navigationBarController] selectNextItem:sender];
 }
 
 
@@ -942,10 +942,10 @@ static NSTimeInterval secondColoringDelay;
 
 // ------------------------------------------------------
 /// navigationBarを返す
-- (CENavigationBarController *)navigationBar
+- (CENavigationBarController *)navigationBarController
 // ------------------------------------------------------
 {
-    return [(CEEditorView *)[[self focusedTextView] delegate] navigationBar];
+    return [(CEEditorView *)[[self focusedTextView] delegate] navigationBarController];
 }
 
 

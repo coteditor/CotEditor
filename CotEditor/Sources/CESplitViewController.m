@@ -218,7 +218,7 @@
     BOOL isVertical = [[self splitView] isVertical];
     
     [self enumerateEditorViewsUsingBlock:^(CEEditorView *editorView) {
-        [[editorView navigationBar] setSplitOrientationVertical:isVertical];
+        [[editorView navigationBarController] setSplitOrientationVertical:isVertical];
     }];
 }
 

@@ -51,7 +51,7 @@
 
 // readonly
 @property (readwrite, nonnull, nonatomic) CETextView *textView;
-@property (readwrite, nonnull, nonatomic) CENavigationBarController *navigationBar;
+@property (readwrite, nonnull, nonatomic) CENavigationBarController *navigationBarController;
 
 @end
 
@@ -76,8 +76,8 @@
         _highlightsCurrentLine = [defaults boolForKey:CEDefaultHighlightCurrentLineKey];
 
         // navigationBar 生成
-        _navigationBar = [[CENavigationBarController alloc] init];
-        [self addSubview:[_navigationBar view]];
+        _navigationBarController = [[CENavigationBarController alloc] init];
+        [self addSubview:[_navigationBarController view]];
 
         // create scroller with line number view
         _scrollView = [[CEEditorScrollView alloc] initWithFrame:NSZeroRect];
@@ -90,9 +90,9 @@
         [self addSubview:_scrollView];
         
         // setup autolayout
-        NSDictionary<NSString *, __kindof NSView *> *views = @{@"navBar": [_navigationBar view],
+        NSDictionary<NSString *, __kindof NSView *> *views = @{@"navBar": [_navigationBarController view],
                                                       @"scrollView": _scrollView};
-        [[_navigationBar view] setTranslatesAutoresizingMaskIntoConstraints:NO];
+        [[_navigationBarController view] setTranslatesAutoresizingMaskIntoConstraints:NO];
         [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[navBar]|"
                                                                      options:0 metrics:nil views:views]];
         [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[scrollView]|"
@@ -116,7 +116,7 @@
         _textView = [[CETextView alloc] initWithFrame:NSZeroRect textContainer:container];
         [_textView setDelegate:self];
         
-        [_navigationBar setTextView:_textView];
+        [_navigationBarController setTextView:_textView];
         [_scrollView setDocumentView:_textView];
         
         // 置換の Undo/Redo 後に再カラーリングできるように Undo/Redo アクションをキャッチ
@@ -186,7 +186,7 @@
 - (void)setShowsNavigationBar:(BOOL)showsNavigationBar animate:(BOOL)performAnimation;
 // ------------------------------------------------------
 {
-    [[self navigationBar] setShown:showsNavigationBar animate:performAnimation];
+    [[self navigationBarController] setShown:showsNavigationBar animate:performAnimation];
 }
 
 
@@ -561,10 +561,10 @@
 // ------------------------------------------------------
 {
     if ([[self textView] needsUpdateOutlineMenuItemSelection]) {
-        [[self navigationBar] selectOutlineMenuItemWithRange:[[self textView] selectedRange]];
+        [[self navigationBarController] selectOutlineMenuItemWithRange:[[self textView] selectedRange]];
     } else {
         [[self textView] setNeedsUpdateOutlineMenuItemSelection:YES];
-        [[self navigationBar] updatePrevNextButtonEnabled];
+        [[self navigationBarController] updatePrevNextButtonEnabled];
     }
 }
 
@@ -574,7 +574,7 @@
 - (void)updateCloseSplitViewButton:(BOOL)isEnabled
 // ------------------------------------------------------
 {
-    [[self navigationBar] setCloseSplitButtonEnabled:isEnabled];
+    [[self navigationBarController] setCloseSplitButtonEnabled:isEnabled];
 }
 
 
