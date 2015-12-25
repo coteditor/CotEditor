@@ -13,6 +13,7 @@ develop
 ### Improvements
 
 - Display proposed character info in “Input Character in Unicode Hex” panel.
+- Avoid auto-closing panel the after input Unicode hex character.
 - Improve the installed syntax style list in preferences:
     - Add dot mark to syntax names in the list to represent the state if style is customized.
     - Enable restoring modified syntax style directly from the list without opening the style editor.

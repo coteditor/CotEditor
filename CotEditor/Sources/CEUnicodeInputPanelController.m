@@ -130,7 +130,6 @@ static const NSRegularExpression *unicodeRegex;
         [textView replaceCharactersInRange:[textView selectedRange] withString:character];
         [textView didChangeText];
         
-        [[self window] performClose:sender];
         [self setUnicode:@""];
         [self setCharacter:nil];
     } else {
