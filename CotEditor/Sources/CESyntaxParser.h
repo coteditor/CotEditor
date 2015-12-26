@@ -43,6 +43,9 @@
 /// designated initializer (return nil if no corresponded style dictionary can be found.)
 - (nullable instancetype)initWithStyleName:(nullable NSString *)styleName NS_DESIGNATED_INITIALIZER;
 
+/// check equality of the content
+- (BOOL)isEqualToSyntaxParser:(nullable CESyntaxParser *)syntaxParser;
+
 @end
 
 

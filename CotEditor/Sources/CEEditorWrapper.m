@@ -54,7 +54,6 @@
 
 
 // readonly
-@property (readwrite, nonatomic, nullable) CESyntaxParser *syntaxParser;
 @property (readwrite, nonatomic) BOOL canActivateShowInvisibles;
 
 @end
@@ -90,6 +89,9 @@
 - (void)dealloc
 // ------------------------------------------------------
 {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
+    
     [_coloringTimer invalidate];
     [_outlineMenuTimer invalidate];
     
@@ -115,6 +117,11 @@
     [self setFocusedTextView:[editorView textView]];
     
     [self setupViewParamsOnInit:YES];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didChangeSyntaxStyle:)
+                                                 name:CEDocumentSyntaxStyleDidChangeNotification
+                                               object:[self document]];
 }
 
 
@@ -860,28 +867,10 @@
 
 // ------------------------------------------------------
 /// シンタックススタイル名を返す
-- (nullable NSString *)syntaxStyleName
+- (nullable CESyntaxParser *)syntaxParser
 // ------------------------------------------------------
 {
-    return [[self syntaxParser] styleName];
-}
-
-
-// ------------------------------------------------------
-/// シンタックススタイル名をセット
-- (void)setSyntaxStyleWithName:(nonnull NSString *)name coloring:(BOOL)doColoring
-// ------------------------------------------------------
-{
-    CESyntaxParser *syntaxParser = [[CESyntaxParser alloc] initWithStyleName:name];
-    [self setSyntaxParser:syntaxParser];
-    [[self splitViewController] enumerateEditorViewsUsingBlock:^(CEEditorView * _Nonnull editorView) {
-        [editorView applySyntax:syntaxParser];
-    }];
-    
-    if (doColoring) {
-        [self invalidateSyntaxColoring];
-        [self invalidateOutlineMenu];
-    }
+    return [[self document] syntaxStyle];
 }
 
 
@@ -891,6 +880,8 @@
 // ------------------------------------------------------
 {
     [[self coloringTimer] invalidate];
+    
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultEnableSyntaxHighlightKey]) { return; };
     
     [[self syntaxParser] highlightWholeStringInTextStorage:[self textStorage] completionHandler:nil];
 }
@@ -902,6 +893,9 @@
 // ------------------------------------------------------
 {
     [[self outlineMenuTimer] invalidate];
+    
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultEnableSyntaxHighlightKey]) { return; };
+    
     
     NSString *wholeString = [[self textStorage] string] ? : @"";
     
@@ -987,6 +981,23 @@
 
 
 #pragma mark Private Methods
+
+// ------------------------------------------------------
+/// シンタックススタイル名をセット
+- (void)didChangeSyntaxStyle:(NSNotification *)notification
+// ------------------------------------------------------
+{
+    CESyntaxParser *syntaxParser = [[self document] syntaxStyle];
+    [[self splitViewController] enumerateEditorViewsUsingBlock:^(CEEditorView * _Nonnull editorView) {
+        [editorView applySyntax:syntaxParser];
+    }];
+    
+    [[[self windowController] toolbarController] setSelectedSyntaxWithName:[syntaxParser styleName]];
+    
+    [self invalidateSyntaxColoring];
+    [self invalidateOutlineMenu];
+}
+
 
 // ------------------------------------------------------
 /// カラーリング実行

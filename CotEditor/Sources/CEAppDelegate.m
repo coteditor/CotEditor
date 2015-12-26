@@ -621,7 +621,7 @@
     [document makeWindowControllers];
     [document showWindows];
     [[document editor] setString:template];
-    [document doSetSyntaxStyle:@"Markdown"];
+    [document setSyntaxStyleWithName:@"Markdown"];
 }
 
 

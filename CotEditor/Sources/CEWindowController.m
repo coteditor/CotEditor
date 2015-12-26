@@ -35,6 +35,7 @@
 #import "CEEditorWrapper.h"
 #import "CESyntaxManager.h"
 #import "CEDocumentAnalyzer.h"
+#import "CESyntaxParser.h"
 #import "Constants.h"
 
 #import <OgreKit/OgreTextFinder.h>
@@ -368,7 +369,8 @@ static NSTimeInterval infoUpdateInterval;
     // update and style name and highlight if recolor flag is set
     if ([self needsRecolorWithBecomeKey]) {
         [self setNeedsRecolorWithBecomeKey:NO];
-        [[self document] doSetSyntaxStyle:[[self editor] syntaxStyleName]];
+        [[self editor] invalidateSyntaxColoring];
+        [[self editor] invalidateOutlineMenu];
     }
 }
 
@@ -602,18 +604,18 @@ static NSTimeInterval infoUpdateInterval;
 - (void)syntaxDidUpdate:(nonnull NSNotification *)notification
 // ------------------------------------------------------
 {
-    NSString *currentName = [[self editor] syntaxStyleName];
+    NSString *currentName = [[(CEDocument *)[self document] syntaxStyle] styleName];
     NSString *oldName = [notification userInfo][CEOldNameKey];
     NSString *newName = [notification userInfo][CENewNameKey];
     
     if (![oldName isEqualToString:currentName]) { return; }
     
     if ([oldName isEqualToString:newName]) {
-        [[self editor] setSyntaxStyleWithName:newName coloring:NO];
+        [[self document] setSyntaxStyleWithName:newName];
     }
     if (![newName isEqualToString:NSLocalizedString(@"None", nil)]) {
         if ([[self window] isKeyWindow]) {
-            [[self document] doSetSyntaxStyle:newName];
+            [[self document] setSyntaxStyleWithName:newName];
         } else {
             [self setNeedsRecolorWithBecomeKey:YES];
         }

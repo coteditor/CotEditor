@@ -29,6 +29,7 @@
 #import "CEDocument+ScriptingSupport.h"
 #import "CETextSelection.h"
 #import "CEEditorWrapper.h"
+#import "CESyntaxParser.h"
 #import "CEUtils.h"
 
 #import <OgreKit/OgreKit.h>
@@ -175,7 +176,7 @@
 - (NSString *)coloringStyle
 // ------------------------------------------------------
 {
-    return [[self editor] syntaxStyleName];
+    return [[self syntaxStyle] styleName];
 }
 
 
@@ -184,7 +185,7 @@
 - (void)setColoringStyle:(NSString *)styleName
 // ------------------------------------------------------
 {
-    [self doSetSyntaxStyle:styleName];
+    [self setSyntaxStyleWithName:styleName];
 }
 
 

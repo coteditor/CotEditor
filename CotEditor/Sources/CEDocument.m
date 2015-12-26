@@ -34,6 +34,7 @@
 #import "CETextSelection.h"
 #import "CEODBEventSender.h"
 #import "CESyntaxManager.h"
+#import "CESyntaxParser.h"
 #import "CEWindowController.h"
 #import "CEToolbarController.h"
 #import "CEEditorWrapper.h"
@@ -52,6 +53,9 @@ static NSString *_Nonnull const CEWritablilityKey = @"writability";
 static NSString *_Nonnull const CEReadingEncodingKey = @"readingEncoding";
 static NSString *_Nonnull const CESyntaxStyleKey = @"syntaxStyle";
 static NSString *_Nonnull const CEAutosaveIdentierKey = @"autosaveIdentifier";
+
+// notifications
+NSString *_Nonnull const CEDocumentSyntaxStyleDidChangeNotification = @"CEDocumentSyntaxStyleDidChangeNotification";
 
 // incompatible chars dictionary keys
 NSString *_Nonnull const CEIncompatibleLineNumberKey = @"lineNumber";
@@ -83,6 +87,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 @property (readwrite, nonatomic) CENewLineType lineEnding;
 @property (readwrite, nonatomic, nullable, copy) NSDictionary<NSString *, id> *fileAttributes;
 @property (readwrite, nonatomic, getter=isWritable) BOOL writable;
+@property (readwrite, nonatomic, nonnull) CESyntaxParser *syntaxStyle;
 
 @end
 
@@ -123,6 +128,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
         
         _encoding = [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultEncodingInNewKey];
         _lineEnding = [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultLineEndCharCodeKey];
+        _syntaxStyle = [[CESyntaxParser alloc] initWithStyleName:[[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultSyntaxStyleKey]];
         _selection = [[CETextSelection alloc] initWithDocument:self];
         _writable = YES;
         _shouldSaveXattr = YES;
@@ -224,6 +230,14 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     if (lineEnding != CENewLineNone) {  // keep default if no line endings are found
         [self setLineEnding:lineEnding];
     }
+    
+    // determine syntax style
+    NSString *styleName = [[CESyntaxManager sharedManager] styleNameFromFileName:[[self fileURL] lastPathComponent]];
+    if (!styleName && string) {
+        styleName = [[CESyntaxManager sharedManager] styleNameFromContent:string];
+    }
+    styleName = styleName ? : [[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultSyntaxStyleKey];
+    [self setSyntaxStyleWithName:styleName];
     
     return YES;
 }
@@ -342,7 +356,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
              if (saveOperation == NSSaveAsOperation) {
                  NSString *styleName = [[CESyntaxManager sharedManager] styleNameFromFileName:[url lastPathComponent]];
                  if (styleName) {
-                     [self setSyntaxStyleWithName:styleName coloring:YES];
+                     [self setSyntaxStyleWithName:styleName];
                  }
              }
              
@@ -471,7 +485,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     [printView setTheme:[[self editor] theme]];
     [printView setDocumentName:[self displayName]];
     [printView setFilePath:[[self fileURL] path]];
-    [printView setSyntaxName:[[self editor] syntaxStyleName]];
+    [printView setSyntaxName:[[self syntaxStyle] styleName]];
     [printView setDocumentShowsInvisibles:[[self editor] showsInvisibles]];
     [printView setDocumentShowsLineNum:[[self editor] showsLineNum]];
     [printView setLineSpacing:[[[self editor] focusedTextView] lineSpacing]];
@@ -515,7 +529,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 {
     CEDocument *document = (CEDocument *)[super duplicateAndReturnError:outError];
     
-    [document doSetSyntaxStyle:[[self editor] syntaxStyleName]];
+    [document setSyntaxStyleWithName:[[self syntaxStyle] styleName]];
     [document doSetLineEnding:[self lineEnding]];
     [document doSetEncoding:[self encoding] updateDocument:NO askLossy:NO lossy:NO asActionName:nil];
     
@@ -537,7 +551,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     [coder encodeBool:[self isWritable] forKey:CEWritablilityKey];
     [coder encodeInteger:[self encoding] forKey:CEReadingEncodingKey];
     [coder encodeObject:[self autosaveIdentifier] forKey:CEAutosaveIdentierKey];
-    [coder encodeObject:[[self editor] syntaxStyleName] forKey:CESyntaxStyleKey];
+    [coder encodeObject:[[self syntaxStyle] styleName] forKey:CESyntaxStyleKey];
     
     [super encodeRestorableStateWithCoder:coder];
 }
@@ -559,14 +573,8 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     if ([coder containsValueForKey:CEAutosaveIdentierKey]) {
         [self setAutosaveIdentifier:[coder decodeObjectForKey:CEAutosaveIdentierKey]];
     }
-    
-    // restore last syntax style
     if ([coder containsValueForKey:CESyntaxStyleKey]) {
-        NSString *syntaxStyle = [coder decodeObjectForKey:CESyntaxStyleKey];
-        if (![syntaxStyle isEqualToString:[[self editor] syntaxStyleName]]) {  // avoid highlighting twice
-            [[self editor] setSyntaxStyleWithName:syntaxStyle coloring:YES];
-            [[[self windowController] toolbarController] setSelectedSyntaxWithName:syntaxStyle];
-        }
+        [self setSyntaxStyleWithName:[coder decodeObjectForKey:CESyntaxStyleKey]];
     }
     
     // not need to show unwritable alert on resume
@@ -601,12 +609,12 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     {
         state = ([menuItem tag] == [self lineEnding]) ? NSOnState : NSOffState;
     } else if ([menuItem action] == @selector(changeSyntaxStyle:)) {
-        name = [[self editor] syntaxStyleName];
+        name = [[self syntaxStyle] styleName];
         if (name && [[menuItem title] isEqualToString:name]) {
             state = NSOnState;
         }
     } else if ([menuItem action] == @selector(recolorAll:)) {
-        name = [[self editor] syntaxStyleName];
+        name = [[self syntaxStyle] styleName];
         if (name && [name isEqualToString:NSLocalizedString(@"None", @"")]) {
             return NO;
         }
@@ -627,7 +635,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 // ------------------------------------------------------
 {
     if ([theItem action] == @selector(recolorAll:)) {
-        NSString *name = [[self editor] syntaxStyleName];
+        NSString *name = [[self syntaxStyle] styleName];
         if ([name isEqualToString:NSLocalizedString(@"None", @"")]) {
             return NO;
         }
@@ -733,14 +741,6 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 - (void)applyContentToEditor
 // ------------------------------------------------------
 {
-    // determine syntax style
-    NSString *styleName = [[CESyntaxManager sharedManager] styleNameFromFileName:[[self fileURL] lastPathComponent]];
-    if (!styleName && [self fileContentString]) {
-        styleName = [[CESyntaxManager sharedManager] styleNameFromContent:[self fileContentString]];
-    }
-    styleName = styleName ? : [[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultSyntaxStyleKey];
-    [self setSyntaxStyleWithName:styleName coloring:NO];
-    
     // standardize line endings to LF (File Open)
     // (Line endings replacemement by other text modifications are processed in the following methods.)
     //
@@ -779,6 +779,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     // update syntax highlights and outline menu
     [[self editor] invalidateSyntaxColoring];
     [[self editor] invalidateOutlineMenu];
+    [[[self windowController] toolbarController] setSelectedSyntaxWithName:[[self syntaxStyle] styleName]];
     
     // update line endings menu selection in toolbar
     [self applyLineEndingToView];
@@ -982,13 +983,20 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 // ------------------------------------------------------
 /// 新しいシンタックスカラーリングスタイルを適用
-- (void)doSetSyntaxStyle:(nullable NSString *)name
+- (void)setSyntaxStyleWithName:(nullable NSString *)styleName
 // ------------------------------------------------------
 {
-    if ([name length] == 0) { return; }
+    if ([styleName length] == 0) { return; }
     
-    [[self editor] setSyntaxStyleWithName:name coloring:YES];
-    [[[self windowController] toolbarController] setSelectedSyntaxWithName:name];
+    CESyntaxParser *syntaxParser = [[CESyntaxParser alloc] initWithStyleName:styleName];
+    
+    if ([syntaxParser isEqualToSyntaxParser:[self syntaxStyle]]) { return; }
+    
+    // update
+    [self setSyntaxStyle:[[CESyntaxParser alloc] initWithStyleName:styleName]];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:CEDocumentSyntaxStyleDidChangeNotification
+                                                        object:self];
 }
 
 
@@ -1175,8 +1183,8 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 {
     NSString *name = [sender title];
 
-    if ([name length] > 0) {
-        [self doSetSyntaxStyle:name];
+    if (![name isEqualToString:[[self syntaxStyle] styleName]]) {
+        [self setSyntaxStyleWithName:name];
     }
 }
 
@@ -1246,25 +1254,11 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
         return [[self fileURL] pathExtension];
         
     } else {
-        NSString *styleName = [[self editor] syntaxStyleName];
+        NSString *styleName = [[self syntaxStyle] styleName];
         NSArray<NSString *> *extensions = [[CESyntaxManager sharedManager] extensionsForStyleName:styleName];
         
         return [extensions firstObject];
     }
-}
-
-
-// ------------------------------------------------------
-/// editor を通じて syntax インスタンスをセット
-- (void)setSyntaxStyleWithName:(nonnull NSString *)styleName coloring:(BOOL)doColoring
-// ------------------------------------------------------
-{
-    if (![[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultEnableSyntaxHighlightKey]) { return; }
-    
-    [[self editor] setSyntaxStyleWithName:styleName coloring:doColoring];
-    
-    // ツールバーのカラーリングポップアップの表示を更新、再カラーリング
-    [[[self windowController] toolbarController] setSelectedSyntaxWithName:styleName];
 }
 
 

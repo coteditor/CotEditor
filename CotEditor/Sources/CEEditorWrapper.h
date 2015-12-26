@@ -49,7 +49,6 @@
 @property (nonatomic, getter=isVerticalLayoutOrientation) BOOL verticalLayoutOrientation;
 @property (nonatomic, nullable) CETextView *focusedTextView;
 
-@property (readonly, nonatomic, nullable) CESyntaxParser *syntaxParser;
 @property (readonly, nonatomic) BOOL showsNavigationBar;
 @property (readonly, nonatomic) BOOL canActivateShowInvisibles;
 
@@ -113,10 +112,11 @@
 
 @interface CEEditorWrapper (SyntaxParsing)
 
+@property (readonly, nonatomic, nullable) CESyntaxParser *syntaxParser;
+
+
 - (IBAction)recolorAll:(nullable id)sender;
 
-- (nullable NSString *)syntaxStyleName;
-- (void)setSyntaxStyleWithName:(nonnull NSString *)name coloring:(BOOL)doColoring;
 - (void)invalidateSyntaxColoring;
 - (void)invalidateOutlineMenu;
 - (void)setupColoringTimer;
