@@ -600,11 +600,6 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
                ([menuItem action] == @selector(changeLineEnding:)))
     {
         state = ([menuItem tag] == [self lineEnding]) ? NSOnState : NSOffState;
-    } else if ([menuItem action] == @selector(changeTheme:)) {
-        name = [[[self editor] theme] name];
-        if (name && [[menuItem title] isEqualToString:name]) {
-            state = NSOnState;
-        }
     } else if ([menuItem action] == @selector(changeSyntaxStyle:)) {
         name = [[self editor] syntaxStyleName];
         if (name && [[menuItem title] isEqualToString:name]) {
@@ -1170,19 +1165,6 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     
     // ツールバーから変更された場合のため、ツールバーアイテムの選択状態をリセット
     [[[self windowController] toolbarController] setSelectedEncoding:[self encoding]];
-}
-
-
-// ------------------------------------------------------
-/// 新しいテーマを適用
-- (IBAction)changeTheme:(nullable id)sender
-// ------------------------------------------------------
-{
-    NSString *name = [sender title];
-    
-    if ([name length] > 0) {
-        [[self editor] setThemeWithName:name];
-    }
 }
 
 

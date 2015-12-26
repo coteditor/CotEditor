@@ -83,7 +83,6 @@ extern NSString *_Nonnull const CEIncompatibleConvertedCharKey;
 - (IBAction)changeLineEndingToCRLF:(nullable id)sender;
 - (IBAction)changeLineEnding:(nullable id)sender;
 - (IBAction)changeEncoding:(nullable id)sender;
-- (IBAction)changeTheme:(nullable id)sender;
 - (IBAction)changeSyntaxStyle:(nullable id)sender;
 - (IBAction)insertIANACharSetName:(nullable id)sender;
 - (IBAction)insertIANACharSetNameWithCharset:(nullable id)sender;

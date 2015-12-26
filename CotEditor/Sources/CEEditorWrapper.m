@@ -172,6 +172,9 @@
         
     } else if ([menuItem action] == @selector(closeSplitTextView:)) {
         return ([[[[self splitViewController] view] subviews] count] > 1);
+        
+    } else if ([menuItem action] == @selector(changeTheme:)) {
+        state = [[[self theme] name] isEqualToString:[menuItem title]] ? NSOnState : NSOffState;
     }
     
     if (title) {
@@ -697,6 +700,19 @@
     
     // close
     [[self splitViewController] removeEditorView:editorViewToClose];
+}
+
+
+// ------------------------------------------------------
+/// 新しいテーマを適用
+- (IBAction)changeTheme:(nullable id)sender
+// ------------------------------------------------------
+{
+    NSString *name = [sender title];
+    
+    if ([name length] > 0) {
+        [self setThemeWithName:name];
+    }
 }
 
 

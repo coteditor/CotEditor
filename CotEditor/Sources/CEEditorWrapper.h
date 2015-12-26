@@ -102,6 +102,7 @@
 - (IBAction)selectNextItemOfOutlineMenu:(nullable id)sender;
 - (IBAction)openSplitTextView:(nullable id)sender;
 - (IBAction)closeSplitTextView:(nullable id)sender;
+- (IBAction)changeTheme:(nullable id)sender;
 
 @end
 
