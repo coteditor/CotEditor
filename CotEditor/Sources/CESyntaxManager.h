@@ -58,7 +58,7 @@ extern NSString *_Nonnull const CESyntaxValidationMessageKey;
 
 // public methods
 - (nullable NSString *)styleNameFromFileName:(nullable NSString *)fileName;
-- (nullable NSString *)styleNameFromInterpreter:(nonnull NSString *)interpreter;
+- (nullable NSString *)styleNameFromContent:(nonnull NSString *)contentString;
 - (nonnull NSArray<NSString *> *)extensionsForStyleName:(nonnull NSString *)styleName;
 - (nonnull NSDictionary<NSString *, id> *)styleWithStyleName:(nonnull NSString *)styleName;
 - (nullable NSDictionary<NSString *, id> *)bundledStyleWithStyleName:(nonnull NSString *)styleName;

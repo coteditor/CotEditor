@@ -134,11 +134,19 @@ NSString *_Nonnull const CESyntaxValidationMessageKey = @"MessageKey";
 
 
 // ------------------------------------------------------
-/// インタープリタに応じたstyle名を返す
-- (nullable NSString *)styleNameFromInterpreter:(nonnull NSString *)interpreter
+/// 本文からシェバンをスキャンして、内容に応じたstyle名を返す
+- (nullable NSString *)styleNameFromContent:(nonnull NSString *)contentString
 // ------------------------------------------------------
 {
-    return [self interpreterToStyleTable][interpreter];
+    NSString *interpreter = [self scanLanguageFromShebangInString:contentString];
+    NSString *styleName = [self interpreterToStyleTable][interpreter];
+    
+    // check XML declaration
+    if (!styleName && [contentString hasPrefix:@"<?xml "]) {
+        styleName = @"XML";
+    }
+    
+    return styleName;
 }
 
 
@@ -844,6 +852,39 @@ NSString *_Nonnull const CESyntaxValidationMessageKey = @"MessageKey";
     }
     
     return [strings copy];
+}
+
+
+// ------------------------------------------------------
+/// try extracting used language from the shebang line
+- (nullable NSString *)scanLanguageFromShebangInString:(nonnull NSString *)string
+// ------------------------------------------------------
+{
+    // get first line
+    __block NSString *firstLine = nil;
+    [string enumerateLinesUsingBlock:^(NSString *line, BOOL *stop) {
+        firstLine = line;
+        *stop = YES;
+    }];
+    
+    // not found
+    if (![firstLine hasPrefix:@"#!"]) { return nil; }
+    
+    // remove #! symbol
+    firstLine = [firstLine stringByReplacingOccurrencesOfString:@"^#! *" withString:@""
+                                                        options:NSRegularExpressionSearch
+                                                          range:NSMakeRange(0, [firstLine length])];
+    
+    // find interpreter
+    NSArray<NSString *> *components = [firstLine componentsSeparatedByString:@" "];
+    NSString * path = components[0];
+    NSString *interpreter = [[path componentsSeparatedByString:@"/"] lastObject];
+    // use first arg if the path targets env
+    if ([interpreter isEqualToString:@"env"]) {
+        interpreter = components[1];
+    }
+    
+    return interpreter;
 }
 
 @end
