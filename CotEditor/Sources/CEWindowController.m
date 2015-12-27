@@ -609,12 +609,11 @@ static NSTimeInterval infoUpdateInterval;
     if ([oldName isEqualToString:newName]) {
         [[self document] setSyntaxStyleWithName:newName];
     }
-    if (![newName isEqualToString:NSLocalizedString(@"None", nil)]) {
-        if ([[self window] isKeyWindow]) {
-            [[self document] setSyntaxStyleWithName:newName];
-        } else {
-            [self setNeedsRecolorWithBecomeKey:YES];
-        }
+    
+    if ([[self window] isKeyWindow]) {
+        [[self document] setSyntaxStyleWithName:newName];
+    } else {
+        [self setNeedsRecolorWithBecomeKey:YES];
     }
 }
 
