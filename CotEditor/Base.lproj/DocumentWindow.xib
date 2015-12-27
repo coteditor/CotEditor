@@ -12,7 +12,6 @@
                 <outlet property="documentInspectorViewController" destination="zfS-u8-roN" id="oPb-Zq-odI"/>
                 <outlet property="editor" destination="Asc-bK-hKW" id="ihd-lk-fQz"/>
                 <outlet property="incompatibleCharsViewController" destination="PNV-ic-0G4" id="eFj-Ts-dkB"/>
-                <outlet property="shareButton" destination="b09-OH-vIj" id="lS2-qi-AN6"/>
                 <outlet property="sidebar" destination="34" id="2IU-Vj-94v"/>
                 <outlet property="sidebarPlaceholderView" destination="XSO-vY-vMP" id="9fk-c5-hjU"/>
                 <outlet property="sidebarSplitView" destination="jhv-dr-CH4" id="CIg-jJ-bnp"/>
@@ -412,6 +411,7 @@
             <connections>
                 <outlet property="encodingPopupButton" destination="90" id="9ae-Bd-vPQ"/>
                 <outlet property="lineEndingPopupButton" destination="77" id="ypf-VV-99N"/>
+                <outlet property="shareButton" destination="b09-OH-vIj" id="JsB-8c-gRV"/>
                 <outlet property="syntaxPopupButton" destination="96" id="44A-ih-NrH"/>
                 <outlet property="toolbar" destination="olV-v9-4mJ" id="pNJ-aC-2RI"/>
                 <outlet property="windowController" destination="-2" id="OVy-AU-0VE"/>

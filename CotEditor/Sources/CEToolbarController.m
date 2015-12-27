@@ -41,6 +41,7 @@
 @property (nonatomic, nullable, weak) IBOutlet NSPopUpButton *lineEndingPopupButton;
 @property (nonatomic, nullable, weak) IBOutlet NSPopUpButton *encodingPopupButton;
 @property (nonatomic, nullable, weak) IBOutlet NSPopUpButton *syntaxPopupButton;
+@property (nonatomic, nullable, weak) IBOutlet NSButton *shareButton;
 
 @end
 
@@ -67,6 +68,9 @@
 - (void)awakeFromNib
 // ------------------------------------------------------
 {
+    // setup share button
+    [[self shareButton] sendActionOn:NSLeftMouseDownMask];
+    
     [self buildEncodingPopupButton];
     [self buildSyntaxPopupButton];
     
