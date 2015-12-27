@@ -113,6 +113,7 @@
 @interface CEEditorWrapper (SyntaxParsing)
 
 @property (readonly, nonatomic, nullable) CESyntaxParser *syntaxParser;
+@property (readonly, nonatomic) BOOL canHighlight;
 
 
 - (IBAction)recolorAll:(nullable id)sender;

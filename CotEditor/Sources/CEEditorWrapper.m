@@ -182,12 +182,32 @@
         
     } else if ([menuItem action] == @selector(changeTheme:)) {
         state = [[[self theme] name] isEqualToString:[menuItem title]] ? NSOnState : NSOffState;
+        
+    } else if ([menuItem action] == @selector(recolorAll:)) {
+        return [self canHighlight];
     }
     
     if (title) {
         [menuItem setTitle:NSLocalizedString(title, nil)];
     } else {
         [menuItem setState:state];
+    }
+    
+    return YES;
+}
+
+
+//=======================================================
+// NSToolbarItemValidation Protocol
+//=======================================================
+
+// ------------------------------------------------------
+/// ツールバー項目の有効・無効を制御
+- (BOOL)validateToolbarItem:(nonnull NSToolbarItem *)theItem
+// ------------------------------------------------------
+{
+    if ([theItem action] == @selector(recolorAll:)) {
+        return [self canHighlight];
     }
     
     return YES;
@@ -871,6 +891,18 @@
 // ------------------------------------------------------
 {
     return [[self document] syntaxStyle];
+}
+
+
+// ------------------------------------------------------
+/// return if sytnax highlight works
+- (BOOL)canHighlight
+// ------------------------------------------------------
+{
+    BOOL isHighlightEnabled = [[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultEnableSyntaxHighlightKey];
+    BOOL isHighlightable = ([self syntaxParser] != nil) && ![[self syntaxParser] isNone];
+    
+    return isHighlightable && isHighlightable;
 }
 
 

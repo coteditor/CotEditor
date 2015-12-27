@@ -595,7 +595,6 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 // ------------------------------------------------------
 {
     NSInteger state = NSOffState;
-    NSString *name;
     
     if ([menuItem action] == @selector(saveDocument:)) {
         // 書き込み不可の時は、アラートが表示され「OK」されるまで保存メニューを無効化する
@@ -609,39 +608,14 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     {
         state = ([menuItem tag] == [self lineEnding]) ? NSOnState : NSOffState;
     } else if ([menuItem action] == @selector(changeSyntaxStyle:)) {
-        name = [[self syntaxStyle] styleName];
+        NSString *name = [[self syntaxStyle] styleName];
         if (name && [[menuItem title] isEqualToString:name]) {
             state = NSOnState;
-        }
-    } else if ([menuItem action] == @selector(recolorAll:)) {
-        name = [[self syntaxStyle] styleName];
-        if (name && [name isEqualToString:NSLocalizedString(@"None", @"")]) {
-            return NO;
         }
     }
     [menuItem setState:state];
     
     return [super validateMenuItem:menuItem];
-}
-
-
-//=======================================================
-// NSToolbarItemValidation Protocol
-//=======================================================
-
-// ------------------------------------------------------
-/// ツールバー項目の有効・無効を制御
-- (BOOL)validateToolbarItem:(nonnull NSToolbarItem *)theItem
-// ------------------------------------------------------
-{
-    if ([theItem action] == @selector(recolorAll:)) {
-        NSString *name = [[self syntaxStyle] styleName];
-        if ([name isEqualToString:NSLocalizedString(@"None", @"")]) {
-            return NO;
-        }
-    }
-    
-    return YES;
 }
 
 

@@ -35,6 +35,7 @@ develop
 - Fix an issue where the application crasched when a single character that is a part of surrogate pair is inspected.
 - Fix an issue where snippet key bindings could not be customized on Mavericks and earlier.
 - Fix layout of character popup on Yosemite and earlier.
+- Fix an issue where “Recolor All” action was always enabled even if syntax style is “None.”
 - Improve general stability.
 
 
