@@ -40,7 +40,6 @@
 @property (nonatomic) BOOL showsTab;
 @property (nonatomic) BOOL showsNewLine;
 @property (nonatomic) BOOL showsFullwidthSpace;
-@property (nonatomic) BOOL showsOtherInvisibles;
 
 @property (nonatomic) unichar spaceChar;
 @property (nonatomic) unichar tabChar;
@@ -51,6 +50,7 @@
 
 // readonly properties
 @property (readwrite, nonatomic) CGFloat defaultLineHeightForTextFont;
+@property (readwrite, nonatomic) BOOL showsOtherInvisibles;
 
 @end
 
@@ -98,8 +98,14 @@ static BOOL usesTextFontForInvisibles;
         _showsFullwidthSpace = [defaults boolForKey:CEDefaultShowInvisibleFullwidthSpaceKey];
         _showsOtherInvisibles = [defaults boolForKey:CEDefaultShowOtherInvisibleCharsKey];
         
+        // Since NSLayoutManager's showsControlCharacters flag is totally buggy (at leaset on El Capitan),
+        // we stopped using this since CotEditor 2.3.3 that was released in 2016-01.
+        // Previously, CotEditor used this flag for "Other Invisible Characters."
+        // However as CotEditor draws such control-glyph-alternative-characters by itself in `drawGlyphsForGlyphRange:atPoint:`,
+        // this flag is actually not so necessary as I thougth. Thus, treat carefully this.
+        [self setShowsControlCharacters:NO];
+        
         [self setUsesScreenFonts:YES];
-        [self setShowsControlCharacters:_showsOtherInvisibles];
         [self setTypesetter:[[CEATSTypesetter alloc] init]];
     }
     return self;
@@ -282,27 +288,6 @@ static BOOL usesTextFontForInvisibles;
     [self setUsesScreenFonts:!printing];
     
     _printing = printing;
-}
-
-// ------------------------------------------------------
-/// 不可視文字を表示するかどうかを設定する
-- (void)setShowsInvisibles:(BOOL)showsInvisibles
-// ------------------------------------------------------
-{
-    if ([self showsOtherInvisibles]) {
-        [self setShowsControlCharacters:showsInvisibles];
-    }
-    _showsInvisibles = showsInvisibles;
-}
-
-
-// ------------------------------------------------------
-/// その他の不可視文字を表示するかどうかを設定する
-- (void)setShowsOtherInvisibles:(BOOL)showsOtherInvisibles
-// ------------------------------------------------------
-{
-    [self setShowsControlCharacters:showsOtherInvisibles];
-    _showsOtherInvisibles = showsOtherInvisibles;
 }
 
 

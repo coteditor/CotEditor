@@ -102,7 +102,7 @@
 - (NSRect)boundingBoxForControlGlyphAtIndex:(NSUInteger)glyphIndex forTextContainer:(nonnull NSTextContainer *)textContainer proposedLineFragment:(NSRect)proposedRect glyphPosition:(NSPoint)glyphPosition characterIndex:(NSUInteger)charIndex
 // ------------------------------------------------------
 {
-    if (![[self layoutManager] showsControlCharacters]) {
+    if (![(CELayoutManager *)[self layoutManager] showsOtherInvisibles]) {
         return [super boundingBoxForControlGlyphAtIndex:glyphIndex forTextContainer:textContainer proposedLineFragment:proposedRect glyphPosition:glyphPosition characterIndex:charIndex];
     }
     

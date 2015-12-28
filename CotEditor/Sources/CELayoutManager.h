@@ -38,6 +38,7 @@
 @property (nonatomic, nullable) NSFont *textFont;
 
 @property (readonly, nonatomic) CGFloat defaultLineHeightForTextFont;  // 表示フォントでの行高
+@property (readonly, nonatomic) BOOL showsOtherInvisibles;
 
 
 - (CGFloat)lineHeight;
