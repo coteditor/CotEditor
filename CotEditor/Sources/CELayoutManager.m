@@ -289,10 +289,6 @@ static BOOL usesTextFontForInvisibles;
 - (void)setShowsInvisibles:(BOOL)showsInvisibles
 // ------------------------------------------------------
 {
-    if (!showsInvisibles) {
-        NSRange range = NSMakeRange(0, [[[self textStorage] string] length]);
-        [[self textStorage] removeAttribute:NSGlyphInfoAttributeName range:range];
-    }
     if ([self showsOtherInvisibles]) {
         [self setShowsControlCharacters:showsInvisibles];
     }
