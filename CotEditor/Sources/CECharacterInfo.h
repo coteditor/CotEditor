@@ -33,6 +33,7 @@
 
 @property (nonatomic, readonly, getter=isComplexChar) BOOL complexChar;
 @property (nonatomic, readonly, nonnull, copy) NSString *string;
+@property (nonatomic, readonly, nonnull, copy) NSString *pictureString;
 @property (nonatomic, readonly, nonnull, copy) NSArray<CEUnicodeCharacter *> *unicodes;
 @property (nonatomic, readonly, nonnull, copy) NSString *prettyDescription;
 

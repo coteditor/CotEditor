@@ -33,6 +33,7 @@
 
 // readonly
 @property (nonatomic, readwrite) UTF32Char character;
+@property (nonatomic, readwrite) unichar pictureCharacter;
 @property (nonatomic, readwrite, nonnull, copy) NSString *string;
 @property (nonatomic, readwrite, nonnull, copy) NSString *unicode;
 @property (nonatomic, readwrite, getter=isSurrogatePair) BOOL surrogatePair;
@@ -98,6 +99,14 @@
             _string = [[NSString alloc] initWithBytes:&littleEdian length:4 encoding:NSUTF32LittleEndianStringEncoding];
         }
         NSAssert(_string != nil, @"Failed to covnert UTF32Char U+%04tX into NSString.", character);
+        
+        // alternate picture caracter for invisible control character
+        if (_character <= 0x0020) {
+            _pictureCharacter = _character + 0x2400;  // shift 0x2400 to Unicode control pictures
+        } else if (_character == 0x007F) {  // DELETE character
+            _pictureCharacter = 0x2421;  // SYMBOL FOR DELETE character
+            
+        }
     }
     return self;
 }
@@ -105,7 +114,6 @@
 
 
 # pragma mark Public Accessors
-
 
 // ------------------------------------------------------
 /// Unicode name
