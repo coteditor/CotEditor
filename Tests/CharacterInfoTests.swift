@@ -85,7 +85,7 @@ class CharacterInfoTests: XCTestCase {
         // test NULL
         let nullCharacter = CEUnicodeCharacter(character: UTF32Char(0x0000))
         let nullPictureCharacter = CEUnicodeCharacter(character: UTF32Char(0x2400))
-        XCTAssertEqual(nullCharacter.name, "<control-0000>")
+        XCTAssertEqual(nullCharacter.name, "NULL")
         XCTAssertEqual(nullPictureCharacter.name, "SYMBOL FOR NULL")
         XCTAssertEqual(nullCharacter.pictureCharacter, unichar(nullPictureCharacter.character))
         
@@ -97,13 +97,14 @@ class CharacterInfoTests: XCTestCase {
         XCTAssertEqual(spaceCharacter.pictureCharacter, unichar(spacePictureCharacter.character))
         
         // test DELETE
+        XCTAssertEqual(Int(CEDeleteCharacter), NSDeleteCharacter)
         let deleteCharacter = CEUnicodeCharacter(character: UTF32Char(NSDeleteCharacter))
         let deletePictureCharacter = CEUnicodeCharacter(character: UTF32Char("␡"))
-        XCTAssertEqual(deleteCharacter.name, "<control-007F>")
+        XCTAssertEqual(deleteCharacter.name, "DELETE")
         XCTAssertEqual(deletePictureCharacter.name, "SYMBOL FOR DELETE")
         XCTAssertEqual(deleteCharacter.pictureCharacter, unichar(deletePictureCharacter.character))
         
-        // test one after the last control character
+        // test one after the last C0 control character
         let exclamationCharacter = CEUnicodeCharacter(character: UTF32Char(0x0021))
         XCTAssertEqual(exclamationCharacter.name, "EXCLAMATION MARK")
         XCTAssertEqual(exclamationCharacter.pictureCharacter, 0)

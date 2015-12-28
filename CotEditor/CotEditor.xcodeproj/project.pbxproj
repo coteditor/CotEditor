@@ -335,6 +335,9 @@
 		2AD67C241AA7285F0078BB95 /* CEFindPanelTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD67C231AA7285F0078BB95 /* CEFindPanelTextView.m */; };
 		2AD67C2A1AA75E7F0078BB95 /* CEFindPanelTextClipView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD67C291AA75E7F0078BB95 /* CEFindPanelTextClipView.m */; };
 		2AD67C2F1AA7651B0078BB95 /* CEFindPanelLayoutManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD67C2E1AA7651B0078BB95 /* CEFindPanelLayoutManager.m */; };
+		2AD789D51C31AD81008B746F /* CEControlCharacerNames.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD789D41C31AD81008B746F /* CEControlCharacerNames.m */; };
+		2AD789D61C31AD81008B746F /* CEControlCharacerNames.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD789D41C31AD81008B746F /* CEControlCharacerNames.m */; };
+		2AD789D81C31BE32008B746F /* CEControlCharacerNames.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD789D41C31AD81008B746F /* CEControlCharacerNames.m */; };
 		2AD84CAA1966314100DE49BD /* CEODBEventSender.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD84CA91966314100DE49BD /* CEODBEventSender.m */; };
 		2AD9039B1BCE86A3004F2B8A /* SpellCheck.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 2AD9039A1BCE86A3004F2B8A /* SpellCheck.tiff */; };
 		2AD9039C1BCE86A3004F2B8A /* SpellCheck.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 2AD9039A1BCE86A3004F2B8A /* SpellCheck.tiff */; };
@@ -804,6 +807,8 @@
 		2AD67C291AA75E7F0078BB95 /* CEFindPanelTextClipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CEFindPanelTextClipView.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		2AD67C2D1AA7651B0078BB95 /* CEFindPanelLayoutManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CEFindPanelLayoutManager.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		2AD67C2E1AA7651B0078BB95 /* CEFindPanelLayoutManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CEFindPanelLayoutManager.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		2AD789D31C31AD81008B746F /* CEControlCharacerNames.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEControlCharacerNames.h; sourceTree = "<group>"; };
+		2AD789D41C31AD81008B746F /* CEControlCharacerNames.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEControlCharacerNames.m; sourceTree = "<group>"; };
 		2AD84CA81966314100DE49BD /* CEODBEventSender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEODBEventSender.h; sourceTree = "<group>"; };
 		2AD84CA91966314100DE49BD /* CEODBEventSender.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEODBEventSender.m; sourceTree = "<group>"; };
 		2AD9039A1BCE86A3004F2B8A /* SpellCheck.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = SpellCheck.tiff; sourceTree = "<group>"; };
@@ -1446,14 +1451,8 @@
 		2AA2E00D1BFDD3AE0087BDD6 /* Character */ = {
 			isa = PBXGroup;
 			children = (
-				2AA2E0091BFDD3A60087BDD6 /* CECharacterInfo.h */,
-				2AA2E00A1BFDD3A60087BDD6 /* CECharacterInfo.m */,
-				2AA2E0181BFF9AEE0087BDD6 /* CEUnicodeCharacter.h */,
-				2AA2E0191BFF9AEE0087BDD6 /* CEUnicodeCharacter.m */,
-				2AB4326F1912AF7200835004 /* CECharacterPopoverController.h */,
-				2AB432701912AF7200835004 /* CECharacterPopoverController.m */,
-				2AA2E01D1C007C690087BDD6 /* CECharacterField.h */,
-				2AA2E01E1C007C690087BDD6 /* CECharacterField.m */,
+				2AD789D71C31BDFE008B746F /* Character Object */,
+				2AD789D91C31C3CC008B746F /* Inspector */,
 			);
 			name = Character;
 			sourceTree = "<group>";
@@ -1495,6 +1494,30 @@
 				8CF02E1408B9B9F8004044EB /* CENavigationBarController.m */,
 			);
 			name = "Editor Controllers";
+			sourceTree = "<group>";
+		};
+		2AD789D71C31BDFE008B746F /* Character Object */ = {
+			isa = PBXGroup;
+			children = (
+				2AA2E0091BFDD3A60087BDD6 /* CECharacterInfo.h */,
+				2AA2E00A1BFDD3A60087BDD6 /* CECharacterInfo.m */,
+				2AA2E0181BFF9AEE0087BDD6 /* CEUnicodeCharacter.h */,
+				2AA2E0191BFF9AEE0087BDD6 /* CEUnicodeCharacter.m */,
+				2AD789D31C31AD81008B746F /* CEControlCharacerNames.h */,
+				2AD789D41C31AD81008B746F /* CEControlCharacerNames.m */,
+			);
+			name = "Character Object";
+			sourceTree = "<group>";
+		};
+		2AD789D91C31C3CC008B746F /* Inspector */ = {
+			isa = PBXGroup;
+			children = (
+				2AB4326F1912AF7200835004 /* CECharacterPopoverController.h */,
+				2AB432701912AF7200835004 /* CECharacterPopoverController.m */,
+				2AA2E01D1C007C690087BDD6 /* CECharacterField.h */,
+				2AA2E01E1C007C690087BDD6 /* CECharacterField.m */,
+			);
+			name = Inspector;
 			sourceTree = "<group>";
 		};
 		2AFFB72E18D8E87900118477 /* Panel Controllers */ = {
@@ -1972,6 +1995,7 @@
 				2AFFA5771B674E9300A5AD8F /* CESyntaxValidationViewController.m in Sources */,
 				2A6F0DAE1B5500E100C2D03C /* CEDocumentController.m in Sources */,
 				2A6F0DAF1B5500E100C2D03C /* CESyntaxEditTableViewDelegate.m in Sources */,
+				2AD789D61C31AD81008B746F /* CEControlCharacerNames.m in Sources */,
 				2A6F0DB01B5500E100C2D03C /* CEPrefEncodingDataSource.m in Sources */,
 				2A6F0DB11B5500E100C2D03C /* CEFormatPaneController.m in Sources */,
 				2A6F0DB21B5500E100C2D03C /* CEWindow.m in Sources */,
@@ -2072,6 +2096,7 @@
 				2AA2E0271C0455180087BDD6 /* NSString+Indentation.m in Sources */,
 				2AC71DEF1BF0C7A9002E1434 /* NSString+JapaneseTransform.m in Sources */,
 				2AC71DE21BF0BDBC002E1434 /* StringExtensionsTests.swift in Sources */,
+				2AD789D81C31BE32008B746F /* CEControlCharacerNames.m in Sources */,
 				2AC71DF01BF0CDD8002E1434 /* NSString+Normalization.m in Sources */,
 				2AC71DED1BF0C5B5002E1434 /* NSString+ComposedCharacter.m in Sources */,
 			);
@@ -2178,6 +2203,7 @@
 				2A94A45A18D08D52009FA90D /* NSWindow+ScriptingSupport.m in Sources */,
 				2AB432741915D6AA00835004 /* NSString+ComposedCharacter.m in Sources */,
 				2A2BDF0D198A899E0029848B /* NSString+JapaneseTransform.m in Sources */,
+				2AD789D51C31AD81008B746F /* CEControlCharacerNames.m in Sources */,
 				2AC75C081A2AF47F00C7DB0A /* NSString+CENewLine.m in Sources */,
 				2A1068C31A745FCE001DB9AA /* NSURL+Xattr.m in Sources */,
 			);

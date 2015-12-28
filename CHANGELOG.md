@@ -24,6 +24,7 @@ develop
 - Add jump to URL button to the style info in the syntax style editor.
 - Improve drawing of “Other” invisible characters.
 - Improve behavior on Replace/Replace All actions.
+- Improve character inspector to display more comprehensible name for control characters (e.g. `<control-0000>` to `NULL`).
 - Tweak preferences layout.
 - Tweak Chinese localization.
 
