@@ -902,7 +902,7 @@
     BOOL isHighlightEnabled = [[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultEnableSyntaxHighlightKey];
     BOOL isHighlightable = ([self syntaxParser] != nil) && ![[self syntaxParser] isNone];
     
-    return isHighlightable && isHighlightable;
+    return isHighlightEnabled && isHighlightable;
 }
 
 
