@@ -73,7 +73,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 @property (nonatomic) BOOL needsShowUpdateAlertWithBecomeKey;
 @property (nonatomic, getter=isRevertingForExternalFileUpdate) BOOL revertingForExternalFileUpdate;
 @property (nonatomic) BOOL didAlertNotWritable;  // 文書が読み込み専用のときにその警告を表示したかどうか
-@property (nonatomic, nullable, copy) NSString *fileMD5;
+@property (nonatomic, nullable, copy) NSData *fileMD5;
 @property (nonatomic, nullable, copy) NSString *fileContentString;  // string that is read from the document file
 @property (nonatomic, getter=isVerticalText) BOOL verticalText;
 @property (nonatomic, nullable) CEODBEventSender *ODBEventSender;
@@ -665,13 +665,13 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     if ([fileModificationDate isEqualTo:[self fileModificationDate]]) { return; }
     
     // ignore if file's MD5 hash is the same as the stored MD5 and deal as if it was not modified
-    __block NSString *MD5;
+    __block NSData *MD5;
     [coordinator coordinateReadingItemAtURL:[self fileURL] options:NSFileCoordinatorReadingWithoutChanges
                                       error:nil byAccessor:^(NSURL *newURL)
      {
          MD5 = [[NSData dataWithContentsOfURL:newURL] MD5];
      }];
-    if ([MD5 isEqualToString:[self fileMD5]]) {
+    if ([MD5 isEqualToData:[self fileMD5]]) {
         // update the document's fileModificationDate for a workaround (2014-03 by 1024jp)
         // If not, an alert shows up when user saves the file.
         if ([fileModificationDate compare:[self fileModificationDate]] == NSOrderedDescending) {
