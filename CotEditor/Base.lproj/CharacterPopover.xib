@@ -25,7 +25,8 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                     <connections>
-                        <binding destination="-2" name="value" keyPath="glyph" id="RgA-ki-sJ4"/>
+                        <binding destination="-2" name="textColor" keyPath="characterColor" id="ysW-yx-Kvf"/>
+                        <binding destination="-2" name="value" keyPath="glyph" id="3UM-ew-p9Q"/>
                     </connections>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" preferredMaxLayoutWidth="400" translatesAutoresizingMaskIntoConstraints="NO" id="5tD-mh-lm6">
