@@ -102,12 +102,13 @@
 - (NSRect)boundingBoxForControlGlyphAtIndex:(NSUInteger)glyphIndex forTextContainer:(nonnull NSTextContainer *)textContainer proposedLineFragment:(NSRect)proposedRect glyphPosition:(NSPoint)glyphPosition characterIndex:(NSUInteger)charIndex
 // ------------------------------------------------------
 {
-    if (![(CELayoutManager *)[self layoutManager] showsOtherInvisibles]) {
+    CELayoutManager *manager = (CELayoutManager *)[self layoutManager];
+    if (![manager showsOtherInvisibles] || ![manager showsInvisibles]) {
         return [super boundingBoxForControlGlyphAtIndex:glyphIndex forTextContainer:textContainer proposedLineFragment:proposedRect glyphPosition:glyphPosition characterIndex:charIndex];
     }
     
     // make blank space to draw a replacement character in CELayoutManager later.
-    NSFont *textFont = [[[self layoutManager] firstTextView] font];
+    NSFont *textFont = [manager textFont];
     NSFont *invisibleFont = [NSFont fontWithName:@"Lucida Grande" size:[textFont pointSize]] ?: textFont;  // use current text font for fallback
     NSGlyph replacementGlyph = [invisibleFont glyphWithName:@"replacement"];  // U+FFFD
     NSRect replacementGlyphBounding = [invisibleFont boundingRectForGlyph:replacementGlyph];
