@@ -18,7 +18,7 @@ end
 
 # non-AppStore target
 shared_pods
-pod 'Sparkle'
+pod 'Sparkle', '1.11.1'
 
 # AppStore target
 target :appstore, :exclusive => true do

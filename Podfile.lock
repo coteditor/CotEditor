@@ -8,7 +8,7 @@ PODS:
 
 DEPENDENCIES:
   - OgreKit (from `https://github.com/coteditor/OgreKit.git`, branch `coteditor-mod`)
-  - Sparkle
+  - Sparkle (= 1.11.1)
   - WFColorCode
   - YAML-Framework (from `https://github.com/coteditor/YAML.framework.git`, branch
     `coteditor-mod`)
