@@ -26,11 +26,12 @@
  
  */
 
+#import <NSHash/NSString+NSHash.h>
+
 #import "CESyntaxParser.h"
 #import "CETextViewProtocol.h"
 #import "CESyntaxManager.h"
 #import "CEIndicatorSheetController.h"
-#import "NSString+MD5.h"
 #import "Constants.h"
 
 

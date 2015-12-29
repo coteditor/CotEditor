@@ -13,6 +13,7 @@ def shared_pods
     pod 'YAML-Framework',
         :git => 'https://github.com/coteditor/YAML.framework.git',
         :branch => 'coteditor-mod'
+    pod 'NSHash'
     pod 'WFColorCode'
 end
 

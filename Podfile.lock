@@ -1,5 +1,6 @@
 PODS:
   - LibYAML (0.1.4)
+  - NSHash (1.0.2)
   - OgreKit (2.1.7.10)
   - Sparkle (1.11.1)
   - WFColorCode (1.3.0)
@@ -7,6 +8,7 @@ PODS:
     - LibYAML (~> 0.1.4)
 
 DEPENDENCIES:
+  - NSHash
   - OgreKit (from `https://github.com/coteditor/OgreKit.git`, branch `coteditor-mod`)
   - Sparkle (= 1.11.1)
   - WFColorCode
@@ -31,6 +33,7 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   LibYAML: 3af2c5adf3a40dff936d087aa6a77edc10036bc5
+  NSHash: 173d9782d4b7dec17bf32f22d8ab203c88655a04
   OgreKit: fa82c43f090fa5a4a82f6977d75a2786f107de55
   Sparkle: 80198c37a54f8c29af89e5b9f985e730536ebfd5
   WFColorCode: b9ed09bd1529b3e1aeafbb3e230bc5630151a1e4

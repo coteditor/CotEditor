@@ -27,6 +27,8 @@
  
  */
 
+#import <NSHash/NSData+NSHash.h>
+
 #import "CEDocument.h"
 #import "CEDocumentController.h"
 #import "CEPrintPanelAccessoryController.h"
@@ -40,7 +42,6 @@
 #import "CEEditorWrapper.h"
 #import "CEUtils.h"
 #import "NSURL+Xattr.h"
-#import "NSData+MD5.h"
 #import "NSString+Indentation.h"
 #import "Constants.h"
 
