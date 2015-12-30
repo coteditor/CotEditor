@@ -106,7 +106,7 @@ static NSMutableDictionary<NSString *, __kindof CEPanelController *> *instances;
                                                      name:NSWindowDidBecomeMainNotification
                                                    object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(mainWindowDidChange:)
+                                                 selector:@selector(mainWindowDidResign:)
                                                      name:NSWindowDidResignMainNotification
                                                    object:nil];
         // apply current window
@@ -139,21 +139,35 @@ static NSMutableDictionary<NSString *, __kindof CEPanelController *> *instances;
 // ------------------------------------------------------
 {
     // update properties if the new main window is a document window
-    if ([[[NSApp mainWindow] windowController] isKindOfClass:[CEWindowController class]]) {
+    if ([[[NSApp mainWindow] windowController] document]) {
         [self setDocumentWindowController:(CEWindowController *)[[NSApp mainWindow] windowController]];
     } else {
         [self setDocumentWindowController:nil];
     }
     
+    [self keyDocumentDidChange];
+}
+
+// ------------------------------------------------------
+/// notification about main window resign
+- (void)mainWindowDidResign:(nonnull NSNotification *)notification
+// ------------------------------------------------------
+{
+    // check if the new upcoming main window is also one of the document windows
+    if ([[[NSApp mainWindow] windowController] document]) {
+        // do nothing (`mainWindowDidChange:` will do the things)
+        return;
+    }
+    
+    [self setDocumentWindowController:nil];
+    
     // auto close panel if needed
     if ([self autoCloses]) {
-        __weak typeof(self) weakSelf = self;
-        dispatch_async(dispatch_get_main_queue(), ^{
-            typeof(self) self = weakSelf;
-            if (![self documentWindowController]) {
-                [[self window] performClose:self];
-            }
-        });
+        NSArray<NSDocument *> *documents = [[NSDocumentController sharedDocumentController] documents];
+        
+        if ([documents count] <= 1) {  // The 1 is the document now resigning.
+            [[self window] performClose:self];
+        }
     }
     
     [self keyDocumentDidChange];
