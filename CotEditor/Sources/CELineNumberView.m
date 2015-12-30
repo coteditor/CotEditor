@@ -35,7 +35,8 @@
 static const NSUInteger kMinNumberOfDigits = 3;
 static const CGFloat kMinVerticalThickness = 32.0;
 static const CGFloat kMinHorizontalThickness = 20.0;
-static const CGFloat  kLineNumberPadding = 3.0;
+static const CGFloat kLineNumberPadding = 4.0;
+static const CGFloat kFontSizeFactor = 0.9;
 
 
 @interface CELineNumberView ()
@@ -147,7 +148,7 @@ static CGFontRef BoldLineNumberFont;
 
     // setup font
     CGFloat masterFontSize = [[[self textView] font] pointSize];
-    CGFloat fontSize = round(0.9 * masterFontSize);
+    CGFloat fontSize = MIN(round(kFontSizeFactor * masterFontSize), masterFontSize);
     CTFontRef font = CTFontCreateWithGraphicsFont(LineNumberFont, fontSize, nil, nil);
     
     CGFloat tickLength = ceil(fontSize / 3);

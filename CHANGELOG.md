@@ -32,6 +32,7 @@ develop
 - Improve drawing of “Other” invisible characters.
 - Improve behavior on Replace/Replace All actions.
 - Improve text encoding detection to redress the tendency: a binary file was interpreted as ISO-2022-JP.
+- Update line number font.
 - Tweak preferences layout.
 - Tweak Chinese localization.
 
