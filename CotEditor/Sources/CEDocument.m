@@ -1359,7 +1359,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
             if (string) {
                 // Since ISO-2022-JP is a Japanese encoding, string should have at least one Japanese character.
                 NSRegularExpression *japaneseRegex = [NSRegularExpression regularExpressionWithPattern:@"[ぁ-んァ-ン、。]" options:0 error:nil];
-                if ([japaneseRegex rangeOfFirstMatchInString:string options:0 range:NSMakeRange(0, nil)].location != NSNotFound) {
+                if ([japaneseRegex rangeOfFirstMatchInString:string options:0 range:NSMakeRange(0, [string length])].location != NSNotFound) {
                     *usedEncoding = encoding;
                     return string;
                 };
