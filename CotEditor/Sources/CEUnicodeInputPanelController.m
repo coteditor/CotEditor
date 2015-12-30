@@ -59,7 +59,7 @@ static const NSRegularExpression *unicodeRegex;
 {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        unicodeRegex = [NSRegularExpression regularExpressionWithPattern:@"^(?:U\\+|0x|\\\\u)?([0-9a-f]{4,5})$"
+        unicodeRegex = [NSRegularExpression regularExpressionWithPattern:@"^(?:U\\+|0x|\\\\u)?([0-9a-f]{1,5})$"
                                                                  options:NSRegularExpressionCaseInsensitive
                                                                    error:nil];
     });
