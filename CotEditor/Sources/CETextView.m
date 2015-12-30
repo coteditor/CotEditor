@@ -1809,11 +1809,31 @@ static NSPoint kTextContainerOrigin;
     // settle result on expanding selection or if there is no possibility for clicking brackets
     if (proposedSelRange.length > 0 || wordRange.length != 1) { return wordRange; }
     
-    // select inside of brackets by double-clicking
     NSInteger location = wordRange.location;
+    unichar clickedCharacter = [completeString characterAtIndex:location];
+    
+    // select (syntax-highlighted) quoted text by double-clicking
+    if (clickedCharacter == '"' || clickedCharacter == '\'' || clickedCharacter == '`') {
+        NSRange highlightRange;
+        [[self layoutManager] temporaryAttribute:NSForegroundColorAttributeName atCharacterIndex:location
+                           longestEffectiveRange:&highlightRange inRange:NSMakeRange(0, [completeString length])];
+        
+        BOOL isStartQuote = (highlightRange.location == location);
+        BOOL isEndQuote = (NSMaxRange(highlightRange) - 1 == location);
+        
+        if (isStartQuote || isEndQuote) {
+            if ((isStartQuote && [completeString characterAtIndex:NSMaxRange(highlightRange) - 1] == clickedCharacter) ||
+                (isEndQuote && [completeString characterAtIndex:highlightRange.location] == clickedCharacter))
+            {
+                return highlightRange;
+            }
+        }
+    }
+    
+    // select inside of brackets by double-clicking
     unichar beginBrace, endBrace;
     BOOL isEndBrace = NO;
-    switch ([completeString characterAtIndex:location]) {
+    switch (clickedCharacter) {
         case ')':
             isEndBrace = YES;
         case '(':
