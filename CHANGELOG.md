@@ -23,6 +23,7 @@ develop
 - Improve installed syntax style list in preferences:
     - Add dot mark to syntax names in the list to represent the state if style is customized.
     - Enable restoring modified syntax style directly from the list without opening the style editor.
+- Now, the current line number is drawn in bold font, and always drawn in vertical text mode.
 - Keep text selection after inserting color code from the color code panel.
 - Update default fonts.
 - Add “description” field also to outline setting in syntax style editor.
