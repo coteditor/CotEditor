@@ -10,6 +10,7 @@
 #import "NSString+Normalization.h"
 
 // CharacterInfoTests
+#import "CEControlCharacerNames.h"
 #import "CECharacterInfo.h"
 
 // IndentationTests

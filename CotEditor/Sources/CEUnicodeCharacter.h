@@ -31,6 +31,7 @@
 @interface CEUnicodeCharacter : NSObject
 
 @property (nonatomic, readonly) UTF32Char character;
+@property (nonatomic, readonly) unichar pictureCharacter;
 @property (nonatomic, readonly, nonnull, copy) NSString *unicode;
 @property (nonatomic, readonly, nonnull, copy) NSString *string;
 @property (nonatomic, readonly, getter=isSurrogatePair) BOOL surrogatePair;

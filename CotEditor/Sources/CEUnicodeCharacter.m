@@ -26,6 +26,7 @@
  */
 
 #import "CEUnicodeCharacter.h"
+#import "CEControlCharacerNames.h"
 #import "icu/uchar.h"
 
 
@@ -33,6 +34,7 @@
 
 // readonly
 @property (nonatomic, readwrite) UTF32Char character;
+@property (nonatomic, readwrite) unichar pictureCharacter;
 @property (nonatomic, readwrite, nonnull, copy) NSString *string;
 @property (nonatomic, readwrite, nonnull, copy) NSString *unicode;
 @property (nonatomic, readwrite, getter=isSurrogatePair) BOOL surrogatePair;
@@ -98,6 +100,14 @@
             _string = [[NSString alloc] initWithBytes:&littleEdian length:4 encoding:NSUTF32LittleEndianStringEncoding];
         }
         NSAssert(_string != nil, @"Failed to covnert UTF32Char U+%04tX into NSString.", character);
+        
+        // alternate picture caracter for invisible control character
+        if (CEIsC0ControlPoint(_character)) {
+            _pictureCharacter = _character + 0x2400;  // shift 0x2400 to Unicode control pictures
+        } else if (_character == CEDeleteCharacter) {  // DELETE character
+            _pictureCharacter = 0x2421;  // SYMBOL FOR DELETE character
+            
+        }
     }
     return self;
 }
@@ -106,7 +116,6 @@
 
 # pragma mark Public Accessors
 
-
 // ------------------------------------------------------
 /// Unicode name
 - (nonnull NSString *)name
@@ -114,17 +123,21 @@
 {
     // defer init
     if (!_name) {
-        NSMutableString *unicodeName = [[self string] mutableCopy];
+        _name = CEControlCharacterName([self character]);
         
-        // You can't use kCFStringTransformToUnicodeName instead of `Any-Name` here,
-        // because some characters (e.g. normal `a`) don't return their name when use this constant.
-        CFStringTransform((__bridge CFMutableStringRef)unicodeName, NULL, CFSTR("Any-Name"), NO);
-        
-        NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"\\{(.+?)\\}" options:0 error:nil];
-        NSTextCheckingResult *firstMatch = [regex firstMatchInString:unicodeName options:0
-                                                               range:NSMakeRange(0, [unicodeName length])];
-        
-        _name = [unicodeName substringWithRange:[firstMatch rangeAtIndex:1]];
+        if (!_name) {
+            NSMutableString *unicodeName = [[self string] mutableCopy];
+            
+            // You can't use kCFStringTransformToUnicodeName instead of `Any-Name` here,
+            // because some characters (e.g. normal `a`) don't return their name when use this constant.
+            CFStringTransform((__bridge CFMutableStringRef)unicodeName, NULL, CFSTR("Any-Name"), NO);
+            
+            NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"\\{(.+?)\\}" options:0 error:nil];
+            NSTextCheckingResult *firstMatch = [regex firstMatchInString:unicodeName options:0
+                                                                   range:NSMakeRange(0, [unicodeName length])];
+            
+            _name = [unicodeName substringWithRange:[firstMatch rangeAtIndex:1]];
+        }
     }
     
     return _name;

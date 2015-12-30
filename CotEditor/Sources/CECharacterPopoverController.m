@@ -33,9 +33,12 @@
 @interface CECharacterPopoverController () <NSPopoverDelegate>
 
 @property (nonatomic, nonnull, copy) NSString *glyph;
+@property (nonatomic, nullable, copy) NSString *pictureGlyph;
 @property (nonatomic, nonnull, copy) NSString *unicodeName;
 @property (nonatomic, nullable, copy) NSString *unicodeBlockName;
 @property (nonatomic, nonnull, copy) NSString *unicode;
+
+@property (nonatomic, nonnull) NSColor *characterColor;
 
 @property (nonatomic, nullable, weak) IBOutlet NSTextField *unicodeBlockNameField;
 
@@ -61,7 +64,7 @@
     
     self = [super initWithNibName:[self nibName] bundle:nil];
     if (self) {
-        _glyph = [characterInfo string];
+        _glyph = [characterInfo pictureString] ?: [characterInfo string];
         _unicodeName = [characterInfo prettyDescription];
         _unicodeBlockName = [characterInfo isComplexChar] ? nil : [[[characterInfo unicodes] firstObject] localizedBlockName];
         
@@ -82,6 +85,8 @@
             }
         }
         _unicode = [unicode copy];
+        
+        _characterColor = [characterInfo pictureString] ? [NSColor colorWithWhite:0.0 alpha:0.1] : [NSColor labelColor];
     }
     return self;
 }
