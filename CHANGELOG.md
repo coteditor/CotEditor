@@ -12,14 +12,15 @@ develop
 
 ### Improvements
 
-- Display proposed character info in “Input Character in Unicode Hex” panel.
 - Now, you can force-disable window restoration from the last session if you hold Shift key while launch.
+- Improve “Input Character in Unicode Hex” panel:
+    - Display proposed character info.
+    - Allow also taking a 1 to 3 digits point code.
+    - Avoid auto-closing panel the after enter character.
 - Improve character inspector:
-    - Avoid auto-closing panel the after input Unicode hex character.
     - Display more comprehensible name for C0 control characters (e.g. `<control-0000>` to `NULL`).
     - Display a alternate visible symbol in the zoomed character area for C0 control characters.
-    - Allow also taking a 1 to 3 digits point code.
-- Improve the installed syntax style list in preferences:
+- Improve installed syntax style list in preferences:
     - Add dot mark to syntax names in the list to represent the state if style is customized.
     - Enable restoring modified syntax style directly from the list without opening the style editor.
 - Keep text selection after inserting color code from the color code panel.
