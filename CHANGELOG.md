@@ -30,6 +30,7 @@ develop
 - Add jump to URL button to the style info in the syntax style editor.
 - Improve drawing of “Other” invisible characters.
 - Improve behavior on Replace/Replace All actions.
+- Improve text encoding detection to redress the tendency: a binary file was interpreted as ISO-2022-JP.
 - Tweak preferences layout.
 - Tweak Chinese localization.
 

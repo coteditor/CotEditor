@@ -1354,11 +1354,15 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
         // ISO-2022-JP 判定
         } else if (memchr([data bytes], 0x1b, [data length]) != NULL) {
             NSStringEncoding encoding = NSISO2022JPStringEncoding;
-            triedEncoding = encoding;
             NSString *string = [[NSString alloc] initWithData:data encoding:encoding];
+            
             if (string) {
-                *usedEncoding = encoding;
-                return string;
+                // Since ISO-2022-JP is a Japanese encoding, string should have at least one Japanese character.
+                NSRegularExpression *japaneseRegex = [NSRegularExpression regularExpressionWithPattern:@"[ぁ-んァ-ン、。]" options:0 error:nil];
+                if ([japaneseRegex rangeOfFirstMatchInString:string options:0 range:NSMakeRange(0, nil)].location != NSNotFound) {
+                    *usedEncoding = encoding;
+                    return string;
+                };
             }
         }
     }
