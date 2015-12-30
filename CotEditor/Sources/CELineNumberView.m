@@ -280,7 +280,7 @@ static CGFontRef BoldLineNumberFont;
             
             glyphCount = NSMaxRange(range);
             
-            // draw last line number anyway
+            // draw last line number on vertical text anyway
             if (isVerticalText &&  // vertical text
                 lastLineNumber != lineNumber &&  // new line
                 isVerticalText && lineNumber != 1 && lineNumber % 5 != 0 &&  // not yet drawn
