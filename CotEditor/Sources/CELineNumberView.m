@@ -195,7 +195,7 @@ static CGFontRef BoldLineNumberFont;
     
     BOOL isVerticalText = [self orientation] == NSHorizontalRuler;
     NSUInteger tailGlyphIndex = [layoutManager glyphIndexForCharacterAtIndex:[string length]];
-    NSUInteger insertionLocation = [[self textView] selectedRange].location;
+    NSRange selectedLineRange = [string lineRangeForRange:[[self textView] selectedRange]];
     
     // draw line number block
     CGGlyph *digitGlyphsPtr = digitGlyphs;
@@ -261,7 +261,7 @@ static CGFontRef BoldLineNumberFont;
         NSUInteger charIndex = [layoutManager characterIndexForGlyphAtIndex:glyphIndex];
         NSRange lineRange = [string lineRangeForRange:NSMakeRange(charIndex, 0)];
         glyphIndex = NSMaxRange([layoutManager glyphRangeForCharacterRange:lineRange actualCharacterRange:NULL]);
-        BOOL isSelected = NSLocationInRange(insertionLocation, lineRange);
+        BOOL isSelected = NSLocationInRange(lineRange.location, selectedLineRange);
         
         while (glyphCount < glyphIndex) { // handle wrapped lines
             NSRange range;
@@ -298,7 +298,7 @@ static CGFontRef BoldLineNumberFont;
     // draw the last "extra" line number
     if ([layoutManager extraLineFragmentTextContainer]) {
         NSRect lineRect = [layoutManager extraLineFragmentUsedRect];
-        BOOL isSelected = [string length] == insertionLocation;
+        BOOL isSelected = (selectedLineRange.length == 0) && ([string length] == NSMaxRange(selectedLineRange));
         CGFloat y = -NSMinY(lineRect);
         
         draw_number(lineNumber, lastLineNumber, y, YES, isSelected);
