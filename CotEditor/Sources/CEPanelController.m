@@ -11,7 +11,7 @@
 
  ------------------------------------------------------------------------------
  
- © 2014-2015 1024jp
+ © 2014-2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -154,13 +154,13 @@ static NSMutableDictionary<NSString *, __kindof CEPanelController *> *instances;
 - (void)mainWindowDidResign:(nonnull NSNotification *)notification
 // ------------------------------------------------------
 {
+    if (![NSApp isActive]) { return; }
+    
     // check if the new upcoming main window is also one of the document windows
     if ([[[NSApp mainWindow] windowController] document]) {
         // do nothing (`mainWindowDidChange:` will do the things)
         return;
     }
-    
-    if (![NSApp isActive]) { return; }
     
     [self setDocumentWindowController:nil];
     
