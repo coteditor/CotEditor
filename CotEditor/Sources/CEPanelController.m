@@ -137,6 +137,8 @@ static NSMutableDictionary<NSString *, __kindof CEPanelController *> *instances;
 - (void)mainWindowDidChange:(nonnull NSNotification *)notification
 // ------------------------------------------------------
 {
+    if (![NSApp mainWindow]) { return; }
+    
     // update properties if the new main window is a document window
     if ([[[NSApp mainWindow] windowController] document]) {
         [self setDocumentWindowController:[[NSApp mainWindow] windowController]];
@@ -157,6 +159,8 @@ static NSMutableDictionary<NSString *, __kindof CEPanelController *> *instances;
         // do nothing (`mainWindowDidChange:` will do the things)
         return;
     }
+    
+    if (![NSApp isActive]) { return; }
     
     [self setDocumentWindowController:nil];
     
