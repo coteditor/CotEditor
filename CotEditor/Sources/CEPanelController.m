@@ -28,12 +28,11 @@
  */
 
 #import "CEPanelController.h"
-#import "CEWindowController.h"
 
 
 @interface CEPanelController ()
 
-@property (readwrite, nonatomic, nullable, weak) CEWindowController *documentWindowController;
+@property (readwrite, nonatomic, nullable, weak) __kindof NSWindowController *documentWindowController;
 
 @end
 
@@ -140,7 +139,7 @@ static NSMutableDictionary<NSString *, __kindof CEPanelController *> *instances;
 {
     // update properties if the new main window is a document window
     if ([[[NSApp mainWindow] windowController] document]) {
-        [self setDocumentWindowController:(CEWindowController *)[[NSApp mainWindow] windowController]];
+        [self setDocumentWindowController:[[NSApp mainWindow] windowController]];
     } else {
         [self setDocumentWindowController:nil];
     }
