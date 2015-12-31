@@ -37,6 +37,7 @@ develop
 - Update default fonts.
 - Tweak preferences layout.
 - Tweak Chinese localization.
+- Improve general stability.
 
 
 ### Fixes
@@ -48,7 +49,6 @@ develop
 - Fix an issue where syntax highlight was not updated after reinterpreting encoding.
 - Fix layout of character popup on Mavericks and earlier.
 - Fix an issue where “Recolor All” action was always enabled even if syntax style is “None.”
-- Improve general stability.
 
 
 
