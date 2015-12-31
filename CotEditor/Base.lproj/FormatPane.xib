@@ -359,7 +359,7 @@
                         <constraint firstAttribute="width" constant="35" id="C2H-ho-Lhl"/>
                         <constraint firstAttribute="height" constant="21" id="U66-bm-gzy"/>
                     </constraints>
-                    <popUpButtonCell key="cell" type="smallSquare" title="Syntax Action" bezelStyle="smallSquare" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" pullsDown="YES" id="DWa-4z-345">
+                    <popUpButtonCell key="cell" type="smallSquare" title="Syntax Action" bezelStyle="smallSquare" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" pullsDown="YES" selectedItem="2pU-Hc-zZk" id="DWa-4z-345">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menu"/>
                         <menu key="menu" title="OtherViews" id="9gA-X5-Prh">
@@ -368,6 +368,11 @@
                                 <menuItem title="Duplicate…" tag="1" id="NNW-FT-uJ2">
                                     <connections>
                                         <action selector="openSyntaxEditSheet:" target="-2" id="56D-Mi-K5K"/>
+                                    </connections>
+                                </menuItem>
+                                <menuItem title="Restore" tag="1" id="2pU-Hc-zZk">
+                                    <connections>
+                                        <action selector="restoreSyntaxStyle:" target="-2" id="nOW-Ro-0KJ"/>
                                     </connections>
                                 </menuItem>
                                 <menuItem title="Export…" id="LeQ-Ct-m5f">

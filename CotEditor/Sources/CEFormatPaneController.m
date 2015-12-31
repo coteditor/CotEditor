@@ -166,6 +166,9 @@ NSString *_Nonnull const StyleStateKey = @"state";
         [menuItem setHidden:(isBundled || !representedStyleName)];
         
     } else if ([menuItem action] == @selector(restoreSyntaxStyle:)) {
+        if (!isContextualMenu) {
+            [menuItem setTitle:[NSString stringWithFormat:NSLocalizedString(@"Restore “%@”", nil), representedStyleName]];
+        }
         BOOL isCustomized;
         BOOL isBundled = [[CESyntaxManager sharedManager] isBundledStyle:representedStyleName cutomized:&isCustomized];
         [menuItem setHidden:(!isBundled || !representedStyleName)];
