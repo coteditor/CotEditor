@@ -126,7 +126,7 @@ NSString *_Nonnull const CEEncodingListDidUpdateNotification = @"CESyntaxListDid
 - (void)buildEncodingMenuItems
 //------------------------------------------------------
 {
-    NSArray<NSString *> *encodings = [[NSUserDefaults standardUserDefaults] arrayForKey:CEDefaultEncodingListKey];
+    NSArray<NSNumber *> *encodings = [[NSUserDefaults standardUserDefaults] arrayForKey:CEDefaultEncodingListKey];
     NSMutableArray<NSMenuItem *> *items = [[NSMutableArray alloc] initWithCapacity:[encodings count]];
     
     for (NSNumber *encodingNumber in encodings) {
