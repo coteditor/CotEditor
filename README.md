@@ -46,6 +46,6 @@ License
 
 © 2005-2009 nakamuxu,
 © 2011, 2014 usami-k,
-© 2013-2015 1024jp.
+© 2013-2016 1024jp.
 
 The source code is distributed under the terms of the __Apache License, Version 2.0__. See the bundled [LICENSE](LICENSE) for details.
