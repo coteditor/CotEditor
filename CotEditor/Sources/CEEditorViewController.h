@@ -40,8 +40,8 @@
 @property (nonatomic, nullable, weak) CEEditorWrapper *editorWrapper;
 
 // readonly
-@property (readonly, nonatomic, nonnull) CETextView *textView;
-@property (readonly, nonatomic, nonnull) CENavigationBarController *navigationBarController;
+@property (readonly, nonatomic, nullable) CETextView *textView;
+@property (readonly, nonatomic, nullable) CENavigationBarController *navigationBarController;
 
 
 // initializer

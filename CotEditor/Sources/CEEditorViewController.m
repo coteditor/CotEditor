@@ -42,7 +42,7 @@
 
 @interface CEEditorViewController ()
 
-@property (nonatomic, nonnull) CEEditorScrollView *scrollView;
+@property (nonatomic, nullable, weak) IBOutlet CEEditorScrollView *scrollView;
 @property (nonatomic, nonnull) NSTextStorage *textStorage;
 
 @property (nonatomic) BOOL highlightsCurrentLine;
@@ -50,8 +50,8 @@
 
 
 // readonly
-@property (readwrite, nonnull, nonatomic) CETextView *textView;
-@property (readwrite, nonnull, nonatomic) CENavigationBarController *navigationBarController;
+@property (readwrite, nullable, nonatomic) IBOutlet CETextView *textView;
+@property (readwrite, nullable, nonatomic) IBOutlet CENavigationBarController *navigationBarController;
 
 @end
 
@@ -106,38 +106,8 @@
 {
     [super loadView];
     
-    // navigationBar 生成
-    _navigationBarController = [[CENavigationBarController alloc] init];
-    [[self view] addSubview:[_navigationBarController view]];
-    
-    // create scroller with line number view
-    _scrollView = [[CEEditorScrollView alloc] initWithFrame:NSZeroRect];
-    [_scrollView setBorderType:NSNoBorder];
-    [_scrollView setHasVerticalScroller:YES];
-    [_scrollView setHasHorizontalScroller:YES];
-    [_scrollView setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [_scrollView setAutohidesScrollers:NO];
-    [_scrollView setDrawsBackground:NO];
-    [[self view] addSubview:_scrollView];
-    
-    // setup autolayout
-    NSDictionary<NSString *, __kindof NSView *> *views = @{@"navBar": [_navigationBarController view],
-                                                           @"scrollView": _scrollView};
-    [[_navigationBarController view] setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [[self view] addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[navBar]|"
-                                                                        options:0 metrics:nil views:views]];
-    [[self view] addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[scrollView]|"
-                                                                        options:0 metrics:nil views:views]];
-    [[self view] addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[navBar][scrollView]|"
-                                                                        options:0 metrics:nil views:views]];
-    
-    // TextView 生成
-    _textView = [[CETextView alloc] initWithFrame:NSZeroRect];
+    // set textStorage to textView
     [[[self textView] layoutManager] replaceTextStorage:[self textStorage]];
-    [_textView setDelegate:self];
-    
-    [[self navigationBarController] setTextView:[self textView]];
-    [[self scrollView] setDocumentView:[self textView]];
     
     // 置換の Undo/Redo 後に再カラーリングできるように Undo/Redo アクションをキャッチ
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -160,7 +130,7 @@
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(highlightCurrentLine)
                                                      name:NSViewFrameDidChangeNotification
-                                                   object:[_scrollView contentView]];
+                                                   object:[[self scrollView] contentView]];
     }
 }
 
@@ -540,7 +510,7 @@
 
 
 
-#pragma mark Private Mthods
+#pragma mark Private Methods
 
 // ------------------------------------------------------
 /// return shared sytnaxParser

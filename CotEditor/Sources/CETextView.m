@@ -95,10 +95,10 @@ static NSPoint kTextContainerOrigin;
 
 // ------------------------------------------------------
 /// initialize instance
-- (nonnull instancetype)initWithFrame:(NSRect)frameRect textContainer:(nullable NSTextContainer *)container
+- (nullable instancetype)initWithCoder:(NSCoder *)coder
 // ------------------------------------------------------
 {
-    self = [super initWithFrame:frameRect textContainer:container];
+    self = [super initWithCoder:(NSCoder *)coder];
     if (self) {
         // set class identifier for window restoration
         [self setIdentifier:@"coreTextView"];
@@ -150,7 +150,7 @@ static NSPoint kTextContainerOrigin;
             [self setAutomaticDashSubstitutionEnabled:[defaults boolForKey:CEDefaultEnableSmartQuotesKey]];
         }
         [self setFont:font];
-        [self setMinSize:frameRect.size];
+        [self setMinSize:[self frame].size];
         [self setMaxSize:NSMakeSize(CGFLOAT_MAX, CGFLOAT_MAX)];
         [self setAllowsDocumentBackgroundColorChange:NO];
         [self setAllowsUndo:YES];
