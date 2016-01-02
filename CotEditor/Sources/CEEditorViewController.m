@@ -66,11 +66,12 @@
 
 // ------------------------------------------------------
 /// initialize instance
-- (instancetype)init
+- (nonnull instancetype)initWithTextStorage:(nonnull NSTextStorage *)textStorage
 // ------------------------------------------------------
 {
     self = [super init];
     if (self) {
+        _textStorage = textStorage;
         _highlightsCurrentLine = [[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultHighlightCurrentLineKey];
     }
     return self;
@@ -130,24 +131,13 @@
     [[self view] addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[navBar][scrollView]|"
                                                                         options:0 metrics:nil views:views]];
     
-    // TextStorage と LayoutManager を生成
-    [self setTextStorage:[[NSTextStorage alloc] init]];
-    CELayoutManager *layoutManager = [[CELayoutManager alloc] init];
-    [_textStorage addLayoutManager:layoutManager];
-    [layoutManager setBackgroundLayoutEnabled:YES];
-    [layoutManager setUsesAntialias:[[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultShouldAntialiasKey]];
-    [layoutManager setFixesLineHeight:[[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultFixLineHeightKey]];
-    
-    // NSTextContainer を生成
-    NSTextContainer *container = [[NSTextContainer alloc] initWithContainerSize:NSMakeSize(CGFLOAT_MAX, CGFLOAT_MAX)];
-    [layoutManager addTextContainer:container];
-    
     // TextView 生成
-    _textView = [[CETextView alloc] initWithFrame:NSZeroRect textContainer:container];
+    _textView = [[CETextView alloc] initWithFrame:NSZeroRect];
+    [[[self textView] layoutManager] replaceTextStorage:[self textStorage]];
     [_textView setDelegate:self];
     
-    [_navigationBarController setTextView:_textView];
-    [_scrollView setDocumentView:_textView];
+    [[self navigationBarController] setTextView:[self textView]];
+    [[self scrollView] setDocumentView:[self textView]];
     
     // 置換の Undo/Redo 後に再カラーリングできるように Undo/Redo アクションをキャッチ
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -177,16 +167,6 @@
 
 
 #pragma mark Public Methods
-
-// ------------------------------------------------------
-/// TextStorage を置換
-- (void)replaceTextStorage:(nonnull NSTextStorage *)textStorage
-// ------------------------------------------------------
-{
-    [[[self textView] layoutManager] replaceTextStorage:textStorage];
-    [self setTextStorage:textStorage];
-}
-
 
 // ------------------------------------------------------
 /// 行番号表示設定をセット

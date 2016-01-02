@@ -119,7 +119,7 @@
         [self setNextResponder:[self splitViewController]];
     }
     
-    CEEditorViewController *editorViewController = [[CEEditorViewController alloc] init];
+    CEEditorViewController *editorViewController = [[CEEditorViewController alloc] initWithTextStorage:[[NSTextStorage alloc] init]];
     [[self splitViewController] addSubviewForViewController:editorViewController relativeTo:nil];
     [self setupEditorViewController:editorViewController baseView:nil];
     
@@ -663,10 +663,8 @@
     // end current editing
     [[self class] endCurrentEditing];
     
-    CEEditorViewController *newEditorViewController = [[CEEditorViewController alloc] init];
+    CEEditorViewController *newEditorViewController = [[CEEditorViewController alloc] initWithTextStorage:[self textStorage]];
     [[newEditorViewController view] setFrame:[[currentEditorViewController view] frame]];
-
-    [newEditorViewController replaceTextStorage:[self textStorage]];
     
     // instert new editorView just below the editorView that the pressed button belongs to or has focus
     [[self splitViewController] addSubviewForViewController:newEditorViewController relativeTo:[currentEditorViewController view]];

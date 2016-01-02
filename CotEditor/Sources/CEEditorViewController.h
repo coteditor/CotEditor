@@ -44,8 +44,10 @@
 @property (readonly, nonatomic, nonnull) CENavigationBarController *navigationBarController;
 
 
+// initializer
+- (nonnull instancetype)initWithTextStorage:(nonnull NSTextStorage *)textStorage;
+
 // Public method
-- (void)replaceTextStorage:(nonnull NSTextStorage *)textStorage;
 - (void)setShowsLineNum:(BOOL)showsLineNum;
 - (void)setShowsNavigationBar:(BOOL)showsNavigationBar animate:(BOOL)performAnimation;
 - (void)setWrapsLines:(BOOL)wrapsLines;

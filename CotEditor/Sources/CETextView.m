@@ -105,6 +105,14 @@ static NSPoint kTextContainerOrigin;
         
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         
+        // setup layoutManager and textContainer
+        CELayoutManager *layoutManager = [[CELayoutManager alloc] init];
+        [layoutManager setBackgroundLayoutEnabled:YES];
+        [layoutManager setUsesAntialias:[defaults boolForKey:CEDefaultShouldAntialiasKey]];
+        [layoutManager setFixesLineHeight:[defaults boolForKey:CEDefaultFixLineHeightKey]];
+        [[self textContainer] setSize:NSMakeSize(CGFLOAT_MAX, CGFLOAT_MAX)];
+        [[self textContainer] replaceLayoutManager:layoutManager];
+        
         // This method is partly based on Smultron's SMLTextView by Peter Borg. (2006-09-09)
         // Smultron 2 was distributed on <http://smultron.sourceforge.net> under the terms of the BSD license.
         // Copyright (c) 2004-2006 Peter Borg
