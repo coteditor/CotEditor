@@ -261,14 +261,7 @@
     NSDictionary<NSString *, id> *attributes = [[self focusedTextView] typingAttributes];
     NSAttributedString *attrString = [[NSAttributedString alloc] initWithString:string attributes:attributes];
     
-    [[[self focusedTextView] textStorage] setAttributedString:attrString];
-    
-    // キャレットを先頭に移動
-    if ([string length] > 0) {
-        [[self splitViewController] enumerateEditorViewsUsingBlock:^(CEEditorViewController * _Nonnull viewController) {
-            [viewController setCaretToBeginning];
-        }];
-    }
+    [[self textStorage] setAttributedString:attrString];
 }
 
 
@@ -664,7 +657,6 @@
     [[self class] endCurrentEditing];
     
     CEEditorViewController *newEditorViewController = [[CEEditorViewController alloc] initWithTextStorage:[self textStorage]];
-    [[newEditorViewController view] setFrame:[[currentEditorViewController view] frame]];
     
     // instert new editorView just below the editorView that the pressed button belongs to or has focus
     [[self splitViewController] addSubviewForViewController:newEditorViewController relativeTo:[currentEditorViewController view]];
