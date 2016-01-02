@@ -1,6 +1,6 @@
 /*
  
- CEEditorView.m
+ CEEditorViewController.m
  
  CotEditor
  http://coteditor.com
@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2015 1024jp
+ © 2014-2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -26,7 +26,7 @@
  
  */
 
-#import "CEEditorView.h"
+#import "CEEditorViewController.h"
 #import "CEWindowController.h"
 #import "CENavigationBarController.h"
 #import "CEEditorWrapper.h"
@@ -40,7 +40,7 @@
 #import <OgreKit/OgreTextFinder.h>
 
 
-@interface CEEditorView ()
+@interface CEEditorViewController ()
 
 @property (nonatomic, nonnull) CEEditorScrollView *scrollView;
 @property (nonatomic, nonnull) NSTextStorage *textStorage;
@@ -60,88 +60,18 @@
 
 #pragma mark -
 
-@implementation CEEditorView
+@implementation CEEditorViewController
 
 #pragma mark Superclass Methods
 
 // ------------------------------------------------------
 /// initialize instance
-- (nonnull instancetype)initWithFrame:(NSRect)frameRect
+- (instancetype)init
 // ------------------------------------------------------
 {
-    self = [super initWithFrame:frameRect];
+    self = [super init];
     if (self) {
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        
-        _highlightsCurrentLine = [defaults boolForKey:CEDefaultHighlightCurrentLineKey];
-
-        // navigationBar 生成
-        _navigationBarController = [[CENavigationBarController alloc] init];
-        [self addSubview:[_navigationBarController view]];
-
-        // create scroller with line number view
-        _scrollView = [[CEEditorScrollView alloc] initWithFrame:NSZeroRect];
-        [_scrollView setBorderType:NSNoBorder];
-        [_scrollView setHasVerticalScroller:YES];
-        [_scrollView setHasHorizontalScroller:YES];
-        [_scrollView setTranslatesAutoresizingMaskIntoConstraints:NO];
-        [_scrollView setAutohidesScrollers:NO];
-        [_scrollView setDrawsBackground:NO];
-        [self addSubview:_scrollView];
-        
-        // setup autolayout
-        NSDictionary<NSString *, __kindof NSView *> *views = @{@"navBar": [_navigationBarController view],
-                                                      @"scrollView": _scrollView};
-        [[_navigationBarController view] setTranslatesAutoresizingMaskIntoConstraints:NO];
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[navBar]|"
-                                                                     options:0 metrics:nil views:views]];
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[scrollView]|"
-                                                                     options:0 metrics:nil views:views]];
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[navBar][scrollView]|"
-                                                                     options:0 metrics:nil views:views]];
-
-        // TextStorage と LayoutManager を生成
-        [self setTextStorage:[[NSTextStorage alloc] init]];
-        CELayoutManager *layoutManager = [[CELayoutManager alloc] init];
-        [_textStorage addLayoutManager:layoutManager];
-        [layoutManager setBackgroundLayoutEnabled:YES];
-        [layoutManager setUsesAntialias:[defaults boolForKey:CEDefaultShouldAntialiasKey]];
-        [layoutManager setFixesLineHeight:[defaults boolForKey:CEDefaultFixLineHeightKey]];
-
-        // NSTextContainer を生成
-        NSTextContainer *container = [[NSTextContainer alloc] initWithContainerSize:NSMakeSize(CGFLOAT_MAX, CGFLOAT_MAX)];
-        [layoutManager addTextContainer:container];
-
-        // TextView 生成
-        _textView = [[CETextView alloc] initWithFrame:NSZeroRect textContainer:container];
-        [_textView setDelegate:self];
-        
-        [_navigationBarController setTextView:_textView];
-        [_scrollView setDocumentView:_textView];
-        
-        // 置換の Undo/Redo 後に再カラーリングできるように Undo/Redo アクションをキャッチ
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(recolorAfterUndoAndRedo:)
-                                                     name:NSUndoManagerDidRedoChangeNotification
-                                                   object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(recolorAfterUndoAndRedo:)
-                                                     name:NSUndoManagerDidUndoChangeNotification
-                                                   object:nil];
-        
-        // テーマの変更をキャッチ
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(themeDidUpdate:)
-                                                     name:CEThemeDidUpdateNotification
-                                                   object:nil];
-        
-        // リサイズに現在行ハイライトを追従
-        if (_highlightsCurrentLine) {
-            [[NSNotificationCenter defaultCenter] addObserver:self
-                                                     selector:@selector(highlightCurrentLine)
-                                                         name:NSViewFrameDidChangeNotification
-                                                       object:[_scrollView contentView]];
-        }
+        _highlightsCurrentLine = [[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultHighlightCurrentLineKey];
     }
     return self;
 }
@@ -156,6 +86,92 @@
     
     [_textStorage removeLayoutManager:[_textView layoutManager]];
     _textView = nil;
+}
+
+
+// ------------------------------------------------------
+/// nib name
+- (nullable NSString *)nibName
+// ------------------------------------------------------
+{
+    return @"EditorView";
+}
+
+
+// ------------------------------------------------------
+/// setup UI
+- (void)loadView
+// ------------------------------------------------------
+{
+    [super loadView];
+    
+    // navigationBar 生成
+    _navigationBarController = [[CENavigationBarController alloc] init];
+    [[self view] addSubview:[_navigationBarController view]];
+    
+    // create scroller with line number view
+    _scrollView = [[CEEditorScrollView alloc] initWithFrame:NSZeroRect];
+    [_scrollView setBorderType:NSNoBorder];
+    [_scrollView setHasVerticalScroller:YES];
+    [_scrollView setHasHorizontalScroller:YES];
+    [_scrollView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [_scrollView setAutohidesScrollers:NO];
+    [_scrollView setDrawsBackground:NO];
+    [[self view] addSubview:_scrollView];
+    
+    // setup autolayout
+    NSDictionary<NSString *, __kindof NSView *> *views = @{@"navBar": [_navigationBarController view],
+                                                           @"scrollView": _scrollView};
+    [[_navigationBarController view] setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [[self view] addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[navBar]|"
+                                                                        options:0 metrics:nil views:views]];
+    [[self view] addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[scrollView]|"
+                                                                        options:0 metrics:nil views:views]];
+    [[self view] addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[navBar][scrollView]|"
+                                                                        options:0 metrics:nil views:views]];
+    
+    // TextStorage と LayoutManager を生成
+    [self setTextStorage:[[NSTextStorage alloc] init]];
+    CELayoutManager *layoutManager = [[CELayoutManager alloc] init];
+    [_textStorage addLayoutManager:layoutManager];
+    [layoutManager setBackgroundLayoutEnabled:YES];
+    [layoutManager setUsesAntialias:[[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultShouldAntialiasKey]];
+    [layoutManager setFixesLineHeight:[[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultFixLineHeightKey]];
+    
+    // NSTextContainer を生成
+    NSTextContainer *container = [[NSTextContainer alloc] initWithContainerSize:NSMakeSize(CGFLOAT_MAX, CGFLOAT_MAX)];
+    [layoutManager addTextContainer:container];
+    
+    // TextView 生成
+    _textView = [[CETextView alloc] initWithFrame:NSZeroRect textContainer:container];
+    [_textView setDelegate:self];
+    
+    [_navigationBarController setTextView:_textView];
+    [_scrollView setDocumentView:_textView];
+    
+    // 置換の Undo/Redo 後に再カラーリングできるように Undo/Redo アクションをキャッチ
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(recolorAfterUndoAndRedo:)
+                                                 name:NSUndoManagerDidRedoChangeNotification
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(recolorAfterUndoAndRedo:)
+                                                 name:NSUndoManagerDidUndoChangeNotification
+                                               object:nil];
+    
+    // テーマの変更をキャッチ
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(themeDidUpdate:)
+                                                 name:CEThemeDidUpdateNotification
+                                               object:nil];
+    
+    // リサイズに現在行ハイライトを追従
+    if (_highlightsCurrentLine) {
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(highlightCurrentLine)
+                                                     name:NSViewFrameDidChangeNotification
+                                                   object:[_scrollView contentView]];
+    }
 }
 
 
@@ -308,9 +324,9 @@
     //
     // # Methods Standardizing Line Endings on Text Editing
     //   - File Open:
-    //       - CEDocument > setStringToEditor
+    //       - CEDocument > applyContentToEditor
     //   - Key Typing, Script, Paste, Drop:
-    //       - CEEditorView > textView:shouldChangeTextInRange:replacementString:
+    //       - CEEditorViewController > textView:shouldChangeTextInRange:replacementString:
     //   - Replace on Find Panel:
     //       - (OgreKit) OgreTextViewPlainAdapter > replaceCharactersInRange:withOGString:
     
@@ -401,7 +417,7 @@
 // ------------------------------------------------------
 {
     // 文書情報更新（選択範囲・キャレット位置が変更されないまま全置換が実行された場合への対応）
-    [[[self window] windowController] setupEditorInfoUpdateTimer];
+    [[[[self view] window] windowController] setupEditorInfoUpdateTimer];
     
     // 全テキストを再カラーリング
     [[self editorWrapper] setupColoringTimer];
@@ -410,7 +426,7 @@
     [[self editorWrapper] setupOutlineMenuUpdateTimer];
     
     // 非互換文字リスト更新
-    [[[self window] windowController] updateIncompatibleCharsIfNeeded];
+    [[[[self view] window] windowController] updateIncompatibleCharsIfNeeded];
 
     // フラグが立っていたら、入力補完を再度実行する
     // （フラグは CETextView > insertCompletion:forPartialWordRange:movement:isFinal: で立てている）
@@ -430,7 +446,7 @@
     [self highlightCurrentLine];
 
     // update document information
-    [[[self window] windowController] setupEditorInfoUpdateTimer];
+    [[[[self view] window] windowController] setupEditorInfoUpdateTimer];
 
     // update selected item of the outline menu
     [self updateOutlineMenuSelection];
@@ -586,7 +602,7 @@
     if (![self highlightsCurrentLine]) { return; }
     
     // 最初に（表示前に） TextView にテキストをセットした際にムダに演算が実行されるのを避ける (2014-07 by 1024jp)
-    if (![[self window] isVisible]) { return; }
+    if (![[[self view] window] isVisible]) { return; }
     
     NSLayoutManager *layoutManager = [[self textView] layoutManager];
     CETextView *textView = [self textView];

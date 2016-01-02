@@ -11,7 +11,7 @@
  
  © 2004-2007 nakamuxu
  © 2011,2014 usami-k
- © 2013-2015 1024jp
+ © 2013-2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -721,9 +721,9 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     //
     // # Methods Standardizing Line Endings on Text Editing
     //   - File Open:
-    //       - CEDocument > setStringToEditor
+    //       - CEDocument > applyContentToEditor
     //   - Key Typing, Script, Paste, Drop:
-    //       - CEEditorView > textView:shouldChangeTextInRange:replacementString:
+    //       - CEEditorViewController > textView:shouldChangeTextInRange:replacementString:
     //   - Replace on Find Panel:
     //       - (OgreKit) OgreTextViewPlainAdapter > replaceCharactersInRange:withOGString:
     if ([self fileContentString]) {
