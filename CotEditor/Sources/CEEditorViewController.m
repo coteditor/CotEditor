@@ -31,6 +31,7 @@
 #import "CENavigationBarController.h"
 #import "CEEditorWrapper.h"
 #import "CEEditorScrollView.h"
+#import "CETextView.h"
 #import "CESyntaxParser.h"
 #import "CEThemeManager.h"
 #import "CELayoutManager.h"

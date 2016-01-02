@@ -27,9 +27,9 @@
  */
 
 @import Cocoa;
-#import "CETextView.h"
 
 
+@class CETextView;
 @class CENavigationBarController;
 @class CEEditorWrapper;
 @class CESyntaxParser;
