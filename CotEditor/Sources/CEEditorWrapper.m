@@ -15,7 +15,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2015 1024jp
+ © 2014-2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -79,6 +79,13 @@
                                       [defaults boolForKey:CEDefaultShowInvisibleNewLineKey] ||
                                       [defaults boolForKey:CEDefaultShowInvisibleFullwidthSpaceKey] ||
                                       [defaults boolForKey:CEDefaultShowOtherInvisibleCharsKey]);
+        
+        _showsInvisibles = [defaults boolForKey:CEDefaultShowInvisiblesKey];
+        _showsLineNum = [defaults boolForKey:CEDefaultShowLineNumbersKey];
+        _showsNavigationBar = [defaults boolForKey:CEDefaultShowNavigationBarKey];
+        _wrapsLines = [defaults boolForKey:CEDefaultWrapLinesKey];
+        _verticalLayoutOrientation = [defaults boolForKey:CEDefaultLayoutTextVerticalKey];
+        _showsPageGuide = [defaults boolForKey:CEDefaultShowPageGuideKey];
     }
     return self;
 }
@@ -112,11 +119,11 @@
         [self setNextResponder:[self splitViewController]];
     }
     
-    CEEditorView *editorView = [[[[self splitViewController] view] subviews] firstObject];
-    [editorView setEditorWrapper:self];
-    [self setFocusedTextView:[editorView textView]];
+    CEEditorView *editorView = [[CEEditorView alloc] initWithFrame:NSZeroRect];
+    [self setupEditorView:editorView baseView:nil];
+    [[self splitViewController] addEditorView:editorView relativeTo:nil];
     
-    [self setupViewParamsOnInit:YES];
+    [self setFocusedTextView:[editorView textView]];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(didChangeSyntaxStyle:)
@@ -517,19 +524,12 @@
 
 
 // ------------------------------------------------------
-/// 不可視文字の表示／非表示を返す
-- (BOOL)showsInvisibles
-// ------------------------------------------------------
-{
-    return [(CELayoutManager *)[[self focusedTextView] layoutManager] showsInvisibles];
-}
-
-
-// ------------------------------------------------------
 /// 不可視文字の表示／非表示を設定
 - (void)setShowsInvisibles:(BOOL)showsInvisibles
 // ------------------------------------------------------
 {
+    _showsInvisibles = showsInvisibles;
+    
     [[self splitViewController] enumerateEditorViewsUsingBlock:^(CEEditorView * _Nonnull editorView) {
         [editorView setShowsInvisibles:showsInvisibles];
     }];
@@ -666,17 +666,12 @@
     CEEditorView *newEditorView = [[CEEditorView alloc] initWithFrame:[currentEditorView frame]];
 
     [newEditorView replaceTextStorage:[self textStorage]];
-    [newEditorView setEditorWrapper:self];
     
     // instert new editorView just below the editorView that the pressed button belongs to or has focus
     [[self splitViewController] addEditorView:newEditorView relativeTo:currentEditorView];
     
     // apply current status to the new editorView
-    [self setupViewParamsOnInit:NO];
-    [[newEditorView textView] setFont:[[currentEditorView textView] font]];
-    [[newEditorView textView] setTheme:[[currentEditorView textView] theme]];
-    [[newEditorView textView] setLineSpacing:[[currentEditorView textView] lineSpacing]];
-    [[newEditorView textView] setSelectedRange:[[currentEditorView textView] selectedRange]];
+    [self setupEditorView:newEditorView baseView:currentEditorView];
     
     [newEditorView applySyntax:[self syntaxParser]];
     [self invalidateSyntaxColoring];
@@ -760,25 +755,24 @@
 
 // ------------------------------------------------------
 /// サブビューに初期値を設定
-- (void)setupViewParamsOnInit:(BOOL)isInitial
+- (void)setupEditorView:(nonnull CEEditorView *)editorView baseView:(nullable CEEditorView *)baseView
 // ------------------------------------------------------
 {
-    if (isInitial) {
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        
-        [self setShowsInvisibles:[defaults boolForKey:CEDefaultShowInvisiblesKey]];
-        [self setShowsLineNum:[defaults boolForKey:CEDefaultShowLineNumbersKey]];
-        [self setShowsNavigationBar:[defaults boolForKey:CEDefaultShowNavigationBarKey] animate:NO];
-        [self setWrapsLines:[defaults boolForKey:CEDefaultWrapLinesKey]];
-        [self setVerticalLayoutOrientation:[defaults boolForKey:CEDefaultLayoutTextVerticalKey]];
-        [self setShowsPageGuide:[defaults boolForKey:CEDefaultShowPageGuideKey]];
-    } else {
-        [self setShowsInvisibles:[self showsInvisibles]];
-        [self setShowsLineNum:[self showsLineNum]];
-        [self setShowsNavigationBar:[self showsNavigationBar] animate:NO];
-        [self setWrapsLines:[self wrapsLines]];
-        [self setVerticalLayoutOrientation:[self isVerticalLayoutOrientation]];
-        [self setShowsPageGuide:[self showsPageGuide]];
+    [editorView setEditorWrapper:self];
+    
+    [self setShowsInvisibles:[self showsInvisibles]];
+    [self setShowsLineNum:[self showsLineNum]];
+    [self setShowsNavigationBar:[self showsNavigationBar] animate:NO];
+    [self setWrapsLines:[self wrapsLines]];
+    [self setVerticalLayoutOrientation:[self isVerticalLayoutOrientation]];
+    [self setShowsPageGuide:[self showsPageGuide]];
+    
+    // copy textView states
+    if (baseView) {
+        [[editorView textView] setFont:[[baseView textView] font]];
+        [[editorView textView] setTheme:[[baseView textView] theme]];
+        [[editorView textView] setLineSpacing:[[baseView textView] lineSpacing]];
+        [[editorView textView] setSelectedRange:[[baseView textView] selectedRange]];
     }
 }
 
