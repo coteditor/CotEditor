@@ -110,7 +110,6 @@ static NSPoint kTextContainerOrigin;
         [layoutManager setBackgroundLayoutEnabled:YES];
         [layoutManager setUsesAntialias:[defaults boolForKey:CEDefaultShouldAntialiasKey]];
         [layoutManager setFixesLineHeight:[defaults boolForKey:CEDefaultFixLineHeightKey]];
-        [[self textContainer] setSize:NSMakeSize(CGFLOAT_MAX, CGFLOAT_MAX)];
         [[self textContainer] replaceLayoutManager:layoutManager];
         
         // This method is partly based on Smultron's SMLTextView by Peter Borg. (2006-09-09)
