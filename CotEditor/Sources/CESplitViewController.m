@@ -124,7 +124,7 @@
 
 // ------------------------------------------------------
 /// enumerate all subview's viewControllers as CEEditorViewController
-- (void)enumerateEditorViewsUsingBlock:(nonnull void (^)(CEEditorViewController * _Nonnull editorViewController))block;
+- (void)enumerateEditorViewsUsingBlock:(nonnull void (^)(CEEditorViewController * _Nonnull viewController))block;
 // ------------------------------------------------------
 {
     for (CEEditorViewController *viewController in [self editorViewControllers]) {

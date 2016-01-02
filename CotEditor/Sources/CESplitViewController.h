@@ -37,7 +37,7 @@
 @property (readonly, nonatomic, nonnull) NSSplitView *splitView;
 
 
-- (void)enumerateEditorViewsUsingBlock:(nonnull void (^)(CEEditorViewController * _Nonnull editorViewController))block;
+- (void)enumerateEditorViewsUsingBlock:(nonnull void (^)(CEEditorViewController * _Nonnull viewController))block;
 
 - (void)addSubviewForViewController:(nonnull CEEditorViewController *)editorViewController relativeTo:(nullable NSView *)otherEditorView;
 - (void)removeSubviewForViewController:(nonnull CEEditorViewController *)editorViewController;
