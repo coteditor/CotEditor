@@ -1,6 +1,6 @@
 /*
  
- CEEditorView.h
+ CEEditorViewController.h
  
  CotEditor
  http://coteditor.com
@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2015 1024jp
+ © 2014-2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -27,25 +27,27 @@
  */
 
 @import Cocoa;
-#import "CETextView.h"
 
 
+@class CETextView;
 @class CENavigationBarController;
 @class CEEditorWrapper;
 @class CESyntaxParser;
 
 
-@interface CEEditorView : NSView <NSTextViewDelegate>
+@interface CEEditorViewController : NSViewController <NSTextViewDelegate>
 
 @property (nonatomic, nullable, weak) CEEditorWrapper *editorWrapper;
 
 // readonly
-@property (readonly, nonatomic, nonnull) CETextView *textView;
-@property (readonly, nonatomic, nonnull) CENavigationBarController *navigationBarController;
+@property (readonly, nonatomic, nullable) CETextView *textView;
+@property (readonly, nonatomic, nullable) CENavigationBarController *navigationBarController;
 
+
+// initializer
+- (nonnull instancetype)initWithTextStorage:(nonnull NSTextStorage *)textStorage;
 
 // Public method
-- (void)replaceTextStorage:(nonnull NSTextStorage *)textStorage;
 - (void)setShowsLineNum:(BOOL)showsLineNum;
 - (void)setShowsNavigationBar:(BOOL)showsNavigationBar animate:(BOOL)performAnimation;
 - (void)setWrapsLines:(BOOL)wrapsLines;

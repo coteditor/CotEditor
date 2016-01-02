@@ -15,7 +15,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2015 1024jp
+ © 2014-2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -95,15 +95,22 @@ static NSPoint kTextContainerOrigin;
 
 // ------------------------------------------------------
 /// initialize instance
-- (nonnull instancetype)initWithFrame:(NSRect)frameRect textContainer:(nullable NSTextContainer *)container
+- (nullable instancetype)initWithCoder:(NSCoder *)coder
 // ------------------------------------------------------
 {
-    self = [super initWithFrame:frameRect textContainer:container];
+    self = [super initWithCoder:(NSCoder *)coder];
     if (self) {
         // set class identifier for window restoration
         [self setIdentifier:@"coreTextView"];
         
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        
+        // setup layoutManager and textContainer
+        CELayoutManager *layoutManager = [[CELayoutManager alloc] init];
+        [layoutManager setBackgroundLayoutEnabled:YES];
+        [layoutManager setUsesAntialias:[defaults boolForKey:CEDefaultShouldAntialiasKey]];
+        [layoutManager setFixesLineHeight:[defaults boolForKey:CEDefaultFixLineHeightKey]];
+        [[self textContainer] replaceLayoutManager:layoutManager];
         
         // This method is partly based on Smultron's SMLTextView by Peter Borg. (2006-09-09)
         // Smultron 2 was distributed on <http://smultron.sourceforge.net> under the terms of the BSD license.
@@ -142,7 +149,7 @@ static NSPoint kTextContainerOrigin;
             [self setAutomaticDashSubstitutionEnabled:[defaults boolForKey:CEDefaultEnableSmartQuotesKey]];
         }
         [self setFont:font];
-        [self setMinSize:frameRect.size];
+        [self setMinSize:[self frame].size];
         [self setMaxSize:NSMakeSize(CGFLOAT_MAX, CGFLOAT_MAX)];
         [self setAllowsDocumentBackgroundColorChange:NO];
         [self setAllowsUndo:YES];
@@ -1670,7 +1677,7 @@ static NSPoint kTextContainerOrigin;
     }
     
     // 補完リストを表示中に通常のキー入力があったら、直後にもう一度入力補完を行うためのフラグを立てる
-    // （フラグは CEEditorView > textDidChange: で評価される）
+    // （フラグは CEEditorViewController > textDidChange: で評価される）
     if (flag && ([event type] == NSKeyDown) && !([event modifierFlags] & NSCommandKeyMask)) {
         NSString *inputChar = [event charactersIgnoringModifiers];
         unichar theUnichar = [inputChar characterAtIndex:0];

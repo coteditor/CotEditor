@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2015 1024jp
+ © 2014-2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -91,7 +91,7 @@ static BOOL usesTextFontForInvisibles;
         _newLineChar = [CEUtils invisibleNewLineChar:[defaults integerForKey:CEDefaultInvisibleNewLineKey]];
         _fullwidthSpaceChar = [CEUtils invisibleFullwidthSpaceChar:[defaults integerForKey:CEDefaultInvisibleFullwidthSpaceKey]];
 
-        // （setShowsInvisibles: は CEEditorView から実行される。プリント時は CEPrintView から実行される）
+        // （setShowsInvisibles: は CEEditorViewController から実行される。プリント時は CEPrintView から実行される）
         _showsSpace = [defaults boolForKey:CEDefaultShowInvisibleSpaceKey];
         _showsTab = [defaults boolForKey:CEDefaultShowInvisibleTabKey];
         _showsNewLine = [defaults boolForKey:CEDefaultShowInvisibleNewLineKey];
