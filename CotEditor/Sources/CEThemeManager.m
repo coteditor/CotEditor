@@ -27,7 +27,10 @@
 
 #import "CEThemeManager.h"
 #import "CEAppDelegate.h"
+
 #import "NSColor+WFColorCode.h"
+
+#import "CEErrors.h"
 #import "Defaults.h"
 #import "Constants.h"
 

@@ -41,9 +41,6 @@ NSString *_Nonnull const CESeparatorString = @"-";
 // Exported UTI
 NSString *_Nonnull const CEUTTypeTheme = @"com.coteditor.CotEditor.theme";
 
-// Error domain
-NSString *_Nonnull const CEErrorDomain = @"com.coteditor.CotEditor.ErrorDomain";
-
 // Metadata dict keys for themes and syntax styles
 NSString *_Nonnull const CEMetadataKey = @"metadata";
 NSString *_Nonnull const CEAuthorKey = @"author";

@@ -41,25 +41,6 @@ extern NSString *_Nonnull const CESeparatorString;
 // Exported UTI
 extern NSString *_Nonnull const CEUTTypeTheme;
 
-// Error domain
-extern NSString *_Nonnull const CEErrorDomain;
-
-typedef NS_ENUM(OSStatus, CEErrorCode) {
-    CEInvalidNameError = 1000,
-    CEThemeFileDuplicationError,
-    CEScriptNoTargetDocumentError,
-    
-    // encoding errors
-    CEIANACharsetNameConflictError,
-    CEUnconvertibleCharactersError,
-    CEReinterpretationFailedError,
-    
-    // for command-line tool
-    CEApplicationNotInApplicationDirectoryError,
-    CEApplicationNameIsModifiedError,
-    CESymlinkCreationDeniedError,
-};
-
 // Metadata dict keys
 extern NSString *_Nonnull const CEMetadataKey;
 extern NSString *_Nonnull const CEAuthorKey;

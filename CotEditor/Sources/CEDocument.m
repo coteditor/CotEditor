@@ -41,8 +41,11 @@
 #import "CEToolbarController.h"
 #import "CEEditorWrapper.h"
 #import "CEEncodingManager.h"
+
 #import "NSURL+Xattr.h"
 #import "NSString+Indentation.h"
+
+#import "CEErrors.h"
 #import "Defaults.h"
 #import "Constants.h"
 

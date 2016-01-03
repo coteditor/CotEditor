@@ -81,6 +81,8 @@
 		2A41CB3E1C3906BA00F9122B /* CEInvisibles.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A41CB3C1C3906BA00F9122B /* CEInvisibles.m */; };
 		2A41CB401C39167500F9122B /* Defaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A41CB3F1C39167500F9122B /* Defaults.m */; };
 		2A41CB411C39167500F9122B /* Defaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A41CB3F1C39167500F9122B /* Defaults.m */; };
+		2A41CB461C391B7400F9122B /* CEErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A41CB451C391B7400F9122B /* CEErrors.m */; };
+		2A41CB471C391B7400F9122B /* CEErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A41CB451C391B7400F9122B /* CEErrors.m */; };
 		2A42825518FCD47B00386899 /* Acknowledgements.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A961C4518FC699E002076B6 /* Acknowledgements.rtf */; };
 		2A436DCD1A4243D500275FD4 /* DocumentInspectorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A436DCB1A4243D500275FD4 /* DocumentInspectorView.xib */; };
 		2A436DD01A4249CB00275FD4 /* IncompatibleCharsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A436DCE1A4249CB00275FD4 /* IncompatibleCharsView.xib */; };
@@ -538,6 +540,8 @@
 		2A41CB3C1C3906BA00F9122B /* CEInvisibles.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEInvisibles.m; sourceTree = "<group>"; };
 		2A41CB3F1C39167500F9122B /* Defaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = Defaults.m; sourceTree = "<group>"; };
 		2A41CB421C39168C00F9122B /* Defaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = Defaults.h; sourceTree = "<group>"; };
+		2A41CB441C391B7400F9122B /* CEErrors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEErrors.h; sourceTree = "<group>"; };
+		2A41CB451C391B7400F9122B /* CEErrors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEErrors.m; sourceTree = "<group>"; };
 		2A436DCC1A4243D500275FD4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/DocumentInspectorView.xib; sourceTree = "<group>"; };
 		2A436DCF1A4249CB00275FD4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/IncompatibleCharsView.xib; sourceTree = "<group>"; };
 		2A436DD21A42516900275FD4 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/DocumentInspectorView.strings; sourceTree = "<group>"; };
@@ -1354,6 +1358,8 @@
 		2A41CB431C391ACE00F9122B /* Constants */ = {
 			isa = PBXGroup;
 			children = (
+				2A41CB441C391B7400F9122B /* CEErrors.h */,
+				2A41CB451C391B7400F9122B /* CEErrors.m */,
 				2A41CB421C39168C00F9122B /* Defaults.h */,
 				2A41CB3F1C39167500F9122B /* Defaults.m */,
 				25859E90076D88ED0020F779 /* Constants.h */,
@@ -2067,6 +2073,7 @@
 				2A6F0DCD1B5500E100C2D03C /* CEPrintPanelAccessoryController.m in Sources */,
 				2AAD91871C29B2A300C70AEF /* CEPaddingTextFieldCell.m in Sources */,
 				2A6F0DCE1B5500E100C2D03C /* CEMigrationWindowController.m in Sources */,
+				2A41CB471C391B7400F9122B /* CEErrors.m in Sources */,
 				2A6F0DCF1B5500E100C2D03C /* CEShortcutKeyField.m in Sources */,
 				2A6F0DD01B5500E100C2D03C /* CEFindPanelTextClipView.m in Sources */,
 				2A6415951BD10EFA0080358E /* NSString+Indentation.m in Sources */,
@@ -2223,6 +2230,7 @@
 				2AF4E0D7196F7958008E9EF7 /* CEStatusBarController.m in Sources */,
 				2AE2E9D519D2CF00000D66A9 /* CEEncodingManager.m in Sources */,
 				2A009ACB1A57BA8B00C3D542 /* CETextFinder.m in Sources */,
+				2A41CB461C391B7400F9122B /* CEErrors.m in Sources */,
 				2A607B0D1905EB5500F3A991 /* CEColorCodePanelController.m in Sources */,
 				8C99DDFB08BD8940001F618C /* CEOutlineMenuButtonCell.m in Sources */,
 				2AD84CAA1966314100DE49BD /* CEODBEventSender.m in Sources */,

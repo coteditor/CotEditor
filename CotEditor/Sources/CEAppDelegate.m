@@ -48,6 +48,7 @@
 #import "CEDocument.h"
 #import "CEEditorWrapper.h"
 
+#import "CEErrors.h"
 #import "Defaults.h"
 #import "Constants.h"
 

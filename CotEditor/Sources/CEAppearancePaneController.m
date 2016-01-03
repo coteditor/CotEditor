@@ -30,6 +30,7 @@
 #import "CEAppearancePaneController.h"
 #import "CEThemeViewController.h"
 #import "CEThemeManager.h"
+#import "CEErrors.h"
 #import "Defaults.h"
 #import "Constants.h"
 

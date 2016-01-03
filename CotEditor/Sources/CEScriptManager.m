@@ -32,6 +32,8 @@
 #import "CEEditorWrapper.h"
 #import "CEKeyBindingUtils.h"
 #import "NSString+Sandboxing.h"
+
+#import "CEErrors.h"
 #import "Defaults.h"
 #import "Constants.h"
 
