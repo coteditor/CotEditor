@@ -1,6 +1,6 @@
 /*
  
- CEUtils.h
+ CEKeyBindingUtils.h
  
  CotEditor
  http://coteditor.com
@@ -26,11 +26,63 @@
  
  */
 
-#import "CEUtils.h"
-#import "Constants.h"
+#import "CEKeyBindingUtils.h"
 
 
-@implementation CEUtils
+// Modifier keys and characters for keybinding
+NSEventModifierFlags const kModifierKeyMaskList[] = {
+    NSControlKeyMask,
+    NSAlternateKeyMask,
+    NSShiftKeyMask,
+    NSCommandKeyMask
+};
+unichar const kModifierKeySymbolCharList[] = {0x005E, 0x2325, 0x21E7, 0x2318};
+unichar const kKeySpecCharList[]           = {0x005E, 0x007E, 0x0024, 0x0040};  // == "^~$@"
+
+NSUInteger const kSizeOfModifierKeys = sizeof(kModifierKeyMaskList) / sizeof(NSEventModifierFlags);
+
+
+// Unprintable key list
+unichar const kUnprintableKeyList[] = {
+    NSUpArrowFunctionKey,
+    NSDownArrowFunctionKey,
+    NSLeftArrowFunctionKey,
+    NSRightArrowFunctionKey,
+    NSF1FunctionKey,
+    NSF2FunctionKey,
+    NSF3FunctionKey,
+    NSF4FunctionKey,
+    NSF5FunctionKey,
+    NSF6FunctionKey,
+    NSF7FunctionKey,
+    NSF8FunctionKey,
+    NSF9FunctionKey,
+    NSF10FunctionKey,
+    NSF11FunctionKey,
+    NSF12FunctionKey,
+    NSF13FunctionKey,
+    NSF14FunctionKey,
+    NSF15FunctionKey,
+    NSF16FunctionKey,
+    NSDeleteCharacter, // do not use NSDeleteFunctionKey
+    NSHomeFunctionKey,
+    NSEndFunctionKey,
+    NSPageUpFunctionKey,
+    NSPageDownFunctionKey,
+    NSClearLineFunctionKey,
+    NSHelpFunctionKey,
+    ' ', // = Space
+    '\t', // = Tab
+    '\r', // = Return
+    '\b', // = Backspace, (delete backword)
+    '\003', // = Enter
+    '\031', // = Backtab
+    '\033', // = Escape
+};
+NSUInteger const kSizeOfUnprintableKeyList = sizeof(kUnprintableKeyList) / sizeof(unichar);
+
+
+@implementation CEKeyBindingUtils
 
 // ------------------------------------------------------
 /// returns string form keyEquivalent (keyboard shortcut) for menu item

@@ -1,6 +1,6 @@
 /*
  
- CEUtils.h
+ CEKeyBindingUtils.h
  
  CotEditor
  http://coteditor.com
@@ -26,10 +26,30 @@
  
  */
 
-@import Foundation;
+@import AppKit;
 
 
-@interface CEUtils : NSObject
+// Modifier masks and characters for keybindings
+extern NSEventModifierFlags const kModifierKeyMaskList[];
+extern unichar const kModifierKeySymbolCharList[];
+extern unichar const kKeySpecCharList[];
+
+// size of kModifierKeyMaskList, kKeySpecCharList and kModifierKeySymbolCharList
+extern NSUInteger const kSizeOfModifierKeys;
+// indexes of kModifierKeyMaskList, kKeySpecCharList and kModifierKeySymbolCharList
+typedef NS_ENUM(NSUInteger, CEModifierKeyIndex) {
+    CEControlKeyIndex,
+    CEAlternateKeyIndex,
+    CEShiftKeyIndex,
+    CECommandKeyIndex,
+};
+
+// Unprintable key list
+extern unichar    const kUnprintableKeyList[];
+extern NSUInteger const kSizeOfUnprintableKeyList;
+
+
+@interface CEKeyBindingUtils : NSObject
 
 /// returns string form keyEquivalent (keyboard shortcut) for menu item
 + (nonnull NSString *)keyEquivalentAndModifierMask:(nonnull NSUInteger *)modifierMask
