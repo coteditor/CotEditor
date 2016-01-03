@@ -107,7 +107,6 @@ static NSPoint kTextContainerOrigin;
         
         // setup layoutManager and textContainer
         CELayoutManager *layoutManager = [[CELayoutManager alloc] init];
-        [layoutManager setBackgroundLayoutEnabled:YES];
         [layoutManager setUsesAntialias:[defaults boolForKey:CEDefaultShouldAntialiasKey]];
         [layoutManager setFixesLineHeight:[defaults boolForKey:CEDefaultFixLineHeightKey]];
         [[self textContainer] replaceLayoutManager:layoutManager];
