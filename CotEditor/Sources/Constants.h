@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2015 1024jp
+ © 2014-2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -471,28 +471,6 @@ extern NSUInteger        const kSizeOfCFStringEncodingInvalidYenList;
 
 // Yen mark char
 extern unichar const kYenMark;
-
-
-
-// ------------------------------------------------------
-// Invisibles
-// ------------------------------------------------------
-
-// Substitutes for invisible characters
-extern unichar    const kInvisibleSpaceCharList[];
-extern NSUInteger const kSizeOfInvisibleSpaceCharList;
-
-extern unichar    const kInvisibleTabCharList[];
-extern NSUInteger const kSizeOfInvisibleTabCharList;
-
-extern unichar    const kInvisibleNewLineCharList[];
-extern NSUInteger const kSizeOfInvisibleNewLineCharList;
-
-extern unichar    const kInvisibleFullwidthSpaceCharList[];
-extern NSUInteger const kSizeOfInvisibleFullwidthSpaceCharList;
-
-extern unichar const kVerticalTabChar;
-extern unichar const kReplacementChar;
 
 
 

@@ -77,6 +77,8 @@
 		2A3A75AC19E77E87001DAB88 /* SyntaxValidationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A3A75A419E77E87001DAB88 /* SyntaxValidationView.xib */; };
 		2A3A75B319E77F32001DAB88 /* CESyntaxValidationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A3A75B219E77F32001DAB88 /* CESyntaxValidationViewController.m */; };
 		2A3FB2AD18ECEFF200D9CB2C /* CESyntaxEditSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A3FB2AC18ECEFF200D9CB2C /* CESyntaxEditSheetController.m */; };
+		2A41CB3D1C3906BA00F9122B /* CEInvisibles.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A41CB3C1C3906BA00F9122B /* CEInvisibles.m */; };
+		2A41CB3E1C3906BA00F9122B /* CEInvisibles.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A41CB3C1C3906BA00F9122B /* CEInvisibles.m */; };
 		2A42825518FCD47B00386899 /* Acknowledgements.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A961C4518FC699E002076B6 /* Acknowledgements.rtf */; };
 		2A436DCD1A4243D500275FD4 /* DocumentInspectorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A436DCB1A4243D500275FD4 /* DocumentInspectorView.xib */; };
 		2A436DD01A4249CB00275FD4 /* IncompatibleCharsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A436DCE1A4249CB00275FD4 /* IncompatibleCharsView.xib */; };
@@ -530,6 +532,8 @@
 		2A4064021B9DA7C60032AC7F /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/SyntaxOutlineEditView.strings; sourceTree = "<group>"; };
 		2A4064041B9DA8BE0032AC7F /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/SyntaxCommentsEditView.strings; sourceTree = "<group>"; };
 		2A4064061B9DAA4E0032AC7F /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/SyntaxTermsEditView.strings; sourceTree = "<group>"; };
+		2A41CB3B1C3906BA00F9122B /* CEInvisibles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEInvisibles.h; sourceTree = "<group>"; };
+		2A41CB3C1C3906BA00F9122B /* CEInvisibles.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEInvisibles.m; sourceTree = "<group>"; };
 		2A436DCC1A4243D500275FD4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/DocumentInspectorView.xib; sourceTree = "<group>"; };
 		2A436DCF1A4249CB00275FD4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/IncompatibleCharsView.xib; sourceTree = "<group>"; };
 		2A436DD21A42516900275FD4 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/DocumentInspectorView.strings; sourceTree = "<group>"; };
@@ -1097,6 +1101,8 @@
 			children = (
 				2A149DD319032CC900A9D6EF /* CEUtils.h */,
 				2A149DD419032CC900A9D6EF /* CEUtils.m */,
+				2A41CB3B1C3906BA00F9122B /* CEInvisibles.h */,
+				2A41CB3C1C3906BA00F9122B /* CEInvisibles.m */,
 				2A41CB3A1C39068200F9122B /* Value Transformers */,
 				2A41CB391C39066F00F9122B /* Extensions */,
 			);
@@ -2014,6 +2020,7 @@
 				2AD789D61C31AD81008B746F /* CEControlCharacerNames.m in Sources */,
 				2A6F0DB01B5500E100C2D03C /* CEPrefEncodingDataSource.m in Sources */,
 				2A6F0DB11B5500E100C2D03C /* CEFormatPaneController.m in Sources */,
+				2A41CB3E1C3906BA00F9122B /* CEInvisibles.m in Sources */,
 				2A6F0DB21B5500E100C2D03C /* CEWindow.m in Sources */,
 				2A6F0DB31B5500E100C2D03C /* CEEncodingListSheetController.m in Sources */,
 				2A6F0DB41B5500E100C2D03C /* CESyntaxParser.m in Sources */,
@@ -2219,6 +2226,7 @@
 				2A94A45A18D08D52009FA90D /* NSWindow+ScriptingSupport.m in Sources */,
 				2AB432741915D6AA00835004 /* NSString+ComposedCharacter.m in Sources */,
 				2A2BDF0D198A899E0029848B /* NSString+JapaneseTransform.m in Sources */,
+				2A41CB3D1C3906BA00F9122B /* CEInvisibles.m in Sources */,
 				2AD789D51C31AD81008B746F /* CEControlCharacerNames.m in Sources */,
 				2AC75C081A2AF47F00C7DB0A /* NSString+CENewLine.m in Sources */,
 				2A1068C31A745FCE001DB9AA /* NSURL+Xattr.m in Sources */,

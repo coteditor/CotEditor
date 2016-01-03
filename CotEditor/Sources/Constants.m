@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2015 1024jp
+ © 2014-2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -496,28 +496,6 @@ NSUInteger const kSizeOfCFStringEncodingInvalidYenList = sizeof(kCFStringEncodin
 
 // Yen mark char
 unichar const kYenMark = 0x00A5;
-
-
-
-// ------------------------------------------------------
-// Invisibles
-// ------------------------------------------------------
-
-// Substitutes for invisible characters
-unichar     const kInvisibleSpaceCharList[] = {0x00B7, 0x00B0, 0x02D0, 0x2423};
-NSUInteger  const kSizeOfInvisibleSpaceCharList = sizeof(kInvisibleSpaceCharList) / sizeof(unichar);
-
-unichar     const kInvisibleTabCharList[] = {0x00AC, 0x21E5, 0x2023, 0x25B9};
-NSUInteger  const kSizeOfInvisibleTabCharList = sizeof(kInvisibleTabCharList) / sizeof(unichar);
-
-unichar     const kInvisibleNewLineCharList[] = {0x00B6, 0x21A9, 0x21B5, 0x23CE};
-NSUInteger  const kSizeOfInvisibleNewLineCharList = sizeof(kInvisibleNewLineCharList) / sizeof(unichar);
-
-unichar     const kInvisibleFullwidthSpaceCharList[] = {0x25A1, 0x22A0, 0x25A0, 0x25B3};
-NSUInteger  const kSizeOfInvisibleFullwidthSpaceCharList = sizeof(kInvisibleFullwidthSpaceCharList) / sizeof(unichar);
-
-unichar const kVerticalTabChar = 0x240B;  // symbol for vertical tablation
-unichar const kReplacementChar = 0xFFFD;  // symbol for "Other Invisibles" (NSControlGlyph) 
 
 
 

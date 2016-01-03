@@ -1,15 +1,14 @@
 /*
  
- CEUtils.h
+ CEInvisibles.h
  
  CotEditor
  http://coteditor.com
  
- Created by nakamuxu on 2014-04-20.
+ Created by 1024jp on 2016-01-03.
  
  ------------------------------------------------------------------------------
  
- © 2004-2007 nakamuxu
  © 2014-2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
@@ -29,11 +28,20 @@
 @import Foundation;
 
 
-@interface CEUtils : NSObject
+@interface CEInvisibles : NSObject
 
-/// returns string form keyEquivalent (keyboard shortcut) for menu item
-+ (nonnull NSString *)keyEquivalentAndModifierMask:(nonnull NSUInteger *)modifierMask
-                                        fromString:(nonnull NSString *)string
-                               includingCommandKey:(BOOL)needsIncludingCommandKey;
+// return substitution character for invisible character
++ (unichar)spaceCharWithIndex:(NSUInteger)index;
++ (unichar)tabCharWithIndex:(NSUInteger)index;
++ (unichar)newLineCharWithIndex:(NSUInteger)index;
++ (unichar)fullwidthSpaceCharWithIndex:(NSUInteger)index;
++ (unichar)verticalTabChar;
++ (unichar)replacementChar;
+
+// all available substitution characters
++ (nonnull NSArray<NSString *> *)spaceStrings;
++ (nonnull NSArray<NSString *> *)tabStrings;
++ (nonnull NSArray<NSString *> *)newLineStrings;
++ (nonnull NSArray<NSString *> *)fullwidthSpaceStrings;
 
 @end

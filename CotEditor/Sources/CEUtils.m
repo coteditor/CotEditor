@@ -1,6 +1,6 @@
 /*
  
- CEUtils.m
+ CEUtils.h
  
  CotEditor
  http://coteditor.com
@@ -31,56 +31,6 @@
 
 
 @implementation CEUtils
-
-#pragma mark Public Methods
-
-// ------------------------------------------------------
-/// returns substitute character for invisible space
-+ (unichar)invisibleSpaceChar:(NSUInteger)index
-// ------------------------------------------------------
-{
-    NSUInteger max = kSizeOfInvisibleSpaceCharList - 1;
-    NSUInteger sanitizedIndex = MIN(max, index);
-    
-    return kInvisibleSpaceCharList[sanitizedIndex];
-}
-
-
-// ------------------------------------------------------
-/// returns substitute character for invisible tab character
-+ (unichar)invisibleTabChar:(NSUInteger)index
-// ------------------------------------------------------
-{
-    NSUInteger max = kSizeOfInvisibleTabCharList - 1;
-    NSUInteger sanitizedIndex = MIN(max, index);
-    
-    return kInvisibleTabCharList[sanitizedIndex];
-}
-
-
-// ------------------------------------------------------
-/// returns substitute character for invisible new line character
-+ (unichar)invisibleNewLineChar:(NSUInteger)index
-// ------------------------------------------------------
-{
-    NSUInteger max = kSizeOfInvisibleNewLineCharList - 1;
-    NSUInteger sanitizedIndex = MIN(max, index);
-    
-    return kInvisibleNewLineCharList[sanitizedIndex];
-}
-
-
-// ------------------------------------------------------
-/// returns substitute character for invisible full-width space
-+ (unichar)invisibleFullwidthSpaceChar:(NSUInteger)index
-// ------------------------------------------------------
-{
-    NSUInteger max = kSizeOfInvisibleFullwidthSpaceCharList - 1;
-    NSUInteger sanitizedIndex = MIN(max, index);
-    
-    return kInvisibleFullwidthSpaceCharList[sanitizedIndex];
-}
-
 
 // ------------------------------------------------------
 /// returns string form keyEquivalent (keyboard shortcut) for menu item

@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2015 1024jp
+ © 2014-2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -27,7 +27,7 @@
  */
 
 #import "CEEditPaneController.h"
-#import "CEUtils.h"
+#import "CEInvisibles.h"
 #import "Constants.h"
 
 
@@ -60,29 +60,10 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // setup popup menu items for invisible characters
-        NSMutableArray<NSString *> *spaces = [NSMutableArray arrayWithCapacity:kSizeOfInvisibleSpaceCharList];
-        for (NSUInteger i = 0; i < kSizeOfInvisibleSpaceCharList; i++) {
-            [spaces addObject:[NSString stringWithFormat:@"%C", [CEUtils invisibleSpaceChar:i]]];
-        }
-        _invisibleSpaces = spaces;
-        
-        NSMutableArray<NSString *> *tabs = [NSMutableArray arrayWithCapacity:kSizeOfInvisibleTabCharList];
-        for (NSUInteger i = 0; i < kSizeOfInvisibleTabCharList; i++) {
-            [tabs addObject:[NSString stringWithFormat:@"%C", [CEUtils invisibleTabChar:i]]];
-        }
-        _invisibleTabs = tabs;
-        
-        NSMutableArray<NSString *> *newLines = [NSMutableArray arrayWithCapacity:kSizeOfInvisibleNewLineCharList];
-        for (NSUInteger i = 0; i < kSizeOfInvisibleNewLineCharList; i++) {
-            [newLines addObject:[NSString stringWithFormat:@"%C", [CEUtils invisibleNewLineChar:i]]];
-        }
-        _invisibleNewLines = newLines;
-        
-        NSMutableArray<NSString *> *fullWidthSpaces = [NSMutableArray arrayWithCapacity:kSizeOfInvisibleFullwidthSpaceCharList];
-        for (NSUInteger i = 0; i < kSizeOfInvisibleFullwidthSpaceCharList; i++) {
-            [fullWidthSpaces addObject:[NSString stringWithFormat:@"%C", [CEUtils invisibleFullwidthSpaceChar:i]]];
-        }
-        _invisibleFullWidthSpaces = fullWidthSpaces;
+        _invisibleSpaces = [CEInvisibles spaceStrings];
+        _invisibleTabs = [CEInvisibles tabStrings];
+        _invisibleNewLines = [CEInvisibles newLineStrings];
+        _invisibleFullWidthSpaces = [CEInvisibles fullwidthSpaceStrings];
         
         [self updateCompletionHintMessage];
     }
