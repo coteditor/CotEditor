@@ -1033,6 +1033,8 @@
 	<string>${PRODUCT_NAME}.sdef</string>
 	<key>SUPublicDSAKeyFile</key>
 	<string>dsa_pub.pem</string>
+	<key>SUAllowsAutomaticUpdates</key>
+	<false/>
 	<key>UTExportedTypeDeclarations</key>
 	<array>
 		<dict>
