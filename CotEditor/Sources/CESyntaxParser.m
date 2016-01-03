@@ -36,7 +36,19 @@
 #import "Constants.h"
 
 
-// local constants (QC might abbr of Quotes/Comment)
+// Outline item dict keys
+NSString *_Nonnull const CEOutlineItemTitleKey = @"outlineItemTitle";
+NSString *_Nonnull const CEOutlineItemRangeKey = @"outlineItemRange";
+NSString *_Nonnull const CEOutlineItemStyleBoldKey = @"outlineItemStyleBold";
+NSString *_Nonnull const CEOutlineItemStyleItalicKey = @"outlineItemStyleItalic";
+NSString *_Nonnull const CEOutlineItemStyleUnderlineKey = @"outlineItemStyleUnderline";
+
+
+// parsing constants
+static NSUInteger const kMaxEscapesCheckLength = 16;
+static NSString *_Nonnull const kAllAlphabetChars = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+
+// key constants (QC might abbr of Quotes/Comment)
 static NSString *_Nonnull const QCLocationKey = @"QCLocationKey";
 static NSString *_Nonnull const QCPairKindKey = @"QCPairKindKey";
 static NSString *_Nonnull const QCStartEndKey = @"QCStartEndKey";

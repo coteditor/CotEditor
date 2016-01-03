@@ -32,7 +32,10 @@
 #import "CEATSTypesetter.h"
 #import "CEInvisibles.h"
 #import "CEDefaults.h"
-#import "Constants.h"
+
+
+// constants
+static CGFloat const kDefaultLineHeightMultiple = 1.19;
 
 
 @interface CELayoutManager ()

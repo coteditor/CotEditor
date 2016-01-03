@@ -29,6 +29,14 @@
 @import Cocoa;
 
 
+// Outline item dict keys
+extern NSString *_Nonnull const CEOutlineItemTitleKey;
+extern NSString *_Nonnull const CEOutlineItemRangeKey;
+extern NSString *_Nonnull const CEOutlineItemStyleBoldKey;
+extern NSString *_Nonnull const CEOutlineItemStyleItalicKey;
+extern NSString *_Nonnull const CEOutlineItemStyleUnderlineKey;
+
+
 @interface CESyntaxParser : NSObject
 
 // readonly

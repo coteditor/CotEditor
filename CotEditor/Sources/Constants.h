@@ -85,10 +85,6 @@ extern NSString *_Nonnull const CENewNameKey;
 // Syntax
 // ------------------------------------------------------
 
-// syntax parsing
-extern NSUInteger const kMaxEscapesCheckLength;
-extern NSString *_Nonnull const kAllAlphabetChars;
-
 // syntax style keys
 extern NSString *_Nonnull const CESyntaxMetadataKey;
 extern NSString *_Nonnull const CESyntaxExtensionsKey;
@@ -197,35 +193,6 @@ extern NSString *_Nonnull const kBundledDocumentFileNames[];
 // Online URLs
 extern NSString *_Nonnull const kWebSiteURL;
 extern NSString *_Nonnull const kIssueTrackerURL;
-
-
-
-#pragma mark CEEditorWrapper
-
-// ------------------------------------------------------
-// CEEditorWrapper
-// ------------------------------------------------------
-
-// Outline item dict keys
-extern NSString *_Nonnull const CEOutlineItemTitleKey;
-extern NSString *_Nonnull const CEOutlineItemRangeKey;
-extern NSString *_Nonnull const CEOutlineItemStyleBoldKey;
-extern NSString *_Nonnull const CEOutlineItemStyleItalicKey;
-extern NSString *_Nonnull const CEOutlineItemStyleUnderlineKey;
-
-// layout constants
-extern NSString *_Nonnull const kNavigationBarFontName;
-
-
-
-#pragma mark CELayoutManager
-
-// ------------------------------------------------------
-// CELayoutManager
-// ------------------------------------------------------
-
-// CELayoutManager (Layouting)
-extern CGFloat const kDefaultLineHeightMultiple;
 
 
 

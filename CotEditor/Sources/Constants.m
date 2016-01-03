@@ -101,10 +101,6 @@ NSString *_Nonnull const CENewNameKey = @"CENewNameKey";
 // Syntax
 // ------------------------------------------------------
 
-// syntax coloring
-NSUInteger const kMaxEscapesCheckLength = 16;
-NSString *_Nonnull const kAllAlphabetChars = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
-
 // syntax style keys
 NSString *_Nonnull const CESyntaxMetadataKey = @"metadata";
 NSString *_Nonnull const CESyntaxExtensionsKey = @"extensions";
@@ -198,35 +194,6 @@ NSString *_Nonnull const kBundledDocumentFileNames[] = {
 // Online URLs
 NSString *_Nonnull const kWebSiteURL = @"http://coteditor.com";
 NSString *_Nonnull const kIssueTrackerURL = @"https://github.com/coteditor/CotEditor/issues";
-
-
-
-#pragma mark CEEditorWrapper
-
-// ------------------------------------------------------
-// CEEditorWrapper
-// ------------------------------------------------------
-
-// Outline item dict keys
-NSString *_Nonnull const CEOutlineItemTitleKey = @"outlineItemTitle";
-NSString *_Nonnull const CEOutlineItemRangeKey = @"outlineItemRange";
-NSString *_Nonnull const CEOutlineItemStyleBoldKey = @"outlineItemStyleBold";
-NSString *_Nonnull const CEOutlineItemStyleItalicKey = @"outlineItemStyleItalic";
-NSString *_Nonnull const CEOutlineItemStyleUnderlineKey = @"outlineItemStyleUnderline";
-
-// layout constants
-NSString *_Nonnull const kNavigationBarFontName = @"Helvetica";
-
-
-
-#pragma mark CELayoutManager
-
-// ------------------------------------------------------
-// CELayoutManager
-// ------------------------------------------------------
-
-// CELayoutManager (Layouting)
-CGFloat const kDefaultLineHeightMultiple = 1.19;
 
 
 
