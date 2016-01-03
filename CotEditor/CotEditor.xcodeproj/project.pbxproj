@@ -1097,26 +1097,8 @@
 			children = (
 				2A149DD319032CC900A9D6EF /* CEUtils.h */,
 				2A149DD419032CC900A9D6EF /* CEUtils.m */,
-				2A63122819C25CF80088C5C6 /* CEHexColorTransformer.h */,
-				2A63122919C25CF80088C5C6 /* CEHexColorTransformer.m */,
-				2AD5322819779FD000A925CA /* CELineHeightTransformer.h */,
-				2AD5322919779FD000A925CA /* CELineHeightTransformer.m */,
-				2AC75C061A2AF47E00C7DB0A /* NSString+CENewLine.h */,
-				2AC75C071A2AF47F00C7DB0A /* NSString+CENewLine.m */,
-				2AFEA0CC1C2D2FC6009001F6 /* NSString+CERange.h */,
-				2AFEA0CD1C2D2FC6009001F6 /* NSString+CERange.m */,
-				2AF47C8419227B2300A48047 /* NSString+ComposedCharacter.h */,
-				2AB432731915D6AA00835004 /* NSString+ComposedCharacter.m */,
-				2A2BDF0B198A899E0029848B /* NSString+JapaneseTransform.h */,
-				2A2BDF0C198A899E0029848B /* NSString+JapaneseTransform.m */,
-				2A88A78E1B8B87C90055B9AE /* NSString+Normalization.h */,
-				2A88A78F1B8B87C90055B9AE /* NSString+Normalization.m */,
-				2A6415921BD10EF30080358E /* NSString+Indentation.h */,
-				2A6415931BD10EF30080358E /* NSString+Indentation.m */,
-				2AD9625D1B53496500D46C3A /* NSString+Sandboxing.h */,
-				2AD9625E1B53496500D46C3A /* NSString+Sandboxing.m */,
-				2A1068C11A745FCE001DB9AA /* NSURL+Xattr.h */,
-				2A1068C21A745FCE001DB9AA /* NSURL+Xattr.m */,
+				2A41CB3A1C39068200F9122B /* Value Transformers */,
+				2A41CB391C39066F00F9122B /* Extensions */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -1324,6 +1306,40 @@
 				2A3A75A419E77E87001DAB88 /* SyntaxValidationView.xib */,
 			);
 			name = "Syntax Edit Sheet";
+			sourceTree = "<group>";
+		};
+		2A41CB391C39066F00F9122B /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				2AC75C061A2AF47E00C7DB0A /* NSString+CENewLine.h */,
+				2AC75C071A2AF47F00C7DB0A /* NSString+CENewLine.m */,
+				2AFEA0CC1C2D2FC6009001F6 /* NSString+CERange.h */,
+				2AFEA0CD1C2D2FC6009001F6 /* NSString+CERange.m */,
+				2AF47C8419227B2300A48047 /* NSString+ComposedCharacter.h */,
+				2AB432731915D6AA00835004 /* NSString+ComposedCharacter.m */,
+				2A2BDF0B198A899E0029848B /* NSString+JapaneseTransform.h */,
+				2A2BDF0C198A899E0029848B /* NSString+JapaneseTransform.m */,
+				2A88A78E1B8B87C90055B9AE /* NSString+Normalization.h */,
+				2A88A78F1B8B87C90055B9AE /* NSString+Normalization.m */,
+				2A6415921BD10EF30080358E /* NSString+Indentation.h */,
+				2A6415931BD10EF30080358E /* NSString+Indentation.m */,
+				2AD9625D1B53496500D46C3A /* NSString+Sandboxing.h */,
+				2AD9625E1B53496500D46C3A /* NSString+Sandboxing.m */,
+				2A1068C11A745FCE001DB9AA /* NSURL+Xattr.h */,
+				2A1068C21A745FCE001DB9AA /* NSURL+Xattr.m */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
+		2A41CB3A1C39068200F9122B /* Value Transformers */ = {
+			isa = PBXGroup;
+			children = (
+				2A63122819C25CF80088C5C6 /* CEHexColorTransformer.h */,
+				2A63122919C25CF80088C5C6 /* CEHexColorTransformer.m */,
+				2AD5322819779FD000A925CA /* CELineHeightTransformer.h */,
+				2AD5322919779FD000A925CA /* CELineHeightTransformer.m */,
+			);
+			name = "Value Transformers";
 			sourceTree = "<group>";
 		};
 		2A42825218FCC1C100386899 /* Text View */ = {
