@@ -31,6 +31,7 @@
 #import "CETextViewProtocol.h"
 #import "CEATSTypesetter.h"
 #import "CEInvisibles.h"
+#import "Defaults.h"
 #import "Constants.h"
 
 

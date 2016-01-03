@@ -27,6 +27,7 @@
  */
 
 #import "CEEncodingManager.h"
+#import "Defaults.h"
 #import "Constants.h"
 
 

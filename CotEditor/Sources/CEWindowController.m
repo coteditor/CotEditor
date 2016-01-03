@@ -36,6 +36,7 @@
 #import "CESyntaxManager.h"
 #import "CEDocumentAnalyzer.h"
 #import "CESyntaxParser.h"
+#import "Defaults.h"
 #import "Constants.h"
 
 #import <OgreKit/OgreTextFinder.h>

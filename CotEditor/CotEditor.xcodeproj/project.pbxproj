@@ -79,6 +79,8 @@
 		2A3FB2AD18ECEFF200D9CB2C /* CESyntaxEditSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A3FB2AC18ECEFF200D9CB2C /* CESyntaxEditSheetController.m */; };
 		2A41CB3D1C3906BA00F9122B /* CEInvisibles.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A41CB3C1C3906BA00F9122B /* CEInvisibles.m */; };
 		2A41CB3E1C3906BA00F9122B /* CEInvisibles.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A41CB3C1C3906BA00F9122B /* CEInvisibles.m */; };
+		2A41CB401C39167500F9122B /* Defaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A41CB3F1C39167500F9122B /* Defaults.m */; };
+		2A41CB411C39167500F9122B /* Defaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A41CB3F1C39167500F9122B /* Defaults.m */; };
 		2A42825518FCD47B00386899 /* Acknowledgements.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A961C4518FC699E002076B6 /* Acknowledgements.rtf */; };
 		2A436DCD1A4243D500275FD4 /* DocumentInspectorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A436DCB1A4243D500275FD4 /* DocumentInspectorView.xib */; };
 		2A436DD01A4249CB00275FD4 /* IncompatibleCharsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A436DCE1A4249CB00275FD4 /* IncompatibleCharsView.xib */; };
@@ -534,6 +536,8 @@
 		2A4064061B9DAA4E0032AC7F /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/SyntaxTermsEditView.strings; sourceTree = "<group>"; };
 		2A41CB3B1C3906BA00F9122B /* CEInvisibles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEInvisibles.h; sourceTree = "<group>"; };
 		2A41CB3C1C3906BA00F9122B /* CEInvisibles.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEInvisibles.m; sourceTree = "<group>"; };
+		2A41CB3F1C39167500F9122B /* Defaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = Defaults.m; sourceTree = "<group>"; };
+		2A41CB421C39168C00F9122B /* Defaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = Defaults.h; sourceTree = "<group>"; };
 		2A436DCC1A4243D500275FD4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/DocumentInspectorView.xib; sourceTree = "<group>"; };
 		2A436DCF1A4249CB00275FD4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/IncompatibleCharsView.xib; sourceTree = "<group>"; };
 		2A436DD21A42516900275FD4 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/DocumentInspectorView.strings; sourceTree = "<group>"; };
@@ -1241,8 +1245,7 @@
 				2AA2E00D1BFDD3AE0087BDD6 /* Character */,
 				2A15832C18E3A29A00601026 /* Views */,
 				2A15832B18E3A25C00601026 /* Utilities */,
-				25859E90076D88ED0020F779 /* Constants.h */,
-				2A149DD619033CBB00A9D6EF /* Constants.m */,
+				2A41CB431C391ACE00F9122B /* Constants */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -1346,6 +1349,17 @@
 				2AD5322919779FD000A925CA /* CELineHeightTransformer.m */,
 			);
 			name = "Value Transformers";
+			sourceTree = "<group>";
+		};
+		2A41CB431C391ACE00F9122B /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				2A41CB421C39168C00F9122B /* Defaults.h */,
+				2A41CB3F1C39167500F9122B /* Defaults.m */,
+				25859E90076D88ED0020F779 /* Constants.h */,
+				2A149DD619033CBB00A9D6EF /* Constants.m */,
+			);
+			name = Constants;
 			sourceTree = "<group>";
 		};
 		2A42825218FCC1C100386899 /* Text View */ = {
@@ -2061,6 +2075,7 @@
 				2A6F0DD21B5500E100C2D03C /* CETheme.m in Sources */,
 				2A6F0DD31B5500E100C2D03C /* CEMenuItemCell.m in Sources */,
 				2A6F0DD41B5500E100C2D03C /* CECharacterPopoverController.m in Sources */,
+				2A41CB411C39167500F9122B /* Defaults.m in Sources */,
 				2AA2E01B1BFF9AEE0087BDD6 /* CEUnicodeCharacter.m in Sources */,
 				2A6F0DD51B5500E100C2D03C /* CEClipView.m in Sources */,
 				2A6F0DD61B5500E100C2D03C /* CEGoToSheetController.m in Sources */,
@@ -2184,6 +2199,7 @@
 				2AD67C2A1AA75E7F0078BB95 /* CEFindPanelTextClipView.m in Sources */,
 				2AD67C2F1AA7651B0078BB95 /* CEFindPanelLayoutManager.m in Sources */,
 				2A7846DE18FE0C0C006BDF00 /* CETheme.m in Sources */,
+				2A41CB401C39167500F9122B /* Defaults.m in Sources */,
 				2A68F93818FB04F400673440 /* CEMenuItemCell.m in Sources */,
 				2AB432711912AF7200835004 /* CECharacterPopoverController.m in Sources */,
 				2A3A1D841C17463E000243D8 /* CEDotView.m in Sources */,

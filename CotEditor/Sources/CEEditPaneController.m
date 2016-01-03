@@ -28,7 +28,7 @@
 
 #import "CEEditPaneController.h"
 #import "CEInvisibles.h"
-#import "Constants.h"
+#import "Defaults.h"
 
 
 @interface CEEditPaneController ()

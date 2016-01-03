@@ -9,7 +9,7 @@
 
  ------------------------------------------------------------------------------
  
- © 2014-2015 1024jp
+ © 2014-2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -27,7 +27,7 @@
 
 #import "CEStatusBarController.h"
 #import "CEDocumentAnalyzer.h"
-#import "Constants.h"
+#import "Defaults.h"
 
 
 static const CGFloat kDefaultHeight = 20.0;
