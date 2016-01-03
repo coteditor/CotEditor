@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2015 1024jp
+ © 2014-2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -42,12 +42,6 @@
 
 /// returns substitute character for invisible full-width to display
 + (unichar)invisibleFullwidthSpaceChar:(NSUInteger)index;
-
-/// returns corresponding NSStringEncoding from a encoding name
-+ (NSStringEncoding)encodingFromName:(nonnull NSString *)encodingName;
-
-/// whether Yen sign (U+00A5) can be converted to the given encoding
-+ (BOOL)isInvalidYenEncoding:(NSStringEncoding)encoding;
 
 /// returns string form keyEquivalent (keyboard shortcut) for menu item
 + (nonnull NSString *)keyEquivalentAndModifierMask:(nonnull NSUInteger *)modifierMask

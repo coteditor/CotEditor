@@ -40,7 +40,7 @@
 #import "CEWindowController.h"
 #import "CEToolbarController.h"
 #import "CEEditorWrapper.h"
-#import "CEUtils.h"
+#import "CEEncodingManager.h"
 #import "NSURL+Xattr.h"
 #import "NSString+Indentation.h"
 #import "Constants.h"
@@ -797,7 +797,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     }
     
     // 削除／変換される文字をリストアップ
-    BOOL isInvalidYenEncoding = [CEUtils isInvalidYenEncoding:encoding];
+    BOOL isInvalidYenEncoding = [CEEncodingManager isInvalidYenEncoding:encoding];
     
     for (NSUInteger i = 0; i < currentLength; i++) {
         unichar currentUnichar = [currentString characterAtIndex:i];
@@ -1595,7 +1595,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 - (nonnull NSString *)convertCharacterString:(nonnull NSString *)string encoding:(NSStringEncoding)encoding
 // ------------------------------------------------------
 {
-    if (([string length] > 0) && [CEUtils isInvalidYenEncoding:encoding]) {
+    if (([string length] > 0) && [CEEncodingManager isInvalidYenEncoding:encoding]) {
         return [string stringByReplacingOccurrencesOfString:[NSString stringWithCharacters:&kYenMark length:1]
                                                  withString:@"\\"];
     }
