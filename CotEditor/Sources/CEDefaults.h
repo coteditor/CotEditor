@@ -1,6 +1,6 @@
 /*
  
- Defaults.h
+ CEDefaults.h
  
  CotEditor
  http://coteditor.com

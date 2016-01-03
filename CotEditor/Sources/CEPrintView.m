@@ -31,7 +31,7 @@
 #import "CELayoutManager.h"
 #import "CESyntaxParser.h"
 #import "NSString+Sandboxing.h"
-#import "Defaults.h"
+#import "CEDefaults.h"
 
 
 // constants

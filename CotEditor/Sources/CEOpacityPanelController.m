@@ -28,7 +28,7 @@
 #import "CEOpacityPanelController.h"
 #import "CEWindow.h"
 #import "CEWindowController.h"
-#import "Defaults.h"
+#import "CEDefaults.h"
 
 
 @interface CEOpacityPanelController ()

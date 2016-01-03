@@ -31,7 +31,7 @@
 #import "CEEditorWrapper.h"
 #import "CECharacterInfo.h"
 #import "NSString+ComposedCharacter.h"
-#import "Defaults.h"
+#import "CEDefaults.h"
 
 
 // notifications

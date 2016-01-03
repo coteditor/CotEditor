@@ -36,7 +36,7 @@
 #import "CEThemeManager.h"
 #import "CELayoutManager.h"
 #import "NSString+CENewLine.h"
-#import "Defaults.h"
+#import "CEDefaults.h"
 #import "Constants.h"
 
 #import <OgreKit/OgreTextFinder.h>

@@ -49,7 +49,7 @@
 #import "CEEditorWrapper.h"
 
 #import "CEErrors.h"
-#import "Defaults.h"
+#import "CEDefaults.h"
 #import "Constants.h"
 
 #ifndef APPSTORE

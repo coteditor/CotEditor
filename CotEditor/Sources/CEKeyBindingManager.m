@@ -29,7 +29,7 @@
 #import "CEKeyBindingManager.h"
 #import "CEAppDelegate.h"
 #import "CEKeyBindingUtils.h"
-#import "Defaults.h"
+#import "CEDefaults.h"
 #import "Constants.h"
 
 

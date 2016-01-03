@@ -30,7 +30,7 @@
 #import "CEEditorViewController.h"
 #import "CENavigationBarController.h"
 #import "CETextView.h"
-#import "Defaults.h"
+#import "CEDefaults.h"
 
 
 @interface CESplitViewController ()

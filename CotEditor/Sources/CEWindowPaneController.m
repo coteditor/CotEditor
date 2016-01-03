@@ -28,7 +28,7 @@
 
 #import "CEWindowPaneController.h"
 #import "CESizeSampleWindowController.h"
-#import "Defaults.h"
+#import "CEDefaults.h"
 
 
 @interface CEWindowPaneController ()

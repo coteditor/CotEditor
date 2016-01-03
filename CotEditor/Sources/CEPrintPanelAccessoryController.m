@@ -27,7 +27,7 @@
 
 #import "CEPrintPanelAccessoryController.h"
 #import "CEThemeManager.h"
-#import "Defaults.h"
+#import "CEDefaults.h"
 
 
 // print setting keys

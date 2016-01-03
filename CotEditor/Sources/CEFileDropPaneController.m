@@ -27,7 +27,7 @@
  */
 
 #import "CEFileDropPaneController.h"
-#import "Defaults.h"
+#import "CEDefaults.h"
 #import "Constants.h"
 
 

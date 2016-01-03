@@ -26,7 +26,7 @@
  */
 
 #import "CETextFinder.h"
-#import "Defaults.h"
+#import "CEDefaults.h"
 
 
 @implementation CETextFinder

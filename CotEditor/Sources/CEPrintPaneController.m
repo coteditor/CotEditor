@@ -28,7 +28,7 @@
 
 #import "CEPrintPaneController.h"
 #import "CEThemeManager.h"
-#import "Defaults.h"
+#import "CEDefaults.h"
 
 
 @interface CEPrintPaneController ()

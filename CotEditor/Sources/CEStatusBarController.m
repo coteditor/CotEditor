@@ -27,7 +27,7 @@
 
 #import "CEStatusBarController.h"
 #import "CEDocumentAnalyzer.h"
-#import "Defaults.h"
+#import "CEDefaults.h"
 
 
 static const CGFloat kDefaultHeight = 20.0;

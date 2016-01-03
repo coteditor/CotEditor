@@ -42,7 +42,7 @@
 #import "CESyntaxParser.h"
 #import "CEGoToSheetController.h"
 #import "NSString+CERange.h"
-#import "Defaults.h"
+#import "CEDefaults.h"
 
 
 @interface CEEditorWrapper ()

@@ -27,7 +27,7 @@
 
 #import "CEGeneralPaneController.h"
 #import "CEDocument.h"
-#import "Defaults.h"
+#import "CEDefaults.h"
 
 #ifndef APPSTORE
 #import "CEUpdaterManager.h"

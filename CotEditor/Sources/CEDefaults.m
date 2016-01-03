@@ -1,6 +1,6 @@
 /*
  
- Defaults.m
+ CEDefaults.m
  
  CotEditor
  http://coteditor.com
@@ -26,7 +26,7 @@
  
  */
 
-#import "Defaults.h"
+#import "CEDefaults.h"
 
 
 // ------------------------------------------------------

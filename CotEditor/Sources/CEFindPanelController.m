@@ -28,7 +28,7 @@
 #import "CEFindPanelController.h"
 #import "CEFindResultViewController.h"
 #import "CETextFinder.h"
-#import "Defaults.h"
+#import "CEDefaults.h"
 
 #import <OgreKit/OgreKit.h>
 

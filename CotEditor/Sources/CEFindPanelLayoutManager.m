@@ -27,7 +27,7 @@
 
 #import "CEFindPanelLayoutManager.h"
 #import "CEInvisibles.h"
-#import "Defaults.h"
+#import "CEDefaults.h"
 
 
 @interface CEFindPanelLayoutManager ()

@@ -30,7 +30,7 @@
 #import "CEDocument.h"
 #import "CEEditorWrapper.h"
 #import "NSColor+WFColorCode.h"
-#import "Defaults.h"
+#import "CEDefaults.h"
 
 
 @interface CEColorCodePanelController ()

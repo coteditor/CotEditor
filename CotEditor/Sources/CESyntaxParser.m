@@ -32,7 +32,7 @@
 #import "CETextViewProtocol.h"
 #import "CESyntaxManager.h"
 #import "CEIndicatorSheetController.h"
-#import "Defaults.h"
+#import "CEDefaults.h"
 #import "Constants.h"
 
 

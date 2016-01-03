@@ -27,7 +27,7 @@
 
 @import Sparkle;
 #import "CEUpdaterManager.h"
-#import "Defaults.h"
+#import "CEDefaults.h"
 #import "Constants.h"
 
 

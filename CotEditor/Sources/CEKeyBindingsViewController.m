@@ -27,7 +27,7 @@
 
 #import "CEKeyBindingsViewController.h"
 #import "CEKeyBindingManager.h"
-#import "Defaults.h"
+#import "CEDefaults.h"
 
 
 @interface CEKeyBindingsViewController () <NSOutlineViewDataSource, NSOutlineViewDelegate, NSTextFieldDelegate, NSTextViewDelegate>

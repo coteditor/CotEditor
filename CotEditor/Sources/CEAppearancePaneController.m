@@ -31,7 +31,7 @@
 #import "CEThemeViewController.h"
 #import "CEThemeManager.h"
 #import "CEErrors.h"
-#import "Defaults.h"
+#import "CEDefaults.h"
 #import "Constants.h"
 
 

@@ -29,7 +29,7 @@
 @import CoreText;
 #import "CELineNumberView.h"
 #import "CETextViewProtocol.h"
-#import "Defaults.h"
+#import "CEDefaults.h"
 
 
 static const NSUInteger kMinNumberOfDigits = 3;
