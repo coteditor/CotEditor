@@ -82,10 +82,10 @@ static const NSTimeInterval kDuration = 0.25;
 
 // ------------------------------------------------------
 /// view is loaded
-- (void)loadView
+- (void)awakeFromNib
 // ------------------------------------------------------
 {
-    [super loadView];
+    [super awakeFromNib];
     
     // hide as default (avoid flick)
     [[self prevButton] setHidden:YES];
