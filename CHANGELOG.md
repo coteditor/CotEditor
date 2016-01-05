@@ -5,6 +5,11 @@ Change Log
 develop
 --------------------------
 
+### Improvements
+
+- Close character inspector when text selection was changed.
+
+
 ### Fixes
 
 - Fix an issue where window title bar was dyed in the editor's background color on El Capitan. 

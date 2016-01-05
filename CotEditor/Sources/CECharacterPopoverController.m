@@ -91,6 +91,7 @@
     return self;
 }
 
+
 // ------------------------------------------------------
 /// nib name
 - (nullable NSString *)nibName
@@ -114,7 +115,6 @@
 }
 
 
-
 // ------------------------------------------------------
 /// show popover
 - (void)showPopoverRelativeToRect:(NSRect)positioningRect ofView:(nonnull NSView *)parentView
@@ -126,6 +126,20 @@
     [popover setBehavior:NSPopoverBehaviorSemitransient];
     [popover showRelativeToRect:positioningRect ofView:parentView preferredEdge:NSMinYEdge];
     [[parentView window] makeFirstResponder:parentView];
+    
+    // auto-close popover if selection is changed.
+    if ([parentView isKindOfClass:[NSTextView class]]) {
+        __block __weak id observer = [[NSNotificationCenter defaultCenter] addObserverForName:NSTextViewDidChangeSelectionNotification
+                                                                                       object:parentView
+                                                                                        queue:[NSOperationQueue mainQueue]
+                                                                                   usingBlock:^(NSNotification *note)
+                                      {
+                                          if (![popover isDetached]) {
+                                              [popover performClose:nil];
+                                          }
+                                          [[NSNotificationCenter defaultCenter] removeObserver:observer];
+                                      }];
+    }
 }
 
 
