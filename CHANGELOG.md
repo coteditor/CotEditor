@@ -13,6 +13,7 @@ develop
 ### Fixes
 
 - Fix an issue where window title bar was dyed in the editor's background color on El Capitan. 
+- Fix an issue where `$` or `^` anchors in the regular expression via AppleScript didn't work with document that has non-LF line endings.
 
 
 

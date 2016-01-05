@@ -474,7 +474,7 @@
 - (BOOL)doFind:(NSString *)searchString range:(NSRange)range option:(unsigned)option withRegularExpression:(BOOL)isRegex
 // ------------------------------------------------------
 {
-    NSString *wholeString = [[self editor] string];
+    NSString *wholeString = [self string];
     NSRange searchedRange;
 
     if (isRegex) {
