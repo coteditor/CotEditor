@@ -27,7 +27,7 @@ develop
     - Allow also taking a 1 to 3 digits point code.
     - Avoid auto-closing panel after enter character.
 - Improve character inspector:
-    - Display more comprehensible name for C0 control characters (e.g. `<control-0000>` to `NULL`).
+    - Display more comprehensible name for control characters (e.g. `<control-0000>` to `NULL`).
     - Display a alternate visible symbol in the zoomed character area for C0 control characters.
 - Improve installed syntax style list in preferences:
     - Add dot mark to style names in the list to represent the state if the style is customized.
