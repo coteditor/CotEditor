@@ -7,7 +7,7 @@ develop
 
 ### Fixes
 
-- FIx an issue where window title bar was dyed in the editor's background color on El Capitan. 
+- Fix an issue where window title bar was dyed in the editor's background color on El Capitan. 
 
 
 
