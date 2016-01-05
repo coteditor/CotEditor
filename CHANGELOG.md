@@ -5,6 +5,15 @@ Change Log
 develop
 --------------------------
 
+### Fixes
+
+- FIx an issue where window title bar was dyed in the editor's background color on El Capitan. 
+
+
+
+2.3.3　(91)
+--------------------------
+
 ### New Features
 
 - Add “Share” menu to File menu.
