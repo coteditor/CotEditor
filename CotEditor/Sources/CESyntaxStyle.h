@@ -39,15 +39,20 @@
 @property (readonly, nonatomic, nullable, copy) NSDictionary<NSString *, NSString *> *blockCommentDelimiters;
 @property (readonly, nonatomic, getter=isNone) BOOL none;
 
-// for outline parser
-@property (readonly, nonatomic, nullable) NSArray<NSDictionary *> *outlineDefinitions;
-
 
 /// designated initializer (return nil if no corresponded style dictionary can be found.)
 - (nullable instancetype)initWithStyleName:(nullable NSString *)styleName NS_DESIGNATED_INITIALIZER;
 
 /// check equality of the content
 - (BOOL)isEqualToSyntaxStyle:(nullable CESyntaxStyle *)syntaxStyle;
+
+@end
+
+
+
+@interface CESyntaxStyle (Outline)
+
+- (void)parseOutlineItemsInString:(nonnull NSString *)string completionHandler:(nullable void (^)(NSArray<NSDictionary<NSString *,id> *> * _Nonnull outlineItems))completionHandler;
 
 @end
 

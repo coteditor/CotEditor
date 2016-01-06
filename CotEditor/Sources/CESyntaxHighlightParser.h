@@ -32,7 +32,7 @@
 
 @property (nonatomic, getter=isCancelled) BOOL cancelled;
 
-// call-backs
+// callbacks
 @property (nonatomic, nullable, copy) void (^beginParsingBlock)(NSString * _Nonnull localizedBlockName);
 @property (nonatomic, nullable, copy) void (^didProgress)(CGFloat delta);
 

@@ -266,6 +266,26 @@ static NSArray<NSString *> *kSyntaxDictKeys;
 
 #pragma mark -
 
+@implementation CESyntaxStyle (Outline)
+
+// ------------------------------------------------------
+///
+- (void)parseOutlineItemsInString:(nonnull NSString *)string completionHandler:(nullable void (^)(NSArray<NSDictionary<NSString *,id> *> * _Nonnull))completionHandler
+// ------------------------------------------------------
+{
+    CESyntaxOutlineParser *parser = [[CESyntaxOutlineParser alloc] initWithString:string definitions:[self outlineDefinitions]];
+    [parser parseWithCompletionHandler:^(NSArray<NSDictionary<NSString *,id> *> * _Nonnull outlineItems) {
+        completionHandler(outlineItems);
+    }];
+}
+
+@end
+
+
+
+
+#pragma mark -
+
 @implementation CESyntaxStyle (Highlighting)
 
 #pragma mark Public Methods

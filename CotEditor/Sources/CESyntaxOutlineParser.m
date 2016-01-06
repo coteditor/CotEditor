@@ -27,7 +27,6 @@
  */
 
 #import "CESyntaxOutlineParser.h"
-#import "CESyntaxStyle.h"
 #import "Constants.h"
 
 
@@ -70,7 +69,7 @@ NSString *_Nonnull const CEOutlineItemStyleUnderlineKey = @"outlineItemStyleUnde
 
 // ------------------------------------------------------
 /// initialize instance
-- (nonnull instancetype)initWithString:(nonnull NSString *)string syntaxStyle:(nonnull CESyntaxStyle *)syntaxStyle
+- (nonnull instancetype)initWithString:(nonnull NSString *)string definitions:(nonnull NSArray<NSDictionary *> *)definitions
 // ------------------------------------------------------
 {
     self = [super init];
@@ -79,7 +78,7 @@ NSString *_Nonnull const CEOutlineItemStyleUnderlineKey = @"outlineItemStyleUnde
         //   -> [note] NSTextView's string property retruns mutable string
         _string = [NSString stringWithString:string];
         
-        _definitions = [syntaxStyle outlineDefinitions];
+        _definitions = definitions;
     }
     return self;
 }

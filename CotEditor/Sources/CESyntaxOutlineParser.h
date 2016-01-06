@@ -36,12 +36,9 @@ extern NSString *_Nonnull const CEOutlineItemStyleItalicKey;
 extern NSString *_Nonnull const CEOutlineItemStyleUnderlineKey;
 
 
-@class CESyntaxStyle;
-
-
 @interface CESyntaxOutlineParser : NSObject
 
-- (nonnull instancetype)initWithString:(nonnull NSString *)string syntaxStyle:(nonnull CESyntaxStyle *)syntaxStyle NS_DESIGNATED_INITIALIZER;
+- (nonnull instancetype)initWithString:(nonnull NSString *)string definitions:(nonnull NSArray<NSDictionary *> *)definitions NS_DESIGNATED_INITIALIZER;
 - (nullable instancetype)init NS_UNAVAILABLE;
 
 - (void)parseWithCompletionHandler:(nullable void (^)(NSArray<NSDictionary<NSString *, id> *> * _Nonnull outlineItems))completionHandler;

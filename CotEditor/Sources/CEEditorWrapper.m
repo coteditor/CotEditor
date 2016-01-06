@@ -40,7 +40,6 @@
 #import "CESplitViewController.h"
 #import "CENavigationBarController.h"
 #import "CESyntaxStyle.h"
-#import "CESyntaxOutlineParser.h"
 #import "CEGoToSheetController.h"
 #import "NSString+CERange.h"
 #import "CEDefaults.h"
@@ -928,12 +927,12 @@
     
     // extract outline and pass result to navigationBar
     CESplitViewController *splitViewController = [self splitViewController];
-    CESyntaxOutlineParser *parser = [[CESyntaxOutlineParser alloc] initWithString:wholeString syntaxStyle:[self syntaxStyle]];
-    [parser parseWithCompletionHandler:^(NSArray<NSDictionary<NSString *,id> *> * _Nonnull outlineItems) {
-        [splitViewController enumerateEditorViewsUsingBlock:^(CEEditorViewController * _Nonnull viewController) {
-            [[viewController navigationBarController] setOutlineItems:outlineItems];
-            // -> The selection update will be done in the `setOutlineItems` method above, so you don't need invoke it (2008-05-16)
-        }];
+    [[self syntaxStyle] parseOutlineItemsInString:wholeString completionHandler:^(NSArray<NSDictionary<NSString *,id> *> * _Nonnull outlineItems)
+     {
+         [splitViewController enumerateEditorViewsUsingBlock:^(CEEditorViewController * _Nonnull viewController) {
+             [[viewController navigationBarController] setOutlineItems:outlineItems];
+             // -> The selection update will be done in the `setOutlineItems` method above, so you don't need invoke it (2008-05-16)
+         }];
     }];
 }
 
