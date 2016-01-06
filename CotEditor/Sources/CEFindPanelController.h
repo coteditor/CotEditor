@@ -30,6 +30,13 @@
 #import <OgreKit/OgreFindPanelController.h>
 
 
+// keys for Find All result
+extern NSString * _Nonnull const CEFindResultRange;  // NSRange in NSValue
+extern NSString * _Nonnull const CEFindResultLineNumber;  // NSUInteger in NSNumber
+extern NSString * _Nonnull const CEFindResultAttributedLineString;  // NSAttributedString
+extern NSString * _Nonnull const CEFindResultLineRange;  // NSRange in NSValue
+
+
 typedef NS_ENUM(NSInteger, CETextFinderAction) {
     CETextFinderActionSetReplacementString = 100,
     CETextFinderActionFindAll,

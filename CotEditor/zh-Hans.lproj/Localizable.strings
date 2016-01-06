@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2015 CotEditor Project
+ © 2014-2016 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -473,6 +473,8 @@
 
 
 /* MARK: CEFindPanelController */
+"%d string found." = "找到 %d 个匹配";
+"%d strings found." = "找到 %d 个匹配";
 "Invalid regular expression" = "无效的正则表达式";
 
 
