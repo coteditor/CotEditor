@@ -39,7 +39,7 @@
 #import "CEToolbarController.h"
 #import "CESplitViewController.h"
 #import "CENavigationBarController.h"
-#import "CESyntaxParser.h"
+#import "CESyntaxStyle.h"
 #import "CEGoToSheetController.h"
 #import "NSString+CERange.h"
 #import "CEDefaults.h"
@@ -487,7 +487,7 @@
         [[viewController textView] setTheme:theme];
     }];
     
-    [[self syntaxParser] highlightWholeStringInTextStorage:[self textStorage] completionHandler:nil];
+    [[self syntaxStyle] highlightWholeStringInTextStorage:[self textStorage] completionHandler:nil];
 }
 
 
@@ -664,7 +664,7 @@
     // apply current status to the new editorView
     [self setupEditorViewController:newEditorViewController baseView:currentEditorViewController];
     
-    [newEditorViewController applySyntax:[self syntaxParser]];
+    [newEditorViewController applySyntax:[self syntaxStyle]];
     [self invalidateSyntaxColoring];
     [self invalidateOutlineMenu];
     
@@ -873,7 +873,7 @@
 
 // ------------------------------------------------------
 /// シンタックススタイル名を返す
-- (nullable CESyntaxParser *)syntaxParser
+- (nullable CESyntaxStyle *)syntaxStyle
 // ------------------------------------------------------
 {
     return [[self document] syntaxStyle];
@@ -886,7 +886,7 @@
 // ------------------------------------------------------
 {
     BOOL isHighlightEnabled = [[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultEnableSyntaxHighlightKey];
-    BOOL isHighlightable = ([self syntaxParser] != nil) && ![[self syntaxParser] isNone];
+    BOOL isHighlightable = ([self syntaxStyle] != nil) && ![[self syntaxStyle] isNone];
     
     return isHighlightEnabled && isHighlightable;
 }
@@ -901,7 +901,7 @@
     
     if (![[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultEnableSyntaxHighlightKey]) { return; };
     
-    [[self syntaxParser] highlightWholeStringInTextStorage:[self textStorage] completionHandler:nil];
+    [[self syntaxStyle] highlightWholeStringInTextStorage:[self textStorage] completionHandler:nil];
 }
 
 
@@ -914,7 +914,6 @@
     
     if (![[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultEnableSyntaxHighlightKey]) { return; };
     
-    
     NSString *wholeString = [[self textStorage] string] ? : @"";
     
     // 規定の文字数以上の場合にはインジケータを表示
@@ -926,21 +925,15 @@
         }];
     }
     
-    NSString *immutableWholeString = [NSString stringWithString:wholeString];  // 解析中に参照元が変更されると困るのでコピーする
-    
-    // 別スレッドでアウトラインを抽出して、メインスレッドで navigationBar に渡す
-    CESyntaxParser *syntaxParser = [self syntaxParser];
+    // extract outline and pass result to navigationBar
     CESplitViewController *splitViewController = [self splitViewController];
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSArray<NSDictionary<NSString *, id> *> *outlineItems = [syntaxParser outlineItemsWithWholeString:immutableWholeString];
-        
-        dispatch_sync(dispatch_get_main_queue(), ^{
-            [splitViewController enumerateEditorViewsUsingBlock:^(CEEditorViewController * _Nonnull viewController) {
-                [[viewController navigationBarController] setOutlineItems:outlineItems];
-                // （選択項目の更新も上記メソッド内で行われるので、updateOutlineMenuSelection は呼ぶ必要なし。 2008.05.16.）
-            }];
-        });
-    });
+    [[self syntaxStyle] parseOutlineItemsInString:wholeString completionHandler:^(NSArray<NSDictionary<NSString *,id> *> * _Nonnull outlineItems)
+     {
+         [splitViewController enumerateEditorViewsUsingBlock:^(CEEditorViewController * _Nonnull viewController) {
+             [[viewController navigationBarController] setOutlineItems:outlineItems];
+             // -> The selection update will be done in the `setOutlineItems` method above, so you don't need invoke it (2008-05-16)
+         }];
+    }];
 }
 
 
@@ -949,7 +942,7 @@
 - (void)setupColoringTimer
 // ------------------------------------------------------
 {
-    if ([[self syntaxParser] isNone]) { return; }
+    if ([[self syntaxStyle] isNone]) { return; }
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     BOOL delay = [defaults boolForKey:CEDefaultDelayColoringKey];
@@ -1005,12 +998,12 @@
 - (void)didChangeSyntaxStyle:(NSNotification *)notification
 // ------------------------------------------------------
 {
-    CESyntaxParser *syntaxParser = [[self document] syntaxStyle];
+    CESyntaxStyle *syntaxStyle = [[self document] syntaxStyle];
     [[self splitViewController] enumerateEditorViewsUsingBlock:^(CEEditorViewController * _Nonnull viewController) {
-        [viewController applySyntax:syntaxParser];
+        [viewController applySyntax:syntaxStyle];
     }];
     
-    [[[self windowController] toolbarController] setSelectedSyntaxWithName:[syntaxParser styleName]];
+    [[[self windowController] toolbarController] setSelectedSyntaxWithName:[syntaxStyle styleName]];
     
     [self invalidateSyntaxColoring];
     [self invalidateOutlineMenu];
@@ -1041,8 +1034,8 @@
         updateRange = NSMakeRange(location, length);
     }
     
-    [[self syntaxParser] highlightRange:updateRange
-                            textStorage:[textView textStorage]];
+    [[self syntaxStyle] highlightRange:updateRange
+                           textStorage:[textView textStorage]];
 }
 
 

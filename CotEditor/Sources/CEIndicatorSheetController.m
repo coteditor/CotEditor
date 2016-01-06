@@ -35,9 +35,6 @@
 @property (atomic) double progress;
 @property (nonatomic, nonnull, copy) NSString *message;
 
-// readonly
-@property (readwrite, nonatomic, getter=isCancelled) BOOL cancelled;
-
 @end
 
 
@@ -50,7 +47,7 @@
 #pragma mark Superclass Methods
 
 // ------------------------------------------------------
-/// initialize
+/// initialize instance
 - (nonnull instancetype)initWithMessage:(nonnull NSString *)message
 // ------------------------------------------------------
 {
@@ -91,33 +88,18 @@
 
 // ------------------------------------------------------
 /// show as sheet
-- (void)beginSheetForWindow:(nonnull NSWindow *)window
+- (void)beginSheetForWindow:(nonnull NSWindow *)window completionHandler:(nullable void (^)(NSModalResponse))handler
 // ------------------------------------------------------
 {
     if (NSAppKitVersionNumber >= NSAppKitVersionNumber10_9) { // on Mavericks or later
-        [window beginSheet:[self window] completionHandler:nil];
+        [window beginSheet:[self window] completionHandler:handler];
         
     } else {
         [NSApp beginSheet:[self window] modalForWindow:window
-            modalDelegate:self didEndSelector:NULL contextInfo:NULL];
+            modalDelegate:self didEndSelector:@selector(sheetDidEnd:returnCode:contextInfo:) contextInfo:(__bridge_retained void * _Null_unspecified)(handler)];
     }
     
     [[self indicator] setDoubleValue:[self progress]];
-}
-
-
-// ------------------------------------------------------
-/// end sheet
-- (void)endSheet
-// ------------------------------------------------------
-{
-    if (NSAppKitVersionNumber >= NSAppKitVersionNumber10_9) { // on Mavericks or later
-        [[[self window] sheetParent] endSheet:[self window]];
-        
-    } else {
-        [NSApp endSheet:[self window]];
-        [[self window] orderOut:self];
-    }
 }
 
 
@@ -142,11 +124,45 @@
 #pragma mark Action Messages
 
 // ------------------------------------------------------
-/// cancel current coloring
+/// close sheet
+- (IBAction)close:(nullable id)sender
+// ------------------------------------------------------
+{
+    if (NSAppKitVersionNumber >= NSAppKitVersionNumber10_9) { // on Mavericks or later
+        [[[self window] sheetParent] endSheet:[self window] returnCode:NSModalResponseOK];
+    } else {
+        [NSApp endSheet:[self window] returnCode:NSOKButton];
+    }
+}
+
+// ------------------------------------------------------
+/// cancel current process
 - (IBAction)cancel:(nullable id)sender
 // ------------------------------------------------------
 {
-    [self setCancelled:YES];
+    if (NSAppKitVersionNumber >= NSAppKitVersionNumber10_9) { // on Mavericks or later
+        [[[self window] sheetParent] endSheet:[self window] returnCode:NSModalResponseCancel];
+        
+    } else {
+        [NSApp endSheet:[self window] returnCode:NSCancelButton];
+    }
+}
+
+
+
+#pragma mark Private Method
+
+// ------------------------------------------------------
+/// did sheet closed
+- (void)sheetDidEnd:(nonnull NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(nullable void *)contextInfo
+// ------------------------------------------------------
+{
+    if (contextInfo) {
+        void(^completionHandler)(NSInteger) = (__bridge_transfer void(^)(NSInteger)) contextInfo;
+        completionHandler(returnCode);
+    }
+    
+    [[self window] orderOut:self];
 }
 
 @end

@@ -35,7 +35,7 @@
 #import "CEEditorWrapper.h"
 #import "CESyntaxManager.h"
 #import "CEDocumentAnalyzer.h"
-#import "CESyntaxParser.h"
+#import "CESyntaxStyle.h"
 #import "CEDefaults.h"
 #import "Constants.h"
 

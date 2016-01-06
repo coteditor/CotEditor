@@ -33,7 +33,7 @@
 @class CEEditorWrapper;
 @class CEWindowController;
 @class CETextSelection;
-@class CESyntaxParser;
+@class CESyntaxStyle;
 
 
 // Notifications
@@ -57,7 +57,7 @@ extern NSString *_Nonnull const CEIncompatibleConvertedCharKey;
 @property (readonly, nonatomic) CENewLineType lineEnding;
 @property (readonly, nonatomic, nullable, copy) NSDictionary<NSString *, id> *fileAttributes;
 @property (readonly, nonatomic, getter=isWritable) BOOL writable;
-@property (readonly, nonatomic, nullable) CESyntaxParser *syntaxStyle;
+@property (readonly, nonatomic, nullable) CESyntaxStyle *syntaxStyle;
 
 
 #pragma mark - Public Methods

@@ -36,7 +36,7 @@
 #import "CETextSelection.h"
 #import "CEODBEventSender.h"
 #import "CESyntaxManager.h"
-#import "CESyntaxParser.h"
+#import "CESyntaxStyle.h"
 #import "CEWindowController.h"
 #import "CEToolbarController.h"
 #import "CEEditorWrapper.h"
@@ -92,7 +92,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 @property (readwrite, nonatomic) CENewLineType lineEnding;
 @property (readwrite, nonatomic, nullable, copy) NSDictionary<NSString *, id> *fileAttributes;
 @property (readwrite, nonatomic, getter=isWritable) BOOL writable;
-@property (readwrite, nonatomic, nonnull) CESyntaxParser *syntaxStyle;
+@property (readwrite, nonatomic, nonnull) CESyntaxStyle *syntaxStyle;
 
 @end
 
@@ -133,7 +133,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
         
         _encoding = [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultEncodingInNewKey];
         _lineEnding = [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultLineEndCharCodeKey];
-        _syntaxStyle = [[CESyntaxParser alloc] initWithStyleName:[[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultSyntaxStyleKey]];
+        _syntaxStyle = [[CESyntaxStyle alloc] initWithStyleName:[[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultSyntaxStyleKey]];
         _selection = [[CETextSelection alloc] initWithDocument:self];
         _writable = YES;
         _shouldSaveXattr = YES;
@@ -967,12 +967,12 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 {
     if ([styleName length] == 0) { return; }
     
-    CESyntaxParser *syntaxParser = [[CESyntaxParser alloc] initWithStyleName:styleName];
+    CESyntaxStyle *syntaxStyle = [[CESyntaxStyle alloc] initWithStyleName:styleName];
     
-    if ([syntaxParser isEqualToSyntaxParser:[self syntaxStyle]]) { return; }
+    if ([syntaxStyle isEqualToSyntaxStyle:[self syntaxStyle]]) { return; }
     
     // update
-    [self setSyntaxStyle:[[CESyntaxParser alloc] initWithStyleName:styleName]];
+    [self setSyntaxStyle:[[CESyntaxStyle alloc] initWithStyleName:styleName]];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:CEDocumentSyntaxStyleDidChangeNotification
                                                         object:self];
