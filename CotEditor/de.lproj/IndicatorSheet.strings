@@ -1,16 +1,15 @@
 /*
  
- Indicator.strings (Simplified Chinese)
+ IndicatorSheet.strings (German)
  
  CotEditor
  http://coteditor.com
  
- Created by 1024jp on 2014-12-12.
- Localized by onevcat
+ Created by 1024jp on 2015-08-19.
  
  ------------------------------------------------------------------------------
  
- © 2014 CotEditor Project
+ © 2015 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -27,4 +26,4 @@
  */
 
 /* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "58"; */
-"58.title" = "取消";
+"58.title" = "Abbrechen";

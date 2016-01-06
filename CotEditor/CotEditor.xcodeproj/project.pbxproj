@@ -14,7 +14,7 @@
 		25859EC1076D92D60020F779 /* CEPreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25859EBF076D92D60020F779 /* CEPreferencesWindowController.m */; };
 		258700E6077BAD2200E541BB /* CESyntaxManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 258700E4077BAD2200E541BB /* CESyntaxManager.m */; };
 		2588E9C007C47ACC0060021D /* CEEditorWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 2588E9BE07C47ACC0060021D /* CEEditorWrapper.m */; };
-		2588E9CE07C4851C0060021D /* Indicator.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2588E9CC07C4851C0060021D /* Indicator.xib */; };
+		2588E9CE07C4851C0060021D /* IndicatorSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2588E9CC07C4851C0060021D /* IndicatorSheet.xib */; };
 		258D708A07D456DF0062A3E5 /* CETextSelection.m in Sources */ = {isa = PBXBuildFile; fileRef = 258D708807D456DF0062A3E5 /* CETextSelection.m */; };
 		258EF2FA077FEDD000011E52 /* SyntaxEditSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 258EF2F8077FEDD000011E52 /* SyntaxEditSheet.xib */; };
 		259BFDCE076EBF7E00A5A6D0 /* CEDocumentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 259BFDCC076EBF7E00A5A6D0 /* CEDocumentController.m */; };
@@ -139,7 +139,7 @@
 		2A6F0D621B5500E100C2D03C /* IncompatibleCharsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A436DCE1A4249CB00275FD4 /* IncompatibleCharsView.xib */; };
 		2A6F0D631B5500E100C2D03C /* PreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25859EA5076D8EE80020F779 /* PreferencesWindow.xib */; };
 		2A6F0D641B5500E100C2D03C /* SyntaxEditSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 258EF2F8077FEDD000011E52 /* SyntaxEditSheet.xib */; };
-		2A6F0D651B5500E100C2D03C /* Indicator.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2588E9CC07C4851C0060021D /* Indicator.xib */; };
+		2A6F0D651B5500E100C2D03C /* IndicatorSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2588E9CC07C4851C0060021D /* IndicatorSheet.xib */; };
 		2A6F0D661B5500E100C2D03C /* ConsolePanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C28CD2C081101A300733DA7 /* ConsolePanel.xib */; };
 		2A6F0D671B5500E100C2D03C /* MenuKeyBindingsEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C7400A208C6D93900683672 /* MenuKeyBindingsEditView.xib */; };
 		2A6F0D681B5500E100C2D03C /* AppearancePane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A149D9619016ABB00A9D6EF /* AppearancePane.xib */; };
@@ -600,7 +600,7 @@
 		2A69075F1B8443AA00D0F3A2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/EditorView.strings; sourceTree = "<group>"; };
 		2A6907601B8443AA00D0F3A2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/OpenDocumentAccessory.strings; sourceTree = "<group>"; };
 		2A6907611B8443AA00D0F3A2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/PrintPanelAccessory.strings; sourceTree = "<group>"; };
-		2A6907621B8443AA00D0F3A2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Indicator.strings; sourceTree = "<group>"; };
+		2A6907621B8443AA00D0F3A2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/IndicatorSheet.strings; sourceTree = "<group>"; };
 		2A6907631B8443AA00D0F3A2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/PreferencesWindow.strings; sourceTree = "<group>"; };
 		2A6907641B8443AA00D0F3A2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/GeneralPane.strings; sourceTree = "<group>"; };
 		2A6907651B8443AA00D0F3A2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/WindowPane.strings; sourceTree = "<group>"; };
@@ -675,7 +675,7 @@
 		2AA0AC5D1A28767F0063ED1B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/DocumentWindow.strings"; sourceTree = "<group>"; };
 		2AA0AC5E1A2876890063ED1B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/EditorView.strings"; sourceTree = "<group>"; };
 		2AA0AC5F1A2876930063ED1B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/PrintPanelAccessory.strings"; sourceTree = "<group>"; };
-		2AA0AC601A28769C0063ED1B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Indicator.strings"; sourceTree = "<group>"; };
+		2AA0AC601A28769C0063ED1B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/IndicatorSheet.strings"; sourceTree = "<group>"; };
 		2AA0AC621A2876CC0063ED1B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/PreferencesWindow.strings"; sourceTree = "<group>"; };
 		2AA0AC631A2876DA0063ED1B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/GoToSheet.strings"; sourceTree = "<group>"; };
 		2AA0AC641A2876E20063ED1B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/UnicodePanel.strings"; sourceTree = "<group>"; };
@@ -758,7 +758,7 @@
 		2AD4883B1A07FF1B00B795CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/DocumentWindow.xib; sourceTree = "<group>"; };
 		2AD4883C1A07FF1B00B795CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/EditorView.xib; sourceTree = "<group>"; };
 		2AD4883D1A07FF1B00B795CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/PrintPanelAccessory.xib; sourceTree = "<group>"; };
-		2AD4883E1A07FF1B00B795CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/Indicator.xib; sourceTree = "<group>"; };
+		2AD4883E1A07FF1B00B795CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/IndicatorSheet.xib; sourceTree = "<group>"; };
 		2AD4883F1A07FF1B00B795CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CharacterPopover.xib; sourceTree = "<group>"; };
 		2AD488401A07FF1B00B795CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/PreferencesWindow.xib; sourceTree = "<group>"; };
 		2AD488411A07FF1B00B795CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/GeneralPane.xib; sourceTree = "<group>"; };
@@ -785,7 +785,7 @@
 		2AD488561A07FF8F00B795CB /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/MainMenu.strings; sourceTree = "<group>"; };
 		2AD488571A080A8C00B795CB /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/OpenDocumentAccessory.strings; sourceTree = "<group>"; };
 		2AD488581A080AF100B795CB /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/EditorView.strings; sourceTree = "<group>"; };
-		2AD488591A080C1800B795CB /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Indicator.strings; sourceTree = "<group>"; };
+		2AD488591A080C1800B795CB /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/IndicatorSheet.strings; sourceTree = "<group>"; };
 		2AD4885A1A080C9500B795CB /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/PrintPanelAccessory.strings; sourceTree = "<group>"; };
 		2AD4885B1A08115800B795CB /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/MigrationWindow.strings; sourceTree = "<group>"; };
 		2AD4885C1A08131700B795CB /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/OpacityPanel.strings; sourceTree = "<group>"; };
@@ -1504,7 +1504,7 @@
 			children = (
 				2AFFB72A18D8C7DE00118477 /* OpenDocumentAccessory.xib */,
 				2A07202C18E0E421006F3A43 /* PrintPanelAccessory.xib */,
-				2588E9CC07C4851C0060021D /* Indicator.xib */,
+				2588E9CC07C4851C0060021D /* IndicatorSheet.xib */,
 				2AB4326C1912ADAC00835004 /* CharacterPopover.xib */,
 			);
 			name = "Document Accessories";
@@ -1751,7 +1751,7 @@
 				2A6F0D621B5500E100C2D03C /* IncompatibleCharsView.xib in Resources */,
 				2A6F0D631B5500E100C2D03C /* PreferencesWindow.xib in Resources */,
 				2A6F0D641B5500E100C2D03C /* SyntaxEditSheet.xib in Resources */,
-				2A6F0D651B5500E100C2D03C /* Indicator.xib in Resources */,
+				2A6F0D651B5500E100C2D03C /* IndicatorSheet.xib in Resources */,
 				2A6F0D661B5500E100C2D03C /* ConsolePanel.xib in Resources */,
 				2A6F0D671B5500E100C2D03C /* MenuKeyBindingsEditView.xib in Resources */,
 				2A6F0D681B5500E100C2D03C /* AppearancePane.xib in Resources */,
@@ -1860,7 +1860,7 @@
 				2A3A75A819E77E87001DAB88 /* SyntaxFileMappingEditView.xib in Resources */,
 				2A3A75A919E77E87001DAB88 /* SyntaxInfoEditView.xib in Resources */,
 				2A3A75AC19E77E87001DAB88 /* SyntaxValidationView.xib in Resources */,
-				2588E9CE07C4851C0060021D /* Indicator.xib in Resources */,
+				2588E9CE07C4851C0060021D /* IndicatorSheet.xib in Resources */,
 				8C28CD2E081101A300733DA7 /* ConsolePanel.xib in Resources */,
 				8C7400A408C6D93900683672 /* MenuKeyBindingsEditView.xib in Resources */,
 				2A149DA619016ABB00A9D6EF /* AppearancePane.xib in Resources */,
@@ -2279,7 +2279,7 @@
 			name = PreferencesWindow.xib;
 			sourceTree = SOURCE_ROOT;
 		};
-		2588E9CC07C4851C0060021D /* Indicator.xib */ = {
+		2588E9CC07C4851C0060021D /* IndicatorSheet.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				2AD4883E1A07FF1B00B795CB /* Base */,
@@ -2287,7 +2287,7 @@
 				2AA0AC601A28769C0063ED1B /* zh-Hans */,
 				2A6907621B8443AA00D0F3A2 /* de */,
 			);
-			name = Indicator.xib;
+			name = IndicatorSheet.xib;
 			sourceTree = "<group>";
 		};
 		258EF2F8077FEDD000011E52 /* SyntaxEditSheet.xib */ = {

@@ -9,7 +9,7 @@
 
  ------------------------------------------------------------------------------
  
- © 2014-2015 1024jp
+ © 2014-2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -34,7 +34,6 @@
 
 @property (atomic) double progress;
 @property (nonatomic, nonnull, copy) NSString *message;
-@property NSModalSession modalSession;
 
 // readonly
 @property (readwrite, nonatomic, getter=isCancelled) BOOL cancelled;
@@ -69,7 +68,7 @@
 - (nullable NSString *)windowNibName
 // ------------------------------------------------------
 {
-    return @"Indicator";
+    return @"IndicatorSheet";
 }
 
 
@@ -101,7 +100,6 @@
     } else {
         [NSApp beginSheet:[self window] modalForWindow:window
             modalDelegate:self didEndSelector:NULL contextInfo:NULL];
-        [self setModalSession:[NSApp beginModalSessionForWindow:[self window]]];
     }
     
     [[self indicator] setDoubleValue:[self progress]];
@@ -114,14 +112,11 @@
 // ------------------------------------------------------
 {
     if (NSAppKitVersionNumber >= NSAppKitVersionNumber10_9) { // on Mavericks or later
-        [[[self window] sheetParent] endSheet:[self window] returnCode:NSModalResponseCancel];
+        [[[self window] sheetParent] endSheet:[self window]];
         
     } else {
-        [NSApp abortModal];
-        [NSApp endModalSession:[self modalSession]];
-        [self setModalSession:nil];
         [NSApp endSheet:[self window]];
-        [[self window] close];
+        [[self window] orderOut:self];
     }
 }
 
@@ -148,7 +143,7 @@
 
 // ------------------------------------------------------
 /// cancel current coloring
-- (IBAction)cancelColoring:(nullable id)sender
+- (IBAction)cancel:(nullable id)sender
 // ------------------------------------------------------
 {
     [self setCancelled:YES];
