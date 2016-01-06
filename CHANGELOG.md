@@ -8,12 +8,14 @@ develop
 ### Improvements
 
 - Close character inspector when text selection was changed.
+- Improve syntax highlighting performance.
 
 
 ### Fixes
 
 - Fix an issue where window title bar was dyed in the editor's background color on El Capitan. 
 - Fix an issue where `$` or `^` anchors in the regular expression via AppleScript didn't work with document that has non-LF line endings.
+- Fix an issue where syntax highlighting indicator became occasionally unclosable under the specific condition on document opening.
 
 
 

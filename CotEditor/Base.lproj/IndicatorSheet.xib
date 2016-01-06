@@ -60,7 +60,7 @@ Gw
 </string>
                         </buttonCell>
                         <connections>
-                            <action selector="cancel:" target="-2" id="c2K-Sj-ax7"/>
+                            <action selector="cancel:" target="-2" id="LrT-n2-ALd"/>
                         </connections>
                     </button>
                 </subviews>
