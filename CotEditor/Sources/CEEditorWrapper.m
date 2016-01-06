@@ -40,6 +40,7 @@
 #import "CESplitViewController.h"
 #import "CENavigationBarController.h"
 #import "CESyntaxStyle.h"
+#import "CESyntaxOutlineParser.h"
 #import "CEGoToSheetController.h"
 #import "NSString+CERange.h"
 #import "CEDefaults.h"
@@ -914,7 +915,6 @@
     
     if (![[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultEnableSyntaxHighlightKey]) { return; };
     
-    
     NSString *wholeString = [[self textStorage] string] ? : @"";
     
     // 規定の文字数以上の場合にはインジケータを表示
@@ -926,21 +926,15 @@
         }];
     }
     
-    NSString *immutableWholeString = [NSString stringWithString:wholeString];  // 解析中に参照元が変更されると困るのでコピーする
-    
-    // 別スレッドでアウトラインを抽出して、メインスレッドで navigationBar に渡す
-    CESyntaxStyle *syntaxStyle = [self syntaxStyle];
+    // extract outline and pass result to navigationBar
     CESplitViewController *splitViewController = [self splitViewController];
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSArray<NSDictionary<NSString *, id> *> *outlineItems = [syntaxStyle outlineItemsWithWholeString:immutableWholeString];
-        
-        dispatch_sync(dispatch_get_main_queue(), ^{
-            [splitViewController enumerateEditorViewsUsingBlock:^(CEEditorViewController * _Nonnull viewController) {
-                [[viewController navigationBarController] setOutlineItems:outlineItems];
-                // （選択項目の更新も上記メソッド内で行われるので、updateOutlineMenuSelection は呼ぶ必要なし。 2008.05.16.）
-            }];
-        });
-    });
+    CESyntaxOutlineParser *parser = [[CESyntaxOutlineParser alloc] initWithString:wholeString syntaxStyle:[self syntaxStyle]];
+    [parser parseWithCompletionHandler:^(NSArray<NSDictionary<NSString *,id> *> * _Nonnull outlineItems) {
+        [splitViewController enumerateEditorViewsUsingBlock:^(CEEditorViewController * _Nonnull viewController) {
+            [[viewController navigationBarController] setOutlineItems:outlineItems];
+            // -> The selection update will be done in the `setOutlineItems` method above, so you don't need invoke it (2008-05-16)
+        }];
+    }];
 }
 
 

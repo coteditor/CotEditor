@@ -29,14 +29,6 @@
 @import Cocoa;
 
 
-// Outline item dict keys
-extern NSString *_Nonnull const CEOutlineItemTitleKey;
-extern NSString *_Nonnull const CEOutlineItemRangeKey;
-extern NSString *_Nonnull const CEOutlineItemStyleBoldKey;
-extern NSString *_Nonnull const CEOutlineItemStyleItalicKey;
-extern NSString *_Nonnull const CEOutlineItemStyleUnderlineKey;
-
-
 @interface CESyntaxStyle : NSObject
 
 // readonly
@@ -47,20 +39,15 @@ extern NSString *_Nonnull const CEOutlineItemStyleUnderlineKey;
 @property (readonly, nonatomic, nullable, copy) NSDictionary<NSString *, NSString *> *blockCommentDelimiters;
 @property (readonly, nonatomic, getter=isNone) BOOL none;
 
+// for outline parser
+@property (readonly, nonatomic, nullable) NSArray<NSDictionary *> *outlineDefinitions;
+
 
 /// designated initializer (return nil if no corresponded style dictionary can be found.)
 - (nullable instancetype)initWithStyleName:(nullable NSString *)styleName NS_DESIGNATED_INITIALIZER;
 
 /// check equality of the content
 - (BOOL)isEqualToSyntaxStyle:(nullable CESyntaxStyle *)syntaxStyle;
-
-@end
-
-
-
-@interface CESyntaxStyle (Outline)
-
-- (nonnull NSArray<NSDictionary<NSString *, id> *> *)outlineItemsWithWholeString:(nullable NSString *)wholeString;
 
 @end
 
