@@ -910,47 +910,41 @@ static CGFloat kPerCompoIncrement;
         typeof(self) self = weakSelf;  // strong self
         if (!self) { return; }
         
-        // カラー範囲を抽出する
+        // extract highlight ranges
         NSDictionary<NSString *, NSArray<NSValue *> *> *highlights = [self extractAllHighlightsFromString:wholeString range:highlightRange];
         
-        if ([highlights count] > 0) {
-            // 全文を抽出した場合は抽出結果をキャッシュする
-            if (highlightRange.length == [wholeString length]) {
-                [self setCachedHighlights:highlights];
-                [self setCachedHash:[wholeString MD5]];
-            }
-            
-            // update indicator message
-            if ([self indicatorController]) {
-                dispatch_sync(dispatch_get_main_queue(), ^{
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            if ([highlights count] > 0) {
+                // cache result if whole text was parsed
+                if (highlightRange.length == [wholeString length]) {
+                    [self setCachedHighlights:highlights];
+                    [self setCachedHash:[wholeString MD5]];
+                }
+                
+                // update indicator message
+                if ([self indicatorController]) {
                     [[self indicatorController] setInformativeText:NSLocalizedString(@"Applying colors to text", nil)];
-                });
-            }
-            
-            // apply color (or give up if the editor's string is changed from the analized string)
-            if ([[textStorage string] isEqualToString:wholeString]) {
-                dispatch_sync(dispatch_get_main_queue(), ^{
+                }
+                
+                // apply color (or give up if the editor's string is changed from the analized string)
+                if ([[textStorage string] isEqualToString:wholeString]) {
                     for (NSLayoutManager *layoutManager in [textStorage layoutManagers]) {
                         [self applyHighlights:highlights range:highlightRange layoutManager:layoutManager];
                     }
-                });
+                }
             }
-        }
-        
-        // clean up indicator sheet
-        if ([self indicatorController]) {
-            dispatch_sync(dispatch_get_main_queue(), ^{
+            
+            // clean up indicator sheet
+            if ([self indicatorController]) {
                 [[self indicatorController] endSheet];
                 [self setIndicatorController:nil];
-            });
-        }
-        
-        // do the rest things
-        if (completionHandler) {
-            dispatch_sync(dispatch_get_main_queue(), ^{
+            }
+            
+            // do the rest things
+            if (completionHandler) {
                 completionHandler();
-            });
-        }
+            }
+        });
     });
 }
 
