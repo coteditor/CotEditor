@@ -32,7 +32,7 @@
 #import "CEEditorWrapper.h"
 #import "CEEditorScrollView.h"
 #import "CETextView.h"
-#import "CESyntaxParser.h"
+#import "CESyntaxStyle.h"
 #import "CEThemeManager.h"
 #import "CELayoutManager.h"
 #import "NSString+CENewLine.h"
@@ -231,12 +231,12 @@
 
 // ------------------------------------------------------
 /// シンタックススタイルを設定
-- (void)applySyntax:(nonnull CESyntaxParser *)syntaxParser
+- (void)applySyntax:(nonnull CESyntaxStyle *)syntaxStyle
 // ------------------------------------------------------
 {
-    [[self textView] setInlineCommentDelimiter:[syntaxParser inlineCommentDelimiter]];
-    [[self textView] setBlockCommentDelimiters:[syntaxParser blockCommentDelimiters]];
-    [[self textView] setFirstCompletionCharacterSet:[syntaxParser firstCompletionCharacterSet]];
+    [[self textView] setInlineCommentDelimiter:[syntaxStyle inlineCommentDelimiter]];
+    [[self textView] setBlockCommentDelimiters:[syntaxStyle blockCommentDelimiters]];
+    [[self textView] setFirstCompletionCharacterSet:[syntaxStyle firstCompletionCharacterSet]];
 }
 
 
@@ -341,7 +341,7 @@
     
     // copy words defined in syntax style
     if ([defaults boolForKey:CEDefaultCompletesSyntaxWordsKey]) {
-        NSArray<NSString *> *syntaxWords = [[self syntaxParser] completionWords];
+        NSArray<NSString *> *syntaxWords = [[self syntaxStyle] completionWords];
         for (NSString *word in syntaxWords) {
             if ([word rangeOfString:partialWord options:NSCaseInsensitiveSearch|NSAnchoredSearch].location != NSNotFound) {
                 [candidateWords addObject:word];
@@ -515,11 +515,11 @@
 #pragma mark Private Methods
 
 // ------------------------------------------------------
-/// return shared sytnaxParser
-- (nullable CESyntaxParser *)syntaxParser
+/// return shared sytnax style
+- (nullable CESyntaxStyle *)syntaxStyle
 // ------------------------------------------------------
 {
-    return [[self editorWrapper] syntaxParser];
+    return [[self editorWrapper] syntaxStyle];
 }
 
 

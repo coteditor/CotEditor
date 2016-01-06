@@ -259,7 +259,7 @@
 
 
 
-/* MARK: CESyntaxParser */
+/* MARK: CESyntaxStyle */
 // Coloring indicator
 "Coloring text…" = "Text färben …";
 "Please wait for a while." = "Bitte etwas Geduld.";

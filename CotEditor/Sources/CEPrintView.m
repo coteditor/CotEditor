@@ -29,7 +29,7 @@
 #import "CEPrintView.h"
 #import "CEPrintPanelAccessoryController.h"
 #import "CELayoutManager.h"
-#import "CESyntaxParser.h"
+#import "CESyntaxStyle.h"
 #import "NSString+Sandboxing.h"
 #import "CEDefaults.h"
 
@@ -59,7 +59,7 @@ static NSString *_Nonnull const PageNumberPlaceholder = @"PAGENUM";
 @property (nonatomic) BOOL printsFooter;
 @property (nonatomic) BOOL printsLineNum;
 @property (nonatomic) CGFloat xOffset;
-@property (nonatomic, nullable) CESyntaxParser *syntaxParser;
+@property (nonatomic, nullable) CESyntaxStyle *syntaxStyle;
 @property (nonatomic, nonnull) NSDateFormatter *dateFormatter;
 
 @end
@@ -372,11 +372,11 @@ static NSString *_Nonnull const PageNumberPlaceholder = @"PAGENUM";
         [self setBackgroundColor:[[self theme] backgroundColor]];
         
         // perform coloring
-        if (![self syntaxParser]) {
-            [self setSyntaxParser:[[CESyntaxParser alloc] initWithStyleName:[self syntaxName]]];
+        if (![self syntaxStyle]) {
+            [self setSyntaxStyle:[[CESyntaxStyle alloc] initWithStyleName:[self syntaxName]]];
         }
         CEPrintPanelAccessoryController *controller = [[[[NSPrintOperation currentOperation] printPanel] accessoryControllers] firstObject];
-        [[self syntaxParser] highlightWholeStringInTextStorage:[self textStorage] completionHandler:^ {
+        [[self syntaxStyle] highlightWholeStringInTextStorage:[self textStorage] completionHandler:^ {
             [controller setNeedsPreview:YES];
         }];
     }

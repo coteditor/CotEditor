@@ -1,6 +1,6 @@
 /*
  
- CESyntaxParser.h
+ CESyntaxStyle.h
  
  CotEditor
  http://coteditor.com
@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2015 1024jp
+ © 2014-2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -37,7 +37,7 @@ extern NSString *_Nonnull const CEOutlineItemStyleItalicKey;
 extern NSString *_Nonnull const CEOutlineItemStyleUnderlineKey;
 
 
-@interface CESyntaxParser : NSObject
+@interface CESyntaxStyle : NSObject
 
 // readonly
 @property (readonly, nonatomic, nonnull, copy) NSString *styleName;
@@ -52,13 +52,13 @@ extern NSString *_Nonnull const CEOutlineItemStyleUnderlineKey;
 - (nullable instancetype)initWithStyleName:(nullable NSString *)styleName NS_DESIGNATED_INITIALIZER;
 
 /// check equality of the content
-- (BOOL)isEqualToSyntaxParser:(nullable CESyntaxParser *)syntaxParser;
+- (BOOL)isEqualToSyntaxStyle:(nullable CESyntaxStyle *)syntaxStyle;
 
 @end
 
 
 
-@interface CESyntaxParser (Outline)
+@interface CESyntaxStyle (Outline)
 
 - (nonnull NSArray<NSDictionary<NSString *, id> *> *)outlineItemsWithWholeString:(nullable NSString *)wholeString;
 
@@ -66,7 +66,7 @@ extern NSString *_Nonnull const CEOutlineItemStyleUnderlineKey;
 
 
 
-@interface CESyntaxParser (Highlighting)
+@interface CESyntaxStyle (Highlighting)
 
 - (void)highlightWholeStringInTextStorage:(nonnull NSTextStorage *)textStorage completionHandler:(nullable void (^)())completionHandler;
 - (void)highlightRange:(NSRange)range textStorage:(nonnull NSTextStorage *)textStorage;

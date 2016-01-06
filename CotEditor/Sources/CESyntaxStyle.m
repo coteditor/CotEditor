@@ -1,6 +1,6 @@
 /*
  
- CESyntaxParser.m
+ CESyntaxStyle.m
  
  CotEditor
  http://coteditor.com
@@ -28,7 +28,7 @@
 
 #import <NSHash/NSString+NSHash.h>
 
-#import "CESyntaxParser.h"
+#import "CESyntaxStyle.h"
 #import "CETextViewProtocol.h"
 #import "CESyntaxManager.h"
 #import "CEIndicatorSheetController.h"
@@ -66,7 +66,7 @@ typedef NS_ENUM(NSUInteger, QCStartEndType) {
 
 
 
-@interface CESyntaxParser ()
+@interface CESyntaxStyle ()
 
 @property (nonatomic) BOOL hasSyntaxHighlighting;
 @property (nonatomic, nullable, copy) NSDictionary<NSString *, id> *highlightDictionary;
@@ -94,7 +94,7 @@ typedef NS_ENUM(NSUInteger, QCStartEndType) {
 
 #pragma mark -
 
-@implementation CESyntaxParser
+@implementation CESyntaxStyle
 
 static NSArray<NSString *> *kSyntaxDictKeys;
 static CGFloat kPerCompoIncrement;
@@ -276,11 +276,11 @@ static CGFloat kPerCompoIncrement;
 
 // ------------------------------------------------------
 /// check equality
-- (BOOL)isEqualToSyntaxParser:(CESyntaxParser *)syntaxParser
+- (BOOL)isEqualToSyntaxStyle:(CESyntaxStyle *)syntaxStyle
 // ------------------------------------------------------
 {
-    if (![[syntaxParser styleName] isEqualToString:[self styleName]]) { return NO; }
-    if (![[syntaxParser highlightDictionary] isEqualToDictionary:[self highlightDictionary]]) { return NO; }
+    if (![[syntaxStyle styleName] isEqualToString:[self styleName]]) { return NO; }
+    if (![[syntaxStyle highlightDictionary] isEqualToDictionary:[self highlightDictionary]]) { return NO; }
     
     return YES;
 }
@@ -292,7 +292,7 @@ static CGFloat kPerCompoIncrement;
 
 #pragma mark -
 
-@implementation CESyntaxParser (Outline)
+@implementation CESyntaxStyle (Outline)
 
 #pragma mark Public Methods
 
@@ -413,7 +413,7 @@ static CGFloat kPerCompoIncrement;
 
 #pragma mark -
 
-@implementation CESyntaxParser (Highlighting)
+@implementation CESyntaxStyle (Highlighting)
 
 #pragma mark Public Methods
 

@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2582260107794C2A00A0F8D3 /* CESyntaxParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 258225FF07794C2A00A0F8D3 /* CESyntaxParser.m */; };
+		2582260107794C2A00A0F8D3 /* CESyntaxStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 258225FF07794C2A00A0F8D3 /* CESyntaxStyle.m */; };
 		25859DB3076D65310020F779 /* CEAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 25859DB1076D65310020F779 /* CEAppDelegate.m */; };
 		25859DEE076D75BC0020F779 /* CEWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25859DEC076D75BC0020F779 /* CEWindowController.m */; };
 		25859EA7076D8EE80020F779 /* PreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25859EA5076D8EE80020F779 /* PreferencesWindow.xib */; };
@@ -217,7 +217,7 @@
 		2A6F0DB11B5500E100C2D03C /* CEFormatPaneController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A149DBE1901828600A9D6EF /* CEFormatPaneController.m */; };
 		2A6F0DB21B5500E100C2D03C /* CEWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A7314ED1A0326D300C0EDA9 /* CEWindow.m */; };
 		2A6F0DB31B5500E100C2D03C /* CEEncodingListSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A15831918E368CE00601026 /* CEEncodingListSheetController.m */; };
-		2A6F0DB41B5500E100C2D03C /* CESyntaxParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 258225FF07794C2A00A0F8D3 /* CESyntaxParser.m */; };
+		2A6F0DB41B5500E100C2D03C /* CESyntaxStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 258225FF07794C2A00A0F8D3 /* CESyntaxStyle.m */; };
 		2A6F0DB51B5500E100C2D03C /* CEIncompatibleCharsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A436DDA1A425AE500275FD4 /* CEIncompatibleCharsViewController.m */; };
 		2A6F0DB61B5500E100C2D03C /* CESyntaxManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 258700E4077BAD2200E541BB /* CESyntaxManager.m */; };
 		2A6F0DB71B5500E100C2D03C /* CEKeyBindingsPaneController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A149DC41901885A00A9D6EF /* CEKeyBindingsPaneController.m */; };
@@ -443,8 +443,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		258225FE07794C2A00A0F8D3 /* CESyntaxParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CESyntaxParser.h; sourceTree = "<group>"; };
-		258225FF07794C2A00A0F8D3 /* CESyntaxParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CESyntaxParser.m; sourceTree = "<group>"; };
+		258225FE07794C2A00A0F8D3 /* CESyntaxStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CESyntaxStyle.h; sourceTree = "<group>"; };
+		258225FF07794C2A00A0F8D3 /* CESyntaxStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CESyntaxStyle.m; sourceTree = "<group>"; };
 		25859DB1076D65310020F779 /* CEAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CEAppDelegate.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		25859DB2076D65310020F779 /* CEAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CEAppDelegate.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		25859DEB076D75BC0020F779 /* CEWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEWindowController.h; sourceTree = "<group>"; };
@@ -1245,6 +1245,7 @@
 				2A42825418FCC23400386899 /* Window */,
 				2AD2861919856F3100C9342F /* Editor Controllers */,
 				2A42825218FCC1C100386899 /* Text View */,
+				2A89847C1C3CE1CE006290FF /* Syntax Style */,
 				2A0E160B18E7240C00AAD872 /* Print */,
 				2AA2E00D1BFDD3AE0087BDD6 /* Character */,
 				2A15832C18E3A29A00601026 /* Views */,
@@ -1378,8 +1379,6 @@
 				8C65C0E607927D0F0028D94A /* CELayoutManager.m */,
 				8C83A48009485F27004E48A8 /* CEATSTypesetter.h */,
 				8C83A48109485F27004E48A8 /* CEATSTypesetter.m */,
-				258225FE07794C2A00A0F8D3 /* CESyntaxParser.h */,
-				258225FF07794C2A00A0F8D3 /* CESyntaxParser.m */,
 				2A7846DC18FE0C0C006BDF00 /* CETheme.h */,
 				2A7846DD18FE0C0C006BDF00 /* CETheme.m */,
 				2AACC9571942A82900E3FF63 /* CEIndicatorSheetController.h */,
@@ -1477,6 +1476,15 @@
 				25859EBF076D92D60020F779 /* CEPreferencesWindowController.m */,
 			);
 			name = Window;
+			sourceTree = "<group>";
+		};
+		2A89847C1C3CE1CE006290FF /* Syntax Style */ = {
+			isa = PBXGroup;
+			children = (
+				258225FE07794C2A00A0F8D3 /* CESyntaxStyle.h */,
+				258225FF07794C2A00A0F8D3 /* CESyntaxStyle.m */,
+			);
+			name = "Syntax Style";
 			sourceTree = "<group>";
 		};
 		2A961C4418FC6979002076B6 /* Documents */ = {
@@ -2043,7 +2051,7 @@
 				2A41CB3E1C3906BA00F9122B /* CEInvisibles.m in Sources */,
 				2A6F0DB21B5500E100C2D03C /* CEWindow.m in Sources */,
 				2A6F0DB31B5500E100C2D03C /* CEEncodingListSheetController.m in Sources */,
-				2A6F0DB41B5500E100C2D03C /* CESyntaxParser.m in Sources */,
+				2A6F0DB41B5500E100C2D03C /* CESyntaxStyle.m in Sources */,
 				2A6F0DB51B5500E100C2D03C /* CEIncompatibleCharsViewController.m in Sources */,
 				2A6F0DB61B5500E100C2D03C /* CESyntaxManager.m in Sources */,
 				2A3A1D851C17463E000243D8 /* CEDotView.m in Sources */,
@@ -2170,7 +2178,7 @@
 				2A149DBF1901828600A9D6EF /* CEFormatPaneController.m in Sources */,
 				2A7314EE1A0326D300C0EDA9 /* CEWindow.m in Sources */,
 				2A15831A18E368CE00601026 /* CEEncodingListSheetController.m in Sources */,
-				2582260107794C2A00A0F8D3 /* CESyntaxParser.m in Sources */,
+				2582260107794C2A00A0F8D3 /* CESyntaxStyle.m in Sources */,
 				2A436DDB1A425AE500275FD4 /* CEIncompatibleCharsViewController.m in Sources */,
 				258700E6077BAD2200E541BB /* CESyntaxManager.m in Sources */,
 				2A149DC51901885A00A9D6EF /* CEKeyBindingsPaneController.m in Sources */,

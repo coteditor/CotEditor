@@ -32,7 +32,7 @@
 @class CETextView;
 @class CENavigationBarController;
 @class CEEditorWrapper;
-@class CESyntaxParser;
+@class CESyntaxStyle;
 
 
 @interface CEEditorViewController : NSViewController <NSTextViewDelegate>
@@ -55,6 +55,6 @@
 - (void)setUsesAntialias:(BOOL)usesAntialias;
 - (void)updateCloseSplitViewButton:(BOOL)isEnabled;
 - (void)setCaretToBeginning;
-- (void)applySyntax:(nonnull CESyntaxParser *)syntaxParser;
+- (void)applySyntax:(nonnull CESyntaxStyle *)syntaxStyle;
 
 @end

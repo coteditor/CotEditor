@@ -27,7 +27,7 @@
  */
 
 #import "CENavigationBarController.h"
-#import "CESyntaxParser.h"
+#import "CESyntaxStyle.h"
 #import "Constants.h"
 
 
