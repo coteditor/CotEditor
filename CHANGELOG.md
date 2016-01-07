@@ -18,6 +18,7 @@ develop
 
 ### Improvements
 
+- Now, “Find All” action also highlights all matched strings in the editor, and thereby “Highlight” action is removed.
 - Improve line numbers view for multiple selections.
 - Now, “Select Line” action works with multiple selections.
 - Close character inspector when text selection was changed.
