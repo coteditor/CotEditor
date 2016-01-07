@@ -878,6 +878,10 @@ static const NSUInteger kMaxHistorySize = 20;
 - (BOOL)checkIsReadyToFind
 // ------------------------------------------------------
 {
+    if (![self target]) {
+        NSBeep();
+        return NO;
+    }
     if ([[self findPanel] attachedSheet]) {
         [[self findPanel] makeKeyAndOrderFront:self];
         NSBeep();

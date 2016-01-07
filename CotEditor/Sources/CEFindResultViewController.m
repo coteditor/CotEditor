@@ -39,6 +39,7 @@ static const int kMaxMatchedStringLength = 256;
 
 @interface CEFindResultViewController ()
 
+@property (nonatomic, nullable, weak) NSLayoutManager *layoutManager;
 @property (nonatomic, nullable, copy) NSString *resultMessage;
 @property (nonatomic) NSUInteger count;
 
@@ -63,6 +64,26 @@ static const int kMaxMatchedStringLength = 256;
     _result = result;
     
     [self reloadResult];
+}
+
+
+// ------------------------------------------------------
+/// set target textView of the result
+- (void)setTarget:(NSTextView *)target
+// ------------------------------------------------------
+{
+    // keep layoutManager as `weak` instaed to avoid handling unsafe_unretained TextView
+    [self setLayoutManager:[target layoutManager]];
+}
+
+
+// ------------------------------------------------------
+/// target textView of the current result
+- (NSTextView *)target
+// ------------------------------------------------------
+{
+    // keep layoutManager as `week` instaed to avoid handling unsafe_unretained TextView
+    return [[self layoutManager] firstTextView];
 }
 
 
