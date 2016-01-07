@@ -262,6 +262,15 @@ static const NSUInteger kMaxHistorySize = 20;
 }
 
 
+// ------------------------------------------------------
+/// find panel will close
+- (void)windowWillClose:(NSNotification *)notification
+// ------------------------------------------------------
+{
+    [self unhighlight];
+}
+
+
 //=======================================================
 // NSSplitViewDelegate  < splitView
 //=======================================================
@@ -681,10 +690,7 @@ static const NSUInteger kMaxHistorySize = 20;
 {
     [self setResultShown:NO animate:YES];
     
-    // unhighlight
-    NSTextView *tareget = [[self resultViewController] target];
-    [[tareget layoutManager] removeTemporaryAttribute:NSBackgroundColorAttributeName
-                                    forCharacterRange:NSMakeRange((0), [[tareget string] length])];
+    [self unhighlight];
 }
 
 
@@ -1102,6 +1108,19 @@ static const NSUInteger kMaxHistorySize = 20;
         [[self replaceButton] setToolTip:NSLocalizedString(@"Replace the current selection with the replacement text, then find the next match.", nil)];
     } else {
         [[self replaceButton] setToolTip:NSLocalizedString(@"Replace the current selection with the replacement text.", nil)];
+    }
+}
+
+
+// ------------------------------------------------------
+/// remove current highlight by Find All
+- (void)unhighlight
+// ------------------------------------------------------
+{
+    NSTextView *tareget = [[self resultViewController] target];
+    if (tareget) {
+        [[tareget layoutManager] removeTemporaryAttribute:NSBackgroundColorAttributeName
+                                        forCharacterRange:NSMakeRange((0), [[tareget string] length])];
     }
 }
 
