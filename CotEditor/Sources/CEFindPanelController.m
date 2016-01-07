@@ -718,6 +718,11 @@ static const NSUInteger kMaxHistorySize = 20;
 // ------------------------------------------------------
 {
     [self setResultShown:NO animate:YES];
+    
+    // unhighlight
+    NSTextView *tareget = [[self resultViewController] target];
+    [[tareget layoutManager] removeTemporaryAttribute:NSBackgroundColorAttributeName
+                                    forCharacterRange:NSMakeRange((0), [[tareget string] length])];
 }
 
 
