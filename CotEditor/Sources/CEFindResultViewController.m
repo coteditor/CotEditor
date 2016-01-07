@@ -98,9 +98,6 @@ static const int kMaxMatchedStringLength = 256;
 - (NSInteger)numberOfRowsInTableView:(nonnull NSTableView *)tableView
 // ------------------------------------------------------
 {
-    // [note] This method `selectMatchedString` in fact just returns whether textView exists yet and do nothing else.
-    BOOL existsTarget = [[self textViewResult] selectMatchedString];
-    
     return [[self result] numberOfMatches];
 }
 
