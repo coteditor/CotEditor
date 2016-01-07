@@ -40,8 +40,6 @@ extern NSString * _Nonnull const CEFindResultLineRange;  // NSRange in NSValue
 typedef NS_ENUM(NSInteger, CETextFinderAction) {
     CETextFinderActionSetReplacementString = 100,
     CETextFinderActionFindAll,
-    CETextFinderActionHighlight,
-    CETextFinderActionUnhighlight,
 };
 
 
@@ -58,7 +56,5 @@ typedef NS_ENUM(NSInteger, CETextFinderAction) {
 - (IBAction)replace:(nullable id)sender;
 - (IBAction)replaceAll:(nullable id)sender;
 - (IBAction)replaceAndFind:(nullable id)sender;
-- (IBAction)highlight:(nullable id)sender;
-- (IBAction)unhighlight:(nullable id)sender;
 
 @end

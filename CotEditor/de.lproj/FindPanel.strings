@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2015 1024jp
+ © 2015-2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -60,11 +60,6 @@
 
 
 // Buttons
-
-/* Class = "NSButtonCell"; title = "Highlight"; ObjectID = "zHg-Yd-nG3"; */
-"zHg-Yd-nG3.title" = "Hervorheben";
-/* Class = "NSButton"; ibShadowedToolTip = "Highlight all matches."; ObjectID = "j1n-jm-66v"; */
-"j1n-jm-66v.ibShadowedToolTip" = "Alle Übereinstimmung hervorheben.";
 
 /* Class = "NSButtonCell"; title = "Find All"; ObjectID = "XLZ-92-VVF"; */
 "XLZ-92-VVF.title" = "Alles suchen";

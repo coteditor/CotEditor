@@ -200,15 +200,6 @@ static const NSUInteger kMaxHistorySize = 20;
 
 
 // ------------------------------------------------------
-/// complemention notification for "Highlight" (required)
-- (BOOL)didEndHighlight:(id)anObject
-// ------------------------------------------------------
-{
-    return [self closesIndicatorWhenDone];
-}
-
-
-// ------------------------------------------------------
 /// add check mark to selectable menus
 - (BOOL)validateMenuItem:(nonnull NSMenuItem *)menuItem
 // ------------------------------------------------------
@@ -219,9 +210,7 @@ static const NSUInteger kMaxHistorySize = 20;
         [menuItem action] == @selector(findAll:) ||
         [menuItem action] == @selector(replace:) ||
         [menuItem action] == @selector(replaceAndFind:) ||
-        [menuItem action] == @selector(replaceAll:) ||
-        [menuItem action] == @selector(unhighlight:) ||
-        [menuItem action] == @selector(highlight:))
+        [menuItem action] == @selector(replaceAll:))
     {
         return ([self target] != nil);
         
@@ -595,33 +584,6 @@ static const NSUInteger kMaxHistorySize = 20;
     
     [self appendFindHistory:[self findString]];
     [self appendReplaceHistory:[self replacementString]];
-}
-
-
-// ------------------------------------------------------
-/// highlight all matched strings
-- (IBAction)highlight:(nullable id)sender
-// ------------------------------------------------------
-{
-    if (![self checkIsReadyToFind]) { return; }
-    
-    [self invalidateSyntaxInTextFinder];
-    
-    [[self textFinder] hightlight:[self sanitizedFindString]
-                            color:[self highlightColor]
-                          options:[self options]
-                      inSelection:[self inSelection]];
-    
-    [self appendFindHistory:[self findString]];
-}
-
-
-// ------------------------------------------------------
-/// remove all of current highlights
-- (IBAction)unhighlight:(nullable id)sender
-// ------------------------------------------------------
-{
-    [[self textFinder] unhightlight];
 }
 
 
