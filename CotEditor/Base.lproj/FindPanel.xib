@@ -541,7 +541,7 @@
                                         </connections>
                                     </button>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="J3a-A0-07I">
-                                        <rect key="frame" x="18" y="136" width="416" height="14"/>
+                                        <rect key="frame" x="18" y="136" width="504" height="14"/>
                                         <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" selectable="YES" sendsActionOnEndEditing="YES" title="Find string: Clarus" usesSingleLineMode="YES" id="t0t-lo-Df5">
                                             <font key="font" metaFont="smallSystem"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -555,32 +555,20 @@
                                             </binding>
                                         </connections>
                                     </textField>
-                                    <button hidden="YES" toolTip="Select to update find result when document is edited." horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="PEV-3w-HeQ">
-                                        <rect key="frame" x="437" y="134" width="85" height="18"/>
-                                        <buttonCell key="cell" type="check" title="Live Update" bezelStyle="regularSquare" imagePosition="left" controlSize="small" state="on" inset="2" id="pqE-XD-1Fq">
-                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                            <font key="font" metaFont="smallSystem"/>
-                                        </buttonCell>
-                                        <connections>
-                                            <binding destination="46P-vJ-49R" name="value" keyPath="enableLiveUpdate" id="o8e-GE-rV6"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="oC1-bN-UeN" firstAttribute="top" secondItem="CRP-NW-b9J" secondAttribute="top" constant="8" id="2Nu-gT-v28"/>
                                     <constraint firstItem="oC1-bN-UeN" firstAttribute="centerY" secondItem="Tx6-Mq-e2w" secondAttribute="centerY" constant="-1" id="2YW-dH-jaz"/>
                                     <constraint firstItem="oC1-bN-UeN" firstAttribute="leading" secondItem="CRP-NW-b9J" secondAttribute="leading" constant="20" symbolic="YES" id="2Yw-a3-81I"/>
-                                    <constraint firstItem="J3a-A0-07I" firstAttribute="baseline" secondItem="PEV-3w-HeQ" secondAttribute="baseline" id="4yB-X6-IS0"/>
+                                    <constraint firstAttribute="trailing" secondItem="J3a-A0-07I" secondAttribute="trailing" constant="20" symbolic="YES" id="3Fv-JQ-MGL"/>
                                     <constraint firstAttribute="trailing" secondItem="Tx6-Mq-e2w" secondAttribute="trailing" constant="20" symbolic="YES" id="9Wh-6M-Vri"/>
                                     <constraint firstItem="Tx6-Mq-e2w" firstAttribute="leading" secondItem="oC1-bN-UeN" secondAttribute="trailing" constant="8" symbolic="YES" id="DAE-nI-bGN"/>
                                     <constraint firstItem="ZQ0-Hu-hCy" firstAttribute="leading" secondItem="CRP-NW-b9J" secondAttribute="leading" id="HEp-zJ-ynz"/>
                                     <constraint firstAttribute="bottom" secondItem="ZQ0-Hu-hCy" secondAttribute="bottom" id="La5-FY-j7S"/>
-                                    <constraint firstAttribute="trailing" secondItem="PEV-3w-HeQ" secondAttribute="trailing" constant="20" symbolic="YES" id="RYf-dk-oYu"/>
                                     <constraint firstItem="J3a-A0-07I" firstAttribute="top" secondItem="Tx6-Mq-e2w" secondAttribute="bottom" constant="4" id="fxQ-Jt-dyY"/>
                                     <constraint firstItem="ZQ0-Hu-hCy" firstAttribute="top" secondItem="J3a-A0-07I" secondAttribute="bottom" priority="249" constant="4" id="hRy-tm-z0s"/>
                                     <constraint firstItem="J3a-A0-07I" firstAttribute="leading" secondItem="CRP-NW-b9J" secondAttribute="leading" constant="20" symbolic="YES" id="nrB-b2-wHC"/>
                                     <constraint firstAttribute="trailing" secondItem="ZQ0-Hu-hCy" secondAttribute="trailing" id="smr-0U-UIX"/>
-                                    <constraint firstItem="PEV-3w-HeQ" firstAttribute="leading" secondItem="J3a-A0-07I" secondAttribute="trailing" constant="8" symbolic="YES" id="yTV-W0-5WG"/>
                                 </constraints>
                             </customView>
                             <customView id="qJx-yz-gkf" userLabel="Button View">

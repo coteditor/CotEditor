@@ -52,13 +52,12 @@ static const int kMaxMatchedStringLength = 256;
 
 #pragma mark -
 
-@interface CEFindResultViewController () <OgreTextFindResultDelegateProtocol>
+@interface CEFindResultViewController ()
 
 @property (nonatomic, nullable, copy) NSString *resultMessage;
 @property (nonatomic, nullable, copy) NSString *findString;
 @property (nonatomic, nullable, copy) NSString *documentName;
 @property (nonatomic) NSUInteger count;
-@property (nonatomic) BOOL enableLiveUpdate;
 
 @property (nonatomic, nullable, weak) IBOutlet NSTableView *tableView;
 
@@ -71,18 +70,6 @@ static const int kMaxMatchedStringLength = 256;
 
 @implementation CEFindResultViewController
 
-#pragma mark Superclass Methods
-
-// ------------------------------------------------------
-/// clean up
-- (void)dealloc
-// ------------------------------------------------------
-{
-    [[self result] setDelegate:nil];
-}
-
-
-
 #pragma mark Public Accessors
 
 // ------------------------------------------------------
@@ -92,7 +79,6 @@ static const int kMaxMatchedStringLength = 256;
 {
     [result setMaximumLeftMargin:kMaxLeftMargin];
     [result setMaximumMatchedStringLength:kMaxMatchedStringLength];
-    [result setDelegate:self];
     
     _result = result;
     
@@ -114,10 +100,6 @@ static const int kMaxMatchedStringLength = 256;
 {
     // [note] This method `selectMatchedString` in fact just returns whether textView exists yet and do nothing else.
     BOOL existsTarget = [[self textViewResult] selectMatchedString];
-    
-    if ([self enableLiveUpdate] && !existsTarget) {
-        return 1;
-    }
     
     return [[self result] numberOfMatches];
 }
@@ -170,21 +152,6 @@ static const int kMaxMatchedStringLength = 256;
         [result selectMatchedStringAtIndex:row];
         [textView showFindIndicatorForRange:[textView selectedRange]];
     });
-}
-
-
-//=======================================================
-// OgreTextFindResultDelegateProtocol  < result
-//=======================================================
-
-// ------------------------------------------------------
-/// live update
-- (void)didUpdateTextFindResult:(id)textFindResult
-// ------------------------------------------------------
-{
-    if ([self enableLiveUpdate]) {
-        [self reloadResult];
-    }
 }
 
 
