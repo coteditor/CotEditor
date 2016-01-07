@@ -168,20 +168,22 @@ static const NSUInteger kMaxHistorySize = 20;
 
 // ------------------------------------------------------
 /// complemention notification for "Find All" (required)
-- (void)didEndFindAll:(NSArray<NSDictionary *> *)results findString:(nonnull NSString *)findString documentName:(nonnull NSString *)documentName
+- (void)didEndFindAll:(NSArray<NSDictionary *> *)results findString:(nonnull NSString *)findString textView:(NSTextView *)textView
 // ------------------------------------------------------
 {
     // highlight in text view
-    NSLayoutManager *layoutManager = [[self target] layoutManager];
+    NSLayoutManager *layoutManager = [textView layoutManager];
     [layoutManager removeTemporaryAttribute:NSBackgroundColorAttributeName
-                                          forCharacterRange:NSMakeRange(0, [[layoutManager textStorage] length])];
+                          forCharacterRange:NSMakeRange(0, [[layoutManager textStorage] length])];
     for (NSDictionary<NSString *, id> *result in results) {
         NSRange range = [result[CEFindResultRange] rangeValue];
         [layoutManager addTemporaryAttribute:NSBackgroundColorAttributeName value:[self highlightColor] forCharacterRange:range];
     }
     
+    NSString *documentName = [[[[textView window] windowController] document] displayName];
+    
     // prepare result table
-    [[self resultViewController] setTarget:[self target]];
+    [[self resultViewController] setTarget:textView];
     [[self resultViewController] setDocumentName:documentName];
     [[self resultViewController] setFindString:findString];
     [[self resultViewController] setResult:results];  // result must set at last
@@ -411,14 +413,13 @@ static const NSUInteger kMaxHistorySize = 20;
     
     [self invalidateSyntaxInTextFinder];
     
+    NSTextView *textView = [self target];
     NSString *findString = [self sanitizedFindString];
-    NSWindow *documentWindow = [[self target] window];
-    NSString *documentName = [[[documentWindow windowController] document] displayName];
+    NSWindow *documentWindow = [textView window];
     
     NSRegularExpression *lineRegex = [NSRegularExpression regularExpressionWithPattern:@"\n" options:0 error:nil];
-    NSString *string = [[self target] string];
-    NSRange findRange = [self inSelection] ? [[self target] selectedRange] : NSMakeRange(0, [string length]);
-    NSEnumerator *enumerator = [[self regex] matchEnumeratorInString:string range:findRange];
+    NSString *string = [textView string];
+    NSEnumerator<OGRegularExpressionMatch *> *enumerator = [[self regex] matchEnumeratorInString:string range:[self scopeRange]];
     
     // setup progress sheet
     __block BOOL isCancelled = NO;
@@ -472,7 +473,7 @@ static const NSUInteger kMaxHistorySize = 20;
             [indicator doneWithButtonTitle:nil];
             
             if ([result count] > 0) {
-                [self didEndFindAll:result findString:findString documentName:documentName];
+                [self didEndFindAll:result findString:findString textView:textView];
                 [indicator close:self];
                 
             } else {
@@ -1122,6 +1123,17 @@ static const NSUInteger kMaxHistorySize = 20;
         [[tareget layoutManager] removeTemporaryAttribute:NSBackgroundColorAttributeName
                                         forCharacterRange:NSMakeRange((0), [[tareget string] length])];
     }
+}
+
+
+// ------------------------------------------------------
+/// range to find in
+- (NSRange)scopeRange
+// ------------------------------------------------------
+{
+    NSTextView *textView = [self target];
+    
+    return [self inSelection] ? [textView selectedRange] : NSMakeRange(0, [[textView string] length]);
 }
 
 
