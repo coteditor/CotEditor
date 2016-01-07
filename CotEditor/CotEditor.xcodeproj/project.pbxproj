@@ -14,7 +14,7 @@
 		25859EC1076D92D60020F779 /* CEPreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25859EBF076D92D60020F779 /* CEPreferencesWindowController.m */; };
 		258700E6077BAD2200E541BB /* CESyntaxManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 258700E4077BAD2200E541BB /* CESyntaxManager.m */; };
 		2588E9C007C47ACC0060021D /* CEEditorWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 2588E9BE07C47ACC0060021D /* CEEditorWrapper.m */; };
-		2588E9CE07C4851C0060021D /* IndicatorSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2588E9CC07C4851C0060021D /* IndicatorSheet.xib */; };
+		2588E9CE07C4851C0060021D /* ProgressSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2588E9CC07C4851C0060021D /* ProgressSheet.xib */; };
 		258D708A07D456DF0062A3E5 /* CETextSelection.m in Sources */ = {isa = PBXBuildFile; fileRef = 258D708807D456DF0062A3E5 /* CETextSelection.m */; };
 		258EF2FA077FEDD000011E52 /* SyntaxEditSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 258EF2F8077FEDD000011E52 /* SyntaxEditSheet.xib */; };
 		259BFDCE076EBF7E00A5A6D0 /* CEDocumentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 259BFDCC076EBF7E00A5A6D0 /* CEDocumentController.m */; };
@@ -139,7 +139,7 @@
 		2A6F0D621B5500E100C2D03C /* IncompatibleCharsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A436DCE1A4249CB00275FD4 /* IncompatibleCharsView.xib */; };
 		2A6F0D631B5500E100C2D03C /* PreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25859EA5076D8EE80020F779 /* PreferencesWindow.xib */; };
 		2A6F0D641B5500E100C2D03C /* SyntaxEditSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 258EF2F8077FEDD000011E52 /* SyntaxEditSheet.xib */; };
-		2A6F0D651B5500E100C2D03C /* IndicatorSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2588E9CC07C4851C0060021D /* IndicatorSheet.xib */; };
+		2A6F0D651B5500E100C2D03C /* ProgressSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2588E9CC07C4851C0060021D /* ProgressSheet.xib */; };
 		2A6F0D661B5500E100C2D03C /* ConsolePanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C28CD2C081101A300733DA7 /* ConsolePanel.xib */; };
 		2A6F0D671B5500E100C2D03C /* MenuKeyBindingsEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C7400A208C6D93900683672 /* MenuKeyBindingsEditView.xib */; };
 		2A6F0D681B5500E100C2D03C /* AppearancePane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A149D9619016ABB00A9D6EF /* AppearancePane.xib */; };
@@ -230,7 +230,7 @@
 		2A6F0DBE1B5500E100C2D03C /* CEFindPanelTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD67C231AA7285F0078BB95 /* CEFindPanelTextView.m */; };
 		2A6F0DBF1B5500E100C2D03C /* CEThemeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A63122D19C2D30C0088C5C6 /* CEThemeViewController.m */; };
 		2A6F0DC01B5500E100C2D03C /* CEScriptManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CC1961B07E2E54E00B54AE4 /* CEScriptManager.m */; };
-		2A6F0DC11B5500E100C2D03C /* CEIndicatorSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AACC9581942A82900E3FF63 /* CEIndicatorSheetController.m */; };
+		2A6F0DC11B5500E100C2D03C /* CEProgressSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AACC9581942A82900E3FF63 /* CEProgressSheetController.m */; };
 		2A6F0DC21B5500E100C2D03C /* CEFindPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A7CF2421A5747EC00D09249 /* CEFindPanelController.m */; };
 		2A6F0DC31B5500E100C2D03C /* CEFindPanelSplitView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A009AD91A5AAE8000C3D542 /* CEFindPanelSplitView.m */; };
 		2A6F0DC41B5500E100C2D03C /* CEWindowPaneController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A149DB21901740600A9D6EF /* CEWindowPaneController.m */; };
@@ -323,7 +323,7 @@
 		2AA2E0261C0454730087BDD6 /* StringIndentationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA2E0251C0454730087BDD6 /* StringIndentationTests.swift */; };
 		2AA2E0271C0455180087BDD6 /* NSString+Indentation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A6415931BD10EF30080358E /* NSString+Indentation.m */; };
 		2AAC90011A4E12D10074E076 /* CEWrappingTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AAC90001A4E12D10074E076 /* CEWrappingTextField.m */; };
-		2AACC9591942A82900E3FF63 /* CEIndicatorSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AACC9581942A82900E3FF63 /* CEIndicatorSheetController.m */; };
+		2AACC9591942A82900E3FF63 /* CEProgressSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AACC9581942A82900E3FF63 /* CEProgressSheetController.m */; };
 		2AAD91861C29B2A300C70AEF /* CEPaddingTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AAD91851C29B2A300C70AEF /* CEPaddingTextFieldCell.m */; };
 		2AAD91871C29B2A300C70AEF /* CEPaddingTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AAD91851C29B2A300C70AEF /* CEPaddingTextFieldCell.m */; };
 		2AB4326E1912ADAC00835004 /* CharacterPopover.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2AB4326C1912ADAC00835004 /* CharacterPopover.xib */; };
@@ -604,7 +604,7 @@
 		2A69075F1B8443AA00D0F3A2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/EditorView.strings; sourceTree = "<group>"; };
 		2A6907601B8443AA00D0F3A2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/OpenDocumentAccessory.strings; sourceTree = "<group>"; };
 		2A6907611B8443AA00D0F3A2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/PrintPanelAccessory.strings; sourceTree = "<group>"; };
-		2A6907621B8443AA00D0F3A2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/IndicatorSheet.strings; sourceTree = "<group>"; };
+		2A6907621B8443AA00D0F3A2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/ProgressSheet.strings; sourceTree = "<group>"; };
 		2A6907631B8443AA00D0F3A2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/PreferencesWindow.strings; sourceTree = "<group>"; };
 		2A6907641B8443AA00D0F3A2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/GeneralPane.strings; sourceTree = "<group>"; };
 		2A6907651B8443AA00D0F3A2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/WindowPane.strings; sourceTree = "<group>"; };
@@ -683,7 +683,7 @@
 		2AA0AC5D1A28767F0063ED1B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/DocumentWindow.strings"; sourceTree = "<group>"; };
 		2AA0AC5E1A2876890063ED1B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/EditorView.strings"; sourceTree = "<group>"; };
 		2AA0AC5F1A2876930063ED1B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/PrintPanelAccessory.strings"; sourceTree = "<group>"; };
-		2AA0AC601A28769C0063ED1B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/IndicatorSheet.strings"; sourceTree = "<group>"; };
+		2AA0AC601A28769C0063ED1B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/ProgressSheet.strings"; sourceTree = "<group>"; };
 		2AA0AC621A2876CC0063ED1B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/PreferencesWindow.strings"; sourceTree = "<group>"; };
 		2AA0AC631A2876DA0063ED1B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/GoToSheet.strings"; sourceTree = "<group>"; };
 		2AA0AC641A2876E20063ED1B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/UnicodePanel.strings"; sourceTree = "<group>"; };
@@ -721,8 +721,8 @@
 		2AA2E0251C0454730087BDD6 /* StringIndentationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringIndentationTests.swift; sourceTree = "<group>"; };
 		2AAC8FFF1A4E12D10074E076 /* CEWrappingTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEWrappingTextField.h; sourceTree = "<group>"; };
 		2AAC90001A4E12D10074E076 /* CEWrappingTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEWrappingTextField.m; sourceTree = "<group>"; };
-		2AACC9571942A82900E3FF63 /* CEIndicatorSheetController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CEIndicatorSheetController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		2AACC9581942A82900E3FF63 /* CEIndicatorSheetController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CEIndicatorSheetController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		2AACC9571942A82900E3FF63 /* CEProgressSheetController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CEProgressSheetController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		2AACC9581942A82900E3FF63 /* CEProgressSheetController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CEProgressSheetController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		2AAD91841C29B2A300C70AEF /* CEPaddingTextFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEPaddingTextFieldCell.h; sourceTree = "<group>"; };
 		2AAD91851C29B2A300C70AEF /* CEPaddingTextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEPaddingTextFieldCell.m; sourceTree = "<group>"; };
 		2AB4326F1912AF7200835004 /* CECharacterPopoverController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CECharacterPopoverController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -766,7 +766,7 @@
 		2AD4883B1A07FF1B00B795CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/DocumentWindow.xib; sourceTree = "<group>"; };
 		2AD4883C1A07FF1B00B795CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/EditorView.xib; sourceTree = "<group>"; };
 		2AD4883D1A07FF1B00B795CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/PrintPanelAccessory.xib; sourceTree = "<group>"; };
-		2AD4883E1A07FF1B00B795CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/IndicatorSheet.xib; sourceTree = "<group>"; };
+		2AD4883E1A07FF1B00B795CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ProgressSheet.xib; sourceTree = "<group>"; };
 		2AD4883F1A07FF1B00B795CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CharacterPopover.xib; sourceTree = "<group>"; };
 		2AD488401A07FF1B00B795CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/PreferencesWindow.xib; sourceTree = "<group>"; };
 		2AD488411A07FF1B00B795CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/GeneralPane.xib; sourceTree = "<group>"; };
@@ -793,7 +793,7 @@
 		2AD488561A07FF8F00B795CB /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/MainMenu.strings; sourceTree = "<group>"; };
 		2AD488571A080A8C00B795CB /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/OpenDocumentAccessory.strings; sourceTree = "<group>"; };
 		2AD488581A080AF100B795CB /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/EditorView.strings; sourceTree = "<group>"; };
-		2AD488591A080C1800B795CB /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/IndicatorSheet.strings; sourceTree = "<group>"; };
+		2AD488591A080C1800B795CB /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/ProgressSheet.strings; sourceTree = "<group>"; };
 		2AD4885A1A080C9500B795CB /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/PrintPanelAccessory.strings; sourceTree = "<group>"; };
 		2AD4885B1A08115800B795CB /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/MigrationWindow.strings; sourceTree = "<group>"; };
 		2AD4885C1A08131700B795CB /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/OpacityPanel.strings; sourceTree = "<group>"; };
@@ -1433,8 +1433,8 @@
 				2AF4E0D6196F7958008E9EF7 /* CEStatusBarController.m */,
 				2A436DDD1A4288AC00275FD4 /* CEDocumentAnalyzer.h */,
 				2A436DDE1A4288AC00275FD4 /* CEDocumentAnalyzer.m */,
-				2AACC9571942A82900E3FF63 /* CEIndicatorSheetController.h */,
-				2AACC9581942A82900E3FF63 /* CEIndicatorSheetController.m */,
+				2AACC9571942A82900E3FF63 /* CEProgressSheetController.h */,
+				2AACC9581942A82900E3FF63 /* CEProgressSheetController.m */,
 			);
 			name = Window;
 			sourceTree = "<group>";
@@ -1524,7 +1524,7 @@
 			children = (
 				2AFFB72A18D8C7DE00118477 /* OpenDocumentAccessory.xib */,
 				2A07202C18E0E421006F3A43 /* PrintPanelAccessory.xib */,
-				2588E9CC07C4851C0060021D /* IndicatorSheet.xib */,
+				2588E9CC07C4851C0060021D /* ProgressSheet.xib */,
 				2AB4326C1912ADAC00835004 /* CharacterPopover.xib */,
 			);
 			name = "Document Accessories";
@@ -1771,7 +1771,7 @@
 				2A6F0D621B5500E100C2D03C /* IncompatibleCharsView.xib in Resources */,
 				2A6F0D631B5500E100C2D03C /* PreferencesWindow.xib in Resources */,
 				2A6F0D641B5500E100C2D03C /* SyntaxEditSheet.xib in Resources */,
-				2A6F0D651B5500E100C2D03C /* IndicatorSheet.xib in Resources */,
+				2A6F0D651B5500E100C2D03C /* ProgressSheet.xib in Resources */,
 				2A6F0D661B5500E100C2D03C /* ConsolePanel.xib in Resources */,
 				2A6F0D671B5500E100C2D03C /* MenuKeyBindingsEditView.xib in Resources */,
 				2A6F0D681B5500E100C2D03C /* AppearancePane.xib in Resources */,
@@ -1880,7 +1880,7 @@
 				2A3A75A819E77E87001DAB88 /* SyntaxFileMappingEditView.xib in Resources */,
 				2A3A75A919E77E87001DAB88 /* SyntaxInfoEditView.xib in Resources */,
 				2A3A75AC19E77E87001DAB88 /* SyntaxValidationView.xib in Resources */,
-				2588E9CE07C4851C0060021D /* IndicatorSheet.xib in Resources */,
+				2588E9CE07C4851C0060021D /* ProgressSheet.xib in Resources */,
 				8C28CD2E081101A300733DA7 /* ConsolePanel.xib in Resources */,
 				8C7400A408C6D93900683672 /* MenuKeyBindingsEditView.xib in Resources */,
 				2A149DA619016ABB00A9D6EF /* AppearancePane.xib in Resources */,
@@ -2078,7 +2078,7 @@
 				2A6F0DBE1B5500E100C2D03C /* CEFindPanelTextView.m in Sources */,
 				2A6F0DBF1B5500E100C2D03C /* CEThemeViewController.m in Sources */,
 				2A6F0DC01B5500E100C2D03C /* CEScriptManager.m in Sources */,
-				2A6F0DC11B5500E100C2D03C /* CEIndicatorSheetController.m in Sources */,
+				2A6F0DC11B5500E100C2D03C /* CEProgressSheetController.m in Sources */,
 				2A6F0DC21B5500E100C2D03C /* CEFindPanelController.m in Sources */,
 				2A6F0DC31B5500E100C2D03C /* CEFindPanelSplitView.m in Sources */,
 				2A6F0DC41B5500E100C2D03C /* CEWindowPaneController.m in Sources */,
@@ -2205,7 +2205,7 @@
 				2AD67C241AA7285F0078BB95 /* CEFindPanelTextView.m in Sources */,
 				2A63122E19C2D30C0088C5C6 /* CEThemeViewController.m in Sources */,
 				8CC1961D07E2E54E00B54AE4 /* CEScriptManager.m in Sources */,
-				2AACC9591942A82900E3FF63 /* CEIndicatorSheetController.m in Sources */,
+				2AACC9591942A82900E3FF63 /* CEProgressSheetController.m in Sources */,
 				2AA2E01A1BFF9AEE0087BDD6 /* CEUnicodeCharacter.m in Sources */,
 				2A7CF2431A5747EC00D09249 /* CEFindPanelController.m in Sources */,
 				2A009ADA1A5AAE8000C3D542 /* CEFindPanelSplitView.m in Sources */,
@@ -2303,7 +2303,7 @@
 			name = PreferencesWindow.xib;
 			sourceTree = SOURCE_ROOT;
 		};
-		2588E9CC07C4851C0060021D /* IndicatorSheet.xib */ = {
+		2588E9CC07C4851C0060021D /* ProgressSheet.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				2AD4883E1A07FF1B00B795CB /* Base */,
@@ -2311,7 +2311,7 @@
 				2AA0AC601A28769C0063ED1B /* zh-Hans */,
 				2A6907621B8443AA00D0F3A2 /* de */,
 			);
-			name = IndicatorSheet.xib;
+			name = ProgressSheet.xib;
 			sourceTree = "<group>";
 		};
 		258EF2F8077FEDD000011E52 /* SyntaxEditSheet.xib */ = {

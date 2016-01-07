@@ -1,6 +1,6 @@
 /*
  
- CEIndicatorSheetController.h
+ CEProgressSheetController.h
  
  CotEditor
  http://coteditor.com
@@ -28,7 +28,7 @@
 @import Cocoa;
 
 
-@interface CEIndicatorSheetController : NSWindowController <NSWindowDelegate>
+@interface CEProgressSheetController : NSWindowController <NSWindowDelegate>
 
 @property (nonatomic, nonnull, copy) NSString *informativeText;
 @property (nonatomic, getter=isIndetermine) BOOL indetermine;

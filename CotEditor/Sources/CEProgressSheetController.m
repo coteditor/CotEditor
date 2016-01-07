@@ -1,6 +1,6 @@
 /*
  
- CEIndicatorSheetController.m
+ CEProgressSheetController.m
  
  CotEditor
  http://coteditor.com
@@ -25,14 +25,14 @@
  
  */
 
-#import "CEIndicatorSheetController.h"
+#import "CEProgressSheetController.h"
 
 
-@interface CEIndicatorSheetController ()
+@interface CEProgressSheetController ()
 
 @property (nonatomic, weak) IBOutlet NSProgressIndicator *indicator;
 @property (nonatomic, nullable, weak) IBOutlet NSButton *button;
-@property (nonatomic) CEIndicatorSheetController *me;
+@property (nonatomic) CEProgressSheetController *me;
 
 @property (atomic) double progress;
 @property (nonatomic, nonnull, copy) NSString *message;
@@ -44,7 +44,7 @@
 
 #pragma mark -
 
-@implementation CEIndicatorSheetController
+@implementation CEProgressSheetController
 
 #pragma mark Superclass Methods
 
@@ -67,7 +67,7 @@
 - (nullable NSString *)windowNibName
 // ------------------------------------------------------
 {
-    return @"IndicatorSheet";
+    return @"ProgressSheet";
 }
 
 

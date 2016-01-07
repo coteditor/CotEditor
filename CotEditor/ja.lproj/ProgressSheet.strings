@@ -1,15 +1,15 @@
 /*
  
- IndicatorSheet.strings (German)
+ ProgressSheet.strings (Japanese)
  
  CotEditor
  http://coteditor.com
  
- Created by 1024jp on 2015-08-19.
+ Created by 1024jp on 2014-11-04.
  
  ------------------------------------------------------------------------------
  
- © 2015 1024jp
+ © 2014 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -26,4 +26,4 @@
  */
 
 /* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "58"; */
-"58.title" = "Abbrechen";
+"58.title" = "キャンセル";

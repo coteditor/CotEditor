@@ -5,7 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9531"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="CEIndicatorSheetController">
+        <customObject id="-2" userLabel="File's Owner" customClass="CEProgressSheetController">
             <connections>
                 <outlet property="button" destination="58" id="Tr4-ux-zOC"/>
                 <outlet property="indicator" destination="47" id="jSa-qI-h9t"/>

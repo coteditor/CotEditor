@@ -33,7 +33,7 @@
 #import "CESyntaxHighlightParser.h"
 #import "CETextViewProtocol.h"
 #import "CESyntaxManager.h"
-#import "CEIndicatorSheetController.h"
+#import "CEProgressSheetController.h"
 #import "CEDefaults.h"
 #import "Constants.h"
 
@@ -403,10 +403,10 @@ static NSArray<NSString *> *kSyntaxDictKeys;
                                                                        blockCommentDelimiters:[self blockCommentDelimiters]];
     
     // show highlighting indicator for large string
-    CEIndicatorSheetController *indicator = nil;
+    CEProgressSheetController *indicator = nil;
     if ([self shouldShowIndicatorForHighlightLength:highlightRange.length]) {
         NSWindow *documentWindow = [[[[textStorage layoutManagers] firstObject] firstTextView] window];
-        indicator = [[CEIndicatorSheetController alloc] initWithMessage:NSLocalizedString(@"Coloring text…", nil)];
+        indicator = [[CEProgressSheetController alloc] initWithMessage:NSLocalizedString(@"Coloring text…", nil)];
         // set handlers
         [parser setDidProgress:^(CGFloat delta) {
             [indicator progressIndicator:delta];
