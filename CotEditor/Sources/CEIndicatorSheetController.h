@@ -32,6 +32,8 @@
 
 @property (nonatomic, nonnull, copy) NSString *informativeText;
 
+@property (readonly, nonatomic, nullable, weak) NSButton *button;
+
 
 - (nonnull instancetype)initWithMessage:(nonnull NSString *)message;
 

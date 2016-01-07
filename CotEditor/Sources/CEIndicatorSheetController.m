@@ -35,6 +35,9 @@
 @property (atomic) double progress;
 @property (nonatomic, nonnull, copy) NSString *message;
 
+// readonly
+@property (readwrite, nonatomic, nullable, weak) IBOutlet NSButton *button;
+
 @end
 
 
@@ -96,7 +99,8 @@
         
     } else {
         [NSApp beginSheet:[self window] modalForWindow:window
-            modalDelegate:self didEndSelector:@selector(sheetDidEnd:returnCode:contextInfo:) contextInfo:(__bridge_retained void * _Null_unspecified)(handler)];
+            modalDelegate:self didEndSelector:@selector(sheetDidEnd:returnCode:contextInfo:)
+              contextInfo:(__bridge_retained void * _Null_unspecified)(handler)];
     }
     
     [[self indicator] setDoubleValue:[self progress]];
@@ -130,6 +134,7 @@
 {
     if (NSAppKitVersionNumber >= NSAppKitVersionNumber10_9) { // on Mavericks or later
         [[[self window] sheetParent] endSheet:[self window] returnCode:NSModalResponseOK];
+        
     } else {
         [NSApp endSheet:[self window] returnCode:NSOKButton];
     }
