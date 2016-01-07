@@ -715,7 +715,7 @@ static const NSUInteger kMaxHistorySize = 20;
 - (OGRegularExpression *)regex
 // ------------------------------------------------------
 {
-    return [OGRegularExpression regularExpressionWithString:[self findString]
+    return [OGRegularExpression regularExpressionWithString:[self sanitizedFindString]
                                                     options:[self options]
                                                      syntax:[self syntax]
                                             escapeCharacter:[[self textFinder] escapeCharacter]];
