@@ -412,9 +412,9 @@ static NSArray<NSString *> *kSyntaxDictKeys;
             [indicator progressIndicator:delta];
         }];
         [parser setBeginParsingBlock:^(NSString * _Nonnull blockName) {
-            if (indicator) {
+            dispatch_async(dispatch_get_main_queue(), ^{
                 [indicator setInformativeText:[NSString stringWithFormat:NSLocalizedString(@"Extracting %@…", nil), blockName]];
-            }
+            });
         }];
         
         // wait for window becomes visible
@@ -449,7 +449,7 @@ static NSArray<NSString *> *kSyntaxDictKeys;
     [parser parseRange:highlightRange completionHandler:^(NSDictionary<NSString *,NSArray<NSValue *> *> * _Nonnull highlights)
      {
          typeof(self) self = weakSelf;  // strong self
-         if (!self) {
+         if (!self) {  // This block can be passed if the syntax style is already discarded.
              isCompleted = YES;
              return;
          }
@@ -461,13 +461,12 @@ static NSArray<NSString *> *kSyntaxDictKeys;
                  [self setCachedHash:[wholeString MD5]];
              }
              
-             // update indicator message
-             if (indicator) {
-                 [indicator setInformativeText:NSLocalizedString(@"Applying colors to text", nil)];
-             }
-             
              // apply color (or give up if the editor's string is changed from the analized string)
              if ([[textStorage string] isEqualToString:wholeString]) {
+                 // update indicator message
+                 if (indicator) {
+                     [indicator setInformativeText:NSLocalizedString(@"Applying colors to text", nil)];
+                 }
                  for (NSLayoutManager *layoutManager in [textStorage layoutManagers]) {
                      [self applyHighlights:highlights range:highlightRange layoutManager:layoutManager];
                  }

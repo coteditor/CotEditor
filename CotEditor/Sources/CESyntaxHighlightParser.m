@@ -118,7 +118,7 @@ static CGFloat kPerCompoIncrement;
     self = [super init];
     if (self) {
         // make sure the string is immutable
-        //   -> [note] NSTextView's string property retruns mutable string
+        //   -> [note] NSTextStorage's `string` property retruns mutable string
         _string = [NSString stringWithString:string];
         
         _highlightDictionary = dictionary;
@@ -132,7 +132,7 @@ static CGFloat kPerCompoIncrement;
 
 
 // ------------------------------------------------------
-///
+/// parse string in background and return extracted highlight ranges per syntax types
 - (void)parseRange:(NSRange)range completionHandler:(void (^)(NSDictionary<NSString *,NSArray<NSValue *> *> * _Nonnull))completionHandler
 // ------------------------------------------------------
 {
@@ -505,9 +505,7 @@ static CGFloat kPerCompoIncrement;
     for (NSString *syntaxKey in kSyntaxDictKeys) {
         // update indicator sheet message
         if ([self beginParsingBlock]) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self beginParsingBlock](NSLocalizedString(syntaxKey, nil));
-            });
+            [self beginParsingBlock](NSLocalizedString(syntaxKey, nil));
         }
         
         NSArray<NSDictionary<NSString *, id> *> *strDicts = [self highlightDictionary][syntaxKey];
@@ -604,9 +602,7 @@ static CGFloat kPerCompoIncrement;
     
     // コメントと引用符
     if ([self beginParsingBlock]) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self beginParsingBlock](NSLocalizedString(@"comments and quoted texts", nil));
-        });
+        [self beginParsingBlock](NSLocalizedString(@"comments and quoted texts", nil));
     }
     [highlights addEntriesFromDictionary:[self extractCommentsWithQuotesFromString:string range:parseRange]];
     if ([self didProgress]) {
