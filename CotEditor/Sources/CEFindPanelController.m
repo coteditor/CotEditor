@@ -36,7 +36,6 @@
 // constants
 static const CGFloat kDefaultResultViewHeight = 200.0;
 static const NSUInteger kMaxHistorySize = 20;
-static NSString *_Nonnull const kEscapeCharacter = @"\\";
 
 
 @interface CEFindPanelController () <NSWindowDelegate, NSSplitViewDelegate, NSPopoverDelegate>
@@ -150,8 +149,6 @@ static NSString *_Nonnull const kEscapeCharacter = @"\\";
     
     [self updateFindHistoryMenu];
     [self updateReplaceHistoryMenu];
-    
-    [[self textFinder] setEscapeCharacter:kEscapeCharacter];
     
     [self toggleReplaceButtonBehavior];
 }
@@ -831,7 +828,7 @@ static NSString *_Nonnull const kEscapeCharacter = @"\\";
             [OGRegularExpression regularExpressionWithString:[self sanitizedFindString]
                                                      options:[self options]
                                                       syntax:[self syntax]
-                                             escapeCharacter:kEscapeCharacter];
+                                             escapeCharacter:[[self textFinder] escapeCharacter]];
             
         } @catch (NSException *exception) {
             if ([[exception name] isEqualToString:OgreException]) {

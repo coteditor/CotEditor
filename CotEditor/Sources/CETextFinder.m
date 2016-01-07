@@ -29,6 +29,9 @@
 #import "CEDefaults.h"
 
 
+static NSString *_Nonnull const kEscapeCharacter = @"\\";
+
+
 @implementation CETextFinder
 
 #pragma mark Superclass Methods
@@ -54,6 +57,19 @@
                                                };
     
     [[NSUserDefaults standardUserDefaults] registerDefaults:defaults];
+}
+
+
+// ------------------------------------------------------
+/// initialize instance
+- (instancetype)init
+// ------------------------------------------------------
+{
+    self = [super init];
+    if (self) {
+        [self setEscapeCharacter:kEscapeCharacter];
+    }
+    return self;
 }
 
 
