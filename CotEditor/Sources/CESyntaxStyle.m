@@ -307,18 +307,18 @@ static NSArray<NSString *> *kSyntaxDictKeys;
         if (completionHandler) {
             completionHandler();
         }
-        
-    } else {
-        // make sure that string is immutable
-        // [Caution] DO NOT use [wholeString copy] here instead of `stringWithString:`.
-        //           It still returns a mutable object, NSBigMutableString,
-        //           and it can cause crash when the mutable string is given to NSRegularExpression instance.
-        //           (2015-08, with OS X 10.10 SDK)
-        NSString *safeImmutableString = [NSString stringWithString:[textStorage string]];
-        
-        [self highlightString:safeImmutableString
-                        range:wholeRange textStorage:textStorage completionHandler:completionHandler];
+        return;
     }
+    
+    // make sure that string is immutable
+    // [Caution] DO NOT use [string copy] here instead of `stringWithString:`.
+    //           It still returns a mutable object, NSBigMutableString,
+    //           and it can cause crash when the mutable string is given to NSRegularExpression instance.
+    //           (2015-08, with OS X 10.10 SDK)
+    NSString *string = [NSString stringWithString:[textStorage string]];
+    
+    [self highlightString:string range:wholeRange
+              textStorage:textStorage completionHandler:completionHandler];
 }
 
 
@@ -366,7 +366,6 @@ static NSArray<NSString *> *kSyntaxDictKeys;
         end = NSMaxRange(effectiveRange);
         
         highlightRange = NSMakeRange(start, end - start);
-        highlightRange = [string lineRangeForRange:highlightRange];
     }
     
     [self highlightString:string range:highlightRange
@@ -396,7 +395,6 @@ static NSArray<NSString *> *kSyntaxDictKeys;
     }
     
     __block BOOL isCompleted = NO;
-    
     __block CESyntaxHighlightParser *parser = [[CESyntaxHighlightParser alloc] initWithString:wholeString
                                                                                    dictionary:[self highlightDictionary]
                                                                      simpleWordsCharacterSets:[self simpleWordsCharacterSets]
