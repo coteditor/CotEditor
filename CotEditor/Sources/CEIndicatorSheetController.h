@@ -31,14 +31,16 @@
 @interface CEIndicatorSheetController : NSWindowController <NSWindowDelegate>
 
 @property (nonatomic, nonnull, copy) NSString *informativeText;
-
-@property (readonly, nonatomic, nullable, weak) NSButton *button;
+@property (nonatomic, getter=isIndetermine) BOOL indetermine;
 
 
 - (nonnull instancetype)initWithMessage:(nonnull NSString *)message;
 
 - (void)beginSheetForWindow:(nonnull NSWindow *)window completionHandler:(nullable void (^)(NSModalResponse returnCode))handler;
 - (void)progressIndicator:(CGFloat)delta;  // max = 1.0
+
+// change button to done
+- (void)doneWithButtonTitle:(nullable NSString *)title;
 
 
 // action messages

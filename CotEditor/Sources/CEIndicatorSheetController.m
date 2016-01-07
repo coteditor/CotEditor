@@ -31,12 +31,11 @@
 @interface CEIndicatorSheetController ()
 
 @property (nonatomic, weak) IBOutlet NSProgressIndicator *indicator;
+@property (nonatomic, nullable, weak) IBOutlet NSButton *button;
+@property (nonatomic) CEIndicatorSheetController *me;
 
 @property (atomic) double progress;
 @property (nonatomic, nonnull, copy) NSString *message;
-
-// readonly
-@property (readwrite, nonatomic, nullable, weak) IBOutlet NSButton *button;
 
 @end
 
@@ -83,6 +82,7 @@
     [[self indicator] setIndeterminate:NO];
     [[self indicator] setDoubleValue:0];
     [[self indicator] setUsesThreadedAnimation:YES];
+    [[self indicator] setIndeterminate:YES];
 }
 
 
@@ -104,6 +104,10 @@
     }
     
     [[self indicator] setDoubleValue:[self progress]];
+    [[self indicator] startAnimation:self];
+    
+    // retain itself to avoid dismiss controller while sheet is attached to a window
+    [self setMe:self];
 }
 
 
@@ -124,6 +128,41 @@
 }
 
 
+// ------------------------------------------------------
+/// change state to done
+- (void)doneWithButtonTitle:(nullable NSString *)title
+// ------------------------------------------------------
+{
+    title = title ?: NSLocalizedString(@"OK", nil);
+    
+    [[self button] setTitle:title];
+    [[self button] setAction:@selector(close:)];
+    [[self button] setTarget:self];
+    [[self button] setKeyEquivalent:@"\r"];
+    
+    [[self indicator] stopAnimation:self];
+    [[self indicator] setDoubleValue:1.0];
+}
+
+
+// ------------------------------------------------------
+///
+- (void)setIndetermine:(BOOL)indetermine
+// ------------------------------------------------------
+{
+    [[self indicator] setIndeterminate:indetermine];
+}
+
+
+// ------------------------------------------------------
+///
+- (BOOL)isIndetermine
+// ------------------------------------------------------
+{
+    return [[self indicator] isIndeterminate];
+}
+
+
 
 #pragma mark Action Messages
 
@@ -138,6 +177,7 @@
     } else {
         [NSApp endSheet:[self window] returnCode:NSOKButton];
     }
+    [self setMe:nil];
 }
 
 // ------------------------------------------------------
@@ -151,6 +191,7 @@
     } else {
         [NSApp endSheet:[self window] returnCode:NSCancelButton];
     }
+    [self setMe:nil];
 }
 
 
