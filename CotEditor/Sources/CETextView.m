@@ -1492,6 +1492,8 @@ static NSPoint kTextContainerOrigin;
 - (void)replaceWithStrings:(nonnull NSArray<NSString *> *)strings ranges:(nonnull NSArray<NSValue *> *)ranges selectedRanges:(nonnull NSArray<NSValue *> *)selectedRanges actionName:(nullable NSString *)actionName
 // ------------------------------------------------------
 {
+    NSAssert([strings count] == [ranges count], @"unbalanced number of strings and ranges for multiple replacement");
+    
     // register redo for text selection
     [[[self undoManager] prepareWithInvocationTarget:self] setSelectedRangesWithUndo:[self selectedRanges]];
     
@@ -1509,11 +1511,10 @@ static NSPoint kTextContainerOrigin;
     
     [textStorage beginEditing];
     // use backwards enumeration to skip adjustment of applying location
-    [ranges enumerateObjectsWithOptions:NSEnumerationReverse
-                             usingBlock:^(id obj, NSUInteger idx, BOOL *stop)
+    [strings enumerateObjectsWithOptions:NSEnumerationReverse
+                              usingBlock:^(NSString * _Nonnull string, NSUInteger idx, BOOL * _Nonnull stop)
      {
-         NSRange range = [obj rangeValue];
-         NSString *string = strings[idx];
+         NSRange range = [ranges[idx] rangeValue];
          NSAttributedString *attrString = [[NSAttributedString alloc] initWithString:string attributes:attributes];
          
          [textStorage replaceCharactersInRange:range withAttributedString:attrString];
