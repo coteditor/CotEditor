@@ -447,6 +447,10 @@ static CGFontRef BoldLineNumberFont;
     if ([NSEvent modifierFlags] & NSCommandKeyMask) {
         NSArray<NSValue *> *selectedRanges = [[textView selectedRanges] arrayByAddingObject:[NSValue valueWithRange:range]];
         [textView setSelectedRanges:selectedRanges affinity:affinity stillSelecting:YES];
+        
+        // redraw line number
+        [self setNeedsDisplay:YES];
+        
         return;
     }
     
