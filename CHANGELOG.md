@@ -7,6 +7,7 @@ develop
 
 ### Improvements
 
+- Improve line numbers view for multiple selections.
 - Close character inspector when text selection was changed.
 - Improve syntax highlighting performance.
 
