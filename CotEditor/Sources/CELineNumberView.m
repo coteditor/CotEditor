@@ -438,7 +438,14 @@ static CGFontRef BoldLineNumberFont;
     NSRange clickedLineRange = [[textView string] lineRangeForRange:NSMakeRange(clickedIndex, 0)];
     NSRange range = NSUnionRange(currentLineRange, clickedLineRange);
     
-    // with Shift key
+    // with Command key (add selection)
+    if ([NSEvent modifierFlags] & NSCommandKeyMask) {
+        NSArray<NSValue *> *selectedRanges = [[textView selectedRanges] arrayByAddingObject:[NSValue valueWithRange:range]];
+        [textView setSelectedRanges:selectedRanges];
+        return;
+    }
+    
+    // with Shift key (expand selection)
     if ([NSEvent modifierFlags] & NSShiftKeyMask) {
         NSRange selectedRange = [textView selectedRange];
         if (NSLocationInRange(currentIndex, selectedRange)) {  // reduce

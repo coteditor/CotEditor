@@ -7,8 +7,8 @@ develop
 
 ### Improvements
 
+- Improve line numbers view for multiple selections.
 - Close character inspector when text selection was changed.
-- Make all selected line numbers bold with multiple selections.
 - Improve syntax highlighting performance.
 
 
