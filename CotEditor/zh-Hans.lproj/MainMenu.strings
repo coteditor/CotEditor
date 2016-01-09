@@ -96,6 +96,8 @@
 "80.title" = "存储为…";
 /* Class = "NSMenuItem"; title = "Revert"; ObjectID = "112"; */
 "112.title" = "复原";
+/* Class = "NSMenuItem"; title = "Share"; ObjectID = "U5u-O7-0EX"; */
+"U5u-O7-0EX.title" = "共享";
 
 /* Class = "NSMenuItem"; title = "Page Setup…"; ObjectID = "77"; */
 "77.title" = "页面设置…";
@@ -255,9 +257,9 @@
 "300.title" = "文件编码";
 
 /* Class = "NSMenuItem"; title = "Syntax Style"; ObjectID = "302"; */
-"302.title" = "语法风格";
+"302.title" = "语法样式";
 /* Class = "NSMenu"; title = "Syntax Style"; ObjectID = "304"; */
-"304.title" = "语法风格";
+"304.title" = "语法样式";
 
 /* Class = "NSMenuItem"; title = "Font"; ObjectID = "410"; */
 "410.title" = "字体";

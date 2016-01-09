@@ -1,21 +1,15 @@
 /*
  
- NSData+MD5.h
+ CEControlCharacerNames.h
  
  CotEditor
  http://coteditor.com
  
- Created by 1024jp on 2014-03-07.
- 
- ------------
- This category is from the following blog article by iOS Developer Tips.
- We would like to thank for sharing this helpful tip.
- http://iosdevelopertips.com/core-services/create-md5-hash-from-nsstring-nsdata-or-file.html
- Copyright iOSDeveloperTips.com All rights reserved.
+ Created by 1024jp on 2015-12-29.
  
  ------------------------------------------------------------------------------
  
- © 2014-2015 1024jp
+ © 2015 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -34,8 +28,9 @@
 @import Foundation;
 
 
-@interface NSData (MD5)
+BOOL CEIsC0ControlPoint(unichar character);
+BOOL CEIsC1ControlPoint(unichar character);
 
-- (nonnull NSString *)MD5;
+extern unichar const CEDeleteCharacter;
 
-@end
+NSString * _Nullable CEControlCharacterName(unichar character);

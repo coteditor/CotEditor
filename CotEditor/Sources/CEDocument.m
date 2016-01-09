@@ -27,6 +27,8 @@
  
  */
 
+#import <NSHash/NSData+NSHash.h>
+
 #import "CEDocument.h"
 #import "CEDocumentController.h"
 #import "CEPrintPanelAccessoryController.h"
@@ -34,12 +36,12 @@
 #import "CETextSelection.h"
 #import "CEODBEventSender.h"
 #import "CESyntaxManager.h"
+#import "CESyntaxParser.h"
 #import "CEWindowController.h"
 #import "CEToolbarController.h"
 #import "CEEditorWrapper.h"
 #import "CEUtils.h"
 #import "NSURL+Xattr.h"
-#import "NSData+MD5.h"
 #import "NSString+Indentation.h"
 #import "Constants.h"
 
@@ -47,11 +49,14 @@
 // constants
 static char const UTF8_BOM[] = {0xef, 0xbb, 0xbf};
 
-NSUInteger const CEUniqueFileIDLength = 8;
-NSString *_Nonnull const CEWritablilityKey = @"writability";
-NSString *_Nonnull const CEReadingEncodingKey = @"readingEncoding";
-NSString *_Nonnull const CESyntaxStyleKey = @"syntaxStyle";
-NSString *_Nonnull const CEAutosaveIdentierKey = @"autosaveIdentifier";
+static NSUInteger const CEUniqueFileIDLength = 8;
+static NSString *_Nonnull const CEWritablilityKey = @"writability";
+static NSString *_Nonnull const CEReadingEncodingKey = @"readingEncoding";
+static NSString *_Nonnull const CESyntaxStyleKey = @"syntaxStyle";
+static NSString *_Nonnull const CEAutosaveIdentierKey = @"autosaveIdentifier";
+
+// notifications
+NSString *_Nonnull const CEDocumentSyntaxStyleDidChangeNotification = @"CEDocumentSyntaxStyleDidChangeNotification";
 
 // incompatible chars dictionary keys
 NSString *_Nonnull const CEIncompatibleLineNumberKey = @"lineNumber";
@@ -68,7 +73,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 @property (nonatomic) BOOL needsShowUpdateAlertWithBecomeKey;
 @property (nonatomic, getter=isRevertingForExternalFileUpdate) BOOL revertingForExternalFileUpdate;
 @property (nonatomic) BOOL didAlertNotWritable;  // 文書が読み込み専用のときにその警告を表示したかどうか
-@property (nonatomic, nullable, copy) NSString *fileMD5;
+@property (nonatomic, nullable, copy) NSData *fileMD5;
 @property (nonatomic, nullable, copy) NSString *fileContentString;  // string that is read from the document file
 @property (nonatomic, getter=isVerticalText) BOOL verticalText;
 @property (nonatomic, nullable) CEODBEventSender *ODBEventSender;
@@ -83,6 +88,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 @property (readwrite, nonatomic) CENewLineType lineEnding;
 @property (readwrite, nonatomic, nullable, copy) NSDictionary<NSString *, id> *fileAttributes;
 @property (readwrite, nonatomic, getter=isWritable) BOOL writable;
+@property (readwrite, nonatomic, nonnull) CESyntaxParser *syntaxStyle;
 
 @end
 
@@ -123,6 +129,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
         
         _encoding = [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultEncodingInNewKey];
         _lineEnding = [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultLineEndCharCodeKey];
+        _syntaxStyle = [[CESyntaxParser alloc] initWithStyleName:[[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultSyntaxStyleKey]];
         _selection = [[CETextSelection alloc] initWithDocument:self];
         _writable = YES;
         _shouldSaveXattr = YES;
@@ -186,7 +193,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 - (void)makeWindowControllers
 // ------------------------------------------------------
 {
-    [self setWindowController:[[CEWindowController alloc] initWithWindowNibName:@"DocumentWindow"]];
+    [self setWindowController:[[CEWindowController alloc] init]];
     [self addWindowController:[self windowController]];
 }
 
@@ -225,6 +232,14 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
         [self setLineEnding:lineEnding];
     }
     
+    // determine syntax style
+    NSString *styleName = [[CESyntaxManager sharedManager] styleNameFromFileName:[[self fileURL] lastPathComponent]];
+    if (!styleName && string) {
+        styleName = [[CESyntaxManager sharedManager] styleNameFromContent:string];
+    }
+    styleName = styleName ? : [[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultSyntaxStyleKey];
+    [self setSyntaxStyleWithName:styleName];
+    
     return YES;
 }
 
@@ -254,7 +269,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     NSStringEncoding encoding = [self encoding];
     
     // convert Yen sign in consideration of the current encoding
-    NSString *string = [self convertCharacterString:[self stringForSave] encoding:encoding];
+    NSString *string = [self convertCharacterString:[self string] encoding:encoding];
     
     // unblock the user interface, since fetching current document satte has been done here
     [self unblockUserInteraction];
@@ -342,7 +357,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
              if (saveOperation == NSSaveAsOperation) {
                  NSString *styleName = [[CESyntaxManager sharedManager] styleNameFromFileName:[url lastPathComponent]];
                  if (styleName) {
-                     [self setSyntaxStyleWithName:styleName coloring:YES];
+                     [self setSyntaxStyleWithName:styleName];
                  }
              }
              
@@ -471,7 +486,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     [printView setTheme:[[self editor] theme]];
     [printView setDocumentName:[self displayName]];
     [printView setFilePath:[[self fileURL] path]];
-    [printView setSyntaxName:[[self editor] syntaxStyleName]];
+    [printView setSyntaxName:[[self syntaxStyle] styleName]];
     [printView setDocumentShowsInvisibles:[[self editor] showsInvisibles]];
     [printView setDocumentShowsLineNum:[[self editor] showsLineNum]];
     [printView setLineSpacing:[[[self editor] focusedTextView] lineSpacing]];
@@ -515,7 +530,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 {
     CEDocument *document = (CEDocument *)[super duplicateAndReturnError:outError];
     
-    [document doSetSyntaxStyle:[[self editor] syntaxStyleName]];
+    [document setSyntaxStyleWithName:[[self syntaxStyle] styleName]];
     [document doSetLineEnding:[self lineEnding]];
     [document doSetEncoding:[self encoding] updateDocument:NO askLossy:NO lossy:NO asActionName:nil];
     
@@ -537,7 +552,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     [coder encodeBool:[self isWritable] forKey:CEWritablilityKey];
     [coder encodeInteger:[self encoding] forKey:CEReadingEncodingKey];
     [coder encodeObject:[self autosaveIdentifier] forKey:CEAutosaveIdentierKey];
-    [coder encodeObject:[[self editor] syntaxStyleName] forKey:CESyntaxStyleKey];
+    [coder encodeObject:[[self syntaxStyle] styleName] forKey:CESyntaxStyleKey];
     
     [super encodeRestorableStateWithCoder:coder];
 }
@@ -559,14 +574,8 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     if ([coder containsValueForKey:CEAutosaveIdentierKey]) {
         [self setAutosaveIdentifier:[coder decodeObjectForKey:CEAutosaveIdentierKey]];
     }
-    
-    // restore last syntax style
     if ([coder containsValueForKey:CESyntaxStyleKey]) {
-        NSString *syntaxStyle = [coder decodeObjectForKey:CESyntaxStyleKey];
-        if (![syntaxStyle isEqualToString:[[self editor] syntaxStyleName]]) {  // avoid highlighting twice
-            [[self editor] setSyntaxStyleWithName:syntaxStyle coloring:YES];
-            [[[self windowController] toolbarController] setSelectedSyntaxWithName:syntaxStyle];
-        }
+        [self setSyntaxStyleWithName:[coder decodeObjectForKey:CESyntaxStyleKey]];
     }
     
     // not need to show unwritable alert on resume
@@ -587,7 +596,6 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 // ------------------------------------------------------
 {
     NSInteger state = NSOffState;
-    NSString *name;
     
     if ([menuItem action] == @selector(saveDocument:)) {
         // 書き込み不可の時は、アラートが表示され「OK」されるまで保存メニューを無効化する
@@ -600,45 +608,15 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
                ([menuItem action] == @selector(changeLineEnding:)))
     {
         state = ([menuItem tag] == [self lineEnding]) ? NSOnState : NSOffState;
-    } else if ([menuItem action] == @selector(changeTheme:)) {
-        name = [[[self editor] theme] name];
-        if (name && [[menuItem title] isEqualToString:name]) {
-            state = NSOnState;
-        }
     } else if ([menuItem action] == @selector(changeSyntaxStyle:)) {
-        name = [[self editor] syntaxStyleName];
+        NSString *name = [[self syntaxStyle] styleName];
         if (name && [[menuItem title] isEqualToString:name]) {
             state = NSOnState;
-        }
-    } else if ([menuItem action] == @selector(recolorAll:)) {
-        name = [[self editor] syntaxStyleName];
-        if (name && [name isEqualToString:NSLocalizedString(@"None", @"")]) {
-            return NO;
         }
     }
     [menuItem setState:state];
     
     return [super validateMenuItem:menuItem];
-}
-
-
-//=======================================================
-// NSToolbarItemValidation Protocol
-//=======================================================
-
-// ------------------------------------------------------
-/// ツールバー項目の有効・無効を制御
-- (BOOL)validateToolbarItem:(nonnull NSToolbarItem *)theItem
-// ------------------------------------------------------
-{
-    if ([theItem action] == @selector(recolorAll:)) {
-        NSString *name = [[self editor] syntaxStyleName];
-        if ([name isEqualToString:NSLocalizedString(@"None", @"")]) {
-            return NO;
-        }
-    }
-    
-    return YES;
 }
 
 
@@ -687,13 +665,13 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     if ([fileModificationDate isEqualTo:[self fileModificationDate]]) { return; }
     
     // ignore if file's MD5 hash is the same as the stored MD5 and deal as if it was not modified
-    __block NSString *MD5;
+    __block NSData *MD5;
     [coordinator coordinateReadingItemAtURL:[self fileURL] options:NSFileCoordinatorReadingWithoutChanges
                                       error:nil byAccessor:^(NSURL *newURL)
      {
          MD5 = [[NSData dataWithContentsOfURL:newURL] MD5];
      }];
-    if ([MD5 isEqualToString:[self fileMD5]]) {
+    if ([MD5 isEqualToData:[self fileMD5]]) {
         // update the document's fileModificationDate for a workaround (2014-03 by 1024jp)
         // If not, an alert shows up when user saves the file.
         if ([fileModificationDate compare:[self fileModificationDate]] == NSOrderedDescending) {
@@ -726,7 +704,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 // ------------------------------------------------------
 /// 改行コードを指定のものに置換したメイン textView の文字列を返す
-- (nonnull NSString *)stringForSave
+- (nonnull NSString *)string
 // ------------------------------------------------------
 {
     return [[[self editor] string] stringByReplacingNewLineCharacersWith:[self lineEnding]] ?: @"";
@@ -738,19 +716,6 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 - (void)applyContentToEditor
 // ------------------------------------------------------
 {
-    NSString *styleName = [[CESyntaxManager sharedManager] styleNameFromFileName:[[self fileURL] lastPathComponent]];
-    if (!styleName && [self fileContentString]) {
-        NSString *interpreter = [self scanLanguageFromShebangInString:[self fileContentString]];
-        styleName = [[CESyntaxManager sharedManager] styleNameFromInterpreter:interpreter];
-        
-        // check XML declaration
-        if (!styleName && [[self fileContentString] hasPrefix:@"<?xml "]) {
-            styleName = @"XML";
-        }
-    }
-    styleName = styleName ? : [[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultSyntaxStyleKey];
-    [self setSyntaxStyleWithName:styleName coloring:NO];
-    
     // standardize line endings to LF (File Open)
     // (Line endings replacemement by other text modifications are processed in the following methods.)
     //
@@ -761,7 +726,6 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     //       - CEEditorView > textView:shouldChangeTextInRange:replacementString:
     //   - Replace on Find Panel:
     //       - (OgreKit) OgreTextViewPlainAdapter > replaceCharactersInRange:withOGString:
-    
     if ([self fileContentString]) {
         NSString *string = [[self fileContentString] stringByReplacingNewLineCharacersWith:CENewLineLF];
         
@@ -790,6 +754,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     // update syntax highlights and outline menu
     [[self editor] invalidateSyntaxColoring];
     [[self editor] invalidateOutlineMenu];
+    [[[self windowController] toolbarController] setSelectedSyntaxWithName:[[self syntaxStyle] styleName]];
     
     // update line endings menu selection in toolbar
     [self applyLineEndingToView];
@@ -822,7 +787,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 // ------------------------------------------------------
 {
     NSMutableArray<NSDictionary<NSString *, NSValue *> *> *incompatibleChars = [NSMutableArray array];
-    NSString *currentString = [self stringForSave];
+    NSString *currentString = [self string];
     NSUInteger currentLength = [currentString length];
     NSData *data = [currentString dataUsingEncoding:encoding allowLossyConversion:YES];
     NSString *convertedString = [[NSString alloc] initWithData:data encoding:encoding];
@@ -918,7 +883,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     BOOL shouldShowList = NO;
     
     if (updateDocument) {
-        NSString *curString = [self stringForSave];
+        NSString *curString = [self string];
         BOOL allowsLossy = NO;
 
         if (askLossy) {
@@ -993,13 +958,20 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 // ------------------------------------------------------
 /// 新しいシンタックスカラーリングスタイルを適用
-- (void)doSetSyntaxStyle:(nullable NSString *)name
+- (void)setSyntaxStyleWithName:(nullable NSString *)styleName
 // ------------------------------------------------------
 {
-    if ([name length] == 0) { return; }
+    if ([styleName length] == 0) { return; }
     
-    [[self editor] setSyntaxStyleWithName:name coloring:YES];
-    [[[self windowController] toolbarController] setSelectedSyntaxWithName:name];
+    CESyntaxParser *syntaxParser = [[CESyntaxParser alloc] initWithStyleName:styleName];
+    
+    if ([syntaxParser isEqualToSyntaxParser:[self syntaxStyle]]) { return; }
+    
+    // update
+    [self setSyntaxStyle:[[CESyntaxParser alloc] initWithStyleName:styleName]];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:CEDocumentSyntaxStyleDidChangeNotification
+                                                        object:self];
 }
 
 
@@ -1046,6 +1018,32 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     if (![self acceptsSaveDocumentToConvertEncoding]) { return; }
     
     [super saveDocumentAs:sender];
+}
+
+
+// ------------------------------------------------------
+/// show Share Service menu
+- (IBAction)share:(nullable id)sender
+// ------------------------------------------------------
+{
+    NSURL *url = [self fileURL];
+    NSArray<NSURL *> *items = url ? @[url] : @[];
+    
+    NSSharingServicePicker *sharingServicePicker = [[NSSharingServicePicker alloc] initWithItems:items];
+    [sharingServicePicker showRelativeToRect:[sender bounds]
+                                      ofView:sender
+                               preferredEdge:NSMinYEdge];
+}
+
+
+// ------------------------------------------------------
+/// share document
+- (IBAction)shareFromService:(nullable id)sender
+// ------------------------------------------------------
+{
+    if ([[sender representedObject] isKindOfClass:[NSSharingService class]]) {
+        [(NSSharingService *)[sender representedObject] performWithItems:@[[self fileURL]]];
+    }
 }
 
 
@@ -1154,27 +1152,14 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 
 // ------------------------------------------------------
-/// 新しいテーマを適用
-- (IBAction)changeTheme:(nullable id)sender
-// ------------------------------------------------------
-{
-    NSString *name = [sender title];
-    
-    if ([name length] > 0) {
-        [[self editor] setThemeWithName:name];
-    }
-}
-
-
-// ------------------------------------------------------
 /// 新しいシンタックスカラーリングスタイルを適用
 - (IBAction)changeSyntaxStyle:(nullable id)sender
 // ------------------------------------------------------
 {
     NSString *name = [sender title];
 
-    if ([name length] > 0) {
-        [self doSetSyntaxStyle:name];
+    if (![name isEqualToString:[[self syntaxStyle] styleName]]) {
+        [self setSyntaxStyleWithName:name];
     }
 }
 
@@ -1244,25 +1229,11 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
         return [[self fileURL] pathExtension];
         
     } else {
-        NSString *styleName = [[self editor] syntaxStyleName];
+        NSString *styleName = [[self syntaxStyle] styleName];
         NSArray<NSString *> *extensions = [[CESyntaxManager sharedManager] extensionsForStyleName:styleName];
         
         return [extensions firstObject];
     }
-}
-
-
-// ------------------------------------------------------
-/// editor を通じて syntax インスタンスをセット
-- (void)setSyntaxStyleWithName:(nonnull NSString *)styleName coloring:(BOOL)doColoring
-// ------------------------------------------------------
-{
-    if (![[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultEnableSyntaxHighlightKey]) { return; }
-    
-    [[self editor] setSyntaxStyleWithName:styleName coloring:doColoring];
-    
-    // ツールバーのカラーリングポップアップの表示を更新、再カラーリング
-    [[[self windowController] toolbarController] setSelectedSyntaxWithName:styleName];
 }
 
 
@@ -1295,39 +1266,37 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 - (nullable NSString *)stringFromData:(nonnull NSData *)data encoding:(NSStringEncoding)encoding xattrEncoding:(NSStringEncoding)xattrEncoding usedEncoding:(nonnull NSStringEncoding *)usedEncoding error:(NSError * _Nullable __autoreleasing * _Nullable)outError
 //------------------------------------------------------
 {
-    NSString *string;
-    
     if (encoding != CEAutoDetectEncoding) {  // interpret with specific encoding
         *usedEncoding = encoding;
-        string = ([data length] == 0) ? @"" : [[NSString alloc] initWithData:data encoding:encoding];
+        return ([data length] > 0) ? [[NSString alloc] initWithData:data encoding:encoding] : @"";
+    }
+    
+    // Auto-Detection
+    NSString *string;
+    
+    // try interpreting with xattr encoding
+    if (xattrEncoding != NSNotFound) {
+        // just trust xattr encoding if content is empty
+        string = ([data length] > 0) ? [[NSString alloc] initWithData:data encoding:xattrEncoding] : @"";
         
-    } else {  // Auto-Detection
-        // try interpreting with xattr encoding
-        if (xattrEncoding != NSNotFound) {
-            // just trust xattr encoding if content is empty
-            string = ([data length] == 0) ? @"" : [[NSString alloc] initWithData:data encoding:xattrEncoding];
-            
-            if (string) {
-                *usedEncoding = xattrEncoding;
-            }
+        if (string) {
+            *usedEncoding = xattrEncoding;
+            return string;
         }
-        
-        if (!string) {
-            // detect encoding from data
-            string = [CEDocument stringFromData:data usedEncoding:usedEncoding error:outError];
-            
-            if (string) {
-                // "charset=" や "encoding=" を読んでみて適正なエンコーディングが得られたら、そちらを優先
-                NSStringEncoding scannedEncoding = [self scanEncodingDeclarationInString:string];
-                if (scannedEncoding != NSNotFound && scannedEncoding != encoding) {
-                    NSString *tmpString = [[NSString alloc] initWithData:data encoding:scannedEncoding];
-                    if (tmpString) {
-                        *usedEncoding = scannedEncoding;
-                        return tmpString;
-                    }
-                }
+    }
+    
+    // detect encoding from data
+    string = [CEDocument stringFromData:data usedEncoding:usedEncoding error:outError];
+    
+    if (string) {
+        // "charset=" や "encoding=" を読んでみて適正なエンコーディングが得られたら、そちらを優先
+        NSStringEncoding scannedEncoding = [self scanEncodingDeclarationInString:string];
+        if (scannedEncoding != NSNotFound && scannedEncoding != encoding) {
+            NSString *tmpString = [[NSString alloc] initWithData:data encoding:scannedEncoding];
+            if (tmpString) {
+                *usedEncoding = scannedEncoding;
+                return tmpString;
             }
-            
         }
     }
     
@@ -1341,7 +1310,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 //------------------------------------------------------
 {
     // detect enoding from so-called "magic numbers"
-    NSMutableArray<NSNumber *> *triedEncodings = [NSMutableArray array];
+    NSStringEncoding triedEncoding = NSNotFound;
     if ([data length] > 0) {
         // ISO 2022-JP / UTF-8 / UTF-16の判定は、「藤棚工房別棟 −徒然−」の
         // 「Cocoaで文字エンコーディングの自動判別プログラムを書いてみました」で公開されている
@@ -1351,7 +1320,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
         // BOM 付き UTF-8 判定
         if (memchr([data bytes], *UTF8_BOM, 3) != NULL) {
             NSStringEncoding encoding = NSUTF8StringEncoding;
-            [triedEncodings addObject:@(encoding)];
+            triedEncoding = encoding;
             NSString *string = [[NSString alloc] initWithData:data encoding:encoding];
             if (string) {
                 *usedEncoding = encoding;
@@ -1363,7 +1332,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
                    (memchr([data bytes], 0x0000feff, 4) != NULL))
         {
             NSStringEncoding encoding = NSUTF32StringEncoding;
-            [triedEncodings addObject:@(encoding)];
+            triedEncoding = encoding;
             NSString *string = [[NSString alloc] initWithData:data encoding:encoding];
             if (string) {
                 *usedEncoding = encoding;
@@ -1375,7 +1344,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
                    (memchr([data bytes], 0xfeff, 2) != NULL))
         {
             NSStringEncoding encoding = NSUTF16StringEncoding;
-            [triedEncodings addObject:@(encoding)];
+            triedEncoding = encoding;
             NSString *string = [[NSString alloc] initWithData:data encoding:encoding];
             if (string) {
                 *usedEncoding = encoding;
@@ -1385,11 +1354,15 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
         // ISO-2022-JP 判定
         } else if (memchr([data bytes], 0x1b, [data length]) != NULL) {
             NSStringEncoding encoding = NSISO2022JPStringEncoding;
-            [triedEncodings addObject:@(encoding)];
             NSString *string = [[NSString alloc] initWithData:data encoding:encoding];
+            
             if (string) {
-                *usedEncoding = encoding;
-                return string;
+                // Since ISO-2022-JP is a Japanese encoding, string should have at least one Japanese character.
+                NSRegularExpression *japaneseRegex = [NSRegularExpression regularExpressionWithPattern:@"[ぁ-んァ-ン、。]" options:0 error:nil];
+                if ([japaneseRegex rangeOfFirstMatchInString:string options:0 range:NSMakeRange(0, [string length])].location != NSNotFound) {
+                    *usedEncoding = encoding;
+                    return string;
+                };
             }
         }
     }
@@ -1401,7 +1374,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
         NSStringEncoding encoding = CFStringConvertEncodingToNSStringEncoding([encodingNumber unsignedIntegerValue]);
         
         // skip encoding already tried
-        if ([triedEncodings containsObject:@(encoding)]) { continue; }
+        if (triedEncoding == encoding) { continue; }
         
         NSString *string = [[NSString alloc] initWithData:data encoding:encoding];
         
@@ -1487,37 +1460,6 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 
 // ------------------------------------------------------
-/// try extracting used language from the shebang line
-- (nullable NSString *)scanLanguageFromShebangInString:(nonnull NSString *)string
-// ------------------------------------------------------
-{
-    // get first line
-    __block NSString *firstLine = nil;
-    [string enumerateLinesUsingBlock:^(NSString *line, BOOL *stop) {
-        firstLine = line;
-        *stop = YES;
-    }];
-    
-    // not found
-    if (![firstLine hasPrefix:@"#!"]) { return nil; }
-    
-    // remove #! symbol
-    firstLine = [firstLine stringByReplacingOccurrencesOfString:@"^#! *" withString:@"" options:NSRegularExpressionSearch range:NSMakeRange(0, [firstLine length])];
-    
-    // find interpreter
-    NSArray<NSString *> *components = [firstLine componentsSeparatedByString:@" "];
-    NSString * path = components[0];
-    NSString *interpreter = [[path componentsSeparatedByString:@"/"] lastObject];
-    // use first arg if the path targets env
-    if ([interpreter isEqualToString:@"env"]) {
-        interpreter = components[1];
-    }
-    
-    return interpreter;
-}
-
-
-// ------------------------------------------------------
 /// IANA文字コード名を読み、設定されたエンコーディングと矛盾があれば警告する
 - (BOOL)acceptsSaveDocumentWithIANACharSetName
 // ------------------------------------------------------
@@ -1525,7 +1467,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     if ([self suppressesIANACharsetConflictAlert]) { return YES; }
     
     NSError *error;
-    [self checkSavingSafetyWithIANACharSetNameForString:[self stringForSave] encoding:[self encoding] error:&error];
+    [self checkSavingSafetyWithIANACharSetNameForString:[self string] encoding:[self encoding] error:&error];
     
     if (error) {
         NSAlert *alert = [NSAlert alertWithError:error];
@@ -1557,7 +1499,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 // ------------------------------------------------------
 {
     NSError *error;
-    [self checkSavingSafetyForConvertingString:[self stringForSave] encoding:[self encoding] error:&error];
+    [self checkSavingSafetyForConvertingString:[self string] encoding:[self encoding] error:&error];
     
     if (error) {
         NSAlert *alert = [NSAlert alertWithError:error];

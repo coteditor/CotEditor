@@ -86,7 +86,7 @@ typedef NS_ENUM(NSUInteger, CESyntaxEditViewIndex) {
 - (nullable instancetype)initWithStyle:(nonnull NSString *)styleName mode:(CESyntaxEditSheetMode)mode
 // ------------------------------------------------------
 {
-    self = [super initWithWindowNibName:@"SyntaxEditSheet"];
+    self = [super init];
     if (self) {
         CESyntaxManager *syntaxManager = [CESyntaxManager sharedManager];
         NSString *name;
@@ -114,10 +114,19 @@ typedef NS_ENUM(NSUInteger, CESyntaxEditViewIndex) {
         _originalStyleName = name;
         _style = [style mutableCopy];
         _styleNameValid = YES;
-        _bundledStyle = [syntaxManager isBundledStyle:name];
+        _bundledStyle = [syntaxManager isBundledStyle:name cutomized:nil];
     }
     
     return self;
+}
+
+
+// ------------------------------------------------------
+/// nib name
+- (nullable NSString *)windowNibName
+// ------------------------------------------------------
+{
+    return @"SyntaxEditSheet";
 }
 
 
@@ -167,7 +176,7 @@ typedef NS_ENUM(NSUInteger, CESyntaxEditViewIndex) {
     [viewControllers addObject:[NSNull null]];  // separator
     
     viewControllers[StyleInfoTab] = [[NSViewController alloc] initWithNibName:@"SyntaxInfoEditView" bundle:nil];
-    viewControllers[ValidationTab] = [[CESyntaxValidationViewController alloc] initWithNibName:@"SyntaxValidationView" bundle:nil];
+    viewControllers[ValidationTab] = [[CESyntaxValidationViewController alloc] init];
     
     for (__kindof NSViewController *viewController in viewControllers) {
         if ([viewController isKindOfClass:[NSNull class]]) { continue; }
@@ -245,6 +254,22 @@ typedef NS_ENUM(NSUInteger, CESyntaxEditViewIndex) {
     [[self style] setDictionary:style];
     // デフォルト設定に戻すボタンを無効化
     [[self restoreButton] setEnabled:NO];
+}
+
+
+// ------------------------------------------------------
+/// jump to style's destribution URL
+- (IBAction)jumpToURL:(nullable id)sender
+// ------------------------------------------------------
+{
+    NSURL *URL = [NSURL URLWithString:[self style][CEMetadataKey][CEDistributionURLKey]];
+    
+    if (!URL) {
+        NSBeep();
+        return;
+    }
+    
+    [[NSWorkspace sharedWorkspace] openURL:URL];
 }
 
 

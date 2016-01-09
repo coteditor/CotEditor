@@ -76,4 +76,45 @@
     return round(defaultLineHeight - rect.size.height + lineSpacing * fontSize);
 }
 
+
+// ------------------------------------------------------
+/// customize behavior by control glyph
+- (NSTypesetterControlCharacterAction)actionForControlCharacterAtIndex:(NSUInteger)charIndex
+// ------------------------------------------------------
+{
+    NSTypesetterControlCharacterAction result = [super actionForControlCharacterAtIndex:charIndex];
+    
+    if (result & NSTypesetterZeroAdvancementAction) {
+        NSString *string = [[self attributedString] string];
+        BOOL isLowSurrogate = (CFStringIsSurrogateLowCharacter([string characterAtIndex:charIndex]) &&
+                               ((charIndex > 0) && CFStringIsSurrogateHighCharacter([string characterAtIndex:charIndex - 1])));
+        if (!isLowSurrogate) {
+            return NSTypesetterWhitespaceAction;  // -> Then, the glyph width can be modified on `boundingBoxForControlGlyphAtIndex:...`.
+        }
+    }
+    
+    return result;
+}
+
+
+// ------------------------------------------------------
+/// return bounding box for control glyph
+- (NSRect)boundingBoxForControlGlyphAtIndex:(NSUInteger)glyphIndex forTextContainer:(nonnull NSTextContainer *)textContainer proposedLineFragment:(NSRect)proposedRect glyphPosition:(NSPoint)glyphPosition characterIndex:(NSUInteger)charIndex
+// ------------------------------------------------------
+{
+    CELayoutManager *manager = (CELayoutManager *)[self layoutManager];
+    if (![manager showsOtherInvisibles] || ![manager showsInvisibles]) {
+        return [super boundingBoxForControlGlyphAtIndex:glyphIndex forTextContainer:textContainer proposedLineFragment:proposedRect glyphPosition:glyphPosition characterIndex:charIndex];
+    }
+    
+    // make blank space to draw a replacement character in CELayoutManager later.
+    NSFont *textFont = [manager textFont];
+    NSFont *invisibleFont = [NSFont fontWithName:@"Lucida Grande" size:[textFont pointSize]] ?: textFont;  // use current text font for fallback
+    NSGlyph replacementGlyph = [invisibleFont glyphWithName:@"replacement"];  // U+FFFD
+    NSRect replacementGlyphBounding = [invisibleFont boundingRectForGlyph:replacementGlyph];
+    proposedRect.size.width = replacementGlyphBounding.size.width;
+    
+    return proposedRect;
+}
+
 @end

@@ -41,7 +41,7 @@
 
 // readonly
 @property (readonly, nonatomic, nonnull) CETextView *textView;
-@property (readonly, nonatomic, nonnull) CENavigationBarController *navigationBar;
+@property (readonly, nonatomic, nonnull) CENavigationBarController *navigationBarController;
 
 
 // Public method

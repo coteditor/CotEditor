@@ -81,9 +81,6 @@
 
 - (void)completeAfterDelay:(NSTimeInterval)delay;
 
-// semi-private methods
-- (void)stopCompletionTimer;
-
 @end
 
 

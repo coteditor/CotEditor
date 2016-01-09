@@ -2,26 +2,39 @@ extensions:
 - keyString: "html"
 - keyString: "htm"
 - keyString: "shtml"
+metadata:
+  author: "1024jp"
+  distributionURL: "http://coteditor.com"
+  version: "2.1.1"
+  license: "Same as CotEditor"
+  lastModified: "2015-12-25"
 outlineMenu:
 - beginString: "<(h1)[^>]*>(.*)</\\1[^>]*>"
+  description: "h1"
   ignoreCase: true
   keyString: "$1: $2"
 - beginString: "<(h2)[^>]*>(.*)</\\1[^>]*>"
+  description: "h2"
   ignoreCase: true
   keyString: "   $1: $2"
 - beginString: "<(h3)[^>]*>(.*)</\\1[^>]*>"
+  description: "h3"
   ignoreCase: true
   keyString: "      $1: $2"
 - beginString: "<(h4)[^>]*>(.*)</\\1[^>]*>"
+  description: "h4"
   ignoreCase: true
   keyString: "         $1: $2"
 - beginString: "<(h5)[^>]*>(.*)</\\1[^>]*>"
+  description: "h5"
   ignoreCase: true
   keyString: "            $1: $2"
 - beginString: "<(h6)[^>]*>(.*)</\\1[^>]*>"
+  description: "h6"
   ignoreCase: true
   keyString: "               $1: $2"
 - beginString: "<(title)[^>]*>([^<]*)</\\1[^>]*>"
+  description: "title"
   ignoreCase: true
   keyString: "$1: $2"
   bold: true
@@ -1111,12 +1124,6 @@ attributes:
   regularExpression: true
 - beginString: "(?<=\\s)xmlns(?=\\b[^<>]*>)"
   regularExpression: true
-metadata:
-  author: "1024jp"
-  distributionURL: "http://coteditor.com"
-  version: "2.1"
-  license: "Same as CotEditor"
-  lastModified: "2014-09-24"
 characters:
 - beginString: "&#[0-9]{1,10};"
   regularExpression: true

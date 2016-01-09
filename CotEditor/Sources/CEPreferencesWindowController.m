@@ -61,7 +61,7 @@
     static id shared = nil;
     
     dispatch_once(&onceToken, ^{
-        shared = [[self alloc] initWithWindowNibName:@"PreferencesWindow"];
+        shared = [[self alloc] init];
     });
     
     return shared;
@@ -73,22 +73,31 @@
 
 // ------------------------------------------------------
 /// initialize
-- (nonnull instancetype)initWithWindowNibName:(nonnull NSString *)windowNibName
+- (nonnull instancetype)init
 // ------------------------------------------------------
 {
-    self = [super initWithWindowNibName:windowNibName];
+    self = [super init];
     if (self) {
-        _viewControllers = @[[[CEGeneralPaneController alloc] initWithNibName:@"GeneralPane" bundle:nil],
-                             [[CEWindowPaneController alloc] initWithNibName:@"WindowPane" bundle:nil],
-                             [[CEAppearancePaneController alloc] initWithNibName:@"AppearancePane" bundle:nil],
-                             [[CEEditPaneController alloc] initWithNibName:@"EditPane" bundle:nil],
-                             [[CEFormatPaneController alloc] initWithNibName:@"FormatPane" bundle:nil],
-                             [[CEFileDropPaneController alloc] initWithNibName:@"FileDropPane" bundle:nil],
-                             [[CEKeyBindingsPaneController alloc] initWithNibName:@"KeyBindingsPane" bundle:nil],
-                             [[CEPrintPaneController alloc] initWithNibName:@"PrintPane" bundle:nil],
-                             [[CEIntegrationPaneController alloc] initWithNibName:@"IntegrationPane" bundle:nil]];
+        _viewControllers = @[[[CEGeneralPaneController alloc] init],
+                             [[CEWindowPaneController alloc] init],
+                             [[CEAppearancePaneController alloc] init],
+                             [[CEEditPaneController alloc] init],
+                             [[CEFormatPaneController alloc] init],
+                             [[CEFileDropPaneController alloc] init],
+                             [[CEKeyBindingsPaneController alloc] init],
+                             [[CEPrintPaneController alloc] init],
+                             [[CEIntegrationPaneController alloc] init]];
     }
     return self;
+}
+
+
+// ------------------------------------------------------
+/// nib name
+- (nullable NSString *)windowNibName
+// ------------------------------------------------------
+{
+    return @"PreferencesWindow";
 }
 
 
@@ -133,11 +142,11 @@
     
     // remove current view from the main view
     for (NSView *view in [[[self window] contentView] subviews]) {
-        [view removeFromSuperview];
+        [view removeFromSuperviewWithoutNeedingDisplay];
     }
     
     // set window title
-    [[self window] setTitle:[sender label]];
+    [[self window] setTitle:[sender paletteLabel]];
     
     // resize window to fit to new view
     NSRect frame = [[self window] frame];

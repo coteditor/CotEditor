@@ -5,10 +5,10 @@ extensions:
 - keyString: "mdown"
 - keyString: "mkdn"
 metadata:
-  version: "1.2.1"
+  version: "1.2.2"
   author: "1024jp"
   license: "Same as CotEditor"
-  lastModified: "2015-11-29"
+  lastModified: "2015-12-25"
   distributionURL: "http://coteditor.com"
 keywords:
 - beginString: "(?<![\\\\*])\\*[^ \\t*](?:\\n[^\\n]|[^\\n])*?(?<![\\\\ ])\\*"
@@ -125,23 +125,32 @@ completions: []
 outlineMenu:
 - beginString: "(.+)(?=\\n\\-+[\\t ]*$)"
   keyString: "    $1"
+  description: "h2"
   bold: true
 - beginString: "(.+)(?=\\n\\=+[\\t ]*$)"
   keyString: "$1"
+  description: "h1"
   bold: true
 - beginString: "(?<=\\n\\n|\\A)([*-_] ?)\\1{2,}$"
   keyString: "-"
+  description: "horizontal line"
 - beginString: "^#[\\t ]?([^#][^\\n]*?)#*$"
   keyString: "$1"
+  description: "h1"
   bold: true
 - beginString: "^#{2}[\\t ]?([^#][^\\n]*?)#*$"
   keyString: "    $1"
+  description: "h2"
   bold: true
 - beginString: "^#{3}[\\t ]?([^#][^\\n]*?)#*$"
   keyString: "        $1"
+  description: "h3"
 - beginString: "^#{4}[\\t ]?([^#][^\\n]*?)#*$"
   keyString: "            $1"
+  description: "h4"
 - beginString: "^#{5}[\\t ]?([^#][^\\n]*?)#*$"
   keyString: "                $1"
+  description: "h5"
 - beginString: "^#{6}[\\t ]?([^#][^\\n]*?)#*$"
   keyString: "                    $1"
+  description: "h6"

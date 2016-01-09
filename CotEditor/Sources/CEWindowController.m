@@ -35,6 +35,7 @@
 #import "CEEditorWrapper.h"
 #import "CESyntaxManager.h"
 #import "CEDocumentAnalyzer.h"
+#import "CESyntaxParser.h"
 #import "Constants.h"
 
 #import <OgreKit/OgreTextFinder.h>
@@ -51,7 +52,7 @@ typedef NS_ENUM(NSUInteger, CESidebarTag) {
 
 @property (nonatomic) CESidebarTag selectedSidebarTag;
 @property (nonatomic) BOOL needsRecolorWithBecomeKey;  // flag to update sytnax highlight when window becomes key window
-@property (nonatomic, nullable) NSTimer *editorInfoUpdateTimer;
+@property (nonatomic, nullable, weak) NSTimer *editorInfoUpdateTimer;
 @property (nonatomic) CGFloat sidebarWidth;
 
 
@@ -62,7 +63,6 @@ typedef NS_ENUM(NSUInteger, CESidebarTag) {
 @property (nonatomic, nullable, weak) IBOutlet NSSplitView *sidebarSplitView;
 @property (nonatomic, nullable, weak) IBOutlet NSView *sidebar;
 @property (nonatomic, nullable, weak) IBOutlet NSView *sidebarPlaceholderView;
-@property (nonatomic, nullable, weak) IBOutlet NSButton *shareButton;
 @property (nonatomic, nullable) IBOutlet CEDocumentAnalyzer *documentAnalyzer;
 
 // IBOutlets (readonly)
@@ -109,7 +109,16 @@ static NSTimeInterval infoUpdateInterval;
     //     and may crash when closing split fullscreen window on El Capitan beta 5 (2015-07)
     [_sidebarSplitView setDelegate:nil];
     
-    [self stopEditorInfoUpdateTimer];
+    [_editorInfoUpdateTimer invalidate];
+}
+
+
+// ------------------------------------------------------
+/// nib name
+- (nullable NSString *)windowNibName
+// ------------------------------------------------------
+{
+    return @"DocumentWindow";
 }
 
 
@@ -159,9 +168,6 @@ static NSTimeInterval infoUpdateInterval;
     
     // move focus to text view
     [[self window] makeFirstResponder:[[self editor] focusedTextView]];
-    
-    // setup share button
-    [[self shareButton] sendActionOn:NSLeftMouseDownMask];
     
     // notify finish of the document open process (Here is probably the final point.)
     __weak typeof(self) weakSelf = self;
@@ -298,7 +304,7 @@ static NSTimeInterval infoUpdateInterval;
 - (void)setupEditorInfoUpdateTimer
 // ------------------------------------------------------
 {
-    if ([self editorInfoUpdateTimer]) {
+    if ([[self editorInfoUpdateTimer] isValid]) {
         [[self editorInfoUpdateTimer] setFireDate:[NSDate dateWithTimeIntervalSinceNow:infoUpdateInterval]];
     } else {
         [self setEditorInfoUpdateTimer:[NSTimer scheduledTimerWithTimeInterval:infoUpdateInterval
@@ -359,7 +365,8 @@ static NSTimeInterval infoUpdateInterval;
     // update and style name and highlight if recolor flag is set
     if ([self needsRecolorWithBecomeKey]) {
         [self setNeedsRecolorWithBecomeKey:NO];
-        [[self document] doSetSyntaxStyle:[[self editor] syntaxStyleName]];
+        [[self editor] invalidateSyntaxColoring];
+        [[self editor] invalidateOutlineMenu];
     }
 }
 
@@ -461,21 +468,6 @@ static NSTimeInterval infoUpdateInterval;
         [self setSelectedSidebarTag:CEDocumentInspectorTag];
         [self setSidebarShown:YES];
     }
-}
-
-
-// ------------------------------------------------------
-/// show Share Service menu
-- (IBAction)share:(nullable id)sender
-// ------------------------------------------------------
-{
-    NSURL *url = [[self document] fileURL];
-    NSArray<NSURL *> *items = url ? @[url] : @[];
-    
-    NSSharingServicePicker *sharingServicePicker = [[NSSharingServicePicker alloc] initWithItems:items];
-    [sharingServicePicker showRelativeToRect:[sender bounds]
-                                      ofView:sender
-                               preferredEdge:NSMinYEdge];
 }
 
 
@@ -608,21 +600,20 @@ static NSTimeInterval infoUpdateInterval;
 - (void)syntaxDidUpdate:(nonnull NSNotification *)notification
 // ------------------------------------------------------
 {
-    NSString *currentName = [[self editor] syntaxStyleName];
+    NSString *currentName = [[(CEDocument *)[self document] syntaxStyle] styleName];
     NSString *oldName = [notification userInfo][CEOldNameKey];
     NSString *newName = [notification userInfo][CENewNameKey];
     
     if (![oldName isEqualToString:currentName]) { return; }
     
     if ([oldName isEqualToString:newName]) {
-        [[self editor] setSyntaxStyleWithName:newName coloring:NO];
+        [[self document] setSyntaxStyleWithName:newName];
     }
-    if (![newName isEqualToString:NSLocalizedString(@"None", nil)]) {
-        if ([[self window] isKeyWindow]) {
-            [[self document] doSetSyntaxStyle:newName];
-        } else {
-            [self setNeedsRecolorWithBecomeKey:YES];
-        }
+    
+    if ([[self window] isKeyWindow]) {
+        [[self document] setSyntaxStyleWithName:newName];
+    } else {
+        [self setNeedsRecolorWithBecomeKey:YES];
     }
 }
 
@@ -632,20 +623,8 @@ static NSTimeInterval infoUpdateInterval;
 - (void)updateEditorInfoWithTimer:(nonnull NSTimer *)timer
 // ------------------------------------------------------
 {
-    [self stopEditorInfoUpdateTimer];
+    [[self editorInfoUpdateTimer] invalidate];
     [self updateEditorInfoIfNeeded];
-}
-
-
-// ------------------------------------------------------
-/// stop editor info update timer
-- (void)stopEditorInfoUpdateTimer
-// ------------------------------------------------------
-{
-    if ([self editorInfoUpdateTimer]) {
-        [[self editorInfoUpdateTimer] invalidate];
-        [self setEditorInfoUpdateTimer:nil];
-    }
 }
 
 @end

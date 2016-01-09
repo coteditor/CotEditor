@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9059"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9531"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="CEFileDropPaneController">
@@ -28,7 +28,6 @@
             <subviews>
                 <button horizontalHuggingPriority="750" verticalHuggingPriority="750" tag="6" translatesAutoresizingMaskIntoConstraints="NO" id="2351">
                     <rect key="frame" x="507" y="17" width="25" height="25"/>
-                    <animations/>
                     <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" inset="2" id="3338">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
@@ -39,7 +38,6 @@
                 </button>
                 <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="589">
                     <rect key="frame" x="268" y="341" width="53" height="14"/>
-                    <animations/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="left" title="Glossary:" usesSingleLineMode="YES" id="3337">
                         <font key="font" metaFont="smallSystem"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -49,13 +47,12 @@
                 <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="587">
                     <rect key="frame" x="270" y="196" width="260" height="139"/>
                     <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="PI9-s6-0DE">
-                        <rect key="frame" x="1" y="1" width="248" height="137"/>
+                        <rect key="frame" x="1" y="1" width="258" height="137"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView editable="NO" importsGraphics="NO" findStyle="panel" continuousSpellChecking="YES" usesRuler="YES" usesFontPanel="YES" verticallyResizable="YES" smartInsertDelete="YES" id="586">
-                                <rect key="frame" x="0.0" y="-12" width="258" height="372"/>
+                                <rect key="frame" x="0.0" y="-12" width="268" height="372"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <animations/>
                                 <color key="backgroundColor" name="windowBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 <size key="minSize" width="258" height="137"/>
                                 <size key="maxSize" width="586" height="10000000"/>
@@ -102,19 +99,15 @@ The parent directory name of the dropped file.
                                 <size key="maxSize" width="586" height="10000000"/>
                             </textView>
                         </subviews>
-                        <animations/>
                         <color key="backgroundColor" name="windowBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </clipView>
-                    <animations/>
                     <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" controlSize="small" horizontal="YES" id="3419">
                         <rect key="frame" x="-100" y="-100" width="87" height="18"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <animations/>
                     </scroller>
                     <scroller key="verticalScroller" verticalHuggingPriority="750" controlSize="small" horizontal="NO" id="3418">
                         <rect key="frame" x="245" y="1" width="14" height="137"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <animations/>
                     </scroller>
                 </scrollView>
                 <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="536">
@@ -122,7 +115,6 @@ The parent directory name of the dropped file.
                     <constraints>
                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="190" id="XCP-jV-qFG"/>
                     </constraints>
-                    <animations/>
                     <popUpButtonCell key="cell" type="push" title="Insert Pre-Formatted String" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="clipping" borderStyle="border" inset="2" pullsDown="YES" preferredEdge="maxY" id="3336">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="smallSystem"/>
@@ -189,13 +181,12 @@ The parent directory name of the dropped file.
                 <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="531">
                     <rect key="frame" x="20" y="53" width="510" height="100"/>
                     <clipView key="contentView" id="ybU-5v-A28">
-                        <rect key="frame" x="1" y="1" width="498" height="98"/>
+                        <rect key="frame" x="1" y="1" width="508" height="98"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView importsGraphics="NO" richText="NO" findStyle="panel" allowsUndo="YES" usesRuler="YES" usesFontPanel="YES" verticallyResizable="YES" smartInsertDelete="YES" id="532">
-                                <rect key="frame" x="0.0" y="0.0" width="498" height="98"/>
+                                <rect key="frame" x="0.0" y="0.0" width="508" height="98"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <size key="minSize" width="508" height="98"/>
                                 <size key="maxSize" width="600" height="10000000"/>
@@ -212,27 +203,22 @@ The parent directory name of the dropped file.
                                 </connections>
                             </textView>
                         </subviews>
-                        <animations/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </clipView>
                     <constraints>
                         <constraint firstAttribute="height" constant="100" id="hTE-3S-LJb"/>
                     </constraints>
-                    <animations/>
                     <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="3417">
                         <rect key="frame" x="-100" y="-100" width="87" height="18"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <animations/>
                     </scroller>
                     <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="3416">
                         <rect key="frame" x="493" y="1" width="16" height="98"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <animations/>
                     </scroller>
                 </scrollView>
                 <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="466">
                     <rect key="frame" x="100" y="341" width="152" height="14"/>
-                    <animations/>
                     <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="left" title="(comma separated, no dots)" usesSingleLineMode="YES" id="3335">
                         <font key="font" metaFont="smallSystem"/>
                         <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
@@ -245,7 +231,6 @@ The parent directory name of the dropped file.
                         <constraint firstAttribute="height" constant="20" id="RDU-2u-Aor"/>
                         <constraint firstAttribute="width" constant="30" id="yzy-Pg-HBT"/>
                     </constraints>
-                    <animations/>
                     <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSRemoveTemplate" imagePosition="overlaps" alignment="center" borderStyle="border" focusRingType="none" inset="2" id="3334">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
@@ -257,7 +242,6 @@ The parent directory name of the dropped file.
                 </button>
                 <button toolTip="Add" focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="457">
                     <rect key="frame" x="20" y="195" width="30" height="22"/>
-                    <animations/>
                     <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSAddTemplate" imagePosition="overlaps" alignment="center" borderStyle="border" focusRingType="none" inset="2" id="3333">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
@@ -269,7 +253,6 @@ The parent directory name of the dropped file.
                 </button>
                 <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="456">
                     <rect key="frame" x="18" y="159" width="108" height="17"/>
-                    <animations/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="left" title="Insertion Format:" usesSingleLineMode="YES" id="3332">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -278,7 +261,6 @@ The parent directory name of the dropped file.
                 </textField>
                 <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="434">
                     <rect key="frame" x="18" y="341" width="74" height="17"/>
-                    <animations/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="left" title="Extensions:" usesSingleLineMode="YES" id="3331">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -287,7 +269,6 @@ The parent directory name of the dropped file.
                 </textField>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="yc6-4W-vhz">
                     <rect key="frame" x="78" y="195" width="172" height="22"/>
-                    <animations/>
                     <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" imagePosition="overlaps" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="wm6-2c-tEB">
                         <behavior key="behavior" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
@@ -302,7 +283,6 @@ The parent directory name of the dropped file.
                             <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnReordering="NO" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" viewBased="YES" id="447">
                                 <rect key="frame" x="0.0" y="0.0" width="228" height="0.0"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <animations/>
                                 <size key="intercellSpacing" width="3" height="2"/>
                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
@@ -326,7 +306,6 @@ The parent directory name of the dropped file.
                                                 <subviews>
                                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="mc9-oM-wvh">
                                                         <rect key="frame" x="0.0" y="0.0" width="225" height="17"/>
-                                                        <animations/>
                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="png, jpg, gif" usesSingleLineMode="YES" id="pvd-e0-a07">
                                                             <font key="font" metaFont="system"/>
                                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -344,7 +323,6 @@ The parent directory name of the dropped file.
                                                     <constraint firstItem="mc9-oM-wvh" firstAttribute="top" secondItem="IHk-9m-U05" secondAttribute="top" id="aQ8-0g-vOJ"/>
                                                     <constraint firstAttribute="bottom" secondItem="mc9-oM-wvh" secondAttribute="bottom" id="s4x-tm-U9r"/>
                                                 </constraints>
-                                                <animations/>
                                                 <connections>
                                                     <outlet property="textField" destination="mc9-oM-wvh" id="CLO-MD-srX"/>
                                                 </connections>
@@ -360,23 +338,19 @@ The parent directory name of the dropped file.
                                 </connections>
                             </tableView>
                         </subviews>
-                        <animations/>
                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </clipView>
                     <constraints>
                         <constraint firstAttribute="width" constant="230" id="Yd1-nZ-vaP"/>
                         <constraint firstAttribute="height" constant="120" id="ZuF-zE-Gww"/>
                     </constraints>
-                    <animations/>
                     <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="3415">
                         <rect key="frame" x="1" y="134" width="243" height="15"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <animations/>
                     </scroller>
                     <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="3414">
                         <rect key="frame" x="244" y="1" width="15" height="133"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <animations/>
                     </scroller>
                 </scrollView>
             </subviews>
@@ -414,7 +388,6 @@ The parent directory name of the dropped file.
                 <constraint firstAttribute="trailing" secondItem="587" secondAttribute="trailing" constant="20" symbolic="YES" id="xsC-9k-4xe"/>
                 <constraint firstItem="531" firstAttribute="top" secondItem="536" secondAttribute="bottom" constant="6" id="xtB-Bn-7oq"/>
             </constraints>
-            <animations/>
         </customView>
     </objects>
     <resources>

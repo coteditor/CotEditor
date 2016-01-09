@@ -31,9 +31,13 @@
 
 /* Class = "NSTableColumn"; headerCell.title = "Regular Expression String"; ObjectID = "vRg-cd-Ib2"; */
 "vRg-cd-Ib2.headerCell.title" = "Regulärer Ausdruck";
+
 /* Class = "NSTableColumn"; headerCell.title = "IC"; ObjectID = "1tC-mo-cEL"; */
 "1tC-mo-cEL.headerCell.title" = "IC";  /* IC */
 "1tC-mo-cEL.headerToolTip" = "Groß-/Kleinschreibung ignorieren";  /* Ignore Case (case-insensitive) */
+
+/* Class = "NSTableColumn"; headerCell.title = "Description"; ObjectID = "6hB-wJ-niI"; */
+"6hB-wJ-niI.headerCell.title" = "Beschreibung";
 
 /* Class = "NSTextFieldCell"; title = "Menu title pattern (blank matches the whole string)"; ObjectID = "nnO-qN-dYF"; */
 "nnO-qN-dYF.title" = "Muster des Menütitles (Leer passt die ganze Zeichenkette)";

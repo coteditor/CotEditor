@@ -29,9 +29,6 @@
 #import "Constants.h"
 
 
-NSString *_Nonnull const CETextFinderDidReplaceAllNotification = @"CETextFinderDidReplaceAllNotification";
-
-
 @implementation CETextFinder
 
 #pragma mark Superclass Methods

@@ -1,15 +1,15 @@
 /*
  
- CEPreferencesWindow.m
+ CEPaddingTextFieldCell.h
  
  CotEditor
  http://coteditor.com
  
- Created by 1024jp by 2014-12-23
-
+ Created by 1024jp on 2015-12-23.
+ 
  ------------------------------------------------------------------------------
  
- © 2014-2015 1024jp
+ © 2015 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -25,32 +25,24 @@
  
  */
 
-#import "CEPreferencesWindow.h"
+#import "CEPaddingTextFieldCell.h"
 
 
-@implementation CEPreferencesWindow
-
-#pragma mark Superclass Methods
+@implementation CEPaddingTextFieldCell
 
 // ------------------------------------------------------
-/// avoid hidding toolbar
-- (BOOL)validateUserInterfaceItem:(nonnull id<NSValidatedUserInterfaceItem>)anItem
+/// add padding to area to draw text
+- (NSRect)drawingRectForBounds:(NSRect)theRect
 // ------------------------------------------------------
 {
-    if ([anItem action] == @selector(toggleToolbarShown:)) {
-        return NO;
-    }
+    // add left padding
+    theRect.size.width -= MAX(self.leftPadding, 0);
+    theRect.origin.x += MAX(self.leftPadding, 0);
     
-    return [super validateUserInterfaceItem:anItem];
-}
-
-
-// ------------------------------------------------------
-/// close window with esc key
-- (void)cancelOperation:(nullable id)sender
-// ------------------------------------------------------
-{
-    [self orderOut:sender];
+    // add right padding
+    theRect.size.width -= MAX(self.rightPadding, 0);
+    
+    return [super drawingRectForBounds:theRect];
 }
 
 @end

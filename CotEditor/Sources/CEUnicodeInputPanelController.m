@@ -26,6 +26,7 @@
  */
 
 #import "CEUnicodeInputPanelController.h"
+#import "CEUnicodeCharacter.h"
 #import "CEWindowController.h"
 #import "CEEditorWrapper.h"
 
@@ -34,6 +35,8 @@
 
 @property (nonatomic, nonnull, copy) NSString *unicode;
 @property (nonatomic, getter=isValid) BOOL valid;
+
+@property (nonatomic, nullable) CEUnicodeCharacter *character;
 
 @end
 
@@ -56,7 +59,7 @@ static const NSRegularExpression *unicodeRegex;
 {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        unicodeRegex = [NSRegularExpression regularExpressionWithPattern:@"^(?:U\\+|0x|\\\\u)?([0-9a-f]{4,5})$"
+        unicodeRegex = [NSRegularExpression regularExpressionWithPattern:@"^(?:U\\+|0x|\\\\u)?([0-9a-f]{1,5})$"
                                                                  options:NSRegularExpressionCaseInsensitive
                                                                    error:nil];
     });
@@ -68,11 +71,29 @@ static const NSRegularExpression *unicodeRegex;
 - (nonnull instancetype)init
 // ------------------------------------------------------
 {
-    self = [super initWithWindowNibName:@"UnicodePanel"];
+    self = [super init];
     if (self) {
         _unicode = @"";
     }
     return self;
+}
+
+
+// ------------------------------------------------------
+/// nib name
+- (nullable NSString *)windowNibName
+// ------------------------------------------------------
+{
+    return @"UnicodePanel";
+}
+
+
+// ------------------------------------------------------
+/// auto close window if all document windows were closed
+- (BOOL)autoCloses
+// ------------------------------------------------------
+{
+    return YES;
 }
 
 
@@ -90,6 +111,7 @@ static const NSRegularExpression *unicodeRegex;
                                                               range:NSMakeRange(0, [input length])];
     
     [self setValid:(result != nil)];
+    [self setCharacter:([self isValid] ? [[CEUnicodeCharacter alloc] initWithCharacter:[self longChar]] : nil)];
 }
 
 
@@ -101,24 +123,35 @@ static const NSRegularExpression *unicodeRegex;
 - (IBAction)insertToDocument:(nullable id)sender
 // ------------------------------------------------------
 {
-    unsigned int longChar;
-    NSScanner *scanner = [NSScanner scannerWithString:[self unicode]];
-    [scanner setCharactersToBeSkipped:[NSCharacterSet characterSetWithCharactersInString:@"uU+\\"]];
-    [scanner scanHexInt:&longChar];
-    
+    NSString *character = [[self character] string];
     NSTextView *textView = [[[self documentWindowController] editor] focusedTextView];
-    UniChar chars[2];
-    NSUInteger length = CFStringGetSurrogatePairForLongCharacter(longChar, chars) ? 2 : 1;
-    NSString *character = [[NSString alloc] initWithCharacters:chars length:length];
     
     if ([textView shouldChangeTextInRange:[textView selectedRange] replacementString:character]) {
         [textView replaceCharactersInRange:[textView selectedRange] withString:character];
         [textView didChangeText];
-        [[self window] performClose:sender];
+        
         [self setUnicode:@""];
+        [self setCharacter:nil];
     } else {
         NSBeep();
     }
+}
+
+
+
+#pragma mark Private Methods
+
+// ------------------------------------------------------
+/// UTF32Char form of current input unicode
+- (UTF32Char)longChar
+// ------------------------------------------------------
+{
+    UTF32Char longChar;
+    NSScanner *scanner = [NSScanner scannerWithString:[self unicode]];
+    [scanner setCharactersToBeSkipped:[NSCharacterSet characterSetWithCharactersInString:@"uU+\\"]];
+    [scanner scanHexInt:&longChar];
+    
+    return longChar;
 }
 
 @end

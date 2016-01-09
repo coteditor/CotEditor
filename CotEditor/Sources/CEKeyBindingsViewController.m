@@ -82,10 +82,10 @@
 
 // ------------------------------------------------------
 /// setup UI
-- (void)viewDidLoad
+- (void)loadView
 // ------------------------------------------------------
 {
-    [super viewDidLoad];
+    [super loadView];
     
     switch ([self mode]) {
         case CEMenuKeyBindingsType:

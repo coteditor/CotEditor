@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2015 1024jp
+ © 2014-2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -36,6 +36,11 @@
 #import "Constants.h"
 
 
+// constants
+NSString *_Nonnull const StyleNameKey = @"name";
+NSString *_Nonnull const StyleStateKey = @"state";
+
+
 @interface CEFormatPaneController () <NSTableViewDelegate>
 
 @property (nonatomic, nullable, weak) IBOutlet NSPopUpButton *encodingMenuInOpen;
@@ -57,6 +62,15 @@
 @implementation CEFormatPaneController
 
 #pragma mark Superclass Methods
+
+// ------------------------------------------------------
+/// nib name
+- (nullable NSString *)nibName
+// ------------------------------------------------------
+{
+    return @"FormatPane";
+}
+
 
 // ------------------------------------------------------
 /// clean up
@@ -125,7 +139,7 @@
         if (clickedrow == -1) {  // clicked blank area
             representedStyleName = nil;
         } else {
-            representedStyleName = [[self stylesController] arrangedObjects][clickedrow];
+            representedStyleName = [[self stylesController] arrangedObjects][clickedrow][StyleNameKey];
         }
     }
     [menuItem setRepresentedObject:representedStyleName];
@@ -148,7 +162,17 @@
         return ([[CESyntaxManager sharedManager] URLForUserStyle:representedStyleName] != nil);
         
     } else if ([menuItem action] == @selector(deleteSyntaxStyle:)) {
-        return ![[CESyntaxManager sharedManager] isBundledStyle:representedStyleName];
+        BOOL isBundled = [[CESyntaxManager sharedManager] isBundledStyle:representedStyleName cutomized:nil];
+        [menuItem setHidden:(isBundled || !representedStyleName)];
+        
+    } else if ([menuItem action] == @selector(restoreSyntaxStyle:)) {
+        if (!isContextualMenu) {
+            [menuItem setTitle:[NSString stringWithFormat:NSLocalizedString(@"Restore “%@”", nil), representedStyleName]];
+        }
+        BOOL isCustomized;
+        BOOL isBundled = [[CESyntaxManager sharedManager] isBundledStyle:representedStyleName cutomized:&isCustomized];
+        [menuItem setHidden:(!isBundled || !representedStyleName)];
+        return isCustomized;
     }
     
     return YES;
@@ -180,20 +204,33 @@
 {
     if (edge == NSTableRowActionEdgeLeading) { return @[]; }
     
-    NSString *swipedSyntaxName = [[self stylesController] arrangedObjects][row];
-    BOOL isDeletable = ![[CESyntaxManager sharedManager] isBundledStyle:swipedSyntaxName];
+    NSString *swipedSyntaxName = [[self stylesController] arrangedObjects][row][StyleNameKey];
+    BOOL isCustomized;
+    BOOL isBundled = [[CESyntaxManager sharedManager] isBundledStyle:swipedSyntaxName cutomized:&isCustomized];
     
-    if (!isDeletable) { return @[]; }
+    // do nothing on undeletable style
+    if (isBundled && !isCustomized) { return @[]; }
     
-    __weak typeof(self) weakSelf = self;
-    return @[[NSTableViewRowAction rowActionWithStyle:NSTableViewRowActionStyleDestructive
-                                                title:NSLocalizedString(@"Delete", nil)
-                                              handler:^(NSTableViewRowAction *action, NSInteger row)
-              {
-                  typeof(self) self = weakSelf;  // strong self
-                  
-                  [self deleteSyntaxStyleWithName:swipedSyntaxName];
-              }]];
+    if (isCustomized) {
+        // Restore
+        return @[[NSTableViewRowAction rowActionWithStyle:NSTableViewRowActionStyleRegular
+                                                    title:NSLocalizedString(@"Restore", nil)
+                                                  handler:^(NSTableViewRowAction *action, NSInteger row)
+                  {
+                      [self restoreSyntaxStyleWithName:swipedSyntaxName];
+                      
+                      // finish swiped mode anyway
+                      [[self syntaxTableView] setRowActionsVisible:NO];
+                  }]];
+    } else {
+        // Delete
+        return @[[NSTableViewRowAction rowActionWithStyle:NSTableViewRowActionStyleDestructive
+                                                    title:NSLocalizedString(@"Delete", nil)
+                                                  handler:^(NSTableViewRowAction *action, NSInteger row)
+                  {
+                      [self deleteSyntaxStyleWithName:swipedSyntaxName];
+                  }]];
+    }
 }
 
 
@@ -252,6 +289,17 @@
     NSString *styleName = ([sender isKindOfClass:[NSMenuItem class]]) ? [sender representedObject] : [self selectedStyleName];
     
     [self deleteSyntaxStyleWithName:styleName];
+}
+
+
+// ------------------------------------------------------
+/// シンタックススタイルリストアボタンが押された
+- (IBAction)restoreSyntaxStyle:(nullable id)sender
+// ------------------------------------------------------
+{
+    NSString *styleName = ([sender isKindOfClass:[NSMenuItem class]]) ? [sender representedObject] : [self selectedStyleName];
+    
+    [self restoreSyntaxStyleWithName:styleName];
 }
 
 
@@ -421,9 +469,19 @@
     NSArray<NSString *> *styleNames = [[CESyntaxManager sharedManager] styleNames];
     NSString *noneStyle = NSLocalizedString(@"None", nil);
     
+    NSMutableArray<NSDictionary *> *hoge = [NSMutableArray array];
+    for (NSString *styleName in styleNames) {
+        BOOL isCutomized;
+        BOOL isBundled = [[CESyntaxManager sharedManager] isBundledStyle:styleName cutomized:&isCutomized];
+        
+        [hoge addObject:@{StyleNameKey: styleName,
+                          StyleStateKey: @(!isBundled || isCutomized)}];
+    }
+    
     // インストール済みスタイルリストの更新
-    [[self stylesController] setContent:styleNames];
+    [[self stylesController] setContent:hoge];
     [self validateRemoveSyntaxStyleButton];
+    [[self syntaxTableView] reloadData];
     
     // デフォルトスタイルメニューの更新
     [[self syntaxStylesDefaultPopup] removeAllItems];
@@ -445,7 +503,7 @@
 - (nullable NSString *)selectedStyleName
 // ------------------------------------------------------
 {
-    return [[[self stylesController] selectedObjects] firstObject];
+    return [[[self stylesController] selectedObjects] firstObject][StyleNameKey];
 }
 
 
@@ -454,7 +512,7 @@
 - (void)validateRemoveSyntaxStyleButton
 // ------------------------------------------------------
 {
-    BOOL isDeletable = [self selectedStyleName] ? ![[CESyntaxManager sharedManager] isBundledStyle:[self selectedStyleName]] : NO;
+    BOOL isDeletable = [self selectedStyleName] ? ![[CESyntaxManager sharedManager] isBundledStyle:[self selectedStyleName] cutomized:nil] : NO;
     
     [[self syntaxStyleDeleteButton] setEnabled:isDeletable];
 }
@@ -477,6 +535,17 @@
                       modalDelegate:self
                      didEndSelector:@selector(deleteStyleAlertDidEnd:returnCode:contextInfo:)
                         contextInfo:(__bridge_retained void *)styleName];
+}
+
+
+// ------------------------------------------------------
+/// try to delete given syntax style
+- (void)restoreSyntaxStyleWithName:(nonnull NSString *)styleName
+// ------------------------------------------------------
+{
+    if (![[CESyntaxManager sharedManager] URLForUserStyle:styleName]) { return; }
+    
+    [[CESyntaxManager sharedManager] restoreStyleFileWithStyleName:styleName];
 }
 
 

@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9060" systemVersion="15C47a" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9060"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9531"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSViewController">
@@ -18,7 +19,6 @@
             <subviews>
                 <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="LkV-qO-uNb">
                     <rect key="frame" x="64" y="309" width="53" height="17"/>
-                    <animations/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Version:" usesSingleLineMode="YES" id="7gc-K7-WrS">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -30,7 +30,6 @@
                     <constraints>
                         <constraint firstAttribute="width" constant="100" id="iiP-ev-FYk"/>
                     </constraints>
-                    <animations/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" usesSingleLineMode="YES" id="4dK-I8-l8t">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -45,7 +44,6 @@
                 </textField>
                 <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="teT-gX-wAf">
                     <rect key="frame" x="27" y="277" width="90" height="17"/>
-                    <animations/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Last modified:" usesSingleLineMode="YES" id="wrI-z3-8T0">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -57,7 +55,6 @@
                     <constraints>
                         <constraint firstAttribute="width" constant="100" id="htL-Ri-5TS"/>
                     </constraints>
-                    <animations/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" usesSingleLineMode="YES" id="T0s-yz-NYO">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -72,7 +69,6 @@
                 </textField>
                 <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="OBM-Yh-gb9">
                     <rect key="frame" x="10" y="245" width="107" height="17"/>
-                    <animations/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Distribution URL:" usesSingleLineMode="YES" id="vOw-3n-nuT">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -81,11 +77,18 @@
                 </textField>
                 <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="BI9-H4-gcs">
                     <rect key="frame" x="123" y="242" width="315" height="22"/>
-                    <animations/>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" usesSingleLineMode="YES" id="6qB-ld-faJ">
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" usesSingleLineMode="YES" id="6qB-ld-faJ" customClass="CEPaddingTextFieldCell">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="leftPadding">
+                                <real key="value" value="0.0"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="rightPadding">
+                                <real key="value" value="18"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </textFieldCell>
                     <connections>
                         <binding destination="YVG-yW-9Ua" name="value" keyPath="selection.distributionURL" id="EWJ-Nd-TE2"/>
@@ -93,7 +96,6 @@
                 </textField>
                 <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="2Ku-D2-K5S">
                     <rect key="frame" x="68" y="213" width="49" height="17"/>
-                    <animations/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Author:" usesSingleLineMode="YES" id="aL3-Pf-XDB">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -102,7 +104,6 @@
                 </textField>
                 <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="93A-h6-vCG">
                     <rect key="frame" x="123" y="210" width="315" height="22"/>
-                    <animations/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" usesSingleLineMode="YES" id="98i-Ri-u4C">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -114,7 +115,6 @@
                 </textField>
                 <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="QlB-f2-NG3">
                     <rect key="frame" x="62" y="181" width="55" height="17"/>
-                    <animations/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="License:" usesSingleLineMode="YES" id="qBg-TV-NzD">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -123,7 +123,6 @@
                 </textField>
                 <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="o0U-5A-8FS">
                     <rect key="frame" x="123" y="178" width="315" height="22"/>
-                    <animations/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" usesSingleLineMode="YES" id="AIV-PE-1n6">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -138,7 +137,6 @@
                 </textField>
                 <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="lhp-Zr-mnv">
                     <rect key="frame" x="39" y="151" width="78" height="17"/>
-                    <animations/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Description:" usesSingleLineMode="YES" id="4bM-8L-klg">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -147,7 +145,6 @@
                 </textField>
                 <textField translatesAutoresizingMaskIntoConstraints="NO" id="sNf-iG-xYO">
                     <rect key="frame" x="123" y="12" width="315" height="156"/>
-                    <animations/>
                     <textFieldCell key="cell" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="bnJ-UO-5HV">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -157,8 +154,28 @@
                         <binding destination="YVG-yW-9Ua" name="value" keyPath="selection.description" id="nWU-KE-lNb"/>
                     </connections>
                 </textField>
+                <button toolTip="Jump to URL" translatesAutoresizingMaskIntoConstraints="NO" id="KlI-NS-4x6">
+                    <rect key="frame" x="420" y="246" width="14" height="14"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="14" id="20u-k0-WXh"/>
+                        <constraint firstAttribute="width" secondItem="KlI-NS-4x6" secondAttribute="height" multiplier="1:1" id="Dk1-k8-S3t"/>
+                    </constraints>
+                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSFollowLinkFreestandingTemplate" imagePosition="overlaps" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="Dd9-LH-biq">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="jumpToURL:" target="-1" id="vyx-Nh-G1U"/>
+                        <binding destination="YVG-yW-9Ua" name="hidden" keyPath="selection.distributionURL" id="Ivb-vo-aHM">
+                            <dictionary key="options">
+                                <string key="NSValueTransformerName">NSIsNil</string>
+                            </dictionary>
+                        </binding>
+                    </connections>
+                </button>
             </subviews>
             <constraints>
+                <constraint firstItem="KlI-NS-4x6" firstAttribute="trailing" secondItem="BI9-H4-gcs" secondAttribute="trailing" constant="-4" id="1Al-pU-njp"/>
                 <constraint firstItem="o0U-5A-8FS" firstAttribute="leading" secondItem="QlB-f2-NG3" secondAttribute="trailing" constant="8" symbolic="YES" id="1Iu-9e-7IF"/>
                 <constraint firstItem="teT-gX-wAf" firstAttribute="baseline" secondItem="7aU-lg-CUg" secondAttribute="baseline" id="3Gq-DA-yD3"/>
                 <constraint firstItem="7aU-lg-CUg" firstAttribute="leading" secondItem="teT-gX-wAf" secondAttribute="trailing" constant="8" symbolic="YES" id="3yT-IY-OTm"/>
@@ -181,6 +198,7 @@
                 <constraint firstItem="o0U-5A-8FS" firstAttribute="trailing" secondItem="BI9-H4-gcs" secondAttribute="trailing" id="XFS-xe-Z69"/>
                 <constraint firstItem="o0U-5A-8FS" firstAttribute="trailing" secondItem="93A-h6-vCG" secondAttribute="trailing" id="bcm-Iw-LV5"/>
                 <constraint firstAttribute="bottom" secondItem="sNf-iG-xYO" secondAttribute="bottom" constant="12" id="hOr-kU-2Ef"/>
+                <constraint firstItem="KlI-NS-4x6" firstAttribute="centerY" secondItem="BI9-H4-gcs" secondAttribute="centerY" id="l6Z-q1-2U3"/>
                 <constraint firstItem="93A-h6-vCG" firstAttribute="leading" secondItem="BI9-H4-gcs" secondAttribute="leading" id="liP-fN-LlT"/>
                 <constraint firstItem="93A-h6-vCG" firstAttribute="leading" secondItem="2Ku-D2-K5S" secondAttribute="trailing" constant="8" symbolic="YES" id="qJe-XJ-alt"/>
                 <constraint firstItem="sNf-iG-xYO" firstAttribute="leading" secondItem="lhp-Zr-mnv" secondAttribute="trailing" constant="8" symbolic="YES" id="rdO-nX-37a"/>
@@ -190,7 +208,6 @@
                 <constraint firstItem="yqJ-k5-0CH" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="12" id="xlf-Wr-12c"/>
                 <constraint firstItem="93A-h6-vCG" firstAttribute="leading" secondItem="o0U-5A-8FS" secondAttribute="leading" id="yjE-jt-QPB"/>
             </constraints>
-            <animations/>
             <point key="canvasLocation" x="145" y="207"/>
         </customView>
         <objectController automaticallyPreparesContent="YES" id="YVG-yW-9Ua" userLabel="Metadata Controller">
@@ -212,4 +229,7 @@
             </connections>
         </objectController>
     </objects>
+    <resources>
+        <image name="NSFollowLinkFreestandingTemplate" width="14" height="14"/>
+    </resources>
 </document>

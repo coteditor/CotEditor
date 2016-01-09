@@ -26,11 +26,12 @@
  
  */
 
+#import <NSHash/NSString+NSHash.h>
+
 #import "CESyntaxParser.h"
 #import "CETextViewProtocol.h"
 #import "CESyntaxManager.h"
 #import "CEIndicatorSheetController.h"
-#import "NSString+MD5.h"
 #import "Constants.h"
 
 
@@ -257,6 +258,18 @@ static CGFloat kPerCompoIncrement;
         }
     }
     return self;
+}
+
+
+// ------------------------------------------------------
+/// check equality
+- (BOOL)isEqualToSyntaxParser:(CESyntaxParser *)syntaxParser
+// ------------------------------------------------------
+{
+    if (![[syntaxParser styleName] isEqualToString:[self styleName]]) { return NO; }
+    if (![[syntaxParser highlightDictionary] isEqualToDictionary:[self highlightDictionary]]) { return NO; }
+    
+    return YES;
 }
 
 @end
@@ -1019,9 +1032,9 @@ static CGFloat kPerCompoIncrement;
             }
             
             // update indicator message
-            if (indicator) {
+            if ([self indicatorController]) {
                 dispatch_sync(dispatch_get_main_queue(), ^{
-                    [indicator setInformativeText:NSLocalizedString(@"Applying colors to text", nil)];
+                    [[self indicatorController] setInformativeText:NSLocalizedString(@"Applying colors to text", nil)];
                 });
             }
             
@@ -1036,9 +1049,9 @@ static CGFloat kPerCompoIncrement;
         }
         
         // clean up indicator sheet
-        if (indicator) {
+        if ([self indicatorController]) {
             dispatch_sync(dispatch_get_main_queue(), ^{
-                [indicator endSheet];
+                [[self indicatorController] endSheet];
                 [self setIndicatorController:nil];
             });
         }

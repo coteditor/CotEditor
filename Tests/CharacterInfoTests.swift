@@ -47,6 +47,16 @@ class CharacterInfoTests: XCTestCase {
     }
     
     
+    func testSingleSurrogate() {
+        let character = CEUnicodeCharacter(character: UTF32Char(0xD83D))
+        
+        XCTAssertEqual(character.unicode, "U+D83D")
+        XCTAssertEqual(character.name, "<lead surrogate-D83D>")
+        XCTAssertEqual(character.categoryName, "Surrogate")
+        XCTAssertEqual(character.blockName, "High Surrogates")
+    }
+    
+    
     func testSurrogateEmoji() {
         let character = CEUnicodeCharacter(character: UTF32Char("😀"))
         
@@ -68,6 +78,36 @@ class CharacterInfoTests: XCTestCase {
         XCTAssertEqual(character.unicode, "U+FDFD")
         XCTAssertEqual(character.name, "ARABIC LIGATURE BISMILLAH AR-RAHMAN AR-RAHEEM")
         XCTAssertEqual(character.localizedBlockName, "Arabic Presentation Forms-A")
+    }
+    
+    
+    func testUnicodeControlPictures() {
+        // test NULL
+        let nullCharacter = CEUnicodeCharacter(character: UTF32Char(0x0000))
+        let nullPictureCharacter = CEUnicodeCharacter(character: UTF32Char(0x2400))
+        XCTAssertEqual(nullCharacter.name, "NULL")
+        XCTAssertEqual(nullPictureCharacter.name, "SYMBOL FOR NULL")
+        XCTAssertEqual(nullCharacter.pictureCharacter, unichar(nullPictureCharacter.character))
+        
+        // test SPACE
+        let spaceCharacter = CEUnicodeCharacter(character: UTF32Char(0x0020))
+        let spacePictureCharacter = CEUnicodeCharacter(character: UTF32Char(0x2420))
+        XCTAssertEqual(spaceCharacter.name, "SPACE")
+        XCTAssertEqual(spacePictureCharacter.name, "SYMBOL FOR SPACE")
+        XCTAssertEqual(spaceCharacter.pictureCharacter, unichar(spacePictureCharacter.character))
+        
+        // test DELETE
+        XCTAssertEqual(Int(CEDeleteCharacter), NSDeleteCharacter)
+        let deleteCharacter = CEUnicodeCharacter(character: UTF32Char(NSDeleteCharacter))
+        let deletePictureCharacter = CEUnicodeCharacter(character: UTF32Char("␡"))
+        XCTAssertEqual(deleteCharacter.name, "DELETE")
+        XCTAssertEqual(deletePictureCharacter.name, "SYMBOL FOR DELETE")
+        XCTAssertEqual(deleteCharacter.pictureCharacter, unichar(deletePictureCharacter.character))
+        
+        // test one after the last C0 control character
+        let exclamationCharacter = CEUnicodeCharacter(character: UTF32Char(0x0021))
+        XCTAssertEqual(exclamationCharacter.name, "EXCLAMATION MARK")
+        XCTAssertEqual(exclamationCharacter.pictureCharacter, 0)
     }
     
     
@@ -102,7 +142,7 @@ class CharacterInfoTests: XCTestCase {
         XCTAssertEqual(charInfo.unicodes.map{$0.unicode}, ["U+0031", "U+FE0F", "U+20E3"])
         XCTAssertEqual(charInfo.prettyDescription, "<a letter consisting of 3 characters>")
     }
-
+    
     
     func testNationalIndicatorInfo() {
         guard let charInfo = CECharacterInfo(string: "🇯🇵") else {
@@ -112,6 +152,18 @@ class CharacterInfoTests: XCTestCase {
         
         XCTAssertTrue(charInfo.complexChar)
         XCTAssertEqual(charInfo.unicodes.map{$0.unicode}, ["U+1F1EF", "U+1F1F5"])
+    }
+    
+    
+    func testControlCharacterInfo() {
+        guard let charInfo = CECharacterInfo(string: " ") else {
+            XCTFail()
+            return
+        }
+        
+        XCTAssertEqual(charInfo.string, " ")
+        XCTAssertEqual(charInfo.pictureString, "␠")
+        XCTAssertEqual(charInfo.unicodes.map{$0.name}, ["SPACE"])
     }
 
 }

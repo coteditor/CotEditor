@@ -1,18 +1,19 @@
 extensions:
 - keyString: "ini"
 - keyString: "url"
-outlineMenu:
-- beginString: "^\\[(.+)\\]"
-  keyString: "$1"
-  bold: true
-completions: []
-commands: []
 metadata:
   author: "1024jp"
   distributionURL: "http://coteditor.com"
-  version: "1.3.0"
+  version: "1.3.1"
   license: "Same as CotEditor"
-  lastModified: "2015-10-18"
+  lastModified: "2015-12-25"
+outlineMenu:
+- beginString: "^\\[(.+)\\]"
+  keyString: "$1"
+  description: "section"
+  bold: true
+completions: []
+commands: []
 characters: []
 comments:
 - beginString: ";.*"

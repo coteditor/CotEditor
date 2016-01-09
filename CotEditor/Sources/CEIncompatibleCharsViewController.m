@@ -34,7 +34,7 @@
 
 @interface CEIncompatibleCharsViewController () <NSTableViewDelegate>
 
-@property (nonatomic, nullable) NSTimer *updateTimer;
+@property (nonatomic, nullable, weak) NSTimer *updateTimer;
 @property (nonatomic, getter=isCharAvailable) BOOL charAvailable;
 
 @property (nonatomic, nullable) IBOutlet NSArrayController *incompatibleCharsController;
@@ -55,7 +55,7 @@
 - (void)dealloc
 // ------------------------------------------------------
 {
-    [self stopUpdateTimer];
+    [_updateTimer invalidate];
 }
 
 
@@ -90,7 +90,7 @@
     
     NSTimeInterval interval = [[NSUserDefaults standardUserDefaults] doubleForKey:CEDefaultIncompatibleCharIntervalKey];
     
-    if ([self updateTimer]) {
+    if ([[self updateTimer] isValid]) {
         [[self updateTimer] setFireDate:[NSDate dateWithTimeIntervalSinceNow:interval]];
     } else {
         [self setUpdateTimer:[NSTimer scheduledTimerWithTimeInterval:interval
@@ -135,20 +135,8 @@
 - (void)updateWithTimer:(nonnull NSTimer *)timer
 // ------------------------------------------------------
 {
-    [self stopUpdateTimer];
+    [[self updateTimer] invalidate];
     [self update];
-}
-
-
-// ------------------------------------------------------
-/// stop update timer
-- (void)stopUpdateTimer
-// ------------------------------------------------------
-{
-    if ([self updateTimer]) {
-        [[self updateTimer] invalidate];
-        [self setUpdateTimer:nil];
-    }
 }
 
 @end

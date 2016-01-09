@@ -1,9 +1,16 @@
 extensions:
 - keyString: "lua"
 filenames: []
+metadata:
+  author: "1024jp"
+  distributionURL: "http://coteditor.com"
+  version: "1.0.1"
+  license: "Same as CotEditor"
+  lastModified: "2015-12-25"
 completions: []
 outlineMenu:
 - beginString: "([\\t ]*)(function +.+\\(.*?\\))"
+  description: "function"
   keyString: "$1$2"
 commands:
 - beginString: "(?<=bit32\\.)arshift"
@@ -272,12 +279,6 @@ commands:
 - beginString: "type"
 - beginString: "xpcall"
 attributes: []
-metadata:
-  author: "1024jp"
-  distributionURL: "http://coteditor.com"
-  version: "1.0"
-  license: "Same as CotEditor"
-  lastModified: "2014-09-24"
 characters: []
 comments: []
 values:

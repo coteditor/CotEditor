@@ -3,33 +3,37 @@ extensions:
 - keyString: "lhs"
 interpreters:
 - keyString: "runhaskell"
-outlineMenu:
-- beginString: "^[\\t ]*([a-z][\\w_']*\\s*.+?)(?=\\s*=)"
-- beginString: "^[\\t ]*([a-z][\\w_']*\\s*::.+?$)"
-  bold: true
-  keyString: "$1"
-  italic: true
-- beginString: "^[\\t ]*class\\s*([A-Z].*\\s+[a-z].*|\\([\\t ]*[A-Z].*[\\t ]+[a-z].*([\\t
-    ]*,[\\t ]*[A-Z][\\w']*[\\t ]+[A-Z][\\w']*)*[\\t ]*\\))?[\\t ]*=>[\\t ]*[A-Z].*(where|$)"
-  underline: true
-- beginString: "^[\\t ]*data[\\t ]+([A-Z][\\w']*)(?=[\\t ]*\\=)"
-  keyString: "data $1"
-  bold: true
-- beginString: "^[\\t ]*instance\\s*([A-Z].*\\s+[a-z].*|\\([\\t ]*[A-Z].*[\\t ]+[a-z].*([\\t
-    ]*,[\\t ]*[A-Z][\\w']*[\\t ]+[A-Z][\\w']*)*[\\t ]*\\))?[\\t ]*=>[\\t ]*[A-Z].*(where|$)"
-  underline: true
-- beginString: "^[\\t ]*type[\\t ]+([A-Z][\\w']*)((?:[\\t ]+[a-z][\\w']*)*)(?=[¥t
-    ]*\\=)"
-  keyString: "type $1$2"
-  bold: true
-comments: []
 metadata:
   distributionURL: "http://coteditor.com"
   author: "konn"
   license: "Same as CotEditor"
-  lastModified: "2015-11-16"
+  lastModified: "2015-12-25"
   description: "Maintained by CotEditor Project."
-  version: "2.2.0"
+  version: "2.2.1"
+outlineMenu:
+- beginString: "^[\\t ]*([a-z][\\w_']*\\s*.+?)(?=\\s*=)"
+- beginString: "^[\\t ]*([a-z][\\w_']*\\s*::.+?$)"
+  keyString: "$1"
+  bold: true
+  italic: true
+- beginString: "^[\\t ]*class\\s*([A-Z].*\\s+[a-z].*|\\([\\t ]*[A-Z].*[\\t ]+[a-z].*([\\t
+    ]*,[\\t ]*[A-Z][\\w']*[\\t ]+[A-Z][\\w']*)*[\\t ]*\\))?[\\t ]*=>[\\t ]*[A-Z].*(where|$)"
+  description: "class"
+  underline: true
+- beginString: "^[\\t ]*data[\\t ]+([A-Z][\\w']*)(?=[\\t ]*\\=)"
+  keyString: "data $1"
+  description: "data"
+  bold: true
+- beginString: "^[\\t ]*instance\\s*([A-Z].*\\s+[a-z].*|\\([\\t ]*[A-Z].*[\\t ]+[a-z].*([\\t
+    ]*,[\\t ]*[A-Z][\\w']*[\\t ]+[A-Z][\\w']*)*[\\t ]*\\))?[\\t ]*=>[\\t ]*[A-Z].*(where|$)"
+  description: "instance"
+  underline: true
+- beginString: "^[\\t ]*type[\\t ]+([A-Z][\\w']*)((?:[\\t ]+[a-z][\\w']*)*)(?=[¥t
+    ]*\\=)"
+  keyString: "type $1$2"
+  description: "type"
+  bold: true
+comments: []
 numbers:
 - beginString: "\\b0o[0-7]+\\b"
   ignoreCase: true

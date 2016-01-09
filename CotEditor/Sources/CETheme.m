@@ -157,7 +157,7 @@ static const CGFloat kDarkThemeThreshold = 0.5;
         
         // 背景の色を加味した、淡い文字色を生成
         CGFloat lightness = [sanitizedBackgroundColor lightnessComponent];
-        CGFloat weakness = _darkTheme ? 0.5 : 0.4;
+        CGFloat weakness = _darkTheme ? 0.4 : 0.3;
         if (_darkTheme) {
             lightness = ((1 - weakness) * (1 - lightness)) + lightness;
         } else {

@@ -33,7 +33,11 @@
 @class CEEditorWrapper;
 @class CEWindowController;
 @class CETextSelection;
+@class CESyntaxParser;
 
+
+// Notifications
+extern NSString *_Nonnull const CEDocumentSyntaxStyleDidChangeNotification;
 
 // Incompatible chars listController key
 extern NSString *_Nonnull const CEIncompatibleLineNumberKey;
@@ -53,12 +57,13 @@ extern NSString *_Nonnull const CEIncompatibleConvertedCharKey;
 @property (readonly, nonatomic) CENewLineType lineEnding;
 @property (readonly, nonatomic, nullable, copy) NSDictionary<NSString *, id> *fileAttributes;
 @property (readonly, nonatomic, getter=isWritable) BOOL writable;
+@property (readonly, nonatomic, nullable) CESyntaxParser *syntaxStyle;
 
 
 #pragma mark - Public Methods
 
 /// Return whole string in the current text view which document's line endings are already applied to.  (Note: The internal string (e.g. in text storage) has always LF for its line ending.)
-- (nonnull NSString *)stringForSave;
+- (nonnull NSString *)string;
 
 - (void)applyContentToEditor;
 
@@ -72,17 +77,17 @@ extern NSString *_Nonnull const CEIncompatibleConvertedCharKey;
 - (void)doSetLineEnding:(CENewLineType)lineEnding;
 
 // syntax style
-- (void)doSetSyntaxStyle:(nullable NSString *)name;
+- (void)setSyntaxStyleWithName:(nullable NSString *)name;
 
 
 #pragma mark Action Messages
 
+- (IBAction)share:(nullable id)sender;
 - (IBAction)changeLineEndingToLF:(nullable id)sender;
 - (IBAction)changeLineEndingToCR:(nullable id)sender;
 - (IBAction)changeLineEndingToCRLF:(nullable id)sender;
 - (IBAction)changeLineEnding:(nullable id)sender;
 - (IBAction)changeEncoding:(nullable id)sender;
-- (IBAction)changeTheme:(nullable id)sender;
 - (IBAction)changeSyntaxStyle:(nullable id)sender;
 - (IBAction)insertIANACharSetName:(nullable id)sender;
 - (IBAction)insertIANACharSetNameWithCharset:(nullable id)sender;

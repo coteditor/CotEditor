@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2015 1024jp
+ © 2014-2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -35,12 +35,13 @@
 static const NSUInteger kMinNumberOfDigits = 3;
 static const CGFloat kMinVerticalThickness = 32.0;
 static const CGFloat kMinHorizontalThickness = 20.0;
-static const CGFloat  kLineNumberPadding = 3.0;
+static const CGFloat kLineNumberPadding = 4.0;
+static const CGFloat kFontSizeFactor = 0.9;
 
 
 @interface CELineNumberView ()
 
-@property (nonatomic, nullable) NSTimer *draggingTimer;
+@property (nonatomic, nullable, weak) NSTimer *draggingTimer;
 
 @end
 
@@ -51,7 +52,8 @@ static const CGFloat  kLineNumberPadding = 3.0;
 
 @implementation CELineNumberView
 
-static const NSString *LineNumberFontName;
+static CGFontRef LineNumberFont;
+static CGFontRef BoldLineNumberFont;
 
 
 #pragma mark Superclass Methods
@@ -65,7 +67,10 @@ static const NSString *LineNumberFontName;
     dispatch_once(&onceToken, ^{
         NSString *defaultFontName = [[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultLineNumFontNameKey];
         NSFont *font = [NSFont fontWithName:defaultFontName size:0] ? : [NSFont paletteFontOfSize:0];
-        LineNumberFontName = [font fontName];
+        NSFont *boldFont = [[NSFontManager sharedFontManager] convertFont:font toHaveTrait:NSBoldFontMask];
+        
+        LineNumberFont = CGFontCreateWithFontName((CFStringRef)[font fontName]);
+        BoldLineNumberFont = CGFontCreateWithFontName((CFStringRef)[boldFont fontName]);
     });
 }
 
@@ -143,16 +148,14 @@ static const NSString *LineNumberFontName;
 
     // setup font
     CGFloat masterFontSize = [[[self textView] font] pointSize];
-    CGFloat fontSize = round(0.9 * masterFontSize);
-    CTFontRef font = CTFontCreateWithName((CFStringRef)LineNumberFontName, fontSize, nil);
+    CGFloat fontSize = MIN(round(kFontSizeFactor * masterFontSize), masterFontSize);
+    CTFontRef font = CTFontCreateWithGraphicsFont(LineNumberFont, fontSize, nil, nil);
     
     CGFloat tickLength = ceil(fontSize / 3);
     
-    CGFontRef cgFont = CTFontCopyGraphicsFont(font, NULL);
-    CGContextSetFont(context, cgFont);
+    CGContextSetFont(context, LineNumberFont);
     CGContextSetFontSize(context, fontSize);
     CGContextSetFillColorWithColor(context, [textColor CGColor]);
-    CFRelease(cgFont);
     
     // prepare glyphs
     CGGlyph wrappedMarkGlyph;
@@ -192,10 +195,11 @@ static const NSString *LineNumberFontName;
     
     BOOL isVerticalText = [self orientation] == NSHorizontalRuler;
     NSUInteger tailGlyphIndex = [layoutManager glyphIndexForCharacterAtIndex:[string length]];
+    NSRange selectedLineRange = [string lineRangeForRange:[[self textView] selectedRange]];
     
     // draw line number block
     CGGlyph *digitGlyphsPtr = digitGlyphs;
-    void (^draw_number)(NSUInteger, NSUInteger, CGFloat, BOOL) = ^(NSUInteger lineNumber, NSUInteger lastLineNumber, CGFloat y, BOOL drawsNumber)
+    void (^draw_number)(NSUInteger, NSUInteger, CGFloat, BOOL, BOOL) = ^(NSUInteger lineNumber, NSUInteger lastLineNumber, CGFloat y, BOOL drawsNumber, BOOL isBold)
     {
         if (isVerticalText) {
             // translate y position to horizontal axis
@@ -229,7 +233,16 @@ static const NSString *LineNumberFontName;
                 glyphs[i] = digitGlyphsPtr[numberAt(i, lineNumber)];
             }
             
+            if (isBold) {
+                CGContextSetFont(context, BoldLineNumberFont);
+            }
+            
             CGContextShowGlyphsAtPositions(context, glyphs, positions, digit);  // draw line number
+            
+            if (isBold) {
+                // back to the regular font
+                CGContextSetFont(context, LineNumberFont);
+            }
         }
     };
     
@@ -246,8 +259,9 @@ static const NSString *LineNumberFontName;
     // draw visible line numbers
     for (NSUInteger glyphIndex = visibleGlyphRange.location; glyphIndex < NSMaxRange(visibleGlyphRange); lineNumber++) { // count "real" lines
         NSUInteger charIndex = [layoutManager characterIndexForGlyphAtIndex:glyphIndex];
-        glyphIndex = NSMaxRange([layoutManager glyphRangeForCharacterRange:[string lineRangeForRange:NSMakeRange(charIndex, 0)]
-                                                      actualCharacterRange:NULL]);
+        NSRange lineRange = [string lineRangeForRange:NSMakeRange(charIndex, 0)];
+        glyphIndex = NSMaxRange([layoutManager glyphRangeForCharacterRange:lineRange actualCharacterRange:NULL]);
+        BOOL isSelected = NSLocationInRange(lineRange.location, selectedLineRange);
         
         while (glyphCount < glyphIndex) { // handle wrapped lines
             NSRange range;
@@ -261,20 +275,20 @@ static const NSString *LineNumberFontName;
                 }
                 
             } else {  // new line
-                BOOL drawsNumber = (!isVerticalText || lineNumber % 5 == 0 || lineNumber == 1);
-                draw_number(lineNumber, lastLineNumber, y, drawsNumber);
+                BOOL drawsNumber = (isSelected || !isVerticalText || lineNumber % 5 == 0 || lineNumber == 1);
+                draw_number(lineNumber, lastLineNumber, y, drawsNumber, isSelected);
             }
             
             glyphCount = NSMaxRange(range);
             
-            // draw last line number anyway
+            // draw last line number on vertical text anyway
             if (isVerticalText &&  // vertical text
                 lastLineNumber != lineNumber &&  // new line
                 isVerticalText && lineNumber != 1 && lineNumber % 5 != 0 &&  // not yet drawn
                 tailGlyphIndex == glyphIndex &&  // last line
                 ![layoutManager extraLineFragmentTextContainer])  // no extra number
             {
-                draw_number(lineNumber, lastLineNumber, y, YES);
+                draw_number(lineNumber, lastLineNumber, y, YES, isSelected);
             }
             
             lastLineNumber = lineNumber;
@@ -284,9 +298,10 @@ static const NSString *LineNumberFontName;
     // draw the last "extra" line number
     if ([layoutManager extraLineFragmentTextContainer]) {
         NSRect lineRect = [layoutManager extraLineFragmentUsedRect];
+        BOOL isSelected = (selectedLineRange.length == 0) && ([string length] == NSMaxRange(selectedLineRange));
         CGFloat y = -NSMinY(lineRect);
         
-        draw_number(lineNumber, lastLineNumber, y, YES);
+        draw_number(lineNumber, lastLineNumber, y, YES, isSelected);
     }
     
     // draw vertical text tics

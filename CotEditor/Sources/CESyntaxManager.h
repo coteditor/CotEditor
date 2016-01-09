@@ -58,17 +58,18 @@ extern NSString *_Nonnull const CESyntaxValidationMessageKey;
 
 // public methods
 - (nullable NSString *)styleNameFromFileName:(nullable NSString *)fileName;
-- (nullable NSString *)styleNameFromInterpreter:(nonnull NSString *)interpreter;
+- (nullable NSString *)styleNameFromContent:(nonnull NSString *)contentString;
 - (nonnull NSArray<NSString *> *)extensionsForStyleName:(nonnull NSString *)styleName;
 - (nonnull NSDictionary<NSString *, id> *)styleWithStyleName:(nonnull NSString *)styleName;
 - (nullable NSDictionary<NSString *, id> *)bundledStyleWithStyleName:(nonnull NSString *)styleName;
 - (nonnull NSDictionary<NSString *, id> *)emptyStyle;
 - (nullable NSURL *)URLForUserStyle:(nonnull NSString *)styleName;  // returns nil if file is not available
-- (BOOL)isBundledStyle:(nonnull NSString *)styleName;  // check only the name
+- (BOOL)isBundledStyle:(nonnull NSString *)styleName cutomized:(nullable BOOL *)isCustomized;;  // check only the name
 - (BOOL)isEqualToBundledStyle:(nonnull NSDictionary<NSString *, id> *)style name:(nonnull NSString *)styleName;
 - (BOOL)importStyleFromURL:(nonnull NSURL *)fileURL;
 - (BOOL)exportStyle:(nonnull NSString *)styleName toURL:(nonnull NSURL *)fileURL;
 - (BOOL)removeStyleFileWithStyleName:(nonnull NSString *)styleName;
+- (BOOL)restoreStyleFileWithStyleName:(nonnull NSString *)styleName;
 - (BOOL)existsMappingConflict;
 - (nonnull NSString *)copiedStyleName:(nonnull NSString *)originalName;
 - (void)saveStyle:(nonnull NSMutableDictionary<NSString *, id> *)style name:(nonnull NSString *)name oldName:(nonnull NSString *)oldName;

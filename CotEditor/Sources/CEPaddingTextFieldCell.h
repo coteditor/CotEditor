@@ -1,21 +1,15 @@
 /*
  
- NSString+MD5.h
+ CEPaddingTextFieldCell.h
  
  CotEditor
  http://coteditor.com
  
- Created by 1024jp on 2014-07-28.
- 
- ------------
- This category is from the following blog article by iOS Developer Tips.
- We would like to thank for sharing this helpful tip.
- http://iosdevelopertips.com/core-services/create-md5-hash-from-nsstring-nsdata-or-file.html
- Copyright iOSDeveloperTips.com All rights reserved.
+ Created by 1024jp on 2015-12-23.
  
  ------------------------------------------------------------------------------
  
- © 2014-2015 1024jp
+ © 2015 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -31,11 +25,12 @@
  
  */
 
-@import Foundation;
+@import Cocoa;
 
 
-@interface NSString (MD5)
+@interface CEPaddingTextFieldCell : NSTextFieldCell
 
-- (nonnull NSString *)MD5;
+@property (nonatomic) IBInspectable CGFloat leftPadding;
+@property (nonatomic) IBInspectable CGFloat rightPadding;
 
 @end

@@ -49,11 +49,11 @@
 #pragma mark Superclass methods
 
 // ------------------------------------------------------
-/// initialize instance
-- (instancetype)init
+/// nib name
+- (nullable NSString *)nibName
 // ------------------------------------------------------
 {
-    return [super initWithNibName:@"ThemeView" bundle:nil];
+    return @"ThemeView";
 }
 
 

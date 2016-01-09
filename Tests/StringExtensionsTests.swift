@@ -74,6 +74,31 @@ class StringExtensionsTests: XCTestCase {
     }
     
     
+    func testRange() {
+        let testString = "0123456789" as NSString
+        
+        XCTAssertTrue(NSEqualRanges(testString.rangeForLocation(2, length: 2), NSMakeRange(2, 2)))
+        XCTAssertTrue(NSEqualRanges(testString.rangeForLocation(-1, length: 1), NSMakeRange(9, 1)))
+        XCTAssertTrue(NSEqualRanges(testString.rangeForLocation(3, length: -2), NSMakeRange(3, "45678".length)))
+        
+        
+        let linesString = "1\r\n2\r\n3\r\n4" as NSString  // 1 based
+        var range: NSRange
+        
+        range = linesString.rangeForLineLocation(1, length: 2)
+        XCTAssertEqual(linesString.substringWithRange(range), "1\r\n2\r\n")
+        
+        range = linesString.rangeForLineLocation(-1, length: 1)
+        XCTAssertEqual(linesString.substringWithRange(range), "4")
+        
+        range = linesString.rangeForLineLocation(-2, length: 1)
+        XCTAssertEqual(linesString.substringWithRange(range), "3\r\n")
+        
+        range = linesString.rangeForLineLocation(2, length: -2)
+        XCTAssertEqual(linesString.substringWithRange(range), "2\r\n")
+    }
+    
+    
     func testUnicodeNormalization() {
         XCTAssertEqual("é 神 ㍑".precomposedStringWithCompatibilityMappingWithCasefold(), "é 神 リットル")
         XCTAssertEqual("é 神 ㍑".decomposedStringWithHFSPlusMapping(), "é 神 ㍑")

@@ -180,7 +180,7 @@
 // ------------------------------------------------------
 {
     NSRange selectedRange = [[[self document] editor] selectedRange];
-    NSString *string = [[self document] stringForSave];
+    NSString *string = [[self document] string];
     NSUInteger currentLine = 0, lastLine = 0, length = [string length];
 
     if (length > 0) {

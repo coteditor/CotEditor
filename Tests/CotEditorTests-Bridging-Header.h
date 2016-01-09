@@ -4,11 +4,13 @@
 
 // StringExtensionsTests
 #import "NSString+CENewLine.h"
+#import "NSString+CERange.h"
 #import "NSString+ComposedCharacter.h"
 #import "NSString+JapaneseTransform.h"
 #import "NSString+Normalization.h"
 
 // CharacterInfoTests
+#import "CEControlCharacerNames.h"
 #import "CECharacterInfo.h"
 
 // IndentationTests

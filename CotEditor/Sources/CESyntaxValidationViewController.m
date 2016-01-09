@@ -46,6 +46,18 @@
 
 @implementation CESyntaxValidationViewController
 
+#pragma mark Superclass Methods
+
+// ------------------------------------------------------
+/// nib name
+- (nullable NSString *)nibName
+// ------------------------------------------------------
+{
+    return @"SyntaxValidationView";
+}
+
+
+
 #pragma mark Public Methods
 
 // ------------------------------------------------------

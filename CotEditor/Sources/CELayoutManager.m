@@ -40,7 +40,6 @@
 @property (nonatomic) BOOL showsTab;
 @property (nonatomic) BOOL showsNewLine;
 @property (nonatomic) BOOL showsFullwidthSpace;
-@property (nonatomic) BOOL showsOtherInvisibles;
 
 @property (nonatomic) unichar spaceChar;
 @property (nonatomic) unichar tabChar;
@@ -51,6 +50,7 @@
 
 // readonly properties
 @property (readwrite, nonatomic) CGFloat defaultLineHeightForTextFont;
+@property (readwrite, nonatomic) BOOL showsOtherInvisibles;
 
 @end
 
@@ -61,7 +61,6 @@
 
 @implementation CELayoutManager
 
-static CGGlyph ReplacementGlyph;
 static BOOL usesTextFontForInvisibles;
 
 
@@ -74,9 +73,6 @@ static BOOL usesTextFontForInvisibles;
 {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        NSFont *lucidaGrande = [NSFont fontWithName:@"Lucida Grande" size:0];
-        ReplacementGlyph = [lucidaGrande glyphWithName:@"replacement"];  // U+FFFD
-        
         usesTextFontForInvisibles = [[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultUsesTextFontForInvisiblesKey];
     });
 }
@@ -102,8 +98,14 @@ static BOOL usesTextFontForInvisibles;
         _showsFullwidthSpace = [defaults boolForKey:CEDefaultShowInvisibleFullwidthSpaceKey];
         _showsOtherInvisibles = [defaults boolForKey:CEDefaultShowOtherInvisibleCharsKey];
         
+        // Since NSLayoutManager's showsControlCharacters flag is totally buggy (at leaset on El Capitan),
+        // we stopped using this since CotEditor 2.3.3 that was released in 2016-01.
+        // Previously, CotEditor used this flag for "Other Invisible Characters."
+        // However as CotEditor draws such control-glyph-alternative-characters by itself in `drawGlyphsForGlyphRange:atPoint:`,
+        // this flag is actually not so necessary as I thougth. Thus, treat carefully this.
+        [self setShowsControlCharacters:NO];
+        
         [self setUsesScreenFonts:YES];
-        [self setShowsControlCharacters:_showsOtherInvisibles];
         [self setTypesetter:[[CEATSTypesetter alloc] init]];
     }
     return self;
@@ -160,9 +162,6 @@ static BOOL usesTextFontForInvisibles;
         NSColor *color = [[self theme] invisiblesColor];
         CGFloat baselineOffset = [self defaultBaselineOffsetForFont:[self textFont]];
         
-        // for other invisibles
-        NSFont *replacementFont;  // delay creating font till it's really needed
-        
         // set graphics context
         CGContextRef context = (CGContextRef)[[NSGraphicsContext currentContext] graphicsPort];
         CGContextSaveGState(context);
@@ -181,6 +180,7 @@ static BOOL usesTextFontForInvisibles;
         CGPathRef newLineGlyphPath = glyphPathWithCharacter([self newLineChar], font, false);
         CGPathRef fullWidthSpaceGlyphPath = glyphPathWithCharacter([self fullwidthSpaceChar], font, true);
         CGPathRef verticalTabGlyphPath = glyphPathWithCharacter(kVerticalTabChar, font, true);
+        CGPathRef replacementGlyphPath = glyphPathWithCharacter(kReplacementChar, font, true);
         
         // store value to avoid accessing properties each time  (2014-07 by 1024jp)
         BOOL showsSpace = [self showsSpace];
@@ -224,36 +224,14 @@ static BOOL usesTextFontForInvisibles;
                     break;
                     
                 default:
-                    if (showsOtherInvisibles && ([self glyphAtIndex:glyphIndex isValidIndex:NULL] == NSControlGlyph)) {
-                        NSGlyphInfo *currentGlyphInfo = [[self textStorage] attribute:NSGlyphInfoAttributeName atIndex:charIndex effectiveRange:NULL];
-                        
-                        if (currentGlyphInfo) { continue; }
-                        
-                        NSRange charRange = NSMakeRange(charIndex, 1);
-                        if (CFStringIsSurrogateHighCharacter(character)) {
-                            if ((charIndex + 1 <= [completeString length]) &&
-                                CFStringIsSurrogateLowCharacter([completeString characterAtIndex:charIndex + 1]))
-                            {
-                                charRange.length = 2;
-                            }
-                        }
-                        
-                        replacementFont = replacementFont ?: [NSFont fontWithName:@"Lucida Grande" size:[[self textFont] pointSize]];
-                        
-                        NSString *baseString = [completeString substringWithRange:charRange];
-                        NSGlyphInfo *glyphInfo = [NSGlyphInfo glyphInfoWithGlyph:ReplacementGlyph forFont:replacementFont baseString:baseString];
-                        
-                        if (glyphInfo) {
-                            // !!!: The following line can cause crash by binary document.
-                            //      It's actually dangerous and to be detoured to modify textStorage while drawing.
-                            //      (2015-09 by 1024jp)
-                            [[self textStorage] addAttributes:@{NSGlyphInfoAttributeName: glyphInfo,
-                                                                NSFontAttributeName: replacementFont,
-                                                                NSForegroundColorAttributeName: color}
-                                                        range:charRange];
-                        }
+                    if (!showsOtherInvisibles || ([self glyphAtIndex:glyphIndex isValidIndex:NULL] != NSControlGlyph)) { continue; }
+                    // Skip the second glyph if character is a surrogate-pair
+                    if (CFStringIsSurrogateLowCharacter(character) &&
+                        ((charIndex > 0) && CFStringIsSurrogateHighCharacter([completeString characterAtIndex:charIndex - 1])))
+                    {
+                        continue;
                     }
-                    continue;
+                    glyphPath = replacementGlyphPath;
             }
             
             // add invisible char path
@@ -276,35 +254,6 @@ static BOOL usesTextFontForInvisibles;
     }
     
     [super drawGlyphsForGlyphRange:glyphsToShow atPoint:origin];
-}
-
-
-// ------------------------------------------------------
-/// color glyphs
-- (void)showCGGlyphs:(const CGGlyph *)glyphs positions:(const NSPoint *)positions count:(NSUInteger)glyphCount font:(NSFont *)font matrix:(NSAffineTransform *)textMatrix attributes:(NSDictionary<NSString *,id> *)attributes inContext:(NSGraphicsContext *)graphicsContext
-// ------------------------------------------------------
-{
-    // overcort control glyphs
-    //   -> Control color will occasionally be colored in sytnax style color after `drawGlyphsForGlyphRange:atPoint:`.
-    //      So, it shoud be re-colored here.
-    BOOL isControlGlyph = (attributes[NSGlyphInfoAttributeName]);
-    if (isControlGlyph && [self showsControlCharacters]) {
-        NSColor *invisibleColor = [[self theme] invisiblesColor];
-        [graphicsContext saveGraphicsState];
-        [invisibleColor set];
-        
-        // remove existing coloring attribute for safe
-        NSMutableDictionary *mutableAttributes = [attributes mutableCopy];
-        [mutableAttributes removeObjectForKey:NSForegroundColorAttributeName];
-        attributes = [mutableAttributes copy];
-    }
-    
-    [super showCGGlyphs:glyphs positions:positions count:glyphCount font:font matrix:textMatrix attributes:attributes inContext:graphicsContext];
-    
-    // restore context
-    if (isControlGlyph) {
-        [graphicsContext restoreGraphicsState];
-    }
 }
 
 
@@ -339,31 +288,6 @@ static BOOL usesTextFontForInvisibles;
     [self setUsesScreenFonts:!printing];
     
     _printing = printing;
-}
-
-// ------------------------------------------------------
-/// 不可視文字を表示するかどうかを設定する
-- (void)setShowsInvisibles:(BOOL)showsInvisibles
-// ------------------------------------------------------
-{
-    if (!showsInvisibles) {
-        NSRange range = NSMakeRange(0, [[[self textStorage] string] length]);
-        [[self textStorage] removeAttribute:NSGlyphInfoAttributeName range:range];
-    }
-    if ([self showsOtherInvisibles]) {
-        [self setShowsControlCharacters:showsInvisibles];
-    }
-    _showsInvisibles = showsInvisibles;
-}
-
-
-// ------------------------------------------------------
-/// その他の不可視文字を表示するかどうかを設定する
-- (void)setShowsOtherInvisibles:(BOOL)showsOtherInvisibles
-// ------------------------------------------------------
-{
-    [self setShowsControlCharacters:showsOtherInvisibles];
-    _showsOtherInvisibles = showsOtherInvisibles;
 }
 
 
@@ -540,7 +464,9 @@ CGPathRef glyphPathWithCharacter(unichar character, CTFontRef font, bool prefers
     // - All invisible characters of choices can be covered with the following two fonts.
     // - Monaco for vertical tab
     CGPathRef path = NULL;
-    NSArray<NSString *> *fallbackFontNames = prefersFullWidth ? @[@"HiraKakuProN-W3", @"LucidaGrande", @"Monaco"] : @[@"LucidaGrande", @"HiraKakuProN-W3", @"Monaco"];
+    NSArray<NSString *> *fallbackFontNames = (prefersFullWidth
+                                              ? @[@"HiraginoSans-W3", @"HiraKakuProN-W3", @"LucidaGrande", @"Monaco"]
+                                              : @[@"LucidaGrande", @"HiraginoSans-W3", @"HiraKakuProN-W3", @"Monaco"]);
     
     for (NSString *fontName in fallbackFontNames) {
         CTFontRef fallbackFont = CTFontCreateWithName((CFStringRef)fontName, fontSize, 0);

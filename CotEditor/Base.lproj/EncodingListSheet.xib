@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9059" systemVersion="15C27e" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9059"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9531"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="CEEncodingListSheetController">
@@ -32,7 +32,6 @@
                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" autosaveColumns="NO" rowSizeStyle="automatic" viewBased="YES" id="39">
                                     <rect key="frame" x="0.0" y="0.0" width="242" height="0.0"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <animations/>
                                     <size key="intercellSpacing" width="3" height="2"/>
                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
@@ -56,7 +55,6 @@
                                                     <subviews>
                                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="oSS-Ui-C8S">
                                                             <rect key="frame" x="4" y="0.0" width="231" height="17"/>
-                                                            <animations/>
                                                             <textFieldCell key="cell" lineBreakMode="truncatingTail" truncatesLastVisibleLine="YES" sendsActionOnEndEditing="YES" title="Table View Cell" id="C2a-0L-t4F" customClass="CEMenuItemCell">
                                                                 <font key="font" metaFont="system"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -73,7 +71,6 @@
                                                         <constraint firstAttribute="bottom" secondItem="oSS-Ui-C8S" secondAttribute="bottom" id="Vwl-X0-69F"/>
                                                         <constraint firstItem="oSS-Ui-C8S" firstAttribute="leading" secondItem="lCX-un-Xh0" secondAttribute="leading" constant="6" id="pK2-PD-Apo"/>
                                                     </constraints>
-                                                    <animations/>
                                                     <connections>
                                                         <outlet property="textField" destination="oSS-Ui-C8S" id="bXy-3w-ybY"/>
                                                     </connections>
@@ -87,17 +84,13 @@
                                     </connections>
                                 </tableView>
                             </subviews>
-                            <animations/>
                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </clipView>
-                        <animations/>
                         <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="3421">
                             <autoresizingMask key="autoresizingMask"/>
-                            <animations/>
                         </scroller>
                         <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="3420">
                             <autoresizingMask key="autoresizingMask"/>
-                            <animations/>
                         </scroller>
                     </scrollView>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="42">
@@ -105,7 +98,6 @@
                         <constraints>
                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="88" id="ZfT-Ry-kNc"/>
                         </constraints>
-                        <animations/>
                         <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="3390">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -122,7 +114,6 @@ Gw
                         <constraints>
                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="88" id="e3f-JN-w08"/>
                         </constraints>
-                        <animations/>
                         <buttonCell key="cell" type="push" title="OK" bezelStyle="rounded" alignment="center" borderStyle="border" tag="100" inset="2" id="3391">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -139,7 +130,6 @@ DQ
                         <constraints>
                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="108" id="wRo-6f-aHc"/>
                         </constraints>
-                        <animations/>
                         <buttonCell key="cell" type="push" title="Add Separator" bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" inset="2" id="3392">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="smallSystem"/>
@@ -150,7 +140,6 @@ DQ
                     </button>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="55">
                         <rect key="frame" x="267" y="237" width="118" height="28"/>
-                        <animations/>
                         <buttonCell key="cell" type="push" title="Delete Separator" bezelStyle="rounded" alignment="center" controlSize="small" enabled="NO" borderStyle="border" inset="2" id="3393">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="smallSystem"/>
@@ -161,7 +150,6 @@ DQ
                     </button>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="56" customClass="CEWrappingTextField">
                         <rect key="frame" x="18" y="297" width="364" height="28"/>
-                        <animations/>
                         <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="left" id="3394">
                             <font key="font" metaFont="smallSystem"/>
                             <string key="title">This list is for Auto-Detect and the file encoding menu.
@@ -172,7 +160,6 @@ Auto-Detect tries these encodings from the top of the list.</string>
                     </textField>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="62" customClass="CEWrappingTextField">
                         <rect key="frame" x="18" y="333" width="364" height="14"/>
-                        <animations/>
                         <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="left" title="Drag encodings to change the order." id="3395">
                             <font key="font" metaFont="smallSystem"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -184,7 +171,6 @@ Auto-Detect tries these encodings from the top of the list.</string>
                         <constraints>
                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="130" id="Rqp-J1-4Qc"/>
                         </constraints>
-                        <animations/>
                         <buttonCell key="cell" type="push" title="Restore Defaults" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" inset="2" id="3396">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -221,7 +207,6 @@ Auto-Detect tries these encodings from the top of the list.</string>
                     <constraint firstAttribute="trailing" secondItem="62" secondAttribute="trailing" constant="20" symbolic="YES" id="lH1-Xj-Qid"/>
                     <constraint firstItem="700" firstAttribute="top" secondItem="42" secondAttribute="top" id="s5v-Cs-JaZ"/>
                 </constraints>
-                <animations/>
             </view>
             <connections>
                 <outlet property="delegate" destination="-2" id="ED6-5r-m10"/>

@@ -7,25 +7,39 @@ extensions:
 - keyString: "phtml"
 interpreters:
 - keyString: "php"
+metadata:
+  author: "kaz"
+  distributionURL: "http://coteditor.com"
+  version: "2.5.1"
+  description: "Support PHP4 - PHP5.6.\n\nMaintained by 1024jp since 2013."
+  license: "Same as CotEditor"
+  lastModified: "2015-12-25"
 outlineMenu:
 - beginString: "^([\\t ]*)(((?:(?:final|static|public|protected|private)[\\t ]+)+)function)\\s*([^{;]*)(?=[{;])"
+  description: "function"
   keyString: "   $3: $4"
 - beginString: "^([\\t ]*)(abstract (public|protected|private)[\\t ]+function)\\s*([^{;]*)(?=[{;])"
+  description: "abstract function"
   keyString: "   abstract $3: $4"
   italic: true
 - beginString: "^([\\t ]*)(function)\\s*([^{]*)(?=\\{)"
+  description: "function"
   keyString: "   $3"
 - beginString: "^[\\t ]*((?:final[\\t ]+)?class)[\\t ]+(.*)\\{"
+  description: "class"
   keyString: "$1: $2"
   bold: true
 - beginString: "^[\\t ]*(abstract class)[\\t ]+(.*)\\{"
+  description: "abstract class"
   keyString: "$1: $2"
   bold: true
   italic: true
 - beginString: "^[\\t ]*(interface)[\\t ]+(.*)\\{"
+  description: "interface"
   keyString: "$1: $2"
   italic: true
 - beginString: "^[\\t ]*(trait)[\\t ]+(.*)\\{"
+  description: "trait"
   keyString: "$1: $2"
   italic: true
 completions:
@@ -5705,13 +5719,6 @@ commands:
 - beginString: "zlib_decode"
 - beginString: "zlib_encode"
 - beginString: "zlib_get_coding_type"
-metadata:
-  author: "kaz"
-  distributionURL: "http://coteditor.com"
-  version: "2.5.0"
-  description: "Support PHP4 - PHP5.6.\n\nMaintained by 1024jp since 2013."
-  license: "Same as CotEditor"
-  lastModified: "2015-11-16"
 characters:
 - beginString: "'"
   endString: "'"
@@ -6214,11 +6221,14 @@ types:
 numbers:
 - beginString: "\\b-?0b[01]+\\b"
   regularExpression: true
+  description: "binary"
 - beginString: "\\b-?0x[0-9a-f]+\\b"
   ignoreCase: true
   regularExpression: true
+  description: "hexadecimal"
 - beginString: "\\b-?\\d*\\.?\\d+\\b"
   regularExpression: true
+  description: "decimal"
 strings:
 - beginString: "\""
   endString: "\""

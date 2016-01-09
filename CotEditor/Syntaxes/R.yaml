@@ -7,11 +7,12 @@ interpreters:
 metadata:
   author: "1024jp"
   distributionURL: "http://coteditor.com"
-  version: "1.1.1"
+  version: "1.1.2"
   license: "Same as CotEditor"
-  lastModified: "2015-11-05"
+  lastModified: "2015-12-25"
 outlineMenu:
 - beginString: "^[\\t ]*(\\S+)[\\t ]*<-[\\t ]*function"
+  description: "function"
   keyString: "function: $1"
 completions: []
 commands:
@@ -1028,11 +1029,14 @@ numbers:
 - beginString: "\\b((\\d\\.?\\d*)|(\\.\\d+))(e[-+]?\\d+)?(i|l|ul|u|f|ll|ull)?\\b"
   ignoreCase: true
   regularExpression: true
+  description: "decimal"
 - beginString: "\\b-?0x[0-9a-f]+\\b"
   ignoreCase: true
   regularExpression: true
+  description: "hexadecimal"
 - beginString: "\\b0b[01]+\\b"
   regularExpression: true
+  description: "binary"
 strings:
 - beginString: "\""
   endString: "\""

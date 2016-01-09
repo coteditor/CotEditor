@@ -48,11 +48,11 @@
 #pragma mark Superclass Methods
 
 // ------------------------------------------------------
-/// initializer of sheetController
-- (nonnull instancetype)init;
+/// nib name
+- (nullable NSString *)windowNibName
 // ------------------------------------------------------
 {
-    return [super initWithWindowNibName:@"GoToSheet"];
+    return @"GoToSheet";
 }
 
 

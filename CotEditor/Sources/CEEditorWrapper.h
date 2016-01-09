@@ -49,7 +49,6 @@
 @property (nonatomic, getter=isVerticalLayoutOrientation) BOOL verticalLayoutOrientation;
 @property (nonatomic, nullable) CETextView *focusedTextView;
 
-@property (readonly, nonatomic, nullable) CESyntaxParser *syntaxParser;
 @property (readonly, nonatomic) BOOL showsNavigationBar;
 @property (readonly, nonatomic) BOOL canActivateShowInvisibles;
 
@@ -87,14 +86,6 @@
 - (void)setThemeWithName:(nonnull NSString *)themeName;
 - (nullable CETheme *)theme;
 
-// syntax
-- (nullable NSString *)syntaxStyleName;
-- (void)setSyntaxStyleWithName:(nonnull NSString *)name coloring:(BOOL)doColoring;
-- (void)invalidateSyntaxColoring;
-- (void)invalidateOutlineMenu;
-- (void)setupColoringTimer;
-- (void)setupOutlineMenuUpdateTimer;
-
 
 #pragma mark Action Messages
 
@@ -110,7 +101,27 @@
 - (IBAction)selectNextItemOfOutlineMenu:(nullable id)sender;
 - (IBAction)openSplitTextView:(nullable id)sender;
 - (IBAction)closeSplitTextView:(nullable id)sender;
+- (IBAction)changeTheme:(nullable id)sender;
+
+@end
+
+
+
+
+#pragma mark -
+
+@interface CEEditorWrapper (SyntaxParsing)
+
+@property (readonly, nonatomic, nullable) CESyntaxParser *syntaxParser;
+@property (readonly, nonatomic) BOOL canHighlight;
+
+
 - (IBAction)recolorAll:(nullable id)sender;
+
+- (void)invalidateSyntaxColoring;
+- (void)invalidateOutlineMenu;
+- (void)setupColoringTimer;
+- (void)setupOutlineMenuUpdateTimer;
 
 @end
 

@@ -2,6 +2,57 @@
 Change Log
 ==========================
 
+2.3.3 (91)
+--------------------------
+
+### New Features
+
+- Add “Share” menu to File menu.
+
+
+### Improvements
+
+- Now, you can force-disable window restoration from the last session if you hold Shift key while launch.
+- Improve “Input Character in Unicode Hex” panel:
+    - Display proposed character info.
+    - Allow also taking a 1 to 3 digits point code.
+    - Avoid auto-closing panel after enter character.
+- Improve character inspector:
+    - Display more comprehensible name for C0 control characters (e.g. `<control-0000>` to `NULL`).
+    - Display a alternate visible symbol in the zoomed character area for C0 control characters.
+- Improve installed syntax style list in preferences:
+    - Add dot mark to style names in the list to represent the state if the style is customized.
+    - Enable restoring modified syntax style directly from the list without opening the style editor.
+- Now, the current line number is drawn in bold font, and always drawn in vertical text mode.
+- Select whole text wrapped with quotation marks by double-clicking one of the quotation marks if it is already syntax-highlighted.
+- Keep text selection after inserting color code from the color code panel.
+- Add “description” field also to outline setting in syntax style editor.
+    - From this, update most of bundled syntax styles.
+- Add jump to URL button to the style info in the syntax style editor.
+- Improve drawing of “Other” invisible characters.
+- Improve behavior on Replace/Replace All actions.
+- Improve text encoding detection to redress the tendency: a binary file was interpreted as ISO-2022-JP.
+- Revert style of popup menus in toolbar on Marvericks and earlier.
+- Update line number font.
+- Update default fonts.
+- Tweak preferences layout.
+- Tweak Chinese localization.
+- Improve general stability.
+
+
+### Fixes
+
+- Fix an issue where the application tended to crash by trying opening binary file.
+- Fix an issue where line breaks between paths of dropped files were missing.
+- Fix an issue where the application crashed when a single character that is a part of surrogate pair is inspected.
+- Fix an issue where snippet key bindings could not be customized on Mavericks and earlier.
+- Fix an issue where syntax highlight was not updated after reinterpreting encoding.
+- Fix an issue where panels could lost target document.
+- Fix layout of character popup on Mavericks and earlier.
+- Fix an issue where “Recolor All” action was always enabled even if syntax style is “None.”
+
+
+
 2.3.2 (89)
 --------------------------
 

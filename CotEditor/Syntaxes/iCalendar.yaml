@@ -4,8 +4,8 @@ extensions:
 filenames: []
 interpreters: []
 metadata:
-  version: "1.0.0"
-  lastModified: "2015-10-22"
+  version: "1.0.1"
+  lastModified: "2015-12-25"
   author: "1024jp"
   license: "Same as CotEditor"
   distributionURL: "http://coteditor.com"
@@ -138,5 +138,6 @@ characters: []
 comments: []
 outlineMenu:
 - beginString: "^SUMMARY:(.*)$"
+  description: "summary"
 keyString: "$1"
 completions: []

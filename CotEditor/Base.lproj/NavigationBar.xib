@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9059"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9531"/>
     </dependencies>
     <objects>
         <customObject id="-2" customClass="CENavigationBarController">
@@ -27,7 +26,6 @@
                     <constraints>
                         <constraint firstAttribute="width" constant="21" id="YCW-yn-jru"/>
                     </constraints>
-                    <animations/>
                     <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="UpArrowTemplate" imagePosition="overlaps" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="w3h-Kh-7X8">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
@@ -41,7 +39,6 @@
                     <constraints>
                         <constraint firstAttribute="width" constant="21" id="1PN-qX-wNW"/>
                     </constraints>
-                    <animations/>
                     <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="DownArrowTemplate" imagePosition="overlaps" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ptY-uK-2h3">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
@@ -55,7 +52,6 @@
                     <constraints>
                         <constraint firstAttribute="width" constant="17" id="e7y-hz-Kt5"/>
                     </constraints>
-                    <animations/>
                     <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="OpenSplitTemplate" imagePosition="overlaps" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyUpOrDown" inset="2" id="Snx-y4-0J6">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
@@ -69,7 +65,6 @@
                     <constraints>
                         <constraint firstAttribute="width" constant="17" id="5Tr-XS-blf"/>
                     </constraints>
-                    <animations/>
                     <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="CloseSplitTemplate" imagePosition="overlaps" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyUpOrDown" inset="2" id="naK-la-7Mj">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
@@ -84,7 +79,6 @@
                         <constraint firstAttribute="width" relation="lessThanOrEqual" constant="300" id="Vms-I5-laT"/>
                         <constraint firstAttribute="width" priority="250" constant="300" id="c7e-CV-OBo"/>
                     </constraints>
-                    <animations/>
                     <popUpButtonCell key="cell" type="smallSquare" bezelStyle="smallSquare" alignment="left" controlSize="small" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="g73-Rx-Es7" customClass="CEOutlineMenuButtonCell">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="smallSystem"/>
@@ -98,14 +92,11 @@
                 <progressIndicator horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="dmz-oV-5PB">
                     <rect key="frame" x="60" y="0.0" width="16" height="16"/>
                     <constraints>
-                        <constraint firstAttribute="width" secondItem="dmz-oV-5PB" secondAttribute="height" multiplier="1:1" id="IwX-Ed-6Q8"/>
-                        <constraint firstAttribute="width" constant="16" id="qxQ-FS-c4T"/>
+                        <constraint firstAttribute="height" constant="16" id="qxQ-FS-c4T"/>
                     </constraints>
-                    <animations/>
                 </progressIndicator>
                 <textField hidden="YES" horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="aUE-uy-XLQ">
                     <rect key="frame" x="82" y="1" width="109" height="14"/>
-                    <animations/>
                     <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" title="Extracting Outline..." usesSingleLineMode="YES" id="kZ7-05-KYb">
                         <font key="font" metaFont="smallSystem"/>
                         <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
@@ -136,7 +127,6 @@
                 <constraint firstItem="syK-XU-x2I" firstAttribute="leading" secondItem="Bmo-XE-CCn" secondAttribute="trailing" constant="-1" id="qZ8-nx-wlZ"/>
                 <constraint firstAttribute="bottom" secondItem="syK-XU-x2I" secondAttribute="bottom" priority="750" id="sMO-mr-IIf"/>
             </constraints>
-            <animations/>
             <userDefinedRuntimeAttributes>
                 <userDefinedRuntimeAttribute type="color" keyPath="fillColor">
                     <color key="value" name="windowBackgroundColor" catalog="System" colorSpace="catalog"/>

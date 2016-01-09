@@ -2,15 +2,25 @@ extensions:
 - keyString: "rb"
 interpreters:
 - keyString: "ruby"
+metadata:
+  author: "Y.Tokutomi"
+  distributionURL: "http://coteditor.com"
+  version: "2.2.1"
+  description: "Maintained by CotEditor Project."
+  license: "Same as CotEditor"
+  lastModified: "2015-12-25"
 outlineMenu:
 - beginString: "(^[\\t ]*class)[\\t ]+(\\w*)"
   keyString: "$1 $2"
+  description: "class"
   underline: true
 - beginString: "(^[\\t ]*def)[\\t ]+([^\\s(]*)"
   keyString: "$1 $2"
+  description: "method"
   italic: true
 - beginString: "(^[\\t ]*module)[\\t ]+(\\w*)"
   keyString: "$1 $2"
+  description: "module"
   bold: true
 commands:
 - beginString: ".class"
@@ -126,13 +136,6 @@ commands:
 - beginString: "untaint"
 - beginString: "untrace_var"
 - beginString: "warn"
-metadata:
-  author: "Y.Tokutomi"
-  distributionURL: "http://coteditor.com"
-  version: "2.2.0"
-  description: "Maintained by CotEditor Project."
-  license: "Same as CotEditor"
-  lastModified: "2015-08-13"
 characters: []
 comments: []
 values:
@@ -235,19 +238,25 @@ numbers:
 - beginString: "\\b0b[01_]+\\b"
   ignoreCase: true
   regularExpression: true
+  description: "binary"
 - beginString: "\\b0d[0-9_]+\\b"
   ignoreCase: true
   regularExpression: true
+  description: "decimal"
 - beginString: "\\b0o[0-7_]+\\b"
   ignoreCase: true
   regularExpression: true
+  description: "octal"
 - beginString: "\\b0x[0-9a-f_]+\\b"
   ignoreCase: true
   regularExpression: true
+  description: "hexadecimal"
 - beginString: "\\b[0-9][0-9_]*\\.[0-9_]+([eE][0+][0-9_]+)?r?i?\\b"
   regularExpression: true
+  description: "float"
 - beginString: "\\b[0-9][0-9_]*\\b"
   regularExpression: true
+  description: "integer"
 - beginString: "`"
   endString: "`"
 strings:

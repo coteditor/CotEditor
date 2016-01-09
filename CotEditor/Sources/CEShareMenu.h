@@ -1,15 +1,15 @@
 /*
  
- CEPreferencesWindow.h
+ CEShareMenu.h
  
  CotEditor
  http://coteditor.com
  
- Created by 1024jp on 2014-12-23.
-
+ Created by nakamuxu on 2015-12-18.
+ 
  ------------------------------------------------------------------------------
  
- © 2014 1024jp
+ © 2015 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -28,6 +28,6 @@
 @import Cocoa;
 
 
-@interface CEPreferencesWindow : NSWindow
+@interface CEShareMenu : NSMenu
 
 @end

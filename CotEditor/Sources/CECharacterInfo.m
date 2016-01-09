@@ -54,6 +54,7 @@ static const UTF32Char kType6EmojiModifierChar = 0x1F3FF;  // Emoji Modifier Fit
 
 // readonly
 @property (nonatomic, readwrite, nonnull, copy) NSString *string;
+@property (nonatomic, readwrite, nonnull, copy) NSString *pictureString;
 @property (nonatomic, readwrite, nonnull, copy) NSArray<CEUnicodeCharacter *> *unicodes;
 @property (nonatomic, readwrite, nonnull, copy) NSString *unicode;
 @property (nonatomic, readwrite, getter=isComplexChar) BOOL complexChar;
@@ -143,6 +144,13 @@ static const UTF32Char kType6EmojiModifierChar = 0x1F3FF;  // Emoji Modifier Fit
         } else if ([_unicodes count] > 2) {
             _complexChar = YES;
         }
+        
+        if ([_unicodes count] == 1) {  // ignore CR/LF
+            unichar pictureCharacter = [[_unicodes firstObject] pictureCharacter];
+            if (pictureCharacter) {
+                _pictureString = [NSString stringWithCharacters:&pictureCharacter length:1];
+            }
+        }
     }
     return self;
 }
@@ -193,7 +201,7 @@ static const UTF32Char kType6EmojiModifierChar = 0x1F3FF;  // Emoji Modifier Fit
             utf32Char = CFStringGetLongCharacterForSurrogatePair(theChar, nextChar);
             i++;
         } else {
-            utf32Char = theChar;
+            utf32Char = (UTF32Char)theChar;
         }
         
         [unicodes addObject:[CEUnicodeCharacter unicodeCharacterWithCharacter:utf32Char]];

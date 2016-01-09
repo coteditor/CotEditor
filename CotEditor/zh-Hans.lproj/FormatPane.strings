@@ -59,17 +59,20 @@
 "3327.title" = "延时渲染";
 
 /* Class = "NSTextFieldCell"; title = "Default syntax style:"; ObjectID = "3329"; */
-"3329.title" = "默认语法风格：";
+"3329.title" = "默认语法样式：";
 
 /* Class = "NSTextFieldCell"; title = "Installed syntax styles:"; ObjectID = "vlw-Tc-sLl"; */
-"vlw-Tc-sLl.title" = "已安装的语法风格：";
+"vlw-Tc-sLl.title" = "已安装的语法样式：";
+
+/* Class = "NSImageView"; ibShadowedToolTip = "This style is customized."; ObjectID = "cbJ-XK-bnG"; */
+"cbJ-XK-bnG.ibShadowedToolTip" = "该样式已被自定义。";
 
 /* Class = "NSButton"; ibShadowedToolTip = "Remove selected style"; ObjectID = "dI1-Dk-Mce"; */
-"dI1-Dk-Mce.ibShadowedToolTip" = "移除选中的风格";
+"dI1-Dk-Mce.ibShadowedToolTip" = "移除选中的样式";
 /* Class = "NSButton"; ibShadowedToolTip = "Add empty style"; ObjectID = "Hma-8v-2gu"; */
-"Hma-8v-2gu.ibShadowedToolTip" = "添加新的风格";
+"Hma-8v-2gu.ibShadowedToolTip" = "添加新的样式";
 /* Class = "NSButton"; ibShadowedToolTip = "Edit selected style"; ObjectID = "Q0c-oI-um3"; */
-"Q0c-oI-um3.ibShadowedToolTip" = "编辑选中风格";
+"Q0c-oI-um3.ibShadowedToolTip" = "编辑选中样式";
 
 /* Class = "NSMenuItem"; title = "Import…"; ObjectID = "1lj-x8-ouD"; */
 "1lj-x8-ouD.title" = "导入…";
@@ -82,6 +85,8 @@
 "371-P0-KPK.title" = "编辑…";
 /* Class = "NSMenuItem"; title = "Duplicate…"; ObjectID = "5oN-VC-ot9"; */
 "5oN-VC-ot9.title" = "拷贝…";
+/* Class = "NSMenuItem"; title = "Restore"; ObjectID = "Zox-Ve-mru"; */
+"Zox-Ve-mru.title" = "还原";
 /* Class = "NSMenuItem"; title = "Delete"; ObjectID = "NDE-r5-xAF"; */
 "NDE-r5-xAF.title" = "删除";
 /* Class = "NSMenuItem"; title = "Export…"; ObjectID = "Qwp-u8-Urf"; */

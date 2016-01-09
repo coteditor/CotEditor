@@ -59,6 +59,15 @@
 }
 
 
+// ------------------------------------------------------
+/// nib name
+- (nullable NSString *)nibName
+// ------------------------------------------------------
+{
+    return @"WindowPane";
+}
+
+
 
 #pragma mark Action Messages
 
@@ -77,7 +86,7 @@
 // ------------------------------------------------------
 {
     // display modal
-    CESizeSampleWindowController *sampleWindowController = [[CESizeSampleWindowController alloc] initWithWindowNibName:@"SizeSampleWindow"];
+    CESizeSampleWindowController *sampleWindowController = [[CESizeSampleWindowController alloc] init];
     [sampleWindowController showWindow:sender];
     [NSApp runModalForWindow:[sampleWindowController window]];
     

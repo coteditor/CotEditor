@@ -2,16 +2,17 @@ extensions:
 - keyString: "mf"
 filenames: []
 interpreters: []
+metadata:
+  lastModified: "2015-12-25"
+  author: "M.Daimon"
+  version: "1.0.1"
+  license: "Same as CotEditor"
 comments: []
 outlineMenu:
 - beginString: "beginchar\\((.*?),"
+  description: "character"
   keyString: "character: $1"
 completions: []
-metadata:
-  lastModified: "2015-11-18"
-  author: "M.Daimon"
-  version: "1.0.0"
-  license: "Same as CotEditor"
 numbers:
 - beginString: "-?.\\d+(bp|cc|cm|dd|in|mm|pc|pt)#?"
   regularExpression: true

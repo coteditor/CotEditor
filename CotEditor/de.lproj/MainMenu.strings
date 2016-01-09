@@ -95,6 +95,8 @@
 "80.title" = "Sichern als …";
 /* Class = "NSMenuItem"; title = "Revert"; ObjectID = "112"; */
 "112.title" = "Zurücksetzen";
+/* Class = "NSMenuItem"; title = "Share"; ObjectID = "U5u-O7-0EX"; */
+"U5u-O7-0EX.title" = "Bereitstellen";
 
 /* Class = "NSMenuItem"; title = "Page Setup…"; ObjectID = "77"; */
 "77.title" = "Papierformat …";

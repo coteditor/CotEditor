@@ -34,7 +34,6 @@
 #import "CESyntaxParser.h"
 #import "CEThemeManager.h"
 #import "CELayoutManager.h"
-#import "CETextFinder.h"
 #import "NSString+CENewLine.h"
 #import "Constants.h"
 
@@ -52,7 +51,7 @@
 
 // readonly
 @property (readwrite, nonnull, nonatomic) CETextView *textView;
-@property (readwrite, nonnull, nonatomic) CENavigationBarController *navigationBar;
+@property (readwrite, nonnull, nonatomic) CENavigationBarController *navigationBarController;
 
 @end
 
@@ -77,8 +76,8 @@
         _highlightsCurrentLine = [defaults boolForKey:CEDefaultHighlightCurrentLineKey];
 
         // navigationBar 生成
-        _navigationBar = [[CENavigationBarController alloc] init];
-        [self addSubview:[_navigationBar view]];
+        _navigationBarController = [[CENavigationBarController alloc] init];
+        [self addSubview:[_navigationBarController view]];
 
         // create scroller with line number view
         _scrollView = [[CEEditorScrollView alloc] initWithFrame:NSZeroRect];
@@ -91,9 +90,9 @@
         [self addSubview:_scrollView];
         
         // setup autolayout
-        NSDictionary<NSString *, __kindof NSView *> *views = @{@"navBar": [_navigationBar view],
+        NSDictionary<NSString *, __kindof NSView *> *views = @{@"navBar": [_navigationBarController view],
                                                       @"scrollView": _scrollView};
-        [[_navigationBar view] setTranslatesAutoresizingMaskIntoConstraints:NO];
+        [[_navigationBarController view] setTranslatesAutoresizingMaskIntoConstraints:NO];
         [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[navBar]|"
                                                                      options:0 metrics:nil views:views]];
         [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[scrollView]|"
@@ -117,14 +116,8 @@
         _textView = [[CETextView alloc] initWithFrame:NSZeroRect textContainer:container];
         [_textView setDelegate:self];
         
-        [_navigationBar setTextView:_textView];
+        [_navigationBarController setTextView:_textView];
         [_scrollView setDocumentView:_textView];
-        
-        // すべて置換アクションをキャッチ
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(textDidReplaceAll:)
-                                                     name:CETextFinderDidReplaceAllNotification
-                                                   object:_textView];
         
         // 置換の Undo/Redo 後に再カラーリングできるように Undo/Redo アクションをキャッチ
         [[NSNotificationCenter defaultCenter] addObserver:self
@@ -193,7 +186,7 @@
 - (void)setShowsNavigationBar:(BOOL)showsNavigationBar animate:(BOOL)performAnimation;
 // ------------------------------------------------------
 {
-    [[self navigationBar] setShown:showsNavigationBar animate:performAnimation];
+    [[self navigationBarController] setShown:showsNavigationBar animate:performAnimation];
 }
 
 
@@ -288,13 +281,13 @@
     
     if (undoManager != [[self textView] undoManager]) { return; }
     
-    // OgreKit からの置換の Undo/Redo の後のみ再カラーリングを実行
+    // OgreKit からのすべて置換の Undo/Redo の後のみ再カラーリングを実行
     // 置換の Undo を判別するために OgreKit 側で登録された actionName を使用 (2014-04 by 1024jp)
-    // [Note] OgreKit側の問題として、すべてのUndoに対して "Replace All" という名前を付けているようだ。なので現在「すべて」以外の置換も対象となっている (2014-12 by 1024jp)
     NSString *actionName = [undoManager isUndoing] ? [undoManager redoActionName] : [undoManager undoActionName];
-    if ([actionName isEqualToString:OgreTextFinderLocalizedString(@"Replace All")]) {
-        [self textDidReplaceAll:aNotification];
-    }
+    if (![actionName isEqualToString:OgreTextFinderLocalizedString(@"Replace All")]) { return; }
+    
+    // 全テキストを再カラーリング
+    [[self editorWrapper] setupColoringTimer];
 }
 
 
@@ -407,6 +400,9 @@
 - (void)textDidChange:(nonnull NSNotification *)aNotification
 // ------------------------------------------------------
 {
+    // 文書情報更新（選択範囲・キャレット位置が変更されないまま全置換が実行された場合への対応）
+    [[[self window] windowController] setupEditorInfoUpdateTimer];
+    
     // 全テキストを再カラーリング
     [[self editorWrapper] setupColoringTimer];
 
@@ -527,29 +523,6 @@
 #pragma mark Notifications
 
 //=======================================================
-// Notification  < CETextFinder
-//=======================================================
-
-// ------------------------------------------------------
-/// did Replace All
-- (void)textDidReplaceAll:(nonnull NSNotification *)aNotification
-// ------------------------------------------------------
-{
-    // 文書情報更新（選択範囲・キャレット位置が変更されないまま全置換が実行された場合への対応）
-    [[[self window] windowController] setupEditorInfoUpdateTimer];
-    
-    // 全テキストを再カラーリング
-    [[self editorWrapper] setupColoringTimer];
-    
-    // アウトラインメニュー項目更新
-    [[self editorWrapper] setupOutlineMenuUpdateTimer];
-    
-    // 非互換文字リスト更新
-    [[[self window] windowController] updateIncompatibleCharsIfNeeded];
-}
-
-
-//=======================================================
 // Notification  < CEThemeManager
 //=======================================================
 
@@ -588,10 +561,10 @@
 // ------------------------------------------------------
 {
     if ([[self textView] needsUpdateOutlineMenuItemSelection]) {
-        [[self navigationBar] selectOutlineMenuItemWithRange:[[self textView] selectedRange]];
+        [[self navigationBarController] selectOutlineMenuItemWithRange:[[self textView] selectedRange]];
     } else {
         [[self textView] setNeedsUpdateOutlineMenuItemSelection:YES];
-        [[self navigationBar] updatePrevNextButtonEnabled];
+        [[self navigationBarController] updatePrevNextButtonEnabled];
     }
 }
 
@@ -601,7 +574,7 @@
 - (void)updateCloseSplitViewButton:(BOOL)isEnabled
 // ------------------------------------------------------
 {
-    [[self navigationBar] setCloseSplitButtonEnabled:isEnabled];
+    [[self navigationBarController] setCloseSplitButtonEnabled:isEnabled];
 }
 
 

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9059"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9531"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="CELineHightPanelController">
@@ -26,7 +26,6 @@
                         <constraints>
                             <constraint firstAttribute="width" constant="70" id="xqf-mh-hYy"/>
                         </constraints>
-                        <animations/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="gNg-yb-hcL">
                             <numberFormatter key="formatter" formatterBehavior="custom10_4" usesGroupingSeparator="NO" minimumIntegerDigits="1" maximumIntegerDigits="309" maximumFractionDigits="2" id="BAz-iP-zrh">
                                 <real key="minimum" value="0.0"/>
@@ -52,7 +51,6 @@
                         <constraints>
                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="dTT-rc-lbI"/>
                         </constraints>
-                        <animations/>
                         <buttonCell key="cell" type="push" title="OK" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="KXU-GK-Xcv">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -69,7 +67,6 @@ DQ
                         <constraints>
                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="1cw-xA-OL0"/>
                         </constraints>
-                        <animations/>
                         <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="0fI-Qj-jW1">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -83,7 +80,6 @@ Gw
                     </button>
                     <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="W8u-f2-MPK">
                         <rect key="frame" x="151" y="57" width="29" height="14"/>
-                        <animations/>
                         <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="lines" id="dyL-SO-rch">
                             <font key="font" metaFont="smallSystem"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -102,12 +98,12 @@ Gw
                     <constraint firstItem="C6f-At-ZBv" firstAttribute="top" secondItem="DBJ-t6-E5V" secondAttribute="top" constant="20" symbolic="YES" id="sL3-Xz-ewH"/>
                     <constraint firstAttribute="trailing" secondItem="EWf-Ij-TwQ" secondAttribute="trailing" constant="20" symbolic="YES" id="w7O-DC-reu"/>
                 </constraints>
-                <animations/>
             </view>
             <connections>
                 <outlet property="delegate" destination="-2" id="Ozk-mx-oFE"/>
                 <outlet property="initialFirstResponder" destination="C6f-At-ZBv" id="SIE-u4-wnQ"/>
             </connections>
+            <point key="canvasLocation" x="448" y="565"/>
         </window>
     </objects>
 </document>

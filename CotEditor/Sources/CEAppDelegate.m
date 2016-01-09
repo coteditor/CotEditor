@@ -126,7 +126,7 @@
                                                CEDefaultWrapLinesKey: @YES,
                                                CEDefaultLineEndCharCodeKey: @0,
                                                CEDefaultEncodingListKey: encodings,
-                                               CEDefaultFontNameKey: [[NSFont controlContentFontOfSize:[NSFont systemFontSize]] fontName],
+                                               CEDefaultFontNameKey: [[NSFont userFontOfSize:0] fontName],
                                                CEDefaultFontSizeKey: @([NSFont systemFontSize]),
                                                CEDefaultEncodingInOpenKey: @(CEAutoDetectEncoding),
                                                CEDefaultEncodingInNewKey: @(CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingUTF8)),
@@ -179,7 +179,7 @@
                                                CEDefaultHighlightLtGtKey: @NO,
                                                CEDefaultSaveUTF8BOMKey: @NO,
                                                CEDefaultSetPrintFontKey: @0,
-                                               CEDefaultPrintFontNameKey: [[NSFont controlContentFontOfSize:[NSFont systemFontSize]] fontName],
+                                               CEDefaultPrintFontNameKey: [[NSFont userFontOfSize:0] fontName],
                                                CEDefaultPrintFontSizeKey: @([NSFont systemFontSize]),
                                                CEDefaultPrintHeaderKey: @YES,
                                                CEDefaultPrimaryHeaderContentKey: @(CEPrintInfoFilePath),
@@ -206,8 +206,8 @@
                                                
                                                /* -------- hidden settings -------- */
                                                CEDefaultUsesTextFontForInvisiblesKey: @NO,
-                                               CEDefaultLineNumFontNameKey: @"ArialNarrow",
-                                               CEDefaultBasicColoringDelayKey: @0.001f,
+                                               CEDefaultLineNumFontNameKey: @"AvenirNextCondensed-Regular",
+                                               CEDefaultBasicColoringDelayKey: @0.01f,
                                                CEDefaultFirstColoringDelayKey: @0.3f, 
                                                CEDefaultSecondColoringDelayKey: @0.7f,
                                                CEDefaultAutoCompletionDelayKey: @0.25,
@@ -621,7 +621,7 @@
     [document makeWindowControllers];
     [document showWindows];
     [[document editor] setString:template];
-    [document doSetSyntaxStyle:@"Markdown"];
+    [document setSyntaxStyleWithName:@"Markdown"];
 }
 
 

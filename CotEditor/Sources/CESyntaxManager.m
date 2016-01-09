@@ -134,11 +134,19 @@ NSString *_Nonnull const CESyntaxValidationMessageKey = @"MessageKey";
 
 
 // ------------------------------------------------------
-/// インタープリタに応じたstyle名を返す
-- (nullable NSString *)styleNameFromInterpreter:(nonnull NSString *)interpreter
+/// 本文からシェバンをスキャンして、内容に応じたstyle名を返す
+- (nullable NSString *)styleNameFromContent:(nonnull NSString *)contentString
 // ------------------------------------------------------
 {
-    return [self interpreterToStyleTable][interpreter];
+    NSString *interpreter = [self scanLanguageFromShebangInString:contentString];
+    NSString *styleName = [self interpreterToStyleTable][interpreter];
+    
+    // check XML declaration
+    if (!styleName && [contentString hasPrefix:@"<?xml "]) {
+        styleName = @"XML";
+    }
+    
+    return styleName;
 }
 
 
@@ -193,10 +201,15 @@ NSString *_Nonnull const CESyntaxValidationMessageKey = @"MessageKey";
 
 // ------------------------------------------------------
 /// あるスタイルネームがデフォルトで用意されているものかどうかを返す
-- (BOOL)isBundledStyle:(nonnull NSString *)styleName
+- (BOOL)isBundledStyle:(nonnull NSString *)styleName cutomized:(nullable BOOL *)isCustomized;
 // ------------------------------------------------------
 {
-    return [[self bundledStyleNames] containsObject:styleName];
+    BOOL isBundled = [[self bundledStyleNames] containsObject:styleName];
+    
+    if (isBundled && isCustomized) {
+        *isCustomized = ([self URLForUserStyle:styleName available:YES] != nil);
+    }
+    return isBundled;
 }
 
 
@@ -205,7 +218,7 @@ NSString *_Nonnull const CESyntaxValidationMessageKey = @"MessageKey";
 - (BOOL)isEqualToBundledStyle:(nonnull NSDictionary<NSString *, id> *)style name:(nonnull NSString *)styleName
 // ------------------------------------------------------
 {
-    if (![self isBundledStyle:styleName]) { return NO; }
+    if (![self isBundledStyle:styleName cutomized:nil]) { return NO; }
     
     // numOfObjInArray などが混入しないようにスタイル定義部分だけを比較する
     NSArray<NSString *> *keys = [[self emptyStyle] allKeys];
@@ -315,6 +328,39 @@ NSString *_Nonnull const CESyntaxValidationMessageKey = @"MessageKey";
         }
     } else {
         NSLog(@"Error. Could not be found \"%@\" for remove.", URL);
+    }
+    return success;
+}
+
+
+//------------------------------------------------------
+/// style名に応じたstyleファイルをリストアする
+- (BOOL)restoreStyleFileWithStyleName:(nonnull NSString *)styleName
+//------------------------------------------------------
+{
+    BOOL success = NO;
+    NSURL *URL = [self URLForUserStyle:styleName available:NO];
+    
+    if ([URL checkResourceIsReachableAndReturnError:nil]) {
+        success = [[NSFileManager defaultManager] trashItemAtURL:URL resultingItemURL:nil error:nil];
+        
+        if (success) {
+            // 内部で持っているキャッシュ用データを更新
+            [self styleCaches][styleName] = [[self bundledStyleWithStyleName:styleName] mutableCopy];
+            __weak typeof(self) weakSelf = self;
+            [self updateCacheWithCompletionHandler:^{
+                typeof(self) self = weakSelf;  // strong self
+                
+                [[NSNotificationCenter defaultCenter] postNotificationName:CESyntaxDidUpdateNotification
+                                                                    object:self
+                                                                  userInfo:@{CEOldNameKey: styleName,
+                                                                             CENewNameKey: styleName}];
+            }];
+        } else {
+            NSLog(@"Error. Could not restore \"%@\".", URL);
+        }
+    } else {
+        NSLog(@"Error. Could not be restore \"%@\" for restore.", URL);
     }
     return success;
 }
@@ -806,6 +852,39 @@ NSString *_Nonnull const CESyntaxValidationMessageKey = @"MessageKey";
     }
     
     return [strings copy];
+}
+
+
+// ------------------------------------------------------
+/// try extracting used language from the shebang line
+- (nullable NSString *)scanLanguageFromShebangInString:(nonnull NSString *)string
+// ------------------------------------------------------
+{
+    // get first line
+    __block NSString *firstLine = nil;
+    [string enumerateLinesUsingBlock:^(NSString *line, BOOL *stop) {
+        firstLine = line;
+        *stop = YES;
+    }];
+    
+    // not found
+    if (![firstLine hasPrefix:@"#!"]) { return nil; }
+    
+    // remove #! symbol
+    firstLine = [firstLine stringByReplacingOccurrencesOfString:@"^#! *" withString:@""
+                                                        options:NSRegularExpressionSearch
+                                                          range:NSMakeRange(0, [firstLine length])];
+    
+    // find interpreter
+    NSArray<NSString *> *components = [firstLine componentsSeparatedByString:@" "];
+    NSString * path = components[0];
+    NSString *interpreter = [[path componentsSeparatedByString:@"/"] lastObject];
+    // use first arg if the path targets env
+    if ([interpreter isEqualToString:@"env"]) {
+        interpreter = components[1];
+    }
+    
+    return interpreter;
 }
 
 @end

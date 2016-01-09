@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9060" systemVersion="15C47a" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9060"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9531"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="CECharacterPopoverController">
@@ -19,19 +19,18 @@
             <subviews>
                 <textField horizontalHuggingPriority="500" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" preferredMaxLayoutWidth="500" translatesAutoresizingMaskIntoConstraints="NO" id="Lnp-OL-NAu" customClass="CECharacterField">
                     <rect key="frame" x="8" y="10" width="56" height="54"/>
-                    <animations/>
                     <textFieldCell key="cell" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="center" title="蛙" id="E2I-1W-zW6">
                         <font key="font" size="48" name="TimesNewRomanPSMT"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                     <connections>
-                        <binding destination="-2" name="value" keyPath="glyph" id="RgA-ki-sJ4"/>
+                        <binding destination="-2" name="textColor" keyPath="characterColor" id="ysW-yx-Kvf"/>
+                        <binding destination="-2" name="value" keyPath="glyph" id="3UM-ew-p9Q"/>
                     </connections>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" preferredMaxLayoutWidth="400" translatesAutoresizingMaskIntoConstraints="NO" id="5tD-mh-lm6">
                     <rect key="frame" x="68" y="13" width="188" height="14"/>
-                    <animations/>
                     <textFieldCell key="cell" controlSize="small" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="left" title="U+86D9" id="Atm-wm-Ocl">
                         <font key="font" metaFont="smallSystem"/>
                         <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
@@ -43,7 +42,6 @@
                 </textField>
                 <textField horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" preferredMaxLayoutWidth="400" translatesAutoresizingMaskIntoConstraints="NO" id="cvP-MD-1SF">
                     <rect key="frame" x="68" y="48" width="188" height="16"/>
-                    <animations/>
                     <textFieldCell key="cell" controlSize="small" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="left" title="CJK UNIFIED IDEOGRAPH-86D9" id="H6i-fn-bnL">
                         <font key="font" metaFont="cellTitle"/>
                         <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
@@ -55,7 +53,6 @@
                 </textField>
                 <textField horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" preferredMaxLayoutWidth="400" translatesAutoresizingMaskIntoConstraints="NO" id="V7B-LW-D7y">
                     <rect key="frame" x="68" y="31" width="188" height="14"/>
-                    <animations/>
                     <textFieldCell key="cell" controlSize="small" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="left" title="CJK Unified Ideographs" id="h7A-Kh-GoY">
                         <font key="font" metaFont="smallSystem"/>
                         <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
@@ -68,7 +65,7 @@
             </subviews>
             <constraints>
                 <constraint firstItem="5tD-mh-lm6" firstAttribute="top" secondItem="V7B-LW-D7y" secondAttribute="bottom" constant="4" id="4Nz-VM-PAT"/>
-                <constraint firstItem="5tD-mh-lm6" firstAttribute="top" secondItem="cvP-MD-1SF" secondAttribute="bottom" priority="250" constant="4" id="B75-bi-dvz"/>
+                <constraint firstItem="5tD-mh-lm6" firstAttribute="top" secondItem="cvP-MD-1SF" secondAttribute="bottom" priority="749" constant="4" id="B75-bi-dvz"/>
                 <constraint firstAttribute="trailing" secondItem="cvP-MD-1SF" secondAttribute="trailing" constant="10" id="GfY-bt-3uf"/>
                 <constraint firstAttribute="trailing" secondItem="V7B-LW-D7y" secondAttribute="trailing" constant="10" id="HVL-ke-sJa"/>
                 <constraint firstItem="V7B-LW-D7y" firstAttribute="leading" secondItem="Lnp-OL-NAu" secondAttribute="trailing" constant="8" symbolic="YES" id="JzA-kM-gRT"/>
@@ -82,7 +79,6 @@
                 <constraint firstItem="Lnp-OL-NAu" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="10" id="sWg-5J-zQW"/>
                 <constraint firstItem="Lnp-OL-NAu" firstAttribute="top" secondItem="cvP-MD-1SF" secondAttribute="top" id="zIk-gW-Q8x"/>
             </constraints>
-            <animations/>
             <point key="canvasLocation" x="509" y="628"/>
         </customView>
     </objects>

@@ -1,10 +1,18 @@
 extensions:
 - keyString: "css"
 filenames: []
+metadata:
+  author: "CotEditor Project"
+  distributionURL: "http://coteditor.com"
+  version: "2.0.3"
+  description: "Support partly CSS3."
+  license: "Same as CotEditor"
+  lastModified: "2015-12-25"
 completions: []
 outlineMenu:
 - beginString: "\\@(media|page)\\b(.+)(?=($|\\{))"
   keyString: "@$1 $2"
+  description: "at-rule block"
 commands:
 - beginString: "@-moz-keyframes"
 - beginString: "@-o-keyframes"
@@ -76,13 +84,6 @@ attributes:
   regularExpression: true
 - beginString: "["
   endString: "]"
-metadata:
-  author: "CotEditor Project"
-  distributionURL: "http://coteditor.com"
-  version: "2.0.2"
-  description: "Support partly CSS3."
-  license: "Same as CotEditor"
-  lastModified: "2014-11-30"
 characters:
 - beginString: "attr(?=\\()"
   regularExpression: true

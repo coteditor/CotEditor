@@ -39,3 +39,6 @@
 "qBg-TV-NzD.title" = "许可证：";
 /* Class = "NSTextFieldCell"; title = "Description:"; ObjectID = "4bM-8L-klg"; */
 "4bM-8L-klg.title" = "描述：";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Jump to URL"; ObjectID = "KlI-NS-4x6"; */
+"KlI-NS-4x6.ibShadowedToolTip" = "跳转到 URL";

@@ -1,16 +1,17 @@
 extensions:
 - keyString: "bib"
 filenames: []
+metadata:
+  distributionURL: "http://coteditor.com"
+  lastModified: "2015-12-25"
+  author: "1024jp"
+  license: "Same as CotEditor"
+  version: "1.0.1"
 outlineMenu:
 - beginString: "@(\\w+)\\s*\\{\\s*([^,=]+)"
   keyString: "@$1 $2"
+  description: "entry"
 comments: []
-metadata:
-  distributionURL: "http://coteditor.com"
-  lastModified: "2014-11-22"
-  author: "1024jp"
-  license: "Same as CotEditor"
-  version: "1.0.0"
 numbers: []
 commands:
 - beginString: "\\emph"

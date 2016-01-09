@@ -46,13 +46,11 @@
 #pragma mark Superclass Methods
 
 // ------------------------------------------------------
-/// initializer of panelController
-- (nonnull instancetype)init
+/// nib name
+- (nullable NSString *)windowNibName
 // ------------------------------------------------------
 {
-    self = [super initWithWindowNibName:@"LineHightPanel"];
-    
-    return self;
+    return @"LineHightPanel";
 }
 
 
@@ -62,7 +60,15 @@
 // ------------------------------------------------------
 {
     [self setLineSpacing:[[self textView] lineSpacing]];
-    
+}
+
+
+// ------------------------------------------------------
+/// auto close window if all document windows were closed
+- (BOOL)autoCloses
+// ------------------------------------------------------
+{
+    return YES;
 }
 
 

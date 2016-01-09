@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9060" systemVersion="15C40a" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9060"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9531"/>
         <capability name="box content view" minToolsVersion="7.0"/>
     </dependencies>
     <objects>
@@ -12,7 +12,6 @@
                 <outlet property="documentInspectorViewController" destination="zfS-u8-roN" id="oPb-Zq-odI"/>
                 <outlet property="editor" destination="Asc-bK-hKW" id="ihd-lk-fQz"/>
                 <outlet property="incompatibleCharsViewController" destination="PNV-ic-0G4" id="eFj-Ts-dkB"/>
-                <outlet property="shareButton" destination="b09-OH-vIj" id="lS2-qi-AN6"/>
                 <outlet property="sidebar" destination="34" id="2IU-Vj-94v"/>
                 <outlet property="sidebarPlaceholderView" destination="XSO-vY-vMP" id="9fk-c5-hjU"/>
                 <outlet property="sidebarSplitView" destination="jhv-dr-CH4" id="CIg-jJ-bnp"/>
@@ -44,10 +43,8 @@
                                     <customView fixedFrame="YES" id="xVz-uL-qne" customClass="CEEditorView">
                                         <rect key="frame" x="0.0" y="0.0" width="369" height="530"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <animations/>
                                     </customView>
                                 </subviews>
-                                <animations/>
                                 <holdingPriorities>
                                     <real value="250"/>
                                 </holdingPriorities>
@@ -64,7 +61,6 @@
                                         <subviews>
                                             <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="t7l-ac-OCh">
                                                 <rect key="frame" x="82" y="1" width="65" height="25"/>
-                                                <animations/>
                                                 <segmentedCell key="cell" borderStyle="border" alignment="left" style="texturedSquare" trackingMode="selectOne" id="TPz-kb-PBa" customClass="CESwitcherSegmentedCell">
                                                     <font key="font" metaFont="system"/>
                                                     <segments>
@@ -86,19 +82,16 @@
                                             <constraint firstAttribute="height" constant="28" id="Zoq-vk-07I"/>
                                             <constraint firstItem="t7l-ac-OCh" firstAttribute="centerY" secondItem="0Gu-Ck-2Ro" secondAttribute="centerY" id="dGb-Rv-BoW"/>
                                         </constraints>
-                                        <animations/>
                                     </customView>
                                     <box title="Horizontal Line" boxType="custom" borderType="none" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="m6c-JX-V3M">
                                         <rect key="frame" x="0.0" y="501" width="230" height="1"/>
                                         <view key="contentView" id="JLD-1e-nAg">
                                             <rect key="frame" x="0.0" y="0.0" width="230" height="1"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                            <animations/>
                                         </view>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="wVU-gc-0zA"/>
                                         </constraints>
-                                        <animations/>
                                         <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                                         <color key="fillColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                     </box>
@@ -107,7 +100,6 @@
                                         <subviews>
                                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="hnD-ep-tH0" userLabel="Dummy View">
                                                 <rect key="frame" x="0.0" y="0.0" width="230" height="501"/>
-                                                <animations/>
                                             </customView>
                                         </subviews>
                                         <constraints>
@@ -116,7 +108,6 @@
                                             <constraint firstAttribute="trailing" secondItem="hnD-ep-tH0" secondAttribute="trailing" id="Liy-Fp-KMM"/>
                                             <constraint firstAttribute="bottom" secondItem="hnD-ep-tH0" secondAttribute="bottom" id="ln0-dD-YX5"/>
                                         </constraints>
-                                        <animations/>
                                     </customView>
                                 </subviews>
                                 <constraints>
@@ -132,10 +123,8 @@
                                     <constraint firstItem="m6c-JX-V3M" firstAttribute="leading" secondItem="34" secondAttribute="leading" id="lY8-fD-aZA"/>
                                     <constraint firstItem="0Gu-Ck-2Ro" firstAttribute="top" secondItem="34" secondAttribute="top" id="mrt-ia-dn3"/>
                                 </constraints>
-                                <animations/>
                             </customView>
                         </subviews>
-                        <animations/>
                         <holdingPriorities>
                             <real value="250"/>
                             <real value="251"/>
@@ -154,7 +143,6 @@
                         <subviews>
                             <imageView hidden="YES" toolTip="This document is read only." horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EP1-My-tQo">
                                 <rect key="frame" x="8" y="2" width="16" height="16"/>
-                                <animations/>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="LockedTemplate" id="2Vs-vL-w3p"/>
                                 <connections>
                                     <binding destination="ZaC-Gi-qyq" name="hidden" keyPath="showsReadOnly" id="1zI-EA-6Kx">
@@ -166,7 +154,6 @@
                             </imageView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="G7a-2k-nOK">
                                 <rect key="frame" x="34" y="3" width="33" height="14"/>
-                                <animations/>
                                 <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" title="Label" id="b1b-Kr-R8m">
                                     <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -178,7 +165,6 @@
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QO1-yr-imY">
                                 <rect key="frame" x="559" y="3" width="33" height="14"/>
-                                <animations/>
                                 <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" allowsUndo="NO" sendsActionOnEndEditing="YES" title="Label" id="W4S-dh-6hG">
                                     <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -199,7 +185,6 @@
                             <constraint firstAttribute="centerY" secondItem="QO1-yr-imY" secondAttribute="centerY" id="tYP-eB-pNq"/>
                             <constraint firstAttribute="centerY" secondItem="G7a-2k-nOK" secondAttribute="centerY" id="wwt-6v-1Di"/>
                         </constraints>
-                        <animations/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                 <color key="value" name="windowFrameColor" catalog="System" colorSpace="catalog"/>
@@ -221,17 +206,15 @@
                     <constraint firstItem="jhv-dr-CH4" firstAttribute="top" secondItem="6" secondAttribute="top" id="ocL-uJ-ACf"/>
                     <constraint firstAttribute="trailing" secondItem="Rjm-Sf-4Mf" secondAttribute="trailing" id="vUa-vZ-EE4"/>
                 </constraints>
-                <animations/>
             </view>
             <toolbar key="toolbar" implicitIdentifier="CED05FB8-D6FA-4FDC-A1D9-8D33CCA40BE5" explicitIdentifier="docWindowToolbarID" displayMode="iconAndLabel" sizeMode="regular" id="olV-v9-4mJ">
                 <allowedToolbarItems>
                     <toolbarItem implicitItemIdentifier="D0855551-09F0-4844-BEEB-01E31A159043" explicitItemIdentifier="lineEndingsItemID" label="Line Endings" paletteLabel="Line Endings" toolTip="Change line endings" tag="1" id="fVR-to-zN3" customClass="CEPopUpToolbarItem">
-                        <size key="minSize" width="70" height="20"/>
-                        <size key="maxSize" width="70" height="22"/>
+                        <size key="minSize" width="50" height="20"/>
+                        <size key="maxSize" width="60" height="22"/>
                         <popUpButton key="view" verticalHuggingPriority="750" tag="1" id="77">
-                            <rect key="frame" x="2" y="14" width="70" height="20"/>
+                            <rect key="frame" x="7" y="14" width="60" height="20"/>
                             <autoresizingMask key="autoresizingMask"/>
-                            <animations/>
                             <popUpButtonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" alignment="left" controlSize="small" lineBreakMode="clipping" borderStyle="border" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="701">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                 <font key="font" metaFont="smallSystem"/>
@@ -263,7 +246,6 @@
                         <popUpButton key="view" verticalHuggingPriority="750" tag="2" id="90">
                             <rect key="frame" x="0.0" y="14" width="140" height="20"/>
                             <autoresizingMask key="autoresizingMask"/>
-                            <animations/>
                             <popUpButtonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" alignment="left" controlSize="small" lineBreakMode="clipping" borderStyle="border" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="702">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                 <font key="font" metaFont="smallSystem"/>
@@ -281,7 +263,6 @@
                         <popUpButton key="view" verticalHuggingPriority="750" tag="3" id="96">
                             <rect key="frame" x="0.0" y="14" width="120" height="20"/>
                             <autoresizingMask key="autoresizingMask"/>
-                            <animations/>
                             <popUpButtonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" alignment="left" controlSize="small" lineBreakMode="clipping" borderStyle="border" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="703">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                 <font key="font" metaFont="smallSystem"/>
@@ -294,18 +275,17 @@
                         </popUpButton>
                     </toolbarItem>
                     <toolbarItem implicitItemIdentifier="BBDC186D-4E5D-425D-B728-8CB0614989B6" explicitItemIdentifier="shareItemID" label="Share" paletteLabel="Share" toolTip="Share document file" tag="23" image="NSShareTemplate" id="tZT-2A-nIl">
-                        <size key="minSize" width="48" height="32"/>
-                        <size key="maxSize" width="48" height="32"/>
+                        <size key="minSize" width="32" height="24"/>
+                        <size key="maxSize" width="36" height="32"/>
                         <button key="view" verticalHuggingPriority="750" tag="23" id="b09-OH-vIj">
-                            <rect key="frame" x="0.0" y="14" width="48" height="32"/>
+                            <rect key="frame" x="1" y="14" width="36" height="32"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            <animations/>
-                            <buttonCell key="cell" type="push" bezelStyle="rounded" image="NSShareTemplate" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="mH9-PF-JoG">
+                            <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="NSShareTemplate" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="mH9-PF-JoG">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                 <font key="font" metaFont="system"/>
                             </buttonCell>
                             <connections>
-                                <action selector="share:" target="-2" id="SUM-6X-NUT"/>
+                                <action selector="share:" target="-1" id="hZf-Cq-9Yb"/>
                             </connections>
                         </button>
                         <connections>
@@ -431,6 +411,7 @@
             <connections>
                 <outlet property="encodingPopupButton" destination="90" id="9ae-Bd-vPQ"/>
                 <outlet property="lineEndingPopupButton" destination="77" id="ypf-VV-99N"/>
+                <outlet property="shareButton" destination="b09-OH-vIj" id="JsB-8c-gRV"/>
                 <outlet property="syntaxPopupButton" destination="96" id="44A-ih-NrH"/>
                 <outlet property="toolbar" destination="olV-v9-4mJ" id="pNJ-aC-2RI"/>
                 <outlet property="windowController" destination="-2" id="OVy-AU-0VE"/>

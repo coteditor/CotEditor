@@ -41,6 +41,7 @@
 @property (nonatomic, nullable, weak) IBOutlet NSPopUpButton *lineEndingPopupButton;
 @property (nonatomic, nullable, weak) IBOutlet NSPopUpButton *encodingPopupButton;
 @property (nonatomic, nullable, weak) IBOutlet NSPopUpButton *syntaxPopupButton;
+@property (nonatomic, nullable, weak) IBOutlet NSButton *shareButton;
 
 @end
 
@@ -67,6 +68,16 @@
 - (void)awakeFromNib
 // ------------------------------------------------------
 {
+    // modify popup buttons style on Mavericks and earlier
+    if (NSAppKitVersionNumber < NSAppKitVersionNumber10_10) {
+        [[self lineEndingPopupButton] setBezelStyle:NSRoundedBezelStyle];
+        [[self encodingPopupButton] setBezelStyle:NSRoundedBezelStyle];
+        [[self syntaxPopupButton] setBezelStyle:NSRoundedBezelStyle];
+    }
+    
+    // setup share button
+    [[self shareButton] sendActionOn:NSLeftMouseDownMask];
+    
     [self buildEncodingPopupButton];
     [self buildSyntaxPopupButton];
     

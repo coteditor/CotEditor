@@ -58,7 +58,7 @@ NSString *_Nonnull const CEVisibleRectKey = @"visibleRect";
 
 @interface CETextView ()
 
-@property (nonatomic) NSTimer *completionTimer;
+@property (nonatomic, weak) NSTimer *completionTimer;
 @property (nonatomic, copy) NSString *particalCompletionWord;  // ユーザが実際に入力した補完の元になる文字列
 
 @property (nonatomic) NSColor *highlightLineColor;  // カレント行ハイライト色
@@ -115,7 +115,7 @@ static NSPoint kTextContainerOrigin;
         CGFloat fontSize = (CGFloat)[defaults doubleForKey:CEDefaultFontSizeKey];
         NSFont *font = [NSFont fontWithName:[defaults stringForKey:CEDefaultFontNameKey] size:fontSize];
         if (!font) {
-            font = [NSFont systemFontOfSize:fontSize];
+            font = [NSFont userFontOfSize:fontSize];
         }
 
         NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
@@ -182,7 +182,8 @@ static NSPoint kTextContainerOrigin;
         [[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:key];
     }
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [self stopCompletionTimer];
+    
+    [_completionTimer invalidate];
 }
 
 
@@ -771,7 +772,11 @@ static NSPoint kTextContainerOrigin;
             }
             
             // jsut insert the absolute path if no specific setting for the file type was found
+            // -> This is the default behavior of NSTextView by file dropping.
             if ([stringToDrop length] == 0) {
+                if ([replacementString length] > 0) {
+                    [replacementString appendString:@"\n"];
+                }
                 [replacementString appendString:[absoluteURL path]];
                 
                 continue;
@@ -1186,7 +1191,7 @@ static NSPoint kTextContainerOrigin;
     NSString *name = [[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultFontNameKey];
     CGFloat size = (CGFloat)[[NSUserDefaults standardUserDefaults] doubleForKey:CEDefaultFontSizeKey];
     
-    [self setFont:[NSFont fontWithName:name size:size] ? : [NSFont systemFontOfSize:size]];
+    [self setFont:[NSFont fontWithName:name size:size] ? : [NSFont userFontOfSize:size]];
     
     // キャレット／選択範囲が見えるようにスクロール位置を調整
     [self scrollRangeToVisible:[self selectedRange]];
@@ -1657,7 +1662,7 @@ static NSPoint kTextContainerOrigin;
     NSEvent *event = [[self window] currentEvent];
     BOOL didComplete = NO;
     
-    [self stopCompletionTimer];
+    [[self completionTimer] invalidate];
     
     // 補完の元になる文字列を保存する
     if (![self particalCompletionWord]) {
@@ -1716,7 +1721,7 @@ static NSPoint kTextContainerOrigin;
 - (void)completeAfterDelay:(NSTimeInterval)delay
 // ------------------------------------------------------
 {
-    if ([self completionTimer]) {
+    if ([[self completionTimer] isValid]) {
         [[self completionTimer] setFireDate:[NSDate dateWithTimeIntervalSinceNow:delay]];
     } else {
         [self setCompletionTimer:[NSTimer scheduledTimerWithTimeInterval:delay
@@ -1729,19 +1734,6 @@ static NSPoint kTextContainerOrigin;
 
 
 
-#pragma mark Semi-Private Methods
-
-// ------------------------------------------------------
-/// 入力補完タイマーを停止
-- (void)stopCompletionTimer
-// ------------------------------------------------------
-{
-    [[self completionTimer] invalidate];
-    [self setCompletionTimer:nil];
-}
-
-
-
 #pragma mark Private Methods
 
 // ------------------------------------------------------
@@ -1749,7 +1741,7 @@ static NSPoint kTextContainerOrigin;
 - (void)completionWithTimer:(nonnull NSTimer *)timer
 // ------------------------------------------------------
 {
-    [self stopCompletionTimer];
+    [[self completionTimer] invalidate];
     
     // abord if input is not specified (for Japanese input)
     if ([self hasMarkedText]) { return; }
@@ -1817,11 +1809,31 @@ static NSPoint kTextContainerOrigin;
     // settle result on expanding selection or if there is no possibility for clicking brackets
     if (proposedSelRange.length > 0 || wordRange.length != 1) { return wordRange; }
     
-    // select inside of brackets by double-clicking
     NSInteger location = wordRange.location;
+    unichar clickedCharacter = [completeString characterAtIndex:location];
+    
+    // select (syntax-highlighted) quoted text by double-clicking
+    if (clickedCharacter == '"' || clickedCharacter == '\'' || clickedCharacter == '`') {
+        NSRange highlightRange;
+        [[self layoutManager] temporaryAttribute:NSForegroundColorAttributeName atCharacterIndex:location
+                           longestEffectiveRange:&highlightRange inRange:NSMakeRange(0, [completeString length])];
+        
+        BOOL isStartQuote = (highlightRange.location == location);
+        BOOL isEndQuote = (NSMaxRange(highlightRange) - 1 == location);
+        
+        if (isStartQuote || isEndQuote) {
+            if ((isStartQuote && [completeString characterAtIndex:NSMaxRange(highlightRange) - 1] == clickedCharacter) ||
+                (isEndQuote && [completeString characterAtIndex:highlightRange.location] == clickedCharacter))
+            {
+                return highlightRange;
+            }
+        }
+    }
+    
+    // select inside of brackets by double-clicking
     unichar beginBrace, endBrace;
     BOOL isEndBrace = NO;
-    switch ([completeString characterAtIndex:location]) {
+    switch (clickedCharacter) {
         case ')':
             isEndBrace = YES;
         case '(':

@@ -24,8 +24,83 @@
 
 <article>
 <header>
+	<h1>CotEditor 2.3.3</h1>
+	<p>release: <time>2016-01</time></p>
+</header>
+
+
+<section>
+<h2>New Features</h2>
+
+<ul>
+    <li>Add “Share” menu to File menu.</li>
+</ul>
+</section>
+
+
+<section>
+<h2>Improvements</h2>
+
+<ul>
+    <li>Now, you can force-disable window restoration from the last session if you hold Shift key while launch.</li>
+    <li>Improve “Input Character in Unicode Hex” panel:
+    <ul>
+        <li>Display proposed character info.</li>
+        <li>Allow also taking a 1 to 3 digits point code.</li>
+        <li>Avoid auto-closing panel after enter character.</li>
+    </ul></li>
+    <li>Improve character inspector:
+    <ul>
+        <li>Display more comprehensible name for C0 control characters (e.g. <code>&lt;control-0000&gt;</code> to <code>NULL</code>).</li>
+        <li>Display a alternate visible symbol in the zoomed character area for C0 control characters.</li>
+    </ul></li>
+    <li>Improve installed syntax style list in preferences:
+    <ul>
+        <li>Add dot mark to style names in the list to represent the state if the style is customized.</li>
+        <li>Enable restoring modified syntax style directly from the list without opening the style editor.</li>
+    </ul></li>
+    <li>Now, the current line number is drawn in bold font, and always drawn in vertical text mode.</li>
+    <li>Select whole text wrapped with quotation marks by double-clicking one of the quotation marks if it is already syntax-highlighted.</li>
+    <li>Keep text selection after inserting color code from the color code panel.</li>
+    <li>Add “description” field also to outline setting in syntax style editor.
+    <ul>
+        <li>From this, update most of bundled syntax styles.</li>
+    </ul></li>
+    <li>Add jump to URL button to the style info in the syntax style editor.</li>
+    <li>Improve drawing of “Other” invisible characters.</li>
+    <li>Improve behavior on Replace/Replace All actions.</li>
+    <li>Improve text encoding detection to redress the tendency: a binary file was interpreted as ISO-2022-JP.</li>
+    <li>Revert style of popup menus in toolbar on Marvericks and earlier.</li>
+    <li>Update line number font.</li>
+    <li>Update default fonts.</li>
+    <li>Tweak preferences layout.</li>
+    <li>Tweak Chinese localization.</li>
+    <li>Improve general stability.</li>
+</ul>
+</section>
+
+
+<section>
+<h2>Fixes</h2>
+
+<ul>
+    <li>Fix an issue where the application tended to crash by trying opening binary file.</li>
+    <li>Fix an issue where line breaks between paths of dropped files were missing.</li>
+    <li>Fix an issue where the application crashed when a single character that is a part of surrogate pair is inspected.</li>
+    <li>Fix an issue where snippet key bindings could not be customized on Mavericks and earlier.</li>
+    <li>Fix an issue where syntax highlight was not updated after reinterpreting encoding.</li>
+    <li>Fix an issue where panels could lost target document.</li>
+    <li>Fix layout of character popup on Mavericks and earlier.</li>
+    <li>Fix an issue where “Recolor All” action was always enabled even if syntax style is “None.”</li>
+</ul>
+</section>
+</article>
+
+
+<article>
+<header>
 	<h1>CotEditor 2.3.2</h1>
-	<p>release: <time>2015-12</time></p>
+	<p>release: <time>2015-12-19</time></p>
 </header>
 
 

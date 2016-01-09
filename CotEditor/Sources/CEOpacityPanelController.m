@@ -47,13 +47,11 @@
 #pragma mark Superclass Methods
 
 // ------------------------------------------------------
-/// initializer of panelController
-- (nonnull instancetype)init
+/// nib name
+- (nullable NSString *)windowNibName
 // ------------------------------------------------------
 {
-    self = [super initWithWindowNibName:@"OpacityPanel"];
-    
-    return self;
+    return @"OpacityPanel";
 }
 
 
@@ -66,6 +64,15 @@
 }
 
 
+// ------------------------------------------------------
+/// auto close window if all document windows were closed
+- (BOOL)autoCloses
+// ------------------------------------------------------
+{
+    return YES;
+}
+
+
 
 #pragma mark Action Messages
 
@@ -74,12 +81,8 @@
 - (IBAction)applyAsDefault:(nullable id)sender
 // ------------------------------------------------------
 {
-    // apply to all windows
-    for (id document in [NSApp orderedDocuments]) {
-        [(CEWindow *)[[self documentWindowController] window] setBackgroundAlpha:[self opacity]];
-    }
-    
     // set as default
+    //   -> The new value will automatically be applied to all windows as they observe userDefault value.
     [[NSUserDefaults standardUserDefaults] setValue:@([self opacity]) forKey:CEDefaultWindowAlphaKey];
 }
 

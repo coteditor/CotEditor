@@ -55,12 +55,21 @@
 - (nonnull instancetype)initWithMessage:(nonnull NSString *)message
 // ------------------------------------------------------
 {
-    self = [super initWithWindowNibName:@"Indicator"];
+    self = [super init];
     if (self) {
         _message = message;
         _informativeText = NSLocalizedString(@"Please wait for a while.", nil);
     }
     return self;
+}
+
+
+// ------------------------------------------------------
+/// nib name
+- (nullable NSString *)windowNibName
+// ------------------------------------------------------
+{
+    return @"Indicator";
 }
 
 
