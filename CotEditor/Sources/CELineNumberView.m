@@ -38,6 +38,10 @@ static const CGFloat kMinHorizontalThickness = 20.0;
 static const CGFloat kLineNumberPadding = 4.0;
 static const CGFloat kFontSizeFactor = 0.9;
 
+// dragging info keys
+static NSString * _Nonnull const DraggingSelectedRangesKey = @"selectedRanges";
+static NSString * _Nonnull const DraggingIndexKey = @"index";
+
 
 @interface CELineNumberView ()
 
@@ -381,14 +385,15 @@ static CGFontRef BoldLineNumberFont;
                                                                   [theEvent locationInWindow].y, 0, 0)].origin;
     NSUInteger index = [[self textView] characterIndexForPoint:point];
     
-    [self selectLines:nil];  // for single click event
-    
     // repeat while dragging
     [self setDraggingTimer:[NSTimer scheduledTimerWithTimeInterval:0.05
                                                             target:self
                                                           selector:@selector(selectLines:)
-                                                          userInfo:@(index)
+                                                          userInfo:@{DraggingIndexKey: @(index),
+                                                                     DraggingSelectedRangesKey: [[self textView] selectedRanges]}
                                                            repeats:YES]];
+    
+    [self selectLines:nil];  // for single click event
 }
 
 
@@ -436,7 +441,7 @@ static CGFontRef BoldLineNumberFont;
     
     // select lines
     NSUInteger currentIndex = [textView characterIndexForPoint:point];
-    NSUInteger clickedIndex = timer ? [[timer userInfo] unsignedIntegerValue] : currentIndex;
+    NSUInteger clickedIndex = timer ? [[timer userInfo][DraggingIndexKey] unsignedIntegerValue] : currentIndex;
     NSRange currentLineRange = [[textView string] lineRangeForRange:NSMakeRange(currentIndex, 0)];
     NSRange clickedLineRange = [[textView string] lineRangeForRange:NSMakeRange(clickedIndex, 0)];
     NSRange range = NSUnionRange(currentLineRange, clickedLineRange);
@@ -445,7 +450,36 @@ static CGFontRef BoldLineNumberFont;
     
     // with Command key (add selection)
     if ([NSEvent modifierFlags] & NSCommandKeyMask) {
-        NSArray<NSValue *> *selectedRanges = [[textView selectedRanges] arrayByAddingObject:[NSValue valueWithRange:range]];
+        NSArray<NSValue *> *originalSelectedRanges = [timer userInfo][DraggingSelectedRangesKey] ?: [textView selectedRanges];
+        NSMutableArray<NSValue *> *selectedRanges = [NSMutableArray array];
+        BOOL intersects = NO;
+        
+        for (NSValue *selectedRangeValue in originalSelectedRanges) {
+            NSRange selectedRange = [selectedRangeValue rangeValue];
+
+            if (selectedRange.location <= range.location && NSMaxRange(range) <= NSMaxRange(selectedRange)) {  // exclude
+                NSRange range1 = NSMakeRange(selectedRange.location, range.location - selectedRange.location);
+                NSRange range2 = NSMakeRange(NSMaxRange(range), NSMaxRange(selectedRange) - NSMaxRange(range));
+                
+                if (range1.length > 0) {
+                    [selectedRanges addObject:[NSValue valueWithRange:range1]];
+                }
+                if (range2.length > 0) {
+                    [selectedRanges addObject:[NSValue valueWithRange:range2]];
+                }
+                
+                intersects = YES;
+                continue;
+            }
+            
+            // add
+            [selectedRanges addObject:selectedRangeValue];
+        }
+        
+        if (!intersects) {  // add current dragging selection
+            [selectedRanges addObject:[NSValue valueWithRange:range]];
+        }
+        
         [textView setSelectedRanges:selectedRanges affinity:affinity stillSelecting:YES];
         
         // redraw line number
