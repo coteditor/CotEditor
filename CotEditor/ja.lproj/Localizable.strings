@@ -475,8 +475,8 @@
 
 
 /* MARK: CEFindPanelController */
-"%d string found." = "%d 文字列見つかりました。";
-"%d strings found." = "%d 文字列見つかりました。";
+"%@ string found." = "%@ 文字列見つかりました。";
+"%@ strings found." = "%@ 文字列見つかりました。";
 "Invalid regular expression" =  "無効な正規表現です。";
 
 
@@ -485,4 +485,4 @@
 // Find result (“%@” is filename)
 "No strings found in “%@”." = "“%@”内に見つかりませんでした。";
 "Found one string in “%@”." = "“%@”内に 1 件見つかりました。";
-"Found %li strings in “%@”." = "“%2$@”内に %1$li 件見つかりました。";
+"Found %@ strings in “%@”." = "“%2$@”内に %1$@ 件見つかりました。";

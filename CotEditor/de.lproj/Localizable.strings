@@ -473,8 +473,8 @@
 
 
 /* MARK: CEFindPanelController */
-"%d string found." = "%d Zeichenkette gefunden.";
-"%d strings found." = "%d Zeichenketten gefunden.";
+"%@ string found." = "%@ Zeichenkette gefunden.";
+"%@ strings found." = "%@ Zeichenketten gefunden.";
 "Invalid regular expression" =  "Ungültiger regulärer Ausdruck";
 
 
@@ -483,4 +483,4 @@
 // Find result (“%@” is filename)
 "No strings found in “%@”." = "Keine Zeichenketten in „%@“ gefunden.";
 "Found one string in “%@”." = "Eine Zeichenkette in „%@“ gefunden.";
-"Found %li strings in “%@”." = "%li Zeichenketten “%@” in gefunden.";
+"Found %@ strings in “%@”." = "%@ Zeichenketten “%@” in gefunden.";

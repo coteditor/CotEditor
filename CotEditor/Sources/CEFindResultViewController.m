@@ -44,6 +44,7 @@ static const int kMaxMatchedStringLength = 256;
 @property (nonatomic) NSUInteger count;
 
 @property (nonatomic, nullable, weak) IBOutlet NSTableView *tableView;
+@property (nonatomic, nullable, weak) IBOutlet NSNumberFormatter *integerFormatter;
 
 @end
 
@@ -179,7 +180,8 @@ static const int kMaxMatchedStringLength = 256;
     } else if ([self count] == 1) {
         message = [NSString stringWithFormat:NSLocalizedString(@"Found one string in “%@”.", nil), [self documentName]];
     } else {
-        message = [NSString stringWithFormat:NSLocalizedString(@"Found %li strings in “%@”.", nil), [self count], [self documentName]];
+        NSString *countStr = [[self integerFormatter] stringFromNumber:@([self count])];
+        message = [NSString stringWithFormat:NSLocalizedString(@"Found %@ strings in “%@”.", nil), countStr, [self documentName]];
     }
     [self setResultMessage:message];
     

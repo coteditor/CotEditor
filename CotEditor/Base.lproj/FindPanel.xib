@@ -15,7 +15,7 @@
         <window identifier="findPanel" title="Find &amp; Replace" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="findPanel" animationBehavior="default" id="Wal-Sg-6d6" userLabel="Find Panel" customClass="NSPanel">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" resizable="YES" utility="YES"/>
             <rect key="contentRect" x="167" y="107" width="540" height="380"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1280" height="777"/>
             <view key="contentView" id="VS9-oi-ter">
                 <rect key="frame" x="0.0" y="0.0" width="540" height="380"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -666,6 +666,7 @@
                 <outlet property="disclosureButton" destination="oC1-bN-UeN" id="tQy-dI-Hz8"/>
                 <outlet property="findHistoryMenu" destination="Zor-um-eIs" id="h8U-Ab-tbx"/>
                 <outlet property="findPanel" destination="Wal-Sg-6d6" id="LNu-bI-x1p"/>
+                <outlet property="integerFormatter" destination="YLc-PB-3Zc" id="B4l-NR-WRp"/>
                 <outlet property="regexPopover" destination="aeg-YU-kMW" id="74c-KY-mlG"/>
                 <outlet property="replaceButton" destination="7cY-9y-k1i" id="VuC-Xs-ppP"/>
                 <outlet property="replaceHistoryMenu" destination="xUj-lq-8zt" id="FAg-xb-5HX"/>
@@ -676,6 +677,7 @@
         </customObject>
         <viewController id="46P-vJ-49R" customClass="CEFindResultViewController">
             <connections>
+                <outlet property="integerFormatter" destination="YLc-PB-3Zc" id="s1c-LJ-0WK"/>
                 <outlet property="tableView" destination="4Sw-Gq-de2" id="nR3-HO-4fV"/>
                 <outlet property="view" destination="CRP-NW-b9J" id="HyB-MX-ri4"/>
             </connections>
@@ -687,6 +689,7 @@
                 <outlet property="delegate" destination="qZS-yd-wpm" id="yN3-3Z-2n6"/>
             </connections>
         </popover>
+        <numberFormatter formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="YLc-PB-3Zc"/>
     </objects>
     <resources>
         <image name="FindTemplate" width="20" height="13"/>

@@ -81,8 +81,9 @@ static const NSUInteger kMaxHistorySize = 20;
 @property (nonatomic) BOOL notEndOfLineOption;
 
 #pragma mark Outlets
-@property (nonatomic) IBOutlet CEFindResultViewController *resultViewController;
-@property (nonatomic) IBOutlet NSPopover *regexPopover;
+@property (nonatomic, nullable) IBOutlet NSNumberFormatter *integerFormatter;  // top level
+@property (nonatomic, nullable) IBOutlet CEFindResultViewController *resultViewController;
+@property (nonatomic, nullable) IBOutlet NSPopover *regexPopover;
 @property (nonatomic, nullable, weak) IBOutlet NSSplitView *splitView;
 @property (nonatomic, nullable, weak) IBOutlet NSButton *disclosureButton;
 @property (nonatomic, nullable, weak) IBOutlet NSMenu *findHistoryMenu;
@@ -413,6 +414,7 @@ static const NSUInteger kMaxHistorySize = 20;
     
     [self invalidateSyntaxInTextFinder];
     
+    NSNumberFormatter *integerFormatter = [self integerFormatter];
     NSTextView *textView = [self target];
     NSString *findString = [self sanitizedFindString];
     NSWindow *documentWindow = [textView window];
@@ -464,8 +466,9 @@ static const NSUInteger kMaxHistorySize = 20;
                                 CEFindResultLineRange: [NSValue valueWithRange:inlineRange]}];
             
             dispatch_async(dispatch_get_main_queue(), ^{
-                NSString *informative = ([result count] == 1) ? @"%d string found." : @"%d strings found.";
-                [indicator setInformativeText:[NSString stringWithFormat:NSLocalizedString(informative, nil), [result count]]];
+                NSString *informative = ([result count] == 1) ? @"%@ string found." : @"%@ strings found.";
+                NSString *countStr = [integerFormatter stringFromNumber:@([result count])];
+                [indicator setInformativeText:[NSString stringWithFormat:NSLocalizedString(informative, nil), countStr]];
             });
         }
         
