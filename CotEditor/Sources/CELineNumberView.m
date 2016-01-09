@@ -375,6 +375,38 @@ static CGFontRef BoldLineNumberFont;
 }
 
 
+
+#pragma mark Private Methods
+
+// ------------------------------------------------------
+/// return client view casting to textView
+- (nullable NSTextView<CETextViewProtocol> *)textView
+// ------------------------------------------------------
+{
+    return (NSTextView<CETextViewProtocol> *)[self clientView];
+}
+
+
+
+#pragma mark Private C Functions
+
+/// digits of input number
+unsigned int numberOfDigits(int number) { return (unsigned int)log10(number) + 1; }
+
+/// number at the desired place of input number
+unsigned int numberAt(int place, int number) { return (number % (int)pow(10, place + 1)) / pow(10, place); }
+
+@end
+
+
+
+
+#pragma mark -
+
+@implementation CELineNumberView (LineSelecting)
+
+#pragma mark Superclass Methods
+
 // ------------------------------------------------------
 /// start selecting correspondent lines in text view with drag / click event
 - (void)mouseDown:(nonnull NSEvent *)theEvent
@@ -406,21 +438,13 @@ static CGFontRef BoldLineNumberFont;
     [self setDraggingTimer:nil];
     
     // settle selection
+    //   -> in `selectLines:`, `stillSelecting` flag is always YES
     [[self textView] setSelectedRanges:[[self textView] selectedRanges]];
 }
 
 
 
 #pragma mark Private Methods
-
-// ------------------------------------------------------
-/// return client view casting to textView
-- (nullable NSTextView<CETextViewProtocol> *)textView
-// ------------------------------------------------------
-{
-    return (NSTextView<CETextViewProtocol> *)[self clientView];
-}
-
 
 // ------------------------------------------------------
 /// select lines while dragging event
@@ -511,15 +535,5 @@ static CGFontRef BoldLineNumberFont;
     // redraw line number
     [self setNeedsDisplay:YES];
 }
-
-
-
-#pragma mark Private C Functions
-
-/// digits of input number
-unsigned int numberOfDigits(int number) { return (unsigned int)log10(number) + 1; }
-
-/// number at the desired place of input number
-unsigned int numberAt(int place, int number) { return (number % (int)pow(10, place + 1)) / pow(10, place); }
 
 @end
