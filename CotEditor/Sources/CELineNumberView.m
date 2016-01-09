@@ -195,7 +195,13 @@ static CGFontRef BoldLineNumberFont;
     
     BOOL isVerticalText = [self orientation] == NSHorizontalRuler;
     NSUInteger tailGlyphIndex = [layoutManager glyphIndexForCharacterAtIndex:[string length]];
-    NSRange selectedLineRange = [string lineRangeForRange:[[self textView] selectedRange]];
+    
+    // get multiple selection
+    NSMutableArray<NSValue *> *selectedLineRanges = [NSMutableArray arrayWithCapacity:[[[self textView] selectedRanges] count]];
+    for (NSValue *rangeValue in [[self textView] selectedRanges]) {
+        NSRange selectedLineRange = [string lineRangeForRange:[rangeValue rangeValue]];
+        [selectedLineRanges addObject:[NSValue valueWithRange:selectedLineRange]];
+    }
     
     // draw line number block
     CGGlyph *digitGlyphsPtr = digitGlyphs;
@@ -261,7 +267,15 @@ static CGFontRef BoldLineNumberFont;
         NSUInteger charIndex = [layoutManager characterIndexForGlyphAtIndex:glyphIndex];
         NSRange lineRange = [string lineRangeForRange:NSMakeRange(charIndex, 0)];
         glyphIndex = NSMaxRange([layoutManager glyphRangeForCharacterRange:lineRange actualCharacterRange:NULL]);
-        BOOL isSelected = NSLocationInRange(lineRange.location, selectedLineRange);
+        
+        // check if line is selected
+        BOOL isSelected = NO;
+        for (NSValue *selectedLineValue in selectedLineRanges) {
+            if (NSLocationInRange(lineRange.location, [selectedLineValue rangeValue])) {
+                isSelected = YES;
+                break;
+            }
+        }
         
         while (glyphCount < glyphIndex) { // handle wrapped lines
             NSRange range;
@@ -298,7 +312,8 @@ static CGFontRef BoldLineNumberFont;
     // draw the last "extra" line number
     if ([layoutManager extraLineFragmentTextContainer]) {
         NSRect lineRect = [layoutManager extraLineFragmentUsedRect];
-        BOOL isSelected = (selectedLineRange.length == 0) && ([string length] == NSMaxRange(selectedLineRange));
+        NSRange lastSelectedRange = [[selectedLineRanges lastObject] rangeValue];
+        BOOL isSelected = (lastSelectedRange.length == 0) && ([string length] == NSMaxRange(lastSelectedRange));
         CGFloat y = -NSMinY(lineRect);
         
         draw_number(lineNumber, lastLineNumber, y, YES, isSelected);
