@@ -399,6 +399,9 @@ static CGFontRef BoldLineNumberFont;
 {
     [[self draggingTimer] invalidate];
     [self setDraggingTimer:nil];
+    
+    // settle selection
+    [[self textView] setSelectedRanges:[[self textView] selectedRanges]];
 }
 
 
@@ -438,10 +441,12 @@ static CGFontRef BoldLineNumberFont;
     NSRange clickedLineRange = [[textView string] lineRangeForRange:NSMakeRange(clickedIndex, 0)];
     NSRange range = NSUnionRange(currentLineRange, clickedLineRange);
     
+    NSSelectionAffinity affinity = (currentIndex < clickedIndex) ? NSSelectionAffinityUpstream : NSSelectionAffinityDownstream;
+    
     // with Command key (add selection)
     if ([NSEvent modifierFlags] & NSCommandKeyMask) {
         NSArray<NSValue *> *selectedRanges = [[textView selectedRanges] arrayByAddingObject:[NSValue valueWithRange:range]];
-        [textView setSelectedRanges:selectedRanges];
+        [textView setSelectedRanges:selectedRanges affinity:affinity stillSelecting:YES];
         return;
     }
     
@@ -463,7 +468,10 @@ static CGFontRef BoldLineNumberFont;
         }
     }
     
-    [textView setSelectedRange:range];
+    [textView setSelectedRange:range affinity:affinity stillSelecting:YES];
+    
+    // redraw line number
+    [self setNeedsDisplay:YES];
 }
 
 
