@@ -1337,7 +1337,7 @@ static NSPoint kTextContainerOrigin;
 - (IBAction)selectLines:(nullable id)sender
 // ------------------------------------------------------
 {
-    [self setSelectedRange:[[self string] lineRangeForRange:[self selectedRange]]];
+    [self setSelectedRanges:[self selectedLineRanges]];
 }
 
 
@@ -1608,6 +1608,37 @@ static NSPoint kTextContainerOrigin;
     NSUInteger numberOfTabChars = [[indent componentsSeparatedByString:@"\t"] count] - 1;
     
     return numberOfTabChars + (([indent length] - numberOfTabChars) / [self tabWidth]);
+}
+
+
+
+// ------------------------------------------------------
+/// extract line by line line ranges which selected ranges include
+- (nonnull NSArray<NSValue *> *)selectedLineRanges
+// ------------------------------------------------------
+{
+    NSMutableOrderedSet<NSValue *> *lineRanges = [NSMutableOrderedSet orderedSet];
+    NSString *string = [self string];
+    
+    // get line ranges to process
+    for (NSValue *rangeValue in [self selectedRanges]) {
+        NSRange selectedRange = [rangeValue rangeValue];
+        
+        NSRange linesRange = [string lineRangeForRange:selectedRange];
+        
+        // store each line to process
+        [string enumerateSubstringsInRange:linesRange
+                                   options:NSStringEnumerationByLines | NSStringEnumerationSubstringNotRequired
+                                usingBlock:^(NSString * _Nullable substring,
+                                             NSRange substringRange,
+                                             NSRange enclosingRange,
+                                             BOOL * _Nonnull stop)
+         {
+             [lineRanges addObject:[NSValue valueWithRange:enclosingRange]];
+         }];
+    }
+    
+    return [lineRanges array];
 }
 
 
@@ -2886,39 +2917,6 @@ static NSPoint kTextContainerOrigin;
     [self didChangeText];
     
     [[self undoManager] setActionName:NSLocalizedString(@"Delete Line", @"action name")];
-}
-
-
-
-#pragma mark Private Methods
-
-// ------------------------------------------------------
-/// extract line by line line ranges which selected ranges include
-- (nonnull NSArray<NSValue *> *)selectedLineRanges
-// ------------------------------------------------------
-{
-    NSMutableOrderedSet<NSValue *> *lineRanges = [NSMutableOrderedSet orderedSet];
-    NSString *string = [self string];
-    
-    // get line ranges to process
-    for (NSValue *rangeValue in [self selectedRanges]) {
-        NSRange selectedRange = [rangeValue rangeValue];
-        
-        NSRange linesRange = [string lineRangeForRange:selectedRange];
-        
-        // store each line to process
-        [string enumerateSubstringsInRange:linesRange
-                                   options:NSStringEnumerationByLines | NSStringEnumerationSubstringNotRequired
-                                usingBlock:^(NSString * _Nullable substring,
-                                             NSRange substringRange,
-                                             NSRange enclosingRange,
-                                             BOOL * _Nonnull stop)
-         {
-             [lineRanges addObject:[NSValue valueWithRange:enclosingRange]];
-         }];
-    }
-    
-    return [lineRanges array];
 }
 
 @end

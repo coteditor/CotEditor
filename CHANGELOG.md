@@ -8,6 +8,7 @@ develop
 ### Improvements
 
 - Improve line numbers view for multiple selections.
+- Now, “Select Line” action works with multiple selections.
 - Close character inspector when text selection was changed.
 - Improve syntax highlighting performance.
 
