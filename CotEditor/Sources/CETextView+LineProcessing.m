@@ -48,6 +48,7 @@
     
     NSArray<NSValue *> *selectedRanges = [self selectedRanges];
     NSTextStorage *textStorage = [self textStorage];
+    NSString *string = [self string];
     
     // register redo for text selection
     [[[self undoManager] prepareWithInvocationTarget:self] setSelectedRangesWithUndo:[self selectedRanges]];
@@ -58,9 +59,9 @@
     [textStorage beginEditing];
     for (NSValue *lineRangeValue in lineRanges) {
         NSRange lineRange = [lineRangeValue rangeValue];
-        NSRange upperLineRange = [[textStorage string] lineRangeForRange:NSMakeRange(lineRange.location - 1, 0)];
-        NSString *lineString = [[textStorage string] substringWithRange:lineRange];
-        NSString *upperLineString = [[textStorage string] substringWithRange:upperLineRange];
+        NSRange upperLineRange = [string lineRangeForRange:NSMakeRange(lineRange.location - 1, 0)];
+        NSString *lineString = [string substringWithRange:lineRange];
+        NSString *upperLineString = [string substringWithRange:upperLineRange];
         
         // last line
         if (![lineString hasSuffix:@"\n"]) {
@@ -113,6 +114,7 @@
     
     NSArray<NSValue *> *selectedRanges = [self selectedRanges];
     NSTextStorage *textStorage = [self textStorage];
+    NSString *string = [self string];
     
     // register redo for text selection
     [[[self undoManager] prepareWithInvocationTarget:self] setSelectedRangesWithUndo:[self selectedRanges]];
@@ -123,9 +125,9 @@
     [textStorage beginEditing];
     for (NSValue *lineRangeValue in [lineRanges reverseObjectEnumerator]) {  // reverse order
         NSRange lineRange = [lineRangeValue rangeValue];
-        NSRange lowerLineRange = [[textStorage string] lineRangeForRange:NSMakeRange(NSMaxRange(lineRange), 0)];
-        NSString *lineString = [[textStorage string] substringWithRange:lineRange];
-        NSString *lowerLineString = [[textStorage string] substringWithRange:lowerLineRange];
+        NSRange lowerLineRange = [string lineRangeForRange:NSMakeRange(NSMaxRange(lineRange), 0)];
+        NSString *lineString = [string substringWithRange:lineRange];
+        NSString *lowerLineString = [string substringWithRange:lowerLineRange];
         
         // last line
         if (![lowerLineString hasSuffix:@"\n"]) {
@@ -191,18 +193,14 @@
     // sort alphabetically ignoring case
     [lines sortUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
     
+    // make new string
     NSString *newString = [lines componentsJoinedByString:@"\n"];
     if (endsWithNewline) {
         newString = [newString stringByAppendingString:@"\n"];
     }
     
-    if (![self shouldChangeTextInRange:lineRange replacementString:newString]) { return; }
-    
-    [[self textStorage] replaceCharactersInRange:lineRange withString:newString];
-    
-    [self didChangeText];
-    
-    [[self undoManager] setActionName:NSLocalizedString(@"Sort Lines", @"action name")];
+    [self replaceWithString:newString range:lineRange selectedRange:NSMakeRange(lineRange.location, [newString length])
+                 actionName:NSLocalizedString(@"Sort Lines", @"action name")];
 }
 
 
@@ -237,13 +235,8 @@
         newString = [newString stringByAppendingString:@"\n"];
     }
     
-    if (![self shouldChangeTextInRange:lineRange replacementString:newString]) { return; }
-    
-    [[self textStorage] replaceCharactersInRange:lineRange withString:newString];
-    
-    [self didChangeText];
-    
-    [[self undoManager] setActionName:NSLocalizedString(@"Reverse Lines", @"action name")];
+    [self replaceWithString:newString range:lineRange selectedRange:NSMakeRange(lineRange.location, [newString length])
+                 actionName:NSLocalizedString(@"Reverse Lines", @"action name")];
 }
 
 
@@ -287,21 +280,8 @@
         [replacementRanges addObject:[NSValue valueWithRange:lineRange]];
     }
     
-    // return if no line to be removed
-    if ([replacementRanges count] == 0) { return; }
-    if (![self shouldChangeTextInRanges:replacementRanges replacementStrings:replacementStrings]) { return; }
-    
-    // delete duplicate lines
-    NSTextStorage *textStorage = [self textStorage];
-    [replacementStrings enumerateObjectsWithOptions:NSEnumerationReverse
-                                         usingBlock:^(NSString *_Nonnull replacementString, NSUInteger idx, BOOL * _Nonnull stop)
-     {
-         NSRange replacementRange = [replacementRanges[idx] rangeValue];
-         [textStorage replaceCharactersInRange:replacementRange withString:replacementString];
-     }];
-    [self didChangeText];
-    
-    [[self undoManager] setActionName:NSLocalizedString(@"Delete Duplicate Lines", @"action name")];
+    [self replaceWithStrings:replacementStrings ranges:replacementRanges selectedRanges:nil
+                  actionName:NSLocalizedString(@"Delete Duplicate Lines", @"action name")];
 }
 
 
@@ -330,19 +310,8 @@
         [replacementStrings addObject:lineString];
     }
     
-    if (![self shouldChangeTextInRanges:replacementRanges replacementStrings:replacementStrings]) { return; }
-    
-    // duplicate lines
-    NSTextStorage *textStorage = [self textStorage];
-    [replacementStrings enumerateObjectsWithOptions:NSEnumerationReverse
-                                         usingBlock:^(NSString *_Nonnull replacementString, NSUInteger idx, BOOL * _Nonnull stop)
-     {
-         NSRange replacementRange = [replacementRanges[idx] rangeValue];
-         [textStorage replaceCharactersInRange:replacementRange withString:replacementString];
-     }];
-    [self didChangeText];
-    
-    [[self undoManager] setActionName:NSLocalizedString(@"Duplicate Line", @"action name")];
+    [self replaceWithStrings:replacementStrings ranges:replacementRanges selectedRanges:nil
+                  actionName:NSLocalizedString(@"Duplicate Line", @"action name")];
 }
 
 
@@ -363,20 +332,8 @@
         [replacementStrings addObject:@""];
     }
     
-    if (![self shouldChangeTextInRanges:replacementRanges replacementStrings:replacementStrings]) { return; }
-    
-    // delete lines
-    [[self textStorage] beginEditing];
-    for (NSValue *rangeValue in [replacementRanges reverseObjectEnumerator]) {
-        NSRange lineRange = [rangeValue rangeValue];
-        
-        [[self textStorage] replaceCharactersInRange:lineRange withString:@""];
-    }
-    [[self textStorage] endEditing];
-    
-    [self didChangeText];
-    
-    [[self undoManager] setActionName:NSLocalizedString(@"Delete Line", @"action name")];
+    [self replaceWithStrings:replacementStrings ranges:replacementRanges selectedRanges:nil
+                  actionName:NSLocalizedString(@"Delete Line", @"action name")];
 }
 
 

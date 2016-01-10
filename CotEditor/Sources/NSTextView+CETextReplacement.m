@@ -121,7 +121,7 @@
 
 // ------------------------------------------------------
 /// perform multiple replacements
-- (void)replaceWithStrings:(nonnull NSArray<NSString *> *)strings ranges:(nonnull NSArray<NSValue *> *)ranges selectedRanges:(nonnull NSArray<NSValue *> *)selectedRanges actionName:(nullable NSString *)actionName
+- (void)replaceWithStrings:(nonnull NSArray<NSString *> *)strings ranges:(nonnull NSArray<NSValue *> *)ranges selectedRanges:(nullable NSArray<NSValue *> *)selectedRanges actionName:(nullable NSString *)actionName
 // ------------------------------------------------------
 {
     NSAssert([strings count] == [ranges count], @"unbalanced number of strings and ranges for multiple replacement");
@@ -157,6 +157,7 @@
     [self didChangeText];
     
     // apply new selection ranges
+    selectedRanges = selectedRanges ?: [self selectedRanges];
     [self setSelectedRangesWithUndo:selectedRanges];
 }
 

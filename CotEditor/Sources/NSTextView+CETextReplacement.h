@@ -41,7 +41,7 @@
 
 - (void)replaceWithStrings:(nonnull NSArray<NSString *> *)strings
                     ranges:(nonnull NSArray<NSValue *> *)ranges
-            selectedRanges:(nonnull NSArray<NSValue *> *)selectedRanges
+            selectedRanges:(nullable NSArray<NSValue *> *)selectedRanges
                 actionName:(nullable NSString *)actionName;
 
 - (void)setSelectedRangesWithUndo:(nonnull NSArray<NSValue *> *)ranges;

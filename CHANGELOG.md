@@ -10,6 +10,7 @@ develop
 - Improve line numbers view for multiple selections.
 - Now, “Select Line” action works with multiple selections.
 - Close character inspector when text selection was changed.
+- Reprocude previous selection by undoing line actions.
 - Improve syntax highlighting performance.
 
 
