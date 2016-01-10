@@ -221,38 +221,38 @@ static CGFontRef BoldLineNumberFont;
             CGContextAddLineToPoint(context, x, ruleThickness - tickLength);
         }
         
-        // draw line number
-        if (drawsNumber) {
-            NSUInteger digit = numberOfDigits(lineNumber);
+        if (!drawsNumber) { return; }
+        
+        NSUInteger digit = numberOfDigits(lineNumber);
+        
+        // calculate base position
+        CGPoint position;
+        if (isVerticalText) {
+            position = CGPointMake(ceil(y + charWidth * (digit + 1) / 2), ruleThickness + tickLength - 2);
+        } else {
+            position = CGPointMake(ruleThickness, y);
+        }
+        
+        // get glyphs and positions
+        CGGlyph glyphs[digit];
+        CGPoint positions[digit];
+        for (NSUInteger i = 0; i < digit; i++) {
+            position.x -= charWidth;
             
-            // calculate base position
-            CGPoint position;
-            if (isVerticalText) {
-                position = CGPointMake(ceil(y + charWidth * (digit + 1) / 2), ruleThickness + tickLength - 2);
-            } else {
-                position = CGPointMake(ruleThickness, y);
-            }
-            
-            // get glyphs and positions
-            CGGlyph glyphs[digit];
-            CGPoint positions[digit];
-            for (NSUInteger i = 0; i < digit; i++) {
-                position.x -= charWidth;
-                
-                positions[i] = position;
-                glyphs[i] = digitGlyphsPtr[numberAt(i, lineNumber)];
-            }
-            
-            if (isBold) {
-                CGContextSetFont(context, BoldLineNumberFont);
-            }
-            
-            CGContextShowGlyphsAtPositions(context, glyphs, positions, digit);  // draw line number
-            
-            if (isBold) {
-                // back to the regular font
-                CGContextSetFont(context, LineNumberFont);
-            }
+            positions[i] = position;
+            glyphs[i] = digitGlyphsPtr[numberAt(i, lineNumber)];
+        }
+        
+        if (isBold) {
+            CGContextSetFont(context, BoldLineNumberFont);
+        }
+        
+        // draw
+        CGContextShowGlyphsAtPositions(context, glyphs, positions, digit);
+        
+        if (isBold) {
+            // back to the regular font
+            CGContextSetFont(context, LineNumberFont);
         }
     };
     
