@@ -53,7 +53,7 @@
     // register redo for text selection
     [[[self undoManager] prepareWithInvocationTarget:self] setSelectedRangesWithUndo:[self selectedRanges]];
     
-    NSMutableArray<NSValue *> *newSelectedRanges = [NSMutableArray arrayWithCapacity:[selectedRanges count]];
+    NSMutableArray<NSValue *> *newSelectedRanges = [NSMutableArray arrayWithCapacity:[lineRanges count]];
     
     // swap lines
     [textStorage beginEditing];
@@ -80,12 +80,11 @@
             // move selected ranges in the line to move
             for (NSValue *selectedRangeValue in selectedRanges) {
                 NSRange selectedRange = [selectedRangeValue rangeValue];
+                NSRange intersectionRange = NSIntersectionRange(selectedRange, editRange);
                 
-                if ((selectedRange.location > lineRange.location) ||
-                    (selectedRange.location <= NSMaxRange(lineRange)))
-                {
-                    selectedRange.location -= upperLineRange.length;
-                    [newSelectedRanges addObject:[NSValue valueWithRange:selectedRange]];
+                if (intersectionRange.length > 0) {
+                    intersectionRange.location -= upperLineRange.length;
+                    [newSelectedRanges addObject:[NSValue valueWithRange:intersectionRange]];
                 }
             }
         }
@@ -119,7 +118,7 @@
     // register redo for text selection
     [[[self undoManager] prepareWithInvocationTarget:self] setSelectedRangesWithUndo:[self selectedRanges]];
     
-    NSMutableArray<NSValue *> *newSelectedRanges = [NSMutableArray arrayWithCapacity:[selectedRanges count]];
+    NSMutableArray<NSValue *> *newSelectedRanges = [NSMutableArray arrayWithCapacity:[lineRanges count]];
     
     // swap lines
     [textStorage beginEditing];
@@ -147,12 +146,11 @@
             // move selected ranges in the line to move
             for (NSValue *selectedRangeValue in selectedRanges) {
                 NSRange selectedRange = [selectedRangeValue rangeValue];
+                NSRange intersectionRange = NSIntersectionRange(selectedRange, editRange);
                 
-                if ((selectedRange.location > lineRange.location) ||
-                    (selectedRange.location <= NSMaxRange(lineRange)))
-                {
-                    selectedRange.location += lowerLineRange.length;
-                    [newSelectedRanges addObject:[NSValue valueWithRange:selectedRange]];
+                if (intersectionRange.length > 0) {
+                    intersectionRange.location += lowerLineRange.length;
+                    [newSelectedRanges addObject:[NSValue valueWithRange:intersectionRange]];
                 }
             }
         }
