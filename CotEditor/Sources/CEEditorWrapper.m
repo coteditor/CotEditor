@@ -123,6 +123,11 @@
     [[self splitViewController] addSubviewForViewController:editorViewController relativeTo:nil];
     [self setupEditorViewController:editorViewController baseView:nil];
     
+    // TODO: Refactoring
+    // -> This is probably not the best position to apply sytnax style to the text view.
+    //    However as a quick fix, I put it here tentatively. It works. But should be refactored later. (2016-01 1024jp)
+    [editorViewController applySyntax:[self syntaxStyle]];
+    
     [self setFocusedTextView:[editorViewController textView]];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
