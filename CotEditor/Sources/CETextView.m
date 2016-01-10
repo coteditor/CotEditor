@@ -2270,7 +2270,7 @@ static NSPoint kTextContainerOrigin;
 // ------------------------------------------------------
 {
     [self transformSelectionWithActionName:NSLocalizedString(@"To Fullwidth Roman", nil)
-                          operationHandler:^NSString *(NSString *substring)
+                          operationHandler:^NSString *(NSString * _Nonnull substring)
      {
          return [substring fullWidthRomanString];
      }];
@@ -2283,7 +2283,7 @@ static NSPoint kTextContainerOrigin;
 // ------------------------------------------------------
 {
     [self transformSelectionWithActionName:NSLocalizedString(@"To Halfwidth Roman", nil)
-                          operationHandler:^NSString *(NSString *substring)
+                          operationHandler:^NSString *(NSString * _Nonnull substring)
      {
          return [substring halfWidthRomanString];
      }];
@@ -2296,7 +2296,7 @@ static NSPoint kTextContainerOrigin;
 // ------------------------------------------------------
 {
     [self transformSelectionWithActionName:NSLocalizedString(@"Hiragana to Katakana", nil)
-                          operationHandler:^NSString *(NSString *substring)
+                          operationHandler:^NSString *(NSString * _Nonnull substring)
      {
          return [substring katakanaString];
      }];
@@ -2309,7 +2309,7 @@ static NSPoint kTextContainerOrigin;
 // ------------------------------------------------------
 {
     [self transformSelectionWithActionName:NSLocalizedString(@"Katakana to Hiragana", nil)
-                          operationHandler:^NSString *(NSString *substring)
+                          operationHandler:^NSString *(NSString * _Nonnull substring)
      {
          return [substring hiraganaString];
      }];
@@ -2322,7 +2322,7 @@ static NSPoint kTextContainerOrigin;
 // ------------------------------------------------------
 {
     [self transformSelectionWithActionName:@"NFD"
-                          operationHandler:^NSString *(NSString *substring)
+                          operationHandler:^NSString *(NSString * _Nonnull substring)
      {
          return [substring decomposedStringWithCanonicalMapping];
      }];
@@ -2335,7 +2335,7 @@ static NSPoint kTextContainerOrigin;
 // ------------------------------------------------------
 {
     [self transformSelectionWithActionName:@"NFC"
-                          operationHandler:^NSString *(NSString *substring)
+                          operationHandler:^NSString *(NSString * _Nonnull substring)
      {
          return [substring precomposedStringWithCanonicalMapping];
      }];
@@ -2348,7 +2348,7 @@ static NSPoint kTextContainerOrigin;
 // ------------------------------------------------------
 {
     [self transformSelectionWithActionName:@"NFKD"
-                          operationHandler:^NSString *(NSString *substring)
+                          operationHandler:^NSString *(NSString * _Nonnull substring)
      {
          return [substring decomposedStringWithCompatibilityMapping];
      }];
@@ -2361,7 +2361,7 @@ static NSPoint kTextContainerOrigin;
 // ------------------------------------------------------
 {
     [self transformSelectionWithActionName:@"NFKC"
-                          operationHandler:^NSString *(NSString *substring)
+                          operationHandler:^NSString *(NSString * _Nonnull substring)
      {
          return [substring precomposedStringWithCompatibilityMapping];
      }];
@@ -2373,7 +2373,7 @@ static NSPoint kTextContainerOrigin;
 // ------------------------------------------------------
 {
     [self transformSelectionWithActionName:@"NFKC Casefold"
-                          operationHandler:^NSString *(NSString *substring)
+                          operationHandler:^NSString *(NSString * _Nonnull substring)
      {
          return [substring precomposedStringWithCompatibilityMappingWithCasefold];
      }];
@@ -2385,7 +2385,7 @@ static NSPoint kTextContainerOrigin;
 // ------------------------------------------------------
 {
     [self transformSelectionWithActionName:NSLocalizedString(@"Modified NFD", @"name of an Uniocode normalization type")
-                          operationHandler:^NSString *(NSString *substring)
+                          operationHandler:^NSString *(NSString * _Nonnull substring)
      {
          return [substring decomposedStringWithHFSPlusMapping];
      }];
@@ -2397,7 +2397,7 @@ static NSPoint kTextContainerOrigin;
 
 // ------------------------------------------------------
 /// transform all selected strings and register to undo manager
-- (void)transformSelectionWithActionName:(NSString *)actionName operationHandler:(NSString *(^)(NSString *substring))operationHandler
+- (void)transformSelectionWithActionName:(nullable NSString *)actionName operationHandler:(nonnull NSString *(^)(NSString * _Nonnull substring))operationHandler
 // ------------------------------------------------------
 {
     NSArray<NSValue *> *selectedRanges = [self selectedRanges];
