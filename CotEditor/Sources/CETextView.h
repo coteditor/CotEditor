@@ -32,6 +32,7 @@
  */
 
 @import Cocoa;
+#import "NSTextView+CETextReplacement.h"
 #import "CETextViewProtocol.h"
 
 
@@ -52,19 +53,11 @@
 
 
 // Public method
-- (void)insertString:(nonnull NSString *)string;
-- (void)insertStringAfterSelection:(nonnull NSString *)string;
-- (void)replaceAllStringWithString:(nonnull NSString *)string;
-- (void)appendString:(nonnull NSString *)string;
 - (void)setLineSpacingAndUpdate:(CGFloat)lineSpacing;
-- (void)replaceWithString:(nullable NSString *)string range:(NSRange)range
-            selectedRange:(NSRange)selectedRange actionName:(nullable NSString *)actionName;
 
 // Action Message
 - (IBAction)copyWithStyle:(nullable id)sender;
 - (IBAction)resetFont:(nullable id)sender;
-- (IBAction)shiftRight:(nullable id)sender;
-- (IBAction)shiftLeft:(nullable id)sender;
 - (IBAction)selectLines:(nullable id)sender;
 - (IBAction)changeTabWidth:(nullable id)sender;
 - (IBAction)inputYenMark:(nullable id)sender;
@@ -84,6 +77,29 @@
 @end
 
 
+@interface CETextView (ColorCode)
+
+- (IBAction)editColorCode:(nullable id)sender;
+
+@end
+
+
+
+#pragma mark - CETextView+Indentation.m
+
+@interface CETextView (Indentation)
+
+- (IBAction)shiftRight:(nullable id)sender;
+- (IBAction)shiftLeft:(nullable id)sender;
+- (IBAction)convertIndentationToSpaces:(nullable id)sender;
+- (IBAction)convertIndentationToTabs:(nullable id)sender;
+
+@end
+
+
+
+#pragma mark - CETextView+Commenting.m
+
 @interface CETextView (Commenting)
 
 - (IBAction)toggleComment:(nullable id)sender;
@@ -95,6 +111,25 @@
 
 @end
 
+
+
+#pragma mark - CETextView+LineProcessing.m
+
+@interface CETextView (LineProcessing)
+
+- (IBAction)moveLineUp:(nullable id)sender;
+- (IBAction)moveLineDown:(nullable id)sender;
+- (IBAction)sortLinesAscending:(nullable id)sender;
+- (IBAction)reverseLines:(nullable id)sender;
+- (IBAction)deleteDuplicateLine:(nullable id)sender;
+- (IBAction)duplicateLine:(nullable id)sender;
+- (IBAction)deleteLine:(nullable id)sender;
+
+@end
+
+
+
+#pragma mark - CETextView+Transformation.m
 
 @interface CETextView (Transformation)
 
@@ -108,33 +143,5 @@
 - (IBAction)normalizeUnicodeWithNFKC:(nullable id)sender;
 - (IBAction)normalizeUnicodeWithNFKCCF:(nullable id)sender;
 - (IBAction)normalizeUnicodeWithModifiedNFD:(nullable id)sender;
-
-@end
-
-
-@interface CETextView (ColorCode)
-
-- (IBAction)editColorCode:(nullable id)sender;
-
-@end
-
-
-@interface CETextView (Indentation)
-
-- (IBAction)convertIndentationToSpaces:(nullable id)sender;
-- (IBAction)convertIndentationToTabs:(nullable id)sender;
-
-@end
-
-
-@interface CETextView (LineProcessing)
-
-- (IBAction)moveLineUp:(nullable id)sender;
-- (IBAction)moveLineDown:(nullable id)sender;
-- (IBAction)sortLinesAscending:(nullable id)sender;
-- (IBAction)reverseLines:(nullable id)sender;
-- (IBAction)deleteDuplicateLine:(nullable id)sender;
-- (IBAction)duplicateLine:(nullable id)sender;
-- (IBAction)deleteLine:(nullable id)sender;
 
 @end
