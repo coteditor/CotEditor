@@ -30,21 +30,12 @@
 #import "CETextFinder.h"
 #import "CEProgressSheetController.h"
 #import "CEDefaults.h"
-#import "CEErrors.h"
 
 #import <OgreKit/OgreKit.h>
 
 
-// keys for Find All result
-NSString * _Nonnull const CEFindResultRange = @"range";
-NSString * _Nonnull const CEFindResultLineNumber = @"lineNumber";
-NSString * _Nonnull const CEFindResultAttributedLineString = @"attributedLineString";
-NSString * _Nonnull const CEFindResultLineRange = @"lineRange";
-
-
 // constants
 static const CGFloat kDefaultResultViewHeight = 200.0;
-static const NSUInteger kMaxHistorySize = 20;
 
 // find all result
 //static const NSUInteger kMinLengthShowIndicator = 5000;  // not in use
@@ -52,7 +43,6 @@ static const NSUInteger kMaxHistorySize = 20;
 
 @interface CEFindPanelController () <CETextFinderDelegate, NSWindowDelegate, NSSplitViewDelegate, NSPopoverDelegate>
 
-@property (nonatomic, nonnull) NSColor *highlightColor;
 @property (nonatomic, nullable) NSLayoutConstraint *resultHeightConstraint;  // for autolayout on OS X 10.8
 
 #pragma mark Options
@@ -71,9 +61,7 @@ static const NSUInteger kMaxHistorySize = 20;
 @property (nonatomic) BOOL notEndOfLineOption;
 
 #pragma mark Outlets
-
 @property (nonatomic, nullable) IBOutlet CETextFinder *textFinder;
-@property (nonatomic, nullable) IBOutlet NSNumberFormatter *integerFormatter;  // top level
 @property (nonatomic, nullable) IBOutlet CEFindResultViewController *resultViewController;
 @property (nonatomic, nullable) IBOutlet NSPopover *regexPopover;
 @property (nonatomic, nullable, weak) IBOutlet NSSplitView *splitView;
@@ -102,11 +90,6 @@ static const NSUInteger kMaxHistorySize = 20;
     
     self = [super init];
     if (self) {
-        _highlightColor = [NSColor colorWithCalibratedHue:0.24 saturation:0.8 brightness:0.8 alpha:0.4];
-        // Highlight color is currently not customizable. (2015-01-04)
-        // It might better when it can be set in theme also for incompatible chars highlight.
-        // Just because I'm lazy.
-        
         // deserialize options setting from defaults
         [self setOptions:[[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultFindOptionsKey]];
         
@@ -157,6 +140,28 @@ static const NSUInteger kMaxHistorySize = 20;
 
 
 // ------------------------------------------------------
+/// activate find panel
+- (IBAction)showWindow:(nullable id)sender
+// ------------------------------------------------------
+{
+    // close result view
+    if (![[self window] isVisible]) {
+        [self setResultShown:NO animate:NO];
+    }
+    
+    // select text in find text field
+    if ([[self window] firstResponder] == [[self window] initialFirstResponder]) {
+        // force reset firstResponder to invoke becomeFirstResponder in CEFindPanelTextView every time
+        // -> `becomeFirstResponder` will not be called on `makeFirstResponder:` if it given object is alrady set as first responder.
+        [[self window] makeFirstResponder:nil];
+    }
+    [[self window] makeFirstResponder:[[self window] initialFirstResponder]];
+    
+    [super showWindow:sender];
+}
+
+
+// ------------------------------------------------------
 /// add check mark to selectable menus
 - (BOOL)validateMenuItem:(nonnull NSMenuItem *)menuItem
 // ------------------------------------------------------
@@ -196,25 +201,6 @@ static const NSUInteger kMaxHistorySize = 20;
 //=======================================================
 
 // ------------------------------------------------------
-/// completion notification for text find
-- (void)textFinder:(nonnull CETextFinder *)textFinder didFind:(nonnull NSString *)findString
-// ------------------------------------------------------
-{
-    [self appendFindHistory:findString];
-}
-
-
-// ------------------------------------------------------
-/// completion notification for text replacement
-- (void)textFinder:(nonnull CETextFinder *)textFinder didReplace:(nonnull NSString *)findString withString:(nonnull NSString *)replacementString
-// ------------------------------------------------------
-{
-    [self appendFindHistory:findString];
-    [self appendReplaceHistory:replacementString];
-}
-
-
-// ------------------------------------------------------
 /// complemention notification for "Find All"
 - (void)textFinder:(nonnull CETextFinder *)textFinder didFinishFindingAll:(nonnull NSString *)findString results:(nonnull NSArray<NSDictionary *> *)results textView:(nonnull NSTextView *)textView
 // ------------------------------------------------------
@@ -237,6 +223,24 @@ static const NSUInteger kMaxHistorySize = 20;
     [[self resultViewController] setResult:results];  // result must set at last
     [self setResultShown:YES animate:YES];
     [self showWindow:self];
+}
+
+
+// ------------------------------------------------------
+/// find history did update
+- (void)textFinderDidUpdateFindHistory
+// ------------------------------------------------------
+{
+    [self updateFindHistoryMenu];
+}
+
+
+// ------------------------------------------------------
+/// replacement history did update
+- (void)textFinderDidUpdateReplaceHistory
+// ------------------------------------------------------
+{
+    [self updateReplaceHistoryMenu];
 }
 
 
@@ -323,137 +327,23 @@ static const NSUInteger kMaxHistorySize = 20;
 
 
 
-#pragma mark Public Action Messages
+#pragma mark Public Methods
 
 // ------------------------------------------------------
-/// activate find panel
-- (IBAction)showWindow:(nullable id)sender
+/// show error message by OgreKit as alert
+- (void)showAlertWithError:(nonnull NSError *)error
 // ------------------------------------------------------
 {
-    // close result view
-    if (![[self window] isVisible]) {
-        [self setResultShown:NO animate:NO];
-    }
+    NSAlert *alert = [NSAlert alertWithError:error];
     
-    // select text in find text field
-    if ([[self window] firstResponder] == [[self window] initialFirstResponder]) {
-        // force reset firstResponder to invoke becomeFirstResponder in CEFindPanelTextView every time
-        // -> `becomeFirstResponder` will not be called on `makeFirstResponder:` if it given object is alrady set as first responder.
-        [[self window] makeFirstResponder:nil];
-    }
-    [[self window] makeFirstResponder:[[self window] initialFirstResponder]];
-    
-    [super showWindow:sender];
+    NSBeep();
+    [[self window] makeKeyAndOrderFront:self];
+    [alert beginSheetModalForWindow:[self window] modalDelegate:nil didEndSelector:NULL contextInfo:NULL];
 }
 
 
-// ------------------------------------------------------
-/// find next matched string
-- (IBAction)findNext:(nullable id)sender
-// ------------------------------------------------------
-{
-    if ([NSEvent modifierFlags] & NSShiftKeyMask) {
-        // find backwards if Shift key pressed
-        [self findForward:NO];
-    } else {
-        [self findForward:YES];
-    }
-}
 
-
-// ------------------------------------------------------
-/// find previous matched string
-- (IBAction)findPrevious:(nullable id)sender
-// ------------------------------------------------------
-{
-    [self findForward:NO];
-}
-
-
-// ------------------------------------------------------
-/// find all matched string in the target and show results in a table
-- (IBAction)findAll:(nullable id)sender
-// ------------------------------------------------------
-{
-    if (![self checkIsReadyToFind]) { return; }
-    
-    NSNumberFormatter *integerFormatter = [self integerFormatter];
-    NSTextView *textView = [self client];
-    NSString *findString = [[self textFinder] sanitizedFindString];
-    
-    NSRegularExpression *lineRegex = [NSRegularExpression regularExpressionWithPattern:@"\n" options:0 error:nil];
-    NSString *string = [textView string];
-    NSEnumerator<OGRegularExpressionMatch *> *enumerator = [[[self textFinder] regex] matchEnumeratorInString:string range:[[self textFinder] scopeRange]];
-    
-    // setup progress sheet
-    __block BOOL isCancelled = NO;
-    CEProgressSheetController *indicator = [[CEProgressSheetController alloc] initWithMessage:NSLocalizedString(@"Find All", nil)];
-    [indicator setIndetermine:YES];
-    [indicator beginSheetForWindow:[textView window] completionHandler:^(NSModalResponse returnCode) {
-        if (returnCode == NSCancelButton) {
-            isCancelled = YES;
-        }
-    }];
-    
-    __weak typeof(self) weakSelf = self;
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        typeof(self) self = weakSelf;
-        if (!self) { return; }
-        
-        NSUInteger lineNumber = 1;
-        NSMutableArray<NSDictionary *> *result = [NSMutableArray array];
-        OGRegularExpressionMatch *match;
-        while ((match = [enumerator nextObject])) {
-            if (isCancelled) {
-                [indicator close:self];
-                return;
-            }
-            
-            // calc line number
-            NSRange diffRange = NSMakeRange([match rangeOfStringBetweenMatchAndLastMatch].location - [match rangeOfLastMatchSubstring].length,
-                                            [match rangeOfStringBetweenMatchAndLastMatch].length + [match rangeOfLastMatchSubstring].length);
-            lineNumber += [lineRegex numberOfMatchesInString:string options:0 range:diffRange];
-            
-            // get highlighted line string
-            NSRange lineRange = [string lineRangeForRange:[match rangeOfMatchedString]];
-            NSRange inlineRange = [match rangeOfMatchedString];
-            inlineRange.location -= lineRange.location;
-            NSString *lineString = [string substringWithRange:lineRange];
-            NSMutableAttributedString *lineAttrString = [[NSMutableAttributedString alloc] initWithString:lineString];
-            [lineAttrString addAttributes:@{NSBackgroundColorAttributeName: [self highlightColor]} range:inlineRange];
-            
-            [result addObject:@{CEFindResultRange: [NSValue valueWithRange:[match rangeOfMatchedString]],
-                                CEFindResultLineNumber: @(lineNumber),
-                                CEFindResultAttributedLineString: lineAttrString,
-                                CEFindResultLineRange: [NSValue valueWithRange:inlineRange]}];
-            
-            NSString *informative = ([result count] == 1) ? @"%@ string found." : @"%@ strings found.";
-            NSString *countStr = [integerFormatter stringFromNumber:@([result count])];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [indicator setInformativeText:[NSString stringWithFormat:NSLocalizedString(informative, nil), countStr]];
-            });
-        }
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [indicator doneWithButtonTitle:nil];
-            
-            if ([result count] > 0) {
-                [self textFinder:[self textFinder] didFinishFindingAll:findString results:result textView:textView];
-                [indicator close:self];
-                
-            } else {
-                NSBeep();
-                [indicator setInformativeText:NSLocalizedString(@"Not Found.", nil)];
-                if ([[self textFinder] closesIndicatorWhenDone]) {
-                    [indicator close:self];
-                }
-            }
-        });
-    });
-    
-    [self textFinder:[self textFinder] didFind:[[self textFinder] findString]];
-}
-
+#pragma mark Action Messages
 
 // ------------------------------------------------------
 /// replace next matched string with given string
@@ -466,140 +356,9 @@ static const NSUInteger kMaxHistorySize = 20;
         return;
     }
     
-    if (![self checkIsReadyToFind]) { return; }
-    
-    // TODO: re-implement
-//    OgreTextFindResult *result = [[self textFinder] replaceAndFind:[[self textFinder] sanitizedFindString]
-//                                                        withString:[[self textFinder] replacementString] ? : @""
-//                                                           options:[[self textFinder] options]
-//                                                     replacingOnly:YES
-//                                                              wrap:NO];
-//
-//    [self textFinder:[self textFinder] didReplace:[[self textFinder] findString] withString:[[self textFinder] replacementString]];
-//
-//    if ([result alertIfErrorOccurred]) { return; }
+    [[self textFinder] replace:sender];
 }
 
-
-// ------------------------------------------------------
-/// replace next matched string with given string and select the one after the next match
-- (IBAction)replaceAndFind:(nullable id)sender
-// ------------------------------------------------------
-{
-    if (![self checkIsReadyToFind]) { return; }
-    
-    // TODO: re-implement
-//    OgreTextFindResult *result = [[self textFinder] replaceAndFind:[[self textFinder] sanitizedFindString]
-//                                                        withString:[[self textFinder] replacementString] ? : @""
-//                                                           options:[[self textFinder] options]
-//                                                     replacingOnly:NO
-//                                                              wrap:[[self textFinder] isWrap]];
-//
-//    [self textFinder:[self textFinder] didReplace:[[self textFinder] findString] withString:[[self textFinder] replacementString]];
-//
-//    if ([result alertIfErrorOccurred]) { return; }
-//    
-//    if ([result isSuccess]) {
-//        // add visual feedback
-//        [[self client] showFindIndicatorForRange:[[self client] selectedRange]];
-//        
-//    } else {
-//        NSBeep();
-//    }
-}
-
-
-// ------------------------------------------------------
-/// replace all matched strings with given string
-- (IBAction)replaceAll:(nullable id)sender
-// ------------------------------------------------------
-{
-    if (![self checkIsReadyToFind]) { return; }
-    
-    NSNumberFormatter *integerFormatter = [self integerFormatter];
-    NSTextView *textView = [self client];
-    NSString *findString = [[self textFinder] sanitizedFindString];
-    NSString *replacementString = [[self textFinder] replacementString];
-    OGReplaceExpression *repex = [OGReplaceExpression replaceExpressionWithString:[[self textFinder] replacementString] ? : @""
-                                                                           syntax:[[self textFinder] textFinderSyntax]
-                                                                  escapeCharacter:kEscapeCharacter];
-    
-    NSString *string = [textView string];
-    NSEnumerator<OGRegularExpressionMatch *> *enumerator = [[[self textFinder] regex] matchEnumeratorInString:string range:[[self textFinder] scopeRange]];
-    
-    // setup progress sheet
-    __block BOOL isCancelled = NO;
-    CEProgressSheetController *indicator = [[CEProgressSheetController alloc] initWithMessage:NSLocalizedString(@"Replace All", nil)];
-    [indicator setIndetermine:YES];
-    [indicator beginSheetForWindow:[textView window] completionHandler:^(NSModalResponse returnCode) {
-        if (returnCode == NSCancelButton) {
-            isCancelled = YES;
-        }
-    }];
-    
-    __weak typeof(self) weakSelf = self;
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        typeof(self) self = weakSelf;
-        if (!self) { return; }
-        
-        NSMutableArray<NSString *> *replacementStrings = [NSMutableArray array];
-        NSMutableArray<NSValue *> *replacementRanges = [NSMutableArray array];
-        NSUInteger count = 0;
-        
-        OGRegularExpressionMatch *match;
-        while ((match = [enumerator nextObject])) {
-            if (isCancelled) {
-                [indicator close:self];
-                return;
-            }
-            
-            [replacementStrings addObject:[repex replaceMatchedStringOf:match]];
-            [replacementRanges addObject:[NSValue valueWithRange:[match rangeOfMatchedString]]];
-            count++;
-            
-            NSString *informative = (count == 1) ? @"%@ string replaced." : @"%@ strings replaced.";
-            NSString *countStr = [integerFormatter stringFromNumber:@(count)];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [indicator setInformativeText:[NSString stringWithFormat:NSLocalizedString(informative, nil), countStr]];
-            });
-        }
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [indicator doneWithButtonTitle:nil];
-            
-            if (count > 0) {
-                // apply found strings to the text view
-                // TODO: keep selection
-                if ([textView shouldChangeTextInRanges:replacementRanges replacementStrings:replacementStrings]) {
-                    [[textView textStorage] beginEditing];
-                    [replacementStrings enumerateObjectsWithOptions:NSEnumerationReverse
-                                                         usingBlock:^(NSString * _Nonnull replacementString, NSUInteger idx, BOOL * _Nonnull stop)
-                    {
-                        NSRange replacementRange = [replacementRanges[idx] rangeValue];
-                        [[textView textStorage] replaceCharactersInRange:replacementRange withString:replacementString];
-                    }];
-                    [[textView textStorage] endEditing];
-                    [textView didChangeText];
-                    [[textView undoManager] setActionName:NSLocalizedString(@"Replace All", nil)];
-                }
-                
-            } else {
-                NSBeep();
-                [indicator setInformativeText:NSLocalizedString(@"Not Found.", nil)];
-            }
-            
-            if ([[self textFinder] closesIndicatorWhenDone]) {
-                [indicator close:self];
-            }
-        });
-    });
-    
-    [self textFinder:[self textFinder] didReplace:[[self textFinder] findString] withString:[[self textFinder] replacementString]];
-}
-
-
-
-#pragma mark Private Action Messages
 
 // ------------------------------------------------------
 /// perform segmented Find Next/Previous button
@@ -608,10 +367,10 @@ static const NSUInteger kMaxHistorySize = 20;
 {
     switch ([sender selectedSegment]) {
         case 0:
-            [self findPrevious:sender];
+            [[self textFinder] findPrevious:sender];
             break;
         case 1:
-            [self findNext:sender];
+            [[self textFinder] findNext:sender];
             break;
         default:
             break;
@@ -806,99 +565,6 @@ static const NSUInteger kMaxHistorySize = 20;
 
 
 // ------------------------------------------------------
-/// return current target textView
-- (nullable NSTextView *)client
-// ------------------------------------------------------
-{
-    return [[self textFinder] client];
-}
-
-
-// ------------------------------------------------------
-/// perform "Find Next" and "Find Previous"
-- (void)findForward:(BOOL)forward
-// ------------------------------------------------------
-{
-    if (![self checkIsReadyToFind]) { return; }
-    
-    // TODO: re-implement
-//    OgreTextFindResult *result = [[self textFinder] find:[[self textFinder] sanitizedFindString]
-//                                                 options:[[self textFinder] options]
-//                                                 fromTop:NO
-//                                                 forward:forward
-//                                                    wrap:[self isWrap]];
-//
-//    [self textFinder:[self textFinder] didFind:[[self textFinder] findString]];
-//    
-//    if ([result alertIfErrorOccurred]) { return; }
-//    
-//    if ([result isSuccess]) {
-//        // add visual feedback
-//        [[self client] showFindIndicatorForRange:[[self client] selectedRange]];
-//        
-//    } else {
-//        NSBeep();
-//    }
-}
-
-
-// ------------------------------------------------------
-/// check Find can be performed and alert if needed
-- (BOOL)checkIsReadyToFind
-// ------------------------------------------------------
-{
-    if (![self client]) {
-        NSBeep();
-        return NO;
-    }
-    if ([[self window] attachedSheet]) {
-        [[self window] makeKeyAndOrderFront:self];
-        NSBeep();
-        return NO;
-    }
-    
-    if ([[[self textFinder] findString] length] == 0) {
-        NSBeep();
-        return NO;
-    }
-    
-    // check regex syntax of find string and alert if invalid
-    if ([[self textFinder] usesRegularExpression]) {
-        @try {
-            [[self textFinder] regex];
-            
-        } @catch (NSException *exception) {
-            if ([[exception name] isEqualToString:OgreException]) {
-                NSError *error = [NSError errorWithDomain:CEErrorDomain
-                                                     code:CERegularExpressionError
-                                                 userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"Invalid regular expression", nil),
-                                                            NSLocalizedRecoverySuggestionErrorKey: [exception reason]}];
-                [self showAlertWithError:error];
-            } else {
-                [exception raise];
-            }
-            return NO;
-        }
-    }
-    
-    return YES;
-}
-
-
-// ------------------------------------------------------
-/// show error message by OgreKit as alert
-- (void)showAlertWithError:(nonnull NSError *)error
-// ------------------------------------------------------
-{
-    NSAlert *alert = [NSAlert alertWithError:error];
-    
-    NSBeep();
-    [[self window] makeKeyAndOrderFront:self];
-    [alert beginSheetModalForWindow:[self window] modalDelegate:nil didEndSelector:NULL contextInfo:NULL];
-}
-
-
-// ------------------------------------------------------
 /// update find history menu
 - (void)updateFindHistoryMenu
 // ------------------------------------------------------
@@ -948,52 +614,6 @@ static const NSUInteger kMaxHistorySize = 20;
         [item setTarget:self];
         [menu insertItem:item atIndex:2];
     }
-}
-
-
-// ------------------------------------------------------
-/// append given string to find history
-- (void)appendFindHistory:(nonnull NSString *)string
-// ------------------------------------------------------
-{
-    if ([string length] == 0) { return; }
-    
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    
-    // append new string to history
-    NSMutableArray<NSString *> *history = [NSMutableArray arrayWithArray:[defaults stringArrayForKey:CEDefaultFindHistoryKey]];
-    [history removeObject:string];  // remove duplicated item
-    [history addObject:string];
-    if ([history count] > kMaxHistorySize) {  // remove overflow
-        [history removeObjectsInRange:NSMakeRange(0, [history count] - kMaxHistorySize)];
-    }
-    
-    [defaults setObject:history forKey:CEDefaultFindHistoryKey];
-    
-    [self updateFindHistoryMenu];
-}
-
-
-// ------------------------------------------------------
-/// append given string to replace history
-- (void)appendReplaceHistory:(nonnull NSString *)string
-// ------------------------------------------------------
-{
-    if ([string length] == 0) { return; }
-    
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    
-    // append new string to history
-    NSMutableArray<NSString *> *history = [NSMutableArray arrayWithArray:[defaults stringArrayForKey:CEDefaultReplaceHistoryKey]];
-    [history removeObject:string];  // remove duplicated item
-    [history addObject:string];
-    if ([history count] > kMaxHistorySize) {  // remove overflow
-        [history removeObjectsInRange:NSMakeRange(0, [history count] - kMaxHistorySize)];
-    }
-    
-    [defaults setObject:history forKey:CEDefaultReplaceHistoryKey];
-    
-    [self updateReplaceHistoryMenu];
 }
 
 

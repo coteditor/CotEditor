@@ -27,6 +27,7 @@
 
 #import "CEFindPanelTextView.h"
 #import "CEFindPanelLayoutManager.h"
+#import "CETextFinder.h"
 #import "CEFindPanelController.h"
 #import "CEDefaults.h"
 #import "Constants.h"
@@ -34,7 +35,7 @@
 
 @interface CEFindPanelTextView ()
 
-@property (nonatomic, nullable) IBOutlet CEFindPanelController *findPanelController;
+@property (nonatomic, nullable) IBOutlet CETextFinder *textFinder;
 
 @end
 
@@ -143,8 +144,8 @@
 // ------------------------------------------------------
 {
     // -> do nothing if no findpanelController is connected (standard NSTextField behavior)
-    if ([self findPanelController]) {
-        [[self findPanelController] findNext:self];
+    if ([self textFinder]) {
+        [[self textFinder] findNext:self];
     }
 }
 

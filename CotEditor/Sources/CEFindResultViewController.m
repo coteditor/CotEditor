@@ -26,7 +26,7 @@
  */
 
 #import "CEFindResultViewController.h"
-#import "CEFindPanelController.h"
+#import "CETextFinder.h"
 
 
 /// the maximum number of characters to add to the left of the matched string
@@ -44,7 +44,7 @@ static const int kMaxMatchedStringLength = 256;
 @property (nonatomic) NSUInteger count;
 
 @property (nonatomic, nullable, weak) IBOutlet NSTableView *tableView;
-@property (nonatomic, nullable, weak) IBOutlet NSNumberFormatter *integerFormatter;
+@property (nonatomic, nullable) IBOutlet NSNumberFormatter *integerFormatter;  // top level
 
 @end
 

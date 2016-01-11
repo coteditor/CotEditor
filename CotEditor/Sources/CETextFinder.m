@@ -28,18 +28,43 @@
 #import <OgreKit/OgreKit.h>
 #import "CETextFinder.h"
 #import "CEFindPanelController.h"
+#import "CEProgressSheetController.h"
+#import "CEErrors.h"
 #import "CEDefaults.h"
 
 
-NSString * _Nonnull const kEscapeCharacter = @"\\";
+// keys for Find All result
+NSString * _Nonnull const CEFindResultRange = @"range";
+NSString * _Nonnull const CEFindResultLineNumber = @"lineNumber";
+NSString * _Nonnull const CEFindResultAttributedLineString = @"attributedLineString";
+NSString * _Nonnull const CEFindResultLineRange = @"lineRange";
+
+static NSString * _Nonnull const kEscapeCharacter = @"\\";
+static const NSUInteger kMaxHistorySize = 20;
 
 
 @interface CETextFinder ()
 
 @property (nonatomic, nonnull) CEFindPanelController *findPanelController;
+@property (nonatomic, nonnull) NSNumberFormatter *integerFormatter;
+
+// readonly
+@property (readwrite, nonatomic, nonnull) NSColor *highlightColor;
+
+#pragma mark Settings
+@property (readonly, nonatomic) BOOL usesRegularExpression;
+@property (readonly, nonatomic) BOOL isWrap;
+@property (readonly, nonatomic) BOOL inSelection;
+@property (readonly, nonatomic) OgreSyntax syntax;
+@property (readonly, nonatomic) unsigned options;
+@property (readonly, nonatomic) BOOL closesIndicatorWhenDone;
 
 @end
 
+
+
+
+#pragma mark -
 
 @implementation CETextFinder
 
@@ -101,6 +126,13 @@ static CETextFinder	*singleton = nil;
         _findString = @"";
         _replacementString = @"";
         _findPanelController = [[CEFindPanelController alloc] init];
+        _integerFormatter = [[NSNumberFormatter alloc] init];
+        [_integerFormatter setUsesGroupingSeparator:YES];
+        
+        _highlightColor = [NSColor colorWithCalibratedHue:0.24 saturation:0.8 brightness:0.8 alpha:0.4];
+        // Highlight color is currently not customizable. (2015-01-04)
+        // It might better when it can be set in theme also for incompatible chars highlight.
+        // Just because I'm lazy.
         
         // add to responder chain
         [NSApp setNextResponder:self];
@@ -188,78 +220,6 @@ static CETextFinder	*singleton = nil;
 
 
 
-#pragma mark Public Methods
-
-// ------------------------------------------------------
-/// target text view
-- (nullable NSTextView *)client
-// ------------------------------------------------------
-{
-    id<CETextFinderClientProvider> provider = [NSApp targetForAction:@selector(focusedTextView)];
-    if (provider) {
-        return [provider focusedTextView];
-    }
-    
-    return nil;
-}
-
-// ------------------------------------------------------
-/// selected string in the current tareget
-- (nullable NSString *)selectedString
-// ------------------------------------------------------
-{
-    NSRange selectedRange = [[self client] selectedRange];
-    
-    if (selectedRange.length == 0) { return nil; }
-    
-    return [[[self client] string] substringWithRange:selectedRange];
-}
-
-
-// ------------------------------------------------------
-/// OgreKit regext object with current settings
-- (nullable OGRegularExpression *)regex
-// ------------------------------------------------------
-{
-    return [OGRegularExpression regularExpressionWithString:[self sanitizedFindString]
-                                                    options:[self options]
-                                                     syntax:[self textFinderSyntax]
-                                            escapeCharacter:kEscapeCharacter];
-}
-
-
-// ------------------------------------------------------
-/// range to find in
-- (NSRange)scopeRange
-// ------------------------------------------------------
-{
-    // TODO: multiple-selection
-    NSTextView *textView = [self client];
-    
-    return [self inSelection] ? [textView selectedRange] : NSMakeRange(0, [[textView string] length]);
-}
-
-
-// ------------------------------------------------------
-/// find string of which line endings are standardized to LF
-- (NSString *)sanitizedFindString
-// ------------------------------------------------------
-{
-    return [OGRegularExpression replaceNewlineCharactersInString:[self findString]
-                                                   withCharacter:OgreLfNewlineCharacter];
-}
-
-
-// ------------------------------------------------------
-/// syntax (and regex enability) setting in textFinder
-- (OgreSyntax)textFinderSyntax
-// ------------------------------------------------------
-{
-    return [self usesRegularExpression] ? [self syntax] : OgreSimpleMatchingSyntax;
-}
-
-
-
 #pragma mark Action Messages
 
 // ------------------------------------------------------
@@ -276,7 +236,12 @@ static CETextFinder	*singleton = nil;
 - (IBAction)findNext:(nullable id)sender
 // ------------------------------------------------------
 {
-    [[self findPanelController] findNext:sender];
+    if ([NSEvent modifierFlags] & NSShiftKeyMask) {
+        // find backwards if Shift key pressed
+        [self findForward:NO];
+    } else {
+        [self findForward:YES];
+    }
 }
 
 
@@ -285,7 +250,7 @@ static CETextFinder	*singleton = nil;
 - (IBAction)findPrevious:(nullable id)sender
 // ------------------------------------------------------
 {
-    [[self findPanelController] findPrevious:sender];
+    [self findForward:NO];
 }
 
 
@@ -304,7 +269,85 @@ static CETextFinder	*singleton = nil;
 - (IBAction)findAll:(nullable id)sender
 // ------------------------------------------------------
 {
-    [[self findPanelController] findAll:sender];
+    if (![self checkIsReadyToFind]) { return; }
+    
+    NSNumberFormatter *integerFormatter = [self integerFormatter];
+    NSTextView *textView = [self client];
+    NSString *findString = [self sanitizedFindString];
+    
+    NSRegularExpression *lineRegex = [NSRegularExpression regularExpressionWithPattern:@"\n" options:0 error:nil];
+    NSString *string = [textView string];
+    NSEnumerator<OGRegularExpressionMatch *> *enumerator = [[self regex] matchEnumeratorInString:string range:[self scopeRange]];
+    
+    // setup progress sheet
+    __block BOOL isCancelled = NO;
+    CEProgressSheetController *indicator = [[CEProgressSheetController alloc] initWithMessage:NSLocalizedString(@"Find All", nil)];
+    [indicator setIndetermine:YES];
+    [indicator beginSheetForWindow:[textView window] completionHandler:^(NSModalResponse returnCode) {
+        if (returnCode == NSCancelButton) {
+            isCancelled = YES;
+        }
+    }];
+    
+    __weak typeof(self) weakSelf = self;
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        typeof(self) self = weakSelf;
+        if (!self) { return; }
+        
+        NSUInteger lineNumber = 1;
+        NSMutableArray<NSDictionary *> *result = [NSMutableArray array];
+        OGRegularExpressionMatch *match;
+        while ((match = [enumerator nextObject])) {
+            if (isCancelled) {
+                [indicator close:self];
+                return;
+            }
+            
+            // calc line number
+            NSRange diffRange = NSMakeRange([match rangeOfStringBetweenMatchAndLastMatch].location - [match rangeOfLastMatchSubstring].length,
+                                            [match rangeOfStringBetweenMatchAndLastMatch].length + [match rangeOfLastMatchSubstring].length);
+            lineNumber += [lineRegex numberOfMatchesInString:string options:0 range:diffRange];
+            
+            // get highlighted line string
+            NSRange lineRange = [string lineRangeForRange:[match rangeOfMatchedString]];
+            NSRange inlineRange = [match rangeOfMatchedString];
+            inlineRange.location -= lineRange.location;
+            NSString *lineString = [string substringWithRange:lineRange];
+            NSMutableAttributedString *lineAttrString = [[NSMutableAttributedString alloc] initWithString:lineString];
+            [lineAttrString addAttributes:@{NSBackgroundColorAttributeName: [self highlightColor]} range:inlineRange];
+            
+            [result addObject:@{CEFindResultRange: [NSValue valueWithRange:[match rangeOfMatchedString]],
+                                CEFindResultLineNumber: @(lineNumber),
+                                CEFindResultAttributedLineString: lineAttrString,
+                                CEFindResultLineRange: [NSValue valueWithRange:inlineRange]}];
+            
+            NSString *informative = ([result count] == 1) ? @"%@ string found." : @"%@ strings found.";
+            NSString *countStr = [integerFormatter stringFromNumber:@([result count])];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [indicator setInformativeText:[NSString stringWithFormat:NSLocalizedString(informative, nil), countStr]];
+            });
+        }
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [indicator doneWithButtonTitle:nil];
+            
+            if ([result count] > 0) {
+                if ([[self delegate] respondsToSelector:@selector(textFinder:didFinishFindingAll:results:textView:)]) {
+                    [[self delegate] textFinder:self didFinishFindingAll:findString results:result textView:textView];
+                }
+                [indicator close:self];
+                
+            } else {
+                NSBeep();
+                [indicator setInformativeText:NSLocalizedString(@"Not Found.", nil)];
+                if ([self closesIndicatorWhenDone]) {
+                    [indicator close:self];
+                }
+            }
+        });
+    });
+    
+    [self appendFindHistory:[self findString]];
 }
 
 
@@ -313,7 +356,18 @@ static CETextFinder	*singleton = nil;
 - (IBAction)replace:(nullable id)sender
 // ------------------------------------------------------
 {
-    [[self findPanelController] replace:sender];
+    if (![self checkIsReadyToFind]) { return; }
+    
+// TODO: re-implement
+//    OgreTextFindResult *result = [self replaceAndFind:[self sanitizedFindString]
+//                                           withString:[self replacementString] ? : @""
+//                                              options:[self options]
+//                                        replacingOnly:YES
+//                                                 wrap:NO];
+//
+//    [self textFinder:self didReplace:[self findString] withString:[self replacementString]];
+//
+//    if ([result alertIfErrorOccurred]) { return; }
 }
 
 
@@ -322,7 +376,88 @@ static CETextFinder	*singleton = nil;
 - (IBAction)replaceAll:(nullable id)sender
 // ------------------------------------------------------
 {
-    [[self findPanelController] replaceAll:sender];
+    if (![self checkIsReadyToFind]) { return; }
+    
+    NSNumberFormatter *integerFormatter = [self integerFormatter];
+    NSTextView *textView = [self client];
+    NSString *findString = [self sanitizedFindString];
+    NSString *replacementString = [self replacementString];
+    OGReplaceExpression *repex = [OGReplaceExpression replaceExpressionWithString:replacementString ? : @""
+                                                                           syntax:[self textFinderSyntax]
+                                                                  escapeCharacter:kEscapeCharacter];
+    
+    NSString *string = [textView string];
+    NSEnumerator<OGRegularExpressionMatch *> *enumerator = [[self regex] matchEnumeratorInString:string range:[self scopeRange]];
+    
+    // setup progress sheet
+    __block BOOL isCancelled = NO;
+    CEProgressSheetController *indicator = [[CEProgressSheetController alloc] initWithMessage:NSLocalizedString(@"Replace All", nil)];
+    [indicator setIndetermine:YES];
+    [indicator beginSheetForWindow:[textView window] completionHandler:^(NSModalResponse returnCode) {
+        if (returnCode == NSCancelButton) {
+            isCancelled = YES;
+        }
+    }];
+    
+    __weak typeof(self) weakSelf = self;
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        typeof(self) self = weakSelf;
+        if (!self) { return; }
+        
+        NSMutableArray<NSString *> *replacementStrings = [NSMutableArray array];
+        NSMutableArray<NSValue *> *replacementRanges = [NSMutableArray array];
+        NSUInteger count = 0;
+        
+        OGRegularExpressionMatch *match;
+        while ((match = [enumerator nextObject])) {
+            if (isCancelled) {
+                [indicator close:self];
+                return;
+            }
+            
+            [replacementStrings addObject:[repex replaceMatchedStringOf:match]];
+            [replacementRanges addObject:[NSValue valueWithRange:[match rangeOfMatchedString]]];
+            count++;
+            
+            NSString *informative = (count == 1) ? @"%@ string replaced." : @"%@ strings replaced.";
+            NSString *countStr = [integerFormatter stringFromNumber:@(count)];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [indicator setInformativeText:[NSString stringWithFormat:NSLocalizedString(informative, nil), countStr]];
+            });
+        }
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [indicator doneWithButtonTitle:nil];
+            
+            if (count > 0) {
+                // apply found strings to the text view
+                // TODO: keep selection
+                if ([textView shouldChangeTextInRanges:replacementRanges replacementStrings:replacementStrings]) {
+                    [[textView textStorage] beginEditing];
+                    [replacementStrings enumerateObjectsWithOptions:NSEnumerationReverse
+                                                         usingBlock:^(NSString * _Nonnull replacementString, NSUInteger idx, BOOL * _Nonnull stop)
+                     {
+                         NSRange replacementRange = [replacementRanges[idx] rangeValue];
+                         [[textView textStorage] replaceCharactersInRange:replacementRange withString:replacementString];
+                     }];
+                    [[textView textStorage] endEditing];
+                    [textView didChangeText];
+                    [[textView undoManager] setActionName:NSLocalizedString(@"Replace All", nil)];
+                }
+                
+            } else {
+                NSBeep();
+                [indicator setInformativeText:NSLocalizedString(@"Not Found.", nil)];
+            }
+            
+            if ([self closesIndicatorWhenDone]) {
+                [indicator close:self];
+            }
+        });
+    });
+    
+    [self appendFindHistory:findString];
+    [self appendReplaceHistory:replacementString];
 }
 
 
@@ -331,7 +466,26 @@ static CETextFinder	*singleton = nil;
 - (IBAction)replaceAndFind:(nullable id)sender
 // ------------------------------------------------------
 {
-    [[self findPanelController] replaceAndFind:sender];
+    if (![self checkIsReadyToFind]) { return; }
+    
+// TODO: re-implement
+//    OgreTextFindResult *result = [self replaceAndFind:[self sanitizedFindString]
+//                                           withString:[self replacementString] ? : @""
+//                                              options:[self options]
+//                                        replacingOnly:NO
+//                                                 wrap:[self isWrap]];
+//
+//    [self textFinder:self didReplace:[self findString] withString:[self replacementString]];
+//
+//    if ([result alertIfErrorOccurred]) { return; }
+//
+//    if ([result isSuccess]) {
+//        // add visual feedback
+//        [[self client] showFindIndicatorForRange:[[self client] selectedRange]];
+//
+//    } else {
+//        NSBeep();
+//    }
 }
 
 
@@ -369,6 +523,149 @@ static CETextFinder	*singleton = nil;
 #pragma mark Private Methods
 
 // ------------------------------------------------------
+/// target text view
+- (nullable NSTextView *)client
+// ------------------------------------------------------
+{
+    id<CETextFinderClientProvider> provider = [NSApp targetForAction:@selector(focusedTextView)];
+    if (provider) {
+        return [provider focusedTextView];
+    }
+    
+    return nil;
+}
+
+
+// ------------------------------------------------------
+/// selected string in the current tareget
+- (nullable NSString *)selectedString
+// ------------------------------------------------------
+{
+    NSRange selectedRange = [[self client] selectedRange];
+    
+    if (selectedRange.length == 0) { return nil; }
+    
+    return [[[self client] string] substringWithRange:selectedRange];
+}
+
+
+// ------------------------------------------------------
+/// range to find in
+- (NSRange)scopeRange
+// ------------------------------------------------------
+{
+    // TODO: multiple-selection
+    NSTextView *textView = [self client];
+    
+    return [self inSelection] ? [textView selectedRange] : NSMakeRange(0, [[textView string] length]);
+}
+
+
+// ------------------------------------------------------
+/// find string of which line endings are standardized to LF
+- (NSString *)sanitizedFindString
+// ------------------------------------------------------
+{
+    return [OGRegularExpression replaceNewlineCharactersInString:[self findString]
+                                                   withCharacter:OgreLfNewlineCharacter];
+}
+
+
+// ------------------------------------------------------
+/// syntax (and regex enability) setting in textFinder
+- (OgreSyntax)textFinderSyntax
+// ------------------------------------------------------
+{
+    return [self usesRegularExpression] ? [self syntax] : OgreSimpleMatchingSyntax;
+}
+
+
+// ------------------------------------------------------
+/// OgreKit regext object with current settings
+- (nullable OGRegularExpression *)regex
+// ------------------------------------------------------
+{
+    return [OGRegularExpression regularExpressionWithString:[self sanitizedFindString]
+                                                    options:[self options]
+                                                     syntax:[self textFinderSyntax]
+                                            escapeCharacter:kEscapeCharacter];
+}
+
+
+// ------------------------------------------------------
+/// perform "Find Next" and "Find Previous"
+- (void)findForward:(BOOL)forward
+// ------------------------------------------------------
+{
+    if (![self checkIsReadyToFind]) { return; }
+    
+// TODO: re-implement
+//    OgreTextFindResult *result = [self find:[self sanitizedFindString]
+//                                    options:[self options]
+//                                    fromTop:NO
+//                                    forward:forward
+//                                       wrap:[self isWrap]];
+//
+//    [self textFinder:self didFind:[self findString]];
+//
+//    if ([result alertIfErrorOccurred]) { return; }
+//
+//    if ([result isSuccess]) {
+//        // add visual feedback
+//        [[self client] showFindIndicatorForRange:[[self client] selectedRange]];
+//
+//    } else {
+//        NSBeep();
+//    }
+}
+
+
+// ------------------------------------------------------
+/// check Find can be performed and alert if needed
+- (BOOL)checkIsReadyToFind
+// ------------------------------------------------------
+{
+    if (![self client]) {
+        NSBeep();
+        return NO;
+    }
+    
+    NSWindow *findPanel = [[self findPanelController] window];
+    if ([findPanel attachedSheet]) {
+        [findPanel makeKeyAndOrderFront:self];
+        NSBeep();
+        return NO;
+    }
+    
+    if ([[self findString] length] == 0) {
+        NSBeep();
+        return NO;
+    }
+    
+    // check regex syntax of find string and alert if invalid
+    if ([self usesRegularExpression]) {
+        @try {
+            [self regex];
+            
+        } @catch (NSException *exception) {
+            if ([[exception name] isEqualToString:OgreException]) {
+                NSError *error = [NSError errorWithDomain:CEErrorDomain
+                                                     code:CERegularExpressionError
+                                                 userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"Invalid regular expression", nil),
+                                                            NSLocalizedRecoverySuggestionErrorKey: [exception reason]}];
+                [[self findPanelController] showAlertWithError:error];
+            } else {
+                [exception raise];
+            }
+            return NO;
+        }
+    }
+    
+    return YES;
+}
+
+
+// ------------------------------------------------------
 /// load find string from global domain
 - (nullable NSString *)findStringFromPasteboard
 // ------------------------------------------------------
@@ -390,6 +687,56 @@ static CETextFinder	*singleton = nil;
     
     [pasteboard declareTypes:@[NSStringPboardType] owner:nil];
     [pasteboard setString:string forType:NSStringPboardType];
+}
+
+
+// ------------------------------------------------------
+/// append given string to find history
+- (void)appendFindHistory:(nonnull NSString *)string
+// ------------------------------------------------------
+{
+    if ([string length] == 0) { return; }
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    // append new string to history
+    NSMutableArray<NSString *> *history = [NSMutableArray arrayWithArray:[defaults stringArrayForKey:CEDefaultFindHistoryKey]];
+    [history removeObject:string];  // remove duplicated item
+    [history addObject:string];
+    if ([history count] > kMaxHistorySize) {  // remove overflow
+        [history removeObjectsInRange:NSMakeRange(0, [history count] - kMaxHistorySize)];
+    }
+    
+    [defaults setObject:history forKey:CEDefaultFindHistoryKey];
+    
+    if ([[self delegate] respondsToSelector:@selector(textFinderDidUpdateFindHistory)]) {
+        [[self delegate] textFinderDidUpdateFindHistory];
+    }
+}
+
+
+// ------------------------------------------------------
+/// append given string to replace history
+- (void)appendReplaceHistory:(nonnull NSString *)string
+// ------------------------------------------------------
+{
+    if ([string length] == 0) { return; }
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    // append new string to history
+    NSMutableArray<NSString *> *history = [NSMutableArray arrayWithArray:[defaults stringArrayForKey:CEDefaultReplaceHistoryKey]];
+    [history removeObject:string];  // remove duplicated item
+    [history addObject:string];
+    if ([history count] > kMaxHistorySize) {  // remove overflow
+        [history removeObjectsInRange:NSMakeRange(0, [history count] - kMaxHistorySize)];
+    }
+    
+    [defaults setObject:history forKey:CEDefaultReplaceHistoryKey];
+    
+    if ([[self delegate] respondsToSelector:@selector(textFinderDidUpdateReplaceHistory)]) {
+        [[self delegate] textFinderDidUpdateReplaceHistory];
+    }
 }
 
 
@@ -434,19 +781,19 @@ static CETextFinder	*singleton = nil;
 
 // ------------------------------------------------------
 /// return value from user defaults
-- (BOOL)closesIndicatorWhenDone
+- (unsigned)options
 // ------------------------------------------------------
 {
-    return [[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultFindClosesIndicatorWhenDoneKey];
+    return [[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultFindOptionsKey];
 }
 
 
 // ------------------------------------------------------
 /// return value from user defaults
-- (unsigned)options
+- (BOOL)closesIndicatorWhenDone
 // ------------------------------------------------------
 {
-    return [[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultFindOptionsKey];
+    return [[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultFindClosesIndicatorWhenDoneKey];
 }
 
 @end

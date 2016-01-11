@@ -28,21 +28,8 @@
 @import Cocoa;
 
 
-// keys for Find All result
-extern NSString * _Nonnull const CEFindResultRange;  // NSRange in NSValue
-extern NSString * _Nonnull const CEFindResultLineNumber;  // NSUInteger in NSNumber
-extern NSString * _Nonnull const CEFindResultAttributedLineString;  // NSAttributedString
-extern NSString * _Nonnull const CEFindResultLineRange;  // NSRange in NSValue
-
-
 @interface CEFindPanelController : NSWindowController
 
-// action messages
-- (IBAction)findNext:(nullable id)sender;
-- (IBAction)findPrevious:(nullable id)sender;
-- (IBAction)findAll:(nullable id)sender;
-- (IBAction)replace:(nullable id)sender;
-- (IBAction)replaceAll:(nullable id)sender;
-- (IBAction)replaceAndFind:(nullable id)sender;
+- (void)showAlertWithError:(nonnull NSError *)error;
 
 @end

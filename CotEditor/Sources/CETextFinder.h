@@ -26,10 +26,13 @@
  */
 
 @import Cocoa;
-#import <OgreKit/OGRegularExpression.h>
 
 
-extern NSString *_Nonnull const kEscapeCharacter;
+// keys for Find All result
+extern NSString * _Nonnull const CEFindResultRange;  // NSRange in NSValue
+extern NSString * _Nonnull const CEFindResultLineNumber;  // NSUInteger in NSNumber
+extern NSString * _Nonnull const CEFindResultAttributedLineString;  // NSAttributedString
+extern NSString * _Nonnull const CEFindResultLineRange;  // NSRange in NSValue
 
 
 typedef NS_ENUM(NSInteger, CETextFinderAction) {
@@ -48,23 +51,10 @@ typedef NS_ENUM(NSInteger, CETextFinderAction) {
 @property (nonatomic, nonnull, copy) NSString *findString;
 @property (nonatomic, nonnull, copy) NSString *replacementString;
 
-#pragma mark Settings
-@property (readonly, nonatomic) BOOL usesRegularExpression;
-@property (readonly, nonatomic) BOOL isWrap;
-@property (readonly, nonatomic) BOOL inSelection;
-@property (readonly, nonatomic) BOOL closesIndicatorWhenDone;
-@property (readonly, nonatomic) OgreSyntax syntax;
-@property (readonly, nonatomic) unsigned options;
+@property (readonly, nonatomic, nonnull) NSColor *highlightColor;
 
 
 + (nonnull CETextFinder *)sharedTextFinder;
-
-- (nullable NSString *)selectedString;
-- (nullable NSTextView *)client;
-- (nullable OGRegularExpression *)regex;
-- (NSRange)scopeRange;
-- (nonnull NSString *)sanitizedFindString;
-- (OgreSyntax)textFinderSyntax;
 
 
 // action messages
@@ -93,8 +83,9 @@ typedef NS_ENUM(NSInteger, CETextFinderAction) {
 @protocol CETextFinderDelegate <NSObject>
 
 @optional
-- (void)textFinder:(nonnull CETextFinder *)textFinder didFind:(nonnull NSString *)findString;
-- (void)textFinder:(nonnull CETextFinder *)textFinder didReplace:(nonnull NSString *)findString withString:(nonnull NSString *)replacementString;
 - (void)textFinder:(nonnull CETextFinder *)textFinder didFinishFindingAll:(nonnull NSString *)findString results:(nonnull NSArray<NSDictionary *> *)results textView:(nonnull NSTextView *)textView;
+
+- (void)textFinderDidUpdateFindHistory;
+- (void)textFinderDidUpdateReplaceHistory;
 
 @end
