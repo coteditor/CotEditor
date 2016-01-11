@@ -403,8 +403,6 @@ static const NSUInteger kMaxHistorySize = 20;
 {
     if (![self checkIsReadyToFind]) { return; }
     
-    [self invalidateSyntaxInTextFinder];
-    
     NSNumberFormatter *integerFormatter = [self integerFormatter];
     NSTextView *textView = [self target];
     NSString *findString = [self sanitizedFindString];
@@ -578,14 +576,12 @@ static const NSUInteger kMaxHistorySize = 20;
 {
     if (![self checkIsReadyToFind]) { return; }
     
-    [self invalidateSyntaxInTextFinder];
-    
     NSNumberFormatter *integerFormatter = [self integerFormatter];
     NSTextView *textView = [self target];
     NSString *findString = [self sanitizedFindString];
     NSString *replacementString = [self replacementString];
     OGReplaceExpression *repex = [OGReplaceExpression replaceExpressionWithString:[self replacementString] ? : @""
-                                                                           syntax:[self syntax]
+                                                                           syntax:[self textFinderSyntax]
                                                                   escapeCharacter:[[self textFinder] escapeCharacter]];
     
     NSString *string = [textView string];
@@ -784,7 +780,7 @@ static const NSUInteger kMaxHistorySize = 20;
 {
     return [OGRegularExpression regularExpressionWithString:[self sanitizedFindString]
                                                     options:[self options]
-                                                     syntax:[self syntax]
+                                                     syntax:[self textFinderSyntax]
                                             escapeCharacter:[[self textFinder] escapeCharacter]];
 }
 
@@ -805,6 +801,15 @@ static const NSUInteger kMaxHistorySize = 20;
 // ------------------------------------------------------
 {
     [[self textFinder] setSyntax:[self usesRegularExpression] ? [self syntax] : OgreSimpleMatchingSyntax];
+}
+
+
+// ------------------------------------------------------
+/// syntax (and regex enability) setting in textFinder
+- (OgreSyntax)textFinderSyntax
+// ------------------------------------------------------
+{
+    return [self usesRegularExpression] ? [self syntax] : OgreSimpleMatchingSyntax;
 }
 
 
