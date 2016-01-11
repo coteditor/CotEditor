@@ -29,6 +29,7 @@
 #import "CEFindResultViewController.h"
 #import "CETextFinder.h"
 #import "CEDefaults.h"
+#import "CEErrors.h"
 
 #import <OgreKit/OgreKit.h>
 
@@ -832,8 +833,11 @@ static const NSUInteger kMaxHistorySize = 20;
             
         } @catch (NSException *exception) {
             if ([[exception name] isEqualToString:OgreException]) {
-                [self showAlertWithMessage:NSLocalizedString(@"Invalid regular expression", nil)
-                               informative:[exception reason]];
+                NSError *error = [NSError errorWithDomain:CEErrorDomain
+                                                     code:CERegularExpressionError
+                                                 userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"Invalid regular expression", nil),
+                                                            NSLocalizedRecoverySuggestionErrorKey: [exception reason]}];
+                [self showAlertWithError:error];
             } else {
                 [exception raise];
             }
@@ -847,12 +851,10 @@ static const NSUInteger kMaxHistorySize = 20;
 
 // ------------------------------------------------------
 /// show error message by OgreKit as alert
-- (void)showAlertWithMessage:(nonnull NSString *)message informative:(nonnull NSString *)informative
+- (void)showAlertWithError:(nonnull NSError *)error
 // ------------------------------------------------------
 {
-    NSAlert *alert = [[NSAlert alloc] init];
-    [alert setMessageText:message];
-    [alert setInformativeText:informative];
+    NSAlert *alert = [NSAlert alertWithError:error];
     
     NSBeep();
     [[self findPanel] makeKeyAndOrderFront:self];
