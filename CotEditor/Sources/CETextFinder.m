@@ -98,15 +98,65 @@ static CETextFinder	*singleton = nil;
     
     self = [super init];
     if (self) {
+        _findString = @"";
+        _replacementString = @"";
         _findPanelController = [[CEFindPanelController alloc] init];
         
         // add to responder chain
         [NSApp setNextResponder:self];
         
+        // observe application activation to sync find string with other apps
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(applicationDidBecomeActive:)
+                                                     name:NSApplicationDidBecomeActiveNotification
+                                                   object:nil];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(applicationWillResignActive:)
+                                                     name:NSApplicationWillResignActiveNotification
+                                                   object:nil];
+        
         // make singleton
         singleton = self;
     }
     return self;
+}
+
+
+// ------------------------------------------------------
+/// clean up
+- (void)dealloc
+// ------------------------------------------------------
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+
+
+#pragma mark Notification
+
+// ------------------------------------------------------
+/// sync search string on activating application
+- (void)applicationDidBecomeActive:(nonnull NSNotification *)notification
+// ------------------------------------------------------
+{
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultSyncFindPboardKey]) {
+        NSString *sharedFindString = [self findStringFromPasteboard];
+        if (sharedFindString) {
+            [self setFindString:sharedFindString];
+        }
+    }
+}
+
+
+// ------------------------------------------------------
+/// sync search string on activating application
+- (void)applicationWillResignActive:(nonnull NSNotification *)notification
+// ------------------------------------------------------
+{
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultSyncFindPboardKey]) {
+        [self setFindStringToPasteboard:[self findString]];
+    }
 }
 
 
@@ -148,6 +198,34 @@ static CETextFinder	*singleton = nil;
 // ------------------------------------------------------
 {
     [[self findPanelController] showWindow:sender];
+}
+
+
+
+#pragma mark Private Methods
+
+// ------------------------------------------------------
+/// load find string from global domain
+- (nullable NSString *)findStringFromPasteboard
+// ------------------------------------------------------
+{
+    NSPasteboard *pasteboard = [NSPasteboard pasteboardWithName:NSFindPboard];
+    
+    return [pasteboard stringForType:NSStringPboardType];
+}
+
+
+// ------------------------------------------------------
+/// put local find string to global domain
+- (void)setFindStringToPasteboard:(nonnull NSString *)string
+// ------------------------------------------------------
+{
+    if ([string length] == 0) { return; }
+    
+    NSPasteboard *pasteboard = [NSPasteboard pasteboardWithName:NSFindPboard];
+    
+    [pasteboard declareTypes:@[NSStringPboardType] owner:nil];
+    [pasteboard setString:string forType:NSStringPboardType];
 }
 
 @end

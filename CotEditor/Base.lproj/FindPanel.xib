@@ -53,7 +53,7 @@
                                                     <size key="minSize" width="446" height="42"/>
                                                     <size key="maxSize" width="463" height="10000000"/>
                                                     <connections>
-                                                        <binding destination="-2" name="value" keyPath="findString" id="3y4-Gv-dtK">
+                                                        <binding destination="qZS-yd-wpm" name="value" keyPath="findString" id="RMK-P4-pYn">
                                                             <dictionary key="options">
                                                                 <bool key="NSAllowsEditingMultipleValuesSelection" value="NO"/>
                                                                 <bool key="NSContinuouslyUpdatesValue" value="YES"/>
@@ -96,7 +96,7 @@
                                                     <size key="minSize" width="446" height="42"/>
                                                     <size key="maxSize" width="463" height="10000000"/>
                                                     <connections>
-                                                        <binding destination="-2" name="value" keyPath="replacementString" id="axy-Dp-Ait">
+                                                        <binding destination="qZS-yd-wpm" name="value" keyPath="replacementString" id="MRv-ox-jgD">
                                                             <dictionary key="options">
                                                                 <bool key="NSAllowsEditingMultipleValuesSelection" value="NO"/>
                                                                 <bool key="NSContinuouslyUpdatesValue" value="YES"/>

@@ -33,6 +33,10 @@ extern NSString *_Nonnull const kEscapeCharacter;
 
 @interface CETextFinder : NSResponder
 
+@property (nonatomic, nonnull, copy) NSString *findString;
+@property (nonatomic, nonnull, copy) NSString *replacementString;
+
+
 + (nonnull CETextFinder *)sharedTextFinder;
 
 - (nullable NSString *)selectedString;

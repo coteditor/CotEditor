@@ -52,9 +52,6 @@ static const NSUInteger kMaxHistorySize = 20;
 
 @interface CEFindPanelController () <NSWindowDelegate, NSSplitViewDelegate, NSPopoverDelegate>
 
-@property (nonatomic, nonnull, copy) NSString *findString;
-@property (nonatomic, nonnull, copy) NSString *replacementString;
-
 @property (nonatomic, nonnull) NSColor *highlightColor;
 @property (nonatomic, nullable) NSLayoutConstraint *resultHeightConstraint;  // for autolayout on OS X 10.8
 
@@ -112,8 +109,6 @@ static const NSUInteger kMaxHistorySize = 20;
     
     self = [super init];
     if (self) {
-        _findString = @"";
-        _replacementString = @"";
         _highlightColor = [NSColor colorWithCalibratedHue:0.24 saturation:0.8 brightness:0.8 alpha:0.4];
         // Highlight color is currently not customizable. (2015-01-04)
         // It might better when it can be set in theme also for incompatible chars highlight.
@@ -130,12 +125,6 @@ static const NSUInteger kMaxHistorySize = 20;
                                                 forKeyPath:CEDefaultFindNextAfterReplaceKey
                                                    options:NSKeyValueObservingOptionNew
                                                    context:NULL];
-        
-        // observe application activation
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(applicationDidBecomeActive:)
-                                                     name:NSApplicationDidBecomeActiveNotification
-                                                   object:nil];
     }
     return self;
 }
@@ -147,7 +136,6 @@ static const NSUInteger kMaxHistorySize = 20;
 // ------------------------------------------------------
 {
     [[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:CEDefaultFindNextAfterReplaceKey];
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
     
     [_splitView setDelegate:nil];  // NSSplitView's delegate is assign, not weak
 }
@@ -336,19 +324,6 @@ static const NSUInteger kMaxHistorySize = 20;
 }
 
 
-#pragma mark Notification
-
-// ------------------------------------------------------
-/// sync search string on activating application
-- (void)applicationDidBecomeActive:(nonnull NSNotification *)notification
-// ------------------------------------------------------
-{
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultSyncFindPboardKey]) {
-        [self setFindString:[self findStringFromPasteboard]];
-    }
-}
-
-
 
 #pragma mark Public Action Messages
 
@@ -488,7 +463,7 @@ static const NSUInteger kMaxHistorySize = 20;
         });
     });
     
-    [self appendFindHistory:[self findString]];
+    [self appendFindHistory:[[self textFinder] findString]];
 }
 
 
@@ -500,7 +475,7 @@ static const NSUInteger kMaxHistorySize = 20;
     NSString *selectedString = [[self textFinder] selectedString];
     
     if (selectedString) {
-        [self setFindString:selectedString];
+        [[self textFinder] setFindString:selectedString];
     } else {
         NSBeep();
     }
@@ -515,7 +490,7 @@ static const NSUInteger kMaxHistorySize = 20;
     NSString *selectedString = [[self textFinder] selectedString];
     
     if (selectedString) {
-        [self setReplacementString:selectedString];
+        [[self textFinder] setReplacementString:selectedString];
     } else {
         NSBeep();
     }
@@ -588,8 +563,8 @@ static const NSUInteger kMaxHistorySize = 20;
     NSNumberFormatter *integerFormatter = [self integerFormatter];
     NSTextView *textView = [self target];
     NSString *findString = [self sanitizedFindString];
-    NSString *replacementString = [self replacementString];
-    OGReplaceExpression *repex = [OGReplaceExpression replaceExpressionWithString:[self replacementString] ? : @""
+    NSString *replacementString = [[self textFinder] replacementString];
+    OGReplaceExpression *repex = [OGReplaceExpression replaceExpressionWithString:[[self textFinder] replacementString] ? : @""
                                                                            syntax:[self textFinderSyntax]
                                                                   escapeCharacter:kEscapeCharacter];
     
@@ -663,8 +638,8 @@ static const NSUInteger kMaxHistorySize = 20;
         });
     });
     
-    [self appendFindHistory:[self findString]];
-    [self appendReplaceHistory:[self replacementString]];
+    [self appendFindHistory:[[self textFinder] findString]];
+    [self appendReplaceHistory:[[self textFinder] replacementString]];
 }
 
 
@@ -694,7 +669,7 @@ static const NSUInteger kMaxHistorySize = 20;
 - (IBAction)selectFindHistory:(nullable id)sender
 // ------------------------------------------------------
 {
-    [self setFindString:[sender representedObject]];
+    [[self textFinder] setFindString:[sender representedObject]];
 }
 
 
@@ -703,7 +678,7 @@ static const NSUInteger kMaxHistorySize = 20;
 - (IBAction)selectReplaceHistory:(nullable id)sender
 // ------------------------------------------------------
 {
-    [self setReplacementString:[sender representedObject]];
+    [[self textFinder] setReplacementString:[sender representedObject]];
 }
 
 
@@ -799,7 +774,7 @@ static const NSUInteger kMaxHistorySize = 20;
 - (NSString *)sanitizedFindString
 // ------------------------------------------------------
 {
-    return [OGRegularExpression replaceNewlineCharactersInString:[self findString]
+    return [OGRegularExpression replaceNewlineCharactersInString:[[self textFinder] findString]
                                                    withCharacter:OgreLfNewlineCharacter];
 }
 
@@ -958,7 +933,7 @@ static const NSUInteger kMaxHistorySize = 20;
         return NO;
     }
     
-    if ([[self findString] length] == 0) {
+    if ([[[self textFinder] findString] length] == 0) {
         NSBeep();
         return NO;
     }
@@ -1061,11 +1036,6 @@ static const NSUInteger kMaxHistorySize = 20;
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
-    // sync search string
-    if ([defaults boolForKey:CEDefaultSyncFindPboardKey]) {
-        [self setFindStringToPasteboard:string];
-    }
-    
     // append new string to history
     NSMutableArray<NSString *> *history = [NSMutableArray arrayWithArray:[defaults stringArrayForKey:CEDefaultFindHistoryKey]];
     [history removeObject:string];  // remove duplicated item
@@ -1100,31 +1070,6 @@ static const NSUInteger kMaxHistorySize = 20;
     [defaults setObject:history forKey:CEDefaultReplaceHistoryKey];
     
     [self updateReplaceHistoryMenu];
-}
-
-
-// ------------------------------------------------------
-/// load find string from global domain
-- (NSString *)findStringFromPasteboard
-// ------------------------------------------------------
-{
-    NSPasteboard *pasteboard = [NSPasteboard pasteboardWithName:NSFindPboard];
-    
-    return [pasteboard stringForType:NSStringPboardType];
-}
-
-
-// ------------------------------------------------------
-/// put local find string to global domain
-- (void)setFindStringToPasteboard:(nonnull NSString *)string
-// ------------------------------------------------------
-{
-    if ([string length] == 0) { return; }
-    
-    NSPasteboard *pasteboard = [NSPasteboard pasteboardWithName:NSFindPboard];
-    
-    [pasteboard declareTypes:@[NSStringPboardType] owner:nil];
-    [pasteboard setString:string forType:NSStringPboardType];
 }
 
 
