@@ -51,7 +51,13 @@ typedef NS_ENUM(NSInteger, CETextFinderAction) {
 
 // action messages
 - (IBAction)showFindPanel:(nullable id)sender;
-
+- (IBAction)findNext:(nullable id)sender;
+- (IBAction)findPrevious:(nullable id)sender;
+- (IBAction)findSelectedText:(nullable id)sender;
+- (IBAction)findAll:(nullable id)sender;
+- (IBAction)replace:(nullable id)sender;
+- (IBAction)replaceAll:(nullable id)sender;
+- (IBAction)replaceAndFind:(nullable id)sender;
 - (IBAction)useSelectionForFind:(nullable id)sender;
 - (IBAction)useSelectionForReplace:(nullable id)sender;
 

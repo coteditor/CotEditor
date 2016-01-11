@@ -40,7 +40,6 @@ extern NSString * _Nonnull const CEFindResultLineRange;  // NSRange in NSValue
 // action messages
 - (IBAction)findNext:(nullable id)sender;
 - (IBAction)findPrevious:(nullable id)sender;
-- (IBAction)findSelectedText:(nullable id)sender;
 - (IBAction)findAll:(nullable id)sender;
 - (IBAction)replace:(nullable id)sender;
 - (IBAction)replaceAll:(nullable id)sender;

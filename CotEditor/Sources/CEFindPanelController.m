@@ -117,9 +117,6 @@ static const NSUInteger kMaxHistorySize = 20;
         // deserialize options setting from defaults
         [self setOptions:[[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultFindOptionsKey]];
         
-        // add to responder chain
-        [NSApp setNextResponder:self];
-        
         // observe default change for the "Replace" button tooltip
         [[NSUserDefaults standardUserDefaults] addObserver:self
                                                 forKeyPath:CEDefaultFindNextAfterReplaceKey
@@ -197,17 +194,7 @@ static const NSUInteger kMaxHistorySize = 20;
 - (BOOL)validateMenuItem:(nonnull NSMenuItem *)menuItem
 // ------------------------------------------------------
 {
-    if ([menuItem action] == @selector(findNext:) ||
-        [menuItem action] == @selector(findPrevious:) ||
-        [menuItem action] == @selector(findSelectedText:) ||
-        [menuItem action] == @selector(findAll:) ||
-        [menuItem action] == @selector(replace:) ||
-        [menuItem action] == @selector(replaceAndFind:) ||
-        [menuItem action] == @selector(replaceAll:))
-    {
-        return ([self target] != nil);
-        
-    } else if ([menuItem action] == @selector(changeSyntax:)) {
+    if ([menuItem action] == @selector(changeSyntax:)) {
         OgreSyntax syntax = [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultFindRegexSyntaxKey];
         [menuItem setState:([menuItem tag] == syntax) ? NSOnState : NSOffState];
     }
@@ -368,16 +355,6 @@ static const NSUInteger kMaxHistorySize = 20;
 
 
 // ------------------------------------------------------
-/// perform find action with the selected string
-- (IBAction)findSelectedText:(nullable id)sender
-// ------------------------------------------------------
-{
-    [[self textFinder] useSelectionForFind:sender];
-    [self findNext:sender];
-}
-
-
-// ------------------------------------------------------
 /// find all matched string in the target and show results in a table
 - (IBAction)findAll:(nullable id)sender
 // ------------------------------------------------------
@@ -469,7 +446,7 @@ static const NSUInteger kMaxHistorySize = 20;
 {
     // perform "Replace & Find" instead of "Replace"
     if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultFindNextAfterReplaceKey]) {
-        [self replaceAndFind:sender];
+        [[self textFinder] replaceAndFind:sender];
         return;
     }
     

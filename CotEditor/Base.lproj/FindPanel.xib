@@ -24,7 +24,7 @@
         <window identifier="findPanel" title="Find &amp; Replace" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="findPanel" animationBehavior="default" id="Wal-Sg-6d6" userLabel="Find Panel" customClass="NSPanel">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" resizable="YES" utility="YES"/>
             <rect key="contentRect" x="167" y="107" width="540" height="380"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1280" height="777"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
             <view key="contentView" id="VS9-oi-ter">
                 <rect key="frame" x="0.0" y="0.0" width="540" height="380"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -591,7 +591,7 @@
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
                                         <connections>
-                                            <action selector="replace:" target="-2" id="naq-pU-vKU"/>
+                                            <action selector="replace:" target="-2" id="zCu-tF-My8"/>
                                         </connections>
                                     </button>
                                     <button toolTip="Replace all matches with the replacement text." verticalHuggingPriority="750" tag="4" translatesAutoresizingMaskIntoConstraints="NO" id="RR6-rj-B8P">
@@ -601,7 +601,7 @@
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
                                         <connections>
-                                            <action selector="replaceAll:" target="-2" id="pNt-ml-m9D"/>
+                                            <action selector="replaceAll:" target="qZS-yd-wpm" id="eyk-Mm-wmj"/>
                                         </connections>
                                     </button>
                                     <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ZIn-Dy-dyd">
@@ -628,7 +628,7 @@
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
                                         <connections>
-                                            <action selector="findAll:" target="-2" id="3if-2U-Pv0"/>
+                                            <action selector="findAll:" target="qZS-yd-wpm" id="jPu-wJ-Ag0"/>
                                         </connections>
                                     </button>
                                 </subviews>

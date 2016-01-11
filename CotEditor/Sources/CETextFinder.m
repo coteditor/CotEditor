@@ -139,8 +139,18 @@ static CETextFinder	*singleton = nil;
 {
     SEL action = [menuItem action];
     
-    if (action == @selector(useSelectionForFind:) ||
-        action == @selector(useSelectionForReplace:))
+    if (action == @selector(findNext:) ||
+        action == @selector(findPrevious:) ||
+        action == @selector(findSelectedText:) ||
+        action == @selector(findAll:) ||
+        action == @selector(replace:) ||
+        action == @selector(replaceAndFind:) ||
+        action == @selector(replaceAll:))
+    {
+        return ([self client] != nil);
+        
+    } else if (action == @selector(useSelectionForFind:) ||
+               action == @selector(useSelectionForReplace:))
     {
         return ([self selectedString] != nil);
     }
@@ -210,11 +220,75 @@ static CETextFinder	*singleton = nil;
 #pragma mark Action Messages
 
 // ------------------------------------------------------
-/// show find panel
+/// activate find panel
 - (IBAction)showFindPanel:(nullable id)sender
 // ------------------------------------------------------
 {
     [[self findPanelController] showWindow:sender];
+}
+
+
+// ------------------------------------------------------
+/// find next matched string
+- (IBAction)findNext:(nullable id)sender
+// ------------------------------------------------------
+{
+    [[self findPanelController] findNext:sender];
+}
+
+
+// ------------------------------------------------------
+/// find previous matched string
+- (IBAction)findPrevious:(nullable id)sender
+// ------------------------------------------------------
+{
+    [[self findPanelController] findPrevious:sender];
+}
+
+
+// ------------------------------------------------------
+/// perform find action with the selected string
+- (IBAction)findSelectedText:(nullable id)sender
+// ------------------------------------------------------
+{
+    [self useSelectionForFind:sender];
+    [self findNext:sender];
+}
+
+
+// ------------------------------------------------------
+/// find all matched string in the target and show results in a table
+- (IBAction)findAll:(nullable id)sender
+// ------------------------------------------------------
+{
+    [[self findPanelController] findAll:sender];
+}
+
+
+// ------------------------------------------------------
+/// replace next matched string with given string
+- (IBAction)replace:(nullable id)sender
+// ------------------------------------------------------
+{
+    [[self findPanelController] replace:sender];
+}
+
+
+// ------------------------------------------------------
+/// replace all matched strings with given string
+- (IBAction)replaceAll:(nullable id)sender
+// ------------------------------------------------------
+{
+    [[self findPanelController] replaceAll:sender];
+}
+
+
+// ------------------------------------------------------
+/// replace next matched string with given string and select the one after the next match
+- (IBAction)replaceAndFind:(nullable id)sender
+// ------------------------------------------------------
+{
+    [[self findPanelController] replaceAndFind:sender];
 }
 
 
