@@ -25,16 +25,43 @@
  
  */
 
+#import <OgreKit/OgreKit.h>
 #import "CETextFinder.h"
+#import "CEFindPanelController.h"
 #import "CEDefaults.h"
 
 
 NSString * _Nonnull const kEscapeCharacter = @"\\";
 
 
+@interface CETextFinder ()
+
+@property (nonatomic, nonnull) CEFindPanelController *findPanelController;
+
+@end
+
+
 @implementation CETextFinder
 
-#pragma mark Superclass Methods
+#pragma mark Singleton
+
+static CETextFinder	*singleton = nil;
+
+// ------------------------------------------------------
+/// return singleton instance
++ (nonnull CETextFinder *)sharedTextFinder
+// ------------------------------------------------------
+{
+    if (!singleton) {
+        singleton = [[self alloc] init];
+    }
+    
+    return singleton;
+}
+
+
+
+#pragma mark Sueprclass Methods
 
 // ------------------------------------------------------
 /// register default setting for find panel
@@ -65,20 +92,21 @@ NSString * _Nonnull const kEscapeCharacter = @"\\";
 - (instancetype)init
 // ------------------------------------------------------
 {
+    if (singleton) {
+        return singleton;
+    }
+    
     self = [super init];
     if (self) {
-        [self setEscapeCharacter:kEscapeCharacter];
+        _findPanelController = [[CEFindPanelController alloc] init];
+        
+        // add to responder chain
+        [NSApp setNextResponder:self];
+        
+        // make singleton
+        singleton = self;
     }
     return self;
-}
-
-
-// ------------------------------------------------------
-/// specify custom find panel nib name
-- (nonnull NSString *)findPanelNibName
-// ------------------------------------------------------
-{
-    return @"FindPanel";
 }
 
 
@@ -86,16 +114,40 @@ NSString * _Nonnull const kEscapeCharacter = @"\\";
 #pragma mark Public Methods
 
 // ------------------------------------------------------
+/// target text view
+- (nullable NSTextView *)client
+// ------------------------------------------------------
+{
+    id<CETextFinderClientProvider> provider = [NSApp targetForAction:@selector(focusedTextView)];
+    if (provider) {
+        return [provider focusedTextView];
+    }
+    
+    return nil;
+}
+
+// ------------------------------------------------------
 /// selected string in the current tareget
 - (nullable NSString *)selectedString
 // ------------------------------------------------------
 {
-    NSTextView *textView = [self targetToFindIn];
-    NSRange selectedRange = [textView selectedRange];
+    NSRange selectedRange = [[self client] selectedRange];
     
     if (selectedRange.length == 0) { return nil; }
     
-    return [[textView string] substringWithRange:selectedRange];
+    return [[[self client] string] substringWithRange:selectedRange];
+}
+
+
+
+#pragma mark Action Messages
+
+// ------------------------------------------------------
+/// show find panel
+- (IBAction)showFindPanel:(nullable id)sender
+// ------------------------------------------------------
+{
+    [[self findPanelController] showWindow:sender];
 }
 
 @end

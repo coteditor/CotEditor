@@ -25,14 +25,29 @@
  
  */
 
-#import <OgreKit/OgreTextFinder.h>
+@import Cocoa;
 
 
 extern NSString *_Nonnull const kEscapeCharacter;
 
 
-@interface CETextFinder : OgreTextFinder
+@interface CETextFinder : NSResponder
+
++ (nonnull CETextFinder *)sharedTextFinder;
 
 - (nullable NSString *)selectedString;
+- (nullable NSTextView *)client;
+
+
+// action messages
+- (IBAction)showFindPanel:(nullable id)sender;
+
+@end
+
+
+@protocol CETextFinderClientProvider <NSObject>
+
+@required
+- (nullable NSTextView *)focusedTextView;
 
 @end

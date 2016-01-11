@@ -1098,11 +1098,7 @@ CA
             <point key="canvasLocation" x="667" y="895.5"/>
         </menu>
         <customObject id="290" customClass="CEAppDelegate"/>
-        <customObject id="289" customClass="CETextFinder">
-            <userDefinedRuntimeAttributes>
-                <userDefinedRuntimeAttribute type="boolean" keyPath="shouldHackFindMenu" value="NO"/>
-            </userDefinedRuntimeAttributes>
-        </customObject>
+        <customObject id="289" customClass="CETextFinder"/>
         <customObject id="329" customClass="CEDocumentController"/>
         <customObject id="432" customClass="NSFontManager"/>
     </objects>
