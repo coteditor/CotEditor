@@ -417,7 +417,6 @@ static const NSUInteger kMaxHistorySize = 20;
     NSNumberFormatter *integerFormatter = [self integerFormatter];
     NSTextView *textView = [self target];
     NSString *findString = [self sanitizedFindString];
-    NSWindow *documentWindow = [textView window];
     
     NSRegularExpression *lineRegex = [NSRegularExpression regularExpressionWithPattern:@"\n" options:0 error:nil];
     NSString *string = [textView string];
@@ -427,7 +426,7 @@ static const NSUInteger kMaxHistorySize = 20;
     __block BOOL isCancelled = NO;
     CEProgressSheetController *indicator = [[CEProgressSheetController alloc] initWithMessage:NSLocalizedString(@"Find All", nil)];
     [indicator setIndetermine:YES];
-    [indicator beginSheetForWindow:documentWindow completionHandler:^(NSModalResponse returnCode) {
+    [indicator beginSheetForWindow:[textView window] completionHandler:^(NSModalResponse returnCode) {
         if (returnCode == NSCancelButton) {
             isCancelled = YES;
         }
@@ -465,9 +464,9 @@ static const NSUInteger kMaxHistorySize = 20;
                                 CEFindResultAttributedLineString: lineAttrString,
                                 CEFindResultLineRange: [NSValue valueWithRange:inlineRange]}];
             
+            NSString *informative = ([result count] == 1) ? @"%@ string found." : @"%@ strings found.";
+            NSString *countStr = [integerFormatter stringFromNumber:@([result count])];
             dispatch_async(dispatch_get_main_queue(), ^{
-                NSString *informative = ([result count] == 1) ? @"%@ string found." : @"%@ strings found.";
-                NSString *countStr = [integerFormatter stringFromNumber:@([result count])];
                 [indicator setInformativeText:[NSString stringWithFormat:NSLocalizedString(informative, nil), countStr]];
             });
         }

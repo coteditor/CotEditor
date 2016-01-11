@@ -473,6 +473,7 @@
 
 
 /* MARK: CEFindPanelController */
+"Find All" = "Alles suchen";
 "%@ string found." = "%@ Zeichenkette gefunden.";
 "%@ strings found." = "%@ Zeichenketten gefunden.";
 "Invalid regular expression" =  "Ungültiger regulärer Ausdruck";

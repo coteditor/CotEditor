@@ -475,8 +475,9 @@
 
 
 /* MARK: CEFindPanelController */
-"%@ string found." = "%@ 文字列見つかりました。";
-"%@ strings found." = "%@ 文字列見つかりました。";
+"Find All" = "すべて検索";
+"%@ string found." = "%@ 件見つかりました。";
+"%@ strings found." = "%@ 件見つかりました。";
 "Invalid regular expression" =  "無効な正規表現です。";
 
 
