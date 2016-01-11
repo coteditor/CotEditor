@@ -271,16 +271,14 @@
 - (BOOL)textView:(nonnull NSTextView *)textView shouldChangeTextInRange:(NSRange)affectedCharRange replacementString:(nullable NSString *)replacementString
 // ------------------------------------------------------
 {
-    // standardize line endings to LF (Script, Key Typing)
+    // standardize line endings to LF (Key Typing, Script, Paste, Drop or Replace via Find Panel)
     // (Line endings replacemement by other text modifications are processed in the following methods.)
     //
     // # Methods Standardizing Line Endings on Text Editing
     //   - File Open:
     //       - CEDocument > applyContentToEditor
-    //   - Key Typing, Script, Paste, Drop:
+    //   - Key Typing, Script, Paste, Drop or Replace via Find Panel:
     //       - CEEditorViewController > textView:shouldChangeTextInRange:replacementString:
-    //   - Replace on Find Panel:
-    //       - (OgreKit) OgreTextViewPlainAdapter > replaceCharactersInRange:withOGString:
     
     if (!replacementString ||  // = attributesのみの変更
         ([replacementString length] == 0) ||  // = 文章の削除
