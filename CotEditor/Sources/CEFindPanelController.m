@@ -50,7 +50,7 @@ static const NSUInteger kMaxHistorySize = 20;
 //static const NSUInteger kMinLengthShowIndicator = 5000;  // not in use
 
 
-@interface CEFindPanelController () <NSWindowDelegate, NSSplitViewDelegate, NSPopoverDelegate>
+@interface CEFindPanelController () <CETextFinderDelegate, NSWindowDelegate, NSSplitViewDelegate, NSPopoverDelegate>
 
 @property (nonatomic, nonnull) NSColor *highlightColor;
 @property (nonatomic, nullable) NSLayoutConstraint *resultHeightConstraint;  // for autolayout on OS X 10.8
@@ -165,7 +165,7 @@ static const NSUInteger kMaxHistorySize = 20;
 
 // ------------------------------------------------------
 /// complemention notification for "Find All"
-- (void)didEndFindAll:(NSArray<NSDictionary *> *)results findString:(nonnull NSString *)findString textView:(NSTextView *)textView
+- (void)textFinder:(CETextFinder *)textFinder didFindAll:(NSArray<NSDictionary *> *)results findString:(NSString *)findString textView:(NSTextView *)textView
 // ------------------------------------------------------
 {
     // highlight in text view
@@ -362,7 +362,7 @@ static const NSUInteger kMaxHistorySize = 20;
     if (![self checkIsReadyToFind]) { return; }
     
     NSNumberFormatter *integerFormatter = [self integerFormatter];
-    NSTextView *textView = [self target];
+    NSTextView *textView = [self client];
     NSString *findString = [self sanitizedFindString];
     
     NSRegularExpression *lineRegex = [NSRegularExpression regularExpressionWithPattern:@"\n" options:0 error:nil];
@@ -422,7 +422,7 @@ static const NSUInteger kMaxHistorySize = 20;
             [indicator doneWithButtonTitle:nil];
             
             if ([result count] > 0) {
-                [self didEndFindAll:result findString:findString textView:textView];
+                [self textFinder:[self textFinder] didFindAll:result findString:findString textView:textView];
                 [indicator close:self];
                 
             } else {
@@ -487,7 +487,7 @@ static const NSUInteger kMaxHistorySize = 20;
 //    
 //    if ([result isSuccess]) {
 //        // add visual feedback
-//        [[self target] showFindIndicatorForRange:[[self target] selectedRange]];
+//        [[self client] showFindIndicatorForRange:[[self client] selectedRange]];
 //        
 //    } else {
 //        NSBeep();
@@ -503,7 +503,7 @@ static const NSUInteger kMaxHistorySize = 20;
     if (![self checkIsReadyToFind]) { return; }
     
     NSNumberFormatter *integerFormatter = [self integerFormatter];
-    NSTextView *textView = [self target];
+    NSTextView *textView = [self client];
     NSString *findString = [self sanitizedFindString];
     NSString *replacementString = [[self textFinder] replacementString];
     OGReplaceExpression *repex = [OGReplaceExpression replaceExpressionWithString:[[self textFinder] replacementString] ? : @""
@@ -825,7 +825,7 @@ static const NSUInteger kMaxHistorySize = 20;
 
 // ------------------------------------------------------
 /// return current target textView
-- (nullable NSTextView *)target
+- (nullable NSTextView *)client
 // ------------------------------------------------------
 {
     return [[self textFinder] client];
@@ -852,7 +852,7 @@ static const NSUInteger kMaxHistorySize = 20;
 //    
 //    if ([result isSuccess]) {
 //        // add visual feedback
-//        [[self target] showFindIndicatorForRange:[[self target] selectedRange]];
+//        [[self client] showFindIndicatorForRange:[[self client] selectedRange]];
 //        
 //    } else {
 //        NSBeep();
@@ -865,7 +865,7 @@ static const NSUInteger kMaxHistorySize = 20;
 - (BOOL)checkIsReadyToFind
 // ------------------------------------------------------
 {
-    if (![self target]) {
+    if (![self client]) {
         NSBeep();
         return NO;
     }
@@ -1093,7 +1093,7 @@ static const NSUInteger kMaxHistorySize = 20;
 // ------------------------------------------------------
 {
     // TODO: multiple-selection
-    NSTextView *textView = [self target];
+    NSTextView *textView = [self client];
     
     return [self inSelection] ? [textView selectedRange] : NSMakeRange(0, [[textView string] length]);
 }

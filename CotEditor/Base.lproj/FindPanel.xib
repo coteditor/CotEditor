@@ -670,7 +670,11 @@
             <point key="canvasLocation" x="261" y="-21"/>
         </window>
         <userDefaultsController representsSharedInstance="YES" id="1KP-j4-l6E"/>
-        <customObject id="qZS-yd-wpm" customClass="CETextFinder"/>
+        <customObject id="qZS-yd-wpm" customClass="CETextFinder">
+            <connections>
+                <outlet property="delegate" destination="-2" id="W9S-zF-ulY"/>
+            </connections>
+        </customObject>
         <viewController id="46P-vJ-49R" customClass="CEFindResultViewController">
             <connections>
                 <outlet property="integerFormatter" destination="YLc-PB-3Zc" id="s1c-LJ-0WK"/>
