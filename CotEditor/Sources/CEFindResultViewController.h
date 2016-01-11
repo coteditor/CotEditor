@@ -30,7 +30,7 @@
 
 @interface CEFindResultViewController : NSViewController <NSTableViewDelegate, NSTableViewDataSource>
 
-@property (nonatomic, nullable) NSArray<NSDictionary *> *result;
+@property (nonatomic, nullable, copy) NSArray<NSDictionary *> *result;
 @property (nonatomic, nullable, unsafe_unretained) NSTextView *target;
 
 @property (nonatomic, nullable, copy) NSString *findString;

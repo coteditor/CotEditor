@@ -25,20 +25,15 @@
  
  */
 
+#import <OgreKit/OgreKit.h>
 #import "CEFindPanelController.h"
 #import "CEFindResultViewController.h"
 #import "CETextFinder.h"
-#import "CEProgressSheetController.h"
 #import "CEDefaults.h"
-
-#import <OgreKit/OgreKit.h>
 
 
 // constants
 static const CGFloat kDefaultResultViewHeight = 200.0;
-
-// find all result
-//static const NSUInteger kMinLengthShowIndicator = 5000;  // not in use
 
 
 @interface CEFindPanelController () <CETextFinderDelegate, NSWindowDelegate, NSSplitViewDelegate, NSPopoverDelegate>
@@ -61,7 +56,7 @@ static const CGFloat kDefaultResultViewHeight = 200.0;
 @property (nonatomic) BOOL notEndOfLineOption;
 
 #pragma mark Outlets
-@property (nonatomic, nullable) IBOutlet CETextFinder *textFinder;
+@property (nonatomic, nullable, weak) IBOutlet CETextFinder *textFinder;
 @property (nonatomic, nullable) IBOutlet CEFindResultViewController *resultViewController;
 @property (nonatomic, nullable) IBOutlet NSPopover *regexPopover;
 @property (nonatomic, nullable, weak) IBOutlet NSSplitView *splitView;

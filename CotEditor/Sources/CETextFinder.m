@@ -39,8 +39,9 @@ NSString * _Nonnull const CEFindResultLineNumber = @"lineNumber";
 NSString * _Nonnull const CEFindResultAttributedLineString = @"attributedLineString";
 NSString * _Nonnull const CEFindResultLineRange = @"lineRange";
 
-static NSString * _Nonnull const kEscapeCharacter = @"\\";
+static NSString * _Nonnull const kEscapeCharacter = OgreBackslashCharacter;
 static const NSUInteger kMaxHistorySize = 20;
+//static const NSUInteger kMinLengthShowIndicator = 5000;  // not in use
 
 
 @interface CETextFinder ()
@@ -114,7 +115,7 @@ static CETextFinder	*singleton = nil;
 
 // ------------------------------------------------------
 /// initialize instance
-- (instancetype)init
+- (nonnull instancetype)init
 // ------------------------------------------------------
 {
     if (singleton) {
@@ -352,7 +353,7 @@ static CETextFinder	*singleton = nil;
 
 
 // ------------------------------------------------------
-/// replace next matched string with given string
+/// replace matched string in selection with replacementStirng
 - (IBAction)replace:(nullable id)sender
 // ------------------------------------------------------
 {
@@ -365,9 +366,39 @@ static CETextFinder	*singleton = nil;
 //                                        replacingOnly:YES
 //                                                 wrap:NO];
 //
-//    [self textFinder:self didReplace:[self findString] withString:[self replacementString]];
+//    [self appendFindHistory:[self findString]];
+//    [self appendReplaceHistory:[self replacementString]];
 //
 //    if ([result alertIfErrorOccurred]) { return; }
+}
+
+
+// ------------------------------------------------------
+/// replace matched string with replacementStirng and select the next match
+- (IBAction)replaceAndFind:(nullable id)sender
+// ------------------------------------------------------
+{
+    if (![self checkIsReadyToFind]) { return; }
+    
+    // TODO: re-implement
+//    OgreTextFindResult *result = [self replaceAndFind:[self sanitizedFindString]
+//                                           withString:[self replacementString] ? : @""
+//                                              options:[self options]
+//                                        replacingOnly:NO
+//                                                 wrap:[self isWrap]];
+//
+//    [self appendFindHistory:[self findString]];
+//    [self appendReplaceHistory:[self replacementString]];
+//
+//    if ([result alertIfErrorOccurred]) { return; }
+//
+//    if ([result isSuccess]) {
+//        // add visual feedback
+//        [[self client] showFindIndicatorForRange:[[self client] selectedRange]];
+//
+//    } else {
+//        NSBeep();
+//    }
 }
 
 
@@ -458,34 +489,6 @@ static CETextFinder	*singleton = nil;
     
     [self appendFindHistory:findString];
     [self appendReplaceHistory:replacementString];
-}
-
-
-// ------------------------------------------------------
-/// replace next matched string with given string and select the one after the next match
-- (IBAction)replaceAndFind:(nullable id)sender
-// ------------------------------------------------------
-{
-    if (![self checkIsReadyToFind]) { return; }
-    
-// TODO: re-implement
-//    OgreTextFindResult *result = [self replaceAndFind:[self sanitizedFindString]
-//                                           withString:[self replacementString] ? : @""
-//                                              options:[self options]
-//                                        replacingOnly:NO
-//                                                 wrap:[self isWrap]];
-//
-//    [self textFinder:self didReplace:[self findString] withString:[self replacementString]];
-//
-//    if ([result alertIfErrorOccurred]) { return; }
-//
-//    if ([result isSuccess]) {
-//        // add visual feedback
-//        [[self client] showFindIndicatorForRange:[[self client] selectedRange]];
-//
-//    } else {
-//        NSBeep();
-//    }
 }
 
 
@@ -581,7 +584,7 @@ static CETextFinder	*singleton = nil;
 
 
 // ------------------------------------------------------
-/// OgreKit regext object with current settings
+/// OgreKit regex object with current settings
 - (nullable OGRegularExpression *)regex
 // ------------------------------------------------------
 {
@@ -599,14 +602,14 @@ static CETextFinder	*singleton = nil;
 {
     if (![self checkIsReadyToFind]) { return; }
     
-// TODO: re-implement
+    // TODO: re-implement
 //    OgreTextFindResult *result = [self find:[self sanitizedFindString]
 //                                    options:[self options]
 //                                    fromTop:NO
 //                                    forward:forward
 //                                       wrap:[self isWrap]];
 //
-//    [self textFinder:self didFind:[self findString]];
+//    [self appendFindHistory:[self findString]];
 //
 //    if ([result alertIfErrorOccurred]) { return; }
 //
