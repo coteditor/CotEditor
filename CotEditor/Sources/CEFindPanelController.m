@@ -55,13 +55,6 @@ static const NSUInteger kMaxHistorySize = 20;
 @property (nonatomic, nonnull) NSColor *highlightColor;
 @property (nonatomic, nullable) NSLayoutConstraint *resultHeightConstraint;  // for autolayout on OS X 10.8
 
-#pragma mark Settings
-@property (readonly, nonatomic) BOOL usesRegularExpression;
-@property (readonly, nonatomic) BOOL isWrap;
-@property (readonly, nonatomic) BOOL inSection;
-@property (readonly, nonatomic) BOOL closesIndicatorWhenDone;
-@property (readonly, nonatomic) OgreSyntax syntax;
-
 #pragma mark Options
 @property (nonatomic) BOOL ignoreCaseOption;
 @property (nonatomic) BOOL singleLineOption;
@@ -367,7 +360,7 @@ static const NSUInteger kMaxHistorySize = 20;
     
     NSRegularExpression *lineRegex = [NSRegularExpression regularExpressionWithPattern:@"\n" options:0 error:nil];
     NSString *string = [textView string];
-    NSEnumerator<OGRegularExpressionMatch *> *enumerator = [[self regex] matchEnumeratorInString:string range:[self scopeRange]];
+    NSEnumerator<OGRegularExpressionMatch *> *enumerator = [[self regex] matchEnumeratorInString:string range:[[self textFinder] scopeRange]];
     
     // setup progress sheet
     __block BOOL isCancelled = NO;
@@ -428,7 +421,7 @@ static const NSUInteger kMaxHistorySize = 20;
             } else {
                 NSBeep();
                 [indicator setInformativeText:NSLocalizedString(@"Not Found.", nil)];
-                if ([self closesIndicatorWhenDone]) {
+                if ([[self textFinder] closesIndicatorWhenDone]) {
                     [indicator close:self];
                 }
             }
@@ -455,7 +448,7 @@ static const NSUInteger kMaxHistorySize = 20;
     // TODO: re-implement
 //    OgreTextFindResult *result = [[self textFinder] replaceAndFind:[self sanitizedFindString]
 //                                                        withString:[self replacementString] ? : @""
-//                                                           options:[self options]
+//                                                           options:[[self textFinder] options]
 //                                                     replacingOnly:YES
 //                                                              wrap:NO];
 //    
@@ -476,9 +469,9 @@ static const NSUInteger kMaxHistorySize = 20;
     // TODO: re-implement
 //    OgreTextFindResult *result = [[self textFinder] replaceAndFind:[self sanitizedFindString]
 //                                                        withString:[self replacementString] ? : @""
-//                                                           options:[self options]
+//                                                           options:[[self textFinder] options]
 //                                                     replacingOnly:NO
-//                                                              wrap:[self isWrap]];
+//                                                              wrap:[[self textFinder] isWrap]];
 //    
 //    [self appendFindHistory:[self findString]];
 //    [self appendReplaceHistory:[self replacementString]];
@@ -511,7 +504,7 @@ static const NSUInteger kMaxHistorySize = 20;
                                                                   escapeCharacter:kEscapeCharacter];
     
     NSString *string = [textView string];
-    NSEnumerator<OGRegularExpressionMatch *> *enumerator = [[self regex] matchEnumeratorInString:string range:[self scopeRange]];
+    NSEnumerator<OGRegularExpressionMatch *> *enumerator = [[self regex] matchEnumeratorInString:string range:[[self textFinder] scopeRange]];
     
     // setup progress sheet
     __block BOOL isCancelled = NO;
@@ -574,7 +567,7 @@ static const NSUInteger kMaxHistorySize = 20;
                 [indicator setInformativeText:NSLocalizedString(@"Not Found.", nil)];
             }
             
-            if ([self closesIndicatorWhenDone]) {
+            if ([[self textFinder] closesIndicatorWhenDone]) {
                 [indicator close:self];
             }
         });
@@ -705,7 +698,7 @@ static const NSUInteger kMaxHistorySize = 20;
 // ------------------------------------------------------
 {
     return [OGRegularExpression regularExpressionWithString:[self sanitizedFindString]
-                                                    options:[self options]
+                                                    options:[[self textFinder] options]
                                                      syntax:[self textFinderSyntax]
                                             escapeCharacter:kEscapeCharacter];
 }
@@ -726,7 +719,7 @@ static const NSUInteger kMaxHistorySize = 20;
 - (OgreSyntax)textFinderSyntax
 // ------------------------------------------------------
 {
-    return [self usesRegularExpression] ? [self syntax] : OgreSimpleMatchingSyntax;
+    return [[self textFinder] usesRegularExpression] ? [[self textFinder] syntax] : OgreSimpleMatchingSyntax;
 }
 
 
@@ -841,7 +834,7 @@ static const NSUInteger kMaxHistorySize = 20;
     
     // TODO: re-implement
 //    OgreTextFindResult *result = [[self textFinder] find:[self sanitizedFindString]
-//                                                 options:[self options]
+//                                                 options:[[self textFinder] options]
 //                                                 fromTop:NO
 //                                                 forward:forward
 //                                                    wrap:[self isWrap]];
@@ -881,7 +874,7 @@ static const NSUInteger kMaxHistorySize = 20;
     }
     
     // check regex syntax of find string and alert if invalid
-    if ([self usesRegularExpression]) {
+    if ([[self textFinder] usesRegularExpression]) {
         @try {
             [self regex];
             
@@ -1084,71 +1077,6 @@ static const NSUInteger kMaxHistorySize = 20;
         [[tareget layoutManager] removeTemporaryAttribute:NSBackgroundColorAttributeName
                                         forCharacterRange:NSMakeRange((0), [[tareget string] length])];
     }
-}
-
-
-// ------------------------------------------------------
-/// range to find in
-- (NSRange)scopeRange
-// ------------------------------------------------------
-{
-    // TODO: multiple-selection
-    NSTextView *textView = [self client];
-    
-    return [self inSelection] ? [textView selectedRange] : NSMakeRange(0, [[textView string] length]);
-}
-
-
-
-#pragma mark Private Dynamic Accessors
-
-@dynamic usesRegularExpression;
-// ------------------------------------------------------
-/// return value from user defaults
-- (BOOL)usesRegularExpression
-// ------------------------------------------------------
-{
-    return [[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultFindUsesRegularExpressionKey];
-}
-
-
-@dynamic isWrap;
-// ------------------------------------------------------
-/// return value from user defaults
-- (BOOL)isWrap
-// ------------------------------------------------------
-{
-    return [[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultFindIsWrapKey];
-}
-
-
-@dynamic inSection;
-// ------------------------------------------------------
-/// return value from user defaults
-- (BOOL)inSelection
-// ------------------------------------------------------
-{
-    return [[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultFindInSelectionKey];
-}
-
-
-@dynamic syntax;
-// ------------------------------------------------------
-/// return value from user defaults
-- (OgreSyntax)syntax
-// ------------------------------------------------------
-{
-    return [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultFindRegexSyntaxKey];
-}
-
-
-@dynamic closesIndicatorWhenDone;
-// ------------------------------------------------------
-/// return value from user defaults
-- (BOOL)closesIndicatorWhenDone
-// ------------------------------------------------------
-{
-    return [[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultFindClosesIndicatorWhenDoneKey];
 }
 
 @end

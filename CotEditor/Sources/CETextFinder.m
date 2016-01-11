@@ -216,6 +216,18 @@ static CETextFinder	*singleton = nil;
 }
 
 
+// ------------------------------------------------------
+/// range to find in
+- (NSRange)scopeRange
+// ------------------------------------------------------
+{
+    // TODO: multiple-selection
+    NSTextView *textView = [self client];
+    
+    return [self inSelection] ? [textView selectedRange] : NSMakeRange(0, [[textView string] length]);
+}
+
+
 
 #pragma mark Action Messages
 
@@ -347,6 +359,63 @@ static CETextFinder	*singleton = nil;
     
     [pasteboard declareTypes:@[NSStringPboardType] owner:nil];
     [pasteboard setString:string forType:NSStringPboardType];
+}
+
+
+
+#pragma mark Public Dynamic Accessors
+
+// ------------------------------------------------------
+/// return value from user defaults
+- (BOOL)usesRegularExpression
+// ------------------------------------------------------
+{
+    return [[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultFindUsesRegularExpressionKey];
+}
+
+
+// ------------------------------------------------------
+/// return value from user defaults
+- (BOOL)isWrap
+// ------------------------------------------------------
+{
+    return [[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultFindIsWrapKey];
+}
+
+
+// ------------------------------------------------------
+/// return value from user defaults
+- (BOOL)inSelection
+// ------------------------------------------------------
+{
+    return [[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultFindInSelectionKey];
+}
+
+
+// ------------------------------------------------------
+/// return value from user defaults
+- (OgreSyntax)syntax
+// ------------------------------------------------------
+{
+    return [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultFindRegexSyntaxKey];
+}
+
+
+// ------------------------------------------------------
+/// return value from user defaults
+- (BOOL)closesIndicatorWhenDone
+// ------------------------------------------------------
+{
+    return [[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultFindClosesIndicatorWhenDoneKey];
+}
+
+
+// ------------------------------------------------------
+/// return value from user defaults
+- (unsigned)options
+// ------------------------------------------------------
+{
+    return [[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultFindOptionsKey];
 }
 
 @end

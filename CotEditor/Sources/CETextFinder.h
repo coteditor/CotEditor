@@ -26,6 +26,7 @@
  */
 
 @import Cocoa;
+#import <OgreKit/OGRegularExpression.h>
 
 
 extern NSString *_Nonnull const kEscapeCharacter;
@@ -47,11 +48,20 @@ typedef NS_ENUM(NSInteger, CETextFinderAction) {
 @property (nonatomic, nonnull, copy) NSString *findString;
 @property (nonatomic, nonnull, copy) NSString *replacementString;
 
+#pragma mark Settings
+@property (readonly, nonatomic) BOOL usesRegularExpression;
+@property (readonly, nonatomic) BOOL isWrap;
+@property (readonly, nonatomic) BOOL inSelection;
+@property (readonly, nonatomic) BOOL closesIndicatorWhenDone;
+@property (readonly, nonatomic) OgreSyntax syntax;
+@property (readonly, nonatomic) unsigned options;
+
 
 + (nonnull CETextFinder *)sharedTextFinder;
 
 - (nullable NSString *)selectedString;
 - (nullable NSTextView *)client;
+- (NSRange)scopeRange;
 
 
 // action messages
