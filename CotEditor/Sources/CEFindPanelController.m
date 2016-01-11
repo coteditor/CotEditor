@@ -157,32 +157,6 @@ static const NSUInteger kMaxHistorySize = 20;
 
 
 // ------------------------------------------------------
-/// complemention notification for "Find All"
-- (void)textFinder:(CETextFinder *)textFinder didFindAll:(NSArray<NSDictionary *> *)results findString:(NSString *)findString textView:(NSTextView *)textView
-// ------------------------------------------------------
-{
-    // highlight in text view
-    NSLayoutManager *layoutManager = [textView layoutManager];
-    [layoutManager removeTemporaryAttribute:NSBackgroundColorAttributeName
-                          forCharacterRange:NSMakeRange(0, [[layoutManager textStorage] length])];
-    for (NSDictionary<NSString *, id> *result in results) {
-        NSRange range = [result[CEFindResultRange] rangeValue];
-        [layoutManager addTemporaryAttribute:NSBackgroundColorAttributeName value:[self highlightColor] forCharacterRange:range];
-    }
-    
-    NSString *documentName = [[[[textView window] windowController] document] displayName];
-    
-    // prepare result table
-    [[self resultViewController] setTarget:textView];
-    [[self resultViewController] setDocumentName:documentName];
-    [[self resultViewController] setFindString:findString];
-    [[self resultViewController] setResult:results];  // result must set at last
-    [self setResultShown:YES animate:YES];
-    [self showWindow:self];
-}
-
-
-// ------------------------------------------------------
 /// add check mark to selectable menus
 - (BOOL)validateMenuItem:(nonnull NSMenuItem *)menuItem
 // ------------------------------------------------------
@@ -216,6 +190,55 @@ static const NSUInteger kMaxHistorySize = 20;
 
 
 #pragma mark Delegate
+
+//=======================================================
+// CETextFinderDelegate < textFinder
+//=======================================================
+
+// ------------------------------------------------------
+/// completion notification for text find
+- (void)textFinder:(nonnull CETextFinder *)textFinder didFind:(nonnull NSString *)findString
+// ------------------------------------------------------
+{
+    [self appendFindHistory:findString];
+}
+
+
+// ------------------------------------------------------
+/// completion notification for text replacement
+- (void)textFinder:(nonnull CETextFinder *)textFinder didReplace:(nonnull NSString *)findString withString:(nonnull NSString *)replacementString
+// ------------------------------------------------------
+{
+    [self appendFindHistory:findString];
+    [self appendReplaceHistory:replacementString];
+}
+
+
+// ------------------------------------------------------
+/// complemention notification for "Find All"
+- (void)textFinder:(nonnull CETextFinder *)textFinder didFinishFindingAll:(nonnull NSString *)findString results:(nonnull NSArray<NSDictionary *> *)results textView:(nonnull NSTextView *)textView
+// ------------------------------------------------------
+{
+    // highlight in text view
+    NSLayoutManager *layoutManager = [textView layoutManager];
+    [layoutManager removeTemporaryAttribute:NSBackgroundColorAttributeName
+                          forCharacterRange:NSMakeRange(0, [[layoutManager textStorage] length])];
+    for (NSDictionary<NSString *, id> *result in results) {
+        NSRange range = [result[CEFindResultRange] rangeValue];
+        [layoutManager addTemporaryAttribute:NSBackgroundColorAttributeName value:[textFinder highlightColor] forCharacterRange:range];
+    }
+    
+    NSString *documentName = [[[[textView window] windowController] document] displayName];
+    
+    // prepare result table
+    [[self resultViewController] setTarget:textView];
+    [[self resultViewController] setDocumentName:documentName];
+    [[self resultViewController] setFindString:findString];
+    [[self resultViewController] setResult:results];  // result must set at last
+    [self setResultShown:YES animate:YES];
+    [self showWindow:self];
+}
+
 
 //=======================================================
 // NSWindowDelegate  < findPanel
@@ -415,7 +438,7 @@ static const NSUInteger kMaxHistorySize = 20;
             [indicator doneWithButtonTitle:nil];
             
             if ([result count] > 0) {
-                [self textFinder:[self textFinder] didFindAll:result findString:findString textView:textView];
+                [self textFinder:[self textFinder] didFinishFindingAll:findString results:result textView:textView];
                 [indicator close:self];
                 
             } else {
@@ -428,7 +451,7 @@ static const NSUInteger kMaxHistorySize = 20;
         });
     });
     
-    [self appendFindHistory:[[self textFinder] findString]];
+    [self textFinder:[self textFinder] didFind:[[self textFinder] findString]];
 }
 
 
@@ -451,10 +474,9 @@ static const NSUInteger kMaxHistorySize = 20;
 //                                                           options:[[self textFinder] options]
 //                                                     replacingOnly:YES
 //                                                              wrap:NO];
-//    
-//    [self appendFindHistory:[self findString]];
-//    [self appendReplaceHistory:[self replacementString]];
-//    
+//
+//    [self textFinder:[self textFinder] didReplace:[[self textFinder] findString] withString:[[self textFinder] replacementString]];
+//
 //    if ([result alertIfErrorOccurred]) { return; }
 }
 
@@ -472,10 +494,9 @@ static const NSUInteger kMaxHistorySize = 20;
 //                                                           options:[[self textFinder] options]
 //                                                     replacingOnly:NO
 //                                                              wrap:[[self textFinder] isWrap]];
-//    
-//    [self appendFindHistory:[self findString]];
-//    [self appendReplaceHistory:[self replacementString]];
-//    
+//
+//    [self textFinder:[self textFinder] didReplace:[[self textFinder] findString] withString:[[self textFinder] replacementString]];
+//
 //    if ([result alertIfErrorOccurred]) { return; }
 //    
 //    if ([result isSuccess]) {
@@ -573,8 +594,7 @@ static const NSUInteger kMaxHistorySize = 20;
         });
     });
     
-    [self appendFindHistory:[[self textFinder] findString]];
-    [self appendReplaceHistory:[[self textFinder] replacementString]];
+    [self textFinder:[self textFinder] didReplace:[[self textFinder] findString] withString:[[self textFinder] replacementString]];
 }
 
 
@@ -807,8 +827,8 @@ static const NSUInteger kMaxHistorySize = 20;
 //                                                 fromTop:NO
 //                                                 forward:forward
 //                                                    wrap:[self isWrap]];
-//    
-//    [self appendFindHistory:[self findString]];
+//
+//    [self textFinder:[self textFinder] didFind:[[self textFinder] findString]];
 //    
 //    if ([result alertIfErrorOccurred]) { return; }
 //    
