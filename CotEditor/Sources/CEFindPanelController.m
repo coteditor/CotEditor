@@ -356,11 +356,11 @@ static const NSUInteger kMaxHistorySize = 20;
     
     NSNumberFormatter *integerFormatter = [self integerFormatter];
     NSTextView *textView = [self client];
-    NSString *findString = [self sanitizedFindString];
+    NSString *findString = [[self textFinder] sanitizedFindString];
     
     NSRegularExpression *lineRegex = [NSRegularExpression regularExpressionWithPattern:@"\n" options:0 error:nil];
     NSString *string = [textView string];
-    NSEnumerator<OGRegularExpressionMatch *> *enumerator = [[self regex] matchEnumeratorInString:string range:[[self textFinder] scopeRange]];
+    NSEnumerator<OGRegularExpressionMatch *> *enumerator = [[[self textFinder] regex] matchEnumeratorInString:string range:[[self textFinder] scopeRange]];
     
     // setup progress sheet
     __block BOOL isCancelled = NO;
@@ -446,8 +446,8 @@ static const NSUInteger kMaxHistorySize = 20;
     if (![self checkIsReadyToFind]) { return; }
     
     // TODO: re-implement
-//    OgreTextFindResult *result = [[self textFinder] replaceAndFind:[self sanitizedFindString]
-//                                                        withString:[self replacementString] ? : @""
+//    OgreTextFindResult *result = [[self textFinder] replaceAndFind:[[self textFinder] sanitizedFindString]
+//                                                        withString:[[self textFinder] replacementString] ? : @""
 //                                                           options:[[self textFinder] options]
 //                                                     replacingOnly:YES
 //                                                              wrap:NO];
@@ -467,8 +467,8 @@ static const NSUInteger kMaxHistorySize = 20;
     if (![self checkIsReadyToFind]) { return; }
     
     // TODO: re-implement
-//    OgreTextFindResult *result = [[self textFinder] replaceAndFind:[self sanitizedFindString]
-//                                                        withString:[self replacementString] ? : @""
+//    OgreTextFindResult *result = [[self textFinder] replaceAndFind:[[self textFinder] sanitizedFindString]
+//                                                        withString:[[self textFinder] replacementString] ? : @""
 //                                                           options:[[self textFinder] options]
 //                                                     replacingOnly:NO
 //                                                              wrap:[[self textFinder] isWrap]];
@@ -497,14 +497,14 @@ static const NSUInteger kMaxHistorySize = 20;
     
     NSNumberFormatter *integerFormatter = [self integerFormatter];
     NSTextView *textView = [self client];
-    NSString *findString = [self sanitizedFindString];
+    NSString *findString = [[self textFinder] sanitizedFindString];
     NSString *replacementString = [[self textFinder] replacementString];
     OGReplaceExpression *repex = [OGReplaceExpression replaceExpressionWithString:[[self textFinder] replacementString] ? : @""
-                                                                           syntax:[self textFinderSyntax]
+                                                                           syntax:[[self textFinder] textFinderSyntax]
                                                                   escapeCharacter:kEscapeCharacter];
     
     NSString *string = [textView string];
-    NSEnumerator<OGRegularExpressionMatch *> *enumerator = [[self regex] matchEnumeratorInString:string range:[[self textFinder] scopeRange]];
+    NSEnumerator<OGRegularExpressionMatch *> *enumerator = [[[self textFinder] regex] matchEnumeratorInString:string range:[[self textFinder] scopeRange]];
     
     // setup progress sheet
     __block BOOL isCancelled = NO;
@@ -693,37 +693,6 @@ static const NSUInteger kMaxHistorySize = 20;
 #pragma mark Private Methods
 
 // ------------------------------------------------------
-/// OgreKit regext object with current settings
-- (OGRegularExpression *)regex
-// ------------------------------------------------------
-{
-    return [OGRegularExpression regularExpressionWithString:[self sanitizedFindString]
-                                                    options:[[self textFinder] options]
-                                                     syntax:[self textFinderSyntax]
-                                            escapeCharacter:kEscapeCharacter];
-}
-
-
-// ------------------------------------------------------
-/// find string of which line endings are standardized to LF
-- (NSString *)sanitizedFindString
-// ------------------------------------------------------
-{
-    return [OGRegularExpression replaceNewlineCharactersInString:[[self textFinder] findString]
-                                                   withCharacter:OgreLfNewlineCharacter];
-}
-
-
-// ------------------------------------------------------
-/// syntax (and regex enability) setting in textFinder
-- (OgreSyntax)textFinderSyntax
-// ------------------------------------------------------
-{
-    return [[self textFinder] usesRegularExpression] ? [[self textFinder] syntax] : OgreSimpleMatchingSyntax;
-}
-
-
-// ------------------------------------------------------
 /// whether result view is opened
 - (BOOL)isResultShown
 // ------------------------------------------------------
@@ -833,7 +802,7 @@ static const NSUInteger kMaxHistorySize = 20;
     if (![self checkIsReadyToFind]) { return; }
     
     // TODO: re-implement
-//    OgreTextFindResult *result = [[self textFinder] find:[self sanitizedFindString]
+//    OgreTextFindResult *result = [[self textFinder] find:[[self textFinder] sanitizedFindString]
 //                                                 options:[[self textFinder] options]
 //                                                 fromTop:NO
 //                                                 forward:forward
@@ -876,7 +845,7 @@ static const NSUInteger kMaxHistorySize = 20;
     // check regex syntax of find string and alert if invalid
     if ([[self textFinder] usesRegularExpression]) {
         @try {
-            [self regex];
+            [[self textFinder] regex];
             
         } @catch (NSException *exception) {
             if ([[exception name] isEqualToString:OgreException]) {

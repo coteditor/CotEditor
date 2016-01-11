@@ -217,6 +217,18 @@ static CETextFinder	*singleton = nil;
 
 
 // ------------------------------------------------------
+/// OgreKit regext object with current settings
+- (nullable OGRegularExpression *)regex
+// ------------------------------------------------------
+{
+    return [OGRegularExpression regularExpressionWithString:[self sanitizedFindString]
+                                                    options:[self options]
+                                                     syntax:[self textFinderSyntax]
+                                            escapeCharacter:kEscapeCharacter];
+}
+
+
+// ------------------------------------------------------
 /// range to find in
 - (NSRange)scopeRange
 // ------------------------------------------------------
@@ -225,6 +237,25 @@ static CETextFinder	*singleton = nil;
     NSTextView *textView = [self client];
     
     return [self inSelection] ? [textView selectedRange] : NSMakeRange(0, [[textView string] length]);
+}
+
+
+// ------------------------------------------------------
+/// find string of which line endings are standardized to LF
+- (NSString *)sanitizedFindString
+// ------------------------------------------------------
+{
+    return [OGRegularExpression replaceNewlineCharactersInString:[self findString]
+                                                   withCharacter:OgreLfNewlineCharacter];
+}
+
+
+// ------------------------------------------------------
+/// syntax (and regex enability) setting in textFinder
+- (OgreSyntax)textFinderSyntax
+// ------------------------------------------------------
+{
+    return [self usesRegularExpression] ? [self syntax] : OgreSimpleMatchingSyntax;
 }
 
 

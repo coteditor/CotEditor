@@ -61,7 +61,10 @@ typedef NS_ENUM(NSInteger, CETextFinderAction) {
 
 - (nullable NSString *)selectedString;
 - (nullable NSTextView *)client;
+- (nullable OGRegularExpression *)regex;
 - (NSRange)scopeRange;
+- (nonnull NSString *)sanitizedFindString;
+- (OgreSyntax)textFinderSyntax;
 
 
 // action messages
