@@ -327,22 +327,6 @@ static const CGFloat kDefaultResultViewHeight = 200.0;
 
 
 
-#pragma mark Public Methods
-
-// ------------------------------------------------------
-/// show error message by OgreKit as alert
-- (void)showAlertWithError:(nonnull NSError *)error
-// ------------------------------------------------------
-{
-    NSAlert *alert = [NSAlert alertWithError:error];
-    
-    NSBeep();
-    [[self window] makeKeyAndOrderFront:self];
-    [alert beginSheetModalForWindow:[self window] modalDelegate:nil didEndSelector:NULL contextInfo:NULL];
-}
-
-
-
 #pragma mark Action Messages
 
 // ------------------------------------------------------

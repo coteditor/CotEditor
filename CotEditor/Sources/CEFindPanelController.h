@@ -30,6 +30,4 @@
 
 @interface CEFindPanelController : NSWindowController
 
-- (void)showAlertWithError:(nonnull NSError *)error;
-
 @end

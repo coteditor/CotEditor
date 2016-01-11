@@ -653,7 +653,8 @@ static CETextFinder	*singleton = nil;
                                                      code:CERegularExpressionError
                                                  userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"Invalid regular expression", nil),
                                                             NSLocalizedRecoverySuggestionErrorKey: [exception reason]}];
-                [[self findPanelController] showAlertWithError:error];
+                NSWindow *findPanel = [[self findPanelController] window];
+                [self presentError:error modalForWindow:findPanel delegate:nil didPresentSelector:NULL contextInfo:NULL];
             } else {
                 [exception raise];
             }
