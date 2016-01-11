@@ -31,6 +31,12 @@
 extern NSString *_Nonnull const kEscapeCharacter;
 
 
+typedef NS_ENUM(NSInteger, CETextFinderAction) {
+    CETextFinderActionSetReplacementString = 100,
+    CETextFinderActionFindAll,
+};
+
+
 @interface CETextFinder : NSResponder
 
 @property (nonatomic, nonnull, copy) NSString *findString;
@@ -45,6 +51,9 @@ extern NSString *_Nonnull const kEscapeCharacter;
 
 // action messages
 - (IBAction)showFindPanel:(nullable id)sender;
+
+- (IBAction)useSelectionForFind:(nullable id)sender;
+- (IBAction)useSelectionForReplace:(nullable id)sender;
 
 @end
 

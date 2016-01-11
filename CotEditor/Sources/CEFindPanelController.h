@@ -35,12 +35,6 @@ extern NSString * _Nonnull const CEFindResultAttributedLineString;  // NSAttribu
 extern NSString * _Nonnull const CEFindResultLineRange;  // NSRange in NSValue
 
 
-typedef NS_ENUM(NSInteger, CETextFinderAction) {
-    CETextFinderActionSetReplacementString = 100,
-    CETextFinderActionFindAll,
-};
-
-
 @interface CEFindPanelController : NSWindowController
 
 // action messages
@@ -48,8 +42,6 @@ typedef NS_ENUM(NSInteger, CETextFinderAction) {
 - (IBAction)findPrevious:(nullable id)sender;
 - (IBAction)findSelectedText:(nullable id)sender;
 - (IBAction)findAll:(nullable id)sender;
-- (IBAction)useSelectionForFind:(nullable id)sender;
-- (IBAction)useSelectionForReplace:(nullable id)sender;
 - (IBAction)replace:(nullable id)sender;
 - (IBAction)replaceAll:(nullable id)sender;
 - (IBAction)replaceAndFind:(nullable id)sender;

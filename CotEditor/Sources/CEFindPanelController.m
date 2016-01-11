@@ -207,11 +207,6 @@ static const NSUInteger kMaxHistorySize = 20;
     {
         return ([self target] != nil);
         
-    } else if ([menuItem action] == @selector(useSelectionForFind:) ||
-               [menuItem action] == @selector(useSelectionForReplace:))
-    {
-        return ![[self textFinder] selectedString];
-        
     } else if ([menuItem action] == @selector(changeSyntax:)) {
         OgreSyntax syntax = [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultFindRegexSyntaxKey];
         [menuItem setState:([menuItem tag] == syntax) ? NSOnState : NSOffState];
@@ -377,7 +372,7 @@ static const NSUInteger kMaxHistorySize = 20;
 - (IBAction)findSelectedText:(nullable id)sender
 // ------------------------------------------------------
 {
-    [self useSelectionForFind:sender];
+    [[self textFinder] useSelectionForFind:sender];
     [self findNext:sender];
 }
 
@@ -464,36 +459,6 @@ static const NSUInteger kMaxHistorySize = 20;
     });
     
     [self appendFindHistory:[[self textFinder] findString]];
-}
-
-
-// ------------------------------------------------------
-/// set selected string to find field
-- (IBAction)useSelectionForFind:(nullable id)sender
-// ------------------------------------------------------
-{
-    NSString *selectedString = [[self textFinder] selectedString];
-    
-    if (selectedString) {
-        [[self textFinder] setFindString:selectedString];
-    } else {
-        NSBeep();
-    }
-}
-
-
-// ------------------------------------------------------
-/// set selected string to replace field
-- (IBAction)useSelectionForReplace:(nullable id)sender
-// ------------------------------------------------------
-{
-    NSString *selectedString = [[self textFinder] selectedString];
-    
-    if (selectedString) {
-        [[self textFinder] setReplacementString:selectedString];
-    } else {
-        NSBeep();
-    }
 }
 
 

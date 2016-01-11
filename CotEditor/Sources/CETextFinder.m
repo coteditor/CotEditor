@@ -132,6 +132,23 @@ static CETextFinder	*singleton = nil;
 }
 
 
+// ------------------------------------------------------
+/// validate menu item
+- (BOOL)validateMenuItem:(nonnull NSMenuItem *)menuItem
+// ------------------------------------------------------
+{
+    SEL action = [menuItem action];
+    
+    if (action == @selector(useSelectionForFind:) ||
+        action == @selector(useSelectionForReplace:))
+    {
+        return ([self selectedString] != nil);
+    }
+    
+    return YES;
+}
+
+
 
 #pragma mark Notification
 
@@ -198,6 +215,36 @@ static CETextFinder	*singleton = nil;
 // ------------------------------------------------------
 {
     [[self findPanelController] showWindow:sender];
+}
+
+
+// ------------------------------------------------------
+/// set selected string to find field
+- (IBAction)useSelectionForFind:(nullable id)sender
+// ------------------------------------------------------
+{
+    NSString *selectedString = [self selectedString];
+    
+    if (selectedString) {
+        [self setFindString:selectedString];
+    } else {
+        NSBeep();
+    }
+}
+
+
+// ------------------------------------------------------
+/// set selected string to replace field
+- (IBAction)useSelectionForReplace:(nullable id)sender
+// ------------------------------------------------------
+{
+    NSString *selectedString = [self selectedString];
+    
+    if (selectedString) {
+        [self setReplacementString:selectedString];
+    } else {
+        NSBeep();
+    }
 }
 
 
