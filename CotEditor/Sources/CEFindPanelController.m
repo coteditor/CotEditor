@@ -211,7 +211,7 @@ static const NSUInteger kMaxHistorySize = 20;
     } else if ([menuItem action] == @selector(useSelectionForFind:) ||
                [menuItem action] == @selector(useSelectionForReplace:))
     {
-        return ![[self textFinder] isSelectionEmpty];
+        return ![[self textFinder] selectedString];
         
     } else if ([menuItem action] == @selector(changeSyntax:)) {
         OgreSyntax syntax = [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultFindRegexSyntaxKey];
@@ -526,6 +526,7 @@ static const NSUInteger kMaxHistorySize = 20;
     
     [self invalidateSyntaxInTextFinder];
     
+    // TODO: re-implement
     OgreTextFindResult *result = [[self textFinder] replaceAndFind:[self sanitizedFindString]
                                                         withString:[self replacementString] ? : @""
                                                            options:[self options]
@@ -548,6 +549,7 @@ static const NSUInteger kMaxHistorySize = 20;
     
     [self invalidateSyntaxInTextFinder];
     
+    // TODO: re-implement
     OgreTextFindResult *result = [[self textFinder] replaceAndFind:[self sanitizedFindString]
                                                         withString:[self replacementString] ? : @""
                                                            options:[self options]
@@ -582,7 +584,7 @@ static const NSUInteger kMaxHistorySize = 20;
     NSString *replacementString = [self replacementString];
     OGReplaceExpression *repex = [OGReplaceExpression replaceExpressionWithString:[self replacementString] ? : @""
                                                                            syntax:[self textFinderSyntax]
-                                                                  escapeCharacter:[[self textFinder] escapeCharacter]];
+                                                                  escapeCharacter:kEscapeCharacter];
     
     NSString *string = [textView string];
     NSEnumerator<OGRegularExpressionMatch *> *enumerator = [[self regex] matchEnumeratorInString:string range:[self scopeRange]];
@@ -781,7 +783,7 @@ static const NSUInteger kMaxHistorySize = 20;
     return [OGRegularExpression regularExpressionWithString:[self sanitizedFindString]
                                                     options:[self options]
                                                      syntax:[self textFinderSyntax]
-                                            escapeCharacter:[[self textFinder] escapeCharacter]];
+                                            escapeCharacter:kEscapeCharacter];
 }
 
 
@@ -800,7 +802,7 @@ static const NSUInteger kMaxHistorySize = 20;
 - (void)invalidateSyntaxInTextFinder
 // ------------------------------------------------------
 {
-    [[self textFinder] setSyntax:[self usesRegularExpression] ? [self syntax] : OgreSimpleMatchingSyntax];
+    [[self textFinder] setSyntax:[self textFinderSyntax]];
 }
 
 
@@ -924,6 +926,7 @@ static const NSUInteger kMaxHistorySize = 20;
     
     [self invalidateSyntaxInTextFinder];
     
+    // TODO: re-implement
     OgreTextFindResult *result = [[self textFinder] find:[self sanitizedFindString]
                                                  options:[self options]
                                                  fromTop:NO

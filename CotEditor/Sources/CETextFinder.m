@@ -29,7 +29,7 @@
 #import "CEDefaults.h"
 
 
-static NSString *_Nonnull const kEscapeCharacter = @"\\";
+NSString * _Nonnull const kEscapeCharacter = @"\\";
 
 
 @implementation CETextFinder
@@ -79,6 +79,23 @@ static NSString *_Nonnull const kEscapeCharacter = @"\\";
 // ------------------------------------------------------
 {
     return @"FindPanel";
+}
+
+
+
+#pragma mark Public Methods
+
+// ------------------------------------------------------
+/// selected string in the current tareget
+- (nullable NSString *)selectedString
+// ------------------------------------------------------
+{
+    NSTextView *textView = [self targetToFindIn];
+    NSRange selectedRange = [textView selectedRange];
+    
+    if (selectedRange.length == 0) { return nil; }
+    
+    return [[textView string] substringWithRange:selectedRange];
 }
 
 @end
