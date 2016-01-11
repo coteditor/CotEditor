@@ -168,7 +168,7 @@ static const NSUInteger kMaxHistorySize = 20;
 
 
 // ------------------------------------------------------
-/// complemention notification for "Find All" (required)
+/// complemention notification for "Find All"
 - (void)didEndFindAll:(NSArray<NSDictionary *> *)results findString:(nonnull NSString *)findString textView:(NSTextView *)textView
 // ------------------------------------------------------
 {
@@ -190,15 +190,6 @@ static const NSUInteger kMaxHistorySize = 20;
     [[self resultViewController] setResult:results];  // result must set at last
     [self setResultShown:YES animate:YES];
     [self showFindPanel:self];
-}
-
-
-// ------------------------------------------------------
-/// complemention notification for "Replace All" (required)
-- (BOOL)didEndReplaceAll:(id)anObject
-// ------------------------------------------------------
-{
-    return [self closesIndicatorWhenDone];
 }
 
 
@@ -589,10 +580,83 @@ static const NSUInteger kMaxHistorySize = 20;
     
     [self invalidateSyntaxInTextFinder];
     
-    [[self textFinder] replaceAll:[self sanitizedFindString]
-                       withString:[self replacementString] ? : @""
-                          options:[self options]
-                      inSelection:[self inSelection]];
+    NSNumberFormatter *integerFormatter = [self integerFormatter];
+    NSTextView *textView = [self target];
+    NSString *findString = [self sanitizedFindString];
+    NSString *replacementString = [self replacementString];
+    OGReplaceExpression *repex = [OGReplaceExpression replaceExpressionWithString:[self replacementString] ? : @""
+                                                                           syntax:[self syntax]
+                                                                  escapeCharacter:[[self textFinder] escapeCharacter]];
+    
+    NSString *string = [textView string];
+    NSEnumerator<OGRegularExpressionMatch *> *enumerator = [[self regex] matchEnumeratorInString:string range:[self scopeRange]];
+    
+    // setup progress sheet
+    __block BOOL isCancelled = NO;
+    CEProgressSheetController *indicator = [[CEProgressSheetController alloc] initWithMessage:NSLocalizedString(@"Replace All", nil)];
+    [indicator setIndetermine:YES];
+    [indicator beginSheetForWindow:[textView window] completionHandler:^(NSModalResponse returnCode) {
+        if (returnCode == NSCancelButton) {
+            isCancelled = YES;
+        }
+    }];
+    
+    __weak typeof(self) weakSelf = self;
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        typeof(self) self = weakSelf;
+        if (!self) { return; }
+        
+        NSMutableArray<NSString *> *replacementStrings = [NSMutableArray array];
+        NSMutableArray<NSValue *> *replacementRanges = [NSMutableArray array];
+        NSUInteger count = 0;
+        
+        OGRegularExpressionMatch *match;
+        while ((match = [enumerator nextObject])) {
+            if (isCancelled) {
+                [indicator close:self];
+                return;
+            }
+            
+            [replacementStrings addObject:[repex replaceMatchedStringOf:match]];
+            [replacementRanges addObject:[NSValue valueWithRange:[match rangeOfMatchedString]]];
+            count++;
+            
+            NSString *informative = (count == 1) ? @"%@ string replaced." : @"%@ strings replaced.";
+            NSString *countStr = [integerFormatter stringFromNumber:@(count)];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [indicator setInformativeText:[NSString stringWithFormat:NSLocalizedString(informative, nil), countStr]];
+            });
+        }
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [indicator doneWithButtonTitle:nil];
+            
+            if (count > 0) {
+                // apply found strings to the text view
+                // TODO: keep selection
+                if ([textView shouldChangeTextInRanges:replacementRanges replacementStrings:replacementStrings]) {
+                    [[textView textStorage] beginEditing];
+                    [replacementStrings enumerateObjectsWithOptions:NSEnumerationReverse
+                                                         usingBlock:^(NSString * _Nonnull replacementString, NSUInteger idx, BOOL * _Nonnull stop)
+                    {
+                        NSRange replacementRange = [replacementRanges[idx] rangeValue];
+                        [[textView textStorage] replaceCharactersInRange:replacementRange withString:replacementString];
+                    }];
+                    [[textView textStorage] endEditing];
+                    [textView didChangeText];
+                    [[textView undoManager] setActionName:NSLocalizedString(@"Replace All", nil)];
+                }
+                
+            } else {
+                NSBeep();
+                [indicator setInformativeText:NSLocalizedString(@"Not Found.", nil)];
+            }
+            
+            if ([self closesIndicatorWhenDone]) {
+                [indicator close:self];
+            }
+        });
+    });
     
     [self appendFindHistory:[self findString]];
     [self appendReplaceHistory:[self replacementString]];
@@ -1137,6 +1201,7 @@ static const NSUInteger kMaxHistorySize = 20;
 - (NSRange)scopeRange
 // ------------------------------------------------------
 {
+    // TODO: multiple-selection
     NSTextView *textView = [self target];
     
     return [self inSelection] ? [textView selectedRange] : NSMakeRange(0, [[textView string] length]);

@@ -476,8 +476,11 @@
 
 /* MARK: CEFindPanelController */
 "Find All" = "すべて検索";
+"Replace All" = "すべて置換";
 "%@ string found." = "%@ 件見つかりました。";
 "%@ strings found." = "%@ 件見つかりました。";
+"%@ string replaced." = "%@ 件置換しました。";
+"%@ strings replaced." = "%@ 件置換しました。";
 "Invalid regular expression" =  "無効な正規表現です。";
 
 

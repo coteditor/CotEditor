@@ -474,8 +474,11 @@
 
 /* MARK: CEFindPanelController */
 "Find All" = "Alles suchen";
+"Replace All" = "Alles ersetzen";
 "%@ string found." = "%@ Zeichenkette gefunden.";
 "%@ strings found." = "%@ Zeichenketten gefunden.";
+"%@ string replaced." = "%@ Zeichenkette ersetzt.";
+"%@ strings replaced." = "%@ Zeichenketten ersetzt.";
 "Invalid regular expression" =  "Ungültiger regulärer Ausdruck";
 
 
