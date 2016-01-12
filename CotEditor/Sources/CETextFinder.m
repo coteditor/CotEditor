@@ -364,7 +364,7 @@ static CETextFinder	*singleton = nil;
     if (!success) {
         NSBeep();
     } else {
-        [[self client] centerSelectionInVisibleArea:self];
+        [[self client] scrollRangeToVisible:[[self client] selectedRange]];
     }
     
     [self appendFindHistory:[self findString]];
@@ -583,30 +583,60 @@ static CETextFinder	*singleton = nil;
 
 
 // ------------------------------------------------------
-/// perform "Find Next" and "Find Previous"
-- (void)findForward:(BOOL)forward
+/// perform "Find Next" or "Find Previous" and return number of found
+- (NSUInteger)findForward:(BOOL)forward
 // ------------------------------------------------------
 {
-    if (![self checkIsReadyToFind]) { return; }
+    if (![self checkIsReadyToFind]) { return 0; }
     
-    // TODO: re-implement
-//    OgreTextFindResult *result = [self find:[self sanitizedFindString]
-//                                    options:[self options]
-//                                    fromTop:NO
-//                                    forward:forward
-//                                       wrap:[self isWrap]];
-//
-//    [self appendFindHistory:[self findString]];
-//
-//    if ([result alertIfErrorOccurred]) { return; }
-//
-//    if ([result isSuccess]) {
-//        // add visual feedback
-//        [[self client] showFindIndicatorForRange:[[self client] selectedRange]];
-//
-//    } else {
-//        NSBeep();
-//    }
+    NSTextView *textView = [self client];
+    NSUInteger startLocation = forward ? NSMaxRange([textView selectedRange]) : [textView selectedRange].location;
+    
+    NSEnumerator<OGRegularExpressionMatch *> *enumerator = [[self regex] matchEnumeratorInString:[textView string] options:0];
+    NSArray<OGRegularExpressionMatch *> *matches = [enumerator allObjects];
+    OGRegularExpressionMatch *foundMatch = nil;
+    
+    if (forward) {  // forward
+        for (OGRegularExpressionMatch *match in matches) {
+            if ([match rangeOfMatchedString].location >= startLocation) {
+                foundMatch = match;
+                break;
+            }
+        }
+    } else {  // backward
+        for (OGRegularExpressionMatch *match in [matches reverseObjectEnumerator]) {
+            if ([match rangeOfMatchedString].location < startLocation) {
+                foundMatch = match;
+                break;
+            }
+        }
+    }
+    
+    // wrap search
+    BOOL isWrapped = NO;
+    if (!foundMatch && [self isWrap]) {
+        if ((foundMatch = forward ? [matches firstObject] : [matches lastObject])) {
+            isWrapped = YES;
+        }
+    }
+    
+    // found feedback
+    if (foundMatch) {
+        NSRange foundRange = [foundMatch rangeOfMatchedString];
+        [textView setSelectedRange:foundRange];
+        [textView scrollRangeToVisible:foundRange];
+        [textView showFindIndicatorForRange:foundRange];
+        
+        if (isWrapped) {
+            // TODO: wrapped feedback
+        }
+    } else {
+        NSBeep();
+    }
+    
+    [self appendFindHistory:[self findString]];
+    
+    return [matches count];
 }
 
 
@@ -761,7 +791,7 @@ static CETextFinder	*singleton = nil;
 
 
 
-#pragma mark Public Dynamic Accessors
+#pragma mark Private Dynamic Accessors
 
 // ------------------------------------------------------
 /// return value from user defaults
