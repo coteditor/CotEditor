@@ -182,10 +182,11 @@ static CETextFinder	*singleton = nil;
     {
         return ([self client] != nil);
         
-    } else if (action == @selector(useSelectionForFind:) ||
-               action == @selector(useSelectionForReplace:))
-    {
+    } else if (action == @selector(useSelectionForFind:)) {
         return ([self selectedString] != nil);
+        
+    } else if (action == @selector(useSelectionForReplace:)) {
+        return ([self client] != nil);  // replacement string accepts empty string
     }
     
     return YES;
@@ -491,13 +492,9 @@ static CETextFinder	*singleton = nil;
 - (IBAction)useSelectionForReplace:(nullable id)sender
 // ------------------------------------------------------
 {
-    NSString *selectedString = [self selectedString];
+    NSString *selectedString = [self selectedString] ?: @"";
     
-    if (selectedString) {
-        [self setReplacementString:selectedString];
-    } else {
-        NSBeep();
-    }
+    [self setReplacementString:selectedString];
 }
 
 
