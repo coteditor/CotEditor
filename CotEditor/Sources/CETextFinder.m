@@ -359,17 +359,15 @@ static CETextFinder	*singleton = nil;
 {
     if (![self checkIsReadyToFind]) { return; }
     
-// TODO: re-implement
-//    OgreTextFindResult *result = [self replaceAndFind:[self sanitizedFindString]
-//                                           withString:[self replacementString] ? : @""
-//                                              options:[self options]
-//                                        replacingOnly:YES
-//                                                 wrap:NO];
-//
-//    [self appendFindHistory:[self findString]];
-//    [self appendReplaceHistory:[self replacementString]];
-//
-//    if ([result alertIfErrorOccurred]) { return; }
+    BOOL success = [self replace];
+    if (!success) {
+        NSBeep();
+    } else {
+        [[self client] centerSelectionInVisibleArea:self];
+    }
+    
+    [self appendFindHistory:[self findString]];
+    [self appendReplaceHistory:[self replacementString]];
 }
 
 
@@ -380,25 +378,8 @@ static CETextFinder	*singleton = nil;
 {
     if (![self checkIsReadyToFind]) { return; }
     
-    // TODO: re-implement
-//    OgreTextFindResult *result = [self replaceAndFind:[self sanitizedFindString]
-//                                           withString:[self replacementString] ? : @""
-//                                              options:[self options]
-//                                        replacingOnly:NO
-//                                                 wrap:[self isWrap]];
-//
-//    [self appendFindHistory:[self findString]];
-//    [self appendReplaceHistory:[self replacementString]];
-//
-//    if ([result alertIfErrorOccurred]) { return; }
-//
-//    if ([result isSuccess]) {
-//        // add visual feedback
-//        [[self client] showFindIndicatorForRange:[[self client] selectedRange]];
-//
-//    } else {
-//        NSBeep();
-//    }
+    [self replace];  // don't care if succeed
+    [self findForward:YES];
 }
 
 
@@ -413,9 +394,7 @@ static CETextFinder	*singleton = nil;
     NSTextView *textView = [self client];
     NSString *findString = [self sanitizedFindString];
     NSString *replacementString = [self replacementString];
-    OGReplaceExpression *repex = [OGReplaceExpression replaceExpressionWithString:replacementString ? : @""
-                                                                           syntax:[self textFinderSyntax]
-                                                                  escapeCharacter:kEscapeCharacter];
+    OGReplaceExpression *repex = [self repex];
     
     NSString *string = [textView string];
     NSEnumerator<OGRegularExpressionMatch *> *enumerator = [[self regex] matchEnumeratorInString:string range:[self scopeRange]];
@@ -596,6 +575,17 @@ static CETextFinder	*singleton = nil;
 
 
 // ------------------------------------------------------
+/// OgreKit replacement object with current settings
+- (nullable OGReplaceExpression *)repex
+// ------------------------------------------------------
+{
+    return [OGReplaceExpression replaceExpressionWithString:[self replacementString] ?: @""
+                                                     syntax:[self textFinderSyntax]
+                                            escapeCharacter:kEscapeCharacter];
+}
+
+
+// ------------------------------------------------------
 /// perform "Find Next" and "Find Previous"
 - (void)findForward:(BOOL)forward
 // ------------------------------------------------------
@@ -620,6 +610,35 @@ static CETextFinder	*singleton = nil;
 //    } else {
 //        NSBeep();
 //    }
+}
+
+
+// ------------------------------------------------------
+/// replace matched string in selection with replacementStirng
+- (BOOL)replace
+// ------------------------------------------------------
+{
+    NSTextView *textView = [self client];
+    
+    unsigned options = [self options] & ~(OgreNotBOLOption | OgreNotEOLOption);  // see OgreReplaceAndFindThread.m
+    OGRegularExpressionMatch *match = [[self regex] matchInString:[textView string] options:options range:[textView selectedRange]];
+    
+    if (!match) { return NO; }
+    
+    NSRange replacementRange = [match rangeOfMatchedString];
+    NSString *replacedString = [[self repex] replaceMatchedStringOf:match];
+    
+    // apply replacement to text view
+    if ([textView shouldChangeTextInRange:replacementRange replacementString:replacedString]) {
+        [[textView textStorage] replaceCharactersInRange:replacementRange withString:replacedString];
+        [textView didChangeText];
+        [textView setSelectedRange:NSMakeRange(replacementRange.location, [replacedString length])];
+        [[textView undoManager] setActionName:NSLocalizedString(@"Replace", nil)];
+        
+        return YES;
+    }
+    
+    return NO;
 }
 
 
