@@ -8,6 +8,7 @@ develop
 ### Fixes
 
 - Fix insertion location after line moving with empty selection.
+- Fix soft line-wrapping behavior when the line contains a long unbreakable word.
 
 
 
