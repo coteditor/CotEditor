@@ -34,12 +34,12 @@
 - (void)replaceAllStringWithString:(nonnull NSString *)string;
 - (void)appendString:(nonnull NSString *)string;
 
-- (void)replaceWithString:(nullable NSString *)string
+- (BOOL)replaceWithString:(nullable NSString *)string
                     range:(NSRange)range
             selectedRange:(NSRange)selectedRange
                actionName:(nullable NSString *)actionName;
 
-- (void)replaceWithStrings:(nonnull NSArray<NSString *> *)strings
+- (BOOL)replaceWithStrings:(nonnull NSArray<NSString *> *)strings
                     ranges:(nonnull NSArray<NSValue *> *)ranges
             selectedRanges:(nullable NSArray<NSValue *> *)selectedRanges
                 actionName:(nullable NSString *)actionName;
