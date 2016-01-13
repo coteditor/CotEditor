@@ -29,6 +29,7 @@
 #import "CETextFinder.h"
 #import "CEFindPanelController.h"
 #import "CEProgressSheetController.h"
+#import "CEHUDController.h"
 #import "CEErrors.h"
 #import "CEDefaults.h"
 
@@ -628,7 +629,11 @@ static CETextFinder	*singleton = nil;
         [textView showFindIndicatorForRange:foundRange];
         
         if (isWrapped) {
-            // TODO: wrapped feedback
+            if (NSAppKitVersionNumber >= NSAppKitVersionNumber10_10) {
+                CEHUDController *HUDController = [[CEHUDController alloc] initWithSymbolName:CEWrapSymbolName];
+                [HUDController setReversed:!forward];
+                [HUDController showInView:[[textView enclosingScrollView] superview]];
+            }
         }
     } else {
         NSBeep();
