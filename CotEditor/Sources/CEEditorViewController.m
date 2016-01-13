@@ -39,8 +39,6 @@
 #import "CEDefaults.h"
 #import "Constants.h"
 
-#import <OgreKit/OgreTextFinder.h>
-
 
 @interface CEEditorViewController ()
 
@@ -249,10 +247,10 @@
     
     if (undoManager != [[self textView] undoManager]) { return; }
     
-    // OgreKit からのすべて置換の Undo/Redo の後のみ再カラーリングを実行
-    // 置換の Undo を判別するために OgreKit 側で登録された actionName を使用 (2014-04 by 1024jp)
+    // invalidate syntax highlighting only after Undo/Redo of "Replace All" action
+    // To determine Undo/Redo type, use actionName that was set in CETextFinder (2014-04 by 1024jp)
     NSString *actionName = [undoManager isUndoing] ? [undoManager redoActionName] : [undoManager undoActionName];
-    if (![actionName isEqualToString:OgreTextFinderLocalizedString(@"Replace All")]) { return; }
+    if (![actionName isEqualToString:NSLocalizedString(@"Replace All", nil)]) { return; }
     
     // 全テキストを再カラーリング
     [[self editorWrapper] setupColoringTimer];

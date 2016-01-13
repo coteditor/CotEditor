@@ -39,8 +39,6 @@
 #import "CEDefaults.h"
 #import "Constants.h"
 
-#import <OgreKit/OgreTextFinder.h>
-
 
 // sidebar mode
 typedef NS_ENUM(NSUInteger, CESidebarTag) {
@@ -49,7 +47,7 @@ typedef NS_ENUM(NSUInteger, CESidebarTag) {
 };
 
 
-@interface CEWindowController () <OgreTextFindDataSource, NSSplitViewDelegate, NSSharingServicePickerDelegate>
+@interface CEWindowController () <NSSplitViewDelegate, NSSharingServicePickerDelegate>
 
 @property (nonatomic) CESidebarTag selectedSidebarTag;
 @property (nonatomic) BOOL needsRecolorWithBecomeKey;  // flag to update sytnax highlight when window becomes key window
@@ -224,20 +222,6 @@ static NSTimeInterval infoUpdateInterval;
     if ([keyPath isEqualToString:CEDefaultWindowAlphaKey]) {
         [(CEWindow *)[self window] setBackgroundAlpha:(CGFloat)[change[NSKeyValueChangeNewKey] doubleValue]];
     }
-}
-
-
-//=======================================================
-// OgreTextFindDataSource Protocol
-//=======================================================
-
-// ------------------------------------------------------
-/// OgreKit method that passes the main textView.
-- (void)tellMeTargetToFindIn:(nullable id)sender
-// ------------------------------------------------------
-{
-    OgreTextFinder *textFinder = (OgreTextFinder *)sender;
-    [textFinder setTargetToFindIn:[[self editor] focusedTextView]];
 }
 
 

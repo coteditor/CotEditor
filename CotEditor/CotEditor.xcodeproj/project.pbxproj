@@ -65,6 +65,10 @@
 		2A2E034B1A4BF842006ABE9F /* CESyntaxEditTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A2E034A1A4BF842006ABE9F /* CESyntaxEditTableViewDelegate.m */; };
 		2A3A1D841C17463E000243D8 /* CEDotView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A3A1D831C17463E000243D8 /* CEDotView.m */; };
 		2A3A1D851C17463E000243D8 /* CEDotView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A3A1D831C17463E000243D8 /* CEDotView.m */; };
+		2A3A1E761C45219800641CE0 /* HUDView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A3A1E741C45219800641CE0 /* HUDView.xib */; };
+		2A3A1E771C45219800641CE0 /* HUDView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A3A1E741C45219800641CE0 /* HUDView.xib */; };
+		2A3A1E7A1C45233D00641CE0 /* CEHUDController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A3A1E791C45233D00641CE0 /* CEHUDController.m */; };
+		2A3A1E7B1C45233D00641CE0 /* CEHUDController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A3A1E791C45233D00641CE0 /* CEHUDController.m */; };
 		2A3A758E19E77C84001DAB88 /* Syntaxes in Resources */ = {isa = PBXBuildFile; fileRef = 2A3A758D19E77C84001DAB88 /* Syntaxes */; };
 		2A3A759119E77D4F001DAB88 /* MigrationWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A3A758F19E77D4F001DAB88 /* MigrationWindow.xib */; };
 		2A3A759419E77D66001DAB88 /* CEMigrationWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A3A759319E77D66001DAB88 /* CEMigrationWindowController.m */; };
@@ -536,6 +540,9 @@
 		2A37F4B0FDCFA73011CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		2A3A1D821C17463E000243D8 /* CEDotView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEDotView.h; sourceTree = "<group>"; };
 		2A3A1D831C17463E000243D8 /* CEDotView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEDotView.m; sourceTree = "<group>"; };
+		2A3A1E751C45219800641CE0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/HUDView.xib; sourceTree = "<group>"; };
+		2A3A1E781C45233C00641CE0 /* CEHUDController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEHUDController.h; sourceTree = "<group>"; };
+		2A3A1E791C45233D00641CE0 /* CEHUDController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEHUDController.m; sourceTree = "<group>"; };
 		2A3A758D19E77C84001DAB88 /* Syntaxes */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Syntaxes; sourceTree = "<group>"; };
 		2A3A759219E77D66001DAB88 /* CEMigrationWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEMigrationWindowController.h; sourceTree = "<group>"; };
 		2A3A759319E77D66001DAB88 /* CEMigrationWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEMigrationWindowController.m; sourceTree = "<group>"; };
@@ -1468,6 +1475,7 @@
 				2A436DCB1A4243D500275FD4 /* DocumentInspectorView.xib */,
 				2A436DCE1A4249CB00275FD4 /* IncompatibleCharsView.xib */,
 				2A5411C119852C1C008B43DA /* EditorView.xib */,
+				2A3A1E741C45219800641CE0 /* HUDView.xib */,
 			);
 			name = "Document Window";
 			sourceTree = "<group>";
@@ -1495,6 +1503,8 @@
 				2AD67C2D1AA7651B0078BB95 /* CEFindPanelLayoutManager.h */,
 				2AD67C2E1AA7651B0078BB95 /* CEFindPanelLayoutManager.m */,
 				2A009ADB1A5AB96F00C3D542 /* Views */,
+				2A3A1E781C45233C00641CE0 /* CEHUDController.h */,
+				2A3A1E791C45233D00641CE0 /* CEHUDController.m */,
 			);
 			name = "Text Finder";
 			sourceTree = "<group>";
@@ -1783,6 +1793,7 @@
 				2A6F0D591B5500E100C2D03C /* CotEditor.sdef in Resources */,
 				2A6F0D5A1B5500E100C2D03C /* CotEditor.help in Resources */,
 				2A6F0D981B5500E100C2D03C /* container-migration.plist in Resources */,
+				2A3A1E771C45219800641CE0 /* HUDView.xib in Resources */,
 				2A6F0D5B1B5500E100C2D03C /* SyntaxMap.json in Resources */,
 				2A6F0D5D1B5500E100C2D03C /* ReportTemplate.md in Resources */,
 				2A6F0D841B5500E100C2D03C /* FileDropGlossary.txt in Resources */,
@@ -1927,6 +1938,7 @@
 				2A436DCD1A4243D500275FD4 /* DocumentInspectorView.xib in Resources */,
 				2A5ABE79191861E3009265DF /* UnicodePanel.xib in Resources */,
 				2A15832818E39B7400601026 /* TextKeyBindingsEditView.xib in Resources */,
+				2A3A1E761C45219800641CE0 /* HUDView.xib in Resources */,
 				2A15831718E3688300601026 /* EncodingListSheet.xib in Resources */,
 				2AFFB71D18D7F22E00118477 /* GoToSheet.xib in Resources */,
 				2AD318C01A462A10001B8112 /* IntegrationPane.xib in Resources */,
@@ -2069,6 +2081,7 @@
 				2A6F0DA41B5500E100C2D03C /* main.m in Sources */,
 				2A6F0DA51B5500E100C2D03C /* Constants.m in Sources */,
 				2A6F0DA61B5500E100C2D03C /* CESizeSampleWindowController.m in Sources */,
+				2A3A1E7B1C45233D00641CE0 /* CEHUDController.m in Sources */,
 				2A6F0DA71B5500E100C2D03C /* CEDocument.m in Sources */,
 				2A6F0DA81B5500E100C2D03C /* CESplitViewController.m in Sources */,
 				2A6F0DA91B5500E100C2D03C /* CEEditPaneController.m in Sources */,
@@ -2220,6 +2233,7 @@
 				2A7314EE1A0326D300C0EDA9 /* CEWindow.m in Sources */,
 				2A15831A18E368CE00601026 /* CEEncodingListSheetController.m in Sources */,
 				2582260107794C2A00A0F8D3 /* CESyntaxStyle.m in Sources */,
+				2A3A1E7A1C45233D00641CE0 /* CEHUDController.m in Sources */,
 				2AE0C09B1C42306000E52E04 /* CETextView+LineProcessing.m in Sources */,
 				2A436DDB1A425AE500275FD4 /* CEIncompatibleCharsViewController.m in Sources */,
 				258700E6077BAD2200E541BB /* CESyntaxManager.m in Sources */,
@@ -2530,6 +2544,14 @@
 				2A69077F1B8443AB00D0F3A2 /* de */,
 			);
 			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		2A3A1E741C45219800641CE0 /* HUDView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2A3A1E751C45219800641CE0 /* Base */,
+			);
+			name = HUDView.xib;
 			sourceTree = "<group>";
 		};
 		2A3A758F19E77D4F001DAB88 /* MigrationWindow.xib */ = {

@@ -1,15 +1,15 @@
 /*
  
- CEFindResultViewController.h
+ CEHUDController.h
  
  CotEditor
  http://coteditor.com
  
- Created by 1024jp on 2015-01-04.
-
+ Created by 1024jp on 2016-01-13.
+ 
  ------------------------------------------------------------------------------
  
- © 2015-2016 1024jp
+ © 2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -28,12 +28,16 @@
 @import Cocoa;
 
 
-@interface CEFindResultViewController : NSViewController <NSTableViewDelegate, NSTableViewDataSource>
+extern NSString * _Nonnull const CEWrapSymbolName;
 
-@property (nonatomic, nullable, copy) NSArray<NSDictionary *> *result;
-@property (nonatomic, nullable, unsafe_unretained) NSTextView *target;
 
-@property (nonatomic, nullable, copy) NSString *findString;
-@property (nonatomic, nullable, copy) NSString *documentName;
+@interface CEHUDController : NSViewController
+
+@property (nonatomic, getter=isReversed) BOOL reversed;
+
+
+- (nonnull instancetype)initWithSymbolName:(nonnull NSString *)symbolName;
+
+- (void)showInView:(nonnull __kindof NSView *)clientView;
 
 @end

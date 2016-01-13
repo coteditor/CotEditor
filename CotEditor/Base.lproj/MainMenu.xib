@@ -923,20 +923,6 @@ CA
                             <menuItem isSeparatorItem="YES" id="vue-8R-4Kg">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
-                            <menuItem title="Highlight" tag="10" keyEquivalent="H" id="JAO-3o-fRo">
-                                <connections>
-                                    <action selector="highlight:" target="-1" id="XrP-Hn-WWD"/>
-                                </connections>
-                            </menuItem>
-                            <menuItem title="Unhighlight" tag="11" keyEquivalent="H" id="5is-7G-OVT">
-                                <modifierMask key="keyEquivalentModifierMask" control="YES" command="YES"/>
-                                <connections>
-                                    <action selector="unhighlight:" target="-1" id="yrv-qq-CxM"/>
-                                </connections>
-                            </menuItem>
-                            <menuItem isSeparatorItem="YES" id="Z9B-Wz-WiE">
-                                <modifierMask key="keyEquivalentModifierMask" command="YES"/>
-                            </menuItem>
                             <menuItem title="Select Previous Outline Item" keyEquivalent="" id="9Lf-39-x5S">
                                 <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
                                 <connections>
@@ -1112,11 +1098,7 @@ CA
             <point key="canvasLocation" x="667" y="895.5"/>
         </menu>
         <customObject id="290" customClass="CEAppDelegate"/>
-        <customObject id="289" customClass="CETextFinder">
-            <userDefinedRuntimeAttributes>
-                <userDefinedRuntimeAttribute type="boolean" keyPath="shouldHackFindMenu" value="NO"/>
-            </userDefinedRuntimeAttributes>
-        </customObject>
+        <customObject id="289" customClass="CETextFinder"/>
         <customObject id="329" customClass="CEDocumentController"/>
         <customObject id="432" customClass="NSFontManager"/>
     </objects>
