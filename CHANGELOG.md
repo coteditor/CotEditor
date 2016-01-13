@@ -12,6 +12,7 @@ develop
     - On Yosemite and later, a visual feedback is shown when the seach wrapped.
     - Revert “Use selection for Replace” action to allow using an empty string.
 
+
 ### Fixes
 
 - Fix insertion location after line moving with empty selection.
