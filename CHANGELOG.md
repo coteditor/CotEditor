@@ -2,6 +2,15 @@
 Change Log
 ==========================
 
+develop
+--------------------------
+
+### Fixes
+
+- Fix insertion location after line moving with empty selection.
+
+
+
 2.3.4　(95)
 --------------------------
 
