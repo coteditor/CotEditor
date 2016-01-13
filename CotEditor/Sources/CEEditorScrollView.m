@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2015 1024jp
+ © 2015-2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -72,10 +72,6 @@
 - (void)setDocumentView:(nullable id)documentView
 // ------------------------------------------------------
 {
-    // observe layout orientation change
-    if ([[self documentView] isKindOfClass:[NSTextView class]]) {
-        [(NSTextView *)documentView removeObserver:self forKeyPath:@"layoutOrientation"];
-    }
     if ([documentView isKindOfClass:[NSTextView class]]) {
         [(NSTextView *)documentView addObserver:self forKeyPath:@"layoutOrientation" options:NSKeyValueObservingOptionNew context:nil];
     }

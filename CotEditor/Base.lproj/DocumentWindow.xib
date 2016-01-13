@@ -39,15 +39,6 @@
                             <splitView fixedFrame="YES" dividerStyle="paneSplitter" id="Ezm-P5-z5i" userLabel="Editor Split View" customClass="CESplitView">
                                 <rect key="frame" x="0.0" y="0.0" width="369" height="530"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <subviews>
-                                    <customView fixedFrame="YES" id="xVz-uL-qne" customClass="CEEditorView">
-                                        <rect key="frame" x="0.0" y="0.0" width="369" height="530"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                    </customView>
-                                </subviews>
-                                <holdingPriorities>
-                                    <real value="250"/>
-                                </holdingPriorities>
                                 <connections>
                                     <outlet property="delegate" destination="cfo-zY-w3h" id="ZBq-Sz-8et"/>
                                 </connections>

@@ -29,7 +29,7 @@
 #import "CEIncompatibleCharsViewController.h"
 #import "CEDocument.h"
 #import "CEEditorWrapper.h"
-#import "Constants.h"
+#import "CEDefaults.h"
 
 
 @interface CEIncompatibleCharsViewController () <NSTableViewDelegate>

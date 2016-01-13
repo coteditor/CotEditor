@@ -37,7 +37,7 @@
 
 @class CETextView;
 @class CETheme;
-@class CESyntaxParser;
+@class CESyntaxStyle;
 
 
 @interface CEEditorWrapper : NSResponder
@@ -112,7 +112,7 @@
 
 @interface CEEditorWrapper (SyntaxParsing)
 
-@property (readonly, nonatomic, nullable) CESyntaxParser *syntaxParser;
+@property (readonly, nonatomic, nullable) CESyntaxStyle *syntaxStyle;
 @property (readonly, nonatomic) BOOL canHighlight;
 
 

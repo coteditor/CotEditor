@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2015 1024jp
+ © 2014-2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -30,8 +30,12 @@
 #import "CELayoutManager.h"
 #import "CETextViewProtocol.h"
 #import "CEATSTypesetter.h"
-#import "CEUtils.h"
-#import "Constants.h"
+#import "CEInvisibles.h"
+#import "CEDefaults.h"
+
+
+// constants
+static CGFloat const kDefaultLineHeightMultiple = 1.19;
 
 
 @interface CELayoutManager ()
@@ -86,12 +90,12 @@ static BOOL usesTextFontForInvisibles;
     if (self = [super init]) {
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 
-        _spaceChar = [CEUtils invisibleSpaceChar:[defaults integerForKey:CEDefaultInvisibleSpaceKey]];
-        _tabChar = [CEUtils invisibleTabChar:[defaults integerForKey:CEDefaultInvisibleTabKey]];
-        _newLineChar = [CEUtils invisibleNewLineChar:[defaults integerForKey:CEDefaultInvisibleNewLineKey]];
-        _fullwidthSpaceChar = [CEUtils invisibleFullwidthSpaceChar:[defaults integerForKey:CEDefaultInvisibleFullwidthSpaceKey]];
+        _spaceChar = [CEInvisibles spaceCharWithIndex:[defaults integerForKey:CEDefaultInvisibleSpaceKey]];
+        _tabChar = [CEInvisibles tabCharWithIndex:[defaults integerForKey:CEDefaultInvisibleTabKey]];
+        _newLineChar = [CEInvisibles newLineCharWithIndex:[defaults integerForKey:CEDefaultInvisibleNewLineKey]];
+        _fullwidthSpaceChar = [CEInvisibles fullwidthSpaceCharWithIndex:[defaults integerForKey:CEDefaultInvisibleFullwidthSpaceKey]];
 
-        // （setShowsInvisibles: は CEEditorView から実行される。プリント時は CEPrintView から実行される）
+        // （setShowsInvisibles: は CEEditorViewController から実行される。プリント時は CEPrintView から実行される）
         _showsSpace = [defaults boolForKey:CEDefaultShowInvisibleSpaceKey];
         _showsTab = [defaults boolForKey:CEDefaultShowInvisibleTabKey];
         _showsNewLine = [defaults boolForKey:CEDefaultShowInvisibleNewLineKey];
@@ -179,8 +183,8 @@ static BOOL usesTextFontForInvisibles;
         CGPathRef tabGlyphPath = glyphPathWithCharacter([self tabChar], font, false);
         CGPathRef newLineGlyphPath = glyphPathWithCharacter([self newLineChar], font, false);
         CGPathRef fullWidthSpaceGlyphPath = glyphPathWithCharacter([self fullwidthSpaceChar], font, true);
-        CGPathRef verticalTabGlyphPath = glyphPathWithCharacter(kVerticalTabChar, font, true);
-        CGPathRef replacementGlyphPath = glyphPathWithCharacter(kReplacementChar, font, true);
+        CGPathRef verticalTabGlyphPath = glyphPathWithCharacter([CEInvisibles verticalTabChar], font, true);
+        CGPathRef replacementGlyphPath = glyphPathWithCharacter([CEInvisibles replacementChar], font, true);
         
         // store value to avoid accessing properties each time  (2014-07 by 1024jp)
         BOOL showsSpace = [self showsSpace];

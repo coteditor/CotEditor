@@ -1,15 +1,15 @@
 /*
  
- Indicator.strings (Japanese)
+ CEErrors.m
  
  CotEditor
  http://coteditor.com
  
- Created by 1024jp on 2014-11-04.
+ Created by 1024jp on 2016-01-03.
  
  ------------------------------------------------------------------------------
  
- © 2014 CotEditor Project
+ © 2014-2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -25,5 +25,8 @@
  
  */
 
-/* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "58"; */
-"58.title" = "キャンセル";
+#import "CEErrors.h"
+
+
+// Error domain
+NSString *_Nonnull const CEErrorDomain = @"com.coteditor.CotEditor.ErrorDomain";

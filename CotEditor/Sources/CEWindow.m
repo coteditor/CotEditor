@@ -56,6 +56,14 @@ NSString *_Nonnull const CEWindowOpacityDidChangeNotification = @"CEWindowOpacit
     if (self) {
         _backgroundAlpha = 1.0;
         
+        // make sure window title bar (incl. toolbar) is opaque
+        //   -> It's actucally a bit dirty way but practically works well.
+        //      Without this tweak, the title bar will be dyed in the background color on El Capitan. (2016-01 by 1024p)
+        if (NSAppKitVersionNumber >= NSAppKitVersionNumber10_10) {
+            NSView *windowTitleView = [[self standardWindowButton:NSWindowCloseButton] superview];
+            [[windowTitleView layer] setBackgroundColor:[[NSColor windowBackgroundColor] CGColor]];
+        }
+        
         // observe toggling fullscreen
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(willEnterOpaqueMode:)

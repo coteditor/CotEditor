@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2015 1024jp
+ © 2014-2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -27,14 +27,18 @@
  */
 
 #import "CENavigationBarController.h"
+#import "CESyntaxOutlineParser.h"
 #import "Constants.h"
 
 
+static NSString *_Nonnull const kNavigationBarFontName = @"Helvetica";
 static const CGFloat kDefaultHeight = 16.0;
 static const NSTimeInterval kDuration = 0.25;
 
 
 @interface CENavigationBarController ()
+
+@property (nonatomic, nullable, strong) IBOutlet NSTextView *textView;  // NSTextView cannot be weak
 
 @property (nonatomic, nullable, weak) IBOutlet NSPopUpButton *outlineMenu;
 @property (nonatomic, nullable, weak) IBOutlet NSButton *prevButton;
@@ -80,10 +84,10 @@ static const NSTimeInterval kDuration = 0.25;
 
 // ------------------------------------------------------
 /// view is loaded
-- (void)loadView
+- (void)awakeFromNib
 // ------------------------------------------------------
 {
-    [super loadView];
+    [super awakeFromNib];
     
     // hide as default (avoid flick)
     [[self prevButton] setHidden:YES];

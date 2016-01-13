@@ -29,8 +29,8 @@
 #import "CEDocument+ScriptingSupport.h"
 #import "CETextSelection.h"
 #import "CEEditorWrapper.h"
-#import "CESyntaxParser.h"
-#import "CEUtils.h"
+#import "CESyntaxStyle.h"
+#import "CEEncodingManager.h"
 
 #import <OgreKit/OgreKit.h>
 
@@ -273,7 +273,7 @@
 {
     NSDictionary<NSString *, id> *arguments = [command evaluatedArguments];
     NSString *encodingName = arguments[@"newEncoding"];
-    NSStringEncoding encoding = [CEUtils encodingFromName:encodingName];
+    NSStringEncoding encoding = [CEEncodingManager encodingFromName:encodingName];
     
     if (encoding == NSNotFound) {
         return @NO;
@@ -298,7 +298,7 @@
 {
     NSDictionary<NSString *, id> *arguments = [command evaluatedArguments];
     NSString *encodingName = arguments[@"newEncoding"];
-    NSStringEncoding encoding = [CEUtils encodingFromName:encodingName];
+    NSStringEncoding encoding = [CEEncodingManager encodingFromName:encodingName];
     
     BOOL success = [self reinterpretWithEncoding:encoding error:nil];
 
@@ -474,7 +474,7 @@
 - (BOOL)doFind:(NSString *)searchString range:(NSRange)range option:(unsigned)option withRegularExpression:(BOOL)isRegex
 // ------------------------------------------------------
 {
-    NSString *wholeString = [[self editor] string];
+    NSString *wholeString = [self string];
     NSRange searchedRange;
 
     if (isRegex) {

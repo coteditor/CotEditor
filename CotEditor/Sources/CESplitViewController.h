@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2015 1024jp
+ © 2014-2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -29,7 +29,7 @@
 @import AppKit;
 
 
-@class CEEditorView;
+@class CEEditorViewController;
 
 
 @interface CESplitViewController : NSViewController <NSSplitViewDelegate>
@@ -37,10 +37,12 @@
 @property (readonly, nonatomic, nonnull) NSSplitView *splitView;
 
 
-- (void)enumerateEditorViewsUsingBlock:(nonnull void (^)(CEEditorView * _Nonnull editorView))block;
+- (void)enumerateEditorViewsUsingBlock:(nonnull void (^)(CEEditorViewController * _Nonnull viewController))block;
 
-- (void)addEditorView:(nonnull CEEditorView *)editorView relativeTo:(nullable CEEditorView *)otherEditorView;
-- (void)removeEditorView:(nonnull CEEditorView *)editorView;
+- (void)addSubviewForViewController:(nonnull CEEditorViewController *)editorViewController relativeTo:(nullable NSView *)otherEditorView;
+- (void)removeSubviewForViewController:(nonnull CEEditorViewController *)editorViewController;
+
+- (nullable CEEditorViewController *)viewControllerForSubview:(nonnull __kindof NSView *)view;
 
 - (IBAction)toggleSplitOrientation:(nullable id)sender;
 - (IBAction)focusNextSplitTextView:(nullable id)sender;

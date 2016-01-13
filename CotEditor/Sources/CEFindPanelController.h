@@ -32,10 +32,9 @@
 
 typedef NS_ENUM(NSInteger, CETextFinderAction) {
     CETextFinderActionSetReplacementString = 100,
-    CETextFinderActionFindSelectedText,
     CETextFinderActionFindAll,
-    CETextFinderActionSetHighlight,
-    CETextFinderActionSetUnhighlight,
+    CETextFinderActionHighlight,
+    CETextFinderActionUnhighlight,
 };
 
 

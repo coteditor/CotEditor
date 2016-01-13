@@ -9,7 +9,7 @@
 
  ------------------------------------------------------------------------------
  
- © 2015 1024jp
+ © 2015-2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -26,7 +26,10 @@
  */
 
 #import "CETextFinder.h"
-#import "Constants.h"
+#import "CEDefaults.h"
+
+
+static NSString *_Nonnull const kEscapeCharacter = @"\\";
 
 
 @implementation CETextFinder
@@ -54,6 +57,19 @@
                                                };
     
     [[NSUserDefaults standardUserDefaults] registerDefaults:defaults];
+}
+
+
+// ------------------------------------------------------
+/// initialize instance
+- (instancetype)init
+// ------------------------------------------------------
+{
+    self = [super init];
+    if (self) {
+        [self setEscapeCharacter:kEscapeCharacter];
+    }
+    return self;
 }
 
 

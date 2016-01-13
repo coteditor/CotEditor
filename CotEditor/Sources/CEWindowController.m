@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2013-2015 1024jp
+ © 2013-2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -35,7 +35,8 @@
 #import "CEEditorWrapper.h"
 #import "CESyntaxManager.h"
 #import "CEDocumentAnalyzer.h"
-#import "CESyntaxParser.h"
+#import "CESyntaxStyle.h"
+#import "CEDefaults.h"
 #import "Constants.h"
 
 #import <OgreKit/OgreTextFinder.h>
@@ -105,8 +106,8 @@ static NSTimeInterval infoUpdateInterval;
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:CEDefaultWindowAlphaKey];
     
-    // Need to set nil to NSSPlitView's delegate manually since it is not weak but just assign,
-    //     and may crash when closing split fullscreen window on El Capitan beta 5 (2015-07)
+    // Need to set nil to NSSplitView's delegate manually since it is not weak but just assign,
+    //     and may crash when closing split fullscreen window on El Capitan (2015-07)
     [_sidebarSplitView setDelegate:nil];
     
     [_editorInfoUpdateTimer invalidate];

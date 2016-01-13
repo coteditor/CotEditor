@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2015 1024jp
+ © 2014-2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -30,8 +30,11 @@
 #import "CEConsolePanelController.h"
 #import "CEDocument.h"
 #import "CEEditorWrapper.h"
-#import "CEUtils.h"
+#import "CEKeyBindingUtils.h"
 #import "NSString+Sandboxing.h"
+
+#import "CEErrors.h"
+#import "CEDefaults.h"
 #import "Constants.h"
 
 
@@ -522,7 +525,7 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 {
     NSString *keySpec = [[fileName stringByDeletingPathExtension] pathExtension];
 
-    return [CEUtils keyEquivalentAndModifierMask:modifierMask fromString:keySpec includingCommandKey:YES];
+    return [CEKeyBindingUtils keyEquivalentAndModifierMask:modifierMask fromString:keySpec includingCommandKey:YES];
 }
 
 

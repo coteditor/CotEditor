@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2015 1024jp
+ © 2014-2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -27,6 +27,7 @@
  */
 
 #import "CEEncodingManager.h"
+#import "CEDefaults.h"
 #import "Constants.h"
 
 
@@ -109,6 +110,48 @@ NSString *_Nonnull const CEEncodingListDidUpdateNotification = @"CESyntaxListDid
 
 #pragma mark Public Methods
 
+// ------------------------------------------------------
+/// returns corresponding NSStringEncoding from a encoding name
++ (NSStringEncoding)encodingFromName:(nonnull NSString *)encodingName
+// ------------------------------------------------------
+{
+    for (NSUInteger i = 0; i < kSizeOfCFStringEncodingList; i++) {
+        CFStringEncoding cfEncoding = kCFStringEncodingList[i];
+        
+        if (cfEncoding == kCFStringEncodingInvalidId) { continue; }  // = separator
+        
+        NSStringEncoding encoding = CFStringConvertEncodingToNSStringEncoding(cfEncoding);
+        if ([encodingName isEqualToString:[NSString localizedNameOfStringEncoding:encoding]]) {
+            return encoding;
+        }
+    }
+    
+    return NSNotFound;
+}
+
+
+// ------------------------------------------------------
+/// whether Yen sign (U+00A5) can be converted to the given encoding
++ (BOOL)isInvalidYenEncoding:(NSStringEncoding)encoding
+// ------------------------------------------------------
+{
+    static NSArray<NSNumber *> *invalidYenEncodings;
+    
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        NSMutableArray<NSNumber *> *encodings = [NSMutableArray arrayWithCapacity:kSizeOfCFStringEncodingInvalidYenList];
+        for (NSUInteger i = 0; i < kSizeOfCFStringEncodingInvalidYenList; i++) {
+            NSStringEncoding encoding = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingInvalidYenList[i]);
+            [encodings addObject:@(encoding)];
+        }
+        
+        invalidYenEncodings = [encodings copy];
+    });
+    
+    return [invalidYenEncodings containsObject:@(encoding)];
+}
+
+
 //------------------------------------------------------
 /// return copied menu items
 - (nonnull NSArray<NSMenuItem *> *)encodingMenuItems
@@ -126,7 +169,7 @@ NSString *_Nonnull const CEEncodingListDidUpdateNotification = @"CESyntaxListDid
 - (void)buildEncodingMenuItems
 //------------------------------------------------------
 {
-    NSArray<NSString *> *encodings = [[NSUserDefaults standardUserDefaults] arrayForKey:CEDefaultEncodingListKey];
+    NSArray<NSNumber *> *encodings = [[NSUserDefaults standardUserDefaults] arrayForKey:CEDefaultEncodingListKey];
     NSMutableArray<NSMenuItem *> *items = [[NSMutableArray alloc] initWithCapacity:[encodings count]];
     
     for (NSNumber *encodingNumber in encodings) {

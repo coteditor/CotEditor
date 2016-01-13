@@ -29,7 +29,7 @@
 @import CoreText;
 #import "CELineNumberView.h"
 #import "CETextViewProtocol.h"
-#import "Constants.h"
+#import "CEDefaults.h"
 
 
 static const NSUInteger kMinNumberOfDigits = 3;
@@ -37,6 +37,10 @@ static const CGFloat kMinVerticalThickness = 32.0;
 static const CGFloat kMinHorizontalThickness = 20.0;
 static const CGFloat kLineNumberPadding = 4.0;
 static const CGFloat kFontSizeFactor = 0.9;
+
+// dragging info keys
+static NSString * _Nonnull const DraggingSelectedRangesKey = @"selectedRanges";
+static NSString * _Nonnull const DraggingIndexKey = @"index";
 
 
 @interface CELineNumberView ()
@@ -195,7 +199,13 @@ static CGFontRef BoldLineNumberFont;
     
     BOOL isVerticalText = [self orientation] == NSHorizontalRuler;
     NSUInteger tailGlyphIndex = [layoutManager glyphIndexForCharacterAtIndex:[string length]];
-    NSRange selectedLineRange = [string lineRangeForRange:[[self textView] selectedRange]];
+    
+    // get multiple selection
+    NSMutableArray<NSValue *> *selectedLineRanges = [NSMutableArray arrayWithCapacity:[[[self textView] selectedRanges] count]];
+    for (NSValue *rangeValue in [[self textView] selectedRanges]) {
+        NSRange selectedLineRange = [string lineRangeForRange:[rangeValue rangeValue]];
+        [selectedLineRanges addObject:[NSValue valueWithRange:selectedLineRange]];
+    }
     
     // draw line number block
     CGGlyph *digitGlyphsPtr = digitGlyphs;
@@ -211,38 +221,38 @@ static CGFontRef BoldLineNumberFont;
             CGContextAddLineToPoint(context, x, ruleThickness - tickLength);
         }
         
-        // draw line number
-        if (drawsNumber) {
-            NSUInteger digit = numberOfDigits(lineNumber);
+        if (!drawsNumber) { return; }
+        
+        NSUInteger digit = numberOfDigits(lineNumber);
+        
+        // calculate base position
+        CGPoint position;
+        if (isVerticalText) {
+            position = CGPointMake(ceil(y + charWidth * (digit + 1) / 2), ruleThickness + tickLength - 2);
+        } else {
+            position = CGPointMake(ruleThickness, y);
+        }
+        
+        // get glyphs and positions
+        CGGlyph glyphs[digit];
+        CGPoint positions[digit];
+        for (NSUInteger i = 0; i < digit; i++) {
+            position.x -= charWidth;
             
-            // calculate base position
-            CGPoint position;
-            if (isVerticalText) {
-                position = CGPointMake(ceil(y + charWidth * (digit + 1) / 2), ruleThickness + tickLength - 2);
-            } else {
-                position = CGPointMake(ruleThickness, y);
-            }
-            
-            // get glyphs and positions
-            CGGlyph glyphs[digit];
-            CGPoint positions[digit];
-            for (NSUInteger i = 0; i < digit; i++) {
-                position.x -= charWidth;
-                
-                positions[i] = position;
-                glyphs[i] = digitGlyphsPtr[numberAt(i, lineNumber)];
-            }
-            
-            if (isBold) {
-                CGContextSetFont(context, BoldLineNumberFont);
-            }
-            
-            CGContextShowGlyphsAtPositions(context, glyphs, positions, digit);  // draw line number
-            
-            if (isBold) {
-                // back to the regular font
-                CGContextSetFont(context, LineNumberFont);
-            }
+            positions[i] = position;
+            glyphs[i] = digitGlyphsPtr[numberAt(i, lineNumber)];
+        }
+        
+        if (isBold) {
+            CGContextSetFont(context, BoldLineNumberFont);
+        }
+        
+        // draw
+        CGContextShowGlyphsAtPositions(context, glyphs, positions, digit);
+        
+        if (isBold) {
+            // back to the regular font
+            CGContextSetFont(context, LineNumberFont);
         }
     };
     
@@ -261,7 +271,15 @@ static CGFontRef BoldLineNumberFont;
         NSUInteger charIndex = [layoutManager characterIndexForGlyphAtIndex:glyphIndex];
         NSRange lineRange = [string lineRangeForRange:NSMakeRange(charIndex, 0)];
         glyphIndex = NSMaxRange([layoutManager glyphRangeForCharacterRange:lineRange actualCharacterRange:NULL]);
-        BOOL isSelected = NSLocationInRange(lineRange.location, selectedLineRange);
+        
+        // check if line is selected
+        BOOL isSelected = NO;
+        for (NSValue *selectedLineValue in selectedLineRanges) {
+            if (NSLocationInRange(lineRange.location, [selectedLineValue rangeValue])) {
+                isSelected = YES;
+                break;
+            }
+        }
         
         while (glyphCount < glyphIndex) { // handle wrapped lines
             NSRange range;
@@ -298,7 +316,8 @@ static CGFontRef BoldLineNumberFont;
     // draw the last "extra" line number
     if ([layoutManager extraLineFragmentTextContainer]) {
         NSRect lineRect = [layoutManager extraLineFragmentUsedRect];
-        BOOL isSelected = (selectedLineRange.length == 0) && ([string length] == NSMaxRange(selectedLineRange));
+        NSRange lastSelectedRange = [[selectedLineRanges lastObject] rangeValue];
+        BOOL isSelected = (lastSelectedRange.length == 0) && ([string length] == NSMaxRange(lastSelectedRange));
         CGFloat y = -NSMinY(lineRect);
         
         draw_number(lineNumber, lastLineNumber, y, YES, isSelected);
@@ -356,37 +375,6 @@ static CGFontRef BoldLineNumberFont;
 }
 
 
-// ------------------------------------------------------
-/// start selecting correspondent lines in text view with drag / click event
-- (void)mouseDown:(nonnull NSEvent *)theEvent
-// ------------------------------------------------------
-{
-    // get start point
-    NSPoint point = [[self window] convertRectToScreen:NSMakeRect([theEvent locationInWindow].x,
-                                                                  [theEvent locationInWindow].y, 0, 0)].origin;
-    NSUInteger index = [[self textView] characterIndexForPoint:point];
-    
-    [self selectLines:nil];  // for single click event
-    
-    // repeat while dragging
-    [self setDraggingTimer:[NSTimer scheduledTimerWithTimeInterval:0.05
-                                                            target:self
-                                                          selector:@selector(selectLines:)
-                                                          userInfo:@(index)
-                                                           repeats:YES]];
-}
-
-
-// ------------------------------------------------------
-/// end selecting correspondent lines in text view with drag event
-- (void)mouseUp:(nonnull NSEvent *)theEvent
-// ------------------------------------------------------
-{
-    [[self draggingTimer] invalidate];
-    [self setDraggingTimer:nil];
-}
-
-
 
 #pragma mark Private Methods
 
@@ -398,6 +386,65 @@ static CGFontRef BoldLineNumberFont;
     return (NSTextView<CETextViewProtocol> *)[self clientView];
 }
 
+
+
+#pragma mark Private C Functions
+
+/// digits of input number
+unsigned int numberOfDigits(int number) { return (unsigned int)log10(number) + 1; }
+
+/// number at the desired place of input number
+unsigned int numberAt(int place, int number) { return (number % (int)pow(10, place + 1)) / pow(10, place); }
+
+@end
+
+
+
+
+#pragma mark -
+
+@implementation CELineNumberView (LineSelecting)
+
+#pragma mark Superclass Methods
+
+// ------------------------------------------------------
+/// start selecting correspondent lines in text view with drag / click event
+- (void)mouseDown:(nonnull NSEvent *)theEvent
+// ------------------------------------------------------
+{
+    // get start point
+    NSPoint point = [[self window] convertRectToScreen:NSMakeRect([theEvent locationInWindow].x,
+                                                                  [theEvent locationInWindow].y, 0, 0)].origin;
+    NSUInteger index = [[self textView] characterIndexForPoint:point];
+    
+    // repeat while dragging
+    [self setDraggingTimer:[NSTimer scheduledTimerWithTimeInterval:0.05
+                                                            target:self
+                                                          selector:@selector(selectLines:)
+                                                          userInfo:@{DraggingIndexKey: @(index),
+                                                                     DraggingSelectedRangesKey: [[self textView] selectedRanges]}
+                                                           repeats:YES]];
+    
+    [self selectLines:nil];  // for single click event
+}
+
+
+// ------------------------------------------------------
+/// end selecting correspondent lines in text view with drag event
+- (void)mouseUp:(nonnull NSEvent *)theEvent
+// ------------------------------------------------------
+{
+    [[self draggingTimer] invalidate];
+    [self setDraggingTimer:nil];
+    
+    // settle selection
+    //   -> in `selectLines:`, `stillSelecting` flag is always YES
+    [[self textView] setSelectedRanges:[[self textView] selectedRanges]];
+}
+
+
+
+#pragma mark Private Methods
 
 // ------------------------------------------------------
 /// select lines while dragging event
@@ -418,12 +465,54 @@ static CGFontRef BoldLineNumberFont;
     
     // select lines
     NSUInteger currentIndex = [textView characterIndexForPoint:point];
-    NSUInteger clickedIndex = timer ? [[timer userInfo] unsignedIntegerValue] : currentIndex;
+    NSUInteger clickedIndex = timer ? [[timer userInfo][DraggingIndexKey] unsignedIntegerValue] : currentIndex;
     NSRange currentLineRange = [[textView string] lineRangeForRange:NSMakeRange(currentIndex, 0)];
     NSRange clickedLineRange = [[textView string] lineRangeForRange:NSMakeRange(clickedIndex, 0)];
     NSRange range = NSUnionRange(currentLineRange, clickedLineRange);
     
-    // with Shift key
+    NSSelectionAffinity affinity = (currentIndex < clickedIndex) ? NSSelectionAffinityUpstream : NSSelectionAffinityDownstream;
+    
+    // with Command key (add selection)
+    if ([NSEvent modifierFlags] & NSCommandKeyMask) {
+        NSArray<NSValue *> *originalSelectedRanges = [timer userInfo][DraggingSelectedRangesKey] ?: [textView selectedRanges];
+        NSMutableArray<NSValue *> *selectedRanges = [NSMutableArray array];
+        BOOL intersects = NO;
+        
+        for (NSValue *selectedRangeValue in originalSelectedRanges) {
+            NSRange selectedRange = [selectedRangeValue rangeValue];
+
+            if (selectedRange.location <= range.location && NSMaxRange(range) <= NSMaxRange(selectedRange)) {  // exclude
+                NSRange range1 = NSMakeRange(selectedRange.location, range.location - selectedRange.location);
+                NSRange range2 = NSMakeRange(NSMaxRange(range), NSMaxRange(selectedRange) - NSMaxRange(range));
+                
+                if (range1.length > 0) {
+                    [selectedRanges addObject:[NSValue valueWithRange:range1]];
+                }
+                if (range2.length > 0) {
+                    [selectedRanges addObject:[NSValue valueWithRange:range2]];
+                }
+                
+                intersects = YES;
+                continue;
+            }
+            
+            // add
+            [selectedRanges addObject:selectedRangeValue];
+        }
+        
+        if (!intersects) {  // add current dragging selection
+            [selectedRanges addObject:[NSValue valueWithRange:range]];
+        }
+        
+        [textView setSelectedRanges:selectedRanges affinity:affinity stillSelecting:YES];
+        
+        // redraw line number
+        [self setNeedsDisplay:YES];
+        
+        return;
+    }
+    
+    // with Shift key (expand selection)
     if ([NSEvent modifierFlags] & NSShiftKeyMask) {
         NSRange selectedRange = [textView selectedRange];
         if (NSLocationInRange(currentIndex, selectedRange)) {  // reduce
@@ -441,17 +530,10 @@ static CGFontRef BoldLineNumberFont;
         }
     }
     
-    [textView setSelectedRange:range];
+    [textView setSelectedRange:range affinity:affinity stillSelecting:YES];
+    
+    // redraw line number
+    [self setNeedsDisplay:YES];
 }
-
-
-
-#pragma mark Private C Functions
-
-/// digits of input number
-unsigned int numberOfDigits(int number) { return (unsigned int)log10(number) + 1; }
-
-/// number at the desired place of input number
-unsigned int numberAt(int place, int number) { return (number % (int)pow(10, place + 1)) / pow(10, place); }
 
 @end

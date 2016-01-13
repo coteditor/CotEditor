@@ -1,6 +1,6 @@
 /*
  
- CEUtils.h
+ CEKeyBindingUtils.h
  
  CotEditor
  http://coteditor.com
@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2015 1024jp
+ © 2014-2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -26,28 +26,30 @@
  
  */
 
-@import Foundation;
+@import AppKit;
 
 
-@interface CEUtils : NSObject
+// Modifier masks and characters for keybindings
+extern NSEventModifierFlags const kModifierKeyMaskList[];
+extern unichar const kModifierKeySymbolCharList[];
+extern unichar const kKeySpecCharList[];
 
-/// returns substitute character for invisible space to display
-+ (unichar)invisibleSpaceChar:(NSUInteger)index;
+// size of kModifierKeyMaskList, kKeySpecCharList and kModifierKeySymbolCharList
+extern NSUInteger const kSizeOfModifierKeys;
+// indexes of kModifierKeyMaskList, kKeySpecCharList and kModifierKeySymbolCharList
+typedef NS_ENUM(NSUInteger, CEModifierKeyIndex) {
+    CEControlKeyIndex,
+    CEAlternateKeyIndex,
+    CEShiftKeyIndex,
+    CECommandKeyIndex,
+};
 
-/// returns substitute character for invisible tab character to display
-+ (unichar)invisibleTabChar:(NSUInteger)index;
+// Unprintable key list
+extern unichar    const kUnprintableKeyList[];
+extern NSUInteger const kSizeOfUnprintableKeyList;
 
-/// returns substitute character for invisible new line character to display
-+ (unichar)invisibleNewLineChar:(NSUInteger)index;
 
-/// returns substitute character for invisible full-width to display
-+ (unichar)invisibleFullwidthSpaceChar:(NSUInteger)index;
-
-/// returns corresponding NSStringEncoding from a encoding name
-+ (NSStringEncoding)encodingFromName:(nonnull NSString *)encodingName;
-
-/// whether Yen sign (U+00A5) can be converted to the given encoding
-+ (BOOL)isInvalidYenEncoding:(NSStringEncoding)encoding;
+@interface CEKeyBindingUtils : NSObject
 
 /// returns string form keyEquivalent (keyboard shortcut) for menu item
 + (nonnull NSString *)keyEquivalentAndModifierMask:(nonnull NSUInteger *)modifierMask

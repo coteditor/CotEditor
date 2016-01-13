@@ -9,7 +9,7 @@
 
  ------------------------------------------------------------------------------
  
- © 2015 1024jp
+ © 2015-2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -26,8 +26,8 @@
  */
 
 #import "CEFindPanelLayoutManager.h"
-#import "CEUtils.h"
-#import "Constants.h"
+#import "CEInvisibles.h"
+#import "CEDefaults.h"
 
 
 @interface CEFindPanelLayoutManager ()
@@ -95,23 +95,24 @@
         BOOL showsVerticalTab = [defaults boolForKey:CEDefaultShowOtherInvisibleCharsKey];
         BOOL showsOtherInvisibles = [defaults boolForKey:CEDefaultShowOtherInvisibleCharsKey];
         
-        unichar spaceChar = [CEUtils invisibleSpaceChar:[defaults integerForKey:CEDefaultInvisibleSpaceKey]];
+        unichar spaceChar = [CEInvisibles spaceCharWithIndex:[defaults integerForKey:CEDefaultInvisibleSpaceKey]];
         NSAttributedString *space = [[NSAttributedString alloc] initWithString:[NSString stringWithCharacters:&spaceChar length:1]
                                                                     attributes:attributes];
         
-        unichar tabChar = [CEUtils invisibleTabChar:[defaults integerForKey:CEDefaultInvisibleTabKey]];
+        unichar tabChar = [CEInvisibles tabCharWithIndex:[defaults integerForKey:CEDefaultInvisibleTabKey]];
         NSAttributedString *tab = [[NSAttributedString alloc] initWithString:[NSString stringWithCharacters:&tabChar length:1]
                                                                   attributes:attributes];
         
-        unichar newLineChar = [CEUtils invisibleNewLineChar:[defaults integerForKey:CEDefaultInvisibleNewLineKey]];
+        unichar newLineChar = [CEInvisibles newLineCharWithIndex:[defaults integerForKey:CEDefaultInvisibleNewLineKey]];
         NSAttributedString *newLine = [[NSAttributedString alloc] initWithString:[NSString stringWithCharacters:&newLineChar length:1]
                                                                       attributes:attributes];
         
-        unichar fullwidthSpaceChar = [CEUtils invisibleFullwidthSpaceChar:[defaults integerForKey:CEDefaultInvisibleFullwidthSpaceKey]];
+        unichar fullwidthSpaceChar = [CEInvisibles fullwidthSpaceCharWithIndex:[defaults integerForKey:CEDefaultInvisibleFullwidthSpaceKey]];
         NSAttributedString *fullwidthSpace = [[NSAttributedString alloc] initWithString:[NSString stringWithCharacters:&fullwidthSpaceChar length:1]
                                                                              attributes:fullwidthAttributes];
         
-        NSAttributedString *verticalTab = [[NSAttributedString alloc] initWithString:[NSString stringWithCharacters:&kVerticalTabChar length:1]
+        unichar verticalTabChar = [CEInvisibles verticalTabChar];
+        NSAttributedString *verticalTab = [[NSAttributedString alloc] initWithString:[NSString stringWithCharacters:&verticalTabChar length:1]
                                                                           attributes:attributes];
         
         for (NSUInteger glyphIndex = glyphsToShow.location; glyphIndex < lengthToRedraw; glyphIndex++) {

@@ -2,7 +2,29 @@
 Change Log
 ==========================
 
-2.3.3 (91)
+2.3.4　(95)
+--------------------------
+
+### Improvements
+
+- Improve line numbers view for multiple selections.
+- Now, “Select Line” action works with multiple selections.
+- Close character inspector when text selection was changed.
+- Reprocude previous selection by undoing line actions.
+- Improve syntax highlighting performance.
+
+
+### Fixes
+
+- Fix an issue where comment-out action didn't work on CotEditor 2.3.3.
+- Fix an issue where window title bar was dyed in the editor's background color on El Capitan.
+- Fix an issue where text selection after move multiple lines was broken.
+- Fix an issue where `$` or `^` anchors in the regular expression via AppleScript didn't work with document that has non-LF line endings.
+- Fix an issue where syntax highlighting indicator became occasionally unclosable under the specific condition on document opening.
+
+
+
+2.3.3　(91)
 --------------------------
 
 ### New Features
@@ -18,7 +40,7 @@ Change Log
     - Allow also taking a 1 to 3 digits point code.
     - Avoid auto-closing panel after enter character.
 - Improve character inspector:
-    - Display more comprehensible name for C0 control characters (e.g. `<control-0000>` to `NULL`).
+    - Display more comprehensible name for control characters (e.g. `<control-0000>` to `NULL`).
     - Display a alternate visible symbol in the zoomed character area for C0 control characters.
 - Improve installed syntax style list in preferences:
     - Add dot mark to style names in the list to represent the state if the style is customized.

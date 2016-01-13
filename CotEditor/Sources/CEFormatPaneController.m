@@ -33,6 +33,7 @@
 #import "CESyntaxMappingConflictsSheetController.h"
 #import "CESyntaxEditSheetController.h"
 #import "CEEncodingListSheetController.h"
+#import "CEDefaults.h"
 #import "Constants.h"
 
 
