@@ -30,6 +30,7 @@
 #import "CEFindPanelController.h"
 #import "CEProgressSheetController.h"
 #import "CEHUDController.h"
+#import "NSTextView+CETextReplacement.h"
 #import "CEErrors.h"
 #import "CEDefaults.h"
 
@@ -444,18 +445,8 @@ static CETextFinder	*singleton = nil;
             if (count > 0) {
                 // apply found strings to the text view
                 // TODO: keep selection
-                if ([textView shouldChangeTextInRanges:replacementRanges replacementStrings:replacementStrings]) {
-                    [[textView textStorage] beginEditing];
-                    [replacementStrings enumerateObjectsWithOptions:NSEnumerationReverse
-                                                         usingBlock:^(NSString * _Nonnull replacementString, NSUInteger idx, BOOL * _Nonnull stop)
-                     {
-                         NSRange replacementRange = [replacementRanges[idx] rangeValue];
-                         [[textView textStorage] replaceCharactersInRange:replacementRange withString:replacementString];
-                     }];
-                    [[textView textStorage] endEditing];
-                    [textView didChangeText];
-                    [[textView undoManager] setActionName:NSLocalizedString(@"Replace All", nil)];
-                }
+                [textView replaceWithStrings:replacementStrings ranges:replacementRanges selectedRanges:nil
+                                  actionName:NSLocalizedString(@"Replace All", nil)];
                 
             } else {
                 NSBeep();
@@ -661,16 +652,9 @@ static CETextFinder	*singleton = nil;
     NSString *replacedString = [[self repex] replaceMatchedStringOf:match];
     
     // apply replacement to text view
-    if ([textView shouldChangeTextInRange:replacementRange replacementString:replacedString]) {
-        [[textView textStorage] replaceCharactersInRange:replacementRange withString:replacedString];
-        [textView didChangeText];
-        [textView setSelectedRange:NSMakeRange(replacementRange.location, [replacedString length])];
-        [[textView undoManager] setActionName:NSLocalizedString(@"Replace", nil)];
-        
-        return YES;
-    }
-    
-    return NO;
+    return [textView replaceWithString:replacedString range:replacementRange
+                         selectedRange:NSMakeRange(replacementRange.location, [replacedString length])
+                            actionName:NSLocalizedString(@"Replace", nil)];
 }
 
 
