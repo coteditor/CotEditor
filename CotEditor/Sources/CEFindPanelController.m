@@ -59,6 +59,7 @@ static const CGFloat kDefaultResultViewHeight = 200.0;
 @property (nonatomic, nullable, weak) IBOutlet CETextFinder *textFinder;
 @property (nonatomic, nullable) IBOutlet CEFindResultViewController *resultViewController;
 @property (nonatomic, nullable) IBOutlet NSPopover *regexPopover;
+@property (nonatomic, nullable, weak) IBOutlet NSPopUpButton *advancedButton;
 @property (nonatomic, nullable, weak) IBOutlet NSSplitView *splitView;
 @property (nonatomic, nullable, weak) IBOutlet NSButton *disclosureButton;
 @property (nonatomic, nullable, weak) IBOutlet NSMenu *findHistoryMenu;
@@ -126,6 +127,10 @@ static const CGFloat kDefaultResultViewHeight = 200.0;
     // [attention] This method can be invoked before initializing user defaults in CEAppDelegate.
     
     [super windowDidLoad];
+    
+    if (NSAppKitVersionNumber < NSAppKitVersionNumber10_10) {  // on Mavericks or earlier
+        [[self advancedButton] setBezelStyle:NSRoundedBezelStyle];
+    }
     
     [self updateFindHistoryMenu];
     [self updateReplaceHistoryMenu];

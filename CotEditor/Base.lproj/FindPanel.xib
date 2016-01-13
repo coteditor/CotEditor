@@ -7,6 +7,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="CEFindPanelController">
             <connections>
+                <outlet property="advancedButton" destination="EY8-gj-fQb" id="KLM-nZ-wRY"/>
                 <outlet property="disclosureButton" destination="oC1-bN-UeN" id="j2a-5P-Uu1"/>
                 <outlet property="findHistoryMenu" destination="Zor-um-eIs" id="81b-eT-9Dh"/>
                 <outlet property="regexPopover" destination="aeg-YU-kMW" id="KZe-sf-cbh"/>
@@ -200,12 +201,12 @@
                                         <constraints>
                                             <constraint firstAttribute="width" constant="44" id="9LH-7p-gFL"/>
                                         </constraints>
-                                        <popUpButtonCell key="cell" type="bevel" title="Advanced Options" bezelStyle="regularSquare" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" pullsDown="YES" autoenablesItems="NO" id="sfm-kK-8cs">
+                                        <popUpButtonCell key="cell" type="bevel" bezelStyle="regularSquare" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" borderStyle="border" inset="2" pullsDown="YES" autoenablesItems="NO" id="sfm-kK-8cs">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="menu"/>
                                             <menu key="menu" autoenablesItems="NO" id="oEy-4y-qoZ">
                                                 <items>
-                                                    <menuItem title="Advanced Options" image="NSActionTemplate" hidden="YES" id="SsS-EF-JyP">
+                                                    <menuItem image="NSActionTemplate" hidden="YES" id="SsS-EF-JyP">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                     </menuItem>
                                                     <menuItem title="Wrap Around" state="on" id="Oqm-Wt-G7B">
