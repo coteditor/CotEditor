@@ -87,7 +87,7 @@
 
 
 // ------------------------------------------------------
-/// Unicode normalization (NDF)
+/// Unicode normalization (NFD)
 - (IBAction)normalizeUnicodeWithNFD:(nullable id)sender
 // ------------------------------------------------------
 {
