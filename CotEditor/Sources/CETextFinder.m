@@ -401,15 +401,11 @@ static CETextFinder	*singleton = nil;
     
     NSNumberFormatter *integerFormatter = [self integerFormatter];
     NSTextView *textView = [self client];
-    NSString *findString = [self sanitizedFindString];
-    NSString *replacementString = [self replacementString];
+    OGRegularExpression *regex = [self regex];
     OGReplaceExpression *repex = [self repex];
+    NSArray<NSValue *> *scopeRanges = [self scopeRanges];
     BOOL inSelection = [self inSelection];
-    __block NSRange selectedRange = [textView selectedRange];
-    
-    // TODO: multiple-selection
     NSString *string = [textView string];
-    NSEnumerator<OGRegularExpressionMatch *> *enumerator = [[self regex] matchEnumeratorInString:string range:[self scopeRange]];
     
     // setup progress sheet
     __block BOOL isCancelled = NO;
@@ -428,30 +424,41 @@ static CETextFinder	*singleton = nil;
         
         NSMutableArray<NSString *> *replacementStrings = [NSMutableArray array];
         NSMutableArray<NSValue *> *replacementRanges = [NSMutableArray array];
+        NSMutableArray<NSValue *> *selectedRanges = [NSMutableArray array];
         NSUInteger count = 0;
+        NSInteger delta = 0;
         
-        OGRegularExpressionMatch *match;
-        while ((match = [enumerator nextObject])) {
-            if (isCancelled) {
-                [indicator close:self];
-                return;
-            }
+        for (NSValue *rangeValue in scopeRanges) {
+            NSRange scopeRange = [rangeValue rangeValue];
+            NSEnumerator<OGRegularExpressionMatch *> *enumerator = [regex matchEnumeratorInString:string range:scopeRange];
             
-            NSString *replacedString = [repex replaceMatchedStringOf:match];
-            NSRange replacementRange = [match rangeOfMatchedString];
+            NSRange selectedRange = scopeRange;
+            selectedRange.location += delta;
             
-            [replacementStrings addObject:replacedString];
-            [replacementRanges addObject:[NSValue valueWithRange:replacementRange]];
-            if (inSelection) {
+            OGRegularExpressionMatch *match;
+            while ((match = [enumerator nextObject])) {
+                if (isCancelled) {
+                    [indicator close:self];
+                    return;
+                }
+                
+                NSString *replacedString = [repex replaceMatchedStringOf:match];
+                NSRange replacementRange = [match rangeOfMatchedString];
+                
+                [replacementStrings addObject:replacedString];
+                [replacementRanges addObject:[NSValue valueWithRange:replacementRange]];
                 selectedRange.length -= (NSInteger)replacementRange.length - [replacedString length];
+                count++;
+                
+                NSString *informative = (count == 1) ? @"%@ string replaced." : @"%@ strings replaced.";
+                NSString *countStr = [integerFormatter stringFromNumber:@(count)];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [indicator setInformativeText:[NSString stringWithFormat:NSLocalizedString(informative, nil), countStr]];
+                });
             }
-            count++;
             
-            NSString *informative = (count == 1) ? @"%@ string replaced." : @"%@ strings replaced.";
-            NSString *countStr = [integerFormatter stringFromNumber:@(count)];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [indicator setInformativeText:[NSString stringWithFormat:NSLocalizedString(informative, nil), countStr]];
-            });
+            delta += (NSInteger)selectedRange.length - scopeRange.length;
+            [selectedRanges addObject:[NSValue valueWithRange:selectedRange]];
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -460,7 +467,7 @@ static CETextFinder	*singleton = nil;
             if (count > 0) {
                 // apply found strings to the text view
                 [textView replaceWithStrings:replacementStrings ranges:replacementRanges
-                              selectedRanges:inSelection ? @[[NSValue valueWithRange:selectedRange]] : nil
+                              selectedRanges:inSelection ? selectedRanges : nil
                                   actionName:NSLocalizedString(@"Replace All", nil)];
                 
             } else {
@@ -474,8 +481,8 @@ static CETextFinder	*singleton = nil;
         });
     });
     
-    [self appendFindHistory:findString];
-    [self appendReplaceHistory:replacementString];
+    [self appendFindHistory:[self findString]];
+    [self appendReplaceHistory:[self replacementString]];
 }
 
 
@@ -541,17 +548,6 @@ static CETextFinder	*singleton = nil;
     if (selectedRange.length == 0) { return nil; }
     
     return [[[self client] string] substringWithRange:selectedRange];
-}
-
-
-// ------------------------------------------------------
-/// range to find in
-- (NSRange)scopeRange
-// ------------------------------------------------------
-{
-    NSTextView *textView = [self client];
-    
-    return [self inSelection] ? [textView selectedRange] : NSMakeRange(0, [[textView string] length]);
 }
 
 
