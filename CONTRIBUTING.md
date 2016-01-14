@@ -95,6 +95,6 @@ Please follow the style of the existing codes in CotEditor.
 	// use
 	if (!foo) { return; }
 	
-	// instead
+	// instead of
 	if (!foo) return;
 	```
