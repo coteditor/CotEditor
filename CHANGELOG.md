@@ -19,6 +19,7 @@ develop
 
 - Fix insertion location after line moving with empty selection.
 - Fix soft line-wrapping behavior when the line contains a long unbreakable word.
+- Fix an issue where “Jump to Selection” action didn't jump to selection in editor if other text box is focued.
 - Fix memory leak.
 
 

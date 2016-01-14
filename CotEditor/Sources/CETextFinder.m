@@ -498,6 +498,15 @@ static CETextFinder	*singleton = nil;
 }
 
 
+// ------------------------------------------------------
+/// jump to selection in client
+- (IBAction)centerSelectionInVisibleArea:(nullable id)sender
+// ------------------------------------------------------
+{
+    [[self client] centerSelectionInVisibleArea:sender];
+}
+
+
 
 #pragma mark Private Methods
 

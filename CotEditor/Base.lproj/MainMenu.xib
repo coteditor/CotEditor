@@ -897,7 +897,7 @@ CA
                             </menuItem>
                             <menuItem title="Jump to Selection" tag="6" keyEquivalent="j" id="p4A-mE-Ve3">
                                 <connections>
-                                    <action selector="centerSelectionInVisibleArea:" target="-1" id="nwh-kM-ZpR"/>
+                                    <action selector="centerSelectionInVisibleArea:" target="289" id="MVE-2w-HCv"/>
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="RmP-uk-9Kf">
