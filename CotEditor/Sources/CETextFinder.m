@@ -398,6 +398,8 @@ static CETextFinder	*singleton = nil;
     NSString *findString = [self sanitizedFindString];
     NSString *replacementString = [self replacementString];
     OGReplaceExpression *repex = [self repex];
+    BOOL inSelection = [self inSelection];
+    __block NSRange selectedRange = [textView selectedRange];
     
     NSString *string = [textView string];
     NSEnumerator<OGRegularExpressionMatch *> *enumerator = [[self regex] matchEnumeratorInString:string range:[self scopeRange]];
@@ -428,8 +430,14 @@ static CETextFinder	*singleton = nil;
                 return;
             }
             
-            [replacementStrings addObject:[repex replaceMatchedStringOf:match]];
-            [replacementRanges addObject:[NSValue valueWithRange:[match rangeOfMatchedString]]];
+            NSString *replacedString = [repex replaceMatchedStringOf:match];
+            NSRange replacementRange = [match rangeOfMatchedString];
+            
+            [replacementStrings addObject:replacedString];
+            [replacementRanges addObject:[NSValue valueWithRange:replacementRange]];
+            if (inSelection) {
+                selectedRange.length -= (NSInteger)replacementRange.length - [replacedString length];
+            }
             count++;
             
             NSString *informative = (count == 1) ? @"%@ string replaced." : @"%@ strings replaced.";
@@ -444,8 +452,8 @@ static CETextFinder	*singleton = nil;
             
             if (count > 0) {
                 // apply found strings to the text view
-                // TODO: keep selection
-                [textView replaceWithStrings:replacementStrings ranges:replacementRanges selectedRanges:nil
+                [textView replaceWithStrings:replacementStrings ranges:replacementRanges
+                              selectedRanges:inSelection ? @[[NSValue valueWithRange:selectedRange]] : nil
                                   actionName:NSLocalizedString(@"Replace All", nil)];
                 
             } else {
