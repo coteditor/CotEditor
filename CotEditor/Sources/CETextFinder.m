@@ -278,10 +278,11 @@ static CETextFinder	*singleton = nil;
     NSNumberFormatter *integerFormatter = [self integerFormatter];
     NSTextView *textView = [self client];
     NSString *findString = [self sanitizedFindString];
+    OGRegularExpression *regex = [self regex];
+    NSArray<NSValue *> *scopeRanges = [self scopeRanges];
     
     NSRegularExpression *lineRegex = [NSRegularExpression regularExpressionWithPattern:@"\n" options:0 error:nil];
     NSString *string = [textView string];
-    NSEnumerator<OGRegularExpressionMatch *> *enumerator = [[self regex] matchEnumeratorInString:string range:[self scopeRange]];
     
     // setup progress sheet
     __block BOOL isCancelled = NO;
@@ -298,38 +299,43 @@ static CETextFinder	*singleton = nil;
         typeof(self) self = weakSelf;
         if (!self) { return; }
         
-        NSUInteger lineNumber = 1;
         NSMutableArray<NSDictionary *> *result = [NSMutableArray array];
-        OGRegularExpressionMatch *match;
-        while ((match = [enumerator nextObject])) {
-            if (isCancelled) {
-                [indicator close:self];
-                return;
+        for (NSValue *rangeValue in scopeRanges) {
+            NSRange scopeRange = [rangeValue rangeValue];
+            NSEnumerator<OGRegularExpressionMatch *> *enumerator = [regex matchEnumeratorInString:string range:scopeRange];
+            NSUInteger lineNumber = [lineRegex numberOfMatchesInString:string options:0 range:NSMakeRange(0, scopeRange.location)] + 1;
+            
+            OGRegularExpressionMatch *match;
+            while ((match = [enumerator nextObject])) {
+                if (isCancelled) {
+                    [indicator close:self];
+                    return;
+                }
+                
+                // calc line number
+                NSRange diffRange = NSMakeRange([match rangeOfStringBetweenMatchAndLastMatch].location - [match rangeOfLastMatchSubstring].length,
+                                                [match rangeOfStringBetweenMatchAndLastMatch].length + [match rangeOfLastMatchSubstring].length);
+                lineNumber += [lineRegex numberOfMatchesInString:string options:0 range:diffRange];
+                
+                // get highlighted line string
+                NSRange lineRange = [string lineRangeForRange:[match rangeOfMatchedString]];
+                NSRange inlineRange = [match rangeOfMatchedString];
+                inlineRange.location -= lineRange.location;
+                NSString *lineString = [string substringWithRange:lineRange];
+                NSMutableAttributedString *lineAttrString = [[NSMutableAttributedString alloc] initWithString:lineString];
+                [lineAttrString addAttributes:@{NSBackgroundColorAttributeName: [self highlightColor]} range:inlineRange];
+                
+                [result addObject:@{CEFindResultRange: [NSValue valueWithRange:[match rangeOfMatchedString]],
+                                    CEFindResultLineNumber: @(lineNumber),
+                                    CEFindResultAttributedLineString: lineAttrString,
+                                    CEFindResultLineRange: [NSValue valueWithRange:inlineRange]}];
+                
+                NSString *informative = ([result count] == 1) ? @"%@ string found." : @"%@ strings found.";
+                NSString *countStr = [integerFormatter stringFromNumber:@([result count])];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [indicator setInformativeText:[NSString stringWithFormat:NSLocalizedString(informative, nil), countStr]];
+                });
             }
-            
-            // calc line number
-            NSRange diffRange = NSMakeRange([match rangeOfStringBetweenMatchAndLastMatch].location - [match rangeOfLastMatchSubstring].length,
-                                            [match rangeOfStringBetweenMatchAndLastMatch].length + [match rangeOfLastMatchSubstring].length);
-            lineNumber += [lineRegex numberOfMatchesInString:string options:0 range:diffRange];
-            
-            // get highlighted line string
-            NSRange lineRange = [string lineRangeForRange:[match rangeOfMatchedString]];
-            NSRange inlineRange = [match rangeOfMatchedString];
-            inlineRange.location -= lineRange.location;
-            NSString *lineString = [string substringWithRange:lineRange];
-            NSMutableAttributedString *lineAttrString = [[NSMutableAttributedString alloc] initWithString:lineString];
-            [lineAttrString addAttributes:@{NSBackgroundColorAttributeName: [self highlightColor]} range:inlineRange];
-            
-            [result addObject:@{CEFindResultRange: [NSValue valueWithRange:[match rangeOfMatchedString]],
-                                CEFindResultLineNumber: @(lineNumber),
-                                CEFindResultAttributedLineString: lineAttrString,
-                                CEFindResultLineRange: [NSValue valueWithRange:inlineRange]}];
-            
-            NSString *informative = ([result count] == 1) ? @"%@ string found." : @"%@ strings found.";
-            NSString *countStr = [integerFormatter stringFromNumber:@([result count])];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [indicator setInformativeText:[NSString stringWithFormat:NSLocalizedString(informative, nil), countStr]];
-            });
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -401,6 +407,7 @@ static CETextFinder	*singleton = nil;
     BOOL inSelection = [self inSelection];
     __block NSRange selectedRange = [textView selectedRange];
     
+    // TODO: multiple-selection
     NSString *string = [textView string];
     NSEnumerator<OGRegularExpressionMatch *> *enumerator = [[self regex] matchEnumeratorInString:string range:[self scopeRange]];
     
@@ -542,10 +549,20 @@ static CETextFinder	*singleton = nil;
 - (NSRange)scopeRange
 // ------------------------------------------------------
 {
-    // TODO: multiple-selection
     NSTextView *textView = [self client];
     
     return [self inSelection] ? [textView selectedRange] : NSMakeRange(0, [[textView string] length]);
+}
+
+
+// ------------------------------------------------------
+/// ranges to find in
+- (NSArray<NSValue *> *)scopeRanges
+// ------------------------------------------------------
+{
+    NSTextView *textView = [self client];
+    
+    return [self inSelection] ? [textView selectedRanges] : @[[NSValue valueWithRange:NSMakeRange(0, [[textView string] length])]];
 }
 
 
