@@ -248,7 +248,7 @@ static const CGFloat kDefaultResultViewHeight = 200.0;
     
     // dismiss result either client text or find string did change
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(invalidateNumberOfFound:)
-                                                 name:NSTextDidChangeNotification object:textView];
+                                                 name:NSTextStorageDidProcessEditingNotification object:[textView textStorage]];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(invalidateNumberOfFound:)
                                                  name:NSWindowWillCloseNotification object:[textView window]];
 }
@@ -653,7 +653,7 @@ static const CGFloat kDefaultResultViewHeight = 200.0;
 {
     [self setResultMessage:nil];
     
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:NSTextDidChangeNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:NSTextStorageDidProcessEditingNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:NSWindowWillCloseNotification object:nil];
 }
 
