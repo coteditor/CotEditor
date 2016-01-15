@@ -110,7 +110,7 @@ static BOOL usesTextFontForInvisibles;
         [self setShowsControlCharacters:NO];
         
         [self setUsesScreenFonts:YES];
-        [self setTypesetter:[[CEATSTypesetter alloc] init]];
+        [self setTypesetter:[CEATSTypesetter sharedTypesetter]];
     }
     return self;
 }
