@@ -15,6 +15,7 @@ develop
     - Now, “Find All” and “Replace All” actions are able to process multiple selections.
     - Revert “Use selection for Replace” action to allow using an empty string.
     - Tweak layout and style.
+- `cot` command now opens symbolic link target rather than the link itself.
 
 
 ### Fixes
