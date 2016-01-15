@@ -659,6 +659,9 @@ static CETextFinder	*singleton = nil;
     } else {
         NSBeep();
     }
+    if ([[self delegate] respondsToSelector:@selector(textFinder:didFound:textView:)]) {
+        [[self delegate] textFinder:self didFound:[matches count] textView:textView];
+    }
     
     [self appendFindHistory:[self findString]];
     

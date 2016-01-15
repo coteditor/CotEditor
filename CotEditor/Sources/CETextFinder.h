@@ -85,6 +85,7 @@ typedef NS_ENUM(NSInteger, CETextFinderAction) {
 
 @optional
 - (void)textFinder:(nonnull CETextFinder *)textFinder didFinishFindingAll:(nonnull NSString *)findString results:(nonnull NSArray<NSDictionary *> *)results textView:(nonnull NSTextView *)textView;
+- (void)textFinder:(nonnull CETextFinder *)textFinder didFound:(NSInteger)numberOfFound textView:(nonnull NSTextView *)textView;
 
 - (void)textFinderDidUpdateFindHistory;
 - (void)textFinderDidUpdateReplaceHistory;

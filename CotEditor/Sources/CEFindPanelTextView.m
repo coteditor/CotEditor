@@ -34,7 +34,7 @@
 
 @interface CEFindPanelTextView ()
 
-@property (nonatomic, nullable) IBOutlet CETextFinder *textFinder;
+@property (nonatomic, nullable, weak) IBOutlet CETextFinder *textFinder;
 
 @end
 

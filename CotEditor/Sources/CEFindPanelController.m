@@ -36,9 +36,10 @@
 static const CGFloat kDefaultResultViewHeight = 200.0;
 
 
-@interface CEFindPanelController () <CETextFinderDelegate, NSWindowDelegate, NSSplitViewDelegate, NSPopoverDelegate>
+@interface CEFindPanelController () <CETextFinderDelegate, NSWindowDelegate, NSSplitViewDelegate, NSTextViewDelegate, NSPopoverDelegate>
 
 @property (nonatomic, nullable) NSLayoutConstraint *resultHeightConstraint;  // for autolayout on OS X 10.8
+@property (nonatomic, nullable, copy) NSString *resultMessage;  // binding
 
 #pragma mark Options
 @property (nonatomic) BOOL ignoreCaseOption;
@@ -59,6 +60,7 @@ static const CGFloat kDefaultResultViewHeight = 200.0;
 @property (nonatomic, nullable, weak) IBOutlet CETextFinder *textFinder;
 @property (nonatomic, nullable) IBOutlet CEFindResultViewController *resultViewController;
 @property (nonatomic, nullable) IBOutlet NSPopover *regexPopover;
+@property (nonatomic, nullable, weak) IBOutlet NSNumberFormatter *integerFormatter;
 @property (nonatomic, nullable, weak) IBOutlet NSPopUpButton *advancedButton;
 @property (nonatomic, nullable, weak) IBOutlet NSSplitView *splitView;
 @property (nonatomic, nullable, weak) IBOutlet NSButton *disclosureButton;
@@ -104,6 +106,7 @@ static const CGFloat kDefaultResultViewHeight = 200.0;
 - (void)dealloc
 // ------------------------------------------------------
 {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     [[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:CEDefaultFindNextAfterReplaceKey];
     
     [_splitView setDelegate:nil];  // NSSplitView's delegate is assign, not weak
@@ -227,6 +230,31 @@ static const CGFloat kDefaultResultViewHeight = 200.0;
 
 
 // ------------------------------------------------------
+/// recieve number of found
+- (void)textFinder:(CETextFinder *)textFinder didFound:(NSInteger)numberOfFound textView:(nonnull NSTextView *)textView
+// ------------------------------------------------------
+{
+    switch (numberOfFound) {
+        case -1:
+            [self setResultMessage:nil];
+            break;
+        case 0:
+            [self setResultMessage:NSLocalizedString(@"Not Found", nil)];
+            break;
+        default:
+            [self setResultMessage:[NSString stringWithFormat:NSLocalizedString(@"%@ found", nil), [[self integerFormatter] stringFromNumber:@(numberOfFound)]]];
+            break;
+    }
+    
+    // dismiss result either client text or find string did change
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(invalidateNumberOfFound:)
+                                                 name:NSTextDidChangeNotification object:textView];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(invalidateNumberOfFound:)
+                                                 name:NSWindowWillCloseNotification object:[textView window]];
+}
+
+
+// ------------------------------------------------------
 /// find history did update
 - (void)textFinderDidUpdateFindHistory
 // ------------------------------------------------------
@@ -242,6 +270,23 @@ static const CGFloat kDefaultResultViewHeight = 200.0;
 {
     [self updateReplaceHistoryMenu];
 }
+
+
+
+//=======================================================
+// NSTextViewDeleage < find string field
+//=======================================================
+
+// ------------------------------------------------------
+/// find string did change
+- (void)textDidChange:(NSNotification *)notification
+// ------------------------------------------------------
+{
+    if ([[notification object] isKindOfClass:[NSTextView class]]) {
+        [self invalidateNumberOfFound:nil];
+    }
+}
+
 
 
 //=======================================================
@@ -598,6 +643,18 @@ static const CGFloat kDefaultResultViewHeight = 200.0;
         [item setTarget:self];
         [menu insertItem:item atIndex:2];
     }
+}
+
+
+// ------------------------------------------------------
+/// number of found in find string field becomes no more valid
+- (void)invalidateNumberOfFound:(nullable NSNotification *)notification
+// ------------------------------------------------------
+{
+    [self setResultMessage:nil];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:NSTextDidChangeNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:NSWindowWillCloseNotification object:nil];
 }
 
 

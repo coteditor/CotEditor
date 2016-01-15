@@ -82,6 +82,8 @@
 /* MARK: CEFindPanelController */
 "Replace the current selection with the replacement text, then find the next match." = "Die aktuelle Auswahl durch den Ersetzungstext ersetzen, dann die nächste Übereinstimmung suchen.";
 "Replace the current selection with the replacement text." = "Die aktuelle Auswahl durch den Ersetzungstext ersetzen.";
+"Not Found" = "Nicht gefunden";
+"%@ found" = "%@ gefunden";
 
 
 /* MARK: CEFindResultViewController */
