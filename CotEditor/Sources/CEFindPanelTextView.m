@@ -29,7 +29,7 @@
 #import "CEFindPanelLayoutManager.h"
 #import "CETextFinder.h"
 #import "CEDefaults.h"
-#import "Constants.h"
+#import "CEEncodings.h"
 
 
 @interface CEFindPanelTextView ()

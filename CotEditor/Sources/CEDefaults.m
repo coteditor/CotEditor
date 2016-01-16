@@ -171,13 +171,3 @@ NSString *_Nonnull const CEDefaultColoringRangeBufferLengthKey = @"coloringRange
 NSString *_Nonnull const CEDefaultLargeFileAlertThresholdKey = @"largeFileAlertThreshold";
 NSString *_Nonnull const CEDefaultAutosavingDelayKey = @"autosavingDelay";
 NSString *_Nonnull const CEDefaultSavesTextOrientationKey = @"savesTextOrientation";
-
-
-
-// ------------------------------------------------------
-// Setting thresholds
-// ------------------------------------------------------
-
-// Page guide column
-NSUInteger const kMinPageGuideColumn = 1;
-NSUInteger const kMaxPageGuideColumn = 1000;

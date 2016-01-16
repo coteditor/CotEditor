@@ -28,7 +28,7 @@
 
 #import "CEEncodingManager.h"
 #import "CEDefaults.h"
-#import "Constants.h"
+#import "CEEncodings.h"
 
 
 NSString *_Nonnull const CEEncodingListDidUpdateNotification = @"CESyntaxListDidUpdateNotification";

@@ -44,14 +44,19 @@
 #import "CEWindow.h"
 #import "NSString+ComposedCharacter.h"
 #import "CEDefaults.h"
+#import "CEEncodings.h"
 #import "Constants.h"
 
 
 // constant
-const NSInteger kNoMenuItem = -1;
+static NSString *_Nonnull const CESelectedRangesKey = @"selectedRange";
+static NSString *_Nonnull const CEVisibleRectKey = @"visibleRect";
 
-NSString *_Nonnull const CESelectedRangesKey = @"selectedRange";
-NSString *_Nonnull const CEVisibleRectKey = @"visibleRect";
+static const NSInteger kNoMenuItem = -1;
+
+// Page guide column
+static const NSUInteger kMinPageGuideColumn = 1;
+static const NSUInteger kMaxPageGuideColumn = 1000;
 
 
 @interface CETextView ()

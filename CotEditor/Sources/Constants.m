@@ -41,6 +41,10 @@ NSString *_Nonnull const CESeparatorString = @"-";
 // Exported UTI
 NSString *_Nonnull const CEUTTypeTheme = @"com.coteditor.CotEditor.theme";
 
+// General notification's userInfo keys
+NSString *_Nonnull const CEOldNameKey = @"CEOldNameKey";
+NSString *_Nonnull const CENewNameKey = @"CENewNameKey";
+
 // Metadata dict keys for themes and syntax styles
 NSString *_Nonnull const CEMetadataKey = @"metadata";
 NSString *_Nonnull const CEAuthorKey = @"author";
@@ -77,21 +81,6 @@ BOOL CEIsAlmostEqualCGFloats(CGFloat float1, CGFloat float2) {
     const double ACCURACY = 5;
     return (fabs(float1 - float2) < pow(10, -ACCURACY));
 }
-
-
-
-#pragma mark Notifications
-
-// ------------------------------------------------------
-// Notifications
-// ------------------------------------------------------
-
-// Notification name
-NSString *_Nonnull const CEDocumentDidFinishOpenNotification = @"CEDocumentDidFinishOpenNotification";
-
-// General notification's userInfo keys
-NSString *_Nonnull const CEOldNameKey = @"CEOldNameKey";
-NSString *_Nonnull const CENewNameKey = @"CENewNameKey";
 
 
 
@@ -194,112 +183,3 @@ NSString *_Nonnull const kBundledDocumentFileNames[] = {
 // Online URLs
 NSString *_Nonnull const kWebSiteURL = @"http://coteditor.com";
 NSString *_Nonnull const kIssueTrackerURL = @"https://github.com/coteditor/CotEditor/issues";
-
-
-
-#pragma mark Encodings
-
-// ------------------------------------------------------
-// Encodings
-// ------------------------------------------------------
-
-// Encoding menu
-NSInteger const CEAutoDetectEncoding = 0;
-
-// Max length to scan encding declaration
-NSUInteger const kMaxEncodingScanLength = 2000;
-
-// Encodings list
-CFStringEncodings const kCFStringEncodingList[] = {
-    kCFStringEncodingUTF8, // Unicode (UTF-8)
-    kCFStringEncodingInvalidId, // ----------
-    
-    kCFStringEncodingShiftJIS, // Japanese (Shift JIS)
-    kCFStringEncodingEUC_JP, // Japanese (EUC)
-    kCFStringEncodingDOSJapanese, // Japanese (Windows, DOS)
-    kCFStringEncodingShiftJIS_X0213, // Japanese (Shift JIS X0213)
-    kCFStringEncodingMacJapanese, // Japanese (Mac OS)
-    kCFStringEncodingISO_2022_JP, // Japanese (ISO 2022-JP)
-    kCFStringEncodingInvalidId, // ----------
-    
-    kCFStringEncodingUnicode, // Unicode (UTF-16), kCFStringEncodingUTF16(in 10.4)
-    kCFStringEncodingInvalidId, // ----------
-    
-    kCFStringEncodingMacRoman, // Western (Mac OS Roman)
-    kCFStringEncodingWindowsLatin1, // Western (Windows Latin 1)
-    kCFStringEncodingInvalidId, // ----------
-    
-    kCFStringEncodingGB_18030_2000,  // Chinese (GB18030)
-    kCFStringEncodingBig5_HKSCS_1999,  // Traditional Chinese (Big 5 HKSCS)
-    kCFStringEncodingBig5_E,  // Traditional Chinese (Big 5-E)
-    kCFStringEncodingBig5,  // Traditional Chinese (Big 5)
-    kCFStringEncodingMacChineseTrad, // Traditional Chinese (Mac OS)
-    kCFStringEncodingMacChineseSimp, // Simplified Chinese (Mac OS)
-    kCFStringEncodingEUC_TW,  // Traditional Chinese (EUC)
-    kCFStringEncodingEUC_CN,  // Simplified Chinese (EUC)
-    kCFStringEncodingDOSChineseTrad,  // Traditional Chinese (Windows, DOS)
-    kCFStringEncodingDOSChineseSimplif,  // Simplified Chinese (Windows, DOS)
-    kCFStringEncodingInvalidId, // ----------
-    
-    kCFStringEncodingMacKorean, // Korean (Mac OS)
-    kCFStringEncodingEUC_KR,  // Korean (EUC)
-    kCFStringEncodingDOSKorean,  // Korean (Windows, DOS)
-    kCFStringEncodingInvalidId, // ----------
-    
-    kCFStringEncodingMacArabic, // Arabic (Mac OS)
-    kCFStringEncodingMacHebrew, // Hebrew (Mac OS)
-    kCFStringEncodingMacGreek, // Greek (Mac OS)
-    kCFStringEncodingISOLatinGreek, // Greek (ISO 8859-7)
-    kCFStringEncodingMacCyrillic, // Cyrillic (Mac OS)
-    kCFStringEncodingISOLatinCyrillic, // Cyrillic (ISO 8859-5)
-    kCFStringEncodingWindowsCyrillic, // Cyrillic (Windows)
-    kCFStringEncodingMacCentralEurRoman, // Central European (Mac OS)
-    kCFStringEncodingMacTurkish, // Turkish (Mac OS)
-    kCFStringEncodingMacIcelandic, // Icelandic (Mac OS)
-    kCFStringEncodingInvalidId, // ----------
-    
-    kCFStringEncodingISOLatin1, // Western (ISO Latin 1)
-    kCFStringEncodingISOLatin2, // Central European (ISO Latin 2)
-    kCFStringEncodingISOLatin3, // Western (ISO Latin 3)
-    kCFStringEncodingISOLatin4, // Central European (ISO Latin 4)
-    kCFStringEncodingISOLatin5, // Turkish (ISO Latin 5)
-    kCFStringEncodingDOSLatinUS, // Latin-US (DOS)
-    kCFStringEncodingWindowsLatin2, // Central European (Windows Latin 2)
-    kCFStringEncodingNextStepLatin, // Western (NextStep)
-    kCFStringEncodingASCII,  // Western (ASCII)
-    kCFStringEncodingNonLossyASCII, // Non-lossy ASCII
-    kCFStringEncodingInvalidId, // ----------
-    
-    kCFStringEncodingUTF16BE, // Unicode (UTF-16BE)
-    kCFStringEncodingUTF16LE, // Unicode (UTF-16LE)
-    kCFStringEncodingUTF32, // Unicode (UTF-32)
-    kCFStringEncodingUTF32BE, // Unicode (UTF-32BE)
-    kCFStringEncodingUTF32LE, // Unicode (UTF-16LE)
-};
-NSUInteger const kSizeOfCFStringEncodingList = sizeof(kCFStringEncodingList)/sizeof(CFStringEncodings);
-
-// Encodings that need convert Yen mark to back-slash
-CFStringEncodings const kCFStringEncodingInvalidYenList[] = {
-    kCFStringEncodingDOSJapanese, // Japanese (Windows, DOS)
-    kCFStringEncodingEUC_JP,  // Japanese (EUC)
-    kCFStringEncodingEUC_TW,  // Traditional Chinese (EUC)
-    kCFStringEncodingEUC_CN,  // Simplified Chinese (EUC)
-    kCFStringEncodingEUC_KR,  // Korean (EUC)
-    kCFStringEncodingDOSKorean,  // Korean (Windows, DOS)
-    kCFStringEncodingMacArabic, // Arabic (Mac OS)
-    kCFStringEncodingMacHebrew, // Hebrew (Mac OS)
-    kCFStringEncodingISOLatinGreek, // Greek (ISO 8859-7)
-    kCFStringEncodingMacCyrillic, // Cyrillic (Mac OS)
-    kCFStringEncodingISOLatinCyrillic, // Cyrillic (ISO 8859-5)
-    kCFStringEncodingWindowsCyrillic, // Cyrillic (Windows)
-    kCFStringEncodingMacCentralEurRoman, // Central European (Mac OS)
-    kCFStringEncodingISOLatin2, // Central European (ISO Latin 2)
-    kCFStringEncodingISOLatin3, // Western (ISO Latin 3)
-    kCFStringEncodingISOLatin4, // Central European (ISO Latin 4)
-    kCFStringEncodingDOSLatinUS, // Latin-US (DOS)
-    kCFStringEncodingWindowsLatin2, // Central European (Windows Latin 2)
-};
-NSUInteger const kSizeOfCFStringEncodingInvalidYenList = sizeof(kCFStringEncodingInvalidYenList) / sizeof(CFStringEncodings);
-
-// Yen mark char
-unichar const kYenMark = 0x00A5;

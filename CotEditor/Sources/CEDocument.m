@@ -47,7 +47,7 @@
 
 #import "CEErrors.h"
 #import "CEDefaults.h"
-#import "Constants.h"
+#import "CEEncodings.h"
 
 
 // constants
@@ -60,6 +60,7 @@ static NSString *_Nonnull const CESyntaxStyleKey = @"syntaxStyle";
 static NSString *_Nonnull const CEAutosaveIdentierKey = @"autosaveIdentifier";
 
 // notifications
+NSString *_Nonnull const CEDocumentDidFinishOpenNotification = @"CEDocumentDidFinishOpenNotification";
 NSString *_Nonnull const CEDocumentSyntaxStyleDidChangeNotification = @"CEDocumentSyntaxStyleDidChangeNotification";
 
 // incompatible chars dictionary keys

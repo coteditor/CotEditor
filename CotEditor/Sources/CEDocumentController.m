@@ -29,7 +29,7 @@
 #import "CEDocumentController.h"
 #import "CEEncodingManager.h"
 #import "CEDefaults.h"
-#import "Constants.h"
+#import "CEEncodings.h"
 
 
 @interface CEDocumentController ()

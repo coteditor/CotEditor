@@ -26,7 +26,7 @@
  
  */
 
-@import Cocoa;
+@import Foundation;
 
 
 // ------------------------------------------------------
@@ -215,13 +215,3 @@ typedef NS_ENUM(NSUInteger, CEDocumentConflictOption) {
     CEDocumentConflictNotify,
     CEDocumentConflictRevert,
 };
-
-
-
-// ------------------------------------------------------
-// Setting thresholds
-// ------------------------------------------------------
-
-// Page guide column
-extern NSUInteger const kMinPageGuideColumn;
-extern NSUInteger const kMaxPageGuideColumn;
