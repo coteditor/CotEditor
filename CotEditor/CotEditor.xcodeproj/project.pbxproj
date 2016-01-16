@@ -332,6 +332,8 @@
 		2AAD91871C29B2A300C70AEF /* CEPaddingTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AAD91851C29B2A300C70AEF /* CEPaddingTextFieldCell.m */; };
 		2AB0C5981C49FB260019411A /* CEEncodings.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AB0C5971C49FB260019411A /* CEEncodings.m */; };
 		2AB0C5991C49FB260019411A /* CEEncodings.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AB0C5971C49FB260019411A /* CEEncodings.m */; };
+		2AB0C59C1C4A18830019411A /* NSString+CEEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AB0C59B1C4A18830019411A /* NSString+CEEncoding.m */; };
+		2AB0C59D1C4A18830019411A /* NSString+CEEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AB0C59B1C4A18830019411A /* NSString+CEEncoding.m */; };
 		2AB4326E1912ADAC00835004 /* CharacterPopover.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2AB4326C1912ADAC00835004 /* CharacterPopover.xib */; };
 		2AB432711912AF7200835004 /* CECharacterPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AB432701912AF7200835004 /* CECharacterPopoverController.m */; };
 		2AB432741915D6AA00835004 /* NSString+ComposedCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AB432731915D6AA00835004 /* NSString+ComposedCharacter.m */; };
@@ -746,6 +748,8 @@
 		2AAD91851C29B2A300C70AEF /* CEPaddingTextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEPaddingTextFieldCell.m; sourceTree = "<group>"; };
 		2AB0C5961C49FB260019411A /* CEEncodings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEEncodings.h; sourceTree = "<group>"; };
 		2AB0C5971C49FB260019411A /* CEEncodings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEEncodings.m; sourceTree = "<group>"; };
+		2AB0C59A1C4A18830019411A /* NSString+CEEncoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+CEEncoding.h"; sourceTree = "<group>"; };
+		2AB0C59B1C4A18830019411A /* NSString+CEEncoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+CEEncoding.m"; sourceTree = "<group>"; };
 		2AB4326F1912AF7200835004 /* CECharacterPopoverController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CECharacterPopoverController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		2AB432701912AF7200835004 /* CECharacterPopoverController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CECharacterPopoverController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		2AB432731915D6AA00835004 /* NSString+ComposedCharacter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+ComposedCharacter.m"; sourceTree = "<group>"; };
@@ -1364,6 +1368,8 @@
 				2AC75C071A2AF47F00C7DB0A /* NSString+CENewLine.m */,
 				2AFEA0CC1C2D2FC6009001F6 /* NSString+CERange.h */,
 				2AFEA0CD1C2D2FC6009001F6 /* NSString+CERange.m */,
+				2AB0C59A1C4A18830019411A /* NSString+CEEncoding.h */,
+				2AB0C59B1C4A18830019411A /* NSString+CEEncoding.m */,
 				2AF47C8419227B2300A48047 /* NSString+ComposedCharacter.h */,
 				2AB432731915D6AA00835004 /* NSString+ComposedCharacter.m */,
 				2A2BDF0B198A899E0029848B /* NSString+JapaneseTransform.h */,
@@ -2109,6 +2115,7 @@
 				2A6F0DB61B5500E100C2D03C /* CESyntaxManager.m in Sources */,
 				2AE0C0941C422DFA00E52E04 /* CETextView+Commenting.m in Sources */,
 				2AE0C09C1C42306000E52E04 /* CETextView+LineProcessing.m in Sources */,
+				2AB0C59D1C4A18830019411A /* NSString+CEEncoding.m in Sources */,
 				2A3A1D851C17463E000243D8 /* CEDotView.m in Sources */,
 				2A6F0DB71B5500E100C2D03C /* CEKeyBindingsPaneController.m in Sources */,
 				2AE0C0901C422A5200E52E04 /* CETextView+Transformation.m in Sources */,
@@ -2238,6 +2245,7 @@
 				25AC091C077190EB00B0C91C /* CEPrefEncodingDataSource.m in Sources */,
 				2A149DBF1901828600A9D6EF /* CEFormatPaneController.m in Sources */,
 				2A7314EE1A0326D300C0EDA9 /* CEWindow.m in Sources */,
+				2AB0C59C1C4A18830019411A /* NSString+CEEncoding.m in Sources */,
 				2A15831A18E368CE00601026 /* CEEncodingListSheetController.m in Sources */,
 				2582260107794C2A00A0F8D3 /* CESyntaxStyle.m in Sources */,
 				2A3A1E7A1C45233D00641CE0 /* CEHUDController.m in Sources */,

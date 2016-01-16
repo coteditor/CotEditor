@@ -42,6 +42,7 @@
 #import "CEEditorWrapper.h"
 #import "CEEncodingManager.h"
 
+#import "NSString+CEEncoding.h"
 #import "NSURL+Xattr.h"
 #import "NSString+Indentation.h"
 
@@ -51,8 +52,6 @@
 
 
 // constants
-static char const UTF8_BOM[] = {0xef, 0xbb, 0xbf};
-
 static NSUInteger const CEUniqueFileIDLength = 8;
 static NSString *_Nonnull const CEWritablilityKey = @"writability";
 static NSString *_Nonnull const CEReadingEncodingKey = @"readingEncoding";
@@ -294,7 +293,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultSaveUTF8BOMKey] &&
         (encoding == NSUTF8StringEncoding))
     {
-        NSMutableData *mutableData = [NSMutableData dataWithBytes:UTF8_BOM length:3];
+        NSMutableData *mutableData = [NSMutableData dataWithBytes:kUTF8Bom length:3];
         [mutableData appendData:data];
         data = [NSData dataWithData:mutableData];
     }
@@ -1289,7 +1288,10 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     }
     
     // detect encoding from data
-    string = [CEDocument stringFromData:data usedEncoding:usedEncoding error:outError];
+    string = [[NSString alloc] initWithData:data
+                       suggestedCFEncodings:[[NSUserDefaults standardUserDefaults] arrayForKey:CEDefaultEncodingListKey] ?: @[]
+                               usedEncoding:usedEncoding
+                                      error:outError];
     
     if (string) {
         // "charset=" や "encoding=" を読んでみて適正なエンコーディングが得られたら、そちらを優先
@@ -1307,158 +1309,18 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 }
 
 
-//------------------------------------------------------
-/// データからエンコードを推測して文字列を得る
-+ (nullable NSString *)stringFromData:(nonnull NSData *)data usedEncoding:(nonnull NSStringEncoding *)usedEncoding error:(NSError * _Nullable __autoreleasing * _Nullable)outError
-//------------------------------------------------------
-{
-    // detect enoding from so-called "magic numbers"
-    NSStringEncoding triedEncoding = NSNotFound;
-    if ([data length] > 0) {
-        // ISO 2022-JP / UTF-8 / UTF-16の判定は、「藤棚工房別棟 −徒然−」の
-        // 「Cocoaで文字エンコーディングの自動判別プログラムを書いてみました」で公開されている
-        // FJDDetectEncoding を参考にさせていただきました (2006-09-30)
-        // http://blogs.dion.ne.jp/fujidana/archives/4169016.html
-        
-        // BOM 付き UTF-8 判定
-        if (memchr([data bytes], *UTF8_BOM, 3) != NULL) {
-            NSStringEncoding encoding = NSUTF8StringEncoding;
-            triedEncoding = encoding;
-            NSString *string = [[NSString alloc] initWithData:data encoding:encoding];
-            if (string) {
-                *usedEncoding = encoding;
-                return string;
-            }
-            
-        // UTF-32 判定
-        } else if ((memchr([data bytes], 0xfffe0000, 4) != NULL) ||
-                   (memchr([data bytes], 0x0000feff, 4) != NULL))
-        {
-            NSStringEncoding encoding = NSUTF32StringEncoding;
-            triedEncoding = encoding;
-            NSString *string = [[NSString alloc] initWithData:data encoding:encoding];
-            if (string) {
-                *usedEncoding = encoding;
-                return string;
-            }
-            
-        // UTF-16 判定
-        } else if ((memchr([data bytes], 0xfffe, 2) != NULL) ||
-                   (memchr([data bytes], 0xfeff, 2) != NULL))
-        {
-            NSStringEncoding encoding = NSUTF16StringEncoding;
-            triedEncoding = encoding;
-            NSString *string = [[NSString alloc] initWithData:data encoding:encoding];
-            if (string) {
-                *usedEncoding = encoding;
-                return string;
-            }
-            
-        // ISO-2022-JP 判定
-        } else if (memchr([data bytes], 0x1b, [data length]) != NULL) {
-            NSStringEncoding encoding = NSISO2022JPStringEncoding;
-            NSString *string = [[NSString alloc] initWithData:data encoding:encoding];
-            
-            if (string) {
-                // Since ISO-2022-JP is a Japanese encoding, string should have at least one Japanese character.
-                NSRegularExpression *japaneseRegex = [NSRegularExpression regularExpressionWithPattern:@"[ぁ-んァ-ン、。]" options:0 error:nil];
-                if ([japaneseRegex rangeOfFirstMatchInString:string options:0 range:NSMakeRange(0, [string length])].location != NSNotFound) {
-                    *usedEncoding = encoding;
-                    return string;
-                };
-            }
-        }
-    }
-    
-    // try encodings in order from the top of the encoding list
-    NSArray<NSNumber *> *encodings = [[NSUserDefaults standardUserDefaults] arrayForKey:CEDefaultEncodingListKey];
-    
-    for (NSNumber *encodingNumber in encodings) {
-        NSStringEncoding encoding = CFStringConvertEncodingToNSStringEncoding([encodingNumber unsignedIntegerValue]);
-        
-        // skip encoding already tried
-        if (triedEncoding == encoding) { continue; }
-        
-        NSString *string = [[NSString alloc] initWithData:data encoding:encoding];
-        
-        if (string) {
-            *usedEncoding = encoding;
-            return string;
-        }
-    }
-    
-    *usedEncoding = NSNotFound;
-    return nil;
-}
-
-
 // ------------------------------------------------------
 /// "charset=" "encoding="タグなどからエンコーディング定義を読み取る
 - (NSStringEncoding)scanEncodingDeclarationInString:(nonnull NSString *)string
 // ------------------------------------------------------
 {
-    // This method is based on Smultron's SMLTextPerformer.m by Peter Borg. (2005-08-10)
-    // Smultron 2 was distributed on <http://smultron.sourceforge.net> under the terms of the BSD license.
-    // Copyright (c) 2004-2006 Peter Borg
-    
-    // 参照しない設定になっているか、含まれている余地が無ければ中断
-    if (![[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultReferToEncodingTagKey] || ([string length] < 9)) {
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultReferToEncodingTagKey]) {
         return NSNotFound;
     }
     
-    NSString *stringToScan = ([string length] > kMaxEncodingScanLength) ? [string substringToIndex:kMaxEncodingScanLength] : string;
-    NSScanner *scanner = [NSScanner scannerWithString:stringToScan];  // 文書前方のみスキャンする
-    NSCharacterSet *stopSet = [NSCharacterSet characterSetWithCharactersInString:@"\"\' </>\n\r"];
-    NSString *scannedStr = nil;
-
-    [scanner setCharactersToBeSkipped:[NSCharacterSet characterSetWithCharactersInString:@"\"\' "]];
-    
-    // find encoding with tag in order
-    for (NSString *tag in @[@"charset=", @"encoding=", @"@charset", @"encoding:", @"coding:"]) {
-        [scanner setScanLocation:0];
-        while (![scanner isAtEnd]) {
-            [scanner scanUpToString:tag intoString:nil];
-            if ([scanner scanString:tag intoString:nil]) {
-                if ([scanner scanUpToCharactersFromSet:stopSet intoString:&scannedStr]) {
-                    break;
-                }
-            }
-        }
-        
-        if (scannedStr) { break; }
-    }
-    
-    if (!scannedStr) { return NSNotFound; }
-    
-    // 見つかったら NSStringEncoding に変換して返す
-    CFStringEncoding cfEncoding = kCFStringEncodingInvalidId;
-    // "Shift_JIS"だったら、kCFStringEncodingShiftJIS と kCFStringEncodingShiftJIS_X0213 の
-    // 優先順位の高いものを取得する
-    if ([[scannedStr uppercaseString] isEqualToString:@"SHIFT_JIS"]) {
-        // （scannedStr をそのまま CFStringConvertIANACharSetNameToEncoding() で変換すると、大文字小文字を問わず
-        // 「日本語（Shift JIS）」になってしまうため。IANA では大文字小文字を区別しないとしているのでこれはいいのだが、
-        // CFStringConvertEncodingToIANACharSetName() では kCFStringEncodingShiftJIS と
-        // kCFStringEncodingShiftJIS_X0213 がそれぞれ「SHIFT_JIS」「shift_JIS」と変換されるため、可逆性を持たせる
-        // ための処理）
-        NSArray<NSNumber *> *encodings = [[NSUserDefaults standardUserDefaults] arrayForKey:CEDefaultEncodingListKey];
-        
-        for (NSNumber *encodingNumber in encodings) {
-            CFStringEncoding tmpCFEncoding = [encodingNumber unsignedLongValue];
-            if ((tmpCFEncoding == kCFStringEncodingShiftJIS) ||
-                (tmpCFEncoding == kCFStringEncodingShiftJIS_X0213))
-            {
-                cfEncoding = tmpCFEncoding;
-                break;
-            }
-        }
-    } else {
-        // "Shift_JIS" 以外はそのまま変換する
-        cfEncoding = CFStringConvertIANACharSetNameToEncoding((CFStringRef)scannedStr);
-    }
-    
-    if (cfEncoding == kCFStringEncodingInvalidId) { return NSNotFound; }
-    
-    return CFStringConvertEncodingToNSStringEncoding(cfEncoding);
+    return [string scanEncodingDeclarationForTags:@[@"charset=", @"encoding=", @"@charset", @"encoding:", @"coding:"]
+                                        upToIndex:kMaxEncodingScanLength
+                             suggestedCFEncodings:[[NSUserDefaults standardUserDefaults] arrayForKey:CEDefaultEncodingListKey]];
 }
 
 
@@ -1532,16 +1394,9 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 {
     NSStringEncoding IANACharSetEncoding = [self scanEncodingDeclarationInString:string];
     
-    const NSStringEncoding ShiftJIS = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingShiftJIS);
-    const NSStringEncoding X0213 = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingShiftJIS_X0213);
-    
     if ((IANACharSetEncoding != NSNotFound) &&
-        (IANACharSetEncoding != encoding) &&
-        !(((IANACharSetEncoding == ShiftJIS) || (IANACharSetEncoding == X0213)) &&
-          ((encoding == ShiftJIS) || (encoding == X0213))))
+        CEIsCompatibleIANACharSetEncoding(IANACharSetEncoding, encoding))
     {
-        // (Caution needed on Shift-JIS. See `scanCharsetOrEncodingFromString:` for details.)
-        
         if (outError) {
             NSString *encodingName = [NSString localizedNameOfStringEncoding:encoding];
             NSString *IANAName = [NSString localizedNameOfStringEncoding:IANACharSetEncoding];
