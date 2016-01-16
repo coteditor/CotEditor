@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2015 1024jp
+ © 2014-2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -90,10 +90,7 @@ unichar const kNewLineChars[] = {
 - (CENewLineType)detectNewLineType
 // ------------------------------------------------------
 {
-    CENewLineType type = CENewLineNone;
-    NSUInteger length = [self length];
-    
-    if (length == 0) { return CENewLineNone; }
+    if ([self length] == 0) { return CENewLineNone; }
     
     // We don't use [NSCharacterSet newlineCharacterSet] because it contains more characters than we need.
     NSString *newLineSetString = [NSString stringWithCharacters:kNewLineChars
@@ -101,31 +98,28 @@ unichar const kNewLineChars[] = {
     NSCharacterSet *newLineSet = [NSCharacterSet characterSetWithCharactersInString:newLineSetString];
     
     NSUInteger location = [self rangeOfCharacterFromSet:newLineSet].location;
-    if (location != NSNotFound) {
-        switch ([self characterAtIndex:location]) {
-            case NSNewlineCharacter:
-                type = CENewLineLF;
-                break;
-                
-            case NSCarriageReturnCharacter:
-                if ((length > location + 1) && ([self characterAtIndex:location + 1] == NSNewlineCharacter)) {
-                    type = CENewLineCRLF;
-                } else {
-                    type = CENewLineCR;
-                }
-                break;
-                
-            case NSLineSeparatorCharacter:
-                type = CENewLineLineSeparator;
-                break;
-                
-            case NSParagraphSeparatorCharacter:
-                type = CENewLineParagraphSeparator;
-                break;
-        }
-    }
     
-    return type;
+    if (location == NSNotFound) { return CENewLineNone; }
+    
+    switch ([self characterAtIndex:location]) {
+        case NSNewlineCharacter:
+            return CENewLineLF;
+            
+        case NSCarriageReturnCharacter:
+            if (([self length] > location + 1) && ([self characterAtIndex:location + 1] == NSNewlineCharacter)) {
+                return CENewLineCRLF;
+            }
+            return CENewLineCR;
+            
+        case NSLineSeparatorCharacter:
+            return CENewLineLineSeparator;
+            
+        case NSParagraphSeparatorCharacter:
+            return CENewLineParagraphSeparator;
+            
+        default:
+            return CENewLineNone;
+    }
 }
 
 
