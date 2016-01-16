@@ -72,7 +72,7 @@ Please follow the style of the existing codes in CotEditor.
 	[self setFoo:@"foo"];
 	NSString *foo = [self foo];
 	
-	// instead
+	// instead of
 	self.foo = @"foo";
 	NSString *foo = self.foo;
 	```
