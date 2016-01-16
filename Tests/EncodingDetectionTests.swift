@@ -1,6 +1,6 @@
 /*
 
-EncodingTests.swift
+EncodingDetectionTests.swift
 Tests
 
 CotEditor
@@ -28,7 +28,7 @@ limitations under the License.
 
 import XCTest
 
-class EncodingTests: XCTestCase {
+class EncodingDetectionTests: XCTestCase {
     
     var bundle: NSBundle?
     

@@ -2,19 +2,19 @@
 //  Use this file to import your target's public headers that you would like to expose to Swift.
 //
 
-// StringExtensionsTests
+// String Extensions Tests
 #import "NSString+CENewLine.h"
 #import "NSString+CERange.h"
 #import "NSString+ComposedCharacter.h"
 #import "NSString+JapaneseTransform.h"
 #import "NSString+Normalization.h"
 
-// CharacterInfoTests
+// Character Info Tests
 #import "CEControlCharacerNames.h"
 #import "CECharacterInfo.h"
 
-// IndentationTests
+// Indentation Tests
 #import "NSString+Indentation.h"
 
-// EncodingTests
+// Encoding Detection Tests
 #import "NSString+CEEncoding.h"
