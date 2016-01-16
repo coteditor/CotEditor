@@ -89,8 +89,9 @@ class EncodingTests: XCTestCase {
         let data = self.dataForFileName("UTF-8")
         
         var encoding: NSStringEncoding = 0
+        let invalidNumber = NSNumber(unsignedInt: UInt32(kCFStringEncodingInvalidId))
         let utf8Number = NSNumber(unsignedInt: UInt32(CFStringBuiltInEncodings.UTF8.rawValue))
-        let string = try! NSString(data: data, suggestedCFEncodings: [utf8Number], usedEncoding: &encoding)
+        let string = try! NSString(data: data, suggestedCFEncodings: [invalidNumber, utf8Number], usedEncoding: &encoding)
         
         XCTAssertEqual(string, "0")
         XCTAssertEqual(encoding, NSUTF8StringEncoding)

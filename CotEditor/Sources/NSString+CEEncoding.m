@@ -63,9 +63,8 @@ const char kUTF32LEBom[4] = {0xFF, 0xFE, 0x00, 0x00};
             triedEncoding = encoding;
             NSString *string = [self initWithData:data encoding:encoding];
             if (string) {
-                self = string;
                 *usedEncoding = encoding;
-                return self;
+                return string;
             }
             
         // test UTF-32
@@ -74,9 +73,8 @@ const char kUTF32LEBom[4] = {0xFF, 0xFE, 0x00, 0x00};
             triedEncoding = encoding;
             NSString *string = [self initWithData:data encoding:encoding];
             if (string) {
-                self = string;
                 *usedEncoding = encoding;
-                return self;
+                return string;
             }
             
         // test UTF-16
@@ -85,9 +83,8 @@ const char kUTF32LEBom[4] = {0xFF, 0xFE, 0x00, 0x00};
             triedEncoding = encoding;
             NSString *string = [self initWithData:data encoding:encoding];
             if (string) {
-                self = string;
                 *usedEncoding = encoding;
-                return self;
+                return string;
             }
             
         // test ISO-2022-JP
@@ -99,9 +96,8 @@ const char kUTF32LEBom[4] = {0xFF, 0xFE, 0x00, 0x00};
                 // Since ISO-2022-JP is a Japanese encoding, string should have at least one Japanese character.
                 NSRegularExpression *japaneseRegex = [NSRegularExpression regularExpressionWithPattern:@"[ぁ-んァ-ン、。]" options:0 error:nil];
                 if ([japaneseRegex rangeOfFirstMatchInString:string options:0 range:NSMakeRange(0, [string length])].location != NSNotFound) {
-                    self = string;
                     *usedEncoding = encoding;
-                    return self;
+                    return string;
                 };
             }
         }
@@ -121,8 +117,7 @@ const char kUTF32LEBom[4] = {0xFF, 0xFE, 0x00, 0x00};
         
         if (string) {
             *usedEncoding = encoding;
-            self = string;
-            return self;
+            return string;
         }
     }
     
