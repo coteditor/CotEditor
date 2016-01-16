@@ -71,7 +71,7 @@ class EncodingTests: XCTestCase {
         var encoding: NSStringEncoding = 0
         let string = self.encodedStringForFileName("ISO 2022-JP", usedEncoding: &encoding)
         
-        XCTAssertEqual(string, "あ")
+        XCTAssertEqual(string, "dog犬")
         XCTAssertEqual(encoding, NSISO2022JPStringEncoding)
     }
     

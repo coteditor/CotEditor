@@ -17,6 +17,7 @@ develop
     - Tweak layout and style.
 - `cot` command now opens symbolic link target rather than the link itself.
 - Improve file encoding detection.
+- Update default priority order of encoding detection.
 
 
 ### Fixes

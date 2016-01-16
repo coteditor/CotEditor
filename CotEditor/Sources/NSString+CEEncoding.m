@@ -36,6 +36,11 @@ const char kUTF16LEBom[2] = {0xFF, 0xFE};
 const char kUTF32BEBom[4] = {0x00, 0x00, 0xFE, 0xFF};
 const char kUTF32LEBom[4] = {0xFF, 0xFE, 0x00, 0x00};
 
+// byte range of ISO-2022-JP
+Boolean isCharInISO2022Range(char character) {
+    return (character >= 0x21 && character <= 0x7E);
+}
+
 
 @implementation NSString (CEEncoding)
 
@@ -48,16 +53,11 @@ const char kUTF32LEBom[4] = {0xFF, 0xFE, 0x00, 0x00};
 {
     // detect enoding from so-called "magic numbers"
     NSStringEncoding triedEncoding = NSNotFound;
-    if ([data length] > 0) {
-        char bytes[4] = {0};
-        [data getBytes:&bytes length:4];
+    if ([data length] > 1) {
+        char bytes[6] = {0};
+        [data getBytes:&bytes length:6];
         
-        // ISO 2022-JP / UTF-8 / UTF-16の判定は、「藤棚工房別棟 −徒然−」の
-        // 「Cocoaで文字エンコーディングの自動判別プログラムを書いてみました」で公開されている
-        // FJDDetectEncoding を参考にさせていただきました (2006-09-30)
-        // http://blogs.dion.ne.jp/fujidana/archives/4169016.html
-        
-        // test UTF-8 with BOM
+        // check UTF-8 BOM
         if (!memcmp(bytes, kUTF8Bom, 3)) {
             NSStringEncoding encoding = NSUTF8StringEncoding;
             triedEncoding = encoding;
@@ -67,7 +67,7 @@ const char kUTF32LEBom[4] = {0xFF, 0xFE, 0x00, 0x00};
                 return string;
             }
             
-        // test UTF-32
+        // check UTF-32 BOM
         } else if (!memcmp(bytes, kUTF32BEBom, 4) || !memcmp(bytes, kUTF32LEBom, 4)) {
             NSStringEncoding encoding = NSUTF32StringEncoding;
             triedEncoding = encoding;
@@ -77,7 +77,7 @@ const char kUTF32LEBom[4] = {0xFF, 0xFE, 0x00, 0x00};
                 return string;
             }
             
-        // test UTF-16
+        // check UTF-16 BOM
         } else if (!memcmp(bytes, kUTF16BEBom, 2) || !memcmp(bytes, kUTF16LEBom, 2)) {
             NSStringEncoding encoding = NSUTF16StringEncoding;
             triedEncoding = encoding;
@@ -88,17 +88,19 @@ const char kUTF32LEBom[4] = {0xFF, 0xFE, 0x00, 0x00};
             }
             
         // test ISO-2022-JP
-        } else if (memchr(bytes, 0x1b, [data length]) != NULL) {
+        // -> It's not perfect yet works in most cases. (2016-01 by 1024p)
+        } else if (isCharInISO2022Range(bytes[0]) &&
+                   isCharInISO2022Range(bytes[1]) &&
+                   (memchr(bytes, 0x1b24, [data length]) != NULL ||
+                    memchr(bytes, 0x1b26, [data length]) != NULL ||
+                    memchr(bytes, 0x1b28, [data length]) != NULL))
+        {
             NSStringEncoding encoding = NSISO2022JPStringEncoding;
+            triedEncoding = encoding;
             NSString *string = [self initWithData:data encoding:encoding];
-            
             if (string) {
-                // Since ISO-2022-JP is a Japanese encoding, string should have at least one Japanese character.
-                NSRegularExpression *japaneseRegex = [NSRegularExpression regularExpressionWithPattern:@"[ぁ-んァ-ン、。]" options:0 error:nil];
-                if ([japaneseRegex rangeOfFirstMatchInString:string options:0 range:NSMakeRange(0, [string length])].location != NSNotFound) {
-                    *usedEncoding = encoding;
-                    return string;
-                };
+                *usedEncoding = encoding;
+                return string;
             }
         }
     }
@@ -113,8 +115,7 @@ const char kUTF32LEBom[4] = {0xFF, 0xFE, 0x00, 0x00};
         // skip encoding already tried above
         if (encoding == triedEncoding) { continue; }
         
-        NSString *string = [self initWithData:data encoding:encoding];
-        
+        NSString *string = [[NSString alloc] initWithData:data encoding:encoding];
         if (string) {
             *usedEncoding = encoding;
             return string;

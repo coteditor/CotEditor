@@ -48,9 +48,6 @@ CFStringEncodings const kCFStringEncodingList[] = {
     kCFStringEncodingISO_2022_JP, // Japanese (ISO 2022-JP)
     kCFStringEncodingInvalidId, // ----------
     
-    kCFStringEncodingUnicode, // Unicode (UTF-16), kCFStringEncodingUTF16(in 10.4)
-    kCFStringEncodingInvalidId, // ----------
-    
     kCFStringEncodingMacRoman, // Western (Mac OS Roman)
     kCFStringEncodingWindowsLatin1, // Western (Windows Latin 1)
     kCFStringEncodingInvalidId, // ----------
@@ -96,6 +93,7 @@ CFStringEncodings const kCFStringEncodingList[] = {
     kCFStringEncodingNonLossyASCII, // Non-lossy ASCII
     kCFStringEncodingInvalidId, // ----------
     
+    kCFStringEncodingUnicode, // Unicode (UTF-16), kCFStringEncodingUTF16(in 10.4)
     kCFStringEncodingUTF16BE, // Unicode (UTF-16BE)
     kCFStringEncodingUTF16LE, // Unicode (UTF-16LE)
     kCFStringEncodingUTF32, // Unicode (UTF-32)
