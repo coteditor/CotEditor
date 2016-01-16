@@ -22,8 +22,8 @@ develop
 
 - Fix insertion location after line moving with empty selection.
 - Fix soft line-wrapping behavior when the line contains a long unbreakable word.
+- Fix an issue where the character inspector didn't show up on Mavericks and earlier.
 - Fix an issue where “Jump to Selection” action didn't jump to selection in editor if other text box is focued.
-- Fix an issue where the character inspector doesn't works on Mavericks and earlier.
 - Fix memory leak.
 
 
