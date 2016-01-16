@@ -58,7 +58,7 @@ const char kUTF32LEBom[4] = {0xFF, 0xFE, 0x00, 0x00};
         // http://blogs.dion.ne.jp/fujidana/archives/4169016.html
         
         // test UTF-8 with BOM
-        if (!memcmp(bytes, kUTF8Bom, 2)) {
+        if (!memcmp(bytes, kUTF8Bom, 3)) {
             NSStringEncoding encoding = NSUTF8StringEncoding;
             triedEncoding = encoding;
             NSString *string = [self initWithData:data encoding:encoding];
