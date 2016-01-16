@@ -15,3 +15,6 @@
 
 // IndentationTests
 #import "NSString+Indentation.h"
+
+// EncodingTests
+#import "NSString+CEEncoding.h"

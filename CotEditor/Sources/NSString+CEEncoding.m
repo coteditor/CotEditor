@@ -30,11 +30,11 @@
 
 
 // byte order marks
-char const kUTF8Bom[] = {0xEF, 0xBB, 0xBF};
-char const kUTF16BEBom[] = {0xFE, 0xFF};
-char const kUTF16LEBom[] = {0xFF, 0xFE};
-char const kUTF32BEBom[] = {0x00, 0x00, 0xFE, 0xFF};
-char const kUTF32LEBom[] = {0xFF, 0xFE, 0x00, 0x00};
+const char kUTF8Bom[3] = {0xEF, 0xBB, 0xBF};
+const char kUTF16BEBom[2] = {0xFE, 0xFF};
+const char kUTF16LEBom[2] = {0xFF, 0xFE};
+const char kUTF32BEBom[4] = {0x00, 0x00, 0xFE, 0xFF};
+const char kUTF32LEBom[4] = {0xFF, 0xFE, 0x00, 0x00};
 
 
 @implementation NSString (CEEncoding)
@@ -49,47 +49,49 @@ char const kUTF32LEBom[] = {0xFF, 0xFE, 0x00, 0x00};
     // detect enoding from so-called "magic numbers"
     NSStringEncoding triedEncoding = NSNotFound;
     if ([data length] > 0) {
+        char bytes[4] = {0};
+        [data getBytes:&bytes length:4];
+        
         // ISO 2022-JP / UTF-8 / UTF-16の判定は、「藤棚工房別棟 −徒然−」の
         // 「Cocoaで文字エンコーディングの自動判別プログラムを書いてみました」で公開されている
         // FJDDetectEncoding を参考にさせていただきました (2006-09-30)
         // http://blogs.dion.ne.jp/fujidana/archives/4169016.html
         
         // test UTF-8 with BOM
-        if (memchr([data bytes], *kUTF8Bom, 3) != NULL) {
+        if (!memcmp(bytes, kUTF8Bom, 2)) {
             NSStringEncoding encoding = NSUTF8StringEncoding;
             triedEncoding = encoding;
             NSString *string = [self initWithData:data encoding:encoding];
             if (string) {
+                self = string;
                 *usedEncoding = encoding;
-                return string;
+                return self;
             }
             
-            // test UTF-32
-        } else if ((memchr([data bytes], *kUTF32BEBom, 4) != NULL) ||
-                   (memchr([data bytes], *kUTF32LEBom, 4) != NULL))
-        {
+        // test UTF-32
+        } else if (!memcmp(bytes, kUTF32BEBom, 4) || !memcmp(bytes, kUTF32LEBom, 4)) {
             NSStringEncoding encoding = NSUTF32StringEncoding;
             triedEncoding = encoding;
             NSString *string = [self initWithData:data encoding:encoding];
             if (string) {
+                self = string;
                 *usedEncoding = encoding;
-                return string;
+                return self;
             }
             
-            // test UTF-16
-        } else if ((memchr([data bytes], *kUTF16BEBom, 2) != NULL) ||
-                   (memchr([data bytes], *kUTF16LEBom, 2) != NULL))
-        {
+        // test UTF-16
+        } else if (!memcmp(bytes, kUTF16BEBom, 2) || !memcmp(bytes, kUTF16LEBom, 2)) {
             NSStringEncoding encoding = NSUTF16StringEncoding;
             triedEncoding = encoding;
             NSString *string = [self initWithData:data encoding:encoding];
             if (string) {
+                self = string;
                 *usedEncoding = encoding;
-                return string;
+                return self;
             }
             
-            // test ISO-2022-JP
-        } else if (memchr([data bytes], 0x1b, [data length]) != NULL) {
+        // test ISO-2022-JP
+        } else if (memchr(bytes, 0x1b, [data length]) != NULL) {
             NSStringEncoding encoding = NSISO2022JPStringEncoding;
             NSString *string = [self initWithData:data encoding:encoding];
             
@@ -97,8 +99,9 @@ char const kUTF32LEBom[] = {0xFF, 0xFE, 0x00, 0x00};
                 // Since ISO-2022-JP is a Japanese encoding, string should have at least one Japanese character.
                 NSRegularExpression *japaneseRegex = [NSRegularExpression regularExpressionWithPattern:@"[ぁ-んァ-ン、。]" options:0 error:nil];
                 if ([japaneseRegex rangeOfFirstMatchInString:string options:0 range:NSMakeRange(0, [string length])].location != NSNotFound) {
+                    self = string;
                     *usedEncoding = encoding;
-                    return string;
+                    return self;
                 };
             }
         }
@@ -106,16 +109,20 @@ char const kUTF32LEBom[] = {0xFF, 0xFE, 0x00, 0x00};
     
     // try encodings in order from the top of the encoding list
     for (NSNumber *encodingNumber in suggestedCFEncodings) {
-        NSStringEncoding encoding = CFStringConvertEncodingToNSStringEncoding([encodingNumber unsignedIntegerValue]);
+        CFStringEncoding cfEncoding = (CFStringEncoding)[encodingNumber unsignedIntegerValue];
+        if (cfEncoding == kCFStringEncodingInvalidId) { continue; }
         
-        // skip encoding already tried
-        if (triedEncoding == encoding) { continue; }
+        NSStringEncoding encoding = CFStringConvertEncodingToNSStringEncoding(cfEncoding);
+        
+        // skip encoding already tried above
+        if (encoding == triedEncoding) { continue; }
         
         NSString *string = [self initWithData:data encoding:encoding];
         
         if (string) {
             *usedEncoding = encoding;
-            return string;
+            self = string;
+            return self;
         }
     }
     
@@ -168,7 +175,7 @@ char const kUTF32LEBom[] = {0xFF, 0xFE, 0x00, 0x00};
     //    kCFStringEncodingShiftJIS_X0213 がそれぞれ「SHIFT_JIS」「shift_JIS」と変換されるため、可逆性を持たせるための処理
     if ([[scannedStr uppercaseString] isEqualToString:@"SHIFT_JIS"]) {
         for (NSNumber *encodingNumber in suggestedCFEncodings) {
-            CFStringEncoding tmpCFEncoding = [encodingNumber unsignedLongValue];
+            CFStringEncoding tmpCFEncoding = (CFStringEncoding)[encodingNumber unsignedLongValue];
             if ((tmpCFEncoding == kCFStringEncodingShiftJIS) || (tmpCFEncoding == kCFStringEncodingShiftJIS_X0213))
             {
                 cfEncoding = tmpCFEncoding;
