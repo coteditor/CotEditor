@@ -5,7 +5,7 @@
  CotEditor
  http://coteditor.com
  
- Created by nakamuxu on 2014-04-20.
+ Created by 1024jp on 2014-04-20.
  
  ------------------------------------------------------------------------------
  
@@ -45,7 +45,7 @@ typedef NS_ENUM(NSUInteger, CEModifierKeyIndex) {
 };
 
 // Unprintable key list
-extern unichar    const kUnprintableKeyList[];
+extern unichar const kUnprintableKeyList[];
 extern NSUInteger const kSizeOfUnprintableKeyList;
 
 
