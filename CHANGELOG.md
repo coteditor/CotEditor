@@ -19,6 +19,7 @@ develop
 - Improve file encoding detection.
 - Update default priority order of encoding detection.
 - Improve encoding compatibility check.
+- Better error message on file opening.
 
 
 ### Fixes

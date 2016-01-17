@@ -129,6 +129,10 @@ const char kUTF32LEBom[4] = {0xFF, 0xFE, 0x00, 0x00};
         }
     }
     
+    if (outError) {
+        *outError = [NSError errorWithDomain:NSCocoaErrorDomain code:NSFileReadUnknownStringEncodingError userInfo:nil];
+    }
+    
     *usedEncoding = NSNotFound;
     return nil;
 }
