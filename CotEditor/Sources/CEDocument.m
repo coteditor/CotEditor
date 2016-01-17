@@ -788,7 +788,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 - (nullable NSArray<NSDictionary<NSString *, id> *> *)findCharsIncompatibleWithEncoding:(NSStringEncoding)encoding
 // ------------------------------------------------------
 {
-    NSMutableArray<NSDictionary<NSString *, NSValue *> *> *incompatibleChars = [NSMutableArray array];
+    NSMutableArray<NSDictionary<NSString *, id> *> *incompatibleChars = [NSMutableArray array];
     NSString *currentString = [self string];
     NSUInteger currentLength = [currentString length];
     NSData *data = [currentString dataUsingEncoding:encoding allowLossyConversion:YES];
@@ -814,13 +814,8 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
         NSString *currentChar = [NSString stringWithCharacters:&currentUnichar length:1];
         NSString *convertedChar = [NSString stringWithCharacters:&convertedUnichar length:1];
         
-        NSUInteger lineNumber = 1;
-        for (NSUInteger index = 0, lines = 0; index < currentLength; lines++) {
-            if (index <= i) {
-                lineNumber = lines + 1;
-            } else {
-                break;
-            }
+        NSUInteger lineNumber = 0;
+        for (NSUInteger index = 0; index <= i; lineNumber++) {
             index = NSMaxRange([currentString lineRangeForRange:NSMakeRange(index, 0)]);
         }
         
