@@ -104,6 +104,7 @@ const NSUInteger kSizeOfCFStringEncodingList = sizeof(kCFStringEncodingList)/siz
 
 // Encodings that need convert Yen mark to back-slash
 CFStringEncodings const kCFStringEncodingInvalidYenList[] = {
+    // ? (U+003F)
     kCFStringEncodingDOSJapanese, // Japanese (Windows, DOS)
     kCFStringEncodingEUC_JP,  // Japanese (EUC)
     kCFStringEncodingEUC_TW,  // Traditional Chinese (EUC)
@@ -120,8 +121,16 @@ CFStringEncodings const kCFStringEncodingInvalidYenList[] = {
     kCFStringEncodingISOLatin2, // Central European (ISO Latin 2)
     kCFStringEncodingISOLatin3, // Western (ISO Latin 3)
     kCFStringEncodingISOLatin4, // Central European (ISO Latin 4)
-    kCFStringEncodingDOSLatinUS, // Latin-US (DOS)
     kCFStringEncodingWindowsLatin2, // Central European (Windows Latin 2)
+    
+//    // ￥ (U+FFE5)
+//    kCFStringEncodingBig5_HKSCS_1999,  // Traditional Chinese (Big 5 HKSCS)
+//    kCFStringEncodingBig5_E,  // Traditional Chinese (Big 5-E)
+//    kCFStringEncodingDOSChineseTrad,  // Traditional Chinese (Windows, DOS)
+//    kCFStringEncodingDOSChineseSimplif,  // Simplified Chinese (Windows, DOS)
+//    
+//    // Y (U+0059)
+//    kCFStringEncodingASCII,  // Western (ASCII)
 };
 const NSUInteger kSizeOfCFStringEncodingInvalidYenList = sizeof(kCFStringEncodingInvalidYenList) / sizeof(CFStringEncodings);
 
