@@ -67,10 +67,10 @@
 - (void)update
 // ------------------------------------------------------
 {
-    NSArray<NSDictionary<NSString *, NSValue *> *> *contents = [[self document] findCharsIncompatibleWithEncoding:[[self document] encoding]];
+    NSArray<NSDictionary<NSString *, id> *> *contents = [[self document] findCharsIncompatibleWithEncoding:[[self document] encoding]];
     
     NSMutableArray<NSValue *> *ranges = [NSMutableArray array];
-    for (NSDictionary<NSString *, NSValue *> *incompatible in contents) {
+    for (NSDictionary<NSString *, id> *incompatible in contents) {
         [ranges addObject:incompatible[CEIncompatibleRangeKey]];
     }
     [[[self document] editor] clearAllMarkup];
@@ -110,7 +110,7 @@
 - (void)tableViewSelectionDidChange:(nonnull NSNotification *)notification
 // ------------------------------------------------------
 {
-    NSArray<NSDictionary<NSString *, NSValue *> *> *selectedIncompatibles = [[self incompatibleCharsController] selectedObjects];
+    NSArray<NSDictionary<NSString *, id> *> *selectedIncompatibles = [[self incompatibleCharsController] selectedObjects];
     
     if ([selectedIncompatibles count] == 0) { return; }
     
