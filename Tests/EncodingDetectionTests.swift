@@ -98,6 +98,17 @@ class EncodingDetectionTests: XCTestCase {
     }
     
     
+    func testEmptyData() {
+        let data = NSData()
+        
+        var encoding: NSStringEncoding = 0
+        let string = try? NSString(data: data, suggestedCFEncodings: [], usedEncoding: &encoding)
+        
+        XCTAssertNil(string)
+        XCTAssertEqual(Int(encoding), NSNotFound)
+    }
+    
+    
     
     // MARK: Private Methods
     

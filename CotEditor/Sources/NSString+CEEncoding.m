@@ -36,11 +36,6 @@ const char kUTF16LEBom[2] = {0xFF, 0xFE};
 const char kUTF32BEBom[4] = {0x00, 0x00, 0xFE, 0xFF};
 const char kUTF32LEBom[4] = {0xFF, 0xFE, 0x00, 0x00};
 
-// byte range of ISO-2022-JP
-Boolean isCharInISO2022Range(char character) {
-    return (character >= 0x21 && character <= 0x7E);
-}
-
 
 @implementation NSString (CEEncoding)
 
@@ -88,19 +83,31 @@ Boolean isCharInISO2022Range(char character) {
             }
             
         // test ISO-2022-JP
-        // -> It's not perfect yet works in most cases. (2016-01 by 1024p)
-        } else if (isCharInISO2022Range(bytes[0]) &&
-                   isCharInISO2022Range(bytes[1]) &&
-                   (memchr(bytes, 0x1b24, [data length]) != NULL ||
-                    memchr(bytes, 0x1b26, [data length]) != NULL ||
-                    memchr(bytes, 0x1b28, [data length]) != NULL))
-        {
+        } else if (memchr(bytes, 0x1b, [data length]) != NULL) {
             NSStringEncoding encoding = NSISO2022JPStringEncoding;
             triedEncoding = encoding;
-            NSString *string = [self initWithData:data encoding:encoding];
-            if (string) {
-                *usedEncoding = encoding;
-                return string;
+            
+            // check existance of typical escape sequences
+            // -> It's not perfect yet works in most cases. (2016-01 by 1024p)
+            BOOL found = NO;
+            NSArray<NSData *> *escapeSequences = @[[NSData dataWithBytes:"\x1B\x28\x42" length:3],  // ASCII
+                                                   [NSData dataWithBytes:"\x1B\x28\x49" length:3],  // kana
+                                                   [NSData dataWithBytes:"\x1b\x24\x40" length:3],  // 1978
+                                                   [NSData dataWithBytes:"\x1b\x24\x42" length:3],  // 1983
+                                                   [NSData dataWithBytes:"\x1b\x24\x28\x44" length:4]];  // JISX0212
+            for (NSData *escapeSequence in escapeSequences) {
+                if ([data rangeOfData:escapeSequence options:0 range:NSMakeRange(0, MIN([data length], 1024 * 8))].location != NSNotFound) {
+                    found = YES;
+                    break;
+                }
+            }
+            
+            if (found) {
+                NSString *string = [self initWithData:data encoding:encoding];
+                if (string) {
+                    *usedEncoding = encoding;
+                    return string;
+                }
             }
         }
     }
