@@ -123,14 +123,8 @@ CFStringEncoding kCFStringEncodingInvalidYenList[] = {
     kCFStringEncodingISOLatin4, // Central European (ISO Latin 4)
     kCFStringEncodingWindowsLatin2, // Central European (Windows Latin 2)
     
-//    // ￥ (U+FFE5)
-//    kCFStringEncodingBig5_HKSCS_1999,  // Traditional Chinese (Big 5 HKSCS)
-//    kCFStringEncodingBig5_E,  // Traditional Chinese (Big 5-E)
-//    kCFStringEncodingDOSChineseTrad,  // Traditional Chinese (Windows, DOS)
-//    kCFStringEncodingDOSChineseSimplif,  // Simplified Chinese (Windows, DOS)
-//    
-//    // Y (U+0059)
-//    kCFStringEncodingASCII,  // Western (ASCII)
+    // Y (U+0059)
+    kCFStringEncodingASCII,  // Western (ASCII)
 };
 const NSUInteger kSizeOfCFStringEncodingInvalidYenList = sizeof(kCFStringEncodingInvalidYenList) / sizeof(CFStringEncoding);
 
