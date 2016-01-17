@@ -113,7 +113,7 @@
 "Reinterpret" = "再次解释";
 
 // Lossy encoding alert
-"The characters would have to be changed or deleted in saving as “%@”." = "保存为“%@”时一些字符可能需要被更改或者删除。";
+"Some characters would have to be changed or deleted in saving as “%@”." = "保存为“%@”时一些字符可能需要被更改或者删除。";
 "Do you want to continue processing?" = "继续进行处理吗？";
 "Save Available Strings" = "保存有效字符串";
 "Show Incompatible Chars" = "显示不兼容字符";
@@ -134,7 +134,7 @@
 "The file “%@” could not be reinterpreted using the new encoding “%@”." = "文件“%@”无法使用“%@”编码再次解释。";
 
 // Incompatible chars alert
-"The characters would have to be changed or deleted in saving as “%@”." = "保存为“%@”时一些字符可能需要被更改或者删除。";
+"Some characters would have to be changed or deleted in saving as “%@”." = "保存为“%@”时一些字符可能需要被更改或者删除。";
 "Do you want to change encoding and show incompatible characters?" = "改变编码并显示不兼容字符吗？";
 "Change Encoding" = "更改编码";
 

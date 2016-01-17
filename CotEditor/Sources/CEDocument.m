@@ -275,7 +275,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     // convert Yen sign in consideration of the current encoding
     NSString *string = [self convertCharacterString:[self string] encoding:encoding];
     
-    // unblock the user interface, since fetching current document satte has been done here
+    // unblock the user interface, since fetching current document state has been done here
     [self unblockUserInteraction];
     
     // get data from string to save
@@ -892,7 +892,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
             if (![curString canBeConvertedToEncoding:encoding]) {
                 NSString *encodingNameStr = [NSString localizedNameOfStringEncoding:encoding];
                 NSAlert *alert = [[NSAlert alloc] init];
-                [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"The characters would have to be changed or deleted in saving as “%@”.", nil), encodingNameStr]];
+                [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"Some characters would have to be changed or deleted in saving as “%@”.", nil), encodingNameStr]];
                 [alert setInformativeText:NSLocalizedString(@"Do you want to change encoding and show incompatible characters?", nil)];
                 [alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
                 [alert addButtonWithTitle:NSLocalizedString(@"Change Encoding", nil)];
@@ -1432,7 +1432,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
             
             *outError = [NSError errorWithDomain:CEErrorDomain
                                             code:CEUnconvertibleCharactersError
-                                        userInfo:@{NSLocalizedDescriptionKey: [NSString stringWithFormat:NSLocalizedString(@"The characters would have to be changed or deleted in saving as “%@”.", nil), encodingName],
+                                        userInfo:@{NSLocalizedDescriptionKey: [NSString stringWithFormat:NSLocalizedString(@"Some characters would have to be changed or deleted in saving as “%@”.", nil), encodingName],
                                                    NSLocalizedRecoverySuggestionErrorKey: NSLocalizedString(@"Do you want to continue processing?", nil),
                                                    NSLocalizedRecoveryOptionsErrorKey: @[NSLocalizedString(@"Show Incompatible Chars", nil),
                                                                                          NSLocalizedString(@"Save Available Strings", nil),

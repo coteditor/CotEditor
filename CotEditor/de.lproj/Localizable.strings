@@ -113,7 +113,7 @@
 "Reinterpret" = "Wiederinterpretieren";
 
 // Lossy encoding alert
-"The characters would have to be changed or deleted in saving as “%@”." = "Beim Speichern in „%@“ müssen die Zeichen möglicherweise geändert oder gelöscht werden.";
+"Some characters would have to be changed or deleted in saving as “%@”." = "Beim Speichern in „%@“ müssen einige Zeichen möglicherweise geändert oder gelöscht werden.";
 "Do you want to continue processing?" = "Möchten Sie mit der Bearbeitung fortfahren?";
 "Save Available Strings" = " Verfügbare Zeichenkette speichern";
 "Show Incompatible Chars" = "Inkompatible Zeichen einblenden";
@@ -134,7 +134,7 @@
 "The file “%@” could not be reinterpreted using the new encoding “%@”." = "Die Datei „%@“ konnte mit der neuen Codierung “%@” nicht wiederinterpretiert werden.";
 
 // Incompatible chars alert
-"The characters would have to be changed or deleted in saving as “%@”." = "Beim Speichern in „%@“ müssen die Zeichen möglicherweise geändert oder gelöscht werden.";
+"Some characters would have to be changed or deleted in saving as “%@”." = "Beim Speichern in „%@“ müssen einige Zeichen möglicherweise geändert oder gelöscht werden.";
 "Do you want to change encoding and show incompatible characters?" = "Möchten Sie die Codierung ändern und die Inkompatible Zeichen zeigen?";
 "Change Encoding" = "Codierung wechseln";
 

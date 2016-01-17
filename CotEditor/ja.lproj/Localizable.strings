@@ -115,7 +115,7 @@
 "Reinterpret" = "再解釈";
 
 // Lossy encoding alert
-"The characters would have to be changed or deleted in saving as “%@”." = "“%@”で保存時に一部の文字を変更または削除する必要があります。";
+"Some characters would have to be changed or deleted in saving as “%@”." = "“%@”で保存時に一部の文字を変更または削除する必要があります。";
 "Do you want to continue processing?" = "保存作業を続けますか？";
 "Save Available Strings" = "有効な文字列を保存";
 "Show Incompatible Chars" = "非互換文字を表示";
@@ -136,7 +136,7 @@
 "The file “%@” could not be reinterpreted using the new encoding “%@”." = "ファイル“%@”はエンコード“%@”で再解釈できませんでした。";
 
 // Incompatible chars alert
-"The characters would have to be changed or deleted in saving as “%@”." = "“%@”で保存時に一部の文字を変更または削除する必要があります。";
+"Some characters would have to be changed or deleted in saving as “%@”." = "“%@”で保存時に一部の文字を変更または削除する必要があります。";
 "Do you want to change encoding and show incompatible characters?" = "エンコーディングを変更し、非互換文字を表示しますか？";
 "Change Encoding" = "エンコーディングを変更";
 
