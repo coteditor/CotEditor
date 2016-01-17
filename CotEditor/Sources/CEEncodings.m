@@ -36,7 +36,7 @@ const NSInteger CEAutoDetectEncoding = 0;
 const NSUInteger kMaxEncodingScanLength = 2000;
 
 // Encodings list
-CFStringEncodings const kCFStringEncodingList[] = {
+CFStringEncoding kCFStringEncodingList[] = {
     kCFStringEncodingUTF8, // Unicode (UTF-8)
     kCFStringEncodingInvalidId, // ----------
     
@@ -100,10 +100,10 @@ CFStringEncodings const kCFStringEncodingList[] = {
     kCFStringEncodingUTF32BE, // Unicode (UTF-32BE)
     kCFStringEncodingUTF32LE, // Unicode (UTF-16LE)
 };
-const NSUInteger kSizeOfCFStringEncodingList = sizeof(kCFStringEncodingList)/sizeof(CFStringEncodings);
+const NSUInteger kSizeOfCFStringEncodingList = sizeof(kCFStringEncodingList)/sizeof(CFStringEncoding);
 
 // Encodings that need convert Yen mark to back-slash
-CFStringEncodings const kCFStringEncodingInvalidYenList[] = {
+CFStringEncoding kCFStringEncodingInvalidYenList[] = {
     // ? (U+003F)
     kCFStringEncodingDOSJapanese, // Japanese (Windows, DOS)
     kCFStringEncodingEUC_JP,  // Japanese (EUC)
@@ -132,7 +132,7 @@ CFStringEncodings const kCFStringEncodingInvalidYenList[] = {
 //    // Y (U+0059)
 //    kCFStringEncodingASCII,  // Western (ASCII)
 };
-const NSUInteger kSizeOfCFStringEncodingInvalidYenList = sizeof(kCFStringEncodingInvalidYenList) / sizeof(CFStringEncodings);
+const NSUInteger kSizeOfCFStringEncodingInvalidYenList = sizeof(kCFStringEncodingInvalidYenList) / sizeof(CFStringEncoding);
 
 // Yen mark char
 const unichar kYenMark = 0x00A5;
