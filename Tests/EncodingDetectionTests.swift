@@ -103,14 +103,17 @@ class EncodingDetectionTests: XCTestCase {
         
         var encoding: NSStringEncoding = 0
         var string: NSString?
+        var didCatchError = false
         do {
             string = try NSString(data: data, suggestedCFEncodings: [], usedEncoding: &encoding)
         } catch let error as NSError {
             XCTAssertEqual(error.domain, NSCocoaErrorDomain)
             XCTAssertEqual(error.code, NSFileReadUnknownStringEncodingError)
             XCTAssertNotNil(error.localizedDescription)
+            didCatchError = true
         }
         
+        XCTAssertTrue(didCatchError, "NSString+CEEncoding didn't throw error.")
         XCTAssertNil(string)
         XCTAssertEqual(Int(encoding), NSNotFound)
     }

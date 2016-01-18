@@ -36,6 +36,8 @@ const char kUTF16LEBom[2] = {0xFF, 0xFE};
 const char kUTF32BEBom[4] = {0x00, 0x00, 0xFE, 0xFF};
 const char kUTF32LEBom[4] = {0xFF, 0xFE, 0x00, 0x00};
 
+static const NSUInteger kMaxDetectionLength = 1024 * 8;
+
 
 @implementation NSString (CEEncoding)
 
@@ -49,8 +51,10 @@ const char kUTF32LEBom[4] = {0xFF, 0xFE, 0x00, 0x00};
     // detect enoding from so-called "magic numbers"
     NSStringEncoding triedEncoding = NSNotFound;
     if ([data length] > 1) {
-        char bytes[6] = {0};
-        [data getBytes:&bytes length:6];
+        char bytes[4] = {0};
+        [data getBytes:&bytes length:4];
+        
+        NSRange detectionRange = NSMakeRange(0, MIN([data length], kMaxDetectionLength));
         
         // check UTF-8 BOM
         if (!memcmp(bytes, kUTF8Bom, 3)) {
@@ -83,7 +87,7 @@ const char kUTF32LEBom[4] = {0xFF, 0xFE, 0x00, 0x00};
             }
             
         // test ISO-2022-JP
-        } else if (memchr(bytes, 0x1b, [data length]) != NULL) {
+        } else if (memchr(bytes, 0x1b, detectionRange.length) != NULL) {
             NSStringEncoding encoding = NSISO2022JPStringEncoding;
             triedEncoding = encoding;
             
@@ -96,7 +100,7 @@ const char kUTF32LEBom[4] = {0xFF, 0xFE, 0x00, 0x00};
                                                    [NSData dataWithBytes:"\x1b\x24\x42" length:3],  // 1983
                                                    [NSData dataWithBytes:"\x1b\x24\x28\x44" length:4]];  // JISX0212
             for (NSData *escapeSequence in escapeSequences) {
-                if ([data rangeOfData:escapeSequence options:0 range:NSMakeRange(0, MIN([data length], 1024 * 8))].location != NSNotFound) {
+                if ([data rangeOfData:escapeSequence options:0 range:detectionRange].location != NSNotFound) {
                     found = YES;
                     break;
                 }
