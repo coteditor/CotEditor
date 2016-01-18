@@ -35,6 +35,8 @@ typedef NS_ENUM(OSStatus, CEErrorCode) {
     CEInvalidNameError = 1000,
     CEThemeFileDuplicationError,
     CEScriptNoTargetDocumentError,
+    CEFileReadTooLargeError,
+    CEFileReadBinaryFileError,
     
     // encoding errors
     CEIANACharsetNameConflictError = 1100,

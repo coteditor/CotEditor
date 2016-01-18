@@ -95,6 +95,10 @@
 
 
 /* MARK: CEDocumentController */
+// binary file alert
+"The file “%@” doesn’t appear to be a text data." = "The file “%@” doesn’t appear to be a text data.";  // FIXME: added
+"The file is %@.\n\nDo you really want to open the file?" = "The file is %@.\n\n确定要打开该文件？";  // FIXME: added
+
 // Large file alert
 "The file “%@” has a size of %@." = "“%@”文件尺寸为 %@。";
 "Opening such a large file can make the application slow or unresponsive.\n\nDo you really want to open the file?" = "打开大型文件可能导致应用速度变慢。\n\n确定要打开该文件？";

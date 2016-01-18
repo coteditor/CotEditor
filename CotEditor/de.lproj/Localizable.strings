@@ -95,6 +95,10 @@
 
 
 /* MARK: CEDocumentController */
+// binary file alert
+"The file “%@” doesn’t appear to be a text data." = "Die Datei “%@” entspricht keiner Textdatei.";
+"The file is %@.\n\nMöchten Sie die Datei wirklich öffnen?" = "Die Datei ist %@.\n\nMöchten Sie die Datei wirklich öffnen?";
+
 // Large file alert
 "The file “%@” has a size of %@." = "Die Datei „%@“ hat die Größe von %@.";
 "Opening such a large file can make the application slow or unresponsive.\n\nDo you really want to open the file?" = "Wenn eine solche große Datei geöffnet wird, kann das Programm langsam werden oder nicht mehr reagieren.\n\nMöchten Sie die Datei wirklich öffnen?";

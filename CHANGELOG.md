@@ -16,6 +16,7 @@ develop
     - Revert “Use selection for Replace” action to allow using an empty string.
     - Tweak layout and style.
 - `cot` command now opens symbolic link target rather than the link itself.
+- Display alert if opening file seems to be a kind of an image, video or archived file.
 - Improve file encoding detection.
 - Update default priority order of encoding detection.
 - Improve encoding compatibility check.

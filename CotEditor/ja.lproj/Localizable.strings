@@ -96,8 +96,12 @@
 
 
 /* MARK: CEDocumentController */
+// binary file alert
+"The file “%@” doesn’t appear to be a text data." = "ファイル“%@”はテキストデータではないようです。";
+"The file is %@.\n\nDo you really want to open the file?" = "このファイルは%@です。\n\n本当にファイルを開きますか？";
+
 // Large file alert
-"The file “%@” has a size of %@." = "“%@”はファイルサイズが %@ です。";
+"The file “%@” has a size of %@." = "ファイル“%@”はファイルサイズが %@ あります。";
 "Opening such a large file can make the application slow or unresponsive.\n\nDo you really want to open the file?" = "巨大なファイルを開くと、アプリケーションの反応が遅くなる可能性があります。\n\n本当にファイルを開きますか？";
 "Open" = "開く";
 
