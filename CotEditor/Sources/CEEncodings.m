@@ -70,9 +70,11 @@ CFStringEncoding kCFStringEncodingList[] = {
     kCFStringEncodingInvalidId, // ----------
     
     kCFStringEncodingMacArabic, // Arabic (Mac OS)
-    kCFStringEncodingMacHebrew, // Hebrew (Mac OS)
+    kCFStringEncodingISOLatinArabic, // Arabic (ISO 8859-6)
     kCFStringEncodingMacGreek, // Greek (Mac OS)
     kCFStringEncodingISOLatinGreek, // Greek (ISO 8859-7)
+    kCFStringEncodingMacHebrew, // Hebrew (Mac OS)
+    kCFStringEncodingISOLatinHebrew, // Hebrew (ISO 8859-8)
     kCFStringEncodingMacCyrillic, // Cyrillic (Mac OS)
     kCFStringEncodingISOLatinCyrillic, // Cyrillic (ISO 8859-5)
     kCFStringEncodingWindowsCyrillic, // Cyrillic (Windows)
@@ -86,6 +88,13 @@ CFStringEncoding kCFStringEncodingList[] = {
     kCFStringEncodingISOLatin3, // Western (ISO Latin 3)
     kCFStringEncodingISOLatin4, // Central European (ISO Latin 4)
     kCFStringEncodingISOLatin5, // Turkish (ISO Latin 5)
+    kCFStringEncodingISOLatin6, // Nordic (ISO Latin 6)
+    kCFStringEncodingISOLatin7, // Baltic (ISO Latin 7)
+    kCFStringEncodingISOLatin8, // Celtic (ISO Latin 8)
+    kCFStringEncodingISOLatin9, // Western (ISO Latin 9)
+    kCFStringEncodingISOLatin10, // Romanian (ISO Latin 10)
+    kCFStringEncodingInvalidId, // ----------
+    
     kCFStringEncodingDOSLatinUS, // Latin-US (DOS)
     kCFStringEncodingWindowsLatin2, // Central European (Windows Latin 2)
     kCFStringEncodingNextStepLatin, // Western (NextStep)
@@ -93,7 +102,7 @@ CFStringEncoding kCFStringEncodingList[] = {
     kCFStringEncodingNonLossyASCII, // Non-lossy ASCII
     kCFStringEncodingInvalidId, // ----------
     
-    kCFStringEncodingUnicode, // Unicode (UTF-16), kCFStringEncodingUTF16(in 10.4)
+    kCFStringEncodingUnicode, // Unicode (UTF-16)
     kCFStringEncodingUTF16BE, // Unicode (UTF-16BE)
     kCFStringEncodingUTF16LE, // Unicode (UTF-16LE)
     kCFStringEncodingUTF32, // Unicode (UTF-32)
@@ -113,14 +122,19 @@ CFStringEncoding kCFStringEncodingInvalidYenList[] = {
     kCFStringEncodingDOSKorean,  // Korean (Windows, DOS)
     kCFStringEncodingMacArabic, // Arabic (Mac OS)
     kCFStringEncodingMacHebrew, // Hebrew (Mac OS)
+    kCFStringEncodingISOLatinCyrillic, // Cyrillic (ISO 8859-5)
+    kCFStringEncodingISOLatinArabic, // Arabic (ISO 8859-6)
     kCFStringEncodingISOLatinGreek, // Greek (ISO 8859-7)
     kCFStringEncodingMacCyrillic, // Cyrillic (Mac OS)
-    kCFStringEncodingISOLatinCyrillic, // Cyrillic (ISO 8859-5)
     kCFStringEncodingWindowsCyrillic, // Cyrillic (Windows)
     kCFStringEncodingMacCentralEurRoman, // Central European (Mac OS)
     kCFStringEncodingISOLatin2, // Central European (ISO Latin 2)
     kCFStringEncodingISOLatin3, // Western (ISO Latin 3)
     kCFStringEncodingISOLatin4, // Central European (ISO Latin 4)
+    kCFStringEncodingISOLatin6, // Nordic (ISO Latin 6)
+    kCFStringEncodingISOLatin7, // Baltic (ISO Latin 7)
+    kCFStringEncodingISOLatin8, // Celtic (ISO Latin 8)
+    kCFStringEncodingISOLatin10, // Romanian (ISO Latin 10)
     kCFStringEncodingWindowsLatin2, // Central European (Windows Latin 2)
     
     // Y (U+0059)

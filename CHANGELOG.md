@@ -5,6 +5,18 @@ Change Log
 develop
 --------------------------
 
+### New Features
+
+- Add the following encodings to the encodnig list:
+    - Arabic (ISO 8859-6)
+    - Hebrew (ISO 8859-8)
+    - Nordic (ISO Latin 6)
+    - Baltic (ISO Latin 7)
+    - Celtic (ISO Latin 8)
+    - Western (ISO Latin 9)
+    - Romanian (ISO Latin 10)
+
+
 ### Improvements
 
 - Improve text finder:
