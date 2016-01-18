@@ -129,6 +129,11 @@ static const int kMaxMatchedStringLength = 256;
             [lineAttrString replaceCharactersInRange:NSMakeRange(kMaxMatchedStringLength, extra) withString:@"…"];
         }
         
+        // truncate tail
+        NSMutableParagraphStyle* paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+        [paragraphStyle setLineBreakMode:NSLineBreakByTruncatingTail];
+        [lineAttrString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [lineAttrString length])];
+        
         return lineAttrString;
     }
 }
