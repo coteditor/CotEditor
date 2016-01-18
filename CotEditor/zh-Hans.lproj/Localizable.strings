@@ -96,7 +96,7 @@
 
 /* MARK: CEDocumentController */
 // binary file alert
-"The file “%@” doesn’t appear to be a text data." = "The file “%@” doesn’t appear to be a text data.";  // FIXME: added
+"The file “%@” doesn’t appear to be text data." = "The file “%@” doesn’t appear to be text data.";  // FIXME: added
 "The file is %@.\n\nDo you really want to open the file?" = "The file is %@.\n\n确定要打开该文件？";  // FIXME: added
 
 // Large file alert

@@ -126,7 +126,7 @@ static const CFStringRef CEUTTypeZipArchive = CFSTR("public.zip-archive");
         NSString *localizedTypeName = (__bridge NSString *)UTTypeCopyDescription(typeNameRef);
         
         error = [NSError errorWithDomain:CEErrorDomain code:CEFileReadBinaryFileError
-                                userInfo:@{NSLocalizedDescriptionKey: [NSString stringWithFormat:NSLocalizedString(@"The file “%@” doesn’t appear to be a text data.", nil), [url lastPathComponent]],
+                                userInfo:@{NSLocalizedDescriptionKey: [NSString stringWithFormat:NSLocalizedString(@"The file “%@” doesn’t appear to be text data.", nil), [url lastPathComponent]],
                                            NSLocalizedRecoverySuggestionErrorKey: [NSString stringWithFormat:NSLocalizedString(@"The file is %@.\n\nDo you really want to open the file?", nil), localizedTypeName],
                                            NSLocalizedRecoveryOptionsErrorKey: @[NSLocalizedString(@"Open", nil),
                                                                                  NSLocalizedString(@"Cancel", nil)],
