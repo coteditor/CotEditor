@@ -1390,7 +1390,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     NSStringEncoding IANACharSetEncoding = [self scanEncodingDeclarationInString:string];
     
     if ((IANACharSetEncoding != NSNotFound) &&
-        CEIsCompatibleIANACharSetEncoding(IANACharSetEncoding, encoding))
+        !CEIsCompatibleIANACharSetEncoding(IANACharSetEncoding, encoding))
     {
         if (outError) {
             NSString *encodingName = [NSString localizedNameOfStringEncoding:encoding];
