@@ -42,7 +42,7 @@
 #import "CEKeyBindingManager.h"
 #import "CEScriptManager.h"
 #import "CEWindow.h"
-#import "NSString+ComposedCharacter.h"
+#import "NSString+CECounting.h"
 #import "CEDefaults.h"
 #import "CEEncodings.h"
 #import "Constants.h"

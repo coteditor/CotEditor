@@ -1,6 +1,6 @@
 /*
  
- NSString+ComposedCharacter.h
+ NSString+CECounting.h
  
  CotEditor
  http://coteditor.com
@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014 1024jp
+ © 2014-2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -28,9 +28,13 @@
 @import Foundation;
 
 
-@interface NSString (ComposedCharacter)
+@interface NSString (CECounting)
 
 /// Return the number of composed characters in the whole string. The string is normalized using NFC before counting.
 - (NSUInteger)numberOfComposedCharacters;
+
+
+/// Return the number of words in the current language.
+- (NSUInteger)numberOfWords;
 
 @end

@@ -26,7 +26,7 @@
  */
 
 #import "CECharacterInfo.h"
-#import "NSString+ComposedCharacter.h"
+#import "NSString+CECounting.h"
 
 
 // variation selectors

@@ -10,7 +10,7 @@ Created by 1024jp on 2015-11-09.
 
 ------------------------------------------------------------------------------
 
-© 2015 1024jp
+© 2015-2016 1024jp
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -36,6 +36,14 @@ class StringExtensionsTests: XCTestCase {
         
         // single regional indicator
         XCTAssertEqual("🇦 ".numberOfComposedCharacters(), 2)
+    }
+    
+    
+    func testWordsCount() {
+        XCTAssertEqual("Clarus says moof!".numberOfWords(), 3)
+        XCTAssertEqual("plain-text".numberOfWords(), 2)
+        XCTAssertEqual("!".numberOfWords(), 0)
+        XCTAssertEqual("".numberOfWords(), 0)
     }
     
     

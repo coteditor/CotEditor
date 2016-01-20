@@ -27,7 +27,7 @@
 
 #import "CECharacterPopoverController.h"
 #import "CECharacterInfo.h"
-#import "NSString+ComposedCharacter.h"
+#import "NSString+CECounting.h"
 
 
 @interface CECharacterPopoverController () <NSPopoverDelegate>
