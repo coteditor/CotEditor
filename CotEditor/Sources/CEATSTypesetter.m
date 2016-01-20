@@ -123,24 +123,22 @@
 - (BOOL)shouldBreakLineByWordBeforeCharacterAtIndex:(NSUInteger)charIndex
 // ------------------------------------------------------
 {
-    BOOL shouldBreak = [super shouldBreakLineByWordBeforeCharacterAtIndex:charIndex];
+    if (charIndex == 0) { return YES; }
     
-    if (shouldBreak) {
-        NSTextStorage *textStorage = [[self layoutManager] textStorage];
-        NSUInteger lastLineBreakIndex = [textStorage lineBreakBeforeIndex:charIndex withinRange:NSMakeRange(0, charIndex)];
+    NSTextStorage *textStorage = [[self layoutManager] textStorage];
+    NSUInteger lastLineBreakIndex = [textStorage lineBreakBeforeIndex:charIndex withinRange:NSMakeRange(0, charIndex)];
+    
+    if (lastLineBreakIndex != NSNotFound) {
+        NSString *beforeBreakCandidate = [[textStorage string] substringWithRange:NSMakeRange(lastLineBreakIndex,
+                                                                                              charIndex - lastLineBreakIndex)];
         
-        if (lastLineBreakIndex != NSNotFound) {
-            NSString *beforeBreakCandidate = [[textStorage string] substringWithRange:NSMakeRange(lastLineBreakIndex,
-                                                                                                  charIndex - lastLineBreakIndex)];
-            
-            // check if beforeBreakCandidate consists only of indent chars
-            if ([[beforeBreakCandidate stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length] == 0) {
-                return NO;
-            }
+        // check if beforeBreakCandidate consists only of indent chars
+        if ([[beforeBreakCandidate stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length] == 0) {
+            return NO;
         }
     }
     
-    return shouldBreak;
+    return YES;
 }
 
 @end
