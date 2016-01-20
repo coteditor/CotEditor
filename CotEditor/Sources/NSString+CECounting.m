@@ -37,6 +37,8 @@
 - (NSUInteger)numberOfComposedCharacters
 // ------------------------------------------------------
 {
+    if ([self length] == 0) { return 0; }
+    
     // normalize using NFC
     NSString *string = [self precomposedStringWithCanonicalMapping];
     
@@ -79,7 +81,7 @@
 {
     if ([self length] == 0) { return 0; }
     
-    CFStringTokenizerRef tokenizer = CFStringTokenizerCreate(kCFAllocatorDefault, (CFStringRef)self, CFRangeMake(0, [self length]), kCFStringTokenizerUnitWord, NULL);
+    CFStringTokenizerRef tokenizer = CFStringTokenizerCreate(NULL, (CFStringRef)self, CFRangeMake(0, [self length]), kCFStringTokenizerUnitWord, NULL);
     
     NSUInteger count = 0;
     while (CFStringTokenizerAdvanceToNextToken(tokenizer) != kCFStringTokenizerTokenNone) {
