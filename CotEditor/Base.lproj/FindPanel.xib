@@ -11,7 +11,7 @@
                 <outlet property="disclosureButton" destination="oC1-bN-UeN" id="j2a-5P-Uu1"/>
                 <outlet property="findHistoryMenu" destination="Zor-um-eIs" id="81b-eT-9Dh"/>
                 <outlet property="integerFormatter" destination="YLc-PB-3Zc" id="7QI-cl-3y8"/>
-                <outlet property="regexPopover" destination="aeg-YU-kMW" id="KZe-sf-cbh"/>
+                <outlet property="regexReferencePopover" destination="aeg-YU-kMW" id="LBF-6V-RfW"/>
                 <outlet property="replaceButton" destination="7cY-9y-k1i" id="LWp-Pg-0vR"/>
                 <outlet property="replaceHistoryMenu" destination="xUj-lq-8zt" id="sNr-bZ-1ib"/>
                 <outlet property="resultViewController" destination="46P-vJ-49R" id="ZOR-xa-vFP"/>
@@ -702,7 +702,7 @@
                 <outlet property="view" destination="CRP-NW-b9J" id="HyB-MX-ri4"/>
             </connections>
         </viewController>
-        <viewController title="Quick Reference of Regular Expression" nibName="RegexReferencePopover" id="uMF-F8-Wjs" userLabel="Popover View Controller"/>
+        <viewController title="Quick Reference of Regular Expression" nibName="RegexReferenceView" id="uMF-F8-Wjs" userLabel="Regex Reference View Controller"/>
         <popover behavior="semitransient" id="aeg-YU-kMW">
             <connections>
                 <outlet property="contentViewController" destination="uMF-F8-Wjs" id="O3O-mx-K8n"/>

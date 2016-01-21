@@ -59,7 +59,7 @@ static const CGFloat kDefaultResultViewHeight = 200.0;
 #pragma mark Outlets
 @property (nonatomic, nullable, weak) IBOutlet CETextFinder *textFinder;
 @property (nonatomic, nullable) IBOutlet CEFindResultViewController *resultViewController;
-@property (nonatomic, nullable) IBOutlet NSPopover *regexPopover;
+@property (nonatomic, nullable) IBOutlet NSPopover *regexReferencePopover;
 @property (nonatomic, nullable, weak) IBOutlet NSNumberFormatter *integerFormatter;
 @property (nonatomic, nullable, weak) IBOutlet NSPopUpButton *advancedButton;
 @property (nonatomic, nullable, weak) IBOutlet NSSplitView *splitView;
@@ -489,10 +489,10 @@ static const CGFloat kDefaultResultViewHeight = 200.0;
 - (IBAction)showRegexHelp:(nullable id)sender
 // ------------------------------------------------------
 {
-    if ([[self regexPopover] isShown]) {
-        [[self regexPopover] close];
+    if ([[self regexReferencePopover] isShown]) {
+        [[self regexReferencePopover] close];
     } else {
-        [[self regexPopover] showRelativeToRect:[sender bounds] ofView:sender preferredEdge:NSMaxYEdge];
+        [[self regexReferencePopover] showRelativeToRect:[sender bounds] ofView:sender preferredEdge:NSMaxYEdge];
     }
 }
 
