@@ -179,6 +179,12 @@ static const NSUInteger kMaxHistorySize = 20;
         // It might better when it can be set in theme also for incompatible chars highlight.
         // Just because I'm lazy.
         
+        // deserialize options setting from defaults
+        [self loadOptions];
+        for (NSString *optionPropertyName in [[self class] optionPropertyNames]) {
+            [self addObserver:self forKeyPath:optionPropertyName options:0 context:nil];
+        }
+        
         // add to responder chain
         [NSApp setNextResponder:self];
         
@@ -202,6 +208,10 @@ static const NSUInteger kMaxHistorySize = 20;
 - (void)dealloc
 // ------------------------------------------------------
 {
+    for (NSString *optionPropertyName in [[self class] optionPropertyNames]) {
+        [self removeObserver:self forKeyPath:optionPropertyName];
+    }
+    
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
@@ -232,6 +242,24 @@ static const NSUInteger kMaxHistorySize = 20;
     }
     
     return YES;
+}
+
+
+
+#pragma mark Protocol
+
+//=======================================================
+// NSKeyValueObserving Protocol
+//=======================================================
+
+// ------------------------------------------------------
+/// ユーザ設定の変更を反映する
+- (void)observeValueForKeyPath:(nullable NSString *)keyPath ofObject:(nullable id)object change:(nullable NSDictionary<NSString *, id> *)change context:(nullable void *)context
+// ------------------------------------------------------
+{
+    if ([[[self class] optionPropertyNames] containsObject:keyPath]) {
+        [self saveOptions];
+    }
 }
 
 
@@ -852,6 +880,76 @@ static const NSUInteger kMaxHistorySize = 20;
     if ([[self delegate] respondsToSelector:@selector(textFinderDidUpdateReplaceHistory)]) {
         [[self delegate] textFinderDidUpdateReplaceHistory];
     }
+}
+
+
+// ------------------------------------------------------
+/// serialize bit option value from instance booleans
+- (void)saveOptions
+// ------------------------------------------------------
+{
+    unsigned options = OgreNoneOption;
+    
+    if ([self singleLineOption])          { options |= OgreSingleLineOption; }
+    if ([self multilineOption])           { options |= OgreMultilineOption; }
+    if ([self ignoreCaseOption])          { options |= OgreIgnoreCaseOption; }
+    if ([self extendOption])              { options |= OgreExtendOption; }
+    if ([self findLongestOption])         { options |= OgreFindLongestOption; }
+    if ([self findNotEmptyOption])        { options |= OgreFindNotEmptyOption; }
+    if ([self findEmptyOption])           { options |= OgreFindEmptyOption; }
+    if ([self negateSingleLineOption])    { options |= OgreNegateSingleLineOption; }
+    if ([self captureGroupOption])        { options |= OgreCaptureGroupOption; }
+    if ([self dontCaptureGroupOption])    { options |= OgreDontCaptureGroupOption; }
+    if ([self delimitByWhitespaceOption]) { options |= OgreDelimitByWhitespaceOption; }
+    if ([self notBeginOfLineOption])      { options |= OgreNotBOLOption; }
+    if ([self notEndOfLineOption])        { options |= OgreNotEOLOption; }
+    
+    [[NSUserDefaults standardUserDefaults] setInteger:options forKey:CEDefaultFindOptionsKey];
+}
+
+
+// ------------------------------------------------------
+/// deserialize bit option value to instance booleans
+- (void)loadOptions
+// ------------------------------------------------------
+{
+    unsigned options = [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultFindOptionsKey];
+    
+    [self setSingleLineOption:((options & OgreSingleLineOption) != 0)];
+    [self setMultilineOption:((options & OgreMultilineOption) != 0)];
+    [self setIgnoreCaseOption:((options & OgreIgnoreCaseOption) != 0)];
+    [self setExtendOption:((options & OgreExtendOption) != 0)];
+    [self setFindLongestOption:((options & OgreFindLongestOption) != 0)];
+    [self setFindNotEmptyOption:((options & OgreFindNotEmptyOption) != 0)];
+    [self setFindEmptyOption:((options & OgreFindEmptyOption) != 0)];
+    [self setNegateSingleLineOption:((options & OgreNegateSingleLineOption) != 0)];
+    [self setCaptureGroupOption:((options & OgreCaptureGroupOption) != 0)];
+    [self setDontCaptureGroupOption:((options & OgreDontCaptureGroupOption) != 0)];
+    [self setDelimitByWhitespaceOption:((options & OgreDelimitByWhitespaceOption) != 0)];
+    [self setNotBeginOfLineOption:((options & OgreNotBOLOption) != 0)];
+    [self setNotEndOfLineOption:((options & OgreNotEOLOption) != 0)];
+}
+
+
+// ------------------------------------------------------
+/// array of OgreKit option property names to observe
++ (nonnull NSArray<NSString *> *)optionPropertyNames
+// ------------------------------------------------------
+{
+    return @[NSStringFromSelector(@selector(singleLineOption)),
+             NSStringFromSelector(@selector(multilineOption)),
+             NSStringFromSelector(@selector(ignoreCaseOption)),
+             NSStringFromSelector(@selector(extendOption)),
+             NSStringFromSelector(@selector(findLongestOption)),
+             NSStringFromSelector(@selector(findNotEmptyOption)),
+             NSStringFromSelector(@selector(findEmptyOption)),
+             NSStringFromSelector(@selector(negateSingleLineOption)),
+             NSStringFromSelector(@selector(captureGroupOption)),
+             NSStringFromSelector(@selector(dontCaptureGroupOption)),
+             NSStringFromSelector(@selector(delimitByWhitespaceOption)),
+             NSStringFromSelector(@selector(notBeginOfLineOption)),
+             NSStringFromSelector(@selector(notEndOfLineOption)),
+             ];
 }
 
 

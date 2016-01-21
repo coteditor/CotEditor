@@ -22,6 +22,7 @@ develop
 
 - Improve text finder:
     - Now, “Find All” action also highlights all matched strings in the editor, and thereby “Highlight” action is removed.
+    - Change advanced find option setting from popup menu to popover.
     - On Yosemite and later, a visual feedback is shown when the seach wrapped.
     - Keep selected range after “Replace All” with in-selection option.
     - Display total number of found in find panel on simple find actions.
