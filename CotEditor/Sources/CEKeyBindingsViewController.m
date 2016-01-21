@@ -224,6 +224,9 @@
     if ([keySpecChars isEqualToString:@"\e"]) {
         // treat esc key as cancel
         
+    } else if ([keySpecChars isEqualToString:[CEKeyBindingManager printableKeyStringFromKeySpecChars:oldChars]]) {  // not edited
+        // do nothing
+        
     } else if ([self validateKeySpecChars:keySpecChars oldChars:oldChars]) {
         // update data
         item[CEKeyBindingKeySpecCharsKey] = keySpecChars;
