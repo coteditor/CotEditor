@@ -180,7 +180,8 @@ static CETextFinder	*singleton = nil;
         action == @selector(findAll:) ||
         action == @selector(replace:) ||
         action == @selector(replaceAndFind:) ||
-        action == @selector(replaceAll:))
+        action == @selector(replaceAll:) ||
+        action == @selector(centerSelectionInVisibleArea:))
     {
         return ([self client] != nil);
         
