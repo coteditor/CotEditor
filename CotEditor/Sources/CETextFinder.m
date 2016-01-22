@@ -304,7 +304,8 @@ static CETextFinder	*singleton = nil;
         for (NSValue *rangeValue in scopeRanges) {
             NSRange scopeRange = [rangeValue rangeValue];
             NSEnumerator<OGRegularExpressionMatch *> *enumerator = [regex matchEnumeratorInString:string range:scopeRange];
-            NSUInteger lineNumber = [lineRegex numberOfMatchesInString:string options:0 range:NSMakeRange(0, scopeRange.location)] + 1;
+            NSUInteger lineNumber = 1;
+            NSUInteger lineCountedLocation = 0;
             
             OGRegularExpressionMatch *match;
             while ((match = [enumerator nextObject])) {
@@ -313,20 +314,22 @@ static CETextFinder	*singleton = nil;
                     return;
                 }
                 
+                NSRange matchedRange = [match rangeOfMatchedString];
+                
                 // calc line number
-                NSRange diffRange = NSMakeRange([match rangeOfStringBetweenMatchAndLastMatch].location - [match rangeOfLastMatchSubstring].length,
-                                                [match rangeOfStringBetweenMatchAndLastMatch].length + [match rangeOfLastMatchSubstring].length);
+                NSRange diffRange = NSMakeRange(lineCountedLocation, matchedRange.location - lineCountedLocation);
                 lineNumber += [lineRegex numberOfMatchesInString:string options:0 range:diffRange];
+                lineCountedLocation = matchedRange.location;
                 
                 // get highlighted line string
-                NSRange lineRange = [string lineRangeForRange:[match rangeOfMatchedString]];
-                NSRange inlineRange = [match rangeOfMatchedString];
+                NSRange lineRange = [string lineRangeForRange:matchedRange];
+                NSRange inlineRange = matchedRange;
                 inlineRange.location -= lineRange.location;
                 NSString *lineString = [string substringWithRange:lineRange];
                 NSMutableAttributedString *lineAttrString = [[NSMutableAttributedString alloc] initWithString:lineString];
                 [lineAttrString addAttributes:@{NSBackgroundColorAttributeName: [self highlightColor]} range:inlineRange];
                 
-                [result addObject:@{CEFindResultRange: [NSValue valueWithRange:[match rangeOfMatchedString]],
+                [result addObject:@{CEFindResultRange: [NSValue valueWithRange:matchedRange],
                                     CEFindResultLineNumber: @(lineNumber),
                                     CEFindResultAttributedLineString: lineAttrString,
                                     CEFindResultLineRange: [NSValue valueWithRange:inlineRange]}];
