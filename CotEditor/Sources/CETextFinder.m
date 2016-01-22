@@ -857,7 +857,7 @@ static CETextFinder	*singleton = nil;
 - (unsigned)options
 // ------------------------------------------------------
 {
-    return [[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultFindOptionsKey];
+    return [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultFindOptionsKey];
 }
 
 
