@@ -30,7 +30,7 @@
 
 
 /// the maximum number of characters to add to the left of the matched string
-static const int kMaxLeftMargin = 64;
+static const int kMaxLeftMargin = 32;
 /// maximal number of characters for the result line
 static const int kMaxMatchedStringLength = 256;
 
