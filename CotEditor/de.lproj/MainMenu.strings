@@ -76,7 +76,7 @@
 /* Class = "NSMenuItem"; title = "Open…"; ObjectID = "72"; */
 "72.title" = "Öffnen …";
 /* Class = "NSMenuItem"; title = "Open Hidden…"; ObjectID = "688"; */
-"688.title" = "Unsichtbare Datei öffnen …";
+"688.title" = "Versteckte Datei öffnen …";
 /* Class = "NSMenuItem"; title = "Open Recent"; ObjectID = "124"; */
 "124.title" = "Benutzte Dokumente";
 /* Class = "NSMenu"; title = "Open Recent"; ObjectID = "125"; */

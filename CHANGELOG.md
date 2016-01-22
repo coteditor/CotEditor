@@ -7,6 +7,7 @@ develop
 
 ### New Features
 
+- Now hidden file visibility can be toggled via checkbox in the document open panel.
 - Add the following encodings to the encodnig list:
     - Arabic (ISO 8859-6)
     - Hebrew (ISO 8859-8)

@@ -43,7 +43,7 @@ static const CFStringRef CEUTTypeZipArchive = CFSTR("public.zip-archive");
 
 @interface CEDocumentController ()
 
-@property (nonatomic) BOOL showsHiddenFiles;
+@property (nonatomic) BOOL showsHiddenFiles;  // binding
 
 @property (nonatomic, nullable) IBOutlet NSView *openPanelAccessoryView;
 @property (nonatomic, nullable) IBOutlet NSPopUpButton *accessoryEncodingMenu;
@@ -190,10 +190,10 @@ static const CFStringRef CEUTTypeZipArchive = CFSTR("public.zip-archive");
     [self buildEncodingPopupButton];
     [openPanel setAccessoryView:[self openPanelAccessoryView]];
     
-    // set visibility of the hidden files
-    [openPanel setTreatsFilePackagesAsDirectories:[self showsHiddenFiles]];
-    [openPanel setShowsHiddenFiles:[self showsHiddenFiles]];
-    [self setShowsHiddenFiles:NO];  // reset flag
+    // set visibility of hidden files in the panel
+    // ->  bind showsHiddenFiles flag with openPanel
+    [openPanel bind:@"showsHiddenFiles" toObject:self withKeyPath:@"showsHiddenFiles" options:nil];
+    [openPanel bind:@"treatsFilePackagesAsDirectories" toObject:self withKeyPath:@"showsHiddenFiles" options:nil];
     
     // run non-modal open panel
     __weak typeof(self) weakSelf = self;
@@ -204,6 +204,8 @@ static const CFStringRef CEUTTypeZipArchive = CFSTR("public.zip-archive");
         if (result == NSCancelButton) {
             [self resetAccessorySelectedEncoding];
         }
+        
+        [self setShowsHiddenFiles:NO];  // reset flag
         
         completionHandler(result);
     }];
