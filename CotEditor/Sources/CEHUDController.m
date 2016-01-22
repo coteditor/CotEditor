@@ -25,11 +25,14 @@
  
  */
 
+@import QuartzCore;
 #import "CEHUDController.h"
 
 
 NSString * _Nonnull const CEWrapSymbolName = @"WrapSymbol";
 
+static NSString * _Nonnull const FadeInKey = @"fadeIn";
+static NSString * _Nonnull const FadeOutKey = @"fadeOut";
 static NSString * _Nonnull const HUDIdentifier = @"HUD";
 static CGFloat const kCornerRadius = 14.0;
 static NSTimeInterval const kDefaultDisplayingInterval = 0.1;
@@ -39,7 +42,6 @@ static NSTimeInterval const kFadeDuration = 0.5;
 @interface CEHUDController ()
 
 @property (nonatomic, nonnull) NSImage *symbolImage;
-@property (nonatomic, nullable, weak) NSTimer *fadeoutTimer;
 
 @property (nonatomic, nullable, weak) IBOutlet NSImageView *symbol;
 
@@ -70,15 +72,6 @@ static NSTimeInterval const kFadeDuration = 0.5;
 
 
 // ------------------------------------------------------
-/// clean up
-- (void)dealloc
-// ------------------------------------------------------
-{
-    [_fadeoutTimer invalidate];
-}
-
-
-// ------------------------------------------------------
 /// nib name
 - (nullable NSString *)nibName
 // ------------------------------------------------------
@@ -94,9 +87,9 @@ static NSTimeInterval const kFadeDuration = 0.5;
 {
     [super loadView];
     
-    [[self view] setAlphaValue:0.0];
     [[self view] setIdentifier:HUDIdentifier];
     [[[self view] layer] setCornerRadius:kCornerRadius];
+    [[[self view] layer] setOpacity:0.0];
     
     NSVisualEffectView *effectView = (NSVisualEffectView *)[self view];
     [effectView setMaterial:NSVisualEffectMaterialDark];
@@ -114,7 +107,7 @@ static NSTimeInterval const kFadeDuration = 0.5;
     // remove previous HUD
     for (__kindof NSView *subview in [clientView subviews]) {
         if ([[subview identifier] isEqualToString:HUDIdentifier]) {
-            fadeOut(subview, kFadeDuration / 2);  // fade quickly
+            fadeOut(subview, kFadeDuration / 2, 0);  // fade quickly
         }
     }
     
@@ -141,14 +134,10 @@ static NSTimeInterval const kFadeDuration = 0.5;
                                                              multiplier:0.8  // shift a bit upper
                                                                constant:0]]];
     // fade-in
-    fadeIn([self view], kFadeDuration);
+    fadeIn([self view], kFadeDuration * 0.8);
     
-    // set fade-out timer
-    [self setFadeoutTimer:[NSTimer scheduledTimerWithTimeInterval:kFadeDuration + kDefaultDisplayingInterval
-                                                           target:self
-                                                         selector:@selector(fadeOutWithTimer:)
-                                                         userInfo:nil
-                                                          repeats:NO]];
+    // set fade-out with delay
+    fadeOut([self view], kFadeDuration, kFadeDuration + kDefaultDisplayingInterval);
 }
 
 
@@ -156,37 +145,36 @@ static NSTimeInterval const kFadeDuration = 0.5;
 #pragma mark Private Methods
 
 // ------------------------------------------------------
-/// fade out timer
-- (void)fadeOutWithTimer:(nonnull NSTimer *)timer
-// ------------------------------------------------------
-{
-    fadeOut([self view], kFadeDuration);
-}
-
-
-// ------------------------------------------------------
 /// fade-in view
 void fadeIn(NSView * _Nonnull view, NSTimeInterval duration)
 // ------------------------------------------------------
 {
-    [NSAnimationContext runAnimationGroup:^(NSAnimationContext * _Nonnull context) {
-        [context setDuration:duration];
-        [[view animator] setAlphaValue:1.0];
-    } completionHandler:nil];
+    CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"opacity"];
+    [animation setToValue:@1.0];
+    [animation setDuration:duration];
+    [animation setFillMode:kCAFillModeForwards];
+    [animation setRemovedOnCompletion:NO];
+    [[view layer] addAnimation:animation forKey:FadeInKey];
 }
 
 
 // ------------------------------------------------------
 /// fade-out view
-void fadeOut(NSView * _Nonnull view, NSTimeInterval duration)
+void fadeOut(NSView * _Nonnull view, NSTimeInterval duration, NSTimeInterval delay)
 // ------------------------------------------------------
 {
-    [NSAnimationContext runAnimationGroup:^(NSAnimationContext * _Nonnull context) {
-        [context setDuration:duration];
-        [[view animator] setAlphaValue:0.0];
-    } completionHandler:^{
-        [view removeFromSuperview];
-    }];
+    [CATransaction begin]; {
+        [CATransaction setCompletionBlock:^{
+            [view removeFromSuperview];
+        }];
+        CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"opacity"];
+        [animation setToValue:@0.0];
+        [animation setDuration:duration];
+        [animation setBeginTime:CACurrentMediaTime() + delay];
+        [animation setFillMode:kCAFillModeForwards];
+        [animation setRemovedOnCompletion:NO];
+        [[view layer] addAnimation:animation forKey:FadeOutKey];
+    } [CATransaction commit];
 }
 
 @end
