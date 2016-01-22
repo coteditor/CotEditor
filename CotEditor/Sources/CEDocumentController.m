@@ -47,6 +47,7 @@ static const CFStringRef CEUTTypeZipArchive = CFSTR("public.zip-archive");
 
 @property (nonatomic, nullable) IBOutlet NSView *openPanelAccessoryView;
 @property (nonatomic, nullable) IBOutlet NSPopUpButton *accessoryEncodingMenu;
+@property (nonatomic, nullable) IBOutlet NSButton *showHiddenFilesCheckbox;
 
 
 // readonly
@@ -186,12 +187,18 @@ static const CFStringRef CEUTTypeZipArchive = CFSTR("public.zip-archive");
     // initialize encoding menu and set the accessory view
     if (![self openPanelAccessoryView]) {
         [[NSBundle mainBundle] loadNibNamed:@"OpenDocumentAccessory" owner:self topLevelObjects:nil];
+        if (NSAppKitVersionNumber <= NSAppKitVersionNumber10_10_Max) {
+            // real time togging of hidden files visibility works only on El Capitan (and later?)
+            [[self showHiddenFilesCheckbox] removeFromSuperview];
+        }
     }
     [self buildEncodingPopupButton];
     [openPanel setAccessoryView:[self openPanelAccessoryView]];
     
     // set visibility of hidden files in the panel
-    // ->  bind showsHiddenFiles flag with openPanel
+    [openPanel setShowsHiddenFiles:[self showsHiddenFiles]];
+    [openPanel setTreatsFilePackagesAsDirectories:[self showsHiddenFiles]];
+    // ->  bind showsHiddenFiles flag with openPanel (for El capitan and leter)
     [openPanel bind:@"showsHiddenFiles" toObject:self withKeyPath:@"showsHiddenFiles" options:nil];
     [openPanel bind:@"treatsFilePackagesAsDirectories" toObject:self withKeyPath:@"showsHiddenFiles" options:nil];
     
