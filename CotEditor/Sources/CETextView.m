@@ -266,6 +266,11 @@ static NSPoint kTextContainerOrigin;
     // テーマ背景色を反映させる
     [[self window] setBackgroundColor:[[self theme] backgroundColor]];
     
+    // 背景色に合わせたスクローラのスタイルをセット
+    NSInteger knobStyle = [[self theme] isDarkTheme] ? NSScrollerKnobStyleLight : NSScrollerKnobStyleDefault;
+    [[self enclosingScrollView] setScrollerKnobStyle:knobStyle];
+    
+    
     // ウインドウの透明フラグを監視する
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(didWindowOpacityChange:)

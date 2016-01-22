@@ -42,6 +42,7 @@ develop
 - Fix soft line-wrapping behavior when the line contains a long unbreakable word.
 - Fix an issue where the application could crash just after starting dectation.
 - Fix an issue where keybinding setting could fail.
+- Fix an issue where the light scroll bar style wasn't applied on dark background theme.
 - Fix an issue where the character inspector didn't show up on Mavericks and earlier.
 - Fix an issue where “Jump to Selection” action didn't jump to selection in editor if other text box is focued.
 - Fix memory leak.
