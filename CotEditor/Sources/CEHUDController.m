@@ -29,7 +29,7 @@
 #import "CEHUDController.h"
 
 
-NSString * _Nonnull const CEWrapSymbolName = @"WrapSymbol";
+NSString * _Nonnull const CEWrapSymbolName = @"WrapTemplate";
 
 static NSString * _Nonnull const FadeInKey = @"fadeIn";
 static NSString * _Nonnull const FadeOutKey = @"fadeOut";
@@ -90,9 +90,6 @@ static NSTimeInterval const kFadeDuration = 0.5;
     [[self view] setIdentifier:HUDIdentifier];
     [[[self view] layer] setCornerRadius:kCornerRadius];
     [[[self view] layer] setOpacity:0.0];
-    
-    NSVisualEffectView *effectView = (NSVisualEffectView *)[self view];
-    [effectView setMaterial:NSVisualEffectMaterialDark];
 }
 
 

@@ -24,7 +24,7 @@
                             </configuration>
                         </ciFilter>
                     </backgroundFilters>
-                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="WrapSymbol" id="20L-ay-Yzb"/>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="WrapTemplate" id="20L-ay-Yzb"/>
                     <connections>
                         <binding destination="-2" name="value" keyPath="symbolImage" id="HHs-ub-N4m"/>
                     </connections>
@@ -54,6 +54,6 @@ AAAAAAEGA
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
     </objects>
     <resources>
-        <image name="WrapSymbol" width="72" height="72"/>
+        <image name="WrapTemplate" width="72" height="72"/>
     </resources>
 </document>
