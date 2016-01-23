@@ -34,6 +34,7 @@ develop
 - Update default priority order of encoding detection.
 - Improve encoding compatibility check.
 - Better error message on file opening.
+- Take a safety measure for in case the key binding setting file is corrupt.
 
 
 ### Fixes

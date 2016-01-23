@@ -286,12 +286,13 @@ static NSPoint kTextContainerOrigin;
 {
     NSString *charIgnoringMod = [theEvent charactersIgnoringModifiers];
     // IM で日本語入力変換中でないときのみ追加テキストキーバインディングを実行
-    if (![self hasMarkedText] && charIgnoringMod) {
+    BOOL isModifierKeyPressed = ([theEvent modifierFlags] & NSDeviceIndependentModifierFlagsMask) != 0;  // check just in case
+    if (![self hasMarkedText] && charIgnoringMod && isModifierKeyPressed) {
         NSString *selectorStr = [[CEKeyBindingManager sharedManager] selectorStringWithKeyEquivalent:charIgnoringMod
                                                                                        modifierFrags:[theEvent modifierFlags]];
-        NSInteger length = [selectorStr length];
-        if (selectorStr && (length > 0)) {
-            if (([selectorStr hasPrefix:@"insertCustomText"]) && (length == 20)) {
+        
+        if ([selectorStr length] > 0) {
+            if (([selectorStr hasPrefix:@"insertCustomText"]) && ([selectorStr length] == 20)) {
                 NSInteger patternNumber = [[selectorStr substringFromIndex:17] integerValue];
                 [self insertCustomTextWithPatternNumber:patternNumber];
             } else {
