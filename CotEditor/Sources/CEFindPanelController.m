@@ -89,7 +89,7 @@ static const CGFloat kDefaultResultViewHeight = 200.0;
     self = [super init];
     if (self) {
         // deserialize options setting from defaults
-        [self setOptions:[[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultFindOptionsKey]];
+        [self loadOptions];
         
         // observe default change for the "Replace" button tooltip
         [[NSUserDefaults standardUserDefaults] addObserver:self
@@ -468,7 +468,7 @@ static const CGFloat kDefaultResultViewHeight = 200.0;
         typeof(self) self = weakSelf;  // strong self
         if (!self) { return; }
         
-        [[NSUserDefaults standardUserDefaults] setInteger:[self options] forKey:CEDefaultFindOptionsKey];
+        [self saveOptions];
     });
 }
 
@@ -660,10 +660,10 @@ static const CGFloat kDefaultResultViewHeight = 200.0;
 
 // ------------------------------------------------------
 /// serialize bit option value from instance booleans
-- (unsigned)options
+- (void)saveOptions
 // ------------------------------------------------------
 {
-    unsigned options = OgreNoneOption;
+    unsigned options = [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultFindOptionsKey];
     
     if ([self singleLineOption])          { options |= OgreSingleLineOption; }
     if ([self multilineOption])           { options |= OgreMultilineOption; }
@@ -679,15 +679,17 @@ static const CGFloat kDefaultResultViewHeight = 200.0;
     if ([self notBeginOfLineOption])      { options |= OgreNotBOLOption; }
     if ([self notEndOfLineOption])        { options |= OgreNotEOLOption; }
     
-    return options;
+    [[NSUserDefaults standardUserDefaults] setInteger:options forKey:CEDefaultFindOptionsKey];
 }
 
 
 // ------------------------------------------------------
 /// deserialize bit option value to instance booleans
-- (void)setOptions:(unsigned)options
+- (void)loadOptions
 // ------------------------------------------------------
 {
+    unsigned options = [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultFindOptionsKey];
+    
     [self setSingleLineOption:((options & OgreSingleLineOption) != 0)];
     [self setMultilineOption:((options & OgreMultilineOption) != 0)];
     [self setIgnoreCaseOption:((options & OgreIgnoreCaseOption) != 0)];
