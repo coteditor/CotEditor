@@ -657,8 +657,10 @@ static const NSUInteger kMaxHistorySize = 20;
 - (nullable OGRegularExpression *)regex
 // ------------------------------------------------------
 {
+    unsigned options = [self usesRegularExpression] ? [self options] : [self delimitByWhitespaceOption];
+    
     return [OGRegularExpression regularExpressionWithString:[self sanitizedFindString]
-                                                    options:[self options]
+                                                    options:options
                                                      syntax:[self textFinderSyntax]
                                             escapeCharacter:kEscapeCharacter];
 }
@@ -685,7 +687,7 @@ static const NSUInteger kMaxHistorySize = 20;
     NSTextView *textView = [self client];
     NSUInteger startLocation = forward ? NSMaxRange([textView selectedRange]) : [textView selectedRange].location;
     
-    NSEnumerator<OGRegularExpressionMatch *> *enumerator = [[self regex] matchEnumeratorInString:[textView string] options:0];
+    NSEnumerator<OGRegularExpressionMatch *> *enumerator = [[self regex] matchEnumeratorInString:[textView string] options:[self options]];
     NSArray<OGRegularExpressionMatch *> *matches = [enumerator allObjects];
     OGRegularExpressionMatch *foundMatch = nil;
     
@@ -784,22 +786,41 @@ static const NSUInteger kMaxHistorySize = 20;
         return NO;
     }
     
-    // check regex syntax of find string and alert if invalid
+    
+    // check regular expression syntax
     if ([self usesRegularExpression]) {
-        @try {
-            [self regex];
+        NSDictionary<NSString *, id> *userInfo = nil;
+        
+        // check option combination
+        if (([self options] & (OgreDontCaptureGroupOption|OgreCaptureGroupOption)) == (OgreDontCaptureGroupOption|OgreCaptureGroupOption)) {
+            // -> ONIGERR_INVALID_COMBINATION_OF_OPTIONS
+            userInfo = @{NSLocalizedDescriptionKey: NSLocalizedString(@"Invalid combination of regular expression options", nil),
+                         NSLocalizedRecoverySuggestionErrorKey: [NSString stringWithFormat:NSLocalizedString(@"“%@” option and “%@” option cannot be activated at the same time.", nil),
+                                                                 NSLocalizedString(@"Capture croup", nil),
+                                                                 NSLocalizedString(@"Don’t capture group", nil)]};
+        } else {
             
-        } @catch (NSException *exception) {
-            if ([[exception name] isEqualToString:OgreException]) {
-                NSError *error = [NSError errorWithDomain:CEErrorDomain
-                                                     code:CERegularExpressionError
-                                                 userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"Invalid regular expression", nil),
-                                                            NSLocalizedRecoverySuggestionErrorKey: [exception reason]}];
-                NSWindow *findPanel = [[self findPanelController] window];
-                [self presentError:error modalForWindow:findPanel delegate:nil didPresentSelector:NULL contextInfo:NULL];
-            } else {
-                [exception raise];
+            // try compile regex
+            @try {
+                [self regex];  // compile oniguruma regular expression
+                
+            } @catch (NSException *exception) {
+                if ([[exception name] isEqualToString:OgreException]) {
+                    userInfo = @{NSLocalizedDescriptionKey: NSLocalizedString(@"Invalid regular expression", nil),
+                                 NSLocalizedRecoverySuggestionErrorKey: [exception reason]};
+                } else {
+                    [exception raise];
+                }
             }
+        }
+        
+        // show error alert if invalid
+        if (userInfo) {
+            NSError *error = [NSError errorWithDomain:CEErrorDomain code:CERegularExpressionError userInfo:userInfo];
+            [[self findPanelController] showWindow:self];
+            [self presentError:error modalForWindow:[[self findPanelController] window] delegate:nil didPresentSelector:NULL contextInfo:NULL];
+            NSBeep();
+            
             return NO;
         }
     }

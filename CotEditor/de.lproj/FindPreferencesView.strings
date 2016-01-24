@@ -82,7 +82,7 @@
 "uZ1-aS-LUd.title" = "Suche nicht leer";
 /* Class = "NSButtonCell"; title = "Negate single line"; ObjectID = "q8J-xH-8Q3"; */
 "q8J-xH-8Q3.title" = "Eine Zeile ablehnen";
-/* Class = "NSButtonCell"; title = "Capture Group"; ObjectID = "GMh-gg-UVh"; */
+/* Class = "NSButtonCell"; title = "Capture group"; ObjectID = "GMh-gg-UVh"; */
 "GMh-gg-UVh.title" = "In Gruppe sichern";
 /* Class = "NSButtonCell"; title = "Don’t capture group"; ObjectID = "xqN-fH-Reh"; */
 "xqN-fH-Reh.title" = "Kein Sichern in Gruppe";

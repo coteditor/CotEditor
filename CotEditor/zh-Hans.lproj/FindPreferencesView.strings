@@ -83,7 +83,7 @@
 "uZ1-aS-LUd.title" = "匹配非空字符后的空字符";
 /* Class = "NSButtonCell"; title = "Negate single line"; ObjectID = "q8J-xH-8Q3"; */
 "q8J-xH-8Q3.title" = "单行无效";
-/* Class = "NSButtonCell"; title = "Capture Group"; ObjectID = "GMh-gg-UVh"; */
+/* Class = "NSButtonCell"; title = "Capture group"; ObjectID = "GMh-gg-UVh"; */
 "GMh-gg-UVh.title" = "按组匹配";
 /* Class = "NSButtonCell"; title = "Don’t capture group"; ObjectID = "xqN-fH-Reh"; */
 "xqN-fH-Reh.title" = "不匹配组";

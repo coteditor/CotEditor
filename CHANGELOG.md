@@ -42,6 +42,7 @@ develop
 
 - Fix insertion location after line moving with empty selection.
 - Fix soft line-wrapping behavior when the line contains a long unbreakable word.
+- Fix an issue where the application crashed by an invalid find regular expression option combination.
 - Fix an issue where the application could crash just after starting dectation.
 - Fix an issue where keybinding setting could fail.
 - Fix an issue where the light scroll bar style wasn't applied on dark background theme.

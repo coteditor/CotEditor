@@ -79,6 +79,12 @@
 "%@ strings replaced." = "%@ 件置換しました。";
 "Invalid regular expression" =  "無効な正規表現です。";
 
+// ONIGERR_INVALID_COMBINATION_OF_OPTIONS
+"Invalid combination of regular expression options" = "無効な正規表現オプションの組み合わせです。";
+"“%@” option and “%@” option cannot be activated at the same time." = "“%@”オプションと“%@”オプションを同時に有効にすることはできません。";
+"Capture croup" = "つねに無名グループを捕獲";  // must be the same name as the option name in FindPreferencesView
+"Don’t capture group" = "無名グループを捕獲しない";  // must be the same name as the option name in FindPreferencesView
+
 
 /* MARK: CEFindPanelController */
 "Replace the current selection with the replacement text, then find the next match." = "現在の選択範囲を置換テキストで置き換えてから、次のマッチを検索";

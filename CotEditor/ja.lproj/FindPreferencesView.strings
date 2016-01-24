@@ -82,7 +82,7 @@
 "uZ1-aS-LUd.title" = "空マッチを無視";
 /* Class = "NSButtonCell"; title = "Negate single line"; ObjectID = "q8J-xH-8Q3"; */
 "q8J-xH-8Q3.title" = "“単一行”を無効にする";
-/* Class = "NSButtonCell"; title = "Capture Group"; ObjectID = "GMh-gg-UVh"; */
+/* Class = "NSButtonCell"; title = "Capture group"; ObjectID = "GMh-gg-UVh"; */
 "GMh-gg-UVh.title" = "つねに無名グループを捕獲";
 /* Class = "NSButtonCell"; title = "Don’t capture group"; ObjectID = "xqN-fH-Reh"; */
 "xqN-fH-Reh.title" = "無名グループを捕獲しない";
