@@ -1,7 +1,7 @@
 PODS:
   - LibYAML (0.1.4)
   - NSHash (1.1.0)
-  - OgreKit (2.1.7.12)
+  - OgreKit (2.1.7.13)
   - Sparkle (1.11.1)
   - WFColorCode (1.3.0)
   - YAML-Framework (0.0.2):
@@ -25,7 +25,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   OgreKit:
-    :commit: 690cb07acfad014e64e8857dff7c4bc5085b4738
+    :commit: c10d663ab08bc4bc793e3866ab37f1c8c68427f6
     :git: https://github.com/coteditor/OgreKit.git
   YAML-Framework:
     :commit: 8e4aaf3d9b8e35f50a935ad0f5974a378de00a1a
@@ -34,7 +34,7 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   LibYAML: 3af2c5adf3a40dff936d087aa6a77edc10036bc5
   NSHash: 61d598c6d48957c5557f1eef0aeafd6ef5ec5fb7
-  OgreKit: fd85b057d48083faac37cb2dcb9e4f04e1a18daf
+  OgreKit: db9a172db18df07579a8f7253b49ab95dd44e35f
   Sparkle: 80198c37a54f8c29af89e5b9f985e730536ebfd5
   WFColorCode: b9ed09bd1529b3e1aeafbb3e230bc5630151a1e4
   YAML-Framework: 6fe698e19d39d778829f5937e39d1e6bc12afd7b

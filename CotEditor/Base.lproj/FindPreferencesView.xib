@@ -189,9 +189,18 @@
                                         <action selector="changeSyntax:" target="-2" id="dFU-Dy-lPt"/>
                                     </connections>
                                 </menuItem>
+                                <menuItem title="Python" tag="9" id="UAl-DN-REU">
+                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                    <connections>
+                                        <action selector="changeSyntax:" target="-2" id="GHE-dJ-rSs"/>
+                                    </connections>
+                                </menuItem>
                             </items>
                         </menu>
                     </popUpButtonCell>
+                    <connections>
+                        <binding destination="hNo-st-CW5" name="selectedTag" keyPath="values.findRegexSynatx" id="9H7-yb-gUe"/>
+                    </connections>
                 </popUpButton>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="he5-XI-8i5">
                     <rect key="frame" x="18" y="132" width="43" height="14"/>

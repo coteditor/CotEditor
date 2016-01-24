@@ -69,6 +69,8 @@
 "wpF-X7-PlC.title" = "Perl";
 /* Class = "NSMenuItem"; title = "Java"; ObjectID = "3oN-JC-4BB"; */
 "3oN-JC-4BB.title" = "Java";
+/* Class = "NSMenuItem"; title = "Python"; ObjectID = "UAl-DN-REU"; */
+"UAl-DN-REU.title" = "Python";
 
 /* Class = "NSButtonCell"; title = "Single Line"; ObjectID = "nqr-AM-oJQ"; */
 "nqr-AM-oJQ.title" = "Eine Zeile";

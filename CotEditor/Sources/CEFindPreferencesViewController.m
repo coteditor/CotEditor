@@ -47,10 +47,10 @@
 
 // ------------------------------------------------------
 /// initialize instance
-- (nonnull instancetype)init
+- (nullable instancetype)initWithCoder:(NSCoder *)coder
 // ------------------------------------------------------
 {
-    self = [super init];
+    self = [super initWithCoder:coder];
     if (self) {
         [self updateCanSetNegateSingleLineOption];
     }
@@ -64,20 +64,6 @@
 // ------------------------------------------------------
 {
     return @"FindPreferencesView";
-}
-
-
-// ------------------------------------------------------
-/// add check mark to selectable menus
-- (BOOL)validateMenuItem:(nonnull NSMenuItem *)menuItem
-// ------------------------------------------------------
-{
-    if ([menuItem action] == @selector(changeSyntax:)) {
-        OgreSyntax syntax = [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultFindRegexSyntaxKey];
-        [menuItem setState:([menuItem tag] == syntax) ? NSOnState : NSOffState];
-    }
-    
-    return YES;
 }
 
 
@@ -104,7 +90,8 @@
     [self setCanSetNegateSingleLineOption:(syntax == OgrePOSIXBasicSyntax ||
                                            syntax == OgrePOSIXExtendedSyntax ||
                                            syntax == OgrePerlSyntax ||
-                                           syntax == OgreJavaSyntax)];
+                                           syntax == OgreJavaSyntax ||
+                                           syntax == OgrePythonSyntax)];
 }
 
 @end
