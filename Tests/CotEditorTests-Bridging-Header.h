@@ -18,3 +18,6 @@
 
 // Encoding Detection Tests
 #import "NSString+CEEncoding.h"
+
+// Xattr Tests
+#import "NSURL+Xattr.h"
