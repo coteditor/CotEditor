@@ -30,9 +30,33 @@
 #import "CEDefaults.h"
 
 
+@interface CEFindPreferencesViewController ()
+
+@property (nonatomic) BOOL canSetNegateSingleLineOption;
+
+@end
+
+
+
+
+#pragma mark -
+
 @implementation CEFindPreferencesViewController
 
 #pragma mark Superclass Methods
+
+// ------------------------------------------------------
+/// initialize instance
+- (nonnull instancetype)init
+// ------------------------------------------------------
+{
+    self = [super init];
+    if (self) {
+        [self updateCanSetNegateSingleLineOption];
+    }
+    return self;
+}
+
 
 // ------------------------------------------------------
 /// nib name
@@ -66,6 +90,21 @@
 // ------------------------------------------------------
 {
     [[NSUserDefaults standardUserDefaults] setInteger:[sender tag] forKey:CEDefaultFindRegexSyntaxKey];
+    [self updateCanSetNegateSingleLineOption];
+}
+
+
+// ------------------------------------------------------
+/// update canSetNegateSingleLineOption property
+- (void)updateCanSetNegateSingleLineOption
+// ------------------------------------------------------
+{
+    OgreSyntax syntax = [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultFindRegexSyntaxKey];
+    
+    [self setCanSetNegateSingleLineOption:(syntax == OgrePOSIXBasicSyntax ||
+                                           syntax == OgrePOSIXExtendedSyntax ||
+                                           syntax == OgrePerlSyntax ||
+                                           syntax == OgreJavaSyntax)];
 }
 
 @end

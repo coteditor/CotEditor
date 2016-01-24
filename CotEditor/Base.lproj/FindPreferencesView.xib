@@ -31,6 +31,11 @@
                         <font key="font" metaFont="smallSystem"/>
                     </buttonCell>
                     <connections>
+                        <binding destination="-2" name="enabled" keyPath="canSetNegateSingleLineOption" id="Q30-yM-eb5">
+                            <dictionary key="options">
+                                <string key="NSValueTransformerName">NSNegateBoolean</string>
+                            </dictionary>
+                        </binding>
                         <binding destination="BQZ-CS-f7C" name="value" keyPath="singleLineOption" id="bqm-lf-8Td"/>
                     </connections>
                 </button>
@@ -71,6 +76,7 @@
                         <font key="font" metaFont="smallSystem"/>
                     </buttonCell>
                     <connections>
+                        <binding destination="-2" name="enabled" keyPath="canSetNegateSingleLineOption" id="738-ex-cyh"/>
                         <binding destination="BQZ-CS-f7C" name="value" keyPath="negateSingleLineOption" id="63T-Gd-Jec"/>
                     </connections>
                 </button>
