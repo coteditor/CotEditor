@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2015 1024jp
+ © 2015-2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -55,7 +55,7 @@ static char const XATTR_ENCODING_NAME[] = "com.apple.TextEncoding";
     NSArray<NSString *> *strings = [string componentsSeparatedByString:@";"];
     
     if ([strings count] >= 2) {
-        cfEncoding = [strings[1] integerValue];
+        cfEncoding = (CFStringEncoding)[strings[1] integerValue];
     } else if ([strings firstObject]) {
         NSString *IANACharSetName = [strings firstObject];
         cfEncoding = CFStringConvertIANACharSetNameToEncoding((CFStringRef)IANACharSetName);
