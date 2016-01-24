@@ -307,6 +307,8 @@
 		2A7FD34A1C5497EB00CE8566 /* NSURL+Xattr.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A1068C21A745FCE001DB9AA /* NSURL+Xattr.m */; };
 		2A7FD34D1C54A6F300CE8566 /* CEFindPreferencesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A7FD34C1C54A6F300CE8566 /* CEFindPreferencesViewController.m */; };
 		2A7FD34E1C54A6F300CE8566 /* CEFindPreferencesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A7FD34C1C54A6F300CE8566 /* CEFindPreferencesViewController.m */; };
+		2A7FD35A1C551C9700CE8566 /* CETableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A7FD3591C551C9700CE8566 /* CETableCellView.m */; };
+		2A7FD35B1C551C9700CE8566 /* CETableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A7FD3591C551C9700CE8566 /* CETableCellView.m */; };
 		2A83E23A1BA1E65A0069CDFE /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A83E2391BA1E65A0069CDFE /* libicucore.tbd */; };
 		2A83E23B1BA1E6750069CDFE /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A83E2391BA1E65A0069CDFE /* libicucore.tbd */; };
 		2A88A7901B8B87C90055B9AE /* NSString+Normalization.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A88A78F1B8B87C90055B9AE /* NSString+Normalization.m */; };
@@ -696,6 +698,8 @@
 		2A7FD3501C54B1AF00CE8566 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/FindPreferencesView.strings; sourceTree = "<group>"; };
 		2A7FD3541C54B1B400CE8566 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/FindPreferencesView.strings"; sourceTree = "<group>"; };
 		2A7FD3551C54B87A00CE8566 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/FindPreferencesView.strings; sourceTree = "<group>"; };
+		2A7FD3581C551C9700CE8566 /* CETableCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CETableCellView.h; sourceTree = "<group>"; };
+		2A7FD3591C551C9700CE8566 /* CETableCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CETableCellView.m; sourceTree = "<group>"; };
 		2A83E2391BA1E65A0069CDFE /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
 		2A88A78E1B8B87C90055B9AE /* NSString+Normalization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Normalization.h"; sourceTree = "<group>"; };
 		2A88A78F1B8B87C90055B9AE /* NSString+Normalization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Normalization.m"; sourceTree = "<group>"; };
@@ -1116,6 +1120,8 @@
 				2A15831918E368CE00601026 /* CEEncodingListSheetController.m */,
 				2A68F93618FB04F300673440 /* CEMenuItemCell.h */,
 				2A68F93718FB04F300673440 /* CEMenuItemCell.m */,
+				2A7FD3581C551C9700CE8566 /* CETableCellView.h */,
+				2A7FD3591C551C9700CE8566 /* CETableCellView.m */,
 			);
 			name = "Encoding List Sheet";
 			sourceTree = "<group>";
@@ -2204,6 +2210,7 @@
 				2AFEA0CF1C2D2FC6009001F6 /* NSString+CERange.m in Sources */,
 				2A6F0DE11B5500E100C2D03C /* CENavigationBarController.m in Sources */,
 				2A6F0DE21B5500E100C2D03C /* NSString+Sandboxing.m in Sources */,
+				2A7FD35B1C551C9700CE8566 /* CETableCellView.m in Sources */,
 				2A8984801C3CE201006290FF /* CESyntaxOutlineParser.m in Sources */,
 				2A6F0DE31B5500E100C2D03C /* CEStatusBarController.m in Sources */,
 				2A6F0DE41B5500E100C2D03C /* CEEncodingManager.m in Sources */,
@@ -2310,6 +2317,7 @@
 				2AE0C0971C422F3300E52E04 /* NSTextView+CETextReplacement.m in Sources */,
 				2A49861F1A67CC7100172797 /* CEEditorScrollView.m in Sources */,
 				2A94A45E18D0B562009FA90D /* CEOpacityPanelController.m in Sources */,
+				2A7FD35A1C551C9700CE8566 /* CETableCellView.m in Sources */,
 				2AA2E01F1C007C690087BDD6 /* CECharacterField.m in Sources */,
 				2AFF21821BA9F69A008A41CD /* CESwitcherSegmentedCell.m in Sources */,
 				2AE0C0931C422DFA00E52E04 /* CETextView+Commenting.m in Sources */,

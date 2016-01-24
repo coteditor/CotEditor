@@ -1,16 +1,15 @@
 /*
  
- CEPrefEncodingDataSource.h
+ CETableCellView.h
  
  CotEditor
  http://coteditor.com
  
- Created by 1024jp on 2014-12-16.
-
+ Created by 1024jp on 2016-01-25.
+ 
  ------------------------------------------------------------------------------
  
- © 2004-2007 nakamuxu
- © 2014-2016 1024jp
+ © 2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -29,9 +28,6 @@
 @import Cocoa;
 
 
-@interface CEPrefEncodingDataSource : NSObject <NSTableViewDataSource, NSTableViewDelegate>
-
-// Public method
-- (void)writeToUserDefaults;
+@interface CETableCellView : NSTableCellView
 
 @end
