@@ -41,25 +41,11 @@ static const CGFloat kDefaultResultViewHeight = 200.0;
 @property (nonatomic, nullable) NSLayoutConstraint *resultHeightConstraint;  // for autolayout on OS X 10.8
 @property (nonatomic, nullable, copy) NSString *resultMessage;  // binding
 
-#pragma mark Options
-@property (nonatomic) BOOL ignoreCaseOption;
-@property (nonatomic) BOOL singleLineOption;
-@property (nonatomic) BOOL multilineOption;
-@property (nonatomic) BOOL extendOption;
-@property (nonatomic) BOOL findLongestOption;
-@property (nonatomic) BOOL findNotEmptyOption;
-@property (nonatomic) BOOL findEmptyOption;
-@property (nonatomic) BOOL negateSingleLineOption;
-@property (nonatomic) BOOL captureGroupOption;
-@property (nonatomic) BOOL dontCaptureGroupOption;
-@property (nonatomic) BOOL delimitByWhitespaceOption;
-@property (nonatomic) BOOL notBeginOfLineOption;
-@property (nonatomic) BOOL notEndOfLineOption;
-
 #pragma mark Outlets
 @property (nonatomic, nullable, weak) IBOutlet CETextFinder *textFinder;
 @property (nonatomic, nullable) IBOutlet CEFindResultViewController *resultViewController;
 @property (nonatomic, nullable) IBOutlet NSPopover *regexReferencePopover;
+@property (nonatomic, nullable) IBOutlet NSPopover *preferencesPopover;
 @property (nonatomic, nullable, weak) IBOutlet NSNumberFormatter *integerFormatter;
 @property (nonatomic, nullable, weak) IBOutlet NSPopUpButton *advancedButton;
 @property (nonatomic, nullable, weak) IBOutlet NSSplitView *splitView;
@@ -88,9 +74,6 @@ static const CGFloat kDefaultResultViewHeight = 200.0;
     
     self = [super init];
     if (self) {
-        // deserialize options setting from defaults
-        [self loadOptions];
-        
         // observe default change for the "Replace" button tooltip
         [[NSUserDefaults standardUserDefaults] addObserver:self
                                                 forKeyPath:CEDefaultFindNextAfterReplaceKey
@@ -161,20 +144,6 @@ static const CGFloat kDefaultResultViewHeight = 200.0;
     [[self window] makeFirstResponder:[[self window] initialFirstResponder]];
     
     [super showWindow:sender];
-}
-
-
-// ------------------------------------------------------
-/// add check mark to selectable menus
-- (BOOL)validateMenuItem:(nonnull NSMenuItem *)menuItem
-// ------------------------------------------------------
-{
-    if ([menuItem action] == @selector(changeSyntax:)) {
-        OgreSyntax syntax = [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultFindRegexSyntaxKey];
-        [menuItem setState:([menuItem tag] == syntax) ? NSOnState : NSOffState];
-    }
-    
-    return YES;
 }
 
 
@@ -450,30 +419,6 @@ static const CGFloat kDefaultResultViewHeight = 200.0;
 
 
 // ------------------------------------------------------
-/// change regex syntax setting via menu item
-- (IBAction)changeSyntax:(nullable id)sender
-// ------------------------------------------------------
-{
-    [[NSUserDefaults standardUserDefaults] setInteger:[sender tag] forKey:CEDefaultFindRegexSyntaxKey];
-}
-
-
-// ------------------------------------------------------
-/// option is toggled
-- (IBAction)toggleOption:(nullable id)sender
-// ------------------------------------------------------
-{
-    __weak typeof(self) weakSelf = self;
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        typeof(self) self = weakSelf;  // strong self
-        if (!self) { return; }
-        
-        [self saveOptions];
-    });
-}
-
-
-// ------------------------------------------------------
 /// close opening find result view
 - (IBAction)closeResultView:(nullable id)sender
 // ------------------------------------------------------
@@ -481,6 +426,19 @@ static const CGFloat kDefaultResultViewHeight = 200.0;
     [self setResultShown:NO animate:YES];
     
     [self unhighlight];
+}
+
+
+// ------------------------------------------------------
+/// show find panel preferences as popover
+- (IBAction)showPreferences:(nullable id)sender
+// ------------------------------------------------------
+{
+    if ([[self preferencesPopover] isShown]) {
+        [[self preferencesPopover] close];
+    } else {
+        [[self preferencesPopover] showRelativeToRect:[sender bounds] ofView:sender preferredEdge:NSMinYEdge];
+    }
 }
 
 
@@ -655,54 +613,6 @@ static const CGFloat kDefaultResultViewHeight = 200.0;
     
     [[NSNotificationCenter defaultCenter] removeObserver:self name:NSTextStorageDidProcessEditingNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:NSWindowWillCloseNotification object:nil];
-}
-
-
-// ------------------------------------------------------
-/// serialize bit option value from instance booleans
-- (void)saveOptions
-// ------------------------------------------------------
-{
-    unsigned options = OgreNoneOption;
-    
-    if ([self singleLineOption])          { options |= OgreSingleLineOption; }
-    if ([self multilineOption])           { options |= OgreMultilineOption; }
-    if ([self ignoreCaseOption])          { options |= OgreIgnoreCaseOption; }
-    if ([self extendOption])              { options |= OgreExtendOption; }
-    if ([self findLongestOption])         { options |= OgreFindLongestOption; }
-    if ([self findNotEmptyOption])        { options |= OgreFindNotEmptyOption; }
-    if ([self findEmptyOption])           { options |= OgreFindEmptyOption; }
-    if ([self negateSingleLineOption])    { options |= OgreNegateSingleLineOption; }
-    if ([self captureGroupOption])        { options |= OgreCaptureGroupOption; }
-    if ([self dontCaptureGroupOption])    { options |= OgreDontCaptureGroupOption; }
-    if ([self delimitByWhitespaceOption]) { options |= OgreDelimitByWhitespaceOption; }
-    if ([self notBeginOfLineOption])      { options |= OgreNotBOLOption; }
-    if ([self notEndOfLineOption])        { options |= OgreNotEOLOption; }
-    
-    [[NSUserDefaults standardUserDefaults] setInteger:options forKey:CEDefaultFindOptionsKey];
-}
-
-
-// ------------------------------------------------------
-/// deserialize bit option value to instance booleans
-- (void)loadOptions
-// ------------------------------------------------------
-{
-    unsigned options = [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultFindOptionsKey];
-    
-    [self setSingleLineOption:((options & OgreSingleLineOption) != 0)];
-    [self setMultilineOption:((options & OgreMultilineOption) != 0)];
-    [self setIgnoreCaseOption:((options & OgreIgnoreCaseOption) != 0)];
-    [self setExtendOption:((options & OgreExtendOption) != 0)];
-    [self setFindLongestOption:((options & OgreFindLongestOption) != 0)];
-    [self setFindNotEmptyOption:((options & OgreFindNotEmptyOption) != 0)];
-    [self setFindEmptyOption:((options & OgreFindEmptyOption) != 0)];
-    [self setNegateSingleLineOption:((options & OgreNegateSingleLineOption) != 0)];
-    [self setCaptureGroupOption:((options & OgreCaptureGroupOption) != 0)];
-    [self setDontCaptureGroupOption:((options & OgreDontCaptureGroupOption) != 0)];
-    [self setDelimitByWhitespaceOption:((options & OgreDelimitByWhitespaceOption) != 0)];
-    [self setNotBeginOfLineOption:((options & OgreNotBOLOption) != 0)];
-    [self setNotEndOfLineOption:((options & OgreNotEOLOption) != 0)];
 }
 
 

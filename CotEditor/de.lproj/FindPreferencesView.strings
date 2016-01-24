@@ -1,0 +1,95 @@
+/*
+ 
+ FindPreferencesView.strings (German)
+ 
+ CotEditor
+ http://coteditor.com
+ 
+ Created by 1024jp on 2016-01-24.
+ 
+ ------------------------------------------------------------------------------
+ 
+ © 2015-2016 CotEditor Project
+ 
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+ 
+ http://www.apache.org/licenses/LICENSE-2.0
+ 
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ 
+ */
+
+/* Class = "NSTextFieldCell"; title = "Advanced Find Options"; ObjectID = "Dl6-kv-hhz"; */
+"Dl6-kv-hhz.title" = "Erweitere Suchoptionen";
+
+
+/* Class = "NSButtonCell"; title = "Wrap around"; ObjectID = "o7S-uI-urg"; */
+"o7S-uI-urg.title" = "Gesamtes Dokument";
+/* Class = "NSButtonCell"; title = "Select next match after replace"; ObjectID = "XBp-LE-3Ry"; */
+"XBp-LE-3Ry.title" = "Nach der Ersetzung nächste Übereinstimmung auswählen";
+/* Class = "NSButtonCell"; title = "Auto-close progress dialog"; ObjectID = "KBq-zH-H2M"; */
+"KBq-zH-H2M.title" = "Verlaufsanzeige automatisch schließen";
+
+
+// Textual Search
+
+/* Class = "NSTextFieldCell"; title = "Textual Search"; ObjectID = "d1L-6X-N8c"; */
+"d1L-6X-N8c.title" = "Textuelles Suchen";
+
+/* Class = "NSButtonCell"; title = "Delimit by whitespace"; ObjectID = "3mQ-og-LXu"; */
+"3mQ-og-LXu.title" = "Mit Leerzeichen trennen";
+
+
+// Regular Expression
+
+/* Class = "NSTextFieldCell"; title = "Regular Expression"; ObjectID = "Xa9-i4-ELR"; */
+"Xa9-i4-ELR.title" = "Regulären Ausdruck";
+
+/* Class = "NSTextFieldCell"; title = "Syntax:"; ObjectID = "MvA-iq-o2S"; */
+"MvA-iq-o2S.title" = "Syntax:";
+/* Class = "NSMenuItem"; title = "Ruby"; ObjectID = "k4a-ql-TV8"; */
+"k4a-ql-TV8.title" = "Ruby";
+/* Class = "NSMenuItem"; title = "POSIX Basic"; ObjectID = "XXk-aG-HmM"; */
+"XXk-aG-HmM.title" = "POSIX Basic";
+/* Class = "NSMenuItem"; title = "POSIX Extended"; ObjectID = "Z5o-Is-Dim"; */
+"Z5o-Is-Dim.title" = "POSIX Erweitert";
+/* Class = "NSMenuItem"; title = "Emacs"; ObjectID = "vHs-3L-t8t"; */
+"vHs-3L-t8t.title" = "Emacs";
+/* Class = "NSMenuItem"; title = "Grep"; ObjectID = "lI9-hA-FUX"; */
+"lI9-hA-FUX.title" = "Grep";
+/* Class = "NSMenuItem"; title = "GNU Regex"; ObjectID = "7Lh-bm-dFh"; */
+"7Lh-bm-dFh.title" = "GNU Regex";
+/* Class = "NSMenuItem"; title = "Perl"; ObjectID = "wpF-X7-PlC"; */
+"wpF-X7-PlC.title" = "Perl";
+/* Class = "NSMenuItem"; title = "Java"; ObjectID = "3oN-JC-4BB"; */
+"3oN-JC-4BB.title" = "Java";
+
+/* Class = "NSButtonCell"; title = "Single Line"; ObjectID = "nqr-AM-oJQ"; */
+"nqr-AM-oJQ.title" = "Eine Zeile";
+/* Class = "NSButtonCell"; title = "Multiline"; ObjectID = "YXU-NA-BZb"; */
+"YXU-NA-BZb.title" = "Mehrere Zeilen";
+/* Class = "NSButtonCell"; title = "Extend"; ObjectID = "iMa-K7-Lhy"; */
+"iMa-K7-Lhy.title" = "Erweitern";
+/* Class = "NSButtonCell"; title = "Find longest"; ObjectID = "5oj-ch-YiX"; */
+"5oj-ch-YiX.title" = "Längstes suchen";
+/* Class = "NSButtonCell"; title = "Find not empty"; ObjectID = "uZ1-aS-LUd"; */
+"uZ1-aS-LUd.title" = "Suche nicht leer";
+/* Class = "NSButtonCell"; title = "Negate single line"; ObjectID = "q8J-xH-8Q3"; */
+"q8J-xH-8Q3.title" = "Eine Zeile ablehnen";
+/* Class = "NSButtonCell"; title = "Capture Group"; ObjectID = "GMh-gg-UVh"; */
+"GMh-gg-UVh.title" = "In Gruppe sichern";
+/* Class = "NSButtonCell"; title = "Don’t capture group"; ObjectID = "xqN-fH-Reh"; */
+"xqN-fH-Reh.title" = "Kein Sichern in Gruppe";
+
+/* Class = "NSButtonCell"; title = "Not begin of line"; ObjectID = "Kj6-NQ-Gk5"; */
+"Kj6-NQ-Gk5.title" = "Nicht Zeilenanfang";
+/* Class = "NSButtonCell"; title = "Not end of line"; ObjectID = "rj9-Y8-PMO"; */
+"rj9-Y8-PMO.title" = "Nicht Zeilenende";
+/* Class = "NSButtonCell"; title = "Find empty"; ObjectID = "hHc-CR-50Y"; */
+"hHc-CR-50Y.title" = "Leere Suche";

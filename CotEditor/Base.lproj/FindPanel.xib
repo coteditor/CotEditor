@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9531"/>
@@ -7,10 +7,10 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="CEFindPanelController">
             <connections>
-                <outlet property="advancedButton" destination="EY8-gj-fQb" id="KLM-nZ-wRY"/>
                 <outlet property="disclosureButton" destination="oC1-bN-UeN" id="j2a-5P-Uu1"/>
                 <outlet property="findHistoryMenu" destination="Zor-um-eIs" id="81b-eT-9Dh"/>
                 <outlet property="integerFormatter" destination="YLc-PB-3Zc" id="7QI-cl-3y8"/>
+                <outlet property="preferencesPopover" destination="00C-j6-lNt" id="Wrb-hr-DbZ"/>
                 <outlet property="regexReferencePopover" destination="aeg-YU-kMW" id="LBF-6V-RfW"/>
                 <outlet property="replaceButton" destination="7cY-9y-k1i" id="LWp-Pg-0vR"/>
                 <outlet property="replaceHistoryMenu" destination="xUj-lq-8zt" id="sNr-bZ-1ib"/>
@@ -28,7 +28,7 @@
             <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
             <view key="contentView" id="VS9-oi-ter">
                 <rect key="frame" x="0.0" y="0.0" width="500" height="380"/>
-                <autoresizingMask key="autoresizingMask"/>
+                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
                     <splitView dividerStyle="thin" translatesAutoresizingMaskIntoConstraints="NO" id="ZjI-28-T38" customClass="CEFindPanelSplitView">
                         <rect key="frame" x="0.0" y="0.0" width="500" height="380"/>
@@ -38,20 +38,20 @@
                                 <autoresizingMask key="autoresizingMask"/>
                                 <subviews>
                                     <scrollView toolTip="Type the text to search for." focusRingType="exterior" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hxw-DS-gxQ" userLabel="Find Scroll View">
-                                        <rect key="frame" x="72" y="84" width="408" height="44"/>
+                                        <rect key="frame" x="66" y="84" width="414" height="44"/>
                                         <clipView key="contentView" copiesOnScroll="NO" id="YCX-T1-drQ" customClass="CEFindPanelTextClipView">
-                                            <rect key="frame" x="1" y="1" width="406" height="42"/>
+                                            <rect key="frame" x="1" y="1" width="412" height="42"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <textView importsGraphics="NO" richText="NO" allowsUndo="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" id="fDB-No-De7" customClass="CEFindPanelTextView">
-                                                    <rect key="frame" x="0.0" y="0.0" width="406" height="42"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="412" height="42"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <size key="minSize" width="406" height="42"/>
+                                                    <size key="minSize" width="412" height="42"/>
                                                     <size key="maxSize" width="10000000" height="10000000"/>
                                                     <color key="insertionPointColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                    <size key="minSize" width="406" height="42"/>
+                                                    <size key="minSize" width="412" height="42"/>
                                                     <size key="maxSize" width="10000000" height="10000000"/>
                                                     <connections>
                                                         <binding destination="qZS-yd-wpm" name="value" keyPath="findString" id="RMK-P4-pYn">
@@ -74,28 +74,28 @@
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="pES-RH-prG"/>
                                         </constraints>
                                         <scroller key="horizontalScroller" verticalHuggingPriority="750" doubleValue="1" controlSize="small" horizontal="YES" id="r5Z-he-d07">
-                                            <rect key="frame" x="1" y="29" width="406" height="14"/>
+                                            <rect key="frame" x="1" y="29" width="412" height="14"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
                                         <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" controlSize="small" horizontal="NO" id="UpI-hP-Ru9">
-                                            <rect key="frame" x="393" y="1" width="14" height="42"/>
+                                            <rect key="frame" x="399" y="1" width="14" height="42"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
                                     </scrollView>
                                     <scrollView toolTip="Type the text to replace the found text." focusRingType="exterior" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qiQ-tb-XCa" userLabel="Replecement Scroll View">
-                                        <rect key="frame" x="72" y="30" width="408" height="44"/>
+                                        <rect key="frame" x="66" y="30" width="414" height="44"/>
                                         <clipView key="contentView" copiesOnScroll="NO" id="sC4-EU-bnm" customClass="CEFindPanelTextClipView">
-                                            <rect key="frame" x="1" y="1" width="406" height="42"/>
+                                            <rect key="frame" x="1" y="1" width="412" height="42"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <textView importsGraphics="NO" richText="NO" allowsUndo="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" id="0XH-tC-fau" customClass="CEFindPanelTextView">
-                                                    <rect key="frame" x="0.0" y="0.0" width="406" height="42"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="412" height="42"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <size key="minSize" width="406" height="42"/>
+                                                    <size key="minSize" width="412" height="42"/>
                                                     <size key="maxSize" width="10000000" height="10000000"/>
                                                     <color key="insertionPointColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                    <size key="minSize" width="406" height="42"/>
+                                                    <size key="minSize" width="412" height="42"/>
                                                     <size key="maxSize" width="10000000" height="10000000"/>
                                                     <connections>
                                                         <binding destination="qZS-yd-wpm" name="value" keyPath="replacementString" id="MRv-ox-jgD">
@@ -113,16 +113,16 @@
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </clipView>
                                         <scroller key="horizontalScroller" verticalHuggingPriority="750" doubleValue="1" controlSize="small" horizontal="YES" id="DHo-wb-6CP">
-                                            <rect key="frame" x="1" y="29" width="406" height="14"/>
+                                            <rect key="frame" x="1" y="29" width="412" height="14"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
                                         <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" controlSize="small" horizontal="NO" id="kcQ-as-bev">
-                                            <rect key="frame" x="393" y="1" width="14" height="42"/>
+                                            <rect key="frame" x="399" y="1" width="14" height="42"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
                                     </scrollView>
                                     <button toolTip="Select to search with regular expression." verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8My-G5-daT">
-                                        <rect key="frame" x="69" y="7" width="123" height="18"/>
+                                        <rect key="frame" x="63" y="7" width="123" height="18"/>
                                         <buttonCell key="cell" type="check" title="Regular Expression" bezelStyle="regularSquare" imagePosition="left" controlSize="small" state="on" inset="2" id="brT-HP-GVL">
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="smallSystem"/>
@@ -132,18 +132,17 @@
                                         </connections>
                                     </button>
                                     <button toolTip="Select to ignore character case on search." verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="GvT-tD-Cbk">
-                                        <rect key="frame" x="195" y="7" width="85" height="18"/>
+                                        <rect key="frame" x="189" y="7" width="85" height="18"/>
                                         <buttonCell key="cell" type="check" title="Ignore Case" bezelStyle="regularSquare" imagePosition="left" controlSize="small" inset="2" id="4wg-Cz-ozb">
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="smallSystem"/>
                                         </buttonCell>
                                         <connections>
-                                            <action selector="toggleOption:" target="-2" id="Gii-hY-Kid"/>
-                                            <binding destination="-2" name="value" keyPath="ignoreCaseOption" id="29w-tq-8Yy"/>
+                                            <binding destination="qZS-yd-wpm" name="value" keyPath="ignoreCaseOption" id="oPb-wi-vgp"/>
                                         </connections>
                                     </button>
                                     <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="ybT-sQ-Vn5" userLabel="Recent Searches">
-                                        <rect key="frame" x="69" y="109" width="35" height="17"/>
+                                        <rect key="frame" x="63" y="109" width="35" height="17"/>
                                         <popUpButtonCell key="cell" type="smallSquare" title="DUMMY" bezelStyle="smallSquare" imagePosition="only" alignment="left" lineBreakMode="truncatingTail" inset="2" pullsDown="YES" arrowPosition="noArrow" preferredEdge="minX" autoenablesItems="NO" altersStateOfSelectedItem="NO" selectedItem="vE8-oK-xlC" id="rfC-IT-glr" userLabel="Recent Searches">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="menu"/>
@@ -166,7 +165,7 @@
                                         </popUpButtonCell>
                                     </popUpButton>
                                     <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="gM0-RD-hIC" userLabel="Recent Replacements">
-                                        <rect key="frame" x="69" y="55" width="35" height="17"/>
+                                        <rect key="frame" x="63" y="55" width="35" height="17"/>
                                         <popUpButtonCell key="cell" type="smallSquare" title="DUMMY" bezelStyle="smallSquare" imagePosition="only" alignment="left" lineBreakMode="truncatingTail" inset="2" pullsDown="YES" arrowPosition="noArrow" preferredEdge="minX" autoenablesItems="NO" altersStateOfSelectedItem="NO" selectedItem="vfK-an-Qnl" id="u5j-P5-Mjd" userLabel="Recent Replacements">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="menu"/>
@@ -189,7 +188,7 @@
                                         </popUpButtonCell>
                                     </popUpButton>
                                     <button toolTip="Select to search text only from selection." verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tu7-IT-dA3">
-                                        <rect key="frame" x="283" y="7" width="84" height="18"/>
+                                        <rect key="frame" x="277" y="7" width="84" height="18"/>
                                         <buttonCell key="cell" type="check" title="In Selection" bezelStyle="regularSquare" imagePosition="left" controlSize="small" inset="2" id="9bc-9Q-fhd">
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="smallSystem"/>
@@ -198,174 +197,6 @@
                                             <binding destination="1KP-j4-l6E" name="value" keyPath="values.findInSelection" id="9WX-m7-TxB"/>
                                         </connections>
                                     </button>
-                                    <popUpButton toolTip="Set advanced options." translatesAutoresizingMaskIntoConstraints="NO" id="EY8-gj-fQb">
-                                        <rect key="frame" x="18" y="104" width="48" height="26"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="44" id="9LH-7p-gFL"/>
-                                        </constraints>
-                                        <popUpButtonCell key="cell" type="bevel" bezelStyle="regularSquare" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" borderStyle="border" inset="2" pullsDown="YES" autoenablesItems="NO" id="sfm-kK-8cs">
-                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="menu"/>
-                                            <menu key="menu" autoenablesItems="NO" id="oEy-4y-qoZ">
-                                                <items>
-                                                    <menuItem image="NSActionTemplate" hidden="YES" id="SsS-EF-JyP">
-                                                        <modifierMask key="keyEquivalentModifierMask"/>
-                                                    </menuItem>
-                                                    <menuItem title="Wrap Around" state="on" id="Oqm-Wt-G7B">
-                                                        <connections>
-                                                            <binding destination="1KP-j4-l6E" name="value" keyPath="values.findIsWrap" id="oZK-lu-PN8"/>
-                                                        </connections>
-                                                    </menuItem>
-                                                    <menuItem title="Select Next Match after Replace" state="on" id="RfX-XI-iRH">
-                                                        <connections>
-                                                            <binding destination="1KP-j4-l6E" name="value" keyPath="values.findsNextAfterReplace" id="Rnm-ba-hDX"/>
-                                                        </connections>
-                                                    </menuItem>
-                                                    <menuItem isSeparatorItem="YES" id="WaO-Uo-cUX"/>
-                                                    <menuItem title="Textual Search Options" enabled="NO" id="hX3-jg-Uqc">
-                                                        <modifierMask key="keyEquivalentModifierMask"/>
-                                                    </menuItem>
-                                                    <menuItem title="Delimit by Whitespace" indentationLevel="1" id="4Pf-nh-75E">
-                                                        <connections>
-                                                            <action selector="toggleOption:" target="-2" id="GsS-Pv-XDi"/>
-                                                            <binding destination="-2" name="value" keyPath="delimitByWhitespaceOption" id="mm4-lp-2RW"/>
-                                                        </connections>
-                                                    </menuItem>
-                                                    <menuItem isSeparatorItem="YES" id="SnM-9t-FSy"/>
-                                                    <menuItem title="Regular Expression Options" enabled="NO" id="UZ5-oK-DED">
-                                                        <modifierMask key="keyEquivalentModifierMask"/>
-                                                    </menuItem>
-                                                    <menuItem title="Syntax" indentationLevel="1" id="Uhr-hw-nIf">
-                                                        <menu key="submenu" title="Syntax" id="bs2-Tz-po4">
-                                                            <items>
-                                                                <menuItem title="Ruby" tag="8" id="NPK-8x-xDg">
-                                                                    <modifierMask key="keyEquivalentModifierMask"/>
-                                                                    <connections>
-                                                                        <action selector="changeSyntax:" target="-2" id="44H-c7-ASv"/>
-                                                                    </connections>
-                                                                </menuItem>
-                                                                <menuItem isSeparatorItem="YES" id="mQv-EX-V07"/>
-                                                                <menuItem title="POSIX Basic" tag="1" id="y7k-yn-gy6">
-                                                                    <modifierMask key="keyEquivalentModifierMask"/>
-                                                                    <connections>
-                                                                        <action selector="changeSyntax:" target="-2" id="jCk-Vq-T46"/>
-                                                                    </connections>
-                                                                </menuItem>
-                                                                <menuItem title="POSIX Extended" tag="2" id="QfE-cX-d9h">
-                                                                    <modifierMask key="keyEquivalentModifierMask"/>
-                                                                    <connections>
-                                                                        <action selector="changeSyntax:" target="-2" id="gIZ-rV-6GE"/>
-                                                                    </connections>
-                                                                </menuItem>
-                                                                <menuItem title="Emacs" tag="3" id="IKR-qF-Nqu">
-                                                                    <modifierMask key="keyEquivalentModifierMask"/>
-                                                                    <connections>
-                                                                        <action selector="changeSyntax:" target="-2" id="c1g-T3-7Xl"/>
-                                                                    </connections>
-                                                                </menuItem>
-                                                                <menuItem title="Grep" tag="4" id="Nbe-7c-AnJ">
-                                                                    <modifierMask key="keyEquivalentModifierMask"/>
-                                                                    <connections>
-                                                                        <action selector="changeSyntax:" target="-2" id="dv2-5e-lCo"/>
-                                                                    </connections>
-                                                                </menuItem>
-                                                                <menuItem title="GNU Regex" tag="5" id="sgn-JJ-gas">
-                                                                    <modifierMask key="keyEquivalentModifierMask"/>
-                                                                    <connections>
-                                                                        <action selector="changeSyntax:" target="-2" id="k3f-58-ZPn"/>
-                                                                    </connections>
-                                                                </menuItem>
-                                                                <menuItem title="Java" tag="6" id="heJ-on-iUB">
-                                                                    <modifierMask key="keyEquivalentModifierMask"/>
-                                                                    <connections>
-                                                                        <action selector="changeSyntax:" target="-2" id="xuf-Wp-H2Z"/>
-                                                                    </connections>
-                                                                </menuItem>
-                                                                <menuItem title="Perl" tag="7" id="mdl-TK-1fB">
-                                                                    <modifierMask key="keyEquivalentModifierMask"/>
-                                                                    <connections>
-                                                                        <action selector="changeSyntax:" target="-2" id="A4F-xW-Inq"/>
-                                                                    </connections>
-                                                                </menuItem>
-                                                            </items>
-                                                        </menu>
-                                                    </menuItem>
-                                                    <menuItem title="Single Line" tag="1" indentationLevel="1" id="UQ6-Up-xWI">
-                                                        <connections>
-                                                            <action selector="toggleOption:" target="-2" id="Cue-p0-6yH"/>
-                                                            <binding destination="-2" name="value" keyPath="singleLineOption" id="EAc-Cy-JAi"/>
-                                                        </connections>
-                                                    </menuItem>
-                                                    <menuItem title="Multiline" tag="1" indentationLevel="1" id="kPN-Hy-ym0">
-                                                        <connections>
-                                                            <action selector="toggleOption:" target="-2" id="POC-fQ-lHg"/>
-                                                            <binding destination="-2" name="value" keyPath="multilineOption" id="aDC-vs-srf"/>
-                                                        </connections>
-                                                    </menuItem>
-                                                    <menuItem title="Extend" tag="1" indentationLevel="1" id="14O-E6-7lS">
-                                                        <connections>
-                                                            <action selector="toggleOption:" target="-2" id="Ji2-Cb-cLd"/>
-                                                            <binding destination="-2" name="value" keyPath="extendOption" id="EJT-hL-1XV"/>
-                                                        </connections>
-                                                    </menuItem>
-                                                    <menuItem title="Find Longest" tag="1" indentationLevel="1" id="xBb-Le-i3R">
-                                                        <connections>
-                                                            <action selector="toggleOption:" target="-2" id="cbu-yX-aCJ"/>
-                                                            <binding destination="-2" name="value" keyPath="findLongestOption" id="a9W-eg-L3p"/>
-                                                        </connections>
-                                                    </menuItem>
-                                                    <menuItem title="Find Not Empty" tag="1" indentationLevel="1" id="3D5-4J-V4l">
-                                                        <connections>
-                                                            <action selector="toggleOption:" target="-2" id="PPc-zO-kyY"/>
-                                                            <binding destination="-2" name="value" keyPath="findNotEmptyOption" id="ZTx-eL-CDr"/>
-                                                        </connections>
-                                                    </menuItem>
-                                                    <menuItem title="Find Empty" tag="1" indentationLevel="1" id="amg-LN-hui">
-                                                        <connections>
-                                                            <action selector="toggleOption:" target="-2" id="hXt-qI-9Ha"/>
-                                                            <binding destination="-2" name="value" keyPath="findEmptyOption" id="jFW-y0-DQp"/>
-                                                        </connections>
-                                                    </menuItem>
-                                                    <menuItem title="Negate Single Line" tag="1" indentationLevel="1" id="Sdf-5P-GP1">
-                                                        <connections>
-                                                            <action selector="toggleOption:" target="-2" id="8KI-gz-zNh"/>
-                                                            <binding destination="-2" name="value" keyPath="negateSingleLineOption" id="rH8-13-o6P"/>
-                                                        </connections>
-                                                    </menuItem>
-                                                    <menuItem title="Capture Group" state="on" tag="1" indentationLevel="1" id="LiY-vD-U6B">
-                                                        <connections>
-                                                            <action selector="toggleOption:" target="-2" id="pFJ-pd-xo8"/>
-                                                            <binding destination="-2" name="value" keyPath="captureGroupOption" id="T99-qr-Xdh"/>
-                                                        </connections>
-                                                    </menuItem>
-                                                    <menuItem title="Don’t Capture Group" tag="1" indentationLevel="1" id="fQl-sZ-bjK">
-                                                        <connections>
-                                                            <action selector="toggleOption:" target="-2" id="mnD-Iu-vwe"/>
-                                                            <binding destination="-2" name="value" keyPath="dontCaptureGroupOption" id="lXE-sk-wDY"/>
-                                                        </connections>
-                                                    </menuItem>
-                                                    <menuItem title="Not Begin of Line" tag="1" indentationLevel="1" id="AFF-AC-IR9">
-                                                        <connections>
-                                                            <action selector="toggleOption:" target="-2" id="g5P-m1-2aZ"/>
-                                                            <binding destination="-2" name="value" keyPath="notBeginOfLineOption" id="V3z-kk-SZN"/>
-                                                        </connections>
-                                                    </menuItem>
-                                                    <menuItem title="Not End of Line" tag="1" indentationLevel="1" id="kCx-M9-GDk">
-                                                        <connections>
-                                                            <action selector="toggleOption:" target="-2" id="unh-LZ-hgx"/>
-                                                            <binding destination="-2" name="value" keyPath="notEndOfLineOption" id="CB8-oU-nxn"/>
-                                                        </connections>
-                                                    </menuItem>
-                                                    <menuItem isSeparatorItem="YES" id="X4Y-hC-opX"/>
-                                                    <menuItem title="Auto-Close Progress Dialog" state="on" id="ONX-V4-H0w">
-                                                        <connections>
-                                                            <binding destination="1KP-j4-l6E" name="value" keyPath="values.findClosesIndicatorWhenDone" id="7un-z6-GPy"/>
-                                                        </connections>
-                                                    </menuItem>
-                                                </items>
-                                            </menu>
-                                        </popUpButtonCell>
-                                    </popUpButton>
                                     <button toolTip="Show quick reference for regular expression syntax." horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="i2l-7Z-Zmf">
                                         <rect key="frame" x="464" y="7" width="19" height="19"/>
                                         <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" controlSize="mini" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="xcc-KP-rT7">
@@ -392,9 +223,21 @@
                                             </binding>
                                         </connections>
                                     </textField>
+                                    <button toolTip="Set advanced options." verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ESq-ws-6H3">
+                                        <rect key="frame" x="14" y="100" width="50" height="32"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="38" id="04A-tP-1IZ"/>
+                                        </constraints>
+                                        <buttonCell key="cell" type="push" bezelStyle="rounded" image="NSActionTemplate" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Lbb-ia-RZ5">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="showPreferences:" target="-2" id="8jX-cO-171"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="hxw-DS-gxQ" firstAttribute="leading" secondItem="EY8-gj-fQb" secondAttribute="trailing" constant="8" symbolic="YES" id="2Oh-vm-AAA"/>
                                     <constraint firstItem="8My-G5-daT" firstAttribute="leading" secondItem="hxw-DS-gxQ" secondAttribute="leading" id="2Px-Ls-3RC"/>
                                     <constraint firstItem="tu7-IT-dA3" firstAttribute="top" secondItem="qiQ-tb-XCa" secondAttribute="bottom" constant="8" symbolic="YES" id="3zE-iF-XlX"/>
                                     <constraint firstAttribute="trailing" secondItem="hxw-DS-gxQ" secondAttribute="trailing" constant="20" symbolic="YES" id="56k-C9-YpU"/>
@@ -404,14 +247,15 @@
                                     <constraint firstItem="8My-G5-daT" firstAttribute="centerY" secondItem="i2l-7Z-Zmf" secondAttribute="centerY" id="B6G-yH-N5A"/>
                                     <constraint firstItem="BGD-yc-FIZ" firstAttribute="trailing" secondItem="hxw-DS-gxQ" secondAttribute="trailing" constant="-8" id="Eq8-gA-Qnx"/>
                                     <constraint firstItem="i2l-7Z-Zmf" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="tu7-IT-dA3" secondAttribute="trailing" constant="12" symbolic="YES" id="IKi-Zn-5pX"/>
-                                    <constraint firstItem="EY8-gj-fQb" firstAttribute="leading" secondItem="lkE-wj-Gi5" secondAttribute="leading" constant="20" symbolic="YES" id="LOY-dv-dZe"/>
                                     <constraint firstAttribute="bottom" secondItem="8My-G5-daT" secondAttribute="bottom" constant="10" id="U9G-t3-7BQ"/>
                                     <constraint firstItem="hxw-DS-gxQ" firstAttribute="height" secondItem="qiQ-tb-XCa" secondAttribute="height" id="U9g-2U-ALP"/>
                                     <constraint firstAttribute="trailing" secondItem="i2l-7Z-Zmf" secondAttribute="trailing" constant="20" symbolic="YES" id="WF4-HF-UDF"/>
                                     <constraint firstItem="hxw-DS-gxQ" firstAttribute="leading" secondItem="ybT-sQ-Vn5" secondAttribute="leading" constant="3" id="Ygo-iO-YvZ"/>
-                                    <constraint firstItem="hxw-DS-gxQ" firstAttribute="top" secondItem="EY8-gj-fQb" secondAttribute="top" id="ZnD-4N-pni"/>
+                                    <constraint firstItem="ESq-ws-6H3" firstAttribute="leading" secondItem="lkE-wj-Gi5" secondAttribute="leading" constant="20" symbolic="YES" id="akB-Fw-HbO"/>
+                                    <constraint firstItem="hxw-DS-gxQ" firstAttribute="leading" secondItem="ESq-ws-6H3" secondAttribute="trailing" constant="8" symbolic="YES" id="cgt-4q-4HS"/>
                                     <constraint firstItem="qiQ-tb-XCa" firstAttribute="leading" secondItem="gM0-RD-hIC" secondAttribute="leading" constant="3" id="duc-IJ-uJo"/>
                                     <constraint firstItem="qiQ-tb-XCa" firstAttribute="top" secondItem="gM0-RD-hIC" secondAttribute="top" constant="-2" id="kM3-sK-QkA"/>
+                                    <constraint firstItem="hxw-DS-gxQ" firstAttribute="top" secondItem="ESq-ws-6H3" secondAttribute="top" id="nfT-0q-b00"/>
                                     <constraint firstAttribute="trailing" secondItem="qiQ-tb-XCa" secondAttribute="trailing" constant="20" symbolic="YES" id="p4e-o4-Jfv"/>
                                     <constraint firstItem="8My-G5-daT" firstAttribute="top" secondItem="qiQ-tb-XCa" secondAttribute="bottom" constant="8" symbolic="YES" id="pMc-aZ-JfI"/>
                                     <constraint firstItem="tu7-IT-dA3" firstAttribute="leading" secondItem="GvT-tD-Cbk" secondAttribute="trailing" constant="8" symbolic="YES" id="riZ-4A-Sii"/>
@@ -707,6 +551,12 @@
             <connections>
                 <outlet property="contentViewController" destination="uMF-F8-Wjs" id="O3O-mx-K8n"/>
                 <outlet property="delegate" destination="-2" id="SVT-4d-mbL"/>
+            </connections>
+        </popover>
+        <viewController nibName="" id="49v-VK-h0w" userLabel="Preferences View Controller" customClass="CEFindPreferencesViewController"/>
+        <popover appearance="aqua" behavior="t" id="00C-j6-lNt">
+            <connections>
+                <outlet property="contentViewController" destination="49v-VK-h0w" id="12W-Vg-o60"/>
             </connections>
         </popover>
         <numberFormatter formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="YLc-PB-3Zc"/>
