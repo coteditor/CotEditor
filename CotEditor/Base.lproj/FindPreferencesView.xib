@@ -228,8 +228,8 @@
                     </connections>
                 </button>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="B9b-MW-hnQ">
-                    <rect key="frame" x="17" y="263" width="90" height="18"/>
-                    <buttonCell key="cell" type="check" title="Wrap around" bezelStyle="regularSquare" imagePosition="left" controlSize="small" state="on" inset="2" id="o7S-uI-urg">
+                    <rect key="frame" x="17" y="263" width="128" height="18"/>
+                    <buttonCell key="cell" type="check" title="Wrap search around" bezelStyle="regularSquare" imagePosition="left" controlSize="small" state="on" inset="2" id="o7S-uI-urg">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="smallSystem"/>
                     </buttonCell>

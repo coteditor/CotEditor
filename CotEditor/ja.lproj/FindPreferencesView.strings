@@ -29,8 +29,8 @@
 "Dl6-kv-hhz.title" = "詳細検索オプション";
 
 
-/* Class = "NSButtonCell"; title = "Wrap around"; ObjectID = "o7S-uI-urg"; */
-"o7S-uI-urg.title" = "折り返す";
+/* Class = "NSButtonCell"; title = "Wrap search around"; ObjectID = "o7S-uI-urg"; */
+"o7S-uI-urg.title" = "検索を折り返す";
 /* Class = "NSButtonCell"; title = "Select next match after replace"; ObjectID = "XBp-LE-3Ry"; */
 "XBp-LE-3Ry.title" = "置換後に次のマッチを選択";
 /* Class = "NSButtonCell"; title = "Auto-close progress dialog"; ObjectID = "KBq-zH-H2M"; */

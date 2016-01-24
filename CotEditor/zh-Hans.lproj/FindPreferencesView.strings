@@ -30,8 +30,8 @@
 "Dl6-kv-hhz.title" = "高级查找选项";
 
 
-/* Class = "NSButtonCell"; title = "Wrap around"; ObjectID = "o7S-uI-urg"; */
-"o7S-uI-urg.title" = "折行查找";
+/* Class = "NSButtonCell"; title = "Wrap search around"; ObjectID = "o7S-uI-urg"; */
+"o7S-uI-urg.title" = "折行查找";  // FIXME: teaked
 /* Class = "NSButtonCell"; title = "Select next match after replace"; ObjectID = "XBp-LE-3Ry"; */
 "XBp-LE-3Ry.title" = "替换后选择下一个匹配";
 /* Class = "NSButtonCell"; title = "Auto-close progress dialog"; ObjectID = "KBq-zH-H2M"; */
