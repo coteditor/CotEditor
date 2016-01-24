@@ -47,7 +47,6 @@ static const CGFloat kDefaultResultViewHeight = 200.0;
 @property (nonatomic, nullable) IBOutlet NSPopover *regexReferencePopover;
 @property (nonatomic, nullable) IBOutlet NSPopover *preferencesPopover;
 @property (nonatomic, nullable, weak) IBOutlet NSNumberFormatter *integerFormatter;
-@property (nonatomic, nullable, weak) IBOutlet NSPopUpButton *advancedButton;
 @property (nonatomic, nullable, weak) IBOutlet NSSplitView *splitView;
 @property (nonatomic, nullable, weak) IBOutlet NSButton *disclosureButton;
 @property (nonatomic, nullable, weak) IBOutlet NSMenu *findHistoryMenu;
@@ -113,10 +112,6 @@ static const CGFloat kDefaultResultViewHeight = 200.0;
     // [attention] This method can be invoked before initializing user defaults in CEAppDelegate.
     
     [super windowDidLoad];
-    
-    if (NSAppKitVersionNumber < NSAppKitVersionNumber10_10) {  // on Mavericks or earlier
-        [[self advancedButton] setBezelStyle:NSRoundedBezelStyle];
-    }
     
     [self updateFindHistoryMenu];
     [self updateReplaceHistoryMenu];
@@ -437,7 +432,7 @@ static const CGFloat kDefaultResultViewHeight = 200.0;
     if ([[self preferencesPopover] isShown]) {
         [[self preferencesPopover] close];
     } else {
-        [[self preferencesPopover] showRelativeToRect:[sender bounds] ofView:sender preferredEdge:NSMinYEdge];
+        [[self preferencesPopover] showRelativeToRect:[sender bounds] ofView:sender preferredEdge:NSMinXEdge];
     }
 }
 
