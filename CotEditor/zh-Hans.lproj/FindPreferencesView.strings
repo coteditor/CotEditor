@@ -73,8 +73,10 @@
 /* Class = "NSMenuItem"; title = "Python"; ObjectID = "UAl-DN-REU"; */
 "UAl-DN-REU.title" = "Python";
 
-/* Class = "NSButtonCell"; title = "Single Line"; ObjectID = "nqr-AM-oJQ"; */
+/* Class = "NSButtonCell"; title = "Single line"; ObjectID = "nqr-AM-oJQ"; */
 "nqr-AM-oJQ.title" = "单行";
+/* Class = "NSButtonCell"; title = "Negate single line"; ObjectID = "q8J-xH-8Q3"; */
+"q8J-xH-8Q3.title" = "单行无效";
 /* Class = "NSButtonCell"; title = "Multiline"; ObjectID = "YXU-NA-BZb"; */
 "YXU-NA-BZb.title" = "点代表任意字符";
 /* Class = "NSButtonCell"; title = "Extend"; ObjectID = "iMa-K7-Lhy"; */
@@ -83,8 +85,6 @@
 "5oj-ch-YiX.title" = "匹配最长";
 /* Class = "NSButtonCell"; title = "Find not empty"; ObjectID = "uZ1-aS-LUd"; */
 "uZ1-aS-LUd.title" = "匹配非空字符后的空字符";
-/* Class = "NSButtonCell"; title = "Negate single line"; ObjectID = "q8J-xH-8Q3"; */
-"q8J-xH-8Q3.title" = "单行无效";
 /* Class = "NSButtonCell"; title = "Capture group"; ObjectID = "GMh-gg-UVh"; */
 "GMh-gg-UVh.title" = "按组匹配";
 /* Class = "NSButtonCell"; title = "Don’t capture group"; ObjectID = "xqN-fH-Reh"; */

@@ -27,7 +27,7 @@ develop
     - Keep selected range after “Replace All” with in-selection option.
     - Display total number of found in find panel on simple find actions.
     - Now, “Find All” and “Replace All” actions are able to process multiple selections.
-    - Add Python syntax to regular expression syntax option.
+    - Add Python syntax to the regular expression syntax options.
     - Revert “Use selection for Replace” action to allow using an empty string.
     - Tweak layout and style.
 - `cot` command now opens symbolic link target rather than the link itself.
