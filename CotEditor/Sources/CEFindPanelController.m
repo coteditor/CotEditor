@@ -432,7 +432,7 @@ static const CGFloat kDefaultResultViewHeight = 200.0;
     if ([[self preferencesPopover] isShown]) {
         [[self preferencesPopover] close];
     } else {
-        [[self preferencesPopover] showRelativeToRect:[sender bounds] ofView:sender preferredEdge:NSMinXEdge];
+        [[self preferencesPopover] showRelativeToRect:[sender bounds] ofView:sender preferredEdge:NSMaxXEdge];
     }
 }
 

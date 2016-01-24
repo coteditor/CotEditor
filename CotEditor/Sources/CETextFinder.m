@@ -344,6 +344,7 @@ static const NSUInteger kMaxHistorySize = 20;
     if (![self checkIsReadyToFind]) { return; }
     
     NSNumberFormatter *integerFormatter = [self integerFormatter];
+    NSDictionary *hightlightAttributes = @{NSBackgroundColorAttributeName: [self highlightColor]};
     NSTextView *textView = [self client];
     NSString *findString = [self sanitizedFindString];
     OGRegularExpression *regex = [self regex];
@@ -394,7 +395,7 @@ static const NSUInteger kMaxHistorySize = 20;
                 inlineRange.location -= lineRange.location;
                 NSString *lineString = [string substringWithRange:lineRange];
                 NSMutableAttributedString *lineAttrString = [[NSMutableAttributedString alloc] initWithString:lineString];
-                [lineAttrString addAttributes:@{NSBackgroundColorAttributeName: [self highlightColor]} range:inlineRange];
+                [lineAttrString addAttributes:hightlightAttributes range:inlineRange];
                 
                 [result addObject:@{CEFindResultRange: [NSValue valueWithRange:matchedRange],
                                     CEFindResultLineNumber: @(lineNumber),
