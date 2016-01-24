@@ -73,18 +73,64 @@ static const NSUInteger kMaxHistorySize = 20;
 
 #pragma mark Singleton
 
-static CETextFinder	*singleton = nil;
-
 // ------------------------------------------------------
 /// return singleton instance
 + (nonnull CETextFinder *)sharedTextFinder
 // ------------------------------------------------------
 {
-    if (!singleton) {
-        singleton = [[self alloc] init];
-    }
+    static dispatch_once_t onceToken;
+    __strong static id shared = nil;
     
-    return singleton;
+    dispatch_once(&onceToken, ^{
+        shared = [[self _alloc] _init];
+    });
+    
+    return shared;
+}
+
+
+// ------------------------------------------------------
+/// for Interface Builder compatible singleton
++ (nonnull instancetype)alloc
+// ------------------------------------------------------
+{
+    return [self sharedTextFinder];
+}
+
+
+// ------------------------------------------------------
+/// for Interface Builder compatible singleton
++ (nonnull instancetype)allocWithZone:(nullable NSZone *)zone
+// ------------------------------------------------------
+{
+    return [self sharedTextFinder];
+}
+
+
+// ------------------------------------------------------
+/// for Interface Builder compatible singleton
++ (nonnull instancetype)_alloc
+// ------------------------------------------------------
+{
+    return [super allocWithZone:NULL];
+}
+
+
+// ------------------------------------------------------
+/// for Interface Builder compatible singleton
+- (nonnull instancetype)init
+// ------------------------------------------------------
+{
+    return self;
+}
+
+
+// ------------------------------------------------------
+/// for Interface Builder compatible singleton
+- (nullable instancetype)initWithCoder:(nonnull NSCoder *)decoder
+// ------------------------------------------------------
+{
+    return self;
 }
 
 
@@ -116,14 +162,10 @@ static CETextFinder	*singleton = nil;
 
 
 // ------------------------------------------------------
-/// initialize instance
-- (nonnull instancetype)init
+/// private instance initializer
+- (nonnull instancetype)_init
 // ------------------------------------------------------
 {
-    if (singleton) {
-        return singleton;
-    }
-    
     self = [super init];
     if (self) {
         _findString = @"";
@@ -150,9 +192,6 @@ static CETextFinder	*singleton = nil;
                                                  selector:@selector(applicationWillResignActive:)
                                                      name:NSApplicationWillResignActiveNotification
                                                    object:nil];
-        
-        // make singleton
-        singleton = self;
     }
     return self;
 }

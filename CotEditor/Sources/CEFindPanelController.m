@@ -663,7 +663,7 @@ static const CGFloat kDefaultResultViewHeight = 200.0;
 - (void)saveOptions
 // ------------------------------------------------------
 {
-    unsigned options = [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultFindOptionsKey];
+    unsigned options = OgreNoneOption;
     
     if ([self singleLineOption])          { options |= OgreSingleLineOption; }
     if ([self multilineOption])           { options |= OgreMultilineOption; }
