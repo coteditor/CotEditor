@@ -195,6 +195,11 @@ static const CFStringRef CEUTTypeZipArchive = CFSTR("public.zip-archive");
     [self buildEncodingPopupButton];
     [openPanel setAccessoryView:[self openPanelAccessoryView]];
     
+    // force accessory view visible
+    if (NSAppKitVersionNumber > NSAppKitVersionNumber10_10_Max) {
+        [openPanel setAccessoryViewDisclosed:YES];
+    }
+    
     // set visibility of hidden files in the panel
     [openPanel setShowsHiddenFiles:[self showsHiddenFiles]];
     [openPanel setTreatsFilePackagesAsDirectories:[self showsHiddenFiles]];

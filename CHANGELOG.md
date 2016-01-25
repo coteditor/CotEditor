@@ -37,6 +37,7 @@ develop
 - Improve encoding compatibility check.
 - Better error message on file opening.
 - Take a safety measure for in case the key binding setting file is corrupt.
+- On El Capitan, make option control of the document open panel visible.
 
 
 ### Fixes
