@@ -660,7 +660,7 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
          NSString *output = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
          if (output) {
              NSError *error;
-             [CEScriptManager applyOutput:output document:document outputType:outputType error:&error];
+             [[self class] applyOutput:output document:document outputType:outputType error:&error];
              if (error) {
                  [self showScriptError:[error localizedDescription] scriptName:scriptName];
              }
