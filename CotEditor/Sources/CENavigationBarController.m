@@ -162,6 +162,11 @@ static const NSTimeInterval kDuration = 0.25;
         
         NSMutableDictionary<NSString *, id> *attrs = [NSMutableDictionary dictionary];
         
+        NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+        [paragraphStyle setLineBreakMode:NSLineBreakByTruncatingMiddle];
+        [paragraphStyle setTighteningFactorForTruncation:0];  // don't tighten
+        attrs[NSParagraphStyleAttributeName] = paragraphStyle;
+        
         NSFontTraitMask fontTrait = [outlineItem[CEOutlineItemStyleBoldKey] boolValue] ? NSBoldFontMask : 0;
         fontTrait |= [outlineItem[CEOutlineItemStyleItalicKey] boolValue] ? NSItalicFontMask : 0;
         NSFont *font = [[NSFontManager sharedFontManager] convertFont:defaultFont toHaveTrait:fontTrait];
