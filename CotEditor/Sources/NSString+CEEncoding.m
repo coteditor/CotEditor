@@ -51,13 +51,13 @@ static const NSUInteger kMaxDetectionLength = 1024 * 8;
     // detect enoding from so-called "magic numbers"
     NSStringEncoding triedEncoding = NSNotFound;
     if ([data length] > 1) {
-        char bytes[4] = {0};
-        [data getBytes:&bytes length:4];
+        char miniBytes[4] = {0};
+        [data getBytes:&miniBytes length:4];
         
         NSRange detectionRange = NSMakeRange(0, MIN([data length], kMaxDetectionLength));
         
         // check UTF-8 BOM
-        if (!memcmp(bytes, kUTF8Bom, 3)) {
+        if (!memcmp(miniBytes, kUTF8Bom, 3)) {
             NSStringEncoding encoding = NSUTF8StringEncoding;
             triedEncoding = encoding;
             NSString *string = [self initWithData:data encoding:encoding];
@@ -67,7 +67,7 @@ static const NSUInteger kMaxDetectionLength = 1024 * 8;
             }
             
         // check UTF-32 BOM
-        } else if (!memcmp(bytes, kUTF32BEBom, 4) || !memcmp(bytes, kUTF32LEBom, 4)) {
+        } else if (!memcmp(miniBytes, kUTF32BEBom, 4) || !memcmp(miniBytes, kUTF32LEBom, 4)) {
             NSStringEncoding encoding = NSUTF32StringEncoding;
             triedEncoding = encoding;
             NSString *string = [self initWithData:data encoding:encoding];
@@ -77,7 +77,7 @@ static const NSUInteger kMaxDetectionLength = 1024 * 8;
             }
             
         // check UTF-16 BOM
-        } else if (!memcmp(bytes, kUTF16BEBom, 2) || !memcmp(bytes, kUTF16LEBom, 2)) {
+        } else if (!memcmp(miniBytes, kUTF16BEBom, 2) || !memcmp(miniBytes, kUTF16LEBom, 2)) {
             NSStringEncoding encoding = NSUTF16StringEncoding;
             triedEncoding = encoding;
             NSString *string = [self initWithData:data encoding:encoding];
@@ -87,7 +87,7 @@ static const NSUInteger kMaxDetectionLength = 1024 * 8;
             }
             
         // test ISO-2022-JP
-        } else if (memchr(bytes, 0x1b, detectionRange.length) != NULL) {
+        } else if (memchr([data bytes], 0x1b, detectionRange.length) != NULL) {
             NSStringEncoding encoding = NSISO2022JPStringEncoding;
             triedEncoding = encoding;
             
