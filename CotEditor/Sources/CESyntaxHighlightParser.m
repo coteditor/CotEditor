@@ -439,28 +439,31 @@ static CGFloat kPerCompoIncrement;
     // カラーリング範囲を走査
     NSMutableDictionary<NSString *, NSMutableArray<NSValue *> *> *highlights = [NSMutableDictionary dictionary];
     NSUInteger startLocation = 0;
-    NSString *searchPairKind = nil;
+    NSUInteger seekLocalation = parseRange.location;
+    NSString *searchingPairKind = nil;
     BOOL isContinued = NO;
     
     for (NSDictionary<NSString *, id> *position in positions) {
         QCStartEndType startEnd = [position[QCStartEndKey] unsignedIntegerValue];
+        NSUInteger location = [position[QCLocationKey] unsignedIntegerValue];
         isContinued = NO;
         
-        if (!searchPairKind) {
-            if (startEnd != QCEnd) {
-                searchPairKind = position[QCPairKindKey];
-                startLocation = [position[QCLocationKey] unsignedIntegerValue];
+        // search next begin delimiter
+        if (!searchingPairKind) {
+            if (startEnd != QCEnd && location >= seekLocalation) {
+                searchingPairKind = position[QCPairKindKey];
+                startLocation = location;
             }
             continue;
         }
         
-        if (([position[QCPairKindKey] isEqualToString:searchPairKind]) &&
+        // search corresponding end delimiter
+        if (([position[QCPairKindKey] isEqualToString:searchingPairKind]) &&
             ((startEnd == QCStartEnd) || (startEnd == QCEnd)))
         {
-            NSUInteger endLocation = ([position[QCLocationKey] unsignedIntegerValue] +
-                                      [position[QCLengthKey] unsignedIntegerValue]);
+            NSUInteger endLocation = (location + [position[QCLengthKey] unsignedIntegerValue]);
             
-            NSString *syntaxType = quoteTypes[searchPairKind] ? : CESyntaxCommentsKey;
+            NSString *syntaxType = quoteTypes[searchingPairKind] ? : CESyntaxCommentsKey;
             NSRange range = NSMakeRange(startLocation, endLocation - startLocation);
             
             if (highlights[syntaxType]) {
@@ -469,7 +472,8 @@ static CGFloat kPerCompoIncrement;
                 highlights[syntaxType] = [NSMutableArray arrayWithObject:[NSValue valueWithRange:range]];
             }
             
-            searchPairKind = nil;
+            searchingPairKind = nil;
+            seekLocalation = endLocation;
             continue;
         }
         
@@ -480,7 +484,7 @@ static CGFloat kPerCompoIncrement;
     
     // 「終わり」がなければ最後までカラーリングする
     if (isContinued) {
-        NSString *syntaxType = quoteTypes[searchPairKind] ? : CESyntaxCommentsKey;
+        NSString *syntaxType = quoteTypes[searchingPairKind] ? : CESyntaxCommentsKey;
         NSRange range = NSMakeRange(startLocation, NSMaxRange(parseRange) - startLocation);
         
         if (highlights[syntaxType]) {

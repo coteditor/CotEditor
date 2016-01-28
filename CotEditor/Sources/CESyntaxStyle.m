@@ -215,7 +215,7 @@ static NSArray<NSString *> *kSyntaxDictKeys;
                         NSString *end = wordDict[CESyntaxEndStringKey];
                         
                         // 最初に出てきたクォートのみを把握
-                        for (NSString *quote in @[@"'", @"\"", @"`"]) {
+                        for (NSString *quote in @[@"\"\"\"", @"'''", @"'", @"\"", @"`"]) {
                             if (([begin isEqualToString:quote] && [end isEqualToString:quote]) &&
                                 !quoteTypes[quote])
                             {
