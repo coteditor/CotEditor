@@ -156,7 +156,7 @@ static CGFloat kPerCompoIncrement;
 
 // ------------------------------------------------------
 /// 指定された文字列をそのまま検索し、位置を返す
-- (nonnull NSArray<NSValue *> *)rangesOfSimpleWords:(nonnull NSDictionary *)wordsDict ignoreCaseWords:(nonnull NSDictionary *)icWordsDict charSet:(nonnull NSCharacterSet *)charSet string:(nonnull NSString *)string range:(NSRange)parseRange
+- (nonnull NSArray<NSValue *> *)rangesOfSimpleWords:(nonnull NSDictionary<NSNumber *, NSArray *> *)wordsDict ignoreCaseWords:(nonnull NSDictionary<NSNumber *, NSArray *> *)icWordsDict charSet:(nonnull NSCharacterSet *)charSet string:(nonnull NSString *)string range:(NSRange)parseRange
 // ------------------------------------------------------
 {
     NSMutableArray *ranges = [NSMutableArray array];
@@ -439,7 +439,7 @@ static CGFloat kPerCompoIncrement;
     // カラーリング範囲を走査
     NSMutableDictionary<NSString *, NSMutableArray<NSValue *> *> *highlights = [NSMutableDictionary dictionary];
     NSUInteger startLocation = 0;
-    NSUInteger seekLocalation = parseRange.location;
+    NSUInteger seekLocation = parseRange.location;
     NSString *searchingPairKind = nil;
     BOOL isContinued = NO;
     
@@ -450,7 +450,7 @@ static CGFloat kPerCompoIncrement;
         
         // search next begin delimiter
         if (!searchingPairKind) {
-            if (startEnd != QCEnd && location >= seekLocalation) {
+            if (startEnd != QCEnd && location >= seekLocation) {
                 searchingPairKind = position[QCPairKindKey];
                 startLocation = location;
             }
@@ -473,7 +473,7 @@ static CGFloat kPerCompoIncrement;
             }
             
             searchingPairKind = nil;
-            seekLocalation = endLocation;
+            seekLocation = endLocation;
             continue;
         }
         
@@ -604,7 +604,7 @@ static CGFloat kPerCompoIncrement;
     
     if ([self isCancelled]) { return @{}; }
     
-    // コメントと引用符
+    // comments and quoted text
     if ([self beginParsingBlock]) {
         [self beginParsingBlock](NSLocalizedString(@"comments and quoted texts", nil));
     }
