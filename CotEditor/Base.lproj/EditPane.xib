@@ -15,7 +15,7 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <userDefaultsController representsSharedInstance="YES" id="26" userLabel="Shared User Defaults Controller"/>
         <customView horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" id="s6I-DY-Ii0" userLabel="Edit Pane">
-            <rect key="frame" x="0.0" y="0.0" width="550" height="598"/>
+            <rect key="frame" x="0.0" y="0.0" width="550" height="620"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="844">
@@ -28,8 +28,18 @@
                         <binding destination="26" name="value" keyPath="values.swapYenAndBackSlashKey" id="846"/>
                     </connections>
                 </button>
+                <button translatesAutoresizingMaskIntoConstraints="NO" id="mWb-Dy-J7g">
+                    <rect key="frame" x="115" y="538" width="198" height="18"/>
+                    <buttonCell key="cell" type="check" title="Balance brackets and quotes" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="GRh-V2-hmW">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <binding destination="26" name="value" keyPath="values.balancesBrackets" id="z77-72-2eT"/>
+                    </connections>
+                </button>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="644">
-                    <rect key="frame" x="115" y="560" width="172" height="18"/>
+                    <rect key="frame" x="115" y="582" width="172" height="18"/>
                     <buttonCell key="cell" type="check" title="Enable smart copy/paste" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3302">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
@@ -39,7 +49,7 @@
                     </connections>
                 </button>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="mK4-4e-plf">
-                    <rect key="frame" x="115" y="538" width="220" height="18"/>
+                    <rect key="frame" x="115" y="560" width="220" height="18"/>
                     <buttonCell key="cell" type="check" title="Enable smart quotes and dashes" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="nA4-HY-d71">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
@@ -57,7 +67,7 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="IXD-kJ-dvh">
-                    <rect key="frame" x="30" y="561" width="81" height="17"/>
+                    <rect key="frame" x="30" y="583" width="81" height="17"/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Substitution:" usesSingleLineMode="YES" id="SqI-BC-ar9">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -492,11 +502,11 @@
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="z5v-7l-1C4" secondAttribute="bottom" constant="20" symbolic="YES" id="0Ke-Pr-SYk"/>
                 <constraint firstItem="Vf0-M7-9ji" firstAttribute="leading" secondItem="644" secondAttribute="leading" id="0n7-K8-sdI"/>
+                <constraint firstItem="mWb-Dy-J7g" firstAttribute="leading" secondItem="644" secondAttribute="leading" id="1gk-l0-W8e"/>
                 <constraint firstItem="235" firstAttribute="baseline" secondItem="236" secondAttribute="baseline" id="2XO-of-k0y"/>
                 <constraint firstItem="644" firstAttribute="leading" secondItem="160" secondAttribute="leading" id="2YC-uB-api"/>
                 <constraint firstItem="282" firstAttribute="baseline" secondItem="283" secondAttribute="baseline" id="2eo-GD-Kfb"/>
                 <constraint firstItem="C2I-Ub-oUU" firstAttribute="leading" secondItem="644" secondAttribute="leading" id="3eN-aj-0ZB"/>
-                <constraint firstItem="844" firstAttribute="top" secondItem="mK4-4e-plf" secondAttribute="bottom" constant="8" id="53U-9L-xPq"/>
                 <constraint firstItem="t0Y-p1-xOb" firstAttribute="leading" secondItem="lO2-uf-OLD" secondAttribute="leading" id="5d4-UU-RBZ"/>
                 <constraint firstItem="224" firstAttribute="baseline" secondItem="221" secondAttribute="baseline" id="6ki-ac-drF"/>
                 <constraint firstItem="C2I-Ub-oUU" firstAttribute="top" secondItem="btC-lZ-pQ7" secondAttribute="bottom" constant="8" id="72F-Be-lUx"/>
@@ -511,6 +521,7 @@
                 <constraint firstItem="aZf-lI-jGQ" firstAttribute="leading" secondItem="VBo-Ii-1PR" secondAttribute="trailing" constant="8" symbolic="YES" id="Fhr-la-WI5"/>
                 <constraint firstItem="160" firstAttribute="top" secondItem="209" secondAttribute="bottom" constant="8" id="Frm-gK-yPu"/>
                 <constraint firstItem="874" firstAttribute="top" secondItem="244" secondAttribute="bottom" constant="9" id="GrH-iq-Z6W"/>
+                <constraint firstItem="844" firstAttribute="top" secondItem="mWb-Dy-J7g" secondAttribute="bottom" constant="8" id="HZx-MZ-Q0V"/>
                 <constraint firstItem="oXk-4y-elJ" firstAttribute="baseline" secondItem="Dte-ly-fKQ" secondAttribute="baseline" id="I8r-SF-1u9"/>
                 <constraint firstItem="283" firstAttribute="top" secondItem="160" secondAttribute="bottom" constant="8" id="IM6-11-CAa"/>
                 <constraint firstItem="644" firstAttribute="leading" secondItem="1Oj-wo-mCu" secondAttribute="leading" id="J6i-07-RCr"/>
@@ -533,6 +544,7 @@
                 <constraint firstItem="224" firstAttribute="leading" secondItem="247" secondAttribute="leading" id="Ucv-kh-TdC"/>
                 <constraint firstItem="160" firstAttribute="leading" secondItem="283" secondAttribute="leading" id="VwP-1c-FdO"/>
                 <constraint firstItem="4B0-Kj-mzX" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="s6I-DY-Ii0" secondAttribute="leading" constant="20" symbolic="YES" id="Wny-Wk-nNJ"/>
+                <constraint firstItem="mWb-Dy-J7g" firstAttribute="top" secondItem="mK4-4e-plf" secondAttribute="bottom" constant="8" id="Yim-tR-h9P"/>
                 <constraint firstItem="aZf-lI-jGQ" firstAttribute="leading" secondItem="644" secondAttribute="leading" id="Zgo-o6-Vjl"/>
                 <constraint firstItem="1Oj-wo-mCu" firstAttribute="leading" secondItem="r9C-0B-mga" secondAttribute="trailing" constant="8" symbolic="YES" id="ZiU-fC-4NH"/>
                 <constraint firstItem="249" firstAttribute="baseline" secondItem="247" secondAttribute="baseline" id="abF-SR-IDN"/>
@@ -580,7 +592,7 @@
                 <constraint firstItem="236" firstAttribute="leading" secondItem="235" secondAttribute="trailing" constant="8" symbolic="YES" id="zmu-pm-xgy"/>
                 <constraint firstItem="fR5-Ie-WnP" firstAttribute="baseline" secondItem="69" secondAttribute="baseline" id="zrO-8M-62H"/>
             </constraints>
-            <point key="canvasLocation" x="310" y="332.5"/>
+            <point key="canvasLocation" x="310" y="343"/>
         </customView>
     </objects>
 </document>

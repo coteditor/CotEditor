@@ -106,6 +106,7 @@ extern NSString *_Nonnull const CEDefaultFixLineHeightKey;
 extern NSString *_Nonnull const CEDefaultHighlightBracesKey;
 extern NSString *_Nonnull const CEDefaultHighlightLtGtKey;
 extern NSString *_Nonnull const CEDefaultSaveUTF8BOMKey;
+extern NSString *_Nonnull const CEDefaultBalancesBracketsKey;
 extern NSString *_Nonnull const CEDefaultEnableSmartQuotesKey;
 extern NSString *_Nonnull const CEDefaultEnableSmartIndentKey;
 extern NSString *_Nonnull const CEDefaultAutoLinkDetectionKey;

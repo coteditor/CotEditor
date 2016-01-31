@@ -32,6 +32,8 @@
 "3302.title" = "启用智能拷贝/粘贴";
 /* Class = "NSButtonCell"; title = "Enable smart quotes and dashes"; ObjectID = "nA4-HY-d71"; */
 "nA4-HY-d71.title" = "启用智能引号和破折号";
+/* Class = "NSButtonCell"; title = "Balance brackets and quotes"; ObjectID = "GRh-V2-hmW"; */
+"GRh-V2-hmW.title" = "Balance brackets and quotes";  // FIXME: added
 /* Class = "NSButtonCell"; title = "Swap “¥” and “\\” keys"; ObjectID = "3303"; */
 "3303.title" = "转换“¥”和“\\”按键";
 

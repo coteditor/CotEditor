@@ -31,6 +31,8 @@
 "3302.title" = "スマートコピー／ペーストを有効にする";
 /* Class = "NSButtonCell"; title = "Enable smart quotes and dashes"; ObjectID = "nA4-HY-d71"; */
 "nA4-HY-d71.title" = "スマート引用符／ダッシュを有効にする";
+/* Class = "NSButtonCell"; title = "Balance brackets and quotes"; ObjectID = "GRh-V2-hmW"; */
+"GRh-V2-hmW.title" = "対応する括弧と引用符を自動挿入";
 /* Class = "NSButtonCell"; title = "Swap “¥” and “\\” keys"; ObjectID = "3303"; */
 "3303.title" = "“¥”と“\\”のキーを入れ替える";
 

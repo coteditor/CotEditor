@@ -31,6 +31,8 @@
 "3302.title" = "Intelligente Kopieren/Ersetzen aktivieren";
 /* Class = "NSButtonCell"; title = "Enable smart quotes and dashes"; ObjectID = "nA4-HY-d71"; */
 "nA4-HY-d71.title" = "Intelligente Anführungszeichen und Bindestriche aktivieren";
+/* Class = "NSButtonCell"; title = "Balance brackets and quotes"; ObjectID = "GRh-V2-hmW"; */
+"GRh-V2-hmW.title" = "Klammern und Anführungszeichen balancieren";
 /* Class = "NSButtonCell"; title = "Swap “¥” and “\\” keys"; ObjectID = "3303"; */
 "3303.title" = "„¥“ und „\\“ Tasten tauschen";
 
