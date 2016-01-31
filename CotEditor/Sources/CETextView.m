@@ -343,26 +343,24 @@ static NSCharacterSet *kMatchingBracketsSet;
     if ([defaults boolForKey:CEDefaultBalancesBracketsKey] && (replacementRange.length == 0) &&
         [string length] == 1 && [kMatchingBracketsSet characterIsMember:[string characterAtIndex:0]])
     {
-        NSString *closingCharacter = nil;
+        NSString *balancedBrackets = nil;
         switch ([string characterAtIndex:0]) {
             case '[':
-                closingCharacter = @"]";
+                balancedBrackets = @"[]";
                 break;
             case '{':
-                closingCharacter = @"}";
+                balancedBrackets = @"{}";
                 break;
             case '(':
-                closingCharacter = @")";
+                balancedBrackets = @"()";
                 break;
             case '"':
-                closingCharacter = @"\"";
+                balancedBrackets = @"\"\"";
                 break;
         }
         
-        [super insertText:aString replacementRange:replacementRange];
-        NSRange selectedRange = [self selectedRange];
-        [super insertText:closingCharacter replacementRange:NSMakeRange(NSNotFound, 0)];
-        [self setSelectedRange:selectedRange];
+        [super insertText:balancedBrackets replacementRange:NSMakeRange(NSNotFound, 0)];
+        [self setSelectedRange:NSMakeRange([self selectedRange].location - 1, 0)];
         return;
     }
     
