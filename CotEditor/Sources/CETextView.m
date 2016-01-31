@@ -343,25 +343,31 @@ static NSCharacterSet *kMatchingBracketsSet;
     if ([defaults boolForKey:CEDefaultBalancesBracketsKey] && (replacementRange.length == 0) &&
         [string length] == 1 && [kMatchingBracketsSet characterIsMember:[string characterAtIndex:0]])
     {
-        NSString *balancedBrackets = nil;
-        switch ([string characterAtIndex:0]) {
-            case '[':
-                balancedBrackets = @"[]";
-                break;
-            case '{':
-                balancedBrackets = @"{}";
-                break;
-            case '(':
-                balancedBrackets = @"()";
-                break;
-            case '"':
-                balancedBrackets = @"\"\"";
-                break;
+        // check if insertion point is in a word
+        NSCharacterSet *wordCharacter = [NSCharacterSet alphanumericCharacterSet];
+        if (!([wordCharacter characterIsMember:[self characterBeforeInsertion]] &&
+              [wordCharacter characterIsMember:[self characterAfterInsertion]]))
+        {
+            NSString *pair = nil;
+            switch ([string characterAtIndex:0]) {
+                case '[':
+                    pair = @"[]";
+                    break;
+                case '{':
+                    pair = @"{}";
+                    break;
+                case '(':
+                    pair = @"()";
+                    break;
+                case '"':
+                    pair = @"\"\"";
+                    break;
+            }
+            
+            [super insertText:pair replacementRange:NSMakeRange(NSNotFound, 0)];
+            [self setSelectedRange:NSMakeRange([self selectedRange].location - 1, 0)];
+            return;
         }
-        
-        [super insertText:balancedBrackets replacementRange:NSMakeRange(NSNotFound, 0)];
-        [self setSelectedRange:NSMakeRange([self selectedRange].location - 1, 0)];
-        return;
     }
     
     // smart outdent with '}' charcter
@@ -472,14 +478,8 @@ static NSCharacterSet *kMatchingBracketsSet;
     
     // calculation for smart indent
     if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultEnableSmartIndentKey]) {
-        unichar lastChar = NULL;
-        unichar nextChar = NULL;
-        if (selectedRange.location > 0) {
-            lastChar = [[self string] characterAtIndex:selectedRange.location - 1];
-        }
-        if (NSMaxRange(selectedRange) < [[self string] length]) {
-            nextChar = [[self string] characterAtIndex:NSMaxRange(selectedRange)];
-        }
+        unichar lastChar = [self characterBeforeInsertion];
+        unichar nextChar = [self characterAfterInsertion];
         
         // `{}` の中で改行した場合はインデントを展開する
         shouldExpandBlock = ((lastChar == '{') && (nextChar == '}'));
@@ -541,7 +541,7 @@ static NSCharacterSet *kMatchingBracketsSet;
     // balance brackets
     if ((selectedRange.length == 0) && [[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultBalancesBracketsKey] &&
         (selectedRange.location > 0) && (selectedRange.location < [[self string] length]) &&
-        [kMatchingBracketsSet characterIsMember:[[self string] characterAtIndex:selectedRange.location - 1]])
+        [kMatchingBracketsSet characterIsMember:[self characterBeforeInsertion]])
     {
         NSString *surroundingCharacters = [[self string] substringWithRange:NSMakeRange(selectedRange.location - 1, 2)];
         if ([surroundingCharacters isEqualToString:@"{}"] ||
@@ -1316,6 +1316,32 @@ static NSCharacterSet *kMatchingBracketsSet;
 
 
 // ------------------------------------------------------
+/// character just before the insertion or 0
+- (unichar)characterBeforeInsertion
+// ------------------------------------------------------
+{
+    NSUInteger location = [self selectedRange].location;
+    if (location > 0) {
+        return [[self string] characterAtIndex:location - 1];
+    }
+    return NULL;
+}
+
+
+// ------------------------------------------------------
+/// character just after the insertion or 0
+- (unichar)characterAfterInsertion
+// ------------------------------------------------------
+{
+    NSUInteger location = NSMaxRange([self selectedRange]);
+    if (location < [[self string] length]) {
+        return [[self string] characterAtIndex:location];
+    }
+    return NULL;
+}
+
+
+// ------------------------------------------------------
 /// true new line type of document
 - (CENewLineType)documentNewLineType
 // ------------------------------------------------------
@@ -1584,22 +1610,10 @@ static NSCharacterSet *kMatchingBracketsSet;
     if ([self selectedRange].length > 0) { return; }
     
     // abord if caret is (probably) at the middle of a word
-    NSUInteger nextCharIndex = NSMaxRange([self selectedRange]);
-    if (nextCharIndex < [[self string] length]) {
-        unichar nextChar = [[self string] characterAtIndex:nextCharIndex];
-        if ([[NSCharacterSet alphanumericCharacterSet] characterIsMember:nextChar]) {
-            return;
-        }
-    }
+    if ([[NSCharacterSet alphanumericCharacterSet] characterIsMember:[self characterAfterInsertion]]) { return; }
     
     // abord if previous character is blank
-    NSUInteger location = [self selectedRange].location;
-    if (location > 0) {
-        unichar prevChar = [[self string] characterAtIndex:location - 1];
-        if ([[NSCharacterSet whitespaceAndNewlineCharacterSet] characterIsMember:prevChar]) {
-            return;
-        }
-    }
+    if ([[NSCharacterSet whitespaceAndNewlineCharacterSet] characterIsMember:[self characterBeforeInsertion]]) { return; }
     
     [self complete:self];
 }
