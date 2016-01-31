@@ -64,6 +64,8 @@
 "3309.title" = "将脚本菜单集成至上下文菜单中";
 /* Class = "NSButtonCell"; title = "Count each line ending as one character"; ObjectID = "3306"; */
 "3306.title" = "统计行尾为一个字符";
+/* Class = "NSButtonCell"; title = "Link URL in document"; ObjectID = "tPy-Ox-YpP"; */
+"tPy-Ox-YpP.title" = "Link URL in document";  // FIXME: added
 /* Class = "NSButtonCell"; title = "Check spelling as you type"; ObjectID = "3300"; */
 "3300.title" = "输入时检查拼写";
 /* Class = "NSButtonCell"; title = "Highlight matching braces “( )” “[ ]” “{ }”"; ObjectID = "RrC-LL-hid"; */

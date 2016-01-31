@@ -54,6 +54,7 @@
 
 // Public method
 - (void)setLineSpacingAndUpdate:(CGFloat)lineSpacing;
+- (void)detectLinkIfNeeded;
 
 // Action Message
 - (IBAction)copyWithStyle:(nullable id)sender;
