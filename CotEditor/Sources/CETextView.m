@@ -76,6 +76,7 @@ static const NSUInteger kMaxPageGuideColumn = 1000;
 @implementation CETextView
 
 static NSPoint kTextContainerOrigin;
+static NSCharacterSet *kMatchingBracketsSet;
 
 
 #pragma mark Superclass Methods
@@ -91,6 +92,8 @@ static NSPoint kTextContainerOrigin;
         
         kTextContainerOrigin = NSMakePoint((CGFloat)[defaults doubleForKey:CEDefaultTextContainerInsetWidthKey],
                                            (CGFloat)[defaults doubleForKey:CEDefaultTextContainerInsetHeightTopKey]);
+        
+        kMatchingBracketsSet = [NSCharacterSet characterSetWithCharactersInString:@"[{(\""];
     });
     
 }
@@ -318,11 +321,13 @@ static NSPoint kTextContainerOrigin;
 {
     // do not use this method for programmatical insertion.
     
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
     // cast NSAttributedString to NSString in order to make sure input string is plain-text
     NSString *string = [aString isKindOfClass:[NSAttributedString class]] ? [aString string] : aString;
     
     // swap '¥' with '\' if needed
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultSwapYenAndBackSlashKey] && ([string length] == 1)) {
+    if ([defaults boolForKey:CEDefaultSwapYenAndBackSlashKey] && ([string length] == 1)) {
         NSString *yen = [NSString stringWithCharacters:&kYenMark length:1];
         
         if ([string isEqualToString:@"\\"]) {
@@ -334,9 +339,36 @@ static NSPoint kTextContainerOrigin;
         }
     }
     
+    // balance brackets and quotes
+    if ([defaults boolForKey:CEDefaultBalancesBracketsKey] && (replacementRange.length == 0) &&
+        [string length] == 1 && [kMatchingBracketsSet characterIsMember:[string characterAtIndex:0]])
+    {
+        NSString *closingCharacter = nil;
+        switch ([string characterAtIndex:0]) {
+            case '[':
+                closingCharacter = @"]";
+                break;
+            case '{':
+                closingCharacter = @"}";
+                break;
+            case '(':
+                closingCharacter = @")";
+                break;
+            case '"':
+                closingCharacter = @"\"";
+                break;
+        }
+        
+        [super insertText:aString replacementRange:replacementRange];
+        NSRange selectedRange = [self selectedRange];
+        [super insertText:closingCharacter replacementRange:NSMakeRange(NSNotFound, 0)];
+        [self setSelectedRange:selectedRange];
+        return;
+    }
+    
     // smart outdent with '}' charcter
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultAutoIndentKey] &&
-        [[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultEnableSmartIndentKey] &&
+    if ([defaults boolForKey:CEDefaultAutoIndentKey] &&
+        [defaults boolForKey:CEDefaultEnableSmartIndentKey] &&
         (replacementRange.length == 0) && [string isEqualToString:@"}"])
     {
         NSString *wholeString = [self string];
@@ -384,8 +416,8 @@ static NSPoint kTextContainerOrigin;
     [super insertText:string replacementRange:replacementRange];
     
     // auto completion
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultAutoCompleteKey]) {
-        [self completeAfterDelay:[[NSUserDefaults standardUserDefaults] doubleForKey:CEDefaultAutoCompletionDelayKey]];
+    if ([defaults boolForKey:CEDefaultAutoCompleteKey]) {
+        [self completeAfterDelay:[defaults doubleForKey:CEDefaultAutoCompletionDelayKey]];
     }
 }
 
@@ -484,7 +516,9 @@ static NSPoint kTextContainerOrigin;
 // ------------------------------------------------------
 {
     NSRange selectedRange = [self selectedRange];
-    if (selectedRange.length == 0 && [self isAutoTabExpandEnabled]) {
+    
+    // delete tab
+    if ((selectedRange.length == 0) && [self isAutoTabExpandEnabled]) {
         NSUInteger tabWidth = [self tabWidth];
         NSInteger column = [self columnOfLocation:selectedRange.location expandsTab:YES];
         NSInteger length = tabWidth - ((column + tabWidth) % tabWidth);
@@ -505,6 +539,25 @@ static NSPoint kTextContainerOrigin;
             }
         }
     }
+    
+    // balance brackets
+    if ((selectedRange.length == 0) && [[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultBalancesBracketsKey] &&
+        (selectedRange.location > 0) && (selectedRange.location < [[self string] length]) &&
+        [kMatchingBracketsSet characterIsMember:[[self string] characterAtIndex:selectedRange.location - 1]])
+    {
+        NSString *surroundingCharacters = [[self string] substringWithRange:NSMakeRange(selectedRange.location - 1, 2)];
+        if ([surroundingCharacters isEqualToString:@"{}"] ||
+            [surroundingCharacters isEqualToString:@"[]"] ||
+            [surroundingCharacters isEqualToString:@"()"] ||
+            [surroundingCharacters isEqualToString:@"\"\""])
+        {
+            // delete next closing character
+            [self setSelectedRange:NSMakeRange(selectedRange.location + 1, 0)];
+            [super deleteBackward:self];
+        }
+        
+    }
+    
     [super deleteBackward:sender];
 }
 
