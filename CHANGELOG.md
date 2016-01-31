@@ -52,6 +52,7 @@ develop
 - Fix an issue where keybinding setting could fail.
 - Fix an issue where the light scroll bar style wasn't applied on dark background theme.
 - Fix an issue where the character inspector didn't show up on Mavericks and earlier.
+- Fix an issue where split orientation setting wasn't applied.
 - Fix an issue where “Jump to Selection” action didn't jump to selection in editor if other text box is focued.
 - Fix an issue where some table cells didn't change their text color when selected.
 - Fix memory leak.
