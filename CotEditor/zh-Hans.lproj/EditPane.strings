@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2015 CotEditor Project
+ © 2014-2016 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -34,10 +34,6 @@
 "nA4-HY-d71.title" = "启用智能引号和破折号";
 /* Class = "NSButtonCell"; title = "Swap “¥” and “\\” keys"; ObjectID = "3303"; */
 "3303.title" = "转换“¥”和“\\”按键";
-/* Class = "NSButtonCell"; title = "Highlight matching braces “( )” “[ ]” “{ }”"; ObjectID = "3304"; */
-"3304.title" = "高亮配对括号“( )” “[ ]” “{ }”";
-/* Class = "NSButtonCell"; title = "Highlight “< >”"; ObjectID = "3305"; */
-"3305.title" = "高亮“< >”";
 
 
 /* Class = "NSTextFieldCell"; title = "Indentation:"; ObjectID = "9bX-ei-1x8"; */

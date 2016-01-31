@@ -37,6 +37,7 @@ develop
 - Improve encoding compatibility check.
 - Better error message on file opening.
 - Take a safety measure for in case the key binding setting file is corrupt.
+- Move some options position within “General” pane and “Edit” pane in preferences window.
 - Improve syntax highlighting for quoted strings and comment.
 - Truncate outline label in the navigation bar by appending ellipsis if it overflows.
 - On El Capitan, make option control of the document open panel visible.

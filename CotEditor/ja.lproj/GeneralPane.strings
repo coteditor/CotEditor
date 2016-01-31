@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2015 CotEditor Project
+ © 2014-2016 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -24,28 +24,6 @@
  limitations under the License.
  
  */
-
-/* Class = "NSTextFieldCell"; title = "Application:"; ObjectID = "lzy-Ei-xlT"; */
-"lzy-Ei-xlT.title" = "アプリケーション：";
-
-/* Class = "NSButtonCell"; title = "Share find text with other applications"; ObjectID = "3307"; */
-"3307.title" = "検索文字列をほかのアプリケーションと共有";
-/* Class = "NSButtonCell"; title = "Inline script menu items into contextual menu"; ObjectID = "3309"; */
-"3309.title" = "コンテキストメニューのスクリプトメニューを展開";
-/* Class = "NSButtonCell"; title = "Count each line ending as one character"; ObjectID = "3306"; */
-"3306.title" = "改行コードを文字としてカウント";
-/* Class = "NSButtonCell"; title = "Check spelling as you type"; ObjectID = "3300"; */
-"3300.title" = "入力中に自動スペルチェック";
-
-
-/* Class = "NSTextFieldCell"; title = "Open a new document:"; ObjectID = "zDW-aW-9G8"; */
-"zDW-aW-9G8.title" = "新規書類を開く：";
-
-/* Class = "NSButtonCell"; title = "On launch"; ObjectID = "3298"; */
-"3298.title" = "起動したとき";
-/* Class = "NSButtonCell"; title = "When CotEditor becomes active"; ObjectID = "3299"; */
-"3299.title" = "CotEditor がアクティブになるとき";
-
 
 /* Class = "NSTextFieldCell"; title = "Auto Save documents:"; ObjectID = "Ki4-3Y-AZL"; */
 "Ki4-3Y-AZL.title" = "書類のオートセーブ：";
@@ -65,6 +43,32 @@
 "1qS-Ay-sca.title" = "解決方法を確認";
 /* Class = "NSButtonCell"; title = "Update to modified edition"; ObjectID = "FWi-En-qeX"; */
 "FWi-En-qeX.title" = "変更された内容に更新";
+
+
+/* Class = "NSTextFieldCell"; title = "Open a new document:"; ObjectID = "zDW-aW-9G8"; */
+"zDW-aW-9G8.title" = "新規書類を開く：";
+
+/* Class = "NSButtonCell"; title = "On launch"; ObjectID = "3298"; */
+"3298.title" = "起動したとき";
+/* Class = "NSButtonCell"; title = "When CotEditor becomes active"; ObjectID = "3299"; */
+"3299.title" = "CotEditor がアクティブになるとき";
+
+
+/* Class = "NSTextFieldCell"; title = "Application:"; ObjectID = "lzy-Ei-xlT"; */
+"lzy-Ei-xlT.title" = "アプリケーション：";
+
+/* Class = "NSButtonCell"; title = "Share find text with other applications"; ObjectID = "3307"; */
+"3307.title" = "検索文字列をほかのアプリケーションと共有";
+/* Class = "NSButtonCell"; title = "Inline script menu items into contextual menu"; ObjectID = "3309"; */
+"3309.title" = "コンテキストメニューのスクリプトメニューを展開";
+/* Class = "NSButtonCell"; title = "Count each line ending as one character"; ObjectID = "3306"; */
+"3306.title" = "改行コードを文字としてカウント";
+/* Class = "NSButtonCell"; title = "Check spelling as you type"; ObjectID = "3300"; */
+"3300.title" = "入力中に自動スペルチェック";
+/* Class = "NSButtonCell"; title = "Highlight matching braces “( )” “[ ]” “{ }”"; ObjectID = "RrC-LL-hid"; */
+"RrC-LL-hid.title" = "対応する括弧“( )” “[ ]” “{ }”をハイライト表示";
+/* Class = "NSButtonCell"; title = "Highlight “< >”"; ObjectID = "al9-WE-Rqy"; */
+"al9-WE-Rqy.title" = "“< >”をハイライト表示";
 
 
 /* Class = "NSTextFieldCell"; title = "Software Update:"; ObjectID = "geU-63-sAC"; */

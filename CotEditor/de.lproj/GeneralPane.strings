@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2015 1024jp
+ © 2015-2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -24,28 +24,6 @@
  limitations under the License.
  
  */
-
-/* Class = "NSTextFieldCell"; title = "Application:"; ObjectID = "lzy-Ei-xlT"; */
-"lzy-Ei-xlT.title" = "Programm:";
-
-/* Class = "NSButtonCell"; title = "Share find text with other applications"; ObjectID = "3307"; */
-"3307.title" = "Suchbegriff mit anderen Programmen teilen";
-/* Class = "NSButtonCell"; title = "Inline script menu items into contextual menu"; ObjectID = "3309"; */
-"3309.title" = "Einträge des Skripte-Menüs ins Kontextmenü entfalten";
-/* Class = "NSButtonCell"; title = "Count each line ending as one character"; ObjectID = "3306"; */
-"3306.title" = "Zeilenumbruch als Zeichen zählen";
-/* Class = "NSButtonCell"; title = "Check spelling as you type"; ObjectID = "3300"; */
-"3300.title" = "Rechtschreibung während der Texteingabe prüfen";
-
-
-/* Class = "NSTextFieldCell"; title = "Open a new document:"; ObjectID = "zDW-aW-9G8"; */
-"zDW-aW-9G8.title" = "Neue Dokument öffnen:";
-
-/* Class = "NSButtonCell"; title = "On launch"; ObjectID = "3298"; */
-"3298.title" = "Beim Start";
-/* Class = "NSButtonCell"; title = "When CotEditor becomes active"; ObjectID = "3299"; */
-"3299.title" = "Wenn CotEditor aktiv wird";
-
 
 /* Class = "NSTextFieldCell"; title = "Auto Save documents:"; ObjectID = "Ki4-3Y-AZL"; */
 "Ki4-3Y-AZL.title" = "Automatisch sichern:";
@@ -65,6 +43,32 @@
 "1qS-Ay-sca.title" = "Erfragen, wie zu lösen";
 /* Class = "NSButtonCell"; title = "Update to modified edition"; ObjectID = "FWi-En-qeX"; */
 "FWi-En-qeX.title" = "Zur geänderten Auflage aktualisieren";
+
+
+/* Class = "NSTextFieldCell"; title = "Open a new document:"; ObjectID = "zDW-aW-9G8"; */
+"zDW-aW-9G8.title" = "Neue Dokument öffnen:";
+
+/* Class = "NSButtonCell"; title = "On launch"; ObjectID = "3298"; */
+"3298.title" = "Beim Start";
+/* Class = "NSButtonCell"; title = "When CotEditor becomes active"; ObjectID = "3299"; */
+"3299.title" = "Wenn CotEditor aktiv wird";
+
+
+/* Class = "NSTextFieldCell"; title = "Application:"; ObjectID = "lzy-Ei-xlT"; */
+"lzy-Ei-xlT.title" = "Programm:";
+
+/* Class = "NSButtonCell"; title = "Share find text with other applications"; ObjectID = "3307"; */
+"3307.title" = "Suchbegriff mit anderen Programmen teilen";
+/* Class = "NSButtonCell"; title = "Inline script menu items into contextual menu"; ObjectID = "3309"; */
+"3309.title" = "Einträge des Skripte-Menüs ins Kontextmenü entfalten";
+/* Class = "NSButtonCell"; title = "Count each line ending as one character"; ObjectID = "3306"; */
+"3306.title" = "Zeilenumbruch als Zeichen zählen";
+/* Class = "NSButtonCell"; title = "Check spelling as you type"; ObjectID = "3300"; */
+"3300.title" = "Rechtschreibung während der Texteingabe prüfen";
+/* Class = "NSButtonCell"; title = "Highlight matching braces “( )” “[ ]” “{ }”"; ObjectID = "RrC-LL-hid"; */
+"RrC-LL-hid.title" = "Übereinstimmende Klammern „( )“ „[ ]“ „{ }“ hervorheben";
+/* Class = "NSButtonCell"; title = "Highlight “< >”"; ObjectID = "al9-WE-Rqy"; */
+"al9-WE-Rqy.title" = "„< >“ hervorheben";
 
 
 /* Class = "NSTextFieldCell"; title = "Software Update:"; ObjectID = "geU-63-sAC"; */

@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2015 CotEditor Project
+ © 2014-2016 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -33,10 +33,6 @@
 "nA4-HY-d71.title" = "スマート引用符／ダッシュを有効にする";
 /* Class = "NSButtonCell"; title = "Swap “¥” and “\\” keys"; ObjectID = "3303"; */
 "3303.title" = "“¥”と“\\”のキーを入れ替える";
-/* Class = "NSButtonCell"; title = "Highlight matching braces “( )” “[ ]” “{ }”"; ObjectID = "3304"; */
-"3304.title" = "対応する括弧“( )” “[ ]” “{ }”をハイライト表示";
-/* Class = "NSButtonCell"; title = "Highlight “< >”"; ObjectID = "3305"; */
-"3305.title" = "“< >”をハイライト表示";
 
 
 /* Class = "NSTextFieldCell"; title = "Indentation:"; ObjectID = "9bX-ei-1x8"; */

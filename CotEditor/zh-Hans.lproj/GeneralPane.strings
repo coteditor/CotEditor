@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2015 CotEditor Project
+ © 2014-2016 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -25,28 +25,6 @@
  limitations under the License.
  
  */
-
-/* Class = "NSTextFieldCell"; title = "Application:"; ObjectID = "lzy-Ei-xlT"; */
-"lzy-Ei-xlT.title" = "应用选项：";
-
-/* Class = "NSButtonCell"; title = "Share find text with other applications"; ObjectID = "3307"; */
-"3307.title" = "与其他应用共享查找字符串";
-/* Class = "NSButtonCell"; title = "Inline script menu items into contextual menu"; ObjectID = "3309"; */
-"3309.title" = "将脚本菜单集成至上下文菜单中";
-/* Class = "NSButtonCell"; title = "Count each line ending as one character"; ObjectID = "3306"; */
-"3306.title" = "统计行尾为一个字符";
-/* Class = "NSButtonCell"; title = "Check spelling as you type"; ObjectID = "3300"; */
-"3300.title" = "输入时检查拼写";
-
-
-/* Class = "NSTextFieldCell"; title = "Open a new document:"; ObjectID = "zDW-aW-9G8"; */
-"zDW-aW-9G8.title" = "打开新文档：";
-
-/* Class = "NSButtonCell"; title = "On launch"; ObjectID = "3298"; */
-"3298.title" = "启动时";
-/* Class = "NSButtonCell"; title = "When CotEditor becomes active"; ObjectID = "3299"; */
-"3299.title" = "当 CotEditor 被激活时";
-
 
 /* Class = "NSTextFieldCell"; title = "Auto Save documents:"; ObjectID = "Ki4-3Y-AZL"; */
 "Ki4-3Y-AZL.title" = "自动保存文档：";
@@ -66,6 +44,32 @@
 "1qS-Ay-sca.title" = "询问如何更新";
 /* Class = "NSButtonCell"; title = "Update to modified edition"; ObjectID = "FWi-En-qeX"; */
 "FWi-En-qeX.title" = "更新到被更改的版本";
+
+
+/* Class = "NSTextFieldCell"; title = "Open a new document:"; ObjectID = "zDW-aW-9G8"; */
+"zDW-aW-9G8.title" = "打开新文档：";
+
+/* Class = "NSButtonCell"; title = "On launch"; ObjectID = "3298"; */
+"3298.title" = "启动时";
+/* Class = "NSButtonCell"; title = "When CotEditor becomes active"; ObjectID = "3299"; */
+"3299.title" = "当 CotEditor 被激活时";
+
+
+/* Class = "NSTextFieldCell"; title = "Application:"; ObjectID = "lzy-Ei-xlT"; */
+"lzy-Ei-xlT.title" = "应用选项：";
+
+/* Class = "NSButtonCell"; title = "Share find text with other applications"; ObjectID = "3307"; */
+"3307.title" = "与其他应用共享查找字符串";
+/* Class = "NSButtonCell"; title = "Inline script menu items into contextual menu"; ObjectID = "3309"; */
+"3309.title" = "将脚本菜单集成至上下文菜单中";
+/* Class = "NSButtonCell"; title = "Count each line ending as one character"; ObjectID = "3306"; */
+"3306.title" = "统计行尾为一个字符";
+/* Class = "NSButtonCell"; title = "Check spelling as you type"; ObjectID = "3300"; */
+"3300.title" = "输入时检查拼写";
+/* Class = "NSButtonCell"; title = "Highlight matching braces “( )” “[ ]” “{ }”"; ObjectID = "RrC-LL-hid"; */
+"RrC-LL-hid.title" = "高亮配对括号“( )” “[ ]” “{ }”";
+/* Class = "NSButtonCell"; title = "Highlight “< >”"; ObjectID = "al9-WE-Rqy"; */
+"al9-WE-Rqy.title" = "高亮“< >”";
 
 
 /* Class = "NSTextFieldCell"; title = "Software Update:"; ObjectID = "geU-63-sAC"; */
