@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2015 1024jp
+ © 2015-2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -65,8 +65,8 @@
 "ikB-dS-c4S.title" = "Dateigröße";
 
 
-/* Class = "NSTextFieldCell"; title = "Split view:"; ObjectID = "dug-hV-7hj"; */
-"dug-hV-7hj.title" = "Ansicht teilen:";
+/* Class = "NSTextFieldCell"; title = "Split editor:"; ObjectID = "dug-hV-7hj"; */
+"dug-hV-7hj.title" = "Editor teilen:";
 /* Class = "NSButtonCell"; title = "Horizontal"; ObjectID = "kON-YK-TIu"; */
 "kON-YK-TIu.title" = "Horizontal";
 /* Class = "NSButtonCell"; title = "Vertical"; ObjectID = "vUQ-Z9-lPm"; */
@@ -80,7 +80,7 @@
 /* Class = "NSButtonCell"; title = "Get from Sample Window…"; ObjectID = "3346"; */
 "3346.title" = "Von Probefenster erhalten …";
 
-/* Class = "NSTextFieldCell"; title = "View opacity:"; ObjectID = "gSx-LA-TPc"; */
-"gSx-LA-TPc.title" = "Ansichtdeckkraft:";
-/* Class = "NSTextFieldCell"; title = "Non-opaque view can slow down on a huge document."; ObjectID = "gdC-8B-U5B"; */
-"gdC-8B-U5B.title" = "Nichtopaker Ansicht kann sich beim riesigen Dokument verlangsamen.";
+/* Class = "NSTextFieldCell"; title = "Editor opacity:"; ObjectID = "gSx-LA-TPc"; */
+"gSx-LA-TPc.title" = "Editordeckkraft:";
+/* Class = "NSTextFieldCell"; title = "Non-opaque editor can slow down on a huge document."; ObjectID = "gdC-8B-U5B"; */
+"gdC-8B-U5B.title" = "Nichtopaker Editor kann sich beim riesigen Dokument verlangsamen.";

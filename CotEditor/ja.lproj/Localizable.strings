@@ -268,8 +268,8 @@
 
 /* MARK: CESplitView */
 // Menu items
-"Stack Views Horizontally" = "分割エディタを横に配置";
-"Stack Views Vertically" = "分割エディタを縦に配置";
+"Stack Editors Horizontally" = "分割エディタを横に配置";
+"Stack Editors Vertically" = "分割エディタを縦に配置";
 
 
 

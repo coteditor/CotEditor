@@ -40,6 +40,7 @@ develop
 - Improve syntax highlighting for quoted strings and comment.
 - Truncate outline label in the navigation bar by appending ellipsis if it overflows.
 - On El Capitan, make option control of the document open panel visible.
+- Rename the main text input area in window from “View” to “Editor”.
 
 
 ### Fixes

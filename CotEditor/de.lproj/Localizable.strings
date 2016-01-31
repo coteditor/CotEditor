@@ -266,8 +266,8 @@
 
 /* MARK: CESplitView */
 // Menu items
-"Stack Views Horizontally" = "Ansichten horizontal stapeln";
-"Stack Views Vertically" = "Ansichten vertikal stapeln";
+"Stack Editors Horizontally" = "Editoren horizontal stapeln";
+"Stack Editors Vertically" = "Editoren vertikal stapeln";
 
 
 

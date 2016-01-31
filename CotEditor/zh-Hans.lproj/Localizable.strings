@@ -266,8 +266,8 @@
 
 /* MARK: CESplitView */
 // Menu items
-"Stack Views Horizontally" = "横向分隔编辑器";
-"Stack Views Vertically" = "纵向分隔编辑器";
+"Stack Editors Horizontally" = "横向分隔编辑器";  // FIXME: view -> editor
+"Stack Editors Vertically" = "纵向分隔编辑器";  // FIXME: view -> editor
 
 
 

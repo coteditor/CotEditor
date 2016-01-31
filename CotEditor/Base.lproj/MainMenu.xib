@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9531"/>
@@ -390,30 +390,30 @@
                             <menuItem isSeparatorItem="YES" id="792">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
-                            <menuItem title="Split View" keyEquivalent="&quot;" id="793">
+                            <menuItem title="Split Editor" keyEquivalent="&quot;" id="793">
                                 <connections>
                                     <action selector="openSplitTextView:" target="-1" id="797"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Focus on Next Split View" keyEquivalent="" id="794">
+                            <menuItem title="Focus on Next Split Editor" keyEquivalent="" id="794">
                                 <modifierMask key="keyEquivalentModifierMask" control="YES" option="YES" command="YES"/>
                                 <connections>
                                     <action selector="focusNextSplitTextView:" target="-1" id="799"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Focus on Previous Split View" keyEquivalent="" id="795">
+                            <menuItem title="Focus on Previous Split Editor" keyEquivalent="" id="795">
                                 <modifierMask key="keyEquivalentModifierMask" control="YES" option="YES" command="YES"/>
                                 <connections>
                                     <action selector="focusPrevSplitTextView:" target="-1" id="800"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Stack Views Vertically" id="u46-te-4c4">
+                            <menuItem title="Stack Editors Vertically" id="u46-te-4c4">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="toggleSplitOrientation:" target="-1" id="wPh-lV-vs2"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Close Split View" keyEquivalent="'" id="796">
+                            <menuItem title="Close Split Editor" keyEquivalent="'" id="796">
                                 <connections>
                                     <action selector="closeSplitTextView:" target="-1" id="798"/>
                                 </connections>
@@ -421,7 +421,7 @@
                             <menuItem isSeparatorItem="YES" id="748">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
-                            <menuItem title="Set View’s Opacity…" keyEquivalent="T" id="367">
+                            <menuItem title="Set Editor’s Opacity…" keyEquivalent="T" id="367">
                                 <connections>
                                     <action selector="showOpacityPanel:" target="290" id="vZR-68-5AC"/>
                                 </connections>
