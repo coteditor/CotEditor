@@ -67,10 +67,10 @@
 
 /* Class = "NSTextFieldCell"; title = "Split editor:"; ObjectID = "dug-hV-7hj"; */
 "dug-hV-7hj.title" = "Editor teilen:";
-/* Class = "NSButtonCell"; title = "Horizontal"; ObjectID = "kON-YK-TIu"; */
-"kON-YK-TIu.title" = "Horizontal";
-/* Class = "NSButtonCell"; title = "Vertical"; ObjectID = "vUQ-Z9-lPm"; */
-"vUQ-Z9-lPm.title" = "Vertikal";
+/* Class = "NSButtonCell"; title = "Horizontal"; ObjectID = "Bj6-2A-Nxj"; */
+"Bj6-2A-Nxj.title" = "Horizontal";
+/* Class = "NSButtonCell"; title = "Vertical"; ObjectID = "sQC-O4-YON"; */
+"sQC-O4-YON.title" = "Vertikal";
 
 
 /* Class = "NSTextFieldCell"; title = "Window width:"; ObjectID = "zIR-1y-lBC"; */
