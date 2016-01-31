@@ -343,7 +343,7 @@ static NSCharacterSet *kMatchingBracketsSet;
     if ([defaults boolForKey:CEDefaultBalancesBracketsKey] && (replacementRange.length == 0) &&
         [string length] == 1 && [kMatchingBracketsSet characterIsMember:[string characterAtIndex:0]])
     {
-        // check if insertion point is in a wordx
+        // check if insertion point is in a word
         if (!([[NSCharacterSet alphanumericCharacterSet] characterIsMember:[self characterBeforeInsertion]] &&
               [[NSCharacterSet alphanumericCharacterSet] characterIsMember:[self characterAfterInsertion]]))
         {
@@ -547,9 +547,7 @@ static NSCharacterSet *kMatchingBracketsSet;
             [surroundingCharacters isEqualToString:@"()"] ||
             [surroundingCharacters isEqualToString:@"\"\""])
         {
-            // delete next closing character
-            [self setSelectedRange:NSMakeRange(selectedRange.location + 1, 0)];
-            [super deleteBackward:self];
+            [self setSelectedRange:NSMakeRange(selectedRange.location - 1, 2)];
         }
         
     }
