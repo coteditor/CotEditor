@@ -343,28 +343,26 @@ static NSCharacterSet *kMatchingBracketsSet;
     if ([defaults boolForKey:CEDefaultBalancesBracketsKey] && (replacementRange.length == 0) &&
         [string length] == 1 && [kMatchingBracketsSet characterIsMember:[string characterAtIndex:0]])
     {
-        // check if insertion point is in a word
-        NSCharacterSet *wordCharacter = [NSCharacterSet alphanumericCharacterSet];
-        if (!([wordCharacter characterIsMember:[self characterBeforeInsertion]] &&
-              [wordCharacter characterIsMember:[self characterAfterInsertion]]))
+        // check if insertion point is in a wordx
+        if (!([[NSCharacterSet alphanumericCharacterSet] characterIsMember:[self characterBeforeInsertion]] &&
+              [[NSCharacterSet alphanumericCharacterSet] characterIsMember:[self characterAfterInsertion]]))
         {
-            NSString *pair = nil;
             switch ([string characterAtIndex:0]) {
                 case '[':
-                    pair = @"[]";
+                    string = @"[]";
                     break;
                 case '{':
-                    pair = @"{}";
+                    string = @"{}";
                     break;
                 case '(':
-                    pair = @"()";
+                    string = @"()";
                     break;
                 case '"':
-                    pair = @"\"\"";
+                    string = @"\"\"";
                     break;
             }
             
-            [super insertText:pair replacementRange:NSMakeRange(NSNotFound, 0)];
+            [super insertText:string replacementRange:replacementRange];
             [self setSelectedRange:NSMakeRange([self selectedRange].location - 1, 0)];
             return;
         }
