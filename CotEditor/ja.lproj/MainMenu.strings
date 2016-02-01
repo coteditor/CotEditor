@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2015 CotEditor Project
+ © 2014-2016 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -213,19 +213,19 @@
 /* Class = "NSMenuItem"; title = "Show Page Guide"; ObjectID = "749"; */
 "749.title" = "ページガイドを表示";
 
-/* Class = "NSMenuItem"; title = "Split View"; ObjectID = "793"; */
+/* Class = "NSMenuItem"; title = "Split Editor"; ObjectID = "793"; */
 "793.title" = "エディタを分割";
-/* Class = "NSMenuItem"; title = "Focus on Next Split View"; ObjectID = "794"; */
+/* Class = "NSMenuItem"; title = "Focus on Next Split Editor"; ObjectID = "794"; */
 "794.title" = "フォーカスを次の分割エディタへ";
-/* Class = "NSMenuItem"; title = "Focus on Previous Split View"; ObjectID = "795"; */
+/* Class = "NSMenuItem"; title = "Focus on Previous Split Editor"; ObjectID = "795"; */
 "795.title" = "フォーカスを前の分割エディタへ";
-/* Class = "NSMenuItem"; title = "Stack Views Vertically"; ObjectID = "u46-te-4c4"; */
+/* Class = "NSMenuItem"; title = "Stack Editors Vertically"; ObjectID = "u46-te-4c4"; */
 "u46-te-4c4.title" = "分割エディタを縦に配置";
-/* Class = "NSMenuItem"; title = "Close Split View"; ObjectID = "796"; */
+/* Class = "NSMenuItem"; title = "Close Split Editor"; ObjectID = "796"; */
 "796.title" = "分割エディタを閉じる";
 
-/* Class = "NSMenuItem"; title = "Set View’s Opacity…"; ObjectID = "367"; */
-"367.title" = "ビューの不透明度...";
+/* Class = "NSMenuItem"; title = "Set Editor’s Opacity…"; ObjectID = "367"; */
+"367.title" = "エディタの不透明度...";
 
 /* Class = "NSMenuItem"; title = "Enter Full Screen"; ObjectID = "4mh-0E-3RJ"; */
 "4mh-0E-3RJ.title" = "フルスクリーンにする";
@@ -431,11 +431,6 @@
 /* Class = "NSMenuItem"; title = "Replace All"; ObjectID = "5HV-xo-NTK"; */
 "5HV-xo-NTK.title" = "すべて置換";
 
-/* Class = "NSMenuItem"; title = "Highlight"; ObjectID = "JAO-3o-fRo"; */
-"JAO-3o-fRo.title" = "ハイライト";
-/* Class = "NSMenuItem"; title = "Unhighlight"; ObjectID = "5is-7G-OVT"; */
-"5is-7G-OVT.title" = "ハイライトを解除";
-
 
 /* Class = "NSMenuItem"; title = "Select Previous Outline Item"; ObjectID = "9Lf-39-x5S"; */
 "9Lf-39-x5S.title" = "前のアウトライン項目を選択";
@@ -507,8 +502,8 @@
 
 /* Class = "NSMenuItem"; title = "Release Notes"; ObjectID = "822"; */
 "822.title" = "リリースノート";
-/* Class = "NSMenuItem"; title = "What’s New in CotEditor 2.3"; ObjectID = "DCW-Ij-540"; */
-"DCW-Ij-540.title" = "CotEditor 2.3 の新機能";
+/* Class = "NSMenuItem"; title = "What’s New in CotEditor 2.4"; ObjectID = "DCW-Ij-540"; */
+"DCW-Ij-540.title" = "CotEditor 2.4 の新機能";
 /* Class = "NSMenuItem"; title = "Acknowledgements"; ObjectID = "824"; */
 "824.title" = "謝辞";
 

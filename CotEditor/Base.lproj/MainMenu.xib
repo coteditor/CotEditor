@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9531"/>
@@ -390,30 +390,30 @@
                             <menuItem isSeparatorItem="YES" id="792">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
-                            <menuItem title="Split View" keyEquivalent="&quot;" id="793">
+                            <menuItem title="Split Editor" keyEquivalent="&quot;" id="793">
                                 <connections>
                                     <action selector="openSplitTextView:" target="-1" id="797"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Focus on Next Split View" keyEquivalent="" id="794">
+                            <menuItem title="Focus on Next Split Editor" keyEquivalent="" id="794">
                                 <modifierMask key="keyEquivalentModifierMask" control="YES" option="YES" command="YES"/>
                                 <connections>
                                     <action selector="focusNextSplitTextView:" target="-1" id="799"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Focus on Previous Split View" keyEquivalent="" id="795">
+                            <menuItem title="Focus on Previous Split Editor" keyEquivalent="" id="795">
                                 <modifierMask key="keyEquivalentModifierMask" control="YES" option="YES" command="YES"/>
                                 <connections>
                                     <action selector="focusPrevSplitTextView:" target="-1" id="800"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Stack Views Vertically" id="u46-te-4c4">
+                            <menuItem title="Stack Editors Vertically" id="u46-te-4c4">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="toggleSplitOrientation:" target="-1" id="wPh-lV-vs2"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Close Split View" keyEquivalent="'" id="796">
+                            <menuItem title="Close Split Editor" keyEquivalent="'" id="796">
                                 <connections>
                                     <action selector="closeSplitTextView:" target="-1" id="798"/>
                                 </connections>
@@ -421,7 +421,7 @@
                             <menuItem isSeparatorItem="YES" id="748">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
-                            <menuItem title="Set View’s Opacity…" keyEquivalent="T" id="367">
+                            <menuItem title="Set Editor’s Opacity…" keyEquivalent="T" id="367">
                                 <connections>
                                     <action selector="showOpacityPanel:" target="290" id="vZR-68-5AC"/>
                                 </connections>
@@ -897,7 +897,7 @@ CA
                             </menuItem>
                             <menuItem title="Jump to Selection" tag="6" keyEquivalent="j" id="p4A-mE-Ve3">
                                 <connections>
-                                    <action selector="centerSelectionInVisibleArea:" target="-1" id="nwh-kM-ZpR"/>
+                                    <action selector="centerSelectionInVisibleArea:" target="289" id="MVE-2w-HCv"/>
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="RmP-uk-9Kf">
@@ -921,20 +921,6 @@ CA
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="vue-8R-4Kg">
-                                <modifierMask key="keyEquivalentModifierMask" command="YES"/>
-                            </menuItem>
-                            <menuItem title="Highlight" tag="10" keyEquivalent="H" id="JAO-3o-fRo">
-                                <connections>
-                                    <action selector="highlight:" target="-1" id="XrP-Hn-WWD"/>
-                                </connections>
-                            </menuItem>
-                            <menuItem title="Unhighlight" tag="11" keyEquivalent="H" id="5is-7G-OVT">
-                                <modifierMask key="keyEquivalentModifierMask" control="YES" command="YES"/>
-                                <connections>
-                                    <action selector="unhighlight:" target="-1" id="yrv-qq-CxM"/>
-                                </connections>
-                            </menuItem>
-                            <menuItem isSeparatorItem="YES" id="Z9B-Wz-WiE">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
                             <menuItem title="Select Previous Outline Item" keyEquivalent="" id="9Lf-39-x5S">
@@ -1058,7 +1044,7 @@ CA
                                     <action selector="openHelpAnchor:" target="290" id="ooo-Mu-EKH"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="What’s New in CotEditor 2.3" tag="9" id="DCW-Ij-540">
+                            <menuItem title="What’s New in CotEditor 2.4" tag="9" id="DCW-Ij-540">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="openHelpAnchor:" target="290" id="jUU-Pz-dYo"/>
@@ -1112,11 +1098,7 @@ CA
             <point key="canvasLocation" x="667" y="895.5"/>
         </menu>
         <customObject id="290" customClass="CEAppDelegate"/>
-        <customObject id="289" customClass="CETextFinder">
-            <userDefinedRuntimeAttributes>
-                <userDefinedRuntimeAttribute type="boolean" keyPath="shouldHackFindMenu" value="NO"/>
-            </userDefinedRuntimeAttributes>
-        </customObject>
+        <customObject id="289" customClass="CETextFinder"/>
         <customObject id="329" customClass="CEDocumentController"/>
         <customObject id="432" customClass="NSFontManager"/>
     </objects>

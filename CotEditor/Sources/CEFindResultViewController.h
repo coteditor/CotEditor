@@ -9,7 +9,7 @@
 
  ------------------------------------------------------------------------------
  
- © 2015 1024jp
+ © 2015-2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -28,12 +28,12 @@
 @import Cocoa;
 
 
-@class OgreTextFindResult;
-
-
 @interface CEFindResultViewController : NSViewController <NSTableViewDelegate, NSTableViewDataSource>
 
-@property (nonatomic, nullable) OgreTextFindResult *result;
+@property (nonatomic, nullable, copy) NSArray<NSDictionary *> *result;
 @property (nonatomic, nullable, unsafe_unretained) NSTextView *target;
+
+@property (nonatomic, nullable, copy) NSString *findString;
+@property (nonatomic, nullable, copy) NSString *documentName;
 
 @end

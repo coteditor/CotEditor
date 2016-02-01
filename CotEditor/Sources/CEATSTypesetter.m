@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2015 1024jp
+ © 2014-2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -115,6 +115,30 @@
     proposedRect.size.width = replacementGlyphBounding.size.width;
     
     return proposedRect;
+}
+
+
+// ------------------------------------------------------
+/// avoid soft warpping just after an indent
+- (BOOL)shouldBreakLineByWordBeforeCharacterAtIndex:(NSUInteger)charIndex
+// ------------------------------------------------------
+{
+    if (charIndex == 0) { return YES; }
+    
+    NSTextStorage *textStorage = [[self layoutManager] textStorage];
+    NSUInteger lastLineBreakIndex = [textStorage lineBreakBeforeIndex:charIndex withinRange:NSMakeRange(0, charIndex)];
+    
+    if (lastLineBreakIndex != NSNotFound) {
+        NSString *beforeBreakCandidate = [[textStorage string] substringWithRange:NSMakeRange(lastLineBreakIndex,
+                                                                                              charIndex - lastLineBreakIndex)];
+        
+        // check if beforeBreakCandidate consists only of indent chars
+        if ([[beforeBreakCandidate stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length] == 0) {
+            return NO;
+        }
+    }
+    
+    return YES;
 }
 
 @end

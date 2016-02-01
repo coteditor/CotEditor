@@ -41,6 +41,10 @@ extern NSString *_Nonnull const CESeparatorString;
 // Exported UTI
 extern NSString *_Nonnull const CEUTTypeTheme;
 
+// General notification's userInfo keys
+extern NSString *_Nonnull const CEOldNameKey;
+extern NSString *_Nonnull const CENewNameKey;
+
 // Metadata dict keys
 extern NSString *_Nonnull const CEMetadataKey;
 extern NSString *_Nonnull const CEAuthorKey;
@@ -61,21 +65,6 @@ typedef NS_ENUM(UInt32, CESystemSoundID) {
 // Convenient functions
 /// compare CGFloats
 BOOL CEIsAlmostEqualCGFloats(CGFloat float1, CGFloat float2);
-
-
-
-#pragma mark Notifications
-
-// ------------------------------------------------------
-// Notifications
-// ------------------------------------------------------
-
-// Notification name
-extern NSString *_Nonnull const CEDocumentDidFinishOpenNotification;
-
-// General notification's userInfo keys
-extern NSString *_Nonnull const CEOldNameKey;
-extern NSString *_Nonnull const CENewNameKey;
 
 
 
@@ -193,28 +182,3 @@ extern NSString *_Nonnull const kBundledDocumentFileNames[];
 // Online URLs
 extern NSString *_Nonnull const kWebSiteURL;
 extern NSString *_Nonnull const kIssueTrackerURL;
-
-
-
-#pragma mark Encodings
-
-// ------------------------------------------------------
-// Encodings
-// ------------------------------------------------------
-
-// Original special encoding type
-extern NSInteger const CEAutoDetectEncoding;
-
-// Max length to scan encoding declaration
-extern NSUInteger        const kMaxEncodingScanLength;
-
-// Encodings list
-extern CFStringEncodings const kCFStringEncodingList[];
-extern NSUInteger        const kSizeOfCFStringEncodingList;
-
-// Encodings that need convert Yen mark to back-slash
-extern CFStringEncodings const kCFStringEncodingInvalidYenList[];
-extern NSUInteger        const kSizeOfCFStringEncodingInvalidYenList;
-
-// Yen mark char
-extern unichar const kYenMark;

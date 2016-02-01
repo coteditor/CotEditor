@@ -26,7 +26,7 @@
  
  */
 
-@import Cocoa;
+@import Foundation;
 
 
 // ------------------------------------------------------
@@ -106,8 +106,10 @@ extern NSString *_Nonnull const CEDefaultFixLineHeightKey;
 extern NSString *_Nonnull const CEDefaultHighlightBracesKey;
 extern NSString *_Nonnull const CEDefaultHighlightLtGtKey;
 extern NSString *_Nonnull const CEDefaultSaveUTF8BOMKey;
+extern NSString *_Nonnull const CEDefaultBalancesBracketsKey;
 extern NSString *_Nonnull const CEDefaultEnableSmartQuotesKey;
 extern NSString *_Nonnull const CEDefaultEnableSmartIndentKey;
+extern NSString *_Nonnull const CEDefaultAutoLinkDetectionKey;
 extern NSString *_Nonnull const CEDefaultAppendsCommentSpacerKey;
 extern NSString *_Nonnull const CEDefaultCommentsAtLineHeadKey;
 extern NSString *_Nonnull const CEDefaultChecksUpdatesForBetaKey;
@@ -215,13 +217,3 @@ typedef NS_ENUM(NSUInteger, CEDocumentConflictOption) {
     CEDocumentConflictNotify,
     CEDocumentConflictRevert,
 };
-
-
-
-// ------------------------------------------------------
-// Setting thresholds
-// ------------------------------------------------------
-
-// Page guide column
-extern NSUInteger const kMinPageGuideColumn;
-extern NSUInteger const kMaxPageGuideColumn;

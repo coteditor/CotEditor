@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2015 1024jp
+ © 2014-2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -67,10 +67,10 @@
 - (void)update
 // ------------------------------------------------------
 {
-    NSArray<NSDictionary<NSString *, NSValue *> *> *contents = [[self document] findCharsIncompatibleWithEncoding:[[self document] encoding]];
+    NSArray<NSDictionary<NSString *, id> *> *contents = [[self document] findCharsIncompatibleWithEncoding:[[self document] encoding]];
     
     NSMutableArray<NSValue *> *ranges = [NSMutableArray array];
-    for (NSDictionary<NSString *, NSValue *> *incompatible in contents) {
+    for (NSDictionary<NSString *, id> *incompatible in contents) {
         [ranges addObject:incompatible[CEIncompatibleRangeKey]];
     }
     [[[self document] editor] clearAllMarkup];
@@ -110,18 +110,18 @@
 - (void)tableViewSelectionDidChange:(nonnull NSNotification *)notification
 // ------------------------------------------------------
 {
-    NSArray<NSDictionary<NSString *, NSValue *> *> *selectedIncompatibles = [[self incompatibleCharsController] selectedObjects];
+    NSDictionary<NSString *, id> *selectedIncompatible = [[[self incompatibleCharsController] selectedObjects] firstObject];
     
-    if ([selectedIncompatibles count] == 0) { return; }
+    if (!selectedIncompatible) { return; }
     
-    NSRange range = [[selectedIncompatibles firstObject][CEIncompatibleRangeKey] rangeValue];
+    NSRange range = [selectedIncompatible[CEIncompatibleRangeKey] rangeValue];
     CEEditorWrapper *editor = [[self document] editor];
-    NSTextView *textView = [editor focusedTextView];
     
     [editor setSelectedRange:range];
-    [[[self view] window] makeFirstResponder:textView];
     
-    // focus result (`range` is incompatible with CR/LF)
+    // focus result
+    // -> use textView's `selectedRange` since `range` is incompatible with CR/LF
+    NSTextView *textView = [editor focusedTextView];
     [textView scrollRangeToVisible:[textView selectedRange]];
     [textView showFindIndicatorForRange:[textView selectedRange]];
 }

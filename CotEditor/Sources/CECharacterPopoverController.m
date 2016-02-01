@@ -27,7 +27,7 @@
 
 #import "CECharacterPopoverController.h"
 #import "CECharacterInfo.h"
-#import "NSString+ComposedCharacter.h"
+#import "NSString+CECounting.h"
 
 
 @interface CECharacterPopoverController () <NSPopoverDelegate>
@@ -86,7 +86,14 @@
         }
         _unicode = [unicode copy];
         
-        _characterColor = [characterInfo pictureString] ? [NSColor colorWithWhite:0.0 alpha:0.1] : [NSColor labelColor];
+        
+        static NSColor *labelColor;
+        if (NSAppKitVersionNumber >= NSAppKitVersionNumber10_10) {
+            labelColor = [NSColor labelColor];
+        } else {
+            labelColor = [NSColor colorWithCalibratedWhite:0.0 alpha:0.85];
+        }
+        _characterColor = [characterInfo pictureString] ? [NSColor colorWithWhite:0.0 alpha:0.1] : labelColor;
     }
     return self;
 }

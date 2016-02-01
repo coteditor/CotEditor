@@ -106,8 +106,10 @@ NSString *_Nonnull const CEDefaultFixLineHeightKey = @"fixLineHeight";
 NSString *_Nonnull const CEDefaultHighlightBracesKey = @"highlightBraces";
 NSString *_Nonnull const CEDefaultHighlightLtGtKey = @"highlightLtGt";
 NSString *_Nonnull const CEDefaultSaveUTF8BOMKey = @"saveUTF8BOM";
+NSString *_Nonnull const CEDefaultBalancesBracketsKey = @"balancesBrackets";
 NSString *_Nonnull const CEDefaultEnableSmartQuotesKey = @"enableSmartQuotes";
 NSString *_Nonnull const CEDefaultEnableSmartIndentKey = @"enableSmartIndent";
+NSString *_Nonnull const CEDefaultAutoLinkDetectionKey = @"autoLinkDetectionKey";
 NSString *_Nonnull const CEDefaultAppendsCommentSpacerKey = @"appendsCommentSpacer";
 NSString *_Nonnull const CEDefaultCommentsAtLineHeadKey = @"commentsAtLineHead";
 NSString *_Nonnull const CEDefaultChecksUpdatesForBetaKey = @"checksUpdatesForBeta";
@@ -171,13 +173,3 @@ NSString *_Nonnull const CEDefaultColoringRangeBufferLengthKey = @"coloringRange
 NSString *_Nonnull const CEDefaultLargeFileAlertThresholdKey = @"largeFileAlertThreshold";
 NSString *_Nonnull const CEDefaultAutosavingDelayKey = @"autosavingDelay";
 NSString *_Nonnull const CEDefaultSavesTextOrientationKey = @"savesTextOrientation";
-
-
-
-// ------------------------------------------------------
-// Setting thresholds
-// ------------------------------------------------------
-
-// Page guide column
-NSUInteger const kMinPageGuideColumn = 1;
-NSUInteger const kMaxPageGuideColumn = 1000;

@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014 CotEditor Project
+ © 2014-2016 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -27,8 +27,8 @@
 
 /* Class = "NSTextFieldCell"; title = "Font:"; ObjectID = "C9y-bs-mE1"; */
 "C9y-bs-mE1.title" = "フォント：";
-/* Class = "NSButtonCell"; title = "Same as Document’s Setting"; ObjectID = "1012"; */
-"1012.title" = "書類の設定と同じ";
+/* Class = "NSButtonCell"; title = "Same as Document’s Setting"; ObjectID = "PfG-m4-gpq"; */
+"PfG-m4-gpq.title" = "書類の設定と同じ";
 /* Class = "NSButtonCell"; title = "Select…"; ObjectID = "3385"; */
 "3385.title" = "選択...";
 

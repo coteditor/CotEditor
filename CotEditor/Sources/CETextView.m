@@ -42,16 +42,21 @@
 #import "CEKeyBindingManager.h"
 #import "CEScriptManager.h"
 #import "CEWindow.h"
-#import "NSString+ComposedCharacter.h"
+#import "NSString+CECounting.h"
 #import "CEDefaults.h"
+#import "CEEncodings.h"
 #import "Constants.h"
 
 
 // constant
-const NSInteger kNoMenuItem = -1;
+static NSString *_Nonnull const CESelectedRangesKey = @"selectedRange";
+static NSString *_Nonnull const CEVisibleRectKey = @"visibleRect";
 
-NSString *_Nonnull const CESelectedRangesKey = @"selectedRange";
-NSString *_Nonnull const CEVisibleRectKey = @"visibleRect";
+static const NSInteger kNoMenuItem = -1;
+
+// Page guide column
+static const NSUInteger kMinPageGuideColumn = 1;
+static const NSUInteger kMaxPageGuideColumn = 1000;
 
 
 @interface CETextView ()
@@ -71,6 +76,7 @@ NSString *_Nonnull const CEVisibleRectKey = @"visibleRect";
 @implementation CETextView
 
 static NSPoint kTextContainerOrigin;
+static NSCharacterSet *kMatchingBracketsSet;
 
 
 #pragma mark Superclass Methods
@@ -86,6 +92,8 @@ static NSPoint kTextContainerOrigin;
         
         kTextContainerOrigin = NSMakePoint((CGFloat)[defaults doubleForKey:CEDefaultTextContainerInsetWidthKey],
                                            (CGFloat)[defaults doubleForKey:CEDefaultTextContainerInsetHeightTopKey]);
+        
+        kMatchingBracketsSet = [NSCharacterSet characterSetWithCharactersInString:@"[{(\""];
     });
     
 }
@@ -136,6 +144,11 @@ static NSPoint kTextContainerOrigin;
         // set layer drawing policies
         [self setLayerContentsRedrawPolicy:NSViewLayerContentsRedrawBeforeViewResize];
         [self setLayerContentsPlacement:NSViewLayerContentsPlacementScaleAxesIndependently];
+        
+        // set link detection
+        [self setAutomaticLinkDetectionEnabled:[defaults boolForKey:CEDefaultAutoLinkDetectionKey]];
+        [self setLinkTextAttributes:@{NSCursorAttributeName: [NSCursor pointingHandCursor],
+                                      NSUnderlineStyleAttributeName: @(NSUnderlineStyleSingle)}];
         
         // set values
         _autoTabExpandEnabled = [defaults boolForKey:CEDefaultAutoExpandTabKey];
@@ -261,6 +274,11 @@ static NSPoint kTextContainerOrigin;
     // テーマ背景色を反映させる
     [[self window] setBackgroundColor:[[self theme] backgroundColor]];
     
+    // 背景色に合わせたスクローラのスタイルをセット
+    NSInteger knobStyle = [[self theme] isDarkTheme] ? NSScrollerKnobStyleLight : NSScrollerKnobStyleDefault;
+    [[self enclosingScrollView] setScrollerKnobStyle:knobStyle];
+    
+    
     // ウインドウの透明フラグを監視する
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(didWindowOpacityChange:)
@@ -276,12 +294,13 @@ static NSPoint kTextContainerOrigin;
 {
     NSString *charIgnoringMod = [theEvent charactersIgnoringModifiers];
     // IM で日本語入力変換中でないときのみ追加テキストキーバインディングを実行
-    if (![self hasMarkedText] && charIgnoringMod) {
+    BOOL isModifierKeyPressed = ([theEvent modifierFlags] & NSDeviceIndependentModifierFlagsMask) != 0;  // check just in case
+    if (![self hasMarkedText] && charIgnoringMod && isModifierKeyPressed) {
         NSString *selectorStr = [[CEKeyBindingManager sharedManager] selectorStringWithKeyEquivalent:charIgnoringMod
                                                                                        modifierFrags:[theEvent modifierFlags]];
-        NSInteger length = [selectorStr length];
-        if (selectorStr && (length > 0)) {
-            if (([selectorStr hasPrefix:@"insertCustomText"]) && (length == 20)) {
+        
+        if ([selectorStr length] > 0) {
+            if (([selectorStr hasPrefix:@"insertCustomText"]) && ([selectorStr length] == 20)) {
                 NSInteger patternNumber = [[selectorStr substringFromIndex:17] integerValue];
                 [self insertCustomTextWithPatternNumber:patternNumber];
             } else {
@@ -302,11 +321,13 @@ static NSPoint kTextContainerOrigin;
 {
     // do not use this method for programmatical insertion.
     
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
     // cast NSAttributedString to NSString in order to make sure input string is plain-text
     NSString *string = [aString isKindOfClass:[NSAttributedString class]] ? [aString string] : aString;
     
     // swap '¥' with '\' if needed
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultSwapYenAndBackSlashKey] && ([string length] == 1)) {
+    if ([defaults boolForKey:CEDefaultSwapYenAndBackSlashKey] && ([string length] == 1)) {
         NSString *yen = [NSString stringWithCharacters:&kYenMark length:1];
         
         if ([string isEqualToString:@"\\"]) {
@@ -318,9 +339,64 @@ static NSPoint kTextContainerOrigin;
         }
     }
     
+    // balance brackets and quotes
+    if ([defaults boolForKey:CEDefaultBalancesBracketsKey] && (replacementRange.length == 0) &&
+        [string length] == 1 && [kMatchingBracketsSet characterIsMember:[string characterAtIndex:0]])
+    {
+        // wrap selection with brackets if some text is selected
+        if ([self selectedRange].length > 0) {
+            NSString *wrappingFormat = nil;
+            switch ([string characterAtIndex:0]) {
+                case '[':
+                    wrappingFormat = @"[%@]";
+                    break;
+                case '{':
+                    wrappingFormat = @"{%@}";
+                    break;
+                case '(':
+                    wrappingFormat = @"(%@)";
+                    break;
+                case '"':
+                    wrappingFormat = @"\"%@\"";
+                    break;
+            }
+            
+            NSString *selectedString = [[self string] substringWithRange:[self selectedRange]];
+            NSString *replacementString = [NSString stringWithFormat:wrappingFormat, selectedString];
+            if ([self shouldChangeTextInRange:[self selectedRange] replacementString:replacementString]) {
+                [[self textStorage] replaceCharactersInRange:[self selectedRange] withString:replacementString];
+                [self didChangeText];
+                return;
+            }
+        
+        // check if insertion point is in a word
+        } else if (!([[NSCharacterSet alphanumericCharacterSet] characterIsMember:[self characterBeforeInsertion]] &&
+                     [[NSCharacterSet alphanumericCharacterSet] characterIsMember:[self characterAfterInsertion]]))
+        {
+            switch ([string characterAtIndex:0]) {
+                case '[':
+                    string = @"[]";
+                    break;
+                case '{':
+                    string = @"{}";
+                    break;
+                case '(':
+                    string = @"()";
+                    break;
+                case '"':
+                    string = @"\"\"";
+                    break;
+            }
+            
+            [super insertText:string replacementRange:replacementRange];
+            [self setSelectedRange:NSMakeRange([self selectedRange].location - 1, 0)];
+            return;
+        }
+    }
+    
     // smart outdent with '}' charcter
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultAutoIndentKey] &&
-        [[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultEnableSmartIndentKey] &&
+    if ([defaults boolForKey:CEDefaultAutoIndentKey] &&
+        [defaults boolForKey:CEDefaultEnableSmartIndentKey] &&
         (replacementRange.length == 0) && [string isEqualToString:@"}"])
     {
         NSString *wholeString = [self string];
@@ -368,8 +444,8 @@ static NSPoint kTextContainerOrigin;
     [super insertText:string replacementRange:replacementRange];
     
     // auto completion
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultAutoCompleteKey]) {
-        [self completeAfterDelay:[[NSUserDefaults standardUserDefaults] doubleForKey:CEDefaultAutoCompletionDelayKey]];
+    if ([defaults boolForKey:CEDefaultAutoCompleteKey]) {
+        [self completeAfterDelay:[defaults doubleForKey:CEDefaultAutoCompletionDelayKey]];
     }
 }
 
@@ -426,14 +502,8 @@ static NSPoint kTextContainerOrigin;
     
     // calculation for smart indent
     if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultEnableSmartIndentKey]) {
-        unichar lastChar = NULL;
-        unichar nextChar = NULL;
-        if (selectedRange.location > 0) {
-            lastChar = [[self string] characterAtIndex:selectedRange.location - 1];
-        }
-        if (NSMaxRange(selectedRange) < [[self string] length]) {
-            nextChar = [[self string] characterAtIndex:NSMaxRange(selectedRange)];
-        }
+        unichar lastChar = [self characterBeforeInsertion];
+        unichar nextChar = [self characterAfterInsertion];
         
         // `{}` の中で改行した場合はインデントを展開する
         shouldExpandBlock = ((lastChar == '{') && (nextChar == '}'));
@@ -468,7 +538,9 @@ static NSPoint kTextContainerOrigin;
 // ------------------------------------------------------
 {
     NSRange selectedRange = [self selectedRange];
-    if (selectedRange.length == 0 && [self isAutoTabExpandEnabled]) {
+    
+    // delete tab
+    if ((selectedRange.length == 0) && [self isAutoTabExpandEnabled]) {
         NSUInteger tabWidth = [self tabWidth];
         NSInteger column = [self columnOfLocation:selectedRange.location expandsTab:YES];
         NSInteger length = tabWidth - ((column + tabWidth) % tabWidth);
@@ -489,6 +561,23 @@ static NSPoint kTextContainerOrigin;
             }
         }
     }
+    
+    // balance brackets
+    if ((selectedRange.length == 0) && [[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultBalancesBracketsKey] &&
+        (selectedRange.location > 0) && (selectedRange.location < [[self string] length]) &&
+        [kMatchingBracketsSet characterIsMember:[self characterBeforeInsertion]])
+    {
+        NSString *surroundingCharacters = [[self string] substringWithRange:NSMakeRange(selectedRange.location - 1, 2)];
+        if ([surroundingCharacters isEqualToString:@"{}"] ||
+            [surroundingCharacters isEqualToString:@"[]"] ||
+            [surroundingCharacters isEqualToString:@"()"] ||
+            [surroundingCharacters isEqualToString:@"\"\""])
+        {
+            [self setSelectedRange:NSMakeRange(selectedRange.location - 1, 2)];
+        }
+        
+    }
+    
     [super deleteBackward:sender];
 }
 
@@ -919,6 +1008,9 @@ static NSPoint kTextContainerOrigin;
             [self setAutomaticQuoteSubstitutionEnabled:[newValue boolValue]];
             [self setAutomaticDashSubstitutionEnabled:[newValue boolValue]];
         }
+        
+    } else if ([keyPath isEqualToString:CEDefaultAutoLinkDetectionKey]) {
+        [self setAutomaticLinkDetectionEnabled:[newValue boolValue]];
     }
 }
 
@@ -1026,6 +1118,24 @@ static NSPoint kTextContainerOrigin;
     
     // redraw selection
     [self setNeedsDisplayInRect:[self visibleRect] avoidAdditionalLayout:YES];
+}
+
+
+// ------------------------------------------------------
+/// make link-like text clickable
+- (void)detectLinkIfNeeded
+// ------------------------------------------------------
+{
+    if (![self isAutomaticLinkDetectionEnabled]) { return; }
+    
+    // The following code looks suitable, but actually doesn't work. (2015-12)
+//    NSRange range = NSMakeRange(0, [[self string] length]);
+//    [self checkTextInRange:range types:NSTextCheckingTypeLink options:@{}];
+    
+    NSTextCheckingTypes currentCheckingType = [self enabledTextCheckingTypes];
+    [self setEnabledTextCheckingTypes:NSTextCheckingTypeLink];
+    [self checkTextInDocument:nil];
+    [self setEnabledTextCheckingTypes:currentCheckingType];
 }
 
 
@@ -1222,7 +1332,34 @@ static NSPoint kTextContainerOrigin;
              CEDefaultCheckSpellingAsTypeKey,
              CEDefaultEnableSmartQuotesKey,
              CEDefaultHangingIndentWidthKey,
-             CEDefaultEnablesHangingIndentKey];
+             CEDefaultEnablesHangingIndentKey,
+             CEDefaultAutoLinkDetectionKey];
+}
+
+
+// ------------------------------------------------------
+/// character just before the insertion or 0
+- (unichar)characterBeforeInsertion
+// ------------------------------------------------------
+{
+    NSUInteger location = [self selectedRange].location;
+    if (location > 0) {
+        return [[self string] characterAtIndex:location - 1];
+    }
+    return NULL;
+}
+
+
+// ------------------------------------------------------
+/// character just after the insertion or 0
+- (unichar)characterAfterInsertion
+// ------------------------------------------------------
+{
+    NSUInteger location = NSMaxRange([self selectedRange]);
+    if (location < [[self string] length]) {
+        return [[self string] characterAtIndex:location];
+    }
+    return NULL;
 }
 
 
@@ -1495,22 +1632,10 @@ static NSPoint kTextContainerOrigin;
     if ([self selectedRange].length > 0) { return; }
     
     // abord if caret is (probably) at the middle of a word
-    NSUInteger nextCharIndex = NSMaxRange([self selectedRange]);
-    if (nextCharIndex < [[self string] length]) {
-        unichar nextChar = [[self string] characterAtIndex:nextCharIndex];
-        if ([[NSCharacterSet alphanumericCharacterSet] characterIsMember:nextChar]) {
-            return;
-        }
-    }
+    if ([[NSCharacterSet alphanumericCharacterSet] characterIsMember:[self characterAfterInsertion]]) { return; }
     
     // abord if previous character is blank
-    NSUInteger location = [self selectedRange].location;
-    if (location > 0) {
-        unichar prevChar = [[self string] characterAtIndex:location - 1];
-        if ([[NSCharacterSet whitespaceAndNewlineCharacterSet] characterIsMember:prevChar]) {
-            return;
-        }
-    }
+    if ([[NSCharacterSet whitespaceAndNewlineCharacterSet] characterIsMember:[self characterBeforeInsertion]]) { return; }
     
     [self complete:self];
 }

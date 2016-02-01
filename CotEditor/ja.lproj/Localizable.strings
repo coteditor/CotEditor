@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2015 1024jp
+ © 2014-2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -69,15 +69,45 @@
 
 
 
+/* MARK: CETextFinder */
+"Replace" = "置換";
+"Find All" = "すべて検索";
+"Replace All" = "すべて置換";
+"%@ string found." = "%@ 件見つかりました。";
+"%@ strings found." = "%@ 件見つかりました。";
+"%@ string replaced." = "%@ 件置換しました。";
+"%@ strings replaced." = "%@ 件置換しました。";
+"Invalid regular expression" =  "無効な正規表現です。";
+
+// ONIGERR_INVALID_COMBINATION_OF_OPTIONS
+"Invalid combination of regular expression options" = "無効な正規表現オプションの組み合わせです。";
+"“%@” option and “%@” option cannot be activated at the same time." = "“%@”オプションと“%@”オプションを同時に有効にすることはできません。";
+"Capture croup" = "つねに無名グループを捕獲";  // must be the same name as the option name in FindPreferencesView
+"Don’t capture group" = "無名グループを捕獲しない";  // must be the same name as the option name in FindPreferencesView
+
+
 /* MARK: CEFindPanelController */
 "Replace the current selection with the replacement text, then find the next match." = "現在の選択範囲を置換テキストで置き換えてから、次のマッチを検索";
 "Replace the current selection with the replacement text." = "現在の選択内容を置換テキストで置き換え";
+"Not Found" = "見つかりません";
+"%@ found" = "%@ 件見つかりました";
+
+
+/* MARK: CEFindResultViewController */
+// Find result (“%@” is filename)
+"No strings found in “%@”." = "“%@”内に見つかりませんでした。";
+"Found one string in “%@”." = "“%@”内に 1 件見つかりました。";
+"Found %li strings in “%@”." = "“%2$@”内に %1$li 件見つかりました。";
 
 
 
 /* MARK: CEDocumentController */
+// binary file alert
+"The file “%@” doesn’t appear to be text data." = "ファイル“%@”はテキストデータではないようです。";
+"The file is %@.\n\nDo you really want to open the file?" = "このファイルは%@です。\n\n本当にファイルを開きますか？";
+
 // Large file alert
-"The file “%@” has a size of %@." = "“%@”はファイルサイズが %@ です。";
+"The file “%@” has a size of %@." = "ファイル“%@”はファイルサイズが %@ あります。";
 "Opening such a large file can make the application slow or unresponsive.\n\nDo you really want to open the file?" = "巨大なファイルを開くと、アプリケーションの反応が遅くなる可能性があります。\n\n本当にファイルを開きますか？";
 "Open" = "開く";
 
@@ -95,7 +125,7 @@
 "Reinterpret" = "再解釈";
 
 // Lossy encoding alert
-"The characters would have to be changed or deleted in saving as “%@”." = "“%@”で保存時に一部の文字を変更または削除する必要があります。";
+"Some characters would have to be changed or deleted in saving as “%@”." = "“%@”で保存時に一部の文字を変更または削除する必要があります。";
 "Do you want to continue processing?" = "保存作業を続けますか？";
 "Save Available Strings" = "有効な文字列を保存";
 "Show Incompatible Chars" = "非互換文字を表示";
@@ -116,7 +146,7 @@
 "The file “%@” could not be reinterpreted using the new encoding “%@”." = "ファイル“%@”はエンコード“%@”で再解釈できませんでした。";
 
 // Incompatible chars alert
-"The characters would have to be changed or deleted in saving as “%@”." = "“%@”で保存時に一部の文字を変更または削除する必要があります。";
+"Some characters would have to be changed or deleted in saving as “%@”." = "“%@”で保存時に一部の文字を変更または削除する必要があります。";
 "Do you want to change encoding and show incompatible characters?" = "エンコーディングを変更し、非互換文字を表示しますか？";
 "Change Encoding" = "エンコーディングを変更";
 
@@ -238,8 +268,8 @@
 
 /* MARK: CESplitView */
 // Menu items
-"Stack Views Horizontally" = "分割エディタを横に配置";
-"Stack Views Vertically" = "分割エディタを縦に配置";
+"Stack Editors Horizontally" = "分割エディタを横に配置";
+"Stack Editors Vertically" = "分割エディタを縦に配置";
 
 
 
@@ -471,16 +501,3 @@
 "The script file “%@” couldn’t be opened." = "スクリプトファイル“%@”を開けませんでした。";
 "The script “%@” can’t be executed because you don’t have the execute permission.\n\nCheck permission of the script file." = "実行権がないため、スクリプト„%@“を実行できません。\n\nスクリプトファイルのアクセス権を確認してください。";
 "The script “%@” couldn’t be read." = "スクリプト“%@”を読み込めませんでした。";
-
-
-
-/* MARK: CEFindPanelController */
-"Invalid regular expression" =  "無効な正規表現です。";
-
-
-
-/* MARK: CEFindResultViewController */
-// Find result (“%@” is filename)
-"No strings found in “%@”." = "“%@”内に見つかりませんでした。";
-"Found one string in “%@”." = "“%@”内に 1 件見つかりました。";
-"Found %li strings in “%@”." = "“%2$@”内に %1$li 件見つかりました。";

@@ -1,6 +1,6 @@
 /*
  
- NSString+ComposedCharacter.m
+ NSString+CECounting.m
  
  CotEditor
  http://coteditor.com
@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014 1024jp
+ © 2014-2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -25,10 +25,10 @@
  
  */
 
-#import "NSString+ComposedCharacter.h"
+#import "NSString+CECounting.h"
 
 
-@implementation NSString (ComposedCharacter)
+@implementation NSString (CECounting)
 
 #pragma mark Public Methods
 
@@ -37,6 +37,8 @@
 - (NSUInteger)numberOfComposedCharacters
 // ------------------------------------------------------
 {
+    if ([self length] == 0) { return 0; }
+    
     // normalize using NFC
     NSString *string = [self precomposedStringWithCanonicalMapping];
     
@@ -67,6 +69,26 @@
          
          count++;
      }];
+    
+    return count;
+}
+
+
+// ------------------------------------------------------
+/// number of words in the whole string
+- (NSUInteger)numberOfWords
+// ------------------------------------------------------
+{
+    if ([self length] == 0) { return 0; }
+    
+    CFStringTokenizerRef tokenizer = CFStringTokenizerCreate(NULL, (CFStringRef)self, CFRangeMake(0, [self length]), kCFStringTokenizerUnitWord, NULL);
+    
+    NSUInteger count = 0;
+    while (CFStringTokenizerAdvanceToNextToken(tokenizer) != kCFStringTokenizerTokenNone) {
+        count++;
+    }
+    
+    CFRelease(tokenizer);
     
     return count;
 }

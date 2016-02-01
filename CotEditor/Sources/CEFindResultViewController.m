@@ -9,7 +9,7 @@
 
  ------------------------------------------------------------------------------
  
- © 2015 1024jp
+ © 2015-2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -26,40 +26,25 @@
  */
 
 #import "CEFindResultViewController.h"
+#import "CETextFinder.h"
 
-#import <OgreKit/OgreKit.h>
 
 /// the maximum number of characters to add to the left of the matched string
-static const int kMaxLeftMargin = 64;
+static const int kMaxLeftMargin = 32;
 /// maximal number of characters for the result line
 static const int kMaxMatchedStringLength = 256;
-
-
-// hack OgreKit's private OgreTextViewFindResult class (cf. OgreTextViewFindResult.h in OgreKit framewrok source)
-@protocol OgreTextViewFindResultInterface <NSObject>
-
-// index番目にマッチした文字列のある行番号
-- (NSNumber*)lineOfMatchedStringAtIndex:(unsigned)index;
-// index番目にマッチした文字列
-- (NSAttributedString *)matchedStringAtIndex:(unsigned)index;
-// index番目にマッチした文字列を選択・表示する
-- (BOOL)showMatchedStringAtIndex:(unsigned)index;
-// index番目にマッチした文字列を選択する
-- (BOOL)selectMatchedStringAtIndex:(unsigned)index;
-
-@end
 
 
 #pragma mark -
 
 @interface CEFindResultViewController ()
 
+@property (nonatomic, nullable, weak) NSLayoutManager *layoutManager;
 @property (nonatomic, nullable, copy) NSString *resultMessage;
-@property (nonatomic, nullable, copy) NSString *findString;
-@property (nonatomic, nullable, copy) NSString *documentName;
 @property (nonatomic) NSUInteger count;
 
 @property (nonatomic, nullable, weak) IBOutlet NSTableView *tableView;
+@property (nonatomic, nullable) IBOutlet NSNumberFormatter *integerFormatter;  // top level
 
 @end
 
@@ -74,15 +59,32 @@ static const int kMaxMatchedStringLength = 256;
 
 // ------------------------------------------------------
 /// setter for result property
-- (void)setResult:(OgreTextFindResult *)result
+- (void)setResult:(NSArray *)result
 // ------------------------------------------------------
 {
-    [result setMaximumLeftMargin:kMaxLeftMargin];
-    [result setMaximumMatchedStringLength:kMaxMatchedStringLength];
-    
     _result = result;
     
     [self reloadResult];
+}
+
+
+// ------------------------------------------------------
+/// set target textView of the result
+- (void)setTarget:(NSTextView *)target
+// ------------------------------------------------------
+{
+    // keep layoutManager as `weak` instaed to avoid handling unsafe_unretained TextView
+    [self setLayoutManager:[target layoutManager]];
+}
+
+
+// ------------------------------------------------------
+/// target textView of the current result
+- (NSTextView *)target
+// ------------------------------------------------------
+{
+    // keep layoutManager as `week` instaed to avoid handling unsafe_unretained TextView
+    return [[self layoutManager] firstTextView];
 }
 
 
@@ -98,7 +100,7 @@ static const int kMaxMatchedStringLength = 256;
 - (NSInteger)numberOfRowsInTableView:(nonnull NSTableView *)tableView
 // ------------------------------------------------------
 {
-    return [[self result] numberOfMatches];
+    return [[self result] count];
 }
 
 
@@ -107,15 +109,32 @@ static const int kMaxMatchedStringLength = 256;
 - (nullable id)tableView:(nonnull NSTableView *)tableView objectValueForTableColumn:(nullable NSTableColumn *)tableColumn row:(NSInteger)row
 // ------------------------------------------------------
 {
-    if (![self result]) { return nil; }
+    NSDictionary<NSString *, id> *result = [self result][row];
     
-    OgreFindResultBranch<OgreTextViewFindResultInterface> *textViewResult = [self textViewResult];
-    BOOL existsTarget = [textViewResult selectMatchedString];
+    if (!result) { return nil; }
     
     if ([[tableColumn identifier] isEqualToString:@"line"]) {
-        return existsTarget ? [textViewResult lineOfMatchedStringAtIndex:row] : nil;
+        return result[CEFindResultLineNumber];
     } else {
-        return [textViewResult matchedStringAtIndex:row];
+        NSMutableAttributedString *lineAttrString = [result[CEFindResultAttributedLineString] mutableCopy];
+        NSRange inlineRange = [result[CEFindResultLineRange] rangeValue];
+        
+        // trim
+        if (inlineRange.location > kMaxLeftMargin) {
+            NSUInteger diff = inlineRange.location - kMaxLeftMargin;
+            [lineAttrString replaceCharactersInRange:NSMakeRange(0, diff) withString:@"…"];
+        }
+        if ([lineAttrString length] > kMaxMatchedStringLength) {
+            NSUInteger extra = [lineAttrString length] - kMaxMatchedStringLength;
+            [lineAttrString replaceCharactersInRange:NSMakeRange(kMaxMatchedStringLength, extra) withString:@"…"];
+        }
+        
+        // truncate tail
+        NSMutableParagraphStyle* paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+        [paragraphStyle setLineBreakMode:NSLineBreakByTruncatingTail];
+        [lineAttrString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [lineAttrString length])];
+        
+        return lineAttrString;
     }
 }
 
@@ -137,17 +156,13 @@ static const int kMaxMatchedStringLength = 256;
     
     if (row > [self count]) { return; }
     
-    OgreFindResultBranch<OgreTextViewFindResultInterface> *result = [self textViewResult];
-    
-    if (![result selectMatchedString]) {
-        NSBeep();
-        return;
-    }
+    NSRange range = [(NSValue *)[self result][row][CEFindResultRange] rangeValue];
     
     NSTextView *textView = [self target];
     dispatch_async(dispatch_get_main_queue(), ^{
-        [result selectMatchedStringAtIndex:row];
-        [textView showFindIndicatorForRange:[textView selectedRange]];
+        [textView setSelectedRange:range];
+        [textView centerSelectionInVisibleArea:nil];
+        [textView showFindIndicatorForRange:range];
     });
 }
 
@@ -156,24 +171,13 @@ static const int kMaxMatchedStringLength = 256;
 #pragma mark Private Methods
 
 // ------------------------------------------------------
-/// return text view result adding interface for OgreKit private class
-- (OgreFindResultBranch<OgreTextViewFindResultInterface> *)textViewResult
-// ------------------------------------------------------
-{
-    return [[[self result] result] childAtIndex:0 inSelection:NO];
-}
-
-
-// ------------------------------------------------------
 /// apply actual result to UI
 - (void)reloadResult
 // ------------------------------------------------------
 {
     if (![self result]) { return; }
     
-    [self setFindString:[[self result] findString]];
-    [self setCount:[[self result] numberOfMatches]];
-    [self setDocumentName:[[self result] title]];
+    [self setCount:[[self result] count]];
     
     NSString *message;
     if ([self count] == 0) {
@@ -181,7 +185,8 @@ static const int kMaxMatchedStringLength = 256;
     } else if ([self count] == 1) {
         message = [NSString stringWithFormat:NSLocalizedString(@"Found one string in “%@”.", nil), [self documentName]];
     } else {
-        message = [NSString stringWithFormat:NSLocalizedString(@"Found %li strings in “%@”.", nil), [self count], [self documentName]];
+        NSString *countStr = [[self integerFormatter] stringFromNumber:@([self count])];
+        message = [NSString stringWithFormat:NSLocalizedString(@"Found %@ strings in “%@”.", nil), countStr, [self documentName]];
     }
     [self setResultMessage:message];
     

@@ -50,6 +50,7 @@
 
 #import "CEErrors.h"
 #import "CEDefaults.h"
+#import "CEEncodings.h"
 #import "Constants.h"
 
 #ifndef APPSTORE
@@ -79,7 +80,6 @@
 @interface CEAppDelegate (Migration)
 
 - (void)migrateIfNeeded;
-- (void)migrateBundleIdentifier;
 
 @end
 
@@ -162,9 +162,11 @@
                                                CEDefaultDelayColoringKey: @NO,
                                                CEDefaultFileDropArrayKey: @[@{CEFileDropExtensionsKey: @"jpg, jpeg, gif, png",
                                                                               CEFileDropFormatStringKey: @"<img src=\"<<<RELATIVE-PATH>>>\" alt=\"<<<FILENAME-NOSUFFIX>>>\" title=\"<<<FILENAME-NOSUFFIX>>>\" width=\"<<<IMAGEWIDTH>>>\" height=\"<<<IMAGEHEIGHT>>>\" />"}],
+                                               CEDefaultBalancesBracketsKey: @YES,
                                                CEDefaultSmartInsertAndDeleteKey: @NO,
                                                CEDefaultEnableSmartQuotesKey: @NO,
                                                CEDefaultEnableSmartIndentKey: @YES,
+                                               CEDefaultAutoLinkDetectionKey: @NO,
                                                CEDefaultAppendsCommentSpacerKey: @YES,
                                                CEDefaultCommentsAtLineHeadKey: @YES,
                                                CEDefaultShouldAntialiasKey: @YES,
@@ -249,13 +251,11 @@
 
 // ------------------------------------------------------
 /// initialize instance
-- (instancetype)init
+- (nullable instancetype)init
 // ------------------------------------------------------
 {
     self = [super init];
     if (self) {
-        [self migrateBundleIdentifier];
-        
         _supportDirectoryURL = [[[NSFileManager defaultManager] URLForDirectory:NSApplicationSupportDirectory
                                                                        inDomain:NSUserDomainMask
                                                               appropriateForURL:nil
@@ -772,10 +772,6 @@
 
 @implementation CEAppDelegate (Migration)
 
-static NSString *_Nonnull const kOldIdentifier = @"com.aynimac.CotEditor";
-static NSString *_Nonnull const kMigrationFlagKey = @"isMigratedToNewBundleIdentifier";
-
-
 //------------------------------------------------------
 /// migrate user settings from CotEditor v1.x if needed
 - (void)migrateIfNeeded
@@ -820,29 +816,6 @@ static NSString *_Nonnull const kMigrationFlagKey = @"isMigratedToNewBundleIdent
         [windowController setInformative:@"Migration finished."];
         [windowController setMigrationFinished:YES];
     }];
-}
-
-
-//------------------------------------------------------
-/// copy user defaults from com.aynimac.CotEditor
-- (void)migrateBundleIdentifier
-//------------------------------------------------------
-{
-    NSUserDefaults *oldDefaults = [[NSUserDefaults alloc] init];
-    NSMutableDictionary<NSString *, id> *oldDefaultsDict = [[oldDefaults persistentDomainForName:kOldIdentifier] mutableCopy];
-    
-    if (!oldDefaultsDict || [oldDefaultsDict[kMigrationFlagKey] boolValue]) { return; }
-    
-    // remove deprecated setting key with "NS"-prefix
-    [oldDefaultsDict removeObjectForKey:@"NSDragAndDropTextDelay"];
-    
-    // copy to current defaults
-    [[NSUserDefaults standardUserDefaults] setPersistentDomain:oldDefaultsDict
-                                                       forName:[[NSBundle mainBundle] bundleIdentifier]];
-    
-    // set migration flag to old defaults
-    oldDefaultsDict[kMigrationFlagKey] = @YES;
-    [oldDefaults setPersistentDomain:oldDefaultsDict forName:kOldIdentifier];
 }
 
 @end

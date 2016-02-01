@@ -85,6 +85,9 @@
                 if (intersectionRange.length > 0) {
                     intersectionRange.location -= upperLineRange.length;
                     [newSelectedRanges addObject:[NSValue valueWithRange:intersectionRange]];
+                } else if (NSLocationInRange(selectedRange.location, editRange)) {
+                    selectedRange.location -= upperLineRange.length;
+                    [newSelectedRanges addObject:[NSValue valueWithRange:selectedRange]];
                 }
             }
         }
@@ -151,6 +154,9 @@
                 if (intersectionRange.length > 0) {
                     intersectionRange.location += lowerLineRange.length;
                     [newSelectedRanges addObject:[NSValue valueWithRange:intersectionRange]];
+                } else if (NSLocationInRange(selectedRange.location, editRange)) {
+                    selectedRange.location += lowerLineRange.length;
+                    [newSelectedRanges addObject:[NSValue valueWithRange:selectedRange]];
                 }
             }
         }

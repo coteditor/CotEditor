@@ -9,7 +9,7 @@
 
  ------------------------------------------------------------------------------
  
- © 2014-2015 1024jp
+ © 2014-2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -27,31 +27,7 @@
 
 @import Cocoa;
 
-#import <OgreKit/OgreFindPanelController.h>
 
-
-typedef NS_ENUM(NSInteger, CETextFinderAction) {
-    CETextFinderActionSetReplacementString = 100,
-    CETextFinderActionFindAll,
-    CETextFinderActionHighlight,
-    CETextFinderActionUnhighlight,
-};
-
-
-@interface CEFindPanelController : OgreFindPanelController
-
-// action messages
-- (IBAction)showFindPanel:(nullable id)sender;
-- (IBAction)findNext:(nullable id)sender;
-- (IBAction)findPrevious:(nullable id)sender;
-- (IBAction)findSelectedText:(nullable id)sender;
-- (IBAction)findAll:(nullable id)sender;
-- (IBAction)useSelectionForFind:(nullable id)sender;
-- (IBAction)useSelectionForReplace:(nullable id)sender;
-- (IBAction)replace:(nullable id)sender;
-- (IBAction)replaceAll:(nullable id)sender;
-- (IBAction)replaceAndFind:(nullable id)sender;
-- (IBAction)highlight:(nullable id)sender;
-- (IBAction)unhighlight:(nullable id)sender;
+@interface CEFindPanelController : NSWindowController
 
 @end

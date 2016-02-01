@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2015 1024jp
+ © 2015-2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -30,13 +30,13 @@
 /* Class = "NSPanel"; title = "Find & Replace"; ObjectID = "Wal-Sg-6d6"; */
 "Wal-Sg-6d6.title" = "Suchen & Ersetzen";
 
-/* Class = "IBBindingConnection"; ibShadowedIsNilPlaceholder = "Find"; ObjectID = "oNs-q5-oCH"; */
-"oNs-q5-oCH.ibShadowedIsNilPlaceholder" = "Suchen";
+/* Class = "BindingConnection"; ibShadowedIsNilPlaceholder = "Find"; ObjectID = "RMK-P4-pYn"; */
+"RMK-P4-pYn.ibShadowedIsNilPlaceholder" = "Suchen";
 /* Class = "NSScrollView"; ibShadowedToolTip = "Type the text to search for."; ObjectID = "hxw-DS-gxQ"; */
 "hxw-DS-gxQ.ibShadowedToolTip" = "Geben Sie den Suchbegriff ein.";
 
-/* Class = "IBBindingConnection"; ibShadowedIsNilPlaceholder = "Replace"; ObjectID = "zd8-iN-ws4"; */
-"zd8-iN-ws4.ibShadowedIsNilPlaceholder" = "Ersetzen";
+/* Class = "BindingConnection"; ibShadowedIsNilPlaceholder = "Replace"; ObjectID = "MRv-ox-jgD"; */
+"MRv-ox-jgD.ibShadowedIsNilPlaceholder" = "Ersetzen";
 /* Class = "NSScrollView"; ibShadowedToolTip = "Type the text to replace the found text."; ObjectID = "qiQ-tb-XCa"; */
 "qiQ-tb-XCa.ibShadowedToolTip" = "Ersetzungstext für den gefundenen Suchbegriff eingeben.";
 
@@ -60,11 +60,6 @@
 
 
 // Buttons
-
-/* Class = "NSButtonCell"; title = "Highlight"; ObjectID = "zHg-Yd-nG3"; */
-"zHg-Yd-nG3.title" = "Hervorheben";
-/* Class = "NSButton"; ibShadowedToolTip = "Highlight all matches."; ObjectID = "j1n-jm-66v"; */
-"j1n-jm-66v.ibShadowedToolTip" = "Alle Übereinstimmung hervorheben.";
 
 /* Class = "NSButtonCell"; title = "Find All"; ObjectID = "XLZ-92-VVF"; */
 "XLZ-92-VVF.title" = "Alles suchen";
@@ -94,73 +89,8 @@
 /* Class = "NSMenuItem"; title = "Clear Recent Replacements"; ObjectID = "vfK-an-Qnl"; */
 "vfK-an-Qnl.title" = "Letzte Ersetzungen löschen";
 
-
-// Advanced Options
-
-/* Class = "NSPopUpButton"; ibShadowedToolTip = "Set advanced options"; ObjectID = "EY8-gj-fQb"; */
-"EY8-gj-fQb.ibShadowedToolTip" = "Erweitere Optionen einstellen";
-
-/* Class = "NSMenuItem"; title = "Advanced Options"; ObjectID = "SsS-EF-JyP"; */
-"SsS-EF-JyP.title" = "Erweitere Optionen";
-
-/* Class = "NSMenuItem"; title = "Wrap Around"; ObjectID = "Oqm-Wt-G7B"; */
-"Oqm-Wt-G7B.title" = "Gesamtes Dokument";
-/* Class = "NSMenuItem"; title = "Select Next Match after Replace"; ObjectID = "RfX-XI-iRH"; */
-"RfX-XI-iRH.title" = "Nach der Ersetzung nächste Übereinstimmung auswählen";
-/* Class = "NSMenuItem"; title = "Auto-Close Progress Dialog"; ObjectID = "ONX-V4-H0w"; */
-"ONX-V4-H0w.title" = "Verlaufsanzeige automatisch schließen";
-
-/* Class = "NSMenuItem"; title = "Textual Search Options"; ObjectID = "hX3-jg-Uqc"; */
-"hX3-jg-Uqc.title" = "Optionen für textuelles Suchen";
-/* Class = "NSMenuItem"; title = "Delimit by Whitespace"; ObjectID = "4Pf-nh-75E"; */
-"4Pf-nh-75E.title" = "Mit Leerzeichen trennen";
-
-/* Class = "NSMenuItem"; title = "Regular Expression Options"; ObjectID = "UZ5-oK-DED"; */
-"UZ5-oK-DED.title" = "Optionen für regulären Ausdruck";
-
-/* Class = "NSMenuItem"; title = "Syntax"; ObjectID = "Uhr-hw-nIf"; */
-"Uhr-hw-nIf.title" = "Syntax";
-/* Class = "NSMenu"; title = "Syntax"; ObjectID = "bs2-Tz-po4"; */
-"bs2-Tz-po4.title" = "Syntax";
-/* Class = "NSMenuItem"; title = "POSIX Basic"; ObjectID = "y7k-yn-gy6"; */
-"y7k-yn-gy6.title" = "POSIX Basic";
-/* Class = "NSMenuItem"; title = "POSIX Extended"; ObjectID = "QfE-cX-d9h"; */
-"QfE-cX-d9h.title" = "POSIX Erweitert";
-/* Class = "NSMenuItem"; title = "Emacs"; ObjectID = "IKR-qF-Nqu"; */
-"IKR-qF-Nqu.title" = "Emacs";
-/* Class = "NSMenuItem"; title = "Grep"; ObjectID = "Nbe-7c-AnJ"; */
-"Nbe-7c-AnJ.title" = "Grep";
-/* Class = "NSMenuItem"; title = "GNU Regex"; ObjectID = "sgn-JJ-gas"; */
-"sgn-JJ-gas.title" = "GNU Regex";
-/* Class = "NSMenuItem"; title = "Java"; ObjectID = "heJ-on-iUB"; */
-"heJ-on-iUB.title" = "Java";
-/* Class = "NSMenuItem"; title = "Perl"; ObjectID = "mdl-TK-1fB"; */
-"mdl-TK-1fB.title" = "Perl";
-/* Class = "NSMenuItem"; title = "Ruby"; ObjectID = "NPK-8x-xDg"; */
-"NPK-8x-xDg.title" = "Ruby";
-
-/* Class = "NSMenuItem"; title = "Single Line"; ObjectID = "UQ6-Up-xWI"; */
-"UQ6-Up-xWI.title" = "Eine Zeile";
-/* Class = "NSMenuItem"; title = "Multiline"; ObjectID = "kPN-Hy-ym0"; */
-"kPN-Hy-ym0.title" = "Mehrere Zeilen";
-/* Class = "NSMenuItem"; title = "Extend"; ObjectID = "14O-E6-7lS"; */
-"14O-E6-7lS.title" = "Erweitern";
-/* Class = "NSMenuItem"; title = "Find Longest"; ObjectID = "xBb-Le-i3R"; */
-"xBb-Le-i3R.title" = "Längstes suchen";
-/* Class = "NSMenuItem"; title = "Find Empty"; ObjectID = "amg-LN-hui"; */
-"amg-LN-hui.title" = "Leere Suche";
-/* Class = "NSMenuItem"; title = "Find Not Empty"; ObjectID = "3D5-4J-V4l"; */
-"3D5-4J-V4l.title" = "Suche nicht leer";
-/* Class = "NSMenuItem"; title = "Negate Single Line"; ObjectID = "Sdf-5P-GP1"; */
-"Sdf-5P-GP1.title" = "Eine Zeile ablehnen";
-/* Class = "NSMenuItem"; title = "Capture Group"; ObjectID = "LiY-vD-U6B"; */
-"LiY-vD-U6B.title" = "In Gruppe sichern";
-/* Class = "NSMenuItem"; title = "Don’t Capture Group"; ObjectID = "fQl-sZ-bjK"; */
-"fQl-sZ-bjK.title" = "Kein Sichern in Gruppe";
-/* Class = "NSMenuItem"; title = "Not Begin of Line"; ObjectID = "AFF-AC-IR9"; */
-"AFF-AC-IR9.title" = "Nicht Zeilenanfang";
-/* Class = "NSMenuItem"; title = "Not End of Line"; ObjectID = "kCx-M9-GDk"; */
-"kCx-M9-GDk.title" = "Nicht Zeilenende";
+/* Class = "NSButton"; ibShadowedToolTip = "Set advanced options"; ObjectID = "ESq-ws-6H3"; */
+"ESq-ws-6H3.ibShadowedToolTip" = "Erweitere Optionen einstellen";
 
 
 // Find Result
@@ -168,7 +98,7 @@
 /* Class = "NSButton"; UeN.ibShadowedToolTip = "Close find result."; ObjectID = "oC1-bN-UeN"; */
 "oC1-bN-UeN.ibShadowedToolTip" = "Suchresultat schließen.";
 
-/* Class = "IBBindingConnection"; ibShadowedDisplayPattern = "Find String: %{value1}@"; ObjectID = "2MH-SD-x1y"; */
+/* Class = "BindingConnection"; ibShadowedDisplayPattern = "Find String: %{value1}@"; ObjectID = "2MH-SD-x1y"; */
 "2MH-SD-x1y.ibShadowedDisplayPattern" = "Suchbegriff: %{value1}@";
 
 /* Class = "NSTableColumn"; headerCell.title = "Line"; ObjectID = "CPd-0W-bKv"; */

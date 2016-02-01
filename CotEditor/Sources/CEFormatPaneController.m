@@ -34,6 +34,7 @@
 #import "CESyntaxEditSheetController.h"
 #import "CEEncodingListSheetController.h"
 #import "CEDefaults.h"
+#import "CEEncodings.h"
 #import "Constants.h"
 
 

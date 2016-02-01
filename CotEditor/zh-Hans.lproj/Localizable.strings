@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2015 CotEditor Project
+ © 2014-2016 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -68,13 +68,43 @@
 
 
 
+/* MARK: CETextFinder */
+"Replace" = "替换";
+"Find All" = "查找全部";
+"Replace All" = "替换全部";
+"%@ string found." = "找到 %@ 个匹配";
+"%@ strings found." = "找到 %@ 个匹配";
+"%@ string replaced." = "已替换 %@ 个匹配";
+"%@ strings replaced." = "已替换 %@ 个匹配";
+"Invalid regular expression" = "无效的正则表达式";
+
+// ONIGERR_INVALID_COMBINATION_OF_OPTIONS
+"Invalid combination of regular expression options" = "无效的正则表达式选项组合";
+"“%@” option and “%@” option cannot be activated at the same time." = "选项 “%@” 和选项 “%@” 不能同时启用";
+"Capture croup" = "按组匹配";  // must be the same name as the option name in FindPreferencesView
+"Don’t capture group" = "不匹配组";  // must be the same name as the option name in FindPreferencesView
+
+
 /* MARK: CEFindPanelController */
 "Replace the current selection with the replacement text, then find the next match." = "用替换文本替换当前选中内容，然后查找下一个匹配项目";
 "Replace the current selection with the replacement text." = "用替换文本替换当前选中内容";
+"Not Found" = "未找到";
+"%@ found" = "找到 %@ 项";
+
+
+/* MARK: CEFindResultViewController */
+// Find result (“%@” is filename)
+"No strings found in “%@”." = "在“%@”中没有找到字符串。";
+"Found one string in “%@”." = "在“%@”中找到一个字符串。";
+"Found %li strings in “%@”." = "%li 个字符串在“%@”中被找到。";
 
 
 
 /* MARK: CEDocumentController */
+// binary file alert
+"The file “%@” doesn’t appear to be text data." = "文件 “%@” 不是文本数据";
+"The file is %@.\n\nDo you really want to open the file?" = "文件 %@.\n\n确定要打开该文件？";
+
 // Large file alert
 "The file “%@” has a size of %@." = "“%@”文件尺寸为 %@。";
 "Opening such a large file can make the application slow or unresponsive.\n\nDo you really want to open the file?" = "打开大型文件可能导致应用速度变慢。\n\n确定要打开该文件？";
@@ -93,7 +123,7 @@
 "Reinterpret" = "再次解释";
 
 // Lossy encoding alert
-"The characters would have to be changed or deleted in saving as “%@”." = "保存为“%@”时一些字符可能需要被更改或者删除。";
+"Some characters would have to be changed or deleted in saving as “%@”." = "保存为“%@”时一些字符可能需要被更改或者删除。";
 "Do you want to continue processing?" = "继续进行处理吗？";
 "Save Available Strings" = "保存有效字符串";
 "Show Incompatible Chars" = "显示不兼容字符";
@@ -114,7 +144,7 @@
 "The file “%@” could not be reinterpreted using the new encoding “%@”." = "文件“%@”无法使用“%@”编码再次解释。";
 
 // Incompatible chars alert
-"The characters would have to be changed or deleted in saving as “%@”." = "保存为“%@”时一些字符可能需要被更改或者删除。";
+"Some characters would have to be changed or deleted in saving as “%@”." = "保存为“%@”时一些字符可能需要被更改或者删除。";
 "Do you want to change encoding and show incompatible characters?" = "改变编码并显示不兼容字符吗？";
 "Change Encoding" = "更改编码";
 
@@ -236,8 +266,8 @@
 
 /* MARK: CESplitView */
 // Menu items
-"Stack Views Horizontally" = "横向分隔编辑器";
-"Stack Views Vertically" = "纵向分隔编辑器";
+"Stack Editors Horizontally" = "横向分隔编辑器";
+"Stack Editors Vertically" = "纵向分隔编辑器";
 
 
 
@@ -469,16 +499,3 @@
 "The script file “%@” couldn’t be opened." = "无法打开脚本文件“%@”。";
 "The script “%@” can’t be executed because you don’t have the execute permission.\n\nCheck permission of the script file." = "由于没有执行权限，无法执行脚本“%@”。\n\n请确认脚本文件的权限。";
 "The script “%@” couldn’t be read." = "无法读取脚本“%@”。";
-
-
-
-/* MARK: CEFindPanelController */
-"Invalid regular expression" = "无效的正则表达式";
-
-
-
-/* MARK: CEFindResultViewController */
-// Find result (“%@” is filename)
-"No strings found in “%@”." = "在“%@”中没有找到字符串。";
-"Found one string in “%@”." = "在“%@”中找到一个字符串。";
-"Found %li strings in “%@”." = "%li 个字符串在“%@”中被找到。";

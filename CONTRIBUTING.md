@@ -37,8 +37,6 @@ If your localization makes the Autolayout destroy, just tell us about it with a 
 We recommend to copy .strings files in CotEditor/ja.lproj/ directory in order to use them as templates, because Japanese localization is always up-to-date and well organized.
 Note that you don't need to localize the Unicode block names in the `Unicode.strings` file.
 
-To localize CotEditor, [OgreKit framework](https://github.com/sonoisa/OgreKit) which is used for the CotEditor's find panel must also be localized. If OgreKit doesn't contain your language, localize at least the `FindPanel/Resources/__Language__.lproj/OgreTextFinderLocalizable.strings` file and make a pull-request to [CotEditor's repo](https://github.com/coteditor/OgreKit).
-
 
 ### Syntax Styles
 
@@ -74,7 +72,7 @@ Please follow the style of the existing codes in CotEditor.
 	[self setFoo:@"foo"];
 	NSString *foo = [self foo];
 	
-	// instead
+	// instead of
 	self.foo = @"foo";
 	NSString *foo = self.foo;
 	```
@@ -97,6 +95,6 @@ Please follow the style of the existing codes in CotEditor.
 	// use
 	if (!foo) { return; }
 	
-	// instead
+	// instead of
 	if (!foo) return;
 	```

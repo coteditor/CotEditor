@@ -30,7 +30,7 @@
 #import "CEDocument.h"
 #import "CEEditorWrapper.h"
 #import "CECharacterInfo.h"
-#import "NSString+ComposedCharacter.h"
+#import "NSString+CECounting.h"
 #import "CEDefaults.h"
 
 
@@ -207,11 +207,10 @@ NSString *_Nonnull const CEAnalyzerDidUpdateEditorInfoNotification = @"CEAnalyze
             
             // count words
             if (needsAll || [defaults boolForKey:CEDefaultShowStatusBarWordsKey]) {
-                NSSpellChecker *spellChecker = [[NSSpellChecker alloc] init];
-                numberOfWords = [spellChecker countWordsInString:wholeString language:nil];
+                numberOfWords = [wholeString numberOfWords];
                 if (hasSelection) {
-                    numberOfSelectedWords = [spellChecker countWordsInString:selectedString language:nil];
-                }
+                    numberOfSelectedWords = [selectedString numberOfWords];
+                };
             }
             
             // count location

@@ -63,10 +63,10 @@
 
 // ------------------------------------------------------
 /// setup view
-- (void)loadView
+- (void)awakeFromNib
 // ------------------------------------------------------
 {
-    [super loadView];
+    [super awakeFromNib];
     
     [[self splitView] setVertical:[[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultSplitViewVerticalKey]];
     [self updateOpenSplitViewButtons];
@@ -106,7 +106,7 @@
 // ------------------------------------------------------
 {
     if ([menuItem action] == @selector(toggleSplitOrientation:)) {
-        NSString *title = [[self splitView] isVertical] ? @"Stack Views Horizontally" : @"Stack Views Vertically";
+        NSString *title = [[self splitView] isVertical] ? @"Stack Editors Horizontally" : @"Stack Editors Vertically";
         [menuItem setTitle:NSLocalizedString(title, nil)];
         return ([[[self view] subviews] count] > 1);
         

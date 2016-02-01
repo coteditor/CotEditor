@@ -79,10 +79,7 @@
     [super windowDidLoad];
     
     // setup indicator
-    [[self indicator] setIndeterminate:NO];
-    [[self indicator] setDoubleValue:0];
     [[self indicator] setUsesThreadedAnimation:YES];
-    [[self indicator] setIndeterminate:YES];
 }
 
 
@@ -103,7 +100,6 @@
               contextInfo:(__bridge_retained void * _Null_unspecified)(handler)];
     }
     
-    [[self indicator] setDoubleValue:[self progress]];
     [[self indicator] startAnimation:self];
     
     // retain itself to avoid dismiss controller while sheet is attached to a window
@@ -116,14 +112,10 @@
 - (void)progressIndicator:(CGFloat)delta
 // ------------------------------------------------------
 {
-    @synchronized(self) {
-        self.progress += delta;
-    }
-    
-    // set always on main thread
-    NSProgressIndicator *indicator = [self indicator];
+    // set always on the main thread
+    __weak typeof(self) weakSelf = self;
     dispatch_async(dispatch_get_main_queue(), ^{
-        [indicator incrementBy:(double)delta];
+        weakSelf.progress += delta;
     });
 }
 
@@ -140,26 +132,8 @@
     [[self button] setTarget:self];
     [[self button] setKeyEquivalent:@"\r"];
     
+    [self setProgress:1.0];  // complete
     [[self indicator] stopAnimation:self];
-    [[self indicator] setDoubleValue:1.0];
-}
-
-
-// ------------------------------------------------------
-///
-- (void)setIndetermine:(BOOL)indetermine
-// ------------------------------------------------------
-{
-    [[self indicator] setIndeterminate:indetermine];
-}
-
-
-// ------------------------------------------------------
-///
-- (BOOL)isIndetermine
-// ------------------------------------------------------
-{
-    return [[self indicator] isIndeterminate];
 }
 
 

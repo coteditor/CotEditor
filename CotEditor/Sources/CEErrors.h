@@ -35,14 +35,19 @@ typedef NS_ENUM(OSStatus, CEErrorCode) {
     CEInvalidNameError = 1000,
     CEThemeFileDuplicationError,
     CEScriptNoTargetDocumentError,
+    CEFileReadTooLargeError,
+    CEFileReadBinaryFileError,
     
     // encoding errors
-    CEIANACharsetNameConflictError,
+    CEIANACharsetNameConflictError = 1100,
     CEUnconvertibleCharactersError,
     CEReinterpretationFailedError,
     
+    // text finder
+    CERegularExpressionError = 1200,
+    
     // for command-line tool installer
-    CEApplicationNotInApplicationDirectoryError,
+    CEApplicationNotInApplicationDirectoryError = 1500,
     CEApplicationNameIsModifiedError,
     CESymlinkCreationDeniedError,
 };

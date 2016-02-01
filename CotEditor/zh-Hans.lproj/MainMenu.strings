@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2015 CotEditor Project
+ © 2014-2016 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -214,19 +214,19 @@
 /* Class = "NSMenuItem"; title = "Show Page Guide"; ObjectID = "749"; */
 "749.title" = "显示页面指示";
 
-/* Class = "NSMenuItem"; title = "Split View"; ObjectID = "793"; */
+/* Class = "NSMenuItem"; title = "Split Editor"; ObjectID = "793"; */
 "793.title" = "分栏显示";
-/* Class = "NSMenuItem"; title = "Focus on Next Split View"; ObjectID = "794"; */
-"794.title" = "焦点下一个分栏视图";
-/* Class = "NSMenuItem"; title = "Focus on Previous Split View"; ObjectID = "795"; */
-"795.title" = "焦点前一个分栏视图";
-/* Class = "NSMenuItem"; title = "Stack Views Vertically"; ObjectID = "u46-te-4c4"; */
+/* Class = "NSMenuItem"; title = "Focus on Next Split Editor"; ObjectID = "794"; */
+"794.title" = "焦点下一个分栏编辑器";
+/* Class = "NSMenuItem"; title = "Focus on Previous Split Editor"; ObjectID = "795"; */
+"795.title" = "焦点前一个分栏编辑器";
+/* Class = "NSMenuItem"; title = "Stack Editors Vertically"; ObjectID = "u46-te-4c4"; */
 "u46-te-4c4.title" = "纵向分栏显示";
-/* Class = "NSMenuItem"; title = "Close Split View"; ObjectID = "796"; */
+/* Class = "NSMenuItem"; title = "Close Split Editor"; ObjectID = "796"; */
 "796.title" = "关闭分栏显示";
 
-/* Class = "NSMenuItem"; title = "Set View’s Opacity…"; ObjectID = "367"; */
-"367.title" = "设置视图透明度…";
+/* Class = "NSMenuItem"; title = "Set Editor’s Opacity…"; ObjectID = "367"; */
+"367.title" = "设置编辑器透明度…";
 
 /* Class = "NSMenuItem"; title = "Enter Full Screen"; ObjectID = "4mh-0E-3RJ"; */
 "2da-fK-Nkg.title" = "进入全屏";
@@ -433,11 +433,6 @@
 /* Class = "NSMenuItem"; title = "Replace All"; ObjectID = "5HV-xo-NTK"; */
 "5HV-xo-NTK.title" = "替换全部";
 
-/* Class = "NSMenuItem"; title = "Highlight"; ObjectID = "JAO-3o-fRo"; */
-"JAO-3o-fRo.title" = "高亮";
-/* Class = "NSMenuItem"; title = "Unhighlight"; ObjectID = "5is-7G-OVT"; */
-"5is-7G-OVT.title" = "取消高亮";
-
 
 /* Class = "NSMenuItem"; title = "Select Previous Outline Item"; ObjectID = "9Lf-39-x5S"; */
 "9Lf-39-x5S.title" = "选择上一个大纲项目";
@@ -510,8 +505,8 @@
 
 /* Class = "NSMenuItem"; title = "Release Notes"; ObjectID = "822"; */
 "822.title" = "发行说明";
-/* Class = "NSMenuItem"; title = "What’s New in CotEditor 2.3"; ObjectID = "DCW-Ij-540"; */
-"DCW-Ij-540.title" = "CotEditor 2.3 新特性";
+/* Class = "NSMenuItem"; title = "What’s New in CotEditor 2.4"; ObjectID = "DCW-Ij-540"; */
+"DCW-Ij-540.title" = "CotEditor 2.4 新特性";
 /* Class = "NSMenuItem"; title = "Acknowledgements"; ObjectID = "824"; */
 "824.title" = "致谢";
 

@@ -86,7 +86,7 @@ static NSDictionary<NSString *, NSString *> *kUnprintableKeyTable;
 // ------------------------------------------------------
 {
     // set statics
-    kUnprintableKeyTable = [CEKeyBindingManager unprintableKeyDictionary];
+    kUnprintableKeyTable = [self unprintableKeyDictionary];
 }
 
 
@@ -131,10 +131,10 @@ static NSDictionary<NSString *, NSString *> *kUnprintableKeyTable;
     if (length < 2) { return @""; }
     
     NSString *keyEquivalent = [keySpecChars substringFromIndex:(length - 1)];
-    NSString *keyStr = [CEKeyBindingManager printableKeyStringFromKeyEquivalent:keyEquivalent];
+    NSString *keyStr = [self printableKeyStringFromKeyEquivalent:keyEquivalent];
     BOOL drawsShift = (isupper([keyEquivalent characterAtIndex:0]) == 1);
-    NSString *modKeyStr = [CEKeyBindingManager printableKeyStringFromModKeySpecChars:[keySpecChars substringToIndex:(length - 1)]
-                                                                        withShiftKey:drawsShift];
+    NSString *modKeyStr = [self printableKeyStringFromModKeySpecChars:[keySpecChars substringToIndex:(length - 1)]
+                                                         withShiftKey:drawsShift];
     
     return [NSString stringWithFormat:@"%@%@", modKeyStr, keyStr];
 }
@@ -208,7 +208,7 @@ static NSDictionary<NSString *, NSString *> *kUnprintableKeyTable;
 - (nonnull NSString *)selectorStringWithKeyEquivalent:(nonnull NSString *)keyEquivalent modifierFrags:(NSEventModifierFlags)modifierFlags
 // ------------------------------------------------------
 {
-    NSString *keySpecChars = [CEKeyBindingManager keySpecCharsFromKeyEquivalent:keyEquivalent modifierFrags:modifierFlags];
+    NSString *keySpecChars = [[self class] keySpecCharsFromKeyEquivalent:keyEquivalent modifierFrags:modifierFlags];
 
     return [self textKeyBindingDict][keySpecChars];
 }
@@ -253,7 +253,7 @@ static NSDictionary<NSString *, NSString *> *kUnprintableKeyTable;
     NSDictionary<NSString *, NSString *> *dict = usesFactoryDefaults ? [self defaultTextKeyBindingDict] : [self textKeyBindingDict];
     const NSRange actionIndexRange = NSMakeRange(17, 2);  // range of numbers in "insertCustomText_00:"
     
-    for (NSString *selector in [CEKeyBindingManager textKeyBindingSelectorStrings]) {
+    for (NSString *selector in [[self class] textKeyBindingSelectorStrings]) {
         if ([selector length] == 0) { continue; }
         
         NSString *title = [NSString stringWithFormat:NSLocalizedString(@"Insert Text %@", nil),
@@ -423,7 +423,7 @@ static NSDictionary<NSString *, NSString *> *kUnprintableKeyTable;
     
     // specific selectors
     NSString *selectorString = NSStringFromSelector([menuItem action]);
-    if ([[CEKeyBindingManager selectorStringsToIgnore] containsObject:selectorString]) {
+    if ([[[self class] selectorStringsToIgnore] containsObject:selectorString]) {
         return YES;
     }
     
@@ -465,8 +465,8 @@ static NSDictionary<NSString *, NSString *> *kUnprintableKeyTable;
             NSUInteger modifierMask = 0;
             NSString *keySpecChars = [self keySpecCharsForSelector:[item action] factoryDefaults:NO];
             NSString *keyEquivalent = [CEKeyBindingUtils keyEquivalentAndModifierMask:&modifierMask
-                                                                 fromString:keySpecChars
-                                                        includingCommandKey:YES];
+                                                                           fromString:keySpecChars
+                                                                  includingCommandKey:YES];
 
             // keySpecChars があり Cmd が設定されている場合だけ、反映させる
             if (([keySpecChars length] > 0) && (modifierMask & NSCommandKeyMask)) {
@@ -502,8 +502,8 @@ static NSDictionary<NSString *, NSString *> *kUnprintableKeyTable;
             if (![item action]) { continue; }
             
             NSString *keySpecChars = usesFactoryDefaults ? [self keySpecCharsForSelector:[item action] factoryDefaults:YES] :
-                                                           [CEKeyBindingManager keySpecCharsFromKeyEquivalent:[item keyEquivalent]
-                                                                                                modifierFrags:[item keyEquivalentModifierMask]];
+                                                           [[self class] keySpecCharsFromKeyEquivalent:[item keyEquivalent]
+                                                                                         modifierFrags:[item keyEquivalentModifierMask]];
             
             row = @{CEKeyBindingTitleKey: [item title],
                     CEKeyBindingKeySpecCharsKey: keySpecChars,
@@ -567,7 +567,7 @@ static NSDictionary<NSString *, NSString *> *kUnprintableKeyTable;
     if ([[NSCharacterSet alphanumericCharacterSet] characterIsMember:theChar]) {
         return [keyEquivalent uppercaseString];
     } else {
-        return [CEKeyBindingManager printableCharFromIgnoringModChar:keyEquivalent];
+        return [self printableCharFromIgnoringModChar:keyEquivalent];
     }
 }
 

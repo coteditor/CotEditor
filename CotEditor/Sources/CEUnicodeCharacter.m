@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2015 1024jp
+ © 2015-2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -187,7 +187,7 @@
     if (!_localizedBlockName) {
         NSString *blockName = [self blockName];
         
-        blockName = [CEUnicodeCharacter sanitizeBlockName:blockName];
+        blockName = [[self class] sanitizeBlockName:blockName];
         
         _localizedBlockName = NSLocalizedStringFromTable(blockName, @"Unicode", nil);
         
@@ -229,7 +229,7 @@
         const char *blockNameChars = u_getPropertyValueName(UCHAR_BLOCK, i, U_LONG_PROPERTY_NAME);
         
         NSString *blockName = [@(blockNameChars) stringByReplacingOccurrencesOfString:@"_" withString:@" "];  // sanitize
-        blockName = [CEUnicodeCharacter sanitizeBlockName:blockName];
+        blockName = [[self class] sanitizeBlockName:blockName];
         
         NSString *localizedBlockName = [bundle localizedStringForKey:blockName value:nil table:@"Unicode"];
         

@@ -106,22 +106,24 @@
 
 
 // ------------------------------------------------------
-/// 置換を実行
-- (void)replaceWithString:(nullable NSString *)string range:(NSRange)range selectedRange:(NSRange)selectedRange actionName:(nullable NSString *)actionName
+/// perform simple text replacement
+- (BOOL)replaceWithString:(nullable NSString *)string range:(NSRange)range selectedRange:(NSRange)selectedRange actionName:(nullable NSString *)actionName
 // ------------------------------------------------------
 {
-    if (!string) { return; }
+    if (!string) { return NO; }
     
-    [self replaceWithStrings:@[string]
-                      ranges:@[[NSValue valueWithRange:range]]
-              selectedRanges:@[[NSValue valueWithRange:selectedRange]]
-                  actionName:actionName];
+    NSArray<NSValue *> *selectedRanges = (selectedRange.location != NSNotFound) ? @[[NSValue valueWithRange:selectedRange]] : nil;
+    
+    return [self replaceWithStrings:@[string]
+                             ranges:@[[NSValue valueWithRange:range]]
+                     selectedRanges:selectedRanges
+                         actionName:actionName];
 }
 
 
 // ------------------------------------------------------
-/// perform multiple replacements
-- (void)replaceWithStrings:(nonnull NSArray<NSString *> *)strings ranges:(nonnull NSArray<NSValue *> *)ranges selectedRanges:(nullable NSArray<NSValue *> *)selectedRanges actionName:(nullable NSString *)actionName
+/// perform multiple text replacements
+- (BOOL)replaceWithStrings:(nonnull NSArray<NSString *> *)strings ranges:(nonnull NSArray<NSValue *> *)ranges selectedRanges:(nullable NSArray<NSValue *> *)selectedRanges actionName:(nullable NSString *)actionName
 // ------------------------------------------------------
 {
     NSAssert([strings count] == [ranges count], @"unbalanced number of strings and ranges for multiple replacement");
@@ -130,7 +132,7 @@
     [[[self undoManager] prepareWithInvocationTarget:self] setSelectedRangesWithUndo:[self selectedRanges]];
     
     // tell textEditor about beginning of the text processing
-    if (![self shouldChangeTextInRanges:ranges replacementStrings:strings]) { return; }
+    if (![self shouldChangeTextInRanges:ranges replacementStrings:strings]) { return NO; }
     
     // set action name
     if (actionName) {
@@ -159,6 +161,8 @@
     // apply new selection ranges
     selectedRanges = selectedRanges ?: [self selectedRanges];
     [self setSelectedRangesWithUndo:selectedRanges];
+    
+    return YES;
 }
 
 

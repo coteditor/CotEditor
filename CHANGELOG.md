@@ -2,6 +2,66 @@
 Change Log
 ==========================
 
+develop
+--------------------------
+
+### New Features
+
+- New option balancing brackets and quotes (in “Edit” pane).
+- New option making URL in document clickable link (in “General” pane).
+- On El Capitan, hidden file visibility can be toggled via checkbox in the document open panel.
+- Add the following encodings to the encoding list:
+    - Arabic (ISO 8859-6)
+    - Hebrew (ISO 8859-8)
+    - Nordic (ISO Latin 6)
+    - Baltic (ISO Latin 7)
+    - Celtic (ISO Latin 8)
+    - Western (ISO Latin 9)
+    - Romanian (ISO Latin 10)
+
+
+### Improvements
+
+- Improve text finder:
+    - Now, “Find All” action also highlights all matched strings in the editor, and thereby “Highlight” action is removed.
+    - Change advanced find option setting from popup menu to popover.
+    - On Yosemite and later, a visual feedback is shown when the search wrapped.
+    - Keep selected range after “Replace All” with in-selection option.
+    - Display total number of found in find panel on simple find actions.
+    - Now, “Find All” and “Replace All” actions are able to process multiple selections.
+    - Add Python syntax to the regular expression syntax options.
+    - Revert “Use selection for Replace” action to allow using an empty string.
+    - Update layout and style.
+- `cot` command now opens symbolic link target rather than the link itself.
+- On El Capitan, make option control of the document open panel visible.
+- Improve syntax highlighting for quoted strings and comment.
+- Display alert if file to open seems to be a kind of a media (binary) file.
+- Improve file encoding detection.
+- Update default priority order of encoding detection.
+- Improve character compatibility check.
+- Better error message on file opening.
+- Take a safety measure for in case the key binding setting file is corrupt.
+- Truncate outline label in the navigation bar by appending ellipsis if it overflows.
+- Move some options position within “General” pane and “Edit” pane in preferences window.
+- Rename the main text input area in window from “View” to “Editor”.
+
+
+### Fixes
+
+- Fix cursor location after moving lines with empty selection.
+- Fix line-wrapping behavior when the line contains a long unbreakable word.
+- Fix an issue where the application crashed by an invalid find regular expression option combination.
+- Fix an issue where the application could crash just after starting dictation.
+- Fix an issue where keybinding setting could fail.
+- Fix an issue where the scroll bar style didn't change to light color on dark background theme.
+- Fix an issue where the character inspector didn't show up on Mavericks and earlier.
+- Fix an issue where split orientation setting wasn't applied.
+- Fix an issue where “Jump to Selection” action didn't jump to selection in editor if other text box is focused.
+- Fix an issue where some table cells didn't change their text color when selected.
+- Fix tiny memory leaks.
+
+
+
 2.3.4　(95)
 --------------------------
 

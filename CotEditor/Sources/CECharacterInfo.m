@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2015 1024jp
+ © 2015-2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -26,7 +26,7 @@
  */
 
 #import "CECharacterInfo.h"
-#import "NSString+ComposedCharacter.h"
+#import "NSString+CECounting.h"
 
 
 // variation selectors
@@ -105,7 +105,7 @@ static const UTF32Char kType6EmojiModifierChar = 0x1F3FF;  // Emoji Modifier Fit
     self = [super init];
     if (self) {
         _string = string;
-        _unicodes = [CECharacterInfo divideIntoUnicodes:string];
+        _unicodes = [[self class] divideIntoUnicodes:string];
         
         // check variation selector
         if ([_unicodes count] == 2) {

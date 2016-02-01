@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2015 1024jp
+ © 2015-2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -36,11 +36,11 @@
 // ------------------------------------------------------
 {
     // add left padding
-    theRect.size.width -= MAX(self.leftPadding, 0);
-    theRect.origin.x += MAX(self.leftPadding, 0);
+    theRect.size.width -= MAX([self leftPadding], 0);
+    theRect.origin.x += MAX([self leftPadding], 0);
     
     // add right padding
-    theRect.size.width -= MAX(self.rightPadding, 0);
+    theRect.size.width -= MAX([self rightPadding], 0);
     
     return [super drawingRectForBounds:theRect];
 }

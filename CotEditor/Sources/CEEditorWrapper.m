@@ -41,11 +41,12 @@
 #import "CENavigationBarController.h"
 #import "CESyntaxStyle.h"
 #import "CEGoToSheetController.h"
+#import "CETextFinder.h"
 #import "NSString+CERange.h"
 #import "CEDefaults.h"
 
 
-@interface CEEditorWrapper ()
+@interface CEEditorWrapper () <CETextFinderClientProvider>
 
 @property (nonatomic, nullable, weak) NSTimer *coloringTimer;
 @property (nonatomic, nullable, weak) NSTimer *outlineMenuTimer;
@@ -267,6 +268,7 @@
     NSAttributedString *attrString = [[NSAttributedString alloc] initWithString:string attributes:attributes];
     
     [[self textStorage] setAttributedString:attrString];
+    [[self focusedTextView] detectLinkIfNeeded];
 }
 
 

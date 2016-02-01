@@ -255,6 +255,8 @@ static BOOL usesTextFontForInvisibles;
         CGPathRelease(tabGlyphPath);
         CGPathRelease(newLineGlyphPath);
         CGPathRelease(fullWidthSpaceGlyphPath);
+        CGPathRelease(verticalTabGlyphPath);
+        CGPathRelease(replacementGlyphPath);
     }
     
     [super drawGlyphsForGlyphRange:glyphsToShow atPoint:origin];
@@ -476,6 +478,7 @@ CGPathRef glyphPathWithCharacter(unichar character, CTFontRef font, bool prefers
         CTFontRef fallbackFont = CTFontCreateWithName((CFStringRef)fontName, fontSize, 0);
         if (CTFontGetGlyphsForCharacters(fallbackFont, &character, &glyph, 1)) {
             path = CTFontCreatePathForGlyph(fallbackFont, glyph, NULL);
+            CFRelease(fallbackFont);
             break;
         }
         CFRelease(fallbackFont);

@@ -29,15 +29,25 @@
 #import "CEDocumentController.h"
 #import "CEEncodingManager.h"
 #import "CEDefaults.h"
-#import "Constants.h"
+#import "CEEncodings.h"
+#import "CEErrors.h"
+
+
+// define UTIs for legacy system
+//   -> They were defined first on OS X 10.10.
+static const CFStringRef CEUTTypeScalableVectorGraphics = CFSTR("public.svg-image");
+static const CFStringRef CEUTTypeGNUZipArchive = CFSTR("org.gnu.gnu-zip-archive");
+static const CFStringRef CEUTTypeBzip2Archive = CFSTR("public.bzip2-archive");
+static const CFStringRef CEUTTypeZipArchive = CFSTR("public.zip-archive");
 
 
 @interface CEDocumentController ()
 
-@property (nonatomic) BOOL showsHiddenFiles;
+@property (nonatomic) BOOL showsHiddenFiles;  // binding
 
 @property (nonatomic, nullable) IBOutlet NSView *openPanelAccessoryView;
 @property (nonatomic, nullable) IBOutlet NSPopUpButton *accessoryEncodingMenu;
+@property (nonatomic, nullable) IBOutlet NSButton *showHiddenFilesCheckbox;
 
 
 // readonly
@@ -104,6 +114,28 @@
 - (nullable id)makeDocumentWithContentsOfURL:(nonnull NSURL *)url ofType:(nonnull NSString *)typeName error:(NSError * _Nullable __autoreleasing * _Nullable)outError
 // ------------------------------------------------------
 {
+    NSError *error = nil;
+    
+    // display alert if file may an image, video or other kind of binary file.
+    CFStringRef typeNameRef = (__bridge CFStringRef)typeName;
+    if ((UTTypeConformsTo(typeNameRef, kUTTypeImage) && !UTTypeEqual(typeNameRef, CEUTTypeScalableVectorGraphics)) ||  // SVG is plain-text (except SVGZ)
+        UTTypeConformsTo(typeNameRef, kUTTypeAudiovisualContent) ||
+        UTTypeConformsTo(typeNameRef, CEUTTypeGNUZipArchive) ||
+        UTTypeConformsTo(typeNameRef, CEUTTypeZipArchive) ||
+        UTTypeConformsTo(typeNameRef, CEUTTypeBzip2Archive))
+    {
+        NSString *localizedTypeName = (__bridge_transfer NSString *)UTTypeCopyDescription(typeNameRef);
+        
+        error = [NSError errorWithDomain:CEErrorDomain code:CEFileReadBinaryFileError
+                                userInfo:@{NSLocalizedDescriptionKey: [NSString stringWithFormat:NSLocalizedString(@"The file “%@” doesn’t appear to be text data.", nil), [url lastPathComponent]],
+                                           NSLocalizedRecoverySuggestionErrorKey: [NSString stringWithFormat:NSLocalizedString(@"The file is %@.\n\nDo you really want to open the file?", nil), localizedTypeName],
+                                           NSLocalizedRecoveryOptionsErrorKey: @[NSLocalizedString(@"Open", nil),
+                                                                                 NSLocalizedString(@"Cancel", nil)],
+                                           NSRecoveryAttempterErrorKey: self,
+                                           NSURLErrorKey: url,
+                                           NSUnderlyingErrorKey: [NSError errorWithDomain:NSCocoaErrorDomain code:NSFileReadCorruptFileError userInfo:nil]}];
+    }
+    
     // display alert if file is enorm large
     NSUInteger fileSizeThreshold = [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultLargeFileAlertThresholdKey];
     if (fileSizeThreshold > 0) {
@@ -113,21 +145,27 @@
         if ([fileSize integerValue] > fileSizeThreshold) {
             NSByteCountFormatter *formatter = [[NSByteCountFormatter alloc] init];
             
-            NSAlert *alert = [[NSAlert alloc] init];
-            [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"The file “%@” has a size of %@.", nil),
-                                   [url lastPathComponent],
-                                   [formatter stringFromByteCount:[fileSize longLongValue]]]];
-            [alert setInformativeText:NSLocalizedString(@"Opening such a large file can make the application slow or unresponsive.\n\nDo you really want to open the file?", nil)];
-            [alert addButtonWithTitle:NSLocalizedString(@"Open", nil)];
-            [alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
-            
-            // cancel operation
-            if ([alert runModal] == NSAlertSecondButtonReturn) {
-                if (outError) {
-                    *outError = [NSError errorWithDomain:NSCocoaErrorDomain code:NSUserCancelledError userInfo:nil];
-                }
-                return nil;
+            error = [NSError errorWithDomain:CEErrorDomain code:CEFileReadTooLargeError
+                                    userInfo:@{NSLocalizedDescriptionKey: [NSString stringWithFormat:NSLocalizedString(@"The file “%@” has a size of %@.", nil),
+                                                                           [url lastPathComponent],
+                                                                           [formatter stringFromByteCount:[fileSize longLongValue]]],
+                                               NSLocalizedRecoverySuggestionErrorKey: NSLocalizedString(@"Opening such a large file can make the application slow or unresponsive.\n\nDo you really want to open the file?", nil),
+                                               NSLocalizedRecoveryOptionsErrorKey: @[NSLocalizedString(@"Open", nil),
+                                                                                     NSLocalizedString(@"Cancel", nil)],
+                                               NSRecoveryAttempterErrorKey: self,
+                                               NSURLErrorKey: url,
+                                               NSUnderlyingErrorKey: [NSError errorWithDomain:NSCocoaErrorDomain code:NSFileReadTooLargeError userInfo:nil]}];
+        }
+    }
+    
+    // ask user for opening file
+    if (error) {
+        // cancel operation
+        if (![self presentError:error]) {
+            if (outError) {
+                *outError = [NSError errorWithDomain:NSCocoaErrorDomain code:NSUserCancelledError userInfo:nil];
             }
+            return nil;
         }
     }
     
@@ -149,14 +187,25 @@
     // initialize encoding menu and set the accessory view
     if (![self openPanelAccessoryView]) {
         [[NSBundle mainBundle] loadNibNamed:@"OpenDocumentAccessory" owner:self topLevelObjects:nil];
+        if (NSAppKitVersionNumber <= NSAppKitVersionNumber10_10_Max) {
+            // real time togging of hidden files visibility works only on El Capitan (and later?)
+            [[self showHiddenFilesCheckbox] removeFromSuperview];
+        }
     }
     [self buildEncodingPopupButton];
     [openPanel setAccessoryView:[self openPanelAccessoryView]];
     
-    // set visibility of the hidden files
-    [openPanel setTreatsFilePackagesAsDirectories:[self showsHiddenFiles]];
+    // force accessory view visible
+    if (NSAppKitVersionNumber > NSAppKitVersionNumber10_10_Max) {
+        [openPanel setAccessoryViewDisclosed:YES];
+    }
+    
+    // set visibility of hidden files in the panel
     [openPanel setShowsHiddenFiles:[self showsHiddenFiles]];
-    [self setShowsHiddenFiles:NO];  // reset flag
+    [openPanel setTreatsFilePackagesAsDirectories:[self showsHiddenFiles]];
+    // ->  bind showsHiddenFiles flag with openPanel (for El capitan and leter)
+    [openPanel bind:@"showsHiddenFiles" toObject:self withKeyPath:@"showsHiddenFiles" options:nil];
+    [openPanel bind:@"treatsFilePackagesAsDirectories" toObject:self withKeyPath:@"showsHiddenFiles" options:nil];
     
     // run non-modal open panel
     __weak typeof(self) weakSelf = self;
@@ -168,8 +217,27 @@
             [self resetAccessorySelectedEncoding];
         }
         
+        [self setShowsHiddenFiles:NO];  // reset flag
+        
         completionHandler(result);
     }];
+}
+
+
+// ------------------------------------------------------
+/// check if file opening is cancelled
+- (BOOL)attemptRecoveryFromError:(nonnull NSError *)error optionIndex:(NSUInteger)recoveryOptionIndex
+// ------------------------------------------------------
+{
+    if ([[error domain] isEqualToString:CEErrorDomain]) {
+        switch ([error code]) {
+            case CEFileReadBinaryFileError:
+            case CEFileReadTooLargeError:
+                return (recoveryOptionIndex == 0);
+        }
+    }
+    
+    return NO;
 }
 
 

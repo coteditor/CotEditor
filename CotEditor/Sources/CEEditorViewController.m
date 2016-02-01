@@ -39,8 +39,6 @@
 #import "CEDefaults.h"
 #import "Constants.h"
 
-#import <OgreKit/OgreTextFinder.h>
-
 
 @interface CEEditorViewController ()
 
@@ -249,10 +247,10 @@
     
     if (undoManager != [[self textView] undoManager]) { return; }
     
-    // OgreKit からのすべて置換の Undo/Redo の後のみ再カラーリングを実行
-    // 置換の Undo を判別するために OgreKit 側で登録された actionName を使用 (2014-04 by 1024jp)
+    // invalidate syntax highlighting only after Undo/Redo of "Replace All" action
+    // To determine Undo/Redo type, use actionName that was set in CETextFinder (2014-04 by 1024jp)
     NSString *actionName = [undoManager isUndoing] ? [undoManager redoActionName] : [undoManager undoActionName];
-    if (![actionName isEqualToString:OgreTextFinderLocalizedString(@"Replace All")]) { return; }
+    if (![actionName isEqualToString:NSLocalizedString(@"Replace All", nil)]) { return; }
     
     // 全テキストを再カラーリング
     [[self editorWrapper] setupColoringTimer];
@@ -271,16 +269,14 @@
 - (BOOL)textView:(nonnull NSTextView *)textView shouldChangeTextInRange:(NSRange)affectedCharRange replacementString:(nullable NSString *)replacementString
 // ------------------------------------------------------
 {
-    // standardize line endings to LF (Script, Key Typing)
+    // standardize line endings to LF (Key Typing, Script, Paste, Drop or Replace via Find Panel)
     // (Line endings replacemement by other text modifications are processed in the following methods.)
     //
     // # Methods Standardizing Line Endings on Text Editing
     //   - File Open:
     //       - CEDocument > applyContentToEditor
-    //   - Key Typing, Script, Paste, Drop:
+    //   - Key Typing, Script, Paste, Drop or Replace via Find Panel:
     //       - CEEditorViewController > textView:shouldChangeTextInRange:replacementString:
-    //   - Replace on Find Panel:
-    //       - (OgreKit) OgreTextViewPlainAdapter > replaceCharactersInRange:withOGString:
     
     if (!replacementString ||  // = attributesのみの変更
         ([replacementString length] == 0) ||  // = 文章の削除

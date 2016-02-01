@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9531"/>
@@ -15,32 +15,11 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <userDefaultsController representsSharedInstance="YES" id="26" userLabel="Shared User Defaults Controller"/>
         <customView horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" id="s6I-DY-Ii0" userLabel="Edit Pane">
-            <rect key="frame" x="0.0" y="0.0" width="550" height="642"/>
+            <rect key="frame" x="0.0" y="0.0" width="550" height="620"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <button translatesAutoresizingMaskIntoConstraints="NO" id="870">
-                    <rect key="frame" x="140" y="516" width="114" height="18"/>
-                    <buttonCell key="cell" type="check" title="Highlight “&lt; &gt;”" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3305">
-                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" metaFont="system"/>
-                    </buttonCell>
-                    <connections>
-                        <binding destination="26" name="enabled" keyPath="values.highlightBraces" id="872"/>
-                        <binding destination="26" name="value" keyPath="values.highlightLtGt" id="873"/>
-                    </connections>
-                </button>
-                <button translatesAutoresizingMaskIntoConstraints="NO" id="867">
-                    <rect key="frame" x="115" y="538" width="270" height="18"/>
-                    <buttonCell key="cell" type="check" title="Highlight matching braces “( )” “[ ]” “{ }”" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3304">
-                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" metaFont="system"/>
-                    </buttonCell>
-                    <connections>
-                        <binding destination="26" name="value" keyPath="values.highlightBraces" id="869"/>
-                    </connections>
-                </button>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="844">
-                    <rect key="frame" x="115" y="560" width="156" height="18"/>
+                    <rect key="frame" x="115" y="516" width="156" height="18"/>
                     <buttonCell key="cell" type="check" title="Swap “¥” and “\” keys" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3303">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
@@ -49,9 +28,19 @@
                         <binding destination="26" name="value" keyPath="values.swapYenAndBackSlashKey" id="846"/>
                     </connections>
                 </button>
+                <button translatesAutoresizingMaskIntoConstraints="NO" id="mWb-Dy-J7g">
+                    <rect key="frame" x="115" y="538" width="198" height="18"/>
+                    <buttonCell key="cell" type="check" title="Balance brackets and quotes" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="GRh-V2-hmW">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <binding destination="26" name="value" keyPath="values.balancesBrackets" id="z77-72-2eT"/>
+                    </connections>
+                </button>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="644">
-                    <rect key="frame" x="115" y="604" width="207" height="18"/>
-                    <buttonCell key="cell" type="check" title="Enable smart insert and delete" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3302">
+                    <rect key="frame" x="115" y="582" width="172" height="18"/>
+                    <buttonCell key="cell" type="check" title="Enable smart copy/paste" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3302">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
@@ -60,7 +49,7 @@
                     </connections>
                 </button>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="mK4-4e-plf">
-                    <rect key="frame" x="115" y="582" width="220" height="18"/>
+                    <rect key="frame" x="115" y="560" width="220" height="18"/>
                     <buttonCell key="cell" type="check" title="Enable smart quotes and dashes" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="nA4-HY-d71">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
@@ -78,8 +67,8 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="IXD-kJ-dvh">
-                    <rect key="frame" x="50" y="605" width="61" height="17"/>
-                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Behavior:" usesSingleLineMode="YES" id="SqI-BC-ar9">
+                    <rect key="frame" x="30" y="583" width="81" height="17"/>
+                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Substitution:" usesSingleLineMode="YES" id="SqI-BC-ar9">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -513,11 +502,11 @@
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="z5v-7l-1C4" secondAttribute="bottom" constant="20" symbolic="YES" id="0Ke-Pr-SYk"/>
                 <constraint firstItem="Vf0-M7-9ji" firstAttribute="leading" secondItem="644" secondAttribute="leading" id="0n7-K8-sdI"/>
+                <constraint firstItem="mWb-Dy-J7g" firstAttribute="leading" secondItem="644" secondAttribute="leading" id="1gk-l0-W8e"/>
                 <constraint firstItem="235" firstAttribute="baseline" secondItem="236" secondAttribute="baseline" id="2XO-of-k0y"/>
                 <constraint firstItem="644" firstAttribute="leading" secondItem="160" secondAttribute="leading" id="2YC-uB-api"/>
                 <constraint firstItem="282" firstAttribute="baseline" secondItem="283" secondAttribute="baseline" id="2eo-GD-Kfb"/>
                 <constraint firstItem="C2I-Ub-oUU" firstAttribute="leading" secondItem="644" secondAttribute="leading" id="3eN-aj-0ZB"/>
-                <constraint firstItem="844" firstAttribute="top" secondItem="mK4-4e-plf" secondAttribute="bottom" constant="8" id="53U-9L-xPq"/>
                 <constraint firstItem="t0Y-p1-xOb" firstAttribute="leading" secondItem="lO2-uf-OLD" secondAttribute="leading" id="5d4-UU-RBZ"/>
                 <constraint firstItem="224" firstAttribute="baseline" secondItem="221" secondAttribute="baseline" id="6ki-ac-drF"/>
                 <constraint firstItem="C2I-Ub-oUU" firstAttribute="top" secondItem="btC-lZ-pQ7" secondAttribute="bottom" constant="8" id="72F-Be-lUx"/>
@@ -532,7 +521,7 @@
                 <constraint firstItem="aZf-lI-jGQ" firstAttribute="leading" secondItem="VBo-Ii-1PR" secondAttribute="trailing" constant="8" symbolic="YES" id="Fhr-la-WI5"/>
                 <constraint firstItem="160" firstAttribute="top" secondItem="209" secondAttribute="bottom" constant="8" id="Frm-gK-yPu"/>
                 <constraint firstItem="874" firstAttribute="top" secondItem="244" secondAttribute="bottom" constant="9" id="GrH-iq-Z6W"/>
-                <constraint firstItem="644" firstAttribute="leading" secondItem="867" secondAttribute="leading" id="I7l-D2-ubz"/>
+                <constraint firstItem="844" firstAttribute="top" secondItem="mWb-Dy-J7g" secondAttribute="bottom" constant="8" id="HZx-MZ-Q0V"/>
                 <constraint firstItem="oXk-4y-elJ" firstAttribute="baseline" secondItem="Dte-ly-fKQ" secondAttribute="baseline" id="I8r-SF-1u9"/>
                 <constraint firstItem="283" firstAttribute="top" secondItem="160" secondAttribute="bottom" constant="8" id="IM6-11-CAa"/>
                 <constraint firstItem="644" firstAttribute="leading" secondItem="1Oj-wo-mCu" secondAttribute="leading" id="J6i-07-RCr"/>
@@ -549,16 +538,17 @@
                 <constraint firstItem="644" firstAttribute="leading" secondItem="mK4-4e-plf" secondAttribute="leading" id="SSF-Ji-WPP"/>
                 <constraint firstItem="Dte-ly-fKQ" firstAttribute="top" secondItem="874" secondAttribute="bottom" constant="20" id="TNP-zN-r28"/>
                 <constraint firstItem="R0e-j3-ADv" firstAttribute="baseline" secondItem="b55-Fo-mcA" secondAttribute="baseline" id="TyB-sV-Q80"/>
+                <constraint firstItem="209" firstAttribute="top" secondItem="844" secondAttribute="bottom" constant="20" id="TyW-oo-2QL"/>
                 <constraint firstItem="aqi-gh-y6R" firstAttribute="leading" secondItem="644" secondAttribute="leading" id="UGi-CA-dw5"/>
                 <constraint firstItem="209" firstAttribute="leading" secondItem="4B0-Kj-mzX" secondAttribute="trailing" constant="8" symbolic="YES" id="UcK-lH-Or0"/>
                 <constraint firstItem="224" firstAttribute="leading" secondItem="247" secondAttribute="leading" id="Ucv-kh-TdC"/>
                 <constraint firstItem="160" firstAttribute="leading" secondItem="283" secondAttribute="leading" id="VwP-1c-FdO"/>
                 <constraint firstItem="4B0-Kj-mzX" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="s6I-DY-Ii0" secondAttribute="leading" constant="20" symbolic="YES" id="Wny-Wk-nNJ"/>
+                <constraint firstItem="mWb-Dy-J7g" firstAttribute="top" secondItem="mK4-4e-plf" secondAttribute="bottom" constant="8" id="Yim-tR-h9P"/>
                 <constraint firstItem="aZf-lI-jGQ" firstAttribute="leading" secondItem="644" secondAttribute="leading" id="Zgo-o6-Vjl"/>
                 <constraint firstItem="1Oj-wo-mCu" firstAttribute="leading" secondItem="r9C-0B-mga" secondAttribute="trailing" constant="8" symbolic="YES" id="ZiU-fC-4NH"/>
                 <constraint firstItem="249" firstAttribute="baseline" secondItem="247" secondAttribute="baseline" id="abF-SR-IDN"/>
                 <constraint firstItem="243" firstAttribute="width" secondItem="247" secondAttribute="width" id="bJI-zN-7dz"/>
-                <constraint firstItem="870" firstAttribute="top" secondItem="867" secondAttribute="bottom" constant="8" id="bLh-rA-4nS"/>
                 <constraint firstItem="874" firstAttribute="leading" secondItem="244" secondAttribute="leading" id="cVK-e1-ToG"/>
                 <constraint firstItem="874" firstAttribute="leading" secondItem="235" secondAttribute="leading" id="cg2-af-4WR"/>
                 <constraint firstItem="btC-lZ-pQ7" firstAttribute="top" secondItem="w2P-Vr-ZDY" secondAttribute="bottom" constant="8" symbolic="YES" id="dKt-0g-uDe"/>
@@ -567,7 +557,6 @@
                 <constraint firstItem="w2P-Vr-ZDY" firstAttribute="top" secondItem="t0Y-p1-xOb" secondAttribute="bottom" constant="8" id="e1S-pc-Nus"/>
                 <constraint firstItem="1Oj-wo-mCu" firstAttribute="top" secondItem="R0e-j3-ADv" secondAttribute="bottom" constant="20" id="eHZ-JP-Ps9"/>
                 <constraint firstItem="N9e-hF-BPy" firstAttribute="leading" secondItem="iub-4d-NyY" secondAttribute="trailing" constant="8" symbolic="YES" id="eJ7-3F-ASx"/>
-                <constraint firstItem="867" firstAttribute="top" secondItem="844" secondAttribute="bottom" constant="8" id="eN6-pI-vDL"/>
                 <constraint firstItem="236" firstAttribute="leading" secondItem="243" secondAttribute="leading" id="fBh-m9-U8F"/>
                 <constraint firstItem="69" firstAttribute="top" secondItem="Vf0-M7-9ji" secondAttribute="bottom" constant="20" id="fgf-3E-dzG"/>
                 <constraint firstItem="IXD-kJ-dvh" firstAttribute="top" secondItem="s6I-DY-Ii0" secondAttribute="top" constant="20" symbolic="YES" id="gJQ-Aw-eFi"/>
@@ -576,7 +565,6 @@
                 <constraint firstItem="282" firstAttribute="leading" secondItem="283" secondAttribute="trailing" constant="8" symbolic="YES" id="iOw-EV-67G"/>
                 <constraint firstItem="1Oj-wo-mCu" firstAttribute="leading" secondItem="235" secondAttribute="leading" constant="-25" id="jB6-Xp-a5h"/>
                 <constraint firstItem="mK4-4e-plf" firstAttribute="top" secondItem="644" secondAttribute="bottom" constant="8" id="jbL-02-1xF"/>
-                <constraint firstItem="209" firstAttribute="top" secondItem="870" secondAttribute="bottom" constant="20" id="kKQ-zf-Ke1"/>
                 <constraint firstItem="644" firstAttribute="leading" secondItem="Dte-ly-fKQ" secondAttribute="leading" id="kLF-xr-EST"/>
                 <constraint firstItem="VBo-Ii-1PR" firstAttribute="baseline" secondItem="aZf-lI-jGQ" secondAttribute="baseline" id="kbc-5k-bUg"/>
                 <constraint firstItem="R0e-j3-ADv" firstAttribute="baseline" secondItem="MUG-vA-30T" secondAttribute="baseline" id="kde-rt-Z4r"/>
@@ -599,13 +587,12 @@
                 <constraint firstItem="C2I-Ub-oUU" firstAttribute="leading" secondItem="oXk-4y-elJ" secondAttribute="trailing" constant="8" symbolic="YES" id="vcC-iW-1Zh"/>
                 <constraint firstItem="644" firstAttribute="leading" secondItem="69" secondAttribute="leading" id="xBh-wa-ujM"/>
                 <constraint firstItem="r9C-0B-mga" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="s6I-DY-Ii0" secondAttribute="leading" constant="20" symbolic="YES" id="xOr-9j-5M9"/>
-                <constraint firstItem="867" firstAttribute="leading" secondItem="870" secondAttribute="leading" constant="-25" id="yDq-t7-IbV"/>
                 <constraint firstItem="N9e-hF-BPy" firstAttribute="baseline" secondItem="283" secondAttribute="baseline" id="yEK-ut-qCX"/>
                 <constraint firstItem="243" firstAttribute="baseline" secondItem="244" secondAttribute="baseline" id="zZy-Lj-HeQ"/>
                 <constraint firstItem="236" firstAttribute="leading" secondItem="235" secondAttribute="trailing" constant="8" symbolic="YES" id="zmu-pm-xgy"/>
                 <constraint firstItem="fR5-Ie-WnP" firstAttribute="baseline" secondItem="69" secondAttribute="baseline" id="zrO-8M-62H"/>
             </constraints>
-            <point key="canvasLocation" x="310" y="332.5"/>
+            <point key="canvasLocation" x="310" y="343"/>
         </customView>
     </objects>
 </document>

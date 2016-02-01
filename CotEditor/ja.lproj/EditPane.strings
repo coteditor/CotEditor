@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2015 CotEditor Project
+ © 2014-2016 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -25,18 +25,16 @@
  
  */
 
-/* Class = "NSTextFieldCell"; title = "Behavior:"; ObjectID = "SqI-BC-ar9"; */
-"SqI-BC-ar9.title" = "編集時：";
-/* Class = "NSButtonCell"; title = "Enable smart insert and delete"; ObjectID = "3302"; */
-"3302.title" = "スマートインサート／デリートを有効にする";
+/* Class = "NSTextFieldCell"; title = "Substitution:"; ObjectID = "SqI-BC-ar9"; */
+"SqI-BC-ar9.title" = "自動置換：";
+/* Class = "NSButtonCell"; title = "Enable smart copy/paste"; ObjectID = "3302"; */
+"3302.title" = "スマートコピー／ペーストを有効にする";
 /* Class = "NSButtonCell"; title = "Enable smart quotes and dashes"; ObjectID = "nA4-HY-d71"; */
 "nA4-HY-d71.title" = "スマート引用符／ダッシュを有効にする";
+/* Class = "NSButtonCell"; title = "Balance brackets and quotes"; ObjectID = "GRh-V2-hmW"; */
+"GRh-V2-hmW.title" = "対応する括弧と引用符を自動挿入";
 /* Class = "NSButtonCell"; title = "Swap “¥” and “\\” keys"; ObjectID = "3303"; */
 "3303.title" = "“¥”と“\\”のキーを入れ替える";
-/* Class = "NSButtonCell"; title = "Highlight matching braces “( )” “[ ]” “{ }”"; ObjectID = "3304"; */
-"3304.title" = "対応する括弧“( )” “[ ]” “{ }”をハイライト表示";
-/* Class = "NSButtonCell"; title = "Highlight “< >”"; ObjectID = "3305"; */
-"3305.title" = "“< >”をハイライト表示";
 
 
 /* Class = "NSTextFieldCell"; title = "Indentation:"; ObjectID = "9bX-ei-1x8"; */
