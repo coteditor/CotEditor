@@ -24,6 +24,87 @@
 
 <article>
 <header>
+	<h1>CotEditor 2.4.0</h1>
+	<p>release: <time>2016-02</time></p>
+</header>
+
+
+<section>
+<h2>New Features</h2>
+
+<ul>
+	<li>New option balancing brackets and quotes (in “Edit” pane).</li>
+	<li>New option making URL in document clickable link (in “General” pane).</li>
+	<li>On El Capitan, hidden file visibility can be toggled via checkbox in the document open panel.</li>
+	<li>Add the following encodings to the encoding list:
+	<ul>
+		<li>Arabic (ISO 8859-6)</li>
+		<li>Hebrew (ISO 8859-8)</li>
+		<li>Nordic (ISO Latin 6)</li>
+		<li>Baltic (ISO Latin 7)</li>
+		<li>Celtic (ISO Latin 8)</li>
+		<li>Western (ISO Latin 9)</li>
+		<li>Romanian (ISO Latin 10)</li>
+	</ul></li>
+</ul>
+</section>
+
+
+<section>
+<h2>Improvements</h2>
+
+<ul>
+	<li>Improve text finder:
+	<ul>
+		<li>Now, “Find All” action also highlights all matched strings in the editor, and thereby “Highlight” action is removed.</li>
+		<li>Change advanced find option setting from popup menu to popover.</li>
+		<li>On Yosemite and later, a visual feedback is shown when the search wrapped.</li>
+		<li>Keep selected range after “Replace All” with in-selection option.</li>
+		<li>Display total number of found in find panel on simple find actions.</li>
+		<li>Now, “Find All” and “Replace All” actions are able to process multiple selections.</li>
+		<li>Add Python syntax to the regular expression syntax options.</li>
+		<li>Revert “Use selection for Replace” action to allow using an empty string.</li>
+		<li>Update layout and style.</li>
+	</ul></li>
+	<li><code>cot</code> command now opens symbolic link target rather than the link itself.</li>
+	<li>On El Capitan, make option control of the document open panel visible.</li>
+	<li>Improve syntax highlighting for quoted strings and comment.</li>
+	<li>Display alert if file to open seems to be a kind of a media (binary) file.</li>
+	<li>Improve file encoding detection.</li>
+	<li>Update default priority order of encoding detection.</li>
+	<li>Improve character compatibility check.</li>
+	<li>Better error message on file opening.</li>
+	<li>Take a safety measure for in case the key binding setting file is corrupt.</li>
+	<li>Truncate outline label in the navigation bar by appending ellipsis if it overflows.</li>
+	<li>Move some options position within “General” pane and “Edit” pane in preferences window.</li>
+	<li>Rename the main text input area in window from “View” to “Editor”.</li>
+</ul>
+</section>
+
+
+<section>
+<h2>Fixes</h2>
+
+<ul>
+	<li>Fix cursor location after moving lines with empty selection.</li>
+	<li>Fix line-wrapping behavior when the line contains a long unbreakable word.</li>
+	<li>Fix an issue where the application crashed by an invalid find regular expression option combination.</li>
+	<li>Fix an issue where the application could crash just after starting dictation.</li>
+	<li>Fix an issue where keybinding setting could fail.</li>
+	<li>Fix an issue where the scroll bar style didn't change to light color on dark background theme.</li>
+	<li>Fix an issue where the character inspector didn't show up on Mavericks and earlier.</li>
+	<li>Fix an issue where split orientation setting wasn't applied.</li>
+	<li>Fix an issue where “Jump to Selection” action didn't jump to selection in editor if other text box is focused.</li>
+	<li>Fix an issue where some table cells didn't change their text color when selected.</li>
+	<li>Fix tiny memory leaks.</li>
+</ul>
+</section>
+</article>
+
+
+
+<article>
+<header>
 	<h1>CotEditor 2.3.4</h1>
 	<p>release: <time>2016-01-13</time></p>
 </header>
@@ -54,6 +135,7 @@
 </ul>
 </section>
 </article>
+
 
 
 <article>
@@ -129,6 +211,7 @@
 </ul>
 </section>
 </article>
+
 
 
 <article>

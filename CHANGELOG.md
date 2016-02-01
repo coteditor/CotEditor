@@ -38,7 +38,7 @@ develop
 - Display alert if file to open seems to be a kind of a media (binary) file.
 - Improve file encoding detection.
 - Update default priority order of encoding detection.
-- Improve caracter compatibility check.
+- Improve character compatibility check.
 - Better error message on file opening.
 - Take a safety measure for in case the key binding setting file is corrupt.
 - Truncate outline label in the navigation bar by appending ellipsis if it overflows.
@@ -48,7 +48,7 @@ develop
 
 ### Fixes
 
-- Fix insertion location after moving lines with empty selection.
+- Fix cursor location after moving lines with empty selection.
 - Fix line-wrapping behavior when the line contains a long unbreakable word.
 - Fix an issue where the application crashed by an invalid find regular expression option combination.
 - Fix an issue where the application could crash just after starting dictation.
