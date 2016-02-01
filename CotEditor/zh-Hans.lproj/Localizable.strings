@@ -79,8 +79,8 @@
 "Invalid regular expression" = "无效的正则表达式";
 
 // ONIGERR_INVALID_COMBINATION_OF_OPTIONS
-"Invalid combination of regular expression options" = "Invalid combination of regular expression options";  // FIXME: added
-"“%@” option and “%@” option cannot be activated at the same time." = "“%@” option and “%@” option cannot be activated at the same time.";  // FIXME: added
+"Invalid combination of regular expression options" = "无效的正则表达式选项组合";
+"“%@” option and “%@” option cannot be activated at the same time." = "选项 “%@” 和选项 “%@” 不能同时启用";
 "Capture croup" = "按组匹配";  // must be the same name as the option name in FindPreferencesView
 "Don’t capture group" = "不匹配组";  // must be the same name as the option name in FindPreferencesView
 
@@ -102,8 +102,8 @@
 
 /* MARK: CEDocumentController */
 // binary file alert
-"The file “%@” doesn’t appear to be text data." = "The file “%@” doesn’t appear to be text data.";  // FIXME: added
-"The file is %@.\n\nDo you really want to open the file?" = "The file is %@.\n\n确定要打开该文件？";  // FIXME: added
+"The file “%@” doesn’t appear to be text data." = "文件 “%@” 不是文本数据";
+"The file is %@.\n\nDo you really want to open the file?" = "文件 %@.\n\n确定要打开该文件？";
 
 // Large file alert
 "The file “%@” has a size of %@." = "“%@”文件尺寸为 %@。";
@@ -266,8 +266,8 @@
 
 /* MARK: CESplitView */
 // Menu items
-"Stack Editors Horizontally" = "横向分隔编辑器";  // FIXME: view -> editor
-"Stack Editors Vertically" = "纵向分隔编辑器";  // FIXME: view -> editor
+"Stack Editors Horizontally" = "横向分隔编辑器";
+"Stack Editors Vertically" = "纵向分隔编辑器";
 
 
 

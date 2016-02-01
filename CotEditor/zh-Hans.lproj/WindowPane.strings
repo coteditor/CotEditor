@@ -67,7 +67,7 @@
 
 
 /* Class = "NSTextFieldCell"; title = "Split editor:"; ObjectID = "dug-hV-7hj"; */
-"dug-hV-7hj.title" = "分隔视图：";  // FIXME: view -> editor
+"dug-hV-7hj.title" = "分隔编辑器：";
 /* Class = "NSButtonCell"; title = "Horizontal"; ObjectID = "Bj6-2A-Nxj"; */
 "Bj6-2A-Nxj.title" = "水平";
 /* Class = "NSButtonCell"; title = "Vertical"; ObjectID = "sQC-O4-YON"; */
@@ -82,6 +82,6 @@
 "3346.title" = "从窗口获取…";
 
 /* Class = "NSTextFieldCell"; title = "Editor opacity:"; ObjectID = "gSx-LA-TPc"; */
-"gSx-LA-TPc.title" = "视图透明度：";  // FIXME: view -> editor
+"gSx-LA-TPc.title" = "编辑器透明度：";
 /* Class = "NSTextFieldCell"; title = "Non-opaque editor can slow down on a huge document."; ObjectID = "gdC-8B-U5B"; */
-"gdC-8B-U5B.title" = "透明视图可能会导致大型文档变慢。";  // FIXME: view -> editor
+"gdC-8B-U5B.title" = "透明编辑器可能会导致大型文档变慢。";
