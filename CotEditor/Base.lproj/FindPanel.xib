@@ -73,11 +73,11 @@
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="pES-RH-prG"/>
                                         </constraints>
-                                        <scroller key="horizontalScroller" wantsLayer="YES" verticalHuggingPriority="750" controlSize="small" horizontal="YES" id="r5Z-he-d07">
+                                        <scroller key="horizontalScroller" verticalHuggingPriority="750" controlSize="small" horizontal="YES" id="r5Z-he-d07">
                                             <rect key="frame" x="1" y="29" width="418" height="14"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
-                                        <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" controlSize="small" horizontal="NO" id="UpI-hP-Ru9">
+                                        <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" controlSize="small" horizontal="NO" id="UpI-hP-Ru9">
                                             <rect key="frame" x="405" y="1" width="14" height="42"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
@@ -132,7 +132,7 @@
                                         </connections>
                                     </button>
                                     <button toolTip="Select to ignore character case on search." verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="GvT-tD-Cbk">
-                                        <rect key="frame" x="164" y="7" width="85" height="18"/>
+                                        <rect key="frame" x="166" y="7" width="85" height="18"/>
                                         <buttonCell key="cell" type="check" title="Ignore Case" bezelStyle="regularSquare" imagePosition="left" controlSize="small" inset="2" id="4wg-Cz-ozb">
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="smallSystem"/>
@@ -188,7 +188,7 @@
                                         </popUpButtonCell>
                                     </popUpButton>
                                     <button toolTip="Select to search text only from selection." verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tu7-IT-dA3">
-                                        <rect key="frame" x="252" y="7" width="84" height="18"/>
+                                        <rect key="frame" x="254" y="7" width="84" height="18"/>
                                         <buttonCell key="cell" type="check" title="In Selection" bezelStyle="regularSquare" imagePosition="left" controlSize="small" inset="2" id="9bc-9Q-fhd">
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="smallSystem"/>
@@ -214,7 +214,7 @@
                                         </connections>
                                     </textField>
                                     <button toolTip="Show quick reference for regular expression syntax." horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="i2l-7Z-Zmf">
-                                        <rect key="frame" x="139" y="7" width="19" height="19"/>
+                                        <rect key="frame" x="141" y="7" width="19" height="19"/>
                                         <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" controlSize="mini" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="xcc-KP-rT7">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="miniSystem"/>
@@ -245,16 +245,16 @@
                                     <constraint firstItem="GvT-tD-Cbk" firstAttribute="top" secondItem="qiQ-tb-XCa" secondAttribute="bottom" constant="8" symbolic="YES" id="7fX-EX-Etf"/>
                                     <constraint firstItem="8My-G5-daT" firstAttribute="centerY" secondItem="i2l-7Z-Zmf" secondAttribute="centerY" id="B6G-yH-N5A"/>
                                     <constraint firstItem="BGD-yc-FIZ" firstAttribute="trailing" secondItem="hxw-DS-gxQ" secondAttribute="trailing" constant="-8" id="Eq8-gA-Qnx"/>
+                                    <constraint firstItem="ESq-ws-6H3" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="tu7-IT-dA3" secondAttribute="trailing" constant="8" symbolic="YES" id="F5X-mE-FGX"/>
                                     <constraint firstAttribute="trailing" secondItem="hxw-DS-gxQ" secondAttribute="trailing" constant="20" symbolic="YES" id="Jep-hH-pjq"/>
                                     <constraint firstItem="hxw-DS-gxQ" firstAttribute="leading" secondItem="lkE-wj-Gi5" secondAttribute="leading" constant="20" symbolic="YES" id="RQw-6a-TxC"/>
                                     <constraint firstAttribute="bottom" secondItem="8My-G5-daT" secondAttribute="bottom" constant="10" id="U9G-t3-7BQ"/>
                                     <constraint firstItem="hxw-DS-gxQ" firstAttribute="height" secondItem="qiQ-tb-XCa" secondAttribute="height" id="U9g-2U-ALP"/>
                                     <constraint firstItem="hxw-DS-gxQ" firstAttribute="leading" secondItem="ybT-sQ-Vn5" secondAttribute="leading" constant="3" id="Ygo-iO-YvZ"/>
-                                    <constraint firstItem="i2l-7Z-Zmf" firstAttribute="leading" secondItem="8My-G5-daT" secondAttribute="trailing" constant="2" id="agF-9g-sxW"/>
+                                    <constraint firstItem="i2l-7Z-Zmf" firstAttribute="leading" secondItem="8My-G5-daT" secondAttribute="trailing" constant="4" id="agF-9g-sxW"/>
                                     <constraint firstItem="qiQ-tb-XCa" firstAttribute="leading" secondItem="gM0-RD-hIC" secondAttribute="leading" constant="3" id="duc-IJ-uJo"/>
                                     <constraint firstItem="qiQ-tb-XCa" firstAttribute="top" secondItem="gM0-RD-hIC" secondAttribute="top" constant="-2" id="kM3-sK-QkA"/>
                                     <constraint firstItem="8My-G5-daT" firstAttribute="top" secondItem="qiQ-tb-XCa" secondAttribute="bottom" constant="8" symbolic="YES" id="pMc-aZ-JfI"/>
-                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="tu7-IT-dA3" secondAttribute="trailing" constant="20" symbolic="YES" id="pVo-Nl-Prx"/>
                                     <constraint firstItem="tu7-IT-dA3" firstAttribute="leading" secondItem="GvT-tD-Cbk" secondAttribute="trailing" constant="8" symbolic="YES" id="riZ-4A-Sii"/>
                                     <constraint firstItem="hxw-DS-gxQ" firstAttribute="top" secondItem="ybT-sQ-Vn5" secondAttribute="top" constant="-2" id="tO8-50-o7G"/>
                                     <constraint firstItem="qiQ-tb-XCa" firstAttribute="trailing" secondItem="hxw-DS-gxQ" secondAttribute="trailing" id="tPJ-3X-sHY"/>

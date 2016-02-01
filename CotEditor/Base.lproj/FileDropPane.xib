@@ -44,18 +44,18 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="587">
+                <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" allowsMagnification="YES" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="587">
                     <rect key="frame" x="270" y="196" width="260" height="139"/>
-                    <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="PI9-s6-0DE">
+                    <clipView key="contentView" drawsBackground="NO" id="PI9-s6-0DE">
                         <rect key="frame" x="1" y="1" width="258" height="137"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView editable="NO" importsGraphics="NO" findStyle="panel" continuousSpellChecking="YES" usesRuler="YES" usesFontPanel="YES" verticallyResizable="YES" smartInsertDelete="YES" id="586">
-                                <rect key="frame" x="0.0" y="-12" width="268" height="372"/>
+                            <textView editable="NO" importsGraphics="NO" horizontallyResizable="YES" findStyle="panel" verticallyResizable="YES" smartInsertDelete="YES" id="586">
+                                <rect key="frame" x="0.0" y="-12" width="258" height="372"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" name="windowBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 <size key="minSize" width="258" height="137"/>
-                                <size key="maxSize" width="586" height="10000000"/>
+                                <size key="maxSize" width="372" height="10000000"/>
                                 <attributedString key="textStorage">
                                     <fragment>
                                         <mutableString key="content">&lt;&lt;&lt;ABSOLUTE-PATH&gt;&gt;&gt;
@@ -96,7 +96,7 @@ The parent directory name of the dropped file.
                                 </attributedString>
                                 <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <size key="minSize" width="258" height="137"/>
-                                <size key="maxSize" width="586" height="10000000"/>
+                                <size key="maxSize" width="372" height="10000000"/>
                             </textView>
                         </subviews>
                         <color key="backgroundColor" name="windowBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -184,7 +184,7 @@ The parent directory name of the dropped file.
                         <rect key="frame" x="1" y="1" width="508" height="98"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView importsGraphics="NO" richText="NO" findStyle="panel" allowsUndo="YES" usesRuler="YES" usesFontPanel="YES" verticallyResizable="YES" smartInsertDelete="YES" id="532">
+                            <textView importsGraphics="NO" richText="NO" horizontallyResizable="YES" findStyle="panel" allowsUndo="YES" verticallyResizable="YES" smartInsertDelete="YES" id="532">
                                 <rect key="frame" x="0.0" y="0.0" width="508" height="98"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

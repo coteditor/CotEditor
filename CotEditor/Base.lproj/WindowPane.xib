@@ -123,7 +123,7 @@
                     <rect key="frame" x="139" y="56" width="195" height="15"/>
                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="axesIndependently" image="OpacityGuide" id="3340"/>
                 </imageView>
-                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6Rm-ix-3Ik">
+                <textField horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="6Rm-ix-3Ik">
                     <rect key="frame" x="38" y="86" width="92" height="17"/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Editor opacity:" usesSingleLineMode="YES" id="gSx-LA-TPc">
                         <font key="font" metaFont="system"/>
@@ -131,7 +131,7 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Hya-cT-hxD">
+                <textField horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="Hya-cT-hxD">
                     <rect key="frame" x="36" y="121" width="94" height="17"/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Window width:" usesSingleLineMode="YES" id="zIR-1y-lBC">
                         <font key="font" metaFont="system"/>
@@ -319,7 +319,7 @@
                         <binding destination="26" name="value" keyPath="values.showStatusBarColumn" id="xXZ-Jd-Wdi"/>
                     </connections>
                 </button>
-                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="zUH-zh-jyO">
+                <textField horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="zUH-zh-jyO">
                     <rect key="frame" x="18" y="286" width="112" height="17"/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Status bar shows:" usesSingleLineMode="YES" id="kjP-FS-fyd">
                         <font key="font" metaFont="system"/>
@@ -327,7 +327,7 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="b4p-xQ-foZ">
+                <textField horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="b4p-xQ-foZ">
                     <rect key="frame" x="89" y="377" width="41" height="17"/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Show:" usesSingleLineMode="YES" id="iw9-Ba-eD2">
                         <font key="font" metaFont="system"/>
@@ -343,7 +343,7 @@
                         <binding destination="26" name="enabled" keyPath="values.showPageGuide" id="748-xu-TCs"/>
                     </connections>
                 </stepper>
-                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="748-zI-Gft">
+                <textField horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="748-zI-Gft">
                     <rect key="frame" x="56" y="173" width="74" height="17"/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Split editor:" usesSingleLineMode="YES" id="dug-hV-7hj">
                         <font key="font" metaFont="system"/>
@@ -430,7 +430,7 @@
                 <constraint firstAttribute="trailing" secondItem="2151" secondAttribute="trailing" constant="20" symbolic="YES" id="9Rn-9h-xrV"/>
                 <constraint firstItem="mSm-CR-7AA" firstAttribute="leading" secondItem="zUH-zh-jyO" secondAttribute="trailing" constant="8" symbolic="YES" id="Ajy-Vm-9YN"/>
                 <constraint firstItem="rYB-LR-Dp6" firstAttribute="baseline" secondItem="mSm-CR-7AA" secondAttribute="baseline" id="Apq-nN-FhQ"/>
-                <constraint firstItem="zUH-zh-jyO" firstAttribute="leading" secondItem="741" secondAttribute="leading" constant="20" symbolic="YES" id="DrH-NG-Wbn"/>
+                <constraint firstItem="zUH-zh-jyO" firstAttribute="leading" secondItem="741" secondAttribute="leading" priority="750" constant="20" symbolic="YES" id="DrH-NG-Wbn"/>
                 <constraint firstItem="613" firstAttribute="top" secondItem="616" secondAttribute="bottom" constant="8" symbolic="YES" id="GYZ-zH-An1"/>
                 <constraint firstItem="707" firstAttribute="leading" secondItem="627" secondAttribute="leading" id="Htd-D6-Dw7"/>
                 <constraint firstItem="CcU-v8-tHr" firstAttribute="top" secondItem="vUQ-Rf-8xK" secondAttribute="bottom" constant="8" id="Hvd-Uk-rlE"/>
@@ -462,7 +462,9 @@
                 <constraint firstItem="799" firstAttribute="leading" secondItem="798" secondAttribute="leading" constant="20" id="V1S-Hi-ORw"/>
                 <constraint firstAttribute="trailing" secondItem="ybD-hb-S7E" secondAttribute="trailing" constant="20" symbolic="YES" id="VND-6q-Qn7"/>
                 <constraint firstItem="620" firstAttribute="width" secondItem="624" secondAttribute="width" id="Wcd-ml-V69"/>
+                <constraint firstItem="Hya-cT-hxD" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="741" secondAttribute="leading" constant="20" symbolic="YES" id="X2C-fR-giW"/>
                 <constraint firstItem="6Rm-ix-3Ik" firstAttribute="baseline" secondItem="614" secondAttribute="baseline" id="Xuc-ci-sc0"/>
+                <constraint firstItem="748-zI-Gft" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="741" secondAttribute="leading" constant="20" symbolic="YES" id="XyX-E9-Jqn"/>
                 <constraint firstItem="nru-qe-DDo" firstAttribute="leading" secondItem="mSm-CR-7AA" secondAttribute="leading" constant="115" id="Zwd-iG-HAm"/>
                 <constraint firstItem="b4p-xQ-foZ" firstAttribute="baseline" secondItem="707" secondAttribute="baseline" id="aJQ-Cx-OqU"/>
                 <constraint firstItem="dco-7P-YD6" firstAttribute="centerY" secondItem="IK7-nJ-RZ9" secondAttribute="centerY" id="abN-IS-YK0"/>
@@ -479,10 +481,12 @@
                 <constraint firstItem="vmx-rd-HS6" firstAttribute="baseline" secondItem="vUQ-Rf-8xK" secondAttribute="baseline" id="l0d-EY-F8n"/>
                 <constraint firstItem="vmx-rd-HS6" firstAttribute="leading" secondItem="nru-qe-DDo" secondAttribute="leading" id="lat-mQ-7pd"/>
                 <constraint firstItem="cYL-hc-lGk" firstAttribute="leading" secondItem="800" secondAttribute="trailing" constant="4" id="ljd-SF-chM"/>
+                <constraint firstItem="6Rm-ix-3Ik" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="741" secondAttribute="leading" constant="20" symbolic="YES" id="nhI-bE-32b"/>
                 <constraint firstItem="0nn-xK-L3v" firstAttribute="baseline" secondItem="SCx-th-irQ" secondAttribute="baseline" id="nrv-8r-RCC"/>
                 <constraint firstItem="ybD-hb-S7E" firstAttribute="top" secondItem="627" secondAttribute="bottom" constant="16" id="ntM-H7-CgJ"/>
                 <constraint firstAttribute="bottom" secondItem="2151" secondAttribute="bottom" constant="20" symbolic="YES" id="oFt-ve-hcR"/>
                 <constraint firstItem="sap-YU-xep" firstAttribute="baseline" secondItem="vUQ-Rf-8xK" secondAttribute="baseline" id="pmX-2v-zgp"/>
+                <constraint firstItem="b4p-xQ-foZ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="741" secondAttribute="leading" constant="20" symbolic="YES" id="pxA-zf-HS3"/>
                 <constraint firstItem="rYB-LR-Dp6" firstAttribute="baseline" secondItem="nru-qe-DDo" secondAttribute="baseline" id="rfE-nl-iZ1"/>
                 <constraint firstItem="6Rm-ix-3Ik" firstAttribute="baseline" secondItem="614" secondAttribute="baseline" id="s36-U0-JXe"/>
                 <constraint firstItem="624" firstAttribute="leading" secondItem="619" secondAttribute="trailing" constant="8" symbolic="YES" id="s3x-ny-gw6"/>
