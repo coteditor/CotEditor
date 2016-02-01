@@ -343,9 +343,35 @@ static NSCharacterSet *kMatchingBracketsSet;
     if ([defaults boolForKey:CEDefaultBalancesBracketsKey] && (replacementRange.length == 0) &&
         [string length] == 1 && [kMatchingBracketsSet characterIsMember:[string characterAtIndex:0]])
     {
+        // wrap selection with brackets if some text is selected
+        if ([self selectedRange].length > 0) {
+            NSString *wrappingFormat = nil;
+            switch ([string characterAtIndex:0]) {
+                case '[':
+                    wrappingFormat = @"[%@]";
+                    break;
+                case '{':
+                    wrappingFormat = @"{%@}";
+                    break;
+                case '(':
+                    wrappingFormat = @"(%@)";
+                    break;
+                case '"':
+                    wrappingFormat = @"\"%@\"";
+                    break;
+            }
+            
+            NSString *selectedString = [[self string] substringWithRange:[self selectedRange]];
+            NSString *replacementString = [NSString stringWithFormat:wrappingFormat, selectedString];
+            if ([self shouldChangeTextInRange:[self selectedRange] replacementString:replacementString]) {
+                [[self textStorage] replaceCharactersInRange:[self selectedRange] withString:replacementString];
+                [self didChangeText];
+                return;
+            }
+        
         // check if insertion point is in a word
-        if (!([[NSCharacterSet alphanumericCharacterSet] characterIsMember:[self characterBeforeInsertion]] &&
-              [[NSCharacterSet alphanumericCharacterSet] characterIsMember:[self characterAfterInsertion]]))
+        } else if (!([[NSCharacterSet alphanumericCharacterSet] characterIsMember:[self characterBeforeInsertion]] &&
+                     [[NSCharacterSet alphanumericCharacterSet] characterIsMember:[self characterAfterInsertion]]))
         {
             switch ([string characterAtIndex:0]) {
                 case '[':
