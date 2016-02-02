@@ -7,6 +7,7 @@ develop
 
 ### Improvements
 
+- Increase the number of significant digits in file size display.
 - [beta] Disable “Balance brackets and quotes” option by default.
 - [beta] Update “General” pane layout.
 
