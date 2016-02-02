@@ -7,6 +7,7 @@ develop
 
 ### Improvements
 
+- [beta] Disable “Balance brackets and quotes” option by default.
 - [beta] Update “General” pane layout.
 
 
