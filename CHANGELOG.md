@@ -8,6 +8,8 @@ develop
 ### Improvements
 
 - Increase the number of significant digits in file size display.
+- Update Shell Script syntax style:
+    - Fix variable highlight with `_`.
 - [beta] Disable “Balance brackets and quotes” option by default.
 - [beta] Update “General” pane layout.
 

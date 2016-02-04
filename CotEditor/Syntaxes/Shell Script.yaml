@@ -17,9 +17,9 @@ interpreters:
 metadata:
   author: "1024jp"
   distributionURL: "http://coteditor.com"
-  version: "3.1.0"
+  version: "3.2.0"
   license: "Same as CotEditor"
-  lastModified: "2015-11-07"
+  lastModified: "2016-02-04"
 keywords:
 - beginString: "break"
 - beginString: "breaksw"
@@ -225,13 +225,13 @@ commands:
 - beginString: "zip"
 - beginString: "zsh"
 variables:
-- beginString: "\\$\\{?[a-z][a-z0-9]*\\}?"
+- beginString: "\\$\\{?[_a-z][_a-z0-9]*\\}?"
   regularExpression: true
   ignoreCase: true
-- beginString: "\\b[a-z][a-z0-9]*(?=\\=)"
+- beginString: "\\b[_a-z][_a-z0-9]*(?=\\=)"
   regularExpression: true
   ignoreCase: true
-- beginString: "\\b(?<=for(each)?) +[a-z][a-z0-9]*"
+- beginString: "\\b(?<=for(each)?) +[_a-z][_a-z0-9]*"
   regularExpression: true
   ignoreCase: true
 values:
