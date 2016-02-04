@@ -11,6 +11,7 @@ develop
 - Update Shell Script syntax style:
     - Fix variable highlight with `_`.
 - [beta] Disable “Balance brackets and quotes” option by default.
+- [beta] Don't insert closing bracket if already auto-typed.
 - [beta] Update “General” pane layout.
 
 
