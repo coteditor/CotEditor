@@ -7,6 +7,16 @@ develop
 
 ### Improvements
 
+- Update JSON syntax style:
+    - Fix float number highlight.
+
+
+
+2.4.0 (101)
+--------------------------
+
+### Improvements
+
 - Increase the number of significant digits in file size display.
 - Update Shell Script syntax style:
     - Fix variable highlight with `_`.
