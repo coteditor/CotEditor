@@ -12,6 +12,11 @@ develop
 - Avoid displaying `NULL` on the status bar until the first calculation is finished.
 
 
+### Fixes
+
+- Fix an issue where the current line number display was wrong if the cursor is in the last empty line.
+
+
 
 2.4.0 (101)
 --------------------------

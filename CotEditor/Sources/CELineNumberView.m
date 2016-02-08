@@ -31,6 +31,8 @@
 #import "CETextViewProtocol.h"
 #import "CEDefaults.h"
 
+#import "NSString+CECounting.h"
+
 
 static const NSUInteger kMinNumberOfDigits = 3;
 static const CGFloat kMinVerticalThickness = 32.0;
@@ -262,9 +264,8 @@ static CGFontRef BoldLineNumberFont;
     NSUInteger lastLineNumber = 0;
     
     // count lines until visible
-    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"\n" options:0 error:nil];
-    lineNumber += [regex numberOfMatchesInString:string options:0
-                                           range:NSMakeRange(0, [layoutManager characterIndexForGlyphAtIndex:visibleGlyphRange.location])];
+    lineNumber += [string numberOfLinesInRange:NSMakeRange(0, [layoutManager characterIndexForGlyphAtIndex:visibleGlyphRange.location])
+                          includingLastNewLine:NO];
     
     // draw visible line numbers
     for (NSUInteger glyphIndex = visibleGlyphRange.location; glyphIndex < NSMaxRange(visibleGlyphRange); lineNumber++) { // count "real" lines
@@ -341,10 +342,8 @@ static CGFontRef BoldLineNumberFont;
         //    As it's quite dengerous to change width of line number view on scrolling dynamically.
         NSUInteger charIndex = [layoutManager characterIndexForGlyphAtIndex:NSMaxRange(visibleGlyphRange)];
         if ([string length] > charIndex) {
-            lineNumber += [regex numberOfMatchesInString:string options:0
-                                                   range:NSMakeRange(charIndex,
-                                                                     [string length] - charIndex)];
-            // -> This number can be one greater than the true line number. But it's not a problem.
+            lineNumber += [string numberOfLinesInRange:NSMakeRange(charIndex, [string length] - charIndex)
+                                  includingLastNewLine:NO];
         }
         
         NSUInteger length = MAX(numberOfDigits(lineNumber), kMinNumberOfDigits);
