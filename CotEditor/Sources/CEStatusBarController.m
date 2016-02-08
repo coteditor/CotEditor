@@ -41,7 +41,7 @@ static const NSTimeInterval kDuration = 0.25;
 
 @property (nonatomic) BOOL showsReadOnly;
 @property (nonatomic, nullable, copy) NSAttributedString *editorStatus;
-@property (nonatomic, nullable, copy) NSString *documentStatus;
+@property (nonatomic, nullable, copy) NSAttributedString *documentStatus;
 
 // readonly
 @property (readwrite, nonatomic, getter=isShown) BOOL shown;
@@ -148,25 +148,25 @@ static NSColor *kLabelColor;
     CEDocumentAnalyzer *info = [self documentAnalyzer];
     
     if ([defaults boolForKey:CEDefaultShowStatusBarLinesKey]) {
-        [status appendAttributedString:[self formattedStateWithLabel:@"Lines" value:[info lines]]];
+        [self appendFormattedState:[info lines] label:@"Lines" toStatusLine:status];
     }
     if ([defaults boolForKey:CEDefaultShowStatusBarCharsKey]) {
-        [status appendAttributedString:[self formattedStateWithLabel:@"Chars" value:[info chars]]];
+        [self appendFormattedState:[info chars] label:@"Chars" toStatusLine:status];
     }
     if ([defaults boolForKey:CEDefaultShowStatusBarLengthKey]) {
-        [status appendAttributedString:[self formattedStateWithLabel:@"Length" value:[info length]]];
+        [self appendFormattedState:[info length] label:@"Length" toStatusLine:status];
     }
     if ([defaults boolForKey:CEDefaultShowStatusBarWordsKey]) {
-        [status appendAttributedString:[self formattedStateWithLabel:@"Words" value:[info words]]];
+        [self appendFormattedState:[info words] label:@"Words" toStatusLine:status];
     }
     if ([defaults boolForKey:CEDefaultShowStatusBarLocationKey]) {
-        [status appendAttributedString:[self formattedStateWithLabel:@"Location" value:[info location]]];
+        [self appendFormattedState:[info location] label:@"Location" toStatusLine:status];
     }
     if ([defaults boolForKey:CEDefaultShowStatusBarLineKey]) {
-        [status appendAttributedString:[self formattedStateWithLabel:@"Line" value:[info line]]];
+        [self appendFormattedState:[info line] label:@"Line" toStatusLine:status];
     }
     if ([defaults boolForKey:CEDefaultShowStatusBarColumnKey]) {
-        [status appendAttributedString:[self formattedStateWithLabel:@"Column" value:[info column]]];
+        [self appendFormattedState:[info column] label:@"Column" toStatusLine:status];
     }
     
     [self setEditorStatus:status];
@@ -180,21 +180,21 @@ static NSColor *kLabelColor;
 {
     if (![self isShown]) { return; }
     
-    NSMutableArray<NSString *> *status = [NSMutableArray array];
+    NSMutableAttributedString *status = [[NSMutableAttributedString alloc] init];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     CEDocumentAnalyzer *info = [self documentAnalyzer];
     
     if ([defaults boolForKey:CEDefaultShowStatusBarEncodingKey]) {
-        [status addObject:([info charsetName] ?: @"-")];
+        [self appendFormattedState:[info charsetName] label:nil toStatusLine:status];
     }
     if ([defaults boolForKey:CEDefaultShowStatusBarLineEndingsKey]) {
-        [status addObject:([info lineEndings] ?: @"-")];
+        [self appendFormattedState:[info lineEndings] label:nil toStatusLine:status];
     }
     if ([defaults boolForKey:CEDefaultShowStatusBarFileSizeKey]) {
-        [status addObject:([info fileSize] ?: @"-")];
+        [self appendFormattedState:[info fileSize] label:nil toStatusLine:status];
     }
     
-    [self setDocumentStatus:[status componentsJoinedByString:@"   "]];
+    [self setDocumentStatus:status];
     
     if ([[[[[self view] window] windowController] document] isInViewingMode]) {  // on Versions browsing mode
         [self setShowsReadOnly:NO];
@@ -205,20 +205,31 @@ static NSColor *kLabelColor;
 
 
 // ------------------------------------------------------
-/// formatted state
-- (NSAttributedString *)formattedStateWithLabel:(nonnull NSString *)label value:(nullable NSString *)value
+/// append formatted state
+- (NSAttributedString *)appendFormattedState:(nullable NSString *)value label:(nullable NSString *)label toStatusLine:(nonnull NSMutableAttributedString *)status
 // ------------------------------------------------------
 {
-    NSString *localizedLabel = [NSString stringWithFormat:NSLocalizedString(@"%@: ", nil), NSLocalizedString(label, nil)];
-    NSString *string = [NSString stringWithFormat:@"%@%@   ", localizedLabel, value];
+    if ([status length] > 0) {
+        [status appendAttributedString:[[NSAttributedString alloc] initWithString:@"   "]];
+    }
     
-    NSMutableAttributedString *state = [[NSMutableAttributedString alloc] initWithString:string];
+    if (label) {
+        NSString *localizedLabel = [NSString stringWithFormat:NSLocalizedString(@"%@: ", nil), NSLocalizedString(label, nil)];
+        NSAttributedString *attrLabel = [[NSAttributedString alloc] initWithString:localizedLabel
+                                                                        attributes:@{NSForegroundColorAttributeName: kLabelColor}];
+        [status appendAttributedString:attrLabel];
+    }
     
-    [state addAttribute:NSForegroundColorAttributeName
-                  value:kLabelColor
-                  range:NSMakeRange(0, [localizedLabel length])];
+    NSAttributedString *attrValue;
+    if (value) {
+        attrValue = [[NSAttributedString alloc] initWithString:value];
+    } else {
+        attrValue = [[NSAttributedString alloc] initWithString:@"-"
+                                                    attributes:@{NSForegroundColorAttributeName: [NSColor labelColor]}];
+    }
+    [status appendAttributedString:attrValue];
     
-    return [state copy];
+    return status;
 }
 
 @end

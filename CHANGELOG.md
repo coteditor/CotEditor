@@ -9,6 +9,7 @@ develop
 
 - Update JSON syntax style:
     - Fix float number highlight.
+- Avoid displaying `NULL` on the status bar until the first calculation is finished.
 
 
 
