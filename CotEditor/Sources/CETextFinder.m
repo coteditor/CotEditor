@@ -787,7 +787,6 @@ static const NSUInteger kMaxHistorySize = 20;
         return NO;
     }
     
-    
     // check regular expression syntax
     if ([self usesRegularExpression]) {
         NSDictionary<NSString *, id> *userInfo = nil;

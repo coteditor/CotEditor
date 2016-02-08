@@ -281,7 +281,6 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
     NSInteger knobStyle = [[self theme] isDarkTheme] ? NSScrollerKnobStyleLight : NSScrollerKnobStyleDefault;
     [[self enclosingScrollView] setScrollerKnobStyle:knobStyle];
     
-    
     // ウインドウの透明フラグを監視する
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(didWindowOpacityChange:)

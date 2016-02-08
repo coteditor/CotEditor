@@ -86,7 +86,6 @@
         }
         _unicode = [unicode copy];
         
-        
         static NSColor *labelColor;
         if (NSAppKitVersionNumber >= NSAppKitVersionNumber10_10) {
             labelColor = [NSColor labelColor];

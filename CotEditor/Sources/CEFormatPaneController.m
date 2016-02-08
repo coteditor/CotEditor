@@ -100,7 +100,6 @@ NSString *_Nonnull const StyleStateKey = @"state";
     [[self encodingMenuInOpen] setAction:@selector(checkSelectedItemOfEncodingMenuInOpen:)];
     [[self encodingMenuInOpen] setTarget:self];
     
-    
     // シンタックススタイルリスト更新の通知依頼
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(setupSyntaxStyleMenus)

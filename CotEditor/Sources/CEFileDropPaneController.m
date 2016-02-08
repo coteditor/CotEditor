@@ -127,7 +127,6 @@
         }
     }
     
-    
     [self storeSetting];
 }
 

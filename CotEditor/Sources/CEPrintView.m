@@ -360,7 +360,6 @@ static NSString *_Nonnull const PageNumberPlaceholder = @"PAGENUM";
     }
     [(CELayoutManager *)[self layoutManager] setShowsInvisibles:showsInvisibles];
     
-    
     // setup syntax highlighting with set theme
     if ([settings[CEPrintThemeKey] isEqualToString:NSLocalizedString(@"Black and White",  nil)]) {
         [self setTextColor:[NSColor blackColor]];
