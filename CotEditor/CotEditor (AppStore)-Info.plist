@@ -969,11 +969,11 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>2.4.0-beta</string>
+	<string>2.4.1-alpha</string>
 	<key>CFBundleSignature</key>
 	<string>cEd1</string>
 	<key>CFBundleVersion</key>
-	<string>98</string>
+	<string>102</string>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.productivity</string>
 	<key>LSMinimumSystemVersion</key>
