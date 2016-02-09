@@ -51,6 +51,7 @@
 // constant
 static NSString *_Nonnull const CESelectedRangesKey = @"selectedRange";
 static NSString *_Nonnull const CEVisibleRectKey = @"visibleRect";
+static NSString *_Nonnull const CEAutoBalancedClosingBracketAttributeName = @"autoBalancedClosingBracket";
 
 static const NSInteger kNoMenuItem = -1;
 
@@ -76,7 +77,8 @@ static const NSUInteger kMaxPageGuideColumn = 1000;
 @implementation CETextView
 
 static NSPoint kTextContainerOrigin;
-static NSCharacterSet *kMatchingBracketsSet;
+static NSCharacterSet *kMatchingOpeningBracketsSet;
+static NSCharacterSet *kMatchingClosingBracketsSet;
 
 
 #pragma mark Superclass Methods
@@ -93,7 +95,8 @@ static NSCharacterSet *kMatchingBracketsSet;
         kTextContainerOrigin = NSMakePoint((CGFloat)[defaults doubleForKey:CEDefaultTextContainerInsetWidthKey],
                                            (CGFloat)[defaults doubleForKey:CEDefaultTextContainerInsetHeightTopKey]);
         
-        kMatchingBracketsSet = [NSCharacterSet characterSetWithCharactersInString:@"[{(\""];
+        kMatchingOpeningBracketsSet = [NSCharacterSet characterSetWithCharactersInString:@"[{(\""];
+        kMatchingClosingBracketsSet = [NSCharacterSet characterSetWithCharactersInString:@"]})"];  // ignore "
     });
     
 }
@@ -341,7 +344,7 @@ static NSCharacterSet *kMatchingBracketsSet;
     
     // balance brackets and quotes
     if ([defaults boolForKey:CEDefaultBalancesBracketsKey] && (replacementRange.length == 0) &&
-        [string length] == 1 && [kMatchingBracketsSet characterIsMember:[string characterAtIndex:0]])
+        [string length] == 1 && [kMatchingOpeningBracketsSet characterIsMember:[string characterAtIndex:0]])
     {
         // wrap selection with brackets if some text is selected
         if ([self selectedRange].length > 0) {
@@ -370,9 +373,7 @@ static NSCharacterSet *kMatchingBracketsSet;
             }
         
         // check if insertion point is in a word
-        } else if (!([[NSCharacterSet alphanumericCharacterSet] characterIsMember:[self characterBeforeInsertion]] &&
-                     [[NSCharacterSet alphanumericCharacterSet] characterIsMember:[self characterAfterInsertion]]))
-        {
+        } else if (![[NSCharacterSet alphanumericCharacterSet] characterIsMember:[self characterAfterInsertion]]) {
             switch ([string characterAtIndex:0]) {
                 case '[':
                     string = @"[]";
@@ -390,6 +391,23 @@ static NSCharacterSet *kMatchingBracketsSet;
             
             [super insertText:string replacementRange:replacementRange];
             [self setSelectedRange:NSMakeRange([self selectedRange].location - 1, 0)];
+            
+            // set flag
+            [[self textStorage] addAttribute:CEAutoBalancedClosingBracketAttributeName value:@YES
+                                       range:NSMakeRange([self selectedRange].location, 1)];
+            return;
+        }
+    }
+    
+    // just move cursor if closed bracket is already typed
+    if ([defaults boolForKey:CEDefaultBalancesBracketsKey] && (replacementRange.length == 0) &&
+        [kMatchingClosingBracketsSet characterIsMember:[string characterAtIndex:0]] &&
+        ([string characterAtIndex:0] == [self characterAfterInsertion]))
+    {
+        if ([[[self textStorage] attribute:CEAutoBalancedClosingBracketAttributeName
+                                   atIndex:[self selectedRange].location effectiveRange:NULL] boolValue])
+        {
+            [self setSelectedRange:NSMakeRange([self selectedRange].location + 1, 0)];
             return;
         }
     }
@@ -565,7 +583,7 @@ static NSCharacterSet *kMatchingBracketsSet;
     // balance brackets
     if ((selectedRange.length == 0) && [[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultBalancesBracketsKey] &&
         (selectedRange.location > 0) && (selectedRange.location < [[self string] length]) &&
-        [kMatchingBracketsSet characterIsMember:[self characterBeforeInsertion]])
+        [kMatchingOpeningBracketsSet characterIsMember:[self characterBeforeInsertion]])
     {
         NSString *surroundingCharacters = [[self string] substringWithRange:NSMakeRange(selectedRange.location - 1, 2)];
         if ([surroundingCharacters isEqualToString:@"{}"] ||

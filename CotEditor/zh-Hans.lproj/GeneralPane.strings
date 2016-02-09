@@ -26,6 +26,15 @@
  
  */
 
+/* Class = "NSTextFieldCell"; title = "Open a new document:"; ObjectID = "zDW-aW-9G8"; */
+"zDW-aW-9G8.title" = "打开新文档：";
+
+/* Class = "NSButtonCell"; title = "On launch"; ObjectID = "3298"; */
+"3298.title" = "启动时";
+/* Class = "NSButtonCell"; title = "When CotEditor becomes active"; ObjectID = "3299"; */
+"3299.title" = "当 CotEditor 被激活时";
+
+
 /* Class = "NSTextFieldCell"; title = "Auto Save documents:"; ObjectID = "Ki4-3Y-AZL"; */
 "Ki4-3Y-AZL.title" = "自动保存文档：";
 
@@ -44,15 +53,6 @@
 "1qS-Ay-sca.title" = "询问如何更新";
 /* Class = "NSButtonCell"; title = "Update to modified edition"; ObjectID = "FWi-En-qeX"; */
 "FWi-En-qeX.title" = "更新到被更改的版本";
-
-
-/* Class = "NSTextFieldCell"; title = "Open a new document:"; ObjectID = "zDW-aW-9G8"; */
-"zDW-aW-9G8.title" = "打开新文档：";
-
-/* Class = "NSButtonCell"; title = "On launch"; ObjectID = "3298"; */
-"3298.title" = "启动时";
-/* Class = "NSButtonCell"; title = "When CotEditor becomes active"; ObjectID = "3299"; */
-"3299.title" = "当 CotEditor 被激活时";
 
 
 /* Class = "NSTextFieldCell"; title = "Application:"; ObjectID = "lzy-Ei-xlT"; */

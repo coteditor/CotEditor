@@ -25,6 +25,15 @@
  
  */
 
+/* Class = "NSTextFieldCell"; title = "Open a new document:"; ObjectID = "zDW-aW-9G8"; */
+"zDW-aW-9G8.title" = "新規書類を開く：";
+
+/* Class = "NSButtonCell"; title = "On launch"; ObjectID = "3298"; */
+"3298.title" = "起動したとき";
+/* Class = "NSButtonCell"; title = "When CotEditor becomes active"; ObjectID = "3299"; */
+"3299.title" = "CotEditor がアクティブになるとき";
+
+
 /* Class = "NSTextFieldCell"; title = "Auto Save documents:"; ObjectID = "Ki4-3Y-AZL"; */
 "Ki4-3Y-AZL.title" = "書類のオートセーブ：";
 
@@ -43,15 +52,6 @@
 "1qS-Ay-sca.title" = "解決方法を確認";
 /* Class = "NSButtonCell"; title = "Update to modified edition"; ObjectID = "FWi-En-qeX"; */
 "FWi-En-qeX.title" = "変更された内容に更新";
-
-
-/* Class = "NSTextFieldCell"; title = "Open a new document:"; ObjectID = "zDW-aW-9G8"; */
-"zDW-aW-9G8.title" = "新規書類を開く：";
-
-/* Class = "NSButtonCell"; title = "On launch"; ObjectID = "3298"; */
-"3298.title" = "起動したとき";
-/* Class = "NSButtonCell"; title = "When CotEditor becomes active"; ObjectID = "3299"; */
-"3299.title" = "CotEditor がアクティブになるとき";
 
 
 /* Class = "NSTextFieldCell"; title = "Application:"; ObjectID = "lzy-Ei-xlT"; */

@@ -5,6 +5,20 @@ Change Log
 develop
 --------------------------
 
+### Improvements
+
+- Increase the number of significant digits in file size display.
+- Update Shell Script syntax style:
+    - Fix variable highlight with `_`.
+- [beta] Disable “Balance brackets and quotes” option by default.
+- [beta] Don't insert closing bracket if already auto-typed.
+- [beta] Update “General” pane layout.
+
+
+
+2.4.0-beta (97)
+--------------------------
+
 ### New Features
 
 - New option balancing brackets and quotes (in “Edit” pane).
@@ -62,7 +76,7 @@ develop
 
 
 
-2.3.4　(95)
+2.3.4 (95)
 --------------------------
 
 ### Improvements
@@ -84,7 +98,7 @@ develop
 
 
 
-2.3.3　(91)
+2.3.3 (91)
 --------------------------
 
 ### New Features

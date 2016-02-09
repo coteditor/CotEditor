@@ -46,11 +46,10 @@
                                                 <textView importsGraphics="NO" richText="NO" allowsUndo="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" id="fDB-No-De7" customClass="CEFindPanelTextView">
                                                     <rect key="frame" x="0.0" y="0.0" width="418" height="42"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <size key="minSize" width="418" height="42"/>
                                                     <size key="maxSize" width="10000000" height="10000000"/>
-                                                    <color key="insertionPointColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                     <size key="minSize" width="418" height="42"/>
                                                     <size key="maxSize" width="10000000" height="10000000"/>
                                                     <connections>
@@ -94,7 +93,7 @@
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <size key="minSize" width="418" height="42"/>
                                                     <size key="maxSize" width="10000000" height="10000000"/>
-                                                    <color key="insertionPointColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                     <size key="minSize" width="418" height="42"/>
                                                     <size key="maxSize" width="10000000" height="10000000"/>
                                                     <connections>

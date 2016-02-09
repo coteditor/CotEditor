@@ -98,6 +98,7 @@ NSString *_Nonnull const CEAnalyzerDidUpdateEditorInfoNotification = @"CEAnalyze
         [_dateFormatter setTimeStyle:NSDateFormatterShortStyle];
         
         _byteCountFormatter = [[NSByteCountFormatter alloc] init];
+        [_byteCountFormatter setAdaptive:NO];
     }
     return self;
 }

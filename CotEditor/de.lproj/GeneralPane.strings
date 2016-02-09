@@ -25,6 +25,15 @@
  
  */
 
+/* Class = "NSTextFieldCell"; title = "Open a new document:"; ObjectID = "zDW-aW-9G8"; */
+"zDW-aW-9G8.title" = "Neue Dokument öffnen:";
+
+/* Class = "NSButtonCell"; title = "On launch"; ObjectID = "3298"; */
+"3298.title" = "Beim Start";
+/* Class = "NSButtonCell"; title = "When CotEditor becomes active"; ObjectID = "3299"; */
+"3299.title" = "Wenn CotEditor aktiv wird";
+
+
 /* Class = "NSTextFieldCell"; title = "Auto Save documents:"; ObjectID = "Ki4-3Y-AZL"; */
 "Ki4-3Y-AZL.title" = "Automatisch sichern:";
 
@@ -43,15 +52,6 @@
 "1qS-Ay-sca.title" = "Erfragen, wie zu lösen";
 /* Class = "NSButtonCell"; title = "Update to modified edition"; ObjectID = "FWi-En-qeX"; */
 "FWi-En-qeX.title" = "Zur geänderten Auflage aktualisieren";
-
-
-/* Class = "NSTextFieldCell"; title = "Open a new document:"; ObjectID = "zDW-aW-9G8"; */
-"zDW-aW-9G8.title" = "Neue Dokument öffnen:";
-
-/* Class = "NSButtonCell"; title = "On launch"; ObjectID = "3298"; */
-"3298.title" = "Beim Start";
-/* Class = "NSButtonCell"; title = "When CotEditor becomes active"; ObjectID = "3299"; */
-"3299.title" = "Wenn CotEditor aktiv wird";
 
 
 /* Class = "NSTextFieldCell"; title = "Application:"; ObjectID = "lzy-Ei-xlT"; */
