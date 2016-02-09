@@ -14,6 +14,7 @@ develop
 
 ### Fixes
 
+- Fix an issue where “ignore case” option in the text finder didn't work.
 - Fix an issue where the current line number display was wrong if the cursor is in the last empty line.
 
 

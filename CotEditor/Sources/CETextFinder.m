@@ -658,7 +658,7 @@ static const NSUInteger kMaxHistorySize = 20;
 - (nullable OGRegularExpression *)regex
 // ------------------------------------------------------
 {
-    unsigned options = [self usesRegularExpression] ? [self options] : [self delimitByWhitespaceOption];
+    unsigned options = [self usesRegularExpression] ? [self options] : [self delimitByWhitespaceOption] | [self ignoreCaseOption];
     
     return [OGRegularExpression regularExpressionWithString:[self sanitizedFindString]
                                                     options:options
