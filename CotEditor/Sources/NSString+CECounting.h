@@ -37,4 +37,14 @@
 /// Return the number of words in the current language.
 - (NSUInteger)numberOfWords;
 
+
+/// Return the number of lines in the range.
+- (NSUInteger)numberOfLinesInRange:(NSRange)range includingLastNewLine:(BOOL)ignore;
+
+/// Return the number of lines in the whole string without the last new line character.
+- (NSUInteger)numberOfLines;
+
+/// Return the number of lines at the character index (1-based).
+- (NSUInteger)lineNumberAtIndex:(NSUInteger)index;
+
 @end

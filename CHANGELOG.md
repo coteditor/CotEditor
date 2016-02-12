@@ -7,6 +7,23 @@ develop
 
 ### Improvements
 
+- Update JSON syntax style:
+    - Fix float number highlight.
+- Avoid displaying `NULL` on the status bar until the first calculation is finished.
+
+
+### Fixes
+
+- Fix an issue where the text finder's “ignore case” option in the text finder was ignored on CotEditor 2.4.0.
+- Fix an issue where the current line number display was wrong if the cursor is in the last empty line.
+
+
+
+2.4.0 (101)
+--------------------------
+
+### Improvements
+
 - Increase the number of significant digits in file size display.
 - Update Shell Script syntax style:
     - Fix variable highlight with `_`.

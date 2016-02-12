@@ -148,7 +148,6 @@ NSString *_Nonnull const CEOutlineItemStyleUnderlineKey = @"outlineItemStyleUnde
                                                         offset:0
                                                       template:template];
                      
-                     
                      // replace line number ($LN)
                      if ([title rangeOfString:@"$LN"].location != NSNotFound) {
                          // count line number of the beginning of the matched range

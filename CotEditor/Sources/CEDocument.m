@@ -43,6 +43,7 @@
 #import "CEEncodingManager.h"
 
 #import "NSString+CEEncoding.h"
+#import "NSString+CECounting.h"
 #import "NSURL+Xattr.h"
 #import "NSString+Indentation.h"
 
@@ -813,11 +814,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
         
         NSString *currentChar = [NSString stringWithCharacters:&currentUnichar length:1];
         NSString *convertedChar = [NSString stringWithCharacters:&convertedUnichar length:1];
-        
-        NSUInteger lineNumber = 0;
-        for (NSUInteger index = 0; index <= i; lineNumber++) {
-            index = NSMaxRange([currentString lineRangeForRange:NSMakeRange(index, 0)]);
-        }
+        NSUInteger lineNumber = [currentString lineNumberAtIndex:i];
         
         [incompatibleChars addObject:@{CEIncompatibleLineNumberKey: @(lineNumber),
                                        CEIncompatibleRangeKey: [NSValue valueWithRange:NSMakeRange(i, 1)],

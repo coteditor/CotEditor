@@ -93,4 +93,50 @@
     return count;
 }
 
+
+// ------------------------------------------------------
+/// Return the number of lines in the range.
+- (NSUInteger)numberOfLinesInRange:(NSRange)range includingLastNewLine:(BOOL)includingLastNewLine
+// ------------------------------------------------------
+{
+    if ([self length] == 0 || range.length == 0) { return 0; }
+    
+    __block NSUInteger count = 0;
+    
+    [self enumerateSubstringsInRange:range
+                             options:NSStringEnumerationByLines | NSStringEnumerationSubstringNotRequired
+                          usingBlock:^(NSString * _Nullable substring, NSRange substringRange, NSRange enclosingRange, BOOL * _Nonnull stop)
+     {
+         count++;
+     }];
+    
+    if (includingLastNewLine && [[NSCharacterSet newlineCharacterSet] characterIsMember:[self characterAtIndex:NSMaxRange(range) - 1]]) {
+        count++;
+    }
+    
+    return count;
+}
+
+
+// ------------------------------------------------------
+/// Return the number of lines in the whole string ignoring the last new line character.
+- (NSUInteger)numberOfLines
+// ------------------------------------------------------
+{
+    return [self numberOfLinesInRange:NSMakeRange(0, [self length]) includingLastNewLine:NO];
+}
+
+
+// ------------------------------------------------------
+/// Return the number of lines at the character index (1-based).
+- (NSUInteger)lineNumberAtIndex:(NSUInteger)index
+// ------------------------------------------------------
+{
+    if ([self length] == 0 || index == 0) { return 1; }
+    
+    NSUInteger number = [self numberOfLinesInRange:NSMakeRange(0, index) includingLastNewLine:YES];
+    
+    return number;
+}
+
 @end

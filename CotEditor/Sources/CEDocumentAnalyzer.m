@@ -191,18 +191,16 @@ NSString *_Nonnull const CEAnalyzerDidUpdateEditorInfoNotification = @"CEAnalyze
             column = selectedRange.location - lineRange.location;  // as length
             column = [[wholeString substringWithRange:NSMakeRange(lineRange.location, column)] numberOfComposedCharacters];
             
-            for (NSUInteger index = 0; index < length; numberOfLines++) {
-                if (index <= selectedRange.location) {
-                    currentLine = numberOfLines + 1;
-                }
-                index = NSMaxRange([wholeString lineRangeForRange:NSMakeRange(index, 0)]);
+            // count currentLine
+            if (needsAll || [defaults boolForKey:CEDefaultShowStatusBarLineKey]) {
+                currentLine = [wholeString lineNumberAtIndex:selectedRange.location];
             }
             
-            // count selected lines
-            if (hasSelection) {
-                numberOfSelectedLines = [[selectedString componentsSeparatedByString:@"\n"] count];
-                if ([selectedString hasSuffix:@"\n"]) {
-                    numberOfSelectedLines--;
+            // count lines
+            if (needsAll || [defaults boolForKey:CEDefaultShowStatusBarLinesKey]) {
+                numberOfLines = [wholeString numberOfLines];
+                if (hasSelection) {
+                    numberOfSelectedLines = [selectedString numberOfLines];
                 }
             }
             

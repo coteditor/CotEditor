@@ -99,7 +99,6 @@
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     
-    
     [_coloringTimer invalidate];
     [_outlineMenuTimer invalidate];
     

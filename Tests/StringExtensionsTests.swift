@@ -47,6 +47,31 @@ class StringExtensionsTests: XCTestCase {
     }
     
     
+    func testLinesCount() {
+        XCTAssertEqual("".numberOfLines(), 0)
+        XCTAssertEqual("a".numberOfLines(), 1)
+        XCTAssertEqual("\n".numberOfLines(), 1)
+        XCTAssertEqual("\n\n".numberOfLines(), 2)
+        
+        let testString = "a\nb c\n\n"
+        XCTAssertEqual(testString.numberOfLines(), 3)
+        XCTAssertEqual(testString.numberOfLinesInRange(NSRange(location: 0, length: 0), includingLastNewLine:true),  0)  // ""
+        XCTAssertEqual(testString.numberOfLinesInRange(NSRange(location: 0, length: 1), includingLastNewLine:true),  1)  // "a"
+        XCTAssertEqual(testString.numberOfLinesInRange(NSRange(location: 0, length: 2), includingLastNewLine:true),  2)  // "a\n"
+        XCTAssertEqual(testString.numberOfLinesInRange(NSRange(location: 0, length: 2), includingLastNewLine:false), 1)  // "a\n"
+        XCTAssertEqual(testString.numberOfLinesInRange(NSRange(location: 0, length: 6), includingLastNewLine:true),  3)  // "a\nb c\n"
+        XCTAssertEqual(testString.numberOfLinesInRange(NSRange(location: 0, length: 7), includingLastNewLine:true),  4)  // "a\nb c\n\n"
+        XCTAssertEqual(testString.numberOfLinesInRange(NSRange(location: 2, length: 4), includingLastNewLine:false), 1)  // "b c\n"
+        
+        XCTAssertEqual(testString.lineNumberAtIndex(0), 1)
+        XCTAssertEqual(testString.lineNumberAtIndex(1), 1)
+        XCTAssertEqual(testString.lineNumberAtIndex(2), 2)
+        XCTAssertEqual(testString.lineNumberAtIndex(5), 2)
+        XCTAssertEqual(testString.lineNumberAtIndex(6), 3)
+        XCTAssertEqual(testString.lineNumberAtIndex(7), 4)
+    }
+    
+    
     func testJapaneseTransform() {
         let testString = "犬 イヌ いぬ Ｉｎｕ Dog"
         
