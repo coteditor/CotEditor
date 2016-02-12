@@ -225,7 +225,7 @@ static NSColor *kLabelColor;
         attrValue = [[NSAttributedString alloc] initWithString:value];
     } else {
         attrValue = [[NSAttributedString alloc] initWithString:@"-"
-                                                    attributes:@{NSForegroundColorAttributeName: [NSColor labelColor]}];
+                                                    attributes:@{NSForegroundColorAttributeName: [NSColor disabledControlTextColor]}];
     }
     [status appendAttributedString:attrValue];
     

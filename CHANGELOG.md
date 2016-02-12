@@ -5,6 +5,15 @@ Change Log
 develop
 --------------------------
 
+### Fixes
+
+- Fix an issue where application couldn't open document window on Mountain Lion.
+
+
+
+2.4.1 (103)
+--------------------------
+
 ### Improvements
 
 - Update JSON syntax style:
