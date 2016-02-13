@@ -7,7 +7,7 @@ develop
 
 ### Fixes
 
-- Fix an issue where application couldn't open document window on Mountain Lion.
+- Fix an issue on CotEditor 2.4.2 where document window couldn't be opened on Mountain Lion.
 
 
 
