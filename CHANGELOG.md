@@ -11,12 +11,14 @@ develop
     - Add `--wait` (`-w`) option to wait until a newly opened window closes.
     - Optimize command performance.
     - Fix an issue where command cannot open file whose path includes non-ascii character.
+- Now, the change of “link URL” option is applied to opened documents immediately.
 
 
 
 ### Fix
 
 - Fix an issue where documents were marked as “Edited” just after opening file if “link URL” option is enabled.
+- Fix an issue where URL link was not applied to pasted text.
 
 
 
