@@ -14,6 +14,12 @@ develop
 
 
 
+### Fix
+
+- Fix an issue where documents were marked as “Edited” just after opening file if “link URL” option is enabled.
+
+
+
 2.4.2 (105)
 --------------------------
 

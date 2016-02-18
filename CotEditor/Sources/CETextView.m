@@ -1149,10 +1149,12 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 //    NSRange range = NSMakeRange(0, [[self string] length]);
 //    [self checkTextInRange:range types:NSTextCheckingTypeLink options:@{}];
     
+    [[self undoManager] disableUndoRegistration];
     NSTextCheckingTypes currentCheckingType = [self enabledTextCheckingTypes];
     [self setEnabledTextCheckingTypes:NSTextCheckingTypeLink];
     [self checkTextInDocument:nil];
     [self setEnabledTextCheckingTypes:currentCheckingType];
+    [[self undoManager] enableUndoRegistration];
 }
 
 
