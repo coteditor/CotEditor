@@ -40,6 +40,7 @@ static const CGFloat kDefaultResultViewHeight = 200.0;
 
 @property (nonatomic, nullable) NSLayoutConstraint *resultHeightConstraint;  // for autolayout on OS X 10.8
 @property (nonatomic, nullable, copy) NSString *resultMessage;  // binding
+@property (nonatomic, nullable, weak) NSLayoutManager *currentResultMessageTarget;  // grab layoutManager instead of NSTextView to use weak reference on OS X 10.8
 
 #pragma mark Outlets
 @property (nonatomic, nullable, weak) IBOutlet CETextFinder *textFinder;
@@ -211,6 +212,7 @@ static const CGFloat kDefaultResultViewHeight = 200.0;
     }
     
     // dismiss result either client text or find string did change
+    [self setCurrentResultMessageTarget:[textView layoutManager]];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(invalidateNumberOfFound:)
                                                  name:NSTextStorageDidProcessEditingNotification object:[textView textStorage]];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(invalidateNumberOfFound:)
@@ -606,8 +608,13 @@ static const CGFloat kDefaultResultViewHeight = 200.0;
 {
     [self setResultMessage:nil];
     
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:NSTextStorageDidProcessEditingNotification object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:NSWindowWillCloseNotification object:nil];
+    // -> specify the object to remove osberver to avoid removing the windowWillClose notification (via delegate) from find panel itself.
+    if ([self currentResultMessageTarget]) {
+        NSTextView *textView = [[self currentResultMessageTarget] firstTextView];
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:NSTextStorageDidProcessEditingNotification object:[textView textStorage]];
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:NSWindowWillCloseNotification object:[textView window]];
+        [self setCurrentResultMessageTarget:nil];
+    }
 }
 
 
