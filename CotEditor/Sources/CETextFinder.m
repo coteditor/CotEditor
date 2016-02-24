@@ -567,6 +567,10 @@ static const NSUInteger kMaxHistorySize = 20;
     
     if (selectedString) {
         [self setFindString:selectedString];
+        
+        // auto-disable regex
+        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:CEDefaultFindUsesRegularExpressionKey];
+        
     } else {
         NSBeep();
     }

@@ -7,6 +7,7 @@ develop
 
 ### Improvements
 
+- Disable regular expression option automatically by using selected text for search.
 - Update `cot` command-line tool:
     - Add `--wait` (`-w`) option to wait until a newly opened window closes.
     - Optimize command performance.
