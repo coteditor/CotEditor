@@ -21,6 +21,7 @@ develop
 - Fix an issue where documents were marked as “Edited” just after opening file if “link URL” option is enabled.
 - Fix an issue where URL link was not applied to pasted text.
 - Fix an issue where find-all highlight wasn't removed if find panel is closed before closing find result view.
+- Fix an issue where toggling invisible visibility didn't work correctly.
 
 
 

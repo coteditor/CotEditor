@@ -316,6 +316,26 @@ static BOOL usesTextFontForInvisibles;
 
 
 // ------------------------------------------------------
+/// update invisible characters visibility if needed
+- (void)setShowsInvisibles:(BOOL)showsInvisibles
+// ------------------------------------------------------
+{
+    if (showsInvisibles == _showsInvisibles) { return; }
+    
+    _showsInvisibles = showsInvisibles;
+    
+    NSRange wholeRange = NSMakeRange(0, [[self textStorage] length]);
+    if ([self showsOtherInvisibles]) {
+        // -> force recaluculate layout in order to make spaces for control characters drawing
+        [self invalidateGlyphsForCharacterRange:wholeRange changeInLength:0 actualCharacterRange:NULL];
+        [self invalidateLayoutForCharacterRange:wholeRange actualCharacterRange:NULL];
+    } else {
+        [self invalidateDisplayForCharacterRange:wholeRange];
+    }
+}
+
+
+// ------------------------------------------------------
 /// 複合フォントで行の高さがばらつくのを防止するため、規定した行の高さを返す
 - (CGFloat)lineHeight
 // ------------------------------------------------------
