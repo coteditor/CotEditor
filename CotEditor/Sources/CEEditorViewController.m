@@ -132,6 +132,12 @@
                                                      name:NSViewFrameDidChangeNotification
                                                    object:[[self scrollView] contentView]];
     }
+    
+    // initial highlight (What a dirty workaround...)
+    __weak typeof(self) weakSelf = self;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [weakSelf highlightCurrentLine];
+    });
 }
 
 
