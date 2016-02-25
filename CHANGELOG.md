@@ -24,6 +24,7 @@ develop
 - Fix an issue where URL link was not applied to pasted text.
 - Fix an issue where find-all highlight wasn't removed if find panel is closed before closing find result view.
 - Fix an issue where toggling invisible visibility didn't work correctly.
+- Fix an issue where the cursor located at the end of document after file opening.
 
 
 

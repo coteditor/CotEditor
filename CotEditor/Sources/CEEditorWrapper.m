@@ -267,6 +267,7 @@
     NSAttributedString *attrString = [[NSAttributedString alloc] initWithString:string attributes:attributes];
     
     [[self textStorage] setAttributedString:attrString];
+    [[self focusedTextView] setSelectedRange:NSMakeRange(0, 0)];
     [[self focusedTextView] detectLinkIfNeeded];
 }
 
