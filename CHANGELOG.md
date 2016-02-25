@@ -2,7 +2,7 @@
 Change Log
 ==========================
 
-develop
+2.4.3 (107)
 --------------------------
 
 ### Improvements
@@ -17,8 +17,7 @@ develop
 - Now, the change of “link URL” option is applied to opened documents immediately.
 
 
-
-### Fix
+### Fixes
 
 - Fix an issue where documents were marked as “Edited” just after opening file if “link URL” option is enabled.
 - Fix an issue where URL link was not applied to pasted text.
