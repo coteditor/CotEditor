@@ -12,6 +12,8 @@ develop
     - Add `--wait` (`-w`) option to wait until a newly opened window closes.
     - Optimize command performance.
     - Fix an issue where command cannot open file whose path includes non-ascii character.
+    - Fix an issue where `--line` option didn't work under specific environments.
+    - Fix an issue where `--line` and `--column` options didn't move cursor to the desired location if file has blank lines at the end.
 - Now, the change of “link URL” option is applied to opened documents immediately.
 
 
