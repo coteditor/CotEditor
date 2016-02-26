@@ -36,6 +36,8 @@
 
 // constants
 static CGFloat const kDefaultLineHeightMultiple = 1.19;
+static NSString * _Nonnull const HiraginoSans = @"HiraginoSans-W3";  // since OS X 10.11 (El Capitan)
+static NSString * _Nonnull const HiraKakuProN = @"HiraKakuProN-W3";
 
 
 @interface CELayoutManager ()
@@ -66,6 +68,7 @@ static CGFloat const kDefaultLineHeightMultiple = 1.19;
 @implementation CELayoutManager
 
 static BOOL usesTextFontForInvisibles;
+static NSString *HiraginoSansName;
 
 
 #pragma mark Superclass Methods
@@ -78,6 +81,13 @@ static BOOL usesTextFontForInvisibles;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         usesTextFontForInvisibles = [[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultUsesTextFontForInvisiblesKey];
+        
+        // check Hiragino font availability
+        if ([[[NSFontManager sharedFontManager] availableFonts] containsObject:HiraginoSans]) {
+            HiraginoSansName = HiraginoSans;
+        } else {
+            HiraginoSansName = HiraKakuProN;
+        }
     });
 }
 
@@ -491,8 +501,8 @@ CGPathRef glyphPathWithCharacter(unichar character, CTFontRef font, bool prefers
     // - Monaco for vertical tab
     CGPathRef path = NULL;
     NSArray<NSString *> *fallbackFontNames = (prefersFullWidth
-                                              ? @[@"HiraginoSans-W3", @"HiraKakuProN-W3", @"LucidaGrande", @"Monaco"]
-                                              : @[@"LucidaGrande", @"HiraginoSans-W3", @"HiraKakuProN-W3", @"Monaco"]);
+                                              ? @[HiraginoSansName, @"LucidaGrande", @"Monaco"]
+                                              : @[@"LucidaGrande", HiraginoSansName, @"Monaco"]);
     
     for (NSString *fontName in fallbackFontNames) {
         CTFontRef fallbackFont = CTFontCreateWithName((CFStringRef)fontName, fontSize, 0);
