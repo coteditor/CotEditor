@@ -173,6 +173,7 @@ static const NSUInteger kMaxHistorySize = 20;
         _findPanelController = [[CEFindPanelController alloc] init];
         _integerFormatter = [[NSNumberFormatter alloc] init];
         [_integerFormatter setUsesGroupingSeparator:YES];
+        [_integerFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
         
         _highlightColor = [NSColor colorWithCalibratedHue:0.24 saturation:0.8 brightness:0.8 alpha:0.4];
         // Highlight color is currently not customizable. (2015-01-04)
