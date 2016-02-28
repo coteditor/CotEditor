@@ -318,6 +318,11 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 - (void)saveToURL:(nonnull NSURL *)url ofType:(nonnull NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation completionHandler:(nonnull void (^)(NSError * _Nullable))completionHandler
 // ------------------------------------------------------
 {
+    // trim trailing whitespace if needed
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultTrimsTrailingWhitespaceOnSaveKey]) {
+        [[[self editor] focusedTextView] trimTrailingWhitespace:self];
+    }
+    
     // break undo grouping
     [[[self editor] focusedTextView] breakUndoCoalescing];
     
