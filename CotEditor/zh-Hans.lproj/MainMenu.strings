@@ -348,6 +348,9 @@
 /* Class = "NSMenuItem"; title = "Delete Line"; ObjectID = "sFn-3j-pY5"; */
 "sFn-3j-pY5.title" = "删除行";
 
+/* Class = "NSMenuItem"; title = "Trim Trailing Whitespace"; ObjectID = "hBJ-Ge-278"; */
+"hBJ-Ge-278.title" = "Trim Trailing Whitespace";  // FIXME: addes
+
 /* Class = "NSMenuItem"; title = "Transformations"; ObjectID = "GXo-ds-ygp"; */
 "GXo-ds-ygp.title" = "转换";
 /* Class = "NSMenu"; title = "Transformations"; ObjectID = "b36-nH-7po"; */

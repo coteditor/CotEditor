@@ -63,6 +63,7 @@
 - (IBAction)changeTabWidth:(nullable id)sender;
 - (IBAction)inputYenMark:(nullable id)sender;
 - (IBAction)inputBackSlash:(nullable id)sender;
+- (IBAction)trimTrailingWhitespace:(nullable id)sender;
 - (IBAction)setSelectedRangeWithNSValue:(nullable id)sender;
 - (IBAction)changeLineHeight:(nullable id)sender;
 - (IBAction)showSelectionInfo:(nullable id)sender;

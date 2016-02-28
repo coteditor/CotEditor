@@ -5,6 +5,11 @@ Change Log
 develop
 --------------------------
 
+### New Features
+
+- Add “Trim Trailing Whitespace” action to “Text” menu.
+
+
 ### Improvements
 
 - Update BibTeX syntax style:
