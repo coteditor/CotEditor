@@ -1317,7 +1317,7 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
     }];
     
     [self replaceWithStrings:replaceStrings ranges:replaceRanges selectedRanges:nil
-                  actionName:NSLocalizedString(@"Trim Trailing White Space", nil)];
+                  actionName:NSLocalizedString(@"Trim Trailing Whitespace", nil)];
 }
 
 
