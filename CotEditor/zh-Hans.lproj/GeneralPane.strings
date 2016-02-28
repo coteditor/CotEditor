@@ -72,6 +72,8 @@
 "RrC-LL-hid.title" = "高亮配对括号“( )” “[ ]” “{ }”";
 /* Class = "NSButtonCell"; title = "Highlight “< >”"; ObjectID = "al9-WE-Rqy"; */
 "al9-WE-Rqy.title" = "高亮“< >”";
+/* Class = "NSButtonCell"; title = "Trim trailing whitespace on save"; ObjectID = "noP-hx-YeQ"; */
+"noP-hx-YeQ.title" = "Trim trailing whitespace on save";  // FIXME: added
 
 
 /* Class = "NSTextFieldCell"; title = "Software Update:"; ObjectID = "geU-63-sAC"; */
