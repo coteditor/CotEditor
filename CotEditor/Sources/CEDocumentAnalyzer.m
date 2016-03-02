@@ -92,6 +92,7 @@ NSString *_Nonnull const CEAnalyzerDidUpdateEditorInfoNotification = @"CEAnalyze
     if (self) {
         _integerFormatter = [[NSNumberFormatter alloc] init];
         [_integerFormatter setUsesGroupingSeparator:YES];
+        [_integerFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
         
         _dateFormatter = [[NSDateFormatter alloc] init];
         [_dateFormatter setDateStyle:NSDateFormatterMediumStyle];

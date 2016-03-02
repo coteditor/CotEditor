@@ -2,12 +2,39 @@
 Change Log
 ==========================
 
-develop
+2.4.3 (107)
+--------------------------
+
+### Improvements
+
+- Turn regular expression option off automatically by using selected text for search.
+- Update `cot` command-line tool:
+    - Add `--wait` (`-w`) option to wait until a newly opened window closes.
+    - Optimize command performance.
+    - Fix an issue where command cannot open file whose path includes non-ascii character.
+    - Fix an issue where `--line` option didn't work under specific environments.
+    - Fix an issue where `--line` and `--column` options didn't move cursor to the desired location if file has blank lines at the end.
+- Now, the change of “link URL” option is applied to opened documents immediately.
+
+
+### Fixes
+
+- Fix an issue where documents were marked as “Edited” just after opening file if “link URL” option is enabled.
+- Fix an issue where URL link was not applied to pasted text.
+- Fix an issue where find-all highlight wasn't removed if find panel is closed before closing find result view.
+- Fix an issue where toggling invisible visibility didn't work correctly.
+- Fix an issue where the cursor located at the end of document after file opening.
+- Fix an issue where thousands separators weren't inserted to document information under specific enviroments.
+- Address an issue where paste was rarely failed under specific enviroments.
+
+
+
+2.4.2 (105)
 --------------------------
 
 ### Fixes
 
-- Fix an issue where application couldn't open document window on Mountain Lion.
+- Fix an issue on CotEditor 2.4.2 where document window couldn't be opened on Mountain Lion.
 
 
 

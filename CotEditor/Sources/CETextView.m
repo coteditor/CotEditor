@@ -858,6 +858,12 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 - (BOOL)readSelectionFromPasteboard:(nonnull NSPasteboard *)pboard type:(nonnull NSString *)type
 // ------------------------------------------------------
 {
+    // apply link to pasted string
+    __unsafe_unretained typeof(self) weakSelf = self;  // NSTextView cannot be weak
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [weakSelf detectLinkIfNeeded];
+    });
+    
     // on file drop
     if ([type isEqualToString:NSFilenamesPboardType]) {
         NSArray<NSDictionary<NSString *, NSString *> *> *fileDropDefs = [[NSUserDefaults standardUserDefaults] arrayForKey:CEDefaultFileDropArrayKey];
@@ -1028,6 +1034,12 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
         
     } else if ([keyPath isEqualToString:CEDefaultAutoLinkDetectionKey]) {
         [self setAutomaticLinkDetectionEnabled:[newValue boolValue]];
+        if ([self isAutomaticLinkDetectionEnabled]) {
+            [self detectLinkIfNeeded];
+        } else {
+            // remove current links
+            [[self textStorage] removeAttribute:NSLinkAttributeName range:NSMakeRange(0, [[self string] length])];
+        }
     }
 }
 
@@ -1149,10 +1161,12 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 //    NSRange range = NSMakeRange(0, [[self string] length]);
 //    [self checkTextInRange:range types:NSTextCheckingTypeLink options:@{}];
     
+    [[self undoManager] disableUndoRegistration];
     NSTextCheckingTypes currentCheckingType = [self enabledTextCheckingTypes];
     [self setEnabledTextCheckingTypes:NSTextCheckingTypeLink];
     [self checkTextInDocument:nil];
     [self setEnabledTextCheckingTypes:currentCheckingType];
+    [[self undoManager] enableUndoRegistration];
 }
 
 

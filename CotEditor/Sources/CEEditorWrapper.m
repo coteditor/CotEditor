@@ -267,6 +267,7 @@
     NSAttributedString *attrString = [[NSAttributedString alloc] initWithString:string attributes:attributes];
     
     [[self textStorage] setAttributedString:attrString];
+    [[self focusedTextView] setSelectedRange:NSMakeRange(0, 0)];
     [[self focusedTextView] detectLinkIfNeeded];
 }
 
@@ -592,11 +593,9 @@
 - (IBAction)toggleInvisibleChars:(nullable id)sender
 // ------------------------------------------------------
 {
-    BOOL showsInvisibles = ![(CELayoutManager *)[[self focusedTextView] layoutManager] showsInvisibles];
+    BOOL showsInvisibles = ![self showsInvisibles];
+    [self setShowsInvisibles:showsInvisibles];
     
-    [[self splitViewController] enumerateEditorViewsUsingBlock:^(CEEditorViewController * _Nonnull viewController) {
-        [viewController setShowsInvisibles:showsInvisibles];
-    }];
     [[[self windowController] toolbarController] toggleItemWithTag:CEToolbarShowInvisibleCharsItemTag
                                                              setOn:showsInvisibles];
 }

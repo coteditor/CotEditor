@@ -132,6 +132,12 @@
                                                      name:NSViewFrameDidChangeNotification
                                                    object:[[self scrollView] contentView]];
     }
+    
+    // initial highlight (What a dirty workaround...)
+    __weak typeof(self) weakSelf = self;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [weakSelf highlightCurrentLine];
+    });
 }
 
 
@@ -192,17 +198,6 @@
 // ------------------------------------------------------
 {
     [(CELayoutManager *)[[self textView] layoutManager] setShowsInvisibles:showsInvisibles];
-    
-    // （不可視文字が選択状態で表示／非表示を切り替えられた時、不可視文字の背景選択色を描画するための時間差での選択処理）
-    // （もっとスマートな解決方法はないものか...？ 2006-09-25）
-    if (showsInvisibles) {
-        __block NSTextView *textView = [self textView];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            NSRange selectedRange = [textView selectedRange];
-            [textView setSelectedRange:NSMakeRange(0, 0)];
-            [textView setSelectedRange:selectedRange];
-        });
-    }
 }
 
 
