@@ -105,8 +105,8 @@
                     </textFieldCell>
                 </textField>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="d4d-Es-nTn">
-                    <rect key="frame" x="167" y="235" width="155" height="18"/>
-                    <buttonCell key="cell" type="check" title="Link URL in document" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="tPy-Ox-YpP">
+                    <rect key="frame" x="167" y="235" width="162" height="18"/>
+                    <buttonCell key="cell" type="check" title="Link URLs in document" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="tPy-Ox-YpP">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>

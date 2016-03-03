@@ -63,8 +63,8 @@
 "3309.title" = "Einträge des Skripte-Menüs ins Kontextmenü entfalten";
 /* Class = "NSButtonCell"; title = "Count each line ending as one character"; ObjectID = "3306"; */
 "3306.title" = "Zeilenumbruch als Zeichen zählen";
-/* Class = "NSButtonCell"; title = "Link URL in document"; ObjectID = "tPy-Ox-YpP"; */
-"tPy-Ox-YpP.title" = "URL in der Dokument verlinken";
+/* Class = "NSButtonCell"; title = "Link URLs in document"; ObjectID = "tPy-Ox-YpP"; */
+"tPy-Ox-YpP.title" = "URLs in der Dokument verlinken";
 /* Class = "NSButtonCell"; title = "Check spelling as you type"; ObjectID = "3300"; */
 "3300.title" = "Rechtschreibung während der Texteingabe prüfen";
 /* Class = "NSButtonCell"; title = "Highlight matching braces “( )” “[ ]” “{ }”"; ObjectID = "RrC-LL-hid"; */

@@ -9,6 +9,7 @@ develop
 
 - Add “Trim Trailing Whitespace” action to “Text” menu.
 - Add option to trim trailing whitespace automatically on save (in “General” pane).
+- Tweak text in preferences.
 
 
 ### Improvements
