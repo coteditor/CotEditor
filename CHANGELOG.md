@@ -9,7 +9,6 @@ develop
 
 - Add “Trim Trailing Whitespace” action to “Text” menu.
 - Add option to trim trailing whitespace automatically on save (in “General” pane).
-- Tweak text in preferences.
 
 
 ### Improvements
@@ -17,6 +16,7 @@ develop
 - Update BibTeX syntax style:
     - Add “.bibtex” extension.
     - Add some field names.
+- Tweak text in preferences.
 
 
 
