@@ -53,7 +53,7 @@
 /* Class = "NSToolbarItem"; ObjectID = "LV0-t3-0jM"; */
 "LV0-t3-0jM.label" = "Inkompatible Zeichen";  /* Incompatible Chars */
 "LV0-t3-0jM.paletteLabel" = "Inkompatible Zeichen einblenden";  /* Show Incompatible Chars */
-"LV0-t3-0jM.toolTip" = "Inkompatible Zeichen für den ausgewählte Codierung ainblenden";  /* Show incompatible chars for selected encoding */
+"LV0-t3-0jM.toolTip" = "Inkompatible Zeichen für den ausgewählte Codierung einblenden";  /* Show incompatible chars for selected encoding */
 
 /* Class = "NSToolbarItem"; ObjectID = "Ptr-aN-aSD"; */
 "Ptr-aN-aSD.label" = "Größer";  /* Bigger */

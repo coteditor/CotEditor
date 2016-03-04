@@ -44,7 +44,7 @@
 
 
 /* Class = "NSTextFieldCell"; title = "When document is modified by another application:"; ObjectID = "x4n-2n-I3p"; */
-"x4n-2n-I3p.title" = "Wenn Dokument wird durch ein anderes Programm geändert:";
+"x4n-2n-I3p.title" = "Wenn Dokument durch ein anderes Programm geändert wird:";
 
 /* Class = "NSButtonCell"; title = "Keep CotEditor’s edition"; ObjectID = "DnS-XJ-7RI"; */
 "DnS-XJ-7RI.title" = "Auflage CotEditors erhalten";
@@ -85,4 +85,4 @@
 "4aT-ka-sbv.title" = "Pre-Releases enthalten";
 
 /* Class = "NSButtonCell"; title = "Regardless of this setting, new pre-releases are always included while using a pre-release."; ObjectID = "chR-VY-cuI"; */
-"chR-VY-cuI.title" = "Egal dieser Einstellung werden neue Pre-Releases während der Verwendung einer Pre-Release immer enthalten.";
+"chR-VY-cuI.title" = "Unabhängig von diesem Einstellung werden neue Pre-Releases während der Verwendung einer Pre-Release immer enthalten.";
