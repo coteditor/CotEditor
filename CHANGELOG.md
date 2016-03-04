@@ -19,6 +19,11 @@ develop
 - Tweak text in preferences.
 
 
+### Fixes
+
+- Fix some typos in German localization. (Thanks to Chris Eidhof!)
+
+
 
 2.4.3 (108)
 --------------------------
