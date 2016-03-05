@@ -18,6 +18,7 @@ develop
     - Add “.bibtex” extension.
     - Add some field names.
 - Tweak text in preferences.
+- Upate help contents.
 
 
 ### Fixes
