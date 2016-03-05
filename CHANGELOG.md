@@ -13,6 +13,7 @@ develop
 
 ### Improvements
 
+- Reimplement highlighting found string groups with different colors.
 - Update BibTeX syntax style:
     - Add “.bibtex” extension.
     - Add some field names.
@@ -21,6 +22,7 @@ develop
 
 ### Fixes
 
+- Fix an issue where “Delimit by whitespace” option on text find didn't work.
 - Fix some typos in German localization. (Thanks to Chris Eidhof!)
 
 
