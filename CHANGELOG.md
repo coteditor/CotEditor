@@ -21,6 +21,7 @@ develop
 
 ### Fixes
 
+- Fix an issue where “Delimit by whitespace” option on text find didn't work.
 - Fix some typos in German localization. (Thanks to Chris Eidhof!)
 
 
