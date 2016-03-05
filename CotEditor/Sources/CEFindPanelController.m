@@ -173,15 +173,6 @@ static const CGFloat kDefaultResultViewHeight = 200.0;
 - (void)textFinder:(nonnull CETextFinder *)textFinder didFinishFindingAll:(nonnull NSString *)findString results:(nonnull NSArray<NSDictionary *> *)results textView:(nonnull NSTextView *)textView
 // ------------------------------------------------------
 {
-    // highlight in text view
-    NSLayoutManager *layoutManager = [textView layoutManager];
-    [layoutManager removeTemporaryAttribute:NSBackgroundColorAttributeName
-                          forCharacterRange:NSMakeRange(0, [[layoutManager textStorage] length])];
-    for (NSDictionary<NSString *, id> *result in results) {
-        NSRange range = [result[CEFindResultRange] rangeValue];
-        [layoutManager addTemporaryAttribute:NSBackgroundColorAttributeName value:[textFinder highlightColor] forCharacterRange:range];
-    }
-    
     NSString *documentName = [[[[textView window] windowController] document] displayName];
     
     // prepare result table

@@ -13,6 +13,7 @@ develop
 
 ### Improvements
 
+- Reimplement highlighting found string groups with different colors.
 - Update BibTeX syntax style:
     - Add “.bibtex” extension.
     - Add some field names.
