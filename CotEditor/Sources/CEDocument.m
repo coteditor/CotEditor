@@ -407,7 +407,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
             [self setReadingEncoding:encoding];
             
             // store file attributes
-            NSDictionary<NSString *, id> *attributes = [[NSFileManager defaultManager] attributesOfItemAtPath:[url path] error:nil];
+            NSDictionary<NSString *, id> *attributes = [[NSFileManager defaultManager] attributesOfItemAtPath:[[self fileURL] path] error:nil];
             [self setFileAttributes:attributes];
         }
     }

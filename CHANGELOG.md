@@ -24,6 +24,7 @@ develop
 ### Fixes
 
 - Fix an issue where “Delimit by whitespace” option on text find didn't work.
+- Fix an issue where some document file information displayed wrong after saving. 
 - Fix some typos in German localization. (Thanks to Chris Eidhof!)
 
 
