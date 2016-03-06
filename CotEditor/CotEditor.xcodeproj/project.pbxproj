@@ -2247,24 +2247,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2AC71DEE1BF0C6DD002E1434 /* NSString+CENewLine.m in Sources */,
 				2AA2E0101BFDE0190087BDD6 /* CharacterInfoTests.swift in Sources */,
-				2AA2E00E1BFDDFEA0087BDD6 /* CECharacterInfo.m in Sources */,
-				2AFEA0D01C2D3D8F009001F6 /* NSString+CERange.m in Sources */,
-				2AA2E01C1BFFA22B0087BDD6 /* CEUnicodeCharacter.m in Sources */,
 				2AA2E0261C0454730087BDD6 /* StringIndentationTests.swift in Sources */,
+				2A18A5BD1C4A730D00BAD817 /* EncodingDetectionTests.swift in Sources */,
+				2A7FD3481C53EFA800CE8566 /* XattrTests.swift in Sources */,
+				2AC71DE21BF0BDBC002E1434 /* StringExtensionsTests.swift in Sources */,
+				2A18A5C41C4AA49900BAD817 /* EncodigCoverageTests.m in Sources */,
+				2AC71DEE1BF0C6DD002E1434 /* NSString+CENewLine.m in Sources */,
+				2AFEA0D01C2D3D8F009001F6 /* NSString+CERange.m in Sources */,
+				2A18A5BB1C4A72BF00BAD817 /* NSString+CEEncoding.m in Sources */,
+				2AC71DED1BF0C5B5002E1434 /* NSString+CECounting.m in Sources */,
 				2AA2E0271C0455180087BDD6 /* NSString+Indentation.m in Sources */,
 				2AC71DEF1BF0C7A9002E1434 /* NSString+JapaneseTransform.m in Sources */,
-				2A18A5BD1C4A730D00BAD817 /* EncodingDetectionTests.swift in Sources */,
-				2A18A5C41C4AA49900BAD817 /* EncodigCoverageTests.m in Sources */,
-				2A7FD34A1C5497EB00CE8566 /* NSURL+Xattr.m in Sources */,
-				2A18A5C21C4AA41400BAD817 /* CEEncodings.m in Sources */,
-				2A7FD3481C53EFA800CE8566 /* XattrTests.swift in Sources */,
-				2A18A5BB1C4A72BF00BAD817 /* NSString+CEEncoding.m in Sources */,
-				2AC71DE21BF0BDBC002E1434 /* StringExtensionsTests.swift in Sources */,
-				2AD789D81C31BE32008B746F /* CEControlCharacerNames.m in Sources */,
 				2AC71DF01BF0CDD8002E1434 /* NSString+Normalization.m in Sources */,
-				2AC71DED1BF0C5B5002E1434 /* NSString+CECounting.m in Sources */,
+				2A7FD34A1C5497EB00CE8566 /* NSURL+Xattr.m in Sources */,
+				2AD789D81C31BE32008B746F /* CEControlCharacerNames.m in Sources */,
+				2AA2E00E1BFDDFEA0087BDD6 /* CECharacterInfo.m in Sources */,
+				2AA2E01C1BFFA22B0087BDD6 /* CEUnicodeCharacter.m in Sources */,
+				2A18A5C21C4AA41400BAD817 /* CEEncodings.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
