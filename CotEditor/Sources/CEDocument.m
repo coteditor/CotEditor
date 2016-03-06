@@ -327,7 +327,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     [[[self editor] focusedTextView] breakUndoCoalescing];
     
     // modify place to create backup file
-    //   -> save backup file always in `~/Library/Autosaved Information/` direcotory
+    //   -> save backup file always in `~/Library/Autosaved Information/` directory
     //      (The default backup URL is the same directory as the fileURL.)
     if (saveOperation == NSAutosaveElsewhereOperation && [self fileURL]) {
         NSURL *autosaveDirectoryURL =  [[CEDocumentController sharedDocumentController] autosaveDirectoryURL];
@@ -372,6 +372,10 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
              }
              
              if (saveOperation != NSAutosaveElsewhereOperation) {
+                 // get the latest file attributes
+                 NSDictionary<NSString *, id> *attributes = [[NSFileManager defaultManager] attributesOfItemAtPath:[url path] error:nil];
+                 [self setFileAttributes:attributes];
+                 
                  // update file information
                  [[self windowController] updateFileInfo];
                  
@@ -405,10 +409,6 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
             
             // store file encoding for revert
             [self setReadingEncoding:encoding];
-            
-            // store file attributes
-            NSDictionary<NSString *, id> *attributes = [[NSFileManager defaultManager] attributesOfItemAtPath:[[self fileURL] path] error:nil];
-            [self setFileAttributes:attributes];
         }
     }
 
