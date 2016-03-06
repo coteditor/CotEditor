@@ -17,6 +17,7 @@ develop
 - Update BibTeX syntax style:
     - Add “.bibtex” extension.
     - Add some field names.
+- Now, the change of the page guide column option is applied to opened documents immediately.
 - Tweak text in preferences.
 - Update help contents.
 

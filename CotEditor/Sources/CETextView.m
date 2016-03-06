@@ -1013,6 +1013,9 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
     } else if ([keyPath isEqualToString:CEDefaultCheckSpellingAsTypeKey]) {
         [self setContinuousSpellCheckingEnabled:[newValue boolValue]];
         
+    } else if ([keyPath isEqualToString:CEDefaultPageGuideColumnKey]) {
+        [self setNeedsDisplayInRect:[self visibleRect] avoidAdditionalLayout:YES];
+        
     } else if ([keyPath isEqualToString:CEDefaultEnablesHangingIndentKey] ||
                [keyPath isEqualToString:CEDefaultHangingIndentWidthKey])
     {
@@ -1383,6 +1386,7 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
     return @[CEDefaultAutoExpandTabKey,
              CEDefaultSmartInsertAndDeleteKey,
              CEDefaultCheckSpellingAsTypeKey,
+             CEDefaultPageGuideColumnKey,
              CEDefaultEnableSmartQuotesKey,
              CEDefaultHangingIndentWidthKey,
              CEDefaultEnablesHangingIndentKey,
