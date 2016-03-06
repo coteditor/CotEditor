@@ -18,13 +18,14 @@ develop
     - Add “.bibtex” extension.
     - Add some field names.
 - Tweak text in preferences.
-- Upate help contents.
+- Update help contents.
 
 
 ### Fixes
 
 - Fix an issue where “Delimit by whitespace” option on text find didn't work.
-- Fix an issue where some document file information displayed wrong after saving. 
+- Fix an issue where some document file information displayed wrong after saving.
+- Fix an issue where the current file extension was omitted from new suggested file name on “Save As…” operation.
 - Fix some typos in German localization. (Thanks to Chris Eidhof!)
 
 
