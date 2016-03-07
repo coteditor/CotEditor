@@ -17,6 +17,8 @@ develop
 - Update BibTeX syntax style:
     - Add “.bibtex” extension.
     - Add some field names.
+- Update Python syntax style:
+    - Remove a duplicated term.
 - Now, the change of the page guide column option is applied to opened documents immediately.
 - Tweak text in preferences.
 - Update help contents.
