@@ -565,12 +565,13 @@ static CGFloat kPerCompoIncrement;
                         NSNumber *len = @([beginStr length]);
                         @synchronized(simpleWordsDict) {
                             NSMutableDictionary<NSNumber *, NSMutableArray<NSString *> *> *dict = ignoresCase ? simpleICWordsDict : simpleWordsDict;
+                            NSString *word = ignoresCase ? [beginStr lowercaseString] : beginStr;
                             NSMutableArray<NSString *> *wordsArray = dict[len];
                             if (wordsArray) {
-                                [wordsArray addObject:beginStr];
+                                [wordsArray addObject:word];
                                 
                             } else {
-                                wordsArray = [NSMutableArray arrayWithObject:beginStr];
+                                wordsArray = [NSMutableArray arrayWithObject:word];
                                 dict[len] = wordsArray;
                             }
                         }

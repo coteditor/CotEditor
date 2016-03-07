@@ -28,6 +28,7 @@ develop
 
 - Fix an issue where “Delimit by whitespace” option on text find didn't work.
 - Fix an issue where some document file information displayed wrong after saving.
+- Fix an issue where “ignore case” option in syntax style definition didn't actually ignore case.
 - Fix an issue where the current file extension was omitted from new suggested file name on “Save As…” operation.
 - Fix some typos in German localization. (Thanks to Chris Eidhof!)
 
