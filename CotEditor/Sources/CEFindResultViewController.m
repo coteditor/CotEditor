@@ -59,7 +59,7 @@ static const int kMaxMatchedStringLength = 256;
 
 // ------------------------------------------------------
 /// setter for result property
-- (void)setResult:(NSArray *)result
+- (void)setResult:(nullable NSArray<NSDictionary *> *)result
 // ------------------------------------------------------
 {
     _result = result;
@@ -70,7 +70,7 @@ static const int kMaxMatchedStringLength = 256;
 
 // ------------------------------------------------------
 /// set target textView of the result
-- (void)setTarget:(NSTextView *)target
+- (void)setTarget:(nullable NSTextView *)target
 // ------------------------------------------------------
 {
     // keep layoutManager as `weak` instaed to avoid handling unsafe_unretained TextView
@@ -80,7 +80,7 @@ static const int kMaxMatchedStringLength = 256;
 
 // ------------------------------------------------------
 /// target textView of the current result
-- (NSTextView *)target
+- (nullable NSTextView *)target
 // ------------------------------------------------------
 {
     // keep layoutManager as `week` instaed to avoid handling unsafe_unretained TextView

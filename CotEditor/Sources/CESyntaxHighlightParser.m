@@ -159,7 +159,7 @@ static CGFloat kPerCompoIncrement;
 - (nonnull NSArray<NSValue *> *)rangesOfSimpleWords:(nonnull NSDictionary<NSNumber *, NSArray *> *)wordsDict ignoreCaseWords:(nonnull NSDictionary<NSNumber *, NSArray *> *)icWordsDict charSet:(nonnull NSCharacterSet *)charSet string:(nonnull NSString *)string range:(NSRange)parseRange
 // ------------------------------------------------------
 {
-    NSMutableArray *ranges = [NSMutableArray array];
+    NSMutableArray<NSValue *> *ranges = [NSMutableArray array];
     
     NSScanner *scanner = [NSScanner scannerWithString:string];
     [scanner setCaseSensitive:YES];
@@ -175,7 +175,7 @@ static CGFloat kPerCompoIncrement;
             
             NSUInteger length = [scannedString length];
             
-            NSArray *words = wordsDict[@(length)];
+            NSArray<NSString *> *words = wordsDict[@(length)];
             BOOL isFound = [words containsObject:scannedString];
             
             if (!isFound) {

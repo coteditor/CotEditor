@@ -186,7 +186,7 @@ static NSDictionary<NSString *, NSString *> *kUnprintableKeyTable;
 - (nonnull NSMutableArray<NSString *> *)keySpecCharsListFromOutlineData:(nonnull NSArray<NSDictionary *> *)outlineData
 //------------------------------------------------------
 {
-    NSMutableArray *keySpecCharsList = [NSMutableArray array];
+    NSMutableArray<NSString *> *keySpecCharsList = [NSMutableArray array];
     
     for (NSDictionary *item in outlineData) {
         NSArray *children = item[CEKeyBindingChildrenKey];
