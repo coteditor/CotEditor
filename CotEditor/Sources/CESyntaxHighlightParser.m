@@ -159,7 +159,7 @@ static CGFloat kPerCompoIncrement;
 - (nonnull NSArray<NSValue *> *)rangesOfSimpleWords:(nonnull NSDictionary<NSNumber *, NSArray *> *)wordsDict ignoreCaseWords:(nonnull NSDictionary<NSNumber *, NSArray *> *)icWordsDict charSet:(nonnull NSCharacterSet *)charSet string:(nonnull NSString *)string range:(NSRange)parseRange
 // ------------------------------------------------------
 {
-    NSMutableArray *ranges = [NSMutableArray array];
+    NSMutableArray<NSValue *> *ranges = [NSMutableArray array];
     
     NSScanner *scanner = [NSScanner scannerWithString:string];
     [scanner setCaseSensitive:YES];
@@ -175,7 +175,7 @@ static CGFloat kPerCompoIncrement;
             
             NSUInteger length = [scannedString length];
             
-            NSArray *words = wordsDict[@(length)];
+            NSArray<NSString *> *words = wordsDict[@(length)];
             BOOL isFound = [words containsObject:scannedString];
             
             if (!isFound) {
@@ -565,12 +565,13 @@ static CGFloat kPerCompoIncrement;
                         NSNumber *len = @([beginStr length]);
                         @synchronized(simpleWordsDict) {
                             NSMutableDictionary<NSNumber *, NSMutableArray<NSString *> *> *dict = ignoresCase ? simpleICWordsDict : simpleWordsDict;
+                            NSString *word = ignoresCase ? [beginStr lowercaseString] : beginStr;
                             NSMutableArray<NSString *> *wordsArray = dict[len];
                             if (wordsArray) {
-                                [wordsArray addObject:beginStr];
+                                [wordsArray addObject:word];
                                 
                             } else {
-                                wordsArray = [NSMutableArray arrayWithObject:beginStr];
+                                wordsArray = [NSMutableArray arrayWithObject:word];
                                 dict[len] = wordsArray;
                             }
                         }

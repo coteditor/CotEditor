@@ -227,6 +227,7 @@
 "Remove Duplicate Lines" = "重複行を削除";
 "Duplicate Line" = "行を複製";
 "Delete Line" = "行を削除";
+"Trim Trailing Whitespace" = "行末の空白を削除";
 
 // Menu items
 "Comment Selection" = "選択範囲をコメントアウト";

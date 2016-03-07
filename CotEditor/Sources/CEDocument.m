@@ -267,6 +267,22 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 
 // ------------------------------------------------------
+/// return preferred file extension corresponding the current syntax style
+- (nullable NSString *)fileNameExtensionForType:(nonnull NSString *)typeName saveOperation:(NSSaveOperationType)saveOperation
+// ------------------------------------------------------
+{
+    if ([self fileURL]) {
+        return [[self fileURL] pathExtension];
+    }
+    
+    NSString *styleName = [[self syntaxStyle] styleName];
+    NSArray<NSString *> *extensions = [[CESyntaxManager sharedManager] extensionsForStyleName:styleName];
+    
+    return [extensions firstObject];
+}
+
+
+// ------------------------------------------------------
 /// create NSData object to save
 - (nullable NSData *)dataOfType:(nonnull NSString *)typeName error:(NSError * _Nullable __autoreleasing * _Nullable)outError
 // ------------------------------------------------------
@@ -318,11 +334,16 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 - (void)saveToURL:(nonnull NSURL *)url ofType:(nonnull NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation completionHandler:(nonnull void (^)(NSError * _Nullable))completionHandler
 // ------------------------------------------------------
 {
+    // trim trailing whitespace if needed
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultTrimsTrailingWhitespaceOnSaveKey]) {
+        [[[self editor] focusedTextView] trimTrailingWhitespace:self];
+    }
+    
     // break undo grouping
     [[[self editor] focusedTextView] breakUndoCoalescing];
     
     // modify place to create backup file
-    //   -> save backup file always in `~/Library/Autosaved Information/` direcotory
+    //   -> save backup file always in `~/Library/Autosaved Information/` directory
     //      (The default backup URL is the same directory as the fileURL.)
     if (saveOperation == NSAutosaveElsewhereOperation && [self fileURL]) {
         NSURL *autosaveDirectoryURL =  [[CEDocumentController sharedDocumentController] autosaveDirectoryURL];
@@ -367,6 +388,10 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
              }
              
              if (saveOperation != NSAutosaveElsewhereOperation) {
+                 // get the latest file attributes
+                 NSDictionary<NSString *, id> *attributes = [[NSFileManager defaultManager] attributesOfItemAtPath:[url path] error:nil];
+                 [self setFileAttributes:attributes];
+                 
                  // update file information
                  [[self windowController] updateFileInfo];
                  
@@ -400,10 +425,6 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
             
             // store file encoding for revert
             [self setReadingEncoding:encoding];
-            
-            // store file attributes
-            NSDictionary<NSString *, id> *attributes = [[NSFileManager defaultManager] attributesOfItemAtPath:[url path] error:nil];
-            [self setFileAttributes:attributes];
         }
     }
 
@@ -434,12 +455,13 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     [savePanel setExtensionHidden:NO];
     [savePanel setCanSelectHiddenExtension:NO];
     
-    // append file extension as a part of the file name, if it is the first save.
-    if (![self fileURL]) {
-        NSString *extension = [self preferredExtension];
-        if (extension) {
-            [savePanel setNameFieldStringValue:[[savePanel nameFieldStringValue] stringByAppendingPathExtension:extension]];
-        }
+    // append file extension as a part of the file name
+    // -> NSSaveAsOperation will remove the current file extension from file name in the nameField
+    //    as we set nil to `setAllowedFileTypes:` just above.
+    //    So, we need to set it again manually.
+    NSString *extension = [self fileNameExtensionForType:[self fileType] saveOperation:NSSaveOperation];
+    if (extension) {
+        [savePanel setNameFieldStringValue:[[savePanel nameFieldStringValue] stringByAppendingPathExtension:extension]];
     }
     
     return [super prepareSavePanel:savePanel];
@@ -1213,23 +1235,6 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 
 #pragma mark Private Methods
-
-// ------------------------------------------------------
-/// return preferred file extension corresponding the current syntax style
-- (nullable NSString *)preferredExtension
-// ------------------------------------------------------
-{
-    if ([self fileURL]) {
-        return [[self fileURL] pathExtension];
-        
-    } else {
-        NSString *styleName = [[self syntaxStyle] styleName];
-        NSArray<NSString *> *extensions = [[CESyntaxManager sharedManager] extensionsForStyleName:styleName];
-        
-        return [extensions firstObject];
-    }
-}
-
 
 // ------------------------------------------------------
 /// ツールバーのエンコーディングメニュー、ステータスバー、インスペクタを更新

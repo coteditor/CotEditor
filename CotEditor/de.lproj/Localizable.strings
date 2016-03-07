@@ -225,6 +225,7 @@
 "Remove Duplicate Lines" = "Doppelte Zeilen löschen";
 "Duplicate Line" = "Zeile duplizieren";
 "Delete Line" = "Zeile löschen";
+"Trim Trailing Whitespace" = "Nachfolgende Leerzeichen entfernen";
 
 // Menu items
 "Comment Selection" = "Auswahl auskommentieren";

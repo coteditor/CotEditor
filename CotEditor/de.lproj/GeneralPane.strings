@@ -44,7 +44,7 @@
 
 
 /* Class = "NSTextFieldCell"; title = "When document is modified by another application:"; ObjectID = "x4n-2n-I3p"; */
-"x4n-2n-I3p.title" = "Wenn Dokument wird durch ein anderes Programm geändert:";
+"x4n-2n-I3p.title" = "Wenn Dokument durch ein anderes Programm geändert wird:";
 
 /* Class = "NSButtonCell"; title = "Keep CotEditor’s edition"; ObjectID = "DnS-XJ-7RI"; */
 "DnS-XJ-7RI.title" = "Auflage CotEditors erhalten";
@@ -63,14 +63,16 @@
 "3309.title" = "Einträge des Skripte-Menüs ins Kontextmenü entfalten";
 /* Class = "NSButtonCell"; title = "Count each line ending as one character"; ObjectID = "3306"; */
 "3306.title" = "Zeilenumbruch als Zeichen zählen";
-/* Class = "NSButtonCell"; title = "Link URL in document"; ObjectID = "tPy-Ox-YpP"; */
-"tPy-Ox-YpP.title" = "URL in der Dokument verlinken";
+/* Class = "NSButtonCell"; title = "Link URLs in document"; ObjectID = "tPy-Ox-YpP"; */
+"tPy-Ox-YpP.title" = "URLs in der Dokument verlinken";
 /* Class = "NSButtonCell"; title = "Check spelling as you type"; ObjectID = "3300"; */
 "3300.title" = "Rechtschreibung während der Texteingabe prüfen";
 /* Class = "NSButtonCell"; title = "Highlight matching braces “( )” “[ ]” “{ }”"; ObjectID = "RrC-LL-hid"; */
 "RrC-LL-hid.title" = "Übereinstimmende Klammern „( )“ „[ ]“ „{ }“ hervorheben";
 /* Class = "NSButtonCell"; title = "Highlight “< >”"; ObjectID = "al9-WE-Rqy"; */
 "al9-WE-Rqy.title" = "„< >“ hervorheben";
+/* Class = "NSButtonCell"; title = "Trim trailing whitespace on save"; ObjectID = "noP-hx-YeQ"; */
+"noP-hx-YeQ.title" = "Nachfolgende Leerzeichen beim Speichern entfernen";
 
 
 /* Class = "NSTextFieldCell"; title = "Software Update:"; ObjectID = "geU-63-sAC"; */
@@ -83,4 +85,4 @@
 "4aT-ka-sbv.title" = "Pre-Releases enthalten";
 
 /* Class = "NSButtonCell"; title = "Regardless of this setting, new pre-releases are always included while using a pre-release."; ObjectID = "chR-VY-cuI"; */
-"chR-VY-cuI.title" = "Egal dieser Einstellung werden neue Pre-Releases während der Verwendung einer Pre-Release immer enthalten.";
+"chR-VY-cuI.title" = "Unabhängig von diesem Einstellung werden neue Pre-Releases während der Verwendung einer Pre-Release immer enthalten.";

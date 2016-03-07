@@ -113,6 +113,7 @@ NSString *_Nonnull const CEDefaultAutoLinkDetectionKey = @"autoLinkDetectionKey"
 NSString *_Nonnull const CEDefaultAppendsCommentSpacerKey = @"appendsCommentSpacer";
 NSString *_Nonnull const CEDefaultCommentsAtLineHeadKey = @"commentsAtLineHead";
 NSString *_Nonnull const CEDefaultChecksUpdatesForBetaKey = @"checksUpdatesForBeta";
+NSString *_Nonnull const CEDefaultTrimsTrailingWhitespaceOnSaveKey = @"trimsTrailingWhitespaceOnSave";
 
 // print settings
 NSString *_Nonnull const CEDefaultSetPrintFontKey = @"setPrintFont";

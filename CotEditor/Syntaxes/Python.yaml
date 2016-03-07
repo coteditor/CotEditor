@@ -8,8 +8,8 @@ interpreters:
 - keyString: "python2"
 - keyString: "python3"
 metadata:
-  version: "2.3.1"
-  lastModified: "2015-12-25"
+  version: "2.3.2"
+  lastModified: "2016-03-07"
   distributionURL: "http://coteditor.com"
   author: "nanasiya"
   license: "Same as CotEditor"
@@ -383,7 +383,6 @@ values:
 - beginString: "__closure__"
 - beginString: "__code__"
 - beginString: "__context__"
-- beginString: "__debug__"
 - beginString: "__debug__"
 - beginString: "__defaults__"
 - beginString: "__dict__"

@@ -63,7 +63,7 @@
 "3309.title" = "コンテキストメニューのスクリプトメニューを展開";
 /* Class = "NSButtonCell"; title = "Count each line ending as one character"; ObjectID = "3306"; */
 "3306.title" = "改行コードを文字としてカウント";
-/* Class = "NSButtonCell"; title = "Link URL in document"; ObjectID = "tPy-Ox-YpP"; */
+/* Class = "NSButtonCell"; title = "Link URLs in document"; ObjectID = "tPy-Ox-YpP"; */
 "tPy-Ox-YpP.title" = "書類内の URL をリンク";
 /* Class = "NSButtonCell"; title = "Check spelling as you type"; ObjectID = "3300"; */
 "3300.title" = "入力中に自動スペルチェック";
@@ -71,6 +71,8 @@
 "RrC-LL-hid.title" = "対応する括弧“( )” “[ ]” “{ }”をハイライト表示";
 /* Class = "NSButtonCell"; title = "Highlight “< >”"; ObjectID = "al9-WE-Rqy"; */
 "al9-WE-Rqy.title" = "“< >”をハイライト表示";
+/* Class = "NSButtonCell"; title = "Trim trailing whitespace on save"; ObjectID = "noP-hx-YeQ"; */
+"noP-hx-YeQ.title" = "保存時に行末の空白を削除";
 
 
 /* Class = "NSTextFieldCell"; title = "Software Update:"; ObjectID = "geU-63-sAC"; */

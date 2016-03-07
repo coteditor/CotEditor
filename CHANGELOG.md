@@ -2,7 +2,39 @@
 Change Log
 ==========================
 
-2.4.3 (107)
+develop
+--------------------------
+
+### New Features
+
+- Add “Trim Trailing Whitespace” action to “Text” menu.
+- Add option to trim trailing whitespace automatically on save (in “General” pane).
+
+
+### Improvements
+
+- Reimplement highlighting found string groups with different colors.
+- Update BibTeX syntax style:
+    - Add “.bibtex” extension.
+    - Add some field names.
+- Update Python syntax style:
+    - Remove a duplicated term.
+- Now, the change of the page guide column option is applied to opened documents immediately.
+- Tweak text in preferences.
+- Update help contents.
+
+
+### Fixes
+
+- Fix an issue where “Delimit by whitespace” option on text find didn't work.
+- Fix an issue where some document file information displayed wrong after saving.
+- Fix an issue where “ignore case” option in syntax style definition didn't actually ignore case.
+- Fix an issue where the current file extension was omitted from new suggested file name on “Save As…” operation.
+- Fix some typos in German localization. (Thanks to Chris Eidhof!)
+
+
+
+2.4.3 (108)
 --------------------------
 
 ### Improvements
@@ -17,7 +49,7 @@ Change Log
 - Now, the change of “link URL” option is applied to opened documents immediately.
 
 
-### Fixes
+### Fix
 
 - Fix an issue where documents were marked as “Edited” just after opening file if “link URL” option is enabled.
 - Fix an issue where URL link was not applied to pasted text.

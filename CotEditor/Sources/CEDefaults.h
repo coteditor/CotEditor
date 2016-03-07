@@ -113,6 +113,7 @@ extern NSString *_Nonnull const CEDefaultAutoLinkDetectionKey;
 extern NSString *_Nonnull const CEDefaultAppendsCommentSpacerKey;
 extern NSString *_Nonnull const CEDefaultCommentsAtLineHeadKey;
 extern NSString *_Nonnull const CEDefaultChecksUpdatesForBetaKey;
+extern NSString *_Nonnull const CEDefaultTrimsTrailingWhitespaceOnSaveKey;
 
 // print settings
 extern NSString *_Nonnull const CEDefaultSetPrintFontKey;
