@@ -73,6 +73,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 @interface CEDocument ()
 
 @property (nonatomic, nullable) CEPrintPanelAccessoryController *printPanelAccessoryController;
+@property (nonatomic, nullable) IBOutlet NSView *savePanelAccessoryView;
 
 @property (nonatomic) NSStringEncoding readingEncoding;  // encoding to read document file
 @property (nonatomic) BOOL needsShowUpdateAlertWithBecomeKey;
@@ -85,6 +86,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 @property (nonatomic) BOOL shouldSaveXattr;
 @property (nonatomic, nonnull, copy) NSString *autosaveIdentifier;
 @property (nonatomic) BOOL suppressesIANACharsetConflictAlert;
+@property (nonatomic, getter=isExecutable) BOOL executable;
 
 // readonly
 @property (readwrite, nonatomic, nullable) CEWindowController *windowController;
@@ -215,6 +217,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     if ([self fileURL]) {
         NSDictionary<NSString *, id> *attributes = [[NSFileManager defaultManager] attributesOfItemAtPath:[[self fileURL] path] error:outError];
         [self setFileAttributes:attributes];
+        [self setExecutable:([attributes filePosixPermissions] & S_IXUSR) != 0];
     }
     
     // try reading the `com.apple.TextEncoding` extended attribute
@@ -433,6 +436,30 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 
 // ------------------------------------------------------
+/// customize document's file attributes
+- (nullable NSDictionary<NSString *, id> *)fileAttributesToWriteToURL:(nonnull NSURL *)url ofType:(nonnull NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation originalContentsURL:(nullable NSURL *)absoluteOriginalContentsURL error:(NSError * _Nullable __autoreleasing *)outError
+// ------------------------------------------------------
+{
+    NSMutableDictionary<NSString *, id> *attributes = [[super fileAttributesToWriteToURL:url ofType:typeName forSaveOperation:saveOperation originalContentsURL:absoluteOriginalContentsURL error:outError] ?: @{} mutableCopy];
+    
+    // give the execute permission if user requested
+    if ([self isExecutable] && saveOperation != NSAutosaveElsewhereOperation) {
+        NSUInteger permissions = [attributes filePosixPermissions];
+        if (permissions == 0) {
+            if (absoluteOriginalContentsURL) {  // read from old one if not exists
+                permissions = [[[NSFileManager defaultManager] attributesOfItemAtPath:[absoluteOriginalContentsURL path] error:outError] filePosixPermissions];
+            } else {
+                permissions = 0644;  // ???: Is the default permission really always 644?
+            }
+        }
+        attributes[NSFilePosixPermissions] = @(permissions | S_IXUSR);
+    }
+    
+    return [attributes copy];
+}
+
+
+// ------------------------------------------------------
 /// セーブパネルへ標準のアクセサリビュー(ポップアップメニューでの書類の切り替え)を追加しない
 - (BOOL)shouldRunSavePanelWithAccessoryView
 // ------------------------------------------------------
@@ -454,6 +481,12 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     // disable hide extension checkbox
     [savePanel setExtensionHidden:NO];
     [savePanel setCanSelectHiddenExtension:NO];
+    
+    // set accessory view
+    if (![self savePanelAccessoryView]) {
+        [[NSBundle mainBundle] loadNibNamed:@"SaveDocumentAccessory" owner:self topLevelObjects:nil];
+    }
+    [savePanel setAccessoryView:[self savePanelAccessoryView]];
     
     // append file extension as a part of the file name
     // -> NSSaveAsOperation will remove the current file extension from file name in the nameField

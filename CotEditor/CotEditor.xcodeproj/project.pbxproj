@@ -85,6 +85,8 @@
 		2A3A75AB19E77E87001DAB88 /* SyntaxOutlineEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A3A75A219E77E87001DAB88 /* SyntaxOutlineEditView.xib */; };
 		2A3A75AC19E77E87001DAB88 /* SyntaxValidationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A3A75A419E77E87001DAB88 /* SyntaxValidationView.xib */; };
 		2A3A75B319E77F32001DAB88 /* CESyntaxValidationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A3A75B219E77F32001DAB88 /* CESyntaxValidationViewController.m */; };
+		2A3CC1F71C8B442600506DB8 /* SaveDocumentAccessory.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A3CC1F51C8B442600506DB8 /* SaveDocumentAccessory.xib */; };
+		2A3CC1F81C8B442600506DB8 /* SaveDocumentAccessory.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A3CC1F51C8B442600506DB8 /* SaveDocumentAccessory.xib */; };
 		2A3FB2AD18ECEFF200D9CB2C /* CESyntaxEditSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A3FB2AC18ECEFF200D9CB2C /* CESyntaxEditSheetController.m */; };
 		2A41CB3D1C3906BA00F9122B /* CEInvisibles.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A41CB3C1C3906BA00F9122B /* CEInvisibles.m */; };
 		2A41CB3E1C3906BA00F9122B /* CEInvisibles.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A41CB3C1C3906BA00F9122B /* CEInvisibles.m */; };
@@ -568,6 +570,10 @@
 		2A3A759319E77D66001DAB88 /* CEMigrationWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEMigrationWindowController.m; sourceTree = "<group>"; };
 		2A3A75B119E77F32001DAB88 /* CESyntaxValidationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CESyntaxValidationViewController.h; sourceTree = "<group>"; };
 		2A3A75B219E77F32001DAB88 /* CESyntaxValidationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CESyntaxValidationViewController.m; sourceTree = "<group>"; };
+		2A3CC1F61C8B442600506DB8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SaveDocumentAccessory.xib; sourceTree = "<group>"; };
+		2A3CC1FA1C8B59EB00506DB8 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/SaveDocumentAccessory.strings; sourceTree = "<group>"; };
+		2A3CC1FC1C8B59EE00506DB8 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/SaveDocumentAccessory.strings"; sourceTree = "<group>"; };
+		2A3CC1FE1C8B59F100506DB8 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/SaveDocumentAccessory.strings; sourceTree = "<group>"; };
 		2A3FB2AB18ECEFF200D9CB2C /* CESyntaxEditSheetController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CESyntaxEditSheetController.h; sourceTree = "<group>"; };
 		2A3FB2AC18ECEFF200D9CB2C /* CESyntaxEditSheetController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CESyntaxEditSheetController.m; sourceTree = "<group>"; };
 		2A4063FA1B9DA6080032AC7F /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/SyntaxValidationView.strings; sourceTree = "<group>"; };
@@ -1597,6 +1603,7 @@
 			isa = PBXGroup;
 			children = (
 				2AFFB72A18D8C7DE00118477 /* OpenDocumentAccessory.xib */,
+				2A3CC1F51C8B442600506DB8 /* SaveDocumentAccessory.xib */,
 				2A07202C18E0E421006F3A43 /* PrintPanelAccessory.xib */,
 				2588E9CC07C4851C0060021D /* ProgressSheet.xib */,
 				2AB4326C1912ADAC00835004 /* CharacterPopover.xib */,
@@ -1906,6 +1913,7 @@
 				2A6F0D931B5500E100C2D03C /* NaviBar_Show.tiff in Resources */,
 				2A6F0D941B5500E100C2D03C /* LineNumber_Hide.tiff in Resources */,
 				2A6F0D951B5500E100C2D03C /* LineNumber_Show.tiff in Resources */,
+				2A3CC1F81C8B442600506DB8 /* SaveDocumentAccessory.xib in Resources */,
 				2A5DBE591B5D2DB400F8CB13 /* SyntaxOutlineEditView.xib in Resources */,
 				2A6F0D961B5500E100C2D03C /* StatusBar_Hide.tiff in Resources */,
 				2A6F0D971B5500E100C2D03C /* StatusBar_Show.tiff in Resources */,
@@ -2000,6 +2008,7 @@
 				2A961C5418FC699E002076B6 /* ScriptMenu Folder.rtf in Resources */,
 				2A961C5218FC699E002076B6 /* AppleScript.rtf in Resources */,
 				2A42825518FCD47B00386899 /* Acknowledgements.rtf in Resources */,
+				2A3CC1F71C8B442600506DB8 /* SaveDocumentAccessory.xib in Resources */,
 				8C081B4B07D0A85A0060191A /* GetInfo.tiff in Resources */,
 				8C98366708C0211D00746F92 /* IncompatibleChars.tiff in Resources */,
 				8CA71BCE07D2A79100C146B0 /* BiggerFont.tiff in Resources */,
@@ -2703,6 +2712,17 @@
 				2A4063FA1B9DA6080032AC7F /* de */,
 			);
 			name = SyntaxValidationView.xib;
+			sourceTree = "<group>";
+		};
+		2A3CC1F51C8B442600506DB8 /* SaveDocumentAccessory.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2A3CC1F61C8B442600506DB8 /* Base */,
+				2A3CC1FA1C8B59EB00506DB8 /* ja */,
+				2A3CC1FC1C8B59EE00506DB8 /* zh-Hans */,
+				2A3CC1FE1C8B59F100506DB8 /* de */,
+			);
+			name = SaveDocumentAccessory.xib;
 			sourceTree = "<group>";
 		};
 		2A436DCB1A4243D500275FD4 /* DocumentInspectorView.xib */ = {
