@@ -1014,7 +1014,7 @@ CA
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="CotEditor Scripting Manual" id="OLa-Mb-rXS">
                                     <items>
-                                        <menuItem title="About ScriptMenu Folder" tag="1" id="u2o-8v-WPL">
+                                        <menuItem title="About Script Menu Folder" tag="1" id="u2o-8v-WPL">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="openBundledDocument:" target="290" id="HQ0-1V-jTT"/>

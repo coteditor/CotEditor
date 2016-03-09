@@ -494,7 +494,7 @@
 "M1N-Fg-Bo4.title" = "CotEditor スクリプトマニュアル";
 /* Class = "NSMenu"; title = "CotEditor Scripting Manual"; ObjectID = "OLa-Mb-rXS"; */
 "OLa-Mb-rXS.title" = "CotEditor スクリプトマニュアル";
-/* Class = "NSMenuItem"; title = "About ScriptMenu Folder"; ObjectID = "u2o-8v-WPL"; */
+/* Class = "NSMenuItem"; title = "About Script Menu Folder"; ObjectID = "u2o-8v-WPL"; */
 "u2o-8v-WPL.title" = "スクリプトフォルダについて";
 /* Class = "NSMenuItem"; title = "Scripting with AppleScript"; ObjectID = "GRD-OA-psD"; */
 "GRD-OA-psD.title" = "AppleScript でのスクリプト作成";
