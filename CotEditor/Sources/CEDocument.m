@@ -537,7 +537,6 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     if (![self printPanelAccessoryController]) {
         [self setPrintPanelAccessoryController:[[CEPrintPanelAccessoryController alloc] init]];
     }
-    CEPrintPanelAccessoryController *accessoryController = [self printPanelAccessoryController];
     
     // create printView
     CEPrintView *printView = [[CEPrintView alloc] init];
@@ -562,7 +561,27 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     [printView setFont:font];
     
     // setup PrintInfo
-    NSPrintInfo *printInfo = [self printInfo];
+    NSPrintInfo *printInfo = [[self printInfo] copy];
+    [[printInfo dictionary] addEntriesFromDictionary:printSettings];
+    
+    // create print operation
+    NSPrintOperation *printOperation = [NSPrintOperation printOperationWithView:printView printInfo:printInfo];
+    [printOperation setJobTitle:[self displayName]];
+    [printOperation setShowsProgressPanel:YES];
+    [[printOperation printPanel] addAccessoryController:[self printPanelAccessoryController]];
+    [[printOperation printPanel] setOptions:NSPrintPanelShowsCopies | NSPrintPanelShowsPageRange | NSPrintPanelShowsPaperSize | NSPrintPanelShowsOrientation | NSPrintPanelShowsScaling | NSPrintPanelShowsPreview];
+    
+    return printOperation;
+}
+
+
+// ------------------------------------------------------
+/// printing information associated with the document
+- (nonnull NSPrintInfo *)printInfo
+// ------------------------------------------------------
+{
+    NSPrintInfo *printInfo = [super printInfo];
+    
     [printInfo setHorizontalPagination:NSFitPagination];
     [printInfo setHorizontallyCentered:NO];
     [printInfo setVerticallyCentered:NO];
@@ -572,14 +591,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     [printInfo setBottomMargin:kVerticalPrintMargin];
     [printInfo dictionary][NSPrintHeaderAndFooter] = @YES;
     
-    // create print operation
-    NSPrintOperation *printOperation = [NSPrintOperation printOperationWithView:printView printInfo:printInfo];
-    [printOperation setJobTitle:[self displayName]];
-    [printOperation setShowsProgressPanel:YES];
-    [[printOperation printPanel] addAccessoryController:accessoryController];
-    [[printOperation printPanel] setOptions:NSPrintPanelShowsCopies | NSPrintPanelShowsPageRange | NSPrintPanelShowsPaperSize | NSPrintPanelShowsOrientation | NSPrintPanelShowsScaling | NSPrintPanelShowsPreview];
-    
-    return printOperation;
+    return printInfo;
 }
 
 

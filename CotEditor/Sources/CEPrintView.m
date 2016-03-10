@@ -241,14 +241,13 @@ static NSString *_Nonnull const PageNumberPlaceholder = @"PAGENUM";
 {
     // update text view size considering text orientation
     NSPrintInfo *printInfo = [[NSPrintOperation currentOperation] printInfo];
-    CGFloat scale = [printInfo scalingFactor];
-    NSSize frameSize;
+    NSSize frameSize = [printInfo paperSize];
     if ([self layoutOrientation] == NSTextLayoutOrientationVertical) {
-        frameSize = NSMakeSize([self maxSize].width,
-                               ([printInfo paperSize].height - ([printInfo leftMargin] + [printInfo rightMargin])) / scale);
+        frameSize.height -= [printInfo leftMargin] + [printInfo rightMargin];
+        frameSize.height /= [printInfo scalingFactor];
     } else {
-        frameSize = NSMakeSize(([printInfo paperSize].width - ([printInfo leftMargin] + [printInfo rightMargin])) / scale,
-                               [self maxSize].height);
+        frameSize.width -= [printInfo leftMargin] + [printInfo rightMargin];
+        frameSize.width /= [printInfo scalingFactor];
     }
     [self setFrameSize:frameSize];
     [self sizeToFit];
@@ -484,7 +483,7 @@ static NSString *_Nonnull const PageNumberPlaceholder = @"PAGENUM";
     }
     [paragraphStyle setAlignment:alignment];
     
-    // tab stops for double-sided alignment (imitation of [super paperHeader])
+    // tab stops for double-sided alignment (imitation of [super pageHeader])
     NSPrintInfo *printInfo = [[NSPrintOperation currentOperation] printInfo];
     CGFloat rightTabLocation = rightTabLocation = [printInfo paperSize].width - [printInfo topMargin] / 2;
     [paragraphStyle setTabStops:@[[[NSTextTab alloc] initWithType:NSCenterTabStopType location:rightTabLocation / 2],
