@@ -362,6 +362,8 @@ static NSString *_Nonnull const PageNumberPlaceholder = @"PAGENUM";
     
     // setup syntax highlighting with set theme
     if ([settings[CEPrintThemeKey] isEqualToString:NSLocalizedString(@"Black and White",  nil)]) {
+        [[self layoutManager] removeTemporaryAttribute:NSForegroundColorAttributeName
+                                     forCharacterRange:NSMakeRange(0, [[self textStorage] length])];
         [self setTextColor:[NSColor blackColor]];
         [self setBackgroundColor:[NSColor whiteColor]];
         
