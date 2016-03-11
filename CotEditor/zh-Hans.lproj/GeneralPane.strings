@@ -73,7 +73,7 @@
 /* Class = "NSButtonCell"; title = "Highlight “< >”"; ObjectID = "al9-WE-Rqy"; */
 "al9-WE-Rqy.title" = "高亮“< >”";
 /* Class = "NSButtonCell"; title = "Trim trailing whitespace on save"; ObjectID = "noP-hx-YeQ"; */
-"noP-hx-YeQ.title" = "Trim trailing whitespace on save";  // FIXME: added
+"noP-hx-YeQ.title" = "保存时移除行尾空白";
 
 
 /* Class = "NSTextFieldCell"; title = "Software Update:"; ObjectID = "geU-63-sAC"; */
