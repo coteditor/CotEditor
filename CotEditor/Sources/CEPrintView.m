@@ -378,7 +378,9 @@ static NSString *_Nonnull const PageNumberPlaceholder = @"PAGENUM";
         }
         CEPrintPanelAccessoryController *controller = [[[[NSPrintOperation currentOperation] printPanel] accessoryControllers] firstObject];
         [[self syntaxStyle] highlightWholeStringInTextStorage:[self textStorage] completionHandler:^ {
-            [controller setNeedsPreview:YES];
+            if (![[controller view] isHidden]) {
+                [controller setNeedsPreview:YES];
+            }
         }];
     }
 }
@@ -507,7 +509,7 @@ static NSString *_Nonnull const PageNumberPlaceholder = @"PAGENUM";
             }
             
             if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultHeaderFooterPathAbbreviatingWithTildeKey]) {
-                return [[self filePath]  stringByAbbreviatingWithTildeInSandboxedPath];
+                return [[self filePath] stringByAbbreviatingWithTildeInSandboxedPath];
             } else {
                 return [self filePath];
             }
