@@ -349,7 +349,7 @@
 "sFn-3j-pY5.title" = "删除行";
 
 /* Class = "NSMenuItem"; title = "Trim Trailing Whitespace"; ObjectID = "hBJ-Ge-278"; */
-"hBJ-Ge-278.title" = "Trim Trailing Whitespace";  // FIXME: added
+"hBJ-Ge-278.title" = "移除行尾空白";
 
 /* Class = "NSMenuItem"; title = "Transformations"; ObjectID = "GXo-ds-ygp"; */
 "GXo-ds-ygp.title" = "转换";

@@ -224,7 +224,7 @@
 "Remove Duplicate Lines" = "移除重复行";
 "Duplicate Line" = "复制行";
 "Delete Line" = "删除行";
-"Trim Trailing Whitespace" = "Trim Trailing Whitespace";  // FIXME: added
+"Trim Trailing Whitespace" = "移除行尾空白";
 
 // Menu items
 "Comment Selection" = "注释选中内容";
