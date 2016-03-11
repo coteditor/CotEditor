@@ -32,6 +32,7 @@ develop
 - Fix an issue where some document file information displayed wrong after saving.
 - Fix an issue where line number view could count wrong if wrapped.
 - Fix an issue where printing color theme couldn't be changed to “Black and White” on print panel.
+- Fix an issue where print preview collapsed if paper size is changed on print panel.
 - Fix an issue where “ignore case” option in syntax style definition didn't actually ignore case.
 - Fix an issue where the current file extension was omitted from new suggested file name on “Save As…” operation.
 - Fix some typos in German localization. (Thanks to Chris Eidhof!)
