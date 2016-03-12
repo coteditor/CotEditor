@@ -23,7 +23,7 @@ develop
 - Now, the change of the page guide column option is applied to opened documents immediately.
 - Tweak text in preferences.
 - Update help contents.
-- [non-AppStore ver.] Update Sparkle framework to version 1.13.1.
+- [non-AppStore ver.] Update Sparkle framework to version 1.14.0.
 
 
 ### Fixes
