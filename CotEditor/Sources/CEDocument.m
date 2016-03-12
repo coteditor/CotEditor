@@ -442,18 +442,18 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 {
     NSMutableDictionary<NSString *, id> *attributes = [[super fileAttributesToWriteToURL:url ofType:typeName forSaveOperation:saveOperation originalContentsURL:absoluteOriginalContentsURL error:outError] ?: @{} mutableCopy];
     
-    // give the execute permission if user requested
-    if ([self isExecutable] && saveOperation != NSAutosaveElsewhereOperation) {
-        NSUInteger permissions = [attributes filePosixPermissions];
-        if (permissions == 0) {
-            if (absoluteOriginalContentsURL) {  // read from old one if not exists
-                permissions = [[[NSFileManager defaultManager] attributesOfItemAtPath:[absoluteOriginalContentsURL path] error:outError] filePosixPermissions];
-            } else {
-                permissions = 0644;  // ???: Is the default permission really always 644?
-            }
-        }
-        attributes[NSFilePosixPermissions] = @(permissions | S_IXUSR);
-    }
+//    // give the execute permission if user requested  TODO: Uncomment after 2.4.4 release
+//    if ([self isExecutable] && saveOperation != NSAutosaveElsewhereOperation) {
+//        NSUInteger permissions = [attributes filePosixPermissions];
+//        if (permissions == 0) {
+//            if (absoluteOriginalContentsURL) {  // read from old one if not exists
+//                permissions = [[[NSFileManager defaultManager] attributesOfItemAtPath:[absoluteOriginalContentsURL path] error:outError] filePosixPermissions];
+//            } else {
+//                permissions = 0644;  // ???: Is the default permission really always 644?
+//            }
+//        }
+//        attributes[NSFilePosixPermissions] = @(permissions | S_IXUSR);
+//    }
     
     return [attributes copy];
 }
@@ -486,7 +486,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     if (![self savePanelAccessoryView]) {
         [[NSBundle mainBundle] loadNibNamed:@"SaveDocumentAccessory" owner:self topLevelObjects:nil];
     }
-    [savePanel setAccessoryView:[self savePanelAccessoryView]];
+//    [savePanel setAccessoryView:[self savePanelAccessoryView]];  TODO: Uncomment after 2.4.4 release
     
     // append file extension as a part of the file name
     // -> NSSaveAsOperation will remove the current file extension from file name in the nameField
