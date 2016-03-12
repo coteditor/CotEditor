@@ -348,8 +348,9 @@ static const NSUInteger kMaxHistorySize = 20;
     OGRegularExpression *regex = [self regex];
     NSArray<NSValue *> *scopeRanges = [self scopeRanges];
     
+    // -> [caution] numberOfGroups becomes 0 if non-regex + non-delimit-by-spaces
     NSUInteger numberOfGroups = [self usesRegularExpression] ? [regex numberOfGroups] + 1 : [regex numberOfGroups];
-    NSArray<NSColor *> *highlightColors = [self decomposeHighlightColorsInto:numberOfGroups];
+    NSArray<NSColor *> *highlightColors = [self decomposeHighlightColorsInto:numberOfGroups ?: 1];
     if (![self usesRegularExpression]) {
         highlightColors = [[highlightColors reverseObjectEnumerator] allObjects];
     }
@@ -395,12 +396,18 @@ static const NSUInteger kMaxHistorySize = 20;
                 lineNumber += [lineRegex numberOfMatchesInString:string options:0 range:diffRange];
                 lineCountedLocation = matchedRange.location;
                 
-                // get highlighted line string
+                // highlight both string in textView and line string for result table
                 NSRange lineRange = [string lineRangeForRange:matchedRange];
                 NSRange inlineRange = matchedRange;
                 inlineRange.location -= lineRange.location;
                 NSString *lineString = [string substringWithRange:lineRange];
                 NSMutableAttributedString *lineAttrString = [[NSMutableAttributedString alloc] initWithString:lineString];
+                
+                [lineAttrString addAttribute:NSBackgroundColorAttributeName value:[highlightColors firstObject] range:inlineRange];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [[textView layoutManager] addTemporaryAttribute:NSBackgroundColorAttributeName value:[highlightColors firstObject]
+                                                  forCharacterRange:matchedRange];
+                });
                 
                 for (NSUInteger i = 0; i < numberOfGroups; i++) {
                     NSRange range = [match rangeOfSubstringAtIndex:i];
@@ -412,7 +419,6 @@ static const NSUInteger kMaxHistorySize = 20;
                     [lineAttrString addAttribute:NSBackgroundColorAttributeName value:color
                                            range:NSMakeRange(range.location - lineRange.location, range.length)];
                     
-                    // highlight string in text view
                     dispatch_async(dispatch_get_main_queue(), ^{
                         [[textView layoutManager] addTemporaryAttribute:NSBackgroundColorAttributeName value:color
                                                       forCharacterRange:range];
