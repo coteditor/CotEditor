@@ -566,7 +566,6 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     
     // create print operation
     NSPrintOperation *printOperation = [NSPrintOperation printOperationWithView:printView printInfo:printInfo];
-    [printOperation setJobTitle:[self displayName]];
     [printOperation setShowsProgressPanel:YES];
     [[printOperation printPanel] addAccessoryController:[self printPanelAccessoryController]];
     [[printOperation printPanel] setOptions:NSPrintPanelShowsCopies | NSPrintPanelShowsPageRange | NSPrintPanelShowsPaperSize | NSPrintPanelShowsOrientation | NSPrintPanelShowsScaling | NSPrintPanelShowsPreview];
