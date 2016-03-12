@@ -90,6 +90,15 @@ static NSString *_Nonnull const PageNumberPlaceholder = @"PAGENUM";
 
 
 // ------------------------------------------------------
+/// job title
+- (nonnull NSString *)printJobTitle
+// ------------------------------------------------------
+{
+    return [self documentName] ?: [super printJobTitle];
+}
+
+
+// ------------------------------------------------------
 /// draw
 - (void)drawRect:(NSRect)dirtyRect
 // ------------------------------------------------------
@@ -221,6 +230,15 @@ static NSString *_Nonnull const PageNumberPlaceholder = @"PAGENUM";
 // ------------------------------------------------------
 /// flip Y axis
 - (BOOL)isFlipped
+// ------------------------------------------------------
+{
+    return YES;
+}
+
+
+// ------------------------------------------------------
+/// view's opacity
+- (BOOL)isOpaque
 // ------------------------------------------------------
 {
     return YES;
