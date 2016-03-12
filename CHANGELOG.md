@@ -8,6 +8,14 @@ develop
 ### New Features
 
 - Now, the execute permission can be given to the file to save from the save panel.
+
+
+
+2.4.4 (110)
+--------------------------
+
+### New Features
+
 - Add “Trim Trailing Whitespace” action to “Text” menu.
 - Add option to trim trailing whitespace automatically on save (in “General” pane).
 
