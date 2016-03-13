@@ -546,10 +546,6 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 - (nullable NSPrintOperation *)printOperationWithSettings:(nonnull NSDictionary<NSString *, id> *)printSettings error:(NSError * _Nullable __autoreleasing * _Nullable)outError
 // ------------------------------------------------------
 {
-    if (![self printPanelAccessoryController]) {
-        [self setPrintPanelAccessoryController:[[CEPrintPanelAccessoryController alloc] init]];
-    }
-    
     // create printView
     CEPrintView *printView = [[CEPrintView alloc] init];
     [printView setString:[[self editor] string]];
@@ -572,15 +568,21 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     }
     [printView setFont:font];
     
-    // setup PrintInfo
+    // setup print info
     NSPrintInfo *printInfo = [[self printInfo] copy];
     [[printInfo dictionary] addEntriesFromDictionary:printSettings];
     
     // create print operation
     NSPrintOperation *printOperation = [NSPrintOperation printOperationWithView:printView printInfo:printInfo];
     [printOperation setShowsProgressPanel:YES];
-    [[printOperation printPanel] addAccessoryController:[self printPanelAccessoryController]];
-    [[printOperation printPanel] setOptions:NSPrintPanelShowsCopies | NSPrintPanelShowsPageRange | NSPrintPanelShowsPaperSize | NSPrintPanelShowsOrientation | NSPrintPanelShowsScaling | NSPrintPanelShowsPreview];
+    
+    // setup print panel
+    if (![self printPanelAccessoryController]) {
+        [self setPrintPanelAccessoryController:[[CEPrintPanelAccessoryController alloc] init]];
+    }
+    NSPrintPanel *printPanel = [printOperation printPanel];
+    [printPanel addAccessoryController:[self printPanelAccessoryController]];
+    [printPanel setOptions:[printPanel options] |  NSPrintPanelShowsPaperSize | NSPrintPanelShowsOrientation | NSPrintPanelShowsScaling];
     
     return printOperation;
 }
@@ -1168,7 +1170,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     NSString *encodingName = [sender title];
 
     // 文字列がないまたは未保存の時は直ちに変換プロセスへ
-    if (([[[self editor] string] length] < 1) || (![self fileURL])) {
+    if (([[[self editor] string] length] < 1) || ![self fileURL]) {
         result = NSAlertFirstButtonReturn;
         
     } else {
