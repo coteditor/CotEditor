@@ -10,6 +10,11 @@ develop
 - Now, the execute permission can be given to the file to save from the save panel.
 
 
+### Improvements
+
+- Optimize document opening process.
+
+
 
 2.4.4 (111)
 --------------------------

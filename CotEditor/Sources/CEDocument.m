@@ -126,6 +126,15 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 
 // ------------------------------------------------------
+/// can read document on a background thread?
++ (BOOL)canConcurrentlyReadDocumentsOfType:(NSString *)typeName
+// ------------------------------------------------------
+{
+    return YES;
+}
+
+
+// ------------------------------------------------------
 /// initialize instance
 - (nonnull instancetype)init
 // ------------------------------------------------------
@@ -165,6 +174,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 - (nullable instancetype)initWithContentsOfURL:(nonnull NSURL *)url ofType:(nonnull NSString *)typeName error:(NSError * _Nullable __autoreleasing * _Nullable)outError
 // ------------------------------------------------------
 {
+    // [caution] This method may be called from a background thread due to concurrent-opening.
     // This method won't be invoked on Resume. (2015-01-26)
     
     self = [super initWithContentsOfURL:url ofType:typeName error:outError];
@@ -210,6 +220,8 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 - (BOOL)readFromData:(nonnull NSData *)data ofType:(nonnull NSString *)typeName error:(NSError * _Nullable __autoreleasing * _Nullable)outError
 // ------------------------------------------------------
 {
+    // [caution] This method may be called from a background thread due to concurrent-opening.
+    
     // store file hash (MD5) in order to check the file content identity in `presentedItemDidChange`
     [self setFileMD5:[data MD5]];
     
