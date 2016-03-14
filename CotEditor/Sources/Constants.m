@@ -82,6 +82,18 @@ BOOL CEIsAlmostEqualCGFloats(CGFloat float1, CGFloat float2) {
     return (fabs(float1 - float2) < pow(10, -ACCURACY));
 }
 
+/// invoke passed-in block on main thread
+void dispatch_sync_on_main_thread(_Nonnull dispatch_block_t block)
+{
+    if ([NSThread isMainThread]) {
+        block();
+    } else {
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            block();
+        });
+    }
+}
+
 
 
 #pragma mark Syntax

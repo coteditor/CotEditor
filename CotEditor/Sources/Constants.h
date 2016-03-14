@@ -64,7 +64,10 @@ typedef NS_ENUM(UInt32, CESystemSoundID) {
 
 // Convenient functions
 /// compare CGFloats
-BOOL CEIsAlmostEqualCGFloats(CGFloat float1, CGFloat float2);
+extern BOOL CEIsAlmostEqualCGFloats(CGFloat float1, CGFloat float2);
+
+/// invoke passed-in block on main thread
+extern void dispatch_sync_on_main_thread(_Nonnull dispatch_block_t block);
 
 
 
