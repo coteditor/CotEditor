@@ -48,6 +48,7 @@
 #import "NSString+CECounting.h"
 #import "NSURL+Xattr.h"
 #import "NSString+Indentation.h"
+#import "NSAlert+BlockMethods.h"
 
 #import "CEErrors.h"
 #import "CEDefaults.h"
@@ -1569,10 +1570,11 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
         [alert setInformativeText:NSLocalizedString(@"You may not be able to save your changes, but you will be able to save a copy somewhere else.", nil)];
         [alert setShowsSuppressionButton:YES];
         
-        [alert beginSheetModalForWindow:[self windowForSheet]
-                          modalDelegate:self
-                         didEndSelector:@selector(alertForNotWritableDidEnd:returnCode:contextInfo:)
-                            contextInfo:NULL];
+        [alert compatibleBeginSheetModalForWindow:[self windowForSheet] completionHandler:^(NSInteger returnCode) {
+            if ([[alert suppressionButton] state] == NSOnState) {
+                [[NSUserDefaults standardUserDefaults] setBool:NO forKey:CEDefaultShowAlertForNotWritableKey];
+            }
+        }];
     }
     [self setDidAlertNotWritable:YES];
 }
@@ -1618,14 +1620,24 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     [alert addButtonWithTitle:NSLocalizedString(@"Keep CotEditor’s Edition", nil)];
     [alert addButtonWithTitle:NSLocalizedString(@"Update", nil)];
     
+    // completion handler for alert sheet
+    __weak typeof(self) weakSelf = self;
+    void (^did_close_alert)(NSInteger) = ^(NSInteger returnCode) {
+        typeof(self) self = weakSelf;  // strong self
+        
+        if (returnCode == NSAlertSecondButtonReturn) { // == Revert
+            [self revertToContentsOfURL:[self fileURL] ofType:[self fileType] error:nil];
+        }
+        [self setRevertingForExternalFileUpdate:NO];
+        [self setNeedsShowUpdateAlertWithBecomeKey:NO];
+    };
+    
     // シートが表示中でなければ、表示
     if ([[self windowForSheet] attachedSheet] == nil) {
         [self setRevertingForExternalFileUpdate:YES];
         [[self windowForSheet] orderFront:nil]; // 後ろにあるウィンドウにシートを表示させると不安定になることへの対策
-        [alert beginSheetModalForWindow:[self windowForSheet]
-                          modalDelegate:self
-                         didEndSelector:@selector(alertForModByAnotherProcessDidEnd:returnCode:contextInfo:)
-                            contextInfo:NULL];
+        
+        [alert compatibleBeginSheetModalForWindow:[self windowForSheet] completionHandler:did_close_alert];
         
     } else if ([self isRevertingForExternalFileUpdate]) {
         // （同じ外部プロセスによる変更通知アラートシートを表示中の時は、なにもしない）
@@ -1635,31 +1647,8 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
         [self setRevertingForExternalFileUpdate:YES];
         [[self windowForSheet] orderFront:nil]; // 後ろにあるウィンドウにシートを表示させると不安定になることへの対策
         NSInteger result = [alert runModal]; // アラート表示
-        [self alertForModByAnotherProcessDidEnd:alert returnCode:result contextInfo:NULL];
-    }
-}
-
-
-// ------------------------------------------------------
-/// 外部プロセスによる変更の通知アラートが閉じた
-- (void)alertForModByAnotherProcessDidEnd:(nonnull NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(nullable void *)contextInfo
-// ------------------------------------------------------
-{
-    if (returnCode == NSAlertSecondButtonReturn) { // == Revert
-        [self revertToContentsOfURL:[self fileURL] ofType:[self fileType] error:nil];
-    }
-    [self setRevertingForExternalFileUpdate:NO];
-    [self setNeedsShowUpdateAlertWithBecomeKey:NO];
-}
-
-
-// ------------------------------------------------------
-/// 書き込み禁止アラートが閉じた
-- (void)alertForNotWritableDidEnd:(nonnull NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(nullable void *)contextInfo
-// ------------------------------------------------------
-{
-    if ([[alert suppressionButton] state] == NSOnState) {
-        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:CEDefaultShowAlertForNotWritableKey];
+        
+        did_close_alert(result);
     }
 }
 

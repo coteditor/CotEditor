@@ -34,6 +34,8 @@
 #import "CEDefaults.h"
 #import "Constants.h"
 
+#import "NSAlert+BlockMethods.h"
+
 
 @interface CEAppearancePaneController () <NSTableViewDelegate, NSTableViewDataSource, CEThemeViewControllerDelegate>
 
@@ -568,10 +570,26 @@
     [alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
     [alert addButtonWithTitle:NSLocalizedString(@"Delete", nil)];
     
-    [alert beginSheetModalForWindow:[[self view] window]
-                      modalDelegate:self
-                     didEndSelector:@selector(deleteThemeAlertDidEnd:returnCode:contextInfo:)
-                        contextInfo:(__bridge_retained void *)themeName];
+    NSWindow *window = [[self view] window];
+    [alert compatibleBeginSheetModalForWindow:window completionHandler:^(NSInteger returnCode)
+     {
+         if (returnCode != NSAlertSecondButtonReturn) { return; } // != Delete
+         
+         NSError *error = nil;
+         if ([[CEThemeManager sharedManager] removeTheme:themeName error:&error]) {
+             AudioServicesPlaySystemSound(CESystemSoundID_MoveToTrash);
+         }
+         
+         if (error) {
+             // 削除できなければ、その旨をユーザに通知
+             [[alert window] orderOut:nil];
+             [window makeKeyAndOrderFront:nil];
+             NSAlert *errorAlert = [NSAlert alertWithError:error];
+             NSBeep();
+             [errorAlert beginSheetModalForWindow:window modalDelegate:nil didEndSelector:NULL contextInfo:NULL];
+         }
+         
+     }];
     
 }
 
@@ -611,63 +629,23 @@
         
         // ask for overwriting if a theme with the same name already exists
         if ([error code] == CEThemeFileDuplicationError) {
-                [alert beginSheetModalForWindow:window
-                                  modalDelegate:self
-                                 didEndSelector:@selector(importDuplicateThemeAlertDidEnd:returnCode:contextInfo:)
-                                    contextInfo:(__bridge_retained void *)URL];
+            NSWindow *window = [[self view] window];
+            [alert compatibleBeginSheetModalForWindow:window completionHandler:^(NSInteger returnCode)
+             {
+                 if (returnCode != NSAlertSecondButtonReturn) { return; }  // Cancel
+                 
+                 NSError *error = nil;
+                 [[CEThemeManager sharedManager] importTheme:URL replace:YES error:&error];
+                 
+                 if (error) {
+                     NSAlert *alert = [NSAlert alertWithError:error];
+                     [alert beginSheetModalForWindow:window modalDelegate:nil didEndSelector:NULL contextInfo:NULL];
+                 }
+             }];
             
         } else {
-            [alert beginSheetModalForWindow:window
-                              modalDelegate:nil
-                             didEndSelector:NULL
-                                contextInfo:NULL];
+            [alert beginSheetModalForWindow:window modalDelegate:nil didEndSelector:NULL contextInfo:NULL];
         }
-    }
-}
-
-
-// ------------------------------------------------------
-/// テーマ削除確認シートが閉じる直前
-- (void)deleteThemeAlertDidEnd:(nonnull NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(nullable void *)contextInfo
-// ------------------------------------------------------
-{
-    if (returnCode != NSAlertSecondButtonReturn) {  // != Delete
-        return;
-    }
-    NSString *themeName = (__bridge_transfer NSString *)contextInfo;
-    
-    NSError *error = nil;
-    if ([[CEThemeManager sharedManager] removeTheme:themeName error:&error]) {
-        AudioServicesPlaySystemSound(CESystemSoundID_MoveToTrash);
-    }
-    
-    if (error) {
-        // 削除できなければ、その旨をユーザに通知
-        [[alert window] orderOut:self];
-        [[[self view] window] makeKeyAndOrderFront:self];
-        NSAlert *errorAlert = [NSAlert alertWithError:error];
-        NSBeep();
-        [errorAlert beginSheetModalForWindow:[[self view] window] modalDelegate:self didEndSelector:NULL contextInfo:NULL];
-    }
-}
-
-
-// ------------------------------------------------------
-/// テーマ読み込みでの重複するテーマの上書き確認シートが閉じる直前
-- (void)importDuplicateThemeAlertDidEnd:(nonnull NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(nullable void *)contextInfo
-// ------------------------------------------------------
-{
-    if (returnCode != NSAlertSecondButtonReturn) {  // Cancel
-        return;
-    }
-    
-    NSURL *URL = CFBridgingRelease(contextInfo);
-    NSError *error = nil;
-    [[CEThemeManager sharedManager] importTheme:URL replace:YES error:&error];
-    
-    if (error) {
-        NSAlert *alert = [NSAlert alertWithError:error];
-        [alert beginSheetModalForWindow:[[self view] window] modalDelegate:nil didEndSelector:NULL contextInfo:NULL];
     }
 }
 

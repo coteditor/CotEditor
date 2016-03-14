@@ -37,6 +37,8 @@
 #import "CEEncodings.h"
 #import "Constants.h"
 
+#import "NSAlert+BlockMethods.h"
+
 
 // constants
 NSString *_Nonnull const StyleNameKey = @"name";
@@ -341,9 +343,17 @@ NSString *_Nonnull const StyleStateKey = @"state";
             [alert addButtonWithTitle:NSLocalizedString(@"Replace", nil)];
             // 現行シート値を設定し、確認のためにセカンダリシートを開く
             NSBeep();
-            [alert beginSheetModalForWindow:[[self view] window] modalDelegate:self
-                             didEndSelector:@selector(secondarySheetDidEnd:returnCode:contextInfo:)
-                                contextInfo:(__bridge_retained void *)(URL)];
+            
+            __weak typeof(self) weakSelf = self;
+            [alert compatibleBeginSheetModalForWindow:[[self view] window] completionHandler:^(NSInteger returnCode)
+             {
+                 typeof(self) self = weakSelf;  // strong self
+                 
+                 if (returnCode == NSAlertSecondButtonReturn) { // = Replace
+                     [self doImport:URL withCurrentSheetWindow:[alert window]];
+                 }
+             }];
+            
         } else {
             // 重複するファイル名がないとき、インポート実行
             [self doImport:URL withCurrentSheetWindow:openPanel];
@@ -424,10 +434,13 @@ NSString *_Nonnull const StyleStateKey = @"state";
     [alert addButtonWithTitle:[NSString stringWithFormat:NSLocalizedString(@"Change to “%@”", nil), newTitle]];
     
     NSBeep();
-    [alert beginSheetModalForWindow:[[self view] window]
-                      modalDelegate:self
-                     didEndSelector:@selector(autoDetectAlertDidEnd:returnCode:contextInfo:)
-                        contextInfo:NULL];
+    [alert compatibleBeginSheetModalForWindow:[[self view] window] completionHandler:^(NSInteger returnCode)
+     {
+         if (returnCode == NSAlertFirstButtonReturn) { // = revert to Auto-Detect
+             [[NSUserDefaults standardUserDefaults] setObject:@(CEAutoDetectEncoding)
+                                                       forKey:CEDefaultEncodingInOpenKey];
+         }
+     }];
 }
 
 
@@ -532,10 +545,25 @@ NSString *_Nonnull const StyleStateKey = @"state";
     [alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
     [alert addButtonWithTitle:NSLocalizedString(@"Delete", nil)];
     
-    [alert beginSheetModalForWindow:[[self view] window]
-                      modalDelegate:self
-                     didEndSelector:@selector(deleteStyleAlertDidEnd:returnCode:contextInfo:)
-                        contextInfo:(__bridge_retained void *)styleName];
+    NSWindow *window = [[self view] window];
+    [alert compatibleBeginSheetModalForWindow:window completionHandler:^(NSInteger returnCode)
+     {
+         if (returnCode != NSAlertSecondButtonReturn) { return; }  // != Delete
+         
+         if ([[CESyntaxManager sharedManager] removeStyleFileWithStyleName:styleName]) {
+             AudioServicesPlaySystemSound(CESystemSoundID_MoveToTrash);
+             
+         } else {
+             // 削除できなければ、その旨をユーザに通知
+             [[alert window] orderOut:nil];
+             [window makeKeyAndOrderFront:nil];
+             NSAlert *alert = [[NSAlert alloc] init];
+             [alert setMessageText:NSLocalizedString(@"An error occurred.", nil)];
+             [alert setInformativeText:[NSString stringWithFormat:NSLocalizedString(@"The style “%@” couldn’t be deleted.", nil), styleName]];
+             NSBeep();
+             [alert beginSheetModalForWindow:window completionHandler:nil];
+         }
+     }];
 }
 
 
@@ -547,18 +575,6 @@ NSString *_Nonnull const StyleStateKey = @"state";
     if (![[CESyntaxManager sharedManager] URLForUserStyle:styleName]) { return; }
     
     [[CESyntaxManager sharedManager] restoreStyleFileWithStyleName:styleName];
-}
-
-
-// ------------------------------------------------------
-/// 既存ファイルを開くときのエンコーディングメニューで自動認識以外が選択されたときの警告シートが閉じる直前
-- (void)autoDetectAlertDidEnd:(nonnull NSAlert *)sheet returnCode:(NSInteger)returnCode contextInfo:(nullable void *)contextInfo
-// ------------------------------------------------------
-{
-    if (returnCode == NSAlertFirstButtonReturn) { // = revert to Auto-Detect
-        [[NSUserDefaults standardUserDefaults] setObject:@(CEAutoDetectEncoding)
-                                                  forKey:CEDefaultEncodingInOpenKey];
-    }
 }
 
 
@@ -576,44 +592,7 @@ NSString *_Nonnull const StyleStateKey = @"state";
         [alert setInformativeText:[NSString stringWithFormat:NSLocalizedString(@"The style “%@” couldn’t be imported.", nil), [fileURL lastPathComponent]]];
         
         NSBeep();
-        [alert beginSheetModalForWindow:[[self view] window] modalDelegate:self didEndSelector:NULL contextInfo:NULL];
-    }
-}
-
-
-// ------------------------------------------------------
-/// style削除確認シートが閉じる直前
-- (void)deleteStyleAlertDidEnd:(nonnull NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(nullable void *)contextInfo
-// ------------------------------------------------------
-{
-    if (returnCode != NSAlertSecondButtonReturn) {  // != Delete
-        return;
-    }
-    
-    NSString *styleName = (__bridge_transfer NSString *)contextInfo;
-    
-    if ([[CESyntaxManager sharedManager] removeStyleFileWithStyleName:styleName]) {
-        AudioServicesPlaySystemSound(CESystemSoundID_MoveToTrash);
-    } else {
-        // 削除できなければ、その旨をユーザに通知
-        [[alert window] orderOut:self];
-        [[[self view] window] makeKeyAndOrderFront:self];
-        NSAlert *alert = [[NSAlert alloc] init];
-        [alert setMessageText:NSLocalizedString(@"An error occurred.", nil)];
-        [alert setInformativeText:[NSString stringWithFormat:NSLocalizedString(@"The style “%@” couldn’t be deleted.", nil), styleName]];
-        NSBeep();
-        [alert beginSheetModalForWindow:[[self view] window] modalDelegate:self didEndSelector:NULL contextInfo:NULL];
-    }
-}
-
-
-// ------------------------------------------------------
-/// セカンダリシートが閉じる直前
-- (void)secondarySheetDidEnd:(nonnull NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(nullable void *)contextInfo
-// ------------------------------------------------------
-{
-    if (returnCode == NSAlertSecondButtonReturn) { // = Replace
-        [self doImport:CFBridgingRelease(contextInfo) withCurrentSheetWindow:[alert window]];
+        [alert compatibleBeginSheetModalForWindow:[[self view] window] completionHandler:nil];
     }
 }
 

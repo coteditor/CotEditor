@@ -30,6 +30,8 @@
 #import "CEDefaults.h"
 #import "Constants.h"
 
+#import "NSAlert+BlockMethods.h"
+
 
 @interface CEFileDropPaneController () <NSTableViewDelegate, NSTextFieldDelegate, NSTextViewDelegate>
 
@@ -304,27 +306,19 @@
     [alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
     [alert addButtonWithTitle:NSLocalizedString(@"Delete", nil)];
     
-    [alert beginSheetModalForWindow:[[self view] window]
-                      modalDelegate:self
-                     didEndSelector:@selector(deleteSettingAlertDidEnd:returnCode:contextInfo:)
-                        contextInfo:rowIndex];
-}
-
-
-// ------------------------------------------------------
-/// ファイルドロップ編集設定削除確認シートが閉じる直前
-- (void)deleteSettingAlertDidEnd:(nonnull NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(nullable void *)contextInfo
-// ------------------------------------------------------
-{
-    if (returnCode != NSAlertSecondButtonReturn) { return; } // != Delete
-    
-    if (![self isDeletingFileDrop]) { return; }
-    
-    NSUInteger index = contextInfo;
-    
-    [[self fileDropController] removeObjectAtArrangedObjectIndex:index];
-    [self storeSetting];
-    [self setDeletingFileDrop:NO];
+    __weak typeof(self) weakSelf = self;
+    [alert compatibleBeginSheetModalForWindow:[[self view] window] completionHandler:^(NSInteger returnCode)
+     {
+         typeof(self) self = weakSelf;  // strong self
+         
+         if (returnCode != NSAlertSecondButtonReturn) { return; } // != Delete
+         
+         if (![self isDeletingFileDrop]) { return; }
+         
+         [[self fileDropController] removeObjectAtArrangedObjectIndex:rowIndex];
+         [self storeSetting];
+         [self setDeletingFileDrop:NO];
+     }];
 }
 
 @end
