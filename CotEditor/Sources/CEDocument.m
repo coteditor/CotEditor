@@ -27,6 +27,8 @@
  
  */
 
+@import ObjectiveC.message;
+
 #import <NSHash/NSData+NSHash.h>
 
 #import "CEDocument.h"
@@ -668,6 +670,34 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 }
 
 
+// ------------------------------------------------------
+/// recover presented error
+- (void)attemptRecoveryFromError:(nonnull NSError *)error optionIndex:(NSUInteger)recoveryOptionIndex delegate:(nullable id)delegate didRecoverSelector:(SEL)didRecoverSelector contextInfo:(nullable void *)contextInfo
+// ------------------------------------------------------
+{
+    BOOL didRecover = NO;
+    if ([[error domain] isEqualToString:CEErrorDomain]) {
+        switch ([error code]) {
+            case CEUnconvertibleCharactersError:
+                switch (recoveryOptionIndex) {
+                    case 0:  // == Show Incompatible Chars
+                        [[self windowController] showIncompatibleCharList];
+                        break;
+                    case 1:  // == Save
+                        didRecover = YES;
+                        break;
+                    case 2:  // == Cancel
+                        break;
+                }
+                break;
+        }
+    }
+    
+    // call the delegate's didRecoverSelector
+    ((void (*)(id, SEL, BOOL, void *))objc_msgSend)(delegate, didRecoverSelector, didRecover, contextInfo);
+}
+
+
 
 #pragma mark Protocol
 
@@ -1076,10 +1106,11 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 - (IBAction)saveDocument:(nullable id)sender
 // ------------------------------------------------------
 {
-    if (![self acceptsSaveDocumentWithIANACharSetName]) { return; }
-    if (![self acceptsSaveDocumentToConvertEncoding]) { return; }
-    
-    [super saveDocument:sender];
+    [self askSavingSafetyWithCompletionHandler:^(BOOL continuesSaving) {
+        if (continuesSaving) {
+            [super saveDocument:sender];
+        }
+    }];
 }
 
 
@@ -1088,10 +1119,11 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 - (IBAction)saveDocumentAs:(nullable id)sender
 // ------------------------------------------------------
 {
-    if (![self acceptsSaveDocumentWithIANACharSetName]) { return; }
-    if (![self acceptsSaveDocumentToConvertEncoding]) { return; }
-    
-    [super saveDocumentAs:sender];
+    [self askSavingSafetyWithCompletionHandler:^(BOOL continuesSaving) {
+        if (continuesSaving) {
+            [super saveDocumentAs:sender];
+        }
+    }];
 }
 
 
@@ -1201,7 +1233,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
              [alert addButtonWithTitle:NSLocalizedString(@"Discard Changes", nil)];
 
             NSInteger secondResult = [alert runModal];
-            if (secondResult != NSAlertSecondButtonReturn) { // != Discard Change
+            if (secondResult != NSAlertSecondButtonReturn) { // = Cancel
                 // ツールバーから変更された場合のため、ツールバーアイテムの選択状態をリセット
                 [[[self windowController] toolbarController] setSelectedEncoding:[self encoding]];
                 return;
@@ -1380,65 +1412,51 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 
 // ------------------------------------------------------
-/// IANA文字コード名を読み、設定されたエンコーディングと矛盾があれば警告する
-- (BOOL)acceptsSaveDocumentWithIANACharSetName
+/// check can save safety with the current encoding and ask if not
+- (void)askSavingSafetyWithCompletionHandler:(nonnull void (^)(BOOL))completionHandler
 // ------------------------------------------------------
 {
-    if ([self suppressesIANACharsetConflictAlert]) { return YES; }
+    NSString *string = [self string];
+    NSStringEncoding encoding = [self encoding];
     
     NSError *error;
-    [self checkSavingSafetyWithIANACharSetNameForString:[self string] encoding:[self encoding] error:&error];
     
-    if (error) {
-        NSAlert *alert = [NSAlert alertWithError:error];
-        [alert setShowsSuppressionButton:YES];
-        [[alert suppressionButton] setTitle:NSLocalizedString(@"Do not show this warning for this document again", nil)];
-        
-        NSInteger result = [alert runModal];
-        // do not show the alert in this document again
-        if ([[alert suppressionButton] state] == NSOnState) {
-            [self setSuppressesIANACharsetConflictAlert:YES];
-        }
-        
-        switch (result) {
-            case NSAlertFirstButtonReturn:  // == Cancel
-                return NO;
-                
-            case NSAlertSecondButtonReturn:  // == Continue Saving
-                return YES;
+    // IANA文字コード名を読み、設定されたエンコーディングと矛盾があれば警告する
+    if (![self suppressesIANACharsetConflictAlert]) {
+        if (![self checkSavingSafetyWithIANACharSetNameForString:string encoding:encoding error:&error]) {
+            // --> ask directly with a non-sheet NSAlert for the suppression button
+            NSAlert *alert = [NSAlert alertWithError:error];
+            [alert setShowsSuppressionButton:YES];
+            [[alert suppressionButton] setTitle:NSLocalizedString(@"Do not show this warning for this document again", nil)];
+            
+            NSInteger result = [alert runModal];
+            // do not show the alert in this document again
+            if ([[alert suppressionButton] state] == NSOnState) {
+                [self setSuppressesIANACharsetConflictAlert:YES];
+            }
+            
+            switch (result) {
+                case NSAlertFirstButtonReturn:  // == Cancel
+                    completionHandler(NO);
+                    return;
+                    
+                case NSAlertSecondButtonReturn:  // == Continue Saving
+                    break;
+            }
         }
     }
     
-    return YES;
-}
-
-
-// ------------------------------------------------------
-/// ファイル保存前のエンコーディング変換チェック、ユーザに承認を求める
-- (BOOL)acceptsSaveDocumentToConvertEncoding
-// ------------------------------------------------------
-{
-    NSError *error;
-    [self checkSavingSafetyForConvertingString:[self string] encoding:[self encoding] error:&error];
+    // ファイル保存前のエンコーディング変換チェック、ユーザに承認を求める
+    if (![self checkSavingSafetyForConvertingString:string encoding:encoding error:&error]) {
+        [self presentError:error
+            modalForWindow:[self windowForSheet]
+                  delegate:self
+        didPresentSelector:@selector(didPresentErrorWithRecovery:block:)
+               contextInfo:Block_copy((__bridge void *)completionHandler)];
     
-    if (error) {
-        NSAlert *alert = [NSAlert alertWithError:error];
-        
-        NSInteger result = [alert runModal];
-        switch (result) {
-            case NSAlertFirstButtonReturn:  // == Show Incompatible Chars
-                [[self windowController] showIncompatibleCharList];
-                return NO;
-                
-            case NSAlertSecondButtonReturn:  // == Save
-                return YES;
-                
-            case NSAlertThirdButtonReturn:  // == Cancel
-                return NO;
-        }
+    } else {
+        completionHandler(YES);
     }
-    
-    return YES;
 }
 
 
@@ -1462,6 +1480,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
                                                    NSLocalizedRecoverySuggestionErrorKey: NSLocalizedString(@"Do you want to continue processing?", nil),
                                                    NSLocalizedRecoveryOptionsErrorKey: @[NSLocalizedString(@"Cancel", nil),
                                                                                          NSLocalizedString(@"Continue Saving", nil)],
+                                                   NSRecoveryAttempterErrorKey: self,
                                                    NSStringEncodingErrorKey: @(encoding),
                                                    }];
         }
@@ -1492,6 +1511,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
                                                    NSLocalizedRecoveryOptionsErrorKey: @[NSLocalizedString(@"Show Incompatible Chars", nil),
                                                                                          NSLocalizedString(@"Save Available Strings", nil),
                                                                                          NSLocalizedString(@"Cancel", nil)],
+                                                   NSRecoveryAttempterErrorKey: self,
                                                    NSStringEncodingErrorKey: @(encoding),
                                                    }];
         }
@@ -1641,6 +1661,15 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     if ([[alert suppressionButton] state] == NSOnState) {
         [[NSUserDefaults standardUserDefaults] setBool:NO forKey:CEDefaultShowAlertForNotWritableKey];
     }
+}
+
+
+// ------------------------------------------------------
+/// perform didRecoverBlock after recovering presented error
+- (void)didPresentErrorWithRecovery:(BOOL)didRecover block:(void (^)(BOOL))block
+// ------------------------------------------------------
+{
+    block(didRecover);
 }
 
 @end
