@@ -12,7 +12,7 @@ develop
 
 ### Improvements
 
-- Optimize document opening process.
+- Optimize document opening performance with large file.
 
 
 

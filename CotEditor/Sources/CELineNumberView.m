@@ -142,8 +142,9 @@ static CGFontRef BoldLineNumberFont;
 // ------------------------------------------------------
 {
     NSString *string = [[self textView] string];
+    NSUInteger length = [string length];
     
-    if ([string length] == 0) { return; }
+    if (length == 0) { return; }
     
     NSLayoutManager *layoutManager = [[self textView] layoutManager];
     NSColor *textColor = [[[self textView] theme] weakTextColor];
@@ -200,7 +201,6 @@ static CGFontRef BoldLineNumberFont;
                                                          inTextContainer:[[self textView] textContainer]];
     
     BOOL isVerticalText = [self orientation] == NSHorizontalRuler;
-    NSUInteger tailGlyphIndex = [layoutManager glyphIndexForCharacterAtIndex:[string length]];
     
     // get multiple selection
     NSMutableArray<NSValue *> *selectedLineRanges = [NSMutableArray arrayWithCapacity:[[[self textView] selectedRanges] count]];
@@ -304,7 +304,7 @@ static CGFontRef BoldLineNumberFont;
             if (isVerticalText &&  // vertical text
                 lastLineNumber != lineNumber &&  // new line
                 isVerticalText && lineNumber != 1 && lineNumber % 5 != 0 &&  // not yet drawn
-                tailGlyphIndex == glyphIndex &&  // last line
+                NSMaxRange(lineRange) == length &&  // last line
                 ![layoutManager extraLineFragmentTextContainer])  // no extra number
             {
                 draw_number(lineNumber, lastLineNumber, y, YES, isSelected);
@@ -318,7 +318,7 @@ static CGFontRef BoldLineNumberFont;
     if ([layoutManager extraLineFragmentTextContainer]) {
         NSRect lineRect = [layoutManager extraLineFragmentUsedRect];
         NSRange lastSelectedRange = [[selectedLineRanges lastObject] rangeValue];
-        BOOL isSelected = (lastSelectedRange.length == 0) && ([string length] == NSMaxRange(lastSelectedRange));
+        BOOL isSelected = (lastSelectedRange.length == 0) && (length == NSMaxRange(lastSelectedRange));
         CGFloat y = -NSMinY(lineRect);
         
         draw_number(lineNumber, lastLineNumber, y, YES, isSelected);
@@ -341,13 +341,14 @@ static CGFontRef BoldLineNumberFont;
         // -> The view width depends on the number of digits of the total line numbers.
         //    As it's quite dengerous to change width of line number view on scrolling dynamically.
         NSUInteger charIndex = [layoutManager characterIndexForGlyphAtIndex:NSMaxRange(visibleGlyphRange)];
-        if ([string length] > charIndex) {
-            lineNumber += [string numberOfLinesInRange:NSMakeRange(charIndex, [string length] - charIndex)
+        if (length > charIndex) {
+            // TODO: performance blocker by large document! better to refactor somehow.
+            lineNumber += [string numberOfLinesInRange:NSMakeRange(charIndex, length - charIndex)
                                   includingLastNewLine:NO];
         }
         
-        NSUInteger length = MAX(numberOfDigits(lineNumber), kMinNumberOfDigits);
-        requiredThickness = MAX(length * charWidth + 3 * kLineNumberPadding, kMinVerticalThickness);
+        NSUInteger digits = MAX(numberOfDigits(lineNumber), kMinNumberOfDigits);
+        requiredThickness = MAX(digits * charWidth + 3 * kLineNumberPadding, kMinVerticalThickness);
     }
     [self setRuleThickness:ceil(requiredThickness)];
 }
