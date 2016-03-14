@@ -220,23 +220,24 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 // ------------------------------------------------------
 /// load document from file and return whether it succeeded
-- (BOOL)readFromData:(nonnull NSData *)data ofType:(nonnull NSString *)typeName error:(NSError * _Nullable __autoreleasing * _Nullable)outError
+- (BOOL)readFromURL:(nonnull NSURL *)url ofType:(nonnull NSString *)typeName error:(NSError * _Nullable __autoreleasing * _Nullable)outError
 // ------------------------------------------------------
 {
     // [caution] This method may be called from a background thread due to concurrent-opening.
+    
+    NSData *data = [NSData dataWithContentsOfURL:url options:0 error:outError];
+    if (!data) { return NO; }
     
     // store file hash (MD5) in order to check the file content identity in `presentedItemDidChange`
     [self setFileMD5:[data MD5]];
     
     // read file attributes
-    if ([self fileURL]) {
-        NSDictionary<NSString *, id> *attributes = [[NSFileManager defaultManager] attributesOfItemAtPath:[[self fileURL] path] error:outError];
-        [self setFileAttributes:attributes];
-        [self setExecutable:([attributes filePosixPermissions] & S_IXUSR) != 0];
-    }
+    NSDictionary<NSString *, id> *attributes = [[NSFileManager defaultManager] attributesOfItemAtPath:[url path] error:outError];
+    [self setFileAttributes:attributes];
+    [self setExecutable:([attributes filePosixPermissions] & S_IXUSR) != 0];
     
     // try reading the `com.apple.TextEncoding` extended attribute
-    NSStringEncoding xattrEncoding = [self fileURL] ? [[self fileURL] getXattrEncoding] : NSNotFound;
+    NSStringEncoding xattrEncoding = [url getXattrEncoding];
     
     // don't save xattr if file doesn't have it in order to avoid saving wrong encoding (2015-01 by 1024jp).
     [self setShouldSaveXattr:(xattrEncoding != NSNotFound) || ([data length] == 0)];
@@ -256,7 +257,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     }
     
     // determine syntax style
-    NSString *styleName = [[CESyntaxManager sharedManager] styleNameFromFileName:[[self fileURL] lastPathComponent]];
+    NSString *styleName = [[CESyntaxManager sharedManager] styleNameFromFileName:[url lastPathComponent]];
     if (!styleName && string) {
         styleName = [[CESyntaxManager sharedManager] styleNameFromContent:string];
     }
@@ -389,7 +390,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
          
          if (!error) {
              // write encoding to the external file attributes (com.apple.TextEncoding)
-             if ([self shouldSaveXattr]) {
+             if (saveOperation == NSAutosaveElsewhereOperation || [self shouldSaveXattr]) {
                  [url setXattrEncoding:encoding];
              }
              // save text orientation state
