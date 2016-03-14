@@ -362,6 +362,8 @@
 		2AC71DF01BF0CDD8002E1434 /* NSString+Normalization.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A88A78F1B8B87C90055B9AE /* NSString+Normalization.m */; };
 		2AC71DF11BF0CFA3002E1434 /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A83E2391BA1E65A0069CDFE /* libicucore.tbd */; };
 		2AC75C081A2AF47F00C7DB0A /* NSString+CENewLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AC75C071A2AF47F00C7DB0A /* NSString+CENewLine.m */; };
+		2ACC65101C96E295000574DC /* NSAlert+BlockMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ACC650F1C96E295000574DC /* NSAlert+BlockMethods.m */; };
+		2ACC65111C96E295000574DC /* NSAlert+BlockMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ACC650F1C96E295000574DC /* NSAlert+BlockMethods.m */; };
 		2AD318C01A462A10001B8112 /* IntegrationPane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2AD318BE1A462A10001B8112 /* IntegrationPane.xib */; };
 		2AD318C31A462C30001B8112 /* CEIntegrationPaneController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD318C21A462C30001B8112 /* CEIntegrationPaneController.m */; };
 		2AD5322A19779FD000A925CA /* CELineHeightTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD5322919779FD000A925CA /* CELineHeightTransformer.m */; };
@@ -813,6 +815,8 @@
 		2ACB53AA1A3E03C50040F19F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SyntaxOutlineEditView.xib; sourceTree = "<group>"; };
 		2ACB53AC1A3E04010040F19F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SyntaxTermsEditView.xib; sourceTree = "<group>"; };
 		2ACB53AD1A3E043E0040F19F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SyntaxValidationView.xib; sourceTree = "<group>"; };
+		2ACC650E1C96E295000574DC /* NSAlert+BlockMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAlert+BlockMethods.h"; sourceTree = "<group>"; };
+		2ACC650F1C96E295000574DC /* NSAlert+BlockMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSAlert+BlockMethods.m"; sourceTree = "<group>"; };
 		2AD318BF1A462A10001B8112 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/IntegrationPane.xib; sourceTree = "<group>"; };
 		2AD318C11A462C30001B8112 /* CEIntegrationPaneController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CEIntegrationPaneController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		2AD318C21A462C30001B8112 /* CEIntegrationPaneController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CEIntegrationPaneController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
@@ -1416,6 +1420,8 @@
 				2AD9625E1B53496500D46C3A /* NSString+Sandboxing.m */,
 				2A1068C11A745FCE001DB9AA /* NSURL+Xattr.h */,
 				2A1068C21A745FCE001DB9AA /* NSURL+Xattr.m */,
+				2ACC650E1C96E295000574DC /* NSAlert+BlockMethods.h */,
+				2ACC650F1C96E295000574DC /* NSAlert+BlockMethods.m */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -2194,6 +2200,7 @@
 				2A41CB471C391B7400F9122B /* CEErrors.m in Sources */,
 				2A6F0DCF1B5500E100C2D03C /* CEShortcutKeyField.m in Sources */,
 				2A6F0DD01B5500E100C2D03C /* CEFindPanelTextClipView.m in Sources */,
+				2ACC65111C96E295000574DC /* NSAlert+BlockMethods.m in Sources */,
 				2A6415951BD10EFA0080358E /* NSString+Indentation.m in Sources */,
 				2A6F0DD11B5500E100C2D03C /* CEFindPanelLayoutManager.m in Sources */,
 				2A1A3E501C099A21007FEA7A /* CESyntaxTermsEditViewController.m in Sources */,
@@ -2369,6 +2376,7 @@
 				2AD9625F1B53496500D46C3A /* NSString+Sandboxing.m in Sources */,
 				2A3A75B319E77F32001DAB88 /* CESyntaxValidationViewController.m in Sources */,
 				2AF4E0D7196F7958008E9EF7 /* CEStatusBarController.m in Sources */,
+				2ACC65101C96E295000574DC /* NSAlert+BlockMethods.m in Sources */,
 				2AE2E9D519D2CF00000D66A9 /* CEEncodingManager.m in Sources */,
 				2A009ACB1A57BA8B00C3D542 /* CETextFinder.m in Sources */,
 				2A41CB461C391B7400F9122B /* CEErrors.m in Sources */,
