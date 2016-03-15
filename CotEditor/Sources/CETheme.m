@@ -9,7 +9,7 @@
 
  ------------------------------------------------------------------------------
  
- © 2014-2015 1024jp
+ © 2014-2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -26,10 +26,11 @@
  */
 
 #import "CETheme.h"
-#import "CEThemeManager.h"
+#import "CEThemeDictionaryKeys.h"
 #import "NSColor+WFColorCode.h"
 
 
+// private constants
 static const CGFloat kDarkThemeThreshold = 0.5;
 
 
@@ -95,27 +96,23 @@ static const CGFloat kDarkThemeThreshold = 0.5;
 
 //------------------------------------------------------
 /// convenience constractor
-+ (nullable CETheme *)themeWithName:(nonnull NSString *)themeName
++ (nullable instancetype)themeWithDictinonary:(NSDictionary<NSString *, NSDictionary *> *)themeDict name:(nonnull NSString *)themeName
 //------------------------------------------------------
 {
-    return [[CETheme alloc] initWithName:themeName];
+    return [[self alloc] initWithDictinonary:themeDict name:themeName];
 }
 
 
 //------------------------------------------------------
 /// designated initializer
-- (nullable instancetype)initWithName:(nonnull NSString *)themeName
+- (nullable instancetype)initWithDictinonary:(NSDictionary<NSString *, NSDictionary *> *)themeDict name:(nonnull NSString *)themeName
 //------------------------------------------------------
 {
     self = [super init];
     if (self) {
-        NSDictionary<NSString *, NSDictionary<NSString *, NSString *> *> *themeDict = [[CEThemeManager sharedManager] archivedTheme:themeName isBundled:NULL];
-        
-        if (!themeDict) { return nil; }
-        
         NSMutableDictionary *colorDict = [NSMutableDictionary dictionary];
         // カラーを解凍
-        for (NSString *key in [CETheme colorKeys]) {
+        for (NSString *key in [[self class] colorKeys]) {
             NSString *colorCode = themeDict[key][CEThemeColorKey];
             WFColorCodeType type = nil;
             NSColor *color = [NSColor colorWithColorCode:colorCode codeType:&type];

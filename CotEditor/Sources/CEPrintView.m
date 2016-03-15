@@ -29,6 +29,7 @@
 #import "CEPrintView.h"
 #import "CEPrintPanelAccessoryController.h"
 #import "CELayoutManager.h"
+#import "CEThemeManager.h"
 #import "CESyntaxStyle.h"
 #import "NSString+Sandboxing.h"
 #import "CEDefaults.h"
@@ -386,7 +387,7 @@ static NSString *_Nonnull const PageNumberPlaceholder = @"PAGENUM";
         [self setBackgroundColor:[NSColor whiteColor]];
         
     } else {
-        [self setTheme:[CETheme themeWithName:settings[CEPrintThemeKey]]];
+        [self setTheme:[[CEThemeManager sharedManager] themeWithName:settings[CEPrintThemeKey]]];
         [self setTextColor:[[self theme] textColor]];
         [self setBackgroundColor:[[self theme] backgroundColor]];
         

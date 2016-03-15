@@ -491,7 +491,7 @@
 // ------------------------------------------------------
 {
     if ([[notification userInfo][CEOldNameKey] isEqualToString:[[[self textView] theme] name]]) {
-        CETheme *theme = [CETheme themeWithName:[notification userInfo][CENewNameKey]];
+        CETheme *theme = [[CEThemeManager sharedManager] themeWithName:[notification userInfo][CENewNameKey]];
         
         if (!theme) { return; }
         

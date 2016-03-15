@@ -39,6 +39,7 @@
 #import "CEToolbarController.h"
 #import "CESplitViewController.h"
 #import "CENavigationBarController.h"
+#import "CEThemeManager.h"
 #import "CESyntaxStyle.h"
 #import "CEGoToSheetController.h"
 #import "CETextFinder.h"
@@ -488,7 +489,7 @@
 - (void)setThemeWithName:(nonnull NSString *)themeName
 // ------------------------------------------------------
 {
-    CETheme *theme = [CETheme themeWithName:themeName];
+    CETheme *theme = [[CEThemeManager sharedManager] themeWithName:themeName];
     
     [[self splitViewController] enumerateEditorViewsUsingBlock:^(CEEditorViewController * _Nonnull viewController) {
         [[viewController textView] setTheme:theme];

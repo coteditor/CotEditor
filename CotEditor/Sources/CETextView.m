@@ -39,6 +39,7 @@
 #import "CECharacterPopoverController.h"
 #import "CEEditorScrollView.h"
 #import "CEDocument.h"
+#import "CEThemeManager.h"
 #import "CEKeyBindingManager.h"
 #import "CEScriptManager.h"
 #import "CEWindow.h"
@@ -142,7 +143,7 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
         // 挿入すると行間がズレる」問題が生じるため、CELayoutManager および CEATSTypesetter で制御している）
 
         // setup theme
-        [self setTheme:[CETheme themeWithName:[defaults stringForKey:CEDefaultThemeKey]]];
+        [self setTheme:[[CEThemeManager sharedManager] themeWithName:[defaults stringForKey:CEDefaultThemeKey]]];
         
         // set layer drawing policies
         [self setLayerContentsRedrawPolicy:NSViewLayerContentsRedrawBeforeViewResize];

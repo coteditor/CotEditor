@@ -26,6 +26,8 @@
  */
 
 #import "CEThemeManager.h"
+#import "CETheme.h"
+#import "CEThemeDictionaryKeys.h"
 #import "CEAppDelegate.h"
 
 #import "NSColor+WFColorCode.h"
@@ -37,28 +39,6 @@
 
 // extension for theme file
 NSString *_Nonnull const CEThemeExtension = @"cottheme";
-
-// keys for theme dict
-NSString *_Nonnull const CEThemeTextKey = @"text";
-NSString *_Nonnull const CEThemeBackgroundKey = @"background";
-NSString *_Nonnull const CEThemeInvisiblesKey = @"invisibles";
-NSString *_Nonnull const CEThemeSelectionKey = @"selection";
-NSString *_Nonnull const CEThemeInsertionPointKey = @"insertionPoint";
-NSString *_Nonnull const CEThemeLineHighlightKey = @"lineHighlight";
-
-NSString *_Nonnull const CEThemeKeywordsKey = @"keywords";
-NSString *_Nonnull const CEThemeCommandsKey = @"commands";
-NSString *_Nonnull const CEThemeTypesKey = @"types";
-NSString *_Nonnull const CEThemeAttributesKey = @"attributes";
-NSString *_Nonnull const CEThemeVariablesKey = @"variables";
-NSString *_Nonnull const CEThemeValuesKey = @"values";
-NSString *_Nonnull const CEThemeNumbersKey = @"numbers";
-NSString *_Nonnull const CEThemeStringsKey = @"strings";
-NSString *_Nonnull const CEThemeCharactersKey = @"characters";
-NSString *_Nonnull const CEThemeCommentsKey = @"comments";
-
-NSString *_Nonnull const CEThemeColorKey = @"color";
-NSString *_Nonnull const CEThemeUsesSystemSettingKey = @"usesSystemSetting";
 
 // notifications
 NSString *_Nonnull const CEThemeListDidUpdateNotification = @"CEThemeListDidUpdateNotification";
@@ -135,6 +115,18 @@ NSString *_Nonnull const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotifi
 
 
 #pragma mark Public Methods
+
+//------------------------------------------------------
+/// テーマ名から CETheme インスタンスを返す
+- (nullable CETheme *)themeWithName:(nonnull NSString *)themeName
+//------------------------------------------------------
+{
+    NSDictionary<NSString *, NSDictionary *> *themeDict = [self archivedTheme:themeName isBundled:NULL];
+    if (!themeDict) { return nil; }
+    
+    return [CETheme themeWithDictinonary:themeDict name:themeName];
+}
+
 
 //------------------------------------------------------
 /// テーマ名から Property list 形式のテーマ定義を返す
