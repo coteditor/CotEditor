@@ -30,6 +30,7 @@
 #import "CEPrintPanelAccessoryController.h"
 #import "CELayoutManager.h"
 #import "CEThemeManager.h"
+#import "CESyntaxManager.h"
 #import "CESyntaxStyle.h"
 #import "NSString+Sandboxing.h"
 #import "CEDefaults.h"
@@ -393,7 +394,7 @@ static NSString *_Nonnull const PageNumberPlaceholder = @"PAGENUM";
         
         // perform coloring
         if (![self syntaxStyle]) {
-            [self setSyntaxStyle:[[CESyntaxStyle alloc] initWithStyleName:[self syntaxName]]];
+            [self setSyntaxStyle:[[CESyntaxManager sharedManager] styleWithName:[self syntaxName]]];
         }
         CEPrintPanelAccessoryController *controller = [[[[NSPrintOperation currentOperation] printPanel] accessoryControllers] firstObject];
         [[self syntaxStyle] highlightWholeStringInTextStorage:[self textStorage] completionHandler:^ {

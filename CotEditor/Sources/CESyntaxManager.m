@@ -27,6 +27,7 @@
  */
 
 #import "CESyntaxManager.h"
+#import "CESyntaxStyle.h"
 #import "CEAppDelegate.h"
 #import "Constants.h"
 
@@ -121,6 +122,24 @@ NSString *_Nonnull const CESyntaxValidationMessageKey = @"MessageKey";
 #pragma mark Public Methods
 
 // ------------------------------------------------------
+/// create new CESyntaxStyle instance
+- (nullable CESyntaxStyle *)styleWithName:(NSString *)styleName
+// ------------------------------------------------------
+{
+    if (!styleName || [styleName isEqualToString:NSLocalizedString(@"None", nil)]) {
+        return [[CESyntaxStyle alloc] initWithDictionary:nil name:NSLocalizedString(@"None", nil)];
+        
+    } else if ([[self styleNames] containsObject:styleName]) {
+        NSDictionary<NSString *, id> *highlightDictionary = [self styleDictionaryWithStyleName:styleName];
+        return [[CESyntaxStyle alloc] initWithDictionary:highlightDictionary name:styleName];
+        
+    } else {
+        return nil;
+    }
+    
+}
+
+// ------------------------------------------------------
 /// ファイル名に応じたstyle名を返す
 - (nullable NSString *)styleNameFromFileName:(nullable NSString *)fileName
 // ------------------------------------------------------
@@ -163,7 +182,7 @@ NSString *_Nonnull const CESyntaxValidationMessageKey = @"MessageKey";
 
 // ------------------------------------------------------
 /// style名に応じたstyle辞書を返す
-- (nonnull NSDictionary<NSString *, id> *)styleWithStyleName:(nonnull NSString *)styleName
+- (nonnull NSDictionary<NSString *, id> *)styleDictionaryWithStyleName:(nonnull NSString *)styleName
 // ------------------------------------------------------
 {
     NSMutableDictionary<NSString *, id> *style;
@@ -177,13 +196,13 @@ NSString *_Nonnull const CESyntaxValidationMessageKey = @"MessageKey";
         }
     }
     
-    return style ? : [self emptyStyle];  // 存在しない場合は空のデータを返す
+    return style ? : [self emptyStyleDictionary];  // 存在しない場合は空のデータを返す
 }
 
 
 // ------------------------------------------------------
 /// style名に応じたバンドル版のstyle辞書を返す（ない場合はnil）
-- (nullable NSDictionary<NSString *, id> *)bundledStyleWithStyleName:(nonnull NSString *)styleName
+- (nullable NSDictionary<NSString *, id> *)bundledStyleDictionaryWithStyleName:(nonnull NSString *)styleName
 // ------------------------------------------------------
 {
     return [self styleDictWithURL:[self URLForBundledStyle:styleName available:NO]];
@@ -221,8 +240,8 @@ NSString *_Nonnull const CESyntaxValidationMessageKey = @"MessageKey";
     if (![self isBundledStyle:styleName cutomized:nil]) { return NO; }
     
     // numOfObjInArray などが混入しないようにスタイル定義部分だけを比較する
-    NSArray<NSString *> *keys = [[self emptyStyle] allKeys];
-    NSDictionary<NSString *, id> *bundledStyle = [[self bundledStyleWithStyleName:styleName] dictionaryWithValuesForKeys:keys];
+    NSArray<NSString *> *keys = [[self emptyStyleDictionary] allKeys];
+    NSDictionary<NSString *, id> *bundledStyle = [[self bundledStyleDictionaryWithStyleName:styleName] dictionaryWithValuesForKeys:keys];
     
     return [[style dictionaryWithValuesForKeys:keys] isEqualToDictionary:bundledStyle];
 }
@@ -346,7 +365,7 @@ NSString *_Nonnull const CESyntaxValidationMessageKey = @"MessageKey";
         
         if (success) {
             // 内部で持っているキャッシュ用データを更新
-            [self styleCaches][styleName] = [[self bundledStyleWithStyleName:styleName] mutableCopy];
+            [self styleCaches][styleName] = [[self bundledStyleDictionaryWithStyleName:styleName] mutableCopy];
             __weak typeof(self) weakSelf = self;
             [self updateCacheWithCompletionHandler:^{
                 typeof(self) self = weakSelf;  // strong self
@@ -456,7 +475,7 @@ NSString *_Nonnull const CESyntaxValidationMessageKey = @"MessageKey";
         [[NSFileManager defaultManager] removeItemAtURL:[self URLForUserStyle:oldName available:NO] error:nil];
     }
     // 保存しようとしている定義がバンドル版と同じだった場合（出荷時に戻したときなど）はユーザ領域のファイルを削除して終わる
-    if ([style isEqualToDictionary:[self bundledStyleWithStyleName:name]]) {
+    if ([style isEqualToDictionary:[self bundledStyleDictionaryWithStyleName:name]]) {
         if ([saveURL checkResourceIsReachableAndReturnError:nil]) {
             [[NSFileManager defaultManager] removeItemAtURL:saveURL error:nil];
             [[self styleCaches] removeObjectForKey:name];
@@ -578,8 +597,8 @@ NSString *_Nonnull const CESyntaxValidationMessageKey = @"MessageKey";
 
 
 //------------------------------------------------------
-/// 空の新規styleを返す
-- (nonnull NSDictionary<NSString *, id> *)emptyStyle
+/// 空の新規 style を返す
+- (nonnull NSDictionary<NSString *, id> *)emptyStyleDictionary
 //------------------------------------------------------
 {
     return @{CESyntaxMetadataKey: [NSMutableDictionary dictionary],

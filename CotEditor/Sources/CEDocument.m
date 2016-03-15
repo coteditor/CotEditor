@@ -148,7 +148,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
         
         _encoding = [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultEncodingInNewKey];
         _lineEnding = [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultLineEndCharCodeKey];
-        _syntaxStyle = [[CESyntaxStyle alloc] initWithStyleName:[[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultSyntaxStyleKey]];
+        _syntaxStyle = [[CESyntaxManager sharedManager] styleWithName:[[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultSyntaxStyleKey]];
         _selection = [[CETextSelection alloc] initWithDocument:self];
         _writable = YES;
         _shouldSaveXattr = YES;
@@ -1067,12 +1067,12 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 {
     if ([styleName length] == 0) { return; }
     
-    CESyntaxStyle *syntaxStyle = [[CESyntaxStyle alloc] initWithStyleName:styleName];
+    CESyntaxStyle *syntaxStyle = [[CESyntaxManager sharedManager] styleWithName:styleName];
     
     if ([syntaxStyle isEqualToSyntaxStyle:[self syntaxStyle]]) { return; }
     
     // update
-    [self setSyntaxStyle:[[CESyntaxStyle alloc] initWithStyleName:styleName]];
+    [self setSyntaxStyle:syntaxStyle];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:CEDocumentSyntaxStyleDidChangeNotification
                                                         object:self];

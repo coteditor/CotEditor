@@ -32,7 +32,6 @@
 #import "CESyntaxOutlineParser.h"
 #import "CESyntaxHighlightParser.h"
 #import "CETextViewProtocol.h"
-#import "CESyntaxManager.h"
 #import "CEProgressSheetController.h"
 #import "CEDefaults.h"
 #import "Constants.h"
@@ -98,7 +97,7 @@ static NSArray<NSString *> *kSyntaxDictKeys;
 - (nullable instancetype)init
 //------------------------------------------------------
 {
-    return [self initWithStyleName:nil];
+    return [self initWithDictionary:nil name:NSLocalizedString(@"None", nil)];
 }
 
 
@@ -107,20 +106,21 @@ static NSArray<NSString *> *kSyntaxDictKeys;
 
 // ------------------------------------------------------
 /// designated initializer
-- (nullable instancetype)initWithStyleName:(nullable NSString *)styleName
+- (nullable instancetype)initWithDictionary:(nullable NSDictionary<NSString *, id> *)dictionary name:(nonnull NSString *)styleName
 // ------------------------------------------------------
 {
     self = [super init];
     if (self) {
-        if (!styleName || [styleName isEqualToString:NSLocalizedString(@"None", nil)]) {
+        _styleName = styleName;
+        
+        if (!dictionary) {
             _none = YES;
-            _styleName = NSLocalizedString(@"None", nil);
             
-        } else if ([[[CESyntaxManager sharedManager] styleNames] containsObject:styleName]) {
-            NSMutableDictionary<NSString *, id> *highlightDictionary = [[[CESyntaxManager sharedManager] styleWithStyleName:styleName] mutableCopy];
+        } else {
+            NSMutableDictionary<NSString *, id> *mutableDictionary = [dictionary mutableCopy];
             
             // コメントデリミッタを設定
-            NSDictionary<NSString *, NSString *> *delimiters = highlightDictionary[CESyntaxCommentDelimitersKey];
+            NSDictionary<NSString *, NSString *> *delimiters = mutableDictionary[CESyntaxCommentDelimitersKey];
             if ([delimiters[CESyntaxInlineCommentKey] length] > 0) {
                 _inlineCommentDelimiter = delimiters[CESyntaxInlineCommentKey];
             }
@@ -133,7 +133,7 @@ static NSArray<NSString *> *kSyntaxDictKeys;
             {
                 NSMutableArray<NSString *> *completionWords = [NSMutableArray array];
                 NSMutableString *firstCharsString = [NSMutableString string];
-                NSArray<NSString *> *completionDicts = highlightDictionary[CESyntaxCompletionsKey];
+                NSArray<NSString *> *completionDicts = mutableDictionary[CESyntaxCompletionsKey];
                 
                 if ([completionDicts count] > 0) {
                     for (NSDictionary<NSString *, id> *dict in completionDicts) {
@@ -145,7 +145,7 @@ static NSArray<NSString *> *kSyntaxDictKeys;
                     NSCharacterSet *trimCharSet = [NSCharacterSet whitespaceAndNewlineCharacterSet];
                     for (NSString *key in kSyntaxDictKeys) {
                         @autoreleasepool {
-                            for (NSDictionary<NSString *, id> *wordDict in highlightDictionary[key]) {
+                            for (NSDictionary<NSString *, id> *wordDict in mutableDictionary[key]) {
                                 NSString *begin = [wordDict[CESyntaxBeginStringKey] stringByTrimmingCharactersInSet:trimCharSet];
                                 NSString *end = [wordDict[CESyntaxEndStringKey] stringByTrimmingCharactersInSet:trimCharSet];
                                 BOOL isRegEx = [wordDict[CESyntaxRegularExpressionKey] boolValue];
@@ -178,7 +178,7 @@ static NSArray<NSString *> *kSyntaxDictKeys;
                     @autoreleasepool {
                         NSMutableCharacterSet *charSet = [NSMutableCharacterSet characterSetWithCharactersInString:kAllAlphabetChars];
                         
-                        for (NSDictionary<NSString *, id> *wordDict in highlightDictionary[key]) {
+                        for (NSDictionary<NSString *, id> *wordDict in mutableDictionary[key]) {
                             NSString *begin = [wordDict[CESyntaxBeginStringKey] stringByTrimmingCharactersInSet:trimCharSet];
                             NSString *end = [wordDict[CESyntaxEndStringKey] stringByTrimmingCharactersInSet:trimCharSet];
                             BOOL isRegex = [wordDict[CESyntaxRegularExpressionKey] boolValue];
@@ -207,10 +207,10 @@ static NSArray<NSString *> *kSyntaxDictKeys;
                 NSMutableDictionary<NSString *, NSString *> *quoteTypes = [NSMutableDictionary dictionary];
                 
                 for (NSString *key in kSyntaxDictKeys) {
-                    NSMutableArray<NSDictionary<NSString *, id> *> *wordDicts = [highlightDictionary[key] mutableCopy];
+                    NSMutableArray<NSDictionary<NSString *, id> *> *wordDicts = [mutableDictionary[key] mutableCopy];
                     count += [wordDicts count];
                     
-                    for (NSDictionary<NSString *, id> *wordDict in highlightDictionary[key]) {
+                    for (NSDictionary<NSString *, id> *wordDict in mutableDictionary[key]) {
                         NSString *begin = wordDict[CESyntaxBeginStringKey];
                         NSString *end = wordDict[CESyntaxEndStringKey];
                         
@@ -225,7 +225,7 @@ static NSArray<NSString *> *kSyntaxDictKeys;
                         }
                     }
                     if (wordDicts) {
-                        highlightDictionary[key] = wordDicts;
+                        mutableDictionary[key] = wordDicts;
                     }
                 }
                 _pairedQuoteTypes = quoteTypes;
@@ -235,13 +235,9 @@ static NSArray<NSString *> *kSyntaxDictKeys;
             }
             
             // store as properties
-            _styleName = styleName;
-            _highlightDictionary = [highlightDictionary copy];
+            _highlightDictionary = [mutableDictionary copy];
             
-            _outlineDefinitions = highlightDictionary[CESyntaxOutlineMenuKey];
-            
-        } else {
-            return nil;
+            _outlineDefinitions = mutableDictionary[CESyntaxOutlineMenuKey];
         }
     }
     return self;
