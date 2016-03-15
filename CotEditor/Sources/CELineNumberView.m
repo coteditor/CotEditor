@@ -47,6 +47,8 @@ static NSString * _Nonnull const DraggingIndexKey = @"index";
 
 @interface CELineNumberView ()
 
+@property (nonatomic) NSUInteger totalNumberOfLines;
+@property (nonatomic) BOOL needsRecountTotalNumberOfLines;
 @property (nonatomic, nullable, weak) NSTimer *draggingTimer;
 
 @end
@@ -89,8 +91,19 @@ static CGFontRef BoldLineNumberFont;
     self = [super initWithScrollView:scrollView orientation:orientation];
     if (self) {
         [self setClientView:[scrollView documentView]];
+        
+        _needsRecountTotalNumberOfLines = YES;
     }
     return self;
+}
+
+
+// ------------------------------------------------------
+/// cleanup
+- (void)dealloc
+// ------------------------------------------------------
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 
@@ -336,18 +349,18 @@ static CGFontRef BoldLineNumberFont;
     CGFloat requiredThickness;
     if (isVerticalText) {
         requiredThickness = MAX(fontSize + tickLength + 2 * kLineNumberPadding, kMinHorizontalThickness);
+        
     } else {
-        // count rest invisible lines
-        // -> The view width depends on the number of digits of the total line numbers.
-        //    As it's quite dengerous to change width of line number view on scrolling dynamically.
-        NSUInteger charIndex = [layoutManager characterIndexForGlyphAtIndex:NSMaxRange(visibleGlyphRange)];
-        if (length > charIndex) {
-            // TODO: performance blocker by large document! better to refactor somehow.
-            lineNumber += [string numberOfLinesInRange:NSMakeRange(charIndex, length - charIndex)
-                                  includingLastNewLine:NO];
+        if ([self needsRecountTotalNumberOfLines]) {
+            // -> count only if really needed since the line counting is high workload, especially by large document
+            [self setTotalNumberOfLines:[string numberOfLinesInRange:NSMakeRange(0, length) includingLastNewLine:YES]];
+            [self setNeedsRecountTotalNumberOfLines:NO];
         }
         
-        NSUInteger digits = MAX(numberOfDigits(lineNumber), kMinNumberOfDigits);
+        // use the line number of whole string, namely the possible largest line number
+        // -> The view width depends on the number of digits of the total line numbers.
+        //    It's quite dengerous to change width of line number view on scrolling dynamically.
+        NSUInteger digits = MAX(numberOfDigits([self totalNumberOfLines]), kMinNumberOfDigits);
         requiredThickness = MAX(digits * charWidth + 3 * kLineNumberPadding, kMinVerticalThickness);
     }
     [self setRuleThickness:ceil(requiredThickness)];
@@ -375,6 +388,31 @@ static CGFontRef BoldLineNumberFont;
 }
 
 
+// ------------------------------------------------------
+/// setter of client view
+- (void)setClientView:(NSView *)clientView
+// ------------------------------------------------------
+{
+    // stop observing current textStorage
+    if ([[self clientView] isKindOfClass:[NSTextView class]]) {
+        [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                        name:NSTextDidChangeNotification
+                                                      object:(NSTextView *)[self clientView]];
+    }
+    
+    // observe new textStorage change
+    if ([clientView isKindOfClass:[NSTextView class]]) {
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(textDidChange:)
+                                                     name:NSTextDidChangeNotification
+                                                   object:(NSTextView *)clientView];
+        [self setNeedsRecountTotalNumberOfLines:YES];
+    }
+    
+    [super setClientView:clientView];
+}
+
+
 
 #pragma mark Private Methods
 
@@ -384,6 +422,15 @@ static CGFontRef BoldLineNumberFont;
 // ------------------------------------------------------
 {
     return (NSTextView<CETextViewProtocol> *)[self clientView];
+}
+
+
+// ------------------------------------------------------
+/// update total number of lines determining view thickness on holizontal text layout
+- (void)textDidChange:(nonnull NSNotification *)notification
+// ------------------------------------------------------
+{
+    [self setNeedsRecountTotalNumberOfLines:YES];
 }
 
 
