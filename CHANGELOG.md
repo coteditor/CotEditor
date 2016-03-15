@@ -16,6 +16,7 @@ develop
 - Display the dialog asking encoding compatibility on saving as a document-modal sheet.
 - Optimize document opening performance with large file.
 - Improve recovering status of unsaved documents on window resume.
+- Display print progress panel as a document-modal sheet.
 
 
 

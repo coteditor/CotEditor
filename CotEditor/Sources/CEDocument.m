@@ -572,13 +572,11 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     }
     [printView setFont:font];
     
-    // setup print info
-    NSPrintInfo *printInfo = [[self printInfo] copy];
-    [[printInfo dictionary] addEntriesFromDictionary:printSettings];
-    
     // create print operation
-    NSPrintOperation *printOperation = [NSPrintOperation printOperationWithView:printView printInfo:printInfo];
+    NSPrintOperation *printOperation = [NSPrintOperation printOperationWithView:printView printInfo:[self printInfo]];
+    [[[printOperation printInfo] dictionary] addEntriesFromDictionary:printSettings];
     [printOperation setShowsProgressPanel:YES];
+    [printOperation setCanSpawnSeparateThread:YES];  // display print progress panel as a sheet
     
     // setup print panel
     if (![self printPanelAccessoryController]) {
