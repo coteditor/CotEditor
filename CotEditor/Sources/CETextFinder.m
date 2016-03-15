@@ -430,10 +430,11 @@ static const NSUInteger kMaxHistorySize = 20;
                                     CEFindResultAttributedLineString: lineAttrString,
                                     CEFindResultLineRange: [NSValue valueWithRange:inlineRange]}];
                 
-                NSString *informative = ([result count] == 1) ? @"%@ string found." : @"%@ strings found.";
-                NSString *countStr = [integerFormatter stringFromNumber:@([result count])];
+                NSString *informativeFormat = ([result count] == 1) ? @"%@ string found." : @"%@ strings found.";
+                NSString *informative = [NSString stringWithFormat:NSLocalizedString(informativeFormat, nil),
+                                         [integerFormatter stringFromNumber:@([result count])]];
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    [indicator setInformativeText:[NSString stringWithFormat:NSLocalizedString(informative, nil), countStr]];
+                    [indicator setInformativeText:informative];
                 });
             }
         }
@@ -550,10 +551,11 @@ static const NSUInteger kMaxHistorySize = 20;
                 selectedRange.length -= (NSInteger)replacementRange.length - [replacedString length];
                 count++;
                 
-                NSString *informative = (count == 1) ? @"%@ string replaced." : @"%@ strings replaced.";
-                NSString *countStr = [integerFormatter stringFromNumber:@(count)];
+                NSString *informativeFormat = (count == 1) ? @"%@ string replaced." : @"%@ strings replaced.";
+                NSString *informative = [NSString stringWithFormat:NSLocalizedString(informativeFormat, nil),
+                                         [integerFormatter stringFromNumber:@(count)]];
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    [indicator setInformativeText:[NSString stringWithFormat:NSLocalizedString(informative, nil), countStr]];
+                    [indicator setInformativeText:informative];
                 });
             }
             

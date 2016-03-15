@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9531"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9532"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="CEFindPanelController">
             <connections>
                 <outlet property="disclosureButton" destination="oC1-bN-UeN" id="j2a-5P-Uu1"/>
                 <outlet property="findHistoryMenu" destination="Zor-um-eIs" id="81b-eT-9Dh"/>
-                <outlet property="integerFormatter" destination="YLc-PB-3Zc" id="7QI-cl-3y8"/>
                 <outlet property="preferencesPopover" destination="00C-j6-lNt" id="Wrb-hr-DbZ"/>
                 <outlet property="regexReferencePopover" destination="aeg-YU-kMW" id="LBF-6V-RfW"/>
                 <outlet property="replaceButton" destination="7cY-9y-k1i" id="LWp-Pg-0vR"/>
@@ -540,7 +539,6 @@
         </customObject>
         <viewController id="46P-vJ-49R" customClass="CEFindResultViewController">
             <connections>
-                <outlet property="integerFormatter" destination="YLc-PB-3Zc" id="s1c-LJ-0WK"/>
                 <outlet property="tableView" destination="4Sw-Gq-de2" id="nR3-HO-4fV"/>
                 <outlet property="view" destination="CRP-NW-b9J" id="HyB-MX-ri4"/>
             </connections>
@@ -558,7 +556,6 @@
                 <outlet property="contentViewController" destination="49v-VK-h0w" id="12W-Vg-o60"/>
             </connections>
         </popover>
-        <numberFormatter formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="YLc-PB-3Zc"/>
     </objects>
     <resources>
         <image name="FindTemplate" width="20" height="13"/>

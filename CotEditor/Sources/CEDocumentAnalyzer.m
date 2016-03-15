@@ -43,7 +43,6 @@ NSString *_Nonnull const CEAnalyzerDidUpdateEditorInfoNotification = @"CEAnalyze
 @interface CEDocumentAnalyzer ()
 
 // formatters
-@property (nonatomic, nonnull) NSNumberFormatter *integerFormatter;
 @property (nonatomic, nonnull) NSDateFormatter *dateFormatter;
 @property (nonatomic, nonnull) NSByteCountFormatter *byteCountFormatter;
 
@@ -90,10 +89,6 @@ NSString *_Nonnull const CEAnalyzerDidUpdateEditorInfoNotification = @"CEAnalyze
 {
     self = [super init];
     if (self) {
-        _integerFormatter = [[NSNumberFormatter alloc] init];
-        [_integerFormatter setUsesGroupingSeparator:YES];
-        [_integerFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
-        
         _dateFormatter = [[NSDateFormatter alloc] init];
         [_dateFormatter setDateStyle:NSDateFormatterMediumStyle];
         [_dateFormatter setTimeStyle:NSDateFormatterShortStyle];
@@ -156,7 +151,6 @@ NSString *_Nonnull const CEAnalyzerDidUpdateEditorInfoNotification = @"CEAnalyze
 {
     CEDocument *document = [self document];
     CEEditorWrapper *editor = [document editor];
-    NSNumberFormatter *integerFormatter = [self integerFormatter];
     
     if (![editor string]) { return; }
     
@@ -257,9 +251,9 @@ NSString *_Nonnull const CEAnalyzerDidUpdateEditorInfoNotification = @"CEAnalyze
             self.chars = [self formatCount:numberOfChars selected:numberOfSelectedChars];
             self.byteLength = [self formatCount:byteLength selected:selectedByteLength];
             self.words = [self formatCount:numberOfWords selected:numberOfSelectedWords];
-            self.location = [integerFormatter stringFromNumber:@(location)];
-            self.line = [integerFormatter stringFromNumber:@(currentLine)];
-            self.column = [integerFormatter stringFromNumber:@(column)];
+            self.location = [NSString localizedStringWithFormat:@"%li", location];
+            self.line = [NSString localizedStringWithFormat:@"%li", currentLine];
+            self.column = [NSString localizedStringWithFormat:@"%li", column];
             self.unicode = unicode;
             
             [[NSNotificationCenter defaultCenter] postNotificationName:CEAnalyzerDidUpdateEditorInfoNotification
@@ -277,13 +271,10 @@ NSString *_Nonnull const CEAnalyzerDidUpdateEditorInfoNotification = @"CEAnalyze
 - (NSString *)formatCount:(NSUInteger)count selected:(NSUInteger)selectedCount
 // ------------------------------------------------------
 {
-    NSNumberFormatter *formatter = [self integerFormatter];
-    
     if (selectedCount > 0) {
-        return [NSString stringWithFormat:@"%@ (%@)",
-                [formatter stringFromNumber:@(count)], [formatter stringFromNumber:@(selectedCount)]];
+        return [NSString localizedStringWithFormat:@"%li (%li)", count, selectedCount];
     } else {
-        return [NSString stringWithFormat:@"%@", [formatter stringFromNumber:@(count)]];
+        return [NSString localizedStringWithFormat:@"%li", count];
     }
 }
 

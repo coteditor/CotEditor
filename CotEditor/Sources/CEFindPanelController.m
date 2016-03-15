@@ -47,7 +47,6 @@ static const CGFloat kDefaultResultViewHeight = 200.0;
 @property (nonatomic, nullable) IBOutlet CEFindResultViewController *resultViewController;
 @property (nonatomic, nullable) IBOutlet NSPopover *regexReferencePopover;
 @property (nonatomic, nullable) IBOutlet NSPopover *preferencesPopover;
-@property (nonatomic, nullable, weak) IBOutlet NSNumberFormatter *integerFormatter;
 @property (nonatomic, nullable, weak) IBOutlet NSSplitView *splitView;
 @property (nonatomic, nullable, weak) IBOutlet NSButton *disclosureButton;
 @property (nonatomic, nullable, weak) IBOutlet NSMenu *findHistoryMenu;
@@ -198,7 +197,8 @@ static const CGFloat kDefaultResultViewHeight = 200.0;
             [self setResultMessage:NSLocalizedString(@"Not Found", nil)];
             break;
         default:
-            [self setResultMessage:[NSString stringWithFormat:NSLocalizedString(@"%@ found", nil), [[self integerFormatter] stringFromNumber:@(numberOfFound)]]];
+            [self setResultMessage:[NSString stringWithFormat:NSLocalizedString(@"%@ found", nil),
+                                    [NSString localizedStringWithFormat:@"%li", numberOfFound]]];
             break;
     }
     
