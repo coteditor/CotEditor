@@ -60,6 +60,9 @@
 /// Is background color dark?
 @property (readonly, nonatomic, getter=isDarkTheme) BOOL darkTheme;
 
+/// Is created from a valid theme dict? (Theme itself can be used even invalid since NSColor.grayColor() are substituted for invalid colors.)
+@property (readonly, nonatomic, getter=isValid) BOOL valid;
+
 
 /// return CETheme instance initialized with theme name
 + (nullable instancetype)themeWithDictinonary:(nonnull NSDictionary<NSString *, NSDictionary *> *)dictionary name:(nonnull NSString *)themeName;

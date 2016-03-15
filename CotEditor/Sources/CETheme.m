@@ -67,6 +67,8 @@ static const CGFloat kDarkThemeThreshold = 0.5;
 /// Is background color dark?
 @property (readwrite, nonatomic, getter=isDarkTheme) BOOL darkTheme;
 
+/// Is the source theme dict valid?
+@property (readwrite, nonatomic, getter=isValid) BOOL valid;
 
 // other options
 @property (nonatomic) BOOL usesSystemSelectionColor;
@@ -108,17 +110,26 @@ static const CGFloat kDarkThemeThreshold = 0.5;
 - (nullable instancetype)initWithDictinonary:(NSDictionary<NSString *, NSDictionary *> *)themeDict name:(nonnull NSString *)themeName
 //------------------------------------------------------
 {
+    if ([themeName length] == 0) { return nil; }
+    
     self = [super init];
     if (self) {
-        NSMutableDictionary *colorDict = [NSMutableDictionary dictionary];
+        NSMutableDictionary<NSString *, NSColor *> *colorDict = [NSMutableDictionary dictionary];
+        
         // カラーを解凍
+        _valid = YES;
         for (NSString *key in [[self class] colorKeys]) {
             NSString *colorCode = themeDict[key][CEThemeColorKey];
-            WFColorCodeType type = nil;
-            NSColor *color = [NSColor colorWithColorCode:colorCode codeType:&type];
+            
+            WFColorCodeType type = WFColorCodeInvalid;
+            NSColor *color;
+            if (colorCode) {
+                color = [NSColor colorWithColorCode:colorCode codeType:&type];
+            }
             
             if (!color || !(type == WFColorCodeHex || type == WFColorCodeShortHex)) {
                 color = [NSColor grayColor];  // color for invalid color code
+                _valid = NO;
             }
             colorDict[key] = color;
         }
