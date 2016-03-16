@@ -160,13 +160,14 @@ static CGFontRef BoldLineNumberFont;
     NSTextView *textView = [self textView];
     NSLayoutManager *layoutManager = [textView layoutManager];
     NSColor *textColor = [[self theme] weakTextColor];
+    CGFloat scale = [textView convertSize:NSMakeSize(1.0, 1.0) toView:nil].width;
     
     // set graphics context
     CGContextRef context = (CGContextRef)[[NSGraphicsContext currentContext] graphicsPort];
     CGContextSaveGState(context);
 
     // setup font
-    CGFloat masterFontSize = [[textView font] pointSize];
+    CGFloat masterFontSize = scale * [[[self textView] font] pointSize];
     CGFloat fontSize = MIN(round(kFontSizeFactor * masterFontSize), masterFontSize);
     CTFontRef font = CTFontCreateWithGraphicsFont(LineNumberFont, fontSize, nil, nil);
     
@@ -198,7 +199,7 @@ static CGFontRef BoldLineNumberFont;
     // adjust text drawing coordinate
     NSPoint relativePoint = [self convertPoint:NSZeroPoint fromView:textView];
     NSPoint inset = [textView textContainerOrigin];
-    CGFloat ascent = [[textView font] ascender];
+    CGFloat ascent = scale * [[textView font] ascender];
     CGAffineTransform transform = CGAffineTransformMakeScale(1.0, -1.0);  // flip
     if (isVerticalText) {
         transform = CGAffineTransformTranslate(transform, round(relativePoint.x - inset.y - ascent / 2), -ruleThickness);
@@ -303,7 +304,7 @@ static CGFontRef BoldLineNumberFont;
         while (glyphCount < glyphIndex) { // handle wrapped lines
             NSRange range;
             NSRect lineRect = [layoutManager lineFragmentRectForGlyphAtIndex:glyphCount effectiveRange:&range withoutAdditionalLayout:YES];
-            CGFloat y = -NSMinY(lineRect);
+            CGFloat y = scale * -NSMinY(lineRect);
             
             if (lastLineNumber == lineNumber) {  // wrapped line
                 if (!isVerticalText) {
@@ -342,7 +343,7 @@ static CGFontRef BoldLineNumberFont;
         NSRect lineRect = [layoutManager extraLineFragmentUsedRect];
         NSRange lastSelectedRange = [[selectedLineRanges lastObject] rangeValue];
         BOOL isSelected = (lastSelectedRange.length == 0) && (length == NSMaxRange(lastSelectedRange));
-        CGFloat y = -NSMinY(lineRect);
+        CGFloat y = scale * -NSMinY(lineRect);
         
         if (isVerticalText) {
             draw_tick(y);
