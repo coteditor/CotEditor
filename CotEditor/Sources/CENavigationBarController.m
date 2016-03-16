@@ -33,7 +33,7 @@
 
 static NSString *_Nonnull const kNavigationBarFontName = @"Helvetica";
 static const CGFloat kDefaultHeight = 16.0;
-static const NSTimeInterval kDuration = 0.25;
+static const NSTimeInterval kDuration = 0.12;
 
 
 @interface CENavigationBarController ()
