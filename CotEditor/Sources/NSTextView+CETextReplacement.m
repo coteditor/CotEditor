@@ -128,6 +128,8 @@
 {
     NSAssert([strings count] == [ranges count], @"unbalanced number of strings and ranges for multiple replacement");
     
+    if ([strings count] == 0) { return NO; }
+    
     // register redo for text selection
     [[[self undoManager] prepareWithInvocationTarget:self] setSelectedRangesWithUndo:[self selectedRanges]];
     

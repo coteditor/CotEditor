@@ -163,7 +163,7 @@ NSString *_Nonnull const CESecondaryFooterAlignmentKey = @"CESecondaryFooterAlig
 -(nonnull NSArray<NSDictionary<NSString *, NSString *> *> *)localizedSummaryItems
 // ------------------------------------------------------
 {
-    NSMutableArray *items = [NSMutableArray array];
+    NSMutableArray<NSDictionary *> *items = [NSMutableArray array];
     NSString *description = @"";
     
     [items addObject:[self localizedSummaryItemWithName:@"Color"

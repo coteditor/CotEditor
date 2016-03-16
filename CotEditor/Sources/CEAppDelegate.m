@@ -198,6 +198,7 @@
                                                CEDefaultPrintLineNumIndexKey: @(CELinePrintNo),
                                                CEDefaultPrintInvisibleCharIndexKey: @(CEInvisibleCharsPrintNo),
                                                CEDefaultPrintColorIndexKey: @(CEPrintColorBlackWhite),
+                                               CEDefaultTrimsTrailingWhitespaceOnSaveKey: @NO,
                                                
                                                /* -------- settings not in preferences window -------- */
                                                CEDefaultInsertCustomTextArrayKey: @[@"<br />\n", @"", @"", @"", @"", @"", @"", @"", @"", @"", @"",

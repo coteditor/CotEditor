@@ -1013,6 +1013,9 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
     } else if ([keyPath isEqualToString:CEDefaultCheckSpellingAsTypeKey]) {
         [self setContinuousSpellCheckingEnabled:[newValue boolValue]];
         
+    } else if ([keyPath isEqualToString:CEDefaultPageGuideColumnKey]) {
+        [self setNeedsDisplayInRect:[self visibleRect] avoidAdditionalLayout:YES];
+        
     } else if ([keyPath isEqualToString:CEDefaultEnablesHangingIndentKey] ||
                [keyPath isEqualToString:CEDefaultHangingIndentWidthKey])
     {
@@ -1300,6 +1303,28 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 
 
 // ------------------------------------------------------
+/// trim all trailing whitespace
+- (IBAction)trimTrailingWhitespace:(nullable id)sender
+// ------------------------------------------------------
+{
+    NSMutableArray<NSString *> *replaceStrings = [NSMutableArray array];
+    NSMutableArray<NSValue *> *replaceRanges = [NSMutableArray array];
+    
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"[ \\t]+$" options:NSRegularExpressionAnchorsMatchLines error:nil];
+    [regex enumerateMatchesInString:[self string] options:0
+                              range:NSMakeRange(0, [[self string] length])
+                         usingBlock:^(NSTextCheckingResult * _Nullable result, NSMatchingFlags flags, BOOL * _Nonnull stop)
+     {
+         [replaceRanges addObject:[NSValue valueWithRange:[result range]]];
+         [replaceStrings addObject:@""];
+    }];
+    
+    [self replaceWithStrings:replaceStrings ranges:replaceRanges selectedRanges:nil
+                  actionName:NSLocalizedString(@"Trim Trailing Whitespace", nil)];
+}
+
+
+// ------------------------------------------------------
 /// アウトラインメニュー選択によるテキスト選択を実行
 - (IBAction)setSelectedRangeWithNSValue:(nullable id)sender
 // ------------------------------------------------------
@@ -1361,6 +1386,7 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
     return @[CEDefaultAutoExpandTabKey,
              CEDefaultSmartInsertAndDeleteKey,
              CEDefaultCheckSpellingAsTypeKey,
+             CEDefaultPageGuideColumnKey,
              CEDefaultEnableSmartQuotesKey,
              CEDefaultHangingIndentWidthKey,
              CEDefaultEnablesHangingIndentKey,

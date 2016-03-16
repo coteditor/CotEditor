@@ -50,9 +50,7 @@ static const NSUInteger kMaxHistorySize = 20;
 
 @property (nonatomic, nonnull) CEFindPanelController *findPanelController;
 @property (nonatomic, nonnull) NSNumberFormatter *integerFormatter;
-
-// readonly
-@property (readwrite, nonatomic, nonnull) NSColor *highlightColor;
+@property (nonatomic, nonnull) NSColor *highlightColor;
 
 #pragma mark Settings
 @property (readonly, nonatomic) BOOL usesRegularExpression;
@@ -345,11 +343,17 @@ static const NSUInteger kMaxHistorySize = 20;
     if (![self checkIsReadyToFind]) { return; }
     
     NSNumberFormatter *integerFormatter = [self integerFormatter];
-    NSDictionary *hightlightAttributes = @{NSBackgroundColorAttributeName: [self highlightColor]};
     NSTextView *textView = [self client];
     NSString *findString = [self sanitizedFindString];
     OGRegularExpression *regex = [self regex];
     NSArray<NSValue *> *scopeRanges = [self scopeRanges];
+    
+    // -> [caution] numberOfGroups becomes 0 if non-regex + non-delimit-by-spaces
+    NSUInteger numberOfGroups = [self usesRegularExpression] ? [regex numberOfGroups] + 1 : [regex numberOfGroups];
+    NSArray<NSColor *> *highlightColors = [self decomposeHighlightColorsInto:numberOfGroups ?: 1];
+    if (![self usesRegularExpression]) {
+        highlightColors = [[highlightColors reverseObjectEnumerator] allObjects];
+    }
     
     NSRegularExpression *lineRegex = [NSRegularExpression regularExpressionWithPattern:@"\n" options:0 error:nil];
     NSString *string = [textView string];
@@ -363,6 +367,8 @@ static const NSUInteger kMaxHistorySize = 20;
             isCancelled = YES;
         }
     }];
+
+    [[textView layoutManager] removeTemporaryAttribute:NSBackgroundColorAttributeName forCharacterRange:NSMakeRange(0, [string length])];
     
     __weak typeof(self) weakSelf = self;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -390,13 +396,34 @@ static const NSUInteger kMaxHistorySize = 20;
                 lineNumber += [lineRegex numberOfMatchesInString:string options:0 range:diffRange];
                 lineCountedLocation = matchedRange.location;
                 
-                // get highlighted line string
+                // highlight both string in textView and line string for result table
                 NSRange lineRange = [string lineRangeForRange:matchedRange];
                 NSRange inlineRange = matchedRange;
                 inlineRange.location -= lineRange.location;
                 NSString *lineString = [string substringWithRange:lineRange];
                 NSMutableAttributedString *lineAttrString = [[NSMutableAttributedString alloc] initWithString:lineString];
-                [lineAttrString addAttributes:hightlightAttributes range:inlineRange];
+                
+                [lineAttrString addAttribute:NSBackgroundColorAttributeName value:[highlightColors firstObject] range:inlineRange];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [[textView layoutManager] addTemporaryAttribute:NSBackgroundColorAttributeName value:[highlightColors firstObject]
+                                                  forCharacterRange:matchedRange];
+                });
+                
+                for (NSUInteger i = 0; i < numberOfGroups; i++) {
+                    NSRange range = [match rangeOfSubstringAtIndex:i];
+                    
+                    if (range.length == 0) { continue; }
+                    
+                    NSColor *color = highlightColors[i];
+                    
+                    [lineAttrString addAttribute:NSBackgroundColorAttributeName value:color
+                                           range:NSMakeRange(range.location - lineRange.location, range.length)];
+                    
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [[textView layoutManager] addTemporaryAttribute:NSBackgroundColorAttributeName value:color
+                                                      forCharacterRange:range];
+                    });
+                }
                 
                 [result addObject:@{CEFindResultRange: [NSValue valueWithRange:matchedRange],
                                     CEFindResultLineNumber: @(lineNumber),
@@ -663,10 +690,8 @@ static const NSUInteger kMaxHistorySize = 20;
 - (nullable OGRegularExpression *)regex
 // ------------------------------------------------------
 {
-    unsigned options = [self usesRegularExpression] ? [self options] : [self delimitByWhitespaceOption] | [self ignoreCaseOption];
-    
     return [OGRegularExpression regularExpressionWithString:[self sanitizedFindString]
-                                                    options:options
+                                                    options:[self options]
                                                      syntax:[self textFinderSyntax]
                                             escapeCharacter:kEscapeCharacter];
 }
@@ -976,6 +1001,26 @@ static const NSUInteger kMaxHistorySize = 20;
              NSStringFromSelector(@selector(notBeginOfLineOption)),
              NSStringFromSelector(@selector(notEndOfLineOption)),
              ];
+}
+
+
+// ------------------------------------------------------
+/// create desired number of highlight colors from base highlight color
+- (nonnull NSArray<NSColor *> *)decomposeHighlightColorsInto:(NSUInteger)numberOfGroups
+// ------------------------------------------------------
+{
+    NSMutableArray<NSColor *> *highlightColors = [NSMutableArray arrayWithCapacity:numberOfGroups];
+    
+    CGFloat hue, saturation, brightness, alpha;
+    [[self highlightColor] getHue:&hue saturation:&saturation brightness:&brightness alpha:&alpha];
+    
+    for (CGFloat i = 0.0; i < numberOfGroups; i++) {
+        double dummy;
+        [highlightColors addObject:[NSColor colorWithCalibratedHue:modf(hue + i / numberOfGroups, &dummy)
+                                                        saturation:saturation brightness:brightness alpha:alpha]];
+    }
+    
+    return [highlightColors copy];
 }
 
 

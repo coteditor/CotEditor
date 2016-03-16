@@ -78,7 +78,7 @@ if IS_SANDBOXED then
 			<sparkle:minimumSystemVersion>10.8</sparkle:minimumSystemVersion>
 			<sparkle:shortVersionString>#{version}</sparkle:shortVersionString>
 			<sparkle:version>#{build_number}</sparkle:version>
-            <link>http://coteditor.com/</link>
+            <link>https://coteditor.com/</link>
 		</item>
 	APPCAST_ITEM
 else
@@ -105,7 +105,7 @@ end
 open(APPCAST_PATH, "w") { |file|
 file.puts <<APPCAST
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle">
 	<channel>
 		<title>CotEditor update information</title>
 		<link>https://coteditor.com/releasenotes/appcast.xml</link>

@@ -47,16 +47,6 @@ static NSString *_Nonnull const PageNumberPlaceholder = @"PAGENUM";
 
 @interface CEPrintView () <NSLayoutManagerDelegate>
 
-@property (nonatomic, nullable, copy) NSString *primaryHeaderString;
-@property (nonatomic, nullable, copy) NSString *secondaryHeaderString;
-@property (nonatomic, nullable, copy) NSString *primaryFooterString;
-@property (nonatomic, nullable, copy) NSString *secondaryFooterString;
-@property (nonatomic) CEAlignmentType primaryHeaderAlignment;
-@property (nonatomic) CEAlignmentType secondaryHeaderAlignment;
-@property (nonatomic) CEAlignmentType primaryFooterAlignment;
-@property (nonatomic) CEAlignmentType secondaryFooterAlignment;
-@property (nonatomic) BOOL printsHeader;
-@property (nonatomic) BOOL printsFooter;
 @property (nonatomic) BOOL printsLineNum;
 @property (nonatomic) CGFloat xOffset;
 @property (nonatomic, nullable) CESyntaxStyle *syntaxStyle;
@@ -100,10 +90,21 @@ static NSString *_Nonnull const PageNumberPlaceholder = @"PAGENUM";
 
 
 // ------------------------------------------------------
+/// job title
+- (nonnull NSString *)printJobTitle
+// ------------------------------------------------------
+{
+    return [self documentName] ?: [super printJobTitle];
+}
+
+
+// ------------------------------------------------------
 /// draw
 - (void)drawRect:(NSRect)dirtyRect
 // ------------------------------------------------------
 {
+    [self loadPrintSettings];
+    
     [super drawRect:dirtyRect];
 
     // draw line numbers if needed
@@ -189,14 +190,19 @@ static NSString *_Nonnull const PageNumberPlaceholder = @"PAGENUM";
 - (nonnull NSAttributedString *)pageHeader
 // ------------------------------------------------------
 {
-    [self setupPrint];
+    NSDictionary *settings = [[[NSPrintOperation currentOperation] printInfo] dictionary];
     
-    if (![self printsHeader]) { return [[NSAttributedString alloc] init]; }
+    if (![settings[CEPrintHeaderKey] boolValue]) { return [[NSAttributedString alloc] init]; }
     
-    return [self headerFooterWithPrimaryString:[self primaryHeaderString]
-                              primaryAlignment:[self primaryHeaderAlignment]
-                               secondaryString:[self secondaryHeaderString]
-                            secondaryAlignment:[self secondaryHeaderAlignment]];
+    CEPrintInfoType primaryInfoType = [settings[CEPrimaryHeaderContentKey] unsignedIntegerValue];
+    CEAlignmentType primaryAlignment = [settings[CEPrimaryHeaderAlignmentKey] unsignedIntegerValue];
+    CEPrintInfoType secondaryInfoType = [settings[CESecondaryHeaderContentKey] unsignedIntegerValue];
+    CEAlignmentType secondaryAlignment = [settings[CESecondaryHeaderAlignmentKey] unsignedIntegerValue];
+    
+    return [self headerFooterWithPrimaryString:[self stringForPrintInfoType:primaryInfoType]
+                              primaryAlignment:primaryAlignment
+                               secondaryString:[self stringForPrintInfoType:secondaryInfoType]
+                            secondaryAlignment:secondaryAlignment];
 }
 
 
@@ -205,20 +211,34 @@ static NSString *_Nonnull const PageNumberPlaceholder = @"PAGENUM";
 - (nonnull NSAttributedString *)pageFooter
 // ------------------------------------------------------
 {
-    [self setupPrint];
+    NSDictionary *settings = [[[NSPrintOperation currentOperation] printInfo] dictionary];
     
-    if (![self printsFooter]) { return [[NSAttributedString alloc] init]; }
+    if (![settings[CEPrintFooterKey] boolValue]) { return [[NSAttributedString alloc] init]; }
     
-    return [self headerFooterWithPrimaryString:[self primaryFooterString]
-                              primaryAlignment:[self primaryFooterAlignment]
-                               secondaryString:[self secondaryFooterString]
-                            secondaryAlignment:[self secondaryFooterAlignment]];
+    CEPrintInfoType primaryInfoType = [settings[CEPrimaryFooterContentKey] unsignedIntegerValue];
+    CEAlignmentType primaryAlignment = [settings[CEPrimaryFooterAlignmentKey] unsignedIntegerValue];
+    CEPrintInfoType secondaryInfoType = [settings[CESecondaryFooterContentKey] unsignedIntegerValue];
+    CEAlignmentType secondaryAlignment = [settings[CESecondaryFooterAlignmentKey] unsignedIntegerValue];
+    
+    return [self headerFooterWithPrimaryString:[self stringForPrintInfoType:primaryInfoType]
+                              primaryAlignment:primaryAlignment
+                               secondaryString:[self stringForPrintInfoType:secondaryInfoType]
+                            secondaryAlignment:secondaryAlignment];
 }
 
 
 // ------------------------------------------------------
 /// flip Y axis
 - (BOOL)isFlipped
+// ------------------------------------------------------
+{
+    return YES;
+}
+
+
+// ------------------------------------------------------
+/// view's opacity
+- (BOOL)isOpaque
 // ------------------------------------------------------
 {
     return YES;
@@ -241,17 +261,15 @@ static NSString *_Nonnull const PageNumberPlaceholder = @"PAGENUM";
 {
     // update text view size considering text orientation
     NSPrintInfo *printInfo = [[NSPrintOperation currentOperation] printInfo];
-    CGFloat scale = [printInfo scalingFactor];
-    NSSize frameSize;
+    NSSize frameSize = [printInfo paperSize];
     if ([self layoutOrientation] == NSTextLayoutOrientationVertical) {
-        frameSize = NSMakeSize([self maxSize].width,
-                               ([printInfo paperSize].height - ([printInfo leftMargin] + [printInfo rightMargin])) / scale);
+        frameSize.height -= [printInfo leftMargin] + [printInfo rightMargin];
+        frameSize.height /= [printInfo scalingFactor];
     } else {
-        frameSize = NSMakeSize(([printInfo paperSize].width - ([printInfo leftMargin] + [printInfo rightMargin])) / scale,
-                               [self maxSize].height);
+        frameSize.width -= [printInfo leftMargin] + [printInfo rightMargin];
+        frameSize.width /= [printInfo scalingFactor];
     }
     [self setFrameSize:frameSize];
-    [self sizeToFit];
     
     return [super knowsPageRange:aRange];
 }
@@ -320,7 +338,7 @@ static NSString *_Nonnull const PageNumberPlaceholder = @"PAGENUM";
 
 // ------------------------------------------------------
 /// parse current print settings in printInfo
-- (void)setupPrint
+- (void)loadPrintSettings
 // ------------------------------------------------------
 {
     NSDictionary *settings = [[[NSPrintOperation currentOperation] printInfo] dictionary];
@@ -362,6 +380,8 @@ static NSString *_Nonnull const PageNumberPlaceholder = @"PAGENUM";
     
     // setup syntax highlighting with set theme
     if ([settings[CEPrintThemeKey] isEqualToString:NSLocalizedString(@"Black and White",  nil)]) {
+        [[self layoutManager] removeTemporaryAttribute:NSForegroundColorAttributeName
+                                     forCharacterRange:NSMakeRange(0, [[self textStorage] length])];
         [self setTextColor:[NSColor blackColor]];
         [self setBackgroundColor:[NSColor whiteColor]];
         
@@ -376,21 +396,11 @@ static NSString *_Nonnull const PageNumberPlaceholder = @"PAGENUM";
         }
         CEPrintPanelAccessoryController *controller = [[[[NSPrintOperation currentOperation] printPanel] accessoryControllers] firstObject];
         [[self syntaxStyle] highlightWholeStringInTextStorage:[self textStorage] completionHandler:^ {
-            [controller setNeedsPreview:YES];
+            if (![[controller view] isHidden]) {
+                [controller setNeedsPreview:YES];
+            }
         }];
     }
-    
-    // setup header/footer
-    [self setPrintsHeader:[settings[CEPrintHeaderKey] boolValue]];
-    [self setPrimaryHeaderString:[self stringForPrintInfoType:[settings[CEPrimaryHeaderContentKey] unsignedIntegerValue]]];
-    [self setPrimaryHeaderAlignment:[settings[CEPrimaryHeaderAlignmentKey] unsignedIntegerValue]];
-    [self setSecondaryHeaderString:[self stringForPrintInfoType:[settings[CESecondaryHeaderContentKey] unsignedIntegerValue]]];
-    [self setSecondaryHeaderAlignment:[settings[CESecondaryHeaderAlignmentKey] unsignedIntegerValue]];
-    [self setPrintsFooter:[settings[CEPrintFooterKey] boolValue]];
-    [self setPrimaryFooterString:[self stringForPrintInfoType:[settings[CEPrimaryFooterContentKey] unsignedIntegerValue]]];
-    [self setPrimaryFooterAlignment:[settings[CEPrimaryFooterAlignmentKey] unsignedIntegerValue]];
-    [self setSecondaryFooterString:[self stringForPrintInfoType:[settings[CESecondaryFooterContentKey] unsignedIntegerValue]]];
-    [self setSecondaryFooterAlignment:[settings[CESecondaryFooterAlignmentKey] unsignedIntegerValue]];
 }
 
 
@@ -482,7 +492,7 @@ static NSString *_Nonnull const PageNumberPlaceholder = @"PAGENUM";
     }
     [paragraphStyle setAlignment:alignment];
     
-    // tab stops for double-sided alignment (imitation of [super paperHeader])
+    // tab stops for double-sided alignment (imitation of [super pageHeader])
     NSPrintInfo *printInfo = [[NSPrintOperation currentOperation] printInfo];
     CGFloat rightTabLocation = rightTabLocation = [printInfo paperSize].width - [printInfo topMargin] / 2;
     [paragraphStyle setTabStops:@[[[NSTextTab alloc] initWithType:NSCenterTabStopType location:rightTabLocation / 2],
@@ -517,7 +527,7 @@ static NSString *_Nonnull const PageNumberPlaceholder = @"PAGENUM";
             }
             
             if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultHeaderFooterPathAbbreviatingWithTildeKey]) {
-                return [[self filePath]  stringByAbbreviatingWithTildeInSandboxedPath];
+                return [[self filePath] stringByAbbreviatingWithTildeInSandboxedPath];
             } else {
                 return [self filePath];
             }

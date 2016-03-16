@@ -67,7 +67,7 @@ limitations under the License.
             NSData *yenData = [yen dataUsingEncoding:encoding allowLossyConversion:YES];
             NSString *convertedYen = [[NSString alloc] initWithData:yenData encoding:encoding];
             
-            NSMutableArray *codepoints = [NSMutableArray arrayWithCapacity:[convertedYen length]];
+            NSMutableArray<NSString *> *codepoints = [NSMutableArray arrayWithCapacity:[convertedYen length]];
             for (NSUInteger i = 0; i < [convertedYen length]; i++) {
                 [codepoints addObject:[NSString stringWithFormat:@"U+%04X", [convertedYen characterAtIndex:i]]];
             }

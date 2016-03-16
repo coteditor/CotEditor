@@ -73,6 +73,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 @interface CEDocument ()
 
 @property (nonatomic, nullable) CEPrintPanelAccessoryController *printPanelAccessoryController;
+@property (nonatomic, nullable) IBOutlet NSView *savePanelAccessoryView;
 
 @property (nonatomic) NSStringEncoding readingEncoding;  // encoding to read document file
 @property (nonatomic) BOOL needsShowUpdateAlertWithBecomeKey;
@@ -85,6 +86,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 @property (nonatomic) BOOL shouldSaveXattr;
 @property (nonatomic, nonnull, copy) NSString *autosaveIdentifier;
 @property (nonatomic) BOOL suppressesIANACharsetConflictAlert;
+@property (nonatomic, getter=isExecutable) BOOL executable;
 
 // readonly
 @property (readwrite, nonatomic, nullable) CEWindowController *windowController;
@@ -215,6 +217,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     if ([self fileURL]) {
         NSDictionary<NSString *, id> *attributes = [[NSFileManager defaultManager] attributesOfItemAtPath:[[self fileURL] path] error:outError];
         [self setFileAttributes:attributes];
+        [self setExecutable:([attributes filePosixPermissions] & S_IXUSR) != 0];
     }
     
     // try reading the `com.apple.TextEncoding` extended attribute
@@ -263,6 +266,22 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     }
     
     return success;
+}
+
+
+// ------------------------------------------------------
+/// return preferred file extension corresponding the current syntax style
+- (nullable NSString *)fileNameExtensionForType:(nonnull NSString *)typeName saveOperation:(NSSaveOperationType)saveOperation
+// ------------------------------------------------------
+{
+    if ([self fileURL]) {
+        return [[self fileURL] pathExtension];
+    }
+    
+    NSString *styleName = [[self syntaxStyle] styleName];
+    NSArray<NSString *> *extensions = [[CESyntaxManager sharedManager] extensionsForStyleName:styleName];
+    
+    return [extensions firstObject];
 }
 
 
@@ -318,11 +337,16 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 - (void)saveToURL:(nonnull NSURL *)url ofType:(nonnull NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation completionHandler:(nonnull void (^)(NSError * _Nullable))completionHandler
 // ------------------------------------------------------
 {
+    // trim trailing whitespace if needed
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultTrimsTrailingWhitespaceOnSaveKey]) {
+        [[[self editor] focusedTextView] trimTrailingWhitespace:self];
+    }
+    
     // break undo grouping
     [[[self editor] focusedTextView] breakUndoCoalescing];
     
     // modify place to create backup file
-    //   -> save backup file always in `~/Library/Autosaved Information/` direcotory
+    //   -> save backup file always in `~/Library/Autosaved Information/` directory
     //      (The default backup URL is the same directory as the fileURL.)
     if (saveOperation == NSAutosaveElsewhereOperation && [self fileURL]) {
         NSURL *autosaveDirectoryURL =  [[CEDocumentController sharedDocumentController] autosaveDirectoryURL];
@@ -367,6 +391,10 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
              }
              
              if (saveOperation != NSAutosaveElsewhereOperation) {
+                 // get the latest file attributes
+                 NSDictionary<NSString *, id> *attributes = [[NSFileManager defaultManager] attributesOfItemAtPath:[url path] error:nil];
+                 [self setFileAttributes:attributes];
+                 
                  // update file information
                  [[self windowController] updateFileInfo];
                  
@@ -400,14 +428,34 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
             
             // store file encoding for revert
             [self setReadingEncoding:encoding];
-            
-            // store file attributes
-            NSDictionary<NSString *, id> *attributes = [[NSFileManager defaultManager] attributesOfItemAtPath:[url path] error:nil];
-            [self setFileAttributes:attributes];
         }
     }
 
     return success;
+}
+
+
+// ------------------------------------------------------
+/// customize document's file attributes
+- (nullable NSDictionary<NSString *, id> *)fileAttributesToWriteToURL:(nonnull NSURL *)url ofType:(nonnull NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation originalContentsURL:(nullable NSURL *)absoluteOriginalContentsURL error:(NSError * _Nullable __autoreleasing *)outError
+// ------------------------------------------------------
+{
+    NSMutableDictionary<NSString *, id> *attributes = [[super fileAttributesToWriteToURL:url ofType:typeName forSaveOperation:saveOperation originalContentsURL:absoluteOriginalContentsURL error:outError] ?: @{} mutableCopy];
+    
+//    // give the execute permission if user requested  TODO: Uncomment after 2.4.4 release
+//    if ([self isExecutable] && saveOperation != NSAutosaveElsewhereOperation) {
+//        NSUInteger permissions = [attributes filePosixPermissions];
+//        if (permissions == 0) {
+//            if (absoluteOriginalContentsURL) {  // read from old one if not exists
+//                permissions = [[[NSFileManager defaultManager] attributesOfItemAtPath:[absoluteOriginalContentsURL path] error:outError] filePosixPermissions];
+//            } else {
+//                permissions = 0644;  // ???: Is the default permission really always 644?
+//            }
+//        }
+//        attributes[NSFilePosixPermissions] = @(permissions | S_IXUSR);
+//    }
+    
+    return [attributes copy];
 }
 
 
@@ -434,12 +482,19 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     [savePanel setExtensionHidden:NO];
     [savePanel setCanSelectHiddenExtension:NO];
     
-    // append file extension as a part of the file name, if it is the first save.
-    if (![self fileURL]) {
-        NSString *extension = [self preferredExtension];
-        if (extension) {
-            [savePanel setNameFieldStringValue:[[savePanel nameFieldStringValue] stringByAppendingPathExtension:extension]];
-        }
+    // set accessory view
+    if (![self savePanelAccessoryView]) {
+        [[NSBundle mainBundle] loadNibNamed:@"SaveDocumentAccessory" owner:self topLevelObjects:nil];
+    }
+//    [savePanel setAccessoryView:[self savePanelAccessoryView]];  TODO: Uncomment after 2.4.4 release
+    
+    // append file extension as a part of the file name
+    // -> NSSaveAsOperation will remove the current file extension from file name in the nameField
+    //    as we set nil to `setAllowedFileTypes:` just above.
+    //    So, we need to set it again manually.
+    NSString *extension = [self fileNameExtensionForType:[self fileType] saveOperation:NSSaveOperation];
+    if (extension) {
+        [savePanel setNameFieldStringValue:[[savePanel nameFieldStringValue] stringByAppendingPathExtension:extension]];
     }
     
     return [super prepareSavePanel:savePanel];
@@ -482,7 +537,6 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     if (![self printPanelAccessoryController]) {
         [self setPrintPanelAccessoryController:[[CEPrintPanelAccessoryController alloc] init]];
     }
-    CEPrintPanelAccessoryController *accessoryController = [self printPanelAccessoryController];
     
     // create printView
     CEPrintView *printView = [[CEPrintView alloc] init];
@@ -507,7 +561,26 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     [printView setFont:font];
     
     // setup PrintInfo
-    NSPrintInfo *printInfo = [self printInfo];
+    NSPrintInfo *printInfo = [[self printInfo] copy];
+    [[printInfo dictionary] addEntriesFromDictionary:printSettings];
+    
+    // create print operation
+    NSPrintOperation *printOperation = [NSPrintOperation printOperationWithView:printView printInfo:printInfo];
+    [printOperation setShowsProgressPanel:YES];
+    [[printOperation printPanel] addAccessoryController:[self printPanelAccessoryController]];
+    [[printOperation printPanel] setOptions:NSPrintPanelShowsCopies | NSPrintPanelShowsPageRange | NSPrintPanelShowsPaperSize | NSPrintPanelShowsOrientation | NSPrintPanelShowsScaling | NSPrintPanelShowsPreview];
+    
+    return printOperation;
+}
+
+
+// ------------------------------------------------------
+/// printing information associated with the document
+- (nonnull NSPrintInfo *)printInfo
+// ------------------------------------------------------
+{
+    NSPrintInfo *printInfo = [super printInfo];
+    
     [printInfo setHorizontalPagination:NSFitPagination];
     [printInfo setHorizontallyCentered:NO];
     [printInfo setVerticallyCentered:NO];
@@ -517,14 +590,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     [printInfo setBottomMargin:kVerticalPrintMargin];
     [printInfo dictionary][NSPrintHeaderAndFooter] = @YES;
     
-    // create print operation
-    NSPrintOperation *printOperation = [NSPrintOperation printOperationWithView:printView printInfo:printInfo];
-    [printOperation setJobTitle:[self displayName]];
-    [printOperation setShowsProgressPanel:YES];
-    [[printOperation printPanel] addAccessoryController:accessoryController];
-    [[printOperation printPanel] setOptions:NSPrintPanelShowsCopies | NSPrintPanelShowsPageRange | NSPrintPanelShowsPaperSize | NSPrintPanelShowsOrientation | NSPrintPanelShowsScaling | NSPrintPanelShowsPreview];
-    
-    return printOperation;
+    return printInfo;
 }
 
 
@@ -1213,23 +1279,6 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 
 #pragma mark Private Methods
-
-// ------------------------------------------------------
-/// return preferred file extension corresponding the current syntax style
-- (nullable NSString *)preferredExtension
-// ------------------------------------------------------
-{
-    if ([self fileURL]) {
-        return [[self fileURL] pathExtension];
-        
-    } else {
-        NSString *styleName = [[self syntaxStyle] styleName];
-        NSArray<NSString *> *extensions = [[CESyntaxManager sharedManager] extensionsForStyleName:styleName];
-        
-        return [extensions firstObject];
-    }
-}
-
 
 // ------------------------------------------------------
 /// ツールバーのエンコーディングメニュー、ステータスバー、インスペクタを更新

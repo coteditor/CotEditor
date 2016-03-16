@@ -260,12 +260,12 @@ static CGFontRef BoldLineNumberFont;
     
     // counters
     NSUInteger glyphCount = visibleGlyphRange.location;
-    NSUInteger lineNumber = 1;
+    NSUInteger lineNumber = 0;
     NSUInteger lastLineNumber = 0;
     
     // count lines until visible
-    lineNumber += [string numberOfLinesInRange:NSMakeRange(0, [layoutManager characterIndexForGlyphAtIndex:visibleGlyphRange.location])
-                          includingLastNewLine:NO];
+    lineNumber = [string numberOfLinesInRange:NSMakeRange(0, [layoutManager characterIndexForGlyphAtIndex:visibleGlyphRange.location])
+                         includingLastNewLine:YES] ?: 1;  // start with 1
     
     // draw visible line numbers
     for (NSUInteger glyphIndex = visibleGlyphRange.location; glyphIndex < NSMaxRange(visibleGlyphRange); lineNumber++) { // count "real" lines

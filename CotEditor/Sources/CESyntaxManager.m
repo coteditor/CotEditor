@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2015 1024jp
+ © 2014-2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -816,19 +816,19 @@ NSString *_Nonnull const CESyntaxValidationMessageKey = @"MessageKey";
             }
         }
         
-        for (NSString *filename in [self map][styleName][CESyntaxInterpretersKey]) {
-            if ((addedName = interpreterToStyleTable[filename])) { // 同じファイル名を持つものがすでにあるとき
-//                NSMutableArray<NSString *> *errors = interpreterConflicts[filename];
+        for (NSString *interpreter in [self map][styleName][CESyntaxInterpretersKey]) {
+            if ((addedName = interpreterToStyleTable[interpreter])) { // 同じインタープリタ名を持つものがすでにあるとき
+//                NSMutableArray<NSString *> *errors = interpreterConflicts[interpreter];
 //                if (!errors) {
 //                    errors = [NSMutableArray array];
-//                    [interpreterConflicts setValue:errors forKey:filename];
+//                    [interpreterConflicts setValue:errors forKey:interpreter];
 //                }
 //                if (![errors containsObject:addedName]) {
 //                    [errors addObject:addedName];
 //                }
 //                [errors addObject:styleName];
             } else {
-                [interpreterToStyleTable setValue:styleName forKey:filename];
+                [interpreterToStyleTable setValue:styleName forKey:interpreter];
             }
         }
     }

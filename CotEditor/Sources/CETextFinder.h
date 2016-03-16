@@ -51,8 +51,6 @@ typedef NS_ENUM(NSInteger, CETextFinderAction) {
 @property (nonatomic, nonnull, copy) NSString *findString;
 @property (nonatomic, nonnull, copy) NSString *replacementString;
 
-@property (readonly, nonatomic, nonnull) NSColor *highlightColor;
-
 // Options
 @property (nonatomic) BOOL ignoreCaseOption;
 @property (nonatomic) BOOL singleLineOption;

@@ -34,7 +34,8 @@
   },
   "BibTeX": {
     "extensions": [
-      "bib"
+      "bib",
+      "bibtex"
     ],
     "filenames": [
 
