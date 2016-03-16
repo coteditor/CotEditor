@@ -19,6 +19,11 @@ develop
 - Display print progress panel as a document-modal sheet.
 
 
+### Fixes
+
+- Fix an issue where the backgorund of navigation/status bars were not dwarn under a specific condition.
+
+
 
 2.4.4 (111)
 --------------------------
