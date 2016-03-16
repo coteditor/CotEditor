@@ -91,8 +91,6 @@ static CGFontRef BoldLineNumberFont;
     self = [super initWithScrollView:scrollView orientation:orientation];
     if (self) {
         [self setClientView:[scrollView documentView]];
-        
-        _needsRecountTotalNumberOfLines = YES;
     }
     return self;
 }
