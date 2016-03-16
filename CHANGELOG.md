@@ -22,6 +22,7 @@ develop
 ### Fixes
 
 - Fix an issue where the backgorund of navigation/status bars were not dwarn under a specific condition.
+- Fix an issue where layout of split editors will be broken if the font of one of the other split editors is changed.
 
 
 

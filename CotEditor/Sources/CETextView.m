@@ -674,11 +674,18 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 - (void)setFont:(nullable NSFont *)font
 // ------------------------------------------------------
 {
-// 複合フォントで行間が等間隔でなくなる問題を回避するため、CELayoutManager にもフォントを持たせておく。
-// （CELayoutManager で [[self firstTextView] font] を使うと、「1バイトフォントを指定して日本語が入力されている」場合に
-// 日本語フォント名を返してくることがあるため、CELayoutManager からは [textView font] を使わない）
+    // 複合フォントで行間が等間隔でなくなる問題を回避するため、CELayoutManager にもフォントを持たせておく。
+    // （CELayoutManager で [[self firstTextView] font] を使うと、「1バイトフォントを指定して日本語が入力されている」場合に
+    // 日本語フォント名を返してくることがあるため、CELayoutManager からは [textView font] を使わない）
     
     [(CELayoutManager *)[self layoutManager] setTextFont:font];
+    
+    // apply font change to all of layoutManagers in the other split editors (2016-03)
+    for (CELayoutManager *layoutManager in [[self textStorage] layoutManagers]) {
+        if (layoutManager == [self layoutManager]) { continue; }
+        [layoutManager setTextFont:font];
+        [layoutManager ensureLayoutForCharacterRange:NSMakeRange(0, [[layoutManager textStorage] length])];
+    }
     [super setFont:font];
     
     NSMutableParagraphStyle *paragraphStyle = [[self defaultParagraphStyle] mutableCopy];
