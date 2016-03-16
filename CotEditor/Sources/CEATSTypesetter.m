@@ -126,7 +126,7 @@
     if (charIndex == 0) { return YES; }
     
     NSTextStorage *textStorage = [[self layoutManager] textStorage];
-    NSUInteger lastLineBreakIndex = [textStorage lineBreakBeforeIndex:charIndex withinRange:NSMakeRange(0, charIndex)];
+    NSUInteger lastLineBreakIndex = [textStorage lineBreakBeforeIndex:charIndex withinRange:NSMakeRange(0, charIndex)]; // !!!: performance critical
     
     if (lastLineBreakIndex != NSNotFound) {
         NSString *beforeBreakCandidate = [[textStorage string] substringWithRange:NSMakeRange(lastLineBreakIndex,

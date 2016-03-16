@@ -405,7 +405,7 @@ static NSString *HiraginoSansName;
              // getting the start line of the character jsut after the last indent character
              //   -> This is actually better in terms of performance than getting whole bounding rect using `boundingRectForGlyphRange:inTextContainer:`
              NSUInteger firstGlyphIndex = [self glyphIndexForCharacterAtIndex:NSMaxRange(baseIndentRange)];
-             NSPoint firstGlyphLocation = [self locationForGlyphAtIndex:firstGlyphIndex];
+             NSPoint firstGlyphLocation = [self locationForGlyphAtIndex:firstGlyphIndex];  // !!!: performance critical
              indent += firstGlyphLocation.x - linePadding;
          }
          
