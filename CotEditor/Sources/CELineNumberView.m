@@ -122,8 +122,8 @@ static CGFontRef BoldLineNumberFont;
 - (void)drawRect:(NSRect)dirtyRect
 // ------------------------------------------------------
 {
-    NSColor *counterColor = [[[self textView] theme] isDarkTheme] ? [NSColor whiteColor] : [NSColor blackColor];
-    NSColor *textColor = [[[self textView] theme] weakTextColor];
+    NSColor *counterColor = [[self theme] isDarkTheme] ? [NSColor whiteColor] : [NSColor blackColor];
+    NSColor *textColor = [[self theme] weakTextColor];
     
     // fill background
     [[counterColor colorWithAlphaComponent:0.08] set];
@@ -157,21 +157,18 @@ static CGFontRef BoldLineNumberFont;
     
     if (length == 0) { return; }
     
-    NSLayoutManager *layoutManager = [[self textView] layoutManager];
-    NSColor *textColor = [[[self textView] theme] weakTextColor];
-    
-    BOOL isVerticalText = [self orientation] == NSHorizontalRuler;
+    NSTextView *textView = [self textView];
+    NSLayoutManager *layoutManager = [textView layoutManager];
+    NSColor *textColor = [[self theme] weakTextColor];
     
     // set graphics context
     CGContextRef context = (CGContextRef)[[NSGraphicsContext currentContext] graphicsPort];
     CGContextSaveGState(context);
 
     // setup font
-    CGFloat masterFontSize = [[[self textView] font] pointSize];
+    CGFloat masterFontSize = [[textView font] pointSize];
     CGFloat fontSize = MIN(round(kFontSizeFactor * masterFontSize), masterFontSize);
     CTFontRef font = CTFontCreateWithGraphicsFont(LineNumberFont, fontSize, nil, nil);
-    
-    CGFloat tickLength = ceil(fontSize / 3);
     
     CGContextSetFont(context, LineNumberFont);
     CGContextSetFontSize(context, fontSize);
@@ -190,36 +187,33 @@ static CGFontRef BoldLineNumberFont;
     CGSize advance;
     CTFontGetAdvancesForGlyphs(font, kCTFontOrientationHorizontal, &digitGlyphs[8], &advance, 1);  // use '8' to get width
     CGFloat charWidth = advance.width;
+    CFRelease(font);
     
     // prepare frame width
     CGFloat ruleThickness = [self ruleThickness];
     
+    BOOL isVerticalText = [self orientation] == NSHorizontalRuler;
+    CGFloat tickLength = ceil(fontSize / 3);
+    
     // adjust text drawing coordinate
-    NSPoint relativePoint = [self convertPoint:NSZeroPoint fromView:[self textView]];
-    NSPoint inset = [[self textView] textContainerOrigin];
+    NSPoint relativePoint = [self convertPoint:NSZeroPoint fromView:textView];
+    NSPoint inset = [textView textContainerOrigin];
+    CGFloat ascent = [[textView font] ascender];
     CGAffineTransform transform = CGAffineTransformMakeScale(1.0, -1.0);  // flip
     if (isVerticalText) {
-        CGFloat lineHeight = [[[self textView] font] ascender];
-        transform = CGAffineTransformTranslate(transform, round(relativePoint.x - inset.y - lineHeight / 2), -ruleThickness);
+        transform = CGAffineTransformTranslate(transform, round(relativePoint.x - inset.y - ascent / 2), -ruleThickness);
     } else {
-        CGFloat ascent = CTFontGetAscent(font);
-        CGFloat diff = masterFontSize - fontSize;
-        transform = CGAffineTransformTranslate(transform, -kLineNumberPadding, -relativePoint.y - inset.y - diff - ascent);
+        transform = CGAffineTransformTranslate(transform, -kLineNumberPadding, -relativePoint.y - inset.y - ascent);
     }
     CGContextSetTextMatrix(context, transform);
-    CFRelease(font);
     
     // add enough buffer to avoid broken drawing on Mountain Lion (10.8) with scroller (2015-07)
     NSRect visibleRect = [[self scrollView] documentVisibleRect];
     visibleRect.size.height += fontSize;
     
-    // get glyph range which line number should be drawn
-    NSRange visibleGlyphRange = [layoutManager glyphRangeForBoundingRect:visibleRect
-                                                         inTextContainer:[[self textView] textContainer]];
-    
-    // get multiple selection
-    NSMutableArray<NSValue *> *selectedLineRanges = [NSMutableArray arrayWithCapacity:[[[self textView] selectedRanges] count]];
-    for (NSValue *rangeValue in [[self textView] selectedRanges]) {
+    // get multiple selections
+    NSMutableArray<NSValue *> *selectedLineRanges = [NSMutableArray arrayWithCapacity:[[textView selectedRanges] count]];
+    for (NSValue *rangeValue in [textView selectedRanges]) {
         NSRange selectedLineRange = [string lineRangeForRange:[rangeValue rangeValue]];
         [selectedLineRanges addObject:[NSValue valueWithRange:selectedLineRange]];
     }
@@ -272,6 +266,10 @@ static CGFontRef BoldLineNumberFont;
         CGContextAddPath(context, tick);
         CFRelease(tick);
     };
+    
+    // get glyph range which line number should be drawn
+    NSRange visibleGlyphRange = [layoutManager glyphRangeForBoundingRect:visibleRect
+                                                         inTextContainer:[textView textContainer]];
     
     // counters
     NSUInteger glyphCount = visibleGlyphRange.location;
@@ -428,10 +426,19 @@ static CGFontRef BoldLineNumberFont;
 
 // ------------------------------------------------------
 /// return client view casting to textView
-- (nullable NSTextView<CETextViewProtocol> *)textView
+- (nullable NSTextView *)textView
 // ------------------------------------------------------
 {
-    return (NSTextView<CETextViewProtocol> *)[self clientView];
+    return (NSTextView *)[self clientView];
+}
+
+
+// ------------------------------------------------------
+/// return coloring theme
+- (nullable CETheme *)theme
+// ------------------------------------------------------
+{
+    return [(NSTextView<CETextViewProtocol> *)[self clientView] theme];
 }
 
 
