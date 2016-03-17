@@ -160,6 +160,8 @@ static CGFontRef BoldLineNumberFont;
     NSLayoutManager *layoutManager = [[self textView] layoutManager];
     NSColor *textColor = [[[self textView] theme] weakTextColor];
     
+    BOOL isVerticalText = [self orientation] == NSHorizontalRuler;
+    
     // set graphics context
     CGContextRef context = (CGContextRef)[[NSGraphicsContext currentContext] graphicsPort];
     CGContextSaveGState(context);
@@ -195,11 +197,15 @@ static CGFontRef BoldLineNumberFont;
     // adjust text drawing coordinate
     NSPoint relativePoint = [self convertPoint:NSZeroPoint fromView:[self textView]];
     NSPoint inset = [[self textView] textContainerOrigin];
-    CGFloat diff = masterFontSize - fontSize;
-    CGFloat ascent = CTFontGetAscent(font);
-    CGAffineTransform transform = CGAffineTransformIdentity;
-    transform = CGAffineTransformScale(transform, 1.0, -1.0);  // flip
-    transform = CGAffineTransformTranslate(transform, -kLineNumberPadding, -relativePoint.y - inset.y - diff - ascent);
+    CGAffineTransform transform = CGAffineTransformMakeScale(1.0, -1.0);  // flip
+    if (isVerticalText) {
+        CGFloat lineHeight = [[[self textView] font] ascender];
+        transform = CGAffineTransformTranslate(transform, round(relativePoint.x - inset.y - lineHeight / 2), -ruleThickness);
+    } else {
+        CGFloat ascent = CTFontGetAscent(font);
+        CGFloat diff = masterFontSize - fontSize;
+        transform = CGAffineTransformTranslate(transform, -kLineNumberPadding, -relativePoint.y - inset.y - diff - ascent);
+    }
     CGContextSetTextMatrix(context, transform);
     CFRelease(font);
     
@@ -211,8 +217,6 @@ static CGFontRef BoldLineNumberFont;
     NSRange visibleGlyphRange = [layoutManager glyphRangeForBoundingRect:visibleRect
                                                          inTextContainer:[[self textView] textContainer]];
     
-    BOOL isVerticalText = [self orientation] == NSHorizontalRuler;
-    
     // get multiple selection
     NSMutableArray<NSValue *> *selectedLineRanges = [NSMutableArray arrayWithCapacity:[[[self textView] selectedRanges] count]];
     for (NSValue *rangeValue in [[self textView] selectedRanges]) {
@@ -222,26 +226,14 @@ static CGFontRef BoldLineNumberFont;
     
     // draw line number block
     CGGlyph *digitGlyphsPtr = digitGlyphs;
-    void (^draw_number)(NSUInteger, NSUInteger, CGFloat, BOOL, BOOL) = ^(NSUInteger lineNumber, NSUInteger lastLineNumber, CGFloat y, BOOL drawsNumber, BOOL isBold)
+    void (^draw_number)(NSUInteger, CGFloat, BOOL) = ^(NSUInteger lineNumber, CGFloat y, BOOL isBold)
     {
-        if (isVerticalText) {
-            // translate y position to horizontal axis
-            y += relativePoint.x - masterFontSize / 2 - inset.y;
-            
-            // draw ticks on vertical text
-            CGFloat x = round(y) - 0.5;
-            CGContextMoveToPoint(context, x, ruleThickness);
-            CGContextAddLineToPoint(context, x, ruleThickness - tickLength);
-        }
-        
-        if (!drawsNumber) { return; }
-        
         NSUInteger digit = numberOfDigits(lineNumber);
         
         // calculate base position
         CGPoint position;
         if (isVerticalText) {
-            position = CGPointMake(ceil(y + charWidth * (digit + 1) / 2), ruleThickness + tickLength - 2);
+            position = CGPointMake(ceil(y + charWidth * digit / 2), 2 * tickLength);
         } else {
             position = CGPointMake(ruleThickness, y);
         }
@@ -267,6 +259,18 @@ static CGFontRef BoldLineNumberFont;
             // back to the regular font
             CGContextSetFont(context, LineNumberFont);
         }
+    };
+    
+    // draw ticks block for vertical text
+    void (^draw_tick)(CGFloat) = ^(CGFloat y)
+    {
+        CGFloat x = round(y) + 0.5;
+        
+        CGMutablePathRef tick = CGPathCreateMutable();
+        CGPathMoveToPoint(tick, &transform, x, 0);
+        CGPathAddLineToPoint(tick, &transform, x, tickLength);
+        CGContextAddPath(context, tick);
+        CFRelease(tick);
     };
     
     // counters
@@ -305,20 +309,25 @@ static CGFontRef BoldLineNumberFont;
                 }
                 
             } else {  // new line
-                BOOL drawsNumber = (isSelected || !isVerticalText || lineNumber % 5 == 0 || lineNumber == 1);
-                draw_number(lineNumber, lastLineNumber, y, drawsNumber, isSelected);
+                if (isVerticalText) {
+                    draw_tick(y);
+                }
+                if (isSelected || !isVerticalText || lineNumber % 5 == 0 || lineNumber == 1) {
+                    draw_number(lineNumber, y, isSelected);
+                }
             }
             
             glyphCount = NSMaxRange(range);
             
             // draw last line number on vertical text anyway
             if (isVerticalText &&  // vertical text
+                NSMaxRange(lineRange) == length &&  // last line
                 lastLineNumber != lineNumber &&  // new line
                 isVerticalText && lineNumber != 1 && lineNumber % 5 != 0 &&  // not yet drawn
-                NSMaxRange(lineRange) == length &&  // last line
                 ![layoutManager extraLineFragmentTextContainer])  // no extra number
             {
-                draw_number(lineNumber, lastLineNumber, y, YES, isSelected);
+                draw_tick(y);
+                draw_number(lineNumber, y, isSelected);
             }
             
             lastLineNumber = lineNumber;
@@ -332,7 +341,10 @@ static CGFontRef BoldLineNumberFont;
         BOOL isSelected = (lastSelectedRange.length == 0) && (length == NSMaxRange(lastSelectedRange));
         CGFloat y = -NSMinY(lineRect);
         
-        draw_number(lineNumber, lastLineNumber, y, YES, isSelected);
+        if (isVerticalText) {
+            draw_tick(y);
+        }
+        draw_number(lineNumber, y, isSelected);
     }
     
     // draw vertical text tics
@@ -346,7 +358,7 @@ static CGFontRef BoldLineNumberFont;
     // adjust thickness
     CGFloat requiredThickness;
     if (isVerticalText) {
-        requiredThickness = MAX(fontSize + tickLength + 2 * kLineNumberPadding, kMinHorizontalThickness);
+        requiredThickness = MAX(fontSize + 2.5 * tickLength, kMinHorizontalThickness);
         
     } else {
         if ([self needsRecountTotalNumberOfLines]) {

@@ -23,6 +23,7 @@ develop
 
 - Fix an issue where the backgorund of navigation/status bars were not dwarn under a specific condition.
 - Fix an issue where layout of split editors will be broken if the font of one of the other split editors is changed.
+- Fix an issue where the numbers in the line number view could be drawn in a wrong place if the editor is vertical text mode and unwapped.
 
 
 
