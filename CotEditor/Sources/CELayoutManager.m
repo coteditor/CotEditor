@@ -97,7 +97,8 @@ static NSString *HiraginoSansName;
 - (nonnull instancetype)init
 // ------------------------------------------------------
 {
-    if (self = [super init]) {
+    self = [super init];
+    if (self) {
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 
         _spaceChar = [CEInvisibles spaceCharWithIndex:[defaults integerForKey:CEDefaultInvisibleSpaceKey]];
@@ -131,7 +132,7 @@ static NSString *HiraginoSansName;
 - (void)setLineFragmentRect:(NSRect)fragmentRect forGlyphRange:(NSRange)glyphRange usedRect:(NSRect)usedRect
 // ------------------------------------------------------
 {
-    if (![self isPrinting] && [self fixesLineHeight]) {
+    if ([self fixesLineHeight]) {
         // 複合フォントで行の高さがばらつくのを防止する
         // （CETextView で、NSParagraphStyle の lineSpacing を設定しても行間は制御できるが、
         // 「文書の1文字目に1バイト文字（または2バイト文字）を入力してある状態で先頭に2バイト文字（または1バイト文字）を
@@ -161,8 +162,8 @@ static NSString *HiraginoSansName;
 - (void)drawGlyphsForGlyphRange:(NSRange)glyphsToShow atPoint:(NSPoint)origin
 // ------------------------------------------------------
 {
-    // スクリーン描画の時、アンチエイリアス制御
-    if (![self isPrinting]) {
+    // set anti-alias state on screen drawing
+    if ([NSGraphicsContext currentContextDrawingToScreen]) {
         [[NSGraphicsContext currentContext] setShouldAntialias:[self usesAntialias]];
     }
     
@@ -275,7 +276,7 @@ static NSString *HiraginoSansName;
 
 // ------------------------------------------------------
 /// textStorage did update
-- (void)textStorage:(NSTextStorage *)str edited:(NSTextStorageEditedOptions)editedMask range:(NSRange)newCharRange changeInLength:(NSInteger)delta invalidatedRange:(NSRange)invalidatedCharRange
+- (void)textStorage:(nonnull NSTextStorage *)str edited:(NSTextStorageEditedOptions)editedMask range:(NSRange)newCharRange changeInLength:(NSInteger)delta invalidatedRange:(NSRange)invalidatedCharRange
 // ------------------------------------------------------
 {
     // invalidate wrapping line indent in editRange if needed
@@ -297,17 +298,6 @@ static NSString *HiraginoSansName;
 #pragma mark Public Methods
 
 // ------------------------------------------------------
-/// [NSGraphicsContext currentContextDrawingToScreen] は真を返す時があるため、印刷用かを保持する専用フラグを用意
-- (void)setPrinting:(BOOL)printing
-// ------------------------------------------------------
-{
-    [self setUsesScreenFonts:!printing];
-    
-    _printing = printing;
-}
-
-
-// ------------------------------------------------------
 /// 表示フォントをセット
 - (void)setTextFont:(nullable NSFont *)textFont
 // ------------------------------------------------------
@@ -317,9 +307,12 @@ static NSString *HiraginoSansName;
     // 日本語フォント名を返してくることがあるため、使わない）
 
     _textFont = textFont;
-    [self setValuesForTextFont:textFont];
     
-    // store width of space char for indent width calculation
+    // cache default line height
+    CGFloat defaultLineHeight = textFont ? [self defaultLineHeightForFont:textFont] : 0.0;
+    [self setDefaultLineHeightForTextFont:defaultLineHeight * kDefaultLineHeightMultiple];
+    
+    // store width of space char for hanging indent width calculation
     NSFont *screenFont = [textFont screenFont] ? : textFont;
     [self setSpaceWidth:[screenFont advancementForGlyph:(NSGlyph)' '].width];
 }
@@ -444,24 +437,10 @@ static NSString *HiraginoSansName;
 
 // ------------------------------------------------------
 /// current theme
-- (CETheme *)theme
+- (nullable CETheme *)theme
 // ------------------------------------------------------
 {
     return [(NSTextView<CETextViewProtocol> *)[self firstTextView] theme];
-}
-
-
-// ------------------------------------------------------
-/// 表示フォントの各種値をキャッシュする
-- (void)setValuesForTextFont:(nullable NSFont *)textFont
-// ------------------------------------------------------
-{
-    if (textFont) {
-        [self setDefaultLineHeightForTextFont:[self defaultLineHeightForFont:textFont] * kDefaultLineHeightMultiple];
-        
-    } else {
-        [self setDefaultLineHeightForTextFont:0.0];
-    }
 }
 
 

@@ -40,9 +40,7 @@
 - (BOOL)usesFontLeading
 // ------------------------------------------------------
 {
-    CELayoutManager *manager = (CELayoutManager *)[self layoutManager];
-
-    return ([manager isPrinting] || ![manager fixesLineHeight]);
+    return ![(CELayoutManager *)[self layoutManager] fixesLineHeight];
 }
 
 
@@ -54,9 +52,7 @@
     CELayoutManager *manager = (CELayoutManager *)[self layoutManager];
     CGFloat lineSpacing = [(NSTextView<CETextViewProtocol> *)[[self currentTextContainer] textView] lineSpacing];
 
-    if ([manager isPrinting] || ![manager fixesLineHeight]) {
-        // 印刷時または複合フォントでの行間固定をしないときは、システム既定値に、設定された行間を追加するだけ
-        // （[NSGraphicsContext currentContextDrawingToScreen] が真を返す時があるため、専用フラグで印刷中を確認）
+    if (![manager fixesLineHeight]) {
         CGFloat spacing = [super lineSpacingAfterGlyphAtIndex:glyphIndex withProposedLineFragmentRect:rect];
         CGFloat fontSize = [[[[self currentTextContainer] textView] font] pointSize];
 
