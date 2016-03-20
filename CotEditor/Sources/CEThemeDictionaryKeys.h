@@ -25,7 +25,7 @@
  
  */
 
-@import Foundation;
+@import Foundation.NSString;
 
 
 // top-level keys

@@ -515,7 +515,7 @@ static NSArray<NSString *> *kSyntaxDictKeys;
         if ([ranges count] == 0) { continue; }
         
         // get color from theme
-        NSColor *color = [theme syntaxColorForType:syntaxType];
+        NSColor *color = [theme syntaxColorForType:syntaxType] ?: [theme textColor];
         
         for (NSValue *rangeValue in ranges) {
             [layoutManager addTemporaryAttribute:NSForegroundColorAttributeName

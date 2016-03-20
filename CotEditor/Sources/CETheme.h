@@ -25,7 +25,8 @@
  
  */
 
-@import AppKit;
+@import Foundation;
+@import AppKit.NSColor;
 
 
 @interface CETheme : NSObject
@@ -72,6 +73,6 @@
 - (nullable instancetype)initWithDictinonary:(nonnull NSDictionary<NSString *, NSDictionary *> *)dictionary name:(nonnull NSString *)themeName NS_DESIGNATED_INITIALIZER;
 - (nullable instancetype)init NS_UNAVAILABLE;
 
-- (nonnull NSColor *)syntaxColorForType:(nonnull NSString *)syntaxType;
+- (nullable NSColor *)syntaxColorForType:(nonnull NSString *)syntaxType;
 
 @end

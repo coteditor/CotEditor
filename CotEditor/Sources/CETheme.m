@@ -205,7 +205,7 @@ static const CGFloat kDarkThemeThreshold = 0.5;
 
 //------------------------------------------------------
 /// color for syntax type defined in theme
-- (nonnull NSColor *)syntaxColorForType:(nonnull NSString *)syntaxType
+- (nullable NSColor *)syntaxColorForType:(nonnull NSString *)syntaxType
 //------------------------------------------------------
 {
     if ([syntaxType isEqualToString:CEThemeKeywordsKey]) {
@@ -230,7 +230,7 @@ static const CGFloat kDarkThemeThreshold = 0.5;
         return [self commentsColor];
     }
     
-    return [self textColor];
+    return nil;
 }
 
 
