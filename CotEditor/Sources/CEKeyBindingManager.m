@@ -699,8 +699,7 @@ static NSDictionary<NSString *, NSString *> *kUnprintableKeyTable;
 + (nonnull NSArray<NSString *> *)selectorStringsToIgnore
 //------------------------------------------------------
 {
-    return @[@"modifyFont:",
-             @"changeEncoding:",
+    return @[@"changeEncoding:",
              @"changeSyntaxStyle:",
              @"changeTheme:",
              @"changeTabWidth:",

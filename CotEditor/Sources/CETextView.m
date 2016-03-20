@@ -1253,21 +1253,6 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 
 
 // ------------------------------------------------------
-/// フォントをリセット
-- (void)resetFont:(nullable id)sender
-// ------------------------------------------------------
-{
-    NSString *name = [[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultFontNameKey];
-    CGFloat size = (CGFloat)[[NSUserDefaults standardUserDefaults] doubleForKey:CEDefaultFontSizeKey];
-    
-    [self setFont:[NSFont fontWithName:name size:size] ? : [NSFont userFontOfSize:size]];
-    
-    // キャレット／選択範囲が見えるようにスクロール位置を調整
-    [self scrollRangeToVisible:[self selectedRange]];
-}
-
-
-// ------------------------------------------------------
 /// 選択範囲を含む行全体を選択する
 - (IBAction)selectLines:(nullable id)sender
 // ------------------------------------------------------
@@ -1884,7 +1869,7 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 
 #pragma mark -
 
-@implementation CETextView (PinchZoomSupport)
+@implementation CETextView (Scaling)
 
 #pragma mark Superclass Methods
 
@@ -1927,6 +1912,39 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
             });
         }
     }
+}
+
+
+#pragma mark Action Messages
+
+// ------------------------------------------------------
+/// scale up
+- (IBAction)biggerFont:(nullable id)sender
+// ------------------------------------------------------
+{
+    [self setScaleKeepingVisibleArea:[self scale] * 1.1];
+}
+
+
+// ------------------------------------------------------
+/// scale down
+- (IBAction)smallerFont:(nullable id)sender
+// ------------------------------------------------------
+{
+    [self setScaleKeepingVisibleArea:[self scale] / 1.1];
+}
+
+
+// ------------------------------------------------------
+/// reset scale and font to default
+- (IBAction)resetFont:(nullable id)sender
+// ------------------------------------------------------
+{
+    NSString *name = [[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultFontNameKey];
+    CGFloat size = (CGFloat)[[NSUserDefaults standardUserDefaults] doubleForKey:CEDefaultFontSizeKey];
+    [self setFont:[NSFont fontWithName:name size:size] ? : [NSFont userFontOfSize:size]];
+    
+    [self setScaleKeepingVisibleArea:1.0];
 }
 
 
@@ -1998,6 +2016,18 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
                                           round(NSMidY(newCenter) - centerFromClipOrigin.y / scale));
         [self scrollPoint:scrollPoint];
     }
+}
+
+
+// ------------------------------------------------------
+/// zoom to the scale keeping current visible rect position in scroll view
+- (void)setScaleKeepingVisibleArea:(CGFloat)scale
+// ------------------------------------------------------
+{
+    NSPoint center = NSMakePoint(NSMidX([self visibleRect]),
+                                 NSMidY([self visibleRect]));
+    
+    [self setScale:scale centeredAtPoint:center];
 }
 
 @end

@@ -15,7 +15,13 @@ develop
 
 - Display the dialog asking encoding compatibility on saving as a document-modal sheet.
 - Optimize document opening performance with large file.
-- Improve pinch-zoom behavior.
+- Improve font-size chainging behavior:
+    - Smoother pinch-zoom.
+    - Now font-size change applies only to the focused editor.
+    - Enable pinch-zoom to make font smaller than default font size.
+    - Font size changing doesn't affect the actual font anymore but just scale charaters visibly.
+    - Fix an issue where font-size changing could remove hanging indent. 
+    - Fix an issue where layout of split editors will be broken if the font of one of the other split editors is changed.
 - Improve recovering status of unsaved documents on window resume.
 - Improve line number view drawing with selection on vertical text mode.
 - Display print progress panel as a document-modal sheet.
@@ -24,7 +30,6 @@ develop
 ### Fixes
 
 - Fix an issue where the backgorund of navigation/status bars were not dwarn under a specific condition.
-- Fix an issue where layout of split editors will be broken if the font of one of the other split editors is changed.
 - Fix an issue where the numbers in the line number view could be drawn in a wrong place if the editor is vertical text mode and unwapped.
 
 

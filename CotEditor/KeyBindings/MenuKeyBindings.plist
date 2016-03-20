@@ -74,6 +74,10 @@
 	<string>newDocument:</string>
 	<key>@o</key>
 	<string>openDocument:</string>
+	<key>@+</key>
+	<string>biggerFont:</string>
+	<key>@-</key>
+	<string>smallerFont:</string>
 	<key>@p</key>
 	<string>printDocument:</string>
 	<key>@q</key>

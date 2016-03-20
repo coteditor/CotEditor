@@ -58,7 +58,6 @@
 
 // Action Message
 - (IBAction)copyWithStyle:(nullable id)sender;
-- (IBAction)resetFont:(nullable id)sender;
 - (IBAction)selectLines:(nullable id)sender;
 - (IBAction)changeTabWidth:(nullable id)sender;
 - (IBAction)inputYenMark:(nullable id)sender;
@@ -82,6 +81,15 @@
 @interface CETextView (ColorCode)
 
 - (IBAction)editColorCode:(nullable id)sender;
+
+@end
+
+
+@interface CETextView (Scaling)
+
+- (IBAction)biggerFont:(nullable id)sender;
+- (IBAction)smallerFont:(nullable id)sender;
+- (IBAction)resetFont:(nullable id)sender;
 
 @end
 
