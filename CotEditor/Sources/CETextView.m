@@ -48,6 +48,8 @@
 #import "CEEncodings.h"
 #import "Constants.h"
 
+#import "CEGeometry.h"
+
 
 // constant
 static NSString *_Nonnull const CESelectedRangesKey = @"selectedRange";
@@ -1978,8 +1980,7 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
     [self translateOriginToPoint:[self bounds].origin];
     
     // reset minimum size for unwrap mode
-    [self setMinSize:NSMakeSize([[self enclosingScrollView] contentSize].width / scale,
-                                [[self enclosingScrollView] contentSize].height / scale)];
+    [self setMinSize:CEScaleSize([[self enclosingScrollView] contentSize], 1.0 / scale)];
     
     // ensure text layout
     [[self layoutManager] ensureLayoutForCharacterRange:NSMakeRange(0, [[self string] length])];
@@ -2003,17 +2004,18 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
     NSRect visibleRect = [[self enclosingScrollView] documentVisibleRect];
     NSPoint visibleOrigin = NSMakePoint(NSMinX(visibleRect),
                                         isVertical ? NSMaxY(visibleRect) : NSMinY(visibleRect));
-    NSPoint centerFromClipOrigin = NSMakePoint(currentScale * (point.x - visibleOrigin.x),
-                                               currentScale * (point.y - visibleOrigin.y));  // from top-left
+    NSPoint centerFromClipOrigin = CEScalePoint(NSMakePoint(point.x - visibleOrigin.x,
+                                                            point.y - visibleOrigin.y), currentScale);  // from top-left
     
     [self setScale:scale];
     
     // adjust scroller to keep position of the glyph at the passed-in center point
     if ([self scale] != currentScale) {
+        centerFromClipOrigin = CEScalePoint(centerFromClipOrigin, 1.0 / scale);
         NSRect newCenter = [[self layoutManager] boundingRectForGlyphRange:NSMakeRange(centerGlyphIndex, 1)
                                                            inTextContainer:[self textContainer]];
-        NSPoint scrollPoint = NSMakePoint(round(point.x - centerFromClipOrigin.x / scale),
-                                          round(NSMidY(newCenter) - centerFromClipOrigin.y / scale));
+        NSPoint scrollPoint = NSMakePoint(round(point.x - centerFromClipOrigin.x),
+                                          round(NSMidY(newCenter) - centerFromClipOrigin.y));
         [self scrollPoint:scrollPoint];
     }
 }
@@ -2024,10 +2026,7 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 - (void)setScaleKeepingVisibleArea:(CGFloat)scale
 // ------------------------------------------------------
 {
-    NSPoint center = NSMakePoint(NSMidX([self visibleRect]),
-                                 NSMidY([self visibleRect]));
-    
-    [self setScale:scale centeredAtPoint:center];
+    [self setScale:scale centeredAtPoint:CEMidInRect([self visibleRect])];
 }
 
 @end
