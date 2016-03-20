@@ -48,6 +48,8 @@
 #import "CEEncodings.h"
 #import "Constants.h"
 
+#import "CEGeometry.h"
+
 
 // constant
 static NSString *_Nonnull const CESelectedRangesKey = @"selectedRange";
@@ -1253,21 +1255,6 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 
 
 // ------------------------------------------------------
-/// フォントをリセット
-- (void)resetFont:(nullable id)sender
-// ------------------------------------------------------
-{
-    NSString *name = [[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultFontNameKey];
-    CGFloat size = (CGFloat)[[NSUserDefaults standardUserDefaults] doubleForKey:CEDefaultFontSizeKey];
-    
-    [self setFont:[NSFont fontWithName:name size:size] ? : [NSFont userFontOfSize:size]];
-    
-    // キャレット／選択範囲が見えるようにスクロール位置を調整
-    [self scrollRangeToVisible:[self selectedRange]];
-}
-
-
-// ------------------------------------------------------
 /// 選択範囲を含む行全体を選択する
 - (IBAction)selectLines:(nullable id)sender
 // ------------------------------------------------------
@@ -1884,7 +1871,7 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 
 #pragma mark -
 
-@implementation CETextView (PinchZoomSupport)
+@implementation CETextView (Scaling)
 
 #pragma mark Superclass Methods
 
@@ -1893,17 +1880,10 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 - (void)magnifyWithEvent:(nonnull NSEvent *)event
 // ------------------------------------------------------
 {
-    BOOL isScalingDown = ([event magnification] < 0);
-    CGFloat defaultSize = (CGFloat)[[NSUserDefaults standardUserDefaults] floatForKey:CEDefaultFontSizeKey];
-    CGFloat size = [[self font] pointSize];
+    CGFloat scale = [self scale] + [event magnification];
+    CGPoint center = [self convertPoint:[event locationInWindow] fromView:nil];
     
-    // avoid scaling down to smaller than default size
-    if (isScalingDown && size == defaultSize) { return; }
-    
-    // calc new font size
-    size = MAX(defaultSize, size + ([event magnification] * 10));
-    
-    [self changeFontSize:size];
+    [self setScale:scale centeredAtPoint:center];
 }
 
 
@@ -1912,23 +1892,61 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 - (void)smartMagnifyWithEvent:(nonnull NSEvent *)event
 // ------------------------------------------------------
 {
-    CGFloat defaultSize = (CGFloat)[[NSUserDefaults standardUserDefaults] floatForKey:CEDefaultFontSizeKey];
-    CGFloat size = [[self font] pointSize];
+    CGFloat scale = ([self scale] == 1.0) ? 1.5 : 1.0;
+    CGPoint center = [self convertPoint:[event locationInWindow] fromView:nil];
     
-    if (size == defaultSize) {
+    if (scale == 1.0) {
+        [self setScale:scale centeredAtPoint:center];
+        
+    } else {
         // pseudo-animation
+        static CGFloat duration = 0.12;
+        static NSUInteger frames = 50;
+        CGFloat incrementation = (scale - [self scale]) / frames;
+        
         __unsafe_unretained typeof(self) weakSelf = self;  // NSTextView cannot be weak
-        for (CGFloat factor = 1, interval = 0; factor <= 1.5; factor += 0.05, interval += 0.01) {
+        for (CGFloat tempScale = 1.0, interval = 0; tempScale <= scale; tempScale += incrementation, interval += duration / frames) {
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(interval * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 typeof(self) self = weakSelf;  // strong self
                 if (!self) { return; }
                 
-                [self changeFontSize:size * factor];
+                [self setScale:tempScale centeredAtPoint:center];
             });
         }
-    } else {
-        [self changeFontSize:defaultSize];
     }
+}
+
+
+#pragma mark Action Messages
+
+// ------------------------------------------------------
+/// scale up
+- (IBAction)biggerFont:(nullable id)sender
+// ------------------------------------------------------
+{
+    [self setScaleKeepingVisibleArea:[self scale] * 1.1];
+}
+
+
+// ------------------------------------------------------
+/// scale down
+- (IBAction)smallerFont:(nullable id)sender
+// ------------------------------------------------------
+{
+    [self setScaleKeepingVisibleArea:[self scale] / 1.1];
+}
+
+
+// ------------------------------------------------------
+/// reset scale and font to default
+- (IBAction)resetFont:(nullable id)sender
+// ------------------------------------------------------
+{
+    NSString *name = [[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultFontNameKey];
+    CGFloat size = (CGFloat)[[NSUserDefaults standardUserDefaults] doubleForKey:CEDefaultFontSizeKey];
+    [self setFont:[NSFont fontWithName:name size:size] ? : [NSFont userFontOfSize:size]];
+    
+    [self setScaleKeepingVisibleArea:1.0];
 }
 
 
@@ -1936,26 +1954,79 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 #pragma mark Private Methods
 
 // ------------------------------------------------------
-/// change font size keeping visible area as possible
-- (void)changeFontSize:(CGFloat)size
+/// get current zooming scale
+- (CGFloat)scale
 // ------------------------------------------------------
 {
-    // store current visible area
-    NSRange glyphRange = [[self layoutManager] glyphRangeForBoundingRect:[self visibleRect]
-                                                         inTextContainer:[self textContainer]];
-    NSRange visibleRange = [[self layoutManager] characterRangeForGlyphRange:glyphRange actualGlyphRange:NULL];
-    NSRange selectedRange = [self selectedRange];
-    selectedRange.length = MAX(selectedRange.length, 1);  // sanitize for NSIntersectionRange()
-    BOOL isSelectionVisible = (NSIntersectionRange(visibleRange, selectedRange).length > 0);
+    // cf. https://developer.apple.com/library/mac/qa/qa1346/_index.html
+    return [self convertSize:NSMakeSize(1.0, 1.0) toView:nil].width;
+}
+
+
+// ------------------------------------------------------
+/// zoom to the passed-in scale
+- (void)setScale:(CGFloat)scale
+// ------------------------------------------------------
+{
+    // sanitize scale
+    scale = MAX(0.25, MIN(scale, 4.0));
     
-    // change font size
-    [self setFont:[[NSFontManager sharedFontManager] convertFont:[self font] toSize:size]];
+    // scale
+    [self scaleUnitSquareToSize:[self convertSize:NSMakeSize(1.0, 1.0) fromView:nil]];  // reset
+    [self scaleUnitSquareToSize:NSMakeSize(scale, scale)];
     
-    // adjust visible area
-    [self scrollRangeToVisible:visibleRange];
-    if (isSelectionVisible) {
-        [self scrollRangeToVisible:selectedRange];
+    // ensure bounds origin is {0, 0} for vertical text orientation
+    [self setNeedsDisplay:YES];
+    [self translateOriginToPoint:[self bounds].origin];
+    
+    // reset minimum size for unwrap mode
+    [self setMinSize:CEScaleSize([[self enclosingScrollView] contentSize], 1.0 / scale)];
+    
+    // ensure text layout
+    [[self layoutManager] ensureLayoutForCharacterRange:NSMakeRange(0, [[self string] length])];
+    [[self layoutManager] ensureLayoutForTextContainer:[self textContainer]];
+    [self sizeToFit];
+    
+    // dummy reselection to force redrawing current line highlight
+    [self setSelectedRanges:[self selectedRanges]];
+}
+
+
+// ------------------------------------------------------
+/// zoom to the scale keeping passed-in point position in scroll view
+- (void)setScale:(CGFloat)scale centeredAtPoint:(NSPoint)point
+// ------------------------------------------------------
+{
+    // store current coordinate
+    NSUInteger centerGlyphIndex = [[self layoutManager] glyphIndexForPoint:point inTextContainer:[self textContainer]];
+    CGFloat currentScale = [self scale];
+    BOOL isVertical = [self layoutOrientation] == NSTextLayoutOrientationVertical;
+    NSRect visibleRect = [[self enclosingScrollView] documentVisibleRect];
+    NSPoint visibleOrigin = NSMakePoint(NSMinX(visibleRect),
+                                        isVertical ? NSMaxY(visibleRect) : NSMinY(visibleRect));
+    NSPoint centerFromClipOrigin = CEScalePoint(NSMakePoint(point.x - visibleOrigin.x,
+                                                            point.y - visibleOrigin.y), currentScale);  // from top-left
+    
+    [self setScale:scale];
+    
+    // adjust scroller to keep position of the glyph at the passed-in center point
+    if ([self scale] != currentScale) {
+        centerFromClipOrigin = CEScalePoint(centerFromClipOrigin, 1.0 / scale);
+        NSRect newCenter = [[self layoutManager] boundingRectForGlyphRange:NSMakeRange(centerGlyphIndex, 1)
+                                                           inTextContainer:[self textContainer]];
+        NSPoint scrollPoint = NSMakePoint(round(point.x - centerFromClipOrigin.x),
+                                          round(NSMidY(newCenter) - centerFromClipOrigin.y));
+        [self scrollPoint:scrollPoint];
     }
+}
+
+
+// ------------------------------------------------------
+/// zoom to the scale keeping current visible rect position in scroll view
+- (void)setScaleKeepingVisibleArea:(CGFloat)scale
+// ------------------------------------------------------
+{
+    [self setScale:scale centeredAtPoint:CEMidInRect([self visibleRect])];
 }
 
 @end

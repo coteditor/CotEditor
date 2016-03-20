@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9531"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9532"/>
         <capability name="box content view" minToolsVersion="7.0"/>
     </dependencies>
     <objects>
@@ -301,12 +301,12 @@
                     <toolbarItem implicitItemIdentifier="NSToolbarShowFontsItem" id="ozh-KV-skX"/>
                     <toolbarItem implicitItemIdentifier="A7DA403B-9AC8-4DF1-B5AB-6426322C67D5" explicitItemIdentifier="biggerFontItemID" label="Bigger" paletteLabel="Bigger Font" toolTip="Increase font size" tag="3" image="BiggerFont" id="Ptr-aN-aSD">
                         <connections>
-                            <action selector="modifyFont:" target="M21-bo-PEe" id="LYq-SM-GGd"/>
+                            <action selector="biggerFont:" target="-1" id="u40-oO-ap8"/>
                         </connections>
                     </toolbarItem>
                     <toolbarItem implicitItemIdentifier="25E3B962-091E-4686-8218-7494D6E82F33" explicitItemIdentifier="smallerFontItemID" label="Smaller" paletteLabel="Smaller Font" toolTip="Decrease font size" tag="4" image="SmallerFont" id="5nt-ud-Ewr">
                         <connections>
-                            <action selector="modifyFont:" target="M21-bo-PEe" id="GU4-F5-6zt"/>
+                            <action selector="smallerFont:" target="-1" id="ig1-PL-QNK"/>
                         </connections>
                     </toolbarItem>
                     <toolbarItem implicitItemIdentifier="FE7DD66B-21BE-4D6E-9916-1CC7AEC28433" explicitItemIdentifier="shiftLeftItemID" label="Shift Left" paletteLabel="Shift Left" toolTip="Shift lines to left" tag="10" image="ShiftLeft" id="77g-Yu-UgC">
@@ -428,7 +428,6 @@
                 <outlet property="view" destination="Ezm-P5-z5i" id="UCd-p0-0fe"/>
             </connections>
         </viewController>
-        <customObject id="M21-bo-PEe" customClass="NSFontManager"/>
     </objects>
     <resources>
         <image name="AutoTabExpand_On" width="32" height="32"/>
