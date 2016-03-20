@@ -203,6 +203,37 @@ static const CGFloat kDarkThemeThreshold = 0.5;
 }
 
 
+//------------------------------------------------------
+/// color for syntax type defined in theme
+- (nonnull NSColor *)syntaxColorForType:(nonnull NSString *)syntaxType
+//------------------------------------------------------
+{
+    if ([syntaxType isEqualToString:CEThemeKeywordsKey]) {
+        return [self keywordsColor];
+    } else if ([syntaxType isEqualToString:CEThemeCommandsKey]) {
+        return [self commandsColor];
+    } else if ([syntaxType isEqualToString:CEThemeTypesKey]) {
+        return [self typesColor];
+    } else if ([syntaxType isEqualToString:CEThemeAttributesKey]) {
+        return [self attributesColor];
+    } else if ([syntaxType isEqualToString:CEThemeVariablesKey]) {
+        return [self variablesColor];
+    } else if ([syntaxType isEqualToString:CEThemeValuesKey]) {
+        return [self valuesColor];
+    } else if ([syntaxType isEqualToString:CEThemeNumbersKey]) {
+        return [self numbersColor];
+    } else if ([syntaxType isEqualToString:CEThemeStringsKey]) {
+        return [self stringsColor];
+    } else if ([syntaxType isEqualToString:CEThemeCharactersKey]) {
+        return [self charactersColor];
+    } else if ([syntaxType isEqualToString:CEThemeCommentsKey]) {
+        return [self commentsColor];
+    }
+    
+    return [self textColor];
+}
+
+
 
 #pragma mark Private Methods
 

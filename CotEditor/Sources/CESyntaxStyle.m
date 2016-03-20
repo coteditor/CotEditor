@@ -515,30 +515,7 @@ static NSArray<NSString *> *kSyntaxDictKeys;
         if ([ranges count] == 0) { continue; }
         
         // get color from theme
-        NSColor *color;
-        if ([syntaxType isEqualToString:CESyntaxKeywordsKey]) {
-            color = [theme keywordsColor];
-        } else if ([syntaxType isEqualToString:CESyntaxCommandsKey]) {
-            color = [theme commandsColor];
-        } else if ([syntaxType isEqualToString:CESyntaxTypesKey]) {
-            color = [theme typesColor];
-        } else if ([syntaxType isEqualToString:CESyntaxAttributesKey]) {
-            color = [theme attributesColor];
-        } else if ([syntaxType isEqualToString:CESyntaxVariablesKey]) {
-            color = [theme variablesColor];
-        } else if ([syntaxType isEqualToString:CESyntaxValuesKey]) {
-            color = [theme valuesColor];
-        } else if ([syntaxType isEqualToString:CESyntaxNumbersKey]) {
-            color = [theme numbersColor];
-        } else if ([syntaxType isEqualToString:CESyntaxStringsKey]) {
-            color = [theme stringsColor];
-        } else if ([syntaxType isEqualToString:CESyntaxCharactersKey]) {
-            color = [theme charactersColor];
-        } else if ([syntaxType isEqualToString:CESyntaxCommentsKey]) {
-            color = [theme commentsColor];
-        } else {
-            color = [theme textColor];
-        }
+        NSColor *color = [theme syntaxColorForType:syntaxType];
         
         for (NSValue *rangeValue in ranges) {
             [layoutManager addTemporaryAttribute:NSForegroundColorAttributeName

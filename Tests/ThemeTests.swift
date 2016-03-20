@@ -69,6 +69,18 @@ class ThemeTests: XCTestCase {
         XCTAssertEqualWithAccuracy(theme.weakTextColor.brightnessComponent, 0.3, accuracy: 0.01)
         XCTAssertEqualWithAccuracy(theme.markupColor.brightnessComponent, 0.5, accuracy: 0.01)
         
+        XCTAssertEqual(theme.keywordsColor, theme.syntaxColorForType(CEThemeKeywordsKey))
+        XCTAssertEqual(theme.commandsColor, theme.syntaxColorForType(CEThemeCommandsKey))
+        XCTAssertEqual(theme.typesColor, theme.syntaxColorForType(CEThemeTypesKey))
+        XCTAssertEqual(theme.attributesColor, theme.syntaxColorForType(CEThemeAttributesKey))
+        XCTAssertEqual(theme.variablesColor, theme.syntaxColorForType(CEThemeVariablesKey))
+        XCTAssertEqual(theme.valuesColor, theme.syntaxColorForType(CEThemeValuesKey))
+        XCTAssertEqual(theme.numbersColor, theme.syntaxColorForType(CEThemeNumbersKey))
+        XCTAssertEqual(theme.stringsColor, theme.syntaxColorForType(CEThemeStringsKey))
+        XCTAssertEqual(theme.charactersColor, theme.syntaxColorForType(CEThemeCharactersKey))
+        XCTAssertEqual(theme.commandsColor, theme.syntaxColorForType(CEThemeCommandsKey))
+        XCTAssertEqual(theme.textColor, theme.syntaxColorForType("foo"))
+        
         XCTAssertFalse(theme.darkTheme)
     }
     

@@ -8,6 +8,7 @@
 
 // CETheme Tests
 #import "CETheme.h"
+#import "CEThemeDictionaryKeys.h"
 
 
 // String Extensions Tests
