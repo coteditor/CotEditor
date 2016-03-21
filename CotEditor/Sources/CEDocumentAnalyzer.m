@@ -154,8 +154,6 @@ NSString *_Nonnull const CEAnalyzerDidUpdateEditorInfoNotification = @"CEAnalyze
     CEDocument *document = [self document];
     CEEditorWrapper *editor = [document editor];
     
-    if (![editor string]) { return; }
-    
     BOOL hasMarked = [[editor focusedTextView] hasMarkedText];
     NSString *wholeString = [document string];
     NSString *selectedString = hasMarked ? nil : [editor substringWithSelection];

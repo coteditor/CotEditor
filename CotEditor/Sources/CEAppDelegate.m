@@ -612,9 +612,9 @@
     
     CEDocument *document = [[NSDocumentController sharedDocumentController] openUntitledDocumentAndDisplay:NO error:nil];
     [document setDisplayName:NSLocalizedString(@"Bug Report", nil)];
+    [[document textStorage] replaceCharactersInRange:NSMakeRange(0, 0) withString:template];
     [document makeWindowControllers];
     [document showWindows];
-    [[document editor] setString:template];
     [document setSyntaxStyleWithName:@"Markdown"];
 }
 

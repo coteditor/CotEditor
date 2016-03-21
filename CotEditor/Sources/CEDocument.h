@@ -49,6 +49,7 @@ extern NSString *_Nonnull const CEIncompatibleConvertedCharKey;
 @interface CEDocument : NSDocument
 
 // readonly properties
+@property (readonly, nonatomic, nonnull) NSTextStorage *textStorage;
 @property (readonly, nonatomic, nullable) CEWindowController *windowController;
 @property (readonly, nonatomic, nullable) CEEditorWrapper *editor;
 @property (readonly, nonatomic, nonnull) CETextSelection *selection;
@@ -61,7 +62,7 @@ extern NSString *_Nonnull const CEIncompatibleConvertedCharKey;
 
 #pragma mark - Public Methods
 
-/// Return whole string in the current text view which document's line endings are already applied to.  (Note: The internal string (e.g. in text storage) has always LF for its line ending.)
+/// Return whole string in the current text storage which document's line endings are already applied to.  (Note: The internal string has always LF for its line ending.)
 - (nonnull NSString *)string;
 
 - (void)applyContentToWindow;

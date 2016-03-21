@@ -117,7 +117,7 @@
         [self setNextResponder:[self splitViewController]];
     }
     
-    CEEditorViewController *editorViewController = [[CEEditorViewController alloc] initWithTextStorage:[[NSTextStorage alloc] init]];
+    CEEditorViewController *editorViewController = [[CEEditorViewController alloc] initWithTextStorage:[[self document] textStorage]];
     [[self splitViewController] addSubviewForViewController:editorViewController relativeTo:nil];
     [self setupEditorViewController:editorViewController baseView:nil];
     
@@ -128,6 +128,8 @@
     // -> This is probably not the best position to apply sytnax style to the text view.
     //    However as a quick fix, I put it here tentatively. It works. But should be refactored later. (2016-01 1024jp)
     [editorViewController applySyntax:[self syntaxStyle]];
+    
+    [self invalidateStyleInTextStorage];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(didChangeSyntaxStyle:)
@@ -252,22 +254,6 @@
 // ------------------------------------------------------
 {
     return [[self string] substringWithRange:[[self focusedTextView] selectedRange]];
-}
-
-
-// ------------------------------------------------------
-/// メインtextViewに文字列をセット
-- (void)setString:(nonnull NSString *)string
-// ------------------------------------------------------
-{
-    // UTF-16 でないものを UTF-16 で表示した時など当該フォントで表示できない文字が表示されてしまった後だと、
-    // 設定されたフォントでないもので表示されることがあるため、リセットする
-    NSDictionary<NSString *, id> *attributes = [[self focusedTextView] typingAttributes];
-    NSAttributedString *attrString = [[NSAttributedString alloc] initWithString:string attributes:attributes];
-    
-    [[self textStorage] setAttributedString:attrString];
-    [[self focusedTextView] setSelectedRange:NSMakeRange(0, 0)];
-    [[self focusedTextView] detectLinkIfNeeded];
 }
 
 
@@ -761,6 +747,20 @@
 
 
 // ------------------------------------------------------
+///
+- (void)invalidateStyleInTextStorage
+// ------------------------------------------------------
+{
+    // UTF-16 でないものを UTF-16 で表示した時など当該フォントで表示できない文字が表示されてしまった後だと、
+    // 設定されたフォントでないもので表示されることがあるため、リセットする
+    [[self textStorage] setAttributes:[[self focusedTextView] typingAttributes]
+                                range:NSMakeRange(0, [[self textStorage] length])];
+    
+    [[self focusedTextView] detectLinkIfNeeded];
+}
+
+
+// ------------------------------------------------------
 /// サブビューに初期値を設定
 - (void)setupEditorViewController:(nonnull CEEditorViewController *)editorViewController baseView:(nullable CEEditorViewController *)baseViewController
 // ------------------------------------------------------
@@ -798,7 +798,7 @@
 - (NSTextStorage *)textStorage
 // ------------------------------------------------------
 {
-    return [[self focusedTextView] textStorage];
+    return [[self document] textStorage];
 }
 
 
@@ -816,7 +816,7 @@
 - (NSArray<NSLayoutManager *> *)layoutManagers
 // ------------------------------------------------------
 {
-    return [[[self focusedTextView] textStorage] layoutManagers];
+    return [[[self document] textStorage] layoutManagers];
 }
 
 

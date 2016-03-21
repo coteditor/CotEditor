@@ -81,7 +81,6 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 @property (nonatomic) BOOL needsShowUpdateAlertWithBecomeKey;
 @property (nonatomic, getter=isRevertingForExternalFileUpdate) BOOL revertingForExternalFileUpdate;
 @property (nonatomic, nullable, copy) NSData *fileMD5;
-@property (nonatomic, nullable, copy) NSString *fileContentString;  // string that is read from the document file
 @property (nonatomic, getter=isVerticalText) BOOL verticalText;
 @property (nonatomic, nullable) CEODBEventSender *ODBEventSender;
 @property (nonatomic) BOOL shouldSaveXattr;
@@ -90,6 +89,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 @property (nonatomic, getter=isExecutable) BOOL executable;
 
 // readonly
+@property (readwrite, nonatomic, nonnull) NSTextStorage *textStorage;
 @property (readwrite, nonatomic, nullable) CEWindowController *windowController;
 @property (readwrite, nonatomic, nonnull) CETextSelection *selection;
 @property (readwrite, nonatomic) NSStringEncoding encoding;
@@ -144,6 +144,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     if (self) {
         [self setHasUndoManager:YES];
         
+        _textStorage = [[NSTextStorage alloc] init];
         _encoding = [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultEncodingInNewKey];
         _lineEnding = [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultLineEndCharCodeKey];
         if (_encoding == NSUTF8StringEncoding) {
@@ -257,7 +258,6 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     if (!string) { return NO; }
     
     // set read values
-    [self setFileContentString:string];  // _fileContentString will be released in `setStringToEditor`
     [self setEncoding:usedEncoding];
     [self setHasUTF8BOM:hasUTF8BOM];
     
@@ -265,6 +265,18 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     if (lineEnding != CENewLineNone) {  // keep default if no line endings are found
         [self setLineEnding:lineEnding];
     }
+    
+    // standardize line endings to LF (File Open)
+    // (Line endings replacemement by other text modifications are processed in the following methods.)
+    //
+    // # Methods Standardizing Line Endings on Text Editing
+    //   - File Open:
+    //       - CEDocument > readFromURL:ofType:error:
+    //   - Key Typing, Script, Paste, Drop or Replace via Find Panel:
+    //       - CEEditorViewController > textView:shouldChangeTextInRange:replacementString:
+    string = [string stringByReplacingNewLineCharacersWith:CENewLineLF];
+    
+    [[self textStorage] replaceCharactersInRange:NSMakeRange(0, [[self textStorage] length]) withString:string];
     
     // determine syntax style
     NSString *styleName = [[CESyntaxManager sharedManager] styleNameFromFileName:[url lastPathComponent]];
@@ -530,7 +542,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 // ------------------------------------------------------
 {
     // Disable save dialog if content is empty and not saved
-    if (![self fileURL] && [[[self editor] string] length] == 0) {
+    if (![self fileURL] && [[self textStorage] length] == 0) {
         [self updateChangeCount:NSChangeCleared];
     }
     
@@ -579,7 +591,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     [printView setFont:font];
     
     // [caution] need to set string after setting other properties
-    [printView setString:[[self editor] string]];
+    [printView setString:[[self textStorage] string]];
     
     // create print operation
     NSPrintOperation *printOperation = [NSPrintOperation printOperationWithView:printView printInfo:[self printInfo]];
@@ -832,7 +844,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 - (nonnull NSString *)string
 // ------------------------------------------------------
 {
-    NSString *editorString = [[self editor] string];  // line endings are always LF
+    NSString *editorString = [[self textStorage] string];  // line endings are always LF
     
     if (!editorString) {
         return @"";
@@ -861,22 +873,10 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 {
     CEEditorWrapper *editor = [self editor];
     
-    // standardize line endings to LF (File Open)
-    // (Line endings replacemement by other text modifications are processed in the following methods.)
-    //
-    // # Methods Standardizing Line Endings on Text Editing
-    //   - File Open:
-    //       - CEDocument > applyContentToWindow
-    //   - Key Typing, Script, Paste, Drop or Replace via Find Panel:
-    //       - CEEditorViewController > textView:shouldChangeTextInRange:replacementString:
-    if ([self fileContentString]) {
-        NSString *string = [[self fileContentString] stringByReplacingNewLineCharacersWith:CENewLineLF];
-        
-        [editor setString:string];  // In this `setString:`, caret will be moved to the beginning.
-        
+    if ([[self textStorage] length] > 0) {
         // detect indent style
         if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultDetectsIndentStyleKey]) {
-            switch ([string detectIndentStyle]) {
+            switch ([[[self textStorage] string] detectIndentStyle]) {
                 case CEIndentStyleTab:
                     [editor setAutoTabExpandEnabled:NO];
                     break;
@@ -887,12 +887,9 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
                     break;
             }
         }
-        
-        [self setFileContentString:nil];  // release
-        
-    } else {
-        [editor setString:@""];
     }
+    
+    [editor invalidateStyleInTextStorage];
     
     // update syntax highlights and outline menu
     [editor invalidateSyntaxHighlight];
@@ -1242,7 +1239,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     NSString *encodingName = [sender title];
 
     // 文字列がないまたは未保存の時は直ちに変換プロセスへ
-    if (([[[self editor] string] length] < 1) ||  // no content yet
+    if (([[self textStorage] length] < 1) ||  // no content yet
         ![self fileURL] ||  // not yet saved
        (encoding == NSUTF8StringEncoding  && encoding == [self encoding])) // toggle only BOM existance
     {

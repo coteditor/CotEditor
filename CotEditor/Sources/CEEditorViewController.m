@@ -197,7 +197,9 @@
     BOOL isVertical = ([textView layoutOrientation] == NSTextLayoutOrientationVertical);
     
     // 条件を揃えるためにいったん横書きに戻す (各項目の縦横の入れ替えは setLayoutOrientation: が良きに計らってくれる)
-    [textView setLayoutOrientation:NSTextLayoutOrientationHorizontal];
+    if (isVertical) {
+        [textView setLayoutOrientation:NSTextLayoutOrientationHorizontal];
+    }
     
     [[textView enclosingScrollView] setHasHorizontalScroller:!wrapsLines];
     [[textView textContainer] setWidthTracksTextView:wrapsLines];
@@ -205,7 +207,7 @@
         NSSize contentSize = [[textView enclosingScrollView] contentSize];
         CGFloat scale = [textView convertSize:NSMakeSize(1.0, 1.0) toView:nil].width;
         [[textView textContainer] setContainerSize:NSMakeSize(contentSize.width / scale, CGFLOAT_MAX)];
-        [textView sizeToFit];
+        [textView setConstrainedFrameSize:contentSize];
     } else {
         [[textView textContainer] setContainerSize:NSMakeSize(CGFLOAT_MAX, CGFLOAT_MAX)];
     }
@@ -287,7 +289,7 @@
     //
     // # Methods Standardizing Line Endings on Text Editing
     //   - File Open:
-    //       - CEDocument > applyContentToWindow
+    //       - CEDocument > readFromURL:ofType:error:
     //   - Key Typing, Script, Paste, Drop or Replace via Find Panel:
     //       - CEEditorViewController > textView:shouldChangeTextInRange:replacementString:
     
