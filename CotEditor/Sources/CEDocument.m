@@ -277,8 +277,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     
     // apply to UI
     if (success) {
-        [self applyContentToEditor];
-        [[self windowController] updateFileInfo];
+        [self applyContentToWindow];
     }
     
     return success;
@@ -827,31 +826,42 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 
 // ------------------------------------------------------
-/// transfer file content string to editor
-- (void)applyContentToEditor
+/// return document window's editor wrapper
+- (nullable CEEditorWrapper *)editor
 // ------------------------------------------------------
 {
+    return [[self windowController] editor];
+}
+
+
+// ------------------------------------------------------
+/// transfer file information to UI
+- (void)applyContentToWindow
+// ------------------------------------------------------
+{
+    CEEditorWrapper *editor = [self editor];
+    
     // standardize line endings to LF (File Open)
     // (Line endings replacemement by other text modifications are processed in the following methods.)
     //
     // # Methods Standardizing Line Endings on Text Editing
     //   - File Open:
-    //       - CEDocument > applyContentToEditor
+    //       - CEDocument > applyContentToWindow
     //   - Key Typing, Script, Paste, Drop or Replace via Find Panel:
     //       - CEEditorViewController > textView:shouldChangeTextInRange:replacementString:
     if ([self fileContentString]) {
         NSString *string = [[self fileContentString] stringByReplacingNewLineCharacersWith:CENewLineLF];
         
-        [[self editor] setString:string];  // In this `setString:`, caret will be moved to the beginning.
+        [editor setString:string];  // In this `setString:`, caret will be moved to the beginning.
         
         // detect indent style
         if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultDetectsIndentStyleKey]) {
             switch ([string detectIndentStyle]) {
                 case CEIndentStyleTab:
-                    [[self editor] setAutoTabExpandEnabled:NO];
+                    [editor setAutoTabExpandEnabled:NO];
                     break;
                 case CEIndentStyleSpace:
-                    [[self editor] setAutoTabExpandEnabled:YES];
+                    [editor setAutoTabExpandEnabled:YES];
                     break;
                 case CEIndentStyleNotFound:
                     break;
@@ -861,22 +871,23 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
         [self setFileContentString:nil];  // release
         
     } else {
-        [[self editor] setString:@""];
+        [editor setString:@""];
     }
     
     // update syntax highlights and outline menu
-    [[self editor] invalidateSyntaxColoring];
-    [[self editor] invalidateOutlineMenu];
+    [editor invalidateSyntaxColoring];
+    [editor invalidateOutlineMenu];
     [[[self windowController] toolbarController] setSelectedSyntaxWithName:[[self syntaxStyle] styleName]];
     
     // update line endings menu selection in toolbar
     [self applyLineEndingToView];
     
     // apply text orientation
-    [[self editor] setVerticalLayoutOrientation:[self isVerticalText]];
+    [editor setVerticalLayoutOrientation:[self isVerticalText]];
     
     // update encoding menu selection in toolbar, status bar and document inspector
     [self updateEncodingInToolbarAndInfo];
+    [[self windowController] updateFileInfo];
     
     // show incompatible chars if needed
     [[self windowController] updateIncompatibleCharsIfNeeded];

@@ -269,7 +269,7 @@
     //
     // # Methods Standardizing Line Endings on Text Editing
     //   - File Open:
-    //       - CEDocument > applyContentToEditor
+    //       - CEDocument > applyContentToWindow
     //   - Key Typing, Script, Paste, Drop or Replace via Find Panel:
     //       - CEEditorViewController > textView:shouldChangeTextInRange:replacementString:
     
