@@ -22,6 +22,7 @@ develop
     - Font size changing doesn't affect the actual font anymore but just scale charaters visibly.
     - Fix an issue where font-size changing could remove hanging indent. 
     - Fix an issue where layout of split editors will be broken if the font of one of the other split editors is changed.
+- Add “Copy as Rich Text” action to the contextual menu.
 - Improve recovering status of unsaved documents on window resume.
 - Improve line number view drawing with selection on vertical text mode.
 - Display print progress panel as a document-modal sheet.

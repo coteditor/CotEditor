@@ -620,6 +620,13 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
                              atIndex:1];
     }
     
+    // add "Copy as Rich Text" menu item
+    NSUInteger copyIndex = [menu indexOfItemWithTarget:nil andAction:@selector(copy:)];
+    [menu insertItemWithTitle:NSLocalizedString(@"Copy as Rich Text", nil)
+                       action:@selector(copyWithStyle:)
+                keyEquivalent:@""
+                      atIndex:(copyIndex + 1)];
+    
     // add "Select All" menu item
     NSInteger pasteIndex = [menu indexOfItemWithTarget:nil andAction:@selector(paste:)];
     if (pasteIndex != kNoMenuItem) {

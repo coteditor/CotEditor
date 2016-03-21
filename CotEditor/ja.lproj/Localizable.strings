@@ -236,6 +236,7 @@
 // Contextual menu items
 "Font" = "フォント";
 "Text" = "テキスト";
+"Copy as Rich Text" = "リッチテキストとしてコピー";
 "Select All" = "すべてを選択";
 
 

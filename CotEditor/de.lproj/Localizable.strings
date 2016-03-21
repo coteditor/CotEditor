@@ -234,6 +234,7 @@
 // Contextual menu items
 "Font" = "Schrift";
 "Text" = "Text";
+"Copy as Rich Text" = "Als formatierten Text Kopieren";
 "Select All" = "Alles auswählen";
 
 
