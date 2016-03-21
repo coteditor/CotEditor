@@ -1159,6 +1159,8 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
     [self setInsertionPointColor:[theme insertionPointColor]];
     [self setSelectedTextAttributes:@{NSBackgroundColorAttributeName: [theme selectionColor]}];
     
+    [(CELayoutManager *)[self layoutManager] setInvisiblesColor:[theme invisiblesColor]];
+    
     // 背景色に合わせたスクローラのスタイルをセット
     NSInteger knobStyle = [theme isDarkTheme] ? NSScrollerKnobStyleLight : NSScrollerKnobStyleDefault;
     [[self enclosingScrollView] setScrollerKnobStyle:knobStyle];

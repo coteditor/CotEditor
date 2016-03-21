@@ -391,6 +391,7 @@ static NSString *_Nonnull const PageNumberPlaceholder = @"PAGENUM";
         [self setTheme:[[CEThemeManager sharedManager] themeWithName:settings[CEPrintThemeKey]]];
         [self setTextColor:[[self theme] textColor]];
         [self setBackgroundColor:[[self theme] backgroundColor]];
+        [(CELayoutManager *)[self layoutManager] setInvisiblesColor:[[self theme] invisiblesColor]];
         
         // perform coloring
         if (![self syntaxStyle]) {

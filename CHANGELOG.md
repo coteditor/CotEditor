@@ -25,6 +25,9 @@ develop
 - Add “Copy as Rich Text” action to the contextual menu.
 - Improve recovering status of unsaved documents on window resume.
 - Improve line number view drawing with selection on vertical text mode.
+- Improve invisibles drawing:
+    - Optimize drawing performance (ca. 2x).
+    - better drawing if anti-ailiasing is off.
 - Display print progress panel as a document-modal sheet.
 
 

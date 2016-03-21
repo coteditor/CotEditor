@@ -28,7 +28,19 @@
 @import Foundation;
 
 
+typedef NS_ENUM(NSUInteger, CEInvisibleType) {
+    CEInvisibleSpace,
+    CEInvisibleTab,
+    CEInvisibleNewLine,
+    CEInvisibleFullWidthSpace,
+    CEInvisibleVerticalTab,
+    CEInvisibleReplacement,
+};
+
+
 @interface CEInvisibles : NSObject
+
++ (nonnull NSString *)stringWithType:(CEInvisibleType)type Index:(NSUInteger)index;
 
 // return substitution character for invisible character
 + (unichar)spaceCharWithIndex:(NSUInteger)index;

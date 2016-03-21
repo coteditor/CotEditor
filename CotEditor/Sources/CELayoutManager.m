@@ -40,6 +40,14 @@ static NSString * _Nonnull const HiraginoSans = @"HiraginoSans-W3";  // since OS
 static NSString * _Nonnull const HiraKakuProN = @"HiraKakuProN-W3";
 
 
+// convenient function
+CTLineRef createCTLineRefWithString(NSString *string, NSDictionary *attributes)
+{
+    NSAttributedString *attrString = [[NSAttributedString alloc] initWithString:string attributes:attributes];
+    return CTLineCreateWithAttributedString((__bridge CFAttributedStringRef)attrString);
+}
+
+
 @interface CELayoutManager ()
 
 @property (nonatomic) BOOL showsSpace;
@@ -47,10 +55,8 @@ static NSString * _Nonnull const HiraKakuProN = @"HiraKakuProN-W3";
 @property (nonatomic) BOOL showsNewLine;
 @property (nonatomic) BOOL showsFullwidthSpace;
 
-@property (nonatomic) unichar spaceChar;
-@property (nonatomic) unichar tabChar;
-@property (nonatomic) unichar newLineChar;
-@property (nonatomic) unichar fullwidthSpaceChar;
+@property (nonatomic, nonnull, copy) NSArray<NSString *> *invisibles;
+@property (nonatomic, nullable) NSArray<id> *invisibleLines;  // array of CTLineRef
 
 @property (nonatomic) CGFloat spaceWidth;
 
@@ -100,12 +106,17 @@ static NSString *HiraginoSansName;
     self = [super init];
     if (self) {
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-
-        _spaceChar = [CEInvisibles spaceCharWithIndex:[defaults integerForKey:CEDefaultInvisibleSpaceKey]];
-        _tabChar = [CEInvisibles tabCharWithIndex:[defaults integerForKey:CEDefaultInvisibleTabKey]];
-        _newLineChar = [CEInvisibles newLineCharWithIndex:[defaults integerForKey:CEDefaultInvisibleNewLineKey]];
-        _fullwidthSpaceChar = [CEInvisibles fullwidthSpaceCharWithIndex:[defaults integerForKey:CEDefaultInvisibleFullwidthSpaceKey]];
-
+        
+        _invisiblesColor = [NSColor disabledControlTextColor];
+        
+        _invisibles = @[[CEInvisibles stringWithType:CEInvisibleSpace Index:[defaults integerForKey:CEDefaultInvisibleSpaceKey]],
+                        [CEInvisibles stringWithType:CEInvisibleTab Index:[defaults integerForKey:CEDefaultInvisibleTabKey]],
+                        [CEInvisibles stringWithType:CEInvisibleNewLine Index:[defaults integerForKey:CEDefaultInvisibleNewLineKey]],
+                        [CEInvisibles stringWithType:CEInvisibleFullWidthSpace Index:[defaults integerForKey:CEDefaultInvisibleFullwidthSpaceKey]],
+                        [CEInvisibles stringWithType:CEInvisibleVerticalTab Index:NULL],
+                        [CEInvisibles stringWithType:CEInvisibleReplacement Index:NULL],
+                        ];
+        
         // （setShowsInvisibles: は CEEditorViewController から実行される。プリント時は CEPrintView から実行される）
         _showsSpace = [defaults boolForKey:CEDefaultShowInvisibleSpaceKey];
         _showsTab = [defaults boolForKey:CEDefaultShowInvisibleTabKey];
@@ -158,7 +169,7 @@ static NSString *HiraginoSansName;
 
 
 // ------------------------------------------------------
-/// 不可視文字の表示
+/// draw invisible characters
 - (void)drawGlyphsForGlyphRange:(NSRange)glyphsToShow atPoint:(NSPoint)origin
 // ------------------------------------------------------
 {
@@ -168,106 +179,72 @@ static NSString *HiraginoSansName;
     }
     
     // draw invisibles
-    if ([self showsInvisibles]) {
+    if ([self showsInvisibles] || [[self invisibleLines] count] > 0) {
+        CGContextRef context = (CGContextRef)[[NSGraphicsContext currentContext] graphicsPort];
         NSString *completeString = [[self textStorage] string];
-        NSUInteger lengthToRedraw = NSMaxRange(glyphsToShow);
-        
-        // フォントサイズは随時変更されるため、表示時に取得する
-        CTFontRef font = (__bridge CTFontRef)[self textFont];
-        NSColor *color = [[self theme] invisiblesColor];
         CGFloat baselineOffset = [self defaultBaselineOffsetForFont:[self textFont]];
         
-        // set graphics context
-        CGContextRef context = (CGContextRef)[[NSGraphicsContext currentContext] graphicsPort];
-        CGContextSaveGState(context);
-        CGContextSetFillColorWithColor(context, [color CGColor]);
-        CGMutablePathRef paths = CGPathCreateMutable();
-        
-        // adjust drawing coordinate
-        CGAffineTransform transform = CGAffineTransformIdentity;
-        transform = CGAffineTransformScale(transform, 1.0, -1.0);  // flip
-        transform = CGAffineTransformTranslate(transform, origin.x, - origin.y);
-        CGContextConcatCTM(context, transform);
-        
-        // prepare glyphs
-        CGPathRef spaceGlyphPath = glyphPathWithCharacter([self spaceChar], font, false);
-        CGPathRef tabGlyphPath = glyphPathWithCharacter([self tabChar], font, false);
-        CGPathRef newLineGlyphPath = glyphPathWithCharacter([self newLineChar], font, false);
-        CGPathRef fullWidthSpaceGlyphPath = glyphPathWithCharacter([self fullwidthSpaceChar], font, true);
-        CGPathRef verticalTabGlyphPath = glyphPathWithCharacter([CEInvisibles verticalTabChar], font, true);
-        CGPathRef replacementGlyphPath = glyphPathWithCharacter([CEInvisibles replacementChar], font, true);
-        
-        // store value to avoid accessing properties each time  (2014-07 by 1024jp)
-        BOOL showsSpace = [self showsSpace];
-        BOOL showsTab = [self showsTab];
-        BOOL showsNewLine = [self showsNewLine];
-        BOOL showsFullwidthSpace = [self showsFullwidthSpace];
-        BOOL showsVerticalTab = [self showsOtherInvisibles];  // Vertical tab belongs to other invisibles.
-        BOOL showsOtherInvisibles = [self showsOtherInvisibles];
+        // flip coordinate if needed
+        if ([[NSGraphicsContext currentContext] isFlipped]) {
+            CGContextSetTextMatrix(context, CGAffineTransformMakeScale(1.0, -1.0));
+        }
         
         // draw invisibles glyph by glyph
-        for (NSUInteger glyphIndex = glyphsToShow.location; glyphIndex < lengthToRedraw; glyphIndex++) {
+        for (NSUInteger glyphIndex = glyphsToShow.location; glyphIndex < NSMaxRange(glyphsToShow); glyphIndex++) {
             NSUInteger charIndex = [self characterIndexForGlyphAtIndex:glyphIndex];
             unichar character = [completeString characterAtIndex:charIndex];
             
-            CGPathRef glyphPath;
+            CEInvisibleType invisibleType;
             switch (character) {
                 case ' ':
                 case 0x00A0:
-                    if (!showsSpace) { continue; }
-                    glyphPath = spaceGlyphPath;
+                    if (![self showsSpace]) { continue; }
+                    invisibleType = CEInvisibleSpace;
                     break;
                     
                 case '\t':
-                    if (!showsTab) { continue; }
-                    glyphPath = tabGlyphPath;
+                    if (![self showsTab]) { continue; }
+                    invisibleType = CEInvisibleTab;
                     break;
                     
                 case '\n':
-                    if (!showsNewLine) { continue; }
-                    glyphPath = newLineGlyphPath;
+                    if (![self showsNewLine]) { continue; }
+                    invisibleType = CEInvisibleNewLine;
                     break;
                     
                 case 0x3000:  // fullwidth-space (JP)
-                    if (!showsFullwidthSpace) { continue; }
-                    glyphPath = fullWidthSpaceGlyphPath;
+                    if (![self showsFullwidthSpace]) { continue; }
+                    invisibleType = CEInvisibleFullWidthSpace;
                     break;
                     
                 case '\v':
-                    if (!showsVerticalTab) { continue; }
-                    glyphPath = verticalTabGlyphPath;
+                    if (![self showsOtherInvisibles]) { continue; }  // Vertical tab belongs to other invisibles.
+                    invisibleType = CEInvisibleVerticalTab;
                     break;
                     
                 default:
-                    if (!showsOtherInvisibles || ([self glyphAtIndex:glyphIndex isValidIndex:NULL] != NSControlGlyph)) { continue; }
+                    if (![self showsOtherInvisibles] || ([self glyphAtIndex:glyphIndex isValidIndex:NULL] != NSControlGlyph)) { continue; }
                     // Skip the second glyph if character is a surrogate-pair
                     if (CFStringIsSurrogateLowCharacter(character) &&
                         ((charIndex > 0) && CFStringIsSurrogateHighCharacter([completeString characterAtIndex:charIndex - 1])))
                     {
                         continue;
                     }
-                    glyphPath = replacementGlyphPath;
+                    invisibleType = CEInvisibleReplacement;
             }
             
-            // add invisible char path
-            NSPoint point = [self pointToDrawGlyphAtIndex:glyphIndex verticalOffset:baselineOffset];
-            CGAffineTransform translate = CGAffineTransformMakeTranslation(point.x, -point.y);
-            CGPathAddPath(paths, &translate, glyphPath);
+            CTLineRef line = (__bridge CTLineRef)[self invisibleLines][invisibleType];
+            
+            // calcurate position to draw glyph
+            NSPoint point = [self lineFragmentRectForGlyphAtIndex:glyphIndex effectiveRange:NULL withoutAdditionalLayout:YES].origin;
+            NSPoint glyphLocation = [self locationForGlyphAtIndex:glyphIndex];
+            point.x += glyphLocation.x + origin.x;
+            point.y += baselineOffset + origin.y;
+            
+            // draw character
+            CGContextSetTextPosition(context, point.x, point.y);
+            CTLineDraw(line, context);
         }
-        
-        // draw invisible glyphs (excl. other invisibles)
-        CGContextAddPath(context, paths);
-        CGContextFillPath(context);
-        
-        // release
-        CGContextRestoreGState(context);
-        CGPathRelease(paths);
-        CGPathRelease(spaceGlyphPath);
-        CGPathRelease(tabGlyphPath);
-        CGPathRelease(newLineGlyphPath);
-        CGPathRelease(fullWidthSpaceGlyphPath);
-        CGPathRelease(verticalTabGlyphPath);
-        CGPathRelease(replacementGlyphPath);
     }
     
     [super drawGlyphsForGlyphRange:glyphsToShow atPoint:origin];
@@ -298,7 +275,7 @@ static NSString *HiraginoSansName;
 #pragma mark Public Methods
 
 // ------------------------------------------------------
-/// 表示フォントをセット
+/// set text font to use and cache values
 - (void)setTextFont:(nullable NSFont *)textFont
 // ------------------------------------------------------
 {
@@ -315,6 +292,19 @@ static NSString *HiraginoSansName;
     // store width of space char for hanging indent width calculation
     NSFont *screenFont = [textFont screenFont] ? : textFont;
     [self setSpaceWidth:[screenFont advancementForGlyph:(NSGlyph)' '].width];
+    
+    [self invalidateInvisiblesStyle];
+}
+
+
+// ------------------------------------------------------
+/// update invisibles color
+- (void)setInvisiblesColor:(NSColor *)invisiblesColor
+// ------------------------------------------------------
+{
+    _invisiblesColor = invisiblesColor;
+    
+    [self invalidateInvisiblesStyle];
 }
 
 
@@ -436,64 +426,29 @@ static NSString *HiraginoSansName;
 #pragma mark Private Methods
 
 // ------------------------------------------------------
-/// current theme
-- (nullable CETheme *)theme
+/// cache CTLineRefs for invisible characters drawing
+- (void)invalidateInvisiblesStyle
 // ------------------------------------------------------
 {
-    return [(NSTextView<CETextViewProtocol> *)[self firstTextView] theme];
-}
-
-
-//------------------------------------------------------
-/// グリフを描画する位置を返す
-- (NSPoint)pointToDrawGlyphAtIndex:(NSUInteger)glyphIndex verticalOffset:(CGFloat)offset
-//------------------------------------------------------
-{
-    NSPoint origin = [self lineFragmentRectForGlyphAtIndex:glyphIndex
-                                            effectiveRange:NULL
-                                   withoutAdditionalLayout:YES].origin;
-    NSPoint glyphLocation = [self locationForGlyphAtIndex:glyphIndex];
-    
-    origin.x += glyphLocation.x;
-    origin.y += offset;
-    
-    return origin;
-}
-
-
-//------------------------------------------------------
-/// 文字とフォントからアウトラインパスを生成して返す
-CGPathRef glyphPathWithCharacter(unichar character, CTFontRef font, bool prefersFullWidth)
-//------------------------------------------------------
-{
-    CGFloat fontSize = CTFontGetSize(font);
-    CGGlyph glyph;
-    
+    NSFont *font;
     if (usesTextFontForInvisibles) {
-        if (CTFontGetGlyphsForCharacters(font, &character, &glyph, 1)) {
-            return CTFontCreatePathForGlyph(font, glyph, NULL);
-        }
+        font = [self textFont];
+    } else {
+        CGFloat fontSize = [[self textFont] pointSize];
+        font = [[NSFont fontWithName:@"LucidaGrande" size:fontSize] screenFont] ?: [NSFont systemFontOfSize:fontSize];
     }
+    NSDictionary<NSString *, id> *attributes = @{NSForegroundColorAttributeName: [self invisiblesColor],
+                                                 NSFontAttributeName: font};
+    NSDictionary<NSString *, id> *fullWidthAttributes = @{NSForegroundColorAttributeName: [self invisiblesColor],
+                                                          NSFontAttributeName: [[NSFont fontWithName:HiraginoSansName size:[font pointSize]] screenFont] ?: font};
     
-    // try fallback fonts in cases where user font doesn't support the input charactor
-    // - All invisible characters of choices can be covered with the following two fonts.
-    // - Monaco for vertical tab
-    CGPathRef path = NULL;
-    NSArray<NSString *> *fallbackFontNames = (prefersFullWidth
-                                              ? @[HiraginoSansName, @"LucidaGrande", @"Monaco"]
-                                              : @[@"LucidaGrande", HiraginoSansName, @"Monaco"]);
-    
-    for (NSString *fontName in fallbackFontNames) {
-        CTFontRef fallbackFont = CTFontCreateWithName((CFStringRef)fontName, fontSize, 0);
-        if (CTFontGetGlyphsForCharacters(fallbackFont, &character, &glyph, 1)) {
-            path = CTFontCreatePathForGlyph(fallbackFont, glyph, NULL);
-            CFRelease(fallbackFont);
-            break;
-        }
-        CFRelease(fallbackFont);
-    }
-    
-    return path;
+    [self setInvisibleLines:@[(__bridge_transfer id)createCTLineRefWithString([self invisibles][CEInvisibleSpace], attributes),
+                              (__bridge_transfer id)createCTLineRefWithString([self invisibles][CEInvisibleTab], attributes),
+                              (__bridge_transfer id)createCTLineRefWithString([self invisibles][CEInvisibleNewLine], attributes),
+                              (__bridge_transfer id)createCTLineRefWithString([self invisibles][CEInvisibleFullWidthSpace], fullWidthAttributes),
+                              (__bridge_transfer id)createCTLineRefWithString([self invisibles][CEInvisibleVerticalTab], fullWidthAttributes),
+                              (__bridge_transfer id)createCTLineRefWithString([self invisibles][CEInvisibleReplacement], fullWidthAttributes),
+                              ]];
 }
 
 @end

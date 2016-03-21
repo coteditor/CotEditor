@@ -95,24 +95,20 @@
         BOOL showsVerticalTab = [defaults boolForKey:CEDefaultShowOtherInvisibleCharsKey];
         BOOL showsOtherInvisibles = [defaults boolForKey:CEDefaultShowOtherInvisibleCharsKey];
         
-        unichar spaceChar = [CEInvisibles spaceCharWithIndex:[defaults integerForKey:CEDefaultInvisibleSpaceKey]];
-        NSAttributedString *space = [[NSAttributedString alloc] initWithString:[NSString stringWithCharacters:&spaceChar length:1]
+        NSAttributedString *space = [[NSAttributedString alloc] initWithString:[CEInvisibles stringWithType:CEInvisibleSpace
+                                                                                                      Index:[defaults integerForKey:CEDefaultInvisibleSpaceKey]]
                                                                     attributes:attributes];
-        
-        unichar tabChar = [CEInvisibles tabCharWithIndex:[defaults integerForKey:CEDefaultInvisibleTabKey]];
-        NSAttributedString *tab = [[NSAttributedString alloc] initWithString:[NSString stringWithCharacters:&tabChar length:1]
+        NSAttributedString *tab = [[NSAttributedString alloc] initWithString:[CEInvisibles stringWithType:CEInvisibleTab
+                                                                                                    Index:[defaults integerForKey:CEDefaultInvisibleTabKey]]
                                                                   attributes:attributes];
-        
-        unichar newLineChar = [CEInvisibles newLineCharWithIndex:[defaults integerForKey:CEDefaultInvisibleNewLineKey]];
-        NSAttributedString *newLine = [[NSAttributedString alloc] initWithString:[NSString stringWithCharacters:&newLineChar length:1]
+        NSAttributedString *newLine = [[NSAttributedString alloc] initWithString:[CEInvisibles stringWithType:CEInvisibleNewLine
+                                                                                                        Index:[defaults integerForKey:CEDefaultInvisibleNewLineKey]]
                                                                       attributes:attributes];
-        
-        unichar fullwidthSpaceChar = [CEInvisibles fullwidthSpaceCharWithIndex:[defaults integerForKey:CEDefaultInvisibleFullwidthSpaceKey]];
-        NSAttributedString *fullwidthSpace = [[NSAttributedString alloc] initWithString:[NSString stringWithCharacters:&fullwidthSpaceChar length:1]
+        NSAttributedString *fullwidthSpace = [[NSAttributedString alloc] initWithString:[CEInvisibles stringWithType:CEInvisibleFullWidthSpace
+                                                                                                               Index:[defaults integerForKey:CEDefaultInvisibleNewLineKey]]
                                                                              attributes:fullwidthAttributes];
-        
-        unichar verticalTabChar = [CEInvisibles verticalTabChar];
-        NSAttributedString *verticalTab = [[NSAttributedString alloc] initWithString:[NSString stringWithCharacters:&verticalTabChar length:1]
+        NSAttributedString *verticalTab = [[NSAttributedString alloc] initWithString:[CEInvisibles stringWithType:CEInvisibleVerticalTab
+                                                                                                            Index:NULL]
                                                                           attributes:attributes];
         
         for (NSUInteger glyphIndex = glyphsToShow.location; glyphIndex < lengthToRedraw; glyphIndex++) {
