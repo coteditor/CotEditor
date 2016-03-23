@@ -39,6 +39,29 @@ const char kUTF32LEBom[4] = {0xFF, 0xFE, 0x00, 0x00};
 static const NSUInteger kMaxDetectionLength = 1024 * 8;
 
 
+
+#pragma mark Public Functions
+
+//------------------------------------------------------
+/// check IANA charset compatibility considering SHIFT_JIS
+BOOL CEIsCompatibleIANACharSetEncoding(NSStringEncoding IANACharsetEncoding, NSStringEncoding encoding)
+//------------------------------------------------------
+{
+    if (IANACharsetEncoding == encoding) { return YES; }
+    
+    // -> Caution needed on Shift-JIS. See `scanEncodingDeclarationForTags:` for details.
+    const NSStringEncoding ShiftJIS = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingShiftJIS);
+    const NSStringEncoding ShiftJIS_X0213 = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingShiftJIS_X0213);
+    
+    return ((encoding == ShiftJIS && IANACharsetEncoding == ShiftJIS_X0213) ||
+            (encoding == ShiftJIS_X0213 && IANACharsetEncoding == ShiftJIS));
+}
+
+
+
+
+#pragma mark -
+
 @implementation NSString (CEEncoding)
 
 #pragma mark Public Methods
@@ -201,22 +224,6 @@ static const NSUInteger kMaxDetectionLength = 1024 * 8;
     if (cfEncoding == kCFStringEncodingInvalidId) { return NSNotFound; }
     
     return CFStringConvertEncodingToNSStringEncoding(cfEncoding);
-}
-
-
-//------------------------------------------------------
-/// check IANA charset compatibility considering SHIFT_JIS
-BOOL CEIsCompatibleIANACharSetEncoding(NSStringEncoding IANACharsetEncoding, NSStringEncoding encoding)
-//------------------------------------------------------
-{
-    if (IANACharsetEncoding == encoding) { return YES; }
-    
-    // -> Caution needed on Shift-JIS. See `scanEncodingDeclarationForTags:` for details.
-    const NSStringEncoding ShiftJIS = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingShiftJIS);
-    const NSStringEncoding ShiftJIS_X0213 = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingShiftJIS_X0213);
-    
-    return ((encoding == ShiftJIS && IANACharsetEncoding == ShiftJIS_X0213) ||
-            (encoding == ShiftJIS_X0213 && IANACharsetEncoding == ShiftJIS));
 }
 
 @end

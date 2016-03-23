@@ -36,6 +36,10 @@ extern char const kUTF32BEBom[];
 extern char const kUTF32LEBom[];
 
 
+/// check IANA charset compatibility considering SHIFT_JIS
+BOOL CEIsCompatibleIANACharSetEncoding(NSStringEncoding IANACharsetEncoding, NSStringEncoding encoding);
+
+
 @interface NSString (CEEncoding)
 
 /// obtain string from NSData with intelligent encoding detection
@@ -43,8 +47,5 @@ extern char const kUTF32LEBom[];
 
 /// scan encoding declaration in string
 - (NSStringEncoding)scanEncodingDeclarationForTags:(nonnull NSArray<NSString *> *)tags upToIndex:(NSUInteger)maxLength suggestedCFEncodings:(nonnull NSArray<NSNumber *> *)suggestedCFEncodings;
-
-/// check IANA charset compatibility considering SHIFT_JIS
-BOOL CEIsCompatibleIANACharSetEncoding(NSStringEncoding IANACharsetEncoding, NSStringEncoding encoding);
 
 @end
