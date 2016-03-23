@@ -100,7 +100,9 @@
 {
     CELayoutManager *manager = (CELayoutManager *)[self layoutManager];
     if (![manager showsOtherInvisibles] || ![manager showsInvisibles]) {
-        return [super boundingBoxForControlGlyphAtIndex:glyphIndex forTextContainer:textContainer proposedLineFragment:proposedRect glyphPosition:glyphPosition characterIndex:charIndex];
+        // DON'T invoke super method here. If invoked, it can not continue drawing remaining lines any more on Mountain Lion (and possible other versions except El Capitan).
+        // Just passing zero rect is enough if you dont need to draw.
+        return NSZeroRect;
     }
     
     // make blank space to draw a replacement character in CELayoutManager later.

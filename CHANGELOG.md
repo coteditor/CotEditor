@@ -35,6 +35,7 @@ develop
 
 - Fix an issue where the backgorund of navigation/status bars were not dwarn under a specific condition.
 - Fix an issue where the numbers in the line number view could be drawn in a wrong place if the editor is vertical text mode and unwapped.
+- Fix an issue where document could not be drawn until the end of the file on legacy OS if the file contains control characters.
 
 
 
