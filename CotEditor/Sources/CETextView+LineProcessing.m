@@ -245,7 +245,7 @@
 
 
 // ------------------------------------------------------
-/// remove duplicate lines in selection
+/// delete duplicate lines in selection
 - (IBAction)deleteDuplicateLine:(nullable id)sender
 // ------------------------------------------------------
 {

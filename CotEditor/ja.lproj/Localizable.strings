@@ -224,7 +224,7 @@
 "Move Line" = "行を移動";
 "Sort Lines" = "行をソート";
 "Reverse Lines" = "行を反転";
-"Remove Duplicate Lines" = "重複行を削除";
+"Delete Duplicate Lines" = "重複行を削除";
 "Duplicate Line" = "行を複製";
 "Delete Line" = "行を削除";
 "Trim Trailing Whitespace" = "行末の空白を削除";

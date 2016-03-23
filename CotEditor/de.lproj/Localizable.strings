@@ -222,7 +222,7 @@
 "Move Line" = "Zeile verschieben";
 "Sort Lines" = "Zeilen sortieren";
 "Reverse Lines" = "Zeilen umdrehen";
-"Remove Duplicate Lines" = "Doppelte Zeilen löschen";
+"Delete Duplicate Lines" = "Doppelte Zeilen löschen";
 "Duplicate Line" = "Zeile duplizieren";
 "Delete Line" = "Zeile löschen";
 "Trim Trailing Whitespace" = "Nachfolgende Leerzeichen entfernen";
