@@ -23,7 +23,11 @@ develop
     - Fix an issue where font-size changing could remove hanging indent. 
     - Fix an issue where layout of split editors will be broken if the font of one of the other split editors is changed.
 - Add “Copy as Rich Text” action to the contextual menu.
-- Apply “Sort”, “Reverse” or “Delete Duplicates” actions for text lines to whole document if no text is selected. 
+- Apply the following text actions to whole document if no text is selected:
+    - Indentation > Convert Indentation to Tab / Spaces
+    - Lines > Sort
+    - Lines > Reverse
+    - Lines > Delete Duplicates
 - Improve recovering status of unsaved documents on window resume.
 - Improve line number view drawing with selection on vertical text mode.
 - Improve invisibles drawing:

@@ -165,9 +165,14 @@
 - (IBAction)convertIndentationToSpaces:(nullable id)sender
 // ------------------------------------------------------
 {
-    if ([self selectedRange].length == 0) { return; }
+    NSArray<NSValue *> *ranges;
+    if ([self selectedRange].length == 0) {
+        ranges = @[[NSValue valueWithRange:NSMakeRange(0, [[self string] length])]];
+    } else {
+        ranges = [self selectedRanges];
+    }
     
-    [self convertIndentation:CEIndentStyleSpace inRanges:[self selectedRanges]];
+    [self convertIndentation:CEIndentStyleSpace inRanges:ranges];
 }
 
 
@@ -176,9 +181,14 @@
 - (IBAction)convertIndentationToTabs:(nullable id)sender
 // ------------------------------------------------------
 {
-    if ([self selectedRange].length == 0) { return; }
+    NSArray<NSValue *> *ranges;
+    if ([self selectedRange].length == 0) {
+        ranges = @[[NSValue valueWithRange:NSMakeRange(0, [[self string] length])]];
+    } else {
+        ranges = [self selectedRanges];
+    }
     
-    [self convertIndentation:CEIndentStyleTab inRanges:[self selectedRanges]];
+    [self convertIndentation:CEIndentStyleTab inRanges:ranges];
 }
 
 
@@ -190,6 +200,8 @@
 - (void)convertIndentation:(CEIndentStyle)indentStyle inRanges:(nonnull NSArray<NSValue *> *)ranges
 // ------------------------------------------------------
 {
+    if ([[self string] length] == 0) { return; }
+    
     NSMutableArray<NSValue *> *replacementRanges = [NSMutableArray arrayWithCapacity:[ranges count]];
     NSMutableArray<NSString *> *replacementStrings = [NSMutableArray arrayWithCapacity:[ranges count]];
     
