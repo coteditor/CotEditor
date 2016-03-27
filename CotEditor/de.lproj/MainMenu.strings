@@ -367,10 +367,10 @@
 /* Class = "NSMenuItem"; title = "Katakana to Hiragana"; ObjectID = "594"; */
 "594.title" = "Katakana zu Hiragana";
 
-/* Class = "NSMenu"; title = "Unicode Normalization"; ObjectID = "600"; */
-"600.title" = "Unicode Normalisierung";
+/* Class = "NSMenu"; title = "Unicode Normalizations"; ObjectID = "600"; */
+"600.title" = "Unicode Normalisierungen";
 /* Class = "NSMenuItem"; title = "Unicode Normalization"; ObjectID = "599"; */
-"599.title" = "Unicode Normalisierung";
+"599.title" = "Unicode Normalisierungen";
 
 /* Class = "NSMenuItem"; title = "NFD"; ObjectID = "601"; */
 "601.title" = "NFD";
