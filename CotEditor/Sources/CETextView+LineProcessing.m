@@ -174,6 +174,11 @@
 - (IBAction)sortLinesAscending:(nullable id)sender
 // ------------------------------------------------------
 {
+    // process whole document if no text selected
+    if ([self selectedRange].length == 0) {
+        [self setSelectedRange:NSMakeRange(0, [self string].length)];
+    }
+    
     NSRange lineRange = [[self string] lineRangeForRange:[self selectedRange]];
     
     if (lineRange.length == 0) { return; }
@@ -213,6 +218,11 @@
 - (IBAction)reverseLines:(nullable id)sender
 // ------------------------------------------------------
 {
+    // process whole document if no text selected
+    if ([self selectedRange].length == 0) {
+        [self setSelectedRange:NSMakeRange(0, [self string].length)];
+    }
+    
     NSRange lineRange = [[self string] lineRangeForRange:[self selectedRange]];
     
     if (lineRange.length == 0) { return; }
@@ -249,6 +259,11 @@
 - (IBAction)deleteDuplicateLine:(nullable id)sender
 // ------------------------------------------------------
 {
+    // process whole document if no text selected
+    if ([self selectedRange].length == 0) {
+        [self setSelectedRange:NSMakeRange(0, [self string].length)];
+    }
+    
     if ([self selectedRange].length == 0) { return; }
     
     NSMutableArray<NSValue *> *replacementRanges = [NSMutableArray array];
