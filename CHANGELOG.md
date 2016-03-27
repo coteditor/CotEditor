@@ -30,6 +30,7 @@ develop
     - Optimize drawing performance (ca. 2x).
     - better drawing if anti-ailiasing is off.
 - Display print progress panel as a document-modal sheet.
+- Avoid registering indentation conversion action to the undo history if no text was changed.
 
 
 ### Fixes
