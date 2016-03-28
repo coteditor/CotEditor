@@ -116,8 +116,8 @@ static NSString *_Nonnull const PageNumberPlaceholder = @"PAGENUM";
         CGFloat fontSize = round(0.9 * masterFontSize);
         NSFont *font = [NSFont fontWithName:[[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultLineNumFontNameKey] size:fontSize] ? :
                        [NSFont userFixedPitchFontOfSize:fontSize];
-        NSDictionary *attrs = @{NSFontAttributeName: font,
-                                NSForegroundColorAttributeName: [NSColor textColor]};
+        NSDictionary<NSString *, id> *attrs = @{NSFontAttributeName: font,
+                                                NSForegroundColorAttributeName: [NSColor textColor]};
         
         // calculate character width as mono-space font
         //いずれにしても等幅じゃないと奇麗に揃わないので等幅だということにしておく (hetima)
@@ -153,21 +153,21 @@ static NSString *_Nonnull const PageNumberPlaceholder = @"PAGENUM";
                                                           actualCharacterRange:NULL]);
             while (glyphCount < glyphIndex) {  // handle "DRAWN" (wrapped) lines
                 NSRange range;
-                NSRect numRect = [layoutManager lineFragmentRectForGlyphAtIndex:glyphCount effectiveRange:&range];
+                NSRect lineFragmentRect = [layoutManager lineFragmentRectForGlyphAtIndex:glyphCount effectiveRange:&range];
                 glyphCount = NSMaxRange(range);
                 
-                if (!NSPointInRect(numRect.origin, dirtyRect)) { continue; }
+                if (!NSPointInRect(lineFragmentRect.origin, dirtyRect)) { continue; }
                 
                 NSString *numStr = (lastLineNumber != lineNumber) ? [NSString stringWithFormat:@"%tu", lineNumber] : @"-";
                 NSPoint point = NSMakePoint(dirtyRect.origin.x + xAdj,
-                                            numRect.origin.y + yAdj);
+                                            lineFragmentRect.origin.y + yAdj);
                 
                 // adjust position to draw
                 if (isVertical) {
                     if (lastLineNumber == lineNumber) { continue; }
                     numStr = (lineNumber == 1 || lineNumber % 5 == 0) ? numStr : @"·";  // draw real number only in every 5 times
                     
-                    point = CGPointMake(-point.y - (charSize.width * [numStr length] + charSize.height) / 2,
+                    point = NSMakePoint(-point.y - (charSize.width * [numStr length] + charSize.height) / 2,
                                         point.x - charSize.height);
                 } else {
                     point.x -= charSize.width * [numStr length];  // align right
@@ -355,7 +355,7 @@ static NSString *_Nonnull const PageNumberPlaceholder = @"PAGENUM";
         [self setXOffset:0];
     }
     
-    // check wheter print invisibles
+    // check whether print invisibles
     BOOL showsInvisibles;
     switch ((CEInvisibleCharsPrintMode)[settings[CEPrintInvisiblesKey] unsignedIntegerValue]) {
         case CEInvisibleCharsPrintNo:
@@ -370,7 +370,7 @@ static NSString *_Nonnull const PageNumberPlaceholder = @"PAGENUM";
     }
     [(CELayoutManager *)[self layoutManager] setShowsInvisibles:showsInvisibles];
     
-    // setup syntax highlighting with set theme
+    // setup syntax highlighting with theme
     if ([settings[CEPrintThemeKey] isEqualToString:NSLocalizedString(@"Black and White",  nil)]) {
         [[self layoutManager] removeTemporaryAttribute:NSForegroundColorAttributeName
                                      forCharacterRange:NSMakeRange(0, [[self textStorage] length])];
