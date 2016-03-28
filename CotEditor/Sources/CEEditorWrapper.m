@@ -1024,8 +1024,8 @@
     if ([[self coloringTimer] isValid]) { return; }
     
     NSTextView *textView = [self focusedTextView];
-    NSRange glyphRange = [[textView layoutManager] glyphRangeForBoundingRect:[textView visibleRect]
-                                                             inTextContainer:[textView textContainer]];
+    NSRange glyphRange = [[textView layoutManager] glyphRangeForBoundingRectWithoutAdditionalLayout:[textView visibleRect]
+                                                                                    inTextContainer:[textView textContainer]];
     NSRange visibleRange = [[textView layoutManager] characterRangeForGlyphRange:glyphRange
                                                                 actualGlyphRange:NULL];
     NSRange selectedRange = [textView selectedRange];
@@ -1060,7 +1060,7 @@
 - (void)updateOutlineMenuWithTimer:(nonnull NSTimer *)timer
 // ------------------------------------------------------
 {
-    [self invalidateOutlineMenu]; // (The outlineMenuTimer will be invalidated in this invalidateOutlineMenu method.)
+    [self invalidateOutlineMenu];  // (The outlineMenuTimer will be invalidated in this invalidateOutlineMenu method.)
 }
 
 @end

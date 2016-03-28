@@ -268,21 +268,21 @@ static CGFontRef BoldLineNumberFont;
         CFRelease(tick);
     };
     
-    // get glyph range which line number should be drawn
-    NSRange visibleGlyphRange = [layoutManager glyphRangeForBoundingRect:visibleRect
-                                                         inTextContainer:[textView textContainer]];
+    // get glyph range of which line number should be drawn
+    NSRange glyphRangeToDraw = [layoutManager glyphRangeForBoundingRectWithoutAdditionalLayout:visibleRect
+                                                                                inTextContainer:[textView textContainer]];
     
     // counters
-    NSUInteger glyphCount = visibleGlyphRange.location;
-    NSUInteger lineNumber = 0;
+    NSUInteger glyphCount = glyphRangeToDraw.location;
+    NSUInteger lineNumber = 1;
     NSUInteger lastLineNumber = 0;
     
     // count lines until visible
-    lineNumber = [string numberOfLinesInRange:NSMakeRange(0, [layoutManager characterIndexForGlyphAtIndex:visibleGlyphRange.location])
+    lineNumber = [string numberOfLinesInRange:NSMakeRange(0, [layoutManager characterIndexForGlyphAtIndex:glyphRangeToDraw.location])
                          includingLastNewLine:YES] ?: 1;  // start with 1
     
     // draw visible line numbers
-    for (NSUInteger glyphIndex = visibleGlyphRange.location; glyphIndex < NSMaxRange(visibleGlyphRange); lineNumber++) { // count "real" lines
+    for (NSUInteger glyphIndex = glyphRangeToDraw.location; glyphIndex < NSMaxRange(glyphRangeToDraw); lineNumber++) { // count "real" lines
         NSUInteger charIndex = [layoutManager characterIndexForGlyphAtIndex:glyphIndex];
         NSRange lineRange = [string lineRangeForRange:NSMakeRange(charIndex, 0)];
         glyphIndex = NSMaxRange([layoutManager glyphRangeForCharacterRange:lineRange actualCharacterRange:NULL]);
