@@ -42,7 +42,7 @@
 CGFloat const kVerticalPrintMargin = 56.0;    // default 90.0
 CGFloat const kHorizontalPrintMargin = 24.0;  // default 72.0
 
-static CGFloat const kHorizontalHeaderFooterMargin = 20.0;
+static CGFloat const kLineFragmentPadding = 20.0;
 static CGFloat const kLineNumberPadding = 10.0;
 static CGFloat const kHeaderFooterFontSize = 9.0;
 
@@ -80,7 +80,7 @@ static NSString *_Nonnull const PageNumberPlaceholder = @"PAGENUM";
         [_dateFormatter setDateFormat:dateFormat];
         
         // プリントビューのテキストコンテナのパディングを固定する（印刷中に変動させるとラップの関連で末尾が印字されないことがある）
-        [[self textContainer] setLineFragmentPadding:kHorizontalHeaderFooterMargin];
+        [[self textContainer] setLineFragmentPadding:kLineFragmentPadding];
         
         // replace layoutManager
         CELayoutManager *layoutManager = [[CELayoutManager alloc] init];
@@ -115,8 +115,8 @@ static NSString *_Nonnull const PageNumberPlaceholder = @"PAGENUM";
     if ([self printsLineNum]) {
         // prepare text attributes for line numbers
         CGFloat fontSize = round(0.9 * [[self font] pointSize]);
-        NSFont *font = [NSFont fontWithName:[[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultLineNumFontNameKey] size:fontSize] ? :
-                       [NSFont userFixedPitchFontOfSize:fontSize];
+        NSString *fontName = [[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultLineNumFontNameKey];
+        NSFont *font = [NSFont fontWithName:fontName size:fontSize] ? : [NSFont userFixedPitchFontOfSize:fontSize];
         NSDictionary<NSString *, id> *attrs = @{NSFontAttributeName: font,
                                                 NSForegroundColorAttributeName: [NSColor textColor]};
         
@@ -129,7 +129,7 @@ static NSString *_Nonnull const PageNumberPlaceholder = @"PAGENUM";
         NSLayoutManager *layoutManager = [self layoutManager];
         
         // adjust values for line number drawing
-        CGFloat horizontalOrigin = [self textContainerOrigin].x + kHorizontalHeaderFooterMargin - kLineNumberPadding;
+        CGFloat horizontalOrigin = [self textContainerOrigin].x + kLineFragmentPadding - kLineNumberPadding;
         
         // vertical text
         BOOL isVertical = [self layoutOrientation] == NSTextLayoutOrientationVertical;
@@ -356,7 +356,7 @@ static NSString *_Nonnull const PageNumberPlaceholder = @"PAGENUM";
     
     // adjust paddings considering the line numbers
     if ([self printsLineNum]) {
-        [self setXOffset:kHorizontalHeaderFooterMargin];
+        [self setXOffset:kLineFragmentPadding];
     } else {
         [self setXOffset:0];
     }
@@ -472,7 +472,7 @@ static NSString *_Nonnull const PageNumberPlaceholder = @"PAGENUM";
 
 // ------------------------------------------------------
 /// return attributes for header/footer string
-- (nonnull NSDictionary *)headerFooterAttributesForAlignment:(CEAlignmentType)alignmentType
+- (nonnull NSDictionary<NSString *, id> *)headerFooterAttributesForAlignment:(CEAlignmentType)alignmentType
 // ------------------------------------------------------
 {
     NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
