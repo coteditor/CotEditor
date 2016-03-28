@@ -132,9 +132,9 @@ static NSString *_Nonnull const PageNumberPlaceholder = @"PAGENUM";
         CGFloat horizontalOrigin = [self textContainerOrigin].x + kLineFragmentPadding - kLineNumberPadding;
         
         // vertical text
-        BOOL isVertical = [self layoutOrientation] == NSTextLayoutOrientationVertical;
+        BOOL isVerticalText = [self layoutOrientation] == NSTextLayoutOrientationVertical;
         CGContextRef context;
-        if (isVertical) {
+        if (isVerticalText) {
             // rotate axis
             context = [[NSGraphicsContext currentContext] CGContext];
             CGContextSaveGState(context);
@@ -161,16 +161,18 @@ static NSString *_Nonnull const PageNumberPlaceholder = @"PAGENUM";
             
             while (glyphCount < glyphIndex) {  // handle wrapped lines
                 NSRange range;
-                NSRect lineRect = [layoutManager lineFragmentRectForGlyphAtIndex:glyphCount effectiveRange:&range];
+                NSRect lineRect = [layoutManager lineFragmentRectForGlyphAtIndex:glyphCount effectiveRange:&range withoutAdditionalLayout:YES];
+                BOOL isWrappedLine = (lastLineNumber == lineNumber);
+                lastLineNumber = lineNumber;
                 glyphCount = NSMaxRange(range);
                 
-                NSString *numStr = (lastLineNumber != lineNumber) ? [NSString stringWithFormat:@"%tu", lineNumber] : @"-";
-                NSPoint point = NSMakePoint(horizontalOrigin,
-                                            NSMaxY(lineRect) - charSize.height);
+                if (isVerticalText && isWrappedLine) { continue; }
+                
+                NSString *numStr = isWrappedLine ? @"-" : [NSString stringWithFormat:@"%tu", lineNumber];
                 
                 // adjust position to draw
-                if (isVertical) {
-                    if (lastLineNumber == lineNumber) { continue; }
+                NSPoint point = NSMakePoint(horizontalOrigin, NSMaxY(lineRect) - charSize.height);
+                if (isVerticalText) {
                     numStr = (lineNumber == 1 || lineNumber % 5 == 0) ? numStr : @"·";  // draw real number only in every 5 times
                     
                     point = NSMakePoint(-point.y - (charSize.width * [numStr length] + charSize.height) / 2,
@@ -181,12 +183,10 @@ static NSString *_Nonnull const PageNumberPlaceholder = @"PAGENUM";
                 
                 // draw number
                 [numStr drawAtPoint:point withAttributes:attrs];
-                
-                lastLineNumber = lineNumber;
             }
         }
         
-        if (isVertical) {
+        if (isVerticalText) {
             CGContextRestoreGState(context);
         }
     }

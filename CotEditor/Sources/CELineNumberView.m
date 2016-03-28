@@ -270,7 +270,7 @@ static CGFontRef BoldLineNumberFont;
     
     // get glyph range of which line number should be drawn
     NSRange glyphRangeToDraw = [layoutManager glyphRangeForBoundingRectWithoutAdditionalLayout:visibleRect
-                                                                                inTextContainer:[textView textContainer]];
+                                                                               inTextContainer:[textView textContainer]];
     
     // counters
     NSUInteger glyphCount = glyphRangeToDraw.location;
@@ -292,9 +292,9 @@ static CGFontRef BoldLineNumberFont;
         for (NSValue *selectedLineValue in selectedLineRanges) {
             NSRange selectedRange = [selectedLineValue rangeValue];
             
-            if ((isVerticalText && ((lineRange.location == selectedRange.location) ||
-                                    (NSMaxRange(lineRange) == NSMaxRange(selectedRange)))) ||
-                (!isVerticalText && NSLocationInRange(lineRange.location, selectedRange)))
+            if (NSLocationInRange(lineRange.location, selectedRange) &&
+                (isVerticalText && ((lineRange.location == selectedRange.location) ||
+                                    (NSMaxRange(lineRange) == NSMaxRange(selectedRange)))))
             {
                 isSelected = YES;
                 break;
@@ -304,37 +304,28 @@ static CGFontRef BoldLineNumberFont;
         while (glyphCount < glyphIndex) { // handle wrapped lines
             NSRange range;
             NSRect lineRect = [layoutManager lineFragmentRectForGlyphAtIndex:glyphCount effectiveRange:&range withoutAdditionalLayout:YES];
+            BOOL isWrappedLine = (lastLineNumber == lineNumber);
+            lastLineNumber = lineNumber;
+            glyphCount = NSMaxRange(range);
+            
+            if (isVerticalText && isWrappedLine) { continue; }
+            
             CGFloat y = scale * -NSMinY(lineRect);
             
-            if (lastLineNumber == lineNumber) {  // wrapped line
-                if (!isVerticalText) {
-                    CGPoint position = CGPointMake(ruleThickness - charWidth, y);
-                    CGContextShowGlyphsAtPositions(context, &wrappedMarkGlyph, &position, 1);  // draw wrapped mark
-                }
+            if (isWrappedLine) {
+                CGPoint position = CGPointMake(ruleThickness - charWidth, y);
+                CGContextShowGlyphsAtPositions(context, &wrappedMarkGlyph, &position, 1);  // draw wrapped mark
                 
             } else {  // new line
                 if (isVerticalText) {
                     draw_tick(y);
                 }
-                if (isSelected || !isVerticalText || lineNumber % 5 == 0 || lineNumber == 1) {
+                if (!isVerticalText || lineNumber % 5 == 0 || lineNumber == 1 || isSelected ||
+                    (NSMaxRange(lineRange) == length && ![layoutManager extraLineFragmentTextContainer]))  // last line for vertical text
+                {
                     draw_number(lineNumber, y, isSelected);
                 }
             }
-            
-            glyphCount = NSMaxRange(range);
-            
-            // draw last line number on vertical text anyway
-            if (isVerticalText &&  // vertical text
-                NSMaxRange(lineRange) == length &&  // last line
-                lastLineNumber != lineNumber &&  // new line
-                isVerticalText && lineNumber != 1 && lineNumber % 5 != 0 &&  // not yet drawn
-                ![layoutManager extraLineFragmentTextContainer])  // no extra number
-            {
-                draw_tick(y);
-                draw_number(lineNumber, y, isSelected);
-            }
-            
-            lastLineNumber = lineNumber;
         }
     }
     
