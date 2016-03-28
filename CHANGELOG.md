@@ -43,6 +43,7 @@ develop
 - Fix an issue where the numbers in the line number view could be drawn in a wrong place if the editor is vertical text mode and unwapped.
 - Fix an issue where document could not be drawn until the end of the file on legacy OS if the file contains control characters.
 - Fix an issue where print panel displayed a wrong total page number after changing the paepr size.
+- Fix vertical line numbers position on printing.
 - Fix an unlocalized action name.
 
 

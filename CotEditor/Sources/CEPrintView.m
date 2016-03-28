@@ -32,8 +32,10 @@
 #import "CEThemeManager.h"
 #import "CESyntaxManager.h"
 #import "CESyntaxStyle.h"
-#import "NSString+Sandboxing.h"
 #import "CEDefaults.h"
+
+#import "NSString+Sandboxing.h"
+#import "NSString+CECounting.h"
 
 
 // constants
@@ -112,8 +114,7 @@ static NSString *_Nonnull const PageNumberPlaceholder = @"PAGENUM";
     // draw line numbers if needed
     if ([self printsLineNum]) {
         // prepare text attributes for line numbers
-        CGFloat masterFontSize = [[self font] pointSize];
-        CGFloat fontSize = round(0.9 * masterFontSize);
+        CGFloat fontSize = round(0.9 * [[self font] pointSize]);
         NSFont *font = [NSFont fontWithName:[[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultLineNumFontNameKey] size:fontSize] ? :
                        [NSFont userFixedPitchFontOfSize:fontSize];
         NSDictionary<NSString *, id> *attrs = @{NSFontAttributeName: font,
@@ -128,8 +129,7 @@ static NSString *_Nonnull const PageNumberPlaceholder = @"PAGENUM";
         NSLayoutManager *layoutManager = [self layoutManager];
         
         // adjust values for line number drawing
-        CGFloat xAdj = [self textContainerOrigin].x + kHorizontalHeaderFooterMargin - kLineNumberPadding;
-        CGFloat yAdj = (fontSize - masterFontSize);
+        CGFloat horizontalOrigin = [self textContainerOrigin].x + kHorizontalHeaderFooterMargin - kLineNumberPadding;
         
         // vertical text
         BOOL isVertical = [self layoutOrientation] == NSTextLayoutOrientationVertical;
@@ -141,26 +141,32 @@ static NSString *_Nonnull const PageNumberPlaceholder = @"PAGENUM";
             CGContextConcatCTM(context, CGAffineTransformMakeRotation(-M_PI_2));
         }
         
-        // counters
-        NSUInteger lastLineNumber = 0;
-        NSUInteger lineNumber = 1;
-        NSUInteger glyphCount = 0;
-        NSUInteger numberOfGlyphs = [layoutManager numberOfGlyphs];
+        // get glyph range of which line number should be drawn
+        NSRange glyphRangeToDraw = [layoutManager glyphRangeForBoundingRectWithoutAdditionalLayout:dirtyRect
+                                                                                   inTextContainer:[self textContainer]];
         
-        for (NSUInteger glyphIndex = 0; glyphIndex < numberOfGlyphs; lineNumber++) {  // count "REAL" lines
+        // counters
+        NSUInteger glyphCount = glyphRangeToDraw.location;
+        NSUInteger lineNumber = 1;
+        NSUInteger lastLineNumber = 0;
+        
+        // count lines until visible
+        lineNumber = [string numberOfLinesInRange:NSMakeRange(0, [layoutManager characterIndexForGlyphAtIndex:glyphRangeToDraw.location])
+                             includingLastNewLine:YES] ?: 1;  // start with 1
+        
+        for (NSUInteger glyphIndex = glyphRangeToDraw.location; glyphIndex < NSMaxRange(glyphRangeToDraw); lineNumber++) {  // count "real" lines
             NSUInteger charIndex = [layoutManager characterIndexForGlyphAtIndex:glyphIndex];
-            glyphIndex = NSMaxRange([layoutManager glyphRangeForCharacterRange:[string lineRangeForRange:NSMakeRange(charIndex, 0)]
-                                                          actualCharacterRange:NULL]);
-            while (glyphCount < glyphIndex) {  // handle "DRAWN" (wrapped) lines
+            NSRange lineRange = [string lineRangeForRange:NSMakeRange(charIndex, 0)];
+            glyphIndex = NSMaxRange([layoutManager glyphRangeForCharacterRange:lineRange actualCharacterRange:NULL]);
+            
+            while (glyphCount < glyphIndex) {  // handle wrapped lines
                 NSRange range;
-                NSRect lineFragmentRect = [layoutManager lineFragmentRectForGlyphAtIndex:glyphCount effectiveRange:&range];
+                NSRect lineRect = [layoutManager lineFragmentRectForGlyphAtIndex:glyphCount effectiveRange:&range];
                 glyphCount = NSMaxRange(range);
                 
-                if (!NSPointInRect(lineFragmentRect.origin, dirtyRect)) { continue; }
-                
                 NSString *numStr = (lastLineNumber != lineNumber) ? [NSString stringWithFormat:@"%tu", lineNumber] : @"-";
-                NSPoint point = NSMakePoint(dirtyRect.origin.x + xAdj,
-                                            lineFragmentRect.origin.y + yAdj);
+                NSPoint point = NSMakePoint(horizontalOrigin,
+                                            NSMaxY(lineRect) - charSize.height);
                 
                 // adjust position to draw
                 if (isVertical) {
