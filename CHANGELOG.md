@@ -15,11 +15,11 @@ develop
 
 - Display the dialog asking encoding compatibility on saving as a document-modal sheet.
 - Optimize document opening performance with large file.
-- Improve font-size chainging behavior:
+- Improve font-size changing behavior:
     - Smoother pinch-zoom.
     - Now font-size change applies only to the focused editor.
     - Enable pinch-zoom to make font smaller than default font size.
-    - Font size changing doesn't affect the actual font anymore but just scale charaters visibly.
+    - Font size changing doesn't affect the actual font anymore but just scale characters visibly.
     - Fix an issue where font-size changing could remove hanging indent. 
     - Fix an issue where layout of split editors will be broken if the font of one of the other split editors is changed.
 - Add “Copy as Rich Text” action to the contextual menu.
@@ -32,18 +32,18 @@ develop
 - Improve line number view drawing with selection on vertical text mode.
 - Improve invisibles drawing:
     - Optimize drawing performance (ca. 2x).
-    - better drawing if anti-ailiasing is off.
+    - better drawing if anti-aliasing is off.
 - Display print progress panel as a document-modal sheet.
 - Avoid registering indentation conversion action to the undo history if no text was changed.
 
 
 ### Fixes
 
-- Fix an issue where the backgorund of navigation/status bars were not dwarn under a specific condition.
-- Fix an issue where the numbers in the line number view could be drawn in a wrong place if the editor is vertical text mode and unwapped.
+- Fix an issue where the background of navigation/status bars were not drawn under a specific condition.
+- Fix an issue where the numbers in the line number view could be drawn in a wrong place if the editor is vertical text mode and unwrapped.
 - Fix an issue where document could not be drawn until the end of the file on legacy OS if the file contains control characters.
 - Fix an issue where printing area could be cropped.
-- Fix an issue where print panel displayed a wrong total page number after changing the paepr size.
+- Fix an issue where print panel displayed a wrong total page number after changing the paper size.
 - Fix vertical line numbers position on printing.
 - Fix an unlocalized action name.
 
