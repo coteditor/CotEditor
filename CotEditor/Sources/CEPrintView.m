@@ -261,17 +261,7 @@ static NSString *_Nonnull const PageNumberPlaceholder = @"PAGENUM";
 -(BOOL)knowsPageRange:(NSRangePointer)aRange
 // ------------------------------------------------------
 {
-    // update text view size considering text orientation
-    NSPrintInfo *printInfo = [[NSPrintOperation currentOperation] printInfo];
-    NSSize frameSize = [printInfo paperSize];
-    if ([self layoutOrientation] == NSTextLayoutOrientationVertical) {
-        frameSize.height -= [printInfo leftMargin] + [printInfo rightMargin];
-        frameSize.height /= [printInfo scalingFactor];
-    } else {
-        frameSize.width -= [printInfo leftMargin] + [printInfo rightMargin];
-        frameSize.width /= [printInfo scalingFactor];
-    }
-    [self setFrameSize:frameSize];
+    [self setupPrintSize];
     
     return [super knowsPageRange:aRange];
 }
@@ -548,6 +538,27 @@ static NSString *_Nonnull const PageNumberPlaceholder = @"PAGENUM";
     }
     
     return nil;
+}
+
+
+// ------------------------------------------------------
+/// update text view size considering text orientation
+- (void)setupPrintSize
+// ------------------------------------------------------
+{
+    NSPrintInfo *printInfo = [[NSPrintOperation currentOperation] printInfo];
+    
+    NSSize frameSize = [printInfo paperSize];
+    if ([self layoutOrientation] == NSTextLayoutOrientationVertical) {
+        frameSize.height -= [printInfo leftMargin] + [printInfo rightMargin];
+        frameSize.height /= [printInfo scalingFactor];
+    } else {
+        frameSize.width -= [printInfo leftMargin] + [printInfo rightMargin];
+        frameSize.width /= [printInfo scalingFactor];
+    }
+    
+    [self setFrameSize:frameSize];
+    [self sizeToFit];
 }
 
 @end
