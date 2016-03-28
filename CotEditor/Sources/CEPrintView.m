@@ -314,9 +314,9 @@ static NSString *_Nonnull const PageNumberPlaceholder = @"PAGENUM";
     // apply syntax highlighting
     if ([attrs dictionaryWithValuesForKeys:@[NSForegroundColorAttributeName]]) {
         return attrs;
-    } else {
-        return nil;
     }
+    
+    return nil;
 }
 
 
@@ -386,6 +386,7 @@ static NSString *_Nonnull const PageNumberPlaceholder = @"PAGENUM";
                                      forCharacterRange:NSMakeRange(0, [[self textStorage] length])];
         [self setTextColor:[NSColor blackColor]];
         [self setBackgroundColor:[NSColor whiteColor]];
+        [(CELayoutManager *)[self layoutManager] setInvisiblesColor:[NSColor grayColor]];
         
     } else {
         [self setTheme:[[CEThemeManager sharedManager] themeWithName:settings[CEPrintThemeKey]]];
