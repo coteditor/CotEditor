@@ -140,6 +140,7 @@ static NSString *_Nonnull const PageNumberPlaceholder = @"PAGENUM";
         BOOL isVerticalText = [self layoutOrientation] == NSTextLayoutOrientationVertical;
         if (isVerticalText) {
             // rotate axis
+            [NSGraphicsContext saveGraphicsState];
             CGContextRef context = [[NSGraphicsContext currentContext] graphicsPort];
             CGContextConcatCTM(context, CGAffineTransformMakeRotation(-M_PI_2));
         }
