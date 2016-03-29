@@ -79,6 +79,8 @@ typedef NS_ENUM(NSInteger, CETextFinderAction) {
 - (IBAction)replace:(nullable id)sender;
 - (IBAction)replaceAndFind:(nullable id)sender;
 - (IBAction)replaceAll:(nullable id)sender;
+- (IBAction)highlight:(nullable id)sender;
+- (IBAction)unhighlight:(nullable id)sender;
 - (IBAction)useSelectionForFind:(nullable id)sender;
 - (IBAction)useSelectionForReplace:(nullable id)sender;
 - (IBAction)centerSelectionInVisibleArea:(nullable id)sender;
