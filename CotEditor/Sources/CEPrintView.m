@@ -109,8 +109,14 @@ static NSString *_Nonnull const PageNumberPlaceholder = @"PAGENUM";
 {
     [self loadPrintSettings];
     
+    // store graphics state to keep line number area drawable
+    //   -> Otherwise, line numbers can be cropped. (2016-03 by 1024jp)
+    [NSGraphicsContext saveGraphicsState];
+    
     [super drawRect:dirtyRect];
-
+    
+    [NSGraphicsContext restoreGraphicsState];
+    
     // draw line numbers if needed
     if ([self printsLineNum]) {
         // prepare text attributes for line numbers
@@ -120,8 +126,7 @@ static NSString *_Nonnull const PageNumberPlaceholder = @"PAGENUM";
         NSDictionary<NSString *, id> *attrs = @{NSFontAttributeName: font,
                                                 NSForegroundColorAttributeName: [NSColor textColor]};
         
-        // calculate character width as mono-space font
-        //いずれにしても等幅じゃないと奇麗に揃わないので等幅だということにしておく (hetima)
+        // calculate character width by treating the font as a mono-space font
         NSSize charSize = [@"8" sizeWithAttributes:attrs];
         
         // setup the variables we need for the loop
@@ -133,11 +138,9 @@ static NSString *_Nonnull const PageNumberPlaceholder = @"PAGENUM";
         
         // vertical text
         BOOL isVerticalText = [self layoutOrientation] == NSTextLayoutOrientationVertical;
-        CGContextRef context;
         if (isVerticalText) {
             // rotate axis
-            context = [[NSGraphicsContext currentContext] CGContext];
-            CGContextSaveGState(context);
+            CGContextRef context = [[NSGraphicsContext currentContext] graphicsPort];
             CGContextConcatCTM(context, CGAffineTransformMakeRotation(-M_PI_2));
         }
         
@@ -187,7 +190,7 @@ static NSString *_Nonnull const PageNumberPlaceholder = @"PAGENUM";
         }
         
         if (isVerticalText) {
-            CGContextRestoreGState(context);
+            [NSGraphicsContext restoreGraphicsState];
         }
     }
 }
