@@ -41,6 +41,10 @@ NSString * _Nonnull const CEFindResultLineNumber = @"lineNumber";
 NSString * _Nonnull const CEFindResultAttributedLineString = @"attributedLineString";
 NSString * _Nonnull const CEFindResultLineRange = @"lineRange";
 
+// keys for highlight
+static NSString * _Nonnull const CEFindHighlightRange = @"range";
+static NSString * _Nonnull const CEFindHighlightColor = @"color";
+
 static NSString * _Nonnull const kEscapeCharacter = OgreBackslashCharacter;
 static const NSUInteger kMaxHistorySize = 20;
 //static const NSUInteger kMinLengthShowIndicator = 5000;  // not in use
@@ -367,8 +371,6 @@ static const NSUInteger kMaxHistorySize = 20;
             isCancelled = YES;
         }
     }];
-
-    [[textView layoutManager] removeTemporaryAttribute:NSBackgroundColorAttributeName forCharacterRange:NSMakeRange(0, [string length])];
     
     __weak typeof(self) weakSelf = self;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -376,6 +378,7 @@ static const NSUInteger kMaxHistorySize = 20;
         if (!self) { return; }
         
         NSMutableArray<NSDictionary *> *result = [NSMutableArray array];
+        NSMutableArray<NSDictionary *> *highlights = [NSMutableArray array];
         for (NSValue *rangeValue in scopeRanges) {
             NSRange scopeRange = [rangeValue rangeValue];
             NSEnumerator<OGRegularExpressionMatch *> *enumerator = [regex matchEnumeratorInString:string range:scopeRange];
@@ -404,10 +407,9 @@ static const NSUInteger kMaxHistorySize = 20;
                 NSMutableAttributedString *lineAttrString = [[NSMutableAttributedString alloc] initWithString:lineString];
                 
                 [lineAttrString addAttribute:NSBackgroundColorAttributeName value:[highlightColors firstObject] range:inlineRange];
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [[textView layoutManager] addTemporaryAttribute:NSBackgroundColorAttributeName value:[highlightColors firstObject]
-                                                  forCharacterRange:matchedRange];
-                });
+                
+                [highlights addObject:@{CEFindHighlightRange:[NSValue valueWithRange:matchedRange],
+                                        CEFindHighlightColor: [highlightColors firstObject]}];
                 
                 for (NSUInteger i = 0; i < numberOfGroups; i++) {
                     NSRange range = [match rangeOfSubstringAtIndex:i];
@@ -418,11 +420,8 @@ static const NSUInteger kMaxHistorySize = 20;
                     
                     [lineAttrString addAttribute:NSBackgroundColorAttributeName value:color
                                            range:NSMakeRange(range.location - lineRange.location, range.length)];
-                    
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        [[textView layoutManager] addTemporaryAttribute:NSBackgroundColorAttributeName value:color
-                                                      forCharacterRange:range];
-                    });
+                    [highlights addObject:@{CEFindHighlightRange:[NSValue valueWithRange:range],
+                                            CEFindHighlightColor: color}];
                 }
                 
                 [result addObject:@{CEFindResultRange: [NSValue valueWithRange:matchedRange],
@@ -440,6 +439,13 @@ static const NSUInteger kMaxHistorySize = 20;
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{
+            // highlight
+            [[textView layoutManager] removeTemporaryAttribute:NSBackgroundColorAttributeName forCharacterRange:NSMakeRange(0, [string length])];
+            for (NSDictionary<NSString *, id> *highlight in highlights) {
+                [[textView layoutManager] addTemporaryAttribute:NSBackgroundColorAttributeName value:highlight[CEFindHighlightColor]
+                                              forCharacterRange:[highlight[CEFindHighlightRange] rangeValue]];
+            }
+            
             [indicator doneWithButtonTitle:nil];
             
             if ([result count] > 0) {
