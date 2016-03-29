@@ -124,8 +124,8 @@ static NSString *HiraginoSansName;
         _showsFullwidthSpace = [defaults boolForKey:CEDefaultShowInvisibleFullwidthSpaceKey];
         _showsOtherInvisibles = [defaults boolForKey:CEDefaultShowOtherInvisibleCharsKey];
         
-        // Since NSLayoutManager's showsControlCharacters flag is totally buggy (at leaset on El Capitan),
-        // we stopped using this since CotEditor 2.3.3 that was released in 2016-01.
+        // Since NSLayoutManager's showsControlCharacters flag is totally buggy (at least on El Capitan),
+        // we stopped using it since CotEditor 2.3.3 released in 2016-01.
         // Previously, CotEditor used this flag for "Other Invisible Characters."
         // However as CotEditor draws such control-glyph-alternative-characters by itself in `drawGlyphsForGlyphRange:atPoint:`,
         // this flag is actually not so necessary as I thougth. Thus, treat carefully this.
@@ -218,13 +218,13 @@ static NSString *HiraginoSansName;
                     break;
                     
                 case '\v':
-                    if (![self showsOtherInvisibles]) { continue; }  // Vertical tab belongs to other invisibles.
+                    if (![self showsOtherInvisibles]) { continue; }  // Vertical tab belongs to the other invisibles.
                     invisibleType = CEInvisibleVerticalTab;
                     break;
                     
                 default:
                     if (![self showsOtherInvisibles] || ([self glyphAtIndex:glyphIndex isValidIndex:NULL] != NSControlGlyph)) { continue; }
-                    // Skip the second glyph if character is a surrogate-pair
+                    // skip the second glyph if character is a surrogate-pair
                     if (CFStringIsSurrogateLowCharacter(character) &&
                         ((charIndex > 0) && CFStringIsSurrogateHighCharacter([completeString characterAtIndex:charIndex - 1])))
                     {
@@ -437,10 +437,12 @@ static NSString *HiraginoSansName;
         CGFloat fontSize = [[self textFont] pointSize];
         font = [[NSFont fontWithName:@"LucidaGrande" size:fontSize] screenFont] ?: [NSFont systemFontOfSize:fontSize];
     }
+    NSFont *fullWidthFont = [[NSFont fontWithName:HiraginoSansName size:[font pointSize]] screenFont];
+    
     NSDictionary<NSString *, id> *attributes = @{NSForegroundColorAttributeName: [self invisiblesColor],
                                                  NSFontAttributeName: font};
     NSDictionary<NSString *, id> *fullWidthAttributes = @{NSForegroundColorAttributeName: [self invisiblesColor],
-                                                          NSFontAttributeName: [[NSFont fontWithName:HiraginoSansName size:[font pointSize]] screenFont] ?: font};
+                                                          NSFontAttributeName: fullWidthFont ?: font};
     
     [self setInvisibleLines:@[(__bridge_transfer id)createCTLineRefWithString([self invisibles][CEInvisibleSpace], attributes),
                               (__bridge_transfer id)createCTLineRefWithString([self invisibles][CEInvisibleTab], attributes),
