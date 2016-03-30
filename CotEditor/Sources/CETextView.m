@@ -1906,26 +1906,9 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
     CGFloat scale = ([self scale] == 1.0) ? 1.5 : 1.0;
     CGPoint center = [self convertPoint:[event locationInWindow] fromView:nil];
     
-    if (scale == 1.0) {
-        [self setScale:scale centeredAtPoint:center];
-        
-    } else {
-        // pseudo-animation
-        static CGFloat duration = 0.12;
-        static NSUInteger frames = 50;
-        CGFloat incrementation = (scale - [self scale]) / frames;
-        
-        __unsafe_unretained typeof(self) weakSelf = self;  // NSTextView cannot be weak
-        for (CGFloat tempScale = 1.0, interval = 0; tempScale <= scale; tempScale += incrementation, interval += duration / frames) {
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(interval * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                typeof(self) self = weakSelf;  // strong self
-                if (!self) { return; }
-                
-                [self setScale:tempScale centeredAtPoint:center];
-            });
-        }
-    }
+    [self setScale:scale centeredAtPoint:center];
 }
+
 
 
 #pragma mark Action Messages
