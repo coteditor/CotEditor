@@ -1024,9 +1024,9 @@ static const NSUInteger kMaxHistorySize = 20;
     CGFloat hue, saturation, brightness, alpha;
     [[self highlightColor] getHue:&hue saturation:&saturation brightness:&brightness alpha:&alpha];
     
-    for (CGFloat i = 0.0; i < numberOfGroups; i++) {
+    for (NSUInteger i = 0; i < numberOfGroups; i++) {
         double dummy;
-        [highlightColors addObject:[NSColor colorWithCalibratedHue:modf(hue + i / numberOfGroups, &dummy)
+        [highlightColors addObject:[NSColor colorWithCalibratedHue:modf(hue + (CGFloat)i / numberOfGroups, &dummy)
                                                         saturation:saturation brightness:brightness alpha:alpha]];
     }
     
