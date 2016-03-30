@@ -131,8 +131,11 @@
     }
     [menuItem setRepresentedObject:representedTheme];
     
-    BOOL isCustomized;
-    BOOL isBundled = [[CEThemeManager sharedManager] isBundledTheme:representedTheme cutomized:&isCustomized];
+    BOOL isCustomized = NO;
+    BOOL isBundled = NO;
+    if (representedTheme) {
+        isBundled = [[CEThemeManager sharedManager] isBundledTheme:representedTheme cutomized:&isCustomized];
+    }
     
     if (([menuItem action] == @selector(addTheme:)) ||
         ([menuItem action] == @selector(importTheme:)))

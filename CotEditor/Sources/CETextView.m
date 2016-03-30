@@ -366,10 +366,12 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
                     break;
             }
             
-            NSString *selectedString = [[self string] substringWithRange:[self selectedRange]];
-            NSString *replacementString = [NSString stringWithFormat:wrappingFormat, selectedString];
-            if ([self shouldChangeTextInRange:[self selectedRange] replacementString:replacementString]) {
-                [[self textStorage] replaceCharactersInRange:[self selectedRange] withString:replacementString];
+            if (wrappingFormat) {
+                NSString *selectedString = [[self string] substringWithRange:[self selectedRange]];
+                string = [NSString stringWithFormat:wrappingFormat, selectedString];
+            }
+            if ([self shouldChangeTextInRange:[self selectedRange] replacementString:string]) {
+                [[self textStorage] replaceCharactersInRange:[self selectedRange] withString:string];
                 [self didChangeText];
                 return;
             }

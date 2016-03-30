@@ -147,6 +147,12 @@ NSString *_Nonnull const StyleStateKey = @"state";
     }
     [menuItem setRepresentedObject:representedStyleName];
     
+    BOOL isCustomized = NO;
+    BOOL isBundled = NO;
+    if (representedStyleName) {
+        isBundled = [[CESyntaxManager sharedManager] isBundledStyle:representedStyleName cutomized:nil];
+    }
+    
     // 書き出し/複製メニュー項目に現在選択されているスタイル名を追加
     if ([menuItem action] == @selector(exportSyntaxStyle:)) {
         if (!isContextualMenu) {
@@ -162,18 +168,15 @@ NSString *_Nonnull const StyleStateKey = @"state";
         if (!isContextualMenu) {
             [menuItem setTitle:[NSString stringWithFormat:NSLocalizedString(@"Reveal “%@” in Finder", nil), representedStyleName]];
         }
-        return ([[CESyntaxManager sharedManager] URLForUserStyle:representedStyleName] != nil);
+        return representedStyleName ? ([[CESyntaxManager sharedManager] URLForUserStyle:representedStyleName] != nil) : NO;
         
     } else if ([menuItem action] == @selector(deleteSyntaxStyle:)) {
-        BOOL isBundled = [[CESyntaxManager sharedManager] isBundledStyle:representedStyleName cutomized:nil];
         [menuItem setHidden:(isBundled || !representedStyleName)];
         
     } else if ([menuItem action] == @selector(restoreSyntaxStyle:)) {
         if (!isContextualMenu) {
             [menuItem setTitle:[NSString stringWithFormat:NSLocalizedString(@"Restore “%@”", nil), representedStyleName]];
         }
-        BOOL isCustomized;
-        BOOL isBundled = [[CESyntaxManager sharedManager] isBundledStyle:representedStyleName cutomized:&isCustomized];
         [menuItem setHidden:(!isBundled || !representedStyleName)];
         return isCustomized;
     }

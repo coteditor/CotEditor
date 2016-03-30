@@ -363,6 +363,7 @@ static const NSUInteger kMaxHistorySize = 20;
     NSString *string = [textView string];
     
     // setup progress sheet
+    NSAssert([textView window], @"The find target text view must be embedded in a window.");
     __block BOOL isCancelled = NO;
     CEProgressSheetController *indicator = [[CEProgressSheetController alloc] initWithMessage:NSLocalizedString(@"Find All", nil)];
     [indicator setIndetermine:YES];
@@ -515,6 +516,7 @@ static const NSUInteger kMaxHistorySize = 20;
     NSString *string = [textView string];
     
     // setup progress sheet
+    NSAssert([textView window], @"The find target text view must be embedded in a window.");
     __block BOOL isCancelled = NO;
     CEProgressSheetController *indicator = [[CEProgressSheetController alloc] initWithMessage:NSLocalizedString(@"Replace All", nil)];
     [indicator setIndetermine:YES];

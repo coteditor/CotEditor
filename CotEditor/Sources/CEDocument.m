@@ -321,8 +321,8 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
         *outError = [NSError errorWithDomain:NSCocoaErrorDomain
                                         code:NSFileWriteInapplicableStringEncodingError
                                     userInfo:@{NSStringEncodingErrorKey: @(encoding)}];
-        return data;
     }
+    if (!data) { return nil; }
     
     // add UTF-8 BOM if needed
     if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultSaveUTF8BOMKey] &&
