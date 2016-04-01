@@ -62,7 +62,6 @@
 - (IBAction)changeTabWidth:(nullable id)sender;
 - (IBAction)inputYenMark:(nullable id)sender;
 - (IBAction)inputBackSlash:(nullable id)sender;
-- (IBAction)trimTrailingWhitespace:(nullable id)sender;
 - (IBAction)setSelectedRangeWithNSValue:(nullable id)sender;
 - (IBAction)changeLineHeight:(nullable id)sender;
 - (IBAction)showSelectionInfo:(nullable id)sender;
@@ -127,6 +126,8 @@
 
 @interface CETextView (LineProcessing)
 
+- (void)trimTrailingWhitespaceKeepingEditingPoint:(BOOL)keepingEditingPoint;
+
 - (IBAction)moveLineUp:(nullable id)sender;
 - (IBAction)moveLineDown:(nullable id)sender;
 - (IBAction)sortLinesAscending:(nullable id)sender;
@@ -134,6 +135,7 @@
 - (IBAction)deleteDuplicateLine:(nullable id)sender;
 - (IBAction)duplicateLine:(nullable id)sender;
 - (IBAction)deleteLine:(nullable id)sender;
+- (IBAction)trimTrailingWhitespace:(nullable id)sender;
 
 @end
 

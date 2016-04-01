@@ -35,6 +35,7 @@ develop
     - better drawing if anti-aliasing is off.
 - Display print progress panel as a document-modal sheet.
 - Avoid registering indentation conversion action to the undo history if no text was changed.
+- Suppress trimming whitespace at the editing point on (auto)saving when “Trim trailing whitespace on save” is on.
 
 
 ### Fixes
