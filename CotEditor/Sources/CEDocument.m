@@ -354,7 +354,8 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 {
     // trim trailing whitespace if needed
     if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultTrimsTrailingWhitespaceOnSaveKey]) {
-        [[[self editor] focusedTextView] trimTrailingWhitespaceKeepingEditingPoint:YES];
+        BOOL keepsEditingPoint = (saveOperation == NSAutosaveInPlaceOperation || saveOperation == NSAutosaveElsewhereOperation);
+        [[[self editor] focusedTextView] trimTrailingWhitespaceKeepingEditingPoint:keepsEditingPoint];
     }
     
     // break undo grouping
