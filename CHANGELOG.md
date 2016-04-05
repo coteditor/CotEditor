@@ -8,7 +8,7 @@ develop
 ### New Features
 
 - Now, the execute permission can be given to the file to save from the save panel.
-- Add new themes “Lakritz” and “Resinifictrix”.
+- Add a new theme “Lakritz”.
 
 
 ### Improvements
