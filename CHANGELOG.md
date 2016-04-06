@@ -46,6 +46,7 @@ develop
 - Fix an issue on Mavericks and earlier where the application hung up if tried to print line numbers by vertical text layout on printing.
 - Fix an issue where printing area could be cropped.
 - Fix an issue where line numbers could be drawn at a bit shifted position or even cropped on printing.
+- Fix XML document icon.
 - Fix an unlocalized action name.
 
 
