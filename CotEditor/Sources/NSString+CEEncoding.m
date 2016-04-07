@@ -30,11 +30,11 @@
 
 
 // byte order marks
-const char kUTF8Bom[3] = {0xEF, 0xBB, 0xBF};
-const char kUTF16BEBom[2] = {0xFE, 0xFF};
-const char kUTF16LEBom[2] = {0xFF, 0xFE};
-const char kUTF32BEBom[4] = {0x00, 0x00, 0xFE, 0xFF};
-const char kUTF32LEBom[4] = {0xFF, 0xFE, 0x00, 0x00};
+static const char kUTF8Bom[3] = {0xEF, 0xBB, 0xBF};
+static const char kUTF16BEBom[2] = {0xFE, 0xFF};
+static const char kUTF16LEBom[2] = {0xFF, 0xFE};
+static const char kUTF32BEBom[4] = {0x00, 0x00, 0xFE, 0xFF};
+static const char kUTF32LEBom[4] = {0xFF, 0xFE, 0x00, 0x00};
 
 static const NSUInteger kMaxDetectionLength = 1024 * 8;
 
@@ -224,6 +224,29 @@ BOOL CEIsCompatibleIANACharSetEncoding(NSStringEncoding IANACharsetEncoding, NSS
     if (cfEncoding == kCFStringEncodingInvalidId) { return NSNotFound; }
     
     return CFStringConvertEncodingToNSStringEncoding(cfEncoding);
+}
+
+@end
+
+
+
+
+#pragma mark -
+
+@implementation NSData (UTF8BOM)
+
+#pragma mark Public Methods
+
+//------------------------------------------------------
+/// return NSData by adding UTF-8 BOM
+- (nonnull NSData *)dataByAddingUTF8BOM
+//------------------------------------------------------
+{
+    NSMutableData *mutableData = [NSMutableData dataWithBytes:kUTF8Bom length:3];
+    [mutableData appendData:self];
+    
+    return [NSData dataWithData:mutableData];
+    
 }
 
 @end

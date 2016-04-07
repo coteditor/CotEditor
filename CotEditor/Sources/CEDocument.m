@@ -328,9 +328,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultSaveUTF8BOMKey] &&
         (encoding == NSUTF8StringEncoding))
     {
-        NSMutableData *mutableData = [NSMutableData dataWithBytes:kUTF8Bom length:3];
-        [mutableData appendData:data];
-        data = [NSData dataWithData:mutableData];
+        data = [data dataByAddingUTF8BOM];
     }
     
     return data;

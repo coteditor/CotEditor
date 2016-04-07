@@ -32,7 +32,7 @@
 // Encoding menu
 const NSInteger CEAutoDetectEncoding = 0;
 
-// Max length to scan encding declaration
+// Max length to scan encoding declaration
 const NSUInteger kMaxEncodingScanLength = 2000;
 
 // Encodings list

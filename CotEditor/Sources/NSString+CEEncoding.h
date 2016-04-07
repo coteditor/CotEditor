@@ -28,14 +28,6 @@
 @import Foundation;
 
 
-// byte order marks
-extern char const kUTF8Bom[];
-extern char const kUTF16BEBom[];
-extern char const kUTF16LEBom[];
-extern char const kUTF32BEBom[];
-extern char const kUTF32LEBom[];
-
-
 /// check IANA charset compatibility considering SHIFT_JIS
 BOOL CEIsCompatibleIANACharSetEncoding(NSStringEncoding IANACharsetEncoding, NSStringEncoding encoding);
 
@@ -47,5 +39,13 @@ BOOL CEIsCompatibleIANACharSetEncoding(NSStringEncoding IANACharsetEncoding, NSS
 
 /// scan encoding declaration in string
 - (NSStringEncoding)scanEncodingDeclarationForTags:(nonnull NSArray<NSString *> *)tags upToIndex:(NSUInteger)maxLength suggestedCFEncodings:(nonnull NSArray<NSNumber *> *)suggestedCFEncodings;
+
+@end
+
+
+
+@interface NSData (UTF8BOM)
+
+- (nonnull NSData *)dataByAddingUTF8BOM;
 
 @end
