@@ -409,7 +409,7 @@ static const NSUInteger kMaxHistorySize = 20;
                 
                 [lineAttrString addAttribute:NSBackgroundColorAttributeName value:[highlightColors firstObject] range:inlineRange];
                 
-                [highlights addObject:@{CEFindHighlightRange:[NSValue valueWithRange:matchedRange],
+                [highlights addObject:@{CEFindHighlightRange: [NSValue valueWithRange:matchedRange],
                                         CEFindHighlightColor: [highlightColors firstObject]}];
                 
                 for (NSUInteger i = 0; i < numberOfGroups; i++) {
@@ -421,7 +421,7 @@ static const NSUInteger kMaxHistorySize = 20;
                     
                     [lineAttrString addAttribute:NSBackgroundColorAttributeName value:color
                                            range:NSMakeRange(range.location - lineRange.location, range.length)];
-                    [highlights addObject:@{CEFindHighlightRange:[NSValue valueWithRange:range],
+                    [highlights addObject:@{CEFindHighlightRange: [NSValue valueWithRange:range],
                                             CEFindHighlightColor: color}];
                 }
                 
