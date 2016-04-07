@@ -230,6 +230,8 @@ static const NSUInteger kMaxHistorySize = 20;
         action == @selector(findPrevious:) ||
         action == @selector(findSelectedText:) ||
         action == @selector(findAll:) ||
+        action == @selector(highlight:) ||
+        action == @selector(unhighlight:) ||
         action == @selector(replace:) ||
         action == @selector(replaceAndFind:) ||
         action == @selector(replaceAll:) ||
@@ -466,6 +468,117 @@ static const NSUInteger kMaxHistorySize = 20;
     });
     
     [self appendFindHistory:[self findString]];
+}
+
+
+// ------------------------------------------------------
+/// highlight all matched strings
+- (IBAction)highlight:(nullable id)sender
+// ------------------------------------------------------
+{
+    if (![self checkIsReadyToFind]) { return; }
+    
+    NSNumberFormatter *integerFormatter = [self integerFormatter];
+    NSTextView *textView = [self client];
+    OGRegularExpression *regex = [self regex];
+    NSArray<NSValue *> *scopeRanges = [self scopeRanges];
+    
+    // -> [caution] numberOfGroups becomes 0 if non-regex + non-delimit-by-spaces
+    NSUInteger numberOfGroups = [self usesRegularExpression] ? [regex numberOfGroups] + 1 : [regex numberOfGroups];
+    NSArray<NSColor *> *highlightColors = [self decomposeHighlightColorsInto:numberOfGroups ?: 1];
+    if (![self usesRegularExpression]) {
+        highlightColors = [[highlightColors reverseObjectEnumerator] allObjects];
+    }
+    
+    NSString *string = [textView string];
+    
+    // setup progress sheet
+    NSAssert([textView window], @"The find target text view must be embedded in a window.");
+    __block BOOL isCancelled = NO;
+    CEProgressSheetController *indicator = [[CEProgressSheetController alloc] initWithMessage:NSLocalizedString(@"Find All", nil)];
+    [indicator setIndetermine:YES];
+    [indicator beginSheetForWindow:[textView window] completionHandler:^(NSModalResponse returnCode) {
+        if (returnCode == NSCancelButton) {
+            isCancelled = YES;
+        }
+    }];
+    
+    __weak typeof(self) weakSelf = self;
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        typeof(self) self = weakSelf;
+        if (!self) { return; }
+        
+        NSMutableArray<NSDictionary *> *highlights = [NSMutableArray array];
+        for (NSValue *rangeValue in scopeRanges) {
+            NSRange scopeRange = [rangeValue rangeValue];
+            NSEnumerator<OGRegularExpressionMatch *> *enumerator = [regex matchEnumeratorInString:string range:scopeRange];
+            
+            OGRegularExpressionMatch *match;
+            while ((match = [enumerator nextObject])) {
+                if (isCancelled) {
+                    [indicator close:self];
+                    return;
+                }
+                
+                NSRange matchedRange = [match rangeOfMatchedString];
+                
+                [highlights addObject:@{CEFindHighlightRange: [NSValue valueWithRange:matchedRange],
+                                        CEFindHighlightColor: [highlightColors firstObject]}];
+                
+                for (NSUInteger i = 0; i < numberOfGroups; i++) {
+                    NSRange range = [match rangeOfSubstringAtIndex:i];
+                    
+                    if (range.length == 0) { continue; }
+                    
+                    NSColor *color = highlightColors[i];
+                    [highlights addObject:@{CEFindHighlightRange: [NSValue valueWithRange:range],
+                                            CEFindHighlightColor: color}];
+                }
+                
+                NSString *informativeFormat = ([highlights count] == 1) ? @"%@ string found." : @"%@ strings found.";
+                NSString *informative = [NSString stringWithFormat:NSLocalizedString(informativeFormat, nil),
+                                         [integerFormatter stringFromNumber:@([highlights count])]];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [indicator setInformativeText:informative];
+                });
+            }
+        }
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            // highlight
+            [[textView layoutManager] removeTemporaryAttribute:NSBackgroundColorAttributeName forCharacterRange:NSMakeRange(0, [string length])];
+            for (NSDictionary<NSString *, id> *highlight in highlights) {
+                [[textView layoutManager] addTemporaryAttribute:NSBackgroundColorAttributeName value:highlight[CEFindHighlightColor]
+                                              forCharacterRange:[highlight[CEFindHighlightRange] rangeValue]];
+            }
+            
+            [indicator doneWithButtonTitle:nil];
+            
+            if ([highlights count] > 0) {
+                [indicator close:self];
+                
+            } else {
+                NSBeep();
+                [indicator setInformativeText:NSLocalizedString(@"Not Found.", nil)];
+                if ([self closesIndicatorWhenDone]) {
+                    [indicator close:self];
+                }
+            }
+        });
+    });
+    
+    [self appendFindHistory:[self findString]];
+}
+
+
+// ------------------------------------------------------
+/// remove all of current highlights in the frontmost textView
+- (IBAction)unhighlight:(nullable id)sender
+// ------------------------------------------------------
+{
+    NSTextView *textView = [self client];
+    [[textView layoutManager] removeTemporaryAttribute:NSBackgroundColorAttributeName
+                                     forCharacterRange:NSMakeRange(0, [[textView string] length])];
 }
 
 

@@ -14,6 +14,8 @@
 	<string>findAll:</string>
 	<key>$@G</key>
 	<string>findPrevious:</string>
+	<key>$@H</key>
+	<string>highlight:</string>
 	<key>$@I</key>
 	<string>toggleIncompatibleCharList:</string>
 	<key>$@P</key>

@@ -14,6 +14,7 @@ develop
 ### Improvements
 
 - Display the dialog asking encoding compatibility on saving as a document-modal sheet.
+- Revert “Highlight” and “Unhighlight” actions in “Find” menu.
 - Optimize document opening performance with large file.
 - Improve font-size changing behavior:
     - Smoother pinch-zoom.
