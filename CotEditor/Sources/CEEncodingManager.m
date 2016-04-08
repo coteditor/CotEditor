@@ -161,6 +161,21 @@ NSString *_Nonnull const CEEncodingListDidUpdateNotification = @"CESyntaxListDid
 }
 
 
+//------------------------------------------------------
+/// set available encoding menu items with action to passed-in menu
+- (void)updateChangeEncodingMenu:(nonnull NSMenu *)menu
+//------------------------------------------------------
+{
+    [menu removeAllItems];
+    
+    for (NSMenuItem *item in [self encodingMenuItems]) {
+        [item setAction:@selector(changeEncoding:)];
+        [item setTarget:nil];
+        [menu addItem:item];
+    }
+}
+
+
 
 #pragma mark Private Methods
 

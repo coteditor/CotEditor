@@ -637,14 +637,8 @@
 //------------------------------------------------------
 {
     NSMenu *menu = [[[[[NSApp mainMenu] itemAtIndex:CEFormatMenuIndex] submenu] itemWithTag:CEFileEncodingMenuItemTag] submenu];
-    [menu removeAllItems];
     
-    NSArray<NSMenuItem *> *items = [[CEEncodingManager sharedManager] encodingMenuItems];
-    for (NSMenuItem *item in items) {
-        [item setAction:@selector(changeEncoding:)];
-        [item setTarget:nil];
-        [menu addItem:item];
-    }
+    [[CEEncodingManager sharedManager] updateChangeEncodingMenu:menu];
 }
 
 

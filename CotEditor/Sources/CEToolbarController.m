@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2015 1024jp
+ © 2014-2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -246,16 +246,12 @@
 - (void)buildEncodingPopupButton
 // ------------------------------------------------------
 {
-    NSArray<NSMenuItem *> *items = [[CEEncodingManager sharedManager] encodingMenuItems];
+    // store current selection
     NSStringEncoding encoding = [[[self encodingPopupButton] selectedItem] tag];
     
-    [[self encodingPopupButton] removeAllItems];
-    for (NSMenuItem *item in items) {
-        [item setAction:@selector(changeEncoding:)];
-        [item setTarget:nil];
-        [[[self encodingPopupButton] menu] addItem:item];
-    }
+    [[CEEncodingManager sharedManager] updateChangeEncodingMenu:[[self encodingPopupButton] menu]];
     
+    // reapply to the menu
     [self setSelectedEncoding:encoding];
 }
 
