@@ -31,6 +31,7 @@
 #import "CEEditorWrapper.h"
 #import "CECharacterInfo.h"
 #import "NSString+CECounting.h"
+#import "NSString+CEEncoding.h"
 #import "CEDefaults.h"
 
 
@@ -135,7 +136,7 @@ NSString *_Nonnull const CEAnalyzerDidUpdateEditorInfoNotification = @"CEAnalyze
 {
     CEDocument *document = [self document];
     
-    self.encoding = [NSString localizedNameOfStringEncoding:[document encoding]];
+    self.encoding = [NSString localizedNameOfStringEncoding:[document encoding] withUTF8BOM:[document hasUTF8BOM]];
     self.charsetName = [document IANACharSetName];
     self.lineEndings = [NSString newLineNameWithType:[document lineEnding]];
     

@@ -503,3 +503,9 @@
 "The script file “%@” couldn’t be opened." = "スクリプトファイル“%@”を開けませんでした。";
 "The script “%@” can’t be executed because you don’t have the execute permission.\n\nCheck permission of the script file." = "実行権がないため、スクリプト„%@“を実行できません。\n\nスクリプトファイルのアクセス権を確認してください。";
 "The script “%@” couldn’t be read." = "スクリプト“%@”を読み込めませんでした。";
+
+
+
+/* NSString Categories */
+// Encoding name for UTF-8 with BOM (`%@` is the system localized name for UTF-8)
+"%@ with BOM" = "%@ BOM 付き";

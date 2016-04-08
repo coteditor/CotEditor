@@ -95,6 +95,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 @property (readwrite, nonatomic, nullable) CEWindowController *windowController;
 @property (readwrite, nonatomic, nonnull) CETextSelection *selection;
 @property (readwrite, nonatomic) NSStringEncoding encoding;
+@property (readwrite, nonatomic) BOOL hasUTF8BOM;
 @property (readwrite, nonatomic) CENewLineType lineEnding;
 @property (readwrite, nonatomic, nullable, copy) NSDictionary<NSString *, id> *fileAttributes;
 @property (readwrite, nonatomic, getter=isWritable) BOOL writable;
@@ -148,6 +149,9 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
         
         _encoding = [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultEncodingInNewKey];
         _lineEnding = [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultLineEndCharCodeKey];
+        if (_encoding == NSUTF8StringEncoding) {
+            _hasUTF8BOM = [[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultSaveUTF8BOMKey];
+        }
         _syntaxStyle = [[CESyntaxManager sharedManager] styleWithName:[[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultSyntaxStyleKey]];
         _selection = [[CETextSelection alloc] initWithDocument:self];
         _writable = YES;
@@ -244,12 +248,14 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     
     NSStringEncoding usedEncoding;
     NSString *string = [self stringFromData:data encoding:[self readingEncoding] xattrEncoding:xattrEncoding usedEncoding:&usedEncoding error:outError];
+    BOOL hasUTF8BOM = (usedEncoding == NSUTF8StringEncoding) ? [data hasUTF8BOM] : NO;
     
     if (!string) { return NO; }
     
     // set read values
     [self setFileContentString:string];  // _fileContentString will be released in `setStringToEditor`
     [self setEncoding:usedEncoding];
+    [self setHasUTF8BOM:hasUTF8BOM];
     
     CENewLineType lineEnding = [string detectNewLineType];
     if (lineEnding != CENewLineNone) {  // keep default if no line endings are found
@@ -306,6 +312,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 // ------------------------------------------------------
 {
     NSStringEncoding encoding = [self encoding];
+    BOOL hasUTF8BOM = [self hasUTF8BOM];
     
     // convert Yen sign in consideration of the current encoding
     NSString *string = [self convertCharacterString:[self string] encoding:encoding];
@@ -325,9 +332,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     if (!data) { return nil; }
     
     // add UTF-8 BOM if needed
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultSaveUTF8BOMKey] &&
-        (encoding == NSUTF8StringEncoding))
-    {
+    if ((encoding == NSUTF8StringEncoding) && hasUTF8BOM) {
         data = [data dataByAddingUTF8BOM];
     }
     
@@ -713,19 +718,26 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     if ([menuItem action] == @selector(saveDocument:)) {
         // 書き込み不可の時は、アラートが表示され「OK」されるまで保存メニューを無効化する
         return ([self isWritable] || [self didAlertNotWritable]);
+        
     } else if ([menuItem action] == @selector(changeEncoding:)) {
         state = ([menuItem tag] == [self encoding]) ? NSOnState : NSOffState;
+        if ([menuItem tag] == NSUTF8StringEncoding && [self encoding] == NSUTF8StringEncoding) {
+            [menuItem setTitle:[NSString localizedNameOfStringEncoding:[self encoding] withUTF8BOM:[self hasUTF8BOM]]];
+        }
+        
     } else if (([menuItem action] == @selector(changeLineEndingToLF:)) ||
                ([menuItem action] == @selector(changeLineEndingToCR:)) ||
                ([menuItem action] == @selector(changeLineEndingToCRLF:)) ||
                ([menuItem action] == @selector(changeLineEnding:)))
     {
         state = ([menuItem tag] == [self lineEnding]) ? NSOnState : NSOffState;
+        
     } else if ([menuItem action] == @selector(changeSyntaxStyle:)) {
         NSString *name = [[self syntaxStyle] styleName];
         if (name && [[menuItem title] isEqualToString:name]) {
             state = NSOnState;
         }
+        
     }
     [menuItem setState:state];
     

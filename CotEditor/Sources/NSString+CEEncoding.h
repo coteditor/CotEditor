@@ -34,6 +34,9 @@ BOOL CEIsCompatibleIANACharSetEncoding(NSStringEncoding IANACharsetEncoding, NSS
 
 @interface NSString (CEEncoding)
 
++ (nonnull NSString *)localizedNameOfStringEncoding:(NSStringEncoding)encoding withUTF8BOM:(BOOL)withBOM;
++ (nonnull NSString *)localizedNameOfUTF8EncodingWithBOM;
+
 /// obtain string from NSData with intelligent encoding detection
 - (nullable instancetype)initWithData:(nonnull NSData *)data suggestedCFEncodings:(nonnull NSArray<NSNumber *> *)suggestedCFEncodings usedEncoding:(nonnull NSStringEncoding *)usedEncoding error:(NSError * _Nullable __autoreleasing * _Nullable)outError;
 
@@ -47,5 +50,6 @@ BOOL CEIsCompatibleIANACharSetEncoding(NSStringEncoding IANACharsetEncoding, NSS
 @interface NSData (UTF8BOM)
 
 - (nonnull NSData *)dataByAddingUTF8BOM;
+- (BOOL)hasUTF8BOM;
 
 @end

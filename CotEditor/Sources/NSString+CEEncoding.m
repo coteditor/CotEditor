@@ -67,11 +67,34 @@ BOOL CEIsCompatibleIANACharSetEncoding(NSStringEncoding IANACharsetEncoding, NSS
 #pragma mark Public Methods
 
 //------------------------------------------------------
+/// human-readable encoding name considering UTF-8 BOM
++ (nonnull NSString *)localizedNameOfStringEncoding:(NSStringEncoding)encoding withUTF8BOM:(BOOL)withBOM
+//------------------------------------------------------
+{
+    if (encoding == NSUTF8StringEncoding && withBOM) {
+        return [self localizedNameOfUTF8EncodingWithBOM];
+    }
+    
+    return [NSString localizedNameOfStringEncoding:NSUTF8StringEncoding];
+}
+
+
+//------------------------------------------------------
+/// human-readable encoding name for UTF-8 with BOM
++ (nonnull NSString *)localizedNameOfUTF8EncodingWithBOM
+//------------------------------------------------------
+{
+    return [NSString stringWithFormat:NSLocalizedString(@"%@ with BOM", @"Unicode (UTF-8) with BOM"),
+            [NSString localizedNameOfStringEncoding:NSUTF8StringEncoding]];
+}
+
+
+//------------------------------------------------------
 /// obtain string from NSData with intelligent encoding detection
 - (nullable instancetype)initWithData:(nonnull NSData *)data suggestedCFEncodings:(NSArray<NSNumber *> *)suggestedCFEncodings usedEncoding:(nonnull NSStringEncoding *)usedEncoding error:(NSError * _Nullable __autoreleasing * _Nullable)outError
 //------------------------------------------------------
 {
-    // detect enoding from so-called "magic numbers"
+    // detect encoding from so-called "magic numbers"
     NSStringEncoding triedEncoding = NSNotFound;
     if ([data length] > 1) {
         char miniBytes[4] = {0};
@@ -246,7 +269,15 @@ BOOL CEIsCompatibleIANACharSetEncoding(NSStringEncoding IANACharsetEncoding, NSS
     [mutableData appendData:self];
     
     return [NSData dataWithData:mutableData];
-    
+}
+
+
+//------------------------------------------------------
+/// check if data starts with UTF-8 BOM
+- (BOOL)hasUTF8BOM
+//------------------------------------------------------
+{
+    return !memcmp([self bytes], kUTF8Bom, 3);
 }
 
 @end

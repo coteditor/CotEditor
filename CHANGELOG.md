@@ -7,6 +7,7 @@ develop
 
 ### New Features
 
+- Respect the UTF-8 BOM's existance in the opened file. 
 - Now, the execute permission can be given to the file to save from the save panel.
 - Add a new theme “Lakritz”.
 
