@@ -37,12 +37,14 @@
 #import "CEEncodings.h"
 #import "Constants.h"
 
+#import "NSString+CEEncoding.h"
 #import "NSAlert+BlockMethods.h"
 
 
 // constants
 NSString *_Nonnull const StyleNameKey = @"name";
 NSString *_Nonnull const StyleStateKey = @"state";
+NSString *_Nonnull const IsUTF8WithBOM = @"UTF-8 with BOM";
 
 
 @interface CEFormatPaneController () <NSTableViewDelegate>
@@ -99,8 +101,6 @@ NSString *_Nonnull const StyleStateKey = @"state";
     [[self syntaxTableView] setTarget:self];
     
     [self setupEncodingMenus];
-    [[self encodingMenuInOpen] setAction:@selector(checkSelectedItemOfEncodingMenuInOpen:)];
-    [[self encodingMenuInOpen] setTarget:self];
     
     // シンタックススタイルリスト更新の通知依頼
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -144,8 +144,8 @@ NSString *_Nonnull const StyleStateKey = @"state";
         } else {
             representedStyleName = [[self stylesController] arrangedObjects][clickedrow][StyleNameKey];
         }
+        [menuItem setRepresentedObject:representedStyleName];
     }
-    [menuItem setRepresentedObject:representedStyleName];
     
     BOOL isCustomized = NO;
     BOOL isBundled = NO;
@@ -242,6 +242,17 @@ NSString *_Nonnull const StyleStateKey = @"state";
 
 
 #pragma mark Action Messages
+
+// ------------------------------------------------------
+/// save also availability of UTF-8 BOM
+- (IBAction)changeEncodingInNewDocument:(nullable id)sender
+// ------------------------------------------------------
+{
+    BOOL withUTF8BOM = [[[[self encodingMenuInNew] selectedItem] representedObject] isEqualToString:IsUTF8WithBOM];
+    
+    [[NSUserDefaults standardUserDefaults] setBool:withUTF8BOM forKey:CEDefaultSaveUTF8BOMKey];
+}
+
 
 // ------------------------------------------------------
 /// エンコーディングリスト編集シートを開き、閉じる
@@ -469,12 +480,35 @@ NSString *_Nonnull const StyleStateKey = @"state";
     for (NSMenuItem *item in menuItems) {
         [[[self encodingMenuInOpen] menu] addItem:[item copy]];
         [[[self encodingMenuInNew] menu] addItem:[item copy]];
+        
+        // add "UTF-8 with BOM" item only to "In New" menu
+        if ([item tag] == NSUTF8StringEncoding) {
+            NSMenuItem *bomItem = [[NSMenuItem alloc] initWithTitle:[NSString localizedNameOfUTF8EncodingWithBOM]
+                                                             action:NULL
+                                                      keyEquivalent:@""];
+            [bomItem setTag:NSUTF8StringEncoding];
+            [bomItem setRepresentedObject:IsUTF8WithBOM];
+            [[[self encodingMenuInNew] menu] addItem:bomItem];
+        }
     }
     
     // (エンコーディング設定メニューはバインディングを使っているが、タグの選択がバインディングで行われた後に
     // メニューが追加／削除されるため、結果的に選択がうまく動かない。しかたないので、コードから選択している)
     [[self encodingMenuInOpen] selectItemWithTag:[[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultEncodingInOpenKey]];
-    [[self encodingMenuInNew] selectItemWithTag:[[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultEncodingInNewKey]];
+    
+    NSStringEncoding encodingInNew = [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultEncodingInNewKey];
+    if (encodingInNew == NSUTF8StringEncoding) {
+        NSUInteger index = [[self encodingMenuInNew] indexOfItemWithRepresentedObject:IsUTF8WithBOM];
+        
+        // -> The normal "UTF-8" is just above "UTF-8 with BOM".
+        if (![[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultSaveUTF8BOMKey]) {
+            index--;
+        }
+        [[self encodingMenuInNew] selectItemAtIndex:index];
+        
+    } else {
+        [[self encodingMenuInNew] selectItemWithTag:encodingInNew];
+    }
 }
 
 

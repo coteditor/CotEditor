@@ -508,4 +508,4 @@
 
 /* NSString Categories */
 // Encoding name for UTF-8 with BOM (`%@` is the system localized name for UTF-8)
-"%@ with BOM" = "%@ BOM 付き";
+"%@ with BOM" = "%@BOM 付き";
