@@ -114,12 +114,7 @@
 - (void)setSelectedEncoding:(NSStringEncoding)encoding
 // ------------------------------------------------------
 {
-    for (NSMenuItem *menuItem in [[self encodingPopupButton] itemArray]) {
-        if ([menuItem tag] == encoding) {
-            [[self encodingPopupButton] selectItem:menuItem];
-            break;
-        }
-    }
+    [[self encodingPopupButton] selectItemWithTag:encoding];
 }
 
 
