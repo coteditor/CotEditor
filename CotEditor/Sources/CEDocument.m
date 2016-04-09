@@ -95,6 +95,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 @property (readwrite, nonatomic, nullable) CEWindowController *windowController;
 @property (readwrite, nonatomic, nonnull) CETextSelection *selection;
 @property (readwrite, nonatomic) NSStringEncoding encoding;
+@property (readwrite, nonatomic) BOOL hasUTF8BOM;
 @property (readwrite, nonatomic) CENewLineType lineEnding;
 @property (readwrite, nonatomic, nullable, copy) NSDictionary<NSString *, id> *fileAttributes;
 @property (readwrite, nonatomic, getter=isWritable) BOOL writable;
@@ -148,6 +149,9 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
         
         _encoding = [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultEncodingInNewKey];
         _lineEnding = [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultLineEndCharCodeKey];
+        if (_encoding == NSUTF8StringEncoding) {
+            _hasUTF8BOM = [[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultSaveUTF8BOMKey];
+        }
         _syntaxStyle = [[CESyntaxManager sharedManager] styleWithName:[[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultSyntaxStyleKey]];
         _selection = [[CETextSelection alloc] initWithDocument:self];
         _writable = YES;
@@ -244,12 +248,14 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     
     NSStringEncoding usedEncoding;
     NSString *string = [self stringFromData:data encoding:[self readingEncoding] xattrEncoding:xattrEncoding usedEncoding:&usedEncoding error:outError];
+    BOOL hasUTF8BOM = (usedEncoding == NSUTF8StringEncoding) ? [data hasUTF8BOM] : NO;
     
     if (!string) { return NO; }
     
     // set read values
     [self setFileContentString:string];  // _fileContentString will be released in `setStringToEditor`
     [self setEncoding:usedEncoding];
+    [self setHasUTF8BOM:hasUTF8BOM];
     
     CENewLineType lineEnding = [string detectNewLineType];
     if (lineEnding != CENewLineNone) {  // keep default if no line endings are found
@@ -306,6 +312,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 // ------------------------------------------------------
 {
     NSStringEncoding encoding = [self encoding];
+    BOOL hasUTF8BOM = [self hasUTF8BOM];
     
     // convert Yen sign in consideration of the current encoding
     NSString *string = [self convertCharacterString:[self string] encoding:encoding];
@@ -325,9 +332,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     if (!data) { return nil; }
     
     // add UTF-8 BOM if needed
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultSaveUTF8BOMKey] &&
-        (encoding == NSUTF8StringEncoding))
-    {
+    if ((encoding == NSUTF8StringEncoding) && hasUTF8BOM) {
         data = [data dataByAddingUTF8BOM];
     }
     
@@ -617,7 +622,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     
     [document setSyntaxStyleWithName:[[self syntaxStyle] styleName]];
     [document doSetLineEnding:[self lineEnding]];
-    [document doSetEncoding:[self encoding] updateDocument:NO askLossy:NO lossy:NO asActionName:nil];
+    [document doSetEncoding:[self encoding] withUTF8BOM:[self hasUTF8BOM] updateDocument:NO askLossy:NO lossy:NO asActionName:nil];
     
     // apply text orientation
     CEEditorWrapper *editor = [self editor];
@@ -713,19 +718,24 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     if ([menuItem action] == @selector(saveDocument:)) {
         // 書き込み不可の時は、アラートが表示され「OK」されるまで保存メニューを無効化する
         return ([self isWritable] || [self didAlertNotWritable]);
+        
     } else if ([menuItem action] == @selector(changeEncoding:)) {
-        state = ([menuItem tag] == [self encoding]) ? NSOnState : NSOffState;
+        NSInteger encodingTag = [self hasUTF8BOM] ? -[self encoding] : [self encoding];
+        state = ([menuItem tag] == encodingTag) ? NSOnState : NSOffState;
+        
     } else if (([menuItem action] == @selector(changeLineEndingToLF:)) ||
                ([menuItem action] == @selector(changeLineEndingToCR:)) ||
                ([menuItem action] == @selector(changeLineEndingToCRLF:)) ||
                ([menuItem action] == @selector(changeLineEnding:)))
     {
         state = ([menuItem tag] == [self lineEnding]) ? NSOnState : NSOffState;
+        
     } else if ([menuItem action] == @selector(changeSyntaxStyle:)) {
         NSString *name = [[self syntaxStyle] styleName];
         if (name && [[menuItem title] isEqualToString:name]) {
             state = NSOnState;
         }
+        
     }
     [menuItem setState:state];
     
@@ -987,10 +997,10 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 // ------------------------------------------------------
 /// 新規エンコーディングをセット
-- (BOOL)doSetEncoding:(NSStringEncoding)encoding updateDocument:(BOOL)updateDocument askLossy:(BOOL)askLossy lossy:(BOOL)lossy asActionName:(nullable NSString *)actionName
+- (BOOL)doSetEncoding:(NSStringEncoding)encoding withUTF8BOM:(BOOL)withUTF8BOM updateDocument:(BOOL)updateDocument askLossy:(BOOL)askLossy lossy:(BOOL)lossy asActionName:(nullable NSString *)actionName
 // ------------------------------------------------------
 {
-    if (encoding == [self encoding]) {
+    if (encoding == [self encoding] && withUTF8BOM == [self hasUTF8BOM]) {
         return YES;
     }
     
@@ -1022,7 +1032,8 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
         
         // register undo
         NSUndoManager *undoManager = [self undoManager];
-        [[undoManager prepareWithInvocationTarget:self] redoSetEncoding:encoding updateDocument:updateDocument
+        [[undoManager prepareWithInvocationTarget:self] redoSetEncoding:encoding withUTF8BOM:withUTF8BOM
+                                                         updateDocument:updateDocument
                                                                askLossy:NO lossy:allowsLossy
                                                            asActionName:actionName];  // redo in undo
         if (shouldShowList) {
@@ -1030,12 +1041,15 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
         }
         [[undoManager prepareWithInvocationTarget:self] updateEncodingInToolbarAndInfo];
         [[undoManager prepareWithInvocationTarget:self] setEncoding:[self encoding]];  // エンコード値設定
+        [[undoManager prepareWithInvocationTarget:self] setHasUTF8BOM:[self hasUTF8BOM]];  // エンコード値設定
+        
         if (actionName) {
             [undoManager setActionName:actionName];
         }
     }
     
     [self setEncoding:encoding];
+    [self setHasUTF8BOM:withUTF8BOM];
     [self updateEncodingInToolbarAndInfo];  // ツールバーのエンコーディングメニュー、ステータスバー、インスペクタを更新
     
     if (shouldShowList) {
@@ -1204,15 +1218,19 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 - (IBAction)changeEncoding:(nullable id)sender
 // ------------------------------------------------------
 {
-    NSStringEncoding encoding = [sender tag];
+    NSStringEncoding encoding = labs([sender tag]);
+    BOOL withUTF8BOM = ([sender tag] == -NSUTF8StringEncoding);
 
-    if ((encoding < 1) || (encoding == [self encoding])) { return; }
+    if ((encoding == [self encoding]) && (withUTF8BOM == [self hasUTF8BOM])) { return; }
     
     NSInteger result;
     NSString *encodingName = [sender title];
 
     // 文字列がないまたは未保存の時は直ちに変換プロセスへ
-    if (([[[self editor] string] length] < 1) || ![self fileURL]) {
+    if (([[[self editor] string] length] < 1) ||  // no content yet
+        ![self fileURL] ||  // not yet saved
+       (encoding == NSUTF8StringEncoding  && encoding == [self encoding])) // toggle only BOM existance
+    {
         result = NSAlertFirstButtonReturn;
         
     } else {
@@ -1229,9 +1247,9 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     
     if (result == NSAlertFirstButtonReturn) {  // = Convert 変換
         NSString *actionName = [NSString stringWithFormat:NSLocalizedString(@"Encoding to “%@”", nil),
-                                [NSString localizedNameOfStringEncoding:encoding]];
+                                [NSString localizedNameOfStringEncoding:encoding withUTF8BOM:withUTF8BOM]];
 
-        [self doSetEncoding:encoding updateDocument:YES askLossy:YES lossy:NO asActionName:actionName];
+        [self doSetEncoding:encoding withUTF8BOM:withUTF8BOM updateDocument:YES askLossy:YES lossy:NO asActionName:actionName];
 
     } else if (result == NSAlertSecondButtonReturn) {  // = Reinterpret 再解釈
         if (![self fileURL]) { return; } // まだファイル保存されていない時（ファイルがない時）は、戻る
@@ -1245,7 +1263,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
             NSInteger secondResult = [alert runModal];
             if (secondResult != NSAlertSecondButtonReturn) { // = Cancel
                 // ツールバーから変更された場合のため、ツールバーアイテムの選択状態をリセット
-                [[[self windowController] toolbarController] setSelectedEncoding:[self encoding]];
+                [[[self windowController] toolbarController] setSelectedEncoding:[self encoding] withUTF8BOM:[self hasUTF8BOM]];
                 return;
             }
         }
@@ -1263,7 +1281,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     }
     
     // ツールバーから変更された場合のため、ツールバーアイテムの選択状態をリセット
-    [[[self windowController] toolbarController] setSelectedEncoding:[self encoding]];
+    [[[self windowController] toolbarController] setSelectedEncoding:[self encoding] withUTF8BOM:[self hasUTF8BOM]];
 }
 
 
@@ -1342,7 +1360,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 // ------------------------------------------------------
 {
     // ツールバーのエンコーディングメニューを更新
-    [[[self windowController] toolbarController] setSelectedEncoding:[self encoding]];
+    [[[self windowController] toolbarController] setSelectedEncoding:[self encoding] withUTF8BOM:[self hasUTF8BOM]];
     
     // ステータスバー、インスペクタを更新
     [[self windowController] updateModeInfoIfNeeded];
@@ -1549,10 +1567,10 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 // ------------------------------------------------------
 /// エンコードを変更するアクションのRedo登録
-- (void)redoSetEncoding:(NSStringEncoding)encoding updateDocument:(BOOL)updateDocument askLossy:(BOOL)askLossy lossy:(BOOL)lossy asActionName:(nullable NSString *)actionName
+- (void)redoSetEncoding:(NSStringEncoding)encoding withUTF8BOM:(BOOL)withUTF8BOM updateDocument:(BOOL)updateDocument askLossy:(BOOL)askLossy lossy:(BOOL)lossy asActionName:(nullable NSString *)actionName
 // ------------------------------------------------------
 {
-    [[[self undoManager] prepareWithInvocationTarget:self] doSetEncoding:encoding updateDocument:updateDocument
+    [[[self undoManager] prepareWithInvocationTarget:self] doSetEncoding:encoding withUTF8BOM:withUTF8BOM updateDocument:updateDocument
                                                                 askLossy:askLossy lossy:lossy asActionName:actionName];
 }
 

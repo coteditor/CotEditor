@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2015 1024jp
+ © 2015-2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -37,8 +37,6 @@
 
 /* Class = "NSTextFieldCell"; title = "Default text encoding:"; ObjectID = "3278"; */
 "3278.title" = "Standard-Codierung:";
-/* Class = "NSButtonCell"; title = "Save UTF-8 files with a BOM  (not recommended)"; ObjectID = "3281"; */
-"3281.title" = "UTF8-Dateien mit BOM sichern (nicht zu empfehlen)";
 
 /* Class = "NSTextFieldCell"; title = "Opening Files:"; ObjectID = "3277"; */
 "3277.title" = "Beim Öffnen:";

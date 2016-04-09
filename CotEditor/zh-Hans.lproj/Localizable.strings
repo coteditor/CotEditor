@@ -501,3 +501,9 @@
 "The script file “%@” couldn’t be opened." = "无法打开脚本文件“%@”。";
 "The script “%@” can’t be executed because you don’t have the execute permission.\n\nCheck permission of the script file." = "由于没有执行权限，无法执行脚本“%@”。\n\n请确认脚本文件的权限。";
 "The script “%@” couldn’t be read." = "无法读取脚本“%@”。";
+
+
+
+/* NSString Categories */
+// Encoding name for UTF-8 with BOM (`%@` is the system localized name for UTF-8)
+"%@ with BOM" = "%@ with BOM";  // FIXME: added

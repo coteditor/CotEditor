@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2015 1024jp
+ © 2014-2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -54,6 +54,7 @@ extern NSString *_Nonnull const CEIncompatibleConvertedCharKey;
 @property (readonly, nonatomic, nullable) CEEditorWrapper *editor;
 @property (readonly, nonatomic, nonnull) CETextSelection *selection;
 @property (readonly, nonatomic) NSStringEncoding encoding;
+@property (readonly, nonatomic) BOOL hasUTF8BOM;
 @property (readonly, nonatomic) CENewLineType lineEnding;
 @property (readonly, nonatomic, nullable, copy) NSDictionary<NSString *, id> *fileAttributes;
 @property (readonly, nonatomic, getter=isWritable) BOOL writable;
@@ -71,7 +72,7 @@ extern NSString *_Nonnull const CEIncompatibleConvertedCharKey;
 - (nullable NSString *)IANACharSetName;
 - (nullable NSArray<NSDictionary<NSString *, id> *> *)findCharsIncompatibleWithEncoding:(NSStringEncoding)encoding;
 - (BOOL)reinterpretWithEncoding:(NSStringEncoding)encoding error:(NSError * _Nullable __autoreleasing * _Nullable)outError;
-- (BOOL)doSetEncoding:(NSStringEncoding)encoding updateDocument:(BOOL)updateDocument askLossy:(BOOL)askLossy lossy:(BOOL)lossy asActionName:(nullable NSString *)actionName;
+- (BOOL)doSetEncoding:(NSStringEncoding)encoding withUTF8BOM:(BOOL)withUTF8BOM updateDocument:(BOOL)updateDocument askLossy:(BOOL)askLossy lossy:(BOOL)lossy asActionName:(nullable NSString *)actionName;
 
 // line ending
 - (void)doSetLineEnding:(CENewLineType)lineEnding;
