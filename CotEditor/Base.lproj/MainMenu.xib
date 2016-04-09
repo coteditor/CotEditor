@@ -1064,7 +1064,7 @@ CA
                                     <action selector="openHelpAnchor:" target="290" id="ooo-Mu-EKH"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="What’s New in CotEditor 2.4" tag="9" id="DCW-Ij-540">
+                            <menuItem title="What’s New in CotEditor 2.5" tag="9" id="DCW-Ij-540">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="openHelpAnchor:" target="290" id="jUU-Pz-dYo"/>
