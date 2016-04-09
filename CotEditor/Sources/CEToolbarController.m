@@ -242,12 +242,12 @@
 // ------------------------------------------------------
 {
     // store current selection
-    NSStringEncoding encoding = [[[self encodingPopupButton] selectedItem] tag];
+    NSStringEncoding encoding = [[self encodingPopupButton] selectedTag];
     
     [[CEEncodingManager sharedManager] updateChangeEncodingMenu:[[self encodingPopupButton] menu]];
     
     // reapply to the menu
-    [self setSelectedEncoding:encoding];
+    [[self encodingPopupButton] selectItemWithTag:encoding];
 }
 
 
