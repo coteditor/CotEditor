@@ -111,10 +111,11 @@
 
 // ------------------------------------------------------
 /// select item in the encoding popup menu
-- (void)setSelectedEncoding:(NSStringEncoding)encoding
+- (void)setSelectedEncoding:(NSStringEncoding)encoding withUTF8BOM:(BOOL)withUTF8BOM
 // ------------------------------------------------------
 {
-    [[self encodingPopupButton] selectItemWithTag:encoding];
+    NSInteger tag = withUTF8BOM ? -encoding : encoding;
+    [[self encodingPopupButton] selectItemWithTag:tag];
 }
 
 
@@ -242,12 +243,12 @@
 // ------------------------------------------------------
 {
     // store current selection
-    NSStringEncoding encoding = [[self encodingPopupButton] selectedTag];
+    NSInteger tag = [[self encodingPopupButton] selectedTag];
     
     [[CEEncodingManager sharedManager] updateChangeEncodingMenu:[[self encodingPopupButton] menu]];
     
     // reapply to the menu
-    [[self encodingPopupButton] selectItemWithTag:encoding];
+    [[self encodingPopupButton] selectItemWithTag:tag];
 }
 
 

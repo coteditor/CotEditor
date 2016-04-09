@@ -7,7 +7,10 @@ develop
 
 ### New Features
 
-- Respect the UTF-8 BOM's existance in the opened file. 
+- Add independent “Unicode (UTF-8) with BOM” encoding to encoding list.
+    - Respect the existance of the UTF-8 BOM in opened files.
+    - Enable switching the document encoding between with and without BOM from the toolbar popup button and the “Format” menu. 
+        - The “Unicode (UTF-8) with BOM” item will be automatically added to just after the normal “Unicode (UTF-8)”.
 - Now, the execute permission can be given to the file to save from the save panel.
 - Add a new theme “Lakritz”.
 
