@@ -25,6 +25,91 @@
 
 <article>
 <header>
+	<h1>CotEditor 2.5.0</h1>
+	<p>release: <time>2016-04</time></p>
+</header>
+
+
+<section>
+<h2>New Features</h2>
+
+<ul>
+	<li>Add independent “Unicode (UTF-8) with BOM” encoding to encoding list.
+	<ul>
+		<li>Respect the existence of the UTF-8 BOM in opened files.</li>
+		<li>Enable switching the document encoding between with and without BOM from the toolbar popup button and the “Format” menu. 
+		<ul>
+			<li>The “Unicode (UTF-8) with BOM” item will be automatically added to just after the normal “Unicode (UTF-8)”.</li>
+		</ul></li>
+	</ul></li>
+	<li>Now, the execute permission can be given to the file to save from the save panel.</li>
+	<li>Add a new theme “Lakritz”.</li>
+</ul>
+
+</section>
+
+
+<section>
+<h2>Improvements</h2>
+
+<ul>
+	<li>Revert “Highlight” and “Unhighlight” actions in “Find” menu.</li>
+	<li>Improve font-size changing behavior:
+	<ul>
+		<li>Smoother pinch-zoom.</li>
+		<li>Now font-size change applies only to the focused editor.</li>
+		<li>Enable pinch-zoom to make font smaller than default font size.</li>
+		<li>Font size changing doesn't affect the actual font anymore but just scale characters visibly.</li>
+		<li>Fix an issue where font-size changing could remove hanging indent. </li>
+		<li>Fix an issue where layout of split editors will be broken if the font of one of the other split editors is changed.</li>
+	</ul></li>
+	<li>Apply the following text actions to whole document if no text is selected:
+	<ul>
+		<li>Indentation &gt; Convert Indentation to Tab / Spaces</li>
+		<li>Lines &gt; Sort</li>
+		<li>Lines &gt; Reverse</li>
+		<li>Lines &gt; Delete Duplicates</li>
+	</ul></li>
+	<li>Optimize document opening performance with large file.</li>
+	<li>Add “Copy as Rich Text” action to the contextual menu.</li>
+	<li>Improve recovering status of unsaved documents on window resume.</li>
+	<li>Improve line number view drawing with selection on vertical text mode.</li>
+	<li>Improve invisibles drawing:
+	<ul>
+		<li>Optimize drawing performance (ca. 2x).</li>
+		<li>Better drawing if anti-aliasing is off.</li>
+	</ul></li>
+	<li>Display the following dialogs as a document-modal sheet:
+	<ul>
+		<li>The dialog asking encoding compatibility on saving.</li>
+		<li>The print progress panel</li>
+	</ul></li>
+	<li>Avoid registering indentation conversion action to the undo history if no text was changed.</li>
+	<li>Suppress trimming whitespace at the editing point on auto-saving when “Trim trailing whitespace on save” is on.</li>
+</ul>
+</section>
+
+
+<section>
+<h2>Fixes</h2>
+
+<ul>
+    <li>Fix an issue where printing area could be cropped.</li>
+    <li>Fix an issue where the background of navigation/status bars were not drawn under a specific condition.</li>
+    <li>Fix an issue where the numbers in the line number view could be drawn in a wrong place if the editor is vertical text mode and unwrapped.</li>
+    <li>Fix an issue where document could not be drawn until the end of the file on legacy OS if the file contains control characters.</li>
+    <li>Fix an issue on Mavericks and earlier where the application hung up if tried to print line numbers by vertical text layout on printing.</li>
+    <li>Fix an issue where line numbers could be drawn at a bit shifted position or even cropped on printing.</li>
+    <li>Fix XML document icon.</li>
+    <li>Fix some unlocalized text.</li>
+</ul>
+</section>
+</article>
+
+
+
+<article>
+<header>
 	<h1>CotEditor 2.4.4</h1>
 	<p>release: <time>2016-03-16</time></p>
 </header>
