@@ -97,7 +97,7 @@
 // Find result (“%@” is filename)
 "No strings found in “%@”." = "“%@”内に見つかりませんでした。";
 "Found one string in “%@”." = "“%@”内に 1 件見つかりました。";
-"Found %li strings in “%@”." = "“%2$@”内に %1$li 件見つかりました。";
+"Found %@ strings in “%@”." = "“%2$@”内に %1$@ 件見つかりました。";
 
 
 
