@@ -17,6 +17,8 @@ develop
 
 ### Improvements
 
+- Update `cot` command-line tool:
+    - Create a new file if a non-existent file path is passed in with `--new` option.
 - Revert “Highlight” and “Unhighlight” actions in “Find” menu.
 - Improve font-size changing behavior:
     - Smoother pinch-zoom.
