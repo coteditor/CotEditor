@@ -506,4 +506,5 @@
 
 /* NSString Categories */
 // Encoding name for UTF-8 with BOM (`%@` is the system localized name for UTF-8)
-"%@ with BOM" = "%@ with BOM";  // FIXME: added
+// No need to be tranlated since "UTF-8 with BOM" is acceptable in zh-Hans.
+"%@ with BOM" = "%@ with BOM";
