@@ -165,6 +165,8 @@
                                                CEDefaultBalancesBracketsKey: @NO,
                                                CEDefaultSmartInsertAndDeleteKey: @NO,
                                                CEDefaultEnableSmartQuotesKey: @NO,
+                                               CEDefaultEnableSmartDashesKey: @NO,
+                                               CEDefaultEnableAutoSpellingCorrectionKey: @NO,
                                                CEDefaultEnableSmartIndentKey: @YES,
                                                CEDefaultAutoLinkDetectionKey: @NO,
                                                CEDefaultAppendsCommentSpacerKey: @YES,

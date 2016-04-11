@@ -162,8 +162,9 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
         [self setContinuousSpellCheckingEnabled:[defaults boolForKey:CEDefaultCheckSpellingAsTypeKey]];
         if ([self respondsToSelector:@selector(setAutomaticQuoteSubstitutionEnabled:)]) {  // only on OS X 10.9 and later
             [self setAutomaticQuoteSubstitutionEnabled:[defaults boolForKey:CEDefaultEnableSmartQuotesKey]];
-            [self setAutomaticDashSubstitutionEnabled:[defaults boolForKey:CEDefaultEnableSmartQuotesKey]];
+            [self setAutomaticDashSubstitutionEnabled:[defaults boolForKey:CEDefaultEnableSmartDashesKey]];
         }
+        [self setAutomaticSpellingCorrectionEnabled:[defaults boolForKey:CEDefaultEnableAutoSpellingCorrectionKey]];
         [self setFont:font];
         [self setMinSize:[self frame].size];
         [self setMaxSize:NSMakeSize(CGFLOAT_MAX, CGFLOAT_MAX)];
@@ -1047,12 +1048,19 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
         } else {
             [(CELayoutManager *)[self layoutManager] invalidateIndentInRange:wholeRange];
         }
-    
+        
     } else if ([keyPath isEqualToString:CEDefaultEnableSmartQuotesKey]) {
         if ([self respondsToSelector:@selector(setAutomaticQuoteSubstitutionEnabled:)]) {  // only on OS X 10.9 and later
             [self setAutomaticQuoteSubstitutionEnabled:[newValue boolValue]];
+        }
+        
+    } else if ([keyPath isEqualToString:CEDefaultEnableSmartDashesKey]) {
+        if ([self respondsToSelector:@selector(setAutomaticDashSubstitutionEnabled:)]) {  // only on OS X 10.9 and later
             [self setAutomaticDashSubstitutionEnabled:[newValue boolValue]];
         }
+        
+    } else if ([keyPath isEqualToString:CEDefaultEnableAutoSpellingCorrectionKey]) {
+        [self setAutomaticSpellingCorrectionEnabled:[newValue boolValue]];
         
     } else if ([keyPath isEqualToString:CEDefaultAutoLinkDetectionKey]) {
         [self setAutomaticLinkDetectionEnabled:[newValue boolValue]];
@@ -1372,6 +1380,8 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
              CEDefaultCheckSpellingAsTypeKey,
              CEDefaultPageGuideColumnKey,
              CEDefaultEnableSmartQuotesKey,
+             CEDefaultEnableSmartDashesKey,
+             CEDefaultEnableAutoSpellingCorrectionKey,
              CEDefaultHangingIndentWidthKey,
              CEDefaultEnablesHangingIndentKey,
              CEDefaultAutoLinkDetectionKey];

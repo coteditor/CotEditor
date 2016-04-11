@@ -2,7 +2,7 @@
 Change Log
 ==========================
 
-develop
+2.5.0-beta (113)
 --------------------------
 
 ### New Features
@@ -12,6 +12,7 @@ develop
     - Enable switching the document encoding between with and without BOM from the toolbar popup button and the “Format” menu. 
         - The “Unicode (UTF-8) with BOM” item will be automatically added to just after the normal “Unicode (UTF-8)”.
 - Now, the execute permission can be given to the file to save from the save panel.
+- Add spelling auto correction option (in “Edit” pane).
 - Add a new theme “Lakritz”.
 
 
@@ -27,6 +28,7 @@ develop
     - Font size changing doesn't affect the actual font anymore but just scale characters visibly.
     - Fix an issue where font-size changing could remove hanging indent. 
     - Fix an issue where layout of split editors will be broken if the font of one of the other split editors is changed.
+- Separate the “Enable smart quotes and dashes” into “Enable smart quotes” and “Enable smart dashes” (in “Edit” pane).
 - Apply the following text actions to whole document if no text is selected:
     - Indentation > Convert Indentation to Tab / Spaces
     - Lines > Sort

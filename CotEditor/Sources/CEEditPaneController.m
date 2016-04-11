@@ -34,6 +34,7 @@
 @interface CEEditPaneController ()
 
 @property (nonatomic, nullable, weak) IBOutlet NSButton *smartQuoteCheckButton;
+@property (nonatomic, nullable, weak) IBOutlet NSButton *smartDashCheckButton;
 
 @property (nonatomic, nonnull, copy) NSArray<NSString *> *invisibleSpaces;
 @property (nonatomic, nonnull, copy) NSArray<NSString *> *invisibleTabs;
@@ -91,8 +92,11 @@
     if (NSAppKitVersionNumber < NSAppKitVersionNumber10_9) {
         [[self smartQuoteCheckButton] setEnabled:NO];
         [[self smartQuoteCheckButton] setState:NSOffState];
-        [[self smartQuoteCheckButton] setTitle:[NSString stringWithFormat:@"%@%@", [[self smartQuoteCheckButton] title],
-                                                NSLocalizedString(@" (on Mavericks and later)", nil)]];
+        [[self smartQuoteCheckButton] setToolTip:NSLocalizedString(@"Only on Mavericks and later", nil)];
+        
+        [[self smartDashCheckButton] setEnabled:NO];
+        [[self smartDashCheckButton] setState:NSOffState];
+        [[self smartDashCheckButton] setToolTip:NSLocalizedString(@"Only on Mavericks and later", nil)];
     }
 }
 

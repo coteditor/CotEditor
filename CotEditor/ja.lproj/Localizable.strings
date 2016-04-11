@@ -323,7 +323,7 @@
 
 /* MARK: CEPreferencesWindowController */
 // Smart quotes/dashes
-" (on Mavericks and later)" = "（Mavericks 以上）";
+"Only on Mavericks and later" = "Mavericks 以上のみ";
 
 // Hint message for the completion list
 "Completion can be performed manually with: %@ or %@" = "入力補完候補リストの表示： %@ もしくは %@";
