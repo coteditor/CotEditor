@@ -321,7 +321,7 @@
 
 /* MARK: CEPreferencesWindowController */
 // Smart quotes/dashes
-" (on Mavericks and later)" = "（Mavericks 及以后）";
+"Only on Mavericks and later" = "Mavericks 及以后";
 
 // Hint message for the completion list
 "Completion can be performed manually with: %@ or %@" = "补全可以通过 %@ 或 %@ 手动完成";
