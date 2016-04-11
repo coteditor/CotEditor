@@ -75,7 +75,7 @@ BOOL CEIsCompatibleIANACharSetEncoding(NSStringEncoding IANACharsetEncoding, NSS
         return [self localizedNameOfUTF8EncodingWithBOM];
     }
     
-    return [NSString localizedNameOfStringEncoding:NSUTF8StringEncoding];
+    return [NSString localizedNameOfStringEncoding:encoding];
 }
 
 
