@@ -246,8 +246,15 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     // don't save xattr if file doesn't have it in order to avoid saving wrong encoding (2015-01 by 1024jp).
     [self setShouldSaveXattr:(xattrEncoding != NSNotFound) || ([data length] == 0)];
     
+    NSString *string;
     NSStringEncoding usedEncoding;
-    NSString *string = [self stringFromData:data encoding:[self readingEncoding] xattrEncoding:xattrEncoding usedEncoding:&usedEncoding error:outError];
+    
+    if ([self readingEncoding] == CEAutoDetectEncoding) {
+        string = [self stringFromData:data xattrEncoding:xattrEncoding usedEncoding:&usedEncoding error:outError];
+    } else {  // interpret with specific encoding
+        usedEncoding = [self readingEncoding];
+        string = ([data length] > 0) ? [NSString stringWithContentsOfURL:url encoding:[self readingEncoding] error:outError] : @"";
+    }
     BOOL hasUTF8BOM = (usedEncoding == NSUTF8StringEncoding) ? [data hasUTF8BOM] : NO;
     
     if (!string) { return NO; }
@@ -1379,16 +1386,10 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 
 //------------------------------------------------------
-/// データから指定エンコードで文字列を読み込み返す
-- (nullable NSString *)stringFromData:(nonnull NSData *)data encoding:(NSStringEncoding)encoding xattrEncoding:(NSStringEncoding)xattrEncoding usedEncoding:(nonnull NSStringEncoding *)usedEncoding error:(NSError * _Nullable __autoreleasing * _Nullable)outError
+/// データから指定エンコードで文字列を読み込み返す (auto detection)
+- (nullable NSString *)stringFromData:(nonnull NSData *)data xattrEncoding:(NSStringEncoding)xattrEncoding usedEncoding:(nonnull NSStringEncoding *)usedEncoding error:(NSError * _Nullable __autoreleasing * _Nullable)outError
 //------------------------------------------------------
 {
-    if (encoding != CEAutoDetectEncoding) {  // interpret with specific encoding
-        *usedEncoding = encoding;
-        return ([data length] > 0) ? [[NSString alloc] initWithData:data encoding:encoding] : @"";
-    }
-    
-    // Auto-Detection
     NSString *string;
     
     // try interpreting with xattr encoding
