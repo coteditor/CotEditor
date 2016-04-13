@@ -2,6 +2,15 @@
 Change Log
 ==========================
 
+develop
+--------------------------
+
+### Fixes
+
+- [beta] Fix an issue where actions of the action (gear) menu in the syntax setting could be failed.
+
+
+
 2.5.0-beta (113)
 --------------------------
 

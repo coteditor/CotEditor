@@ -144,6 +144,9 @@ NSString *_Nonnull const IsUTF8WithBOM = @"UTF-8 with BOM";
         } else {
             representedStyleName = [[self stylesController] arrangedObjects][clickedrow][StyleNameKey];
         }
+    }
+    // set style name as representedObject to menu items whose action is related to syntax style
+    if ([NSStringFromSelector([menuItem action]) rangeOfString:@"Syntax"].location != NSNotFound) {
         [menuItem setRepresentedObject:representedStyleName];
     }
     
