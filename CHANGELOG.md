@@ -5,6 +5,11 @@ Change Log
 develop
 --------------------------
 
+### Improvements
+
+- Better error message on file opening.
+
+
 ### Fixes
 
 - [beta] Fix an issue where actions of the action (gear) menu in the syntax setting could be failed.

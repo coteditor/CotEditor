@@ -985,7 +985,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
         *outError = [NSError errorWithDomain:CEErrorDomain
                                         code:CEReinterpretationFailedError
                                     userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"Can not reinterpret.", nil),
-                                               NSLocalizedRecoverySuggestionErrorKey: [NSString stringWithFormat:NSLocalizedString(@"The file “%@” could not be reinterpreted using the new encoding “%@”.", nil), [[self fileURL] path], encodingName],
+                                               NSLocalizedRecoverySuggestionErrorKey: [NSString stringWithFormat:NSLocalizedString(@"The file “%@” could not be reinterpreted using the new encoding “%@”.", nil), [[self fileURL] lastPathComponent], encodingName],
                                                NSStringEncodingErrorKey: @(encoding),
                                                NSURLErrorKey: [self fileURL],
                                                }];
@@ -1255,7 +1255,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
         if (![self fileURL]) { return; } // まだファイル保存されていない時（ファイルがない時）は、戻る
         if ([self isDocumentEdited]) {
             NSAlert *alert = [[NSAlert alloc] init];
-            [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"The file “%@” has unsaved changes.", nil), [[self fileURL] path]]];
+            [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"The file “%@” has unsaved changes.", nil), [[self fileURL] lastPathComponent]]];
              [alert setInformativeText:NSLocalizedString(@"Do you want to discard the changes and reset the file encoding?", nil)];
              [alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
              [alert addButtonWithTitle:NSLocalizedString(@"Discard Changes", nil)];
@@ -1411,13 +1411,17 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     if (string) {
         // "charset=" や "encoding=" を読んでみて適正なエンコーディングが得られたら、そちらを優先
         NSStringEncoding scannedEncoding = [self scanEncodingDeclarationInString:string];
-        if (scannedEncoding != NSNotFound && scannedEncoding != encoding) {
+        if (scannedEncoding != NSNotFound && scannedEncoding != *usedEncoding) {
             NSString *tmpString = [[NSString alloc] initWithData:data encoding:scannedEncoding];
             if (tmpString) {
                 *usedEncoding = scannedEncoding;
                 return tmpString;
             }
         }
+    } else if (outError) {
+        *outError = [NSError errorWithDomain:NSCocoaErrorDomain
+                                        code:NSFileReadUnknownStringEncodingError
+                                    userInfo:nil];
     }
     
     return string;
